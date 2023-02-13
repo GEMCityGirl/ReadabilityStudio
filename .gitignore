@@ -1,32 +1,7 @@
-# Prerequisites
-*.d
+# Output files
+Docs/Coding-Bible/docs
+Docs/ReadabilityStudioAPI/docs
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+# Configuration files
+Docs/Coding-Bible/.Rproj.user
+Docs/ReadabilityStudioAPI/.Rproj.user

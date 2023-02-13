@@ -1,0 +1,57 @@
+# Coding Guidelines
+
+## Naming Conventions
+
+The following guidelines relate to all code:
+
+- Class member variables should be prefixed with a `m_`.
+- Macros should be in all caps. (Although macros should be avoided.)
+- Global and class member constants should be in all caps.
+- Meaningful names should always be used. (Only loop counters may have simple names like `i` ad 'j'.)
+- Caps should not be used in function/variable/class names, unless its the name of a test. For example, "DIEHARD" and "FRASE" are acceptable, but you should prefer "Html" to HTML."
+
+### Low-level Styles {-}
+
+Low-level code should follow these guidelines:
+
+- Functions, enums, structs, classes, class member variables, and function parameters should be in `snake_case`.
+- Local variables should be `camelCase`.
+
+Examples of "low-level" code would be the stemmer, indexing, and document importing libraries.
+
+### High-level Code {-}
+
+High-level (i.e., code related to user-interfaces or libraries like **wxWidgets**) code should follow these guidelines:
+
+- Functions, enums, structs, and classes should be in `PascalCase`.
+- class member variables, local variables, and function parameters should be `camelCase`.
+
+## Styling
+
+- Use 4 spaces instead of tabs.
+- Curly braces should be formatted as such:
+```cpp
+if (object == nullptr)
+    {
+    log("Memory error!");
+    return false;
+    }
+```
+This applies to all blocks like `if`, `for`, `while`, etc.
+
+## Best Practices
+
+- Instrinsic-type (and enumeration) member variables should be initialized.
+
+## i18n Guidelines
+
+- The following user-facing labels and messages should be made available for translation with the `_()` macro.
+  - Menu and ribbon labels.
+  - All dialog titles and labels.
+  - All messages shown to the user (except log messages).
+- The following should not be available for translation as they are meant for developers to review, not users:
+  - Log messages (e.g., `wxLogError`).
+  - Messages from low-level code (e.g., the Excel importer).
+- Strings consisting of only proper nouns (e.g., "Dale-Chall") should not be translatable.
+- All other common-sense i18n guidelines apply (e.g., do not expose internal codes and numbers for translation).
+- Formatting code (e.g., HTML tags) should not in translatable strings when possible.

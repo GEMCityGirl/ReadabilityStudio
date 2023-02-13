@@ -1,0 +1,642 @@
+## Get7CharacterPlusWordCount {#standard-get7characterpluswordcount .unnumbered}
+
+Returns the number of words consisting of seven or more characters from the document.
+
+```{sql}
+integer Get7CharacterPlusWordCount()
+```
+
+### Return Value {-}
+
+The number of words consisting of seven or more characters from the document.
+
+## GetCharacterAndPunctCount {#standard-getcharacterandpunctcount .unnumbered}
+
+Returns the number of characters (i.e., letters and numbers) and punctuation from the document.
+
+:::{.note}
+Sentence-ending punctuation is not included in this count.
+:::
+
+```{sql}
+integer GetCharacterAndPunctCount()
+```
+
+### Return Value {-}
+
+The number of characters and punctuation from the document.
+
+## GetCharacterCount {#standard-getcharactercount .unnumbered}
+
+Returns the number of characters (i.e., letters and numbers) from the document.
+
+```{sql}
+integer GetCharacterCount()
+```
+
+### Return Value {-}
+
+The number of characters (i.e., letters and numbers) from the document.
+
+## GetDocumentStorageMethod {#standard-getdocumentstoragemethod .unnumbered}
+
+Returns whether the project embeds its documents or links to them.
+
+```{sql}
+TextStorage GetDocumentStorageMethod()
+```
+
+### Return Value {-}
+
+The text storage method being used by the project as a [TextStorage](#textstorage) value.
+
+## GetIndependentClauseCount {#standard-getindependentclausecount .unnumbered}
+
+Returns the number of units/independent clauses from the document. A unit is a section of text ending with a period, exclamation mark, question mark, interrobang, colon, semicolon, or dash.
+
+```{sql}
+integer GetIndependentClauseCount()
+```
+
+### Return Value {-}
+
+The number of units/independent clauses from the document.
+
+## GetNumeralCount {#standard-getnumeralcount .unnumbered}
+
+Returns the number of numerals from the document.
+
+```{sql}
+integer GetNumeralCount()
+```
+
+### Return Value {-}
+
+The number of numerals from the document.
+
+## GetProjectLanguage {#standard-getprojectlanguage .unnumbered}
+
+Returns the language of the project.
+
+```{sql}
+Language GetProjectLanguage()
+```
+
+### Return Value {-}
+
+The language of the project as a [Language](#language) value.
+
+## GetProperNounCount {#standard-GetProperNounCount .unnumbered}
+
+Returns the number of proper nouns from the document.
+
+```{sql}
+integer GetProperNounCount()
+```
+
+### Return Value {-}
+
+The number of proper nouns from the document.
+
+## GetSentenceCount {#standard-GetSentenceCount .unnumbered}
+
+Returns the number of sentences from the document.
+
+```{sql}
+integer GetSentenceCount()
+```
+
+### Return Value {-}
+
+The number of sentences from the document.
+
+## GetSyllableCount {#standard-getsyllablecount .unnumbered}
+
+Returns the number of syllables from the document.
+
+```{sql}
+integer GetSyllableCount()
+```
+
+### Return Value {-}
+
+The number of syllables from the document.
+
+## GetTitle {#standard-gettitle .unnumbered}
+
+Returns the title of the project.
+
+```{sql}
+string GetTitle()
+```
+
+### Return Value {-}
+
+The title of the project.
+
+## GetUnfamDCWordCount {#standard-getunfamdcwordcount .unnumbered}
+
+Returns the number of unfamiliar New Dale-Chall words from the document.
+
+```{sql}
+integer GetUnfamDCWordCount()
+```
+
+### Return Value  {-}
+
+The number of unfamiliar New Dale-Chall words from the document.
+
+## GetUnfamHJWordCount {#standard-getunfamhjwordcount .unnumbered}
+
+Returns the number of unfamiliar Harris-Jacobson words from the document.
+
+```{sql}
+integer GetUnfamHJWordCount()
+```
+
+### Return Value {-}
+
+The number of unfamiliar Harris-Jacobson words from the document.
+
+## GetUnfamSpacheWordCount {#standard-getunfamspachewordcount .unnumbered}
+
+Returns the number of unfamiliar Spache words from the document.
+
+```{sql}
+integer GetUnfamSpacheWordCount()
+```
+
+### Return Value {-}
+
+The number of unfamiliar Spache words from the document.
+
+## GetUnique1SyllableWordCount {#standard-getunique1syllablewordcount .unnumbered}
+
+Returns the number of unique monosyllabic words from the document.
+
+```{sql}
+integer GetUnique1SyllableWordCount()
+```
+
+### Return Value {-}
+The number of unique monosyllabic words from the document.
+
+## GetUnique3SyllablePlusWordCount {#standard-getunique3syllablepluswordcount .unnumbered}
+
+Returns the number of unique words consisting of three or more syllables from the document.
+
+```{sql}
+integer GetUnique3SyllablePlusWordCount()
+```
+
+### Return Value {-}
+
+The number of unique words consisting of three or more syllables from the document.
+
+## GetUnique6CharPlusWordCount {#standard-getunique6charpluswordcount .unnumbered}
+
+Returns the number of unique words consisting of six or more characters from the document.
+
+```{sql}
+integer GetUnique6CharPlusWordCount()
+```
+
+### Return Value {-}
+
+The number of unique words consisting of six or more characters from the document.
+
+## GetUniqueWordCount {#standard-getuniquewordcount .unnumbered}
+
+Returns the number of unique words from the document.
+
+```{sql}
+integer GetUniqueWordCount()
+```
+
+### Return Value {-}
+
+The number of unique words from the document.
+
+## GetWordCount {#standard-getwordcount .unnumbered}
+
+Returns the number of words from the document.
+
+```{sql}
+integer GetWordCount()
+```
+
+### Return Value {-}
+
+The number of words from the document.
+
+## Reload {#standard-reload .unnumbered}
+
+Reanalyzes the project's documents.
+
+```{sql}
+Reload()
+```
+
+### See Also {-}
+
+[DelayReloading()](#standard-delayreloading)
+
+## SelectWindow {-}
+
+Selects a window in the project.
+
+```{sql}
+SelectWindow(SideBarSection,
+             WindowId)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+SideBarSection | The [section](#sidebarsection) of the project that the window is in.
+WindowId | The ID of the window to select.
+
+## SetAppendedDocumentFilePath {#standard-setappendeddocumentfilepath .unnumbered}
+
+Specifies the file path to the document being appended for analysis.
+
+```{sql}
+SetAppendedDocumentFilePath(FilePath)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+FilePath | The file path to the document being appended for analysis.
+
+## SetBarChartBarColor {#standard-setbarchartbarcolor .unnumbered}
+
+Sets the bar color for bar charts.
+
+```{sql}
+SetBarChartBarColor(Red,Green,Blue)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+Red | The red channel of the color.
+Green | The green channel of the color.
+Blue | The blue channel of the color.
+
+## SetBarChartBarEffect {#standard-setbarchartbareffect .unnumbered}
+
+Sets the effect used to display bars in bar charts.
+
+```{sql}
+SetBarChartBarEffect(BarEffect)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+BarEffect | The [effect](#bareffect) for the bars.
+
+## SetBarChartBarOpacity {#standard-setbarchartbaropacity .unnumbered}
+
+Sets the opacity of bar chart bars. 0 is fully transparent, and 255 is opaque.
+
+```{sql}
+SetBarChartBarOpacity(OpacityLevel)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+OpacityLevel | The opacity of the bars. 0 is fully transparent, and 255 is opaque.
+
+## SetBarChartOrientation {#standard-setbarchartorientation .unnumbered}
+
+Sets the bar charts' orientation.
+
+```{sql}
+SetBarChartOrientation(Orientation)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+Orientation | The [orientation](#orientation) to use for the bar charts.
+
+## SetBlockExclusionTags {#standard-setblockexclusiontags .unnumbered}
+
+Specifies a pair of tags that will exclude all text between them.
+
+```{sql}
+SetBlockExclusionTags(Tags)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+Tags | The pair of tags that will exclude all text between them.
+
+:::{.note}
+Pass in an empty string to turn off this option.
+:::
+
+## SetDocumentStorageMethod {#standard-setdocumentstoragemethod .unnumbered}
+
+Sets whether the project embeds its documents or links to them.
+
+```{sql}
+SetDocumentStorageMethod(TextStorage)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+TextStorage | The [text storage method](#textstorage) to use for the project.
+
+## SetGraphBackgroundColor {#standard-setgraphbackgroundcolor .unnumbered}
+
+Sets the background color for all graphs.
+
+```{sql}
+SetGraphBackgroundColor(Red,Green,Blue)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+Red | The red channel of the color.
+Green | The green channel of the color.
+Blue | The blue channel of the color.
+
+## SetGraphBackgroundImage {#standard-setgraphbackgroundimage .unnumbered}
+
+Sets the image to be used for graph backgrounds.
+
+```{sql}
+SetGraphBackgroundImage(ImageFilePath)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+ImageFilePath | The filepath of the image to use for the graph's backgrounds.
+
+## SetGraphBackgroundOpacity {#standard-setgraphbackgroundopacity .unnumbered}
+
+Sets the opacity of graph backgrounds.
+
+```{sql}
+SetGraphBackgroundOpacity(OpacityLevel)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+OpacityLevel | The opacity of graph backgrounds. 0 is fully transparent, and 255 is opaque.
+
+## SetGraphCustomBrushImage {#standard-setgraphcustombrushimage .unnumbered}
+
+Sets the image to be used for custom brushes.
+
+```{sql}
+SetGraphCustomBrushImage(ImageFilePath)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+ImageFilePath | The filepath to the image to be used for custom brushes.
+
+## SetGraphLogoImage {#standard-setgraphlogoimage .unnumbered}
+
+Sets the image to be used for a logo on all graphs.
+
+```{sql}
+SetGraphLogoImage(ImageFilePath)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+ImageFilePath | The filepath to the image to be used for a logo on all graphs.
+
+## SetGraphWatermark {#standard-setgraphwatermark .unnumbered}
+
+Sets the watermark to be written across graphs.
+
+```{sql}
+SetGraphWatermark(Label)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+Label | The watermark to be written across graphs.
+
+## SetIncludeIncompleteTolerance {#standard-setincludeincompletetolerance .unnumbered}
+
+Specifies the minimum number of words that will make a sentence missing terminating punctuation be considered complete.
+
+```{sql}
+SetIncludeIncompleteTolerance(WordCount)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+WordCount | The minimum number of words that will make a sentence missing terminating punctuation be considered complete.
+
+## SetPhraseExclusionList {#standard-setphraseexclusionlist .unnumbered}
+
+Sets the filepath to the list of phrases and words that should be excluded from analysis.
+
+```{sql}
+SetPhraseExclusionList(FilePath)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+FilePath | The filepath to the list of phrases and words that should be excluded from analysis.
+
+## SetPlotBackgroundColor {#standard-setplotbackgroundcolor .unnumbered}
+
+Sets the plot area color for all graphs.
+
+```{sql}
+SetPlotBackgroundColor(Red,Green,Blue)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+Red | The red channel of the color.
+Green | The green channel of the color.
+Blue | The blue channel of the color.
+
+## SetPlotBackgroundOpacity {#standard-setplotbackgroundopacity .unnumbered}
+
+Sets the opacity of graph plot areas.
+
+```{sql}
+SetPlotBackgroundOpacity(OpacityLevel)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+OpacityLevel | The opacity of graph backgrounds. 0 is fully transparent, and 255 is opaque.
+
+## SetProjectLanguage {#standard-setprojectlanguage .unnumbered}
+
+Changes the language for project. This will affect syllable counting and also which tests are available.
+
+```{sql}
+SetProjectLanguage(Language)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+Language | The [Language](#language) to set the project to.
+
+## SetSpellCheckerOptions {#standard-setspellcheckeroptions .unnumbered}
+
+Sets which items the spell checker should ignore.
+
+```{sql}
+SetSpellCheckerOptions(IgnoreProperNouns,
+                       IgnoreUppercased,
+                       IgnoreNumerals,
+                       IgnoreFileAddresses,
+                       IgnoreProgrammerCode,
+                       AllowColloquialisms)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+IgnoreProperNouns | Set to `true` to ignore proper nouns.
+IgnoreUppercased | Set to `true` to ignore words that are in all caps.
+IgnoreNumerals | Set to `true` to ignore numeric words.
+IgnoreFileAddresses | Set to `true` to ignore words that are filepaths.
+IgnoreProgrammerCode | Set to `true` to ignore words appear to be programming code.
+AllowColloquialisms | Set to `true` to ignore colloquialisms.
+
+## SetTextExclusion {#standard-settextexclusion .unnumbered}
+
+Specifies how text should be excluded while parsing the source document.
+
+```{sql}
+SetTextExclusion(TextExclusionType)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+TextExclusionType | With [text exclusion method](#textexclusiontype) to use for the project.
+
+## SetWindowSize {#standard-setwindowsize .unnumbered}
+
+Resizes the project's window size to the specified width and height.
+
+```{sql}
+SetWindowSize(Width,Height)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+Width | The project window width.
+Height | The project window height.
+
+## ShowSidebar{-}
+
+Show or hides the project's sidebar.
+
+```{sql}
+ShowSidebar(boolean)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+Show | `true` to show the sidebar, `false` to hide it.
+
+## SortGraph {#standard-sortgraph .unnumbered}
+
+Sorts the specified graph by **SortOrder**.
+
+```{sql}
+SortGraph(GraphType,SortOrder)
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+GraphType | The [graph](#graphtype) to sort.
+SortOrder | The [sorting](#sortorder) direction to apply to the graph's bars.
+
+## SortList {#standard-sortlist .unnumbered}
+
+Sorts the specified list using a series of columns and sorting orders.
+
+```{sql}
+SortList(ListType,
+         ColumnToSort,
+         SortOrder,
+         ...) 
+```
+
+### Parameters {-}
+
+Parameter | Description
+| :-- | :-- |
+ListType | The [list](#listtype) to sort.
+ColumnToSort | The column to sort by.
+SortOrder | The [sorting direction](#sortorder) to use.
+... | (Optional) Any additional sets of columns and sort orders to use (in case of a tie).
+
+### Example {-}
+
+```{sql}
+-- Open a project from the user's "Documents" folder
+sp = StandardProject(Application.GetDocumentsPath() .. "Consent Form.rsp")
+-- Sort the "All Words" list.
+-- Will sort by the third column (Z-A sorting), and in case of a tie, then sort
+-- by the second then the first column.
+sp:SortList(ListType.AllWords, 3, SortOrder.SortDescending,
+            2, SortOrder.SortDescending,
+            1, SortOrder.SortDescending)
+-- export the list after sorting it
+sp:ExportList(ListType.AllWords,
+              Application.GetDocumentsPath() ..
+              "ExportList/ChristmasCarolAllWordsListSortedDesc.htm")
+
+sp:Close()
+```
+

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>Danielson-Bryan 1</title>
+</head>
+<body link="#336699">
+<h1><font color="#315184"><b>Danielson-Bryan 1 Test</b></font></h1>
+<hr>
+
+<p><i><b>Danielson-Bryan 1</b></i> (206)
+is meant for student materials and calculates the grade level of a document based
+on sentence length and character count.</p>
+
+<p><i><b>DB1</b></i> was designed to be a faster method (compared to Farr-Jenkins-Paterson) of calculating readability scores on UNIVAC 1105 computers. Rather than counting syllables, <i><b>DB1</b></i> counts characters and punctuation, which was simpler to analyze on computers of that era. This performance benefit is more of an historical reference now; most modern computers and software will calculate syllable counts optimally.</p>
+
+<h3><u>The Danielson-Bryan 1 Formula</u></h3>
+<blockquote>G = 1.0364*(RP/W) + .0194*(RP/S) - .6059</blockquote>
+
+<p>Where:</p>
+<blockquote>
+<table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td>G</td>
+<td>Grade level</td>
+</tr>
+<tr>
+<td>W</td>
+<td>Number of words*</td>
+</tr>
+<tr>
+<td>RP</td>
+<td>Number of characters, in this context being letters, numbers, and punctuation (except for sentence-ending punctuation, such as periods)</td>
+</tr>
+<tr>
+<td>S</td>
+<td>Number of sentences</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+
+<p>*In the original article, the statistic of &ldquo;number of spaces between words&rdquo; is suggested, rather than explicitly saying &ldquo;number of words&rdquo;. Logically, this should be the number of words minus 1. However, in the article's example, number of spaces between words is the same as number of words (even when there are dashes connecting words). It is therefore assumed that the authors' intention was to count the number of words using the following logic:</p>
+<ol>
+<li>Count the number of spaces.</li>
+<li>Treat dashes connecting words as spaces.</li>
+<li>Add 1, considering how there would be one less space than words.</li>
+</ol>
+<p>For this reason, the &ldquo;number of words&rdquo; statistic is a more accurate description of what the authors meant.</p>
+
+<h1><font color="#315184"><b>Citations</b></font></h1>
+<hr>
+
+<p><a name="DanielsonBryan"></a>Danielson, Wayne A., and Sam Dunn Bryan. &ldquo;Computer Automation of Two Readability Formulas&rdquo;. <i>Journalism Quarterly</i>. 40 (1963): 201-206. Print.</p>
+
+<p>The above article may be available from JSTOR (http://www.jstor.org/).
+
+<p>&copy;2011 Oleander Software, all rights reserved.</p>
+
+</body>
+</html>
