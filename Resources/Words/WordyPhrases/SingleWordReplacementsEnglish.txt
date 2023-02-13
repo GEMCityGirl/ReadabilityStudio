@@ -1,0 +1,2618 @@
+﻿abatement	decrease
+abbreviate	shorten
+abbreviated	shortened
+abbreviates	shortens
+abbreviating	shortening
+abdicate	give up, resign, quit
+abdicated	gave up, resigned, quit
+abdicates	gives up, resigns, quits
+abdicating	giving up, resigning, quitting
+abdomen	belly, stomach
+abduct	kidnap
+abducted	kidnapped
+abducting	kidnapping
+abducts	kidnaps
+abeyance	waiting
+abhor	hate
+abhorred	hated
+abhorrence	hatred
+abhorrent	disgusting, hateful
+abhorring	hating
+abhors	hates
+abilities	skills
+ability	skill
+abjure	renounce
+abjured	renounced
+abjures	renounces
+abjuring	renouncing
+ablution	cleansing
+abolish	get rid of, do away with
+abolished	got rid of, did away with
+abolishes	gets rid of, does away with
+abolishing	getting rid of, doing away with
+abominable	disgusting, hateful
+abrasion	scratch
+abrasions	scratches
+abridge	shorten
+abridged	shortened
+abridges	shortens
+abridging	shortening
+abrogate	cancel, do away with, get rid of
+abrogated	canceled, did away with, got rid of
+abrogates	cancels, does away with, gets rid of
+abrogating	canceling, doing away with, getting rid of
+abscond	go off and hide, hide away
+absconded	went off and hid, hid away
+absconding	going off and hiding, hiding away
+absconds	goes off and hides, hides away
+absolutely	wholly
+abundant	enough
+academies	schools
+academy	school
+academy's	school's
+accede	give in
+acceded	gave in
+accedes	gives in
+acceding	giving in
+accelerate	hasten, quicken
+accelerated	hastened, quickened
+accelerates	hastens, quickens
+accelerating	hastening, quickening
+acceptable	welcome
+accessible	easy to reach
+accommodate	adjust, adapt, fit
+accommodated	adjusted, adapted, fitted
+accommodates	adjusts, adapts, fits
+accommodating	adjusting, adapting, fitting
+accompanied	went with
+accompanies	goes with
+accompany	go with
+accompanying	going with
+accomplish	do, carry out
+accomplishable	doable
+accomplished	did, done
+accomplishes	does carries out
+accomplishing	doing, carrying out
+accordingly	so, just so
+accrual	addition, gain
+accruals	additions, gains
+accrue	add, gain
+accrued	added, gained
+accruement	addition, gain
+accrues	adds, gains
+accruing	adding, gaining
+accumulate	collect
+accumulated	collected
+accumulates	collects
+accumulating	collecting
+accuracy	correctness, exactness
+accurate	correct, exact
+accurately	correctly, exactly
+accusation	charge
+accusations	charges
+achievable	doable, makeable
+achieve	do, make
+achieved	did, mad
+achieves	does, makes
+achieving	doing, making
+acknowledge	admit, express thanks for
+acknowledged	admitted, expressed thanks for
+acknowledges	admits, expresses thanks for
+acknowledging	admitting, expressing thanks for
+acquaintance	friend
+acquaintance's	friend's
+acquaintances	friends
+acquiesce	agree, accept
+acquiesced	agreed, accepted
+acquiesces	agrees, accepts
+acquiescing	agreeing, accepting
+acquire	gain, get
+acquired	gained, got
+acquires	gains, gets
+acquiring	gaining, getting
+acquit	set free
+acquits	sets free
+acquitted	set free
+acquitting	setting free
+acrimonious	sharp, bitter
+acrimoniously	bitterly
+actual	real
+actually	really
+actuate	put into action, move
+actuated	put into action, moved
+actuates	puts into action, moves
+actuating	putting into action, moving
+adamant	hard, inflexible, rigid
+adapt	make fit
+adapted	made fit
+adapting	making fit
+adapts	makes fit
+additional	added, extra
+additionally	added, more
+adequate	enough
+adhere	stick to, follow
+adhered	stuck to, followed
+adheres	sticks to, follows
+adhering	sticking to, following
+adjacent	next to
+adjustment	settlement
+adjustments	settlements
+administer	manage
+administered	managed
+administering	managing
+administers	manages
+admonish	warn
+admonished	warned
+admonishes	warns
+admonishing	warning
+admonition	warning
+adroit	skillful
+advantage	plus
+advantageous	helpful
+advantageously	helpfully
+advantages	pluses
+adversaries	enemies
+adversary	enemy
+adversary's	enemy's
+adverse	harmful
+adversities	distresses, difficulties
+adversity	distress, difficulty
+advise	tell, recommend
+advised	told, recommended
+advises	tells, recommends
+advising	telling, recommending
+advocate	speak for
+advocated	spoke for
+advocates	speaks for
+advocating	speaking for
+affable	pleasant
+affectionate	loving
+affectionately	lovingly
+affix	put, stick
+affixed	put, stuck
+affixes	puts, sticks
+affixing	putting, sticking
+affluent	rich
+affray	fight
+affrayed	fought
+affraying	fighting
+affrays	fights
+aggrandize	make greater
+aggrandized	made greater
+aggrandizes	makes greater
+aggrandizing	making greater
+aggravate	provoke
+aggravated	provoked
+aggravates	provokes
+aggravating	provoking
+aggregate	collect
+aggregated	collected
+aggregates	collects
+aggregating	collecting
+aggressive	forward, strong, attacking
+aggressively	forwardly
+agitate	shake, stir, excite
+agitated	shook, stirred, excited
+agitates	shakes, stirs, excites
+agitating	shaking, stirring, exciting
+aircraft	plane
+aircraft's	plane's
+aircrafts	planes
+alacrity	speed
+alienate	turn against
+alienated	turned against
+alienates	turns against
+alienating	turning against
+allay	quiet
+allayed	quieted
+allaying	quieting
+allays	quiets
+allegiance	loyalty
+allegiances	loyalties
+alleviate	make easier
+alleviated	made easier
+alleviates	makes easier
+alleviating	making easier
+allotment	share
+allotments	shares
+allude	refer
+alluded	referred
+alludes	refers
+alluding	referring
+alteration	change
+alterations	changes
+altercation	dispute
+altercations	disputes
+alternate	take turns (between), every other (adj.)
+alternated	took turns (between)
+alternates	takes turns (between)
+alternating	taking turns (between)
+alternative	choice
+alternatives	choices
+amalgamate	combine, blend, unite
+amalgamated	combined, blended, united
+amalgamates	combines, blends, unites
+amalgamating	combining, blending, uniting
+ambiguous	unclear
+ameliorate	improve
+ameliorated	improved
+ameliorates	improves
+ameliorating	improving
+amendment	change
+amendments	changes
+amicable	friendly
+amorphous	shapeless
+amplified	made greater
+amplifies	makes greater
+amplify	make greater
+amplifying	making greater
+amputate	cut off
+amputated	cut off
+amputates	cuts off
+amputating	cutting off
+amusement	fun
+analysis	review, breakdown, exam, study
+anathema	curse, accursed
+animadversion	blame
+animosity	hatred
+annihilate	kill, destroy
+annihilated	killed, destroyed
+annihilates	kills, destroys
+annihilating	killing, destroying
+annihilation	destruction
+annually	yearly
+anomalous	abnormal
+anomalously	abnormally
+anonymous	nameless
+anonymously	namelessly
+antagonist	enemy
+antagonist's	enemy's
+antagonists	enemies
+anterior	front
+anticipatable	expectable
+anticipate	expect, await
+anticipated	expected, awaited
+anticipates	expects, awaits
+anticipating	expecting, awaiting
+anticipation	expectation
+antipathy	dislike
+antiquated	out-of-date
+antithesis	opposite
+anxieties	fears
+anxiety	fear
+apathetic	indifferent
+aperture	gap, hole
+apertures	gaps, holes
+apex	tip
+apexes	tips
+apparent	clear, plain
+apparently	clearly, plainly
+apparition	ghost
+apparition's	ghost's
+apparitions	ghosts
+appear	seem, come
+appeared	seemed, came
+appearing	seeming, coming
+appears	seems, comes
+appease	calm
+appeased	calmed
+appeases	calms
+appeasing	calming
+appellation	name
+appellations	names
+append	add
+appended	added
+appending	adding
+appends	adds
+appliance	device
+appliances	devices
+appoint	name
+appointed	named
+appointing	naming
+appoints	names
+apportion	divide
+apportioned	divided
+apportioning	dividing
+apportions	divides
+appreciable	many
+apprehend	seize
+apprehended	seized
+apprehending	seizing
+apprehends	seizes
+apprehensive	uneasy
+apprehensively	uneasily
+approbation	praise
+approbations	praises
+appropriate	proper (adj.), set aside (verb)
+appropriated	set aside
+appropriately	properly
+appropriates	sets aside
+appropriating	setting aside
+approval	praise, consent
+approximately	about
+aqueous	watery
+arbiter	judge, umpire
+arbiters	judges, umpires
+arduous	hard
+arduously	hardly
+armistice	truce
+aroma	smell
+aroma's	smell's
+aromas	smells
+arrogant	cocky
+artifice	craft
+artifices	crafts
+ascend	climb
+ascended	climbed
+ascending	climbing, upward
+ascends	climbs
+ascertain	find out, learn
+ascertained	found out, learned
+ascertaining	finding out, learning
+ascertains	finds out, learns
+aspersion	slander
+asphyxiate	suffocate
+asphyxiated	suffocated
+asphyxiates	suffocates
+asphyxiating	suffocating
+aspiration	longing, dream, goal
+aspirations	longings, dreams, goals
+assassinate	kill
+assassinated	killed
+assassinates	kills
+assassinating	killing
+assassination	killing
+assassination's	killing's
+assassinations	killings
+assay	try, test
+assayed	tried, tested
+assaying	trying, testing
+assays	tries, tests
+assemble	gather
+assembled	gathered
+assembles	gathers
+assemblies	meetings
+assembling	gathering
+assembly	meeting
+assent	agree
+assented	agreed
+assenting	agreeing
+assents	agrees
+assimilate	absorb, digest
+assimilated	absorbed, digested
+assimilates	absorbs, digests
+assimilating	absorbing, digesting
+assist	aid, help
+assistance	help
+assistant	helper
+assistant's	helper's
+assistants	helpers
+assisted	aided, helped
+assisting	aiding, helping
+assists	aids, helps
+assuredly	surely
+astute	shrewd
+astutely	shrewdly
+atrophied	wasted away
+atrophies	wastes away
+atrophy	waste away
+atrophying	wasting away
+attain	gain
+attained	gained
+attaining	gaining
+attains	gains
+attempt	try
+attempted	tried
+attempting	trying
+attempts	tries
+attire	dress
+attractive	pleasing
+audacious	bold
+audaciously	boldly
+augmentation	increase
+augmentations	increases
+austere	harsh, stern
+authentic	real
+authentically	really
+authorize	give power
+authorized	gave power
+authorizes	gives power
+authorizing	giving power
+automaton	machine
+automaton's	machine's
+automatons	machines
+automobile	car
+automobile's	car's
+automobiles	cars
+autonomous	independent
+autonomously	independently
+available	offered, ready
+avarice	greed
+avaricious	greedy
+avariciously	greedily
+avenue	road
+avenue's	road's
+avenues	roads
+aversion	fear, dislike
+aversions	dislikes
+axiom	truth, rule
+axiom's	truth's, rule's
+axioms	truths, rules
+banal	trite
+barbarous	coarse, brutal
+bargain	deal
+bargains	deals
+bashful	shy
+bashfully	shyly
+beatitude	blessing
+beatitudes	blessings
+behemoth	giant
+behemoth's	giant's
+behemoths	giants
+beleaguer	besiege
+beleaguered	besieged
+beleaguering	besieging
+beleaguers	besieges
+bellicose	warlike
+benediction	blessing
+benedictions	blessings
+beneficence	kindness
+beneficial	helpful
+beneficiaries	persons helped
+beneficiary	person helped
+benefit	help
+benefited	helped
+benefits	helps
+benefitted	helped
+benefitting	helping
+benevolent	kindly
+benevolently	kindly
+benignant	kindly
+bereavement	loss
+beseech	beg
+beseeched	begged
+beseeches	begs
+beseeching	begging
+besmirch	soil
+besmirched	soiled
+besmirches	soils
+besmirching	soiling
+bespeak	order, reserve
+bespeaking	ordering, reserving
+bespeaks	orders, reserves
+bespoke	ordered, reserved
+bestow	give
+bestowed	gave
+bestowing	giving
+bestows	gives
+betrothed	engaged
+bewilder	confuse
+bewildered	confused
+bewildering	confusing
+bewilders	confuses
+biannual	twice a year
+bilateral	two-sided
+bizarre	odd, queer
+bizarrely	oddly
+boulevard	road
+boulevard's	road's
+boulevards	roads
+buccaneer	pirate
+buccaneer's	pirate's
+buccaneers	pirates
+burglar	robber
+burglar's	robber's
+burglars	robbers
+cadence	rhythm
+caitiff	coward
+caitiffs	cowards
+cajole	coax
+cajoled	coaxed
+cajolery	coaxing
+cajoles	coaxes
+cajoling	coaxing
+calumniate	slander
+calumniated	slandered
+calumniates	slanders
+calumniating	slandering
+capabilities	abilities
+capability	ability
+capability's	ability's
+capable	able
+capacities	abilities, powers, positions
+capacity	ability, power, position
+captivate	charm
+captivated	charmed
+captivates	charms
+captivating	charming
+carboniferous	coal-bearing
+carnivorous	flesh-eating
+cartilage	gristle
+catalog	list
+cataloged	listed
+cataloging	listing
+catalogs	lists
+catalogue	list
+catalogued	listed
+catalogues	lists
+cataloguing	listing
+catechism	set of questions
+categories	classes, groups
+categorisation	grouping
+categorisation's	grouping's
+categorisations	groupings
+categorise	class, group
+categorised	classed, grouped
+categorises	classes, groups
+categorising	classing, grouping
+categorization	grouping
+categorization's	grouping's
+categorizations	groupings
+categorize	class, group
+categorized	classed, grouped
+categorizes	classes, groups
+categorizing	classing, grouping
+category	class, group
+censure	blame
+censured	blamed
+censures	blames
+censuring	blaming
+certainly	surely
+cessation	stop, pause
+cessations	stops, pauses
+characteristic	trait
+characteristics	traits
+characterize	describe
+characterized	described
+characterizes	describes
+characterizing	describing
+charlatan	quack
+charlatans	quacks
+chicanery	trickery
+chimerical	unreal, fantastic
+chivalrous	gallant
+chivalrously	gallantly
+circuitous	roundabout
+circumspect	careful
+circumspectly	carefully
+circumvent	get around, avoid
+circumvented	got around, avoided
+circumventing	getting around, avoiding
+circumvents	gets around, avoids
+clarified	made clear
+clarifies	makes clear
+clarify	make clear
+clarifying	making clear
+clemency	mercy
+coagulate	thicken
+coagulated	thickened
+coagulates	thickens
+coagulating	thickening
+coalesce	grow together
+coalesced	grew together
+coalesces	grows together
+coalescing	growing together
+coalition	union
+coalitions	unions
+cogitate	ponder
+cogitated	pondered
+cogitates	ponders
+cogitating	pondering
+cognizant	aware
+collaborate	work together
+collaborated	worked together
+collaborates	works together
+collaborating	working together
+collection	mass, heap
+collections	masses, heaps
+colossal	large
+combine	join
+combined	joined
+combines	joins
+combining	joining
+comforted	soothed
+comforting	soothing
+comforts	soothes
+commence	begin
+commenced	began
+commencement	start
+commencements	starts
+commences	begins
+commencing	beginning
+commendation	praise
+commendations	praises
+commerce	trade
+commiseration	pity
+commitment	pledge
+commitments	pledges
+commodious	roomy
+companion	friend, mate
+companion's	friend's, mate's
+companions	friends, mates
+compassion	pity
+compensate	pay
+compensated	paid
+compensates	pays
+compensating	paying
+compensation	pay
+competent	able
+complied	followed
+complier	follower
+complier's	follower's
+compliers	followers
+complies	follows
+comply	follow
+complying	following
+component	part
+component's	part's
+components	parts
+compose	make up, create
+composed	made up, created, calm (adj.)
+composes	makes up, creates
+composing	making up, creating
+composition	make-up
+compress	sqeeze
+compressed	sqeezed
+compresses	sqeezes
+compressing	sqeezing
+comprise	form, include
+comprised	formed, included
+comprises	forms, includes
+comprising	forming, including
+compunction	regret
+compunctions	regrets
+concealment	hiding
+conceited	cocky
+conceive	think up, create
+conceived	thought up, created
+conceives	thinks up, creates
+conceiving	thinking up, creating
+conception	thought, idea, creation
+concerning	about, on
+conciliate	win over, soothe
+conciliated	won over, soothed
+conciliates	wins over, soothes
+conciliating	winning over, soothing
+conclude	close, end
+concluded	closed, ended
+concludes	closes, ends
+concluding	closing, ending
+conclusion	close, end
+conclusive	final
+conclusively	finally
+concur	agree
+concurred	agreed
+concurring	agreeing
+concurs	agrees
+concussion	shock
+concussions	shocks
+condescend	stoop down
+condescended	stooped down
+condescending	stooping down
+condescends	stoops down
+conformity	likeness
+confront	meet, face
+confrontation	meeting
+confrontation's	meeting's
+confrontations	meetings
+confronted	face, met
+confronting	facing, meeting
+confronts	faces, meets
+congeal	freeze
+congealed	froze
+congealing	freezing
+congeals	freezes
+congenital	inborn
+congruous	fitting
+conjecture	guess
+conjectured	guessed
+conjectures	guesses
+conjecturing	guessing
+connoisseur	expert
+connoisseurs	experts
+conscious	aware
+consequence	result
+consequences	results
+consequently	so
+considerable	much
+consolation	comfort
+consolidate	join, unite, combine
+consolidated	joined, united, combined
+consolidates	joins, unites, combines
+consolidating	joining combining, joining
+consolidation	combination, merger
+consolidation's	combination's, merger's
+consolidations	combinations, mergers
+consolidator	combination, merger
+consolidators	combinations, mergers
+constable	police
+constable's	police's
+constables	polices
+constantly	always
+consternation	dismay
+constitute	be, form
+constituted	was, formed
+constitutes	makes up, forms
+constituting	being, forming
+constitution	form, make-up
+construct	build
+constructed	built
+constructing	building
+construction	building
+construction's	building's
+constructions	buildings
+constructive	helpful
+constructively	helpfully
+constructor	builder
+constructor's	builder's
+constructors	builders
+constructs	builds
+consume	use up
+consumed	used up
+consumes	uses up
+consuming	using up
+contain	have, hold
+contained	had, held
+containing	having, holding
+contains	has, holds
+contaminate	taint
+contaminated	tainted
+contaminates	taints
+contaminating	tainting
+contemplate	think about
+contemplated	thought about
+contemplates	thinks about
+contemplating	thinking about
+contempt	scorn
+contemptible	mean
+contemptuous	scornful
+contemptuously	scornfully
+contiguity	nearness
+contiguous	touching, near, next to
+contingencies	emergencies, predicaments
+contingency	emergency, likelihood, predicament
+continue	keep, keep on
+continued	kept on
+continues	keeps on
+continuing	keeping on
+contort	twist, bend
+contorted	twisted, bent
+contorting	twisting, bending
+contorts	twists, bends
+contradict	deny, conflict
+contradicted	denied, conflicted
+contradicting	denying, conflicting
+contradicts	denies, conflicts
+contraption	machine
+contraption's	machine's
+contraptions	machines
+contribute	give, help
+contributed	gave, helped
+contributes	gives, helps
+contributing	giving, helping
+contribution	gift
+contribution's	gift's
+contributions	gifts
+contributively	givingly
+contributor	giver
+contributor's	giver's
+contributors	givers
+contusion	bruise
+contusions	bruises
+convenient	handy
+conventionally	normally
+conversation	talk
+conversations	talks
+conversion	change
+conversions	changes
+convolution	coil, fold, twist
+convolutions	coils, folds, twists
+cooperate	help
+cooperated	helped
+cooperates	helps
+cooperating	helping
+cooperative	helpful
+cooperatively	helpfully
+cooperator	helper
+cooperator's	helper's
+cooperators	helpers
+copious	plenty
+coquette	flirt
+coquetted	flirted
+coquettes	flirts
+coquetting	flirting
+corporeal	bodily
+corpulent	fat
+corroborate	confirm
+corroborated	confirmed
+corroborates	confirms
+corroborating	confirming
+corrugate	wrinkle, bend
+corrugated	wrinkled, bent
+corrugates	wrinkles, bends
+corrugating	wrinkling, bending
+corruption	decay, rot, immorality
+counteract	hinder
+counteracted	hindered
+counteracting	hindering
+counteracts	hinders
+countermand	cancel, recall
+countermanded	canceled, recalled
+countermanding	canceling, recalling
+countermands	cancels, recalls
+cozen	cheat
+cozens	cheats
+create	make
+created	made
+creates	makes
+creating	making
+criteria	requirements
+culinarian	cook
+culinarian's	cook's
+culinarians	cooks
+cultivate	grow, till, raise, farm
+cultivated	grew, tilled, raised, farmed
+cultivates	grows, tills, raises, farms
+cultivating	growing, tilling, raising, farming
+customary	usual, accepted
+damsel	girl
+damsel's	girl's
+damsels	girls
+debilitate	weaken
+debilitated	weakened
+debilitates	weakens
+debilitating	weakening
+decapitate	behead
+decapitated	beheaded
+decapitates	beheads
+decapitating	beheading
+decentralize	scatter, break apart
+decentralized	scattered, broke apart
+decentralizes	scatters, breaks apart
+decentralizing	scattering, breaking apart
+declination	downward slope
+declinations	downward slopes
+deem	think
+deemed	thought
+deeming	thinking
+deems	thinks
+deficit	shortage
+deficits	shortages
+definitive	final
+defunct	dead
+delectable	pleasing
+delete	cut, drop
+deleted	cut, dropped
+deletes	cuts, drops
+deleting	cutting, dropping
+deletion	cut
+deletions	cuts, drops
+deliberately	on purpose
+demonstrable	provable
+demonstrate	show
+demonstrated	showed
+demonstrates	shows
+demonstrating	showing
+dense	thick
+density	thickness
+depart	leave
+departed	left
+departing	leaving
+departs	leaves
+deplete	empty
+depleted	emptied, empty (adj.)
+depletes	empties
+depleting	emptying
+depreciate	lessen
+depreciated	lessened
+depreciates	lessens
+depreciating	lessening
+descending	downward
+designate	appoint, choose, assign
+designated	appointed, chose/chosen, assigned
+designates	appoints, chooses, assigns
+designating	appointing, choosing, assigning
+desire	wish
+desired	wished
+desires	wishes
+desiring	wishing
+desirously	wishfully
+desirousness	wishfulness
+determinable	decidable
+determine	decide, figure
+determined	decided, figured
+determines	decides, figures
+determining	deciding, figuring
+detest	hate
+detested	hated
+detesting	hating
+detests	hates
+detrimental	harmful
+develop	make, grow
+developed	made, grown
+developing	making, growing
+develops	makes, grows
+deviate	stray, turn away
+deviated	strayed, turned away
+deviates	strays, turns away
+deviating	straying, turning away
+deviation	change
+deviations	changes
+dichotomies	groups, branches, divisions
+dichotomy	group, branch, division
+dichotomy's	group's, branch's, division's
+difficult	hard
+difficulties	troubles
+difficulty	trouble
+dilatory	not prompt
+diminution	lessening
+diplomacy	tact
+diplomatic	tactful
+diplomatically	tactfully
+disagreeable	cross
+disarrange	disturb
+disarranged	disturbed
+disarranges	disturbs
+disarranging	disturbing
+disburse	pay out
+disbursed	paid out
+disburses	pays out
+disbursing	paying out
+discerning	keen
+disclose	show
+disclosed	shown
+discloses	shows
+disclosing	showing
+disconnected	undone
+discontented	uneasy
+discontinuance	dropping, stop
+discontinuances	droppings, stops
+discontinuation	dropping, stop
+discontinuations	droppings, stop
+discontinue	drop, stop
+discontinued	dropped, stopped
+discontinues	drops, stops
+discontinuing	dropping, stopping
+discordant	harsh
+discover	find out
+discovered	found out
+discovering	finding out
+discovers	finds out
+discredit	doubt
+discredited	doubted
+discrediting	doubting
+discredits	doubts
+disembark	leave the ship, go ashore
+disembarked	left the ship, went ashore
+disembarking	leaving the ship, going ashore
+disembarks	leaves the ship, goes ashore
+disengage	free, release
+disengaged	freed, released
+disengages	frees, releases
+disengaging	freeing, releasing
+disentangle	free, release
+disentangled	freed, released
+disentangles	frees, releases
+disentangling	freeing, releasing
+disintegrate	break up
+disintegrated	broke up
+disintegrates	breaks up
+disintegrating	breaking up
+disinter	dig up
+disinterred	dug up
+disinterring	digging up
+disinters	digs up
+dismember	take apart
+dismembered	took apart
+dismembering	taking apart
+dismembers	takes apart
+dispatch	send
+dispatched	sent
+dispatches	sends
+dispatching	sending
+dispel	rid, drive away
+dispelled	rid, drove away
+dispelling	ridding, driving away
+dispels	rids, drives away
+dispense	give out
+dispensed	gave out
+dispenses	gives out
+dispensing	giving out
+disperse	scatter
+dispersed	scattered
+disperses	scatters
+dispersing	scattering
+dispossess	deprive
+dispossessed	deprived
+dispossesses	deprives
+dispossessing	depriving
+disregard	ignore
+disregarded	ignored
+disregarding	ignoring
+disregards	ignores
+disrespectful	rude
+disrupt	interrupt, confuse
+disrupted	interrupted, confused
+disrupting	interrupting, confusing
+disrupts	interrupts, confuses
+disseminate	issue, send out
+disseminated	scattered, spread out
+disseminates	issues, sends out
+disseminating	issuing, sending out
+dissemination	issuance, sending out
+disseminations	issuances
+disseminator	issuer
+disseminators	issuers
+dissimilar	not alike, different
+dissipate	scatter, waste, squander
+dissipated	scattered, wasted, squandered
+dissipates	scatters, wastes, squanders
+dissipating	scattering, wasting, squandering
+dissolute	evil
+distend	stretch out
+distended	stretched out
+distending	stretching out
+distends	stretches out
+distinguish	tell apart
+distinguished	told apart, dignified (adj.)
+distinguishes	tells apart
+distinguishing	telling apart
+divest	strip off
+divested	stripped off
+divesting	stripping off
+divests	strips off
+divulge	tell
+divulged	told
+divulges	tells
+divulging	telling
+domesticate	tame
+domesticated	tamed
+domesticates	tames
+domesticating	taming
+domicile	home
+domiciles	homes
+domineer	rule over
+domineered	ruled over
+domineering	ruling over
+domineers	rules over
+dormant	asleep
+dubious	doubtful
+duplicate	copy
+duplicated	copied
+duplicates	copies
+duplicating	copying
+ebullient	bubbling up
+eccentric	odd
+echelon	level
+echelon's	level's
+echelons	levels
+economical	thrifty
+edification	benefit
+edifice	building
+edifices	buildings
+educator	teacher
+educator's	teacher's
+educators	teachers
+efface	rub out
+effaced	rubbed out
+effaces	rubs out
+effacing	rubbing out
+effected	made, changed
+effecting	making, changing
+effervescent	bubbly, lively
+effervescently	livelily
+effusive	pouring out, gushing, overflowing
+egotistical	cocky
+egregious	flagrant, shockingly bad
+egregiously	flagrantly
+egress	emerge
+egressed	emerged
+egresses	emerges
+egressing	emerging
+elect	choose, pick
+elected	chose/chosen, picked
+electing	choosing, picking
+elects	chooses, picks
+elevate	raise, lift up
+elevated	rose, lifted up
+elevates	raises, lifts up
+elevating	raising, lifting up
+elevation	height
+elicit	draw out, call forth
+elicited	drew out, called forth
+eliciting	drawing out, calling forth
+elicits	draws out, calls forth
+eliminate	cut, drop
+eliminated	cut, dropped
+eliminates	cuts, drops
+eliminating	cutting, dropping
+elongate	stretch
+elongated	stretched
+elongates	stretches
+elongating	stretching
+elucidate	make clear
+elucidated	made clear
+elucidates	makes clear
+elucidating	making clear
+emanate	come from
+emanated	came from
+emanates	comes from
+emanating	coming from
+emancipate	free
+emancipated	freed
+emancipates	frees
+emancipating	freeing
+emasculate	weaken
+emasculated	weakened
+emasculates	weakens
+emasculating	weakening
+embellish	adorn, exaggerate
+embellished	adorned, exaggerated
+embellishes	adorns, exaggerates
+embellishing	adorning, exaggerating
+eminence	high place
+eminent	high
+eminently	highly
+emolument	salary, fee
+emoluments	salaries, fees
+emphasize	stress
+emphasized	stressed
+emphasizes	stresses
+emphasizing	stressing
+employment	work, job, use
+employments	uses
+encounter	meet
+encountered	met
+encountering	meeting
+encounters	meets
+encourage	urge
+encouraged	urged
+encourages	urges
+encouraging	urging
+encumbrance	burden
+encumbrances	burdens
+endeavor	try, attempt
+endeavored	tried, attempted
+endeavoring	trying, attempting
+endeavors	tries, attempts
+endorsement	support
+endorsements	supports
+endowment	gift
+endowments	gifts
+enervate	weaken
+enervated	weakened
+enervates	weakens
+enervating	weakening
+engender	procreate, breed
+engendered	procreated, bred
+engendering	procreating, breeding
+engenders	procreates, breeds
+enigma	riddle
+enigmas	riddles
+enigmatic	puzzling
+enigmatically	puzzlingly
+enjoin	order
+enjoined	ordered
+enjoining	ordering
+enjoins	orders
+enjoyable	fun
+enmity	hate
+enormous	large, huge
+ensure	make sure
+ensured	made sure
+ensures	makes sure
+ensuring	making sure
+entreat	beg
+entreated	begged
+entreating	begging
+entreats	begs
+enumerate	count
+enumerated	counted
+enumerates	counts
+enumerating	counting
+enumeration	count
+enumerations	counts
+enumerator	counter
+enumerator's	counter's
+enumerators	counters
+epistle	letter
+epistles	letters
+equable	even
+equably	evenly
+equine	horse
+equine's	horse's
+equines	horses
+equitable	fair
+equitably	fairly
+equivalent	equal
+equivalently	equally
+erratic	uncertain
+erratically	uncertainly
+erroneous	wrong
+erroneously	wrongly
+erudite	learned
+establish	set up, prove
+established	set up, proved
+establishes	sets up, proves
+establishing	setting up, proving
+evaluate	check, rate
+evaluated	checked, rated
+evaluates	checks, rates
+evaluating	checking, rating
+evaluation	check, rating
+evaluation's	check's, rating's
+evaluations	checks, ratings
+evaluator	checker, rater
+evaluators	checkers, raters
+evidenced	showed
+evidences	shows
+evidencing	showing
+evident	clear
+evidently	clearly
+exaltation	rapture
+exaltations	raptures
+examination	check
+examination's	check's
+examinations	checks
+examine	check, look at
+examined	checked, looked at
+examines	checks, looks at
+examining	checking, looking at
+exceedingly	very
+exchange	trade
+exchanged	traded
+exchanges	trades
+exchanging	trading
+execute	kill, do
+executed	killed, did
+executes	kills, does
+executing	killing, doing
+execution	killing
+execution's	killing's
+executions	killings
+exhibit	show
+exhibited	showed/shown
+exhibiting	showing
+exhibition	show
+exhibition's	show's
+exhibitions	shows
+exhibits	shows
+exigency	need
+exorbitant	large, huge, much too high, too expensive
+expedience	advisability
+expedite	hurry, rush
+expedited	hurried, rushed
+expedites	hurries, rushes
+expediting	hurrying, rushing
+expeditious	fast, quick
+expeditiously	quickly
+expend	pay out, spend
+expended	paid out, spent
+expending	paying out, spending
+expenditure	expense
+expenditures	expenses
+expends	pays out, spends
+expense	cost, fee
+expenses	costs, fees
+explain	show, tell
+explained	showed, told
+explaining	showing, telling
+explains	shows, tells
+explicit	clear
+explicitly	clearly
+expound	make clear
+expounded	made clear
+expounding	making clear
+expounds	makes clear
+expunge	wipe out, clear
+expunged	wiped out, cleared
+expunges	wipes out, clears
+expunging	wiping out, clearing
+extemporaneous	offhand
+exterior	outside
+exterminate	kill, destroy
+exterminated	killed, destroyed
+exterminates	kills, destroys
+exterminating	killing, destroying
+extermination	killing, destruction
+extermination's	killing's, destruction's
+exterminations	killings, destruction
+external	outer
+extricate	free, release, rescue
+extricated	freed, released, rescued
+extricates	frees, releases, rescues
+extricating	freeing, releasing, rescuing
+fabricate	build, make
+fabricated	built, made
+fabricates	builds, makes
+fabricating	building, making
+facilitate	ease, help
+facilitated	made easy
+facilitates	eases, helps
+facilitating	easing, helping
+facilitation	help, helping
+fallacies	errors, lies
+fallacious	misleading
+fallacy	error, lie
+familiar	known
+famished	hungry
+fatuous	silly
+feasible	can be done
+felicitous	apt
+felicity	bliss
+felonious	wicked, criminal
+feloniously	wickedly, criminally
+ferocious	fierce
+ferociously	fiercely
+fetch	get
+fetched	got
+fetches	gets
+fetching	getting
+fictitious	made-up
+figurine	doll
+figurine's	doll's
+figurines	dolls
+final	last
+finalisation	completion, finish
+finalisations	completions, finishes
+finalise	finish, complete
+finalised	finished, completed
+finalises	finishes, completes
+finalising	finishing, completing
+finalization	completion, finish
+finalizations	completions, finishes
+finalize	finish, complete
+finalized	finished, completed
+finalizes	finishes, completes
+finalizing	finishing, completing
+firmament	sky
+fluctuate	rise and fall
+fluctuated	rose and fell
+fluctuates	rises and falls
+fluctuating	rising and falling
+fluctuation	wavering
+fluctuations	waves
+forbearance	patience
+forfeit	give up, lose
+forfeited	gave up, lost
+forfeiting	giving up, losing
+forfeits	gives up, loses
+forfeiture	giving up, loss
+forfeitures	giving ups, losses
+formulate	draw up, plan
+formulated	drew up, planned
+formulates	draws up, plans
+formulating	drawing up, planning
+frequently	often
+frivolous	silly, absurd
+frugality	thrift
+function	act, role
+functions	acts, roles
+fundamental	basic
+fundamentally	basically
+fundamentals	basics
+furnish	give, send
+furnished	gave, sent
+furnisher	giver
+furnishers	givers
+furnishes	gives, sends
+furnishing	giving, sending
+gargantuan	giant
+general	broad
+generally	broadly
+generate	create, make
+generated	created, made
+generates	creates, makes
+generating	creating, making
+genuine	real, true
+genuinely	really, truly
+germinate	sprout
+germinated	sprouted
+germinates	sprouts
+germinating	sprouting
+gigantic	huge
+gloomy	sad
+glutinous	sticky, gluey
+grandiose	large, huge
+gratified	pleased
+gratifies	pleases
+gratify	please
+gratifying	pleasing
+gratuities	gifts, tips
+gratuity	gift, tip
+gravitate	move towards
+gravitated	moved towards
+gravitates	moves towards
+gravitating	moving towards
+habitation	house, home
+habitations	houses, homes
+hazardous	risky, unsafe
+hazardously	unsafely
+herein	here
+hesitate	pause
+hesitated	paused
+hesitates	pauses
+hesitating	pausing
+heterogeneous	varied
+heterogeneously	variably
+homogeneous	similar
+homogeneously	similarly
+horizontally	sideways
+however	but
+humongous	giant
+identical	same
+identicalness	sameness
+identification	ID
+identified	named, found
+identifies	names, finds
+identify	name, find
+identifying	naming, finding
+ignoble	base, common, dishonorable, mean
+ignominious	shameful
+ignominiously	shamefully
+illumination	light
+illustrate	draw, show
+illustrated	drawn, showed
+illustrates	draws, shows
+illustrating	drawing, showing
+imbue	fill
+imbued	filled
+imbues	fills
+imbuing	filling
+immaculate	pure, spotless
+immediately	at once, right away, right now
+immense	huge, vast
+imminent	near
+imminently	nearly
+immovable	fixed, firm
+immunization	booster, booster shot, vaccine
+immunizations	boosters, booster shots, vaccines
+impact	hit, change
+impacted	hit, changed
+impacting	hitting, changing
+impacts	hits, changes
+impair	harm, weaken, reduce
+impaired	harmed, weakened, reduced
+impairing	harming, weakening, reducing
+impairs	harms, weakens, reduces
+impartial	fair, just
+impartially	fairly
+impeccable	faultless
+impeccably	faultlessly
+impecunious	poor
+imperative	urgent
+imperatively	urgently
+imperceptible	very slight
+imperfection	fault, flaw, defect
+imperfections	faults, flaws, defects
+impertinent	rude
+impetuous	rash, impulsive
+impetuously	impulsively
+impinge	strike, hit
+impinged	hit
+impinges	strikes, hits
+impinging	striking, hitting
+implement	carry out, do
+implementation	carrying out
+implemented	carried out, did
+implementing	carrying out, doing
+implements	carries out, does
+impolite	rude
+importunate	urgent
+importunately	urgently
+impoverished	poor
+impracticable	unworkable
+improvident	not thrifty, lacking foresight
+improvidently	lacking foresight
+imprudent	rash, impulsive
+imprudently	impulsively
+inaccuracies	mistakes
+inaccuracy	mistake
+inactive	idle
+inadvertent	careless
+inadvertently	carelessly
+inadvisable	unwise
+inadvisably	unwisely
+inanimate	lifeless
+inanimately	lifelessly
+inapplicable	not suited
+inattentive	careless
+inattentively	carelessly
+inaugurate	begin
+inaugurated	begun
+inaugurates	begins
+inaugurating	beginning
+inauspicious	unlucky
+inauspiciously	unluckily
+inception	start
+inception's	start's
+inceptions	starts
+incipient	beginning
+incision	cut
+incision's	cut's
+incisions	cuts
+incisive	cutting
+incite	rouse, stir up
+incited	roused, stirred up
+incites	rouses, stirs up
+inciting	rousing, stirring up
+inclement	harsh, severe, stormy
+incoherent	confused
+incombustible	fireproof
+incompetent	unfit
+incomplete	partial
+incompletely	partially
+inconsiderate	thoughtless
+inconsiderately	thoughtlessly
+inconstant	fickle
+inconvenience	bother
+inconveniences	bothers
+incorporate	blend, join, mix
+incorporated	blended, joined, mixed
+incorporates	blends, joins, mixes
+incorporating	blending, joining, mixing
+incredulity	doubt
+indefatigable	tireless
+indelicate	coarse, rough
+indemnified	repaid, paid back
+indemnifies	repays, pays back
+indemnify	repay, pay back
+indemnifying	repaying, paying back
+indeterminate	vague
+indeterminately	vaguely
+indicate	show
+indicated	shown
+indicates	shows
+indicating	showing
+indication	clue, sign
+indication's	clue's, sign's
+indications	clues, signs
+indigent	poor, needy
+indiscriminate	confused, random
+indiscriminately	randomly
+individual	person, single
+individuals	people
+indolent	lazy
+indolently	lazily
+indubitable	certain
+indubitably	certainly
+ineffectual	useless
+ineffectually	uselessly
+inexhaustible	tireless
+inexhaustibly	tirelessly
+inexpedient	unwise
+inexpediently	unwisely
+inferior	lesser
+inferno	fire
+inferno's	fire's
+infernos	fires
+infirmities	weaknesses
+infirmity	weakness
+infrastructure	system
+infrastructure's	system's
+infrastructures	systems
+infrequent	rare
+infrequently	rarely
+ingenuous	frank, open
+ingenuously	frankly, openly
+inhibit	hinder
+inhibited	hindered
+inhibiting	hindering
+inhibition	restraint
+inhibitions	restraints
+inhibits	hinders
+inimitable	unmatched
+iniquitous	wicked
+iniquitously	wickedly
+initial	first
+initialisation	start
+initialisations	starts
+initialise	start
+initialised	started
+initialises	starts
+initialising	starting
+initialization	start
+initializations	starts
+initialize	start
+initialized	started
+initializes	starts
+initializing	starting
+initially	at first
+initiate	begin
+initiated	started
+initiates	starts
+initiating	starting
+injudicious	unwise
+injudiciously	unwisely
+innocuous	harmless
+innocuously	harmlessly
+inoperative	broken, not working
+inquire	ask
+inquired	asked
+inquires	asks
+inquiries	questions
+inquiring	asking
+inquiry	question
+inquiry's	question's
+inquisitive	curious, prying
+inquisitively	curiously
+insensible	unaware
+insidious	wily, sly, tricky
+insinuate	hint, suggest
+insinuated	hinted, suggested
+insinuates	hints, suggests
+insinuating	hinting, suggesting
+insinuation	hint, suggestion
+insinuations	hints, suggestions
+insipid	weak
+insolvent	bankrupt
+instantly	right away
+institution	office, company, school
+insubordination	disobeying
+insubstantial	flimsy
+insubstantially	flimsily
+insufficient	not enough
+insurrection	revolt, rebellion
+insurrections	revolts, rebellion
+intelligent	smart, clever
+intention	plan
+intention's	plan's
+intentions	plans
+interdict	forbid
+interdicted	forbade
+interdicting	forbidding
+interdicts	forbids
+interminable	endless
+interminably	endlessly
+internal	inner, inside
+internecine	deadly
+interrogate	question
+interrogated	questioned
+interrogates	questions
+interrogating	questioning
+interrogation	questioning
+intimate	hint, suggest
+intimated	hinted, suggested
+intimates	hints, suggests
+intimating	hinting, suggesting
+intractable	stubborn
+intractably	stubbornly
+intrepid	fearless
+intrepidly	fearlessly
+inundate	flood
+inundated	flooded
+inundates	floods
+inundating	flooding
+invaluable	priceless
+investigate	review, check, look over
+investigated	reviewed, checked, looked over
+investigates	reviews, checks, looks over
+investigating	reviewing, checking, looking over
+inviolable	sacred
+irreproachable	faultless
+irreproachably	faultlessly
+jocular	funny
+jocund	happy, lighthearted
+justified	proved/proven
+justifies	proves
+justify	prove
+justifying	proving
+laceration	cut, tear
+lacerations	cuts, tears
+laggard	slow
+laggardly	slowly
+languorous	listless
+legislation	law
+legislation's	law's
+legislations	laws
+legitimate	valid, real, proper, normal
+legitimately	validly, properly, normally
+lethargic	dull, slow
+lethargically	dully, slowly
+limitation	limit
+limitation's	limit's
+limitations	limits
+locatable	findable
+locate	find
+located	found
+locates	finds
+locating	finding
+location	place
+location's	place's
+locations	places
+lucent	bright
+lucid	clear
+lucidity	clarity
+lucidly	clearly
+lugubrious	sad
+luminous	bright
+mademoiselle	lady
+mademoiselle's	lady's
+mademoiselles	ladies
+magnitude	size
+maintain	keep, support
+maintained	kept, supported
+maintaining	keeping, supporting
+maintains	keeps, supports
+majority	most
+malediction	curse
+maledictions	curses
+malevolence	spite, maliciousness
+malformation	abnormal shape, deformity
+manually	by hand
+manufacture	make
+manufactured	made
+manufactures	makes
+manufacturing	making
+marauder	robber
+marauder's	robber's
+marauders	robbers
+marionette	puppet
+marionette's	puppet's
+marionettes	puppets
+massive	large
+masticate	chew
+masticated	chewed
+masticates	chews
+masticating	chewing
+maximum	most, greatest
+melancholies	depressions
+melancholy	sadness, depression, sad (adj.)
+mendacious	lying, false
+mendicant	beggar
+mendicants	beggars
+mentality	mind
+mercurial	rash, impulsive
+mercurially	impulsively
+meritorious	worthy
+methodologies	methods, designs, plans
+methodology	method, design, plan
+methodology's	method's, design's, plan's
+meticulous	very careful
+militate	fight
+militated	fought
+militates	fights
+militating	fighting
+minimisation	decrease, reduction
+minimisations	decreases, reductions
+minimise	decrease, lessen
+minimised	decreased, lessened
+minimises	decreases, lessens
+minimising	decreasing, lessening
+minimization	decrease, reduction
+minimizations	decreases, reductions
+minimize	decrease, lessen
+minimized	decreased, lessened
+minimizes	decreases, lessens
+minimizing	decreasing, lessening
+minuteness	smallness
+misapprehension	wrong idea
+misapprehensions	wrong ideas
+miscellanies	mixtures
+miscellany	mixture
+mitigate	moderate
+mitigated	moderated
+mitigates	moderates
+mitigating	moderating
+modifiability	changeability
+modifiable	changeable
+modification	change
+modification's	change's
+modifications	changes
+modified	changed
+modifies	changes
+modify	change
+modifying	changing
+mollified	soothed
+mollifies	soothes
+mollify	soothe
+mollifying	soothing
+monitor	check, watch
+monitored	checked, watched
+monitoring	checking, watching
+monitors	checks, watches
+mordant	biting, sarcastic
+motionless	still, inert
+mountainous	large, bulky
+multiple	many
+municipality	city
+mutable	fickle, prone to change
+nauseous	sickening
+nebulous	hazy, vague
+nebulously	vaguely
+necessarily	needed, needed to
+necessary	needed
+necessitate	cause, need
+necessitated	caused, needed
+necessitates	causes, needs
+necessitating	causing, needing
+neglectful	careless
+neglectfully	carelessly
+neighboring	next to
+neighbouring	next to
+nemesis	enemy
+nemesis's	enemy's
+neutralize	offset
+neutralized	offset
+neutralizes	offsets
+neutralizing	offsetting
+not-so-obvious	unclear
+notation	note
+notations	notes
+notification	alert, notice, message, statement, warning
+notifications	alerts, notices, messages, statements, warnings
+notified	let know, told
+notifies	lets know, tells
+notify	let know, tell
+notifying	letting know, telling
+numerate	count
+numerated	counted
+numerates	counts
+numerating	counting
+numerous	many
+nutriment	food
+obdurate	stubborn
+objective	aim, goal
+objective's	aim's, goal's
+objectives	aims, goals
+obligate	pledge, bind, compel
+obligated	bound, compelled, pledged
+obligates	pledges, binds, compels
+obligating	pledging, binding, compelling
+obligation	duty, pledge
+obligations	duties, pledges
+oblige	compel, force
+obliged	compelled, forced
+obliges	compels, forces
+obliging	compelling, forcing
+oblique	slanting
+obliterate	wipe out, erase, destroy
+obliterated	wiped out, erased, destroyed
+obliterates	wipes out, erases, destroys
+obliterating	wiping out, erasing, destroying
+oblivious	forgetful, clueless
+obliviously	forgetfully
+obloquy	abuse, shame
+obscured	hidden
+obsequious	fawning
+obsequiously	fawningly
+observe	see
+observed	saw, seen
+observes	sees
+observing	seeing
+obstacle	problem
+obstacle's	problem's
+obstacles	problems
+obstinate	stubborn
+obstinately	stubbornly
+obstreperous	unruly
+obstruct	block
+obstructed	blocked
+obstructing	blocking
+obstruction	block, hurdle
+obstructions	blocks, hurdles
+obstructs	blocks
+obtain	get
+obtained	got
+obtaining	getting
+obtains	gets
+obviate	wipe out
+obviated	wiped out
+obviates	wipes out
+obviating	wiping out
+occurrence	event
+occurrences	events
+odious	hateful
+odiously	hatefully
+odium	hatred, blame
+officious	meddling
+operate	run, work
+operated	ran, worked
+operates	runs, works
+operating	running, working
+operational	working
+opportunities	chances
+opportunity	chance
+opprobrium	scorn, abuse
+optimum	best, greatest
+option	choice, way
+option's	choice's, way's
+options	choices, ways
+opulent	rich
+ordinance	rule, law
+ordinances	rules, laws
+organisation's	company's
+organisations	companies
+organization's	company's
+organizations	companies
+orifice	opening, hole
+orifices	openings, holes
+ostentation	show, display
+ostentations	shows, displays
+ostracize	banish
+ostracized	banished
+ostracizes	banishes
+ostracizing	banishing
+palatable	pleasing
+panacea	cure-all
+pandemonium	uproar
+paragon	model
+parallelism	likeness
+paramount	top, chief, supreme
+pariah	outcast
+pariahs	outcasts
+parlance	talk
+parlances	talks
+parlous	shrewd
+parsimonious	stingy
+parsimoniously	stingily
+participate	take part
+participated	took part
+participates	take start
+participating	taking part
+particular	specific
+particularize	state in detail
+particularized	stated in detail
+particularizes	states in detail
+particularizing	stating in detail
+peevish	cross
+peevishly	crossly
+pendulous	hanging, swinging
+penitent	sorry, remorseful
+penitently	remorsefully
+penurious	stingy
+penuriously	stingily
+peremptory	positive
+perforation	hole
+perforations	holes
+perform	do
+performed	did/done
+performing	doing
+performs	does
+peripatetic	walking about
+peripheries	outer edges
+periphery	outer edge
+permit	let
+permitted	let
+permitting	letting
+perpetrate	commit
+perpetrated	committed
+perpetrates	commits
+perpetrating	committing
+perpetuity	forever
+persevere	persist
+persevered	persisted
+perseveres	persists
+persevering	persisting
+personnel	staff, people
+personnel's	staff's, people's
+perspicacious	keen
+perspicaciously	keenly
+perspicuous	clear
+perspicuously	clearly
+perspiration	sweat
+pertinacity	persistent
+pertinence	relevance
+peruse	read
+perused	read
+peruses	reads
+perusing	reading
+petulance	irritable, ill-tempered
+phantom	ghost
+phantom's	ghost's
+phantoms	ghosts
+phlegmatic	sluggish
+phlegmatically	sluggishly
+physician	doctor
+physician's	doctor's
+physicians	doctors
+pinnacle	peak
+placate	soothe
+placated	soothed
+placates	soothes
+placating	soothing
+plaintive	sad, mournful
+plebeian	common, vulgar
+plenary	full
+plenteous	plenty
+poignant	moving, intense, sincere, heartfelt
+poignantly	movingly, intensely, sincerely
+polemic	dispute, argument
+polemics	disputes, arguments
+poltergeist	ghost
+poltergeist's	ghost's
+poltergeists	ghosts
+portion	part
+portion's	part's
+portions	parts
+position	place
+position's	place's
+positioned	placed
+positioning	placing
+positions	places
+possess	have, own
+possessed	had, owned
+possesses	has, owns
+possessing	having, owning
+posterior	rear
+practicable	can be done
+preachment	sermon
+preachments	sermons
+precept	rule
+precepts	rules
+precipitant	rash, hasty, impulsive
+precipitation	rain, snow, dew, frost
+preclude	prevent, exclude, shut out
+precluded	prevented, excluded, shut out
+precludes	prevents, excludes, shuts out
+precluding	excluding, shutting out, preventing
+precursor	forerunner
+precursors	forerunners
+predestination	fate
+predicament	problem
+predicament's	problem's
+predicaments	problems
+predilection	liking, bias, inclination, leaning
+predilections	likings, biases, inclinations, leanings
+predisposition	tendency
+predispositions	tendencies
+predominant	superior
+predominantly	superiorly
+preeminent	top, peerless, supreme
+preeminently	supremely
+preferable	better
+preparation	readiness
+preparedness	readiness
+preponderant	overpowering, overruling, major, chief, dominant
+preposterous	senseless, absurd
+prescience	foresight
+presumptuous	bold, forward
+presumptuously	boldly, forwardly
+prevaricate	lie, evade, shift
+prevaricated	lied, evaded, shifted
+prevaricates	lies, evades, shifts
+prevaricating	lying, evading, shifting
+previous	earlier, past, prior
+previously	before, earlier
+primarily	mainly, firstly
+primary	main, first
+primordial	primate
+prioritisation	ranking
+prioritisation's	ranking's
+prioritisations	rankings
+prioritise	rank
+prioritised	ranked
+prioritises	ranks
+prioritising	ranking
+prioritization	ranking
+prioritization's	ranking's
+prioritizations	rankings
+prioritize	rank
+prioritized	ranked
+prioritizes	ranks
+prioritizing	ranking
+probabilities	chances
+probability	chance
+probability's	chance's
+problematical	doubtful
+procedure	rule, way, method
+procedure's	rule's, way's
+procedures	rules, ways, methods
+proceed	do, go on
+proceeded	did/done, went on
+proceeding	doing, going on
+proceeds	does, goes on
+prodigious	immense, huge, amazing
+prodigiously	immensely, hugely, amazingly
+produced	made
+produces	makes
+producing	making
+proffer	offer
+proffered	offered
+proffering	offering
+proffers	offers
+proficiencies	skills
+proficiency	skill
+proficiency's	skill's
+proficient	expert, skilled
+proficiently	skillfully
+profligacy	extravagance, abundance
+profound	deep, thoughtful
+profoundly	deeply, thoughtfully
+progeny	children
+prognosticate	forecast, foresee, project
+prognosticated	forecasted, foresaw, projected
+prognosticates	forecasts, foresees, projects
+prognosticating	forecasting, foreseeing, projecting
+program	plan
+prohibited	not allowed
+promulgate	announce, proclaim
+promulgated	announced, proclaimed
+promulgates	announces, proclaims
+promulgating	announcing, proclaiming
+promulgation	announcement
+promulgation's	announcement's
+promulgations	announcements
+propagate	breed, reproduce
+propagated	bred, reproduced
+propagates	breeds, reproduces
+propagating	breeding, reproducing
+propensities	inclinations, tendencies
+propensity	inclination, tendency
+propitiate	appease
+propitiated	appeased
+propitiates	appeases
+propitiating	appeasing
+proprieties	decencies
+propriety	decency, rightness, justness, aptness, fitness
+proscribe	outlaw, banish, censure, disapprove
+proscribed	outlawed, banished, censured, disapproved
+proscribes	outlaws, banishes, censures, disapproves
+proscribing	outlawing, banishing, censuring, disapproving
+proselyte	convert, disciple
+proselytes	converts, disciples
+proximity	nearness
+puissance	power, might, force
+punctilious	exact
+punctiliously	exactly
+pungent	bitter, acrid, sharp, poignant
+pungently	bitterly, acridly, sharply, poignantly
+purchase	buy
+purchased	bought
+purchaser	buyer
+purchaser's	buyer's
+purchasers	buyers
+purchases	buys
+purchasing	buying
+purloin	steal
+purloined	stole
+purloining	stealing
+purloins	steals
+pursuit	chase
+pusillanimous	cowardly, fearful, frightened, timid
+putrefaction	decay, rot
+quadrilateral	four-sided
+quandaries	problems
+quandary	problem
+quandary's	problem's
+quarrelsome	cross
+quarry	prey
+querulous	fretful
+querulously	fretfully
+quiescent	still, quiet
+quiescently	quietly
+radiant	bright
+radiantly	brightly
+ramification	consequence, branch, part
+ramifications	consequences, branches, parts
+rapid	quick
+rapidly	quickly
+ratification	approval
+recapitulate	sum up
+recapitulated	summed up
+recapitulates	sums up
+recapitulating	summing up
+recapitulation	summation
+recapitulation's	summation's
+recapitulations	summations
+reciprocal	mutual
+reciprocally	mutually
+reciprocate	give in return
+reciprocated	gave in return
+reciprocates	gives in return
+reciprocating	giving in return
+recommend	suggest
+recommended	suggested
+recommending	suggesting
+recommends	suggests
+reconciliation	settlement
+recondite	obscured, hidden
+reconnaissance	survey
+recuperate	get well
+recuperated	got well
+recuperates	gets well
+recuperating	getting well
+reduce	cut
+reduced	cut
+reduces	cuts
+reducing	cutting
+reduction	cut
+reduction's	cut's
+reductions	cuts
+refractory	stubborn
+regimen	routine, rule
+regulation	rule, law
+regulations	rules, laws
+rehabilitate	restore
+rehabilitated	restored
+rehabilitates	restores
+rehabilitating	restoring
+reimburse	pay back
+reimbursed	paid back
+reimburses	pays back
+reimbursing	paying back
+reinforce	strengthen
+reinforced	strengthened
+reinforces	strengthens
+reinforcing	strengthening
+rejoinder	reply
+relinquish	give up
+relinquished	gave up
+relinquishes	gives up
+relinquishing	giving up
+relocate	move
+relocated	moved
+relocates	moves
+relocating	moving
+relocation	move
+relocation's	move's
+relocations	moves
+remain	stay
+remainder	rest, left over
+remainder's	rest's, left overs
+remained	stayed
+remaining	staying, left over
+remains	stays
+remedies	cures
+remedy	cure
+remiss	slack, negligent
+remonstrate	protest
+remonstrated	protested
+remonstrates	protests
+remonstrating	protesting
+remunerate	pay, compensate
+remunerated	paid, compensated
+remunerates	pays, compensates
+remunerating	paying, compensating
+remuneration	pay, compensation
+remuneration's	pay's
+remunerations	pays
+repentance	regret
+replica	copy
+replicas	copies
+reprehend	blame
+reprehended	blamed
+reprehending	blaming
+reprehends	blames
+repudiate	reject, disown
+repudiated	rejected, disowned
+repudiates	rejects, disowns
+repudiating	rejecting, disowning
+repugnance	distaste, dislike
+request	ask
+requested	asked
+requesting	asking
+requests	asks
+require	need
+required	needed
+requirement	need
+requirement's	need's
+requirements	needs
+requires	needs
+requiring	needing
+requisite	needed, necessity
+requisites	necessities
+rescind	repeal, cancel
+rescinded	repealed, canceled
+rescinding	repealing, canceling
+rescinds	repeals, cancels
+resemblance	likeness
+residence	house, home
+residences	houses, homes
+resolute	firm
+responsibilities	jobs, duties
+responsibility	duty, job
+resuscitate	revive
+resuscitated	revived
+resuscitates	revives
+resuscitating	reviving
+retain	keep, hold
+retained	kept, held
+retaining	keeping, holding
+retains	keeps, , holds
+retention	keeping, holding
+reticent	silent
+retrogress	get worse, move backward
+retrogressed	got worse, moved backward
+retrogresses	gets worse, moves backward
+retrogressing	getting worse, moving backward
+revenue	income
+revenues	income
+reversion	return
+review	check
+reviewed	checked
+reviewing	checking
+reviews	checks
+revocation	repeal
+revocations	repeals
+righteousness	virtue
+rigidity	stiffness
+rigorous	harsh, strict
+rigorously	harshly, strictly
+risible	funny
+rotundity	roundness
+rubicund	red, reddish, ruddy
+ruminate	ponder
+ruminated	pondered
+ruminates	ponders
+ruminating	pondering
+saccharine	sweet
+sagacious	wise
+sagaciously	wisely
+salacious	lewd, vulgar
+salaciously	lewdly, vulgarly
+salient	important, striking, remarkable
+saliently	importantly, strikingly, remarkably
+saline	salty
+salutation	greeting
+salutations	greetings
+sanitarily	cleanly, healthily
+sanitary	clean, healthy
+satisfied	happy, content
+saturate	soak, fill
+saturated	soaked, filled
+saturates	soaks, fills
+saturating	soaking, filling
+savory	tasty
+scandalous	shocking
+scandalously	shockingly
+scintillate	sparkle, twinkle
+scintillated	sparkled, twinkled
+scintillates	sparkles, twinkles
+scintillating	sparkling, twinkling
+scrutinize	inspect, examine
+scrutinized	inspected, examined
+scrutinizes	inspects, examines
+scrutinizing	inspecting, examining
+sebaceous	fatty, greasy
+segment	part
+segments	parts
+segregate	set apart, separate
+segregated	set apart, separated
+segregates	sets apart, separates
+segregating	setting apart, separating
+semblance	likeness
+sequestration	removal
+sequestrations	removals
+serpentine	twisting, snaking, sly
+similar	like
+similarities	likenesses
+similarity	likeness
+simplified	eased
+simplifies	eases
+simplify	ease
+simplifying	easing
+simultaneously	at the same time
+sinecure	easy job
+sinecures	easy jobs
+skepticism	doubt
+skepticisms	doubts
+slovenly	untidy
+solicit	ask for
+solicited	asked for
+soliciting	asking for
+solicitous	anxious, eager
+solicits	asks for
+solitary	alone, single
+spacious	vast
+specter	ghost
+specter's	ghost's
+specters	ghosts
+speculate	reflect, guess, surmise, suppose
+speculated	reflected, guessed, surmised, supposed
+speculates	reflects, guesses, surmises, supposes
+speculating	reflecting, guessing, surmising, supposing
+strategies	plans
+strategy	plan
+strategy's	plan's
+stratifications	layers
+stringent	strict, tight
+stringently	strictly, tightly
+stultified	made foolish
+stultifies	makes foolish
+stultify	make foolish
+stultifying	making foolish
+stupefaction	stupor
+stupefactions	stupors
+subjugate	subdue
+subjugated	subdued
+subjugates	subdues
+subjugating	subduing
+subjugation	conquest
+subjugations	conquests
+sublimity	majesty
+submit	send, give
+submits	sends, gives
+submitted	sent, gave
+submitter	giver, sender
+submitter's	giver's, sender's
+submitters	givers, senders
+submitting	sending, giving
+subsequent	later, next
+subsequently	later, after
+subservient	servile
+substantial	real, strong, large
+substantially	really, strongly, largely
+substantiate	prove
+substantiated	proved
+substantiates	proves
+substantiating	proving
+subterfuge	trick, ploy
+sufferance	consent
+sufficient	enough, ample
+sufficiently	amply
+suitability	fitness
+sumptuous	costly, rich
+supercilious	arrogant, scornful
+superciliously	arrogantly, scornfully
+superior	better, boss
+superlative	surpassing, excellent
+superlatively	surpassingly, excellently
+supersede	replace
+superseded	replaced
+supersedes	replaces
+superseding	replacing
+supplemental	added, extra
+suppurate	fester
+suppurated	festered
+suppurates	festers
+suppurating	festering
+surreptitious	secret, stealthy
+surreptitiously	secretly, stealthily
+sustenance	support, nourishment
+tabulation	table
+tabulations	tables
+tantalize	tease
+tantalized	teased
+tantalizes	teases
+tantalizing	teasing
+technicalities	details
+technicality	detail
+tempestuous	stormy
+tempestuously	stormily
+tenuous	thin, slender, slight, trivial
+tenuously	slightly, trivially
+terminate	end, stop
+terminated	ended, stopped
+terminates	ends, stops
+terminating	ending, stopping
+terminus	end
+tertiary	third
+therefore	so, thus
+thereof	its, their
+thoroughfare	road
+thoroughfare's	road's
+thoroughfares	roads
+titillate	tickle
+titillated	tickled
+titillates	tickles
+titillating	tickling
+tranquility	quietness
+transcendent	superior
+transcendently	superiorly
+transcription	copy
+transcriptions	copies
+transmit	send
+transmits	sends
+transmitted	sent
+transmitting	sending
+transparency	clearness
+transparent	clear
+transparently	clearly
+transpiration	happening, occurrence
+transpirations	happenings, occurrences
+transpire	take place, happen
+transpired	took place, happened
+transpires	takes place, happens
+transpiring	happening, occurring
+trenchant	sharp, keen
+trepidation	fear
+trepidations	fears
+tribulation	trouble
+tribulations	troubles
+tributaries	rivers
+tributary	river
+tributary's	river's
+tripartite	three-part
+triplicate	triple
+triplicates	triples
+trivialities	trifles
+triviality	trifle
+tumultuous	turbulent, violent
+tumultuously	turbulently, violently
+turpitude	wickedness, vice, vileness
+typically	often
+ulterior	hidden
+unadvisedly	rashly
+unassuming	modest
+unassumingly	modestly
+unavailability	lack
+uncertainties	doubts
+uncertainty	doubt
+uncivilized	savage
+uncommonly	rarely
+uncompromising	firm, steadfast
+uncompromisingly	firmly, steadfastly
+uncultivated	wild
+undulations	curves, waves
+unequivocal	clear
+unequivocally	clearly
+unfaltering	firm, steadfast
+unfalteringly	firmly, steadfastly
+unfamiliar	unknown
+unfounded	baseless
+ungovernable	unruly
+usually	often
+utilisabilities	uses
+utilisability	usability, usefulness
+utilisable	usable
+utilisation	use
+utilisations	uses
+utilise	use
+utilised	used
+utiliser	user
+utilisers	users
+utilises	uses
+utilising	using
+utilities	tools
+utility	tool
+utility's	tool's
+utilizabilities	uses
+utilizability	usability, usefulness
+utilizable	usable
+utilization	use
+utilizations	uses
+utilize	use
+utilized	used
+utilizer	user
+utilizers	users
+utilizes	uses
+utilizing	using
+vacillate	waver
+vacillated	wavered
+vacillates	wavers
+vacillating	wavering
+vacuous	empty
+validate	confirm
+validated	confirmed
+validates	confirms
+validating	confirming
+validation	confirmation
+validations	confirmations
+validity	truth
+valorous	brave
+valorously	bravely
+value	cost, worth
+variation	change, difference
+variations	changes, differences
+vehemence	ardor, fervor
+vehement	eager, forceful
+vehemently	fervorly
+venomous	spiteful
+venomously	spitefully
+ventilate	air out
+ventilated	aired out
+ventilates	airs out
+ventilating	airing out
+venturous	bold
+verbatim	exact
+vertically	upward
+via	in, on, by
+viable	workable
+vigilance	caution
+vindicate	defend, uphold
+vindicated	defended, upheld
+vindicates	defends, upholds
+vindicating	defending, upholding
+visualize	picture
+visualized	pictured
+visualizes	pictures
+visualizing	picturing
+vitreous	glassy
+vociferate	shout
+vociferated	shouted
+vociferates	shouts
+vociferating	shouting
+voluminous	large, bulky
+whenever	when
+whereas	since

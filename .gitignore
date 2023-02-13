@@ -1,7 +1,13 @@
 # Output files
 Docs/Coding-Bible/docs
 Docs/ReadabilityStudioAPI/docs
+Resources/Words/Dictionaries/English.txt
+Resources/Words/Programming/All Languages.txt
+Resources/Words/ProperNouns/Personal.txt
+Resources/Words/ProperNouns/Western.txt
+Resources/Words/ProperNouns/All.txt
 
 # Configuration files
 Docs/Coding-Bible/.Rproj.user
 Docs/ReadabilityStudioAPI/.Rproj.user
+*.db

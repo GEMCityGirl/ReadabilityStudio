@@ -1,0 +1,99 @@
+.report-header
+  {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  border-style: solid;
+  border-color: gray;
+  border-radius:10px;
+  border-width: 1px;
+  }
+
+.report-header-top-box
+  {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  font-weight:bold;
+  border-bottom-style: solid;
+  border-color: gray;
+  border-width: 1px;
+  text-align: center;
+  }
+
+.report-header .report-header-first-column
+  {
+  font-weight:bold;
+  }
+
+.report-header div
+  {
+  padding: 0 10px 0 10px;
+  }
+
+.report-header .report-header-inner-cell
+  {
+  border-bottom-style: solid;
+  border-color: gray;
+  border-width: 1px;
+  }
+
+.text-report-body
+  {
+  border-style: solid;
+  border-color: gray;
+  border-radius:10px;
+  border-width: 1px;
+  }
+
+.toc-section
+  { margin-bottom: 20px; }
+
+.report-section
+  {
+  font-size: large;
+  border-bottom-style: dotted;
+  border-bottom-color: gray;
+  padding: 5px 0px 5px 0px;
+  margin: 5px 0px 5px 0px;
+  }
+
+h4
+  { color: gray; }
+
+.figure
+  {
+  text-align: center;
+  display: block;
+  margin: auto;
+  }
+
+img
+  {
+  max-width:75%;
+  }
+
+.caption
+  {
+  color: #777;
+  margin: 5px 0px 5px 0px;
+  text-align: left;
+  }
+
+tr:hover
+  {
+  background-color: yellow !important;
+  color: black !important;
+  }
+
+/* prevents a section from being split by a page break.*/
+.minipage
+  {
+  break-inside: avoid-page;
+  page-break-inside: avoid;
+  }
+
+@media print
+  {
+  .no-print, .no-print *
+    { display: none !important; }
+  }

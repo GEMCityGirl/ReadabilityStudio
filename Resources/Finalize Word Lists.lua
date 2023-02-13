@@ -1,0 +1,117 @@
+dofile(Application.GetLuaConstantsPath())
+
+-- Sort and merge stop lists
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\StopWords\\English.txt",
+    Debug.GetScriptFolderPath().."Words\\StopWords\\English.txt")
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\StopWords\\Spanish.txt",
+    Debug.GetScriptFolderPath().."Words\\StopWords\\Spanish.txt")
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\StopWords\\German.txt",
+    Debug.GetScriptFolderPath().."Words\\StopWords\\German.txt")
+
+-- Sort the word lists
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\PastParticiples\\Exceptions.txt",    Debug.GetScriptFolderPath().."Words\\PastParticiples\\Exceptions.txt")
+
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\BaseEnglishDictionary.txt",
+    Debug.GetScriptFolderPath().."Words\\BaseEnglishDictionary.txt")
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\PersonalBase.txt",
+    Debug.GetScriptFolderPath().."Words\\PersonalBase.txt")
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\NonPersonalBase.txt",
+    Debug.GetScriptFolderPath().."Words\\NonPersonalBase.txt")
+
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\ProperNouns\\Personal.txt",
+    Debug.GetScriptFolderPath().."Words\\ProperNouns\\Personal.txt")
+
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\StopWords\\ProperNounsStopList.txt",
+    Debug.GetScriptFolderPath().."Words\\StopWords\\ProperNounsStopList.txt")
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\Abbreviations\\List.txt",    Debug.GetScriptFolderPath().."Words\\Abbreviations\\List.txt")
+
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\Articles\\AExceptions.txt",
+    Debug.GetScriptFolderPath().."Words\\Articles\\AExceptions.txt")
+
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\Articles\\AnExceptions.txt",
+    Debug.GetScriptFolderPath().."Words\\Articles\\AnExceptions.txt")
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\WordLists\\New Dale-Chall.txt",    Debug.GetScriptFolderPath().."Words\\WordLists\\New Dale-Chall.txt")
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\WordLists\\Harris-Jacobson.txt",    Debug.GetScriptFolderPath().."Words\\WordLists\\Harris-Jacobson.txt")
+Application.MergeWordLists(
+Debug.GetScriptFolderPath().."Words\\WordLists\\Revised Spache.txt",    Debug.GetScriptFolderPath().."Words\\WordLists\\Revised Spache.txt")
+-- Expand the proper nouns to possessive forms
+-- (personal base is used by an upcoming test as well, so it gets added to the resources
+--  as a new file also.)
+Application.ExpandWordList(
+    Debug.GetScriptFolderPath().."Words\\PersonalBase.txt",    Debug.GetScriptFolderPath().."Words\\ProperNouns\\Personal.txt", "s", "'s")
+
+Application.ExpandWordList(
+    Debug.GetScriptFolderPath().."Words\\NonPersonalBase.txt",
+    Debug.GetScriptFolderPath().."NonPersonalTEMP.txt", "s", "'s")
+
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\ProperNouns\\All.txt",
+    Debug.GetScriptFolderPath().."Words\\ProperNouns\\Personal.txt",
+    Debug.GetScriptFolderPath().."NonPersonalTEMP.txt")
+
+os.remove(Debug.GetScriptFolderPath().."NonPersonalTEMP.txt")
+
+-- Sort (and reformat) phrase list
+Application.MergePhraseLists(
+    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\English.txt",
+    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\English.txt")
+-- Create single word list from wordy phrase listApplication.PhraseListToWordList(Debug.GetScriptFolderPath().."Words\\WordyPhrases\\English.txt",    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\SingleWordReplacementsEnglish.txt")
+
+Application.CrossReferenceWordLists(
+    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\SingleWordReplacementsEnglish.txt",    Debug.GetScriptFolderPath().."Words\\WordLists\\New Dale-Chall.txt",    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\Dale-ChallReplacements.txt")
+Application.CrossReferenceWordLists(
+    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\SingleWordReplacementsEnglish.txt",    Debug.GetScriptFolderPath().."Words\\WordLists\\Harris-Jacobson.txt",    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\Harris-JacobsonReplacements.txt")
+Application.CrossReferenceWordLists(
+    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\SingleWordReplacementsEnglish.txt",    Debug.GetScriptFolderPath().."Words\\WordLists\\Revised Spache.txt",    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\SpacheReplacements.txt")
+-- Merge everything into the English dictionary
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\Dictionaries\\English.txt",    Debug.GetScriptFolderPath().."Words\\BaseEnglishDictionary.txt",    Debug.GetScriptFolderPath().."Words\\Abbreviations\\List.txt",    Debug.GetScriptFolderPath().."Words\\ProperNouns\\All.txt")
+
+-- Programming dictionaries (this is separate and optionally included)
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\Programming\\Assembly.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\Assembly.txt")
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\Programming\\CPP.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\CPP.txt")
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\Programming\\CSharp.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\CSharp.txt")
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\Programming\\HTML.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\HTML.txt")
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\Programming\\Java.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\Java.txt")
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\Programming\\Python.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\Python.txt")
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\Programming\\VisualBasic.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\VisualBasic.txt")
+Application.MergeWordLists(Debug.GetScriptFolderPath().."Words\\Programming\\R.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\R.txt")
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\Programming\\All Languages.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\Assembly.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\CPP.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\CSharp.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\HTML.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\Java.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\Python.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\VisualBasic.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\R.txt")

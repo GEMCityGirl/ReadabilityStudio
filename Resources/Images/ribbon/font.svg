@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Sodipodi ("http://www.sodipodi.com/") -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="437.5"
+   id="svg1"
+   sodipodi:docname="font.svg"
+   sodipodi:version="0.34"
+   version="1.0"
+   width="437.5"
+   x="0"
+   y="0"
+   inkscape:export-filename="Z:\Resources\ReadabilityStudio\ribbon\font.png"
+   inkscape:export-xdpi="56.173714"
+   inkscape:export-ydpi="56.173714"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <sodipodi:namedview
+     id="base"
+     showgrid="false"
+     inkscape:zoom="0.53942857"
+     inkscape:cx="62.686552"
+     inkscape:cy="218.75"
+     inkscape:window-width="1024"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <defs
+     id="defs3">
+    <linearGradient
+       id="linearGradient842">
+      <stop
+         id="stop843"
+         offset="0"
+         style="stop-color:#0000ff;stop-opacity:1;" />
+      <stop
+         id="stop844"
+         offset="1"
+         style="stop-color:#00ffff;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient53">
+      <stop
+         id="stop54"
+         offset="0"
+         style="stop-color:#f00000;stop-opacity:1;" />
+      <stop
+         id="stop55"
+         offset="1"
+         style="stop-color:#ffff00;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient51"
+       xlink:href="#linearGradient842"
+       gradientTransform="matrix(0.9728247,0,0,1.0279344,24,18)"
+       x1="86.418951"
+       y1="85.101148"
+       x2="330.77491"
+       y2="85.101148"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient52"
+       x1="-1.03553495e-8"
+       x2="1"
+       xlink:href="#linearGradient53"
+       y1="-4.98010522e-10"
+       y2="-4.98010522e-10" />
+  </defs>
+  <path
+     d="M 78.37216,412.6536 C 72.52615,286.5402 70.60833,87.75189 60.83384,34.31348 167.1741,49.71139 318.5897,21.224144 385.7471,33.36671 365.7227,92.03969 389.4803,393.3186 389.6753,409.9521 286.6106,389.4576 78.80493,421.9895 78.37216,412.6536 Z"
+     id="path583"
+     sodipodi:nodetypes="ccccs"
+     style="font-size:12px;fill:#ffffeb;fill-rule:evenodd;stroke:#99be99;stroke-width:15.89208031;stroke-opacity:1"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 99.97822,385.155 C 84.71195,317.0419 85.92971,62.01299 86.39866,53.00858 187.0574,71.28568 329.043,49.66805 346.9707,50.02694 l -0.5074,24.58771 C 346.4479,94.67534 272.8135,218.3185 273.0085,234.9519 169.9438,214.4574 109.32316,385.0218 99.97822,385.155 Z"
+     id="path622"
+     sodipodi:nodetypes="cccccc"
+     style="font-size:12px;fill:#b2d385;fill-opacity:0.4327;fill-rule:evenodd;stroke:none;stroke-width:15.89208031"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 209.7399,131.1677 V 320.882 c 0,32.2514 -4.5397,36.4252 -38.7938,38.3224 v 7.2091 h 120.5086 v -7.2091 c -33.8415,-1.5178 -39.6193,-6.4503 -39.6193,-34.1486 V 131.1677 h 22.2859 c 47.0479,0 56.1274,6.8298 65.6193,48.567 h 9.905 l -2.4763,-64.50302 H 114.40625 l -2.47617,64.50302 h 9.90477 c 9.90485,-41.3578 19.39695,-48.567 65.61925,-48.567 z"
+     id="path649"
+     style="font-weight:normal;font-size:26px;font-family:'Nimbus Roman No9 L';fill-opacity:1"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 205.8805,121.4144 v 189.7145 c 0,32.2514 -4.5397,36.425 -38.794,38.3223 v 7.2091 h 120.5087 v -7.2091 c -33.8416,-1.5179 -39.6193,-6.4503 -39.6193,-34.1487 V 121.4144 h 22.2858 c 47.048,0 56.1274,6.8298 65.6195,48.5669 h 9.9048 l -2.4762,-64.5029 H 110.54669 l -2.4762,64.5029 h 9.90476 c 9.90485,-41.3577 19.39695,-48.5669 65.61935,-48.5669 z"
+     id="path647"
+     style="font-weight:normal;font-size:26px;font-family:'Nimbus Roman No9 L';fill:url(#linearGradient51);fill-opacity:1"
+     inkscape:connector-curvature="0" />
+  <metadata
+     id="metadata20060">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Open Clip Art Library</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>font truetype</dc:title>
+        <dc:date>2011-01-21T16:59:28</dc:date>
+        <dc:description>Originally uploaded by Jose Hevia for OCAL 0.18</dc:description>
+        <dc:source>http://openclipart.org/detail/109345/font-truetype-by-anonymous</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Anonymous</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>fix</rdf:li>
+            <rdf:li>keyword</rdf:li>
+            <rdf:li>librarians</rdf:li>
+            <rdf:li>tag</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

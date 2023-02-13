@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource version="2.3.0.1" xmlns="http://www.wxwindows.org/wxxrc">
+        <object class="wxMenuBar" name="ID_MENUBAR">
+            <style>wxMB_DOCKABLE</style>
+            <object class="wxMenu">
+                <label>&amp;File</label>
+                <object class="wxMenuItem" name="wxID_NEW">
+                    <label>&amp;New Project...\tCtrl+N</label>
+                    <help>Creates a new project</help>
+                </object>
+                <object class="wxMenuItem" name="wxID_PASTE">
+                    <label>&amp;New Project from Clipboard...\tCtrl+V</label>
+                    <help>Creates a new project from the text on the clipboard</help>
+                </object>
+                <object class="wxMenuItem" name="wxID_OPEN">
+                    <label>&amp;Open...\tCtrl+O</label>
+                    <help>Opens a project</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="ID_PRINTER_HEADER_FOOTER">
+                    <label>Headers &amp;&amp; Footers...</label>
+                    <help>Sets the headers and footers for printed materials</help>
+                </object>
+                <object class="wxMenuItem" name="wxID_PRINT_SETUP">
+                    <label>P&amp;age Setup...</label>
+                    <help>Set printer options</help>
+                </object>
+                <object class="separator"></object>
+                <object class="wxMenuItem" name="wxID_EXIT">
+                    <label>&amp;Exit</label>
+                    <help>Exits the application</help>
+                </object>
+            </object>
+            <object class="wxMenu" name="ID_VIEW_MENU">
+                <label>&amp;View</label>
+                <object class="wxMenuItem" name="ID_DC_WORD_LIST_WINDOW">
+                    <label>New &amp;Dale-Chall Word List</label>
+                    <help>Show or hide the New Dale-Chall word list</help>
+                </object>
+                <object class="wxMenuItem" name="ID_HARRIS_JACOBSON_WORD_LIST_WINDOW">
+                    <label>&amp;Harris-Jacobson Word List</label>
+                    <help>Show or hide the Harris-Jacobson word list</help>
+                </object>
+                <object class="wxMenuItem" name="ID_SPACHE_WORD_LIST_WINDOW">
+                    <label>&amp;Spache Revised Word List</label>
+                    <help>Show or hide the Spache Revised word list</help>
+                </object>
+                <object class="wxMenuItem" name="ID_DOLCH_WORD_LIST_WINDOW">
+                    <label>D&amp;olch Sight Word List</label>
+                    <help>Show or hide the Dolch sight word list</help>
+                </object>
+            </object>
+            <object class="wxMenu" name="ID_READABILITY_MENU">
+                <label>&amp;Readability</label>	    
+            </object>
+            <object class="wxMenu">
+                <label>&amp;Tools</label>
+                <object class="wxMenuItem" name="ID_EDIT_WORD_LIST">
+                    <label>&amp;Edit Word List...</label>
+                </object>
+                <object class="wxMenuItem" name="ID_WEB_HARVEST">
+                    <label>&amp;Web Harvester...</label>
+                </object>
+                <object class="wxMenuItem" name="wxID_PREFERENCES">
+                    <label>&amp;Options...</label>
+                </object>
+            </object>
+            <object class="wxMenu">
+                <label>&amp;Help</label>
+                <object class="wxMenuItem" name="wxID_HELP">
+                    <label>&amp;Documentation...</label>
+                    <help>Opens the help</help>
+                </object>
+                <object class="wxMenu" name="ID_EXAMPLES">
+                    <label>&amp;Examples</label>
+                </object>
+                <object class="separator"></object>
+                <object class="wxMenuItem" name="ID_CHECK_FOR_UPDATES">
+                    <label>&amp;Check for Updates</label>
+                </object>
+                <object class="separator"></object>
+                <object class="wxMenuItem" name="wxID_ABOUT">
+                    <label>&amp;About...</label>
+                </object>
+            </object>
+        </object>
+        <object class="wxMenuBar" name="ID_DOCMENUBAR">
+            <style>wxMB_DOCKABLE</style>
+            <object class="wxMenu">
+                <label>&amp;File</label>
+                <object class="wxMenuItem" name="wxID_NEW">
+                    <label>&amp;New Project...\tCtrl+N</label>
+                    <help>Creates a new project</help>
+                </object>
+                <object class="wxMenuItem" name="wxID_PASTE">
+                    <label>&amp;New Project from Clipboard...\tCtrl+V</label>
+                    <help>Creates a new project from the text on the clipboard</help>
+                </object>
+                <object class="wxMenuItem" name="wxID_OPEN">
+                    <label>&amp;Open...\tCtrl+O</label>
+                    <help>Opens a project</help>
+                </object>
+                <object class="wxMenuItem" name="wxID_SAVE">
+                    <label>&amp;Save...\tCtrl+S</label>
+                    <help>Saves the project</help>
+                </object>
+                <object class="wxMenuItem" name="wxID_SAVEAS">
+                    <label>Save As...</label>
+                    <help>Saves the project as a different file</help>
+                </object>
+                <object class="wxMenuItem" name="ID_SAVE_ITEM">
+                    <label>&amp;Export Item...</label>
+                    <help>Exports the selected window</help>
+                </object>
+                <object class="wxMenuItem" name="ID_EXPORT_ALL">
+                    <label>&amp;Export All...</label>
+                    <help>Exports all the windows to a folder</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="wxID_PROPERTIES">
+                    <label>P&amp;roject Properties...</label>
+                    <help>Configures settings for the project</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="ID_LAUNCH_SOURCE_FILE">
+                    <label>Edit Document</label>
+                    <help>Opens the file you are analyzing in its native application</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="ID_PRINTER_HEADER_FOOTER">
+                    <label>Headers &amp;&amp; Footers...</label>
+                    <help>Sets the headers and footers for printed materials</help>
+                </object>
+                <object class="wxMenuItem" name="wxID_PRINT_SETUP">
+                    <label>P&amp;age Setup...</label>
+                    <help>Set printer options</help>
+                </object>
+                <object class="wxMenuItem" name="wxID_PRINT">
+                    <label>&amp;Print...\tCtrl+P</label>
+                    <help>Prints the active window</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="wxID_CLOSE">
+                    <label>&amp;Close</label>
+                    <help>Closes the project</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="wxID_EXIT">
+                    <label>&amp;Exit</label>
+                    <help>Exits the application</help>
+                </object>
+            </object>
+            <object class="wxMenu">
+                <label>&amp;Edit</label>
+                <object class="wxMenuItem" name="wxID_COPY">
+                    <label>&amp;Copy\tCtrl+C</label>
+                    <help>Copies selected text</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="wxID_SELECTALL">
+                    <label>&amp;Select All\tCtrl+A</label>
+                    <help>Selects all text</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="ID_DOCUMENT_REFRESH">
+                    <label>&amp;Reload Source Document...</label>
+                    <help>Reloads and recalculates the source document</help>
+                </object>
+            </object>
+            <object class="wxMenu" name="ID_VIEW_MENU">
+                <label>&amp;View</label>
+                <object class="wxMenuItem" name="ID_DC_WORD_LIST_WINDOW">
+                    <label>New &amp;Dale-Chall Word List</label>
+                    <help>Show or hide the New Dale-Chall word list</help>
+                </object>
+                <object class="wxMenuItem" name="ID_HARRIS_JACOBSON_WORD_LIST_WINDOW">
+                    <label>&amp;Harris-Jacobson Word List</label>
+                    <help>Show or hide the Harris-Jacobson word list</help>
+                </object>
+                <object class="wxMenuItem" name="ID_SPACHE_WORD_LIST_WINDOW">
+                    <label>&amp;Spache Revised Word List</label>
+                    <help>Show or hide the Spache Revised word list</help>
+                </object>
+                <object class="wxMenuItem" name="ID_DOLCH_WORD_LIST_WINDOW">
+                    <label>D&amp;olch Sight Word List</label>
+                    <help>Show or hide the Dolch sight word list</help>
+                </object>
+            </object>
+            <object class="wxMenu" name="ID_READABILITY_MENU">
+                <label>&amp;Readability</label>
+            </object>
+            <object class="wxMenu">
+                <label>&amp;Tools</label>
+                <object class="wxMenuItem" name="ID_EDIT_WORD_LIST">
+                    <label>&amp;Edit Word List...</label>
+                </object>
+                <object class="wxMenuItem" name="ID_WEB_HARVEST">
+                    <label>&amp;Web Harvester...</label>
+                </object>
+                <object class="wxMenuItem" name="wxID_PREFERENCES">
+                    <label>&amp;Options...</label>
+                </object>
+            </object>
+            <object class="wxMenu">
+                <label>&amp;Help</label>
+                <object class="wxMenuItem" name="wxID_HELP">
+                    <label>&amp;Documentation...</label>
+                    <help>Opens the help</help>
+                </object>
+                <object class="wxMenu" name="ID_EXAMPLES">
+                    <label>&amp;Examples</label>
+                </object>
+                <object class="separator"></object>
+                <object class="wxMenuItem" name="ID_CHECK_FOR_UPDATES">
+                    <label>&amp;Check for Updates</label>
+                </object>
+                <object class="separator"></object>
+                <object class="wxMenuItem" name="wxID_ABOUT">
+                    <label>&amp;About...</label>
+                </object>
+            </object>
+        </object>
+        <object class="wxMenuBar" name="ID_BATCHDOCMENUBAR">
+            <style>wxMB_DOCKABLE</style>
+            <object class="wxMenu">
+                <label>&amp;File</label>
+                <object class="wxMenuItem" name="wxID_NEW">
+                    <label>&amp;New Project...\tCtrl+N</label>
+                    <help>Creates a new project</help>
+                </object>
+                <object class="wxMenuItem" name="wxID_PASTE">
+                    <label>&amp;New Project from Clipboard...\tCtrl+V</label>
+                    <help>Creates a new project from the text on the clipboard</help>
+                </object>
+                <object class="wxMenuItem" name="ID_SEND_TO_STANDARD_PROJECT">
+                    <label>&amp;Subproject</label>
+                    <help>Create a standard project from the selected document</help>
+                </object>
+                <object class="wxMenuItem" name="wxID_OPEN">
+                    <label>&amp;Open...\tCtrl+O</label>
+                    <help>Opens a project</help>
+                </object>
+                <object class="wxMenuItem" name="wxID_SAVE">
+                    <label>&amp;Save...\tCtrl+S</label>
+                    <help>Saves the project</help>
+                </object>
+                <object class="wxMenuItem" name="wxID_SAVEAS">
+                    <label>Save As...</label>
+                    <help>Saves the project as a different file</help>
+                </object>
+                <object class="wxMenuItem" name="ID_SAVE_ITEM">
+                    <label>&amp;Export Item...</label>
+                    <help>Exports the selected window</help>
+                </object>
+                <object class="wxMenuItem" name="ID_EXPORT_ALL">
+                    <label>&amp;Export All...</label>
+                    <help>Exports all the windows to a folder</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="wxID_PROPERTIES">
+                    <label>P&amp;roject Properties...</label>
+                    <help>Configures settings for the project</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="ID_PRINTER_HEADER_FOOTER">
+                    <label>Headers &amp;&amp; Footers...</label>
+                    <help>Sets the headers and footers for printed materials</help>
+                </object>
+                <object class="wxMenuItem" name="wxID_PRINT_SETUP">
+                    <label>P&amp;age Setup...</label>
+                    <help>Set printer options</help>
+                </object>
+                <object class="wxMenuItem" name="wxID_PRINT">
+                    <label>&amp;Print...\tCtrl+P</label>
+                    <help>Prints the active window</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="wxID_CLOSE">
+                    <label>&amp;Close</label>
+                    <help>Closes the project</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="wxID_EXIT">
+                    <label>&amp;Exit</label>
+                    <help>Exits the application</help>
+                </object>
+            </object>
+            <object class="wxMenu">
+                <label>&amp;Edit</label>
+                <object class="wxMenuItem" name="wxID_COPY">
+                    <label>&amp;Copy\tCtrl+C</label>
+                    <help>Copies selected text</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="wxID_SELECTALL">
+                    <label>&amp;Select All\tCtrl+A</label>
+                    <help>Selects all text</help>
+                </object>
+                <object class="separator">
+                </object>
+                <object class="wxMenuItem" name="ID_DOCUMENT_REFRESH">
+                    <label>&amp;Reload Source Document...</label>
+                    <help>Reloads and recalculates the source document</help>
+                </object>
+            </object>
+            <object class="wxMenu" name="ID_VIEW_MENU">
+                <label>&amp;View</label>
+                <object class="wxMenuItem" name="ID_TEST_EXPLANATIONS_WINDOW">
+                    <label>&amp;Test Explanations</label>
+                    <help>Displays test explanations for the selected document</help>
+                </object>
+                <object class="wxMenuItem" name="ID_STATISTICS_WINDOW">
+                    <label>Stat&amp;istics</label>
+                    <help>Displays the statistics for the selected document</help>
+                </object>
+                <object class="separator"></object>
+                <object class="wxMenuItem" name="ID_DC_WORD_LIST_WINDOW">
+                    <label>New &amp;Dale-Chall Word List</label>
+                    <help>Show or hide the New Dale-Chall word list</help>
+                </object>
+                <object class="wxMenuItem" name="ID_HARRIS_JACOBSON_WORD_LIST_WINDOW">
+                    <label>&amp;Harris-Jacobson Word List</label>
+                    <help>Show or hide the Harris-Jacobson word list</help>
+                </object>
+                <object class="wxMenuItem" name="ID_SPACHE_WORD_LIST_WINDOW">
+                    <label>&amp;Spache Revised Word List</label>
+                    <help>Show or hide the Spache Revised word list</help>
+                </object>
+                <object class="wxMenuItem" name="ID_DOLCH_WORD_LIST_WINDOW">
+                    <label>D&amp;olch Sight Word List</label>
+                    <help>Show or hide the Dolch sight word list</help>
+                </object>
+            </object>
+            <object class="wxMenu" name="ID_READABILITY_MENU">
+                <label>&amp;Readability</label>
+            </object>
+            <object class="wxMenu">
+                <label>&amp;Tools</label>
+                <object class="wxMenuItem" name="ID_EDIT_WORD_LIST">
+                    <label>&amp;Edit Word List...</label>
+                </object>
+                <object class="wxMenuItem" name="ID_WEB_HARVEST">
+                    <label>&amp;Web Harvester...</label>
+                </object>
+                <object class="wxMenuItem" name="wxID_PREFERENCES">
+                    <label>&amp;Options...</label>
+                </object>
+            </object>
+            <object class="wxMenu">
+                <label>&amp;Help</label>
+                <object class="wxMenuItem" name="wxID_HELP">
+                    <label>&amp;Documentation...</label>
+                    <help>Opens the help</help>
+                </object>
+                <object class="wxMenu" name="ID_EXAMPLES">
+                    <label>&amp;Examples</label>
+                </object>
+                <object class="separator"></object>
+                <object class="wxMenuItem" name="ID_CHECK_FOR_UPDATES">
+                    <label>&amp;Check for Updates</label>
+                </object>
+                <object class="separator"></object>
+                <object class="wxMenuItem" name="wxID_ABOUT">
+                    <label>&amp;About...</label>
+                </object>
+            </object>
+        </object>
+</resource>

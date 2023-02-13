@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="22pt"
+   id="svg3261"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="brush.svg"
+   sodipodi:version="0.32"
+   width="22pt"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="Z:\Resources\ReadabilityStudio\ribbon\brush.png"
+   inkscape:export-xdpi="843.92902"
+   inkscape:export-ydpi="843.92902"
+   version="1.1">
+  <defs
+     id="defs3263">
+    <linearGradient
+       id="linearGradient2222"
+       x1="0.27380678"
+       x2="2.8729002"
+       xlink:href="#linearGradient1513"
+       y1="20.488703"
+       y2="22.964516"
+       gradientTransform="scale(1.3696162,0.73013157)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient2317">
+      <stop
+         id="stop2318"
+         offset="0.0000000"
+         style="stop-color:#d6d6d6;stop-opacity:1.0000000;" />
+      <stop
+         id="stop2322"
+         offset="0.25769231"
+         style="stop-color:#eaeaea;stop-opacity:1.0000000;" />
+      <stop
+         id="stop2320"
+         offset="0.70594490"
+         style="stop-color:#919191;stop-opacity:1.0000000;" />
+      <stop
+         id="stop2321"
+         offset="0.73347497"
+         style="stop-color:#d2d2d2;stop-opacity:1.0000000;" />
+      <stop
+         id="stop2319"
+         offset="1.0000000"
+         style="stop-color:#a6a6a6;stop-opacity:1.0000000;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2316"
+       x1="8.2686739"
+       x2="10.515973"
+       xlink:href="#linearGradient2317"
+       y1="11.00203"
+       y2="13.066299"
+       gradientTransform="scale(1.0351768,0.96601857)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient1513">
+      <stop
+         id="stop1514"
+         offset="0.0000000"
+         style="stop-color:#ffffff;stop-opacity:1.0000000;" />
+      <stop
+         id="stop1515"
+         offset="1.0000000"
+         style="stop-color:#ffffff;stop-opacity:0.0000000;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2121"
+       x1="13.739685"
+       x2="15.501424"
+       xlink:href="#linearGradient1513"
+       y1="3.3074582"
+       y2="4.9298501"
+       gradientTransform="scale(1.0067185,0.99332633)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient1918">
+      <stop
+         id="stop1919"
+         offset="0.0000000"
+         style="stop-color:#000000;stop-opacity:0.31638417;" />
+      <stop
+         id="stop1920"
+         offset="0.50000000"
+         style="stop-color:#000000;stop-opacity:0.079096042;" />
+      <stop
+         id="stop1921"
+         offset="1.0000000"
+         style="stop-color:#000000;stop-opacity:0.0000000;" />
+    </linearGradient>
+    <radialGradient
+       cx="41.875938"
+       cy="37.865574"
+       fx="33.845612"
+       fy="37.342125"
+       id="radialGradient1502"
+       r="12.562782"
+       xlink:href="#linearGradient1918"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     bordercolor="#666666"
+     borderopacity="1.0"
+     id="base"
+     inkscape:cx="7.5908747"
+     inkscape:cy="13.014119"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:window-height="705"
+     inkscape:window-width="1024"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:zoom="11.016566"
+     pagecolor="#ffffff"
+     showborder="true"
+     showgrid="false"
+     inkscape:current-layer="svg3261"
+     inkscape:pagecheckerboard="true"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <g
+     id="g3664"
+     transform="matrix(1.485887,0,0,1.485887,-0.55963692,-0.07587013)">
+    <circle
+       id="path1934"
+       style="fill:url(#radialGradient1502);fill-opacity:1;fill-rule:evenodd;stroke-width:1.00000003pt"
+       transform="matrix(0.740907,0,0,0.136369,-20.77331,12.91549)"
+       cx="41.875938"
+       cy="37.865574"
+       r="12.562782" />
+    <path
+       d="M 5.1124425,15.088383 C 7.6442073,10.933131 16.200405,0.85242072 18.35135,0.3474034 20.465292,-0.14892586 20.126155,1.1288235 19.491687,2.1409541 18.846618,3.1699905 16.033557,9.0480435 6.8046433,15.760898 5.4345257,16.225148 5.1124425,15.088383 5.1124425,15.088383 Z"
+       id="path2139"
+       sodipodi:nodetypes="czzcc"
+       style="fill:#625b47;fill-rule:evenodd;stroke-width:0.25"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 0.37663491,18.603312 c 0,0 6.43910039,1.541096 6.95830519,-2.039599 0.5192048,-3.580696 -1.9917186,-1.851523 -3.0638437,-1.768552 -1.4946836,0.05424 -2.9654658,1.603664 -3.89446149,3.808151 z"
+       id="path2140"
+       sodipodi:nodetypes="cccc"
+       style="fill:#434343;fill-rule:evenodd;stroke-width:0.25"
+       inkscape:connector-curvature="0" />
+    <path
+       d="M 9.7455639,9.468046 C 11.188151,7.8020105 16.650131,1.5821988 18.121421,0.91377874 19.560486,0.25999897 19.709887,0.75188491 19.500703,1.2507259 19.291519,1.7495668 11.998924,10.605461 11.169445,10.292321 10.339965,9.979182 9.7249332,9.9020271 9.7455639,9.468046 Z"
+       id="path2230"
+       sodipodi:nodetypes="czccc"
+       style="fill:url(#linearGradient2121);fill-opacity:1;fill-rule:evenodd;stroke-width:0.125"
+       inkscape:connector-curvature="0" />
+    <path
+       d="M 5.2262615,14.482371 9.4036242,9.1933699 c 0.46875,1.0156251 3.2544528,1.6543971 2.8214648,2.1424541 -0.432988,0.488056 -4.3874411,4.255647 -4.8492115,4.431244 -0.461771,0.175598 -2.3709068,-1.092746 -2.149616,-1.284697 z"
+       id="path2141"
+       sodipodi:nodetypes="ccccc"
+       style="fill:url(#linearGradient2316);fill-rule:evenodd;stroke-width:0.25"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 0.92110978,17.977406 c 0,0 1.40603802,-2.970111 3.64918932,-2.713634 1.6950461,0.167236 1.5017515,0.673707 1.5017515,0.673707 0,0 -2.1278583,2.297482 -5.15094082,2.039927 z"
+       id="path2247"
+       sodipodi:nodetypes="cccc"
+       style="fill:url(#linearGradient2222);fill-opacity:1;fill-rule:evenodd;stroke-width:1.00000003pt"
+       inkscape:connector-curvature="0" />
+  </g>
+  <metadata
+     id="metadata1108">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Open Clip Art Library</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Brush</dc:title>
+        <dc:date>2009-05-01T01:48:57</dc:date>
+        <dc:description>A paintbrush by Andrew Fitzsimon. Etiquette Icon set. From 0.18 OCAL database.</dc:description>
+        <dc:source>http://openclipart.org/detail/25595/brush-by-anonymous-25595</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Anonymous</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>artist</rdf:li>
+            <rdf:li>artist</rdf:li>
+            <rdf:li>brush</rdf:li>
+            <rdf:li>brush</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>etiquette</rdf:li>
+            <rdf:li>etiquette</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>image</rdf:li>
+            <rdf:li>media</rdf:li>
+            <rdf:li>paint</rdf:li>
+            <rdf:li>paint</rdf:li>
+            <rdf:li>paintbrush</rdf:li>
+            <rdf:li>paintbrush</rdf:li>
+            <rdf:li>png</rdf:li>
+            <rdf:li>public domain</rdf:li>
+            <rdf:li>svg</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

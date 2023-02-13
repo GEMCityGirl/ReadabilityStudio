@@ -1,0 +1,17 @@
+﻿bgcolor
+font-style
+font-weight
+fontface
+href
+hrefs
+http
+https
+img
+mailto
+nbsp
+noscript
+org
+pageref
+xhtml
+xml
+xref

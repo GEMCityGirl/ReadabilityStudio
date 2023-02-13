@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg5733"
+   viewBox="0 0 450.00002 450.00001"
+   version="1.0"
+   sodipodi:docname="checklist.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   width="450"
+   height="450"
+   inkscape:export-filename="Z:\Resources\ReadabilityStudio\ribbon\Checklist.png"
+   inkscape:export-xdpi="54.916878"
+   inkscape:export-ydpi="54.916878">
+  <defs
+     id="defs3816" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1024"
+     inkscape:window-height="705"
+     id="namedview3814"
+     showgrid="false"
+     inkscape:zoom="0.37315177"
+     inkscape:cx="-34.647001"
+     inkscape:cy="152.90786"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5733"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <rect
+     id="rect4350"
+     transform="rotate(-15)"
+     height="346.66516"
+     width="278.1127"
+     y="125.71755"
+     x="24.289572"
+     style="fill:#aa4400;stroke-width:8.13099957" />
+  <rect
+     id="rect5146"
+     transform="rotate(-15)"
+     height="310.62045"
+     width="235.75835"
+     y="142.06093"
+     x="45.5116"
+     style="fill:#ffffff;stroke-width:8.13099957" />
+  <path
+     style="opacity:0.2;fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:13.27391434"
+     inkscape:connector-curvature="0"
+     d="M 120.69088,208.68616 226.16979,180.42319"
+     id="path5157" />
+  <path
+     style="opacity:0.2;fill:#e6e6e6;stroke:#000000;stroke-width:13.27391434"
+     inkscape:connector-curvature="0"
+     d="M 143.60851,294.21597 249.08742,265.953"
+     id="path5163" />
+  <path
+     style="opacity:0.2;fill:#e6e6e6;stroke:#000000;stroke-width:13.27391434"
+     inkscape:connector-curvature="0"
+     d="M 164.21123,371.1064 269.69014,342.84343"
+     id="path5169" />
+  <path
+     id="rect4345"
+     d="m 170.31361,4.5056441 c -25.85658,6.9113499 -41.22417,33.4997199 -34.31282,59.3562999 1.70751,6.34218 4.63467,12.03388 8.37493,16.91248 l -46.671944,12.52174 13.090914,48.704696 179.85772,-48.216836 -13.0096,-48.70469 -46.67194,12.52174 c 0.8131,-6.17956 0.40655,-12.52174 -1.30096,-18.86392 -6.91135,-25.85658 -33.49972,-41.2241699 -59.3563,-34.2315099 z"
+     inkscape:connector-curvature="0"
+     style="fill:#333333;stroke-width:8.13099957" />
+  <path
+     id="path5638"
+     d="m 260.64902,148.91221 c 3.17109,3.17109 6.42349,6.09825 9.59458,9.18803 0.8131,0.8131 1.70751,1.54489 2.4393,2.4393 0.89441,1.05703 1.54489,2.27668 2.35799,3.41502 1.05703,1.46358 2.11406,3.00847 3.2524,4.47205 0.32524,0.40655 5.36646,7.23659 6.09825,7.96838 3.41502,3.41502 13.41615,1.05703 -8.37493,7.64314 -1.21965,0.40655 0.89441,-2.35799 1.13834,-3.57764 0.40655,-1.87013 0.56917,-3.82157 0.8131,-5.77301 0.97572,-9.91982 1.21965,-19.83964 3.08978,-29.59684 1.21965,-6.26087 2.03275,-8.45624 3.74026,-14.55449 2.76454,-9.59458 6.5048,-18.78261 9.91982,-28.13327 l 11.05816,-6.748726 c -3.65895,9.269346 -7.3179,18.619996 -10.16375,28.133266 -1.70751,5.85432 -2.60192,8.53755 -3.82157,14.47318 -1.87013,9.59458 -2.27668,19.5144 -2.76454,29.2716 -0.0813,1.87013 -0.16262,3.74026 -0.32524,5.6917 -0.0813,1.30096 0.65048,3.00847 -0.32524,3.90288 -3.74026,3.74026 -8.131,6.91135 -12.92829,9.26934 -0.73179,0.40655 -1.30096,-1.21965 -1.87013,-1.87013 -2.03275,-2.60192 -3.57764,-5.61039 -5.85432,-8.131 -2.03275,-2.4393 -3.90288,-4.95991 -5.93563,-7.48052 -3.49633,-4.22812 -7.72445,-7.88707 -12.03388,-11.22078 z"
+     inkscape:connector-curvature="0"
+     style="fill:#008080;stroke-width:8.13099957" />
+  <path
+     id="path5642"
+     d="m 324.15213,208.67506 -9.91982,7.56183 c -6.09825,10.81423 -3.00847,5.20384 -9.26934,16.99379 -1.78882,3.49633 -3.57764,7.07397 -5.28515,10.65161 -6.91135,-3.57764 -13.98532,-6.66742 -21.46584,-8.70017 l -9.10672,10.89554 c 1.78882,0.24393 3.57764,0.32524 5.36646,0.8131 6.91135,1.6262 13.33484,4.8786 19.59571,8.45624 -4.47205,9.35065 -8.78148,18.78261 -13.0096,28.21457 l 11.46471,-9.02541 c 1.87013,-5.52908 4.0655,-11.05816 6.34218,-16.42462 1.46358,0.8131 2.84585,1.70751 4.22812,2.52061 6.17956,3.98419 11.62733,8.86279 17.56296,13.09091 l 9.43196,-9.91982 c -1.30096,-0.8131 -2.60192,-1.6262 -3.90288,-2.52061 -4.71598,-3.33371 -8.9441,-7.3179 -13.90401,-10.24506 -2.68323,-1.6262 -5.28515,-3.17109 -8.04969,-4.63467 3.2524,-6.91135 6.66742,-13.74139 10.16375,-20.57143 6.58611,-11.87126 3.33371,-6.17956 9.7572,-17.15641 z"
+     inkscape:connector-curvature="0"
+     style="fill:#aa0000;stroke-width:8.13099957" />
+  <path
+     id="path5649"
+     d="m 310.19843,320.83204 c 2.60192,3.57764 5.44777,6.91135 8.131,10.40768 0.73179,0.97572 1.46358,1.78882 2.03275,2.76454 0.73179,1.21965 1.30096,2.52061 1.87013,3.74026 0.89441,1.6262 1.70751,3.2524 2.52061,4.8786 0.32524,0.48786 4.30943,7.96838 4.95991,8.78148 2.84585,3.82157 13.17222,3.00847 -9.35065,6.42349 -1.30096,0.16262 1.13834,-2.19537 1.6262,-3.41502 0.65048,-1.78882 1.05703,-3.74026 1.6262,-5.61039 2.35799,-9.67589 4.0655,-19.43309 7.3179,-28.86505 2.03275,-5.93563 3.17109,-8.04969 5.6917,-13.8227 4.14681,-9.10672 9.18803,-17.72558 13.90401,-26.50706 l 11.87126,-5.04122 c -4.8786,8.70017 -9.91982,17.31903 -14.06663,26.42575 -2.52061,5.52908 -3.74026,8.04969 -5.77301,13.74139 -3.33371,9.26934 -5.12253,18.94523 -6.99266,28.62112 -0.32524,1.78882 -0.73179,3.65895 -1.13834,5.52908 -0.24393,1.30096 0.16262,3.08978 -0.89441,3.90288 -4.22812,3.08978 -9.02541,5.61039 -14.06663,7.23659 -0.8131,0.32524 -1.13834,-1.38227 -1.54489,-2.11406 -1.70751,-2.84585 -2.84585,-6.09825 -4.71598,-8.86279 -1.6262,-2.68323 -3.17109,-5.52908 -4.79729,-8.21231 -2.84585,-4.71598 -6.5048,-8.9441 -10.32637,-12.92829 z"
+     inkscape:connector-curvature="0"
+     style="fill:#008080;stroke-width:8.13099957" />
+  <metadata
+     id="metadata3811">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>To-Do List</dc:title>
+        <dc:date>2009-11-04T16:11:32</dc:date>
+        <dc:description>clip art, clip board, clip board, clipart, image, list, list, media, office, office, png, public domain, svg, </dc:description>
+        <dc:source>http://openclipart.org/detail/28096/to-do-list-by-sheikh_tuhin-28096</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>sheikh_tuhin</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clip board</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>image</rdf:li>
+            <rdf:li>list</rdf:li>
+            <rdf:li>media</rdf:li>
+            <rdf:li>office</rdf:li>
+            <rdf:li>png</rdf:li>
+            <rdf:li>public domain</rdf:li>
+            <rdf:li>svg</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
