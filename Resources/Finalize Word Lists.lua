@@ -1,6 +1,6 @@
 dofile(Application.GetLuaConstantsPath())
 
--- Sort and merge stop lists
+-- Sort the stop lists
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words\\StopWords\\English.txt",
     Debug.GetScriptFolderPath().."Words\\StopWords\\English.txt")
