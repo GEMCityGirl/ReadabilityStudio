@@ -1,0 +1,70 @@
+/** @addtogroup Readability
+    @brief Classes for readability tests.
+    @date 2004-2020
+    @copyright Oleander Software, Ltd.
+    @author Blake Madden
+    @details This program is free software; you can redistribute it and/or modify
+     it under the terms of the 3-Clause BSD License.
+
+     SPDX-License-Identifier: BSD-3-Clause
+* @{*/
+
+#ifndef __SPANISH_READABILITY_H__
+#define __SPANISH_READABILITY_H__
+
+#include <cmath>
+#include <stdexcept>
+#include <functional>
+#include <algorithm>
+#include "../../../SRC/Wisteria-Dataviz/src/math/mathematics.h"
+#include "readability_enums.h"
+#include "english_readability.h"
+#include "grade_scales.h"
+
+namespace readability
+    {
+    /** Crawford Spanish grade level test. This test is meant for primary-age reading materials.
+        There is also a Crawford graph, which basically just plots the score where the factors' values intersect.
+        @param number_of_words The number of words.
+        @param number_of_syllables The number of syllables.
+        @param number_of_sentences The number of sentences.
+        @returns The grade-level score.*/
+    [[nodiscard]] inline double crawford(const size_t number_of_words,
+                                         const size_t number_of_syllables,
+                                         const size_t number_of_sentences)
+        {
+        if (number_of_words == 0)
+            { throw std::domain_error("invalid word count"); }
+        const double normalizationFactor = safe_divide<double>(100, number_of_words);
+
+        const double result = (-.205*(number_of_sentences*normalizationFactor)) +
+            (.049*(number_of_syllables*normalizationFactor)) - 3.407;
+        return truncate_k12_plus_grade(result);
+        }
+
+    /** Spanish SMOG test. This test calculates a (high-precision) SMOG score from Spanish text and then
+        adjusts to the appropriate grade level.
+        This test explicitly excludes lists, but includes headers and footers
+         (SMOG does not explicitly state this). Numbers should be sounded out, just like in English SMOG.
+        @param number_of_big_words The number of 3+ syllable words.
+        @param number_of_sentences The number of sentences.
+        @returns The grade-level score.
+        @note Number of sentences is not a part of the SMOG formulas because they expects 10-sentence samples.
+         @c number_of_sentences is therefore used to standardize @c number_of_big_words to what it would be
+         if it came from a 10-sentence sample.*/
+    [[nodiscard]] inline double sol_spanish(const size_t number_of_big_words,
+                                            const size_t number_of_sentences)
+        {
+        if (number_of_sentences == 0)
+            { throw std::domain_error("invalid sentence count."); }
+        // get the raw SMOG grade score (which can be high [e.g., 25]) then plug into the
+        // Spanish -> English grade level formula (below)...
+        const double solScore = -2.51 + .74*smog(number_of_big_words, number_of_sentences, false);
+        // ...then clip to the regular 0-19 grade level range
+        return truncate_k12_plus_grade(solScore);
+        }
+    }
+
+/** @} */
+
+#endif //__SPANISH_READABILITY_H__

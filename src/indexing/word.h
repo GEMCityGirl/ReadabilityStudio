@@ -1,0 +1,369 @@
+/** @addtogroup Indexing
+    @brief Classes for parsing and indexing text.
+    @date 2003-2020
+    @copyright Oleander Software, Ltd.
+    @author Blake Madden
+    @details This program is free software; you can redistribute it and/or modify
+     it under the terms of the 3-Clause BSD License.
+
+     SPDX-License-Identifier: BSD-3-Clause
+* @{*/
+
+#ifndef __WORD_H__
+#define __WORD_H__
+
+#include <string>
+#include <algorithm>
+#include <functional>
+#include <map>
+#include <vector>
+#include <bitset>
+#include <cassert>
+#include "word_functional.h"
+#include "character_traits.h"
+#include "syllable.h"
+#include "characters.h"
+#include "../OleanderStemmingLibrary/src/english_stem.h"
+
+/// Flags used to describe a word.
+enum class word_flags
+    {
+    numeric_flag,          /*!< Number (or mixed letters and numbers [predominately numbers]).*/
+    is_valid_flag,         /*!< Word that is being excluded from a text analysis system.*/
+    proper_noun_flag,      /*!< proper noun (may be a person's name, place, or title).*/
+    personal_flag,         /*!< Proper noun that is a person's name.*/
+    contraction_flag,      /*!< Contraction (e.g., it's).*/
+    acronym_flag,          /*!< Acronym (e.g., KAOS).*/
+    exclamatory_flag,      /*!< Uppercased words that aren't acronyms (e.g., WATCH OUT!).*/
+    file_address_flag,     /*!< File path or internet address.*/
+    custom_tagged_flag,    /*!< User-defined tag applies to this word.*/
+    social_media_tag_flag, /*!< A hashtagged word.*/
+    abbreviation_flag,     /*!< Abbreviation.*/
+    WORD_FLAG_COUNT        /*!< The number of word flags available.*/
+    };
+
+/** Word structure.*/
+template<typename Tchar_traits = traits::case_insensitive_ex,
+         typename Tstemmer = stemming::english_stem<std::basic_string<wchar_t, Tchar_traits>>>
+class word
+    {
+public:
+    static const size_t npos = static_cast<size_t>(-1);
+    word(const wchar_t* word_start, const size_t word_length,
+        const size_t sentence_index,
+        const size_t sentence_position,
+        const size_t paragraph_index,
+        const bool is_date_time_money,
+        const bool isInsideCompleteSentence,
+        const bool isProperNoun,
+        const bool isAcronym,
+        const size_t syllable_count,
+        const size_t punctuation_count) :
+        m_word(word_start, word_length),
+        m_stem(word_start, word_length),
+        m_sentence_index(sentence_index)/*sentence that the word is in*/,
+        m_sentence_position(sentence_position)/*word's position in the sentence*/,
+        m_paragraph_index(paragraph_index)/*paragraph that the word is in*/,
+        m_syllable_count(syllable_count),
+        m_punctuation_count(punctuation_count)
+        {
+        set_numeric(is_date_time_money);
+        set_valid(isInsideCompleteSentence);
+        set_proper_noun(isProperNoun);
+        set_acronym(isAcronym);
+        set_exclamatory(false);
+        //stem and count punctuation
+        stem(m_stem);
+        }
+    word(const wchar_t* word_start, const size_t word_length) :
+        m_word(word_start, word_length),
+        m_stem(word_start, word_length)
+        { stem(m_stem); }
+    word(const wchar_t* word_start) :
+        m_word(word_start),
+        m_stem(word_start)
+        { stem(m_stem); }
+    /// Empty Constructor.
+    word() noexcept = default;
+
+    [[nodiscard]] size_t find(const wchar_t c, const size_t pos = 0) const noexcept
+        { return m_word.find(c,pos); }
+    [[nodiscard]] size_t find(const wchar_t* str, const size_t pos = 0) const noexcept
+        { return m_word.find(str,pos); }
+
+    /// @returns Whether this word doesn't equal /c that.
+    /// @param that The word to compare against.
+    [[nodiscard]] bool operator!=(const word<Tchar_traits, Tstemmer>& that) const noexcept
+        { return compare(that) != 0; }
+    /// @returns Whether this word is less than /c that.
+    /// @param that The word to compare against.
+    [[nodiscard]] bool operator<(const word<Tchar_traits, Tstemmer>& that) const noexcept
+        { return compare(that) < 0; }
+
+    /// @returns Whether the words are the same, compared by stems.
+    /// @param that The word to compare against.
+    [[nodiscard]] bool operator==(const word<Tchar_traits, Tstemmer>& that) const noexcept
+        {return compare(that) == 0; }
+    /// @returns Whether the words are the same, compared by stems.
+    /// @param that The word to compare against.
+    [[nodiscard]] bool operator==(const wchar_t* that) const
+        { return compare(that) == 0; }
+    /// @returns The comparison result against other word, comparing by the stems.
+    /// @param that The word to compare against.
+    /// @note This is the main comparison function that all other compare() and operators functions rely on.
+    [[nodiscard]] int compare(const word<Tchar_traits, Tstemmer>& that) const noexcept
+        { return m_stem.compare(that.m_stem); }
+    /// @returns The comparison result against other word, comparing by the stems.
+    /// @param that The word to compare against.
+    [[nodiscard]] int compare(const wchar_t* that) const
+        { return compare(word<Tchar_traits, Tstemmer>(that)); }
+
+    /// @returns The length of the word (the whole word, not the stem).
+    [[nodiscard]] size_t length() const noexcept
+        { return m_word.length(); }
+    /// @returns The length of the word, excluding punctuation like apostrophes.
+    [[nodiscard]] size_t get_length_excluding_punctuation() const noexcept
+        { return length() - m_punctuation_count;}
+    /// @returns The number of punctuation marks in the word.
+    [[nodiscard]] size_t get_punctuation_count() const noexcept
+        { return m_punctuation_count; }
+    void set_syllable_count(const size_t count)
+        { m_syllable_count = count; }
+    [[nodiscard]] size_t get_syllable_count() const noexcept
+        { return m_syllable_count; }
+    [[nodiscard]] size_t get_sentence_index() const noexcept
+        { return m_sentence_index; }
+    [[nodiscard]] size_t get_paragraph_index() const noexcept
+        { return m_paragraph_index; }
+    [[nodiscard]] size_t get_sentence_position() const noexcept
+        { return m_sentence_position; }
+    [[nodiscard]] const wchar_t* c_str() const noexcept
+        { return m_word.c_str(); }
+    [[nodiscard]] wchar_t at(const size_t index) const
+        { return m_word[index]; }
+    [[nodiscard]] wchar_t operator[](const size_t index) const
+        { return m_word[index]; }
+    [[nodiscard]] const wchar_t* get_stem() const noexcept
+        { return m_stem.c_str(); }
+    [[nodiscard]] bool is_capitalized() const
+        {
+        return (length() == 0) ? false :
+            (characters::is_character::is_upper(m_word[0]));
+        }
+    [[nodiscard]] bool is_capitalized_not_in_caps() const
+        {
+        return (length() == 0) ? false :
+            (length() == 1) ? characters::is_character::is_upper(m_word[0]) :
+            (characters::is_character::is_upper(m_word[0]) &&
+                !characters::is_character::is_upper(m_word[1]));
+        }
+    // flags
+    inline void set_numeric(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::numeric_flag), enable); }
+    [[nodiscard]] inline bool is_numeric() const noexcept
+        { return flags[static_cast<size_t>(word_flags::numeric_flag)]; }
+
+    inline void set_valid(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::is_valid_flag), enable); }
+    [[nodiscard]] inline bool is_valid() const noexcept
+        { return flags[static_cast<size_t>(word_flags::is_valid_flag)]; }
+
+    inline void set_proper_noun(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::proper_noun_flag), enable); }
+    [[nodiscard]] inline bool is_proper_noun() const noexcept
+        { return flags[static_cast<size_t>(word_flags::proper_noun_flag)]; }
+
+    void set_personal(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::personal_flag), enable); }
+    [[nodiscard]] bool is_personal() const
+        { return flags[static_cast<size_t>(word_flags::personal_flag)]; }
+
+    void set_contraction(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::contraction_flag), enable); }
+    [[nodiscard]] inline bool is_contraction() const noexcept
+        { return flags[static_cast<size_t>(word_flags::contraction_flag)]; }
+
+    inline void set_acronym(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::acronym_flag), enable); }
+    [[nodiscard]] inline bool is_acronym() const noexcept
+        { return flags[static_cast<size_t>(word_flags::acronym_flag)]; }
+
+    inline void set_exclamatory(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::exclamatory_flag), enable); }
+    [[nodiscard]] inline bool is_exclamatory() const noexcept
+        { return flags[static_cast<size_t>(word_flags::exclamatory_flag)]; }
+
+    inline void set_file_address(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::file_address_flag), enable); }
+    [[nodiscard]] inline bool is_file_address() const noexcept
+        { return flags[static_cast<size_t>(word_flags::file_address_flag)]; }
+
+    inline void set_custom_tagged(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::custom_tagged_flag), enable); }
+    [[nodiscard]] inline bool is_custom_tagged() const
+        { return flags[static_cast<size_t>(word_flags::custom_tagged_flag)]; }
+
+    inline void set_social_media_tag(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::social_media_tag_flag), enable); }
+    [[nodiscard]] inline bool is_social_media_tag() const
+        { return flags[static_cast<size_t>(word_flags::social_media_tag_flag)]; }
+
+    inline void set_abbreviation_tag(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::abbreviation_flag), enable); }
+    [[nodiscard]] inline bool is_abbreviation_tag() const
+        { return flags[static_cast<size_t>(word_flags::abbreviation_flag)]; }
+private:
+    std::basic_string<wchar_t, Tchar_traits> m_word;
+    std::basic_string<wchar_t, Tchar_traits> m_stem;
+    // functors
+    Tstemmer stem;
+
+    size_t m_sentence_index{ 0 };
+    size_t m_sentence_position{ 0 };
+    size_t m_paragraph_index{ 0 };
+    size_t m_syllable_count{ 0 };
+    size_t m_punctuation_count{ 0 };
+
+    // flags
+    std::bitset<static_cast<size_t>(word_flags::WORD_FLAG_COUNT)> flags{ 0 };
+    };
+
+/** Specialized version of word that does not using a stemmer at all.
+    get_stem() just included for compatibility and returns original string.*/
+template<typename Tchar_traits>
+class word<Tchar_traits, stemming::no_op_stem<std::basic_string<wchar_t, Tchar_traits>>> :
+    public std::basic_string<wchar_t, Tchar_traits>
+    {
+public:
+    word(const wchar_t* word_start, const size_t word_length,
+        const size_t sentence_index,
+        const size_t sentence_position,
+        const size_t paragraph_index,
+        const bool is_date_time_money,
+        const bool isInsideCompleteSentence,
+        const bool isProperNoun,
+        const bool isAcronym,
+        const size_t syllable_count,
+        const size_t punctuation_count) :
+        std::basic_string<wchar_t, Tchar_traits>(word_start, word_length),
+        m_sentence_index(sentence_index)/*sentence that the word is in*/,
+        m_sentence_position(sentence_position)/*word's position in the sentence*/,
+        m_paragraph_index(paragraph_index)/*paragraph that the word is in*/,
+        m_syllable_count(syllable_count),
+        m_punctuation_count(punctuation_count)
+        {
+        set_numeric(is_date_time_money);
+        set_valid(isInsideCompleteSentence);
+        set_proper_noun(isProperNoun);
+        set_acronym(isAcronym);
+        set_exclamatory(false);
+        }
+    word(const wchar_t* word_start, const size_t word_length) :
+        std::basic_string<wchar_t, Tchar_traits>(word_start, word_length)
+        {}
+    word(const wchar_t* word_start) :
+        std::basic_string<wchar_t, Tchar_traits>(word_start)
+        {}
+    /// Empty CTOR
+    word() noexcept = default;
+
+    [[nodiscard]] inline size_t get_length_excluding_punctuation() const noexcept
+        { return length() - m_punctuation_count; }
+    [[nodiscard]] inline size_t get_punctuation_count() const noexcept
+        { return m_punctuation_count; }
+    inline void set_syllable_count(const size_t count) noexcept
+        { m_syllable_count = count; }
+    [[nodiscard]] inline size_t get_syllable_count() const noexcept
+        { return m_syllable_count; }
+    [[nodiscard]] [[nodiscard]] inline size_t get_sentence_index() const noexcept
+        { return m_sentence_index; }
+    inline size_t get_paragraph_index() const noexcept
+        { return m_paragraph_index; }
+    [[nodiscard]] inline size_t get_sentence_position() const noexcept
+        { return m_sentence_position; }
+    [[nodiscard]] inline const wchar_t* get_stem() const
+        { return c_str(); }
+    [[nodiscard]] inline bool is_capitalized() const
+        {
+        return (length() == 0) ? false :
+            (characters::is_character::is_upper(operator[](0)));
+        }
+    [[nodiscard]] inline bool is_capitalized_not_in_caps() const
+        {
+        return (length() == 0) ? false :
+            (length() == 1) ? characters::is_character::is_upper(operator[](0)) :
+            (characters::is_character::is_upper(operator[](0)) &&
+                !characters::is_character::is_upper(operator[](1)) );
+        }
+    // flags
+    inline void set_numeric(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::numeric_flag), enable); }
+    [[nodiscard]] inline bool is_numeric() const noexcept
+        { return flags[static_cast<size_t>(word_flags::numeric_flag)]; }
+
+    inline void set_valid(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::is_valid_flag), enable); }
+    [[nodiscard]] inline bool is_valid() const noexcept
+        { return flags[static_cast<size_t>(word_flags::is_valid_flag)]; }
+
+    inline void set_proper_noun(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::proper_noun_flag), enable); }
+    [[nodiscard]] inline bool is_proper_noun() const noexcept
+        { return flags[static_cast<size_t>(word_flags::proper_noun_flag)]; }
+
+    void set_personal(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::personal_flag), enable); }
+    [[nodiscard]] bool is_personal() const
+        { return flags[static_cast<size_t>(word_flags::personal_flag)]; }
+
+    void set_contraction(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::contraction_flag), enable); }
+    [[nodiscard]] bool is_contraction() const
+        { return flags[static_cast<size_t>(word_flags::contraction_flag)]; }
+
+    inline void set_acronym(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::acronym_flag), enable); }
+    [[nodiscard]] inline bool is_acronym() const noexcept
+        { return flags[static_cast<size_t>(word_flags::acronym_flag)]; }
+
+    inline void set_exclamatory(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::exclamatory_flag), enable); }
+    [[nodiscard]] inline bool is_exclamatory() const noexcept
+        { return flags[static_cast<size_t>(word_flags::exclamatory_flag)]; }
+
+    inline void set_file_address(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::file_address_flag), enable); }
+    [[nodiscard]] inline bool is_file_address() const noexcept
+        { return flags[static_cast<size_t>(word_flags::file_address_flag)]; }
+
+    inline void set_custom_tagged(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::custom_tagged_flag), enable); }
+    [[nodiscard]] inline bool is_custom_tagged() const
+        { return flags[static_cast<size_t>(word_flags::custom_tagged_flag)]; }
+
+    inline void set_social_media_tag(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::social_media_tag_flag), enable); }
+    [[nodiscard]] inline bool is_social_media_tag() const
+        { return flags[static_cast<size_t>(word_flags::social_media_tag_flag)]; }
+
+    inline void set_abbreviation_tag(const bool enable)
+        { flags.set(static_cast<size_t>(word_flags::abbreviation_flag), enable); }
+    [[nodiscard]] inline bool is_abbreviation_tag() const
+        { return flags[static_cast<size_t>(word_flags::abbreviation_flag)]; }
+private:
+    size_t m_sentence_index{ 0 };
+    size_t m_sentence_position{ 0 };
+    size_t m_paragraph_index{ 0 };
+    size_t m_syllable_count{ 0 };
+    size_t m_punctuation_count{ 0 };
+
+    // flags
+    std::bitset<static_cast<size_t>(word_flags::WORD_FLAG_COUNT)> flags{ 0 };
+    };
+
+using word_case_insensitive_no_stem = word<traits::case_insensitive_ex,
+    stemming::no_op_stem<std::basic_string<wchar_t, traits::case_insensitive_ex>>>;
+
+/** @}*/
+
+#endif //__WORD_H__
