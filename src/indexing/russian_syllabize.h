@@ -30,7 +30,8 @@ namespace grammar
             }
         };
 
-    /* Syllable counting functor utility*/
+    /* Syllable counting functor utility
+       @warning This is experimental and not in use.*/
     template<typename Tcharacter_traits = traits::case_insensitive>
     class russian_syllabize : public base_syllabize
         {
@@ -153,5 +154,7 @@ namespace grammar
             }
         };
     }
+
+/** @} */
 
 #endif //__RUSSIAN_SYLLABLE_H__

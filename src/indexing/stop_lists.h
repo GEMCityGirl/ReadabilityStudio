@@ -16,13 +16,17 @@
 
 namespace grammar
     {
-    /// @brief Determines if a possible proper word is really a simple word that cannot be proper (e.g., "and").
-    /// This is a user-defined list that caller needs to load.
+    /// @brief Determines if a possible proper word is really a simple word
+    ///     that cannot be proper (e.g., "and").
+    /// @details This is a user-defined list that caller needs to load.
     class is_non_proper_word
         {
     public:
-        /** Accesses the list of words following an 'an' that would be correct (that the analyzer might get wrong).*/
-        [[nodiscard]] static word_list& get_word_list() noexcept
+        /** @returns The list of words following an 'an' that would be correct
+                (that the analyzer might get wrong). This accesses the list so
+                that you can edit or use it.*/
+        [[nodiscard]]
+        static word_list& get_word_list() noexcept
             { return m_word_list; }
     private:
         static word_list m_word_list;
