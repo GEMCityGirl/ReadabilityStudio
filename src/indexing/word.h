@@ -25,7 +25,7 @@
 #include "characters.h"
 #include "../OleanderStemmingLibrary/src/english_stem.h"
 
-/// Flags used to describe a word.
+/// @brief Flags used to describe a word.
 enum class word_flags
     {
     numeric_flag,          /*!< Number (or mixed letters and numbers [predominately numbers]).*/
@@ -42,13 +42,13 @@ enum class word_flags
     WORD_FLAG_COUNT        /*!< The number of word flags available.*/
     };
 
-/** Word structure.*/
+/** @brief Word structure.*/
 template<typename Tchar_traits = traits::case_insensitive_ex,
          typename Tstemmer = stemming::english_stem<std::basic_string<wchar_t, Tchar_traits>>>
-class word
+class word :
+    public std::basic_string<wchar_t, Tchar_traits>
     {
 public:
-    static const size_t npos = static_cast<size_t>(-1);
     word(const wchar_t* word_start, const size_t word_length,
         const size_t sentence_index,
         const size_t sentence_position,
@@ -59,7 +59,7 @@ public:
         const bool isAcronym,
         const size_t syllable_count,
         const size_t punctuation_count) :
-        m_word(word_start, word_length),
+        std::basic_string<wchar_t, Tchar_traits>(word_start, word_length),
         m_stem(word_start, word_length),
         m_sentence_index(sentence_index)/*sentence that the word is in*/,
         m_sentence_position(sentence_position)/*word's position in the sentence*/,
@@ -72,30 +72,24 @@ public:
         set_proper_noun(isProperNoun);
         set_acronym(isAcronym);
         set_exclamatory(false);
-        //stem and count punctuation
         stem(m_stem);
         }
     word(const wchar_t* word_start, const size_t word_length) :
-        m_word(word_start, word_length),
+        std::basic_string<wchar_t, Tchar_traits>(word_start, word_length),
         m_stem(word_start, word_length)
         { stem(m_stem); }
     word(const wchar_t* word_start) :
-        m_word(word_start),
+        std::basic_string<wchar_t, Tchar_traits>(word_start),
         m_stem(word_start)
         { stem(m_stem); }
-    /// Empty Constructor.
+    /// @private
     word() noexcept = default;
 
-    [[nodiscard]] size_t find(const wchar_t c, const size_t pos = 0) const noexcept
-        { return m_word.find(c,pos); }
-    [[nodiscard]] size_t find(const wchar_t* str, const size_t pos = 0) const noexcept
-        { return m_word.find(str,pos); }
-
-    /// @returns Whether this word doesn't equal /c that.
+    /// @returns Whether this word doesn't equal @c that.
     /// @param that The word to compare against.
     [[nodiscard]] bool operator!=(const word<Tchar_traits, Tstemmer>& that) const noexcept
         { return compare(that) != 0; }
-    /// @returns Whether this word is less than /c that.
+    /// @returns Whether this word is less than @c that.
     /// @param that The word to compare against.
     [[nodiscard]] bool operator<(const word<Tchar_traits, Tstemmer>& that) const noexcept
         { return compare(that) < 0; }
@@ -118,9 +112,6 @@ public:
     [[nodiscard]] int compare(const wchar_t* that) const
         { return compare(word<Tchar_traits, Tstemmer>(that)); }
 
-    /// @returns The length of the word (the whole word, not the stem).
-    [[nodiscard]] size_t length() const noexcept
-        { return m_word.length(); }
     /// @returns The length of the word, excluding punctuation like apostrophes.
     [[nodiscard]] size_t get_length_excluding_punctuation() const noexcept
         { return length() - m_punctuation_count;}
@@ -137,25 +128,19 @@ public:
         { return m_paragraph_index; }
     [[nodiscard]] size_t get_sentence_position() const noexcept
         { return m_sentence_position; }
-    [[nodiscard]] const wchar_t* c_str() const noexcept
-        { return m_word.c_str(); }
-    [[nodiscard]] wchar_t at(const size_t index) const
-        { return m_word[index]; }
-    [[nodiscard]] wchar_t operator[](const size_t index) const
-        { return m_word[index]; }
     [[nodiscard]] const wchar_t* get_stem() const noexcept
         { return m_stem.c_str(); }
-    [[nodiscard]] bool is_capitalized() const
+    [[nodiscard]] inline bool is_capitalized() const
         {
         return (length() == 0) ? false :
-            (characters::is_character::is_upper(m_word[0]));
+            (characters::is_character::is_upper(operator[](0)));
         }
-    [[nodiscard]] bool is_capitalized_not_in_caps() const
+    [[nodiscard]] inline bool is_capitalized_not_in_caps() const
         {
         return (length() == 0) ? false :
-            (length() == 1) ? characters::is_character::is_upper(m_word[0]) :
-            (characters::is_character::is_upper(m_word[0]) &&
-                !characters::is_character::is_upper(m_word[1]));
+            (length() == 1) ? characters::is_character::is_upper(operator[](0)) :
+            (characters::is_character::is_upper(operator[](0)) &&
+                !characters::is_character::is_upper(operator[](1)) );
         }
     // flags
     inline void set_numeric(const bool enable)
@@ -213,7 +198,6 @@ public:
     [[nodiscard]] inline bool is_abbreviation_tag() const
         { return flags[static_cast<size_t>(word_flags::abbreviation_flag)]; }
 private:
-    std::basic_string<wchar_t, Tchar_traits> m_word;
     std::basic_string<wchar_t, Tchar_traits> m_stem;
     // functors
     Tstemmer stem;
@@ -228,8 +212,10 @@ private:
     std::bitset<static_cast<size_t>(word_flags::WORD_FLAG_COUNT)> flags{ 0 };
     };
 
-/** Specialized version of word that does not using a stemmer at all.
-    get_stem() just included for compatibility and returns original string.*/
+/** @brief Specialized version of word that does not using a stemmer at all.
+    @details get_stem() is just included for compatibility and returns original string.
+        Use this if stemming is not needed, as this will not store an extra string
+        for the stem.*/
 template<typename Tchar_traits>
 class word<Tchar_traits, stemming::no_op_stem<std::basic_string<wchar_t, Tchar_traits>>> :
     public std::basic_string<wchar_t, Tchar_traits>
@@ -264,7 +250,7 @@ public:
     word(const wchar_t* word_start) :
         std::basic_string<wchar_t, Tchar_traits>(word_start)
         {}
-    /// Empty CTOR
+    /// @private
     word() noexcept = default;
 
     [[nodiscard]] inline size_t get_length_excluding_punctuation() const noexcept
