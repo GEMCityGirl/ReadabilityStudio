@@ -15,28 +15,24 @@
 #include <algorithm>
 #include <functional>
 #include <set>
+#include <string_view>
 #include "character_traits.h"
-#include "../../../SRC/Wisteria-Dataviz/src/debug/debug_assert.h"
 
 namespace grammar
     {
-    /// @brief Functor for determining if a word is a personal pronoun (e.g., "he", "they").
+    /// @brief Predicate for determining if a word is a personal pronoun (e.g., "he", "they").
     class is_personal_pronoun
         {
     public:
         /** @returns @c true if text block is a pronoun.
             @param text The text block to analyze.
-            @param length The length of the text block to analyze. This will be the start of the
-                text block up to the end of the word.
             @todo add Spanish and German words too.*/
         [[nodiscard]]
-        bool operator()(const wchar_t* text, const size_t length) const
+        bool operator()(std::wstring_view text) const
             {
-            NON_UNIT_TEST_ASSERT(text);
-            NON_UNIT_TEST_ASSERT(std::wcslen(text) == length);
-            if (text == nullptr || text[0] == 0)
+            if (text.empty())
                 { return false; }
-            return m_words.find(string_type(text,length)) != m_words.cend();
+            return m_words.find(string_type(text.data(), text.length())) != m_words.cend();
             }
     private:
         using string_type = traits::case_insensitive_wstring_ex;
