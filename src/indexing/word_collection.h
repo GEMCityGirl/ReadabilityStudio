@@ -149,7 +149,7 @@ public:
                             // so just set reasonable default values for now
                             true, false, false,
                             count_syllables(current_char, tokenize_text.get_current_word_length()),
-                            count_punctuation(current_char, tokenize_text.get_current_word_length()) );
+                            count_punctuation({ current_char, tokenize_text.get_current_word_length() }) );
                 }
             // Review words at the end of the line that are hyphenated,
             // because they usually are connected to the word on the next line.
@@ -184,7 +184,7 @@ public:
                                 //so just set reasonable default values for now
                                 true, false, false,
                                 count_syllables(current_char, tokenize_text.get_current_word_length()),
-                                count_punctuation(current_char, tokenize_text.get_current_word_length()) );
+                                count_punctuation({ current_char, tokenize_text.get_current_word_length() }) );
                     }
                 else
                     {
@@ -198,7 +198,7 @@ public:
                                 //so just set reasonable default values for now
                                 true, false, false,
                                 count_syllables(current_char, tokenize_text.get_current_word_length()),
-                                count_punctuation(current_char, tokenize_text.get_current_word_length()) );
+                                count_punctuation({ current_char, tokenize_text.get_current_word_length() }) );
                     }
                 delete [] currentWord;
                 delete [] currentWordNoHyphens;
