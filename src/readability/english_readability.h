@@ -34,7 +34,7 @@ namespace readability
     constexpr size_t DALE_CHALL_SAMPLE_SIZE_COEFFICIENT = 100;
     constexpr size_t RAYGOR_SAMPLE_SIZE_COEFFICIENT = 100;
 
-    /// The difficulty level of a document, determined by the Eflaw test.
+    /// @brief The difficulty level of a document, determined by the Eflaw test.
     enum class eflaw_difficulty
         {
         /// Very easy

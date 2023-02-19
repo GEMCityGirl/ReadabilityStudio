@@ -1,3 +1,14 @@
+/** @addtogroup Readability
+    @brief Classes for readability tests.
+    @date 2004-2020
+    @copyright Oleander Software, Ltd.
+    @author Blake Madden
+    @details This program is free software; you can redistribute it and/or modify
+     it under the terms of the 3-Clause BSD License.
+
+     SPDX-License-Identifier: BSD-3-Clause
+* @{*/
+
 #ifndef __CUSTOM_READABILITY_TEST_H__
 #define __CUSTOM_READABILITY_TEST_H__
 
@@ -22,11 +33,15 @@
 
 namespace readability
     {
+    /** @brief A user-defined test, which can included its own familiar words
+            and stemming method (if using familiar words).*/
     template<typename word_typeT>
     class custom_test final : public test_with_classification, public base_test
         {
     public:
+        /// @brief The string type when comparing words against the familiar words list.
         using string_type = traits::case_insensitive_wstring_ex;
+        /// @brief The familiar word list type.
         using word_list_type = familiar_word_container<string_type>;
 
         custom_test(const string_type& name,
@@ -150,7 +165,8 @@ namespace readability
             is_word_familiar_spanish_stem.include_numeric_as_familiar(false);
             }
 
-        /// Compares the key information about the test to determine if they are the same.
+        /// @brief Compares the key information about the test to determine if they are the same.
+        /// @private
         [[nodiscard]]
         bool operator==(const custom_test<word_typeT>& that) const
             {
@@ -168,16 +184,21 @@ namespace readability
                 (is_word_familiar_proper_or_numeric.is_including_numeric_as_familiar() == that.is_word_familiar_proper_or_numeric.is_including_numeric_as_familiar()) &&
                 (m_familiar_words_must_be_on_all_included_list == that.m_familiar_words_must_be_on_all_included_list));
             }
+        /// @private
         [[nodiscard]]
         bool operator==(const wchar_t* name) const noexcept
             { return (m_name.compare(name) == 0); }
+        /// @private
         [[nodiscard]]
         bool operator==(const string_type& name) const noexcept
             { return (m_name == name); }
 
-        ///Get/Set stemming functions
+        /// @brief Sets the stemming method used for the list of custom (familiar) words
+        ///     used by the test.
+        /// @param stem_type The stemming method to use.
         void set_stemming_type(const stemming::stemming_type stem_type) noexcept
             { m_stemming_type = stem_type; }
+        /// @returns The stemming method .
         [[nodiscard]]
         stemming::stemming_type get_stemming_type() const noexcept
             { return m_stemming_type; }
@@ -203,7 +224,7 @@ namespace readability
         const string_type& get_name() const noexcept
             { return m_name; }
 
-        ///Specifies whether this test is using word lists to determine word familiarity
+        /// @returns Whether this test is using word lists to determine word familiarity.
         [[nodiscard]]
         bool is_using_familiar_words() const
             {
@@ -222,44 +243,52 @@ namespace readability
             { return m_familiar_word_list_file_path; }
 
         //get/set numeric/proper noun inclusion
-        [[nodiscard]] readability::proper_noun_counting_method get_proper_noun_method() const noexcept
+        [[nodiscard]]
+        readability::proper_noun_counting_method get_proper_noun_method() const noexcept
             { return is_word_familiar_proper_or_numeric.get_proper_noun_method(); }
         void set_proper_noun_method(const readability::proper_noun_counting_method proper) noexcept
             { is_word_familiar_proper_or_numeric.set_proper_noun_method(proper); }
-        [[nodiscard]] bool is_including_numeric_as_familiar() const noexcept
+        [[nodiscard]]
+        bool is_including_numeric_as_familiar() const noexcept
             { return is_word_familiar_proper_or_numeric.is_including_numeric_as_familiar(); }
         void include_numeric_as_familiar(const bool number_familiar) noexcept
             { is_word_familiar_proper_or_numeric.include_numeric_as_familiar(number_familiar); }
 
         void include_custom_familiar_word_list(const bool include) noexcept
             { m_include_custom_familiar_word_list = include; }
-        [[nodiscard]] bool is_including_custom_familiar_word_list() const noexcept
+        [[nodiscard]]
+        bool is_including_custom_familiar_word_list() const noexcept
             { return m_include_custom_familiar_word_list; }
 
         //get/set for DC and Spache lists inclusion
         void include_dale_chall_list(const bool include) noexcept
             { m_include_dale_chall_list = include;}
-        [[nodiscard]] bool is_including_dale_chall_list() const noexcept
+        [[nodiscard]]
+        bool is_including_dale_chall_list() const noexcept
             { return m_include_dale_chall_list; }
 
         void include_spache_list(const bool include) noexcept
             { m_include_spache_list = include;}
-        [[nodiscard]] bool is_including_spache_list() const noexcept
+        [[nodiscard]]
+        bool is_including_spache_list() const noexcept
             { return m_include_spache_list; }
 
         void include_harris_jacobson_list(const bool include) noexcept
             { m_include_harris_jacobson_list = include; }
-        [[nodiscard]] bool is_including_harris_jacobson_list() const noexcept
+        [[nodiscard]]
+        bool is_including_harris_jacobson_list() const noexcept
             { return m_include_harris_jacobson_list; }
         
         void include_stocker_list(const bool include) noexcept
             { m_include_stocker_list = include; }
-        [[nodiscard]] bool is_including_stocker_list() const noexcept
+        [[nodiscard]]
+        bool is_including_stocker_list() const noexcept
             { return m_include_stocker_list; }
 
         void set_familiar_words_must_be_on_each_included_list(const bool include) noexcept
             { m_familiar_words_must_be_on_all_included_list = include; }
-        [[nodiscard]] bool is_familiar_words_must_be_on_each_included_list() const noexcept
+        [[nodiscard]]
+        bool is_familiar_words_must_be_on_each_included_list() const noexcept
             { return m_familiar_words_must_be_on_all_included_list; }
 
         /** Loads a block of words into the custom familiar word list.
@@ -310,7 +339,7 @@ namespace readability
                 std::for_each(wordData.begin(), wordData.end(), stemming::spanish_stem<string_type>());
                 break;
             default:
-                //don't stem anything
+                // don't stem anything
                 break;
                 }
 
@@ -323,8 +352,10 @@ namespace readability
             }
 
         /// @returns Whether a word is considered familiar by this test.\n
-        /// This is based on any standard and custom word lists included in this test.\n
-        /// The function takes into account the proper noun and numeric settings specified by this test.
+        ///     This is based on any standard and custom word lists
+        ///     included in this test.\n
+        ///     The function takes into account the proper noun and
+        ///     numeric settings specified by this test.
         /// @param the_word The word to review.
         [[nodiscard]]
         inline bool is_word_familiar(const word_typeT& the_word) const
@@ -352,8 +383,10 @@ namespace readability
 
             return is_word_familiar_standard(theWord);
             }
-        ///Flushes out the known proper nouns that the familiar word lists have already encountered.
-        ///This should be called if you are getting ready to analyze a new sample or document.
+        /// @brief Flushes out the known proper nouns that the familiar
+        ///     word lists have already encountered.
+        /// @details This should be called if you are getting ready
+        ///     to analyze a new sample or document.
         void reset() noexcept
             {
             is_word_familiar_proper_or_numeric.clear_encountered_proper_nouns();
@@ -376,22 +409,26 @@ namespace readability
             is_word_familiar_spanish_stem.clear_encountered_proper_nouns();
             }
 
-        /// @returns Whether the test is included in something (currently just used for test bundles).
+        /// @returns Whether the test is included in something
+        ///     (currently just used for test bundles).
         [[nodiscard]] bool is_included() const noexcept
             { return m_included; }
-        /// Whether to include the test in a test bundle (or any other need).
-        /// @param inc True to include the test, false to remove.
+        /// @returns Whether to include the test in a test bundle (or any other need).
+        /// @param inc @c true to include the test, false to remove.
         void include(const bool inc) noexcept
             { m_included = inc; }
-        /// Gives direct access to the inclusion flag.
-        /// Used when an external source needs to edit the inclusion status, but can't call include().
-        [[nodiscard]] bool& get_include_flag() noexcept
+        /// @returns Direct access to the inclusion flag.
+        /// @details Used when an external source needs to edit the inclusion status,
+        ///     but can't call include().
+        [[nodiscard]]
+        bool& get_include_flag() noexcept
             { return m_included; }
     private:
-        ///Doesn't look at proper noun and numeric settings
-        [[nodiscard]] inline bool is_word_familiar_standard(const word_typeT& theWord) const
+        /// Doesn't look at proper noun and numeric settings.
+        [[nodiscard]]
+        inline bool is_word_familiar_standard(const word_typeT& theWord) const
             {
-            //first, see if the word is already on a list (most often the case)
+            // first, see if the word is already on a list (most often the case)
             if (is_familiar_words_must_be_on_each_included_list() &&
                 is_word_familiar_all_included_list(theWord))
                 { return true; }
@@ -399,19 +436,24 @@ namespace readability
                      is_word_familiar_any_included_list(theWord))
                 { return true; }
 
-            //see if the word is a hyphenated (or slashed) compound word
-            string_util::string_tokenize<word_typeT> tkzr(theWord, common_lang_constants::COMPOUND_WORD_SEPARATORS.c_str(), true);
-            bool validTokenFound = false;//makes sure that there is at least one valid block of text in the string
+            // see if the word is a hyphenated (or slashed) compound word
+            string_util::string_tokenize<word_typeT>
+                tkzr(theWord, common_lang_constants::COMPOUND_WORD_SEPARATORS.c_str(), true);
+            // makes sure that there is at least one valid block of text in the string
+            bool validTokenFound = false;
             word_typeT currentToken;
             while (tkzr.has_more_tokens())
                 {
                 currentToken = tkzr.get_next_token();
-                //if at least one chunk of text around a '-' is real, then set this flag to true
+                // if at least one chunk of text around a '-' is real,
+                // then set this flag to true
                 if (currentToken.length() > 0)
                     { validTokenFound = true; }
-                if (currentToken.length() > 0) //in case we have something like "one-", then the fact that there is no second word after the '-' shouldn't make it unfamiliar
+                //in case we have something like "one-", then the fact that there is
+                // no second word after the '-' shouldn't make it unfamiliar
+                if (currentToken.length() > 0)
                     {
-                    //if any token is an unfamiliar word, then fail immediately
+                    // if any token is an unfamiliar word, then fail immediately
                     if (is_familiar_words_must_be_on_each_included_list() &&
                         !is_word_familiar_all_included_list(currentToken))
                         { return false; }
@@ -420,12 +462,14 @@ namespace readability
                         { return false; }
                     }
                 }
-            return validTokenFound;//true if at least one token was found and all tokens found were familiar
+            // true if at least one token was found and all tokens found were familiar
+            return validTokenFound;
             }
 
-        [[nodiscard]] inline bool is_word_familiar_any_included_list(const word_typeT& theWord) const
+        [[nodiscard]]
+        inline bool is_word_familiar_any_included_list(const word_typeT& theWord) const
             {
-            //first, see if the word is on any of the standard lists
+            // first, see if the word is on any of the standard lists
             const bool onStandardLists =
                 (m_include_dale_chall_list && is_dc_word(theWord)) ||
                 (m_include_spache_list && is_spache_word(theWord)) ||
@@ -436,7 +480,7 @@ namespace readability
 
             if (m_include_custom_familiar_word_list)
                 {
-                //if not, then see if it is on the custom list
+                // if not, then see if it is on the custom list
                 switch (m_stemming_type)
                     {
                 case stemming::stemming_type::danish:
@@ -469,9 +513,11 @@ namespace readability
                 { return false; }
             }
 
-        [[nodiscard]] inline bool is_word_familiar_all_included_list(const word_typeT& theWord) const
+        [[nodiscard]]
+        inline bool is_word_familiar_all_included_list(const word_typeT& theWord) const
             {
-            //if word is on all included standard lists then continue. If not, then return false.
+            // If word is on all included standard lists then continue.
+            // If not, then return false.
             const bool isOnAllIncludedStandardLists =
                 (!m_include_dale_chall_list || is_dc_word(theWord)) &&
                 (!m_include_spache_list || is_spache_word(theWord)) &&
@@ -479,8 +525,8 @@ namespace readability
                 (!m_include_stocker_list || is_stocker_word(theWord));
             if (!isOnAllIncludedStandardLists)
                 { return false; }
-            //if the word is on the standard word lists and we are not using a custom word list then it is
-            //on every list in use, so return true.
+            // if the word is on the standard word lists and we are not using a custom word list
+            // then it is on every list in use, so return true.
             if (isOnAllIncludedStandardLists && !m_include_custom_familiar_word_list)
                 { return true; }
 
@@ -559,22 +605,38 @@ namespace readability
                          stemming::no_op_stem<string_type>>
                             is_stocker_word;
         bool m_familiar_words_must_be_on_all_included_list{ false };
-        is_familiar_word<word_typeT, const word_list_type, stemming::no_op_stem<string_type>> is_word_familiar_proper_or_numeric;
-        is_familiar_word<word_typeT, const word_list_type, stemming::no_op_stem<string_type>> is_word_familiar_no_stem;
-        is_familiar_word<word_typeT, const word_list_type, stemming::danish_stem<string_type>> is_word_familiar_danish_stem;
-        is_familiar_word<word_typeT, const word_list_type, stemming::dutch_stem<string_type>> is_word_familiar_dutch_stem;
-        is_familiar_word<word_typeT, const word_list_type, stemming::english_stem<string_type>> is_word_familiar_english_stem;
-        is_familiar_word<word_typeT, const word_list_type, stemming::finnish_stem<string_type>> is_word_familiar_finnish_stem;
-        is_familiar_word<word_typeT, const word_list_type, stemming::french_stem<string_type>> is_word_familiar_french_stem;
-        is_familiar_word<word_typeT, const word_list_type, stemming::german_stem<string_type>> is_word_familiar_german_stem;
-        is_familiar_word<word_typeT, const word_list_type, stemming::italian_stem<string_type>> is_word_familiar_italian_stem;
-        is_familiar_word<word_typeT, const word_list_type, stemming::norwegian_stem<string_type>> is_word_familiar_norwegian_stem;
-        is_familiar_word<word_typeT, const word_list_type, stemming::portuguese_stem<string_type>> is_word_familiar_portuguese_stem;
-        is_familiar_word<word_typeT, const word_list_type, stemming::swedish_stem<string_type>> is_word_familiar_swedish_stem;
-        is_familiar_word<word_typeT, const word_list_type, stemming::spanish_stem<string_type>> is_word_familiar_spanish_stem;
+        is_familiar_word<word_typeT, const word_list_type, stemming::no_op_stem<string_type>>
+            is_word_familiar_proper_or_numeric;
+        is_familiar_word<word_typeT, const word_list_type, stemming::no_op_stem<string_type>>
+            is_word_familiar_no_stem;
+        is_familiar_word<word_typeT, const word_list_type, stemming::danish_stem<string_type>>
+            is_word_familiar_danish_stem;
+        is_familiar_word<word_typeT, const word_list_type, stemming::dutch_stem<string_type>>
+            is_word_familiar_dutch_stem;
+        is_familiar_word<word_typeT, const word_list_type, stemming::english_stem<string_type>>
+            is_word_familiar_english_stem;
+        is_familiar_word<word_typeT, const word_list_type, stemming::finnish_stem<string_type>>
+            is_word_familiar_finnish_stem;
+        is_familiar_word<word_typeT, const word_list_type, stemming::french_stem<string_type>>
+            is_word_familiar_french_stem;
+        is_familiar_word<word_typeT, const word_list_type, stemming::german_stem<string_type>>
+            is_word_familiar_german_stem;
+        is_familiar_word<word_typeT, const word_list_type, stemming::italian_stem<string_type>>
+            is_word_familiar_italian_stem;
+        is_familiar_word<word_typeT, const word_list_type, stemming::norwegian_stem<string_type>>
+            is_word_familiar_norwegian_stem;
+        is_familiar_word<word_typeT, const word_list_type, stemming::portuguese_stem<string_type>>
+            is_word_familiar_portuguese_stem;
+        is_familiar_word<word_typeT, const word_list_type, stemming::swedish_stem<string_type>>
+            is_word_familiar_swedish_stem;
+        is_familiar_word<word_typeT, const word_list_type, stemming::spanish_stem<string_type>>
+            is_word_familiar_spanish_stem;
 
-        bool m_included{ false }; //whether the test is included in the project
+        // whether the test is included in the project
+        bool m_included{ false };
         };
     };
+
+/** @} */
 
 #endif //__CUSTOM_READABILITY_TEST_H__

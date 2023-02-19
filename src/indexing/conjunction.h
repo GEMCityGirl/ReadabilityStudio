@@ -20,22 +20,30 @@
 
 namespace grammar
     {
+    /// @brief Base class for determining if a word is a coordinating conjunction.
     class is_coordinating_conjunction
         {
     public:
+        /// @private
         virtual ~is_coordinating_conjunction() {}
+        /** @brief Determines if a word is a coordinating conjunction.
+            @param text The word to review.
+            @param length The length of the word.
+            @retursn Whether or not this word is a coordinating conjunction.*/
         virtual bool operator()(const wchar_t* text, const size_t length) const = 0;
         };
 
-    /** @brief Predicate for determining if a word is an English coordinating conjunction (case insensitive).*/
+    /** @brief Predicate for determining if a word is an
+            English coordinating conjunction (case insensitive).*/
     class is_english_coordinating_conjunction final : public is_coordinating_conjunction
         {
     public:
         /** @brief Determines if a word is an English coordinating conjunction.
             @param text The word to review.
             @param length The length of the word.
-            @return Whether or not this word is a coordinating conjunction.*/
-        [[nodiscard]] bool operator()(const wchar_t* text, const size_t length) const final
+            @returns Whether or not this word is a coordinating conjunction.*/
+        [[nodiscard]]
+        bool operator()(const wchar_t* text, const size_t length) const final
             {
             if (text == nullptr || text[0] == 0 || length == 0)
                 { return false; }
@@ -46,16 +54,17 @@ namespace grammar
         static std::set<string_type> m_conjunctions;
         };
 
-    /** Predicate for determining if a word is a Spanish coordinating conjunction (case insensitive).
-        @date 2011 */
+    /** Predicate for determining if a word is a Spanish coordinating
+            conjunction (case insensitive).*/
     class is_spanish_coordinating_conjunction final : public is_coordinating_conjunction
         {
     public:
-        /**Determines if a word is a Spanish coordinating conjunction.
-           @param text The word to review.
-           @param length The length of the word.
-           @return Whether or not this word is a coordinating conjunction.*/
-        [[nodiscard]] bool operator()(const wchar_t* text, const size_t length) const final
+        /** @brief Determines if a word is a Spanish coordinating conjunction.
+            @param text The word to review.
+            @param length The length of the word.
+            @returns Whether or not this word is a coordinating conjunction.*/
+        [[nodiscard]]
+        bool operator()(const wchar_t* text, const size_t length) const final
             {
             if (text == nullptr || text[0] == 0 || length == 0)
                 { return false; }
@@ -66,16 +75,17 @@ namespace grammar
         static std::set<string_type> m_conjunctions;
         };
 
-    /** Predicate for determining if a word is a German coordinating conjunction (case insensitive).
-        @date 2011 */
+    /** @brief Predicate for determining if a word is a German coordinating 
+            conjunction (case insensitive).*/
     class is_german_coordinating_conjunction final : public is_coordinating_conjunction
         {
     public:
-        /**Determines if a word is a German coordinating conjunction.
-           @param text The word to review.
-           @param length The length of the word.
-           @return Whether or not this word is a coordinating conjunction.*/
-        [[nodiscard]] bool operator()(const wchar_t* text, const size_t length) const final
+        /** @brief Determines if a word is a German coordinating conjunction.
+            @param text The word to review.
+            @param length The length of the word.
+            @retursn Whether or not this word is a coordinating conjunction.*/
+        [[nodiscard]]
+        bool operator()(const wchar_t* text, const size_t length) const final
             {
             if (text == nullptr || text[0] == 0 || length == 0)
                 { return false; }
@@ -86,13 +96,19 @@ namespace grammar
         static std::set<string_type> m_conjunctions;
         };
 
-    /// Predicate for determining if a word is a Russian coordinating conjunction (case insensitive).
+    /// @brief Predicate for determining if a word is a Russian coordinating
+    ///     conjunction (case insensitive).
     /// @todo add '&'
     /// @todo make this a binary searchable set
     class is_russian_coordinating_conjunction final : public is_coordinating_conjunction
         {
     public:
-        [[nodiscard]] bool operator()(const wchar_t* text, const size_t length) const noexcept final
+        /** @brief Determines if a word is a Russian coordinating conjunction.
+            @param text The word to review.
+            @param length The length of the word.
+            @retursn Whether or not this word is a coordinating conjunction.*/
+        [[nodiscard]]
+        bool operator()(const wchar_t* text, const size_t length) const noexcept final
             {
             if (text == nullptr || text[0] == 0 || length == 0)
                 { return false; }

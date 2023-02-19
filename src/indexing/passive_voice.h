@@ -20,23 +20,27 @@
 
 namespace grammar
     {
-    /** @brief Predicate for determining passive voice.
-        @date 2011*/
+    /** @brief Predicate for determining passive voice.*/
     class is_english_passive_voice
         {
     public:
+        /// @private
         using string_type = traits::case_insensitive_wstring_ex;
-        /** Determines if a word combination is passive voice.
-            @param words The list of words ("to be" verb and any past participles and what not after it).
+        /** @brief Determines if a word combination is passive voice.
+            @param words The list of words
+                ("to be" verb and any past participles and what not after it).
             @param max_word_count The total number of words that can be analyzed.
-            @param[out] word_count Parameter to store the number of words in this passive voice. Will be either 2 or 3.
+            @param[out] word_count Parameter to store the number of words in this passive voice.
+                Will be either @c 2 or @c 3.
             @returns Whether or not this word combination is passive.*/
         template<typename Tword_iter>
-        [[nodiscard]] bool operator()(const Tword_iter& words, const size_t max_word_count,
-                                      size_t& word_count) const
+        [[nodiscard]]
+        bool operator()(const Tword_iter& words, const size_t max_word_count,
+                        size_t& word_count) const
             {
             word_count = 0;
-            size_t analyzePosition{ 1 }; // where we start to review the words after "to be"
+            // where we start to review the words after "to be"
+            size_t analyzePosition{ 1 };
             if (max_word_count < 2)
                 { return false; }
             // see is the verb is a "to be" verb
@@ -82,18 +86,23 @@ namespace grammar
             return false;
             }
 
-        // Adjectives that can be mistaken for past-tense verbs. These need
-        // to be followed by a "by" to be a past-tense verb (at least for our purposes).
-        // This should be filled by the client, and will certainly not a complete list
-        // (but should at least contain the most common ones).
-        [[nodiscard]] static word_list& get_past_participle_exeptions() noexcept
+        /// @brief Adjectives that can be mistaken for past-tense verbs.
+        /// @brief These need to be followed by a "by" to be a past-tense verb
+        ///     (at least for our purposes).\n
+        ///     This should be filled by the client, and will certainly not a
+        ///     complete list (but should at least contain the most common ones).
+        /// @returns Access to the past participle word list to edit or use.
+        [[nodiscard]]
+        static word_list& get_past_participle_exeptions() noexcept
             { return m_past_participle_exeptions; }
     private:
         template<typename T>
-        [[nodiscard]] bool is_past_participle(const T& word) const
+        [[nodiscard]]
+        bool is_past_participle(const T& word) const
             {
             return (word.length() >= 5 &&
-                     !traits::case_insensitive_ex::eq(word[word.length()-3], L'e') && // watch out for "was eightEen"
+                     // watch out for "was eightEen"
+                     !traits::case_insensitive_ex::eq(word[word.length()-3], L'e') &&
                       traits::case_insensitive_ex::eq(word[word.length()-2], L'e') &&
                       (traits::case_insensitive_ex::eq(word[word.length()-1], L'd') ||
                        traits::case_insensitive_ex::eq(word[word.length()-1], L'n')) );

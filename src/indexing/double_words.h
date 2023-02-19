@@ -31,12 +31,14 @@ namespace grammar
         /// @param text The word to review.
         /// @param length The length of the word.
         /// @returns @c true if this word is allowed to be repeated.
-        [[nodiscard]] bool operator()(const wchar_t* text, const size_t length) const
+        [[nodiscard]]
+        bool operator()(const wchar_t* text, const size_t length) const
             {
             if (text == nullptr || text[0] == 0 || length == 0 ||
                 (length == 1 && characters::is_character::is_punctuation(text[0])))
                 { return true; }
-            return m_double_word_exceptions.find(string_type(text,length)) != m_double_word_exceptions.cend();
+            return m_double_word_exceptions.find(string_type(text,length)) !=
+                m_double_word_exceptions.cend();
             }
     private:
         using string_type = traits::case_insensitive_wstring_ex;

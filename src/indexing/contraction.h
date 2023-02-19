@@ -29,11 +29,13 @@ namespace grammar
             @param text The text block to analyze.
             @param length The length of the text block to analyze. This will be the start of the
                    text block up to the end of the word.
-            @param nextWord The word following this one, needed for a deeper analysis if the contraction
-                   ends with "'s" and may be ambiguous. This is optional.
-            @param nextWordLength The length of the following word. Required if @c nextWord is non-null.*/
-        [[nodiscard]] bool operator()(const wchar_t* text, const size_t length,
-                                      const wchar_t* nextWord = nullptr, const size_t nextWordLength = 0) const
+            @param nextWord The word following this one, needed for a deeper analysis if the
+                   contraction ends with "'s" and may be ambiguous. This is optional.
+            @param nextWordLength The length of the following word.
+                Required if @c nextWord is non-null.*/
+        [[nodiscard]]
+        bool operator()(const wchar_t* text, const size_t length,
+                        const wchar_t* nextWord = nullptr, const size_t nextWordLength = 0) const
             {
             NON_UNIT_TEST_ASSERT(text);
             NON_UNIT_TEST_ASSERT(std::wcslen(text) == length);
@@ -44,7 +46,8 @@ namespace grammar
                 {
                 if (characters::is_character::is_apostrophe(text[i]))
                     {
-                    if (length > 2 && i == length-2 && traits::case_insensitive_ex::eq(text[length-1], L's'))
+                    if (length > 2 && i == length-2 &&
+                        traits::case_insensitive_ex::eq(text[length-1], L's'))
                         {
                         // if something like "that's", then we know it is "that is" and indeed a contraction
                         if (m_s_contractions.find(string_type(text,length)) != m_s_contractions.end())
@@ -53,7 +56,10 @@ namespace grammar
                         else
                             {
                             if (nextWord && nextWordLength > 0)
-                                { return m_s_contractions_following_word.find(string_type(nextWord,nextWordLength)) != m_s_contractions_following_word.end(); }
+                                {
+                                return m_s_contractions_following_word.find(string_type(nextWord,nextWordLength)) !=
+                                    m_s_contractions_following_word.cend();
+                                }
                             return false;
                             }
                         }
@@ -62,7 +68,8 @@ namespace grammar
                     }
                 }
             // "it [word]" being contracted to "t[word]"
-            if (m_contraction_without_apostrophe.find(string_type(text, length)) != m_contraction_without_apostrophe.end())
+            if (m_contraction_without_apostrophe.find(string_type(text, length)) !=
+                    m_contraction_without_apostrophe.cend())
                 { return true; }
             return false;
             }

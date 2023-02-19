@@ -27,9 +27,10 @@ namespace grammar
         /** @returns @c true if text block is a pronoun.
             @param text The text block to analyze.
             @param length The length of the text block to analyze. This will be the start of the
-             text block up to the end of the word.
+                text block up to the end of the word.
             @todo add Spanish and German words too.*/
-        [[nodiscard]] bool operator()(const wchar_t* text, const size_t length) const
+        [[nodiscard]]
+        bool operator()(const wchar_t* text, const size_t length) const
             {
             NON_UNIT_TEST_ASSERT(text);
             NON_UNIT_TEST_ASSERT(std::wcslen(text) == length);

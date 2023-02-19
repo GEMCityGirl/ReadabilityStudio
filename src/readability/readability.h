@@ -25,12 +25,13 @@
 
 namespace readability
     {
-    /** Performs a binary search through a list of familiar words to see if the provided
-        value is in there.  Also takes into account whether the word is proper or numeric,
-        because those are sometimes familiar.
+    /** @brief Performs a binary search through a list of familiar words to see if the provided
+            value is in there.
+        @details Also takes into account whether the word is proper or numeric,
+            because those are sometimes familiar.
 
         @note This uses the stem of the value passed in (unless you specify a no-op stemmer),
-         so be sure that the word list you pass in is pre-stemmed.*/
+            so be sure that the word list you pass in is pre-stemmed.*/
     template<typename word_typeT, typename wordlistT, typename stemmerT>
     class is_familiar_word
         {
@@ -53,11 +54,13 @@ namespace readability
         void set_word_list(const wordlistT* wlist) noexcept
             { m_wordlist = wlist; }
         /** @returns The method being used for handling proper nouns.*/
-        [[nodiscard]] readability::proper_noun_counting_method get_proper_noun_method() const noexcept
+        [[nodiscard]]
+        readability::proper_noun_counting_method get_proper_noun_method() const noexcept
             { return m_properNounMethod; }
-        /** @brief Sets the method to handle proper nouns.*/
-        void set_proper_noun_method(const readability::proper_noun_counting_method proper) noexcept
-            { m_properNounMethod = proper; }
+        /** @brief Sets the method to handle proper nouns.
+            @param properMethod The proper noun method to use.*/
+        void set_proper_noun_method(const readability::proper_noun_counting_method properMethod) noexcept
+            { m_properNounMethod = properMethod; }
         /** @returns Whether numeric words should always be familiar*/
         [[nodiscard]] bool is_including_numeric_as_familiar() const noexcept
             { return m_treat_numeric_as_familiar; }
@@ -68,12 +71,14 @@ namespace readability
         /** @brief Main interface for determining if a word is familiar.
             @param the_word The word to review.
             @returns Whether the word is familiar.*/
-        [[nodiscard]] inline bool operator()(const word_typeT& the_word) const
+        [[nodiscard]]
+        inline bool operator()(const word_typeT& the_word) const
             {
             // treat numeric words as familiar (if caller asked for that)
             if (m_treat_numeric_as_familiar && the_word.is_numeric())
                 { return true; }
-            //else, if we are treating all proper as familiar then true if familiar; otherwise return whether it is on the list
+            // ...else, if we are treating all proper as familiar then true if familiar;
+            // otherwise return whether it is on the list
             else if (m_properNounMethod == proper_noun_counting_method::all_proper_nouns_are_familiar)
                 {
                 if (the_word.is_proper_noun())
@@ -81,25 +86,27 @@ namespace readability
                 else
                     { return is_on_list(the_word); }
                 }
-            //if proper are always unfamiliar, then just return whether it is on the list
+            // if proper are always unfamiliar, then just return whether it is on the list
             else if (m_properNounMethod == proper_noun_counting_method::all_proper_nouns_are_unfamiliar)
                 { return is_on_list(the_word); }
             else // only_count_first_instance_of_proper_noun_as_unfamiliar
                 {
-                //already on the list? then don't bother seeing if it is proper
+                // already on the list? then don't bother seeing if it is proper
                 if (is_on_list(the_word))
                     { return true; }
-                //not on the list, so if not proper then it's unfamiliar
+                // not on the list, so if not proper then it's unfamiliar
                 if (!the_word.is_proper_noun())
                     { return false; }
-                //...or if it's proper, then add it to the proper nouns already encountered. If already
-                //encountered, then it is familiar.
-                std::pair<typename std::set<word_typeT>::iterator, bool> pos = m_usedProperNouns.insert(the_word);
-                return !pos.second;//this being false means that it was already in the set
+                // ...or if it's proper, then add it to the proper nouns already encountered.
+                // If already encountered, then it is familiar.
+                auto pos = m_usedProperNouns.insert(the_word);
+                // this being false means that it was already in the set
+                return !pos.second;
                 }
             }
-        /** Call this to reset the list of known proper nouns encountered in the document.
-            This is only necessary if you are using the same object to analyze multiple documents or samples.*/
+        /** @brief Call this to reset the list of known proper nouns encountered in the document.
+            @details This is only necessary if you are using the same object to analyze multiple
+                documents or samples.*/
         void clear_encountered_proper_nouns() noexcept
             { m_usedProperNouns.clear(); }
     private:
@@ -164,25 +171,28 @@ namespace readability
         mutable std::set<word_typeT> m_usedProperNouns;
         };
 
-    /** Generic interface for use defined word familiar word lists.
-        Word functors perform a binary search on this, so be sure to
-        specify the comparison traits that you expect (e.g., case insensitive comparison)
-        in your word_typeT argument.*/
+    /** @brief Generic interface for use defined word familiar word lists.
+        @details Word functors perform a binary search on this, so be sure to
+            specify the comparison traits that you expect (e.g., case insensitive comparison)
+            in your @c word_typeT argument.*/
     template<typename string_typeT>
     class familiar_word_container
         {
     public:
         /// @brief Constructor.
         familiar_word_container() noexcept {}
-        typedef string_typeT word_type;
-        /// @returns The list of familiar words (const reference).
-        [[nodiscard]] const std::vector<string_typeT>& get_words() const noexcept
+        using word_type = string_typeT;
+        /// @private
+        [[nodiscard]]
+        const std::vector<string_typeT>& get_words() const noexcept
             { return words; }
         /// @returns The list of familiar words.
-        [[nodiscard]] std::vector<string_typeT>& get_words()  noexcept
+        [[nodiscard]]
+        std::vector<string_typeT>& get_words()  noexcept
             { return words; }
         /// @returns The number of words in the list.
-        [[nodiscard]] size_t get_list_size() const noexcept
+        [[nodiscard]]
+        size_t get_list_size() const noexcept
             { return words.size(); }
     private:
         std::vector<string_typeT> words;
@@ -194,7 +204,8 @@ namespace readability
         {
     public:
         /// @brief Functor interface, simply returns false.
-        [[nodiscard]] inline bool operator()(const word_typeT&) const noexcept
+        [[nodiscard]]
+        inline bool operator()(const word_typeT&) const noexcept
             { return false; }
         };
 
@@ -222,10 +233,13 @@ namespace readability
 
     /** @brief Rate Index (variation of Lix).
         @param[out] grade_level The grade level.
-        @param number_of_longwords The number of words that are 7 or more characters (minus punctuation).
-        @param number_of_sentence_units The number of sentence units (sentence ending with .?!;:).
-        @returns An index value.*/
-    [[nodiscard]] inline double rix(size_t& grade_level,
+        @param number_of_longwords The number of words that are @c 7 or more characters (minus punctuation).
+        @param number_of_sentence_units The number of sentence units (sentence ending with `.?!;:`).
+        @returns An index value.
+        @throws std::domain_error If @c number_of_sentence_units is @c 0,
+                throws an exception.*/
+    [[nodiscard]]
+    inline double rix(size_t& grade_level,
                                     const size_t number_of_longwords,
                                     const size_t number_of_sentence_units)
         {
@@ -266,7 +280,8 @@ namespace readability
     /** @brief Helper function to convert Lix index to difficulty.
         @param index The calculated Lix index value to convert.
         @returns The Lix difficulty level.*/
-    [[nodiscard]] inline lix_difficulty lix_index_to_difficulty_level(const size_t index) noexcept
+    [[nodiscard]]
+    inline lix_difficulty lix_index_to_difficulty_level(const size_t index) noexcept
         {
         if (index < 30) return lix_difficulty::lix_very_easy;
         else if (index >= 30 && index <= 39) return lix_difficulty::lix_easy;
@@ -279,20 +294,27 @@ namespace readability
         @param[out] difficulty_level The LIX difficulty level.
         @param[out] grade_level The grade level.
         @param number_of_words The number of words in the text.
-        @param number_of_longwords The number of words that are 7 or more characters (minus punctuation, based on Anderson's recommendation for Rix [which seems logical for Lix as well]).
-        @param number_of_sentences The number of sentences. Anderson states to use sentence units in Rix, but Björnsson never
-         explicitly explains how to parse sentences. Because using units can be quick a bit different from other tests,
-         it's a better assumption to use regular sentences for this test.
-        @returns An index value.*/
-    [[nodiscard]] inline size_t lix(lix_difficulty& difficulty_level,
-                                    size_t& grade_level,
-                                    const size_t number_of_words,
-                                    const size_t number_of_longwords,
-                                    const size_t number_of_sentences)
+        @param number_of_longwords The number of words that are @c 7 or more characters
+            (minus punctuation, based on Anderson's recommendation for Rix
+            [which seems logical for Lix as well]).
+        @param number_of_sentences The number of sentences.\n
+            Anderson states to use sentence units in Rix, but Björnsson never
+            explicitly explains how to parse sentences.
+            Because using units can be quick a bit different from other tests,
+            it's a better assumption to use regular sentences for this test.
+        @returns An index value.
+        @throws std::domain_error If either @c number_of_words or @c number_of_sentences is @c 0,
+                throws an exception.*/
+    [[nodiscard]]
+    inline size_t lix(lix_difficulty& difficulty_level,
+                      size_t& grade_level,
+                      const size_t number_of_words,
+                      const size_t number_of_longwords,
+                      const size_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word/sentence parameter."); }
-        const size_t index = static_cast<size_t>(round_to_integer(number_of_words/static_cast<double>(number_of_sentences)+
+        const size_t index = static_cast<size_t>(round_to_integer(number_of_words/static_cast<double>(number_of_sentences) +
                                                 (100*static_cast<double>(number_of_longwords/static_cast<double>(number_of_words))) ) );
 
         difficulty_level = lix_index_to_difficulty_level(index);
@@ -330,7 +352,8 @@ namespace readability
     /** @brief Helper function to convert a Flesch score into a human readable difficulty level.
         @param result The 0-100 calculated Flesch Reading Ease Index.
         @returns The difficulty level of the index value.*/
-    [[nodiscard]] inline flesch_difficulty flesch_score_to_difficulty_level(const size_t result) noexcept
+    [[nodiscard]]
+    inline flesch_difficulty flesch_score_to_difficulty_level(const size_t result) noexcept
         {
         if (result <= 29)
             {
@@ -356,7 +379,7 @@ namespace readability
             {
             return flesch_difficulty::flesch_easy;
             }
-        else //bigger than 90
+        else // bigger than 90
             {
             return flesch_difficulty::flesch_very_easy;
             }

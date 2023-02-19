@@ -91,20 +91,23 @@ namespace grammar
             }
 
         /** @returns The number of periods counted from the last call to operator().*/
-        [[nodiscard]] size_t get_dot_count() const noexcept
+        [[nodiscard]]
+        size_t get_dot_count() const noexcept
             { return m_dot_count; }
 
         /** @returns Whether the last operator() ended with an 's'.
             @note This only applies to words longer than 2 letters,
                   so "Is" would actually return false here because it is
                   not an acronym and is irrelevant.*/
-        [[nodiscard]] bool ends_with_lower_s() const noexcept
+        [[nodiscard]]
+        bool ends_with_lower_s() const noexcept
             { return m_ends_with_lower_s; }
 
         /** @returns Whether a word follows the Letter/Number and Dot pattern (e.g., "K.A.O.S.").
             @param text The text stream to read.
             @param length The length of the text stream.*/
-        [[nodiscard]] static bool is_dotted_acronym(const wchar_t* text, const size_t length) noexcept
+        [[nodiscard]]
+        static bool is_dotted_acronym(const wchar_t* text, const size_t length) noexcept
             {
             if (text == nullptr || text[0] == 0 || length < 4)
                 { return false; }

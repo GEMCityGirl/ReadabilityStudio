@@ -26,8 +26,16 @@ namespace grammar
     class is_incorrect_article
         {
     public:
+        /// @private
         virtual ~is_incorrect_article() {}
-        [[nodiscard]] virtual bool operator()(const wchar_t* article, const size_t article_length,
+        /** @brief Determines if an article/proceeding word pair is a mismatch.
+            @param article The article.
+            @param article_length The length of the article.
+            @param word The word following the article.
+            @param word_length The length of the word.
+            @returns Whether an article/following word pair is a mismatch.*/
+        [[nodiscard]]
+        virtual bool operator()(const wchar_t* article, const size_t article_length,
                                 const wchar_t* word, size_t word_length) const = 0;
         };
 
@@ -40,26 +48,37 @@ namespace grammar
             @param article_length The length of the article.
             @param word The word following the article.
             @param word_length The length of the word.
-            @returns Whether true if article/following word pair is a mismatch.*/
-        [[nodiscard]] bool operator()(const wchar_t* article, const size_t article_length,
-                                      const wchar_t* word, size_t word_length) const noexcept final;
+            @returns Whether an article/following word pair is a mismatch.*/
+        [[nodiscard]]
+        bool operator()(const wchar_t* article, const size_t article_length,
+                        const wchar_t* word, size_t word_length) const noexcept final;
 
-        /** Accesses the list of words following an 'a' that would be correct (that the analyzer might get wrong).*/
-        [[nodiscard]] static word_list& get_a_exceptions() noexcept
+        /** @returns The list of words following an 'a' that would be correct
+                (that the analyzer might get wrong).*/
+        [[nodiscard]]
+        static word_list& get_a_exceptions() noexcept
             { return m_a_exceptions; }
 
-        /** Accesses the list of words following an 'an' that would be correct (that the analyzer might get wrong).*/
-        [[nodiscard]] static word_list& get_an_exceptions() noexcept
+        /** @returns The list of words following an 'an' that would be correct
+                (that the analyzer might get wrong).*/
+        [[nodiscard]]
+        static word_list& get_an_exceptions() noexcept
             { return m_an_exceptions; }
     private:
-        /** @returns @c true if a consonant-starting @c word is actually correct to appear after an "an".
-            @param word The word to review. For example, "honor" would be an exception ("an honor").**/
-        [[nodiscard]] static bool is_an_exception(const wchar_t* word, const size_t word_length);
+        /** @returns @c true if a consonant-starting @c word is actually correct to
+                appear after an "an".
+            @param word The word to review.\n
+                For example, "honor" would be an exception ("an honor").**/
+        [[nodiscard]]
+        static bool is_an_exception(const wchar_t* word, const size_t word_length);
 
-        /** @returns @c true if a vowel-starting word is actually correct to appear after an 'a'.
+        /** @returns @c true if a vowel-starting word is actually correct to
+                appear after an 'a'.
             @param word The word to review.
-            @param word_length The length of @c word. For example, "a Euro" or "a University".*/
-        [[nodiscard]] static bool is_a_exception(const wchar_t* word, const size_t word_length);
+            @param word_length The length of @c word.\n
+                For example, "a Euro" or "a University".*/
+        [[nodiscard]]
+        static bool is_a_exception(const wchar_t* word, const size_t word_length);
 
         static word_list m_a_exceptions;
         static word_list m_an_exceptions;

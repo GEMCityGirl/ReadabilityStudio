@@ -25,21 +25,24 @@ namespace characters
     public:
         /** @returns @c true if a character is a letter.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_alpha(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_alpha(const wchar_t ch) noexcept
             {
             return (is_upper(ch) ||
                     is_lower(ch));
             }
         /** @returns @c true if a character is a letter (English alphabet only, and no full-width characters).
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_alpha_8bit(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_alpha_8bit(const wchar_t ch) noexcept
             {
             return (((ch >= 0x41/*'A'*/) && (ch <= 0x5A/*'Z'*/)) ||
                     ((ch >= 0x61/*'a'*/) && (ch <= 0x7A/*'z'*/)));
             }
         /** @returns @c true if a character is an uppercased letter.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_upper(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_upper(const wchar_t ch) noexcept
             {
             return (
                 // A-Z
@@ -60,7 +63,8 @@ namespace characters
             }
         /** @returns @c true if a character is a lowercased letter.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_lower(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_lower(const wchar_t ch) noexcept
             {
             return (
                 // a-z
@@ -86,7 +90,8 @@ namespace characters
         /** @returns The lowercased version of a letter, or the letter itself
                      if it can't be lowercased.
             @param ch The letter to be lowered.*/
-        [[nodiscard]] static constexpr wchar_t to_lower(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr wchar_t to_lower(const wchar_t ch) noexcept
             {
             return (
                 (ch >= 0x41 && ch <= 0x5A) ||
@@ -106,7 +111,8 @@ namespace characters
             }
         /** @returns @c true if a character is a vowel.
             @param letter The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_vowel(const wchar_t letter) noexcept
+        [[nodiscard]]
+        static constexpr bool is_vowel(const wchar_t letter) noexcept
             {
             return ( (letter == L'a') ||
                     (letter == L'e') ||
@@ -170,7 +176,8 @@ namespace characters
             }
         /** @returns @c true if a character is a consonant.
             @param letter The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_consonant(const wchar_t letter) noexcept
+        [[nodiscard]]
+        static constexpr bool is_consonant(const wchar_t letter) noexcept
             {
             return ( (letter >= L'B' && letter <= L'D') ||
                     (letter >= L'F' && letter <= L'H') ||
@@ -245,12 +252,14 @@ namespace characters
         /** @returns @c true if a character is a lowercased consonant.
             @param letter The letter to be reviewed.
             @note These functions are finalized for all languages. The functions above
-             need to be expanded when adding a new character set.*/
-        [[nodiscard]] static constexpr bool is_lower_consonant(const wchar_t letter) noexcept
+                need to be expanded when adding a new character set.*/
+        [[nodiscard]]
+        static constexpr bool is_lower_consonant(const wchar_t letter) noexcept
             { return (is_lower(letter) && is_consonant(letter)); }
         /** @returns @c true if a character can begin a word.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool can_character_begin_word(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool can_character_begin_word(const wchar_t ch) noexcept
             {
             return is_either<wchar_t>(ch, 35, 0xFF03) ? // #
                 true : is_either<wchar_t>(ch, 36, 0xFF04) ? // $
@@ -270,7 +279,8 @@ namespace characters
             }
         /** @returns @c true if a character is an uppercased letter that normally can start a sentence.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool can_character_begin_word_uppercase(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool can_character_begin_word_uppercase(const wchar_t ch) noexcept
             {
             return is_either<wchar_t>(ch, 35, 0xFF03) ? // #
                 true : is_either<wchar_t>(ch, 36, 0xFF04) ? // $
@@ -288,7 +298,8 @@ namespace characters
             }
         /** @returns @c true if a character can appear at the end of a word.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool can_character_end_word(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool can_character_end_word(const wchar_t ch) noexcept
             {
             return is_either<wchar_t>(ch, 35, 0xFF03) ? // #
                 true : is_either<wchar_t>(ch, 37, 0xFF05) ? // %
@@ -307,7 +318,8 @@ namespace characters
             }
         /** @returns @c true if a character can appear inside the word.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] constexpr bool operator()(const wchar_t ch) const noexcept
+        [[nodiscard]]
+        constexpr bool operator()(const wchar_t ch) const noexcept
             {
             return is_either<wchar_t>(ch, 35, 0xFF03) ? // #
                 true : is_either<wchar_t>(ch, 37, 0xFF05) ? // %
@@ -331,20 +343,23 @@ namespace characters
             }
         /** @returns @c true if a character is a hyphen.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_hyphen(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_hyphen(const wchar_t ch) noexcept
             {
             return (ch == 0x002D /*hyphen*/ || ch == 0x00AD /*soft hyphen*/ ||
                     ch == 0xFF0D /*full-width hyphen*/);
             }
         /** @returns @c true if a character is a hyphen or dash.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_dash_or_hyphen(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_dash_or_hyphen(const wchar_t ch) noexcept
             {
             return (is_hyphen(ch) || is_dash(ch));
             }
         /** @returns @c true if a character is a dash.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_dash(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_dash(const wchar_t ch) noexcept
             {
             return (ch == 0x2012) ?     // figure dash
                 true : (ch == 0x2013) ? // en dash
@@ -357,7 +372,8 @@ namespace characters
             }
         /** @returns @c true if a character is an apostrophe (includes straight single quotes).
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_apostrophe(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_apostrophe(const wchar_t ch) noexcept
             {
             return (ch == 39) ?         // '
                 true : (ch == 146) ?    // apostrophe
@@ -368,14 +384,16 @@ namespace characters
             }
         /** @returns @c true if a character is a period.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_period(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_period(const wchar_t ch) noexcept
             {
             return (ch == L'.' || ch == 0xFF0E /*full-width*/ ||
                     ch == 0xFF61 /*half-width, more commonly used*/);
             }
         /** @returns @c true if a character can appear in front of a number (e.g., a dollar sign).
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool can_character_prefix_numeral(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool can_character_prefix_numeral(const wchar_t ch) noexcept
             {
             return is_either<wchar_t>(ch, 35, 0xFF03) ? // #
                 true : is_either<wchar_t>(ch, 36, 0xFF04) ? // $
@@ -393,7 +411,8 @@ namespace characters
                      making up the ellipsis (if constructed out of periods, zero for Unicode ellipsis or if not an ellipsis).
             @param text The stream to be reviewed.
             @param length The length of the stream being reviewed.*/
-        [[nodiscard]] static std::pair<bool,size_t> is_ellipsis(const wchar_t* text, const size_t length) noexcept
+        [[nodiscard]]
+        static std::pair<bool,size_t> is_ellipsis(const wchar_t* text, const size_t length) noexcept
             {
             if (text == nullptr || text[0] == 0 || length == 0)
                 { return std::make_pair(false,0); }
@@ -411,35 +430,45 @@ namespace characters
             }
         /** @returns @c true if a punctuation character can appear inside of a date/time string.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool can_character_form_date_time(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool can_character_form_date_time(const wchar_t ch) noexcept
             {
             return (ch >= 44 && ch <= 47) ? // ,-./
                 true : (ch >= 0xFF0C && ch <= 0xFF0F) ? // full-width ,-./
                 true : is_either<wchar_t>(ch, 58, 0xFF1A) ? // :
                 true : false;
             }
-        /** @returns @c true if a punctuation character can be a thousands or radix separator in a number.
+        /** @returns @c true if a punctuation character can be a thousands or
+                radix separator in a number.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool can_character_form_monetary(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool can_character_form_monetary(const wchar_t ch) noexcept
             {
-            return (ch == 44 || ch == 46 || ch == 0xFF0C || ch == 0xFF0E) ? // ,. (includes full width)
+            // ,. (includes full width)
+            return (ch == 44 || ch == 46 || ch == 0xFF0C || ch == 0xFF0E) ?
                 true : false;
             }
-        /** @returns @c true if a punctuation mark can appear between a word and sentence ending punctuation
-             with the punctuation being part of the word (the way that money and date/time punctuation do).
+        /** @returns @c true if a punctuation mark can appear between a word and
+                sentence ending punctuation with the punctuation being part of the
+                word (the way that money and date/time punctuation do).
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool can_character_appear_between_word_and_eol(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool can_character_appear_between_word_and_eol(const wchar_t ch) noexcept
             {
-            return (ch == 0x2A || ch == 0xA9 || ch == 0xAE || ch == 0x2122) ? /*asterisk, copyright, registration, trademark*/
+            /* asterisk, copyright, registration, trademark*/
+            return (ch == 0x2A || ch == 0xA9 || ch == 0xAE || ch == 0x2122) ?
                 true : false;
             }
-        /** @returns @c true if a character is a quote (includes double and single quotes, and smart variations).
+        /** @returns @c true if a character is a quote
+                (includes double and single quotes, and smart variations).
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_quote(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_quote(const wchar_t ch) noexcept
             { return (is_single_quote(ch) || is_double_quote(ch)); }
         /** @returns @c true if a character is a single quote (includes Unicode and smart quotes).
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_single_quote(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_single_quote(const wchar_t ch) noexcept
             {
             return (ch == 39) ?                         // '
                 true : (ch == 0xFF07) ?                 // full-width apostrophe
@@ -454,7 +483,8 @@ namespace characters
             }
         /** @returns @c true if a character is a double quote (includes Unicode and smart quotes).
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_double_quote(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_double_quote(const wchar_t ch) noexcept
             {
             return (ch == 34) ? // " straight double quote
                 true : (ch == 132) ? // „ curved double quote
@@ -467,7 +497,8 @@ namespace characters
         /** @returns Whether a character sequence is a number (works with wide Unicode numbers too).
             @param word The character stream to be reviewed.
             @param length The length of the stream.*/
-        [[nodiscard]] static bool is_numeric(const wchar_t* word, const size_t length) noexcept
+        [[nodiscard]]
+        static bool is_numeric(const wchar_t* word, const size_t length) noexcept
             {
             if (word == nullptr || length == 0)
                 { return false; }
@@ -478,14 +509,16 @@ namespace characters
                 { return true; }
             else
                 {
-                //if at least half of the characters in the word are numbers, then mark the word as numeric
+                // if at least half of the characters in the word are numbers,
+                // then mark the word as numeric
                 size_t numberCount = 0;
                 for (size_t i = 0; i < length; ++i)
                     {
                     assert(word[i]);
                     if (is_numeric(word[i]))
                         { ++numberCount; }
-                    //something like "10000-year" is an exception, should be seen as a regular word
+                    // something like "10000-year" is an exception,
+                    // should be seen as a regular word
                     else if (numberCount > 0 && is_dash_or_hyphen(word[i]) &&
                         i+2 < length && is_alpha(word[i+1]) && is_alpha(word[i+2]))
                         { return false; }
@@ -493,9 +526,11 @@ namespace characters
                 return (numberCount >= (length/2));
                 }
             }
-        /** @returns Whether a character is a number (0-9 [wide and narrow], superscripts, subscripts, and fractions).
+        /** @returns Whether a character is a number
+                (0-9 [wide and narrow], superscripts, subscripts, and fractions).
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_numeric(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_numeric(const wchar_t ch) noexcept
             {
             return is_numeric_simple(ch) ?
                 // superscripts and fractions
@@ -504,7 +539,8 @@ namespace characters
             }
         /** @returns Whether a character is a superscript, subscript, or fraction.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_extended_numeric(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_extended_numeric(const wchar_t ch) noexcept
             {
             return (string_util::is_fraction(ch) ||
                     string_util::is_superscript_number(ch) ||
@@ -513,20 +549,26 @@ namespace characters
             }
         /** @returns Whether a character is a number (0-9 characters only, narrow and wide versions).
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_numeric_simple(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_numeric_simple(const wchar_t ch) noexcept
             {
             return (ch >= L'0' && ch <= L'9') ?
-                true : (ch >= 0xFF10 && ch <= 0xFF19) ? //full-width Unicode numbers 0-9
+                // full-width Unicode numbers 0-9
+                true : (ch >= 0xFF10 && ch <= 0xFF19) ?
                 true : false;
             }
-        /** @returns Whether a character is a space, tab, newline, carriage return, or form feed. Also includes double-width and no-break spaces.
+        /** @returns Whether a character is a space, tab, newline, carriage return, or form feed.
+                Also includes double-width and no-break spaces.
             @param ch The letter to be reviewed.
             @sa is_space_horizontal() and is_space_vertical().*/
-        [[nodiscard]] static constexpr bool is_space(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_space(const wchar_t ch) noexcept
             { return (is_space_vertical(ch) || is_space_horizontal(ch)); }
-        /** @returns Whether a character is a space or tab. Also includes double-width and no-break spaces.
+        /** @returns Whether a character is a space or tab.
+                Also includes double-width and no-break spaces.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_space_horizontal(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_space_horizontal(const wchar_t ch) noexcept
             {
             return (ch == 0x20) ?       // regular space
                 true : (ch == 0x09) ?   // tab
@@ -537,9 +579,10 @@ namespace characters
                 true : false;
             }
         /** @returns Whether a character is a line-ending type character.
-             Also includes carriage returns, line feeds, and form feeds.
+                Also includes carriage returns, line feeds, and form feeds.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_space_vertical(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_space_vertical(const wchar_t ch) noexcept
             {
              return (ch == 0x0D) ?
                 true : (ch == 0x0A) ?
@@ -550,7 +593,8 @@ namespace characters
             }
         /** @returns Whether a character is a punctuation mark.
             @param ch The letter to be reviewed.*/
-        [[nodiscard]] static constexpr bool is_punctuation(const wchar_t ch) noexcept
+        [[nodiscard]]
+        static constexpr bool is_punctuation(const wchar_t ch) noexcept
             {
             // see if it is either a space, control character, or alphanumeric and negate that
             return !(is_numeric(ch) ||
@@ -566,7 +610,9 @@ namespace characters
         /// @param second The second value to compare against.
         /// @returns @c true if value is either of the other values.
         template<typename T>
-        [[nodiscard]] static inline constexpr bool is_either(const T value, const T first, const T second) noexcept
+        [[nodiscard]]
+        static inline constexpr bool is_either(const T value, const T first,
+                                               const T second) noexcept
             { return (value == first || value == second); }
         };
     }
