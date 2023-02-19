@@ -6,6 +6,7 @@ Resources/Words/Programming/All Languages.txt
 Resources/Words/ProperNouns/Personal.txt
 Resources/Words/ProperNouns/Western.txt
 Resources/Words/ProperNouns/All.txt
+docs/doxygen/html
 
 # Configuration files
 Docs/Coding-Bible/.Rproj.user
