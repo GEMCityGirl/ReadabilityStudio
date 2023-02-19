@@ -80,6 +80,7 @@ namespace readability
         {
         if (index < 9)
             { return 1; }
+        // between 9 - 13.5
         else if (is_within<double>(index, 9, 13.5))
             { return 1; }
         // between 13.51 - 17
@@ -154,26 +155,38 @@ namespace readability
         {
         if (index < 20)
             { return 4; }
+        // between 20 - 26
         else if (is_within<double>(index, 20, 26))
             { return 4; }
-        else if (is_within<double>(index, 26.1, 32))
+        // between 26.1 - 32
+        else if (index <= 32)
             { return 5; }
-        else if (is_within<double>(index, 32.1, 38))
+        // between 32.1 - 38
+        else if (index <= 38)
             { return 6; }
-        else if (is_within<double>(index, 38.1, 45))
+        // between 38.1 - 45
+        else if (index <= 45)
             { return 7; }
-        else if (is_within<double>(index, 45.1, 52))
+        // between  45.1 - 52
+        else if (index <= 52)
             { return 8; }
-        else if (is_within<double>(index, 52.1, 57)) // typo in the book says "67", but that's clearly wrong
+        // between 52.1 - 57
+        // (typo in the book says "67," but that's clearly wrong)
+        else if (index <= 57)
             { return 9; }
-        else if (is_within<double>(index, 57.1, 66))
+        // between 57.1 - 66
+        else if (index <= 66)
             { return 10; }
-        else if (is_within<double>(index, 66.1, 75))
+        // between 66.1 - 75
+        else if (index <= 75)
             { return 11; }
-        else if (is_within<double>(index, 75.1, 84))
+        // between 75.1- 84
+        else if (index <= 84)
             { return 12; }
-        else if (is_within<double>(index, 84.1, 100))
+        // between 84.1 - 100
+        else if (index <= 100)
             { return 13; }
+        // between > 100
         else
             { return 14; }
         }
