@@ -14,12 +14,19 @@
 
 namespace readability
     {
-    /** Methods for how familiar word analysis can handle proper nouns.*/
+    /** @brief Methods for how familiar word analysis can handle proper nouns.*/
     enum class proper_noun_counting_method
         {
-        all_proper_nouns_are_unfamiliar, /*!< Proper nouns are always be unfamiliar (unless explicitly on a familiar word list). */
-        all_proper_nouns_are_familiar, /*!< Proper nouns are always familiar. */
-        only_count_first_instance_of_proper_noun_as_unfamiliar, /*!< Only the first instance of a proper noun is unfamiliar (if not on a familiar word list). All subsequent instances of this word will be familiar. */
+        /// @brief Proper nouns are always be unfamiliar
+        ///     (unless explicitly on a familiar word list).
+        all_proper_nouns_are_unfamiliar,
+        /// @brief Proper nouns are always familiar.
+        all_proper_nouns_are_familiar,
+        /// @brief Only the first instance of a proper noun is unfamiliar
+        ///     (if not on a familiar word list).
+        ///     All subsequent instances of this word will be familiar. */
+        only_count_first_instance_of_proper_noun_as_unfamiliar,
+        /// @private
         PROPERNOUNCOUNTINGMETHOD_COUNT
         };
     }

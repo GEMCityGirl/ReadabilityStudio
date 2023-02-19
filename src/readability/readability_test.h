@@ -547,4 +547,6 @@ namespace readability
         };
     }
 
+/** @} */
+
 #endif //__READABILITY_TEST_H__
