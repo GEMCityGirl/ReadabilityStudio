@@ -24,13 +24,27 @@
 class word_list
     {
 public:
-    word_list() noexcept {}
+    /// @private
+    word_list() = default;
+    /// @private
+    word_list(const word_list&) = delete;
+    /// @private
+    word_list(word_list&&) = delete;
+    /// @private
+    word_list& operator=(const word_list&) = delete;
+    /// @private
+    word_list& operator=(word_list&&) = delete;
+    /// @private
     using word_type = traits::case_insensitive_wstring_ex;
 
-    /** @brief Loads the words from a text stream. Words are delimited by any whitespace and are optionally sorted.
+    /** @brief Loads the words from a text stream.
+        @detials Words are delimited by any whitespace and are optionally sorted.
         @param text The text stream containing the words to parse.
-        @param sort_list Whether the list of words should be sorted after loaded from the text stream.
-        @param preserve_words Whether words already in the list should be kept. False will clear the old list while loading the new words, True will preserve them.*/
+        @param sort_list Whether the list of words should be sorted after
+            loaded from the text stream.
+        @param preserve_words Whether words already in the list should be kept.
+            @c false will clear the old list while loading the new words,
+            @c true will preserve them.*/
     void load_words(const wchar_t* text, const bool sort_list, const bool preserve_words)
         {
         if (!preserve_words)
@@ -49,30 +63,41 @@ public:
         }
 
     /** @returns The internal word list as a vector.*/
-    [[nodiscard]] const std::vector<word_type>& get_words() const noexcept
+    [[nodiscard]]
+    const std::vector<word_type>& get_words() const noexcept
         { return m_words; }
     /** @returns The number of words in the list.*/
-    [[nodiscard]] size_t get_list_size() const noexcept
+    [[nodiscard]]
+    size_t get_list_size() const noexcept
         { return m_words.size(); }
-    /** @brief Determines if a given strings is in the list. Note that the list should be sorted before calling this.
+    /** @brief Determines if a given strings is in the list.
         @param search_word The word to search for.
         @returns @c true if the word is found.
         @note The list should be sorted before calling this.*/
-    [[nodiscard]] const bool find(const wchar_t* search_word) const
-        { return std::binary_search(get_words().begin(), get_words().end(), word_type(search_word)); }
+    [[nodiscard]]
+    const bool find(const wchar_t* search_word) const
+        {
+        return std::binary_search(get_words().cbegin(), get_words().cend(),
+                                  word_type(search_word));
+        }
     /** @brief Determines if a given strings is in the list.
         @param search_word The word to search for.
         @param length The length of the @c word.
         @returns @c true if the word is found.
         @note The list should be sorted before calling this.*/
-    [[nodiscard]] const bool find(const wchar_t* search_word, const size_t length) const
-        { return std::binary_search(get_words().begin(), get_words().end(), word_type(search_word, length)); }
+    [[nodiscard]]
+    const bool find(const wchar_t* search_word, const size_t length) const
+        {
+        return std::binary_search(get_words().cbegin(), get_words().cend(),
+                                  word_type(search_word, length));
+        }
     /** @brief Adds a word to the list, inserted at the proper sorted position.
         @details This assumes that the word list has already been sorted.
         @param theWord The word to be added.*/
     void add_word(const word_type& theWord)
         {
-        std::vector<word_type>::iterator insertionPoint = std::lower_bound(m_words.begin(), m_words.end(), theWord);
+        std::vector<word_type>::iterator insertionPoint =
+            std::lower_bound(m_words.begin(), m_words.end(), theWord);
         m_words.insert(insertionPoint, theWord);
         }
     /** @brief Adds a vector of words and sorts them in.
@@ -80,8 +105,9 @@ public:
     void add_words(const std::vector<word_type>& theWords)
         {
         const size_t previousSize = get_list_size();
-        m_words.resize(m_words.size()+theWords.size());
-        std::copy(std::execution::par, theWords.begin(), theWords.end(), m_words.begin()+previousSize);
+        m_words.resize(m_words.size() + theWords.size());
+        std::copy(std::execution::par, theWords.cbegin(), theWords.cend(),
+                  m_words.begin() + previousSize);
         sort();
         }
     /** @brief Sorts the word list (in A-Z [ascending] order).*/
@@ -100,7 +126,8 @@ public:
     void clear() noexcept
         { m_words.clear(); }
     /** @returns Whether the list is sorted (in ascending order).*/
-    [[nodiscard]] bool is_sorted() const
+    [[nodiscard]]
+    bool is_sorted() const
         {
         if (m_words.size() <= 1)
             { return true; }
@@ -112,10 +139,6 @@ public:
         return true;
         }
 private:
-    word_list(const word_list&) = delete;
-    word_list(word_list&&) = delete;
-    word_list& operator=(const word_list&) = delete;
-    word_list& operator=(word_list&&) = delete;
     std::vector<word_type> m_words;
     };
 
@@ -123,12 +146,18 @@ private:
 class word_list_with_replacements
     {
 public:
-    word_list_with_replacements() noexcept {}
+    word_list_with_replacements() = default;
+    /// @private
     using word_type = traits::case_insensitive_wstring_ex;
 
-    /** @brief Loads the words from a text stream. Words appear in two columns, the first column the key word and the second column its synonym.
+    /** @brief Loads the words from a text stream.
+        @detials Words appear in two columns, the first column the key word and
+            the second column its synonym.\n
+            Columns must be delimited by a tab.
         @param text The text stream containing the words to parse.
-        @param preserve_words Whether words already in the list should be kept. False will clear the old list while loading the new words, True will preserve them.*/
+        @param preserve_words Whether words already in the list should be kept.
+            @c false will clear the old list while loading the new words,
+            @c true will preserve them.*/
     void load_words(const wchar_t* text, const bool preserve_words)
         {
         if (!preserve_words)
@@ -156,24 +185,28 @@ public:
         importer.read(text, rowCount, 2, true);
         for (size_t i = 0; i < words.size(); ++i)
             {
-            m_word_map.insert(std::pair<word_type,word_type>(words[i].at(0), words[i].at(1)));
+            m_word_map.insert(std::make_pair(words[i].at(0), words[i].at(1)));
             }
         }
     /** @brief Searches for a word in the list.
-        @returns @c true (with its respective replacement) if found, false and blank string otherwise.*/
-    [[nodiscard]] std::pair<bool,word_type> find(const word_type& word_to_find) const
+        @returns @c true (with its respective replacement) if found,
+            @c false and blank string otherwise.*/
+    [[nodiscard]]
+    std::pair<bool, word_type> find(const word_type& word_to_find) const
         {
-        const std::map<word_type,word_type>::const_iterator pos = m_word_map.find(word_to_find);
-        if (pos == m_word_map.end())
-            { return std::pair<bool,word_type>(false,L""); }
+        const auto pos = m_word_map.find(word_to_find);
+        if (pos == m_word_map.cend())
+            { return std::make_pair(false, word_type(L"")); }
         else
-            { return std::pair<bool,word_type>(true,pos->second); }
+            { return std::make_pair(true, pos->second); }
         }
     /** @returns The internal word list as a map.*/
-    [[nodiscard]] const std::map<word_type,word_type>& get_words() const noexcept
+    [[nodiscard]]
+    const std::map<word_type,word_type>& get_words() const noexcept
         { return m_word_map; }
     /** @returns The number of words in the map.*/
-    [[nodiscard]] size_t get_list_size() const noexcept
+    [[nodiscard]]
+    size_t get_list_size() const noexcept
         { return m_word_map.size(); }
     /** @brief Clears the word map.*/
     void clear() noexcept
