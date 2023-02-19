@@ -1527,7 +1527,7 @@ private:
                 //move punctuation index to be AFTER the current word, whether it is the next actual word or beyond.
                 while (punctPos != m_punctuation.end() && (punctPos->get_word_position() <= wordCounter))
                     { ++punctPos; }
-                if (IsNegating(m_words[wordCounter].c_str(), m_words[wordCounter].length()) &&
+                if (IsNegating({ m_words[wordCounter].c_str(), m_words[wordCounter].length() }) &&
                     //if next word has punctuation in front of it then do not count this.
                     !(punctPos != m_punctuation.end() && punctPos->get_word_position() == wordCounter+1))
                     {
