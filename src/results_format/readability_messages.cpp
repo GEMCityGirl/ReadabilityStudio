@@ -1,4 +1,12 @@
-﻿#include "readability_messages.h"
+﻿///////////////////////////////////////////////////////////////////////////////
+// Name:        readability_messages.cpp
+// Author:      Blake Madden
+// Copyright:   (c) 2005-2023 Blake Madden
+// Licence:     3-Clause BSD licence
+// SPDX-License-Identifier: BSD-3-Clause
+///////////////////////////////////////////////////////////////////////////////
+
+#include "readability_messages.h"
 
 using namespace readability;
 using namespace Wisteria;
@@ -39,7 +47,8 @@ wxString ReadabilityMessages::GetGradeScaleLongLabel(size_t grade) const
     }
 
 //-----------------------------------------------
-wxString ReadabilityMessages::GetFormattedValue(const double value, const NumberFormatInfo& format) const
+wxString ReadabilityMessages::GetFormattedValue(const double value,
+                                                const Wisteria::NumberFormatInfo& format) const
     {
     if (IsUsingLongGradeScaleFormat())
         {
@@ -55,7 +64,8 @@ wxString ReadabilityMessages::GetFormattedValue(const double value, const Number
     }
 
 //-----------------------------------------------
-wxString ReadabilityMessages::GetFormattedValue(const wxString& value, const NumberFormatInfo& format) const
+wxString ReadabilityMessages::GetFormattedValue(const wxString& value,
+                                                const Wisteria::NumberFormatInfo& format) const
     {
     // just return value if not using long format
     if (!IsUsingLongGradeScaleFormat())

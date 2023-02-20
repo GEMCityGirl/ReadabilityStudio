@@ -1,6 +1,6 @@
 /** @addtogroup Indexing
     @brief Classes for parsing and indexing text.
-    @date 2003-2020
+    @date 2005-2023
     @copyright Oleander Software, Ltd.
     @author Blake Madden
     @details This program is free software; you can redistribute it and/or modify
@@ -38,7 +38,7 @@ public:
     using word_type = traits::case_insensitive_wstring_ex;
 
     /** @brief Loads the words from a text stream.
-        @detials Words are delimited by any whitespace and are optionally sorted.
+        @details Words are delimited by any whitespace and are optionally sorted.
         @param text The text stream containing the words to parse.
         @param sort_list Whether the list of words should be sorted after
             loaded from the text stream.
@@ -151,7 +151,7 @@ public:
     using word_type = traits::case_insensitive_wstring_ex;
 
     /** @brief Loads the words from a text stream.
-        @detials Words appear in two columns, the first column the key word and
+        @details Words appear in two columns, the first column the key word and
             the second column its synonym.\n
             Columns must be delimited by a tab.
         @param text The text stream containing the words to parse.

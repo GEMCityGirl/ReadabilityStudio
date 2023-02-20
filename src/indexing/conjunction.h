@@ -1,6 +1,6 @@
 /** @addtogroup Indexing
     @brief Classes for parsing and indexing text.
-    @date 2003-2020
+    @date 2005-2023
     @copyright Oleander Software, Ltd.
     @author Blake Madden
     @details This program is free software; you can redistribute it and/or modify
@@ -29,7 +29,7 @@ namespace grammar
         /** @brief Determines if a word is a coordinating conjunction.
             @param text The word to review.
             @param length The length of the word.
-            @retursn Whether or not this word is a coordinating conjunction.*/
+            @returns Whether or not this word is a coordinating conjunction.*/
         virtual bool operator()(const wchar_t* text, const size_t length) const = 0;
         };
 
@@ -83,7 +83,7 @@ namespace grammar
         /** @brief Determines if a word is a German coordinating conjunction.
             @param text The word to review.
             @param length The length of the word.
-            @retursn Whether or not this word is a coordinating conjunction.*/
+            @returns Whether or not this word is a coordinating conjunction.*/
         [[nodiscard]]
         bool operator()(const wchar_t* text, const size_t length) const final
             {
@@ -106,15 +106,15 @@ namespace grammar
         /** @brief Determines if a word is a Russian coordinating conjunction.
             @param text The word to review.
             @param length The length of the word.
-            @retursn Whether or not this word is a coordinating conjunction.*/
+            @returns Whether or not this word is a coordinating conjunction.*/
         [[nodiscard]]
         bool operator()(const wchar_t* text, const size_t length) const noexcept final
             {
             if (text == nullptr || text[0] == 0 || length == 0)
                 { return false; }
-            //coordinating conjunctions
-            return (length == 1 && string_util::is_either<wchar_t>(text[0], 0x0418, 0x0438)) || //i (and/both...and)
-                (length == 1 && string_util::is_either<wchar_t>(text[0], 0x0410, 0x0430)) || //a (but)
+            // coordinating conjunctions
+            return (length == 1 && string_util::is_either<wchar_t>(text[0], 0x0418, 0x0438)) || // i (and/both...and)
+                (length == 1 && string_util::is_either<wchar_t>(text[0], 0x0410, 0x0430)) || // a (but)
                 (length == 2 && string_util::is_either<wchar_t>(text[0], 0x041D, 0x043D) && string_util::is_either<wchar_t>(text[1], 0x0418, 0x0438)) || //ni (neither...nor)
                 (length == 2 && string_util::is_either<wchar_t>(text[0], 0x041D, 0x043D) && string_util::is_either<wchar_t>(text[1], 0x041E, 0x043E)) || //no (but)
                 (length == 2 && string_util::is_either<wchar_t>(text[0], 0x0414, 0x0434) && string_util::is_either<wchar_t>(text[1], 0x0410, 0x0430)) || //da (and)

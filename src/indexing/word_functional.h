@@ -1,6 +1,6 @@
 /** @addtogroup Indexing
     @brief Classes for parsing and indexing text.
-    @date 2003-2020
+    @date 2005-2023
     @copyright Oleander Software, Ltd.
     @author Blake Madden
     @details This program is free software; you can redistribute it and/or modify
@@ -20,41 +20,43 @@
 #include "../OleanderStemmingLibrary/src/stemming.h"
 #include "../../../SRC/Wisteria-Dataviz/src/util/stringutil.h"
 
-/** Counting/Searching functor for std::count_if or std::find that counts punctuation marks,
-    based on where punctuation mark is in the word.*/
+/** @brief Counting/Searching functor for `std::count_if` or `std::find`
+        that counts punctuation marks, based on where punctuation mark is in the word.*/
 template<typename Tpunctuation_type>
 class punctuation_mark_count_if_word_position
     {
 public:
-    /** Constructor, which takes the position of the punctuation in the word.
+    /** @brief Constructor, which takes the position of the punctuation in the word.
         @param position The position of the punctuation in the word.*/
     punctuation_mark_count_if_word_position(const size_t position) noexcept
         : m_word_position(position) {}
     punctuation_mark_count_if_word_position() = delete;
     /** @returns @c true if a valid punctuation mark based on its position in the word.
         @param punct The type of punctuation that this mark is.*/
-    [[nodiscard]] inline bool operator()(const Tpunctuation_type& punct) const noexcept
-        {
-        return punct.get_word_position() == m_word_position;
-        }
+    [[nodiscard]]
+    inline bool operator()(const Tpunctuation_type& punct) const noexcept
+        { return punct.get_word_position() == m_word_position; }
 private:
     size_t m_word_position{ 0 };
     };
 
-/** Counting functor for std::count_if that verifies the syllables in a word match a given count.*/
+/** @brief Counting functor for `std::count_if` that verifies the syllables in a
+        word match a given count.*/
 template<typename word_typeT>
 class syllable_count_equals
     {
 public:
-    /** Constructor that takes the required syllable count and how to treat numerals.
+    /** @brief Constructor that takes the required syllable count and how to treat numerals.
         @param count The expected number of syllables that a passing word should have.
-        @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one syllable. Default is false.*/
+        @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one syllable.
+            Default is @c false.*/
     syllable_count_equals(const size_t count, const bool treat_numerals_as_monosyllabic = false) noexcept
         : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
     syllable_count_equals() = delete;
     /** @returns @c true if a word contains the predefined syllable count.
         @param the_word The word to review.*/
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const
         {
         return (m_treat_numerals_as_monosyllabic && the_word.is_numeric()) ?
             (m_count == 1) : the_word.get_syllable_count() == m_count;
@@ -72,14 +74,16 @@ class valid_syllable_count_equals
 public:
     /** Constructor that takes the required syllable count and how to treat numerals.
         @param count The expected number of syllables that a passing word should have.
-        @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one syllable. Default is false.*/
+        @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one syllable.
+            Default is @c false.*/
     valid_syllable_count_equals(size_t count, bool treat_numerals_as_monosyllabic = false) noexcept
         : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
     valid_syllable_count_equals() = delete;
     /** @returns @c true if a word contains the predefined syllable count. Note that this will immediately return
-        false if the word is invalid.
+        @c false if the word is invalid.
         @param the_word The word to review.*/
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const
         {
         if (the_word.is_valid())
             {
@@ -665,7 +669,8 @@ public:
         @param should_ignore_numerals Whether numerals are checked or not.
         @param should_ignore_file_addresses Whether file addresses are checked or not.
         @param should_ignore_programmer_code Whether programmer code is checked or not.
-        @param should_allow_colloquialisms Whether to ignore things like "in'" replacing "ing".*/
+        @param should_allow_colloquialisms Whether to ignore things like "in'" replacing "ing".
+        @param should_ignore_social_media_tags Whether to ignore things like `#Flyers`.*/
     is_correctly_spelled_word(const wordlistT* wlist,
                      const wordlistT* secondary_wlist,
                      const wordlistT* programmer_wlist,

@@ -1,3 +1,14 @@
+/** @addtogroup Formatting
+    @brief Classes for parsing and formatting results output.
+    @date 2005-2023
+    @copyright Oleander Software, Ltd.
+    @author Blake Madden
+    @details This program is free software; you can redistribute it and/or modify
+     it under the terms of the 3-Clause BSD License.
+
+     SPDX-License-Identifier: BSD-3-Clause
+* @{*/
+
 #ifndef __READABILITY_MESSAGES_H__
 #define __READABILITY_MESSAGES_H__
 
@@ -456,5 +467,7 @@ private:
     bool m_useLongFormatGradeScale{ false };
     ReadabilityMessages::ReadingAgeDisplay m_readingAgeDisplay{ ReadingAgeDisplay::ReadingAgeAsARange };
     };
+
+/** @}*/
 
 #endif //__READABILITY_MESSAGES_H__

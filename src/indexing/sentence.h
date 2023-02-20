@@ -1,6 +1,6 @@
 ﻿/** @addtogroup Indexing
     @brief Classes for parsing and indexing text.
-    @date 2003-2020
+    @date 2005-2023
     @copyright Oleander Software, Ltd.
     @author Blake Madden
     @details This program is free software; you can redistribute it and/or modify
@@ -121,18 +121,20 @@ namespace grammar
         {
     public:
         /** @brief Indicates whether a line of text is indented.
-            @param text The line of text, which should be the start of a text stream right after a newline.
+            @param text The line of text, which should be the start of a text
+                stream right after a newline.
             @returns Whether text stream is indented, and the length of the indentation if true.*/
         [[nodiscard]] const std::pair<bool,size_t> operator()(const wchar_t* text) const noexcept
             {
             if (text == nullptr || text[0] == 0)
                 { return std::pair<bool,size_t>(false,0); }
-            //first see if it's a tab
+            // first see if it's a tab
             else if (text[0] == 0x09)
                 { return std::pair<bool,size_t>(true,1); }
-            //else, see if it more than two spaces (more than likely an indentation)
+            // else, see if it more than two spaces (more than likely an indentation)
             const wchar_t* current_char = text;
-            while (current_char[0] != 0 && characters::is_character::is_space_horizontal(current_char[0]))
+            while (current_char[0] != 0 &&
+                   characters::is_character::is_space_horizontal(current_char[0]))
                 { ++current_char; }
             if ((current_char - text) > 2)
                 { return std::pair<bool,size_t>(true,(current_char-text)); }
@@ -659,7 +661,8 @@ namespace grammar
         {
         header,     /*!< A header. */
         list_item,  /*!< A bullet or list item in a list. */
-        incomplete, /*!< A sentence which does not end with a period, question mark, or exclamation point. Also, is not a header or list item. */
+        incomplete, /*!< A sentence which does not end with a period, question mark,
+                         or exclamation point. Also, is not a header or list item. */
         complete    /*!< A sentence that has proper terminating punctuation. */
         };
 
@@ -680,13 +683,17 @@ namespace grammar
             m_sentence_type = m_is_valid ? sentence_paragraph_type::complete : sentence_paragraph_type::incomplete;
             }
         sentence_info() = delete;
-        [[nodiscard]] bool operator==(const size_t word_position) const noexcept
+        [[nodiscard]]
+        bool operator==(const size_t word_position) const noexcept
             { return word_position >= m_begin_index && word_position <= m_end_index; }
-        [[nodiscard]] bool operator!=(const size_t word_position) const noexcept
+        [[nodiscard]]
+        bool operator!=(const size_t word_position) const noexcept
             { return word_position <= m_begin_index || word_position >= m_end_index; }
-        [[nodiscard]] bool operator<(const size_t word_position) const noexcept
+        [[nodiscard]]
+        bool operator<(const size_t word_position) const noexcept
             { return m_begin_index < word_position; }
-        [[nodiscard]] bool operator>(const size_t word_position) const noexcept
+        [[nodiscard]]
+        bool operator>(const size_t word_position) const noexcept
             { return m_begin_index > word_position; }
         /// Used for sentences to compare each other based on length, so that statistics function (e.g., max_element) will work.
         /// @param that The other sentence to compare against.
@@ -716,11 +723,13 @@ namespace grammar
         void set_ending_punctuation(wchar_t punct) noexcept
             { m_ending_punctuation = punct; }
         /** @returns Whether the ending punctuation of the sentence is what can really end a sentence.
-            This will include punctuation used for passive EOS deduction (e.g., dashes).*/
-        [[nodiscard]] inline bool ends_with_valid_punctuation() const noexcept
+                This will include punctuation used for passive EOS deduction (e.g., dashes).*/
+        [[nodiscard]]
+        inline bool ends_with_valid_punctuation() const noexcept
             { return (is_end_of_sentence::can_character_end_sentence_passive(m_ending_punctuation)); }
         /** @returns Whether the sentence is considered valid by the analysis.*/
-        [[nodiscard]] bool is_valid() const noexcept
+        [[nodiscard]]
+        bool is_valid() const noexcept
             { return m_is_valid; }
         /** Call this is you need to override the default logic of a sentence being considered complete.
             By default, this is based on it ending with valid punctuation.
@@ -731,11 +740,11 @@ namespace grammar
         void set_valid(const bool valid) noexcept
             {
             m_is_valid = valid;
-            //If is valid now, but previous type was incomplete, then set it to complete.
-            //If it was a header or list item, then just leave the type alone.
+            // If is valid now, but previous type was incomplete, then set it to complete.
+            // If it was a header or list item, then just leave the type alone.
             if (is_valid() && get_type() == sentence_paragraph_type::incomplete)
                 { set_type(sentence_paragraph_type::complete); }
-            //...and vice versa.
+            // ...and vice versa.
             else if (!is_valid() && get_type() == sentence_paragraph_type::complete)
                 { set_type(sentence_paragraph_type::incomplete); }
             }
@@ -744,14 +753,16 @@ namespace grammar
         void set_type(sentence_paragraph_type type) noexcept
             { m_sentence_type = type; }
         /** @returns What type of sentence this is in terms of being complete or header, etc...*/
-        [[nodiscard]] sentence_paragraph_type get_type() const noexcept
+        [[nodiscard]]
+        sentence_paragraph_type get_type() const noexcept
             { return m_sentence_type; }
         /** @brief Sets the unit count of the sentence.
             @param count The unit count value.*/
         void set_unit_count(const size_t count) noexcept
             { m_unit_count = count; }
         /** @returns The unit count of the sentence. Each section of a sentence divided by dashes is a unit.*/
-        [[nodiscard]] size_t get_unit_count() const noexcept
+        [[nodiscard]]
+        size_t get_unit_count() const noexcept
             { return m_unit_count; }
     private:
         size_t m_begin_index{ 0 };
@@ -767,11 +778,12 @@ namespace grammar
     class sentence_word_position_less_than
         {
     public:
-        [[nodiscard]] inline bool operator()(const sentence_info& sent1, const sentence_info& sent2) const noexcept
+        [[nodiscard]]
+        inline bool operator()(const sentence_info& sent1, const sentence_info& sent2) const noexcept
             { return (sent1.get_first_word_index() < sent2.get_first_word_index()); }
         };
 
-    /** @brief Sentence length comparison functor for std::count_if.*/
+    /** @brief Sentence length comparison functor for `std::count_if`.*/
     class sentence_length_greater_than
         {
     public:
@@ -781,10 +793,9 @@ namespace grammar
         sentence_length_greater_than() = delete;
         /** @returns @c true if a sentence has more words than the predefined value.
             @param the_sentence The sentence to review.*/
-        [[nodiscard]] inline bool operator()(const sentence_info& the_sentence) const noexcept
-            {
-            return the_sentence.get_word_count() > m_count;
-            }
+        [[nodiscard]]
+        inline bool operator()(const sentence_info& the_sentence) const noexcept
+            { return the_sentence.get_word_count() > m_count; }
     private:
         size_t m_count{ 0 };
         };
@@ -795,11 +806,14 @@ namespace grammar
     public:
         /** @brief Constructor.
             @param count The valid number of words that a sentence has to exceed to compare as bigger.*/
-        complete_sentence_length_greater_than(const size_t count) noexcept : m_count(count) {}
+        complete_sentence_length_greater_than(const size_t count) noexcept :
+            m_count(count)
+            {}
         complete_sentence_length_greater_than() = delete;
         /** @returns @c true if a valid sentence has more valid words than the predefined value.
             @param the_sentence The sentence to review.*/
-        [[nodiscard]] inline bool operator()(const sentence_info& the_sentence) const noexcept
+        [[nodiscard]]
+        inline bool operator()(const sentence_info& the_sentence) const noexcept
             {
             if (!the_sentence.is_valid() )
                 { return false; }
@@ -817,15 +831,16 @@ namespace grammar
             @note If either sentence is invalid, then they are considered less than a valid sentence.
             @param sent1 The first sentence to compare.
             @param sent2 The second sentence to compare.*/
-        [[nodiscard]] bool operator()(const sentence_info& sent1, const sentence_info& sent2) const noexcept
+        [[nodiscard]]
+        bool operator()(const sentence_info& sent1, const sentence_info& sent2) const noexcept
             {
-            //if both sentences are incomplete then they are "equal"
+            // if both sentences are incomplete then they are "equal"
             if (!sent1.is_valid() && !sent2.is_valid())
                 { return false; }
-            //if left sentence is incomplete then it is less than the other
+            // ...if left sentence is incomplete then it is less than the other
             else if (!sent1.is_valid())
                 { return true; }
-            //otherwise, if left is complete and right is not then it must be bigger
+            // ...otherwise, if left is complete and right is not then it must be bigger
             else if (!sent2.is_valid())
                 { return false; }
             else
