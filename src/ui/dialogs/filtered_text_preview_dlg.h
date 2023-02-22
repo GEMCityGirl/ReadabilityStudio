@@ -16,7 +16,7 @@
 #include <wx/valgen.h>
 #include <wx/collpane.h>
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
-#include "ReadabilityAppOptions.h"
+#include "../../app/optionenums.h"
 
 /// @brief Dialog for previewing filtered (i.e., romanized) text.
 class FilteredTextPreviewDlg final : public Wisteria::UI::DialogWithHelp
