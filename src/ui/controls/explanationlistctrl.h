@@ -1,0 +1,229 @@
+/** @addtogroup UI
+    @brief Classes for the user interface.
+    @date 2005-2023
+    @copyright Oleander Software, Ltd.
+    @author Blake Madden
+    @details This program is free software; you can redistribute it and/or modify
+     it under the terms of the 3-Clause BSD License.
+
+     SPDX-License-Identifier: BSD-3-Clause
+* @{*/
+
+
+#ifndef __EXPLANATION_LISTCTRL_H__
+#define __EXPLANATION_LISTCTRL_H__
+
+#include <wx/print.h>
+#include <wx/html/htmprint.h>
+#include <wx/splitter.h>
+#include <wx/xrc/xmlres.h>
+#include "../../../../SRC/Wisteria-Dataviz/src/base/canvas.h"
+#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/listctrlex.h"
+#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/htmltablewin.h"
+#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/htmltablewinprintout.h"
+#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
+#include "../../../../SRC/Wisteria-Dataviz/src/util/parentblocker.h"
+#include <map>
+
+/// @brief What to export when saving from an ExplanationListCtrl.
+enum class ExplanationListExportOptions
+    {
+    /// @brief Export just the grid.
+    ExportGrid,
+    /// @brief Export just the explainations.
+    ExportExplanations,
+    /// @brief Export both the grid and associated explanations.
+    ExportBoth
+    };
+
+/// @brief A list control with an HTML buddy window.
+/// @details Selecting an item in the list will display its associated text in the HTML window.
+class ExplanationListCtrl final : public wxSplitterWindow
+    {
+public:
+    /** @brief Constructor.
+        @param parent The parent window.
+        @param id The window's ID.
+        @param point The window's position.
+        @param size The window's size.
+        @param name The name of the control.*/
+    ExplanationListCtrl(wxWindow* parent, wxWindowID id,
+                        const wxPoint& point = wxDefaultPosition,
+                        const wxSize& size = wxDefaultSize,
+                        const wxString& name = L"ExplanationListCtrl");
+    /// @private
+    ExplanationListCtrl(const ExplanationListCtrl&) = delete;
+    /// @private
+    ExplanationListCtrl& operator=(const ExplanationListCtrl&) = delete;
+    /// @private
+    ~ExplanationListCtrl()
+        { wxDELETE(m_data); }
+    
+    /// @brief Splits the windows to show the items in the list control.
+    void FitWindows();
+    /// @brief Updates the HTML window to display the associated text
+    ///     for the currently selected item in the list.
+    void UpdateExplanationDisplay();
+    /** @brief Saves the control.
+        @param exportOptions Options for how to format the output.*/
+    bool Save(const wxFileName& filePath,
+              const ExplanationListExportOptions exportOptions =
+                ExplanationListExportOptions::ExportBoth) const;
+    /** @brief Prints the control.
+        @param exportOptions Options for how to format the output.*/
+    void Print(const ExplanationListExportOptions exportOptions =
+                ExplanationListExportOptions::ExportBoth);
+    /** @brief Print previews the control.
+        @param exportOptions Options for how to format the output.*/
+    void PrintPreview(const ExplanationListExportOptions exportOptions =
+                        ExplanationListExportOptions::ExportBoth);
+
+    /** @brief Sets the printer settings.
+        @param printData A pointer to the printer settings to use.*/
+    void SetPrinterSettings(wxPrintData* printData) noexcept
+        { m_printData = printData; }
+    /// @brief Sets the left header used for printing.
+    /// @param header The string to use.
+    void SetLeftPrinterHeader(const wxString& header)
+        { m_leftPrinterHeader = header; }
+    /// @returns The left header used for printing.
+    [[nodiscard]]
+    const wxString& GetLeftPrinterHeader() const noexcept
+        { return m_leftPrinterHeader; }
+    /// @brief Sets the center header used for printing.
+    /// @param header The string to use.
+    void SetCenterPrinterHeader(const wxString& header)
+        { m_centerPrinterHeader = header; }
+    /// @returns The center header used for printing.
+    [[nodiscard]]
+    const wxString& GetCenterPrinterHeader() const noexcept
+        { return m_centerPrinterHeader; }
+
+    /// @brief Sets the right header used for printing.
+    /// @param header The string to use.
+    void SetRightPrinterHeader(const wxString& header)
+        { m_rightPrinterHeader = header; }
+    /// @returns The right header used for printing.
+    [[nodiscard]]
+    const wxString& GetRightPrinterHeader() const noexcept
+        { return m_rightPrinterHeader; }
+    /// @brief Sets the left footer used for printing.
+    /// @param footer The string to use.
+    void SetLeftPrinterFooter(const wxString& footer)
+        { m_leftPrinterFooter = footer; }
+    /// @returns The left footer used for printing.
+    [[nodiscard]]
+    const wxString& GetLeftPrinterFooter() const noexcept
+        { return m_leftPrinterFooter; }
+    /// @brief Sets the center footer used for printing.
+    /// @param footer The string to use.
+    void SetCenterPrinterFooter(const wxString& footer)
+        { m_centerPrinterFooter = footer; }
+    /// @returns The center footer used for printing.
+    [[nodiscard]]
+    const wxString& GetCenterPrinterFooter() const noexcept
+        { return m_centerPrinterFooter; }
+    /// @brief Sets the right footer used for printing.
+    /// @param footer The string to use.
+    void SetRightPrinterFooter(const wxString& footer)
+        { m_rightPrinterFooter = footer; }
+    /// @returns The right footer used for printing.
+    [[nodiscard]]
+    const wxString& GetRightPrinterFooter() const noexcept
+        { return m_rightPrinterFooter; }
+
+    /// @brief Sets the watermark for the list when printed.
+    /// @param watermark The watermark information.
+    void SetWatermark(const Wisteria::Canvas::Watermark& watermark) noexcept
+        { m_waterMark = watermark; }
+    /// @returns The printer watermark.
+    [[nodiscard]]
+    const Wisteria::Canvas::Watermark& GetWatermark() const noexcept
+        { return m_waterMark; }
+
+    /// @returns The number of items in the list.
+    [[nodiscard]]
+    int GetItemCount() const
+        { return m_results_view->GetItemCount(); }
+    /// @returns The text from the HTML window.
+    [[nodiscard]]
+    wxString GetExplanationsText() const;
+    /// @returns The keys and their explanations.
+    [[nodiscard]]
+    std::map<wxString, wxString>& GetExplanations() noexcept
+        { return m_explanations; }
+
+    /// @returns The list control.
+    [[nodiscard]]
+    ListCtrlEx* GetResultsListCtrl() noexcept
+        { return m_results_view; }
+    /// @private
+    [[nodiscard]]
+    const ListCtrlEx* GetResultsListCtrl() const noexcept
+        { return m_results_view; }
+    /// @returns The HTML window.
+    [[nodiscard]]
+    Wisteria::UI::HtmlTableWindow* GetExplanationView() noexcept
+        { return m_explanation_view; }
+
+    /// @brief Clears the list, HTML window, removes all data.
+    void Clear()
+        {
+        m_explanations.clear();
+        m_explanation_view->SetPage(wxString{});
+        m_results_view->DeleteAllItems();
+        }
+    /// @returns The list's data provider.
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* GetDataProvider() noexcept
+        { return m_data; }
+
+    /// @brief Sets the help sort topic for the list control.
+    /// @param helpProjectPath The help folder.
+    /// @param sortTopicPath The subpath to the topic.
+    void SetResources(const wxString& helpProjectPath, const wxString& sortTopicPath)
+        {
+        if (GetResultsListCtrl())
+            { GetResultsListCtrl()->SetSortHelpTopic(helpProjectPath, sortTopicPath); }
+        }
+private:
+    ExplanationListCtrl() = default;
+    static constexpr int EXPLANATION_LIST_CTRL_GRID = wxID_HIGHEST;
+    void OnPreview([[maybe_unused]] wxCommandEvent& event);
+    void OnPrint([[maybe_unused]] wxCommandEvent& event);
+    void OnSave([[maybe_unused]] wxCommandEvent& event);
+    void OnCopy(wxCommandEvent& event);
+    void OnFind(wxFindDialogEvent& event);
+    void OnItemSelected(wxListEvent& event);
+    void OnResize(wxSizeEvent& event);
+    void OnMenuCommand(wxCommandEvent& event);
+
+    ListCtrlExNumericDataProvider* m_data{ new ListCtrlExNumericDataProvider() };
+    std::map<wxString, wxString> m_explanations;
+    // view classes
+    Wisteria::UI::HtmlTableWindow* m_explanation_view{ nullptr };
+    ListCtrlEx* m_results_view{ nullptr };
+
+    wxPrintData* m_printData{ nullptr };
+    // headers
+    wxString m_leftPrinterHeader;
+    wxString m_centerPrinterHeader;
+    wxString m_rightPrinterHeader;
+    // footers
+    wxString m_leftPrinterFooter;
+    wxString m_centerPrinterFooter;
+    wxString m_rightPrinterFooter;
+
+    Wisteria::Canvas::Watermark m_waterMark;
+
+    // state information
+    static ExplanationListExportOptions m_lastCopyOption;
+    static ExplanationListExportOptions m_lastPrintOption;
+    static ExplanationListExportOptions m_lastSaveOption;
+
+    wxDECLARE_DYNAMIC_CLASS(ExplanationListCtrl);
+    };
+
+/** @}*/
+
+#endif //__EXPLANATION_LISTCTRL_H__
