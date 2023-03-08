@@ -1,0 +1,789 @@
+#include <wx/richmsgdlg.h>
+#include "../../../../SRC/wxTools/wxFileFolderOperations.h"
+#include "../controls/wordlistproperty.h"
+#include "editwordlistdlg.h"
+#include "custom_test_dlg.h"
+#include "../../projects/base_project.h"
+#include "../../projects/base_project_doc.h"
+#include "../../projects/base_project_view.h"
+#include "../../results_format/project_report_format.h"
+#include "../../app/readability_app_options.h"
+#include "../../test_helpers/readability_formula_parser.h"
+
+using namespace Wisteria::UI;
+using namespace Wisteria::UI;
+
+wxDECLARE_APP(ReadabilityApp);
+
+wxBEGIN_EVENT_TABLE(CustomTestDlg, wxDialog)
+    EVT_BUTTON(wxID_HELP, CustomTestDlg::OnHelp)
+    EVT_HELP(wxID_ANY, CustomTestDlg::OnContextHelp)
+    EVT_BUTTON(wxID_OK, CustomTestDlg::OnOK)
+    EVT_BUTTON(CustomTestDlg::ID_VALIDATE_FORMULA_BUTTON, CustomTestDlg::OnValidateFormulaClick)
+    EVT_BUTTON(CustomTestDlg::ID_INSERT_FUNCTION_BUTTON, CustomTestDlg::OnInsertFunctionClick)
+wxEND_EVENT_TABLE()
+
+//-------------------------------------------------------------
+void CustomTestDlg::OnInsertFunctionClick([[maybe_unused]] wxCommandEvent& event)
+    {
+    TransferDataFromWindow();
+    m_functionBrowser->ShowModal();
+    m_formulaCtrl->SetFocus();
+    }
+
+//-------------------------------------------------------------
+void CustomTestDlg::OnValidateFormulaClick([[maybe_unused]] wxCommandEvent& event)
+    {
+    TransferDataFromWindow();
+    ValidateFormula(true);
+    }
+
+//-------------------------------------------------------------
+bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
+    {
+    TransferDataFromWindow();
+    // make any corrections to the formula
+    SetFormula(BaseProjectDoc::UpdateCustumReadabilityTest(GetFormula().wc_str()).c_str());
+    TransferDataToWindow();
+
+    try
+        {
+        //if no formula specified, but they do have some sort of familiar word definition, then suggest CustomNewDaleChall()
+        if (GetFormula().empty() &&
+            (IsIncludingCustomWordList() || IsIncludingSpacheList() || IsIncludingHJList() || IsIncludingDaleChallList() || IsIncludingStockerList()))
+            {
+            if (wxMessageBox(_("An unfamiliar word list has been defined, but no formula has been specified. Do you wish to use the New Dale-Chall formula for this test?"),
+                        _("No Formula Defined"), wxYES_NO|wxICON_QUESTION) == wxNO)
+                { return false; }
+            else
+                {
+                SetFormula(ReadabilityFormulaParser::GetCustomNewDaleChallSignature());
+                SetIncludingDaleChallList(true);
+                SetProperNounMethod(static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()));
+                TransferDataToWindow();
+                return true;
+                }
+            }
+        else if (GetFormula().empty())
+            {
+            wxMessageBox(_("Please enter a formula."), _("Missing Formula"), wxOK|wxICON_EXCLAMATION);
+            return false;
+            }
+
+        auto blankProject = std::make_unique<BaseProjectDoc>();
+        BaseProjectDoc* activeProject = dynamic_cast<BaseProjectDoc*>(wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument());
+        const bool isUsingActiveProject = (activeProject && activeProject->IsKindOf(CLASSINFO(ProjectDoc)));
+        BaseProjectDoc* project = isUsingActiveProject ? activeProject : blankProject.get();
+        wxASSERT(project);
+        
+        if (!project->GetFormulaParser().compile(GetFormula()))
+            {
+            wxMessageBox(wxString::Format(_("Syntax error in formula at position %s:\n %s\n^"),
+                std::to_wstring(project->GetFormulaParser().get_last_error_position()),
+                GetFormula().substr(project->GetFormulaParser().get_last_error_position())),
+                 _("Error in Formula"), wxOK|wxICON_EXCLAMATION);
+            return false;
+            }
+        //if using Custom DC test but DC word list is not included then ask them about it
+        if (project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) &&
+            !IsIncludingDaleChallList())
+            {
+            if (wxMessageBox(_("The New Dale-Chall formula is being used for this test, but the standard Dale-Chall word list is not being included. Do you wish to include this word list?"),
+                        _("Settings Conflict"), wxYES_NO|wxICON_QUESTION) == wxYES)
+                {
+                SetIncludingDaleChallList(true);
+                TransferDataToWindow();
+                }
+            }
+        //if using Custom Spache test but Spache word list is not included then ask them about it
+        if (project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomSpacheSignature())) &&
+            !IsIncludingSpacheList())
+            {
+            if (wxMessageBox(_("The Spache formula is being used for this test, but the standard Spache word list is not being included. Do you wish to include this word list?"),
+                        _("Settings Conflict"), wxYES_NO|wxICON_QUESTION) == wxYES)
+                {
+                SetIncludingSpacheList(true);
+                TransferDataToWindow();
+                }
+            }
+        //if using Custom HJ test but HJ word list is not included then ask them about it
+        if (project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) &&
+            !IsIncludingHJList())
+            {
+            if (wxMessageBox(_("The Harris-Jacobson formula is being used for this test, but the standard Harris-Jacobson word list is not being included. Do you wish to include this word list?"),
+                        _("Settings Conflict"), wxYES_NO|wxICON_QUESTION) == wxYES)
+                {
+                SetIncludingHJList(true);
+                TransferDataToWindow();
+                }
+            }
+        if (project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) &&
+            GetProperNounMethod() != static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()))
+            {
+            std::vector<WarningMessage>::iterator warningIter =
+                wxGetApp().GetAppOptions().GetWarning(_DT(L"ndc-proper-noun-conflict"));
+            if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end())
+                {
+                if (warningIter->ShouldBeShown() == false)
+                    {
+                    if (warningIter->GetPreviousResponse() == wxID_YES)
+                        {
+                        SetProperNounMethod(static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()) );
+                        TransferDataToWindow();
+                        }
+                    }
+                else
+                    {
+                    wxRichMessageDialog msg(this, warningIter->GetMessage(),
+                                                  warningIter->GetTitle(), warningIter->GetFlags());
+                    msg.SetEscapeId(wxID_NO);
+                    msg.ShowCheckBox(_("Remember my answer"));
+                    msg.SetYesNoLabels(_("Adjust to match New Dale-Chall"), _("Do not adjust"));
+                    const int dlgResponse = msg.ShowModal();
+                    if (dlgResponse == wxID_YES)
+                        {
+                        SetProperNounMethod(static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()) );
+                        TransferDataToWindow();
+                        }
+                    if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+                        msg.IsCheckBoxChecked())
+                        {
+                        warningIter->Show(false);
+                        warningIter->SetPreviousResponse(dlgResponse);
+                        }
+                    }
+                }
+            }
+        //HJ has really specific rules, so if using Custom HJ then nag the user about using similar options to HJ
+        if (project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) &&
+            !IsIncludingNumeric())
+            {
+            std::vector<WarningMessage>::iterator warningIter =
+                wxGetApp().GetAppOptions().GetWarning(_DT(L"custom-test-numeral-settings-adjustment-required"));
+            if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+                warningIter->ShouldBeShown())
+                { wxMessageBox(warningIter->GetMessage(), wxGetApp().GetAppName(), warningIter->GetFlags(), this); }
+            SetIncludingNumeric(true);
+            TransferDataToWindow();
+            }
+        // If formula is using any custom familiar word logic, then make sure at least one word list is defined
+        if ((project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) ||
+            project->GetFormulaParser().is_function_used("UnfamiliarWordCount") ||
+            project->GetFormulaParser().is_function_used("FamiliarWordCount") ||
+            project->GetFormulaParser().is_function_used("UniqueUnfamiliarWordCount") ||
+            project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomSpacheSignature())) ||
+            project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) )
+            &&
+            (!IsIncludingCustomWordList() && !IsIncludingSpacheList() && !IsIncludingHJList() && !IsIncludingDaleChallList() && !IsIncludingStockerList()))
+            {
+            wxMessageBox(_("Familiar words not defined.\n\nThis formula requires an unfamiliar word list to be selected."),
+                        _("Error in Formula"), wxOK|wxICON_EXCLAMATION);
+            return false;
+            }
+        // ...and vice versa. If they defined custom familiar word logic but the formula is not using it
+        // then at least point that out to make sure that was the intention
+        if ((!project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) &&
+            !project->GetFormulaParser().is_function_used("UnfamiliarWordCount") &&
+            !project->GetFormulaParser().is_function_used("FamiliarWordCount") &&
+            !project->GetFormulaParser().is_function_used("UniqueUnfamiliarWordCount") &&
+            !project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomSpacheSignature())) &&
+            !project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) )
+            &&
+            (IsIncludingCustomWordList() || IsIncludingSpacheList() || IsIncludingHJList() || IsIncludingDaleChallList() || IsIncludingStockerList()))
+            {
+            wxMessageBox(_("An unfamiliar word list has been defined, but the formula is not using it. Unfamiliar word list definitions will be ignored."),
+                        _("Warning"), wxOK|wxICON_EXCLAMATION);
+            }
+        if ((project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) ||
+            project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomSpacheSignature())) ||
+            project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) ) &&
+            m_testTypeCombo->GetSelection() != static_cast<int>(readability::readability_test_type::grade_level))
+            {
+            wxMessageBox(_("Custom familiar word tests must return a grade level result. Test type has been reset to grade level."),
+                         _("Warning"), wxOK|wxICON_EXCLAMATION);
+            SetTestType(static_cast<int>(readability::readability_test_type::grade_level));
+            TransferDataToWindow();
+            }
+        if (promptOnSuccess)
+            {
+            const wxString calculatedValueMsg = !isUsingActiveProject ? L"" :
+                wxString().FromDouble(project->GetFormulaParser().evaluate(), 1).Prepend(_("Calculated value: ")).Prepend(L"\n\n");
+            wxMessageBox(_("Formula is valid; no syntax errors were detected." + calculatedValueMsg),
+                         _("Formula Validated"), wxOK|wxICON_INFORMATION);
+            }
+        }
+    catch (const std::exception& exp)
+        {
+        wxMessageBox(wxString::Format(_("%s\nPlease verify the syntax of the formula."), exp.what()),
+                     _("Error in Formula"), wxOK|wxICON_EXCLAMATION);
+        return false;
+        }
+    catch (...)
+        {
+        wxMessageBox(_("An unknown error occurred while validating the formula. Please verify the syntax of the formula."),
+                     _("Error in Formula"), wxOK|wxICON_EXCLAMATION);
+        return false;
+        }
+
+    return true;
+    }
+
+//-------------------------------------------------------------
+void CustomTestDlg::UpdateOptions()
+    {
+    wxASSERT(m_wordListsPropertyGrid);
+    wxASSERT(m_properNounsNumbersPropertyGrid);
+    if (!m_wordListsPropertyGrid || !m_properNounsNumbersPropertyGrid)
+        { return; }
+    m_wordListsPropertyGrid->EnableProperty(GetFileContainingFamiliarWordsLabel(), IsIncludingCustomWordList());
+    m_wordListsPropertyGrid->EnableProperty(GetStemmingLanguageLabel(), IsIncludingCustomWordList());
+
+    size_t selectedListCount = 0;
+    selectedListCount += IsIncludingCustomWordList() ? 1 : 0;
+    selectedListCount += IsIncludingDaleChallList() ? 1 : 0;
+    selectedListCount += IsIncludingSpacheList() ? 1 : 0;
+    selectedListCount += IsIncludingHJList() ? 1 : 0;
+    selectedListCount += IsIncludingStockerList() ? 1 : 0;
+
+    m_wordListsPropertyGrid->EnableProperty(GetFamiliarWordsOnAllLabel(), selectedListCount > 1);
+    m_properNounsNumbersPropertyGrid->EnableProperty(GetFamiliarityLabel(), selectedListCount > 0);
+    m_properNounsNumbersPropertyGrid->EnableProperty(GetNumeralsAsFamiliarLabel(), selectedListCount > 0);
+    }
+
+//-------------------------------------------------------------
+void CustomTestDlg::OnContextHelp([[maybe_unused]] wxHelpEvent& event)
+    {
+    wxCommandEvent cmd;
+    OnHelp(cmd);
+    }
+
+//-------------------------------------------------------------
+void CustomTestDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
+    {
+    wxLaunchDefaultBrowser(wxFileName::FileNameToURL(wxGetApp().GetMainFrame()->GetHelpDirectory() +
+        wxFileName::GetPathSeparator() + _DT(L"custom-test-dialog.html")));
+    }
+
+//------------------------------------------------------
+bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style)
+    {
+    wxDialog::Create(parent, id, caption, pos, size, style);
+    SetExtraStyle(GetExtraStyle()|wxWS_EX_VALIDATE_RECURSIVELY|wxWS_EX_CONTEXTHELP);
+
+    wxIcon ico;
+    ico.CopyFromBitmap(wxGetApp().GetResourceManager().
+            GetSVG(L"ribbon/formula.svg").GetBitmap(FromDIP(wxSize(16, 16))));
+    SetIcon(ico);
+
+    m_operators.insert(wxString(_DT(L"*\t") + _("Multiplication.")).ToStdWstring());
+    m_operators.insert(wxString(_DT(L"/\t") + _("Division.")).ToStdWstring());
+    m_operators.insert(wxString(_DT(L"%\t") + _("Modulus: Divides two values and returns the remainder.")).ToStdWstring());
+    m_operators.insert(wxString(_DT(L"+\t") + _("Addition.")).ToStdWstring());
+    m_operators.insert(wxString(_DT(L"-\t") + _("Subtraction.")).ToStdWstring());
+    m_operators.insert(wxString(_DT(L"^\t") + _("Exponentiation.")).ToStdWstring());
+    m_operators.insert(wxString(_DT(L"=\t") + _("Equals.")).ToStdWstring());
+    m_operators.insert(wxString(_DT(L"<\t") + _("Less than.")).ToStdWstring());
+    m_operators.insert(wxString(_DT(L">\t") + _("Greater than.")).ToStdWstring());
+    m_operators.insert(wxString(_DT(L"<>\t") + _("Not equal to.")).ToStdWstring());
+    m_operators.insert(wxString(_DT(L">=\t") + _("Greater than or equal to.")).ToStdWstring());
+    m_operators.insert(wxString(_DT(L"<=\t") + _("Less than or equal to.")).ToStdWstring());
+    m_operators.insert(wxString(_DT(L"&\t") + _("Logical conjunction.")).ToStdWstring());
+    m_operators.insert(wxString(_DT(L"|\t") + _("Logical alternative.")).ToStdWstring());
+
+    m_logic.insert(
+        wxString(FormulaFormat::FormatMathExpressionFromUS(
+            _DT(L"IF(condition,value_if_true,value_if_false)\t")) +
+        _("If \"condition\" is true (non-zero), then \"value_if_true\" is returned; otherwise, \"value_if_false\" is returned.")).ToStdWstring());
+    m_logic.insert(
+        wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"NOT(value)\t")) +
+            _("Returns the logical negation of \"value.\"")).ToStdWstring());
+
+    m_math.insert(wxString(_DT(L"SIN(x)\t") + _("Sine of the angle x in radians.")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"COS(x)\t") + _("Cosine of the angle x in radians.")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"ATAN(x)\t") + _("Arc tangent of x.")).ToStdWstring()); 
+    m_math.insert(wxString(_DT(L"SINH(x)\t") + _("Hyperbolic sine of x.")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"COSH(x)\t") + _("Hyperbolic cosine of x.")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"CLAMP(x,start,end)\t") + _("Constrains x within the range of start and end.")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"COT(x)\t") + _("Cotangent of x.")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"TAN(x)\t") + _("Tangent of x.")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"EXP(x)\t") + _("Exponential function (Euler to the power of x).")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"LN(x)\t") + _("Natural logarithm of x (base Euler).")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"LOG(x)\t") + _("Common logarithm of x (base 10).")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"SQRT(x)\t") + _("Square root of x.")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"ABS(x)\t") + _("Absolute value of x.")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"SIGN(x)\t") + _("Returns the sign of x. For example, ") + _DT(L"\'x<0\' = -1, \'x=0\' = 0, \'x>0\' = 1") ).ToStdWstring());
+    m_math.insert(wxString(_DT(L"TRUNC(x)\t") + _("Discards the fractional part of a number. For example, ") + FormulaFormat::FormatMathExpressionFromUS(_DT(L" TRUNC(-3.2) = -3, TRUNC(3.2) = 3")) ).ToStdWstring());
+    m_math.insert(wxString(_DT(L"CEIL(x)\t") + _("Returns the smallest integer not less than x. For example, ") + FormulaFormat::FormatMathExpressionFromUS(_DT(L"CEIL(-3.2) = -3, CEIL(3.2) = 4")) ).ToStdWstring());
+    m_math.insert(wxString(_DT(L"FLOOR(x)\t") + _("Returns the largest integer not greater than x. For example, ") + FormulaFormat::FormatMathExpressionFromUS(_DT(L"FLOOR(-3.2) = -4, FLOOR(3.2) = 3")) ).ToStdWstring());
+    m_math.insert(
+        wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"ROUND(x,n)\t")) +
+            _("Returns the number x rounded to n decimal places. (n is optional and defaults to zero.) For example, ") +
+            FormulaFormat::FormatMathExpressionFromUS(_DT(L"ROUND(-11.6, 0) = 12, ROUND(-11.6) = 12, ROUND(1.5, 0) = 2, ROUND(1.55, 1) = 1.6, ROUND(3.1415, 3) = 3.142"))).ToStdWstring());
+    m_math.insert(
+        wxString(_DT(L"RAND()\t") +
+                 _("Generates a random floating point number within the range of 0 and 1.")).ToStdWstring());
+    m_math.insert(
+        wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"POWER(base,exponent)\t")) +
+        _("The Power function raises Base to any power. For fractional exponents, Base must be greater than 0.")).ToStdWstring());
+    m_math.insert(
+        wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"MIN(value,value2,...)\t")) +
+        _("Returns the lowest value from a specified range of values.")).ToStdWstring());
+    m_math.insert(
+        wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"MAX(value,value2,...)\t")) +
+        _("Returns the highest value from a specified range of values.")).ToStdWstring());
+
+    m_statistics.insert(
+        wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"SUM(value,value2,...)\t")) +
+        _("Returns the sum of a specified range of values.")).ToStdWstring());
+    m_statistics.insert(
+        wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"AVGERAGE(value,value2,...)\t")) +
+        _("Returns the average of a specified range of values.")).ToStdWstring());
+
+    m_customFamiliarWords.insert(
+        wxString(ReadabilityFormulaParser::GetCustomNewDaleChallSignature() +
+                 L"\t" + _("Performs a New Dale-Chall test with a custom familiar word list. Note that this test will use the same text exclusion rules as the Dale-Chall test (overriding your system defaults).")).ToStdWstring());
+    m_customFamiliarWords.insert(
+        wxString(ReadabilityFormulaParser::GetCustomSpacheSignature() +
+                L"\t" + _("Performs a Spache Revised test with a custom familiar word list.")).ToStdWstring());
+    m_customFamiliarWords.insert(
+       wxString(ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature() +
+                L"\t" + _("Performs a Harris-Jacobson test with a custom familiar word list. Note that this test will use the same text exclusion rules as the Harris-Jacobson test (overriding your system defaults).")).ToStdWstring());
+
+    m_generalDocumentStatistics.insert(wxString(_DT(L"SyllableCount()\t") + _("Returns the number of syllables from the document.\n\nThis function takes an argument specifying which numeral syllabizing method to use. These values are: Default, NumeralsFullySyllabized, and NumeralsAreOneSyllable")).ToStdWstring());
+    m_generalDocumentStatistics.insert(wxString(_DT(L"CharacterCount()\t") + _("Returns the number of characters (i.e., letters and numbers) from the document.\n\nThis function takes an argument specifying which text exclusion method to use. These values are: Default, DaleChall, and HarrisJacobson")).ToStdWstring());
+    m_generalDocumentStatistics.insert(wxString(_DT(L"CharacterPlusPunctuationCount()\t") + _("Returns the number of characters (i.e., letters and numbers) and punctuation from the document.\n\nNote that sentence-ending punctuation is not included in this count.")).ToStdWstring());
+
+    m_wordFunctions.insert(wxString(_DT(L"FamiliarWordCount()\t") + _("Returns the number of familiar words (from a custom list) the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UnfamiliarWordCount()\t") + _("Returns the number of unfamiliar words (from a custom list) the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UniqueUnfamiliarWordCount()\t") + _("Returns the number of unique unfamiliar words (from a custom list) from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UnfamiliarHarrisJacobsonWordCount()\t") + _("Returns the number of unfamiliar Harris-Jacobson words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UniqueUnfamiliarHarrisJacobsonWordCount()\t") + _("Returns the number of unique unfamiliar Harris-Jacobson words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"FamiliarHarrisJacobsonWordCount()\t") + _("Returns the number of familiar Harris-Jacobson words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UnfamiliarDaleChallWordCount()\t") + _("Returns the number of unfamiliar New Dale-Chall words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UniqueUnfamiliarDaleChallWordCount()\t") + _("Returns the number of unique unfamiliar New Dale-Chall words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"FamiliarDaleChallWordCount()\t") + _("Returns the number of familiar Dale-Chall words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UnfamiliarSpacheWordCount()\t") + _("Returns the number of unfamiliar Spache words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UniqueUnfamiliarSpacheWordCount()\t") + _("Returns the number of unique unfamiliar Spache words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"FamiliarSpacheWordCount()\t") + _("Returns the number of familiar Spache words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"SixCharacterPlusWordCount()\t") + _("Returns the number of words consisting of six or more characters from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"SevenCharacterPlusWordCount()\t") + _("Returns the number of words consisting of seven or more characters from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"OneSyllableWordCount()\t") + _("Returns the number of monosyllabic words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"ThreeSyllablePlusWordCount()\t") + _("Returns the number of words consisting of three or more syllables from the document.\n\nThis function takes an argument specifying which numeral syllabizing method to use. These values are: Default or NumeralsFullySyllabized")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"WordCount()\t") + _("Returns the number of words from the document.\n\nThis function takes an argument specifying which text exclusion method to use. These values are: Default, DaleChall, and HarrisJacobson")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"NumeralCount()\t") + _("Returns the number of numerals from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"ProperNounCount()\t") + _("Returns the number of proper nouns from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UniqueWordCount()\t") + _("Returns the number of unique words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UniqueSixCharacterPlusWordCount()\t") + _("Returns the number of unique words consisting of six or more characters from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UniqueThreeSyllablePlusWordCount()\t") + _("Returns the number of unique words consisting of three or more syllables from the document.\n\nThis function takes an argument specifying which numeral syllabizing method to use. These values are: Default or NumeralsFullySyllabized")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UniqueOneSyllableWordCount()\t") + _("Returns the number of unique monosyllabic words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"HardFogWordCount()\t") + _("Returns the number of difficult Gunning Fog words.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"MiniWordCount()\t") + _("Returns the number of miniwords from the document.")).ToStdWstring());
+
+    m_sentenceFunctions.insert(wxString(_DT(L"SentenceCount()\t") + _("Returns the number of sentences from the document.\n\nThis function takes an argument specifying which text exclusion method to use. These values are: Default, DaleChall, HarrisJacobson, and GunningFog")).ToStdWstring());
+    m_sentenceFunctions.insert(wxString(_DT(L"IndependentClauseCount()\t") + _("Returns the number of units/independent clauses from the document.") + _DT(L"\n\n") + ReadabilityMessages::GetUnitNote()).ToStdWstring());
+
+    m_shortcuts.insert(wxString(_DT(L"B\t") + wxString::Format(_("Shortcut for %s."), _DT(L"SyllableCount(Default)"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"C\t") + wxString::Format(_("Shortcut for %s."), _DT(L"ThreeSyllablePlusWordCount(Default)"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"D\t") + wxString::Format(_("Shortcut for %s."), _DT(L"FamiliarDaleChallWordCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"F\t") + wxString::Format(_("Shortcut for %s."), _DT(L"HardFogWordCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"L\t") + wxString::Format(_("Shortcut for %s."), _DT(L"SixCharacterPlusWordCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"M\t") + wxString::Format(_("Shortcut for %s."), _DT(L"OneSyllableWordCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"R\t") + wxString::Format(_("Shortcut for %s."), _DT(L"CharacterCount(Default)"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"RP\t") + wxString::Format(_("Shortcut for %s."), _DT(L"CharacterPlusPunctuationCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"S\t") + wxString::Format(_("Shortcut for %s."), _DT(L"SentenceCount(Default)"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"U\t") + wxString::Format(_("Shortcut for %s."), _DT(L"IndependentClauseCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"UDC\t") + wxString::Format(_("Shortcut for %s."), _DT(L"UnfamiliarDaleChallWordCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"UUS\t") + wxString::Format(_("Shortcut for %s."), _DT(L"UniqueUnfamiliarSpacheWordCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"W\t") + wxString::Format(_("Shortcut for %s."), _DT(L"WordCount(Default)"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"X\t") + wxString::Format(_("Shortcut for %s."), _DT(L"SevenCharacterPlusWordCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"T\t") + wxString::Format(_("Shortcut for %s."), _DT(L"MiniWordCount()"))).ToStdWstring());
+
+    CreateControls();
+    Centre();
+
+    m_functionBrowser = new FunctionBrowserDlg(this, m_formulaCtrl, wxID_ANY);
+    wxGetApp().UpdateSideBarTheme(m_functionBrowser->GetSidebar());
+    m_functionBrowser->SetParameterSeparator(FormulaFormat::GetListSeparator());
+    m_functionBrowser->SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), _DT(L"custom-test-functions.html"));
+    m_functionBrowser->AddCategory(_("Operators").ToStdWstring(), m_operators);
+    m_functionBrowser->AddCategory(_("Logic").ToStdWstring(), m_logic);
+    m_functionBrowser->AddCategory(_("Math").ToStdWstring(), m_math);
+    m_functionBrowser->AddCategory(_("Statistics").ToStdWstring(), m_statistics);
+    m_functionBrowser->AddCategory(_("Custom Familiar Word Tests").ToStdWstring(), m_customFamiliarWords);
+    m_functionBrowser->AddCategory(_("Syllable/Character Counts").ToStdWstring(), m_generalDocumentStatistics);
+    m_functionBrowser->AddCategory(_("Word Counts").ToStdWstring(), m_wordFunctions);
+    m_functionBrowser->AddCategory(_("Sentence Counts").ToStdWstring(), m_sentenceFunctions);
+    m_functionBrowser->AddCategory(_("Shortcuts").ToStdWstring(), m_shortcuts);
+
+    m_functionBrowser->FinalizeCategories();
+
+    TransferDataToWindow();
+
+    m_sideBarBook->SetSelection(0);
+
+    return true;
+    }
+
+//------------------------------------------------------
+void CustomTestDlg::CreateControls()
+    {
+    wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
+
+    m_sideBarBook = new SideBarBook(this, wxID_ANY);
+
+    wxGetApp().UpdateSideBarTheme(m_sideBarBook->GetSideBar());
+
+    mainSizer->Add(m_sideBarBook, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+
+    m_sideBarBook->GetImageList().push_back(
+        wxGetApp().GetResourceManager().GetSVG(L"ribbon/bullet.svg"));
+
+    //general page
+        {
+        wxPanel* mainPage = new wxPanel(m_sideBarBook, ID_GENERAL_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
+        mainPage->SetSizer(mainPanelSizer);
+        m_sideBarBook->AddPage(mainPage, _("General Settings"), ID_GENERAL_PAGE, true);
+
+        //if no test name then we are in "add new test" mode
+        if (m_testName.empty())
+            {
+            wxStaticBoxSizer* nameBoxSizer = new wxStaticBoxSizer(new wxStaticBox(mainPage, wxID_ANY, _("Test name:")), wxVERTICAL);
+            mainPanelSizer->Add(nameBoxSizer, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+
+            m_testNameCtrl = new wxTextCtrl(nameBoxSizer->GetStaticBox(), ID_TEST_NAME_FIELD, wxEmptyString, wxDefaultPosition, wxDefaultSize,
+                                                  0, wxTextValidator(wxFILTER_NONE, &m_testName));
+            nameBoxSizer->Add(m_testNameCtrl, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+            mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+            }
+        //test type
+            {
+            wxBoxSizer* testTypeSizer = new wxBoxSizer(wxHORIZONTAL);
+            mainPanelSizer->Add(testTypeSizer, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+            testTypeSizer->Add(new wxStaticText(mainPage, wxID_STATIC, _("Test type:")), 0, wxALIGN_CENTER_VERTICAL);
+            testTypeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+
+            m_testTypeCombo = new wxComboBox(mainPage, ID_TEST_TYPE_COMBO, wxEmptyString,
+                                         wxDefaultPosition, wxDefaultSize, m_testTypes,
+                                         wxCB_DROPDOWN|wxCB_READONLY);
+            m_testTypeCombo->SetSelection(0);
+            testTypeSizer->Add(m_testTypeCombo);
+            }
+        // formula editor
+            {
+            wxStaticBoxSizer* formulaBoxSizer = new wxStaticBoxSizer(new wxStaticBox(mainPage,
+                wxID_ANY, _("Formula:")), wxVERTICAL);
+            mainPanelSizer->Add(formulaBoxSizer, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+
+            wxBoxSizer* formulaButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
+            wxBitmapButton* InsertFunctionButton = new wxBitmapButton(formulaBoxSizer->GetStaticBox(),
+                ID_INSERT_FUNCTION_BUTTON,
+                wxArtProvider::GetBitmapBundle(L"ID_FUNCTION"));
+            formulaButtonsSizer->Add(InsertFunctionButton);
+
+            wxBitmapButton* validateFormulaButton = new wxBitmapButton(formulaBoxSizer->GetStaticBox(),
+                ID_VALIDATE_FORMULA_BUTTON,
+                wxGetApp().GetResourceManager().GetSVG(L"ribbon/check.svg"));
+            formulaButtonsSizer->Add(validateFormulaButton);
+
+            formulaBoxSizer->Add(formulaButtonsSizer, 0, wxLEFT|wxTOP|wxRIGHT,
+                wxSizerFlags::GetDefaultBorder());
+            formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+
+            m_formulaCtrl = new CodeEditor(formulaBoxSizer->GetStaticBox(),
+                ID_FORMULA_FIELD, wxDefaultPosition,
+                wxSize(-1, FromDIP(wxSize(200, 200)).GetHeight()));
+            m_formulaCtrl->SetLanguage(wxSTC_LEX_LUA);
+
+            m_formulaCtrl->AddFunctionsOrClasses(m_math);
+            m_formulaCtrl->AddFunctionsOrClasses(m_logic);
+            m_formulaCtrl->AddFunctionsOrClasses(m_statistics);
+            m_formulaCtrl->AddFunctionsOrClasses(m_customFamiliarWords);
+            m_formulaCtrl->AddFunctionsOrClasses(m_generalDocumentStatistics);
+            m_formulaCtrl->AddFunctionsOrClasses(m_wordFunctions);
+            m_formulaCtrl->AddFunctionsOrClasses(m_sentenceFunctions);
+            m_formulaCtrl->AddFunctionsOrClasses(m_shortcuts);
+            m_formulaCtrl->Finalize();
+            formulaBoxSizer->Add(m_formulaCtrl, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+
+            // examples labels
+            formulaBoxSizer->Add(new wxStaticText(formulaBoxSizer->GetStaticBox(), wxID_STATIC,
+                _("Enter a formula, such as:")));
+            wxStaticText* formulaExample = new wxStaticText(formulaBoxSizer->GetStaticBox(), wxID_STATIC,
+                FormulaFormat::FormatMathExpressionFromUS(
+                    _DT(L"ROUND(206.835 - (84.6*(SyllableCount(Default)/WordCount(Default))) -\n"
+                         "(1.015*(WordCount(Default)/SentenceCount(Default))))")));
+            formulaExample->SetFont(wxFont(wxFontInfo().Family(wxFontFamily::wxFONTFAMILY_TELETYPE)));
+            formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+            formulaBoxSizer->Add(formulaExample, wxSizerFlags().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()*3));
+            formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+
+            formulaBoxSizer->Add(new wxStaticText(formulaBoxSizer->GetStaticBox(), wxID_STATIC,
+                _("or a function representing a familiar-word test:")));
+            formulaExample = new wxStaticText(formulaBoxSizer->GetStaticBox(), wxID_STATIC,
+                ReadabilityFormulaParser::GetCustomNewDaleChallSignature());
+            formulaExample->SetFont(wxFont(wxFontInfo().Family(wxFontFamily::wxFONTFAMILY_TELETYPE)));
+            formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+            formulaBoxSizer->Add(formulaExample, 0, wxLEFT, wxSizerFlags::GetDefaultBorder()*3);
+            formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+            }
+        }
+
+    //Familiar word options
+        {
+        wxPanel* WordListPanel = new wxPanel(m_sideBarBook, ID_WORD_LIST_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        m_sideBarBook->AddPage(WordListPanel, _("Familiar Words"), ID_WORD_LIST_PAGE, false);
+
+        //word lists
+            {
+            wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+            WordListPanel->SetSizer(panelSizer);
+            m_sideBarBook->AddSubPage(WordListPanel, _("Word Lists"), ID_WORD_LIST_PAGE, false, 0);
+
+            wxPropertyGridManager* pgMan = new wxPropertyGridManager(WordListPanel, ID_WORD_LIST_PG, wxDefaultPosition, wxDefaultSize,wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
+            m_wordListsPropertyGrid = pgMan->AddPage();
+            //custom word list
+            m_wordListsPropertyGrid->Append(new wxPropertyCategory(GetCustomFamiliarWordListLabel()) );
+            m_wordListsPropertyGrid->Append(new wxBoolProperty(GetIncludeCustomListLabel(),wxPG_LABEL,false));
+            m_wordListsPropertyGrid->SetPropertyAttribute(GetIncludeCustomListLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_wordListsPropertyGrid->SetPropertyHelpString(GetIncludeCustomListLabel(), _("Check this option to use your own word list to determine if a word is familiar."));
+
+            m_wordListsPropertyGrid->Append(new WordListProperty(GetFileContainingFamiliarWordsLabel(),wxPG_LABEL));
+            m_wordListsPropertyGrid->SetPropertyAttribute(GetFileContainingFamiliarWordsLabel(),wxPG_DIALOG_TITLE,_("Edit Word List"));
+            m_wordListsPropertyGrid->SetPropertyAttribute(GetFileContainingFamiliarWordsLabel(),wxPG_HELP_PATH,wxGetApp().GetMainFrame()->GetHelpDirectory());
+            m_wordListsPropertyGrid->SetPropertyAttribute(GetFileContainingFamiliarWordsLabel(),wxPG_TOPIC_PATH,_DT(L"document-analysis.html"));
+            m_wordListsPropertyGrid->SetPropertyHelpString(GetFileContainingFamiliarWordsLabel(), _("Enter the path to the familiar-word list into this field. This list must be a text file where each word is separated by a space, tab, comma, semicolon, or new line."));
+
+            wxPGChoices stemLanguages;
+            for (size_t i = 0; i < static_cast<size_t>(stemming::stemming_type::STEMMING_TYPE_COUNT); ++i)
+                {
+                stemLanguages.Add(ProjectReportFormat::GetStemmingDisplayName(static_cast<stemming::stemming_type>(i)));
+                }
+            m_wordListsPropertyGrid->Append(new wxEnumProperty(GetStemmingLanguageLabel(), wxPG_LABEL, stemLanguages, 0) );
+            m_wordListsPropertyGrid->SetPropertyHelpString(GetStemmingLanguageLabel(), _("Select from this list the stemming method (if any) to use when comparing your familiar words with the words in a document."));
+
+            //standard word lists
+            m_wordListsPropertyGrid->Append(new wxPropertyCategory(GetStandardWordListsLabel()) );
+            m_wordListsPropertyGrid->Append(new wxBoolProperty(GetIncludeDCWordListLabel(),wxPG_LABEL,false));
+            m_wordListsPropertyGrid->SetPropertyAttribute(GetIncludeDCWordListLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_wordListsPropertyGrid->SetPropertyHelpString(GetIncludeDCWordListLabel(), _("Check this option to use the New Dale-Chall word list (along with any other selected word lists) to determine if a word is familiar."));
+
+            m_wordListsPropertyGrid->Append(new wxBoolProperty(GetIncludeSpacheWordListLabel(),wxPG_LABEL,false));
+            m_wordListsPropertyGrid->SetPropertyAttribute(GetIncludeSpacheWordListLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_wordListsPropertyGrid->SetPropertyHelpString(GetIncludeSpacheWordListLabel(), _("Check this option to use the Spache Revised word list (along with any other selected word lists) to determine if a word is familiar."));
+
+            m_wordListsPropertyGrid->Append(new wxBoolProperty(GetIncludeHJWordListLabel(),wxPG_LABEL,false));
+            m_wordListsPropertyGrid->SetPropertyAttribute(GetIncludeHJWordListLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_wordListsPropertyGrid->SetPropertyHelpString(GetIncludeHJWordListLabel(), _("Check this option to use the Harris-Jacobson word list (along with any other selected word lists) to determine if a word is familiar."));
+
+            m_wordListsPropertyGrid->Append(new wxBoolProperty(GetIncludeStockerWordListLabel(),wxPG_LABEL,false));
+            m_wordListsPropertyGrid->SetPropertyAttribute(GetIncludeStockerWordListLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_wordListsPropertyGrid->SetPropertyHelpString(GetIncludeStockerWordListLabel(), _("Check this option to include Stocker's supplementary word list for Catholic students (along with any other selected word lists) to determine if a word is familiar."));
+
+            //other options
+            m_wordListsPropertyGrid->Append(new wxPropertyCategory(GetOtherLabel()) );
+            m_wordListsPropertyGrid->Append(new wxBoolProperty(GetFamiliarWordsOnAllLabel(),wxPG_LABEL,false));
+            m_wordListsPropertyGrid->SetPropertyAttribute(GetFamiliarWordsOnAllLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_wordListsPropertyGrid->SetPropertyHelpString(GetFamiliarWordsOnAllLabel(), _("Check this option to consider words familiar only if they appear on your custom list and other selected lists.\n\nThis option is only recommended for special situations where you only want to find words that appear within a union of your word list and another list(s) (e.g., Spache)."));
+
+            pgMan->SetDescBoxHeight(FromDIP(wxSize(125,125)).GetHeight());
+
+            pgMan->SelectProperty(GetCustomFamiliarWordListLabel());
+
+            Connect(pgMan->GetId(), wxEVT_PG_CHANGED, wxPropertyGridEventHandler(CustomTestDlg::OnPropertyGridChange) );
+
+            panelSizer->Add(pgMan, 1, wxEXPAND);
+            }
+        //proper nouns and numbers
+            {
+            wxPanel* Panel = new wxPanel(m_sideBarBook, ID_PROPER_NUMERALS_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+            wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+            Panel->SetSizer(panelSizer);
+            m_sideBarBook->AddSubPage(Panel, _("Proper Nouns & Numerals"), ID_PROPER_NUMERALS_PAGE, false, 0);
+
+            wxPropertyGridManager* pgMan = new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
+            m_properNounsNumbersPropertyGrid = pgMan->AddPage();
+            //proper nouns
+            m_properNounsNumbersPropertyGrid->Append(new wxPropertyCategory(GetProperNounsLabel()) );
+            wxPGChoices properNounMethods;
+            properNounMethods.Add(_("Count as unfamiliar"));
+            properNounMethods.Add(_("Count as familiar"));
+            properNounMethods.Add(_("Count only first occurrence of each as unfamiliar"));
+            m_properNounsNumbersPropertyGrid->Append(new wxEnumProperty(GetFamiliarityLabel(), wxPG_LABEL, properNounMethods, 1) );
+            m_properNounsNumbersPropertyGrid->SetPropertyHelpString(GetFamiliarityLabel(), _("Controls how proper nouns are handled in terms of being familiar words."));
+            //nouns
+            m_properNounsNumbersPropertyGrid->Append(new wxPropertyCategory(GetNumeralsLabel()) );
+            m_properNounsNumbersPropertyGrid->Append(new wxBoolProperty(GetNumeralsAsFamiliarLabel(),wxPG_LABEL,true));
+            m_properNounsNumbersPropertyGrid->SetPropertyAttribute(GetNumeralsAsFamiliarLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_properNounsNumbersPropertyGrid->SetPropertyHelpString(GetNumeralsAsFamiliarLabel(), _("Check this to also consider numeric words as familiar."));
+
+            pgMan->SelectProperty(GetProperNounsLabel());
+
+            panelSizer->Add(pgMan, 1, wxEXPAND);
+            }
+        }
+
+    //new project wizard options
+        {
+        wxPanel* wizardPage = new wxPanel(m_sideBarBook, ID_CLASSIFICATION_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxBoxSizer* wizardPageSizer = new wxBoxSizer(wxVERTICAL);
+        wizardPage->SetSizer(wizardPageSizer);
+        m_sideBarBook->AddPage(wizardPage, _("Classification"), ID_CLASSIFICATION_PAGE, false);
+
+        m_associationPropertyGrid = new wxPropertyGrid(wizardPage);
+        m_associationPropertyGrid->Append(new wxPropertyCategory(_("Associate with industry")) );
+        for (size_t i = 0; i < m_professionNames.GetCount(); ++i)
+            {
+            m_associationPropertyGrid->Append(new wxBoolProperty(m_professionNames[i],wxPG_LABEL,false));
+            m_associationPropertyGrid->SetPropertyAttribute(m_professionNames[i], wxPG_BOOL_USE_CHECKBOX, true);
+            }
+        m_associationPropertyGrid->Append(new wxPropertyCategory(_("Associate with document type")) );
+        for (size_t i = 0; i < m_documentNames.GetCount(); ++i)
+            {
+            m_associationPropertyGrid->Append(new wxBoolProperty(m_documentNames[i],wxPG_LABEL,false));
+            m_associationPropertyGrid->SetPropertyAttribute(m_documentNames[i], wxPG_BOOL_USE_CHECKBOX, true);
+            }
+
+        wizardPageSizer->Add(m_associationPropertyGrid, 1, wxEXPAND);
+        }
+
+    mainSizer->Add(CreateSeparatedButtonSizer(wxOK|wxCANCEL|wxHELP), 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+
+    SetSizerAndFit(mainSizer);
+
+    if (m_testNameCtrl)
+        { m_testNameCtrl->SetFocus(); }
+
+    UpdateOptions();
+
+    if (m_wordListsPropertyGrid)
+        { m_wordListsPropertyGrid->FitColumns(); }
+    if (m_properNounsNumbersPropertyGrid)
+        { m_properNounsNumbersPropertyGrid->FitColumns(); }
+    if (m_associationPropertyGrid)
+        { m_associationPropertyGrid->FitColumns(); }
+    }
+
+//---------------------------------------------
+void CustomTestDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
+    {
+    TransferDataFromWindow();
+    //trim off whitespace off of test name and then validate it (if applicable)
+    m_testName.Trim(true).Trim(false);
+
+    //validate the formula
+    if (!ValidateFormula())
+        { return; }
+
+    //validate the test name
+    if (m_testNameCtrl)
+        {
+        //if a new test, then make sure it isn't empty
+        if (m_testName.empty())
+            {
+            wxMessageBox(_("Please enter a test name."),
+                    _("Error"), wxOK|wxICON_EXCLAMATION);
+            return;
+            }
+        //or that the name is already taken
+        if (std::find(BaseProject::m_custom_word_tests.begin(), BaseProject::m_custom_word_tests.end(), m_testName) != BaseProject::m_custom_word_tests.end())
+            {
+            wxMessageBox(
+                wxString::Format(_("There is a test named \"%s\" already. Please enter a different name."), m_testName),
+                _("Error"), wxOK|wxICON_ERROR);
+            return;
+            }
+        //check for the same name in the standard tests too
+        readability::readability_test_collection<> standardTests;
+        BaseProject::ResetStandardReadabilityTests(standardTests);
+        if (standardTests.has_test(m_testName))
+            {
+            wxMessageBox(
+                wxString::Format(_("There is a standard test with the name \"%s\" already. Please enter a different name."), m_testName),
+                _("Error"), wxOK|wxICON_ERROR);
+            return;
+            }
+        //check against names of statistics
+        if (m_testName.CmpNoCase(BaseProjectView::GetAverageLabel()) == 0 ||
+            m_testName.CmpNoCase(BaseProjectView::GetMedianLabel()) == 0 ||
+            m_testName.CmpNoCase(BaseProjectView::GetModeLabel()) == 0 ||
+            m_testName.CmpNoCase(BaseProjectView::GetStdDevLabel()) == 0)
+            {
+            wxMessageBox(
+                wxString::Format(_("The name \"%s\" is already in use as a statistic. Please enter a different name."), m_testName),
+                _("Error"), wxOK|wxICON_ERROR);
+            return;
+            }
+        }
+    if (IsIncludingCustomWordList() && !wxFile::Exists(GetWordListFilePath()) )
+        {
+        wxMessageBox(_("Familiar word list file not found."),
+                _("Error"), wxOK|wxICON_ERROR);
+        return;
+        }
+
+    //ordering of this combobox doesn't match up exactly with enum that it reflects, so handle that here
+    switch (m_testTypeCombo->GetSelection())
+        {
+    case 0:
+        m_testType = 0;
+        break;
+    case 1:
+        m_testType = 1;
+        break;
+    //we don't use all the values in the readability_test_type enum
+    case 2:
+        m_testType = 3;
+        break;
+    default:
+        m_testType = 0;
+        };
+
+    if (GetStemmingType() == stemming::stemming_type::german &&
+        static_cast<readability::proper_noun_counting_method>(GetProperNounMethod()) != readability::proper_noun_counting_method::all_proper_nouns_are_unfamiliar)
+        {
+        std::vector<WarningMessage>::iterator warningIter =
+            wxGetApp().GetAppOptions().GetWarning(_DT(L"german-no-proper-noun-support"));
+        if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+            warningIter->ShouldBeShown())
+            { wxMessageBox(warningIter->GetMessage(), wxGetApp().GetAppName(), warningIter->GetFlags(), this); }
+        SetProperNounMethod(static_cast<int>(readability::proper_noun_counting_method::all_proper_nouns_are_unfamiliar));
+        TransferDataToWindow();
+        }
+
+    if (IsModal())
+        { EndModal(wxID_OK); }
+    else
+        { Show(false); }
+    }
+
+//---------------------------------------------
+void CustomTestDlg::SetStemmingType(stemming::stemming_type stemType)
+    {
+    m_wordListsPropertyGrid->SetPropertyValue(GetStemmingLanguageLabel(), static_cast<int>(stemType));
+    }
+
+//-------------------------------------------------------------
+void CustomTestDlg::SelectPage(const wxWindowID pageId)
+    {
+    for (size_t i = 0; i < m_sideBarBook->GetPageCount(); ++i)
+        {
+        wxWindow* page = m_sideBarBook->GetPage(i);
+        if (page && page->GetId() == pageId)
+            { m_sideBarBook->SetSelection(i); }
+        }
+    }
+
+//-------------------------------------------------------------
+void CustomTestDlg::OnPropertyGridChange(wxPropertyGridEvent& event)
+    {
+    if (event.GetProperty()->GetName() == GetIncludeCustomListLabel() ||
+        event.GetProperty()->GetName() == GetIncludeDCWordListLabel() ||
+        event.GetProperty()->GetName() == GetIncludeSpacheWordListLabel() ||
+        event.GetProperty()->GetName() == GetIncludeHJWordListLabel() ||
+        event.GetProperty()->GetName() == GetIncludeStockerWordListLabel())
+        {
+        UpdateOptions();
+        }
+    event.Skip();
+    }
