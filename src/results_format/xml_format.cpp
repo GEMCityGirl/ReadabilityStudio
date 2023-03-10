@@ -67,9 +67,13 @@ long XmlFormat::GetAttributeLongValue(const wchar_t* sectionStart,
                                       const wchar_t* sectionEnd,
                                       const wchar_t* attributeTag)
     {
+    wxASSERT_MSG(sectionStart && sectionEnd && attributeTag,
+        wxString::Format(L"Invalid pointer passed to %s", __WXFUNCTION__));
+    if (sectionStart == nullptr || sectionEnd == nullptr || attributeTag == nullptr)
+        { return 0; }
+
     const wchar_t* currentPos = std::wcsstr(sectionStart, attributeTag);
-    if (currentPos && attributeTag &&
-        (currentPos < sectionEnd) )
+    if (currentPos && (currentPos < sectionEnd) )
         {
         currentPos = std::wcschr(currentPos, L'\"');
         if (currentPos)
@@ -87,6 +91,12 @@ double XmlFormat::GetAttributeDoubleValue(const wchar_t* sectionStart,
                                           const wchar_t* attributeTag,
                                           const double defaultValue)
     {
+    wxASSERT_MSG(sectionStart && sectionEnd && entityTag && attributeTag,
+        wxString::Format(L"Invalid pointer passed to %s", __WXFUNCTION__));
+    if (sectionStart == nullptr || sectionEnd == nullptr ||
+        entityTag == nullptr || attributeTag == nullptr)
+        { return 0.0; }
+
     const wchar_t* currentPos =
         lily_of_the_valley::html_extract_text::find_element(sectionStart, sectionEnd,
             entityTag, std::wcslen(entityTag));
@@ -114,13 +124,17 @@ long XmlFormat::GetAttributeLongValue(const wchar_t* sectionStart,
                                       const wchar_t* attributeTag,
                                       const long defaultValue)
     {
+    wxASSERT_MSG(sectionStart && sectionEnd && entityTag && attributeTag,
+        wxString::Format(L"Invalid pointer passed to %s", __WXFUNCTION__));
+    if (sectionStart == nullptr || sectionEnd == nullptr ||
+        entityTag == nullptr || attributeTag == nullptr)
+        { return 0; }
+
     const wchar_t* currentPos = std::wcsstr(sectionStart, entityTag);
-    if (currentPos && entityTag &&
-        (currentPos < sectionEnd) )
+    if (currentPos && (currentPos < sectionEnd) )
         {
         currentPos = std::wcsstr(currentPos, attributeTag);
-        if (currentPos && attributeTag &&
-            (currentPos < sectionEnd) )
+        if (currentPos && (currentPos < sectionEnd) )
             {
             currentPos = std::wcschr(currentPos, L'\"');
             if (currentPos)
@@ -139,9 +153,13 @@ wxString XmlFormat::GetAttributeString(const wchar_t* sectionStart,
                                        const wchar_t* sectionEnd,
                                        const wchar_t* attributeTag)
     {
+    wxASSERT_MSG(sectionStart && sectionEnd && attributeTag,
+        wxString::Format(L"Invalid pointer passed to %s", __WXFUNCTION__));
+    if (sectionStart == nullptr || sectionEnd == nullptr || attributeTag == nullptr)
+        { return wxString{}; }
+
     const wchar_t* currentPos = std::wcsstr(sectionStart, attributeTag);
-    if (currentPos && attributeTag &&
-        (currentPos < sectionEnd) )
+    if (currentPos && (currentPos < sectionEnd) )
         {
         currentPos = std::wcschr(currentPos, L'\"');
         if (currentPos && (currentPos < sectionEnd))
@@ -166,6 +184,13 @@ wxFont XmlFormat::GetFont(const wchar_t* sectionStart,
     {
     wxFont font = defaultFont.IsOk() ?
         defaultFont : wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
+
+    wxASSERT_MSG(sectionStart && sectionEnd && entityTag,
+        wxString::Format(L"Invalid pointer passed to %s", __WXFUNCTION__));
+    if (sectionStart == nullptr || sectionEnd == nullptr ||
+        entityTag == nullptr)
+        { return font; }
+
     // get the font
     const size_t startTagLength = std::wcslen(entityTag);
     const wchar_t* currentPos =
@@ -241,6 +266,13 @@ wxColour XmlFormat::GetColor(const wchar_t* sectionStart,
                              const wxColour& defaultValue)
     {
     wxColour color = defaultValue;
+
+    wxASSERT_MSG(sectionStart && sectionEnd && entityTag,
+        wxString::Format(L"Invalid pointer passed to %s", __WXFUNCTION__));
+    if (sectionStart == nullptr || sectionEnd == nullptr ||
+        entityTag == nullptr)
+        { return color; }
+
     // get the color
     const size_t startTagLength = std::wcslen(entityTag);
     const wchar_t* currentPos =
@@ -292,6 +324,13 @@ wxColour XmlFormat::GetColorWithInclusionTag(const wchar_t* sectionStart,
     {
     wxColour color = defaultValue;
     include = includeDefaultValue;
+
+    wxASSERT_MSG(sectionStart && sectionEnd && entityTag,
+        wxString::Format(L"Invalid pointer passed to %s", __WXFUNCTION__));
+    if (sectionStart == nullptr || sectionEnd == nullptr ||
+        entityTag == nullptr)
+        { return color; }
+
     //get the color
     const size_t startTagLength = std::wcslen(entityTag);
     const wchar_t* currentPos =
@@ -347,9 +386,12 @@ bool XmlFormat::GetBoolean(const wchar_t* sectionStart,
                            const wchar_t* entityTag,
                            const bool defaultValue)
     {
-    wxASSERT(sectionStart && sectionEnd && entityTag);
-    if (!sectionStart || !sectionEnd || !entityTag)
+    wxASSERT_MSG(sectionStart && sectionEnd && entityTag,
+        wxString::Format(L"Invalid pointer passed to %s", __WXFUNCTION__));
+    if (sectionStart == nullptr || sectionEnd == nullptr ||
+        entityTag == nullptr)
         { return defaultValue; }
+
     const size_t startTagLength = std::wcslen(entityTag);
     const wchar_t* currentPos =
         lily_of_the_valley::html_extract_text::find_element(
@@ -389,6 +431,7 @@ void XmlFormat::GetStringsWithExtraInfo(const wchar_t* sectionStart,
                                         std::vector<comparable_first_pair<wxString, wxString>>& strings)
     {
     strings.clear();
+
     wxASSERT(sectionStart && sectionEnd && entityTag.length() && attributeTag.length());
     if (!sectionStart || !sectionEnd || entityTag.length() == 0 || attributeTag.length() == 0)
         { return; }
@@ -442,10 +485,13 @@ void XmlFormat::GetStrings(const wchar_t* sectionStart,
                            const wchar_t* entityTag,
                            std::vector<wxString>& strings)
     {
-    wxASSERT(sectionStart && sectionEnd && entityTag);
-    if (!sectionStart || !sectionEnd || !entityTag)
-        { return; }
     strings.clear();
+
+    wxASSERT_MSG(sectionStart && sectionEnd && entityTag,
+        wxString::Format(L"Invalid pointer passed to %s", __WXFUNCTION__));
+    if (sectionStart == nullptr || sectionEnd == nullptr ||
+        entityTag == nullptr)
+        { return; }
 
     wxString value;
     const size_t startTagLength = std::wcslen(entityTag);
@@ -490,9 +536,12 @@ wxString XmlFormat::GetString(const wchar_t* sectionStart,
                               const wchar_t* sectionEnd,
                               const wchar_t* entityTag)
     {
-    wxASSERT(sectionStart && sectionEnd && entityTag);
-    if (!sectionStart || !sectionEnd || !entityTag)
+    wxASSERT_MSG(sectionStart && sectionEnd && entityTag,
+        wxString::Format(L"Invalid pointer passed to %s", __WXFUNCTION__));
+    if (sectionStart == nullptr || sectionEnd == nullptr ||
+        entityTag == nullptr)
         { return wxString{}; }
+
     wxString value;
     const size_t startTagLength = std::wcslen(entityTag);
     const wchar_t* currentPos =
@@ -530,8 +579,10 @@ long XmlFormat::GetLong(const wchar_t* sectionStart,
                         const wchar_t* entityTag,
                         const long defaultValue)
     {
-    wxASSERT(sectionStart && sectionEnd && entityTag);
-    if (!sectionStart || !sectionEnd || !entityTag)
+    wxASSERT_MSG(sectionStart && sectionEnd && entityTag,
+        wxString::Format(L"Invalid pointer passed to %s", __WXFUNCTION__));
+    if (sectionStart == nullptr || sectionEnd == nullptr ||
+        entityTag == nullptr)
         { return defaultValue; }
 
     const size_t startTagLength = std::wcslen(entityTag);
@@ -571,9 +622,12 @@ double XmlFormat::GetDouble(const wchar_t* sectionStart,
                             const wchar_t* entityTag,
                             const double defaultValue)
     {
-    wxASSERT(sectionStart && sectionEnd && entityTag);
-    if (!sectionStart || !sectionEnd || !entityTag)
+    wxASSERT_MSG(sectionStart && sectionEnd && entityTag,
+        wxString::Format(L"Invalid pointer passed to %s", __WXFUNCTION__));
+    if (sectionStart == nullptr || sectionEnd == nullptr ||
+        entityTag == nullptr)
         { return defaultValue; }
+
     const size_t startTagLength = std::wcslen(entityTag);
     const wchar_t* currentPos =
         lily_of_the_valley::html_extract_text::find_element(
