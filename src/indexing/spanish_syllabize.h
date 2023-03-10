@@ -34,6 +34,7 @@ namespace grammar
     class spanish_syllabize final : public base_syllabize
         {
     public:
+        /// @private
         spanish_syllabize() noexcept = default;
         /** @brief Main interface for syllabizing a block of text.
             @returns The number of syllables from a block of text.
@@ -422,10 +423,7 @@ namespace grammar
                     traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_A) &&
                     traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_D) &&
                     (traits::case_insensitive_ex::eq(word[position+4], common_lang_constants::LOWER_O) || traits::case_insensitive_ex::eq(word[position+4], common_lang_constants::LOWER_A)) )
-                    {
-                    ++position;
-                    --vowel_block_size;
-                    }
+                    { ++position; }
                 else
                     {
                     //two strongs next to each other will split
