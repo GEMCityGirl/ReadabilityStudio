@@ -287,7 +287,7 @@ void BatchProjectView::OnAddToDictionary([[maybe_unused]] wxCommandEvent& event)
             endingQuote = reportString.find(wxT('\"'), ++startingQuote);//find terminating quote
             if (endingQuote == wxNOT_FOUND)
                 { break; }
-            misspellings.Add(reportString.Mid(startingQuote, endingQuote-startingQuote));
+            misspellings.Add(reportString.substr(startingQuote, endingQuote-startingQuote));
             startingQuote = reportString.find(wxT('\"'), endingQuote+1);//next starting quote
             }
         ListDlg misspellingDlg(GetDocFrame(), misspellings, true,
@@ -331,7 +331,7 @@ void BatchProjectView::OnDblClick(wxListEvent& event)
             endingQuote = reportString.find(wxT('\"'), ++startingQuote);//find terminating quote
             if (endingQuote == wxNOT_FOUND)
                 { break; }
-            misspellings.Add(reportString.Mid(startingQuote, endingQuote-startingQuote));
+            misspellings.Add(reportString.substr(startingQuote, endingQuote-startingQuote));
             startingQuote = reportString.find(wxT('\"'), endingQuote+1);//next starting quote
             }
         ListDlg misspellingDlg(GetDocFrame(), misspellings, true,

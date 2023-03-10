@@ -857,7 +857,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxEmptyString*/)
         }
 
     Wisteria::ZipCatalog archive(excelPath);
-    if (archive.Find(wxT("xl/workbook.xml")) == nullptr)
+    if (archive.find(wxT("xl/workbook.xml")) == nullptr)
         {
         wxMessageBox(_("Unable to open Excel document, file is either password-protected or corrupt."), wxGetApp().GetAppDisplayName(),
             wxICON_EXCLAMATION|wxOK);

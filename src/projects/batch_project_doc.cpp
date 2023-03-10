@@ -268,7 +268,7 @@ bool BatchProjectDoc::OnNewDocument()
             {
             const html_utilities::html_url_format hformat(resolvePath.GetResolvedPath());
             wxString domain = hformat.get_root_domain().c_str();
-            const int dotPos = domain.Find(wxT('.'), true);
+            const int dotPos = domain.find(wxT('.'), true);
             if (dotPos != wxNOT_FOUND)
                 { domain.Truncate(dotPos); }
             SetTitle(domain);

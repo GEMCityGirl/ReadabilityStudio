@@ -3270,7 +3270,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                           wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }
                         ));
             }
-        if (archive.Find(wxT("word/document.xml")) == nullptr)
+        if (archive.find(wxT("word/document.xml")) == nullptr)
             {
             LogMessage(_("Unable to open Word document, file is either password-protected or corrupt."), wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK);
             return std::make_pair(false, wxEmptyString);
@@ -3440,14 +3440,14 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                           wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }
                         ));
             }
-        if (archive.Find(wxT("ppt/slides/slide1.xml")) == nullptr)
+        if (archive.find(wxT("ppt/slides/slide1.xml")) == nullptr)
             {
             LogMessage(_("Unable to open PowerPoint document, file is either password-protected or corrupt."), wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK);
             return std::make_pair(false, wxEmptyString);
             }
         for (size_t i = 1;/*breaks when no more pages are found*/;++i)
             {
-            if (archive.Find(wxString::Format(wxT("ppt/slides/slide%zu.xml"),i)) )
+            if (archive.find(wxString::Format(wxT("ppt/slides/slide%zu.xml"),i)) )
                 {
                 const wxString pptxFileText = archive.ReadTextFile(wxString::Format(wxT("ppt/slides/slide%zu.xml"),i));
                 try
