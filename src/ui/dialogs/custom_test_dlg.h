@@ -1,3 +1,14 @@
+/** @addtogroup UI
+    @brief Classes for the user interface.
+    @date 2005-2023
+    @copyright Oleander Software, Ltd.
+    @author Blake Madden
+    @details This program is free software; you can redistribute it and/or modify
+     it under the terms of the 3-Clause BSD License.
+
+     SPDX-License-Identifier: BSD-3-Clause
+* @{*/
+
 #ifndef __CUSTOM_TEST_DLG_H__
 #define __CUSTOM_TEST_DLG_H__
 
@@ -32,31 +43,13 @@ public:
     using OutputStringType = traits::case_insensitive_wstring_ex;
     /// @brief Constructor.
     CustomTestDlg()
-        : m_functionBrowser(nullptr),
-          m_sideBarBook(nullptr),
-          m_testNameCtrl(nullptr),
-          m_formulaCtrl(nullptr),
-          m_testTypeCombo(nullptr),
-          m_wordListsPropertyGrid(nullptr),
-          m_properNounsNumbersPropertyGrid(nullptr),
-          m_associationPropertyGrid(nullptr),
-          m_testType(0)
-        {
-        LoadStringConstants();
-        }
-    CustomTestDlg(wxWindow* parent, wxWindowID id = wxID_ANY,
-                      const wxString& testName = wxEmptyString,
-                      const wxPoint& pos = wxDefaultPosition,
-                      const wxSize& size = wxSize(600, 600),
-                      long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER)
-                      : m_functionBrowser(nullptr),
-                        m_sideBarBook(nullptr),
-                        m_testNameCtrl(nullptr),
-                        m_formulaCtrl(nullptr),
-                        m_testTypeCombo(nullptr),
-                        m_associationPropertyGrid(nullptr),
-                        m_testName(testName),
-                        m_testType(0)
+        { LoadStringConstants(); }
+    explicit CustomTestDlg(wxWindow* parent, wxWindowID id = wxID_ANY,
+                  const wxString& testName = wxEmptyString,
+                  const wxPoint& pos = wxDefaultPosition,
+                  const wxSize& size = wxSize(600, 600),
+                  long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER)
+                :  m_testName(testName)
         {
         LoadStringConstants();
         Create(parent, id, testName.empty() ? wxString(_("Add Custom Test")) :
@@ -475,5 +468,7 @@ private:
 
     wxDECLARE_EVENT_TABLE();
     };
+
+/** @}*/
 
 #endif //__CUSTOM_TEST_DLG_H__

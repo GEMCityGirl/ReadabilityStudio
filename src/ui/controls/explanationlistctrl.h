@@ -65,6 +65,7 @@ public:
     ///     for the currently selected item in the list.
     void UpdateExplanationDisplay();
     /** @brief Saves the control.
+        @param filePath The path to save the report to.
         @param exportOptions Options for how to format the output.*/
     bool Save(const wxFileName& filePath,
               const ExplanationListExportOptions exportOptions =

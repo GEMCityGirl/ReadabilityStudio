@@ -1,4 +1,12 @@
-﻿#include <wx/wx.h>
+﻿///////////////////////////////////////////////////////////////////////////////
+// Name:        tools_options_dlg.cpp
+// Author:      Blake Madden
+// Copyright:   (c) 2005-2023 Blake Madden
+// Licence:     3-Clause BSD licence
+// SPDX-License-Identifier: BSD-3-Clause
+///////////////////////////////////////////////////////////////////////////////
+
+#include <wx/wx.h>
 #include <wx/cmndata.h>
 #include <wx/colordlg.h>
 #include <wx/bannerwindow.h>
@@ -594,74 +602,18 @@ void ToolsOptionsDlg::OnDolchNounHighlightColorSelect([[maybe_unused]] wxCommand
 ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= nullptr*/,
                                  const ToolSections sectionsToInclude /*= AllSections*/)  :
     m_readabilityProjectDoc(project),
-    m_sectionsBeingShown(project ? sectionsToInclude : AllSections),//general program options needs to show everything
-    m_ignoreCopyrightsCheckBox(nullptr),
-    m_aggressiveExclusionCheckBox(nullptr),
-    m_ignoreCitationsCheckBox(nullptr),
-    m_ignoreFileAddressesCheckBox(nullptr),
-    m_ignoreNumeralsCheckBox(nullptr),
-    m_ignoreProperNounsCheckBox(nullptr),
-    m_includeExcludedPhraseFirstOccurrenceCheckBox(nullptr),
-    m_excludedPhrasesPathFilePathEdit(nullptr),
-    m_excludedPhrasesEditBrowseButton(nullptr),
-    m_ignoreBlankLinesCheckBox(nullptr),
-    m_ignoreIndentingCheckBox(nullptr),
-    m_highlightColorButton(nullptr),
-    m_excludedHighlightColorButton(nullptr),
-    m_FontButton(nullptr),
-    m_xAxisFontButton(nullptr),
-    m_yAxisFontButton(nullptr),
-    m_graphTopTitleFontButton(nullptr),
-    m_graphBottomTitleFontButton(nullptr),
-    m_graphLeftTitleFontButton(nullptr),
-    m_graphRightTitleFontButton(nullptr),
-    m_sideBar(nullptr),
-    m_stippleFilePathEdit(nullptr),
-    m_filePathEdit(nullptr),
-    m_includeIncompleteSentSizeincludeIncompleteLabel(nullptr),
-    m_includeIncompleteSentSizeWordsLabel(nullptr),
-    m_fileBrowseButton(nullptr),
-    m_syllableLabel(nullptr),
-    m_syllableCombo(nullptr),
-    m_exclusionBlockTagsCombo(nullptr),
-    m_exclusionBlockTagsLabel(nullptr),
-    m_DolchConjunctionsColorButton(nullptr),
-    m_DolchPrepositionsColorButton(nullptr),
-    m_DolchPronounsColorButton(nullptr),
-    m_DolchAdverbsColorButton(nullptr),
-    m_DolchAdjectivesColorButton(nullptr),
-    m_DolchVerbsColorButton(nullptr),
-    m_DolchNounColorButton(nullptr),
-    m_readabilityTestsPropertyGrid(nullptr),
-    m_gradeLevelPropertyGrid(nullptr),
-    m_grammarPropertyGrid(nullptr),
-    m_wordsBreakdownPropertyGrid(nullptr),
-    m_sentencesBreakdownPropertyGrid(nullptr),
-    m_statisticsPropertyGrid(nullptr),
-    m_generalGraphPropertyGrid(nullptr),
-    m_readabilityGraphPropertyGrid(nullptr),
-    m_barChartPropertyGrid(nullptr),
-    m_boxPlotsPropertyGrid(nullptr),
-    m_histogramPropertyGrid(nullptr),
-    m_readTestsSyllableLabel(nullptr),
-    m_textExclusionLabel(nullptr),
-    m_addFileButton(nullptr),
-    m_addFilesButton(nullptr),
-    m_deleteFileButton(nullptr),
-    m_fileList(nullptr),
-    m_fileData(new ListCtrlExDataProvider),
-    m_duplicateWordHighlightColorButton(nullptr),
-    m_wordyPhraseHighlightColorButton(nullptr),
-    //project settings
+    // general program options needs to show everything
+    m_sectionsBeingShown(project ? sectionsToInclude : AllSections),
+    // project settings
     m_projectLanguage(static_cast<int>(project ? project->GetProjectLanguage() : wxGetApp().GetAppOptions().GetProjectLanguage())),
     m_reviewer(project ? project->GetReviewer() : wxGetApp().GetAppOptions().GetReviewer()),
     m_status(project ? project->GetStatus() : wxGetApp().GetAppOptions().GetStatus()),
     m_description((project && project->GetSourceFilesInfo().size()) ? project->GetSourceFilesInfo().at(0).second : wxString()),
     m_appendedDocumentFilePath(project ? project->GetAppendedDocumentFilePath() : wxGetApp().GetAppOptions().GetAppendedDocumentFilePath()),
-    //document storage/linking information
+    // document storage/linking information
     m_documentStorageMethod(project ? static_cast<int>(project->GetDocumentStorageMethod()) : static_cast<int>(wxGetApp().GetAppOptions().GetDocumentStorageMethod())),
     m_filePath(project ? project->GetOriginalDocumentFilePath() : wxString{}),
-    //text view highlighting
+    // text view highlighting
     m_textHighlightMethod(project ? static_cast<int>(project->GetTextHighlightMethod()) : static_cast<int>(wxGetApp().GetAppOptions().GetTextHighlightMethod())),
     m_highlightedColor(project ? project->GetTextHighlightColor() : wxGetApp().GetAppOptions().GetTextHighlightColor() ),
     m_excludedTextHighlightColor(project ? project->GetExcludedTextHighlightColor() : wxGetApp().GetAppOptions().GetExcludedTextHighlightColor() ),
@@ -669,7 +621,7 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
     m_wordyPhraseHighlightColor(project ? project->GetWordyPhraseHighlightColor() : wxGetApp().GetAppOptions().GetWordyPhraseHighlightColor() ),
     m_font(project ? project->GetTextViewFont() : wxGetApp().GetAppOptions().GetTextViewFont() ),
     m_fontColor(project ? project->GetTextFontColor() : wxGetApp().GetAppOptions().GetTextFontColor() ),
-    //dolch
+    // dolch
     m_dolchConjunctionsColor(project ? project->GetDolchConjunctionsColor() : wxGetApp().GetAppOptions().GetDolchConjunctionsColor()),
     m_dolchPrepositionsColor(project ? project->GetDolchPrepositionsColor() : wxGetApp().GetAppOptions().GetDolchPrepositionsColor()),
     m_dolchPronounsColor(project ? project->GetDolchPronounsColor() : wxGetApp().GetAppOptions().GetDolchPronounsColor()),
@@ -684,16 +636,16 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
     m_highlightDolchAdjectives(project ? project->IsHighlightingDolchAdjectives() : wxGetApp().GetAppOptions().IsHighlightingDolchAdjectives()),
     m_highlightDolchVerbs(project ? project->IsHighlightingDolchVerbs() : wxGetApp().GetAppOptions().IsHighlightingDolchVerbs()),
     m_highlightDolchNouns(project ? project->IsHighlightingDolchNouns() : wxGetApp().GetAppOptions().IsHighlightingDolchNouns()),
-    //long sentence method
+    // long sentence method
     m_longSentencesNumberOfWords(project ? (project->GetLongSentenceMethod() == LongSentence::LongerThanSpecifiedLength) : (wxGetApp().GetAppOptions().GetLongSentenceMethod() == LongSentence::LongerThanSpecifiedLength)),
     m_sentenceLength(project ? project->GetDifficultSentenceLength() : wxGetApp().GetAppOptions().GetDifficultSentenceLength()),
     m_longSentencesOutliers(project ? (project->GetLongSentenceMethod() == LongSentence::OutlierLength) : (wxGetApp().GetAppOptions().GetLongSentenceMethod() == LongSentence::OutlierLength)),
-    //batch project options
+    // batch project options
     m_minDocWordCountForBatch(project ? project->GetMinDocWordCountForBatch() : wxGetApp().GetAppOptions().GetMinDocWordCountForBatch()),
     m_filePathTruncationMode(project ? static_cast<int>(project->GetFilePathTruncationMode()) : static_cast<int>(wxGetApp().GetAppOptions().GetFilePathTruncationMode())),
-    //number syllabizing
+    // number syllabizing
     m_syllabicationMethod(project ? static_cast<int>(project->GetNumeralSyllabicationMethod()) : static_cast<int>(wxGetApp().GetAppOptions().GetNumeralSyllabicationMethod())),
-    //paragraph parsing
+    // paragraph parsing
     m_paragraphParsingMethod(project ? static_cast<int>(project->GetParagraphsParsingMethod()) : static_cast<int>(wxGetApp().GetAppOptions().GetParagraphsParsingMethod())),
     m_ignoreBlankLinesForParagraphsParser(project ? project->GetIgnoreBlankLinesForParagraphsParser() : wxGetApp().GetAppOptions().GetIgnoreBlankLinesForParagraphsParser() ),
     m_ignoreIndentingForParagraphsParser(project ? project->GetIgnoreIndentingForParagraphsParser() : wxGetApp().GetAppOptions().GetIgnoreIndentingForParagraphsParser() ),
@@ -705,13 +657,14 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
     m_ignoreNumerals(project ? project->IsIgnoringNumerals() : wxGetApp().GetAppOptions().IsIgnoringNumerals() ),
     m_ignoreProperNouns(project ? project->IsIgnoringProperNouns() : wxGetApp().GetAppOptions().IsIgnoringProperNouns() ),
     m_excludedPhrasesPath(project ? project->GetExcludedPhrasesPath() : wxGetApp().GetAppOptions().GetExcludedPhrasesPath() ),
-    m_excludedPhrasesEdited(false),//used to track whether user edited this list from this dialog
+    // used to track whether user edited this list from this dialog
+    m_excludedPhrasesEdited(false),
     m_includeExcludedPhraseFirstOccurrence(project ? project->IsIncludingExcludedPhraseFirstOccurrence() : wxGetApp().GetAppOptions().IsIncludingExcludedPhraseFirstOccurrence() ),
     m_exclusionBlockTags(project ? project->GetExclusionBlockTags() : wxGetApp().GetAppOptions().GetExclusionBlockTags()),
-    //header/list analysis
+    // header/list analysis
     m_textExclusionMethod(project ? static_cast<int>(project->GetInvalidSentenceMethod()) : static_cast<int>(wxGetApp().GetAppOptions().GetInvalidSentenceMethod())),
     m_includeIncompleteSentencesIfLongerThan(project ? project->GetIncludeIncompleteSentencesIfLongerThanValue() : wxGetApp().GetAppOptions().GetIncludeIncompleteSentencesIfLongerThanValue()),
-    //title/font options
+    // title/font options
     m_xAxisFontColor(project ? project->GetXAxisFontColor() : wxGetApp().GetAppOptions().GetXAxisFontColor()),
     m_xAxisFont(project ? project->GetXAxisFont() : wxGetApp().GetAppOptions().GetXAxisFont()),
     m_yAxisFontColor(project ? project->GetYAxisFontColor() : wxGetApp().GetAppOptions().GetYAxisFontColor()),

@@ -19,51 +19,11 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     m_dolchAdjectivesColor(221, 160, 221),
     m_dolchVerbColor(254, 208, 112),
     m_dolchNounColor(255, 182, 193),
-    m_highlightDolchConjunctions(true),
-    m_highlightDolchPrepositions(true),
-    m_highlightDolchPronouns(true),
-    m_highlightDolchAdverbs(true),
-    m_highlightDolchAdjectives(true),
-    m_highlightDolchVerbs(true),
-    m_highlightDolchNouns(false),
     m_textHighlightColor(152, 251, 152),
     m_excludedTextHighlightColor(175, 175, 175),
     m_duplicateWordHighlightColor(255, 128, 128),
     m_wordyPhraseHighlightColor(0, 255, 255),
     m_fontColor(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT)),
-    m_textSource(TextSource::FromFile),
-    m_longSentenceMethod(LongSentence::LongerThanSpecifiedLength),
-    m_difficultSentenceLength(22),
-    m_numeralSyllabicationMethod(NumeralSyllabize::WholeWordIsOneSyllable),
-    m_includeExcludedPhraseFirstOccurrence(false),
-    m_paragraphsParsingMethod(ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs),
-    m_ignoreBlankLinesForParagraphsParser(false),
-    m_ignoreIndentingForParagraphsParser(false),
-    m_sentenceStartMustBeUppercased(false),
-    m_aggressiveExclusion(false),
-    m_ignoreTrailingCopyrightNoticeParagraphs(true),
-    m_ignoreTrailingCitations(true),
-    m_ignoreFileAddresses(false),
-    m_ignoreNumerals(false),
-    m_ignoreProperNouns(false),
-    m_invalidSentenceMethod(InvalidSentence::ExcludeFromAnalysis),
-    m_includeIncompleteSentencesIfLongerThan(15),
-    m_spellcheck_ignore_proper_nouns(false),
-    m_spellcheck_ignore_uppercased(true),
-    m_spellcheck_ignore_numerals(true),
-    m_spellcheck_ignore_file_addresses(true),
-    m_spellcheck_ignore_programmer_code(false),
-    m_allow_colloquialisms(true),
-    m_includeDolchSightWords(false),
-    m_testRecommendation(TestRecommendation::BasedOnDocumentType),
-    m_testsByIndustry(readability::industry_classification::adult_publishing_industry),
-    m_testsByDocumentType(readability::document_classification::adult_literature_document),
-    //document linking information
-    m_documentStorageMethod(TextStorage::NoEmbedText),
-    //Window information
-    m_appWindowMaximized(true),
-    m_appWindowWidth(800),
-    m_appWindowHeight(700),
     m_themeName(_DT(L"System")),
     m_controlBackgroundColor(*wxWHITE),
     m_ribbonActiveTabColor(wxColour(245, 246, 247)),
@@ -81,15 +41,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     m_sideBarFontColor(*wxBLACK),
     m_startPageBackstageBackgroundColor(wxColour(145,168,208)),
     m_startPageDetailBackgroundColor(*wxWHITE),
-    //license info and other startup dialogs
-    m_licenseAccepted(false),
     //graph information
-    m_boxPlotShowAllPoints(false),
-    m_boxDisplayLabels(false),
-    m_boxConnectMiddlePoints(true),
-    m_barDisplayLabels(true),
-    m_useGraphBackGroundImageLinearGradient(false),
-    m_displayDropShadows(false),
     m_graphBackGroundColor(255,255,255),
     m_graphPlotBackGroundColor(255,255,255),
     m_graphBackGroundOpacity(wxALPHA_OPAQUE),
@@ -102,40 +54,9 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     m_rightTitleFontColor(0, 0, 0),
     //a "rainy" look for the readability graphs
     m_graphInvalidAreaColor(193,205,193),//honeydew
-    m_fleschChartConnectPoints(true),
-    m_useEnglishLabelsGermanLix(false),
-    m_histogramBinningMethod(Histogram::BinningMethod::BinByIntegerRange),
-    m_histrogramBinLabelDisplayMethod(BinLabelDisplay::BinValue),
-    m_histrogramRoundingMethod(RoundingMethod::RoundDown),
-    m_histrogramIntervalDisplay(Histogram::IntervalDisplay::Cutpoints),
     m_histogramBarColor(182,164,204),//lavender
     m_barChartBarColor(107,183,196),//rain color
-    m_histogramBarOpacity(wxALPHA_OPAQUE),
-    m_histogramBarEffect(BoxEffect::Glassy),
-    m_barChartOrientation(Wisteria::Orientation::Horizontal),
-    m_graphBarOpacity(wxALPHA_OPAQUE),
-    m_graphBarEffect(BoxEffect::Glassy),
     m_graphBoxColor(0,128,64),
-    m_graphBoxOpacity(wxALPHA_OPAQUE),
-    m_graphBoxEffect(BoxEffect::Glassy),
-    m_varianceMethod(VarianceMethod::PopulationVariance),
-    m_minDocWordCountForBatch(50),
-    m_randomSampleSizeForBatch(15),
-    m_filePathTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames),
-    m_language(readability::test_language::english_test),
-    //page setup
-    m_paperId(wxPAPER_LETTER),
-    m_paperOrientation(wxLANDSCAPE),
-    //test inclusion options
-    m_includeScoreSummaryReport(true),
-    //test options
-    m_dcTextExclusion(SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings),
-    m_hjTextExclusion(SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings),
-    m_dcProperNounCountingMethod(readability::proper_noun_counting_method::only_count_first_instance_of_proper_noun_as_unfamiliar),
-    m_includeStockerCatholicDCSupplement(false),
-    m_fogUseSentenceUnits(true),
-    m_fleschNumeralSyllabizeMethod(FleschNumeralSyllabize::NumeralIsOneSyllable),
-    m_fleschKincaidNumeralSyllabizeMethod(FleschKincaidNumeralSyllabize::FleschKincaidNumeralSoundOutEachDigit),
     ///XML file constants
     //Project file tags
     XML_PROJECT_HEADER(_DT(L"oleander-readability-studio-project")),
@@ -162,8 +83,8 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_IGNORE_BLANK_LINES_FOR_PARAGRAPH_PARSING(_DT(L"ignore-blank-lines-for-paragraphs")),
     XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING(_DT(L"ignore-indenting-for-paragraphs")),
     XML_SENTENCES_MUST_START_CAPITALIZED(_DT(L"sentences-must-start-capitalized")),
-    XML_IGNORE_COPYRIGHT_NOTICES(_DT(L"ignore-trailing-copyright-notices")),
     XML_AGGRESSIVE_EXCLUSION(_DT(L"aggressively-deduce-lists")),
+    XML_IGNORE_COPYRIGHT_NOTICES(_DT(L"ignore-trailing-copyright-notices")),
     XML_IGNORE_CITATIONS(_DT(L"ignore-trailing-citations")),
     XML_IGNORE_FILE_ADDRESSES(_DT(L"ignore-file-addresses")),
     XML_IGNORE_NUMERALS(_DT(L"ignore-numerals")),
@@ -390,8 +311,8 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_LONGEST_SENTENCES(_DT(L"meta:longest-sentence")),
     XML_LONGEST_SENTENCE_INDEX(_DT(L"meta:longest-sentence-index")),
     XML_DIFFICULT_SENTENCE_LENGTH(_DT(L"meta:difficult-sentence-length")),
-    XML_MISSPELLING_COUNT(_DT(L"meta:misspelling-count")),
     XML_DUPLICATE_WORD_COUNT(_DT(L"meta:duplicate-word-count")),
+    XML_MISSPELLING_COUNT(_DT(L"meta:misspelling-count")),
     XML_WORDY_PHRASE_COUNT(_DT(L"meta:wordy-phrase-count")),
     XML_CLICHE_COUNT(_DT(L"meta:cliche-count")),
     XML_REDUNDANT_PHRASE_COUNT(_DT(L"meta-redundant-phrase-count")),
@@ -1589,11 +1510,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         testBundleNode = testBundleNode->NextSiblingElement(XML_TEST_BUNDLE.mb_str());
                         continue;
                         }
-                    TestBundle bundle(bundleName);
+                    TestBundle bundle(bundleName.wc_str());
                     // bundle description
                     auto bundleDescriptionNode = testBundleNode->FirstChildElement(XML_TEST_BUNDLE_DESCRIPTION.mb_str());
                     if (bundleDescriptionNode)
-                        { bundle.SetDescription(TiXmlNodeToString(bundleDescriptionNode, XML_VALUE)); }
+                        { bundle.SetDescription(TiXmlNodeToString(bundleDescriptionNode, XML_VALUE).wc_str()); }
                     // get the included tests
                     auto testNamesNode = testBundleNode->FirstChildElement(XML_TEST_NAMES.mb_str());
                     if (!testNamesNode)
@@ -3240,7 +3161,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxEm
         testBundle->InsertEndChild(testBundleName);
         // description
         auto testBundleDescription = doc.NewElement(XML_TEST_BUNDLE_DESCRIPTION.mb_str());
-        wxString testBundleDescriptionEncoded = encode({ currentBundle->GetDescription().wc_str() }, false).c_str();
+        wxString testBundleDescriptionEncoded = encode({ currentBundle->GetDescription().c_str() }, false).c_str();
         testBundleDescription->SetAttribute(XML_VALUE.mb_str(), testBundleDescriptionEncoded.mb_str());
         testBundle->InsertEndChild(testBundleDescription);
         // included tests

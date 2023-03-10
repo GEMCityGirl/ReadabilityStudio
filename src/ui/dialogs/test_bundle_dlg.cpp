@@ -1,18 +1,27 @@
+///////////////////////////////////////////////////////////////////////////////
+// Name:        test_bundle_dlg.cpp
+// Author:      Blake Madden
+// Copyright:   (c) 2005-2023 Blake Madden
+// Licence:     3-Clause BSD licence
+// SPDX-License-Identifier: BSD-3-Clause
+///////////////////////////////////////////////////////////////////////////////
+
 #include "test_bundle_dlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/import/html_extract_text.h"
 #include "../../app/readability_app.h"
 
 wxDECLARE_APP(ReadabilityApp);
 
+//-------------------------------------------------------------
 TestBundleDlg::TestBundleDlg(wxWindow* parent, TestBundle& testBundle) :
     m_bundleName(testBundle.GetName().c_str()),
-    m_includeDolchSightWords(false), m_testBundle(testBundle),
-    m_bundleNameCtrl(nullptr), m_bundleDescriptionCtrl(nullptr),
-    m_testGoalsListCtrl(nullptr), m_statGoalsListCtrl(nullptr), m_sideBarBook(nullptr)
+    m_descriptionName(testBundle.GetDescription().c_str()),
+    m_testBundle(testBundle)
     {
-    DialogWithHelp::Create(parent, wxID_ANY, m_bundleName.empty() ? _("Add Test Bundle") :
-        m_testBundle.IsLocked() ? wxString::Format(_("\"%s\" Test Bundle [Read-Only]"), m_bundleName) :
-        wxString::Format(_("Edit \"%s\" Test Bundle"), m_bundleName),
+    DialogWithHelp::Create(parent, wxID_ANY, m_bundleName.empty() ? _(L"Add Test Bundle") :
+        m_testBundle.IsLocked() ?
+        wxString::Format(_(L"\"%s\" Test Bundle [Read-Only]"), m_bundleName) :
+        wxString::Format(_(L"Edit \"%s\" Test Bundle"), m_bundleName),
         wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER);
     wxIcon ico;
     ico.CopyFromBitmap(
@@ -37,6 +46,7 @@ TestBundleDlg::TestBundleDlg(wxWindow* parent, TestBundle& testBundle) :
     Centre();
     }
 
+//-------------------------------------------------------------
 void TestBundleDlg::CreateControls()
     {
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
@@ -51,18 +61,21 @@ void TestBundleDlg::CreateControls()
 
     // General page
         {
-        wxPanel* page = new wxPanel(m_sideBarBook, ID_GENERAL_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxPanel* page = new wxPanel(m_sideBarBook, ID_GENERAL_PAGE, wxDefaultPosition,
+                                    wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         page->SetSizer(mainPanelSizer);
-        m_sideBarBook->AddPage(page, _("General"), ID_GENERAL_PAGE, true);
+        m_sideBarBook->AddPage(page, _(L"General"), ID_GENERAL_PAGE, true);
 
         // if no bundle name then we are in "add new bundle" mode
         if (m_bundleName.empty())
             {
-            wxStaticBoxSizer* nameBoxSizer = new wxStaticBoxSizer(new wxStaticBox(page, wxID_ANY, _("Name:")), wxVERTICAL);
+            wxStaticBoxSizer* nameBoxSizer =
+                new wxStaticBoxSizer(new wxStaticBox(page, wxID_ANY, _(L"Name:")), wxVERTICAL);
 
-            m_bundleNameCtrl = new wxTextCtrl(page, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize,
-                                                  0, wxTextValidator(wxFILTER_NONE, &m_bundleName));
+            m_bundleNameCtrl = new wxTextCtrl(page, wxID_ANY, wxEmptyString, wxDefaultPosition,
+                                              wxDefaultSize, 0,
+                                              wxTextValidator(wxFILTER_NONE, &m_bundleName));
             nameBoxSizer->Add(m_bundleNameCtrl, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
 
             mainPanelSizer->Add(nameBoxSizer, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
@@ -70,32 +83,42 @@ void TestBundleDlg::CreateControls()
 
         // description
             {
-            wxStaticBoxSizer* descriptionBoxSizer = new wxStaticBoxSizer(new wxStaticBox(page, wxID_ANY, _("Description:")), wxVERTICAL);
-            const long style = m_testBundle.IsLocked() ? wxTE_MULTILINE|wxTE_READONLY : wxTE_MULTILINE;
-            m_bundleDescriptionCtrl = new wxTextCtrl(page, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize,
-                                                     style, wxTextValidator(wxFILTER_NONE, &m_testBundle.GetDescription()));
-            descriptionBoxSizer->Add(m_bundleDescriptionCtrl, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+            wxStaticBoxSizer* descriptionBoxSizer =
+                new wxStaticBoxSizer(new wxStaticBox(page, wxID_ANY, _(L"Description:")), wxVERTICAL);
+            const long style = m_testBundle.IsLocked() ?
+                wxTE_MULTILINE|wxTE_READONLY : wxTE_MULTILINE;
+            m_bundleDescriptionCtrl =
+                new wxTextCtrl(page, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize,
+                               style, wxTextValidator(wxFILTER_NONE, &m_descriptionName));
+            descriptionBoxSizer->Add(m_bundleDescriptionCtrl, 1,
+                wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
             
-            mainPanelSizer->Add(descriptionBoxSizer, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+            mainPanelSizer->Add(descriptionBoxSizer, 1,
+                wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
             }
 
-        mainPanelSizer->Add(new wxStaticText(page, wxID_STATIC, _("Bundles are a convenient way to apply a predefined list of tests and goals to a project.")), 0, wxALL, wxSizerFlags::GetDefaultBorder());
+        mainPanelSizer->Add(new wxStaticText(page, wxID_STATIC,
+            _(L"Bundles are a convenient way to apply a predefined list "
+              "of tests and goals to a project.")), 0, wxALL, wxSizerFlags::GetDefaultBorder());
         }
 
     constexpr size_t maxColumns{ 3 };
 
     // standard tests page
         {
-        wxPanel* page = new wxPanel(m_sideBarBook, ID_STANDARD_TEST_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxPanel* page = new wxPanel(m_sideBarBook, ID_STANDARD_TEST_PAGE,
+                                    wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         page->SetSizer(mainPanelSizer);
-        m_sideBarBook->AddPage(page, _("Standard Tests"), ID_STANDARD_TEST_PAGE, false);
+        m_sideBarBook->AddPage(page, _(L"Standard Tests"), ID_STANDARD_TEST_PAGE, false);
 
         m_standardTests = wxGetApp().GetAppOptions().GetReadabilityTests();
 
         lily_of_the_valley::html_extract_text stripHtml;
-        auto readabilityStandardTestSizer = new wxGridBagSizer(wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()/2);
-        mainPanelSizer->Add(readabilityStandardTestSizer, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+        auto readabilityStandardTestSizer =
+            new wxGridBagSizer(wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()/2);
+        mainPanelSizer->Add(readabilityStandardTestSizer, 0, wxEXPAND|wxALL,
+                            wxSizerFlags::GetDefaultBorder());
         // add the standard tests
         size_t currentRow{ 0 }, currentCol{ 0 };
         const size_t rowCount = (m_standardTests.get_tests().size() / maxColumns)+1;
@@ -115,13 +138,20 @@ void TestBundleDlg::CreateControls()
             availableTestNames.push_back(sTest.get_test().get_long_name().c_str());
             
             // set the test to included (i.e., checked) if it is already included in the bundle
-            sTest.include(m_testBundle.GetTestGoals().find(TestGoal{ sTest.get_test().get_id() }) != m_testBundle.GetTestGoals().end() ||
-                m_testBundle.GetTestGoals().find(TestGoal{ sTest.get_test().get_short_name() }) != m_testBundle.GetTestGoals().end() ||
-                m_testBundle.GetTestGoals().find(TestGoal{ sTest.get_test().get_long_name() }) != m_testBundle.GetTestGoals().end());
+            sTest.include(
+                m_testBundle.GetTestGoals().find(
+                    TestGoal{ sTest.get_test().get_id() }) != m_testBundle.GetTestGoals().cend() ||
+                m_testBundle.GetTestGoals().find(
+                    TestGoal{ sTest.get_test().get_short_name() }) != m_testBundle.GetTestGoals().cend() ||
+                m_testBundle.GetTestGoals().find(
+                    TestGoal{ sTest.get_test().get_long_name() }) != m_testBundle.GetTestGoals().cend());
 
-            wxCheckBox* testCheckBox = new wxCheckBox(page, wxID_ANY, sTest.get_test().get_long_name().c_str(),
+            wxCheckBox* testCheckBox =
+                new wxCheckBox(page, wxID_ANY, sTest.get_test().get_long_name().c_str(),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&sTest.get_include_flag()) );
-            testCheckBox->SetHelpText(stripHtml(sTest.get_test().get_description().c_str(), sTest.get_test().get_description().length(), true, false));
+            testCheckBox->SetHelpText(
+                stripHtml(sTest.get_test().get_description().c_str(),
+                    sTest.get_test().get_description().length(), true, false));
             if (m_testBundle.IsLocked())
                 { testCheckBox->Disable(); }
             readabilityStandardTestSizer->Add(testCheckBox, wxGBPosition(currentRow++, currentCol));
@@ -141,15 +171,19 @@ void TestBundleDlg::CreateControls()
         // only show if editable or if there are custom tests
         (!m_testBundle.IsLocked() || includedCustomTests > 0))
         {
-        wxPanel* page = new wxPanel(m_sideBarBook, ID_CUSTOM_TEST_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxPanel* page = new wxPanel(m_sideBarBook, ID_CUSTOM_TEST_PAGE,
+                                    wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         page->SetSizer(mainPanelSizer);
-        m_sideBarBook->AddPage(page, _("Custom Tests"), ID_CUSTOM_TEST_PAGE, false);
+        m_sideBarBook->AddPage(page, _(L"Custom Tests"), ID_CUSTOM_TEST_PAGE, false);
 
         m_custom_tests = BaseProject::m_custom_word_tests;
 
-        auto readabilityCustomTestSizer = new wxGridBagSizer(wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()/2);
-        mainPanelSizer->Add(readabilityCustomTestSizer, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+        auto readabilityCustomTestSizer =
+            new wxGridBagSizer(wxSizerFlags::GetDefaultBorder(),
+                               wxSizerFlags::GetDefaultBorder()/2);
+        mainPanelSizer->Add(readabilityCustomTestSizer, 0, wxEXPAND|wxALL,
+                            wxSizerFlags::GetDefaultBorder());
 
         size_t currentRow{ 0 }, currentCol{ 0 };
         const size_t rowCount = (BaseProject::m_custom_word_tests.size() > 10) ?
@@ -187,28 +221,35 @@ void TestBundleDlg::CreateControls()
         // only show if editable or Dolch is included
         (!m_testBundle.IsLocked() || m_includeDolchSightWords))
         {
-        wxPanel* page = new wxPanel(m_sideBarBook, ID_VOCAB_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxPanel* page = new wxPanel(m_sideBarBook, ID_VOCAB_PAGE, wxDefaultPosition, wxDefaultSize,
+                                    wxTAB_TRAVERSAL);
         wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         page->SetSizer(mainPanelSizer);
-        m_sideBarBook->AddPage(page, _("Vocabulary Tools"), ID_VOCAB_PAGE, false);
+        m_sideBarBook->AddPage(page, _(L"Vocabulary Tools"), ID_VOCAB_PAGE, false);
 
-        wxCheckBox* DolchCheckBox = new wxCheckBox(page, wxID_ANY, _("&Dolch Sight Words Suite"),
+        wxCheckBox* DolchCheckBox = new wxCheckBox(page, wxID_ANY, _(L"&Dolch Sight Words Suite"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_includeDolchSightWords) );
-        DolchCheckBox->SetHelpText(_("Select this option to include a Dolch Sight Words section to your project. This is recommended for writers and educators whose documents need to demonstrate functional words for early readers to learn."));
+        DolchCheckBox->SetHelpText(
+            _(L"Select this option to include a Dolch Sight Words section to your project. "
+              "This is recommended for writers and educators whose documents need to demonstrate "
+              "functional words for early readers to learn."));
         if (m_testBundle.IsLocked())
             { DolchCheckBox->Disable(); }
-        mainPanelSizer->Add(DolchCheckBox, wxSizerFlags().Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
+        mainPanelSizer->Add(DolchCheckBox, wxSizerFlags().Expand().
+            Border(wxALL, wxSizerFlags::GetDefaultBorder()));
         }
 
     // goals (only show if editable or there are goals)
-    const auto includedTestGoals = std::count_if(m_testBundle.GetTestGoals().cbegin(), m_testBundle.GetTestGoals().cend(),
+    const auto includedTestGoals =
+        std::count_if(m_testBundle.GetTestGoals().cbegin(), m_testBundle.GetTestGoals().cend(),
         [](const auto& test) noexcept { return test.HasGoals(); });
     if (!m_testBundle.IsLocked() || (includedTestGoals || m_testBundle.GetStatGoals().size()))
         {
-        wxPanel* page = new wxPanel(m_sideBarBook, ID_GOALS_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxPanel* page = new wxPanel(m_sideBarBook, ID_GOALS_PAGE, wxDefaultPosition, wxDefaultSize,
+                                    wxTAB_TRAVERSAL);
         wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         page->SetSizer(mainPanelSizer);
-        m_sideBarBook->AddPage(page, _("Goals"), ID_GOALS_PAGE, false);
+        m_sideBarBook->AddPage(page, _(L"Goals"), ID_GOALS_PAGE, false);
 
         // Test goals
             {
@@ -217,8 +258,8 @@ void TestBundleDlg::CreateControls()
                 // add and remove buttons for grid
                 wxBoxSizer* editButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
                 auto addButton = new wxBitmapButton(page, ID_ADD_TEST_GOALS_BUTTON,
-                    wxArtProvider::GetBitmapBundle(wxT("ID_ADD"), wxART_BUTTON));
-                addButton->SetToolTip(_("Add a test goal"));
+                    wxArtProvider::GetBitmapBundle(L"ID_ADD", wxART_BUTTON));
+                addButton->SetToolTip(_(L"Add a test goal"));
                 editButtonsSizer->Add(addButton);
 
                 Bind(wxEVT_BUTTON,
@@ -230,7 +271,7 @@ void TestBundleDlg::CreateControls()
 
                 auto deleteButton = new wxBitmapButton(page, ID_DELETE_TEST_GOALS_BUTTON,
                     wxArtProvider::GetBitmapBundle(wxART_DELETE, wxART_BUTTON));
-                deleteButton->SetToolTip(_("Remove selected test goals"));
+                deleteButton->SetToolTip(_(L"Remove selected test goals"));
                 editButtonsSizer->Add(deleteButton);
 
                 Bind(wxEVT_BUTTON,
@@ -240,15 +281,17 @@ void TestBundleDlg::CreateControls()
                         },
                     ID_DELETE_TEST_GOALS_BUTTON);
 
-                mainPanelSizer->Add(editButtonsSizer, wxSizerFlags().Right().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
+                mainPanelSizer->Add(editButtonsSizer, wxSizerFlags().Right().
+                    Border(wxALL, wxSizerFlags::GetDefaultBorder()));
                 }
 
             // prepare the control
             availableTestNames.Sort();
-            m_testGoalsListCtrl = new ListCtrlEx(page, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxBORDER_SUNKEN);
-            m_testGoalsListCtrl->InsertColumn(0, _("Test"));
-            m_testGoalsListCtrl->InsertColumn(1, _("Minimum Recommended Score"));
-            m_testGoalsListCtrl->InsertColumn(2, _("Maximum Recommended Score"));
+            m_testGoalsListCtrl = new ListCtrlEx(page, wxID_ANY, wxDefaultPosition,
+                                                 wxDefaultSize, wxLC_REPORT|wxBORDER_SUNKEN);
+            m_testGoalsListCtrl->InsertColumn(0, _(L"Test"));
+            m_testGoalsListCtrl->InsertColumn(1, _(L"Minimum Recommended Score"));
+            m_testGoalsListCtrl->InsertColumn(2, _(L"Maximum Recommended Score"));
             m_testGoalsListCtrl->EnableItemAdd();
             m_testGoalsListCtrl->EnableItemDeletion();
             m_testGoalsListCtrl->EnableLabelEditing();
@@ -262,10 +305,13 @@ void TestBundleDlg::CreateControls()
                 if (!std::isnan(bundleTest.GetMinGoal()) || !std::isnan(bundleTest.GetMaxGoal()))
                     {
                     // if a standard test
-                    const auto [sTest, found] = m_standardTests.find_test(bundleTest.GetName().c_str());
+                    const auto [sTest, found] =
+                        m_standardTests.find_test(bundleTest.GetName().c_str());
                     if (found)
                         {
-                        const auto insertedItem = m_testGoalsListCtrl->InsertItem(0, sTest->get_test().get_long_name().c_str());
+                        const auto insertedItem =
+                            m_testGoalsListCtrl->InsertItem(0,
+                                sTest->get_test().get_long_name().c_str());
                         if (!std::isnan(bundleTest.GetMinGoal()))
                             {
                             m_testGoalsListCtrl->SetItemText(insertedItem, 1,
@@ -280,10 +326,13 @@ void TestBundleDlg::CreateControls()
                             }
                         }
                     // or a custom one
-                    const auto foundCustomTest = std::find(m_custom_tests.cbegin(), m_custom_tests.cend(), bundleTest.GetName().c_str());
+                    const auto foundCustomTest =
+                        std::find(m_custom_tests.cbegin(), m_custom_tests.cend(),
+                            bundleTest.GetName().c_str());
                     if (foundCustomTest != m_custom_tests.cend())
                         {
-                        const auto insertedItem = m_testGoalsListCtrl->InsertItem(0, foundCustomTest->get_name().c_str());
+                        const auto insertedItem =
+                            m_testGoalsListCtrl->InsertItem(0, foundCustomTest->get_name().c_str());
                         if (!std::isnan(bundleTest.GetMinGoal()))
                             {
                             m_testGoalsListCtrl->SetItemText(insertedItem, 1,
@@ -301,7 +350,8 @@ void TestBundleDlg::CreateControls()
                 }
             m_testGoalsListCtrl->DistributeColumns();
             m_testGoalsListCtrl->SetColumnWidth(0, FromDIP(wxSize(200, 200).GetWidth()));
-            mainPanelSizer->Add(m_testGoalsListCtrl, wxSizerFlags().Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
+            mainPanelSizer->Add(m_testGoalsListCtrl, wxSizerFlags().Expand().
+                Border(wxALL, wxSizerFlags::GetDefaultBorder()));
             }
 
         // Stat goals
@@ -312,7 +362,7 @@ void TestBundleDlg::CreateControls()
                 wxBoxSizer* editButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
                 auto addButton = new wxBitmapButton(page, ID_ADD_STAT_GOALS_BUTTON,
                     wxArtProvider::GetBitmapBundle(L"ID_ADD", wxART_BUTTON));
-                addButton->SetToolTip(_("Add a statistic goal"));
+                addButton->SetToolTip(_(L"Add a statistic goal"));
                 editButtonsSizer->Add(addButton);
 
                 Bind(wxEVT_BUTTON,
@@ -324,7 +374,7 @@ void TestBundleDlg::CreateControls()
 
                 auto deleteButton = new wxBitmapButton(page, ID_DELETE_STAT_GOALS_BUTTON,
                     wxArtProvider::GetBitmapBundle(wxART_DELETE, wxART_BUTTON));
-                deleteButton->SetToolTip(_("Remove selected statistic goals"));
+                deleteButton->SetToolTip(_(L"Remove selected statistic goals"));
                 editButtonsSizer->Add(deleteButton);
 
                 Bind(wxEVT_BUTTON,
@@ -334,7 +384,8 @@ void TestBundleDlg::CreateControls()
                         },
                     ID_DELETE_STAT_GOALS_BUTTON);
 
-                mainPanelSizer->Add(editButtonsSizer, wxSizerFlags().Right().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
+                mainPanelSizer->Add(editButtonsSizer, wxSizerFlags().Right().
+                    Border(wxALL, wxSizerFlags::GetDefaultBorder()));
                 }
 
             // prepare the control
@@ -342,10 +393,11 @@ void TestBundleDlg::CreateControls()
             for (const auto statName : BaseProject::GetStatGoalLabels())
                 { availableStats.push_back(statName.first.second.c_str()); }
             availableStats.Sort();
-            m_statGoalsListCtrl = new ListCtrlEx(page, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxBORDER_SUNKEN);
-            m_statGoalsListCtrl->InsertColumn(0, _("Statistic"));
-            m_statGoalsListCtrl->InsertColumn(1, _("Minimum Recommended Value"));
-            m_statGoalsListCtrl->InsertColumn(2, _("Maximum Recommended Value"));
+            m_statGoalsListCtrl = new ListCtrlEx(page, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                                 wxLC_REPORT|wxBORDER_SUNKEN);
+            m_statGoalsListCtrl->InsertColumn(0, _(L"Statistic"));
+            m_statGoalsListCtrl->InsertColumn(1, _(L"Minimum Recommended Value"));
+            m_statGoalsListCtrl->InsertColumn(2, _(L"Maximum Recommended Value"));
             m_statGoalsListCtrl->EnableItemAdd();
             m_statGoalsListCtrl->EnableItemDeletion();
             m_statGoalsListCtrl->EnableLabelEditing();
@@ -360,10 +412,12 @@ void TestBundleDlg::CreateControls()
                 if (!std::isnan(bundleStat.GetMinGoal()) || !std::isnan(bundleStat.GetMaxGoal()))
                     {
                     // get the user-friendly label for stat goal and add it to the list
-                    const auto statPos = BaseProject::GetStatGoalLabels().find({ bundleStat.GetName(), bundleStat.GetName() });
+                    const auto statPos = BaseProject::GetStatGoalLabels().find(
+                        { bundleStat.GetName(), bundleStat.GetName() });
                     if (statPos != BaseProject::GetStatGoalLabels().cend())
                         {
-                        const auto insertedItem = m_statGoalsListCtrl->InsertItem(0, statPos->first.second.c_str());
+                        const auto insertedItem =
+                            m_statGoalsListCtrl->InsertItem(0, statPos->first.second.c_str());
                         if (!std::isnan(bundleStat.GetMinGoal()))
                             {
                             m_statGoalsListCtrl->SetItemText(insertedItem, 1,
@@ -381,14 +435,19 @@ void TestBundleDlg::CreateControls()
                 }
             m_statGoalsListCtrl->DistributeColumns();
             m_statGoalsListCtrl->SetColumnWidth(0, FromDIP(wxSize(200, 200).GetWidth()));
-            mainPanelSizer->Add(m_statGoalsListCtrl, wxSizerFlags().Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
+            mainPanelSizer->Add(m_statGoalsListCtrl, wxSizerFlags().Expand().
+                Border(wxALL, wxSizerFlags::GetDefaultBorder()));
             }
 
         mainPanelSizer->AddStretchSpacer();
-        mainPanelSizer->Add(new wxStaticText(page, wxID_STATIC, _("Goals are a way to warn if a statistic or test's score falls outside of a given range.\nDouble click in the grid to select a test and edit its constraints.")), 0, wxALL, wxSizerFlags::GetDefaultBorder());
+        mainPanelSizer->Add(new wxStaticText(page, wxID_STATIC,
+            _(L"Goals are a way to warn if a statistic or test's score falls "
+              "outside of a given range.\nDouble click in the grid to select a "
+              "test and edit its constraints.")), 0, wxALL, wxSizerFlags::GetDefaultBorder());
         }
     
-    mainSizer->Add(CreateSeparatedButtonSizer(wxOK|wxCANCEL|wxHELP), wxSizerFlags().Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
+    mainSizer->Add(CreateSeparatedButtonSizer(wxOK|wxCANCEL|wxHELP),
+                   wxSizerFlags().Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
 
     SetSizerAndFit(mainSizer);
 
@@ -415,22 +474,26 @@ void TestBundleDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     TransferDataFromWindow();
     // trim off whitespace off of bundle name and then validate it (if applicable)
     m_bundleName.Trim(true).Trim(false);
+    m_descriptionName.Trim(true).Trim(false);
 
     // validate the name
     if (m_bundleName.empty())
         {
-        wxMessageBox(_("Please enter a bundle name."),
-                _("Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"Please enter a bundle name."),
+                _(L"Error"), wxOK|wxICON_EXCLAMATION);
         return;
         }
     // or that the name is already taken
     if (m_bundleNameCtrl)
         {
-        if (BaseProject::m_testBundles.find(TestBundle(m_bundleName)) != BaseProject::m_testBundles.end())
+        if (BaseProject::m_testBundles.find(TestBundle(m_bundleName.wc_str())) !=
+            BaseProject::m_testBundles.end())
             {
             wxMessageBox(
-                wxString::Format(_("There is a bundle named \"%s\" already. Please enter a different name."), m_bundleName),
-                _("Error"), wxOK|wxICON_ERROR);
+                wxString::Format(
+                _(L"There is a bundle named \"%s\" already. Please enter a different name."),
+                    m_bundleName),
+                _(L"Error"), wxOK|wxICON_ERROR);
             return;
             }
         }
@@ -452,8 +515,10 @@ void TestBundleDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         if (!std::isnan(minGoal) && !std::isnan(maxGoal) && maxGoal < minGoal)
             {
             wxMessageBox(
-                wxString::Format(_("\"%s\" has an invalid goal; minimum recommended score cannot be higher than the maximum."), testName),
-                _("Goal Error"), wxOK|wxICON_ERROR);
+                wxString::Format(
+                _(L"\"%s\" has an invalid goal; "
+                  "minimum recommended score cannot be higher than the maximum."), testName),
+                _(L"Goal Error"), wxOK|wxICON_ERROR);
             m_testGoalsListCtrl->DeselectAll();
             m_testGoalsListCtrl->Select(foundPos);
             SelectPage(ID_GOALS_PAGE);
@@ -462,7 +527,8 @@ void TestBundleDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         return true;
         };
 
-    // reads and verifies the goals from a stats in the grid, returns false if user needs to fix them
+    // reads and verifies the goals from a stats in the grid,
+    // returns false if user needs to fix them
     auto ReadStatGoals = [this](const wxString& statName, double& minGoal, double& maxGoal)
         {
         auto foundPos = m_statGoalsListCtrl->FindEx(statName);
@@ -479,8 +545,10 @@ void TestBundleDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         if (!std::isnan(minGoal) && !std::isnan(maxGoal) && maxGoal < minGoal)
             {
             wxMessageBox(
-                wxString::Format(_("\"%s\" has an invalid goal; minimum recommended value cannot be higher than the maximum."), statName),
-                _("Goal Error"), wxOK|wxICON_ERROR);
+                wxString::Format(
+                _(L"\"%s\" has an invalid goal; "
+                  "minimum recommended value cannot be higher than the maximum."), statName),
+                _(L"Goal Error"), wxOK|wxICON_ERROR);
             m_statGoalsListCtrl->DeselectAll();
             m_statGoalsListCtrl->Select(foundPos);
             SelectPage(ID_GOALS_PAGE);
@@ -497,19 +565,22 @@ void TestBundleDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         if (currentTest.empty())
             {
             wxMessageBox(
-                wxString::Format(_("Goal does not have a test name specified.")),
-                _("Goal Error"), wxOK|wxICON_ERROR);
+                wxString::Format(_(L"Goal does not have a test name specified.")),
+                _(L"Goal Error"), wxOK|wxICON_ERROR);
             m_testGoalsListCtrl->DeselectAll();
             m_testGoalsListCtrl->Select(i);
             SelectPage(ID_GOALS_PAGE);
             return;
             }
          // and actually has a goal specified
-        else if (m_testGoalsListCtrl->GetItemText(i, 1).empty() && m_testGoalsListCtrl->GetItemText(i, 2).empty())
+        else if (m_testGoalsListCtrl->GetItemText(i, 1).empty() &&
+            m_testGoalsListCtrl->GetItemText(i, 2).empty())
             {
             wxMessageBox(
-                wxString::Format(_("\"%s\" does not have either a minimum or maximum recommended score specified."), currentTest.wc_str()),
-                _("Goal Error"), wxOK|wxICON_ERROR);
+                wxString::Format(
+                _(L"\"%s\" does not have either a minimum or maximum recommended score specified."),
+                    currentTest.wc_str()),
+                _(L"Goal Error"), wxOK|wxICON_ERROR);
             m_testGoalsListCtrl->DeselectAll();
             m_testGoalsListCtrl->Select(i);
             SelectPage(ID_GOALS_PAGE);
@@ -521,16 +592,21 @@ void TestBundleDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         if (foundStandardTest.second && !foundStandardTest.first->is_included())
             {
             if (wxMessageBox(
-                wxString::Format(_("You have a goal for \"%s,\" but didn't include it in the bundle. Do you wish to add this test to the bundle?"), currentTest),
-                    _("Test Not Included"), wxYES_NO|wxYES_DEFAULT|wxICON_QUESTION) == wxYES)
+                wxString::Format(
+                    _(L"You have a goal for \"%s,\" but didn't include it in the bundle. "
+                      "Do you wish to add this test to the bundle?"), currentTest),
+                    _(L"Test Not Included"), wxYES_NO|wxYES_DEFAULT|wxICON_QUESTION) == wxYES)
                 { foundStandardTest.first->include(true); }
             }
-        auto foundCustomTest = std::find(m_custom_tests.begin(), m_custom_tests.end(), currentTest.wc_str());
+        auto foundCustomTest = std::find(m_custom_tests.begin(), m_custom_tests.end(),
+                                         currentTest.wc_str());
         if (foundCustomTest != m_custom_tests.end() && !foundCustomTest->is_included())
             {
             if (wxMessageBox(
-                wxString::Format(_("You have a goal for \"%s,\" but didn't include it in the bundle. Do you wish to add this test to the bundle?"), currentTest),
-                    _("Test Not Included"), wxYES_NO|wxYES_DEFAULT|wxICON_QUESTION) == wxYES)
+                wxString::Format(
+                    _(L"You have a goal for \"%s,\" but didn't include it in the bundle. "
+                      "Do you wish to add this test to the bundle?"), currentTest),
+                    _(L"Test Not Included"), wxYES_NO|wxYES_DEFAULT|wxICON_QUESTION) == wxYES)
                 { foundCustomTest->include(true); }
             }
         }
@@ -543,19 +619,22 @@ void TestBundleDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         if (currentStat.empty())
             {
             wxMessageBox(
-                wxString::Format(_("Goal does not have a statistic specified.")),
-                _("Goal Error"), wxOK|wxICON_ERROR);
+                wxString::Format(_(L"Goal does not have a statistic specified.")),
+                _(L"Goal Error"), wxOK|wxICON_ERROR);
             m_statGoalsListCtrl->DeselectAll();
             m_statGoalsListCtrl->Select(i);
             SelectPage(ID_GOALS_PAGE);
             return;
             }
          // and actually has a goal specified
-        else if (m_statGoalsListCtrl->GetItemText(i, 1).empty() && m_statGoalsListCtrl->GetItemText(i, 2).empty())
+        else if (m_statGoalsListCtrl->GetItemText(i, 1).empty() &&
+            m_statGoalsListCtrl->GetItemText(i, 2).empty())
             {
             wxMessageBox(
-                wxString::Format(_("\"%s\" does not have either a minimum or maximum recommended value specified."), currentStat.wc_str()),
-                _("Goal Error"), wxOK|wxICON_ERROR);
+                wxString::Format(
+                _(L"\"%s\" does not have either a minimum or maximum recommended value specified."),
+                    currentStat.wc_str()),
+                _(L"Goal Error"), wxOK|wxICON_ERROR);
             m_statGoalsListCtrl->DeselectAll();
             m_statGoalsListCtrl->Select(i);
             SelectPage(ID_GOALS_PAGE);
@@ -564,6 +643,7 @@ void TestBundleDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         }
 
     m_testBundle.SetName(m_bundleName.wc_str());
+    m_testBundle.SetDescription(m_descriptionName.wc_str());
 
     // set the test goals, connecting them to the tests
     m_testBundle.GetTestGoals().clear();
@@ -572,7 +652,8 @@ void TestBundleDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         if (sTest.is_included())
             {
             // connect any goals specified for the test to it
-            double minGoal{ std::numeric_limits<double>::quiet_NaN() }, maxGoal{ std::numeric_limits<double>::quiet_NaN() };
+            double minGoal{ std::numeric_limits<double>::quiet_NaN() },
+                   maxGoal{ std::numeric_limits<double>::quiet_NaN() };
             if (!ReadTestGoals(sTest.get_test().get_long_name().c_str(), minGoal, maxGoal))
                 { return; }
             m_testBundle.GetTestGoals().insert({ sTest.get_test().get_id(), minGoal, maxGoal });
@@ -586,7 +667,8 @@ void TestBundleDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         if (cTest.is_included())
             {
             // connect any goals specified for the test to it
-            double minGoal{ std::numeric_limits<double>::quiet_NaN() }, maxGoal{ std::numeric_limits<double>::quiet_NaN() };
+            double minGoal{ std::numeric_limits<double>::quiet_NaN() },
+                   maxGoal{ std::numeric_limits<double>::quiet_NaN() };
             if (!ReadTestGoals(cTest.get_name().c_str(), minGoal, maxGoal))
                 { return; }
             m_testBundle.GetTestGoals().insert({ cTest.get_name().c_str(), minGoal, maxGoal });
@@ -597,7 +679,8 @@ void TestBundleDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     m_testBundle.GetStatGoals().clear();
     for (const auto& statLabel : BaseProject::GetStatGoalLabels())
         {
-        double minGoal{ std::numeric_limits<double>::quiet_NaN() }, maxGoal{ std::numeric_limits<double>::quiet_NaN() };
+        double minGoal{ std::numeric_limits<double>::quiet_NaN() },
+               maxGoal{ std::numeric_limits<double>::quiet_NaN() };
         if (!ReadStatGoals(statLabel.first.second.c_str(), minGoal, maxGoal))
             { return; }
         m_testBundle.GetStatGoals().insert({ statLabel.first.first, minGoal, maxGoal });

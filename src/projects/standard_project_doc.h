@@ -20,19 +20,7 @@ class ProjectDoc final : public BaseProjectDoc
     {
 public:
     /// @brief Constructor.
-    ProjectDoc() : m_dupWordData(new ListCtrlExNumericDataProvider),
-                   m_misspelledWordData(new ListCtrlExNumericDataProvider),
-                   m_incorrectArticleData(new ListCtrlExNumericDataProvider),
-                   m_passiveVoiceData(new ListCtrlExNumericDataProvider),
-                   m_wordyPhraseData(new ListCtrlExNumericDataProvider),
-                   m_overusedWordsBySentenceData(new ListCtrlExNumericDataProvider),
-                   m_redundantPhraseData(new ListCtrlExNumericDataProvider),
-                   m_wordingErrorData(new ListCtrlExNumericDataProvider),
-                   m_clichePhraseData(new ListCtrlExNumericDataProvider),
-                   m_overlyLongSentenceData(new ListCtrlExNumericDataProvider),
-                   m_sentenceStartingWithConjunctionsData(new ListCtrlExNumericDataProvider),
-                   m_sentenceStartingWithLowercaseData(new ListCtrlExNumericDataProvider)
-                   {}
+    ProjectDoc() = default;
     /// @private
     ProjectDoc(const ProjectDoc&) = delete;
     /// @private
@@ -134,18 +122,18 @@ private:
 
     bool OnCreate(const wxString& path, long flags) final;
 
-    ListCtrlExNumericDataProvider* m_dupWordData{ nullptr };
-    ListCtrlExNumericDataProvider* m_misspelledWordData{ nullptr };
-    ListCtrlExNumericDataProvider* m_incorrectArticleData{ nullptr };
-    ListCtrlExNumericDataProvider* m_passiveVoiceData{ nullptr };
-    ListCtrlExNumericDataProvider* m_wordyPhraseData{ nullptr };
-    ListCtrlExNumericDataProvider* m_overusedWordsBySentenceData{ nullptr };
-    ListCtrlExNumericDataProvider* m_clichePhraseData{ nullptr };
-    ListCtrlExNumericDataProvider* m_redundantPhraseData{ nullptr };
-    ListCtrlExNumericDataProvider* m_wordingErrorData{ nullptr };
-    ListCtrlExNumericDataProvider* m_overlyLongSentenceData{ nullptr };
-    ListCtrlExNumericDataProvider* m_sentenceStartingWithConjunctionsData{ nullptr };
-    ListCtrlExNumericDataProvider* m_sentenceStartingWithLowercaseData{ nullptr };
+    ListCtrlExNumericDataProvider* m_dupWordData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_misspelledWordData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_incorrectArticleData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_passiveVoiceData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_wordyPhraseData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_overusedWordsBySentenceData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_clichePhraseData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_redundantPhraseData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_wordingErrorData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_overlyLongSentenceData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_sentenceStartingWithConjunctionsData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_sentenceStartingWithLowercaseData{ new ListCtrlExNumericDataProvider };
     wxFormattedTextCtrl* m_dcTextWindow{ nullptr };
     wxFormattedTextCtrl* m_spacheTextWindow{ nullptr };
     wxFormattedTextCtrl* m_hjTextWindow{ nullptr };

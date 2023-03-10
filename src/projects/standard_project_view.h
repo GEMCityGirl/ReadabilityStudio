@@ -30,6 +30,7 @@ public:
         { wxDELETE(m_statsListData); }
 
     /** @brief Saves all the results to an HTML report.
+        @param filePath The path to save the report to.
         @param graphExt The file extension to save graphs as (e.g., PNG).
         @param includeWordsBreakdown True to save the words breakdown section.
         @param includeSentencesBreakdown True to save the sentences breakdown section.

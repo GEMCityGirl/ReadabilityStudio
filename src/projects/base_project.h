@@ -813,7 +813,8 @@ public:
             { m_messages->clear(); }
         }
     /// @returns The collection of messages queued while loading documents and whatnot.
-    [[nodiscard]] const std::vector<WarningMessage>* GetSubProjectMessages()
+    [[nodiscard]]
+    const std::vector<WarningMessage>* GetSubProjectMessages() const
         {
         if (m_messages == nullptr)
             { m_messages = new std::vector<WarningMessage>; }
@@ -906,10 +907,14 @@ public:
     [[nodiscard]] const wxString& GetAppendedDocumentText() const noexcept
         { return m_appendedDocumentContent; }
 
-    /** @returns A true value and raw/encoded text converted into a filtered string on success, false and empty string otherwise.
+    /** @returns A @c true value and raw/encoded text converted into a
+            filtered string on success, @c false and empty string otherwise.
         @param sourceFileText The encoded text to filter.
+        @param streamSize The size of the text stream.
         @param fileExtension The file's extension.*/
-    [[nodiscard]] std::pair<bool,wxString> ExtractRawText(const char* sourceFileText, const size_t streamSize, const wxString& fileExtension);
+    [[nodiscard]] std::pair<bool,wxString> ExtractRawText(
+        const char* sourceFileText,
+        const size_t streamSize, const wxString& fileExtension);
 
     [[nodiscard]] const double& GetUnusedDolchConjunctions() const noexcept
         { return m_unusedDolchConjunctions; }
@@ -959,7 +964,8 @@ public:
     [[nodiscard]] size_t GetStandardTestCount() const noexcept
         { return GetReadabilityTests().get_tests().size() + 1 /*Dolch*/; }
     /// @returns The number of custom tests.
-    [[nodiscard]] size_t GetCustomTestCount() const noexcept
+    [[nodiscard]]
+    static size_t GetCustomTestCount() noexcept
         { return m_custom_word_tests.size(); }
     /// @returns The number of standard tests that can have multiple results (e.g., a grade level and predicted cloze score).
     [[nodiscard]] size_t GetMultiResultTestCount() const noexcept
@@ -1388,13 +1394,13 @@ protected:
         { nullptr };
 
     //unique word count and total count for each category
-    std::pair<size_t,size_t> m_dolchConjunctionCounts;
-    std::pair<size_t,size_t> m_dolchPrepositionCounts;
-    std::pair<size_t,size_t> m_dolchPronounCounts;
-    std::pair<size_t,size_t> m_dolchAdverbCounts;
-    std::pair<size_t,size_t> m_dolchAdjectiveCounts;
-    std::pair<size_t,size_t> m_dolchVerbCounts;
-    std::pair<size_t,size_t> m_dolchNounCounts;
+    std::pair<size_t, size_t> m_dolchConjunctionCounts{ 0,0 };
+    std::pair<size_t, size_t> m_dolchPrepositionCounts{ 0,0 };
+    std::pair<size_t, size_t> m_dolchPronounCounts{ 0,0 };
+    std::pair<size_t, size_t> m_dolchAdverbCounts{ 0,0 };
+    std::pair<size_t, size_t> m_dolchAdjectiveCounts{ 0,0 };
+    std::pair<size_t, size_t> m_dolchVerbCounts{ 0,0 };
+    std::pair<size_t, size_t> m_dolchNounCounts{ 0,0 };
 
     //Statistics values
     //totals
@@ -1429,13 +1435,13 @@ protected:
     double m_longestSentence{ 0 };
     double m_longestSentenceIndex{ 0 };
 private:
-    //extra stats needed for some tests
+    // extra stats needed for some tests
     double m_totalWordsFromCompleteSentencesAndHeaders{ 0 };
     double m_totalSentencesFromCompleteSentencesAndHeaders{ 0 };
     double m_totalNumeralsFromCompleteSentencesAndHeaders{ 0 };
     double m_totalCharactersFromCompleteSentencesAndHeaders{ 0 };
 
-    //Dolch stats
+    // Dolch stats
     double m_unusedDolchConjunctions{ 0 };
     double m_unusedDolchPrepositions{ 0 };
     double m_unusedDolchPronouns{ 0 };
@@ -1444,7 +1450,7 @@ private:
     double m_unusedDolchVerbs{ 0 };
     double m_unusedDolchNounsWords{ 0 };
 
-    //grammar stats
+    // grammar stats
     double m_duplicateWordCount{ 0 };
     double m_mismatchedArticleCount{ 0 };
     double m_passiveVoiceCount{ 0 };
@@ -1457,7 +1463,7 @@ private:
     double m_sentenceStartingWithConjunctionsCount{ 0 };
     double m_sentenceStartingWithLowercaseCount{ 0 };
 
-    //(unique) totals
+    // (unique) totals
     double m_uniqueWords{ 0 };
     double m_uniqueMonoSyllablicWords{ 0 };
     double m_unique6CharsPlusWords{ 0 };
@@ -1501,7 +1507,7 @@ private:
     wxString m_status;
 
     bool m_includeDolchSightWords{ false };
-    bool m_hasUI{ false };
+    bool m_hasUI{ true };
 
     // grammar options
     bool m_spellcheck_ignore_proper_nouns{ false };
@@ -1524,15 +1530,17 @@ private:
     bool m_ignoreProperNouns{ false };
     bool m_includeExcludedPhraseFirstOccurrence{ false };
 
-    //flag indicating that loading the original text failed or succeeded when opening the project
+    // flag indicating that loading the original text failed or succeeded when opening the project
     bool m_loadingOriginalTextSucceeded{ false };
     bool m_isRefreshing{ false };
-    //test options
+    // test options
     bool m_fogUseSentenceUnits{ false };
     bool m_includeStockerCatholicDCSupplement{ false };
 
     double m_indexScore{ 0 };
-    double m_clozeScore{ 0 }; //this is actually an integer that gets rounded, but stored as double so that it can be set to NaN if invalid.
+    // this is actually an integer that gets rounded,
+    // but stored as double so that it can be set to NaN if invalid.
+    double m_clozeScore{ 0 };
 
     ListCtrlExNumericDataProvider* m_3SybPlusData{ nullptr };
     ListCtrlExNumericDataProvider* m_6CharPlusData{ nullptr };
@@ -1552,7 +1560,8 @@ private:
     mutable std::vector<WarningMessage>* m_messages{ nullptr };
     ReadabilityFormulaParser* m_formulaParser{ nullptr };
 
-    grammar::phrase_collection* m_excluded_phrases{ nullptr }; //these can vary from project to project
+    // these can vary from project to project
+    grammar::phrase_collection* m_excluded_phrases{ nullptr };
 
     StatisticsInfo m_statsInfo;
     StatisticsReportInfo m_statsReportInfo;

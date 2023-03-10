@@ -281,14 +281,15 @@ void BatchProjectView::OnAddToDictionary([[maybe_unused]] wxCommandEvent& event)
             }
         wxArrayString misspellings;
         const wxString reportString = listView->GetItemTextEx(listView->GetFocusedItem(), listView->GetColumnCount()-1);
-        size_t startingQuote = reportString.find(wxT('\"')), endingQuote (0);
+        size_t startingQuote = reportString.find(wxT('\"'));
         while (startingQuote != wxNOT_FOUND)
             {
-            endingQuote = reportString.find(wxT('\"'), ++startingQuote);//find terminating quote
+            const auto endingQuote = reportString.find(wxT('\"'), ++startingQuote);
             if (endingQuote == wxNOT_FOUND)
                 { break; }
             misspellings.Add(reportString.substr(startingQuote, endingQuote-startingQuote));
-            startingQuote = reportString.find(wxT('\"'), endingQuote+1);//next starting quote
+            // next starting quote
+            startingQuote = reportString.find(wxT('\"'), endingQuote+1);
             }
         ListDlg misspellingDlg(GetDocFrame(), misspellings, true,
             wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
@@ -325,14 +326,15 @@ void BatchProjectView::OnDblClick(wxListEvent& event)
             { return; }
         wxArrayString misspellings;
         const wxString reportString = listView->GetItemTextEx(listView->GetFocusedItem(), listView->GetColumnCount()-1);
-        size_t startingQuote = reportString.find(wxT('\"')), endingQuote (0);
+        size_t startingQuote = reportString.find(wxT('\"'));
         while (startingQuote != wxNOT_FOUND)
             {
-            endingQuote = reportString.find(wxT('\"'), ++startingQuote);//find terminating quote
+            const auto endingQuote = reportString.find(wxT('\"'), ++startingQuote);
             if (endingQuote == wxNOT_FOUND)
                 { break; }
             misspellings.Add(reportString.substr(startingQuote, endingQuote-startingQuote));
-            startingQuote = reportString.find(wxT('\"'), endingQuote+1);//next starting quote
+            // next starting quote
+            startingQuote = reportString.find(wxT('\"'), endingQuote+1);
             }
         ListDlg misspellingDlg(GetDocFrame(), misspellings, true,
             wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
@@ -2555,7 +2557,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                         //project settings into this new project so that it gets analyzed the same way.
                         //Also, if there were any special settings for this subproject, then copy over its
                         //settings on top of the batch project's settings.
-                        ProjectDoc* newDoc = dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(selectedFilePaths[fileIter].first, wxDOC_SILENT));
+                        ProjectDoc* const newDoc = dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(selectedFilePaths[fileIter].first, wxDOC_SILENT));
                         if (!newDoc)
                             { return; }
                         newDoc->CopyDocumentLevelSettings(*doc);
@@ -2566,13 +2568,13 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                         //set the document path
                         newDoc->SetOriginalDocumentFilePath(selectedFilePaths[fileIter].first);
                         newDoc->SetOriginalDocumentDescription(selectedFilePaths[fileIter].second);
-                        if (newDoc && !newDoc->OnNewDocument() )
+                        if (!newDoc->OnNewDocument() )
                             {
                             //Document is implicitly deleted by DeleteAllViews
                             newDoc->DeleteAllViews();
                             return;
                             }
-                        if (newDoc && newDoc->GetFirstView() )
+                        if (newDoc->GetFirstView() )
                             {
                             const auto selectedItem = GetSideBar()->GetSelectedSubItemId();
 

@@ -60,11 +60,16 @@ namespace grammar
                 {
                 if (m_past_participle_exeptions.find(words[analyzePosition].c_str()) )
                     {
-                    // "ed" word should be followed by preposition showing that something is affecting "I".
-                    // For example, "I am excited BY that." is passive, but "I am excited for them" is not.
+                    // "ed" word should be followed by preposition showing
+                    // that something is affecting "I".
+                    // For example, "I am excited BY that." is passive,
+                    // but "I am excited for them" is not.
                     if (analyzePosition+1 < max_word_count &&
-                        traits::case_insensitive_ex::eq(words[analyzePosition][words[analyzePosition].length()-1], L'd') &&
-                        traits::case_insensitive_ex::compare(words[analyzePosition+1].c_str(), L"by", words[analyzePosition+1].length()) == 0)
+                        traits::case_insensitive_ex::eq(
+                            words[analyzePosition][words[analyzePosition].length()-1], L'd') &&
+                        traits::case_insensitive_ex::compare(
+                            words[analyzePosition+1].c_str(), L"by",
+                            words[analyzePosition+1].length()) == 0)
                         {
                         word_count = analyzePosition+2;
                         return true;
@@ -98,7 +103,7 @@ namespace grammar
     private:
         template<typename T>
         [[nodiscard]]
-        bool is_past_participle(const T& word) const
+        static bool is_past_participle(const T& word)
             {
             return (word.length() >= 5 &&
                      // watch out for "was eightEen"

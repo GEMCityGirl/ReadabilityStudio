@@ -24,21 +24,19 @@ namespace Wisteria::Graphs
         /** @brief Constructor.
             @param canvas The parent canvas to render on.*/
         explicit PolygonReadabilityGraph(Wisteria::Canvas* canvas) :
-                    GroupGraph2D(canvas),
-                    m_graphInvalidAreaColor(
-                        Wisteria::Colors::ColorBrewer::GetColor(
-                            Wisteria::Colors::Color::Red))
-            {
-            m_fancyFontFaceName =
-                Wisteria::GraphItems::Label::GetFirstAvailableFont(
+            GroupGraph2D(canvas),
+            m_graphInvalidAreaColor(
+                Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::Red)),
+            m_fancyFontFaceName( Wisteria::GraphItems::Label::GetFirstAvailableFont(
                     {
                     DONTTRANSLATE(L"Georgia", DTExplanation::FontName),
                     DONTTRANSLATE(L"Century Gothic"),
                     DONTTRANSLATE(L"Century"),
                     DONTTRANSLATE(L"Garamond")
                     }
-                );
-            }
+                ))
+            {}
 
         /// @brief A label display on a level (e.g., grade level).
         struct LevelLabel

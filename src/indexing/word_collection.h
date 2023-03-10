@@ -62,42 +62,19 @@ public:
              const word_list* secondary_known_spellings,
              const word_list* programming_known_spellings,
              const word_list* stop_list) :
-                                        m_name(name),
-                                        syllabize(syllabizer),
-                                        stem_word(stemmer),
-                                        is_mismatched_article(nullptr),
-                                        is_conjunction(isConjunction),
-                                        is_known_phrase(known_phrases),
-                                        is_known_proper_nouns(known_proper_nouns),
-                                        is_known_personal_nouns(known_personal_nouns),
-                                        is_correctly_spelled(known_spellings, secondary_known_spellings, programming_known_spellings, false, true, true, true, false, true, true),
-                                        is_copyright_phrase(copyright_phrases),
-                                        is_citation_phrase(citation_phrases),
-                                        m_stop_list(stop_list),
-                                        is_excluded_phrase(nullptr),
-                                        m_current_sentence_begin(0),
-                                        m_current_paragraph_begin(0),
-                                        m_valid_paragraph_count(0),
-                                        m_valid_punctuation_count(0),
-                                        m_complete_sentence_count(0),
-                                        m_valid_word_count(0),
-                                        m_treat_eol_as_eos(false),
-                                        m_ignore_blank_lines_when_determing_paragraph_split(false),
-                                        m_ignore_indenting_when_determing_paragraph_split(false),
-                                        m_sentence_start_must_be_uppercased(false),
-                                        m_ignore_trailing_copyright_notice_paragraphs(true),
-                                        m_ignore_citation_sections(true),
-                                        m_treat_header_words_as_valid(false),
-                                        m_aggressive_exclusion(false),
-                                        m_search_for_proper_nouns(true),
-                                        m_search_passive_voice(true),
-                                        m_allowable_incomplete_sentence_size(15),
-                                        m_exclude_file_addresses(false),
-                                        m_exclude_numerals(false),
-                                        m_exclude_proper_nouns(false),
-                                        m_include_excluded_phrase_first_occurrence(false),
-                                        m_search_for_proper_phrases(false),
-                                        m_search_for_negated_phrases(false)
+            m_name(name),
+            syllabize(syllabizer),
+            stem_word(stemmer),
+            is_conjunction(isConjunction),
+            is_known_phrase(known_phrases),
+            is_known_proper_nouns(known_proper_nouns),
+            is_known_personal_nouns(known_personal_nouns),
+            is_copyright_phrase(copyright_phrases),
+            is_citation_phrase(citation_phrases),
+            is_correctly_spelled(known_spellings, secondary_known_spellings,
+                                 programming_known_spellings, false,
+                                 true, true, true, false, true, true),
+            m_stop_list(stop_list)
         {}
 
 #ifdef __UNITTEST
@@ -122,7 +99,6 @@ public:
         // on average, every 5 or 6 characters in a text stream is a single word
         reserve_word_size(length/5);
 
-        const grammar::is_end_of_line isEol;
         tokenize::document_tokenize<> tokenize_text(words, length, m_treat_eol_as_eos,
             m_ignore_blank_lines_when_determing_paragraph_split,
             m_ignore_indenting_when_determing_paragraph_split,
@@ -172,7 +148,7 @@ public:
                         !characters::is_character::is_hyphen(current_char[i]))
                         { currentWordNoHyphens[currentWordNoHyphensSize++] = current_char[i]; }
                     }
-                if (is_correctly_spelled(currentWordNoHyphens))
+                if (is_correctly_spelled(Tword_type(currentWordNoHyphens)))
                     {
                     m_words.emplace_back(currentWordNoHyphens,
                                 currentWordNoHyphensSize,
@@ -1067,7 +1043,10 @@ public:
                 }
             //or a word not on the stop list
             else if (!is_word_common(currentWordIndex))
-                { m_aggregated_tokens.insert(*wordPos++,currentWordIndex); }
+                {
+                m_aggregated_tokens.insert(
+                    grammar::phrase<Tword_type>{*wordPos++}, currentWordIndex);
+                }
             else
                 { ++wordPos; }
             }
@@ -1307,13 +1286,13 @@ private:
                     if (!non_proper.get_word_list().find(wordPos->c_str()) )
                         {
                         wordPos->set_proper_noun(true);
-                        properWords.insert(wordPos->c_str());
+                        properWords.insert(Tword_type(wordPos->c_str()));
                         }
                     }
                 }
             //it's uncapitalized, not in caps, and mid-sentence. It must be non-proper. 
             else if (!wordPos->is_capitalized() && !wordPos->is_exclamatory() && !wordPos->is_acronym())
-                { nonProperWords.insert(wordPos->c_str()); }
+                { nonProperWords.insert(Tword_type(wordPos->c_str())); }
             }
 
         //Second pass, going over words whose capitalization can be ambiguous (first word of sentence, etc.)
@@ -1341,10 +1320,10 @@ private:
                         {
                         if (is_known_proper_nouns->find(currentWord.c_str()) )
                             { currentWord.set_proper_noun(true); }
-                        const auto propPos = properWords.get_data().find(currentWord.c_str());
+                        const auto propPos = properWords.get_data().find(Tword_type(currentWord.c_str()));
                         if (propPos != properWords.get_data().end())
                             {
-                            const auto nonPropPos = nonProperWords.get_data().find(currentWord.c_str());
+                            const auto nonPropPos = nonProperWords.get_data().find(Tword_type(currentWord.c_str()));
                             if (nonPropPos == nonProperWords.get_data().end()||
                                 propPos->second > nonPropPos->second)
                                 { currentWord.set_proper_noun(true); }
@@ -1372,10 +1351,10 @@ private:
                         continue;
                         }
                     // it's in the proper nouns that we detected...
-                    const auto propPos = properWords.get_data().find(currentWord.c_str());
+                    const auto propPos = properWords.get_data().find(Tword_type(currentWord.c_str()));
                     if (propPos != properWords.get_data().end())
                         {
-                        const auto nonPropPos = nonProperWords.get_data().find(currentWord.c_str());
+                        const auto nonPropPos = nonProperWords.get_data().find(Tword_type(currentWord.c_str()));
                         if (nonPropPos == nonProperWords.get_data().end() ||
                             propPos->second > nonPropPos->second)
                             {
@@ -1412,7 +1391,7 @@ private:
                     characters::is_character::is_upper(currentWord[0]) &&
                     characters::is_character::is_upper(currentWord[dashPos+1]))
                     {
-                    properWords.insert(currentWord.c_str());
+                    properWords.insert(Tword_type(currentWord.c_str()));
                     currentWord.set_proper_noun(true);
                     continue;
                     }
@@ -1434,8 +1413,8 @@ private:
             if (currentWord.is_capitalized() &&
                 currentWord.length() > 1 &&
                 !currentWord.is_numeric() &&
-                (properWords.get_data().find(currentWord.c_str()) != properWords.get_data().end() ||
-                             is_known_proper_nouns->find(currentWord.c_str()) ))
+                (properWords.get_data().find(Tword_type(currentWord.c_str())) != properWords.get_data().end() ||
+                             is_known_proper_nouns->find(currentWord.c_str(), currentWord.length()) ))
                 {
                 currentWord.set_proper_noun(true);
                 continue;
@@ -1468,7 +1447,7 @@ private:
                 characters::is_character::is_upper(currentWord[0]) &&
                 characters::is_character::is_upper(currentWord[dashPos+1]))
                 {
-                properWords.insert(currentWord.c_str());
+                properWords.insert(Tword_type(currentWord.c_str()));
                 currentWord.set_proper_noun(true);
                 continue;
                 }
@@ -1485,7 +1464,7 @@ private:
                 // perform a case-INsensitive search here because all of these words will be in all caps.
                 auto propPos = std::find_if(std::execution::par,
                                 properWords.get_data().cbegin(), properWords.get_data().cend(),
-                                string_util::equal_basic_string_i_compare_map<Tword_type, size_t>(wordPos->c_str()));
+                                string_util::equal_basic_string_i_compare_map<Tword_type, size_t>(Tword_type(wordPos->c_str())));
                 if (propPos != properWords.get_data().end() ||
                         // note that the *known* proper nouns are already case insensitive.
                         is_known_proper_nouns->find(wordPos->c_str()) )
@@ -1502,8 +1481,8 @@ private:
             //(which would probably be a new name that we don't have on our list).
             if (wordPos->is_proper_noun() &&
                 !wordPos->is_acronym() &&
-                (is_known_personal_nouns->find(wordPos->c_str()) ||
-                !is_correctly_spelled(wordPos->c_str())) )
+                (is_known_personal_nouns->find(wordPos->c_str(), wordPos->length()) ||
+                !is_correctly_spelled(Tword_type(wordPos->c_str()))) )
                 { wordPos->set_personal(true); }
             }
         }
@@ -2276,11 +2255,12 @@ private:
     grammar::is_english_passive_voice is_passive_voice;
     const grammar::is_coordinating_conjunction* is_conjunction{ nullptr };
     const grammar::phrase_collection* is_known_phrase{ nullptr };     //this should be shared from a parent
+    const word_list* is_known_proper_nouns{ nullptr };
+    const word_list* is_known_personal_nouns{ nullptr };
     const grammar::phrase_collection* is_copyright_phrase{ nullptr }; //this should be shared from a parent
     const grammar::phrase_collection* is_citation_phrase{ nullptr };  //this should be shared from a parent
     const grammar::phrase_collection* is_excluded_phrase{ nullptr };  //this should be shared from a parent
-    const word_list* is_known_proper_nouns{ nullptr };
-    const word_list* is_known_personal_nouns{ nullptr };
+    
     const word_list* m_stop_list{ nullptr };
     is_correctly_spelled_word<Tword_type, word_list> is_correctly_spelled;
     characters::is_character is_character;
@@ -2333,7 +2313,7 @@ private:
     bool m_include_excluded_phrase_first_occurrence{ false };
     bool m_search_for_proper_phrases{ false };
     bool m_search_for_negated_phrases{ false };
-    size_t m_allowable_incomplete_sentence_size{ false };
+    size_t m_allowable_incomplete_sentence_size{ 15 };
     };
 
 /** @}*/

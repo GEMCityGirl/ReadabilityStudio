@@ -28,7 +28,7 @@ class punctuation_mark_count_if_word_position
 public:
     /** @brief Constructor, which takes the position of the punctuation in the word.
         @param position The position of the punctuation in the word.*/
-    punctuation_mark_count_if_word_position(const size_t position) noexcept
+    explicit punctuation_mark_count_if_word_position(const size_t position) noexcept
         : m_word_position(position) {}
     punctuation_mark_count_if_word_position() = delete;
     /** @returns @c true if a valid punctuation mark based on its position in the word.
@@ -50,7 +50,8 @@ public:
         @param count The expected number of syllables that a passing word should have.
         @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one syllable.
             Default is @c false.*/
-    syllable_count_equals(const size_t count, const bool treat_numerals_as_monosyllabic = false) noexcept
+    explicit syllable_count_equals(const size_t count,
+        const bool treat_numerals_as_monosyllabic = false) noexcept
         : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
     syllable_count_equals() = delete;
     /** @returns @c true if a word contains the predefined syllable count.
@@ -76,7 +77,8 @@ public:
         @param count The expected number of syllables that a passing word should have.
         @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one syllable.
             Default is @c false.*/
-    valid_syllable_count_equals(size_t count, bool treat_numerals_as_monosyllabic = false) noexcept
+    explicit valid_syllable_count_equals(size_t count,
+        bool treat_numerals_as_monosyllabic = false) noexcept
         : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
     valid_syllable_count_equals() = delete;
     /** @returns @c true if a word contains the predefined syllable count. Note that this will immediately return
@@ -106,13 +108,15 @@ public:
     /** Constructor that takes the required syllable count and how to treat numerals.
         @param count The expected number of syllables that a passing word should have.
         @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one syllable. Default is false.*/
-    syllable_count_greater_equal(const size_t count, bool treat_numerals_as_monosyllabic = false) noexcept
+    explicit syllable_count_greater_equal(const size_t count,
+        bool treat_numerals_as_monosyllabic = false) noexcept
         : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
     syllable_count_greater_equal() = delete;
     /** @returns @c true if a word contains a greater than or equal to number of syllables
         compared to the predefined syllable count.
         @param the_word The word to review.*/
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const
         {
         return (m_treat_numerals_as_monosyllabic && the_word.is_numeric()) ?
             (1 >= m_count) : the_word.get_syllable_count() >= m_count;
@@ -130,13 +134,15 @@ public:
     /** Constructor that takes the required syllable count and how to treat numerals.
         @param count The expected number of syllables that a passing word should have.
         @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one syllable. Default is false.*/
-    valid_syllable_count_greater_equal(const size_t count, bool treat_numerals_as_monosyllabic = false) noexcept
+    explicit valid_syllable_count_greater_equal(const size_t count,
+        bool treat_numerals_as_monosyllabic = false) noexcept
         : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
     valid_syllable_count_greater_equal() = delete;
     /** @returns @c true if a valid word contains a greater than or equal to number of syllables
         compared to the predefined syllable count.
         @param the_word The word to review.*/
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const
         {
         if (the_word.is_valid())
             {
@@ -159,13 +165,14 @@ class syllable_count_greater_equal_ignore_numerals
 public:
     /** Constructor that takes the required syllable count and how to treat numerals.
         @param count The expected number of syllables that a passing word should have.*/
-    syllable_count_greater_equal_ignore_numerals(const size_t count) noexcept
+    explicit syllable_count_greater_equal_ignore_numerals(const size_t count) noexcept
         : m_count(count) {}
     syllable_count_greater_equal_ignore_numerals() = delete;
     /** @returns @c true if a word contains a greater than or equal to number of syllables
         compared to the predefined syllable count.
         @param the_word The word to review.*/
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const
         {
         return the_word.is_numeric() ?
             false : the_word.get_syllable_count() >= m_count;
@@ -179,10 +186,11 @@ template<typename word_typeT>
 class valid_syllable_count_greater_equal_ignore_numerals
     {
 public:
-    valid_syllable_count_greater_equal_ignore_numerals(const size_t count) noexcept
+    explicit valid_syllable_count_greater_equal_ignore_numerals(const size_t count) noexcept
         : m_count(count) {}
     valid_syllable_count_greater_equal_ignore_numerals() = delete;
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const
         {
         if (the_word.is_valid())
             {
@@ -201,10 +209,11 @@ template<typename word_typeT>
 class syllable_count_greater_equal_ignore_numerals_and_proper_nouns
     {
 public:
-    syllable_count_greater_equal_ignore_numerals_and_proper_nouns(const size_t count) noexcept
+    explicit syllable_count_greater_equal_ignore_numerals_and_proper_nouns(const size_t count) noexcept
         : m_count(count) {}
     syllable_count_greater_equal_ignore_numerals_and_proper_nouns() = delete;
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const
         {
         return (the_word.is_numeric() || the_word.is_proper_noun()) ?
             false : the_word.get_syllable_count() >= m_count;
@@ -218,10 +227,11 @@ template<typename word_typeT>
 class valid_syllable_count_greater_equal_ignore_numerals_and_proper_nouns
     {
 public:
-    valid_syllable_count_greater_equal_ignore_numerals_and_proper_nouns(const size_t count) noexcept
+    explicit valid_syllable_count_greater_equal_ignore_numerals_and_proper_nouns(const size_t count) noexcept
         : m_count(count) {}
     valid_syllable_count_greater_equal_ignore_numerals_and_proper_nouns() = delete;
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const
         {
         if (the_word.is_valid())
             {
@@ -240,10 +250,11 @@ template<typename word_typeT>
 class syllable_count_greater
     {
 public:
-    syllable_count_greater(size_t count, bool treat_numerals_as_monosyllabic = false) noexcept
+    explicit syllable_count_greater(size_t count, bool treat_numerals_as_monosyllabic = false) noexcept
         : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
     syllable_count_greater() = delete;
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const
         {
         return (m_treat_numerals_as_monosyllabic && the_word.is_numeric()) ?
             (1 > m_count) : the_word.get_syllable_count() > m_count;
@@ -258,10 +269,11 @@ template<typename word_typeT>
 class valid_syllable_count_greater
     {
 public:
-    valid_syllable_count_greater(const size_t count, bool treat_numerals_as_monosyllabic = false) noexcept
+    explicit valid_syllable_count_greater(const size_t count, bool treat_numerals_as_monosyllabic = false) noexcept
         : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
     valid_syllable_count_greater() = delete;
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const
         {
         if (the_word.is_valid())
             {
@@ -281,7 +293,7 @@ template<typename word_typeT>
 class add_syllable_size
     {
 public:
-    add_syllable_size(const bool treat_numerals_as_monosyllabic = false) noexcept
+    explicit add_syllable_size(const bool treat_numerals_as_monosyllabic = false) noexcept
         : m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
     add_syllable_size() = delete;
     [[nodiscard]] size_t operator()(const size_t result, const word_typeT& the_word) const
@@ -300,10 +312,11 @@ template<typename word_typeT>
 class add_valid_syllable_size
     {
 public:
-    add_valid_syllable_size(const bool treat_numerals_as_monosyllabic = false) noexcept
+    explicit add_valid_syllable_size(const bool treat_numerals_as_monosyllabic = false) noexcept
         : m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
     add_valid_syllable_size() = delete;
-    [[nodiscard]] size_t operator()(const size_t result, const word_typeT& the_word) const
+    [[nodiscard]]
+    size_t operator()(const size_t result, const word_typeT& the_word) const
         {
         if (the_word.is_valid())
             {
@@ -323,7 +336,8 @@ template<typename word_typeT>
 class add_syllable_size_ignore_numerals
     {
 public:
-    [[nodiscard]] size_t operator()(const size_t result, const word_typeT& the_word) const
+    [[nodiscard]]
+    size_t operator()(const size_t result, const word_typeT& the_word) const
         {
         return static_cast<size_t>
             (the_word.is_numeric() ? 0 : the_word.get_syllable_count()) + result;
@@ -335,7 +349,8 @@ template<typename word_typeT>
 class add_valid_syllable_size_ignore_numerals
     {
 public:
-    [[nodiscard]] size_t operator()(size_t result, const word_typeT& the_word) const
+    [[nodiscard]]
+    size_t operator()(size_t result, const word_typeT& the_word) const
         {
         if (the_word.is_valid())
             { return static_cast<size_t>
@@ -349,7 +364,8 @@ template<typename word_typeT>
 class add_syllable_size_ignore_numerals_and_proper_nouns
     {
 public:
-    [[nodiscard]] size_t operator()(const size_t result, const word_typeT& the_word) const
+    [[nodiscard]]
+    size_t operator()(const size_t result, const word_typeT& the_word) const
         {
         return static_cast<size_t>
             ((the_word.is_numeric() || the_word.is_proper_noun()) ? 0 : the_word.get_syllable_count()) + result;
@@ -361,7 +377,8 @@ template<typename word_typeT>
 class add_valid_syllable_size_ignore_numerals_and_proper_nouns
     {
 public:
-    [[nodiscard]] size_t operator()(const size_t result, const word_typeT& the_word) const
+    [[nodiscard]]
+    size_t operator()(const size_t result, const word_typeT& the_word) const
         {
         if (the_word.is_valid())
             { return static_cast<size_t>
@@ -377,11 +394,12 @@ template<typename word_typeT>
 class is_proper_noun
     {
 public:
-    is_proper_noun() noexcept {}
+    is_proper_noun() = default;
     /** @brief Reviews a word to see if it is proper.
         @param the_word The word to review.
         @returns @c true if @c the_word is proper.*/
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const noexcept
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const noexcept
         {
         return the_word.is_proper_noun();
         }
@@ -393,10 +411,11 @@ template<typename word_typeT>
 class is_valid_proper_noun
     {
 public:
-    is_valid_proper_noun() noexcept {}
+    is_valid_proper_noun() = default;
     /* @returns @c true if a word is proper.
        @param the_word The word to review.*/
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const noexcept
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const noexcept
         {
         if (the_word.is_valid())
             { return the_word.is_proper_noun(); }
@@ -410,10 +429,11 @@ template<typename word_typeT>
 class is_numeric
     {
 public:
-    is_numeric() noexcept {}
+    is_numeric() = default;
     /** @returns @c true if a word is numeric.
         @param the_word The word to review.*/
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const noexcept
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const noexcept
         { return the_word.is_numeric(); }
     };
 
@@ -423,10 +443,11 @@ template<typename word_typeT>
 class is_valid_numeric
     {
 public:
-    is_valid_numeric() noexcept {}
+    is_valid_numeric() = default;
     /** @returns @c true if a word is numeric.
         @param the_word The word to review.*/
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const noexcept
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const noexcept
         {
         if (the_word.is_valid())
             { return the_word.is_numeric(); }
@@ -441,13 +462,16 @@ template<typename word_typeT>
 class word_length_equals
     {
 public:
-    /**Constructor
+    /** @brief Constructor
         @param count The size that word lengths will be expected to be.*/
-    word_length_equals(const size_t count) noexcept : m_count(count) {}
+    explicit word_length_equals(const size_t count) noexcept :
+        m_count(count)
+        {}
     word_length_equals() = delete;
     /** @returns @c true if words are the same length.
         @param the_word The word to review.*/
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const noexcept
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const noexcept
         {
         return the_word.length() == m_count;
         }
@@ -461,13 +485,16 @@ template<typename word_typeT>
 class valid_word_length_equals
     {
 public:
-    /** Constructor
+    /** @brief Constructor
         @param count The word size to compare against.*/
-    valid_word_length_equals(const size_t count) noexcept : m_count(count) {}
+    explicit valid_word_length_equals(const size_t count) noexcept :
+        m_count(count)
+        {}
     valid_word_length_equals() = delete;
     /** @returns @c true if a word is valid and its length equals our specified number.
         @param the_word The word to review.*/
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const noexcept
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const noexcept
         {
         if (the_word.is_valid())
             { return the_word.length() == m_count; }
@@ -484,17 +511,18 @@ template<typename word_typeT>
 class word_length_greater_equals
     {
 public:
-    /** Constructor
+    /** @brief Constructor
         @param count The word size to compare against.*/
-    word_length_greater_equals(const size_t count) noexcept : m_count(count) {}
+    explicit word_length_greater_equals(const size_t count) noexcept :
+        m_count(count)
+        {}
     word_length_greater_equals() = delete;
     /** @returns @c true if a word is valid and its length is greater than or equals our specified number.
         @param the_word The word to review.
         @returns @c true if current word's length is greater than or equal to the seeded length.*/
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const noexcept
-        {
-        return the_word.length() >= m_count;
-        }
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const noexcept
+        { return the_word.length() >= m_count; }
 private:
     size_t m_count{ 0 };
     };
@@ -505,14 +533,17 @@ template<typename word_typeT>
 class word_length_excluding_punctuation_greater_equals
     {
 public:
-    /** Constructor
+    /** @brief Constructor
         @param count The word size to compare against.*/
-    word_length_excluding_punctuation_greater_equals(const size_t count) noexcept : m_count(count) {}
+    explicit word_length_excluding_punctuation_greater_equals(const size_t count) noexcept :
+        m_count(count)
+        {}
     word_length_excluding_punctuation_greater_equals() = delete;
     /** Comparison operator.
         @param the_word The word to review.
         @returns @c true if current word's length is greater than or equal to the seeded length (ignoring punctuation in the word)*/
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const noexcept
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const noexcept
         {
         return the_word.get_length_excluding_punctuation() >= m_count;
         }
@@ -528,7 +559,9 @@ class valid_word_length_greater_equals
 public:
     /** Constructor
         @param count The word size to compare against.*/
-    valid_word_length_greater_equals(const size_t count) noexcept : m_count(count) {}
+    explicit valid_word_length_greater_equals(const size_t count) noexcept :
+        m_count(count)
+        {}
     valid_word_length_greater_equals() = delete;
     /** Comparison operator.
         @param the_word The word to review.
@@ -552,12 +585,15 @@ class valid_word_length_excluding_punctuation_greater_equals
 public:
     /** Constructor
         @param count The word size to compare against.*/
-    valid_word_length_excluding_punctuation_greater_equals(const size_t count) noexcept : m_count(count) {}
+    explicit valid_word_length_excluding_punctuation_greater_equals(const size_t count) noexcept :
+        m_count(count)
+        {}
     valid_word_length_excluding_punctuation_greater_equals() = delete;
     /** Comparison operator.
         @param the_word The word to review.
         @returns @c true if current word's length is greater than or equal to the seeded length (ignoring punctuation in the word, and if word is valid).*/
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const noexcept
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const noexcept
         {
         if (the_word.is_valid())
             { return the_word.get_length_excluding_punctuation() >= m_count; }
@@ -578,7 +614,8 @@ public:
         @param result The previous result to add to.
         @param the_word The word whose length will be added to the result.
         @returns The seeded result plus the current word's length.*/
-    [[nodiscard]] size_t operator()(const size_t result, const word_typeT& the_word) const noexcept
+    [[nodiscard]]
+    size_t operator()(const size_t result, const word_typeT& the_word) const noexcept
         {
         return static_cast<size_t>(the_word.length()) + result;
         }
@@ -593,7 +630,8 @@ public:
         @param result The previous result to add to.
         @param the_word The word whose length will be added to the result.
         @returns The seeded result plus the current word's length (excluding any punctuation in the word).*/
-    [[nodiscard]] size_t operator()(const size_t result, const word_typeT& the_word) const
+    [[nodiscard]]
+    size_t operator()(const size_t result, const word_typeT& the_word) const
         {
         return static_cast<size_t>(the_word.get_length_excluding_punctuation()) + result;
         }
@@ -608,7 +646,8 @@ public:
         @param result The previous result to add to.
         @param the_word The word whose length will be added to the result.
         @returns The seeded result plus the current word's length (if valid).*/
-    [[nodiscard]] size_t operator()(const size_t result, const word_typeT& the_word) const
+    [[nodiscard]]
+    size_t operator()(const size_t result, const word_typeT& the_word) const
         {
         if (the_word.is_valid())
             { return static_cast<size_t>(the_word.length()) + result; }
@@ -627,7 +666,8 @@ public:
         @param result The previous result to add to.
         @param the_word The word whose length will be added to the result.
         @returns The seeded result plus the current word's length (if valid, and excluding any punctuation in the word).*/
-    [[nodiscard]] size_t operator()(const size_t result, const word_typeT& the_word) const
+    [[nodiscard]]
+    size_t operator()(const size_t result, const word_typeT& the_word) const
         {
         if (the_word.is_valid())
             { return static_cast<size_t>(the_word.get_length_excluding_punctuation()) + result; }
@@ -644,7 +684,8 @@ public:
     /** @brief Main interface for determining if a word is a hashtag.
         @param the_word The word to review.
         @returns @c true if a hashtag.*/
-    [[nodiscard]] bool operator()(const word_typeT& the_word) const
+    [[nodiscard]]
+    bool operator()(const word_typeT& the_word) const
         {
         // start with '#', but not a number like "#12".
         return (!the_word.is_numeric() &&
@@ -692,42 +733,35 @@ public:
       m_allow_colloquialisms(should_allow_colloquialisms),
       m_ignore_social_media_tags(should_ignore_social_media_tags)
         {}
-    is_correctly_spelled_word()
-        : m_wordlist(nullptr),
-        m_secondary_wordlist(nullptr),
-        m_programmer_wordlist(nullptr),
-        m_ignore_proper_nouns(false),
-        m_ignore_uppercased(false),
-        m_ignore_numerals(true),
-        m_ignore_file_addresses(true),
-        m_ignore_programmer_code(false),
-        m_allow_colloquialisms(false),
-        m_ignore_social_media_tags(true)
-        {}
+    is_correctly_spelled_word() = default;
     /** Sets the list of known (spelled correctly) words.
         @param wlist The list of known words.*/
     void set_word_list(const wordlistT* wlist) noexcept
         { m_wordlist = wlist; }
     /// @returns The list of known (spelled correctly) words.
-    [[nodiscard]] const wordlistT* get_word_list() const noexcept
+    [[nodiscard]]
+    const wordlistT* get_word_list() const noexcept
         { return m_wordlist; }
     /** Sets the user-defined list of known words.
         @param wlist The list of user-defined known words.*/
     void set_secondary_word_list(const wordlistT* wlist) noexcept
         { m_secondary_wordlist = wlist; }
     /// @returns The list of user-defined known (spelled correctly) words.
-    [[nodiscard]] const wordlistT* get_secondary_word_list() const noexcept
+    [[nodiscard]]
+    const wordlistT* get_secondary_word_list() const noexcept
         { return m_secondary_wordlist; }
     /** Sets the list of known programming words.
         @param wlist The list of programming known words.*/
     void set_programmer_word_list(const wordlistT* wlist) noexcept
         { m_programmer_wordlist = wlist; }
     /// @returns The list of known (spelled correctly) programming words.
-    [[nodiscard]] const wordlistT* get_programmer_word_list() const noexcept
+    [[nodiscard]]
+    const wordlistT* get_programmer_word_list() const noexcept
         { return m_programmer_wordlist; }
     /** @returns Whether proper nouns are checked or not. If not, then
         proper nouns will always be considered spelled correctly.*/
-    [[nodiscard]] bool is_ignoring_proper_nouns() const noexcept
+    [[nodiscard]]
+    bool is_ignoring_proper_nouns() const noexcept
         { return m_ignore_proper_nouns; }
     /** Set whether proper nouns are checked or not. If not, then
         proper nouns will always be considered spelled correctly.
@@ -736,7 +770,8 @@ public:
         { m_ignore_proper_nouns = ignore; }
     /** @returns Whether all uppercased words are checked or not. If not, then
         uppercased words will always be considered spelled correctly.*/
-    [[nodiscard]] bool is_ignoring_uppercased() const noexcept
+    [[nodiscard]]
+    bool is_ignoring_uppercased() const noexcept
         { return m_ignore_uppercased; }
     /** Set whether all uppercased words are checked or not. If not, then
         uppercased words will always be considered spelled correctly.
@@ -745,7 +780,8 @@ public:
         { m_ignore_uppercased = ignore; }
     /** @returns Whether numerals are checked or not. If not, then
         numerals will always be considered spelled correctly.*/
-    [[nodiscard]] bool is_ignoring_numerals() const noexcept
+    [[nodiscard]]
+    bool is_ignoring_numerals() const noexcept
         { return m_ignore_numerals; }
     /** Set whether numerals are checked or not. If not, then
         numerals will always be considered spelled correctly.
@@ -754,7 +790,8 @@ public:
         { m_ignore_numerals = ignore; }
     /** @returns Whether file addresses are checked or not. If not, then
         file addresses will always be considered spelled correctly.*/
-    [[nodiscard]] bool is_ignoring_file_addresses() const noexcept
+    [[nodiscard]]
+    bool is_ignoring_file_addresses() const noexcept
         { return m_ignore_file_addresses; }
     /** Set whether file addresses are checked or not. If not, then
         file addresses will always be considered spelled correctly.
@@ -763,7 +800,8 @@ public:
         { m_ignore_file_addresses = ignore; }
     /** @returns Whether programmer code are checked or not. If not, then
         programmer code will always be considered spelled correctly.*/
-    [[nodiscard]] bool is_ignoring_programmer_code() const noexcept
+    [[nodiscard]]
+    bool is_ignoring_programmer_code() const noexcept
         { return m_ignore_programmer_code; }
     /** Set whether programmer code are checked or not. If not, then
         programmer code will always be considered spelled correctly.
@@ -772,7 +810,8 @@ public:
         { m_ignore_programmer_code = ignore; }
     /** @returns Whether colloquialisms are acceptable. If so, then things like
         "tryin'" would be considered spelled correctly.*/
-    [[nodiscard]] bool is_allowing_colloquialisms() const noexcept
+    [[nodiscard]]
+    bool is_allowing_colloquialisms() const noexcept
         { return m_allow_colloquialisms; }
     /** Set whether colloquialisms are checked or not. If so, then things like
         "tryin'" will always be considered spelled correctly.
@@ -781,7 +820,8 @@ public:
         { m_allow_colloquialisms = allow; }
 
     /** @returns Whether hashtagged words are being ignored.*/
-    [[nodiscard]] bool is_ignoring_social_media_tags() const noexcept
+    [[nodiscard]]
+    bool is_ignoring_social_media_tags() const noexcept
         { return m_ignore_social_media_tags; }
     /** Set whether hashtagged words should be ignored.
         @param ignore Whether to ignore hashtagged words.*/
@@ -791,7 +831,8 @@ public:
     /** @brief Main interface for determining if a word is spelled correctly.
         @param the_word The word to review.
         @returns @c true if spelled correctly.*/
-    [[nodiscard]] bool operator()(const word_typeT& the_word) const
+    [[nodiscard]]
+    bool operator()(const word_typeT& the_word) const
         {
         if ((is_ignoring_numerals() && the_word.is_numeric()) ||                   //see if word is a number
             (is_ignoring_uppercased() && (the_word.is_acronym() || the_word.is_exclamatory())) || //uppercased words
@@ -808,7 +849,8 @@ public:
             { return is_on_list(the_word); }
         }
 private:
-    [[nodiscard]] bool is_colloquialisms(const word_typeT& the_word) const
+    [[nodiscard]]
+    bool is_colloquialisms(const word_typeT& the_word) const
         {
         typename wordlistT::word_type alteredWord = the_word.c_str();
         //strip off "'s" to make things simple
@@ -861,7 +903,8 @@ private:
     /// @param the_word The word to review.
     /// @note This function does not narrow full-width characters, it assumes programmer code is ASCII text.
     ///  It is also sensitive to casing, unlike other functions in the spell checker.
-    [[nodiscard]] bool is_programmer_code(const word_typeT& the_word) const
+    [[nodiscard]]
+    bool is_programmer_code(const word_typeT& the_word) const
         {
         // Single uppercase word (not in a block of other uppercased words) is probably a constant or macro command.
         // Ignore numbers explicitly too.

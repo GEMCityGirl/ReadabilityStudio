@@ -22,8 +22,7 @@ ExportAllDlg::ExportAllDlg(wxWindow* parent, BaseProjectDoc* doc,
                   wxWindowID id /*= wxID_ANY*/, const wxString& caption /*= _("Export Options")*/,
                   const wxPoint& pos /*= wxDefaultPosition*/, const wxSize& size /*= wxDefaultSize*/,
                   long style /*= wxDEFAULT_DIALOG_STYLE|wxCLIP_CHILDREN*/) :
-        m_readabilityProjectDoc(doc),
-        m_folderBrowseButton(nullptr), m_textViewCombo(nullptr), m_listCombo(nullptr), m_graphCombo(nullptr), m_fileMode(fileMode)
+        m_readabilityProjectDoc(doc), m_fileMode(fileMode)
     {
     wxASSERT_MSG(doc, L"NULL document passed to export all dialog!");
     wxString exportDir = doc->GetExportFolder();

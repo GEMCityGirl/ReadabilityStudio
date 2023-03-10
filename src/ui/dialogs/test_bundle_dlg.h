@@ -1,3 +1,14 @@
+/** @addtogroup UI
+    @brief Classes for the user interface.
+    @date 2005-2023
+    @copyright Oleander Software, Ltd.
+    @author Blake Madden
+    @details This program is free software; you can redistribute it and/or modify
+     it under the terms of the 3-Clause BSD License.
+
+     SPDX-License-Identifier: BSD-3-Clause
+* @{*/
+
 #ifndef __TEST_BUNDLE_DLG_H__
 #define __TEST_BUNDLE_DLG_H__
 
@@ -11,39 +22,47 @@
 
 class TestBundle;
 
+/// @brief Test bundle editing dialog.
 class TestBundleDlg final : public Wisteria::UI::DialogWithHelp
     {
 public:
-    TestBundleDlg() = delete;
+    /// @brief Constructor.
+    /// @param parent The dialog's parent.
+    /// @para testBundle The test bundle to edit.
     TestBundleDlg(wxWindow* parent, TestBundle& testBundle);
+    /// @private
+    TestBundleDlg() = delete;
+    /// @private
     TestBundleDlg(const TestBundleDlg&) = delete;
-    TestBundleDlg(TestBundleDlg&&) = delete;
+    /// @private
     TestBundleDlg& operator=(const TestBundleDlg&) = delete;
-    TestBundleDlg& operator=(TestBundleDlg&&) = delete;
+    /// @brief Sets the bundle's name.
+    /// @param name The bundle name to use.
     void SetTestBundleName(const wxString& name)
         {
         m_bundleName = name;
         TransferDataToWindow();
         }
-    /// Selects the page with the given page ID.
+    /// @brief Selects the page with the given page ID.
     /// @param pageId The window ID of the page to select.
     void SelectPage(const wxWindowID pageId);
-
-    // page IDs
-    static constexpr int ID_GENERAL_PAGE = 20001;
-    static constexpr int ID_STANDARD_TEST_PAGE = 20002;
-    static constexpr int ID_VOCAB_PAGE = 20003;
-    static constexpr int ID_CUSTOM_TEST_PAGE = 20004;
-    static constexpr int ID_GOALS_PAGE = 20005;
-    static constexpr int ID_ADD_TEST_GOALS_BUTTON = 30001;
-    static constexpr int ID_DELETE_TEST_GOALS_BUTTON = 30002;
-    static constexpr int ID_ADD_STAT_GOALS_BUTTON = 30003;
-    static constexpr int ID_DELETE_STAT_GOALS_BUTTON = 30004;
 private:
     void CreateControls();
     void OnOK([[maybe_unused]] wxCommandEvent& event);
 
+    // page IDs
+    static constexpr int ID_GENERAL_PAGE = wxID_HIGHEST;
+    static constexpr int ID_STANDARD_TEST_PAGE = wxID_HIGHEST + 1;
+    static constexpr int ID_VOCAB_PAGE = wxID_HIGHEST + 2;
+    static constexpr int ID_CUSTOM_TEST_PAGE = wxID_HIGHEST + 3;
+    static constexpr int ID_GOALS_PAGE = wxID_HIGHEST + 4;
+    static constexpr int ID_ADD_TEST_GOALS_BUTTON = wxID_HIGHEST + 5;
+    static constexpr int ID_DELETE_TEST_GOALS_BUTTON = wxID_HIGHEST + 6;
+    static constexpr int ID_ADD_STAT_GOALS_BUTTON = wxID_HIGHEST + 7;
+    static constexpr int ID_DELETE_STAT_GOALS_BUTTON = wxID_HIGHEST + 8;
+
     wxString m_bundleName;
+    wxString m_descriptionName;
     bool m_includeDolchSightWords{ false };
     TestBundle& m_testBundle;
     readability::readability_test_collection<> m_standardTests;
@@ -54,5 +73,8 @@ private:
     ListCtrlEx* m_statGoalsListCtrl{ nullptr };
     Wisteria::UI::SideBarBook* m_sideBarBook{ nullptr };
     };
+
+
+/** @}*/
 
 #endif //__TEST_BUNDLE_DLG_H__

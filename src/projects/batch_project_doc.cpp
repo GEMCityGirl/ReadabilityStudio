@@ -654,7 +654,7 @@ void BatchProjectDoc::LoadHardWordsSection()
     {
     PROFILE();
     m_hardWordsData->DeleteAllItems();
-    size_t extraColumnCount= 0;
+    size_t extraColumnCount = 0;
     if (GetStatisticsReportInfo().IsExtendedWordsEnabled())
         {
         extraColumnCount += IsSmogLikeTestIncluded() ? 2 : 0;

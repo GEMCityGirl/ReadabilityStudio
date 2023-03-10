@@ -109,10 +109,6 @@ public:
     
     /// @returns The bundle's description.
     [[nodiscard]]
-    string_type& GetDescription() noexcept
-        { return m_description; }
-    /// @private
-    [[nodiscard]]
     const string_type& GetDescription() const noexcept
         { return m_description; }
     /// @brief Sets the bundle's description.

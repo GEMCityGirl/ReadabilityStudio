@@ -57,7 +57,7 @@ public:
     [[nodiscard]]
     static const wxString SignatureToFunctionName(const wxString& signature)
         {
-        const int paren = signature.find(L'(');
+        const auto paren = signature.find(L'(');
         if (paren == wxString::npos)
             { return signature; }
         else

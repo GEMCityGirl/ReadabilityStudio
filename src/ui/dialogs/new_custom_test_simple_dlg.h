@@ -9,8 +9,8 @@
      SPDX-License-Identifier: BSD-3-Clause
 * @{*/
 
-#ifndef __WXNEW_CUSTOM_TEST_SIMPLE_DLG_H__
-#define __WXNEW_CUSTOM_TEST_SIMPLE_DLG_H__
+#ifndef __NEW_CUSTOM_TEST_SIMPLE_DLG_H__
+#define __NEW_CUSTOM_TEST_SIMPLE_DLG_H__
 
 #include <wx/wx.h>
 #include <wx/string.h>
@@ -23,13 +23,17 @@
 class NewCustomTestSimpleDlg final : public Wisteria::UI::DialogWithHelp
     {
 public:
-    NewCustomTestSimpleDlg(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& caption = _("New Custom Test"),
-                      const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
-                      long style = wxDEFAULT_DIALOG_STYLE|wxCLIP_CHILDREN|wxRESIZE_BORDER)
+    explicit NewCustomTestSimpleDlg(wxWindow* parent, wxWindowID id = wxID_ANY,
+        const wxString& caption = _("New Custom Test"),
+        const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
+        long style = wxDEFAULT_DIALOG_STYLE|wxCLIP_CHILDREN|wxRESIZE_BORDER)
         { Create(parent, id, caption, pos, size, style); }
+    NewCustomTestSimpleDlg(const NewCustomTestSimpleDlg& that) = delete;
+    NewCustomTestSimpleDlg& operator=(const NewCustomTestSimpleDlg& that) = delete;
 
     /// Creation
-    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& caption = _("New Custom Test"),
+    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
+                const wxString& caption = _("New Custom Test"),
                 const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
                 long style = wxDEFAULT_DIALOG_STYLE|wxCLIP_CHILDREN|wxRESIZE_BORDER)
         {
@@ -42,24 +46,25 @@ public:
         }
 
     void CreateControls();
-    [[nodiscard]] wxString GetTestName() const
+    [[nodiscard]]
+    wxString GetTestName() const
         { return m_testName; }
-    [[nodiscard]] wxString GetWordListFilePath() const
+    [[nodiscard]]
+    wxString GetWordListFilePath() const
         { return m_wordListFilePath; }
-
+private:
     void OnBrowseForFileClick([[maybe_unused]] wxCommandEvent& event);
     void OnOK([[maybe_unused]] wxCommandEvent& event);
 
-private:
     static constexpr int ID_FOLDER_BROWSE_BUTTON = 10001;
     wxString m_testName;
     wxString m_wordListFilePath;
 
     NewCustomTestSimpleDlg() noexcept {}
-    wxDECLARE_NO_COPY_CLASS(NewCustomTestSimpleDlg);
+
     wxDECLARE_EVENT_TABLE();
     };
 
 /** @}*/
 
-#endif //__WXNEW_CUSTOM_TEST_SIMPLE_DLG_H__
+#endif //__NEW_CUSTOM_TEST_SIMPLE_DLG_H__

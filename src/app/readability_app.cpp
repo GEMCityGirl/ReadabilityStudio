@@ -28,6 +28,7 @@ wxIMPLEMENT_APP(ReadabilityApp);
 
 RSArtProvider::RSArtProvider()
     {
+    // cppcheck-suppress useInitializationList
     m_idFileMap =
         {
             { wxART_FILE_OPEN, L"ribbon/file-open.svg" },
@@ -640,30 +641,35 @@ bool ReadabilityApp::OnInit()
 
     //add some standard test bundles
     // PSK
-    TestBundle PskBundle(ReadabilityMessages::GetPskBundleName());
+    TestBundle PskBundle(ReadabilityMessages::GetPskBundleName().wc_str());
     PskBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::PSK_DALE_CHALL().wc_str() });
     PskBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::PSK_FLESCH().wc_str() });
     PskBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::PSK_GUNNING_FOG().wc_str() });
     PskBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::PSK_FARR_JENKINS_PATERSON().wc_str() });
-    PskBundle.SetDescription(_("Powers, Sumner, and Kearl's four adjusted formulas, which were recalculated using the McCall-Crabbs 1950 tests. These formulas were also adjusted to predict closer scores to each other."));
+    PskBundle.SetDescription(
+        _("Powers, Sumner, and Kearl's four adjusted formulas, which were recalculated "
+          "using the McCall-Crabbs 1950 tests. These formulas were also adjusted to predict "
+          "closer scores to each other.").wc_str());
     PskBundle.SetLanguage(readability::test_language::english_test);
     PskBundle.Lock();
     BaseProject::m_testBundles.insert(PskBundle);
     dynamic_cast<MainFrame*>(GetMainFrame())->AddTestBundleToMenus(PskBundle.GetName().c_str());
 
     // Kincaid's Navy Personnel tests
-    TestBundle NavyBundle(ReadabilityMessages::GetKincaidNavyBundleName());
+    TestBundle NavyBundle(ReadabilityMessages::GetKincaidNavyBundleName().wc_str());
     NavyBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::FLESCH_KINCAID().wc_str() });
     NavyBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::NEW_ARI().wc_str() });
     NavyBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::NEW_FOG().wc_str() });
-    NavyBundle.SetDescription(_("Kincaid's collection of recalculated tests, designed for enlisted U.S. Navy Personnel."));
+    NavyBundle.SetDescription(
+        _("Kincaid's collection of recalculated tests, "
+          "designed for enlisted U.S. Navy Personnel.").wc_str());
     NavyBundle.SetLanguage(readability::test_language::english_test);
     NavyBundle.Lock();
     BaseProject::m_testBundles.insert(NavyBundle);
     dynamic_cast<MainFrame*>(GetMainFrame())->AddTestBundleToMenus(NavyBundle.GetName().c_str());
 
     // Grundner's Consent Forms
-    TestBundle ConsentFormsBundle(ReadabilityMessages::GetConsentFormsBundleName());
+    TestBundle ConsentFormsBundle(ReadabilityMessages::GetConsentFormsBundleName().wc_str());
     ConsentFormsBundle.GetTestGoals() =
         {
         TestGoal{ ReadabilityMessages::ELF().wc_str(), std::numeric_limits<double>::quiet_NaN(), 12 },
@@ -685,7 +691,7 @@ bool ReadabilityApp::OnInit()
           "This bundle includes the tests Fry, Flesch Reading Ease, SMOG, and "
           "the Easy Listening Formula, as recommended by T. M. Grundner (\"Consent Forms\" 9-10). "
           "Also included are the recommended test scores (i.e., goals) that consent forms "
-          "should fall within. (Note that SMOG did not have a recommended test score.)"));
+          "should fall within. (Note that SMOG did not have a recommended test score.)").wc_str());
     ConsentFormsBundle.SetLanguage(readability::test_language::english_test);
     ConsentFormsBundle.Lock();
     BaseProject::m_testBundles.insert(ConsentFormsBundle);
@@ -1419,9 +1425,9 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             }
         }
 
-    // Document tab
     if (rtype != RibbonType::MainFrameRibbon)
         {
+        // Document tab
         wxRibbonPage* documentPage = new wxRibbonPage(ribbon, wxID_ANY, _("Document"));
         // proofing section
         wxRibbonPanel* proofingPanel = new wxRibbonPanel(documentPage, wxID_ANY,
@@ -1502,11 +1508,8 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         numeralsButtonBar->AddDropdownButton(XRCID("ID_NUMERAL_SYLLABICATION"), _("Syllabication"),
                                              readRibbonButtonSVG(L"ribbon/number-syllabize.svg"),
                                              _("Specify how syllables should be counted for numbers."));
-        }
 
-    // Readability tests tab
-    if (rtype != RibbonType::MainFrameRibbon)
-        {
+        // Readability tests tab
         wxRibbonPage* testsPage = new wxRibbonPage(ribbon, wxID_ANY, _("Readability"), wxNullBitmap);
         wxRibbonPanel* standardTestsPanel = new wxRibbonPanel(testsPage, wxID_ANY, _("Tests"), wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
         wxRibbonButtonBar* standardTestsBar = new wxRibbonButtonBar(standardTestsPanel);
@@ -1538,7 +1541,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             _("Remove"),
             readRibbonButtonSVG(L"ribbon/delete.svg"),
             _("Remove the selected test from the project."));
-        //tools section
+        // readability tools section
         wxRibbonPanel* readabilityToolsPanel = new wxRibbonPanel(testsPage, wxID_ANY, _("Tools"), wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
         wxRibbonButtonBar* readabilityToolBar = new wxRibbonButtonBar(readabilityToolsPanel);
         readabilityToolBar->AddButton(XRCID("ID_TESTS_OVERVIEW"),
@@ -1558,11 +1561,8 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             _("Blank Graphs"),
             readRibbonButtonSVG(L"ribbon/blank-graphs.svg"),
             _("Print or save blank readability graph templates."));
-        }
 
-    //Tools tab
-    if (rtype != RibbonType::MainFrameRibbon)
-        {
+        // Tools tab
         wxRibbonPage* toolsPage = new wxRibbonPage(ribbon, wxID_ANY, _("Tools"));
         wxRibbonPanel* toolsPanel = new wxRibbonPanel(toolsPage, wxID_ANY, _("Tools & Settings"), wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
         wxRibbonButtonBar* toolButtonBar = new wxRibbonButtonBar(toolsPanel);
@@ -2057,9 +2057,6 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
 MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame, const wxArrayString& defaultFileExtensions, const wxString& title,
           const wxPoint& pos, const wxSize& size, long type) :
           Wisteria::UI::BaseMainFrame(manager, frame, defaultFileExtensions, title, pos, size, type),
-          m_customTestsRegularMenu(nullptr), m_testsBundleRegularMenu(nullptr),
-          m_startPage(nullptr),
-          m_luaEditor(nullptr),
           CUSTOM_TEST_RANGE(1000),
           EXAMPLE_RANGE(300),
           TEST_BUNDLE_RANGE(300)
@@ -2959,7 +2956,8 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
                 {
                 if (testBundleMenu->FindItem(bundle.first) == nullptr)
                     {
-                    std::set<TestBundle>::const_iterator testIter = BaseProject::m_testBundles.find(TestBundle(bundle.second));
+                    std::set<TestBundle>::const_iterator testIter =
+                        BaseProject::m_testBundles.find(TestBundle(bundle.second.wc_str()));
                     if (testIter == BaseProject::m_testBundles.cend())
                         {
                         wxMessageBox(_("Unable to add test bundle to menu: internal error, please contact software vendor."),
@@ -3131,9 +3129,9 @@ void MainFrame::OnRemoveCustomTest([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnAddCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
     {
-    TestBundle bundle(wxString(L""));
+    TestBundle bundle(L"");
     TestBundleDlg bundleDlg(this, bundle);
-    bundleDlg.SetHelpTopic(GetHelpDirectory(), wxT("test-bundles.html"));
+    bundleDlg.SetHelpTopic(GetHelpDirectory(), L"test-bundles.html");
     if (bundleDlg.ShowModal() == wxID_OK)
         {
         BaseProject::m_testBundles.insert(bundle);
@@ -3155,14 +3153,15 @@ void MainFrame::OnEditCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
     if (dlg.ShowModal() == wxID_CANCEL)
         { return; }
 
-    std::set<TestBundle>::iterator testBundleIter = BaseProject::m_testBundles.find(TestBundle(dlg.GetStringSelection()));
+    std::set<TestBundle>::iterator testBundleIter =
+        BaseProject::m_testBundles.find(TestBundle(dlg.GetStringSelection().wc_str()));
     if (testBundleIter == BaseProject::m_testBundles.end())//shouldn't happen
         { return; }
 
     //set iterators cannot be edited directly. We will make a copy of the bundle and then reinsert it.
     TestBundle bundle = *testBundleIter;
     TestBundleDlg bundleDlg(this, bundle);
-    bundleDlg.SetHelpTopic(GetHelpDirectory(), wxT("test-bundles.html"));
+    bundleDlg.SetHelpTopic(GetHelpDirectory(), L"test-bundles.html");
     if (bundleDlg.ShowModal() == wxID_OK && !bundle.IsLocked())
         {
         BaseProject::m_testBundles.erase(testBundleIter);
@@ -3187,7 +3186,8 @@ void MainFrame::OnRemoveCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
     if (dlg.ShowModal() == wxID_CANCEL)
         { return; }
 
-    std::set<TestBundle>::iterator testBundleIter = BaseProject::m_testBundles.find(TestBundle(dlg.GetStringSelection()));
+    std::set<TestBundle>::iterator testBundleIter =
+        BaseProject::m_testBundles.find(TestBundle(dlg.GetStringSelection().wc_str()));
     if (testBundleIter == BaseProject::m_testBundles.end())//shouldn't happen
         { return; }
     BaseProject::m_testBundles.erase(testBundleIter);

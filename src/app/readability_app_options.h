@@ -20,7 +20,7 @@
 class StatisticsInfo
     {
 public:
-    StatisticsInfo() : m_statItemsToInclude(0)
+    StatisticsInfo()
         { Reset(); }
     void Reset() noexcept
         { EnableAll(); }
@@ -46,7 +46,7 @@ private:
 class StatisticsReportInfo
     {
 public:
-    StatisticsReportInfo() : m_statReportItemsToInclude(0)
+    StatisticsReportInfo()
         { Reset(); }
     void Reset()
         {
@@ -116,7 +116,7 @@ private:
 class GrammarInfo
     {
 public:
-    GrammarInfo() : m_grammarItemsToInclude(0)
+    GrammarInfo()
         { EnableAll(); }//enable all flags by default
     void EnableAll() noexcept
         { m_grammarItemsToInclude.set(); }
@@ -188,7 +188,7 @@ private:
 class WordsBreakdownInfo
     {
 public:
-    WordsBreakdownInfo() : m_wordsBreakdownItemsToInclude(0)
+    WordsBreakdownInfo()
         { EnableAll(); }
     void EnableAll() noexcept
         { m_wordsBreakdownItemsToInclude.set(); }
@@ -256,7 +256,7 @@ private:
 class SentencesBreakdownInfo
     {
 public:
-    SentencesBreakdownInfo() : m_sentenceBreadkdownItemsToInclude(0)
+    SentencesBreakdownInfo()
         { Reset(); }
     void Reset() noexcept
         { EnableAll(); }
@@ -1196,13 +1196,18 @@ private:
     //readability scores options
     bool m_includeScoreSummaryReport{ true };
     //test options
-    SpecializedTestTextExclusion m_dcTextExclusion;
-    SpecializedTestTextExclusion m_hjTextExclusion;
-    readability::proper_noun_counting_method m_dcProperNounCountingMethod{ readability::proper_noun_counting_method::only_count_first_instance_of_proper_noun_as_unfamiliar };
+    SpecializedTestTextExclusion m_dcTextExclusion
+        { SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings };
+    SpecializedTestTextExclusion m_hjTextExclusion
+        { SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings };
+    readability::proper_noun_counting_method m_dcProperNounCountingMethod
+        { readability::proper_noun_counting_method::only_count_first_instance_of_proper_noun_as_unfamiliar };
     bool m_includeStockerCatholicDCSupplement{ false };
     bool m_fogUseSentenceUnits{ true };
-    FleschNumeralSyllabize m_fleschNumeralSyllabizeMethod;
-    FleschKincaidNumeralSyllabize m_fleschKincaidNumeralSyllabizeMethod;
+    FleschNumeralSyllabize m_fleschNumeralSyllabizeMethod
+        { FleschNumeralSyllabize::NumeralIsOneSyllable };
+    FleschKincaidNumeralSyllabize m_fleschKincaidNumeralSyllabizeMethod
+        { FleschKincaidNumeralSyllabize::FleschKincaidNumeralSoundOutEachDigit };
     // custom colors
     std::vector<wxColour> m_customColours;
     // images used for blank graphs

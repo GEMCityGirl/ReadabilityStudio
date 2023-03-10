@@ -1,3 +1,14 @@
+/** @addtogroup UI
+    @brief Classes for the user interface.
+    @date 2005-2023
+    @copyright Oleander Software, Ltd.
+    @author Blake Madden
+    @details This program is free software; you can redistribute it and/or modify
+     it under the terms of the 3-Clause BSD License.
+
+     SPDX-License-Identifier: BSD-3-Clause
+* @{*/
+
 #ifndef __TOOLS_OPTIONS_DIALOG_H__
 #define __TOOLS_OPTIONS_DIALOG_H__
 
@@ -398,70 +409,70 @@ private:
     void CreateLabelHeader(wxWindow* parent, wxSizer* parentSizer, const wxString& title, const bool addSidePadding = false) const;
 
     BaseProjectDoc* m_readabilityProjectDoc { nullptr };
-    wxCheckBox* m_ignoreCopyrightsCheckBox { nullptr };
-    wxCheckBox* m_ignoreCitationsCheckBox { nullptr };
-    wxCheckBox* m_ignoreFileAddressesCheckBox { nullptr };
-    wxCheckBox* m_ignoreNumeralsCheckBox { nullptr };
-    wxCheckBox* m_ignoreProperNounsCheckBox { nullptr };
-    wxCheckBox* m_includeExcludedPhraseFirstOccurrenceCheckBox { nullptr };
-    wxTextCtrl* m_excludedPhrasesPathFilePathEdit { nullptr };
-    wxBitmapButton* m_excludedPhrasesEditBrowseButton { nullptr };
-    wxCheckBox* m_aggressiveExclusionCheckBox { nullptr };
-    wxCheckBox* m_ignoreBlankLinesCheckBox { nullptr };
-    wxCheckBox* m_ignoreIndentingCheckBox { nullptr };
-    wxButton* m_highlightColorButton { nullptr };
-    wxButton* m_excludedHighlightColorButton { nullptr };
-    wxButton* m_duplicateWordHighlightColorButton { nullptr };
-    wxButton* m_wordyPhraseHighlightColorButton { nullptr };
-    wxButton* m_FontButton { nullptr };
-    wxButton* m_xAxisFontButton { nullptr };
-    wxButton* m_yAxisFontButton { nullptr };
-    wxButton* m_graphTopTitleFontButton { nullptr };
-    wxButton* m_graphBottomTitleFontButton { nullptr };
-    wxButton* m_graphLeftTitleFontButton { nullptr };
-    wxButton* m_graphRightTitleFontButton { nullptr };
-    Wisteria::UI::SideBarBook* m_sideBar { nullptr };
-    wxTextCtrl* m_stippleFilePathEdit { nullptr };
-    wxTextCtrl* m_filePathEdit { nullptr };
-    wxStaticText* m_includeIncompleteSentSizeincludeIncompleteLabel { nullptr };
-    wxStaticText* m_includeIncompleteSentSizeWordsLabel { nullptr };
-    wxBitmapButton* m_fileBrowseButton { nullptr };
-    wxStaticText* m_syllableLabel { nullptr };
-    wxChoice* m_syllableCombo { nullptr };
-    wxChoice* m_exclusionBlockTagsCombo { nullptr };
-    wxStaticText* m_exclusionBlockTagsLabel { nullptr };
-    //dolch buttons
-    wxBitmapButton* m_DolchConjunctionsColorButton { nullptr };
-    wxBitmapButton* m_DolchPrepositionsColorButton { nullptr };
-    wxBitmapButton* m_DolchPronounsColorButton { nullptr };
-    wxBitmapButton* m_DolchAdverbsColorButton { nullptr };
-    wxBitmapButton* m_DolchAdjectivesColorButton { nullptr };
-    wxBitmapButton* m_DolchVerbsColorButton { nullptr };
-    wxBitmapButton* m_DolchNounColorButton { nullptr };
+    wxCheckBox* m_ignoreCopyrightsCheckBox{ nullptr };
+    wxCheckBox* m_ignoreCitationsCheckBox{ nullptr };
+    wxCheckBox* m_ignoreFileAddressesCheckBox{ nullptr };
+    wxCheckBox* m_ignoreNumeralsCheckBox{ nullptr };
+    wxCheckBox* m_ignoreProperNounsCheckBox{ nullptr };
+    wxCheckBox* m_includeExcludedPhraseFirstOccurrenceCheckBox{ nullptr };
+    wxTextCtrl* m_excludedPhrasesPathFilePathEdit{ nullptr };
+    wxBitmapButton* m_excludedPhrasesEditBrowseButton{ nullptr };
+    wxCheckBox* m_aggressiveExclusionCheckBox{ nullptr };
+    wxCheckBox* m_ignoreBlankLinesCheckBox{ nullptr };
+    wxCheckBox* m_ignoreIndentingCheckBox{ nullptr };
+    wxButton* m_highlightColorButton{ nullptr };
+    wxButton* m_excludedHighlightColorButton{ nullptr };
+    wxButton* m_duplicateWordHighlightColorButton{ nullptr };
+    wxButton* m_wordyPhraseHighlightColorButton{ nullptr };
+    wxButton* m_FontButton{ nullptr };
+    wxButton* m_xAxisFontButton{ nullptr };
+    wxButton* m_yAxisFontButton{ nullptr };
+    wxButton* m_graphTopTitleFontButton{ nullptr };
+    wxButton* m_graphBottomTitleFontButton{ nullptr };
+    wxButton* m_graphLeftTitleFontButton{ nullptr };
+    wxButton* m_graphRightTitleFontButton{ nullptr };
+    Wisteria::UI::SideBarBook* m_sideBar{ nullptr };
+    wxTextCtrl* m_stippleFilePathEdit{ nullptr };
+    wxTextCtrl* m_filePathEdit{ nullptr };
+    wxStaticText* m_includeIncompleteSentSizeincludeIncompleteLabel{ nullptr };
+    wxStaticText* m_includeIncompleteSentSizeWordsLabel{ nullptr };
+    wxBitmapButton* m_fileBrowseButton{ nullptr };
+    wxStaticText* m_syllableLabel{ nullptr };
+    wxChoice* m_syllableCombo{ nullptr };
+    wxChoice* m_exclusionBlockTagsCombo{ nullptr };
+    wxStaticText* m_exclusionBlockTagsLabel{ nullptr };
+    // dolch buttons
+    wxBitmapButton* m_DolchConjunctionsColorButton{ nullptr };
+    wxBitmapButton* m_DolchPrepositionsColorButton{ nullptr };
+    wxBitmapButton* m_DolchPronounsColorButton{ nullptr };
+    wxBitmapButton* m_DolchAdverbsColorButton{ nullptr };
+    wxBitmapButton* m_DolchAdjectivesColorButton{ nullptr };
+    wxBitmapButton* m_DolchVerbsColorButton{ nullptr };
+    wxBitmapButton* m_DolchNounColorButton{ nullptr };
 
-    //property grid controls
-    wxPropertyGridPage* m_readabilityTestsPropertyGrid { nullptr };
-    wxPropertyGridPage* m_gradeLevelPropertyGrid { nullptr };
-    wxPropertyGridPage* m_grammarPropertyGrid { nullptr };
-    wxPropertyGridPage* m_wordsBreakdownPropertyGrid { nullptr };
-    wxPropertyGridPage* m_sentencesBreakdownPropertyGrid { nullptr };
-    wxPropertyGridPage* m_statisticsPropertyGrid { nullptr };
-    wxPropertyGridPage* m_generalGraphPropertyGrid { nullptr };
-    wxPropertyGridPage* m_readabilityGraphPropertyGrid { nullptr };
-    wxPropertyGridPage* m_barChartPropertyGrid { nullptr };
-    wxPropertyGridPage* m_histogramPropertyGrid { nullptr };
-    wxPropertyGridPage* m_boxPlotsPropertyGrid { nullptr };
+    // property grid controls
+    wxPropertyGridPage* m_readabilityTestsPropertyGrid{ nullptr };
+    wxPropertyGridPage* m_gradeLevelPropertyGrid{ nullptr };
+    wxPropertyGridPage* m_grammarPropertyGrid{ nullptr };
+    wxPropertyGridPage* m_wordsBreakdownPropertyGrid{ nullptr };
+    wxPropertyGridPage* m_sentencesBreakdownPropertyGrid{ nullptr };
+    wxPropertyGridPage* m_statisticsPropertyGrid{ nullptr };
+    wxPropertyGridPage* m_generalGraphPropertyGrid{ nullptr };
+    wxPropertyGridPage* m_readabilityGraphPropertyGrid{ nullptr };
+    wxPropertyGridPage* m_barChartPropertyGrid{ nullptr };
+    wxPropertyGridPage* m_histogramPropertyGrid{ nullptr };
+    wxPropertyGridPage* m_boxPlotsPropertyGrid{ nullptr };
 
-    wxStaticText* m_readTestsSyllableLabel { nullptr };
-    wxStaticText* m_textExclusionLabel { nullptr };
+    wxStaticText* m_readTestsSyllableLabel{ nullptr };
+    wxStaticText* m_textExclusionLabel{ nullptr };
 
-    wxBitmapButton* m_addFilesButton { nullptr };
-    wxBitmapButton* m_addFileButton { nullptr };
-    wxBitmapButton* m_deleteFileButton { nullptr };
-    ListCtrlEx* m_fileList { nullptr };
-    ListCtrlExDataProvider* m_fileData { nullptr };
+    wxBitmapButton* m_addFilesButton{ nullptr };
+    wxBitmapButton* m_addFileButton{ nullptr };
+    wxBitmapButton* m_deleteFileButton{ nullptr };
+    ListCtrlEx* m_fileList{ nullptr };
+    ListCtrlExDataProvider* m_fileData{ new ListCtrlExDataProvider };
 
-    //project language
+    // project language
     BackupVariable<int> m_projectLanguage;
     BackupVariable<wxString> m_reviewer;
     BackupVariable<wxString> m_status;
@@ -543,5 +554,7 @@ private:
     wxDECLARE_CLASS(ToolsOptionsDlg);
     wxDECLARE_EVENT_TABLE();
     };
+
+/** @}*/
 
 #endif //__TOOLS_OPTIONS_DIALOG_H__

@@ -1,3 +1,11 @@
+///////////////////////////////////////////////////////////////////////////////
+// Name:        custom_test_dlg.cpp
+// Author:      Blake Madden
+// Copyright:   (c) 2005-2023 Blake Madden
+// Licence:     3-Clause BSD licence
+// SPDX-License-Identifier: BSD-3-Clause
+///////////////////////////////////////////////////////////////////////////////
+
 #include <wx/richmsgdlg.h>
 #include "../../../../SRC/wxTools/wxFileFolderOperations.h"
 #include "../controls/wordlistproperty.h"

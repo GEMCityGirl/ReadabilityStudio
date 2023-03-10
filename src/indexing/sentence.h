@@ -26,20 +26,19 @@ namespace grammar
         {
     public:
         /// @brief Constructor.
-        is_end_of_line() noexcept :
-          m_characters_skipped_count(0),
-          m_eol_count(0)
+        is_end_of_line() noexcept
             {}
         /** @returns @c true if a character is a newline or linefeed.
             @param ch The character to examine.*/
-        [[nodiscard]] constexpr bool operator()(const wchar_t ch) const noexcept
+        [[nodiscard]]
+        constexpr bool operator()(const wchar_t ch) const noexcept
             { return (ch == 13 || ch == 10 || ch == 12); }
         /** @brief Counts how many unique end of line characters (or sets) are in a string.
             @param first The start of the string.
             @param last The end of the string.*/
         void operator()(const wchar_t* first, const wchar_t* last) noexcept
             {
-            //reset data from last call
+            // reset data from last call
             m_characters_skipped_count = 0;
             m_eol_count = 0;
 
@@ -57,16 +56,16 @@ namespace grammar
                     { ++carriageReturnCount; }
                 else if (first[0] == 12)
                     { ++formFeedCount; }
-                //scan over any spaces or tabs in case this is a blank line between two newlines
+                // scan over any spaces or tabs in case this is a blank line between two newlines
                 else if (characters::is_character::is_space_horizontal(first[0]))
                     {
                     const wchar_t* scanAheadForNonSpace = first+1;
                     while (scanAheadForNonSpace != last &&
                         characters::is_character::is_space_horizontal(scanAheadForNonSpace[0]) )
                         { ++scanAheadForNonSpace; }
-                    //Stopped on a non-space, evaluate if we are on a newline now.
-                    //If so, then move to the newline and keep going. Otherwise, ignore the
-                    //spaces and stop.
+                    // Stopped on a non-space, evaluate if we are on a newline now.
+                    // If so, then move to the newline and keep going. Otherwise, ignore the
+                    // spaces and stop.
                     if (scanAheadForNonSpace != last &&
                         characters::is_character::is_space_vertical(scanAheadForNonSpace[0]) )
                         {
@@ -81,21 +80,21 @@ namespace grammar
                 ++first;
                 }
             m_characters_skipped_count = (first-originalStart);
-            //if no line feeds, this only carriage returns where used
+            // if no line feeds, this only carriage returns where used
             if (lineFeedCount == 0)
                 { m_eol_count = carriageReturnCount; }
-            //if no carriage returns, this only line feeds where used
+            // if no carriage returns, this only line feeds where used
             else if (carriageReturnCount == 0)
                 { m_eol_count = lineFeedCount; }
-            /*sometimes 10 and 13 are used as a single EOL separator,
-              so pair them together if necessary*/
+            /* sometimes 10 and 13 are used as a single EOL separator,
+               so pair them together if necessary*/
             else
                 {
-                //if they were perfectly paired up, then count them as sets
+                // if they were perfectly paired up, then count them as sets
                 if (carriageReturnCount == lineFeedCount)
                     { m_eol_count = lineFeedCount; }
-                /*Otherwise, the text is malformed. Just pair them off and then
-                  add the extra characters to it.*/
+                /* Otherwise, the text is malformed. Just pair them off and then
+                   add the extra characters to it.*/
                 else if (carriageReturnCount > lineFeedCount)
                     { m_eol_count = lineFeedCount + (carriageReturnCount - lineFeedCount); }
                 else if (lineFeedCount > carriageReturnCount)
@@ -106,10 +105,12 @@ namespace grammar
             m_eol_count += formFeedCount;
             }
         /** @returns The number of characters scanned from the last call to operator().*/
-        [[nodiscard]] size_t get_characters_skipped_count() const noexcept
+        [[nodiscard]]
+        size_t get_characters_skipped_count() const noexcept
             { return m_characters_skipped_count; }
         /** @returns The number of lines read from the last call to operator().*/
-        [[nodiscard]] size_t get_eol_count() const noexcept
+        [[nodiscard]]
+        size_t get_eol_count() const noexcept
             { return m_eol_count; }
     private:
         size_t m_characters_skipped_count{ 0 };
@@ -124,7 +125,8 @@ namespace grammar
             @param text The line of text, which should be the start of a text
                 stream right after a newline.
             @returns Whether text stream is indented, and the length of the indentation if true.*/
-        [[nodiscard]] const std::pair<bool,size_t> operator()(const wchar_t* text) const noexcept
+        [[nodiscard]]
+        const std::pair<bool,size_t> operator()(const wchar_t* text) const noexcept
             {
             if (text == nullptr || text[0] == 0)
                 { return std::pair<bool,size_t>(false,0); }
@@ -146,14 +148,18 @@ namespace grammar
     class is_bulleted_text
         {
     public:
-        /** Indicates whether a line of text is a bullet point.
-            @param text The line of text, which should be the start of a text stream right after a newline.
-            @returns Whether the text stream begins with a bullet, and the length of the bullet if true.*/
-        [[nodiscard]] const std::pair<bool,size_t> operator()(const wchar_t* text) const noexcept
+        /** @brief Indicates whether a line of text is a bullet point.
+            @param text The line of text, which should be the start of a
+                text stream right after a newline.
+            @returns Whether the text stream begins with a bullet,
+                and the length of the bullet if true.*/
+        [[nodiscard]]
+        const std::pair<bool,size_t> operator()(const wchar_t* text) const noexcept
             {
             if (text == nullptr || text[0] == 0)
                 { return std::pair<bool,size_t>(false,0); }
-            //first, step over any spaces at the start of the line, sometimes bullets can be indented
+            // first, step over any spaces at the start of the line,
+            // sometimes bullets can be indented
             while (text[0] != 0 && characters::is_character::is_space_horizontal(text[0]))
                 { ++text; }
             if (text[0] == 0)
@@ -165,20 +171,22 @@ namespace grammar
                 text[0] == 0x25CF /*filled in circle*/ ||
                 text[0] == 0xB7   /*middle dot*/)
                 { return std::pair<bool,size_t>(true,1); }
-            //or a dash followed by a space
-            else if (characters::is_character::is_hyphen(text[0]) && characters::is_character::is_space_horizontal(text[1]))
+            // or a dash followed by a space
+            else if (characters::is_character::is_hyphen(text[0]) &&
+                characters::is_character::is_space_horizontal(text[1]))
                 { return std::pair<bool,size_t>(true,1); }
-            //else, see if it more than two spaces (more than likely an indentation)
+            // else, see if it more than two spaces (more than likely an indentation)
             const wchar_t* current_char = text;
-            while (current_char[0] != 0 && characters::is_character::is_space_horizontal(current_char[0]))
+            while (current_char[0] != 0 &&
+                characters::is_character::is_space_horizontal(current_char[0]))
                 { ++current_char; }
             if (current_char[0] == 0)
                 { return std::pair<bool,size_t>(false,0); }
-            //or a numeric bullet
+            // or a numeric bullet
             if (characters::is_character::is_numeric(current_char[0]))
                 {
                 ++current_char;
-                //scan until we hit something non-numeric
+                // scan until we hit something non-numeric
                 do
                     {
                     if (characters::is_character::is_numeric(current_char[0]))
@@ -186,10 +194,10 @@ namespace grammar
                     else
                         { break; }
                     } while (current_char[0]);
-                //if at the end of the text then this is not a bullet
+                // if at the end of the text then this is not a bullet
                 if (current_char[0] == 0)
                     { return std::pair<bool,size_t>(false,0); }
-                //if number if followed by a dot, tab, closing parenthesis, or colon then it is a numeric bullet
+                // if number if followed by a dot, tab, closing parenthesis, or colon then it is a numeric bullet
                 else if (characters::is_character::is_period(current_char[0]) ||
                     current_char[0] == 0x09 ||
                     current_char[0] == 0x29 ||
@@ -267,7 +275,7 @@ namespace grammar
     class is_end_of_sentence
         {
     public:
-        is_end_of_sentence(const bool sentence_start_must_be_uppercased) noexcept :
+        explicit is_end_of_sentence(const bool sentence_start_must_be_uppercased) noexcept :
             m_sentence_start_must_be_uppercased(sentence_start_must_be_uppercased)
             {}
         is_end_of_sentence() = delete;
@@ -277,11 +285,12 @@ namespace grammar
             @param current_position The position in the text (usually a period) to analyze.
             @param previous_word_position The position in the text of the start of the word in front of the period we are analyzing.
             @param sentence_position_of_previous_word The position in the sentence of the proceeding word.*/
-        [[nodiscard]] bool operator()(const wchar_t* text,
-                                      const size_t length,
-                                      size_t current_position,
-                                      const size_t previous_word_position,
-                                      const size_t sentence_position_of_previous_word)
+        [[nodiscard]]
+        bool operator()(const wchar_t* text,
+                        const size_t length,
+                        size_t current_position,
+                        const size_t previous_word_position,
+                        const size_t sentence_position_of_previous_word)
             {
             assert(current_position < length);
             assert(previous_word_position < current_position);
@@ -584,7 +593,8 @@ namespace grammar
             }
         /** @returns @c true if a character can start a sentence. This can be a letter, left parenthesis, dash, or quote.
             @param ch The character to review.*/
-        [[nodiscard]] inline bool can_character_begin_sentence(const wchar_t ch) const noexcept
+        [[nodiscard]]
+        inline bool can_character_begin_sentence(const wchar_t ch) const noexcept
             {
             return ((m_sentence_start_must_be_uppercased && is_character.can_character_begin_word_uppercase(ch)) ||
                     (!m_sentence_start_must_be_uppercased && is_character.can_character_begin_word(ch)) ||
@@ -599,7 +609,8 @@ namespace grammar
             @param character The character to review.
             @note This variation only returns true if character is a standard stop character (e.g., '?' or '.')
                   or something like ':' or ellipse followed by a hard return.*/
-        [[nodiscard]] inline static bool is_non_period_terminator(const wchar_t character) noexcept
+        [[nodiscard]]
+        inline static bool is_non_period_terminator(const wchar_t character) noexcept
             {
             return (traits::case_insensitive_ex::eq(character, L'!') ||
                     traits::case_insensitive_ex::eq(character, L'?') ||
@@ -612,7 +623,8 @@ namespace grammar
             @param character The character to review.
             @note This variation only returns true if character is a standard stop character (e.g., '?' or '.')
                   or something like ':' or ellipse followed by a hard return.*/
-        [[nodiscard]] inline static bool can_character_end_sentence_strict(const wchar_t character) noexcept
+        [[nodiscard]]
+        inline static bool can_character_end_sentence_strict(const wchar_t character) noexcept
             {
             return (characters::is_character::is_period(character) ||
                     traits::case_insensitive_ex::eq(character, L'!') ||
@@ -629,13 +641,15 @@ namespace grammar
                   or something like ':' or ellipse followed by a hard return, or special characters that must be followed
                   by something else (e.g., a dash which later must be determined to be followed by a quote). This function
                   should only be used if you plan to further review the character (e.g., by calling operator()).*/
-        [[nodiscard]] inline static bool can_character_end_sentence_passive(const wchar_t character) noexcept
+        [[nodiscard]]
+        inline static bool can_character_end_sentence_passive(const wchar_t character) noexcept
             {
             return (can_character_end_sentence_strict(character) || characters::is_character::is_dash(character));
             }
         /** @returns @c true if a character can be a valid beginning or ending to a parenthetical section following a sentence.
             @param character The character to review.*/
-        [[nodiscard]] inline static bool can_character_begin_or_end_parenthetical_or_quoted_section(const wchar_t character) noexcept
+        [[nodiscard]]
+        inline static bool can_character_begin_or_end_parenthetical_or_quoted_section(const wchar_t character) noexcept
             {
             return (traits::case_insensitive_ex::eq(character, L'(') ||
                     traits::case_insensitive_ex::eq(character, L')') ||
@@ -675,12 +689,14 @@ namespace grammar
                       const wchar_t ending_punctuation) noexcept
             : m_begin_index(begin_index), m_end_index(end_index),
                 m_size((end_index - begin_index)+1),
-                m_valid_size((end_index - begin_index)+1),
+                m_valid_size((end_index - begin_index) + 1),
                 m_ending_punctuation(ending_punctuation),
-                m_unit_count(1) //sentence will have at least one unit
+            // sentence will have at least one unit
+                m_unit_count(1)
             {
             m_is_valid = ends_with_valid_punctuation();
-            m_sentence_type = m_is_valid ? sentence_paragraph_type::complete : sentence_paragraph_type::incomplete;
+            m_sentence_type = m_is_valid ?
+                sentence_paragraph_type::complete : sentence_paragraph_type::incomplete;
             }
         sentence_info() = delete;
         [[nodiscard]]
@@ -695,47 +711,60 @@ namespace grammar
         [[nodiscard]]
         bool operator>(const size_t word_position) const noexcept
             { return m_begin_index > word_position; }
-        /// Used for sentences to compare each other based on length, so that statistics function (e.g., max_element) will work.
+        /// @brief Used for sentences to compare each other based on length,
+        ///     so that statistics function (e.g., max_element) will work.
         /// @param that The other sentence to compare against.
-        [[nodiscard]] bool operator<(const sentence_info& that) const noexcept
+        [[nodiscard]]
+        bool operator<(const sentence_info& that) const noexcept
             { return m_size < that.m_size; }
         /** @returns The word position that this sentence starts at in the document.*/
-        [[nodiscard]] size_t get_first_word_index() const noexcept
+        [[nodiscard]]
+        size_t get_first_word_index() const noexcept
             { return m_begin_index; }
         /** @returns The word position that this sentence ends at in the document.*/
-        [[nodiscard]] size_t get_last_word_index() const noexcept
+        [[nodiscard]]
+        size_t get_last_word_index() const noexcept
             { return m_end_index; }
         /** @returns The number of words in the sentence, which also includes invalid words.*/
-        [[nodiscard]] size_t get_word_count() const noexcept
+        [[nodiscard]]
+        size_t get_word_count() const noexcept
             { return m_size; }
         /** @brief Sets the valid word count of the sentence.
             @param validCount The valid word count value.*/
         void set_valid_word_count(const size_t validCount) noexcept
             { m_valid_size = validCount; }
-        /** @returns The valid number of words in the sentence, which is the words being included in the analysis.*/
-        [[nodiscard]] size_t get_valid_word_count() const noexcept
+        /** @returns The valid number of words in the sentence,
+                which is the words being included in the analysis.*/
+        [[nodiscard]]
+        size_t get_valid_word_count() const noexcept
             { return m_valid_size; }
         /** @returns The trailing punctuation mark of the sentence.*/
-        [[nodiscard]] wchar_t get_ending_punctuation() const noexcept
+        [[nodiscard]]
+        wchar_t get_ending_punctuation() const noexcept
             { return m_ending_punctuation; }
         /// @brief Sets the ending punctuation.
         /// @param punct The character to use as the terminating punctuation.
         void set_ending_punctuation(wchar_t punct) noexcept
             { m_ending_punctuation = punct; }
-        /** @returns Whether the ending punctuation of the sentence is what can really end a sentence.
+        /** @returns Whether the ending punctuation of the sentence is
+                what can really end a sentence.\n
                 This will include punctuation used for passive EOS deduction (e.g., dashes).*/
         [[nodiscard]]
         inline bool ends_with_valid_punctuation() const noexcept
-            { return (is_end_of_sentence::can_character_end_sentence_passive(m_ending_punctuation)); }
+            {
+            return (is_end_of_sentence::can_character_end_sentence_passive(m_ending_punctuation));
+            }
         /** @returns Whether the sentence is considered valid by the analysis.*/
         [[nodiscard]]
         bool is_valid() const noexcept
             { return m_is_valid; }
-        /** Call this is you need to override the default logic of a sentence being considered complete.
-            By default, this is based on it ending with valid punctuation.
-            @note If type was incomplete and is now being set to valid, then the type will be set to complete,
-            and vice versa. If the type is something other than complete or incomplete (e.g., header) then
-            the type will remain the same.
+        /** @brief Call this is you need to override the default logic of a sentence being
+                considered complete.
+            @details By default, this is based on it ending with valid punctuation.
+            @note If type was incomplete and is now being set to valid,
+                then the type will be set to complete, and vice versa.\n
+                If the type is something other than complete or incomplete (e.g., header)
+                then the type will remain the same.
             @param valid Whether to make the sentence valid or not.*/
         void set_valid(const bool valid) noexcept
             {
@@ -760,7 +789,8 @@ namespace grammar
             @param count The unit count value.*/
         void set_unit_count(const size_t count) noexcept
             { m_unit_count = count; }
-        /** @returns The unit count of the sentence. Each section of a sentence divided by dashes is a unit.*/
+        /** @returns The unit count of the sentence.
+                Each section of a sentence divided by dashes is a unit.*/
         [[nodiscard]]
         size_t get_unit_count() const noexcept
             { return m_unit_count; }
@@ -779,7 +809,8 @@ namespace grammar
         {
     public:
         [[nodiscard]]
-        inline bool operator()(const sentence_info& sent1, const sentence_info& sent2) const noexcept
+        inline bool operator()(const sentence_info& sent1,
+                               const sentence_info& sent2) const noexcept
             { return (sent1.get_first_word_index() < sent2.get_first_word_index()); }
         };
 
@@ -789,7 +820,8 @@ namespace grammar
     public:
         /** @brief Constructor.
             @param count The number of words that a sentence has to exceed to compare as bigger.*/
-        sentence_length_greater_than(const size_t count) noexcept : m_count(count) {}
+        explicit sentence_length_greater_than(const size_t count) noexcept :
+            m_count(count) {}
         sentence_length_greater_than() = delete;
         /** @returns @c true if a sentence has more words than the predefined value.
             @param the_sentence The sentence to review.*/
@@ -805,8 +837,9 @@ namespace grammar
         {
     public:
         /** @brief Constructor.
-            @param count The valid number of words that a sentence has to exceed to compare as bigger.*/
-        complete_sentence_length_greater_than(const size_t count) noexcept :
+            @param count The valid number of words that a sentence has to
+                exceed to compare as bigger.*/
+        explicit complete_sentence_length_greater_than(const size_t count) noexcept :
             m_count(count)
             {}
         complete_sentence_length_greater_than() = delete;
@@ -828,7 +861,8 @@ namespace grammar
         {
     public:
         /** @returns @c true if first sentence has less valid words in it then the second sentence.
-            @note If either sentence is invalid, then they are considered less than a valid sentence.
+            @note If either sentence is invalid, then they are considered
+                less than a valid sentence.
             @param sent1 The first sentence to compare.
             @param sent2 The second sentence to compare.*/
         [[nodiscard]]

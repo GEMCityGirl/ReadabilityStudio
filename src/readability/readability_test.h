@@ -99,26 +99,24 @@ namespace readability
     class base_test
         {
     public:
-        base_test() noexcept : m_interfaceId(0) {}
-        [[nodiscard]] int get_interface_id() const noexcept
+        base_test() noexcept = default;
+        [[nodiscard]]
+        int get_interface_id() const noexcept
             { return m_interfaceId; }
         void set_interface_id(const int id) noexcept
             { m_interfaceId = id; }
-        [[nodiscard]] bool operator==(const int value) const noexcept
+        [[nodiscard]]
+        bool operator==(const int value) const noexcept
             { return (m_interfaceId == value); }
     protected:
-        int m_interfaceId{ 0 }; // ID used for menus or other interfaces
+        // ID used for menus or other interfaces
+        int m_interfaceId{ 0 };
         };
 
     class test_with_classification
         {
     public:
-        test_with_classification() noexcept :
-            m_industry_classification(0),
-            m_document_classificaiton(0),
-            m_language(0),
-            m_teaching_level(0)
-            {}
+        test_with_classification() noexcept = default;
         test_with_classification(//industry
                                   const bool industryChildrensPublishingSelected,
                                   const bool industryAdultPublishingSelected,
@@ -132,11 +130,7 @@ namespace readability
                                   const bool documentTechSelected,
                                   const bool documentNonNarrativeFormSelected,
                                   const bool documentYoungAdultSelected,
-                                  const bool documentChildrenSelected) :
-            m_industry_classification(0),
-            m_document_classificaiton(0),
-            m_language(0),
-            m_teaching_level(0)
+                                  const bool documentChildrenSelected)
             {
             add_industry_classification(industry_classification::childrens_publishing_industry, industryChildrensPublishingSelected);
             add_industry_classification(industry_classification::adult_publishing_industry, industryAdultPublishingSelected);
@@ -173,12 +167,14 @@ namespace readability
         //industry association
         void add_industry_classification(const industry_classification industry, const bool set_flag)
             { m_industry_classification.set(static_cast<size_t>(industry), set_flag); }
-        [[nodiscard]] bool has_industry_classification(const industry_classification industry) const
+        [[nodiscard]]
+        bool has_industry_classification(const industry_classification industry) const
             { return m_industry_classification.test(static_cast<size_t>(industry)); }
         //document type association
         void add_document_classification(const document_classification doc, const bool set_flag)
             { m_document_classificaiton.set(static_cast<size_t>(doc), set_flag); }
-        [[nodiscard]] bool has_document_classification(const document_classification doc) const
+        [[nodiscard]]
+        bool has_document_classification(const document_classification doc) const
             { return m_document_classificaiton.test(static_cast<size_t>(doc)); }
 
         /// Adds a language that this test should be used on.
@@ -192,7 +188,8 @@ namespace readability
         /// Adds a factor used in the test's equation.
         void add_factor(const test_factor factor)
             { m_test_factors.set(static_cast<size_t>(factor), true); }
-        [[nodiscard]] bool has_factor(const test_factor factor) const
+        [[nodiscard]]
+        bool has_factor(const test_factor factor) const
             { return m_test_factors.test(static_cast<size_t>(factor)); }
         void reset_factors() noexcept
             { m_test_factors.reset(); }
@@ -200,37 +197,44 @@ namespace readability
         ///Teaching level for test
         void add_teaching_level(const test_teaching_level level)
             { m_teaching_level.set(static_cast<size_t>(level), true); }
-        [[nodiscard]] bool has_teaching_level(const test_teaching_level level) const
+        [[nodiscard]]
+        bool has_teaching_level(const test_teaching_level level) const
             { return m_teaching_level.test(static_cast<size_t>(level)); }        
         void reset_teaching_levels() noexcept
             { m_teaching_level.reset(); }
     protected:
         //industry
-        std::bitset<static_cast<size_t>(industry_classification::INDUSTRY_CLASSIFICATION_COUNT)> m_industry_classification;
+        std::bitset<static_cast<size_t>(industry_classification::INDUSTRY_CLASSIFICATION_COUNT)>
+            m_industry_classification{ 0 };
         //document
-        std::bitset<static_cast<size_t>(document_classification::DOCUMENT_CLASSIFICATION_COUNT)> m_document_classificaiton;
-        //language
-        std::bitset<static_cast<size_t>(test_language::TEST_LANGUAGE_COUNT)> m_language;
-        //factors
-        std::bitset<static_cast<size_t>(test_factor::TEST_FACTOR_COUNT)> m_test_factors;
-        //teaching level
-        std::bitset<static_cast<size_t>(test_teaching_level::TEST_TEACHING_LEVEL_COUNT)> m_teaching_level;
+        std::bitset<static_cast<size_t>(document_classification::DOCUMENT_CLASSIFICATION_COUNT)>
+            m_document_classificaiton{ 0 };
+        // language
+        std::bitset<static_cast<size_t>(test_language::TEST_LANGUAGE_COUNT)>
+            m_language{ 0 };
+        // factors
+        std::bitset<static_cast<size_t>(test_factor::TEST_FACTOR_COUNT)>
+            m_test_factors{ 0 };
+        // teaching level
+        std::bitset<static_cast<size_t>(test_teaching_level::TEST_TEACHING_LEVEL_COUNT)>
+            m_teaching_level{ 0 };
         };
 
     class readability_project_test;
 
-    /// Readability test description, which includes its various names, IDs, and description.
+    /// @brief Readability test description, which includes its various names,
+    ///     IDs, and description.
     class readability_test : public test_with_classification, public base_test
         {
     public:
+        /// @brief String type for test names.
         using string_type = traits::case_insensitive_wstring_ex;
-        readability_test() : m_is_integral(false), m_readability_test_type(readability_test_type::grade_level)
-            {}  
+        readability_test() = default;
         /// CTORs simply used for quick binary searches.
-        explicit readability_test(const wchar_t* id) : m_id(id), m_short_name(id), m_long_name(id), m_description(id),
-            m_is_integral(false), m_readability_test_type(readability_test_type::grade_level)
+        explicit readability_test(const wchar_t* id) :
+            m_id(id), m_short_name(id), m_long_name(id), m_description(id)
             {}
-        explicit readability_test(const int id) : m_is_integral(false), m_readability_test_type(readability_test_type::grade_level)
+        explicit readability_test(const int id)
             { m_interfaceId = id; }
         /** Constructor meant for normal use.
             @param id The (string-based) ID of the test. This is used for internal identification of the test across the
@@ -314,13 +318,15 @@ namespace readability
         [[nodiscard]] readability_test_type get_test_type() const noexcept
             { return m_readability_test_type; }
     private:
-        string_type m_id; // ID used in the project file
+        // ID used in the project file
+        string_type m_id;
         string_type m_short_name;
         string_type m_long_name;
         string_type m_description;
         string_type m_formula;
-        bool m_is_integral{ false }; // whether test scores do NOT use floating-point precision (e.g., index tests)
         readability_test_type m_readability_test_type{ readability_test_type::grade_level };
+        // whether test scores do NOT use floating-point precision (e.g., index tests)
+        bool m_is_integral{ false };
         };
 
     /// Wrapper around a readability_test, which adds features needed for projects, such as score data and an inclusion flag.
@@ -332,10 +338,12 @@ namespace readability
         readability_project_test() = delete;
     public:
         /// Copy CTOR
-        readability_project_test(const readability_project_test& that) noexcept : m_test(that.m_test), m_included(that.m_included)
+        readability_project_test(const readability_project_test& that) noexcept :
+            m_test(that.m_test), m_included(that.m_included)
             {}
         /// CTOR from regular test definition.
-        explicit readability_project_test(const readability_test& test) noexcept : m_test(&test)
+        explicit readability_project_test(const readability_test& test) noexcept :
+            m_test(&test)
             {}
         /// DTOR
         virtual ~readability_project_test() {}

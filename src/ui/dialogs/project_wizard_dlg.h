@@ -1,3 +1,14 @@
+/** @addtogroup UI
+    @brief Classes for the user interface.
+    @date 2005-2023
+    @copyright Oleander Software, Ltd.
+    @author Blake Madden
+    @details This program is free software; you can redistribute it and/or modify
+     it under the terms of the 3-Clause BSD License.
+
+     SPDX-License-Identifier: BSD-3-Clause
+* @{*/
+
 #ifndef __PROJECTWIZARD_H__
 #define __PROJECTWIZARD_H__
 
@@ -141,7 +152,8 @@ public:
         TransferDataToWindow();
         }
     //industry type
-    [[nodiscard]] readability::industry_classification GetSelectedIndustryType() const noexcept
+    [[nodiscard]]
+    readability::industry_classification GetSelectedIndustryType() const noexcept
         { return static_cast<readability::industry_classification>(m_selectedIndustryType); }
     void SelectIndustryType(const readability::industry_classification industryType)
         {
@@ -149,18 +161,22 @@ public:
         TransferDataToWindow();
         }
     //tests
-    [[nodiscard]] readability::readability_test_collection<>& GetReadabilityTestsInfo()
+    [[nodiscard]]
+    readability::readability_test_collection<>& GetReadabilityTestsInfo()
         {
         for (size_t i = 0; i < m_testsCheckListBox->GetCount(); ++i)
             { m_readabilityTests.include_test(m_testsCheckListBox->GetString(i), m_testsCheckListBox->IsChecked(i)); }
         return m_readabilityTests;
         }
-    [[nodiscard]] bool IsDolchSelected() const
+    [[nodiscard]]
+    bool IsDolchSelected() const
         { return (GetLanguage() == readability::test_language::english_test) && m_includeDolchSightWords; }
-    [[nodiscard]] const wxArrayInt GetSelectedCustomTests() const noexcept
+    [[nodiscard]]
+    const wxArrayInt GetSelectedCustomTests() const noexcept
         { return m_selectedCustomTests; }
     // test bundles
-    [[nodiscard]] wxString GetSelectedTestBundle() const
+    [[nodiscard]]
+    wxString GetSelectedTestBundle() const
         { return m_testsBundlesRadioBox->GetString(m_selectedBundle); }
     void SetSelectedTestBundle(const wxString& bundleName)
         {
@@ -171,7 +187,8 @@ public:
         }
     void SelectPage(const size_t page)
         { m_sideBarBook->SetSelection(page); }
-    [[nodiscard]] size_t GetSelectedPage() const noexcept
+    [[nodiscard]]
+    size_t GetSelectedPage() const noexcept
         { return m_sideBarBook->GetSelection(); }
 
     // just used for screenshots
@@ -295,5 +312,7 @@ private:
 
     wxDECLARE_EVENT_TABLE();
     };
+
+/** @}*/
 
 #endif //__PROJECTWIZARD_H__

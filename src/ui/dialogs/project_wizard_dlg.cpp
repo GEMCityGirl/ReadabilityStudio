@@ -1,4 +1,12 @@
-﻿#include "project_wizard_dlg.h"
+﻿///////////////////////////////////////////////////////////////////////////////
+// Name:        project_wizard_dlg.cpp
+// Author:      Blake Madden
+// Copyright:   (c) 2005-2023 Blake Madden
+// Licence:     3-Clause BSD licence
+// SPDX-License-Identifier: BSD-3-Clause
+///////////////////////////////////////////////////////////////////////////////
+
+#include "project_wizard_dlg.h"
 
 wxDECLARE_APP(ReadabilityApp);
 
@@ -76,30 +84,21 @@ private:
     wxString m_label;
     };
 
+//-------------------------------------------------------------
 ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectType,
-    const wxString& path /*= wxEmptyString*/, wxWindowID id /*= wxID_ANY*/, const wxString& caption /*= _("New Project Wizard")*/, const wxPoint& pos /*= wxDefaultPosition*/, const wxSize& size /*= wxDefaultSize*/, long style /*= wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER*/) :
+    const wxString& path /*= wxEmptyString*/, wxWindowID id /*= wxID_ANY*/,
+    const wxString& caption /*= _("New Project Wizard")*/,
+    const wxPoint& pos /*= wxDefaultPosition*/, const wxSize& size /*= wxDefaultSize*/,
+    long style /*= wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER*/) :
     m_projectType(projectType),
     m_selectedLang(static_cast<int>(wxGetApp().GetAppOptions().GetProjectLanguage())),
-    m_fileList(nullptr),
-    m_fileData(nullptr),
-    m_isRandomSampling(nullptr),
-    m_randPercentageCtrl(nullptr),
-    m_filePathEdit(nullptr), m_fileBrowseButton(nullptr),
-    m_textEntryEdit(nullptr), m_fromFileSelected(wxGetApp().GetAppOptions().GetTextSource() == TextSource::FromFile),
+    m_fromFileSelected(wxGetApp().GetAppOptions().GetTextSource() == TextSource::FromFile),
     m_manualSelected(wxGetApp().GetAppOptions().GetTextSource() == TextSource::EnteredText),
     m_testSelectionMethod(static_cast<int>(wxGetApp().GetAppOptions().GetTestRecommendation())),
-    m_testTypesSizer(nullptr),
-    m_docTypeRadioBox(nullptr),
     m_selectedDocType(static_cast<int>(wxGetApp().GetAppOptions().GetTestByDocumentType())),
-    m_industryTypeRadioBox(nullptr),
     m_selectedIndustryType(static_cast<int>(wxGetApp().GetAppOptions().GetTestByIndustry())),
-    m_selectedBundle(0),
-    m_testsSizer(nullptr), m_testsBundlesRadioBox(nullptr),
     m_includeDolchSightWords(wxGetApp().GetAppOptions().IsDolchSelected()),
-    m_readabilityTests(wxGetApp().GetAppOptions().GetReadabilityTests()),
-    m_testsCheckListBox(nullptr),
-    m_customTestsCheckListBox(nullptr),
-    m_DolchCheckBox(nullptr)
+    m_readabilityTests(wxGetApp().GetAppOptions().GetReadabilityTests())
     {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_VALIDATE_RECURSIVELY|wxWS_EX_CONTEXTHELP);
     wxDialog::Create(parent, id, caption, pos, size, style);
@@ -135,6 +134,7 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
     SetNewLinesAlwaysNewParagraphsSelected(wxGetApp().GetAppOptions().GetParagraphsParsingMethod() == ParagraphParse::EachNewLineIsAParagraph);
     }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::CreateControls()
     {
     const int ScaledNoteWidth = FromDIP(wxSize(500,500)).GetWidth();
@@ -733,18 +733,21 @@ void ProjectWizardDlg::CreateControls()
         }
     }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnDeleteFromListClick([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_fileList)
         { m_fileList->DeleteSelectedItems(); }
     }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnAddToListClick([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_fileList)
         { m_fileList->EditItem(m_fileList->AddRow(), 0); }
     }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::UpdateTestsUI()
     {
     TransferDataFromWindow();
@@ -767,6 +770,7 @@ void ProjectWizardDlg::UpdateTestsUI()
     TransferDataToWindow();
     }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxEmptyString*/)
     {
     ArchiveDlg dlg(this, wxGetApp().GetAppOptions().GetDocumentFilter());
@@ -816,12 +820,14 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxEmptyString*/)
         }
     }
 
- readability::test_language ProjectWizardDlg::GetLanguage() const
-        {
-        return (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
-            wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode())) ? static_cast<readability::test_language>(m_selectedLang) : readability::test_language::english_test;
-        }
+//-------------------------------------------------------------
+readability::test_language ProjectWizardDlg::GetLanguage() const
+    {
+    return (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
+        wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode())) ? static_cast<readability::test_language>(m_selectedLang) : readability::test_language::english_test;
+    }
 
+ //-------------------------------------------------------------
 void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxEmptyString*/)
     {
     if (excelPath.empty())
@@ -857,9 +863,10 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxEmptyString*/)
         }
 
     Wisteria::ZipCatalog archive(excelPath);
-    if (archive.find(wxT("xl/workbook.xml")) == nullptr)
+    if (archive.Find(L"xl/workbook.xml") == nullptr)
         {
-        wxMessageBox(_("Unable to open Excel document, file is either password-protected or corrupt."), wxGetApp().GetAppDisplayName(),
+        wxMessageBox(_("Unable to open Excel document, file is either password-protected or corrupt."),
+            wxGetApp().GetAppDisplayName(),
             wxICON_EXCLAMATION|wxOK);
         return;
         }
@@ -869,24 +876,26 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxEmptyString*/)
         wxBusyInfo wait(_("Loading Excel file..."));
         const wxString workbookFileText = archive.ReadTextFile(wxT("xl/workbook.xml"));
         excelExtract.read_worksheet_names(workbookFileText.wc_str(), workbookFileText.length());
-        //read the string table
+        // read the string table
         const wxString sharedStrings = archive.ReadTextFile(wxT("xl/sharedStrings.xml"));
         if (sharedStrings.length())
             {
             excelExtract.read_shared_strings(sharedStrings.wc_str(), sharedStrings.length());
             }
         }
-    std::vector<std::pair<std::wstring,std::vector<std::wstring>>> workSheets; //name of worksheets and list of cells with text in them
+    // name of worksheets and list of cells with text in them
+    std::vector<std::pair<std::wstring,std::vector<std::wstring>>> workSheets;
     wxArrayString worksheets; wxArrayInt workSheetSelections;
     for (size_t i = 0; i < excelExtract.get_worksheet_names().size(); ++i)
         {
         worksheets.push_back(excelExtract.get_worksheet_names().at(i).c_str());
         workSheetSelections.push_back(i);
         }
-    //only ask for which worksheets to select if there is more than one in the workbook
+    // only ask for which worksheets to select if there is more than one in the workbook
     if (worksheets.size() > 1)
         {
-        wxMultiChoiceDialog chooseWorksheetsDlg(this, _("Select the worksheet(s) to import:"), _("Excel Import"), worksheets);
+        wxMultiChoiceDialog chooseWorksheetsDlg(this, _("Select the worksheet(s) to import:"),
+            _("Excel Import"), worksheets);
         chooseWorksheetsDlg.SetSelections(workSheetSelections);
         if (chooseWorksheetsDlg.ShowModal() != wxID_OK)
             { return; }
@@ -898,7 +907,8 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxEmptyString*/)
             {
             wxWindowDisabler disableAll;
             wxBusyInfo wait(_("Loading worksheet..."));
-            const wxString sheetFile = archive.ReadTextFile(wxString::Format(wxT("xl/worksheets/sheet%d.xml"),workSheetSelections.Item(i)+1));
+            const wxString sheetFile = archive.ReadTextFile(
+                wxString::Format(L"xl/worksheets/sheet%d.xml",workSheetSelections.Item(i)+1));
             if (sheetFile.length())
                 {
                 excelExtract(sheetFile.wc_str(), sheetFile.length(), wrk);
@@ -907,8 +917,11 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxEmptyString*/)
                 { return; }
             }
 
-        ExcelPreviewDlg excelPreview(this, &wrk, &excelExtract, wxID_ANY, wxString::Format(_("\"%s\" Preview"), excelExtract.get_worksheet_names().at(workSheetSelections.Item(i)).c_str()));
-        excelPreview.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), wxT("batch-project-import-features.html"));
+        ExcelPreviewDlg excelPreview(this, &wrk, &excelExtract, wxID_ANY,
+            wxString::Format(_("\"%s\" Preview"),
+                excelExtract.get_worksheet_names().at(workSheetSelections.Item(i)).c_str()));
+        excelPreview.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+            L"batch-project-import-features.html");
         if (excelPreview.ShowModal() == wxID_OK)
             {
             // filter just the rows that were requested by setting unselected cells to empty
@@ -939,7 +952,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxEmptyString*/)
         {
         wxWindowDisabler disableAll;
         wxBusyInfo wait(_("Updating file list..."));
-        //list the cells in the grid
+        // list the cells in the grid
         const size_t currentFileCount = m_fileData->GetItemCount();
         size_t cellCount = 0;
         for (size_t i = 0; i < workSheets.size(); ++i)
@@ -968,6 +981,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxEmptyString*/)
         }
     }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::UpdateTestSelectionMethodUI()
     {
     TransferDataFromWindow();
@@ -1002,7 +1016,7 @@ void ProjectWizardDlg::UpdateTestSelectionMethodUI()
     m_testTypesSizer->Layout();
     }
 
-//---------------------------------------------
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnPageChange(wxBookCtrlEvent& event)
     {
     if (event.GetSelection() == 0)
@@ -1028,7 +1042,7 @@ void ProjectWizardDlg::OnPageChange(wxBookCtrlEvent& event)
         }
     }
 
-//---------------------------------------------
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnNavigate(wxCommandEvent& event)
     {
     if (event.GetId() == wxID_FORWARD)
@@ -1049,7 +1063,7 @@ void ProjectWizardDlg::OnNavigate(wxCommandEvent& event)
         }
     }
 
-//---------------------------------------------
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     {
     Validate();
@@ -1063,10 +1077,10 @@ void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
             if (resolvePath.IsInvalidFile() ||
                 (resolvePath.IsLocalOrNetworkFile() && !wxFile::Exists(resolvePath.GetResolvedPath()))  )
                 {
-                //Open the file dialog to give the user one last chance to select file
+                // open the file dialog to give the user one last chance to select file
                 wxCommandEvent fileButtonEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_FILE_BROWSE_BUTTON);
                 GetEventHandler()->ProcessEvent(fileButtonEvent);
-                //if user hit Cancel then don't proceed and tell them what to do
+                // if user hit Cancel then don't proceed and tell them what to do
                 if (GetFilePath().length() == 0)
                     {
                     m_sideBarBook->SetSelection(0);
@@ -1074,7 +1088,7 @@ void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
                             wxICON_EXCLAMATION|wxOK, this);
                     return;
                     }
-                //if file doesn't exist
+                // if file doesn't exist
                 else if (!wxFile::Exists(GetFilePath()) )
                     {
                     m_sideBarBook->SetSelection(0);
@@ -1099,10 +1113,10 @@ void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         {
         if (GetFileData()->GetItemCount() == 0)
             {
-            //Open the file dialog to give the user one last chance to select file
+            // open the file dialog to give the user one last chance to select file
             wxCommandEvent fileButtonEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_BATCH_FOLDER_BROWSE_BUTTON);
             GetEventHandler()->ProcessEvent(fileButtonEvent);
-            //if user hit Cancel then don't proceed and tell them what to do
+            // if user hit Cancel then don't proceed and tell them what to do
             if (GetFileData()->GetItemCount() == 0)
                 {
                 wxMessageBox(_("Please select files to be analyzed before continuing."), _("Invalid Input"),
@@ -1120,7 +1134,8 @@ void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
                         wxICON_INFORMATION|wxOK, this);
         SelectDocumentType(readability::document_classification::nonnarrative_document);
         }
-    // and the inverse as well, if the tests for non-narrative form are selected, then set the composition to non-narrative.
+    // and the inverse as well, if the tests for non-narrative form are selected,
+    // then set the composition to non-narrative.
     if (IsDocumentTypeSelected() && GetSelectedDocumentType() == readability::document_classification::nonnarrative_document &&
         !IsFragmentedTextSelected())
         {
@@ -1186,12 +1201,14 @@ void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         { Show(false); }
     }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnTestSelectionMethodChanged([[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
     UpdateTestSelectionMethodUI();
     }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnButtonClick(wxCommandEvent& link)
     {
     wxString helpTopic;
@@ -1201,15 +1218,19 @@ void ProjectWizardDlg::OnButtonClick(wxCommandEvent& link)
         { helpTopic = wxT("framented-text.html"); }
     else if (link.GetId() == CENTERED_TEXT_LINK_ID)
         { helpTopic = wxT("controlling-how-sentences-are-deduced.html"); }
-    wxLaunchDefaultBrowser(wxFileName::FileNameToURL(wxGetApp().GetMainFrame()->GetHelpDirectory() + wxFileName::GetPathSeparator() + helpTopic));
+    wxLaunchDefaultBrowser(
+        wxFileName::FileNameToURL(wxGetApp().GetMainFrame()->GetHelpDirectory() +
+        wxFileName::GetPathSeparator() + helpTopic));
     }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnLanguageChanged([[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
     UpdateTestsUI();
     }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnSourceRadioChange(wxCommandEvent& event)
     {
     m_textEntryEdit->Enable((event.GetId() == ID_MANUALLY_ENTERED_TEXT_BUTTON));
@@ -1217,6 +1238,7 @@ void ProjectWizardDlg::OnSourceRadioChange(wxCommandEvent& event)
     m_fileBrowseButton->Enable((event.GetId() == ID_FROM_FILE_BUTTON));
     }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnFileBrowseButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
@@ -1237,6 +1259,7 @@ void ProjectWizardDlg::OnFileBrowseButtonClick([[maybe_unused]] wxCommandEvent& 
     SetFocus();
     }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnRandomSampleCheck([[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
@@ -1244,6 +1267,7 @@ void ProjectWizardDlg::OnRandomSampleCheck([[maybe_unused]] wxCommandEvent& even
         { m_randPercentageCtrl->Enable(m_isRandomSampling->IsChecked()); }
     }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     wxTextEntryDialog textDlg(this, _("Enter a web page to analyze:"), _("Enter Web Page"));
@@ -1252,7 +1276,11 @@ void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& 
         wxFilePathResolver resolver(textDlg.GetValue(), false);
         if (!resolver.IsWebFile())
             {
-            wxMessageBox(wxString::Format(_("\"%s\" does not appear to be a valid web page.\nBe sure to include the 'www', 'http', or 'https' prefix."), resolver.GetResolvedPath()),
+            wxMessageBox(
+                wxString::Format(
+                    _("\"%s\" does not appear to be a valid web page.\n"
+                      "Be sure to include the 'www', 'http', or 'https' prefix."),
+                    resolver.GetResolvedPath()),
                 wxGetApp().GetAppDisplayName(),
                 wxICON_WARNING|wxOK);
             return;
@@ -1264,7 +1292,8 @@ void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& 
             warningIter->ShouldBeShown())
             {
             DocGroupSelectDlg selectLabelTypeDlg(this);
-            selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"batch-project-import-features.html");
+            selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+                L"batch-project-import-features.html");
             if (selectLabelTypeDlg.ShowModal() != wxID_OK)
                 { return; }
             if (selectLabelTypeDlg.GetSelection() == 1)
@@ -1284,6 +1313,7 @@ void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& 
         }
     }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     wxWebHarvesterDlg webHarvestDlg(this, wxGetApp().GetLastSelectedWebPages(),
@@ -1297,7 +1327,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
         static_cast<int>(wxGetApp().m_harvesterOptions.GetDomainRestriction()),
         wxGetApp().m_harvesterOptions.GetAllowableWebFolders(),
         static_cast<int>(wxGetApp().m_harvesterOptions.GetMinimumDownloadFileSizeInKilobytes()));
-    webHarvestDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), wxT("web-harvester.html"));
+    webHarvestDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"web-harvester.html");
     if (webHarvestDlg.ShowModal() != wxID_OK)
         { return; }
 
@@ -1308,7 +1338,8 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
         warningIter->ShouldBeShown())
         {
         DocGroupSelectDlg selectLabelTypeDlg(this);
-        selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"batch-project-import-features.html");
+        selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+            L"batch-project-import-features.html");
         if (selectLabelTypeDlg.ShowModal() != wxID_OK)
             { return; }
         if (selectLabelTypeDlg.GetSelection() == 1)
@@ -1342,7 +1373,8 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
                 m_fileData->SetItemText(currentFileCount+i, 0, path);
                 if (groupLabel.length())
                     { m_fileData->SetItemText(currentFileCount+i, 1, groupLabel); }
-                // if they chose to use the documents' descriptions as the labels, then those are loaded on import
+                // if they chose to use the documents' descriptions as the labels,
+                // then those are loaded on import
                 ++i;
                 }
             }
@@ -1364,13 +1396,15 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
     m_fileList->SetColumnWidth(1, m_fileList->GetClientSize().GetWidth()*.25);
     }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     GetDirFilterDialog dirDlg(this,
         wxGetApp().GetAppOptions().GetDocumentFilter());
     dirDlg.SetSelectedFileFilter(wxGetApp().GetLastSelectedDocFilter());
     dirDlg.SetPath(GetLastSelectedFolder());
-    dirDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), wxT("batch-project-import-features.html"));
+    dirDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+        L"batch-project-import-features.html");
     if (dirDlg.ShowModal() != wxID_OK || dirDlg.GetPath().empty())
         { return; }
     // get the list of files
@@ -1392,7 +1426,8 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& e
         warningIter->ShouldBeShown())
         {
         DocGroupSelectDlg selectLabelTypeDlg(this);
-        selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"batch-project-import-features.html");
+        selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+            L"batch-project-import-features.html");
         if (selectLabelTypeDlg.ShowModal() != wxID_OK)
             { return; }
         if (selectLabelTypeDlg.GetSelection() == 1)
@@ -1408,19 +1443,23 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& e
         m_fileData->SetItemText(currentFileCount+i, 0, files.Item(i));
         if (groupLabel.length())
             { m_fileData->SetItemText(currentFileCount+i, 1, groupLabel); }
-        // if they chose to use the documents' descriptions as the labels, then those are loaded on import
+        // if they chose to use the documents' descriptions as the labels,
+        // then those are loaded on import
         }
     m_fileList->SetVirtualDataSize(m_fileData->GetItemCount());
-    m_fileList->SetColumnWidth(0, m_fileList->GetClientSize().GetWidth()*.75);
-    m_fileList->SetColumnWidth(1, m_fileList->GetClientSize().GetWidth()*.25);
+    m_fileList->SetColumnWidth(0, m_fileList->GetClientSize().GetWidth() * .75);
+    m_fileList->SetColumnWidth(1, m_fileList->GetClientSize().GetWidth() * .25);
     }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnAddSpreadsheetFileButtonClick([[maybe_unused]] wxCommandEvent& event)
     { LoadSpreadsheet(); }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnAddArchiveFileButtonClick([[maybe_unused]] wxCommandEvent& event)
     { LoadArchive(); }
 
+//-------------------------------------------------------------
 void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     wxFileDialog dialog

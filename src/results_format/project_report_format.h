@@ -48,7 +48,9 @@ public:
     [[nodiscard]]
     static wxString FormatHtmlWarningSection(const wxString& note);
     /** @returns A test's results, description, and notes formatted into an HTML table.
-        @param test The test to format.*/
+        @param score The calculated score.
+        @param theTest The test to format.
+        @param note An optional note to include.*/
     [[nodiscard]]
     static wxString FormatTestResult(const wxString& score,
                                      const readability::readability_test& theTest,
@@ -56,7 +58,7 @@ public:
     /** @returns Project statistics information from a project.
         @param project The project to analyze statistics from.
         @param attentionColor Color to highlight important details.
-        @param listData[out] An optional data grid to store tabular results.\n
+        @param[out] listData An optional data grid to store tabular results.\n
             Pass in null to ignore this parameter.*/
     [[nodiscard]]
     static wxString FormatStatisticsInfo(const BaseProject* project,
@@ -66,7 +68,7 @@ public:
         @param project The project to analyze Dolch statistics from.
         @param includeExplanation True to include detailed explanations in the report.
         @param attentionColor Color to highlight important details.
-        @param listData[out] An optional data grid to store tabular results.\n
+        @param[out] listData An optional data grid to store tabular results.\n
                Pass in null to ignore this parameter.\n
                Caller is responsible for clearing this data grid before calling this function
                because rows will be appended to what was already in there.

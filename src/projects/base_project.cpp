@@ -290,80 +290,6 @@ bool BaseProject::IsIncludingGradeTest() const
     }
 
 BaseProject::BaseProject() :
-    m_dolchConjunctionCounts(0,0),
-    m_dolchPrepositionCounts(0,0),
-    m_dolchPronounCounts(0,0),
-    m_dolchAdverbCounts(0,0),
-    m_dolchAdjectiveCounts(0,0),
-    m_dolchVerbCounts(0,0),
-    m_dolchNounCounts(0,0),
-
-    m_totalWords(0),
-    m_totalSentences(0),
-    m_totalSentenceUnits(0),
-    m_totalParagraphs(0),
-    m_totalSyllables(0),
-    m_totalSyllablesNumeralsFullySyllabized(0),
-    m_totalSyllablesNumeralsOneSyllable(0),
-    m_totalCharacters(0),
-    m_totalCharactersPlusPunctuation(0),
-    m_totalMonoSyllabic(0),
-    m_total3plusSyllableWords(0),
-    m_totalHardWordsSpache(0),
-    m_totalHardWordsDaleChall(0),
-    m_totalHardWordsHarrisJacobson(0),
-    m_totalHardWordsFog(0),
-    m_total3PlusSyllabicWordsNumeralsFullySyllabized(0),
-    m_totalHardWordsSol(0),
-    m_totalHardWordsLixRix(0),
-    m_totalSyllablesIgnoringNumerals(0),
-    m_totalSyllablesIgnoringNumeralsAndProperNouns(0),
-    m_totalLongWords(0),
-    m_totalSixPlusCharacterWordsIgnoringNumerals(0),
-    m_totalMiniWords(0),
-    m_totalNumerals(0),
-    m_totalProperNouns(0),
-    m_totalOverlyLongSentences(0),
-    m_totalInterrogativeSentences(0),
-    m_totalExclamatorySentences(0),
-    m_longestSentence(0),
-    m_longestSentenceIndex(0),
-    m_totalWordsFromCompleteSentencesAndHeaders(0),
-    m_totalSentencesFromCompleteSentencesAndHeaders(0),
-    m_totalNumeralsFromCompleteSentencesAndHeaders(0),
-    m_totalCharactersFromCompleteSentencesAndHeaders(0),
-
-    m_unusedDolchConjunctions(0),
-    m_unusedDolchPrepositions(0),
-    m_unusedDolchPronouns(0),
-    m_unusedDolchAdverbs(0),
-    m_unusedDolchAdjectives(0),
-    m_unusedDolchVerbs(0),
-    m_unusedDolchNounsWords(0),
-
-    m_duplicateWordCount(0),
-    m_mismatchedArticleCount(0),
-    m_passiveVoiceCount(0),
-    m_misspelledWordCount(0),
-    m_wordyPhraseCount(0),
-    m_clicheCount(0),
-    m_redundantPhraseCount(0),
-    m_overusedWordsBySentenceCount(0),
-    m_wordingErrorCount(0),
-    m_sentenceStartingWithConjunctionsCount(0),
-    m_sentenceStartingWithLowercaseCount(0),
-
-    m_uniqueWords(0),
-    m_uniqueMonoSyllablicWords(0),
-    m_unique6CharsPlusWords(0),
-    m_unique3PlusSyllableWords(0),
-    m_uniqueDCHardWords(0),
-    m_uniqueSpacheHardWords(0),
-    m_uniqueMiniWords(0),
-    m_uniqueHardFogWords(0),
-    m_unique3PlusSyllabicWordsNumeralsFullySyllabized(0),
-    m_uniqueHarrisJacobsonHardWords(0),
-
     m_minDocWordCountForBatch(wxGetApp().GetAppOptions().GetMinDocWordCountForBatch()),
     m_includeIncompleteSentencesIfLongerThan(wxGetApp().GetAppOptions().GetIncludeIncompleteSentencesIfLongerThanValue()),
 
@@ -376,23 +302,19 @@ BaseProject::BaseProject() :
     m_textSource(wxGetApp().GetAppOptions().GetTextSource()),
     m_documentStorageMethod(wxGetApp().GetAppOptions().GetDocumentStorageMethod()),
     m_varianceMethod(wxGetApp().GetAppOptions().GetVarianceMethod()),
-    //readability scores options
+    // readability scores options
     m_includeScoreSummaryReport(wxGetApp().GetAppOptions().IsIncludingScoreSummaryReport()),
-    //test options
+    // test options
     m_hjTextExclusion(wxGetApp().GetAppOptions().GetHarrisJacobsonTextExclusionMode()),
     m_dcTextExclusion(wxGetApp().GetAppOptions().GetDaleChallTextExclusionMode()),
     m_dcProperNounCountingMethod(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()),
     m_fleschNumeralSyllabizeMethod(wxGetApp().GetAppOptions().GetFleschNumeralSyllabizeMethod()),
     m_fleschKincaidNumeralSyllabizeMethod(wxGetApp().GetAppOptions().GetFleschKincaidNumeralSyllabizeMethod()),
-
-    //language options
+    // language options
     m_language(wxGetApp().GetAppOptions().GetProjectLanguage()),
     m_reviewer(wxGetApp().GetAppOptions().GetReviewer()),
     m_status(wxGetApp().GetAppOptions().GetStatus()),
     m_appendedDocumentFilePath(wxGetApp().GetAppOptions().GetAppendedDocumentFilePath()),
-
-    m_includeDolchSightWords(false),
-    m_hasUI(true),
     // grammar
     m_spellcheck_ignore_proper_nouns(wxGetApp().GetAppOptions().SpellCheckIsIgnoringProperNouns()),
     m_spellcheck_ignore_uppercased(wxGetApp().GetAppOptions().SpellCheckIsIgnoringUppercased()),
@@ -413,38 +335,11 @@ BaseProject::BaseProject() :
     m_ignoreProperNouns(wxGetApp().GetAppOptions().IsIgnoringProperNouns()),
     m_includeExcludedPhraseFirstOccurrence(wxGetApp().GetAppOptions().IsIncludingExcludedPhraseFirstOccurrence()),
 
-    m_textSize(0),
-    m_loadingOriginalTextSucceeded(true),
-    m_isRefreshing(false),
-
     m_fogUseSentenceUnits(wxGetApp().GetAppOptions().FogUseSentenceUnits()),
     m_includeStockerCatholicDCSupplement(wxGetApp().GetAppOptions().IsIncludingStockerCatholicSupplement()),
 
-    m_indexScore(0),
-    m_clozeScore(0),
-
-    m_3SybPlusData(nullptr),
-    m_6CharPlusData(nullptr),
-    m_DCHardWordsData(nullptr),
-    m_SpacheHardWordsData(nullptr),
-    m_harrisJacobsonHardWordsData(nullptr),
-    m_unusedDolchWordsData(nullptr),
-    m_dolchWordsData(nullptr),
-    m_nonDolchWordsData(nullptr),
-
-    m_ProperNounsData(nullptr),
-    m_contractionsData(nullptr),
-    m_importantWordsBaseData(nullptr),
-    m_AllWordsBaseData(nullptr),
-    
-    m_words(nullptr),
-    m_word_frequency_map(nullptr),
-    m_messages(nullptr),
-    //formula parser
-    m_formulaParser(nullptr),
-    m_excluded_phrases(nullptr),
-    m_statsReportInfo(wxGetApp().GetAppOptions().GetStatisticsReportInfo()),
     m_statsInfo(wxGetApp().GetAppOptions().GetStatisticsInfo()),
+    m_statsReportInfo(wxGetApp().GetAppOptions().GetStatisticsReportInfo()),
     m_grammarInfo(wxGetApp().GetAppOptions().GetGrammarInfo()),
     m_wordsBreakdownInfo(wxGetApp().GetAppOptions().GetWordsBreakdownInfo()),
     m_sentencesBreakdownInfo(wxGetApp().GetAppOptions().GetSentencesBreakdownInfo()),
@@ -452,7 +347,7 @@ BaseProject::BaseProject() :
     m_exclusionBlockTags(wxGetApp().GetAppOptions().GetExclusionBlockTags())
     {
     ResetStandardReadabilityTests(m_readabilityTests);
-    //bind the standard test functions with their respective IDs
+    // bind the standard test functions with their respective IDs
     m_standardTestFunctions.reserve(GetDefaultReadabilityTestsTemplate().get_test_count());
     //DEGREES_OF_READING_POWER
     std::pair<std::vector<readability::readability_test>::const_iterator, bool> testPos =
@@ -3270,7 +3165,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                           wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }
                         ));
             }
-        if (archive.find(wxT("word/document.xml")) == nullptr)
+        if (archive.Find(wxT("word/document.xml")) == nullptr)
             {
             LogMessage(_("Unable to open Word document, file is either password-protected or corrupt."), wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK);
             return std::make_pair(false, wxEmptyString);
@@ -3440,14 +3335,14 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                           wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }
                         ));
             }
-        if (archive.find(wxT("ppt/slides/slide1.xml")) == nullptr)
+        if (archive.Find(L"ppt/slides/slide1.xml") == nullptr)
             {
             LogMessage(_("Unable to open PowerPoint document, file is either password-protected or corrupt."), wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK);
             return std::make_pair(false, wxEmptyString);
             }
         for (size_t i = 1;/*breaks when no more pages are found*/;++i)
             {
-            if (archive.find(wxString::Format(wxT("ppt/slides/slide%zu.xml"),i)) )
+            if (archive.Find(wxString::Format(L"ppt/slides/slide%zu.xml", i)) )
                 {
                 const wxString pptxFileText = archive.ReadTextFile(wxString::Format(wxT("ppt/slides/slide%zu.xml"),i));
                 try

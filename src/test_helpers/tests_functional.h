@@ -47,7 +47,7 @@ public:
         { return m_endHighlight; }
     /// @internal No-op, just needed for interface contract.
     /// @private
-    /// cppcheck-suppress functionStatic
+    // cppcheck-suppress functionStatic
     void Reset() {}
 private:
     wxString m_beginHighlight;
@@ -77,7 +77,7 @@ public:
         { return m_endHighlight; }
     /// @internal No-op, just needed for interface contract.
     /// @private
-    /// cppcheck-suppress functionStatic
+    // cppcheck-suppress functionStatic
     void Reset() {}
 private:
     wxString m_beginHighlight;
@@ -96,7 +96,7 @@ public:
             (can be HTML or RTF code, for example).
         @param endHighlight the ending tag of a highlight
             (can be HTML or RTF code, for example).
-        @param method for determining whether a proper noun
+        @param properNounMethod for determining whether a proper noun
             (not on the word list) should be familiar or not.*/
     IsNotFamiliarWordWithHighlighting(const wordlistT* wlist,
                                       const wxString& beginHighlight,
@@ -146,7 +146,7 @@ public:
             (can be HTML or RTF code, for example).
         @param endExcludeHighlight the ending tag of an excluded text highlight
             (can be HTML or RTF code, for example).
-        @param method for determining whether a proper noun (not on the word list)
+        @param properNounMethod for determining whether a proper noun (not on the word list)
             should be familiar or not.*/
     IsNotFamiliarWordExcludeNumeralsWithHighlighting(
         const wordlistT* wlist,
@@ -277,7 +277,7 @@ public:
         { return (GetHightlightBegin().empty()) ? m_emptyStr : m_endHighlight; }
     /// @internal No-op, just needed for interface contract.
     /// @private
-    /// cppcheck-suppress functionStatic
+    // cppcheck-suppress functionStatic
     void Reset() {}
 private:
     wxString m_beginConjunctions;
@@ -319,7 +319,7 @@ public:
         { return m_endHighlight; }
     /// @internal No-op, just needed for interface contract.
     /// @private
-    /// cppcheck-suppress functionStatic
+    // cppcheck-suppress functionStatic
     void Reset() {}
 private:
     readability::is_dolch_word<word_typeT> isDolch;

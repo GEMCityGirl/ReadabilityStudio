@@ -247,7 +247,7 @@ public:
     word(const wchar_t* word_start, const size_t word_length) :
         std::basic_string<wchar_t, Tchar_traits>(word_start, word_length)
         {}
-    word(const wchar_t* word_start) :
+    explicit word(const wchar_t* word_start) :
         std::basic_string<wchar_t, Tchar_traits>(word_start)
         {}
     /// @private

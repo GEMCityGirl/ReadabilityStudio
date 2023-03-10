@@ -51,10 +51,11 @@ namespace grammar
         {
     public:
         /// @brief Default constructor.
-        phrase() noexcept : m_phrase_type(phrase_type::phrase_wordy) {}
+        phrase() = default;
         /** @brief Simple 1-word "phrase".
             @param src The word to initialize the phrase to.*/
-        phrase(const word_typeT& src) : m_phrase_type(phrase_type::phrase_wordy) { m_words.push_back(src); }
+        explicit phrase(const word_typeT& src)
+            { m_words.push_back(src); }
         /** @returns The phrase_type of the phrase. For example, it could be redundant or a cliché.*/
         [[nodiscard]] phrase_type get_type() const noexcept
             { return m_phrase_type; }
@@ -218,7 +219,7 @@ namespace grammar
             { return m_proceeding_exceptions; }
     private:
         std::vector<word_typeT> m_words;
-        phrase_type m_phrase_type;
+        phrase_type m_phrase_type{ phrase_type::phrase_wordy };
         std::set<word_typeT> m_trailing_exceptions;
         std::set<word_typeT> m_proceeding_exceptions;
         };
@@ -227,7 +228,9 @@ namespace grammar
     class phrase_collection
         {
     public:
-        using phrase_word_pair = comparable_first_pair<phrase<traits::case_insensitive_wstring_ex>,traits::case_insensitive_wstring_ex>;
+        using phrase_word_pair =
+            comparable_first_pair<phrase<traits::case_insensitive_wstring_ex>,
+                                  traits::case_insensitive_wstring_ex>;
         static const size_t npos = static_cast<size_t>(-1);
         /** Compares a range of words to see if it matches any phrases in this collection.
             The word range can be bigger than the phrases, we just want to compare the phrases

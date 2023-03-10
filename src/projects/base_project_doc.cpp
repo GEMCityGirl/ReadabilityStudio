@@ -362,7 +362,7 @@ void BaseProjectDoc::UpdatePrinterHeaderAndFooters(ListCtrlEx* window)
     }
 
 //------------------------------------------------
-void BaseProjectDoc::UpdatePrinterHeaderAndFooters(HtmlTableWindow* window)
+void BaseProjectDoc::UpdatePrinterHeaderAndFooters(Wisteria::UI::HtmlTableWindow* window)
     {
     if (window == nullptr)
         { return; }
@@ -2115,7 +2115,7 @@ wxString BaseProjectDoc::FormatProjectSettings() const
 //------------------------------------------------
 bool BaseProjectDoc::ApplyTestBundle(const wxString& bundleName)
     {
-    const auto testBundleIter = BaseProject::m_testBundles.find(TestBundle(bundleName));
+    const auto testBundleIter = BaseProject::m_testBundles.find(TestBundle(bundleName.wc_str()));
     if (testBundleIter == BaseProject::m_testBundles.end())
         {
         wxMessageBox(wxString::Format(

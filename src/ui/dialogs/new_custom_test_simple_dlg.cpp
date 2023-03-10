@@ -1,3 +1,11 @@
+///////////////////////////////////////////////////////////////////////////////
+// Name:        new_custom_test_simple_dlg.cpp
+// Author:      Blake Madden
+// Copyright:   (c) 2005-2023 Blake Madden
+// Licence:     3-Clause BSD licence
+// SPDX-License-Identifier: BSD-3-Clause
+///////////////////////////////////////////////////////////////////////////////
+
 #include "new_custom_test_simple_dlg.h"
 #include "../../app/readability_app.h"
 

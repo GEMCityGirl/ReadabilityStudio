@@ -1,5 +1,5 @@
-#ifndef __WXEXPORTALL_DLG_H__
-#define __WXEXPORTALL_DLG_H__
+#ifndef __EXPORTALL_DLG_H__
+#define __EXPORTALL_DLG_H__
 
 #include <wx/wx.h>
 #include <wx/string.h>
@@ -13,7 +13,7 @@ class BaseProjectDoc;
 class BatchProjectDoc;
 class ProjectDoc;
 
-class ExportAllDlg: public Wisteria::UI::DialogWithHelp
+class ExportAllDlg final : public Wisteria::UI::DialogWithHelp
     {
 public:
     /// Constructors
@@ -123,4 +123,4 @@ private:
     wxDECLARE_EVENT_TABLE();
     };
 
-#endif //__WXEXPORTALL_DLG_H__
+#endif //__EXPORTALL_DLG_H__

@@ -13,6 +13,7 @@ using namespace grammar;
 word_list is_incorrect_english_article::m_a_exceptions;
 word_list is_incorrect_english_article::m_an_exceptions;
 
+//-------------------------------------------------------------
 bool is_incorrect_english_article::operator()(const wchar_t* article, const size_t article_length,
                                               const wchar_t* word, size_t word_length) const noexcept
     {
@@ -70,7 +71,8 @@ bool is_incorrect_english_article::operator()(const wchar_t* article, const size
         characters::is_character::is_numeric(word[1]) ||
         // if an acronym and no vowels (including wide versions), then each letter should be sounded out
         (isAcronym(word, word_length) &&
-            string_util::strncspn(word,word_length,L"aeiouy\uFF41\uFF45\uFF49\uFF4F\uFF55\uFF59AEIOUY\uFF21\uFF25\uFF29\uFF2F\uFF35\uFF39",24) == word_length) );
+            string_util::strncspn(word, word_length,
+                L"aeiouy\uFF41\uFF45\uFF49\uFF4F\uFF55\uFF59AEIOUY\uFF21\uFF25\uFF29\uFF2F\uFF35\uFF39", 24) == word_length) );
     const bool isYear = (word_length == 4 && characters::is_character::is_numeric(word[0]) &&
         characters::is_character::is_numeric(word[1]) && characters::is_character::is_numeric(word[2]) &&
         characters::is_character::is_numeric(word[3]));
@@ -118,7 +120,8 @@ bool is_incorrect_english_article::operator()(const wchar_t* article, const size
             word[word_length-3] == L'9' ||
             word[word_length-3] == L'0')
             {
-            return !(article_length == 1 && traits::case_insensitive_ex::eq(article[0], L'a'));
+            return !(article_length == 1 &&
+                traits::case_insensitive_ex::eq(article[0], L'a'));
             }
         // an 8th, an 11th
         else if (word[word_length-3] == L'1' ||
@@ -161,11 +164,13 @@ bool is_incorrect_english_article::operator()(const wchar_t* article, const size
             else
                 { return false; }
             }
-        // if starts with a vowel (excluding 'y'), then it should be wrong (unless a known exception)
+        // if starts with a vowel (excluding 'y'),
+        // then it should be wrong (unless a known exception)
         else if (!traits::case_insensitive_ex::eq(word[0], L'y') &&
             characters::is_character::is_vowel(word[0]))
             { return !is_a_exception(word, word_length); }
-        // if starts with a consonant, then it should be correct (unless a known exception that should actually go with an "an")
+        // if starts with a consonant, then it should be correct
+        // (unless a known exception that should actually go with an "an")
         else if (characters::is_character::is_consonant(word[0]))
             { return is_an_exception(word, word_length); }
         else
@@ -209,7 +214,8 @@ bool is_incorrect_english_article::operator()(const wchar_t* article, const size
         // check for any consonants that would be OK after an "an"
         else if (characters::is_character::is_consonant(word[0]))
             { return !is_an_exception(word, word_length); }
-        // if starts with a vowel (excluding 'y'), then it should be correct (unless a known exception that should actually go with an 'a')
+        // if starts with a vowel (excluding 'y'),
+        // then it should be correct (unless a known exception that should actually go with an 'a')
         else if (!traits::case_insensitive_ex::eq(word[0], L'y') &&
             characters::is_character::is_vowel(word[0]))
             { return is_a_exception(word, word_length); }
@@ -220,10 +226,11 @@ bool is_incorrect_english_article::operator()(const wchar_t* article, const size
         { return false; }
     }
 
+//-------------------------------------------------------------
 bool is_incorrect_english_article::is_an_exception(const wchar_t* word, const size_t word_length)
     {
     assert(word);
-    if (!word || word_length == 0)
+    if (word == nullptr || word_length == 0)
         { return false; }
 
     // if a known (full-word, case-insensitive) exception
@@ -234,25 +241,24 @@ bool is_incorrect_english_article::is_an_exception(const wchar_t* word, const si
         traits::case_insensitive_ex::compare(word, L"heir", 4) == 0 ||
         traits::case_insensitive_ex::compare(word, L"honest", 6) == 0 ||
         // treat SAT and sat differently
-        (word_length == 3 && traits::case_insensitive_ex::compare_case_sensitive(word, L"SAT", 3) == 0))
+        (word_length == 3 &&
+         traits::case_insensitive_ex::compare_case_sensitive(word, L"SAT", 3) == 0))
         { return true; }
     else
         { return false; }
     }
 
+//-------------------------------------------------------------
 bool is_incorrect_english_article::is_a_exception(const wchar_t* word, const size_t word_length)
     {
     assert(word);
-    if (!word || word_length == 0)
+    if (word == nullptr || word_length == 0)
         { return false; }
 
     static const std::set<traits::case_insensitive_wstring_ex> case_i_u_3_prefixes =
         { L"ubi", L"ukr", L"ure", L"uri", L"uro",
             L"usa", L"use", L"usi", L"usu", L"utf",
             L"uti", L"uto" };
-
-    if (word == nullptr || word_length == 0)
-        { return false; }
 
     // if a known (full-word, case-insensitive) exception
     if (get_a_exceptions().find(word, word_length))
@@ -278,7 +284,8 @@ bool is_incorrect_english_article::is_a_exception(const wchar_t* word, const siz
             traits::case_insensitive_ex::compare(word, L"once-", 5) == 0)
             { return true; }
         // "A or B" is OK, but "a OR in the hospital" is wrong, so do this case sensitively
-        else if (word_length == 2 && traits::case_insensitive_ex::compare_case_sensitive(word, L"or", 2) == 0)
+        else if (word_length == 2 &&
+            traits::case_insensitive_ex::compare_case_sensitive(word, L"or", 2) == 0)
             { return true; }
         else
             { return false; }

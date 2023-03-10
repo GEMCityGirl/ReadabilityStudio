@@ -13,33 +13,9 @@
 class BatchProjectDoc final : public BaseProjectDoc
     {
 public:
-    BatchProjectDoc() : m_adjustParagraphParserForDocFiles(false),
-        m_scoreRawData(new ListCtrlExNumericDataProvider),
-        m_goalsData(new ListCtrlExNumericDataProvider),
-        m_scoreStatsData(new ListCtrlExNumericDataProvider),
-        m_aggregatedGradeScoresData(new ListCtrlExNumericDataProvider),
-        m_aggregatedClozeScoresData(new ListCtrlExNumericDataProvider),
-        m_warnings(new ListCtrlExDataProvider),
-        m_dupWordData(new ListCtrlExNumericDataProvider),
-        m_incorrectArticleData(new ListCtrlExNumericDataProvider),
-        m_overusedWordBySentenceData(new ListCtrlExNumericDataProvider),
-        m_passiveVoiceData(new ListCtrlExNumericDataProvider),
-        m_misspelledWordData(new ListCtrlExNumericDataProvider),
-        m_wordyPhraseData(new ListCtrlExNumericDataProvider),
-        m_redundantPhraseData(new ListCtrlExNumericDataProvider),
-        m_wordingErrorData(new ListCtrlExNumericDataProvider),
-        m_clichePhraseData(new ListCtrlExNumericDataProvider),
-        m_allWordsBatchData(new ListCtrlExNumericDataProvider),
-        m_importantWordsBatchData(new ListCtrlExNumericDataProvider),
-        m_hardWordsData(new ListCtrlExNumericDataProvider),
-        m_overlyLongSentenceData(new ListCtrlExNumericDataProvider),
-        m_sentenceStartingWithConjunctionsData(new ListCtrlExNumericDataProvider),
-        m_sentenceStartingWithLowercaseData(new ListCtrlExNumericDataProvider),
-        m_dolchCompletionData(new ListCtrlExNumericDataProvider),
-        m_dolchWordsBatchData(new ListCtrlExNumericDataProvider),
-        m_NonDolchWordsData(new ListCtrlExNumericDataProvider)
+    BatchProjectDoc() 
         {
-        //batches don't use manually entered text, so just set this to reflect that
+        // batches don't use manually entered text, so just set this to reflect that
         SetTextSource(TextSource::FromFile);
         }
     BatchProjectDoc(const BatchProjectDoc&) = delete;
@@ -257,34 +233,34 @@ private:
     std::map<traits::case_insensitive_wstring_ex, Wisteria::Data::GroupIdType> m_docLabels;
     Wisteria::Data::ColumnWithStringTable::StringTableType m_groupStringTable;
     //score list data
-    ListCtrlExNumericDataProvider* m_scoreRawData{ nullptr };
-    ListCtrlExNumericDataProvider* m_goalsData{ nullptr };
-    ListCtrlExNumericDataProvider* m_scoreStatsData{ nullptr };
-    ListCtrlExNumericDataProvider* m_aggregatedGradeScoresData{ nullptr };
-    ListCtrlExNumericDataProvider* m_aggregatedClozeScoresData{ nullptr };
+    ListCtrlExNumericDataProvider* m_scoreRawData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_goalsData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_scoreStatsData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_aggregatedGradeScoresData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_aggregatedClozeScoresData{ new ListCtrlExNumericDataProvider };
     //grammar list data
-    ListCtrlExNumericDataProvider* m_dupWordData{ nullptr };
-    ListCtrlExNumericDataProvider* m_incorrectArticleData{ nullptr };
-    ListCtrlExNumericDataProvider* m_passiveVoiceData{ nullptr };
-    ListCtrlExNumericDataProvider* m_misspelledWordData{ nullptr };
-    ListCtrlExNumericDataProvider* m_wordyPhraseData{ nullptr };
-    ListCtrlExNumericDataProvider* m_redundantPhraseData{ nullptr };
-    ListCtrlExNumericDataProvider* m_wordingErrorData{ nullptr };
-    ListCtrlExNumericDataProvider* m_overusedWordBySentenceData{ nullptr };
-    ListCtrlExNumericDataProvider* m_clichePhraseData{ nullptr };
-    ListCtrlExNumericDataProvider* m_overlyLongSentenceData{ nullptr };
-    ListCtrlExNumericDataProvider* m_sentenceStartingWithConjunctionsData{ nullptr };
-    ListCtrlExNumericDataProvider* m_sentenceStartingWithLowercaseData{ nullptr };
-    ListCtrlExNumericDataProvider* m_allWordsBatchData{ nullptr };
-    ListCtrlExNumericDataProvider* m_importantWordsBatchData{ nullptr };
+    ListCtrlExNumericDataProvider* m_dupWordData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_incorrectArticleData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_passiveVoiceData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_misspelledWordData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_wordyPhraseData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_redundantPhraseData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_wordingErrorData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_overusedWordBySentenceData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_clichePhraseData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_overlyLongSentenceData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_sentenceStartingWithConjunctionsData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_sentenceStartingWithLowercaseData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_allWordsBatchData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_importantWordsBatchData{ new ListCtrlExNumericDataProvider };
     //difficult words list data
-    ListCtrlExNumericDataProvider* m_hardWordsData{ nullptr };
+    ListCtrlExNumericDataProvider* m_hardWordsData{ new ListCtrlExNumericDataProvider };
     //warnings list data
-    ListCtrlExDataProvider* m_warnings{ nullptr };
+    ListCtrlExDataProvider* m_warnings{ new ListCtrlExDataProvider };
     //dolch list data
-    ListCtrlExNumericDataProvider* m_dolchCompletionData{ nullptr };
-    ListCtrlExNumericDataProvider* m_dolchWordsBatchData{ nullptr };
-    ListCtrlExNumericDataProvider* m_NonDolchWordsData{ nullptr };
+    ListCtrlExNumericDataProvider* m_dolchCompletionData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_dolchWordsBatchData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_NonDolchWordsData{ new ListCtrlExNumericDataProvider };
 
     wxDECLARE_DYNAMIC_CLASS(BatchProjectDoc);
     };
