@@ -1,7 +1,7 @@
 #ifndef __LUNA_H__
 #define __LUNA_H__
 
-#include "../lua/src/lua.hpp"
+#include "lua.hpp"
 #include <string.h> // For strlen
 
 //Available from http://lua-users.org/wiki/LuaLunaFive

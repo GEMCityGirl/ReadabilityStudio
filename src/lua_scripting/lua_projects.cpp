@@ -1255,6 +1255,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::CloseProperties(lua_State*)
         {
         if (m_settingsDlg)
@@ -1352,9 +1353,10 @@ namespace LuaScripting
       { nullptr, nullptr }
     };
 
-    BatchProject::BatchProject(lua_State *L) : m_project(nullptr), m_settingsDlg(nullptr), m_delayReloading(false)
+    BatchProject::BatchProject(lua_State *L)
         {
-        if (lua_gettop(L) > 1)//see if a path was passed in
+        // see if a path was passed in
+        if (lua_gettop(L) > 1)
             {
             wxString path(luaL_checkstring(L, 2), wxConvUTF8);
             wxFileName fn(path);
@@ -1382,7 +1384,7 @@ namespace LuaScripting
                         m_project = dynamic_cast<BatchProjectDoc*>(docTemplate->CreateDocument(path, wxDOC_NEW));
                         if (m_project && !m_project->OnNewDocument() )
                             {
-                            //Document is implicitly deleted by DeleteAllViews
+                            // Document is implicitly deleted by DeleteAllViews
                             m_project->DeleteAllViews();
                             m_project = nullptr;
                             }
@@ -1391,8 +1393,10 @@ namespace LuaScripting
                     }
                 }
             }
-        wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
+        // yield so that the view can be fully refreshed before proceeding
+        wxGetApp().Yield();
         }
+    //-------------------------------------------------------------
     bool BatchProject::ReloadIfNotDelayed()
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1405,6 +1409,8 @@ namespace LuaScripting
             }
         return 0;
         }
+
+    //-------------------------------------------------------------
     bool BatchProject::ReloadIfNotDelayedSimple()
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1417,6 +1423,8 @@ namespace LuaScripting
             }
         return 0;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::DelayReloading(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1426,11 +1434,15 @@ namespace LuaScripting
         m_delayReloading = int_to_bool(lua_toboolean(L, 2));
         return 0;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::GetTitle(lua_State* L)
         {
         lua_pushstring(L, m_project ? m_project->GetTitle() : wxString{});
         return 1;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::SetWindowSize(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1445,6 +1457,8 @@ namespace LuaScripting
             }
         return 0;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::SetIncludeIncompleteTolerance(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1455,16 +1469,21 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
+
+    //-------------------------------------------------------------
     int BatchProject::SetTextExclusion(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
         if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
-        m_project->SetInvalidSentenceMethod(static_cast<InvalidSentence>(static_cast<int>(lua_tonumber(L, 2))));
+        m_project->SetInvalidSentenceMethod(
+            static_cast<InvalidSentence>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayed();
         return 0;
         };
+
+    //-------------------------------------------------------------
     int BatchProject::AggressivelyDeduceLists(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1475,6 +1494,8 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
+
+    //-------------------------------------------------------------
     int BatchProject::ExcludeCopyrightNotices(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1485,6 +1506,8 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
+
+    //-------------------------------------------------------------
     int BatchProject::ExcludeTrailingCitations(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1496,6 +1519,8 @@ namespace LuaScripting
         lua_pushboolean(L, true);
         return 0;
         };
+
+    //-------------------------------------------------------------
     int BatchProject::ExcludeFileAddress(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1506,6 +1531,8 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
+
+    //-------------------------------------------------------------
     int BatchProject::ExcludeNumerals(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1515,6 +1542,8 @@ namespace LuaScripting
         m_project->IgnoreNumerals(int_to_bool(lua_toboolean(L, 2)));
         return 0;
         };
+
+    //-------------------------------------------------------------
     int BatchProject::ExcludeProperNouns(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1548,7 +1577,8 @@ namespace LuaScripting
         const wxString exclusionTags(luaL_checkstring(L, 2), wxConvUTF8);
         m_project->GetExclusionBlockTags().clear();
         if (exclusionTags.length() >= 2)
-            { m_project->GetExclusionBlockTags().push_back(std::make_pair(exclusionTags[0],exclusionTags[1])); }
+            { m_project->GetExclusionBlockTags().push_back(
+                std::make_pair(exclusionTags[0],exclusionTags[1])); }
         ReloadIfNotDelayed();
         return 0;
         };
@@ -1566,6 +1596,7 @@ namespace LuaScripting
         return 0;
         };
 
+    //-------------------------------------------------------------
     int BatchProject::SetGraphBackgroundColor(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1577,6 +1608,8 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::ApplyGraphBackgroundFade(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1587,6 +1620,8 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::SetGraphBackgroundImage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1597,6 +1632,8 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::SetGraphBackgroundOpacity(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1607,6 +1644,8 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::SetPlotBackgroundColor(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1618,6 +1657,8 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::SetPlotBackgroundOpacity(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1628,6 +1669,8 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::SetGraphWatermark(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1638,6 +1681,8 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::SetGraphLogoImage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1648,6 +1693,8 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::SetGraphCustomBrushImage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1658,6 +1705,8 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::DisplayGraphDropShadows(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1669,16 +1718,20 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int BatchProject::SetProjectLanguage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
         if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
-        m_project->SetProjectLanguage(static_cast<readability::test_language>(static_cast<int>(lua_tonumber(L, 2))));
+        m_project->SetProjectLanguage(
+            static_cast<readability::test_language>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayed();
         return 0;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::GetProjectLanguage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1686,6 +1739,8 @@ namespace LuaScripting
         lua_pushnumber(L,static_cast<int>(m_project->GetProjectLanguage()));
         return 1;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::SetReviewer(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1696,6 +1751,8 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::GetReviewer(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1703,16 +1760,21 @@ namespace LuaScripting
         lua_pushstring(L, wxGetApp().GetAppOptions().GetReviewer().utf8_str());
         return 1;
         }
+
+    //-------------------------------------------------------------
     int BatchProject::SetDocumentStorageMethod(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
         if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
-        m_project->SetDocumentStorageMethod(static_cast<TextStorage>(static_cast<int>(lua_tonumber(L, 2))));
+        m_project->SetDocumentStorageMethod(
+            static_cast<TextStorage>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayed();
         return 0;
         };
+
+    //-------------------------------------------------------------
     int BatchProject::GetDocumentStorageMethod(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1721,16 +1783,20 @@ namespace LuaScripting
         return 1;
         };
 
+    //-------------------------------------------------------------
     int BatchProject::SetParagraphsParsingMethod(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
         if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
-        m_project->SetParagraphsParsingMethod(static_cast<ParagraphParse>(static_cast<int>(lua_tonumber(L, 2))));
+        m_project->SetParagraphsParsingMethod(
+            static_cast<ParagraphParse>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayed();
         return 0;
         };
+
+    //-------------------------------------------------------------
     int BatchProject::GetParagraphsParsingMethod(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1739,6 +1805,7 @@ namespace LuaScripting
         return 1;
         };
 
+    //-------------------------------------------------------------
     int BatchProject::SetMinDocWordCountForBatch(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1749,6 +1816,8 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
+
+    //-------------------------------------------------------------
     int BatchProject::GetMinDocWordCountForBatch(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1756,16 +1825,22 @@ namespace LuaScripting
         lua_pushnumber(L,static_cast<int>(m_project->GetMinDocWordCountForBatch()));
         return 0;
         };
+
+    //-------------------------------------------------------------
     int BatchProject::SetFilePathDisplayMode(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
         if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
-        m_project->SetFilePathTruncationMode(static_cast<ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode>(static_cast<int>(lua_tonumber(L, 2))));
+        m_project->SetFilePathTruncationMode(
+            static_cast<ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode>(
+                static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayed();
         return 0;
         };
+
+    //-------------------------------------------------------------
     int BatchProject::GetFilePathDisplayMode(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1774,6 +1849,7 @@ namespace LuaScripting
         return 1;
         };
 
+    //-------------------------------------------------------------
     int BatchProject::SetSpellCheckerOptions(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1795,6 +1871,7 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
+
     //Adds a test to the project.
     //TestName The name of the test to add to the project.
     int BatchProject::AddTest(lua_State *L)
@@ -1815,7 +1892,7 @@ namespace LuaScripting
             const wxString testName(luaL_checkstring(L, 2), wxConvUTF8);
             if (m_project->GetReadabilityTests().has_test(testName))
                 {
-                std::pair<std::vector<readability::readability_project_test>::const_iterator, bool> result =
+                auto result =
                     m_project->GetReadabilityTests().find_test(testName);
                 wxCommandEvent cmd(0, result.first->get_test().get_interface_id());
                 view->OnAddTest(cmd);
@@ -1855,6 +1932,7 @@ namespace LuaScripting
         lua_pushboolean(L, false);
         return 1;
         }
+
     //Reanalyzes the documents.
     int BatchProject::Reload(lua_State*)
         {
@@ -1996,6 +2074,7 @@ namespace LuaScripting
         wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
         return 0;
         }
+
     //Exports all of the results from the project into a folder.
     //FolderPath The folder to save the project's results.
     int BatchProject::ExportAll(lua_State *L)
@@ -2012,6 +2091,7 @@ namespace LuaScripting
             }
         return 0;
         }
+
     /// Shows or hides the sidebar
     int BatchProject::ShowSidebar(lua_State *L)
         {
@@ -2029,6 +2109,7 @@ namespace LuaScripting
             }
         return 0;
         }
+
     /*Selects the specified section and subwindow.
     Section The section to select.
     Window The subwindow in the section to select.*/
@@ -2055,6 +2136,7 @@ namespace LuaScripting
         wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
         return 0;
         }
+
     /*Selects and sorts a list.
     ListToSort The list window to sort. Refer to ListTypes enumeration.
     ColumnToSort The column in the list to sort.
@@ -2092,7 +2174,9 @@ namespace LuaScripting
         wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
         return 0;
         }
-    //hidden functions just used for screenshots
+
+    // hidden functions just used for screenshots
+    //-------------------------------------------------------------
     int BatchProject::OpenProperties(lua_State *L)
         {
         if (m_project == nullptr)
@@ -2105,6 +2189,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int BatchProject::CloseProperties(lua_State*)
         {
         if (m_settingsDlg)

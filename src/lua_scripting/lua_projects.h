@@ -33,7 +33,8 @@ namespace LuaScripting
             {
             if (!m_project)
                 {
-                wxMessageBox(wxString::Format(_("%s: Accessing project that is already closed."), functionName),
+                wxMessageBox(
+                    wxString::Format(_("%s: Accessing project that is already closed."), functionName),
                     _("Warning"), wxOK|wxICON_INFORMATION);
                 return false;
                 }
@@ -43,9 +44,9 @@ namespace LuaScripting
             }
         bool ReloadIfNotDelayed();
         bool ReloadIfNotDelayedSimple();
-        bool m_delayReloading;
+        bool m_delayReloading{ false };
     public:
-        StandardProject() noexcept : m_project(nullptr), m_settingsDlg(nullptr), m_delayReloading(false) {}
+        StandardProject() = default;
         void SetProject(ProjectDoc* doc) noexcept
             { m_project = doc; }
         static const char className[];
@@ -53,12 +54,12 @@ namespace LuaScripting
         static Luna<StandardProject>::PropertyType properties[];
 
         int DelayReloading(lua_State* L);
-        //Opens a project file.
-        //FilePath File path to the project to open.
+        // Opens a project file.
+        // FilePath File path to the project to open.
         explicit StandardProject(lua_State *L);
         int GetTitle(lua_State* L);
         int SetWindowSize(lua_State* L);
-        //Stats functions
+        // Stats functions
         int GetSentenceCount(lua_State* L);
         int GetIndependentClauseCount(lua_State* L);
         int GetNumeralCount(lua_State* L);
@@ -78,10 +79,10 @@ namespace LuaScripting
         int GetUnfamSpacheWordCount(lua_State* L);
         int GetUnfamDCWordCount(lua_State* L);
         int GetUnfamHJWordCount(lua_State* L);
-        //OPTIONS
+        // OPTIONS
         int SetSpellCheckerOptions(lua_State *L);
 
-        //PROJECT SETTINGS
+        // PROJECT SETTINGS
         int SetProjectLanguage(lua_State *L);
         int GetProjectLanguage(lua_State *L);
         int SetReviewer(lua_State *L);
@@ -90,7 +91,7 @@ namespace LuaScripting
         int SetDocumentStorageMethod(lua_State *L);
         int SetParagraphsParsingMethod(lua_State *L);
         int GetParagraphsParsingMethod(lua_State *L);
-        //TEXT EXCLUSION OPTIONS
+        // TEXT EXCLUSION OPTIONS
         ///Specifies how text should be excluded.
         int SetTextExclusion(lua_State *L);
         ///Specifies the minimum number of words that will make a sentence missing terminating punctuation be considered complete.
@@ -116,7 +117,7 @@ namespace LuaScripting
         ///Sets the file path to the document being appended for analysis.
         int SetAppendedDocumentFilePath(lua_State *L);
 
-        //GRAPH OPTIONS
+        // GRAPH OPTIONS
         int SetGraphBackgroundColor(lua_State *L);
         int ApplyGraphBackgroundFade(lua_State *L);
         int SetGraphBackgroundImage(lua_State *L);
@@ -132,7 +133,7 @@ namespace LuaScripting
         int SetBarChartBarEffect(lua_State *L);
         int SetBarChartOrientation(lua_State *L);
 
-        //TEST OPTIONS
+        // TEST OPTIONS
         //Adds a test to the project.
         //TestName The name of the test to add to the project.
         int AddTest(lua_State *L);
@@ -222,7 +223,8 @@ namespace LuaScripting
             {
             if (!m_project)
                 {
-                wxMessageBox(wxString::Format(_("%s: Accessing project that is already closed."), functionName),
+                wxMessageBox(
+                    wxString::Format(_("%s: Accessing project that is already closed."), functionName),
                     _("Warning"), wxOK|wxICON_INFORMATION);
                 return false;
                 }
@@ -231,7 +233,7 @@ namespace LuaScripting
             }
         bool ReloadIfNotDelayed();
         bool ReloadIfNotDelayedSimple();
-        bool m_delayReloading;
+        bool m_delayReloading{ false };
     public:
         static const char className[];
         static Luna<BatchProject>::FunctionType methods[];
@@ -243,21 +245,27 @@ namespace LuaScripting
         int GetTitle(lua_State *L);
         int SetWindowSize(lua_State* L);
         int DelayReloading(lua_State* L);
-        //OPTIONS
+        // OPTIONS
         int SetSpellCheckerOptions(lua_State *L);
 
-        //PROJECT SETTINGS
+        // PROJECT SETTINGS
         int SetProjectLanguage(lua_State *L);
+        // cppcheck-suppress functionConst
         int GetProjectLanguage(lua_State *L);
         int SetReviewer(lua_State *L);
+        // cppcheck-suppress functionConst
         int GetReviewer(lua_State *L);
+        // cppcheck-suppress functionConst
         int GetDocumentStorageMethod(lua_State *L);
         int SetDocumentStorageMethod(lua_State *L);
         int SetParagraphsParsingMethod(lua_State *L);
+        // cppcheck-suppress functionConst
         int GetParagraphsParsingMethod(lua_State *L);
         int SetMinDocWordCountForBatch(lua_State *L);
+        // cppcheck-suppress functionConst
         int GetMinDocWordCountForBatch(lua_State *L);
         int SetFilePathDisplayMode(lua_State *L);
+        // cppcheck-suppress functionConst
         int GetFilePathDisplayMode(lua_State *L);
         //TEXT EXCLUSION OPTIONS
         //Specifies how text should be excluded.

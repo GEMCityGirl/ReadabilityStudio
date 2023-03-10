@@ -650,7 +650,7 @@ namespace LuaScripting
         if (LuaTestBundleDlg)
             { LuaTestBundleDlg->Close(); }
 
-        TestBundle bundle(wxString(L""));
+        TestBundle bundle(L"");
         for (int i = 2; i < lua_gettop(L); ++i)
             { bundle.GetTestGoals().insert(TestGoal{ wxString(luaL_checkstring(L, i+1), wxConvUTF8).wc_str() }); }
         LuaTestBundleDlg = new TestBundleDlg(wxGetApp().GetMainFrame(), bundle);

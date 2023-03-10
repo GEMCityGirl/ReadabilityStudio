@@ -12,7 +12,7 @@
 #ifndef __LUAINTERFACE_H__
 #define __LUAINTERFACE_H__
 
-#include "../lua_luna_five/luna.h"
+#include "luna.h"
 #include <wx/wx.h>
 
 /// Interface for running Lua code.
