@@ -284,9 +284,9 @@ namespace readability
     inline lix_difficulty lix_index_to_difficulty_level(const size_t index) noexcept
         {
         if (index < 30) return lix_difficulty::lix_very_easy;
-        else if (index >= 30 && index <= 39) return lix_difficulty::lix_easy;
-        else if (index >= 40 && index <= 49) return lix_difficulty::lix_average;
-        else if (index >= 50 && index <= 59) return lix_difficulty::lix_difficult;
+        else if (index <= 39) return lix_difficulty::lix_easy;
+        else if (index <= 49) return lix_difficulty::lix_average;
+        else if (index <= 59) return lix_difficulty::lix_difficult;
         else return lix_difficulty::lix_very_difficult;
         }
 
