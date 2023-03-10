@@ -13,7 +13,7 @@
 #define __LUAPROJECTS_H__
 
 #include <wx/wx.h>
-#include "../lua_luna_five/luna.h"
+#include "luna.h"
 #include "lua_debug.h"
 
 class ProjectDoc;

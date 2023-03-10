@@ -12,7 +12,7 @@
 #ifndef __LUASCREENSHOT_H__
 #define __LUASCREENSHOT_H__
 
-#include "../lua/src/lua.hpp"
+#include "lua.hpp"
 #include <wx/wx.h>
 
 /// @private

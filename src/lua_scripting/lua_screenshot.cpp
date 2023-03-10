@@ -49,6 +49,7 @@ namespace LuaScripting
     EditWordListDlg* LuaEditWordListDlg = nullptr;
     DocGroupSelectDlg* LuaDocGroupSelectDlg = nullptr;
 
+    //-------------------------------------------------------------
     int SnapScreenshot(lua_State *L)
         {
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
@@ -62,6 +63,7 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int SnapScreenshotOfTextWindow(lua_State *L)
         {
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
@@ -70,7 +72,8 @@ namespace LuaScripting
             {
             for (long i = 4; i <= lua_gettop(L); i+=2)
                 {
-                highlightPoints.push_back(std::make_pair(lua_tonumber(L, i), lua_tonumber(L, i+1)));
+                highlightPoints.push_back(
+                    std::make_pair(lua_tonumber(L, i), lua_tonumber(L, i+1)));
                 }
             }
         lua_pushboolean(L, Screenshot::SaveScreenshotOfTextWindow(path,
@@ -78,6 +81,7 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int SnapScreenshotOfRibbon(lua_State *L)
         {
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
@@ -86,10 +90,11 @@ namespace LuaScripting
             { pageToSelect = lua_tonumber(L, 2); }
         if (lua_gettop(L) >= 3)
             { buttonBarID = lua_tonumber(L, 3); }
-        lua_pushboolean(L, Screenshot::SaveScreenshotOfRibbon(path,pageToSelect,buttonBarID));
+        lua_pushboolean(L, Screenshot::SaveScreenshotOfRibbon(path, pageToSelect, buttonBarID));
         return 1;
         }
 
+    //-------------------------------------------------------------
     int SnapScreenshotOfListControl(lua_State *L)
         {
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
@@ -115,6 +120,7 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int SnapScreenshotOfPropertGrid(lua_State *L)
         {
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
@@ -131,14 +137,18 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int HighlightScreenshot(lua_State *L)
         {
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
-        lua_pushboolean(L, Screenshot::HighlightItemInScreenshot(path, wxPoint(lua_tonumber(L, 2), lua_tonumber(L, 3)),
+        lua_pushboolean(L,
+            Screenshot::HighlightItemInScreenshot(path,
+                wxPoint(lua_tonumber(L, 2), lua_tonumber(L, 3)),
             wxPoint(lua_tonumber(L, 4), lua_tonumber(L, 5))));
         return 1;
         }
 
+    //-------------------------------------------------------------
     int ShowDocGroupSelectDlg(lua_State* L)
         {
         if (LuaDocGroupSelectDlg == nullptr)
@@ -146,12 +156,14 @@ namespace LuaScripting
         if (lua_gettop(L) > 0)
             { LuaDocGroupSelectDlg->SetSelection(lua_tonumber(L, 1)-1/*make zero indexed*/); }
         if (lua_gettop(L) > 1)
-            { LuaDocGroupSelectDlg->SetGroupingLabel(wxString(luaL_checkstring(L, 2), wxConvUTF8)); }
+            { LuaDocGroupSelectDlg->SetGroupingLabel(
+                wxString(luaL_checkstring(L, 2), wxConvUTF8)); }
         LuaDocGroupSelectDlg->Show();
         wxGetApp().Yield();
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CloseDocGroupSelectDlg(lua_State*)
         {
         if (LuaDocGroupSelectDlg)
@@ -163,6 +175,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowEditWordListDlg(lua_State* L)
         {
         if (LuaEditWordListDlg == nullptr)
@@ -177,6 +190,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CloseEditWordListDlg(lua_State*)
         {
         if (LuaEditWordListDlg)
@@ -188,6 +202,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowSortListDlg(lua_State* L)
         {
         wxArrayString columns;
@@ -206,6 +221,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CloseSortListDlg(lua_State*)
         {
         if (LuaListCtrlSortDlg)
@@ -217,6 +233,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowFilteredTextPreviewDlg(lua_State*)
         {
         if (LuaFilteredTextPreviewDlg == nullptr)
@@ -237,6 +254,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CloseFilteredTextPreviewDlg(lua_State*)
         {
         if (LuaFilteredTextPreviewDlg)
@@ -248,6 +266,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowStandardProjectWizardLanguagePage(lua_State*)
         {
         if (LuaStandardProjectWizard != nullptr)
@@ -260,6 +279,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowStandardProjectWizardTextSourcePage(lua_State *L)
         {
         if (LuaStandardProjectWizard != nullptr)
@@ -278,6 +298,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowStandardProjectWizardTextFromFilePage(lua_State *L)
         {
         if (LuaStandardProjectWizard != nullptr)
@@ -293,6 +314,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int SetStandardProjectWizardTextFromFilePath(lua_State *L)
         {
         if (LuaStandardProjectWizard != nullptr)
@@ -306,6 +328,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowStandardProjectWizardTextEntryPage(lua_State *L)
         {
         if (LuaStandardProjectWizard != nullptr)
@@ -322,6 +345,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowStandardProjectWizardTestRecommendationPage(lua_State *L)
         {
         if (LuaStandardProjectWizard != nullptr)
@@ -337,6 +361,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowStandardProjectWizardTestByIndustryPage(lua_State *L)
         {
         if (LuaStandardProjectWizard != nullptr)
@@ -356,6 +381,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowStandardProjectWizardTestByDocumentTypePage(lua_State *L)
         {
         if (LuaStandardProjectWizard != nullptr)
@@ -375,6 +401,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowStandardProjectWizardDocumentStructurePage(lua_State *L)
         {
         if (LuaStandardProjectWizard != nullptr)
@@ -401,6 +428,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowStandardProjectWizardManualTestSelectionPage(lua_State* L)
         {
         if (LuaStandardProjectWizard != nullptr)
@@ -420,6 +448,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowStandardProjectWizardTestByBundlePage(lua_State *L)
         {
         if (LuaStandardProjectWizard != nullptr)
@@ -438,6 +467,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CloseStandardProjectWizard(lua_State*)
         {
         if (LuaStandardProjectWizard)
@@ -449,6 +479,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowBatchProjectWizardLanguagePage(lua_State *L)
         {
         if (LuaBatchProjectWizard != nullptr)
@@ -467,6 +498,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowBatchProjectWizardTextSourcePage(lua_State *L)
         {
         if (LuaBatchProjectWizard != nullptr)
@@ -480,6 +512,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowBatchProjectWizardTestRecommendationPage(lua_State *L)
         {
         if (LuaBatchProjectWizard != nullptr)
@@ -495,6 +528,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowBatchProjectWizardTestByIndustryPage(lua_State *L)
         {
         if (LuaBatchProjectWizard != nullptr)
@@ -514,6 +548,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowBatchProjectWizardTestByDocumentTypePage(lua_State *L)
         {
         if (LuaBatchProjectWizard != nullptr)
@@ -533,6 +568,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowBatchProjectWizardDocumentStructurePage(lua_State *L)
         {
         if (LuaBatchProjectWizard != nullptr)
@@ -558,6 +594,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowBatchProjectWizardManualTestSelectionPage(lua_State* L)
         {
         if (LuaBatchProjectWizard != nullptr)
@@ -577,6 +614,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int BatchProjectWizardTextSourcePageSetFiles(lua_State *L)
         {
         if (LuaBatchProjectWizard != nullptr)
@@ -594,6 +632,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CloseBatchProjectWizard(lua_State*)
         {
         if (LuaBatchProjectWizard)
@@ -605,6 +644,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowTestBundleDialog(lua_State *L)
         {
         if (LuaTestBundleDlg)
@@ -624,6 +664,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CloseTestBundleDialog(lua_State*)
         {
         if (LuaTestBundleDlg)
@@ -635,6 +676,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowCustomTestDialogFunctionBrowser(lua_State*)
         {
         if (LuaCustomTestDlg == nullptr)
@@ -644,6 +686,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CloseCustomTestDialogFunctionBrowser(lua_State*)
         {
         if (LuaCustomTestDlg == nullptr)
@@ -653,18 +696,19 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowCustomTestDialogGeneralSettings(lua_State *L)
         {
         if (LuaCustomTestDlg == nullptr)
             { LuaCustomTestDlg = new CustomTestDlg(wxGetApp().GetMainFrame()); }
         LuaCustomTestDlg->SelectPage(CustomTestDlg::ID_GENERAL_PAGE);
-        //set the test name (if provided)
+        // set the test name (if provided)
         if (lua_gettop(L) > 0)
             { LuaCustomTestDlg->SetTestName(wxString(luaL_checkstring(L, 1), wxConvUTF8), false); }
-        //set formula (if provided)
+        // set formula (if provided)
         if (lua_gettop(L) > 1)
             { LuaCustomTestDlg->SetFormula(wxString(luaL_checklstring(L, 2, nullptr), wxConvUTF8)); }
-        //set the test type (if provided)
+        // set the test type (if provided)
         if (lua_gettop(L) > 2)
             { LuaCustomTestDlg->SetTestType(lua_tonumber(L, 3)); }
         LuaCustomTestDlg->FindWindow(wxID_OK)->SetFocus();
@@ -673,6 +717,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowCustomTestDialogProperNounsAndNumbers(lua_State *L)
         {
         if (LuaCustomTestDlg == nullptr)
@@ -687,6 +732,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowCustomTestDialogFamiliarWords(lua_State *L)
         {
         if (LuaCustomTestDlg == nullptr)
@@ -702,10 +748,10 @@ namespace LuaScripting
                 LuaCustomTestDlg->SetWordListFilePath(wordFile);
                 }
             }
-        //set the stemming type (if provided)
+        // set the stemming type (if provided)
         if (lua_gettop(L) > 1)
             { LuaCustomTestDlg->SetStemmingType(static_cast<stemming::stemming_type>(static_cast<int>(lua_tonumber(L, 2)))); }
-        //other word lists
+        // other word lists
         if (lua_gettop(L) > 2)
             { LuaCustomTestDlg->SetIncludingDaleChallList(int_to_bool(lua_toboolean(L, 3))); }
         if (lua_gettop(L) > 3)
@@ -714,7 +760,7 @@ namespace LuaScripting
             { LuaCustomTestDlg->SetIncludingHJList(int_to_bool(lua_toboolean(L, 5))); }
         if (lua_gettop(L) > 5)
             { LuaCustomTestDlg->SetIncludingStockerList(int_to_bool(lua_toboolean(L, 6))); }
-        //whether a union of word lists should be used
+        // whether a union of word lists should be used
         if (lua_gettop(L) > 6)
             { LuaCustomTestDlg->SetFamiliarWordsMustBeOnEachIncludedList(int_to_bool(lua_toboolean(L, 7))); }
         LuaCustomTestDlg->Show();
@@ -722,6 +768,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowCustomTestDialogClassification(lua_State*)
         {
         if (LuaCustomTestDlg == nullptr)
@@ -732,11 +779,13 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int SetCustomTestDialogDocumentTypes(lua_State *L)
         {
         if (lua_gettop(L) < 5)
             {
-            wxMessageBox(wxString::Format(_("%s: Invalid number of arguments."), wxString(__WXFUNCTION__)),
+            wxMessageBox(
+                wxString::Format(_("%s: Invalid number of arguments."), wxString(__WXFUNCTION__)),
                 _("Script Error"), wxOK|wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -753,11 +802,13 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int SetCustomTestDialogIndustries(lua_State *L)
         {
         if (lua_gettop(L) < 7)
             {
-            wxMessageBox(wxString::Format(_("%s: Invalid number of arguments."), wxString(__WXFUNCTION__)),
+            wxMessageBox(wxString::Format(
+                _("%s: Invalid number of arguments."), wxString(__WXFUNCTION__)),
                 _("Script Error"), wxOK|wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -776,6 +827,7 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int SetCustomTestDialogIncludedLists(lua_State *L)
         {
         if (LuaCustomTestDlg == nullptr)
@@ -789,6 +841,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CloseCustomTestDialog(lua_State*)
         {
         if (LuaCustomTestDlg)
@@ -800,6 +853,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int OpenOptions(lua_State *L)
         {
         if (LuaOptionsDlg == nullptr)
@@ -810,6 +864,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CloseOptions(lua_State*)
         {
         if (LuaOptionsDlg)
@@ -821,13 +876,18 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowPrinterHeaderFooterOptions(lua_State*)
         {
         if (LuaPrinterOptions == nullptr)
             {
-            LuaPrinterOptions = new PrinterHeaderFooterDlg(wxGetApp().GetMainFrame(), wxGetApp().GetAppOptions().GetLeftPrinterHeader(),
-                wxGetApp().GetAppOptions().GetCenterPrinterHeader(), wxGetApp().GetAppOptions().GetRightPrinterHeader(),
-                wxGetApp().GetAppOptions().GetLeftPrinterFooter(), wxGetApp().GetAppOptions().GetCenterPrinterFooter(),
+            LuaPrinterOptions =new PrinterHeaderFooterDlg(
+                wxGetApp().GetMainFrame(),
+                wxGetApp().GetAppOptions().GetLeftPrinterHeader(),
+                wxGetApp().GetAppOptions().GetCenterPrinterHeader(),
+                wxGetApp().GetAppOptions().GetRightPrinterHeader(),
+                wxGetApp().GetAppOptions().GetLeftPrinterFooter(),
+                wxGetApp().GetAppOptions().GetCenterPrinterFooter(),
                 wxGetApp().GetAppOptions().GetRightPrinterFooter());
             }
         LuaPrinterOptions->Show();
@@ -835,6 +895,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ClosePrinterHeaderFooterOptions(lua_State*)
         {
         if (LuaPrinterOptions)
@@ -846,6 +907,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowListExpordDlg(lua_State *L)
         {
         if (LuaListExportDlg == nullptr)
@@ -860,6 +922,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CloseListExpordDlg(lua_State*)
         {
         if (LuaListExportDlg)
@@ -871,6 +934,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CloseListViewItemDlg(lua_State*)
         {
         if (LuaListViewItemDlg)
@@ -882,6 +946,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowListViewItemDlg(lua_State *L)
         {
         if (LuaListViewItemDlg)
@@ -890,9 +955,11 @@ namespace LuaScripting
         wxFilePathResolver fileResolve;
         for (int i = 1; i < lua_gettop(L); i += 2)
             {
-            fileResolve.ResolvePath(wxString(luaL_checklstring(L, i+1, nullptr), wxConvUTF8), false);
-            LuaListViewItemDlg->AddValue(wxGetTranslation(wxString(luaL_checklstring(L, i, nullptr), wxConvUTF8)),
-                wxGetTranslation(wxString(luaL_checklstring(L, i+1, nullptr), wxConvUTF8)),
+            fileResolve.ResolvePath(
+                wxString(luaL_checklstring(L, i + 1, nullptr), wxConvUTF8), false);
+            LuaListViewItemDlg->AddValue(
+                wxGetTranslation(wxString(luaL_checklstring(L, i, nullptr), wxConvUTF8)),
+                wxGetTranslation(wxString(luaL_checklstring(L, i + 1, nullptr), wxConvUTF8)),
                 !fileResolve.IsInvalidFile());
             }
         LuaListViewItemDlg->Create(wxGetApp().GetMainFrame());
@@ -901,6 +968,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowGetArchiveDlg(lua_State *L)
         {
         if (LuaGetArchiveDlg == nullptr)
@@ -914,6 +982,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CloseGetArchiveDlg(lua_State*)
         {
         if (LuaGetArchiveDlg)
@@ -925,6 +994,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowGetDirDlg(lua_State *L)
         {
         if (LuaGetDirDlg == nullptr)
@@ -938,6 +1008,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CloseGetDirDlg(lua_State*)
         {
         if (LuaGetDirDlg)
@@ -949,6 +1020,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowSelectProjectTypeDlg(lua_State *L)
         {
         if (LuaSelectProjectType == nullptr)
@@ -958,7 +1030,8 @@ namespace LuaScripting
             docNames.Add(_("Batch Project"));
             wxArrayString docDescriptions;
             LuaSelectProjectType = new RadioBoxDlg(wxGetApp().GetMainFrame(),
-                _("Select Project Type"), wxEmptyString, _("Project types:"), _("New Project"),
+                _("Select Project Type"), wxEmptyString,
+                _("Project types:"), _("New Project"),
                 docNames, docDescriptions);
             }
         LuaSelectProjectType->SetSelection(lua_tonumber(L, 1)-1/*make zero-indexed*/);
@@ -967,6 +1040,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CloseSelectProjectTypeDlg(lua_State*)
         {
         if (LuaSelectProjectType)
@@ -978,6 +1052,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ShowWebHarvesterDlg(lua_State*)
         {
         if (LuaSelectProjectType == nullptr)
@@ -1000,6 +1075,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CloseWebHarvesterDlg(lua_State*)
         {
         if (LuaWebHarvesterDlg)

@@ -13,40 +13,50 @@ wxDECLARE_APP(ReadabilityApp);
 
 namespace LuaScripting
     {
-    bool VerifyParameterCount(lua_State* L, const int minParemeterCount, const wxString& functionName)
+    //-------------------------------------------------------------
+    bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
+                              const wxString& functionName)
         {
         wxASSERT(L);
         wxASSERT(minParemeterCount >= 0);
         if (lua_gettop(L) < minParemeterCount)
             {
-            wxMessageBox(wxString::Format(_("%s: Invalid number of arguments.\n\n%d expected, %d provided."), functionName, minParemeterCount, lua_gettop(L)),
-                         _("Script Error"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(wxString::Format(
+                _("%s: Invalid number of arguments.\n\n%d expected, %d provided."),
+                    functionName, minParemeterCount, lua_gettop(L)),
+                _("Script Error"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
         else
             { return true; }
         }
 
+    //-------------------------------------------------------------
     void DebugPrint(const wxString& str)
         {
         wxGetApp().GetMainFrameEx()->GetLuaEditor()->DebugOutput(str);
         wxGetApp().Yield();
         }
 
+    //-------------------------------------------------------------
     int GetScriptFolderPath(lua_State* L)
         {
         if (wxGetApp().GetLuaRunner().GetScriptFilePath().empty())
             {
             DebugPrint(wxString::Format(
-                _("%sError%s: call to %s returned empty because the script has not been saved yet."),
-                L"<span style='color:red; font-weight:bold;'>", L"</span>", __WXFUNCTION__));
+                _("%sError%s: call to %s returned empty because "
+                  "the script has not been saved yet."),
+                L"<span style='color:red; font-weight:bold;'>",
+                L"</span>", __WXFUNCTION__));
             lua_pushstring(L, "");
             return 1;
             }
-        lua_pushstring(L, wxFileName(wxGetApp().GetLuaRunner().GetScriptFilePath()).GetPathWithSep());
+        lua_pushstring(L,
+            wxFileName(wxGetApp().GetLuaRunner().GetScriptFilePath()).GetPathWithSep());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int Print(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -55,6 +65,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int Clear([[maybe_unused]] lua_State* L)
         {
         wxGetApp().GetMainFrameEx()->GetLuaEditor()->DebugClear();

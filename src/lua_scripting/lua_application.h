@@ -14,17 +14,17 @@
 
 #include <wx/wx.h>
 #include <map>
-#include "../lua/src/lua.hpp"
+#include "lua.hpp"
 #include "lua_projects.h"
 #include "lua_debug.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/util/donttranslate.h"
 
 namespace LuaScripting
     {
-    void VerifyLink(const wxChar* link, const size_t length, const bool isImage,
+    void VerifyLink(const wchar_t* link, const size_t length, const bool isImage,
         const wxString& currentFile, std::multimap<wxString,wxString>& badLinks,
-        std::multimap<wxString,wxString>& badImageSizes, const bool IncludeExternalLinks);
-    /// Helper functions
+        std::multimap<wxString, wxString>& badImageSizes, const bool IncludeExternalLinks);
+    // Helper functions
     int MsgBox(lua_State *L);
     int GetLuaConstantsPath(lua_State *L);
     int GetProgramPath(lua_State *L);
@@ -40,8 +40,8 @@ namespace LuaScripting
     int RemoveAllCustomTestBundles(lua_State*);
     int MergeWordLists(lua_State* L);
     int MergePhraseLists(lua_State* L);
-    ///Append given suffixes to words in a list.
-    ///Note that this is an internal function used for expanding our proper noun list.
+    // Append given suffixes to words in a list.
+    // Note that this is an internal function used for expanding our proper noun list.
     int ExpandWordList(lua_State* L);
     int PhraseListToWordList(lua_State* L);
     int CrossReferenceWordLists(lua_State* L);
@@ -49,11 +49,11 @@ namespace LuaScripting
     int GetTestId(lua_State *L);
     int SplashScreen(lua_State *L);
     int GetFileCheckSum(lua_State *L);
-    //internal testing functions
+    // Internal testing functions
     int QAVerify(lua_State *L);
     int CheckHtmlLinks(lua_State *L);
     int Crash(lua_State*);
-    ///Setting functions
+    // Setting functions
     int ImportSettings(lua_State* L);
     int ExportSettings(lua_State* L);
     int ResetSettings(lua_State*);
@@ -62,7 +62,7 @@ namespace LuaScripting
     int EnableWarning(lua_State* L);
     int DisableWarning(lua_State* L);
     int SetSpellCheckerOptions(lua_State *L);
-    //PROJECT SETTINGS
+    // PROJECT SETTINGS
     int SetReviewer(lua_State *L);
     int GetReviewer(lua_State *L);
     int SetProjectLanguage(lua_State *L);
@@ -75,28 +75,29 @@ namespace LuaScripting
     int GetMinDocWordCountForBatch(lua_State *L);
     int SetFilePathDisplayMode(lua_State *L);
     int GetFilePathDisplayMode(lua_State *L);
-    //TEXT EXCLUSION OPTIONS
+    // TEXT EXCLUSION OPTIONS
     int SetTextExclusion(lua_State *L);
-    //Specifies the minimum number of words that will make a sentence missing terminating punctuation be considered complete.
+    // Specifies the minimum number of words that will make a
+    // sentence missing terminating punctuation be considered complete.
     int SetIncludeIncompleteTolerance(lua_State *L);
-    //Specifies whether or not to aggressively exclude.
+    // Specifies whether or not to aggressively exclude.
     int AggressivelyDeduceLists(lua_State *L);
-    //Specifies whether or not to exclude copyright notices.
+    // Specifies whether or not to exclude copyright notices.
     int ExcludeCopyrightNotices(lua_State *L);
-    //Specifies whether or not to exclude trailing citations.
+    // Specifies whether or not to exclude trailing citations.
     int ExcludeTrailingCitations(lua_State *L);
-    //Specifies whether or not to exclude file addresses.
+    // Specifies whether or not to exclude file addresses.
     int ExcludeFileAddress(lua_State *L);
-    //Specifies whether or not to exclude numerals.
+    // Specifies whether or not to exclude numerals.
     int ExcludeNumerals(lua_State *L);
-    //Specifies whether or not to exclude proper nouns.
+    // Specifies whether or not to exclude proper nouns.
     int ExcludeProperNouns(lua_State *L);
-    //Sets the filepath to the phrase exclusion list
-    //filePath Path to phrase exclusion list
+    // Sets the filepath to the phrase exclusion list
+    // filePath Path to phrase exclusion list
     int SetPhraseExclusionList(lua_State *L);
-    ///Sets the tags to exclude blocks of text.
+    // Sets the tags to exclude blocks of text.
     int SetBlockExclusionTags(lua_State *L);
-    //GRAPH OPTIONS
+    // GRAPH OPTIONS
     int SetGraphBackgroundColor(lua_State *L);
     int ApplyGraphBackgroundFade(lua_State *L);
     int SetGraphBackgroundImage(lua_State *L);
@@ -114,11 +115,11 @@ namespace LuaScripting
 
     int GetImageInfo(lua_State*);
 
-    ///Gets the active standard project
+    // Gets the active standard project
     int GetActiveStandardProject(lua_State *L);
     int GetActiveBatchProject(lua_State *L);
 
-    //printing
+    // printing
     int SetLeftPrintHeader(lua_State *L);
     int SetCenterPrintHeader(lua_State *L);
     int SetRightPrintHeader(lua_State *L);

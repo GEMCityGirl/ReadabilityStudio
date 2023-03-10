@@ -27,22 +27,24 @@ wxDECLARE_APP(ReadabilityApp);
 
 namespace LuaScripting
     {
-    void VerifyLink(const wxChar* link, const size_t length, const bool isImage, const wxString& currentFile,
+    //-------------------------------------------------------------
+    void VerifyLink(const wchar_t* link, const size_t length,
+        const bool isImage, const wxString& currentFile,
         std::multimap<wxString,wxString>& badLinks,
         std::multimap<wxString,wxString>& badImageSizes,
         const bool IncludeExternalLinks)
         {
         lily_of_the_valley::html_extract_text extract;
-        //see if it's a weblink before anything else
+        // see if it's a weblink before anything else
         wxString webPath(link, length);
         wxFilePathResolver resolve(webPath, false);
         if (resolve.IsHTTPFile() || resolve.IsHTTPSFile())
             {
             if (IncludeExternalLinks)
                 {
-                //now try to connect to it
+                // now try to connect to it
                 resolve.ResolvePath(webPath, true);
-                //it's a web link that we couldn't connect to
+                // it's a web link that we couldn't connect to
                 if (resolve.IsInvalidFile())
                     {
                     badLinks.insert(std::make_pair(currentFile, webPath));
@@ -52,7 +54,8 @@ namespace LuaScripting
             else
                 { return; }
             }
-        //encoded links will hex encode non-alphanumeric values in them, so convert that to match the real name of the local file
+        // encoded links will hex encode non-alphanumeric values in them,
+        // so convert that to match the real name of the local file
         const wchar_t* filteredFileName = extract(link, length, true, false);
         if (!filteredFileName)
             { return; }
@@ -61,59 +64,78 @@ namespace LuaScripting
             { return; }
         for (;;)
             {
-            const int percentIndex = path.Find(wxT('%'));
-            if (percentIndex == wxNOT_FOUND || static_cast<size_t>(percentIndex) > path.length()-3)
+            const int percentIndex = path.find(L'%');
+            if (percentIndex == wxNOT_FOUND ||
+                static_cast<size_t>(percentIndex) > path.length()-3)
                 { break; }
             size_t hexLength(static_cast<size_t>(-1));
-            wxChar value = string_util::axtoi(path.Mid(percentIndex+1, 2).wc_str(), hexLength);
+            wchar_t value =
+                string_util::axtoi(path.substr(percentIndex+1, 2).wc_str(), hexLength);
             path.replace(percentIndex, 3, wxString(1, value));
             }
-        //strip off bookmark (if there is one)
-        const int bookMarkIndex = path.Find(wxT('#'), true);
+        // strip off bookmark (if there is one)
+        const int bookMarkIndex = path.find(L'#', true);
         if (bookMarkIndex != wxNOT_FOUND)
             {
             path.erase(bookMarkIndex);
             if (path.length() == 0)
                 { return; }
             }
-        //if link to a local CHM file then try to see if the decompiled file is in the local file system
-        if (path.Find(_DT(L".chm::")) != wxNOT_FOUND ||
-            path.Find(_DT(L".CHM::")) != wxNOT_FOUND)
+        // if link to a local CHM file then try to see if the
+        // decompiled file is in the local file system
+        if (path.find(_DT(L".chm::")) != wxNOT_FOUND ||
+            path.find(_DT(L".CHM::")) != wxNOT_FOUND)
             {
             path.Replace(_DT(L".chm::"), wxEmptyString);
             path.Replace(_DT(L".CHM::"), wxEmptyString);
-            path.Prepend(wxFileName::GetCwd() + wxT('\\'));
+            path.Prepend(wxFileName::GetCwd() + L'\\');
             if (!wxFileName::FileExists(path))
                 {
                 badLinks.insert(std::make_pair(currentFile, path));
                 return;
                 }
             }
-        //ignore mail links
+        // ignore mail links
         if (path.StartsWith(_("mailto")))
             { return; }
-        //otherwise, it is a regular link
+        // otherwise, it is a regular link
         wxFileName fn(path);
         if (fn.IsRelative())
             { fn.MakeAbsolute(wxFileName(currentFile).GetPath()); }
-        //if an image, then check its dimensions
+        // if an image, then check its dimensions
         if (isImage)
             {
-            const std::wstring widthStr = lily_of_the_valley::html_extract_text::read_attribute_as_string(link, _DT(L"width"), 5, true);
-            const std::wstring heightStr = lily_of_the_valley::html_extract_text::read_attribute_as_string(link, _DT(L"height"), 6, true);
+            const std::wstring widthStr =
+                lily_of_the_valley::html_extract_text::read_attribute_as_string(
+                    link, _DT(L"width"), 5, true);
+            const std::wstring heightStr =
+                lily_of_the_valley::html_extract_text::read_attribute_as_string(
+                    link, _DT(L"height"), 6, true);
             if (widthStr.length() && heightStr.length())
                 {
-                const long width = static_cast<long>(std::wcstol(widthStr.c_str(), nullptr, 10));
-                const long height = static_cast<long>(std::wcstol(heightStr.c_str(), nullptr, 10));
+                const long width =
+                    static_cast<long>(std::wcstol(widthStr.c_str(), nullptr, 10));
+                const long height =
+                    static_cast<long>(std::wcstol(heightStr.c_str(), nullptr, 10));
                 if (fn.FileExists())
                     {
                     wxLogNull logNo;
                     wxImage img;
                     img.LoadFile(fn.GetFullPath());
                     if (!img.IsOk())
-                        { badImageSizes.insert(std::make_pair(currentFile, wxString::Format(_("%s (image is possibly corrupt))"), fn.GetFullPath()))); }
-                    else if (!is_within<long>(img.GetHeight(), height-5, height+5) || !is_within<long>(img.GetWidth(), width-5, width+5) )
-                        { badImageSizes.insert(std::make_pair(currentFile, wxString::Format(_("%s (%ld x %ld vs. %d x %d))"), fn.GetFullPath(), width, height, img.GetWidth(), img.GetHeight()))); }
+                        {
+                        badImageSizes.insert(std::make_pair(currentFile,
+                            wxString::Format(_("%s (image is possibly corrupt))"),
+                                             fn.GetFullPath())));
+                        }
+                    else if (!is_within<long>(img.GetHeight(), height-5, height+5) ||
+                        !is_within<long>(img.GetWidth(), width-5, width+5) )
+                        {
+                        badImageSizes.insert(std::make_pair(currentFile,
+                            wxString::Format(_("%s (%ld x %ld vs. %d x %d))"),
+                                fn.GetFullPath(), width, height, img.GetWidth(),
+                                img.GetHeight())));
+                        }
                     }
                 }
             }
@@ -121,21 +143,27 @@ namespace LuaScripting
             { badLinks.insert(std::make_pair(currentFile, fn.GetFullPath())); }
         }
 
+    //-------------------------------------------------------------
     int GetProgramPath(lua_State *L)
         {
-        lua_pushstring(L, wxFileName(wxStandardPaths::Get().GetExecutablePath()).GetPath(wxPATH_GET_SEPARATOR|wxPATH_GET_VOLUME).utf8_str());
+        lua_pushstring(L,
+            wxFileName(wxStandardPaths::Get().GetExecutablePath()).
+                GetPath(wxPATH_GET_SEPARATOR|wxPATH_GET_VOLUME).utf8_str());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int GetLuaConstantsPath(lua_State *L)
         {
-        lua_pushstring(L, wxGetApp().FindResourceFile(wxT("RSConstants.lua")).utf8_str());
+        lua_pushstring(L, wxGetApp().FindResourceFile(L"RSConstants.lua").utf8_str());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int GetActiveBatchProject(lua_State *L)
         {
-        wxDocument* currentDoc = wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument();
+        wxDocument* currentDoc =
+            wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument();
         if (currentDoc && currentDoc->IsKindOf(CLASSINFO(BatchProjectDoc)) )
             {
             BatchProject* batchProject = new BatchProject(L);
@@ -163,7 +191,8 @@ namespace LuaScripting
 
     int GetActiveStandardProject(lua_State *L)
         {
-        wxDocument* currentDoc = wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument();
+        wxDocument* currentDoc =
+            wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument();
         if (currentDoc && currentDoc->IsKindOf(CLASSINFO(ProjectDoc)) )
             {
             StandardProject* standardProject = new StandardProject(L);
@@ -189,12 +218,13 @@ namespace LuaScripting
             }
         }
 
+    //-------------------------------------------------------------
     int GetTestId(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         const wxString testName(luaL_checkstring(L, 1), wxConvUTF8);
-        const std::pair<std::vector<readability::readability_test>::const_iterator, bool> testPos =
+        const auto testPos =
             BaseProject::GetDefaultReadabilityTestsTemplate().find_test(testName);
 
         if (testPos.second)
@@ -204,7 +234,8 @@ namespace LuaScripting
             }
 
         CustomReadabilityTestCollection::const_iterator testIter =
-            std::find(BaseProject::m_custom_word_tests.begin(), BaseProject::m_custom_word_tests.end(), testName);
+            std::find(BaseProject::m_custom_word_tests.begin(),
+                      BaseProject::m_custom_word_tests.end(), testName);
         if (testIter != BaseProject::m_custom_word_tests.end())
             { lua_pushnumber(L, testIter->get_interface_id()); }
         else
@@ -212,6 +243,7 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int MsgBox(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -219,18 +251,21 @@ namespace LuaScripting
         if (lua_isboolean(L,1))
             {
             wxMessageBox(lua_toboolean(L,1) ? _("true") : _("false"),
-                (lua_gettop(L) > 1) ? wxString(luaL_checkstring(L, 2), wxConvUTF8) : wxGetApp().GetAppName(),
+                (lua_gettop(L) > 1) ?
+                wxString(luaL_checkstring(L, 2), wxConvUTF8) : wxGetApp().GetAppName(),
                 wxOK|wxICON_INFORMATION);
             }
         else if (lua_isstring(L,1))
             {
             wxMessageBox(wxString(luaL_checkstring(L, 1), wxConvUTF8),
-                (lua_gettop(L) > 1) ? wxString(luaL_checkstring(L, 2), wxConvUTF8) : wxGetApp().GetAppName(),
+                (lua_gettop(L) > 1) ?
+                wxString(luaL_checkstring(L, 2), wxConvUTF8) : wxGetApp().GetAppName(),
                 wxOK|wxICON_INFORMATION);
             }
         return 0;
         }
 
+    //-------------------------------------------------------------
     int DownloadFile(lua_State *L)
         {
         if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
@@ -246,16 +281,19 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int FindFiles(lua_State *L)
         {
-        //should be passed a folder to search and the file filter to use
+        // should be passed a folder to search and the file filter to use
         if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
         lua_newtable(L);
 
         wxDir dir;
         wxArrayString files;
-        const size_t fileCount = dir.GetAllFiles(wxString(luaL_checkstring(L, 1), wxConvUTF8), &files, wxString(luaL_checkstring(L, 2), wxConvUTF8), wxDIR_FILES|wxDIR_DIRS);
+        const size_t fileCount =
+            dir.GetAllFiles(wxString(luaL_checkstring(L, 1), wxConvUTF8), &files,
+                            wxString(luaL_checkstring(L, 2), wxConvUTF8), wxDIR_FILES|wxDIR_DIRS);
 
         for (size_t i = 1; i <= fileCount; ++i)
             {
@@ -267,6 +305,7 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int GetImageInfo(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -300,6 +339,7 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int GetFileCheckSum(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -322,6 +362,7 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int LogMessage(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -331,16 +372,20 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int SplashScreen(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         wxASSERT(wxGetApp().GetSplashscreenPaths().GetCount());
-        const auto index = std::clamp<size_t>(lua_tonumber(L, 1)-1/*make it zero-indexed*/, 0, wxGetApp().GetSplashscreenPaths().GetCount()-1);
-        wxBitmap bitmap = wxGetApp().GetScaledImage(wxGetApp().GetSplashscreenPaths()[index],
-                                                    wxBITMAP_TYPE_PNG,
-                                                    wxSize(wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X)*.5,
-                                                           wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y)*.5));
+        const auto index =
+            std::clamp<size_t>(lua_tonumber(L, 1)-1/*make it zero-indexed*/, 0,
+                               wxGetApp().GetSplashscreenPaths().GetCount()-1);
+        wxBitmap bitmap =
+            wxGetApp().GetScaledImage(wxGetApp().GetSplashscreenPaths()[index],
+                wxBITMAP_TYPE_PNG,
+                wxSize(wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X)*.5,
+                        wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y)*.5));
         if (bitmap.IsOk())
             {
             bitmap = wxGetApp().CreateSplashscreen(bitmap, wxGetApp().GetAppName(),
@@ -356,12 +401,14 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int QAVerify(lua_State *L)
         {
         lua_pushboolean(L, wxGetApp().VerifyWordLists());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int CheckHtmlLinks(lua_State *L)
         {
         if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
@@ -372,11 +419,11 @@ namespace LuaScripting
         std::multimap<wxString,wxString> badImageSizes;
         std::set<traits::case_insensitive_wstring_ex> validFiles;
 
-        //get the valid files
+        // get the valid files
             {
             wxDir dir;
             wxArrayString files;
-            //analysis the topics
+            // analysis the topics
             dir.GetAllFiles(path, &files, _DT(L"*.hhp*"));
             wxString fileContent;
             for (size_t i = 0; i < files.Count(); ++i)
@@ -384,24 +431,24 @@ namespace LuaScripting
                 wxFileName fn(files[i]);
                 const wxString rootFolder = fn.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR);
 
-                wxFFile file(files[i], wxT("r"));
+                wxFFile file(files[i], L"r");
                 file.ReadAll(&fileContent, *wxConvCurrent);
                 file.Close();
 
-                int start = fileContent.find(wxT("[FILES]"));
+                int start = fileContent.find(L"[FILES]");
                 if (start == wxNOT_FOUND)
                     { continue; }
                 start += 7;
-                int end = fileContent.find(wxT("\n["), start);
+                int end = fileContent.find(L"\n[", start);
                 if (end == wxNOT_FOUND)
                     {
-                    end = fileContent.find(wxT("\r["), start);
+                    end = fileContent.find(L"\r[", start);
                     if (end == wxNOT_FOUND)
                         { continue; }
                     }
-                fileContent = fileContent.Mid(start, end-start);
+                fileContent = fileContent.substr(start, end-start);
 
-                wxStringTokenizer tkz(fileContent, wxT("\n\r"));
+                wxStringTokenizer tkz(fileContent, L"\n\r");
                 while (tkz.HasMoreTokens() )
                     {
                     wxString token = tkz.GetNextToken();
@@ -413,7 +460,7 @@ namespace LuaScripting
                 }
             }
 
-        //get the physical files in the system
+        // get the physical files in the system
         wxDir dir;
         wxArrayString files;
         dir.GetAllFiles(path, &files, _DT(L"*.htm*"));
@@ -431,7 +478,9 @@ namespace LuaScripting
             const wchar_t* const htmlEnd = foundBookMark.first+fileContent.length();
             while (foundBookMark.first)
                 {
-                foundBookMark = lily_of_the_valley::html_extract_text::find_bookmark(foundBookMark.first, htmlEnd);
+                foundBookMark =
+                    lily_of_the_valley::html_extract_text::find_bookmark(
+                        foundBookMark.first, htmlEnd);
                 if (foundBookMark.first)
                     {
                     BookmarksInCurrentPage.insert(foundBookMark.second);
@@ -441,60 +490,43 @@ namespace LuaScripting
                     { break; }
                 }
 
-            html_utilities::html_hyperlink_parse hparse(fileContent.c_str(), fileContent.length());
+            html_utilities::html_hyperlink_parse hparse(fileContent.c_str(),
+                                                        fileContent.length());
             const wchar_t* currentLink;
             while ((currentLink = hparse()) != nullptr)
                 {
                 // review bookmarks in the current page
-                if (hparse.get_current_hyperlink_length() > 2 && currentLink[0] == L'#')
+                if (hparse.get_current_hyperlink_length() > 2 &&
+                    currentLink[0] == L'#')
                     {
-                    wxString currentBookmark(currentLink+1, hparse.get_current_hyperlink_length()-1);
-                    if (BookmarksInCurrentPage.find(currentBookmark) == BookmarksInCurrentPage.end())
+                    wxString currentBookmark(currentLink + 1,
+                                             hparse.get_current_hyperlink_length()-1);
+                    if (BookmarksInCurrentPage.find(currentBookmark) ==
+                        BookmarksInCurrentPage.end())
                         {
-                        badLinks.emplace(wxFileName(files[i]).GetFullName(), wxString(currentLink, hparse.get_current_hyperlink_length()));
+                        badLinks.emplace(wxFileName(files[i]).GetFullName(),
+                                         wxString(currentLink,
+                                             hparse.get_current_hyperlink_length()));
                         }
                     }
                 else
                     {
-                    VerifyLink(currentLink, hparse.get_current_hyperlink_length(), hparse.is_current_link_an_image(), files[i],
+                    VerifyLink(currentLink, hparse.get_current_hyperlink_length(),
+                        hparse.is_current_link_an_image(), files[i],
                         badLinks, badImageSizes, IncludeExternalLinks);
                     }
                 }
             }
 
-        //analyze the TOCs and indices
-        files.Clear();
-        dir.GetAllFiles(path, &files, _DT(L"*.hh*"));
-        for (size_t i = 0; i < files.Count(); ++i)
-            {
-            Wisteria::TextStream::ReadFile(files[i], fileContent);
-
-            size_t index = 0;
-            for (;;)
-                {
-                index = fileContent.find(_DT(L"param name=\"Local\" value=\""), index);
-                if (index == wxNOT_FOUND)
-                    { break; }
-                index += 26;
-                const auto endQuote = fileContent.find(wxT("\""), index);
-                if (endQuote == wxNOT_FOUND)
-                    { break; }
-                wxString currentLink = fileContent.Mid(index, endQuote-index); 
-                VerifyLink(currentLink, currentLink.length(), false, files[i], badLinks, badImageSizes, IncludeExternalLinks);
-                }
-            }
-        //write out the warnings of bad links
-        for (std::multimap<wxString,wxString>::const_iterator pos = badLinks.begin();
-            pos != badLinks.end();
-            ++pos)
-            { wxLogError(L"%s: %s", pos->first, pos->second); }
+        // write out the warnings of bad links
+        for (const auto& badLink : badLinks)
+            { wxLogError(L"%s: %s", badLink.first, badLink.second); }
         if (badLinks.size() == 0)
             { wxLogMessage(L"No bad links found in help folder."); }
-        //write out the warnings of images whose size don't match their size specified in a topic
-        for (std::multimap<wxString,wxString>::const_iterator pos = badImageSizes.begin();
-            pos != badImageSizes.end();
-            ++pos)
-            { wxLogError(L"%s: %s", pos->first, pos->second); }
+        // write out the warnings of images whose size don't
+        // match their size specified in a topic
+        for (const auto& badImage : badImageSizes)
+            { wxLogError(L"%s: %s", badImage.first, badImage.second); }
         if (badImageSizes.size() == 0)
             { wxLogMessage(L"No image issues found in help folder."); }
         
@@ -502,16 +534,18 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int Crash(lua_State*)
         {
 #if wxDEBUG_LEVEL >= 2
-        wxString* bogus = nullptr;
+        wxString* bogus{ nullptr };
         bogus->Length();
 #endif
         return 0;
         }
 
-    ///Closes the application
+    // Closes the application
+    //-------------------------------------------------------------
     int Close(lua_State*)
         {
         if (wxGetApp().GetMainFrame()->GetDocumentManager()->CloseDocuments())
@@ -519,12 +553,14 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int GetDocumentsPath(lua_State *L)
         {
         lua_pushstring(L, wxStandardPaths::Get().GetDocumentsDir().mb_str());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int GetAbsoluteFilePath(lua_State *L)
         {
         if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
@@ -547,6 +583,7 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int WriteToFile(lua_State *L)
         {
         if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
@@ -554,7 +591,7 @@ namespace LuaScripting
         wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         wxString outputStr(luaL_checkstring(L, 2), wxConvUTF8);
 
-        //create the folder to the filepath, if necessary
+        // create the folder to the filepath, if necessary
         wxFileName::Mkdir(wxFileName(path).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
 
         wxFileName(path).SetPermissions(wxS_DEFAULT);
@@ -567,6 +604,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int LogError(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -575,6 +613,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int RemoveAllCustomTests(lua_State*)
         {
         ProjectDoc::RemoveAllGlobalCustomReadabilityTests();
@@ -582,6 +621,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int RemoveAllCustomTestBundles(lua_State*)
         {
         wxGetApp().RemoveAllCustomTestBundles();
@@ -589,6 +629,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int CrossReferenceWordLists(lua_State* L)
         {
         if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
@@ -608,7 +649,7 @@ namespace LuaScripting
             { phraseList.load_phrases(inputFileBuffer, true, false); }
         phraseList.remove_duplicates();
 
-        //load the word list being cross referenced against
+        // load the word list being cross referenced against
         path = wxString(luaL_checkstring(L, 2), wxConvUTF8);
         if (!wxFile::Exists(path) )
             {
@@ -623,27 +664,26 @@ namespace LuaScripting
 
         wxString outputStr;
         wxStringTokenizer tokenizer;
-        for (std::vector<grammar::phrase_collection::phrase_word_pair>::const_iterator pos = phraseList.get_phrases().begin();
-            pos != phraseList.get_phrases().end();
-            ++pos)
+        for (const auto& phrase : phraseList.get_phrases())
             {
-            tokenizer.SetString(pos->second.c_str(), wxT(","), wxTOKEN_STRTOK);
+            tokenizer.SetString(phrase.second.c_str(), L",", wxTOKEN_STRTOK);
             while (tokenizer.HasMoreTokens())
                 {
                 wxString replacementStr = tokenizer.GetNextToken();
                 replacementStr.Trim(true); replacementStr.Trim(false);
-                if (replacementStr.find(wxT(' ')) == wxNOT_FOUND)
+                if (replacementStr.find(L' ') == wxNOT_FOUND)
                     {
                     if (wordList.find(replacementStr))
                         {
-                        outputStr += wxString::Format(wxT("%s\t%s\r\n"), pos->first.to_string().c_str(), replacementStr);
+                        outputStr += wxString::Format(L"%s\t%s\r\n",
+                            phrase.first.to_string().c_str(), replacementStr);
                         break;
                         }
                     }
                 }
             }
 
-        //create the folder to the filepath, if necessary
+        // create the folder to the filepath, if necessary
         wxString outputPath(luaL_checkstring(L, 3), wxConvUTF8);
         wxFileName::Mkdir(wxFileName(outputPath).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
 
@@ -659,6 +699,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int PhraseListToWordList(lua_State* L)
         {
         if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
@@ -683,11 +724,16 @@ namespace LuaScripting
             pos != phraseList.get_phrases().cend();
             ++pos)
             {
-            if (pos->first.get_word_count() == 1 && pos->first.get_type() == grammar::phrase_type::phrase_wordy && pos->second.length())
-                { outputStr += wxString::Format(wxT("%s\t%s\r\n"), pos->first.to_string().c_str(), pos->second.c_str()); }
+            if (pos->first.get_word_count() == 1 &&
+                pos->first.get_type() == grammar::phrase_type::phrase_wordy &&
+                pos->second.length())
+                {
+                outputStr += wxString::Format(L"%s\t%s\r\n", pos->first.to_string().c_str(),
+                                              pos->second.c_str());
+                }
             }
 
-        //create the folder to the filepath, if necessary
+        // create the folder to the filepath, if necessary
         wxString outputPath(luaL_checkstring(L, 2), wxConvUTF8);
         wxFileName::Mkdir(wxFileName(outputPath).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
 
@@ -703,6 +749,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int ExpandWordList(lua_State* L)
         {
         if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
@@ -725,12 +772,14 @@ namespace LuaScripting
             const wxString itemToAppend(luaL_checkstring(L, i), wxConvUTF8);
             for (size_t j = 0; j < wordList.get_list_size(); ++j)
                 {
-                //English rule for adding an 's' to the end of a word
-                if (itemToAppend.CmpNoCase(wxT("s")) == 0 &&
+                // English rule for adding an 's' to the end of a word
+                if (itemToAppend.CmpNoCase(L"s") == 0 &&
                     wordList.get_words().at(j).length() > 1)
                     {
-                    const wchar_t secondToLastLetter = wordList.get_words().at(j).at(wordList.get_words().at(j).length()-2);
-                    const wchar_t lastLetter = wordList.get_words().at(j).at(wordList.get_words().at(j).length()-1);
+                    const wchar_t secondToLastLetter =
+                        wordList.get_words().at(j).at(wordList.get_words().at(j).length() - 2);
+                    const wchar_t lastLetter =
+                        wordList.get_words().at(j).at(wordList.get_words().at(j).length() - 1);
                     if ((secondToLastLetter == L's' || secondToLastLetter == L'S') &&
                         (lastLetter == L'h' || lastLetter == L'H'))
                         {
@@ -753,7 +802,9 @@ namespace LuaScripting
                     else if (characters::is_character::is_consonant(secondToLastLetter) &&
                         (lastLetter == L'y' || lastLetter == L'Y'))
                         {
-                        newStrings.push_back(wordList.get_words().at(j).substr(0,wordList.get_words().at(j).length()-1)+_DT(L"ies"));
+                        newStrings.push_back(
+                            wordList.get_words().at(j).
+                                substr(0, wordList.get_words().at(j).length()-1) + _DT(L"ies"));
                         continue;
                         }
                     }
@@ -785,6 +836,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int MergePhraseLists(lua_State* L)
         {
         if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
@@ -859,6 +911,7 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int MergeWordLists(lua_State* L)
         {
         if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
@@ -906,84 +959,108 @@ namespace LuaScripting
         return 1;
         }
 
-    //PROJECT SETTINGS
+    // PROJECT SETTINGS
+    //-------------------------------------------------------------
     int SetReviewer(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetReviewer(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().SetReviewer(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
         wxGetApp().Yield();
         return 0;
         }
+    //-------------------------------------------------------------
     int GetReviewer(lua_State *L)
         {
         lua_pushstring(L,wxGetApp().GetAppOptions().GetReviewer().utf8_str());
         wxGetApp().Yield();
         return 1;
         }
+    //-------------------------------------------------------------
     int SetProjectLanguage(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetProjectLanguage(static_cast<readability::test_language>(static_cast<int>(lua_tonumber(L, 1))));
+        wxGetApp().GetAppOptions().SetProjectLanguage(
+            static_cast<readability::test_language>(static_cast<int>(lua_tonumber(L, 1))));
         wxGetApp().Yield();
         return 0;
         }
+    //-------------------------------------------------------------
     int GetProjectLanguage(lua_State *L)
         {
-        lua_pushnumber(L,static_cast<int>(wxGetApp().GetAppOptions().GetProjectLanguage()));
+        lua_pushnumber(L,
+            static_cast<int>(wxGetApp().GetAppOptions().GetProjectLanguage()));
         wxGetApp().Yield();
         return 1;
         }
+    //-------------------------------------------------------------
     int SetDocumentStorageMethod(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetDocumentStorageMethod(static_cast<TextStorage>(static_cast<int>(lua_tonumber(L, 1))));
+        wxGetApp().GetAppOptions().SetDocumentStorageMethod(
+            static_cast<TextStorage>(static_cast<int>(lua_tonumber(L, 1))));
         return 0;
         }
+    //-------------------------------------------------------------
     int GetDocumentStorageMethod(lua_State *L)
         {
-        lua_pushnumber(L,static_cast<int>(wxGetApp().GetAppOptions().GetDocumentStorageMethod()));
+        lua_pushnumber(L,
+            static_cast<int>(wxGetApp().GetAppOptions().GetDocumentStorageMethod()));
         return 1;
         }
+    //-------------------------------------------------------------
     int SetParagraphsParsingMethod(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetParagraphsParsingMethod(static_cast<ParagraphParse>(static_cast<int>(lua_tonumber(L, 1))));
+        wxGetApp().GetAppOptions().SetParagraphsParsingMethod(
+            static_cast<ParagraphParse>(static_cast<int>(lua_tonumber(L, 1))));
         return 0;
         }
+    //-------------------------------------------------------------
     int GetParagraphsParsingMethod(lua_State *L)
         {
-        lua_pushnumber(L,static_cast<int>(wxGetApp().GetAppOptions().GetParagraphsParsingMethod()));
+        lua_pushnumber(L,
+            static_cast<int>(wxGetApp().GetAppOptions().GetParagraphsParsingMethod()));
         return 1;
         }
+    //-------------------------------------------------------------
     int SetMinDocWordCountForBatch(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetMinDocWordCountForBatch(static_cast<int>(lua_tonumber(L, 1)));
+        wxGetApp().GetAppOptions().SetMinDocWordCountForBatch(
+            static_cast<int>(lua_tonumber(L, 1)));
         return 0;
         }
+    //-------------------------------------------------------------
     int GetMinDocWordCountForBatch(lua_State *L)
         {
-        lua_pushnumber(L,static_cast<int>(wxGetApp().GetAppOptions().GetMinDocWordCountForBatch()));
+        lua_pushnumber(L,
+            static_cast<int>(wxGetApp().GetAppOptions().GetMinDocWordCountForBatch()));
         return 1;
         }
+    //-------------------------------------------------------------
     int SetFilePathDisplayMode(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetFilePathTruncationMode(static_cast<ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode>(static_cast<int>(lua_tonumber(L, 1))));
+        wxGetApp().GetAppOptions().SetFilePathTruncationMode(
+            static_cast<ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode>(
+                static_cast<int>(lua_tonumber(L, 1))));
         return 0;
         }
+    //-------------------------------------------------------------
     int GetFilePathDisplayMode(lua_State *L)
         {
-        lua_pushnumber(L,static_cast<int>(wxGetApp().GetAppOptions().GetFilePathTruncationMode()));
+        lua_pushnumber(L,
+            static_cast<int>(wxGetApp().GetAppOptions().GetFilePathTruncationMode()));
         return 1;
         }
-
+    //-------------------------------------------------------------
     int ImportSettings(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -993,7 +1070,7 @@ namespace LuaScripting
         wxGetApp().Yield();
         return 0;
         }
-
+    //-------------------------------------------------------------
     int ExportSettings(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -1003,56 +1080,62 @@ namespace LuaScripting
         wxGetApp().Yield();
         return 0;
         }
-
+    //-------------------------------------------------------------
     int ResetSettings(lua_State*)
         {
         wxGetApp().GetAppOptions().ResetSettings();
         wxGetApp().Yield();
         return 0;
         }
-
+    //-------------------------------------------------------------
     int DisableAllWarnings(lua_State*)
         {
         wxGetApp().GetAppOptions().DisableWarnings();
         return 0;
         }
-
+    //-------------------------------------------------------------
     int EnableAllWarnings(lua_State*)
         {
         wxGetApp().GetAppOptions().EnableWarnings();
         return 0;
         }
-
+    //-------------------------------------------------------------
     int EnableWarning(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().EnableWarning(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().EnableWarning(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
-
+    //-------------------------------------------------------------
     int DisableWarning(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().DisableWarning(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().DisableWarning(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
-
+    //-------------------------------------------------------------
     int SetTextExclusion(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetInvalidSentenceMethod(static_cast<InvalidSentence>(static_cast<int>(lua_tonumber(L, 1))));
+        wxGetApp().GetAppOptions().SetInvalidSentenceMethod(
+            static_cast<InvalidSentence>(static_cast<int>(lua_tonumber(L, 1))));
         return 0;
         }
+    //-------------------------------------------------------------
     int SetIncludeIncompleteTolerance(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetIncludeIncompleteSentencesIfLongerThanValue(lua_tonumber(L, 1));
+        wxGetApp().GetAppOptions().
+            SetIncludeIncompleteSentencesIfLongerThanValue(lua_tonumber(L, 1));
         return 0;
         }
+    //-------------------------------------------------------------
     int AggressivelyDeduceLists(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -1060,13 +1143,16 @@ namespace LuaScripting
         wxGetApp().GetAppOptions().AggressiveExclusion(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         };
+    //-------------------------------------------------------------
     int ExcludeCopyrightNotices(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().IgnoreTrailingCopyrightNoticeParagraphs(int_to_bool(lua_toboolean(L, 1)));
+        wxGetApp().GetAppOptions().IgnoreTrailingCopyrightNoticeParagraphs(
+            int_to_bool(lua_toboolean(L, 1)));
         return 0;
         };
+    //-------------------------------------------------------------
     int ExcludeTrailingCitations(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -1074,6 +1160,7 @@ namespace LuaScripting
         wxGetApp().GetAppOptions().IgnoreTrailingCitations(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         };
+    //-------------------------------------------------------------
     int ExcludeFileAddress(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -1081,6 +1168,7 @@ namespace LuaScripting
         wxGetApp().GetAppOptions().IgnoreFileAddresses(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         };
+    //-------------------------------------------------------------
     int ExcludeNumerals(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -1088,6 +1176,7 @@ namespace LuaScripting
         wxGetApp().GetAppOptions().IgnoreNumerals(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         };
+    //-------------------------------------------------------------
     int ExcludeProperNouns(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -1095,13 +1184,16 @@ namespace LuaScripting
         wxGetApp().GetAppOptions().IgnoreProperNouns(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         };
+    //-------------------------------------------------------------
     int SetPhraseExclusionList(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetExcludedPhrasesPath(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().SetExcludedPhrasesPath(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         };
+    //-------------------------------------------------------------
     int SetBlockExclusionTags(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -1109,11 +1201,15 @@ namespace LuaScripting
         const wxString exclusionTags(luaL_checkstring(L, 1), wxConvUTF8);
         wxGetApp().GetAppOptions().GetExclusionBlockTags().clear();
         if (exclusionTags.length() >= 2)
-            { wxGetApp().GetAppOptions().GetExclusionBlockTags().push_back(std::make_pair(exclusionTags[0],exclusionTags[1])); }
+            {
+            wxGetApp().GetAppOptions().GetExclusionBlockTags().push_back(
+                std::make_pair(exclusionTags[0],exclusionTags[1]));
+            }
         return 0;
         };
 
-    //GRAPH OPTIONS
+    // GRAPH OPTIONS
+    //-------------------------------------------------------------
     int SetGraphBackgroundColor(lua_State *L)
         {
         if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
@@ -1122,20 +1218,25 @@ namespace LuaScripting
             wxColour(lua_tonumber(L, 1), lua_tonumber(L, 2), lua_tonumber(L, 3)));
         return 0;
         }
+    //-------------------------------------------------------------
     int ApplyGraphBackgroundFade(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetGraphBackGroundLinearGradient(int_to_bool(lua_toboolean(L, 1)));
+        wxGetApp().GetAppOptions().SetGraphBackGroundLinearGradient(
+            int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
+    //-------------------------------------------------------------
     int SetGraphBackgroundImage(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetBackGroundImagePath(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().SetBackGroundImagePath(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
+    //-------------------------------------------------------------
     int SetGraphBackgroundOpacity(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -1143,6 +1244,7 @@ namespace LuaScripting
         wxGetApp().GetAppOptions().SetGraphBackGroundOpacity(lua_tonumber(L, 1));
         return 0;
         }
+    //-------------------------------------------------------------
     int SetPlotBackgroundColor(lua_State *L)
         {
         if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
@@ -1151,6 +1253,7 @@ namespace LuaScripting
             wxColour(lua_tonumber(L, 1), lua_tonumber(L, 2), lua_tonumber(L, 3)));
         return 0;
         }
+    //-------------------------------------------------------------
     int SetPlotBackgroundOpacity(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -1158,27 +1261,33 @@ namespace LuaScripting
         wxGetApp().GetAppOptions().SetGraphPlotBackGroundOpacity(lua_tonumber(L, 1));
         return 0;
         }
+    //-------------------------------------------------------------
     int SetGraphWatermark(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetWatermark(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().SetWatermark(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
     int SetGraphLogoImage(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetWatermarkLogo(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().SetWatermarkLogo(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
+    //-------------------------------------------------------------
     int SetGraphCustomBrushImage(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetGraphStippleImagePath(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().SetGraphStippleImagePath(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
+    //-------------------------------------------------------------
     int DisplayGraphDropShadows(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -1186,6 +1295,7 @@ namespace LuaScripting
         wxGetApp().GetAppOptions().DisplayDropShadows(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
+    //-------------------------------------------------------------
     int SetBarChartBarColor(lua_State *L)
         {
         if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
@@ -1194,6 +1304,7 @@ namespace LuaScripting
             wxColour(lua_tonumber(L, 1), lua_tonumber(L, 2), lua_tonumber(L, 3)));
         return 0;
         }
+    //-------------------------------------------------------------
     int SetBarChartBarOpacity(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -1201,37 +1312,56 @@ namespace LuaScripting
         wxGetApp().GetAppOptions().SetGraphBarOpacity(lua_tonumber(L, 1));
         return 0;
         }
+    //-------------------------------------------------------------
     int SetBarChartBarEffect(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetGraphBarEffect(static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 1))));
+        wxGetApp().GetAppOptions().SetGraphBarEffect(
+            static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 1))));
         return 0;
         }
+    //-------------------------------------------------------------
     int SetBarChartOrientation(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetBarChartOrientation(static_cast<Wisteria::Orientation>(static_cast<int>(lua_tonumber(L, 1))));
+        wxGetApp().GetAppOptions().SetBarChartOrientation(
+            static_cast<Wisteria::Orientation>(static_cast<int>(lua_tonumber(L, 1))));
         return 0;
         }
-
+    //-------------------------------------------------------------
     int SetSpellCheckerOptions(lua_State *L)
         {
         if (lua_gettop(L) >= 1)
-            { wxGetApp().GetAppOptions().SpellCheckIgnoreProperNouns(int_to_bool(lua_toboolean(L, 1))); }
+            {
+            wxGetApp().GetAppOptions().SpellCheckIgnoreProperNouns(
+                int_to_bool(lua_toboolean(L, 1)));
+            }
         if (lua_gettop(L) >= 2)
-            { wxGetApp().GetAppOptions().SpellCheckIgnoreUppercased(int_to_bool(lua_toboolean(L, 2))); }
+            {
+            wxGetApp().GetAppOptions().SpellCheckIgnoreUppercased(
+                int_to_bool(lua_toboolean(L, 2)));
+            }
         if (lua_gettop(L) >= 3)
-            { wxGetApp().GetAppOptions().SpellCheckIgnoreNumerals(int_to_bool(lua_toboolean(L, 3))); }
+            {
+            wxGetApp().GetAppOptions().SpellCheckIgnoreNumerals(
+                int_to_bool(lua_toboolean(L, 3)));
+            }
         if (lua_gettop(L) >= 4)
-            { wxGetApp().GetAppOptions().SpellCheckIgnoreFileAddresses(int_to_bool(lua_toboolean(L, 4))); }
+            {
+            wxGetApp().GetAppOptions().SpellCheckIgnoreFileAddresses(
+                int_to_bool(lua_toboolean(L, 4)));
+            }
         if (lua_gettop(L) >= 5)
-            { wxGetApp().GetAppOptions().SpellCheckIgnoreProgrammerCode(int_to_bool(lua_toboolean(L, 5))); }
+            {
+            wxGetApp().GetAppOptions().SpellCheckIgnoreProgrammerCode(
+                int_to_bool(lua_toboolean(L, 5)));
+            }
         wxGetApp().Yield();
         return 0;
         }
-
+    //-------------------------------------------------------------
     int SetWindowSize(lua_State *L)
         {
         if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
@@ -1241,48 +1371,58 @@ namespace LuaScripting
         wxGetApp().Yield();
         return 0;
         }
-
+    //-------------------------------------------------------------
     int SetLeftPrintHeader(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetLeftPrinterHeader(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().SetLeftPrinterHeader(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
+    //-------------------------------------------------------------
     int SetCenterPrintHeader(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetCenterPrinterHeader(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().SetCenterPrinterHeader(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
+    //-------------------------------------------------------------
     int SetRightPrintHeader(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetRightPrinterHeader(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().SetRightPrinterHeader(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
-
+    //-------------------------------------------------------------
     int SetLeftPrintFooter(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetLeftPrinterFooter(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().SetLeftPrinterFooter(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
+    //-------------------------------------------------------------
     int SetCenterPrintFooter(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetCenterPrinterFooter(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().SetCenterPrinterFooter(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
+    //-------------------------------------------------------------
     int SetRightPrintFooter(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetRightPrinterFooter(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().SetRightPrinterFooter(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
     }

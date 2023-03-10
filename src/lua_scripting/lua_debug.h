@@ -12,13 +12,22 @@
 #ifndef __LUADEBUG_H__
 #define __LUADEBUG_H__
 
-#include "../lua/src/lua.hpp"
+#include "lua.hpp"
 #include <wx/wx.h>
 
 namespace LuaScripting
     {
-    /// Helper function to verify that the expected number of arguments where passed to a function.
-    [[nodiscard]] bool VerifyParameterCount(lua_State *L, const int minParemeterCount, const wxString& functionName);
+    /** Helper function to verify that the expected number
+        of arguments where passed to a function.
+        @param L The Lua state.
+        @param minParemeterCount The minimum parameter count for the function.
+        @param functionName The function's name (to display if an error occurrs).
+        @returns @c true if enough arguments where passed to the function.*/
+    [[nodiscard]]
+    bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
+                              const wxString& functionName);
+    /** @brief Prints a messase to the debug window.
+        @param str The message to print.*/
     void DebugPrint(const wxString& str);
 
     int Print(lua_State*);
