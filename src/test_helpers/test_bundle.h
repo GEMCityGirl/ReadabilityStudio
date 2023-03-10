@@ -1,24 +1,35 @@
+/** @addtogroup Helpers
+    @brief Helper classes for tests and documents.
+    @date 2005-2023
+    @copyright Oleander Software, Ltd.
+    @author Blake Madden
+    @details This program is free software; you can redistribute it and/or modify
+     it under the terms of the 3-Clause BSD License.
+
+     SPDX-License-Identifier: BSD-3-Clause
+* @{*/
+
 #ifndef __TEST_BUNDLE_H__
 #define __TEST_BUNDLE_H__
 
-#include <wx/wx.h>
 #include <set>
 #include <string>
 #include <limits>
 #include <bitset>
 #include "../readability/readability_test.h"
 
-/// A test (and its optional goals) included in a bundle.
+/// @brief A test (and its optional goals) included in a bundle.
 class Goal
     {
 public:
+    /// @brief String type for test names.
     using string_type = traits::case_insensitive_wstring_ex;
 
-    /// Constructor.
+    /// @brief Constructor.
     /// @param name The name of the goal (test name or statistic name).
     explicit Goal(const string_type& name) : m_name(name)
         { m_passFails.set(); }
-    /// Constructor.
+    /// @brief Constructor.
     /// @param name The name of the goal (test name or statistic name).
     /// @param minGoal The minimum value of the goal.
     /// @param maxGoal The maximum value of the goal.
@@ -26,97 +37,135 @@ public:
     Goal(const string_type& name, const double minGoal, const double maxGoal) :
         m_name(name), m_minGoal(minGoal), m_maxGoal(maxGoal)
         { m_passFails.set(); }
-    /// Compares goals by name.
+    /// @brief Compares goals by name.
     /// @param that The goal to compare against.
-    /// @returns True if this goal's name is less than the other one.
-    [[nodiscard]] bool operator<(const Goal& that) const noexcept
+    /// @returns @c true if this goal's name is less than the other one.
+    [[nodiscard]]
+    bool operator<(const Goal& that) const noexcept
         { return GetName() < that.GetName(); }
     /// @returns The test/statistic's name.
-    [[nodiscard]] const string_type& GetName() const noexcept
+    [[nodiscard]]
+    const string_type& GetName() const noexcept
         { return m_name; }
     /// @returns The minimum score that a test/statistic should have.
     /// @note Normally, you would be more interested in setting a max score, rather than this.
-    [[nodiscard]] double GetMinGoal() const noexcept
+    [[nodiscard]]
+    double GetMinGoal() const noexcept
         { return m_minGoal; }
     /// @returns The maximum score that a test/statistic should have.
-    [[nodiscard]] double GetMaxGoal() const noexcept
+    [[nodiscard]]
+    double GetMaxGoal() const noexcept
         { return m_maxGoal; }
     /// @returns The flags used to indicate if a test/statistic is within its constraints.
-    [[nodiscard]] const std::bitset<32>& GetPassFailFlags() const noexcept
+    [[nodiscard]]
+    const std::bitset<32>& GetPassFailFlags() const noexcept
         { return m_passFails; }
     /// @returns The flags used to indicate if a test/statistic is within its constraints.
-    [[nodiscard]] std::bitset<32>& GetPassFailFlags() noexcept
+    [[nodiscard]]
+    std::bitset<32>& GetPassFailFlags() noexcept
         { return m_passFails; }
-    /// @returns True if there is at least one goal enabled for this test/statistic.
-    [[nodiscard]] bool HasGoals() const noexcept
+    /// @returns @c true if there is at least one goal enabled for this test/statistic.
+    [[nodiscard]]
+    bool HasGoals() const noexcept
         { return (!std::isnan(GetMinGoal()) || !std::isnan(GetMaxGoal())); }
 private:
+    string_type m_name;
     double m_minGoal{ std::numeric_limits<double>::quiet_NaN() };
     double m_maxGoal{ std::numeric_limits<double>::quiet_NaN() };
-    std::bitset<32> m_passFails;
-    string_type m_name;
+    std::bitset<32> m_passFails{ 0 };
     };
 
+/// @brief A test goal (really, just typedef of Goal).
 using TestGoal = Goal;
+/// @brief A statistic goal (really, just typedef of Goal).
 using StatGoal = Goal;
 
-/// A collection of tests (and optionally, their recommended goals).
+/// @brief A collection of tests (and optionally, their recommended goals).
 class TestBundle
     {
 public:
+    /// @brief String type for test names.
     using string_type = traits::case_insensitive_wstring_ex;
 
-    explicit TestBundle(const wxString& name) : m_name(name.wc_str()), m_locked(false), m_language(readability::test_language::unknown_language) {}
-    explicit TestBundle(const string_type& name) : m_name(name), m_locked(false), m_language(readability::test_language::unknown_language) {}
-    TestBundle() : m_locked(false), m_language(readability::test_language::unknown_language) {}
+    /// @brief Constructor.
+    /// @param name The bundle's name.
+    explicit TestBundle(const string_type& name) : m_name(name)
+        {}
+    /// @private
+    TestBundle() = default;
 
-    /// Compares bundles by name.
+    /// @brief Compares bundles by name.
     /// @param that The bundle to compare against.
     /// @returns True if this bundle's name is less than the other one.
-    [[nodiscard]] bool operator<(const TestBundle& that) const noexcept
+    [[nodiscard]]
+    bool operator<(const TestBundle& that) const noexcept
         { return GetName() < that.GetName(); }
     /// @returns The bundle's name.
-    [[nodiscard]] const string_type& GetName() const noexcept
+    [[nodiscard]]
+    const string_type& GetName() const noexcept
         { return m_name; }
     void SetName(const string_type& name)
         { m_name = name; }
+    
     /// @returns The bundle's description.
-    [[nodiscard]] const wxString& GetDescription() const noexcept
+    [[nodiscard]]
+    string_type& GetDescription() noexcept
         { return m_description; }
-    /// @returns The bundle's description.
-    [[nodiscard]] wxString& GetDescription() noexcept
+    /// @private
+    [[nodiscard]]
+    const string_type& GetDescription() const noexcept
         { return m_description; }
-    void SetDescription(const wxString& desc)
+    /// @brief Sets the bundle's description.
+    /// @param desc The description to use.
+    void SetDescription(const string_type& desc)
         { m_description = desc; }
-    [[nodiscard]] readability::test_language GetLanguage() const noexcept
+
+    /// @returns The bundle's language.
+    [[nodiscard]]
+    readability::test_language GetLanguage() const noexcept
         { return m_language; }
+    /// @brief Sets the bundle's language.
+    /// @param lang The language to use.
     void SetLanguage(const readability::test_language lang) noexcept
         { m_language = lang; }
 
-    [[nodiscard]] std::set<TestGoal>& GetTestGoals() noexcept
+    /// @returns The bundle's test goals
+    [[nodiscard]]
+    std::set<TestGoal>& GetTestGoals() noexcept
         { return m_includedTests; }
-    [[nodiscard]] const std::set<TestGoal>& GetTestGoals() const noexcept
+    /// @private
+    [[nodiscard]]
+    const std::set<TestGoal>& GetTestGoals() const noexcept
         { return m_includedTests; }
 
-    [[nodiscard]] std::set<StatGoal>& GetStatGoals() noexcept
+    /// @returns The bundle's statistic goals.
+    [[nodiscard]]
+    std::set<StatGoal>& GetStatGoals() noexcept
         { return m_includedStatGoals; }
-    [[nodiscard]] const std::set<StatGoal>& GetStatGoals() const noexcept
+    /// @private
+    [[nodiscard]]
+    const std::set<StatGoal>& GetStatGoals() const noexcept
         { return m_includedStatGoals; }
 
-    /// Locks or unlocks the bundle. A locked bundle cannot be edited by the user through the interface.
-    /// This is useful for creating system bundles based on published articles that should not be changed.
+    /// @brief Locks or unlocks the bundle.
+    /// @details A locked bundle cannot be edited by the user through the interface.\n
+    ///     This is useful for creating system bundles based on published articles
+    ///     that should not be changed.
     void Lock(const bool lock = true) noexcept
         { m_locked = lock; }
     /// @returns Whether the bundle can be edited by the user.
-    [[nodiscard]] bool IsLocked() const noexcept
+    [[nodiscard]]
+    bool IsLocked() const noexcept
         { return m_locked; }
 private:
     string_type m_name;
-    wxString m_description;
+    string_type m_description;
     std::set<TestGoal> m_includedTests;
     std::set<StatGoal> m_includedStatGoals;
     bool m_locked{ false };
     readability::test_language m_language{ readability::test_language::unknown_language };
     };
+
+/** @}*/
 
 #endif // __TEST_BUNDLE_H__

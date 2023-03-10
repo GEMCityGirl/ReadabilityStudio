@@ -1,3 +1,14 @@
+/** @addtogroup Helpers
+    @brief Helper classes for tests and documents.
+    @date 2005-2023
+    @copyright Oleander Software, Ltd.
+    @author Blake Madden
+    @details This program is free software; you can redistribute it and/or modify
+     it under the terms of the 3-Clause BSD License.
+
+     SPDX-License-Identifier: BSD-3-Clause
+* @{*/
+
 #ifndef __CHAPTER_SPLIT_H__
 #define __CHAPTER_SPLIT_H__
 
@@ -24,6 +35,9 @@ private:
     void WriteChapterFile(const wchar_t* textStart, const wchar_t* textEnd);
     wxString m_outputFolder;
     };
+
+/** @}*/
+
 
 #endif //__CHAPTER_SPLIT_H__
 

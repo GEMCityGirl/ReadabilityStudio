@@ -23,9 +23,6 @@ public:
         @param text The HTML text to trim.*/
     [[nodiscard]]
     static wxString TrimTrailingBreaks(const wxString& text);
-    /** @brief Formats a message into a fancy "Note" tip (in the form of an HTML table).
-        @param note The message to format.
-        @returns The note formatted in HTML.*/
     /// @returns The html/head/body start sections for a report.
     /// @param bgColor The color for the page. (Only used for theming under Windows.)
     /// @param textColor The text color for the entire page.
@@ -40,6 +37,9 @@ public:
     /// @returns The html/head/body start sections for a report.
     [[nodiscard]]
     static wxString FormatHtmlReportEnd();
+    /** @brief Formats a message into a fancy "Note" tip (in the form of an HTML table).
+        @param note The message to format.
+        @returns The note formatted in HTML.*/
     [[nodiscard]]
     static wxString FormatHtmlNoteSection(const wxString& note);
     /** @brief Formats a message into a fancy "Warning" (in the form of an HTML table).
@@ -88,10 +88,11 @@ public:
         @param punctEnd The end of the punctuation info.
         @returns The formatted sentence.*/
     [[nodiscard]]
-    static wxString FormatSentence(const BaseProject* project,
-                                   const grammar::sentence_info& sentenceIter,
-                                   std::vector<punctuation::punctuation_mark>::const_iterator& punctStart,
-                                   const std::vector<punctuation::punctuation_mark>::const_iterator& punctEnd);
+    static wxString FormatSentence(
+        const BaseProject* project,
+        const grammar::sentence_info& sentenceIter,
+        std::vector<punctuation::punctuation_mark>::const_iterator& punctStart,
+        const std::vector<punctuation::punctuation_mark>::const_iterator& punctEnd);
     /// @returns The header color for a report table.
     [[nodiscard]]
     static wxColour GetReportHeaderColor()
