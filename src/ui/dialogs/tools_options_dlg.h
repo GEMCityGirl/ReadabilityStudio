@@ -55,7 +55,8 @@ public:
         AllSections = (ProjectSection|GraphsSection|ScoresSection|TextSection|DocumentIndexing|Grammar|Statistics|WordsBreakdown|SentencesBreakdown)
         };
     /// Constructors
-    explicit ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project = nullptr, const ToolSections sectionsToInclude = AllSections);
+    explicit ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project = nullptr,
+                             const ToolSections sectionsToInclude = AllSections);
     ~ToolsOptionsDlg()
         { wxDELETE(m_fileData); }
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& caption = _("Options"),
@@ -403,10 +404,12 @@ private:
     [[nodiscard]] ToolSections GetSectionsBeingShown() const noexcept
         { return m_sectionsBeingShown; }
 
-    static bool IsPropertyAvailable(const wxPropertyGridPage* propGrid, const wxString& propertyName)
+    static bool IsPropertyAvailable(const wxPropertyGridPage* propGrid,
+                                    const wxString& propertyName)
         { return (propGrid && propGrid->GetProperty(propertyName)); }
 
-    void CreateLabelHeader(wxWindow* parent, wxSizer* parentSizer, const wxString& title, const bool addSidePadding = false) const;
+    void CreateLabelHeader(wxWindow* parent, wxSizer* parentSizer,
+                           const wxString& title, const bool addSidePadding = false) const;
 
     BaseProjectDoc* m_readabilityProjectDoc { nullptr };
     wxCheckBox* m_ignoreCopyrightsCheckBox{ nullptr };
@@ -531,9 +534,9 @@ private:
     BackupVariable<bool> m_ignoreProperNouns;
     BackupVariable<wxString> m_excludedPhrasesPath;
     BackupVariable<bool> m_includeExcludedPhraseFirstOccurrence;
-    bool m_excludedPhrasesEdited { false };
+    bool m_excludedPhrasesEdited{ false };
     BackupVariable<std::vector<std::pair<wchar_t,wchar_t>>> m_exclusionBlockTags;
-    int m_exclusionBlockTagsOption { 0 };
+    int m_exclusionBlockTagsOption{ 0 };
     BackupVariable<int> m_includeIncompleteSentencesIfLongerThan;
     BackupVariable<int> m_textExclusionMethod;
 

@@ -35,12 +35,12 @@
 #include "../../../../SRC/Licensing/LicenseAdmin.h"
 #include "../readability/custom_readability_test.h"
 #include "../results_format/xml_format.h"
-#include "../../../../SRC/wxTools/wxAboutDialog.h"
 #include "../projects/standard_project_doc.h"
 #include "../app/readability_app_options.h"
 #include "../ui/dialogs/word_list_dlg.h"
-#include "../lua_scripting/lua_interface.h"
+#include "../ui/dialogs/aboutdlgex.h"
 #include "../ui/dialogs/lua_editor_dlg.h"
+#include "../lua_scripting/lua_interface.h"
 
 /// @brief Extended icon provider, which is connected to application's
 ///     custom icons.

@@ -1729,7 +1729,7 @@ void MainFrame::OnAbout([[maybe_unused]] wxCommandEvent& event)
     wxDateTime buildDate;
     buildDate.ParseDate(__DATE__);
 
-    wxAboutDialog aboutDlg(this, GetAboutDialogImage(),
+    AboutDialogEx aboutDlg(this, GetAboutDialogImage(),
         wxGetApp().GetAppName(),
         wxString::Format(_(L"Copyright %c2006-%d %s. All rights reserved."), 0xA9,
                          buildDate.GetYear(), wxGetApp().GetVendorDisplayName()),
