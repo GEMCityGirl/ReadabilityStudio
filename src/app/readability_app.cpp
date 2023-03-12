@@ -3208,7 +3208,7 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
         }
     if (event.GetId() == XRCID("ID_ADD_CUSTOM_NEW_DALE_CHALL_TEST"))
         {
-        NewCustomTestSimpleDlg dlg(this,
+        NewCustomWordTestSimpleDlg dlg(this,
             wxID_ANY, wxString::Format(_("Add Custom \"%s\""), _DT(L"New Dale-Chall")) );
         dlg.SetHelpTopic(GetHelpDirectory(), wxT("add-custom-word-test.html"));
         if (dlg.ShowModal() == wxID_OK)
@@ -3232,7 +3232,7 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_ADD_CUSTOM_SPACHE_TEST"))
         {
-        NewCustomTestSimpleDlg dlg(this,
+        NewCustomWordTestSimpleDlg dlg(this,
             wxID_ANY, wxString::Format(_("Add Custom \"%s\""), _DT(L"Spache")) );
         dlg.SetHelpTopic(GetHelpDirectory(), wxT("add-custom-word-test.html"));
         if (dlg.ShowModal() == wxID_OK)
@@ -3313,7 +3313,7 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_ADD_CUSTOM_HARRIS_JACOBSON_TEST"))
         {
-        NewCustomTestSimpleDlg dlg(this,
+        NewCustomWordTestSimpleDlg dlg(this,
             wxID_ANY, wxString::Format(_("Add Custom \"%s\""), _DT(L"Harris-Jacobson")) );
         dlg.SetHelpTopic(GetHelpDirectory(), wxT("add-custom-word-test.html"));
         if (dlg.ShowModal() == wxID_OK)

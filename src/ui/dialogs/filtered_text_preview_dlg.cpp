@@ -8,6 +8,7 @@
 
 #include "filtered_text_preview_dlg.h"
 
+//-------------------------------------------------------------
 void FilteredTextPreviewDlg::CreateControls()
     {
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
@@ -39,6 +40,7 @@ void FilteredTextPreviewDlg::CreateControls()
     SetSizerAndFit(mainSizer);
     }
 
+//-------------------------------------------------------------
 void FilteredTextPreviewDlg::SetExclusionInfo(const InvalidSentence textExclusionMethod,
          const bool excludeCopyrightNotices,
          const bool excludeCitations,

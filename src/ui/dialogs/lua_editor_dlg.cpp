@@ -1,4 +1,12 @@
-﻿#include "lua_editor_dlg.h"
+﻿///////////////////////////////////////////////////////////////////////////////
+// Name:        lua_editor_dlg.cpp
+// Author:      Blake Madden
+// Copyright:   (c) 2005-2023 Blake Madden
+// Licence:     3-Clause BSD licence
+// SPDX-License-Identifier: BSD-3-Clause
+///////////////////////////////////////////////////////////////////////////////
+
+#include "lua_editor_dlg.h"
 #include "../../app/readability_app.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/base/colorbrewer.h"
@@ -13,17 +21,22 @@ using namespace lily_of_the_valley;
 
 /// @brief AUI tab art provider with a flat appearance.
 /// @note When using, just call SetColour() to set the main color, and the active colors and text
-/// will be automatically adjusted to contrast against that color.
-/// Also, note that this provider is not system color aware; it is the user's responsibility to
-/// set this provider's color to the system (or custom) color.
+///     will be automatically adjusted to contrast against that color.\n
+///     Also, note that this provider is not system color aware;
+///     it is the user's responsibility to set this provider's color to the system
+///     (or custom) color.
 class FlatTabArt : public wxAuiGenericTabArt
 {
 public:
+    /// @private
     FlatTabArt() : wxAuiGenericTabArt(){}
 
+    /// @private
     wxAuiTabArt* Clone() final
         { return new FlatTabArt(*this); }
 
+    /// @private
+    //-------------------------------------------------------
     void DrawBackground(wxDC& dc,
                         [[maybe_unused]] wxWindow* wnd,
                         const wxRect& rect) final
@@ -42,6 +55,8 @@ public:
         dc.DrawRectangle(r);
         }
 
+    /// @private
+    //-------------------------------------------------------
     static void IndentPressedBitmap(const wxSize& offset, wxRect* rect, int button_state) noexcept
         {
         if (button_state == wxAUI_BUTTON_STATE_PRESSED)
@@ -51,7 +66,9 @@ public:
             }
         }
 
-    // A utility function to scale a bitmap in place for use at the given scale factor.
+    /// @private
+    /// A utility function to scale a bitmap in place for use at the given scale factor.
+    //-------------------------------------------------------
     static void ScaleBitmap(wxBitmap& bmp, double scale)
         {
         #if wxUSE_IMAGE && !defined(__WXGTK3__) && !defined(__WXMAC__)
@@ -70,6 +87,8 @@ public:
         #endif // wxUSE_IMAGE
         }
 
+    /// @private
+    //-------------------------------------------------------
     static wxString ChopText(const wxDC& dc, const wxString& text, int max_size)
         {
         wxCoord x, y;
@@ -97,6 +116,8 @@ public:
         return ret;
         }
 
+    /// @private
+    //-------------------------------------------------------
     void DrawTab(wxDC& dc,
                 wxWindow* wnd,
                 const wxAuiNotebookPage& page,
@@ -331,6 +352,7 @@ public:
         { m_baseColour = color; }
     };
 
+//-------------------------------------------------------
 LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
         const wxString& caption /*= _("Lua Script")*/,
         const wxPoint& pos /*= wxDefaultPosition*/, const wxSize& size /*= wxDefaultSize*/,
@@ -454,7 +476,8 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
     Bind(wxEVT_TOOL,
         [this]([[maybe_unused]] wxCommandEvent&)
             {
-            const wxString helpPath = wxGetApp().FindResourceFile(L"ReadabilityStudioAPI/index.html");
+            const wxString helpPath =
+                wxGetApp().FindResourceFile(L"ReadabilityStudioAPI/index.html");
             if (wxFile::Exists(helpPath))
                 { wxLaunchDefaultBrowser(wxFileName::FileNameToURL(helpPath)); }
             },
@@ -478,6 +501,7 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
             });
     }
 
+//-------------------------------------------------------
 void LuaEditorDlg::SetThemeColor(const wxColour& color)
     {
     m_mgr.GetArtProvider()->SetColour(wxAUI_DOCKART_BACKGROUND_COLOUR, color);
@@ -495,11 +519,15 @@ void LuaEditorDlg::SetThemeColor(const wxColour& color)
         {
         auto codeEditor = dynamic_cast<CodeEditor*>(m_notebook->GetPage(i));
         if (codeEditor)
-            { codeEditor->SetThemeColor(m_mgr.GetArtProvider()->GetColour(wxAUI_DOCKART_BACKGROUND_COLOUR)); }
+            {
+            codeEditor->SetThemeColor(
+                m_mgr.GetArtProvider()->GetColour(wxAUI_DOCKART_BACKGROUND_COLOUR));
+            }
         }
 
     const wxString htmlText = *(m_debugMessageWindow->GetParser()->GetSource());
-    const auto debugReportBody = wxString::Format(L"<html>\n<body bgcolor=%s text=%s>",
+    const auto debugReportBody = wxString::Format(
+        L"<html>\n<body bgcolor=%s text=%s>",
             color.GetAsString(wxC2S_HTML_SYNTAX),
             ColorContrast::BlackOrWhiteContrast(color).GetAsString(wxC2S_HTML_SYNTAX)) +
         wxString(html_extract_text::get_body(htmlText.wc_str())) +
@@ -509,15 +537,19 @@ void LuaEditorDlg::SetThemeColor(const wxColour& color)
     m_mgr.Update();
     }
 
+//-------------------------------------------------------
 void LuaEditorDlg::DebugOutput(const wxString& str)
     {
     if (m_debugMessageWindow)
         {
-        const wxColour bkColor = m_mgr.GetArtProvider()->GetColour(wxAUI_DOCKART_BACKGROUND_COLOUR);
+        const wxColour bkColor =
+            m_mgr.GetArtProvider()->GetColour(wxAUI_DOCKART_BACKGROUND_COLOUR);
         const wxString htmlText =
-            wxString(html_extract_text::get_body(m_debugMessageWindow->GetParser()->GetSource()->wc_str())) +
-            L"\n<br />" + str;
-        const auto debugReportBody = wxString::Format(L"<html>\n<body bgcolor=%s text=%s>",
+            wxString(html_extract_text::get_body(
+                m_debugMessageWindow->GetParser()->GetSource()->wc_str())) +
+                L"\n<br />" + str;
+        const auto debugReportBody = wxString::Format(
+            L"<html>\n<body bgcolor=%s text=%s>",
             bkColor.GetAsString(wxC2S_HTML_SYNTAX),
             ColorContrast::BlackOrWhiteContrast(bkColor).GetAsString(wxC2S_HTML_SYNTAX)) +
             htmlText +
@@ -526,18 +558,22 @@ void LuaEditorDlg::DebugOutput(const wxString& str)
         }
     }
 
+//-------------------------------------------------------
 void LuaEditorDlg::DebugClear()
     {
     if (m_debugMessageWindow)
         {
-        const wxColour bkColor = m_mgr.GetArtProvider()->GetColour(wxAUI_DOCKART_BACKGROUND_COLOUR);
-        const auto debugReportBody = wxString::Format(L"<html>\n<body bgcolor=%s text=%s>\n</body>\n</html>",
+        const wxColour bkColor =
+            m_mgr.GetArtProvider()->GetColour(wxAUI_DOCKART_BACKGROUND_COLOUR);
+        const auto debugReportBody = wxString::Format(
+            L"<html>\n<body bgcolor=%s text=%s>\n</body>\n</html>",
             bkColor.GetAsString(wxC2S_HTML_SYNTAX),
             ColorContrast::BlackOrWhiteContrast(bkColor).GetAsString(wxC2S_HTML_SYNTAX));
         m_debugMessageWindow->SetPage(debugReportBody);
         }
     }
 
+//-------------------------------------------------------
 CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
     {
     auto codeEditor = new CodeEditor(parent, wxID_ANY);
@@ -557,7 +593,8 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
         lily_of_the_valley::standard_delimited_character_column
             tabbedColumn(lily_of_the_valley::text_column_delimited_character_parser{ L'\t' }, 1);
         lily_of_the_valley::standard_delimited_character_column
-            commaColumn(lily_of_the_valley::text_column_delimited_character_parser{ L',' }, std::nullopt);
+            commaColumn(lily_of_the_valley::text_column_delimited_character_parser{ L',' },
+                        std::nullopt);
         lily_of_the_valley::text_row<std::wstring> row(std::nullopt);
         row.treat_consecutive_delimitors_as_one(true); // skip consecutive commas
         row.add_column(tabbedColumn);
@@ -632,6 +669,7 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
     return codeEditor;
     }
 
+//-------------------------------------------------------
 void LuaEditorDlg::CreateControls()
     {
     m_toolbar = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
