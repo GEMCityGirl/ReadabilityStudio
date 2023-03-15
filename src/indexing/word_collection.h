@@ -2020,7 +2020,7 @@ private:
         Four sentences is the rule here because most citations will look like this:
 
         Burbary, K. (2011, March 7).
-        Facebook demographics revisited –2001 statistics.
+        Facebook demographics revisited â€“2001 statistics.
         Social Media Today.
         Retrieved from http ://www.kenburbary.com/2011/03/facebook-demographics-revisited-2011-statistics-2/
 

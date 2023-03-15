@@ -155,7 +155,7 @@ namespace grammar
                 traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_G) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_E))
                 {
-                //watch out for "geis" or "geiß"
+                //watch out for "geis" or "geiÃŸ"
                 if (length >= 4 &&
                     traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_I) &&
                     (traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_S) ||
@@ -465,7 +465,7 @@ namespace grammar
                     traits::case_insensitive_ex::eq(word[position+1], common_lang_constants::LOWER_I) &&
                     traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_E))
                     { return 2; }
-                //EOÜ (a rare combination)
+                //EOÃœ (a rare combination)
                 else if (traits::case_insensitive_ex::eq(word[position], common_lang_constants::LOWER_E) &&
                     traits::case_insensitive_ex::eq(word[position+1], common_lang_constants::LOWER_O) &&
                     traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_U_UMLAUTS))
