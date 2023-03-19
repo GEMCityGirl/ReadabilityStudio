@@ -7,6 +7,8 @@ Resources/Words/ProperNouns/Personal.txt
 Resources/Words/ProperNouns/Western.txt
 Resources/Words/ProperNouns/All.txt
 docs/doxygen/html
+/tests/bin
+/tests/.vs/
 
 # Configuration files
 Docs/Coding-Bible/.Rproj.user
