@@ -4,7 +4,7 @@
 #include "../app/readability_app.h"
 #include "../results_format/project_report_format.h"
 #include "../ui/dialogs/project_wizard_dlg.h"
-#include "../../../SRC/Wisteria-Dataviz/src/util/stringutil.h"
+#include "../../../SRC/Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 #include "../indexing/character_traits.h"
 
 using namespace Wisteria;

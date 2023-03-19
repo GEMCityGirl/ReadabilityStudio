@@ -14,9 +14,9 @@
 
 #include <wx/wx.h>
 #include <wx/file.h>
-#include "../../../../SRC/Wisteria-Dataviz/src/util/stringutil.h"
+#include "../../../../SRC/Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/util/fileutil.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/util/donttranslate.h"
+#include "../../../../SRC/Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/util/textstream.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/import/html_extract_text.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/import/html_encode.h"

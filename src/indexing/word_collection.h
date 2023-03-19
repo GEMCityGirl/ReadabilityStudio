@@ -40,7 +40,7 @@
 #include "../../../SRC/Wisteria-Dataviz/src/math/mathematics.h"
 #include "../../../SRC/Wisteria-Dataviz/src/util/frequencymap.h"
 #include "../../../SRC/Wisteria-Dataviz/src/debug/debug_profile.h"
-#include "../../../SRC/i18n-check/src/i18n_string_util.h"
+#include "../../../SRC/Wisteria-Dataviz/src/i18n-check/src/i18n_string_util.h"
 
 /** @brief Class representing a document.
     @details This includes a full breakdown of its sentences,

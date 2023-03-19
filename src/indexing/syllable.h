@@ -16,7 +16,7 @@
 #include "character_traits.h"
 #include "characters.h"
 #include "../OleanderStemmingLibrary/src/common_lang_constants.h"
-#include "../../../SRC/Wisteria-Dataviz/src/util/stringutil.h"
+#include "../../../SRC/Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 
 namespace grammar
     {

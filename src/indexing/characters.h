@@ -14,7 +14,7 @@
 #define __CHARACTERS_H__
 
 #include <cassert>
-#include "../../../SRC/Wisteria-Dataviz/src/util/stringutil.h"
+#include "../../../SRC/Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 
 /// @brief Namespace for punctuation classes.
 namespace characters

@@ -18,7 +18,7 @@
 #include "abbreviation.h"
 #include "characters.h"
 #include "../OleanderStemmingLibrary/src/stemming.h"
-#include "../../../SRC/Wisteria-Dataviz/src/util/stringutil.h"
+#include "../../../SRC/Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 
 /** @brief Counting/Searching functor for `std::count_if` or `std::find`
         that counts punctuation marks, based on where punctuation mark is in the word.*/

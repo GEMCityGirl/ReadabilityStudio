@@ -15,7 +15,7 @@
 #include <string>
 #include <cassert>
 #include "characters.h"
-#include "../../../SRC/Wisteria-Dataviz/src/util/stringutil.h"
+#include "../../../SRC/Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 
 /// String traits use special comparison logic.
 namespace traits
