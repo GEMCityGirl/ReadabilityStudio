@@ -202,99 +202,99 @@ namespace Wisteria::Graphs
             Canvas::GetDefaultCanvasHeightDIPs()), L"Invalid backscreen size!");
 
         // long sentence danger area
-        GetPhyscialCoordinates(108 + GetSyllableAxisOffset(), 2.0, m_longSentencesPoints[0]);
-        GetPhyscialCoordinates(124 + GetSyllableAxisOffset(), 2.0, m_longSentencesPoints[1]);
-        GetPhyscialCoordinates(108 + GetSyllableAxisOffset(), 4.2, m_longSentencesPoints[2]);
+        GetPhysicalCoordinates(108 + GetSyllableAxisOffset(), 2.0, m_longSentencesPoints[0]);
+        GetPhysicalCoordinates(124 + GetSyllableAxisOffset(), 2.0, m_longSentencesPoints[1]);
+        GetPhysicalCoordinates(108 + GetSyllableAxisOffset(), 4.2, m_longSentencesPoints[2]);
         AddObject(std::make_shared<GraphItems::Polygon>(
             GraphItemInfo().Pen(wxNullPen).
             Text(_(L"Invalid region: sentences are too long")).
             Brush(wxBrush(ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))),
             m_longSentencesPoints));
         // long word danger area
-        GetPhyscialCoordinates(141 + GetSyllableAxisOffset(), 25.0, m_longWordPoints[0]);
-        GetPhyscialCoordinates(148 + GetSyllableAxisOffset(), 14.3, m_longWordPoints[1]);
-        GetPhyscialCoordinates(154 + GetSyllableAxisOffset(), 11.1, m_longWordPoints[2]);
-        GetPhyscialCoordinates(158 + GetSyllableAxisOffset(), 10.0, m_longWordPoints[3]);
-        GetPhyscialCoordinates(162 + GetSyllableAxisOffset(), 9.1, m_longWordPoints[4]);
-        GetPhyscialCoordinates(168 + GetSyllableAxisOffset(), 8.3, m_longWordPoints[5]);
-        GetPhyscialCoordinates(175 + GetSyllableAxisOffset(), 7.6, m_longWordPoints[6]);
-        GetPhyscialCoordinates(182 + GetSyllableAxisOffset(), 7.3, m_longWordPoints[7]);
-        GetPhyscialCoordinates(182 + GetSyllableAxisOffset(), 25.0, m_longWordPoints[8]);
+        GetPhysicalCoordinates(141 + GetSyllableAxisOffset(), 25.0, m_longWordPoints[0]);
+        GetPhysicalCoordinates(148 + GetSyllableAxisOffset(), 14.3, m_longWordPoints[1]);
+        GetPhysicalCoordinates(154 + GetSyllableAxisOffset(), 11.1, m_longWordPoints[2]);
+        GetPhysicalCoordinates(158 + GetSyllableAxisOffset(), 10.0, m_longWordPoints[3]);
+        GetPhysicalCoordinates(162 + GetSyllableAxisOffset(), 9.1, m_longWordPoints[4]);
+        GetPhysicalCoordinates(168 + GetSyllableAxisOffset(), 8.3, m_longWordPoints[5]);
+        GetPhysicalCoordinates(175 + GetSyllableAxisOffset(), 7.6, m_longWordPoints[6]);
+        GetPhysicalCoordinates(182 + GetSyllableAxisOffset(), 7.3, m_longWordPoints[7]);
+        GetPhysicalCoordinates(182 + GetSyllableAxisOffset(), 25.0, m_longWordPoints[8]);
         AddObject(std::make_shared<GraphItems::Polygon>(
             GraphItemInfo().Pen(wxNullPen).
             Text(_(L"Invalid region: too many complex words")).
             Brush(wxBrush(ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))),
             m_longWordPoints));
         // divider line
-        GetPhyscialCoordinates(119.5 + GetSyllableAxisOffset(), 15.8, m_dividerLinePoints[0]);
-        GetPhyscialCoordinates(120.3 + GetSyllableAxisOffset(), 11.1, m_dividerLinePoints[1]);
-        GetPhyscialCoordinates(121.3 + GetSyllableAxisOffset(), 9.1, m_dividerLinePoints[2]);
-        GetPhyscialCoordinates(122 + GetSyllableAxisOffset(), 8.3, m_dividerLinePoints[3]);
-        GetPhyscialCoordinates(124.2 + GetSyllableAxisOffset(), 7.1, m_dividerLinePoints[4]);
-        GetPhyscialCoordinates(128 + GetSyllableAxisOffset(), 6.1, m_dividerLinePoints[5]);
-        GetPhyscialCoordinates(134.1 + GetSyllableAxisOffset(), 5.2, m_dividerLinePoints[6]);
-        GetPhyscialCoordinates(146 + GetSyllableAxisOffset(), 4.5, m_dividerLinePoints[7]);
-        GetPhyscialCoordinates(167.2 + GetSyllableAxisOffset(), 4.0, m_dividerLinePoints[8]);
-        GetPhyscialCoordinates(182 + GetSyllableAxisOffset(), 3.75, m_dividerLinePoints[9]);
+        GetPhysicalCoordinates(119.5 + GetSyllableAxisOffset(), 15.8, m_dividerLinePoints[0]);
+        GetPhysicalCoordinates(120.3 + GetSyllableAxisOffset(), 11.1, m_dividerLinePoints[1]);
+        GetPhysicalCoordinates(121.3 + GetSyllableAxisOffset(), 9.1, m_dividerLinePoints[2]);
+        GetPhysicalCoordinates(122 + GetSyllableAxisOffset(), 8.3, m_dividerLinePoints[3]);
+        GetPhysicalCoordinates(124.2 + GetSyllableAxisOffset(), 7.1, m_dividerLinePoints[4]);
+        GetPhysicalCoordinates(128 + GetSyllableAxisOffset(), 6.1, m_dividerLinePoints[5]);
+        GetPhysicalCoordinates(134.1 + GetSyllableAxisOffset(), 5.2, m_dividerLinePoints[6]);
+        GetPhysicalCoordinates(146 + GetSyllableAxisOffset(), 4.5, m_dividerLinePoints[7]);
+        GetPhysicalCoordinates(167.2 + GetSyllableAxisOffset(), 4.0, m_dividerLinePoints[8]);
+        GetPhysicalCoordinates(182 + GetSyllableAxisOffset(), 3.75, m_dividerLinePoints[9]);
         // the following are not drawn, just used for calculating information
-        GetPhyscialCoordinates(182 + GetSyllableAxisOffset(), 25.0, m_dividerLinePoints[10]);
-        GetPhyscialCoordinates(119 + GetSyllableAxisOffset(), 25.0, m_dividerLinePoints[11]);
+        GetPhysicalCoordinates(182 + GetSyllableAxisOffset(), 25.0, m_dividerLinePoints[10]);
+        GetPhysicalCoordinates(119 + GetSyllableAxisOffset(), 25.0, m_dividerLinePoints[11]);
         // grade lines
         // lower area
-        GetPhyscialCoordinates(108 + GetSyllableAxisOffset(), 11.1, m_gradeLinePoints[0]);
-        GetPhyscialCoordinates(108 + GetSyllableAxisOffset(), 25, m_gradeLinePoints[1]);
-        GetPhyscialCoordinates(132 + GetSyllableAxisOffset(), 25, m_gradeLinePoints[2]);
+        GetPhysicalCoordinates(108 + GetSyllableAxisOffset(), 11.1, m_gradeLinePoints[0]);
+        GetPhysicalCoordinates(108 + GetSyllableAxisOffset(), 25, m_gradeLinePoints[1]);
+        GetPhysicalCoordinates(132 + GetSyllableAxisOffset(), 25, m_gradeLinePoints[2]);
         // 1st grade
-        GetPhyscialCoordinates(132.2 + GetSyllableAxisOffset(), 23.0, m_gradeLinePoints[3]);
-        GetPhyscialCoordinates(109 + GetSyllableAxisOffset(), 10.0, m_gradeLinePoints[4]);
+        GetPhysicalCoordinates(132.2 + GetSyllableAxisOffset(), 23.0, m_gradeLinePoints[3]);
+        GetPhysicalCoordinates(109 + GetSyllableAxisOffset(), 10.0, m_gradeLinePoints[4]);
         // 2nd grade
-        GetPhyscialCoordinates(109 + GetSyllableAxisOffset(), 7.9, m_gradeLinePoints[5]);
-        GetPhyscialCoordinates(140.2 + GetSyllableAxisOffset(), 23.0, m_gradeLinePoints[6]);
+        GetPhysicalCoordinates(109 + GetSyllableAxisOffset(), 7.9, m_gradeLinePoints[5]);
+        GetPhysicalCoordinates(140.2 + GetSyllableAxisOffset(), 23.0, m_gradeLinePoints[6]);
         // 3rd grade
-        GetPhyscialCoordinates(142 + GetSyllableAxisOffset(), 18.0, m_gradeLinePoints[7]);
-        GetPhyscialCoordinates(109 + GetSyllableAxisOffset(), 6.5, m_gradeLinePoints[8]);
+        GetPhysicalCoordinates(142 + GetSyllableAxisOffset(), 18.0, m_gradeLinePoints[7]);
+        GetPhysicalCoordinates(109 + GetSyllableAxisOffset(), 6.5, m_gradeLinePoints[8]);
         // 4th grade
-        GetPhyscialCoordinates(109.55 + GetSyllableAxisOffset(), 5.8, m_gradeLinePoints[9]);
-        GetPhyscialCoordinates(144.3 + GetSyllableAxisOffset(), 14.3, m_gradeLinePoints[10]); 
+        GetPhysicalCoordinates(109.55 + GetSyllableAxisOffset(), 5.8, m_gradeLinePoints[9]);
+        GetPhysicalCoordinates(144.3 + GetSyllableAxisOffset(), 14.3, m_gradeLinePoints[10]); 
         // 5th grade
-        GetPhyscialCoordinates(146 + GetSyllableAxisOffset(), 12.5, m_gradeLinePoints[11]);
-        GetPhyscialCoordinates(109.55 + GetSyllableAxisOffset(), 5.15, m_gradeLinePoints[12]);
+        GetPhysicalCoordinates(146 + GetSyllableAxisOffset(), 12.5, m_gradeLinePoints[11]);
+        GetPhysicalCoordinates(109.55 + GetSyllableAxisOffset(), 5.15, m_gradeLinePoints[12]);
         // 6th grade
-        GetPhyscialCoordinates(112.0 + GetSyllableAxisOffset(), 4.2, m_gradeLinePoints[13]);
-        GetPhyscialCoordinates(149 + GetSyllableAxisOffset(), 11.2, m_gradeLinePoints[14]);
+        GetPhysicalCoordinates(112.0 + GetSyllableAxisOffset(), 4.2, m_gradeLinePoints[13]);
+        GetPhysicalCoordinates(149 + GetSyllableAxisOffset(), 11.2, m_gradeLinePoints[14]);
         // 7th grade
-        GetPhyscialCoordinates(153 + GetSyllableAxisOffset(), 9.1, m_gradeLinePoints[15]);
-        GetPhyscialCoordinates(120 + GetSyllableAxisOffset(), 3.58, m_gradeLinePoints[16]);
+        GetPhysicalCoordinates(153 + GetSyllableAxisOffset(), 9.1, m_gradeLinePoints[15]);
+        GetPhysicalCoordinates(120 + GetSyllableAxisOffset(), 3.58, m_gradeLinePoints[16]);
         // 8th grade
-        GetPhyscialCoordinates(127 + GetSyllableAxisOffset(), 3.2, m_gradeLinePoints[17]);
-        GetPhyscialCoordinates(157 + GetSyllableAxisOffset(), 8.6, m_gradeLinePoints[18]);
+        GetPhysicalCoordinates(127 + GetSyllableAxisOffset(), 3.2, m_gradeLinePoints[17]);
+        GetPhysicalCoordinates(157 + GetSyllableAxisOffset(), 8.6, m_gradeLinePoints[18]);
         // 9th grade
-        GetPhyscialCoordinates(159.5 + GetSyllableAxisOffset(), 8.2, m_gradeLinePoints[19]);
-        GetPhyscialCoordinates(137.2 + GetSyllableAxisOffset(), 3.1, m_gradeLinePoints[20]);
+        GetPhysicalCoordinates(159.5 + GetSyllableAxisOffset(), 8.2, m_gradeLinePoints[19]);
+        GetPhysicalCoordinates(137.2 + GetSyllableAxisOffset(), 3.1, m_gradeLinePoints[20]);
         // 10th grade
-        GetPhyscialCoordinates(144.1 + GetSyllableAxisOffset(), 2.5, m_gradeLinePoints[21]);
-        GetPhyscialCoordinates(164 + GetSyllableAxisOffset(), 7.6, m_gradeLinePoints[22]);
+        GetPhysicalCoordinates(144.1 + GetSyllableAxisOffset(), 2.5, m_gradeLinePoints[21]);
+        GetPhysicalCoordinates(164 + GetSyllableAxisOffset(), 7.6, m_gradeLinePoints[22]);
         // 11th grade
-        GetPhyscialCoordinates(168 + GetSyllableAxisOffset(), 7.2, m_gradeLinePoints[23]);
-        GetPhyscialCoordinates(149 + GetSyllableAxisOffset(), 2.5, m_gradeLinePoints[24]);
+        GetPhysicalCoordinates(168 + GetSyllableAxisOffset(), 7.2, m_gradeLinePoints[23]);
+        GetPhysicalCoordinates(149 + GetSyllableAxisOffset(), 2.5, m_gradeLinePoints[24]);
         // 12th grade
-        GetPhyscialCoordinates(155.5 + GetSyllableAxisOffset(), 2.4, m_gradeLinePoints[25]);
-        GetPhyscialCoordinates(170.2 + GetSyllableAxisOffset(), 7.1, m_gradeLinePoints[26]);
+        GetPhysicalCoordinates(155.5 + GetSyllableAxisOffset(), 2.4, m_gradeLinePoints[25]);
+        GetPhysicalCoordinates(170.2 + GetSyllableAxisOffset(), 7.1, m_gradeLinePoints[26]);
         // 13th grade
-        GetPhyscialCoordinates(172.2 + GetSyllableAxisOffset(), 7.0, m_gradeLinePoints[27]);
-        GetPhyscialCoordinates(162 + GetSyllableAxisOffset(), 2.4, m_gradeLinePoints[28]);
+        GetPhysicalCoordinates(172.2 + GetSyllableAxisOffset(), 7.0, m_gradeLinePoints[27]);
+        GetPhysicalCoordinates(162 + GetSyllableAxisOffset(), 2.4, m_gradeLinePoints[28]);
         // 14th grade
-        GetPhyscialCoordinates(168.5 + GetSyllableAxisOffset(), 2.4, m_gradeLinePoints[29]);
-        GetPhyscialCoordinates(174.2 + GetSyllableAxisOffset(), 6.8, m_gradeLinePoints[30]);
+        GetPhysicalCoordinates(168.5 + GetSyllableAxisOffset(), 2.4, m_gradeLinePoints[29]);
+        GetPhysicalCoordinates(174.2 + GetSyllableAxisOffset(), 6.8, m_gradeLinePoints[30]);
         // 15th grade
-        GetPhyscialCoordinates(176.2 + GetSyllableAxisOffset(), 6.8, m_gradeLinePoints[31]);
-        GetPhyscialCoordinates(173.8 + GetSyllableAxisOffset(), 2.4, m_gradeLinePoints[32]);
+        GetPhysicalCoordinates(176.2 + GetSyllableAxisOffset(), 6.8, m_gradeLinePoints[31]);
+        GetPhysicalCoordinates(173.8 + GetSyllableAxisOffset(), 2.4, m_gradeLinePoints[32]);
         // 16th grade
-        GetPhyscialCoordinates(179 + GetSyllableAxisOffset(), 2.4, m_gradeLinePoints[33]);
-        GetPhyscialCoordinates(180.2 + GetSyllableAxisOffset(), 6.8, m_gradeLinePoints[34]);
+        GetPhysicalCoordinates(179 + GetSyllableAxisOffset(), 2.4, m_gradeLinePoints[33]);
+        GetPhysicalCoordinates(180.2 + GetSyllableAxisOffset(), 6.8, m_gradeLinePoints[34]);
         // beyond 16th grade
-        GetPhyscialCoordinates(182 + GetSyllableAxisOffset(), 6.8, m_gradeLinePoints[35]);
-        GetPhyscialCoordinates(182 + GetSyllableAxisOffset(), 2.4, m_gradeLinePoints[36]);
+        GetPhysicalCoordinates(182 + GetSyllableAxisOffset(), 6.8, m_gradeLinePoints[35]);
+        GetPhysicalCoordinates(182 + GetSyllableAxisOffset(), 2.4, m_gradeLinePoints[36]);
 
         const wxBrush selectionBrush =
             wxBrush(ColorContrast::ChangeOpacity(ColorBrewer::GetColor(Color::LightGray), 100));
@@ -344,7 +344,7 @@ namespace Wisteria::Graphs
             &m_gradeLinePoints[33], 4));
 
         wxPoint pt1;
-        GetPhyscialCoordinates(112 + GetSyllableAxisOffset(), 5.0, pt1);
+        GetPhysicalCoordinates(112 + GetSyllableAxisOffset(), 5.0, pt1);
         auto gradeLevelLabel =
             std::make_shared<GraphItems::Label>(
             GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL")).
@@ -366,7 +366,7 @@ namespace Wisteria::Graphs
         for (const auto level : GetLevelLabels())
             {
             wxPoint pt;
-            GetPhyscialCoordinates(level.GetX(), level.GetY(), pt);
+            GetPhysicalCoordinates(level.GetX(), level.GetY(), pt);
 
             auto levelLabel = std::make_shared<GraphItems::Label>(
                 GraphItemInfo(level.GetLabel()).Scaling(GetScaling()).Pen(wxNullPen).
@@ -427,7 +427,7 @@ namespace Wisteria::Graphs
                 ScorePoint& scorePoint)
                 {
                 // see where the point is
-                if (!graph->GetPhyscialCoordinates(scorePoint.m_wordStatistic,
+                if (!graph->GetPhysicalCoordinates(scorePoint.m_wordStatistic,
                                             scorePoint.m_sentenceStatistic,
                                             scorePoint.m_scorePoint))
                     {
@@ -520,7 +520,7 @@ namespace Wisteria::Graphs
 
             // see where the point is on this graph (not the backscreen) and
             // add it to be physically plotted
-            if (GetPhyscialCoordinates(m_results[i].m_wordStatistic,
+            if (GetPhysicalCoordinates(m_results[i].m_wordStatistic,
                                        m_results[i].m_sentenceStatistic,
                                        m_results[i].m_scorePoint))
                 {

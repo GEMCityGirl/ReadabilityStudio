@@ -7,19 +7,11 @@
 
 wxDECLARE_APP(ReadabilityApp);
 
-wxBEGIN_EVENT_TABLE(ExportAllDlg, Wisteria::UI::DialogWithHelp)
-    EVT_BUTTON(wxID_OK, ExportAllDlg::OnOK)
-    EVT_BUTTON(ID_FOLDER_BROWSE_BUTTON, ExportAllDlg::OnFolderBrowseButtonClick)
-    EVT_BUTTON(ID_IMAGE_OPTIONS_BUTTON, ExportAllDlg::OnImageOptionsButtonClick)
-    EVT_CHECKBOX(ID_INCLUDE_LIST_CHECKBOX, ExportAllDlg::OnIncludeListsTextWindowsCheck)
-    EVT_CHECKBOX(ID_INCLUDE_TEXT_CHECKBOX, ExportAllDlg::OnIncludeListsTextWindowsCheck)
-wxEND_EVENT_TABLE()
-
 using namespace Wisteria::GraphItems;
 
 ExportAllDlg::ExportAllDlg(wxWindow* parent, BaseProjectDoc* doc,
                   const bool fileMode,
-                  wxWindowID id /*= wxID_ANY*/, const wxString& caption /*= _("Export Options")*/,
+                  wxWindowID id /*= wxID_ANY*/, const wxString& caption /*= _(L"Export Options")*/,
                   const wxPoint& pos /*= wxDefaultPosition*/, const wxSize& size /*= wxDefaultSize*/,
                   long style /*= wxDEFAULT_DIALOG_STYLE|wxCLIP_CHILDREN*/) :
         m_readabilityProjectDoc(doc), m_fileMode(fileMode)
@@ -28,11 +20,11 @@ ExportAllDlg::ExportAllDlg(wxWindow* parent, BaseProjectDoc* doc,
     wxString exportDir = doc->GetExportFolder();
     if (exportDir.empty())
         {
-        //if export path not specified yet then try the path of the project (if saved already)
+        // if export path not specified yet then try the path of the project (if saved already)
         wxFileName fn(doc->GetFilename());
         if (!fn.GetPath().empty())
             { exportDir = fn.GetPath(); }
-        //then try the documents folder
+        // then try the documents folder
         else
             { exportDir = wxStandardPaths::Get().GetDocumentsDir(); }
         }
@@ -41,10 +33,10 @@ ExportAllDlg::ExportAllDlg(wxWindow* parent, BaseProjectDoc* doc,
     wxString exportFile = doc->GetExportFile();
     if (exportFile.empty())
         {
-        //if export path not specified yet, then try the path of the project (if saved already)
+        // if export path not specified yet, then try the path of the project (if saved already)
         wxFileName fn(doc->GetFilename());
         if (!fn.GetPath().empty())
-            { exportFile = fn.GetPathWithSep() + doc->GetTitle() + wxT(".htm"); }
+            { exportFile = fn.GetPathWithSep() + doc->GetTitle() + L".htm"; }
         }
     m_filePath = exportFile;
 
@@ -63,6 +55,14 @@ ExportAllDlg::ExportAllDlg(wxWindow* parent, BaseProjectDoc* doc,
     m_exportingTextReports = doc->IsExportingTextReports();
     m_imageExportOptions.m_imageSize = doc->GetImageExportOptions().m_imageSize;
     Create(parent, id, caption, pos, size, style);
+
+    Bind(wxEVT_BUTTON, &ExportAllDlg::OnFolderBrowseButtonClick, this, ID_FOLDER_BROWSE_BUTTON);
+    Bind(wxEVT_BUTTON, &ExportAllDlg::OnImageOptionsButtonClick, this, ID_IMAGE_OPTIONS_BUTTON);
+    Bind(wxEVT_BUTTON, &ExportAllDlg::OnOK, this, wxID_OK);
+    Bind(wxEVT_CHECKBOX, &ExportAllDlg::OnIncludeListsTextWindowsCheck,
+        this, ID_INCLUDE_LIST_CHECKBOX);
+    Bind(wxEVT_CHECKBOX, &ExportAllDlg::OnIncludeListsTextWindowsCheck,
+        this, ID_INCLUDE_TEXT_CHECKBOX);
     }
 
 //---------------------------------------------
@@ -71,24 +71,26 @@ void ExportAllDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     TransferDataFromWindow();
     if (m_folderPath.empty())
         {
-        wxMessageBox(_("Export folder not specified."), 
-            _("Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"Export folder not specified."), 
+            _(L"Error"), wxOK|wxICON_EXCLAMATION);
         return;
         }
-    if (IsStandardProject() && !m_exportHardWordLists && !m_exportSentencesBreakdown && !m_exportGraphs &&
+    if (IsStandardProject() && !m_exportHardWordLists &&
+        !m_exportSentencesBreakdown && !m_exportGraphs &&
         !m_exportTestResults && !m_exportStatistics && !m_exportWordiness &&
         !m_exportSightWords)
         {
-        wxMessageBox(_("You must select at least one item to be saved."), 
-            _("Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"You must select at least one item to be saved."), 
+            _(L"Error"), wxOK|wxICON_EXCLAMATION);
         return;
         }
-    if (IsBatchProject() && !m_exportHardWordLists && !m_exportSentencesBreakdown && !m_exportGraphs &&
+    if (IsBatchProject() && !m_exportHardWordLists &&
+        !m_exportSentencesBreakdown && !m_exportGraphs &&
         !m_exportTestResults && !m_exportStatistics && !m_exportWordiness &&
         !m_exportSightWords && !m_exportWarnings)
         {
-        wxMessageBox(_("You must select at least one item to be saved."), 
-            _("Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"You must select at least one item to be saved."), 
+            _(L"Error"), wxOK|wxICON_EXCLAMATION);
         return;
         }
     if (m_textViewCombo)
@@ -128,7 +130,7 @@ void ExportAllDlg::OnIncludeListsTextWindowsCheck([[maybe_unused]] wxCommandEven
 //-------------------------------------------------------------
 void ExportAllDlg::OnImageOptionsButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
-    wxASSERT_MSG(m_graphCombo, "Graph file combobox not initialized!");
+    wxASSERT_MSG(m_graphCombo, L"Graph file combobox not initialized!");
 
     wxString ext{(m_graphCombo ? m_graphCombo->GetValue() : L"png")};
     Wisteria::UI::ImageExportDlg optDlg(this,
@@ -137,7 +139,7 @@ void ExportAllDlg::OnImageOptionsButtonClick([[maybe_unused]] wxCommandEvent& ev
         m_imageExportOptions);
     optDlg.SetHelpTopic(
         wxGetApp().GetMainFrame()->GetHelpDirectory(),
-        wxT("image-export.html"));
+        L"image-export.html");
     if (optDlg.ShowModal() == wxID_OK)
         { m_imageExportOptions = optDlg.GetOptions(); }
     }
@@ -150,10 +152,12 @@ void ExportAllDlg::OnFolderBrowseButtonClick([[maybe_unused]] wxCommandEvent& ev
     if (m_fileMode)
         {
         wxFileDialog fdialog(this,
-                    _("Save As"),
-                    wxEmptyString,
-                    m_filePath.length() ? m_filePath : m_readabilityProjectDoc->GetTitle() + wxT(".htm"),
-                    _("HTML Files (*.htm;*.html)|*.htm;*.html"),
+                    _(L"Save As"),
+                    wxString{},
+                    m_filePath.length() ?
+                        m_filePath :
+                        m_readabilityProjectDoc->GetTitle() + L".htm",
+                    _(L"HTML Files (*.htm;*.html)|*.htm;*.html"),
                     wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
         if (fdialog.ShowModal() != wxID_OK)
             { return; }
@@ -161,7 +165,7 @@ void ExportAllDlg::OnFolderBrowseButtonClick([[maybe_unused]] wxCommandEvent& ev
         }
     else
         {
-        wxDirDialog dirDlg(this, _("Choose a directory"), m_folderPath);
+        wxDirDialog dirDlg(this, _(L"Choose a directory"), m_folderPath);
         if (dirDlg.ShowModal() != wxID_OK)
             { return; }
         m_folderPath = dirDlg.GetPath();
@@ -179,115 +183,137 @@ void ExportAllDlg::CreateControls()
     wxBoxSizer* itemsBoxSizer = new wxBoxSizer(wxVERTICAL);
     mainSizer->Add(itemsBoxSizer, 0, wxEXPAND|wxALIGN_TOP|wxALL, wxSizerFlags::GetDefaultBorder());
 
-    //export path
-    wxStaticBox* pathBox = new wxStaticBox(this, wxID_ANY, m_fileMode ? _("File to export to:") : _("Folder to export to:"));
+    // export path
+    wxStaticBox* pathBox = new wxStaticBox(this, wxID_ANY,
+        m_fileMode ? _(L"File to export to:") : _(L"Folder to export to:"));
     wxStaticBoxSizer* pathBoxBoxSizer = new wxStaticBoxSizer(pathBox, wxVERTICAL);
     itemsBoxSizer->Add(pathBoxBoxSizer, 1, wxEXPAND);
 
     wxBoxSizer* folderBrowseBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     pathBoxBoxSizer->Add(folderBrowseBoxSizer, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
 
-    wxTextCtrl* folderPathEdit = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxBORDER_THEME, m_fileMode ? wxGenericValidator(&m_filePath) : wxGenericValidator(&m_folderPath) );
+    wxTextCtrl* folderPathEdit =
+        new wxTextCtrl(this, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize, wxBORDER_THEME,
+                       m_fileMode ?
+                           wxGenericValidator(&m_filePath) : wxGenericValidator(&m_folderPath) );
     folderBrowseBoxSizer->Add(folderPathEdit, 1, wxEXPAND);
 
     m_folderBrowseButton = new wxBitmapButton(this, ID_FOLDER_BROWSE_BUTTON,
         wxArtProvider::GetBitmapBundle(wxART_FILE_OPEN, wxART_BUTTON));
     folderBrowseBoxSizer->Add(m_folderBrowseButton);
 
-    //inclusion options
-    wxStaticBox* inclusionSectionBox = new wxStaticBox(this, wxID_ANY, _("Sections to export:"));
-    wxStaticBoxSizer* inclusionSectionBoxSizer = new wxStaticBoxSizer(inclusionSectionBox, wxVERTICAL);
+    // inclusion options
+    wxStaticBox* inclusionSectionBox =
+        new wxStaticBox(this, wxID_ANY, _(L"Sections to export:"));
+    wxStaticBoxSizer* inclusionSectionBoxSizer =
+        new wxStaticBoxSizer(inclusionSectionBox, wxVERTICAL);
     itemsBoxSizer->Add(inclusionSectionBoxSizer);
     if (IsStandardProject())
         {
-        const ProjectView* view = dynamic_cast<const ProjectView*>(m_readabilityProjectDoc->GetFirstView());
+        const ProjectView* view =
+            dynamic_cast<const ProjectView*>(m_readabilityProjectDoc->GetFirstView());
 
-        wxCheckBox* testResultsCheck = new wxCheckBox(this, wxID_ANY, _("Test scores"),
+        wxCheckBox* testResultsCheck = new wxCheckBox(this, wxID_ANY, _(L"Test scores"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportTestResults));
-        inclusionSectionBoxSizer->Add(testResultsCheck, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+        inclusionSectionBoxSizer->Add(testResultsCheck, 0, wxEXPAND|wxALL,
+                                      wxSizerFlags::GetDefaultBorder());
 
-        wxCheckBox* statisticsCheck = new wxCheckBox(this, wxID_ANY, _("Summary statistics"),
+        wxCheckBox* statisticsCheck = new wxCheckBox(this, wxID_ANY, _(L"Summary statistics"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportStatistics));
-        inclusionSectionBoxSizer->Add(statisticsCheck, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+        inclusionSectionBoxSizer->Add(statisticsCheck, 0, wxEXPAND|wxALL,
+                                      wxSizerFlags::GetDefaultBorder());
 
         if (view->GetWordsBreakdownView().GetWindowCount() > 0)
             {
-            wxCheckBox* listCheck = new wxCheckBox(this, wxID_ANY, _("Words breakdown"),
+            wxCheckBox* listCheck = new wxCheckBox(this, wxID_ANY, _(L"Words breakdown"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportHardWordLists));
-            inclusionSectionBoxSizer->Add(listCheck, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(listCheck, 0, wxEXPAND|wxALL,
+                                          wxSizerFlags::GetDefaultBorder());
             }
 
         if (view->GetSentencesBreakdownView().GetWindowCount() > 0)
             {
-            wxCheckBox* listCheck = new wxCheckBox(this, wxID_ANY, _("Sentences breakdown"),
+            wxCheckBox* listCheck = new wxCheckBox(this, wxID_ANY, _(L"Sentences breakdown"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportSentencesBreakdown));
-            inclusionSectionBoxSizer->Add(listCheck, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(listCheck, 0, wxEXPAND|wxALL,
+                                          wxSizerFlags::GetDefaultBorder());
             }
 
         if (view->GetGrammarView().GetWindowCount() > 0)
             {
-            wxCheckBox* wordinessCheck = new wxCheckBox(this, wxID_ANY, _("Grammar section"),
+            wxCheckBox* wordinessCheck = new wxCheckBox(this, wxID_ANY, _(L"Grammar section"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportWordiness));
-            inclusionSectionBoxSizer->Add(wordinessCheck, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(wordinessCheck, 0, wxEXPAND|wxALL,
+                                          wxSizerFlags::GetDefaultBorder());
             }
 
         if (view->GetDolchSightWordsView().GetWindowCount() > 0)
             {
-            wxCheckBox* sightWordsCheck = new wxCheckBox(this, wxID_ANY, _("Dolch sight words section"),
+            wxCheckBox* sightWordsCheck = new wxCheckBox(this, wxID_ANY, _(L"Dolch sight words section"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportSightWords));
-            inclusionSectionBoxSizer->Add(sightWordsCheck, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(sightWordsCheck, 0, wxEXPAND|wxALL,
+                                          wxSizerFlags::GetDefaultBorder());
             }
         }
     else
         {
-        const BatchProjectView* view = dynamic_cast<const BatchProjectView*>(m_readabilityProjectDoc->GetFirstView());
+        const BatchProjectView* view =
+            dynamic_cast<const BatchProjectView*>(m_readabilityProjectDoc->GetFirstView());
 
-        wxCheckBox* testResultsCheck = new wxCheckBox(this, wxID_ANY, _("Test scores"),
+        wxCheckBox* testResultsCheck = new wxCheckBox(this, wxID_ANY, _(L"Test scores"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportTestResults));
-        inclusionSectionBoxSizer->Add(testResultsCheck, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+        inclusionSectionBoxSizer->Add(testResultsCheck, 0, wxEXPAND|wxALL,
+                                      wxSizerFlags::GetDefaultBorder());
 
-        wxCheckBox* graphCheck = new wxCheckBox(this, wxID_ANY, _("Histograms/box plots"),
+        wxCheckBox* graphCheck = new wxCheckBox(this, wxID_ANY, _(L"Histograms/box plots"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportGraphs));
-        inclusionSectionBoxSizer->Add(graphCheck, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+        inclusionSectionBoxSizer->Add(graphCheck, 0, wxEXPAND|wxALL,
+                                      wxSizerFlags::GetDefaultBorder());
 
         if (view->GetWordsBreakdownView().GetWindowCount() > 0)
             {
-            wxCheckBox* listCheck = new wxCheckBox(this, wxID_ANY, _("Words breakdown"),
+            wxCheckBox* listCheck = new wxCheckBox(this, wxID_ANY, _(L"Words breakdown"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportHardWordLists));
-            inclusionSectionBoxSizer->Add(listCheck, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(listCheck, 0, wxEXPAND|wxALL,
+                                          wxSizerFlags::GetDefaultBorder());
             }
 
         if (view->GetSentencesBreakdownView().GetWindowCount() > 0)
             {
-            wxCheckBox* listCheck = new wxCheckBox(this, wxID_ANY, _("Sentences breakdown"),
+            wxCheckBox* listCheck = new wxCheckBox(this, wxID_ANY, _(L"Sentences breakdown"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportSentencesBreakdown));
-            inclusionSectionBoxSizer->Add(listCheck, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(listCheck, 0, wxEXPAND|wxALL,
+                                          wxSizerFlags::GetDefaultBorder());
             }
 
         if (view->GetGrammarView().GetWindowCount() > 0)
             {
-            wxCheckBox* grammarCheck = new wxCheckBox(this, wxID_ANY, _("Grammar section"),
+            wxCheckBox* grammarCheck = new wxCheckBox(this, wxID_ANY, _(L"Grammar section"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportWordiness));
-            inclusionSectionBoxSizer->Add(grammarCheck, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(grammarCheck, 0, wxEXPAND|wxALL,
+                                          wxSizerFlags::GetDefaultBorder());
             }
 
         if (view->GetDolchSightWordsView().GetWindowCount() > 0)
             {
-            wxCheckBox* sightWordsCheck = new wxCheckBox(this, wxID_ANY, _("Dolch sight word section"),
+            wxCheckBox* sightWordsCheck = new wxCheckBox(this, wxID_ANY, _(L"Dolch sight word section"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportSightWords));
-            inclusionSectionBoxSizer->Add(sightWordsCheck, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(sightWordsCheck, 0, wxEXPAND|wxALL,
+                                          wxSizerFlags::GetDefaultBorder());
             }
 
         if (view->GetWarningsView()->GetItemCount() > 0)
             {
-            wxCheckBox* warningsCheck = new wxCheckBox(this, wxID_ANY, _("Warnings section"),
+            wxCheckBox* warningsCheck = new wxCheckBox(this, wxID_ANY, _(L"Warnings section"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportWarnings));
-            inclusionSectionBoxSizer->Add(warningsCheck, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(warningsCheck, 0, wxEXPAND|wxALL,
+                                          wxSizerFlags::GetDefaultBorder());
             }
         }
 
-    //the extension values
-    wxStaticBox* exportTypeBox = new wxStaticBox(this, wxID_ANY, _("Export file types:"));
+    // the extension values
+    wxStaticBox* exportTypeBox =
+        new wxStaticBox(this, wxID_ANY, _(L"Export file types:"));
     wxStaticBoxSizer* exportTypeStaticBoxSizer = new wxStaticBoxSizer(exportTypeBox, wxVERTICAL);
     itemsBoxSizer->Add(exportTypeStaticBoxSizer);
 
@@ -296,81 +322,100 @@ void ExportAllDlg::CreateControls()
 
     if (!m_fileMode)
         {
-        wxStaticText* listLabel = new wxStaticText(this, ID_LIST_TYPE_LABEL, _("Export lists as:"),
+        wxStaticText* listLabel =
+            new wxStaticText(this, ID_LIST_TYPE_LABEL, _(L"Export lists as:"),
             wxDefaultPosition, wxDefaultSize, 0);
         listLabel->Enable(m_exportingLists);
-        exportTypeBoxSizer->Add(listLabel, 0, wxALIGN_CENTER_VERTICAL|wxALL, wxSizerFlags::GetDefaultBorder());
+        exportTypeBoxSizer->Add(listLabel, 0, wxALIGN_CENTER_VERTICAL|wxALL,
+                                wxSizerFlags::GetDefaultBorder());
 
-        m_listCombo = new wxComboBox(this, ID_LIST_TYPE_COMBO, wxEmptyString,
-                                        wxDefaultPosition, wxDefaultSize, 0, nullptr,
-                                        wxCB_DROPDOWN|wxCB_READONLY);
-        m_listCombo->Append(wxT("htm"));
-        m_listCombo->Append(wxT("txt"));
+        m_listCombo = new wxComboBox(this, ID_LIST_TYPE_COMBO, wxString{},
+                                     wxDefaultPosition, wxDefaultSize, 0, nullptr,
+                                     wxCB_DROPDOWN|wxCB_READONLY);
+        m_listCombo->Append(L"htm");
+        m_listCombo->Append(L"txt");
         m_listCombo->SetStringSelection(m_listExt);
         m_listCombo->Enable(m_exportingLists);
-        exportTypeBoxSizer->Add(m_listCombo, 0, wxALIGN_LEFT|wxALL, wxSizerFlags::GetDefaultBorder());
+        exportTypeBoxSizer->Add(m_listCombo, 0, wxALIGN_LEFT|wxALL,
+                                wxSizerFlags::GetDefaultBorder());
         exportTypeBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-        //text view section
+        // text view section
         if (IsStandardProject())
             {
-            wxStaticText* textViewLabel = new wxStaticText(this, ID_TEXT_TYPE_LABEL, _("Export text reports as:"),
+            wxStaticText* textViewLabel =
+                new wxStaticText(this, ID_TEXT_TYPE_LABEL, _(L"Export text reports as:"),
                 wxDefaultPosition, wxDefaultSize, 0);
             textViewLabel->Enable(m_exportingTextReports);
-            exportTypeBoxSizer->Add(textViewLabel, 0, wxALIGN_CENTER_VERTICAL|wxALL, wxSizerFlags::GetDefaultBorder());
+            exportTypeBoxSizer->Add(textViewLabel, 0, wxALIGN_CENTER_VERTICAL|wxALL,
+                                    wxSizerFlags::GetDefaultBorder());
 
-            m_textViewCombo = new wxComboBox(this, ID_TEXT_TYPE_COMBO, wxEmptyString,
+            m_textViewCombo = new wxComboBox(this, ID_TEXT_TYPE_COMBO, wxString{},
                                             wxDefaultPosition, wxDefaultSize, 0, nullptr,
                                             wxCB_DROPDOWN|wxCB_READONLY);
-            m_textViewCombo->Append(wxT("htm"));
-            m_textViewCombo->Append(wxT("rtf"));
+            m_textViewCombo->Append(L"htm");
+            m_textViewCombo->Append(L"rtf");
             m_textViewCombo->SetStringSelection(m_textViewExt);
             m_textViewCombo->Enable(m_exportingTextReports);
-            exportTypeBoxSizer->Add(m_textViewCombo, 0, wxALIGN_LEFT|wxALL, wxSizerFlags::GetDefaultBorder());
+            exportTypeBoxSizer->Add(m_textViewCombo, 0, wxALIGN_LEFT|wxALL,
+                                    wxSizerFlags::GetDefaultBorder());
             exportTypeBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             }
         }
 
-    //graph view section
-    wxStaticText* graphLabel = new wxStaticText(this, wxID_STATIC, _("Export graphs as:"),
+    // graph view section
+    wxStaticText* graphLabel = new wxStaticText(this, wxID_STATIC, _(L"Export graphs as:"),
         wxDefaultPosition, wxDefaultSize, 0);
-    exportTypeBoxSizer->Add(graphLabel, 0, wxALIGN_CENTER_VERTICAL|wxALL, wxSizerFlags::GetDefaultBorder());
+    exportTypeBoxSizer->Add(graphLabel, 0, wxALIGN_CENTER_VERTICAL|wxALL,
+                            wxSizerFlags::GetDefaultBorder());
 
-    m_graphCombo = new wxComboBox(this, wxID_ANY, wxEmptyString,
+    m_graphCombo = new wxComboBox(this, wxID_ANY, wxString{},
                                   wxDefaultPosition, wxDefaultSize, 0, nullptr,
                                   wxCB_DROPDOWN|wxCB_READONLY);
-    m_graphCombo->Append(wxT("png"));
-    m_graphCombo->Append(wxT("jpg"));
-    m_graphCombo->Append(wxT("bmp"));
-    m_graphCombo->Append(wxT("tif"));
-    m_graphCombo->Append(wxT("tga"));
-    m_graphCombo->Append(wxT("gif"));
-    m_graphCombo->Append(wxT("svg"));
+    m_graphCombo->Append(L"png");
+    m_graphCombo->Append(L"jpg");
+    m_graphCombo->Append(L"bmp");
+    m_graphCombo->Append(L"tif");
+    m_graphCombo->Append(L"tga");
+    m_graphCombo->Append(L"gif");
+    m_graphCombo->Append(L"svg");
     m_graphCombo->SetStringSelection(m_graphExt);
-    exportTypeBoxSizer->Add(m_graphCombo, 0, wxALIGN_CENTER_VERTICAL|wxALL, wxSizerFlags::GetDefaultBorder());
+    exportTypeBoxSizer->Add(m_graphCombo, 0, wxALIGN_CENTER_VERTICAL|wxALL,
+                            wxSizerFlags::GetDefaultBorder());
 
-    auto imageButton = new wxButton(this, ID_IMAGE_OPTIONS_BUTTON, _("Image options"));
+    auto imageButton = new wxButton(this, ID_IMAGE_OPTIONS_BUTTON, _(L"Image options"));
     imageButton->SetBitmap(
         wxGetApp().GetResourceManager().GetSVG(L"ribbon/boxplot.svg"));
-    exportTypeBoxSizer->Add(imageButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, wxSizerFlags::GetDefaultBorder());
+    exportTypeBoxSizer->Add(imageButton, 0, wxALIGN_CENTER_VERTICAL|wxALL,
+                            wxSizerFlags::GetDefaultBorder());
 
     if (IsStandardProject())
         {
         mainSizer->Add(
-            new wxCheckBox(this, ID_INCLUDE_LIST_CHECKBOX, _("Include lists"),
+            new wxCheckBox(this, ID_INCLUDE_LIST_CHECKBOX, _(L"Include lists"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportingLists)),
             0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
 
         mainSizer->Add(
-            new wxCheckBox(this, ID_INCLUDE_TEXT_CHECKBOX, _("Include text reports"),
+            new wxCheckBox(this, ID_INCLUDE_TEXT_CHECKBOX, _(L"Include text reports"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportingTextReports)),
             0, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
         }
 
-    mainSizer->Add(CreateSeparatedButtonSizer(wxOK|wxCANCEL|wxHELP), 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(CreateSeparatedButtonSizer(wxOK|wxCANCEL|wxHELP), 0,
+                   wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
     }
 
+//---------------------------------------------
 bool ExportAllDlg::IsStandardProject() const
-    { return (m_readabilityProjectDoc && m_readabilityProjectDoc->IsKindOf(CLASSINFO(ProjectDoc))); }
+    {
+    return (m_readabilityProjectDoc &&
+            m_readabilityProjectDoc->IsKindOf(CLASSINFO(ProjectDoc)));
+    }
+
+//---------------------------------------------
 bool ExportAllDlg::IsBatchProject() const
-    { return (m_readabilityProjectDoc && m_readabilityProjectDoc->IsKindOf(CLASSINFO(BatchProjectDoc))); }
+    {
+    return (m_readabilityProjectDoc &&
+            m_readabilityProjectDoc->IsKindOf(CLASSINFO(BatchProjectDoc)));
+    }

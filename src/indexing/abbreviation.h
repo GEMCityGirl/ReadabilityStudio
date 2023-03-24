@@ -50,7 +50,6 @@ namespace grammar
     class is_acronym
         {
     public:
-        is_acronym() noexcept : m_dot_count(0), m_ends_with_lower_s(false) {}
         /** @returns @c true if more than half of the letters are uppercased.
             @param text The text stream to analyze.
             @param length The length of the text stream.*/
@@ -61,7 +60,7 @@ namespace grammar
             m_ends_with_lower_s = false;
             if (text == nullptr || text[0] == 0 || length < 2)
                 { return false; }
-            size_t letterCount(0), upperCaseLetterCount(0), lowerCaseLetterCount(0);
+            size_t letterCount{ 0 }, upperCaseLetterCount{ 0 }, lowerCaseLetterCount{ 0 };
             for (size_t i = 0; i < length; ++i)
                 {
                 if (text[i] == 0)

@@ -84,12 +84,16 @@ namespace LuaScripting
 
         // PROJECT SETTINGS
         int SetProjectLanguage(lua_State *L);
+        // cppcheck-suppress functionConst
         int GetProjectLanguage(lua_State *L);
         int SetReviewer(lua_State *L);
+        // cppcheck-suppress functionConst
         int GetReviewer(lua_State *L);
+        // cppcheck-suppress functionConst
         int GetDocumentStorageMethod(lua_State *L);
         int SetDocumentStorageMethod(lua_State *L);
         int SetParagraphsParsingMethod(lua_State *L);
+        // cppcheck-suppress functionConst
         int GetParagraphsParsingMethod(lua_State *L);
         // TEXT EXCLUSION OPTIONS
         ///Specifies how text should be excluded.

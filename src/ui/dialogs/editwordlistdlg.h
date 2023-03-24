@@ -84,7 +84,7 @@ private:
     static constexpr int ID_EDIT_ITEM = wxID_HIGHEST + 3;
     static constexpr int ID_DELETE_ITEM = wxID_HIGHEST + 4;
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
-                const wxString& caption = _("Edit List"),
+                const wxString& caption = _(L"Edit List"),
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxSize(600, 1000),
                 long style = wxDEFAULT_DIALOG_STYLE|wxCLIP_CHILDREN|wxRESIZE_BORDER);

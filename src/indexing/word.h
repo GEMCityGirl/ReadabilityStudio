@@ -78,7 +78,7 @@ public:
         std::basic_string<wchar_t, Tchar_traits>(word_start, word_length),
         m_stem(word_start, word_length)
         { stem(m_stem); }
-    word(const wchar_t* word_start) :
+    explicit word(const wchar_t* word_start) :
         std::basic_string<wchar_t, Tchar_traits>(word_start),
         m_stem(word_start)
         { stem(m_stem); }

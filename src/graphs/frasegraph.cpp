@@ -134,30 +134,30 @@ namespace Wisteria::Graphs
             Canvas::GetDefaultCanvasHeightDIPs()), L"Invalid backscreen size!");
 
         // divider line
-        GetPhyscialCoordinates(188, 15, m_dividerLinePoints[0]);
-        GetPhyscialCoordinates(196, 12, m_dividerLinePoints[1]);
-        GetPhyscialCoordinates(204, 9, m_dividerLinePoints[2]);
-        GetPhyscialCoordinates(210, 7, m_dividerLinePoints[3]);
-        GetPhyscialCoordinates(217, 5, m_dividerLinePoints[4]);
-        GetPhyscialCoordinates(224, 3.8, m_dividerLinePoints[5]);
-        GetPhyscialCoordinates(230, 3.5, m_dividerLinePoints[6]);
-        GetPhyscialCoordinates(234, 3.75, m_dividerLinePoints[7]);
+        GetPhysicalCoordinates(188, 15, m_dividerLinePoints[0]);
+        GetPhysicalCoordinates(196, 12, m_dividerLinePoints[1]);
+        GetPhysicalCoordinates(204, 9, m_dividerLinePoints[2]);
+        GetPhysicalCoordinates(210, 7, m_dividerLinePoints[3]);
+        GetPhysicalCoordinates(217, 5, m_dividerLinePoints[4]);
+        GetPhysicalCoordinates(224, 3.8, m_dividerLinePoints[5]);
+        GetPhysicalCoordinates(230, 3.5, m_dividerLinePoints[6]);
+        GetPhysicalCoordinates(234, 3.75, m_dividerLinePoints[7]);
 
         // I
-        GetPhyscialCoordinates(182, 3.1, m_levelLinePoints[0]);
-        GetPhyscialCoordinates(182, 15, m_levelLinePoints[1]);
-        GetPhyscialCoordinates(224, 15, m_levelLinePoints[2]);
+        GetPhysicalCoordinates(182, 3.1, m_levelLinePoints[0]);
+        GetPhysicalCoordinates(182, 15, m_levelLinePoints[1]);
+        GetPhysicalCoordinates(224, 15, m_levelLinePoints[2]);
         // II
-        GetPhyscialCoordinates(224, 15, m_levelLinePoints[3]);
-        GetPhyscialCoordinates(182, 3.1, m_levelLinePoints[4]);
-        GetPhyscialCoordinates(182, 0, m_levelLinePoints[5]);
+        GetPhysicalCoordinates(224, 15, m_levelLinePoints[3]);
+        GetPhysicalCoordinates(182, 3.1, m_levelLinePoints[4]);
+        GetPhysicalCoordinates(182, 0, m_levelLinePoints[5]);
         // III
-        GetPhyscialCoordinates(196, 0, m_levelLinePoints[6]);
-        GetPhyscialCoordinates(234, 15, m_levelLinePoints[7]);
+        GetPhysicalCoordinates(196, 0, m_levelLinePoints[6]);
+        GetPhysicalCoordinates(234, 15, m_levelLinePoints[7]);
         // IV
-        GetPhyscialCoordinates(234, 10.75, m_levelLinePoints[8]);
-        GetPhyscialCoordinates(210.5, 0, m_levelLinePoints[9]);
-        GetPhyscialCoordinates(234, 0, m_levelLinePoints[10]);
+        GetPhysicalCoordinates(234, 10.75, m_levelLinePoints[8]);
+        GetPhysicalCoordinates(210.5, 0, m_levelLinePoints[9]);
+        GetPhysicalCoordinates(234, 0, m_levelLinePoints[10]);
 
         const wxBrush selectionBrush =
             wxBrush(ColorContrast::ChangeOpacity(ColorBrewer::GetColor(Color::LightGray), 100));
@@ -213,7 +213,7 @@ namespace Wisteria::Graphs
                 false, L"Times New Roman"));
         for (const auto& level : GetLevelLabels())
             {
-            GetPhyscialCoordinates(level.GetX(), level.GetY(), pt1);
+            GetPhysicalCoordinates(level.GetX(), level.GetY(), pt1);
             auto levelLabel = std::make_shared<GraphItems::Label>(
                 GraphItemInfo(level.GetLabel()).
                 Scaling(GetScaling()).
@@ -273,7 +273,7 @@ namespace Wisteria::Graphs
                     ScorePoint& scorePoint)
                 {
                 // see where the point is
-                if (!graph->GetPhyscialCoordinates(scorePoint.m_wordStatistic,
+                if (!graph->GetPhysicalCoordinates(scorePoint.m_wordStatistic,
                                             scorePoint.m_sentenceStatistic,
                                             scorePoint.m_scorePoint))
                     {
@@ -325,7 +325,7 @@ namespace Wisteria::Graphs
             
             // see where the point is on this graph (not the backscreen) and
             // add it to be physically plotted
-            if (GetPhyscialCoordinates(m_results[i].m_wordStatistic,
+            if (GetPhysicalCoordinates(m_results[i].m_wordStatistic,
                                        m_results[i].m_sentenceStatistic,
                                        m_results[i].m_scorePoint))
                 {

@@ -37,13 +37,22 @@
 #include "../../readability/custom_readability_test.h"
 #include "../../projects/standard_project_doc.h"
 
+/** @brief Dialog for creating and editing custom readability tests.*/
 class CustomTestDlg final : public wxDialog
     {
 public:
+    /// @private
     using OutputStringType = traits::case_insensitive_wstring_ex;
     /// @brief Constructor.
     CustomTestDlg()
         { LoadStringConstants(); }
+    /** @brief Constructor.
+        @param parent The parent window.
+        @param id The dialog's ID.
+        @param testName The name for the test that is being created or edited.
+        @param pos The dialog's position.
+        @param size The dialog's size.
+        @param style The dialog's style.*/
     explicit CustomTestDlg(wxWindow* parent, wxWindowID id = wxID_ANY,
                   const wxString& testName = wxEmptyString,
                   const wxPoint& pos = wxDefaultPosition,
@@ -56,36 +65,37 @@ public:
             wxString::Format(_("Edit \"%s\" Test"), testName),
             pos, size, style);
         }
+    /// @private
     ~CustomTestDlg()
-        {
-        wxDELETE(m_functionBrowser);
-        }
+        { wxDELETE(m_functionBrowser); }
+    /** @brief Creates the dialog (used when using empty constructor).
+        @param parent The parent window.
+        @param id The dialog's ID.
+        @param testName The name for the test that is being created or edited.
+        @param pos The dialog's position.
+        @param size The dialog's size.
+        @param style The dialog's style.*/
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
                 const wxString& caption = _("Add Custom Test"),
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxSize(600, 600),
                 long style = wxDEFAULT_DIALOG_STYLE|wxCLIP_CHILDREN|wxRESIZE_BORDER);
-    void CreateControls();
 
-    /// Selects the page with the given page ID.
+    /// @brief Selects the page with the given page ID.
     /// @param pageId The window ID of the page to select.
     void SelectPage(const wxWindowID pageId);
 
-    void OnOK([[maybe_unused]] wxCommandEvent& event);
-    void OnHelp([[maybe_unused]] wxCommandEvent& event);
-    void OnContextHelp([[maybe_unused]] wxHelpEvent& event);
-    void OnValidateFormulaClick([[maybe_unused]] wxCommandEvent& event);
-    void OnInsertFunctionClick([[maybe_unused]] wxCommandEvent& event);
-    void OnPropertyGridChange(wxPropertyGridEvent& event);
-
-    bool ValidateFormula(const bool promptOnSuccess = false);
-
-    ///Get/Set stemming functions
-    [[nodiscard]] stemming::stemming_type GetStemmingType() const
-        { return static_cast<stemming::stemming_type>(m_wordListsPropertyGrid->GetPropertyValueAsInt(GetStemmingLanguageLabel())); }
+    /// Get/Set stemming functions
+    [[nodiscard]]
+    stemming::stemming_type GetStemmingType() const
+        {
+        return static_cast<stemming::stemming_type>(
+            m_wordListsPropertyGrid->GetPropertyValueAsInt(GetStemmingLanguageLabel()));
+        }
     void SetStemmingType(stemming::stemming_type stemType);
 
-    ///Get/Set formula functions
+    /// @brief Sets the test's formula.
+    /// @param form The formula.
     void SetFormula(const wxString& form)
         {
         if (m_formulaCtrl)
@@ -94,10 +104,12 @@ public:
             m_formulaCtrl->SetText(form);
             }
         }
-    [[nodiscard]] wxString GetFormula() const
+    /// @returns The test's formula.
+    [[nodiscard]]
+    wxString GetFormula() const
         { return m_formulaCtrl ? m_formulaCtrl->GetText() : wxString{}; }
 
-    ///Get/Set name functions
+    /// Get/Set name functions
     void SetTestName(const wxString& name, const bool changeDlgTitle = true)
         {
         m_testName = name;
@@ -105,7 +117,8 @@ public:
             { SetTitle(wxString::Format(_("Edit \"%s\" Test"), m_testName)); }
         TransferDataToWindow();
         }
-    [[nodiscard]] wxString GetTestName() const
+    [[nodiscard]]
+    wxString GetTestName() const
         { return m_testName; }
 
     ///Get/Set word list file path functions
@@ -115,10 +128,13 @@ public:
         if (m_wordListsPropertyGrid)
             { m_wordListsPropertyGrid->SetPropertyValue(GetFileContainingFamiliarWordsLabel(), path); }
         }
-    [[nodiscard]] wxString GetWordListFilePath() const
+    [[nodiscard]]
+    wxString GetWordListFilePath() const
         {
         wxASSERT(m_wordListsPropertyGrid);
-        return m_wordListsPropertyGrid ? m_wordListsPropertyGrid->GetPropertyValueAsString(GetFileContainingFamiliarWordsLabel()) : wxString{};
+        return m_wordListsPropertyGrid ?
+            m_wordListsPropertyGrid->GetPropertyValueAsString(GetFileContainingFamiliarWordsLabel()) :
+            wxString{};
         }
 
     void SetIncludingDaleChallList(const bool include)
@@ -128,10 +144,12 @@ public:
             { m_wordListsPropertyGrid->SetPropertyValue(GetIncludeDCWordListLabel(),include); }
         UpdateOptions();
         }
-    [[nodiscard]] bool IsIncludingDaleChallList() const
+    [[nodiscard]]
+    bool IsIncludingDaleChallList() const
         {
         wxASSERT(m_wordListsPropertyGrid);
-        return m_wordListsPropertyGrid ? m_wordListsPropertyGrid->GetPropertyValueAsBool(GetIncludeDCWordListLabel()) : false;
+        return m_wordListsPropertyGrid ?
+            m_wordListsPropertyGrid->GetPropertyValueAsBool(GetIncludeDCWordListLabel()) : false;
         }
 
     void SetIncludingCustomWordList(const bool include)
@@ -141,10 +159,12 @@ public:
             { m_wordListsPropertyGrid->SetPropertyValue(GetIncludeCustomListLabel(), include); }
         UpdateOptions();
         }
-    [[nodiscard]] bool IsIncludingCustomWordList() const
+    [[nodiscard]]
+    bool IsIncludingCustomWordList() const
         {
         wxASSERT(m_wordListsPropertyGrid);
-        return m_wordListsPropertyGrid ? m_wordListsPropertyGrid->GetPropertyValueAsBool(GetIncludeCustomListLabel()) : false;
+        return m_wordListsPropertyGrid ?
+            m_wordListsPropertyGrid->GetPropertyValueAsBool(GetIncludeCustomListLabel()) : false;
         }
 
     void SetIncludingSpacheList(const bool include)
@@ -154,10 +174,12 @@ public:
             { m_wordListsPropertyGrid->SetPropertyValue(GetIncludeSpacheWordListLabel(), include); }
         UpdateOptions();
         }
-    [[nodiscard]] bool IsIncludingSpacheList() const
+    [[nodiscard]]
+    bool IsIncludingSpacheList() const
         {
         wxASSERT(m_wordListsPropertyGrid);
-        return m_wordListsPropertyGrid ? m_wordListsPropertyGrid->GetPropertyValueAsBool(GetIncludeSpacheWordListLabel()) : false;
+        return m_wordListsPropertyGrid ?
+            m_wordListsPropertyGrid->GetPropertyValueAsBool(GetIncludeSpacheWordListLabel()) : false;
         }
 
     void SetIncludingHJList(const bool include)
@@ -167,10 +189,12 @@ public:
             { m_wordListsPropertyGrid->SetPropertyValue(GetIncludeHJWordListLabel(), include); }
         UpdateOptions();
         }
-    [[nodiscard]] bool IsIncludingHJList() const
+    [[nodiscard]]
+    bool IsIncludingHJList() const
         {
         wxASSERT(m_wordListsPropertyGrid);
-        return m_wordListsPropertyGrid ? m_wordListsPropertyGrid->GetPropertyValueAsBool(GetIncludeHJWordListLabel()) : false;
+        return m_wordListsPropertyGrid ?
+            m_wordListsPropertyGrid->GetPropertyValueAsBool(GetIncludeHJWordListLabel()) : false;
         }
 
     void SetIncludingStockerList(const bool include)
@@ -180,10 +204,12 @@ public:
             { m_wordListsPropertyGrid->SetPropertyValue(GetIncludeStockerWordListLabel(), include); }
         UpdateOptions();
         }
-    [[nodiscard]] bool IsIncludingStockerList() const
+    [[nodiscard]]
+    bool IsIncludingStockerList() const
         {
         wxASSERT(m_wordListsPropertyGrid);
-        return m_wordListsPropertyGrid ? m_wordListsPropertyGrid->GetPropertyValueAsBool(GetIncludeStockerWordListLabel()) : false;
+        return m_wordListsPropertyGrid ?
+            m_wordListsPropertyGrid->GetPropertyValueAsBool(GetIncludeStockerWordListLabel()) : false;
         }
 
     void SetFamiliarWordsMustBeOnEachIncludedList(const bool include)
@@ -192,10 +218,13 @@ public:
         if (m_wordListsPropertyGrid)
             { m_wordListsPropertyGrid->SetPropertyValue(GetFamiliarWordsOnAllLabel(), include); }
         }
-    [[nodiscard]] bool IsFamiliarWordsMustBeOnEachIncludedList() const
+    [[nodiscard]]
+    bool IsFamiliarWordsMustBeOnEachIncludedList() const
         {
         wxASSERT(m_wordListsPropertyGrid);
-        return m_wordListsPropertyGrid ? m_wordListsPropertyGrid->IsPropertyEnabled(GetFamiliarWordsOnAllLabel()) && m_wordListsPropertyGrid->GetPropertyValueAsBool(GetFamiliarWordsOnAllLabel()) : false;
+        return m_wordListsPropertyGrid ?
+            m_wordListsPropertyGrid->IsPropertyEnabled(GetFamiliarWordsOnAllLabel()) &&
+            m_wordListsPropertyGrid->GetPropertyValueAsBool(GetFamiliarWordsOnAllLabel()) : false;
         }
 
     void SetProperNounMethod(const int method)
@@ -204,10 +233,12 @@ public:
         if (m_properNounsNumbersPropertyGrid)
             { m_properNounsNumbersPropertyGrid->SetPropertyValue(GetFamiliarityLabel(), method); }
         }
-    [[nodiscard]] int GetProperNounMethod() const
+    [[nodiscard]]
+    int GetProperNounMethod() const
         {
         wxASSERT(m_properNounsNumbersPropertyGrid);
-        return m_properNounsNumbersPropertyGrid ? m_properNounsNumbersPropertyGrid->GetPropertyValueAsInt(GetFamiliarityLabel()) : 0;
+        return m_properNounsNumbersPropertyGrid ?
+            m_properNounsNumbersPropertyGrid->GetPropertyValueAsInt(GetFamiliarityLabel()) : 0;
         }
 
     void SetIncludingNumeric(const bool include)
@@ -219,7 +250,8 @@ public:
     [[nodiscard]] bool IsIncludingNumeric() const
         {
         wxASSERT(m_properNounsNumbersPropertyGrid);
-        return m_properNounsNumbersPropertyGrid?  m_properNounsNumbersPropertyGrid->GetPropertyValueAsBool(GetNumeralsAsFamiliarLabel()) : false;
+        return m_properNounsNumbersPropertyGrid ?
+            m_properNounsNumbersPropertyGrid->GetPropertyValueAsBool(GetNumeralsAsFamiliarLabel()) : false;
         }
 
     void SetTestType(const int type)
@@ -234,14 +266,18 @@ public:
         else
             { m_testTypeCombo->SetSelection(0); }
         }
-    [[nodiscard]] int GetTestType() const
+    /// @returns The test type.
+    [[nodiscard]]
+    int GetTestType() const
         { return m_testType; }
 
-    //project (industry) settings
-    [[nodiscard]] bool IsChildrensPublishingSelected() const
+    // project (industry) settings
+    [[nodiscard]]
+    bool IsChildrensPublishingSelected() const
         {
         wxASSERT(m_associationPropertyGrid);
-        return m_associationPropertyGrid ? m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[0]) : false;
+        return m_associationPropertyGrid ?
+            m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[0]) : false;
         }
     void SetChildrensPublishingSelected(const bool select)
         {
@@ -249,10 +285,12 @@ public:
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_professionNames[0], select); }
         }
-    [[nodiscard]] bool IsAdultPublishingSelected() const
+    [[nodiscard]]
+    bool IsAdultPublishingSelected() const
         {
         wxASSERT(m_associationPropertyGrid);
-        return m_associationPropertyGrid ? m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[1]) : false;
+        return m_associationPropertyGrid ?
+            m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[1]) : false;
         }
     void SetAdultPublishingSelected(const bool select)
         {
@@ -260,10 +298,12 @@ public:
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_professionNames[1], select); }
         }
-    [[nodiscard]] bool IsChildrensHealthCareTestSelected() const
+    [[nodiscard]]
+    bool IsChildrensHealthCareTestSelected() const
         {
         wxASSERT(m_associationPropertyGrid);
-        return m_associationPropertyGrid ? m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[2]) : false;
+        return m_associationPropertyGrid ?
+            m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[2]) : false;
         }
     void SetChildrensHealthCareTestSelected(const bool select)
         {
@@ -271,10 +311,12 @@ public:
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_professionNames[2], select); }
         }
-    [[nodiscard]] bool IsAdultHealthCareTestSelected() const
+    [[nodiscard]]
+    bool IsAdultHealthCareTestSelected() const
         {
         wxASSERT(m_associationPropertyGrid);
-        return m_associationPropertyGrid ? m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[3]) : false;
+        return m_associationPropertyGrid ?
+            m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[3]) : false;
         }
     void SetAdultHealthCareTestSelected(const bool select)
         {
@@ -282,10 +324,12 @@ public:
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_professionNames[3], select); }
         }
-    [[nodiscard]] bool IsMilitaryTestSelected() const
+    [[nodiscard]]
+    bool IsMilitaryTestSelected() const
         {
         wxASSERT(m_associationPropertyGrid);
-        return m_associationPropertyGrid ? m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[4]) : false;
+        return m_associationPropertyGrid ?
+            m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[4]) : false;
         }
     void SetMilitaryTestSelected(const bool select)
         {
@@ -293,10 +337,12 @@ public:
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_professionNames[4], select); }
         }
-    [[nodiscard]] bool IsSecondaryLanguageSelected() const
+    [[nodiscard]]
+    bool IsSecondaryLanguageSelected() const
         {
         wxASSERT(m_associationPropertyGrid);
-        return m_associationPropertyGrid ? m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[5]) : false;
+        return m_associationPropertyGrid ?
+            m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[5]) : false;
         }
     void SetSecondaryLanguageSelected(const bool select)
         {
@@ -304,10 +350,12 @@ public:
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_professionNames[5], select); }
         }
-    [[nodiscard]] bool IsBroadcastingSelected() const
+    [[nodiscard]]
+    bool IsBroadcastingSelected() const
         {
         wxASSERT(m_associationPropertyGrid);
-        return m_associationPropertyGrid ? m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[6]) : false;
+        return m_associationPropertyGrid ?
+            m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[6]) : false;
         }
     void SetBroadcastingSelected(const bool select)
         {
@@ -315,11 +363,13 @@ public:
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_professionNames[6], select); }
         }
-    //document
-    [[nodiscard]] bool IsGeneralDocumentSelected() const
+    // document
+    [[nodiscard]]
+    bool IsGeneralDocumentSelected() const
         {
         wxASSERT(m_associationPropertyGrid);
-        return m_associationPropertyGrid ? m_associationPropertyGrid->GetPropertyValueAsBool(m_documentNames[0]) : false;
+        return m_associationPropertyGrid ?
+            m_associationPropertyGrid->GetPropertyValueAsBool(m_documentNames[0]) : false;
         }
     void SetGeneralDocumentSelected(const bool select)
         {
@@ -327,10 +377,12 @@ public:
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_documentNames[0], select); }
         }
-    [[nodiscard]] bool IsTechnicalDocumentSelected() const
+    [[nodiscard]]
+    bool IsTechnicalDocumentSelected() const
         {
         wxASSERT(m_associationPropertyGrid);
-        return m_associationPropertyGrid ? m_associationPropertyGrid->GetPropertyValueAsBool(m_documentNames[1]) : false;
+        return m_associationPropertyGrid ?
+            m_associationPropertyGrid->GetPropertyValueAsBool(m_documentNames[1]) : false;
         }
     void SetTechnicalDocumentSelected(const bool select)
         {
@@ -338,10 +390,12 @@ public:
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_documentNames[1], select); }
         }
-    [[nodiscard]] bool IsNonNarrativeFormSelected() const
+    [[nodiscard]]
+    bool IsNonNarrativeFormSelected() const
         {
         wxASSERT(m_associationPropertyGrid);
-        return m_associationPropertyGrid ? m_associationPropertyGrid->GetPropertyValueAsBool(m_documentNames[2]) : false;
+        return m_associationPropertyGrid ?
+            m_associationPropertyGrid->GetPropertyValueAsBool(m_documentNames[2]) : false;
         }
     void SetNonNarrativeFormSelected(const bool select)
         {
@@ -349,10 +403,12 @@ public:
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_documentNames[2], select); }
         }
-    [[nodiscard]] bool IsYoungAdultAndAdultLiteratureSelected() const
+    [[nodiscard]]
+    bool IsYoungAdultAndAdultLiteratureSelected() const
         {
         wxASSERT(m_associationPropertyGrid);
-        return m_associationPropertyGrid ? m_associationPropertyGrid->GetPropertyValueAsBool(m_documentNames[3]) : false;
+        return m_associationPropertyGrid ?
+            m_associationPropertyGrid->GetPropertyValueAsBool(m_documentNames[3]) : false;
         }
     void SetYoungAdultAndAdultLiteratureSelected(const bool select)
         {
@@ -360,10 +416,12 @@ public:
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_documentNames[3], select); }
         }
-    [[nodiscard]] bool IsChildrensLiteratureSelected() const
+    [[nodiscard]]
+    bool IsChildrensLiteratureSelected() const
         {
         wxASSERT(m_associationPropertyGrid);
-        return m_associationPropertyGrid ? m_associationPropertyGrid->GetPropertyValueAsBool(m_documentNames[4]) : false;
+        return m_associationPropertyGrid ?
+            m_associationPropertyGrid->GetPropertyValueAsBool(m_documentNames[4]) : false;
         }
     void SetChildrensLiteratureSelected(const bool select)
         {
@@ -372,22 +430,38 @@ public:
             { m_associationPropertyGrid->SetPropertyValue(m_documentNames[4], select); }
         }
 
-    // This is only used for automation screenshots
-    [[nodiscard]] FunctionBrowserDlg* GetFunctionBrowser() noexcept
+    /// @private
+    /// @internal This is only used for automation screenshots
+    [[nodiscard]]
+    FunctionBrowserDlg* GetFunctionBrowser() noexcept
         { return m_functionBrowser; }
-    // page IDs
-    static constexpr int ID_GENERAL_PAGE = 20001;
-    static constexpr int ID_WORD_LIST_PAGE = 20002;
-    static constexpr int ID_PROPER_NUMERALS_PAGE = 20003;
-    static constexpr int ID_CLASSIFICATION_PAGE = 20004;
-protected:
-    //control IDs
-    static constexpr int ID_WORD_LIST_PG = 10001;
-    static constexpr int ID_VALIDATE_FORMULA_BUTTON = 10002;
-    static constexpr int ID_INSERT_FUNCTION_BUTTON = 10003;
-    static constexpr int ID_TEST_NAME_FIELD = 10004;
-    static constexpr int ID_TEST_TYPE_COMBO = 10005;
-    static constexpr int ID_FORMULA_FIELD = 10006;
+    /// @brief General page.
+    static constexpr int ID_GENERAL_PAGE = wxID_HIGHEST;
+    /// @brief Word list page.
+    static constexpr int ID_WORD_LIST_PAGE = wxID_HIGHEST + 1;
+    /// @brief Numerals page.
+    static constexpr int ID_PROPER_NUMERALS_PAGE = wxID_HIGHEST + 2;
+    /// @brief Classification page.
+    static constexpr int ID_CLASSIFICATION_PAGE = wxID_HIGHEST + 3;
+private:
+    // control IDs
+    static constexpr int ID_WORD_LIST_PG = wxID_HIGHEST + 4;
+    static constexpr int ID_VALIDATE_FORMULA_BUTTON = wxID_HIGHEST + 5;
+    static constexpr int ID_INSERT_FUNCTION_BUTTON = wxID_HIGHEST + 6;
+    static constexpr int ID_TEST_NAME_FIELD = wxID_HIGHEST + 7;
+    static constexpr int ID_TEST_TYPE_COMBO = wxID_HIGHEST + 8;
+    static constexpr int ID_FORMULA_FIELD = wxID_HIGHEST + 9;
+
+    void OnOK([[maybe_unused]] wxCommandEvent& event);
+    void OnHelp([[maybe_unused]] wxCommandEvent& event);
+    void OnContextHelp([[maybe_unused]] wxHelpEvent& event);
+    void OnValidateFormulaClick([[maybe_unused]] wxCommandEvent& event);
+    void OnInsertFunctionClick([[maybe_unused]] wxCommandEvent& event);
+    void OnPropertyGridChange(wxPropertyGridEvent& event);
+
+    bool ValidateFormula(const bool promptOnSuccess = false);
+    void UpdateOptions();
+    void CreateControls();
     void LoadStringConstants()
         {
         m_testTypes.Add(_("Grade level"));
@@ -408,38 +482,52 @@ protected:
         m_professionNames.Add(_("Second language education"));
         m_professionNames.Add(_("Broadcasting"));
         }
-    [[nodiscard]] wxString GetNumeralsLabel() const
+    [[nodiscard]]
+    wxString GetNumeralsLabel() const
         { return _("Numerals"); }
-    [[nodiscard]] wxString GetProperNounsLabel() const
+    [[nodiscard]]
+    wxString GetProperNounsLabel() const
         { return _("Proper Nouns"); }
-    [[nodiscard]] wxString GetFamiliarityLabel() const
+    [[nodiscard]]
+    wxString GetFamiliarityLabel() const
         { return _("Familiarity"); }
-    [[nodiscard]] wxString GetNumeralsAsFamiliarLabel() const
+    [[nodiscard]]
+    wxString GetNumeralsAsFamiliarLabel() const
         { return _("Treat numerals as familiar"); }
-    [[nodiscard]] wxString GetIncludeCustomListLabel() const
+    [[nodiscard]]
+    wxString GetIncludeCustomListLabel() const
         { return _("Include custom familiar word list"); }
-    [[nodiscard]] wxString GetCustomFamiliarWordListLabel() const
+    [[nodiscard]]
+    wxString GetCustomFamiliarWordListLabel() const
         { return _("Custom familiar word list"); }
-    [[nodiscard]] wxString GetFileContainingFamiliarWordsLabel() const
+    [[nodiscard]]
+    wxString GetFileContainingFamiliarWordsLabel() const
         { return _("File containing familiar words"); }
-    [[nodiscard]] wxString GetStemmingLanguageLabel() const
+    [[nodiscard]]
+    wxString GetStemmingLanguageLabel() const
         { return _("Use stemming to search for similar words"); }
-    [[nodiscard]] wxString GetStandardWordListsLabel() const
+    [[nodiscard]]
+    wxString GetStandardWordListsLabel() const
         { return _("Standard familiar word lists"); }
-    [[nodiscard]] wxString GetIncludeDCWordListLabel() const
+    [[nodiscard]]
+    wxString GetIncludeDCWordListLabel() const
         { return _("Include New Dale-Chall word list"); }
-    [[nodiscard]] wxString GetIncludeSpacheWordListLabel() const
+    [[nodiscard]]
+    wxString GetIncludeSpacheWordListLabel() const
         { return _("Include Spache Revised word list"); }
-    [[nodiscard]] wxString GetIncludeHJWordListLabel() const
+    [[nodiscard]]
+    wxString GetIncludeHJWordListLabel() const
         { return _("Include Harris-Jacobson word list"); }
-    [[nodiscard]] wxString GetIncludeStockerWordListLabel() const
+    [[nodiscard]]
+    wxString GetIncludeStockerWordListLabel() const
         { return _("Include Stocker's Catholic supplement"); }
-    [[nodiscard]] wxString GetOtherLabel() const
+    [[nodiscard]]
+    wxString GetOtherLabel() const
         { return _("Other"); }
-    [[nodiscard]] wxString GetFamiliarWordsOnAllLabel() const
+    [[nodiscard]]
+    wxString GetFamiliarWordsOnAllLabel() const
         { return _("Only use words common to all lists"); }
-    void UpdateOptions();
-private:
+
     FunctionBrowserDlg* m_functionBrowser{ nullptr };
     Wisteria::UI::SideBarBook* m_sideBarBook{ nullptr };
     wxTextCtrl* m_testNameCtrl{ nullptr };
@@ -465,8 +553,6 @@ private:
     FunctionBrowserDlg::NameList m_wordFunctions;
     FunctionBrowserDlg::NameList m_sentenceFunctions;
     FunctionBrowserDlg::NameList m_shortcuts;
-
-    wxDECLARE_EVENT_TABLE();
     };
 
 /** @}*/

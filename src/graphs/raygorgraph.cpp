@@ -188,90 +188,90 @@ namespace Wisteria::Graphs
             Canvas::GetDefaultCanvasHeightDIPs()), L"Invalid backscreen size!");
 
         // long sentence regions
-        GetPhyscialCoordinates(6, 5.5, m_longSentencesPoints[0]);
-        GetPhyscialCoordinates(6.8, 5.3, m_longSentencesPoints[1]);
-        GetPhyscialCoordinates(9, 4.9, m_longSentencesPoints[2]);
-        GetPhyscialCoordinates(11, 4.6, m_longSentencesPoints[3]);
-        GetPhyscialCoordinates(15.8, 4.0, m_longSentencesPoints[4]);
-        GetPhyscialCoordinates(20.4, 3.6, m_longSentencesPoints[5]);
-        GetPhyscialCoordinates(27, 3.2, m_longSentencesPoints[6]);
-        GetPhyscialCoordinates(6, 3.2, m_longSentencesPoints[7]);
+        GetPhysicalCoordinates(6, 5.5, m_longSentencesPoints[0]);
+        GetPhysicalCoordinates(6.8, 5.3, m_longSentencesPoints[1]);
+        GetPhysicalCoordinates(9, 4.9, m_longSentencesPoints[2]);
+        GetPhysicalCoordinates(11, 4.6, m_longSentencesPoints[3]);
+        GetPhysicalCoordinates(15.8, 4.0, m_longSentencesPoints[4]);
+        GetPhysicalCoordinates(20.4, 3.6, m_longSentencesPoints[5]);
+        GetPhysicalCoordinates(27, 3.2, m_longSentencesPoints[6]);
+        GetPhysicalCoordinates(6, 3.2, m_longSentencesPoints[7]);
         AddObject(std::make_shared<GraphItems::Polygon>(
             GraphItemInfo(_(L"Invalid region: sentences are too long")).
             Pen(wxNullPen).Brush(
                 wxBrush(ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))),
             m_longSentencesPoints));
         // long word region
-        GetPhyscialCoordinates(18, 28.0, m_longWordPoints[0]);
-        GetPhyscialCoordinates(20, 22.6, m_longWordPoints[1]);
-        GetPhyscialCoordinates(22, 18.6, m_longWordPoints[2]);
-        GetPhyscialCoordinates(24, 15.9, m_longWordPoints[3]);
-        GetPhyscialCoordinates(26, 13.8, m_longWordPoints[4]);
-        GetPhyscialCoordinates(32, 10.4, m_longWordPoints[5]);
-        GetPhyscialCoordinates(36, 9.0, m_longWordPoints[6]);
-        GetPhyscialCoordinates(40, 7.9, m_longWordPoints[7]);
-        GetPhyscialCoordinates(44, 7.3, m_longWordPoints[8]);
-        GetPhyscialCoordinates(44, 28.0, m_longWordPoints[9]);
+        GetPhysicalCoordinates(18, 28.0, m_longWordPoints[0]);
+        GetPhysicalCoordinates(20, 22.6, m_longWordPoints[1]);
+        GetPhysicalCoordinates(22, 18.6, m_longWordPoints[2]);
+        GetPhysicalCoordinates(24, 15.9, m_longWordPoints[3]);
+        GetPhysicalCoordinates(26, 13.8, m_longWordPoints[4]);
+        GetPhysicalCoordinates(32, 10.4, m_longWordPoints[5]);
+        GetPhysicalCoordinates(36, 9.0, m_longWordPoints[6]);
+        GetPhysicalCoordinates(40, 7.9, m_longWordPoints[7]);
+        GetPhysicalCoordinates(44, 7.3, m_longWordPoints[8]);
+        GetPhysicalCoordinates(44, 28.0, m_longWordPoints[9]);
         AddObject(std::make_shared<GraphItems::Polygon>(
             GraphItemInfo(_(L"Invalid region: too many long words")).
             Pen(wxNullPen).Brush(
                 wxBrush(ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))),
             m_longWordPoints));
         // divider line
-        GetPhyscialCoordinates(6, 28, m_dividerLinePoints[0]); // not drawn, used for point region
-        GetPhyscialCoordinates(16, 9.6, m_dividerLinePoints[1]);
-        GetPhyscialCoordinates(20, 7.0, m_dividerLinePoints[2]);
-        GetPhyscialCoordinates(24, 5.8, m_dividerLinePoints[3]);
-        GetPhyscialCoordinates(28, 5.05, m_dividerLinePoints[4]);
-        GetPhyscialCoordinates(32, 4.6, m_dividerLinePoints[5]);
-        GetPhyscialCoordinates(36, 4.3, m_dividerLinePoints[6]);
-        GetPhyscialCoordinates(40, 4.05, m_dividerLinePoints[7]);
-        GetPhyscialCoordinates(44, 3.9, m_dividerLinePoints[8]);
+        GetPhysicalCoordinates(6, 28, m_dividerLinePoints[0]); // not drawn, used for point region
+        GetPhysicalCoordinates(16, 9.6, m_dividerLinePoints[1]);
+        GetPhysicalCoordinates(20, 7.0, m_dividerLinePoints[2]);
+        GetPhysicalCoordinates(24, 5.8, m_dividerLinePoints[3]);
+        GetPhysicalCoordinates(28, 5.05, m_dividerLinePoints[4]);
+        GetPhysicalCoordinates(32, 4.6, m_dividerLinePoints[5]);
+        GetPhysicalCoordinates(36, 4.3, m_dividerLinePoints[6]);
+        GetPhysicalCoordinates(40, 4.05, m_dividerLinePoints[7]);
+        GetPhysicalCoordinates(44, 3.9, m_dividerLinePoints[8]);
         // the following are not drawn, just used for calculating information
-        GetPhyscialCoordinates(44, 28, m_dividerLinePoints[9]);
+        GetPhysicalCoordinates(44, 28, m_dividerLinePoints[9]);
 
         // grade lines
         //------------
         // lower area
-        GetPhyscialCoordinates(6, 6.3, m_gradeLinePoints[0]);
-        GetPhyscialCoordinates(6, 28.0, m_gradeLinePoints[1]);
-        GetPhyscialCoordinates(16, 28.0, m_gradeLinePoints[2]);
+        GetPhysicalCoordinates(6, 6.3, m_gradeLinePoints[0]);
+        GetPhysicalCoordinates(6, 28.0, m_gradeLinePoints[1]);
+        GetPhysicalCoordinates(16, 28.0, m_gradeLinePoints[2]);
         // 3rd grade (end of region)
-        GetPhyscialCoordinates(24, 12.5, m_gradeLinePoints[3]);
-        GetPhyscialCoordinates(7.5, 5.8, m_gradeLinePoints[4]);
+        GetPhysicalCoordinates(24, 12.5, m_gradeLinePoints[3]);
+        GetPhysicalCoordinates(7.5, 5.8, m_gradeLinePoints[4]);
         // 4th grade
-        GetPhyscialCoordinates(9.8, 5.3, m_gradeLinePoints[5]);
-        GetPhyscialCoordinates(26, 11.7, m_gradeLinePoints[6]);
+        GetPhysicalCoordinates(9.8, 5.3, m_gradeLinePoints[5]);
+        GetPhysicalCoordinates(26, 11.7, m_gradeLinePoints[6]);
         // 5th grade
-        GetPhyscialCoordinates(26.8, 10.3, m_gradeLinePoints[7]);
-        GetPhyscialCoordinates(11.5, 4.95, m_gradeLinePoints[8]);
+        GetPhysicalCoordinates(26.8, 10.3, m_gradeLinePoints[7]);
+        GetPhysicalCoordinates(11.5, 4.95, m_gradeLinePoints[8]);
         // 6th grade
-        GetPhyscialCoordinates(13.5, 4.6, m_gradeLinePoints[9]);
-        GetPhyscialCoordinates(30, 9.8, m_gradeLinePoints[10]);
+        GetPhysicalCoordinates(13.5, 4.6, m_gradeLinePoints[9]);
+        GetPhysicalCoordinates(30, 9.8, m_gradeLinePoints[10]);
         // 7th grade
-        GetPhyscialCoordinates(31.5, 9.0, m_gradeLinePoints[11]);
-        GetPhyscialCoordinates(18.4, 4, m_gradeLinePoints[12]);
+        GetPhysicalCoordinates(31.5, 9.0, m_gradeLinePoints[11]);
+        GetPhysicalCoordinates(18.4, 4, m_gradeLinePoints[12]);
         // 8th grade
-        GetPhyscialCoordinates(22.8, 3.8, m_gradeLinePoints[13]);
-        GetPhyscialCoordinates(33.2, 8.5, m_gradeLinePoints[14]);
+        GetPhysicalCoordinates(22.8, 3.8, m_gradeLinePoints[13]);
+        GetPhysicalCoordinates(33.2, 8.5, m_gradeLinePoints[14]);
         // 9th grade
-        GetPhyscialCoordinates(34.3, 8.0, m_gradeLinePoints[15]);
-        GetPhyscialCoordinates(24.8, 3.7, m_gradeLinePoints[16]);
+        GetPhysicalCoordinates(34.3, 8.0, m_gradeLinePoints[15]);
+        GetPhysicalCoordinates(24.8, 3.7, m_gradeLinePoints[16]);
         // 10th grade
-        GetPhyscialCoordinates(26.8, 3.5, m_gradeLinePoints[17]);
-        GetPhyscialCoordinates(36, 7.7, m_gradeLinePoints[18]);
+        GetPhysicalCoordinates(26.8, 3.5, m_gradeLinePoints[17]);
+        GetPhysicalCoordinates(36, 7.7, m_gradeLinePoints[18]);
         // 11th grade
-        GetPhyscialCoordinates(38, 7.6, m_gradeLinePoints[19]);
-        GetPhyscialCoordinates(29.5, 3.4, m_gradeLinePoints[20]);
+        GetPhysicalCoordinates(38, 7.6, m_gradeLinePoints[19]);
+        GetPhysicalCoordinates(29.5, 3.4, m_gradeLinePoints[20]);
         // 12th grade
-        GetPhyscialCoordinates(32, 3.3, m_gradeLinePoints[21]);
-        GetPhyscialCoordinates(39.4, 7.2, m_gradeLinePoints[22]);
+        GetPhysicalCoordinates(32, 3.3, m_gradeLinePoints[21]);
+        GetPhysicalCoordinates(39.4, 7.2, m_gradeLinePoints[22]);
         // 13th grade
-        GetPhyscialCoordinates(42, 6.6, m_gradeLinePoints[23]);
-        GetPhyscialCoordinates(36.1, 3.2, m_gradeLinePoints[24]);
+        GetPhysicalCoordinates(42, 6.6, m_gradeLinePoints[23]);
+        GetPhysicalCoordinates(36.1, 3.2, m_gradeLinePoints[24]);
         // beyond 13th region
-        GetPhyscialCoordinates(44, 3.2, m_gradeLinePoints[25]);
-        GetPhyscialCoordinates(44, 6.3, m_gradeLinePoints[26]);
+        GetPhysicalCoordinates(44, 3.2, m_gradeLinePoints[25]);
+        GetPhysicalCoordinates(44, 6.3, m_gradeLinePoints[26]);
 
         wxASSERT_MSG(GetMessageCatalog(), L"Label manager not set in Raygor Graph!");
 
@@ -283,7 +283,7 @@ namespace Wisteria::Graphs
                    wxFONTWEIGHT_BOLD, false, GetFancyFontFaceName());
         // draw the "Long Words" area label
             {
-            GetPhyscialCoordinates(31, 14.5, topCorner);
+            GetPhysicalCoordinates(31, 14.5, topCorner);
             auto invalidLabel = std::make_shared<GraphItems::Label>(
                 GraphItemInfo(_(L"INVALID")).Scaling(GetScaling()).
                 Pen(wxNullPen).
@@ -295,7 +295,7 @@ namespace Wisteria::Graphs
 
         // draw the "Long Sentences" area label
             {
-            GetPhyscialCoordinates(7, 3.5, topCorner);
+            GetPhysicalCoordinates(7, 3.5, topCorner);
             auto invalidLabel = std::make_shared<GraphItems::Label>(
                 GraphItemInfo(_(L"INVALID")).Scaling(GetScaling()).
                 Pen(wxNullPen).
@@ -311,61 +311,61 @@ namespace Wisteria::Graphs
         auto splinePoints = std::make_shared<GraphItems::Points2D>(wxNullPen);
         splinePoints->SetScaling(GetScaling());
         splinePoints->SetDPIScaleFactor(GetDPIScaleFactor());
-        GetPhyscialCoordinates(18, 8.1, dividerPt);
+        GetPhysicalCoordinates(18, 8.1, dividerPt);
         splinePoints->AddPoint(Point2D(
             GraphItemInfo().AnchorPoint(dividerPt).
             Brush(lightGray),
             Settings::GetPointRadius() / 2, Icons::IconShape::Circle), dc);
 
-        GetPhyscialCoordinates(19.5, 7.28, dividerPt);
+        GetPhysicalCoordinates(19.5, 7.28, dividerPt);
         splinePoints->AddPoint(Point2D(
             GraphItemInfo().AnchorPoint(dividerPt).
             Brush(lightGray),
             Settings::GetPointRadius() / 2, Icons::IconShape::Circle), dc);
 
-        GetPhyscialCoordinates(21, 6.69, dividerPt);
+        GetPhysicalCoordinates(21, 6.69, dividerPt);
         splinePoints->AddPoint(Point2D(
             GraphItemInfo().AnchorPoint(dividerPt).
             Brush(lightGray),
             Settings::GetPointRadius() / 2, Icons::IconShape::Circle), dc);
 
-        GetPhyscialCoordinates(23.7, 5.91, dividerPt);
+        GetPhysicalCoordinates(23.7, 5.91, dividerPt);
         splinePoints->AddPoint(Point2D(
             GraphItemInfo().AnchorPoint(dividerPt).Scaling(GetScaling()).
             Brush(lightGray),
             Settings::GetPointRadius() / 2, Icons::IconShape::Circle), dc);
 
-        GetPhyscialCoordinates(26.5, 5.26, dividerPt);
+        GetPhysicalCoordinates(26.5, 5.26, dividerPt);
         splinePoints->AddPoint(Point2D(
             GraphItemInfo().AnchorPoint(dividerPt).
             Brush(lightGray),
             Settings::GetPointRadius() / 2, Icons::IconShape::Circle), dc);
 
-        GetPhyscialCoordinates(28.5, 5, dividerPt);
+        GetPhysicalCoordinates(28.5, 5, dividerPt);
         splinePoints->AddPoint(Point2D(
             GraphItemInfo().AnchorPoint(dividerPt).
             Brush(lightGray),
             Settings::GetPointRadius() / 2, Icons::IconShape::Circle), dc);
 
-        GetPhyscialCoordinates(30.1, 4.82, dividerPt);
+        GetPhysicalCoordinates(30.1, 4.82, dividerPt);
         splinePoints->AddPoint(Point2D(
             GraphItemInfo().AnchorPoint(dividerPt).
             Brush(lightGray),
             Settings::GetPointRadius() / 2, Icons::IconShape::Circle), dc);
 
-        GetPhyscialCoordinates(32.2, 4.6, dividerPt);
+        GetPhysicalCoordinates(32.2, 4.6, dividerPt);
         splinePoints->AddPoint(Point2D(
             GraphItemInfo().AnchorPoint(dividerPt).
             Brush(lightGray),
             Settings::GetPointRadius() / 2, Icons::IconShape::Circle), dc);
 
-        GetPhyscialCoordinates(34.2, 4.44, dividerPt);
+        GetPhysicalCoordinates(34.2, 4.44, dividerPt);
         splinePoints->AddPoint(Point2D(
             GraphItemInfo().AnchorPoint(dividerPt).
             Brush(lightGray),
             Settings::GetPointRadius() / 2, Icons::IconShape::Circle), dc);
 
-        GetPhyscialCoordinates(37, 4.25, dividerPt);
+        GetPhysicalCoordinates(37, 4.25, dividerPt);
         splinePoints->AddPoint(Point2D(
             GraphItemInfo().AnchorPoint(dividerPt).
             Brush(lightGray),
@@ -437,7 +437,7 @@ namespace Wisteria::Graphs
         for (const auto level : GetLevelLabels())
             {
             wxPoint pt;
-            GetPhyscialCoordinates(level.GetX(), level.GetY(), pt);
+            GetPhysicalCoordinates(level.GetX(), level.GetY(), pt);
 
             auto levelLabel = std::make_shared<GraphItems::Label>(
                 GraphItemInfo(level.GetLabel()).Scaling(GetScaling()).
@@ -497,7 +497,7 @@ namespace Wisteria::Graphs
                 ScorePoint& scorePoint)
                 {
                 // see where the point is
-                if (!graph->GetPhyscialCoordinates(
+                if (!graph->GetPhysicalCoordinates(
                         round_decimal_place(scorePoint.m_wordStatistic, 100),
                         round_decimal_place(scorePoint.m_sentenceStatistic, 100),
                                             scorePoint.m_scorePoint))
@@ -562,7 +562,7 @@ namespace Wisteria::Graphs
                 0;
             // see where the point is on this graph (not the backscreen) and
             // add it to be physically plotted
-            if (GetPhyscialCoordinates(
+            if (GetPhysicalCoordinates(
                     round_decimal_place(m_results[i].m_wordStatistic, 100),
                     round_decimal_place(m_results[i].m_sentenceStatistic, 100),
                                         m_results[i].m_scorePoint))

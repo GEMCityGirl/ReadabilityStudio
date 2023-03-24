@@ -33,13 +33,19 @@ ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ../src/indexing/article.cpp ../src/indexing
 ../src/indexing/negating_word.cpp ../src/indexing/passive_voice.cpp ../src/indexing/pronoun.cpp
 ../src/indexing/romanize.cpp ../src/indexing/stop_lists.cpp ../src/indexing/syllable.cpp
 ../../SRC/Wisteria-Dataviz/src/i18n-check/src/i18n_string_util.cpp
-articletests.cpp)
+articletests.cpp sentencetests.cpp)
 IF(MSVC)
     TARGET_COMPILE_DEFINITIONS(${CMAKE_PROJECT_NAME} PUBLIC _CRT_SECURE_NO_WARNINGS __UNITTEST)
 ELSE()
     TARGET_COMPILE_DEFINITIONS(${CMAKE_PROJECT_NAME} PUBLIC _CRT_SECURE_NO_WARNINGS __UNITTEST)
 ENDIF()
 TARGET_LINK_LIBRARIES(${CMAKE_PROJECT_NAME} PRIVATE Catch2::Catch2WithMain)
+
+MESSAGE(STATUS "Copying test files...")
+ADD_CUSTOM_COMMAND(TARGET ${CMAKE_PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                   ${CMAKE_SOURCE_DIR}/Dictionaries $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>)
 
 # load the test cases into the runner
 INCLUDE(CTest)

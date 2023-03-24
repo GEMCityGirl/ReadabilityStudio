@@ -2428,7 +2428,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                 dlg.IsExportingHardWordLists(),
                 dlg.IsExportingSentencesBreakdown(),
                 dlg.IsExportingGraphs(),
-                dlg.IsExportingTestResults(), dlg.IsExportingWordiness(),
+                dlg.IsExportingTestResults(), dlg.IsExportingGrammar(),
                 dlg.IsExportingSightWords(), dlg.IsExportingWarnings(),
                 dlg.GetImageExportOptions());
             }
@@ -2438,7 +2438,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                 dlg.IsExportingHardWordLists(),
                 dlg.IsExportingSentencesBreakdown(),
                 dlg.IsExportingGraphs(),
-                dlg.IsExportingTestResults(), dlg.IsExportingWordiness(),
+                dlg.IsExportingTestResults(), dlg.IsExportingGrammar(),
                 dlg.IsExportingSightWords(), dlg.IsExportingWarnings(),
                 dlg.GetImageExportOptions());
             }
@@ -2450,7 +2450,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
         doc->ExportSentencesBreakdown(dlg.IsExportingSentencesBreakdown());
         doc->ExportGraphs(dlg.IsExportingGraphs());
         doc->ExportTestResults(dlg.IsExportingTestResults());
-        doc->ExportWordiness(dlg.IsExportingWordiness());
+        doc->ExportWordiness(dlg.IsExportingGrammar());
         doc->ExportSightWords(dlg.IsExportingSightWords());
         doc->ExportWarnings(dlg.IsExportingWarnings());
         doc->GetImageExportOptions() = dlg.GetImageExportOptions();

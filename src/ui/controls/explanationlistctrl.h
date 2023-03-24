@@ -187,9 +187,11 @@ public:
         if (GetResultsListCtrl())
             { GetResultsListCtrl()->SetSortHelpTopic(helpProjectPath, sortTopicPath); }
         }
+    /// @privatw
+    static constexpr int EXPLANATION_LIST_CTRL_GRID = wxID_HIGHEST;
 private:
     ExplanationListCtrl() = default;
-    static constexpr int EXPLANATION_LIST_CTRL_GRID = wxID_HIGHEST;
+
     void OnPreview([[maybe_unused]] wxCommandEvent& event);
     void OnPrint([[maybe_unused]] wxCommandEvent& event);
     void OnSave([[maybe_unused]] wxCommandEvent& event);

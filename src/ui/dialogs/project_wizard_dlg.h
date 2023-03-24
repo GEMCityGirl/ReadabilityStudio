@@ -35,14 +35,15 @@ class ProjectWizardDlg final : public wxDialog
     {
 public:
     ProjectWizardDlg(wxWindow* parent, const ProjectType projectType,
-                     const wxString& path = wxEmptyString, wxWindowID id = wxID_ANY,
+                     const wxString& path = wxString{}, wxWindowID id = wxID_ANY,
                      const wxString& caption = _("New Project Wizard"),
                      const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
                      long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER);
+    /// @private
     ProjectWizardDlg(const ProjectWizardDlg&) = delete;
-    ProjectWizardDlg(ProjectWizardDlg&&) = delete;
+    /// @private
     ProjectWizardDlg& operator=(const ProjectWizardDlg&) = delete;
-    ProjectWizardDlg& operator=(ProjectWizardDlg&&) = delete;
+    /// @private
     ~ProjectWizardDlg()
         { wxDELETE(m_fileData); }
     /// Creates the controls and sizers.
@@ -202,8 +203,8 @@ public:
 private:
     [[nodiscard]] ProjectType GetProjectType() const noexcept
         { return m_projectType; }
-    void LoadSpreadsheet(wxString excelPath = wxEmptyString);
-    void LoadArchive(wxString archivePath = wxEmptyString);
+    void LoadSpreadsheet(wxString excelPath = wxString{});
+    void LoadArchive(wxString archivePath = wxString{});
     void UpdateTestSelectionMethodUI();
     void UpdateTestsUI();
     /// @warning: do not change these IDs, they are used in the screenshot script

@@ -23,14 +23,6 @@ using namespace Wisteria::UI;
 
 wxDECLARE_APP(ReadabilityApp);
 
-wxBEGIN_EVENT_TABLE(CustomTestDlg, wxDialog)
-    EVT_BUTTON(wxID_HELP, CustomTestDlg::OnHelp)
-    EVT_HELP(wxID_ANY, CustomTestDlg::OnContextHelp)
-    EVT_BUTTON(wxID_OK, CustomTestDlg::OnOK)
-    EVT_BUTTON(CustomTestDlg::ID_VALIDATE_FORMULA_BUTTON, CustomTestDlg::OnValidateFormulaClick)
-    EVT_BUTTON(CustomTestDlg::ID_INSERT_FUNCTION_BUTTON, CustomTestDlg::OnInsertFunctionClick)
-wxEND_EVENT_TABLE()
-
 //-------------------------------------------------------------
 void CustomTestDlg::OnInsertFunctionClick([[maybe_unused]] wxCommandEvent& event)
     {
@@ -56,31 +48,40 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
 
     try
         {
-        //if no formula specified, but they do have some sort of familiar word definition, then suggest CustomNewDaleChall()
+        // if no formula specified, but they do have some sort of familiar word definition,
+        // then suggest CustomNewDaleChall()
         if (GetFormula().empty() &&
-            (IsIncludingCustomWordList() || IsIncludingSpacheList() || IsIncludingHJList() || IsIncludingDaleChallList() || IsIncludingStockerList()))
+            (IsIncludingCustomWordList() || IsIncludingSpacheList() ||
+             IsIncludingHJList() || IsIncludingDaleChallList() || IsIncludingStockerList()))
             {
-            if (wxMessageBox(_("An unfamiliar word list has been defined, but no formula has been specified. Do you wish to use the New Dale-Chall formula for this test?"),
-                        _("No Formula Defined"), wxYES_NO|wxICON_QUESTION) == wxNO)
+            if (wxMessageBox(
+                _("An unfamiliar word list has been defined, "
+                  "but no formula has been specified. "
+                  "Do you wish to use the New Dale-Chall formula for this test?"),
+                _("No Formula Defined"), wxYES_NO|wxICON_QUESTION) == wxNO)
                 { return false; }
             else
                 {
                 SetFormula(ReadabilityFormulaParser::GetCustomNewDaleChallSignature());
                 SetIncludingDaleChallList(true);
-                SetProperNounMethod(static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()));
+                SetProperNounMethod(
+                    static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()));
                 TransferDataToWindow();
                 return true;
                 }
             }
         else if (GetFormula().empty())
             {
-            wxMessageBox(_("Please enter a formula."), _("Missing Formula"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(_("Please enter a formula."), _("Missing Formula"),
+                         wxOK|wxICON_EXCLAMATION);
             return false;
             }
 
         auto blankProject = std::make_unique<BaseProjectDoc>();
-        BaseProjectDoc* activeProject = dynamic_cast<BaseProjectDoc*>(wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument());
-        const bool isUsingActiveProject = (activeProject && activeProject->IsKindOf(CLASSINFO(ProjectDoc)));
+        BaseProjectDoc* activeProject =
+            dynamic_cast<BaseProjectDoc*>(wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument());
+        const bool isUsingActiveProject =
+            (activeProject && activeProject->IsKindOf(CLASSINFO(ProjectDoc)));
         BaseProjectDoc* project = isUsingActiveProject ? activeProject : blankProject.get();
         wxASSERT(project);
         
@@ -92,40 +93,57 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                  _("Error in Formula"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
-        //if using Custom DC test but DC word list is not included then ask them about it
-        if (project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) &&
+        // if using Custom DC test but DC word list is not included then ask them about it
+        if (project->GetFormulaParser().is_function_used(
+                ReadabilityFormulaParser::SignatureToFunctionName(
+                    ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) &&
             !IsIncludingDaleChallList())
             {
-            if (wxMessageBox(_("The New Dale-Chall formula is being used for this test, but the standard Dale-Chall word list is not being included. Do you wish to include this word list?"),
-                        _("Settings Conflict"), wxYES_NO|wxICON_QUESTION) == wxYES)
+            if (wxMessageBox(
+                _("The New Dale-Chall formula is being used for this test, "
+                  "but the standard Dale-Chall word list is not being included. "
+                  "Do you wish to include this word list?"),
+                _("Settings Conflict"), wxYES_NO|wxICON_QUESTION) == wxYES)
                 {
                 SetIncludingDaleChallList(true);
                 TransferDataToWindow();
                 }
             }
-        //if using Custom Spache test but Spache word list is not included then ask them about it
-        if (project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomSpacheSignature())) &&
+        // if using Custom Spache test but Spache word list is not included then ask them about it
+        if (project->GetFormulaParser().is_function_used(
+            ReadabilityFormulaParser::SignatureToFunctionName(
+                ReadabilityFormulaParser::GetCustomSpacheSignature())) &&
             !IsIncludingSpacheList())
             {
-            if (wxMessageBox(_("The Spache formula is being used for this test, but the standard Spache word list is not being included. Do you wish to include this word list?"),
-                        _("Settings Conflict"), wxYES_NO|wxICON_QUESTION) == wxYES)
+            if (wxMessageBox(
+                _("The Spache formula is being used for this test, "
+                  "but the standard Spache word list is not being included. "
+                  "Do you wish to include this word list?"),
+                _("Settings Conflict"), wxYES_NO|wxICON_QUESTION) == wxYES)
                 {
                 SetIncludingSpacheList(true);
                 TransferDataToWindow();
                 }
             }
-        //if using Custom HJ test but HJ word list is not included then ask them about it
-        if (project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) &&
+        // if using Custom HJ test but HJ word list is not included then ask them about it
+        if (project->GetFormulaParser().is_function_used(
+                ReadabilityFormulaParser::SignatureToFunctionName(
+                    ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) &&
             !IsIncludingHJList())
             {
-            if (wxMessageBox(_("The Harris-Jacobson formula is being used for this test, but the standard Harris-Jacobson word list is not being included. Do you wish to include this word list?"),
-                        _("Settings Conflict"), wxYES_NO|wxICON_QUESTION) == wxYES)
+            if (wxMessageBox(
+                _("The Harris-Jacobson formula is being used for this test, "
+                  "but the standard Harris-Jacobson word list is not being included. "
+                  "Do you wish to include this word list?"),
+                _("Settings Conflict"), wxYES_NO|wxICON_QUESTION) == wxYES)
                 {
                 SetIncludingHJList(true);
                 TransferDataToWindow();
                 }
             }
-        if (project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) &&
+        if (project->GetFormulaParser().is_function_used(
+                ReadabilityFormulaParser::SignatureToFunctionName(
+                    ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) &&
             GetProperNounMethod() != static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()))
             {
             std::vector<WarningMessage>::iterator warningIter =
@@ -136,7 +154,8 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                     {
                     if (warningIter->GetPreviousResponse() == wxID_YES)
                         {
-                        SetProperNounMethod(static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()) );
+                        SetProperNounMethod(
+                            static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()) );
                         TransferDataToWindow();
                         }
                     }
@@ -150,7 +169,8 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                     const int dlgResponse = msg.ShowModal();
                     if (dlgResponse == wxID_YES)
                         {
-                        SetProperNounMethod(static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()) );
+                        SetProperNounMethod(
+                            static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()) );
                         TransferDataToWindow();
                         }
                     if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
@@ -162,74 +182,111 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                     }
                 }
             }
-        //HJ has really specific rules, so if using Custom HJ then nag the user about using similar options to HJ
-        if (project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) &&
+        // HJ has really specific rules, so if using Custom HJ then
+        // nag the user about using similar options to HJ
+        if (project->GetFormulaParser().is_function_used(
+                ReadabilityFormulaParser::SignatureToFunctionName(
+                    ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) &&
             !IsIncludingNumeric())
             {
             std::vector<WarningMessage>::iterator warningIter =
-                wxGetApp().GetAppOptions().GetWarning(_DT(L"custom-test-numeral-settings-adjustment-required"));
+                wxGetApp().GetAppOptions().GetWarning(
+                    _DT(L"custom-test-numeral-settings-adjustment-required"));
             if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
                 warningIter->ShouldBeShown())
-                { wxMessageBox(warningIter->GetMessage(), wxGetApp().GetAppName(), warningIter->GetFlags(), this); }
+                {
+                wxMessageBox(warningIter->GetMessage(), wxGetApp().GetAppName(),
+                             warningIter->GetFlags(), this);
+                }
             SetIncludingNumeric(true);
             TransferDataToWindow();
             }
-        // If formula is using any custom familiar word logic, then make sure at least one word list is defined
-        if ((project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) ||
+        // If formula is using any custom familiar word logic,
+        // then make sure at least one word list is defined
+        if ((project->GetFormulaParser().is_function_used(
+                ReadabilityFormulaParser::SignatureToFunctionName(
+                    ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) ||
             project->GetFormulaParser().is_function_used("UnfamiliarWordCount") ||
             project->GetFormulaParser().is_function_used("FamiliarWordCount") ||
             project->GetFormulaParser().is_function_used("UniqueUnfamiliarWordCount") ||
-            project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomSpacheSignature())) ||
-            project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) )
+            project->GetFormulaParser().is_function_used(
+                ReadabilityFormulaParser::SignatureToFunctionName(
+                    ReadabilityFormulaParser::GetCustomSpacheSignature())) ||
+            project->GetFormulaParser().is_function_used(
+                ReadabilityFormulaParser::SignatureToFunctionName(
+                    ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) )
             &&
-            (!IsIncludingCustomWordList() && !IsIncludingSpacheList() && !IsIncludingHJList() && !IsIncludingDaleChallList() && !IsIncludingStockerList()))
+            (!IsIncludingCustomWordList() && !IsIncludingSpacheList() &&
+             !IsIncludingHJList() && !IsIncludingDaleChallList() && !IsIncludingStockerList()))
             {
-            wxMessageBox(_("Familiar words not defined.\n\nThis formula requires an unfamiliar word list to be selected."),
-                        _("Error in Formula"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(
+                _("Familiar words not defined.\n\n"
+                  "This formula requires an unfamiliar word list to be selected."),
+                _("Error in Formula"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
-        // ...and vice versa. If they defined custom familiar word logic but the formula is not using it
-        // then at least point that out to make sure that was the intention
-        if ((!project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) &&
+        // ...and vice versa. If they defined custom familiar word logic but the formula is
+        // not using it then at least point that out to make sure that was the intention
+        if ((!project->GetFormulaParser().is_function_used(
+                ReadabilityFormulaParser::SignatureToFunctionName(
+                    ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) &&
             !project->GetFormulaParser().is_function_used("UnfamiliarWordCount") &&
             !project->GetFormulaParser().is_function_used("FamiliarWordCount") &&
             !project->GetFormulaParser().is_function_used("UniqueUnfamiliarWordCount") &&
-            !project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomSpacheSignature())) &&
-            !project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) )
-            &&
-            (IsIncludingCustomWordList() || IsIncludingSpacheList() || IsIncludingHJList() || IsIncludingDaleChallList() || IsIncludingStockerList()))
+            !project->GetFormulaParser().is_function_used(
+                ReadabilityFormulaParser::SignatureToFunctionName(
+                    ReadabilityFormulaParser::GetCustomSpacheSignature())) &&
+            !project->GetFormulaParser().is_function_used(
+                ReadabilityFormulaParser::SignatureToFunctionName(
+                    ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) ) &&
+            (IsIncludingCustomWordList() || IsIncludingSpacheList() ||
+             IsIncludingHJList() || IsIncludingDaleChallList() || IsIncludingStockerList()))
             {
-            wxMessageBox(_("An unfamiliar word list has been defined, but the formula is not using it. Unfamiliar word list definitions will be ignored."),
-                        _("Warning"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(
+                _("An unfamiliar word list has been defined, but the formula is not using it. "
+                  "Unfamiliar word list definitions will be ignored."),
+                _("Warning"), wxOK|wxICON_EXCLAMATION);
             }
-        if ((project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) ||
-            project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomSpacheSignature())) ||
-            project->GetFormulaParser().is_function_used(ReadabilityFormulaParser::SignatureToFunctionName(ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) ) &&
+        if ((project->GetFormulaParser().is_function_used(
+                ReadabilityFormulaParser::SignatureToFunctionName(
+                    ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) ||
+            project->GetFormulaParser().is_function_used(
+                ReadabilityFormulaParser::SignatureToFunctionName(
+                    ReadabilityFormulaParser::GetCustomSpacheSignature())) ||
+            project->GetFormulaParser().is_function_used(
+                ReadabilityFormulaParser::SignatureToFunctionName(
+                    ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) ) &&
             m_testTypeCombo->GetSelection() != static_cast<int>(readability::readability_test_type::grade_level))
             {
-            wxMessageBox(_("Custom familiar word tests must return a grade level result. Test type has been reset to grade level."),
-                         _("Warning"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(
+                _("Custom familiar word tests must return a grade level result. "
+                  "Test type has been reset to grade level."),
+                _("Warning"), wxOK|wxICON_EXCLAMATION);
             SetTestType(static_cast<int>(readability::readability_test_type::grade_level));
             TransferDataToWindow();
             }
         if (promptOnSuccess)
             {
             const wxString calculatedValueMsg = !isUsingActiveProject ? L"" :
-                wxString().FromDouble(project->GetFormulaParser().evaluate(), 1).Prepend(_("Calculated value: ")).Prepend(L"\n\n");
+                wxString().FromDouble(project->GetFormulaParser().evaluate(), 1).
+                    Prepend(_("Calculated value: ")).Prepend(L"\n\n");
             wxMessageBox(_("Formula is valid; no syntax errors were detected." + calculatedValueMsg),
                          _("Formula Validated"), wxOK|wxICON_INFORMATION);
             }
         }
     catch (const std::exception& exp)
         {
-        wxMessageBox(wxString::Format(_("%s\nPlease verify the syntax of the formula."), exp.what()),
-                     _("Error in Formula"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(wxString::Format(
+            _("%s\nPlease verify the syntax of the formula."), exp.what()),
+            _("Error in Formula"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
     catch (...)
         {
-        wxMessageBox(_("An unknown error occurred while validating the formula. Please verify the syntax of the formula."),
-                     _("Error in Formula"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(
+            _("An unknown error occurred while validating the formula. "
+              "Please verify the syntax of the formula."),
+            _("Error in Formula"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
 
@@ -268,12 +325,14 @@ void CustomTestDlg::OnContextHelp([[maybe_unused]] wxHelpEvent& event)
 //-------------------------------------------------------------
 void CustomTestDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
     {
-    wxLaunchDefaultBrowser(wxFileName::FileNameToURL(wxGetApp().GetMainFrame()->GetHelpDirectory() +
+    wxLaunchDefaultBrowser(
+        wxFileName::FileNameToURL(wxGetApp().GetMainFrame()->GetHelpDirectory() +
         wxFileName::GetPathSeparator() + _DT(L"custom-test-dialog.html")));
     }
 
 //------------------------------------------------------
-bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style)
+bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& caption,
+                           const wxPoint& pos, const wxSize& size, long style)
     {
     wxDialog::Create(parent, id, caption, pos, size, style);
     SetExtraStyle(GetExtraStyle()|wxWS_EX_VALIDATE_RECURSIVELY|wxWS_EX_CONTEXTHELP);
@@ -429,6 +488,14 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
 
     m_sideBarBook->SetSelection(0);
 
+    Bind(wxEVT_HELP, &CustomTestDlg::OnContextHelp, this);
+    Bind(wxEVT_BUTTON, &CustomTestDlg::OnHelp, this, wxID_HELP);
+    Bind(wxEVT_BUTTON, &CustomTestDlg::OnOK, this, wxID_OK);
+    Bind(wxEVT_BUTTON, &CustomTestDlg::OnValidateFormulaClick, this,
+        CustomTestDlg::ID_VALIDATE_FORMULA_BUTTON);
+    Bind(wxEVT_BUTTON, &CustomTestDlg::OnInsertFunctionClick, this,
+        CustomTestDlg::ID_INSERT_FUNCTION_BUTTON);
+
     return true;
     }
 
@@ -446,7 +513,7 @@ void CustomTestDlg::CreateControls()
     m_sideBarBook->GetImageList().push_back(
         wxGetApp().GetResourceManager().GetSVG(L"ribbon/bullet.svg"));
 
-    //general page
+    // general page
         {
         wxPanel* mainPage = new wxPanel(m_sideBarBook, ID_GENERAL_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
@@ -594,7 +661,7 @@ void CustomTestDlg::CreateControls()
             m_wordListsPropertyGrid->SetPropertyAttribute(GetFamiliarWordsOnAllLabel(), wxPG_BOOL_USE_CHECKBOX, true);
             m_wordListsPropertyGrid->SetPropertyHelpString(GetFamiliarWordsOnAllLabel(), _("Check this option to consider words familiar only if they appear on your custom list and other selected lists.\n\nThis option is only recommended for special situations where you only want to find words that appear within a union of your word list and another list(s) (e.g., Spache)."));
 
-            pgMan->SetDescBoxHeight(FromDIP(wxSize(125,125)).GetHeight());
+            pgMan->SetDescBoxHeight(FromDIP(wxSize(125, 125)).GetHeight());
 
             pgMan->SelectProperty(GetCustomFamiliarWordListLabel());
 
@@ -611,7 +678,7 @@ void CustomTestDlg::CreateControls()
 
             wxPropertyGridManager* pgMan = new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
             m_properNounsNumbersPropertyGrid = pgMan->AddPage();
-            //proper nouns
+            // proper nouns
             m_properNounsNumbersPropertyGrid->Append(new wxPropertyCategory(GetProperNounsLabel()) );
             wxPGChoices properNounMethods;
             properNounMethods.Add(_("Count as unfamiliar"));
@@ -619,7 +686,7 @@ void CustomTestDlg::CreateControls()
             properNounMethods.Add(_("Count only first occurrence of each as unfamiliar"));
             m_properNounsNumbersPropertyGrid->Append(new wxEnumProperty(GetFamiliarityLabel(), wxPG_LABEL, properNounMethods, 1) );
             m_properNounsNumbersPropertyGrid->SetPropertyHelpString(GetFamiliarityLabel(), _("Controls how proper nouns are handled in terms of being familiar words."));
-            //nouns
+            // nouns
             m_properNounsNumbersPropertyGrid->Append(new wxPropertyCategory(GetNumeralsLabel()) );
             m_properNounsNumbersPropertyGrid->Append(new wxBoolProperty(GetNumeralsAsFamiliarLabel(),wxPG_LABEL,true));
             m_properNounsNumbersPropertyGrid->SetPropertyAttribute(GetNumeralsAsFamiliarLabel(), wxPG_BOOL_USE_CHECKBOX, true);
@@ -631,31 +698,39 @@ void CustomTestDlg::CreateControls()
             }
         }
 
-    //new project wizard options
+    // new project wizard options
         {
-        wxPanel* wizardPage = new wxPanel(m_sideBarBook, ID_CLASSIFICATION_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxPanel* wizardPage = new wxPanel(m_sideBarBook, ID_CLASSIFICATION_PAGE,
+                                          wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* wizardPageSizer = new wxBoxSizer(wxVERTICAL);
         wizardPage->SetSizer(wizardPageSizer);
         m_sideBarBook->AddPage(wizardPage, _("Classification"), ID_CLASSIFICATION_PAGE, false);
 
         m_associationPropertyGrid = new wxPropertyGrid(wizardPage);
-        m_associationPropertyGrid->Append(new wxPropertyCategory(_("Associate with industry")) );
+        m_associationPropertyGrid->Append(
+            new wxPropertyCategory(_("Associate with industry")) );
         for (size_t i = 0; i < m_professionNames.GetCount(); ++i)
             {
-            m_associationPropertyGrid->Append(new wxBoolProperty(m_professionNames[i],wxPG_LABEL,false));
-            m_associationPropertyGrid->SetPropertyAttribute(m_professionNames[i], wxPG_BOOL_USE_CHECKBOX, true);
+            m_associationPropertyGrid->Append(
+                new wxBoolProperty(m_professionNames[i],wxPG_LABEL,false));
+            m_associationPropertyGrid->SetPropertyAttribute(
+                m_professionNames[i], wxPG_BOOL_USE_CHECKBOX, true);
             }
-        m_associationPropertyGrid->Append(new wxPropertyCategory(_("Associate with document type")) );
+        m_associationPropertyGrid->Append(
+            new wxPropertyCategory(_("Associate with document type")) );
         for (size_t i = 0; i < m_documentNames.GetCount(); ++i)
             {
-            m_associationPropertyGrid->Append(new wxBoolProperty(m_documentNames[i],wxPG_LABEL,false));
-            m_associationPropertyGrid->SetPropertyAttribute(m_documentNames[i], wxPG_BOOL_USE_CHECKBOX, true);
+            m_associationPropertyGrid->Append(
+                new wxBoolProperty(m_documentNames[i],wxPG_LABEL,false));
+            m_associationPropertyGrid->SetPropertyAttribute(
+                m_documentNames[i], wxPG_BOOL_USE_CHECKBOX, true);
             }
 
         wizardPageSizer->Add(m_associationPropertyGrid, 1, wxEXPAND);
         }
 
-    mainSizer->Add(CreateSeparatedButtonSizer(wxOK|wxCANCEL|wxHELP), 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(CreateSeparatedButtonSizer(wxOK|wxCANCEL|wxHELP), 0,
+                   wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
 
     SetSizerAndFit(mainSizer);
 
@@ -676,14 +751,14 @@ void CustomTestDlg::CreateControls()
 void CustomTestDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
-    //trim off whitespace off of test name and then validate it (if applicable)
+    // trim off whitespace off of test name and then validate it (if applicable)
     m_testName.Trim(true).Trim(false);
 
-    //validate the formula
+    // validate the formula
     if (!ValidateFormula())
         { return; }
 
-    //validate the test name
+    // validate the test name
     if (m_testNameCtrl)
         {
         //if a new test, then make sure it isn't empty
@@ -693,32 +768,40 @@ void CustomTestDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
                     _("Error"), wxOK|wxICON_EXCLAMATION);
             return;
             }
-        //or that the name is already taken
-        if (std::find(BaseProject::m_custom_word_tests.begin(), BaseProject::m_custom_word_tests.end(), m_testName) != BaseProject::m_custom_word_tests.end())
+        // or that the name is already taken
+        if (std::find(BaseProject::m_custom_word_tests.cbegin(),
+                      BaseProject::m_custom_word_tests.cend(), m_testName) !=
+            BaseProject::m_custom_word_tests.cend())
             {
             wxMessageBox(
-                wxString::Format(_("There is a test named \"%s\" already. Please enter a different name."), m_testName),
+                wxString::Format(
+                _("There is a test named \"%s\" already. "
+                  "Please enter a different name."), m_testName),
                 _("Error"), wxOK|wxICON_ERROR);
             return;
             }
-        //check for the same name in the standard tests too
+        // check for the same name in the standard tests too
         readability::readability_test_collection<> standardTests;
         BaseProject::ResetStandardReadabilityTests(standardTests);
         if (standardTests.has_test(m_testName))
             {
             wxMessageBox(
-                wxString::Format(_("There is a standard test with the name \"%s\" already. Please enter a different name."), m_testName),
+                wxString::Format(
+                _("There is a standard test with the name \"%s\" already. "
+                  "Please enter a different name."), m_testName),
                 _("Error"), wxOK|wxICON_ERROR);
             return;
             }
-        //check against names of statistics
+        // check against names of statistics
         if (m_testName.CmpNoCase(BaseProjectView::GetAverageLabel()) == 0 ||
             m_testName.CmpNoCase(BaseProjectView::GetMedianLabel()) == 0 ||
             m_testName.CmpNoCase(BaseProjectView::GetModeLabel()) == 0 ||
             m_testName.CmpNoCase(BaseProjectView::GetStdDevLabel()) == 0)
             {
             wxMessageBox(
-                wxString::Format(_("The name \"%s\" is already in use as a statistic. Please enter a different name."), m_testName),
+                wxString::Format(
+                _("The name \"%s\" is already in use as a statistic. "
+                  "Please enter a different name."), m_testName),
                 _("Error"), wxOK|wxICON_ERROR);
             return;
             }
@@ -730,7 +813,8 @@ void CustomTestDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         return;
         }
 
-    //ordering of this combobox doesn't match up exactly with enum that it reflects, so handle that here
+    // ordering of this combobox doesn't match up exactly with
+    // enum that it reflects, so handle that here
     switch (m_testTypeCombo->GetSelection())
         {
     case 0:
@@ -739,7 +823,7 @@ void CustomTestDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     case 1:
         m_testType = 1;
         break;
-    //we don't use all the values in the readability_test_type enum
+    // we don't use all the values in the readability_test_type enum
     case 2:
         m_testType = 3;
         break;
@@ -748,14 +832,19 @@ void CustomTestDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         };
 
     if (GetStemmingType() == stemming::stemming_type::german &&
-        static_cast<readability::proper_noun_counting_method>(GetProperNounMethod()) != readability::proper_noun_counting_method::all_proper_nouns_are_unfamiliar)
+        static_cast<readability::proper_noun_counting_method>(GetProperNounMethod()) !=
+        readability::proper_noun_counting_method::all_proper_nouns_are_unfamiliar)
         {
         std::vector<WarningMessage>::iterator warningIter =
             wxGetApp().GetAppOptions().GetWarning(_DT(L"german-no-proper-noun-support"));
         if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
             warningIter->ShouldBeShown())
-            { wxMessageBox(warningIter->GetMessage(), wxGetApp().GetAppName(), warningIter->GetFlags(), this); }
-        SetProperNounMethod(static_cast<int>(readability::proper_noun_counting_method::all_proper_nouns_are_unfamiliar));
+            {
+            wxMessageBox(warningIter->GetMessage(),
+                         wxGetApp().GetAppName(), warningIter->GetFlags(), this);
+            }
+        SetProperNounMethod(
+            static_cast<int>(readability::proper_noun_counting_method::all_proper_nouns_are_unfamiliar));
         TransferDataToWindow();
         }
 
@@ -768,7 +857,8 @@ void CustomTestDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
 //---------------------------------------------
 void CustomTestDlg::SetStemmingType(stemming::stemming_type stemType)
     {
-    m_wordListsPropertyGrid->SetPropertyValue(GetStemmingLanguageLabel(), static_cast<int>(stemType));
+    m_wordListsPropertyGrid->SetPropertyValue(
+        GetStemmingLanguageLabel(), static_cast<int>(stemType));
     }
 
 //-------------------------------------------------------------

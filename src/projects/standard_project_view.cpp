@@ -241,7 +241,7 @@ void ProjectView::OnExportAll([[maybe_unused]] wxCommandEvent& event)
         {
         ExportAllToHtml(dlg.GetFilePath(), dlg.GetExportGraphExt(),
             dlg.IsExportingHardWordLists(), dlg.IsExportingSentencesBreakdown(),
-            dlg.IsExportingTestResults(), dlg.IsExportingStatistics(), dlg.IsExportingWordiness(),
+            dlg.IsExportingTestResults(), dlg.IsExportingStatistics(), dlg.IsExportingGrammar(),
             dlg.IsExportingSightWords(),
             dlg.IsExportingLists(),
             dlg.IsExportingTextReports(),
@@ -251,7 +251,7 @@ void ProjectView::OnExportAll([[maybe_unused]] wxCommandEvent& event)
         {
         ExportAll(dlg.GetFolderPath(), dlg.GetExportListExt(), dlg.GetExportTextViewExt(), dlg.GetExportGraphExt(),
             dlg.IsExportingHardWordLists(), dlg.IsExportingSentencesBreakdown(),
-            dlg.IsExportingTestResults(), dlg.IsExportingStatistics(), dlg.IsExportingWordiness(),
+            dlg.IsExportingTestResults(), dlg.IsExportingStatistics(), dlg.IsExportingGrammar(),
             dlg.IsExportingSightWords(),
             dlg.IsExportingLists(),
             dlg.IsExportingTextReports(),
@@ -266,7 +266,7 @@ void ProjectView::OnExportAll([[maybe_unused]] wxCommandEvent& event)
     doc->ExportSentencesBreakdown(dlg.IsExportingSentencesBreakdown());
     doc->ExportTestResults(dlg.IsExportingTestResults());
     doc->ExportStatistics(dlg.IsExportingStatistics());
-    doc->ExportWordiness(dlg.IsExportingWordiness());
+    doc->ExportWordiness(dlg.IsExportingGrammar());
     doc->ExportSightWords(dlg.IsExportingSightWords());
     doc->ExportLists(dlg.IsExportingLists());
     doc->ExportTextReports(dlg.IsExportingTextReports());

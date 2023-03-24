@@ -32,13 +32,15 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     m_ribbonHoverFontColor(*wxBLACK),
     m_ribbonActiveFontColor(*wxBLACK),
     m_ribbonInactiveFontColor(*wxBLACK),
+
     m_sideBarBackgroundColor(wxColour(200, 211, 231)), // Serenity
     m_sideBarParentColor(wxColour(180, 189, 207)), // slightly darker
     m_sideBarActiveColor(wxT("#FDB759")), // orange
     m_sideBarActiveFontColor(*wxBLACK),
+    m_sideBarFontColor(*wxBLACK),
     m_sideBarHoverColor(wxColour(253, 211, 155)), // slightly lighter
     m_sideBarHoverFontColor(*wxBLACK),
-    m_sideBarFontColor(*wxBLACK),
+
     m_startPageBackstageBackgroundColor(wxColour(145,168,208)),
     m_startPageDetailBackgroundColor(*wxWHITE),
     //graph information

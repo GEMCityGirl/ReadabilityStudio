@@ -71,10 +71,10 @@ public:
             is_known_personal_nouns(known_personal_nouns),
             is_copyright_phrase(copyright_phrases),
             is_citation_phrase(citation_phrases),
+            m_stop_list(stop_list),
             is_correctly_spelled(known_spellings, secondary_known_spellings,
                                  programming_known_spellings, false,
-                                 true, true, true, false, true, true),
-            m_stop_list(stop_list)
+                                 true, true, true, false, true, true)
         {}
 
 #ifdef __UNITTEST
@@ -898,7 +898,7 @@ public:
 
     void set_allowable_incomplete_sentence_size(const size_t size) noexcept
         { m_allowable_incomplete_sentence_size = size; }
-    size_t get_allowable_incomplete_sentence_size() noexcept
+    size_t get_allowable_incomplete_sentence_size() const noexcept
         { return m_allowable_incomplete_sentence_size; }
 
     void set_syllabizer(grammar::base_syllabize* syllabizer) noexcept
