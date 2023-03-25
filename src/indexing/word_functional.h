@@ -853,15 +853,15 @@ private:
     bool is_colloquialisms(const word_typeT& the_word) const
         {
         typename wordlistT::word_type alteredWord = the_word.c_str();
-        //strip off "'s" to make things simple
+        // strip off "'s" to make things simple
         if (alteredWord.length() >= 3 &&
             traits::case_insensitive_ex::eq(alteredWord[alteredWord.length()-1], L's') &&
             characters::is_character::is_single_quote(alteredWord[alteredWord.length()-2]))
             { alteredWord.erase(alteredWord.length()-2); }
         if (alteredWord.length() < 2)
             { return false; }
-        //Condense triple (or even longer) same-letter sequences.
-        //This will make "Nooooooooo!" look like "No!".
+        // Condense triple (or even longer) same-letter sequences.
+        // This will make "Nooooooooo!" look like "No!".
         size_t currentLetterSequenceLength = 1;
         for (size_t i = 0; i < alteredWord.length()-1; ++i)
             {
@@ -870,7 +870,10 @@ private:
             else
                 {
                 if (currentLetterSequenceLength >= 3)
-                    { alteredWord.erase(i-(currentLetterSequenceLength-1), (currentLetterSequenceLength-1)); }
+                    {
+                    alteredWord.erase(i-(currentLetterSequenceLength-1),
+                                         (currentLetterSequenceLength-1));
+                    }
                 currentLetterSequenceLength = 1;
                 }
             }
@@ -895,6 +898,23 @@ private:
             characters::is_character::is_consonant(alteredWord[alteredWord.length()-3]) &&
             characters::is_character::is_consonant(alteredWord[alteredWord.length()-4]) &&
             characters::is_character::is_vowel(alteredWord[alteredWord.length()-5]) &&
+            !is_on_list(alteredWord))
+            { alteredWord.replace(alteredWord.length()-2, 2, L"ers"); }
+        // "player" -> "playa"
+        else if (alteredWord.length() >= 4 &&
+            traits::case_insensitive_ex::eq(alteredWord[alteredWord.length()-1], L'a') &&
+            characters::is_character::is_either<wchar_t>(
+                alteredWord[alteredWord.length()-2], L'y', L'Y') &&
+            characters::is_character::is_vowel(alteredWord[alteredWord.length()-3]) &&
+            !is_on_list(alteredWord))
+            { alteredWord.replace(alteredWord.length()-1, 1, L"er"); }
+        // "players" -> "playas"
+        else if (alteredWord.length() >= 5 &&
+            traits::case_insensitive_ex::eq(alteredWord[alteredWord.length()-1], L's') &&
+            traits::case_insensitive_ex::eq(alteredWord[alteredWord.length()-2], L'a') &&
+            characters::is_character::is_either<wchar_t>(
+                alteredWord[alteredWord.length()-3], L'y', L'Y') &&
+            characters::is_character::is_vowel(alteredWord[alteredWord.length()-4]) &&
             !is_on_list(alteredWord))
             { alteredWord.replace(alteredWord.length()-2, 2, L"ers"); }
         return is_on_list(alteredWord);

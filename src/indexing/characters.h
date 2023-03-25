@@ -110,6 +110,9 @@ namespace characters
                     ch;
             }
         /** @returns @c true if a character is a vowel.
+            @note 'Y' is included here as it usually used as a vowel.\n
+                It is recommended to handle 'y' in a special way whenever
+                analyzing text.
             @param letter The letter to be reviewed.*/
         [[nodiscard]]
         static constexpr bool is_vowel(const wchar_t letter) noexcept
@@ -175,6 +178,9 @@ namespace characters
                     is_either<wchar_t>(letter, 0x042F, 0x044F) );
             }
         /** @returns @c true if a character is a consonant.
+            @note 'Y' is not included here as it usually used as a vowel.\n
+                It is recommended to handle 'y' in a special way whenever
+                analyzing text.
             @param letter The letter to be reviewed.*/
         [[nodiscard]]
         static constexpr bool is_consonant(const wchar_t letter) noexcept
@@ -603,7 +609,6 @@ namespace characters
                      // control characters
                      ((ch >= 0x00) && (ch <= 0x20)) );
             }
-    private:
         /// @brief Determines if a given value is either of two other given values.
         /// @param value The value to compare with.
         /// @param first The first value to compare against.
