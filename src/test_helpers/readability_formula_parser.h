@@ -15,7 +15,7 @@
 #include <wx/wx.h>
 #include <vector>
 #include <limits>
-#include "../../../../SRC/tinyexpr-plusplus/tinyexpr.h"
+#include "../tinyexpr-plusplus/tinyexpr.h"
 
 /// @private
 class BaseProject;

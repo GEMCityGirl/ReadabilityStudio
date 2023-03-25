@@ -15,7 +15,7 @@
 #include <wx/choicdlg.h>
 #include "../../../../SRC/wxTools/wxWebHarvester.h"
 #include "../../../../SRC/wxTools/wxWebHarvesterDlg.h"
-#include "../../../../SRC/wxTools/ExcelPreviewDlg.h"
+#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/excelpreviewdlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/getdirdlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/archivedlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/listctrlex.h"

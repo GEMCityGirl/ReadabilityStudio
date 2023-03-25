@@ -31,8 +31,8 @@ public:
     void CopyDocumentLevelSettings(const BaseProjectDoc& that);
 
     static bool AddGlobalCustomReadabilityTest(CustomReadabilityTest& customTest);
-    /// When we switched to the Tinyexpr formula engine, the syntax slightly changed,
-    /// so this updates custom test formulas to work with the new parser.
+    /// When we switched to the Tinyexpr formula engine (circa 2019),
+    /// the syntax slightly changed, so this updates custom test formulas to work with the new parser.
     static CustomReadabilityTest::string_type UpdateCustumReadabilityTest(const CustomReadabilityTest::string_type& formula);
     static void RemoveGlobalCustomReadabilityTest(const wxString& testName);
     static void RemoveAllGlobalCustomReadabilityTests();
