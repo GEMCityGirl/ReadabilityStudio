@@ -1,12 +1,8 @@
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/matchers/catch_matchers.hpp>
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
-#include <fstream>
-#include <iostream>
 #include "../src/indexing/article.h"
 #include "../src/indexing/word_collection.h"
-#include "../src/indexing/spanish_syllabize.h"
-#include "../src/indexing/german_syllabize.h"
 #include "../src/indexing/word.h"
 
 using namespace grammar;
@@ -14,11 +10,11 @@ using namespace grammar;
 using MYWORD = word<traits::case_insensitive_ex,
     stemming::english_stem<std::basic_string<wchar_t, traits::case_insensitive_ex> > >;
 
+extern word_list Stop_list;
+
 TEST_CASE("Sentences", "[sentence]")
     {
     grammar::english_syllabize ENsyllabizer;
-    grammar::spanish_syllabize ESsyllabizer;
-    grammar::german_syllabize DEsyllabizer;
     stemming::english_stem<std::wstring> ENStemmer;
     grammar::is_english_coordinating_conjunction is_conjunction;
     grammar::is_incorrect_english_article is_english_mismatched_article;
@@ -31,17 +27,6 @@ TEST_CASE("Sentences", "[sentence]")
     word_list Known_spellings;
     word_list Secondary_known_spellings;
     word_list Programming_known_spellings;
-    word_list Stop_list;
-
-    std::wifstream inputFile(L"WesternAbbr.txt");
-    if (!inputFile.is_open())
-        { FAIL("Abbreviation file failed to load."); }
-    std::wstring line;
-    std::wstring buffer;
-    while (std::getline(inputFile, line))
-        { buffer.append(L"\n").append(line); }
-
-    is_abbreviation::get_abbreviations().load_words(buffer.c_str(), true, false);
 
     SECTION("EndingWithDashEndingSentence")
         {
@@ -541,5 +526,648 @@ TEST_CASE("Sentences", "[sentence]")
         const wchar_t text[] = L"Uh…Oh!";
         grammar::is_end_of_sentence sent(false);
         CHECK_FALSE(sent(text, wcslen(text), 2, 0, 0));
+        }
+    }
+
+TEST_CASE("Sentences Incomplete", "[sentence]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Colon Ending Sentence")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+            &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings,
+            &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Chapter, 1:\n\nIt's a dark, stormy night (at Bob's house):\n\nThe end";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_complete_sentence_count() == 2);
+        CHECK(doc.get_valid_paragraph_count() == 2);
+        CHECK(doc.get_valid_word_count() == 10);
+        }
+    SECTION("Semi Colon Ending Sentence")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Chapter, 1;\n\nIt's a dark, stormy night (at Bob's house);\n\nThe end";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_complete_sentence_count() == 2);
+        CHECK(doc.get_valid_paragraph_count() == 2);
+        CHECK(doc.get_valid_word_count() == 10);
+        }
+    SECTION("Semi Colon Ending All Sentence")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Chapter, 1;\n\nIt's a dark, stormy night (at Bob's house);\n\nThe end;";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_complete_sentence_count() == 3);
+        CHECK(doc.get_valid_paragraph_count() == 3);
+        CHECK(doc.get_valid_word_count() == 12);
+        }
+    SECTION("Semi Colon Not Ending Sentence")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"It was good;\ntherefore, they were happy.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_valid_word_count() == 7);
+        }
+    SECTION("Abbreviation Header")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Tyson\n\nvs.\n\nDouglas";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::header);
+
+        CHECK(doc.get_sentences()[0].is_valid() == false);
+        CHECK(doc.get_sentences()[1].is_valid() == false);
+        CHECK(doc.get_sentences()[2].is_valid() == false);
+        CHECK(doc.get_valid_word_count() == 0);
+        CHECK(doc.get_valid_paragraph_count() == 0);
+        CHECK(doc.get_complete_sentence_count() == 0);
+        }
+    SECTION("Abbreviation Header Valid")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction,
+            &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns,
+            &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings,
+            &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Tyson\n\nvs.\n\nDouglas";
+        doc.treat_header_words_as_valid(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::header);
+
+        CHECK(doc.get_sentences()[0].is_valid());
+        CHECK(doc.get_sentences()[1].is_valid());
+        CHECK(doc.get_sentences()[2].is_valid());
+        CHECK(doc.get_valid_word_count() == 3);
+        CHECK(doc.get_valid_paragraph_count() == 3);
+        CHECK(doc.get_complete_sentence_count() == 3);
+        }
+    SECTION("Header")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Dark Night\n\nBy Blake Madden\n\nIt was a night. It was a dark night.\n\nThe End of this great book";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[3].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[4].get_type() == sentence_paragraph_type::header);
+        }
+    SECTION("Header Is Valid")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Dark Night\n\nBy Blake Madden\n\nIt was a night. It was a dark night.\n\nThe End of this great book";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[3].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[4].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[0].is_valid() == false);
+        CHECK(doc.get_sentences()[1].is_valid() == false);
+        CHECK(doc.get_sentences()[2].is_valid() == true);
+        CHECK(doc.get_sentences()[3].is_valid() == true);
+        CHECK(doc.get_sentences()[4].is_valid() == false);
+
+        document<MYWORD> doc2(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        doc2.treat_header_words_as_valid(true);
+        doc2.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc2.get_sentences()[0].get_type() == sentence_paragraph_type::header);
+        CHECK(doc2.get_sentences()[1].get_type() == sentence_paragraph_type::header);
+        CHECK(doc2.get_sentences()[2].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc2.get_sentences()[3].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc2.get_sentences()[4].get_type() == sentence_paragraph_type::header);
+        CHECK(doc2.get_sentences()[0].is_valid() == true);
+        CHECK(doc2.get_sentences()[1].is_valid() == true);
+        CHECK(doc2.get_sentences()[2].is_valid() == true);
+        CHECK(doc2.get_sentences()[3].is_valid() == true);
+        CHECK(doc2.get_sentences()[4].is_valid() == true);
+        }
+    SECTION("Header2")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Dark Night\n\nIt was a night. It was a dark night.\n\nThe End of this great book";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[3].get_type() == sentence_paragraph_type::header);
+        }
+    SECTION("List")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Item 1\n\nItem 2\n\nItem 3\n\nIt was a night.\n\nThe End of this great book";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[3].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[4].get_type() == sentence_paragraph_type::header);
+        }
+    SECTION("List Header Is Valid")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Item 1\n\nItem 2\n\nItem 3\n\nIt was a night.\n\nThe End of this great book";
+        doc.treat_header_words_as_valid(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[3].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[4].get_type() == sentence_paragraph_type::header);
+        }
+    SECTION("All Complete")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Dark Night.\n\nBy Blake Madden.\n\nIt was a night.\n\nThe End of this great book.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[3].get_type() == sentence_paragraph_type::complete);
+        }
+    SECTION("All List")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction,
+            &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Dark Night\n\nBy Blake Madden\n\nThe End of this great book";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::list_item);
+        }
+    SECTION("All Header")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Dark Night\n\nBy Blake Madden";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::header);
+        }
+    SECTION("All")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Dark Night\n\nBy Blake Madden\n\nIt was a night. It was a dark night.\n\nItem 1\n\nItem 2\n\nItem 3\n\nSome sentence.\n\nThe End of this great book";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[3].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[4].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[5].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[6].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[7].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[8].get_type() == sentence_paragraph_type::header);
+        }
+    SECTION("All Header Is Valid")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Dark Night\n\nBy Blake Madden\n\nIt was a night. It was a dark night.\n\nItem 1\n\nItem 2\n\nItem 3\n\nSome sentence.\n\nThe End of this great book";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[3].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[4].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[5].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[6].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[7].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[8].get_type() == sentence_paragraph_type::header);
+
+        CHECK(doc.get_sentences()[0].is_valid() == false);
+        CHECK(doc.get_sentences()[1].is_valid() == false);
+        CHECK(doc.get_sentences()[2].is_valid() == true);
+        CHECK(doc.get_sentences()[3].is_valid() == true);
+        CHECK(doc.get_sentences()[4].is_valid() == false);
+        CHECK(doc.get_sentences()[5].is_valid() == false);
+        CHECK(doc.get_sentences()[6].is_valid() == false);
+        CHECK(doc.get_sentences()[7].is_valid() == true);
+        CHECK(doc.get_sentences()[8].is_valid() == false);
+
+        CHECK(doc.get_words()[0].is_valid() == false);
+        CHECK(doc.get_words()[1].is_valid() == false);
+        CHECK(doc.get_words()[2].is_valid() == false);
+        CHECK(doc.get_words()[3].is_valid() == false);
+        CHECK(doc.get_words()[4].is_valid() == false);
+        CHECK(doc.get_words()[5].is_valid() == true);
+        CHECK(doc.get_words()[6].is_valid() == true);
+        CHECK(doc.get_words()[7].is_valid() == true);
+        CHECK(doc.get_words()[8].is_valid() == true);
+        CHECK(doc.get_words()[9].is_valid() == true);
+        CHECK(doc.get_words()[10].is_valid() == true);
+        CHECK(doc.get_words()[11].is_valid() == true);
+        CHECK(doc.get_words()[12].is_valid() == true);
+        CHECK(doc.get_words()[13].is_valid() == true);
+        CHECK(doc.get_words()[14].is_valid() == false);
+        CHECK(doc.get_words()[15].is_valid() == false);
+        CHECK(doc.get_words()[16].is_valid() == false);
+        CHECK(doc.get_words()[17].is_valid() == false);
+        CHECK(doc.get_words()[18].is_valid() == false);
+        CHECK(doc.get_words()[19].is_valid() == false);
+        CHECK(doc.get_words()[20].is_valid() == true);
+        CHECK(doc.get_words()[21].is_valid() == true);
+        CHECK(doc.get_words()[22].is_valid() == false);
+        CHECK(doc.get_words()[23].is_valid() == false);
+        CHECK(doc.get_words()[24].is_valid() == false);
+        CHECK(doc.get_words()[25].is_valid() == false);
+        CHECK(doc.get_words()[26].is_valid() == false);
+        CHECK(doc.get_words()[27].is_valid() == false);
+
+        document<MYWORD> doc2(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        doc2.treat_header_words_as_valid(true);
+        doc2.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc2.get_sentences()[0].get_type() == sentence_paragraph_type::header);
+        CHECK(doc2.get_sentences()[1].get_type() == sentence_paragraph_type::header);
+        CHECK(doc2.get_sentences()[2].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc2.get_sentences()[3].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc2.get_sentences()[4].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_sentences()[5].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_sentences()[6].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_sentences()[7].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc2.get_sentences()[8].get_type() == sentence_paragraph_type::header);
+
+        CHECK(doc2.get_sentences()[0].is_valid() == true);
+        CHECK(doc2.get_sentences()[1].is_valid() == true);
+        CHECK(doc2.get_sentences()[2].is_valid() == true);
+        CHECK(doc2.get_sentences()[3].is_valid() == true);
+        CHECK(doc2.get_sentences()[4].is_valid() == false);
+        CHECK(doc2.get_sentences()[5].is_valid() == false);
+        CHECK(doc2.get_sentences()[6].is_valid() == false);
+        CHECK(doc2.get_sentences()[7].is_valid() == true);
+        CHECK(doc2.get_sentences()[8].is_valid() == true);
+
+        CHECK(doc2.get_words()[0].is_valid() == true);
+        CHECK(doc2.get_words()[1].is_valid() == true);
+        CHECK(doc2.get_words()[2].is_valid() == true);
+        CHECK(doc2.get_words()[3].is_valid() == true);
+        CHECK(doc2.get_words()[4].is_valid() == true);
+        CHECK(doc2.get_words()[5].is_valid() == true);
+        CHECK(doc2.get_words()[6].is_valid() == true);
+        CHECK(doc2.get_words()[7].is_valid() == true);
+        CHECK(doc2.get_words()[8].is_valid() == true);
+        CHECK(doc2.get_words()[9].is_valid() == true);
+        CHECK(doc2.get_words()[10].is_valid() == true);
+        CHECK(doc2.get_words()[11].is_valid() == true);
+        CHECK(doc2.get_words()[12].is_valid() == true);
+        CHECK(doc2.get_words()[13].is_valid() == true);
+        CHECK(doc2.get_words()[14].is_valid() == false);
+        CHECK(doc2.get_words()[15].is_valid() == false);
+        CHECK(doc2.get_words()[16].is_valid() == false);
+        CHECK(doc2.get_words()[17].is_valid() == false);
+        CHECK(doc2.get_words()[18].is_valid() == false);
+        CHECK(doc2.get_words()[19].is_valid() == false);
+        CHECK(doc2.get_words()[20].is_valid() == true);
+        CHECK(doc2.get_words()[21].is_valid() == true);
+        CHECK(doc2.get_words()[22].is_valid() == true);
+        CHECK(doc2.get_words()[23].is_valid() == true);
+        CHECK(doc2.get_words()[24].is_valid() == true);
+        CHECK(doc2.get_words()[25].is_valid() == true);
+        CHECK(doc2.get_words()[26].is_valid() == true);
+        CHECK(doc2.get_words()[27].is_valid() == true);
+        }
+    SECTION("All Paragraphs Header Is Valid")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Dark Night\n\nBy Blake Madden\n\nIt was a night. It was a dark night.\n\nItem 1\n\nItem 2\n\nItem 3\n\nSome sentence.\n\nThe End of this great book";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::header);
+
+        CHECK(doc.get_paragraphs()[0].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_paragraphs()[1].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_paragraphs()[2].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_paragraphs()[3].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[4].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[5].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[6].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_paragraphs()[7].get_type() == sentence_paragraph_type::header);
+
+        CHECK(doc.get_paragraphs()[0].is_valid() == false);
+        CHECK(doc.get_paragraphs()[1].is_valid() == false);
+        CHECK(doc.get_paragraphs()[2].is_valid() == true);
+        CHECK(doc.get_paragraphs()[3].is_valid() == false);
+        CHECK(doc.get_paragraphs()[4].is_valid() == false);
+        CHECK(doc.get_paragraphs()[5].is_valid() == false);
+        CHECK(doc.get_paragraphs()[6].is_valid() == true);
+        CHECK(doc.get_paragraphs()[7].is_valid() == false);
+        CHECK(doc.get_valid_paragraph_count() == 2);
+
+        document<MYWORD> doc2(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        doc2.treat_header_words_as_valid(true);
+        doc2.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc2.get_paragraphs()[0].get_type() == sentence_paragraph_type::header);
+        CHECK(doc2.get_paragraphs()[1].get_type() == sentence_paragraph_type::header);
+        CHECK(doc2.get_paragraphs()[2].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc2.get_paragraphs()[3].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_paragraphs()[4].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_paragraphs()[5].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_paragraphs()[6].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc2.get_paragraphs()[7].get_type() == sentence_paragraph_type::header);
+
+        CHECK(doc2.get_paragraphs()[0].is_valid() == true);
+        CHECK(doc2.get_paragraphs()[1].is_valid() == true);
+        CHECK(doc2.get_paragraphs()[2].is_valid() == true);
+        CHECK(doc2.get_paragraphs()[3].is_valid() == false);
+        CHECK(doc2.get_paragraphs()[4].is_valid() == false);
+        CHECK(doc2.get_paragraphs()[5].is_valid() == false);
+        CHECK(doc2.get_paragraphs()[6].is_valid() == true);
+        CHECK(doc2.get_paragraphs()[7].is_valid() == true);
+        CHECK(doc2.get_valid_paragraph_count() == 5);
+        }
+    SECTION("Sparse Sentences")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Dark Night\n\nBy Blake Madden\n\n2010\n\nChapter 1.\n\nItem 1\n\nItem 2\n\nItem 3\n\nEpilogue.\n\nThe End of this great book";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[3].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[4].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[5].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[6].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[7].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[8].get_type() == sentence_paragraph_type::header);
+
+        CHECK(doc.get_paragraphs()[0].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[1].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[2].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[3].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[4].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[5].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[6].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[7].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_paragraphs()[8].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_complete_sentence_count() == 1);
+
+        CHECK(doc.get_paragraphs()[0].is_valid() == false);
+        CHECK(doc.get_paragraphs()[1].is_valid() == false);
+        CHECK(doc.get_paragraphs()[2].is_valid() == false);
+        CHECK(doc.get_paragraphs()[3].is_valid() == false);
+        CHECK(doc.get_paragraphs()[4].is_valid() == false);
+        CHECK(doc.get_paragraphs()[5].is_valid() == false);
+        CHECK(doc.get_paragraphs()[6].is_valid() == false);
+        CHECK(doc.get_paragraphs()[7].is_valid());
+        CHECK(doc.get_paragraphs()[8].is_valid() == false);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+
+        // now run with headers being valid
+        document<MYWORD> doc2(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        doc2.treat_header_words_as_valid(true);
+        doc2.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc2.get_sentences()[0].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_sentences()[1].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_sentences()[2].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_sentences()[3].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_sentences()[4].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_sentences()[5].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_sentences()[6].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_sentences()[7].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc2.get_sentences()[8].get_type() == sentence_paragraph_type::header);
+
+        CHECK(doc2.get_paragraphs()[0].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_paragraphs()[1].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_paragraphs()[2].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_paragraphs()[3].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_paragraphs()[4].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_paragraphs()[5].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_paragraphs()[6].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc2.get_paragraphs()[7].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc2.get_paragraphs()[8].get_type() == sentence_paragraph_type::header);
+        CHECK(doc2.get_complete_sentence_count() == 2);
+
+        CHECK(doc2.get_sentences()[0].is_valid() == false);
+        CHECK(doc2.get_sentences()[1].is_valid() == false);
+        CHECK(doc2.get_sentences()[2].is_valid() == false);
+        CHECK(doc2.get_sentences()[3].is_valid() == false);
+        CHECK(doc2.get_sentences()[4].is_valid() == false);
+        CHECK(doc2.get_sentences()[5].is_valid() == false);
+        CHECK(doc2.get_sentences()[6].is_valid() == false);
+        CHECK(doc2.get_sentences()[7].is_valid());
+
+        CHECK(doc2.get_paragraphs()[0].is_valid() == false);
+        CHECK(doc2.get_paragraphs()[1].is_valid() == false);
+        CHECK(doc2.get_paragraphs()[2].is_valid() == false);
+        CHECK(doc2.get_paragraphs()[3].is_valid() == false);
+        CHECK(doc2.get_paragraphs()[4].is_valid() == false);
+        CHECK(doc2.get_paragraphs()[5].is_valid() == false);
+        CHECK(doc2.get_paragraphs()[6].is_valid() == false);
+        CHECK(doc2.get_paragraphs()[7].is_valid());
+        // this is what will be different
+        CHECK(doc2.get_paragraphs()[8].is_valid());
+        CHECK(doc2.get_valid_paragraph_count() == 2);
+        }
+    SECTION("Sparse Sentences Aggressive")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction,
+            &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns,
+            &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Item one\n\nThis is a list item that looks like senence.\n\nItem two";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::header);
+
+        doc.set_aggressive_exclusion(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::list_item);
+        }
+    SECTION("Sparse Sentences Aggressive With Regular Sentences")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Some text.\n\nItem one\n\nThis is a list item that looks like senence.\n\nItem two\n\nEnding text.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[3].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[4].get_type() == sentence_paragraph_type::complete);
+
+        doc.set_aggressive_exclusion(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[3].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[4].get_type() == sentence_paragraph_type::complete);
+        }
+    SECTION("Sparse Sentences Aggressive Double Headers")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Item one\n\nItem two\n\nThis is a list item that looks like senence.\n\nItem three\n\nItem four";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[3].get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[4].get_type() == sentence_paragraph_type::header);
+
+        doc.set_aggressive_exclusion(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[3].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[4].get_type() == sentence_paragraph_type::list_item);
+        }
+    SECTION("Sparse Sentences With Lists")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Ingredients:\n\nItem 1\n\nItem 2\n\nItem 3\n\nMore Ingredients:\n\nItem 1\n\nItem 2\n\nItem 3";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[3].get_type() == sentence_paragraph_type::list_item);
+        // "More Ingredients:" is surrounded by 3 list items, so
+        // it will be a list item too, even with aggressive list deduction turned off.
+        CHECK(doc.get_sentences()[4].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[5].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[6].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[7].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_complete_sentence_count() == 1);
+
+        CHECK(doc.get_paragraphs()[0].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_paragraphs()[1].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[2].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[3].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[4].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[5].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[6].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[7].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+
+        CHECK(doc.get_sentences()[0].is_valid());
+        CHECK(doc.get_sentences()[1].is_valid() == false);
+        CHECK(doc.get_sentences()[2].is_valid() == false);
+        CHECK(doc.get_sentences()[3].is_valid() == false);
+        CHECK(doc.get_sentences()[4].is_valid()== false);
+        CHECK(doc.get_sentences()[5].is_valid() == false);
+        CHECK(doc.get_sentences()[6].is_valid() == false);
+        CHECK(doc.get_sentences()[7].is_valid() == false);
+
+        CHECK(doc.get_paragraphs()[0].is_valid());
+        CHECK(doc.get_paragraphs()[1].is_valid() == false);
+        CHECK(doc.get_paragraphs()[2].is_valid() == false);
+        CHECK(doc.get_paragraphs()[3].is_valid() == false);
+        CHECK(doc.get_paragraphs()[4].is_valid()== false);
+        CHECK(doc.get_paragraphs()[5].is_valid() == false);
+        CHECK(doc.get_paragraphs()[6].is_valid() == false);
+        CHECK(doc.get_paragraphs()[7].is_valid() == false);
+        }
+    SECTION("Sparse Sentences With Long Sentence")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
+            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Ingredients:\n\nItem 1\n\nItem 2\n\nItem 3\n\nHere are some other ingredientes?\n\nItem 1\n\nItem 2\n\nItem 3";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[1].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[2].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[3].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[4].get_type() == sentence_paragraph_type::complete); // it's incomplete, but 5 words
+        CHECK(doc.get_sentences()[5].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[6].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[7].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_complete_sentence_count() == 2);
+
+        CHECK(doc.get_paragraphs()[0].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_paragraphs()[1].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[2].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[3].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[4].get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_paragraphs()[5].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[6].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs()[7].get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_valid_paragraph_count() == 2);
         }
     }

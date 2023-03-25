@@ -12,6 +12,8 @@ using namespace grammar;
 using MYWORD = word<traits::case_insensitive_ex,
     stemming::english_stem<std::basic_string<wchar_t, traits::case_insensitive_ex> > >;
 
+extern word_list Stop_list;
+
 TEST_CASE("English Article", "[articles]")
     {
     grammar::english_syllabize ENsyllabizer;
@@ -29,7 +31,6 @@ TEST_CASE("English Article", "[articles]")
     word_list Known_spellings;
     word_list Secondary_known_spellings;
     word_list Programming_known_spellings;
-    word_list Stop_list;
 
     SECTION("NULL")
         {
