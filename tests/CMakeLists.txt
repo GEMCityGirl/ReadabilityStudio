@@ -34,7 +34,7 @@ ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ../src/indexing/article.cpp ../src/indexing
 ../src/indexing/romanize.cpp ../src/indexing/stop_lists.cpp ../src/indexing/syllable.cpp
 ../../SRC/Wisteria-Dataviz/src/i18n-check/src/i18n_string_util.cpp
 articletests.cpp sentencetests.cpp englishsyllabletests.cpp germansyllabletests.cpp
-documenttests.cpp
+documenttests.cpp wordfunctortests.cpp
 testingmain.cpp)
 IF(MSVC)
     TARGET_COMPILE_DEFINITIONS(${CMAKE_PROJECT_NAME} PUBLIC _CRT_SECURE_NO_WARNINGS __UNITTEST)
