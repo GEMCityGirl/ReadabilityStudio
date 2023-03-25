@@ -10,3 +10,6 @@
 [submodule "src/Catch2"]
 	path = src/Catch2
 	url = https://github.com/catchorg/Catch2.git
+[submodule "src/tinyexpr-plusplus"]
+	path = src/tinyexpr-plusplus
+	url = https://github.com/Blake-Madden/tinyexpr-plusplus.git
