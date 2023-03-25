@@ -7,7 +7,7 @@ Resources/Words/ProperNouns/Personal.txt
 Resources/Words/ProperNouns/Western.txt
 Resources/Words/ProperNouns/All.txt
 docs/doxygen/html
-/tests/bin
+/tests/bin/
 /tests/.vs/
 
 # Configuration files
