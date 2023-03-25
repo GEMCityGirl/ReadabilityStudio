@@ -31,7 +31,7 @@
 #include "../../../../SRC/Wisteria-Dataviz/src/util/LogFile.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/mainframe.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/app.h"
-#include "../../../../SRC/wxStartPage/StartPage.h"
+#include "../../../../SRC/Wisteria-Dataviz/src/wxStartPage/startpage.h"
 #include "../../../../SRC/Licensing/LicenseAdmin.h"
 #include "../readability/custom_readability_test.h"
 #include "../results_format/xml_format.h"
