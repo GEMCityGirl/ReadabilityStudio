@@ -4749,12 +4749,12 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                       headerThemed, headerWhitePaper, endSection,
                                       IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
                                       &docText]
-                                     (wxFormattedTextCtrl* textWindow, const int ID, const wxString& label,
+                                     (FormattedTextCtrl* textWindow, const int ID, const wxString& label,
                                       auto& highlighter, const wxString& legend)
             {
             if (!textWindow)
                 {
-                textWindow = new wxFormattedTextCtrl(view->GetSplitter(), ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+                textWindow = new FormattedTextCtrl(view->GetSplitter(), ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
                 textWindow->Hide();
                 textWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_TEXT_MENU")));
                 textWindow->SetLabel(label);
@@ -4799,7 +4799,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
         // 3+ syllable highlighted words
             {
-            wxFormattedTextCtrl* textWindow = dynamic_cast<wxFormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::HARD_WORDS_TEXT_PAGE_ID));
+            FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::HARD_WORDS_TEXT_PAGE_ID));
             // always included for any language
                 {
                 textWindow = buildTextWindow(textWindow, BaseProjectView::HARD_WORDS_TEXT_PAGE_ID,
@@ -4816,7 +4816,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
         // 6+ character highlighted words
             {
-            wxFormattedTextCtrl* textWindow = dynamic_cast<wxFormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::LONG_WORDS_TEXT_PAGE_ID));
+            FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::LONG_WORDS_TEXT_PAGE_ID));
             // always included for any language
                 {
                 textWindow = buildTextWindow(textWindow, BaseProjectView::LONG_WORDS_TEXT_PAGE_ID,
@@ -4832,13 +4832,13 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             }
 
         // DC highlighted words
-        m_dcTextWindow = dynamic_cast<wxFormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::DC_WORDS_TEXT_PAGE_ID));
+        m_dcTextWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::DC_WORDS_TEXT_PAGE_ID));
         // we will always format this for an English project, even if test is not included. That way, if the test is included later we just have to show it.
         if (GetProjectLanguage() == readability::test_language::english_test)
             {
             if (!m_dcTextWindow)
                 {
-                m_dcTextWindow = new wxFormattedTextCtrl(view->GetSplitter(), BaseProjectView::DC_WORDS_TEXT_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+                m_dcTextWindow = new FormattedTextCtrl(view->GetSplitter(), BaseProjectView::DC_WORDS_TEXT_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
                 m_dcTextWindow->Hide();
                 m_dcTextWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_TEXT_MENU")));
                 m_dcTextWindow->SetLabel(_("Dale-Chall (Unfamiliar) Report"));
@@ -4928,7 +4928,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             { view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::DC_WORDS_TEXT_PAGE_ID); }
 
         // Spache highlighted words
-        m_spacheTextWindow = dynamic_cast<wxFormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID));
+        m_spacheTextWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID));
         // we will always format this for an English project, even if test is not included. That way, if the test is included later we just have to show it.
         if (GetProjectLanguage() == readability::test_language::english_test)
             {
@@ -4944,13 +4944,13 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             { view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID); }
 
         // HJ highlighted words
-        m_hjTextWindow = dynamic_cast<wxFormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID));
+        m_hjTextWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID));
         // we will always format this for an English project, even if test is not included. That way, if the test is included later we just have to show it.
         if (GetProjectLanguage() == readability::test_language::english_test)
             {
             if (!m_hjTextWindow)
                 {
-                m_hjTextWindow = new wxFormattedTextCtrl(view->GetSplitter(), BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+                m_hjTextWindow = new FormattedTextCtrl(view->GetSplitter(), BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
                 m_hjTextWindow->Hide();
                 m_hjTextWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_TEXT_MENU")));
                 m_hjTextWindow->SetLabel(_("Harris-Jacobson (Unfamiliar) Report"));
@@ -5045,13 +5045,13 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             ++pos)
             {
             const wxString windowLabel(wxString::Format( _("%s (Unfamiliar) Report"), pos->GetIterator()->get_name().c_str()));
-            wxFormattedTextCtrl* textWindow = dynamic_cast<wxFormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(pos->GetIterator()->get_interface_id(), CLASSINFO(wxFormattedTextCtrl)) );
+            FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(pos->GetIterator()->get_interface_id(), CLASSINFO(FormattedTextCtrl)) );
 
             if (pos->GetIterator()->is_using_familiar_words())
                 {
                 if (!textWindow)
                     {
-                    textWindow = new wxFormattedTextCtrl(view->GetSplitter(), pos->GetIterator()->get_interface_id(), wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+                    textWindow = new FormattedTextCtrl(view->GetSplitter(), pos->GetIterator()->get_interface_id(), wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
                     textWindow->Hide();
                     textWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_TEXT_MENU")));
                     textWindow->SetLabel(windowLabel);
@@ -5259,10 +5259,10 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         if (GetGrammarInfo().IsHighlightedReportEnabled())
             {
             // display this in the Grammar section
-            wxFormattedTextCtrl* textWindow = dynamic_cast<wxFormattedTextCtrl*>(view->GetGrammarView().FindWindowById(BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID));
+            FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetGrammarView().FindWindowById(BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID));
             if (!textWindow)
                 {
-                textWindow = new wxFormattedTextCtrl(view->GetSplitter(),
+                textWindow = new FormattedTextCtrl(view->GetSplitter(),
                     BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
                 textWindow->Hide();
                 textWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_TEXT_MENU")));
@@ -5321,7 +5321,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         // Dolch sight words
         if (IsIncludingDolchSightWords())
             {
-            wxFormattedTextCtrl* textWindow = dynamic_cast<wxFormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID));
+            FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID));
             textWindow = buildTextWindow(textWindow, BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID,
                 _("Highlighted Dolch Words"), isDolchWord, dolchWindowLegend);
             view->GetDolchSightWordsView().AddWindow(textWindow);
@@ -5331,7 +5331,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
         if (IsIncludingDolchSightWords())
             {
-            wxFormattedTextCtrl* textWindow = dynamic_cast<wxFormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID));
+            FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID));
             textWindow = buildTextWindow(textWindow, BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID,
                 _("Highlighted Non-Dolch Words"), isNotDolchWord, nonDolchWordsLegend);
             view->GetDolchSightWordsView().AddWindow(textWindow);

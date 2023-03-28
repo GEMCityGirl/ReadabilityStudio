@@ -275,7 +275,7 @@ wxColour BaseProjectDoc::GetTextReportBackgroundColor() const
     }
 
 //------------------------------------------------
-void BaseProjectDoc::UpdateTextWindowOptions(wxFormattedTextCtrl* textW)
+void BaseProjectDoc::UpdateTextWindowOptions(FormattedTextCtrl* textW)
     {
     if (textW == nullptr)
         { return; }
@@ -334,7 +334,7 @@ void BaseProjectDoc::UpdatePrinterHeaderAndFooters(ExplanationListCtrl* window)
     }
 
 //------------------------------------------------
-void BaseProjectDoc::UpdatePrinterHeaderAndFooters(wxFormattedTextCtrl* window)
+void BaseProjectDoc::UpdatePrinterHeaderAndFooters(FormattedTextCtrl* window)
     {
     if (window == nullptr)
         { return; }

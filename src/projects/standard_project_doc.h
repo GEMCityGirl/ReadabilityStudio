@@ -134,9 +134,9 @@ private:
     ListCtrlExNumericDataProvider* m_overlyLongSentenceData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_sentenceStartingWithConjunctionsData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_sentenceStartingWithLowercaseData{ new ListCtrlExNumericDataProvider };
-    wxFormattedTextCtrl* m_dcTextWindow{ nullptr };
-    wxFormattedTextCtrl* m_spacheTextWindow{ nullptr };
-    wxFormattedTextCtrl* m_hjTextWindow{ nullptr };
+    FormattedTextCtrl* m_dcTextWindow{ nullptr };
+    FormattedTextCtrl* m_spacheTextWindow{ nullptr };
+    FormattedTextCtrl* m_hjTextWindow{ nullptr };
 
     wxString GetSentenceWordCountsColumnName() const
         { return L"SENTENCE_WORD_COUNTS"; }

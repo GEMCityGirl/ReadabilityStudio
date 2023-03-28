@@ -7,7 +7,7 @@
 #include "../graphs/raygorgraph.h"
 #include "../graphs/schwartzgraph.h"
 #include "../ui/controls/explanationlistctrl.h"
-#include "../../../SRC/wxTools/wxFormattedTextCtrl.h"
+#include "../../../SRC/Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
 
 /// Base document layer of a project, storing features common to standard and batch projects.
 class BaseProjectDoc : public BaseProject, public wxDocument
@@ -413,11 +413,11 @@ public:
 
     void UpdateGraphOptions(Wisteria::Canvas* canvas);
     static void UpdateListOptions(ListCtrlEx* list);
-    void UpdateTextWindowOptions(wxFormattedTextCtrl* textW);
+    void UpdateTextWindowOptions(FormattedTextCtrl* textW);
     static void UpdateExplanationListOptions(ExplanationListCtrl* eList);
     static void UpdatePrinterHeaderAndFooters(Wisteria::Canvas* window);
     static void UpdatePrinterHeaderAndFooters(ListCtrlEx* window);
-    static void UpdatePrinterHeaderAndFooters(wxFormattedTextCtrl* window);
+    static void UpdatePrinterHeaderAndFooters(FormattedTextCtrl* window);
     static void UpdatePrinterHeaderAndFooters(ExplanationListCtrl* window);
     static void UpdatePrinterHeaderAndFooters(Wisteria::UI::HtmlTableWindow* window);
 

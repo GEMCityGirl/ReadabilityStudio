@@ -825,11 +825,11 @@ namespace LuaScripting
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
-            wxFormattedTextCtrl* textWindow = dynamic_cast<wxFormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(lua_tonumber(L, 2), CLASSINFO(wxFormattedTextCtrl)) );
+            FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(lua_tonumber(L, 2), CLASSINFO(FormattedTextCtrl)) );
             if (!textWindow)//look in grammar section if not in the highlighted words section
-                { textWindow = dynamic_cast<wxFormattedTextCtrl*>(view->GetGrammarView().FindWindowById(lua_tonumber(L, 2)) ); }
+                { textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetGrammarView().FindWindowById(lua_tonumber(L, 2)) ); }
             if (!textWindow)//look in Dolch section if not in the grammar section
-                { textWindow = dynamic_cast<wxFormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(lua_tonumber(L, 2)) ); }
+                { textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(lua_tonumber(L, 2)) ); }
             if (textWindow)
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
@@ -1004,11 +1004,11 @@ namespace LuaScripting
                 view->GetSideBar()->SelectSubItem(parentPos.value(), childPos.value());
                 if (lua_gettop(L) >= 3)
                     {
-                    wxWindow* selWindow = view->GetWordsBreakdownView().FindWindowById(windowToSelect, wxCLASSINFO(wxFormattedTextCtrl));
-                    if (selWindow && selWindow->IsKindOf(wxCLASSINFO(wxFormattedTextCtrl)))
+                    wxWindow* selWindow = view->GetWordsBreakdownView().FindWindowById(windowToSelect, wxCLASSINFO(FormattedTextCtrl));
+                    if (selWindow && selWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)))
                         {
-                        dynamic_cast<wxFormattedTextCtrl*>(selWindow)->ShowPosition(lua_tonumber(L, 3));
-                        dynamic_cast<wxFormattedTextCtrl*>(selWindow)->SetSelection(lua_tonumber(L, 3), lua_tonumber(L, 4));
+                        dynamic_cast<FormattedTextCtrl*>(selWindow)->ShowPosition(lua_tonumber(L, 3));
+                        dynamic_cast<FormattedTextCtrl*>(selWindow)->SetSelection(lua_tonumber(L, 3), lua_tonumber(L, 4));
                         selWindow->SetFocus();
                         }
                     }
@@ -1202,9 +1202,9 @@ namespace LuaScripting
                 wxWindow* selWindow = view->GetWordsBreakdownView().FindWindowById(windowToSelect);
                 if (selWindow == nullptr)
                     { selWindow = view->GetGrammarView().FindWindowById(windowToSelect); }
-                if (selWindow && selWindow->IsKindOf(CLASSINFO(wxFormattedTextCtrl)))
+                if (selWindow && selWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)))
                     {
-                    dynamic_cast<wxFormattedTextCtrl*>(selWindow)->ShowPosition(lua_tonumber(L, 3));
+                    dynamic_cast<FormattedTextCtrl*>(selWindow)->ShowPosition(lua_tonumber(L, 3));
                     }
                 }
             }
@@ -1227,10 +1227,10 @@ namespace LuaScripting
                 if (lua_gettop(L) >= 2)
                     {
                     wxWindow* selWindow = view->GetGrammarView().FindWindowById(BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID);
-                    if (selWindow && selWindow->IsKindOf(CLASSINFO(wxFormattedTextCtrl)))
+                    if (selWindow && selWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)))
                         {
-                        dynamic_cast<wxFormattedTextCtrl*>(selWindow)->ShowPosition(lua_tonumber(L, 2));
-                        dynamic_cast<wxFormattedTextCtrl*>(selWindow)->SetSelection(lua_tonumber(L, 2), lua_tonumber(L, 3));
+                        dynamic_cast<FormattedTextCtrl*>(selWindow)->ShowPosition(lua_tonumber(L, 2));
+                        dynamic_cast<FormattedTextCtrl*>(selWindow)->SetSelection(lua_tonumber(L, 2), lua_tonumber(L, 3));
                         selWindow->SetFocus();
                         }
                     }

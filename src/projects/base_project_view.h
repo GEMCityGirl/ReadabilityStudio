@@ -20,7 +20,7 @@
 #include "wx/taskbarbutton.h"
 #include "../results_format/readability_messages.h"
 #include "../ui/controls/explanationlistctrl.h"
-#include "../../../SRC/wxTools/wxFormattedTextCtrl.h"
+#include "../../../SRC/Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
 #include "../../../SRC/Wisteria-Dataviz/src/util/formulaformat.h"
 #include "../../../SRC/Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../../../SRC/Wisteria-Dataviz/src/ui/controls/infobarex.h"

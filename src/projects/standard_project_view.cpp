@@ -642,14 +642,14 @@ void ProjectView::OnListDblClick(wxListEvent& event)
     //find the first occurrence of the selected word.
     //First, look in the word breakdown section for the respective test window,
     //then the grammar section and finally the Dolch section.
-    wxWindow* theWindow = GetWordsBreakdownView().FindWindowById(textId, CLASSINFO(wxFormattedTextCtrl));
+    wxWindow* theWindow = GetWordsBreakdownView().FindWindowById(textId, CLASSINFO(FormattedTextCtrl));
     if (!theWindow)
-        { theWindow = GetGrammarView().FindWindowById(textId, CLASSINFO(wxFormattedTextCtrl)); }
+        { theWindow = GetGrammarView().FindWindowById(textId, CLASSINFO(FormattedTextCtrl)); }
     if (!theWindow)
-        { theWindow = GetDolchSightWordsView().FindWindowById(textId, CLASSINFO(wxFormattedTextCtrl)); }
-    if (theWindow && theWindow->IsKindOf(CLASSINFO(wxFormattedTextCtrl)) )
+        { theWindow = GetDolchSightWordsView().FindWindowById(textId, CLASSINFO(FormattedTextCtrl)); }
+    if (theWindow && theWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
         {
-        wxFormattedTextCtrl* textWindow = dynamic_cast<wxFormattedTextCtrl*>(theWindow);
+        FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(theWindow);
         textWindow->SetSelection(0,0);
         textWindow->FindText(findText, true, true, false);
         //Search by label for custom tests (the list and report have the same ID); otherwise, search by ID.
@@ -808,7 +808,7 @@ void ProjectView::UpdateSideBarIcons()
 
             GetSideBar()->InsertSubItemById(SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, GetWordsBreakdownView().GetWindow(i)->GetName(),
                 GetWordsBreakdownView().GetWindow(i)->GetId(),
-                GetWordsBreakdownView().GetWindow(i)->IsKindOf(CLASSINFO(wxFormattedTextCtrl)) ? 0 : 
+                GetWordsBreakdownView().GetWindow(i)->IsKindOf(CLASSINFO(FormattedTextCtrl)) ? 0 : 
                     GetWordsBreakdownView().GetWindow(i)->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 :
                     (isGraph &&
                         typeid(*dynamic_cast<Wisteria::Canvas*>(GetWordsBreakdownView().GetWindow(i))->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::Histogram)) ? 6 :
@@ -849,7 +849,7 @@ void ProjectView::UpdateSideBarIcons()
             {
             GetSideBar()->InsertSubItemById(SIDEBAR_GRAMMAR_SECTION_ID, GetGrammarView().GetWindow(i)->GetName(),
                 GetGrammarView().GetWindow(i)->GetId(),
-                GetGrammarView().GetWindow(i)->IsKindOf(CLASSINFO(wxFormattedTextCtrl)) ? 0 :
+                GetGrammarView().GetWindow(i)->IsKindOf(CLASSINFO(FormattedTextCtrl)) ? 0 :
                     GetGrammarView().GetWindow(i)->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 : 9);
             }
         }
@@ -864,7 +864,7 @@ void ProjectView::UpdateSideBarIcons()
 
             GetSideBar()->InsertSubItemById(SIDEBAR_DOLCH_SECTION_ID, GetDolchSightWordsView().GetWindow(i)->GetName(),
                 GetDolchSightWordsView().GetWindow(i)->GetId(),
-                GetDolchSightWordsView().GetWindow(i)->IsKindOf(CLASSINFO(wxFormattedTextCtrl)) ? 0 :
+                GetDolchSightWordsView().GetWindow(i)->IsKindOf(CLASSINFO(FormattedTextCtrl)) ? 0 :
                     GetDolchSightWordsView().GetWindow(i)->IsKindOf(CLASSINFO(HtmlTableWindow)) ? 17 :
                     (isGraph &&
                         typeid(*dynamic_cast<Wisteria::Canvas*>(GetDolchSightWordsView().GetWindow(i))->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::BarChart)) ? 16 :
@@ -1209,9 +1209,9 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
         ParentEventBlocker blocker(html);
         html->ProcessWindowEvent(event);
         }
-    else if (GetActiveProjectWindow() && GetActiveProjectWindow()->IsKindOf(CLASSINFO(wxFormattedTextCtrl)) )
+    else if (GetActiveProjectWindow() && GetActiveProjectWindow()->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
         {
-        wxFormattedTextCtrl* text = dynamic_cast<wxFormattedTextCtrl*>(GetActiveProjectWindow());
+        FormattedTextCtrl* text = dynamic_cast<FormattedTextCtrl*>(GetActiveProjectWindow());
         doc->UpdateTextWindowOptions(text);
         text->SetTitleName(wxString::Format(wxT("%s [%s]"), text->GetName(), wxFileName::StripExtension(doc->GetTitle())));
         ParentEventBlocker blocker(text);
@@ -2316,7 +2316,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             readRibbonButtonSVG(L"ribbon/sum.svg"),
                             _("Total the values from the selected column."));
                         }
-                    else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(wxFormattedTextCtrl)) )
+                    else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
                         {
                         exportMenuItem->SetBitmap(textIcon);
                         editButtonRibbonBar->AddButton(XRCID("ID_TEXT_WINDOW_FONT"), _("Font"),
@@ -2380,7 +2380,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonRibbonBar);
                     editButtonRibbonBar->ClearButtons();
-                    if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(wxFormattedTextCtrl)) )
+                    if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
                         {
                         exportMenuItem->SetBitmap(textIcon);
                         editButtonRibbonBar->AddButton(XRCID("ID_TEXT_WINDOW_FONT"),
@@ -2466,7 +2466,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonRibbonBar);
                     editButtonRibbonBar->ClearButtons();
-                    if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(wxFormattedTextCtrl)) )
+                    if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
                         {
                         exportMenuItem->SetBitmap(textIcon);
                         editButtonRibbonBar->AddButton(XRCID("ID_TEXT_WINDOW_FONT"),
@@ -2754,9 +2754,9 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                         graphWindow->Save(folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel() + wxFileName::GetPathSeparator() +
                             graphWindow->GetLabel() + graphExt, graphOptions);
                         }
-                    else if (activeWindow->IsKindOf(CLASSINFO(wxFormattedTextCtrl)) && includeTextReports)
+                    else if (activeWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)) && includeTextReports)
                         {
-                        wxFormattedTextCtrl* text = dynamic_cast<wxFormattedTextCtrl*>(activeWindow);
+                        FormattedTextCtrl* text = dynamic_cast<FormattedTextCtrl*>(activeWindow);
                         text->SetTitleName(wxString::Format(wxT("%s [%s]"), text->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         text->Save(
                             folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel() + wxFileName::GetPathSeparator() + 
@@ -2797,9 +2797,9 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                             folder + wxFileName::GetPathSeparator() + GetGrammarLabel() + wxFileName::GetPathSeparator() + 
                             html->GetLabel() + wxT(".htm"));
                         }
-                    else if (activeWindow->IsKindOf(CLASSINFO(wxFormattedTextCtrl)) && includeTextReports)
+                    else if (activeWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)) && includeTextReports)
                         {
-                        wxFormattedTextCtrl* text = dynamic_cast<wxFormattedTextCtrl*>(activeWindow);
+                        FormattedTextCtrl* text = dynamic_cast<FormattedTextCtrl*>(activeWindow);
                         text->SetTitleName(wxString::Format(wxT("%s [%s]"), text->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         text->Save(
                             folder + wxFileName::GetPathSeparator() + GetGrammarLabel() + wxFileName::GetPathSeparator() + 
@@ -2840,9 +2840,9 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                             folder + wxFileName::GetPathSeparator() + GetDolchLabel() + wxFileName::GetPathSeparator() + 
                             html->GetLabel() + wxT(".htm"));
                         }
-                    else if (activeWindow->IsKindOf(CLASSINFO(wxFormattedTextCtrl)) && includeTextReports)
+                    else if (activeWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)) && includeTextReports)
                         {
-                        wxFormattedTextCtrl* text = dynamic_cast<wxFormattedTextCtrl*>(activeWindow);
+                        FormattedTextCtrl* text = dynamic_cast<FormattedTextCtrl*>(activeWindow);
                         text->SetTitleName(wxString::Format(wxT("%s [%s]"), text->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         text->Save(
                             folder + wxFileName::GetPathSeparator() + GetDolchLabel() + wxFileName::GetPathSeparator() + 
@@ -2951,7 +2951,7 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
 
     const auto formatTextWindow =
         [&outputText, &htmlEncode, &textWindowStyleCounter, &textWindowStyleSection, pageBreak]
-        (wxFormattedTextCtrl* textWindow, const bool includeLeadingPageBreak)
+        (FormattedTextCtrl* textWindow, const bool includeLeadingPageBreak)
         {
         if (!textWindow)
             { return; }
@@ -3082,9 +3082,9 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
                     formatImageOutput(dynamic_cast<Wisteria::Canvas*>(activeWindow), includeLeadingPageBreak);
                     includeLeadingPageBreak = true;
                     }
-                else if (activeWindow->IsKindOf(CLASSINFO(wxFormattedTextCtrl)) && includeTextReports)
+                else if (activeWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)) && includeTextReports)
                     {
-                    formatTextWindow(dynamic_cast<wxFormattedTextCtrl*>(activeWindow), includeLeadingPageBreak);
+                    formatTextWindow(dynamic_cast<FormattedTextCtrl*>(activeWindow), includeLeadingPageBreak);
                     includeLeadingPageBreak = true;
                     }
                 }
@@ -3138,9 +3138,9 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
                     formatList(dynamic_cast<ListCtrlEx*>(activeWindow), includeLeadingPageBreak);
                     includeLeadingPageBreak = true;
                     }
-                else if (activeWindow->IsKindOf(CLASSINFO(wxFormattedTextCtrl)) && includeTextReports)
+                else if (activeWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)) && includeTextReports)
                     {
-                    formatTextWindow(dynamic_cast<wxFormattedTextCtrl*>(activeWindow), includeLeadingPageBreak);
+                    formatTextWindow(dynamic_cast<FormattedTextCtrl*>(activeWindow), includeLeadingPageBreak);
                     includeLeadingPageBreak = true;
                     }
                 }
@@ -3171,9 +3171,9 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
                     formatHTMLReport(dynamic_cast<HtmlTableWindow*>(activeWindow), includeLeadingPageBreak);
                     includeLeadingPageBreak = true;
                     }
-                else if (activeWindow->IsKindOf(CLASSINFO(wxFormattedTextCtrl)) && includeTextReports)
+                else if (activeWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)) && includeTextReports)
                     {
-                    formatTextWindow(dynamic_cast<wxFormattedTextCtrl*>(activeWindow), includeLeadingPageBreak);
+                    formatTextWindow(dynamic_cast<FormattedTextCtrl*>(activeWindow), includeLeadingPageBreak);
                     includeLeadingPageBreak = true;
                     }
                 else if (typeid(*activeWindow) == typeid(Wisteria::Canvas))
