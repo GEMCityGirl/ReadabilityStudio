@@ -7,7 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "webharvester.h"
-#include "filefolderoperations.h"
+#include "filepathresolver.h"
 
 const wxString WebHarvester::HTML_CONTENT_TYPE = _DT(L"text/html");
 const wxString WebHarvester::JAVASCRIPT_CONTENT_TYPE = _DT(L"application/x-javascript");

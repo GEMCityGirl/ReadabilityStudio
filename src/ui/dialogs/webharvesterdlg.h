@@ -21,7 +21,7 @@
 #include <wx/collpane.h>
 #include <wx/tooltip.h>
 #include <wx/bmpbuttn.h>
-#include "webharvester.h"
+#include "../../webharvester/webharvester.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
