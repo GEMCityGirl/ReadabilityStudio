@@ -13,3 +13,6 @@
 [submodule "src/tinyexpr-plusplus"]
 	path = src/tinyexpr-plusplus
 	url = https://github.com/Blake-Madden/tinyexpr-plusplus.git
+[submodule "src/tinyxml2"]
+	path = src/tinyxml2
+	url = https://github.com/leethomason/tinyxml2.git
