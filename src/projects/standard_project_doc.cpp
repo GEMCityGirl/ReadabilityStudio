@@ -4091,51 +4091,51 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
     #ifdef __WXMSW__
         const wxString HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\highlight2\\cf%d ", highlightedTextColorIndexBGMode) :
+            wxString::Format(L"{\\highlight2\\cf%d ", highlightedTextColorIndexBGMode) :
             wxT("{\\cf2 ");
         const wxString ERROR_HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\highlight3\\cf%d ", errorTextColorIndexBGMode) :
+            wxString::Format(L"{\\highlight3\\cf%d ", errorTextColorIndexBGMode) :
             wxT("{\\cf3 ");
         const wxString PHRASE_HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\highlight4\\cf%d ", styleTextColorIndexBGMode) :
+            wxString::Format(L"{\\highlight4\\cf%d ", styleTextColorIndexBGMode) :
             wxT("{\\cf4 ");
         const wxString IGNORE_HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\highlight5\\cf%d ", excludedTextColorIndexBGMode) :
+            wxString::Format(L"{\\highlight5\\cf%d ", excludedTextColorIndexBGMode) :
             wxT("{\\cf5 ");
         // Dolch highlighting
         const wxString DOLCH_CONJUNCTION_BEGIN = IsHighlightingDolchConjunctions() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\highlight6\\cf%d ", dolchConjunctionsTextColorIndexBGMode) :
+            wxString::Format(L"{\\highlight6\\cf%d ", dolchConjunctionsTextColorIndexBGMode) :
             wxT("{\\cf6 ") :
             wxEmptyString;
         const wxString DOLCH_PREPOSITIONS_BEGIN = IsHighlightingDolchPrepositions() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\highlight7\\cf%d ", dolchPrepositionsTextColorIndexBGMode) :
+            wxString::Format(L"{\\highlight7\\cf%d ", dolchPrepositionsTextColorIndexBGMode) :
             wxT("{\\cf7 ") :
             wxEmptyString;
         const wxString DOLCH_PRONOUN_BEGIN = IsHighlightingDolchPronouns() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\highlight8\\cf%d ", dolchPronounsTextColorIndexBGMode) :
+            wxString::Format(L"{\\highlight8\\cf%d ", dolchPronounsTextColorIndexBGMode) :
             wxT("{\\cf8 ") :
             wxEmptyString;
         const wxString DOLCH_ADVERB_BEGIN = IsHighlightingDolchAdverbs() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\highlight9\\cf%d ", dolchAdverbsTextColorIndexBGMode) :
+            wxString::Format(L"{\\highlight9\\cf%d ", dolchAdverbsTextColorIndexBGMode) :
             wxT("{\\cf9 ") :
             wxEmptyString;
         const wxString DOLCH_ADJECTIVE_BEGIN = IsHighlightingDolchAdjectives() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\highlight10\\cf%d ", dolchAdjectivesTextColorIndexBGMode) :
+            wxString::Format(L"{\\highlight10\\cf%d ", dolchAdjectivesTextColorIndexBGMode) :
             wxT("{\\cf10 ") :
             wxEmptyString;
         const wxString DOLCH_VERB_BEGIN = IsHighlightingDolchVerbs() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\highlight11\\cf%d ", dolchVerbsTextColorIndexBGMode) :
+            wxString::Format(L"{\\highlight11\\cf%d ", dolchVerbsTextColorIndexBGMode) :
             wxT("{\\cf11 ") :
             wxEmptyString;
         const wxString DOLCH_NOUN_BEGIN = IsHighlightingDolchNouns() ? 
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\highlight12\\cf%d ", dolchNounTextColorIndexBGMode) :
+            wxString::Format(L"{\\highlight12\\cf%d ", dolchNounTextColorIndexBGMode) :
             wxT("{\\cf12 ") :
             wxEmptyString;
         // terminator
@@ -4164,51 +4164,51 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             wxT("{\\highlight12 ") : wxT("{");
     #elif defined(__WXOSX__)
         const wxString HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\cb2\\cf%d ", highlightedTextColorIndexBGMode) :
+            wxString::Format(L"{\\cb2\\cf%d ", highlightedTextColorIndexBGMode) :
             wxT("{\\cf2 ");
         const wxString ERROR_HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\cb3\\cf%d ", errorTextColorIndexBGMode) :
+            wxString::Format(L"{\\cb3\\cf%d ", errorTextColorIndexBGMode) :
             wxT("{\\cf3 ");
         const wxString PHRASE_HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\cb4\\cf%d ", styleTextColorIndexBGMode) :
+            wxString::Format(L"{\\cb4\\cf%d ", styleTextColorIndexBGMode) :
             wxT("{\\cf4 ");
         const wxString IGNORE_HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\cb5\\cf%d ", excludedTextColorIndexBGMode) :
+            wxString::Format(L"{\\cb5\\cf%d ", excludedTextColorIndexBGMode) :
             wxT("{\\cf5 ");
         //dolch highlighting
         const wxString DOLCH_CONJUNCTION_BEGIN = IsHighlightingDolchConjunctions() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\cb6\\cf%d ", dolchConjunctionsTextColorIndexBGMode) :
+            wxString::Format(L"{\\cb6\\cf%d ", dolchConjunctionsTextColorIndexBGMode) :
             wxT("{\\cf6 ") :
             wxEmptyString;
         const wxString DOLCH_PREPOSITIONS_BEGIN = IsHighlightingDolchPrepositions() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\cb7\\cf%d ", dolchPrepositionsTextColorIndexBGMode) :
+            wxString::Format(L"{\\cb7\\cf%d ", dolchPrepositionsTextColorIndexBGMode) :
             wxT("{\\cf7 ") :
             wxEmptyString;
         const wxString DOLCH_PRONOUN_BEGIN = IsHighlightingDolchPronouns() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\cb8\\cf%d ", dolchPronounsTextColorIndexBGMode) :
+            wxString::Format(L"{\\cb8\\cf%d ", dolchPronounsTextColorIndexBGMode) :
             wxT("{\\cf8 ") :
             wxEmptyString;
         const wxString DOLCH_ADVERB_BEGIN = IsHighlightingDolchAdverbs() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\cb9\\cf%d ", dolchAdverbsTextColorIndexBGMode) :
+            wxString::Format(L"{\\cb9\\cf%d ", dolchAdverbsTextColorIndexBGMode) :
             wxT("{\\cf9 ") :
             wxEmptyString;
         const wxString DOLCH_ADJECTIVE_BEGIN = IsHighlightingDolchAdjectives() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\cb10\\cf%d ", dolchAdjectivesTextColorIndexBGMode) :
+            wxString::Format(L"{\\cb10\\cf%d ", dolchAdjectivesTextColorIndexBGMode) :
             wxT("{\\cf10 ") :
             wxEmptyString;
         const wxString DOLCH_VERB_BEGIN = IsHighlightingDolchNouns() ? 
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\cb11\\cf%d ", dolchVerbsTextColorIndexBGMode) :
+            wxString::Format(L"{\\cb11\\cf%d ", dolchVerbsTextColorIndexBGMode) :
             wxT("{\\cf11 ") :
             wxEmptyString;
         const wxString DOLCH_NOUN_BEGIN = IsHighlightingDolchNouns() ? 
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format("{\\cb12\\cf%d ", dolchNounTextColorIndexBGMode) :
+            wxString::Format(L"{\\cb12\\cf%d ", dolchNounTextColorIndexBGMode) :
             wxT("{\\cf12 ") :
             wxEmptyString;
         // terminator

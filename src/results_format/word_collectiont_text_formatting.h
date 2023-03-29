@@ -35,7 +35,7 @@ static size_t FormatWordCollectionHighlightedWords(const documentT* theDocument,
                         const bool highlightInvalidWords,
                         const bool useRtfEncoding)
     {
-    std::wmemset(text, wxT(' '), bufferSize);
+    std::wmemset(text, L' ', bufferSize);
     std::wcsncpy(text, headerSection, headerSection.length() );
     size_t documentTextLength = headerSection.length();
 
@@ -252,7 +252,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(const documentT* theD
                                         const bool highlightInvalidWords,
                                         const bool useRtfEncoding)
     {
-    std::wmemset(text, wxT(' '), bufferSize);
+    std::wmemset(text, L' ', bufferSize);
     std::wcsncpy(text, headerSection, headerSection.length() );
     size_t documentTextLength = headerSection.length();
 
@@ -487,7 +487,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(const documentT* theD
                     }
                 }
 
-            wxString wordCountStr = wxString::Format(wxT(" %s (%zu)%s"), BOLD_BEGIN, currentSentenceLength, BOLD_END);
+            wxString wordCountStr = wxString::Format(L" %s (%zu)%s", BOLD_BEGIN, currentSentenceLength, BOLD_END);
             if (currentSentenceShouldBeHighlightedAsInvalid ||
                 currentSentenceIsOverlyLong)
                 {
@@ -546,7 +546,7 @@ static size_t FormatFilteredWordCollection(const documentT* theDocument,
     wxASSERT(text);
     if (!text)
         { return 0; }
-    std::wmemset(text, wxT(' '), bufferSize);
+    std::wmemset(text, L' ', bufferSize);
     size_t documentTextLength = 0;
 
     // punctuation markers
@@ -559,7 +559,7 @@ static size_t FormatFilteredWordCollection(const documentT* theDocument,
          ++para_iter)
         {
         // add a tab at the beginning of the paragraph
-        text[documentTextLength++] = wxT('\t');
+        text[documentTextLength++] = L'\t';
         // go through the current paragraph's sentences
         size_t formattedSentencesInCurrentParagraph = 0;
         for (size_t j = para_iter->get_first_sentence_index();
@@ -600,7 +600,7 @@ static size_t FormatFilteredWordCollection(const documentT* theDocument,
                 if (stripAbbreviations && !theDocument->get_word(i).is_numeric() &&
                     // last word in the sentence will need to keep its period (if an abbreviation)
                     i < currentSentence.get_last_word_index() &&
-                    currentWord.length() && currentWord.back()== wxT('.'))
+                    currentWord.length() && currentWord.back()== L'.')
                     { currentWord.pop_back(); }
                 if (!atFirstWordInSentence)
                     {

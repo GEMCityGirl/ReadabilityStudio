@@ -35,7 +35,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
 
     m_sideBarBackgroundColor(wxColour(200, 211, 231)), // Serenity
     m_sideBarParentColor(wxColour(180, 189, 207)), // slightly darker
-    m_sideBarActiveColor(wxT("#FDB759")), // orange
+    m_sideBarActiveColor(L"#FDB759"), // orange
     m_sideBarActiveFontColor(*wxBLACK),
     m_sideBarFontColor(*wxBLACK),
     m_sideBarHoverColor(wxColour(253, 211, 155)), // slightly lighter
@@ -479,7 +479,7 @@ void ReadabilityAppOptions::SetColorsFromSystem()
         m_sideBarBackgroundColor = m_ribbonInactiveTabColor;
         m_sideBarParentColor = m_ribbonActiveTabColor;
         }
-    m_sideBarActiveColor = wxT("#FDB759"); // bright orange
+    m_sideBarActiveColor = L"#FDB759"; // bright orange
     m_sideBarActiveFontColor = *wxBLACK;
     m_sideBarHoverColor = m_ribbonHoverColor;
     m_sideBarHoverFontColor = *wxBLACK;
@@ -507,9 +507,9 @@ void ReadabilityAppOptions::ResetSettings()
     SetFonts();
 
     // default exporting info
-    BaseProjectDoc::SetExportTextViewExt(wxT("htm"));
-    BaseProjectDoc::SetExportListExt(wxT("htm"));
-    BaseProjectDoc::SetExportGraphExt(wxT("png"));
+    BaseProjectDoc::SetExportTextViewExt(L"htm");
+    BaseProjectDoc::SetExportListExt(L"htm");
+    BaseProjectDoc::SetExportGraphExt(L"png");
     BaseProjectDoc::ExportHardWordLists(true);
     BaseProjectDoc::ExportSentencesBreakdown(true);
     BaseProjectDoc::ExportGraphs(true);

@@ -42,8 +42,8 @@ namespace LuaScripting
             else if (fn.GetExt().CmpNoCase(_DT(L"rsbp")) == 0)
                 {
                 m_project = nullptr;
-                wxMessageBox(_("A standard project cannot open a batch project file."),
-                             _("Project File Mismatch"), wxOK|wxICON_EXCLAMATION);
+                wxMessageBox(_(L"A standard project cannot open a batch project file."),
+                             _(L"Project File Mismatch"), wxOK|wxICON_EXCLAMATION);
                 return;
                 }
             else
@@ -147,8 +147,8 @@ namespace LuaScripting
         {
         if (m_project && m_project->GetProjectLanguage() == readability::test_language::german_test)
             {
-            wxMessageBox(_("ProperNounCount() not supported for German projects."),
-                _("Script Error"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(_(L"ProperNounCount() not supported for German projects."),
+                _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
             lua_pushinteger(L, 0);
             return 1;
             }
@@ -662,8 +662,8 @@ namespace LuaScripting
                     }
                 else
                     {
-                    wxMessageBox(wxString::Format(_("%s: Unknown test could not be added."), testName),
-                        _("Script Error"), wxOK|wxICON_EXCLAMATION);
+                    wxMessageBox(wxString::Format(_(L"%s: Unknown test could not be added."), testName),
+                        _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
                     lua_pushboolean(L, false);
                     return 1;
                     }
@@ -748,14 +748,14 @@ namespace LuaScripting
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
                 const wxString originalLabel = scoresWindow->GetLabel();
-                scoresWindow->SetLabel(originalLabel + wxString::Format(wxT(" [%s]"), wxFileName::StripExtension(doc->GetTitle())));
+                scoresWindow->SetLabel(originalLabel + wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
                 lua_pushboolean(L, scoresWindow->Save(wxString(luaL_checklstring(L, 2, nullptr), wxConvUTF8)) );
                 scoresWindow->SetLabel(originalLabel);
                 }
             else
                 {
-                wxMessageBox(_("Unable to find the scores in the project."),
-                     _("Script Error"), wxOK|wxICON_EXCLAMATION);
+                wxMessageBox(_(L"Unable to find the scores in the project."),
+                     _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
                 }
             }
         return 0;
@@ -792,7 +792,7 @@ namespace LuaScripting
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
                 const wxString originalLabel = graphWindow->GetLabel();
-                graphWindow->SetLabel(originalLabel + wxString::Format(wxT(" [%s]"), wxFileName::StripExtension(doc->GetTitle())));
+                graphWindow->SetLabel(originalLabel + wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
                 Wisteria::UI::ImageExportOptions opt;
                 if (lua_gettop(L) >= 4 && lua_toboolean(L, 4))
                     { opt.m_mode = static_cast<decltype(opt.m_mode)>(Wisteria::UI::ImageExportOptions::ColorMode::Greyscale); }
@@ -805,8 +805,8 @@ namespace LuaScripting
                 }
             else
                 {
-                wxMessageBox(wxString::Format(_("Unable to find the specified graph (%d) in the project."), static_cast<int>(lua_tonumber(L, 2))),
-                     _("Script Error"), wxOK|wxICON_EXCLAMATION);
+                wxMessageBox(wxString::Format(_(L"Unable to find the specified graph (%d) in the project."), static_cast<int>(lua_tonumber(L, 2))),
+                     _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
                 }
             }
         return 0;
@@ -834,14 +834,14 @@ namespace LuaScripting
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
                 const wxString originalLabel = textWindow->GetLabel();
-                textWindow->SetTitleName(originalLabel + wxString::Format(wxT(" [%s]"), wxFileName::StripExtension(doc->GetTitle())));
+                textWindow->SetTitleName(originalLabel + wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
                 lua_pushboolean(L, textWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)) );
                 textWindow->SetTitleName(originalLabel);
                 }
             else
                 {
-                wxMessageBox(wxString::Format(_("Unable to find the specified highlighted words (%d) in the project."), static_cast<int>(lua_tonumber(L, 2))),
-                     _("Script Error"), wxOK|wxICON_EXCLAMATION);
+                wxMessageBox(wxString::Format(_(L"Unable to find the specified highlighted words (%d) in the project."), static_cast<int>(lua_tonumber(L, 2))),
+                     _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
                 }
             }
         return 0;
@@ -867,7 +867,7 @@ namespace LuaScripting
                 if (window)
                     {
                     const wxString originalLabel = window->GetLabel();
-                    window->SetLabel(originalLabel + wxString::Format(wxT(" [%s]"), wxFileName::StripExtension(doc->GetTitle())));
+                    window->SetLabel(originalLabel + wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
                     lua_pushboolean(L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
                     window->SetLabel(originalLabel);
                     }
@@ -878,7 +878,7 @@ namespace LuaScripting
                 if (window)
                     {
                     const wxString originalLabel = window->GetLabel();
-                    window->SetLabel(originalLabel + wxString::Format(wxT(" [%s]"), wxFileName::StripExtension(doc->GetTitle())));
+                    window->SetLabel(originalLabel + wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
                     lua_pushboolean(L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
                     window->SetLabel(originalLabel);
                     }
@@ -889,15 +889,15 @@ namespace LuaScripting
                 if (window)
                     {
                     const wxString originalLabel = window->GetLabel();
-                    window->SetLabel(originalLabel + wxString::Format(wxT(" [%s]"), wxFileName::StripExtension(doc->GetTitle())));
+                    window->SetLabel(originalLabel + wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
                     lua_pushboolean(L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
                     window->SetLabel(originalLabel);
                     }
                 }
             else
                 {
-                wxMessageBox(wxString::Format(_("Unable to find the specified list (%d) in the project."), static_cast<int>(lua_tonumber(L, 2))),
-                     _("Script Error"), wxOK|wxICON_EXCLAMATION);
+                wxMessageBox(wxString::Format(_(L"Unable to find the specified list (%d) in the project."), static_cast<int>(lua_tonumber(L, 2))),
+                     _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
                 }
             }
         return 0;
@@ -929,7 +929,7 @@ namespace LuaScripting
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
                 const wxString originalLabel = listWindow->GetLabel();
-                listWindow->SetLabel(originalLabel + wxString::Format(wxT(" [%s]"), wxFileName::StripExtension(doc->GetTitle())));
+                listWindow->SetLabel(originalLabel + wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
                 GridExportOptions exportOptions;
                 exportOptions.m_fromRow = (lua_gettop(L) > 3) ? lua_tonumber(L, 4) : 1;
                 exportOptions.m_toRow = (lua_gettop(L) > 4) ? lua_tonumber(L, 5) : -1;
@@ -942,8 +942,8 @@ namespace LuaScripting
                 }
             else
                 {
-                wxMessageBox(wxString::Format(_("Unable to find the specified list (%d) in the project."), static_cast<int>(lua_tonumber(L, 2))),
-                     _("Script Error"), wxOK|wxICON_EXCLAMATION);
+                wxMessageBox(wxString::Format(_(L"Unable to find the specified list (%d) in the project."), static_cast<int>(lua_tonumber(L, 2))),
+                     _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
                 }
             }
         return 0;
@@ -1368,8 +1368,8 @@ namespace LuaScripting
             else if (fn.GetExt().CmpNoCase(_DT(L"rsp")) == 0)
                 {
                 m_project = nullptr;
-                wxMessageBox(_("A batch project cannot open a standard project file."),
-                             _("Project File Mismatch"), wxOK|wxICON_EXCLAMATION);
+                wxMessageBox(_(L"A batch project cannot open a standard project file."),
+                             _(L"Project File Mismatch"), wxOK|wxICON_EXCLAMATION);
                 return;
                 }
             else
@@ -1919,8 +1919,8 @@ namespace LuaScripting
                     }
                 else
                     {
-                    wxMessageBox(wxString::Format(_("%s: Unknown test could not be added."), testName),
-                        _("Script Error"), wxOK|wxICON_EXCLAMATION);
+                    wxMessageBox(wxString::Format(_(L"%s: Unknown test could not be added."), testName),
+                        _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
                     lua_pushboolean(L, false);
                     return 1;
                     }
@@ -2008,7 +2008,7 @@ namespace LuaScripting
                 {
                 const BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(view->GetDocument());
                 const wxString originalLabel = listWindow->GetLabel();
-                listWindow->SetLabel(originalLabel + wxString::Format(wxT(" [%s]"), wxFileName::StripExtension(doc->GetTitle())));
+                listWindow->SetLabel(originalLabel + wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
                 GridExportOptions exportOptions;
                 exportOptions.m_fromRow = (lua_gettop(L) > 3) ? lua_tonumber(L, 4) : 1;
                 exportOptions.m_toRow = (lua_gettop(L) > 4) ? lua_tonumber(L, 5) : -1;
@@ -2054,7 +2054,7 @@ namespace LuaScripting
                 {
                 const BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(view->GetDocument());
                 const wxString originalLabel = graphWindow->GetLabel();
-                graphWindow->SetLabel(originalLabel + wxString::Format(wxT(" [%s]"), wxFileName::StripExtension(doc->GetTitle())));
+                graphWindow->SetLabel(originalLabel + wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
                 Wisteria::UI::ImageExportOptions opt;
                 if (lua_gettop(L) >= 5 && lua_toboolean(L, 5))
                     { opt.m_mode = static_cast<decltype(opt.m_mode)>(Wisteria::UI::ImageExportOptions::ColorMode::Greyscale); }
@@ -2067,8 +2067,9 @@ namespace LuaScripting
                 }
             else
                 {
-                wxMessageBox(wxString::Format(_("Unable to find the specified graph (%d) in the project."), static_cast<int>(lua_tonumber(L, 2))),
-                     _("Script Error"), wxOK|wxICON_EXCLAMATION);
+                wxMessageBox(wxString::Format(
+                    _(L"Unable to find the specified graph (%d) in the project."), static_cast<int>(lua_tonumber(L, 2))),
+                     _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
                 }
             }
         wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
@@ -2110,9 +2111,9 @@ namespace LuaScripting
         return 0;
         }
 
-    /*Selects the specified section and subwindow.
-    Section The section to select.
-    Window The subwindow in the section to select.*/
+    /* Selects the specified section and subwindow.
+       Section The section to select.
+       Window The subwindow in the section to select.*/
     int BatchProject::SelectWindow(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
