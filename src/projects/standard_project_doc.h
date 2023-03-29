@@ -104,7 +104,7 @@ private:
     void DisplayReadabilityGraphs();
     void DisplayWordsBreakdown();
     /// @brief Simply adds/removes word-list text windows when a word-list test is removed.
-    /// @detials This won't reformat anything, it just shows or hides a window if its
+    /// @details This won't reformat anything, it just shows or hides a window if its
     ///     respective test is added or removed.
     void UpdateHighlightedTextWindows();
     void DisplayGrammar();

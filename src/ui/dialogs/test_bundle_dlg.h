@@ -28,7 +28,7 @@ class TestBundleDlg final : public Wisteria::UI::DialogWithHelp
 public:
     /// @brief Constructor.
     /// @param parent The dialog's parent.
-    /// @para testBundle The test bundle to edit.
+    /// @param testBundle The test bundle to edit.
     TestBundleDlg(wxWindow* parent, TestBundle& testBundle);
     /// @private
     TestBundleDlg() = delete;

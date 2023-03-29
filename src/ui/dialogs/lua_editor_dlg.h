@@ -30,6 +30,7 @@ class LuaEditorDlg final : public wxFrame
     {
 public:
     /** @brief Constructor.
+        @param parent The dialog's parent.
         @param id The dialog's ID.
         @param caption The dialog's caption.
         @param pos The dialog's position.

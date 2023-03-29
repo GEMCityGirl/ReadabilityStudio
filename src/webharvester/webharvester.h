@@ -255,7 +255,7 @@ public:
         @param[in,out] Url The webpage (may be altered if redirected).
         @param[out] webPageContent The content of the page.
         @param[out] contentType The MIME type of the page.
-        @param[out] The response code when connecting to the page.
+        @param[out] responseCode The response code when connecting to the page.
         @param acceptOnlyHtmlOrScriptFiles Whether only HTML or JS script files should be read.
         @param allowRedirect True if the page should still be read if redirected to a different page.
         @param userName The username to connect to the page (not currently implemented).
@@ -274,7 +274,7 @@ public:
 
     /** @brief Gets the content type of a webpage.
         @param[in,out] Url The webpage (may be altered if redirected).
-        @param[out] The response code when connecting to the page.
+        @param[out] responseCode The response code when connecting to the page.
         @param userName The username to connect to the page (not currently implemented).
         @param passWord The password to connect to the page (not currently implemented).
         @returns The MIME string of the page's content type.*/
@@ -574,5 +574,7 @@ private:
     static const wxString JAVASCRIPT_CONTENT_TYPE;
     static const wxString VBSCRIPT_CONTENT_TYPE;
     };
+
+/** @}*/
 
 #endif //__WXWEBHARVESTER_H__

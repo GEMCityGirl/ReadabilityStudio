@@ -71,7 +71,7 @@ public:
     /** @brief Creates the dialog (used when using empty constructor).
         @param parent The parent window.
         @param id The dialog's ID.
-        @param testName The name for the test that is being created or edited.
+        @param caption The dialog's caption.
         @param pos The dialog's position.
         @param size The dialog's size.
         @param style The dialog's style.*/

@@ -153,4 +153,6 @@ private:
     wxDECLARE_EVENT_TABLE();
     };
 
+/** @}*/
+
 #endif // __WEB_HARVESTER_DIALOG_H__

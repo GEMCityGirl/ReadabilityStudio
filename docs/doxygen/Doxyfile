@@ -963,6 +963,8 @@ RECURSIVE              = YES
 
 EXCLUDE                = doxygen-awesome-css \
                          ../../src/OleanderStemmingLibrary \
+                         ../../src/Catch2 \
+                         ../../src/tinyexpr-plusplus \
                          ../ReadabilityStudioAPI \
                          ../Coding-Bible
 

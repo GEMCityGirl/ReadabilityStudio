@@ -21,7 +21,7 @@
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
 
 /// @brief Dialog to create a new custom word test.
-/// @detials This dialog will only prompt for the test name and path
+/// @details This dialog will only prompt for the test name and path
 ///     to custom word list.
 class NewCustomWordTestSimpleDlg final : public Wisteria::UI::DialogWithHelp
     {

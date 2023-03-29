@@ -54,4 +54,6 @@ public:
     wxString ResolvePath(const wxString& path, const bool attemptToConnect );
     };
 
+/** @}*/
+
 #endif // __FILEPATH_RESOLVER__
