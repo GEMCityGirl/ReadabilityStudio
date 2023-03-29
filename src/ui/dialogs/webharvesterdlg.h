@@ -39,8 +39,10 @@ public:
              const wxArrayString& domainStrings, const int minFileSizeInKiloBytes,
              wxWindowID id = wxID_ANY, const wxString& caption = _(L"Web Harvester"),
              const wxPoint& pos = wxDefaultPosition,
-             const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER) :
-        m_depthLevel(depthLevel), m_fullDocFilter(fullDocFilter), m_selectedDocFilter(selectedDocFilter),
+             const wxSize& size = wxDefaultSize,
+        long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER) :
+        m_depthLevel(depthLevel), m_fullDocFilter(fullDocFilter),
+        m_selectedDocFilter(selectedDocFilter),
         m_selectedDomainRestriction(domainRestriction),
         m_domains(domainStrings), m_hideLocalDownloadOption(hideLocalDownloadOption),
         m_downloadFilesLocally(downloadFilesLocally),
@@ -106,16 +108,16 @@ public:
     void OnAddDomainClick([[maybe_unused]] wxCommandEvent& event);
     void OnDeleteDomainClick([[maybe_unused]] wxCommandEvent& event);
 private:
-    static constexpr int ID_DOWNLOAD_CHECKBOX = 10001;
-    static constexpr int ID_DOWNLOAD_FOLDER_BROWSE_BUTTON = 10002;
-    static constexpr int ID_DOMAIN_COMBO = 10003;
-    static constexpr int ID_ADD_URL_BUTTON = 10004;
-    static constexpr int ID_DELETE_URL_BUTTON = 10005;
-    static constexpr int ID_ADD_DOMAIN_BUTTON = 10006;
-    static constexpr int ID_DELETE_DOMAIN_BUTTON = 10007;
-    static constexpr int ID_HARVESTING_PAGE = 10008;
-    static constexpr int ID_DOMAINS_PAGE = 10009;
-    static constexpr int ID_DOWNLOAD_PAGE = 10010;
+    static constexpr int ID_DOWNLOAD_CHECKBOX = wxID_HIGHEST;
+    static constexpr int ID_DOWNLOAD_FOLDER_BROWSE_BUTTON = wxID_HIGHEST + 1;
+    static constexpr int ID_DOMAIN_COMBO = wxID_HIGHEST + 2;
+    static constexpr int ID_ADD_URL_BUTTON = wxID_HIGHEST + 3;
+    static constexpr int ID_DELETE_URL_BUTTON = wxID_HIGHEST + 4;
+    static constexpr int ID_ADD_DOMAIN_BUTTON = wxID_HIGHEST + 5;
+    static constexpr int ID_DELETE_DOMAIN_BUTTON = wxID_HIGHEST + 6;
+    static constexpr int ID_HARVESTING_PAGE = wxID_HIGHEST + 7;
+    static constexpr int ID_DOMAINS_PAGE = wxID_HIGHEST + 8;
+    static constexpr int ID_DOWNLOAD_PAGE = wxID_HIGHEST + 9;
 
     [[nodiscard]]
     wxString GetUserSpecifiedDomainsLabel() const
@@ -158,8 +160,6 @@ private:
 
     wxString m_downloadFolder;
     wxString m_userAgent;
-
-    wxDECLARE_EVENT_TABLE();
     };
 
 /** @}*/

@@ -11,17 +11,6 @@
 
 wxDECLARE_APP(ReadabilityApp);
 
-wxBEGIN_EVENT_TABLE(WebHarvesterDlg, DialogWithHelp)
-    EVT_COMBOBOX(ID_DOMAIN_COMBO, WebHarvesterDlg::OnDomainComboSelect)
-    EVT_CHECKBOX(ID_DOWNLOAD_CHECKBOX, WebHarvesterDlg::OnDownloadCheck)
-    EVT_BUTTON(ID_DOWNLOAD_FOLDER_BROWSE_BUTTON, WebHarvesterDlg::OnFolderBrowseButtonClick)
-    EVT_BUTTON(wxID_OK, WebHarvesterDlg::OnOK)
-    EVT_BUTTON(ID_ADD_URL_BUTTON, WebHarvesterDlg::OnAddUrlClick)
-    EVT_BUTTON(ID_DELETE_URL_BUTTON, WebHarvesterDlg::OnDeleteUrlClick)
-    EVT_BUTTON(ID_ADD_DOMAIN_BUTTON, WebHarvesterDlg::OnAddDomainClick)
-    EVT_BUTTON(ID_DELETE_DOMAIN_BUTTON, WebHarvesterDlg::OnDeleteDomainClick)
-wxEND_EVENT_TABLE()
-
 //-------------------------------------------------------------
 void WebHarvesterDlg::OnDomainComboSelect([[maybe_unused]] wxCommandEvent& event)
     {
@@ -69,13 +58,13 @@ void WebHarvesterDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     if (GetUrls().GetCount() == 0 && GetRawHtmlPage().empty())
         {
         wxMessageBox(_("Please enter a website to harvest."),
-                    _("Error"), wxOK|wxICON_EXCLAMATION);
+                     _("Error"), wxOK|wxICON_EXCLAMATION);
         return;
         }
     else if (m_downloadFilesLocally && m_downloadFolder.empty())
         {
         wxMessageBox(_("Please enter a valid folder to download the files to."),
-                    _("Error"), wxOK|wxICON_EXCLAMATION);
+                     _("Error"), wxOK|wxICON_EXCLAMATION);
         m_sideBarBook->SetSelection(2);
         wxCommandEvent cmd;
         OnFolderBrowseButtonClick(cmd);
@@ -87,7 +76,7 @@ void WebHarvesterDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
             {
             m_sideBarBook->SetSelection(2);
             wxMessageBox(_("Please enter a valid folder to download the files to."),
-                        _("Error"), wxOK|wxICON_EXCLAMATION);
+                         _("Error"), wxOK|wxICON_EXCLAMATION);
             wxCommandEvent cmd;
             OnFolderBrowseButtonClick(cmd);
             return;
@@ -298,7 +287,7 @@ void WebHarvesterDlg::CreateControls()
             wxDefaultPosition, wxDefaultSize, choiceStrings, wxCB_DROPDOWN | wxCB_READONLY);
         m_domainCombo->SetValue((m_selectedDomainRestriction >= 0 && 
                                  static_cast<size_t>(m_selectedDomainRestriction) < choiceStrings.GetCount()) ?
-            choiceStrings[m_selectedDomainRestriction] : wxString(wxString{}));
+            choiceStrings[m_selectedDomainRestriction] : wxString{});
         domainBoxSizer->Add(m_domainCombo, 0, wxEXPAND);
         domainBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
@@ -463,6 +452,22 @@ bool WebHarvesterDlg::Create(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
     m_domainList->SetColumnWidth(0, m_domainList->GetClientSize().GetWidth() -
                                  wxSizerFlags::GetDefaultBorder());
     Centre();
+
+    Bind(wxEVT_BUTTON, &WebHarvesterDlg::OnFolderBrowseButtonClick, this,
+         WebHarvesterDlg::ID_DOWNLOAD_FOLDER_BROWSE_BUTTON);
+    Bind(wxEVT_BUTTON, &WebHarvesterDlg::OnOK, this, wxID_OK);
+    Bind(wxEVT_BUTTON, &WebHarvesterDlg::OnAddUrlClick, this,
+         WebHarvesterDlg::ID_ADD_URL_BUTTON);
+    Bind(wxEVT_BUTTON, &WebHarvesterDlg::OnDeleteUrlClick, this,
+         WebHarvesterDlg::ID_DELETE_URL_BUTTON);
+    Bind(wxEVT_BUTTON, &WebHarvesterDlg::OnAddDomainClick, this,
+         WebHarvesterDlg::ID_ADD_DOMAIN_BUTTON);
+    Bind(wxEVT_BUTTON, &WebHarvesterDlg::OnDeleteDomainClick, this,
+         WebHarvesterDlg::ID_DELETE_DOMAIN_BUTTON);
+    Bind(wxEVT_CHECKBOX, &WebHarvesterDlg::OnDownloadCheck, this,
+         WebHarvesterDlg::ID_DOWNLOAD_CHECKBOX);
+    Bind(wxEVT_COMBOBOX, &WebHarvesterDlg::OnDomainComboSelect, this,
+         WebHarvesterDlg::ID_DOMAIN_COMBO);
 
     return true;
     }

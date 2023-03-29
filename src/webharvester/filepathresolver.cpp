@@ -17,22 +17,22 @@ wxString FilePathResolver::ResolvePath(const wxString& path, const bool attemptT
         {
         // See if it is an URL, but make sure this remotely resembles a legit URL first.
         // More than 3 spaces is really odd for an URL and is more than likely bogus
-        if (m_path.Freq(wxT(' ')) > 3)
+        if (m_path.Freq(L' ') > 3)
             {
             m_fileType = FilePathType::InvalidFileType;
             return m_path;
             }
         wxString webPathToTest = m_path;
 
-        webPathToTest.Replace(wxT("\\"), wxT("/"));
+        webPathToTest.Replace(L"\\", L"/");
         // encode any spaces
-        webPathToTest.Replace(wxT(" "), wxT("%20"));
+        webPathToTest.Replace(L" ", L"%20");
 
         struct WebHarvester::MemoryStruct chunk;
         CURL* curl_handle = curl_easy_init();
 
         curl_easy_setopt(curl_handle, CURLOPT_URL,
-            static_cast<const char*>(wxString(wxT("https://www.") + webPathToTest)));
+            static_cast<const char*>(wxString(L"https://www." + webPathToTest)));
         curl_easy_setopt(curl_handle, CURLOPT_CONNECTTIMEOUT, 30);
         curl_easy_setopt(curl_handle, CURLOPT_AUTOREFERER, 1);
         curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, true);
@@ -44,12 +44,12 @@ wxString FilePathResolver::ResolvePath(const wxString& path, const bool attemptT
         // try to connect to it with https://www. prepended to it
         auto connectResult = curl_easy_perform(curl_handle);
         if (connectResult == CURLE_OK)
-            { webPathToTest = wxString(wxT("https://www.") + webPathToTest); }
+            { webPathToTest = wxString(L"https://www." + webPathToTest); }
         // if that didn't work, then try prepending just https://
         else
             {
             curl_easy_setopt(curl_handle, CURLOPT_URL,
-                static_cast<const char*>(wxString(wxT("https://") + webPathToTest)));
+                static_cast<const char*>(wxString(L"https://" + webPathToTest)));
             connectResult = curl_easy_perform(curl_handle);
             if (connectResult == CURLE_OK)
                 { webPathToTest = wxString(L"https://" + webPathToTest); }
