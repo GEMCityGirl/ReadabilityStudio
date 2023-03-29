@@ -42,7 +42,7 @@ public:
         @param attemptToConnect Whether to attempt to connect the file (via the Internet)
             to see if it's an URL. This is final fallback when the filepath type
             can't be easily determined.
-        @note Set @c attemptToConnect to false if performance is a concern.*/
+        @note Set @c attemptToConnect to @c false if performance is a concern.*/
     explicit FilePathResolver(const wxString& path, const bool attemptToConnect)
         { ResolvePath(path, attemptToConnect); }
     /** Resolves a string to see if it is a file path.
@@ -50,7 +50,7 @@ public:
         @param attemptToConnect Whether to attempt to connect the file (via the Internet)
             to see if it's an URL. This is final fallback when the filepath type
             can't be easily determined.
-        @note Set @c attemptToConnect to false if performance is a concern.*/
+        @note Set @c attemptToConnect to @c false if performance is a concern.*/
     wxString ResolvePath(const wxString& path, const bool attemptToConnect );
     };
 

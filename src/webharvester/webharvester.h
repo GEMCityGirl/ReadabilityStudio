@@ -9,8 +9,8 @@
      SPDX-License-Identifier: BSD-3-Clause
 * @{*/
 
-#ifndef __WXWEBHARVESTER_H__
-#define __WXWEBHARVESTER_H__
+#ifndef __WEBHARVESTER_H__
+#define __WEBHARVESTER_H__
 
 #include <limits>
 #include <set>
@@ -589,4 +589,4 @@ private:
 
 /** @}*/
 
-#endif //__WXWEBHARVESTER_H__
+#endif // __WEBHARVESTER_H__

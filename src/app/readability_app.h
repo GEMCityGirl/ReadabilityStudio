@@ -17,8 +17,6 @@
 #include <algorithm>
 #include "../../../../SRC/curl/include/curl/curl.h"
 #include "../../../../SRC/curl/include/curl/easy.h"
-#include "../../../../SRC/wxTools/WebHarvester.h"
-#include "../../../../SRC/wxTools/WebHarvesterDlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/codeeditor.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/printerheaderfooterdlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/util/formulaformat.h"
@@ -33,6 +31,7 @@
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/app.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/wxStartPage/startpage.h"
 #include "../../../../SRC/Licensing/LicenseAdmin.h"
+#include "../webharvester/webharvester.h"
 #include "../readability/custom_readability_test.h"
 #include "../results_format/xml_format.h"
 #include "../projects/standard_project_doc.h"
@@ -40,6 +39,7 @@
 #include "../ui/dialogs/word_list_dlg.h"
 #include "../ui/dialogs/aboutdlgex.h"
 #include "../ui/dialogs/lua_editor_dlg.h"
+#include "../ui/dialogs/webharvesterdlg.h"
 #include "../lua_scripting/lua_interface.h"
 
 /// @brief Extended icon provider, which is connected to application's

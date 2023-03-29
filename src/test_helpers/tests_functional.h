@@ -9,8 +9,8 @@
      SPDX-License-Identifier: BSD-3-Clause
 * @{*/
 
-#ifndef __WX_FUNCTIONAL_H__
-#define __WX_FUNCTIONAL_H__
+#ifndef __TESTS_FUNCTIONAL_H__
+#define __TESTS_FUNCTIONAL_H__
 
 #include <set>
 #include <wx/string.h>
@@ -413,4 +413,4 @@ private:
 
 /** @}*/
 
-#endif //__WX_FUNCTIONAL_H__
+#endif // __TESTS_FUNCTIONAL_H__

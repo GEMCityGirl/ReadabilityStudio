@@ -21,7 +21,7 @@
 #include "../../../../SRC/Wisteria-Dataviz/src/import/html_extract_text.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/import/html_encode.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/utfcpp/source/utf8.h"
-#include "../../../../SRC/wxTools/wxFileFolderOperations.h"
+#include "../webharvester/filepathresolver.h"
 #include "../indexing/sentence.h"
 
 class ChapterSplit

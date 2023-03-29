@@ -9,7 +9,6 @@
 #include "lua_screenshot.h"
 #include <wx/msgdlg.h>
 #include "../app/readability_app.h"
-#include "../../../../SRC/wxTools/WebHarvesterDlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/listctrlsortdlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/listctrlitemviewdlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
@@ -18,6 +17,7 @@
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/gridexportdlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/util/screenshot.h"
 #include "../ui/dialogs/filtered_text_preview_dlg.h"
+#include "../ui/dialogs/webharvesterdlg.h"
 #include "../ui/dialogs/editwordlistdlg.h"
 #include "../ui/dialogs/doc_group_select_dlg.h"
 #include "../ui/dialogs/custom_test_dlg.h"
