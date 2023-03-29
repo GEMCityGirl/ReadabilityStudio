@@ -415,8 +415,8 @@ bool XmlFormat::GetBoolean(const wchar_t* sectionStart,
         else
             {
             wxMessageBox(
-                wxString::Format(_("Warning: %s section of project file is ill-formatted."), entityTag), 
-                _("Warning"), wxOK|wxICON_INFORMATION);
+                wxString::Format(_(L"Warning: %s section of project file is ill-formatted."), entityTag), 
+                _(L"Warning"), wxOK|wxICON_INFORMATION);
             return defaultValue;
             }
         }
@@ -469,8 +469,8 @@ void XmlFormat::GetStringsWithExtraInfo(const wchar_t* sectionStart,
             else
                 {
                 wxMessageBox(
-                    wxString::Format(_("Warning: %s section of project file is ill-formatted."), entityTag), 
-                    _("Warning"), wxOK|wxICON_INFORMATION);
+                    wxString::Format(_(L"Warning: %s section of project file is ill-formatted."), entityTag), 
+                    _(L"Warning"), wxOK|wxICON_INFORMATION);
                 return;
                 }
             }
@@ -519,8 +519,8 @@ void XmlFormat::GetStrings(const wchar_t* sectionStart,
             else
                 {
                 wxMessageBox(
-                    wxString::Format(_("Warning: %s section of project file is ill-formatted."), entityTag), 
-                    _("Warning"), wxOK|wxICON_INFORMATION);
+                    wxString::Format(_(L"Warning: %s section of project file is ill-formatted."), entityTag), 
+                    _(L"Warning"), wxOK|wxICON_INFORMATION);
                 return;
                 }
             }
@@ -565,8 +565,8 @@ wxString XmlFormat::GetString(const wchar_t* sectionStart,
         else
             {
             wxMessageBox(
-                wxString::Format(_("Warning: %s section of project file is ill-formatted."), entityTag), 
-                _("Warning"), wxOK|wxICON_INFORMATION);
+                wxString::Format(_(L"Warning: %s section of project file is ill-formatted."), entityTag), 
+                _(L"Warning"), wxOK|wxICON_INFORMATION);
             return wxString{};
             }
         }
@@ -608,8 +608,8 @@ long XmlFormat::GetLong(const wchar_t* sectionStart,
         else
             {
             wxMessageBox(
-                wxString::Format(_("Warning: %s section of project file is ill-formatted."), entityTag),
-                _("Warning"), wxOK|wxICON_INFORMATION);
+                wxString::Format(_(L"Warning: %s section of project file is ill-formatted."), entityTag),
+                _(L"Warning"), wxOK|wxICON_INFORMATION);
             return defaultValue;
             }
         }
@@ -651,8 +651,8 @@ double XmlFormat::GetDouble(const wchar_t* sectionStart,
         else
             {
             wxMessageBox(
-                wxString::Format(_("Warning: %s section of project file is ill-formatted."), entityTag),
-                _("Warning"), wxOK|wxICON_INFORMATION);
+                wxString::Format(_(L"Warning: %s section of project file is ill-formatted."), entityTag),
+                _(L"Warning"), wxOK|wxICON_INFORMATION);
             return defaultValue;
             }
         }
