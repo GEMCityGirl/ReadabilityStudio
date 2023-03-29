@@ -96,7 +96,7 @@ public:
 
     /// @brief Compares bundles by name.
     /// @param that The bundle to compare against.
-    /// @returns True if this bundle's name is less than the other one.
+    /// @returns @c true if this bundle's name is less than the other one.
     [[nodiscard]]
     bool operator<(const TestBundle& that) const noexcept
         { return GetName() < that.GetName(); }

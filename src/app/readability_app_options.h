@@ -854,7 +854,7 @@ public:
         @param useEnglish True to use the translated (English) labels.*/
     void UseEnglishLabelsForGermanLix(const bool useEnglish) noexcept
         { m_useEnglishLabelsGermanLix = useEnglish; }
-    /// @returns True if English labels are being used for the brackets on German Lix gauges.
+    /// @returns @c true if English labels are being used for the brackets on German Lix gauges.
     [[nodiscard]] bool IsUsingEnglishLabelsForGermanLix() const noexcept
         { return m_useEnglishLabelsGermanLix; }
     //variance method

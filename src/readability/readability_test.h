@@ -458,7 +458,7 @@ namespace readability
             return iterator->is_included();
             }
         /// Includes or excludes a @c test from the project.
-        /// @returns False if the requested test wasn't found.
+        /// @returns @c false if the requested test wasn't found.
         template<typename T>
         bool include_test(const T& test, const bool include)
             {

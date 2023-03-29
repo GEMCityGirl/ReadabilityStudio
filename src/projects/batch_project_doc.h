@@ -167,7 +167,7 @@ private:
     /** Removes documents that failed to be loaded (usually because they couldn't be found
         or if they didn't contain enough text).
         Along with removing the loaded document, it will remove the file from the project settings.
-        @returns True if the user requested to removed failed documents from the project.*/
+        @returns @c true if the user requested to removed failed documents from the project.*/
     bool CheckForFailedDocuments();
     void RemoveFailedDocuments();
 

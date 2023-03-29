@@ -1096,14 +1096,14 @@ public:
     /// whether the test's result meets those constraints.
     /// @param testName The name of the test to review.
     /// @param score The test's score, which will be compared to its goals.
-    /// @returns True if the test was found to have a goal.
+    /// @returns @c true if the test was found to have a goal.
     bool ReviewTestGoal(const wxString& testName, const double score);
 
     /// Sees if a given statistic has goal constraints specified, and if so,
     /// whether the statistic's result meets those constraints.
     /// @param statName The name of the statistic to review.
     /// @param value The statistic's value, which will be compared to its goals.
-    /// @returns True if the statistic was found to have a goal.
+    /// @returns @c true if the statistic was found to have a goal.
     bool ReviewStatGoal(const wxString& statName, const double value);
 
     /// Reviews all possible stats goals in the project.

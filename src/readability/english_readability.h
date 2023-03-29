@@ -1539,7 +1539,7 @@ namespace readability
         @param fog_word The word to review.
         @param length The length of the word.
         @param syllable_count The number of syllables in the word.
-        @returns True if words is easy.*/
+        @returns @c true if words is easy.*/
     [[nodiscard]] inline bool is_easy_gunning_fog_word(const wchar_t* fog_word,
                                                        const size_t length,
                                                        const size_t syllable_count)

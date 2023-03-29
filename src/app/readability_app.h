@@ -278,7 +278,7 @@ public:
     void EditDictionary(const readability::test_language lang);
     /// This is just used for testing purposes, to validate that the word lists are properly presorted.
     bool VerifyWordLists();
-    /// @returns True if parsers should import extra content (dependant on parser).
+    /// @returns @c true if parsers should import extra content (dependant on parser).
     [[nodiscard]] bool IsUsingAdvancedImport() const noexcept
         { return m_advancedImport; }
     void RemoveAllCustomTestBundles();

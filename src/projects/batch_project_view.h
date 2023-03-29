@@ -43,7 +43,7 @@ public:
     void OnFind(wxFindDialogEvent &event);
     void OnAddTest(wxCommandEvent& event);
 
-    /// @returns True if ID is for a list window with filepaths listed in it.
+    /// @returns @c true if ID is for a list window with filepaths listed in it.
     [[nodiscard]] bool IsFilenameList(const wxWindowID id) const noexcept
         {
         return (id == ID_SCORE_LIST_PAGE_ID ||

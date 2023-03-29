@@ -40,7 +40,7 @@ public:
     /// Removes all tests and goals from the project and applies
     /// the tests and goals from a given bundle.
     /// @param bundleName The test bundle to apply.
-    /// @returns True if bundle was successfully applied.
+    /// @returns @c true if bundle was successfully applied.
     bool ApplyTestBundle(const wxString& bundleName);
 
     //graph information
@@ -150,7 +150,7 @@ public:
         @param useEnglish True to use the translated (English) labels.*/
     void UseEnglishLabelsForGermanLix(const bool useEnglish) noexcept
         { m_useEnglishLabelsGermanLix = useEnglish; }
-    /// @returns True if English labels are being used for the brackets on German Lix gauges.
+    /// @returns @c true if English labels are being used for the brackets on German Lix gauges.
     [[nodiscard]] bool IsUsingEnglishLabelsForGermanLix() const noexcept
         { return m_useEnglishLabelsGermanLix; }
 
@@ -425,7 +425,7 @@ public:
     virtual void RefreshStatisticsReports() {}
 
     /// @brief Determines whether the project is safe to have its options or tests changed.
-    /// @returns False if the project is being reloaded.
+    /// @returns @c false if the project is being reloaded.
     [[nodiscard]] bool IsSafeToUpdate() const
         {
         if (IsProcessing())
