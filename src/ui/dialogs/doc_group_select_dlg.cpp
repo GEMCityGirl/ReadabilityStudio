@@ -75,7 +75,7 @@ void DocGroupSelectDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     m_groupingLabel.Trim(true).Trim(false);
 
     // validate the label
-    if (m_groupingLabel.IsEmpty() && GetSelection() == 1)
+    if (m_groupingLabel.empty() && GetSelection() == 1)
         {
         wxMessageBox(_("Please enter a grouping label."), _("Error"), wxOK|wxICON_EXCLAMATION);
         return;

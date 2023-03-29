@@ -44,10 +44,10 @@ public:
 class WebPageExtension
     {
 public:
-    /** @returns True if @c extension is a known web file extension.
+    /** @returns @c true if @c extension is a known web file extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
-    inline bool operator()(const wxChar* extension) const
+    inline bool operator()(const wchar_t* extension) const
         {
         // any sort of PHP page (even without the extension PHP) will follow this syntax
         if (std::wcschr(extension, wxT('?')) && std::wcschr(extension, wxT('=')) )
@@ -66,10 +66,10 @@ private:
 class KnownRegularFileExtension
     {
 public:
-    /** @returns True if @c extension is a known file extension.
+    /** @returns @c true if @c extension is a known file extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
-    inline bool operator()(const wxChar* extension) const
+    inline bool operator()(const wchar_t* extension) const
         { return (m_knownRegularFileExtensions.find(extension) != m_knownRegularFileExtensions.cend()); }
 private:
     std::set<string_util::case_insensitive_wstring> m_knownRegularFileExtensions
@@ -100,10 +100,10 @@ private:
 class KnownScriptFileExtension
     {
 public:
-    /** @returns True if @c extension is a known web script file extension.
+    /** @returns @c true if @c extension is a known web script file extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
-    inline bool operator()(const wxChar* extension) const
+    inline bool operator()(const wchar_t* extension) const
         { return (m_knownFileExtensions.find(extension) != m_knownFileExtensions.cend()); }
 private:
     std::set<string_util::case_insensitive_wstring> m_knownFileExtensions
@@ -117,10 +117,10 @@ public:
     /** @brief Constructor.
         @param path The URL to parse.
         @param referUrl The referring URL that @c path originated from.*/
-    UrlWithNumericSequence(const wxString& path, const wxString& referUrl) : m_string(path), m_refererUrl(referUrl),
-                    m_number_start(0), m_number_end(0), m_numeric_value(wxNOT_FOUND), m_numeric_width(0)
+    UrlWithNumericSequence(const wxString& path, const wxString& referUrl) :
+        m_string(path), m_refererUrl(referUrl)
         { ParseSequenceNumber(); }
-    /** @returns True if this URL is less than @c that.
+    /** @returns @c true if this URL is less than @c that.
         @param that The URL to compare against.*/
     [[nodiscard]]
     bool operator<(const UrlWithNumericSequence& that) const
@@ -144,11 +144,11 @@ public:
     /// @returns The section of the URL up to the number.
     [[nodiscard]]
     wxString GetPathPrefix() const
-        { return m_string.Mid(0, m_number_start); }
+        { return m_string.substr(0, m_number_start); }
     /// @returns The section of the URL starting at the number.
     [[nodiscard]]
     wxString GetPathSuffix() const
-        { return m_string.Mid(m_number_end); }
+        { return m_string.substr(m_number_end); }
  protected:
     void ParseSequenceNumber();
     void Reset() noexcept
@@ -200,12 +200,12 @@ public:
     /// Domain restriction methods.
     enum class DomainRestriction
         {
-        NotRestricted,             /*!< No restrictions. */
-        RestrictToDomain,          /*!< Restrict harvesting to the base URL's domain. */
-        RestrictToSubDomain,       /*!< Restrict harvesting to the base URL's subdomain. */
-        RestrictToSpecificDomains, /*!< Restrict harvesting to a list of user-defined domains. */
-        RestrictToExternalLinks,   /*!< Restrict harvesting to links outside of the base URL's domain. */
-        RestrictToFolder           /*!< Restrict harvesting to links within the base URL's folder. */
+        NotRestricted,             /*!< No restrictions.*/
+        RestrictToDomain,          /*!< Restrict harvesting to the base URL's domain.*/
+        RestrictToSubDomain,       /*!< Restrict harvesting to the base URL's subdomain.*/
+        RestrictToSpecificDomains, /*!< Restrict harvesting to a list of user-defined domains.*/
+        RestrictToExternalLinks,   /*!< Restrict harvesting to links outside of the base URL's domain.*/
+        RestrictToFolder           /*!< Restrict harvesting to links within the base URL's folder.*/
         };
 
     WebHarvester() = default;
@@ -224,7 +224,7 @@ public:
     WebHarvester& operator=(const WebHarvester&) = delete;
 
     /// @brief Crawls the loaded URL.
-    /// @returns False is crawl was cancelled.
+    /// @returns @c false is crawl was cancelled.
     [[nodiscard]]
     bool CrawlLinks();
     
@@ -232,20 +232,22 @@ public:
     /// @param Url The link to download.
     /// @param allowRedirect Set to true to follow the link if redirecting to another page.
     /// @param fileExtension The (hint) file extension to download the file as. This is only
-    ///  used if the webpage doesn't have a proper extension. If empty and
-    ///  @c Url is empty, then the file extension will be determined by the MIME type.
+    ///     used if the webpage doesn't have a proper extension. If empty and
+    /// @c Url is empty, then the file extension will be determined by the MIME type.
     /// @returns The local file path of the file after downloading, or empty string upon failure.
     wxString DownloadFile(wxString& Url,
                           const bool allowRedirect = true,
-                          const wxString& fileExtension = wxEmptyString);
+                          const wxString& fileExtension = wxString{});
     /// @brief Download all of the harvested links.
     /// @note This should be called after CrawlLinks().
     void DownloadFiles();
 
     //Static help functions
     //----------------------------------
-    /** @brief Creates a new file based on @c filePath, embedding a numeric sequence in it (making it unique).
-         This is useful for saving a file and not overwriting one that already exists with the same name.
+    /** @brief Creates a new file based on @c filePath, embedding a numeric
+            sequence in it (making it unique).
+            This is useful for saving a file and not overwriting one that
+            already exists with the same name.
         @param filePath The original filepath
         @returns The new filepath that was created.*/
     [[nodiscard]]
@@ -256,8 +258,10 @@ public:
         @param[out] webPageContent The content of the page.
         @param[out] contentType The MIME type of the page.
         @param[out] responseCode The response code when connecting to the page.
-        @param acceptOnlyHtmlOrScriptFiles Whether only HTML or JS script files should be read.
-        @param allowRedirect True if the page should still be read if redirected to a different page.
+        @param acceptOnlyHtmlOrScriptFiles Whether only HTML or
+            JS script files should be read.
+        @param allowRedirect True if the page should still be read if
+            redirected to a different page.
         @param userName The username to connect to the page (not currently implemented).
         @param passWord The password to connect to the page (not currently implemented).
         @returns Whether the file was successfully read.*/
@@ -269,8 +273,8 @@ public:
                             const bool acceptOnlyHtmlOrScriptFiles = true,
                             const bool allowRedirect = true,
                             // these are not used yet, so just hide them
-                            [[maybe_unused]] const wxString& userName = wxEmptyString,
-                            [[maybe_unused]] const wxString& passWord = wxEmptyString);
+                            [[maybe_unused]] const wxString& userName = wxString{},
+                            [[maybe_unused]] const wxString& passWord = wxString{});
 
     /** @brief Gets the content type of a webpage.
         @param[in,out] Url The webpage (may be altered if redirected).
@@ -280,8 +284,8 @@ public:
         @returns The MIME string of the page's content type.*/
     static wxString GetContentType(wxString& Url, long& responseCode,
                                    // these are not used yet, so just hide them
-                                   [[maybe_unused]] const wxString& userName = wxEmptyString,
-                                   [[maybe_unused]] const wxString& passWord = wxEmptyString);
+                                   [[maybe_unused]] const wxString& userName = wxString{},
+                                   [[maybe_unused]] const wxString& passWord = wxString{});
     /// @returns The file type (possible an extension) from a MIME type string.
     /// @param contentType The MIME type string.
     [[nodiscard]]
@@ -290,7 +294,7 @@ public:
     /// @param responseCode The response code from a webpage connect attempt.
     [[nodiscard]]
     static wxString GetResponseMessage(const int responseCode);
-    /** @returns True if a link is pointing to an HTML page.
+    /** @returns @c true if a link is pointing to an HTML page.
         @param[in,out] Url The link to test (may be redirected).
         @param[out] contentType The MIME type read from the page.*/
     [[nodiscard]]
@@ -322,7 +326,8 @@ public:
     /// @note This is recommended to prevent overwriting files with the same name.
     void KeepWebPathWhenDownloading(const bool keep = true) noexcept
         { m_keepWebPathWhenDownloading = keep; }
-    /// @returns Whether the website's folder structure is being mirrored when downloading files.
+    /// @returns Whether the website's folder structure is being
+    ///     mirrored when downloading files.
     [[nodiscard]]
     bool IsKeepingWebPathWhenDownloading() const noexcept
         { return m_keepWebPathWhenDownloading; }
@@ -339,7 +344,7 @@ public:
     ///  attempt connecting to each link.
     void SeachForBrokenLinks(const bool search = true) noexcept
         { m_searchForBrokenLinks = search; }
-    /// @returns True if a list of broken links are being catalogued while harvesting.
+    /// @returns @c true if a list of broken links are being catalogued while harvesting.
     [[nodiscard]]
     bool IsSearchingForBrokenLinks() const noexcept
         { return m_searchForBrokenLinks; }
@@ -359,10 +364,12 @@ public:
     [[nodiscard]]
     const wxString& GetDownloadDirectory() const noexcept
         { return m_downloadDirectory; }
-    /// @brief Specifies whether files being downloaded can overwrite each other if they have the same path.
+    /// @brief Specifies whether files being downloaded can overwrite
+    ///     each other if they have the same path.
     /// @param replaceExistingFiles True to overwrite existing files.
-    /// @note If this is set to false and a file with the same path is about to be downloaded,
-    ///  the program will attempt to download it with a different (but similar) name.
+    /// @note If this is set to false and a file with the same path
+    ///     is about to be downloaded, the program will attempt to download
+    ///     it with a different (but similar) name.
     void ReplaceExistingFiles(const bool replaceExistingFiles = true) noexcept
         { m_replaceExistingFiles = replaceExistingFiles; }
     /// @brief Sets whether to download files locally while the crawl.
@@ -420,7 +427,8 @@ public:
     /// @brief Resets the list of user-defined webpath restrictions.
     void ClearAllowableWebFolders() noexcept
         { m_allowableWebFolders.clear(); }
-    /** @brief Adds a user-defined web path (domain/folder structure) to restrict harvesting to.
+    /** @brief Adds a user-defined web path (domain/folder structure)
+            to restrict harvesting to.
         @param domain A webpath to restrict harvesting to.*/
     void AddAllowableWebFolder(wxString domain)
         {
@@ -428,7 +436,8 @@ public:
             { return;  }
         // if a full webpage, then it should have an extension on it and
         // html_url_format will remove the webpage. But if there is no
-        // extension (or its junk), then add a trailing '/' to prevent the last folder from being removed.
+        // extension (or its junk), then add a trailing '/' to prevent
+        // the last folder from being removed.
         const wxString webExt = wxFileName(domain).GetExt();
         if ((webExt.empty() || webExt.length() > 4) && !domain.ends_with(L"/"))
             { domain.append(L"/"); }
@@ -436,7 +445,8 @@ public:
         if (formatUrl.get_directory_path().length())
             { m_allowableWebFolders.emplace(formatUrl.get_directory_path().c_str()); }
         }
-    /// @returns The user-defined web paths (domains, folder structure) that harvesting is constrained to.
+    /// @returns The user-defined web paths (domains, folder structure)
+    ///     that harvesting is constrained to.
     [[nodiscard]] 
     wxArrayString GetAllowableWebFolders() const
         {
@@ -471,7 +481,8 @@ public:
     static wxString GetUserAgent()
         {
         // May need to be set if not initialized.
-        // Needs to be initialized here because wxGetOsDescription() can't be called during global startup.
+        // Needs to be initialized here because wxGetOsDescription()
+        // can't be called during global startup.
         if (m_userAgent.empty())
             { SetUserAgent(_DT(L"Web-Harvester/") + wxGetOsDescription()); }
         return m_userAgent;
@@ -502,7 +513,8 @@ protected:
         }
     [[nodiscard]]
     bool VerifyUrlDomainCriteria(const wxString& url);
-    bool HarvestLink(wxString& url, const wxString& referringUrl, const wxString& fileExtension = wxEmptyString);
+    bool HarvestLink(wxString& url, const wxString& referringUrl,
+                     const wxString& fileExtension = wxString{});
     //----------------------------------
     bool CrawlLinks(wxString& url, const html_utilities::hyperlink_parse::hyperlink_parse_method method);
     // cppcheck-suppress constParameter

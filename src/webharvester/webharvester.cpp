@@ -12,8 +12,9 @@
 const wxString WebHarvester::HTML_CONTENT_TYPE = _DT(L"text/html");
 const wxString WebHarvester::JAVASCRIPT_CONTENT_TYPE = _DT(L"application/x-javascript");
 const wxString WebHarvester::VBSCRIPT_CONTENT_TYPE = _DT(L"application/x-vbscript");
-wxString WebHarvester::m_userAgent(wxEmptyString);
+wxString WebHarvester::m_userAgent(wxString{});
 
+//----------------------------------
 bool wxStringLessWebPath::operator()(const wxString& first, const wxString& second) const
     {
     FilePathResolver resolver;
@@ -26,26 +27,27 @@ bool wxStringLessWebPath::operator()(const wxString& first, const wxString& seco
     return (firstPath.CmpNoCase(secondPath) < 0);
     }
 
+//----------------------------------
 void UrlWithNumericSequence::ParseSequenceNumber()
     {
-    const int lastSlash = m_string.Find(wxT('/'), true);
-    if (lastSlash == wxNOT_FOUND)
+    const auto lastSlash = m_string.find(wxT('/'), true);
+    if (lastSlash == wxString::npos)
         {
-        //no slash? this is a bad url
+        // no slash? this is a bad url
         Reset();
         return;
         }
     m_number_start = std::wcscspn(m_string.wc_str()+lastSlash, L"0123456789") + lastSlash;
-    //no number was found, so don't bother
+    // no number was found, so don't bother
     if (m_number_start == m_string.length())
         {
         Reset();
         return;
         }
-    wxChar* end = nullptr;
+    wchar_t* end = nullptr;
     m_numeric_value = ::wxStrtol(m_string.wc_str()+m_number_start, &end, 10);
     m_numeric_width = end - (m_string.wc_str()+m_number_start);
-    //no number was found (this should not happen at this point)
+    // no number was found (this should not happen at this point)
     if (m_numeric_width == 0)
         {
         Reset();
@@ -58,8 +60,9 @@ void UrlWithNumericSequence::ParseSequenceNumber()
 //----------------------------------
 void WebHarvester::SearchForMissingFiles()
     {
-    // Go through the links and see if there are any numerically sequenced files that weren't listed and add
-    // them to the download queue. They may or may not exist, but this is a nice way to download files that
+    // Go through the links and see if there are any numerically
+    // sequenced files that weren't listed and add them to the download queue.
+    // They may or may not exist, but this is a nice way to download files that
     // may have not been listed on the webpages.
     if (m_harvestedLinks.size() < 2)
         { return; }
@@ -74,12 +77,12 @@ void WebHarvester::SearchForMissingFiles()
 
     std::set<UrlWithNumericSequence>::const_iterator previousPos;
     std::set<UrlWithNumericSequence>::const_iterator pos = m_harvestedLinks.cbegin();
-    ++pos;//already have the first one, so skip it
+    ++pos;// already have the first one, so skip it
     for (; pos != m_harvestedLinks.end(); ++pos)
         {
         if (currentPrefix.CmpNoCase(pos->GetPathPrefix()) == 0)
             {
-            //if still on the same file name then add the number to the list
+            // if still on the same file name then add the number to the list
             if (pos->GetNumericValue() != wxNOT_FOUND)
                 { alreadyDownloadedNumbers.insert(pos->GetNumericValue()); }
             continue;
@@ -87,17 +90,17 @@ void WebHarvester::SearchForMissingFiles()
         else
             {
             previousPos = pos; --previousPos;
-            //the file sequence has ended, so see what needs downloading
+            // the file sequence has ended, so see what needs downloading
             DownloadSequentialRange(currentPrefix, previousPos->GetPathSuffix(),
                                     numericWidth, previousPos->GetReferUrl(),
                                     alreadyDownloadedNumbers, newFilesToDownload);
-            //finally, reset for the next loop around
+            // finally, reset for the next loop around
             currentPrefix = pos->GetPathPrefix();
             numericWidth = pos->GetNumericWidth();
             alreadyDownloadedNumbers.clear();
             }
         }
-    //download the last sequence set now
+    // download the last sequence set now
     --pos;
     DownloadSequentialRange(currentPrefix, pos->GetPathSuffix(),
                                     numericWidth, pos->GetReferUrl(),
@@ -113,16 +116,18 @@ void WebHarvester::DownloadSequentialRange(const wxString& prefix, const wxStrin
                              std::set<UrlWithNumericSequence>& newFilesToDownload)
     {
     wxString newLink;
-    if (alreadyDownloadedNumbers.size() >= 2)//at least two numbers needed to figure out the range
+    // at least two numbers needed to figure out the range
+    if (alreadyDownloadedNumbers.size() >= 2)
         {
         long rangeStart = *(alreadyDownloadedNumbers.begin());
         long rangeEnd = *(--alreadyDownloadedNumbers.end());
         for (long i = rangeStart+1; i < rangeEnd-1; ++i)
             {
-            //if a number in the sequence that was not found on the page then format it and add to list
+            // if a number in the sequence that was not found
+            // on the page then format it and add to list
             if (alreadyDownloadedNumbers.find(i) == alreadyDownloadedNumbers.end())
                 {
-                wxString formatString = wxString::Format(wxT("%%0%uu"), numericWidth);
+                wxString formatString = wxString::Format(L"%%0%uu", numericWidth);
                 newLink = prefix;
                 newLink += wxString::Format(formatString, i);
                 newLink += suffix;
@@ -130,16 +135,18 @@ void WebHarvester::DownloadSequentialRange(const wxString& prefix, const wxStrin
                     { newFilesToDownload.emplace(UrlWithNumericSequence(newLink, referUrl)); }
                 }
             }
-        //if we are downloading right now then go an extra step and try to download files beyond the listed range
+        // if we are downloading right now then go an extra step and try to
+        // download files beyond the listed range
         if (IsDownloadingFilesWhileCrawling())
             {
             long i = 0;
-            //first download any files starting at index 0 if the first listed file was less than 10 but not 0
+            // first download any files starting at index 0 if the first listed
+            // file was less than 10 but not 0
             if (rangeStart < 10 && rangeStart > 0)
                 {
                 while (i < rangeStart)
                     {
-                    wxString formatString = wxString::Format(wxT("%%0%uu"), numericWidth);
+                    wxString formatString = wxString::Format(L"%%0%uu", numericWidth);
                     newLink = prefix;
                     newLink += wxString::Format(formatString, i);
                     newLink += suffix;
@@ -153,7 +160,7 @@ void WebHarvester::DownloadSequentialRange(const wxString& prefix, const wxStrin
             // 1,000 is an arbitrary sentinel value--sometimes non-existent pages return HTTP 200
             while (i < 1'000)
                 {
-                wxString formatString = wxString::Format(wxT("%%0%uu"), numericWidth);
+                wxString formatString = wxString::Format(L"%%0%uu", numericWidth);
                 newLink = prefix;
                 newLink += wxString::Format(formatString, i);
                 newLink += suffix;
@@ -172,14 +179,14 @@ void WebHarvester::DownloadSequentialRange(const wxString& prefix, const wxStrin
 //----------------------------------
 wxString WebHarvester::DownloadFile(wxString& Url,
                                       const bool allowRedirect /*= true*/,
-                                      const wxString& fileExtension /*= wxEmptyString*/)
+                                      const wxString& fileExtension /*= wxString{}*/)
     {
     if (Url.empty() )
-        { return wxEmptyString; }
+        { return wxString{}; }
 
     // strip off bookmark (if there is one)
-    const int bookMarkIndex = Url.Find(wxT('#'), true);
-    if (bookMarkIndex != wxNOT_FOUND)
+    const auto bookMarkIndex = Url.find(wxT('#'), true);
+    if (bookMarkIndex != wxString::npos)
         { Url.Truncate(bookMarkIndex); }
     Url = Url.Strip(wxString::both);
     // encode any spaces
@@ -190,15 +197,16 @@ wxString WebHarvester::DownloadFile(wxString& Url,
     // folder named "https."
     wxString urlLocalFileFriendlyName = Url;
     const wxRegEx re(L"^(http|https|ftp|ftps|gopher|file)://", wxRE_ICASE|wxRE_EXTENDED);
-    re.ReplaceFirst(&urlLocalFileFriendlyName, wxEmptyString);
+    re.ReplaceFirst(&urlLocalFileFriendlyName, wxString{});
     // in case of an url like www.company.com/events/
     if (urlLocalFileFriendlyName.length() > 0 &&
-        urlLocalFileFriendlyName[urlLocalFileFriendlyName.length()-1] == wxT('/'))
+        urlLocalFileFriendlyName[urlLocalFileFriendlyName.length()-1] == L'/')
         {
-        urlLocalFileFriendlyName.RemoveLast();//chop off the trailing '/'
+        // chop off the trailing '/'
+        urlLocalFileFriendlyName.RemoveLast();
         // add an extension to the url, unless it is the main page
         if (!html_utilities::html_url_format::is_url_top_level_domain(urlLocalFileFriendlyName))
-            { urlLocalFileFriendlyName.Append(wxT(".htm")); }
+            { urlLocalFileFriendlyName.Append(L".htm"); }
         }
 
     // first create the folder to save the file
@@ -213,7 +221,7 @@ wxString WebHarvester::DownloadFile(wxString& Url,
 
         // convert the path to something acceptable for the local system
     #ifdef __WXMSW__
-        webDirPath.Replace(wxT("/"), wxT("\\"));
+        webDirPath.Replace(L"/", L"\\");
     #endif
         webDirPath = StripIllegalFileCharacters(webDirPath);
         if (webDirPath.length() > 0 && webDirPath[webDirPath.length()-1] != wxFileName::GetPathSeparator())
@@ -223,10 +231,11 @@ wxString WebHarvester::DownloadFile(wxString& Url,
 
     const wxString downloadPathFolder = downloadPath;
 
-    // and see where it will be downloaded locally (make sure file name is legal for the local file system)
+    // and see where it will be downloaded locally
+    // (make sure file name is legal for the local file system)
     wxString fileName = wxFileName(urlLocalFileFriendlyName).GetFullName();
     if (fileName.empty())
-        { return wxEmptyString; }
+        { return wxString{}; }
     downloadPath = downloadPath + StripIllegalFileCharacters(fileName);
     /* Check the extension on the file we are downloading.  It might not have one, might be
        junk (because it is a PHP query), or it might be a domain that wouldn't make sense for
@@ -239,29 +248,30 @@ wxString WebHarvester::DownloadFile(wxString& Url,
         const wxString downloadExt = StripIllegalFileCharacters(
             fileExtension.length() ? fileExtension : 
             GetFileTypeFromContentType(GetContentType(Url, rCode)));
-        downloadPath += wxT('.') + downloadExt;
+        downloadPath += L'.' + downloadExt;
         }
     else if (html_utilities::html_url_format::is_url_top_level_domain(Url))
-        { downloadPath += wxT(".html"); }
+        { downloadPath += L".html"; }
 
     if (!m_replaceExistingFiles && wxFileName::FileExists(downloadPath))
         {
-        // if the file already exists and we aren't overwriting, then create a different name for it
+        // if the file already exists and we aren't overwriting,
+        // then create a different name for it
         downloadPath = CreateNewFileName(downloadPath);
         if (downloadPath.empty())
-            { return wxEmptyString; }
+            { return wxString{}; }
         }
 
     wxYield();
     if (m_progressDlg)
         {
-        wxStringTokenizer tkz(Url, wxT("\n\r"), wxTOKEN_STRTOK);
+        wxStringTokenizer tkz(Url, L"\n\r", wxTOKEN_STRTOK);
         const wxString urlLabel = tkz.GetNextToken();
-        if (!m_progressDlg->Pulse(m_hideFileNamesWhileDownloading ? _("Downloading...") :
-            wxString::Format(_("Downloading \"%s\""), urlLabel)))
+        if (!m_progressDlg->Pulse(m_hideFileNamesWhileDownloading ? _(L"Downloading...") :
+            wxString::Format(_(L"Downloading \"%s\""), urlLabel)))
             {
             m_isCancelled = true;
-            return wxEmptyString;
+            return wxString{};
             }
         }
 
@@ -326,31 +336,31 @@ wxString WebHarvester::DownloadFile(wxString& Url,
 wxString WebHarvester::GetFileTypeFromContentType(const wxString& contentType)
     {
     wxString fileExt;
-    auto slash = contentType.Find(wxT('/'));
-    if (slash != wxNOT_FOUND)
+    auto slash = contentType.find(L'/');
+    if (slash != wxString::npos)
         {
-        fileExt = contentType.Mid(++slash);
-        //in case there is charset info at the end, then chop that off
-        const auto semiColon = fileExt.Find(wxT(';'));
-        if (semiColon != wxNOT_FOUND)
-            { fileExt = fileExt.Mid(0, semiColon); }
+        fileExt = contentType.substr(++slash);
+        // in case there is charset info at the end, then chop that off
+        const auto semiColon = fileExt.find(L';');
+        if (semiColon != wxString::npos)
+            { fileExt = fileExt.substr(0, semiColon); }
         }
     return fileExt;
     }
 
 //----------------------------------
 wxString WebHarvester::GetContentType(wxString& Url,
-                                        long& responseCode,
-                                        [[maybe_unused]] const wxString& userName,
-                                        [[maybe_unused]] const wxString& passWord)
+                                      long& responseCode,
+                                      [[maybe_unused]] const wxString& userName,
+                                      [[maybe_unused]] const wxString& passWord)
     {
     responseCode = 404;
 
     if (Url.empty() )
-        { return wxEmptyString; }
-    //encode any spaces
+        { return wxString{}; }
+    // encode any spaces
     Url = Url.Strip(wxString::both);
-    Url.Replace(wxT(" "), wxT("%20"));
+    Url.Replace(L" ", L"%20");
 
     wxString contentType;
 
@@ -395,7 +405,7 @@ wxString WebHarvester::CreateNewFileName(const wxString& filePath)
     wxString newFilePath;
     for (size_t i = 0; i < 1'000; ++i)
         {
-        newFilePath = wxString::Format(wxT("%s%c%s%04u.%s"),
+        newFilePath = wxString::Format(L"%s%c%s%04u.%s",
                                        dir, wxFileName::GetPathSeparator(),
                                        name, i, ext);
         if (!wxFileName::FileExists(newFilePath))
@@ -408,66 +418,66 @@ wxString WebHarvester::CreateNewFileName(const wxString& filePath)
             }
         }
 
-    return wxEmptyString;
+    return wxString{};
     }
 
 //----------------------------------
 wxString WebHarvester::GetResponseMessage(const int responseCode)
     {
     if (responseCode < 300)
-        { return _("Connection successful."); }
+        { return _(L"Connection successful."); }
     switch (responseCode)
         {
     case 301:
-        return _("Page has moved.");
+        return _(L"Page has moved.");
         break;
     case 302:
-        return _("Page was found, but under a different URL.");
+        return _(L"Page was found, but under a different URL.");
         break;
     case 204:
-        return _("Page not responding.");
+        return _(L"Page not responding.");
         break;
     case 400:
-        return _("Bad request.");
+        return _(L"Bad request.");
         break;
     case 401:
-        return _("Unauthorized.");
+        return _(L"Unauthorized.");
         break;
     case 402:
-        return _("Payment Required.");
+        return _(L"Payment Required.");
         break;
     case 403:
-        return _("Forbidden.");
+        return _(L"Forbidden.");
         break;
     case 404:
-        return _("Page not found.");
+        return _(L"Page not found.");
         break;
     case 500:
-        return _("Internal Error.");
+        return _(L"Internal Error.");
         break;
     case 501:
-        return _("Not implemented.");
+        return _(L"Not implemented.");
         break;
     case 502:
-        return _("Service temporarily overloaded.");
+        return _(L"Service temporarily overloaded.");
         break;
     case 503:
-        return _("Gateway timeout.");
+        return _(L"Gateway timeout.");
         break;
     default:
-        return _("Unable to connect to the Internet.");
+        return _(L"Unable to connect to the Internet.");
         };
     }
 
 //----------------------------------
 bool WebHarvester::ReadWebPage(wxString& Url,
-                                 wxString& webPageContent,
-                                 wxString& contentType,
-                                 long& responseCode,
-                                 const bool acceptOnlyHtmlOrScriptFiles /*= true*/,
-                                 const bool allowRedirect /*= true*/,
-                                 [[maybe_unused]] const wxString& userName,
-                                 [[maybe_unused]] const wxString& passWord)
+                               wxString& webPageContent,
+                               wxString& contentType,
+                               long& responseCode,
+                               const bool acceptOnlyHtmlOrScriptFiles /*= true*/,
+                               const bool allowRedirect /*= true*/,
+                               [[maybe_unused]] const wxString& userName,
+                               [[maybe_unused]] const wxString& passWord)
     {
     webPageContent.Clear();
     contentType.Clear();
@@ -476,12 +486,12 @@ bool WebHarvester::ReadWebPage(wxString& Url,
     if (Url.empty() )
         { return false; }
 
-    //strip off bookmark (if there is one)
-    const int bookMarkIndex = Url.Find(wxT('#'), true);
-    if (bookMarkIndex != wxNOT_FOUND)
+    // strip off bookmark (if there is one)
+    const auto bookMarkIndex = Url.find(wxT('#'), true);
+    if (bookMarkIndex != wxString::npos)
         { Url.Truncate(bookMarkIndex); }
     Url = Url.Strip(wxString::both);
-    //encode any spaces
+    // encode any spaces
     Url.Replace(wxT(" "), wxT("%20"));
 
     struct MemoryStruct chunk;
@@ -512,12 +522,12 @@ bool WebHarvester::ReadWebPage(wxString& Url,
         if ((CURLE_OK == res) && ct)
             { contentType = wxString(ct); }
 
-        //first make sure it is really a webpage
+        // first make sure it is really a webpage
         if (acceptOnlyHtmlOrScriptFiles &&
             contentType.length() &&
-            string_util::strnicmp<wxChar>(contentType, HTML_CONTENT_TYPE, HTML_CONTENT_TYPE.length()) != 0 &&
-            string_util::strnicmp<wxChar>(contentType, JAVASCRIPT_CONTENT_TYPE, JAVASCRIPT_CONTENT_TYPE.length()) != 0 &&
-            string_util::strnicmp<wxChar>(contentType, VBSCRIPT_CONTENT_TYPE, VBSCRIPT_CONTENT_TYPE.length()) != 0)
+            string_util::strnicmp(contentType.wc_str(), HTML_CONTENT_TYPE.wc_str(), HTML_CONTENT_TYPE.length()) != 0 &&
+            string_util::strnicmp(contentType.wc_str(), JAVASCRIPT_CONTENT_TYPE.wc_str(), JAVASCRIPT_CONTENT_TYPE.length()) != 0 &&
+            string_util::strnicmp(contentType.wc_str(), VBSCRIPT_CONTENT_TYPE.wc_str(), VBSCRIPT_CONTENT_TYPE.length()) != 0)
             { return false; }
 
         // get redirect URL (if we got redirected)
@@ -566,14 +576,16 @@ bool WebHarvester::IsPageHtml(wxString& Url, wxString& contentType)
     contentType = GetContentType(Url, responseCode, m_userName, m_passWord);
     if (contentType.empty())
         { return false; }
-    return string_util::strnicmp(contentType.wc_str(), HTML_CONTENT_TYPE.wc_str(), HTML_CONTENT_TYPE.length()) == 0;
+    return string_util::strnicmp(contentType.wc_str(), HTML_CONTENT_TYPE.wc_str(),
+                                 HTML_CONTENT_TYPE.length()) == 0;
     }
 
 //----------------------------------
 void WebHarvester::DownloadFiles()
     {
     m_downloadedFiles.clear();
-    //go through the harvested links and download the files matching the ones that we want to download
+    // go through the harvested links and download the files
+    // matching the ones that we want to download
     for (const auto& link : m_harvestedLinks)
         {
         if (m_isCancelled)
@@ -587,10 +599,12 @@ void WebHarvester::DownloadFiles()
 bool WebHarvester::CrawlLinks()
     {
     m_hideFileNamesWhileDownloading = wxGetMouseState().ShiftDown();
-    wxStringTokenizer tkz(m_url, wxT("\n\r"), wxTOKEN_STRTOK);
-    const wxString urlLabel = m_hideFileNamesWhileDownloading ? wxT("...") : wxT(" \"") + tkz.GetNextToken() + wxT("\"");
-    m_progressDlg = new wxProgressDialog(_("Web Harvester"),
-        wxString::Format(_("Harvesting %s"), urlLabel), 5, nullptr, wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_CAN_ABORT);
+    wxStringTokenizer tkz(m_url, L"\n\r", wxTOKEN_STRTOK);
+    const wxString urlLabel = m_hideFileNamesWhileDownloading ?
+        L"..." : L" \"" + tkz.GetNextToken() + L"\"";
+    m_progressDlg = new wxProgressDialog(_(L"Web Harvester"),
+        wxString::Format(_(L"Harvesting %s"), urlLabel), 5, nullptr,
+        wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_CAN_ABORT);
     m_progressDlg->Centre();
     m_progressDlg->Raise();
 
@@ -623,7 +637,8 @@ bool WebHarvester::CrawlLinks()
     }
 
 //----------------------------------
-bool WebHarvester::CrawlLinks(wxString& url, const html_utilities::hyperlink_parse::hyperlink_parse_method method)
+bool WebHarvester::CrawlLinks(wxString& url,
+    const html_utilities::hyperlink_parse::hyperlink_parse_method method)
     {
     if (m_isCancelled || url.empty() || HasUrlAlreadyBeenCrawled(url))
         { return false; }
@@ -650,8 +665,8 @@ bool WebHarvester::CrawlLinks(wxString& url, const html_utilities::hyperlink_par
         }
     else if (resolve.IsLocalOrNetworkFile())
         { Wisteria::TextStream::ReadFile(url, fileText); }
-    //if raw HTML text was passed in, then parse that instead
-    else if (string_util::stristr<const wxChar>(url.wc_str(),wxT("<html")) )
+    // if raw HTML text was passed in, then parse that instead
+    else if (string_util::stristr(url.wc_str(), L"<html") )
         { fileText = url; }
     else
         {
@@ -680,10 +695,10 @@ bool WebHarvester::CrawlLinks(wxString& url, const html_utilities::hyperlink_par
     wxYield();
     if (m_progressDlg)
         {
-        wxStringTokenizer tkz(url, wxT("\n\r"), wxTOKEN_STRTOK);
+        wxStringTokenizer tkz(url, L"\n\r", wxTOKEN_STRTOK);
         const wxString urlLabel = tkz.GetNextToken();
-        if (!m_progressDlg->Pulse(m_hideFileNamesWhileDownloading ? _("Harvesting...") :
-            wxString::Format(_("Harvesting \"%s\""), urlLabel)))
+        if (!m_progressDlg->Pulse(m_hideFileNamesWhileDownloading ? _(L"Harvesting...") :
+            wxString::Format(_(L"Harvesting \"%s\""), urlLabel)))
             {
             m_isCancelled = true;
             --m_currentLevel;
@@ -696,12 +711,13 @@ bool WebHarvester::CrawlLinks(wxString& url, const html_utilities::hyperlink_par
         getHyperLinks.get_html_parser().get_base_url())
         { url.assign(getHyperLinks.get_html_parser().get_base_url(), getHyperLinks.get_html_parser().get_base_url_length()); }
 
-    // NOTE: if a 302 or 300 are encountered, then the url may be different now, as well as a base url in the head
+    // NOTE: if a 302 or 300 are encountered, then the url may be different now,
+    // as well as a base url in the head
     html_utilities::html_url_format formatUrl(url);
     while (true)
         {
         //gather its hyperlinks
-        const wxChar* currentLink = getHyperLinks();
+        const auto* currentLink = getHyperLinks();
         if (currentLink)
             { CrawlLink(wxString(currentLink,getHyperLinks.get_current_hyperlink_length()),
                         formatUrl, url,
@@ -724,15 +740,15 @@ bool WebHarvester::CrawlLinks(wxString& url, const html_utilities::hyperlink_par
 //----------------------------------
 // cppcheck-suppress constParameter
 void WebHarvester::CrawlLink(const wxString& currentLink,
-                               html_utilities::html_url_format& formatUrl,
-                               const wxString& mainUrl, const bool isImage)
+                             html_utilities::html_url_format& formatUrl,
+                             const wxString& mainUrl, const bool isImage)
     {
     if (m_isCancelled)
         { return; }
 
     const wxString urlLabel = currentLink;
-    if (!m_progressDlg->Pulse(m_hideFileNamesWhileDownloading ? _("Crawling...") :
-        wxString::Format(_("Crawling \"%s\""), urlLabel)))
+    if (!m_progressDlg->Pulse(m_hideFileNamesWhileDownloading ? _(L"Crawling...") :
+        wxString::Format(_(L"Crawling \"%s\""), urlLabel)))
         {
         m_isCancelled = true;
         --m_currentLevel;
@@ -749,7 +765,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         { return; }
     // ...or any bookmarks on the same page
     else if (currentLink.length() >= 1 &&
-        currentLink[0] == wxT('#'))
+        currentLink[0] == L'#')
         { return; }
 
     wxString fullUrl;
@@ -759,7 +775,8 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
     if ((m_currentLevel > GetDepthLevel() || HasUrlAlreadyBeenCrawled(fullUrl)) &&
         HasUrlAlreadyBeenHarvested(fullUrl))
         { return; }
-    // this should usually be turned off for performance, but it's a nice way to get a list of broken links from a site
+    // this should usually be turned off for performance,
+    // but it's a nice way to get a list of broken links from a site
     if (IsSearchingForBrokenLinks())
         {
         long responseCode{ 0 };
@@ -768,7 +785,8 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
             { m_brokenLinks.emplace(std::make_pair(fullUrl, mainUrl)); }
         }
 
-    // first make sure that if we are domain restricted, then don't bother with it if it's from another domain
+    // first make sure that if we are domain restricted,
+    // then don't bother with it if it's from another domain
     if (!VerifyUrlDomainCriteria(fullUrl))
         { return; }
 
@@ -804,9 +822,9 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
 
     html_utilities::html_url_format formatCurrentUrl(fullUrl);
 
-    //First, crawl the page (if applicable)
+    // First, crawl the page (if applicable)
     ///////////////////////////////////////
-    //Javascript/VBScript files are crawled differently, so check that first
+    // Javascript/VBScript files are crawled differently, so check that first
     if (IsKnownScriptFileExtension(fileExt))
         {
         CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::script);
@@ -816,10 +834,10 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         }
     else if (IsKnownRegularFileExtension(fileExt))
         {
-        //sometimes pages with a certain file extension are really HTML pages, so crawl if necessary
+        // sometimes pages with a certain file extension are really HTML pages, so crawl if necessary
         if (pageIsHtml)
             { CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::html); }
-        //add the link to files to download later if it matches our criteria            
+        // add the link to files to download later if it matches our criteria            
         if ((m_harvestAllHtml && pageIsHtml) ||
             ShouldFileBeHarvested(fileExt) )
             { HarvestLink(fullUrl, mainUrl, fileExt); }
@@ -839,22 +857,22 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
             }
         else
             {
-            //if it's a PHP query, then see if it is really a page needing to be crawled
+            // if it's a PHP query, then see if it is really a page needing to be crawled
             if (formatCurrentUrl.has_query() )
                 {
                 if (pageIsHtml)
                     { CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::html); }
-                //need to get this page's type and download it if it meets the criteria
+                // need to get this page's type and download it if it meets the criteria
                 fileExt = GetFileTypeFromContentType(contentType);
                 if (ShouldFileBeHarvested(fileExt) || (pageIsHtml && m_harvestAllHtml))
                     {
-                    //need to override its extension too because the url has a different
-                    //file extension on it due to it being a PHP query
+                    // need to override its extension too because the url has a different
+                    // file extension on it due to it being a PHP query
                     HarvestLink(fullUrl, mainUrl, fileExt);
                     }
                 return;
                 }
-            //otherwise, an HTML page with an unknown extension
+            // otherwise, an HTML page with an unknown extension
             else if (pageIsHtml)
                 {
                 CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
@@ -862,7 +880,8 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
                     { HarvestLink(fullUrl, mainUrl, fileExt); }
                 return;
                 }
-            //...finally, not a webpage and an unknown extension. Just figure out its real type and see if we should download it
+            // ...finally, not a webpage and an unknown extension.
+            // Just figure out its real type and see if we should download it
             else if (contentType.length())
                 {
                 fileExt = GetFileTypeFromContentType(contentType);
@@ -877,11 +896,12 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
 //----------------------------------
 bool WebHarvester::VerifyUrlDomainCriteria(const wxString& url)
     {
-    //the root url should always pass this test, even if its own domain is not in the list of allowable domains
+    // the root url should always pass this test, even if its own domain is not
+    // in the list of allowable domains
     if (url.CmpNoCase(GetUrl()) == 0)
         { return true; }
-    //this URL should already be fully expanded, so just initialize the formatter with it
-    //as the root URL and then set it as the main URL.
+    // this URL should already be fully expanded, so just initialize the formatter with it
+    // as the root URL and then set it as the main URL.
     html_utilities::html_url_format formatUrl(url);
     formatUrl(url, url.length());
     if (m_domainRestriction == DomainRestriction::RestrictToDomain)
@@ -902,7 +922,8 @@ bool WebHarvester::VerifyUrlDomainCriteria(const wxString& url)
         }
     else if (m_domainRestriction == DomainRestriction::RestrictToSpecificDomains)
         {
-        if (m_allowableWebFolders.find(formatUrl.get_directory_path().c_str()) == m_allowableWebFolders.end())
+        if (m_allowableWebFolders.find(formatUrl.get_directory_path().c_str()) ==
+            m_allowableWebFolders.end())
             { return false; }
         }
     else if (m_domainRestriction == DomainRestriction::RestrictToFolder)
@@ -914,9 +935,11 @@ bool WebHarvester::VerifyUrlDomainCriteria(const wxString& url)
     }
 
 //----------------------------------
-bool WebHarvester::HarvestLink(wxString& url, const wxString& referringUrl, const wxString& fileExtension /*= wxEmptyString*/)
+bool WebHarvester::HarvestLink(wxString& url, const wxString& referringUrl,
+                               const wxString& fileExtension /*= wxString{}*/)
     {
-    if (m_isCancelled || url.empty() || HasUrlAlreadyBeenHarvested(url) || !VerifyUrlDomainCriteria(url))
+    if (m_isCancelled || url.empty() || HasUrlAlreadyBeenHarvested(url) ||
+        !VerifyUrlDomainCriteria(url))
         { return false; }
 
     // Verify that the file is HTTP/HTTPS.
@@ -948,19 +971,19 @@ size_t WebHarvester::WriteMemoryCallback(void *ptr, size_t size, size_t nmemb, v
 //----------------------------------
 wxString WebHarvester::GetCharsetFromContentType(const wxString& contentType)
     {
-    const int index = contentType.Lower().Find(wxT("charset="));
-    const int semicolon = contentType.Lower().Find(wxT(";"));
-    if (index != wxNOT_FOUND)
+    const auto index = contentType.Lower().find(wxT("charset="));
+    const auto semicolon = contentType.Lower().find(wxT(";"));
+    if (index != wxString::npos)
         {
-        wxString charSet = contentType.Mid(index+8);
+        wxString charSet = contentType.substr(index+8);
         charSet.Replace(wxT("\""), wxT(""));
         charSet.Replace(wxT("\'"), wxT(""));
         charSet.Trim(false); charSet.Trim(true);
         return charSet;
         }
-    else if (semicolon != wxNOT_FOUND)
+    else if (semicolon != wxString::npos)
         {
-        wxString charSet = contentType.Mid(semicolon+1);
+        wxString charSet = contentType.substr(semicolon+1);
         charSet.Replace(wxT("\""), wxT(""));
         charSet.Replace(wxT("\'"), wxT(""));
         charSet.Trim(false); charSet.Trim(true);
@@ -978,7 +1001,8 @@ wxString WebHarvester::GetCharsetFromPageContent(const char* pageContent, const 
         { return wxLocale::GetSystemEncodingName(); }
     else
         {
-        //The HTML 5 specification requires that documents advertised as ISO-8859-1 actually be parsed with the Windows-1252 encoding.
+        // The HTML 5 specification requires that documents advertised as
+        // ISO-8859-1 actually be parsed with the Windows-1252 encoding.
         if (string_util::stricmp(charSet.c_str(), "iso-8859-1") == 0)
             { charSet = "windows-1252"; }
         return wxString(charSet.c_str(), wxConvLibc);

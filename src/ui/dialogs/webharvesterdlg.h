@@ -37,54 +37,61 @@ public:
              const wxString& downloadFolder, const wxString& userAgent,
              const int domainRestriction,
              const wxArrayString& domainStrings, const int minFileSizeInKiloBytes,
-             wxWindowID id = wxID_ANY, const wxString& caption = _("Web Harvester"),
+             wxWindowID id = wxID_ANY, const wxString& caption = _(L"Web Harvester"),
              const wxPoint& pos = wxDefaultPosition,
              const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER) :
         m_depthLevel(depthLevel), m_fullDocFilter(fullDocFilter), m_selectedDocFilter(selectedDocFilter),
         m_selectedDomainRestriction(domainRestriction),
         m_domains(domainStrings), m_hideLocalDownloadOption(hideLocalDownloadOption),
-        m_downloadFilesLocally(downloadFilesLocally), m_keepWebPathWhenDownloading(keepWebPathWhenDownloading),
+        m_downloadFilesLocally(downloadFilesLocally),
+        m_keepWebPathWhenDownloading(keepWebPathWhenDownloading),
         m_minFileSizeInKiloBytes(minFileSizeInKiloBytes),
-        m_sideBarBook(nullptr),
-        m_docFilterCombo(nullptr), m_depthLevelCtrl(nullptr), m_domainCombo(nullptr), m_domainList(nullptr),
-        m_minFileSizeCtrl(nullptr), m_domainData(new ListCtrlExDataProvider), m_localFolderEdit(nullptr),
-        m_localFolderLabel(nullptr), m_minFileSizeLabel(nullptr), m_retainWebsiteFolderStuctureCheckBox(nullptr),
-        m_verifyPageMimeTypeCheckBox(nullptr),
-        m_urlList(nullptr), m_addDomainButton(nullptr), m_deleteDomainButton(nullptr),
-        m_downloadFolder(downloadFolder), m_userAgent(userAgent), m_urls(urls),
-        m_urlData(new ListCtrlExDataProvider)
+        m_downloadFolder(downloadFolder), m_userAgent(userAgent), m_urls(urls)
         { Create(parent, id, caption, pos, size, style); }
-    /// @brief Destructor.
+    /// @private
     ~WebHarvesterDlg()
         {
         wxDELETE(m_domainData);
         wxDELETE(m_urlData);
         }
+    /// @private
     WebHarvesterDlg(WebHarvesterDlg&) = delete;
+    /// @private
     WebHarvesterDlg& operator=(const WebHarvesterDlg&) = delete;
-    [[nodiscard]] const wxArrayString& GetUrls() const noexcept
+    [[nodiscard]]
+    const wxArrayString& GetUrls() const noexcept
         { return m_urls; }
-    [[nodiscard]] const wxString& GetSelectedDocFilter() const noexcept
+    [[nodiscard]]
+    const wxString& GetSelectedDocFilter() const noexcept
         { return m_selectedDocFilter; }
-    [[nodiscard]] int GetDepthLevel() const noexcept
+    [[nodiscard]]
+    int GetDepthLevel() const noexcept
         { return m_depthLevel; }
-    [[nodiscard]] int GetDomainRestriction() const noexcept
+    [[nodiscard]]
+    int GetDomainRestriction() const noexcept
         { return m_selectedDomainRestriction; }
-    [[nodiscard]] const wxArrayString& GetRestrictedDomains() const noexcept
+    [[nodiscard]]
+    const wxArrayString& GetRestrictedDomains() const noexcept
         { return m_domains; }
     void DownloadFilesLocally(const bool download) noexcept
         { m_downloadFilesLocally = download; }
-    [[nodiscard]] bool IsDownloadFilesLocally() const noexcept
+    [[nodiscard]]
+    bool IsDownloadFilesLocally() const noexcept
         { return m_downloadFilesLocally; }
-    [[nodiscard]] bool IsRetainingWebsiteFolderStructure() const noexcept
+    [[nodiscard]]
+    bool IsRetainingWebsiteFolderStructure() const noexcept
         { return m_keepWebPathWhenDownloading; }
-    [[nodiscard]] size_t GetMinimumDownloadFileSizeInKilobytes() const noexcept
+    [[nodiscard]]
+    size_t GetMinimumDownloadFileSizeInKilobytes() const noexcept
         { return m_minFileSizeInKiloBytes; }
-    [[nodiscard]] const wxString& GetDownloadFolder() const noexcept
+    [[nodiscard]]
+    const wxString& GetDownloadFolder() const noexcept
         { return m_downloadFolder; }
-    [[nodiscard]] const wxString& GetUserAgent() const noexcept
+    [[nodiscard]]
+    const wxString& GetUserAgent() const noexcept
         { return m_userAgent; }
-    [[nodiscard]] const wxString& GetRawHtmlPage() const noexcept
+    [[nodiscard]]
+    const wxString& GetRawHtmlPage() const noexcept
         { return m_rawHtmlPage; }
     /// Updates the dialog from a harvester's settings,
     void UpdateFromHarvesterSettings(const WebHarvester& harvester);
@@ -110,12 +117,14 @@ private:
     static constexpr int ID_DOMAINS_PAGE = 10009;
     static constexpr int ID_DOWNLOAD_PAGE = 10010;
 
-    [[nodiscard]] wxString GetUserSpecifiedDomainsLabel() const
-        { return _("Restricted to user-defined domain(s)"); }
-    ///Creation
-    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& caption = wxEmptyString, const wxPoint& pos = wxDefaultPosition,
+    [[nodiscard]]
+    wxString GetUserSpecifiedDomainsLabel() const
+        { return _(L"Restricted to user-defined domain(s)"); }
+    /// Creation
+    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
+                const wxString& caption = wxString{}, const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE);
-    ///Creates the controls and sizers
+    /// Creates the controls and sizers
     void CreateControls();
     int m_depthLevel{ 1 };
     wxString m_fullDocFilter;
@@ -133,7 +142,7 @@ private:
     wxComboBox* m_domainCombo{ nullptr };
     ListCtrlEx* m_domainList{ nullptr };
     wxSpinCtrl* m_minFileSizeCtrl{ nullptr };
-    ListCtrlExDataProvider* m_domainData{ nullptr };
+    ListCtrlExDataProvider* m_domainData{ new ListCtrlExDataProvider };
     wxTextCtrl* m_localFolderEdit{ nullptr };
     wxStaticText* m_localFolderLabel{ nullptr };
     wxStaticText* m_minFileSizeLabel{ nullptr };
@@ -144,7 +153,7 @@ private:
     wxBitmapButton* m_deleteDomainButton{ nullptr };
 
     wxArrayString m_urls;
-    ListCtrlExDataProvider* m_urlData{ nullptr };
+    ListCtrlExDataProvider* m_urlData{ new ListCtrlExDataProvider };
     wxString m_rawHtmlPage;
 
     wxString m_downloadFolder;
