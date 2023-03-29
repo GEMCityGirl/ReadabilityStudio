@@ -669,7 +669,7 @@ void ProjectView::OnLaunchSourceFile([[maybe_unused]] wxRibbonButtonBarEvent& ev
     ProjectDoc* doc = dynamic_cast<ProjectDoc*>(GetDocument());
     if (doc)
         {
-        wxFilePathResolver resolvePath(doc->GetOriginalDocumentFilePath(), false);
+        FilePathResolver resolvePath(doc->GetOriginalDocumentFilePath(), false);
         if (doc->GetDocumentStorageMethod() == TextStorage::EmbedText)
             {
             // if the text was embedded but actually came from a file (i.e., not manually entered)

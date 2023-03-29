@@ -2425,10 +2425,10 @@ void MainFrame::OnOpenExample(wxCommandEvent& event)
     const std::map<int, wxString>::const_iterator pos = MainFrame::GetExamplesMenuIds().find(event.GetId());
     if (pos == MainFrame::GetExamplesMenuIds().cend())
         { return; }
-    const wxFilePathResolver fn(pos->second, false);
+    const FilePathResolver fn(pos->second, false);
     //create a batch project from the example file
-    if (wxFilePathResolver::IsSpreadsheet(fn.GetResolvedPath()) ||
-        wxFilePathResolver::IsArchive(fn.GetResolvedPath()))
+    if (FilePathResolver::IsSpreadsheet(fn.GetResolvedPath()) ||
+        FilePathResolver::IsArchive(fn.GetResolvedPath()))
         {
         wxDocTemplate* docTemplate = wxGetApp().GetDocManager()->FindTemplate(CLASSINFO(BatchProjectDoc));
         if (docTemplate)
@@ -3705,13 +3705,13 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
 #ifdef __WXMAC__
     wxString updatedFilePath = wxT("http://oleandersoftware.com/downloads/readabilitystudio/CurrentMacVersionReadabilityStudio.txt");
     long responseCode;
-    if (!wxWebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false, false) )
+    if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false, false) )
         {
         updatedFilePath = wxT("http://oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
-        if (!wxWebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false, false) )
+        if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false, false) )
             {
             wxMessageBox(wxString::Format(_("An error occurred while trying to connect to the website:\t%s"),
-                                            wxWebHarvester::GetResponseMessage(responseCode)),
+                                            WebHarvester::GetResponseMessage(responseCode)),
                         _("Connection Error"), wxOK|wxICON_EXCLAMATION);
             return;
             }
@@ -3719,10 +3719,10 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
 #else
     wxString updatedFilePath = wxT("http://oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
     long responseCode;
-    if (!wxWebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false, false) )
+    if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false, false) )
         {
         wxMessageBox(wxString::Format(_("An error occurred while trying to connect to the website:\t%s"),
-                                        wxWebHarvester::GetResponseMessage(responseCode)), 
+                                        WebHarvester::GetResponseMessage(responseCode)), 
                     _("Connection Error"), wxOK|wxICON_EXCLAMATION);
         return;
         }
@@ -3908,7 +3908,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         return;
         }
 
-    wxWebHarvesterDlg webHarvestDlg(this, wxGetApp().GetLastSelectedWebPages(),
+    WebHarvesterDlg webHarvestDlg(this, wxGetApp().GetLastSelectedWebPages(),
         wxGetApp().m_harvesterOptions.GetDepthLevel(),
             wxString::Format(_("Documents & Images (%s;%s)|%s;%s|"),
                 wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD,
@@ -3922,7 +3922,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         true, true,
         wxGetApp().m_harvesterOptions.IsKeepingWebPathWhenDownloading(),
         wxGetApp().m_harvesterOptions.GetDownloadDirectory(),
-        wxWebHarvester::GetUserAgent(),
+        WebHarvester::GetUserAgent(),
         static_cast<int>(wxGetApp().m_harvesterOptions.GetDomainRestriction()),
         wxGetApp().m_harvesterOptions.GetAllowableWebFolders(),
         static_cast<int>(wxGetApp().m_harvesterOptions.GetMinimumDownloadFileSizeInKilobytes()));
@@ -3940,8 +3940,8 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
 
     for (size_t i = 0; i < webHarvestDlg.GetUrls().GetCount(); ++i)
         {
-        wxFilePathResolver resolver(webHarvestDlg.GetUrls().Item(i), true);
-        wxWebHarvester harvester(resolver.GetResolvedPath());
+        FilePathResolver resolver(webHarvestDlg.GetUrls().Item(i), true);
+        WebHarvester harvester(resolver.GetResolvedPath());
         webHarvestDlg.UpdateHarvesterSettings(harvester);
 
         const auto crawlResult = harvester.CrawlLinks();
@@ -3964,7 +3964,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     // (only enabled if user holds down SHIFT key to see hidden interface)
     if (webHarvestDlg.GetRawHtmlPage().length())
         {
-        wxWebHarvester harvester(webHarvestDlg.GetRawHtmlPage());
+        WebHarvester harvester(webHarvestDlg.GetRawHtmlPage());
         webHarvestDlg.UpdateHarvesterSettings(harvester);
         [[maybe_unused]] const auto crawlResult = harvester.CrawlLinks();
 

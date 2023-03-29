@@ -17,8 +17,8 @@
 #include <algorithm>
 #include "../../../../SRC/curl/include/curl/curl.h"
 #include "../../../../SRC/curl/include/curl/easy.h"
-#include "../../../../SRC/wxTools/wxWebHarvester.h"
-#include "../../../../SRC/wxTools/wxWebHarvesterDlg.h"
+#include "../../../../SRC/wxTools/WebHarvester.h"
+#include "../../../../SRC/wxTools/WebHarvesterDlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/codeeditor.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/printerheaderfooterdlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/util/formulaformat.h"
@@ -230,7 +230,7 @@ public:
         { return m_lastSelectedDocFilter; }
     void SetLastSelectedDocFilter(const wxString& filter)
         { m_lastSelectedDocFilter = filter; }
-    wxWebHarvester m_harvesterOptions; // stores last used options of web harvester
+    WebHarvester m_harvesterOptions; // stores last used options of web harvester
 
     [[nodiscard]] ReadabilityAppOptions& GetAppOptions()
         {

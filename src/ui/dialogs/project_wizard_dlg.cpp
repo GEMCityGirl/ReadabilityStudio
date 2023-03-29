@@ -105,7 +105,7 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
     // determine whether a file path or raw text was passed in
     if (path.length())
         {
-        wxFilePathResolver resolvePath(path, false);
+        FilePathResolver resolvePath(path, false);
         if (resolvePath.IsInvalidFile())
             {
             m_fromFileSelected = false;
@@ -299,7 +299,7 @@ void ProjectWizardDlg::CreateControls()
         m_fileData = new ListCtrlExDataProvider;
         if (GetFilePath().length())
             {
-            wxFilePathResolver rp(GetFilePath(), false);
+            FilePathResolver rp(GetFilePath(), false);
             //if page is created with a default folder or file then add it to the list
             if (wxFileName::DirExists(GetFilePath()) )
                 {
@@ -311,9 +311,9 @@ void ProjectWizardDlg::CreateControls()
                 m_fileData->SetSize(files.GetCount(), 2);
                 m_fileData->SetValues(files);
                 }
-            else if (wxFilePathResolver::IsSpreadsheet(GetFilePath()) && wxFileName::FileExists(GetFilePath()) )
+            else if (FilePathResolver::IsSpreadsheet(GetFilePath()) && wxFileName::FileExists(GetFilePath()) )
                 { LoadSpreadsheet(GetFilePath()); }
-            else if (wxFilePathResolver::IsArchive(GetFilePath()) && wxFileName::FileExists(GetFilePath()) )
+            else if (FilePathResolver::IsArchive(GetFilePath()) && wxFileName::FileExists(GetFilePath()) )
                 { LoadArchive(GetFilePath()); }
             else
                 {
@@ -1073,7 +1073,7 @@ void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         {
         if (IsTextFromFileSelected())
             {
-            wxFilePathResolver resolvePath(GetFilePath(), true);
+            FilePathResolver resolvePath(GetFilePath(), true);
             if (resolvePath.IsInvalidFile() ||
                 (resolvePath.IsLocalOrNetworkFile() && !wxFile::Exists(resolvePath.GetResolvedPath()))  )
                 {
@@ -1273,7 +1273,7 @@ void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& 
     wxTextEntryDialog textDlg(this, _(L"Enter a web page to analyze:"), _(L"Enter Web Page"));
     if (textDlg.ShowModal() == wxID_OK && textDlg.GetValue().length())
         {
-        wxFilePathResolver resolver(textDlg.GetValue(), false);
+        FilePathResolver resolver(textDlg.GetValue(), false);
         if (!resolver.IsWebFile())
             {
             wxMessageBox(
@@ -1316,7 +1316,7 @@ void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& 
 //-------------------------------------------------------------
 void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
-    wxWebHarvesterDlg webHarvestDlg(this, wxGetApp().GetLastSelectedWebPages(),
+    WebHarvesterDlg webHarvestDlg(this, wxGetApp().GetLastSelectedWebPages(),
         wxGetApp().m_harvesterOptions.GetDepthLevel(),
         wxGetApp().GetAppOptions().GetDocumentFilter(), wxGetApp().GetLastSelectedDocFilter(),
         false,
@@ -1354,8 +1354,8 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
 
     for (size_t urlCounter = 0; urlCounter < webHarvestDlg.GetUrls().GetCount(); ++urlCounter)
         {
-        wxFilePathResolver resolver(webHarvestDlg.GetUrls().Item(urlCounter), false);
-        wxWebHarvester harvester(resolver.GetResolvedPath());
+        FilePathResolver resolver(webHarvestDlg.GetUrls().Item(urlCounter), false);
+        WebHarvester harvester(resolver.GetResolvedPath());
         webHarvestDlg.UpdateHarvesterSettings(harvester);
 
         // if cancelled, we still will want what was harvested up to that point,

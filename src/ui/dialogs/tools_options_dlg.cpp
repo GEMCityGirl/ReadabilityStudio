@@ -955,7 +955,7 @@ bool ToolsOptionsDlg::ValidateOptions()
         m_documentStorageMethod == static_cast<int>(TextStorage::NoEmbedText) &&
         IsStandardProjectSettings()))
         {
-        wxFilePathResolver resolvePath(m_filePath.get_value(), true);
+        FilePathResolver resolvePath(m_filePath.get_value(), true);
         if (resolvePath.IsInvalidFile() ||
             (resolvePath.IsLocalOrNetworkFile() && !wxFile::Exists(m_filePath.get_value())) )
             {

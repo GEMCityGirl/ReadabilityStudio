@@ -2205,7 +2205,7 @@ void BaseProjectView::OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarEvent&
             { return; }
         if (activeProject->IsKindOf(CLASSINFO(ProjectDoc)))
             {
-            wxFilePathResolver resolvePath(activeProject->GetOriginalDocumentFilePath(), true);
+            FilePathResolver resolvePath(activeProject->GetOriginalDocumentFilePath(), true);
             if (resolvePath.IsInvalidFile() ||
                 (resolvePath.IsLocalOrNetworkFile() && !wxFile::Exists(activeProject->GetOriginalDocumentFilePath())) )
                 {

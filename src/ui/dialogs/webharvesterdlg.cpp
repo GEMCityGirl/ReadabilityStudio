@@ -1,0 +1,434 @@
+///////////////////////////////////////////////////////////////////////////////
+// Name:        webharvesterdlg.cpp
+// Author:      Blake Madden
+// Copyright:   (c) 2005-2023 Blake Madden
+// Licence:     3-Clause BSD licence
+// SPDX-License-Identifier: BSD-3-Clause
+///////////////////////////////////////////////////////////////////////////////
+
+#include "webharvesterdlg.h"
+#include "../../app/readability_app.h"
+
+wxDECLARE_APP(ReadabilityApp);
+
+wxBEGIN_EVENT_TABLE(WebHarvesterDlg, DialogWithHelp)
+    EVT_COMBOBOX(ID_DOMAIN_COMBO, WebHarvesterDlg::OnDomainComboSelect)
+    EVT_CHECKBOX(ID_DOWNLOAD_CHECKBOX, WebHarvesterDlg::OnDownloadCheck)
+    EVT_BUTTON(ID_DOWNLOAD_FOLDER_BROWSE_BUTTON, WebHarvesterDlg::OnFolderBrowseButtonClick)
+    EVT_BUTTON(wxID_OK, WebHarvesterDlg::OnOK)
+    EVT_BUTTON(ID_ADD_URL_BUTTON, WebHarvesterDlg::OnAddUrlClick)
+    EVT_BUTTON(ID_DELETE_URL_BUTTON, WebHarvesterDlg::OnDeleteUrlClick)
+    EVT_BUTTON(ID_ADD_DOMAIN_BUTTON, WebHarvesterDlg::OnAddDomainClick)
+    EVT_BUTTON(ID_DELETE_DOMAIN_BUTTON, WebHarvesterDlg::OnDeleteDomainClick)
+wxEND_EVENT_TABLE()
+
+//-------------------------------------------------------------
+void WebHarvesterDlg::OnDomainComboSelect([[maybe_unused]] wxCommandEvent& event)
+    {
+    m_domainList->Enable(m_domainCombo->GetValue() == GetUserSpecifiedDomainsLabel());
+    m_addDomainButton->Enable(m_domainCombo->GetValue() == GetUserSpecifiedDomainsLabel());
+    m_deleteDomainButton->Enable(m_domainCombo->GetValue() == GetUserSpecifiedDomainsLabel());
+    }
+
+//-------------------------------------------------------------
+void WebHarvesterDlg::OnDownloadCheck([[maybe_unused]] wxCommandEvent& event)
+    {
+    TransferDataFromWindow();
+
+    m_localFolderLabel->Enable(m_downloadFilesLocally);
+    m_localFolderEdit->Enable(m_downloadFilesLocally);
+    m_minFileSizeLabel->Enable(m_downloadFilesLocally);
+    m_minFileSizeCtrl->Enable(m_downloadFilesLocally);
+    m_retainWebsiteFolderStuctureCheckBox->Enable(m_downloadFilesLocally);
+    }
+
+//-------------------------------------------------------------
+void WebHarvesterDlg::OnFolderBrowseButtonClick([[maybe_unused]] wxCommandEvent& event)
+    {
+    TransferDataFromWindow();
+    wxDirDialog dirDlg(this, _("Choose a directory"), m_downloadFolder);
+    if (dirDlg.ShowModal() != wxID_OK)
+        { return; }
+    m_downloadFolder = dirDlg.GetPath();
+    TransferDataToWindow();
+    SetFocus();
+    }
+
+//-------------------------------------------------------------
+void WebHarvesterDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
+    {
+    TransferDataFromWindow();
+
+    m_urls.Clear();
+    for (size_t i = 0; i < m_urlData->GetItemCount(); ++i)
+        {
+        if (m_urlData->GetItemText(i, 0).length())
+            { m_urls.Add(m_urlData->GetItemText(i, 0)); }
+        }
+
+    if (GetUrls().GetCount() == 0 && GetRawHtmlPage().empty())
+        {
+        wxMessageBox(_("Please enter a website to harvest."),
+                    _("Error"), wxOK|wxICON_EXCLAMATION);
+        return;
+        }
+    else if (m_downloadFilesLocally && m_downloadFolder.empty())
+        {
+        wxMessageBox(_("Please enter a valid folder to download the files to."),
+                    _("Error"), wxOK|wxICON_EXCLAMATION);
+        m_sideBarBook->SetSelection(2);
+        wxCommandEvent cmd;
+        OnFolderBrowseButtonClick(cmd);
+        return;
+        }
+    else if (m_downloadFilesLocally && !wxFileName::DirExists(m_downloadFolder) )
+        {
+        if (!wxFileName::Mkdir(m_downloadFolder, wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+            {
+            m_sideBarBook->SetSelection(2);
+            wxMessageBox(_("Please enter a valid folder to download the files to."),
+                        _("Error"), wxOK|wxICON_EXCLAMATION);
+            wxCommandEvent cmd;
+            OnFolderBrowseButtonClick(cmd);
+            return;
+            }
+        }
+
+    m_depthLevel = m_depthLevelCtrl->GetValue();
+
+    m_selectedDomainRestriction = m_domainCombo->GetSelection();
+
+    m_minFileSizeInKiloBytes = m_minFileSizeCtrl->GetValue();
+
+    m_domains.clear();
+    for (long i = 0; i < m_domainList->GetItemCount(); ++i)
+        {
+        if (m_domainList->GetItemTextEx(i, 0).length())
+            { m_domains.Add(m_domainList->GetItemTextEx(i,0)); }
+        }
+    if (static_cast<WebHarvester::DomainRestriction>(GetDomainRestriction()) ==
+            WebHarvester::DomainRestriction::RestrictToSpecificDomains &&
+        m_domains.GetCount() == 0)
+        {
+        wxMessageBox(_("Please enter the domains that you want to be restricted to."),
+                    _("Error"), wxOK|wxICON_ERROR);
+        return;
+        }
+
+    //validators seem to be broken with comboboxes, so do this the old fashioned way
+    m_selectedDocFilter = m_docFilterCombo->GetValue();
+
+    if (IsModal())
+        { EndModal(wxID_OK); }
+    else
+        { Show(false); }
+    }
+
+void WebHarvesterDlg::OnAddUrlClick([[maybe_unused]] wxCommandEvent& event)
+    {
+    if (m_urlList)
+        {
+        m_urlList->AddRow();
+        m_urlList->EditItem(m_urlList->GetItemCount()-1, 0);
+        }
+    }
+
+void WebHarvesterDlg::OnDeleteUrlClick([[maybe_unused]] wxCommandEvent& event)
+    {
+    if (m_urlList)
+        {
+        const long selected = m_urlList->GetFirstSelected();
+        if (selected != wxNOT_FOUND)
+            { m_urlList->DeleteItem(selected); }
+        }
+    }
+
+void WebHarvesterDlg::OnAddDomainClick([[maybe_unused]] wxCommandEvent& event)
+    {
+    if (m_domainList)
+        {
+        m_domainList->AddRow();
+        m_domainList->EditItem(m_domainList->GetItemCount()-1, 0);
+        }
+    }
+
+void WebHarvesterDlg::OnDeleteDomainClick([[maybe_unused]] wxCommandEvent& event)
+    {
+    if (m_domainList)
+        {
+        const long selected = m_domainList->GetFirstSelected();
+        if (selected != wxNOT_FOUND)
+            { m_domainList->DeleteItem(selected); }
+        }
+    }
+
+void WebHarvesterDlg::CreateControls()
+    {
+    wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
+
+    m_sideBarBook = new Wisteria::UI::SideBarBook(this, wxID_ANY);
+    wxGetApp().UpdateSideBarTheme(m_sideBarBook->GetSideBar());
+
+    mainSizer->Add(m_sideBarBook, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+
+    // website page
+        {
+        wxPanel* Panel = new wxPanel(m_sideBarBook, ID_HARVESTING_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+        Panel->SetSizer(panelSizer);
+        m_sideBarBook->AddPage(Panel, _("Harvesting"), ID_HARVESTING_PAGE, true);
+
+        //The URLs
+        wxStaticBoxSizer* urlSizer = new wxStaticBoxSizer(new wxStaticBox(Panel, wxID_ANY, _("Websites to Harvest")), wxVERTICAL);
+        wxBoxSizer* urlButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
+        wxBitmapButton* addUrlButton = new wxBitmapButton(Panel, ID_ADD_URL_BUTTON, wxArtProvider::GetBitmap(wxT("ID_ADD"), wxART_BUTTON, FromDIP(wxSize(16,16))));
+        addUrlButton->SetToolTip(_("Add a website to the list"));
+        urlButtonsSizer->Add(addUrlButton);
+
+        wxBitmapButton* deleteUrlButton = new wxBitmapButton(Panel, ID_DELETE_URL_BUTTON, wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize(16,16))));
+        deleteUrlButton->SetToolTip(_("Delete selected website"));
+        urlButtonsSizer->Add(deleteUrlButton);
+        urlSizer->Add(urlButtonsSizer, 0, wxALIGN_RIGHT);
+
+        m_urlData->SetValues(m_urls);
+        m_urlList = new ListCtrlEx(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+            wxLC_VIRTUAL|wxLC_EDIT_LABELS|wxLC_REPORT|wxLC_ALIGN_LEFT);
+        urlSizer->Add(m_urlList, 1, wxEXPAND);
+        m_urlList->EnableGridLines();
+        m_urlList->EnableItemDeletion();
+        m_urlList->InsertColumn(0, _("Websites:"));
+        m_urlList->SetColumnEditable(0);
+        m_urlList->SetVirtualDataProvider(m_urlData);
+        m_urlList->SetVirtualDataSize(m_urlData->GetItemCount(), 1);
+
+        if (wxGetMouseState().ShiftDown())
+            {
+            urlSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+            urlSizer->Add(new wxStaticText(Panel, wxID_ANY, _("HTML Text:")) );
+            urlSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+            wxTextCtrl* rawHtmlPageEdit = new wxTextCtrl(Panel, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxBORDER_THEME|wxTE_MULTILINE, wxGenericValidator(&m_rawHtmlPage) );
+            urlSizer->Add(rawHtmlPageEdit, 1, wxEXPAND);
+            }
+
+        panelSizer->Add(urlSizer, 1, wxALL|wxEXPAND, wxSizerFlags::GetDefaultBorder());
+
+        //depth level
+        wxBoxSizer* depthLevelSizer = new wxBoxSizer(wxHORIZONTAL);
+        wxStaticText* depthLevelLabel = new wxStaticText(Panel, wxID_ANY, _("Depth level:"));
+        depthLevelSizer->Add(depthLevelLabel, 0, wxALIGN_CENTER_VERTICAL);
+        depthLevelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+
+        m_depthLevelCtrl = new wxSpinCtrl(Panel, wxID_ANY,
+            wxString::Format(wxT("%d"), m_depthLevel));
+        m_depthLevelCtrl->SetRange(1, 10);
+        depthLevelSizer->Add(m_depthLevelCtrl, 0, wxALIGN_CENTER_VERTICAL);
+        panelSizer->Add(depthLevelSizer, 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
+        panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+
+        //file filters
+        wxBoxSizer* fileTypeSizer = new wxBoxSizer(wxHORIZONTAL);
+        panelSizer->Add(fileTypeSizer, 0, wxEXPAND);
+        fileTypeSizer->Add(new wxStaticText(Panel, wxID_STATIC, _("File types to include:")), 0, wxALIGN_CENTER_VERTICAL|wxLEFT, wxSizerFlags::GetDefaultBorder());
+        wxArrayString choiceStrings;
+        wxStringTokenizer tkz(m_fullDocFilter, wxT("|"), wxTOKEN_STRTOK);
+        while (tkz.HasMoreTokens() )
+            {
+            wxString currentFilter = tkz.GetNextToken();
+            if (currentFilter.length() && currentFilter[0] != wxT('*'))
+                { choiceStrings.Add(currentFilter); }
+            }
+        if (m_selectedDocFilter.IsEmpty() && choiceStrings.GetCount())
+            { m_selectedDocFilter = choiceStrings[0]; }
+        m_docFilterCombo = new wxComboBox(Panel, wxID_ANY, wxEmptyString, wxDefaultPosition,
+            // need to hardcode a size here because the file filter string for all documents may be huge
+            wxSize(FromDIP(wxSize(100,100)).GetWidth(), -1),
+            choiceStrings,
+            wxGetMouseState().ShiftDown() ? wxCB_DROPDOWN : wxCB_DROPDOWN|wxCB_READONLY);
+        m_docFilterCombo->SetValue(m_selectedDocFilter);
+        fileTypeSizer->Add(m_docFilterCombo, 1, wxEXPAND|wxLEFT|wxRIGHT, wxSizerFlags::GetDefaultBorder());
+
+        // check links
+        auto logBrokenLinksCheckBox = new wxCheckBox(Panel, wxID_ANY, _("&Log broken links"),
+            wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_logBrokenLinks));
+        panelSizer->Add(logBrokenLinksCheckBox, 0, wxALL, wxSizerFlags::GetDefaultBorder());
+
+        wxBoxSizer* userAgentSizer = new wxBoxSizer(wxHORIZONTAL);
+        userAgentSizer->Add(new wxStaticText(Panel, wxID_STATIC, _("User Agent:")), 0, wxALIGN_CENTER_VERTICAL);
+        userAgentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+        wxTextCtrl* userAgentEdit = new wxTextCtrl(Panel, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_userAgent));
+        userAgentSizer->Add(userAgentEdit, 1, wxEXPAND);
+        panelSizer->Add(userAgentSizer, 0, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+        }
+
+    // domain restriction page
+        {
+        wxPanel* Panel = new wxPanel(m_sideBarBook, ID_DOMAINS_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+        Panel->SetSizer(panelSizer);
+        m_sideBarBook->AddPage(Panel, _("Domain Restriction"), ID_DOMAINS_PAGE, false);
+
+        wxStaticBoxSizer* domainBoxSizer = new wxStaticBoxSizer(new wxStaticBox(Panel, wxID_ANY, _("Domain Restriction")), wxVERTICAL);
+        panelSizer->Add(domainBoxSizer, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+
+        wxArrayString choiceStrings;
+        choiceStrings.Add(_("Not restricted to any domain"));
+        choiceStrings.Add(_("Domain restricted"));
+        choiceStrings.Add(_("Subdomain restricted"));
+        choiceStrings.Add(GetUserSpecifiedDomainsLabel());
+        choiceStrings.Add(_("Restricted to external domains"));
+        choiceStrings.Add(_("Restricted to same folder"));
+        m_domainCombo = new wxComboBox(Panel, ID_DOMAIN_COMBO, wxEmptyString,
+            wxDefaultPosition, wxDefaultSize, choiceStrings, wxCB_DROPDOWN | wxCB_READONLY);
+        m_domainCombo->SetValue((m_selectedDomainRestriction >= 0 && static_cast<size_t>(m_selectedDomainRestriction) < choiceStrings.GetCount()) ?
+            choiceStrings[m_selectedDomainRestriction] : wxString(wxEmptyString));
+        domainBoxSizer->Add(m_domainCombo, 0, wxEXPAND);
+        domainBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+
+        wxBoxSizer* domainButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
+        m_addDomainButton = new wxBitmapButton(Panel, ID_ADD_DOMAIN_BUTTON, wxArtProvider::GetBitmap(wxT("ID_ADD"), wxART_BUTTON, FromDIP(wxSize(16, 16))));
+        m_addDomainButton->SetToolTip(_("Add a domain to the list"));
+        m_addDomainButton->Enable(m_domainCombo->GetValue() == GetUserSpecifiedDomainsLabel());
+        domainButtonsSizer->Add(m_addDomainButton);
+
+        m_deleteDomainButton = new wxBitmapButton(Panel, ID_DELETE_DOMAIN_BUTTON, wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize(16, 16))));
+        m_deleteDomainButton->SetToolTip(_("Delete selected domain"));
+        m_deleteDomainButton->Enable(m_domainCombo->GetValue() == GetUserSpecifiedDomainsLabel());
+        domainButtonsSizer->Add(m_deleteDomainButton);
+        domainBoxSizer->Add(domainButtonsSizer, 0, wxALIGN_RIGHT);
+
+        m_domainData->SetValues(m_domains);
+        m_domainList = new ListCtrlEx(Panel, wxID_ANY, wxDefaultPosition, FromDIP(wxSize(400, 100)),
+            wxLC_VIRTUAL | wxLC_EDIT_LABELS | wxLC_REPORT | wxLC_ALIGN_LEFT);
+        domainBoxSizer->Add(m_domainList, 1, wxEXPAND|wxALL);
+        m_domainList->EnableGridLines();
+        m_domainList->EnableItemDeletion();
+        m_domainList->InsertColumn(0, _("User-defined Domain(s):"));
+        m_domainList->SetColumnEditable(0);
+        m_domainList->SetVirtualDataProvider(m_domainData);
+        m_domainList->SetVirtualDataSize(m_domainData->GetItemCount(), 1);
+        m_domainList->Enable(m_domainCombo->GetValue() == GetUserSpecifiedDomainsLabel());
+        }
+
+    // local downloading
+        {
+        wxPanel* Panel = new wxPanel(m_sideBarBook, ID_DOWNLOAD_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+        Panel->SetSizer(panelSizer);
+        m_sideBarBook->AddPage(Panel, _("Download"), ID_DOWNLOAD_PAGE, false);
+        panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+
+        if (!m_hideLocalDownloadOption)
+            {
+            wxCheckBox* downloadCheckBox = new wxCheckBox(Panel, ID_DOWNLOAD_CHECKBOX, _("&Download files locally"),
+                wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_downloadFilesLocally) );
+            panelSizer->Add(downloadCheckBox, 0, wxALL, wxSizerFlags::GetDefaultBorder());
+            }
+
+        m_localFolderLabel = new wxStaticText(Panel, wxID_ANY, _("Folder to download files to:"),
+                                                      wxDefaultPosition, wxDefaultSize, 0);
+        m_localFolderLabel->Enable(m_downloadFilesLocally);
+        panelSizer->Add(m_localFolderLabel, 0, wxLEFT|wxBOTTOM|wxRIGHT, wxSizerFlags::GetDefaultBorder());
+
+        wxBoxSizer* downloadFolderPathSizer = new wxBoxSizer(wxHORIZONTAL);
+        m_localFolderEdit = new wxTextCtrl(Panel, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_downloadFolder) );
+        m_localFolderEdit->AutoCompleteFileNames();
+        m_localFolderEdit->Enable(m_downloadFilesLocally);
+        downloadFolderPathSizer->Add(m_localFolderEdit, 1, wxRIGHT|wxEXPAND, 2);
+
+        wxBitmapButton* folderBrowseButton = new wxBitmapButton(Panel, ID_DOWNLOAD_FOLDER_BROWSE_BUTTON, wxArtProvider::GetBitmap(wxART_FILE_OPEN, wxART_BUTTON, FromDIP(wxSize(16,16))));
+        downloadFolderPathSizer->Add(folderBrowseButton, 0, wxRIGHT, wxSizerFlags::GetDefaultBorder());
+        panelSizer->Add(downloadFolderPathSizer, 0, wxLEFT|wxEXPAND, wxSizerFlags::GetDefaultBorder());
+        panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+
+        m_retainWebsiteFolderStuctureCheckBox = new wxCheckBox(Panel, wxID_ANY, _("&Use website's folder structure"),
+            wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_keepWebPathWhenDownloading) );
+        m_retainWebsiteFolderStuctureCheckBox->Enable(m_downloadFilesLocally);
+        panelSizer->Add(m_retainWebsiteFolderStuctureCheckBox, 0, wxALL, wxSizerFlags::GetDefaultBorder());
+
+        wxBoxSizer* minFileSizeSizer = new wxBoxSizer(wxHORIZONTAL);
+        m_minFileSizeLabel = new wxStaticText(Panel, wxID_ANY, _("Minimum file size to download (in Kbs.):"));
+        m_minFileSizeLabel->Enable(m_downloadFilesLocally);
+        minFileSizeSizer->Add(m_minFileSizeLabel, 0, wxALIGN_CENTER_VERTICAL);
+
+        m_minFileSizeCtrl = new wxSpinCtrl(Panel, wxID_ANY,
+            wxString::Format(wxT("%d"), m_minFileSizeInKiloBytes));
+        m_minFileSizeCtrl->SetRange(1, 1024*20);
+        minFileSizeSizer->Add(m_minFileSizeCtrl, wxSizerFlags().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+        m_minFileSizeCtrl->Enable(m_downloadFilesLocally);
+        panelSizer->Add(minFileSizeSizer, 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
+        }
+
+    mainSizer->Add(CreateSeparatedButtonSizer(wxOK|wxCANCEL|wxHELP), 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+
+    SetSizerAndFit(mainSizer);
+    }
+
+void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester)
+    {
+    wxArrayString validExtensions;
+    wxStringTokenizer tkz(ExtractExtensionsFromFileFilter(GetSelectedDocFilter()), wxT("*.;"));
+    wxString nextFileExt;
+    while (tkz.HasMoreTokens() )
+        {
+        nextFileExt = tkz.GetNextToken();
+        if (!nextFileExt.IsEmpty())
+            {
+            harvester.AddFileTypeToDownload(nextFileExt);
+            if (nextFileExt.CmpNoCase(wxT("html")) == 0 || nextFileExt.CmpNoCase(wxT("htm")) == 0)
+                { harvester.HarvestAllHtmlFiles(); }
+            }
+        }
+    harvester.SetDepthLevel(GetDepthLevel());
+    harvester.SetDomainRestriction(static_cast<WebHarvester::DomainRestriction>(GetDomainRestriction()));
+    harvester.ClearAllowableWebFolders();
+    if (static_cast<WebHarvester::DomainRestriction>(GetDomainRestriction()) == WebHarvester::DomainRestriction::RestrictToSpecificDomains)
+        {
+        for (size_t j = 0; j < GetRestrictedDomains().size(); ++j)
+            { harvester.AddAllowableWebFolder(GetRestrictedDomains()[j]); }
+        }
+    harvester.DownloadFilesWhileCrawling(IsDownloadFilesLocally());
+    harvester.SetDownloadDirectory(GetDownloadFolder());
+    harvester.SetUserAgent(GetUserAgent());
+    harvester.SetMinimumDownloadFileSizeInKilobytes(GetMinimumDownloadFileSizeInKilobytes());
+    harvester.KeepWebPathWhenDownloading(IsRetainingWebsiteFolderStructure());
+    harvester.SeachForBrokenLinks(m_logBrokenLinks);
+    }
+
+void WebHarvesterDlg::UpdateFromHarvesterSettings(const WebHarvester& harvester)
+    {
+    TransferDataFromWindow();
+
+    if (static_cast<WebHarvester::DomainRestriction>(harvester.GetDomainRestriction()) == WebHarvester::DomainRestriction::RestrictToSpecificDomains)
+        {
+        m_domains = harvester.GetAllowableWebFolders();
+        m_domainData->SetValues(m_domains);
+        m_domainList->SetVirtualDataSize(m_domainData->GetItemCount(), 1);
+        }
+    m_depthLevel = harvester.GetDepthLevel();
+    m_selectedDomainRestriction = static_cast<int>(harvester.GetDomainRestriction());
+    m_downloadFilesLocally = harvester.IsDownloadingFilesWhileCrawling();
+    m_downloadFolder = harvester.GetDownloadDirectory();
+    m_userAgent = harvester.GetUserAgent();
+    m_minFileSizeInKiloBytes = harvester.GetMinimumDownloadFileSizeInKilobytes();
+    m_keepWebPathWhenDownloading = harvester.IsKeepingWebPathWhenDownloading();
+    m_logBrokenLinks = harvester.IsSearchingForBrokenLinks();
+
+    TransferDataToWindow();
+    }
+
+bool WebHarvesterDlg::Create(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
+                               const wxString& caption /*= wxEmptyString*/,
+                               const wxPoint& pos /*= wxDefaultPosition*/,
+                               const wxSize& size /*= wxDefaultSize*/,
+                               long style /*= wxDEFAULT_DIALOG_STYLE*/)
+    {
+    SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS|wxWS_EX_CONTEXTHELP );
+    DialogWithHelp::Create(parent, id, caption, pos, size, style );
+
+    CreateControls();
+
+    m_domainList->SetColumnWidth(0, m_domainList->GetClientSize().GetWidth()-wxSizerFlags::GetDefaultBorder());
+    Centre();
+
+    return true;
+    }

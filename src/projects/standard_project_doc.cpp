@@ -1258,7 +1258,7 @@ bool ProjectDoc::OnCreate(const wxString& path, long flags)
     if (flags & wxDOC_NEW)
         {
         const wxString exampleFolder = wxGetApp().FindResourceDirectory(_DT(L"examples"));
-        wxFilePathResolver resolvePath(path, false);
+        FilePathResolver resolvePath(path, false);
         // If a file path to a document (e.g., an RTF file) that is NOT from the Examples folder,
         // then bypass the wizard and just use the system defaults.
         // This is useful for scripting, where you need to create a new project from a filepath
@@ -1327,7 +1327,7 @@ bool ProjectDoc::OnNewDocument()
     document will be ignored.
        Note that we don't bother with this check with webpages because they normally
     contain lists for things like menus that we would indeed want to ignore.*/
-    wxFilePathResolver resolvePath(GetOriginalDocumentFilePath(), true);
+    FilePathResolver resolvePath(GetOriginalDocumentFilePath(), true);
     if (GetWords()->get_sentence_count() > 0 &&
         !resolvePath.IsWebFile())
         {

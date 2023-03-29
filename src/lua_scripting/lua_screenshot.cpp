@@ -9,7 +9,7 @@
 #include "lua_screenshot.h"
 #include <wx/msgdlg.h>
 #include "../app/readability_app.h"
-#include "../../../../SRC/wxTools/wxWebHarvesterDlg.h"
+#include "../../../../SRC/wxTools/WebHarvesterDlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/listctrlsortdlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/listctrlitemviewdlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
@@ -43,7 +43,7 @@ namespace LuaScripting
     GetDirFilterDialog* LuaGetDirDlg = nullptr;
     ArchiveDlg* LuaGetArchiveDlg = nullptr;
     RadioBoxDlg* LuaSelectProjectType = nullptr;
-    wxWebHarvesterDlg* LuaWebHarvesterDlg = nullptr;
+    WebHarvesterDlg* LuaWebHarvesterDlg = nullptr;
     FilteredTextPreviewDlg* LuaFilteredTextPreviewDlg = nullptr;
     ListCtrlSortDlg* LuaListCtrlSortDlg = nullptr;
     EditWordListDlg* LuaEditWordListDlg = nullptr;
@@ -952,7 +952,7 @@ namespace LuaScripting
         if (LuaListViewItemDlg)
             { CloseListViewItemDlg(L); }
         LuaListViewItemDlg = new ListCtrlItemViewDlg;
-        wxFilePathResolver fileResolve;
+        FilePathResolver fileResolve;
         for (int i = 1; i < lua_gettop(L); i += 2)
             {
             fileResolve.ResolvePath(
@@ -1057,7 +1057,7 @@ namespace LuaScripting
         {
         if (LuaSelectProjectType == nullptr)
             {
-            LuaWebHarvesterDlg = new wxWebHarvesterDlg(wxGetApp().GetMainFrame(),
+            LuaWebHarvesterDlg = new WebHarvesterDlg(wxGetApp().GetMainFrame(),
                 wxGetApp().GetLastSelectedWebPages(),
                 wxGetApp().m_harvesterOptions.GetDepthLevel(),
                 wxGetApp().GetAppOptions().GetDocumentFilter(), wxGetApp().GetLastSelectedDocFilter(),

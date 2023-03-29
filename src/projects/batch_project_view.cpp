@@ -2608,7 +2608,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                 }
             else if (event.GetId() == XRCID("ID_LAUNCH_SOURCE_FILE"))
                 {
-                wxFilePathResolver resolvePath(selectedFilePaths[fileIter].first, false);
+                FilePathResolver resolvePath(selectedFilePaths[fileIter].first, false);
                 if (doc->GetDocumentStorageMethod() == TextStorage::EmbedText)
                     {
                     std::vector<BaseProject*>::iterator subDocPos;

@@ -13,8 +13,8 @@
 #define __PROJECTWIZARD_H__
 
 #include <wx/choicdlg.h>
-#include "../../../../SRC/wxTools/wxWebHarvester.h"
-#include "../../../../SRC/wxTools/wxWebHarvesterDlg.h"
+#include "../../../../SRC/wxTools/WebHarvester.h"
+#include "../../../../SRC/wxTools/WebHarvesterDlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/excelpreviewdlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/getdirdlg.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/archivedlg.h"

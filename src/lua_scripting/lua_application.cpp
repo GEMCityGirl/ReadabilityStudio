@@ -37,7 +37,7 @@ namespace LuaScripting
         lily_of_the_valley::html_extract_text extract;
         // see if it's a weblink before anything else
         wxString webPath(link, length);
-        wxFilePathResolver resolve(webPath, false);
+        FilePathResolver resolve(webPath, false);
         if (resolve.IsHTTPFile() || resolve.IsHTTPSFile())
             {
             if (IncludeExternalLinks)
@@ -273,7 +273,7 @@ namespace LuaScripting
         wxString urlPath(luaL_checkstring(L, 1), wxConvUTF8);
         const wxString downloadFolder(luaL_checklstring(L, 2, nullptr), wxConvUTF8);
 
-        wxWebHarvester crawler(urlPath);
+        WebHarvester crawler(urlPath);
         crawler.SetDownloadDirectory(downloadFolder);
         crawler.KeepWebPathWhenDownloading(false);
 

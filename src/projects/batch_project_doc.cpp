@@ -135,9 +135,9 @@ bool BatchProjectDoc::OnCreate(const wxString& path, long flags)
         //if passed a single, "regular" file (i.e., not an archive or spreadsheet), then just load it with the
         //defaults and bypass the wizard.
         if (path.length() &&
-            wxFilePathResolver(path,false).IsLocalOrNetworkFile() &&
-            !wxFilePathResolver::IsSpreadsheet(path) &&
-            !wxFilePathResolver::IsArchive(path))
+            FilePathResolver(path,false).IsLocalOrNetworkFile() &&
+            !FilePathResolver::IsSpreadsheet(path) &&
+            !FilePathResolver::IsArchive(path))
             {
             GetSourceFilesInfo().clear();
             GetSourceFilesInfo().push_back(comparable_first_pair(path, wxString{}));
@@ -243,7 +243,7 @@ bool BatchProjectDoc::OnNewDocument()
     // try to base the default name of this project from the folder/web domain of the first file
     if (GetSourceFilesInfo().size() > 0)
         {
-        wxFilePathResolver resolvePath(GetOriginalDocumentFilePath(0), false);
+        FilePathResolver resolvePath(GetOriginalDocumentFilePath(0), false);
         // if a local file, use the name of the last folder in the path as the project name
         if (resolvePath.IsLocalOrNetworkFile())
             {
@@ -884,10 +884,10 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             (*pos)->SetParagraphsParsingMethod(ParagraphParse::EachNewLineIsAParagraph);
             }
         
-        wxFilePathResolver fileResolve((*pos)->GetOriginalDocumentFilePath(), false);
+        FilePathResolver fileResolve((*pos)->GetOriginalDocumentFilePath(), false);
         if (fileResolve.IsExcelCell())
             {
-            wxFilePathResolver fileResolver;
+            FilePathResolver fileResolver;
             size_t excelTag = (*pos)->GetOriginalDocumentFilePath().MakeLower().find(_DT(L".xlsx#"));
             wxASSERT(excelTag != -1);
             if (excelTag != -1)

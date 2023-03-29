@@ -3218,7 +3218,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             { extractResult = ExtractRawTextWithEncoding(Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize), wxT("html"), GetOriginalDocumentFilePath(), label); }
         //Otherwise, need to search for the encoding in the HTML itself and convert using that, then run the HTML parser on it
         else
-            { extractResult = ExtractRawTextWithEncoding(Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize, wxWebHarvester::GetCharsetFromPageContent(sourceFileText, streamSize)), wxT("html"), GetOriginalDocumentFilePath(), label); }
+            { extractResult = ExtractRawTextWithEncoding(Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize, WebHarvester::GetCharsetFromPageContent(sourceFileText, streamSize)), wxT("html"), GetOriginalDocumentFilePath(), label); }
         if (!extractResult.first)
             {
             LogMessage(_("An unknown error occurred while importing. Unable to continue creating project."),
@@ -3431,7 +3431,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             //Otherwise, need to search for the encoding in the HTML itself and convert using that, then run the HTML parser on it
             else
                 {
-                const wxString str = Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize, wxWebHarvester::GetCharsetFromPageContent(sourceFileText, streamSize));
+                const wxString str = Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize, WebHarvester::GetCharsetFromPageContent(sourceFileText, streamSize));
                 extractResult = ExtractRawTextWithEncoding(str, wxT("html"), GetOriginalDocumentFilePath(), title);
                 }
             SetOriginalDocumentDescription(
@@ -3454,7 +3454,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
 //------------------------------------------------
 bool BaseProject::LoadExternalDocument()
     {
-    wxFilePathResolver resolvePath;
+    FilePathResolver resolvePath;
     //this will "fix" the file path in case it has "file:///". Also fixes slash problem,
     //appends "http" if it just says "www", etc.
     SetOriginalDocumentFilePath(resolvePath.ResolvePath(GetOriginalDocumentFilePath(), true));
@@ -3463,10 +3463,10 @@ bool BaseProject::LoadExternalDocument()
         wxString content, contentType;
         long responseCode;
         wxString urlPath = GetOriginalDocumentFilePath();
-        if (wxWebHarvester::ReadWebPage(urlPath, content, contentType, responseCode, false, true))
+        if (WebHarvester::ReadWebPage(urlPath, content, contentType, responseCode, false, true))
             {
             wxString title;
-            std::pair<bool,wxString> extractResult = ExtractRawTextWithEncoding(content, wxWebHarvester::GetFileTypeFromContentType(contentType), GetOriginalDocumentFilePath(), title);
+            std::pair<bool,wxString> extractResult = ExtractRawTextWithEncoding(content, WebHarvester::GetFileTypeFromContentType(contentType), GetOriginalDocumentFilePath(), title);
             if (!extractResult.first)
                 { return false; }
             if (GetOriginalDocumentDescription().empty())
@@ -3492,7 +3492,7 @@ bool BaseProject::LoadExternalDocument()
         else
             {
             LogMessage(wxString::Format(_("Unable to open webpage. The following error occurred:\n%s"),
-                         wxWebHarvester::GetResponseMessage(responseCode)),
+                         WebHarvester::GetResponseMessage(responseCode)),
                 _("Error"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
@@ -3750,7 +3750,7 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
     document will be ignored.
        Note that we don't bother with this check with webpages because they normally
     contain lists for things like menus that we would indeed want to ignore.*/
-    wxFilePathResolver resolvePath(GetOriginalDocumentFilePath(), true);
+    FilePathResolver resolvePath(GetOriginalDocumentFilePath(), true);
     if (GetWords()->get_sentence_count() > 0 &&
         !resolvePath.IsWebFile())
         {

@@ -42,7 +42,7 @@
 #include "../graphs/schwartzgraph.h"
 #include "../results_format/readability_messages.h"
 #include "../../../SRC/wxTools/wxFileFolderOperations.h"
-#include "../../../SRC/wxTools/wxWebHarvester.h"
+#include "../../../SRC/wxTools/WebHarvester.h"
 #include "../../../SRC/Licensing/LicenseAdmin.h"
 #include "../../../SRC/Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../../../SRC/Wisteria-Dataviz/src/import/html_extract_text.h"
