@@ -66,8 +66,8 @@ void LuaInterpreter::RunLuaFile(const wxString& filePath)
         // script and also just shows the line number without saying "line" in front of it,
         // so reformat this message to make it more readable.
         wxString errorMessage(luaL_checkstring(m_L, -1), wxConvUTF8);
-        const auto EndOfErrorHeader = errorMessage.find(wxT("]:"));
-        if (EndOfErrorHeader != wxNOT_FOUND)
+        const auto EndOfErrorHeader = errorMessage.find(L"]:");
+        if (EndOfErrorHeader != wxString::npos)
             { errorMessage.erase(0,EndOfErrorHeader+2); }
         wxMessageBox(_("Line ") + errorMessage,
                      _("Script Error"), wxOK|wxICON_EXCLAMATION);
@@ -107,8 +107,8 @@ void LuaInterpreter::RunLuaCode(const wxString& code, const wxString& filePath)
         // script and also just shows the line number without saying "line" in front of it,
         // so reformat this message to make it more readable.
         wxString errorMessage(luaL_checkstring(m_L, -1), wxConvUTF8);
-        const auto EndOfErrorHeader = errorMessage.find(wxT("]:"));
-        if (EndOfErrorHeader != wxNOT_FOUND)
+        const auto EndOfErrorHeader = errorMessage.find(L"]:");
+        if (EndOfErrorHeader != wxString::npos)
             { errorMessage.erase(0,EndOfErrorHeader+2); }
         wxMessageBox(_("Line ") + errorMessage,
                      _("Script Error"), wxOK|wxICON_EXCLAMATION);
