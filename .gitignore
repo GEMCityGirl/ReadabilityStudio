@@ -14,3 +14,4 @@ docs/doxygen/html
 Docs/Coding-Bible/.Rproj.user
 Docs/ReadabilityStudioAPI/.Rproj.user
 *.db
+/tests/out/

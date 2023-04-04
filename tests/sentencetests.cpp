@@ -28,6 +28,37 @@ TEST_CASE("Sentences", "[sentence]")
     word_list Secondary_known_spellings;
     word_list Programming_known_spellings;
 
+    SECTION("Sentence Word Count Less")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Chapter 1--The Beginning of the Book\n\nIt was a night. It was a dark night.\n\nThe End of this great book";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        grammar::sentence_info longestSent = *(std::max_element(doc.get_sentences().begin(),
+            doc.get_sentences().end() ));
+        CHECK(longestSent.get_word_count() == 7);
+
+        longestSent = *(std::max_element(doc.get_sentences().begin(),
+            doc.get_sentences().end(), grammar::complete_sentence_length_less()));
+        CHECK(longestSent.get_word_count() == 5);
+        }
+    SECTION("Sentence Word Count Greater Than Value")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Chapter 1--The Beginning of the Book\n\nIt was a night. It was a dark night.\n\nThe End of this great book";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        size_t total = std::count_if(doc.get_sentences().begin(),
+                    doc.get_sentences().end(),
+                    grammar::sentence_length_greater_than(3) );
+        CHECK(total == 4);
+
+        total = std::count_if(doc.get_sentences().begin(),
+                    doc.get_sentences().end(),
+                    grammar::complete_sentence_length_greater_than(3) );
+        CHECK(total == 2);
+        }
+
     SECTION("EndingWithDashEndingSentence")
         {
         grammar::is_end_of_sentence sent(false);
@@ -1034,7 +1065,7 @@ TEST_CASE("Sentences Incomplete", "[sentence]")
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction,
             &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns,
             &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Item one\n\nThis is a list item that looks like senence.\n\nItem two";
+        const wchar_t* text = L"Item one\n\nThis is a list item that looks like sentence.\n\nItem two";
         doc.load_document(text, wcslen(text), false, false, false, false);
 
         CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::header);
@@ -1053,7 +1084,7 @@ TEST_CASE("Sentences Incomplete", "[sentence]")
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
             &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
             &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Some text.\n\nItem one\n\nThis is a list item that looks like senence.\n\nItem two\n\nEnding text.";
+        const wchar_t* text = L"Some text.\n\nItem one\n\nThis is a list item that looks like sentence.\n\nItem two\n\nEnding text.";
         doc.load_document(text, wcslen(text), false, false, false, false);
 
         CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::complete);
