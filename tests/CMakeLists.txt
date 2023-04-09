@@ -32,7 +32,6 @@ ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ../src/indexing/article.cpp ../src/indexing
 ../src/indexing/conjunction.cpp ../src/indexing/contraction.cpp ../src/indexing/double_words.cpp
 ../src/indexing/negating_word.cpp ../src/indexing/passive_voice.cpp ../src/indexing/pronoun.cpp
 ../src/indexing/romanize.cpp ../src/indexing/stop_lists.cpp ../src/indexing/syllable.cpp
-../../SRC/Wisteria-Dataviz/src/i18n-check/src/i18n_string_util.cpp
 acronymtests.cpp articletests.cpp documenttests.cpp englishsyllabletests.cpp
 germansyllabletests.cpp sentencetests.cpp wordfunctortests.cpp
 testingmain.cpp)
