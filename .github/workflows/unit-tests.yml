@@ -1,0 +1,37 @@
+name: unit-tests
+on: [push]
+
+jobs:
+  build:
+    name: unit-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
+      
+      - name: install tools
+        run: |
+             sudo apt install cmake
+             sudo apt install lcov
+          
+      - name: build & run tests
+        run: |
+             cd ..
+             git clone https://github.com/catchorg/Catch2.git
+             cd ReadabilityStudio/tests
+             cmake ./
+             make -j4
+             cd bin
+             ./RSTestRunner --reporter JUnit::out=rs-junit.xml
+             cat rs-junit.xml
+             errors=$(cat rs-junit.xml | grep -Po '(errors)="\K[^"]*')
+             failures=$(cat rs-junit.xml | grep -Po '(failures)="\K[^"]*')
+             if [ "$errors" -gt 0 ]; then
+               echo "Error count is: ${errors}"
+               exit 1
+             fi
+             if [ "$failures" -gt 0 ]; then
+               echo "Failure count is: ${failures}"
+               exit 1
+             fi
