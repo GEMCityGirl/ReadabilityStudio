@@ -2,7 +2,7 @@
 #define __READABILITY_APP_OPTIONS_H__
 
 #include <wx/colourdata.h>
-#include "../../../../SRC/tinyxml2/tinyxml2.h"
+#include "../tinyxml2/tinyxml2.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/graphs/barchart.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/graphs/boxplot.h"
 #include "../../../../SRC/Wisteria-Dataviz/src/graphs/histogram.h"

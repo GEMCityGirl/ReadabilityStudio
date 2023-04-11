@@ -24,7 +24,7 @@
 #include <memory>
 #include <functional>
 #include <algorithm>
-#include "../../../SRC/tinyxml2/tinyxml2.h"
+#include "../tinyxml2/tinyxml2.h"
 #include "../../../SRC/lily-of-the-valley/src/doc_extract_text.h"
 #include "../../../SRC/lily-of-the-valley/src/markdown_extract_text.h"
 #include "../readability/english_readability.h"
