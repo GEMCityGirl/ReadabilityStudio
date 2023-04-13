@@ -262,13 +262,13 @@ namespace readability
 
         //get/set for DC and Spache lists inclusion
         void include_dale_chall_list(const bool include) noexcept
-            { m_include_dale_chall_list = include;}
+            { m_include_dale_chall_list = include; }
         [[nodiscard]]
         bool is_including_dale_chall_list() const noexcept
             { return m_include_dale_chall_list; }
 
         void include_spache_list(const bool include) noexcept
-            { m_include_spache_list = include;}
+            { m_include_spache_list = include; }
         [[nodiscard]]
         bool is_including_spache_list() const noexcept
             { return m_include_spache_list; }

@@ -104,7 +104,8 @@ public:
         { return compare(that) == 0; }
     /// @returns The comparison result against other word, comparing by the stems.
     /// @param that The word to compare against.
-    /// @note This is the main comparison function that all other compare() and operators functions rely on.
+    /// @note This is the main comparison function that all other compare() and
+    ///     operators functions rely on.
     [[nodiscard]] int compare(const word<Tchar_traits, Tstemmer>& that) const noexcept
         { return m_stem.compare(that.m_stem); }
     /// @returns The comparison result against other word, comparing by the stems.
@@ -113,8 +114,9 @@ public:
         { return compare(word<Tchar_traits, Tstemmer>(that)); }
 
     /// @returns The length of the word, excluding punctuation like apostrophes.
-    [[nodiscard]] size_t get_length_excluding_punctuation() const noexcept
-        { return length() - m_punctuation_count;}
+    [[nodiscard]]
+    size_t get_length_excluding_punctuation() const noexcept
+        { return std::basic_string<wchar_t, Tchar_traits>::length() - m_punctuation_count; }
     /// @returns The number of punctuation marks in the word.
     [[nodiscard]] size_t get_punctuation_count() const noexcept
         { return m_punctuation_count; }
@@ -130,15 +132,18 @@ public:
         { return m_sentence_position; }
     [[nodiscard]] const wchar_t* get_stem() const noexcept
         { return m_stem.c_str(); }
-    [[nodiscard]] inline bool is_capitalized() const
+    [[nodiscard]]
+    inline bool is_capitalized() const
         {
-        return (length() == 0) ? false :
+        return (std::basic_string<wchar_t, Tchar_traits>::length() == 0) ? false :
             (characters::is_character::is_upper(operator[](0)));
         }
-    [[nodiscard]] inline bool is_capitalized_not_in_caps() const
+    [[nodiscard]]
+    inline bool is_capitalized_not_in_caps() const
         {
-        return (length() == 0) ? false :
-            (length() == 1) ? characters::is_character::is_upper(operator[](0)) :
+        return (std::basic_string<wchar_t, Tchar_traits>::length() == 0) ? false :
+            (std::basic_string<wchar_t, Tchar_traits>::length() == 1) ?
+             characters::is_character::is_upper(operator[](0)) :
             (characters::is_character::is_upper(operator[](0)) &&
                 !characters::is_character::is_upper(operator[](1)) );
         }
@@ -253,8 +258,9 @@ public:
     /// @private
     word() noexcept = default;
 
-    [[nodiscard]] inline size_t get_length_excluding_punctuation() const noexcept
-        { return length() - m_punctuation_count; }
+    [[nodiscard]]
+    inline size_t get_length_excluding_punctuation() const noexcept
+        { return std::basic_string<wchar_t, Tchar_traits>::length() - m_punctuation_count; }
     [[nodiscard]] inline size_t get_punctuation_count() const noexcept
         { return m_punctuation_count; }
     inline void set_syllable_count(const size_t count) noexcept
@@ -269,15 +275,18 @@ public:
         { return m_sentence_position; }
     [[nodiscard]] inline const wchar_t* get_stem() const
         { return c_str(); }
-    [[nodiscard]] inline bool is_capitalized() const
+    [[nodiscard]]
+    inline bool is_capitalized() const
         {
-        return (length() == 0) ? false :
+        return (std::basic_string<wchar_t, Tchar_traits>::length() == 0) ? false :
             (characters::is_character::is_upper(operator[](0)));
         }
-    [[nodiscard]] inline bool is_capitalized_not_in_caps() const
+    [[nodiscard]]
+    inline bool is_capitalized_not_in_caps() const
         {
-        return (length() == 0) ? false :
-            (length() == 1) ? characters::is_character::is_upper(operator[](0)) :
+        return (std::basic_string<wchar_t, Tchar_traits>::length() == 0) ? false :
+            (std::basic_string<wchar_t, Tchar_traits>::length() == 1) ? 
+                characters::is_character::is_upper(operator[](0)) :
             (characters::is_character::is_upper(operator[](0)) &&
                 !characters::is_character::is_upper(operator[](1)) );
         }
