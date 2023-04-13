@@ -135,17 +135,23 @@ public:
     [[nodiscard]]
     inline bool is_capitalized() const
         {
-        return (std::basic_string<wchar_t, Tchar_traits>::length() == 0) ? false :
-            (characters::is_character::is_upper(operator[](0)));
+        return (std::basic_string<wchar_t, Tchar_traits>::length() == 0) ?
+            false :
+            characters::is_character::is_upper(
+                std::basic_string<wchar_t, Tchar_traits>::operator[](0));
         }
     [[nodiscard]]
     inline bool is_capitalized_not_in_caps() const
         {
-        return (std::basic_string<wchar_t, Tchar_traits>::length() == 0) ? false :
+        return (std::basic_string<wchar_t, Tchar_traits>::length() == 0) ?
+            false :
             (std::basic_string<wchar_t, Tchar_traits>::length() == 1) ?
-             characters::is_character::is_upper(operator[](0)) :
-            (characters::is_character::is_upper(operator[](0)) &&
-                !characters::is_character::is_upper(operator[](1)) );
+             characters::is_character::is_upper(
+                 std::basic_string<wchar_t, Tchar_traits>::operator[](0)) :
+            (characters::is_character::is_upper(
+                std::basic_string<wchar_t, Tchar_traits>::operator[](0)) &&
+                !characters::is_character::is_upper(
+                    std::basic_string<wchar_t, Tchar_traits>::operator[](1)) );
         }
     // flags
     inline void set_numeric(const bool enable)
@@ -273,22 +279,28 @@ public:
         { return m_paragraph_index; }
     [[nodiscard]] inline size_t get_sentence_position() const noexcept
         { return m_sentence_position; }
-    [[nodiscard]] inline const wchar_t* get_stem() const
-        { return c_str(); }
+    [[nodiscard]]
+    inline const wchar_t* get_stem() const
+        { return std::basic_string<wchar_t, Tchar_traits>::c_str(); }
     [[nodiscard]]
     inline bool is_capitalized() const
         {
-        return (std::basic_string<wchar_t, Tchar_traits>::length() == 0) ? false :
-            (characters::is_character::is_upper(operator[](0)));
+        return (std::basic_string<wchar_t, Tchar_traits>::length() == 0) ?
+            false :
+            characters::is_character::is_upper(
+                std::basic_string<wchar_t, Tchar_traits>::operator[](0));
         }
     [[nodiscard]]
     inline bool is_capitalized_not_in_caps() const
         {
         return (std::basic_string<wchar_t, Tchar_traits>::length() == 0) ? false :
             (std::basic_string<wchar_t, Tchar_traits>::length() == 1) ? 
-                characters::is_character::is_upper(operator[](0)) :
-            (characters::is_character::is_upper(operator[](0)) &&
-                !characters::is_character::is_upper(operator[](1)) );
+                characters::is_character::is_upper(
+                    std::basic_string<wchar_t, Tchar_traits>::operator[](0)) :
+            (characters::is_character::is_upper(
+                std::basic_string<wchar_t, Tchar_traits>::operator[](0)) &&
+                !characters::is_character::is_upper(
+                    std::basic_string<wchar_t, Tchar_traits>::operator[](1)) );
         }
     // flags
     inline void set_numeric(const bool enable)
