@@ -16,12 +16,12 @@ phrase_collection pcmap;
 //--------------------------------------------
 int main( int argc, char* argv[] )
     {
-    const auto loadResourceFile = [](const std::wstring& filePath)
+    const auto loadResourceFile = [](const std::string& filePath)
         {
         std::wifstream inputFile;
         inputFile.open(filePath.c_str(), std::ifstream::in);
         if (!inputFile.is_open())
-            { std::wcout << filePath << L" file failed to load."; }
+            { std::cout << filePath << " file failed to load."; }
         std::wstring line;
         std::wstring buffer;
         while (std::getline(inputFile, line))
@@ -31,11 +31,11 @@ int main( int argc, char* argv[] )
 
     // initialize everything
     is_abbreviation::get_abbreviations().load_words(
-        loadResourceFile(L"WesternAbbr.txt").c_str(), true, false);
+        loadResourceFile("WesternAbbr.txt").c_str(), true, false);
     grammar::is_non_proper_word::get_word_list().load_words(
-        loadResourceFile(L"StopListForProper.txt").c_str(), true, false);
+        loadResourceFile("StopListForProper.txt").c_str(), true, false);
     Stop_list.load_words(
-        loadResourceFile(L"StopListWestern.txt").c_str(), true, false);
+        loadResourceFile("StopListWestern.txt").c_str(), true, false);
     grammar::is_english_passive_voice::get_past_participle_exeptions().load_words(
         L"excited\nseven\nheaven\nhaven\nalien\ninfrared\nsacred", true, true);
 
