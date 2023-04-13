@@ -18,7 +18,8 @@ int main( int argc, char* argv[] )
     {
     const auto loadResourceFile = [](const std::wstring& filePath)
         {
-        std::wifstream inputFile(filePath.c_str(), std::ifstream::in);
+        std::wifstream inputFile;
+        inputFile.open(filePath.c_str(), std::ifstream::in);
         if (!inputFile.is_open())
             { std::wcout << filePath << L" file failed to load."; }
         std::wstring line;
