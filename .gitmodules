@@ -16,3 +16,7 @@
 [submodule "src/tinyxml2"]
 	path = src/tinyxml2
 	url = https://github.com/leethomason/tinyxml2.git
+[submodule "src/Wisteria-Dataviz"]
+	path = src/Wisteria-Dataviz
+	url = https://github.com/Blake-Madden/Wisteria-Dataviz.git
+	branch = main
