@@ -18,7 +18,7 @@ jobs:
 
       - name: analyze
         run: |
-             ./i18n-check/bin/i18n-check ./ --ignore=i18n-check -q -o i18nresults.txt
+             ./i18n-check/bin/i18n-check ./src -q -o i18nresults.txt
              cat i18nresults.txt
              
       - name: print output
