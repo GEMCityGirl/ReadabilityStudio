@@ -16,7 +16,7 @@ phrase_collection pcmap;
 //--------------------------------------------
 int main( int argc, char* argv[] )
     {
-    const auto loadResourceFile = [](const auto& filePath)
+    const auto loadResourceFile = [](const std::wstring& filePath)
         {
         std::wifstream inputFile(filePath);
         if (!inputFile.is_open())
