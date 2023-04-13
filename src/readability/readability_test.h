@@ -16,8 +16,8 @@
 #include <bitset>
 #include <utility>
 #include "../indexing/character_traits.h"
-#include "../../../SRC/Wisteria-Dataviz/src/i18n-check/src/string_util.h"
-#include "../../../SRC/Wisteria-Dataviz/src/data/dataset.h"
+#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
+#include "../Wisteria-Dataviz/src/data/dataset.h"
 
 namespace readability
     {

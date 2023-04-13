@@ -9,9 +9,9 @@
 #include "word_list_dlg.h"
 #include "../../projects/base_project.h"
 #include "../../app/readability_app.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/searchpanel.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/util/parentblocker.h"
+#include "../../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/searchpanel.h"
+#include "../../Wisteria-Dataviz/src/util/parentblocker.h"
 
 wxDECLARE_APP(ReadabilityApp);
 

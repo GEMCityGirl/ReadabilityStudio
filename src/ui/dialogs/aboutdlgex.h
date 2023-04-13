@@ -20,8 +20,8 @@
 #include <wx/statline.h>
 #include <wx/hyperlink.h>
 #include <wx/utils.h>
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/listctrlex.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
 #include "../../../../SRC/Licensing/LicenseAdmin.h"
 
 /// @brief Enhanced About dialog for an application.

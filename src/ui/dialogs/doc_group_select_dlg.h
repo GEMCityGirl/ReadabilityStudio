@@ -17,7 +17,7 @@
 #include <wx/valgen.h>
 #include <wx/html/htmlwin.h>
 #include <wx/htmllbox.h>
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
+#include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
 
 /// @brief A dialog to choose what sort of label should be connected
 ///     to a document (or batch of documents).

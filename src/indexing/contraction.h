@@ -16,7 +16,7 @@
 #include <functional>
 #include <set>
 #include "character_traits.h"
-#include "../../../SRC/Wisteria-Dataviz/src/debug/debug_assert.h"
+#include "../Wisteria-Dataviz/src/debug/debug_assert.h"
 
 namespace grammar
     {

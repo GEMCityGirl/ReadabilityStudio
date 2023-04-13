@@ -12,8 +12,8 @@
 #ifndef __WORD_LIST_DIALOG_H__
 #define __WORD_LIST_DIALOG_H__
 
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/listctrlex.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../../indexing/word_list.h"
 #include <wx/ribbon/bar.h>
 #include <wx/ribbon/buttonbar.h>

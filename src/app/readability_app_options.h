@@ -3,12 +3,12 @@
 
 #include <wx/colourdata.h>
 #include "../tinyxml2/tinyxml2.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/graphs/barchart.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/graphs/boxplot.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/graphs/histogram.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/util/warningmanager.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/base/image.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/listctrlex.h"
+#include "../Wisteria-Dataviz/src/graphs/barchart.h"
+#include "../Wisteria-Dataviz/src/graphs/boxplot.h"
+#include "../Wisteria-Dataviz/src/graphs/histogram.h"
+#include "../Wisteria-Dataviz/src/util/warningmanager.h"
+#include "../Wisteria-Dataviz/src/base/image.h"
+#include "../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../OleanderStemmingLibrary/src/stemming.h"
 #include "../readability/readability.h"
 #include "../readability/readability_test.h"

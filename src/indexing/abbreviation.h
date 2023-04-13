@@ -18,7 +18,7 @@
 #include "word_list.h"
 #include "character_traits.h"
 #include "characters.h"
-#include "../../../SRC/Wisteria-Dataviz/src/i18n-check/src/string_util.h"
+#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 #include "../OleanderStemmingLibrary/src/common_lang_constants.h"
 
 /// @brief Namespace for grammar analysis.

@@ -13,7 +13,7 @@
 #define __PROJECT_REPORT_FORMAT_H__
 
 #include "../projects/base_project.h"
-#include "../../../SRC/Wisteria-Dataviz/src/import/html_encode.h"
+#include "../Wisteria-Dataviz/src/import/html_encode.h"
 
 /// @brief Class to format a project's information into reports.
 class ProjectReportFormat

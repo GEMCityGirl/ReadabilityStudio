@@ -14,13 +14,13 @@
 
 #include <wx/wx.h>
 #include <wx/file.h>
-#include "../../../../SRC/Wisteria-Dataviz/src/i18n-check/src/string_util.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/util/fileutil.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/util/textstream.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/import/html_extract_text.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/import/html_encode.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/utfcpp/source/utf8.h"
+#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
+#include "../Wisteria-Dataviz/src/util/fileutil.h"
+#include "../Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
+#include "../Wisteria-Dataviz/src/util/textstream.h"
+#include "../Wisteria-Dataviz/src/import/html_extract_text.h"
+#include "../Wisteria-Dataviz/src/import/html_encode.h"
+#include "../Wisteria-Dataviz/src/utfcpp/source/utf8.h"
 #include "../webharvester/filepathresolver.h"
 #include "../indexing/sentence.h"
 

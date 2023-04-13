@@ -7,7 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "test_bundle_dlg.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/import/html_extract_text.h"
+#include "../../Wisteria-Dataviz/src/import/html_extract_text.h"
 #include "../../app/readability_app.h"
 
 wxDECLARE_APP(ReadabilityApp);

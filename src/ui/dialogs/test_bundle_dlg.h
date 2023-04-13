@@ -16,9 +16,9 @@
 #include <wx/gbsizer.h>
 #include "../../projects/base_project.h"
 #include "../../readability/readability_test.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/listctrlex.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
+#include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
 
 class TestBundle;
 

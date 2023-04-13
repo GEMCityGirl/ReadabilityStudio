@@ -13,8 +13,8 @@
 #define __SCORE_POINTS_H__
 
 #include <bitset>
-#include "../../Wisteria-Dataviz/src/base/graphitems.h"
-#include "../../Wisteria-Dataviz/src/base/icons.h"
+#include "../Wisteria-Dataviz/src/base/graphitems.h"
+#include "../Wisteria-Dataviz/src/base/icons.h"
 
 namespace Wisteria
     {
@@ -114,7 +114,8 @@ namespace Wisteria
         bool IsWordsHard() const noexcept
             { return m_scoreInfo[3]; }
     private:
-        std::bitset<4> m_scoreInfo{ 0 }; // invalid score, score out of grade range, etc...
+        // invalid score, score out of grade range, etc...
+        std::bitset<4> m_scoreInfo{ 0 };
         size_t m_score1{ std::numeric_limits<size_t>::quiet_NaN() };
         size_t m_score2{ std::numeric_limits<size_t>::quiet_NaN() };
         };

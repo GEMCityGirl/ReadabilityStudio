@@ -13,17 +13,17 @@
 #define __PROJECTWIZARD_H__
 
 #include <wx/choicdlg.h>
+#include "../../app/readability_app.h"
 #include "../../webharvester/webharvester.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/excelpreviewdlg.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/getdirdlg.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/archivedlg.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/listctrlex.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/thumbnail.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
+#include "../../Wisteria-Dataviz/src/ui/dialogs/excelpreviewdlg.h"
+#include "../../Wisteria-Dataviz/src/ui/dialogs/getdirdlg.h"
+#include "../../Wisteria-Dataviz/src/ui/dialogs/archivedlg.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/thumbnail.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
 #include "../../../../SRC/Licensing/LicenseAdmin.h"
 #include "doc_group_select_dlg.h"
 #include "webharvesterdlg.h"
-#include "../../app/readability_app.h"
 
 enum class ProjectType
     {

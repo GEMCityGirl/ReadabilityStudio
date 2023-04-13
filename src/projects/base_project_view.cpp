@@ -6,7 +6,7 @@
 #include "../ui/dialogs/test_bundle_dlg.h"
 #include "../ui/dialogs/tools_options_dlg.h"
 #include "../ui/dialogs/editwordlistdlg.h"
-#include "../../../SRC/Wisteria-Dataviz/src/ui/dialogs/opacitydlg.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/opacitydlg.h"
 
 wxDECLARE_APP(ReadabilityApp);
 

@@ -1,6 +1,6 @@
 #include "base_project_doc.h"
 #include "../app/readability_app.h"
-#include "../../../SRC/Wisteria-Dataviz/src/import/html_encode.h"
+#include "../Wisteria-Dataviz/src/import/html_encode.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(BaseProjectDoc, wxDocument)
 

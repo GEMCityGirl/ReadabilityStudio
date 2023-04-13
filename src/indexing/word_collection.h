@@ -37,10 +37,10 @@
 #include "pronoun.h"
 #include "character_traits.h"
 #include "../OleanderStemmingLibrary/src/common_lang_constants.h"
-#include "../../../SRC/Wisteria-Dataviz/src/math/mathematics.h"
-#include "../../../SRC/Wisteria-Dataviz/src/util/frequencymap.h"
-#include "../../../SRC/Wisteria-Dataviz/src/debug/debug_profile.h"
-#include "../../../SRC/Wisteria-Dataviz/src/i18n-check/src/i18n_string_util.h"
+#include "../Wisteria-Dataviz/src/math/mathematics.h"
+#include "../Wisteria-Dataviz/src/util/frequencymap.h"
+#include "../Wisteria-Dataviz/src/debug/debug_profile.h"
+#include "../Wisteria-Dataviz/src/i18n-check/src/i18n_string_util.h"
 
 /** @brief Class representing a document.
     @details This includes a full breakdown of its sentences,

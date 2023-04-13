@@ -15,8 +15,8 @@
 #include <functional>
 #include <algorithm>
 #include <set>
-#include "../../../SRC/Wisteria-Dataviz/src/i18n-check/src/string_util.h"
-#include "../../../SRC/Wisteria-Dataviz/src/import/text_matrix.h"
+#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
+#include "../Wisteria-Dataviz/src/import/text_matrix.h"
 #include "../indexing/character_traits.h"
 
 namespace readability

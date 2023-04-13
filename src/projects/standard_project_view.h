@@ -6,7 +6,7 @@
 #include <wx/utils.h> 
 #include "../results_format/readability_messages.h"
 #include "../graphs/frygraph.h"
-#include "../../../SRC/Wisteria-Dataviz/src/math/statistics.h"
+#include "../Wisteria-Dataviz/src/math/statistics.h"
 #include "base_project_view.h"
 
 /// @brief The results window interface for a standard project.

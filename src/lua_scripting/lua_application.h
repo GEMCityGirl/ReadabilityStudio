@@ -17,7 +17,7 @@
 #include "lua.hpp"
 #include "lua_projects.h"
 #include "lua_debug.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
+#include "../Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
 
 namespace LuaScripting
     {

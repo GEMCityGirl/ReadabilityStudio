@@ -12,11 +12,11 @@
 #include "../ui/dialogs/project_wizard_dlg.h"
 #include "../results_format/word_collectiont_text_formatting.h"
 #include "../readability/readability.h"
-#include "../../../SRC/Wisteria-Dataviz/src/import/rtf_encode.h"
-#include "../../../SRC/Wisteria-Dataviz/src/import/html_encode.h"
-#include "../../../SRC/Wisteria-Dataviz/src/graphs/heatmap.h"
-#include "../../../SRC/Wisteria-Dataviz/src/graphs/wordcloud.h"
-#include "../../../SRC/Wisteria-Dataviz/src/ui/dialogs/listdlg.h"
+#include "../Wisteria-Dataviz/src/import/rtf_encode.h"
+#include "../Wisteria-Dataviz/src/import/html_encode.h"
+#include "../Wisteria-Dataviz/src/graphs/heatmap.h"
+#include "../Wisteria-Dataviz/src/graphs/wordcloud.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/listdlg.h"
 
 using namespace Wisteria;
 using namespace Wisteria::Graphs;

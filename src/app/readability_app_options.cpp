@@ -1,9 +1,9 @@
 #include "readability_app_options.h"
 #include "readability_app.h"
 #include "../ui/dialogs/custom_test_dlg.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/import/html_encode.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/math/mathematics.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/base/colorbrewer.h"
+#include "../Wisteria-Dataviz/src/import/html_encode.h"
+#include "../Wisteria-Dataviz/src/math/mathematics.h"
+#include "../Wisteria-Dataviz/src/base/colorbrewer.h"
 
 using namespace Wisteria;
 using namespace Wisteria::Graphs;

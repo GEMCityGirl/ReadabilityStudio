@@ -10,7 +10,7 @@
 #include <wx/cmndata.h>
 #include <wx/colordlg.h>
 #include <wx/bannerwindow.h>
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/warningmessagesdlg.h"
+#include "../../Wisteria-Dataviz/src/ui/dialogs/warningmessagesdlg.h"
 #include "tools_options_dlg.h"
 #include "editwordlistdlg.h"
 #include "doc_group_select_dlg.h"

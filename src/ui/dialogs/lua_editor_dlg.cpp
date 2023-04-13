@@ -8,9 +8,9 @@
 
 #include "lua_editor_dlg.h"
 #include "../../app/readability_app.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/base/colorbrewer.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/import/html_extract_text.h"
+#include "../../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
+#include "../../Wisteria-Dataviz/src/base/colorbrewer.h"
+#include "../../Wisteria-Dataviz/src/import/html_extract_text.h"
 
 wxDECLARE_APP(ReadabilityApp);
 

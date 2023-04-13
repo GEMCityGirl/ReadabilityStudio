@@ -9,8 +9,8 @@
 #include "editwordlistdlg.h"
 #include <wx/file.h>
 #include <wx/tokenzr.h>
-#include "../../../../SRC/Wisteria-Dataviz/src/utfcpp/source/utf8.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/util/textstream.h"
+#include "../../Wisteria-Dataviz/src/utfcpp/source/utf8.h"
+#include "../../Wisteria-Dataviz/src/util/textstream.h"
 #include "../../indexing/phrase.h"
 
 wxBEGIN_EVENT_TABLE(EditWordListDlg, DialogWithHelp)

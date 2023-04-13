@@ -5,11 +5,11 @@
 #include "../graphs/frygraph.h"
 #include "../graphs/raygorgraph.h"
 #include "../graphs/frasegraph.h"
-#include "../../../SRC/Wisteria-Dataviz/src/graphs/fleschchart.h"
-#include "../../../SRC/Wisteria-Dataviz/src/graphs/crawfordgraph.h"
-#include "../../../SRC/Wisteria-Dataviz/src/graphs/histogram.h"
-#include "../../../SRC/Wisteria-Dataviz/src/ui/dialogs/htmltablepanel.h"
-#include "../../../SRC/Wisteria-Dataviz/src/ui/dialogs/listdlg.h"
+#include "../Wisteria-Dataviz/src/graphs/fleschchart.h"
+#include "../Wisteria-Dataviz/src/graphs/crawfordgraph.h"
+#include "../Wisteria-Dataviz/src/graphs/histogram.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/htmltablepanel.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/listdlg.h"
 
 class BatchProjectView final : public BaseProjectView
     {

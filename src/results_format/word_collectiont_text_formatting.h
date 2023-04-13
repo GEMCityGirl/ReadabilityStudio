@@ -15,8 +15,8 @@
 #include <wx/wx.h>
 #include <wx/string.h>
 #include "../indexing/word_collection.h"
-#include "../../../SRC/Wisteria-Dataviz/src/import/rtf_encode.h"
-#include "../../../SRC//Wisteria-Dataviz/src/math/mathematics.h"
+#include "../Wisteria-Dataviz/src/import/rtf_encode.h"
+#include "../Wisteria-Dataviz/src/math/mathematics.h"
 
 template<typename documentT, typename highlightDeterminantT>
 static size_t FormatWordCollectionHighlightedWords(const documentT* theDocument,

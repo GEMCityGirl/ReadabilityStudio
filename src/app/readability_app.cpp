@@ -9,12 +9,12 @@
 #include "../ui/dialogs/editwordlistdlg.h"
 #include "../document_helpers/chapter_split.h"
 #include "../../../../SRC/Licensing/LicenseDlg.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/filelistdlg.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/getdirdlg.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/CRCpp/inc/CRC.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/graphdlg.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/filelistdlg.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/getdirdlg.h"
+#include "../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
+#include "../Wisteria-Dataviz/src/CRCpp/inc/CRC.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/graphdlg.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
 
 using namespace Wisteria;
 using namespace Wisteria::GraphItems;

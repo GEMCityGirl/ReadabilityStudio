@@ -16,9 +16,9 @@
 #include <algorithm>
 #include <execution>
 #include "character_traits.h"
-#include "../../../SRC/Wisteria-Dataviz/src/import/text_matrix.h"
-#include "../../../SRC/Wisteria-Dataviz/src/import/text_preview.h"
-#include "../../../SRC/Wisteria-Dataviz/src/i18n-check/src/string_util.h"
+#include "../Wisteria-Dataviz/src/import/text_matrix.h"
+#include "../Wisteria-Dataviz/src/import/text_preview.h"
+#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 
 /** @brief Container class for encapsulating a list of words.*/
 class word_list

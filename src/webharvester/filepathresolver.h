@@ -27,7 +27,7 @@
 #include "WebHarvester.h"
 #include "../../../../SRC/curl/include/curl/curl.h"
 #include "../../../../SRC/curl/include/curl/easy.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/util/fileutil.h"
+#include "../Wisteria-Dataviz/src/util/fileutil.h"
 
 /** @brief Class to determine which sort of filepath a string may resemble.
     @details This is useful for determining if a string is a file to a file or URL,

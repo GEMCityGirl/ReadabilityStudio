@@ -6,12 +6,12 @@
 #include "../ui/dialogs/filtered_text_preview_dlg.h"
 #include "../ui/dialogs/filtered_text_export_options_dlg.h"
 #include "../results_format/project_report_format.h"
-#include "../../../SRC/Wisteria-Dataviz/src/ui/dialogs/edittextdlg.h"
-#include "../../../SRC/Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
-#include "../../../SRC/Wisteria-Dataviz/src/ui/dialogs/gridexportdlg.h"
-#include "../../../SRC/Wisteria-Dataviz/src/graphs/heatmap.h"
-#include "../../../SRC/Wisteria-Dataviz/src/graphs/wordcloud.h"
-#include "../../../SRC/Wisteria-Dataviz/src/import/html_encode.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/edittextdlg.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/gridexportdlg.h"
+#include "../Wisteria-Dataviz/src/graphs/heatmap.h"
+#include "../Wisteria-Dataviz/src/graphs/wordcloud.h"
+#include "../Wisteria-Dataviz/src/import/html_encode.h"
 
 using namespace lily_of_the_valley;
 using namespace Wisteria;

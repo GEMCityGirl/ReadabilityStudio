@@ -7,10 +7,10 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include <wx/richmsgdlg.h>
-#include "../../../../SRC/wxTools/wxFileFolderOperations.h"
 #include "../controls/wordlistproperty.h"
 #include "editwordlistdlg.h"
 #include "custom_test_dlg.h"
+#include "../../Wisteria-Dataviz/src/util/fileutil.h"
 #include "../../projects/base_project.h"
 #include "../../projects/base_project_doc.h"
 #include "../../projects/base_project_view.h"

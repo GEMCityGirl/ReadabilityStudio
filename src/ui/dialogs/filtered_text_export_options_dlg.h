@@ -15,7 +15,7 @@
 #include <wx/wx.h>
 #include <wx/valgen.h>
 #include <wx/statline.h>
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
+#include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
 
 /// @brief Provides options for exporting filtered (e.g., romanized) text.
 class FilteredTextExportOptionsDlg : public Wisteria::UI::DialogWithHelp

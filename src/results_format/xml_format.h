@@ -29,8 +29,8 @@
 #include <wx/tokenzr.h>
 #include <wx/utils.h>
 #include <wx/fontenum.h>
-#include "../../../SRC/Wisteria-Dataviz/src/import/html_encode.h"
-#include "../../../SRC/Wisteria-Dataviz/src/math/mathematics.h"
+#include "../Wisteria-Dataviz/src/import/html_encode.h"
+#include "../Wisteria-Dataviz/src/math/mathematics.h"
 
 /// @brief Class to format XML project files.
 /// @private

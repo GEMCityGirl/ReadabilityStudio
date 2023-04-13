@@ -25,10 +25,10 @@
 #include <wx/propgrid/manager.h>
 #include <wx/propgrid/advprops.h>
 #include "../../readability/readability.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/base/image.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/util/warningmanager.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/util/backupvariable.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
+#include "../../Wisteria-Dataviz/src/base/image.h"
+#include "../../Wisteria-Dataviz/src/util/warningmanager.h"
+#include "../../Wisteria-Dataviz/src/util/backupvariable.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
 #include "../../projects/standard_project_view.h"
 #include "../../projects/batch_project_view.h"
 

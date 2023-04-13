@@ -4,9 +4,9 @@
 #include <wx/wx.h>
 #include <wx/docview.h>
 #include <vector>
-#include "../../../SRC/Wisteria-Dataviz/src/graphs/boxplot.h"
-#include "../../../SRC/Wisteria-Dataviz/src/graphs/histogram.h"
-#include "../../../SRC/Wisteria-Dataviz/src/data/dataset.h"
+#include "../Wisteria-Dataviz/src/graphs/boxplot.h"
+#include "../Wisteria-Dataviz/src/graphs/histogram.h"
+#include "../Wisteria-Dataviz/src/data/dataset.h"
 #include "base_project_view.h"
 #include "base_project_doc.h"
 

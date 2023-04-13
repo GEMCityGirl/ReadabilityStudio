@@ -7,7 +7,7 @@
 #include "../graphs/raygorgraph.h"
 #include "../graphs/schwartzgraph.h"
 #include "../ui/controls/explanationlistctrl.h"
-#include "../../../SRC/Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
+#include "../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
 
 /// Base document layer of a project, storing features common to standard and batch projects.
 class BaseProjectDoc : public BaseProject, public wxDocument

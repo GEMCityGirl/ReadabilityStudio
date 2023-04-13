@@ -16,7 +16,7 @@
 #include <stdexcept>
 #include <functional>
 #include <algorithm>
-#include "../../../SRC/Wisteria-Dataviz/src/math/mathematics.h"
+#include "../Wisteria-Dataviz/src/math/mathematics.h"
 #include "readability_enums.h"
 #include "english_readability.h"
 #include "grade_scales.h"

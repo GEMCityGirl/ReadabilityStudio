@@ -18,7 +18,7 @@
 #include <wx/valgen.h>
 #include <wx/valtext.h>
 #include <wx/filename.h>
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
+#include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
 
 /// @brief Dialog to create a new custom word test.
 /// @details This dialog will only prompt for the test name and path

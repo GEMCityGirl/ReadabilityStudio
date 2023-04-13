@@ -10,7 +10,7 @@
 #ifndef __READABILITY_GRAPH_H__
 #define __READABILITY_GRAPH_H__
 
-#include "../../Wisteria-Dataviz/src/graphs/groupgraph2d.h"
+#include "../Wisteria-Dataviz/src/graphs/groupgraph2d.h"
 #include <array>
 #include "scorepoint.h"
 #include "../results_format/readability_messages.h"

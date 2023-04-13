@@ -23,7 +23,7 @@
 #include <wx/aui/aui.h>
 #include <wx/srchctrl.h>
 #include <wx/renderer.h>
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/codeeditor.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
 
 /// @brief Lua editor and runner dialog.
 class LuaEditorDlg final : public wxFrame

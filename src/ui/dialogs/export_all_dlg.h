@@ -6,8 +6,8 @@
 #include <wx/valgen.h>
 #include <wx/combobox.h>
 #include <wx/tooltip.h>
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/imageexportdlg.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
+#include "../../Wisteria-Dataviz/src/ui/dialogs/imageexportdlg.h"
+#include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
 
 class BaseProjectDoc;
 class BatchProjectDoc;

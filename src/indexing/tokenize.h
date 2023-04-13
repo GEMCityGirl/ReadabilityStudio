@@ -18,7 +18,7 @@
 #include "punctuation.h"
 #include "characters.h"
 #include "../OleanderStemmingLibrary/src/common_lang_constants.h"
-#include "../../../SRC/Wisteria-Dataviz/src/debug/debug_profile.h"
+#include "../Wisteria-Dataviz/src/debug/debug_profile.h"
 
 namespace tokenize
     {

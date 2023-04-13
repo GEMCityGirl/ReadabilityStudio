@@ -17,12 +17,12 @@
 #include <wx/html/htmprint.h>
 #include <wx/splitter.h>
 #include <wx/xrc/xmlres.h>
-#include "../../../../SRC/Wisteria-Dataviz/src/base/canvas.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/listctrlex.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/htmltablewin.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/htmltablewinprintout.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/util/parentblocker.h"
+#include "../../Wisteria-Dataviz/src/base/canvas.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/htmltablewin.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/htmltablewinprintout.h"
+#include "../../Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
+#include "../../Wisteria-Dataviz/src/util/parentblocker.h"
 #include <map>
 
 /// @brief What to export when saving from an ExplanationListCtrl.

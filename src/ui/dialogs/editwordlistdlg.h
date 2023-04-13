@@ -21,11 +21,11 @@
 #include <wx/tooltip.h>
 #include <wx/bmpbuttn.h>
 #include <wx/artprov.h>
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/controls/listctrlex.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/util/memorymappedfile.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/import/text_matrix.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/import/text_preview.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
+#include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
+#include "../../Wisteria-Dataviz/src/util/memorymappedfile.h"
+#include "../../Wisteria-Dataviz/src/import/text_matrix.h"
+#include "../../Wisteria-Dataviz/src/import/text_preview.h"
 #include "../../indexing/character_traits.h"
 
 /// @brief A dialog to edit a word (or phrase) list.

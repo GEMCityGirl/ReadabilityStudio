@@ -13,10 +13,10 @@
 #include "../indexing/word_list.h"
 #include "../indexing/phrase.h"
 #include "../indexing/characters.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/util/frequencymap.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/util/memorymappedfile.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/CRCpp/inc/CRC.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/import/html_extract_text.h"
+#include "../Wisteria-Dataviz/src/util/frequencymap.h"
+#include "../Wisteria-Dataviz/src/util/memorymappedfile.h"
+#include "../Wisteria-Dataviz/src/CRCpp/inc/CRC.h"
+#include "../Wisteria-Dataviz/src/import/html_extract_text.h"
 
 using namespace Wisteria;
 using namespace Wisteria::Graphs;

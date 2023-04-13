@@ -5,10 +5,10 @@
 #include "../results_format/word_collectiont_text_formatting.h"
 #include "../ui/dialogs/filtered_text_preview_dlg.h"
 #include "../indexing/romanize.h"
-#include "../../../SRC/Wisteria-Dataviz/src/import/html_encode.h"
-#include "../../../SRC/Wisteria-Dataviz/src/import/idl_extract_text.h"
-#include "../../../SRC/Wisteria-Dataviz/src/import/pptx_extract_text.h"
-#include "../../../SRC/Wisteria-Dataviz/src/import/cpp_extract_text.h"
+#include "../Wisteria-Dataviz/src/import/html_encode.h"
+#include "../Wisteria-Dataviz/src/import/idl_extract_text.h"
+#include "../Wisteria-Dataviz/src/import/pptx_extract_text.h"
+#include "../Wisteria-Dataviz/src/import/cpp_extract_text.h"
 
 /***************************************************************************
                           BaseProject.h  -  description

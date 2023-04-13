@@ -15,7 +15,7 @@
 #include <algorithm>
 #include <functional>
 #include <set>
-#include "../../../SRC/Wisteria-Dataviz/src/i18n-check/src/string_util.h"
+#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 #include "character_traits.h"
 
 namespace grammar

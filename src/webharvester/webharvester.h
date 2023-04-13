@@ -28,10 +28,10 @@
 #include <wx/progdlg.h>
 #include "../../../../SRC/curl/include/curl/curl.h"
 #include "../../../../SRC/curl/include/curl/easy.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/import/html_extract_text.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/i18n-check/src/char_traits.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/util/textstream.h"
-#include "../../../../SRC/Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
+#include "../Wisteria-Dataviz/src/import/html_extract_text.h"
+#include "../Wisteria-Dataviz/src/i18n-check/src/char_traits.h"
+#include "../Wisteria-Dataviz/src/util/textstream.h"
+#include "../Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
 
 class wxStringLessWebPath
     {
