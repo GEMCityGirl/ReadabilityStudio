@@ -1680,7 +1680,7 @@ void ReadabilityApp::RemoveAllCustomTestBundles()
         }
     }
 
-wxIMPLEMENT_CLASS(MainFrame, Wisteria::UI::BaseMainFrame)
+wxIMPLEMENT_CLASS(MainFrame, Wisteria::UI::BaseMainFrame);
 
 wxBEGIN_EVENT_TABLE(MainFrame, Wisteria::UI::BaseMainFrame)
     EVT_STARTPAGE_CLICKED(wxID_ANY, MainFrame::OnStartPageClick)
