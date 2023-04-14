@@ -29,11 +29,7 @@ public:
     /// @private
     word_list(const word_list&) = delete;
     /// @private
-    word_list(word_list&&) = delete;
-    /// @private
     word_list& operator=(const word_list&) = delete;
-    /// @private
-    word_list& operator=(word_list&&) = delete;
     /// @private
     using word_type = traits::case_insensitive_wstring_ex;
 
