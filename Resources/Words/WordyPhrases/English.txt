@@ -763,6 +763,7 @@ asphyxiates	suffocates	0
 asphyxiating	suffocating	0		
 aspiration	longing, dream, goal	0		
 aspirations	longings, dreams, goals	0		
+ass-is	as-is	3		
 assassinate	kill	0		
 assassinated	killed	0		
 assassinates	kills	0		
