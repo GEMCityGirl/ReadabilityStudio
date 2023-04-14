@@ -71,7 +71,7 @@ wxString FilePathResolver::ResolvePath(const wxString& path, const bool attemptT
             return m_path;
             }
         }
-    
+
     return m_path;
     }
 

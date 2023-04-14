@@ -65,14 +65,14 @@ public:
     [[nodiscard]]
     ListCtrlEx* GetFileList() noexcept
         { return m_fileList; }
-    ///Creates the controls and sizers
+    /// Creates the controls and sizers
     void CreateControls();
     bool ValidateOptions();
     void SaveOptions();
     void SaveProjectGraphOptions();
     void SaveTextWindowOptions();
     void SaveStatisticsOptions();
-    //button events
+    // button events
     void OnExportSettings([[maybe_unused]] wxCommandEvent& event);
     void OnImportSettings([[maybe_unused]] wxCommandEvent& event);
     void OnResetSettings([[maybe_unused]] wxCommandEvent& event);
@@ -88,14 +88,14 @@ public:
     void OnIncompleteSentencesChange([[maybe_unused]] wxCommandEvent& event);
     void OnExcludedPhrasesFileEditButtonClick([[maybe_unused]] wxCommandEvent& event);
     void OnExcludeNumeralsCheck(wxCommandEvent& event);
-    //dolch color buttons
+    // dolch color buttons
     void OnDolchConjunctionsHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
     void OnDolchPrepositionsHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
     void OnDolchPronounsHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
     void OnDolchAdverbsHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
     void OnDolchHighlightColorSelect(wxCommandEvent& event);
     void OnDolchNounHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
-    //general events
+    // general events
     void OnWarningMessagesButtonClick([[maybe_unused]] wxCommandEvent& event);
     void OnHelp([[maybe_unused]] wxCommandEvent& event);
     void OnContextHelp([[maybe_unused]] wxHelpEvent& event);
@@ -399,9 +399,11 @@ private:
         { return _DT(L"HJTEXTEXCLUSION"); }
 
     /// Replaces various filepath shortcuts to the full pathway
-    [[nodiscard]] wxString ExpandPath(wxString path) const;
+    [[nodiscard]]
+    wxString ExpandPath(wxString path) const;
 
-    [[nodiscard]] ToolSections GetSectionsBeingShown() const noexcept
+    [[nodiscard]]
+    ToolSections GetSectionsBeingShown() const noexcept
         { return m_sectionsBeingShown; }
 
     static bool IsPropertyAvailable(const wxPropertyGridPage* propGrid,
@@ -482,10 +484,10 @@ private:
     BackupVariable<wxString> m_description;
     BackupVariable<wxString> m_appendedDocumentFilePath;
 
-    //which options are we showing
+    // which options are we showing
     ToolSections m_sectionsBeingShown;
 
-    //document storage/linking information
+    // document storage/linking information
     BackupVariable<int> m_documentStorageMethod;
     BackupVariable<wxString> m_filePath;
 
@@ -497,7 +499,7 @@ private:
     BackupVariable<wxFont> m_font;
     BackupVariable<wxColour> m_fontColor;
 
-    //dolch highlighting
+    // dolch highlighting
     BackupVariable<wxColour> m_dolchConjunctionsColor;
     BackupVariable<wxColour> m_dolchPrepositionsColor;
     BackupVariable<wxColour> m_dolchPronounsColor;
@@ -540,7 +542,7 @@ private:
     BackupVariable<int> m_includeIncompleteSentencesIfLongerThan;
     BackupVariable<int> m_textExclusionMethod;
 
-    //graph options
+    // graph options
     BackupVariable<wxColour> m_xAxisFontColor;
     BackupVariable<wxFont> m_xAxisFont;
     BackupVariable<wxColour> m_yAxisFontColor;

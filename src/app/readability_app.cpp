@@ -149,37 +149,37 @@ void ReadabilityApp::ShowSplashscreen()
     Yield();
     }
 
-///Adds a list of words to the custom dictionary (based on language of the project that it is coming from).
+/// Adds a list of words to the custom dictionary (based on language of the project that it is coming from).
 void ReadabilityApp::AddWordsToDictionaries(const wxArrayString& theWords, const readability::test_language lang)
     {
     wxString customDictionaryPath = m_CustomEnglishDictionaryPath;
     if (lang == readability::test_language::english_test)
         {
         customDictionaryPath = m_CustomEnglishDictionaryPath;
-        //add words to the currently loaded (custom) dictionary
+        // add words to the currently loaded (custom) dictionary
         for (size_t i = 0; i < theWords.GetCount(); ++i)
             { BaseProject::known_custom_english_spellings.add_word(theWords[i].wc_str()); }
         }
     else if (lang == readability::test_language::spanish_test)
         {
         customDictionaryPath = m_CustomSpanishDictionaryPath;
-        //add words to the currently loaded (custom) dictionary
+        // add words to the currently loaded (custom) dictionary
         for (size_t i = 0; i < theWords.GetCount(); ++i)
             { BaseProject::known_custom_spanish_spellings.add_word(theWords[i].wc_str()); }
         }
     else if (lang == readability::test_language::german_test)
         {
         customDictionaryPath = m_CustomGermanDictionaryPath;
-        //add words to the currently loaded (custom) dictionary
+        // add words to the currently loaded (custom) dictionary
         for (size_t i = 0; i < theWords.GetCount(); ++i)
             { BaseProject::known_custom_german_spellings.add_word(theWords[i].wc_str()); }
         }
 
-    //add to custom dictionary
+    // add to custom dictionary
     wxString text;
     if (!Wisteria::TextStream::ReadFile(customDictionaryPath, text) )
         {
-        wxMessageBox(_(L"Error loading custom dictionary file."), 
+        wxMessageBox(_(L"Error loading custom dictionary file."),
             _(L"Error"), wxOK|wxICON_EXCLAMATION);
         return;
         }
@@ -188,7 +188,7 @@ void ReadabilityApp::AddWordsToDictionaries(const wxArrayString& theWords, const
     customWords.load_words(text, true, false);
     for (size_t i = 0; i < theWords.GetCount(); ++i)
         { customWords.add_word(theWords[i].wc_str()); }
-    //save the new list back to the original file
+    // save the new list back to the original file
     wxString outputStr;
     outputStr.reserve(customWords.get_list_size()*5);
     for (size_t i = 0; i < customWords.get_list_size(); ++i)
@@ -205,12 +205,14 @@ void ReadabilityApp::AddWordsToDictionaries(const wxArrayString& theWords, const
 
 void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
     {
-    static bool initEventProcessing = false;//this prevents logic blocks in here from overlapping (showing dialogs in here can cause this function to be reentered)
+    // this prevents logic blocks in here from overlapping
+    // (showing dialogs in here can cause this function to be reentered)
+    static bool initEventProcessing = false;
     static bool hasCommandLineBeenParsed = false;
     static bool acceptedLicenseAgreement = false;
     if (loop && loop->IsOk() && loop->IsMain())
         {
-        //EULA agreement
+        // EULA agreement
         if (!acceptedLicenseAgreement && !initEventProcessing)
             {
             initEventProcessing = true;
@@ -746,7 +748,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     wxFile theFile;
     if (!theFile.Open(FindResourceFile(L"Words.wad"), wxFile::read) )
         {
-        wxMessageBox(_(L"Word & phrase file missing or corrupt. Please reinstall."), 
+        wxMessageBox(_(L"Word & phrase file missing or corrupt. Please reinstall."),
             _(L"Error"), wxOK|wxICON_EXCLAMATION); 
         return false;
         }
@@ -1123,7 +1125,7 @@ int ReadabilityApp::OnExit()
     {
     wxLogDebug(__WXFUNCTION__);
     GetAppOptions().SaveOptionsFile();
-    
+
     curl_global_cleanup();
 
     return BaseApp::OnExit();
@@ -1386,7 +1388,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 readRibbonButtonSVG(L"tests/dale-chall-test.svg"),
                 _(L"View the word lists used by readability tests."));
             readabilityTestsBar->AddDropdownButton(XRCID("ID_BLANK_GRAPHS"),
-                _(L"Blank Graphs"), 
+                _(L"Blank Graphs"),
                 readRibbonButtonSVG(L"ribbon/blank-graphs.svg"),
                 _(L"Print or save blank readability graph templates."));
             //tools section
@@ -1603,10 +1605,12 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         #endif
         }
 
-    //Help tab
+    // Help tab
         {
         wxRibbonPage* helpPage = new wxRibbonPage(ribbon, wxID_ANY, _(L"Help"));
-        wxRibbonPanel* helpPanel = new wxRibbonPanel(helpPage, wxID_ANY, _(L"Documentation"), wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+        wxRibbonPanel* helpPanel =
+            new wxRibbonPanel(helpPage, wxID_ANY, _(L"Documentation"), wxNullBitmap,
+                              wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
         wxRibbonButtonBar* helpButtonBar = new wxRibbonButtonBar(helpPanel);
         helpButtonBar->AddButton(wxID_HELP, _(L"Content"),
             readRibbonButtonSVG(L"ribbon/web-help.svg"),
@@ -1632,7 +1636,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         }
     ribbon->SetArtProvider(new RibbonMetroArtProvider);
     UpdateRibbonTheme(ribbon);
-    
+
     ribbon->Realize();
 
     return ribbon;
@@ -1667,8 +1671,9 @@ void ReadabilityApp::UpdateRibbonTheme()
 void ReadabilityApp::RemoveAllCustomTestBundles()
     {
     std::for_each(BaseProject::m_testBundles.cbegin(), BaseProject::m_testBundles.cend(),
-        [this](const TestBundle& bundle) { if (!bundle.IsLocked()) { GetMainFrameEx()->RemoveTestBundleFromMenus(bundle.GetName().c_str()); } });
-    
+        [this](const TestBundle& bundle) { if (!bundle.IsLocked())
+        { GetMainFrameEx()->RemoveTestBundleFromMenus(bundle.GetName().c_str()); } });
+
     for (auto bundle = BaseProject::m_testBundles.begin();
          bundle != BaseProject::m_testBundles.end();
          /*in loop*/)
@@ -1685,12 +1690,12 @@ wxIMPLEMENT_CLASS(MainFrame, Wisteria::UI::BaseMainFrame);
 wxBEGIN_EVENT_TABLE(MainFrame, Wisteria::UI::BaseMainFrame)
     EVT_STARTPAGE_CLICKED(wxID_ANY, MainFrame::OnStartPageClick)
     EVT_MENU(XRCID("ID_OPEN_DOCUMENT"), MainFrame::OnOpenDocument)
-    //list editing
+    // list editing
     EVT_MENU(XRCID("ID_EDIT_WORD_LIST"), MainFrame::OnEditWordList)
     EVT_MENU(XRCID("ID_EDIT_PHRASE_LIST"), MainFrame::OnEditPhraseList)
 
     EVT_MENU(XRCID("ID_SCRIPT_WINDOW"), MainFrame::OnScriptEditor)
-    //custom test menu
+    // custom test menu
     EVT_MENU(XRCID("ID_ADD_CUSTOM_TEST"), MainFrame::OnAddCustomTest)
     EVT_MENU(XRCID("ID_ADD_CUSTOM_NEW_DALE_CHALL_TEST"), MainFrame::OnAddCustomTest)
     EVT_MENU(XRCID("ID_ADD_CUSTOM_SPACHE_TEST"), MainFrame::OnAddCustomTest)
@@ -1701,12 +1706,12 @@ wxBEGIN_EVENT_TABLE(MainFrame, Wisteria::UI::BaseMainFrame)
     EVT_MENU(XRCID("ID_ADD_CUSTOM_TEST_BUNDLE"), MainFrame::OnAddCustomTestBundle)
     EVT_MENU(XRCID("ID_EDIT_CUSTOM_TEST_BUNDLE"), MainFrame::OnEditCustomTestBundle)
     EVT_MENU(XRCID("ID_REMOVE_CUSTOM_TEST_BUNDLE"), MainFrame::OnRemoveCustomTestBundle)
-    //print and paste
+    // print and paste
     EVT_MENU(XRCID("ID_PRINTER_HEADER_FOOTER"), MainFrame::OnPrinterHeaderFooter)
     EVT_MENU(wxID_PASTE, MainFrame::OnPaste)
-    //dictionary menu
+    // dictionary menu
     EVT_MENU(XRCID("ID_EDIT_ENGLISH_DICTIONARY"), MainFrame::OnEditEnglishDictionary)
-    EVT_MENU(XRCID("ID_EDIT_DICTIONARY_SETTINGS"), MainFrame::OnEditDictionarySettings)    
+    EVT_MENU(XRCID("ID_EDIT_DICTIONARY_SETTINGS"), MainFrame::OnEditDictionarySettings)
     EVT_CLOSE(MainFrame::OnClose)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(wxID_NEW, MainFrame::OnNewDropdown)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(wxID_OPEN, MainFrame::OnOpenDropdown)
@@ -1780,7 +1785,7 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
 
     lily_of_the_valley::text_matrix<ListCtrlExDataProvider::ListCellString>
         importer(&profileReportDialog.GetData()->GetMatrix());
-    
+
     // header row, which will just be skipped
     importer.add_row_definition(lily_of_the_valley::text_row<ListCtrlExDataProvider::ListCellString>(1));
     importer.add_row_definition(myRow);
@@ -2518,7 +2523,7 @@ void MainFrame::OnScriptEditor([[maybe_unused]] wxCommandEvent& event)
     {
     if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
         {
-        wxMessageBox(_(L"Lua Scripting is only available in the Professional Edition of Readability Studio."), 
+        wxMessageBox(_(L"Lua Scripting is only available in the Professional Edition of Readability Studio."),
             _(L"Feature Not Licensed"), wxOK|wxICON_INFORMATION);
         return;
         }
@@ -2666,7 +2671,7 @@ void MainFrame::FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu,
                 wxMenuItem* testItem = new wxMenuItem(primaryMenu, rTest->get_test().get_interface_id(),
                     rTest->get_test().get_long_name().c_str(), rTest->get_test().get_long_name().c_str());
                 const auto bp = wxGetApp().GetResourceManager().GetSVG(
-                        wxString::Format(L"tests/%s.svg", 
+                        wxString::Format(L"tests/%s.svg",
                         rTest->get_test().get_id().c_str()));
                 if (bp.IsOk())
                     { testItem->SetBitmap(bp); }
@@ -3043,7 +3048,7 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
                 {
                 if (customTestMenu->FindItem(pos->first) == nullptr)
                     {
-                    CustomReadabilityTestCollection::const_iterator testIter = 
+                    CustomReadabilityTestCollection::const_iterator testIter =
                         std::find(BaseProject::m_custom_word_tests.begin(), BaseProject::m_custom_word_tests.end(), pos->second);
                     if (testIter == BaseProject::m_custom_word_tests.end())
                         {
@@ -3078,7 +3083,7 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
             addMenuItem->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"tests/spache-test.svg"));
             }
-        
+
         // Remove or Edit options, depending on whether there are any tests
         if (MainFrame::GetCustomTestMenuIds().size() > 0)
             {
@@ -3482,7 +3487,7 @@ void MainFrame::OnClose(wxCloseEvent& event)
         const BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
         if (doc->IsProcessing())
             {
-            wxMessageBox(_(L"Project still processing. Please wait before closing."), 
+            wxMessageBox(_(L"Project still processing. Please wait before closing."),
                 wxFileName::StripExtension(doc->GetTitle()), wxOK|wxICON_EXCLAMATION);
             event.Veto();
             }
@@ -3724,7 +3729,7 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
     if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false, false) )
         {
         wxMessageBox(wxString::Format(_(L"An error occurred while trying to connect to the website:\t%s"),
-                                        WebHarvester::GetResponseMessage(responseCode)), 
+                                        WebHarvester::GetResponseMessage(responseCode)),
                     _(L"Connection Error"), wxOK|wxICON_EXCLAMATION);
         return;
         }
@@ -3905,7 +3910,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     {
     if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
         {
-        wxMessageBox(_(L"Web Harvester is only available in the Professional Edition of Readability Studio."), 
+        wxMessageBox(_(L"Web Harvester is only available in the Professional Edition of Readability Studio."),
             _(L"Feature Not Licensed"), wxOK|wxICON_INFORMATION);
         return;
         }

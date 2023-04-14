@@ -17,6 +17,7 @@
 #include <algorithm>
 #include "../../../../SRC/curl/include/curl/curl.h"
 #include "../../../../SRC/curl/include/curl/easy.h"
+#include "../../../../SRC/Licensing/LicenseAdmin.h"
 #include "../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/printerheaderfooterdlg.h"
 #include "../Wisteria-Dataviz/src/util/formulaformat.h"
@@ -30,7 +31,6 @@
 #include "../Wisteria-Dataviz/src/ui/mainframe.h"
 #include "../Wisteria-Dataviz/src/ui/app.h"
 #include "../Wisteria-Dataviz/src/wxStartPage/startpage.h"
-#include "../../../../SRC/Licensing/LicenseAdmin.h"
 #include "../webharvester/webharvester.h"
 #include "../readability/custom_readability_test.h"
 #include "../results_format/xml_format.h"
@@ -62,12 +62,11 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
 public:
     friend class ReadabilityApp;
 
-    MainFrame(wxDocManager* manager, wxFrame* frame, const wxArrayString& defaultFileExtensions, const wxString& title,
+    MainFrame(wxDocManager* manager, wxFrame* frame,
+              const wxArrayString& defaultFileExtensions, const wxString& title,
               const wxPoint& pos, const wxSize& size, long type);
     MainFrame(const MainFrame&) = delete;
-    MainFrame(MainFrame&&) = delete;
     MainFrame& operator=(const MainFrame&) = delete;
-    MainFrame& operator=(MainFrame&&) = delete;
     ~MainFrame()
         {
         wxLogDebug(__WXFUNCTION__);
@@ -92,18 +91,18 @@ public:
     void OnHelpManual([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnOpenExample(wxCommandEvent& event);
-    //pane events
+    // pane events
     void OnWordListByPage(wxCommandEvent& event);
     void OnScriptEditor([[maybe_unused]] wxCommandEvent& event);
-    //custom test events
+    // custom test events
     void OnAddCustomTest(wxCommandEvent& event);
     void OnEditCustomTest([[maybe_unused]] wxCommandEvent& event);
     void OnRemoveCustomTest([[maybe_unused]] wxCommandEvent& event);
-    //custom test bundles
+    // custom test bundles
     void OnAddCustomTestBundle([[maybe_unused]] wxCommandEvent& event);
     void OnEditCustomTestBundle([[maybe_unused]] wxCommandEvent& event);
     void OnRemoveCustomTestBundle([[maybe_unused]] wxCommandEvent& event);
-    //ribbon events
+    // ribbon events
     void OnWordList(wxRibbonButtonBarEvent& event);
     void OnWordListDropdown(wxRibbonButtonBarEvent& event);
     void OnBlankGraphDropdown(wxRibbonButtonBarEvent& event);
@@ -122,20 +121,25 @@ public:
     static void FillMenuWithGradeScales(wxMenu* menu);
     static void FillMenuWithWordList(wxMenu* wordListMenu);
     static void FillMenuWithBlankGraphs(wxMenu* blankGraphsMenu);
-    static void FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProject* project, const bool includeDocMenuItems);
-    static void FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProject* project, const bool includeDocMenuItems);
+    static void FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProject* project,
+                                        const bool includeDocMenuItems);
+    static void FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProject* project,
+                                        const bool includeDocMenuItems);
     void AddExamplesToMenu(wxMenu* exampleMenu);
     static void FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu,
                                     wxMenu* adultMenu, wxMenu* secondLanguageMenu,
                                     const BaseProject* project);
 
-    [[nodiscard]] static const std::map<int, wxString>& GetTestBundleMenuIds() noexcept
+    [[nodiscard]]
+    static const std::map<int, wxString>& GetTestBundleMenuIds() noexcept
         { return m_testBundleMenuIds; }
 
-    [[nodiscard]] static const std::map<int, wxString>& GetCustomTestMenuIds() noexcept
+    [[nodiscard]]
+    static const std::map<int, wxString>& GetCustomTestMenuIds() noexcept
         { return m_customTestMenuIds; }
 
-    [[nodiscard]] static const std::map<int, wxString>& GetExamplesMenuIds() noexcept
+    [[nodiscard]]
+    static const std::map<int, wxString>& GetExamplesMenuIds() noexcept
         { return m_examplesMenuIds; }
 
     void AddTestBundleToMenus(const wxString& bundleName);
@@ -145,9 +149,11 @@ public:
 
     void Paste();
 
-    [[nodiscard]] std::vector<wxBitmapBundle>& GetProjectSideBarImageList() noexcept
+    [[nodiscard]]
+    std::vector<wxBitmapBundle>& GetProjectSideBarImageList() noexcept
         { return m_projectSideBarImageList; }
-    [[nodiscard]] wxStartPage* GetStartPage() const noexcept
+    [[nodiscard]]
+    wxStartPage* GetStartPage() const noexcept
         { return m_startPage; }
 
     /// @brief Sets the About dialog image.
@@ -155,7 +161,8 @@ public:
     void SetAboutDialogImage(const wxBitmap& bmp)
         { m_aboutBmp = bmp; }
     /// @returns The image used for a custom About dialog.
-    [[nodiscard]] const wxBitmap& GetAboutDialogImage() const noexcept
+    [[nodiscard]]
+    const wxBitmap& GetAboutDialogImage() const noexcept
         { return m_aboutBmp; }
 
     static constexpr int ID_EDIT_RIBBON_BUTTON_BAR = 30001;
@@ -203,9 +210,7 @@ public:
     ReadabilityApp() : m_appOptions(nullptr)
         {}
     ReadabilityApp(const ReadabilityApp&) = delete;
-    ReadabilityApp(ReadabilityApp&&) = delete;
     ReadabilityApp& operator=(const ReadabilityApp&) = delete;
-    ReadabilityApp& operator=(ReadabilityApp&&) = delete;
     ~ReadabilityApp()
         { wxDELETE(m_appOptions); }
     void OnEventLoopEnter(wxEventLoopBase* loop) final;
@@ -215,38 +220,48 @@ public:
     void LoadInterface();
     void LoadInterfaceLicensableFeatures();
 
-    [[nodiscard]] MainFrame* GetMainFrameEx() noexcept
+    [[nodiscard]]
+    MainFrame* GetMainFrameEx() noexcept
         { return dynamic_cast<MainFrame*>(GetMainFrame()); }
 
-    [[nodiscard]] wxString GetAppVersion() const
+    [[nodiscard]]
+    wxString GetAppVersion() const
         { return L"2021.1"; }
     void EditCustomTest(CustomReadabilityTest& selectedTest);
-    ///web harvester info
-    [[nodiscard]] wxArrayString GetLastSelectedWebPages() const
+    // /web harvester info
+    [[nodiscard]]
+    wxArrayString GetLastSelectedWebPages() const
         { return m_lastSelectedWebPages; }
     void SetLastSelectedWebPages(const wxArrayString& webpages)
         { m_lastSelectedWebPages = webpages; }
-    [[nodiscard]] wxString GetLastSelectedDocFilter() const
+    [[nodiscard]]
+    wxString GetLastSelectedDocFilter() const
         { return m_lastSelectedDocFilter; }
     void SetLastSelectedDocFilter(const wxString& filter)
         { m_lastSelectedDocFilter = filter; }
-    WebHarvester m_harvesterOptions; // stores last used options of web harvester
+    // stores last used options of web harvester
+    WebHarvester m_harvesterOptions;
 
-    [[nodiscard]] ReadabilityAppOptions& GetAppOptions()
+    [[nodiscard]]
+    ReadabilityAppOptions& GetAppOptions()
         {
         if (m_appOptions == nullptr)
             { m_appOptions = new ReadabilityAppOptions; }
         return *m_appOptions;
         }
 
-    [[nodiscard]] LicenseAdmin& GetLicenseAdmin() noexcept
+    [[nodiscard]]
+    LicenseAdmin& GetLicenseAdmin() noexcept
         { return m_licenseAdmin; }
     // licensing codes
-    [[nodiscard]] static const wxString FeatureEnglishReadabilityTestsCode()
+    [[nodiscard]]
+    static const wxString FeatureEnglishReadabilityTestsCode()
         { return _DT(L"ERDT"); }
-    [[nodiscard]] static const wxString FeatureProfessionalCode()
+    [[nodiscard]]
+    static const wxString FeatureProfessionalCode()
         { return _DT(L"RPRO"); }
-    [[nodiscard]] static const wxString FeatureLanguagePackCode()
+    [[nodiscard]]
+    static const wxString FeatureLanguagePackCode()
         { return _DT(L"LPRT"); }
 
     LuaInterpreter& GetLuaRunner() noexcept
@@ -258,7 +273,7 @@ public:
         StandardProjectRibbon,
         BatchProjectRibbon
         };
-    
+
     void InitStartPage();
     void InitProjectSidebar();
     void InitScriptEditor();
@@ -279,12 +294,14 @@ public:
     /// This is just used for testing purposes, to validate that the word lists are properly presorted.
     bool VerifyWordLists();
     /// @returns @c true if parsers should import extra content (dependant on parser).
-    [[nodiscard]] bool IsUsingAdvancedImport() const noexcept
+    [[nodiscard]]
+    bool IsUsingAdvancedImport() const noexcept
         { return m_advancedImport; }
     void RemoveAllCustomTestBundles();
     /// @returns The DPI scaling factor (e.g., can be 2 on HiDPI displays).
-    ///  This is a convenient way of getting this value when a window isn't available.
-    [[nodiscard]] double GetDPIScaleFactor() const noexcept
+    ///     This is a convenient way of getting this value when a window isn't available.
+    [[nodiscard]]
+    double GetDPIScaleFactor() const noexcept
         { return m_dpiScaleFactor; }
 
     void AddSplashscreenImagePath(const wxString& imagePath)
@@ -293,8 +310,10 @@ public:
     /** @returns A bitmap from the resource manager, scaling it to the system's DPI.
         @param image The path to the image from the resource manager (e.g., "ribbon/logo.png").
         @param type The image type of @c image.
-        @param imageSize The size of the image (in pixels). This function will scale this according to the system's DPI.*/
-    [[nodiscard]] wxBitmap GetScaledImage(const wxString& image,
+        @param imageSize The size of the image (in pixels).\n
+            This function will scale this according to the system's DPI.*/
+    [[nodiscard]]
+    wxBitmap GetScaledImage(const wxString& image,
                                           const wxBitmapType type = wxBITMAP_TYPE_PNG,
                                           const wxSize imageSize = wxSize(32, 32))
         {
@@ -307,15 +326,17 @@ public:
         const auto [width,height] = geometry::downscaled_size(
             std::make_pair(bmp.GetWidth(), bmp.GetHeight()),
             std::make_pair(scaledSize.GetWidth(), scaledSize.GetHeight()));
-        
+
         return bmp.ConvertToImage().Rescale(width, height, wxIMAGE_QUALITY_HIGH);
         }
 
-    [[nodiscard]] const wxArrayString& GetSplashscreenPaths() const noexcept
+    [[nodiscard]]
+    const wxArrayString& GetSplashscreenPaths() const noexcept
         { return m_splashscreenImagePaths; }
 
     /// @returns A random number generator engine for use in calls to std::uniform_xxx().
-    [[nodiscard]] std::mt19937_64& GetRandomNumberEngine() noexcept
+    [[nodiscard]]
+    std::mt19937_64& GetRandomNumberEngine() noexcept
         { return m_mersenneTwister; }
 
     void ShowSplashscreen();

@@ -278,7 +278,7 @@ void WordListDlg::CreateControls()
     AddSingleColumnPage(m_sideBar, STOCKER_PAGE_ID, STOCKER_LIST_ID,
         _(L"Stocker's Catholic Supplement"), 1, m_StockerData,
         BaseProject::m_stocker_catholic_word_list);
-    
+
     mainSizer->Add(CreateButtonSizer(wxCLOSE), 0, wxEXPAND|wxALL,
                    wxSizerFlags::GetDefaultBorder());
 

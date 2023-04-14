@@ -173,7 +173,7 @@ void WebHarvesterDlg::CreateControls()
         Panel->SetSizer(panelSizer);
         m_sideBarBook->AddPage(Panel, _("Harvesting"), ID_HARVESTING_PAGE, true);
 
-        //The URLs
+        // the URLs
         wxStaticBoxSizer* urlSizer = new wxStaticBoxSizer(new wxStaticBox(Panel,
             wxID_ANY, _("Websites to Harvest")), wxVERTICAL);
         wxBoxSizer* urlButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -212,7 +212,7 @@ void WebHarvesterDlg::CreateControls()
 
         panelSizer->Add(urlSizer, 1, wxALL|wxEXPAND, wxSizerFlags::GetDefaultBorder());
 
-        //depth level
+        // depth level
         wxBoxSizer* depthLevelSizer = new wxBoxSizer(wxHORIZONTAL);
         wxStaticText* depthLevelLabel = new wxStaticText(Panel, wxID_ANY, _("Depth level:"));
         depthLevelSizer->Add(depthLevelLabel, 0, wxALIGN_CENTER_VERTICAL);
@@ -225,7 +225,7 @@ void WebHarvesterDlg::CreateControls()
         panelSizer->Add(depthLevelSizer, 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-        //file filters
+        // file filters
         wxBoxSizer* fileTypeSizer = new wxBoxSizer(wxHORIZONTAL);
         panelSizer->Add(fileTypeSizer, 0, wxEXPAND);
         fileTypeSizer->Add(new wxStaticText(Panel, wxID_STATIC,
@@ -285,7 +285,7 @@ void WebHarvesterDlg::CreateControls()
         choiceStrings.Add(_("Restricted to same folder"));
         m_domainCombo = new wxComboBox(Panel, ID_DOMAIN_COMBO, wxString{},
             wxDefaultPosition, wxDefaultSize, choiceStrings, wxCB_DROPDOWN | wxCB_READONLY);
-        m_domainCombo->SetValue((m_selectedDomainRestriction >= 0 && 
+        m_domainCombo->SetValue((m_selectedDomainRestriction >= 0 &&
                                  static_cast<size_t>(m_selectedDomainRestriction) < choiceStrings.GetCount()) ?
             choiceStrings[m_selectedDomainRestriction] : wxString{});
         domainBoxSizer->Add(m_domainCombo, 0, wxEXPAND);

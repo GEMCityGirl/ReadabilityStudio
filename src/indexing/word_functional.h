@@ -52,7 +52,9 @@ public:
             Default is @c false.*/
     explicit syllable_count_equals(const size_t count,
         const bool treat_numerals_as_monosyllabic = false) noexcept
-        : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
+        : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic)
+        {}
+    /// @private
     syllable_count_equals() = delete;
     /** @returns @c true if a word contains the predefined syllable count.
         @param the_word The word to review.*/
@@ -67,7 +69,7 @@ private:
     bool m_treat_numerals_as_monosyllabic{ false};
     };
 
-/** Counting functor for std::count_if that verifies the syllables in a word match a given count.
+/** Counting functor for `std::count_if` that verifies the syllables in a word match a given count.
     This always fails if the passed in word in invalid (i.e., excluded from the analysis).*/
 template<typename word_typeT>
 class valid_syllable_count_equals
@@ -79,9 +81,11 @@ public:
             Default is @c false.*/
     explicit valid_syllable_count_equals(size_t count,
         bool treat_numerals_as_monosyllabic = false) noexcept
-        : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
+        : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic)
+        {}
     valid_syllable_count_equals() = delete;
-    /** @returns @c true if a word contains the predefined syllable count. Note that this will immediately return
+    /** @returns @c true if a word contains the predefined syllable count.\n
+            Note that this will immediately return
         @c false if the word is invalid.
         @param the_word The word to review.*/
     [[nodiscard]]
@@ -100,17 +104,21 @@ private:
     bool m_treat_numerals_as_monosyllabic{ false };
     };
 
-/** Counting functor for std::count_if that verifies the syllables in a word is greater than or equal to a given count.*/
+/** Counting functor for `std::count_if` that verifies the syllables in a word is
+        greater than or equal to a given count.*/
 template<typename word_typeT>
 class syllable_count_greater_equal
     {
 public:
     /** Constructor that takes the required syllable count and how to treat numerals.
         @param count The expected number of syllables that a passing word should have.
-        @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one syllable. Default is false.*/
+        @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one syllable.\n
+            Default is @c false.*/
     explicit syllable_count_greater_equal(const size_t count,
         bool treat_numerals_as_monosyllabic = false) noexcept
-        : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
+        : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic)
+        {}
+    /// @private
     syllable_count_greater_equal() = delete;
     /** @returns @c true if a word contains a greater than or equal to number of syllables
         compared to the predefined syllable count.
@@ -126,17 +134,21 @@ private:
     bool m_treat_numerals_as_monosyllabic{ false };
     };
 
-/** Counting functor for std::count_if that verifies the syllables in a valid word is greater than or equal to a given count.*/
+/** Counting functor for std::count_if that verifies the syllables in a valid word is
+        greater than or equal to a given count.*/
 template<typename word_typeT>
 class valid_syllable_count_greater_equal
     {
 public:
     /** Constructor that takes the required syllable count and how to treat numerals.
         @param count The expected number of syllables that a passing word should have.
-        @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one syllable. Default is false.*/
+        @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one syllable.\n
+            Default is @c false.*/
     explicit valid_syllable_count_greater_equal(const size_t count,
         bool treat_numerals_as_monosyllabic = false) noexcept
-        : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
+        : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic)
+        {}
+    /// @private
     valid_syllable_count_greater_equal() = delete;
     /** @returns @c true if a valid word contains a greater than or equal to number of syllables
         compared to the predefined syllable count.
@@ -157,19 +169,21 @@ private:
     bool m_treat_numerals_as_monosyllabic{ false };
     };
 
-/** Counting functor for std::count_if that verifies the syllables in a valid word is greater than or equal to a given count.
-    Note that this ignores numerals.*/
+/** Counting functor for `std::count_if` that verifies the syllables in a valid word is
+        greater than or equal to a given count.\n
+        Note that this ignores numerals.*/
 template<typename word_typeT>
 class syllable_count_greater_equal_ignore_numerals
     {
 public:
-    /** Constructor that takes the required syllable count and how to treat numerals.
+    /** @brief Constructor that takes the required syllable count and how to treat numerals.
         @param count The expected number of syllables that a passing word should have.*/
     explicit syllable_count_greater_equal_ignore_numerals(const size_t count) noexcept
         : m_count(count) {}
+    /// @private
     syllable_count_greater_equal_ignore_numerals() = delete;
     /** @returns @c true if a word contains a greater than or equal to number of syllables
-        compared to the predefined syllable count.
+            compared to the predefined syllable count.
         @param the_word The word to review.*/
     [[nodiscard]]
     inline bool operator()(const word_typeT& the_word) const
@@ -222,13 +236,14 @@ private:
     size_t m_count{ 0 };
     };
 
-///use this when ignoring words from bullet points and headers
+/// Use this when ignoring words from bullet points and headers.
 template<typename word_typeT>
 class valid_syllable_count_greater_equal_ignore_numerals_and_proper_nouns
     {
 public:
     explicit valid_syllable_count_greater_equal_ignore_numerals_and_proper_nouns(const size_t count) noexcept
-        : m_count(count) {}
+        : m_count(count)
+        {}
     valid_syllable_count_greater_equal_ignore_numerals_and_proper_nouns() = delete;
     [[nodiscard]]
     inline bool operator()(const word_typeT& the_word) const
@@ -264,12 +279,13 @@ private:
     bool m_treat_numerals_as_monosyllabic{ false };
     };
 
-///use this when ignoring words from bullet points and headers
+/// Use this when ignoring words from bullet points and headers.
 template<typename word_typeT>
 class valid_syllable_count_greater
     {
 public:
-    explicit valid_syllable_count_greater(const size_t count, bool treat_numerals_as_monosyllabic = false) noexcept
+    explicit valid_syllable_count_greater(const size_t count,
+                                          bool treat_numerals_as_monosyllabic = false) noexcept
         : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
     valid_syllable_count_greater() = delete;
     [[nodiscard]]
@@ -354,7 +370,8 @@ public:
         {
         if (the_word.is_valid())
             { return static_cast<size_t>
-                (the_word.is_numeric() ? 0 : the_word.get_syllable_count()) + result; }
+                (the_word.is_numeric() ?
+                    0 : the_word.get_syllable_count()) + result; }
         else
             { return result; }
         }
@@ -368,7 +385,8 @@ public:
     size_t operator()(const size_t result, const word_typeT& the_word) const
         {
         return static_cast<size_t>
-            ((the_word.is_numeric() || the_word.is_proper_noun()) ? 0 : the_word.get_syllable_count()) + result;
+            ((the_word.is_numeric() || the_word.is_proper_noun()) ?
+                0 : the_word.get_syllable_count()) + result;
         }
     };
 
@@ -382,7 +400,8 @@ public:
         {
         if (the_word.is_valid())
             { return static_cast<size_t>
-                ((the_word.is_numeric() || the_word.is_proper_noun()) ? 0 : the_word.get_syllable_count()) + result; }
+                ((the_word.is_numeric() || the_word.is_proper_noun()) ?
+                    0 : the_word.get_syllable_count()) + result; }
         else
             { return result; }
         }
@@ -541,7 +560,8 @@ public:
     word_length_excluding_punctuation_greater_equals() = delete;
     /** Comparison operator.
         @param the_word The word to review.
-        @returns @c true if current word's length is greater than or equal to the seeded length (ignoring punctuation in the word)*/
+        @returns @c true if current word's length is greater than or equal to the
+            seeded length (ignoring punctuation in the word)*/
     [[nodiscard]]
     inline bool operator()(const word_typeT& the_word) const noexcept
         {
@@ -565,7 +585,8 @@ public:
     valid_word_length_greater_equals() = delete;
     /** Comparison operator.
         @param the_word The word to review.
-        @returns @c true if current word's length is greater than or equal to the seeded length (if word is valid).*/
+        @returns @c true if current word's length is greater than or equal to the
+            seeded length (if word is valid).*/
     [[nodiscard]] inline bool operator()(const word_typeT& the_word) const noexcept
         {
         if (the_word.is_valid())
@@ -591,7 +612,8 @@ public:
     valid_word_length_excluding_punctuation_greater_equals() = delete;
     /** Comparison operator.
         @param the_word The word to review.
-        @returns @c true if current word's length is greater than or equal to the seeded length (ignoring punctuation in the word, and if word is valid).*/
+        @returns @c true if current word's length is greater than or equal to
+            the seeded length (ignoring punctuation in the word, and if word is valid).*/
     [[nodiscard]]
     inline bool operator()(const word_typeT& the_word) const noexcept
         {
@@ -665,7 +687,8 @@ public:
     /** Accumulation interface.
         @param result The previous result to add to.
         @param the_word The word whose length will be added to the result.
-        @returns The seeded result plus the current word's length (if valid, and excluding any punctuation in the word).*/
+        @returns The seeded result plus the current word's length
+            (if valid, and excluding any punctuation in the word).*/
     [[nodiscard]]
     size_t operator()(const size_t result, const word_typeT& the_word) const
         {
@@ -834,16 +857,24 @@ public:
     [[nodiscard]]
     bool operator()(const word_typeT& the_word) const
         {
-        if ((is_ignoring_numerals() && the_word.is_numeric()) ||                   //see if word is a number
-            (is_ignoring_uppercased() && (the_word.is_acronym() || the_word.is_exclamatory())) || //uppercased words
-            (is_ignoring_file_addresses() && the_word.is_file_address()) ||        //file address
-            (is_ignoring_social_media_tags() && the_word.is_social_media_tag()) || // hashtags
-            (is_ignoring_proper_nouns() && the_word.is_proper_noun()) ||           //proper noun
-            (is_ignoring_programmer_code() && is_programmer_code(the_word)) ||     //or programmer code
-            (is_allowing_colloquialisms() && is_colloquialisms(the_word)) ||       //or colloquialisms
+        if ((is_ignoring_numerals() && the_word.is_numeric()) || // see if word is a number
+            // uppercased words
+            (is_ignoring_uppercased() && (the_word.is_acronym() || the_word.is_exclamatory())) ||
+            // file address
+            (is_ignoring_file_addresses() && the_word.is_file_address()) ||
+            // hashtags
+            (is_ignoring_social_media_tags() && the_word.is_social_media_tag()) ||
+            // proper noun
+            (is_ignoring_proper_nouns() && the_word.is_proper_noun()) ||
+            // or programmer code
+            (is_ignoring_programmer_code() && is_programmer_code(the_word)) ||
+            // or colloquialisms
+            (is_allowing_colloquialisms() && is_colloquialisms(the_word)) ||
+            // if initials (or dotted acronym) then always consider it spelled properly
             ((the_word.is_exclamatory() || the_word.is_acronym()) &&
                 ((the_word.length() == 2 && the_word.operator[](1) == common_lang_constants::PERIOD) ||
-                (the_word.length() >= 4 && the_word.operator[](1) == common_lang_constants::PERIOD && the_word.operator[](3) == common_lang_constants::PERIOD))) )////if initials (or dotted acronym) then always consider it spelled properly
+                (the_word.length() >= 4 && the_word.operator[](1) == common_lang_constants::PERIOD &&
+                 the_word.operator[](3) == common_lang_constants::PERIOD))) )
             { return true; }
         else
             { return is_on_list(the_word); }
@@ -878,9 +909,13 @@ private:
                 }
             }
         if (currentLetterSequenceLength >= 3)
-            { alteredWord.erase(alteredWord.length()-(currentLetterSequenceLength-1), (currentLetterSequenceLength-1)); }
+            {
+            alteredWord.erase(alteredWord.length()-(currentLetterSequenceLength-1),
+                              (currentLetterSequenceLength-1));
+            }
         //"ing" -> "in'"
-        if (alteredWord.length() >= 4 && characters::is_character::is_single_quote(alteredWord[alteredWord.length()-1]) &&
+        if (alteredWord.length() >= 4 &&
+            characters::is_character::is_single_quote(alteredWord[alteredWord.length()-1]) &&
             traits::case_insensitive_ex::eq(alteredWord[alteredWord.length()-2],L'n') &&
             traits::case_insensitive_ex::eq(alteredWord[alteredWord.length()-3],L'i'))
             { alteredWord[alteredWord.length()-1] = L'g'; }
@@ -919,14 +954,17 @@ private:
             { alteredWord.replace(alteredWord.length()-2, 2, L"ers"); }
         return is_on_list(alteredWord);
         }
-    /// @returns @c true if @c the_word looks like computer programmer code that a spell checker might want to skip.
+    /// @returns @c true if @c the_word looks like computer programmer code that a
+    ///     spell checker might want to skip.
     /// @param the_word The word to review.
-    /// @note This function does not narrow full-width characters, it assumes programmer code is ASCII text.
-    ///  It is also sensitive to casing, unlike other functions in the spell checker.
+    /// @note This function does not narrow full-width characters,
+    ///     it assumes programmer code is ASCII text.\n
+    ///     It is also sensitive to casing, unlike other functions in the spell checker.
     [[nodiscard]]
     bool is_programmer_code(const word_typeT& the_word) const
         {
-        // Single uppercase word (not in a block of other uppercased words) is probably a constant or macro command.
+        // Single uppercase word (not in a block of other uppercased words)
+        // is probably a constant or macro command.
         // Ignore numbers explicitly too.
         if (the_word.is_acronym() || the_word.is_numeric())
             { return true; }
@@ -940,7 +978,8 @@ private:
         else if (the_word.length() > 1 &&
             string_util::is_one_of(the_word[0], L"#$@&"))
             { return true; }
-        // at this point, if less than 3 characters then we don't have any text to make a determination, return false
+        // at this point, if less than 3 characters then we don't have
+        // any text to make a determination, then return false
         else if (the_word.length() < 3)
             { return false; }
         // words ending with a number are usually a variable name (e.g., "Text1").
@@ -958,7 +997,8 @@ private:
         else if (characters::is_character::is_upper(the_word[0]) &&
                  characters::is_character::is_upper(the_word[1]))
             { return true; }
-        // see if the word has a [lowercase][UPPERCASE], [letter][number], or [lowercase].[UPPERCASE] pattern in it.
+        // see if the word has a [lowercase][UPPERCASE], [letter][number],
+        // or [lowercase].[UPPERCASE] pattern in it.
         for (size_t i = 0; i < the_word.length()-1; ++i)
             {
             if (characters::is_character::is_lower(the_word.operator[](i)) &&
@@ -1020,7 +1060,8 @@ private:
         string_util::string_tokenize<T> tkzr(the_word, common_lang_constants::COMPOUND_WORD_SEPARATORS.c_str(), true);
         if (tkzr.has_more_delimiters()) // don't bother splitting word into tokens if no delimiters
             {
-            bool validTokenFound = false; // makes sure that there is at least one valid block of text in the string
+            // makes sure that there is at least one valid block of text in the string
+            bool validTokenFound = false;
             while (tkzr.has_more_tokens())
                 {
                 compValue = tkzr.get_next_token().c_str();
@@ -1033,7 +1074,9 @@ private:
                 // if ignoring uppercase, then see if this part of the word is an acronym
                 else if (is_ignoring_uppercased() && isAcronym(compValue.c_str(), compValue.length()) )
                     { continue; }
-                else if (compValue.length() > 0 && // in case we have something like "one-", then the fact that there is no second word after the '-' shouldn't make it unfamiliar
+                // in case we have something like "one-", then the fact that there is no second word
+                // after the '-' shouldn't make it unfamiliar
+                else if (compValue.length() > 0 &&
                     !std::binary_search(m_wordlist->get_words().begin(),
                                 m_wordlist->get_words().end(), 
                                 compValue) &&
@@ -1042,7 +1085,8 @@ private:
                                 compValue))
                     { return false; }
                 }
-            return validTokenFound; // true if at least one token was found and all tokens found were on our lists
+            // true if at least one token was found and all tokens found were on our lists
+            return validTokenFound;
             }
         return false;
         }
