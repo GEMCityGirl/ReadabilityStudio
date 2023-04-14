@@ -316,7 +316,7 @@ public:
     static constexpr int ID_DOLCH_WORDS_LIST_PAGE_ID = 10018;
     static constexpr int ID_NON_DOLCH_WORDS_LIST_PAGE_ID = 10019;
     // only window in the warnings section,
-    // so just use the sidebar item's ID
+    // so we will re-use this ID for the sidebar section also (below)
     static constexpr int ID_WARNING_LIST_PAGE_ID = 10059;
     static constexpr int ID_SCORE_STATS_LIST_PAGE_ID = 10021;
     static constexpr int ID_AGGREGATED_DOC_SCORES_LIST_PAGE_ID = 10045;
@@ -350,7 +350,7 @@ public:
     static constexpr int SIDEBAR_READABILITY_SCORES_SECTION_ID = 10054;
     static constexpr int SIDEBAR_GRAMMAR_SECTION_ID = 10057;
     static constexpr int SIDEBAR_DOLCH_SECTION_ID = 10058;
-    static constexpr int SIDEBAR_WARNINGS_SECTION_ID = 10059;
+    static constexpr int SIDEBAR_WARNINGS_SECTION_ID = ID_WARNING_LIST_PAGE_ID;
     static constexpr int SIDEBAR_BOXPLOTS_SECTION_ID = 10060;
     static constexpr int SIDEBAR_HISTOGRAMS_SECTION_ID = 10061;
     static constexpr int SIDEBAR_STATS_SUMMARY_SECTION_ID = 10062;
