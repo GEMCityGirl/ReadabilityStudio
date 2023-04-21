@@ -183,7 +183,10 @@ public:
         };
 
     /// @private
-    WebHarvester() = default;
+    WebHarvester()
+        {
+        m_downloader.SetUserAgent(GetUserAgent());
+        }
     /// @private
     WebHarvester(const WebHarvester&) = delete;
     /// @private
@@ -436,7 +439,7 @@ public:
     /// @returns The user agent sent to websites when crawling.
     /// @note If the user agent is empty, then one will be built from the OS description.
     [[nodiscard]]
-    static wxString GetUserAgent()
+    wxString GetUserAgent()
         {
         // May need to be set if not initialized.
         // Needs to be initialized here because wxGetOsDescription()
@@ -447,8 +450,11 @@ public:
         }
     /// @brief Sets the user agent sent to websites when crawling.
     /// @param agent The user agent string.
-    static void SetUserAgent(const wxString& agent)
-        { m_userAgent = agent; }
+    void SetUserAgent(wxString agent)
+        {
+        m_userAgent = std::move(agent);
+        m_downloader.SetUserAgent(GetUserAgent());
+        }
 
     [[nodiscard]]
     static wxString GetCharsetFromContentType(const wxString& contentType);
@@ -504,7 +510,7 @@ private:
     size_t m_currentLevel{ 0 };
     size_t m_levelDepth{ 1 };
     wxString m_url;
-    static wxString m_userAgent;
+    wxString m_userAgent;
     string_util::case_insensitive_wstring m_domain;
     string_util::case_insensitive_wstring m_fullDomain;
     string_util::case_insensitive_wstring m_fullDomainFolderPath;

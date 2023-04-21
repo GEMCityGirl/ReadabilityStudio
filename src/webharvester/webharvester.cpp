@@ -12,7 +12,6 @@
 const wxString WebHarvester::HTML_CONTENT_TYPE = _DT(L"text/html");
 const wxString WebHarvester::JAVASCRIPT_CONTENT_TYPE = _DT(L"application/x-javascript");
 const wxString WebHarvester::VBSCRIPT_CONTENT_TYPE = _DT(L"application/x-vbscript");
-wxString WebHarvester::m_userAgent(wxString{});
 
 //----------------------------------
 bool wxStringLessWebPath::operator()(const wxString& first, const wxString& second) const
@@ -37,7 +36,7 @@ void UrlWithNumericSequence::ParseSequenceNumber()
         Reset();
         return;
         }
-    m_number_start = std::wcscspn(m_string.wc_str()+lastSlash, L"0123456789") + lastSlash;
+    m_number_start = std::wcscspn(m_string.wc_str() + lastSlash, L"0123456789") + lastSlash;
     // no number was found, so don't bother
     if (m_number_start == m_string.length())
         {
@@ -45,8 +44,8 @@ void UrlWithNumericSequence::ParseSequenceNumber()
         return;
         }
     wchar_t* end = nullptr;
-    m_numeric_value = ::wxStrtol(m_string.wc_str()+m_number_start, &end, 10);
-    m_numeric_width = end - (m_string.wc_str()+m_number_start);
+    m_numeric_value = ::wxStrtol(m_string.wc_str() + m_number_start, &end, 10);
+    m_numeric_width = end - (m_string.wc_str() + m_number_start);
     // no number was found (this should not happen at this point)
     if (m_numeric_width == 0)
         {
@@ -77,7 +76,7 @@ void WebHarvester::SearchForMissingFiles()
 
     std::set<UrlWithNumericSequence>::const_iterator previousPos;
     std::set<UrlWithNumericSequence>::const_iterator pos = m_harvestedLinks.cbegin();
-    ++pos;// already have the first one, so skip it
+    ++pos; // already have the first one, so skip it
     for (; pos != m_harvestedLinks.end(); ++pos)
         {
         if (currentPrefix.CmpNoCase(pos->GetPathPrefix()) == 0)
@@ -156,7 +155,7 @@ void WebHarvester::DownloadSequentialRange(const wxString& prefix, const wxStrin
                     }
                 }
             // now try to download any files after the listed range
-            i = rangeEnd+1;
+            i = rangeEnd + 1;
             // 1,000 is an arbitrary sentinel value--sometimes non-existent pages return HTTP 200
             while (i < 1'000)
                 {
