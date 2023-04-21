@@ -24,9 +24,7 @@
 #include <wx/tokenzr.h>
 #include <memory>
 #include <string>
-#include "WebHarvester.h"
-#include "../../../../SRC/curl/include/curl/curl.h"
-#include "../../../../SRC/curl/include/curl/easy.h"
+#include "webharvester.h"
 #include "../Wisteria-Dataviz/src/util/fileutil.h"
 
 /** @brief Class to determine which sort of filepath a string may resemble.

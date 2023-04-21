@@ -7,6 +7,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "filepathresolver.h"
+#include "../app/readability_app.h"
+
+wxDECLARE_APP(ReadabilityApp);
 
 //----------------------------------
 wxString FilePathResolver::ResolvePath(const wxString& path, const bool attemptToConnect)
@@ -28,40 +31,21 @@ wxString FilePathResolver::ResolvePath(const wxString& path, const bool attemptT
         // encode any spaces
         webPathToTest.Replace(L" ", L"%20");
 
-        struct WebHarvester::MemoryStruct chunk;
-        CURL* curl_handle = curl_easy_init();
-
-        curl_easy_setopt(curl_handle, CURLOPT_URL,
-            static_cast<const char*>(wxString(L"https://www." + webPathToTest)));
-        curl_easy_setopt(curl_handle, CURLOPT_CONNECTTIMEOUT, 30);
-        curl_easy_setopt(curl_handle, CURLOPT_AUTOREFERER, 1);
-        curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, true);
-        curl_easy_setopt(curl_handle, CURLOPT_PROXYAUTH, CURLAUTH_ANYSAFE);
-        curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, static_cast<const char*>(WebHarvester::GetUserAgent()));
-        curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WebHarvester::WriteMemoryCallback);
-        curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, reinterpret_cast<void*>(&chunk));
+        auto webResponse = wxGetApp().GetWebHarvester().
+            GetResponse(L"https://www." + webPathToTest);
 
         // try to connect to it with https://www. prepended to it
-        auto connectResult = curl_easy_perform(curl_handle);
-        if (connectResult == CURLE_OK)
-            { webPathToTest = wxString(L"https://www." + webPathToTest); }
-        // if that didn't work, then try prepending just https://
-        else
+        if (!webResponse.IsOk()/*connectResult == CURLE_OK*/)
             {
-            curl_easy_setopt(curl_handle, CURLOPT_URL,
-                static_cast<const char*>(wxString(L"https://" + webPathToTest)));
-            connectResult = curl_easy_perform(curl_handle);
-            if (connectResult == CURLE_OK)
-                { webPathToTest = wxString(L"https://" + webPathToTest); }
+            // if that didn't work, then try prepending just https://
+            webResponse = wxGetApp().GetWebHarvester().
+                GetResponse(L"https://" + webPathToTest);
             }
-        if (connectResult == CURLE_OK)
+
+        if (webResponse.IsOk())
             {
             // get redirect URL (if we got redirected)
-            char* url = nullptr;
-            curl_easy_getinfo(curl_handle, CURLINFO_EFFECTIVE_URL, &url);
-            if (url)
-                { webPathToTest = wxString(url); }
-            m_path = webPathToTest;
+            m_path = webResponse.GetURL();
             m_fileType = FilePathType::HTTP;
             return m_path;
             }
@@ -74,7 +58,3 @@ wxString FilePathResolver::ResolvePath(const wxString& path, const bool attemptT
 
     return m_path;
     }
-
-
-
-

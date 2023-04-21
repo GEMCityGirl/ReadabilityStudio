@@ -495,7 +495,7 @@ bool ReadabilityApp::OnInit()
 
     SetSupportEmail(L"support@oleandersoftware.com");
 
-    curl_global_init(CURL_GLOBAL_ALL);
+    m_webHarvester.SetEventHandler(this);
 
     // holding down SHIFT while the program starts will turn on verbose logging
     if (wxGetMouseState().ShiftDown())
@@ -1125,8 +1125,6 @@ int ReadabilityApp::OnExit()
     {
     wxLogDebug(__WXFUNCTION__);
     GetAppOptions().SaveOptionsFile();
-
-    curl_global_cleanup();
 
     return BaseApp::OnExit();
     }
@@ -3714,8 +3712,8 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
     long responseCode;
     if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false, false) )
         {
-        updatedFilePath = _DT(L"http://oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
-        if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false, false) )
+        updatedFilePath = _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
+        if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false) )
             {
             wxMessageBox(wxString::Format(_(L"An error occurred while trying to connect to the website:\t%s"),
                                             WebHarvester::GetResponseMessage(responseCode)),
@@ -3724,9 +3722,10 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
             }
         }
 #else
-    wxString updatedFilePath = _DT(L"http://oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
+    wxString updatedFilePath = _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
     long responseCode;
-    if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false, false) )
+    if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent,
+                                                  contentType, responseCode, false) )
         {
         wxMessageBox(wxString::Format(_(L"An error occurred while trying to connect to the website:\t%s"),
                                         WebHarvester::GetResponseMessage(responseCode)),
@@ -3742,7 +3741,7 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
         if (wxMessageBox(wxString::Format(_(L"There is a new version of %s currently available.\nDo you wish to go to the download page?"), wxGetApp().GetAppName()), 
             wxGetApp().GetAppName(), wxYES_NO|wxICON_QUESTION) == wxYES)
             {
-            if (!::wxLaunchDefaultBrowser(_DT(L"http://oleandersoftware.com/readabilitystudioupdate.html")))
+            if (!::wxLaunchDefaultBrowser(_DT(L"https://oleandersoftware.com/readabilitystudioupdate.html")))
                 {
                 wxMessageBox(_(L"Unable to open default browser. Please make sure that you have an Internet browser installed and are connected to the Internet."), 
                     _(L"Error"), wxOK|wxICON_ERROR);
@@ -3948,22 +3947,25 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     for (size_t i = 0; i < webHarvestDlg.GetUrls().GetCount(); ++i)
         {
         FilePathResolver resolver(webHarvestDlg.GetUrls().Item(i), true);
-        WebHarvester harvester(resolver.GetResolvedPath());
-        webHarvestDlg.UpdateHarvesterSettings(harvester);
+        wxGetApp().GetWebHarvester().SetUrl(resolver.GetResolvedPath());
+        webHarvestDlg.UpdateHarvesterSettings(wxGetApp().GetWebHarvester());
 
-        const auto crawlResult = harvester.CrawlLinks();
+        const auto crawlResult = wxGetApp().GetWebHarvester().CrawlLinks();
 
-        for (const auto& bLink : harvester.GetBrokenLinks())
+        for (const auto& bLink : wxGetApp().GetWebHarvester().GetBrokenLinks())
             { wxLogWarning(L"Broken link '%s' (from '%s')", bLink.first, bLink.second); }
 
         // if user cancelled harvesting, then stop
         if (!crawlResult)
             { break; }
 
-        if (harvester.GetHarvestedLinks().size() == 0)
+        if (wxGetApp().GetWebHarvester().GetHarvestedLinks().size() == 0)
             {
             wxMessageBox(
-                wxString::Format(_(L"No links were harvested from '%s'. Please review the log report for any possible connection errors."), harvester.GetUrl()),
+                wxString::Format(
+                    _(L"No links were harvested from '%s'. "
+                       "Please review the log report for any possible connection errors."),
+                    wxGetApp().GetWebHarvester().GetUrl()),
                 _(L"Warning"), wxOK | wxICON_WARNING);
             }
         }
@@ -3971,11 +3973,11 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     // (only enabled if user holds down SHIFT key to see hidden interface)
     if (webHarvestDlg.GetRawHtmlPage().length())
         {
-        WebHarvester harvester(webHarvestDlg.GetRawHtmlPage());
-        webHarvestDlg.UpdateHarvesterSettings(harvester);
-        [[maybe_unused]] const auto crawlResult = harvester.CrawlLinks();
+        wxGetApp().GetWebHarvester().SetUrl(webHarvestDlg.GetRawHtmlPage());
+        webHarvestDlg.UpdateHarvesterSettings(wxGetApp().GetWebHarvester());
+        [[maybe_unused]] const auto crawlResult = wxGetApp().GetWebHarvester().CrawlLinks();
 
-        for (const auto& bLink : harvester.GetBrokenLinks())
+        for (const auto& bLink : wxGetApp().GetWebHarvester().GetBrokenLinks())
             { wxLogWarning("Broken link '%s' (from '%s')", bLink.first, bLink.second); }
         }
     }

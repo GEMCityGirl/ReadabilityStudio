@@ -15,8 +15,6 @@
 #include <wx/evtloop.h>
 #include <map>
 #include <algorithm>
-#include "../../../../SRC/curl/include/curl/curl.h"
-#include "../../../../SRC/curl/include/curl/easy.h"
 #include "../../../../SRC/Licensing/LicenseAdmin.h"
 #include "../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/printerheaderfooterdlg.h"
@@ -228,7 +226,7 @@ public:
     wxString GetAppVersion() const
         { return L"2021.1"; }
     void EditCustomTest(CustomReadabilityTest& selectedTest);
-    // /web harvester info
+    /// web harvester info
     [[nodiscard]]
     wxArrayString GetLastSelectedWebPages() const
         { return m_lastSelectedWebPages; }
@@ -266,6 +264,10 @@ public:
 
     LuaInterpreter& GetLuaRunner() noexcept
         { return m_LuaRunner; }
+
+    [[nodiscard]]
+    WebHarvester& GetWebHarvester() noexcept
+        { return m_webHarvester; }
 
     enum class RibbonType
         {
@@ -354,6 +356,7 @@ private:
     bool m_advancedImport{ false };
     double m_dpiScaleFactor{ 1 };
     wxArrayString m_splashscreenImagePaths;
+    WebHarvester m_webHarvester;
     std::mt19937_64 m_mersenneTwister;
     };
 

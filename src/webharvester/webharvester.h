@@ -26,11 +26,10 @@
 #include <wx/dir.h>
 #include <wx/utils.h>
 #include <wx/progdlg.h>
-#include "../../../../SRC/curl/include/curl/curl.h"
-#include "../../../../SRC/curl/include/curl/easy.h"
 #include "../Wisteria-Dataviz/src/import/html_extract_text.h"
 #include "../Wisteria-Dataviz/src/i18n-check/src/char_traits.h"
 #include "../Wisteria-Dataviz/src/util/textstream.h"
+#include "../Wisteria-Dataviz/src/util/downloadfile.h"
 #include "../Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
 
 class wxStringLessWebPath
@@ -166,38 +165,13 @@ public:
     };
 
 /// @brief Interface for harvesting and (optionally) downloading links from a base URL.
+/// @details This is recommended to be a singleton object that connects to the application
+///     or main frame. Be sure to call SetEventHandler() to connect the download events
+///     for your parent event handler to the harvester.
 class WebHarvester
     {
 public:
-    // Libcurl functions
-    struct MemoryStruct
-        {
-        MemoryStruct() noexcept : memory(nullptr), size(0)
-            {}
-        ~MemoryStruct()
-            { free(memory); }
-        MemoryStruct(const MemoryStruct&) = delete;
-        MemoryStruct(MemoryStruct&&) = delete;
-        MemoryStruct& operator=(const MemoryStruct&) = delete;
-        MemoryStruct& operator=(MemoryStruct&&) = delete;
-
-        char* memory{ nullptr };
-        size_t size{ 0 };
-        };
-
-    [[nodiscard]]
-    static void* safe_realloc(void *ptr, size_t size)
-        {
-        /* There might be a realloc() out there that doesn't like reallocating
-           null pointers, so we take care of it here */ 
-        if (ptr)
-            return realloc(ptr, size);
-        else
-            return malloc(size);
-        }
-    static size_t WriteMemoryCallback(void *ptr, size_t size, size_t nmemb, void *data);
-
-    /// Domain restriction methods.
+     /// @brief Domain restriction methods.
     enum class DomainRestriction
         {
         NotRestricted,             /*!< No restrictions.*/
@@ -208,16 +182,8 @@ public:
         RestrictToFolder           /*!< Restrict harvesting to links within the base URL's folder.*/
         };
 
+    /// @private
     WebHarvester() = default;
-    /// @brief Constructor.
-    /// @param rootUrl The root URL to start the crawl from.
-    explicit WebHarvester(const wxString& rootUrl) : m_url(rootUrl)
-        {
-        html_utilities::html_url_format formatUrl(rootUrl);
-        m_domain = formatUrl.get_root_domain().c_str();
-        m_fullDomain = formatUrl.get_root_full_domain().c_str();
-        m_fullDomainFolderPath = formatUrl.get_directory_path().c_str();
-        }
     /// @private
     WebHarvester(const WebHarvester&) = delete;
     /// @private
@@ -227,22 +193,20 @@ public:
     /// @returns @c false is crawl was cancelled.
     [[nodiscard]]
     bool CrawlLinks();
-    
+
     /// @brief Downloads a file from the Internet.
     /// @param Url The link to download.
-    /// @param allowRedirect Set to true to follow the link if redirecting to another page.
     /// @param fileExtension The (hint) file extension to download the file as. This is only
     ///     used if the webpage doesn't have a proper extension. If empty and
-    /// @c Url is empty, then the file extension will be determined by the MIME type.
+    ///     @c Url is empty, then the file extension will be determined by the MIME type.
     /// @returns The local file path of the file after downloading, or empty string upon failure.
     wxString DownloadFile(wxString& Url,
-                          const bool allowRedirect = true,
                           const wxString& fileExtension = wxString{});
     /// @brief Download all of the harvested links.
     /// @note This should be called after CrawlLinks().
     void DownloadFiles();
 
-    //Static help functions
+    // Static help functions
     //----------------------------------
     /** @brief Creates a new file based on @c filePath, embedding a numeric
             sequence in it (making it unique).
@@ -256,37 +220,27 @@ public:
     /** @brief Reads the content of a webpage into a buffer.
         @param[in,out] Url The webpage (may be altered if redirected).
         @param[out] webPageContent The content of the page.
-        @param[out] contentType The MIME type of the page.
+        @param[out] contentType The MIME type (and possibly charset) of the page.
         @param[out] responseCode The response code when connecting to the page.
         @param acceptOnlyHtmlOrScriptFiles Whether only HTML or
             JS script files should be read.
-        @param allowRedirect True if the page should still be read if
-            redirected to a different page.
-        @param userName The username to connect to the page (not currently implemented).
-        @param passWord The password to connect to the page (not currently implemented).
         @returns Whether the file was successfully read.*/
     [[nodiscard]]
-    static bool ReadWebPage(wxString& Url,
-                            wxString& webPageContent,
-                            wxString& contentType,
-                            long& responseCode,
-                            const bool acceptOnlyHtmlOrScriptFiles = true,
-                            const bool allowRedirect = true,
-                            // these are not used yet, so just hide them
-                            [[maybe_unused]] const wxString& userName = wxString{},
-                            [[maybe_unused]] const wxString& passWord = wxString{});
-
+    bool ReadWebPage(wxString& Url,
+                     wxString& webPageContent,
+                     wxString& contentType,
+                     long& responseCode,
+                     const bool acceptOnlyHtmlOrScriptFiles = true);
+    /// @returns The response from a webpage.
+    /// @param Url The webpage to try to connect to.
+    wxWebResponse GetResponse(const wxString& Url)
+        { return m_downloader.GetResponse(Url); }
     /** @brief Gets the content type of a webpage.
         @param[in,out] Url The webpage (may be altered if redirected).
         @param[out] responseCode The response code when connecting to the page.
-        @param userName The username to connect to the page (not currently implemented).
-        @param passWord The password to connect to the page (not currently implemented).
-        @returns The MIME string of the page's content type.*/
-    static wxString GetContentType(wxString& Url, long& responseCode,
-                                   // these are not used yet, so just hide them
-                                   [[maybe_unused]] const wxString& userName = wxString{},
-                                   [[maybe_unused]] const wxString& passWord = wxString{});
-    /// @returns The file type (possible an extension) from a MIME type string.
+        @returns The MIME type (and possibly charset) of the page's content type.*/
+    wxString GetContentType(wxString& Url, long& responseCode);
+    /// @returns The file type (possibly an extension) from a MIME type string.
     /// @param contentType The MIME type string.
     [[nodiscard]]
     static wxString GetFileTypeFromContentType(const wxString& contentType);
@@ -322,7 +276,7 @@ public:
         { m_searchForMissingSequentialFiles = enable; }
     /// @brief When downloading locally, keep the folder structure from the website.
     /// @param keep True to use the website's folder structure, false to download files in
-    ///  a flat folder structure.
+    ///     a flat folder structure.
     /// @note This is recommended to prevent overwriting files with the same name.
     void KeepWebPathWhenDownloading(const bool keep = true) noexcept
         { m_keepWebPathWhenDownloading = keep; }
@@ -341,17 +295,23 @@ public:
     /// @brief Sets whether to build a list of broken links while crawling.
     /// @param search True to catalogue broken links.
     /// @warning Enable this will degrade performance because it will need to
-    ///  attempt connecting to each link.
+    ///     attempt connecting to each link.
     void SeachForBrokenLinks(const bool search = true) noexcept
         { m_searchForBrokenLinks = search; }
     /// @returns @c true if a list of broken links are being catalogued while harvesting.
     [[nodiscard]]
     bool IsSearchingForBrokenLinks() const noexcept
         { return m_searchForBrokenLinks; }
-    /// @brief Sets the base URL to crawl.
+    /// @brief Sets the base URL to crawl and updates domain info based on that.
     /// @param url The base URL.
     void SetUrl(const wxString& url)
-        { m_url = url; }
+        {
+        m_url = url;
+        html_utilities::html_url_format formatUrl(m_url);
+        m_domain = formatUrl.get_root_domain().c_str();
+        m_fullDomain = formatUrl.get_root_full_domain().c_str();
+        m_fullDomainFolderPath = formatUrl.get_directory_path().c_str();
+        }
     /// @returns The base URL being crawled.
     [[nodiscard]]
     const wxString& GetUrl() const noexcept
@@ -416,7 +376,7 @@ public:
     DomainRestriction GetDomainRestriction() const noexcept
         { return m_domainRestriction; }
     /// @brief Overrides the domain of the main webpage. Useful for only getting files
-    ///  from an outside domain (or specific folder).
+    ///     from an outside domain (or specific folder).
     /// @param domain The domain to restrict to.
     void SetRestrictedDomain(const wxString& domain)
         {
@@ -447,7 +407,7 @@ public:
         }
     /// @returns The user-defined web paths (domains, folder structure)
     ///     that harvesting is constrained to.
-    [[nodiscard]] 
+    [[nodiscard]]
     wxArrayString GetAllowableWebFolders() const
         {
         wxArrayString domains;
@@ -456,12 +416,10 @@ public:
         return domains;
         }
 
-    //Authentication info
-    void SetCredentials(const wxString& userName, const wxString& passWord)
-        {
-        m_userName = userName;
-        m_passWord = passWord;
-        }
+    /// @brief Connect the downloader to a parent dialog or @c wxApp.
+    /// @param handler The @c wxEvtHandler to connect the downloader to.
+    void SetEventHandler(wxEvtHandler* handler)
+        { m_downloader.SetAndBindEventHandler(handler); }
 
     /// @returns The list of harvested links.
     const std::set<UrlWithNumericSequence>& GetHarvestedLinks() const noexcept
@@ -574,9 +532,8 @@ private:
     bool m_replaceExistingFiles{ true };
     bool m_harvestAllHtml{ false };
     bool m_searchForBrokenLinks{ false };
-    // authentication info
-    wxString m_userName;
-    wxString m_passWord;
+
+    FileDownload m_downloader;
     // UI functionality
     wxProgressDialog* m_progressDlg{ nullptr };
     bool m_hideFileNamesWhileDownloading{ false };

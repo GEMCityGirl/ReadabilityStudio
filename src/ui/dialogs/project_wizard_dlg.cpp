@@ -1355,20 +1355,21 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
     for (size_t urlCounter = 0; urlCounter < webHarvestDlg.GetUrls().GetCount(); ++urlCounter)
         {
         FilePathResolver resolver(webHarvestDlg.GetUrls().Item(urlCounter), false);
-        WebHarvester harvester(resolver.GetResolvedPath());
-        webHarvestDlg.UpdateHarvesterSettings(harvester);
+        wxGetApp().GetWebHarvester().SetUrl(resolver.GetResolvedPath());
+        webHarvestDlg.UpdateHarvesterSettings(wxGetApp().GetWebHarvester());
 
         // if cancelled, we still will want what was harvested up to that point,
         // so it's OK to ignore the user response here
-        [[maybe_unused]] auto crawlResult = harvester.CrawlLinks();
+        [[maybe_unused]] auto crawlResult = wxGetApp().GetWebHarvester().CrawlLinks();
 
         // add the new links to the list
         const size_t currentFileCount = m_fileData->GetItemCount();
         size_t i = 0;
         if (webHarvestDlg.IsDownloadFilesLocally())
             {
-            m_fileData->SetSize(currentFileCount+harvester.GetDownloadedFilePaths().size(), 2);
-            for (const auto& path : harvester.GetDownloadedFilePaths())
+            m_fileData->SetSize(currentFileCount +
+                wxGetApp().GetWebHarvester().GetDownloadedFilePaths().size(), 2);
+            for (const auto& path : wxGetApp().GetWebHarvester().GetDownloadedFilePaths())
                 {
                 m_fileData->SetItemText(currentFileCount+i, 0, path);
                 if (groupLabel.length())
@@ -1380,8 +1381,9 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
             }
         else
             {
-            m_fileData->SetSize(currentFileCount+harvester.GetHarvestedLinks().size(), 2);
-            for (const auto& path : harvester.GetHarvestedLinks())
+            m_fileData->SetSize(currentFileCount +
+                wxGetApp().GetWebHarvester().GetHarvestedLinks().size(), 2);
+            for (const auto& path : wxGetApp().GetWebHarvester().GetHarvestedLinks())
                 {
                 m_fileData->SetItemText(currentFileCount+i, 0, path.GetPath());
                 if (groupLabel.length())

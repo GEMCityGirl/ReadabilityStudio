@@ -20,9 +20,9 @@ bool wxStringLessWebPath::operator()(const wxString& first, const wxString& seco
     FilePathResolver resolver;
     wxString firstPath = resolver.ResolvePath(first, true);
     wxString secondPath = resolver.ResolvePath(second, true);
-    if (firstPath.length() > 0 && firstPath[firstPath.length()-1] == wxT('/'))
+    if (firstPath.length() > 0 && firstPath[firstPath.length()-1] == L'/')
         { firstPath.RemoveLast(); }
-    if (secondPath.length() > 0 && secondPath[secondPath.length()-1] == wxT('/'))
+    if (secondPath.length() > 0 && secondPath[secondPath.length()-1] == L'/')
         { secondPath.RemoveLast(); }
     return (firstPath.CmpNoCase(secondPath) < 0);
     }
@@ -30,7 +30,7 @@ bool wxStringLessWebPath::operator()(const wxString& first, const wxString& seco
 //----------------------------------
 void UrlWithNumericSequence::ParseSequenceNumber()
     {
-    const auto lastSlash = m_string.find(wxT('/'), true);
+    const auto lastSlash = m_string.find(L'/', true);
     if (lastSlash == wxString::npos)
         {
         // no slash? this is a bad url
@@ -131,7 +131,7 @@ void WebHarvester::DownloadSequentialRange(const wxString& prefix, const wxStrin
                 newLink = prefix;
                 newLink += wxString::Format(formatString, i);
                 newLink += suffix;
-                if (IsDownloadingFilesWhileCrawling() && DownloadFile(newLink, false).length())
+                if (IsDownloadingFilesWhileCrawling() && DownloadFile(newLink).length())
                     { newFilesToDownload.emplace(UrlWithNumericSequence(newLink, referUrl)); }
                 }
             }
@@ -150,7 +150,7 @@ void WebHarvester::DownloadSequentialRange(const wxString& prefix, const wxStrin
                     newLink = prefix;
                     newLink += wxString::Format(formatString, i);
                     newLink += suffix;
-                    if (DownloadFile(newLink, false).length())
+                    if (DownloadFile(newLink).length())
                         { newFilesToDownload.emplace(UrlWithNumericSequence(newLink, referUrl)); }
                     ++i;
                     }
@@ -164,7 +164,7 @@ void WebHarvester::DownloadSequentialRange(const wxString& prefix, const wxStrin
                 newLink = prefix;
                 newLink += wxString::Format(formatString, i);
                 newLink += suffix;
-                if (DownloadFile(newLink, false).length())
+                if (DownloadFile(newLink).length())
                     {
                     ++i;
                     newFilesToDownload.emplace(UrlWithNumericSequence(newLink, referUrl));
@@ -178,19 +178,18 @@ void WebHarvester::DownloadSequentialRange(const wxString& prefix, const wxStrin
 
 //----------------------------------
 wxString WebHarvester::DownloadFile(wxString& Url,
-                                      const bool allowRedirect /*= true*/,
-                                      const wxString& fileExtension /*= wxString{}*/)
+                                    const wxString& fileExtension /*= wxString{}*/)
     {
     if (Url.empty() )
         { return wxString{}; }
 
     // strip off bookmark (if there is one)
-    const auto bookMarkIndex = Url.find(wxT('#'), true);
+    const auto bookMarkIndex = Url.find(L'#', true);
     if (bookMarkIndex != wxString::npos)
         { Url.Truncate(bookMarkIndex); }
     Url = Url.Strip(wxString::both);
     // encode any spaces
-    Url.Replace(wxT(" "), wxT("%20"));
+    Url.Replace(L" ", L"%20");
 
     // remove "https" (and the like) from the file path so that when
     // we build a mirrored local folder structure, we don't have a
@@ -211,7 +210,8 @@ wxString WebHarvester::DownloadFile(wxString& Url,
 
     // first create the folder to save the file
     wxString downloadPath = m_downloadDirectory;
-    if (downloadPath.length() > 0 && downloadPath[downloadPath.length()-1] != wxFileName::GetPathSeparator())
+    if (downloadPath.length() > 0 &&
+        downloadPath[downloadPath.length()-1] != wxFileName::GetPathSeparator())
         { downloadPath += wxFileName::GetPathSeparator(); }
     // "mirror" the webpage's path on the local system
     if (m_keepWebPathWhenDownloading)
@@ -224,7 +224,8 @@ wxString WebHarvester::DownloadFile(wxString& Url,
         webDirPath.Replace(L"/", L"\\");
     #endif
         webDirPath = StripIllegalFileCharacters(webDirPath);
-        if (webDirPath.length() > 0 && webDirPath[webDirPath.length()-1] != wxFileName::GetPathSeparator())
+        if (webDirPath.length() > 0 &&
+            webDirPath[webDirPath.length()-1] != wxFileName::GetPathSeparator())
             { webDirPath += wxFileName::GetPathSeparator(); }
         downloadPath += webDirPath;
         }
@@ -246,7 +247,7 @@ wxString WebHarvester::DownloadFile(wxString& Url,
         {
         long rCode{ 0 };
         const wxString downloadExt = StripIllegalFileCharacters(
-            fileExtension.length() ? fileExtension : 
+            fileExtension.length() ? fileExtension :
             GetFileTypeFromContentType(GetContentType(Url, rCode)));
         downloadPath += L'.' + downloadExt;
         }
@@ -275,60 +276,38 @@ wxString WebHarvester::DownloadFile(wxString& Url,
             }
         }
 
-    struct MemoryStruct chunk;
-    long responseCode{ 0 };
-    CURL* curl_handle = curl_easy_init();
-
-    curl_easy_setopt(curl_handle, CURLOPT_URL, static_cast<const char*>(Url));
-    curl_easy_setopt(curl_handle, CURLOPT_CONNECTTIMEOUT, 30);
-    curl_easy_setopt(curl_handle, CURLOPT_AUTOREFERER, 1);
-    curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, allowRedirect);
-    curl_easy_setopt(curl_handle, CURLOPT_PROXYAUTH, CURLAUTH_ANYSAFE);
-    curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, static_cast<const char*>(GetUserAgent()));
-    curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
-    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, reinterpret_cast<void*>(&chunk));
-
-    const CURLcode res = curl_easy_perform(curl_handle);
-    curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &responseCode);
+    auto webResponse = m_downloader.GetResponse(Url);
+    if (!webResponse.IsOk())
+        {
+        wxLogWarning(L"%s: Unable to connect to page", Url);
+        downloadPath.clear();
+        return downloadPath;
+        }
+    auto responseCode = webResponse.GetStatus();
 
     // check the response code
     if (IsBadResponseCode(responseCode))
         {
         wxLogWarning(L"%s: Unable to connect to page, error code #%i.", Url, responseCode);
-        downloadPath.Clear();
+        downloadPath.clear();
         }
-    // check the file size constraints
-    else if ((m_restrictFileMinDownloadSize && chunk.size < m_minFileDownloadSize) ||
-        (m_restrictFileMaxDownloadSize && chunk.size > m_maxFileDownloadSize))
-        { downloadPath.Clear(); }
     // otherwise, if file is OK then download it
-    else if (CURLE_OK == res && chunk.memory)
+    else
         {
         // create the target folder
         if (!wxFileName::DirExists(downloadPathFolder) )
             { wxFileName::Mkdir(downloadPathFolder, wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL); }
 
         // now download the file locally
-        wxFileName(downloadPath).SetPermissions(wxS_DEFAULT);
-        wxFile localeFile(downloadPath, wxFile::write);
-        if (localeFile.IsOpened() )
-            {
-            localeFile.Write(chunk.memory, chunk.size);
-            m_downloadedFiles.insert(downloadPath);
-            }
+        if (m_downloader.Download(Url, downloadPath))
+            { m_downloadedFiles.insert(downloadPath); }
         else
             {
             wxLogWarning(L"Unable to write to %s", downloadPath);
-            downloadPath.Clear();
+            downloadPath.clear();
             }
         }
-    else
-        {
-        wxLogWarning(L"Unable to read %s", Url);
-        downloadPath.Clear();
-        }
 
-    curl_easy_cleanup(curl_handle);
     return downloadPath;
     }
 
@@ -350,9 +329,7 @@ wxString WebHarvester::GetFileTypeFromContentType(const wxString& contentType)
 
 //----------------------------------
 wxString WebHarvester::GetContentType(wxString& Url,
-                                      long& responseCode,
-                                      [[maybe_unused]] const wxString& userName,
-                                      [[maybe_unused]] const wxString& passWord)
+                                      long& responseCode)
     {
     responseCode = 404;
 
@@ -362,39 +339,8 @@ wxString WebHarvester::GetContentType(wxString& Url,
     Url = Url.Strip(wxString::both);
     Url.Replace(L" ", L"%20");
 
-    wxString contentType;
-
-    struct MemoryStruct chunk;
-    CURL* curl_handle = curl_easy_init();
-
-    curl_easy_setopt(curl_handle, CURLOPT_URL, static_cast<const char*>(Url));
-    curl_easy_setopt(curl_handle, CURLOPT_CONNECTTIMEOUT, 30);
-    curl_easy_setopt(curl_handle, CURLOPT_AUTOREFERER, 1);
-    curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1);
-    curl_easy_setopt(curl_handle, CURLOPT_PROXYAUTH, CURLAUTH_ANYSAFE);
-    curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
-    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, reinterpret_cast<void*>(&chunk));
-    curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, static_cast<const char*>(GetUserAgent()));
- 
-    CURLcode res = curl_easy_perform(curl_handle);
-    curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &responseCode);
-
-    if (CURLE_OK == res && !IsBadResponseCode(responseCode))
-        {
-        char* ct(nullptr);
-        res = curl_easy_getinfo(curl_handle, CURLINFO_CONTENT_TYPE, &ct);
-        if ((CURLE_OK == res) && ct)
-            { contentType = wxString(ct); }
-        // get redirect URL (if we got redirected)
-        char* url = nullptr;
-        curl_easy_getinfo(curl_handle, CURLINFO_EFFECTIVE_URL, &url);
-        if (url)
-            { Url = wxString(url); }
-        }
-
-    curl_easy_cleanup(curl_handle);
-
-    return contentType;
+    /// @todo temporary workaround, use GetContentType() when available
+    return m_downloader.GetResponse(Url).GetHeader("Content-Type");
     }
 
 //---------------------------------------------------
@@ -474,10 +420,7 @@ bool WebHarvester::ReadWebPage(wxString& Url,
                                wxString& webPageContent,
                                wxString& contentType,
                                long& responseCode,
-                               const bool acceptOnlyHtmlOrScriptFiles /*= true*/,
-                               const bool allowRedirect /*= true*/,
-                               [[maybe_unused]] const wxString& userName,
-                               [[maybe_unused]] const wxString& passWord)
+                               const bool acceptOnlyHtmlOrScriptFiles /*= true*/)
     {
     webPageContent.Clear();
     contentType.Clear();
@@ -487,82 +430,81 @@ bool WebHarvester::ReadWebPage(wxString& Url,
         { return false; }
 
     // strip off bookmark (if there is one)
-    const auto bookMarkIndex = Url.find(wxT('#'), true);
+    const auto bookMarkIndex = Url.find(L'#', true);
     if (bookMarkIndex != wxString::npos)
         { Url.Truncate(bookMarkIndex); }
     Url = Url.Strip(wxString::both);
     // encode any spaces
-    Url.Replace(wxT(" "), wxT("%20"));
+    Url.Replace(L" ", L"%20");
 
-    struct MemoryStruct chunk;
-    CURL* curl_handle = curl_easy_init();
+    if (!m_downloader.Read(Url))
+        {
+        wxLogWarning(L"%s: Unable to connect to page.", Url);
+        return false;
+        }
 
-    curl_easy_setopt(curl_handle, CURLOPT_URL, static_cast<const char*>(Url));
-    curl_easy_setopt(curl_handle, CURLOPT_CONNECTTIMEOUT, 30);
-    curl_easy_setopt(curl_handle, CURLOPT_AUTOREFERER, 1);
-    curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, allowRedirect);
-    curl_easy_setopt(curl_handle, CURLOPT_PROXYAUTH, CURLAUTH_ANYSAFE);
-    curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, static_cast<const char*>(GetUserAgent()));
-    curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
-    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, reinterpret_cast<void*>(&chunk));
+    if (!m_downloader.GetResponse().IsOk())
+        {
+        wxLogWarning(L"%s: Unable to connect to page.", Url);
+        return false;
+        }
 
-    CURLcode res = curl_easy_perform(curl_handle);
-    curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &responseCode);
-
+    responseCode = m_downloader.GetResponse().GetStatus();
     if (IsBadResponseCode(responseCode))
         {
         wxLogWarning(L"%s: Unable to connect to page, error code #%i.", Url, responseCode);
-        curl_easy_cleanup(curl_handle);
         return false;
         }
-    else if (CURLE_OK == res)
+    else
         {
-        char* ct(nullptr);
-        res = curl_easy_getinfo(curl_handle, CURLINFO_CONTENT_TYPE, &ct);
-        if ((CURLE_OK == res) && ct)
-            { contentType = wxString(ct); }
+        /// @todo temporary workaround, use GetContentType() when available
+        contentType = m_downloader.GetResponse().GetHeader("Content-Type");
+        if (contentType.empty())
+            { contentType = L"text/html; charset=utf-8"; }
 
         // first make sure it is really a webpage
         if (acceptOnlyHtmlOrScriptFiles &&
             contentType.length() &&
-            string_util::strnicmp(contentType.wc_str(), HTML_CONTENT_TYPE.wc_str(), HTML_CONTENT_TYPE.length()) != 0 &&
-            string_util::strnicmp(contentType.wc_str(), JAVASCRIPT_CONTENT_TYPE.wc_str(), JAVASCRIPT_CONTENT_TYPE.length()) != 0 &&
-            string_util::strnicmp(contentType.wc_str(), VBSCRIPT_CONTENT_TYPE.wc_str(), VBSCRIPT_CONTENT_TYPE.length()) != 0)
+            string_util::strnicmp(contentType.wc_str(), HTML_CONTENT_TYPE.wc_str(),
+                                  HTML_CONTENT_TYPE.length()) != 0 &&
+            string_util::strnicmp(contentType.wc_str(), JAVASCRIPT_CONTENT_TYPE.wc_str(),
+                                  JAVASCRIPT_CONTENT_TYPE.length()) != 0 &&
+            string_util::strnicmp(contentType.wc_str(), VBSCRIPT_CONTENT_TYPE.wc_str(),
+                                  VBSCRIPT_CONTENT_TYPE.length()) != 0)
             { return false; }
 
         // get redirect URL (if we got redirected)
-        char* url = nullptr;
-        curl_easy_getinfo(curl_handle, CURLINFO_EFFECTIVE_URL, &url);
-        if (url)
-            { Url = wxString(url); }
+        Url = m_downloader.GetResponse().GetURL();
         /* Convert from the file's charset to the application's charset.
            Try to get it from the response header first because that is more
            accurate when the file is really UTF8 but the designer put something like
            8859-1 in the meta section. If that fails, then read the meta section.*/
         wxString charSet = GetCharsetFromContentType(contentType);
         if (charSet.empty())
-            { charSet = GetCharsetFromPageContent(chunk.memory, chunk.size); }
+            {
+            charSet = GetCharsetFromPageContent(
+                &m_downloader.GetLastRead()[0], m_downloader.GetLastRead().size());
+            }
         // Watch out for embedded NULLs in stream (happens with poorly formatted HTML).
         // In this situation, we need to split the stream into valid chunks, convert them,
-        // and piece them all together.
-        if (string_util::strnlen(chunk.memory, chunk.size) < chunk.size)
+        // and then piece them back together.
+        if (string_util::strnlen(&m_downloader.GetLastRead()[0], m_downloader.GetLastRead().size()) <
+            m_downloader.GetLastRead().size())
             {
             wxLogWarning(L"Embedded null terminator(s) encountered in page.");
-            webPageContent = Wisteria::TextStream::CharStreamWithEmbeddedNullsToUnicode(chunk.memory, chunk.size, charSet);
+            webPageContent =
+                Wisteria::TextStream::CharStreamWithEmbeddedNullsToUnicode(
+                    &m_downloader.GetLastRead()[0], m_downloader.GetLastRead().size(), charSet);
             }
         else
-            { webPageContent = Wisteria::TextStream::CharStreamToUnicode(chunk.memory, chunk.size, charSet); }
-        }
-    else
-        {
-        const char* errorMsg = curl_easy_strerror(res);
-        if (errorMsg)
-            { wxLogWarning(L"%s: error code #%i, %s", Url, responseCode, wxString(errorMsg)); }
+            {
+            webPageContent =
+                Wisteria::TextStream::CharStreamToUnicode(
+                    &m_downloader.GetLastRead()[0], m_downloader.GetLastRead().size(), charSet);
+            }
         }
 
-    curl_easy_cleanup(curl_handle);
-
-    return (CURLE_OK == res);
+    return true;
     }
 
 //----------------------------------
@@ -573,7 +515,7 @@ bool WebHarvester::IsPageHtml(wxString& Url, wxString& contentType)
         { return false; }
 
     long responseCode{ 0 };
-    contentType = GetContentType(Url, responseCode, m_userName, m_passWord);
+    contentType = GetContentType(Url, responseCode);
     if (contentType.empty())
         { return false; }
     return string_util::strnicmp(contentType.wc_str(), HTML_CONTENT_TYPE.wc_str(),
@@ -657,7 +599,7 @@ bool WebHarvester::CrawlLinks(wxString& url,
         // read in the page
         wxString contentType;
         long responseCode{ 0 };
-        if (!ReadWebPage(url, fileText, contentType, responseCode, true, true, m_userName, m_passWord) )
+        if (!ReadWebPage(url, fileText, contentType, responseCode, true) )
             {
             --m_currentLevel;
             return false;
@@ -707,22 +649,27 @@ bool WebHarvester::CrawlLinks(wxString& url,
         }
 
     html_utilities::hyperlink_parse getHyperLinks(fileText.wc_str(), fileText.length(), method);
-    if (getHyperLinks.get_parse_method() == html_utilities::hyperlink_parse::hyperlink_parse_method::html &&
+    if (getHyperLinks.get_parse_method() ==
+            html_utilities::hyperlink_parse::hyperlink_parse_method::html &&
         getHyperLinks.get_html_parser().get_base_url())
-        { url.assign(getHyperLinks.get_html_parser().get_base_url(), getHyperLinks.get_html_parser().get_base_url_length()); }
+        {
+        url.assign(getHyperLinks.get_html_parser().get_base_url(),
+                   getHyperLinks.get_html_parser().get_base_url_length());
+        }
 
     // NOTE: if a 302 or 300 are encountered, then the url may be different now,
     // as well as a base url in the head
     html_utilities::html_url_format formatUrl(url);
     while (true)
         {
-        //gather its hyperlinks
+        // gather its hyperlinks
         const auto* currentLink = getHyperLinks();
         if (currentLink)
             { CrawlLink(wxString(currentLink,getHyperLinks.get_current_hyperlink_length()),
                         formatUrl, url,
                         // if an image (can only determine this if using the HTML parser)
-                        (getHyperLinks.get_parse_method() == html_utilities::hyperlink_parse::hyperlink_parse_method::html) ?
+                        (getHyperLinks.get_parse_method() ==
+                            html_utilities::hyperlink_parse::hyperlink_parse_method::html) ?
                             getHyperLinks.get_html_parser().is_current_link_an_image() : false); }
         else
             { break; }
@@ -795,8 +742,8 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
     if (fileExt.empty())
         {
         // any sort of PHP page (even without the extension PHP) will follow this syntax
-        if (std::wcschr(fullUrl, wxT('?')) && std::wcschr(fullUrl, wxT('=')))
-            { fileExt = wxT("php"); }
+        if (std::wcschr(fullUrl, L'?') && std::wcschr(fullUrl, L'='))
+            { fileExt = L"php"; }
         else
             {
             long rCode{ 0 };
@@ -948,44 +895,28 @@ bool WebHarvester::HarvestLink(wxString& url, const wxString& referringUrl,
         { return false; }
     m_harvestedLinks.emplace(UrlWithNumericSequence(url, referringUrl));
     if (IsDownloadingFilesWhileCrawling())
-        { DownloadFile(url, true, fileExtension); }
+        { DownloadFile(url, fileExtension); }
     return true;
-    }
-
-//----------------------------------
-size_t WebHarvester::WriteMemoryCallback(void *ptr, size_t size, size_t nmemb, void *data)
-    {
-    const size_t realsize = size * nmemb;
-    struct MemoryStruct* mem = static_cast<struct MemoryStruct*>(data);
-
-    mem->memory = static_cast<char*>(safe_realloc(mem->memory, mem->size + realsize + 1));
-    if (mem->memory)
-        {
-        memcpy(&(mem->memory[mem->size]), ptr, realsize);
-        mem->size += realsize;
-        mem->memory[mem->size] = 0;
-        }
-    return realsize;
     }
 
 //----------------------------------
 wxString WebHarvester::GetCharsetFromContentType(const wxString& contentType)
     {
-    const auto index = contentType.Lower().find(wxT("charset="));
-    const auto semicolon = contentType.Lower().find(wxT(";"));
+    const auto index = contentType.Lower().find(L"charset=");
+    const auto semicolon = contentType.find(L";");
     if (index != wxString::npos)
         {
         wxString charSet = contentType.substr(index+8);
-        charSet.Replace(wxT("\""), wxT(""));
-        charSet.Replace(wxT("\'"), wxT(""));
+        charSet.Replace(L"\"", L"");
+        charSet.Replace(L"\'", L"");
         charSet.Trim(false); charSet.Trim(true);
         return charSet;
         }
     else if (semicolon != wxString::npos)
         {
         wxString charSet = contentType.substr(semicolon+1);
-        charSet.Replace(wxT("\""), wxT(""));
-        charSet.Replace(wxT("\'"), wxT(""));
+        charSet.Replace(L"\"", L"");
+        charSet.Replace(L"\'", L"");
         charSet.Trim(false); charSet.Trim(true);
         return charSet;
         }

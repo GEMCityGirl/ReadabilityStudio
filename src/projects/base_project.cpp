@@ -3463,10 +3463,13 @@ bool BaseProject::LoadExternalDocument()
         wxString content, contentType;
         long responseCode;
         wxString urlPath = GetOriginalDocumentFilePath();
-        if (WebHarvester::ReadWebPage(urlPath, content, contentType, responseCode, false, true))
+        if (wxGetApp().GetWebHarvester().ReadWebPage(urlPath, content, contentType,
+                                                     responseCode, false))
             {
             wxString title;
-            std::pair<bool,wxString> extractResult = ExtractRawTextWithEncoding(content, WebHarvester::GetFileTypeFromContentType(contentType), GetOriginalDocumentFilePath(), title);
+            std::pair<bool,wxString> extractResult =
+                ExtractRawTextWithEncoding(content, WebHarvester::GetFileTypeFromContentType(contentType),
+                                           GetOriginalDocumentFilePath(), title);
             if (!extractResult.first)
                 { return false; }
             if (GetOriginalDocumentDescription().empty())

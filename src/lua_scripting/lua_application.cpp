@@ -273,11 +273,11 @@ namespace LuaScripting
         wxString urlPath(luaL_checkstring(L, 1), wxConvUTF8);
         const wxString downloadFolder(luaL_checklstring(L, 2, nullptr), wxConvUTF8);
 
-        WebHarvester crawler(urlPath);
-        crawler.SetDownloadDirectory(downloadFolder);
-        crawler.KeepWebPathWhenDownloading(false);
+        wxGetApp().GetWebHarvester().SetUrl(urlPath);
+        wxGetApp().GetWebHarvester().SetDownloadDirectory(downloadFolder);
+        wxGetApp().GetWebHarvester().KeepWebPathWhenDownloading(false);
 
-        lua_pushstring(L, crawler.DownloadFile(urlPath, true).utf8_str());
+        lua_pushstring(L, wxGetApp().GetWebHarvester().DownloadFile(urlPath).utf8_str());
         return 1;
         }
 
