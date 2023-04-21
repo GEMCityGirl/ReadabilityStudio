@@ -344,29 +344,6 @@ public:
     bool IsDownloadingFilesWhileCrawling() const noexcept
         { return m_downloadWhileCrawling; }
 
-    // Download file size constraints
-    //----------------------------------
-
-    /// @brief Sets the minimum file size to download.
-    /// @param size The minimum file size (in kbs.) a file must be to download it.
-    void SetMinimumDownloadFileSizeInKilobytes(const wxFileOffset size) noexcept
-        {
-        m_minFileDownloadSize = size*KILOBYTE;
-        m_restrictFileMinDownloadSize = true;
-        }
-    /// @returns The minimum file size (in kbs.) a file must be in order to download it.
-    [[nodiscard]]
-    wxFileOffset GetMinimumDownloadFileSizeInKilobytes() const noexcept
-        { return m_minFileDownloadSize/KILOBYTE; }
-    /// @brief Sets the maximum file size to download.
-    /// @param size The maximum file size (in kbs.) a file can be in order to download it.
-    /// @note By default, there is no maximum filesize constraint (only minimum).
-    void SetMaximumDownloadFileSizeInKilobytes(const wxFileOffset size) noexcept
-        {
-        m_maxFileDownloadSize = size*KILOBYTE;
-        m_restrictFileMaxDownloadSize = true;
-        }
-
     // Domain restriction
     //----------------------------------
 
@@ -531,10 +508,7 @@ private:
     bool m_downloadWhileCrawling{ false };
     static constexpr size_t KILOBYTE = 1024;
     static constexpr size_t MEGABYTE = 1024*1024;
-    wxFileOffset m_minFileDownloadSize{ KILOBYTE*5 };
-    wxFileOffset m_maxFileDownloadSize{ MEGABYTE*5 };
-    bool m_restrictFileMinDownloadSize{ false };
-    bool m_restrictFileMaxDownloadSize{ false };
+
     bool m_replaceExistingFiles{ true };
     bool m_harvestAllHtml{ false };
     bool m_searchForBrokenLinks{ false };
