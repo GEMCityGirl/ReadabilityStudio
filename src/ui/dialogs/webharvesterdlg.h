@@ -36,7 +36,7 @@ public:
              const bool downloadFilesLocally, const bool keepWebPathWhenDownloading,
              const wxString& downloadFolder, const wxString& userAgent,
              const int domainRestriction,
-             const wxArrayString& domainStrings, const int minFileSizeInKiloBytes,
+             const wxArrayString& domainStrings,
              wxWindowID id = wxID_ANY, const wxString& caption = _(L"Web Harvester"),
              const wxPoint& pos = wxDefaultPosition,
              const wxSize& size = wxDefaultSize,
@@ -47,7 +47,6 @@ public:
         m_domains(domainStrings), m_hideLocalDownloadOption(hideLocalDownloadOption),
         m_downloadFilesLocally(downloadFilesLocally),
         m_keepWebPathWhenDownloading(keepWebPathWhenDownloading),
-        m_minFileSizeInKiloBytes(minFileSizeInKiloBytes),
         m_downloadFolder(downloadFolder), m_userAgent(userAgent), m_urls(urls)
         { Create(parent, id, caption, pos, size, style); }
     /// @private
@@ -83,9 +82,6 @@ public:
     [[nodiscard]]
     bool IsRetainingWebsiteFolderStructure() const noexcept
         { return m_keepWebPathWhenDownloading; }
-    [[nodiscard]]
-    size_t GetMinimumDownloadFileSizeInKilobytes() const noexcept
-        { return m_minFileSizeInKiloBytes; }
     [[nodiscard]]
     const wxString& GetDownloadFolder() const noexcept
         { return m_downloadFolder; }
@@ -137,13 +133,11 @@ private:
     bool m_downloadFilesLocally{ true };
     bool m_keepWebPathWhenDownloading{ true };
     bool m_logBrokenLinks{ false };
-    size_t m_minFileSizeInKiloBytes{ 5 };
     Wisteria::UI::SideBarBook* m_sideBarBook{ nullptr };
     wxComboBox* m_docFilterCombo{ nullptr };
     wxSpinCtrl* m_depthLevelCtrl{ nullptr };
     wxComboBox* m_domainCombo{ nullptr };
     ListCtrlEx* m_domainList{ nullptr };
-    wxSpinCtrl* m_minFileSizeCtrl{ nullptr };
     ListCtrlExDataProvider* m_domainData{ new ListCtrlExDataProvider };
     wxTextCtrl* m_localFolderEdit{ nullptr };
     wxStaticText* m_localFolderLabel{ nullptr };

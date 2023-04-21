@@ -27,7 +27,6 @@ void WebHarvesterDlg::OnDownloadCheck([[maybe_unused]] wxCommandEvent& event)
     m_localFolderLabel->Enable(m_downloadFilesLocally);
     m_localFolderEdit->Enable(m_downloadFilesLocally);
     m_minFileSizeLabel->Enable(m_downloadFilesLocally);
-    m_minFileSizeCtrl->Enable(m_downloadFilesLocally);
     m_retainWebsiteFolderStuctureCheckBox->Enable(m_downloadFilesLocally);
     }
 
@@ -86,8 +85,6 @@ void WebHarvesterDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     m_depthLevel = m_depthLevelCtrl->GetValue();
 
     m_selectedDomainRestriction = m_domainCombo->GetSelection();
-
-    m_minFileSizeInKiloBytes = m_minFileSizeCtrl->GetValue();
 
     m_domains.clear();
     for (long i = 0; i < m_domainList->GetItemCount(); ++i)
@@ -358,20 +355,6 @@ void WebHarvesterDlg::CreateControls()
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_keepWebPathWhenDownloading) );
         m_retainWebsiteFolderStuctureCheckBox->Enable(m_downloadFilesLocally);
         panelSizer->Add(m_retainWebsiteFolderStuctureCheckBox, 0, wxALL, wxSizerFlags::GetDefaultBorder());
-
-        wxBoxSizer* minFileSizeSizer = new wxBoxSizer(wxHORIZONTAL);
-        m_minFileSizeLabel = new wxStaticText(Panel, wxID_ANY,
-                                              _("Minimum file size to download (in Kbs.):"));
-        m_minFileSizeLabel->Enable(m_downloadFilesLocally);
-        minFileSizeSizer->Add(m_minFileSizeLabel, 0, wxALIGN_CENTER_VERTICAL);
-
-        m_minFileSizeCtrl = new wxSpinCtrl(Panel, wxID_ANY,
-            wxString::Format(wxT("%d"), m_minFileSizeInKiloBytes));
-        m_minFileSizeCtrl->SetRange(1, 1024*20);
-        minFileSizeSizer->Add(m_minFileSizeCtrl,
-                              wxSizerFlags().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
-        m_minFileSizeCtrl->Enable(m_downloadFilesLocally);
-        panelSizer->Add(minFileSizeSizer, 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
         }
 
     mainSizer->Add(CreateSeparatedButtonSizer(wxOK|wxCANCEL|wxHELP), 0,
@@ -408,7 +391,6 @@ void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester)
     harvester.DownloadFilesWhileCrawling(IsDownloadFilesLocally());
     harvester.SetDownloadDirectory(GetDownloadFolder());
     harvester.SetUserAgent(GetUserAgent());
-    harvester.SetMinimumDownloadFileSizeInKilobytes(GetMinimumDownloadFileSizeInKilobytes());
     harvester.KeepWebPathWhenDownloading(IsRetainingWebsiteFolderStructure());
     harvester.SeachForBrokenLinks(m_logBrokenLinks);
     }
@@ -430,7 +412,6 @@ void WebHarvesterDlg::UpdateFromHarvesterSettings(const WebHarvester& harvester)
     m_downloadFilesLocally = harvester.IsDownloadingFilesWhileCrawling();
     m_downloadFolder = harvester.GetDownloadDirectory();
     m_userAgent = harvester.GetUserAgent();
-    m_minFileSizeInKiloBytes = harvester.GetMinimumDownloadFileSizeInKilobytes();
     m_keepWebPathWhenDownloading = harvester.IsKeepingWebPathWhenDownloading();
     m_logBrokenLinks = harvester.IsSearchingForBrokenLinks();
 

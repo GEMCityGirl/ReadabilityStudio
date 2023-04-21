@@ -3928,10 +3928,9 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         true, true,
         wxGetApp().m_harvesterOptions.IsKeepingWebPathWhenDownloading(),
         wxGetApp().m_harvesterOptions.GetDownloadDirectory(),
-        WebHarvester::GetUserAgent(),
+        wxGetApp().GetWebHarvester().GetUserAgent(),
         static_cast<int>(wxGetApp().m_harvesterOptions.GetDomainRestriction()),
-        wxGetApp().m_harvesterOptions.GetAllowableWebFolders(),
-        static_cast<int>(wxGetApp().m_harvesterOptions.GetMinimumDownloadFileSizeInKilobytes()));
+        wxGetApp().m_harvesterOptions.GetAllowableWebFolders());
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().m_harvesterOptions);
     // force downloading locally
     webHarvestDlg.DownloadFilesLocally(true);

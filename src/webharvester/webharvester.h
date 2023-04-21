@@ -416,14 +416,14 @@ public:
     /// @returns The user agent sent to websites when crawling.
     /// @note If the user agent is empty, then one will be built from the OS description.
     [[nodiscard]]
-    wxString GetUserAgent()
+    wxString GetUserAgent() const
         {
         // May need to be set if not initialized.
         // Needs to be initialized here because wxGetOsDescription()
         // can't be called during global startup.
-        if (m_userAgent.empty())
-            { SetUserAgent(_DT(L"Web-Harvester/") + wxGetOsDescription()); }
-        return m_userAgent;
+        return (m_userAgent.empty() ?
+            _DT(L"Web-Harvester/") + wxGetOsDescription() :
+            m_userAgent);
         }
     /// @brief Sets the user agent sent to websites when crawling.
     /// @param agent The user agent string.
