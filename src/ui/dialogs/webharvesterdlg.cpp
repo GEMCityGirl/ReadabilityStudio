@@ -175,7 +175,7 @@ void WebHarvesterDlg::CreateControls()
             wxID_ANY, _("Websites to Harvest")), wxVERTICAL);
         wxBoxSizer* urlButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
         wxBitmapButton* addUrlButton = new wxBitmapButton(Panel, ID_ADD_URL_BUTTON,
-            wxArtProvider::GetBitmap(wxT("ID_ADD"), wxART_BUTTON, FromDIP(wxSize(16,16))));
+            wxArtProvider::GetBitmap(L"ID_ADD", wxART_BUTTON, FromDIP(wxSize(16,16))));
         addUrlButton->SetToolTip(_("Add a website to the list"));
         urlButtonsSizer->Add(addUrlButton);
 
@@ -216,7 +216,7 @@ void WebHarvesterDlg::CreateControls()
         depthLevelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         m_depthLevelCtrl = new wxSpinCtrl(Panel, wxID_ANY,
-            wxString::Format(wxT("%d"), m_depthLevel));
+            std::to_wstring(m_depthLevel));
         m_depthLevelCtrl->SetRange(1, 10);
         depthLevelSizer->Add(m_depthLevelCtrl, 0, wxALIGN_CENTER_VERTICAL);
         panelSizer->Add(depthLevelSizer, 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
@@ -229,17 +229,18 @@ void WebHarvesterDlg::CreateControls()
             _("File types to include:")), 0, wxALIGN_CENTER_VERTICAL|wxLEFT,
             wxSizerFlags::GetDefaultBorder());
         wxArrayString choiceStrings;
-        wxStringTokenizer tkz(m_fullDocFilter, wxT("|"), wxTOKEN_STRTOK);
+        wxStringTokenizer tkz(m_fullDocFilter, L"|", wxTOKEN_STRTOK);
         while (tkz.HasMoreTokens() )
             {
             wxString currentFilter = tkz.GetNextToken();
-            if (currentFilter.length() && currentFilter[0] != wxT('*'))
+            if (currentFilter.length() && currentFilter[0] != L'*')
                 { choiceStrings.Add(currentFilter); }
             }
         if (m_selectedDocFilter.empty() && choiceStrings.GetCount())
             { m_selectedDocFilter = choiceStrings[0]; }
         m_docFilterCombo = new wxComboBox(Panel, wxID_ANY, wxString{}, wxDefaultPosition,
-            // need to hardcode a size here because the file filter string for all documents may be huge
+            // need to hardcode a size here because the file filter
+            // string for all documents may be huge
             wxSize(FromDIP(wxSize(100,100)).GetWidth(), -1),
             choiceStrings,
             wxGetMouseState().ShiftDown() ? wxCB_DROPDOWN : wxCB_DROPDOWN|wxCB_READONLY);
@@ -290,7 +291,7 @@ void WebHarvesterDlg::CreateControls()
 
         wxBoxSizer* domainButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
         m_addDomainButton = new wxBitmapButton(Panel, ID_ADD_DOMAIN_BUTTON,
-            wxArtProvider::GetBitmap(wxT("ID_ADD"), wxART_BUTTON, FromDIP(wxSize(16, 16))));
+            wxArtProvider::GetBitmap(L"ID_ADD", wxART_BUTTON, FromDIP(wxSize(16, 16))));
         m_addDomainButton->SetToolTip(_("Add a domain to the list"));
         m_addDomainButton->Enable(m_domainCombo->GetValue() == GetUserSpecifiedDomainsLabel());
         domainButtonsSizer->Add(m_addDomainButton);
@@ -367,7 +368,7 @@ void WebHarvesterDlg::CreateControls()
 void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester)
     {
     wxArrayString validExtensions;
-    wxStringTokenizer tkz(ExtractExtensionsFromFileFilter(GetSelectedDocFilter()), wxT("*.;"));
+    wxStringTokenizer tkz(ExtractExtensionsFromFileFilter(GetSelectedDocFilter()), L"*.;");
     wxString nextFileExt;
     while (tkz.HasMoreTokens() )
         {
@@ -375,7 +376,8 @@ void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester)
         if (!nextFileExt.empty())
             {
             harvester.AddFileTypeToDownload(nextFileExt);
-            if (nextFileExt.CmpNoCase(wxT("html")) == 0 || nextFileExt.CmpNoCase(wxT("htm")) == 0)
+            if (nextFileExt.CmpNoCase(L"html") == 0 ||
+                nextFileExt.CmpNoCase(L"htm") == 0)
                 { harvester.HarvestAllHtmlFiles(); }
             }
         }
@@ -425,7 +427,7 @@ bool WebHarvesterDlg::Create(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
                              const wxSize& size /*= wxDefaultSize*/,
                              long style /*= wxDEFAULT_DIALOG_STYLE*/)
     {
-    SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS|wxWS_EX_CONTEXTHELP );
+    SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS|wxWS_EX_CONTEXTHELP);
     DialogWithHelp::Create(parent, id, caption, pos, size, style );
 
     CreateControls();
