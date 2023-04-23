@@ -24,9 +24,8 @@
 #include <memory>
 #include <functional>
 #include <algorithm>
+#include "../../../SRC/Licensing/LicenseAdmin.h"
 #include "../tinyxml2/tinyxml2.h"
-#include "../../../SRC/lily-of-the-valley/src/doc_extract_text.h"
-#include "../../../SRC/lily-of-the-valley/src/markdown_extract_text.h"
 #include "../readability/english_readability.h"
 #include "../readability/spanish_readability.h"
 #include "../readability/german_readability.h"
@@ -43,8 +42,9 @@
 #include "../results_format/readability_messages.h"
 #include "../webharvester/filepathresolver.h"
 #include "../webharvester/webharvester.h"
-#include "../../../SRC/Licensing/LicenseAdmin.h"
 #include "../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
+#include "../Wisteria-Dataviz/src/import/doc_extract_text.h"
+#include "../Wisteria-Dataviz/src/import/markdown_extract_text.h"
 #include "../Wisteria-Dataviz/src/import/html_extract_text.h"
 #include "../Wisteria-Dataviz/src/import/hhc_hhk_extract_text.h"
 #include "../Wisteria-Dataviz/src/import/postscript_extract_text.h"
