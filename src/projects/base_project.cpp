@@ -788,8 +788,8 @@ void BaseProject::InitializeStandardReadabilityTests()
         {
         readability::readability_test test(ReadabilityMessages::GPM_FRY(),
             XRCID("ID_GPM_FRY"),
-            _DT(L"Gilliam-Peña-Mountain"), _DT(L"Gilliam-Peña-Mountain Graph"),
-            _("The <a href=\"#GPMFryGraph\">Gilliam-Peña-Mountain graph</a> is designed for most text, including literature and technical documents."),
+            _DT(L"Gilliam-Pe\U000000F1a-Mountain"), _DT(L"Gilliam-Pe\U000000F1a-Mountain Graph"),
+            _("The <a href=\"#GPMFryGraph\">Gilliam-Pe\U000000F1a-Mountain graph</a> is designed for most text, including literature and technical documents."),
             readability::readability_test_type::grade_level, true,
             L"");
         test.add_document_classification(readability::document_classification::general_document, true);

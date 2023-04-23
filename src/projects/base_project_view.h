@@ -209,7 +209,7 @@ public:
     [[nodiscard]] static wxString GetFryLabel()
         { return _(L"Fry Graph"); }
     [[nodiscard]] static wxString GetGilliamPenanMountainFryLabel()
-        { return _(L"Gilliam-Peña-Mountain Graph"); }
+        { return _(L"Gilliam-Pe\U000000F1a-Mountain Graph"); }
     [[nodiscard]] static wxString GetFraseLabel()
         { return _(L"FRASE Graph"); }
     [[nodiscard]] static wxString GetSchwartzLabel()

@@ -563,9 +563,9 @@ namespace Wisteria::Graphs
     void FryGraph::SetAsGilliamPenaMountainGraph()
         {
         m_syllableAxisOffset = 67;
-        GetTitle().SetText(_(L"Gilliam-Peña-Mountain Graph"));
-        GetCanvas()->SetLabel(_(L"Gilliam-Peña-Mountain Graph"));
-        GetCanvas()->SetName(_(L"Gilliam-Peña-Mountain Graph"));
+        GetTitle().SetText(_(L"Gilliam-Pe\U000000F1a-Mountain Graph"));
+        GetCanvas()->SetLabel(_(L"Gilliam-Pe\U000000F1a-Mountain Graph"));
+        GetCanvas()->SetName(_(L"Gilliam-Pe\U000000F1a-Mountain Graph"));
 
         GetBottomXAxis().Reset();
         for (size_t i = 108 + GetSyllableAxisOffset(); i <= 180 + GetSyllableAxisOffset(); i += 2)
