@@ -34,9 +34,9 @@ namespace readability
         @throws std::domain_error If @c number_of_words is @c 0,
                 throws an exception.*/
     [[nodiscard]]
-    inline double crawford(const size_t number_of_words,
-                           const size_t number_of_syllables,
-                           const size_t number_of_sentences)
+    inline double crawford(const uint32_t number_of_words,
+                           const uint32_t number_of_syllables,
+                           const uint32_t number_of_sentences)
         {
         if (number_of_words == 0)
             { throw std::domain_error("invalid word count"); }
@@ -63,8 +63,8 @@ namespace readability
         @throws std::domain_error If @c number_of_sentences is @c 0,
                 throws an exception.*/
     [[nodiscard]]
-    inline double sol_spanish(const size_t number_of_big_words,
-                              const size_t number_of_sentences)
+    inline double sol_spanish(const uint32_t number_of_big_words,
+                              const uint32_t number_of_sentences)
         {
         if (number_of_sentences == 0)
             { throw std::domain_error("invalid sentence count."); }

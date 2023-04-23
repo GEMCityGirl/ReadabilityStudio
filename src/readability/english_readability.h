@@ -78,10 +78,11 @@ namespace readability
         @param number_of_mini_words The number of miniwords (words containing 1, 2, or 3 characters).
         @param number_of_sentences The number of sentences.
         @returns The calculated index.*/
-    [[nodiscard]] inline size_t eflaw(eflaw_difficulty& difficulty_level,
-                                      const size_t number_of_words,
-                                      const size_t number_of_mini_words,
-                                      const size_t number_of_sentences)
+    [[nodiscard]]
+    inline size_t eflaw(eflaw_difficulty& difficulty_level,
+                        const uint32_t number_of_words,
+                        const uint32_t number_of_mini_words,
+                        const uint32_t number_of_sentences)
         {
         NON_UNIT_TEST_ASSERT(number_of_mini_words <= number_of_words);
         if (number_of_sentences == 0)
@@ -111,9 +112,10 @@ namespace readability
         @param number_of_characters_and_punctuation The number of characters and punctuation.
         @param number_of_sentences The number of sentences.
         @returns The calculated grade level.*/
-    [[nodiscard]] inline double danielson_bryan_1(const size_t number_of_spaces,
-                                    const size_t number_of_characters_and_punctuation,
-                                    const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double danielson_bryan_1(const uint32_t number_of_spaces,
+                                    const uint32_t number_of_characters_and_punctuation,
+                                    const uint32_t number_of_sentences)
         {
         if (number_of_spaces == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word/sentence count."); }
@@ -128,9 +130,10 @@ namespace readability
         @param number_of_characters_and_punctuation The number of characters and punctuation.
         @param number_of_sentences The number of sentences.
         @returns The calculated Flesch Reading Ease index.*/
-    [[nodiscard]] inline double danielson_bryan_2(const size_t number_of_spaces,
-                                    const size_t number_of_characters_and_punctuation,
-                                    const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double danielson_bryan_2(const uint32_t number_of_spaces,
+                                    const uint32_t number_of_characters_and_punctuation,
+                                    const uint32_t number_of_sentences)
         {
         if (number_of_spaces == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word/sentence count."); }
@@ -152,9 +155,10 @@ namespace readability
          A shorthand way to do this is simply to subtract the total number of words from
          the total number of syllables (which is basically the same as subtracting one syllable from each word),
          and then divide by the number of sentences.*/
-    [[nodiscard]] inline double easy_listening_formula(const size_t number_of_words,
-                                                       const size_t number_of_syllables,
-                                                       const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double easy_listening_formula(const uint32_t number_of_words,
+                                         const uint32_t number_of_syllables,
+                                         const uint32_t number_of_sentences)
         {
         if (number_of_sentences == 0)
             { throw std::domain_error("invalid sentence count."); }
@@ -171,9 +175,10 @@ namespace readability
         @param number_of_characters The number of letters (and punctuation, like apostrophes).
         @param number_of_sentences The number of sentences.
         @returns The calculated grade level.*/
-    [[nodiscard]] inline double automated_readability_index(const size_t number_of_words,
-                                                            const size_t number_of_characters,
-                                                            const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double automated_readability_index(const uint32_t number_of_words,
+                                              const uint32_t number_of_characters,
+                                              const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word/sentence count."); }
@@ -188,9 +193,10 @@ namespace readability
         @param number_of_characters The number of characters.
         @param number_of_sentences The number of sentences.
         @returns The calculated grade level.*/
-    [[nodiscard]] inline double new_automated_readability_index(const size_t number_of_words,
-                                                                const size_t number_of_characters,
-                                                                const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double new_automated_readability_index(const uint32_t number_of_words,
+                                                  const uint32_t number_of_characters,
+                                                  const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word/sentence count."); }
@@ -206,9 +212,10 @@ namespace readability
         @param number_of_characters The number of characters.
         @param number_of_sentences The number of sentences.
         @returns The calculated grade level.*/
-    [[nodiscard]] inline double simplified_automated_readability_index(const size_t number_of_words,
-                                                                       const size_t number_of_characters,
-                                                                       const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double simplified_automated_readability_index(const uint32_t number_of_words,
+                                                         const uint32_t number_of_characters,
+                                                         const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word/sentence count."); }
@@ -224,9 +231,10 @@ namespace readability
         @param number_of_unfamiliar_words The number of unfamiliar Dale-Chall words.
         @param number_of_sentences The number of sentences.
         @returns The calculated grade level.*/
-    [[nodiscard]] inline double powers_sumner_kearl_dale_chall(const size_t number_of_words,
-                                                               const size_t number_of_unfamiliar_words,
-                                                               const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double powers_sumner_kearl_dale_chall(const uint32_t number_of_words,
+                                                 const uint32_t number_of_unfamiliar_words,
+                                                 const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("Not enough sentences in formula."); }
@@ -1060,9 +1068,10 @@ namespace readability
         @note Spache recommends not counting the same unfamiliar word twice if they occur
          in subsequent 100-word samples. Based on this, it's recommended to pass in a unique count
          of unfamiliar words, instead of a raw count.*/
-    [[nodiscard]] inline double spache(const size_t number_of_words,
-                                       const size_t number_of_unfamiliar_words,
-                                       const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double spache(const uint32_t number_of_words,
+                         const uint32_t number_of_unfamiliar_words,
+                         const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("Not enough sentences in formula."); }
@@ -1109,10 +1118,11 @@ namespace readability
         @param number_of_sentences The number of sentences.
         @param number_of_characters The number of characters.
         @returns The grade level (or placement) of a passage.*/
-    [[nodiscard]] inline double bormuth_grade_placement_35(const size_t number_of_words,
-                                                           const size_t number_of_familiar_dale_chall_words,
-                                                           const size_t number_of_characters,
-                                                           const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double bormuth_grade_placement_35(const uint32_t number_of_words,
+                                             const uint32_t number_of_familiar_dale_chall_words,
+                                             const uint32_t number_of_characters,
+                                             const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word or sentence count"); }
@@ -1129,10 +1139,11 @@ namespace readability
         @param number_of_characters The number of characters.
         @param number_of_sentences The number of sentences.
         @returns The (fractional percentage) estimated Cloze score of a passage.*/
-    [[nodiscard]] inline double bormuth_cloze_mean(const size_t number_of_words,
-                                                   const size_t number_of_familiar_dale_chall_words,
-                                                   const size_t number_of_characters,
-                                                   const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double bormuth_cloze_mean(const uint32_t number_of_words,
+                                     const uint32_t number_of_familiar_dale_chall_words,
+                                     const uint32_t number_of_characters,
+                                     const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word or sentence count"); }
@@ -1152,10 +1163,11 @@ namespace readability
         @param number_of_characters The number of characters.
         @param number_of_sentences The number of sentences.
         @returns The difficulty level (0 = easy, 100 = very difficult).*/
-    [[nodiscard]] inline double degrees_of_reading_power(const size_t number_of_words,
-                                const size_t number_of_familiar_dale_chall_words,
-                                const size_t number_of_characters,
-                                const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double degrees_of_reading_power(const uint32_t number_of_words,
+                                const uint32_t number_of_familiar_dale_chall_words,
+                                const uint32_t number_of_characters,
+                                const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word or sentence count"); }
@@ -1259,10 +1271,11 @@ namespace readability
         @param number_of_characters The number of characters.
         @param number_of_sentences The number of sentences
         @returns The grade-level score.*/
-    [[nodiscard]] inline double degrees_of_reading_power_ge(const size_t number_of_words,
-                                const size_t number_of_familiar_dale_chall_words,
-                                const size_t number_of_characters,
-                                const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double degrees_of_reading_power_ge(const uint32_t number_of_words,
+                                const uint32_t number_of_familiar_dale_chall_words,
+                                const uint32_t number_of_characters,
+                                const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word or sentence count"); }
@@ -1281,8 +1294,9 @@ namespace readability
         @param number_of_big_words Number of 3+ syllable words from the sample.
         @param number_of_sentences Number of sentences in the sample.
         @returns U.S. K-12 grade scale value of the document.*/
-    [[nodiscard]] inline double modified_smog(const size_t number_of_big_words,
-                                              const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double modified_smog(const uint32_t number_of_big_words,
+                                const uint32_t number_of_sentences)
         {
         if (number_of_sentences == 0)
             { throw std::domain_error("invalid sentence count."); }
@@ -1304,8 +1318,9 @@ namespace readability
         @param number_of_big_words Number of 3+ syllable words from the sample.
         @param number_of_sentences Number of sentences in the sample.
         @return U.S. K-12 grade scale value of the document.*/
-    [[nodiscard]] inline double smog_simplified(const size_t number_of_big_words,
-                       const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double smog_simplified(const uint32_t number_of_big_words,
+                                  const uint32_t number_of_sentences)
         {
         if (number_of_sentences == 0)
             { throw std::domain_error("invalid sentence count."); }
@@ -1321,8 +1336,9 @@ namespace readability
             formula can calculate high (e.g., 25) scores with Spanish (that have to been be converted to the English scale),
             so pass in false for situations like that.
         @return U.S. K-12 grade scale value of the document.*/
-    [[nodiscard]] inline double smog(const size_t number_of_big_words,
-                       const size_t number_of_sentences,
+    [[nodiscard]] 
+    inline double smog(const uint32_t number_of_big_words,
+                       const uint32_t number_of_sentences,
                        const bool truncate_score_to_range = true)
         {
         if (number_of_sentences == 0)
@@ -1345,9 +1361,10 @@ namespace readability
             headers and subheaders are treated as separate sentences.
         @returns U.S. K-12 grade scale value of the document.
         @note The grade range for this test is between 1 - 13.3.*/
-    [[nodiscard]] inline double harris_jacobson(const size_t number_of_words,
-                            const size_t number_of_hard_words,
-                            const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double harris_jacobson(const uint32_t number_of_words,
+                                  const uint32_t number_of_hard_words,
+                                  const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word or sentence count"); }
@@ -1525,8 +1542,9 @@ namespace readability
         @param number_of_words The number of words.
         @param number_of_single_syllable_words The number of mono-syllabic words.
         @returns The calculated grade level.*/
-    [[nodiscard]] inline double forcast(const size_t number_of_words,
-                                        const size_t number_of_single_syllable_words)
+    [[nodiscard]]
+    inline double forcast(const uint32_t number_of_words,
+                          const uint32_t number_of_single_syllable_words)
         {
         if (number_of_words == 0)
             { throw std::domain_error("invalid word count."); }
@@ -1604,9 +1622,10 @@ namespace readability
         @param number_of_hard_words The number of hard words.
         @param number_of_sentences The number of sentences.
         @returns The calculated grade level.*/
-    [[nodiscard]] inline double gunning_fog(const size_t number_of_words,
-                                            const size_t number_of_hard_words,
-                                            const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double gunning_fog(const uint32_t number_of_words,
+                              const uint32_t number_of_hard_words,
+                              const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word or sentence count."); }
@@ -1622,9 +1641,10 @@ namespace readability
         @param number_of_hard_words The number of hard words in the sample.
         @param number_of_sentences The number of sentences in the sample.
         @returns The calculated grade-level scores.*/
-    [[nodiscard]] inline double psk_gunning_fog(const size_t number_of_words,
-                                                const size_t number_of_hard_words,
-                                                const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double psk_gunning_fog(const uint32_t number_of_words,
+                                  const uint32_t number_of_hard_words,
+                                  const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word or sentence count."); }
@@ -1641,9 +1661,10 @@ namespace readability
         @param number_of_hard_words The number of hard words in the sample.
         @param number_of_sentences The number of sentences in the sample.
         @returns The calculated grade-level scores.*/
-    [[nodiscard]] inline double new_fog_count(const size_t number_of_words,
-                                              const size_t number_of_hard_words,
-                                              const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double new_fog_count(const uint32_t number_of_words,
+                                const uint32_t number_of_hard_words,
+                                const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word count."); }
@@ -1668,10 +1689,11 @@ namespace readability
         @param number_of_sentences The number of sentences in the sample.
         @param[out] difficulty_level The resulting difficulty level.
         @returns The Flesch Reading Ease index value (0-100).*/
-    [[nodiscard]] inline size_t flesch_reading_ease(
-                        const size_t number_of_words,
-                        const size_t number_of_syllables,
-                        const size_t number_of_sentences,
+    [[nodiscard]]
+    inline size_t flesch_reading_ease(
+                        const uint32_t number_of_words,
+                        const uint32_t number_of_syllables,
+                        const uint32_t number_of_sentences,
                         flesch_difficulty& difficulty_level)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
@@ -1693,10 +1715,11 @@ namespace readability
         @param number_of_sentences The number of sentences in the sample.
         @param[out] difficulty_level The Flesch difficulty level.
         @returns A Flesch Reading Ease index score.*/
-    [[nodiscard]] inline size_t farr_jenkins_paterson(const size_t number_of_words,
-                                                      const size_t number_of_monosyllabic_words,
-                                                      const size_t number_of_sentences,
-                                                      flesch_difficulty& difficulty_level)
+    [[nodiscard]]
+    inline size_t farr_jenkins_paterson(const uint32_t number_of_words,
+                                        const uint32_t number_of_monosyllabic_words,
+                                        const uint32_t number_of_sentences,
+                                        flesch_difficulty& difficulty_level)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word or sentence count."); }
@@ -1716,9 +1739,10 @@ namespace readability
         @param number_of_monosyllabic_words The number of 1-syllable words in the sample.
         @param number_of_sentences The number of sentences in the sample.
         @returns The calculated grade-level score.*/
-    [[nodiscard]] inline double new_farr_jenkins_paterson(const size_t number_of_words,
-                                                          const size_t number_of_monosyllabic_words,
-                                                          const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double new_farr_jenkins_paterson(const uint32_t number_of_words,
+                                            const uint32_t number_of_monosyllabic_words,
+                                            const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word or sentence count."); }
@@ -1733,9 +1757,10 @@ namespace readability
         @param number_of_monosyllabic_words The number of 1-syllable words in the sample.
         @param number_of_sentences The number of sentences in the sample.
         @returns The calculated grade-level score.*/
-    [[nodiscard]] inline double powers_sumner_kearl_farr_jenkins_paterson(const size_t number_of_words,
-                                                                          const size_t number_of_monosyllabic_words,
-                                                                          const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double powers_sumner_kearl_farr_jenkins_paterson(const uint32_t number_of_words,
+                                                            const uint32_t number_of_monosyllabic_words,
+                                                            const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word or sentence count."); }
@@ -1753,10 +1778,11 @@ namespace readability
         @param number_of_units The number of units (i.e., sentences) in the sample.
         @param[out] index_score The calculated index score.
         @returns The calculated grade-level score.*/
-    [[nodiscard]] inline size_t wheeler_smith(const size_t number_of_words,
-                        const size_t number_of_polysyllabic_words,
-                        const size_t number_of_units,
-                        double& index_score)
+    [[nodiscard]]
+    inline size_t wheeler_smith(const uint32_t number_of_words,
+                                const uint32_t number_of_polysyllabic_words,
+                                const uint32_t number_of_units,
+                                double& index_score)
         {
         if (number_of_words == 0 || number_of_units == 0)
             { throw std::domain_error("invalid word or unit count."); }
@@ -1788,10 +1814,11 @@ namespace readability
         @param number_of_syllables The number of syllables in the sample.
         @param number_of_sentences The number of sentences in the sample.
         @returns The calculated grade-level score.*/
-    [[nodiscard]] inline double flesch_kincaid(
-                        size_t number_of_words,
-                        size_t number_of_syllables,
-                        size_t number_of_sentences)
+    [[nodiscard]]
+    inline double flesch_kincaid(
+                        const uint32_t number_of_words,
+                        const uint32_t number_of_syllables,
+                        const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word/sentence count."); }
@@ -1806,10 +1833,11 @@ namespace readability
         @param number_of_syllables The number of syllables in the sample.
         @param number_of_sentences The number of sentences in the sample.
         @returns The calculated grade-level score.*/
-    [[nodiscard]] inline double flesch_kincaid_simplified(
-                        size_t number_of_words,
-                        size_t number_of_syllables,
-                        size_t number_of_sentences)
+    [[nodiscard]]
+    inline double flesch_kincaid_simplified(
+                        const uint32_t number_of_words,
+                        const uint32_t number_of_syllables,
+                        const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word/sentence count."); }
@@ -1824,9 +1852,10 @@ namespace readability
         @param number_of_syllables The number of syllables.
         @param number_of_sentences The number of sentences.
         @returns The calculated grade level.*/
-    [[nodiscard]] inline double powers_sumner_kearl_flesch(size_t number_of_words,
-                                                           size_t number_of_syllables,
-                                                           size_t number_of_sentences)
+    [[nodiscard]]
+    inline double powers_sumner_kearl_flesch(const uint32_t number_of_words,
+                                             const uint32_t number_of_syllables,
+                                             const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word/sentence count."); }

@@ -60,9 +60,9 @@ namespace readability
         @throws std::domain_error If either @c number_of_words or @c number_of_sentence_units is @c 0,
                 throws an exception.*/
     [[nodiscard]]
-    inline double rix_bamberger_vanecek(const size_t number_of_words,
-                                        const size_t number_of_long_words,
-                                        const size_t number_of_sentence_units)
+    inline double rix_bamberger_vanecek(const uint32_t number_of_words,
+                                        const uint32_t number_of_long_words,
+                                        const uint32_t number_of_sentence_units)
         {
         if (number_of_words == 0 || number_of_sentence_units == 0)
             { throw std::domain_error("invalid word/sentence count."); }
@@ -266,11 +266,11 @@ namespace readability
         @throws std::domain_error If either @c number_of_words or @c number_of_sentence_units is @c 0,
                 throws an exception.*/
     [[nodiscard]]
-    inline double neue_wiener_sachtextformel_1(const size_t number_of_words,
-                                               const size_t number_of_monosyllabic_words,
-                                               const size_t number_of_hard_words,
-                                               const size_t number_of_long_words,
-                                               const size_t number_of_sentences)
+    inline double neue_wiener_sachtextformel_1(const uint32_t number_of_words,
+                                               const uint32_t number_of_monosyllabic_words,
+                                               const uint32_t number_of_hard_words,
+                                               const uint32_t number_of_long_words,
+                                               const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word/sentence count."); }
@@ -295,10 +295,11 @@ namespace readability
         @returns The US grade level of the document.
         @throws std::domain_error If either @c number_of_words or @c number_of_sentence_units is @c 0,
                 throws an exception.*/
-    [[nodiscard]] inline double neue_wiener_sachtextformel_2(const size_t number_of_words,
-                                                             const size_t number_of_hard_words,
-                                                             const size_t number_of_long_words,
-                                                             const size_t number_of_sentences)
+    [[nodiscard]]
+    inline double neue_wiener_sachtextformel_2(const uint32_t number_of_words,
+                                               const uint32_t number_of_hard_words,
+                                               const uint32_t number_of_long_words,
+                                               const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word/sentence count."); }
@@ -321,9 +322,9 @@ namespace readability
         @throws std::domain_error If either @c number_of_words or @c number_of_sentence_units is @c 0,
                 throws an exception.*/
     [[nodiscard]]
-    inline double neue_wiener_sachtextformel_3(const size_t number_of_words,
-                                               const size_t number_of_hard_words,
-                                               const size_t number_of_sentences)
+    inline double neue_wiener_sachtextformel_3(const uint32_t number_of_words,
+                                               const uint32_t number_of_hard_words,
+                                               const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word/sentence count."); }
@@ -380,10 +381,11 @@ namespace readability
         @returns The calculated grade level (between 1 - 10.9).
         @throws std::domain_error If either @c number_of_words or @c number_of_sentence_units is @c 0,
                 throws an exception.*/
-    [[nodiscard]] inline double wheeler_smith_bamberger_vanecek(const size_t number_of_words,
-                                                                const size_t number_of_polysyllabic_words,
-                                                                const size_t number_of_units,
-                                                                double& index_score)
+    [[nodiscard]]
+    inline double wheeler_smith_bamberger_vanecek(const uint32_t number_of_words,
+                                                  const uint32_t number_of_polysyllabic_words,
+                                                  const uint32_t number_of_units,
+                                                  double& index_score)
         {
         if (number_of_words == 0 || number_of_units == 0)
             { throw std::domain_error("invalid word or unit count."); }
@@ -429,8 +431,8 @@ namespace readability
         @returns The grade-level score.
         @throws std::domain_error If @c number_of_sentence_units is @c 0,
                 throws an exception.*/
-    [[nodiscard]] inline double smog_bamberger_vanecek(const size_t number_of_hard_words,
-                                                       const size_t number_of_sentences)
+    [[nodiscard]] inline double smog_bamberger_vanecek(const uint32_t number_of_hard_words,
+                                                       const uint32_t number_of_sentences)
         {
         if (number_of_sentences == 0)
             { throw std::domain_error("invalid sentence count."); }
@@ -448,9 +450,9 @@ namespace readability
         @throws std::domain_error If either @c number_of_words or @c number_of_sentence_units is @c 0,
                 throws an exception.*/
     [[nodiscard]]
-    inline double quadratwurzelverfahren_bamberger_vanecek(const size_t number_of_words,
-                                                           const size_t number_of_hard_words,
-                                                           const size_t number_of_sentences)
+    inline double quadratwurzelverfahren_bamberger_vanecek(const uint32_t number_of_words,
+                                                           const uint32_t number_of_hard_words,
+                                                           const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word/sentence count."); }
@@ -476,9 +478,9 @@ namespace readability
         @throws std::domain_error If either @c number_of_words or @c number_of_sentence_units is @c 0,
                 throws an exception.*/
     [[nodiscard]]
-    inline size_t amstad(const size_t number_of_words,
-                         const size_t number_of_syllables,
-                         const size_t number_of_sentences,
+    inline size_t amstad(const uint32_t number_of_words,
+                         const uint32_t number_of_syllables,
+                         const uint32_t number_of_sentences,
                          flesch_difficulty& difficulty_level)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
