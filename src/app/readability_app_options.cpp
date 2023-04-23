@@ -11,7 +11,6 @@ using namespace Wisteria::Graphs;
 wxDECLARE_APP(ReadabilityApp);
 
 ReadabilityAppOptions::ReadabilityAppOptions() :
-    m_textHighlight(TextHighlight::HighlightBackground),
     m_dolchConjunctionsColor(255, 255, 0),
     m_dolchPrepositionsColor(0, 245, 255),
     m_dolchPronounsColor(198, 226, 255),
@@ -19,6 +18,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     m_dolchAdjectivesColor(221, 160, 221),
     m_dolchVerbColor(254, 208, 112),
     m_dolchNounColor(255, 182, 193),
+    m_textHighlight(TextHighlight::HighlightBackground),
     m_textHighlightColor(152, 251, 152),
     m_excludedTextHighlightColor(175, 175, 175),
     m_duplicateWordHighlightColor(255, 128, 128),
@@ -43,7 +43,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
 
     m_startPageBackstageBackgroundColor(wxColour(145,168,208)),
     m_startPageDetailBackgroundColor(*wxWHITE),
-    //graph information
+    // graph information
     m_graphBackGroundColor(255,255,255),
     m_graphPlotBackGroundColor(255,255,255),
     m_graphBackGroundOpacity(wxALPHA_OPAQUE),
@@ -59,8 +59,8 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     m_histogramBarColor(182,164,204),//lavender
     m_barChartBarColor(107,183,196),//rain color
     m_graphBoxColor(0,128,64),
-    ///XML file constants
-    //Project file tags
+    // XML file constants
+    // project file tags
     XML_PROJECT_HEADER(_DT(L"oleander-readability-studio-project")),
     XML_DOCUMENT(_DT(L"document")),
     XML_TEXT_SOURCE(_DT(L"text-source")),
@@ -106,10 +106,10 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_READABILITY_TEST_GRADE_SCALE_DISPLAY(_DT(L"readability-test-grade-scale-display")),
     XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT(_DT(L"readability-test-grade-scale-long-format")),
     XML_NEW_DALE_CHALL_OPTIONS(_DT(L"dale-chall-options")),
+    XML_STOCKER_LIST{ _DT(L"include-stocker-catholic-supplement") },
     XML_HARRIS_JACOBSON_OPTIONS(_DT(L"harris-jacobson-options")),
     XML_GUNNING_FOG_OPTIONS(_DT(L"gunning-fog-options")),
     XML_TEXT_EXCLUSION(_DT(L"text-exclusion-mode")),
-    XML_STOCKER_LIST(_DT(L"include-stocker-catholic-supplement")),
     XML_INCLUDE_INCOMPLETE_SENTENCES_LONGER_THAN(_DT(L"include-incomplete-sentences-longer-than")),
     XML_USE_SENTENCE_UNITS(_DT(L"use-sentence-units")),
     XML_USE_HIGH_PRECISION(_DT(L"use-precision")),
@@ -235,12 +235,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR(_DT(L"dolch-adjective-font-color")),
     XML_DOLCH_VERBS_HIGHLIGHTCOLOR(_DT(L"dolch-verb-font-color")),
     XML_DOLCH_NOUNS_HIGHLIGHTCOLOR(_DT(L"dolch-noun-font-color")),
-    // general options
-    XML_LICENSE_ACCEPTED(_DT(L"license-accepted")),
-    XML_APPEARANCE(_DT(L"appearance")),
-    XML_WINDOW_MAXIMIZED(_DT(L"app-window-maximized")),
-    XML_WINDOW_WIDTH(_DT(L"app-window-width")),
-    XML_WINDOW_HEIGHT(_DT(L"app-window-height")),
+    // theming
     XML_THEME_NAME(_DT(L"theme-name")),
     XML_CONTROL_BACKGROUND_COLOR(_DT(L"control-background-color")),
     XML_RIBBON_ACTIVE_TAB_COLOR(_DT(L"ribbon-active-tab-color")),
@@ -250,18 +245,25 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_SIDEBAR_PARENT_COLOR(_DT(L"sidebar-parent-color")),
     XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR(_DT(L"start-page-backstage-background-color")),
     XML_STARTPAGE_DETAIL_BACKGROUND_COLOR(_DT(L"start-page-detail-background-color")),
-    //document linking information
-    XML_DOCUMENT_STORAGE_METHOD(_DT(L"document-storage-method")),
+    // general options
+    XML_APPEARANCE(_DT(L"appearance")),
+    XML_WINDOW_MAXIMIZED(_DT(L"app-window-maximized")),
+    XML_WINDOW_WIDTH(_DT(L"app-window-width")),
+    XML_WINDOW_HEIGHT(_DT(L"app-window-height")),
+    XML_LICENSE_ACCEPTED(_DT(L"license-accepted")),
     //project options
     XML_REVIEWER(_DT(L"project-reviewer")),
     XML_STATUS(_DT(L"project-status")),
     XML_APPENDED_DOC_PATH(_DT(L"appended-doc-path")),
-    XML_MIN_DOC_SIZE_FOR_BATCH(_DT(L"min-doc-size-for-batch")),
-    XML_RANDOM_SAMPLE_SIZE(_DT(L"random-samlple-size")),
-    XML_FILE_PATH_TRUNC_MODE(_DT(L"filepath-truncation-mode")),
+    //document linking information
+    XML_DOCUMENT_STORAGE_METHOD(_DT(L"document-storage-method")),
     //stats information
     XML_STATISTICS_RESULTS(_DT(L"statistics-results")),
     XML_STATISTICS_REPORT(_DT(L"statistics-report")),
+    //Min doc size
+    XML_MIN_DOC_SIZE_FOR_BATCH(_DT(L"min-doc-size-for-batch")),
+    XML_RANDOM_SAMPLE_SIZE(_DT(L"random-samlple-size")),
+    XML_FILE_PATH_TRUNC_MODE(_DT(L"filepath-truncation-mode")),
     //meta statistics
     XML_OFFICE_DOCUMENT_META(_DT(L"office:document-meta")),
     XML_OFFICE_DOCUMENT_META_HEADER(_DT(L"office:document-meta xmlns:office=\"urn:oasis:names:tc:opendocument:xmlns:office:1.0\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:meta=\"urn:oasis:names:tc:opendocument:xmlns:meta:1.0\"")),

@@ -684,8 +684,8 @@ bool WebHarvester::CrawlLinks(wxString& url,
     }
 
 //----------------------------------
-// cppcheck-suppress constParameter
 void WebHarvester::CrawlLink(const wxString& currentLink,
+                             // cppcheck-suppress constParameter
                              html_utilities::html_url_format& formatUrl,
                              const wxString& mainUrl, const bool isImage)
     {

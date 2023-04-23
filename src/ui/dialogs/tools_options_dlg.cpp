@@ -602,14 +602,14 @@ void ToolsOptionsDlg::OnDolchNounHighlightColorSelect([[maybe_unused]] wxCommand
 ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= nullptr*/,
                                  const ToolSections sectionsToInclude /*= AllSections*/)  :
     m_readabilityProjectDoc(project),
-    // general program options needs to show everything
-    m_sectionsBeingShown(project ? sectionsToInclude : AllSections),
     // project settings
     m_projectLanguage(static_cast<int>(project ? project->GetProjectLanguage() : wxGetApp().GetAppOptions().GetProjectLanguage())),
     m_reviewer(project ? project->GetReviewer() : wxGetApp().GetAppOptions().GetReviewer()),
     m_status(project ? project->GetStatus() : wxGetApp().GetAppOptions().GetStatus()),
     m_description((project && project->GetSourceFilesInfo().size()) ? project->GetSourceFilesInfo().at(0).second : wxString()),
     m_appendedDocumentFilePath(project ? project->GetAppendedDocumentFilePath() : wxGetApp().GetAppOptions().GetAppendedDocumentFilePath()),
+    // general program options needs to show everything
+    m_sectionsBeingShown(project ? sectionsToInclude : AllSections),
     // document storage/linking information
     m_documentStorageMethod(project ? static_cast<int>(project->GetDocumentStorageMethod()) : static_cast<int>(wxGetApp().GetAppOptions().GetDocumentStorageMethod())),
     m_filePath(project ? project->GetOriginalDocumentFilePath() : wxString{}),
@@ -662,8 +662,8 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
     m_includeExcludedPhraseFirstOccurrence(project ? project->IsIncludingExcludedPhraseFirstOccurrence() : wxGetApp().GetAppOptions().IsIncludingExcludedPhraseFirstOccurrence() ),
     m_exclusionBlockTags(project ? project->GetExclusionBlockTags() : wxGetApp().GetAppOptions().GetExclusionBlockTags()),
     // header/list analysis
-    m_textExclusionMethod(project ? static_cast<int>(project->GetInvalidSentenceMethod()) : static_cast<int>(wxGetApp().GetAppOptions().GetInvalidSentenceMethod())),
     m_includeIncompleteSentencesIfLongerThan(project ? project->GetIncludeIncompleteSentencesIfLongerThanValue() : wxGetApp().GetAppOptions().GetIncludeIncompleteSentencesIfLongerThanValue()),
+    m_textExclusionMethod(project ? static_cast<int>(project->GetInvalidSentenceMethod()) : static_cast<int>(wxGetApp().GetAppOptions().GetInvalidSentenceMethod())),
     // title/font options
     m_xAxisFontColor(project ? project->GetXAxisFontColor() : wxGetApp().GetAppOptions().GetXAxisFontColor()),
     m_xAxisFont(project ? project->GetXAxisFont() : wxGetApp().GetAppOptions().GetXAxisFont()),

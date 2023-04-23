@@ -1020,10 +1020,12 @@ public:
     [[nodiscard]] wxString GetDocumentFilter() const;
 private:
     void LoadThemeNode(tinyxml2::XMLElement* appearanceNode);
-    [[nodiscard]] wxString TiXmlNodeToString(const tinyxml2::XMLNode* node, const wxString& tagToRead);
+    [[nodiscard]]
+    wxString TiXmlNodeToString(const tinyxml2::XMLNode* node, const wxString& tagToRead);
     /// @returns The value from the specified attribute from @c node as a double, or NaN on failure.
     /// @note This assumes the double is written in US format (and no thousands separator).
-    [[nodiscard]] double TiXmlNodeToDouble(const tinyxml2::XMLNode* node, const wxString& tagToRead);
+    [[nodiscard]]
+    double TiXmlNodeToDouble(const tinyxml2::XMLNode* node, const wxString& tagToRead);
     wxColour m_dolchConjunctionsColor;
     wxColour m_dolchPrepositionsColor;
     wxColour m_dolchPronounsColor;
@@ -1257,7 +1259,7 @@ public:
     const wxString XML_CONFIG_HEADER;
     const wxString XML_WIZARD_PAGES_SETTINGS;
     const wxString XML_PROJECT_LANGUAGE;
-    //test settings
+    // test settings
     const wxString XML_READABILITY_TEST_GRADE_SCALE_DISPLAY;
     const wxString XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT;
     const wxString XML_NEW_DALE_CHALL_OPTIONS;
@@ -1271,7 +1273,7 @@ public:
     const wxString XML_PROPER_NOUN_COUNTING_METHOD;
     const wxString XML_FLESCH_OPTIONS;
     const wxString XML_FLESCH_KINCAID_OPTIONS;
-    //custom test settings
+    // custom test settings
     const wxString XML_TEST_BUNDLES;
     const wxString XML_TEST_BUNDLE;
     const wxString XML_TEST_BUNDLE_NAME;
