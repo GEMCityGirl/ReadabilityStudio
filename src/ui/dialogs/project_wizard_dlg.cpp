@@ -1325,8 +1325,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
         wxGetApp().m_harvesterOptions.GetDownloadDirectory(),
         wxGetApp().m_harvesterOptions.GetUserAgent(),
         static_cast<int>(wxGetApp().m_harvesterOptions.GetDomainRestriction()),
-        wxGetApp().m_harvesterOptions.GetAllowableWebFolders(),
-        static_cast<int>(wxGetApp().m_harvesterOptions.GetMinimumDownloadFileSizeInKilobytes()));
+        wxGetApp().m_harvesterOptions.GetAllowableWebFolders());
     webHarvestDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"web-harvester.html");
     if (webHarvestDlg.ShowModal() != wxID_OK)
         { return; }

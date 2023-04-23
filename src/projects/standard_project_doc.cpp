@@ -2102,7 +2102,7 @@ void ProjectDoc::DisplayWordCharts()
             wordBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
             std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0,0))->SetSortable(true);
             std::dynamic_pointer_cast<BarChart>(
-                wordBarChartCanvas->GetFixedObject(0,0))->SetSortDirection(Wisteria::SortDirection::SortDescending);
+                wordBarChartCanvas->GetFixedObject(0, 0))->SetSortDirection(Wisteria::SortDirection::SortDescending);
             view->GetWordsBreakdownView().InsertWindow(0, wordBarChartCanvas);
             }
         UpdateGraphOptions(wordBarChartCanvas);
