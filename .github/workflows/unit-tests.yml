@@ -23,6 +23,7 @@ jobs:
              cmake ./
              make -j4
              cd bin
+             ls
              ./RSTestRunner --reporter JUnit::out=rs-junit.xml
              cat rs-junit.xml
              errors=$(cat rs-junit.xml | grep -Po '(errors)="\K[^"]*')
