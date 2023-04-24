@@ -6,6 +6,7 @@
 #include "../src/indexing/spanish_syllabize.h"
 #include "../src/indexing/german_syllabize.h"
 #include "../src/indexing/word.h"
+#include "../src/indexing/word_functional.h"
 
 using namespace grammar;
 
@@ -13,6 +14,118 @@ using MYWORD = word<traits::case_insensitive_ex,
     stemming::english_stem<std::basic_string<wchar_t, traits::case_insensitive_ex> > >;
 
 extern word_list Stop_list;
+
+TEST_CASE("Spell checker", "[spellchecker]")
+    {
+    SECTION("Hashtag")
+        {
+        word_list knownWords;
+        word_list customKnownWords;
+        knownWords.load_words(L"the cat in cat is all about that", true, true);
+        is_correctly_spelled_word<MYWORD, word_list> spellCheck(&knownWords, &customKnownWords, nullptr, false, false, false, false, false, true, false);
+        is_social_media_tag<MYWORD> isSmTag;
+        MYWORD theWord(L"#WeAreOne");
+        theWord.set_social_media_tag(isSmTag(theWord));
+        CHECK(!spellCheck(theWord));
+        spellCheck.ignore_social_media_tags(true);
+        CHECK(spellCheck(theWord));
+        }
+    SECTION("Known Words")
+        {
+        word_list knownWords;
+        word_list customKnownWords;
+        knownWords.load_words(L"the cat in cat is all about that", true, true);
+        is_correctly_spelled_word<MYWORD,word_list> spellCheck(&knownWords, &customKnownWords, nullptr, false, false, false, false, false, true, true);
+        CHECK(spellCheck(MYWORD(L"THE")));
+        CHECK(spellCheck(MYWORD(L"Cat")));
+        CHECK(spellCheck(MYWORD(L"cats")) == false);
+        CHECK(spellCheck(MYWORD(L"in")));
+        CHECK(spellCheck(MYWORD(L"is")));
+        CHECK(spellCheck(MYWORD(L"All")));
+        CHECK(spellCheck(MYWORD(L"aBout")));
+        CHECK(spellCheck(MYWORD(L"tHat")));
+        CHECK(spellCheck(MYWORD(L"")) == false);
+        }
+    SECTION("Custom Words")
+        {
+        word_list knownWords;
+        word_list customKnownWords;
+        knownWords.load_words(L"the cat in cat is all about that", true, true);
+        customKnownWords.add_word(L"cats");
+        customKnownWords.add_word(L"dogs");
+        is_correctly_spelled_word<MYWORD,word_list> spellCheck(&knownWords, &customKnownWords, nullptr, false, false, false, false, false, true, true);
+        CHECK(spellCheck(MYWORD(L"THE")));
+        CHECK(spellCheck(MYWORD(L"Cat")));
+        CHECK(spellCheck(MYWORD(L"cats")));
+        CHECK(spellCheck(MYWORD(L"dogs")));
+        CHECK(spellCheck(MYWORD(L"in")));
+        CHECK(spellCheck(MYWORD(L"is")));
+        CHECK(spellCheck(MYWORD(L"All")));
+        CHECK(spellCheck(MYWORD(L"aBout")));
+        CHECK(spellCheck(MYWORD(L"tHat")));
+        CHECK(spellCheck(MYWORD(L"")) == false);
+        }
+    SECTION("Programmer Code")
+        {
+        word_list knownWords;
+        word_list customKnownWords;
+        word_list programmerWords;
+        knownWords.load_words(L"the cat in cat is all about that", true, true);
+        programmerWords.load_words(L"printf is.null true", true, true);
+        is_correctly_spelled_word<MYWORD,word_list> spellCheck(&knownWords, &customKnownWords, &programmerWords, false, false, false, false, true, true, true);
+        CHECK(spellCheck(MYWORD(L"camelCaseWord")));
+        CHECK(spellCheck(MYWORD(L"printf")));
+        CHECK(spellCheck(MYWORD(L"is.null")));
+        CHECK(spellCheck(MYWORD(L"graph2D")));
+        CHECK(spellCheck(MYWORD(L"Text1")));
+        CHECK(spellCheck(MYWORD(L"CAPS",4,0,0,0,false,true,false,true,1,0)));
+        CHECK(spellCheck(MYWORD(L"Za",4,0,0,0,false,true,false,false,1,0)) == false);
+        CHECK(spellCheck(MYWORD(L"ZZ",4,0,0,0,false,true,false,true,1,0)));
+        CHECK(spellCheck(MYWORD(L"500",4,0,0,0,true,true,false,false,1,0)));
+        CHECK(spellCheck(MYWORD(L"_MyVar")));
+        CHECK(spellCheck(MYWORD(L"%s%d")));
+        CHECK(spellCheck(MYWORD(L"Value")) == false);
+        CHECK(spellCheck(MYWORD(L"$Value")));
+        CHECK(spellCheck(MYWORD(L"pragma")) == false);
+        CHECK(spellCheck(MYWORD(L"#pragma")));
+        CHECK(spellCheck(MYWORD(L"&about")));//UI strings should have & removed and then spell checked
+        CHECK(spellCheck(MYWORD(L"a&bout")));
+        CHECK(spellCheck(MYWORD(L"a&bout-cat")));
+        CHECK(spellCheck(MYWORD(L"&&")));
+        CHECK(spellCheck(MYWORD(L"the\\ncat")));
+        CHECK(spellCheck(MYWORD(L"the\\ncatz")) == false);
+        }
+    }
+
+TEST_CASE("Social Media", "[social-media]")
+    {
+    SECTION("Non Hashtag")
+        {
+        is_social_media_tag<MYWORD> isSmTag;
+        CHECK_FALSE(isSmTag(MYWORD(L"THE")));
+        CHECK_FALSE(isSmTag(MYWORD(L"THE#ME")));
+        }
+
+    SECTION("Hashtag")
+        {
+        is_social_media_tag<MYWORD> isSmTag;
+        CHECK(isSmTag(MYWORD(L"#WeAreOne")));
+        CHECK_FALSE(isSmTag(MYWORD(L"#We"))); // too short
+        MYWORD longNumber(L"#WeAre1");
+        longNumber.set_numeric(characters::is_character::is_numeric(longNumber.c_str(), longNumber.length()));
+        CHECK(isSmTag(longNumber));
+        }
+
+    SECTION("Number")
+        {
+        is_social_media_tag<MYWORD> isSmTag;
+        CHECK_FALSE(isSmTag(MYWORD(L"#1")));
+        MYWORD longNumber(L"#10025");
+        longNumber.set_numeric(characters::is_character::is_numeric(longNumber.c_str(), longNumber.length()));
+        CHECK_FALSE(isSmTag(longNumber));
+        CHECK_FALSE(isSmTag(MYWORD(L"#")));
+        }
+    }
 
 TEST_CASE("Word Functors", "[word]")
     {

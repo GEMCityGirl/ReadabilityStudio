@@ -36,8 +36,8 @@ ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ../src/indexing/article.cpp ../src/indexing
 acronymtests.cpp articletests.cpp documenttests.cpp englishsyllabletests.cpp
 germansyllabletests.cpp sentencetests.cpp wordfunctortests.cpp
 conjunctiontests.cpp ischartests.cpp contractiontests.cpp
-doublewordtests.cpp abbreviationtests.cpp stringtests.cpp
-romanizetests.cpp readingtests.cpp
+doublewordtests.cpp grammartests.cpp stringtests.cpp
+romanizetests.cpp readingtests.cpp wordlisttests.cpp chartraitstext.cpp
 testingmain.cpp)
 IF(MSVC)
     TARGET_COMPILE_DEFINITIONS(${CMAKE_PROJECT_NAME} PUBLIC _CRT_SECURE_NO_WARNINGS __UNITTEST)

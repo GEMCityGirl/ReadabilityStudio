@@ -6,6 +6,181 @@
 #include "../src/readability/english_readability.h"
 
 using namespace Catch::Matchers;
+using namespace readability;
+
+TEST_CASE("Lix tests", "[lix][readability-tests]")
+    {
+    SECTION("LIX Indices")
+        {
+        CHECK(readability::lix_index_to_difficulty_level(5) == lix_difficulty::lix_very_easy);
+        CHECK(readability::lix_index_to_difficulty_level(21) == lix_difficulty::lix_very_easy);
+        CHECK(readability::lix_index_to_difficulty_level(25) == lix_difficulty::lix_very_easy);
+        CHECK(readability::lix_index_to_difficulty_level(29) == lix_difficulty::lix_very_easy);
+        CHECK(readability::lix_index_to_difficulty_level(30) == lix_difficulty::lix_easy);
+        CHECK(readability::lix_index_to_difficulty_level(34) == lix_difficulty::lix_easy);
+        CHECK(readability::lix_index_to_difficulty_level(35) == lix_difficulty::lix_easy);
+        CHECK(readability::lix_index_to_difficulty_level(39) == lix_difficulty::lix_easy);
+        CHECK(readability::lix_index_to_difficulty_level(40) == lix_difficulty::lix_average);
+        CHECK(readability::lix_index_to_difficulty_level(44) == lix_difficulty::lix_average);
+        CHECK(readability::lix_index_to_difficulty_level(45) == lix_difficulty::lix_average);
+        CHECK(readability::lix_index_to_difficulty_level(49) == lix_difficulty::lix_average);
+        CHECK(readability::lix_index_to_difficulty_level(50) == lix_difficulty::lix_difficult);
+        CHECK(readability::lix_index_to_difficulty_level(54) == lix_difficulty::lix_difficult);
+        CHECK(readability::lix_index_to_difficulty_level(55) == lix_difficulty::lix_difficult);
+        CHECK(readability::lix_index_to_difficulty_level(59) == lix_difficulty::lix_difficult);
+        CHECK(readability::lix_index_to_difficulty_level(60) == lix_difficulty::lix_very_difficult);
+        CHECK(readability::lix_index_to_difficulty_level(99) == lix_difficulty::lix_very_difficult);
+        }
+    SECTION("LIX")
+        {
+        size_t grade_level;
+        readability::lix_difficulty diffLevel;
+        CHECK(24 == readability::lix(diffLevel, grade_level, 490582, 70206, 48544));
+        CHECK(lix_difficulty::lix_very_easy == diffLevel);
+        CHECK(38 == readability::lix(diffLevel, grade_level, 128409, 33373, 10514));
+        CHECK(lix_difficulty::lix_easy == diffLevel);
+
+        CHECK(readability::lix(diffLevel, grade_level, 945, 221, 78) == 36);
+        CHECK(diffLevel == lix_difficulty::lix_easy);
+        }
+    SECTION("LIXGradeLevels")
+        {
+        size_t grade_level;
+        readability::lix_difficulty diffLevel;
+
+        [[maybe_unused]] auto res = readability::lix(diffLevel, grade_level, 945, 10, 150);
+        CHECK(grade_level == 1);
+
+        res = readability::lix(diffLevel, grade_level, 945, 10, 100);
+        CHECK(grade_level == 2);
+
+        res = readability::lix(diffLevel, grade_level, 945, 70, 100);
+        CHECK(grade_level == 3);
+
+        res = readability::lix(diffLevel, grade_level, 945, 80, 78);
+        CHECK(grade_level == 4);
+
+        res = readability::lix(diffLevel, grade_level, 490582, 70206, 48544);
+        CHECK(grade_level == 5);
+
+        res = readability::lix(diffLevel, grade_level, 945, 170, 78);
+        CHECK(grade_level == 6);
+
+        res = readability::lix(diffLevel, grade_level, 955, 221, 78);
+        CHECK(grade_level == 7);
+
+        res = readability::lix(diffLevel, grade_level, 128409, 33373, 10514);
+        CHECK(grade_level == 8);
+
+        res = readability::lix(diffLevel, grade_level, 965, 300, 78);
+        CHECK(grade_level == 9);
+
+        res = readability::lix(diffLevel, grade_level, 945, 320, 85);
+        CHECK(grade_level == 10);
+
+        res = readability::lix(diffLevel, grade_level, 945, 350, 78);
+        CHECK(grade_level == 11);
+
+        res = readability::lix(diffLevel, grade_level, 945, 400, 78);
+        CHECK(grade_level == 12);
+
+        res = readability::lix(diffLevel, grade_level, 945, 500, 78);
+        CHECK(grade_level == 13);
+        }
+    SECTION("LIX Exceptions 1")
+        {
+        size_t grade_level;
+        readability::lix_difficulty diffLevel;
+        CHECK_THROWS(readability::lix(diffLevel, grade_level, 0, 221, 78));
+        }
+    SECTION("LIX Exceptions 2")
+        {
+        size_t grade_level;
+        readability::lix_difficulty diffLevel;
+        CHECK_THROWS(readability::lix(diffLevel, grade_level, 945, 224, 0));
+        }
+    }
+
+TEST_CASE("Wheeler Smith German tests", "[wheeler-smith][readability-tests]")
+    {
+    SECTION("WheelerSmithRangeHelperTest")
+        {
+        double score;
+        CHECK(readability::wheeler_smith_get_score_from_range(4.8, 2.5, 6, 1, score));
+        CHECK_THAT(1.6, WithinRel(score, 1e-4));
+        }
+    SECTION("WheelerSmithRange")
+        {
+        double indexScore;
+        CHECK_THAT(1, WithinRel(readability::wheeler_smith_bamberger_vanecek(100, 0, 50, indexScore), 1e-4));
+        CHECK_THAT(10.9, WithinRel(readability::wheeler_smith_bamberger_vanecek(100, 100, 2, indexScore), 1e-4));
+        }
+    SECTION("WheelerSmithTest")
+        {
+        double indexScore;
+        CHECK_THAT(1, WithinRel(readability::wheeler_smith_bamberger_vanecek(1000, 28, 108, indexScore), 1e-4));
+        CHECK_THAT(2.5, WithinRel(indexScore, 1e-4));
+
+        CHECK_THAT(1.6, WithinRel(readability::wheeler_smith_bamberger_vanecek(1000, 58, 119, indexScore), 1e-4));
+        CHECK_THAT(4.8, WithinRel(indexScore, 1e-4));
+
+        //book says 4.3, but really 4.4
+        CHECK_THAT(1.5, WithinRel(readability::wheeler_smith_bamberger_vanecek(1000, 53, 120, indexScore), 1e-4));
+        CHECK_THAT(4.4, WithinRel(indexScore, 1e-4));
+
+        CHECK_THAT(2.6, WithinRel(readability::wheeler_smith_bamberger_vanecek(1000, 82, 105, indexScore), 1e-4));
+        CHECK_THAT(7.8, WithinRel(indexScore, 1e-4));
+
+        //book says 6.5 and 2.2, but should be 6.4 and 2.1. You would only get the numbers
+        //they report if the index score was rounded, but they truncate everywhere else.
+        //it must be a typo in the book.
+        CHECK_THAT(2.1, WithinRel(readability::wheeler_smith_bamberger_vanecek(1000, 72, 111, indexScore), 1e-4));
+        CHECK_THAT(6.4, WithinRel(indexScore, 1e-4));
+
+        CHECK_THAT(3.4, WithinRel(readability::wheeler_smith_bamberger_vanecek(1000, 110, 105, indexScore), 1e-4));
+        CHECK_THAT(10.4, WithinRel(indexScore, 1e-4));
+
+        //book says 9.2, but really 9.3
+        CHECK_THAT(3.1, WithinRel(readability::wheeler_smith_bamberger_vanecek(1000, 85, 91, indexScore), 1e-4));
+        CHECK_THAT(9.3, WithinRel(indexScore, 1e-4));
+
+        //book says 4.8 score and index score of 15.5, but a simple (12*13)/10
+        //of course yields 15.6.  Obviously a math error in the book, we will test against
+        //the correct numbers
+        CHECK_THAT(4.9, WithinRel(readability::wheeler_smith_bamberger_vanecek(1000, 130, 83, indexScore), 1e-4));
+        CHECK_THAT(15.6, WithinRel(indexScore, 1e-4));
+
+        CHECK_THAT(4.1, WithinRel(readability::wheeler_smith_bamberger_vanecek(1000, 120, 95, indexScore), 1e-4));
+        CHECK_THAT(12.6, WithinRel(indexScore, 1e-4));
+
+        CHECK_THAT(5.7, WithinRel(readability::wheeler_smith_bamberger_vanecek(1000, 150, 80, indexScore), 1e-4));
+        CHECK_THAT(18.7, WithinRel(indexScore, 1e-4));
+
+        //The book reports a score of 5.2 and 16.5, but that's not even close.
+        //(11.8*13)/10 is 15.3, not 16.5.  The book is just egregiously wrong on this example,
+        //so we will just use the correct numbers here.
+        CHECK_THAT(4.8, WithinRel(readability::wheeler_smith_bamberger_vanecek(10000, 1300, 847, indexScore), 1e-4));
+        CHECK_THAT(15.3, WithinRel(indexScore, 1e-4));
+
+        //book says 6.3, but should be 6.4: (21.7-20.1 = 1.6; 1.6/4(the range) = .4; 6+.4=6.4)
+        CHECK_THAT(6.4, WithinRel(readability::wheeler_smith_bamberger_vanecek(1000, 150, 69, indexScore), 1e-4));
+        CHECK_THAT(21.7, WithinRel(indexScore, 1e-4));
+
+        //book says 6.6, but should be 6.7: (23-20.1=2.9; 2.9/4 = .725; 6+7.25 (round or truncated) = 6.7
+        CHECK_THAT(6.7, WithinRel(readability::wheeler_smith_bamberger_vanecek(1000000, 130000, 56497, indexScore), 1e-4));
+        CHECK_THAT(23, WithinRel(indexScore, 1e-4));
+        }
+    SECTION("Wheeler Smith Test Exceptions 1")
+        {
+        double index;
+        CHECK_THROWS(readability::wheeler_smith_bamberger_vanecek(0, 20, 12, index));
+        }
+    SECTION("Wheeler Smith Test Exceptions 2")
+        {
+        double index;
+        CHECK_THROWS(readability::wheeler_smith_bamberger_vanecek(10, 10, 0, index));
+        }
+    }
 
 TEST_CASE("Fog tests", "[fog][readability-tests]")
     {
