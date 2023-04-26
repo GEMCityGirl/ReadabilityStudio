@@ -431,8 +431,9 @@ namespace readability
         @returns The grade-level score.
         @throws std::domain_error If @c number_of_sentence_units is @c 0,
                 throws an exception.*/
-    [[nodiscard]] inline double smog_bamberger_vanecek(const uint32_t number_of_hard_words,
-                                                       const uint32_t number_of_sentences)
+    [[nodiscard]]
+    inline double smog_bamberger_vanecek(const uint32_t number_of_hard_words,
+                                         const uint32_t number_of_sentences)
         {
         if (number_of_sentences == 0)
             { throw std::domain_error("invalid sentence count."); }

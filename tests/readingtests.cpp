@@ -7,6 +7,299 @@
 
 using namespace Catch::Matchers;
 using namespace readability;
+TEST_CASE("Rix tests", "[rix][readability-tests]")
+    {
+    SECTION("RIX")
+        {
+        size_t grade_level;
+        CHECK_THAT(readability::rix(grade_level, 70206, 48544), WithinRel(1.4, 1e-1));
+        CHECK_THAT(readability::rix(grade_level, 33373, 10514), WithinRel(3.2, 1e-1));
+        CHECK_THAT(readability::rix(grade_level, 221, 78), WithinRel(2.8, 1e-1));
+        }
+    SECTION("Grade Levels")
+        {
+        size_t grade_level;
+        [[maybe_unused]] auto b = readability::rix(grade_level, 10, 150);
+        CHECK(grade_level == 1);
+
+        b = readability::rix(grade_level, 30, 100);
+        CHECK(grade_level == 2);
+
+        b = readability::rix(grade_level, 70, 100);
+        CHECK(grade_level == 3);
+
+        b = readability::rix(grade_level, 80, 78);
+        CHECK(grade_level == 4);
+
+        b = readability::rix(grade_level, 70206, 48544);
+        CHECK(grade_level == 5);
+
+        b = readability::rix(grade_level, 170, 78);
+        CHECK(grade_level == 6);
+
+        b = readability::rix(grade_level, 221, 78);
+        CHECK(grade_level == 7);
+
+        b = readability::rix(grade_level, 33373, 10514);
+        CHECK(grade_level == 8);
+
+        b = readability::rix(grade_level, 300, 78);
+        CHECK(grade_level == 9);
+
+        b = readability::rix(grade_level, 400, 85);
+        CHECK(grade_level == 10);
+
+        b = readability::rix(grade_level, 420, 78);
+        CHECK(grade_level == 11);
+
+        b = readability::rix(grade_level, 500, 78);
+        CHECK(grade_level == 12);
+
+        b = readability::rix(grade_level, 600, 78);
+        CHECK(grade_level == 13);
+        }
+    SECTION("Exceptions")
+        {
+        size_t grade_level;
+        CHECK_THROWS(readability::rix(grade_level, 945, 0));
+        }
+    }
+
+TEST_CASE("Flesch tests", "[flesch][readability-tests]")
+    {
+    SECTION("Difficulty Levels")
+        {
+        for (size_t i = 0; i < 30; ++i)
+            { CHECK(flesch_difficulty::flesch_very_difficult == flesch_score_to_difficulty_level(i)); }
+        for (size_t i = 30; i < 49; ++i)
+            { CHECK(flesch_difficulty::flesch_difficult == flesch_score_to_difficulty_level(i)); }
+        for (size_t i = 50; i < 59; ++i)
+            { CHECK(flesch_difficulty::flesch_fairly_difficult == flesch_score_to_difficulty_level(i)); }
+        for (size_t i = 60; i < 69; ++i)
+            { CHECK(flesch_difficulty::flesch_standard == flesch_score_to_difficulty_level(i)); }
+        for (size_t i = 70; i < 79; ++i)
+            { CHECK(flesch_difficulty::flesch_fairly_easy == flesch_score_to_difficulty_level(i)); }
+        for (size_t i = 80; i < 89; ++i)
+            { CHECK(flesch_difficulty::flesch_easy == flesch_score_to_difficulty_level(i)); }
+        for (size_t i = 90; i < 100; ++i)
+            { CHECK(flesch_difficulty::flesch_very_easy == flesch_score_to_difficulty_level(i)); }
+        }
+    SECTION("FleschRange")
+        {
+        readability::flesch_difficulty level;
+        CHECK(100 == readability::flesch_reading_ease(100, 100, 100, level));
+        CHECK(0 == readability::flesch_reading_ease(100, 1000, 1, level));
+        }
+    SECTION("Flesch")
+        {
+        readability::flesch_difficulty level;
+        CHECK(74 == readability::flesch_reading_ease(4770, 7020, 550, level));
+        CHECK(74 == readability::flesch_reading_ease(4770 * 2, 7020 * 2, 550 * 2, level));
+        }
+    SECTION("Flesch 2")
+        {
+        readability::flesch_difficulty level;
+        CHECK(36 == readability::flesch_reading_ease(213, 339, 6, level));
+        CHECK(36 == readability::flesch_reading_ease(213 * 2, 339 * 2, 6 * 2, level));
+        }
+    SECTION("Flesch Exceptions 1")
+        {
+        readability::flesch_difficulty level;
+        CHECK_THROWS(readability::flesch_reading_ease(0, 550, 7020, level));
+        }
+    SECTION("Flesch Exceptions 2")
+        {
+        readability::flesch_difficulty level;
+        CHECK_THROWS(readability::flesch_reading_ease(4770, 550, 0, level));
+        }
+    }
+
+TEST_CASE("Lix German tests", "[lix][german][readability-tests]")
+    {
+    SECTION("LixGermanTechnialDocumentsConversion")
+        {
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(0) == 3);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(30) == 3);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(31) == 4);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(33) == 4);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(34) == 5);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(37) == 5);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(38) == 6);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(40) == 6);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(41) == 7);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(43) == 7);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(44) == 8);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(47) == 8);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(48) == 9);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(50) == 9);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(51) == 10);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(53) == 10);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(54) == 11);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(56) == 11);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(57) == 12);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(59) == 12);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(60) == 13);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(63) == 13);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(64) == 14);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(69) == 14);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(70) == 15);
+        CHECK(readability::lix_index_to_german_technical_literature_grade_level(101) == 15);
+        }
+    SECTION("LixGermanChildrensBooksConversion")
+        {
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(7) == 1);
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(19) == 1);
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(23) == 1);
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(24) == 2);
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(26) == 2);
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(27) == 3);
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(29) == 3);
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(30) == 4);
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(31) == 4);
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(32) == 5);
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(33) == 5);
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(34) == 6);
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(35) == 6);
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(36) == 7);
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(37) == 7);
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(38) == 8);
+        CHECK(readability::lix_index_to_german_childrens_literature_grade_level(70) == 8);
+        }
+    SECTION("Difficulty Levels")
+        {
+        for (size_t i = 0; i < 29; ++i)
+            { CHECK(readability::german_lix_difficulty::german_lix_very_easy == german_lix_index_to_difficulty_level(i)); }
+        for (size_t i = 30; i < 34; ++i)
+            { CHECK(readability::german_lix_difficulty::german_lix_children_and_youth == german_lix_index_to_difficulty_level(i)); }
+        for (size_t i = 35; i < 29; ++i)
+            { CHECK(readability::german_lix_difficulty::german_lix_easy == german_lix_index_to_difficulty_level(i)); }
+        for (size_t i = 40; i < 44; ++i)
+            { CHECK(readability::german_lix_difficulty::german_lix_adult_fiction == german_lix_index_to_difficulty_level(i)); }
+        for (size_t i = 45; i < 49; ++i)
+            { CHECK(readability::german_lix_difficulty::german_lix_average == german_lix_index_to_difficulty_level(i)); }
+        for (size_t i = 50; i < 54; ++i)
+            { CHECK(readability::german_lix_difficulty::german_lix_nonfiction == german_lix_index_to_difficulty_level(i)); }
+        for (size_t i = 55; i < 59; ++i)
+            { CHECK(readability::german_lix_difficulty::german_lix_difficult == german_lix_index_to_difficulty_level(i)); }
+        for (size_t i = 60; i < 64; ++i)
+            { CHECK(readability::german_lix_difficulty::german_lix_technical == german_lix_index_to_difficulty_level(i)); }
+        for (size_t i = 65; i < 100; ++i)
+            { CHECK(readability::german_lix_difficulty::german_lix_very_difficult == german_lix_index_to_difficulty_level(i)); }
+        }
+
+    SECTION("GermanLix")
+        {
+        // should return the same index value as regular Lix
+        german_lix_difficulty diffLevel;
+        CHECK(24 == readability::german_lix(diffLevel, 490582, 70206, 48544));
+        CHECK(38 == readability::german_lix(diffLevel, 128409, 33373, 10514));
+        CHECK(36 == readability::german_lix(diffLevel, 945, 221, 78));
+        }
+    }
+
+TEST_CASE("Rix German tests", "[rix][german][readability-tests]")
+    {
+    SECTION("Rix German Non Fiction Conversion")
+        {
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(1) == 4);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(20) == 4);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(26) == 4);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(26.1) == 5);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(32) == 5);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(32.1) == 6);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(38) == 6);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(38.1) == 7);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(45) == 7);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(45.1) == 8);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(52) == 8);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(52.1) == 9);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(57) == 9);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(57.1) == 10);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(66) == 10);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(66.1) == 11);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(75) == 11);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(75.1) == 12);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(84) == 12);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(84.1) == 13);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(100) == 13);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(100.1) == 14);
+        CHECK(readability::rix_index_to_german_nonfiction_grade_level(200) == 14);
+        }
+    SECTION("Rix German Fiction Conversion")
+        {
+        CHECK(readability::rix_index_to_german_fiction_grade_level(7) == 1);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(9) == 1);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(13.5) == 1);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(13.51) == 2);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(17) == 2);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(17.1) == 3);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(20.5) == 3);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(20.51) == 4);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(24) == 4);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(24.1) == 5);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(27.5) == 5);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(27.51) == 6);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(31) == 6);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(31.1) == 7);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(34.5) == 7);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(34.51) == 8);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(38) == 8);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(38.1) == 9);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(41.5) == 9);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(41.51) == 10);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(45) == 10);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(45.1) == 11);
+        CHECK(readability::rix_index_to_german_fiction_grade_level(300) == 11);
+        }
+    SECTION("Rix German Exceptions")
+        {
+        CHECK_THROWS(readability::rix_bamberger_vanecek(0, 100, 5));
+        CHECK_THROWS(readability::rix_bamberger_vanecek(500, 100, 0));
+        }
+    }
+
+TEST_CASE("Sol tests", "[sol][readability-tests]")
+    {
+    SECTION("SolRange")
+        {
+        CHECK_THAT(0, WithinRel(readability::sol_spanish(0, 10), 1e-1));
+        CHECK_THAT(19, WithinRel(readability::sol_spanish(440, 10), 1e-2));
+        }
+    SECTION("Sol")
+        {
+        //15->8.59 (precision is a little different from article because
+        // difficult to get exactly 15 with high-precision smog)
+        CHECK_THAT(8.6, WithinRel(readability::sol_spanish(130, 30), 1e-1));
+        //25->15.99
+        CHECK_THAT(15.99, WithinRel(readability::sol_spanish(440, 30), 1e-2));
+        }
+    SECTION("Sol Exceptions")
+        {
+        CHECK_THROWS(readability::sol_spanish(520, 0));
+        }
+    }
+
+TEST_CASE("Forcast tests", "[forcast][readability-tests]")
+    {
+    SECTION("FORCAST")
+        {
+        CHECK_THAT(10.4, WithinRel(readability::forcast(150, 96), 1e-1)); // from the article
+        CHECK_THAT(12.1, WithinRel(readability::forcast(150, 79), 1e-1)); // from the secondary article
+        CHECK_THAT(9.1, WithinRel(readability::forcast(150, 109), 1e-1));
+        CHECK_THAT(9.1, WithinRel(readability::forcast(300, 218), 1e-1));
+        CHECK_THAT(9.8, WithinRel(readability::forcast(4770, 3230), 1e-1));
+        }
+    SECTION("FORCAST Range")
+        {
+        //5 is as low as this formula can logically get without throwing garbage into it
+        CHECK_THAT(5, WithinRel(readability::forcast(150, 150), 1e-1));
+        CHECK_THAT(19, WithinRel(readability::forcast(150, 0), 1e-1));
+        }
+    SECTION("FORCAST Exceptions")
+        {
+        CHECK_THROWS(readability::forcast(0, 109));
+        }
+    }
 
 TEST_CASE("Lix tests", "[lix][readability-tests]")
     {
@@ -404,5 +697,605 @@ TEST_CASE("nWS tests", "[nWS][readability-tests]")
    SECTION("nWS3 Exceptions 2")
         {
         CHECK_THROWS(readability::neue_wiener_sachtextformel_3(100, 51, 0));
+        }
+    }
+
+TEST_CASE("Coleman Liau tests", "[coleman-liau][readability-tests]")
+    {
+    SECTION("Coleman Liau Range")
+        {
+        double predScore;
+        CHECK_THAT(0, WithinRel(std::floor(readability::coleman_liau(100, 100, 50, predScore)), 1e-1));
+        CHECK_THAT(1.0, WithinRel(predScore, 1e-1));
+        CHECK_THAT(19, WithinRel(std::floor(readability::coleman_liau(100, 10000, 2, predScore)), 1e-1));
+        CHECK_THAT(-1.0, WithinRel(predScore, 1e-1));
+        }
+    SECTION("ColemanLiauExceptions1")
+        {
+        double predScore;
+        CHECK_THROWS(readability::coleman_liau(0, 114, 550, predScore));
+        }
+    SECTION("ColemanLiauExceptions2")
+        {
+        double predScore;
+        CHECK_THROWS(readability::coleman_liau(100, 114, 0, predScore));
+        }
+    }
+
+TEST_CASE("ELF tests", "[elf][readability-tests]")
+    {
+    SECTION("ELF Range")
+        {
+        CHECK_THAT(0, WithinRel(readability::easy_listening_formula(100, 100, 50), 1e-2));
+        CHECK_THAT(19, WithinRel(readability::easy_listening_formula(100, 1000, 2), 1e-2));
+        }
+    SECTION("ELF")
+        {
+        CHECK_THAT(2, WithinRel(readability::easy_listening_formula(9, 11, 1), 1e-2));
+        CHECK_THAT(5, WithinRel(readability::easy_listening_formula(10, 15, 1), 1e-2));
+        CHECK_THAT(3.5, WithinRel(readability::easy_listening_formula(19, 26, 2), 1e-2));
+        }
+    }
+
+TEST_CASE("WS tests", "[ws][readability-tests]")
+    {
+    SECTION("WheelerSmithTest")
+        {
+        double index;
+        // from article
+        CHECK(2 == readability::wheeler_smith(106, 20, 12, index));
+        CHECK_THAT(16.7, WithinRel(index, 1e-1));
+        }
+    SECTION("WheelerSmithTestExceptions1")
+        {
+        double index;
+        CHECK_THROWS(readability::wheeler_smith(0, 20, 12, index));
+        }
+    SECTION("WheelerSmithTestExceptions2")
+        {
+        double index;
+        CHECK_THROWS(readability::wheeler_smith(10, 10, 0, index));
+        }
+    }
+
+TEST_CASE("DB tests", "[db][readability-tests]")
+    {
+    SECTION("DB1Range")
+        {
+        CHECK_THAT(0, WithinRel(readability::danielson_bryan_1(200, 100, 100), 1e-1));
+        CHECK_THAT(19, WithinRel(readability::danielson_bryan_1(100, 1000, 1), 1e-1));
+        }
+    SECTION("DB2Range")
+        {
+        CHECK_THAT(100, WithinRel(readability::danielson_bryan_2(100, 200, 100), 1e-1));
+        CHECK_THAT(0, WithinRel(readability::danielson_bryan_2(100, 1000, 1), 1e-1));
+        }
+    SECTION("DB1")
+        {
+        CHECK_THAT(6.1f, WithinRel(readability::danielson_bryan_1(270, 1164, 10), 1e-1));
+        }
+    SECTION("DB2")
+        {
+        //published score is 63.9, but this was hand calculated to be 63.79. Must have been a rounding issue
+        //with the original article.
+        CHECK_THAT(63.8f, WithinRel(readability::danielson_bryan_2(270, 1164, 10), 1e-1));
+        }
+    }
+
+TEST_CASE("Test helpers tests", "[readability-tests]")
+    {
+    SECTION("Grade Truncate")
+        {
+        CHECK_THAT(readability::truncate_k12_plus_grade(19.1), WithinRel(19.0, 1e-1));
+        CHECK_THAT(readability::truncate_k12_plus_grade(-1.5), WithinRel(0, 1e-1));
+        CHECK_THAT(readability::truncate_k12_plus_grade(0), WithinRel(0, 1e-1));
+        CHECK_THAT(readability::truncate_k12_plus_grade(0.1), WithinRel(0.1, 1e-1));
+        CHECK_THAT(readability::truncate_k12_plus_grade(5.8), WithinRel(5.8, 1e-1));
+        CHECK_THAT(readability::truncate_k12_plus_grade(17.6), WithinRel(17.6, 1e-1));
+        CHECK_THAT(readability::truncate_k12_plus_grade(12.0), WithinRel(12.0, 1e-1));
+        }
+    SECTION("Grade Split")
+        {
+        size_t grade, month;
+        readability::split_k12_plus_grade_score(19.1, grade, month);
+        CHECK(grade == 19);
+        CHECK(month == 0); // 19.1 should be truncated to 19
+
+        readability::split_k12_plus_grade_score(12.0, grade, month);
+        CHECK(grade == 12);
+        CHECK(month == 0);
+
+        readability::split_k12_plus_grade_score(17.8, grade, month);
+        CHECK(grade == 17);
+        CHECK(month == 8);
+
+        readability::split_k12_plus_grade_score(-1, grade, month);
+        CHECK(grade == 0);
+        CHECK(month == 0);
+
+        readability::split_k12_plus_grade_score(0, grade, month);
+        CHECK(grade == 0);
+        CHECK(month == 0);
+
+        readability::split_k12_plus_grade_score(8.9, grade, month);
+        CHECK(grade == 8);
+        CHECK(month == 9);
+
+        readability::split_k12_plus_grade_score(3.1, grade, month);
+        CHECK(grade == 3);
+        CHECK(month == 1);
+
+        readability::split_k12_plus_grade_score(5.5, grade, month);
+        CHECK(grade == 5);
+        CHECK(month == 5);
+        }
+    }
+
+TEST_CASE("Spache tests", "[spache][readability-tests]")
+    {
+    SECTION("Spache")
+        {
+        CHECK_THAT(1.9, WithinRel(readability::spache(4770, 114, 550), 1e-1));
+        }
+    SECTION("SpacheRange")
+        {
+        CHECK_THAT(0, WithinRel(std::floor(readability::spache(100, 0, 500)), 1e-1));//.659 will always be added in formula
+        CHECK_THAT(19, WithinRel(readability::spache(100, 100, 1), 1e-1));
+        }
+    SECTION("SpacheExceptions1")
+        {
+        CHECK_THROWS(readability::spache(0, 114, 550));
+        }
+    SECTION("SpacheExceptions2")
+        {
+        CHECK_THROWS(readability::spache(4770, 114, 0));
+        }
+    }
+
+TEST_CASE("Eflaw tests", "[eflaw][readability-tests]")
+    {
+    SECTION("Eflaw")
+        {
+        for (size_t i = 0; i < 21; ++i)
+            {CHECK(eflaw_difficulty::eflaw_very_easy == eflaw_index_to_difficulty(i)); }
+        for (size_t i = 21; i < 26; ++i)
+            {CHECK(eflaw_difficulty::eflaw_easy == eflaw_index_to_difficulty(i)); }
+        for (size_t i = 26; i < 30; ++i)
+            {CHECK(eflaw_difficulty::eflaw_confusing == eflaw_index_to_difficulty(i)); }
+        for (size_t i = 30; i < 50; ++i)
+            {CHECK(eflaw_difficulty::eflaw_very_confusing == eflaw_index_to_difficulty(i)); }
+        }
+    SECTION("Eflaw Exceptions")
+        {
+        readability::eflaw_difficulty diff;
+        CHECK_THROWS(readability::eflaw(diff, 1,1,0));
+        }
+    }
+
+TEST_CASE("ARI tests", "[ari][readability-tests]")
+    {
+    SECTION("ARI")
+        {
+        CHECK_THAT(10.7, WithinRel(readability::automated_readability_index(282, 1396, 16), 1e-1));
+        }
+    SECTION("ARIRange")
+        {
+        CHECK_THAT(0, WithinRel(readability::automated_readability_index(100,100,50), 1e-1));
+        CHECK_THAT(19, WithinRel(readability::automated_readability_index(100,1000,2), 1e-1));
+        }
+    SECTION("ARIExceptions1")
+        {
+        CHECK_THROWS(readability::automated_readability_index(0, 16, 1396));
+        }
+    SECTION("ARIExceptions2")
+        {
+        CHECK_THROWS(readability::automated_readability_index(282, 16, 0));
+        }
+    }
+
+TEST_CASE("New ARI tests", "[ari][readability-tests]")
+    {
+    SECTION("NewARIRange")
+        {
+        CHECK_THAT(0, WithinRel(readability::new_automated_readability_index(100,100,50), 1e-1));
+        CHECK_THAT(19, WithinRel(readability::new_automated_readability_index(100,1000,2), 1e-1));
+        }
+    SECTION("NewARIExceptions1")
+        {
+        CHECK_THROWS(readability::new_automated_readability_index(0, 16, 1396));
+        }
+    SECTION("NewARIExceptions2")
+        {
+        CHECK_THROWS(readability::new_automated_readability_index(282, 16, 0));
+        }
+    }
+
+TEST_CASE("Simple ARI tests", "[ari][readability-tests]")
+    {
+    SECTION("SimpleARIRange")
+        {
+        CHECK_THAT(0, WithinRel(readability::simplified_automated_readability_index(100,100,50), 1e-1));
+        CHECK_THAT(19, WithinRel(readability::simplified_automated_readability_index(100,1000,2), 1e-1));
+        }
+    SECTION("SimpleARIExceptions1")
+        {
+        CHECK_THROWS(readability::simplified_automated_readability_index(0, 16, 1396));
+        }
+    SECTION("SimpleARIExceptions2")
+        {
+        CHECK_THROWS(readability::simplified_automated_readability_index(282, 16, 0));
+        }
+    }
+
+TEST_CASE("FJP tests", "[fjp][readability-tests]")
+    {
+    SECTION("FJP")
+        {
+        readability::flesch_difficulty difflevel;
+        CHECK(57 == farr_jenkins_paterson(100, 71, 4, difflevel));
+        }
+    SECTION("FJPRange")
+        {
+        readability::flesch_difficulty difflevel;
+        CHECK(100 == farr_jenkins_paterson(100, 100, 50, difflevel));
+        CHECK(0 == farr_jenkins_paterson(100, 0, 2, difflevel));
+        }
+    SECTION("FJPExceptions1")
+        {
+        readability::flesch_difficulty difflevel;
+        CHECK_THROWS(readability::farr_jenkins_paterson(0, 71, 4, difflevel));
+        }
+    SECTION("FJPExceptions2")
+        {
+        readability::flesch_difficulty difflevel;
+        CHECK_THROWS(readability::farr_jenkins_paterson(100, 71, 0, difflevel));
+        }
+    SECTION("NewFJPRange")
+        {
+        CHECK_THAT(0, WithinRel(readability::new_farr_jenkins_paterson(100, 100, 50), 1e-1));
+        CHECK_THAT(19,WithinRel( readability::new_farr_jenkins_paterson(100, 0, 2), 1e-1));
+        }
+    SECTION("NewFJPExceptions1")
+        {
+        CHECK_THROWS(readability::new_farr_jenkins_paterson(0, 71, 4));
+        }
+    SECTION("NewFJPExceptions2")
+        {
+        CHECK_THROWS(readability::new_farr_jenkins_paterson(100, 71, 0));
+        }
+    SECTION("PskFJPRange")
+        {
+        // won't go below 2 in the equation unless you through in nonsensical values
+        CHECK_THAT(2, WithinRel(std::floor(readability::powers_sumner_kearl_farr_jenkins_paterson(100, 100, 100)), 1e-1));
+        CHECK_THAT(19, WithinRel(readability::powers_sumner_kearl_farr_jenkins_paterson(1000, 0, 1), 1e-1));
+        }
+    SECTION("PskFJPExceptions1")
+        {
+        CHECK_THROWS(readability::powers_sumner_kearl_farr_jenkins_paterson(0, 71, 4));
+        }
+    SECTION("PskFJPExceptions2")
+        {
+        CHECK_THROWS(readability::powers_sumner_kearl_farr_jenkins_paterson(100, 71, 0));
+        }
+    }
+
+TEST_CASE("NDC tests", "[ndc][readability-tests]")
+    {
+    SECTION("DC")
+        {
+        size_t begin{ 0 }, end{ 0 };
+        // extreme examples
+        readability::new_dale_chall(begin, end, 100, 44, 50);
+        CHECK(13 == begin);
+        CHECK(15 == end);
+
+        readability::new_dale_chall(begin, end, 100, 44, 51);
+        CHECK(16 == begin);
+        CHECK(16 == end);
+
+        // examples from the book
+        readability::new_dale_chall(begin, end, 60, 0, 6);
+        CHECK(1 == begin);
+        CHECK(1 == end);
+
+        readability::new_dale_chall(begin, end, 100, 3, 12);
+        CHECK(2 == begin);
+        CHECK(2 == end);
+
+        readability::new_dale_chall(begin, end, 100, 3, 8);
+        CHECK(3 == begin);
+        CHECK(3 == end);
+
+        readability::new_dale_chall(begin, end, 100, 8, 9);
+        CHECK(4 == begin);
+        CHECK(4 == end);
+
+        readability::new_dale_chall(begin, end, 100, 11, 6);
+        CHECK(5 == begin);
+        CHECK(6 == end);
+
+        readability::new_dale_chall(begin, end, 100, 19, 7);
+        CHECK(7 == begin);
+        CHECK(8 == end);
+
+        readability::new_dale_chall(begin, end, 100, 23, 5);
+        CHECK(9 == begin);
+        CHECK(10 == end);
+
+        readability::new_dale_chall(begin, end, 100, 23, 4);
+        CHECK(11 == begin);
+        CHECK(12 == end);
+
+        readability::new_dale_chall(begin, end, 100, 35, 5);
+        CHECK(13 == begin);
+        CHECK(15 == end);
+
+        readability::new_dale_chall(begin, end, 100, 37, 2);
+        CHECK(16 == begin);
+        CHECK(16 == end);
+        }
+    SECTION("DC Exceptions")
+        {
+        size_t begin, end;
+        CHECK_THROWS(readability::new_dale_chall(begin, end, 0, 0, 10));
+        CHECK_THROWS(readability::new_dale_chall(begin, end, 10, 0, 0));
+        }
+    }
+
+TEST_CASE("Crawford tests", "[crawford][readability-tests]")
+    {
+    SECTION("CrawfordRange")
+        {
+        CHECK_THAT(0, WithinRel(readability::crawford(100, 100, 50), 1e-1));
+        CHECK_THAT(19, WithinRel(readability::crawford(100, 600, 1),1e-1));
+        }
+    SECTION("Crawford")
+        {
+        // example from article
+        CHECK_THAT(3.7, WithinRel(readability::crawford(100, 175, 7), 1e-1));
+        CHECK_THAT(3.7, WithinRel(readability::crawford(200, 350, 14), 1e-1));
+        }
+    SECTION("Exception")
+        {
+        CHECK_THROWS(readability::crawford(0, 51, 69));
+        }
+    }
+
+TEST_CASE("Bormuth tests", "[bormuth][readability-tests]")
+    {
+    SECTION("Bormuth 35 Range")
+        {
+        CHECK_THAT(2.8, WithinRel(readability::bormuth_grade_placement_35(100, 100, 100, 100), 1e-1));//can't go any lower with sensical values
+        CHECK_THAT(19, WithinRel(readability::bormuth_grade_placement_35(100,0,10000,1), 1e-1));
+        }
+    SECTION("Bormuth 35 Exceptions")
+        {
+        CHECK_THROWS(readability::bormuth_grade_placement_35(0,1,1,1));
+        CHECK_THROWS(readability::bormuth_grade_placement_35(1,1,1,0));
+        }
+    SECTION("Bormuth Cloze Range")
+        {
+        CHECK_THAT(1, WithinRel(readability::bormuth_cloze_mean(100, 100, 100, 100), 1e-1));
+        CHECK_THAT(-1, WithinRel(readability::bormuth_cloze_mean(100,0,1000,1), 1e-1));
+        }
+    SECTION("Bormuth Cloze Exceptions")
+        {
+        CHECK_THROWS(readability::bormuth_cloze_mean(0,1,1,1));
+        CHECK_THROWS(readability::bormuth_cloze_mean(1,1,1,0));
+        }
+    }
+
+TEST_CASE("HJ tests", "[hj][readability-tests]")
+    {
+    SECTION("HJ")
+        { CHECK_THAT(2.9, WithinRel(readability::harris_jacobson(207, 8, 24), 1e-1)); }
+    SECTION("HJ 2")
+        { CHECK_THAT(3.3, WithinRel(readability::harris_jacobson(205, 10, 22), 1e-1)); }
+    SECTION("Exceptions 1")
+        { CHECK_THROWS(readability::harris_jacobson(0, 1, 7020)); }
+    SECTION("Exceptions 2")
+        { CHECK_THROWS(readability::harris_jacobson(10, 1, 0)); }
+    SECTION("Range Truncation")
+        {
+        // too easy, bump up to 1.1
+        CHECK_THAT(1, WithinRel(readability::harris_jacobson(300, 1, 150), 1e-1));
+        // too hard, clip to 11.3
+        CHECK_THAT(11.3, WithinRel(readability::harris_jacobson(10, 10, 1), 1e-1));
+        }
+    }
+
+TEST_CASE("Smog German tests", "[smog][readability-tests]")
+    {
+    SECTION("Smog Range")
+        {
+        CHECK_THAT(0.0, WithinRel(readability::smog_bamberger_vanecek(1, 30), 1e-6));
+        CHECK_THAT(19.0, WithinRel(readability::smog_bamberger_vanecek(1000, 30), 1e-6));
+        }
+    SECTION("Smog")
+        {
+        CHECK_THAT(2.3, WithinRel(readability::smog_bamberger_vanecek(19, 30), 1e-6));
+        CHECK_THAT(2.3, WithinRel(readability::smog_bamberger_vanecek(19 * 2, 30 * 2), 1e-6));
+        CHECK_THAT(4.6, WithinRel(readability::smog_bamberger_vanecek(44, 30), 1e-6));
+        CHECK_THAT(4.6, WithinRel(readability::smog_bamberger_vanecek(44 * 2, 30 * 2), 1e-6));
+        CHECK_THAT(4.6, WithinRel(readability::smog_bamberger_vanecek(static_cast<size_t>(44 * .5), static_cast<size_t>(30 * .5)), 1e-6));
+        }
+    SECTION("Smog Exceptions")
+        {
+        CHECK_THROWS(readability::smog_bamberger_vanecek(550, 0));
+        }
+    }
+
+TEST_CASE("Qu tests", "[qu][readability-tests]")
+    {
+    SECTION("Qu")
+        {
+        CHECK_THAT(5.8, WithinRel(readability::quadratwurzelverfahren_bamberger_vanecek(1000, 140, 68), 1e-6));
+        CHECK_THAT(3.1, WithinRel(readability::quadratwurzelverfahren_bamberger_vanecek(1000, 83, 93), 1e-6));
+        CHECK_THAT(4.8, WithinRel(readability::quadratwurzelverfahren_bamberger_vanecek(1000, 130, 83), 1e-6));
+        CHECK_THAT(8.3, WithinRel(readability::quadratwurzelverfahren_bamberger_vanecek(1000, 200, 56), 1e-6));
+        }
+    SECTION("Qu Range")
+        {
+        CHECK_THAT(0, WithinRel(readability::quadratwurzelverfahren_bamberger_vanecek(100,0,100), 1e-6));
+        CHECK_THAT(19, WithinRel(readability::quadratwurzelverfahren_bamberger_vanecek(100,100,2), 1e-6));
+        }
+    SECTION("Qu Exceptions")
+        {
+        CHECK_THROWS(readability::quadratwurzelverfahren_bamberger_vanecek(0, 550, 7020));
+        CHECK_THROWS(readability::quadratwurzelverfahren_bamberger_vanecek(10, 550, 0));
+        }
+    }
+
+TEST_CASE("Amstad tests", "[amstad][readability-tests]")
+    {
+    SECTION("Amstad Range")
+        {
+        readability::flesch_difficulty level;
+        CHECK(100 == readability::amstad(100, 100, 50, level));
+        CHECK(0 == readability::amstad(100, 1000, 2, level));
+        }
+    SECTION("Amstad")
+        {
+        readability::flesch_difficulty level;
+        CHECK(readability::amstad(100, 135, 50, level) == 99);
+        CHECK(readability::amstad(100, 220, 2, level) == 1);
+        CHECK(readability::amstad(100, 185, 5, level) == 52);
+        // from the book (we round it, though, book uses precision which
+        // isn't really necessary for a Flesch scale).
+        CHECK(readability::amstad(100 * 2, 135 * 2, 50 * 2, level) == 99);
+        CHECK(readability::amstad(100 * 2, 220 * 2, 2 * 2, level) == 1);
+        CHECK(readability::amstad(100 * 2, 185 * 2, 5 * 2, level) == 52);
+        }
+    SECTION("Amstad Exceptions 1")
+        {
+        readability::flesch_difficulty level;
+        CHECK_THROWS(readability::amstad(0, 550, 7020, level));
+        }
+    SECTION("Amstad Exceptions 2")
+        {
+        readability::flesch_difficulty level;
+        CHECK_THROWS(readability::amstad(4770, 550, 0, level));
+        }
+    }
+
+TEST_CASE("Flesch Kincaid tests", "[flesch-kincaid][readability-tests]")
+    {
+    SECTION("Flesch Kincaid")
+        {
+        CHECK_THAT(5.2, WithinRel(readability::flesch_kincaid(4770, 7020, 550), 1e-1));
+        }
+    SECTION("Flesch Kincaid Range")
+        {
+        CHECK_THAT(0, WithinRel(readability::flesch_kincaid(100, 100, 50), 1e-1));
+        CHECK_THAT(19, WithinRel(readability::flesch_kincaid(100, 1000, 2), 1e-1));
+        CHECK_THAT(0, WithinRel(readability::flesch_kincaid_simplified(100, 100, 50), 1e-1));
+        CHECK_THAT(19, WithinRel(readability::flesch_kincaid_simplified(100, 1000, 2), 1e-1));
+        }
+    SECTION("Flesch KincaidE xceptions 1")
+        {
+        CHECK_THROWS(readability::flesch_kincaid(0, 550, 7020));
+        CHECK_THROWS(readability::flesch_kincaid_simplified(0, 550, 7020));
+        }
+    SECTION("Flesch Kincaid Exceptions 2")
+        {
+        CHECK_THROWS(readability::flesch_kincaid(4770, 550, 0));
+        CHECK_THROWS(readability::flesch_kincaid_simplified(4770, 550, 0));
+        }
+    }
+
+TEST_CASE("Smog tests", "[smog][readability-tests]")
+    {
+    SECTION("SMOG Range")
+        {
+        // Smog has min values of 3
+        CHECK_THAT(3, WithinRel(readability::smog_simplified(0, 30), 1e-1));
+        CHECK_THAT(19, WithinRel(readability::smog_simplified(1000, 30), 1e-1));
+        CHECK_THAT(3.1291, WithinRel(readability::smog(0, 30), 1e-1));
+        CHECK_THAT(19, WithinRel(readability::smog(1000, 30), 1e-1));
+        }
+    SECTION("SMOG EN")
+        {
+        CHECK_THAT(11.0, WithinRel(readability::smog_simplified(64, 30), 1e-1));
+        // From article
+        CHECK_THAT(18, WithinRel(readability::smog_simplified(244, 30), 1e-1));
+        CHECK_THAT(16, WithinRel(readability::smog_simplified(169, 30), 1e-1));
+        CHECK_THAT(15, WithinRel(readability::smog_simplified(150, 30), 1e-1));
+        CHECK_THAT(15, WithinRel(readability::smog_simplified(147, 30), 1e-1));
+        CHECK_THAT(15, WithinRel(readability::smog_simplified(145, 30), 1e-1));
+        CHECK_THAT(13, WithinRel(readability::smog_simplified(112, 30), 1e-1));
+        CHECK_THAT(11, WithinRel(readability::smog_simplified(72, 30), 1e-1));
+        CHECK_THAT(9, WithinRel(readability::smog_simplified(39, 30), 1e-1));
+        CHECK_THAT(8.0, WithinRel(readability::smog_simplified(520, 550), 1e-1));
+        }
+    // these results aren't published, but are verified
+    // to be close to results from the generalized formula
+    SECTION("SMOG Precision")
+        {
+        CHECK_THAT(16.6, WithinRel(readability::smog(28, 5), 1e-1));
+        CHECK_THAT(14.2, WithinRel(readability::smog(112, 30), 1e-1));
+        CHECK_THAT(14.2, WithinRel(readability::smog(224, 60), 1e-1));
+        CHECK_THAT(11.9, WithinRel(readability::smog(72, 30), 1e-1));
+        CHECK_THAT(19.0, WithinRel(readability::smog(244, 30), 1e-1));
+        CHECK_THAT(9.6, WithinRel(readability::smog(39, 30), 1e-1));
+        }
+    SECTION("SMOG Modified")
+        {
+        // From article
+        CHECK(readability::modified_smog(0, 30) == 1);
+        CHECK(readability::modified_smog(1, 30) == 1);
+        CHECK(readability::modified_smog(2, 30) == 1);
+        CHECK(readability::modified_smog(3, 30) == 2);
+        CHECK(readability::modified_smog(6, 30) == 2);
+        CHECK(readability::modified_smog(7, 30) == 3);
+        CHECK(readability::modified_smog(12, 30) == 3);
+        CHECK(readability::modified_smog(13, 30) == 5);
+        CHECK(readability::modified_smog(20, 30) == 5);
+        CHECK(readability::modified_smog(21, 30) == 6);
+        CHECK(readability::modified_smog(30, 30) == 6);
+        CHECK(readability::modified_smog(31, 30) == 7);
+        CHECK(readability::modified_smog(42, 30) == 7);
+        CHECK(readability::modified_smog(43, 30) == 8);
+        CHECK(readability::modified_smog(56, 30) == 8);
+        CHECK(readability::modified_smog(57, 30) == 9);
+        CHECK(readability::modified_smog(72, 30) == 9);
+        CHECK(readability::modified_smog(73, 30) == 10);
+        CHECK(readability::modified_smog(90, 30) == 10);
+        CHECK(readability::modified_smog(91, 30) == 11);
+        CHECK(readability::modified_smog(110, 30) == 11);
+        CHECK(readability::modified_smog(111, 30) == 12);
+        CHECK(readability::modified_smog(132, 30) == 12);
+        CHECK(readability::modified_smog(133, 30) == 13);
+        CHECK(readability::modified_smog(156, 30) == 13);
+
+        CHECK(readability::modified_smog(0, 60) == 1);
+        CHECK(readability::modified_smog(2, 60) == 1);
+        CHECK(readability::modified_smog(4, 60) == 1);
+        CHECK(readability::modified_smog(6, 60) == 2);
+        CHECK(readability::modified_smog(12, 60) == 2);
+        CHECK(readability::modified_smog(14, 60) == 3);
+        CHECK(readability::modified_smog(24, 60) == 3);
+        CHECK(readability::modified_smog(26, 60) == 5);
+        CHECK(readability::modified_smog(40, 60) == 5);
+        CHECK(readability::modified_smog(42, 60) == 6);
+        CHECK(readability::modified_smog(60, 60) == 6);
+        CHECK(readability::modified_smog(62, 60) == 7);
+        CHECK(readability::modified_smog(84, 60) == 7);
+        CHECK(readability::modified_smog(86, 60) == 8);
+        CHECK(readability::modified_smog(112, 60) == 8);
+        CHECK(readability::modified_smog(114, 60) == 9);
+        CHECK(readability::modified_smog(144, 60) == 9);
+        CHECK(readability::modified_smog(146, 60) == 10);
+        CHECK(readability::modified_smog(180, 60) == 10);
+        CHECK(readability::modified_smog(182, 60) == 11);
+        CHECK(readability::modified_smog(220, 60) == 11);
+        CHECK(readability::modified_smog(222, 60) == 12);
+        CHECK(readability::modified_smog(234, 60) == 12);
+        CHECK(readability::modified_smog(266, 60) == 13);
+        CHECK(readability::modified_smog(312, 60) == 13);
+        }
+    SECTION("SMOG EN Exceptions 1")
+        {
+        CHECK_THROWS(readability::smog(520, 0));
+        CHECK_THROWS(readability::modified_smog(520, 0));
         }
     }

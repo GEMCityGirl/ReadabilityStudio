@@ -1,9 +1,84 @@
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include "../src/indexing/word_list.h"
+#include "../src/indexing/word.h"
+#include "../src/readability/readability.h"
+
+#define UNUSED_WORD_ARGS 0, 0, 0, false, false, false, false, 0, 0
 
 using namespace Catch::Matchers;
 using namespace lily_of_the_valley;
+
+using MYWORD = word<traits::case_insensitive_ex,
+    stemming::english_stem<std::basic_string<wchar_t, traits::case_insensitive_ex> > >;
+
+TEST_CASE("Familiar words", "[word-list]")
+    {
+    SECTION("Numeric")
+        {
+        word_list dcLite;
+        dcLite.load_words(L"chocolate cake sugar one thirty trash-man", true, false);
+        readability::is_familiar_word<MYWORD, word_list, stemming::no_op_stem<MYWORD> > is_fam(&dcLite, readability::proper_noun_counting_method::all_proper_nouns_are_familiar, false);
+        MYWORD numberWord(L"7.2", 3, UNUSED_WORD_ARGS);
+        numberWord.set_numeric(true);
+
+        is_fam.include_numeric_as_familiar(false);
+        CHECK(is_fam(numberWord) == false);
+        is_fam.include_numeric_as_familiar(true);
+        CHECK(is_fam(numberWord));
+        }
+    SECTION("Proper Noun")
+        {
+        word_list dcLite;
+        dcLite.load_words(L"chocolate cake sugar one thirty trash-man", true, false);
+        readability::is_familiar_word<MYWORD, word_list, stemming::no_op_stem<MYWORD> > is_fam(&dcLite, readability::proper_noun_counting_method::all_proper_nouns_are_familiar, false);
+        MYWORD numberWord(L"Jimbo", 5, UNUSED_WORD_ARGS);
+        numberWord.set_proper_noun(true);
+
+        is_fam.set_proper_noun_method(readability::proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+        CHECK(is_fam(numberWord) == false);
+
+        is_fam.set_proper_noun_method(readability::proper_noun_counting_method::only_count_first_instance_of_proper_noun_as_unfamiliar);
+        CHECK(is_fam(numberWord) == false);//first instance unfamiliar
+        CHECK(is_fam(numberWord));
+        CHECK(is_fam(numberWord));
+        is_fam.clear_encountered_proper_nouns();
+        CHECK(is_fam(numberWord) == false);//first instance unfamiliar
+        CHECK(is_fam(numberWord));
+
+        is_fam.set_proper_noun_method(readability::proper_noun_counting_method::all_proper_nouns_are_familiar);
+        CHECK(is_fam(numberWord));
+        }
+    SECTION("Hyphen Word")
+        {
+        word_list dcLite;
+        dcLite.load_words(L"chocolate cake sugar one thirty trash-man", true, false);
+        readability::is_familiar_word<MYWORD, word_list, stemming::no_op_stem<MYWORD> > is_fam(&dcLite, readability::proper_noun_counting_method::all_proper_nouns_are_familiar, false);
+        CHECK(is_fam(MYWORD(L"one-thirty", 10, UNUSED_WORD_ARGS)));
+        CHECK(is_fam(MYWORD(L"one-thirteen", 12, UNUSED_WORD_ARGS)) == false);
+        CHECK(is_fam(MYWORD(L"uno-thirty", 10, UNUSED_WORD_ARGS)) == false);
+        CHECK(is_fam(MYWORD(L"-", 1, UNUSED_WORD_ARGS)) == false);
+        CHECK(is_fam(MYWORD(L"--", 2, UNUSED_WORD_ARGS)) == false);
+        CHECK(is_fam(MYWORD(L"one-", 4, UNUSED_WORD_ARGS)));
+        CHECK(is_fam(MYWORD(L"-one", 4, UNUSED_WORD_ARGS)));
+        CHECK(is_fam(MYWORD(L"chocolate-cake-sugar", 20, UNUSED_WORD_ARGS)));
+        CHECK(is_fam(MYWORD(L"trash-man", 9, UNUSED_WORD_ARGS)));
+        CHECK(is_fam(MYWORD(L"trash", 5, UNUSED_WORD_ARGS)) == false);
+        }
+    SECTION("Hyphen Word With Stemming")
+        {
+        word_list dcLite;
+        dcLite.load_words(L"document depart", true, false);
+        readability::is_familiar_word<MYWORD, word_list,
+            stemming::english_stem<MYWORD>>
+            is_fam(&dcLite, readability::proper_noun_counting_method::all_proper_nouns_are_familiar, false);
+        CHECK(is_fam(MYWORD(L"document", 8, UNUSED_WORD_ARGS)));
+        CHECK(is_fam(MYWORD(L"documents", 9, UNUSED_WORD_ARGS)));
+        CHECK(is_fam(MYWORD(L"documentation-department", 24, UNUSED_WORD_ARGS)));
+        CHECK(is_fam(MYWORD(L"documentation-departments", 25, UNUSED_WORD_ARGS)));
+        CHECK(is_fam(MYWORD(L"documentation-depo", 18, UNUSED_WORD_ARGS)) == false);
+        }
+    }
 
 TEST_CASE("Word lists", "[word-list]")
     {
