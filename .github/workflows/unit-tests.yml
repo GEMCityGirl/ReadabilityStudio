@@ -26,7 +26,6 @@ jobs:
              ./RSTestRunner > results.txt 2>&1
              cat results.txt
              ./RSTestRunner --reporter JUnit::out=rs-junit.xml
-             cat rs-junit.xml
              errors=$(cat rs-junit.xml | grep -Po '(errors)="\K[^"]*')
              failures=$(cat rs-junit.xml | grep -Po '(failures)="\K[^"]*')
              if [ "$errors" -gt 0 ]; then
