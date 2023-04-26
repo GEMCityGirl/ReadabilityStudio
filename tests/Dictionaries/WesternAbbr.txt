@@ -188,7 +188,7 @@ nj.
 nov.
 ns.
 num.
-n˙m.
+n√∫m.
 ob.
 obj.
 obs.
@@ -220,8 +220,8 @@ prox.
 ps.
 pt.
 pvt.
-p·g.
-p·gs.
+p√°g.
+p√°gs.
 qt.
 qty.
 rd.
