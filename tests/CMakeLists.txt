@@ -40,6 +40,7 @@ doublewordtests.cpp grammartests.cpp stringtests.cpp doctokenizetests.cpp
 romanizetests.cpp readingtests.cpp wordlisttests.cpp chartraitstext.cpp
 testingmain.cpp  wordtests.cpp spanishsyllabletests.cpp projectrefresh.cpp)
 IF(MSVC)
+    TARGET_COMPILE_OPTIONS(${CMAKE_PROJECT_NAME} PRIVATE /Zc:__cplusplus /MP /W3 /WX)
     TARGET_COMPILE_DEFINITIONS(${CMAKE_PROJECT_NAME} PUBLIC _CRT_SECURE_NO_WARNINGS __UNITTEST)
 ELSE()
     TARGET_COMPILE_DEFINITIONS(${CMAKE_PROJECT_NAME} PUBLIC _CRT_SECURE_NO_WARNINGS __UNITTEST)
