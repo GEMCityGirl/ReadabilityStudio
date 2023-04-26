@@ -18,7 +18,7 @@ jobs:
 
       - name: analyze
         run: |
-             ./i18n-check/bin/i18n-check ./src -q -o i18nresults.txt
+             ./i18n-check/bin/i18n-check ./src -q --enable=allI18N,allCodeFormatting -o i18nresults.txt
              cat i18nresults.txt
              
       - name: print output
