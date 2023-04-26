@@ -1,4 +1,4 @@
-﻿#include "base_project.h"
+#include "base_project.h"
 #include "base_project_view.h"
 #include "../app/readability_app.h"
 #include "../results_format/project_report_format.h"
@@ -1097,8 +1097,8 @@ void BaseProject::InitializeStandardReadabilityTests()
         {
         readability::readability_test test(ReadabilityMessages::LIX(),
             XRCID("ID_LIX"),
-            _DT(L"Lix"), _DT(L"Läsbarhetsindex (Lix)"),
-            _("The Läsbarhetsindex (Lix) formula can be used on documents of any Western European language. A <a href=\"#LixGauge\">chart</a> is also available to visualize the score."),
+            _DT(L"Lix"), _DT(L"L\U000000E4sbarhetsindex (Lix)"),
+            _("The L\U000000E4sbarhetsindex (Lix) formula can be used on documents of any Western European language. A <a href=\"#LixGauge\">chart</a> is also available to visualize the score."),
             readability::readability_test_type::index_value_and_grade_level, true,
             L"");
         test.add_document_classification(readability::document_classification::adult_literature_document, true);

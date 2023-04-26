@@ -1,4 +1,4 @@
-﻿///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 // Name:        tools_options_dlg.cpp
 // Author:      Blake Madden
 // Copyright:   (c) 2005-2023 Blake Madden
@@ -2371,7 +2371,7 @@ void ToolsOptionsDlg::CreateControls()
             wxPropertyGridManager* pgMan = new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
             m_readabilityGraphPropertyGrid = pgMan->AddPage();
             m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetFryLikeLabel()) );
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(GetFryLikeLabel(), _("The options in this section customize the Fry, Gilliam-Peña-Mountain, Raygor, and Schwartz graphs."));
+            m_readabilityGraphPropertyGrid->SetPropertyHelpString(GetFryLikeLabel(), _("The options in this section customize the Fry, Gilliam-Pe\U000000F1a-Mountain, Raygor, and Schwartz graphs."));
             m_readabilityGraphPropertyGrid->Append(new wxColourProperty(GetInvalidRegionsColorLabel(),wxPG_LABEL,(m_readabilityProjectDoc ? m_readabilityProjectDoc->GetInvalidAreaColor() : wxGetApp().GetAppOptions().GetInvalidAreaColor())));
             m_readabilityGraphPropertyGrid->SetPropertyHelpString(GetInvalidRegionsColorLabel(), _("Selects the color for the invalid sentence/word regions."));
             //flesch

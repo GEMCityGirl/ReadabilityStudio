@@ -1,4 +1,4 @@
-﻿///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 // Name:        readability_messages.cpp
 // Author:      Blake Madden
 // Copyright:   (c) 2005-2023 Blake Madden
@@ -814,37 +814,37 @@ wxString ReadabilityMessages::GetQuebecScaleLabel(size_t value)
         return _("Maternelle");
         break;
     case 1:
-        return _("Grade 1 (École Primaire)");
+        return _("Grade 1 (\U000000C9col Primaire)");
         break;
     case 2:
-        return _("Grade 2 (École Primaire)");
+        return _("Grade 2 (\U000000C9col Primaire)");
         break;
     case 3:
-        return _("Grade 3 (École Primaire)");
+        return _("Grade 3 (\U000000C9col Primaire)");
         break;
     case 4:
-        return _("Grade 4 (École Primaire)");
+        return _("Grade 4 (\U000000C9col Primaire)");
         break;
     case 5:
-        return _("Grade 5 (École Primaire)");
+        return _("Grade 5 (\U000000C9col Primaire)");
         break;
     case 6:
-        return _("Grade 6 (École Primaire)");
+        return _("Grade 6 (\U000000C9col Primaire)");
         break;
     case 7:
-        return _("1 Secondaire (École Secondaire)");
+        return _("1 Secondaire (\U000000C9col Secondaire)");
         break;
     case 8:
-        return _("2 Secondaire (École Secondaire)");
+        return _("2 Secondaire (\U000000C9col Secondaire)");
         break;
     case 9:
-        return _("3 Secondaire (École Secondaire)");
+        return _("3 Secondaire (\U000000C9col Secondaire)");
         break;
     case 10:
-        return _("4 Secondaire (École Secondaire)");
+        return _("4 Secondaire (\U000000C9col Secondaire)");
         break;
     case 11:
-        return _("5 Secondaire (École Secondaire)");
+        return _("5 Secondaire (\U000000C9col Secondaire)");
         break;
     case 12:
         return _("CEGEP, year 1");

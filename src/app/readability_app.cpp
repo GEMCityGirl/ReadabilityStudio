@@ -1,4 +1,4 @@
-﻿#include "readability_app.h"
+#include "readability_app.h"
 #include "../projects/standard_project_view.h"
 #include "../projects/batch_project_doc.h"
 #include "../projects/batch_project_view.h"
@@ -1988,7 +1988,8 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_BLANK_GPM_GRAPH"))
         {
-        GraphDlg graphDlg(this, wxID_ANY, wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Gilliam-Peña-Mountain")));
+        GraphDlg graphDlg(this, wxID_ANY, wxString::Format(_(L"Blank \"%s\" Graph"),
+                         _DT(L"Gilliam-Pe\U000000F1a-Mountain")));
         auto gFryGraph = std::make_shared<FryGraph>(graphDlg.GetCanvas(),
             FryGraph::FryGraphType::GPM);
         // update custom settings on graph
@@ -2817,7 +2818,8 @@ void MainFrame::FillMenuWithBlankGraphs(wxMenu* blankGraphsMenu)
             menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/frase.svg"));
             blankGraphsMenu->Append(menuItem);
 
-            menuItem = new wxMenuItem(blankGraphsMenu, XRCID("ID_BLANK_GPM_GRAPH"), _DT(L"Gilliam-Peña-Mountain"));
+            menuItem = new wxMenuItem(blankGraphsMenu, XRCID("ID_BLANK_GPM_GRAPH"),
+                                      _DT(L"Gilliam-Pe\U000000F1a-Mountain"));
             menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/gilliam-pena-mountain-fry-graph.svg"));
             blankGraphsMenu->Append(menuItem);
 
