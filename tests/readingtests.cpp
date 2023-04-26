@@ -182,6 +182,80 @@ TEST_CASE("Wheeler Smith German tests", "[wheeler-smith][readability-tests]")
         }
     }
 
+TEST_CASE("PSK tests", "[psk][readability-tests]")
+    {
+    SECTION("PSKTest")
+        {
+        double grade = readability::powers_sumner_kearl_flesch(4770, 7020, 550);
+        CHECK_THAT(5.2, WithinRel(grade, 1e-1));
+        }
+    SECTION("PSKFleschRangeTest")
+        {
+        CHECK_THAT(0, WithinRel(readability::powers_sumner_kearl_flesch(100,0,100), 1e-1));
+        CHECK_THAT(19, WithinRel(readability::powers_sumner_kearl_flesch(100,1000,2), 1e-1));
+        }
+    SECTION("PSKDCRangeTest")
+        {
+        CHECK_THAT(3.3, WithinRel(readability::powers_sumner_kearl_dale_chall(1000,0,1000), 1e-1));//equation's bare min result is 3.26
+        CHECK_THAT(19, WithinRel(readability::powers_sumner_kearl_dale_chall(100,1000,2), 1e-1));
+        }
+    SECTION("PSK Test Exceptions 1")
+        {
+        CHECK_THROWS(readability::powers_sumner_kearl_flesch(0, 550, 7020));
+        }
+    SECTION("PSK Test Exceptions 2")
+        {
+        CHECK_THROWS(readability::powers_sumner_kearl_flesch(4770, 550, 0));
+        }
+    SECTION("PSK DC Test Exceptions 1")
+        {
+        CHECK_THROWS(readability::powers_sumner_kearl_dale_chall(0, 550, 7020));
+        }
+    SECTION("PSKTDCestExceptions2")
+        {
+        CHECK_THROWS(readability::powers_sumner_kearl_dale_chall(4770, 5, 0));
+        }
+    }
+
+TEST_CASE("DRP tests", "[drp][readability-tests]")
+    {
+    SECTION("Drp Ge Range")
+        {
+        CHECK_THAT(1.5, WithinRel(readability::degrees_of_reading_power_ge(100, 100, 100, 100), 1e-1));//as low as equation can go
+        CHECK_THAT(18, WithinRel(readability::degrees_of_reading_power_ge(100,0,10000,1), 1e-1));
+        }
+    SECTION("Drp Ge Exceptions")
+        {
+        CHECK_THROWS(readability::degrees_of_reading_power_ge(0,1,1,1));
+        CHECK_THROWS(readability::degrees_of_reading_power_ge(1,1,1,0));
+        }
+    SECTION("Drp Range")
+        {
+        CHECK_THAT(5.5, WithinRel(readability::degrees_of_reading_power(100, 100, 100, 100), 1e-1));//5.5 is as low as you can locially go
+        CHECK_THAT(100, WithinRel(readability::degrees_of_reading_power(100,0,2000,1), 1e-1));
+        }
+    SECTION("Drp Exceptions")
+        {
+        CHECK_THROWS(readability::degrees_of_reading_power(0,1,1,1));
+        CHECK_THROWS(readability::degrees_of_reading_power(1,1,1,0));
+        }
+    SECTION("Conversions")
+        {
+        CHECK_THAT(readability::degrees_of_reading_power_to_ge(40), WithinRel(1.6, 1e-2));
+        CHECK_THAT(readability::degrees_of_reading_power_to_ge(44), WithinRel(2.0, 1e-2));
+        CHECK_THAT(readability::degrees_of_reading_power_to_ge(49), WithinRel(3.0, 1e-2));
+        CHECK_THAT(readability::degrees_of_reading_power_to_ge(51), WithinRel(3.6, 1e-2));
+        CHECK_THAT(readability::degrees_of_reading_power_to_ge(53), WithinRel(4.3, 1e-2));
+        CHECK_THAT(readability::degrees_of_reading_power_to_ge(56), WithinRel(5.5, 1e-2));
+        CHECK_THAT(readability::degrees_of_reading_power_to_ge(57), WithinRel(5.9, 1e-2));
+        CHECK_THAT(readability::degrees_of_reading_power_to_ge(58), WithinRel(6.3, 1e-2));
+        CHECK_THAT(readability::degrees_of_reading_power_to_ge(59), WithinRel(6.8, 1e-2));
+        CHECK_THAT(readability::degrees_of_reading_power_to_ge(60), WithinRel(7.3, 1e-2));
+        CHECK_THAT(readability::degrees_of_reading_power_to_ge(61), WithinRel(7.8, 1e-2));
+        CHECK_THAT(readability::degrees_of_reading_power_to_ge(64), WithinRel(9.4, 1e-2));
+        }
+    }
+
 TEST_CASE("Fog tests", "[fog][readability-tests]")
     {
     SECTION("FOG")
@@ -287,5 +361,48 @@ TEST_CASE("Fog tests", "[fog][readability-tests]")
         CHECK(readability::is_easy_gunning_fog_word(L"high/roller/", 12, 3));
         // 1 and 2 syllables, should be easy
         CHECK(readability::is_easy_gunning_fog_word(L"/high/roller", 12, 3));
+        }
+    }
+
+TEST_CASE("nWS tests", "[nWS][readability-tests]")
+    {
+   SECTION("nWS1 Range")
+        {
+        CHECK_THAT(1, WithinRel(readability::neue_wiener_sachtextformel_1(100,100,0,0,50), 1e-1));
+        CHECK_THAT(19, WithinRel(readability::neue_wiener_sachtextformel_1(100,0,100,50,2), 1e-1));
+        }
+   SECTION("nWS1 Exceptions 1")
+        {
+        CHECK_THROWS(readability::neue_wiener_sachtextformel_1(0, 51, 23, 28, 8));
+        }
+   SECTION("nWS1 Exceptions 2")
+        {
+        CHECK_THROWS(readability::neue_wiener_sachtextformel_1(100, 51, 23, 28, 0));
+        }
+   SECTION("nWS2 Range")
+        {
+        CHECK_THAT(1, WithinRel(readability::neue_wiener_sachtextformel_2(100,0,0,50), 1e-1));
+        CHECK_THAT(19, WithinRel(readability::neue_wiener_sachtextformel_2(100,100,100,2), 1e-1));
+        }
+   SECTION("nWS2 Exceptions 1")
+        {
+        CHECK_THROWS(readability::neue_wiener_sachtextformel_2(0, 51, 23, 8));
+        }
+   SECTION("nWS2 Exceptions 2")
+        {   
+        CHECK_THROWS(readability::neue_wiener_sachtextformel_2(100, 51, 23, 0));
+        }
+   SECTION("nWS3 Range")
+        {
+        CHECK_THAT(1, WithinRel(readability::neue_wiener_sachtextformel_3(100,0,50), 1e-1));
+        CHECK_THAT(19, WithinRel(readability::neue_wiener_sachtextformel_3(100,100,2), 1e-1));
+        }
+   SECTION("nWS3 Exceptions 1")
+        {
+        CHECK_THROWS(readability::neue_wiener_sachtextformel_3(0, 51, 8));
+        }
+   SECTION("nWS3 Exceptions 2")
+        {
+        CHECK_THROWS(readability::neue_wiener_sachtextformel_3(100, 51, 0));
         }
     }

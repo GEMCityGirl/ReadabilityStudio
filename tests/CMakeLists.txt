@@ -38,7 +38,7 @@ germansyllabletests.cpp sentencetests.cpp wordfunctortests.cpp
 conjunctiontests.cpp ischartests.cpp contractiontests.cpp
 doublewordtests.cpp grammartests.cpp stringtests.cpp doctokenizetests.cpp
 romanizetests.cpp readingtests.cpp wordlisttests.cpp chartraitstext.cpp
-testingmain.cpp)
+testingmain.cpp  wordtests.cpp spanishsyllabletests.cpp projectrefresh.cpp)
 IF(MSVC)
     TARGET_COMPILE_DEFINITIONS(${CMAKE_PROJECT_NAME} PUBLIC _CRT_SECURE_NO_WARNINGS __UNITTEST)
 ELSE()

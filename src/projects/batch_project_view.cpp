@@ -1,4 +1,4 @@
-﻿#include "batch_project_doc.h"
+#include "batch_project_doc.h"
 #include "batch_project_view.h"
 #include "../app/readability_app.h"
 #include "../results_format/project_report_format.h"

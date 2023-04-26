@@ -7,7 +7,7 @@
 
 using namespace grammar;
 
-TEST_CASE("English Syllabizer", "[syllable]")
+TEST_CASE("English syllabizer", "[syllable]")
     {
     SECTION("Silent E And Number")
         {

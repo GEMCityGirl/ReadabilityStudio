@@ -6,11 +6,29 @@
 #include "../src/indexing/article.h"
 #include "../src/indexing/stop_lists.h"
 #include "../src/indexing/word_collection.h"
+#include "../src/indexing/spanish_syllabize.h"
+#include "../src/indexing/german_syllabize.h"
 
 using namespace grammar;
 
 word_list Stop_list;
 phrase_collection pcmap;
+
+grammar::english_syllabize ENsyllabizer;
+grammar::spanish_syllabize ESsyllabizer;
+grammar::german_syllabize DEsyllabizer;
+stemming::english_stem<std::wstring> ENStemmer;
+grammar::is_english_coordinating_conjunction is_conjunction;
+grammar::is_incorrect_english_article is_english_mismatched_article;
+grammar::phrase_collection pmap;
+grammar::phrase_collection copyrightPMap;
+grammar::phrase_collection citationPMap;
+grammar::phrase_collection excludedPMap;
+word_list Known_proper_nouns;
+word_list Known_personal_nouns;
+word_list Known_spellings;
+word_list Secondary_known_spellings;
+word_list Programming_known_spellings;
 
 // Main entry point for test harness
 //--------------------------------------------
@@ -39,5 +57,7 @@ int main( int argc, char* argv[] )
     grammar::is_english_passive_voice::get_past_participle_exeptions().load_words(
         L"excited\nseven\nheaven\nhaven\nalien\ninfrared\nsacred", true, true);
 
-    return Catch::Session().run( argc, argv );
+    Catch::Session().run(argc, argv);
+
+    return EXIT_SUCCESS;
     }

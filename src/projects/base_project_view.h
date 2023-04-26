@@ -1,4 +1,4 @@
-﻿#ifndef __BASE_PROJECT_VIEW_H__
+#ifndef __BASE_PROJECT_VIEW_H__
 #define __BASE_PROJECT_VIEW_H__
 
 #include <wx/wx.h>

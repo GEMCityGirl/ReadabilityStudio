@@ -5,6 +5,115 @@
 
 using namespace Catch::Matchers;
 
+TEST_CASE("Western character traits", "[chartraits]")
+    {
+    SECTION("Length")
+        {
+        CHECK(traits::case_insensitive_ex::length(L"") == 0);
+        CHECK(traits::case_insensitive_ex::length(L"Some'String5") == 12);
+        CHECK(traits::case_insensitive_ex::length(L"Some String5") == 12);
+        }
+    SECTION("Assign")
+        {
+        wchar_t a = L'b', a2 = L'a';
+        traits::case_insensitive_ex::assign(a, a2);
+        CHECK(a == L'a');
+        }
+    SECTION("Assign 2")
+        {
+        wchar_t myArray[5] = { 0,0,0,0,0 };
+        wchar_t* result = traits::case_insensitive_ex::assign(myArray, 5, L'z');
+        for (size_t i = 0; i < 5; ++i)
+            { CHECK(myArray[i] == L'z'); }
+        CHECK(result == myArray);
+        for (size_t i = 0; i < 5; ++i)
+            { CHECK(result[i] == L'z'); }
+        }
+    SECTION("Move")
+        {
+        wchar_t myArray[5] = { 0,0,0,0,0 };
+        wchar_t myZArray[5] = { L'z',L'z',L'z',L'z',L'z' };
+        traits::case_insensitive_ex::move(myArray, myZArray, 5);
+        for (size_t i = 0; i < 5; ++i)
+            { CHECK(myArray[i] == L'z'); }
+        for (size_t i = 0; i < 5; ++i)
+            { CHECK(myZArray[i] == L'z'); }
+        }
+    SECTION("Copy")
+        {
+        wchar_t myArray[5] = { 0,0,0,0,0 };
+        wchar_t myZArray[5] = { L'z',L'z',L'z',L'z',L'z' };
+        traits::case_insensitive_ex::copy(myArray, myZArray, 5);
+        for (size_t i = 0; i < 5; ++i)
+            { CHECK(myArray[i] == L'z'); }
+        for (size_t i = 0; i < 5; ++i)
+            { CHECK(myZArray[i] == L'z'); }
+        }
+    SECTION("Compare")
+        {
+        CHECK(traits::case_insensitive_ex::compare(L"HELLO", L"hello", 5) == 0);
+        CHECK(traits::case_insensitive_ex::compare(L"hello", L"hello", 5) == 0);
+        CHECK(traits::case_insensitive_ex::compare(L"helÜo", L"helüo", 5) == 0);
+        }
+    SECTION("Find")
+        {
+        const wchar_t* myString = L"HELLO";
+        CHECK(traits::case_insensitive_ex::find(myString, 1, L'o') == nullptr);
+        CHECK(traits::case_insensitive_ex::find(myString, 2, L'o') == nullptr);
+        CHECK(traits::case_insensitive_ex::find(myString, 3, L'o') == nullptr);
+        CHECK(traits::case_insensitive_ex::find(myString, 4, L'o') == nullptr);
+        CHECK(traits::case_insensitive_ex::find(myString, 5, L'o') == myString+4);
+        }
+    SECTION("Find 2")
+        {
+        const wchar_t* myString = L"HELLO";
+        CHECK(traits::case_insensitive_ex::find(myString, 1, L"lo", 2) == nullptr);
+        CHECK(traits::case_insensitive_ex::find(myString, 2, L"lo", 2) == nullptr);
+        CHECK(traits::case_insensitive_ex::find(myString, 3, L"lo", 2) == nullptr);
+        CHECK(traits::case_insensitive_ex::find(myString, 4, L"lo", 2) == myString+3);
+        }
+    SECTION("Apostrophes")
+        {
+        CHECK(traits::case_insensitive_ex::eq(L'\'', 8217));
+        CHECK(traits::case_insensitive_ex::lt(L'\'', 8217) == false);
+        CHECK(traits::case_insensitive_ex::lt(L'a', 8217) == false);
+        CHECK(traits::case_insensitive_ex::lt(8217, L'a'));
+        CHECK(traits::case_insensitive_ex::compare(L"it's", L"it´s", 4) == 0);
+        CHECK(traits::case_insensitive_ex::compare(L"itself", L"it´s", 4) == 1);
+        CHECK(traits::case_insensitive_ex::compare(L"it´s", L"itself", 4) == -1);
+
+        typedef std::basic_string<wchar_t, traits::case_insensitive_ex > myString;
+        myString s1 = L"it's";
+        myString s2 = L"it´s";
+        CHECK(s1 == s2);
+        CHECK((s1 < s2) == false);
+        CHECK((s1 > s2) == false);
+        CHECK((s2 < s1) == false);
+        CHECK((s2 > s1) == false);
+        }
+    SECTION("String Functor")
+        {
+        typedef std::basic_string<wchar_t, traits::case_insensitive_ex > myString;
+        wchar_t buffer[6];
+        myString s1 = L"NothingString";
+        myString s2 = L"IT´s";
+        // test partial assignment
+        s1.assign(L"IT´s", 2, 1);
+        CHECK(s1 == L"´");
+        s1.assign(L"Nothin");
+        // test copy
+        s1.copy(buffer, 6);
+        CHECK(std::wcsncmp(buffer, L"Nothin", 6) == 0);
+        // test full assignment
+        s1.assign(L"IT´s");
+        CHECK(s1 == s2);
+        CHECK((s1 < s2) == false);
+        CHECK((s1 > s2) == false);
+        CHECK((s2 < s1) == false);
+        CHECK((s2 > s1) == false);
+        }
+    }
+
 TEST_CASE("Character traits", "[chartraits]")
     {
     SECTION("Is Lower")
