@@ -29,6 +29,7 @@
 #include "../readability/english_readability.h"
 #include "../readability/spanish_readability.h"
 #include "../readability/german_readability.h"
+#include "../readability/readability_project_test.h"
 #include "../readability/dolch.h"
 #include "../readability/custom_readability_test.h"
 #include "../readability/readability_test.h"

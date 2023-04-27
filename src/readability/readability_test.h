@@ -17,7 +17,6 @@
 #include <utility>
 #include "../indexing/character_traits.h"
 #include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
-#include "../Wisteria-Dataviz/src/data/dataset.h"
 
 namespace readability
     {
@@ -291,7 +290,9 @@ namespace readability
             }
         [[nodiscard]] bool operator<(const readability_test& that) const noexcept
             { return m_id < that.m_id; }
-        [[nodiscard]] bool operator<(const readability_project_test& that) const noexcept;
+        template<typename T>
+        [[nodiscard]] bool operator<(const T& that) const noexcept
+            { return m_id < that.get_test().get_id(); }
         /// Compares (case insensitive) a string value to the test's ID, short name, or long name.
         /// If any of those match, then returns true.
         [[nodiscard]] bool operator==(const readability_test& that) const noexcept
@@ -327,74 +328,6 @@ namespace readability
         readability_test_type m_readability_test_type{ readability_test_type::grade_level };
         // whether test scores do NOT use floating-point precision (e.g., index tests)
         bool m_is_integral{ false };
-        };
-
-    /// Wrapper around a readability_test, which adds features needed for projects, such as score data and an inclusion flag.
-    /// This also provides a thin wrapper around readability_test objects, so that numerous copies of a test
-    /// can point to a constant readability_test--this way the same strings inside of readability_test objects don't get
-    /// copied thousand of times.
-    class readability_project_test
-        {
-        readability_project_test() = delete;
-    public:
-        /// Copy CTOR
-        readability_project_test(const readability_project_test& that) noexcept :
-            m_test(that.m_test), m_included(that.m_included)
-            {}
-        /// CTOR from regular test definition.
-        explicit readability_project_test(const readability_test& test) noexcept :
-            m_test(&test)
-            {}
-        /// DTOR
-        virtual ~readability_project_test() {}
-        /// Assignment from another project test.
-        void operator=(const readability_project_test& that) noexcept
-            {
-            m_test = that.m_test;
-            m_included = that.m_included;
-            }
-        [[nodiscard]] bool operator<(const readability_test& that) const noexcept
-            { return (get_test() < that); }
-        [[nodiscard]] bool operator<(const readability_project_test& that) const noexcept
-            { return (get_test() < that.get_test()); }
-        /// Compares (case insensitively) a string value to the test's ID, short name, and long name.
-        [[nodiscard]] bool operator==(const readability_test& that) const noexcept
-            { return (get_test() == that); }
-        [[nodiscard]] bool operator==(const readability_project_test& that) const noexcept
-            { return (get_test() == that.get_test()); }
-        /// @returns The underlying test description.
-        [[nodiscard]] const readability_test& get_test() const noexcept
-            {
-            assert(m_test && "test reference not initialized in project test.");
-            return *m_test;
-            }
-        /// @returns grade score points (for multi-document tests).
-        [[nodiscard]] std::shared_ptr<Wisteria::Data::Dataset> get_grade_point_collection()
-            { return m_grade_values; }
-        /// @returns index score points (for multi-document tests).
-        [[nodiscard]] std::shared_ptr<Wisteria::Data::Dataset> get_index_point_collection()
-            { return m_index_values; }
-        /// @returns cloze score points (for multi-document tests).
-        [[nodiscard]] std::shared_ptr<Wisteria::Data::Dataset> get_cloze_point_collection()
-            { return m_cloze_scores; }
-        /// @returns Whether the test is included in the project.
-        [[nodiscard]] bool is_included() const noexcept
-            { return m_included; }
-        /// Whether to include the test in the project.
-        /// @param inc True to include the test, false to remove.
-        void include(const bool inc) noexcept
-            { m_included = inc; }
-        /// Gives direct access to the inclusion flag.
-        /// Used when an external source needs to edit the inclusion status, but can't call include().
-        [[nodiscard]] bool& get_include_flag() noexcept
-            { return m_included; }
-    private:
-        const readability_test* m_test{ nullptr };
-        bool m_included{ false }; //whether the test is included in the project
-        // batch projects use these for its multi-doc graphs
-        std::shared_ptr<Wisteria::Data::Dataset> m_grade_values{ std::make_shared<Wisteria::Data::Dataset>() };
-        std::shared_ptr<Wisteria::Data::Dataset> m_index_values{ std::make_shared<Wisteria::Data::Dataset>() };
-        std::shared_ptr<Wisteria::Data::Dataset> m_cloze_scores{ std::make_shared<Wisteria::Data::Dataset>() };
         };
 
     /// Class to hold all of the tests for a project.
