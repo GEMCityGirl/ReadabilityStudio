@@ -4,9 +4,179 @@
 #include "../src/readability/german_readability.h"
 #include "../src/readability/spanish_readability.h"
 #include "../src/readability/english_readability.h"
+#include "../src/readability/readability_test.h"
 
 using namespace Catch::Matchers;
 using namespace readability;
+
+TEST_CASE("Base test tests", "[base-test][readability-tests]")
+    {
+    SECTION("Langs")
+        {
+        readability::readability_test lix(L"lix", 8, L"Lix test", L"Laebarindex", L"This is the lix test", readability::readability_test_type::grade_level, false, L"");
+        lix.add_language(readability::test_language::english_test);
+        CHECK(lix.has_language(readability::test_language::english_test));
+        CHECK(lix.has_language(readability::test_language::spanish_test) == false);
+        CHECK(lix.has_language(readability::test_language::german_test) == false);
+        lix.reset_languages();
+        CHECK(lix.has_language(readability::test_language::english_test) == false);
+        CHECK(lix.has_language(readability::test_language::spanish_test) == false);
+        CHECK(lix.has_language(readability::test_language::german_test) == false);
+        lix.add_language(readability::test_language::spanish_test);
+        CHECK(lix.has_language(readability::test_language::english_test) == false);
+        CHECK(lix.has_language(readability::test_language::spanish_test));
+        CHECK(lix.has_language(readability::test_language::german_test) == false);
+        lix.add_language(readability::test_language::german_test);
+        CHECK(lix.has_language(readability::test_language::english_test) == false);
+        CHECK(lix.has_language(readability::test_language::spanish_test));
+        CHECK(lix.has_language(readability::test_language::german_test));
+        lix.add_language(readability::test_language::english_test);
+        CHECK(lix.has_language(readability::test_language::english_test));
+        CHECK(lix.has_language(readability::test_language::spanish_test));
+        CHECK(lix.has_language(readability::test_language::german_test));
+        }
+    SECTION("Testing Classification")
+        {
+        readability::test_with_classification ts;
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::primary_grade) == false);
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::secondary_grade) == false);
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::adult_level) == false);
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::second_language) == false);
+
+        ts.add_teaching_level(readability::test_teaching_level::primary_grade);
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::primary_grade));
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::secondary_grade) == false);
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::adult_level) == false);
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::second_language) == false);
+
+        ts.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::primary_grade));
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::secondary_grade));
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::adult_level) == false);
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::second_language) == false);
+
+        ts.add_teaching_level(readability::test_teaching_level::adult_level);
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::primary_grade));
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::secondary_grade));
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::adult_level));
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::second_language) == false);
+
+        ts.add_teaching_level(readability::test_teaching_level::second_language);
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::primary_grade));
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::secondary_grade));
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::adult_level));
+        CHECK(ts.has_teaching_level(readability::test_teaching_level::second_language));
+        }
+    SECTION("Doc Classification")
+        {
+        readability::test_with_classification ts;
+        CHECK(ts.has_document_classification(readability::document_classification::general_document) == false);
+        CHECK(ts.has_document_classification(readability::document_classification::technical_document) == false);
+        CHECK(ts.has_document_classification(readability::document_classification::nonnarrative_document) == false);
+        CHECK(ts.has_document_classification(readability::document_classification::adult_literature_document) == false);
+        CHECK(ts.has_document_classification(readability::document_classification::childrens_literature_document) == false);
+
+        ts.add_document_classification(readability::document_classification::general_document, true);
+        CHECK(ts.has_document_classification(readability::document_classification::general_document));
+        CHECK(ts.has_document_classification(readability::document_classification::technical_document) == false);
+        CHECK(ts.has_document_classification(readability::document_classification::nonnarrative_document) == false);
+        CHECK(ts.has_document_classification(readability::document_classification::adult_literature_document) == false);
+        CHECK(ts.has_document_classification(readability::document_classification::childrens_literature_document) == false);
+
+        ts.add_document_classification(readability::document_classification::technical_document, true);
+        CHECK(ts.has_document_classification(readability::document_classification::general_document));
+        CHECK(ts.has_document_classification(readability::document_classification::technical_document));
+        CHECK(ts.has_document_classification(readability::document_classification::nonnarrative_document) == false);
+        CHECK(ts.has_document_classification(readability::document_classification::adult_literature_document) == false);
+        CHECK(ts.has_document_classification(readability::document_classification::childrens_literature_document) == false);
+
+        ts.add_document_classification(readability::document_classification::nonnarrative_document, true);
+        CHECK(ts.has_document_classification(readability::document_classification::general_document));
+        CHECK(ts.has_document_classification(readability::document_classification::technical_document));
+        CHECK(ts.has_document_classification(readability::document_classification::nonnarrative_document));
+        CHECK(ts.has_document_classification(readability::document_classification::adult_literature_document) == false);
+        CHECK(ts.has_document_classification(readability::document_classification::childrens_literature_document) == false);
+
+        ts.add_document_classification(readability::document_classification::adult_literature_document, true);
+        CHECK(ts.has_document_classification(readability::document_classification::general_document));
+        CHECK(ts.has_document_classification(readability::document_classification::technical_document));
+        CHECK(ts.has_document_classification(readability::document_classification::nonnarrative_document));
+        CHECK(ts.has_document_classification(readability::document_classification::adult_literature_document));
+        CHECK(ts.has_document_classification(readability::document_classification::childrens_literature_document) == false);
+
+        ts.add_document_classification(readability::document_classification::childrens_literature_document, true);
+        CHECK(ts.has_document_classification(readability::document_classification::general_document));
+        CHECK(ts.has_document_classification(readability::document_classification::technical_document));
+        CHECK(ts.has_document_classification(readability::document_classification::nonnarrative_document));
+        CHECK(ts.has_document_classification(readability::document_classification::adult_literature_document));
+        CHECK(ts.has_document_classification(readability::document_classification::childrens_literature_document));
+
+        ts.add_document_classification(readability::document_classification::childrens_literature_document, false);
+        CHECK(ts.has_document_classification(readability::document_classification::childrens_literature_document) == false);
+        }
+    SECTION("Industry Classification")
+        {
+        readability::test_with_classification ts;
+        CHECK(ts.has_industry_classification(readability::industry_classification::childrens_publishing_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::adult_publishing_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::childrens_healthcare_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::adult_healthcare_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::military_government_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::sedondary_language_industry) == false);
+
+        ts.add_industry_classification(readability::industry_classification::childrens_publishing_industry, true);
+        CHECK(ts.has_industry_classification(readability::industry_classification::childrens_publishing_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::adult_publishing_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::childrens_healthcare_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::adult_healthcare_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::military_government_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::sedondary_language_industry) == false);
+
+        ts.add_industry_classification(readability::industry_classification::adult_publishing_industry, true);
+        CHECK(ts.has_industry_classification(readability::industry_classification::childrens_publishing_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::adult_publishing_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::childrens_healthcare_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::adult_healthcare_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::military_government_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::sedondary_language_industry) == false);
+
+        ts.add_industry_classification(readability::industry_classification::childrens_healthcare_industry, true);
+        CHECK(ts.has_industry_classification(readability::industry_classification::childrens_publishing_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::adult_publishing_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::childrens_healthcare_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::adult_healthcare_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::military_government_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::sedondary_language_industry) == false);
+
+        ts.add_industry_classification(readability::industry_classification::adult_healthcare_industry, true);
+        CHECK(ts.has_industry_classification(readability::industry_classification::childrens_publishing_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::adult_publishing_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::childrens_healthcare_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::adult_healthcare_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::military_government_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::sedondary_language_industry) == false);
+
+        ts.add_industry_classification(readability::industry_classification::military_government_industry, true);
+        CHECK(ts.has_industry_classification(readability::industry_classification::childrens_publishing_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::adult_publishing_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::childrens_healthcare_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::adult_healthcare_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::military_government_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::sedondary_language_industry) == false);
+
+        ts.add_industry_classification(readability::industry_classification::sedondary_language_industry, true);
+        CHECK(ts.has_industry_classification(readability::industry_classification::childrens_publishing_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::adult_publishing_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::childrens_healthcare_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::adult_healthcare_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::military_government_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::sedondary_language_industry));
+
+        ts.add_industry_classification(readability::industry_classification::sedondary_language_industry, false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::sedondary_language_industry) == false);
+        }
+    }
+
 TEST_CASE("Rix tests", "[rix][readability-tests]")
     {
     SECTION("RIX")
