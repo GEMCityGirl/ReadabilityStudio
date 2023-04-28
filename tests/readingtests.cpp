@@ -5,9 +5,188 @@
 #include "../src/readability/spanish_readability.h"
 #include "../src/readability/english_readability.h"
 #include "../src/readability/readability_test.h"
+#include "../src/readability/readability_project_test.h"
 
 using namespace Catch::Matchers;
 using namespace readability;
+
+TEST_CASE("Test collections", "[test-collection][readability-tests]")
+    {
+    SECTION("Comparisons")
+        {
+        readability::readability_test LIX(L"lix", 8, L"Lix test", L"Laebarindex", L"This is the lix test", readability::readability_test_type::grade_level, false, L"");
+        readability::readability_test LIX2(L"lix", 8, L"LiX", L"Laebarindex", L"blah blah", readability::readability_test_type::grade_level, false, L"");
+        readability::readability_test RIX(L"rix", 9, L"Rix test", L"Rate index", L"Rate index is great", readability::readability_test_type::grade_level, false, L"");
+        readability::readability_project_test<std::vector<double>> RIX_project(RIX);
+        CHECK(LIX == LIX2);
+        CHECK(!(LIX == RIX));
+        CHECK(LIX == readability::readability_test(L"lIx"));
+        CHECK(LIX == readability::readability_test(L"Lix TEST"));
+        CHECK(LIX == readability::readability_test(L"LAEBARINDEX"));
+        CHECK(LIX < RIX);
+        CHECK(!(RIX < LIX));
+        CHECK(LIX < RIX_project);
+        CHECK(!(RIX_project < LIX));
+        }
+    SECTION("ProjectWrapperComparisons")
+        {
+        readability::readability_test LIX(L"lix", 8, L"Lix test", L"Laebarindex", L"This is the lix test", readability::readability_test_type::grade_level, false, L"");
+        readability::readability_test LIX2(L"lix", 8, L"LiX", L"Laebarindex", L"blah blah", readability::readability_test_type::grade_level, false, L"");
+        readability::readability_test RIX(L"rix", 9, L"Rix test", L"Rate index", L"Rate index is great", readability::readability_test_type::grade_level, false, L"");
+        readability::readability_project_test<std::vector<double>> LIX_project(LIX);
+        readability::readability_project_test<std::vector<double>> LIX2_project(LIX2);
+        readability::readability_project_test<std::vector<double>> RIX_project(RIX);
+        CHECK(LIX_project == LIX2_project);
+        CHECK(!(LIX_project == RIX_project));
+        CHECK(LIX_project == readability::readability_test(L"lIx"));
+        CHECK(LIX_project == readability::readability_test(L"Lix TEST"));
+        CHECK(LIX_project == readability::readability_test(L"LAEBARINDEX"));
+        CHECK(LIX_project < RIX_project);
+        CHECK(!(RIX_project < LIX_project));
+        CHECK(LIX_project < RIX_project);
+        CHECK(!(RIX_project < LIX_project));
+        }
+    SECTION("ProjectWrapperAssignment")
+        {
+        readability::readability_test LIX(L"lix", 8, L"Lix test", L"Laebarindex", L"This is the lix test", readability::readability_test_type::grade_level, false, L"");
+        readability::readability_test LIX2(L"lix", 8, L"LiX", L"Laebarindex", L"blah blah", readability::readability_test_type::grade_level, false, L"");
+        readability::readability_test RIX(L"rix", 9, L"Rix test", L"Rate index", L"Rate index is great", readability::readability_test_type::grade_level, false, L"");
+        readability::readability_project_test<std::vector<double>> LIX_project(LIX);
+        readability::readability_project_test<std::vector<double>> LIX2_project(RIX);// will be changed in assignment
+        LIX2_project = LIX_project;
+        readability::readability_project_test<std::vector<double>> RIX_project(RIX);
+        CHECK(LIX_project == LIX2_project);
+        CHECK(!(LIX2_project == RIX_project));
+        CHECK(LIX2_project == readability::readability_test(L"lIx"));
+        CHECK(LIX2_project == readability::readability_test(L"Lix TEST"));
+        CHECK(LIX2_project == readability::readability_test(L"LAEBARINDEX"));
+        CHECK(LIX2_project < RIX_project);
+        CHECK(!(RIX_project < LIX2_project));
+        CHECK(LIX2_project < RIX_project);
+        CHECK(!(RIX_project < LIX2_project));
+        }
+    SECTION("AddTest")
+        {
+        readability::readability_test_collection<readability::readability_project_test<std::vector<double>>> col;
+        readability::readability_test LIX(L"lix", 8, L"Lix test", L"Laebarindex", L"This is the lix test", readability::readability_test_type::grade_level, false, L"");
+        CHECK(static_cast<size_t>(0) == col.get_test_count());
+        col.add_test(LIX);
+        CHECK(static_cast<size_t>(1) == col.get_test_count());
+        // prevent the same test being added
+        col.add_test(LIX);
+        CHECK(static_cast<size_t>(1) == col.get_test_count());
+        readability::readability_test RIX(L"rix", 9, L"Rix test", L"Rate index", L"Rate index is great", readability::readability_test_type::grade_level, false, L"");
+        col.add_test(RIX);
+        CHECK(static_cast<size_t>(2) == col.get_test_count());
+        }
+    SECTION("AddTests")
+        {
+        std::vector<readability::readability_test> tests;
+        tests.push_back(readability::readability_test(L"rix", 9, L"Rix test", L"Rate index", L"Rate index is great", readability::readability_test_type::grade_level, false, L""));
+        tests.push_back(readability::readability_test(L"lix", 8, L"Lix test", L"Laebarindex", L"This is the lix test", readability::readability_test_type::grade_level, false, L""));
+        tests.push_back(readability::readability_test(L"ari", 10, L"ARI test", L"ARI long name", L"ARI is great", readability::readability_test_type::grade_level, false, L""));
+        tests.push_back(readability::readability_test(L"lix", 8, L"Lix test", L"Laebarindex", L"This is the lix test", readability::readability_test_type::grade_level, false, L""));//duplicate
+        readability::readability_test_collection<readability::readability_project_test<std::vector<double>>> col;
+        CHECK(static_cast<size_t>(0) == col.get_test_count());
+        col.add_tests(tests);
+        CHECK(static_cast<size_t>(3) == col.get_test_count());
+        }
+    SECTION("IsIncluded")
+        {
+        readability::readability_test_collection<readability::readability_project_test<std::vector<double>>> col;
+        CHECK(col.is_test_included(L"lix") == false);
+        readability::readability_test LIX(L"lix", 8, L"Lix test", L"Laebarindex", L"This is the lix test", readability::readability_test_type::grade_level, false, L"");
+        readability::readability_test RIX(L"rix", 9, L"Rix test", L"Rate index", L"Rate index is great", readability::readability_test_type::grade_level, false, L"");
+        col.add_test(LIX);
+        col.add_test(RIX);
+        // test will not be included in the project by default
+        CHECK(col.is_test_included(L"lix") == false);
+        CHECK(col.is_test_included(L"Lix test") == false);
+        CHECK(col.is_test_included(L"Laebarindex") == false);
+        // now include it and test its inclusion
+        CHECK(col.include_test(L"LIX", true));
+        CHECK(col.is_test_included(L"liX"));
+        CHECK(col.is_test_included(L"Lix TEST"));
+        CHECK(col.is_test_included(L"LaebarIndex"));
+
+        CHECK(col.include_test(L"RIX", true));
+        CHECK(col.is_test_included(L"riX"));
+        CHECK(col.is_test_included(L"Rix TEST"));
+        CHECK(col.is_test_included(L"Rate indEX"));
+        CHECK(col.include_test(L"RIX", false));
+        CHECK(col.is_test_included(L"riX") == false);
+        CHECK(col.is_test_included(L"Rix TEST") == false);
+        CHECK(col.is_test_included(L"Rate indEX") == false);
+        // bogus text that is not in there
+        CHECK(col.include_test(L"boffo", true) == false); // have to add it before including it
+        CHECK(col.is_test_included(L"boffo") == false);
+        }
+    SECTION("Find")
+        {
+        readability::readability_test_collection<readability::readability_project_test<std::vector<double>>> col;
+        readability::readability_test RIX(L"rix", 9, L"Rix test", L"Rate index", L"Rate index is great", readability::readability_test_type::grade_level, false, L"");
+        readability::readability_test LIX(L"lix", 8, L"Lix test", L"Laebarindex", L"This is the lix test", readability::readability_test_type::grade_level, false, L"");
+        readability::readability_test ARI(L"ari", 10, L"ARI test", L"ARI long name", L"ARI is great", readability::readability_test_type::grade_level, false, L"");
+        col.add_test(RIX);
+        col.add_test(LIX);
+        col.add_test(ARI);
+        CHECK(col.find_test(L"liX").second);
+        CHECK(col.find_test(L"liX").first->get_test().get_id() == L"lix");
+        CHECK(col.find_test(L"liX").first->get_test().get_interface_id() == 8);
+        CHECK(col.find_test(L"Lix TEST").second);
+        CHECK(col.find_test(L"LaebarIndex").second);
+        CHECK(col.find_test(L"rIx").second);
+        CHECK(col.find_test(L"rIx").first->get_test().get_id() == L"rix");
+        CHECK(col.find_test(L"rIx").first->get_test().get_interface_id() == 9);
+        CHECK(col.find_test(L"ari").second);
+        CHECK(col.find_test(L"ARI").first->get_test().get_id() == L"ari");
+        CHECK(col.find_test(L"ARI").first->get_test().get_interface_id() == 10);
+        CHECK(col.find_test(L"ARI test").second);
+        CHECK(col.find_test(L"ARI test").first->get_test().get_id() == L"ari");
+        // interface ID
+        CHECK(col.find_test(8).first->get_test().get_id() == L"lix");
+        CHECK(col.find_test(9).first->get_test().get_id() == L"rix");
+        CHECK(col.find_test(10).first->get_test().get_id() == L"ari");
+        CHECK(col.find_test(L"ARI long name").second);
+        // items not found
+        CHECK(col.find_test(L"boffo").second == false);
+        CHECK(col.find_test(0).second == false);
+        CHECK(col.find_test(11).second == false);
+        }
+    SECTION("GetFunctions")
+        {
+        readability::readability_test_collection<readability::readability_project_test<std::vector<double>>> col;
+        readability::readability_test LIX(L"lix", 8, L"Lix test", L"Laebarindex", L"This is the lix test", readability::readability_test_type::grade_level, false, L"");
+        readability::readability_test RIX(L"rix", 9, L"Rix test", L"Rate index", L"Rate index is great", readability::readability_test_type::index_value, false, L"");
+        col.add_test(LIX);
+        col.add_test(RIX);
+        CHECK(col.get_test_id(L"lix") == L"lix");
+        CHECK(col.get_test_short_name(L"lix") == L"Lix test");
+        CHECK(col.get_test_long_name(L"lix") == L"Laebarindex");
+        CHECK(col.get_test_description(L"lix") == L"This is the lix test");
+
+        CHECK(col.get_test_id(L"rix") == L"rix");
+        CHECK(col.get_test_short_name(L"rix") == L"Rix test");
+        CHECK(col.get_test_long_name(L"rix") == L"Rate index");
+        CHECK(col.get_test_description(L"rix") == L"Rate index is great");
+
+        CHECK(col.get_test_id(L"boffo") == L"");
+        CHECK(col.get_test_short_name(L"boffo") == L"");
+        CHECK(col.get_test_long_name(L"") == L"");
+        CHECK(col.get_test_description(L"") == L"");
+        }
+    SECTION("Counts")
+        {
+        readability::readability_test_collection<readability::readability_project_test<std::vector<double>>> col;
+        readability::readability_test LIX(L"lix", 8, L"Lix test", L"Laebarindex", L"This is the lix test", readability::readability_test_type::grade_level, false, L"");
+        readability::readability_test RIX(L"rix", 9, L"Rix test", L"Rate index", L"Rate index is great", readability::readability_test_type::index_value_and_grade_level, false, L"");
+        readability::readability_test BOFFO(L"Boffo", 10, L"Boffo test", L"Boffo", L"Boffo is great", readability::readability_test_type::index_value, false, L"");
+        col.add_test(LIX);
+        col.add_test(RIX);
+        col.add_test(BOFFO);
+        CHECK(col.get_grade_level_test_count() == 2);
+        }
+    }
 
 TEST_CASE("Base test tests", "[base-test][readability-tests]")
     {
