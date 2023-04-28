@@ -16,7 +16,6 @@
 #include <bitset>
 #include <utility>
 #include "../indexing/character_traits.h"
-#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 
 namespace readability
     {
@@ -179,7 +178,8 @@ namespace readability
         /// Adds a language that this test should be used on.
         void add_language(const test_language lang)
             { m_language.set(static_cast<size_t>(lang), true); }
-        [[nodiscard]] bool has_language(const test_language lang) const
+        [[nodiscard]]
+        bool has_language(const test_language lang) const
             { return m_language.test(static_cast<size_t>(lang)); }
         void reset_languages() noexcept
             { m_language.reset(); }
@@ -288,14 +288,17 @@ namespace readability
             m_readability_test_type = that.m_readability_test_type;
             m_is_integral = that.m_is_integral;
             }
-        [[nodiscard]] bool operator<(const readability_test& that) const noexcept
+        [[nodiscard]]
+        bool operator<(const readability_test& that) const noexcept
             { return m_id < that.m_id; }
         template<typename T>
-        [[nodiscard]] bool operator<(const T& that) const noexcept
+        [[nodiscard]]
+        bool operator<(const T& that) const noexcept
             { return m_id < that.get_test().get_id(); }
         /// Compares (case insensitive) a string value to the test's ID, short name, or long name.
         /// If any of those match, then returns true.
-        [[nodiscard]] bool operator==(const readability_test& that) const noexcept
+        [[nodiscard]]
+        bool operator==(const readability_test& that) const noexcept
             {
             return ((m_id == that.m_id) ||
                 (m_interfaceId == that.m_interfaceId) ||
@@ -303,20 +306,27 @@ namespace readability
                 (m_long_name == that.m_long_name) );
             }
         /// @returns Whether test results are truncated to integers.
-        [[nodiscard]] bool is_integral() const noexcept
+        [[nodiscard]]
+        bool is_integral() const noexcept
             { return m_is_integral; }
         ///value functions
-        [[nodiscard]] const string_type& get_id() const noexcept
+        [[nodiscard]]
+        const string_type& get_id() const noexcept
             { return m_id; }
-        [[nodiscard]] const string_type& get_short_name() const noexcept
+        [[nodiscard]]
+        const string_type& get_short_name() const noexcept
             { return m_short_name; }
-        [[nodiscard]] const string_type& get_long_name() const noexcept
+        [[nodiscard]]
+        const string_type& get_long_name() const noexcept
             { return m_long_name; }
-        [[nodiscard]] const string_type& get_description() const noexcept
+        [[nodiscard]]
+        const string_type& get_description() const noexcept
             { return m_description; }
-        [[nodiscard]] const string_type& get_formula() const noexcept
+        [[nodiscard]]
+        const string_type& get_formula() const noexcept
             { return m_formula; }
-        [[nodiscard]] readability_test_type get_test_type() const noexcept
+        [[nodiscard]]
+        readability_test_type get_test_type() const noexcept
             { return m_readability_test_type; }
     private:
         // ID used in the project file
@@ -364,7 +374,8 @@ namespace readability
                 { m_tests.erase(endOfUniquePos, m_tests.end()); }
             }
         /// @returns The number of tests in the collection.
-        [[nodiscard]] size_t get_test_count() const noexcept
+        [[nodiscard]]
+        size_t get_test_count() const noexcept
             { return m_tests.size(); }
         /// Removes all tests.
         void clear() noexcept
@@ -375,15 +386,18 @@ namespace readability
             { m_tests.reserve(size); }
         /// @returns a test, based on specified criterion. The test will be an iterator to the test and a bool flag indicating that it was found.
         template<typename T>
-        [[nodiscard]] std::pair<typename std::vector<test_typeT>::const_iterator, bool> get_test(const T& test) const
+        [[nodiscard]]
+        std::pair<typename std::vector<test_typeT>::const_iterator, bool> get_test(const T& test) const
             { return find_test(test); }
         /// @returns Whether a test exists. Test may or may not actually be enabled (included) in the project.
         template<typename T>
-        [[nodiscard]] bool has_test(const T& test) const
+        [[nodiscard]]
+        bool has_test(const T& test) const
             { return find_test(test).second; }
         /// @returns Whether a test is included in the project.
         template<typename T>
-        [[nodiscard]] bool is_test_included(const T& test) const
+        [[nodiscard]]
+        bool is_test_included(const T& test) const
             {
             auto [iterator, found] = find_test(test);
             if (!found)
@@ -403,7 +417,8 @@ namespace readability
             }
         /// @returns The ID for a given @c test.
         template<typename T>
-        [[nodiscard]] const string_type get_test_id(const T& test) const
+        [[nodiscard]]
+        const string_type get_test_id(const T& test) const
             {
             auto [iterator, found] = find_test(test);
             if (!found)
@@ -413,7 +428,8 @@ namespace readability
             }
         /// @returns The short name for a given test.
         template<typename T>
-        [[nodiscard]] const string_type get_test_short_name(const T& test) const
+        [[nodiscard]]
+        const string_type get_test_short_name(const T& test) const
             {
             auto [iterator, found] = find_test(test);
             if (!found)
@@ -423,7 +439,8 @@ namespace readability
             }
         /// @returns The long name for a given test.
         template<typename T>
-        [[nodiscard]] const string_type get_test_long_name(const T& test) const
+        [[nodiscard]]
+        const string_type get_test_long_name(const T& test) const
             {
             auto [iterator, found] = find_test(test);
             if (!found)
@@ -433,7 +450,8 @@ namespace readability
             }
         /// @returns The description for a given test.
         template<typename T>
-        [[nodiscard]] const string_type get_test_description(const T& test) const
+        [[nodiscard]]
+        const string_type get_test_description(const T& test) const
             {
             auto [iterator, found] = find_test(test);
             if (!found)
@@ -445,7 +463,8 @@ namespace readability
         /// @param test The test to find (this key can be an ID (the integer or string one), short name, or long name).
         /// @returns A pair: the iterator to the test and a boolean indicating whether the test was found or not.
         template<typename T>
-        [[nodiscard]] std::pair<typename std::vector<test_typeT>::iterator, bool> find_test(const T& test)
+        [[nodiscard]]
+        std::pair<typename std::vector<test_typeT>::iterator, bool> find_test(const T& test)
             {
             // first, do a binary search (by ID) as this is a fast and most common way to find a test
             typename std::vector<test_typeT>::iterator pos = std::lower_bound(m_tests.begin(), m_tests.end(), readability_test(test));
@@ -459,7 +478,8 @@ namespace readability
         /// @param test The test to find (this key can be an ID (the integer or string one), short name, or long name).
         /// @returns A pair: the iterator to the test and a boolean indicating whether the test was found or not.
         template<typename T>
-        [[nodiscard]] std::pair<typename std::vector<test_typeT>::const_iterator, bool> find_test(const T& test) const
+        [[nodiscard]]
+        std::pair<typename std::vector<test_typeT>::const_iterator, bool> find_test(const T& test) const
             {
             // first, do a binary search (by ID) as this is a fast and most common way to find a test
             typename std::vector<test_typeT>::const_iterator pos = std::lower_bound(m_tests.cbegin(), m_tests.cend(), readability_test(test));
@@ -469,12 +489,15 @@ namespace readability
             pos = std::find(m_tests.cbegin(), m_tests.cend(), readability_test(test));
             return std::pair<typename std::vector<test_typeT>::const_iterator, bool>(pos, (pos != m_tests.cend())/*whether it was found or not*/);
             }
-        [[nodiscard]] std::vector<test_typeT>& get_tests() noexcept
+        [[nodiscard]]
+        std::vector<test_typeT>& get_tests() noexcept
             { return m_tests; }
-        [[nodiscard]] const std::vector<test_typeT>& get_tests() const noexcept
+        [[nodiscard]]
+        const std::vector<test_typeT>& get_tests() const noexcept
             { return m_tests; }
         /// @returns The number of grade-level tests (or grade-level with index value tests).
-        [[nodiscard]] size_t get_grade_level_test_count() const
+        [[nodiscard]]
+        size_t get_grade_level_test_count() const
             {
             return std::count_if(m_tests.cbegin(), m_tests.cend(),
                 [](const auto& test)
