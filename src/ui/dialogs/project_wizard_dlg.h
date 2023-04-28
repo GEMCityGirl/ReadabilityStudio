@@ -163,7 +163,7 @@ public:
         }
     //tests
     [[nodiscard]]
-    readability::readability_test_collection<>& GetReadabilityTestsInfo()
+    BaseProject::TestCollectionType& GetReadabilityTestsInfo()
         {
         for (size_t i = 0; i < m_testsCheckListBox->GetCount(); ++i)
             { m_readabilityTests.include_test(m_testsCheckListBox->GetString(i), m_testsCheckListBox->IsChecked(i)); }
@@ -300,7 +300,7 @@ private:
     int m_selectedBundle{ 0 };
 
     bool m_includeDolchSightWords{ false };
-    readability::readability_test_collection<> m_readabilityTests;
+    BaseProject::TestCollectionType m_readabilityTests;
     wxArrayInt m_selectedTests;
     wxCheckListBox* m_testsCheckListBox{ nullptr };
     wxArrayInt m_selectedCustomTests;

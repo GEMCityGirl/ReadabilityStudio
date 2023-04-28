@@ -815,7 +815,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
         //general documents
         if (wizard->GetSelectedDocumentType() == readability::document_classification::general_document)
             {
-            for (std::vector<readability::readability_project_test>::iterator rTest = GetReadabilityTests().get_tests().begin();
+            for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
                 { rTest->include(rTest->get_test().has_document_classification(readability::document_classification::general_document) && rTest->get_test().has_language(GetProjectLanguage())); }
@@ -830,7 +830,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
         //technical manuals and documents
         else if (wizard->GetSelectedDocumentType() == readability::document_classification::technical_document)
             {
-            for (std::vector<readability::readability_project_test>::iterator rTest = GetReadabilityTests().get_tests().begin();
+            for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
                 { rTest->include(rTest->get_test().has_document_classification(readability::document_classification::technical_document) && rTest->get_test().has_language(GetProjectLanguage())); }
@@ -848,7 +848,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             //override how headers and lists are counted so that they are always included if this is a form
             SetInvalidSentenceMethod(InvalidSentence::IncludeAsFullSentences);
 
-            for (std::vector<readability::readability_project_test>::iterator rTest = GetReadabilityTests().get_tests().begin();
+            for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
                 { rTest->include(rTest->get_test().has_document_classification(readability::document_classification::nonnarrative_document) && rTest->get_test().has_language(GetProjectLanguage())); }
@@ -862,7 +862,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             }
         else if (wizard->GetSelectedDocumentType() == readability::document_classification::adult_literature_document)
             {
-            for (std::vector<readability::readability_project_test>::iterator rTest = GetReadabilityTests().get_tests().begin();
+            for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
                 { rTest->include(rTest->get_test().has_document_classification(readability::document_classification::adult_literature_document) && rTest->get_test().has_language(GetProjectLanguage())); }
@@ -876,7 +876,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             }
         else if (wizard->GetSelectedDocumentType() == readability::document_classification::childrens_literature_document)
             {
-            for (std::vector<readability::readability_project_test>::iterator rTest = GetReadabilityTests().get_tests().begin();
+            for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
                 { rTest->include(rTest->get_test().has_document_classification(readability::document_classification::childrens_literature_document) && rTest->get_test().has_language(GetProjectLanguage())); }
@@ -896,7 +896,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
         {
         if (wizard->GetSelectedIndustryType() == readability::industry_classification::childrens_publishing_industry)
             {
-            for (std::vector<readability::readability_project_test>::iterator rTest = GetReadabilityTests().get_tests().begin();
+            for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
                 { rTest->include(rTest->get_test().has_industry_classification(readability::industry_classification::childrens_publishing_industry) && rTest->get_test().has_language(GetProjectLanguage())); }
@@ -911,7 +911,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             }
         else if (wizard->GetSelectedIndustryType() == readability::industry_classification::adult_publishing_industry)
             {
-            for (std::vector<readability::readability_project_test>::iterator rTest = GetReadabilityTests().get_tests().begin();
+            for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
                 { rTest->include(rTest->get_test().has_industry_classification(readability::industry_classification::adult_publishing_industry) && rTest->get_test().has_language(GetProjectLanguage())); }
@@ -925,7 +925,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             }
         else if (wizard->GetSelectedIndustryType() == readability::industry_classification::sedondary_language_industry)
             {
-            for (std::vector<readability::readability_project_test>::iterator rTest = GetReadabilityTests().get_tests().begin();
+            for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
                 { rTest->include(rTest->get_test().has_industry_classification(readability::industry_classification::sedondary_language_industry) && rTest->get_test().has_language(GetProjectLanguage())); }
@@ -940,7 +940,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             }
         else if (wizard->GetSelectedIndustryType() == readability::industry_classification::childrens_healthcare_industry)
             {
-            for (std::vector<readability::readability_project_test>::iterator rTest = GetReadabilityTests().get_tests().begin();
+            for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
                 { rTest->include(rTest->get_test().has_industry_classification(readability::industry_classification::childrens_healthcare_industry) && rTest->get_test().has_language(GetProjectLanguage())); }
@@ -954,7 +954,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             }
         else if (wizard->GetSelectedIndustryType() == readability::industry_classification::adult_healthcare_industry)
             {
-            for (std::vector<readability::readability_project_test>::iterator rTest = GetReadabilityTests().get_tests().begin();
+            for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
                 { rTest->include(rTest->get_test().has_industry_classification(readability::industry_classification::adult_healthcare_industry) && rTest->get_test().has_language(GetProjectLanguage())); }
@@ -968,7 +968,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             }
         else if (wizard->GetSelectedIndustryType() == readability::industry_classification::military_government_industry)
             {
-            for (std::vector<readability::readability_project_test>::iterator rTest = GetReadabilityTests().get_tests().begin();
+            for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
                 { rTest->include(rTest->get_test().has_industry_classification(readability::industry_classification::military_government_industry) && rTest->get_test().has_language(GetProjectLanguage())); }
@@ -982,7 +982,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             }
         else if (wizard->GetSelectedIndustryType() == readability::industry_classification::broadcasting_industry)
             {
-            for (std::vector<readability::readability_project_test>::iterator rTest = GetReadabilityTests().get_tests().begin();
+            for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
                 { rTest->include(rTest->get_test().has_industry_classification(readability::industry_classification::broadcasting_industry) && rTest->get_test().has_language(GetProjectLanguage())); }
@@ -1001,7 +1001,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
         {
         //manually selected standard tests
         SetReadabilityTests(wizard->GetReadabilityTestsInfo());
-        for (std::vector<readability::readability_project_test>::iterator rTest = GetReadabilityTests().get_tests().begin();
+        for (auto rTest = GetReadabilityTests().get_tests().begin();
             rTest != GetReadabilityTests().get_tests().end();
             ++rTest)
             {
@@ -1094,7 +1094,7 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
     if (view)
         { view->GetReadabilityScoresList()->Clear(); }
 
-    for (std::vector<readability::readability_project_test>::iterator rTest = GetReadabilityTests().get_tests().begin();
+    for (auto rTest = GetReadabilityTests().get_tests().begin();
         rTest != GetReadabilityTests().get_tests().end();
         ++rTest)
         {

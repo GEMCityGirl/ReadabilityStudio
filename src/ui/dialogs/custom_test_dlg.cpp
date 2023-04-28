@@ -781,7 +781,7 @@ void CustomTestDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
             return;
             }
         // check for the same name in the standard tests too
-        readability::readability_test_collection<> standardTests;
+        BaseProject::TestCollectionType standardTests;
         BaseProject::ResetStandardReadabilityTests(standardTests);
         if (standardTests.has_test(m_testName))
             {

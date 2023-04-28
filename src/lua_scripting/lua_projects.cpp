@@ -622,7 +622,7 @@ namespace LuaScripting
             const wxString testName(luaL_checkstring(L, 2), wxConvUTF8);
             if (m_project->GetReadabilityTests().has_test(testName))
                 {
-                std::pair<std::vector<readability::readability_project_test>::const_iterator, bool> result =
+                const auto result =
                     m_project->GetReadabilityTests().find_test(testName);
                 wxCommandEvent cmd(wxEVT_NULL, result.first->get_test().get_interface_id());
                 view->OnAddTest(cmd);

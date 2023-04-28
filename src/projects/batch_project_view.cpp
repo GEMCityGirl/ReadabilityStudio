@@ -411,9 +411,9 @@ bool BatchProjectView::OnCreate(wxDocument* doc, long flags)
 #endif
 
     //connect the test events
-    for (std::vector<readability::readability_project_test>::const_iterator rTest = dynamic_cast<const BaseProjectDoc*>(doc)->GetReadabilityTests().get_tests().begin();
-            rTest != dynamic_cast<const BaseProjectDoc*>(doc)->GetReadabilityTests().get_tests().end();
-            ++rTest)
+    for (auto rTest = dynamic_cast<const BaseProjectDoc*>(doc)->GetReadabilityTests().get_tests().cbegin();
+         rTest != dynamic_cast<const BaseProjectDoc*>(doc)->GetReadabilityTests().get_tests().cend();
+         ++rTest)
         {
         Connect(rTest->get_test().get_interface_id(), wxEVT_MENU,
             wxCommandEventHandler(BatchProjectView::OnAddTest) );
@@ -1485,18 +1485,18 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
 
     BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(GetDocument());
     double score = 0;
-    const std::pair<std::vector<readability::readability_project_test>::const_iterator, bool> fleschPos = doc->GetReadabilityTests().get_test(ReadabilityMessages::FLESCH());
-    const std::pair<std::vector<readability::readability_project_test>::const_iterator, bool> eflawPos = doc->GetReadabilityTests().get_test(ReadabilityMessages::EFLAW());
-    const std::pair<std::vector<readability::readability_project_test>::const_iterator, bool> fjpPos = doc->GetReadabilityTests().get_test(ReadabilityMessages::FARR_JENKINS_PATERSON());
-    const std::pair<std::vector<readability::readability_project_test>::const_iterator, bool> amstadPos = doc->GetReadabilityTests().get_test(ReadabilityMessages::AMSTAD());
-    const std::pair<std::vector<readability::readability_project_test>::const_iterator, bool> db2Pos = doc->GetReadabilityTests().get_test(ReadabilityMessages::DANIELSON_BRYAN_2());
-    const std::pair<std::vector<readability::readability_project_test>::const_iterator, bool> drpPos = doc->GetReadabilityTests().get_test(ReadabilityMessages::DEGREES_OF_READING_POWER());
-    const std::pair<std::vector<readability::readability_project_test>::const_iterator, bool> frasePos = doc->GetReadabilityTests().get_test(ReadabilityMessages::FRASE());
+    const auto fleschPos = doc->GetReadabilityTests().get_test(ReadabilityMessages::FLESCH());
+    const auto eflawPos = doc->GetReadabilityTests().get_test(ReadabilityMessages::EFLAW());
+    const auto fjpPos = doc->GetReadabilityTests().get_test(ReadabilityMessages::FARR_JENKINS_PATERSON());
+    const auto amstadPos = doc->GetReadabilityTests().get_test(ReadabilityMessages::AMSTAD());
+    const auto db2Pos = doc->GetReadabilityTests().get_test(ReadabilityMessages::DANIELSON_BRYAN_2());
+    const auto drpPos = doc->GetReadabilityTests().get_test(ReadabilityMessages::DEGREES_OF_READING_POWER());
+    const auto frasePos = doc->GetReadabilityTests().get_test(ReadabilityMessages::FRASE());
     for (long i = 2/*skip document and description column*/; i < list->GetColumnCount(); ++i)
         {
         const wxString currentTestFullName = list->GetColumnName(i);
         const wxString currentTest = StripGradeLevelsLabel(currentTestFullName);//we will want grade level columns, but not cloze or Index values
-        std::pair<std::vector<readability::readability_project_test>::const_iterator, bool> standardTestPos = doc->GetReadabilityTests().get_test(currentTest);
+        auto standardTestPos = doc->GetReadabilityTests().get_test(currentTest);
         if (standardTestPos.second)
             {
             scoreText += wxString::Format(wxT("<table style='width:100%%;'><thead><tr><td style='background:%s;'><span style='font-weight:bold; color:%s;'>"),

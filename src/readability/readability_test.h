@@ -219,8 +219,6 @@ namespace readability
             m_teaching_level{ 0 };
         };
 
-    class readability_project_test;
-
     /// @brief Readability test description, which includes its various names,
     ///     IDs, and description.
     class readability_test : public test_with_classification, public base_test
@@ -341,7 +339,7 @@ namespace readability
         };
 
     /// Class to hold all of the tests for a project.
-    template<typename test_typeT = readability_project_test>
+    template<typename test_typeT>
     class readability_test_collection
         {
     public:
@@ -384,7 +382,8 @@ namespace readability
         /// @param size The amount of space requested to reserve for x number of tests.
         void reserve(const size_t size)
             { m_tests.reserve(size); }
-        /// @returns a test, based on specified criterion. The test will be an iterator to the test and a bool flag indicating that it was found.
+        /// @returns a test, based on specified criterion.\n
+        ///     The test will be an iterator to the test and a bool flag indicating that it was found.
         template<typename T>
         [[nodiscard]]
         std::pair<typename std::vector<test_typeT>::const_iterator, bool> get_test(const T& test) const

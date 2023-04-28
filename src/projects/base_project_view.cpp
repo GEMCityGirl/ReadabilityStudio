@@ -1213,7 +1213,7 @@ void BaseProjectView::OnTestBundle(wxCommandEvent& event)
             const bool hadDolchSightWords = doc->IsIncludingDolchSightWords();
             doc->ExcludeAllTests();
             //standard tests
-            for (std::vector<readability::readability_project_test>::iterator rTest = doc->GetReadabilityTests().get_tests().begin();
+            for (auto rTest = doc->GetReadabilityTests().get_tests().begin();
                 rTest != doc->GetReadabilityTests().get_tests().end();
                 ++rTest)
                 {
@@ -1254,7 +1254,7 @@ void BaseProjectView::OnTestBundle(wxCommandEvent& event)
             {
             doc->ExcludeAllTests();
             //standard tests
-            for (std::vector<readability::readability_project_test>::iterator rTest = doc->GetReadabilityTests().get_tests().begin();
+            for (auto rTest = doc->GetReadabilityTests().get_tests().begin();
                 rTest != doc->GetReadabilityTests().get_tests().end();
                 ++rTest)
                 {
@@ -1744,7 +1744,7 @@ void BaseProjectView::Present()
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureEnglishReadabilityTestsCode()))
         {
-        for (std::vector<readability::readability_project_test>::iterator rTest = doc->GetReadabilityTests().get_tests().begin();
+        for (auto rTest = doc->GetReadabilityTests().get_tests().begin();
             rTest != doc->GetReadabilityTests().get_tests().end();
             ++rTest)
             {

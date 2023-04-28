@@ -247,7 +247,7 @@ void BaseProject::FormatFilteredText(wxString& text, const bool romanizeText,
 /// Indicates whether a test is included which includes a cloze score
 bool BaseProject::IsIncludingClozeTest() const
     {
-    for (std::vector<readability::readability_project_test>::const_iterator rTests = GetReadabilityTests().get_tests().begin();
+    for (auto rTests = GetReadabilityTests().get_tests().begin();
         rTests != GetReadabilityTests().get_tests().end();
         ++rTests)
         {
@@ -269,7 +269,7 @@ bool BaseProject::IsIncludingClozeTest() const
 ///Indicates whether a test is included which includes a grade-level score
 bool BaseProject::IsIncludingGradeTest() const
     {
-    for (std::vector<readability::readability_project_test>::const_iterator rTests = GetReadabilityTests().get_tests().begin();
+    for (auto rTests = GetReadabilityTests().get_tests().begin();
         rTests != GetReadabilityTests().get_tests().end();
         ++rTests)
         {
@@ -715,7 +715,7 @@ BaseProject::BaseProject() :
     m_readMessages.SetLongGradeScaleFormat(wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
     }
 
-void BaseProject::ResetStandardReadabilityTests(readability::readability_test_collection<>& readabilityTests)
+void BaseProject::ResetStandardReadabilityTests(TestCollectionType& readabilityTests)
     {
     readabilityTests.clear();
     readabilityTests.reserve(m_defaultReadabilityTestsTemplate.get_test_count());
@@ -5109,7 +5109,7 @@ bool BaseProject::AddColemanLiauTest(const bool setFocus)
 bool BaseProject::AddStandardReadabilityTest(const wxString& id, const bool setFocus /*= true*/)
     {
     PROFILE();
-    std::pair<std::vector<readability::readability_project_test>::const_iterator, bool> theTest = GetReadabilityTests().get_test(id);
+    const auto theTest = GetReadabilityTests().get_test(id);
     if (!theTest.second)
         { return false; }
     if (HasUI() && theTest.first->get_test().get_id() == _DT(L"dale-chall-test") &&
@@ -7214,7 +7214,7 @@ void BaseProject::CopySettings(const BaseProject& that)
     }
 
 //------------------------------------------------
-bool BaseProject::VerifyTestBeforeAdding(const std::pair<std::vector<readability::readability_project_test>::const_iterator, bool>& theTest)
+bool BaseProject::VerifyTestBeforeAdding(const std::pair<std::vector<ProjectTestType>::const_iterator, bool>& theTest)
     {
     // see if the test was found in the list of known tests (this shouldn't be an issue)
     wxASSERT_LEVEL_2(theTest.second);

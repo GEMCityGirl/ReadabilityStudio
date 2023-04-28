@@ -572,7 +572,7 @@ void ReadabilityAppOptions::ResetSettings()
     m_spellcheck_ignore_file_addresses = true;
     m_spellcheck_ignore_programmer_code = false;
     m_allow_colloquialisms = true;
-    for (std::vector<readability::readability_project_test>::iterator rTest = GetReadabilityTests().get_tests().begin();
+    for (auto rTest = GetReadabilityTests().get_tests().begin();
         rTest != GetReadabilityTests().get_tests().end();
         ++rTest)
         { rTest->include(false); }
@@ -3726,7 +3726,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxEm
     dcOptions->InsertEndChild(dcProperNouns);
     readabilityTestSection->InsertEndChild(dcOptions);
 
-    for (std::vector<readability::readability_project_test>::iterator rTest = GetReadabilityTests().get_tests().begin();
+    for (auto rTest = GetReadabilityTests().get_tests().begin();
         rTest != GetReadabilityTests().get_tests().end();
         ++rTest)
         {

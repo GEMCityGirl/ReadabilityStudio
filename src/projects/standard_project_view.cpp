@@ -1288,9 +1288,9 @@ bool ProjectView::OnCreate(wxDocument* doc, long flags)
 #endif
 
     //connect the test events
-    for (std::vector<readability::readability_project_test>::const_iterator rTest = dynamic_cast<const BaseProjectDoc*>(doc)->GetReadabilityTests().get_tests().begin();
-            rTest != dynamic_cast<const BaseProjectDoc*>(doc)->GetReadabilityTests().get_tests().end();
-            ++rTest)
+    for (auto rTest = dynamic_cast<const BaseProjectDoc*>(doc)->GetReadabilityTests().get_tests().begin();
+         rTest != dynamic_cast<const BaseProjectDoc*>(doc)->GetReadabilityTests().get_tests().end();
+         ++rTest)
         {
         Connect(rTest->get_test().get_interface_id(), wxEVT_MENU,
             wxCommandEventHandler(ProjectView::OnAddTest) );

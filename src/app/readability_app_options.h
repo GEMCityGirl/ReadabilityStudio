@@ -8,11 +8,13 @@
 #include "../Wisteria-Dataviz/src/graphs/histogram.h"
 #include "../Wisteria-Dataviz/src/util/warningmanager.h"
 #include "../Wisteria-Dataviz/src/base/image.h"
+#include "../Wisteria-Dataviz/src/data/dataset.h"
 #include "../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../Wisteria-Dataviz/src/util/xml_format.h"
 #include "../OleanderStemmingLibrary/src/stemming.h"
 #include "../readability/readability.h"
 #include "../readability/readability_test.h"
+#include "../readability/readability_project_test.h"
 #include "optionenums.h"
 #include "../results_format/readability_messages.h"
 
@@ -289,6 +291,9 @@ private:
 class ReadabilityAppOptions final : public WarningManager
     {
 public:
+    /// @private
+    using TestCollectionType =
+        readability::readability_test_collection<readability::readability_project_test<Wisteria::Data::Dataset>>;
     ReadabilityAppOptions();
     ///set the third parameter to false if you only want to load the settings from this file and write back
     ///to a different settings file
@@ -525,14 +530,14 @@ public:
     //readability get functions
     [[nodiscard]] bool IsDolchSelected() const noexcept
         { return m_includeDolchSightWords; }
-    [[nodiscard]] readability::readability_test_collection<>& GetReadabilityTests() noexcept
+    [[nodiscard]] TestCollectionType& GetReadabilityTests() noexcept
         { return m_readabilityTests; }
     [[nodiscard]] std::vector<wxString>& GetIncludedCustomTests() noexcept
         { return m_includedCustomTests; }
     //readability set functions
     void SetDolch(const bool value) noexcept
         { m_includeDolchSightWords = value; }    
-    void SetReadabilityTests(const readability::readability_test_collection<>& tests)
+    void SetReadabilityTests(const TestCollectionType& tests)
         { m_readabilityTests = tests; }
     //Test Source
     [[nodiscard]] TextSource GetTextSource() const noexcept
@@ -1083,7 +1088,9 @@ private:
     bool m_spellcheck_ignore_social_media_tags{ true };
     //readability tests
     bool m_includeDolchSightWords{ false };
-    readability::readability_test_collection<> m_readabilityTests; //stores the settings for which tests are selected in the wizard
+    // stores the settings for which tests are selected in the wizard
+    readability::readability_test_collection<readability::readability_project_test<Wisteria::Data::Dataset>>
+        m_readabilityTests;
     std::vector<wxString> m_includedCustomTests;
     ReadabilityMessages m_readMessages;
     //Test Recommendation

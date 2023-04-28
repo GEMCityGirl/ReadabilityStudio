@@ -16,7 +16,6 @@
 #include <bitset>
 #include <utility>
 #include "readability_test.h"
-#include "../Wisteria-Dataviz/src/data/dataset.h"
 
 namespace readability
     {
@@ -26,6 +25,7 @@ namespace readability
     ///     so that numerous copies of a test can point to a constant readability_test;
     ///     this way the same strings inside of readability_test objects don't get
     ///     copied thousand of times.
+    template<typename datasetT>
     class readability_project_test
         {
     public:
@@ -73,15 +73,15 @@ namespace readability
             }
         /// @returns grade score points (for multi-document tests).
         [[nodiscard]]
-        std::shared_ptr<Wisteria::Data::Dataset> get_grade_point_collection()
+        std::shared_ptr<datasetT> get_grade_point_collection()
             { return m_grade_values; }
         /// @returns index score points (for multi-document tests).
         [[nodiscard]]
-        std::shared_ptr<Wisteria::Data::Dataset> get_index_point_collection()
+        std::shared_ptr<datasetT> get_index_point_collection()
             { return m_index_values; }
         /// @returns cloze score points (for multi-document tests).
         [[nodiscard]]
-        std::shared_ptr<Wisteria::Data::Dataset> get_cloze_point_collection()
+        std::shared_ptr<datasetT> get_cloze_point_collection()
             { return m_cloze_scores; }
         /// @returns Whether the test is included in the project.
         [[nodiscard]]
@@ -102,9 +102,9 @@ namespace readability
         // whether the test is included in the project
         bool m_included{ false };
         // batch projects use these for its multi-doc graphs
-        std::shared_ptr<Wisteria::Data::Dataset> m_grade_values{ std::make_shared<Wisteria::Data::Dataset>() };
-        std::shared_ptr<Wisteria::Data::Dataset> m_index_values{ std::make_shared<Wisteria::Data::Dataset>() };
-        std::shared_ptr<Wisteria::Data::Dataset> m_cloze_scores{ std::make_shared<Wisteria::Data::Dataset>() };
+        std::shared_ptr<datasetT> m_grade_values{ std::make_shared<datasetT>() };
+        std::shared_ptr<datasetT> m_index_values{ std::make_shared<datasetT>() };
+        std::shared_ptr<datasetT> m_cloze_scores{ std::make_shared<datasetT>() };
         };
     }
 

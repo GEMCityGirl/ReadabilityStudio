@@ -212,6 +212,13 @@ private:
 class BaseProject : public ProjectRefresh
     {
 public:
+    /// @private
+    using ProjectTestType =
+        readability::readability_project_test<Wisteria::Data::Dataset>;
+    /// @private
+    using TestCollectionType =
+        readability::readability_test_collection<ProjectTestType>;
+
     BaseProject();
     BaseProject(const BaseProject&) = delete;
     BaseProject(BaseProject&&) = delete;
@@ -987,15 +994,15 @@ public:
     [[nodiscard]] std::vector<comparable_first_pair<wxString,wxString>>& GetSourceFilesInfo() noexcept
         { return m_sourceFilePaths; }
 
-    void SetReadabilityTests(const readability::readability_test_collection<>& that) noexcept
+    void SetReadabilityTests(const TestCollectionType& that) noexcept
         { m_readabilityTests = that; }
-    [[nodiscard]] readability::readability_test_collection<>& GetReadabilityTests() noexcept
+    [[nodiscard]] TestCollectionType& GetReadabilityTests() noexcept
         { return m_readabilityTests; }
-    [[nodiscard]] const readability::readability_test_collection<>& GetReadabilityTests() const noexcept
+    [[nodiscard]] const TestCollectionType& GetReadabilityTests() const noexcept
         { return m_readabilityTests; }
 
     static void InitializeStandardReadabilityTests();
-    static void ResetStandardReadabilityTests(readability::readability_test_collection<>& readabilityTests);
+    static void ResetStandardReadabilityTests(TestCollectionType& readabilityTests);
     [[nodiscard]] static const readability::readability_test_collection<readability::readability_test>& GetDefaultReadabilityTestsTemplate() noexcept
         { return m_defaultReadabilityTestsTemplate; }
 
@@ -1328,7 +1335,7 @@ protected:
         { m_currentCustTest = test; }
     void DeleteExcludedPhrases()
         { wxDELETE(m_excluded_phrases); }
-    [[nodiscard]] bool VerifyTestBeforeAdding(const std::pair<std::vector<readability::readability_project_test>::const_iterator, bool>& theTest);
+    [[nodiscard]] bool VerifyTestBeforeAdding(const std::pair<std::vector<ProjectTestType>::const_iterator, bool>& theTest);
     void HandleFailedTestCalculation(const wxString& testName);
     [[nodiscard]] bool FindMissingFile(const wxString& filePath, wxString& fileBySameNameInProjectDirectory);
     virtual void AddDB2Plot([[maybe_unused]] const bool setFocus) {}//only AddDB2 should call this
@@ -1606,7 +1613,7 @@ private:
     grammar::is_german_coordinating_conjunction m_german_conjunction;
 
     ReadabilityMessages m_readMessages;
-    readability::readability_test_collection<> m_readabilityTests;
+    TestCollectionType m_readabilityTests;
     std::vector<CustomReadabilityTestInterface> m_customTestsInUse;
 
     std::vector<WarningMessage> m_queuedMessages;

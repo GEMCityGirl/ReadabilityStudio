@@ -65,7 +65,7 @@ private:
     wxString m_descriptionName;
     bool m_includeDolchSightWords{ false };
     TestBundle& m_testBundle;
-    readability::readability_test_collection<> m_standardTests;
+    BaseProject::TestCollectionType m_standardTests;
     CustomReadabilityTestCollection m_custom_tests;
     wxTextCtrl* m_bundleNameCtrl{ nullptr };
     wxTextCtrl* m_bundleDescriptionCtrl{ nullptr };
