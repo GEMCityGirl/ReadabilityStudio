@@ -9,12 +9,12 @@
 #include "../Wisteria-Dataviz/src/util/warningmanager.h"
 #include "../Wisteria-Dataviz/src/base/image.h"
 #include "../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
+#include "../Wisteria-Dataviz/src/util/xml_format.h"
 #include "../OleanderStemmingLibrary/src/stemming.h"
 #include "../readability/readability.h"
 #include "../readability/readability_test.h"
 #include "optionenums.h"
 #include "../results_format/readability_messages.h"
-#include "../results_format/xml_format.h"
 
 /// @brief Class for managing what is included in the statistics section.
 class StatisticsInfo
