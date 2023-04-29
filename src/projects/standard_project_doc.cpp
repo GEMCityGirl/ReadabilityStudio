@@ -162,17 +162,17 @@ void ProjectDoc::RefreshProject()
 
     wxBusyCursor bc;
 
-    //reload the excluded phrases
+    // reload the excluded phrases
     LoadExcludePhrases();
 
-    //load appended template file (if there is one)
+    // load appended template file (if there is one)
     LoadAppendedDocument();
 
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
-    const auto selectedItem = view->GetSideBar()->GetSelectedFolderId();
+    const auto selectedItem = view->GetSideBar()->GetSelectedSubItemId();
 
-    //If the original text is gone (there won't be anything to analyze),
-    //or if just cosmetic changes (e.g., graph options), then don't re-index, just do a simple refresh.
+    // If the original text is gone (there won't be anything to analyze),
+    // or if just cosmetic changes (e.g., graph options), then don't re-index, just do a simple refresh.
     if (LoadingOriginalTextSucceeded() == false ||
         !IsDocumentReindexingRequired())
         {
@@ -191,11 +191,10 @@ void ProjectDoc::RefreshProject()
         view->UpdateSideBarIcons();
         view->Present();
         UpdateAllViews();
-        //see if the view that was originally selected is gone. If so then select the scores section
-        auto selectedIndex = view->GetSideBar()->FindFolder(selectedItem);
-        if (!selectedIndex.has_value())
-            { selectedIndex = view->GetSideBar()->FindFolder(BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID); }
-        view->GetSideBar()->SelectFolder(selectedIndex, false);
+        // see if the view that was originally selected is gone. If so then select the scores section
+        if (view->GetSideBar()->SelectSubItem(selectedItem, true, false))
+            { view->GetSideBar()->SelectFolder(BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID); }
+        
         GetDocumentWindow()->Refresh();
         ResetRefreshRequired();
         Modify(true);
@@ -288,11 +287,9 @@ void ProjectDoc::RefreshProject()
     view->Present();
     UpdateAllViews();
 
-    //see if the view that was originally selected is gone. If so then select the scores section
-    auto selectedIndex = view->GetSideBar()->FindFolder(selectedItem);
-    if (!selectedIndex.has_value())
-        { selectedIndex = view->GetSideBar()->FindFolder(BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID); }
-    view->GetSideBar()->SelectFolder(selectedIndex, false); 
+    // see if the view that was originally selected is gone. If so then select the scores section
+    if (view->GetSideBar()->SelectSubItem(selectedItem, true, false))
+        { view->GetSideBar()->SelectFolder(BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID); }
 
     GetDocumentWindow()->Refresh();
 
