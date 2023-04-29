@@ -24,7 +24,7 @@
 #include "../Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
 
 /// @brief Readability test name, description, and display management class.
-class ReadabilityMessages final : public Wisteria::NumberFormat
+class ReadabilityMessages final : public Wisteria::NumberFormat<wxString>
     {
 public:
     /// @brief Methods for how to display a reading age.
@@ -396,7 +396,8 @@ public:
 
     /// @return Whether grade values will be returned in long format
     ///     (e.g., "Kindergarten"). If false, then grade are simply formatted as numbers.
-    [[nodiscard]] bool IsUsingLongGradeScaleFormat() const noexcept
+    [[nodiscard]]
+    bool IsUsingLongGradeScaleFormat() const noexcept
         { return m_useLongFormatGradeScale; }
     /// @brief Specifies whether grades should be formated into long format.
     /// @param useLongFormat @c true to enable long-format grade formatting,
