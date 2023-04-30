@@ -31,21 +31,19 @@ wxString FilePathResolver::ResolvePath(const wxString& path, const bool attemptT
         // encode any spaces
         webPathToTest.Replace(L" ", L"%20");
 
-        auto webResponse = wxGetApp().GetWebHarvester().
-            GetResponse(L"https://www." + webPathToTest);
+        wxGetApp().GetWebHarvester().RequestResponse(L"https://www." + webPathToTest);
 
         // try to connect to it with https://www. prepended to it
-        if (!webResponse.IsOk()/*connectResult == CURLE_OK*/)
+        if (wxGetApp().GetWebHarvester().GetDownloader().GetLastStatus() != 200)
             {
             // if that didn't work, then try prepending just https://
-            webResponse = wxGetApp().GetWebHarvester().
-                GetResponse(L"https://" + webPathToTest);
+            wxGetApp().GetWebHarvester().RequestResponse(L"https://" + webPathToTest);
             }
 
-        if (webResponse.IsOk())
+        if (wxGetApp().GetWebHarvester().GetDownloader().GetLastStatus() == 200)
             {
             // get redirect URL (if we got redirected)
-            m_path = webResponse.GetURL();
+            m_path = wxGetApp().GetWebHarvester().GetDownloader().GetLastUrl();
             m_fileType = FilePathType::HTTP;
             return m_path;
             }
