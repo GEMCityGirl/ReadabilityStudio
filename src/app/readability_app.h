@@ -29,9 +29,10 @@
 #include "../Wisteria-Dataviz/src/ui/mainframe.h"
 #include "../Wisteria-Dataviz/src/ui/app.h"
 #include "../Wisteria-Dataviz/src/wxStartPage/startpage.h"
+#include "../Wisteria-Dataviz/src/util/xml_format.h"
 #include "../webharvester/webharvester.h"
 #include "../readability/custom_readability_test.h"
-#include "../results_format/xml_format.h"
+#include "../readability/readability_project_test.h"
 #include "../projects/standard_project_doc.h"
 #include "../app/readability_app_options.h"
 #include "../ui/dialogs/word_list_dlg.h"
@@ -163,11 +164,11 @@ public:
     const wxBitmap& GetAboutDialogImage() const noexcept
         { return m_aboutBmp; }
 
-    static constexpr int ID_EDIT_RIBBON_BUTTON_BAR = 30001;
-    static constexpr int ID_PROOFING_RIBBON_BUTTON_BAR = 30002;
-    static constexpr int ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR = 30003;
-    static constexpr int ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR = 30004;
-    static constexpr int ID_NUMERALS_RIBBON_BUTTON_BAR = 30005;
+    static constexpr int ID_EDIT_RIBBON_BUTTON_BAR = wxID_HIGHEST;
+    static constexpr int ID_PROOFING_RIBBON_BUTTON_BAR = wxID_HIGHEST + 1;
+    static constexpr int ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR = wxID_HIGHEST + 2;
+    static constexpr int ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR = wxID_HIGHEST + 3;
+    static constexpr int ID_NUMERALS_RIBBON_BUTTON_BAR = wxID_HIGHEST + 4;
 
     IdRangeLock CUSTOM_TEST_RANGE;
     IdRangeLock EXAMPLE_RANGE;
