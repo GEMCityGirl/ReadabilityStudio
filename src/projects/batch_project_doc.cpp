@@ -495,14 +495,13 @@ void BatchProjectDoc::RefreshProject()
     progressDlg.Update(counter++);
     DisplayWarnings();
 
-    const auto selected = view->GetSideBar()->GetSelectedFolder();
+    const auto selectedItem = view->GetSideBar()->GetSelectedSubItemId();
     view->UpdateSideBarIcons();
     view->Present();
     UpdateAllViews();
 
-    view->GetSideBar()->SelectFolder(
-        (!selected.has_value() || selected.value() >= view->GetSideBar()->GetFolderCount()) ?
-         0 : selected.value(), false);
+    if (!view->GetSideBar()->SelectSubItemById(selectedItem, true, false))
+        { view->GetSideBar()->SelectFolder(0, true, false); }
     dynamic_cast<ListCtrlEx*>(view->GetScoresView().FindWindowById(BaseProjectView::ID_SCORE_LIST_PAGE_ID))->Select(0);
 
     view->UpdateStatAndTestPanes(currentlySelectedFile);

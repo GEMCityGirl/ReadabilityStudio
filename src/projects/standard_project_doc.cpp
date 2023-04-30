@@ -191,9 +191,9 @@ void ProjectDoc::RefreshProject()
         view->UpdateSideBarIcons();
         view->Present();
         UpdateAllViews();
-        // see if the view that was originally selected is gone. If so then select the scores section
-        if (view->GetSideBar()->SelectSubItem(selectedItem, true, false))
-            { view->GetSideBar()->SelectFolder(BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID); }
+
+        if (!view->GetSideBar()->SelectSubItemById(selectedItem, true, false))
+            { view->GetSideBar()->SelectFolder(0, true, false); }
         
         GetDocumentWindow()->Refresh();
         ResetRefreshRequired();
@@ -287,9 +287,10 @@ void ProjectDoc::RefreshProject()
     view->Present();
     UpdateAllViews();
 
-    // see if the view that was originally selected is gone. If so then select the scores section
-    if (view->GetSideBar()->SelectSubItem(selectedItem, true, false))
-        { view->GetSideBar()->SelectFolder(BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID); }
+    // See if the view that was originally selected is gone.
+    // If so then select the scores section.
+    if (!view->GetSideBar()->SelectSubItemById(selectedItem, true, false))
+        { view->GetSideBar()->SelectFolder(0, true, false); }
 
     GetDocumentWindow()->Refresh();
 
