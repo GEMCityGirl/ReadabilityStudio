@@ -1223,7 +1223,8 @@ public:
                 }
             else
                 {
-                LogMessage(wxString::Format(_("Exclusion phrase list not found:\n\n%s\n\nList will not be included in this project."),filePath),
+                LogMessage(wxString::Format(
+                    _("Exclusion phrase list not found:\n\n%s\n\nList will not be included in this project."), filePath),
                     _("Warning"), wxOK|wxICON_EXCLAMATION);
                 SetModifiedFlag();
                 SetExcludedPhrasesPath(wxEmptyString);
@@ -1313,8 +1314,10 @@ private:
     void CreateWords()
         {
         DeleteWords();
+        // UpdateDocumentSettings() will set these parameters properly
         m_words = new CaseInSensitiveNonStemmingDocument(
-            L"", nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr);//UpdateDocumentSettings() will set these parameters properly
+            L"", nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr,
+            nullptr, nullptr, nullptr, nullptr, nullptr);
         UpdateDocumentSettings();
         }
     void UpdateDocumentSettings();
@@ -1335,25 +1338,30 @@ protected:
         { m_currentCustTest = test; }
     void DeleteExcludedPhrases()
         { wxDELETE(m_excluded_phrases); }
-    [[nodiscard]] bool VerifyTestBeforeAdding(const std::pair<std::vector<ProjectTestType>::const_iterator, bool>& theTest);
+    [[nodiscard]]
+    bool VerifyTestBeforeAdding(const std::pair<std::vector<ProjectTestType>::const_iterator, bool>& theTest);
     void HandleFailedTestCalculation(const wxString& testName);
-    [[nodiscard]] bool FindMissingFile(const wxString& filePath, wxString& fileBySameNameInProjectDirectory);
+    [[nodiscard]]
+    bool FindMissingFile(const wxString& filePath, wxString& fileBySameNameInProjectDirectory);
     virtual void AddDB2Plot([[maybe_unused]] const bool setFocus) {}//only AddDB2 should call this
     virtual void AddLixGermanGuage([[maybe_unused]] const bool setFocus) {}//only AddLixGermanXXX should call this
     virtual void AddLixGauge([[maybe_unused]] const bool setFocus) {}//only AddLixTest should call this
     virtual void AddFleschChart([[maybe_unused]] const bool setFocus) {}//only AddFleschTest should call this
     virtual void AddCrawfordGraph([[maybe_unused]] const bool setFocus) {}//only AddCrawford should call this
-    /** @returns A true value and raw/encoded text (usually HTML) converted into a filtered string on success, false and empty string otherwise.
+    /** @returns @c true value and raw/encoded text (usually HTML) converted into a filtered string on success,
+            @c false and empty string otherwise.
         @param sourceFileText The encoded text to filter.
         @param fileExtension The file's extension.
         @param fileName The pathway to the file (only used for error logging).
         @param[out] label A descriptive label from the HTML file (e.g., title, subject, keywords).*/
-    [[nodiscard]] static std::pair<bool,wxString> ExtractRawTextWithEncoding(
+    [[nodiscard]]
+    static std::pair<bool,wxString> ExtractRawTextWithEncoding(
         const wxString& sourceFileText, const wxString& fileExtension, const wxFileName& fileName, wxString& label);
     void CalculateStatistics();
     void CalculateStatisticsIgnoringInvalidSentences();
     void LoadHardWords();
-    [[nodiscard]] bool LoadExternalDocument();
+    [[nodiscard]]
+    bool LoadExternalDocument();
     void ClearReadabilityTestResult()
         {
         m_testName.clear();
@@ -1403,13 +1411,13 @@ protected:
         { nullptr };
 
     //unique word count and total count for each category
-    std::pair<size_t, size_t> m_dolchConjunctionCounts{ 0,0 };
-    std::pair<size_t, size_t> m_dolchPrepositionCounts{ 0,0 };
-    std::pair<size_t, size_t> m_dolchPronounCounts{ 0,0 };
-    std::pair<size_t, size_t> m_dolchAdverbCounts{ 0,0 };
-    std::pair<size_t, size_t> m_dolchAdjectiveCounts{ 0,0 };
-    std::pair<size_t, size_t> m_dolchVerbCounts{ 0,0 };
-    std::pair<size_t, size_t> m_dolchNounCounts{ 0,0 };
+    std::pair<size_t, size_t> m_dolchConjunctionCounts{ 0, 0 };
+    std::pair<size_t, size_t> m_dolchPrepositionCounts{ 0, 0 };
+    std::pair<size_t, size_t> m_dolchPronounCounts{ 0, 0 };
+    std::pair<size_t, size_t> m_dolchAdverbCounts{ 0, 0 };
+    std::pair<size_t, size_t> m_dolchAdjectiveCounts{ 0, 0 };
+    std::pair<size_t, size_t> m_dolchVerbCounts{ 0, 0 };
+    std::pair<size_t, size_t> m_dolchNounCounts{ 0, 0 };
 
     //Statistics values
     //totals
@@ -1484,12 +1492,12 @@ private:
     double m_uniqueHardFogWords{ 0 };
     double m_unique3PlusSyllabicWordsNumeralsFullySyllabized{ 0 };
 
-    //options
+    // options
     double m_minDocWordCountForBatch{ 0 };
     double m_includeIncompleteSentencesIfLongerThan{ 0 };
     int m_difficultSentenceLength{ 0 };
 
-    //analysis options
+    // analysis options
     NumeralSyllabize m_numeralSyllabicationMethod{ NumeralSyllabize::WholeWordIsOneSyllable };
     LongSentence m_longSentenceMethod{ LongSentence::LongerThanSpecifiedLength };
     ParagraphParse m_paragraphsParsingMethod{ ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs };
@@ -1498,9 +1506,9 @@ private:
     TextStorage m_documentStorageMethod{ TextStorage::NoEmbedText };
     VarianceMethod m_varianceMethod{ VarianceMethod::PopulationVariance };
 
-    //readability scores options
+    // readability scores options
     bool m_includeScoreSummaryReport{ false };
-    //test options
+    // test options
     SpecializedTestTextExclusion m_hjTextExclusion;
     SpecializedTestTextExclusion m_dcTextExclusion;
     readability::proper_noun_counting_method m_dcProperNounCountingMethod;
@@ -1509,7 +1517,8 @@ private:
 
     std::set<TestGoal> m_testGoals;
     std::set<StatGoal> m_statGoals;
-    static std::map<comparable_first_pair<Goal::string_type, Goal::string_type>, std::function<double(const BaseProject*)>> m_statGoalLabels;
+    static std::map<comparable_first_pair<Goal::string_type, Goal::string_type>,
+                    std::function<double(const BaseProject*)>> m_statGoalLabels;
 
     readability::test_language m_language{ readability::test_language::english_test };
     wxString m_reviewer;
@@ -1527,7 +1536,7 @@ private:
     bool m_allow_colloquialisms{ false };
     bool m_spellcheck_ignore_social_media_tags{ false };
 
-    //analysis options
+    // analysis options
     bool m_ignoreBlankLinesForParagraphsParser{ false };
     bool m_ignoreIndentingForParagraphsParser{ false };
     bool m_sentenceStartMustBeUppercased{ false };
@@ -1540,7 +1549,7 @@ private:
     bool m_includeExcludedPhraseFirstOccurrence{ false };
 
     // flag indicating that loading the original text failed or succeeded when opening the project
-    bool m_loadingOriginalTextSucceeded{ false };
+    bool m_loadingOriginalTextSucceeded{ true };
     bool m_isRefreshing{ false };
     // test options
     bool m_fogUseSentenceUnits{ false };
