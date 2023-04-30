@@ -40,16 +40,20 @@ public:
         @param attemptToConnect Whether to attempt to connect the file (via the Internet)
             to see if it's an URL. This is final fallback when the filepath type
             can't be easily determined.
+        @param pathsToSearch A list of local paths to look in if @c path is a relative local path.
         @note Set @c attemptToConnect to @c false if performance is a concern.*/
-    explicit FilePathResolver(const wxString& path, const bool attemptToConnect)
-        { ResolvePath(path, attemptToConnect); }
+    explicit FilePathResolver(const wxString& path, const bool attemptToConnect,
+        std::initializer_list<wxString> pathsToSearch = std::initializer_list<wxString>{})
+        { ResolvePath(path, attemptToConnect, pathsToSearch); }
     /** Resolves a string to see if it is a file path.
         @param path The string to resolve to a file path.
         @param attemptToConnect Whether to attempt to connect the file (via the Internet)
             to see if it's an URL. This is final fallback when the filepath type
             can't be easily determined.
+        @param pathsToSearch A list of local paths to look in if @c path is a relative local path.
         @note Set @c attemptToConnect to @c false if performance is a concern.*/
-    wxString ResolvePath(const wxString& path, const bool attemptToConnect );
+    wxString ResolvePath(const wxString& path, const bool attemptToConnect,
+        std::initializer_list<wxString> pathsToSearch = std::initializer_list<wxString>{});
     };
 
 /** @}*/

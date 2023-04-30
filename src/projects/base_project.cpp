@@ -3455,9 +3455,10 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
 bool BaseProject::LoadExternalDocument()
     {
     FilePathResolver resolvePath;
-    //this will "fix" the file path in case it has "file:///". Also fixes slash problem,
-    //appends "http" if it just says "www", etc.
-    SetOriginalDocumentFilePath(resolvePath.ResolvePath(GetOriginalDocumentFilePath(), true));
+    // this will "fix" the file path in case it has "file:///". Also fixes slash problem,
+    // appends "http" if it just says "www", etc.
+    SetOriginalDocumentFilePath(resolvePath.ResolvePath(GetOriginalDocumentFilePath(), true,
+        { GetProjectDirectory() }));
     if (resolvePath.IsHTTPFile() || resolvePath.IsHTTPSFile())
         {
         wxString content, contentType;

@@ -12,9 +12,10 @@
 wxDECLARE_APP(ReadabilityApp);
 
 //----------------------------------
-wxString FilePathResolver::ResolvePath(const wxString& path, const bool attemptToConnect)
+wxString FilePathResolver::ResolvePath(const wxString& path, const bool attemptToConnect,
+        std::initializer_list<wxString> pathsToSearch /*= std::initializer_list<wxString>{}*/)
     {
-    FilePathResolverBase::ResolvePath(path);
+    FilePathResolverBase::ResolvePath(path, pathsToSearch);
     // if failed, see if it's a web file by trying to connect to it
     if (attemptToConnect && m_fileType == FilePathType::InvalidFileType)
         {
