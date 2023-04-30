@@ -275,14 +275,8 @@ wxString WebHarvester::DownloadFile(wxString& Url,
             }
         }
 
-    auto webResponse = m_downloader.GetResponse(Url);
-    if (!webResponse.IsOk())
-        {
-        wxLogWarning(L"%s: Unable to connect to page", Url);
-        downloadPath.clear();
-        return downloadPath;
-        }
-    auto responseCode = webResponse.GetStatus();
+    m_downloader.RequestResponse(Url);
+    auto responseCode = m_downloader.GetLastStatus();
 
     // check the response code
     if (IsBadResponseCode(responseCode))
@@ -327,8 +321,7 @@ wxString WebHarvester::GetFileTypeFromContentType(const wxString& contentType)
     }
 
 //----------------------------------
-wxString WebHarvester::GetContentType(wxString& Url,
-                                      long& responseCode)
+wxString WebHarvester::GetContentType(wxString& Url, long& responseCode)
     {
     responseCode = 404;
 
@@ -338,8 +331,11 @@ wxString WebHarvester::GetContentType(wxString& Url,
     Url = Url.Strip(wxString::both);
     Url.Replace(L" ", L"%20");
 
-    /// @todo temporary workaround, use GetContentType() when available
-    return m_downloader.GetResponse(Url).GetHeader("Content-Type");
+    m_downloader.RequestResponse(Url);
+
+    responseCode = m_downloader.GetLastStatus();
+
+    return m_downloader.GetLastContentType();
     }
 
 //---------------------------------------------------
@@ -442,13 +438,7 @@ bool WebHarvester::ReadWebPage(wxString& Url,
         return false;
         }
 
-    if (!m_downloader.GetResponse().IsOk())
-        {
-        wxLogWarning(L"%s: Unable to connect to page.", Url);
-        return false;
-        }
-
-    responseCode = m_downloader.GetResponse().GetStatus();
+    responseCode = m_downloader.GetLastStatus();
     if (IsBadResponseCode(responseCode))
         {
         wxLogWarning(L"%s: Unable to connect to page, error code #%i.", Url, responseCode);
@@ -456,8 +446,7 @@ bool WebHarvester::ReadWebPage(wxString& Url,
         }
     else
         {
-        /// @todo temporary workaround, use GetContentType() when available
-        contentType = m_downloader.GetResponse().GetHeader("Content-Type");
+        contentType = m_downloader.GetLastContentType();
         if (contentType.empty())
             { contentType = L"text/html; charset=utf-8"; }
 
@@ -473,7 +462,7 @@ bool WebHarvester::ReadWebPage(wxString& Url,
             { return false; }
 
         // get redirect URL (if we got redirected)
-        Url = m_downloader.GetResponse().GetURL();
+        Url = m_downloader.GetLastUrl();
         /* Convert from the file's charset to the application's charset.
            Try to get it from the response header first because that is more
            accurate when the file is really UTF8 but the designer put something like

@@ -234,10 +234,14 @@ public:
                      wxString& contentType,
                      long& responseCode,
                      const bool acceptOnlyHtmlOrScriptFiles = true);
-    /// @returns The response from a webpage.
+    /// @brief Attempts to connect to @c url.
     /// @param Url The webpage to try to connect to.
-    wxWebResponse GetResponse(const wxString& Url)
-        { return m_downloader.GetResponse(Url); }
+    void RequestResponse(const wxString& url)
+        { m_downloader.RequestResponse(url); }
+    /// @returns The internal FileDownload object.
+    [[nodiscard]]
+    const FileDownload& GetDownloader() const noexcept
+        { return m_downloader; }
     /** @brief Gets the content type of a webpage.
         @param[in,out] Url The webpage (may be altered if redirected).
         @param[out] responseCode The response code when connecting to the page.
