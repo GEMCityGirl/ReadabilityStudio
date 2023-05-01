@@ -28,7 +28,7 @@ namespace LuaScripting
     {
     const char StandardProject::className[] = "StandardProject";
 
-    StandardProject::StandardProject(lua_State *L) : m_project(nullptr), m_settingsDlg(nullptr), m_delayReloading(false)
+    StandardProject::StandardProject(lua_State *L)
         {
         if (lua_gettop(L) > 1)//see if a path was passed in
             {
@@ -48,7 +48,7 @@ namespace LuaScripting
                 }
             else
                 {
-                //create a standard project and dump the text into it
+                // create a standard project and dump the text into it
                 const wxList& templateList = wxGetApp().GetMainFrame()->GetDocumentManager()->GetTemplates();
                 for (size_t i = 0; i < templateList.GetCount(); ++i)
                     {
@@ -58,7 +58,7 @@ namespace LuaScripting
                         m_project = dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(path, wxDOC_NEW));
                         if (m_project && !m_project->OnNewDocument() )
                             {
-                            //Document is implicitly deleted by DeleteAllViews
+                            // Document is implicitly deleted by DeleteAllViews
                             m_project->DeleteAllViews();
                             m_project = nullptr;
                             }
@@ -67,7 +67,8 @@ namespace LuaScripting
                     }
                 }
             }
-        wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
+        // yield so that the view can be fully refreshed before proceeding
+        wxGetApp().Yield();
         }
 
     bool StandardProject::ReloadIfNotDelayed()
@@ -338,7 +339,7 @@ namespace LuaScripting
         return 0;
         };
 
-    ///Sets the tags to exclude blocks of text.
+    // Sets the tags to exclude blocks of text.
     int StandardProject::SetBlockExclusionTags(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -662,7 +663,7 @@ namespace LuaScripting
                     }
                 else
                     {
-                    wxMessageBox(wxString::Format(_(L"%s: Unknown test could not be added."), testName),
+                    wxMessageBox(wxString::Format(_(L"%s: unknown test could not be added."), testName),
                         _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
                     lua_pushboolean(L, false);
                     return 1;
@@ -688,7 +689,8 @@ namespace LuaScripting
         }
 
     /// Closes the project.
-    /// @SaveChanges Specifies whether to save any changes made to the project before closing it. Default is to not save any changes.
+    /// @SaveChanges Specifies whether to save any changes made to the project before closing it. 
+    /// Default is to not save any changes.
     int StandardProject::Close(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -709,7 +711,8 @@ namespace LuaScripting
             }
 
         m_project->GetDocumentManager()->CloseDocument(m_project, true);
-        wxGetApp().ProcessIdle(); // the view won't be fully deleted until idle processing takes place
+        // the view won't be fully deleted until idle processing takes place
+        wxGetApp().ProcessIdle();
         m_project = nullptr;
         return 0;
         }
@@ -1014,10 +1017,11 @@ namespace LuaScripting
                     }
                 }
             }
-        wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
+        // yield so that the view can be fully refreshed before proceeding
+        wxGetApp().Yield();
         return 0;
         }
-    /// Shows or hides the sidebar
+    // Shows or hides the sidebar
     int StandardProject::ShowSidebar(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1027,10 +1031,19 @@ namespace LuaScripting
         auto view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
-            lua_toboolean(L, 2) ? view->GetSideBar()->Maximize() : view->GetSideBar()->Minimize();
             wxWindowUpdateLocker noUpdates(view->GetDocFrame());
-            view->GetSplitter()->SetMinimumPaneSize(view->GetSideBar()->GetMinSize().GetWidth());
-            view->GetSplitter()->SetSashPosition(view->GetSideBar()->GetMinSize().GetWidth());
+            if (lua_toboolean(L, 2))
+                {
+                view->GetSideBar()->AdjustWidthToFitItems();
+                view->GetSplitter()->SetMinimumPaneSize(view->GetSideBar()->GetMinSize().GetWidth());
+                view->GetSplitter()->SetSashPosition(view->GetSideBar()->GetMinSize().GetWidth());
+                }
+            else
+                {
+                view->GetSideBar()->SetMinSize({1, 1});
+                view->GetSplitter()->SetMinimumPaneSize(1);
+                view->GetSplitter()->SetSashPosition(1);
+                }
             }
         return 0;
         }
@@ -1060,7 +1073,8 @@ namespace LuaScripting
                     }
                 }
             }
-        wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
+        // yield so that the view can be fully refreshed before proceeding
+        wxGetApp().Yield();
         return 0;
         }
     /*Selects the Readability Results section of the project and highlights a test by index.
@@ -1081,7 +1095,7 @@ namespace LuaScripting
                     Select(lua_tonumber(L, 2)-1/*make it zero-indexed*/);
                 }
             }
-        wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
+        wxGetApp().Yield();
         return 0;
         }
     /*Sorts a list.
@@ -1116,7 +1130,7 @@ namespace LuaScripting
                 listWindow->SortColumns(columns);
                 }
             }
-        wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
+        wxGetApp().Yield();
         return 0;
         }
     /* Sorts a graph.
@@ -1144,7 +1158,7 @@ namespace LuaScripting
             if (graphWindow)
                 {
                 std::dynamic_pointer_cast<BarChart>(
-                    graphWindow->GetFixedObject(0,0))->SortBars(
+                    graphWindow->GetFixedObject(0, 0))->SortBars(
                         BarChart::BarSortComparison::SortByBarLength,
                         static_cast<Wisteria::SortDirection>(static_cast<int>(lua_tonumber(L, 3))));
                 }
@@ -1178,7 +1192,7 @@ namespace LuaScripting
                     { selWindow->SetFocus(); }
                 }
             }
-        wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
+        wxGetApp().Yield();
         return 0;
         }
     /*Selects and scrolls down a text window.
@@ -1208,7 +1222,8 @@ namespace LuaScripting
                     }
                 }
             }
-        wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
+        // yield so that the view can be fully refreshed before proceeding
+        wxGetApp().Yield();
         return 0;
         }
     /*Select the text window in the Grammar section. Also can optionally select a range of text.
@@ -1238,7 +1253,7 @@ namespace LuaScripting
                 view->GetSideBar()->SelectSubItem(parentPos.value(), childPos.value());
                 }
             }
-        wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
+        wxGetApp().Yield();
         return 0;
         }
     //HIDDEN interfaces for testing and screenshots
@@ -1374,7 +1389,7 @@ namespace LuaScripting
                 }
             else
                 {
-                //create a batch project and load a (tab delimited) list of files into it
+                // create a batch project and load a (tab delimited) list of files into it
                 const wxList& templateList = wxGetApp().GetMainFrame()->GetDocumentManager()->GetTemplates();
                 for (size_t i = 0; i < templateList.GetCount(); ++i)
                     {
@@ -2021,7 +2036,7 @@ namespace LuaScripting
                 listWindow->SetFocus();
                 }
             }
-        wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
+        wxGetApp().Yield();
         return 0;
         }
     //Saves a graph from the project as an image.
@@ -2072,7 +2087,7 @@ namespace LuaScripting
                      _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
                 }
             }
-        wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
+        wxGetApp().Yield();
         return 0;
         }
 
@@ -2093,7 +2108,7 @@ namespace LuaScripting
         return 0;
         }
 
-    /// Shows or hides the sidebar
+    // Shows or hides the sidebar
     int BatchProject::ShowSidebar(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -2103,10 +2118,19 @@ namespace LuaScripting
         auto view = dynamic_cast<BatchProjectView*>(m_project->GetFirstView());
         if (view)
             {
-            lua_toboolean(L, 2) ? view->GetSideBar()->Maximize() : view->GetSideBar()->Minimize();
             wxWindowUpdateLocker noUpdates(view->GetDocFrame());
-            view->GetSplitter()->SetMinimumPaneSize(view->GetSideBar()->GetMinSize().GetWidth());
-            view->GetSplitter()->SetSashPosition(view->GetSideBar()->GetMinSize().GetWidth());
+            if (lua_toboolean(L, 2))
+                {
+                view->GetSideBar()->AdjustWidthToFitItems();
+                view->GetSplitter()->SetMinimumPaneSize(view->GetSideBar()->GetMinSize().GetWidth());
+                view->GetSplitter()->SetSashPosition(view->GetSideBar()->GetMinSize().GetWidth());
+                }
+            else
+                {
+                view->GetSideBar()->SetMinSize({1, 1});
+                view->GetSplitter()->SetMinimumPaneSize(1);
+                view->GetSplitter()->SetSashPosition(1);
+                }
             }
         return 0;
         }
@@ -2134,7 +2158,7 @@ namespace LuaScripting
                 view->GetSideBar()->SelectFolder(index.value());
                 }
             }
-        wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
+        wxGetApp().Yield();
         return 0;
         }
 
@@ -2172,7 +2196,7 @@ namespace LuaScripting
                     }
                 }
             }
-        wxGetApp().Yield();//yield so that the view can be fully refreshed before proceeding
+        wxGetApp().Yield();
         return 0;
         }
 
