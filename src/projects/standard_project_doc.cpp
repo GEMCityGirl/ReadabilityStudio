@@ -429,7 +429,7 @@ void ProjectDoc::LoadMetaFile(const wxChar* settingsFileText)
         SetTotalUniqueWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_UNIQUE_WORDS));
         //unique monosyllabic words
         SetTotalUniqueMonoSyllablicWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_UNIQUE_MONOSYLLABLIC_WORDS));
-        ///unique 6 Chars+ Words
+        //unique 6 Chars+ Words
         SetTotalUnique6CharsPlusWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_UNIQUE_SIXCHAR_PLUS_WORDS));
         //unique 3+ Syllable Words
         SetTotalUnique3PlusSyllableWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_UNIQUE_THREE_SYLLABLE_PLUS_WORDS));
