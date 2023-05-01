@@ -4387,11 +4387,12 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
 
     wxBusyCursor wait;
 
-    //make sure the file exists first
+    // make sure the file exists first
     if (!wxFile::Exists(filename) )
         {
-        LogMessage(_("Unable to open project file. File not found."), 
-                _("Error"), wxOK|wxICON_ERROR);
+        LogMessage(
+            wxString::Format(_("'%s': unable to open project file. File not found."), filename), 
+            _("Error"), wxOK|wxICON_ERROR);
         return false;
         }
     if (!OnSaveModified())
@@ -4427,7 +4428,8 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
             }
         else
             {
-            LogMessage(_("Unable to open project file."),
+            LogMessage(
+                wxString::Format(_("'%s': unable to open project file."), GetFilename()),
                 _("Project Open"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
@@ -4468,7 +4470,8 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
         }
     catch (...)
         {
-        LogMessage(_("Unable to open project file."), 
+        LogMessage(
+            wxString::Format(_("'%s': unable to open project file."), GetFilename()),
             _("Project Open"), wxOK|wxICON_EXCLAMATION);
         return false;
         }

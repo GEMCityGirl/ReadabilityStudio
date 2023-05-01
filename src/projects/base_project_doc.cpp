@@ -484,11 +484,12 @@ bool BaseProjectDoc::LockProjectFile()
         }
     else
         { m_FileReadOnly = false; }
-    //open in read-only mode, actual writing to project file is done via a temp file
+    // open in read-only mode, actual writing to project file is done via a temp file
     if (!m_File.Open(GetFilename(), wxFile::read) )
         {
-        LogMessage(_("Unable to open project file."), 
-                _("Project Error"), wxOK|wxICON_EXCLAMATION);
+        LogMessage(
+            wxString::Format(_("'%s': unable to open project file."), GetFilename()),
+            _("Project Error"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
     return true;

@@ -603,11 +603,12 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
             { return false; }
         }
 
-    //make sure the file exists first
+    // make sure the file exists first
     if (!wxFile::Exists(filename) )
         {
-        LogMessage(_("Unable to open project file. File not found."), 
-                _("Error"), wxOK|wxICON_EXCLAMATION);
+        LogMessage(
+            wxString::Format(_("'%s': unable to open project file. File not found."), filename), 
+            _("Error"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
     if (!OnSaveModified())
@@ -641,7 +642,8 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
             }
         else
             {
-            LogMessage(_("Unable to open project file."),
+            LogMessage(
+                wxString::Format(_("'%s': unable to open project file."), GetFilename()),
                 _("Project Open"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
@@ -682,7 +684,8 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
         }
     catch (...)
         {
-        LogMessage(_("Unable to open project file."), 
+        LogMessage(
+            wxString::Format(_("'%s': unable to open project file."), GetFilename()), 
             _("Project Open"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
