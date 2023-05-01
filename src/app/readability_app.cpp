@@ -573,7 +573,7 @@ bool ReadabilityApp::OnInit()
                 return false;
                 }
             }
-        //Let's try it again from the top
+        // Let's try it again from the top
         if (!GetLicenseAdmin().LoadLicenseFile(licensePath, GetAppName()))
             {
             wxMessageBox(wxString::Format(_(L"Unable to load license file:\n\n\"%s\""), licensePath),
@@ -586,7 +586,17 @@ bool ReadabilityApp::OnInit()
 
     ShowSplashscreen();
 
-    LoadInterfaceLicensableFeatures();//now load any menus which are affected by licensing
+    // now load any menus which are affected by licensing
+    LoadInterfaceLicensableFeatures();
+
+    Screenshot::m_dynamicIdMap =
+    {
+        { 30001, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR },
+        { 30002, MainFrame::ID_PROOFING_RIBBON_BUTTON_BAR },
+        { 30003, MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR },
+        { 30004, MainFrame::ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR },
+        { 30005, MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR }
+    };
 
     SetAppFileExtension(_DT(L"rsp"));
     SetDocumentTypeName(_DT(L"ReadabilityStudio.Document") );

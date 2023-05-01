@@ -30,6 +30,7 @@
 #include "../Wisteria-Dataviz/src/ui/app.h"
 #include "../Wisteria-Dataviz/src/wxStartPage/startpage.h"
 #include "../Wisteria-Dataviz/src/util/xml_format.h"
+#include "../Wisteria-Dataviz/src/util/screenshot.h"
 #include "../webharvester/webharvester.h"
 #include "../readability/custom_readability_test.h"
 #include "../readability/readability_project_test.h"
