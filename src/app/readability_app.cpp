@@ -1835,10 +1835,10 @@ void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
         importer(&logReportDialog.GetData()->GetMatrix());
     importer.add_row_definition(myRow);
 
-    //see how many lines are in the file
+    // see how many lines are in the file
     lily_of_the_valley::text_preview preview;
     size_t rowCount = preview(wxGetApp().GetLogReport(), L'\t', true, false);
-    //now read it
+    // now read it
     rowCount = importer.read(wxGetApp().GetLogReport(), rowCount, 4, true);
 
     logReportDialog.GetListCtrl()->EnableAlternateRowColours(false);
@@ -1849,15 +1849,19 @@ void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
     for (long i = 0; i < logReportDialog.GetListCtrl()->GetItemCount(); ++i)
         {
         const auto currentRow = logReportDialog.GetListCtrl()->GetItemText(i,0);
-        const wxColour rowColor = currentRow.StartsWith(_DT(L"Error: ",DTExplanation::LogMessage)) ? wxColour(242,94,101) :
-            (currentRow.find(_DT(L"Warning: ")) != wxNOT_FOUND) ? *wxYELLOW :
-            (currentRow.find(_DT(L"Debug: ")) != wxNOT_FOUND) ? wxColour(143,214,159) :
+        const wxColour rowColor =
+            (currentRow.find(_DT(L"Error: ", DTExplanation::LogMessage)) != wxString::npos) ? wxColour(242, 94, 101) :
+            (currentRow.find(_DT(L"Warning: ")) != wxString::npos) ? *wxYELLOW :
+            (currentRow.find(_DT(L"Debug: ")) != wxString::npos) ? wxColour(143, 214, 159) :
             wxNullColour;
         if (rowColor.IsOk())
-            { logReportDialog.GetListCtrl()->SetRowAttributes(i, wxListItemAttr(*wxBLACK, rowColor, logReportDialog.GetListCtrl()->GetFont())); }
+            {
+            logReportDialog.GetListCtrl()->SetRowAttributes(i,
+                wxListItemAttr(*wxBLACK, rowColor, logReportDialog.GetListCtrl()->GetFont()));
+            }
         }
 
-    //fit the columns
+    // fit the columns
     logReportDialog.GetListCtrl()->DistributeColumns();
 
     logReportDialog.ShowModal();
