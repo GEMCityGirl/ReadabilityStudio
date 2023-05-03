@@ -81,7 +81,6 @@ ListType =
   Cliches = 10005,
   MisspelledWords = 10051,
   LowercasedSentences = 10002,
-  DuplicateWords = 10006,
   WordingErrors = 10052,
   RedundantPhrases = 10004,
   Wordiness = 10003,
@@ -98,7 +97,6 @@ ListType =
   ConjunctionStartingSentences = 10001,
   WordyItems = 10003,
   RedundantPhrases = 10004,
-  Cliches = 10005,
   RepeatedWords = 10006,
   LongSentences = 10007,
   MisspelledWords = 10051,
@@ -169,27 +167,6 @@ StemmingType =
   Portuguese = 9,
   Spanish = 10,
   Swedish = 11
-  }
-
---just used internally for taking documentation screenshots
-OptionsPageType =
-  {
-  GeneralSettings = 1000,
-  ProjectSettings = 2000,
-  DocumentDisplayGeneral = 3000,
-  DocumentDisplayDocumentView = 3001,
-  DocumentDisplayDolch = 3002,
-  ScoresTestOptions = 4000,
-  ScoresDisplay = 4001,
-  AnalysisDocumentIndexing = 5000,
-  AnalysisDocumentStatistics  = 5001,
-  GraphsGeneral = 6000,
-  GraphsAxis = 6001,
-  GraphsTitles = 6002,
-  GraphsReadabilityGraphs = 6003,
-  GraphsBarChart = 6004,
-  GraphsHistograms = 6005,
-  GraphsBoxPlot = 6006
   }
 
 ProductType =
@@ -297,6 +274,37 @@ FilePathDisplayMode =
   NoTruncation = 2
   }
 
+-- Screenshot constants
+-- (just used internally for taking documentation screenshots)
+RibbonButtonBars =
+  {
+  Edit = 30001,
+  Proofing = 30002,
+  ParagraphDeduction = 30003,
+  TextExclusion = 30004,
+  Numerals = 30005
+  }
+
+OptionsPageType =
+  {
+  GeneralSettings = 1000,
+  ProjectSettings = 2000,
+  DocumentDisplayGeneral = 3000,
+  DocumentDisplayDocumentView = 3001,
+  DocumentDisplayDolch = 3002,
+  ScoresTestOptions = 4000,
+  ScoresDisplay = 4001,
+  AnalysisDocumentIndexing = 5000,
+  AnalysisDocumentStatistics  = 5001,
+  GraphsGeneral = 6000,
+  GraphsAxis = 6001,
+  GraphsTitles = 6002,
+  GraphsReadabilityGraphs = 6003,
+  GraphsBarChart = 6004,
+  GraphsHistograms = 6005,
+  GraphsBoxPlot = 6006
+  }
+
 -- make the table into a constant enumeration
 Orientation = protect_enum(Orientation)
 BarEffect = protect_enum(BarEffect)
@@ -320,3 +328,4 @@ Language = protect_enum(Language)
 TextStorage = protect_enum(TextStorage)
 ParagraphParse = protect_enum(ParagraphParse)
 FilePathDisplayMode = protect_enum(FilePathDisplayMode)
+RibbonButtonBars = protect_enum(RibbonButtonBars)
