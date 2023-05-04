@@ -290,7 +290,6 @@ OptionsPageType =
   GeneralSettings = 1000,
   ProjectSettings = 2000,
   DocumentDisplayGeneral = 3000,
-  DocumentDisplayDocumentView = 3001,
   DocumentDisplayDolch = 3002,
   ScoresTestOptions = 4000,
   ScoresDisplay = 4001,
