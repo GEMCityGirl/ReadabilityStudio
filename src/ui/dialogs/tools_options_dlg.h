@@ -159,28 +159,28 @@ public:
     void OnDeleteFileClick([[maybe_unused]] wxCommandEvent& event);
     void OnNumberSyllabizeChange([[maybe_unused]] wxCommandEvent& event);
     void OnExclusionBlockTagChange([[maybe_unused]] wxCommandEvent& event);
-    static constexpr int GENERAL_SETTINGS_PAGE = 1000;
-    static constexpr int PROJECT_SETTINGS_PAGE = 2000;
+    static constexpr int GENERAL_SETTINGS_PAGE = wxID_HIGHEST;
+    static constexpr int PROJECT_SETTINGS_PAGE = wxID_HIGHEST + 1;
 
-    static constexpr int DOCUMENT_DISPLAY_GENERAL_PAGE = 3000;
-    static constexpr int DOCUMENT_DISPLAY_DOLCH_PAGE = 3002;
+    static constexpr int DOCUMENT_DISPLAY_GENERAL_PAGE = wxID_HIGHEST + 2;
+    static constexpr int DOCUMENT_DISPLAY_DOLCH_PAGE = wxID_HIGHEST + 3;
 
-    static constexpr int SCORES_TEST_OPTIONS_PAGE = 4000;
-    static constexpr int SCORES_DISPLAY_PAGE = 4001;
+    static constexpr int SCORES_TEST_OPTIONS_PAGE = wxID_HIGHEST + 4;
+    static constexpr int SCORES_DISPLAY_PAGE = wxID_HIGHEST + 5;
 
-    static constexpr int ANALYSIS_INDEXING_PAGE = 5000;
-    static constexpr int GRAMMAR_PAGE = 5001;
-    static constexpr int ANALYSIS_STATISTICS_PAGE = 5002;
-    static constexpr int WORDS_BREAKDOWN_PAGE = 5003;
-    static constexpr int SENTENCES_BREAKDOWN_PAGE = 5004;
+    static constexpr int ANALYSIS_INDEXING_PAGE = wxID_HIGHEST + 6;
+    static constexpr int GRAMMAR_PAGE = wxID_HIGHEST + 7;
+    static constexpr int ANALYSIS_STATISTICS_PAGE = wxID_HIGHEST + 8;
+    static constexpr int WORDS_BREAKDOWN_PAGE = wxID_HIGHEST + 9;
+    static constexpr int SENTENCES_BREAKDOWN_PAGE = wxID_HIGHEST + 10;
 
-    static constexpr int GRAPH_GENERAL_PAGE = 6000;
-    static constexpr int GRAPH_AXIS_PAGE = 6001;
-    static constexpr int GRAPH_TITLES_PAGE = 6002;
-    static constexpr int GRAPH_READABILITY_GRAPHS_PAGE = 6003;
-    static constexpr int GRAPH_BAR_CHART_PAGE = 6004;
-    static constexpr int GRAPH_HISTOGRAM_PAGE = 6005;
-    static constexpr int GRAPH_BOX_PLOT_PAGE = 6006;
+    static constexpr int GRAPH_GENERAL_PAGE =  wxID_HIGHEST + 11;
+    static constexpr int GRAPH_AXIS_PAGE =  wxID_HIGHEST + 12;
+    static constexpr int GRAPH_TITLES_PAGE =  wxID_HIGHEST + 13;
+    static constexpr int GRAPH_READABILITY_GRAPHS_PAGE =  wxID_HIGHEST + 14;
+    static constexpr int GRAPH_BAR_CHART_PAGE =  wxID_HIGHEST + 15;
+    static constexpr int GRAPH_HISTOGRAM_PAGE =  wxID_HIGHEST + 16;
+    static constexpr int GRAPH_BOX_PLOT_PAGE =  wxID_HIGHEST + 17;
 private:
     static constexpr int ID_HIGHLIGHT_COLOR_BUTTON = 1001;
     static constexpr int ID_EXCLUDED_HIGHLIGHT_COLOR_BUTTON = 1002;

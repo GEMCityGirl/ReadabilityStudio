@@ -595,7 +595,25 @@ bool ReadabilityApp::OnInit()
         { 30002, MainFrame::ID_PROOFING_RIBBON_BUTTON_BAR },
         { 30003, MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR },
         { 30004, MainFrame::ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR },
-        { 30005, MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR }
+        { 30005, MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR },
+        { 1000, ToolsOptionsDlg::GENERAL_SETTINGS_PAGE },
+        { 2000, ToolsOptionsDlg::PROJECT_SETTINGS_PAGE },
+        { 3000, ToolsOptionsDlg::DOCUMENT_DISPLAY_GENERAL_PAGE },
+        { 3002, ToolsOptionsDlg::DOCUMENT_DISPLAY_DOLCH_PAGE },
+        { 4000, ToolsOptionsDlg::SCORES_TEST_OPTIONS_PAGE },
+        { 4001, ToolsOptionsDlg::SCORES_DISPLAY_PAGE },
+        { 5000, ToolsOptionsDlg::ANALYSIS_INDEXING_PAGE },
+        { 5001, ToolsOptionsDlg::GRAMMAR_PAGE },
+        { 5002, ToolsOptionsDlg::ANALYSIS_STATISTICS_PAGE },
+        { 5003, ToolsOptionsDlg::WORDS_BREAKDOWN_PAGE },
+        { 5004, ToolsOptionsDlg::SENTENCES_BREAKDOWN_PAGE },
+        { 6000, ToolsOptionsDlg::GRAPH_GENERAL_PAGE },
+        { 6001, ToolsOptionsDlg::GRAPH_AXIS_PAGE },
+        { 6002, ToolsOptionsDlg::GRAPH_TITLES_PAGE },
+        { 6003, ToolsOptionsDlg::GRAPH_READABILITY_GRAPHS_PAGE },
+        { 6004, ToolsOptionsDlg::GRAPH_BAR_CHART_PAGE },
+        { 6005, ToolsOptionsDlg::GRAPH_HISTOGRAM_PAGE },
+        { 6006, ToolsOptionsDlg::GRAPH_BOX_PLOT_PAGE }
     };
 
     SetAppFileExtension(_DT(L"rsp"));
