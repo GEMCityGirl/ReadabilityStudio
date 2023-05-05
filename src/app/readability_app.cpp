@@ -26,6 +26,8 @@ using namespace Wisteria::UI;
 // ===========================================================================
 wxIMPLEMENT_APP(ReadabilityApp);
 
+std::map<wxWindowID, wxWindowID> ReadabilityApp::m_dynamicIdMap;
+
 RSArtProvider::RSArtProvider()
     {
     // cppcheck-suppress useInitializationList
@@ -589,7 +591,7 @@ bool ReadabilityApp::OnInit()
     // now load any menus which are affected by licensing
     LoadInterfaceLicensableFeatures();
 
-    Screenshot::m_dynamicIdMap =
+    m_dynamicIdMap =
     {
         { 30001, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR },
         { 30002, MainFrame::ID_PROOFING_RIBBON_BUTTON_BAR },
@@ -605,15 +607,30 @@ bool ReadabilityApp::OnInit()
         { 5000, ToolsOptionsDlg::ANALYSIS_INDEXING_PAGE },
         { 5001, ToolsOptionsDlg::GRAMMAR_PAGE },
         { 5002, ToolsOptionsDlg::ANALYSIS_STATISTICS_PAGE },
-        { 5003, ToolsOptionsDlg::WORDS_BREAKDOWN_PAGE },
-        { 5004, ToolsOptionsDlg::SENTENCES_BREAKDOWN_PAGE },
         { 6000, ToolsOptionsDlg::GRAPH_GENERAL_PAGE },
         { 6001, ToolsOptionsDlg::GRAPH_AXIS_PAGE },
         { 6002, ToolsOptionsDlg::GRAPH_TITLES_PAGE },
         { 6003, ToolsOptionsDlg::GRAPH_READABILITY_GRAPHS_PAGE },
         { 6004, ToolsOptionsDlg::GRAPH_BAR_CHART_PAGE },
         { 6005, ToolsOptionsDlg::GRAPH_HISTOGRAM_PAGE },
-        { 6006, ToolsOptionsDlg::GRAPH_BOX_PLOT_PAGE }
+        { 6006, ToolsOptionsDlg::GRAPH_BOX_PLOT_PAGE },
+        { 1036, ToolsOptionsDlg::ID_TEXT_EXCLUDE_METHOD },
+        { 1040, ToolsOptionsDlg::ID_SENTENCE_LONGER_THAN_BUTTON },
+        { 1041, ToolsOptionsDlg::ID_SENTENCE_OUTLIER_LENGTH_BUTTON },
+        { 1042, ToolsOptionsDlg::ID_IGNORE_BLANK_LINES_BUTTON },
+        { 1043, ToolsOptionsDlg::ID_IGNORE_INDENTING_BUTTON },
+        { 1051, ToolsOptionsDlg::ID_AGGRESSIVE_LIST_DEDUCTION_CHECKBOX },
+        { 1052, ToolsOptionsDlg::ID_EXCLUDED_PHRASES_FILE_EDIT_BUTTON },
+        { 1054, ToolsOptionsDlg::ID_EXCLUDE_COPYRIGHT_CHECKBOX },
+        { 1056, ToolsOptionsDlg::ID_EXCLUDE_FILE_ADDRESS_CHECKBOX },
+        { 1058, ToolsOptionsDlg::ID_EXCLUDE_PROPER_NOUNS_CHECKBOX },
+        { 1076, ToolsOptionsDlg::ID_INCOMPLETE_SENTENCE_VALID_LABEL_START },
+        { 1077, ToolsOptionsDlg::ID_INCOMPLETE_SENTENCE_VALID_LABEL_END },
+        { 1078, ToolsOptionsDlg::ID_EXCLUSION_TAG_BLOCK_LABEL },
+        { 1079, ToolsOptionsDlg::ID_EXCLUSION_TAG_BLOCK_SELCTION },
+        { 1080, ToolsOptionsDlg::ID_ADDITIONAL_FILE_BROWSE_BUTTON },
+        { 1083, ToolsOptionsDlg::ID_ADDITIONAL_FILE_FIELD },
+        { 20002, TestBundleDlg::ID_STANDARD_TEST_PAGE }
     };
 
     SetAppFileExtension(_DT(L"rsp"));
