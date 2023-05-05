@@ -85,7 +85,7 @@ using CustomReadabilityTestCollection = std::vector<CustomReadabilityTest>;
 struct ExcelFile
     {
     explicit ExcelFile(const wxString& filePath) : m_zip(filePath) {}
-    lily_of_the_valley::xlsx_extract_text m_xlsx_extract;
+    lily_of_the_valley::xlsx_extract_text m_xlsx_extract{ false };
     using Workbook = std::map<wxString,lily_of_the_valley::xlsx_extract_text::worksheet>;
     Workbook m_worksheets;
     Wisteria::ZipCatalog m_zip;

@@ -3605,14 +3605,14 @@ bool BaseProject::LoadExternalDocument()
             return false;
             }
         }
-    //if a file is in an archive then extract it and analyze it
+    // if a file is in an archive then extract it and analyze it
     else if (resolvePath.IsArchivedFile())
         {
         const size_t poundInFile = GetOriginalDocumentFilePath().MakeLower().find(_DT(L".zip#"));
         wxFileName poundFn(GetOriginalDocumentFilePath().substr(0, poundInFile+4));
         if (!wxFile::Exists(poundFn.GetFullPath()) )
             {
-            //first try to find the document from the project file's folder structure
+            // first try to find the document from the project file's folder structure
             wxString fileBySameNameInProjectDirectory;
             if (FindMissingFile(poundFn.GetFullPath(), fileBySameNameInProjectDirectory))
                 { poundFn.Assign(fileBySameNameInProjectDirectory); }
@@ -3628,7 +3628,8 @@ bool BaseProject::LoadExternalDocument()
         if (!zc.ReadFile(GetOriginalDocumentFilePath().substr(poundInFile+5), memstream) &&
             zc.GetMessages().size())
             { LogMessage(zc.GetMessages().back().m_message, poundFn.GetFullPath(), zc.GetMessages().back().m_icon); }
-        const std::pair<bool,wxString> extractResult = ExtractRawText(static_cast<const char*>(memstream.GetOutputStreamBuffer()->GetBufferStart()), memstream.GetLength(), wxFileName(GetOriginalDocumentFilePath()).GetExt());
+        const std::pair<bool,wxString> extractResult =
+            ExtractRawText(static_cast<const char*>(memstream.GetOutputStreamBuffer()->GetBufferStart()), memstream.GetLength(), wxFileName(GetOriginalDocumentFilePath()).GetExt());
         if (extractResult.first)
             {
             SetDocumentText(extractResult.second);
@@ -3645,14 +3646,14 @@ bool BaseProject::LoadExternalDocument()
         else
             { return false; }
         }
-    //or a cell in an Excel file
+    // or a cell in an Excel file
     else if (resolvePath.IsExcelCell())
         {
         const size_t excelTag = GetOriginalDocumentFilePath().MakeLower().find(_DT(L".xlsx#"));
         wxFileName poundFn(GetOriginalDocumentFilePath().substr(0, excelTag+5));
         if (!wxFile::Exists(poundFn.GetFullPath()) )
             {
-            //first try to find the document from the project file's folder structure
+            // first try to find the document from the project file's folder structure
             wxString fileBySameNameInProjectDirectory;
             if (FindMissingFile(poundFn.GetFullPath(), fileBySameNameInProjectDirectory))
                 { poundFn.Assign(fileBySameNameInProjectDirectory); }
@@ -3669,20 +3670,23 @@ bool BaseProject::LoadExternalDocument()
             {
             wxString CellName = worksheetName.substr(slash+1);
             worksheetName.Truncate(slash);
-            lily_of_the_valley::xlsx_extract_text filter_xlsx;
+            lily_of_the_valley::xlsx_extract_text filter_xlsx{ false };
             Wisteria::ZipCatalog zc(poundFn.GetFullPath());
-            //read in the worksheets
+            // read in the worksheets
             wxString workBookFileText = zc.ReadTextFile(wxT("xl/workbook.xml"));
             filter_xlsx.read_worksheet_names(workBookFileText.wc_str(), workBookFileText.length());
-            //read in the string table
+            // read in the string table
             const wxString sharedStrings = zc.ReadTextFile(wxT("xl/sharedStrings.xml"));
             if (!sharedStrings.length())
                 { return false; }
-            //find the sheet to get the cells from
-            std::vector<std::wstring>::const_iterator sheetPos = std::find(filter_xlsx.get_worksheet_names().begin(), filter_xlsx.get_worksheet_names().end(), worksheetName.wc_str());
+            // find the sheet to get the cells from
+            auto sheetPos = std::find(filter_xlsx.get_worksheet_names().begin(),
+                                      filter_xlsx.get_worksheet_names().end(), worksheetName.wc_str());
             if (sheetPos != filter_xlsx.get_worksheet_names().end())
                 {
-                const wxString sheetFile = zc.ReadTextFile(wxString::Format(wxT("xl/worksheets/sheet%zu.xml"), (sheetPos-filter_xlsx.get_worksheet_names().begin())+1));
+                const wxString sheetFile =
+                    zc.ReadTextFile(wxString::Format(wxT("xl/worksheets/sheet%zu.xml"),
+                                    (sheetPos-filter_xlsx.get_worksheet_names().begin())+1));
                 wxString cellText = filter_xlsx.get_cell_text(CellName.wc_str(),
                     sharedStrings.wc_str(), sharedStrings.length(),
                     sheetFile.wc_str(), sheetFile.length());
@@ -3692,7 +3696,9 @@ bool BaseProject::LoadExternalDocument()
                 }
             else
                 {
-                LogMessage(wxString::Format(_("Unable to find the worksheet \"%s\" in \"%s\"."), worksheetName, poundFn.GetFullPath()),
+                LogMessage(
+                    wxString::Format(_("Unable to find the worksheet \"%s\" in \"%s\"."),
+                        worksheetName, poundFn.GetFullPath()),
                     _("Error"), wxOK|wxICON_EXCLAMATION);
                 return false;
                 }
@@ -3749,19 +3755,19 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
         return false;
         }
 
-    /**see if there is an inordinate amount of titles/headers/bullets, and if they
-    are asking to these then make sure they understand that a large part of the
-    document will be ignored.
-       Note that we don't bother with this check with webpages because they normally
-    contain lists for things like menus that we would indeed want to ignore.*/
+    /** sSee if there is an inordinate amount of titles/headers/bullets, and if they
+        are asking to these then make sure they understand that a large part of the
+        document will be ignored.
+        Note that we don't bother with this check with webpages because they normally
+        contain lists for things like menus that we would indeed want to ignore.*/
     FilePathResolver resolvePath(GetOriginalDocumentFilePath(), true);
     if (GetWords()->get_sentence_count() > 0 &&
         !resolvePath.IsWebFile())
         {
-        /*if document is nothing but valid sentences then it is OK.*/
+        /* if document is nothing but valid sentences then it is OK.*/
         if (GetWords()->get_sentence_count() == GetWords()->get_complete_sentence_count())
             {
-            //NOOP
+            // NOOP
             }
         else
             {
@@ -3781,7 +3787,8 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
             }
         }
 
-    if (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis || GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
+    if (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
+        GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
         { CalculateStatisticsIgnoringInvalidSentences(); }
     else if (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences)
         { CalculateStatistics(); }
@@ -3805,16 +3812,16 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
         if (WarningManager::HasWarning(_DT(L"document-less-than-100-words")))
             { LogMessage(*WarningManager::GetWarning(_DT(L"document-less-than-100-words"))); }
         }
-    //check for sentences that got broken up by paragraph breaks and warn if there are lot of them,
-    //this indicates a messed up file.
+    // check for sentences that got broken up by paragraph breaks and warn if there are lot of them,
+    // this indicates a messed up file.
     size_t paragraphBrokenSentences = 0;
     for (std::vector<size_t>::const_iterator pos = GetWords()->get_lowercase_beginning_sentences().begin();
         pos != GetWords()->get_lowercase_beginning_sentences().end();
         ++pos)
         {
-        //if there is a complete, 3-word or more sentence starting with a lowercased letter
-        //following an incomplete sentence (that would not be a list item or header),
-        //then this might be a sentence accidentally split by two lines (e.g., a paragraph break)
+        // if there is a complete, 3-word or more sentence starting with a lowercased letter
+        // following an incomplete sentence (that would not be a list item or header),
+        // then this might be a sentence accidentally split by two lines (e.g., a paragraph break)
         if (*pos > 0 &&
             GetWords()->get_sentences()[*pos].get_word_count() > 3 &&
             GetWords()->get_sentences()[(*pos)].get_type() == grammar::sentence_paragraph_type::complete &&

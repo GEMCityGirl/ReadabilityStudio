@@ -870,7 +870,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
             wxICON_EXCLAMATION|wxOK);
         return;
         }
-    lily_of_the_valley::xlsx_extract_text excelExtract;
+    lily_of_the_valley::xlsx_extract_text excelExtract{ false };
         {
         wxWindowDisabler disableAll;
         wxBusyInfo wait(_(L"Loading Excel file..."));
