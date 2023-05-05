@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "lua_screenshot.h"
+#include "lua_debug.h"
 #include <wx/msgdlg.h>
 #include "../app/readability_app.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/listctrlsortdlg.h"
@@ -55,9 +56,21 @@ namespace LuaScripting
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         int startWindowToHighlight = -1, endWindowToHighlight = -1;
         if (lua_gettop(L) > 1)
-            { startWindowToHighlight = lua_tonumber(L, 2); }
+            {
+            auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+            if (idPos != wxGetApp().GetDynamicIdMap().cend())
+                { startWindowToHighlight = idPos->second; }
+            else
+                { startWindowToHighlight = lua_tonumber(L, 2); }
+            }
         if (lua_gettop(L) > 2)
-            { endWindowToHighlight = lua_tonumber(L, 3); }
+            {
+            auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 3));
+            if (idPos != wxGetApp().GetDynamicIdMap().cend())
+                { endWindowToHighlight = idPos->second; }
+            else
+                { endWindowToHighlight = lua_tonumber(L, 3); }
+            }
         lua_pushboolean(L, Screenshot::SaveScreenshot(path,
             startWindowToHighlight, endWindowToHighlight));
         return 1;
@@ -87,9 +100,21 @@ namespace LuaScripting
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         int pageToSelect{0}, buttonBarID{-1};
         if (lua_gettop(L) >= 2)
-            { pageToSelect = lua_tonumber(L, 2); }
+            {
+            auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+            if (idPos != wxGetApp().GetDynamicIdMap().cend())
+                { pageToSelect = idPos->second; }
+            else
+                { pageToSelect = lua_tonumber(L, 2); }
+            }
         if (lua_gettop(L) >= 3)
-            { buttonBarID = lua_tonumber(L, 3); }
+            {
+            auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 3));
+            if (idPos != wxGetApp().GetDynamicIdMap().cend())
+                { buttonBarID = idPos->second; }
+            else
+                { buttonBarID = lua_tonumber(L, 3); }
+            }
         lua_pushboolean(L, Screenshot::SaveScreenshotOfRibbon(path, pageToSelect, buttonBarID));
         return 1;
         }
@@ -127,7 +152,13 @@ namespace LuaScripting
         int startWindowToHighlight = -1;
         wxString propertyStart, propertyEnd;
         if (lua_gettop(L) > 1)
-            { startWindowToHighlight = lua_tonumber(L, 2); }
+            {
+            auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+            if (idPos != wxGetApp().GetDynamicIdMap().cend())
+                { startWindowToHighlight = idPos->second; }
+            else
+                { startWindowToHighlight = lua_tonumber(L, 2); }
+            }
         if (lua_gettop(L) > 2)
             { propertyStart = wxString(luaL_checkstring(L, 3), wxConvUTF8); }
         if (lua_gettop(L) > 3)
@@ -657,7 +688,13 @@ namespace LuaScripting
         if (lua_gettop(L) > 0)
             { LuaTestBundleDlg->SetTestBundleName(wxString(luaL_checkstring(L, 1), wxConvUTF8).wc_str()); }
         if (lua_gettop(L) > 1)
-            { LuaTestBundleDlg->SelectPage(lua_tonumber(L, 2)); }
+            {
+            auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+            if (idPos != wxGetApp().GetDynamicIdMap().cend())
+                { LuaTestBundleDlg->SelectPage(idPos->second); }
+            else
+                { LuaTestBundleDlg->SelectPage(lua_tonumber(L, 2)); }
+            }
         LuaTestBundleDlg->Show();
         LuaTestBundleDlg->FindWindow(wxID_OK)->SetFocus();
         wxGetApp().Yield();
@@ -856,9 +893,15 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int OpenOptions(lua_State *L)
         {
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
         if (LuaOptionsDlg == nullptr)
             { LuaOptionsDlg = new ToolsOptionsDlg(wxGetApp().GetMainFrame()); }
-        LuaOptionsDlg->SelectPage(lua_tonumber(L, 1));
+        auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 1));
+        if (idPos != wxGetApp().GetDynamicIdMap().cend())
+            { LuaOptionsDlg->SelectPage(idPos->second); }
+        else
+            { LuaOptionsDlg->SelectPage(lua_tonumber(L, 1)); }
         LuaOptionsDlg->Show();
         wxGetApp().Yield();
         return 0;

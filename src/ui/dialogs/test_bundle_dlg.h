@@ -21,10 +21,12 @@
 #include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
 
 class TestBundle;
+class ReadabilityApp;
 
 /// @brief Test bundle editing dialog.
 class TestBundleDlg final : public Wisteria::UI::DialogWithHelp
     {
+    friend ReadabilityApp;
 public:
     /// @brief Constructor.
     /// @param parent The dialog's parent.

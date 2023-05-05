@@ -344,8 +344,17 @@ public:
         { return m_mersenneTwister; }
 
     void ShowSplashscreen();
+
+    [[nodiscard]]
+    static const std::map<wxWindowID, wxWindowID>& GetDynamicIdMap() noexcept
+        { return m_dynamicIdMap; }
 private:
     void InitializeReadabilityFeatures();
+
+    /// @brief IDs exposed to scripting and their respective dynamic IDs in the framework.
+    /// @details Set (or add to this) in your framework's initialization.
+    static std::map<wxWindowID, wxWindowID> m_dynamicIdMap;
+
     LicenseAdmin m_licenseAdmin;
     ReadabilityAppOptions* m_appOptions{ nullptr };
     bool LoadWordLists(const wxString& AppSettingFolderPath);

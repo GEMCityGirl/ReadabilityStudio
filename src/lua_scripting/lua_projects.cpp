@@ -1260,11 +1260,18 @@ namespace LuaScripting
     //Opens the properties dialog and the specified page
     int StandardProject::OpenProperties(lua_State *L)
         {
-        if (m_project == nullptr)
+        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+            { return 0; }
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
         if (m_settingsDlg == nullptr)
             { m_settingsDlg = new ToolsOptionsDlg(wxGetApp().GetMainFrame(), m_project); }
-        m_settingsDlg->SelectPage(lua_tonumber(L, 2));
+
+        auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+        if (idPos != wxGetApp().GetDynamicIdMap().cend())
+            { m_settingsDlg->SelectPage(idPos->second); }
+        else
+            { m_settingsDlg->SelectPage(lua_tonumber(L, 2)); }
         m_settingsDlg->Show();
         wxGetApp().Yield();
         return 0;
@@ -2204,11 +2211,18 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int BatchProject::OpenProperties(lua_State *L)
         {
-        if (m_project == nullptr)
+        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+            { return 0; }
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
         if (m_settingsDlg == nullptr)
             { m_settingsDlg = new ToolsOptionsDlg(wxGetApp().GetMainFrame(), m_project); }
-        m_settingsDlg->SelectPage(lua_tonumber(L, 2));
+
+        auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+        if (idPos != wxGetApp().GetDynamicIdMap().cend())
+            { m_settingsDlg->SelectPage(idPos->second); }
+        else
+            { m_settingsDlg->SelectPage(lua_tonumber(L, 2)); }
         m_settingsDlg->Show();
         wxGetApp().Yield();
         return 0;
