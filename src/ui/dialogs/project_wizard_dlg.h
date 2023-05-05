@@ -25,6 +25,8 @@
 #include "doc_group_select_dlg.h"
 #include "webharvesterdlg.h"
 
+class ReadabilityApp;
+
 enum class ProjectType
     {
     StandardProject,
@@ -33,6 +35,7 @@ enum class ProjectType
 
 class ProjectWizardDlg final : public wxDialog
     {
+    friend ReadabilityApp;
 public:
     ProjectWizardDlg(wxWindow* parent, const ProjectType projectType,
                      const wxString& path = wxString{}, wxWindowID id = wxID_ANY,
@@ -201,40 +204,41 @@ public:
         TransferDataToWindow();
         }
 private:
-    [[nodiscard]] ProjectType GetProjectType() const noexcept
+    [[nodiscard]]
+    ProjectType GetProjectType() const noexcept
         { return m_projectType; }
     void LoadSpreadsheet(wxString excelPath = wxString{});
     void LoadArchive(wxString archivePath = wxString{});
     void UpdateTestSelectionMethodUI();
     void UpdateTestsUI();
-    /// @warning: do not change these IDs, they are used in the screenshot script
-    static const int ID_FILE_BROWSE_BUTTON = 10001;
-    static const int ID_FROM_FILE_BUTTON = 10002;
-    static const int ID_MANUALLY_ENTERED_TEXT_BUTTON = 10003;
-    static const int NARRATIVE_WITH_ILLUSTRATIONS_LINK_ID = 10004;
-    static const int FRAGMENTED_LINK_ID = 10005;
-    static const int CENTERED_TEXT_LINK_ID = 10006;
-    static const int TEST_SELECT_METHOD_BUTTON = 10007;
-    static const int LANGUAGE_BUTTON = 10008;
-    static const int ID_BATCH_FOLDER_BROWSE_BUTTON = 10009;
-    static const int ID_BATCH_FILE_BROWSE_BUTTON = 10010;
-    static const int ID_RANDOM_SAMPLE_CHECK = 10011;
-    static const int ID_RANDOM_SAMPLE_LABEL = 10012;
-    static const int ID_WEB_PAGES_BROWSE_BUTTON = 10013;
-    static const int ID_ARCHIVE_FILE_BROWSE_BUTTON = 10014;
-    static const int ID_SPREADSHEET_FILE_BROWSE_BUTTON = 10015;
-    static const int NEWLINES_ALWAYS_NEW_PARAGRAPH_LINK_ID = 10016;
-    static const int ID_WEB_PAGE_BROWSE_BUTTON = 10017;
-    static const int ID_ADD_FILE_BUTTON = 10018;
-    static const int ID_DELETE_FILE_BUTTON = 10019;
-    static const int ID_HARD_RETURN_CHECKBOX = 10020;
-    static const int ID_HARD_RETURN_LABEL = 10021;
-    static const int ID_NONNARRATIVE_RADIO_BUTTON = 10022;
-    static const int ID_NONNARRATIVE_LABEL = 10023;
-    static const int ID_NARRATIVE_RADIO_BUTTON = 10024;
-    static const int ID_NARRATIVE_LABEL = 10025;
-    static const int ID_SENTENCES_SPLIT_RADIO_BUTTON = 10026;
-    static const int ID_SENTENCES_SPLIT_LABEL = 10027;
+
+    static constexpr int ID_FILE_BROWSE_BUTTON = wxID_HIGHEST;
+    static constexpr int ID_FROM_FILE_BUTTON = wxID_HIGHEST + 1;
+    static constexpr int ID_MANUALLY_ENTERED_TEXT_BUTTON = wxID_HIGHEST + 2;
+    static constexpr int NARRATIVE_WITH_ILLUSTRATIONS_LINK_ID = wxID_HIGHEST + 3;
+    static constexpr int FRAGMENTED_LINK_ID = wxID_HIGHEST + 4;
+    static constexpr int CENTERED_TEXT_LINK_ID = wxID_HIGHEST + 5;
+    static constexpr int TEST_SELECT_METHOD_BUTTON = wxID_HIGHEST + 6;
+    static constexpr int LANGUAGE_BUTTON = wxID_HIGHEST + 7;
+    static constexpr int ID_BATCH_FOLDER_BROWSE_BUTTON = wxID_HIGHEST + 8;
+    static constexpr int ID_BATCH_FILE_BROWSE_BUTTON = wxID_HIGHEST + 9;
+    static constexpr int ID_RANDOM_SAMPLE_CHECK = wxID_HIGHEST + 10;
+    static constexpr int ID_RANDOM_SAMPLE_LABEL = wxID_HIGHEST + 11;
+    static constexpr int ID_WEB_PAGES_BROWSE_BUTTON = wxID_HIGHEST + 12;
+    static constexpr int ID_ARCHIVE_FILE_BROWSE_BUTTON = wxID_HIGHEST + 13;
+    static constexpr int ID_SPREADSHEET_FILE_BROWSE_BUTTON = wxID_HIGHEST + 14;
+    static constexpr int NEWLINES_ALWAYS_NEW_PARAGRAPH_LINK_ID = wxID_HIGHEST + 15;
+    static constexpr int ID_WEB_PAGE_BROWSE_BUTTON = wxID_HIGHEST + 16;
+    static constexpr int ID_ADD_FILE_BUTTON = wxID_HIGHEST + 17;
+    static constexpr int ID_DELETE_FILE_BUTTON = wxID_HIGHEST + 18;
+    static constexpr int ID_HARD_RETURN_CHECKBOX = wxID_HIGHEST + 19;
+    static constexpr int ID_HARD_RETURN_LABEL = wxID_HIGHEST + 20;
+    static constexpr int ID_NONNARRATIVE_RADIO_BUTTON = wxID_HIGHEST + 21;
+    static constexpr int ID_NONNARRATIVE_LABEL = wxID_HIGHEST + 22;
+    static constexpr int ID_NARRATIVE_RADIO_BUTTON = wxID_HIGHEST + 23;
+    static constexpr int ID_NARRATIVE_LABEL = wxID_HIGHEST + 24;
+    static constexpr int ID_SENTENCES_SPLIT_RADIO_BUTTON = wxID_HIGHEST + 25;
+    static constexpr int ID_SENTENCES_SPLIT_LABEL = wxID_HIGHEST + 26;
 
     void OnHelp([[maybe_unused]] wxCommandEvent& event);
     void OnContextHelp([[maybe_unused]] wxHelpEvent& event);

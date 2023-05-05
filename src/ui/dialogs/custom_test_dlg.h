@@ -37,9 +37,12 @@
 #include "../../readability/custom_readability_test.h"
 #include "../../projects/standard_project_doc.h"
 
+class ReadabilityApp;
+
 /** @brief Dialog for creating and editing custom readability tests.*/
 class CustomTestDlg final : public wxDialog
     {
+    friend ReadabilityApp;
 public:
     /// @private
     using OutputStringType = traits::case_insensitive_wstring_ex;

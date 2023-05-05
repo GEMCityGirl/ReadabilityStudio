@@ -7,6 +7,7 @@
 #include "../ui/dialogs/custom_test_dlg.h"
 #include "../ui/dialogs/tools_options_dlg.h"
 #include "../ui/dialogs/editwordlistdlg.h"
+#include "../ui/dialogs/project_wizard_dlg.h"
 #include "../document_helpers/chapter_split.h"
 #include "../../../../SRC/Licensing/LicenseDlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/filelistdlg.h"
@@ -630,7 +631,37 @@ bool ReadabilityApp::OnInit()
         { 1079, ToolsOptionsDlg::ID_EXCLUSION_TAG_BLOCK_SELCTION },
         { 1080, ToolsOptionsDlg::ID_ADDITIONAL_FILE_BROWSE_BUTTON },
         { 1083, ToolsOptionsDlg::ID_ADDITIONAL_FILE_FIELD },
-        { 20002, TestBundleDlg::ID_STANDARD_TEST_PAGE }
+        { 20002, TestBundleDlg::ID_STANDARD_TEST_PAGE },
+        { 7000, CustomTestDlg::ID_TEST_NAME_FIELD },
+        { 7001, CustomTestDlg::ID_TEST_TYPE_COMBO },
+        { 7002, CustomTestDlg::ID_FORMULA_FIELD },
+        { 10001, ProjectWizardDlg::ID_FILE_BROWSE_BUTTON },
+        { 10002, ProjectWizardDlg::ID_FROM_FILE_BUTTON },
+        { 10003, ProjectWizardDlg::ID_MANUALLY_ENTERED_TEXT_BUTTON },
+        { 10004, ProjectWizardDlg::NARRATIVE_WITH_ILLUSTRATIONS_LINK_ID },
+        { 10005, ProjectWizardDlg::FRAGMENTED_LINK_ID },
+        { 10006, ProjectWizardDlg::CENTERED_TEXT_LINK_ID },
+        { 10007, ProjectWizardDlg::TEST_SELECT_METHOD_BUTTON },
+        { 10008, ProjectWizardDlg::LANGUAGE_BUTTON },
+        { 10009, ProjectWizardDlg::ID_BATCH_FOLDER_BROWSE_BUTTON },
+        { 10010, ProjectWizardDlg::ID_BATCH_FILE_BROWSE_BUTTON },
+        { 10011, ProjectWizardDlg::ID_RANDOM_SAMPLE_CHECK },
+        { 10012, ProjectWizardDlg::ID_RANDOM_SAMPLE_LABEL },
+        { 10013, ProjectWizardDlg::ID_WEB_PAGES_BROWSE_BUTTON },
+        { 10014, ProjectWizardDlg::ID_ARCHIVE_FILE_BROWSE_BUTTON },
+        { 10015, ProjectWizardDlg::ID_SPREADSHEET_FILE_BROWSE_BUTTON },
+        { 10016, ProjectWizardDlg::NEWLINES_ALWAYS_NEW_PARAGRAPH_LINK_ID },
+        { 10017, ProjectWizardDlg::ID_WEB_PAGE_BROWSE_BUTTON },
+        { 10018, ProjectWizardDlg::ID_ADD_FILE_BUTTON },
+        { 10019, ProjectWizardDlg::ID_DELETE_FILE_BUTTON },
+        { 10020, ProjectWizardDlg::ID_HARD_RETURN_CHECKBOX },
+        { 10021, ProjectWizardDlg::ID_HARD_RETURN_LABEL },
+        { 10022, ProjectWizardDlg::ID_NONNARRATIVE_RADIO_BUTTON },
+        { 10023, ProjectWizardDlg::ID_NONNARRATIVE_LABEL },
+        { 10024, ProjectWizardDlg::ID_NARRATIVE_RADIO_BUTTON },
+        { 10025, ProjectWizardDlg::ID_NARRATIVE_LABEL },
+        { 10026, ProjectWizardDlg::ID_SENTENCES_SPLIT_RADIO_BUTTON },
+        { 10027, ProjectWizardDlg::ID_SENTENCES_SPLIT_LABEL }
     };
 
     SetAppFileExtension(_DT(L"rsp"));
