@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>Histograms</title>
+</head>
+<body link="#336699">
+
+<p>[This is preliminary Beta help]</p>
+
+<h1><font color="#315184"><b>Histograms</b></font></h1>
+<hr>
+<p>The options on this tab allow you to customize the test score histograms included
+in batch projects. Note that these options are only available for
+<i>Readability Studio Professional Edition</i>.</p>
+
+<h3><u>Bar Appearance:</u></h3>
+
+<p><font color="#315184"><b>Bar color</b></font>: Click this button to select the color used for your bars.</p>
+<p><font color="#315184"><b>Solid</b></font>:
+Select this option to use a solid color for your bars.</p>
+
+<p><font color="#315184"><b>Use
+a 3D effect</b></font>: Select this option to add a 3D look to your bars.</p>
+
+<p><font color="#315184"><b>Apply a color
+fade across the bar, starting from the bottom</b></font>:
+Select this option to apply a color fade across your bars (starting
+from the bottom).</p>
+
+<p><font color="#315184"><b>Apply
+a color
+fade across the bar, starting from the top</b></font>:
+Select this option to apply a color fade across your bars (starting
+from the top).</p>
+
+<p><font color="#315184"><b>Bar
+opacity</b></font>: Sets the transparency of the bar color. Sliding this bar to the far
+right will set the background
+to be fully opaque, whereas sliding it to the far left will set the
+background to be blank.</p>
+
+<h3><u>Bin Sorting Options:</u></h3>
+
+<p>Bin sorting refers to how values (e.g., index and grade scores) are categorized
+into separate classes. Each of these classes (or bins) are displayed on
+a histogram as a bar. The options listed here control how these bins
+are created and how your data is sorted into them.</p>
+
+<h4><u>Bin Sorting</u></h4>
+
+<font color="#315184"><b>Create
+a bin for each unique value</b></font>: Select this option to
+create a bin (i.e., a bar) for every unique value. If you have floating-point
+grade scores and are not rounding your values, then a bin for every
+unique floating-point value will be created. If you select this option,
+then it is recommend to set the rounding option to <i>Round down</i>.
+<p><font color="#315184"><b>Sort
+by interval</b></font>: Select this option to have the program
+select the best bin sizes based on the range of your data. Rather than having
+a bin for each unique value, bins will be created for ranges of values.
+For example, you may have a bin representing values for grades 2-4,
+rather than having separate bins for 2, 3, and 4.</p>
+
+<p><font color="#315184"><b>Sort
+by neat interval</b></font>: Select this option to have the program
+select the best integral bin sizes based on the range of your data. This
+option is the same as <i>Sort by interval</i>, except that
+it will force the bin ranges and bin sizes to be integer values. This
+will prevent having ranges beginning at values such as 2.4 and will
+also force the bin widths into sizes such as 2 or 3 (rather than 3.2).
+By selecting this option, your intervals will precisely represent grade
+ranges (e.g., grades 2-4) and prevent any overlap between the grades in
+your bins.</p>
+
+<p>Note that
+if you are not rounding down your values, then scores with no mantissa
+(fractional part) may fall into a bin different from the same values
+with fractional parts. For example, if you have a bin ranging from 1-2
+and another ranging from 2-3, then the first bin represents values
+&gt; 1 and &lt;= 2 and the second bin represents values
+&gt; 2 and &lt;= 3. If you not rounding down your scores, then
+a score of 2 will fall into the 1-2 bin, whereas a score of 2.1 will
+fall into the 2-3 bin. If you select this option,
+then it is recommend to set the rounding option to <i>Round down</i>.
+This will ensure that values such as 2 and 2.1 fall into the same bin.</p>
+
+<p><font color="#315184"><b>Grade
+level/index value rounding</b></font>:
+This option
+controls how floating-point values are rounded
+when being sorted into the bins. You may choose from the following options:</p>
+<ul>
+<li><b>Round</b>:
+Select this option to round grade-level scores up or down (based on
+their fractional part) when sorting them into the histogram's bins.
+Values such as 4 and 4.3 will be sorted as 4, whereas 4.5 and 4.9 will
+be sorted as 5.</li>
+
+<li><b>Round down</b>: Select this option to round
+grade-level
+scores down when sorting them
+into the histogram's bins. Values such as 4, 4.3, and
+4.9 will be sorted as 4. This selection is recommended.</li>
+
+<li><b>Round up</b>: Select this option to round grade-level
+scores up when sorting them
+into the histogram's bins. Values such as 4 will be
+sorted as 4, whereas 4.1, 4.3, and 4.9 will be sorted as 5. This
+selection is not recommended and should only be used for special cases.</li>
+
+<li><b>Do not round</b>: Select this option to not round any
+grade-level scores. Scores will be sorted into the bins exactly as they
+appear with their fractional parts. This selection is not recommended
+and should only be used for special cases.</li>
+</ul>
+
+<p><font color="#315184"><b>Cumulative bins</b></font>:
+Select this option for the bars to represent the cumulative number of observations in all of the bins up to (and including) the specified bin.</p>
+
+<h3><u>Bin Display:</u></h3>
+<p>These options control the display of the axis labels, bar labels, and side title of the histogram.</p>
+<h4><u>Bin Interval</u></h4>
+<p><font><b>Cutpoints</b></font>: Select this option to display the axis bin intervals on the sides of the bars.</p>
+
+<p><font><b>Midpoints</b></font>: Select this option to display the axis bin intervals centered under the bars. For neat intervals, the label will be the range of the bin; otherwise, it will be the midpoint.</p>
+
+<h4><u>Bin Labels</u></h4>
+<p><font><b>Number of documents</b></font>: Select this option to display the number of documents as the bin label. This label will appear at the top of each bar.</p>
+
+<p><font><b>Percentage of documents</b></font>: Select this option to display the percentage of documents as the bin label. This label will appear at the top of each bar.</p>
+
+<p><font><b>Number and percentage of documents</b></font>: Select this option to display the number and percentage of documents as the bin label. This label will appear at the top of each bar.</p>
+
+</body>
+</html>

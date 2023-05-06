@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>Document Analysis</title>
+</head>
+<body link="#336699">
+<h1><font color="#315184"><b>Document Analysis</b></font></h1>
+<hr>
+<p>The options here enable you to specify how your documents should be parsed and analyzed.</p>
+
+<h3><u>Consider sentences overly long if</u></h3>
+<p><font color="#315184"><b>Longer than [20]
+words</b></font>: Select this option to consider sentences
+overly long if they exceed the word count specified in this field. The default word count
+is 20, but can be changed as needed.</p>
+
+<p><font color="#315184"><b>Outside
+sentence outlier range</b></font>:
+Select this option to consider sentences overly long if they are comparatively longer
+than other sentences in the document.
+This option is only recommended for situations where most
+of the sentences have an acceptable length, but a few (very) long
+sentences skew the average. This option is useful for finding these extreme sentences.</p>
+
+<p>These sentences can be viewed in the <a href="../Overviews/StandardProject/Grammar/ReviewingLongSentencesAndWordiness.html">"Long Sentences &amp; Wordiness"</a>
+and <a href="../Overviews/StandardProject/Grammar/ReviewingLongSentences.html">"Long Sentences"</a> windows in the <i>Grammar</i> section.</p>
+
+<h3><u>Sentence deduction</u></h3>
+<p><a name="ignoreblankline"><font color="#315184"><b>Ignore blank
+lines when determining the end of a sentence</b></font></a>:
+Select this option to not consider <a href="../Notes/IncompleteSentences.html">incomplete sentences</a> followed by
+blank lines as the end of the current sentence and paragraph. If an
+incomplete sentence is encountered, any blank lines after it will be skipped and
+the sentence will be merged with the following sentence.</p>
+
+<p>This option is not recommended for documents that contain headers or lists that rely on blank lines to
+separate them from the narrative text. Refer to <a href="../Notes/LineChaining.html">line chaining</a> for more information.</p>
+
+<p>Also note that this option is disabled if <a href="#eol"><i>Always
+treat an end of line as a new paragraph</i></a>
+is selected. In this case, line feeds will always indicate the
+end of a sentence and paragraph, whether or not it is followed by blank
+lines.</p>
+
+<p><font color="#315184"><b><a name="SentCapt"></a>Sentences
+must begin with capitalized words</b></font>: Select this option to have
+sentence detection assume that all sentences begin with capitalized
+words. By default, <i>Readability Studio</i>
+takes into consideration writing that does not capitalize the first
+word of every sentence. To change this behavior, select this option and
+the program will be more grammatically strict when deducing sentences.</p>
+
+<h3><u><a name="incompletesentences"></a>Incomplete Sentences</u></h3>
+
+<p><font color="#315184"><b>Exclude from
+analysis</b></font>: Select this option to ignore all
+incomplete sentences when calculating statistics.</p>
+
+<p><font color="#315184"><b>Include in
+analysis and treat as full sentences</b></font>:
+Select this option to treat all incomplete sentences as regular
+sentences when calculating statistics. This is only recommended for forms
+that may contain numerous titles and lists items and little narrative text. Refer to
+<a href="../Notes/FragmentedText.html">fragmented text</a> for more information.</p>
+
+<p><font color="#315184"><b>Treat trailing copyright notices as incomplete sentences</b></font>:
+Select this option to ignore copyright/trademark notices at the end of the document when calculating statistics. This option
+is only available if incomplete sentences are being excluded.</p>
+
+<h3><u>End of paragraph</u></h3>
+<p><font color="#315184"><b>Only treat an
+end of line as a new paragraph if following a valid sentence</b></font>:
+Select this option to only consider a line feed as the end
+of the current sentence and paragraph if it follows a valid sentence.
+This option is recommended for text that is formatted to a specific width
+(e.g., scanned documents).</p>
+
+<p>Two exceptions are made here. The first exception is for consecutive line feeds&ndash;these will always be considered the
+start of a new paragraph. Consecutive line feeds normally indicate a title or chapter header
+that should be separated from the following paragraph.</p>
+
+<p>The second exception is if the line following a line feed is tabbed or bulleted&ndash;this will also
+indicate the start of a new paragraph. In narrative text, the first sentence of a paragraph
+is usually tabbed or spaced over. Also, items in a list are usually tabbed or bulleted. In both
+cases, the program will recognize these as new paragraphs.</p>
+
+<p><font color="#315184"><b><a name="eol"></a>Always
+treat an end of line as a new
+paragraph</b></font>: Select this option to always consider
+line feeds in the text as the end of the current sentence and
+paragraph. This should only be used for special cases where a document
+does not have paragraph indenting and contains
+numerous lists or headers that are not followed by blank lines.</p>
+
+<p>Refer to <a href="../Notes/LineChaining.html">line chaining</a> for more information
+about these options.</p>
+
+<a name="numsyllable"><h3><u> Numeral syllabication</u></h3></a>
+<p><font color="#315184"><b>Count numeral
+words as one syllable</b></font>: Select this option to
+have the program consider numeric words (e.g., numbers, dates,
+phone numbers) as monosyllabic.</p>
+
+<p><font color="#315184"><b>Sound out each
+digit</b></font>: Select this option to have the
+program sound out each digit when counting the syllables of numeric
+words. For example, the word "555-4778" will be considered nine syllables&ndash;read as
+"five-five-five-four-seven-seven-eight". As another example, "$52" will
+be considered four syllables&ndash;read as "five-two-dollars".</p>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>How Syllables are Counted</title>
+</head>
+<body link="#336699">
+
+<h1><font color="#315184" face="Tahoma" size="14"><b>How Syllables are Counted</b></font></h1>
+<hr>
+<p>Most software that counts syllables
+employs one of two methods. The first is a dictionary-based
+system that includes a list of common words and their
+respective syllable count. As the software counts the syllables of a
+document, each word is looked up in a dictionary to retrieve its respective
+syllable count. The disadvantage of this method is that if a word is
+not found, then the program must prompt the user to enter the syllable count.</p>
+
+<p>The second syllable counting method is to use an algorithm, which is what <i>Readability Studio</i> does.
+The advantage of this is that it will work with any word, without user
+interaction. The disadvantage is that these algorithms are traditionally less accurate
+than a dictionary approach. This is because most software uses a
+formula that counts the number of vowel blocks in a word to determine
+the syllable count.</p>
+
+<p>Unfortunately, this approach will not consider
+special cases where vowel blocks split into two syllables. For example, the "ui" in "fruit" is
+one syllable, but in "intuitive" it splits into two syllables. Another issue is special consonant blocks. For
+example, in the name "McCoy", the prefix is actually a separate syllable.</p>
+
+<p>To overcome these shortcomings, <i>Readability Studio</i> uses
+a specialized algorithm which considers the various
+nuances and quirks of the English language when
+calculating syllables counts.</p>
+
+</body>
+</html>

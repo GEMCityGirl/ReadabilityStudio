@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+   <title>Coleman-Liau</title>
+</head>
+<body link="#336699">
+<h1><font color="#315184"><b>Coleman-Liau Test</b></font></h1>
+<hr>
+<p>The <b><i>Coleman-Liau</i></b> readability
+formula calculates the U.S. grade level of a text sample based
+on sentence lengths and number of characters.</p>
+
+<p><b><i>Coleman-Liau</i></b> is
+meant for secondary age (4th grade to college level) readers. This
+formula is based on text from the .4 to 16.3 grade level range. This
+test usually yields the lowest grade when applied to technical documents.</p>
+
+<h3><u>The Coleman-Liau Formula</u></h3>
+
+<p>First, calculate the estimated Cloze percentage with the following formula:</p>
+
+<blockquote>E = 141.8401 - (.214590*C) + (1.079812*S)</blockquote>
+
+<p>Then convert the Cloze percentage into a U.S. grade level with the following formula:</p>
+
+<blockquote>G = (-27.4004*(E/100)) + 23.06395	</blockquote>
+
+<p>Where:</p>
+
+<blockquote>
+<table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td>E</td>
+<td>Estimated Cloze %</td>
+</tr>
+<tr>
+<td>G</td>
+<td>U.S. grade level</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Number of characters</td>
+</tr>
+<tr>
+<td>S</td>
+<td>Number of sentences</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>Note that a simplified version of this formula is also available, although it yields slightly less accurate precision:</p>
+<blockquote>
+G = ((5.88*C)/W) - ((29.5*S)/W) - 15.8
+</blockquote>
+<p>Where:</p>
+<blockquote>
+<table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td>G</td>
+<td>U.S. grade level</td>
+</tr>
+<tr>
+<td>W</td>
+<td>Number of words</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Number of characters</td>
+</tr>
+<tr>
+<td>S</td>
+<td>Number of sentences</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>This test requires a 100-word sample; however, note that <i>Readability
+Studio</i> always analyzes your entire document to
+guarantee the most accurate results and does not
+use subsamples for any of its test calculations. If a
+formula requires a subsample of a specific size, then
+standardization is used.</p>
+
+<h3><u>Citations</u></h3>
+<p>Coleman, M. and Liau, T.L. (1975). 'A computer
+readability formula designed for machine scoring', <i>Journal
+of Applied Psychology</i>, 60, No. 2, 283-284.</p>
+
+</body>
+</html>

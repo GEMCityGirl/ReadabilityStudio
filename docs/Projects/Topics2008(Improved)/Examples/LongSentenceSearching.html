@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>Example: Searching for Overly Long Sentences</title>
+</head>
+<body link="#336699">
+
+<h1><font color="#315184" face="Tahoma" size="14"><b>Example
+5: Searching for Overly Long Sentences</b></font></h1>
+<hr>
+<p>In this example, we will review a document for overly long sentences. This
+example will demonstrate the available methods for defining
+what an overly long sentence. In addition, it will also demonstrate how to
+search for and review these sentences.</p>
+
+<p>The first step is to open the example file <i>Features</i>.
+From the <i>Help</i> menu, select the <i>Examples</i>
+submenu and then select <i>Features</i>.</p>
+
+<p>You will then presented with the <i>Readability Tests</i>
+dialog, as shown below:</p>
+
+<p><img alt="" src="../../Images/wizardreadabilitymethods.png"></p>
+
+<p>Select the <i>Recommend tests based on document type</i> and click the <i>Next</i> button
+to proceed to the <i>Select Document Type</i> dialog, as
+shown below:</p>
+
+<p><img alt="" src="../../Images/wizarddoctypetechselected.png"></p>
+
+<p>Select the <i>Technical document</i> option and click
+the <i>Next</i> button. The next dialog will be the <i>Select
+Highlighted Documents</i> dialog, as shown below:</p>
+
+<p><img alt="" src="../../Images/wizardtextselections.png"></p>
+
+<p>Select all the checkboxes so that we will have all the highlighted text
+views available. Click the <i>Next</i> button to proceed
+to the <i>Select Difficult Words Lists</i> dialog, as
+shown below:</p>
+
+<p><img alt="" src="../../Images/wizardlistsslections.png"></p>
+
+<p>Select all the checkboxes so that we will have all the difficult word lists
+available and click the <i>Finish</i> button to begin
+analyzing the project.</p>
+
+<p>If you are excluding <a href="../Notes/IncompleteSentences.html">incomplete
+sentences</a> (the default) then this warning message
+will be displayed.</p>
+
+<p><img alt="" src="../../Images/sentencewarning.png"></p>
+
+<p>Because this file contains numerous incomplete sentences, <i>Readability
+Studio</i> will ask you if excluding them is what you truly intend. In
+this case, these sentences are just list items that we should ignore,
+so select <i>No</i>.</p>
+
+<p>Once the project is loaded, the
+readability scores will be presented. As we can see below, this
+document scores high within the collegiate range.</p>
+
+<p><img alt="" src="../../Images/featuresscores.png"></p>
+
+<p>This document should be an easy to
+read list of software features intended for a broad range of readers.
+These scores are a bit too high, so now we will explore some the
+document to understand why it is so difficult to read. Select the <i>Statistics</i>
+icon in the project sidebar to view the document's statistics.</p>
+
+<p><img alt="" src="../../Images/featuresstats.png"></p>
+
+<p>As we can see, there are some very
+long sentences in this document and is probably the biggest factor in
+our scores. To view a list of these sentences, click the <i>difficult sentences</i>
+link. You can also click the <i>Grammar</i> icon in the sidebar and select the <i>Long Sentences</i> tab.</p>
+
+<p><img alt="" src="../../Images/featuressentencelist.png"></p>
+
+<p>This list can be sorted alphabetically, by word count, or by location. To view any sentence in its
+original context, double click on it. This will take you to the <i>Long Sentences &amp; Wordiness</i>
+tab. In this window, all the overly long sentences and wordy phrases are highlighted
+and each sentence displays its respective word count after it (in parenthesis).</p>
+
+<p><img alt="" src="../../Images/featuressentences.png"></p>
+
+<p>By default, the program
+considers sentences being overly long if they contain more
+than 20 words. As we can see, there are a few sentences that are
+only a few words longer than 20 words that are not so problematic.
+However, there are a few sentences clustered which exceed 40
+words. At this point, we will want to temporarily filter out the
+smaller of these long sentences and search for the "worst offenders".
+From the <i>File</i> menu, select <i>Project
+Settings</i> and then select the <i>Document Analysis</i>
+icon. As shown below, we have a couple of different ways to determine
+if a sentence is overly long:</p>
+
+<p><img alt="" src="../../Images/featuressentoptions.png"></p>
+
+<p>The first option is to define a specific word count as the long sentence
+boundary. Enter "25" where it says <i>Longer
+than 20 words</i> and click the <i>OK</i> button.
+The program will now reanalyze the file, considering that any
+sentence longer than 25 (instead of 20) are overly long. As shown
+below, sentences that are between 21-25 words are no longer being
+classified as overly long:</p>
+
+<p><img alt="" src="../../Images/featuressentences25.png"></p>
+
+<p>The second option is to consider sentences overly long if they are comparatively
+longer than other sentences in the document. From the <i>File</i>
+menu, select <i>Project Properties</i>
+and then select the <i>Document Analysis</i> icon. Select the option <i>Outside
+sentence-length outlier range</i> and click the <i>OK</i> button. At
+this point, the boundary for overly-long sentences will be calculated based
+on the outlier range of the sentence lengths. After reanalyzing the
+file, note how the only sentences highlighted have the lengths of 45
+and 48. These are the two "worst offenders" and should be either
+reworded or split into small sentences.</p>
+
+<p><img alt="" src="../../Images/featuressentencesoutliers.png"></p>
+
+<p>To see what the outlier range is, click on the <i>Statistics</i>
+icon in the project sidebar. Here we can see that any sentence more
+than 43 words is considered overly long.</p>
+
+<p><img alt="" src="../../Images/featuressentences43.png"></p>
+
+<p>This option is only recommended for
+situations where most of the sentences are an acceptable length, but a
+few (very) long sentences skew the average. This option is
+useful for finding these type of extreme sentences.</p>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>Web Harvester</title>
+</head>
+<body link="#336699">
+
+[This is preliminary Beta documentation]<br>
+
+<h1><font color="#315184"><b>Web Harvester</b></font></h1>
+<hr>
+<p>The <i>Web Harvester</i> dialog enables you to easily gather links from a website.</p>
+
+<p><font color="#315184"><b>Website to harvest</b></font>: Enter the base webpage to begin your search in this field.</p>
+<p><font color="#315184"><b>Depth Level</b></font>: Enter the depth of the website that you want to crawl. A level of 1 will gather only the links from the main page, whereas a level of 2 will gather all the links from the main page and then gather all links from those links.</p>
+<p><font color="#315184"><b>File types to include</b></font>: Select from this list the types of documents to include from the website.</p>
+<p><font color="#315184"><b>Domain Restriction</b></font>: Select from this list the domain restriction that you want to use.</p>
+<ul>
+<li><b>Not restricted to any domain</b>: Select this option to harvest all links from the website, regardless of domain.</li>
+<li><b>Domain restricted</b>: Select this option to only harvest links with the same domain as the webpage you specify. For example, <i>company.com</i>.</li>
+<li><b>Subdomain restricted</b>: Select this option to only harvest links with the same subdomain as the base webpage. For example, <i>sales.company.com</i>.</li>
+<li><b>Restricted to user-defined domain(s)</b>: Select this option to only harvest links from a provided list of domains.</li>
+<li><b>Restricted to external domains</b>: Select this option to only harvest links from domains other than the webpage that you specifiy.</li>
+</ul>
+<p><font color="#315184"><b>User-defined Domain(s)</b></font>: Enter all user-defined domains in this list. This option is only applicable if domain restriction is set to user-defined domains.</p>
+
+<h3><u>Downloading</u></h3>
+<p>These options will enable you to download the files from the website prior to analyzing them. Rather than analyzing the files directly from the website, the application will analyze the local files. If file linking is enabled, then the project will link to these local files, rather than the website.</p>
+<p>This option is recommended if you need to make edits to the files before analyzing them. It may also be recommended to improve performance, as analyzing local files will be faster than reading them from a website.</p>
+<p>If you intend to review a website and need to always analyze its latest changes, then it is not recommended to download the website. Rather, you should analyze the website directly and enable file linking. To directly analyze the website, uncheck the option <i>Download files locally</i>.</p>
+<p><font color="#315184"><b>Download files locally</b></font>: Select this option to download the files from the website locally.</p>
+<p><font color="#315184"><b>Use website's folder structure</b></font>: Select this option to organize the downloaded files in a folder structure similar to the website's folder structure. Deselecting this option will download the files into a flat folder structure.</p>
+<p><font color="#315184"><b>Folder to download files to</b></font>: Enter in this field the folder path where the website's files should be downloaded.</p>
+
+</body>
+</html>

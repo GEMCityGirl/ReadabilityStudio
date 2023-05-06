@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>Custom Word Test</title>
+</head>
+<body link="#336699">
+
+<h1><font color="#315184"><b>Custom Word Test</b></font></h1>
+<hr>
+<p>This dialog is used to edit or create a custom familiar word test.</p>
+
+<p><font color="#315184"><b>Name of the
+test</b></font>: If creating a new test, enter its name in
+this field.</p>
+
+<p><font color="#315184"><b>File
+containing familiar words</b></font>: Enter the path to
+the familiar-word list in this field.
+This list must be a text file where each word is separated by a space, tab, comma, semicolon, or new line. An
+example file would look like this:</p>
+
+<p><tt>computer install program videogame</tt></p>
+
+<p>or like this:</p>
+
+<p><tt>computer,install,program,videogame</tt></p>
+
+<p>or like this:</p>
+
+<p><tt>computer<br>
+
+install<br>
+
+program<br>
+
+videogame</tt></p>
+
+<p><font color="#315184"><b>Familiar words</b></font>:
+This list displays all of the words from your familiar-word file.</p>
+
+<p><font color="#315184"><b>Associate with
+document type</b></font>: Select the document types that
+you want this test to be associated with when creating a new
+project. This will only take effect if you choose to have the
+project wizard select tests for you based on document type.</p>
+
+<p><font color="#315184"><b>Associate with
+industry</b></font>: Select the industries that you want
+this test to be associated with when creating a new
+project. This will only take effect if you choose to have the project wizard select
+tests for you based on industry or field.</p>
+
+<p><font color="#315184"><b>Also
+include Dale-Chall familiar word list</b></font>:
+Select this option to use the <a href="../Tests/DaleChall.html"><i>Dale-Chall</i></a>
+word list in conjunction with your word list when determining if a word
+is familiar.</p>
+
+<p><font color="#315184"><b>Also
+include Spache familiar word list</b></font>:
+Select this option to use the <a href="../Tests/Spache.html">
+<i>Spache</i></a> word list in conjunction with your word list when determining if a word
+is familiar.</p>
+
+<p><font color="#315184"><b>Familiar words
+must appear on all included word lists</b></font>: Select
+this option to consider words familiar only if they appear on your
+custom list and other selected lists. This
+option is only recommended for special situations where you would only
+want to find words that appear within a union of your word list
+and the <i>DC</i> and/or <i>Spache</i> word lists.</p>
+
+<p>Note that this option is only
+available if you are including the <i>Dale-Chall</i> and/or <i>Spache</i> word lists.</p>
+
+<p><font color="#315184"><b>Also
+treat proper nouns as familiar words</b></font>:
+Treats proper nouns found in your documents as familiar words (in
+conjunction with your word list).</p>
+
+<p><font color="#315184"><b>Also
+treat numerals as familiar words</b></font>:
+Treats numeric words found in your documents as familiar words (in
+conjunction with your word list).</p>
+
+<p><font color="#315184"><b>Readability
+formula</b></font>: Specifies which readability formula to
+use when calculating the grade level for this test.</p>
+
+<p><font color="#315184"><b>Use stemming
+to search for similar words</b></font>: Specifies whether
+or not to use stemming when comparing your familiar words with the
+words in your document.</p>
+
+<p>Stemming compares words based on
+their root and is useful for finding words that might appear in a form
+different from how they are entered in your familiar word list. For
+example, let us say that you enter the word "installation" in
+your familiar word file. If you select English as your stemming type, then
+occurrences of the words "installation", "install", "installed",
+"installs", etc. found in your document will be considered familiar.
+This is because each of these words share the same root, "install". The
+benefit of this is that you do not need to enter every form of every
+word into your familiar word file.</p>
+
+<p>If you are not using stemming, then
+it is recommended that you enter each form of your words (e.g.,
+possessive, plural) in your familiar word list.</p>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>Controlling How Sentences are Deduced</title>
+</head>
+<body link="#336699">
+
+<h1><font color="#315184"><b>Controlling How Sentences are Deduced</b></font></h1>
+<hr>
+<p>How sentences are structured can vary from document to document. Because of this, <i>Readability
+Studio</i> offers features to control how sentences are parsed and counted. These
+features are available under the <i>Sentence
+deduction</i> section of the <a href="../Dialogs/OptionsDocumentAnalysisSentencesWords.html"><i>Document
+Analysis</i></a> page. To view these features, select <i>Options</i> from
+the <i>Tools</i> menu and then click on the <i>Document
+Analysis</i> icon. Under the <i>Sentence deduction</i>
+section, there are two options: <i>Ignore
+blank lines when determining the end of a sentence</i> and <i>Sentences must begin with
+capitalized words</i>.</p>
+
+<p>The option <i>Sentences must begin with
+capitalized words</i> controls
+whether sentences must begin with capitalized words. Selecting
+this option will make <i>Readability
+Studio</i> more grammatically strict when counting sentences; however, it is
+recommended to leave this option unselected for "loosely written"
+documents.</p>
+
+<p>The option <i>Ignore blank lines...</i> is used for controlling how
+multi-line sentences with blank lines between them are seen. For example:</p>
+
+<p><tt>Chapter 1<br>
+<br>
+It was the best days of our lives.</tt></p>
+
+<p>If <i>Ignore blank lines...</i> is unselected (the
+default), then the above example is seen as two sentences. "<i>Chapter
+1</i>" is seen as an <a href="../Notes/IncompleteSentences.html">incomplete
+sentence</a> because there is a blank line between it
+and the next sentence. Then "<i>It was the best days of our
+lives.</i>" is seen as the second sentence. This behavior is
+recommended for most documents because it helps remove headers and list
+items from the analysis.</p>
+
+<p>There are
+special situations where you would need multi-line sentence fragments
+to be "chained" together. For example, picture books that wrap
+sentences around images may cause sentences to be split into fragments
+with blank lines between them. Let us review an example of this.</p>
+
+<p>From the <i>Help</i>
+menu, select the <i>Examples</i> menu and then select <u>The
+Tale of Peter Rabbit</u>. From the <a href="StandardProject/CreatingANewProjectFromWizard.html">project wizard</a>,
+select <i>Children's literature</i> and then choose the
+defaults after that. Next, click on the <i>View
+Document</i> icon on the project sidebar to view the
+document. If <i>Ignore blank lines...</i> was unselected, then note
+how some of the sentences have been split into
+incomplete fragments:</p>
+
+<p><img alt="" src="../../Images/PeterRabbitSplitSentences.png"></p>
+
+<p>To see what
+is happening here, we will open the original document. From the <i>File</i>
+menu, select <i>Open Source Document</i>
+to open this example in a web browser. As we can see below, the
+sentence in question is split into multiple lines. Part of it is
+on top of an image, and the rest of it is split across multiple
+lines to fit next to the image.</p>
+
+<p><img alt="" src="../../Images/PeterRabbitBrowser.png"></p>
+
+<p>To correct this, we will change how sentences are read for this project. Select <i>Project
+Settings</i> from the <i>File</i> menu and then click on <i>Document
+Analysis</i> icon. Then select the option <i>Ignore
+blank lines...</i> and click <i>OK</i>. Note that by
+changing this option from the <i>Project
+Setting</i> dialog, this will only affect this project, not any other
+projects.</p>
+
+<p><img alt="" src="../../Images/IgnoreBlankLines.png"></p>
+
+<p>At this point, the project will be reanalyzed and these sentence fragments
+will be chained together:</p>
+
+<p><img alt="" src="../../Images/PeterRabbitChainedSentences.png"></p>
+
+</body>
+</html>

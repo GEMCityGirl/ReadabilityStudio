@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>Options Sentences &amp; Words</title>
+</head>
+<body link="#336699">
+<h1><font color="#315184"><b>Sentences &amp; Words</b></font></h1>
+<hr>
+<p>The options on this tab enable you to specify how your documents should be parsed and analyzed.</p>
+
+<h3><u>Consider sentences overly long if</u></h3>
+<p><font color="#315184"><b>Longer than 20
+words</b></font>: Select this option to highlight sentences
+that are 20 words or longer in the "long sentences" window of the
+document viewing area.</p>
+
+<p><font color="#315184"><b>Outside of
+sentence outlier range</b></font>:
+Select this option to highlight sentences that are comparatively longer
+than other sentences in the current document. These highlighted
+sentences can be viewed in the "long sentences" window of the document
+viewing area. This option is only recommended for situations where most
+of the sentences are an acceptable length, but a few (very) long
+sentences skew the average. This option is useful for finding
+these type of sentences.</p>
+
+<h3><u>Sentence deduction</u></h3>
+<p><font color="#315184"><b>Ignore blank
+lines when determining the end of a sentence</b></font>:
+Select this option to not consider incomplete sentences followed by
+blank lines as the end of the current sentence and paragraph. If an
+incomplete sentence is encountered, any blank lines after it will be skipped and
+the sentence will be merged with the following sentence.</p>
+
+<p>This option is not recommended for documents that contain headers and lists that rely on blank lines to
+separate them from the narrative text.</p>
+
+<p>Also note that this option is disabled if <a href="#eol"><i>Always
+treat an end of line as a new paragraph</i></a>
+is selected. In this case, the end of a line will always indicate the
+end of a sentence and paragraph, whether or not it is followed by blank
+lines.</p>
+
+<p><font color="#315184"><b><a name="SentCapt"></a>Sentences
+must begin with capitalized words</b></font>: Select this option to have
+sentence detection assume that all sentences begin with capitalized
+words. By default, <i>Readability Studio</i>
+takes into consideration writing which does not capitalize the first
+word of every sentence. To change this behavior, select this option and
+<i>Readability Studio</i> will be more grammatically strict when deducing sentences.</p>
+
+<h3><u><a name="incompletesentences"></a>Incomplete Sentences</u></h3>
+
+<p><font color="#315184"><b>Exclude from
+analysis</b></font>: Select this option to ignore all
+incomplete sentences when calculating statistics.</p>
+
+<p><font color="#315184"><b>Include in
+analysis and treat as full sentences</b></font>:
+Select this option to treat all incomplete sentences as regular
+sentences when calculating statistics. This is only useful for forms
+that may contain numerous titles and lists items.</p>
+
+<h3><u>End of paragraph</u></h3>
+<p><font color="#315184"><b>Only treat an
+end of line as a new paragraph if following a valid sentence</b></font>:
+Select this option to only consider line feeds in the text as the end
+of the current sentence and paragraph if it follows a valid sentence.
+Multiple consecutive line feeds (normally indicating a header or
+beginning of a new chapter) will also be considered the start of a new
+paragraph.</p>
+
+<p><font color="#315184"><b><a name="eol"></a>Always
+treat an end of line as a new
+paragraph</b></font>: Select this option to always consider
+line feeds in the text as the end of the current sentence and
+paragraph. This should only be used for special cases where a document
+does not have any sort of paragraph indenting and contains
+numerous lists and headers that do not have any blank lines between
+them.</p>
+
+<h3><u> Numeral syllabication</u></h3>
+<p><font color="#315184"><b>Treat numeral
+words as one syllable</b></font>: Select this option to
+have the application consider numeric words (e.g., numbers, dates,
+phone numbers) as monosyllabic.</p>
+
+<p><font color="#315184"><b>Sound out each
+digit</b></font>: Select this option to have the
+application sound out each digit when counting the syllables of numeric
+words (e.g., numbers, dates, phone numbers). For example, the word
+"555-4778" will be considered nine syllables--read as
+"five-five-five-four-seven-seven-eight". As another example, "$52" will
+be considered four syllables--read as "five-two-dollars".</p>
+
+</body>
+</html>

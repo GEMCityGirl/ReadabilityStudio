@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>Example: Analyzing a Webpage</title>
+</head>
+<body link="#336699">
+
+<h1><font color="#315184"><b>Example 4: Analyzing a Webpage</b></font></h1>
+<hr>
+<p>In this example, we will create a project that reads and analyzes a webpage.
+Although you can save a webpage from your web browser and load the HTML
+file, <i>Readability Studio</i> also has the convenient
+ability to directly connect to a webpage. To do this, open the webpage from any web browser and
+copy the webpage's URL onto the clipboard.</p>
+
+<p><img src="../../Images/webbrowser.png" alt="web browser"></p>
+
+<p>Next, we
+will create a new project using this URL. There are two ways to
+accomplish this. The first is to click the <i>New
+Project from Clipboard...</i> button on the toolbar. This option
+will take what is currently on the clipboard and use it as the input
+for a new project. If you have a large block of text on the clipboard,
+then that will be what is analyzed. However, if you have a local file
+path or URL on the clipboard, then the project will load the file or
+webpage.</p>
+
+<p><img src="../../Images/pastebutton.png" alt="paste button"></p>
+
+<p>The other
+option is to click the <i>New Project...</i> button,
+select <i>Read text from a file or webpage</i>, and enter
+the URL in the file path field, as illustrated below.</p>
+
+<p><img src="../../Images/webpath.png" alt="web path"></p>
+
+<p>After
+specifying the URL, choose to analyze the page by document type and
+then select <i>Technical document</i>. Most webpages would
+fall under the category of either general or technical document. Because this page discusses
+the&nbsp;subject of the Linux operating system, we will select technical.</p>
+
+<p><img src="../../Images/wizarddoctypetechselected.png" alt="wizard page"></p>
+
+<p>Next,
+accept the rest of the defaults on the <i>New Project</i>
+wizard. Once the project is finished loading, click on the <i>View
+Document</i> icon to display the highlighted content of the
+webpage.</p>
+
+<p><img src="../../Images/incompletesentences.png" alt="incomplete sentences"></p>
+
+<p>Note how
+some of the text is highlighted gray. These are <a href="../Notes/IncompleteSentences.html">incomplete sentences</a>,
+and because <i>Readability Studio</i>, by default, ignores
+incomplete sentences, nothing highlighted gray is factored into the
+analysis. That is to say, nothing highlighted gray here counts towards
+the overall sentence, paragraph, and word totals and are also not
+included in any readability test calculation. With the exception of
+non-narrative forms, it is normally recommended to ignore incomplete
+sentences. This is especially true for webpages, because often HTML
+tables and lists are used on websites to display menus--items that are
+not normally part of the page's narrative.</p>
+
+<p>If you wish to include incomplete sentences in the analysis, select <i>Project
+Settings...</i> from the <i>File</i> menu to display
+the <i>Project Settings</i> dialog. Next, click the <i>Document
+Analysis</i> icon, and select the <i>Include in analysis
+and treat as full sentences</i> option.</p>
+
+<p><img src="../../Images/excludeincompletesentences.png" alt="exclude"></p>
+
+<p>Note that
+this option is also available on the <i>Options</i>
+dialog (from the <i>Tools</i> menu) if you wish to change
+this behavior for all future projects.</p>
+
+<p>One last
+item to discuss about loading a webpage is whether you want to be able
+to reload it later on. By default, the original text from the website
+will be saved into your project, and whenever you open this project,
+the results will be based off the original page. If you prefer to be
+able to reload the page (perhaps because it is a dynamic page that
+periodically changes), then select <i>Project Settings...</i>
+from the <i>File</i> menu to display the <i>Project
+Settings</i> dialog. Then click the <i>Document Analysis</i>
+icon, and select the <i>Reload the source document when opening
+project</i> option.</p>
+
+<p><img src="../../Images/reloadwebpage.png" alt="reload"></p>
+
+<p>By
+selecting this option, you will reload the page's content when
+you reopen the project (or at anytime by pressing <b>F5</b>).</p>
+
+<p>Note that
+webpages requiring
+authentication (i.e., requiring a user name and password) are not
+currently supported. To work around this, log into the webpage from any
+browser, save the page as a local HTML file, and then load it in a new
+project.</p>
+
+</body>
+</html>
