@@ -716,25 +716,25 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
     wxString currentEndTag;
     const wxChar* settingsFileTextEnd = settingsFileText + wxStrlen(settingsFileText);
 
-    //first, get the project format version number
+    // first, get the project format version number
     currentStartTag.Empty();
     currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_PROJECT_HEADER);
     const wxChar* projectSection = ::wxStrstr(settingsFileText, currentStartTag.wc_str() );
     wxString docVersionNumber = L"1.0";
     if (projectSection)
         {
-        /*see if the project is a newer format than the current version that this
-        product supports.  Try to be forward compatibility, but some info will be lost.*/
-        const wxChar* endTag = ::wxStrchr(projectSection, wxT('>'));
+        /* See if the project is a newer format than the current version that this
+           product supports.  Try to be forward compatibility, but some info will be lost.*/
+        const wxChar* endTag = ::wxStrchr(projectSection, L'>');
         const wxChar* version = ::wxStrstr(projectSection, wxGetApp().GetAppOptions().XML_VERSION);
         if (version && endTag &&
             (version < endTag))
             {
-            version = ::wxStrchr(version, wxT('\"'));
+            version = ::wxStrchr(version, L'\"');
             if (version)
                 {
                 ++version;
-                const wxChar* versionEnd = ::wxStrchr(version, wxT('\"'));
+                const wxChar* versionEnd = ::wxStrchr(version, L'\"');
                 if (versionEnd)
                     {
                     docVersionNumber.assign(version, (versionEnd-version));
@@ -742,7 +742,9 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
                     if (docVersionNumber.ToDouble(&docDouble) && wxGetApp().GetDocumentVersionNumber().ToDouble(&appDocDouble) &&
                         docDouble > appDocDouble)
                         {
-                        LogMessage(wxString::Format(_("Warning: This project was saved from a newer version of Readability Studio. Some information may be lost.")), 
+                        LogMessage(wxString::Format(
+                            _("Warning: This project was saved from a newer version of Readability Studio. "
+                              "Some information may be lost.")), 
                             _("Version Conflict"), wxOK|wxICON_INFORMATION);
                         }
                     }
@@ -750,7 +752,7 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
             }
         }
 
-    //original text source (e.g., document file) information
+    // original text source (e.g., document file) information
     currentStartTag.Empty();
     currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_DOCUMENT);
     currentEndTag.Empty();

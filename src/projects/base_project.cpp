@@ -6893,11 +6893,18 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                     {
                     customDescription += wxString(L"<li>");
                     if (pos->GetIterator()->get_stemming_type() == stemming::stemming_type::no_stemming)
-                        { customDescription += _("A custom word list:") + wxString::Format(wxT("<br />&nbsp;&nbsp;&nbsp;&nbsp;&ldquo;<span style=\"font-style:italic;\">%s</span>&rdquo;"), pos->GetIterator()->get_familiar_word_list_file_path().c_str()); }
+                        {
+                        customDescription += _("A custom word list:") +
+                            wxString::Format(L"<br />&nbsp;&nbsp;&nbsp;&nbsp;&ldquo;<span style=\"font-style:italic;\">%s</span>&rdquo;",
+                                pos->GetIterator()->get_familiar_word_list_file_path().c_str());
+                        }
                     else
                         {
-                        customDescription += wxString::Format(_("A custom word list (that is using %s stemming):"), ProjectReportFormat::GetStemmingDisplayName(pos->GetIterator()->get_stemming_type())) +
-                            wxString::Format(wxT("<br />&nbsp;&nbsp;&nbsp;&nbsp;&ldquo;<span style=\"font-style:italic;\">%s</span>&rdquo;"), pos->GetIterator()->get_familiar_word_list_file_path().c_str());
+                        customDescription += wxString::Format(_("A custom word list (that is using %s stemming):"),
+                            ProjectReportFormat::GetStemmingDisplayName(pos->GetIterator()->get_stemming_type())) +
+                            wxString::Format(
+                                L"<br />&nbsp;&nbsp;&nbsp;&nbsp;&ldquo;<span style=\"font-style:italic;\">%s</span>&rdquo;",
+                                pos->GetIterator()->get_familiar_word_list_file_path().c_str());
                         }
                     customDescription += wxString(L"</li>");
                     }
