@@ -16,17 +16,17 @@ void AboutDialogEx::OnUpdateLicense([[maybe_unused]] wxCommandEvent& event)
 
     if (!m_licenseAdmin->LoadSerialNumber(m_serialNumber))
         {
-        wxMessageBox(_("Unable to load serial number."),
-            _("Error"), wxOK|wxICON_EXCLAMATION, this);
+        wxMessageBox(_(L"Unable to load serial number."),
+            _(L"Error"), wxOK|wxICON_EXCLAMATION, this);
         return;
         }
     // save the licensing info now that we have it and have validated it
     if (!m_licenseAdmin->SaveLicenseFile(m_licenseAdmin->GetLicenseFilePath()))
         {
         wxMessageBox(
-            _("Unable to save license file. "
+            _(L"Unable to save license file. "
               "You must have Administrator privileges to update your license file."), 
-            _("Error"), wxOK|wxICON_EXCLAMATION, this);
+            _(L"Error"), wxOK|wxICON_EXCLAMATION, this);
         return;
         }
     // let's try it again from the top
@@ -34,15 +34,15 @@ void AboutDialogEx::OnUpdateLicense([[maybe_unused]] wxCommandEvent& event)
                                          wxTheApp->GetAppName()))
         {
         wxMessageBox(
-            _("Unable to open updated license file. Please close and reopen the application."), 
-            _("Error"), wxOK|wxICON_EXCLAMATION, this);
+            _(L"Unable to open updated license file. Please close and reopen the application."), 
+            _(L"Error"), wxOK|wxICON_EXCLAMATION, this);
         return;
         }
     FillLicenseGrid();
     wxMessageBox(
-            _("License Update Complete. Please close and reopen the application for all "
+            _(L"License Update Complete. Please close and reopen the application for all "
               "changes to take effect."), 
-            _("License Update"), wxOK|wxICON_INFORMATION, this);
+            _(L"License Update"), wxOK|wxICON_INFORMATION, this);
     wxLogMessage(L"License Updated.");
     }
 
@@ -66,20 +66,20 @@ void AboutDialogEx::FillLicenseGrid()
                 feature.GetDescription() : feature.GetFeatureCode());
         if (!feature.IsEnabled() )
             {
-            m_licenseGrid->SetItem(insertedIndex, 1, _("Not enabled"));
-            m_licenseGrid->SetItem(insertedIndex, 2, _("N/A"));
+            m_licenseGrid->SetItem(insertedIndex, 1, _(L"Not enabled"));
+            m_licenseGrid->SetItem(insertedIndex, 2, _(L"N/A"));
             }
         else if (feature.IsPermanent() )
             {
-            m_licenseGrid->SetItem(insertedIndex, 1, _("Never expires"));
-            m_licenseGrid->SetItem(insertedIndex, 2, _("N/A"));
+            m_licenseGrid->SetItem(insertedIndex, 1, _(L"Never expires"));
+            m_licenseGrid->SetItem(insertedIndex, 2, _(L"N/A"));
             }
         else if (feature.IsExpirationDateValid())
             {
             m_licenseGrid->SetItem(insertedIndex, 1,
                 feature.GetExpirationDateInfo().GetDateFormattedString());
             if (feature.IsExpired())
-                { m_licenseGrid->SetItem(insertedIndex, 2, _("Expired")); }
+                { m_licenseGrid->SetItem(insertedIndex, 2, _(L"Expired")); }
             else
                 {
                 m_licenseGrid->SetItem(insertedIndex, 2,
@@ -90,8 +90,8 @@ void AboutDialogEx::FillLicenseGrid()
         // this should not happen unless license file was tampered with
         else
             {
-            m_licenseGrid->SetItem(insertedIndex, 1, _("Error loading date"));
-            m_licenseGrid->SetItem(insertedIndex, 2, _("Disabled"));
+            m_licenseGrid->SetItem(insertedIndex, 1, _(L"Error loading date"));
+            m_licenseGrid->SetItem(insertedIndex, 2, _(L"Disabled"));
             }
         }
     }
@@ -113,7 +113,7 @@ AboutDialogEx::AboutDialogEx(wxWindow* parent, const wxBitmap& logo,
 bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos,
                            const wxSize& size, long style)
     {
-    wxDialog::Create(parent, id, wxString::Format(_("About %s"),
+    wxDialog::Create(parent, id, wxString::Format(_(L"About %s"),
                      wxTheApp->GetAppName()), pos, size, style);
 
     CreateControls();
@@ -137,7 +137,7 @@ void AboutDialogEx::CreateControls()
                         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         mainPage->SetSizer(mainPanelSizer);
-        m_sideBarBook->AddPage(mainPage, _("Product Info"), ID_VERSION_PAGE, true);
+        m_sideBarBook->AddPage(mainPage, _(L"Product Info"), ID_VERSION_PAGE, true);
 
         if (m_logo.IsOk())
             {
@@ -149,17 +149,17 @@ void AboutDialogEx::CreateControls()
             }
 
         auto productInfoGrid = new wxFlexGridSizer(2, wxSize(wxSizerFlags::GetDefaultBorder(), 0));
-        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _("Version:")));
+        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Version:")));
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, m_appVersion));
     #ifdef __WXDEBUG__
-        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _("Build:")));
-        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _("Debug")));
+        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Build:")));
+        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Debug")));
     #endif
-        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _("Built on:")));
+        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Built on:")));
         wxDateTime buildDate;
         buildDate.ParseDate(__DATE__);
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, buildDate.Format(L"%B %d, %G")));
-        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _("Platform:")));
+        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Platform:")));
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, wxGetOsDescription()));
 
         // put it all together
@@ -176,32 +176,32 @@ void AboutDialogEx::CreateControls()
                                         wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         mainPage->SetSizer(mainPanelSizer);
-        m_sideBarBook->AddPage(mainPage, _("Licensing"), ID_LICENSING_PAGE, false);
+        m_sideBarBook->AddPage(mainPage, _(L"Licensing"), ID_LICENSING_PAGE, false);
 
         wxBoxSizer* updateSerialNumberSizer = new wxBoxSizer(wxHORIZONTAL);
-        updateSerialNumberSizer->Add(new wxStaticText(mainPage, wxID_ANY, _("Serial #:")), 0,
+        updateSerialNumberSizer->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Serial #:")), 0,
             wxALIGN_LEFT | wxALIGN_CENTRE_VERTICAL | wxRIGHT, wxSizerFlags::GetDefaultBorder());
         updateSerialNumberSizer->Add(new wxTextCtrl(mainPage, wxID_ANY, wxEmptyString,
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_serialNumber)), 1, wxEXPAND);
-        updateSerialNumberSizer->Add(new wxButton(mainPage, ID_UPDATE_LICENSE, _("Update")));
+        updateSerialNumberSizer->Add(new wxButton(mainPage, ID_UPDATE_LICENSE, _(L"Update")));
         mainPanelSizer->Add(updateSerialNumberSizer, wxSizerFlags().Expand().Border(wxLEFT|wxRIGHT));
 
         // user and license info
         auto userInfoGrid = new wxFlexGridSizer(2, wxSize(wxSizerFlags::GetDefaultBorder(),0));
         if (m_licenseAdmin->GetUserName().length())
             {
-            userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _("User Name:")));
+            userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"User Name:")));
             userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, m_licenseAdmin->GetUserName()));
             }
         if (m_licenseAdmin->GetUserOrganization().length())
             {
-            userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _("Company:")));
+            userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Company:")));
             userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY,
                                     m_licenseAdmin->GetUserOrganization()));
             }
-        userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _("User ID:")));
+        userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"User ID:")));
         userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, m_licenseAdmin->GetPublicKey()));
-        userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _("License:")));
+        userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"License:")));
         userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY,
                                     m_licenseAdmin->GetProductDescription()));
         mainPanelSizer->Add(userInfoGrid, wxSizerFlags().Border(wxALL).Align(wxALIGN_LEFT));
@@ -210,11 +210,11 @@ void AboutDialogEx::CreateControls()
         m_licenseGrid = new ListCtrlEx(mainPage, wxID_ANY, wxDefaultPosition,
             wxDefaultSize, wxLC_SINGLE_SEL | wxLC_REPORT | wxBORDER_SUNKEN);
         m_licenseGrid->EnableGridLines();
-        m_licenseGrid->InsertColumn(0, _("Product Feature"), wxLIST_FORMAT_LEFT,
+        m_licenseGrid->InsertColumn(0, _(L"Product Feature"), wxLIST_FORMAT_LEFT,
                                     wxLIST_AUTOSIZE_USEHEADER);
-        m_licenseGrid->InsertColumn(1, _("Expiration Date"), wxLIST_FORMAT_LEFT,
+        m_licenseGrid->InsertColumn(1, _(L"Expiration Date"), wxLIST_FORMAT_LEFT,
                                     wxLIST_AUTOSIZE_USEHEADER);
-        m_licenseGrid->InsertColumn(2, _("Days Remaining"), wxLIST_FORMAT_LEFT,
+        m_licenseGrid->InsertColumn(2, _(L"Days Remaining"), wxLIST_FORMAT_LEFT,
                                     wxLIST_AUTOSIZE_USEHEADER);
         FillLicenseGrid();
         mainPanelSizer->Add(m_licenseGrid, 1, wxALIGN_LEFT | wxEXPAND | wxALL,

@@ -34,8 +34,8 @@ namespace LuaScripting
             if (!m_project)
                 {
                 wxMessageBox(
-                    wxString::Format(_("%s: Accessing project that is already closed."), functionName),
-                    _("Warning"), wxOK|wxICON_INFORMATION);
+                    wxString::Format(_(L"%s: Accessing project that is already closed."), functionName),
+                    _(L"Warning"), wxOK|wxICON_INFORMATION);
                 return false;
                 }
             else
@@ -228,8 +228,8 @@ namespace LuaScripting
             if (!m_project)
                 {
                 wxMessageBox(
-                    wxString::Format(_("%s: Accessing project that is already closed."), functionName),
-                    _("Warning"), wxOK|wxICON_INFORMATION);
+                    wxString::Format(_(L"%s: Accessing project that is already closed."), functionName),
+                    _(L"Warning"), wxOK|wxICON_INFORMATION);
                 return false;
                 }
             else

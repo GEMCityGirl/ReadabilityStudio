@@ -61,7 +61,7 @@ public:
                              const ToolSections sectionsToInclude = AllSections);
     ~ToolsOptionsDlg()
         { wxDELETE(m_fileData); }
-    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& caption = _("Options"),
+    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& caption = _(L"Options"),
                const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
                long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER);
     [[nodiscard]]
@@ -118,43 +118,43 @@ public:
     [[nodiscard]] bool IsBatchProjectSettings() const;
 
     [[nodiscard]] static wxString GetReadabilityScoresLabel()
-        { return _("Readability Scores"); }
+        { return _(L"Readability Scores"); }
     [[nodiscard]] static wxString GetGeneralSettingsLabel()
-        { return _("General Settings"); }
+        { return _(L"General Settings"); }
     [[nodiscard]] static wxString GetStatisticsLabel()
-        { return _("Statistics"); }
+        { return _(L"Statistics"); }
     [[nodiscard]] static wxString GetAnalysisLabel()
-        { return _("Analysis"); }
+        { return _(L"Analysis"); }
     [[nodiscard]] static wxString GetDolchSightWordsLabel()
-        { return _("Dolch Sight Words"); }
+        { return _(L"Dolch Sight Words"); }
     [[nodiscard]] static wxString GetDocumentViewsLabel()
-        { return _("Document Views"); }
+        { return _(L"Document Views"); }
     [[nodiscard]] static wxString GetDifficultWordListsLabel()
-        { return _("Difficult word lists"); }
+        { return _(L"Difficult word lists"); }
     [[nodiscard]] static wxString GetGraphsLabel()
         { return ProjectView::GetGraphsLabel(); }
     [[nodiscard]] static wxString GetGeneralLabel()
-        { return _("General"); }
+        { return _(L"General"); }
     [[nodiscard]] static wxString GetAxisSettingsLabel()
-        { return _("Axes"); }
+        { return _(L"Axes"); }
     [[nodiscard]] static wxString GetTitlesLabel()
-        { return _("Titles"); }
+        { return _(L"Titles"); }
     [[nodiscard]] static wxString GetReadabilityGraphLabel()
-        { return _("Readability Graphs"); }
+        { return _(L"Readability Graphs"); }
     [[nodiscard]] static wxString GetBarChartLabel()
-        { return _("Bar Charts"); }
+        { return _(L"Bar Charts"); }
     [[nodiscard]] static wxString GetBoxPlotLabel()
-        { return _("Box Plots"); }
+        { return _(L"Box Plots"); }
     [[nodiscard]] static wxString GetHistogramsLabel()
-        { return _("Histograms"); }
+        { return _(L"Histograms"); }
     [[nodiscard]] static wxString GetProjectSettingsLabel()
-        { return _("Project Settings"); }
+        { return _(L"Project Settings"); }
     [[nodiscard]] static wxString GetSentencesWordsLabel()
-        { return _("Sentences && Words"); }
+        { return _(L"Sentences && Words"); }
     [[nodiscard]] static wxString GetTestOptionsLabel()
-        { return _("Test Options"); }
+        { return _(L"Test Options"); }
     [[nodiscard]] static wxString GetScoreDisplayLabel()
-        { return _("Scores"); }
+        { return _(L"Scores"); }
 
     void OnAddFilesClick([[maybe_unused]] wxCommandEvent& event);
     void OnAddFileClick([[maybe_unused]] wxCommandEvent& event);
@@ -249,151 +249,151 @@ private:
     static constexpr int ID_ADDITIONAL_FILE_FIELD = wxID_HIGHEST + 80;
 
     [[nodiscard]] wxString GetCustomTestsLabel() const
-        { return _("Custom Tests"); }
+        { return _(L"Custom Tests"); }
     [[nodiscard]] wxString GetInvalidRegionsColorLabel() const
-        { return _("Invalid regions color"); }
+        { return _(L"Invalid regions color"); }
     [[nodiscard]] wxString GetFleshChartConnectPointsLabel() const
-        { return _("Connect points"); }
+        { return _(L"Connect points"); }
     [[nodiscard]] wxString GetUseEnglishLabelsForGermanLixLabel() const
-        { return _("Use English translations for German Lix gauge"); }
+        { return _(L"Use English translations for German Lix gauge"); }
     [[nodiscard]] wxString GetColorLabel() const
-        { return _("Color"); }
+        { return _(L"Color"); }
     [[nodiscard]] wxString GetBackgroundColorLabel() const
         { return _DT(L"BGCOLOR"); }
     [[nodiscard]] wxString GetEffectLabel() const
-        { return _("Effect"); }
+        { return _(L"Effect"); }
     [[nodiscard]] wxString GetOpacityLabel() const
-        { return _("Opacity"); }
+        { return _(L"Opacity"); }
     [[nodiscard]] wxString GetImageOpacityLabel() const
-        { return _("Image opacity"); }
+        { return _(L"Image opacity"); }
     [[nodiscard]] wxString GetLabelsOnBarsLabel() const
-        { return _("Display labels on bars"); }
+        { return _(L"Display labels on bars"); }
     [[nodiscard]] wxString GetLabelsOnBoxesLabel() const
-        { return _("Display box & whisker labels"); }
+        { return _(L"Display box & whisker labels"); }
     [[nodiscard]] wxString GetConnectBoxesLabel() const
-        { return _("Connect middle points"); }
+        { return _(L"Connect middle points"); }
     [[nodiscard]] wxString GetShowAllDataPointsLabel() const
-        { return _("Show all data points"); }
+        { return _(L"Show all data points"); }
     [[nodiscard]] wxString GeOrientationLabel() const
-        { return _("Orientation"); }
+        { return _(L"Orientation"); }
     [[nodiscard]] wxString GetBinSortingLabel() const
-        { return _("Sorting"); }
+        { return _(L"Sorting"); }
     [[nodiscard]] wxString GetGradeLevelRoundingLabel() const
-        { return _("Grade level/index value rounding"); }
+        { return _(L"Grade level/index value rounding"); }
     [[nodiscard]] wxString GetIntervalDisplayLabel() const
-        { return _("Interval display"); }
+        { return _(L"Interval display"); }
     [[nodiscard]] wxString GetBinLabelsLabel() const
-        { return _("Labels"); }
+        { return _(L"Labels"); }
     [[nodiscard]] wxString GetDisplayDropShadowsLabel() const
-        { return _("Display drop shadows"); }
+        { return _(L"Display drop shadows"); }
     [[nodiscard]] wxString GetCustomImageBrushLabel() const
-        { return _("Custom image brush"); }
+        { return _(L"Custom image brush"); }
     [[nodiscard]] wxString GetWatermarkLabel() const
-        { return _("Watermark"); }
+        { return _(L"Watermark"); }
     [[nodiscard]] wxString GetLogoImageLabel() const
-        { return _("Logo image"); }
+        { return _(L"Logo image"); }
     [[nodiscard]] wxString GetImageLabel() const
-        { return _("Image"); }
+        { return _(L"Image"); }
     [[nodiscard]] wxString GetApplyFadeLabel() const
-        { return _("Apply color fade"); }
+        { return _(L"Apply color fade"); }
     [[nodiscard]] wxString GetBackgroundLabel() const
-        { return _("Background"); }
+        { return _(L"Background"); }
     [[nodiscard]] wxString GetIgnoreProperNounsLabel() const
-        { return _("Ignore proper nouns"); }
+        { return _(L"Ignore proper nouns"); }
     [[nodiscard]] wxString GetIgnoreUppercasedWordsLabel() const
-        { return _("Ignore UPPERCASED words"); }
+        { return _(L"Ignore UPPERCASED words"); }
     [[nodiscard]] wxString GetIgnoreNumeralsLabel() const
-        { return _("Ignore numerals"); }
+        { return _(L"Ignore numerals"); }
     [[nodiscard]] wxString GetIgnoreFileAddressesLabel() const
-        { return _("Ignore Internet and file addresses"); }
+        { return _(L"Ignore Internet and file addresses"); }
     [[nodiscard]] wxString GetIgnoreProgrammerCodeLabel() const
-        { return _("Ignore programmer code"); }
+        { return _(L"Ignore programmer code"); }
     [[nodiscard]] wxString GetAllowColloquialismsLabel() const
-        { return _("Allow colloquialisms"); }
+        { return _(L"Allow colloquialisms"); }
     [[nodiscard]] wxString GetIgnoreSocialMediaLabel() const
-        { return _("Ignore social media hashtags"); }
+        { return _(L"Ignore social media hashtags"); }
     [[nodiscard]] wxString GetResultsLabel() const
-        { return _("Results"); }
+        { return _(L"Results"); }
     [[nodiscard]] wxString GetGrammarHighlightedReportLabel() const
-        { return _("Highlighted Report"); }
+        { return _(L"Highlighted Report"); }
     [[nodiscard]] wxString GetSpellCheckerLabel() const
-        { return _("Spell Checker"); }
+        { return _(L"Spell Checker"); }
     [[nodiscard]] wxString GetDolchStatisticsReportLabel() const
-        { return _("Dolch Report"); }
+        { return _(L"Dolch Report"); }
     [[nodiscard]] wxString GetCoverageLabel() const
-        { return _("Coverage"); }
+        { return _(L"Coverage"); }
     [[nodiscard]] wxString GetDolchWordsLabel() const
         { return _DT(L"DOLCHWORDS"); }
     [[nodiscard]] wxString GetDolchExplanationLabel() const
-        { return _("Explanation"); }
+        { return _(L"Explanation"); }
     [[nodiscard]] wxString GetStatisticsReportLabel() const
-        { return _("Summary Report"); }
+        { return _(L"Summary Report"); }
     [[nodiscard]] wxString GetParagraphsLabel() const
-        { return _("Paragraphs"); }
+        { return _(L"Paragraphs"); }
     [[nodiscard]] wxString GetSentencesLabel() const
-        { return _("Sentences"); }
+        { return _(L"Sentences"); }
     [[nodiscard]] wxString GetWordsLabel() const
-        { return _("Words"); }
+        { return _(L"Words"); }
     [[nodiscard]] wxString GetExtendedWordsLabel() const
-        { return _("Extended Words"); }
+        { return _(L"Extended Words"); }
     [[nodiscard]] wxString GetGrammarLabel() const
-        { return _("Grammar"); }
+        { return _(L"Grammar"); }
     [[nodiscard]] wxString GetNotesLabel() const
-        { return _("Notes"); }
+        { return _(L"Notes"); }
     [[nodiscard]] wxString GetExtendedInformationLabel() const
-        { return _("Extended Information"); }
+        { return _(L"Extended Information"); }
     [[nodiscard]] wxString GetFryLikeLabel() const
-        { return _("Fry/GPM/Raygor/Schwartz"); }
+        { return _(L"Fry/GPM/Raygor/Schwartz"); }
     [[nodiscard]] wxString GetFleschChartLabel() const
-        { return _("Flesch Chart"); }
+        { return _(L"Flesch Chart"); }
     [[nodiscard]] wxString GetLixGaugeLabel() const
-        { return _("Lix Gauge"); }
+        { return _(L"Lix Gauge"); }
     [[nodiscard]] wxString GetBarAppearanceLabel() const
-        { return _("Bar Appearance"); }
+        { return _(L"Bar Appearance"); }
     [[nodiscard]] wxString GetBinningOptionsLabel() const
-        { return _("Binning Options"); }
+        { return _(L"Binning Options"); }
     [[nodiscard]] wxString GetBinDisplayLabel() const
-        { return _("Bin Display"); }
+        { return _(L"Bin Display"); }
     [[nodiscard]] wxString GetBoxAppearanceLabel() const
-        { return _("Box Appearance"); }
+        { return _(L"Box Appearance"); }
     [[nodiscard]] wxString GetBoxOptionsLabel() const
-        { return _("Box Options"); }
+        { return _(L"Box Options"); }
     [[nodiscard]] wxString GetGraphBackgroundLabel() const
-        { return _("Background"); }
+        { return _(L"Background"); }
     [[nodiscard]] wxString GetPlotAreaBackgroundLabel() const
-        { return _("Plot Area Background"); }
+        { return _(L"Plot Area Background"); }
     [[nodiscard]] wxString GetWatermarksLogosLabel() const
-        { return _("Watermarks & Logos"); }
+        { return _(L"Watermarks & Logos"); }
     [[nodiscard]] wxString GetEffectsLabel() const
-        { return _("Effects"); }
+        { return _(L"Effects"); }
     [[nodiscard]] wxString GetGradeScaleLabel() const
-        { return _("Grade scale"); }
+        { return _(L"Grade scale"); }
     [[nodiscard]] wxString GetGradeLabel() const
-        { return _("Grade Display"); }
+        { return _(L"Grade Display"); }
     [[nodiscard]] wxString GetGradesLongFormatLabel() const
-        { return _("Display scores in long format"); }
+        { return _(L"Display scores in long format"); }
     [[nodiscard]] wxString GetReadingAgeLabel() const
-        { return _("Reading Age Display"); }
+        { return _(L"Reading Age Display"); }
     [[nodiscard]] wxString GetScoreResultsLabel() const
-        { return _("Results"); }
+        { return _(L"Results"); }
     [[nodiscard]] wxString GetIncludeScoreSummaryLabel() const
-        { return _("Include test-summary report"); }
+        { return _(L"Include test-summary report"); }
     [[nodiscard]] wxString GetCalculationLabel() const
-        { return _("Calculation"); }
+        { return _(L"Calculation"); }
     [[nodiscard]] wxString GetCountIndependentClausesLabel() const
-        { return _("Count independent clauses"); }
+        { return _(L"Count independent clauses"); }
     [[nodiscard]] wxString GetNumeralSyllabicationLabel() const
-        { return _("Numeral syllabication"); }
+        { return _(L"Numeral syllabication"); }
     [[nodiscard]] wxString GetFleschNumeralSyllabicationLabel() const
         { return _DT(L"FLESCHNUMSYL"); }
     [[nodiscard]] wxString GetFleschKincaidNumeralSyllabicationLabel() const
         { return _DT(L"FLESCHKINCAIDNUMSYL"); }
     [[nodiscard]] wxString GetIncludeStockerLabel() const
-        { return _("Include Catholic Supplement"); }
+        { return _(L"Include Catholic Supplement"); }
     [[nodiscard]] wxString GetProperNounsLabel() const
-        { return _("Proper nouns"); }
+        { return _(L"Proper nouns"); }
     [[nodiscard]] wxString GetTextExclusionLabel() const
-        { return _("Text exclusion"); }
+        { return _(L"Text exclusion"); }
     [[nodiscard]] wxString GetDCTextExclusionLabel() const
         { return _DT(L"DCTEXTEXCLUSION"); }
     [[nodiscard]] wxString GetHJCTextExclusionLabel() const

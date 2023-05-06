@@ -26,14 +26,14 @@ namespace Wisteria::Graphs
             std::make_shared<Wisteria::Icons::Schemes::IconScheme>(
                 Wisteria::Icons::Schemes::StandardShapes()));
 
-        GetCanvas()->SetLabel(_("FRASE Graph"));
-        GetCanvas()->SetName(_("FRASE Graph"));
+        GetCanvas()->SetLabel(_(L"FRASE Graph"));
+        GetCanvas()->SetName(_(L"FRASE Graph"));
         GetLeftYAxis().GetTitle().SetText(
-            _("Average number of sentences per 100 words"));
+            _(L"Average number of sentences per 100 words"));
         GetBottomXAxis().GetTitle().SetText(
-            _("Average number of syllables per 100 words"));
+            _(L"Average number of syllables per 100 words"));
         GetTitle() = GraphItems::Label(GraphItemInfo(
-            _("FRASE (Fry Readability Adaptation for Spanish Evaluation) Graph")).
+            _(L"FRASE (Fry Readability Adaptation for Spanish Evaluation) Graph")).
             Pen(wxNullPen));
 
         // set up the X axis
@@ -55,10 +55,10 @@ namespace Wisteria::Graphs
         GetLeftYAxis().SetMinorTickMarkLength(10);
 
         // add the labels for the grades
-        AddLevelLabel(LevelLabel(204, 13, _("BEGINNING\nLEVEL\nI"), 1, 1));
-        AddLevelLabel(LevelLabel(215.5, 10, _("INTERMEDIATE\nLEVEL\nII"), 2, 2));
-        AddLevelLabel(LevelLabel(223.5, 8, _("ADVANCED\nINTERMEDIATE\nLEVEL\nIII"), 3, 3));
-        AddLevelLabel(LevelLabel(230, 6, _("ADVANCED\nLEVEL\nIV"), 4, 4));
+        AddLevelLabel(LevelLabel(204, 13, _(L"BEGINNING\nLEVEL\nI"), 1, 1));
+        AddLevelLabel(LevelLabel(215.5, 10, _(L"INTERMEDIATE\nLEVEL\nII"), 2, 2));
+        AddLevelLabel(LevelLabel(223.5, 8, _(L"ADVANCED\nINTERMEDIATE\nLEVEL\nIII"), 3, 3));
+        AddLevelLabel(LevelLabel(230, 6, _(L"ADVANCED\nLEVEL\nIV"), 4, 4));
         }
 
     //----------------------------------------------------------------
@@ -165,19 +165,19 @@ namespace Wisteria::Graphs
 
         // I
         AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo().Pen(wxNullPen).
-            Text(_("Beginner Level")).Brush(wxNullBrush).SelectionBrush(selectionBrush),
+            Text(_(L"Beginner Level")).Brush(wxNullBrush).SelectionBrush(selectionBrush),
             &m_levelLinePoints[0], 3));
         // II
         AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo().Pen(wxNullPen).
-            Text(_("Intermediate Level")).Brush(wxNullBrush).SelectionBrush(selectionBrush),
+            Text(_(L"Intermediate Level")).Brush(wxNullBrush).SelectionBrush(selectionBrush),
             &m_levelLinePoints[3], 5));
         // III
         AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo().Pen(wxNullPen).
-            Text(_("Advanced Intermediate Level")).Brush(wxNullBrush).SelectionBrush(selectionBrush),
+            Text(_(L"Advanced Intermediate Level")).Brush(wxNullBrush).SelectionBrush(selectionBrush),
             &m_levelLinePoints[6], 4));
         // IV
         AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo().Pen(wxNullPen).
-            Text(_("Advanced Level")).Brush(wxNullBrush).SelectionBrush(selectionBrush),
+            Text(_(L"Advanced Level")).Brush(wxNullBrush).SelectionBrush(selectionBrush),
             &m_levelLinePoints[8], 3));
 
         // separator line

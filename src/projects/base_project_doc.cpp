@@ -488,8 +488,8 @@ bool BaseProjectDoc::LockProjectFile()
     if (!m_File.Open(GetFilename(), wxFile::read) )
         {
         LogMessage(
-            wxString::Format(_("'%s': unable to open project file."), GetFilename()),
-            _("Project Error"), wxOK|wxICON_EXCLAMATION);
+            wxString::Format(_(L"'%s': unable to open project file."), GetFilename()),
+            _(L"Project Error"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
     return true;
@@ -546,8 +546,8 @@ void BaseProjectDoc::RemoveGlobalCustomReadabilityTest(const wxString& testName)
         const BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
         if (doc->HasCustomTest(testName))
             {
-            if (wxMessageBox(_("This test will need to be removed from any open projects that are currently including it.\nDo you wish to proceed with removing this test?"), 
-                _("Project Update"), wxYES_NO|wxICON_QUESTION) == wxNO)
+            if (wxMessageBox(_(L"This test will need to be removed from any open projects that are currently including it.\nDo you wish to proceed with removing this test?"), 
+                _(L"Project Update"), wxYES_NO|wxICON_QUESTION) == wxNO)
                 { return; }
             break;
             }
@@ -614,17 +614,17 @@ bool BaseProjectDoc::AddGlobalCustomReadabilityTest(CustomReadabilityTest& custo
             if (std::find(m_custom_word_tests.begin(), m_custom_word_tests.end(), name) != m_custom_word_tests.end())
                 {
                 wxMessageDialog msDlg(wxGetApp().GetMainFrame(),
-                    wxString::Format(_("This project or settings file contains a custom test named \"%s\" that conflicts with an existing test of the same name."), name),
-                    _("Warning"), wxYES_NO|wxICON_QUESTION);
-                msDlg.SetYesNoLabels(wxString::Format(_("Use existing version of \"%s\""), name), _("Rename test being imported"));
+                    wxString::Format(_(L"This project or settings file contains a custom test named \"%s\" that conflicts with an existing test of the same name."), name),
+                    _(L"Warning"), wxYES_NO|wxICON_QUESTION);
+                msDlg.SetYesNoLabels(wxString::Format(_(L"Use existing version of \"%s\""), name), _(L"Rename test being imported"));
                 if (msDlg.ShowModal() == wxID_YES)
                     {
                     //just replace the test in the project with the global one
                     return true;
                     }
                 name = wxGetTextFromUser(
-                    _("Please specify a different name:"),
-                    _("Enter New Test Name"), name, wxGetApp().GetMainFrame());
+                    _(L"Please specify a different name:"),
+                    _(L"Enter New Test Name"), name, wxGetApp().GetMainFrame());
                 if (name == wxEmptyString)//Cancel was pressed
                     { return false; }
                 continue;
@@ -641,21 +641,21 @@ bool BaseProjectDoc::AddGlobalCustomReadabilityTest(CustomReadabilityTest& custo
         BaseProject project;
         if (!project.GetFormulaParser().compile(wxString(customTest.get_formula().c_str())))
             {
-            wxMessageBox(wxString::Format(_("Error in formula, cannot add custom test \"%s\":\n\n"), customTest.get_name().c_str()),
-            _("Error in Formula"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(wxString::Format(_(L"Error in formula, cannot add custom test \"%s\":\n\n"), customTest.get_name().c_str()),
+            _(L"Error in Formula"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
         }
     catch (const std::exception& exp)
         {
-        wxMessageBox(wxString::Format(_("%s\nPlease verify the syntax of the formula."), exp.what()),
-                     _("Error in Formula"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(wxString::Format(_(L"%s\nPlease verify the syntax of the formula."), exp.what()),
+                     _(L"Error in Formula"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
     catch (...)
         {
-        wxMessageBox(wxString::Format(_("An unknown error occurred while validating the formula. Cannot add custom test \"%s\"."), customTest.get_name().c_str()),
-                    _("Error in Formula"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(wxString::Format(_(L"An unknown error occurred while validating the formula. Cannot add custom test \"%s\"."), customTest.get_name().c_str()),
+                    _(L"Error in Formula"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
 
@@ -669,8 +669,8 @@ bool BaseProjectDoc::AddGlobalCustomReadabilityTest(CustomReadabilityTest& custo
         {
         if (!Wisteria::TextStream::ReadFile(wordFilePath, fileText))
             {
-            wxMessageBox(_("Unable to load word list."),
-                    _("Error"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(_(L"Unable to load word list."),
+                    _(L"Error"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
         }
@@ -702,7 +702,7 @@ bool BaseProjectDoc::OnCloseDocument()
     {
     if (IsProcessing())
         {
-        LogMessage(_("Project still being reloaded. Please wait before closing."), 
+        LogMessage(_(L"Project still being reloaded. Please wait before closing."), 
                 GetTitle(), wxOK|wxICON_EXCLAMATION);
         return false;
         }
@@ -743,9 +743,9 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
                         docDouble > appDocDouble)
                         {
                         LogMessage(wxString::Format(
-                            _("Warning: This project was saved from a newer version of Readability Studio. "
+                            _(L"Warning: This project was saved from a newer version of Readability Studio. "
                               "Some information may be lost.")), 
-                            _("Version Conflict"), wxOK|wxICON_INFORMATION);
+                            _(L"Version Conflict"), wxOK|wxICON_INFORMATION);
                         }
                     }
                 }
@@ -804,8 +804,8 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
             !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
             !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
             {
-            LogMessage(_("Non-English projects can only be opened with Professional Edition or Standard Edition with Language Pack.\nProject will be opened as English."), 
-                       _("Language Not Licensed"), wxOK|wxICON_INFORMATION);
+            LogMessage(_(L"Non-English projects can only be opened with Professional Edition or Standard Edition with Language Pack.\nProject will be opened as English."), 
+                       _(L"Language Not Licensed"), wxOK|wxICON_INFORMATION);
             projectLanguage = readability::test_language::english_test;
             }
         SetProjectLanguage(projectLanguage);
@@ -963,8 +963,8 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
         }
     else
         {
-        LogMessage(wxString::Format(_("Warning: \"%s\" section not found in project file. Default configurations will be used."), currentStartTag), 
-                _("Error"), wxOK|wxICON_ERROR);
+        LogMessage(wxString::Format(_(L"Warning: \"%s\" section not found in project file. Default configurations will be used."), currentStartTag), 
+                _(L"Error"), wxOK|wxICON_ERROR);
         }
 
     //read in the custom tests
@@ -1073,8 +1073,8 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
                 }
             else
                 {
-                LogMessage(wxString::Format(_("Unable to add custom readability test \"%s\"."), cTest.get_name().c_str()),
-                    _("Error"), wxOK|wxICON_EXCLAMATION);
+                LogMessage(wxString::Format(_(L"Unable to add custom readability test \"%s\"."), cTest.get_name().c_str()),
+                    _(L"Error"), wxOK|wxICON_EXCLAMATION);
                 }
             // add it to the goals if it has any
             if (!std::isnan(minGoal) || !std::isnan(maxGoal))
@@ -1457,8 +1457,8 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
         }
     else
         {
-        LogMessage(wxString::Format(_("Warning: \"%s\" section not found in project file. Default test settings will be used."), wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION), 
-                _("Error"), wxOK|wxICON_ERROR);
+        LogMessage(wxString::Format(_(L"Warning: \"%s\" section not found in project file. Default test settings will be used."), wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION), 
+                _(L"Error"), wxOK|wxICON_ERROR);
         }
 
     ///read in the text view configurations
@@ -1497,8 +1497,8 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
         }
     else
         {
-        LogMessage(wxString::Format(_("Warning: \"%s\" section not found in project file. No highlighted text views will be displayed."), currentStartTag), 
-                _("Error"), wxOK|wxICON_ERROR);
+        LogMessage(wxString::Format(_(L"Warning: \"%s\" section not found in project file. No highlighted text views will be displayed."), currentStartTag), 
+                _(L"Error"), wxOK|wxICON_ERROR);
         }
 
     //fix any issues with items loaded from this file
@@ -2124,8 +2124,8 @@ bool BaseProjectDoc::ApplyTestBundle(const wxString& bundleName)
     if (testBundleIter == BaseProject::m_testBundles.end())
         {
         wxMessageBox(wxString::Format(
-            _("Unable to find test bundle \"%s\": internal error, please contact software vendor."), bundleName),
-            _("Error"), wxOK|wxICON_ERROR);
+            _(L"Unable to find test bundle \"%s\": internal error, please contact software vendor."), bundleName),
+            _(L"Error"), wxOK|wxICON_ERROR);
         return false;
         }
     // Add the tests (and goals) to the project

@@ -40,7 +40,7 @@ class ProjectWizardDlg final : public wxDialog
 public:
     ProjectWizardDlg(wxWindow* parent, const ProjectType projectType,
                      const wxString& path = wxString{}, wxWindowID id = wxID_ANY,
-                     const wxString& caption = _("New Project Wizard"),
+                     const wxString& caption = _(L"New Project Wizard"),
                      const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
                      long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER);
     /// @private

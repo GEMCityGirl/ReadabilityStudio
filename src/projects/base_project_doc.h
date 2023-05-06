@@ -430,7 +430,7 @@ public:
         {
         if (IsProcessing())
             {
-            wxMessageBox(_("Project still being reloaded. Please wait..."), 
+            wxMessageBox(_(L"Project still being reloaded. Please wait..."), 
                     GetTitle(), wxOK|wxICON_EXCLAMATION);
             return false;
             }

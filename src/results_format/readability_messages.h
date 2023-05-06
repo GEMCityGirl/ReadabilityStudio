@@ -37,7 +37,7 @@ public:
     /// @returns Dolch display label.
     [[nodiscard]]
     static const wxString GetDolchLabel()
-        { return _("Dolch Sight Words"); }
+        { return _(L"Dolch Sight Words"); }
     // Do NOT change or translate any of these!
     // They are hardwired to external help topics and icons by the same name.
     /// @returns ARI key.
@@ -257,42 +257,42 @@ public:
     /// @returns Kincaid bundle name.
     [[nodiscard]]
     static const wxString GetKincaidNavyBundleName()
-        { return _("Kincaid's Tests for Navy-Personnel Materials"); }
+        { return _(L"Kincaid's Tests for Navy-Personnel Materials"); }
     /// @returns Consent Forms bundle name.
     [[nodiscard]]
     static const wxString GetConsentFormsBundleName()
-        { return _("Patient Consent Forms"); }
+        { return _(L"Patient Consent Forms"); }
 
     // test notes and descriptions
     //----------------------------
     /// @returns A label describing how numbers are fully syllabized.
     [[nodiscard]]
     static wxString GetNumeralAreFullySyllabizedNote()
-        { return _("All numerals are fully syllabized for this test."); }
+        { return _(L"All numerals are fully syllabized for this test."); }
     /// @returns A description for FORCAST.
     [[nodiscard]]
     static wxString GetForcastNote()
-        { return _("FORCAST results may be slightly different from other tests because it does not take sentence length into account. If your document is structured mostly with tables and lists then expect some variance between the FORCAST grade level and other tests' grade levels."); }
+        { return _(L"FORCAST results may be slightly different from other tests because it does not take sentence length into account. If your document is structured mostly with tables and lists then expect some variance between the FORCAST grade level and other tests' grade levels."); }
     /// @returns A label describing how punctuation is ignored.
     [[nodiscard]]
     static wxString GetPunctuationIgnoredNote()
-        { return _("Punctuation (e.g., apostrophes) is ignored when counting word lengths."); }
+        { return _(L"Punctuation (e.g., apostrophes) is ignored when counting word lengths."); }
     /// @returns A description for Harris-Jacobson.
     [[nodiscard]]
     static wxString GetHarrisJacobsonNote()
-        { return _("This test includes headers and sub-headers as full sentences and excludes list items and tables. Numerals are also entirely ignored and subtracted from the total word count. These settings used specifically for this test may differ from the analysis configurations used for other tests."); }
+        { return _(L"This test includes headers and sub-headers as full sentences and excludes list items and tables. Numerals are also entirely ignored and subtracted from the total word count. These settings used specifically for this test may differ from the analysis configurations used for other tests."); }
     /// @returns A label describing sentence units.
     [[nodiscard]]
     static wxString GetUnitNote()
-        { return _("A unit is a section of text ending with a period, exclamation mark, question mark, interrobang, colon, semicolon, or dash. Lengthy, complex sentences generally contain more than one unit."); }
+        { return _(L"A unit is a section of text ending with a period, exclamation mark, question mark, interrobang, colon, semicolon, or dash. Lengthy, complex sentences generally contain more than one unit."); }
     /// @returns A label describing predicted cloze scores.
     [[nodiscard]]
     static wxString GetPredictedClozeNote()
-        { return _("A predicted cloze score is the estimation of a passage's mean score if it were given as a cloze test to a group of students. Scores range from 0 (zero comprehension) to 100 (total comprehension)."); }
+        { return _(L"A predicted cloze score is the estimation of a passage's mean score if it were given as a cloze test to a group of students. Scores range from 0 (zero comprehension) to 100 (total comprehension)."); }
     /// @returns A description for Degrees of Reading Power.
     [[nodiscard]]
     static wxString GetDrpNote()
-        { return _("A DRP score measures the difficulty of text in DRP units. These units range from 0 (easy) to 100 (difficult). This score can help match a document to a student based on his/her DRP ability score."); }
+        { return _(L"A DRP score measures the difficulty of text in DRP units. These units range from 0 (easy) to 100 (difficult). This score can help match a document to a student based on his/her DRP ability score."); }
     /// @returns A label describing an FRE difficulty level.
     /// @param diffLevel The difficulty level.
     [[nodiscard]]

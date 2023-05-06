@@ -134,10 +134,10 @@ TEST_CASE("Readability Messages", "[messages][readability]")
         }
     SECTION("GetMonthLabel")
         {
-        CHECK(ReadabilityMessages::GetMonthLabel(0) == _("first month of class"));
-        CHECK(ReadabilityMessages::GetMonthLabel(9) == _("ninth month of class completed"));
+        CHECK(ReadabilityMessages::GetMonthLabel(0) == _(L"first month of class"));
+        CHECK(ReadabilityMessages::GetMonthLabel(9) == _(L"ninth month of class completed"));
         //don't have a 10th month in a school year
-        CHECK(ReadabilityMessages::GetMonthLabel(10) == _("ninth month of class completed"));
+        CHECK(ReadabilityMessages::GetMonthLabel(10) == _(L"ninth month of class completed"));
         }
     SECTION("EnglandWales")
         {

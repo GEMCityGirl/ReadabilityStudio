@@ -64,8 +64,8 @@ public:
                 :  m_testName(testName)
         {
         LoadStringConstants();
-        Create(parent, id, testName.empty() ? wxString(_("Add Custom Test")) :
-            wxString::Format(_("Edit \"%s\" Test"), testName),
+        Create(parent, id, testName.empty() ? wxString(_(L"Add Custom Test")) :
+            wxString::Format(_(L"Edit \"%s\" Test"), testName),
             pos, size, style);
         }
     /// @private
@@ -79,7 +79,7 @@ public:
         @param size The dialog's size.
         @param style The dialog's style.*/
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
-                const wxString& caption = _("Add Custom Test"),
+                const wxString& caption = _(L"Add Custom Test"),
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxSize(600, 600),
                 long style = wxDEFAULT_DIALOG_STYLE|wxCLIP_CHILDREN|wxRESIZE_BORDER);
@@ -117,7 +117,7 @@ public:
         {
         m_testName = name;
         if (changeDlgTitle)
-            { SetTitle(wxString::Format(_("Edit \"%s\" Test"), m_testName)); }
+            { SetTitle(wxString::Format(_(L"Edit \"%s\" Test"), m_testName)); }
         TransferDataToWindow();
         }
     [[nodiscard]]
@@ -467,69 +467,69 @@ private:
     void CreateControls();
     void LoadStringConstants()
         {
-        m_testTypes.Add(_("Grade level"));
-        m_testTypes.Add(_("Index value"));
-        m_testTypes.Add(_("Predicted cloze score"));
+        m_testTypes.Add(_(L"Grade level"));
+        m_testTypes.Add(_(L"Index value"));
+        m_testTypes.Add(_(L"Predicted cloze score"));
 
-        m_documentNames.Add(_("General document"));
-        m_documentNames.Add(_("Technical document"));
-        m_documentNames.Add(_("Structured form"));
-        m_documentNames.Add(_("Literature"));
-        m_documentNames.Add(_("Children's literature"));
+        m_documentNames.Add(_(L"General document"));
+        m_documentNames.Add(_(L"Technical document"));
+        m_documentNames.Add(_(L"Structured form"));
+        m_documentNames.Add(_(L"Literature"));
+        m_documentNames.Add(_(L"Children's literature"));
 
-        m_professionNames.Add(_("Children's publishing"));
-        m_professionNames.Add(_("Young adult and adult publishing"));
-        m_professionNames.Add(_("Children's healthcare"));
-        m_professionNames.Add(_("Adult healthcare"));
-        m_professionNames.Add(_("Military and government"));
-        m_professionNames.Add(_("Second language education"));
-        m_professionNames.Add(_("Broadcasting"));
+        m_professionNames.Add(_(L"Children's publishing"));
+        m_professionNames.Add(_(L"Young adult and adult publishing"));
+        m_professionNames.Add(_(L"Children's healthcare"));
+        m_professionNames.Add(_(L"Adult healthcare"));
+        m_professionNames.Add(_(L"Military and government"));
+        m_professionNames.Add(_(L"Second language education"));
+        m_professionNames.Add(_(L"Broadcasting"));
         }
     [[nodiscard]]
     wxString GetNumeralsLabel() const
-        { return _("Numerals"); }
+        { return _(L"Numerals"); }
     [[nodiscard]]
     wxString GetProperNounsLabel() const
-        { return _("Proper Nouns"); }
+        { return _(L"Proper Nouns"); }
     [[nodiscard]]
     wxString GetFamiliarityLabel() const
-        { return _("Familiarity"); }
+        { return _(L"Familiarity"); }
     [[nodiscard]]
     wxString GetNumeralsAsFamiliarLabel() const
-        { return _("Treat numerals as familiar"); }
+        { return _(L"Treat numerals as familiar"); }
     [[nodiscard]]
     wxString GetIncludeCustomListLabel() const
-        { return _("Include custom familiar word list"); }
+        { return _(L"Include custom familiar word list"); }
     [[nodiscard]]
     wxString GetCustomFamiliarWordListLabel() const
-        { return _("Custom familiar word list"); }
+        { return _(L"Custom familiar word list"); }
     [[nodiscard]]
     wxString GetFileContainingFamiliarWordsLabel() const
-        { return _("File containing familiar words"); }
+        { return _(L"File containing familiar words"); }
     [[nodiscard]]
     wxString GetStemmingLanguageLabel() const
-        { return _("Use stemming to search for similar words"); }
+        { return _(L"Use stemming to search for similar words"); }
     [[nodiscard]]
     wxString GetStandardWordListsLabel() const
-        { return _("Standard familiar word lists"); }
+        { return _(L"Standard familiar word lists"); }
     [[nodiscard]]
     wxString GetIncludeDCWordListLabel() const
-        { return _("Include New Dale-Chall word list"); }
+        { return _(L"Include New Dale-Chall word list"); }
     [[nodiscard]]
     wxString GetIncludeSpacheWordListLabel() const
-        { return _("Include Spache Revised word list"); }
+        { return _(L"Include Spache Revised word list"); }
     [[nodiscard]]
     wxString GetIncludeHJWordListLabel() const
-        { return _("Include Harris-Jacobson word list"); }
+        { return _(L"Include Harris-Jacobson word list"); }
     [[nodiscard]]
     wxString GetIncludeStockerWordListLabel() const
-        { return _("Include Stocker's Catholic supplement"); }
+        { return _(L"Include Stocker's Catholic supplement"); }
     [[nodiscard]]
     wxString GetOtherLabel() const
-        { return _("Other"); }
+        { return _(L"Other"); }
     [[nodiscard]]
     wxString GetFamiliarWordsOnAllLabel() const
-        { return _("Only use words common to all lists"); }
+        { return _(L"Only use words common to all lists"); }
 
     FunctionBrowserDlg* m_functionBrowser{ nullptr };
     Wisteria::UI::SideBarBook* m_sideBarBook{ nullptr };

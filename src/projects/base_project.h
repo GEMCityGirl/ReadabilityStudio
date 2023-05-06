@@ -1224,8 +1224,8 @@ public:
             else
                 {
                 LogMessage(wxString::Format(
-                    _("Exclusion phrase list not found:\n\n%s\n\nList will not be included in this project."), filePath),
-                    _("Warning"), wxOK|wxICON_EXCLAMATION);
+                    _(L"Exclusion phrase list not found:\n\n%s\n\nList will not be included in this project."), filePath),
+                    _(L"Warning"), wxOK|wxICON_EXCLAMATION);
                 SetModifiedFlag();
                 SetExcludedPhrasesPath(wxEmptyString);
                 }

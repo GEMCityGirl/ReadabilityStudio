@@ -45,15 +45,15 @@ void LuaInterpreter::RunLuaFile(const wxString& filePath)
     {
     if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
         {
-        wxMessageBox(_("Lua scripting is only available with Professional edition."),
-                     _("Licensing Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"Lua scripting is only available with Professional edition."),
+                     _(L"Licensing Error"), wxOK|wxICON_EXCLAMATION);
         return;
         }
     else if (IsRunning())
         {
-        wxMessageBox(_("Another Lua script is already running. "
+        wxMessageBox(_(L"Another Lua script is already running. "
                        "Please wait for the other script to finish."),
-                     _("Lua Script"), wxOK|wxICON_INFORMATION);
+                     _(L"Lua Script"), wxOK|wxICON_INFORMATION);
         return;
         }
     m_isRunning = true;
@@ -69,14 +69,14 @@ void LuaInterpreter::RunLuaFile(const wxString& filePath)
         const auto EndOfErrorHeader = errorMessage.find(L"]:");
         if (EndOfErrorHeader != wxString::npos)
             { errorMessage.erase(0,EndOfErrorHeader+2); }
-        wxMessageBox(_("Line ") + errorMessage,
-                     _("Script Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"Line ") + errorMessage,
+                     _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
         LuaScripting::DebugPrint(
-            _("<span style='color:red; font-weight:bold;'>Error</span>: Line ") + errorMessage);
+            _(L"<span style='color:red; font-weight:bold;'>Error</span>: Line ") + errorMessage);
         }
     const wxDateTime endTime(wxDateTime::Now());
     LuaScripting::DebugPrint(wxString::Format(
-        _("Script ran for %s"), endTime.Subtract(startTime).Format()));
+        _(L"Script ran for %s"), endTime.Subtract(startTime).Format()));
 
     m_isRunning = false;
     }
@@ -86,15 +86,15 @@ void LuaInterpreter::RunLuaCode(const wxString& code, const wxString& filePath)
     {
     if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
         {
-        wxMessageBox(_("Lua scripting is only available with Professional edition."),
-                     _("Licensing Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"Lua scripting is only available with Professional edition."),
+                     _(L"Licensing Error"), wxOK|wxICON_EXCLAMATION);
         return;
         }
     else if (IsRunning())
         {
-        wxMessageBox(_("Another Lua script is already running. "
+        wxMessageBox(_(L"Another Lua script is already running. "
                        "Please wait for the other script to finish."),
-                     _("Lua Script"), wxOK|wxICON_INFORMATION);
+                     _(L"Lua Script"), wxOK|wxICON_INFORMATION);
         return;
         }
     m_isRunning = true;
@@ -110,14 +110,14 @@ void LuaInterpreter::RunLuaCode(const wxString& code, const wxString& filePath)
         const auto EndOfErrorHeader = errorMessage.find(L"]:");
         if (EndOfErrorHeader != wxString::npos)
             { errorMessage.erase(0,EndOfErrorHeader+2); }
-        wxMessageBox(_("Line ") + errorMessage,
-                     _("Script Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"Line ") + errorMessage,
+                     _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
         LuaScripting::DebugPrint(
-            _("<span style='color:red; font-weight:bold;'>Error</span>: Line ") + errorMessage);
+            _(L"<span style='color:red; font-weight:bold;'>Error</span>: Line ") + errorMessage);
         }
     const wxDateTime endTime(wxDateTime::Now());
     LuaScripting::DebugPrint(
-        wxString::Format(_("Script ran for %s"), endTime.Subtract(startTime).Format()));
+        wxString::Format(_(L"Script ran for %s"), endTime.Subtract(startTime).Format()));
 
     m_isRunning = false;
     }

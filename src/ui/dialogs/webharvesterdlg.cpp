@@ -34,7 +34,7 @@ void WebHarvesterDlg::OnDownloadCheck([[maybe_unused]] wxCommandEvent& event)
 void WebHarvesterDlg::OnFolderBrowseButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
-    wxDirDialog dirDlg(this, _("Choose a directory"), m_downloadFolder);
+    wxDirDialog dirDlg(this, _(L"Choose a directory"), m_downloadFolder);
     if (dirDlg.ShowModal() != wxID_OK)
         { return; }
     m_downloadFolder = dirDlg.GetPath();
@@ -56,14 +56,14 @@ void WebHarvesterDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
 
     if (GetUrls().GetCount() == 0 && GetRawHtmlPage().empty())
         {
-        wxMessageBox(_("Please enter a website to harvest."),
-                     _("Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"Please enter a website to harvest."),
+                     _(L"Error"), wxOK|wxICON_EXCLAMATION);
         return;
         }
     else if (m_downloadFilesLocally && m_downloadFolder.empty())
         {
-        wxMessageBox(_("Please enter a valid folder to download the files to."),
-                     _("Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"Please enter a valid folder to download the files to."),
+                     _(L"Error"), wxOK|wxICON_EXCLAMATION);
         m_sideBarBook->SetSelection(2);
         wxCommandEvent cmd;
         OnFolderBrowseButtonClick(cmd);
@@ -74,8 +74,8 @@ void WebHarvesterDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         if (!wxFileName::Mkdir(m_downloadFolder, wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
             m_sideBarBook->SetSelection(2);
-            wxMessageBox(_("Please enter a valid folder to download the files to."),
-                         _("Error"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(_(L"Please enter a valid folder to download the files to."),
+                         _(L"Error"), wxOK|wxICON_EXCLAMATION);
             wxCommandEvent cmd;
             OnFolderBrowseButtonClick(cmd);
             return;
@@ -96,8 +96,8 @@ void WebHarvesterDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
             WebHarvester::DomainRestriction::RestrictToSpecificDomains &&
         m_domains.GetCount() == 0)
         {
-        wxMessageBox(_("Please enter the domains that you want to be restricted to."),
-                     _("Error"), wxOK|wxICON_ERROR);
+        wxMessageBox(_(L"Please enter the domains that you want to be restricted to."),
+                     _(L"Error"), wxOK|wxICON_ERROR);
         return;
         }
 
@@ -168,20 +168,20 @@ void WebHarvesterDlg::CreateControls()
             wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
-        m_sideBarBook->AddPage(Panel, _("Harvesting"), ID_HARVESTING_PAGE, true);
+        m_sideBarBook->AddPage(Panel, _(L"Harvesting"), ID_HARVESTING_PAGE, true);
 
         // the URLs
         wxStaticBoxSizer* urlSizer = new wxStaticBoxSizer(new wxStaticBox(Panel,
-            wxID_ANY, _("Websites to Harvest")), wxVERTICAL);
+            wxID_ANY, _(L"Websites to Harvest")), wxVERTICAL);
         wxBoxSizer* urlButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
         wxBitmapButton* addUrlButton = new wxBitmapButton(Panel, ID_ADD_URL_BUTTON,
             wxArtProvider::GetBitmap(L"ID_ADD", wxART_BUTTON, FromDIP(wxSize(16,16))));
-        addUrlButton->SetToolTip(_("Add a website to the list"));
+        addUrlButton->SetToolTip(_(L"Add a website to the list"));
         urlButtonsSizer->Add(addUrlButton);
 
         wxBitmapButton* deleteUrlButton = new wxBitmapButton(Panel, ID_DELETE_URL_BUTTON,
             wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize(16,16))));
-        deleteUrlButton->SetToolTip(_("Delete selected website"));
+        deleteUrlButton->SetToolTip(_(L"Delete selected website"));
         urlButtonsSizer->Add(deleteUrlButton);
         urlSizer->Add(urlButtonsSizer, 0, wxALIGN_RIGHT);
 
@@ -191,7 +191,7 @@ void WebHarvesterDlg::CreateControls()
         urlSizer->Add(m_urlList, 1, wxEXPAND);
         m_urlList->EnableGridLines();
         m_urlList->EnableItemDeletion();
-        m_urlList->InsertColumn(0, _("Websites:"));
+        m_urlList->InsertColumn(0, _(L"Websites:"));
         m_urlList->SetColumnEditable(0);
         m_urlList->SetVirtualDataProvider(m_urlData);
         m_urlList->SetVirtualDataSize(m_urlData->GetItemCount(), 1);
@@ -199,7 +199,7 @@ void WebHarvesterDlg::CreateControls()
         if (wxGetMouseState().ShiftDown())
             {
             urlSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-            urlSizer->Add(new wxStaticText(Panel, wxID_ANY, _("HTML Text:")) );
+            urlSizer->Add(new wxStaticText(Panel, wxID_ANY, _(L"HTML Text:")) );
             urlSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             wxTextCtrl* rawHtmlPageEdit = new wxTextCtrl(Panel, wxID_ANY,
                 wxString{}, wxDefaultPosition, wxDefaultSize, wxBORDER_THEME|wxTE_MULTILINE,
@@ -211,7 +211,7 @@ void WebHarvesterDlg::CreateControls()
 
         // depth level
         wxBoxSizer* depthLevelSizer = new wxBoxSizer(wxHORIZONTAL);
-        wxStaticText* depthLevelLabel = new wxStaticText(Panel, wxID_ANY, _("Depth level:"));
+        wxStaticText* depthLevelLabel = new wxStaticText(Panel, wxID_ANY, _(L"Depth level:"));
         depthLevelSizer->Add(depthLevelLabel, 0, wxALIGN_CENTER_VERTICAL);
         depthLevelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
@@ -226,7 +226,7 @@ void WebHarvesterDlg::CreateControls()
         wxBoxSizer* fileTypeSizer = new wxBoxSizer(wxHORIZONTAL);
         panelSizer->Add(fileTypeSizer, 0, wxEXPAND);
         fileTypeSizer->Add(new wxStaticText(Panel, wxID_STATIC,
-            _("File types to include:")), 0, wxALIGN_CENTER_VERTICAL|wxLEFT,
+            _(L"File types to include:")), 0, wxALIGN_CENTER_VERTICAL|wxLEFT,
             wxSizerFlags::GetDefaultBorder());
         wxArrayString choiceStrings;
         wxStringTokenizer tkz(m_fullDocFilter, L"|", wxTOKEN_STRTOK);
@@ -248,13 +248,13 @@ void WebHarvesterDlg::CreateControls()
         fileTypeSizer->Add(m_docFilterCombo, 1, wxEXPAND|wxLEFT|wxRIGHT, wxSizerFlags::GetDefaultBorder());
 
         // check links
-        auto logBrokenLinksCheckBox = new wxCheckBox(Panel, wxID_ANY, _("&Log broken links"),
+        auto logBrokenLinksCheckBox = new wxCheckBox(Panel, wxID_ANY, _(L"&Log broken links"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_logBrokenLinks));
         panelSizer->Add(logBrokenLinksCheckBox, 0, wxALL, wxSizerFlags::GetDefaultBorder());
 
         wxBoxSizer* userAgentSizer = new wxBoxSizer(wxHORIZONTAL);
         userAgentSizer->Add(new wxStaticText(Panel, wxID_STATIC,
-            _("User Agent:")), 0, wxALIGN_CENTER_VERTICAL);
+            _(L"User Agent:")), 0, wxALIGN_CENTER_VERTICAL);
         userAgentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
         wxTextCtrl* userAgentEdit = new wxTextCtrl(Panel, wxID_ANY, wxString{},
             wxDefaultPosition, wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_userAgent));
@@ -268,19 +268,19 @@ void WebHarvesterDlg::CreateControls()
                                      wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
-        m_sideBarBook->AddPage(Panel, _("Domain Restriction"), ID_DOMAINS_PAGE, false);
+        m_sideBarBook->AddPage(Panel, _(L"Domain Restriction"), ID_DOMAINS_PAGE, false);
 
         wxStaticBoxSizer* domainBoxSizer = new wxStaticBoxSizer(new wxStaticBox(Panel, wxID_ANY,
-            _("Domain Restriction")), wxVERTICAL);
+            _(L"Domain Restriction")), wxVERTICAL);
         panelSizer->Add(domainBoxSizer, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
 
         wxArrayString choiceStrings;
-        choiceStrings.Add(_("Not restricted to any domain"));
-        choiceStrings.Add(_("Domain restricted"));
-        choiceStrings.Add(_("Subdomain restricted"));
+        choiceStrings.Add(_(L"Not restricted to any domain"));
+        choiceStrings.Add(_(L"Domain restricted"));
+        choiceStrings.Add(_(L"Subdomain restricted"));
         choiceStrings.Add(GetUserSpecifiedDomainsLabel());
-        choiceStrings.Add(_("Restricted to external domains"));
-        choiceStrings.Add(_("Restricted to same folder"));
+        choiceStrings.Add(_(L"Restricted to external domains"));
+        choiceStrings.Add(_(L"Restricted to same folder"));
         m_domainCombo = new wxComboBox(Panel, ID_DOMAIN_COMBO, wxString{},
             wxDefaultPosition, wxDefaultSize, choiceStrings, wxCB_DROPDOWN | wxCB_READONLY);
         m_domainCombo->SetValue((m_selectedDomainRestriction >= 0 &&
@@ -292,13 +292,13 @@ void WebHarvesterDlg::CreateControls()
         wxBoxSizer* domainButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
         m_addDomainButton = new wxBitmapButton(Panel, ID_ADD_DOMAIN_BUTTON,
             wxArtProvider::GetBitmap(L"ID_ADD", wxART_BUTTON, FromDIP(wxSize(16, 16))));
-        m_addDomainButton->SetToolTip(_("Add a domain to the list"));
+        m_addDomainButton->SetToolTip(_(L"Add a domain to the list"));
         m_addDomainButton->Enable(m_domainCombo->GetValue() == GetUserSpecifiedDomainsLabel());
         domainButtonsSizer->Add(m_addDomainButton);
 
         m_deleteDomainButton = new wxBitmapButton(Panel, ID_DELETE_DOMAIN_BUTTON,
             wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize(16, 16))));
-        m_deleteDomainButton->SetToolTip(_("Delete selected domain"));
+        m_deleteDomainButton->SetToolTip(_(L"Delete selected domain"));
         m_deleteDomainButton->Enable(m_domainCombo->GetValue() == GetUserSpecifiedDomainsLabel());
         domainButtonsSizer->Add(m_deleteDomainButton);
         domainBoxSizer->Add(domainButtonsSizer, 0, wxALIGN_RIGHT);
@@ -309,7 +309,7 @@ void WebHarvesterDlg::CreateControls()
         domainBoxSizer->Add(m_domainList, 1, wxEXPAND|wxALL);
         m_domainList->EnableGridLines();
         m_domainList->EnableItemDeletion();
-        m_domainList->InsertColumn(0, _("User-defined Domain(s):"));
+        m_domainList->InsertColumn(0, _(L"User-defined Domain(s):"));
         m_domainList->SetColumnEditable(0);
         m_domainList->SetVirtualDataProvider(m_domainData);
         m_domainList->SetVirtualDataSize(m_domainData->GetItemCount(), 1);
@@ -322,18 +322,18 @@ void WebHarvesterDlg::CreateControls()
                                      wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
-        m_sideBarBook->AddPage(Panel, _("Download"), ID_DOWNLOAD_PAGE, false);
+        m_sideBarBook->AddPage(Panel, _(L"Download"), ID_DOWNLOAD_PAGE, false);
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         if (!m_hideLocalDownloadOption)
             {
             wxCheckBox* downloadCheckBox = new wxCheckBox(Panel, ID_DOWNLOAD_CHECKBOX,
-                _("&Download files locally"),
+                _(L"&Download files locally"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_downloadFilesLocally) );
             panelSizer->Add(downloadCheckBox, 0, wxALL, wxSizerFlags::GetDefaultBorder());
             }
 
-        m_localFolderLabel = new wxStaticText(Panel, wxID_ANY, _("Folder to download files to:"),
+        m_localFolderLabel = new wxStaticText(Panel, wxID_ANY, _(L"Folder to download files to:"),
                                               wxDefaultPosition, wxDefaultSize, 0);
         m_localFolderLabel->Enable(m_downloadFilesLocally);
         panelSizer->Add(m_localFolderLabel, 0, wxLEFT|wxBOTTOM|wxRIGHT, wxSizerFlags::GetDefaultBorder());
@@ -352,7 +352,7 @@ void WebHarvesterDlg::CreateControls()
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         m_retainWebsiteFolderStuctureCheckBox = new wxCheckBox(Panel, wxID_ANY,
-            _("&Use website's folder structure"),
+            _(L"&Use website's folder structure"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_keepWebPathWhenDownloading) );
         m_retainWebsiteFolderStuctureCheckBox->Enable(m_downloadFilesLocally);
         panelSizer->Add(m_retainWebsiteFolderStuctureCheckBox, 0, wxALL, wxSizerFlags::GetDefaultBorder());

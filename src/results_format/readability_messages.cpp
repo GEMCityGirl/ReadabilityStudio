@@ -123,34 +123,34 @@ wxString ReadabilityMessages::GetMonthLabel(size_t month)
     switch (month)
         {
     case 0:
-        return _("first month of class");
+        return _(L"first month of class");
         break;
     case 1:
-        return _("first month of class completed");
+        return _(L"first month of class completed");
         break;
     case 2:
-        return _("second month of class completed");
+        return _(L"second month of class completed");
         break;
     case 3:
-        return _("third month of class completed");
+        return _(L"third month of class completed");
         break;
     case 4:
-        return _("fourth month of class completed");
+        return _(L"fourth month of class completed");
         break;
     case 5:
-        return _("fifth month of class completed");
+        return _(L"fifth month of class completed");
         break;
     case 6:
-        return _("sixth month of class completed");
+        return _(L"sixth month of class completed");
         break;
     case 7:
-        return _("seventh month of class completed");
+        return _(L"seventh month of class completed");
         break;
     case 8:
-        return _("eighth month of class completed");
+        return _(L"eighth month of class completed");
         break;
     case 9:
-        return _("ninth month of class completed");
+        return _(L"ninth month of class completed");
         break;
         }
 
@@ -198,43 +198,43 @@ wxString ReadabilityMessages::GetUSGradeScaleLabel(size_t value)
     switch (value)
         {
     case 0:
-        return _("Kindergarten");
+        return _(L"Kindergarten");
         break;
     case 1:
-        return _("1st grade");
+        return _(L"1st grade");
         break;
     case 2:
-        return _("2nd grade");
+        return _(L"2nd grade");
         break;
     case 3:
-        return _("3rd grade");
+        return _(L"3rd grade");
         break;
     case 4:
-        return _("4th grade");
+        return _(L"4th grade");
         break;
     case 5:
-        return _("5th grade");
+        return _(L"5th grade");
         break;
     case 6:
-        return _("6th grade");
+        return _(L"6th grade");
         break;
     case 7:
-        return _("7th grade");
+        return _(L"7th grade");
         break;
     case 8:
-        return _("8th grade");
+        return _(L"8th grade");
         break;
     case 9:
-        return _("High school freshman");
+        return _(L"High school freshman");
         break;
     case 10:
-        return _("High school sophomore");
+        return _(L"High school sophomore");
         break;
     case 11:
-        return _("High school junior");
+        return _(L"High school junior");
         break;
     case 12:
-        return _("High school senior");
+        return _(L"High school senior");
         break;
     default:
         return GetPostSecondaryScaleLabel(value);
@@ -249,43 +249,43 @@ wxString ReadabilityMessages::GetNewfoundlandAndLabradorScaleLabel(size_t value)
     switch (value)
         {
     case 0:
-        return _("Kindergarten");
+        return _(L"Kindergarten");
         break;
     case 1:
-        return _("Grade 1 (Primary)");
+        return _(L"Grade 1 (Primary)");
         break;
     case 2:
-        return _("Grade 2 (Primary)");
+        return _(L"Grade 2 (Primary)");
         break;
     case 3:
-        return _("Grade 3 (Primary)");
+        return _(L"Grade 3 (Primary)");
         break;
     case 4:
-        return _("Grade 4 (Elementary)");
+        return _(L"Grade 4 (Elementary)");
         break;
     case 5:
-        return _("Grade 5 (Elementary)");
+        return _(L"Grade 5 (Elementary)");
         break;
     case 6:
-        return _("Grade 6 (Elementary)");
+        return _(L"Grade 6 (Elementary)");
         break;
     case 7:
-        return _("Grade 7 (Intermediate)");
+        return _(L"Grade 7 (Intermediate)");
         break;
     case 8:
-        return _("Grade 8 (Intermediate)");
+        return _(L"Grade 8 (Intermediate)");
         break;
     case 9:
-        return _("Grade 9 (Intermediate)");
+        return _(L"Grade 9 (Intermediate)");
         break;
     case 10:
-        return _("Senior High (Level I)");
+        return _(L"Senior High (Level I)");
         break;
     case 11:
-        return _("Senior High (Level II)");
+        return _(L"Senior High (Level II)");
         break;
     case 12:
-        return _("Senior High (Level III)");
+        return _(L"Senior High (Level III)");
         break;
     default:
         return GetPostSecondaryScaleLabel(value);
@@ -300,43 +300,43 @@ wxString ReadabilityMessages::GetBritishColumbiaScaleLabel(size_t value)
     switch (value)
         {
     case 0:
-        return _("Kindergarten (Elementary)");
+        return _(L"Kindergarten (Elementary)");
         break;
     case 1:
-        return _("Grade 1 (Elementary)");
+        return _(L"Grade 1 (Elementary)");
         break;
     case 2:
-        return _("Grade 2 (Elementary)");
+        return _(L"Grade 2 (Elementary)");
         break;
     case 3:
-        return _("Grade 3 (Elementary)");
+        return _(L"Grade 3 (Elementary)");
         break;
     case 4:
-        return _("Grade 4 (Elementary)");
+        return _(L"Grade 4 (Elementary)");
         break;
     case 5:
-        return _("Grade 5 (Elementary)");
+        return _(L"Grade 5 (Elementary)");
         break;
     case 6:
-        return _("Grade 6 (Elementary)");
+        return _(L"Grade 6 (Elementary)");
         break;
     case 7:
-        return _("Grade 7 (Elementary)");
+        return _(L"Grade 7 (Elementary)");
         break;
     case 8:
-        return _("Grade 8 (Junior Secondary)");
+        return _(L"Grade 8 (Junior Secondary)");
         break;
     case 9:
-        return _("Grade 9 (Junior Secondary)");
+        return _(L"Grade 9 (Junior Secondary)");
         break;
     case 10:
-        return _("Grade 10 (Junior Secondary)");
+        return _(L"Grade 10 (Junior Secondary)");
         break;
     case 11:
-        return _("Grade 11 (Senior Secondary)");
+        return _(L"Grade 11 (Senior Secondary)");
         break;
     case 12:
-        return _("Grade 12 (Senior Secondary)");
+        return _(L"Grade 12 (Senior Secondary)");
         break;
     default:
         return GetPostSecondaryScaleLabel(value);
@@ -351,43 +351,43 @@ wxString ReadabilityMessages::GetNewBrunswickScaleLabel(size_t value)
     switch (value)
         {
     case 0:
-        return _("Kindergarten (Elementary)");
+        return _(L"Kindergarten (Elementary)");
         break;
     case 1:
-        return _("Grade 1 (Elementary)");
+        return _(L"Grade 1 (Elementary)");
         break;
     case 2:
-        return _("Grade 2 (Elementary)");
+        return _(L"Grade 2 (Elementary)");
         break;
     case 3:
-        return _("Grade 3 (Elementary)");
+        return _(L"Grade 3 (Elementary)");
         break;
     case 4:
-        return _("Grade 4 (Elementary)");
+        return _(L"Grade 4 (Elementary)");
         break;
     case 5:
-        return _("Grade 5 (Elementary)");
+        return _(L"Grade 5 (Elementary)");
         break;
     case 6:
-        return _("Grade 6 (Middle School)");
+        return _(L"Grade 6 (Middle School)");
         break;
     case 7:
-        return _("Grade 7 (Middle School)");
+        return _(L"Grade 7 (Middle School)");
         break;
     case 8:
-        return _("Grade 8 (Middle School)");
+        return _(L"Grade 8 (Middle School)");
         break;
     case 9:
-        return _("Grade 9 (High School)");
+        return _(L"Grade 9 (High School)");
         break;
     case 10:
-        return _("Grade 10 (High School)");
+        return _(L"Grade 10 (High School)");
         break;
     case 11:
-        return _("Grade 11 (High School)");
+        return _(L"Grade 11 (High School)");
         break;
     case 12:
-        return _("Grade 12 (High School)");
+        return _(L"Grade 12 (High School)");
         break;
     default:
         return GetPostSecondaryScaleLabel(value);
@@ -402,43 +402,43 @@ wxString ReadabilityMessages::GetNovaScotiaScaleLabel(size_t value)
     switch (value)
         {
     case 0:
-        return _("Primary (Elementary)");
+        return _(L"Primary (Elementary)");
         break;
     case 1:
-        return _("Grade 1 (Elementary)");
+        return _(L"Grade 1 (Elementary)");
         break;
     case 2:
-        return _("Grade 2 (Elementary)");
+        return _(L"Grade 2 (Elementary)");
         break;
     case 3:
-        return _("Grade 3 (Elementary)");
+        return _(L"Grade 3 (Elementary)");
         break;
     case 4:
-        return _("Grade 4 (Elementary)");
+        return _(L"Grade 4 (Elementary)");
         break;
     case 5:
-        return _("Grade 5 (Elementary)");
+        return _(L"Grade 5 (Elementary)");
         break;
     case 6:
-        return _("Grade 6 (Elementary)");
+        return _(L"Grade 6 (Elementary)");
         break;
     case 7:
-        return _("Grade 7 (Junior High)");
+        return _(L"Grade 7 (Junior High)");
         break;
     case 8:
-        return _("Grade 8 (Junior High)");
+        return _(L"Grade 8 (Junior High)");
         break;
     case 9:
-        return _("Grade 9 (Junior High)");
+        return _(L"Grade 9 (Junior High)");
         break;
     case 10:
-        return _("Grade 10 (Senior High)");
+        return _(L"Grade 10 (Senior High)");
         break;
     case 11:
-        return _("Grade 11 (Senior High)");
+        return _(L"Grade 11 (Senior High)");
         break;
     case 12:
-        return _("Grade 12 (Senior High)");
+        return _(L"Grade 12 (Senior High)");
         break;
     default:
         return GetPostSecondaryScaleLabel(value);
@@ -453,43 +453,43 @@ wxString ReadabilityMessages::GetAlbertaScaleLabel(size_t value)
     switch (value)
         {
     case 0:
-        return _("Kindergarten (Elementary)");
+        return _(L"Kindergarten (Elementary)");
         break;
     case 1:
-        return _("Grade 1 (Elementary)");
+        return _(L"Grade 1 (Elementary)");
         break;
     case 2:
-        return _("Grade 2 (Elementary)");
+        return _(L"Grade 2 (Elementary)");
         break;
     case 3:
-        return _("Grade 3 (Elementary)");
+        return _(L"Grade 3 (Elementary)");
         break;
     case 4:
-        return _("Grade 4 (Elementary)");
+        return _(L"Grade 4 (Elementary)");
         break;
     case 5:
-        return _("Grade 5 (Elementary)");
+        return _(L"Grade 5 (Elementary)");
         break;
     case 6:
-        return _("Grade 6 (Elementary)");
+        return _(L"Grade 6 (Elementary)");
         break;
     case 7:
-        return _("Grade 7 (Junior High)");
+        return _(L"Grade 7 (Junior High)");
         break;
     case 8:
-        return _("Grade 8 (Junior High)");
+        return _(L"Grade 8 (Junior High)");
         break;
     case 9:
-        return _("Grade 9 (Junior High)");
+        return _(L"Grade 9 (Junior High)");
         break;
     case 10:
-        return _("Grade 10 (Senior High)");
+        return _(L"Grade 10 (Senior High)");
         break;
     case 11:
-        return _("Grade 11 (Senior High)");
+        return _(L"Grade 11 (Senior High)");
         break;
     case 12:
-        return _("Grade 12 (Senior High)");
+        return _(L"Grade 12 (Senior High)");
         break;
     default:
         return GetPostSecondaryScaleLabel(value);
@@ -504,43 +504,43 @@ wxString ReadabilityMessages::GetOntarioScaleLabel(size_t value)
     switch (value)
         {
     case 0:
-        return _("Senior Kindergarten (Elementary)");
+        return _(L"Senior Kindergarten (Elementary)");
         break;
     case 1:
-        return _("Grade 1 (Elementary)");
+        return _(L"Grade 1 (Elementary)");
         break;
     case 2:
-        return _("Grade 2 (Elementary)");
+        return _(L"Grade 2 (Elementary)");
         break;
     case 3:
-        return _("Grade 3 (Elementary)");
+        return _(L"Grade 3 (Elementary)");
         break;
     case 4:
-        return _("Grade 4 (Elementary)");
+        return _(L"Grade 4 (Elementary)");
         break;
     case 5:
-        return _("Grade 5 (Elementary)");
+        return _(L"Grade 5 (Elementary)");
         break;
     case 6:
-        return _("Grade 6 (Elementary)");
+        return _(L"Grade 6 (Elementary)");
         break;
     case 7:
-        return _("Grade 7 (Elementary)");
+        return _(L"Grade 7 (Elementary)");
         break;
     case 8:
-        return _("Grade 8 (Elementary)");
+        return _(L"Grade 8 (Elementary)");
         break;
     case 9:
-        return _("Grade 9 (Secondary)");
+        return _(L"Grade 9 (Secondary)");
         break;
     case 10:
-        return _("Grade 10 (Secondary)");
+        return _(L"Grade 10 (Secondary)");
         break;
     case 11:
-        return _("Grade 11 (Secondary)");
+        return _(L"Grade 11 (Secondary)");
         break;
     case 12:
-        return _("Grade 12 (Secondary)");
+        return _(L"Grade 12 (Secondary)");
         break;
     default:
         return GetPostSecondaryScaleLabel(value);
@@ -555,43 +555,43 @@ wxString ReadabilityMessages::GetSaskatchewanScaleLabel(size_t value)
     switch (value)
         {
     case 0:
-        return _("Kindergarten");
+        return _(L"Kindergarten");
         break;
     case 1:
-        return _("Grade 1 (Elementary Level)");
+        return _(L"Grade 1 (Elementary Level)");
         break;
     case 2:
-        return _("Grade 2 (Elementary Level)");
+        return _(L"Grade 2 (Elementary Level)");
         break;
     case 3:
-        return _("Grade 3 (Elementary Level)");
+        return _(L"Grade 3 (Elementary Level)");
         break;
     case 4:
-        return _("Grade 4 (Elementary Level)");
+        return _(L"Grade 4 (Elementary Level)");
         break;
     case 5:
-        return _("Grade 5 (Elementary Level)");
+        return _(L"Grade 5 (Elementary Level)");
         break;
     case 6:
-        return _("Grade 6 (Middle Level)");
+        return _(L"Grade 6 (Middle Level)");
         break;
     case 7:
-        return _("Grade 7 (Middle Level)");
+        return _(L"Grade 7 (Middle Level)");
         break;
     case 8:
-        return _("Grade 8 (Middle Level)");
+        return _(L"Grade 8 (Middle Level)");
         break;
     case 9:
-        return _("Grade 9 (Middle Level)");
+        return _(L"Grade 9 (Middle Level)");
         break;
     case 10:
-        return _("Grade 10 (Secondary Level)");
+        return _(L"Grade 10 (Secondary Level)");
         break;
     case 11:
-        return _("Grade 11 (Secondary Level)");
+        return _(L"Grade 11 (Secondary Level)");
         break;
     case 12:
-        return _("Grade 12 (Secondary Level)");
+        return _(L"Grade 12 (Secondary Level)");
         break;
     default:
         return GetPostSecondaryScaleLabel(value);
@@ -606,43 +606,43 @@ wxString ReadabilityMessages::GetPrinceEdwardIslandScaleLabel(size_t value)
     switch (value)
         {
     case 0:
-        return _("Kindergarten");
+        return _(L"Kindergarten");
         break;
     case 1:
-        return _("Grade 1 (Elementary)");
+        return _(L"Grade 1 (Elementary)");
         break;
     case 2:
-        return _("Grade 2 (Elementary)");
+        return _(L"Grade 2 (Elementary)");
         break;
     case 3:
-        return _("Grade 3 (Elementary)");
+        return _(L"Grade 3 (Elementary)");
         break;
     case 4:
-        return _("Grade 4 (Elementary)");
+        return _(L"Grade 4 (Elementary)");
         break;
     case 5:
-        return _("Grade 5 (Elementary)");
+        return _(L"Grade 5 (Elementary)");
         break;
     case 6:
-        return _("Grade 6 (Elementary)");
+        return _(L"Grade 6 (Elementary)");
         break;
     case 7:
-        return _("Grade 7 (Intermediate School)");
+        return _(L"Grade 7 (Intermediate School)");
         break;
     case 8:
-        return _("Grade 8 (Intermediate School)");
+        return _(L"Grade 8 (Intermediate School)");
         break;
     case 9:
-        return _("Grade 9 (Intermediate School)");
+        return _(L"Grade 9 (Intermediate School)");
         break;
     case 10:
-        return _("Grade 10 (Senior High)");
+        return _(L"Grade 10 (Senior High)");
         break;
     case 11:
-        return _("Grade 11 (Senior High)");
+        return _(L"Grade 11 (Senior High)");
         break;
     case 12:
-        return _("Grade 12 (Senior High)");
+        return _(L"Grade 12 (Senior High)");
         break;
     default:
         return GetPostSecondaryScaleLabel(value);
@@ -657,43 +657,43 @@ wxString ReadabilityMessages::GetManitobaScaleLabel(size_t value)
     switch (value)
         {
     case 0:
-        return _("Kindergarten (Early)");
+        return _(L"Kindergarten (Early)");
         break;
     case 1:
-        return _("Grade 1 (Early)");
+        return _(L"Grade 1 (Early)");
         break;
     case 2:
-        return _("Grade 2 (Early)");
+        return _(L"Grade 2 (Early)");
         break;
     case 3:
-        return _("Grade 3 (Early)");
+        return _(L"Grade 3 (Early)");
         break;
     case 4:
-        return _("Grade 4 (Early)");
+        return _(L"Grade 4 (Early)");
         break;
     case 5:
-        return _("Grade 5 (Middle)");
+        return _(L"Grade 5 (Middle)");
         break;
     case 6:
-        return _("Grade 6 (Middle)");
+        return _(L"Grade 6 (Middle)");
         break;
     case 7:
-        return _("Grade 7 (Middle)");
+        return _(L"Grade 7 (Middle)");
         break;
     case 8:
-        return _("Grade 8 (Middle)");
+        return _(L"Grade 8 (Middle)");
         break;
     case 9:
-        return _("Grade 9 (Senior 1)");
+        return _(L"Grade 9 (Senior 1)");
         break;
     case 10:
-        return _("Grade 10 (Senior 2)");
+        return _(L"Grade 10 (Senior 2)");
         break;
     case 11:
-        return _("Grade 11 (Senior 3)");
+        return _(L"Grade 11 (Senior 3)");
         break;
     case 12:
-        return _("Grade 12 (Senior 4)");
+        return _(L"Grade 12 (Senior 4)");
         break;
     default:
         return GetPostSecondaryScaleLabel(value);
@@ -708,43 +708,43 @@ wxString ReadabilityMessages::GetNorthwestTerritoriesScaleLabel(size_t value)
     switch (value)
         {
     case 0:
-        return _("Kindergarten (Primary)");
+        return _(L"Kindergarten (Primary)");
         break;
     case 1:
-        return _("Grade 1 (Primary)");
+        return _(L"Grade 1 (Primary)");
         break;
     case 2:
-        return _("Grade 2 (Primary)");
+        return _(L"Grade 2 (Primary)");
         break;
     case 3:
-        return _("Grade 3 (Primary)");
+        return _(L"Grade 3 (Primary)");
         break;
     case 4:
-        return _("Grade 4 (Intermediate)");
+        return _(L"Grade 4 (Intermediate)");
         break;
     case 5:
-        return _("Grade 5 (Intermediate)");
+        return _(L"Grade 5 (Intermediate)");
         break;
     case 6:
-        return _("Grade 6 (Intermediate)");
+        return _(L"Grade 6 (Intermediate)");
         break;
     case 7:
-        return _("Grade 7 (Junior Secondary)");
+        return _(L"Grade 7 (Junior Secondary)");
         break;
     case 8:
-        return _("Grade 8 (Junior Secondary)");
+        return _(L"Grade 8 (Junior Secondary)");
         break;
     case 9:
-        return _("Grade 9 (Junior Secondary)");
+        return _(L"Grade 9 (Junior Secondary)");
         break;
     case 10:
-        return _("Grade 10 (Senior Secondary)");
+        return _(L"Grade 10 (Senior Secondary)");
         break;
     case 11:
-        return _("Grade 11 (Senior Secondary)");
+        return _(L"Grade 11 (Senior Secondary)");
         break;
     case 12:
-        return _("Grade 12 (Senior Secondary)");
+        return _(L"Grade 12 (Senior Secondary)");
         break;
     default:
         return GetPostSecondaryScaleLabel(value);
@@ -759,43 +759,43 @@ wxString ReadabilityMessages::GetNunavutScaleLabel(size_t value)
     switch (value)
         {
     case 0:
-        return _("Kindergarten");
+        return _(L"Kindergarten");
         break;
     case 1:
-        return _("Grade 1");
+        return _(L"Grade 1");
         break;
     case 2:
-        return _("Grade 2");
+        return _(L"Grade 2");
         break;
     case 3:
-        return _("Grade 3");
+        return _(L"Grade 3");
         break;
     case 4:
-        return _("Grade 4");
+        return _(L"Grade 4");
         break;
     case 5:
-        return _("Grade 5");
+        return _(L"Grade 5");
         break;
     case 6:
-        return _("Grade 6");
+        return _(L"Grade 6");
         break;
     case 7:
-        return _("Grade 7");
+        return _(L"Grade 7");
         break;
     case 8:
-        return _("Grade 8");
+        return _(L"Grade 8");
         break;
     case 9:
-        return _("Grade 9");
+        return _(L"Grade 9");
         break;
     case 10:
-        return _("Grade 10");
+        return _(L"Grade 10");
         break;
     case 11:
-        return _("Grade 11");
+        return _(L"Grade 11");
         break;
     case 12:
-        return _("Grade 12");
+        return _(L"Grade 12");
         break;
     default:
         return GetPostSecondaryScaleLabel(value);
@@ -811,55 +811,55 @@ wxString ReadabilityMessages::GetQuebecScaleLabel(size_t value)
     switch (value)
         {
     case 0:
-        return _("Maternelle");
+        return _(L"Maternelle");
         break;
     case 1:
-        return _("Grade 1 (\U000000C9col Primaire)");
+        return _(L"Grade 1 (\U000000C9col Primaire)");
         break;
     case 2:
-        return _("Grade 2 (\U000000C9col Primaire)");
+        return _(L"Grade 2 (\U000000C9col Primaire)");
         break;
     case 3:
-        return _("Grade 3 (\U000000C9col Primaire)");
+        return _(L"Grade 3 (\U000000C9col Primaire)");
         break;
     case 4:
-        return _("Grade 4 (\U000000C9col Primaire)");
+        return _(L"Grade 4 (\U000000C9col Primaire)");
         break;
     case 5:
-        return _("Grade 5 (\U000000C9col Primaire)");
+        return _(L"Grade 5 (\U000000C9col Primaire)");
         break;
     case 6:
-        return _("Grade 6 (\U000000C9col Primaire)");
+        return _(L"Grade 6 (\U000000C9col Primaire)");
         break;
     case 7:
-        return _("1 Secondaire (\U000000C9col Secondaire)");
+        return _(L"1 Secondaire (\U000000C9col Secondaire)");
         break;
     case 8:
-        return _("2 Secondaire (\U000000C9col Secondaire)");
+        return _(L"2 Secondaire (\U000000C9col Secondaire)");
         break;
     case 9:
-        return _("3 Secondaire (\U000000C9col Secondaire)");
+        return _(L"3 Secondaire (\U000000C9col Secondaire)");
         break;
     case 10:
-        return _("4 Secondaire (\U000000C9col Secondaire)");
+        return _(L"4 Secondaire (\U000000C9col Secondaire)");
         break;
     case 11:
-        return _("5 Secondaire (\U000000C9col Secondaire)");
+        return _(L"5 Secondaire (\U000000C9col Secondaire)");
         break;
     case 12:
-        return _("CEGEP, year 1");
+        return _(L"CEGEP, year 1");
         break;
     case 13:
-        return _("CEGEP, year 2");
+        return _(L"CEGEP, year 2");
         break;
     case 14:
-        return _("University, year 1");
+        return _(L"University, year 1");
         break;
     case 15:
-        return _("University, year 2");
+        return _(L"University, year 2");
         break;
     case 16:
-        return _("University, year 3");
+        return _(L"University, year 3");
         break;
     // university graduate  system is the same in Quebec as K-12
     default:
@@ -876,43 +876,43 @@ wxString ReadabilityMessages::GetEnglandWalesScaleLabel(size_t value)
     switch (value)
         {
     case 0:
-        return _("Key stage 1 (year 1)");
+        return _(L"Key stage 1 (year 1)");
         break;
     case 1:
-        return _("Key stage 1 (year 2)");
+        return _(L"Key stage 1 (year 2)");
         break;
     case 2:
-        return _("Key stage 2 (year 3)");
+        return _(L"Key stage 2 (year 3)");
         break;
     case 3:
-        return _("Key stage 2 (year 4)");
+        return _(L"Key stage 2 (year 4)");
         break;
     case 4:
-        return _("Key stage 2 (year 5)");
+        return _(L"Key stage 2 (year 5)");
         break;
     case 5:
-        return _("Key stage 2 (year 6)");
+        return _(L"Key stage 2 (year 6)");
         break;
     case 6:
-        return _("Key stage 3 (year 7)");
+        return _(L"Key stage 3 (year 7)");
         break;
     case 7:
-        return _("Key stage 3 (year 8)");
+        return _(L"Key stage 3 (year 8)");
         break;
     case 8:
-        return _("Key stage 3 (year 9)");
+        return _(L"Key stage 3 (year 9)");
         break;
     case 9:
-        return _("Key stage 4 (year 10)");
+        return _(L"Key stage 4 (year 10)");
         break;
     case 10:
-        return _("Key stage 4 (year 11)");
+        return _(L"Key stage 4 (year 11)");
         break;
     case 11:
-        return _("Sixth Form, year 1");
+        return _(L"Sixth Form, year 1");
         break;
     case 12:
-        return _("Sixth Form, year 2");
+        return _(L"Sixth Form, year 2");
         break;
     // university graduate  system is the same in Quebec as K-12
     default:
@@ -926,25 +926,25 @@ wxString ReadabilityMessages::GetPostSecondaryScaleLabel(size_t value)
     switch (value)
         {
     case 13:
-        return _("University freshman");
+        return _(L"University freshman");
         break;
     case 14:
-        return _("University sophomore");
+        return _(L"University sophomore");
         break;
     case 15:
-        return _("University junior");
+        return _(L"University junior");
         break;
     case 16:
-        return _("University senior");
+        return _(L"University senior");
         break;
     case 17:
-        return _("Post-graduate freshman");
+        return _(L"Post-graduate freshman");
         break;
     case 18:
-        return _("Post-graduate sophomore");
+        return _(L"Post-graduate sophomore");
         break;
     case 19:
-        return _("Doctorate");
+        return _(L"Doctorate");
         break;
     default:
         return wxEmptyString;
@@ -958,7 +958,7 @@ wxString ReadabilityMessages::GetGradeScaleDescription(double value) const
     split_k12_plus_grade_score(value, grade, month);
 
     return wxString::Format(
-        _("This document is at least suitable for a reader at the %s%s, %s%s level."),
+        _(L"This document is at least suitable for a reader at the %s%s, %s%s level."),
         GetHighlightBegin(),
         GetGradeScaleLongLabel(grade),
         GetMonthLabel(month),
@@ -972,7 +972,7 @@ wxString ReadabilityMessages::GetGradeScaleDescription(size_t value) const
     value = truncate_k12_plus_grade(value);
 
     return wxString::Format(
-        _("This document is at least suitable for a reader at the %s%s%s level."),
+        _(L"This document is at least suitable for a reader at the %s%s%s level."),
         GetHighlightBegin(),
         GetGradeScaleLongLabel(value),
         GetHighlightEnd());
@@ -986,7 +986,7 @@ wxString ReadabilityMessages::GetGradeScaleDescription(size_t firstGrade, size_t
     secondGrade = truncate_k12_plus_grade(secondGrade);
 
     return wxString::Format(
-        _("This document is at least suitable for a reader between the %s%s%s to %s%s%s level."),
+        _(L"This document is at least suitable for a reader between the %s%s%s to %s%s%s level."),
         GetHighlightBegin(),
         GetGradeScaleLongLabel(firstGrade),
         GetHighlightEnd(),
@@ -1002,28 +1002,28 @@ wxString ReadabilityMessages::GetDanielsonBryan2Description(const readability::f
     switch (diffLevel)
         {
     case readability::flesch_difficulty::flesch_very_difficult:
-        description = _("Text is very difficult to read, college level.");
+        description = _(L"Text is very difficult to read, college level.");
         break;
     case readability::flesch_difficulty::flesch_difficult:
-        description = _("Text is difficult to read, high school level.");
+        description = _(L"Text is difficult to read, high school level.");
         break;
     case readability::flesch_difficulty::flesch_fairly_difficult:
-        description = _("Text is fairly difficult to read, junior high school level.");
+        description = _(L"Text is fairly difficult to read, junior high school level.");
         break;
     case readability::flesch_difficulty::flesch_standard:
-        description = _("Text is average in terms of reading difficulty, sixth-grade level.");
+        description = _(L"Text is average in terms of reading difficulty, sixth-grade level.");
         break;
     case readability::flesch_difficulty::flesch_fairly_easy:
-        description = _("Text is fairly easy to read, fifth-grade level.");
+        description = _(L"Text is fairly easy to read, fifth-grade level.");
         break;
     case readability::flesch_difficulty::flesch_easy:
-        description = _("Text is easy to read, fourth-grade level.");
+        description = _(L"Text is easy to read, fourth-grade level.");
         break;
     case readability::flesch_difficulty::flesch_very_easy:
-        description = _("Text is very easy to read, third-grade level.");
+        description = _(L"Text is very easy to read, third-grade level.");
         break;
     default:
-        description = _("Unable to determine difficulty.");
+        description = _(L"Unable to determine difficulty.");
         break;
         };
     return description;
@@ -1036,28 +1036,28 @@ wxString ReadabilityMessages::GetFleschDescription(const readability::flesch_dif
     switch (diffLevel)
         {
     case readability::flesch_difficulty::flesch_very_difficult:
-        description = _("Text is very difficult to read.");
+        description = _(L"Text is very difficult to read.");
         break;
     case readability::flesch_difficulty::flesch_difficult:
-        description = _("Text is difficult to read.");
+        description = _(L"Text is difficult to read.");
         break;
     case readability::flesch_difficulty::flesch_fairly_difficult:
-        description = _("Text is fairly difficult to read.");
+        description = _(L"Text is fairly difficult to read.");
         break;
     case readability::flesch_difficulty::flesch_standard:
-        description = _("Text is average (i.e., \"Plain English\") in terms of reading difficulty.");
+        description = _(L"Text is average (i.e., \"Plain English\") in terms of reading difficulty.");
         break;
     case readability::flesch_difficulty::flesch_fairly_easy:
-        description = _("Text is fairly easy to read.");
+        description = _(L"Text is fairly easy to read.");
         break;
     case readability::flesch_difficulty::flesch_easy:
-        description = _("Text is easy to read.");
+        description = _(L"Text is easy to read.");
         break;
     case readability::flesch_difficulty::flesch_very_easy:
-        description = _("Text is very easy to read.");
+        description = _(L"Text is very easy to read.");
         break;
     default:
-        description = _("Unable to determine difficulty.");
+        description = _(L"Unable to determine difficulty.");
         break;
         };
     return description;
@@ -1069,19 +1069,19 @@ wxString ReadabilityMessages::GetEflawDescription(const readability::eflaw_diffi
     switch (diffLevel)
         {
     case readability::eflaw_difficulty::eflaw_very_confusing:
-        return _("Text is very confusing to read.");
+        return _(L"Text is very confusing to read.");
         break;
     case readability::eflaw_difficulty::eflaw_confusing:
-        return _("Text is confusing to read.");
+        return _(L"Text is confusing to read.");
         break;
     case readability::eflaw_difficulty::eflaw_easy:
-        return _("Text is easy to read.");
+        return _(L"Text is easy to read.");
         break;
     case readability::eflaw_difficulty::eflaw_very_easy:
-        return _("Text is very easy to read.");
+        return _(L"Text is very easy to read.");
         break;
     default:
-        return _("Unable to determine difficulty.");
+        return _(L"Unable to determine difficulty.");
         };
     }
 
@@ -1091,17 +1091,17 @@ wxString ReadabilityMessages::GetLixDescription(const readability::lix_difficult
     switch (diffLevel)
         {
     case readability::lix_difficulty::lix_very_difficult:
-        return _("Text is very difficult to read.");
+        return _(L"Text is very difficult to read.");
     case readability::lix_difficulty::lix_difficult:
-        return _("Text is difficult to read.");
+        return _(L"Text is difficult to read.");
     case readability::lix_difficulty::lix_average:
-        return _("Text is average in terms of reading difficulty.");
+        return _(L"Text is average in terms of reading difficulty.");
     case readability::lix_difficulty::lix_easy:
-        return _("Text is easy to read.");
+        return _(L"Text is easy to read.");
     case readability::lix_difficulty::lix_very_easy:
-        return _("Text is very easy to read.");
+        return _(L"Text is very easy to read.");
     default:
-        return _("Unable to determine difficulty.");
+        return _(L"Unable to determine difficulty.");
         };
     }
 
@@ -1111,25 +1111,25 @@ wxString ReadabilityMessages::GetLixDescription(const readability::german_lix_di
     switch (diffLevel)
         {
     case readability::german_lix_difficulty::german_lix_very_easy:
-        return _("Text is very easy to read.");
+        return _(L"Text is very easy to read.");
     case readability::german_lix_difficulty::german_lix_children_and_youth:
-        return _("Text is at a children and young adult level of difficulty.");
+        return _(L"Text is at a children and young adult level of difficulty.");
     case readability::german_lix_difficulty::german_lix_easy:
-        return _("Text is easy to read.");
+        return _(L"Text is easy to read.");
     case readability::german_lix_difficulty::german_lix_adult_fiction:
-        return _("Text is at an adult fiction level of difficulty.");
+        return _(L"Text is at an adult fiction level of difficulty.");
     case readability::german_lix_difficulty::german_lix_average:
-        return _("Text is average in terms of reading difficulty.");
+        return _(L"Text is average in terms of reading difficulty.");
     case readability::german_lix_difficulty::german_lix_nonfiction:
-        return _("Text is at a non-fiction level of difficulty.");
+        return _(L"Text is at a non-fiction level of difficulty.");
     case readability::german_lix_difficulty::german_lix_difficult:
-        return _("Text is difficult to read.");
+        return _(L"Text is difficult to read.");
     case readability::german_lix_difficulty::german_lix_technical:
-        return _("Text is at a technical document level of difficulty.");
+        return _(L"Text is at a technical document level of difficulty.");
     case readability::german_lix_difficulty::german_lix_very_difficult:
-        return _("Text is very difficult to read.");
+        return _(L"Text is very difficult to read.");
     default:
-        return _("Unable to determine difficulty.");
+        return _(L"Unable to determine difficulty.");
         };
     }
 
@@ -1139,28 +1139,28 @@ wxString ReadabilityMessages::GetFraseDescription(const size_t frazeLevel)
     switch (frazeLevel)
         {
     case 1:
-        return _("Beginning (Level I)");
+        return _(L"Beginning (Level I)");
     case 2:
-        return _("Intermediate (Level II)");
+        return _(L"Intermediate (Level II)");
     case 3:
-        return _("Advanced Intermediate (Level III)");
+        return _(L"Advanced Intermediate (Level III)");
     case 4:
-        return _("Advanced (Level IV)");
+        return _(L"Advanced (Level IV)");
     default:
-        return _("Unknown Level");
+        return _(L"Unknown Level");
         };
     }
 
 //-------------------------------------------------------
 wxString ReadabilityMessages::GetDrpUnitDescription(const size_t drpScore)
     {
-    return wxString::Format(_("DRP (difficulty) Units: %zu"), drpScore);
+    return wxString::Format(_(L"DRP (difficulty) Units: %zu"), drpScore);
     }
 
 //-------------------------------------------------------
 wxString ReadabilityMessages::GetPredictedClozeDescription(const int clozeScore)
     {
-    return wxString::Format(_("Predicted mean cloze score: %i%%"), clozeScore);
+    return wxString::Format(_(L"Predicted mean cloze score: %i%%"), clozeScore);
     }
 
 //-------------------------------------------------------

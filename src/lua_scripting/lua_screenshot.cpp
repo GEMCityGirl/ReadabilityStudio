@@ -212,7 +212,7 @@ namespace LuaScripting
         if (LuaEditWordListDlg == nullptr)
             {
             LuaEditWordListDlg = new EditWordListDlg(wxGetApp().GetMainFrame(),
-                wxID_ANY, _("Edit Phrase List"));
+                wxID_ANY, _(L"Edit Phrase List"));
             }
         LuaEditWordListDlg->SetPhraseFileMode(true);
         LuaEditWordListDlg->SetFilePath(wxString(luaL_checkstring(L, 1), wxConvUTF8));
@@ -822,8 +822,8 @@ namespace LuaScripting
         if (lua_gettop(L) < 5)
             {
             wxMessageBox(
-                wxString::Format(_("%s: Invalid number of arguments."), wxString(__WXFUNCTION__)),
-                _("Script Error"), wxOK|wxICON_EXCLAMATION);
+                wxString::Format(_(L"%s: Invalid number of arguments."), wxString(__WXFUNCTION__)),
+                _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
             }
@@ -845,8 +845,8 @@ namespace LuaScripting
         if (lua_gettop(L) < 7)
             {
             wxMessageBox(wxString::Format(
-                _("%s: Invalid number of arguments."), wxString(__WXFUNCTION__)),
-                _("Script Error"), wxOK|wxICON_EXCLAMATION);
+                _(L"%s: Invalid number of arguments."), wxString(__WXFUNCTION__)),
+                _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
             }
@@ -1069,12 +1069,12 @@ namespace LuaScripting
         if (LuaSelectProjectType == nullptr)
             {
             wxArrayString docNames;
-            docNames.Add(_("Standard Project"));
-            docNames.Add(_("Batch Project"));
+            docNames.Add(_(L"Standard Project"));
+            docNames.Add(_(L"Batch Project"));
             wxArrayString docDescriptions;
             LuaSelectProjectType = new RadioBoxDlg(wxGetApp().GetMainFrame(),
-                _("Select Project Type"), wxEmptyString,
-                _("Project types:"), _("New Project"),
+                _(L"Select Project Type"), wxEmptyString,
+                _(L"Project types:"), _(L"New Project"),
                 docNames, docDescriptions);
             }
         LuaSelectProjectType->SetSelection(lua_tonumber(L, 1)-1/*make zero-indexed*/);

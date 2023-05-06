@@ -33,7 +33,7 @@ public:
         @param size The dialog's size.
         @param style The dialog's style.*/
     explicit WordListDlg(wxWindow* parent, wxWindowID id = wxID_ANY,
-        const wxString& caption = _("Word Lists"), const wxPoint& pos = wxDefaultPosition,
+        const wxString& caption = _(L"Word Lists"), const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize, long style = wxCAPTION|wxCLOSE_BOX|wxRESIZE_BORDER);
     /// @private
     ~WordListDlg()

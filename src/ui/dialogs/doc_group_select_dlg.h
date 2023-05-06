@@ -32,7 +32,7 @@ public:
         @param size The dialog's size.
         @param style The dialog's style.*/
     explicit DocGroupSelectDlg(wxWindow* parent,
-             wxWindowID id = wxID_ANY, const wxString& caption = _("Select Labeling"),
+             wxWindowID id = wxID_ANY, const wxString& caption = _(L"Select Labeling"),
              const wxPoint& pos = wxDefaultPosition,
              const wxSize& size = wxDefaultSize,
              long style = wxDEFAULT_DIALOG_STYLE|wxCLIP_CHILDREN|wxRESIZE_BORDER)

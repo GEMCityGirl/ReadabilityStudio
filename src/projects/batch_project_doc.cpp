@@ -126,8 +126,8 @@ bool BatchProjectDoc::OnCreate(const wxString& path, long flags)
     //see if anything is even licensed first
     if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
         {
-        LogMessage(_("You are not currently licensed to create a new batch project."),
-            _("Error"), wxOK|wxICON_ERROR);
+        LogMessage(_(L"You are not currently licensed to create a new batch project."),
+            _(L"Error"), wxOK|wxICON_ERROR);
         return false;
         }
     if (flags & wxDOC_NEW)
@@ -166,7 +166,7 @@ bool BatchProjectDoc::OnNewDocument()
     //load appended template file (if there is one)
     LoadAppendedDocument();
 
-    wxProgressDialog progressDlg(_("Creating Project"), _("Analyzing documents..."),
+    wxProgressDialog progressDlg(_(L"Creating Project"), _(L"Analyzing documents..."),
         static_cast<int>(GetSourceFilesInfo().size()+12),
         nullptr, wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_CAN_ABORT|wxPD_APP_MODAL);
     progressDlg.Centre();
@@ -187,19 +187,19 @@ bool BatchProjectDoc::OnNewDocument()
     if (!CheckForFailedDocuments())
         { LoadWarningsSection(); }
 
-    if (!progressDlg.Update(counter++, _("Loading Dolch statistics...")))
+    if (!progressDlg.Update(counter++, _(L"Loading Dolch statistics...")))
         { return false; }
     LoadDolchSection();
 
-    if (!progressDlg.Update(counter++, _("Loading difficult words...")))
+    if (!progressDlg.Update(counter++, _(L"Loading difficult words...")))
         { return false; }
     LoadHardWordsSection();
 
-    if (!progressDlg.Update(counter++, _("Loading graphs...")))
+    if (!progressDlg.Update(counter++, _(L"Loading graphs...")))
         { return false; }
     DisplayReadabilityGraphs();//needs to be called before LoadScores to calculate Fry and Raygor
 
-    if (!progressDlg.Update(counter++, _("Loading scores...")))
+    if (!progressDlg.Update(counter++, _(L"Loading scores...")))
         { return false; }
     LoadScoresSection();
 
@@ -215,7 +215,7 @@ bool BatchProjectDoc::OnNewDocument()
         { return false; }
     DisplayHistograms();
 
-    if (!progressDlg.Update(counter++, _("Loading grammar information...")))
+    if (!progressDlg.Update(counter++, _(L"Loading grammar information...")))
         { return false; }
     DisplayGrammar();
 
@@ -348,7 +348,7 @@ bool BatchProjectDoc::CheckForFailedDocuments()
                     wxGetApp().GetAppOptions().GetRibbonHoverColor(),
                     wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
                     LD_YES_NO_BUTTONS, wxID_ANY,
-                    _("Warning"), _("The following documents could not be loaded because they either do not contain enough valid text or could not be found. Do you wish to remove these documents from this project?"));
+                    _(L"Warning"), _(L"The following documents could not be loaded because they either do not contain enough valid text or could not be found. Do you wish to remove these documents from this project?"));
     if (failedDocs.GetCount() &&
         listDlg.ShowModal() == wxID_YES)
         {
@@ -425,8 +425,8 @@ void BatchProjectDoc::RefreshProject()
     LoadAppendedDocument();
 
     BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
-    wxProgressDialog progressDlg(wxString::Format(_("Reloading \"%s\""), GetTitle()),
-        _("Analyzing documents..."),
+    wxProgressDialog progressDlg(wxString::Format(_(L"Reloading \"%s\""), GetTitle()),
+        _(L"Analyzing documents..."),
         IsDocumentReindexingRequired() ? static_cast<int>(GetSourceFilesInfo().size()+12) : 12,
         wxGetApp().GetMainFrame(), wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_APP_MODAL);
     progressDlg.Centre();
@@ -461,16 +461,16 @@ void BatchProjectDoc::RefreshProject()
 
     const wxString currentlySelectedFile = view->GetCurrentlySelectedFileName();//get this before list controls are recreated
 
-    progressDlg.Update(counter++, _("Loading Dolch statistics..."));
+    progressDlg.Update(counter++, _(L"Loading Dolch statistics..."));
     LoadDolchSection();
 
-    progressDlg.Update(counter++, _("Loading difficult words..."));
+    progressDlg.Update(counter++, _(L"Loading difficult words..."));
     LoadHardWordsSection();
 
-    progressDlg.Update(counter++, _("Loading graphs..."));
+    progressDlg.Update(counter++, _(L"Loading graphs..."));
     DisplayReadabilityGraphs();//needs to be called before LoadScores to calculate Fry and Raygor
 
-    progressDlg.Update(counter++, _("Loading scores..."));
+    progressDlg.Update(counter++, _(L"Loading scores..."));
     LoadScoresSection();
 
     progressDlg.Update(counter++);
@@ -482,7 +482,7 @@ void BatchProjectDoc::RefreshProject()
     progressDlg.Update(counter++);
     DisplayHistograms();
 
-    progressDlg.Update(counter++, _("Loading grammar information..."));
+    progressDlg.Update(counter++, _(L"Loading grammar information..."));
     DisplayGrammar();
 
     progressDlg.Update(counter++);
@@ -1648,16 +1648,16 @@ void BatchProjectDoc::LoadScoresSection()
                         }
                     else if (fryGraph->GetScores().at(i).IsScoreInvalid())
                         {
-                        m_scoreRawData->SetItemText(i, currentColumn++, _("Text is too difficult to be plotted."));
+                        m_scoreRawData->SetItemText(i, currentColumn++, _(L"Text is too difficult to be plotted."));
                         (*pos)->ReviewTestGoal(ReadabilityMessages::FRY(), std::numeric_limits<double>::quiet_NaN());
                         }
                     else if (fryGraph->GetScores().at(i).IsScoreOutOfGradeRange())
                         {
                         wxString TOO_DIFFICULT_DESCRIPTION =
-                            _("Text is too difficult to be classified to a specific grade level because it contains too many ");
+                            _(L"Text is too difficult to be classified to a specific grade level because it contains too many ");
                         TOO_DIFFICULT_DESCRIPTION += fryGraph->GetScores().at(i).IsWordsHard() ? 
-                                                    _("high syllable words.") :
-                                                    _("long sentences.");
+                                                    _(L"high syllable words.") :
+                                                    _(L"long sentences.");
                         m_scoreRawData->SetItemText(i, currentColumn++, TOO_DIFFICULT_DESCRIPTION);
                         (*pos)->ReviewTestGoal(ReadabilityMessages::FRY(),
                             std::numeric_limits<double>::quiet_NaN());
@@ -1691,18 +1691,18 @@ void BatchProjectDoc::LoadScoresSection()
                     else if (fryGraph->GetScores().at(i).IsScoreInvalid())
                         {
                         m_scoreRawData->SetItemText(i, currentColumn++,
-                            _("Text is too difficult to be plotted."));
+                            _(L"Text is too difficult to be plotted."));
                         (*pos)->ReviewTestGoal(ReadabilityMessages::GPM_FRY(),
                             std::numeric_limits<double>::quiet_NaN());
                         }
                     else if (fryGraph->GetScores().at(i).IsScoreOutOfGradeRange())
                         {
                         wxString TOO_DIFFICULT_DESCRIPTION =
-                            _("Text is too difficult to be classified to a specific grade level "
+                            _(L"Text is too difficult to be classified to a specific grade level "
                               "because it contains too many ");
                         TOO_DIFFICULT_DESCRIPTION += fryGraph->GetScores().at(i).IsWordsHard() ? 
-                                                    _("high syllable words.") :
-                                                    _("long sentences.");
+                                                    _(L"high syllable words.") :
+                                                    _(L"long sentences.");
                         m_scoreRawData->SetItemText(i, currentColumn++, TOO_DIFFICULT_DESCRIPTION);
                         (*pos)->ReviewTestGoal(ReadabilityMessages::GPM_FRY(),
                             std::numeric_limits<double>::quiet_NaN());
@@ -1739,19 +1739,19 @@ void BatchProjectDoc::LoadScoresSection()
                     else if (schwartzGraph->GetScores().at(i).IsScoreInvalid())
                         {
                         m_scoreRawData->SetItemText(i, currentColumn++,
-                            _("Text is too difficult to be plotted."));
+                            _(L"Text is too difficult to be plotted."));
                         (*pos)->ReviewTestGoal(ReadabilityMessages::SCHWARTZ(),
                             std::numeric_limits<double>::quiet_NaN());
                         }
                     else if (schwartzGraph->GetScores().at(i).IsScoreOutOfGradeRange())
                         {
                         wxString TOO_DIFFICULT_DESCRIPTION =
-                            _("Text is too difficult to be classified to a specific grade "
+                            _(L"Text is too difficult to be classified to a specific grade "
                               "level because it contains too many ");
                         TOO_DIFFICULT_DESCRIPTION +=
                             schwartzGraph->GetScores().at(i).IsWordsHard() ? 
-                                _("high syllable words.") :
-                                _("long sentences.");
+                                _(L"high syllable words.") :
+                                _(L"long sentences.");
                         m_scoreRawData->SetItemText(i, currentColumn++,
                             TOO_DIFFICULT_DESCRIPTION);
                         (*pos)->ReviewTestGoal(ReadabilityMessages::SCHWARTZ(),
@@ -1787,18 +1787,18 @@ void BatchProjectDoc::LoadScoresSection()
                     else if (raygorGraph->GetScores().at(i).IsScoreInvalid())
                         {
                         m_scoreRawData->SetItemText(i, currentColumn++,
-                            _("Text is too difficult to be plotted."));
+                            _(L"Text is too difficult to be plotted."));
                         (*pos)->ReviewTestGoal(ReadabilityMessages::RAYGOR(),
                             std::numeric_limits<double>::quiet_NaN());
                         }
                     else if (raygorGraph->GetScores().at(i).IsScoreOutOfGradeRange())
                         {
                         wxString TOO_DIFFICULT_DESCRIPTION =
-                            _("Text is too difficult to be classified to a specific grade level "
+                            _(L"Text is too difficult to be classified to a specific grade level "
                               "because it contains too many ");
                         TOO_DIFFICULT_DESCRIPTION += raygorGraph->GetScores().at(i).IsWordsHard() ? 
-                                                    _("6+ character words.") :
-                                                    _("long sentences.");
+                                                    _(L"6+ character words.") :
+                                                    _(L"long sentences.");
                         m_scoreRawData->SetItemText(i, currentColumn++, TOO_DIFFICULT_DESCRIPTION);
                         (*pos)->ReviewTestGoal(ReadabilityMessages::RAYGOR(),
                             std::numeric_limits<double>::quiet_NaN());
@@ -1847,7 +1847,7 @@ void BatchProjectDoc::LoadScoresSection()
                     else if (fraseGraph->GetScores().at(i).IsScoreInvalid())
                         {
                         m_scoreRawData->SetItemText(i, currentColumn++,
-                            _("Text is too difficult to be plotted."));
+                            _(L"Text is too difficult to be plotted."));
                         (*pos)->ReviewTestGoal(ReadabilityMessages::FRASE(),
                             std::numeric_limits<double>::quiet_NaN());
                         }
@@ -2047,7 +2047,7 @@ void BatchProjectDoc::LoadScoresSection()
         {
         m_scoreStatsData->SetItemText(currentRow, 0, ReadabilityMessages::GetDolchLabel());
         for (size_t j = 1; j < m_scoreStatsData->GetColumnCount(); ++j)
-            { m_scoreStatsData->SetItemText(currentRow, j, _("N/A")); }
+            { m_scoreStatsData->SetItemText(currentRow, j, _(L"N/A")); }
         ++currentRow;
         }
     //Summarize the custom tests' scores
@@ -2111,9 +2111,9 @@ void BatchProjectDoc::DisplayWarnings()
     //initialize the warnings listctrl if it doesn't have any columns in it yet
     if (view->GetWarningsView()->GetColumnCount() == 0)
         {
-        view->GetWarningsView()->InsertColumn(0, _("Document"));
-        view->GetWarningsView()->InsertColumn(1, _("Label"));
-        view->GetWarningsView()->InsertColumn(2, _("Warning"));
+        view->GetWarningsView()->InsertColumn(0, _(L"Document"));
+        view->GetWarningsView()->InsertColumn(1, _(L"Label"));
+        view->GetWarningsView()->InsertColumn(2, _(L"Warning"));
         view->GetWarningsView()->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
         }
 
@@ -2158,8 +2158,8 @@ void BatchProjectDoc::DisplayScores()
             view->GetScoresView().AddWindow(listView);
             }
         listView->DeleteAllColumns();
-        listView->InsertColumn(0, _("Document"));
-        listView->InsertColumn(1, _("Label"));
+        listView->InsertColumn(0, _(L"Document"));
+        listView->InsertColumn(1, _(L"Label"));
         listView->SetColumnFilePathTruncationMode(0, GetFilePathTruncationMode());
         //Note, the ordering of these columns must match the ordering in LoadScores()
         //add columns for the included standard tests
@@ -2221,8 +2221,8 @@ void BatchProjectDoc::DisplayScores()
             {
             goalsList = new ListCtrlEx(view->GetSplitter(), BaseProjectView::READABILITY_GOALS_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxLC_VIRTUAL|wxBORDER_SUNKEN);
             goalsList->Hide();
-            goalsList->SetLabel(_("Goals"));
-            goalsList->SetName(_("Goals"));
+            goalsList->SetLabel(_(L"Goals"));
+            goalsList->SetName(_(L"Goals"));
             goalsList->SetSortable(true);
             goalsList->EnableItemViewOnDblClick();
             goalsList->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
@@ -2232,9 +2232,9 @@ void BatchProjectDoc::DisplayScores()
             }
         goalsList->DeleteAllColumns();
         // add columns for all the goals x document
-        goalsList->InsertColumn(0, _("Document"));
+        goalsList->InsertColumn(0, _(L"Document"));
         goalsList->SetColumnFilePathTruncationMode(0, GetFilePathTruncationMode());
-        goalsList->InsertColumn(1, _("Label"));
+        goalsList->InsertColumn(1, _(L"Label"));
         for (const auto& goal : GetTestGoals())
             {
             if (!goal.HasGoals())
@@ -2244,9 +2244,9 @@ void BatchProjectDoc::DisplayScores()
 
             // only include min or max goal columns if there is an actual goal for it.
             if (!std::isnan(goal.GetMinGoal()))
-                { goalsList->InsertColumn(goalsList->GetColumnCount(), wxString::Format(_("%s Min"), testName)); }
+                { goalsList->InsertColumn(goalsList->GetColumnCount(), wxString::Format(_(L"%s Min"), testName)); }
             if (!std::isnan(goal.GetMaxGoal()))
-                { goalsList->InsertColumn(goalsList->GetColumnCount(), wxString::Format(_("%s Max"), testName)); }
+                { goalsList->InsertColumn(goalsList->GetColumnCount(), wxString::Format(_(L"%s Max"), testName)); }
             }
         for (const auto& goal : GetStatGoals())
             {
@@ -2258,9 +2258,9 @@ void BatchProjectDoc::DisplayScores()
 
             // only include min or max goal columns if there is an actual goal for it.
             if (!std::isnan(goal.GetMinGoal()))
-                { goalsList->InsertColumn(goalsList->GetColumnCount(), wxString::Format(_("%s Min"), goalName)); }
+                { goalsList->InsertColumn(goalsList->GetColumnCount(), wxString::Format(_(L"%s Min"), goalName)); }
             if (!std::isnan(goal.GetMaxGoal()))
-                { goalsList->InsertColumn(goalsList->GetColumnCount(), wxString::Format(_("%s Max"), goalName)); }
+                { goalsList->InsertColumn(goalsList->GetColumnCount(), wxString::Format(_(L"%s Max"), goalName)); }
             }
         m_goalsData->DeleteAllItems();
         m_goalsData->SetSize(m_docs.size(), goalsList->GetColumnCount());
@@ -2347,9 +2347,9 @@ void BatchProjectDoc::DisplayScores()
         if (i == 0)
             {
             goalsList->DeleteAllColumns();
-            goalsList->InsertColumn(0, _("Status"));
+            goalsList->InsertColumn(0, _(L"Status"));
             goalsList->SetVirtualDataSize(1);
-            goalsList->SetItemText(0, 0, _("All documents passing."));
+            goalsList->SetItemText(0, 0, _(L"All documents passing."));
             goalsList->SetVirtualDataSize(1);
             goalsList->DistributeColumns();
             }
@@ -2360,12 +2360,12 @@ void BatchProjectDoc::DisplayScores()
         view->GetScoresView().RemoveWindowById(BaseProjectView::READABILITY_GOALS_PAGE_ID);
         }
 
-    DisplaySummaryStatisticsWindow(_("Score Summary"), BaseProjectView::ID_SCORE_STATS_LIST_PAGE_ID, m_scoreStatsData, _("Test"), wxEmptyString, false);
+    DisplaySummaryStatisticsWindow(_(L"Score Summary"), BaseProjectView::ID_SCORE_STATS_LIST_PAGE_ID, m_scoreStatsData, _(L"Test"), wxEmptyString, false);
     //aggregated grade level scores, listed by document
     if (IsIncludingGradeTest())
         {
-        DisplaySummaryStatisticsWindow(_("Grade Score Summary (x Document)"),
-            BaseProjectView::ID_AGGREGATED_DOC_SCORES_LIST_PAGE_ID, m_aggregatedGradeScoresData, _("Document"), _("Label"), true);
+        DisplaySummaryStatisticsWindow(_(L"Grade Score Summary (x Document)"),
+            BaseProjectView::ID_AGGREGATED_DOC_SCORES_LIST_PAGE_ID, m_aggregatedGradeScoresData, _(L"Document"), _(L"Label"), true);
         }
     else
         { view->GetScoresView().RemoveWindowById(BaseProjectView::ID_AGGREGATED_DOC_SCORES_LIST_PAGE_ID); }
@@ -2373,8 +2373,8 @@ void BatchProjectDoc::DisplayScores()
     //aggregated predicted cloze scores, listed by document
     if (IsIncludingClozeTest())
         {
-        DisplaySummaryStatisticsWindow(_("Cloze Score Summary (x Document)"),
-            BaseProjectView::ID_AGGREGATED_CLOZE_SCORES_LIST_PAGE_ID, m_aggregatedClozeScoresData, _("Document"), _("Label"), true);
+        DisplaySummaryStatisticsWindow(_(L"Cloze Score Summary (x Document)"),
+            BaseProjectView::ID_AGGREGATED_CLOZE_SCORES_LIST_PAGE_ID, m_aggregatedClozeScoresData, _(L"Document"), _(L"Label"), true);
         }
     else
         { view->GetScoresView().RemoveWindowById(BaseProjectView::ID_AGGREGATED_CLOZE_SCORES_LIST_PAGE_ID); }
@@ -2433,22 +2433,22 @@ void BatchProjectDoc::DisplaySummaryStatisticsWindow(const wxString& windowName,
     listView->InsertColumn(currentColumnCount++, firstColumnName);
     if (optionalSecondColumnName.length())
         { listView->InsertColumn(currentColumnCount++, optionalSecondColumnName); }
-    listView->InsertColumn(currentColumnCount++, _("Valid N"));
-    listView->InsertColumn(currentColumnCount++, _("Minimum"));
-    listView->InsertColumn(currentColumnCount++, _("Maximum"));
-    listView->InsertColumn(currentColumnCount++, _("Range"));
-    listView->InsertColumn(currentColumnCount++, _("Mode(s)"));
-    listView->InsertColumn(currentColumnCount++, _("Means"));
+    listView->InsertColumn(currentColumnCount++, _(L"Valid N"));
+    listView->InsertColumn(currentColumnCount++, _(L"Minimum"));
+    listView->InsertColumn(currentColumnCount++, _(L"Maximum"));
+    listView->InsertColumn(currentColumnCount++, _(L"Range"));
+    listView->InsertColumn(currentColumnCount++, _(L"Mode(s)"));
+    listView->InsertColumn(currentColumnCount++, _(L"Means"));
     //if verbose then add the extra columns
     if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
         {
-        listView->InsertColumn(currentColumnCount++, _("Median"));
-        listView->InsertColumn(currentColumnCount++, _("Skewness"));
-        listView->InsertColumn(currentColumnCount++, _("Kurtosis"));
-        listView->InsertColumn(currentColumnCount++, _("Std. Dev."));
-        listView->InsertColumn(currentColumnCount++, _("Variance"));
-        listView->InsertColumn(currentColumnCount++, _("Lower Quartile"));
-        listView->InsertColumn(currentColumnCount++, _("Upper Quartile"));
+        listView->InsertColumn(currentColumnCount++, _(L"Median"));
+        listView->InsertColumn(currentColumnCount++, _(L"Skewness"));
+        listView->InsertColumn(currentColumnCount++, _(L"Kurtosis"));
+        listView->InsertColumn(currentColumnCount++, _(L"Std. Dev."));
+        listView->InsertColumn(currentColumnCount++, _(L"Variance"));
+        listView->InsertColumn(currentColumnCount++, _(L"Lower Quartile"));
+        listView->InsertColumn(currentColumnCount++, _(L"Upper Quartile"));
         }
     listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
     listView->SetVirtualDataProvider(data);
@@ -3808,39 +3808,39 @@ void BatchProjectDoc::DisplayHistograms()
         if (rTests->get_test().get_test_type() == readability::readability_test_type::grade_level)
             {
             DisplayHistogram(rTests->get_test().get_short_name().c_str(), rTests->get_test().get_interface_id(),
-                rTests->get_test().get_long_name().c_str(), _("Grade Levels"),
+                rTests->get_test().get_long_name().c_str(), _(L"Grade Levels"),
                 rTests->get_grade_point_collection(), rTests->is_included(), true, true);
             }
         else if (rTests->get_test().get_test_type() == readability::readability_test_type::index_value)
             {
             DisplayHistogram(rTests->get_test().get_short_name().c_str(), rTests->get_test().get_interface_id(),
-                rTests->get_test().get_long_name().c_str(), _("Index Values"),
+                rTests->get_test().get_long_name().c_str(), _(L"Index Values"),
                 rTests->get_index_point_collection(), rTests->is_included(), false, false);
             }
         else if (rTests->get_test().get_test_type() == readability::readability_test_type::predicted_cloze_score)
             {
             DisplayHistogram(rTests->get_test().get_short_name().c_str(), rTests->get_test().get_interface_id(),
-                rTests->get_test().get_long_name().c_str(), _("Predicted Cloze Scores"),
+                rTests->get_test().get_long_name().c_str(), _(L"Predicted Cloze Scores"),
                 rTests->get_cloze_point_collection(), rTests->is_included(), false, true);
             }
         else if (rTests->get_test().get_test_type() == readability::readability_test_type::index_value_and_grade_level)
             {
             DisplayHistogram(BatchProjectView::FormatIndexValuesLabel(rTests->get_test().get_short_name().c_str()), rTests->get_test().get_interface_id(),
                 BatchProjectView::FormatIndexValuesLabel(rTests->get_test().get_long_name().c_str()),
-                _("Index Values"),
+                _(L"Index Values"),
                 rTests->get_index_point_collection(), rTests->is_included(), false, false);
             DisplayHistogram(BatchProjectView::FormatGradeLevelsLabel(rTests->get_test().get_short_name().c_str()), rTests->get_test().get_interface_id(),
                 BatchProjectView::FormatGradeLevelsLabel(rTests->get_test().get_long_name().c_str()),
-                _("Grade Levels"),
+                _(L"Grade Levels"),
                 rTests->get_grade_point_collection(), rTests->is_included(), true, true);
             }
         else if (rTests->get_test().get_test_type() == readability::readability_test_type::grade_level_and_predicted_cloze_score)
             {
             DisplayHistogram(BatchProjectView::FormatGradeLevelsLabel(rTests->get_test().get_short_name().c_str()), rTests->get_test().get_interface_id(),
-                BatchProjectView::FormatGradeLevelsLabel(rTests->get_test().get_long_name().c_str()), _("Grade Levels"),
+                BatchProjectView::FormatGradeLevelsLabel(rTests->get_test().get_long_name().c_str()), _(L"Grade Levels"),
                 rTests->get_grade_point_collection(), rTests->is_included(), true, true);
             DisplayHistogram(BatchProjectView::FormatClozeValuesLabel(rTests->get_test().get_short_name().c_str()), rTests->get_test().get_interface_id(),
-                BatchProjectView::FormatClozeValuesLabel(rTests->get_test().get_long_name().c_str()), _("Predicted Cloze Scores"),
+                BatchProjectView::FormatClozeValuesLabel(rTests->get_test().get_long_name().c_str()), _(L"Predicted Cloze Scores"),
                 rTests->get_cloze_point_collection(), rTests->is_included(), false, true);
             }
         }
@@ -3851,9 +3851,9 @@ void BatchProjectDoc::DisplayHistograms()
         {
         auto& scoreDataset = m_customTestScores[(testPos-GetCustTestsInUse().begin())];
         DisplayHistogram(testPos->GetTestName(), testPos->GetIterator()->get_interface_id(), testPos->GetTestName(),
-            testPos->GetIterator()->get_test_type() == readability::readability_test_type::grade_level ? _("Grade Levels") :
-                testPos->GetIterator()->get_test_type() == readability::readability_test_type::index_value ? _("Index Values") :
-                _("Predicted Cloze Scores"),
+            testPos->GetIterator()->get_test_type() == readability::readability_test_type::grade_level ? _(L"Grade Levels") :
+                testPos->GetIterator()->get_test_type() == readability::readability_test_type::index_value ? _(L"Index Values") :
+                _(L"Predicted Cloze Scores"),
             scoreDataset, true, testPos->GetIterator()->get_test_type() == readability::readability_test_type::grade_level,
             (testPos->GetIterator()->get_test_type() == readability::readability_test_type::grade_level ||
              testPos->GetIterator()->get_test_type() == readability::readability_test_type::predicted_cloze_score));
@@ -3916,7 +3916,7 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
         histogram->ClearProperties();
         histogram->GetTitle() = GraphItems::Label(GraphItemInfo(topLabel).DPIScaling(canvas->GetDPIScaleFactor()).
                                                  Scaling(canvas->GetScaling()).Pen(wxNullPen));
-        histogram->GetScalingAxis().GetTitle().SetText(_("Number of Documents"));
+        histogram->GetScalingAxis().GetTitle().SetText(_(L"Number of Documents"));
         histogram->GetBarAxis().GetTitle() = GraphItems::Label(GraphItemInfo(bottomLabel).DPIScaling(canvas->GetDPIScaleFactor()).
                                                               Scaling(canvas->GetScaling()).Pen(wxNullPen));
         histogram->SetShadowType(IsDisplayingDropShadows() ? ShadowType::RightSideShadow : ShadowType::NoShadow);
@@ -4279,8 +4279,8 @@ bool BatchProjectDoc::OnSaveDocument(const wxString& filename)
             }
         catch (const MemoryMappedFileShareViolationException&)
             {
-            LogMessage(_("File appears to be open by another application. Cannot save project."), 
-                _("Project Save"), wxOK|wxICON_EXCLAMATION);
+            LogMessage(_(L"File appears to be open by another application. Cannot save project."), 
+                _(L"Project Save"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
         //don't care about the file being empty or whatever, just if it's locked
@@ -4293,8 +4293,8 @@ bool BatchProjectDoc::OnSaveDocument(const wxString& filename)
     //if we opened earlier in read only mode then bail
     if (m_FileReadOnly)
         {
-        LogMessage(_("Project file was opened as read only. Unable to save."), 
-                _("Project Save"), wxOK|wxICON_INFORMATION);
+        LogMessage(_(L"Project file was opened as read only. Unable to save."), 
+                _(L"Project Save"), wxOK|wxICON_INFORMATION);
         return false;
         }
 
@@ -4304,8 +4304,8 @@ bool BatchProjectDoc::OnSaveDocument(const wxString& filename)
         if (!m_File.Open(filename, wxFile::write) )
             {
             m_FileReadOnly = true;
-            LogMessage(_("File appears to be open by another application. Cannot save project."), 
-                _("Project Save"), wxOK|wxICON_EXCLAMATION);
+            LogMessage(_(L"File appears to be open by another application. Cannot save project."), 
+                _(L"Project Save"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
         }
@@ -4326,7 +4326,7 @@ bool BatchProjectDoc::OnSaveDocument(const wxString& filename)
     if (GetDocumentStorageMethod() == TextStorage::EmbedText)
         {
         int counter{ 1 };
-        wxProgressDialog progressDlg(wxString::Format(_("Saving \"%s\""), GetTitle()),
+        wxProgressDialog progressDlg(wxString::Format(_(L"Saving \"%s\""), GetTitle()),
             wxEmptyString, static_cast<int>(m_docs.size()),
             nullptr, wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_CAN_ABORT|wxPD_APP_MODAL);
         progressDlg.Centre();
@@ -4353,8 +4353,8 @@ bool BatchProjectDoc::OnSaveDocument(const wxString& filename)
     m_File.Close();
     if (!out.Commit())
         {
-        LogMessage(_("Unable to save project file. File may be locked by another process."), 
-                _("Project Error"), wxOK|wxICON_EXCLAMATION);
+        LogMessage(_(L"Unable to save project file. File may be locked by another process."), 
+                _(L"Project Error"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
     if (!LockProjectFile())
@@ -4380,8 +4380,8 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
         }
     if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
         {
-        LogMessage(_("You are not currently licensed to create a new batch project."),
-            _("Error"), wxOK|wxICON_ERROR);
+        LogMessage(_(L"You are not currently licensed to create a new batch project."),
+            _(L"Error"), wxOK|wxICON_ERROR);
         return false;
         }
 
@@ -4391,8 +4391,8 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
     if (!wxFile::Exists(filename) )
         {
         LogMessage(
-            wxString::Format(_("'%s': unable to open project file. File not found."), filename), 
-            _("Error"), wxOK|wxICON_ERROR);
+            wxString::Format(_(L"'%s': unable to open project file. File not found."), filename), 
+            _(L"Error"), wxOK|wxICON_ERROR);
         return false;
         }
     if (!OnSaveModified())
@@ -4423,14 +4423,14 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
         if (m_File.Open(GetFilename(), wxFile::read) )
             {
             m_FileReadOnly = true;
-            LogMessage(_("File appears to be open by another application. Project file will be opened as read only."), 
-                _("Project Open"), wxOK|wxICON_INFORMATION);
+            LogMessage(_(L"File appears to be open by another application. Project file will be opened as read only."), 
+                _(L"Project Open"), wxOK|wxICON_INFORMATION);
             }
         else
             {
             LogMessage(
-                wxString::Format(_("'%s': unable to open project file."), GetFilename()),
-                _("Project Open"), wxOK|wxICON_EXCLAMATION);
+                wxString::Format(_(L"'%s': unable to open project file."), GetFilename()),
+                _(L"Project Open"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
         auto projectFileText = std::make_unique<char[]>(m_File.Length()+1);
@@ -4441,20 +4441,20 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
         }
     catch (const MemoryMappedFileEmptyException&)
         {
-        LogMessage(_("Invalid project file. File is empty."),
-            _("Project Open"), wxOK|wxICON_EXCLAMATION);
+        LogMessage(_(L"Invalid project file. File is empty."),
+            _(L"Project Open"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
     catch (const MemoryMappedInvalidFileType&)
         {
-        LogMessage(_("Invalid file."), 
-            _("Project Open"), wxOK|wxICON_EXCLAMATION);
+        LogMessage(_(L"Invalid file."), 
+            _(L"Project Open"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
     catch (const MemoryMappedFileCloudFileError&)
         {
-        LogMessage(_("Unable to open file from Cloud service."), 
-            _("Project Open"), wxOK|wxICON_EXCLAMATION);
+        LogMessage(_(L"Unable to open file from Cloud service."), 
+            _(L"Project Open"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
     catch (const MemoryMappedFileException&)
@@ -4471,13 +4471,13 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
     catch (...)
         {
         LogMessage(
-            wxString::Format(_("'%s': unable to open project file."), GetFilename()),
-            _("Project Open"), wxOK|wxICON_EXCLAMATION);
+            wxString::Format(_(L"'%s': unable to open project file."), GetFilename()),
+            _(L"Project Open"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
 
-    wxProgressDialog progressDlg(wxString::Format(_("Opening \"%s\""), GetTitle()),
-        _("Analyzing documents..."),
+    wxProgressDialog progressDlg(wxString::Format(_(L"Opening \"%s\""), GetTitle()),
+        _(L"Analyzing documents..."),
         static_cast<int>(GetSourceFilesInfo().size()+12),
         nullptr, wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_CAN_ABORT|wxPD_APP_MODAL);
     progressDlg.Centre();
@@ -4501,19 +4501,19 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
     if (!CheckForFailedDocuments())
         { LoadWarningsSection(); }
 
-    if (!progressDlg.Update(counter++, _("Loading Dolch statistics...")))
+    if (!progressDlg.Update(counter++, _(L"Loading Dolch statistics...")))
         { return false; }
     LoadDolchSection();
 
-    if (!progressDlg.Update(counter++, _("Loading difficult words...")))
+    if (!progressDlg.Update(counter++, _(L"Loading difficult words...")))
         { return false; }
     LoadHardWordsSection();
 
-    if (!progressDlg.Update(counter++, _("Loading graphs...")))
+    if (!progressDlg.Update(counter++, _(L"Loading graphs...")))
         { return false; }
     DisplayReadabilityGraphs();
 
-    if (!progressDlg.Update(counter++, _("Loading scores...")))
+    if (!progressDlg.Update(counter++, _(L"Loading scores...")))
         { return false; }
     LoadScoresSection();
 
@@ -4529,7 +4529,7 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
         { return false; }
     DisplayHistograms();
 
-    if (!progressDlg.Update(counter++, _("Loading grammar information...")))
+    if (!progressDlg.Update(counter++, _(L"Loading grammar information...")))
         { return false; }
     DisplayGrammar();
 
@@ -4605,10 +4605,10 @@ void BatchProjectDoc::DisplayGrammar()
             listView->SetLabel(BaseProjectView::GetMisspellingsLabel());
             listView->SetName(BaseProjectView::GetMisspellingsLabel());
             listView->EnableGridLines();
-            listView->InsertColumn(0, _("Document"));
-            listView->InsertColumn(1, _("Label"));
-            listView->InsertColumn(2, _("Frequency"));
-            listView->InsertColumn(3, _("Unique Count"));
+            listView->InsertColumn(0, _(L"Document"));
+            listView->InsertColumn(1, _(L"Label"));
+            listView->InsertColumn(2, _(L"Frequency"));
+            listView->InsertColumn(3, _(L"Unique Count"));
             listView->InsertColumn(4, BaseProjectView::GetMisspellingsLabel());
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
@@ -4643,10 +4643,10 @@ void BatchProjectDoc::DisplayGrammar()
             listView->SetName(BaseProjectView::GetRepeatedWordsLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->InsertColumn(0, _("Document"));
-            listView->InsertColumn(1, _("Label"));
-            listView->InsertColumn(2, _("Frequency"));
-            listView->InsertColumn(3, _("Repeated Words"));
+            listView->InsertColumn(0, _(L"Document"));
+            listView->InsertColumn(1, _(L"Label"));
+            listView->InsertColumn(2, _(L"Frequency"));
+            listView->InsertColumn(3, _(L"Repeated Words"));
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
@@ -4679,9 +4679,9 @@ void BatchProjectDoc::DisplayGrammar()
             listView->SetName(BaseProjectView::GetArticleMismatchesLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->InsertColumn(0, _("Document"));
-            listView->InsertColumn(1, _("Label"));
-            listView->InsertColumn(2, _("Frequency"));
+            listView->InsertColumn(0, _(L"Document"));
+            listView->InsertColumn(1, _(L"Label"));
+            listView->InsertColumn(2, _(L"Frequency"));
             listView->InsertColumn(3, BaseProjectView::GetArticleMismatchesLabel());
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
@@ -4715,11 +4715,11 @@ void BatchProjectDoc::DisplayGrammar()
             listView->SetName(BaseProjectView::GetPhrasingErrorsTabLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->InsertColumn(0, _("Document"));
-            listView->InsertColumn(1, _("Label"));
-            listView->InsertColumn(2, _("Frequency"));
+            listView->InsertColumn(0, _(L"Document"));
+            listView->InsertColumn(1, _(L"Label"));
+            listView->InsertColumn(2, _(L"Frequency"));
             listView->InsertColumn(3, BaseProjectView::GetPhrasingErrorsTabLabel());
-            listView->InsertColumn(4, _("Suggestions"));
+            listView->InsertColumn(4, _(L"Suggestions"));
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
@@ -4753,11 +4753,11 @@ void BatchProjectDoc::DisplayGrammar()
             listView->SetName(BaseProjectView::GetRedundantPhrasesTabLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->InsertColumn(0, _("Document"));
-            listView->InsertColumn(1, _("Label"));
-            listView->InsertColumn(2, _("Frequency"));
+            listView->InsertColumn(0, _(L"Document"));
+            listView->InsertColumn(1, _(L"Label"));
+            listView->InsertColumn(2, _(L"Frequency"));
             listView->InsertColumn(3, BaseProjectView::GetRedundantPhrasesTabLabel());
-            listView->InsertColumn(4, _("Suggestions"));
+            listView->InsertColumn(4, _(L"Suggestions"));
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
@@ -4791,10 +4791,10 @@ void BatchProjectDoc::DisplayGrammar()
             listView->SetName(BaseProjectView::GetOverusedWordsBySentenceLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->InsertColumn(0, _("Document"));
-            listView->InsertColumn(1, _("Label"));
-            listView->InsertColumn(2, _("Frequency"));
-            listView->InsertColumn(3, _("Overused Words"));
+            listView->InsertColumn(0, _(L"Document"));
+            listView->InsertColumn(1, _(L"Label"));
+            listView->InsertColumn(2, _(L"Frequency"));
+            listView->InsertColumn(3, _(L"Overused Words"));
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
@@ -4827,11 +4827,11 @@ void BatchProjectDoc::DisplayGrammar()
             listView->SetName(BaseProjectView::GetWordyPhrasesTabLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->InsertColumn(0, _("Document"));
-            listView->InsertColumn(1, _("Label"));
-            listView->InsertColumn(2, _("Frequency"));
+            listView->InsertColumn(0, _(L"Document"));
+            listView->InsertColumn(1, _(L"Label"));
+            listView->InsertColumn(2, _(L"Frequency"));
             listView->InsertColumn(3, BaseProjectView::GetWordyPhrasesTabLabel());
-            listView->InsertColumn(4, _("Suggestions"));
+            listView->InsertColumn(4, _(L"Suggestions"));
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
@@ -4865,11 +4865,11 @@ void BatchProjectDoc::DisplayGrammar()
             listView->SetName(BaseProjectView::GetClichesTabLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->InsertColumn(0, _("Document"));
-            listView->InsertColumn(1, _("Label"));
-            listView->InsertColumn(2, _("Frequency"));
+            listView->InsertColumn(0, _(L"Document"));
+            listView->InsertColumn(1, _(L"Label"));
+            listView->InsertColumn(2, _(L"Frequency"));
             listView->InsertColumn(3, BaseProjectView::GetClichesTabLabel());
-            listView->InsertColumn(4, _("Explanations/Suggestions"));
+            listView->InsertColumn(4, _(L"Explanations/Suggestions"));
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
@@ -4903,9 +4903,9 @@ void BatchProjectDoc::DisplayGrammar()
             listView->SetName(BaseProjectView::GetPassiveLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->InsertColumn(0, _("Document"));
-            listView->InsertColumn(1, _("Label"));
-            listView->InsertColumn(2, _("Frequency"));
+            listView->InsertColumn(0, _(L"Document"));
+            listView->InsertColumn(1, _(L"Label"));
+            listView->InsertColumn(2, _(L"Frequency"));
             listView->InsertColumn(3, BaseProjectView::GetPassiveLabel());
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
@@ -4939,10 +4939,10 @@ void BatchProjectDoc::DisplayGrammar()
             listView->SetName(BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->InsertColumn(0, _("Document"));
-            listView->InsertColumn(1, _("Label"));
-            listView->InsertColumn(2, _("Frequency"));
-            listView->InsertColumn(3, _("Conjunctions"));
+            listView->InsertColumn(0, _(L"Document"));
+            listView->InsertColumn(1, _(L"Label"));
+            listView->InsertColumn(2, _(L"Frequency"));
+            listView->InsertColumn(3, _(L"Conjunctions"));
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
@@ -4975,10 +4975,10 @@ void BatchProjectDoc::DisplayGrammar()
             listView->SetName(BaseProjectView::GetSentenceStartingWithLowercaseTabLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->InsertColumn(0, _("Document"));
-            listView->InsertColumn(1, _("Label"));
-            listView->InsertColumn(2, _("Frequency"));
-            listView->InsertColumn(3, _("Starting Word"));
+            listView->InsertColumn(0, _(L"Document"));
+            listView->InsertColumn(1, _(L"Label"));
+            listView->InsertColumn(2, _(L"Frequency"));
+            listView->InsertColumn(3, _(L"Starting Word"));
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
@@ -5016,11 +5016,11 @@ void BatchProjectDoc::DisplaySentencesBreakdown()
             listView->SetName(BaseProjectView::GetLongSentencesLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->InsertColumn(0, _("Document"));
-            listView->InsertColumn(1, _("Label"));
-            listView->InsertColumn(2, _("Overly-long Sentences"));
-            listView->InsertColumn(3, _("Longest Sentence Length"));
-            listView->InsertColumn(4, _("Longest Sentence"));
+            listView->InsertColumn(0, _(L"Document"));
+            listView->InsertColumn(1, _(L"Label"));
+            listView->InsertColumn(2, _(L"Overly-long Sentences"));
+            listView->InsertColumn(3, _(L"Longest Sentence Length"));
+            listView->InsertColumn(4, _(L"Longest Sentence"));
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetSentencesBreakdownView().AddWindow(listView);
             }
@@ -5066,40 +5066,40 @@ void BatchProjectDoc::DisplayHardWords()
             }
         listView->DeleteAllColumns();
         long columnIndex = 0;
-        listView->InsertColumn(columnIndex++, _("Document"));
+        listView->InsertColumn(columnIndex++, _(L"Document"));
         listView->SetColumnFilePathTruncationMode(0, GetFilePathTruncationMode());
-        listView->InsertColumn(columnIndex++, _("Label"));
-        listView->InsertColumn(columnIndex++, _("Total Words"));
-        listView->InsertColumn(columnIndex++, _("% of complex (3+ syllable) words"));
-        listView->InsertColumn(columnIndex++, _("Complex (3+ syllable) words"));
-        listView->InsertColumn(columnIndex++, _("% of long (6+ characters) words"));
-        listView->InsertColumn(columnIndex++, _("Long (6+ characters) words"));
+        listView->InsertColumn(columnIndex++, _(L"Label"));
+        listView->InsertColumn(columnIndex++, _(L"Total Words"));
+        listView->InsertColumn(columnIndex++, _(L"% of complex (3+ syllable) words"));
+        listView->InsertColumn(columnIndex++, _(L"Complex (3+ syllable) words"));
+        listView->InsertColumn(columnIndex++, _(L"% of long (6+ characters) words"));
+        listView->InsertColumn(columnIndex++, _(L"Long (6+ characters) words"));
         if (GetStatisticsReportInfo().IsExtendedWordsEnabled())
             {
             if (IsSmogLikeTestIncluded())
                 {
-                listView->InsertColumn(columnIndex++, _("% of SMOG hard words"));
-                listView->InsertColumn(columnIndex++, _("SMOG hard words"));
+                listView->InsertColumn(columnIndex++, _(L"% of SMOG hard words"));
+                listView->InsertColumn(columnIndex++, _(L"SMOG hard words"));
                 }
             if (GetReadabilityTests().is_test_included(ReadabilityMessages::GUNNING_FOG()) )
                 {
-                listView->InsertColumn(columnIndex++, _("% of Fog hard words"));
-                listView->InsertColumn(columnIndex++, _("Fog hard words"));
+                listView->InsertColumn(columnIndex++, _(L"% of Fog hard words"));
+                listView->InsertColumn(columnIndex++, _(L"Fog hard words"));
                 }
             if (IsDaleChallLikeTestIncluded())
                 {
-                listView->InsertColumn(columnIndex++, _("% of Dale-Chall unfamiliar words"));
-                listView->InsertColumn(columnIndex++, _("Dale-Chall unfamiliar words"));
+                listView->InsertColumn(columnIndex++, _(L"% of Dale-Chall unfamiliar words"));
+                listView->InsertColumn(columnIndex++, _(L"Dale-Chall unfamiliar words"));
                 }
             if (GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()) )
                 {
-                listView->InsertColumn(columnIndex++, _("% of Spache unfamiliar words"));
-                listView->InsertColumn(columnIndex++, _("Spache unfamiliar words"));
+                listView->InsertColumn(columnIndex++, _(L"% of Spache unfamiliar words"));
+                listView->InsertColumn(columnIndex++, _(L"Spache unfamiliar words"));
                 }
             if (GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()) )
                 {
-                listView->InsertColumn(columnIndex++, _("% of HJ unfamiliar words"));
-                listView->InsertColumn(columnIndex++, _("HJ unfamiliar words"));
+                listView->InsertColumn(columnIndex++, _(L"% of HJ unfamiliar words"));
+                listView->InsertColumn(columnIndex++, _(L"HJ unfamiliar words"));
                 }
             for (std::vector<CustomReadabilityTestInterface>::const_iterator pos = GetCustTestsInUse().begin();
                 pos != GetCustTestsInUse().end();
@@ -5108,9 +5108,9 @@ void BatchProjectDoc::DisplayHardWords()
                 if (!pos->GetIterator()->is_using_familiar_words())
                     { continue; }
                 listView->InsertColumn(columnIndex++,
-                    wxString::Format(_("%% of %s unfamiliar words"), pos->GetIterator()->get_name().c_str()));
+                    wxString::Format(_(L"%% of %s unfamiliar words"), pos->GetIterator()->get_name().c_str()));
                 listView->InsertColumn(columnIndex++,
-                    wxString::Format(_("%s unfamiliar words"), pos->GetIterator()->get_name().c_str()));
+                    wxString::Format(_(L"%s unfamiliar words"), pos->GetIterator()->get_name().c_str()));
                 }
             }
         UpdateListOptions(listView); 
@@ -5141,9 +5141,9 @@ void BatchProjectDoc::DisplayHardWords()
             listView->SetName(BaseProjectView::GetAllWordsLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->InsertColumn(0, _("Word"));
-            listView->InsertColumn(1, _("Frequency"));
-            listView->InsertColumn(2, _("Document Count"));
+            listView->InsertColumn(0, _(L"Word"));
+            listView->InsertColumn(1, _(L"Frequency"));
+            listView->InsertColumn(2, _(L"Document Count"));
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetWordsBreakdownView().AddWindow(listView);
             }
@@ -5172,8 +5172,8 @@ void BatchProjectDoc::DisplayHardWords()
             listView->SetName(BaseProjectView::GetImportantWordsLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->InsertColumn(0, _("Word"));
-            listView->InsertColumn(1, _("Frequency"));
+            listView->InsertColumn(0, _(L"Word"));
+            listView->InsertColumn(1, _(L"Frequency"));
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetWordsBreakdownView().AddWindow(listView);
             }
@@ -5210,15 +5210,15 @@ void BatchProjectDoc::DisplaySightWords()
             listView->EnableItemViewOnDblClick();
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             //add the columns
-            listView->InsertColumn(listView->GetColumnCount(), _("Document"));
-            listView->InsertColumn(listView->GetColumnCount(), _("Label"));
-            listView->InsertColumn(listView->GetColumnCount(), _("Conjunctions Coverage"));
-            listView->InsertColumn(listView->GetColumnCount(), _("Prepositions Coverage"));
-            listView->InsertColumn(listView->GetColumnCount(), _("Pronouns Coverage"));
-            listView->InsertColumn(listView->GetColumnCount(), _("Adverbs Coverage"));
-            listView->InsertColumn(listView->GetColumnCount(), _("Adjectives Coverage"));
-            listView->InsertColumn(listView->GetColumnCount(), _("Verbs Coverage"));
-            listView->InsertColumn(listView->GetColumnCount(), _("Noun Coverage"));
+            listView->InsertColumn(listView->GetColumnCount(), _(L"Document"));
+            listView->InsertColumn(listView->GetColumnCount(), _(L"Label"));
+            listView->InsertColumn(listView->GetColumnCount(), _(L"Conjunctions Coverage"));
+            listView->InsertColumn(listView->GetColumnCount(), _(L"Prepositions Coverage"));
+            listView->InsertColumn(listView->GetColumnCount(), _(L"Pronouns Coverage"));
+            listView->InsertColumn(listView->GetColumnCount(), _(L"Adverbs Coverage"));
+            listView->InsertColumn(listView->GetColumnCount(), _(L"Adjectives Coverage"));
+            listView->InsertColumn(listView->GetColumnCount(), _(L"Verbs Coverage"));
+            listView->InsertColumn(listView->GetColumnCount(), _(L"Noun Coverage"));
             view->GetDolchSightWordsView().AddWindow(listView);
             }
         UpdateListOptions(listView);
@@ -5254,29 +5254,29 @@ void BatchProjectDoc::DisplaySightWords()
             }
         //insert the columns
         listView->DeleteAllColumns();
-        listView->InsertColumn(listView->GetColumnCount(), _("Document"));
-        listView->InsertColumn(listView->GetColumnCount(), _("Label"));
-        listView->InsertColumn(listView->GetColumnCount(), L"% " + _("of Conjunctions"));
+        listView->InsertColumn(listView->GetColumnCount(), _(L"Document"));
+        listView->InsertColumn(listView->GetColumnCount(), _(L"Label"));
+        listView->InsertColumn(listView->GetColumnCount(), L"% " + _(L"of Conjunctions"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
-            { listView->InsertColumn(listView->GetColumnCount(), _("Conjunctions")); }
-        listView->InsertColumn(listView->GetColumnCount(), L"% " + _("of Prepositions"));
+            { listView->InsertColumn(listView->GetColumnCount(), _(L"Conjunctions")); }
+        listView->InsertColumn(listView->GetColumnCount(), L"% " + _(L"of Prepositions"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
-            { listView->InsertColumn(listView->GetColumnCount(), _("Prepositions")); }
-        listView->InsertColumn(listView->GetColumnCount(), L"% " + _("of Pronouns"));
+            { listView->InsertColumn(listView->GetColumnCount(), _(L"Prepositions")); }
+        listView->InsertColumn(listView->GetColumnCount(), L"% " + _(L"of Pronouns"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
-            { listView->InsertColumn(listView->GetColumnCount(), _("Pronouns")); }
-        listView->InsertColumn(listView->GetColumnCount(), L"% " + _("of Adverbs"));
+            { listView->InsertColumn(listView->GetColumnCount(), _(L"Pronouns")); }
+        listView->InsertColumn(listView->GetColumnCount(), L"% " + _(L"of Adverbs"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
-            { listView->InsertColumn(listView->GetColumnCount(), _("Adverbs")); }
-        listView->InsertColumn(listView->GetColumnCount(), L"% " + _("of Adjectives"));
+            { listView->InsertColumn(listView->GetColumnCount(), _(L"Adverbs")); }
+        listView->InsertColumn(listView->GetColumnCount(), L"% " + _(L"of Adjectives"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
-            { listView->InsertColumn(listView->GetColumnCount(), _("Adjectives")); }
-        listView->InsertColumn(listView->GetColumnCount(), L"% " + _("of Verbs"));
+            { listView->InsertColumn(listView->GetColumnCount(), _(L"Adjectives")); }
+        listView->InsertColumn(listView->GetColumnCount(), L"% " + _(L"of Verbs"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
-            { listView->InsertColumn(listView->GetColumnCount(), _("Verbs")); }
-        listView->InsertColumn(listView->GetColumnCount(), L"% " + _("of Noun Words"));
+            { listView->InsertColumn(listView->GetColumnCount(), _(L"Verbs")); }
+        listView->InsertColumn(listView->GetColumnCount(), L"% " + _(L"of Noun Words"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
-            { listView->InsertColumn(listView->GetColumnCount(), _("Nouns")); }
+            { listView->InsertColumn(listView->GetColumnCount(), _(L"Nouns")); }
 
         UpdateListOptions(listView); 
         listView->SetColumnFilePathTruncationMode(0, GetFilePathTruncationMode());
@@ -5311,11 +5311,11 @@ void BatchProjectDoc::DisplaySightWords()
             }
         //insert the columns
         listView->DeleteAllColumns();
-        listView->InsertColumn(listView->GetColumnCount(), _("Document"));
-        listView->InsertColumn(listView->GetColumnCount(), _("Label"));
-        listView->InsertColumn(listView->GetColumnCount(), L"% " + _("of Non-Dolch Words"));
+        listView->InsertColumn(listView->GetColumnCount(), _(L"Document"));
+        listView->InsertColumn(listView->GetColumnCount(), _(L"Label"));
+        listView->InsertColumn(listView->GetColumnCount(), L"% " + _(L"of Non-Dolch Words"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
-            { listView->InsertColumn(listView->GetColumnCount(), _("Non-Dolch Words")); }
+            { listView->InsertColumn(listView->GetColumnCount(), _(L"Non-Dolch Words")); }
 
         UpdateListOptions(listView); 
         listView->SetColumnFilePathTruncationMode(0, GetFilePathTruncationMode());
@@ -5415,7 +5415,7 @@ void BatchProjectDoc::SetScoreStatsRow(ListCtrlExNumericDataProvider* dataGrid,
 
         if (sortedData.size() < 3)
             {
-            dataGrid->SetItemText(rowNum, currentColumn++, _("More than two values are required to calculate skewness."));
+            dataGrid->SetItemText(rowNum, currentColumn++, _(L"More than two values are required to calculate skewness."));
             }
         else
             {
@@ -5425,7 +5425,7 @@ void BatchProjectDoc::SetScoreStatsRow(ListCtrlExNumericDataProvider* dataGrid,
 
         if (sortedData.size() < 4)
             {
-            dataGrid->SetItemText(rowNum, currentColumn++, _("More than three values are required to calculate Kurtosis."));
+            dataGrid->SetItemText(rowNum, currentColumn++, _(L"More than three values are required to calculate Kurtosis."));
             }
         else
             {
@@ -5435,8 +5435,8 @@ void BatchProjectDoc::SetScoreStatsRow(ListCtrlExNumericDataProvider* dataGrid,
 
         if (sortedData.size() < 2)
             {
-            dataGrid->SetItemText(rowNum, currentColumn++, _("More than one value is required to calculate std. dev."));
-            dataGrid->SetItemText(rowNum, currentColumn++, _("More than one value is required to calculate variance."));
+            dataGrid->SetItemText(rowNum, currentColumn++, _(L"More than one value is required to calculate std. dev."));
+            dataGrid->SetItemText(rowNum, currentColumn++, _(L"More than one value is required to calculate variance."));
             }
         else
             {
@@ -5454,7 +5454,7 @@ void BatchProjectDoc::SetScoreStatsRow(ListCtrlExNumericDataProvider* dataGrid,
         {
         dataGrid->SetItemValue(rowNum, 1, 0);//show a valid N of zero
         for (size_t i = 2; i <= CUMULATIVE_STATS_COUNT; ++i)
-            { dataGrid->SetItemText(rowNum, i, _("N/A")); }
+            { dataGrid->SetItemText(rowNum, i, _(L"N/A")); }
         }
     }
 

@@ -20,7 +20,7 @@ public:
     /// @brief Constructor.
     ExportAllDlg(wxWindow* parent, BaseProjectDoc* doc,
                  const bool fileMode,
-                 wxWindowID id = wxID_ANY, const wxString& caption = _("Export Options"),
+                 wxWindowID id = wxID_ANY, const wxString& caption = _(L"Export Options"),
                  const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
                  long style = wxDEFAULT_DIALOG_STYLE|wxCLIP_CHILDREN|wxRESIZE_BORDER);
     /// @private
@@ -110,7 +110,7 @@ private:
     static constexpr int ID_LIST_TYPE_COMBO = wxID_HIGHEST + 7;
 
     /// Creation
-    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& caption = _("Export Options"),
+    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& caption = _(L"Export Options"),
                 const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
                 long style = wxDEFAULT_DIALOG_STYLE|wxCLIP_CHILDREN|wxRESIZE_BORDER)
         {

@@ -19,13 +19,13 @@ void NewCustomWordTestSimpleDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     m_testName.Trim(true); m_testName.Trim(false);
     if (m_testName.empty())
         {
-        wxMessageBox(_("Please select a valid test name."), _("Test Name"),
+        wxMessageBox(_(L"Please select a valid test name."), _(L"Test Name"),
                      wxICON_EXCLAMATION|wxOK, this);
         return;
         }
     else if (m_wordListFilePath.empty() || !wxFileName::FileExists(m_wordListFilePath))
         {
-        wxMessageBox(_("Please select a valid file path."), _("Invalid File"),
+        wxMessageBox(_(L"Please select a valid file path."), _(L"Invalid File"),
                      wxICON_EXCLAMATION|wxOK, this);
         return;
         }
@@ -42,11 +42,11 @@ void NewCustomWordTestSimpleDlg::OnBrowseForFileClick([[maybe_unused]] wxCommand
     TransferDataFromWindow();
     wxFileDialog dialog
             (this,
-            _("Select Word List File"),
+            _(L"Select Word List File"),
             m_wordListFilePath.length() ?
                 wxString{} : wxGetApp().GetAppOptions().GetWordListPath(),
             m_wordListFilePath,
-            _("Text files (*.txt)|*.txt"),
+            _(L"Text files (*.txt)|*.txt"),
             wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
     if (dialog.ShowModal() != wxID_OK)
         { return; }
@@ -62,10 +62,10 @@ void NewCustomWordTestSimpleDlg::CreateControls()
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
     wxStaticBoxSizer* testNameBoxSizer =
-        new wxStaticBoxSizer(new wxStaticBox(this, wxID_ANY, _("Test name:")), wxVERTICAL);
+        new wxStaticBoxSizer(new wxStaticBox(this, wxID_ANY, _(L"Test name:")), wxVERTICAL);
     wxStaticBoxSizer* fileBrowseBoxSizer =
         new wxStaticBoxSizer(new wxStaticBox(this, wxID_ANY,
-                             _("Custom familiar word list:")), wxHORIZONTAL);
+                             _(L"Custom familiar word list:")), wxHORIZONTAL);
     mainSizer->Add(testNameBoxSizer, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
     mainSizer->Add(fileBrowseBoxSizer, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
 

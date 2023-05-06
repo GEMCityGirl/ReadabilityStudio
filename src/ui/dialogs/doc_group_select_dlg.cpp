@@ -14,18 +14,18 @@ void DocGroupSelectDlg::CreateControls()
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
     wxArrayString choices;
-    choices.push_back(_("Use documents' descriptions (will be loaded during import)"));
-    choices.push_back(_("Use a grouping label"));
+    choices.push_back(_(L"Use documents' descriptions (will be loaded during import)"));
+    choices.push_back(_(L"Use a grouping label"));
 
     wxRadioBox* radioBox = new wxRadioBox(this, wxID_ANY, 
-        _("Select how to label the document(s):"), wxDefaultPosition, wxDefaultSize,
+        _(L"Select how to label the document(s):"), wxDefaultPosition, wxDefaultSize,
         choices, 0, wxRA_SPECIFY_ROWS, wxGenericValidator(&m_selected));
 
     mainSizer->Add(radioBox, 0, wxALIGN_LEFT|wxALL, wxSizerFlags::GetDefaultBorder());
 
     // label box
     wxBoxSizer* labelSizer = new wxBoxSizer(wxHORIZONTAL);
-    m_groupingLabelText = new wxStaticText(this, wxID_STATIC, _("Grouping label:"));
+    m_groupingLabelText = new wxStaticText(this, wxID_STATIC, _(L"Grouping label:"));
     m_groupingLabelEntry = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition,
                                           wxDefaultSize, wxBORDER_THEME,
                                           wxGenericValidator(&m_groupingLabel));
@@ -38,14 +38,14 @@ void DocGroupSelectDlg::CreateControls()
     mainSizer->Add(labelSizer, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
 
     auto tipLabel = new wxStaticText(this, wxID_STATIC,
-        _("Select whether to extract descriptions from each document as their label, "
+        _(L"Select whether to extract descriptions from each document as their label, "
           "or to use a label to group them by."));
     tipLabel->Wrap(FromDIP(wxSize(400,400)).GetWidth());
     mainSizer->Add(tipLabel, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
 
     // don't show this again
     wxCheckBox* checkBox = new wxCheckBox(this, wxID_ANY,
-        _("Do not show this again (always use document descriptions)"),
+        _(L"Do not show this again (always use document descriptions)"),
         wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_doNotShowThisAgain) );
     mainSizer->Add(checkBox, 0, wxALL, wxSizerFlags::GetDefaultBorder());
 
@@ -77,7 +77,7 @@ void DocGroupSelectDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     // validate the label
     if (m_groupingLabel.empty() && GetSelection() == 1)
         {
-        wxMessageBox(_("Please enter a grouping label."), _("Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"Please enter a grouping label."), _(L"Error"), wxOK|wxICON_EXCLAMATION);
         return;
         }
 

@@ -96,7 +96,7 @@ namespace LuaScripting
                 }
             }
         // ignore mail links
-        if (path.StartsWith(_("mailto")))
+        if (path.StartsWith(_(L"mailto")))
             { return; }
         // otherwise, it is a regular link
         wxFileName fn(path);
@@ -125,14 +125,14 @@ namespace LuaScripting
                     if (!img.IsOk())
                         {
                         badImageSizes.insert(std::make_pair(currentFile,
-                            wxString::Format(_("%s (image is possibly corrupt))"),
+                            wxString::Format(_(L"%s (image is possibly corrupt))"),
                                              fn.GetFullPath())));
                         }
                     else if (!is_within<long>(img.GetHeight(), height-5, height+5) ||
                         !is_within<long>(img.GetWidth(), width-5, width+5) )
                         {
                         badImageSizes.insert(std::make_pair(currentFile,
-                            wxString::Format(_("%s (%ld x %ld vs. %d x %d))"),
+                            wxString::Format(_(L"%s (%ld x %ld vs. %d x %d))"),
                                 fn.GetFullPath(), width, height, img.GetWidth(),
                                 img.GetHeight())));
                         }
@@ -250,7 +250,7 @@ namespace LuaScripting
             { return 0; }
         if (lua_isboolean(L,1))
             {
-            wxMessageBox(lua_toboolean(L,1) ? _("true") : _("false"),
+            wxMessageBox(lua_toboolean(L,1) ? _(L"true") : _(L"false"),
                 (lua_gettop(L) > 1) ?
                 wxString(luaL_checkstring(L, 2), wxConvUTF8) : wxGetApp().GetAppName(),
                 wxOK|wxICON_INFORMATION);
@@ -313,16 +313,16 @@ namespace LuaScripting
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         if (!wxFile::Exists(path) )
             {
-            wxMessageBox(wxString::Format(_("%s: Invalid image file path."), path),
-                _("Script Error"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(wxString::Format(_(L"%s: Invalid image file path."), path),
+                _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
             }
         const wxImage img(path);
         if (!img.IsOk())
             {
-            wxMessageBox(wxString::Format(_("%s: Unable to load image."), path),
-                _("Script Error"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(wxString::Format(_(L"%s: Unable to load image."), path),
+                _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
             }
@@ -574,7 +574,7 @@ namespace LuaScripting
             }
         else
             {
-            DebugPrint(wxString::Format(_("%sWarning%s: unable to make %s path absolute."),
+            DebugPrint(wxString::Format(_(L"%sWarning%s: unable to make %s path absolute."),
                 L"<span style='color:blue; font-weight:bold;'>", L"</span>",
                 wxString(luaL_checkstring(L, 2), wxConvUTF8)));
             lua_pushstring(L, wxString(luaL_checkstring(L, 2), wxConvUTF8));
@@ -637,8 +637,8 @@ namespace LuaScripting
         wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         if (!wxFile::Exists(path) )
             {
-            wxMessageBox(wxString::Format(_("%s: Invalid file path."), wxString(__WXFUNCTION__)),
-                _("Script Error"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(wxString::Format(_(L"%s: Invalid file path."), wxString(__WXFUNCTION__)),
+                _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
             }
@@ -653,8 +653,8 @@ namespace LuaScripting
         path = wxString(luaL_checkstring(L, 2), wxConvUTF8);
         if (!wxFile::Exists(path) )
             {
-            wxMessageBox(wxString::Format(_("%s: Invalid file path."), wxString(__WXFUNCTION__)),
-                _("Script Error"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(wxString::Format(_(L"%s: Invalid file path."), wxString(__WXFUNCTION__)),
+                _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
             }
@@ -707,8 +707,8 @@ namespace LuaScripting
         wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         if (!wxFile::Exists(path) )
             {
-            wxMessageBox(wxString::Format(_("%s: Invalid file path."), wxString(__WXFUNCTION__)),
-                _("Script Error"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(wxString::Format(_(L"%s: Invalid file path."), wxString(__WXFUNCTION__)),
+                _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
             }
@@ -757,8 +757,8 @@ namespace LuaScripting
         wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         if (!wxFile::Exists(path) )
             {
-            wxMessageBox(wxString::Format(_("%s: Invalid file path."), wxString(__WXFUNCTION__)),
-                _("Script Error"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(wxString::Format(_(L"%s: Invalid file path."), wxString(__WXFUNCTION__)),
+                _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
             }
@@ -854,8 +854,8 @@ namespace LuaScripting
                 }
             else
                 {
-                wxMessageBox(wxString::Format(_("%s: File not found."), inputFile),
-                    _("Script Error"), wxOK | wxICON_EXCLAMATION);
+                wxMessageBox(wxString::Format(_(L"%s: File not found."), inputFile),
+                    _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 lua_pushboolean(L, false);
                 return 1;
                 }
@@ -928,8 +928,8 @@ namespace LuaScripting
                 }
             else
                 {
-                wxMessageBox(wxString::Format(_("%s: File not found."), inputFile),
-                    _("Script Error"), wxOK | wxICON_EXCLAMATION);
+                wxMessageBox(wxString::Format(_(L"%s: File not found."), inputFile),
+                    _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 lua_pushboolean(L, false);
                 return 1;
                 }

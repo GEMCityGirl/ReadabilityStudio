@@ -354,7 +354,7 @@ public:
 
 //-------------------------------------------------------
 LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
-        const wxString& caption /*= _("Lua Script")*/,
+        const wxString& caption /*= _(L"Lua Script")*/,
         const wxPoint& pos /*= wxDefaultPosition*/, const wxSize& size /*= wxDefaultSize*/,
         long style /*= wxCAPTION|wxCLOSE_BOX|wxMINIMIZE_BOX|wxMAXIMIZE_BOX|wxRESIZE_BORDER*/) :
         wxFrame(parent, id, caption, pos, size, style),
@@ -405,8 +405,8 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
             auto codeEditor = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
             if (codeEditor && codeEditor->GetModify())
                 {
-                if (wxMessageBox(_("Do you wish to save your unsaved changes?"),
-                    _("Save Script"), wxYES_NO|wxICON_QUESTION) == wxYES)
+                if (wxMessageBox(_(L"Do you wish to save your unsaved changes?"),
+                    _(L"Save Script"), wxYES_NO|wxICON_QUESTION) == wxYES)
                     { codeEditor->Save(); }
                 }
             });
@@ -415,7 +415,7 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
         [this]([[maybe_unused]] wxCommandEvent&)
             {
             m_notebook->Freeze();
-            m_notebook->AddPage(CreateLuaScript(m_notebook), _("(unnamed)"), true,
+            m_notebook->AddPage(CreateLuaScript(m_notebook), _(L"(unnamed)"), true,
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/lua.svg"));
             m_notebook->Thaw();
             },
@@ -425,9 +425,9 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
         [this]([[maybe_unused]] wxCommandEvent&)
             {
             wxFileDialog dialogOpen
-                    (this, _("Select Script to Open"),
+                    (this, _(L"Select Script to Open"),
                     wxEmptyString, wxEmptyString,
-                    _("Lua Script (*.lua)|*.lua"),
+                    _(L"Lua Script (*.lua)|*.lua"),
                     wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
             if (dialogOpen.ShowModal() != wxID_OK)
                 { return; }
@@ -676,35 +676,35 @@ void LuaEditorDlg::CreateControls()
         wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_OVERFLOW | wxAUI_TB_VERTICAL);
     m_toolbar->SetToolBitmapSize(FromDIP(wxSize(16, 16)));
     // wxID_NEW and such trigger parent events
-    m_toolbar->AddTool(XRCID("ID_NEW"), _("New"),
+    m_toolbar->AddTool(XRCID("ID_NEW"), _(L"New"),
         wxArtProvider::GetBitmapBundle(wxART_NEW, wxART_BUTTON),
-        _("Create a new script."));
-    m_toolbar->AddTool(XRCID("ID_OPEN"), _("Open"),
+        _(L"Create a new script."));
+    m_toolbar->AddTool(XRCID("ID_OPEN"), _(L"Open"),
         wxArtProvider::GetBitmapBundle(wxART_FILE_OPEN, wxART_BUTTON),
-        _("Open a script."));
-    m_toolbar->AddTool(XRCID("ID_SAVE"), _("Save"),
+        _(L"Open a script."));
+    m_toolbar->AddTool(XRCID("ID_SAVE"), _(L"Save"),
         wxArtProvider::GetBitmapBundle(wxART_FILE_SAVE, wxART_BUTTON),
-        _("Save the script."));
-    m_toolbar->AddTool(XRCID("ID_RUN"), _("Run"),
+        _(L"Save the script."));
+    m_toolbar->AddTool(XRCID("ID_RUN"), _(L"Run"),
         wxArtProvider::GetBitmapBundle(L"ID_RUN", wxART_BUTTON),
-        _("Execute the script."));
+        _(L"Execute the script."));
     m_toolbar->AddSeparator();
-    m_toolbar->AddTool(XRCID("ID_CLEAR"), _("Clear"),
+    m_toolbar->AddTool(XRCID("ID_CLEAR"), _(L"Clear"),
         wxArtProvider::GetBitmapBundle(L"ID_CLEAR", wxART_BUTTON),
-        _("Clear the log window."));
+        _(L"Clear the log window."));
     m_toolbar->AddSeparator();
-    m_toolbar->AddTool(wxID_HELP, _("Content"),
+    m_toolbar->AddTool(wxID_HELP, _(L"Content"),
         wxArtProvider::GetBitmapBundle(wxART_HELP, wxART_BUTTON),
-        _("View the documentation."));
-    m_toolbar->AddTool(XRCID("LUA_REFERENCE"), _("Lua Reference"),
+        _(L"View the documentation."));
+    m_toolbar->AddTool(XRCID("LUA_REFERENCE"), _(L"Lua Reference"),
         wxArtProvider::GetBitmapBundle(wxART_HELP_BOOK, wxART_BUTTON),
-        _("View the Lua Reference Manual."));
+        _(L"View the Lua Reference Manual."));
     m_toolbar->AddSeparator();
     m_toolbar->AddControl(new wxSearchCtrl(m_toolbar, wxID_ANY));
 
     m_toolbar->Realize();
     m_mgr.AddPane(m_toolbar, wxAuiPaneInfo().
-        Name("auitoolbar").Caption(_("Tools")).
+        Name("auitoolbar").Caption(_(L"Tools")).
         ToolbarPane().Top().CloseButton(false).Fixed());
 
     m_notebook = new wxAuiNotebook(this, wxID_ANY,
@@ -714,7 +714,7 @@ void LuaEditorDlg::CreateControls()
         wxAUI_NB_CLOSE_ON_ALL_TABS|wxAUI_NB_MIDDLE_CLICK_CLOSE|
         wxAUI_NB_TAB_EXTERNAL_MOVE|wxNO_BORDER);
 
-    m_notebook->AddPage(CreateLuaScript(m_notebook), _("(unnamed)"), true,
+    m_notebook->AddPage(CreateLuaScript(m_notebook), _(L"(unnamed)"), true,
         wxGetApp().GetResourceManager().GetSVG(L"ribbon/lua.svg"));
 
     m_mgr.AddPane(m_notebook,
@@ -725,7 +725,7 @@ void LuaEditorDlg::CreateControls()
     m_mgr.AddPane(m_debugMessageWindow,
         wxAuiPaneInfo().Name(L"auidebug").
         Bottom().MinimizeButton(true).MaximizeButton(true).
-        Caption(_("Debug Output")).FloatingSize(FromDIP(wxSize(800, 200))).
+        Caption(_(L"Debug Output")).FloatingSize(FromDIP(wxSize(800, 200))).
         BestSize(FromDIP(wxSize(800, 100))).
         PinButton(true).CloseButton(false));
 
@@ -742,8 +742,8 @@ void LuaEditorDlg::OnClose([[maybe_unused]] wxCloseEvent& event)
         {
         auto codeEditor = dynamic_cast<CodeEditor*>(m_notebook->GetPage(i));
         if (codeEditor && codeEditor->GetModify() &&
-            (wxMessageBox(_("Do you wish to save your unsaved changes?"),
-                _("Save Script"), wxYES_NO | wxICON_QUESTION) == wxYES))
+            (wxMessageBox(_(L"Do you wish to save your unsaved changes?"),
+                _(L"Save Script"), wxYES_NO | wxICON_QUESTION) == wxYES))
             {
             if (codeEditor->Save())
                 {

@@ -22,9 +22,9 @@ namespace LuaScripting
         if (lua_gettop(L) < minParemeterCount)
             {
             wxMessageBox(wxString::Format(
-                _("%s: Invalid number of arguments.\n\n%d expected, %d provided."),
+                _(L"%s: Invalid number of arguments.\n\n%d expected, %d provided."),
                     functionName, minParemeterCount, lua_gettop(L)),
-                _("Script Error"), wxOK|wxICON_EXCLAMATION);
+                _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
         else
@@ -44,7 +44,7 @@ namespace LuaScripting
         if (wxGetApp().GetLuaRunner().GetScriptFilePath().empty())
             {
             DebugPrint(wxString::Format(
-                _("%sError%s: call to %s returned empty because "
+                _(L"%sError%s: call to %s returned empty because "
                   "the script has not been saved yet."),
                 L"<span style='color:red; font-weight:bold;'>",
                 L"</span>", __WXFUNCTION__));

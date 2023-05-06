@@ -218,7 +218,7 @@ void BaseProjectView::OnBarStyleSelected(wxCommandEvent& event)
         if (!wxFile::Exists(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetStippleImagePath()))
             {
             wxFileDialog fd
-                (GetDocFrame(), _("Select Custom Brush Image"),
+                (GetDocFrame(), _(L"Select Custom Brush Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString, wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
             if (fd.ShowModal() != wxID_OK)
@@ -236,7 +236,7 @@ void BaseProjectView::OnBarStyleSelected(wxCommandEvent& event)
 void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(baseDoc, "Failed to get document!");
+    wxASSERT_LEVEL_2_MSG(baseDoc, L"Failed to get document!");
     if (!baseDoc)
         { return; }
 
@@ -253,7 +253,7 @@ void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
         if (!wxFile::Exists(baseDoc->GetStippleImagePath()))
             {
             wxFileDialog fd
-                (GetDocFrame(), _("Select Custom Brush Image"),
+                (GetDocFrame(), _(L"Select Custom Brush Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString, wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
             if (fd.ShowModal() != wxID_OK)
@@ -271,12 +271,12 @@ void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
 void BaseProjectView::OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(baseDoc, "Failed to get document!");
+    wxASSERT_LEVEL_2_MSG(baseDoc, L"Failed to get document!");
     if (!baseDoc)
         { return; }
 
     wxFileDialog fd
-        (GetDocFrame(), _("Select Custom Brush Image"),
+        (GetDocFrame(), _(L"Select Custom Brush Image"),
         wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString, wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
     if (fd.ShowModal() != wxID_OK)
@@ -294,12 +294,12 @@ void BaseProjectView::OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEve
 void BaseProjectView::OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(baseDoc, "Failed to get document!");
+    wxASSERT_LEVEL_2_MSG(baseDoc, L"Failed to get document!");
     if (!baseDoc)
         { return; }
 
     wxFileDialog fd
-        (GetDocFrame(), _("Select Custom Brush Image"),
+        (GetDocFrame(), _(L"Select Custom Brush Image"),
         wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString, wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
     if (fd.ShowModal() != wxID_OK)
@@ -317,12 +317,12 @@ void BaseProjectView::OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& e
 void BaseProjectView::OnBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(baseDoc, "Failed to get document!");
+    wxASSERT_LEVEL_2_MSG(baseDoc, L"Failed to get document!");
     if (!baseDoc)
         { return; }
 
     wxFileDialog fd
-        (GetDocFrame(), _("Select Custom Brush Image"),
+        (GetDocFrame(), _(L"Select Custom Brush Image"),
         wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString, wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
     if (fd.ShowModal() != wxID_OK)
@@ -352,7 +352,7 @@ void BaseProjectView::OnBoxStyleSelected(wxCommandEvent& event)
         if (!wxFile::Exists(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetStippleImagePath()))
             {
             wxFileDialog fd
-                (GetDocFrame(), _("Select Custom Brush Image"),
+                (GetDocFrame(), _(L"Select Custom Brush Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString, wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
             if (fd.ShowModal() != wxID_OK)
@@ -386,7 +386,7 @@ void BaseProjectView::OnBoxPlotShowLabelsButton([[maybe_unused]] wxRibbonButtonB
 void BaseProjectView::OnBarLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(doc, "Failed to get document!");
+    wxASSERT_LEVEL_2_MSG(doc, L"Failed to get document!");
     if (!doc)
         { return; }
 
@@ -407,7 +407,7 @@ void BaseProjectView::OnFleschConnectLinesButton([[maybe_unused]] wxRibbonButton
 void BaseProjectView::OnEnglishLabels([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(doc, "Failed to get document!");
+    wxASSERT_LEVEL_2_MSG(doc, L"Failed to get document!");
     if (!doc)
         { return; }
 
@@ -420,11 +420,11 @@ void BaseProjectView::OnEnglishLabels([[maybe_unused]] wxRibbonButtonBarEvent& e
 void BaseProjectView::OnGraphLogo([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(doc, "Failed to get document!");
+    wxASSERT_LEVEL_2_MSG(doc, L"Failed to get document!");
     if (!doc)
         { return; }
 
-    wxFileDialog fd(GetDocFrame(), _("Select Logo Image"),
+    wxFileDialog fd(GetDocFrame(), _(L"Select Logo Image"),
         doc->GetWatermarkLogoPath().length() ? wxString{} : wxGetApp().GetAppOptions().GetImagePath(),
         doc->GetWatermarkLogoPath(),
         wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
@@ -441,8 +441,9 @@ void BaseProjectView::OnGraphLogo([[maybe_unused]] wxRibbonButtonBarEvent& event
 //---------------------------------------------------
 void BaseProjectView::OnGraphWatermark([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    wxTextEntryDialog textDlg(GetDocFrame(), _("Enter watermark:\n\n(Note that the tags [DATETIME], [DATE], and [TIME] can be used \n to dynamically expand into the current date and time.)"),
-        _("Watermark"),
+    wxTextEntryDialog textDlg(GetDocFrame(),
+        _(L"Enter watermark:\n\n(Note that the tags [DATETIME], [DATE], and [TIME] can be used \n to dynamically expand into the current date and time.)"),
+        _(L"Watermark"),
         dynamic_cast<BaseProjectDoc*>(GetDocument())->GetWatermark(), wxTextEntryDialogStyle|wxTE_MULTILINE);
     if (textDlg.ShowModal() == wxID_OK)
         {
@@ -482,11 +483,11 @@ void BaseProjectView::OnGraphColorFade([[maybe_unused]] wxCommandEvent& event)
 void BaseProjectView::OnEditGraphBackgroundImage([[maybe_unused]] wxCommandEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(doc, "Failed to get document!");
+    wxASSERT_LEVEL_2_MSG(doc, L"Failed to get document!");
     if (!doc)
         { return; }
 
-    wxFileDialog fd(GetDocFrame(), _("Select Background Image"),
+    wxFileDialog fd(GetDocFrame(), _(L"Select Background Image"),
             doc->GetBackGroundImagePath().length() ? wxString{} : wxGetApp().GetAppOptions().GetImagePath(),
             doc->GetBackGroundImagePath(),
             wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
@@ -593,7 +594,7 @@ void BaseProjectView::OnEditGraphOpacity(wxCommandEvent& event)
         };
 
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(doc, "Failed to get document!");
+    wxASSERT_LEVEL_2_MSG(doc, L"Failed to get document!");
     if (!doc)
         { return; }
 
@@ -602,7 +603,7 @@ void BaseProjectView::OnEditGraphOpacity(wxCommandEvent& event)
         auto img = Wisteria::GraphItems::Image::LoadFile(doc->GetBackGroundImagePath());
         if (!img.IsOk())
             {
-            wxFileDialog fd(GetDocFrame(), _("Select Background Image"),
+            wxFileDialog fd(GetDocFrame(), _(L"Select Background Image"),
                     doc->GetBackGroundImagePath().length() ?
                         wxString{} :
                         wxGetApp().GetAppOptions().GetImagePath(),
@@ -785,7 +786,7 @@ void BaseProjectView::OnExcludeWordsList([[maybe_unused]] wxRibbonButtonBarEvent
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
 
     EditWordListDlg editDlg(GetDocFrame(),
-        wxID_ANY, _("Edit Words/Phrases To Exclude"));
+        wxID_ANY, _(L"Edit Words/Phrases To Exclude"));
     editDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"document-analysis.html");
     editDlg.SetPhraseFileMode(true);
     editDlg.SetFilePath(doc->GetExcludedPhrasesPath());
@@ -801,7 +802,7 @@ void BaseProjectView::OnExcludeWordsList([[maybe_unused]] wxRibbonButtonBarEvent
 void BaseProjectView::OnIncompleteThreshold([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    const long len = wxGetNumberFromUser(_("Include incomplete sentences containing more than:"), wxEmptyString, _("Incomplete Sentence Threshold"),
+    const long len = wxGetNumberFromUser(_(L"Include incomplete sentences containing more than:"), wxEmptyString, _(L"Incomplete Sentence Threshold"),
         doc->GetIncludeIncompleteSentencesIfLongerThanValue(), 0, std::numeric_limits<int>::max());
     if (len == -1)
         { return; }
@@ -844,7 +845,7 @@ void BaseProjectView::OnLongSentencesOptions(wxCommandEvent& event)
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     if (event.GetId() == XRCID("ID_LS_LONGER_THAN"))
         {
-        const long len = wxGetNumberFromUser(_("Consider sentences overly long if longer than:"), wxEmptyString, _("Long Sentences"),
+        const long len = wxGetNumberFromUser(_(L"Consider sentences overly long if longer than:"), wxEmptyString, _(L"Long Sentences"),
                 doc->GetDifficultSentenceLength(), 0, std::numeric_limits<int>::max());
         if (len == -1)
             { return; }
@@ -1104,8 +1105,8 @@ void BaseProjectView::OnCustomTestBundle(wxCommandEvent& event)
     std::map<int, wxString>::const_iterator pos = MainFrame::GetTestBundleMenuIds().find(menuId);
     if (pos == MainFrame::GetTestBundleMenuIds().end())
         {
-        wxMessageBox(_("Unable to find test bundle: internal error, please contact software vendor."),
-            _("Error"), wxOK|wxICON_ERROR);
+        wxMessageBox(_(L"Unable to find test bundle: internal error, please contact software vendor."),
+            _(L"Error"), wxOK|wxICON_ERROR);
         return;
         }
     // Add the tests & goals to the project
@@ -1302,10 +1303,10 @@ void BaseProjectView::OnBlankGraphDropdown(wxRibbonButtonBarEvent& evt)
 void BaseProjectView::OnDictionaryDropdown(wxRibbonButtonBarEvent& evt)
     {
     wxMenu menu;
-    menu.Append(XRCID("ID_EDIT_ENGLISH_DICTIONARY"), _("Edit Custom Dictionary..."));
-    menu.Append(XRCID("ID_ADD_ITEM_TO_DICTIONARY"), _("Add Selected Words"));
-    menu.Append(XRCID("ID_EDIT_DICTIONARY_PROJECT_SETTINGS"), _("Settings (Current Project)..."));
-    menu.Append(XRCID("ID_EDIT_DICTIONARY_SETTINGS"), _("Settings (Globally)..."));
+    menu.Append(XRCID("ID_EDIT_ENGLISH_DICTIONARY"), _(L"Edit Custom Dictionary..."));
+    menu.Append(XRCID("ID_ADD_ITEM_TO_DICTIONARY"), _(L"Add Selected Words"));
+    menu.Append(XRCID("ID_EDIT_DICTIONARY_PROJECT_SETTINGS"), _(L"Settings (Current Project)..."));
+    menu.Append(XRCID("ID_EDIT_DICTIONARY_SETTINGS"), _(L"Settings (Globally)..."));
     evt.PopupMenu(&menu);
     }
 
@@ -1313,7 +1314,7 @@ void BaseProjectView::OnPrimaryAgeTestsDropdown(wxRibbonButtonBarEvent& evt)
     {
     if (m_primaryAgeTestsMenu.GetMenuItemCount() == 0)
         {
-        wxMessageBox(_("No tests are available in this category."),
+        wxMessageBox(_(L"No tests are available in this category."),
             wxGetApp().GetAppDisplayName(), wxOK|wxICON_INFORMATION);
         }
     else
@@ -1324,7 +1325,7 @@ void BaseProjectView::OnSecondaryAgeTestsDropdown(wxRibbonButtonBarEvent& evt)
     {
     if (m_secondaryAgeTestsMenu.GetMenuItemCount() == 0)
         {
-        wxMessageBox(_("No tests are available in this category."),
+        wxMessageBox(_(L"No tests are available in this category."),
             wxGetApp().GetAppDisplayName(), wxOK|wxICON_INFORMATION);
         }
     else
@@ -1335,7 +1336,7 @@ void BaseProjectView::OnAdultTestsDropdown(wxRibbonButtonBarEvent& evt)
     {
     if (m_adultTestsMenu.GetMenuItemCount() == 0)
         {
-        wxMessageBox(_("No tests are available in this category."),
+        wxMessageBox(_(L"No tests are available in this category."),
             wxGetApp().GetAppDisplayName(), wxOK|wxICON_INFORMATION);
         }
     else
@@ -1346,7 +1347,7 @@ void BaseProjectView::OnSecondLanguageTestsDropdown(wxRibbonButtonBarEvent& evt)
     {
     if (m_secondLanguageTestsMenu.GetMenuItemCount() == 0)
         {
-        wxMessageBox(_("No tests are available in this category."),
+        wxMessageBox(_(L"No tests are available in this category."),
             wxGetApp().GetAppDisplayName(), wxOK|wxICON_INFORMATION);
         }
     else
@@ -1396,8 +1397,8 @@ void BaseProjectView::OnCustomTest(wxCommandEvent& event)
     std::map<int, wxString>::const_iterator pos = MainFrame::GetCustomTestMenuIds().find(menuId);
     if (pos == MainFrame::GetCustomTestMenuIds().end())
         {
-        wxMessageBox(_("Unable to find custom test: internal error, please contact software vendor."),
-            _("Error"), wxOK|wxICON_ERROR);
+        wxMessageBox(_(L"Unable to find custom test: internal error, please contact software vendor."),
+            _(L"Error"), wxOK|wxICON_ERROR);
         return;
         }
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
@@ -1460,238 +1461,238 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
 
     // bar chart sorting menu
     wxMenuItem* item = new wxMenuItem(&m_graphSortMenu,
-        XRCID("ID_SORT_ASCENDING"), _("Sort Ascending"));
+        XRCID("ID_SORT_ASCENDING"), _(L"Sort Ascending"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-sort-ascending.svg"));
     m_graphSortMenu.Append(item);
 
     item = new wxMenuItem(&m_graphSortMenu,
-        XRCID("ID_SORT_DESCENDING"), _("Sort Descending"));
+        XRCID("ID_SORT_DESCENDING"), _(L"Sort Descending"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-sort-descending.svg"));
     m_graphSortMenu.Append(item);
 
     // graph background menu
     item = new wxMenuItem(&m_graphBackgroundMenu,
-        XRCID("ID_EDIT_GRAPH_BKCOLOR"), _("Color..."));
+        XRCID("ID_EDIT_GRAPH_BKCOLOR"), _(L"Color..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
     m_graphBackgroundMenu.Append(item);
 
     item = new wxMenuItem(&m_graphBackgroundMenu,
-        XRCID("ID_GRAPH_BKCOLOR_FADE"), _("Apply Fade"), wxEmptyString, wxITEM_CHECK);
+        XRCID("ID_GRAPH_BKCOLOR_FADE"), _(L"Apply Fade"), wxEmptyString, wxITEM_CHECK);
     m_graphBackgroundMenu.Append(item);
 
     item = new wxMenuItem(&m_graphBackgroundMenu,
-        XRCID("ID_EDIT_GRAPH_BKIMAGE"), _("Image..."));
+        XRCID("ID_EDIT_GRAPH_BKIMAGE"), _(L"Image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_graphBackgroundMenu.Append(item);
 
     item = new wxMenuItem(&m_graphBackgroundMenu,
-        XRCID("ID_EDIT_GRAPH_BKIMAGE_OPACITY"), _("Image Opacity..."));
+        XRCID("ID_EDIT_GRAPH_BKIMAGE_OPACITY"), _(L"Image Opacity..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/opacity.svg"));
     m_graphBackgroundMenu.Append(item);
 
     m_graphBackgroundMenu.AppendSeparator();
 
     item = new wxMenuItem(&m_graphBackgroundMenu,
-        XRCID("ID_EDIT_PLOT_BKCOLOR"), _("Plot Area Color..."));
+        XRCID("ID_EDIT_PLOT_BKCOLOR"), _(L"Plot Area Color..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
     m_graphBackgroundMenu.Append(item);
 
     item = new wxMenuItem(&m_graphBackgroundMenu,
-        XRCID("ID_EDIT_PLOT_BKCOLOR_OPACITY"), _("Plot Area Opacity..."));
+        XRCID("ID_EDIT_PLOT_BKCOLOR_OPACITY"), _(L"Plot Area Opacity..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/opacity.svg"));
     m_graphBackgroundMenu.Append(item);
 
     // histogram bar labels
     m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
-        XRCID("ID_HISTOBAR_LABELS_COUNT"), _("Counts"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_HISTOBAR_LABELS_COUNT"), _(L"Counts"), wxEmptyString, wxITEM_CHECK));
     m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
-        XRCID("ID_HISTOBAR_LABELS_PERCENTAGE"), _("Percentages"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_HISTOBAR_LABELS_PERCENTAGE"), _(L"Percentages"), wxEmptyString, wxITEM_CHECK));
     m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
-        XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT"), _("Counts && Percentages"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT"), _(L"Counts && Percentages"), wxEmptyString, wxITEM_CHECK));
     m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
-        XRCID("ID_HISTOBAR_NO_LABELS"), _("No labels"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_HISTOBAR_NO_LABELS"), _(L"No labels"), wxEmptyString, wxITEM_CHECK));
 
     // zoom
-    item = new wxMenuItem(&m_zoomMenu, wxID_ZOOM_IN, _("Zoom In"));
+    item = new wxMenuItem(&m_zoomMenu, wxID_ZOOM_IN, _(L"Zoom In"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/zoom-in.svg"));
     m_zoomMenu.Append(item);
 
-    item = new wxMenuItem(&m_zoomMenu, wxID_ZOOM_OUT, _("Zoom Out"));
+    item = new wxMenuItem(&m_zoomMenu, wxID_ZOOM_OUT, _(L"Zoom Out"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/zoom-out.svg"));
     m_zoomMenu.Append(item);
 
-    item = new wxMenuItem(&m_zoomMenu, wxID_ZOOM_FIT, _("Reset Zoom"));
+    item = new wxMenuItem(&m_zoomMenu, wxID_ZOOM_FIT, _(L"Reset Zoom"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/zoom-to-fit.svg"));
     m_zoomMenu.Append(item);
 
     // bar orientation
-    item = new wxMenuItem(&m_barOrientationMenu, XRCID("ID_BAR_HORIZONTAL"), _("Horizontal"));
+    item = new wxMenuItem(&m_barOrientationMenu, XRCID("ID_BAR_HORIZONTAL"), _(L"Horizontal"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-chart.svg"));
     m_barOrientationMenu.Append(item);
 
-    item = new wxMenuItem(&m_barOrientationMenu, XRCID("ID_BAR_VERTICAL"), _("Vertical"));
+    item = new wxMenuItem(&m_barOrientationMenu, XRCID("ID_BAR_VERTICAL"), _(L"Vertical"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/histogram.svg"));
     m_barOrientationMenu.Append(item);
 
     // bar style menu
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_EDIT_BAR_COLOR"), _("Color..."));
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_EDIT_BAR_COLOR"), _(L"Color..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
     m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_EDIT_BAR_OPACITY"), _("Opacity..."));
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_EDIT_BAR_OPACITY"), _(L"Opacity..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
     m_barStyleMenu.Append(item);
 
     m_barStyleMenu.AppendSeparator();
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_SOLID"), _("Solid"));
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_SOLID"), _(L"Solid"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
     m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_GLASS"), _("Glass effect"));
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_GLASS"), _(L"Glass effect"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
     m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_BTOT"), _("Color fade, bottom to top"));
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_BTOT"), _(L"Color fade, bottom to top"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
     m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_TTOB"), _("Color fade, top to bottom"));
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_TTOB"), _(L"Color fade, top to bottom"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
     m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_BRUSH"), _("Custom image brush"));
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_BRUSH"), _(L"Custom image brush"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_barStyleMenu.Append(item);
 
     m_barStyleMenu.AppendSeparator();
 
     // way to change the stipple brush if one is already selected
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SELECT_BRUSH"), _("Select custom image brush..."));
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SELECT_BRUSH"), _(L"Select custom image brush..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_barStyleMenu.Append(item);
 
     // histogram bar style menu
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_EDIT_HISTOGRAM_BAR_COLOR"), _("Color..."));
+    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_EDIT_HISTOGRAM_BAR_COLOR"), _(L"Color..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
     m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_EDIT_HISTOBAR_OPACITY"), _("Opacity..."));
+    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_EDIT_HISTOBAR_OPACITY"), _(L"Opacity..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
     m_histoBarStyleMenu.Append(item);
 
     m_histoBarStyleMenu.AppendSeparator();
 
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SYTLE_SOLID"), _("Solid"));
+    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SYTLE_SOLID"), _(L"Solid"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
     m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SYTLE_GLASS"), _("Glass effect"));
+    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SYTLE_GLASS"), _(L"Glass effect"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
     m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SYTLE_BTOT"), _("Color fade, bottom to top"));
+    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SYTLE_BTOT"), _(L"Color fade, bottom to top"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
     m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SYTLE_TTOB"), _("Color fade, top to bottom"));
+    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SYTLE_TTOB"), _(L"Color fade, top to bottom"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
     m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SYTLE_BRUSH"), _("Custom image brush"));
+    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SYTLE_BRUSH"), _(L"Custom image brush"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_histoBarStyleMenu.Append(item);
 
     m_histoBarStyleMenu.AppendSeparator();
 
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SELECT_BRUSH"), _("Select custom image brush..."));
+    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SELECT_BRUSH"), _(L"Select custom image brush..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_histoBarStyleMenu.Append(item);
 
     // box style menu
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_EDIT_BOX_COLOR"), _("Color..."));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_EDIT_BOX_COLOR"), _(L"Color..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
     m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_EDIT_BOX_OPACITY"), _("Opacity..."));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_EDIT_BOX_OPACITY"), _(L"Opacity..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
     m_boxStyleMenu.Append(item);
 
     m_boxStyleMenu.AppendSeparator();
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_SOLID"), _("Solid"));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_SOLID"), _(L"Solid"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
     m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_GLASS"), _("Glass effect"));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_GLASS"), _(L"Glass effect"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
     m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_LTOR"), _("Color fade, left to right"));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_LTOR"), _(L"Color fade, left to right"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-left-to-right.svg"));
     m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_RTOL"), _("Color fade, right to left"));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_RTOL"), _(L"Color fade, right to left"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-right-to-left.svg"));
     m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_BRUSH"), _("Custom image brush"));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_BRUSH"), _(L"Custom image brush"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_boxStyleMenu.Append(item);
 
     m_boxStyleMenu.AppendSeparator();
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SELECT_BRUSH"), _("Select custom image brush..."));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SELECT_BRUSH"), _(L"Select custom image brush..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_boxStyleMenu.Append(item);
 
     // graph fonts
-    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_X_AXIS_FONT"), _("X Axis..."));
+    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_X_AXIS_FONT"), _(L"X Axis..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/x-axis.svg"));
     m_graphFontsMenu.Append(item);
 
-    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_Y_AXIS_FONT"), _("Y Axis..."));
+    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_Y_AXIS_FONT"), _(L"Y Axis..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/y-axis.svg"));
     m_graphFontsMenu.Append(item);
 
     m_graphFontsMenu.AppendSeparator();
 
-    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_TOP_TITLES_FONT"), _("Top Titles..."));
+    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_TOP_TITLES_FONT"), _(L"Top Titles..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/top-titles.svg"));
     m_graphFontsMenu.Append(item);
 
-    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_BOTTOM_TITLES_FONT"), _("Bottom Titles..."));
+    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_BOTTOM_TITLES_FONT"), _(L"Bottom Titles..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bottom-titles.svg"));
     m_graphFontsMenu.Append(item);
 
-    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_LEFT_TITLES_FONT"), _("Left Titles..."));
+    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_LEFT_TITLES_FONT"), _(L"Left Titles..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/left-titles.svg"));
     m_graphFontsMenu.Append(item);
 
-    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_RIGHT_TITLES_FONT"), _("Right Titles..."));
+    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_RIGHT_TITLES_FONT"), _(L"Right Titles..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/right-titles.svg"));
     m_graphFontsMenu.Append(item);
 
     // document indexing menus
-    m_lineEndsMenu.Append(new wxMenuItem(&m_lineEndsMenu, XRCID("ID_LE_ONLY_AFTER_VALID_SENTENCE"), _("Only begin a new paragraph if following a valid sentence"), wxEmptyString, wxITEM_CHECK));
-    m_lineEndsMenu.Append(new wxMenuItem(&m_lineEndsMenu, XRCID("ID_LE_ALWAYS_NEW_PARAGRAPH"), _("Always begin a new paragraph"), wxEmptyString, wxITEM_CHECK));
+    m_lineEndsMenu.Append(new wxMenuItem(&m_lineEndsMenu, XRCID("ID_LE_ONLY_AFTER_VALID_SENTENCE"), _(L"Only begin a new paragraph if following a valid sentence"), wxEmptyString, wxITEM_CHECK));
+    m_lineEndsMenu.Append(new wxMenuItem(&m_lineEndsMenu, XRCID("ID_LE_ALWAYS_NEW_PARAGRAPH"), _(L"Always begin a new paragraph"), wxEmptyString, wxITEM_CHECK));
 
-    m_longSentencesMenu.Append(new wxMenuItem(&m_longSentencesMenu, XRCID("ID_LS_LONGER_THAN"), _("If longer than..."), wxEmptyString, wxITEM_CHECK));
-    m_longSentencesMenu.Append(new wxMenuItem(&m_longSentencesMenu, XRCID("ID_LS_OUTLIER_RANGE"), _("Outside outlier range"), wxEmptyString, wxITEM_CHECK));
+    m_longSentencesMenu.Append(new wxMenuItem(&m_longSentencesMenu, XRCID("ID_LS_LONGER_THAN"), _(L"If longer than..."), wxEmptyString, wxITEM_CHECK));
+    m_longSentencesMenu.Append(new wxMenuItem(&m_longSentencesMenu, XRCID("ID_LS_OUTLIER_RANGE"), _(L"Outside outlier range"), wxEmptyString, wxITEM_CHECK));
 
-    m_textExclusionMenu.Append(new wxMenuItem(&m_textExclusionMenu, XRCID("ID_TE_ALL_INCOMPLETE"), _("Exclude all incomplete sentences"), wxEmptyString, wxITEM_CHECK));
-    m_textExclusionMenu.Append(new wxMenuItem(&m_textExclusionMenu, XRCID("ID_TE_NO_EXCLUDE"), _("Do not exclude any text"), wxEmptyString, wxITEM_CHECK));
-    m_textExclusionMenu.Append(new wxMenuItem(&m_textExclusionMenu, XRCID("ID_TE_ALL_INCOMPLETE_EXCEPT_HEADERS"), _("Exclude all incomplete sentences, except headings"), wxEmptyString, wxITEM_CHECK));
+    m_textExclusionMenu.Append(new wxMenuItem(&m_textExclusionMenu, XRCID("ID_TE_ALL_INCOMPLETE"), _(L"Exclude all incomplete sentences"), wxEmptyString, wxITEM_CHECK));
+    m_textExclusionMenu.Append(new wxMenuItem(&m_textExclusionMenu, XRCID("ID_TE_NO_EXCLUDE"), _(L"Do not exclude any text"), wxEmptyString, wxITEM_CHECK));
+    m_textExclusionMenu.Append(new wxMenuItem(&m_textExclusionMenu, XRCID("ID_TE_ALL_INCOMPLETE_EXCEPT_HEADERS"), _(L"Exclude all incomplete sentences, except headings"), wxEmptyString, wxITEM_CHECK));
 
-    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu, XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED"), _("Not enabled"), wxEmptyString, wxITEM_CHECK));
-    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu, XRCID("ID_EXCLUSION_TAGS_CAROTS"), _("^ and ^"), wxEmptyString, wxITEM_CHECK));
-    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu, XRCID("ID_EXCLUSION_TAGS_ANGLES"), _("< and >"), wxEmptyString, wxITEM_CHECK));
-    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu, XRCID("ID_EXCLUSION_TAGS_BRACES"), _("[ and ]"), wxEmptyString, wxITEM_CHECK));
-    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu, XRCID("ID_EXCLUSION_TAGS_CURLIES"), _("{ and }"), wxEmptyString, wxITEM_CHECK));
-    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu, XRCID("ID_EXCLUSION_TAGS_PARANS"), _("( and )"), wxEmptyString, wxITEM_CHECK));
+    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu, XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED"), _(L"Not enabled"), wxEmptyString, wxITEM_CHECK));
+    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu, XRCID("ID_EXCLUSION_TAGS_CAROTS"), _(L"^ and ^"), wxEmptyString, wxITEM_CHECK));
+    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu, XRCID("ID_EXCLUSION_TAGS_ANGLES"), _(L"< and >"), wxEmptyString, wxITEM_CHECK));
+    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu, XRCID("ID_EXCLUSION_TAGS_BRACES"), _(L"[ and ]"), wxEmptyString, wxITEM_CHECK));
+    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu, XRCID("ID_EXCLUSION_TAGS_CURLIES"), _(L"{ and }"), wxEmptyString, wxITEM_CHECK));
+    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu, XRCID("ID_EXCLUSION_TAGS_PARANS"), _(L"( and )"), wxEmptyString, wxITEM_CHECK));
 
-    m_numeralSyllabicationMenu.Append(new wxMenuItem(&m_numeralSyllabicationMenu, XRCID("ID_NUMSYL_ONE"), _("Numerals are one syllable"), wxEmptyString, wxITEM_CHECK));
-    m_numeralSyllabicationMenu.Append(new wxMenuItem(&m_numeralSyllabicationMenu, XRCID("ID_NUMSYL_EACH_DIGIT"), _("Sound out each digit"), wxEmptyString, wxITEM_CHECK));
+    m_numeralSyllabicationMenu.Append(new wxMenuItem(&m_numeralSyllabicationMenu, XRCID("ID_NUMSYL_ONE"), _(L"Numerals are one syllable"), wxEmptyString, wxITEM_CHECK));
+    m_numeralSyllabicationMenu.Append(new wxMenuItem(&m_numeralSyllabicationMenu, XRCID("ID_NUMSYL_EACH_DIGIT"), _(L"Sound out each digit"), wxEmptyString, wxITEM_CHECK));
 
     return subframe;
     }
@@ -1756,11 +1757,11 @@ void BaseProjectView::Present()
     //update menus that might change due to the project's language being changed
     if (GetMenuBar())
         {
-        int readMenuIndex = GetMenuBar()->FindMenu(_("Readability"));
+        int readMenuIndex = GetMenuBar()->FindMenu(_(L"Readability"));
         //add menu if needed, although this shouldn't happen
         if (readMenuIndex == wxNOT_FOUND)
             {
-            GetMenuBar()->Append(new wxMenu(), _("Readability"));
+            GetMenuBar()->Append(new wxMenu(), _(L"Readability"));
             readMenuIndex = static_cast<int>(GetMenuBar()->GetMenuCount()-1);
             }
         wxMenu* readMenu = GetMenuBar()->GetMenu(readMenuIndex);
@@ -1777,18 +1778,18 @@ void BaseProjectView::Present()
             wxMenu* secondLanguageMenu = new wxMenu;
             m_customTestsRegularMenu = new wxMenu;
             m_testsBundleRegularMenu = new wxMenu;
-            readMenu->AppendSubMenu(primaryMenu, _("Primary-age Reading (5-12 years old)"));
-            readMenu->AppendSubMenu(secondaryMenu, _("Secondary-age Reading (13 years old and above)"));
-            readMenu->AppendSubMenu(adultMenu, _("Adult Reading (technical forms and documents)"));
-            readMenu->AppendSubMenu(secondLanguageMenu, _("Second Language Reading"));
+            readMenu->AppendSubMenu(primaryMenu, _(L"Primary-age Reading (5-12 years old)"));
+            readMenu->AppendSubMenu(secondaryMenu, _(L"Secondary-age Reading (13 years old and above)"));
+            readMenu->AppendSubMenu(adultMenu, _(L"Adult Reading (technical forms and documents)"));
+            readMenu->AppendSubMenu(secondLanguageMenu, _(L"Second Language Reading"));
             MainFrame::FillReadabilityMenu(primaryMenu, secondaryMenu, adultMenu, secondLanguageMenu, doc);
             //add the custom test menu to the bottom
             readMenu->AppendSeparator();
-            readMenu->AppendSubMenu(m_customTestsRegularMenu, _("Custom Tests"));
+            readMenu->AppendSubMenu(m_customTestsRegularMenu, _(L"Custom Tests"));
             MainFrame::FillMenuWithCustomTests(m_customTestsRegularMenu, doc, true);
             //add test bundles
             readMenu->AppendSeparator();
-            readMenu->AppendSubMenu(m_testsBundleRegularMenu, _("Bundles"));
+            readMenu->AppendSubMenu(m_testsBundleRegularMenu, _(L"Bundles"));
             MainFrame::FillMenuWithTestBundles(m_testsBundleRegularMenu, doc, true);
 
             //remove any submenus that don't have anything in them
@@ -2061,13 +2062,13 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     GetQuickToolbar()->SetBackgroundColour(wxGetApp().GetAppOptions().GetRibbonInactiveTabColor());
     quickAccessToolbarSizer->Add(GetQuickToolbar(), 1, wxEXPAND);
     // save
-    GetQuickToolbar()->AddTool(wxID_SAVE, _("Save the project"),
+    GetQuickToolbar()->AddTool(wxID_SAVE, _(L"Save the project"),
         wxArtProvider::GetBitmapBundle(wxART_FILE_SAVE, wxART_BUTTON));
     // copy
-    GetQuickToolbar()->AddTool(wxID_COPY, _("Copy selection"),
+    GetQuickToolbar()->AddTool(wxID_COPY, _(L"Copy selection"),
         wxArtProvider::GetBitmapBundle(wxART_COPY, wxART_BUTTON));
     // print
-    GetQuickToolbar()->AddTool(wxID_PRINT, _("Print the selected window"),
+    GetQuickToolbar()->AddTool(wxID_PRINT, _(L"Print the selected window"),
         wxArtProvider::GetBitmapBundle(wxART_PRINT, wxART_BUTTON));
     GetQuickToolbar()->Realize();
 
@@ -2089,7 +2090,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
 
     //initialize ribbon menus
     wxGetApp().FillPrintMenu(m_printMenu, ReadabilityApp::RibbonType::StandardProjectRibbon);
-    m_fileOpenMenu.Append(wxID_OPEN, _("Open Project...") + L"\tCtrl+O");
+    m_fileOpenMenu.Append(wxID_OPEN, _(L"Open Project...") + L"\tCtrl+O");
     wxGetApp().GetDocManager()->FileHistoryUseMenu(&m_fileOpenMenu);
     if (m_fileOpenMenu.FindItem(wxID_FILE1) == nullptr)
         { wxGetApp().GetDocManager()->FileHistoryAddFilesToMenu(&m_fileOpenMenu); }
@@ -2192,7 +2193,7 @@ void BaseProjectView::OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarEvent&
     // if a standard project with manually entered text then there is no file to link to
     if (activeProject->IsKindOf(CLASSINFO(ProjectDoc)) && activeProject->GetTextSource() == TextSource::EnteredText)
         {
-        wxMessageBox(_("Only projects that originated from a file can be reloaded. This project had its text manually typed in and cannot be linked to a file."),
+        wxMessageBox(_(L"Only projects that originated from a file can be reloaded. This project had its text manually typed in and cannot be linked to a file."),
                     wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
         return;
         }
@@ -2200,7 +2201,7 @@ void BaseProjectView::OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarEvent&
     // if the documents were embedded, then ask if they want to change this to link to the files.
     else if (activeProject->GetDocumentStorageMethod() == TextStorage::EmbedText)
         {
-        if (wxMessageBox(_("Only projects linked to its source document can be reloaded. This project currently has the original document's text embedded in it. Do you wish to directly link to the source document?"),
+        if (wxMessageBox(_(L"Only projects linked to its source document can be reloaded. This project currently has the original document's text embedded in it. Do you wish to directly link to the source document?"),
                     wxGetApp().GetAppName(), wxYES_NO|wxICON_QUESTION) == wxNO)
             { return; }
         if (activeProject->IsKindOf(CLASSINFO(ProjectDoc)))
@@ -2209,7 +2210,7 @@ void BaseProjectView::OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarEvent&
             if (resolvePath.IsInvalidFile() ||
                 (resolvePath.IsLocalOrNetworkFile() && !wxFile::Exists(activeProject->GetOriginalDocumentFilePath())) )
                 {
-                wxMessageBox(wxString::Format(_("%s: file not found."), activeProject->GetOriginalDocumentFilePath() ), 
+                wxMessageBox(wxString::Format(_(L"%s: file not found."), activeProject->GetOriginalDocumentFilePath() ), 
                          wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
                 return;
                 }
