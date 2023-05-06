@@ -442,7 +442,7 @@ void BaseProjectView::OnGraphLogo([[maybe_unused]] wxRibbonButtonBarEvent& event
 void BaseProjectView::OnGraphWatermark([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     wxTextEntryDialog textDlg(GetDocFrame(),
-        _(L"Enter watermark:\n\n(Note that the tags [DATETIME], [DATE], and [TIME] can be used \n to dynamically expand into the current date and time.)"),
+        _(L"Enter watermark:\n\n(Note that the tags @DATETIME@, @DATE@, and @TIME@ can be used \n to dynamically expand into the current date and time.)"),
         _(L"Watermark"),
         dynamic_cast<BaseProjectDoc*>(GetDocument())->GetWatermark(), wxTextEntryDialogStyle|wxTE_MULTILINE);
     if (textDlg.ShowModal() == wxID_OK)
