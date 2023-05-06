@@ -230,7 +230,7 @@ void ToolsOptionsDlg::OnParagraphParseChange([[maybe_unused]] wxCommandEvent& ev
 void ToolsOptionsDlg::OnWarningMessagesButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     WarningMessagesDlg dlg(this);
-    dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), wxT("options-general-settings.html"));
+    dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"options-general-settings.html");
     dlg.ShowModal();
     }
 
@@ -240,7 +240,7 @@ void ToolsOptionsDlg::OnExcludedPhrasesFileEditButtonClick([[maybe_unused]] wxCo
     TransferDataFromWindow();
     EditWordListDlg editDlg(this,
         wxID_ANY, _("Edit Words/Phrases To Exclude"));
-    editDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), wxT("document-analysis.html"));
+    editDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"document-analysis.html");
     editDlg.SetPhraseFileMode(true);
     editDlg.SetFilePath(m_excludedPhrasesPath);
     if (editDlg.ShowModal() != wxID_OK)
@@ -1645,7 +1645,7 @@ void ToolsOptionsDlg::OnExportSettings([[maybe_unused]] wxCommandEvent& event)
     wxFileDialog dialog(this,
                     _("Export Settings File"),
                     wxEmptyString,
-                    wxT("Settings.xml"),
+                    L"Settings.xml",
                     _("Readability Studio Settings Files (*.xml)|*.xml"),
                     wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
     if (dialog.ShowModal() != wxID_OK)
@@ -1662,7 +1662,7 @@ void ToolsOptionsDlg::OnImportSettings([[maybe_unused]] wxCommandEvent& event)
             this,
             _("Import Settings File"),
             wxEmptyString,
-            wxT("Settings.xml"),
+            L"Settings.xml",
             _("Readability Studio Settings Files (*.xml)|*.xml"),
             wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
     if (dialog.ShowModal() != wxID_OK)
@@ -3372,55 +3372,55 @@ void ToolsOptionsDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
         switch (page->GetId())
             {
         case GENERAL_SETTINGS_PAGE:
-            topic = wxT("options-general-settings.html");
+            topic = L"options-general-settings.html";
             break;
         case DOCUMENT_DISPLAY_GENERAL_PAGE:
-            topic = wxT("options-highlighted-reports.html");
+            topic = L"options-highlighted-reports.html";
             break;
         case PROJECT_SETTINGS_PAGE:
-            topic = wxT("project-settings.html");
+            topic = L"project-settings.html";
             break;
         case DOCUMENT_DISPLAY_DOLCH_PAGE:
-            topic = wxT("dolch-options.html");
+            topic = L"dolch-options.html";
             break;
         case SCORES_TEST_OPTIONS_PAGE:
             [[fallthrough]];
         case SCORES_DISPLAY_PAGE:
-            topic = wxT("options-scores.html");
+            topic = L"options-scores.html";
             break;
         case ANALYSIS_INDEXING_PAGE:
-            topic = wxT("document-analysis.html");
+            topic = L"document-analysis.html";
             break;
         case GRAMMAR_PAGE:
-            topic = wxT("options-grammar.html");
+            topic = L"options-grammar.html";
             break;
         case ANALYSIS_STATISTICS_PAGE:
-            topic = wxT("options-statistics.html");
+            topic = L"options-statistics.html";
             break;
         case GRAPH_TITLES_PAGE:
             [[fallthrough]];
         case GRAPH_AXIS_PAGE:
             [[fallthrough]];
         case GRAPH_GENERAL_PAGE:
-            topic = wxT("options-graphs.html");
+            topic = L"options-graphs.html";
             break;
         case GRAPH_READABILITY_GRAPHS_PAGE:
-            topic = wxT("options-readability-graphs.html");
+            topic = L"options-readability-graphs.html";
             break;
         case GRAPH_BAR_CHART_PAGE:
-            topic = wxT("options-bar-charts.html");
+            topic = L"options-bar-charts.html";
             break;
         case GRAPH_HISTOGRAM_PAGE:
-            topic = wxT("options-histograms.html");
+            topic = L"options-histograms.html";
             break;
         case GRAPH_BOX_PLOT_PAGE:
-            topic = wxT("options-box-plots.html");
+            topic = L"options-box-plots.html";
             break;
         case WORDS_BREAKDOWN_PAGE:
-            topic = wxT("options-words-breakdown.html");
+            topic = L"options-words-breakdown.html";
             break;
         case SENTENCES_BREAKDOWN_PAGE:
-            topic = wxT("options-sentences-breakdown.html");
+            topic = L"options-sentences-breakdown.html";
             break;
         default:
             topic = L"index.html";

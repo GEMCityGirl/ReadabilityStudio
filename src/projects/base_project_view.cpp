@@ -786,7 +786,7 @@ void BaseProjectView::OnExcludeWordsList([[maybe_unused]] wxRibbonButtonBarEvent
 
     EditWordListDlg editDlg(GetDocFrame(),
         wxID_ANY, _("Edit Words/Phrases To Exclude"));
-    editDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), wxT("document-analysis.html"));
+    editDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"document-analysis.html");
     editDlg.SetPhraseFileMode(true);
     editDlg.SetFilePath(doc->GetExcludedPhrasesPath());
     if (editDlg.ShowModal() != wxID_OK)
@@ -2089,7 +2089,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
 
     //initialize ribbon menus
     wxGetApp().FillPrintMenu(m_printMenu, ReadabilityApp::RibbonType::StandardProjectRibbon);
-    m_fileOpenMenu.Append(wxID_OPEN, _("Open Project...")+wxT("\tCtrl+O"));
+    m_fileOpenMenu.Append(wxID_OPEN, _("Open Project...") + L"\tCtrl+O");
     wxGetApp().GetDocManager()->FileHistoryUseMenu(&m_fileOpenMenu);
     if (m_fileOpenMenu.FindItem(wxID_FILE1) == nullptr)
         { wxGetApp().GetDocManager()->FileHistoryAddFilesToMenu(&m_fileOpenMenu); }
@@ -2102,14 +2102,14 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
 
     wxAcceleratorEntry accelEntries[15];
     accelEntries[0].Set(wxACCEL_NORMAL, WXK_F1, wxID_HELP);
-    accelEntries[1].Set(wxACCEL_CMD, static_cast<int>(wxT('N')), wxID_NEW);
-    accelEntries[2].Set(wxACCEL_CMD, static_cast<int>(wxT('O')), wxID_OPEN);
-    accelEntries[3].Set(wxACCEL_CMD, static_cast<int>(wxT('V')), wxID_PASTE);
-    accelEntries[4].Set(wxACCEL_CMD, static_cast<int>(wxT('P')), wxID_PRINT);
-    accelEntries[5].Set(wxACCEL_CMD, static_cast<int>(wxT('F')), wxID_FIND);
-    accelEntries[6].Set(wxACCEL_CMD, static_cast<int>(wxT('C')), wxID_COPY);
-    accelEntries[7].Set(wxACCEL_CMD, static_cast<int>(wxT('S')), wxID_SAVE);
-    accelEntries[8].Set(wxACCEL_CMD, static_cast<int>(wxT('A')), wxID_SELECTALL);
+    accelEntries[1].Set(wxACCEL_CMD, static_cast<int>(L'N'), wxID_NEW);
+    accelEntries[2].Set(wxACCEL_CMD, static_cast<int>(L'O'), wxID_OPEN);
+    accelEntries[3].Set(wxACCEL_CMD, static_cast<int>(L'V'), wxID_PASTE);
+    accelEntries[4].Set(wxACCEL_CMD, static_cast<int>(L'P'), wxID_PRINT);
+    accelEntries[5].Set(wxACCEL_CMD, static_cast<int>(L'F'), wxID_FIND);
+    accelEntries[6].Set(wxACCEL_CMD, static_cast<int>(L'C'), wxID_COPY);
+    accelEntries[7].Set(wxACCEL_CMD, static_cast<int>(L'S'), wxID_SAVE);
+    accelEntries[8].Set(wxACCEL_CMD, static_cast<int>(L'A'), wxID_SELECTALL);
     accelEntries[9].Set(wxACCEL_NORMAL, WXK_F5, XRCID("ID_DOCUMENT_REFRESH"));
     accelEntries[10].Set(wxACCEL_CMD, WXK_BACK, XRCID("ID_REMOVE_TEST"));
     accelEntries[11].Set(wxACCEL_CMD, WXK_NUMPAD_DELETE, XRCID("ID_REMOVE_TEST"));

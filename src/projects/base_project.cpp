@@ -3665,7 +3665,7 @@ bool BaseProject::LoadExternalDocument()
                 }
             }
         wxString worksheetName = GetOriginalDocumentFilePath().substr(excelTag+6);
-        const size_t slash = worksheetName.find_last_of(wxT('#'));
+        const size_t slash = worksheetName.find_last_of(L'#');
         if (slash != wxNOT_FOUND)
             {
             wxString CellName = worksheetName.substr(slash+1);

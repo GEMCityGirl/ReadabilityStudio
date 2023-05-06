@@ -268,7 +268,7 @@ bool BatchProjectDoc::OnNewDocument()
             {
             const html_utilities::html_url_format hformat(resolvePath.GetResolvedPath());
             wxString domain = hformat.get_root_domain().c_str();
-            const int dotPos = domain.find(wxT('.'), true);
+            const int dotPos = domain.find(L'.', true);
             if (dotPos != wxNOT_FOUND)
                 { domain.Truncate(dotPos); }
             SetTitle(domain);
@@ -904,7 +904,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                         }
                     }
                 wxString worksheetName = (*pos)->GetOriginalDocumentFilePath().substr(excelTag+6);
-                const size_t slash = worksheetName.find_last_of(wxT('#'));
+                const size_t slash = worksheetName.find_last_of(L'#');
                 if (slash != wxNOT_FOUND)
                     {
                     wxString CellName = worksheetName.substr(slash+1);
@@ -1091,10 +1091,10 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 {
                 if (dwIter->second > 1)
                     { doubleWordsStr.Append(wxT('\"')).Append(dwIter->first.c_str()).Append(
-                        wxT(' ')).Append(dwIter->first.c_str()).Append(wxString::Format(wxT("\" * %zu, "), dwIter->second)); }
+                        L' ').Append(dwIter->first.c_str()).Append(wxString::Format(wxT("\" * %zu, "), dwIter->second)); }
                 else
                     { doubleWordsStr.Append(wxT('\"')).Append(dwIter->first.c_str()).Append(
-                        wxT(' ')).Append(dwIter->first.c_str()).Append(wxT("\", ")); }
+                        L' ').Append(dwIter->first.c_str()).Append(wxT("\", ")); }
                 }
             //chop off the last ", "
             if (doubleWordsStr.length() > 2)
@@ -1115,7 +1115,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             for (size_t i = 0; i < incorrectArticleIndices.size(); ++i)
                 {
                 incorrectArticle.insert(
-                    (*pos)->GetWords()->get_word(incorrectArticleIndices[i]) + wxT(' ') + (*pos)->GetWords()->get_word(incorrectArticleIndices[i]+1));
+                    (*pos)->GetWords()->get_word(incorrectArticleIndices[i]) + L' ' + (*pos)->GetWords()->get_word(incorrectArticleIndices[i]+1));
                 }
             for (auto dwIter = incorrectArticle.get_data().cbegin();
                 dwIter != incorrectArticle.get_data().cend();
@@ -1176,7 +1176,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                     {
                     currentPassivePhrase += (wordCounter == passiveVoiceIndices[i].second-1) ?
                         traits::case_insensitive_wstring_ex((*pos)->GetWords()->get_word(passiveVoiceIndices[i].first+wordCounter)) :
-                        traits::case_insensitive_wstring_ex((*pos)->GetWords()->get_word(passiveVoiceIndices[i].first+wordCounter) + wxT(' '));
+                        traits::case_insensitive_wstring_ex((*pos)->GetWords()->get_word(passiveVoiceIndices[i].first+wordCounter) + L' ');
                     }
                 passiveVoices.insert(currentPassivePhrase);
                 }
@@ -4367,7 +4367,7 @@ bool BatchProjectDoc::OnSaveDocument(const wxString& filename)
 
 bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
     {
-    wxLogMessage(wxT("Opening project \"%s\""), filename);
+    wxLogMessage(L"Opening project \"%s\"", filename);
     //make sure there aren't any projects getting updated before we start opening a new one.
     //opening a project may try to add new custom tests, which would cause a race condition with
     //the processing project

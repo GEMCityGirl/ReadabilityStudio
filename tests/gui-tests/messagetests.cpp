@@ -171,8 +171,8 @@ TEST_CASE("Readability Messages", "[messages][readability]")
         CHECK(messages.GetFormattedValue(0.1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == L"0.1");
         CHECK(messages.GetFormattedValue(1.2, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == L"1.2");
         CHECK(messages.GetFormattedValue(5.44, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == L"5.4");
-        CHECK(messages.GetFormattedValue(9.67, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == wxT("9.7"));
-        CHECK(messages.GetFormattedValue(15.77, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == wxT("15.8"));
+        CHECK(messages.GetFormattedValue(9.67, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == L"9.7");
+        CHECK(messages.GetFormattedValue(15.77, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == L"15.8");
         CHECK(messages.GetGradeScaleLongLabel(0) == L"Kindergarten");
         }
     SECTION("GetFormattedTextUSLongFormat")
@@ -182,8 +182,8 @@ TEST_CASE("Readability Messages", "[messages][readability]")
         messages.SetLongGradeScaleFormat(true);
         CHECK(messages.IsUsingLongGradeScaleFormat());
         CHECK(messages.GetFormattedValue(0.1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == L"Kindergarten, first month of class completed");
-        CHECK(messages.GetFormattedValue(9.67, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == wxT("High school freshman, seventh month of class completed"));
-        CHECK(messages.GetFormattedValue(18.0, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == wxT("Post-graduate sophomore, first month of class"));
+        CHECK(messages.GetFormattedValue(9.67, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == L"High school freshman, seventh month of class completed");
+        CHECK(messages.GetFormattedValue(18.0, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == L"Post-graduate sophomore, first month of class");
         CHECK(messages.GetGradeScaleLongLabel(0) == L"Kindergarten");
         CHECK(messages.GetGradeScaleLongLabel(5) == L"5th grade");
         CHECK(messages.GetGradeScaleLongLabel(13) == L"University freshman");
@@ -196,9 +196,9 @@ TEST_CASE("Readability Messages", "[messages][readability]")
         messages.SetLongGradeScaleFormat(true);
         CHECK(messages.IsUsingLongGradeScaleFormat());
         CHECK(messages.GetFormattedValue(L"0.1", NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == L"Kindergarten, first month of class completed");
-        CHECK(messages.GetFormattedValue(L"9.67", NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == wxT("High school freshman, seventh month of class completed"));
+        CHECK(messages.GetFormattedValue(L"9.67", NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == L"High school freshman, seventh month of class completed");
         //test formatting multiple strings
         CHECK(messages.GetFormattedValue(L"0.1;9.67", NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == L"Kindergarten, first month of class completed; High school freshman, seventh month of class completed");
-        CHECK(messages.GetFormattedValue(L"0-1", NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == wxT("Kindergarten-1st grade"));
+        CHECK(messages.GetFormattedValue(L"0-1", NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)) == L"Kindergarten-1st grade");
         }
     }

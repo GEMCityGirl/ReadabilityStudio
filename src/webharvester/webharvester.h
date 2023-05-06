@@ -49,7 +49,7 @@ public:
     inline bool operator()(const wchar_t* extension) const
         {
         // any sort of PHP page (even without the extension PHP) will follow this syntax
-        if (std::wcschr(extension, wxT('?')) && std::wcschr(extension, wxT('=')) )
+        if (std::wcschr(extension, L'?') && std::wcschr(extension, L'=') )
             { return true; }
         return (m_knownRegularFileExtensions.find(extension) != m_knownRegularFileExtensions.cend());
         }

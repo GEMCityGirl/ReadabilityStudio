@@ -458,11 +458,11 @@ public:
 
     //used for the contents of a project (zip) file
     [[nodiscard]] static const wxString ProjectSettingsFileLabel()
-        { return wxT("settings.xml"); }
+        { return L"settings.xml"; }
     [[nodiscard]] static const wxString ProjectContentFileLabel()
-        { return wxT("content0.txt"); }
+        { return L"content0.txt"; }
     [[nodiscard]] static const wxString ProjectMetaFileLabel()
-        { return wxT("meta.xml"); }
+        { return L"meta.xml"; }
 protected:
     /// @returns The goal values of a test goal (if specified in the project).
     std::tuple<double,double> GetGoalsForTest(const wxString& testName) const
