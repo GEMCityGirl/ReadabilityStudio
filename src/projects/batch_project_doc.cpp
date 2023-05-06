@@ -43,10 +43,10 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
             size_t index = reportStr.find(searchStr);
             if (index != wxNOT_FOUND)
                 {
-                size_t endIndex = reportStr.find(wxT(","), index+searchStr.length());
+                size_t endIndex = reportStr.find(L",", index+searchStr.length());
                 if (endIndex != wxNOT_FOUND)
                     {
-                    size_t multFactorIndex = reportStr.find(wxT("*"), index+searchStr.length());
+                    size_t multFactorIndex = reportStr.find(L"*", index+searchStr.length());
                     if (multFactorIndex != wxNOT_FOUND && multFactorIndex < endIndex)
                         {
                         multFactorIndex += 2;//skip "* "
@@ -65,7 +65,7 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
                     {
                     if (index >= 2)
                         { index -= 2; }//we will need to strip the trailing ", " after removing this word at the end
-                    size_t multFactorIndex = reportStr.find(wxT("*"), index+searchStr.length());
+                    size_t multFactorIndex = reportStr.find(L"*", index+searchStr.length());
                     if (multFactorIndex != wxNOT_FOUND)
                         {
                         multFactorIndex += 2;//skip "* "
@@ -256,7 +256,7 @@ bool BatchProjectDoc::OnNewDocument()
             }
         else if (resolvePath.IsExcelCell() || resolvePath.IsArchivedFile())
             {
-            const size_t subDocStart = resolvePath.GetResolvedPath().rfind(wxT("#"));
+            const size_t subDocStart = resolvePath.GetResolvedPath().rfind(L"#");
             if (subDocStart != wxNOT_FOUND)
                 {
                 const wxFileName fn(resolvePath.GetResolvedPath().substr(0, subDocStart));
@@ -909,17 +909,17 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                     {
                     wxString CellName = worksheetName.substr(slash+1);
                     worksheetName.Truncate(slash);
-                    const wxString workSheetPath = fn.GetFullPath() + wxT("#") + worksheetName;
+                    const wxString workSheetPath = fn.GetFullPath() + L"#" + worksheetName;
                     std::map<wxString,ExcelFile*>::iterator excelFilePos = excelFiles.find(workSheetPath);
                     if (excelFilePos == excelFiles.end())
                         {
                         excelFilePos = excelFiles.insert(
                             std::pair<wxString,ExcelFile*>(workSheetPath, new ExcelFile(fn.GetFullPath()))).first;
                         //read in the worksheets
-                        wxString workBookFileText = excelFilePos->second->m_zip.ReadTextFile(wxT("xl/workbook.xml"));
+                        wxString workBookFileText = excelFilePos->second->m_zip.ReadTextFile(L"xl/workbook.xml");
                         excelFilePos->second->m_xlsx_extract.read_worksheet_names(workBookFileText.wc_str(), workBookFileText.length());
                         //read in the string table
-                        const wxString sharedStrings = excelFilePos->second->m_zip.ReadTextFile(wxT("xl/sharedStrings.xml"));
+                        const wxString sharedStrings = excelFilePos->second->m_zip.ReadTextFile(L"xl/sharedStrings.xml");
                         if (sharedStrings.length())
                             {
                             excelFilePos->second->m_xlsx_extract.read_shared_strings(sharedStrings.wc_str(), sharedStrings.length());
@@ -930,7 +930,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                     std::vector<std::wstring>::const_iterator sheetPos = std::find(excelFilePos->second->m_xlsx_extract.get_worksheet_names().begin(), excelFilePos->second->m_xlsx_extract.get_worksheet_names().end(), worksheetName.wc_str());
                     if (sheetPos != excelFilePos->second->m_xlsx_extract.get_worksheet_names().end())
                         {
-                        const wxString internalSheetName = wxString::Format(wxT("xl/worksheets/sheet%zu.xml"), (sheetPos-excelFilePos->second->m_xlsx_extract.get_worksheet_names().begin())+1);
+                        const wxString internalSheetName = wxString::Format(L"xl/worksheets/sheet%zu.xml", (sheetPos-excelFilePos->second->m_xlsx_extract.get_worksheet_names().begin())+1);
                         //see if this worksheet is already loaded
                         ExcelFile::Workbook::iterator internalSheetPos =
                             excelFilePos->second->m_worksheets.find(internalSheetName);
@@ -2114,7 +2114,7 @@ void BatchProjectDoc::DisplayWarnings()
         view->GetWarningsView()->InsertColumn(0, _("Document"));
         view->GetWarningsView()->InsertColumn(1, _("Label"));
         view->GetWarningsView()->InsertColumn(2, _("Warning"));
-        view->GetWarningsView()->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+        view->GetWarningsView()->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
         }
 
     view->GetWarningsView()->SetName(BaseProjectView::GetWarningLabel());
@@ -2154,7 +2154,7 @@ void BatchProjectDoc::DisplayScores()
             listView->SetName(BaseProjectView::GetRawScoresTabLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetScoresView().AddWindow(listView);
             }
         listView->DeleteAllColumns();
@@ -2225,7 +2225,7 @@ void BatchProjectDoc::DisplayScores()
             goalsList->SetName(_("Goals"));
             goalsList->SetSortable(true);
             goalsList->EnableItemViewOnDblClick();
-            goalsList->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            goalsList->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             goalsList->SetVirtualDataProvider(m_goalsData);
             UpdateListOptions(goalsList);
             view->GetScoresView().InsertWindow(1, goalsList);
@@ -2450,7 +2450,7 @@ void BatchProjectDoc::DisplaySummaryStatisticsWindow(const wxString& windowName,
         listView->InsertColumn(currentColumnCount++, _("Lower Quartile"));
         listView->InsertColumn(currentColumnCount++, _("Upper Quartile"));
         }
-    listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+    listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
     listView->SetVirtualDataProvider(data);
     listView->SetVirtualDataSize(data->GetItemCount());
     UpdateListOptions(listView);
@@ -3474,7 +3474,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->Hide();
                     boxPlotCanvas->SetLabel(pageLabel);
                     boxPlotCanvas->SetName(pageLabel);
-                    boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_GRAPH_MENU")) );
+                    boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
 
@@ -3541,7 +3541,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->Hide();
                     boxPlotCanvas->SetLabel(pageLabel);
                     boxPlotCanvas->SetName(pageLabel);
-                    boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_GRAPH_MENU")) );
+                    boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
 
@@ -3610,7 +3610,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->Hide();
                     boxPlotCanvas->SetLabel(pageLabel);
                     boxPlotCanvas->SetName(pageLabel);
-                    boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_GRAPH_MENU")) );
+                    boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
                 auto boxPlot = std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
@@ -3672,7 +3672,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->Hide();
                     boxPlotCanvas->SetLabel(testPos->GetIterator()->get_name().c_str());
                     boxPlotCanvas->SetName(testPos->GetIterator()->get_name().c_str());
-                    boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_GRAPH_MENU")) );
+                    boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
                 auto boxPlot = std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
@@ -3733,7 +3733,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->Hide();
                     boxPlotCanvas->SetLabel(testPos->GetIterator()->get_name().c_str());
                     boxPlotCanvas->SetName(testPos->GetIterator()->get_name().c_str());
-                    boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_GRAPH_MENU")) );
+                    boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
                 auto boxPlot = std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
@@ -3886,7 +3886,7 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
             canvas->Hide();
             canvas->SetLabel(name);
             canvas->SetName(name);
-            canvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_GRAPH_MENU")) );
+            canvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             view->GetHistogramsView().AddWindow(canvas);
             }
         UpdateGraphOptions(canvas);
@@ -4336,7 +4336,7 @@ bool BatchProjectDoc::OnSaveDocument(const wxString& filename)
             pos != m_docs.end();
             ++pos)
             {
-            Wisteria::ZipCatalog::WriteText(zip, wxString::Format(wxT("Content%zu.txt"), pos-m_docs.begin()),
+            Wisteria::ZipCatalog::WriteText(zip, wxString::Format(L"Content%zu.txt", pos-m_docs.begin()),
                 (*pos)->GetDocumentText());
 
             if (!progressDlg.Update(counter++))
@@ -4610,7 +4610,7 @@ void BatchProjectDoc::DisplayGrammar()
             listView->InsertColumn(2, _("Frequency"));
             listView->InsertColumn(3, _("Unique Count"));
             listView->InsertColumn(4, BaseProjectView::GetMisspellingsLabel());
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
         UpdateListOptions(listView);
@@ -4647,7 +4647,7 @@ void BatchProjectDoc::DisplayGrammar()
             listView->InsertColumn(1, _("Label"));
             listView->InsertColumn(2, _("Frequency"));
             listView->InsertColumn(3, _("Repeated Words"));
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
         UpdateListOptions(listView);
@@ -4683,7 +4683,7 @@ void BatchProjectDoc::DisplayGrammar()
             listView->InsertColumn(1, _("Label"));
             listView->InsertColumn(2, _("Frequency"));
             listView->InsertColumn(3, BaseProjectView::GetArticleMismatchesLabel());
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
         UpdateListOptions(listView);
@@ -4720,7 +4720,7 @@ void BatchProjectDoc::DisplayGrammar()
             listView->InsertColumn(2, _("Frequency"));
             listView->InsertColumn(3, BaseProjectView::GetPhrasingErrorsTabLabel());
             listView->InsertColumn(4, _("Suggestions"));
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
         UpdateListOptions(listView);
@@ -4758,7 +4758,7 @@ void BatchProjectDoc::DisplayGrammar()
             listView->InsertColumn(2, _("Frequency"));
             listView->InsertColumn(3, BaseProjectView::GetRedundantPhrasesTabLabel());
             listView->InsertColumn(4, _("Suggestions"));
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
         UpdateListOptions(listView);
@@ -4795,7 +4795,7 @@ void BatchProjectDoc::DisplayGrammar()
             listView->InsertColumn(1, _("Label"));
             listView->InsertColumn(2, _("Frequency"));
             listView->InsertColumn(3, _("Overused Words"));
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
         UpdateListOptions(listView);
@@ -4832,7 +4832,7 @@ void BatchProjectDoc::DisplayGrammar()
             listView->InsertColumn(2, _("Frequency"));
             listView->InsertColumn(3, BaseProjectView::GetWordyPhrasesTabLabel());
             listView->InsertColumn(4, _("Suggestions"));
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
         UpdateListOptions(listView);
@@ -4870,7 +4870,7 @@ void BatchProjectDoc::DisplayGrammar()
             listView->InsertColumn(2, _("Frequency"));
             listView->InsertColumn(3, BaseProjectView::GetClichesTabLabel());
             listView->InsertColumn(4, _("Explanations/Suggestions"));
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
         UpdateListOptions(listView);
@@ -4907,7 +4907,7 @@ void BatchProjectDoc::DisplayGrammar()
             listView->InsertColumn(1, _("Label"));
             listView->InsertColumn(2, _("Frequency"));
             listView->InsertColumn(3, BaseProjectView::GetPassiveLabel());
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
         UpdateListOptions(listView);
@@ -4943,7 +4943,7 @@ void BatchProjectDoc::DisplayGrammar()
             listView->InsertColumn(1, _("Label"));
             listView->InsertColumn(2, _("Frequency"));
             listView->InsertColumn(3, _("Conjunctions"));
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
         UpdateListOptions(listView);
@@ -4979,7 +4979,7 @@ void BatchProjectDoc::DisplayGrammar()
             listView->InsertColumn(1, _("Label"));
             listView->InsertColumn(2, _("Frequency"));
             listView->InsertColumn(3, _("Starting Word"));
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetGrammarView().AddWindow(listView);
             }
         UpdateListOptions(listView);
@@ -5021,7 +5021,7 @@ void BatchProjectDoc::DisplaySentencesBreakdown()
             listView->InsertColumn(2, _("Overly-long Sentences"));
             listView->InsertColumn(3, _("Longest Sentence Length"));
             listView->InsertColumn(4, _("Longest Sentence"));
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetSentencesBreakdownView().AddWindow(listView);
             }
         UpdateListOptions(listView);
@@ -5061,7 +5061,7 @@ void BatchProjectDoc::DisplayHardWords()
             listView->SetName(BaseProjectView::GetDifficultWordsLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetWordsBreakdownView().InsertWindow(0, listView);
             }
         listView->DeleteAllColumns();
@@ -5144,7 +5144,7 @@ void BatchProjectDoc::DisplayHardWords()
             listView->InsertColumn(0, _("Word"));
             listView->InsertColumn(1, _("Frequency"));
             listView->InsertColumn(2, _("Document Count"));
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetWordsBreakdownView().AddWindow(listView);
             }
         UpdateListOptions(listView);
@@ -5174,7 +5174,7 @@ void BatchProjectDoc::DisplayHardWords()
             listView->EnableItemViewOnDblClick();
             listView->InsertColumn(0, _("Word"));
             listView->InsertColumn(1, _("Frequency"));
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetWordsBreakdownView().AddWindow(listView);
             }
         UpdateListOptions(listView);
@@ -5208,7 +5208,7 @@ void BatchProjectDoc::DisplaySightWords()
             listView->SetName(BaseProjectView::GetDolchCoverageTabLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             //add the columns
             listView->InsertColumn(listView->GetColumnCount(), _("Document"));
             listView->InsertColumn(listView->GetColumnCount(), _("Label"));
@@ -5249,32 +5249,32 @@ void BatchProjectDoc::DisplaySightWords()
             listView->SetName(BaseProjectView::GetDolchWordTabLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetDolchSightWordsView().AddWindow(listView);
             }
         //insert the columns
         listView->DeleteAllColumns();
         listView->InsertColumn(listView->GetColumnCount(), _("Document"));
         listView->InsertColumn(listView->GetColumnCount(), _("Label"));
-        listView->InsertColumn(listView->GetColumnCount(), wxT("% ") + _("of Conjunctions"));
+        listView->InsertColumn(listView->GetColumnCount(), L"% " + _("of Conjunctions"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _("Conjunctions")); }
-        listView->InsertColumn(listView->GetColumnCount(), wxT("% ") + _("of Prepositions"));
+        listView->InsertColumn(listView->GetColumnCount(), L"% " + _("of Prepositions"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _("Prepositions")); }
-        listView->InsertColumn(listView->GetColumnCount(), wxT("% ") + _("of Pronouns"));
+        listView->InsertColumn(listView->GetColumnCount(), L"% " + _("of Pronouns"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _("Pronouns")); }
-        listView->InsertColumn(listView->GetColumnCount(), wxT("% ") + _("of Adverbs"));
+        listView->InsertColumn(listView->GetColumnCount(), L"% " + _("of Adverbs"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _("Adverbs")); }
-        listView->InsertColumn(listView->GetColumnCount(), wxT("% ") + _("of Adjectives"));
+        listView->InsertColumn(listView->GetColumnCount(), L"% " + _("of Adjectives"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _("Adjectives")); }
-        listView->InsertColumn(listView->GetColumnCount(), wxT("% ") + _("of Verbs"));
+        listView->InsertColumn(listView->GetColumnCount(), L"% " + _("of Verbs"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _("Verbs")); }
-        listView->InsertColumn(listView->GetColumnCount(), wxT("% ") + _("of Noun Words"));
+        listView->InsertColumn(listView->GetColumnCount(), L"% " + _("of Noun Words"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _("Nouns")); }
 
@@ -5306,14 +5306,14 @@ void BatchProjectDoc::DisplaySightWords()
             listView->SetName(BaseProjectView::GetNonDolchWordTabLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(wxT("IDM_LIST_MENU")) );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             view->GetDolchSightWordsView().AddWindow(listView);
             }
         //insert the columns
         listView->DeleteAllColumns();
         listView->InsertColumn(listView->GetColumnCount(), _("Document"));
         listView->InsertColumn(listView->GetColumnCount(), _("Label"));
-        listView->InsertColumn(listView->GetColumnCount(), wxT("% ") + _("of Non-Dolch Words"));
+        listView->InsertColumn(listView->GetColumnCount(), L"% " + _("of Non-Dolch Words"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _("Non-Dolch Words")); }
 
@@ -5392,7 +5392,7 @@ void BatchProjectDoc::SetScoreStatsRow(ListCtrlExNumericDataProvider* dataGrid,
                  ++modesIter)
                 {
                 modeString += wxNumberFormatter::ToString(*modesIter, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes) +
-                    wxT("; ");
+                    L"; ";
                 }
             //chop off the last "; "
             if (modeString.length() > 2)

@@ -284,11 +284,11 @@ public:
     void LoadDocument()
         {
         if (!GetOriginalDocumentFilePath().empty())
-            { wxLogMessage(wxT("Analyzing %s"), GetOriginalDocumentFilePath() ); }
+            { wxLogMessage(L"Analyzing %s", GetOriginalDocumentFilePath() ); }
         CreateWords();
         if (GetAppendedDocumentText().length())
             {
-            const wxString concatenatedText = GetDocumentText()+wxT("\n\f\n")+GetAppendedDocumentText();
+            const wxString concatenatedText = GetDocumentText() + L"\n\f\n" + GetAppendedDocumentText();
             SetTextSize(concatenatedText.length());
             GetWords()->load(concatenatedText, concatenatedText.length());
             }

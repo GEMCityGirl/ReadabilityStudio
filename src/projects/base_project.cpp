@@ -199,13 +199,13 @@ void BaseProject::LogMessage(wxString message, const wxString& title, const int 
         }
     else
         { AddQuietSubProjectMessage(message,icon); }
-    message.Replace(wxT("\n"), wxT(" "), true);
+    message.Replace(L"\n", L" ", true);
     if (icon & wxICON_ERROR)
-        { wxLogError(wxT("%s"), message); }
+        { wxLogError(L"%s", message); }
     else if (icon & wxICON_EXCLAMATION)
-        { wxLogWarning(wxT("%s"), message); }
+        { wxLogWarning(L"%s", message); }
     else
-        { wxLogVerbose(wxT("%s"), message); }
+        { wxLogVerbose(L"%s", message); }
     }
 
 void BaseProject::FormatFilteredText(wxString& text, const bool romanizeText,
@@ -238,7 +238,7 @@ void BaseProject::FormatFilteredText(wxString& text, const bool romanizeText,
         textLength,
         (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ? InvalidTextFilterFormat::IncludeAllText : InvalidTextFilterFormat::IncludeOnlyValidText,
         removeFilePaths, stripAbbreviations);
-    text.Trim(false); text.Trim(true); text.Prepend(wxT("\t"));
+    text.Trim(false); text.Trim(true); text.Prepend(L"\t");
 
     const text_transform::romanize Romanize;
     text = Romanize(text, text.length(), romanizeText, removeEllipses, removeBullets, narrowFullWithText);
@@ -2959,7 +2959,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawTextWithEncoding(const wxString&
             {
             const wxString filteredText(filter_html(sourceFileText, sourceFileText.length(), true, false));
             if (filter_html.get_log().length())
-                { wxLogWarning(wxT("%s: %s"), fileName.GetFullPath(), filter_html.get_log()); }
+                { wxLogWarning(L"%s: %s", fileName.GetFullPath(), filter_html.get_log()); }
             label = coalesce<wchar_t>(
                         { filter_html.get_subject(),
                           filter_html.get_title(),
@@ -2999,7 +2999,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             {
             const wxString filteredText(filter_rtf(sourceFileText, streamSize));
             if (filter_rtf.get_log().length())
-                { wxLogWarning(wxT("%s: %s"), GetOriginalDocumentFilePath(), filter_rtf.get_log()); }
+                { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_rtf.get_log()); }
             SetOriginalDocumentDescription(
                 coalesce<wchar_t>(
                         { GetOriginalDocumentDescription().wc_str(),
@@ -3055,8 +3055,8 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             return std::make_pair(false, wxEmptyString);
             }
         }
-    else if (fileExtension.CmpNoCase(wxT("doc")) == 0 ||
-             fileExtension.CmpNoCase(wxT("dot")) == 0)
+    else if (fileExtension.CmpNoCase(L"doc") == 0 ||
+             fileExtension.CmpNoCase(L"dot") == 0)
         {
         word1997_extract_text filter_word; // Word 97-2003
         filter_word.set_log_message_separator(L", ");
@@ -3064,7 +3064,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             {
             const wxString filteredText(filter_word(sourceFileText, streamSize));
             if (filter_word.get_log().length())
-                { wxLogWarning(wxT("%s: %s"), GetOriginalDocumentFilePath(), filter_word.get_log()); }
+                { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_word.get_log()); }
             SetOriginalDocumentDescription(
                 coalesce<wchar_t>(
                         { GetOriginalDocumentDescription().wc_str(),
@@ -3144,13 +3144,13 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             return std::make_pair(false, wxEmptyString);
             }
         }
-    else if (fileExtension.CmpNoCase(wxT("docx")) == 0 ||
-             fileExtension.CmpNoCase(wxT("docm")) == 0)
+    else if (fileExtension.CmpNoCase(L"docx") == 0 ||
+             fileExtension.CmpNoCase(L"docm") == 0)
         {
         word2007_extract_text filter_docx;//Word 2007
         filter_docx.set_log_message_separator(L", ");
         Wisteria::ZipCatalog archive(sourceFileText, streamSize);
-        const wxString docxMetaFileText = archive.ReadTextFile(wxT("docProps/core.xml"));
+        const wxString docxMetaFileText = archive.ReadTextFile(L"docProps/core.xml");
         if (docxMetaFileText.length())
             {
             filter_docx.read_meta_data(docxMetaFileText, docxMetaFileText.length());
@@ -3165,17 +3165,17 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                           wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }
                         ));
             }
-        if (archive.Find(wxT("word/document.xml")) == nullptr)
+        if (archive.Find(L"word/document.xml") == nullptr)
             {
             LogMessage(_("Unable to open Word document, file is either password-protected or corrupt."), wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK);
             return std::make_pair(false, wxEmptyString);
             }
-        const wxString docxFileText = archive.ReadTextFile(wxT("word/document.xml"));
+        const wxString docxFileText = archive.ReadTextFile(L"word/document.xml");
         try
             {
             const wxString filteredText(filter_docx(docxFileText.wc_str(), docxFileText.length()));
             if (filter_docx.get_log().length())
-                { wxLogWarning(wxT("%s: %s"), GetOriginalDocumentFilePath(), filter_docx.get_log()); }
+                { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_docx.get_log()); }
             return std::make_pair(true,filteredText);
             }
         catch (...)
@@ -3185,8 +3185,8 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             return std::make_pair(false, wxEmptyString);
             }
         }
-    else if (fileExtension.CmpNoCase(wxT("hhc")) == 0 ||
-             fileExtension.CmpNoCase(wxT("hhk")) == 0)
+    else if (fileExtension.CmpNoCase(L"hhc") == 0 ||
+             fileExtension.CmpNoCase(L"hhk") == 0)
         {
         lily_of_the_valley::hhc_hhk_extract_text filter_hhc_hhk;
         filter_hhc_hhk.set_log_message_separator(L", ");
@@ -3195,7 +3195,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             const wxString hhStr = Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize);
             const wxString filteredText(filter_hhc_hhk(hhStr, hhStr.length()));
             if (filter_hhc_hhk.get_log().length())
-                { wxLogWarning(wxT("%s: %s"), GetOriginalDocumentFilePath(), filter_hhc_hhk.get_log()); }
+                { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_hhc_hhk.get_log()); }
             SetOriginalDocumentDescription(
                 coalesce({ GetOriginalDocumentDescription(),
                            wxFileName(GetOriginalDocumentFilePath()).GetName() }
@@ -3215,10 +3215,10 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
         wxString label;
         //if UTF-8 or simply 7-bit ASCII, then just convert as UTF-8 and run the HTML parser on it
         if (utf8::is_valid(sourceFileText,sourceFileText+streamSize))
-            { extractResult = ExtractRawTextWithEncoding(Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize), wxT("html"), GetOriginalDocumentFilePath(), label); }
+            { extractResult = ExtractRawTextWithEncoding(Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize), L"html", GetOriginalDocumentFilePath(), label); }
         //Otherwise, need to search for the encoding in the HTML itself and convert using that, then run the HTML parser on it
         else
-            { extractResult = ExtractRawTextWithEncoding(Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize, WebHarvester::GetCharsetFromPageContent(sourceFileText, streamSize)), wxT("html"), GetOriginalDocumentFilePath(), label); }
+            { extractResult = ExtractRawTextWithEncoding(Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize, WebHarvester::GetCharsetFromPageContent(sourceFileText, streamSize)), L"html", GetOriginalDocumentFilePath(), label); }
         if (!extractResult.first)
             {
             LogMessage(_("An unknown error occurred while importing. Unable to continue creating project."),
@@ -3234,7 +3234,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                      }));
         return std::make_pair(true,extractResult.second);
         }
-    else if (fileExtension.CmpNoCase(wxT("ps")) == 0)
+    else if (fileExtension.CmpNoCase(L"ps") == 0)
         {
         lily_of_the_valley::postscript_extract_text filter_ps;
         filter_ps.set_log_message_separator(L", ");
@@ -3242,7 +3242,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             {
             const wxString filteredText(filter_ps(sourceFileText, streamSize));
             if (filter_ps.get_log().length())
-                { wxLogWarning(wxT("%s: %s"), GetOriginalDocumentFilePath(), filter_ps.get_log()); }
+                { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_ps.get_log()); }
             SetOriginalDocumentDescription(
                 coalesce({ GetOriginalDocumentDescription(),
                            wxString(filter_ps.get_title()),
@@ -3270,15 +3270,15 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             }
         }
     //OpenDocument text or presentation files
-    else if (fileExtension.CmpNoCase(wxT("odt")) == 0 ||
-             fileExtension.CmpNoCase(wxT("ott")) == 0 ||
-             fileExtension.CmpNoCase(wxT("odp")) == 0 ||
-             fileExtension.CmpNoCase(wxT("otp")) == 0)
+    else if (fileExtension.CmpNoCase(L"odt") == 0 ||
+             fileExtension.CmpNoCase(L"ott") == 0 ||
+             fileExtension.CmpNoCase(L"odp") == 0 ||
+             fileExtension.CmpNoCase(L"otp") == 0)
         {
         lily_of_the_valley::odt_odp_extract_text filter_odt;
         filter_odt.set_log_message_separator(L", ");
         Wisteria::ZipCatalog archive(sourceFileText, streamSize);
-        const wxString odtMetaFileText = archive.ReadTextFile(wxT("meta.xml"));
+        const wxString odtMetaFileText = archive.ReadTextFile(L"meta.xml");
         if (odtMetaFileText.length())
             {
             filter_odt.read_meta_data(odtMetaFileText, odtMetaFileText.length());
@@ -3293,7 +3293,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                           wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }
                         ));
             }
-        const wxString odtFileText = archive.ReadTextFile(wxT("content.xml"));
+        const wxString odtFileText = archive.ReadTextFile(L"content.xml");
         if (odtFileText.empty() && archive.GetMessages().size())
             {
             LogMessage(wxString::Format(_("Unable to open ODT/ODP document: %s"), archive.GetMessages().at(0).m_message), wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK);
@@ -3303,7 +3303,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             {
             const wxString filteredText(filter_odt(odtFileText, odtFileText.length()));
             if (filter_odt.get_log().length())
-                { wxLogWarning(wxT("%s: %s"), GetOriginalDocumentFilePath(), filter_odt.get_log()); }
+                { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_odt.get_log()); }
             return std::make_pair(true,filteredText);
             }
         catch (...)
@@ -3313,14 +3313,14 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             return std::make_pair(false, wxEmptyString);
             }
         }
-    else if (fileExtension.CmpNoCase(wxT("pptx")) == 0 ||
-             fileExtension.CmpNoCase(wxT("pptm")) == 0)
+    else if (fileExtension.CmpNoCase(L"pptx") == 0 ||
+             fileExtension.CmpNoCase(L"pptm") == 0)
         {
         lily_of_the_valley::pptx_extract_text filter_pptx;//PowerPoint 2007
         filter_pptx.set_log_message_separator(L", ");
         wxString pptParsedText;
         Wisteria::ZipCatalog archive(sourceFileText, streamSize);
-        const wxString pptMetaFileText = archive.ReadTextFile(wxT("docProps/core.xml"));
+        const wxString pptMetaFileText = archive.ReadTextFile(L"docProps/core.xml");
         if (pptMetaFileText.length())
             {
             filter_pptx.read_meta_data(pptMetaFileText, pptMetaFileText.length());
@@ -3344,13 +3344,13 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             {
             if (archive.Find(wxString::Format(L"ppt/slides/slide%zu.xml", i)) )
                 {
-                const wxString pptxFileText = archive.ReadTextFile(wxString::Format(wxT("ppt/slides/slide%zu.xml"),i));
+                const wxString pptxFileText = archive.ReadTextFile(wxString::Format(L"ppt/slides/slide%zu.xml",i));
                 try
                     {
                     pptParsedText += filter_pptx(pptxFileText.wc_str(), pptxFileText.length());
                     pptParsedText += L"\n";
                     if (filter_pptx.get_log().length())
-                        { wxLogWarning(wxT("%s: %s"), GetOriginalDocumentFilePath(), filter_pptx.get_log()); }
+                        { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_pptx.get_log()); }
                     }
                 catch (...)
                     {
@@ -3376,9 +3376,9 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                      }));
         return std::make_pair(true, filter_idl({ unicodeStr, unicodeStr.length() }));
         }
-    else if (fileExtension.CmpNoCase(wxT("cpp")) == 0 ||
-        fileExtension.CmpNoCase(wxT("c")) == 0 ||
-        fileExtension.CmpNoCase(wxT("h")) == 0)
+    else if (fileExtension.CmpNoCase(L"cpp") == 0 ||
+        fileExtension.CmpNoCase(L"c") == 0 ||
+        fileExtension.CmpNoCase(L"h") == 0)
         {
         SpellCheckIgnoreProgrammerCode(true);
         lily_of_the_valley::cpp_extract_text filter_cpp;
@@ -3403,7 +3403,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                      }));
         return std::make_pair(true, filter_md(unicodeStr, unicodeStr.length()));
         }
-    else if (fileExtension.CmpNoCase(wxT("txt")) == 0)
+    else if (fileExtension.CmpNoCase(L"txt") == 0)
         {
         SetOriginalDocumentDescription(
             coalesce({ GetOriginalDocumentDescription(),
@@ -3411,7 +3411,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                     ));
         return std::make_pair(true, Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize));
         }
-    else if (fileExtension.CmpNoCase(wxT("pdf")) == 0)
+    else if (fileExtension.CmpNoCase(L"pdf") == 0)
         {
         LogMessage(_("PDF files are not supported."),
                    _("Import Error"), wxOK|wxICON_EXCLAMATION);
@@ -3427,12 +3427,12 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             wxString title;
             //if UTF-8 or simply 7-bit ASCII, then just convert as UTF-8 and run the HTML parser on it
             if (utf8::is_valid(sourceFileText,sourceFileText+streamSize))
-                { extractResult = ExtractRawTextWithEncoding(Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize), wxT("html"), GetOriginalDocumentFilePath(), title); }
+                { extractResult = ExtractRawTextWithEncoding(Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize), L"html", GetOriginalDocumentFilePath(), title); }
             //Otherwise, need to search for the encoding in the HTML itself and convert using that, then run the HTML parser on it
             else
                 {
                 const wxString str = Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize, WebHarvester::GetCharsetFromPageContent(sourceFileText, streamSize));
-                extractResult = ExtractRawTextWithEncoding(str, wxT("html"), GetOriginalDocumentFilePath(), title);
+                extractResult = ExtractRawTextWithEncoding(str, L"html", GetOriginalDocumentFilePath(), title);
                 }
             SetOriginalDocumentDescription(
                 coalesce({ GetOriginalDocumentDescription(),
@@ -3490,7 +3490,7 @@ bool BaseProject::LoadExternalDocument()
             // set the name of the project from the title of the page
             string_util::remove_extra_spaces(title);
             title = StripIllegalFileCharacters(title);
-            title.Replace(wxT("."), wxEmptyString, true);
+            title.Replace(L".", wxString{}, true);
             SetDocumentTitle(title);
             }
         else
@@ -3673,10 +3673,10 @@ bool BaseProject::LoadExternalDocument()
             lily_of_the_valley::xlsx_extract_text filter_xlsx{ false };
             Wisteria::ZipCatalog zc(poundFn.GetFullPath());
             // read in the worksheets
-            wxString workBookFileText = zc.ReadTextFile(wxT("xl/workbook.xml"));
+            wxString workBookFileText = zc.ReadTextFile(L"xl/workbook.xml");
             filter_xlsx.read_worksheet_names(workBookFileText.wc_str(), workBookFileText.length());
             // read in the string table
-            const wxString sharedStrings = zc.ReadTextFile(wxT("xl/sharedStrings.xml"));
+            const wxString sharedStrings = zc.ReadTextFile(L"xl/sharedStrings.xml");
             if (!sharedStrings.length())
                 { return false; }
             // find the sheet to get the cells from
@@ -3685,7 +3685,7 @@ bool BaseProject::LoadExternalDocument()
             if (sheetPos != filter_xlsx.get_worksheet_names().end())
                 {
                 const wxString sheetFile =
-                    zc.ReadTextFile(wxString::Format(wxT("xl/worksheets/sheet%zu.xml"),
+                    zc.ReadTextFile(wxString::Format(L"xl/worksheets/sheet%zu.xml",
                                     (sheetPos-filter_xlsx.get_worksheet_names().begin())+1));
                 wxString cellText = filter_xlsx.get_cell_text(CellName.wc_str(),
                     sharedStrings.wc_str(), sharedStrings.length(),
@@ -3712,7 +3712,7 @@ bool BaseProject::LoadExternalDocument()
 bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString& text, const size_t minWordCount)
     {
     if (!path.empty())
-        { wxLogMessage(wxT("Analyzing %s"), path); }
+        { wxLogMessage(L"Analyzing %s", path); }
     SetOriginalDocumentFilePath(path);
     SetDocumentStorageMethod(text.empty() ? TextStorage::NoEmbedText : TextStorage::EmbedText);
 
@@ -3979,7 +3979,7 @@ bool BaseProject::AddBormuthGradePlacement35Test(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -4042,7 +4042,7 @@ bool BaseProject::AddPskDaleChallTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -4116,7 +4116,7 @@ bool BaseProject::AddNewDaleChallTest(const bool setFocus)
         wxString gradeValue, explanation;
         if (gradeBegin != gradeEnd)
             {
-            gradeValue = wxString::Format(wxT("%zu-%zu"), gradeBegin, gradeEnd);
+            gradeValue = wxString::Format(L"%zu-%zu", gradeBegin, gradeEnd);
             explanation = ProjectReportFormat::FormatTestResult(
                 GetReadabilityMessageCatalog().GetGradeScaleDescription(gradeBegin, gradeEnd),
                 theTest.first->get_test());
@@ -4125,7 +4125,7 @@ bool BaseProject::AddNewDaleChallTest(const bool setFocus)
             {
             gradeValue = std::to_wstring(gradeBegin);
             if (gradeBegin == 16)
-                { gradeValue += wxT("+"); }
+                { gradeValue += L"+"; }
             explanation = ProjectReportFormat::FormatTestResult(
                 GetReadabilityMessageCatalog().GetGradeScaleDescription(gradeBegin),
                 theTest.first->get_test());
@@ -4197,8 +4197,8 @@ bool BaseProject::AddDegreesOfReadingPowerGeTest(const bool setFocus)
             wxString{};
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
-        if (gradeValue == 18)//Carver table stops at 18
-            { displayableGradeLevel += wxT("+"); }
+        if (gradeValue == 18) // Carver table stops at 18
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(), description,
             std::make_pair(gradeValue, displayableGradeLevel),
@@ -4315,7 +4315,7 @@ bool BaseProject::AddSolSpanishTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(), description,
             std::make_pair(gradeValue, displayableGradeLevel),
@@ -4366,7 +4366,7 @@ bool BaseProject::AddElfTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(), description,
             std::make_pair(gradeValue, displayableGradeLevel),
@@ -4421,7 +4421,7 @@ bool BaseProject::AddSmogSimplifiedTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(), description,
             std::make_pair(gradeValue, displayableGradeLevel),
@@ -4476,7 +4476,7 @@ bool BaseProject::AddModifiedSmogTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 13)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(), description,
             std::make_pair(gradeValue, displayableGradeLevel),
@@ -4532,7 +4532,7 @@ bool BaseProject::AddQuBambergerVanecekTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(), description,
             std::make_pair(gradeValue, displayableGradeLevel),
@@ -4588,7 +4588,7 @@ bool BaseProject::AddSmogBambergerVanecekTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(), description,
             std::make_pair(gradeValue, displayableGradeLevel),
@@ -4643,7 +4643,7 @@ bool BaseProject::AddSmogTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(), description,
             std::make_pair(gradeValue, displayableGradeLevel),
@@ -4699,7 +4699,7 @@ bool BaseProject::AddCrawfordTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(), description,
             std::make_pair(gradeValue, displayableGradeLevel),
@@ -4765,7 +4765,7 @@ bool BaseProject::AddNeueWienerSachtextformel1(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -4829,7 +4829,7 @@ bool BaseProject::AddNeueWienerSachtextformel2(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -4892,7 +4892,7 @@ bool BaseProject::AddNeueWienerSachtextformel3(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -4958,7 +4958,7 @@ bool BaseProject::AddWheelerSmithBambergerVanecekTest(const bool setFocus)
 
         wxString displayableGradeValue = wxNumberFormatter::ToString(gradeValue, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 10)
-            { displayableGradeValue += wxT("+"); }
+            { displayableGradeValue += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -5023,7 +5023,7 @@ bool BaseProject::AddWheelerSmithTest(const bool setFocus)
 
         wxString displayableGradeValue = wxNumberFormatter::ToString(gradeValue, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 4)
-            { displayableGradeValue += wxT("+"); }
+            { displayableGradeValue += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -5093,7 +5093,7 @@ bool BaseProject::AddColemanLiauTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -5207,7 +5207,7 @@ bool BaseProject::AddSpacheTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -5274,7 +5274,7 @@ bool BaseProject::AddNewFogCountTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(), description,
             std::make_pair(gradeValue, displayableGradeLevel),
@@ -5340,7 +5340,7 @@ bool BaseProject::AddPskFogTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(), description,
             std::make_pair(gradeValue, displayableGradeLevel),
@@ -5406,7 +5406,7 @@ bool BaseProject::AddFogTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(), description,
             std::make_pair(gradeValue, displayableGradeLevel),
@@ -5459,7 +5459,7 @@ bool BaseProject::AddForcastTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -5584,7 +5584,7 @@ bool BaseProject::AddDanielsonBryan1Test(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -5832,7 +5832,7 @@ bool BaseProject::AddNewFarrJenkinsPatersonTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -5894,7 +5894,7 @@ bool BaseProject::AddPskFarrJenkinsPatersonTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -5957,7 +5957,7 @@ bool BaseProject::AddFleschKincaidSimplifiedTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -6020,7 +6020,7 @@ bool BaseProject::AddFleschKincaidTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -6083,7 +6083,7 @@ bool BaseProject::AddPskFleschTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY,
             wxString(theTest.first->get_test().get_long_name().c_str()),
@@ -6140,7 +6140,7 @@ bool BaseProject::AddAriTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         const wxString description = HasUI() ?
             ProjectReportFormat::FormatTestResult(
@@ -6208,7 +6208,7 @@ bool BaseProject::AddNewAriTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -6270,7 +6270,7 @@ bool BaseProject::AddSimplifiedAriTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 19)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -6410,7 +6410,7 @@ bool BaseProject::AddHarrisJacobsonTest(const bool setFocus)
 
         wxString displayableGradeLevel = wxNumberFormatter::ToString(gradeValue, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeValue == 11.3)
-            { displayableGradeLevel += wxT("+"); }
+            { displayableGradeLevel += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -6473,7 +6473,7 @@ bool BaseProject::AddRixTest(const bool setFocus)
 
         wxString displayableScore = wxNumberFormatter::ToString(gradeLevel, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeLevel == 13)
-            { displayableScore += wxT("+"); }
+            { displayableScore += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -6536,7 +6536,7 @@ bool BaseProject::AddRixGermanFiction(const bool setFocus)
 
         wxString displayableScore = wxNumberFormatter::ToString(gradeLevel, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeLevel == 11)
-            { displayableScore += wxT("+"); }
+            { displayableScore += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -6600,7 +6600,7 @@ bool BaseProject::AddRixGermanNonFiction(const bool setFocus)
 
         wxString displayableScore = wxNumberFormatter::ToString(gradeLevel, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeLevel == 14)
-            { displayableScore += wxT("+"); }
+            { displayableScore += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -6665,7 +6665,7 @@ bool BaseProject::AddLixGermanChildrensLiterature(const bool setFocus)
 
         wxString displayableScore = wxNumberFormatter::ToString(gradeLevel, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeLevel == 8)
-            { displayableScore += wxT("+"); }
+            { displayableScore += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -6732,7 +6732,7 @@ bool BaseProject::AddLixGermanTechnical(const bool setFocus)
 
         wxString displayableScore = wxNumberFormatter::ToString(gradeLevel, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeLevel == 15)
-            { displayableScore += wxT("+"); }
+            { displayableScore += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -6798,7 +6798,7 @@ bool BaseProject::AddLixTest(const bool setFocus)
 
         wxString displayableScore = wxNumberFormatter::ToString(gradeLevel, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes);
         if (gradeLevel == 13)
-            { displayableScore += wxT("+"); }
+            { displayableScore += L"+"; }
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
@@ -6874,24 +6874,24 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
         try
             {
             //put together a description detailing the formula and stemming type used by this test
-            wxString customDescription = wxString::Format(wxT("<p>%s</p>\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;%s</p>"),
+            wxString customDescription = wxString::Format(L"<p>%s</p>\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;%s</p>",
                 _("This is a custom test using the following formula:"),
                 ProjectReportFormat::FormatFormulaToHtml(pos->GetIterator()->get_formula().c_str()) );
             if (pos->GetIterator()->is_using_familiar_words())
                 {
-                customDescription += wxString::Format(wxT("<p>%s</p>\r\n<ul>\r\n"), 
+                customDescription += wxString::Format(L"<p>%s</p>\r\n<ul>\r\n", 
                     _("This test uses the following criteria to determine word familiarity:") );
                 if (pos->GetIterator()->is_including_dale_chall_list())
-                    { customDescription += wxString(wxT("<li>")) + wxString::Format(_("%s familiar word list"), _DT(L"New Dale Chall")) + wxString(wxT("</li>")); }
+                    { customDescription += wxString(L"<li>") + wxString::Format(_("%s familiar word list"), _DT(L"New Dale Chall")) + wxString(L"</li>"); }
                 if (pos->GetIterator()->is_including_spache_list())
-                    { customDescription += wxString(wxT("<li>")) + wxString::Format(_("%s familiar word list"), _DT(L"Spache Revised")) + wxString(wxT("</li>")); }
+                    { customDescription += wxString(L"<li>") + wxString::Format(_("%s familiar word list"), _DT(L"Spache Revised")) + wxString(L"</li>"); }
                 if (pos->GetIterator()->is_including_harris_jacobson_list())
-                    { customDescription += wxString(wxT("<li>")) + wxString::Format(_("%s familiar word list"), _DT(L"Harris-Jacobson")) + wxString(wxT("</li>")); }
+                    { customDescription += wxString(L"<li>") + wxString::Format(_("%s familiar word list"), _DT(L"Harris-Jacobson")) + wxString(L"</li>"); }
                 if (pos->GetIterator()->is_including_stocker_list())
-                    { customDescription += wxString(wxT("<li>")) + _("Stocker's Catholic supplementary word list") + wxString(wxT("</li>")); }
+                    { customDescription += wxString(L"<li>") + _("Stocker's Catholic supplementary word list") + wxString(L"</li>"); }
                 if (pos->GetIterator()->is_including_custom_familiar_word_list())
                     {
-                    customDescription += wxString(wxT("<li>"));
+                    customDescription += wxString(L"<li>");
                     if (pos->GetIterator()->get_stemming_type() == stemming::stemming_type::no_stemming)
                         { customDescription += _("A custom word list:") + wxString::Format(wxT("<br />&nbsp;&nbsp;&nbsp;&nbsp;&ldquo;<span style=\"font-style:italic;\">%s</span>&rdquo;"), pos->GetIterator()->get_familiar_word_list_file_path().c_str()); }
                     else
@@ -6899,17 +6899,17 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                         customDescription += wxString::Format(_("A custom word list (that is using %s stemming):"), ProjectReportFormat::GetStemmingDisplayName(pos->GetIterator()->get_stemming_type())) +
                             wxString::Format(wxT("<br />&nbsp;&nbsp;&nbsp;&nbsp;&ldquo;<span style=\"font-style:italic;\">%s</span>&rdquo;"), pos->GetIterator()->get_familiar_word_list_file_path().c_str());
                         }
-                    customDescription += wxString(wxT("</li>"));
+                    customDescription += wxString(L"</li>");
                     }
                 if (pos->GetIterator()->get_proper_noun_method() == readability::proper_noun_counting_method::all_proper_nouns_are_familiar)
-                    { customDescription += wxString(wxT("<li>")) + _("Proper nouns") + wxString(wxT("</li>")); }
+                    { customDescription += wxString(L"<li>") + _("Proper nouns") + wxString(L"</li>"); }
                 else if (pos->GetIterator()->get_proper_noun_method() == readability::proper_noun_counting_method::only_count_first_instance_of_proper_noun_as_unfamiliar)
-                    { customDescription += wxString(wxT("<li>")) + _("Proper nouns (except first occurrence)") + wxString(wxT("</li>")); }
+                    { customDescription += wxString(L"<li>") + _("Proper nouns (except first occurrence)") + wxString(L"</li>"); }
                 if (pos->GetIterator()->is_including_numeric_as_familiar())
-                    { customDescription += wxString(wxT("<li>")) + _("Numerals") + wxString(wxT("</li>")); }
-                customDescription += wxString(wxT("\r\n</ul>"));
+                    { customDescription += wxString(L"<li>") + _("Numerals") + wxString(L"</li>"); }
+                customDescription += wxString(L"\r\n</ul>");
                 }
-            customDescription = wxT("<tr><td>") + customDescription + wxT("</td></tr>");
+            customDescription = L"<tr><td>" + customDescription + L"</td></tr>";
             SetCurrentCustomTest(pos->GetIterator()->get_name().c_str());
 
             try
@@ -6937,7 +6937,7 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                             {
                             SetReadabilityTestResult(wxString(pos->GetIterator()->get_name().c_str()),
                                 wxString(pos->GetIterator()->get_name().c_str()),
-                                wxT("<tr><td>") + GetReadabilityMessageCatalog().GetGradeScaleDescription(static_cast<size_t>(gradeBegin)) + wxT("</td></tr>") +
+                                L"<tr><td>" + GetReadabilityMessageCatalog().GetGradeScaleDescription(static_cast<size_t>(gradeBegin)) + L"</td></tr>" +
                                     customDescription,
                                 std::make_pair(gradeBegin, wxNumberFormatter::ToString(gradeBegin, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes)),
                                 ReadabilityMessages::GetAgeFromUSGrade(gradeBegin, gradeEnd, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
@@ -6948,9 +6948,9 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                             {
                             SetReadabilityTestResult(wxString(pos->GetIterator()->get_name().c_str()),
                                 wxString(pos->GetIterator()->get_name().c_str()),
-                                wxT("<tr><td>") + GetReadabilityMessageCatalog().GetGradeScaleDescription(gradeBegin, gradeEnd) + wxT("</td></tr>\n") +
+                                L"<tr><td>" + GetReadabilityMessageCatalog().GetGradeScaleDescription(gradeBegin, gradeEnd) + L"</td></tr>\n" +
                                     customDescription,
-                                std::make_pair(safe_divide<double>(gradeBegin + gradeEnd, 2), wxNumberFormatter::ToString(gradeBegin, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes) + wxString(wxT("-")) + wxNumberFormatter::ToString(gradeEnd, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes)),
+                                std::make_pair(safe_divide<double>(gradeBegin + gradeEnd, 2), wxNumberFormatter::ToString(gradeBegin, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes) + wxString(L"-") + wxNumberFormatter::ToString(gradeEnd, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes)),
                                 ReadabilityMessages::GetAgeFromUSGrade(gradeBegin, gradeEnd, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
                                 std::numeric_limits<double>::quiet_NaN(),
                                 std::numeric_limits<double>::quiet_NaN(), false);
@@ -6961,7 +6961,7 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                         const double score = readability::truncate_k12_plus_grade(GetFormulaParser().get_result());
                         SetReadabilityTestResult(wxString(pos->GetIterator()->get_name().c_str()),
                             wxString(pos->GetIterator()->get_name().c_str()),
-                            wxT("<tr><td>") + GetReadabilityMessageCatalog().GetGradeScaleDescription(score) + wxT("</td></tr>\n") +
+                            L"<tr><td>" + GetReadabilityMessageCatalog().GetGradeScaleDescription(score) + L"</td></tr>\n" +
                                 customDescription,
                             std::make_pair(score, wxNumberFormatter::ToString(score, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes)),
                             ReadabilityMessages::GetAgeFromUSGrade(score, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
@@ -6974,7 +6974,7 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                     const double score = GetFormulaParser().get_result();
                     SetReadabilityTestResult(wxString(pos->GetIterator()->get_name().c_str()),
                         wxString(pos->GetIterator()->get_name().c_str()),
-                        wxT("<tr><td>") + _("Score: ") + wxNumberFormatter::ToString(score, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes) + wxT("</td></tr>\n") +
+                        L"<tr><td>" + _("Score: ") + wxNumberFormatter::ToString(score, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes) + L"</td></tr>\n" +
                         customDescription,
                         std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
                         wxEmptyString, score,
@@ -6985,7 +6985,7 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                     const double score = GetFormulaParser().get_result();
                     SetReadabilityTestResult(wxString(pos->GetIterator()->get_name().c_str()),
                         wxString(pos->GetIterator()->get_name().c_str()),
-                        wxT("<tr><td>") + _("Predicted cloze score: ") + wxNumberFormatter::ToString(score, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes) + wxT("</td></tr>\n") +
+                        L"<tr><td>" + _("Predicted cloze score: ") + wxNumberFormatter::ToString(score, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes) + L"</td></tr>\n" +
                         customDescription,
                         std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
                         wxEmptyString, std::numeric_limits<double>::quiet_NaN(), score, false);
