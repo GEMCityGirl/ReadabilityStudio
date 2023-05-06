@@ -282,10 +282,10 @@ void BatchProjectView::OnAddToDictionary([[maybe_unused]] wxCommandEvent& event)
         wxArrayString misspellings;
         const wxString reportString = listView->GetItemTextEx(listView->GetFocusedItem(), listView->GetColumnCount()-1);
         size_t startingQuote = reportString.find(L'\"');
-        while (startingQuote != wxNOT_FOUND)
+        while (startingQuote != wxString::npos)
             {
             const auto endingQuote = reportString.find(L'\"', ++startingQuote);
-            if (endingQuote == wxNOT_FOUND)
+            if (endingQuote == wxString::npos)
                 { break; }
             misspellings.Add(reportString.substr(startingQuote, endingQuote-startingQuote));
             // next starting quote
@@ -327,10 +327,10 @@ void BatchProjectView::OnDblClick(wxListEvent& event)
         wxArrayString misspellings;
         const wxString reportString = listView->GetItemTextEx(listView->GetFocusedItem(), listView->GetColumnCount()-1);
         size_t startingQuote = reportString.find(L'\"');
-        while (startingQuote != wxNOT_FOUND)
+        while (startingQuote != wxString::npos)
             {
             const auto endingQuote = reportString.find(L'\"', ++startingQuote);
-            if (endingQuote == wxNOT_FOUND)
+            if (endingQuote == wxString::npos)
                 { break; }
             misspellings.Add(reportString.substr(startingQuote, endingQuote-startingQuote));
             // next starting quote
