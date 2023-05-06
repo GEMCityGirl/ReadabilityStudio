@@ -41,13 +41,13 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
             {
             searchStr = wxT("\"") + misspellingsToRemove[mspCounter] + wxT("\"");
             size_t index = reportStr.find(searchStr);
-            if (index != wxNOT_FOUND)
+            if (index != wxString::npos)
                 {
                 size_t endIndex = reportStr.find(L",", index+searchStr.length());
-                if (endIndex != wxNOT_FOUND)
+                if (endIndex != wxString::npos)
                     {
                     size_t multFactorIndex = reportStr.find(L"*", index+searchStr.length());
-                    if (multFactorIndex != wxNOT_FOUND && multFactorIndex < endIndex)
+                    if (multFactorIndex != wxString::npos && multFactorIndex < endIndex)
                         {
                         multFactorIndex += 2;//skip "* "
                         multFactorValue = reportStr.substr(multFactorIndex, endIndex-multFactorIndex).c_str();
@@ -66,7 +66,7 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
                     if (index >= 2)
                         { index -= 2; }//we will need to strip the trailing ", " after removing this word at the end
                     size_t multFactorIndex = reportStr.find(L"*", index+searchStr.length());
-                    if (multFactorIndex != wxNOT_FOUND)
+                    if (multFactorIndex != wxString::npos)
                         {
                         multFactorIndex += 2;//skip "* "
                         multFactorValue = reportStr.substr(multFactorIndex).c_str();
@@ -257,7 +257,7 @@ bool BatchProjectDoc::OnNewDocument()
         else if (resolvePath.IsExcelCell() || resolvePath.IsArchivedFile())
             {
             const size_t subDocStart = resolvePath.GetResolvedPath().rfind(L"#");
-            if (subDocStart != wxNOT_FOUND)
+            if (subDocStart != wxString::npos)
                 {
                 const wxFileName fn(resolvePath.GetResolvedPath().substr(0, subDocStart));
                 SetTitle(fn.GetName());
@@ -268,8 +268,8 @@ bool BatchProjectDoc::OnNewDocument()
             {
             const html_utilities::html_url_format hformat(resolvePath.GetResolvedPath());
             wxString domain = hformat.get_root_domain().c_str();
-            const int dotPos = domain.find(L'.', true);
-            if (dotPos != wxNOT_FOUND)
+            const auto dotPos = domain.find(L'.', true);
+            if (dotPos != wxString::npos)
                 { domain.Truncate(dotPos); }
             SetTitle(domain);
             SetFilename(domain, true);
@@ -905,7 +905,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                     }
                 wxString worksheetName = (*pos)->GetOriginalDocumentFilePath().substr(excelTag+6);
                 const size_t slash = worksheetName.find_last_of(L'#');
-                if (slash != wxNOT_FOUND)
+                if (slash != wxString::npos)
                     {
                     wxString CellName = worksheetName.substr(slash+1);
                     worksheetName.Truncate(slash);
