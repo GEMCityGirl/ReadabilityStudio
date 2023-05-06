@@ -33,6 +33,7 @@ enum class ProjectType
     BatchProject
     };
 
+/// @brief Wizard for creating standard and batch projects.
 class ProjectWizardDlg final : public wxDialog
     {
     friend ReadabilityApp;
@@ -51,26 +52,36 @@ public:
         { wxDELETE(m_fileData); }
     /// Creates the controls and sizers.
     void CreateControls();
-    [[nodiscard]] readability::test_language GetLanguage() const;
-    //batch document entry
-    [[nodiscard]] const ListCtrlExDataProvider* GetFileData() const noexcept
+    [[nodiscard]]
+    readability::test_language GetLanguage() const;
+    /// @returns The list control data containing files for a batch project.
+    [[nodiscard]]
+    const ListCtrlExDataProvider* GetFileData() const noexcept
         { return m_fileData; }
-    [[nodiscard]] bool IsRandomSampling() const
+    /// @returns @c true if random sampling is being used for the list
+    ///     of files in a batch project.
+    [[nodiscard]]
+    bool IsRandomSampling() const
         { return m_isRandomSampling->IsChecked(); }
-    [[nodiscard]] int GetRandomSamplePercentage() const
+    [[nodiscard]]
+    int GetRandomSamplePercentage() const
         { return m_randPercentageCtrl->GetValue(); }
 
-    [[nodiscard]] static wxString GetLastSelectedFolder()
+    [[nodiscard]]
+    static wxString GetLastSelectedFolder()
         { return m_lastSelectedFolder; }
     static void SetLastSelectedFolder(const wxString& folder)
         { m_lastSelectedFolder = folder; }
 
-    [[nodiscard]] ListCtrlEx* GetFileList() noexcept
+    [[nodiscard]]
+    ListCtrlEx* GetFileList() noexcept
         { return m_fileList; }
-    //document entry
-    [[nodiscard]] bool IsTextFromFileSelected() const noexcept
+    // document entry
+    [[nodiscard]]
+    bool IsTextFromFileSelected() const noexcept
         { return m_fromFileSelected; }
-    [[nodiscard]] bool IsManualTextEntrySelected() const noexcept
+    [[nodiscard]]
+    bool IsManualTextEntrySelected() const noexcept
         { return m_manualSelected; }
     void SetTextFromFileSelected()
         {
@@ -90,30 +101,37 @@ public:
         m_fileBrowseButton->Disable();
         TransferDataToWindow();
         }
-    [[nodiscard]] wxString GetFilePath() const
+    [[nodiscard]]
+    wxString GetFilePath() const
         { return m_filePath; }
     void SetFilePath(const wxString& path)
         {
         m_filePath = path;
         TransferDataToWindow();
         }
-    [[nodiscard]] wxString GetEnteredText() const
+    [[nodiscard]]
+    wxString GetEnteredText() const
         { return m_enteredText; }
     void SetEnteredText(const wxString& text)
         {
         m_enteredText = text;
         TransferDataToWindow();
         }
-    //document structure
-    [[nodiscard]] bool IsNarrativeSelected() const noexcept
+    // document structure
+    [[nodiscard]]
+    bool IsNarrativeSelected() const noexcept
         { return m_narrativeSelected; }
-    [[nodiscard]] bool IsFragmentedTextSelected() const noexcept
+    [[nodiscard]]
+    bool IsFragmentedTextSelected() const noexcept
         { return m_fragmentedTextSelected; }
-    [[nodiscard]] bool IsSplitLinesSelected() const noexcept
+    [[nodiscard]]
+    bool IsSplitLinesSelected() const noexcept
         { return m_splitLinesSelected; }
-    [[nodiscard]] bool IsCenteredTextSelected() const noexcept
+    [[nodiscard]]
+    bool IsCenteredTextSelected() const noexcept
         { return m_centeredText; }
-    [[nodiscard]] bool IsNewLinesAlwaysNewParagraphsSelected() const noexcept
+    [[nodiscard]]
+    bool IsNewLinesAlwaysNewParagraphsSelected() const noexcept
         { return m_newLinesAlwaysNewParagraphs; }
     void SetNarrativeSelected() noexcept
         {
@@ -131,11 +149,13 @@ public:
         { m_centeredText = setVal; }
     void SetNewLinesAlwaysNewParagraphsSelected(const bool setVal) noexcept
         { m_newLinesAlwaysNewParagraphs = setVal; }
-    //test selection method
+    // test selection method
     void SetTestSelectionMethod(const int method)
         {
         m_testSelectionMethod = method;
-        wxASSERT(is_within(std::make_pair(0,static_cast<int>(TestRecommendation::TEST_RECOMMENDATION_COUNT)-1), m_testSelectionMethod));
+        wxASSERT(is_within(
+            std::make_pair(0, static_cast<int>(TestRecommendation::TEST_RECOMMENDATION_COUNT)-1),
+            m_testSelectionMethod));
         TransferDataToWindow();
         UpdateTestSelectionMethodUI();
         }
@@ -260,14 +280,14 @@ private:
     void OnAddToListClick([[maybe_unused]] wxCommandEvent& event);
     void OnDeleteFromListClick([[maybe_unused]] wxCommandEvent& event);
 
-    //batch document entry
+    // batch document entry
     ListCtrlEx* m_fileList{ nullptr };
     ListCtrlExDataProvider* m_fileData{ nullptr };
     wxCheckBox* m_isRandomSampling{ nullptr };
     wxSpinCtrl* m_randPercentageCtrl{ nullptr };
     static wxString m_lastSelectedFolder;
 
-    //text/document entry
+    // text/document entry
     wxTextCtrl* m_filePathEdit{ nullptr };
     wxBitmapButton* m_fileBrowseButton{ nullptr };
     wxString m_filePath;
@@ -277,27 +297,27 @@ private:
     wxTextCtrl* m_textEntryEdit{ nullptr };
     wxString m_enteredText;
 
-    //document structure
+    // document structure
     bool m_narrativeSelected{ false };
     bool m_splitLinesSelected{ false };
     bool m_fragmentedTextSelected{ false };
     bool m_centeredText{ false };
     bool m_newLinesAlwaysNewParagraphs{ false };
 
-    //test selection method
+    // test selection method
     int m_testSelectionMethod{ 0 };
 
     wxBoxSizer* m_testTypesSizer{ nullptr };
 
-    //document types
+    // document types
     wxRadioBox* m_docTypeRadioBox{ nullptr };
     int m_selectedDocType{ 0 };
 
-    //industry types
+    // industry types
     wxRadioBox* m_industryTypeRadioBox{ nullptr };
     int m_selectedIndustryType{ 0 };
 
-    //tests
+    // tests
     wxFlexGridSizer* m_testsSizer{ nullptr };
 
     wxRadioBox* m_testsBundlesRadioBox{ nullptr };
