@@ -1515,16 +1515,18 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     {
     lily_of_the_valley::html_encode_text htmlEncode;
     wxString fileText = wxEmptyString, sectionText = wxEmptyString;
-    fileText.append(wxT("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<")).append(wxGetApp().GetAppOptions().XML_PROJECT_HEADER).append(_DT(L" version=\"")).append(wxGetApp().GetDocumentVersionNumber()).append(wxT("\">\n"));
-    //document info
+    fileText.append(L"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<").
+        append(wxGetApp().GetAppOptions().XML_PROJECT_HEADER).append(_DT(L" version=\"")).
+        append(wxGetApp().GetDocumentVersionNumber()).append(L"\">\n");
+    // document info
     fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_DOCUMENT).append(L">\n");
-    //the version of the product saving this project
+    // the version of the product saving this project
     XmlFormat::FormatSection(sectionText, _DT(L"app-version"), wxGetApp().GetAppVersion(), 2);
     fileText += sectionText;
-    //where the text actually came from originally (a file or manually entered)
+    // where the text actually came from originally (a file or manually entered)
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_TEXT_SOURCE, static_cast<int>(GetTextSource()), 2);
     fileText += sectionText;
-    //path to original document and optional short description (not used if text was entered manually)
+    // path to original document and optional short description (not used if text was entered manually)
     if (GetTextSource() == TextSource::FromFile)
         {
         for (size_t i = 0; i < GetSourceFilesInfo().size(); ++i)

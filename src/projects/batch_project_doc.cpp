@@ -39,7 +39,7 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
         reportStr = GetMisspelledWordData()->GetItemText(i, 3);
         for (size_t mspCounter = 0; mspCounter < misspellingsToRemove.GetCount(); ++mspCounter)
             {
-            searchStr = wxT("\"") + misspellingsToRemove[mspCounter] + wxT("\"");
+            searchStr = L"\"" + misspellingsToRemove[mspCounter] + L"\"";
             size_t index = reportStr.find(searchStr);
             if (index != wxString::npos)
                 {
@@ -1060,9 +1060,9 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 ++dwIter)
                 {
                 if (dwIter->second > 1)
-                    { misspelledWordsStr.Append(wxT('\"')).Append(dwIter->first.c_str()).Append(wxString::Format(wxT("\" * %zu, "), dwIter->second)); }
+                    { misspelledWordsStr.Append(L'\"').Append(dwIter->first.c_str()).Append(wxString::Format(L"\" * %zu, ", dwIter->second)); }
                 else
-                    { misspelledWordsStr.Append(wxT('\"')).Append(dwIter->first.c_str()).Append(wxT("\", ")); }
+                    { misspelledWordsStr.Append(L'\"').Append(dwIter->first.c_str()).Append(L"\", "); }
                 }
             //chop off the last ", "
             if (misspelledWordsStr.length() > 2)
@@ -1090,11 +1090,11 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 ++dwIter)
                 {
                 if (dwIter->second > 1)
-                    { doubleWordsStr.Append(wxT('\"')).Append(dwIter->first.c_str()).Append(
-                        L' ').Append(dwIter->first.c_str()).Append(wxString::Format(wxT("\" * %zu, "), dwIter->second)); }
+                    { doubleWordsStr.Append(L'\"').Append(dwIter->first.c_str()).Append(
+                        L' ').Append(dwIter->first.c_str()).Append(wxString::Format(L"\" * %zu, ", dwIter->second)); }
                 else
-                    { doubleWordsStr.Append(wxT('\"')).Append(dwIter->first.c_str()).Append(
-                        L' ').Append(dwIter->first.c_str()).Append(wxT("\", ")); }
+                    { doubleWordsStr.Append(L'\"').Append(dwIter->first.c_str()).Append(
+                        L' ').Append(dwIter->first.c_str()).Append(L"\", "); }
                 }
             //chop off the last ", "
             if (doubleWordsStr.length() > 2)
@@ -1122,9 +1122,9 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 ++dwIter)
                 {
                 if (dwIter->second > 1)
-                    { incorrectArticleStr.Append(wxT('\"')).Append(dwIter->first.c_str()).Append(wxString::Format(wxT("\" * %zu, "), dwIter->second)); }
+                    { incorrectArticleStr.Append(L'\"').Append(dwIter->first.c_str()).Append(wxString::Format(L"\" * %zu, ", dwIter->second)); }
                 else
-                    { incorrectArticleStr.Append(wxT('\"')).Append(dwIter->first.c_str()).Append(wxT("\", ")); }
+                    { incorrectArticleStr.Append(L'\"').Append(dwIter->first.c_str()).Append(L"\", "); }
                 }
             //chop off the last ", "
             if (incorrectArticleStr.length() > 2)
@@ -1185,9 +1185,9 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 ++dwIter)
                 {
                 if (dwIter->second > 1)
-                    { passiveVoiceStr.Append(wxT('\"')).Append(dwIter->first.c_str()).Append(wxString::Format(wxT("\" * %zu, "), dwIter->second)); }
+                    { passiveVoiceStr.Append(L'\"').Append(dwIter->first.c_str()).Append(wxString::Format(L"\" * %zu, ", dwIter->second)); }
                 else
-                    { passiveVoiceStr.Append(wxT('\"')).Append(dwIter->first.c_str()).Append(wxT("\", ")); }
+                    { passiveVoiceStr.Append(L'\"').Append(dwIter->first.c_str()).Append(L"\", "); }
                 }
             //chop off the last ", "
             if (passiveVoiceStr.length() > 2)
@@ -1234,9 +1234,9 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 ++conIter)
                 {
                 if (conIter->second > 1)
-                    { conjunctionsStr.Append(wxT('\"')).Append(conIter->first.c_str()).Append(wxString::Format(wxT("\" * %zu, "), conIter->second)); }
+                    { conjunctionsStr.Append(L'\"').Append(conIter->first.c_str()).Append(wxString::Format(L"\" * %zu, ", conIter->second)); }
                 else
-                    { conjunctionsStr.Append(wxT('\"')).Append(conIter->first.c_str()).Append(wxT("\", ")); }
+                    { conjunctionsStr.Append(L'\"').Append(conIter->first.c_str()).Append(L"\", "); }
                 }
             //chop off the last ", "
             if (conjunctionsStr.length() > 2)
@@ -1264,9 +1264,9 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 ++lcIter)
                 {
                 if (lcIter->second > 1)
-                    { lowercasesStr.Append(wxT('\"')).Append(lcIter->first.c_str()).Append(wxString::Format(wxT("\" * %zu, "), lcIter->second)); }
+                    { lowercasesStr.Append(L'\"').Append(lcIter->first.c_str()).Append(wxString::Format(L"\" * %zu, ", lcIter->second)); }
                 else
-                    { lowercasesStr.Append(wxT('\"')).Append(lcIter->first.c_str()).Append(wxT("\", ")); }
+                    { lowercasesStr.Append(L'\"').Append(lcIter->first.c_str()).Append(L"\", "); }
                 }
             //chop off the last ", "
             if (lowercasesStr.length() > 2)
@@ -1319,10 +1319,10 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                     ++phraseIter)
                     {
                     if (phraseIter->second.second > 1)
-                        { values.Append(wxT('\"')).Append(phraseIter->first.c_str()).Append(wxString::Format(wxT("\" * %zu, "), phraseIter->second.second)); }
+                        { values.Append(L'\"').Append(phraseIter->first.c_str()).Append(wxString::Format(L"\" * %zu, ", phraseIter->second.second)); }
                     else
-                        { values.Append(wxT('\"')).Append(phraseIter->first.c_str()).Append(wxT("\", ")); }
-                    suggestions.Append(wxT('\"')).Append(phraseIter->second.first).Append(wxT("\", "));
+                        { values.Append(L'\"').Append(phraseIter->first.c_str()).Append(L"\", "); }
+                    suggestions.Append(L'\"').Append(phraseIter->second.first).Append(L"\", ");
                     totalCount += phraseIter->second.second;
                     }
                 if (values.length() > 2)
@@ -1345,10 +1345,10 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                     ++phraseIter)
                     {
                     if (phraseIter->second.second > 1)
-                        { values.Append(wxT('\"')).Append(phraseIter->first.c_str()).Append(wxString::Format(wxT("\" * %zu, "), phraseIter->second.second)); }
+                        { values.Append(L'\"').Append(phraseIter->first.c_str()).Append(wxString::Format(L"\" * %zu, ", phraseIter->second.second)); }
                     else
-                        { values.Append(wxT('\"')).Append(phraseIter->first.c_str()).Append(wxT("\", ")); }
-                    suggestions.Append(wxT('\"')).Append(phraseIter->second.first).Append(wxT("\", "));
+                        { values.Append(L'\"').Append(phraseIter->first.c_str()).Append(L"\", "); }
+                    suggestions.Append(L'\"').Append(phraseIter->second.first).Append(L"\", ");
                     totalCount += phraseIter->second.second;
                     }
                 if (values.length() > 2)
@@ -1371,10 +1371,10 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                     ++phraseIter)
                     {
                     if (phraseIter->second.second > 1)
-                        { values.Append(wxT('\"')).Append(phraseIter->first.c_str()).Append(wxString::Format(wxT("\" * %zu, "), phraseIter->second.second)); }
+                        { values.Append(L'\"').Append(phraseIter->first.c_str()).Append(wxString::Format(L"\" * %zu, ", phraseIter->second.second)); }
                     else
-                        { values.Append(wxT('\"')).Append(phraseIter->first.c_str()).Append(wxT("\", ")); }
-                    suggestions.Append(wxT('\"')).Append(phraseIter->second.first).Append(wxT("\", "));
+                        { values.Append(L'\"').Append(phraseIter->first.c_str()).Append(L"\", "); }
+                    suggestions.Append(L'\"').Append(phraseIter->second.first).Append(L"\", ");
                     totalCount += phraseIter->second.second;
                     }
                 if (values.length() > 2)
@@ -1397,10 +1397,10 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                     ++phraseIter)
                     {
                     if (phraseIter->second.second > 1)
-                        { values.Append(wxT('\"')).Append(phraseIter->first.c_str()).Append(wxString::Format(wxT("\" * %zu, "), phraseIter->second.second)); }
+                        { values.Append(L'\"').Append(phraseIter->first.c_str()).Append(wxString::Format(L"\" * %zu, ", phraseIter->second.second)); }
                     else
-                        { values.Append(wxT('\"')).Append(phraseIter->first.c_str()).Append(wxT("\", ")); }
-                    suggestions.Append(wxT('\"')).Append(phraseIter->second.first).Append(wxT("\", "));
+                        { values.Append(L'\"').Append(phraseIter->first.c_str()).Append(L"\", "); }
+                    suggestions.Append(L'\"').Append(phraseIter->second.first).Append(L"\", ");
                     totalCount += phraseIter->second.second;
                     }
                 if (values.length() > 2)

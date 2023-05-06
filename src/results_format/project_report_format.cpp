@@ -107,7 +107,7 @@ wxString ProjectReportFormat::FormatFormulaToHtml(const wxString& formula)
                 { formattedFormula += operatorFormatStart + L"&lt;</span>"; }
             else if (formula[i] == L'>')
                 { formattedFormula += operatorFormatStart + L"&gt;</span>"; }
-            else if (formula[i] == wxT('\''))
+            else if (formula[i] == L'\'')
                 { formattedFormula += L"&apos;"; }
             else if (formula[i] == L'\"')
                 { formattedFormula += L"&quot;"; }
@@ -854,7 +854,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             L"<span style=\"color:#FF0000\">" + wxNumberFormatter::ToString(project->GetTotalOverlyLongSentences(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"</span>" :
             wxNumberFormatter::ToString(project->GetTotalOverlyLongSentences(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep);
         wxString currentPercent = (overlyLongSentencePercentage >= 40) ?
-            wxT("<span style=\"color:#FF0000\">(") + wxNumberFormatter::ToString(overlyLongSentencePercentage, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _("of all sentences)") + L"</span>" :
+            L"<span style=\"color:#FF0000\">(" + wxNumberFormatter::ToString(overlyLongSentencePercentage, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _("of all sentences)") + L"</span>" :
             L"(" + wxNumberFormatter::ToString(overlyLongSentencePercentage, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _("of all sentences)");
         HTMLText += formatRow(currentLabel, currentValue, currentPercent);
 
@@ -885,9 +885,9 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             }
         else
             {
-            HTMLText += wxT("<tr><td style=\"width:60%\">");
+            HTMLText += L"<tr><td style=\"width:60%\">";
             HTMLText += _("Longest sentence:");
-            HTMLText += wxT("</td><td style=\"text-align:right; width:10%\">");
+            HTMLText += L"</td><td style=\"text-align:right; width:10%\">";
             HTMLText += _("N/A");
             HTMLText += L"</td><td></td></tr>\n";
             }
@@ -921,7 +921,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             L"<span style=\"color:#FF0000\">" + wxNumberFormatter::ToString(project->GetTotalExclamatorySentences(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"</span>" :
             wxNumberFormatter::ToString(project->GetTotalExclamatorySentences(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep);
         currentPercent = (exclamatorySentencePercentage >= 25) ?
-            wxT("<span style=\"color:#FF0000\">(") + wxNumberFormatter::ToString(exclamatorySentencePercentage, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _("of all sentences)") + L"</span>" :
+            L"<span style=\"color:#FF0000\">(" + wxNumberFormatter::ToString(exclamatorySentencePercentage, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _("of all sentences)") + L"</span>" :
             L"(" + wxNumberFormatter::ToString(exclamatorySentencePercentage, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _("of all sentences)");
         HTMLText += formatRow(_("Number of exclamatory sentences:"), currentValue, currentPercent);
         HTMLText += L"\n</table>";
@@ -1436,7 +1436,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             {
             currentLabel.clear();
             if (project->GetMisspelledWordCount())
-                { currentLabel += wxT("<a href=\"#Misspellings\">"); }
+                { currentLabel += L"<a href=\"#Misspellings\">"; }
             currentLabel += _("Misspellings");
             if (project->GetMisspelledWordCount())
                 { currentLabel += L"</a>"; }
@@ -1455,7 +1455,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             {
             currentLabel.clear();
             if (project->GetDuplicateWordCount())
-                { currentLabel += wxT("<a href=\"#RepeatedWords\">"); }
+                { currentLabel += L"<a href=\"#RepeatedWords\">"; }
             currentLabel += _("Repeated words");
             if (project->GetDuplicateWordCount())
                 { currentLabel += L"</a>"; }
@@ -1478,7 +1478,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 {
                 currentLabel.clear();
                 if (project->GetMismatchedArticleCount())
-                    { currentLabel += wxT("<a href=\"#MismatchedArtcles\">"); }
+                    { currentLabel += L"<a href=\"#MismatchedArtcles\">"; }
                 currentLabel += _("Article mismatches");
                 if (project->GetMismatchedArticleCount())
                     { currentLabel += L"</a>"; }
@@ -1498,7 +1498,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 {
                 currentLabel.clear();
                 if (project->GetWordingErrorCount())
-                    { currentLabel += wxT("<a href=\"#WordingErrors\">"); }
+                    { currentLabel += L"<a href=\"#WordingErrors\">"; }
                 currentLabel += _("Wording errors");
                 if (project->GetWordingErrorCount())
                     { currentLabel += L"</a>"; }
@@ -1518,7 +1518,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 {
                 currentLabel.clear();
                 if (project->GetRedundantPhraseCount())
-                    { currentLabel += wxT("<a href=\"#RedundantPhrases\">"); }
+                    { currentLabel += L"<a href=\"#RedundantPhrases\">"; }
                 currentLabel += _("Redundant phrases");
                 if (project->GetRedundantPhraseCount())
                     { currentLabel += L"</a>"; }
@@ -1538,7 +1538,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 {
                 currentLabel.clear();
                 if (project->GetOverusedWordsBySentenceCount())
-                    { currentLabel += wxT("<a href=\"#OverusedWordsBySentence\">"); }
+                    { currentLabel += L"<a href=\"#OverusedWordsBySentence\">"; }
                 currentLabel += _("Overused words (x sentence)");
                 if (project->GetOverusedWordsBySentenceCount())
                     { currentLabel += L"</a>"; }
@@ -1557,7 +1557,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 {
                 currentLabel.clear();
                 if (project->GetWordyPhraseCount())
-                    { currentLabel += wxT("<a href=\"#WordyPhrases\">"); }
+                    { currentLabel += L"<a href=\"#WordyPhrases\">"; }
                 currentLabel += _("Wordy items");
                 if (project->GetWordyPhraseCount())
                     { currentLabel += L"</a>"; }
@@ -1576,7 +1576,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 {
                 currentLabel.clear();
                 if (project->GetClicheCount() > 0)
-                    { currentLabel += wxT("<a href=\"#Cliches\">"); }
+                    { currentLabel += L"<a href=\"#Cliches\">"; }
                 currentLabel += BaseProjectView::GetClichesTabLabel();
                 if (project->GetClicheCount())
                     { currentLabel += L"</a>"; }
@@ -1594,7 +1594,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 {
                 currentLabel.clear();
                 if (project->GetPassiveVoicesCount())
-                    { currentLabel += wxT("<a href=\"#PassiveVoice\">"); }
+                    { currentLabel += L"<a href=\"#PassiveVoice\">"; }
                 currentLabel += _("Passive voice");
                 if (project->GetPassiveVoicesCount())
                     { currentLabel += L"</a>"; }
@@ -1614,7 +1614,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             {
             currentLabel.clear();
             if (project->GetSentenceStartingWithConjunctionsCount() > 0)
-                { currentLabel += wxT("<a href=\"#SentenceStartingWithConjunctions\">"); }
+                { currentLabel += L"<a href=\"#SentenceStartingWithConjunctions\">"; }
             currentLabel += BaseProjectView::GetSentenceStartingWithConjunctionsLabel();
             if (project->GetSentenceStartingWithConjunctionsCount())
                 { currentLabel += L"</a>"; }
@@ -1632,7 +1632,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             {
             currentLabel.clear();
             if (project->GetSentenceStartingWithLowercaseCount() > 0)
-                { currentLabel += wxT("<a href=\"#SentenceStartingWithLowercase\">"); }
+                { currentLabel += L"<a href=\"#SentenceStartingWithLowercase\">"; }
             if (project->GetSentenceStartMustBeUppercased())
                 { currentLabel += L"* "; }
             currentLabel += BaseProjectView::GetSentenceStartingWithLowercaseLabel();

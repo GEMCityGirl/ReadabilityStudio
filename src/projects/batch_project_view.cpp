@@ -281,15 +281,15 @@ void BatchProjectView::OnAddToDictionary([[maybe_unused]] wxCommandEvent& event)
             }
         wxArrayString misspellings;
         const wxString reportString = listView->GetItemTextEx(listView->GetFocusedItem(), listView->GetColumnCount()-1);
-        size_t startingQuote = reportString.find(wxT('\"'));
+        size_t startingQuote = reportString.find(L'\"');
         while (startingQuote != wxNOT_FOUND)
             {
-            const auto endingQuote = reportString.find(wxT('\"'), ++startingQuote);
+            const auto endingQuote = reportString.find(L'\"', ++startingQuote);
             if (endingQuote == wxNOT_FOUND)
                 { break; }
             misspellings.Add(reportString.substr(startingQuote, endingQuote-startingQuote));
             // next starting quote
-            startingQuote = reportString.find(wxT('\"'), endingQuote+1);
+            startingQuote = reportString.find(L'\"', endingQuote+1);
             }
         ListDlg misspellingDlg(GetDocFrame(), misspellings, true,
             wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
@@ -326,15 +326,15 @@ void BatchProjectView::OnDblClick(wxListEvent& event)
             { return; }
         wxArrayString misspellings;
         const wxString reportString = listView->GetItemTextEx(listView->GetFocusedItem(), listView->GetColumnCount()-1);
-        size_t startingQuote = reportString.find(wxT('\"'));
+        size_t startingQuote = reportString.find(L'\"');
         while (startingQuote != wxNOT_FOUND)
             {
-            const auto endingQuote = reportString.find(wxT('\"'), ++startingQuote);
+            const auto endingQuote = reportString.find(L'\"', ++startingQuote);
             if (endingQuote == wxNOT_FOUND)
                 { break; }
             misspellings.Add(reportString.substr(startingQuote, endingQuote-startingQuote));
             // next starting quote
-            startingQuote = reportString.find(wxT('\"'), endingQuote+1);
+            startingQuote = reportString.find(L'\"', endingQuote+1);
             }
         ListDlg misspellingDlg(GetDocFrame(), misspellings, true,
             wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
@@ -1691,12 +1691,12 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
     //validate the extensions
     if (listExt.empty())
         { listExt = L".htm"; }
-    else if (listExt[0] != wxT('.'))
+    else if (listExt[0] != L'.')
         { listExt.insert(0, L"."); }
 
     if (graphExt.empty())
         { graphExt = L".png"; }
-    else if (graphExt[0] != wxT('.'))
+    else if (graphExt[0] != L'.')
         { graphExt.insert(0, L"."); }
 
     BaseProjectProcessingLock processingLock(dynamic_cast<BatchProjectDoc*>(GetDocument()));
@@ -1932,7 +1932,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
     // validate the extension
     if (graphExt.empty())
         { graphExt = L".png"; }
-    else if (graphExt[0] != wxT('.'))
+    else if (graphExt[0] != L'.')
         { graphExt.insert(0, L"."); }
 
     BaseProjectProcessingLock processingLock(dynamic_cast<BatchProjectDoc*>(GetDocument()));
