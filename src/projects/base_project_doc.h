@@ -409,7 +409,7 @@ public:
     [[nodiscard]] static Wisteria::UI::ImageExportOptions& GetImageExportOptions() noexcept
         { return m_imageExportOptions; }
 
-    void LoadSettingsFile(const wxChar* settingsFileText);
+    void LoadSettingsFile(const wchar_t* settingsFileText);
 
     void UpdateGraphOptions(Wisteria::Canvas* canvas);
     static void UpdateListOptions(ListCtrlEx* list);

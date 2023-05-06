@@ -96,7 +96,7 @@ private:
     void AddCrawfordGraph(const bool setFocus = true) final;
     void LoadManuallyEnteredText();
     bool LoadProjectFile(const char* projectFileText, const size_t textLength);
-    void LoadMetaFile(const wxChar* settingsFileText);
+    void LoadMetaFile(const wchar_t* settingsFileText);
     void DisplayStatistics();
     void DisplaySentencesBreakdown();
     void DisplayWordCharts();

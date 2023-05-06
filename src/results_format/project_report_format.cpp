@@ -1966,7 +1966,7 @@ wxString ProjectReportFormat::FormatSentence(const BaseProject* project,
     currentSentence.Trim();
 
     bool quoteBeingMoved = false;
-    wxChar quoteChar = L'\"';
+    wchar_t quoteChar{ L'\"' };
     if (currentSentence.length() > 0 && characters::is_character::is_quote(currentSentence.Last()))
         {
         quoteChar = currentSentence.Last();

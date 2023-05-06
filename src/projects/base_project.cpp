@@ -2708,7 +2708,7 @@ void BaseProject::CalculateStatisticsIgnoringInvalidSentences()
     m_totalInterrogativeSentences = m_totalExclamatorySentences = m_totalSentenceUnits = 0;
     if (GetTotalSentences() > 0)
         {
-        //Number of overly long sentences
+        // Number of overly long sentences
         m_totalOverlyLongSentences = std::count_if(GetWords()->get_sentences().begin(),
             GetWords()->get_sentences().end(),
             grammar::complete_sentence_length_greater_than(m_difficultSentenceLength) );
@@ -2717,14 +2717,16 @@ void BaseProject::CalculateStatisticsIgnoringInvalidSentences()
             {
             if (GetWords()->get_sentences()[i].is_valid())
                 {
-                const wxChar endingChar = GetWords()->get_sentences()[i].get_ending_punctuation();
-                if (endingChar == common_lang_constants::QUESTION_MARK || endingChar == common_lang_constants::QUESTION_MARK_FULL_WIDTH)
+                const wchar_t endingChar = GetWords()->get_sentences()[i].get_ending_punctuation();
+                if (endingChar == common_lang_constants::QUESTION_MARK ||
+                    endingChar == common_lang_constants::QUESTION_MARK_FULL_WIDTH)
                     { ++m_totalInterrogativeSentences; }
-                else if (endingChar == common_lang_constants::EXCLAMATION_MARK || endingChar == common_lang_constants::EXCLAMATION_MARK_FULL_WIDTH)
+                else if (endingChar == common_lang_constants::EXCLAMATION_MARK ||
+                    endingChar == common_lang_constants::EXCLAMATION_MARK_FULL_WIDTH)
                     { ++m_totalExclamatorySentences; }
                 else if (endingChar == common_lang_constants::INTERROBANG)
                     { ++m_totalExclamatorySentences; }
-                //count the sentence units
+                // count the sentence units
                 m_totalSentenceUnits += GetWords()->get_sentences()[i].get_unit_count();
                 }
             }
@@ -2734,9 +2736,10 @@ void BaseProject::CalculateStatisticsIgnoringInvalidSentences()
             GetWords()->get_sentences().end(),
             grammar::complete_sentence_length_less());
         m_longestSentence = longestSent->get_valid_word_count();
-        m_longestSentenceIndex = (longestSent - GetWords()->get_sentences().begin());//be sure to add 1 to make it one-indexed when being displayed
+        // be sure to add 1 to make it one-indexed when being displayed
+        m_longestSentenceIndex = (longestSent - GetWords()->get_sentences().begin());
         }
-    //No valid sentences? Just reset these values then.
+    // No valid sentences? Just reset these values then.
     else
         {
         m_totalSentenceUnits = 0;
@@ -2745,7 +2748,8 @@ void BaseProject::CalculateStatisticsIgnoringInvalidSentences()
         m_longestSentenceIndex = 0;
         }
 
-    //we count these in ignored sentences too because they are just general grammar issues to improve the overall document
+    // we count these in ignored sentences too because they are just
+    // general grammar issues to improve the overall document
     SetDuplicateWordCount(GetWords()->get_duplicate_word_indices().size());
     SetMismatchedArticleCount(GetWords()->get_incorrect_article_indices().size());
     SetPassiveVoicesCount(GetWords()->get_passive_voice_indices().size());
@@ -2877,21 +2881,21 @@ void BaseProject::CalculateStatistics()
     m_totalInterrogativeSentences = m_totalExclamatorySentences = m_totalSentenceUnits = 0;
     if (GetTotalSentences() > 0)
         {
-        //Number of overly long sentences
+        // Number of overly long sentences
         m_totalOverlyLongSentences = std::count_if(GetWords()->get_sentences().begin(),
             GetWords()->get_sentences().end(),
             grammar::sentence_length_greater_than(m_difficultSentenceLength) );
 
         for (size_t i = 0; i < GetWords()->get_sentences().size(); ++i)
             {
-            const wxChar endingChar = GetWords()->get_sentences()[i].get_ending_punctuation();
+            const wchar_t endingChar = GetWords()->get_sentences()[i].get_ending_punctuation();
             if (endingChar == common_lang_constants::QUESTION_MARK || endingChar == common_lang_constants::QUESTION_MARK_FULL_WIDTH)
                 { ++m_totalInterrogativeSentences; }
             else if (endingChar == common_lang_constants::EXCLAMATION_MARK || endingChar == common_lang_constants::EXCLAMATION_MARK_FULL_WIDTH)
                 { ++m_totalExclamatorySentences; }
             else if (endingChar == common_lang_constants::INTERROBANG)
                 { ++m_totalExclamatorySentences; }
-            //count the sentence units
+            // count the sentence units
             m_totalSentenceUnits += GetWords()->get_sentences()[i].get_unit_count();
             }
 
@@ -2899,9 +2903,10 @@ void BaseProject::CalculateStatistics()
             std::max_element(GetWords()->get_sentences().begin(),
             GetWords()->get_sentences().end() );
         m_longestSentence = longestSent->get_word_count();
-        m_longestSentenceIndex = (longestSent - GetWords()->get_sentences().begin());//be sure to add 1 to make it one-indexed when being displayed
+        // be sure to add 1 to make it one-indexed when being displayed
+        m_longestSentenceIndex = (longestSent - GetWords()->get_sentences().begin());
         }
-    //No valid sentences? Just reset these values then.
+    // No valid sentences? Just reset these values then.
     else
         {
         m_totalSentenceUnits = 0;

@@ -793,7 +793,7 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
             if (themeString)
                 {
                 const wxString themeStr = Wisteria::TextStream::CharStreamToUnicode(themeString, std::strlen(themeString));
-                const wxChar* convertedStr = filter_html(themeStr, themeStr.length(), true, false);
+                const wchar_t* convertedStr = filter_html(themeStr, themeStr.length(), true, false);
                 if (convertedStr)
                     {
                     SetTheme(convertedStr);
@@ -929,7 +929,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 if (wordlistPathString)
                     {
                     const wxString wordlistPathStr = Wisteria::TextStream::CharStreamToUnicode(wordlistPathString, std::strlen(wordlistPathString));
-                    const wxChar* convertedStr = filter_html(wordlistPathStr, wordlistPathStr.length(), true, false);
+                    const wchar_t* convertedStr = filter_html(wordlistPathStr, wordlistPathStr.length(), true, false);
                     if (convertedStr)
                         { SetWordListPath(convertedStr); }
                     }
@@ -941,7 +941,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 if (projectPathString)
                     {
                     const wxString projectPathStr = Wisteria::TextStream::CharStreamToUnicode(projectPathString, std::strlen(projectPathString));
-                    const wxChar* convertedStr = filter_html(projectPathStr, projectPathStr.length(), true, false);
+                    const wchar_t* convertedStr = filter_html(projectPathStr, projectPathStr.length(), true, false);
                     if (convertedStr)
                         { SetProjectPath(convertedStr); }
                     }
@@ -953,7 +953,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 if (imagePathString)
                     {
                     const wxString imagePathStr = Wisteria::TextStream::CharStreamToUnicode(imagePathString, std::strlen(imagePathString));
-                    const wxChar* convertedStr = filter_html(imagePathStr, imagePathStr.length(), true, false);
+                    const wchar_t* convertedStr = filter_html(imagePathStr, imagePathStr.length(), true, false);
                     if (convertedStr)
                         { SetImagePath(convertedStr); }
                     }
@@ -984,7 +984,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 if (printerString)
                     {
                     const wxString printStr = Wisteria::TextStream::CharStreamToUnicode(printerString, std::strlen(printerString));
-                    const wxChar* convertedStr = filter_html(printStr, printStr.length(), true, false);
+                    const wchar_t* convertedStr = filter_html(printStr, printStr.length(), true, false);
                     if (convertedStr)
                         { SetLeftPrinterHeader(convertedStr); }
                     }
@@ -996,7 +996,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 if (printerString)
                     {
                     const wxString printStr = Wisteria::TextStream::CharStreamToUnicode(printerString, std::strlen(printerString));
-                    const wxChar* convertedStr = filter_html(printStr, printStr.length(), true, false);
+                    const wchar_t* convertedStr = filter_html(printStr, printStr.length(), true, false);
                     if (convertedStr)
                         { SetCenterPrinterHeader(convertedStr); }
                     }
@@ -1008,7 +1008,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 if (printerString)
                     {
                     const wxString printStr = Wisteria::TextStream::CharStreamToUnicode(printerString, std::strlen(printerString));
-                    const wxChar* convertedStr = filter_html(printStr, printStr.length(), true, false);
+                    const wchar_t* convertedStr = filter_html(printStr, printStr.length(), true, false);
                     if (convertedStr)
                         { SetRightPrinterHeader(convertedStr); }
                     }
@@ -1020,7 +1020,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 if (printerString)
                     {
                     const wxString printStr = Wisteria::TextStream::CharStreamToUnicode(printerString, std::strlen(printerString));
-                    const wxChar* convertedStr = filter_html(printStr, printStr.length(), true, false);
+                    const wchar_t* convertedStr = filter_html(printStr, printStr.length(), true, false);
                     if (convertedStr)
                         { SetLeftPrinterFooter(convertedStr); }
                     }
@@ -1032,7 +1032,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 if (printerString)
                     {
                     const wxString printStr = Wisteria::TextStream::CharStreamToUnicode(printerString, std::strlen(printerString));
-                    const wxChar* convertedStr = filter_html(printStr, printStr.length(), true, false);
+                    const wchar_t* convertedStr = filter_html(printStr, printStr.length(), true, false);
                     if (convertedStr)
                         { SetCenterPrinterFooter(convertedStr); }
                     }
@@ -1044,7 +1044,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 if (printerString)
                     {
                     const wxString printStr = Wisteria::TextStream::CharStreamToUnicode(printerString, std::strlen(printerString));
-                    const wxChar* convertedStr = filter_html(printStr, printStr.length(), true, false);
+                    const wchar_t* convertedStr = filter_html(printStr, printStr.length(), true, false);
                     if (convertedStr)
                         { SetRightPrinterFooter(convertedStr); }
                     }
@@ -1164,7 +1164,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 if (reviewerChars)
                     {
                     const wxString reviewerStr = Wisteria::TextStream::CharStreamToUnicode(reviewerChars, std::strlen(reviewerChars));
-                    const wxChar* convertedStr = filter_html(reviewerStr, reviewerStr.length(), true, false);
+                    const wchar_t* convertedStr = filter_html(reviewerStr, reviewerStr.length(), true, false);
                     if (convertedStr)
                         { SetReviewer(convertedStr); }
                     }
@@ -1176,7 +1176,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 if (statusChars)
                     {
                     const wxString statusStr = Wisteria::TextStream::CharStreamToUnicode(statusChars, std::strlen(statusChars));
-                    const wxChar* convertedStr = filter_html(statusStr, statusStr.length(), true, false);
+                    const wchar_t* convertedStr = filter_html(statusStr, statusStr.length(), true, false);
                     if (convertedStr)
                         { SetStatus(convertedStr); }
                     }
@@ -1188,7 +1188,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 if (appendedDocChars)
                     {
                     const wxString appendedDocStr = Wisteria::TextStream::CharStreamToUnicode(appendedDocChars, std::strlen(appendedDocChars));
-                    const wxChar* convertedStr = filter_html(appendedDocStr, appendedDocStr.length(), true, false);
+                    const wchar_t* convertedStr = filter_html(appendedDocStr, appendedDocStr.length(), true, false);
                     if (convertedStr)
                         { SetAppendedDocumentFilePath(convertedStr); }
                     }
@@ -1254,7 +1254,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (InfoChars)
                         {
                         const wxString InfoStr = Wisteria::TextStream::CharStreamToUnicode(InfoChars, std::strlen(InfoChars));
-                        const wxChar* convertedStr = filter_html(InfoStr, InfoStr.length(), true, false);
+                        const wchar_t* convertedStr = filter_html(InfoStr, InfoStr.length(), true, false);
                         if (convertedStr)
                             { GetSentencesBreakdownInfo().Set(convertedStr); }
                         }
@@ -1272,7 +1272,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (InfoChars)
                         {
                         const wxString InfoStr = Wisteria::TextStream::CharStreamToUnicode(InfoChars, std::strlen(InfoChars));
-                        const wxChar* convertedStr = filter_html(InfoStr, InfoStr.length(), true, false);
+                        const wchar_t* convertedStr = filter_html(InfoStr, InfoStr.length(), true, false);
                         if (convertedStr)
                             { GetWordsBreakdownInfo().Set(convertedStr); }
                         }
@@ -1333,7 +1333,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (grammarInfoChars)
                         {
                         const wxString grammarInfStr = Wisteria::TextStream::CharStreamToUnicode(grammarInfoChars, std::strlen(grammarInfoChars));
-                        const wxChar* convertedStr = filter_html(grammarInfStr, grammarInfStr.length(), true, false);
+                        const wchar_t* convertedStr = filter_html(grammarInfStr, grammarInfStr.length(), true, false);
                         if (convertedStr)
                             { GetGrammarInfo().Set(convertedStr); }
                         }
@@ -1403,7 +1403,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (filePathChars)
                         {
                         const wxString filePathStr = Wisteria::TextStream::CharStreamToUnicode(filePathChars, std::strlen(filePathChars));
-                        const wxChar* convertedStr = filter_html(filePathStr, filePathStr.length(), true, false);
+                        const wchar_t* convertedStr = filter_html(filePathStr, filePathStr.length(), true, false);
                         if (convertedStr)
                             { SetExcludedPhrasesPath(convertedStr); }
                         }
@@ -1580,7 +1580,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         continue;
                         }
                     wxString testNameStr = Wisteria::TextStream::CharStreamToUnicode(testNameData, std::strlen(testNameData));
-                    const wxChar* filteredText = filter_html(testNameStr.wc_str(), testNameStr.length(), true, false);
+                    const wchar_t* filteredText = filter_html(testNameStr.wc_str(), testNameStr.length(), true, false);
                     if (!filteredText)
                         {
                         customReadabilityTestNode = customReadabilityTestNode->NextSiblingElement(XML_CUSTOM_FAMILIAR_WORD_TEST.mb_str());
@@ -1824,7 +1824,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (imagePath)
                         {
                         wxString imagePathStr = Wisteria::TextStream::CharStreamToUnicode(imagePath, std::strlen(imagePath));
-                        const wxChar* filteredText = filter_html(imagePathStr.wc_str(), imagePathStr.length(), true, false);
+                        const wchar_t* filteredText = filter_html(imagePathStr.wc_str(), imagePathStr.length(), true, false);
                         if (filteredText)
                             { SetBackGroundImagePath(wxString(filteredText)); }
                         }
@@ -1873,7 +1873,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (stipplePath)
                         {
                         wxString imagePathStr = Wisteria::TextStream::CharStreamToUnicode(stipplePath, std::strlen(stipplePath));
-                        const wxChar* filteredText = filter_html(imagePathStr.wc_str(), imagePathStr.length(), true, false);
+                        const wchar_t* filteredText = filter_html(imagePathStr.wc_str(), imagePathStr.length(), true, false);
                         if (filteredText)
                             { SetGraphStippleImagePath(wxString(filteredText)); }
                         }
@@ -1893,7 +1893,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (watermark)
                         {
                         const wxString waterMarkStr = Wisteria::TextStream::CharStreamToUnicode(watermark, std::strlen(watermark));
-                        const wxChar* convertedStr = filter_html(waterMarkStr, waterMarkStr.length(), true, false);
+                        const wchar_t* convertedStr = filter_html(waterMarkStr, waterMarkStr.length(), true, false);
                         if (convertedStr)
                             { SetWatermark(convertedStr); }
                         }
@@ -1905,7 +1905,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (watermark)
                         {
                         const wxString waterMarkStr = Wisteria::TextStream::CharStreamToUnicode(watermark, std::strlen(watermark));
-                        const wxChar* convertedStr = filter_html(waterMarkStr, waterMarkStr.length(), true, false);
+                        const wchar_t* convertedStr = filter_html(waterMarkStr, waterMarkStr.length(), true, false);
                         if (convertedStr)
                             { SetWatermarkLogo(convertedStr); }
                         }
@@ -2129,7 +2129,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             if (faceName)
                                 {
                                 const wxString faceNameStr = Wisteria::TextStream::CharStreamToUnicode(faceName, std::strlen(faceName));
-                                const wxChar* filteredText = filter_html(faceNameStr, faceNameStr.length(), true, false);
+                                const wchar_t* filteredText = filter_html(faceNameStr, faceNameStr.length(), true, false);
                                 if (filteredText && wxFontEnumerator::IsValidFacename(filteredText))
                                     { m_xAxisFont.SetFaceName(wxString(filteredText)); }
                                 }
@@ -2168,7 +2168,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             if (faceName)
                                 {
                                 const wxString faceNameStr = Wisteria::TextStream::CharStreamToUnicode(faceName, std::strlen(faceName));
-                                const wxChar* filteredText = filter_html(faceNameStr, faceNameStr.length(), true, false);
+                                const wchar_t* filteredText = filter_html(faceNameStr, faceNameStr.length(), true, false);
                                 if (filteredText && wxFontEnumerator::IsValidFacename(filteredText))
                                     { m_yAxisFont.SetFaceName(wxString(filteredText)); }
                                 }
@@ -2212,7 +2212,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             if (faceName)
                                 {
                                 const wxString faceNameStr = Wisteria::TextStream::CharStreamToUnicode(faceName, std::strlen(faceName));
-                                const wxChar* filteredText = filter_html(faceNameStr, faceNameStr.length(), true, false);
+                                const wchar_t* filteredText = filter_html(faceNameStr, faceNameStr.length(), true, false);
                                 if (filteredText && wxFontEnumerator::IsValidFacename(filteredText))
                                     { m_topTitleFont.SetFaceName(wxString(filteredText)); }
                                 }
@@ -2251,7 +2251,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             if (faceName)
                                 {
                                 const wxString faceNameStr = Wisteria::TextStream::CharStreamToUnicode(faceName, std::strlen(faceName));
-                                const wxChar* filteredText = filter_html(faceNameStr, faceNameStr.length(), true, false);
+                                const wchar_t* filteredText = filter_html(faceNameStr, faceNameStr.length(), true, false);
                                 if (filteredText && wxFontEnumerator::IsValidFacename(filteredText))
                                     { m_bottomTitleFont.SetFaceName(wxString(filteredText)); }
                                 }
@@ -2290,7 +2290,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             if (faceName)
                                 {
                                 const wxString faceNameStr = Wisteria::TextStream::CharStreamToUnicode(faceName, std::strlen(faceName));
-                                const wxChar* filteredText = filter_html(faceNameStr, faceNameStr.length(), true, false);
+                                const wchar_t* filteredText = filter_html(faceNameStr, faceNameStr.length(), true, false);
                                 if (filteredText && wxFontEnumerator::IsValidFacename(filteredText))
                                     { m_leftTitleFont.SetFaceName(wxString(filteredText)); }
                                 }
@@ -2329,7 +2329,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             if (faceName)
                                 {
                                 const wxString faceNameStr = Wisteria::TextStream::CharStreamToUnicode(faceName, std::strlen(faceName));
-                                const wxChar* filteredText = filter_html(faceNameStr, faceNameStr.length(), true, false);
+                                const wchar_t* filteredText = filter_html(faceNameStr, faceNameStr.length(), true, false);
                                 if (filteredText && wxFontEnumerator::IsValidFacename(filteredText))
                                     { m_rightTitleFont.SetFaceName(wxString(filteredText)); }
                                 }
@@ -2356,7 +2356,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (statsChars)
                         {
                         const wxString statsStr = Wisteria::TextStream::CharStreamToUnicode(statsChars, std::strlen(statsChars));
-                        const wxChar* convertedStr = filter_html(statsStr, statsStr.length(), true, false);
+                        const wchar_t* convertedStr = filter_html(statsStr, statsStr.length(), true, false);
                         if (convertedStr)
                             { GetStatisticsInfo().Set(convertedStr); }
                         }
@@ -2369,7 +2369,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (statsReportChars)
                         {
                         const wxString statsReportStr = Wisteria::TextStream::CharStreamToUnicode(statsReportChars, std::strlen(statsReportChars));
-                        const wxChar* convertedStr = filter_html(statsReportStr, statsReportStr.length(), true, false);
+                        const wchar_t* convertedStr = filter_html(statsReportStr, statsReportStr.length(), true, false);
                         if (convertedStr)
                             { GetStatisticsReportInfo().Set(convertedStr); }
                         }
@@ -2424,7 +2424,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (bundleChars)
                         {
                         const wxString bundleStr = Wisteria::TextStream::CharStreamToUnicode(bundleChars, std::strlen(bundleChars));
-                        const wxChar* convertedStr = filter_html(bundleStr, bundleStr.length(), true, false);
+                        const wchar_t* convertedStr = filter_html(bundleStr, bundleStr.length(), true, false);
                         if (convertedStr)
                             { SetSelectedTestBundle(convertedStr); }
                         }
@@ -2571,7 +2571,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (testId)
                         {
                         const wxString testStr = Wisteria::TextStream::CharStreamToUnicode(testId, std::strlen(testId));
-                        const wxChar* convertedStr = filter_html(testStr, testStr.length(), true, false);
+                        const wchar_t* convertedStr = filter_html(testStr, testStr.length(), true, false);
                         if (convertedStr)
                             { GetIncludedCustomTests().push_back(convertedStr); }
                         }
@@ -2729,7 +2729,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (faceName)
                         {
                         const wxString faceNameStr = Wisteria::TextStream::CharStreamToUnicode(faceName, std::strlen(faceName));
-                        const wxChar* filteredText = filter_html(faceNameStr, faceNameStr.length(), true, false);
+                        const wchar_t* filteredText = filter_html(faceNameStr, faceNameStr.length(), true, false);
                         if (filteredText && wxFontEnumerator::IsValidFacename(filteredText))
                             { m_textViewFont.SetFaceName(wxString(filteredText)); }
                         }
@@ -3881,7 +3881,7 @@ double ReadabilityAppOptions::TiXmlNodeToDouble(const tinyxml2::XMLNode* node, c
     if (!stringData)
         { return std::numeric_limits<double>::quiet_NaN(); }
     wxString convertedStr = Wisteria::TextStream::CharStreamToUnicode(stringData, std::strlen(stringData));
-    const wxChar* filteredText = filter_html(convertedStr.wc_str(), convertedStr.length(), true, false);
+    const wchar_t* filteredText = filter_html(convertedStr.wc_str(), convertedStr.length(), true, false);
     if (!filteredText)
         { return std::numeric_limits<double>::quiet_NaN(); }
     wxString dValueStr(filteredText);
@@ -3904,7 +3904,7 @@ wxString ReadabilityAppOptions::TiXmlNodeToString(const tinyxml2::XMLNode* node,
     if (!stringData)
         { return wxEmptyString; }
     wxString convertedStr = Wisteria::TextStream::CharStreamToUnicode(stringData, std::strlen(stringData));
-    const wxChar* filteredText = filter_html(convertedStr.wc_str(), convertedStr.length(), true, false);
+    const wchar_t* filteredText = filter_html(convertedStr.wc_str(), convertedStr.length(), true, false);
     if (!filteredText)
         { return wxEmptyString; }
     return wxString(filteredText);

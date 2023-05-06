@@ -710,23 +710,23 @@ bool BaseProjectDoc::OnCloseDocument()
     }
 
 //------------------------------------------------
-void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
+void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
     {
     wxString currentStartTag;
     wxString currentEndTag;
-    const wxChar* settingsFileTextEnd = settingsFileText + wxStrlen(settingsFileText);
+    const wchar_t* settingsFileTextEnd = settingsFileText + std::wcslen(settingsFileText);
 
     // first, get the project format version number
-    currentStartTag.Empty();
+    currentStartTag.clear();
     currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_PROJECT_HEADER);
-    const wxChar* projectSection = ::wxStrstr(settingsFileText, currentStartTag.wc_str() );
+    const wchar_t* projectSection = std::wcsstr(settingsFileText, currentStartTag.wc_str() );
     wxString docVersionNumber = L"1.0";
     if (projectSection)
         {
         /* See if the project is a newer format than the current version that this
-           product supports.  Try to be forward compatibility, but some info will be lost.*/
-        const wxChar* endTag = ::wxStrchr(projectSection, L'>');
-        const wxChar* version = ::wxStrstr(projectSection, wxGetApp().GetAppOptions().XML_VERSION);
+           product supports. Try to be forward compatibility, but some info will be lost.*/
+        const wchar_t* endTag = ::wxStrchr(projectSection, L'>');
+        const wchar_t* version = std::wcsstr(projectSection, wxGetApp().GetAppOptions().XML_VERSION);
         if (version && endTag &&
             (version < endTag))
             {
@@ -734,11 +734,11 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
             if (version)
                 {
                 ++version;
-                const wxChar* versionEnd = ::wxStrchr(version, L'\"');
+                const wchar_t* versionEnd = ::wxStrchr(version, L'\"');
                 if (versionEnd)
                     {
                     docVersionNumber.assign(version, (versionEnd-version));
-                    double docDouble(0), appDocDouble(0);
+                    double docDouble{ 0 }, appDocDouble{ 0 };
                     if (docVersionNumber.ToDouble(&docDouble) && wxGetApp().GetDocumentVersionNumber().ToDouble(&appDocDouble) &&
                         docDouble > appDocDouble)
                         {
@@ -753,12 +753,12 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
         }
 
     // original text source (e.g., document file) information
-    currentStartTag.Empty();
+    currentStartTag.clear();
     currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_DOCUMENT);
-    currentEndTag.Empty();
+    currentEndTag.clear();
     currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_DOCUMENT).append(L">");
-    const wxChar* docParsingSection = ::wxStrstr(settingsFileText, currentStartTag);
-    const wxChar* docParsingSectionEnd = ::wxStrstr(settingsFileText, currentEndTag);
+    const wchar_t* docParsingSection = std::wcsstr(settingsFileText, currentStartTag);
+    const wchar_t* docParsingSectionEnd = std::wcsstr(settingsFileText, currentEndTag);
     if (docParsingSection && docParsingSectionEnd &&
         (docParsingSection < docParsingSectionEnd) )
         {
@@ -816,8 +816,8 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
         }
 
     //sentences breakdown
-    const wxChar* sentencesBreakdownSection = html_extract_text::find_element(settingsFileText, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN, wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN.length());
-    const wxChar* sentencesBreakdownSectionEnd = sentencesBreakdownSection ?
+    const wchar_t* sentencesBreakdownSection = html_extract_text::find_element(settingsFileText, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN, wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN.length());
+    const wchar_t* sentencesBreakdownSectionEnd = sentencesBreakdownSection ?
         html_extract_text::find_closing_element(sentencesBreakdownSection, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN, wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN.length()) : nullptr;
     if (sentencesBreakdownSection && sentencesBreakdownSectionEnd)
         {
@@ -827,8 +827,8 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
         }
 
     //words breakdown
-    const wxChar* wordsBreakdownSection = html_extract_text::find_element(settingsFileText, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN, wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN.length());
-    const wxChar* wordsBreakdownSectionSectionEnd = wordsBreakdownSection ?
+    const wchar_t* wordsBreakdownSection = html_extract_text::find_element(settingsFileText, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN, wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN.length());
+    const wchar_t* wordsBreakdownSectionSectionEnd = wordsBreakdownSection ?
         html_extract_text::find_closing_element(wordsBreakdownSection, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN, wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN.length()) : nullptr;
     if (wordsBreakdownSection && wordsBreakdownSectionSectionEnd)
         {
@@ -838,12 +838,12 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
         }
 
     //grammar
-    currentStartTag.Empty();
+    currentStartTag.clear();
     currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_GRAMMAR);
-    currentEndTag.Empty();
+    currentEndTag.clear();
     currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_GRAMMAR).append(L">");
-    const wxChar* grammarSection = ::wxStrstr(settingsFileText, currentStartTag);
-    const wxChar* grammarSectionEnd = ::wxStrstr(settingsFileText, currentEndTag);
+    const wchar_t* grammarSection = std::wcsstr(settingsFileText, currentStartTag);
+    const wchar_t* grammarSectionEnd = std::wcsstr(settingsFileText, currentEndTag);
     if (grammarSection && grammarSectionEnd &&
         (grammarSection < grammarSectionEnd) )
         {
@@ -867,12 +867,12 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
         }
 
     //read in the parsing and analysis logic
-    currentStartTag.Empty();
+    currentStartTag.clear();
     currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_DOCUMENT_ANALYSIS_LOGIC);
-    currentEndTag.Empty();
+    currentEndTag.clear();
     currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_DOCUMENT_ANALYSIS_LOGIC).append(L">");
-    const wxChar* parsingSection = ::wxStrstr(settingsFileText, currentStartTag);
-    const wxChar* parsingSectionEnd = ::wxStrstr(settingsFileText, currentEndTag);
+    const wchar_t* parsingSection = std::wcsstr(settingsFileText, currentStartTag);
+    const wchar_t* parsingSectionEnd = std::wcsstr(settingsFileText, currentEndTag);
     if (parsingSection && parsingSectionEnd &&
         (parsingSection < parsingSectionEnd) )
         {
@@ -904,19 +904,19 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
         SetExcludedPhrasesPath(XmlFormat::GetString(parsingSection, parsingSectionEnd,
             wxGetApp().GetAppOptions().XML_EXCLUDED_PHRASES_PATH));
         LoadExcludePhrases();
-        const wxChar* exclusionBlockTagSection = html_extract_text::find_element(parsingSection, parsingSectionEnd, wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS, wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS.length());
-        const wxChar* exclusionBlockTagSectionEnd = exclusionBlockTagSection ?
+        const wchar_t* exclusionBlockTagSection = html_extract_text::find_element(parsingSection, parsingSectionEnd, wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS, wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS.length());
+        const wchar_t* exclusionBlockTagSectionEnd = exclusionBlockTagSection ?
             html_extract_text::find_closing_element(exclusionBlockTagSection, parsingSectionEnd, wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS, wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS.length()) : nullptr;
         if (exclusionBlockTagSection && exclusionBlockTagSectionEnd)
             {
             GetExclusionBlockTags().clear();
-            const wxChar* exclusionBlockTag = exclusionBlockTagSection;
+            const wchar_t* exclusionBlockTag = exclusionBlockTagSection;
             while (exclusionBlockTag)
                 {
                 exclusionBlockTag = html_extract_text::find_element(exclusionBlockTag, parsingSectionEnd, wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG, wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG.length());
                 if (!exclusionBlockTag)
                     { break; }
-                const wxChar* exclusionBlockTagEnd = html_extract_text::find_closing_element(exclusionBlockTag, parsingSectionEnd,  wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG, wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG.length());
+                const wchar_t* exclusionBlockTagEnd = html_extract_text::find_closing_element(exclusionBlockTag, parsingSectionEnd,  wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG, wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG.length());
                 if (!exclusionBlockTagEnd)
                     { break; }
                 const wxString blockTags = XmlFormat::GetString(exclusionBlockTag, exclusionBlockTagEnd, wxGetApp().GetAppOptions().XML_VALUE);
@@ -968,21 +968,21 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
         }
 
     //read in the custom tests
-    currentStartTag.Empty();
+    currentStartTag.clear();
     currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_CUSTOM_TESTS);
-    currentEndTag.Empty();
+    currentEndTag.clear();
     currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_CUSTOM_TESTS).append(L">");
-    const wxChar* customTestSection = ::wxStrstr(settingsFileText, currentStartTag);
-    const wxChar* customTestSectionEnd = ::wxStrstr(settingsFileText, currentEndTag);
+    const wchar_t* customTestSection = std::wcsstr(settingsFileText, currentStartTag);
+    const wchar_t* customTestSectionEnd = std::wcsstr(settingsFileText, currentEndTag);
     if (customTestSection && customTestSectionEnd &&
         (customTestSection < customTestSectionEnd) )
         {
-        currentStartTag.Empty();
+        currentStartTag.clear();
         currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_CUSTOM_FAMILIAR_WORD_TEST);
-        currentEndTag.Empty();
+        currentEndTag.clear();
         currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_CUSTOM_FAMILIAR_WORD_TEST).append(L">");
-        const wxChar* customFamiliarTestSection = ::wxStrstr(customTestSection, currentStartTag);
-        const wxChar* customFamiliarTestSectionEnd = ::wxStrstr(customTestSection, currentEndTag);
+        const wchar_t* customFamiliarTestSection = std::wcsstr(customTestSection, currentStartTag);
+        const wchar_t* customFamiliarTestSectionEnd = std::wcsstr(customTestSection, currentEndTag);
         while (customFamiliarTestSection && customFamiliarTestSectionEnd)
             {
             wxString testName = XmlFormat::GetString(customFamiliarTestSection, customFamiliarTestSectionEnd, wxGetApp().GetAppOptions().XML_TEST_NAME);
@@ -1082,20 +1082,20 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
                 GetTestGoals().insert({ cTest.get_name(), minGoal, maxGoal });
                 }
             //go to next test
-            customFamiliarTestSection = ::wxStrstr(++customFamiliarTestSection, currentStartTag);
+            customFamiliarTestSection = std::wcsstr(++customFamiliarTestSection, currentStartTag);
             if (!customFamiliarTestSection)
                 { break; }
-            customFamiliarTestSectionEnd = ::wxStrstr(customFamiliarTestSection, currentEndTag);
+            customFamiliarTestSectionEnd = std::wcsstr(customFamiliarTestSection, currentEndTag);
             }
         }
 
     //read in the graph configurations
-    currentStartTag.Empty();
+    currentStartTag.clear();
     currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_GRAPH_SETTINGS);
-    currentEndTag.Empty();
+    currentEndTag.clear();
     currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_GRAPH_SETTINGS).append(L">");
-    const wxChar* graphsSection = ::wxStrstr(settingsFileText, currentStartTag);
-    const wxChar* graphsSectionEnd = ::wxStrstr(settingsFileText, currentEndTag);
+    const wchar_t* graphsSection = std::wcsstr(settingsFileText, currentStartTag);
+    const wchar_t* graphsSectionEnd = std::wcsstr(settingsFileText, currentEndTag);
     if (graphsSection && graphsSectionEnd &&
         (graphsSection < graphsSectionEnd) )
         {
@@ -1122,12 +1122,12 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
         SetInvalidAreaColor(XmlFormat::GetColor(graphsSection, graphsSectionEnd, wxGetApp().GetAppOptions().XML_INVALID_AREA_COLOR, wxGetApp().GetAppOptions().GetInvalidAreaColor()));
 
         // Lix gauge
-        currentStartTag.Empty();
+        currentStartTag.clear();
         currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_LIX_SETTINGS);
-        currentEndTag.Empty();
+        currentEndTag.clear();
         currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_LIX_SETTINGS).append(L">");
-        const wxChar* lixGuageSection = ::wxStrstr(graphsSection, currentStartTag);
-        const wxChar* lixGuageSectionEnd = ::wxStrstr(graphsSection, currentEndTag);
+        const wchar_t* lixGuageSection = std::wcsstr(graphsSection, currentStartTag);
+        const wchar_t* lixGuageSectionEnd = std::wcsstr(graphsSection, currentEndTag);
         if (lixGuageSection && lixGuageSectionEnd &&
             (lixGuageSection < lixGuageSectionEnd) )
             {
@@ -1135,12 +1135,12 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
             }
 
         //Flesch chart
-        currentStartTag.Empty();
+        currentStartTag.clear();
         currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_FLESCH_CHART_SETTINGS);
-        currentEndTag.Empty();
+        currentEndTag.clear();
         currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_FLESCH_CHART_SETTINGS).append(L">");
-        const wxChar* fleschChartSection = ::wxStrstr(graphsSection, currentStartTag);
-        const wxChar* fleschChartSectionEnd = ::wxStrstr(graphsSection, currentEndTag);
+        const wchar_t* fleschChartSection = std::wcsstr(graphsSection, currentStartTag);
+        const wchar_t* fleschChartSectionEnd = std::wcsstr(graphsSection, currentEndTag);
         if (fleschChartSection && fleschChartSectionEnd &&
             (fleschChartSection < fleschChartSectionEnd) )
             {
@@ -1148,12 +1148,12 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
             }
 
         //box plot settings
-        currentStartTag.Empty();
+        currentStartTag.clear();
         currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_BOX_PLOT_SETTINGS);
-        currentEndTag.Empty();
+        currentEndTag.clear();
         currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_BOX_PLOT_SETTINGS).append(L">");
-        const wxChar* boxPlotSection = ::wxStrstr(graphsSection, currentStartTag);
-        const wxChar* boxPlotSectionEnd = ::wxStrstr(graphsSection, currentEndTag);
+        const wchar_t* boxPlotSection = std::wcsstr(graphsSection, currentStartTag);
+        const wchar_t* boxPlotSectionEnd = std::wcsstr(graphsSection, currentEndTag);
         if (boxPlotSection && boxPlotSectionEnd &&
             (boxPlotSection < boxPlotSectionEnd) )
             {
@@ -1169,12 +1169,12 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
             }
 
         //histogram settings
-        currentStartTag.Empty();
+        currentStartTag.clear();
         currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_HISTOGRAM_SETTINGS);
-        currentEndTag.Empty();
+        currentEndTag.clear();
         currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_HISTOGRAM_SETTINGS).append(L">");
-        const wxChar* histoSection = ::wxStrstr(graphsSection, currentStartTag);
-        const wxChar* histoSectionEnd = ::wxStrstr(graphsSection, currentEndTag);
+        const wchar_t* histoSection = std::wcsstr(graphsSection, currentStartTag);
+        const wchar_t* histoSectionEnd = std::wcsstr(graphsSection, currentEndTag);
         if (histoSection && histoSectionEnd &&
             (histoSection < histoSectionEnd) )
             {
@@ -1207,12 +1207,12 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
             }
 
         //bar chart settings
-        currentStartTag.Empty();
+        currentStartTag.clear();
         currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_BAR_CHART_SETTINGS);
-        currentEndTag.Empty();
+        currentEndTag.clear();
         currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_BAR_CHART_SETTINGS).append(L">");
-        const wxChar* barSection = ::wxStrstr(graphsSection, currentStartTag);
-        const wxChar* barSectionEnd = ::wxStrstr(graphsSection, currentEndTag);
+        const wchar_t* barSection = std::wcsstr(graphsSection, currentStartTag);
+        const wchar_t* barSectionEnd = std::wcsstr(graphsSection, currentEndTag);
         if (barSection && barSectionEnd &&
             (barSection < barSectionEnd) )
             {
@@ -1231,22 +1231,22 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
             }
 
         //axis settings
-        currentStartTag.Empty();
+        currentStartTag.clear();
         currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_AXIS_SETTINGS);
-        currentEndTag.Empty();
+        currentEndTag.clear();
         currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_AXIS_SETTINGS).append(L">");
-        const wxChar* axisSection = ::wxStrstr(graphsSection, currentStartTag);
-        const wxChar* axisSectionEnd = ::wxStrstr(graphsSection, currentEndTag);
+        const wchar_t* axisSection = std::wcsstr(graphsSection, currentStartTag);
+        const wchar_t* axisSectionEnd = std::wcsstr(graphsSection, currentEndTag);
         if (axisSection && axisSectionEnd &&
             (axisSection < axisSectionEnd) )
             {
             //x axis
-            currentStartTag.Empty();
+            currentStartTag.clear();
             currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_X_AXIS);
-            currentEndTag.Empty();
+            currentEndTag.clear();
             currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_X_AXIS).append(L">");
-            const wxChar* xAxisSection = ::wxStrstr(axisSection, currentStartTag);
-            const wxChar* xAxisSectionEnd = ::wxStrstr(axisSection, currentEndTag);
+            const wchar_t* xAxisSection = std::wcsstr(axisSection, currentStartTag);
+            const wchar_t* xAxisSectionEnd = std::wcsstr(axisSection, currentEndTag);
             if (xAxisSection && xAxisSectionEnd &&
                 (xAxisSection < xAxisSectionEnd) )
                 {
@@ -1254,12 +1254,12 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
                 SetXAxisFont(XmlFormat::GetFont(xAxisSection, xAxisSectionEnd, wxGetApp().GetAppOptions().XML_FONT, wxGetApp().GetAppOptions().GetXAxisFont()));
                 }
             //y axis
-            currentStartTag.Empty();
+            currentStartTag.clear();
             currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_Y_AXIS);
-            currentEndTag.Empty();
+            currentEndTag.clear();
             currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_Y_AXIS).append(L">");
-            const wxChar* yAxisSection = ::wxStrstr(axisSection, currentStartTag);
-            const wxChar* yAxisSectionEnd = ::wxStrstr(axisSection, currentEndTag);
+            const wchar_t* yAxisSection = std::wcsstr(axisSection, currentStartTag);
+            const wchar_t* yAxisSectionEnd = std::wcsstr(axisSection, currentEndTag);
             if (yAxisSection && yAxisSectionEnd &&
                 (yAxisSection < yAxisSectionEnd) )
                 {
@@ -1269,22 +1269,22 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
             }
 
         //title settings
-        currentStartTag.Empty();
+        currentStartTag.clear();
         currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_TITLE_SETTINGS);
-        currentEndTag.Empty();
+        currentEndTag.clear();
         currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_TITLE_SETTINGS).append(L">");
-        const wxChar* titleSection = ::wxStrstr(graphsSection, currentStartTag);
-        const wxChar* titleSectionEnd = ::wxStrstr(graphsSection, currentEndTag);
+        const wchar_t* titleSection = std::wcsstr(graphsSection, currentStartTag);
+        const wchar_t* titleSectionEnd = std::wcsstr(graphsSection, currentEndTag);
         if (titleSection && titleSectionEnd &&
             (titleSection < titleSectionEnd) )
             {
             //top title
-            currentStartTag.Empty();
+            currentStartTag.clear();
             currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_TOP_TITLE);
-            currentEndTag.Empty();
+            currentEndTag.clear();
             currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_TOP_TITLE).append(L">");
-            const wxChar* topTitleSection = ::wxStrstr(titleSection, currentStartTag);
-            const wxChar* topTitleSectionEnd = ::wxStrstr(titleSection, currentEndTag);
+            const wchar_t* topTitleSection = std::wcsstr(titleSection, currentStartTag);
+            const wchar_t* topTitleSectionEnd = std::wcsstr(titleSection, currentEndTag);
             if (topTitleSection && topTitleSectionEnd &&
                 (topTitleSection < topTitleSectionEnd) )
                 {
@@ -1293,12 +1293,12 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
                 }
 
             //bottom title
-            currentStartTag.Empty();
+            currentStartTag.clear();
             currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_BOTTOM_TITLE);
-            currentEndTag.Empty();
+            currentEndTag.clear();
             currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_BOTTOM_TITLE).append(L">");
-            const wxChar* bottomTitleSection = ::wxStrstr(titleSection, currentStartTag);
-            const wxChar* bottomTitleSectionEnd = ::wxStrstr(titleSection, currentEndTag);
+            const wchar_t* bottomTitleSection = std::wcsstr(titleSection, currentStartTag);
+            const wchar_t* bottomTitleSectionEnd = std::wcsstr(titleSection, currentEndTag);
             if (bottomTitleSection && bottomTitleSectionEnd &&
                 (bottomTitleSection < bottomTitleSectionEnd) )
                 {
@@ -1307,12 +1307,12 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
                 }
 
             //left title
-            currentStartTag.Empty();
+            currentStartTag.clear();
             currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_LEFT_TITLE);
-            currentEndTag.Empty();
+            currentEndTag.clear();
             currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_LEFT_TITLE).append(L">");
-            const wxChar* leftTitleSection = ::wxStrstr(titleSection, currentStartTag);
-            const wxChar* leftTitleSectionEnd = ::wxStrstr(titleSection, currentEndTag);
+            const wchar_t* leftTitleSection = std::wcsstr(titleSection, currentStartTag);
+            const wchar_t* leftTitleSectionEnd = std::wcsstr(titleSection, currentEndTag);
             if (leftTitleSection && leftTitleSectionEnd &&
                 (leftTitleSection < leftTitleSectionEnd) )
                 {
@@ -1321,12 +1321,12 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
                 }
 
             //right title
-            currentStartTag.Empty();
+            currentStartTag.clear();
             currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_RIGHT_TITLE);
-            currentEndTag.Empty();
+            currentEndTag.clear();
             currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_RIGHT_TITLE).append(L">");
-            const wxChar* rightTitleSection = ::wxStrstr(titleSection, currentStartTag);
-            const wxChar* rightTitleSectionEnd = ::wxStrstr(titleSection, currentEndTag);
+            const wchar_t* rightTitleSection = std::wcsstr(titleSection, currentStartTag);
+            const wchar_t* rightTitleSectionEnd = std::wcsstr(titleSection, currentEndTag);
             if (rightTitleSection && rightTitleSectionEnd &&
                 (rightTitleSection < rightTitleSectionEnd) )
                 {
@@ -1337,8 +1337,8 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
         }
 
     // read stat goals
-    const wxChar* statGoalsSection = html_extract_text::find_element(settingsFileText, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_STAT_GOALS, wxGetApp().GetAppOptions().XML_STAT_GOALS.length());
-    const wxChar* statGoalsSectionEnd = statGoalsSection ?
+    const wchar_t* statGoalsSection = html_extract_text::find_element(settingsFileText, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_STAT_GOALS, wxGetApp().GetAppOptions().XML_STAT_GOALS.length());
+    const wchar_t* statGoalsSectionEnd = statGoalsSection ?
         html_extract_text::find_closing_element(statGoalsSection, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_STAT_GOALS, wxGetApp().GetAppOptions().XML_STAT_GOALS.length()) : nullptr;
     if (statGoalsSection && statGoalsSectionEnd)
         {
@@ -1356,8 +1356,8 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
         }
 
     // read in the statistics configurations
-    const wxChar* statsSection = html_extract_text::find_element(settingsFileText, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_STATISTICS_SECTION, wxGetApp().GetAppOptions().XML_STATISTICS_SECTION.length());
-    const wxChar* statsSectionEnd = statsSection ?
+    const wchar_t* statsSection = html_extract_text::find_element(settingsFileText, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_STATISTICS_SECTION, wxGetApp().GetAppOptions().XML_STATISTICS_SECTION.length());
+    const wchar_t* statsSectionEnd = statsSection ?
         html_extract_text::find_closing_element(statsSection, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_STATISTICS_SECTION, wxGetApp().GetAppOptions().XML_STATISTICS_SECTION.length()) : nullptr;
     if (statsSection && statsSectionEnd)
         {
@@ -1373,8 +1373,8 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
 
     //read in the readability tests' configurations
     ///@todo not a bad idea to use find_element elsewhere in here
-    const wxChar* readabilityTestSection = html_extract_text::find_element(settingsFileText, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION, wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION.length());
-    const wxChar* readabilityTestSectionEnd = readabilityTestSection ?
+    const wchar_t* readabilityTestSection = html_extract_text::find_element(settingsFileText, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION, wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION.length());
+    const wchar_t* readabilityTestSectionEnd = readabilityTestSection ?
         html_extract_text::find_closing_element(readabilityTestSection, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION, wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION.length()) : nullptr;
     if (readabilityTestSection && readabilityTestSectionEnd)
         {
@@ -1406,8 +1406,8 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
         IncludeDolchSightWords(XmlFormat::GetBoolean(readabilityTestSection, readabilityTestSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_SIGHT_WORDS_TEST, false));
 
         //test-specific options
-        const wxChar* fleschKincaidOptionsSection = html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd, wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS, wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS.length());
-        const wxChar* fleschKincaidOptionsSectionEnd = fleschKincaidOptionsSection ?
+        const wchar_t* fleschKincaidOptionsSection = html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd, wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS, wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS.length());
+        const wchar_t* fleschKincaidOptionsSectionEnd = fleschKincaidOptionsSection ?
             html_extract_text::find_closing_element(fleschKincaidOptionsSection, readabilityTestSectionEnd, wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS, wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS.length()) : nullptr;
         if (fleschKincaidOptionsSection && fleschKincaidOptionsSectionEnd)
             {
@@ -1415,8 +1415,8 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
                 wxGetApp().GetAppOptions().XML_NUMERAL_SYLLABICATION_METHOD, static_cast<int>(wxGetApp().GetAppOptions().GetFleschKincaidNumeralSyllabizeMethod()))) );
             }
 
-        const wxChar* fleschOptionsSection = html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd, wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS, wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS.length());
-        const wxChar* fleschOptionsSectionEnd = fleschOptionsSection ?
+        const wchar_t* fleschOptionsSection = html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd, wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS, wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS.length());
+        const wchar_t* fleschOptionsSectionEnd = fleschOptionsSection ?
             html_extract_text::find_closing_element(fleschOptionsSection, readabilityTestSectionEnd, wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS, wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS.length()) : nullptr;
         if (fleschOptionsSection && fleschOptionsSectionEnd)
             {
@@ -1424,8 +1424,8 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
                 wxGetApp().GetAppOptions().XML_NUMERAL_SYLLABICATION_METHOD, static_cast<int>(wxGetApp().GetAppOptions().GetFleschNumeralSyllabizeMethod()))) );
             }
 
-        const wxChar* fogOptionsSection = html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd, wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS, wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS.length());
-        const wxChar* fogOptionsSectionEnd = fogOptionsSection ?
+        const wchar_t* fogOptionsSection = html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd, wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS, wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS.length());
+        const wchar_t* fogOptionsSectionEnd = fogOptionsSection ?
             html_extract_text::find_closing_element(fogOptionsSection, readabilityTestSectionEnd, wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS, wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS.length()) : nullptr;
         if (fogOptionsSection && fogOptionsSectionEnd)
             {
@@ -1433,8 +1433,8 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
                 wxGetApp().GetAppOptions().XML_USE_SENTENCE_UNITS, wxGetApp().GetAppOptions().FogUseSentenceUnits()) );
             }
 
-        const wxChar* hjOptionsSection = html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd, wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS, wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS.length());
-        const wxChar* hjOptionsSectionEnd = hjOptionsSection ?
+        const wchar_t* hjOptionsSection = html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd, wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS, wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS.length());
+        const wchar_t* hjOptionsSectionEnd = hjOptionsSection ?
             html_extract_text::find_closing_element(hjOptionsSection, readabilityTestSectionEnd, wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS, wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS.length()) : nullptr;
         if (hjOptionsSection && hjOptionsSectionEnd)
             {
@@ -1442,8 +1442,8 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
                 wxGetApp().GetAppOptions().XML_TEXT_EXCLUSION, static_cast<int>(wxGetApp().GetAppOptions().GetHarrisJacobsonTextExclusionMode()))) );
             }
 
-        const wxChar* dcOptionsSection = html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd, wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS, wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS.length());
-        const wxChar* dcOptionsSectionEnd = dcOptionsSection ?
+        const wchar_t* dcOptionsSection = html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd, wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS, wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS.length());
+        const wchar_t* dcOptionsSectionEnd = dcOptionsSection ?
             html_extract_text::find_closing_element(dcOptionsSection, readabilityTestSectionEnd, wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS, wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS.length()) : nullptr;
         if (dcOptionsSection && dcOptionsSectionEnd)
             {
@@ -1462,12 +1462,12 @@ void BaseProjectDoc::LoadSettingsFile(const wxChar* settingsFileText)
         }
 
     ///read in the text view configurations
-    currentStartTag.Empty();
+    currentStartTag.clear();
     currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_TEXT_VIEWS_SECTION);
-    currentEndTag.Empty();
+    currentEndTag.clear();
     currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_TEXT_VIEWS_SECTION).append(L">");
-    const wxChar* textViewsSection = ::wxStrstr(settingsFileText, currentStartTag);
-    const wxChar* textViewsSectionEnd = ::wxStrstr(settingsFileText, currentEndTag);
+    const wchar_t* textViewsSection = std::wcsstr(settingsFileText, currentStartTag);
+    const wchar_t* textViewsSectionEnd = std::wcsstr(settingsFileText, currentEndTag);
     if (textViewsSection && textViewsSectionEnd &&
         (textViewsSection < textViewsSectionEnd) )
         {

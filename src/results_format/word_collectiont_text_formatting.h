@@ -21,7 +21,7 @@
 template<typename documentT, typename highlightDeterminantT>
 static size_t FormatWordCollectionHighlightedWords(const documentT* theDocument,
                         const highlightDeterminantT& shouldHighlight,
-                        wxChar* text,
+                        wchar_t* text,
                         const size_t bufferSize,
                         const wxString& headerSection,
                         const wxString& endSection,
@@ -234,7 +234,7 @@ static size_t FormatWordCollectionHighlightedWords(const documentT* theDocument,
 template<typename documentT>
 static size_t FormatWordCollectionHighlightedGrammarIssues(const documentT* theDocument,
                                         const size_t longSentenceValue,
-                                        wxChar* text,
+                                        wchar_t* text,
                                         const size_t bufferSize,
                                         const wxString& headerSection,
                                         const wxString& endSection,
@@ -537,7 +537,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(const documentT* theD
 
 template<typename documentT>
 static size_t FormatFilteredWordCollection(const documentT* theDocument,
-                                           wxChar* text,
+                                           wchar_t* text,
                                            const size_t bufferSize,
                                            const InvalidTextFilterFormat validTextFormatting,
                                            const bool removeFilePaths,

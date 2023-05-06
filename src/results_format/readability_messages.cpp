@@ -1166,8 +1166,8 @@ wxString ReadabilityMessages::GetPredictedClozeDescription(const int clozeScore)
 //-------------------------------------------------------
 bool ReadabilityMessages::GetScoreValue(const wxString& valueStr, double& value)
     {
-    const wxChar* const valueStrPtr = valueStr.wc_str();
-    wxChar* end = nullptr;
+    const wchar_t* const valueStrPtr = valueStr.wc_str();
+    wchar_t* end = nullptr;
 
     value = string_util::strtod_ex(valueStrPtr, &end);
     if (valueStrPtr != end)

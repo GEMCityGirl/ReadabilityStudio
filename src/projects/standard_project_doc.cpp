@@ -403,23 +403,23 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
     }
 
 //------------------------------------------------
-void ProjectDoc::LoadMetaFile(const wxChar* settingsFileText)
+void ProjectDoc::LoadMetaFile(const wchar_t* settingsFileText)
     {
     wxString currentStartTag;
     wxString currentEndTag;
 
     //read in the statistics
-    currentStartTag.Empty();
+    currentStartTag.clear();
     currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_STATISTICS);
-    currentEndTag.Empty();
-    const wxChar* statsSection = ::wxStrstr(settingsFileText, currentStartTag);
+    currentEndTag.clear();
+    const wchar_t* statsSection = std::wcsstr(settingsFileText, currentStartTag);
     if (!statsSection)
         {
         LogMessage(wxString::Format(_(L"Warning: \"%s\" section not found in project file."), currentStartTag), 
                 _(L"Error"), wxOK|wxICON_ERROR);
         return;
         }
-    const wxChar* statsSectionEnd = ::wxStrstr(statsSection, L">");
+    const wchar_t* statsSectionEnd = std::wcsstr(statsSection, L">");
     if (statsSection && statsSectionEnd &&
         (statsSection < statsSectionEnd) )
         {
@@ -552,26 +552,26 @@ void ProjectDoc::LoadMetaFile(const wxChar* settingsFileText)
         }
 
     //read in any custom tests (these may or may not be in a project's meta data)
-    currentStartTag.Empty();
+    currentStartTag.clear();
     currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_CUSTOM_TESTS);
-    const wxChar* customTestSection = ::wxStrstr(settingsFileText, currentStartTag.wc_str() );
+    const wchar_t* customTestSection = std::wcsstr(settingsFileText, currentStartTag.wc_str() );
     if (!customTestSection)
         { return; }
-    currentEndTag.Empty();
+    currentEndTag.clear();
     currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_CUSTOM_TESTS).append(L">");
-    const wxChar* customTestSectionEnd = ::wxStrstr(customTestSection, currentEndTag);
-    const wxChar* customTest = customTestSection;
-    currentStartTag.Empty();
+    const wchar_t* customTestSectionEnd = std::wcsstr(customTestSection, currentEndTag);
+    const wchar_t* customTest = customTestSection;
+    currentStartTag.clear();
     currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_CUSTOM_FAMILIAR_WORD_TEST);
     if (customTestSection && customTestSectionEnd &&
         (customTestSection < customTestSectionEnd) )
         {
         while (customTest)
             {
-            customTest = ::wxStrstr(customTest, currentStartTag.wc_str() );
+            customTest = std::wcsstr(customTest, currentStartTag.wc_str() );
             if (!customTest || customTest > customTestSectionEnd)
                 { break; }
-            const wxChar* customTestEnd = ::wxStrstr(customTest, L"/>");
+            const wchar_t* customTestEnd = std::wcsstr(customTest, L"/>");
             if (!customTestEnd || customTestEnd > customTestSectionEnd)
                 { break; }
             //read in the values
@@ -6572,7 +6572,7 @@ void ProjectDoc::CalculateGraphData()
                     ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[sentenceIndex],
                         punctPos, GetWords()->get_punctuation().end()) );
                 if (currentSentence.length() >= 100)
-                    { currentSentence.Truncate(99).Append(wxChar{8230}); }
+                    { currentSentence.Truncate(99).Append(wchar_t{ 8230 }); }
                 m_sentenceWordLengths->GetIdColumn().SetValue(labelsPos - wordCountColumn->GetValues().cbegin(), currentSentence.wc_str());
                 }
             else
