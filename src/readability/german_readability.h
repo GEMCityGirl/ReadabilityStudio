@@ -1,4 +1,4 @@
-﻿/** @addtogroup Readability
+/** @addtogroup Readability
     @brief Classes for readability tests.
     @date 2005-2023
     @copyright Oleander Software, Ltd.

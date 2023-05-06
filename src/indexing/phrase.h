@@ -1,4 +1,4 @@
-﻿/** @addtogroup Indexing
+/** @addtogroup Indexing
     @brief Classes for parsing and indexing text.
     @date 2005-2023
     @copyright Oleander Software, Ltd.
