@@ -3666,7 +3666,7 @@ bool BaseProject::LoadExternalDocument()
             }
         wxString worksheetName = GetOriginalDocumentFilePath().substr(excelTag+6);
         const size_t slash = worksheetName.find_last_of(L'#');
-        if (slash != wxNOT_FOUND)
+        if (slash != wxString::npos)
             {
             wxString CellName = worksheetName.substr(slash+1);
             worksheetName.Truncate(slash);
