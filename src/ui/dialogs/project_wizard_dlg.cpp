@@ -73,7 +73,8 @@ public:
         dc.Clear();
         dc.DrawBitmap(logo, leftBorder, (GetClientSize().GetHeight()/2)-(logo.GetHeight()/2));
         dc.DrawText(m_label, leftBorder+logo.GetWidth()+6, (GetClientSize().GetHeight()/2)-(textHeight/2));
-        dc.DrawLine((GetClientSize().GetWidth()/10),GetClientSize().GetHeight()-1,GetClientSize().GetWidth()-(GetClientSize().GetWidth()/10), GetClientSize().GetHeight()-1);
+        dc.DrawLine((GetClientSize().GetWidth()/10), GetClientSize().GetHeight()-1,
+                    GetClientSize().GetWidth()-(GetClientSize().GetWidth()/10), GetClientSize().GetHeight()-1);
         }
     void SetLogo(const wxBitmapBundle& logo)
         { m_logo = logo; }
@@ -129,9 +130,11 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
         { SetNarrativeSelected(); }
     SetSplitLinesSelected(wxGetApp().GetAppOptions().GetIgnoreBlankLinesForParagraphsParser());
     // ignoring indenting doesn't make sense if each line should start a new paragraph
-    SetCenteredTextSelected(wxGetApp().GetAppOptions().GetParagraphsParsingMethod() != ParagraphParse::EachNewLineIsAParagraph &&
-                            wxGetApp().GetAppOptions().GetIgnoreIndentingForParagraphsParser());
-    SetNewLinesAlwaysNewParagraphsSelected(wxGetApp().GetAppOptions().GetParagraphsParsingMethod() == ParagraphParse::EachNewLineIsAParagraph);
+    SetCenteredTextSelected(
+        wxGetApp().GetAppOptions().GetParagraphsParsingMethod() != ParagraphParse::EachNewLineIsAParagraph &&
+        wxGetApp().GetAppOptions().GetIgnoreIndentingForParagraphsParser());
+    SetNewLinesAlwaysNewParagraphsSelected(
+        wxGetApp().GetAppOptions().GetParagraphsParsingMethod() == ParagraphParse::EachNewLineIsAParagraph);
     }
 
 //-------------------------------------------------------------
@@ -151,7 +154,7 @@ void ProjectWizardDlg::CreateControls()
     m_sideBarBook->GetImageList().push_back(
         wxGetApp().GetResourceManager().GetSVG(L"tests/flesch-test.svg"));
 
-    //document page
+    // document page
     if (GetProjectType() == ProjectType::StandardProject)
         {
         wxPanel* page = new wxPanel(m_sideBarBook, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
@@ -159,7 +162,7 @@ void ProjectWizardDlg::CreateControls()
         page->SetSizer(pageSizer);
         m_sideBarBook->AddPage(page, _(L"Document"), wxID_ANY, true, 0);
 
-        //The options
+        // The options
         wxBoxSizer* optionsSizer = new wxBoxSizer(wxVERTICAL);
 
         Banner* banner = new Banner(page, wxID_ANY,
@@ -167,7 +170,7 @@ void ProjectWizardDlg::CreateControls()
                 FromDIP(wxSize(32,32))), _(L"Select Your Document"));
         optionsSizer->Add(banner, 0, wxEXPAND|wxBOTTOM, wxSizerFlags::GetDefaultBorder());
 
-        //select the language
+        // select the language
         if (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
             wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
             {
@@ -176,21 +179,27 @@ void ProjectWizardDlg::CreateControls()
             langs.Add(_(L"Spanish"));
             langs.Add(_(L"German"));
             wxBoxSizer* langSizer = new wxBoxSizer(wxHORIZONTAL);
-            langSizer->Add(new wxStaticText(page, wxID_STATIC, _(L"Document language:")), 0, wxRIGHT|wxALIGN_CENTRE, wxSizerFlags::GetDefaultBorder());
-            langSizer->Add(new wxChoice(page, LANGUAGE_BUTTON, wxDefaultPosition, wxDefaultSize, langs, 0, wxGenericValidator(&m_selectedLang)),
+            langSizer->Add(
+                new wxStaticText(page, wxID_STATIC, _(L"Document language:")), 0,
+                                 wxRIGHT|wxALIGN_CENTRE, wxSizerFlags::GetDefaultBorder());
+            langSizer->Add(
+                new wxChoice(page, LANGUAGE_BUTTON, wxDefaultPosition, wxDefaultSize,
+                             langs, 0, wxGenericValidator(&m_selectedLang)),
                 0, wxALIGN_LEFT|wxALL, wxSizerFlags::GetDefaultBorder());
             optionsSizer->Add(langSizer);
             }
 
-        //file path
+        // file path
         optionsSizer->Add(new wxRadioButton(page, ID_FROM_FILE_BUTTON, _(L"&Read text from a file or webpage:"),
             wxDefaultPosition, wxDefaultSize, wxRB_GROUP, wxGenericValidator(&m_fromFileSelected)) );
         optionsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         wxBoxSizer* fileBrowseBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-        optionsSizer->Add(fileBrowseBoxSizer, wxSizerFlags().Expand().Border(wxLEFT,wxSizerFlags::GetDefaultBorder()*3));
+        optionsSizer->Add(fileBrowseBoxSizer,
+            wxSizerFlags().Expand().Border(wxLEFT,wxSizerFlags::GetDefaultBorder()*3));
 
-        m_filePathEdit = new wxTextCtrl(page, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize , wxTE_RICH2|wxBORDER_THEME, wxGenericValidator(&m_filePath) );
+        m_filePathEdit = new wxTextCtrl(page, wxID_ANY, wxString{}, wxDefaultPosition,
+                                        wxDefaultSize , wxTE_RICH2|wxBORDER_THEME, wxGenericValidator(&m_filePath) );
         m_filePathEdit->AutoCompleteFileNames();
         fileBrowseBoxSizer->Add(m_filePathEdit, 1, wxEXPAND);
 
@@ -200,14 +209,17 @@ void ProjectWizardDlg::CreateControls()
         fileBrowseBoxSizer->Add(m_fileBrowseButton, 0, wxRIGHT, wxSizerFlags::GetDefaultBorder());
         optionsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-        //Manual text entry
+        // Manual text entry
         optionsSizer->Add(new wxRadioButton(page, ID_MANUALLY_ENTERED_TEXT_BUTTON, _(L"Manually enter text:"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_manualSelected)) );
 
-        m_textEntryEdit = new wxTextCtrl(page, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxTE_RICH2, wxGenericValidator(&m_enteredText) );
+        m_textEntryEdit = new wxTextCtrl(page, wxID_ANY, wxString{}, wxDefaultPosition,
+                                         wxDefaultSize, wxTE_MULTILINE|wxTE_RICH2,
+                                         wxGenericValidator(&m_enteredText) );
         optionsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
         wxBoxSizer* editBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-        editBoxSizer->Add(m_textEntryEdit, wxSizerFlags().Proportion(1).Expand().Border(wxLEFT,wxSizerFlags::GetDefaultBorder()*3));
+        editBoxSizer->Add(m_textEntryEdit,
+                          wxSizerFlags().Proportion(1).Expand().Border(wxLEFT,wxSizerFlags::GetDefaultBorder()*3));
         optionsSizer->Add(editBoxSizer, 1, wxEXPAND|wxRIGHT, wxSizerFlags::GetDefaultBorder());
 
         if (m_fromFileSelected)
@@ -221,26 +233,30 @@ void ProjectWizardDlg::CreateControls()
         if (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
             wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
             {
-            wxStaticText* noteLabel = new wxStaticText(page, wxID_STATIC, _(L"The selected language will affect syllable counting and determine which tests and grammar features will be made available."));
+            wxStaticText* noteLabel =
+                new wxStaticText(page, wxID_STATIC,
+                    _(L"The selected language will affect syllable counting and determine which "
+                       "tests and grammar features will be made available."));
             optionsSizer->Add(noteLabel, 0, wxALIGN_LEFT|wxALL, wxSizerFlags::GetDefaultBorder());
             }
 
         pageSizer->Add(optionsSizer, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
         }
-    else //Batch project
+    else // Batch project
         {
         wxPanel* page = new wxPanel(m_sideBarBook, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* pageSizer = new wxBoxSizer(wxVERTICAL);
         page->SetSizer(pageSizer);
         m_sideBarBook->AddPage(page, _(L"Documents"), wxID_ANY, true, 0);
 
-        //The options
+        // The options
         wxBoxSizer* optionsSizer = new wxBoxSizer(wxVERTICAL);
 
-        Banner* banner = new Banner(page, wxID_ANY, wxArtProvider::GetBitmap(wxT("ID_DOCUMENT"), wxART_BUTTON, FromDIP(wxSize(32,32))), _(L"Select Your Documents"));
+        Banner* banner = new Banner(page, wxID_ANY, wxArtProvider::GetBitmap(L"ID_DOCUMENT", wxART_BUTTON,
+                                    FromDIP(wxSize(32, 32))), _(L"Select Your Documents"));
         optionsSizer->Add(banner, 0, wxEXPAND|wxBOTTOM, wxSizerFlags::GetDefaultBorder());
 
-        //select the language
+        // select the language
         if (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
             wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
             {
@@ -249,13 +265,16 @@ void ProjectWizardDlg::CreateControls()
             langs.Add(_(L"Spanish"));
             langs.Add(_(L"German"));
             wxBoxSizer* langSizer = new wxBoxSizer(wxHORIZONTAL);
-            langSizer->Add(new wxStaticText(page, wxID_STATIC, _(L"Documents' language:")), 0, wxRIGHT|wxALIGN_CENTRE, wxSizerFlags::GetDefaultBorder());
-            langSizer->Add(new wxChoice(page, LANGUAGE_BUTTON, wxDefaultPosition, wxDefaultSize, langs, 0, wxGenericValidator(&m_selectedLang)),
+            langSizer->Add(new wxStaticText(page, wxID_STATIC, _(L"Documents' language:")), 0,
+                                            wxRIGHT|wxALIGN_CENTRE, wxSizerFlags::GetDefaultBorder());
+            langSizer->Add(new wxChoice(page, LANGUAGE_BUTTON, wxDefaultPosition, wxDefaultSize,
+                langs, 0, wxGenericValidator(&m_selectedLang)),
                 0, wxALIGN_LEFT|wxALL, wxSizerFlags::GetDefaultBorder());
             optionsSizer->Add(langSizer);
             }
 
-        auto buttonsSizer = new wxGridSizer(4, wxSize(wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()));
+        auto buttonsSizer =
+            new wxGridSizer(4, wxSize(wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()));
 
         wxButton* button = new wxButton(page, ID_BATCH_FOLDER_BROWSE_BUTTON, _(L"&Add folder..."));
         button->SetBitmap(wxArtProvider::GetBitmapBundle(wxART_FILE_OPEN, wxART_BUTTON));
@@ -300,7 +319,7 @@ void ProjectWizardDlg::CreateControls()
         if (GetFilePath().length())
             {
             FilePathResolver rp(GetFilePath(), false);
-            //if page is created with a default folder or file then add it to the list
+            // if page is created with a default folder or file then add it to the list
             if (wxFileName::DirExists(GetFilePath()) )
                 {
                 wxBusyCursor wait;
@@ -323,7 +342,9 @@ void ProjectWizardDlg::CreateControls()
             }
         else
             { m_fileData->SetSize(0, 2); }
-        m_fileList = new ListCtrlEx(page, wxID_ANY, wxDefaultPosition, FromDIP(wxSize(200, 150)), wxLC_VIRTUAL|wxLC_EDIT_LABELS|wxLC_REPORT|wxLC_ALIGN_LEFT);
+        m_fileList = new ListCtrlEx(page, wxID_ANY, wxDefaultPosition,
+                                    FromDIP(wxSize(200, 150)),
+                                    wxLC_VIRTUAL|wxLC_EDIT_LABELS|wxLC_REPORT|wxLC_ALIGN_LEFT);
         m_fileList->EnableGridLines();
         m_fileList->EnableItemDeletion();
         m_fileList->InsertColumn(0, _(L"Files"));
@@ -334,7 +355,7 @@ void ProjectWizardDlg::CreateControls()
         m_fileList->SetVirtualDataSize(m_fileData->GetItemCount());
         optionsSizer->Add(m_fileList, 2, wxALIGN_LEFT|wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
 
-        //random sampling
+        // random sampling
         wxBoxSizer* randomOptionsSizer = new wxBoxSizer(wxHORIZONTAL);
         m_isRandomSampling = new wxCheckBox(page, ID_RANDOM_SAMPLE_CHECK, _(L"Randomly sample "));
         m_isRandomSampling->SetValue(false);
@@ -346,7 +367,8 @@ void ProjectWizardDlg::CreateControls()
 
         randomOptionsSizer->Add(m_isRandomSampling, 0, wxALIGN_LEFT|wxEXPAND, 0);
         randomOptionsSizer->Add(m_randPercentageCtrl, 0, wxALIGN_LEFT|wxEXPAND, 0);
-        randomOptionsSizer->Add(new wxStaticText(page, ID_RANDOM_SAMPLE_LABEL, _(L"% of the documents.")), 0, wxALIGN_CENTER_VERTICAL, 0);
+        randomOptionsSizer->Add(new wxStaticText(page, ID_RANDOM_SAMPLE_LABEL, _(L"% of the documents.")),
+                                                 0, wxALIGN_CENTER_VERTICAL, 0);
 
         pageSizer->Add(optionsSizer, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
         pageSizer->Add(randomOptionsSizer, 0, wxALIGN_LEFT|wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
@@ -409,15 +431,17 @@ void ProjectWizardDlg::CreateControls()
             narrativeSizer->Add(narrativeLablesSizer, 0, wxALIGN_CENTER);
 
             narrativeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-            wxBitmap previewImage = wxGetApp().GetScaledImage(wxT("wizard/Narrative.png"), wxBITMAP_TYPE_PNG,
+            wxBitmap previewImage = wxGetApp().GetScaledImage(L"wizard/Narrative.png", wxBITMAP_TYPE_PNG,
                 wxSize(wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X)*.75,
                        wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y)*.75));
             wxMemoryDC memDc(previewImage);
             memDc.SetFont(imageFont);
             // draw the label
             imageLabel.SetText(_(L"Narrative text is analyzed, while headers such as these are ignored."));
-            imageLabel.SplitTextToFitBoundingBox(memDc, wxSize(memDc.GetSize().GetWidth()*.70f, memDc.GetSize().GetHeight()));
-            imageLabel.SetAnchorPoint(wxPoint(memDc.GetSize().GetWidth()-wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()));
+            imageLabel.SplitTextToFitBoundingBox(memDc, wxSize(memDc.GetSize().GetWidth()*.70f,
+                                                 memDc.GetSize().GetHeight()));
+            imageLabel.SetAnchorPoint(wxPoint(memDc.GetSize().GetWidth()-wxSizerFlags::GetDefaultBorder(),
+                                      wxSizerFlags::GetDefaultBorder()));
             imageLabel.Draw(memDc);
             memDc.SelectObject(wxNullBitmap);
             narrativeSizer->AddStretchSpacer();
@@ -428,10 +452,15 @@ void ProjectWizardDlg::CreateControls()
             {
             wxBoxSizer* sparseSizer = new wxBoxSizer(wxHORIZONTAL);
             wxBoxSizer* sparseLablesSizer = new wxBoxSizer(wxVERTICAL);
-            wxRadioButton* sparseRadioButton = new wxRadioButton(page, ID_NONNARRATIVE_RADIO_BUTTON, _(L"Non-narrative, &fragmented text"), wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_fragmentedTextSelected));
+            wxRadioButton* sparseRadioButton = new wxRadioButton(page, ID_NONNARRATIVE_RADIO_BUTTON,
+                _(L"Non-narrative, &fragmented text"), wxDefaultPosition, wxDefaultSize, 0,
+                wxGenericValidator(&m_fragmentedTextSelected));
             sparseLablesSizer->Add(sparseRadioButton);
-            wxStaticText* noteLabel = new wxStaticText(page, ID_NONNARRATIVE_LABEL, _(L"Instead of the standard sentence and paragraph structure, the document mostly consists of list items and terse sentence fragments. NOTE: this option will disable text exclusion."),
-                                                       wxDefaultPosition, wxDefaultSize, 0);
+            wxStaticText* noteLabel = new wxStaticText(page, ID_NONNARRATIVE_LABEL,
+                _(L"Instead of the standard sentence and paragraph structure, the document mostly "
+                   "consists of list items and terse sentence fragments. "
+                   "NOTE: this option will disable text exclusion."),
+                wxDefaultPosition, wxDefaultSize, 0);
             noteLabel->Wrap(ScaledNoteWidth);
             wxBoxSizer* noteSizer = new wxBoxSizer(wxHORIZONTAL);
             noteSizer->Add(noteLabel, 1, wxLEFT, wxSizerFlags::GetDefaultBorder()*3);
@@ -455,8 +484,10 @@ void ProjectWizardDlg::CreateControls()
             wxMemoryDC memDc(previewImage);
             // draw the label
             imageLabel.SetText(_(L"Document contains few sentences and mostly consists of terse blocks of text."));
-            imageLabel.SplitTextToFitBoundingBox(memDc, wxSize(memDc.GetSize().GetWidth()*.60f, memDc.GetSize().GetHeight()));
-            imageLabel.SetAnchorPoint(wxPoint(memDc.GetSize().GetWidth()-wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()));
+            imageLabel.SplitTextToFitBoundingBox(memDc, wxSize(memDc.GetSize().GetWidth()*.60f,
+                memDc.GetSize().GetHeight()));
+            imageLabel.SetAnchorPoint(wxPoint(memDc.GetSize().GetWidth()-wxSizerFlags::GetDefaultBorder(),
+                wxSizerFlags::GetDefaultBorder()));
             imageLabel.Draw(memDc);
             memDc.SelectObject(wxNullBitmap);
             sparseSizer->AddStretchSpacer();
@@ -467,12 +498,16 @@ void ProjectWizardDlg::CreateControls()
             {
             wxBoxSizer* narrativeSizer = new wxBoxSizer(wxHORIZONTAL);
             wxBoxSizer* narrativeLablesSizer = new wxBoxSizer(wxVERTICAL);
-            wxCheckBox* narrativeButton = new wxCheckBox(page, ID_SENTENCES_SPLIT_RADIO_BUTTON, _(L"&Sentences are split by illustrations or extra spacing"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE, wxGenericValidator(&m_splitLinesSelected));
+            wxCheckBox* narrativeButton = new wxCheckBox(page, ID_SENTENCES_SPLIT_RADIO_BUTTON,
+                _(L"&Sentences are split by illustrations or extra spacing"),
+                wxDefaultPosition, wxDefaultSize, wxCHK_2STATE, wxGenericValidator(&m_splitLinesSelected));
             narrativeLablesSizer->Add(narrativeButton);
             narrativeLablesSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-            wxStaticText* noteLabel = new wxStaticText(page, ID_SENTENCES_SPLIT_LABEL, _(L"The document's sentences may be wrapped around illustrations or contain empty lines between them. This is common for children's picture books."),
-                                                       wxDefaultPosition, wxDefaultSize, 0);
+            wxStaticText* noteLabel = new wxStaticText(page, ID_SENTENCES_SPLIT_LABEL,
+                _(L"The document's sentences may be wrapped around illustrations or contain "
+                   "empty lines between them. This is common for children's picture books."),
+                wxDefaultPosition, wxDefaultSize, 0);
             noteLabel->Wrap(ScaledNoteWidth);
             wxBoxSizer* noteSizer = new wxBoxSizer(wxHORIZONTAL);
             noteSizer->Add(noteLabel, 1, wxLEFT, wxSizerFlags::GetDefaultBorder()*3);
@@ -490,27 +525,31 @@ void ProjectWizardDlg::CreateControls()
             narrativeSizer->Add(narrativeLablesSizer, 0, wxALIGN_CENTER);
 
             narrativeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-            wxBitmap previewImage = wxGetApp().GetScaledImage(wxT("wizard/NarrativeIllustrated.png"), wxBITMAP_TYPE_PNG,
+            wxBitmap previewImage = wxGetApp().GetScaledImage(L"wizard/NarrativeIllustrated.png", wxBITMAP_TYPE_PNG,
                 wxSize(wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X)*.75,
                        wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y)*.75));
             wxMemoryDC memDc(previewImage);
             // draw the label
             imageLabel.SetText(_(L"Sentences split into fragments by illustrations will be chained together."));
-            imageLabel.SplitTextToFitBoundingBox(memDc, wxSize(memDc.GetSize().GetWidth()*.33f, memDc.GetSize().GetHeight()));
-            imageLabel.SetAnchorPoint(wxPoint(memDc.GetSize().GetWidth()-wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()));
+            imageLabel.SplitTextToFitBoundingBox(memDc, wxSize(memDc.GetSize().GetWidth()*.33f,
+                memDc.GetSize().GetHeight()));
+            imageLabel.SetAnchorPoint(wxPoint(memDc.GetSize().GetWidth() - wxSizerFlags::GetDefaultBorder(),
+                wxSizerFlags::GetDefaultBorder()));
             imageLabel.Draw(memDc);
             memDc.SelectObject(wxNullBitmap);
             narrativeSizer->Add(new Thumbnail(page, previewImage) );
             narrativeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-            previewImage = wxGetApp().GetScaledImage(wxT("wizard/NarrativeWithLines.png"), wxBITMAP_TYPE_PNG,
+            previewImage = wxGetApp().GetScaledImage(L"wizard/NarrativeWithLines.png", wxBITMAP_TYPE_PNG,
                 wxSize(wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X)*.75,
                        wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y)*.75));
             wxMemoryDC memDc2(previewImage);
-             // draw the label
+            // draw the label
             imageLabel.SetText(_(L"Split sentences with extra lines between them will be chained together."));
-            imageLabel.SplitTextToFitBoundingBox(memDc, wxSize(memDc2.GetSize().GetWidth()*.50f, memDc2.GetSize().GetHeight()));
-            imageLabel.SetAnchorPoint(wxPoint(memDc2.GetSize().GetWidth()-wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()));
+            imageLabel.SplitTextToFitBoundingBox(memDc, wxSize(memDc2.GetSize().GetWidth()*.50f,
+                memDc2.GetSize().GetHeight()));
+            imageLabel.SetAnchorPoint(wxPoint(memDc2.GetSize().GetWidth() - wxSizerFlags::GetDefaultBorder(),
+                wxSizerFlags::GetDefaultBorder()));
             imageLabel.Draw(memDc2);
             memDc2.SelectObject(wxNullBitmap);
             narrativeSizer->AddStretchSpacer();
@@ -521,10 +560,15 @@ void ProjectWizardDlg::CreateControls()
             {
             wxBoxSizer* centeredSizer = new wxBoxSizer(wxHORIZONTAL);
             wxBoxSizer* centeredLablesSizer = new wxBoxSizer(wxVERTICAL);
-            wxCheckBox* centeredButton = new wxCheckBox(page, wxID_ANY, _(L"Centered/left-aligned text"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE, wxGenericValidator(&m_centeredText));
+            wxCheckBox* centeredButton = new wxCheckBox(page, wxID_ANY,
+                _(L"Centered/left-aligned text"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE,
+                wxGenericValidator(&m_centeredText));
             centeredLablesSizer->Add(centeredButton);
-            wxStaticText* noteLabel = new wxStaticText(page, wxID_STATIC, _(L"Text is indented to be centered or left-aligned on the page. Selecting this option will instruct the program to ignore indenting when deducing where paragraphs begin and end."),
-                                                       wxDefaultPosition, wxDefaultSize, 0);
+            wxStaticText* noteLabel = new wxStaticText(page, wxID_STATIC,
+                _(L"Text is indented to be centered or left-aligned on the page. "
+                   "Selecting this option will instruct the program to ignore indenting when "
+                   "deducing where paragraphs begin and end."),
+                wxDefaultPosition, wxDefaultSize, 0);
             noteLabel->Wrap(ScaledNoteWidth);
             wxBoxSizer* noteSizer = new wxBoxSizer(wxHORIZONTAL);
             noteSizer->Add(noteLabel, 1, wxLEFT, wxSizerFlags::GetDefaultBorder()*3);
@@ -548,7 +592,8 @@ void ProjectWizardDlg::CreateControls()
             wxMemoryDC memDc(previewImage);
             // draw the label
             imageLabel.SetText(_(L"Text is left-aligned to be centered on the page."));
-            imageLabel.SetAnchorPoint(wxPoint(memDc.GetSize().GetWidth()-wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()));
+            imageLabel.SetAnchorPoint(wxPoint(memDc.GetSize().GetWidth() - wxSizerFlags::GetDefaultBorder(),
+                wxSizerFlags::GetDefaultBorder()));
             imageLabel.Draw(memDc);
             memDc.SelectObject(wxNullBitmap);
             centeredSizer->AddStretchSpacer();
@@ -559,10 +604,15 @@ void ProjectWizardDlg::CreateControls()
             {
             wxBoxSizer* wrappedSizer = new wxBoxSizer(wxHORIZONTAL);
             wxBoxSizer* wrappedLablesSizer = new wxBoxSizer(wxVERTICAL);
-            wxCheckBox* wrappedButton = new wxCheckBox(page, ID_HARD_RETURN_CHECKBOX, _(L"Line ends (i.e., hard returns) mark the start of a new paragraph"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE, wxGenericValidator(&m_newLinesAlwaysNewParagraphs));
+            wxCheckBox* wrappedButton = new wxCheckBox(page, ID_HARD_RETURN_CHECKBOX,
+                _(L"Line ends (i.e., hard returns) mark the start of a new paragraph"),
+                wxDefaultPosition, wxDefaultSize, wxCHK_2STATE, wxGenericValidator(&m_newLinesAlwaysNewParagraphs));
             wrappedLablesSizer->Add(wrappedButton);
-            wxStaticText* noteLabel = new wxStaticText(page, ID_HARD_RETURN_LABEL, _(L"Hard returns in the text always force the start of a new paragraph. Selecting this option will instruct the program to treat all line ends as the end of the sentence and paragraph, regardless of whether it ends with a period."),
-                                                       wxDefaultPosition, wxDefaultSize, 0);
+            wxStaticText* noteLabel = new wxStaticText(page, ID_HARD_RETURN_LABEL,
+                _(L"Hard returns in the text always force the start of a new paragraph. "
+                   "Selecting this option will instruct the program to treat all line ends as the end of the "
+                   "sentence and paragraph, regardless of whether it ends with a period."),
+                wxDefaultPosition, wxDefaultSize, 0);
             noteLabel->Wrap(ScaledNoteWidth);
             wrappedLablesSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             wrappedLablesSizer->Add(noteLabel, 1, wxLEFT, wxSizerFlags::GetDefaultBorder()*3);
@@ -577,9 +627,13 @@ void ProjectWizardDlg::CreateControls()
             wxMemoryDC memDc(previewImage);
             memDc.SetFont(imageFont);
             // draw the labels
-            imageLabel.SetText(_(L"Hard returns separate these lines into different paragraphs. This prevents them from being combined into one sentence."));
-            imageLabel.SplitTextToFitBoundingBox(memDc, wxSize(memDc.GetSize().GetWidth()*.55f, memDc.GetSize().GetHeight()));
-            imageLabel.SetAnchorPoint(wxPoint(memDc.GetSize().GetWidth()-wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()*10));
+            imageLabel.SetText(
+                _(L"Hard returns separate these lines into different paragraphs. "
+                   "This prevents them from being combined into one sentence."));
+            imageLabel.SplitTextToFitBoundingBox(memDc, wxSize(memDc.GetSize().GetWidth() * .55f,
+                memDc.GetSize().GetHeight()));
+            imageLabel.SetAnchorPoint(wxPoint(memDc.GetSize().GetWidth() - wxSizerFlags::GetDefaultBorder(),
+                wxSizerFlags::GetDefaultBorder()*10));
             imageLabel.Draw(memDc);
             memDc.SelectObject(wxNullBitmap);
             wrappedSizer->AddStretchSpacer();
@@ -587,13 +641,14 @@ void ProjectWizardDlg::CreateControls()
             wrappedSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
             previewImage = wxGetApp().GetScaledImage(L"wizard/LineEndsAreNewParagraphs.png", wxBITMAP_TYPE_PNG,
-                wxSize(wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X)*.75,
-                       wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y)*.75));
+                wxSize(wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) * .75,
+                       wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) * .75));
             wxMemoryDC memDc2(previewImage);
             memDc2.SetFont(imageFont);
             // draw the labels
             imageLabel.SetText(_(L"Line ends always force the start of a new sentence and paragraph."));
-            imageLabel.SetAnchorPoint(wxPoint(memDc2.GetSize().GetWidth()-wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()));
+            imageLabel.SetAnchorPoint(wxPoint(memDc2.GetSize().GetWidth()-wxSizerFlags::GetDefaultBorder(),
+                wxSizerFlags::GetDefaultBorder()));
             imageLabel.Draw(memDc2);
             memDc2.SelectObject(wxNullBitmap);
             wrappedSizer->AddStretchSpacer();
@@ -602,14 +657,14 @@ void ProjectWizardDlg::CreateControls()
             }
         pageSizer->Add(optionsSizer, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
         }
-    //test selection
+    // test selection
         {
         wxPanel* page = new wxPanel(m_sideBarBook, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* pageSizer = new wxBoxSizer(wxVERTICAL);
         page->SetSizer(pageSizer);
         m_sideBarBook->AddPage(page, _(L"Test Selection"), wxID_ANY, false, 2);
 
-        //The options
+        // The options
         wxBoxSizer* optionsSizer = new wxBoxSizer(wxVERTICAL);
 
         Banner* banner = new Banner(page, wxID_ANY,
@@ -623,21 +678,25 @@ void ProjectWizardDlg::CreateControls()
         options.Add(_(L"&Manually select tests"));
         options.Add(_(L"Use a test &bundle"));
         optionsSizer->Add(new wxRadioBox(page, TEST_SELECT_METHOD_BUTTON, _(L"Choose how to select tests:"),
-            wxDefaultPosition, wxDefaultSize, options, 0, wxRA_SPECIFY_ROWS, wxGenericValidator(&m_testSelectionMethod)), 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
+            wxDefaultPosition, wxDefaultSize, options, 0, wxRA_SPECIFY_ROWS,
+            wxGenericValidator(&m_testSelectionMethod)), 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
 
         m_testTypesSizer = new wxBoxSizer(wxVERTICAL);
-        //document types
+        // document types
         wxArrayString docTypes;
         docTypes.Add(_(L"&General document (textbook, report, correspondence)"));
-        docTypes.Add(_(L"&Technical document or form (application, r\351sum\351/CV, instructions, manual, detailed report)"));
-        docTypes.Add(_(L"Non-narrative &form with fragmented text (brochure, menu, quiz). NOTE: this option will disable text exclusion."));
+        docTypes.Add(
+            _(L"&Technical document or form (application, r\351sum\351/CV, instructions, manual, detailed report)"));
+        docTypes.Add(
+            _(L"Non-narrative &form with fragmented text (brochure, menu, quiz). "
+               "NOTE: this option will disable text exclusion."));
         docTypes.Add(_(L"&Literature (young adult and adult)"));
         docTypes.Add(_(L"&Children's literature"));
         m_docTypeRadioBox = new wxRadioBox(page, wxID_ANY, _(L"Select the type of document that you are analyzing:"),
             wxDefaultPosition, wxDefaultSize, docTypes, 0, wxRA_SPECIFY_ROWS, wxGenericValidator(&m_selectedDocType));
         m_testTypesSizer->Add(m_docTypeRadioBox, 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
 
-        //industry type
+        // industry type
         wxArrayString industryTypes;
         industryTypes.Add(_(L"Children's &publishing (literature, textbooks, magazines)"));
         industryTypes.Add(_(L"&Young adult and adult publishing (literature, textbooks, magazine/newspaper articles)"));
@@ -646,45 +705,48 @@ void ProjectWizardDlg::CreateControls()
         industryTypes.Add(_(L"&Military and government"));
         industryTypes.Add(_(L"&Second Language (ESL) Education"));
         industryTypes.Add(_(L"&Broadcasting"));
-        m_industryTypeRadioBox = new wxRadioBox(page, wxID_ANY, _(L"Select the type of industry that this document belongs to:"),
-            wxDefaultPosition, wxDefaultSize, industryTypes, 0, wxRA_SPECIFY_ROWS, wxGenericValidator(&m_selectedIndustryType));
+        m_industryTypeRadioBox = new wxRadioBox(page, wxID_ANY,
+            _(L"Select the type of industry that this document belongs to:"),
+            wxDefaultPosition, wxDefaultSize, industryTypes, 0, wxRA_SPECIFY_ROWS,
+            wxGenericValidator(&m_selectedIndustryType));
         m_testTypesSizer->Add(m_industryTypeRadioBox, 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
 
-        //standard tests
+        // standard tests
         m_testsCheckListBox = new wxCheckListBox(page, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                                 0, nullptr, wxLB_EXTENDED|wxLB_NEEDED_SB|wxLB_HSCROLL|wxBORDER_THEME, wxGenericValidator(&m_selectedTests));
+            0, nullptr, wxLB_EXTENDED|wxLB_NEEDED_SB|wxLB_HSCROLL|wxBORDER_THEME, wxGenericValidator(&m_selectedTests));
         m_testsSizer = new wxFlexGridSizer(3, 2, wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder());
         m_testsSizer->Add(new wxStaticText(page, wxID_STATIC, _(L"Standard tests:")));
-        m_testsSizer->Add(new wxStaticText(page, wxID_STATIC, BaseProject::m_custom_word_tests.size() ? _(L"Custom tests:") : wxString{}));
+        m_testsSizer->Add(new wxStaticText(page, wxID_STATIC,
+            BaseProject::m_custom_word_tests.size() ? _(L"Custom tests:") : wxString{}));
         m_testsSizer->AddGrowableRow(1,1);
         m_testsSizer->Add(m_testsCheckListBox, 0, wxEXPAND);
-        //custom test
+        // custom test
         if (BaseProject::m_custom_word_tests.size())
             {
             wxArrayString customTestNames;
-            for (CustomReadabilityTestCollection::const_iterator pos = BaseProject::m_custom_word_tests.begin();
-                pos != BaseProject::m_custom_word_tests.end();
-                ++pos)
-                { customTestNames.Add(pos->get_name().c_str()); }
-            //go through the list of test IDs that were checked the last time this wizard was used
+            for (const auto& customTest : BaseProject::m_custom_word_tests)
+                { customTestNames.Add(customTest.get_name().c_str()); }
+            // go through the list of test IDs that were checked the last time this wizard was used
             for (size_t i = 0; i < wxGetApp().GetAppOptions().GetIncludedCustomTests().size(); ++i)
                 {
-                //find the test in the global list of tests, searching by test id
+                // find the test in the global list of tests, searching by test id
                 CustomReadabilityTestCollection::const_iterator testIter =
                     std::find(BaseProject::m_custom_word_tests.begin(),
                               BaseProject::m_custom_word_tests.end(),
                               wxGetApp().GetAppOptions().GetIncludedCustomTests().at(i).c_str());
-                //if the test was found, then check it in the list
+                // if the test was found, then check it in the list
                 if (testIter != BaseProject::m_custom_word_tests.end())
                     { m_selectedCustomTests.push_back(testIter-BaseProject::m_custom_word_tests.begin()); }
                 }
-            m_customTestsCheckListBox = new wxCheckListBox(page, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(wxSize(250,250)).GetWidth(),-1),
-                                                        customTestNames, wxLB_EXTENDED|wxLB_NEEDED_SB|wxLB_HSCROLL|wxBORDER_THEME, wxGenericValidator(&m_selectedCustomTests));
+            m_customTestsCheckListBox = new wxCheckListBox(page, wxID_ANY, wxDefaultPosition,
+                wxSize(FromDIP(wxSize(250,250)).GetWidth(),-1),
+                customTestNames, wxLB_EXTENDED|wxLB_NEEDED_SB|wxLB_HSCROLL|wxBORDER_THEME,
+                wxGenericValidator(&m_selectedCustomTests));
             m_testsSizer->Add(m_customTestsCheckListBox, 0, wxEXPAND);
             }
         else
             { m_testsSizer->Add(new wxStaticText(page, wxID_STATIC, wxString{})); }
-       //Dolch option
+       // Dolch option
             {
             m_DolchCheckBox = new wxCheckBox(page, wxID_ANY, _(L"Dolch Sight Words Suite"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_includeDolchSightWords) );
@@ -697,7 +759,8 @@ void ProjectWizardDlg::CreateControls()
         for (const auto& bundle : BaseProject::m_testBundles)
             { testBundles.Add(bundle.GetName().c_str()); }
         m_testsBundlesRadioBox = new wxRadioBox(page, wxID_ANY, _(L"Select the test bundle to apply:"),
-            wxDefaultPosition, wxDefaultSize, testBundles, 0, wxRA_SPECIFY_ROWS, wxGenericValidator(&m_selectedBundle));
+            wxDefaultPosition, wxDefaultSize, testBundles, 0, wxRA_SPECIFY_ROWS,
+            wxGenericValidator(&m_selectedBundle));
         SetSelectedTestBundle(wxGetApp().GetAppOptions().GetSelectedTestBundle());
         m_testTypesSizer->Add(m_testsBundlesRadioBox, 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
 
@@ -728,8 +791,8 @@ void ProjectWizardDlg::CreateControls()
 
     if (GetFileList())
         {
-        m_fileList->SetColumnWidth(0, m_fileList->GetClientSize().GetWidth()*.75);
-        m_fileList->SetColumnWidth(1, m_fileList->GetClientSize().GetWidth()*.25);
+        m_fileList->SetColumnWidth(0, m_fileList->GetClientSize().GetWidth() * .75);
+        m_fileList->SetColumnWidth(1, m_fileList->GetClientSize().GetWidth() * .25);
         }
     }
 
@@ -776,7 +839,7 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
     ArchiveDlg dlg(this, wxGetApp().GetAppOptions().GetDocumentFilter());
     dlg.SetPath(archivePath);
     dlg.SetSelectedFileFilter(wxGetApp().GetLastSelectedDocFilter());
-    dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), wxT("batch-project-import-features.html"));
+    dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"batch-project-import-features.html");
     if (dlg.ShowModal() != wxID_OK)
         { return; }
 
@@ -787,7 +850,8 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
         warningIter->ShouldBeShown())
         {
         DocGroupSelectDlg selectLabelTypeDlg(this);
-        selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"batch-project-import-features.html");
+        selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+            L"batch-project-import-features.html");
         if (selectLabelTypeDlg.ShowModal() != wxID_OK)
             { return; }
         if (selectLabelTypeDlg.GetSelection() == 1)
@@ -808,7 +872,7 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
     m_fileData->SetSize(currentFileCount+files.GetCount(), 2);
     for (size_t i = 0; i < files.GetCount(); ++i)
         {
-        m_fileData->SetItemText(currentFileCount+i, 0, dlg.GetPath() + wxT("#") + files[i]);
+        m_fileData->SetItemText(currentFileCount+i, 0, dlg.GetPath() + L"#" + files[i]);
         if (groupLabel.length())
             { m_fileData->SetItemText(currentFileCount+i, 1, groupLabel); }
         }
@@ -824,7 +888,8 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
 readability::test_language ProjectWizardDlg::GetLanguage() const
     {
     return (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
-        wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode())) ? static_cast<readability::test_language>(m_selectedLang) : readability::test_language::english_test;
+        wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode())) ?
+        static_cast<readability::test_language>(m_selectedLang) : readability::test_language::english_test;
     }
 
  //-------------------------------------------------------------
@@ -853,7 +918,8 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
         warningIter->ShouldBeShown())
         {
         DocGroupSelectDlg selectLabelTypeDlg(this);
-        selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"batch-project-import-features.html");
+        selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+            L"batch-project-import-features.html");
         if (selectLabelTypeDlg.ShowModal() != wxID_OK)
             { return; }
         if (selectLabelTypeDlg.GetSelection() == 1)
@@ -874,10 +940,10 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
         {
         wxWindowDisabler disableAll;
         wxBusyInfo wait(_(L"Loading Excel file..."));
-        const wxString workbookFileText = archive.ReadTextFile(wxT("xl/workbook.xml"));
+        const wxString workbookFileText = archive.ReadTextFile(L"xl/workbook.xml");
         excelExtract.read_worksheet_names(workbookFileText.wc_str(), workbookFileText.length());
         // read the string table
-        const wxString sharedStrings = archive.ReadTextFile(wxT("xl/sharedStrings.xml"));
+        const wxString sharedStrings = archive.ReadTextFile(L"xl/sharedStrings.xml");
         if (sharedStrings.length())
             {
             excelExtract.read_shared_strings(sharedStrings.wc_str(), sharedStrings.length());
@@ -938,12 +1004,20 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
                 }
         #if wxDEBUG_LEVEL >= 2
             if (!lily_of_the_valley::xlsx_extract_text::verify_sheet(wrk).first)
-                { wxASSERT_MSG(0, wxString(wxT("Excel worksheet cell's out of order. First incorrect cell: ")) + lily_of_the_valley::xlsx_extract_text::verify_sheet(wrk).second.c_str()); }
+                {
+                wxASSERT_MSG(0, wxString(L"Excel worksheet cell's out of order. First incorrect cell: ") +
+                                lily_of_the_valley::xlsx_extract_text::verify_sheet(wrk).second.c_str());
+                }
             // verify that the filtering looks OK when debugging
-            ExcelPreviewDlg excelPreviewFilterDEBUG(this, &wrk, &excelExtract, wxID_ANY, wxString(_DT(L"DEBUG CHECK ")) + excelExtract.get_worksheet_names().at(workSheetSelections.Item(i)).c_str());
+            ExcelPreviewDlg excelPreviewFilterDEBUG(this, &wrk, &excelExtract, wxID_ANY,
+                wxString(_DT(L"DEBUG CHECK ")) +
+                excelExtract.get_worksheet_names().at(workSheetSelections.Item(i)).c_str());
             excelPreviewFilterDEBUG.ShowModal();
         #endif
-            workSheets.push_back(std::pair<std::wstring,std::vector<std::wstring>>(excelExtract.get_worksheet_names().at(workSheetSelections.Item(i)), std::vector<std::wstring>()));
+            workSheets.push_back(
+                std::pair<std::wstring,std::vector<std::wstring>>(
+                    excelExtract.get_worksheet_names().at(workSheetSelections.Item(i)),
+                    std::vector<std::wstring>()));
             lily_of_the_valley::xlsx_extract_text::get_text_cell_names(wrk, workSheets[workSheets.size()-1].second);
             }
         }
@@ -962,7 +1036,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
         size_t cellCounter = 0;
         for (size_t i = 0; i < workSheets.size(); ++i)
             {
-            const wxString fullPath = excelPath + wxT("#") + workSheets[i].first.c_str() + wxT("#");
+            const wxString fullPath = excelPath + L"#" + workSheets[i].first.c_str() + L"#";
             for (std::vector<std::wstring>::const_iterator cellPos = workSheets[i].second.begin();
                 cellPos != workSheets[i].second.end();
                 ++cellPos, ++cellCounter)
@@ -1084,16 +1158,19 @@ void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
                 if (GetFilePath().length() == 0)
                     {
                     m_sideBarBook->SetSelection(0);
-                    wxMessageBox(_(L"Please enter a file to be analyzed before continuing."), _(L"Invalid Input"),
-                            wxICON_EXCLAMATION|wxOK, this);
+                    wxMessageBox(
+                        _(L"Please enter a file to be analyzed before continuing."), _(L"Invalid Input"),
+                        wxICON_EXCLAMATION|wxOK, this);
                     return;
                     }
                 // if file doesn't exist
                 else if (!wxFile::Exists(GetFilePath()) )
                     {
                     m_sideBarBook->SetSelection(0);
-                    wxMessageBox(_(L"File not found. Please enter a valid file to be analyzed before continuing."), _(L"Invalid Input"),
-                            wxICON_EXCLAMATION|wxOK, this);
+                    wxMessageBox(
+                        _(L"File not found. Please enter a valid file to be analyzed before continuing."),
+                        _(L"Invalid Input"),
+                        wxICON_EXCLAMATION|wxOK, this);
                     return;
                     }
                 }
@@ -1130,31 +1207,40 @@ void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     if (IsFragmentedTextSelected() && IsDocumentTypeSelected() &&
         GetSelectedDocumentType() != readability::document_classification::nonnarrative_document)
         {
-        wxMessageBox(_(L"Because the document composition was set to non-narrative text, the document type will also be adjusted to non-narrative."), wxGetApp().GetAppDisplayName(),
-                        wxICON_INFORMATION|wxOK, this);
+        wxMessageBox(
+            _(L"Because the document composition was set to non-narrative text, the document type "
+               "will also be adjusted to non-narrative."), wxGetApp().GetAppDisplayName(),
+            wxICON_INFORMATION|wxOK, this);
         SelectDocumentType(readability::document_classification::nonnarrative_document);
         }
     // and the inverse as well, if the tests for non-narrative form are selected,
     // then set the composition to non-narrative.
-    if (IsDocumentTypeSelected() && GetSelectedDocumentType() == readability::document_classification::nonnarrative_document &&
+    if (IsDocumentTypeSelected() &&
+        GetSelectedDocumentType() == readability::document_classification::nonnarrative_document &&
         !IsFragmentedTextSelected())
         {
-        wxMessageBox(_(L"Because the test selection is set to non-narrative, the document composition will also be set to non-narrative."), wxGetApp().GetAppDisplayName(),
-                        wxICON_INFORMATION|wxOK, this);
+        wxMessageBox(
+            _(L"Because the test selection is set to non-narrative, the document composition will "
+               "also be set to non-narrative."), wxGetApp().GetAppDisplayName(),
+            wxICON_INFORMATION|wxOK, this);
         SetFragmentedTextSelected();
         }
     if (IsCenteredTextSelected() && IsNewLinesAlwaysNewParagraphsSelected())
         {
         SelectPage(1);
-        wxMessageBox(_(L"If text is centered, then new lines should not force the start of a new paragraph. Please unselect one of these options."), wxGetApp().GetAppDisplayName(),
-                     wxICON_INFORMATION|wxOK, this);
+        wxMessageBox(
+            _(L"If text is centered, then new lines should not force the start of a new paragraph. "
+               "Please unselect one of these options."), wxGetApp().GetAppDisplayName(),
+            wxICON_INFORMATION|wxOK, this);
         return;
         }
     if (IsSplitLinesSelected() && IsNewLinesAlwaysNewParagraphsSelected())
         {
         SelectPage(1);
-        wxMessageBox(_(L"If sentences are split, then new lines should not force the start of a new paragraph. Please unselect one of these options."), wxGetApp().GetAppDisplayName(),
-                     wxICON_INFORMATION|wxOK, this);
+        wxMessageBox(
+            _(L"If sentences are split, then new lines should not force the start of a new paragraph. "
+               "Please unselect one of these options."), wxGetApp().GetAppDisplayName(),
+            wxICON_INFORMATION|wxOK, this);
         return;
         }
 
@@ -1172,7 +1258,9 @@ void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
             }
         if (!hasIncludedStandardTest)
             {
-            wxMessageBox(_(L"Note that there are no tests associated with this document type for the selected language."), wxGetApp().GetAppDisplayName(),
+            wxMessageBox(
+                _(L"Note that there are no tests associated with this document type for the selected language."),
+                wxGetApp().GetAppDisplayName(),
                 wxICON_INFORMATION|wxOK);
             }
         }
@@ -1190,7 +1278,9 @@ void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
             }
         if (!hasIncludedStandardTest)
             {
-            wxMessageBox(_(L"Note that there are no tests associated with this industry for the selected language."), wxGetApp().GetAppDisplayName(),
+            wxMessageBox(
+                _(L"Note that there are no tests associated with this industry for the selected language."),
+                wxGetApp().GetAppDisplayName(),
                 wxICON_INFORMATION|wxOK);
             }
         }
@@ -1213,11 +1303,11 @@ void ProjectWizardDlg::OnButtonClick(wxCommandEvent& link)
     {
     wxString helpTopic;
     if (link.GetId() == NARRATIVE_WITH_ILLUSTRATIONS_LINK_ID)
-        { helpTopic = wxT("line-chaining.html"); }
+        { helpTopic = L"line-chaining.html"; }
     else if (link.GetId() == FRAGMENTED_LINK_ID)
-        { helpTopic = wxT("framented-text.html"); }
+        { helpTopic = L"framented-text.html"; }
     else if (link.GetId() == CENTERED_TEXT_LINK_ID)
-        { helpTopic = wxT("controlling-how-sentences-are-deduced.html"); }
+        { helpTopic = L"controlling-how-sentences-are-deduced.html"; }
     wxLaunchDefaultBrowser(
         wxFileName::FileNameToURL(wxGetApp().GetMainFrame()->GetHelpDirectory() +
         wxFileName::GetPathSeparator() + helpTopic));
@@ -1488,7 +1578,8 @@ void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent& eve
         warningIter->ShouldBeShown())
         {
         DocGroupSelectDlg selectLabelTypeDlg(this);
-        selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"batch-project-import-features.html");
+        selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+                                        L"batch-project-import-features.html");
         if (selectLabelTypeDlg.ShowModal() != wxID_OK)
             { return; }
         if (selectLabelTypeDlg.GetSelection() == 1)
@@ -1527,7 +1618,7 @@ void ProjectWizardDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
     {
     const wxString helpProjectPath = wxGetApp().GetMainFrame()->GetHelpDirectory();
     wxString helpTopic = (GetProjectType() == ProjectType::StandardProject) ?
-        wxT("creating-standard-project.html") :
-        wxT("creating-batch-project.html");
+        L"creating-standard-project.html" :
+        L"creating-batch-project.html";
     wxLaunchDefaultBrowser(wxFileName::FileNameToURL(helpProjectPath + wxFileName::GetPathSeparator() + helpTopic));
     }
