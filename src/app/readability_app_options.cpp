@@ -264,9 +264,10 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_MIN_DOC_SIZE_FOR_BATCH(_DT(L"min-doc-size-for-batch")),
     XML_RANDOM_SAMPLE_SIZE(_DT(L"random-samlple-size")),
     XML_FILE_PATH_TRUNC_MODE(_DT(L"filepath-truncation-mode")),
-    //meta statistics
+    // meta statistics
     XML_OFFICE_DOCUMENT_META(_DT(L"office:document-meta")),
-    XML_OFFICE_DOCUMENT_META_HEADER(_DT(L"office:document-meta xmlns:office=\"urn:oasis:names:tc:opendocument:xmlns:office:1.0\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:meta=\"urn:oasis:names:tc:opendocument:xmlns:meta:1.0\"")),
+    XML_OFFICE_DOCUMENT_META_HEADER(
+        _DT(LR"(office:document-meta xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0")")),
     XML_OFFICE_META(_DT(L"office:meta")),
     XML_STATISTICS(_DT(L"meta:document-statistic")),
     XML_TEXT_SIZE(_DT(L"meta:text-size")),
@@ -299,7 +300,8 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_TOTAL_SYLLABLES_IGNORING_NUMERALS(_DT(L"meta:syllables-ignoring-numerals-count")),
     XML_TOTAL_SYLLABLES_NUMERALS_ONE_SYLLABLE(_DT(L"meta:syllables-numerals-one-syllable")),
     XML_TOTAL_SYLLABLES_NUMERALS_FULLY_SYLLABIZED(_DT(L"meta:syllables-numerals-fully-syllabized-count")),
-    XML_TOTAL_SYLLABLES_IGNORING_NUMERALS_AND_PROPER_NOUNS(_DT(L"meta:syllables-ignoring-numerals-proper-nouns-count")),
+    XML_TOTAL_SYLLABLES_IGNORING_NUMERALS_AND_PROPER_NOUNS(
+        _DT(L"meta:syllables-ignoring-numerals-proper-nouns-count")),
     XML_TOTAL_LONG_WORDS(_DT(L"meta:long-words-count")),
     XML_TOTAL_LONG_WORDS_IGNORING_NUMERALS(_DT(L"meta:long-words-count-ignoring-numerals")),
     XML_TOTAL_MINIWORDS(_DT(L"meta:miniwords-count")),
@@ -349,7 +351,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_DOLCH_UNUSED_NOUNS_COUNT(_DT(L"meta:dolch-noun-unused-count")),
     XML_UNIQUE_UNFAMILIAR_WORD_COUNT(_DT(L"meta:unique-unfamiliar-word-count")),
     XML_UNFAMILIAR_WORD_COUNT(_DT(L"meta:unfamiliar-word-count")),
-    //export options
+    // export options
     XML_EXPORT(_DT(L"export-settings")),
     XML_EXPORT_LIST_EXT(_DT(L"export-list-extension")),
     XML_EXPORT_TEXT_EXT(_DT(L"export-text-extension")),
@@ -362,15 +364,18 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_EXPORT_GRAMMAR(_DT(L"export-grammar")),
     XML_EXPORT_DOLCH_WORDS(_DT(L"export-dolch-words")),
     XML_EXPORT_WARNINGS(_DT(L"export-warnings")),
-    //warning settings
+    // warning settings
     XML_WARNING_MESSAGE_SETTINGS(_DT(L"warning-message-settings")),
     XML_WARNING_MESSAGE(_DT(L"warning-message")),
     XML_PREVIOUS_RESPONSE(_DT(L"previous-response")),
-    //general strings
-    ALL_DOCUMENTS_WILDCARD(_DT(L"*.txt;*.htm;*.html;*.xhtml;*.sgml;*.php;*.php3;*.php4;*.aspx;*.asp;*.rtf;*.doc;*.docx;*.docm;*.pptx;*.pptm;*.dot;*.wri;*.odt;*.ott;*.odp;*.otp;*.ps;*.idl;*.cpp;*.c;*.h")),
-    ALL_IMAGES_WILDCARD(_DT(L"*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx")),
-    IMAGE_LOAD_FILE_FILTER(_(L"Image Files (*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)|*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx|Bitmap (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe)|*.jpg;*.jpg;*.jpe|PNG (*.png)|*.png|GIF (*.gif)|*.gif|Targa (*.tga)|*.tga|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PCX (*.pcx)|*.pcx")),
-    //last opened file locations
+    // general strings
+    ALL_DOCUMENTS_WILDCARD(
+        _DT(LR"(*.txt;*.htm;*.html;*.xhtml;*.sgml;*.php;*.php3;*.php4;*.aspx;*.asp;*.rtf;*.doc;*.docx;*.docm;*.pptx;*.pptm;*.dot;*.wri;*.odt;*.ott;*.odp;*.otp;*.ps;*.idl;*.cpp;*.c;*.h)")),
+    ALL_IMAGES_WILDCARD(
+        _DT(LR"(*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)")),
+    IMAGE_LOAD_FILE_FILTER(
+        _(LR"(Image Files (*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)|*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx|Bitmap (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe)|*.jpg;*.jpg;*.jpe|PNG (*.png)|*.png|GIF (*.gif)|*.gif|Targa (*.tga)|*.tga|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PCX (*.pcx)|*.pcx)")),
+    // last opened file locations
     FILE_OPEN_PATHS(_DT(L"file-open-paths")),
     FILE_OPEN_IMAGE_PATH(_DT(L"image-path")),
     FILE_OPEN_PROJECT_PATH(_DT(L"project-path")),
@@ -399,31 +404,99 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     BaseProject::InitializeStandardReadabilityTests();
     BaseProject::ResetStandardReadabilityTests(m_readabilityTests);
     // set the warnings system
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"project-open-as-read-only"), _(L"Project file will be opened as read only."), wxEmptyString, _(L"Warn about projects being opened as read-only."), wxOK|wxICON_INFORMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"remove-test-from-project"), wxEmptyString, wxEmptyString, _(L"Prompt when removing a test from a project."), wxICON_INFORMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"delete-document-from-batch"), wxEmptyString, wxEmptyString, _(L"Prompt when removing a document from a batch project."), wxICON_INFORMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"document-less-than-20-words"), _(L"The text that you are analyzing is less than 20 words. Most test results will not be meaningful with such a small sample."), _(L"Warning"), _(L"Prompt about documents containing less than 20 words."), wxOK|wxICON_EXCLAMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"document-less-than-100-words"), _(L"The text that you are analyzing is less than 100 words. Factors, such as word and syllable counts, will be standardized for some tests."), _(L"Warning"), _(L"Warn about documents containing less than 100 words."), wxOK|wxICON_EXCLAMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"sentences-split-by-paragraph-breaks"), wxEmptyString, _(L"Warning"), _(L"Warn about documents that contain sentences split by paragraph breaks."), wxOK|wxICON_EXCLAMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"incomplete-sentences-valid-from-length"), wxEmptyString, _(L"Warning"), _(L"Warn about documents that contain long incomplete sentences that will be included in the analysis."), wxOK|wxICON_EXCLAMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"high-count-sentences-being-ignored"), _(L"This document contains a large percentage of incomplete sentences that you have requested to ignore.\n\nDo you wish to change this option and include these items in the analysis?"), _(L"Warning"), _(L"Prompt if a document should switch to include sentences in the analysis."), wxYES_NO|wxNO_DEFAULT|wxICON_QUESTION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"ndc-proper-noun-conflict"), _(L"This test's proper-noun settings differ from the standard New Dale-Chall test.\nDo you wish to adjust this setting to match the standard test?"), _(L"Settings Conflict"), _(L"Prompt if a custom NDC test's proper noun settings differ from the standard NDC test."), wxYES_NO|wxNO_DEFAULT|wxICON_QUESTION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"new-dale-chall-text-exclusion-differs-note"), wxEmptyString, wxEmptyString, _(L"Prompt about New Dale-Chall using a different text exclusion method from the system default."), wxICON_INFORMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"harris-jacobson-text-exclusion-differs-note"), wxEmptyString, wxEmptyString, _(L"Prompt about Harris-Jacobson using a different text exclusion method from the system default."), wxICON_INFORMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"custom-test-numeral-settings-adjustment-required"), _(L"Harris-Jacobson requires numerals to be excluded from the overall word count.\nNumeral options for this test will be adjusted to take this into account."), _(L"Warning"), _(L"Warn when a custom test's numeral settings will be adjusted."), wxOK|wxICON_INFORMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"german-no-proper-noun-support"), _(L"Because German capitalizes all nouns, the program will be unable to detect proper nouns.\nTreatment of proper nouns as familiar words will be disabled for this test."), _(L"Warning"), _(L"Warn about German stemming not supporting proper noun detection."), wxOK|wxICON_INFORMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"histogram-unique-values-midpoints-required"), _(L"Note: sorting histogram bins by unique values requires midpoint interval display.\nMidpoint interval display will be enabled."), wxEmptyString, _(L"Warn about unique-value histograms requiring midpoint axis labels."), wxOK|wxICON_INFORMATION, true) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"file-autosearch-from-project-directory"), wxEmptyString, _(L"File Not Found"), _(L"Prompt about auto-searching for missing files."), wxYES_NO|wxICON_QUESTION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"linked-document-is-embedded"), _(L"This document is embedded in the project.\nDo you wish to link to the original document instead?"), _(L"Link Document"), _(L"Prompt about re-linking to a document that has been embedded."), wxYES_NO|wxNO_DEFAULT|wxICON_QUESTION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"no-embedded-text"), _(L"No embedded text found in the project. Project will not be created."), _(L"Warning"), _(L"Prompt about failing to load a project that is missing its embedded text."), wxOK|wxICON_EXCLAMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"clear-type-turned-off"), _(L"ClearType is currently turned off. Enabling this will make fonts appear smoother and easier to read.\n\nDo you wish to enable ClearType?"), _(L"Warning"), _(L"Check if ClearType is turned on (Windows only)."), wxYES_NO|wxICON_QUESTION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"note-export-from-save"), _(L"Any window can be exported by selecting \"Export\" from the \"Save\" button."), wxEmptyString, _(L"Prompt about how windows can be exported from the Save button."), wxICON_INFORMATION, true) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"click-test-to-view"), _(L"Double click a test to view more information."), wxEmptyString, _(L"Prompt about how double-clicking a test can show its help."), wxICON_INFORMATION, true) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"bkimage-zoomin-noupscale"), _(L"When zooming, background images will not be stretched beyond their original sizes."), wxEmptyString, _(L"Prompt about how background images will not be upscaled beyond their original size when zooming into a graph."), wxICON_INFORMATION, true) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"note-project-properties"), _(L"Settings embedded in this project can be edited by clicking \"Home\" - \"Properties\"."), wxEmptyString, _(L"Prompt about how settings are embedded in projects and how to edit them."), wxICON_INFORMATION, true) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"batch-goals"), _(L"Documents not passing the project's goals are shown in this window.\nThe recommended min and max values for each goal are displayed,\nalong with an icon indicating whether the document is passing these constraints."), wxEmptyString, _(L"Prompt about how the Goals window works in a batch project."), wxICON_INFORMATION, true) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"prompt-for-batch-label"), wxEmptyString, wxEmptyString, _(L"Prompt for labels when adding documents to a batch project."), wxICON_INFORMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"set-app-exclusion-list-from-project"), _(L"Would you like to use this word exclusion list for all future projects?"), _(L"Set Global Word Exclusion List"), _(L"Prompt about whether to set the application's word exclusion list from a project."), wxYES_NO|wxICON_QUESTION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"project-open-as-read-only"),
+        _(L"Project file will be opened as read only."), wxEmptyString,
+        _(L"Warn about projects being opened as read-only."), wxOK|wxICON_INFORMATION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"remove-test-from-project"), wxEmptyString, wxEmptyString,
+        _(L"Prompt when removing a test from a project."), wxICON_INFORMATION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"delete-document-from-batch"), wxEmptyString, wxEmptyString,
+        _(L"Prompt when removing a document from a batch project."), wxICON_INFORMATION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"document-less-than-20-words"),
+        _(L"The text that you are analyzing is less than 20 words. "
+           "Most test results will not be meaningful with such a small sample."), _(L"Warning"),
+        _(L"Prompt about documents containing less than 20 words."), wxOK|wxICON_EXCLAMATION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"document-less-than-100-words"),
+        _(L"The text that you are analyzing is less than 100 words. "
+           "Factors, such as word and syllable counts, will be standardized for some tests."),
+        _(L"Warning"), _(L"Warn about documents containing less than 100 words."), wxOK|wxICON_EXCLAMATION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"sentences-split-by-paragraph-breaks"), wxEmptyString,
+        _(L"Warning"), _(L"Warn about documents that contain sentences split by paragraph breaks."),
+        wxOK|wxICON_EXCLAMATION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"incomplete-sentences-valid-from-length"), wxEmptyString,
+        _(L"Warning"),
+        _(L"Warn about documents that contain long incomplete sentences that will be included in the analysis."),
+        wxOK|wxICON_EXCLAMATION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"high-count-sentences-being-ignored"),
+        _(L"This document contains a large percentage of incomplete sentences that you have requested to ignore.\n\n"
+           "Do you wish to change this option and include these items in the analysis?"),
+        _(L"Warning"), _(L"Prompt if a document should switch to include sentences in the analysis."),
+        wxYES_NO|wxNO_DEFAULT|wxICON_QUESTION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"ndc-proper-noun-conflict"),
+        _(L"This test's proper-noun settings differ from the standard New Dale-Chall test.\n"
+           "Do you wish to adjust this setting to match the standard test?"), _(L"Settings Conflict"),
+        _(L"Prompt if a custom NDC test's proper noun settings differ from the standard NDC test."),
+        wxYES_NO|wxNO_DEFAULT|wxICON_QUESTION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"new-dale-chall-text-exclusion-differs-note"),
+        wxEmptyString, wxEmptyString,
+        _(L"Prompt about New Dale-Chall using a different text exclusion method from the system default."),
+        wxICON_INFORMATION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"harris-jacobson-text-exclusion-differs-note"),
+        wxEmptyString, wxEmptyString,
+        _(L"Prompt about Harris-Jacobson using a different text exclusion method from the system default."),
+        wxICON_INFORMATION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"custom-test-numeral-settings-adjustment-required"),
+        _(L"Harris-Jacobson requires numerals to be excluded from the overall word count.\n"
+           "Numeral options for this test will be adjusted to take this into account."),
+        _(L"Warning"), _(L"Warn when a custom test's numeral settings will be adjusted."),
+        wxOK|wxICON_INFORMATION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"german-no-proper-noun-support"),
+        _(L"Because German capitalizes all nouns, the program will be unable to detect proper nouns.\n"
+           "Treatment of proper nouns as familiar words will be disabled for this test."),
+        _(L"Warning"), _(L"Warn about German stemming not supporting proper noun detection."),
+        wxOK|wxICON_INFORMATION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"histogram-unique-values-midpoints-required"),
+        _(L"Note: sorting histogram bins by unique values requires midpoint interval display.\nMidpoint interval display will be enabled."), wxEmptyString, _(L"Warn about unique-value histograms requiring midpoint axis labels."), wxOK|wxICON_INFORMATION, true) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"file-autosearch-from-project-directory"),
+        wxEmptyString, _(L"File Not Found"), _(L"Prompt about auto-searching for missing files."),
+        wxYES_NO|wxICON_QUESTION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"linked-document-is-embedded"),
+        _(L"This document is embedded in the project.\nDo you wish to link to the original document instead?"),
+        _(L"Link Document"), _(L"Prompt about re-linking to a document that has been embedded."),
+        wxYES_NO|wxNO_DEFAULT|wxICON_QUESTION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"no-embedded-text"),
+        _(L"No embedded text found in the project. Project will not be created."),
+        _(L"Warning"), _(L"Prompt about failing to load a project that is missing its embedded text."),
+        wxOK|wxICON_EXCLAMATION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"clear-type-turned-off"),
+        _(L"ClearType is currently turned off. Enabling this will make fonts appear smoother and easier to read.\n\n"
+           "Do you wish to enable ClearType?"), _(L"Warning"), _(L"Check if ClearType is turned on (Windows only)."),
+        wxYES_NO|wxICON_QUESTION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"note-export-from-save"),
+        _(L"Any window can be exported by selecting \"Export\" from the \"Save\" button."),
+        wxEmptyString, _(L"Prompt about how windows can be exported from the Save button."), wxICON_INFORMATION, true) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"click-test-to-view"),
+        _(L"Double click a test to view more information."), wxEmptyString,
+        _(L"Prompt about how double-clicking a test can show its help."), wxICON_INFORMATION, true) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"bkimage-zoomin-noupscale"),
+        _(L"When zooming, background images will not be stretched beyond their original sizes."), wxEmptyString,
+        _(L"Prompt about how background images will not be upscaled beyond their "
+           "original size when zooming into a graph."), wxICON_INFORMATION, true) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"note-project-properties"),
+        _(L"Settings embedded in this project can be edited by clicking \"Home\" - \"Properties\"."),
+        wxEmptyString, _(L"Prompt about how settings are embedded in projects and how to edit them."),
+        wxICON_INFORMATION, true) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"batch-goals"),
+        _(L"Documents not passing the project's goals are shown in this window.\n"
+           "The recommended min and max values for each goal are displayed,\n"
+           "along with an icon indicating whether the document is passing these constraints."),
+        wxEmptyString, _(L"Prompt about how the Goals window works in a batch project."), wxICON_INFORMATION, true) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"prompt-for-batch-label"), wxEmptyString, wxEmptyString,
+        _(L"Prompt for labels when adding documents to a batch project."), wxICON_INFORMATION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"set-app-exclusion-list-from-project"),
+        _(L"Would you like to use this word exclusion list for all future projects?"),
+        _(L"Set Global Word Exclusion List"),
+        _(L"Prompt about whether to set the application's word exclusion list from a project."),
+        wxYES_NO|wxICON_QUESTION, false) );
     }
 
 //------------------------------------------------
@@ -435,7 +508,9 @@ void ReadabilityAppOptions::SetFonts()
     m_bottomTitleFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
     m_leftTitleFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
     m_rightTitleFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
-    m_textViewFont = wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize()*1.5f, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetFaceName());
+    m_textViewFont = wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize()*1.5f,
+                            wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false,
+                            wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetFaceName());
     // fix font issues in case the system is using a hidden font for its default (happens on macOS)
     Wisteria::GraphItems::Label::FixFont(m_xAxisFont);
     Wisteria::GraphItems::Label::FixFont(m_yAxisFont);
@@ -495,7 +570,8 @@ void ReadabilityAppOptions::SetColorsFromSystem()
         }
     else
         {
-        // Use dialog color of the side area. If this is really dark and the menu area is really dark, then lighten this color a bit
+        // Use dialog color of the side area.
+        // If this is really dark and the menu area is really dark, then lighten this color a bit
         m_startPageBackstageBackgroundColor =
             wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE).GetLuminance() < .2 && wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW).GetLuminance() < .2 ?
             wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE).ChangeLightness(125) : wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE);
@@ -638,20 +714,20 @@ void ReadabilityAppOptions::ResetSettings()
     m_reviewer = wxGetUserName();
     m_status.clear();
     m_appendedDocumentFilePath.clear();
-    //page setup
+    // page setup
     m_paperId = wxPAPER_LETTER;
     m_paperOrientation = wxLANDSCAPE;
-    //headers
+    // headers
     m_leftPrinterHeader.clear();
     m_centerPrinterHeader.clear();
     m_rightPrinterHeader.clear();
-    //footers
+    // footers
     m_leftPrinterFooter.clear();
     m_centerPrinterFooter.clear();
     m_rightPrinterFooter.clear();
-    //test inclusion options
+    // test inclusion options
     m_includeScoreSummaryReport = true;
-    //test options
+    // test options
     m_dcTextExclusion = SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings;
     m_hjTextExclusion = SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings;
     m_dcProperNounCountingMethod = readability::proper_noun_counting_method::only_count_first_instance_of_proper_noun_as_unfamiliar;
@@ -659,9 +735,9 @@ void ReadabilityAppOptions::ResetSettings()
     m_fogUseSentenceUnits = true;
     m_fleschNumeralSyllabizeMethod = FleschNumeralSyllabize::NumeralIsOneSyllable;
     m_fleschKincaidNumeralSyllabizeMethod = FleschKincaidNumeralSyllabize::FleschKincaidNumeralSoundOutEachDigit;
-    //clear the colours
+    // clear the colours
     m_customColours.clear();
-    //reset the warning flags
+    // reset the warning flags
     ReadabilityAppOptions::EnableWarnings();
     }
 
@@ -818,7 +894,7 @@ bool ReadabilityAppOptions::LoadThemeFile(const wxString& optionsFile)
     doc.LoadFile(optionsFile.mb_str());
     if (doc.Error())
         {
-        wxMessageBox(wxString::Format(_(L"Unable to load theme file:\n%s"), doc.ErrorStr()), 
+        wxMessageBox(wxString::Format(_(L"Unable to load theme file:\n%s"), doc.ErrorStr()),
             _(L"Error"), wxOK|wxICON_ERROR);
         return false;
         }
@@ -826,7 +902,7 @@ bool ReadabilityAppOptions::LoadThemeFile(const wxString& optionsFile)
     auto node = doc.FirstChildElement(XML_CONFIG_HEADER.mb_str());
     if (!node)
         {
-        wxMessageBox(_(L"Invalid configuration file. Project header section not found."), 
+        wxMessageBox(_(L"Invalid configuration file. Project header section not found."),
             _(L"Error"), wxOK|wxICON_ERROR);
         return false;
         }
@@ -834,7 +910,7 @@ bool ReadabilityAppOptions::LoadThemeFile(const wxString& optionsFile)
     auto configRootNode = node->FirstChildElement(XML_CONFIGURATIONS.mb_str());
     if (!configRootNode)
         {
-        wxMessageBox(_(L"Invalid configuration file. No configurations found."), 
+        wxMessageBox(_(L"Invalid configuration file. No configurations found."),
             _(L"Error"), wxOK|wxICON_ERROR);
         return false;
         }
@@ -875,7 +951,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
     auto node = doc.FirstChildElement(XML_CONFIG_HEADER.mb_str());
     if (!node)
         {
-        wxMessageBox(_(L"Invalid configuration file. Project header section not found."), 
+        wxMessageBox(_(L"Invalid configuration file. Project header section not found."),
             _(L"Error"), wxOK|wxICON_ERROR);
         return false;
         }
@@ -883,7 +959,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
     auto configRootNode = node->FirstChildElement(XML_CONFIGURATIONS.mb_str());
     if (!configRootNode)
         {
-        wxMessageBox(_(L"Invalid configuration file. No configurations found."), 
+        wxMessageBox(_(L"Invalid configuration file. No configurations found."),
             _(L"Error"), wxOK|wxICON_ERROR);
         return false;
         }
@@ -1659,7 +1735,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     auto numericNode = customReadabilityTestNode->FirstChildElement(XML_INCLUDE_NUMERIC.mb_str());
                     if (numericNode)
                         {
-                        includeNumeric = 
+                        includeNumeric =
                             int_to_bool(numericNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0));
                         }
                     //whether DC and Spache lists should also be included with this test
@@ -1669,13 +1745,13 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     auto otherTestNode = customReadabilityTestNode->FirstChildElement(XML_INCLUDE_CUSTOM_WORD_LIST.mb_str());
                     if (otherTestNode)
                         {
-                        includeCustomWordList = 
+                        includeCustomWordList =
                             int_to_bool(otherTestNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0));
                         }
                     otherTestNode = customReadabilityTestNode->FirstChildElement(XML_INCLUDE_DC_LIST.mb_str());
                     if (otherTestNode)
                         {
-                        includeDCTest = 
+                        includeDCTest =
                             int_to_bool(otherTestNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0));
                         }
                     otherTestNode = customReadabilityTestNode->FirstChildElement(XML_INCLUDE_SPACHE_LIST.mb_str());
@@ -1749,7 +1825,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     industryNode = customReadabilityTestNode->FirstChildElement(XML_INDUSTRY_BROADCASTING.mb_str());
                     if (industryNode)
                         {
-                        industryBroadcastingSelected = 
+                        industryBroadcastingSelected =
                             int_to_bool(industryNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), industryBroadcastingSelected));
                         }
                     //document
@@ -1764,28 +1840,28 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_TECHNICAL.mb_str());
                     if (documentNode)
                         {
-                        documentTechSelected = 
+                        documentTechSelected =
                             int_to_bool(documentNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), documentTechSelected));
                         }
                     bool documentFormSelected = false;
                     documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_FORM.mb_str());
                     if (documentNode)
                         {
-                        documentFormSelected = 
+                        documentFormSelected =
                             int_to_bool(documentNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), documentFormSelected));
                         }
                     bool documentYoungAdultSelected = false;
                     documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_YOUNGADULT.mb_str());
                     if (documentNode)
                         {
-                        documentYoungAdultSelected = 
+                        documentYoungAdultSelected =
                             int_to_bool(documentNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), documentYoungAdultSelected));
                         }
                     bool documentChildrenSelected = false;
                     documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_CHILDREN_LIT.mb_str());
                     if (documentNode)
                         {
-                         documentChildrenSelected = 
+                         documentChildrenSelected =
                             int_to_bool(documentNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), documentChildrenSelected));
                         }
                     CustomReadabilityTest cTest(testName.wc_str(),
@@ -2089,7 +2165,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         int red = colorNodeInvalidArea->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(), GetInvalidAreaColor().Red());
                         int green = colorNodeInvalidArea->ToElement()->IntAttribute(XmlFormat::GetGreen().mb_str(), GetInvalidAreaColor().Green());
                         int blue = colorNodeInvalidArea->ToElement()->IntAttribute(XmlFormat::GetBlue().mb_str(), GetInvalidAreaColor().Blue());
-                        SetInvalidAreaColor(wxColour(red, green, blue)); 
+                        SetInvalidAreaColor(wxColour(red, green, blue));
                         }
                     }
                 //axis options
@@ -3029,11 +3105,11 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxEm
     auto spellCheckIgnoreProgrammerCodeMethod = doc.NewElement(XML_SPELLCHECK_IGNORE_PROGRAMMER_CODE.mb_str());
     spellCheckIgnoreProgrammerCodeMethod->SetAttribute(XML_VALUE.mb_str(), bool_to_int(SpellCheckIsIgnoringProgrammerCode()) );
     grammarSection->InsertEndChild(spellCheckIgnoreProgrammerCodeMethod);
-    
+
     auto spellCheckAllowColloquialismsMethod = doc.NewElement(XML_SPELLCHECK_ALLOW_COLLOQUIALISMS.mb_str());
     spellCheckAllowColloquialismsMethod->SetAttribute(XML_VALUE.mb_str(), bool_to_int(SpellCheckIsAllowingColloquialisms()) );
     grammarSection->InsertEndChild(spellCheckAllowColloquialismsMethod);
-    
+
     auto spellCheckIgnoreSocialMediaTagsMethod = doc.NewElement(XML_SPELLCHECK_IGNORE_SOCIAL_MEDIA_TAGS.mb_str());
     spellCheckIgnoreSocialMediaTagsMethod->SetAttribute(XML_VALUE.mb_str(), bool_to_int(SpellCheckIsIgnoringSocialMediaTags()) );
     grammarSection->InsertEndChild(spellCheckIgnoreSocialMediaTagsMethod);
@@ -3377,7 +3453,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxEm
     graphDefaultsSection->InsertEndChild(graphWatermarkLogo);
 
     auto graphWatermark = doc.NewElement(XML_GRAPH_WATERMARK.mb_str());
-    graphWatermark->SetAttribute(XML_VALUE.mb_str(), 
+    graphWatermark->SetAttribute(XML_VALUE.mb_str(),
         wxString(encode({ GetWatermark().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(graphWatermark);
 
@@ -3507,7 +3583,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxEm
     xAxisFont->SetAttribute(XmlFormat::GetFontStyle().mb_str(), static_cast<int>(GetXAxisFont().GetStyle()) );
     xAxisFont->SetAttribute(XmlFormat::GetFontWeight().mb_str(), static_cast<int>(GetXAxisFont().GetWeight()) );
     xAxisFont->SetAttribute(XmlFormat::GetFontUnderline().mb_str(), bool_to_int(GetXAxisFont().GetUnderlined()) );
-    xAxisFont->SetAttribute(XmlFormat::GetFontFaceName().mb_str(), 
+    xAxisFont->SetAttribute(XmlFormat::GetFontFaceName().mb_str(),
         wxString(encode({ GetXAxisFont().GetFaceName().wc_str() }, false).c_str()).mb_str());
     //put it all together
     xAxis->InsertEndChild(xAxisFontColor);
@@ -3862,7 +3938,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxEm
             optionsFile.mb_str());
     if (doc.Error())
         {
-        wxMessageBox(wxString::Format(_(L"Unable to save configuration file:%s"), doc.ErrorStr()), 
+        wxMessageBox(wxString::Format(_(L"Unable to save configuration file:%s"), doc.ErrorStr()),
             _(L"Error"), wxOK|wxICON_ERROR);
         return false;
         }

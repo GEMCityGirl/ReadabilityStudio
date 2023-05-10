@@ -81,7 +81,7 @@ wxBEGIN_EVENT_TABLE(BatchProjectView, BaseProjectView)
     EVT_MENU(XRCID("ID_K12_ALBERTA"), BatchProjectView::OnGradeScale)
     EVT_MENU(XRCID("ID_K12_NUNAVUT"), BatchProjectView::OnGradeScale)
     EVT_MENU(XRCID("ID_QUEBEC"), BatchProjectView::OnGradeScale)
-    EVT_MENU(XRCID("ID_ENGLAND"), BatchProjectView::OnGradeScale)   
+    EVT_MENU(XRCID("ID_ENGLAND"), BatchProjectView::OnGradeScale)
     EVT_MENU(wxID_SELECTALL, BatchProjectView::OnMenuCommand)
     EVT_MENU(wxID_COPY, BatchProjectView::OnMenuCommand)
     EVT_MENU(wxID_PREVIEW, BatchProjectView::OnMenuCommand)
@@ -103,11 +103,12 @@ wxBEGIN_EVENT_TABLE(BatchProjectView, BaseProjectView)
     EVT_MENU(XRCID("ID_SEND_TO_STANDARD_PROJECT"), BatchProjectView::OnMenuCommand)
     EVT_MENU(XRCID("ID_LAUNCH_SOURCE_FILE"), BatchProjectView::OnMenuCommand)
     EVT_MENU(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), BatchProjectView::OnMenuCommand)
-    EVT_MENU(XRCID("ID_DOLCH"), BatchProjectView::OnAddTest)//not actually a test (it doesn't have an ID), but we'll add it in this function
+    // not actually a test (it doesn't have an ID), but we'll add it in this function
+    EVT_MENU(XRCID("ID_DOLCH"), BatchProjectView::OnAddTest)
     EVT_MENU(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"), BatchProjectView::OnBatchExportFilteredDocuments)
     EVT_MENU(XRCID("ID_ADD_ITEM_TO_DICTIONARY"), BatchProjectView::OnAddToDictionary)
     EVT_COMMAND(wxID_ANY, EVT_WISTERIA_CANVAS_DCLICK, BatchProjectView::OnEditGraphOptions)
-    //find options
+    // find options
     EVT_FIND(wxID_ANY, BatchProjectView::OnFind)
     EVT_FIND_NEXT(wxID_ANY, BatchProjectView::OnFind)
     EVT_FIND_CLOSE(wxID_ANY, BatchProjectView::OnFind)
@@ -118,7 +119,8 @@ void BatchProjectView::OnLongFormat([[maybe_unused]] wxRibbonButtonBarEvent& eve
     {
     BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(GetDocument());
 
-    doc->GetReadabilityMessageCatalog().SetLongGradeScaleFormat(!doc->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
+    doc->GetReadabilityMessageCatalog().SetLongGradeScaleFormat(
+        !doc->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
     if (GetSplitter()->GetWindow2()->IsKindOf(CLASSINFO(ListCtrlEx)) )
         { dynamic_cast<ListCtrlEx*>(GetSplitter()->GetWindow2())->Refresh(); }
     doc->SetModifiedFlag();
@@ -131,52 +133,65 @@ void BatchProjectView::OnSummation([[maybe_unused]] wxRibbonButtonBarEvent& even
     ListCtrlItemViewDlg viewDlg;
     if (GetActiveProjectWindow()->GetId() == MISSPELLED_WORD_LIST_PAGE_ID)
         {
-        viewDlg.AddValue(_("Total Misspellings"), std::to_wstring(static_cast<size_t>(doc->GetMisspelledWordData()->GetColumnSum(2))) );
-        viewDlg.AddValue(_("Total Unique Misspellings"), std::to_wstring(static_cast<size_t>(doc->GetMisspelledWordData()->GetColumnSum(3))) );
+        viewDlg.AddValue(_("Total Misspellings"),
+            std::to_wstring(static_cast<size_t>(doc->GetMisspelledWordData()->GetColumnSum(2))) );
+        viewDlg.AddValue(_("Total Unique Misspellings"),
+            std::to_wstring(static_cast<size_t>(doc->GetMisspelledWordData()->GetColumnSum(3))) );
         }
     else if (GetActiveProjectWindow()->GetId() == DUPLICATES_LIST_PAGE_ID)
         {
-        viewDlg.AddValue(_("Total Repeated Words"), std::to_wstring(static_cast<size_t>(doc->GetRepeatedWordData()->GetColumnSum(2))) );
+        viewDlg.AddValue(_("Total Repeated Words"),
+            std::to_wstring(static_cast<size_t>(doc->GetRepeatedWordData()->GetColumnSum(2))) );
         }
     else if (GetActiveProjectWindow()->GetId() == INCORRECT_ARTICLE_PAGE_ID)
         {
-        viewDlg.AddValue(_("Total Article Mismatches"), std::to_wstring(static_cast<size_t>(doc->GetIncorrectArticleData()->GetColumnSum(2))) );
+        viewDlg.AddValue(_("Total Article Mismatches"),
+            std::to_wstring(static_cast<size_t>(doc->GetIncorrectArticleData()->GetColumnSum(2))) );
         }
     else if (GetActiveProjectWindow()->GetId() == PASSIVE_VOICE_PAGE_ID)
         {
-        viewDlg.AddValue(_("Total Passive Phrases"), std::to_wstring(static_cast<size_t>(doc->GetPassiveVoiceData()->GetColumnSum(2))) );
+        viewDlg.AddValue(_("Total Passive Phrases"),
+            std::to_wstring(static_cast<size_t>(doc->GetPassiveVoiceData()->GetColumnSum(2))) );
         }
     else if (GetActiveProjectWindow()->GetId() == WORDY_PHRASES_LIST_PAGE_ID)
         {
-        viewDlg.AddValue(_("Total Wordy Items"), std::to_wstring(static_cast<size_t>(doc->GetWordyItemsData()->GetColumnSum(2))) );
+        viewDlg.AddValue(_("Total Wordy Items"),
+            std::to_wstring(static_cast<size_t>(doc->GetWordyItemsData()->GetColumnSum(2))) );
         }
     else if (GetActiveProjectWindow()->GetId() == REDUNDANT_PHRASE_LIST_PAGE_ID)
         {
-        viewDlg.AddValue(_("Total Redundant Phrases"), std::to_wstring(static_cast<size_t>(doc->GetRedundantPhrasesData()->GetColumnSum(2))) );
+        viewDlg.AddValue(_("Total Redundant Phrases"),
+            std::to_wstring(static_cast<size_t>(doc->GetRedundantPhrasesData()->GetColumnSum(2))) );
         }
     else if (GetActiveProjectWindow()->GetId() == OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID)
         {
-        viewDlg.AddValue(_("Total Overused Words (x Sentence)"), std::to_wstring(static_cast<size_t>(doc->GetOverusedWordBySentenceData()->GetColumnSum(2))) );
+        viewDlg.AddValue(_("Total Overused Words (x Sentence)"),
+            std::to_wstring(static_cast<size_t>(doc->GetOverusedWordBySentenceData()->GetColumnSum(2))) );
         }
     else if (GetActiveProjectWindow()->GetId() == WORDING_ERRORS_LIST_PAGE_ID)
         {
-        viewDlg.AddValue(_("Total Wording Errors"), std::to_wstring(static_cast<size_t>(doc->GetWordingErrorsData()->GetColumnSum(2))) );
+        viewDlg.AddValue(_("Total Wording Errors"),
+            std::to_wstring(static_cast<size_t>(doc->GetWordingErrorsData()->GetColumnSum(2))) );
         }
     else if (GetActiveProjectWindow()->GetId() == CLICHES_LIST_PAGE_ID)
         {
-        viewDlg.AddValue(_("Total Clich\351s"), std::to_wstring(static_cast<size_t>(doc->GetClicheData()->GetColumnSum(2))) );
+        viewDlg.AddValue(_("Total Clich\351s"),
+            std::to_wstring(static_cast<size_t>(doc->GetClicheData()->GetColumnSum(2))) );
         }
     else if (GetActiveProjectWindow()->GetId() == LONG_SENTENCES_LIST_PAGE_ID)
         {
-        viewDlg.AddValue(_("Total Overly-long Sentences"), std::to_wstring(static_cast<size_t>(doc->GetLongSentencesData()->GetColumnSum(2))) );
+        viewDlg.AddValue(_("Total Overly-long Sentences"),
+            std::to_wstring(static_cast<size_t>(doc->GetLongSentencesData()->GetColumnSum(2))) );
         }
     else if (GetActiveProjectWindow()->GetId() == SENTENCES_CONJUNCTION_START_LIST_PAGE_ID)
         {
-        viewDlg.AddValue(_("Total Conjunction-starting Sentences"), std::to_wstring(static_cast<size_t>(doc->GetConjunctionStartingSentencesData()->GetColumnSum(2))) );
+        viewDlg.AddValue(_("Total Conjunction-starting Sentences"),
+            std::to_wstring(static_cast<size_t>(doc->GetConjunctionStartingSentencesData()->GetColumnSum(2))) );
         }
     else if (GetActiveProjectWindow()->GetId() == SENTENCES_LOWERCASE_START_LIST_PAGE_ID)
         {
-        viewDlg.AddValue(_("Total Lowercases Sentences"), std::to_wstring(static_cast<size_t>(doc->GetLowerCasedSentencesData()->GetColumnSum(2))) );
+        viewDlg.AddValue(_("Total Lowercases Sentences"),
+            std::to_wstring(static_cast<size_t>(doc->GetLowerCasedSentencesData()->GetColumnSum(2))) );
         }
     viewDlg.Create(GetDocFrame(), wxID_ANY, _("Column Summations"));
     viewDlg.ShowModal();
@@ -269,10 +284,12 @@ void BatchProjectView::OnAddToDictionary([[maybe_unused]] wxCommandEvent& event)
     if (GetSideBar()->GetSelectedFolderId() != SIDEBAR_GRAMMAR_SECTION_ID)
         { GetSideBar()->SelectFolder(GetSideBar()->FindFolder(SIDEBAR_GRAMMAR_SECTION_ID), false); }
 
-    const ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(GetGrammarView().FindWindowById(MISSPELLED_WORD_LIST_PAGE_ID));
+    const ListCtrlEx* listView =
+        dynamic_cast<ListCtrlEx*>(GetGrammarView().FindWindowById(MISSPELLED_WORD_LIST_PAGE_ID));
     if (listView)
         {
-        GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(SIDEBAR_GRAMMAR_SECTION_ID, MISSPELLED_WORD_LIST_PAGE_ID));
+        GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(
+            SIDEBAR_GRAMMAR_SECTION_ID, MISSPELLED_WORD_LIST_PAGE_ID));
         if (listView->GetFocusedItem() == wxNOT_FOUND)
             {
             wxMessageBox(_("Please select a document to add its misspellings to your dictionary."),
@@ -280,7 +297,8 @@ void BatchProjectView::OnAddToDictionary([[maybe_unused]] wxCommandEvent& event)
             return;
             }
         wxArrayString misspellings;
-        const wxString reportString = listView->GetItemTextEx(listView->GetFocusedItem(), listView->GetColumnCount()-1);
+        const wxString reportString =
+            listView->GetItemTextEx(listView->GetFocusedItem(), listView->GetColumnCount()-1);
         size_t startingQuote = reportString.find(L'\"');
         while (startingQuote != wxString::npos)
             {
@@ -299,7 +317,8 @@ void BatchProjectView::OnAddToDictionary([[maybe_unused]] wxCommandEvent& event)
             _("Add to Dictionary"), _("Check the words to add to your custom dictionary and click OK:"));
         if (misspellingDlg.ShowModal() == wxID_OK)
             {
-            wxGetApp().AddWordsToDictionaries(misspellingDlg.GetSelectedItems(), dynamic_cast<BaseProjectDoc*>(GetDocument())->GetProjectLanguage());
+            wxGetApp().AddWordsToDictionaries(misspellingDlg.GetSelectedItems(),
+                dynamic_cast<BaseProjectDoc*>(GetDocument())->GetProjectLanguage());
             wxList docs = wxGetApp().GetDocManager()->GetDocuments();
             for (size_t i = 0; i < docs.GetCount(); ++i)
                 {
@@ -321,11 +340,13 @@ void BatchProjectView::OnDblClick(wxListEvent& event)
     {
     if (event.GetId() == MISSPELLED_WORD_LIST_PAGE_ID)
         {
-        const ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(GetGrammarView().FindWindowById(MISSPELLED_WORD_LIST_PAGE_ID));
+        const ListCtrlEx* listView =
+            dynamic_cast<ListCtrlEx*>(GetGrammarView().FindWindowById(MISSPELLED_WORD_LIST_PAGE_ID));
         if (!listView)
             { return; }
         wxArrayString misspellings;
-        const wxString reportString = listView->GetItemTextEx(listView->GetFocusedItem(), listView->GetColumnCount()-1);
+        const wxString reportString =
+            listView->GetItemTextEx(listView->GetFocusedItem(), listView->GetColumnCount()-1);
         size_t startingQuote = reportString.find(L'\"');
         while (startingQuote != wxString::npos)
             {
@@ -344,7 +365,8 @@ void BatchProjectView::OnDblClick(wxListEvent& event)
             _("Add to Dictionary"), _("Check the words to add to your custom dictionary and click OK:"));
         if (misspellingDlg.ShowModal() == wxID_OK)
             {
-            wxGetApp().AddWordsToDictionaries(misspellingDlg.GetSelectedItems(), dynamic_cast<BaseProjectDoc*>(GetDocument())->GetProjectLanguage());
+            wxGetApp().AddWordsToDictionaries(misspellingDlg.GetSelectedItems(),
+                dynamic_cast<BaseProjectDoc*>(GetDocument())->GetProjectLanguage());
             wxList docs = wxGetApp().GetDocManager()->GetDocuments();
             for (size_t i = 0; i < docs.GetCount(); ++i)
                 {
@@ -359,7 +381,8 @@ void BatchProjectView::OnDblClick(wxListEvent& event)
 ///@todo need to set the page more intelligently, like in ProjectView::OnEditGraphOptions().
 void BatchProjectView::OnEditGraphOptions([[maybe_unused]] wxCommandEvent& event)
     {
-    ToolsOptionsDlg optionsDlg(GetDocFrame(), dynamic_cast<BatchProjectDoc*>(GetDocument()), ToolsOptionsDlg::GraphsSection);
+    ToolsOptionsDlg optionsDlg(GetDocFrame(), dynamic_cast<BatchProjectDoc*>(GetDocument()),
+                               ToolsOptionsDlg::GraphsSection);
     optionsDlg.SelectPage(ToolsOptionsDlg::GRAPH_GENERAL_PAGE);
     if (optionsDlg.ShowModal() == wxID_OK)
         { dynamic_cast<BatchProjectDoc*>(GetDocument())->RefreshGraphs(); }
@@ -371,7 +394,7 @@ void BatchProjectView::OnAddTest(wxCommandEvent& event)
     BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(GetDocument());
     if (!doc->IsSafeToUpdate())
         { return; }
-    //include test from XRC_ID passed in from the menu
+    // include test from XRC_ID passed in from the menu
     if (event.GetId() == XRCID("ID_DOLCH"))
         { doc->IncludeDolchSightWords(); }
     else
@@ -400,7 +423,8 @@ bool BatchProjectView::OnCreate(wxDocument* doc, long flags)
     GetWorkSpaceSizer()->Add(m_testExplanations, 0, wxEXPAND);
     GetWorkSpaceSizer()->Add(m_statsReport, 0, wxEXPAND);
 
-    m_warningsView = new ListCtrlEx(GetSplitter(), ID_WARNING_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxLC_ALIGN_LEFT);
+    m_warningsView = new ListCtrlEx(GetSplitter(), ID_WARNING_LIST_PAGE_ID, wxDefaultPosition,
+                                    wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxLC_ALIGN_LEFT);
     m_warningsView->Show(false);
 
     GetSplitter()->SplitVertically(GetSideBar(), GetWarningsView(), GetSideBar()->GetMinWidth());
@@ -410,7 +434,7 @@ bool BatchProjectView::OnCreate(wxDocument* doc, long flags)
     m_menuBar = wxXmlResource::Get()->LoadMenuBar(L"ID_BATCHDOCMENUBAR");
 #endif
 
-    //connect the test events
+    // connect the test events
     for (auto rTest = dynamic_cast<const BaseProjectDoc*>(doc)->GetReadabilityTests().get_tests().cbegin();
          rTest != dynamic_cast<const BaseProjectDoc*>(doc)->GetReadabilityTests().get_tests().cend();
          ++rTest)
@@ -598,13 +622,14 @@ void BatchProjectView::OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& eve
             GetSideBar()->FindSubItem(SIDEBAR_READABILITY_SCORES_SECTION_ID, ID_SCORE_STATS_LIST_PAGE_ID));
         }
 
-    const ListCtrlEx* activeListCtrl = dynamic_cast<ListCtrlEx*>(GetScoresView().FindWindowById(ID_SCORE_STATS_LIST_PAGE_ID));
+    const ListCtrlEx* activeListCtrl =
+        dynamic_cast<ListCtrlEx*>(GetScoresView().FindWindowById(ID_SCORE_STATS_LIST_PAGE_ID));
     if (activeListCtrl)
         {
         const wxString testToRemove = activeListCtrl->GetSelectedText();
         if (testToRemove.empty())
             {
-            wxMessageBox(_("Please select a test to remove."), wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION); 
+            wxMessageBox(_("Please select a test to remove."), wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
             return;
             }
 
@@ -613,7 +638,8 @@ void BatchProjectView::OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& eve
         if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
             warningIter->ShouldBeShown())
             {
-            wxRichMessageDialog msg(GetDocFrame(), wxString::Format(_("Do you wish to remove \"%s\" from the project?"), testToRemove),
+            wxRichMessageDialog msg(GetDocFrame(), wxString::Format(
+                _("Do you wish to remove \"%s\" from the project?"), testToRemove),
                 _("Remove Test"), wxYES_NO|wxNO_DEFAULT|wxICON_QUESTION);
             msg.SetEscapeId(wxID_NO);
             msg.ShowCheckBox(_("Always delete without prompting"));
@@ -631,7 +657,7 @@ void BatchProjectView::OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& eve
 
         if (!doc->RemoveTest(testToRemove))
             {
-            //some test names from the interface might have extra labeling on them
+            // some test names from the interface might have extra labeling on them
             if (!doc->RemoveTest(BatchProjectView::StripIndexValuesLabel(testToRemove)) &&
                 !doc->RemoveTest(BatchProjectView::StripClozeValuesLabel(testToRemove)) )
                 { doc->RemoveTest(BatchProjectView::StripGradeLevelsLabel(testToRemove)); }
@@ -651,7 +677,9 @@ void BatchProjectView::OnDocumentDelete([[maybe_unused]] wxRibbonButtonBarEvent&
 
     if (!GetActiveProjectWindow() || !GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)))
         {
-        wxMessageBox(_("Please select a window that contains a list of documents, select the ones that you wish to remove, and try again."),
+        wxMessageBox(
+            _("Please select a window that contains a list of documents, "
+              "select the ones that you wish to remove, and try again."),
             wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
         return;
         }
@@ -659,7 +687,7 @@ void BatchProjectView::OnDocumentDelete([[maybe_unused]] wxRibbonButtonBarEvent&
     const ListCtrlEx* activeListCtrl = dynamic_cast<ListCtrlEx*>(GetActiveProjectWindow());
     if (IsFilenameList(activeListCtrl->GetId()))
         {
-        //get the files that are selected
+        // get the files that are selected
         wxArrayString filesToRemove;
         long item = -1;
         while (true)
@@ -681,7 +709,8 @@ void BatchProjectView::OnDocumentDelete([[maybe_unused]] wxRibbonButtonBarEvent&
                 wxGetApp().GetAppOptions().GetRibbonHoverColor(),
                 wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
                 LD_YES_NO_BUTTONS|LD_DONT_SHOW_AGAIN, wxID_ANY,
-                _("Remove Documents"), _("Do you wish to remove these documents from the project?"));
+                _("Remove Documents"),
+                _("Do you wish to remove these documents from the project?"));
             listDlg.SetCheckBoxLabel(_("Always delete without prompting"));
             const int dlgResponse = listDlg.ShowModal();
             //save the checkbox status
@@ -696,11 +725,13 @@ void BatchProjectView::OnDocumentDelete([[maybe_unused]] wxRibbonButtonBarEvent&
         wxWindowUpdateLocker noUpdates(GetDocFrame());
         wxBusyCursor wait;
 
-        wxProgressDialog progressDlg(wxFileName::StripExtension(doc->GetTitle()), _("Removing documents..."), filesToRemove.size(),
+        wxProgressDialog progressDlg(wxFileName::StripExtension(doc->GetTitle()),
+            _("Removing documents..."), filesToRemove.size(),
             GetDocFrame(), wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_APP_MODAL);
 
-        //remove the files from the documents collection and from all of the listcontrols
-        //(some of these controls can't be updated without doing a full re-indexing, so just manually remove the paths from them).
+        // remove the files from the documents collection and from all of the listcontrols
+        // (some of these controls can't be updated without doing a full re-indexing,
+        // so just manually remove the paths from them).
         for (size_t i = 0; i < filesToRemove.GetCount(); ++i)
             {
             doc->RemoveDocument(filesToRemove[i]);
@@ -718,12 +749,13 @@ void BatchProjectView::OnDocumentDelete([[maybe_unused]] wxRibbonButtonBarEvent&
         }
     else
         {
-        wxMessageBox(_("Please select a window that contains a list of documents, select the ones that you wish to remove, and try again."),
-                wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
+        wxMessageBox(
+            _("Please select a window that contains a list of documents, "
+              "select the ones that you wish to remove, and try again."),
+            wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
         }
     }
 
-///side bar was clicked
 //-------------------------------------------------------
 void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     {
@@ -877,7 +909,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                 {
                 if (GetMenuBar())
                     {
-                    GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
+                    GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."),
+                        GetActiveProjectWindow()->GetName()) );
                     MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                     MenuBarEnableAll(GetMenuBar(), wxID_DELETE, true);
                     }
@@ -919,7 +952,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                             _("Long Format"),
                             readRibbonButtonSVG(L"ribbon/grade-display.svg"),
                             _("Display scores in long format."));
-                        editButtonRibbonBar->ToggleButton(XRCID("ID_LONG_FORMAT"), dynamic_cast<BatchProjectDoc*>(GetDocument())->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
+                        editButtonRibbonBar->ToggleButton(XRCID("ID_LONG_FORMAT"),
+                            dynamic_cast<BatchProjectDoc*>(GetDocument())->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
                         editButtonRibbonBar->AddDropdownButton(XRCID("ID_GRADE_SCALES"),
                             _("Grade Scale"),
                             readRibbonButtonSVG(L"ribbon/education.svg"),
@@ -961,7 +995,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
         {
         if (event.GetExtraLong() == SIDEBAR_BOXPLOTS_SECTION_ID)
             {
-            m_activeWindow = GetBoxPlotView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());//some tests have two box plots
+            // some tests have two box plots
+            m_activeWindow = GetBoxPlotView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());
             wxASSERT_LEVEL_2(GetActiveProjectWindow());
             if (GetActiveProjectWindow())
                 {
@@ -972,7 +1007,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             }
         else if (event.GetExtraLong() == SIDEBAR_HISTOGRAMS_SECTION_ID)
             {
-            m_activeWindow = GetHistogramsView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());//some tests have two histograms
+            // some tests have two histograms
+            m_activeWindow = GetHistogramsView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());
             wxASSERT_LEVEL_2(GetActiveProjectWindow());
             if (GetActiveProjectWindow())
                 {
@@ -983,7 +1019,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             }
         if (GetMenuBar())
             {
-            GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
+            GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
+                wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
             MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, false);
             }
         if (GetRibbon())
@@ -1000,14 +1037,19 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                 m_exportMenu.Append(wxID_SAVE, _("Save")+L"\tCtrl+S")->SetBitmap(saveIcon);
                 m_exportMenu.Append(wxID_SAVEAS, _("Save As..."));
                 m_exportMenu.AppendSeparator();
-                auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
+                auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
+                    wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
                 m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _("Export All..."))->SetBitmap(exportAllIcon);
                 m_exportMenu.AppendSeparator();
-                m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"), _("Export Scores && Statistics..."))->SetBitmap(reportIcon);
-                m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"), _("Export Statistics Report..."))->SetBitmap(reportIcon);
+                m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                    _("Export Scores && Statistics..."))->SetBitmap(reportIcon);
+                m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
+                    _("Export Statistics Report..."))->SetBitmap(reportIcon);
                 m_exportMenu.AppendSeparator();
-                m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), _("Export Filtered Document..."))->SetBitmap(filterIcon);
-                m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"), _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
+                m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                    _("Export Filtered Document..."))->SetBitmap(filterIcon);
+                m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                    _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                 auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                 wxASSERT(editButtonRibbonBar);
@@ -1032,7 +1074,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     _("Shadows"),
                     readRibbonButtonSVG(L"ribbon/shadow.svg"),
                     _("Display drop shadows on the graphs."));
-                editButtonRibbonBar->ToggleButton(XRCID("ID_DROP_SHADOW"), dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                editButtonRibbonBar->ToggleButton(XRCID("ID_DROP_SHADOW"),
+                    dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                 if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
                     {
                     const auto canvas = dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow());
@@ -1051,7 +1094,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     }
 
                 if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::BoxPlot))
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0,0)) ==
+                        typeid(Wisteria::Graphs::BoxPlot))
                     {
                     exportMenuItem->SetBitmap(boxPlotIcon);
                     editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_BOX_STYLE"),
@@ -1062,15 +1106,18 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         _("Display Labels"),
                         readRibbonButtonSVG(L"ribbon/show-all-labels.svg"),
                         _("Displays labels on the box and whiskers."));
-                    editButtonRibbonBar->ToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_LABELS"), dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingBoxPlotLabels());
+                    editButtonRibbonBar->ToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_LABELS"),
+                        dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingBoxPlotLabels());
                     editButtonRibbonBar->AddToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"),
                         _("Display Points"),
                         readRibbonButtonSVG(L"ribbon/show-all-points.svg"),
                         _("Displays all data points onto the plot."));
-                    editButtonRibbonBar->ToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"), dynamic_cast<BatchProjectDoc*>(GetDocument())->IsShowingAllBoxPlotPoints());
+                    editButtonRibbonBar->ToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"),
+                        dynamic_cast<BatchProjectDoc*>(GetDocument())->IsShowingAllBoxPlotPoints());
                     }
                 else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::Histogram))
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+                    typeid(Wisteria::Graphs::Histogram))
                     {
                     exportMenuItem->SetBitmap(histogramIcon);
                     editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"),
@@ -1078,7 +1125,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         readRibbonButtonSVG(L"ribbon/bar-top-to-bottom.svg"),
                         _("Changes the bar appearance."));
                     editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_HISTOBAR_LABELS"),
-                        _("Labels"), 
+                        _("Labels"),
                         readRibbonButtonSVG(L"ribbon/bar-labels.svg"),
                         _("Changes what is displayed on the bars' labels."));
                     }
@@ -1105,7 +1152,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
+                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."),
+                    GetActiveProjectWindow()->GetName()) );
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
@@ -1118,21 +1166,27 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         { m_copyMenu.Destroy(m_copyMenu.FindItemByPosition(0)); }
                     m_copyMenu.Append(wxID_COPY, _("Copy")+L"\tCtrl+C")->SetBitmap(copyIcon);
                     m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"), _("Copy with Column Headers"));
-                    m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"), _("Copy (First Column Only)")+L"\tShift+Ctrl+C");
+                    m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"),
+                        _("Copy (First Column Only)") + L"\tShift+Ctrl+C");
                     m_copyMenu.Append(XRCID("ID_COPY_ALL"), _("Copy All"));
                     while (m_exportMenu.GetMenuItemCount())
                         { m_exportMenu.Destroy(m_exportMenu.FindItemByPosition(0)); }
                     m_exportMenu.Append(wxID_SAVE, _("Save")+L"\tCtrl+S")->SetBitmap(saveIcon);
                     m_exportMenu.Append(wxID_SAVEAS, _("Save As..."));
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) )->SetBitmap(listIcon);
+                    m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."),
+                        GetActiveProjectWindow()->GetName()) )->SetBitmap(listIcon);
                     m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _("Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"), _("Export Scores && Statistics..."))->SetBitmap(reportIcon);
-                    m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"), _("Export Statistics Report..."))->SetBitmap(reportIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                        _("Export Scores && Statistics..."))->SetBitmap(reportIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
+                        _("Export Statistics Report..."))->SetBitmap(reportIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), _("Export Filtered Document..."))->SetBitmap(filterIcon);
-                    m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"), _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _("Export Filtered Document..."))->SetBitmap(filterIcon);
+                    m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                        _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonRibbonBar);
@@ -1170,7 +1224,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
+                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
+                    wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
@@ -1183,21 +1238,27 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         { m_copyMenu.Destroy(m_copyMenu.FindItemByPosition(0)); }
                     m_copyMenu.Append(wxID_COPY, _("Copy")+L"\tCtrl+C")->SetBitmap(copyIcon);
                     m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"), _("Copy with Column Headers"));
-                    m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"), _("Copy (First Column Only)")+L"\tShift+Ctrl+C");
+                    m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"),
+                        _("Copy (First Column Only)") + L"\tShift+Ctrl+C");
                     m_copyMenu.Append(XRCID("ID_COPY_ALL"), _("Copy All"));
                     while (m_exportMenu.GetMenuItemCount())
                         { m_exportMenu.Destroy(m_exportMenu.FindItemByPosition(0)); }
                     m_exportMenu.Append(wxID_SAVE, _("Save")+L"\tCtrl+S")->SetBitmap(saveIcon);
                     m_exportMenu.Append(wxID_SAVEAS, _("Save As..."));
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) )->SetBitmap(listIcon);
+                    m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."),
+                        GetActiveProjectWindow()->GetName()) )->SetBitmap(listIcon);
                     m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _("Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"), _("Export Scores && Statistics..."))->SetBitmap(reportIcon);
-                    m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"), _("Export Statistics Report..."))->SetBitmap(reportIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                        _("Export Scores && Statistics..."))->SetBitmap(reportIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
+                        _("Export Statistics Report..."))->SetBitmap(reportIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), _("Export Filtered Document..."))->SetBitmap(filterIcon);
-                    m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"), _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _("Export Filtered Document..."))->SetBitmap(filterIcon);
+                    m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                        _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonRibbonBar);
@@ -1239,7 +1300,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
+                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
+                    wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
@@ -1250,23 +1312,31 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     {
                     while (m_copyMenu.GetMenuItemCount())
                         { m_copyMenu.Destroy(m_copyMenu.FindItemByPosition(0)); }
-                    m_copyMenu.Append(wxID_COPY, _("Copy")+L"\tCtrl+C")->SetBitmap(copyIcon);
-                    m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"), _("Copy with Column Headers"));
-                    m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"), _("Copy (First Column Only)")+L"\tShift+Ctrl+C");
+                    m_copyMenu.Append(wxID_COPY, _("Copy") + L"\tCtrl+C")->SetBitmap(copyIcon);
+                    m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"),
+                        _("Copy with Column Headers"));
+                    m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"),
+                        _("Copy (First Column Only)") + L"\tShift+Ctrl+C");
                     m_copyMenu.Append(XRCID("ID_COPY_ALL"), _("Copy All"));
                     while (m_exportMenu.GetMenuItemCount())
                         { m_exportMenu.Destroy(m_exportMenu.FindItemByPosition(0)); }
                     m_exportMenu.Append(wxID_SAVE, _("Save")+L"\tCtrl+S")->SetBitmap(saveIcon);
                     m_exportMenu.Append(wxID_SAVEAS, _("Save As..."));
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) )->SetBitmap(listIcon);
+                    m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
+                        wxString::Format(_("Export %s..."),
+                            GetActiveProjectWindow()->GetName()) )->SetBitmap(listIcon);
                     m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _("Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"), _("Export Scores && Statistics..."))->SetBitmap(reportIcon);
-                    m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"), _("Export Statistics Report..."))->SetBitmap(reportIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                        _("Export Scores && Statistics..."))->SetBitmap(reportIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
+                        _("Export Statistics Report..."))->SetBitmap(reportIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), _("Export Filtered Document..."))->SetBitmap(filterIcon);
-                    m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"), _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _("Export Filtered Document..."))->SetBitmap(filterIcon);
+                    m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                        _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonRibbonBar);
@@ -1308,7 +1378,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
+                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
+                    wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
@@ -1329,14 +1400,21 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(wxID_SAVE, _("Save") + L"\tCtrl+S")->SetBitmap(saveIcon);
                     m_exportMenu.Append(wxID_SAVEAS, _("Save As..."));
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) )->SetBitmap(listIcon);
-                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _("Export All..."))->SetBitmap(exportAllIcon);
+                    m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
+                        wxString::Format(_("Export %s..."),
+                            GetActiveProjectWindow()->GetName()) )->SetBitmap(listIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"),
+                        _("Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"), _("Export Scores && Statistics..."))->SetBitmap(reportIcon);
-                    m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"), _("Export Statistics Report..."))->SetBitmap(reportIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                        _("Export Scores && Statistics..."))->SetBitmap(reportIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
+                        _("Export Statistics Report..."))->SetBitmap(reportIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), _("Export Filtered Document..."))->SetBitmap(filterIcon);
-                    m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"), _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _("Export Filtered Document..."))->SetBitmap(filterIcon);
+                    m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                        _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonRibbonBar);
@@ -1374,7 +1452,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
+                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
+                    wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
@@ -1387,21 +1466,29 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         { m_copyMenu.Destroy(m_copyMenu.FindItemByPosition(0)); }
                     m_copyMenu.Append(wxID_COPY, _("Copy") + L"\tCtrl+C")->SetBitmap(copyIcon);
                     m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"), _("Copy with Column Headers"));
-                    m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"), _("Copy (First Column Only)")+L"\tShift+Ctrl+C");
+                    m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"),
+                        _("Copy (First Column Only)") + L"\tShift+Ctrl+C");
                     m_copyMenu.Append(XRCID("ID_COPY_ALL"), _("Copy All"));
                     while (m_exportMenu.GetMenuItemCount())
                         { m_exportMenu.Destroy(m_exportMenu.FindItemByPosition(0)); }
                     m_exportMenu.Append(wxID_SAVE, _("Save") + L"\tCtrl+S")->SetBitmap(saveIcon);
                     m_exportMenu.Append(wxID_SAVEAS, _("Save As..."));
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) )->SetBitmap(listIcon);
-                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _("Export All..."))->SetBitmap(exportAllIcon);
+                    m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
+                        wxString::Format(_("Export %s..."),
+                            GetActiveProjectWindow()->GetName()) )->SetBitmap(listIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"),
+                        _("Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"), _("Export Scores && Statistics..."))->SetBitmap(reportIcon);
-                    m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"), _("Export Statistics Report..."))->SetBitmap(reportIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                        _("Export Scores && Statistics..."))->SetBitmap(reportIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
+                        _("Export Statistics Report..."))->SetBitmap(reportIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), _("Export Filtered Document..."))->SetBitmap(filterIcon);
-                    m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"), _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _("Export Filtered Document..."))->SetBitmap(filterIcon);
+                    m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                        _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonRibbonBar);
@@ -1432,15 +1519,15 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     event.Skip();
     }
 
-///Updates the Stats and Test Explanation panes to reflect the specified filename
 //-------------------------------------------------------
 void BatchProjectView::UpdateStatAndTestPanes(const wxString& fileName)
     {
     if (fileName.empty())
         { return; }
     ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(GetScoresView().FindWindowById(ID_SCORE_LIST_PAGE_ID));
+    // shouldn't happen
     if (!list)
-        { return; }//shouldn't happen
+        { return; }
     UpdateStatAndTestPanes(list->FindEx(fileName));
     }
 
@@ -1460,7 +1547,6 @@ wxString BatchProjectView::StripToTestName(const wxString& testName)
         { return testName; }
     }
 
-///Updates the Stats and Test Explanation panes to reflect the selected item in the Scores lists
 //-------------------------------------------------------
 void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
     {
@@ -1468,8 +1554,9 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
         { return; }
     ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(GetScoresView().FindWindowById(ID_SCORE_LIST_PAGE_ID));
     wxASSERT(list);
+    // shouldn't happen
     if (!list)
-        { return; }//shouldn't happen
+        { return; }
     //If nothing is selected in the raw score list then just select this item and return--
     //selecting this item will simply fire the OnScoreItemSelected event and return here.
     //The point of selecting the item (if nothing is selected) is to prevent OnActiveView from clearing the stats panes.
@@ -1495,22 +1582,29 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
     for (long i = 2/*skip document and description column*/; i < list->GetColumnCount(); ++i)
         {
         const wxString currentTestFullName = list->GetColumnName(i);
-        const wxString currentTest = StripGradeLevelsLabel(currentTestFullName);//we will want grade level columns, but not cloze or Index values
+        // we will want grade level columns, but not cloze or Index values
+        const wxString currentTest = StripGradeLevelsLabel(currentTestFullName);
         auto standardTestPos = doc->GetReadabilityTests().get_test(currentTest);
         if (standardTestPos.second)
             {
-            scoreText += wxString::Format(L"<table style='width:100%%;'><thead><tr><td style='background:%s;'><span style='font-weight:bold; color:%s;'>",
+            scoreText += wxString::Format(
+                L"<table style='width:100%%;'><thead><tr><td style='background:%s;'>"
+                 "<span style='font-weight:bold; color:%s;'>",
                 ProjectReportFormat::GetReportHeaderColor().GetAsString(wxC2S_HTML_SYNTAX),
                 ProjectReportFormat::GetReportHeaderFontColor().GetAsString(wxC2S_HTML_SYNTAX)) +
             currentTestFullName + L"</span></td></tr></thead>";
 
-            //note that tests with their own scales have to be formatted differently than the grade-level tests
+            // note that tests with their own scales have to be formatted differently than the grade-level tests
             if (eflawPos.second && *eflawPos.first == readability::readability_test(currentTest))
                 {
                 if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
                     {
-                    scoreText += L"\n<tr><td>" + ReadabilityMessages::GetEflawDescription(readability::eflaw_index_to_difficulty(score)) + L"</td></tr>";
-                    scoreText += L"\n<tr><td>" + wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) + L"</td></tr></table>";
+                    scoreText += L"\n<tr><td>" +
+                        ReadabilityMessages::GetEflawDescription(readability::eflaw_index_to_difficulty(score)) +
+                        L"</td></tr>";
+                    scoreText += L"\n<tr><td>" +
+                        wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
+                        L"</td></tr></table>";
                     }
                 }
             else if ((fleschPos.second && *fleschPos.first == readability::readability_test(currentTest)) ||
@@ -1519,16 +1613,26 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
                 {
                 if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
                     {
-                    scoreText += L"\n<tr><td>" + ReadabilityMessages::GetFleschDescription(readability::flesch_score_to_difficulty_level(score)) + L"</td></tr>";
-                    scoreText += L"\n<tr><td>" + wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) + L"</td></tr></table>";
+                    scoreText += L"\n<tr><td>" +
+                        ReadabilityMessages::GetFleschDescription(
+                            readability::flesch_score_to_difficulty_level(score)) +
+                        L"</td></tr>";
+                    scoreText += L"\n<tr><td>" +
+                        wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
+                        L"</td></tr></table>";
                     }
                 }
             else if (db2Pos.second && *db2Pos.first == readability::readability_test(currentTest))
                 {
                 if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
                     {
-                    scoreText += L"\n<tr><td>" + ReadabilityMessages::GetDanielsonBryan2Description(readability::flesch_score_to_difficulty_level(score)) + L"</td></tr>";
-                    scoreText += L"\n<tr><td>" + wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) + L"</td></tr></table>";
+                    scoreText += L"\n<tr><td>" +
+                        ReadabilityMessages::GetDanielsonBryan2Description(
+                            readability::flesch_score_to_difficulty_level(score)) +
+                        L"</td></tr>";
+                    scoreText += L"\n<tr><td>" +
+                        wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
+                        L"</td></tr></table>";
                     }
                 }
             else if (drpPos.second && *drpPos.first == readability::readability_test(currentTest))
@@ -1556,7 +1660,7 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
                     scoreText += L"\n<tr><td>" + doc->GetReadabilityMessageCatalog().GetGradeScaleDescription(score) + L"</td></tr>";
                     scoreText += L"\n<tr><td>" + wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) + L"</td></tr></table>";
                     }
-                //just show whatever message is in the list if we can't convert it to a value
+                // just show whatever message is in the list if we can't convert it to a value
                 else
                     {
                     scoreText += L"\n<tr><td>" + list->GetItemTextEx(scoreListItem, i) + L"</td></tr></table>";
@@ -1573,19 +1677,23 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
             }
         else if (doc->HasCustomTest(currentTestFullName))
             {
-            scoreText += wxString::Format(L"<table style='width:100%%;'><thead><tr><td style='background:%s;'><span style='font-weight:bold; color:%s;'>",
+            scoreText += wxString::Format(
+                L"<table style='width:100%%;'><thead><tr><td style='background:%s;'>"
+                 "<span style='font-weight:bold; color:%s;'>",
                 ProjectReportFormat::GetReportHeaderColor().GetAsString(wxC2S_HTML_SYNTAX),
                 ProjectReportFormat::GetReportHeaderFontColor().GetAsString(wxC2S_HTML_SYNTAX) ) +
                          currentTestFullName + L"</span></td></tr></thead>";
 
-            CustomReadabilityTestCollection::const_iterator customTestPos = doc->GetCustomTest(currentTestFullName)->GetIterator();
+            auto customTestPos = doc->GetCustomTest(currentTestFullName)->GetIterator();
             if (customTestPos->get_test_type() == readability::readability_test_type::grade_level)
                 {
                 if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
                     {
-                    scoreText += L"\n<tr><td>" + doc->GetReadabilityMessageCatalog().GetGradeScaleDescription(score) + L"</td></tr>";
+                    scoreText += L"\n<tr><td>" +
+                        doc->GetReadabilityMessageCatalog().GetGradeScaleDescription(score) +
+                        L"</td></tr>";
                     }
-                //just show whatever message is in the list if we can't convert it to a value
+                // just show whatever message is in the list if we can't convert it to a value
                 else
                     {
                     scoreText += L"\n<tr><td>" + list->GetItemTextEx(scoreListItem, i) + L"</td></tr></table>";
@@ -1593,14 +1701,19 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
                 }
             else if (customTestPos->get_test_type() == readability::readability_test_type::index_value)
                 {
-                //just show whatever value is in there, as we won't know what the index value for a user's custom test really means to him/her
-                scoreText += L"\n<tr><td>" + _("Index score: ") + list->GetItemTextEx(scoreListItem, i) + L"</td></tr></table>";
+                // just show whatever value is in there, as we won't know what the
+                // index value for a user's custom test really means to him/her
+                scoreText += L"\n<tr><td>" + _("Index score: ") +
+                    list->GetItemTextEx(scoreListItem, i) +
+                    L"</td></tr></table>";
                 }
             else if (customTestPos->get_test_type() == readability::readability_test_type::predicted_cloze_score)
                 {
                 if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
                     {
-                    scoreText += L"\n<tr><td>" + doc->GetReadabilityMessageCatalog().GetPredictedClozeDescription(score) + L"</td></tr>";
+                    scoreText += L"\n<tr><td>" +
+                        doc->GetReadabilityMessageCatalog().GetPredictedClozeDescription(score) +
+                        L"</td></tr>";
                     }
                 }
             }
@@ -1612,7 +1725,9 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
         m_testExplanations->GetHtmlWindow()->SetPage(
             ProjectReportFormat::FormatHtmlReportStart(
                 wxGetApp().GetAppOptions().GetControlBackgroundColor(),
-                Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(wxGetApp().GetAppOptions().GetControlBackgroundColor())) + scoreText + ProjectReportFormat::FormatHtmlReportEnd());
+                Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
+                    wxGetApp().GetAppOptions().GetControlBackgroundColor())) + scoreText +
+                    ProjectReportFormat::FormatHtmlReportEnd());
         }
 
     const wxString docName = list->GetItemTextEx(scoreListItem, 0);
@@ -1621,21 +1736,24 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
         if (m_statsReport &&
             CompareFilePaths(doc->GetDocuments()[i]->GetOriginalDocumentFilePath(), docName) == 0)
             {
-            wxString docTable = L"<br /><span style='font-weight:bold;'>" + list->GetItemTextFormatted(scoreListItem, 0) + L"</span><hr>";
-            std::wstring text = docTable + ProjectReportFormat::FormatStatisticsInfo(doc->GetDocuments()[i], wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT), nullptr);
+            wxString docTable = L"<br /><span style='font-weight:bold;'>" +
+                list->GetItemTextFormatted(scoreListItem, 0) +
+                L"</span><hr>";
+            std::wstring text = docTable +
+                ProjectReportFormat::FormatStatisticsInfo(doc->GetDocuments()[i],
+                    wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT), nullptr);
             lily_of_the_valley::html_format::strip_hyperlinks(text);
             m_statsReport->GetHtmlWindow()->SetPage(
                 ProjectReportFormat::FormatHtmlReportStart(
                     wxGetApp().GetAppOptions().GetControlBackgroundColor(),
-                    Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(wxGetApp().GetAppOptions().GetControlBackgroundColor())) + text + ProjectReportFormat::FormatHtmlReportEnd());
+                    Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
+                        wxGetApp().GetAppOptions().GetControlBackgroundColor())) + text +
+                        ProjectReportFormat::FormatHtmlReportEnd());
             break;
             }
         }
     }
 
-/**This is for when a list other than the "raw scores" list has a file name selected.
-   It will search for the selected file name from the list and then update the floating stats and test panes with
-   the document's respective information.*/
 //-------------------------------------------------------
 void BatchProjectView::OnNonScoreItemSelected(wxListEvent& event)
     {
@@ -1644,7 +1762,6 @@ void BatchProjectView::OnNonScoreItemSelected(wxListEvent& event)
         { UpdateStatAndTestPanes(dynamic_cast<const ListCtrlEx*>(window)->GetSelectedText()); }
     }
 
-///document scores were selected
 //-------------------------------------------------------
 void BatchProjectView::OnScoreItemSelected(wxListEvent& event)
     { UpdateStatAndTestPanes(event.GetIndex()); }
@@ -1688,7 +1805,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
         if (folder.empty() || !wxFileName::Mkdir(folder, wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL) )
             { return false; }
         }
-    //validate the extensions
+    // validate the extensions
     if (listExt.empty())
         { listExt = L".htm"; }
     else if (listExt[0] != L'.')
@@ -1715,10 +1832,11 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
     progressDlg.Centre();
     int counter{ 1 };
 
-    //the results window
+    // the results window
     if (includeTestScores && GetScoresView().GetWindowCount() )
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel(),
+            wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
             wxMessageBox(wxString::Format(_("Unable to create \"%s\" folder."), GetReadabilityScoresLabel()),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
@@ -1735,8 +1853,11 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                         ListCtrlEx* listWindow = dynamic_cast<ListCtrlEx*>(activeWindow);
                         if (listWindow)
                             {
-                            listWindow->SetLabel(wxString::Format(L"%s [%s]", listWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
-                            listWindow->Save(folder + wxFileName::GetPathSeparator()  + GetReadabilityScoresLabel() + wxFileName::GetPathSeparator() + listWindow->GetLabel() + listExt, GridExportOptions());
+                            listWindow->SetLabel(wxString::Format(L"%s [%s]", listWindow->GetName(),
+                                wxFileName::StripExtension(doc->GetTitle())));
+                            listWindow->Save(folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel() +
+                                wxFileName::GetPathSeparator() + listWindow->GetLabel() + listExt,
+                                GridExportOptions());
                             }
                         }
                     else if (typeid(*activeWindow) == typeid(Wisteria::Canvas))
@@ -1744,8 +1865,11 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                         Wisteria::Canvas* graphWindow = dynamic_cast<Wisteria::Canvas*>(activeWindow);
                         if (graphWindow)
                             {
-                            graphWindow->SetLabel(wxString::Format(L"%s [%s]", graphWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
-                            graphWindow->Save(folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel() + wxFileName::GetPathSeparator() + graphWindow->GetLabel() + graphExt,
+                            graphWindow->SetLabel(wxString::Format(L"%s [%s]", graphWindow->GetName(),
+                                wxFileName::StripExtension(doc->GetTitle())));
+                            graphWindow->Save(folder + wxFileName::GetPathSeparator() +
+                                GetReadabilityScoresLabel() + wxFileName::GetPathSeparator() +
+                                graphWindow->GetLabel() + graphExt,
                                 graphOptions);
                             }
                         }
@@ -1756,10 +1880,11 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                 }
             }
         }
-    //the graphs
+    // the graphs
     if (includeGraphs && (GetHistogramsView().GetWindowCount() || GetBoxPlotView().GetWindowCount()) )
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + _("Graphs"), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + _("Graphs"),
+            wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
             wxMessageBox(_("Unable to create \"Graphs\" folder."),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
@@ -1771,8 +1896,10 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                 Wisteria::Canvas* graphWindow = dynamic_cast<Wisteria::Canvas*>(GetHistogramsView().GetWindow(i));
                 if (graphWindow)
                     {
-                    graphWindow->SetLabel(wxString::Format(_("%s Histogram [%s]"), graphWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
-                    graphWindow->Save(folder + wxFileName::GetPathSeparator() + _("Graphs") + wxFileName::GetPathSeparator() + graphWindow->GetLabel() + graphExt,
+                    graphWindow->SetLabel(wxString::Format(_("%s Histogram [%s]"), graphWindow->GetName(),
+                        wxFileName::StripExtension(doc->GetTitle())));
+                    graphWindow->Save(folder + wxFileName::GetPathSeparator() + _("Graphs") +
+                        wxFileName::GetPathSeparator() + graphWindow->GetLabel() + graphExt,
                         graphOptions);
                     }
                 wxGetApp().Yield(true);
@@ -1784,8 +1911,10 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                 Wisteria::Canvas* graphWindow = dynamic_cast<Wisteria::Canvas*>(GetBoxPlotView().GetWindow(i));
                 if (graphWindow)
                     {
-                    graphWindow->SetLabel(wxString::Format(_("%s Box Plot [%s]"), graphWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
-                    graphWindow->Save(folder + wxFileName::GetPathSeparator() + _("Graphs") + wxFileName::GetPathSeparator() + graphWindow->GetLabel() + graphExt,
+                    graphWindow->SetLabel(wxString::Format(_("%s Box Plot [%s]"), graphWindow->GetName(),
+                        wxFileName::StripExtension(doc->GetTitle())));
+                    graphWindow->Save(folder + wxFileName::GetPathSeparator() + _("Graphs") +
+                        wxFileName::GetPathSeparator() + graphWindow->GetLabel() + graphExt,
                         graphOptions);
                     }
                 wxGetApp().Yield(true);
@@ -1797,7 +1926,8 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
     //the hard word list views
     if (includeHardWordLists)
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel(),
+            wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
             wxMessageBox(wxString::Format(_("Unable to create \"%s\" folder."), GetWordsBreakdownLabel()),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
@@ -1809,8 +1939,10 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                 ListCtrlEx* listWindow = dynamic_cast<ListCtrlEx*>(GetWordsBreakdownView().GetWindow(i));
                 if (listWindow)
                     {
-                    listWindow->SetLabel(wxString::Format(L"%s [%s]", listWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
-                    listWindow->Save(folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel()+ wxFileName::GetPathSeparator() + listWindow->GetLabel() + listExt, GridExportOptions());
+                    listWindow->SetLabel(wxString::Format(L"%s [%s]", listWindow->GetName(),
+                        wxFileName::StripExtension(doc->GetTitle())));
+                    listWindow->Save(folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel() +
+                        wxFileName::GetPathSeparator() + listWindow->GetLabel() + listExt, GridExportOptions());
                     }
                 wxGetApp().Yield(true);
                 if (!progressDlg.Update(counter++))
@@ -1818,10 +1950,11 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                 }
             }
         }
-    //sentences breakdown
+    // sentences breakdown
     if (includeSentencesBreakdown)
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetSentencesBreakdownLabel(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetSentencesBreakdownLabel(),
+            wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
             wxMessageBox(wxString::Format(_("Unable to create \"%s\" folder."), GetSentencesBreakdownLabel()),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
@@ -1833,8 +1966,12 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                 ListCtrlEx* listWindow = dynamic_cast<ListCtrlEx*>(GetSentencesBreakdownView().GetWindow(i));
                 if (listWindow)
                     {
-                    listWindow->SetLabel(wxString::Format(L"%s [%s]", listWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
-                    listWindow->Save(folder + wxFileName::GetPathSeparator() + GetSentencesBreakdownLabel()+ wxFileName::GetPathSeparator() + listWindow->GetLabel() + listExt, GridExportOptions());
+                    listWindow->SetLabel(wxString::Format(L"%s [%s]",
+                        listWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                    listWindow->Save(folder + wxFileName::GetPathSeparator() +
+                        GetSentencesBreakdownLabel() + wxFileName::GetPathSeparator() +
+                            listWindow->GetLabel() + listExt,
+                        GridExportOptions());
                     }
                 wxGetApp().Yield(true);
                 if (!progressDlg.Update(counter++))
@@ -1842,10 +1979,11 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                 }
             }
         }
-    //grammar
+    // grammar
     if (includeWordiness && GetGrammarView().GetWindowCount() )
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetGrammarLabel(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetGrammarLabel(),
+            wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
             wxMessageBox(wxString::Format(_("Unable to create \"%s\" folder."), GetGrammarLabel()),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
@@ -1857,8 +1995,10 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                 ListCtrlEx* listWindow = dynamic_cast<ListCtrlEx*>(GetGrammarView().GetWindow(i));
                 if (listWindow)
                     {
-                    listWindow->SetLabel(wxString::Format(L"%s [%s]", listWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
-                    listWindow->Save(folder + wxFileName::GetPathSeparator() + GetGrammarLabel() + wxFileName::GetPathSeparator() + listWindow->GetLabel() + listExt, GridExportOptions());
+                    listWindow->SetLabel(wxString::Format(L"%s [%s]", listWindow->GetName(),
+                        wxFileName::StripExtension(doc->GetTitle())));
+                    listWindow->Save(folder + wxFileName::GetPathSeparator() + GetGrammarLabel() +
+                        wxFileName::GetPathSeparator() + listWindow->GetLabel() + listExt, GridExportOptions());
                     }
                 wxGetApp().Yield(true);
                 if (!progressDlg.Update(counter++))
@@ -1869,7 +2009,8 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
     //Sight Words
     if (includeSightWords && GetDolchSightWordsView().GetWindowCount() )
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetDolchLabel(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetDolchLabel(),
+            wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
             wxMessageBox(wxString::Format(_("Unable to create \"%s\" folder."), GetDolchLabel()),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
@@ -1881,8 +2022,11 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                 ListCtrlEx* listWindow = dynamic_cast<ListCtrlEx*>(GetDolchSightWordsView().GetWindow(i));
                 if (listWindow)
                     {
-                    listWindow->SetLabel(wxString::Format(L"%s [%s]", listWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
-                    listWindow->Save(folder + wxFileName::GetPathSeparator()  + GetDolchLabel() + wxFileName::GetPathSeparator() + listWindow->GetLabel() + listExt, GridExportOptions());
+                    listWindow->SetLabel(wxString::Format(L"%s [%s]", listWindow->GetName(),
+                        wxFileName::StripExtension(doc->GetTitle())));
+                    listWindow->Save(folder + wxFileName::GetPathSeparator() +
+                        GetDolchLabel() + wxFileName::GetPathSeparator() + listWindow->GetLabel() + listExt,
+                        GridExportOptions());
                     }
                 wxGetApp().Yield(true);
                 if (!progressDlg.Update(counter++))
@@ -1893,7 +2037,8 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
     //warnings
     if (includeWarnings && GetWarningsView()->GetItemCount())
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetWarningLabel(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() +
+            GetWarningLabel(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
             wxMessageBox(wxString::Format(_("Unable to create \"%s\" folder."), GetWarningLabel()),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
@@ -1902,8 +2047,11 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
             {
             if (GetWarningsView()->GetItemCount() > 0)
                 {
-                GetWarningsView()->SetLabel(wxString::Format(L"%s [%s]", GetWarningsView()->GetName(), wxFileName::StripExtension(doc->GetTitle())));
-                GetWarningsView()->Save(folder + wxFileName::GetPathSeparator()  + GetWarningLabel() + wxFileName::GetPathSeparator() + GetWarningsView()->GetLabel() + listExt, GridExportOptions());
+                GetWarningsView()->SetLabel(wxString::Format(L"%s [%s]",
+                    GetWarningsView()->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                GetWarningsView()->Save(folder + wxFileName::GetPathSeparator() +
+                    GetWarningLabel() + wxFileName::GetPathSeparator() +
+                    GetWarningsView()->GetLabel() + listExt, GridExportOptions());
                 }
             wxGetApp().Yield(true);
                 if (!progressDlg.Update(counter++))
@@ -1958,7 +2106,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
 
     const wxString pageBreak = L"<div style='page-break-before:always'></div><br />\n";
 
-    const auto formatImageOutput = 
+    const auto formatImageOutput =
         [&outputText, &sectionCounter, &figureCounter, pageBreak, doc, htmlEncode, graphExt, graphOptions, filePath]
         (Wisteria::Canvas* canvas, const bool includeLeadingPageBreak, const wxString& subFolder = wxEmptyString)
         {
@@ -1968,7 +2116,8 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         canvas->Save(filePath.GetPathWithSep() + _DT(L"images") + subFolder + wxFileName::GetPathSeparator() +
             canvas->GetLabel() + graphExt, graphOptions);
 
-        outputText += wxString::Format(L"%s\n<div class='minipage figure'>\n<img src='images%s\\%s' />\n<div class='caption'>%s</div>\n</div>\n",
+        outputText += wxString::Format(
+            L"%s\n<div class='minipage figure'>\n<img src='images%s\\%s' />\n<div class='caption'>%s</div>\n</div>\n",
             (includeLeadingPageBreak ? pageBreak : wxEmptyString),
             subFolder,
             canvas->GetLabel()+graphExt,
@@ -2006,7 +2155,8 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         // update/reset counters for sections, tables, and figures
         ++sectionCounter;
         figureCounter = tableCounter = 1;
-        outputText += wxString::Format(L"\n\n%s<div class=\"report-section\"><a name=\"scores\"></a>%s</div>\n",
+        outputText += wxString::Format(
+            L"\n\n%s<div class=\"report-section\"><a name=\"scores\"></a>%s</div>\n",
             (hasSections ? pageBreak : wxEmptyString),
             htmlEncode({ GetReadabilityScoresLabel().wc_str(), GetReadabilityScoresLabel().length() }, true));
         // indicates that a section has already been written out after the TOC so that we
@@ -2036,22 +2186,27 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         bool includeLeadingPageBreak{ false };
         ++sectionCounter;
         figureCounter = tableCounter = 1;
-        outputText += wxString::Format(L"\n\n%s<div class=\"report-section\"><a name=\"histograms\"></a>%s</div>\n",
+        outputText += wxString::Format
+            (L"\n\n%s<div class=\"report-section\"><a name=\"histograms\"></a>%s</div>\n",
             (hasSections ? pageBreak : wxEmptyString),
             htmlEncode({ GetHistogramsLabel().wc_str(), GetHistogramsLabel().length() }, true));
         hasSections = true;
         for (size_t i = 0; i < GetHistogramsView().GetWindowCount(); ++i)
             {
-            formatImageOutput(dynamic_cast<Wisteria::Canvas*>(GetHistogramsView().GetWindow(i)), includeLeadingPageBreak, wxFileName::GetPathSeparator()+wxString(_DT(L"histograms")));
+            formatImageOutput(dynamic_cast<Wisteria::Canvas*>(
+                GetHistogramsView().GetWindow(i)), includeLeadingPageBreak, wxFileName::GetPathSeparator() +
+                wxString(_DT(L"histograms")));
             includeLeadingPageBreak = true;
             }
-        outputText += wxString::Format(L"\n\n%s<div class=\"report-section\"><a name=\"box-plots\"></a>%s</div>\n",
+        outputText += wxString::Format(
+            L"\n\n%s<div class=\"report-section\"><a name=\"box-plots\"></a>%s</div>\n",
             (hasSections ? pageBreak : wxEmptyString),
             htmlEncode({ GetBoxPlotsLabel().wc_str(), GetBoxPlotsLabel().length() }, true));
         includeLeadingPageBreak = false; // reset for new subsection
         for (size_t i = 0; i < GetBoxPlotView().GetWindowCount(); ++i)
             {
-            formatImageOutput(dynamic_cast<Wisteria::Canvas*>(GetBoxPlotView().GetWindow(i)), includeLeadingPageBreak, wxFileName::GetPathSeparator()+wxString(_DT(L"box-plots")));
+            formatImageOutput(dynamic_cast<Wisteria::Canvas*>(GetBoxPlotView().GetWindow(i)),
+                includeLeadingPageBreak, wxFileName::GetPathSeparator() + wxString(_DT(L"box-plots")));
             includeLeadingPageBreak = true;
             }
         }
@@ -2077,7 +2232,8 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         bool includeLeadingPageBreak{ false };
         ++sectionCounter;
         figureCounter = tableCounter = 1;
-        outputText += wxString::Format(L"\n\n%s<div class=\"report-section\"><a name=\"sentencebreakdown\"></a>%s</div>\n",
+        outputText += wxString::Format(
+            L"\n\n%s<div class=\"report-section\"><a name=\"sentencebreakdown\"></a>%s</div>\n",
             (hasSections ? pageBreak : wxEmptyString),
             htmlEncode({ GetSentencesBreakdownLabel().wc_str(), GetSentencesBreakdownLabel().length() }, true));
         hasSections = true;
@@ -2169,7 +2325,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
     outputText += L"\r\n</body>\r\n</html>";
 
     // copy over the CSS file
-    const wxString cssTemplatePath = 
+    const wxString cssTemplatePath =
         wxGetApp().FindResourceDirectory(_DT(L"ReportThemes")) +
         wxFileName::GetPathSeparator() + L"Default.css";
     const wxString cssPath = filePath.GetPathWithSep() + L"style.css";
@@ -2187,7 +2343,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
 void BatchProjectView::OnRibbonButtonCommand(wxRibbonButtonBarEvent& event)
     {
     wxCommandEvent cmd(wxEVT_MENU, event.GetId());
-    //the document frame needs to handle document events
+    // the document frame needs to handle document events
     if (event.GetId() == wxID_OPEN ||
         event.GetId() == wxID_NEW ||
         event.GetId() == wxID_SAVE)
@@ -2214,10 +2370,11 @@ void BatchProjectView::OnExportScoresAndStatistics([[maybe_unused]] wxCommandEve
     wxASSERT(list);
     if (!list)
         { return; }//shouldn't happen
-    
+
     std::wstring HTMLText =
-        wxString::Format(L"<!DOCTYPE html>\n<html>\n<head>\n    <title>%s</title>\n</head>\n<body>\n<table border='1' style='width:100%%; border-collapse:collapse;'>",
-                         _("Scores &amp; Statistics")) +
+        wxString::Format(L"<!DOCTYPE html>\n<html>\n<head>\n    "
+            "<title>%s</title>\n</head>\n<body>\n<table border='1' style='width:100%%; border-collapse:collapse;'>",
+            _("Scores &amp; Statistics")) +
         wxString::Format(L"\n<tr style='background:%s;'>",
             ProjectReportFormat::GetReportHeaderColor().GetAsString(wxC2S_HTML_SYNTAX) );
     const wxString tdStart = wxString::Format(L"\n<td><span style='color:%s;'>",
@@ -2247,25 +2404,29 @@ void BatchProjectView::OnExportScoresAndStatistics([[maybe_unused]] wxCommandEve
                 {
                 HTMLText += wxString::Format(L"<td>%s</td>",
                     wxNumberFormatter::ToString(subDoc->GetTotalParagraphs(),0,
-                        wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 }
             if (doc->GetStatisticsReportInfo().IsSentencesEnabled())
                 {
                 HTMLText += wxString::Format(L"<td>%s</td>",
                     wxNumberFormatter::ToString(subDoc->GetTotalSentences(),0,
-                        wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 }
             if (doc->GetStatisticsReportInfo().IsWordsEnabled())
                 {
                 HTMLText += wxString::Format(L"<td>%s</td>",
                     wxNumberFormatter::ToString(subDoc->GetTotalWords(),0,
-                        wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 }
             if (doc->GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
                 HTMLText += wxString::Format(_("<td>%s Kbs.</td>"),
                     wxNumberFormatter::ToString(safe_divide<double>(subDoc->GetTextSize(),1024), 2,
-                        wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 }
             }
         HTMLText += L"</tr>";
@@ -2298,7 +2459,8 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
 
     std::wstring fileHeader = ProjectReportFormat::FormatHtmlReportStart(
         wxGetApp().GetAppOptions().GetControlBackgroundColor(),
-        Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(wxGetApp().GetAppOptions().GetControlBackgroundColor()), _("Summary Statistics")) +
+        Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
+            wxGetApp().GetAppOptions().GetControlBackgroundColor()), _("Summary Statistics")) +
         L"\n<h1><span style='text-decoration:underline;'>" +
         doc->GetTitle() + _(": Summary Statistics") + L"</span></h1>\n<h2>" + _("Files:") + L"</h2>\n";
     lily_of_the_valley::html_format::strip_body_atributes(fileHeader);
@@ -2312,7 +2474,7 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
         }
 
     html_utilities::html_strip_hyperlinks stripLinks;
-    //write the TOC section
+    // write the TOC section
     for (size_t i = 0; i < doc->GetDocuments().size(); ++i)
         {
         wxGetApp().Yield(true);
@@ -2320,12 +2482,15 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
             { return; }
 
         wxString currentDocName;
-        if (doc->GetFilePathTruncationMode() == ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::TruncatePaths)
+        if (doc->GetFilePathTruncationMode() ==
+            ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::TruncatePaths)
             { currentDocName = GetShortenedFileName(doc->GetDocuments()[i]->GetOriginalDocumentFilePath()); }
-        else if (doc->GetFilePathTruncationMode() == ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames)
+        else if (doc->GetFilePathTruncationMode() ==
+            ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames)
             {
             wxFileName fn(doc->GetDocuments()[i]->GetOriginalDocumentFilePath());
-            currentDocName = fn.GetFullName().empty() ? doc->GetDocuments()[i]->GetOriginalDocumentFilePath() : fn.GetFullName();
+            currentDocName = fn.GetFullName().empty() ?
+                doc->GetDocuments()[i]->GetOriginalDocumentFilePath() : fn.GetFullName();
             }
         else
             { currentDocName = doc->GetDocuments()[i]->GetOriginalDocumentFilePath(); }
@@ -2363,7 +2528,9 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
         else
             { currentDocName = doc->GetDocuments()[i]->GetOriginalDocumentFilePath(); }
 
-        wxString formattedStats = ProjectReportFormat::FormatStatisticsInfo(doc->GetDocuments()[i], wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT), nullptr);
+        wxString formattedStats =
+            ProjectReportFormat::FormatStatisticsInfo(doc->GetDocuments()[i],
+                wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT), nullptr);
         if (stripLinks(formattedStats.wc_str(), formattedStats.length()))
             { formattedStats.assign(stripLinks.get_filtered_text(), stripLinks.get_filtered_text_length()); }
 
@@ -2393,14 +2560,13 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
     progressDlg.Update(counter++);
     }
 
-///Handles all menu events for the document and propagates to the active window
 //---------------------------------------------------
 void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
     {
     BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(GetDocument());
     if (!doc->IsSafeToUpdate())
         { return; }
-    //Propagate standard save command to active subwindow if "export window" option selected
+    // Propagate standard save command to active subwindow if "export window" option selected
     if (event.GetId() == XRCID("ID_SAVE_ITEM") )
         {
         event.SetId(wxID_SAVE);
@@ -2408,8 +2574,10 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
     else if (event.GetId() == XRCID("ID_EXPORT_ALL") )
         {
         wxArrayString choices, descriptions;
-        choices.Add(_("Single report")); descriptions.Add(_("Saves the results into a single <span style='font-weight: bold;'>HTML</span> report."));
-        choices.Add(_("Separate files")); descriptions.Add(_("Saves each result window to a separate file."));
+        choices.Add(_("Single report")); descriptions.Add(
+            _("Saves the results into a single <span style='font-weight: bold;'>HTML</span> report."));
+        choices.Add(_("Separate files")); descriptions.Add(
+            _("Saves each result window to a separate file."));
         Wisteria::UI::RadioBoxDlg exportTypesDlg(GetDocFrame(),
             _("Select How to Export"), wxEmptyString, _("Export methods:"), _("Export All"),
             choices, descriptions);
@@ -2454,15 +2622,16 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
         doc->ExportSightWords(dlg.IsExportingSightWords());
         doc->ExportWarnings(dlg.IsExportingWarnings());
         doc->GetImageExportOptions() = dlg.GetImageExportOptions();
-        doc->SetModifiedFlag(); //export folder paths may have changed
+        // export folder paths may have changed
+        doc->SetModifiedFlag();
         return;
         }
     else if (event.GetId() == XRCID("ID_SEND_TO_STANDARD_PROJECT") ||
              event.GetId() == XRCID("ID_LAUNCH_SOURCE_FILE") ||
              event.GetId() == XRCID("ID_EXPORT_FILTERED_DOCUMENT"))
         {
-        //Get the active window, and if it is a list with a valid file path selected then create
-        //a new project from that. Otherwise, create a project from the selected file in the scores list.
+        // Get the active window, and if it is a list with a valid file path selected then create
+        // a new project from that. Otherwise, create a project from the selected file in the scores list.
         wxWindow* window = GetActiveProjectWindow();
         ListCtrlEx* activeListCtrl = nullptr;
         if (window && window->IsKindOf(CLASSINFO(ListCtrlEx)) && IsFilenameList(window->GetId()))
@@ -2524,8 +2693,11 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                     optDlg.IsRemovingEllipses(), optDlg.IsRemovingBullets(), optDlg.IsRemovingFilePaths(),
                     optDlg.IsStrippingAbbreviations(), optDlg.IsNarrowingFullWidthCharacters());
 
-                FilteredTextPreviewDlg dlg(GetDocFrame(), subProject->GetInvalidSentenceMethod(), subProject->IsIgnoringTrailingCopyrightNoticeParagraphs(), subProject->IsIgnoringTrailingCitations(),
-                    optDlg.IsReplacingCharacters(), optDlg.IsRemovingEllipses(), optDlg.IsRemovingBullets(), optDlg.IsRemovingFilePaths(), optDlg.IsStrippingAbbreviations() );
+                FilteredTextPreviewDlg dlg(GetDocFrame(), subProject->GetInvalidSentenceMethod(),
+                    subProject->IsIgnoringTrailingCopyrightNoticeParagraphs(),
+                    subProject->IsIgnoringTrailingCitations(),
+                    optDlg.IsReplacingCharacters(), optDlg.IsRemovingEllipses(),
+                    optDlg.IsRemovingBullets(), optDlg.IsRemovingFilePaths(), optDlg.IsStrippingAbbreviations() );
                 dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"how-text-is-excluded.html");
                 dlg.SetFilteredValue(validDocText);
                 if (dlg.ShowModal() == wxID_OK)
@@ -2553,11 +2725,13 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                     wxDocTemplate* docTemplate = dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
                     if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(CLASSINFO(ProjectDoc)))
                         {
-                        //Silently create the document to suppress the project wizard, and then copy the batch
-                        //project settings into this new project so that it gets analyzed the same way.
-                        //Also, if there were any special settings for this subproject, then copy over its
-                        //settings on top of the batch project's settings.
-                        ProjectDoc* const newDoc = dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(selectedFilePaths[fileIter].first, wxDOC_SILENT));
+                        // Silently create the document to suppress the project wizard, and then copy the batch
+                        // project settings into this new project so that it gets analyzed the same way.
+                        // Also, if there were any special settings for this subproject, then copy over its
+                        // settings on top of the batch project's settings.
+                        ProjectDoc* const newDoc =
+                            dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(
+                                selectedFilePaths[fileIter].first, wxDOC_SILENT));
                         if (!newDoc)
                             { return; }
                         newDoc->CopyDocumentLevelSettings(*doc);
@@ -2565,12 +2739,12 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                         if (subDocument)
                             { newDoc->CopySettings(*subDocument); }
                         newDoc->SetUIMode(true);
-                        //set the document path
+                        // set the document path
                         newDoc->SetOriginalDocumentFilePath(selectedFilePaths[fileIter].first);
                         newDoc->SetOriginalDocumentDescription(selectedFilePaths[fileIter].second);
                         if (!newDoc->OnNewDocument() )
                             {
-                            //Document is implicitly deleted by DeleteAllViews
+                            // Document is implicitly deleted by DeleteAllViews
                             newDoc->DeleteAllViews();
                             return;
                             }
@@ -2583,7 +2757,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                             newDoc->GetFirstView()->Activate(true);
                             wxGetApp().GetDocManager()->ActivateView(newDoc->GetFirstView());
 
-                            //try to select in the new project the same sidebar selection from the batch project
+                            // try to select in the new project the same sidebar selection from the batch project
                             ProjectView* view = dynamic_cast<ProjectView*>(newDoc->GetFirstView());
                             const auto selectedIndex =
                                 view->GetSideBar()->FindSubItem(selectedItem.first, selectedItem.second);
@@ -2616,17 +2790,18 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                         subDocPos != doc->GetDocuments().end();
                         ++subDocPos)
                         {
-                        if (CompareFilePaths((*subDocPos)->GetOriginalDocumentFilePath(), selectedFilePaths[fileIter].first) == 0)
+                        if (CompareFilePaths((*subDocPos)->GetOriginalDocumentFilePath(),
+                            selectedFilePaths[fileIter].first) == 0)
                             { break; }
                         }
-                    //if not found then bail (shouldn't happen)
+                    // if not found then bail (shouldn't happen)
                     if (subDocPos == doc->GetDocuments().end())
                         { return; }
-                    //don't bother asking them about relinking if a file is inside of an archive
+                    // don't bother asking them about relinking if a file is inside of an archive
                     if (!resolvePath.IsArchivedFile())
                         {
                         auto warningIter = wxGetApp().GetAppOptions().GetWarning(_DT(L"linked-document-is-embedded"));
-                        //if they want to be prompted for this...
+                        // if they want to be prompted for this...
                         if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
                             warningIter->ShouldBeShown())
                             {
@@ -2635,13 +2810,13 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                             msg.SetEscapeId(wxID_NO);
                             msg.ShowCheckBox(_("Remember my answer"));
                             const int dlgResponse = msg.ShowModal();
-                            //save the checkbox status
+                            // save the checkbox status
                             if (msg.IsCheckBoxChecked())
                                 {
                                 warningIter->Show(false);
                                 warningIter->SetPreviousResponse(dlgResponse);
                                 }
-                            //now see if they said "Yes" or "No"
+                            // now see if they said "Yes" or "No"
                             if (dlgResponse == wxID_YES)
                                 {
                                 doc->SetModifiedFlag();
@@ -2654,7 +2829,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                                 return;
                                 }
                             }
-                        //or if they said "yes" before, then use the found path
+                        // or if they said "yes" before, then use the found path
                         else if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
                             warningIter->GetPreviousResponse() == wxID_YES)
                             {
@@ -2670,7 +2845,9 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                         }
 
                     EditTextDlg dlg(GetDocFrame(), wxID_ANY, _("Edit Embedded Document"),
-                        doc->GetAppendedDocumentText().length() ? _("Note: The appended template document is not included here.\nOnly the embedded text is editable from this dialog."): wxString{});
+                        doc->GetAppendedDocumentText().length() ?
+                        _("Note: The appended template document is not included here.\n"
+                          "Only the embedded text is editable from this dialog."): wxString{});
                     dlg.SetValue((*subDocPos)->GetDocumentText());
                     if (dlg.ShowModal() == wxID_OK)
                         {
@@ -2699,7 +2876,8 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                             { wxLaunchDefaultApplication(resolvePath.GetResolvedPath()); }
                         else
                             {
-                            wxMessageBox(wxString::Format(_("File could not be found: %s"), resolvePath.GetResolvedPath()),
+                            wxMessageBox(wxString::Format(
+                                _("File could not be found: %s"), resolvePath.GetResolvedPath()),
                                 _("File Not Found"), wxOK|wxICON_INFORMATION);
                             }
                         }
@@ -2715,12 +2893,13 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
 
     if (GetActiveProjectWindow() && GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
         {
-        /*just in case this is a print or preview command, update the window's headers
-        and footer to whatever the global options currently are.*/        
+        /* just in case this is a print or preview command, update the window's headers
+           and footer to whatever the global options currently are.*/
         BaseProjectDoc::UpdateListOptions(dynamic_cast<ListCtrlEx*>(GetActiveProjectWindow()));
 
-        //in case we are exporting the window, set its label to include the name of the document, and then reset it
-        GetActiveProjectWindow()->SetLabel(wxString::Format(L"%s [%s]", GetActiveProjectWindow()->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+        // in case we are exporting the window, set its label to include the name of the document, and then reset it
+        GetActiveProjectWindow()->SetLabel(wxString::Format(L"%s [%s]",
+            GetActiveProjectWindow()->GetName(), wxFileName::StripExtension(doc->GetTitle())));
         ParentEventBlocker blocker(GetActiveProjectWindow());
         GetActiveProjectWindow()->ProcessWindowEvent(event);
         }
@@ -2729,8 +2908,8 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
         Wisteria::Canvas* activeWindow = dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow());
         if (activeWindow)
             {
-            /*just in case this is a print or preview command update the window's headers
-            and footer to whatever the global options currently are*/
+            /* just in case this is a print or preview command update the window's headers
+               and footer to whatever the global options currently are*/
             if (event.GetId() == wxID_PREVIEW || event.GetId() == wxID_PRINT)
                 {
                 activeWindow->SetPrinterSettings(*wxGetApp().GetPrintData());
@@ -2741,7 +2920,8 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                 activeWindow->SetCenterPrinterFooter(wxGetApp().GetAppOptions().GetCenterPrinterFooter());
                 activeWindow->SetRightPrinterFooter(wxGetApp().GetAppOptions().GetRightPrinterFooter());
                 }
-            activeWindow->SetLabel(wxString::Format(L"%s [%s]", activeWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+            activeWindow->SetLabel(wxString::Format(L"%s [%s]", activeWindow->GetName(),
+                wxFileName::StripExtension(doc->GetTitle())));
             ParentEventBlocker blocker(activeWindow);
             activeWindow->ProcessWindowEvent(event);
             }
@@ -2751,7 +2931,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
 //---------------------------------------------------
 void BatchProjectView::OnFind(wxFindDialogEvent &event)
     {
-    //if they were just hitting Cancel then close
+    // if they were just hitting Cancel then close
     if (event.GetEventType() == wxEVT_COMMAND_FIND_CLOSE)
         { return; }
 

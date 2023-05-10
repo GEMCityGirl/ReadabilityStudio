@@ -255,7 +255,7 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(109 + GetSyllableAxisOffset(), 6.5, m_gradeLinePoints[8]);
         // 4th grade
         GetPhysicalCoordinates(109.55 + GetSyllableAxisOffset(), 5.8, m_gradeLinePoints[9]);
-        GetPhysicalCoordinates(144.3 + GetSyllableAxisOffset(), 14.3, m_gradeLinePoints[10]); 
+        GetPhysicalCoordinates(144.3 + GetSyllableAxisOffset(), 14.3, m_gradeLinePoints[10]);
         // 5th grade
         GetPhysicalCoordinates(146 + GetSyllableAxisOffset(), 12.5, m_gradeLinePoints[11]);
         GetPhysicalCoordinates(109.55 + GetSyllableAxisOffset(), 5.15, m_gradeLinePoints[12]);

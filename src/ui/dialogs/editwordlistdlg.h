@@ -52,7 +52,7 @@ public:
     /// @private
     ~EditWordListDlg()
         { wxDELETE(m_wordData); }
-    
+
     /// @brief Sets the path to the file that is being edited.
     /// @param path The path of the file.
     void SetFilePath(const wxString& path)

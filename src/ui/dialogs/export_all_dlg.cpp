@@ -71,7 +71,7 @@ void ExportAllDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     TransferDataFromWindow();
     if (m_folderPath.empty())
         {
-        wxMessageBox(_(L"Export folder not specified."), 
+        wxMessageBox(_(L"Export folder not specified."),
             _(L"Error"), wxOK|wxICON_EXCLAMATION);
         return;
         }
@@ -80,7 +80,7 @@ void ExportAllDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         !m_exportTestResults && !m_exportStatistics && !m_exportWordiness &&
         !m_exportSightWords)
         {
-        wxMessageBox(_(L"You must select at least one item to be saved."), 
+        wxMessageBox(_(L"You must select at least one item to be saved."),
             _(L"Error"), wxOK|wxICON_EXCLAMATION);
         return;
         }
@@ -89,7 +89,7 @@ void ExportAllDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         !m_exportTestResults && !m_exportStatistics && !m_exportWordiness &&
         !m_exportSightWords && !m_exportWarnings)
         {
-        wxMessageBox(_(L"You must select at least one item to be saved."), 
+        wxMessageBox(_(L"You must select at least one item to be saved."),
             _(L"Error"), wxOK|wxICON_EXCLAMATION);
         return;
         }
@@ -99,7 +99,7 @@ void ExportAllDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         { m_listExt = m_listCombo->GetValue(); }
     if (m_graphCombo)
         { m_graphExt = m_graphCombo->GetValue(); }
-    
+
     if (IsModal())
         { EndModal(wxID_OK); }
     else

@@ -536,7 +536,7 @@ public:
         { return m_includedCustomTests; }
     //readability set functions
     void SetDolch(const bool value) noexcept
-        { m_includeDolchSightWords = value; }    
+        { m_includeDolchSightWords = value; }
     void SetReadabilityTests(const TestCollectionType& tests)
         { m_readabilityTests = tests; }
     //Test Source

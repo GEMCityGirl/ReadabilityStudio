@@ -32,10 +32,16 @@ public:
     void OnDocumentDelete([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnTestDeleteMenu([[maybe_unused]] wxCommandEvent& event);
+    /// Side bar was clicked.
     void OnItemSelected(wxCommandEvent& event);
+    /// Document scores were selected.
     void OnScoreItemSelected(wxListEvent& event);
+    /** This is for when a list other than the "raw scores" list has a file name selected.
+        It will search for the selected file name from the list and then update the
+        floating stats and test panes with the document's respective information.*/
     void OnNonScoreItemSelected(wxListEvent& event);
     void OnRibbonButtonCommand(wxRibbonButtonBarEvent& event);
+    /// Handles all menu events for the document and propagates to the active window.
     void OnMenuCommand(wxCommandEvent& event);
     void OnExportStatisticsReport([[maybe_unused]] wxCommandEvent& event);
     void OnExportScoresAndStatistics([[maybe_unused]] wxCommandEvent& event);
@@ -220,13 +226,16 @@ public:
         else
             { return testName; }
         }
-    [[nodiscard]] wxString StripToTestName(const wxString& testName);
+    [[nodiscard]]
+    wxString StripToTestName(const wxString& testName);
+    /// Updates the Stats and Test Explanation panes to reflect the specified filename.
     void UpdateStatAndTestPanes(const wxString& fileName);
     [[nodiscard]] wxString GetCurrentlySelectedFileName() const
         { return m_currentlySelectedFileName; }
 private:
     wxWindow* FindWindowById(const int Id);
     void RemoveFromAllListCtrls(const wxString& valueToRemove);
+    /// Updates the Stats and Test Explanation panes to reflect the selected item in the Scores lists.
     void UpdateStatAndTestPanes(const long scoreListItem);
 
     wxString m_currentlySelectedFileName;

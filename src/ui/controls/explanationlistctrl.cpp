@@ -21,7 +21,7 @@ ExplanationListCtrl::ExplanationListCtrl(wxWindow* parent, wxWindowID id,
                         const wxPoint& point /*= wxDefaultPosition*/,
                         const wxSize& size /*= wxDefaultSize*/,
                         const wxString& name /*= wxString{}*/) :
-    wxSplitterWindow(parent, id, point, size, wxCLIP_CHILDREN|wxSP_NOBORDER, name)            
+    wxSplitterWindow(parent, id, point, size, wxCLIP_CHILDREN|wxSP_NOBORDER, name)
     {
     m_results_view = new ListCtrlEx(this, EXPLANATION_LIST_CTRL_GRID,
                         wxDefaultPosition, wxDefaultSize,

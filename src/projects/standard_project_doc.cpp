@@ -61,17 +61,18 @@ void ProjectDoc::ExcludeAllCustomTestsTests()
     }
 
 //-------------------------------------------------------
-std::vector<CustomReadabilityTestInterface>::iterator ProjectDoc::RemoveCustomReadabilityTest(const wxString& testName, const int Id)
+std::vector<CustomReadabilityTestInterface>::iterator ProjectDoc::RemoveCustomReadabilityTest(
+    const wxString& testName, const int Id)
     {
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
 
-    //remove any views that are related to this test
-    //(text window and word list window)
+    // remove any views that are related to this test
+    // (text window and word list window)
     while (view->GetWordsBreakdownView().RemoveWindowById(Id))
         {}
-    //remove the test
-    const std::vector<CustomReadabilityTestInterface>::iterator iter = BaseProject::RemoveCustomReadabilityTest(testName, Id);
-    //remove the test score
+    // remove the test
+    const auto iter = BaseProject::RemoveCustomReadabilityTest(testName, Id);
+    // remove the test score
     const auto location = view->GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(testName);
     if (location != wxNOT_FOUND)
         { view->GetReadabilityScoresList()->GetResultsListCtrl()->DeleteItem(location); }
@@ -92,7 +93,7 @@ void ProjectDoc::LoadManuallyEnteredText()
         }
     catch (...)
         {
-        LogMessage(_(L"An unknown error occurred while analyzing the text. Unable to create project."), 
+        LogMessage(_(L"An unknown error occurred while analyzing the text. Unable to create project."),
             _(L"Error"), wxOK|wxICON_EXCLAMATION);
         }
     }
@@ -121,7 +122,7 @@ void ProjectDoc::RefreshStatisticsReports()
     auto selectedIndex = view->GetSideBar()->FindFolder(selectedItem);
     if (!selectedIndex.has_value())
         { selectedIndex = view->GetSideBar()->FindFolder(BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID); }
-    view->GetSideBar()->SelectFolder(selectedIndex, false); 
+    view->GetSideBar()->SelectFolder(selectedIndex, false);
 
     GetDocumentWindow()->Refresh();
     ResetRefreshRequired();
@@ -194,7 +195,7 @@ void ProjectDoc::RefreshProject()
 
         if (!view->GetSideBar()->SelectSubItemById(selectedItem, true, false))
             { view->GetSideBar()->SelectFolder(0, true, false); }
-        
+
         GetDocumentWindow()->Refresh();
         ResetRefreshRequired();
         Modify(true);
@@ -203,7 +204,7 @@ void ProjectDoc::RefreshProject()
     BaseProjectProcessingLock processingLock(this);
     wxWindowUpdateLocker noUpdates(GetDocumentWindow());
 
-    //reload the document
+    // reload the document
     if (GetDocumentStorageMethod() == TextStorage::NoEmbedText)
         {
         if (!LoadExternalDocument() )
@@ -213,7 +214,7 @@ void ProjectDoc::RefreshProject()
             return;
             }
         }
-    //if embedded, then reload our embedded content
+    // if embedded, then reload our embedded content
     else
         {
         try
@@ -222,20 +223,23 @@ void ProjectDoc::RefreshProject()
             }
         catch (...)
             {
-            LogMessage(_(L"An unknown error occurred while analyzing the document. Unable to create project."), 
+            LogMessage(_(L"An unknown error occurred while analyzing the document. Unable to create project."),
                 _(L"Error"), wxOK|wxICON_EXCLAMATION);
             return;
             }
         }
 
-    /*if they set this to exclude headers and such make sure we actually have some
-      valid sentences to work with*/
+    /* if they set this to exclude headers and such make sure we actually have some
+       valid sentences to work with*/
     bool invalidSentenceMethodSwitched = false;
-    if ((GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis || GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings) &&
+    if ((GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
+         GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings) &&
         GetWords()->get_complete_sentence_count() == 0)
         {
-        LogMessage(_(L"You have requested to ignore incomplete sentences, but there are no other valid sentences in the text. Incomplete sentences will need to be included in the analysis."), 
-                   _(L"Warning"), wxOK|wxICON_EXCLAMATION);
+        LogMessage(
+            _(L"You have requested to ignore incomplete sentences, but there are no other valid "
+               "sentences in the text. Incomplete sentences will need to be included in the analysis."),
+            _(L"Warning"), wxOK|wxICON_EXCLAMATION);
         SetInvalidSentenceMethod(InvalidSentence::IncludeAsFullSentences);
         invalidSentenceMethodSwitched = true;
         }
@@ -310,23 +314,23 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
         { LoadSettingsFile(settingsFile); }
     else
         {
-        LogMessage(_(L"Settings file could not be found in the project file. Default settings will be used."), 
+        LogMessage(_(L"Settings file could not be found in the project file. Default settings will be used."),
                 wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
         }
 
-    //open the project meta file
+    // open the project meta file
     wxString metaFile = cat.ReadTextFile(ProjectMetaFileLabel());
     if (!metaFile.empty())
         { LoadMetaFile(metaFile); }
     else
         {
-        LogMessage(_(L"Meta information file could not be found in the project file."), 
+        LogMessage(_(L"Meta information file could not be found in the project file."),
                 wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
         }
 
-    //load the embedded text
+    // load the embedded text
     const wxString contentFile = cat.ReadTextFile(ProjectContentFileLabel());
-    //if the document's content is just embedded and shouldn't be reloaded
+    // if the document's content is just embedded and shouldn't be reloaded
     if (GetDocumentStorageMethod() == TextStorage::EmbedText)
         {
         if (!contentFile.empty())
@@ -336,46 +340,54 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                 { LoadDocument(); }
             catch (...)
                 {
-                LogMessage(_(L"An unknown error occurred while analyzing the document. Unable to create project."), 
+                LogMessage(_(L"An unknown error occurred while analyzing the document. Unable to create project."),
                     _(L"Error"), wxOK|wxICON_EXCLAMATION);
                 return false;
                 }
             }
         else
             {
-            /*if text was manually entered before but not embedded for some reason, then it's lost.
-            This should not happen unless you manually tamper with the project file.*/
+            /* If text was manually entered before but not embedded for some reason, then it's lost.
+               This should not happen unless you manually tamper with the project file.*/
             if (GetTextSource() == TextSource::EnteredText)
                 {
                 if (WarningManager::HasWarning(_DT(L"no-embedded-text")))
                     {
                     auto warningMsg = *WarningManager::GetWarning(_DT(L"no-embedded-text"));
-                    warningMsg.SetMessage(_(L"Manually entered text could not be found in the project file.\nOnly previously calculated scores and statistics will be displayed."));
+                    warningMsg.SetMessage(
+                        _(L"Manually entered text could not be found in the project file.\n"
+                           "Only previously calculated scores and statistics will be displayed."));
                     LogMessage(warningMsg);
                     }
                 return false;
                 }
-            //otherwise, external file was supposed to be embedded but internal copy of the text couldn't be found.
-            //Try to reload it.
+            // ...otherwise, external file was supposed to be embedded but internal copy of the text couldn't be found.
+            //  Try to reload it.
             else
                 {
                 if (LoadExternalDocument())
                     {
-                    LogMessage(_(L"The document's content could not be found in the project file. Original document will be reloaded."), 
-                            _(L"Warning"), wxOK|wxICON_INFORMATION);
+                    LogMessage(
+                        _(L"The document's content could not be found in the project file. "
+                           "Original document will be reloaded."),
+                        _(L"Warning"), wxOK|wxICON_INFORMATION);
                     return true;
                     }
-                //should not happen.  File was supposed to be embedded, but wasn't in the project file and external file can't be found either
+                // should not happen.  File was supposed to be embedded, but wasn't in the project file
+                // and external file can't be found either
                 else
                     {
-                    LogMessage(_(L"Document content could not be found in the project file and external document could not be located.\nOnly previously calculated scores and statistics will be displayed."), 
-                            _(L"Warning"), wxOK|wxICON_EXCLAMATION);
+                    LogMessage(
+                        _(L"Document content could not be found in the project file and external document "
+                           "could not be located.\nOnly previously calculated scores and "
+                           "statistics will be displayed."),
+                        _(L"Warning"), wxOK|wxICON_EXCLAMATION);
                     return false;
                     }
                 }
             }
         }
-    //project is set to always reload the file
+    // project is set to always reload the file
     else
         {
         if (GetTextSource() == TextSource::FromFile)
@@ -384,17 +396,21 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                 { return true; }
             else
                 {
-                LogMessage(_(L"External document could not be located.\nOnly previously calculated scores and statistics will be displayed."), 
-                        _(L"Warning"), wxOK|wxICON_EXCLAMATION);
+                LogMessage(
+                    _(L"External document could not be located.\n"
+                       "Only previously calculated scores and statistics will be displayed."),
+                    _(L"Warning"), wxOK|wxICON_EXCLAMATION);
                 return false;
                 }
             }
-        /*This should not happen because the entered text flag overrides the storage flag to force it to embed,
-        but just for the sake of being verbose...*/
+        /* This should not happen because the entered text flag overrides the storage flag to force it to embed,
+           but just for the sake of being verbose...*/
         if (GetTextSource() == TextSource::EnteredText)
             {
-            LogMessage(_(L"Manually entered text was not embedded previously.\nOnly previously calculated scores and statistics will be displayed."), 
-                    _(L"Warning"), wxOK|wxICON_EXCLAMATION);
+            LogMessage(
+                _(L"Manually entered text was not embedded previously.\n"
+                   "Only previously calculated scores and statistics will be displayed."),
+                _(L"Warning"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
         }
@@ -408,14 +424,14 @@ void ProjectDoc::LoadMetaFile(const wchar_t* settingsFileText)
     wxString currentStartTag;
     wxString currentEndTag;
 
-    //read in the statistics
+    // read in the statistics
     currentStartTag.clear();
     currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_STATISTICS);
     currentEndTag.clear();
     const wchar_t* statsSection = std::wcsstr(settingsFileText, currentStartTag);
     if (!statsSection)
         {
-        LogMessage(wxString::Format(_(L"Warning: \"%s\" section not found in project file."), currentStartTag), 
+        LogMessage(wxString::Format(_(L"Warning: \"%s\" section not found in project file."), currentStartTag),
                 _(L"Error"), wxOK|wxICON_ERROR);
         return;
         }
@@ -424,134 +440,218 @@ void ProjectDoc::LoadMetaFile(const wchar_t* settingsFileText)
         (statsSection < statsSectionEnd) )
         {
         //size of the text string
-        SetTextSize(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TEXT_SIZE));
+        SetTextSize(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TEXT_SIZE));
         //unique words
-        SetTotalUniqueWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_UNIQUE_WORDS));
+        SetTotalUniqueWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_UNIQUE_WORDS));
         //unique monosyllabic words
-        SetTotalUniqueMonoSyllablicWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_UNIQUE_MONOSYLLABLIC_WORDS));
+        SetTotalUniqueMonoSyllablicWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_UNIQUE_MONOSYLLABLIC_WORDS));
         //unique 6 Chars+ Words
-        SetTotalUnique6CharsPlusWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_UNIQUE_SIXCHAR_PLUS_WORDS));
+        SetTotalUnique6CharsPlusWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_UNIQUE_SIXCHAR_PLUS_WORDS));
         //unique 3+ Syllable Words
-        SetTotalUnique3PlusSyllableWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_UNIQUE_THREE_SYLLABLE_PLUS_WORDS));
+        SetTotalUnique3PlusSyllableWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_UNIQUE_THREE_SYLLABLE_PLUS_WORDS));
         //unique DC Hard Words
-        SetTotalUniqueDCHardWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_UNIQUE_DC_HARD_WORDS));
+        SetTotalUniqueDCHardWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_UNIQUE_DC_HARD_WORDS));
         //unique Spache Hard Words
-        SetTotalUniqueHardWordsSpache(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_UNIQUE_SPACHE_HARD_WORDS));
+        SetTotalUniqueHardWordsSpache(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_UNIQUE_SPACHE_HARD_WORDS));
         //unique Harris Jacobson Hard Words
-        SetTotalUniqueHarrisJacobsonHardWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_UNIQUE_HARRIS_JACOBSON_HARD_WORDS));
+        SetTotalUniqueHarrisJacobsonHardWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_UNIQUE_HARRIS_JACOBSON_HARD_WORDS));
         //unique Mini Words
-        SetTotalUniqueMiniWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_UNIQUE_MINI_WORDS));
+        SetTotalUniqueMiniWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_UNIQUE_MINI_WORDS));
         //unique Hard Fog Words
-        SetTotalUniqueHardFogWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_UNIQUE_FOG_HARD_WORDS));
+        SetTotalUniqueHardFogWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_UNIQUE_FOG_HARD_WORDS));
         //unique Hard Words (numerals fully syllabized)
-        SetUnique3PlusSyllabicWordsNumeralsFullySyllabized(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_UNIQUE_SMOG_WORDS_WORDS));
+        SetUnique3PlusSyllabicWordsNumeralsFullySyllabized(
+            XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+                wxGetApp().GetAppOptions().XML_UNIQUE_SMOG_WORDS_WORDS));
         //total Words
-        m_totalWords = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_WORDS);
+        m_totalWords = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_WORDS);
         //total Sentences
-        m_totalSentences = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_SENTENCES);
+        m_totalSentences = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_SENTENCES);
         //total sentence units
-        m_totalSentenceUnits = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_SENTENCE_UNITS);
+        m_totalSentenceUnits = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_SENTENCE_UNITS);
         //total Paragraphs
-        m_totalParagraphs = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_PARAGRAPH);
+        m_totalParagraphs = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_PARAGRAPH);
         //total Syllables
-        m_totalSyllables = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLE);
+        m_totalSyllables = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLE);
         //total Characters
-        m_totalCharacters = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS);
+        m_totalCharacters = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS);
         //total characters and punctuation (this includes punctuation that is part of the words and between them)
-        m_totalCharactersPlusPunctuation = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS_PLUS_PUNCTUATION);
+        m_totalCharactersPlusPunctuation = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS_PLUS_PUNCTUATION);
         //total Mono Syllabic
-        m_totalMonoSyllabic = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_MONOSYLLABIC_WORDS);
+        m_totalMonoSyllabic = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_MONOSYLLABIC_WORDS);
         //total 3plus Syllable Words
-        m_total3plusSyllableWords = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_THREE_PLUSSYLLABLE_WORDS);
+        m_total3plusSyllableWords = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_THREE_PLUSSYLLABLE_WORDS);
         //total Hard Words Spache
-        m_totalHardWordsSpache = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_SPACHE_HARD_WORDS);
+        m_totalHardWordsSpache = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_SPACHE_HARD_WORDS);
         //total Hard Words Harris-Jacobson
-        m_totalHardWordsHarrisJacobson = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_HARRIS_JACOBSON_HARD_WORDS);
+        m_totalHardWordsHarrisJacobson = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_HARRIS_JACOBSON_HARD_WORDS);
         //total Hard Words Dale Chall
-        m_totalHardWordsDaleChall = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_DALECHALL_HARD_WORDS);
+        m_totalHardWordsDaleChall = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_DALECHALL_HARD_WORDS);
         //total Hard Words Fog
-        m_totalHardWordsFog = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_FOG_HARDWORDS);
+        m_totalHardWordsFog = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_FOG_HARDWORDS);
         //total Hard Words (numerals fully syllabized)
-        m_total3PlusSyllabicWordsNumeralsFullySyllabized = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_SMOG_HARD_WORDS);
+        m_total3PlusSyllabicWordsNumeralsFullySyllabized =
+            XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+                wxGetApp().GetAppOptions().XML_TOTAL_SMOG_HARD_WORDS);
         //total Hard Words Sol
-        m_totalHardWordsSol = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_SOL_HARD_WORDS);
+        m_totalHardWordsSol = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_SOL_HARD_WORDS);
         //total Hard Lix/Rix words
-        m_totalHardWordsLixRix = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_LIX_RIX_HARD_WORDS);
+        m_totalHardWordsLixRix = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_LIX_RIX_HARD_WORDS);
         //total Syllables Ignoring Numerals
-        m_totalSyllablesIgnoringNumerals = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_IGNORING_NUMERALS);
+        m_totalSyllablesIgnoringNumerals = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_IGNORING_NUMERALS);
         //Number of syllables, numerals just one syllable
-        m_totalSyllablesNumeralsOneSyllable = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_NUMERALS_ONE_SYLLABLE);
+        m_totalSyllablesNumeralsOneSyllable = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_NUMERALS_ONE_SYLLABLE);
         //Number of syllables, numerals fully syllabized
-        m_totalSyllablesNumeralsFullySyllabized = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_NUMERALS_FULLY_SYLLABIZED);
+        m_totalSyllablesNumeralsFullySyllabized = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_NUMERALS_FULLY_SYLLABIZED);
         //total Syllables Ignoring Numerals
-        m_totalSyllablesIgnoringNumeralsAndProperNouns = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_IGNORING_NUMERALS_AND_PROPER_NOUNS);
+        m_totalSyllablesIgnoringNumeralsAndProperNouns =
+            XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+                wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_IGNORING_NUMERALS_AND_PROPER_NOUNS);
         //total Long Words
-        m_totalLongWords = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_LONG_WORDS);
-        m_totalSixPlusCharacterWordsIgnoringNumerals = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_LONG_WORDS_IGNORING_NUMERALS);
+        m_totalLongWords = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_LONG_WORDS);
+        m_totalSixPlusCharacterWordsIgnoringNumerals = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_LONG_WORDS_IGNORING_NUMERALS);
         //total MiniWords
-        m_totalMiniWords = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_MINIWORDS);
+        m_totalMiniWords = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_MINIWORDS);
         //total Numerals
-        m_totalNumerals = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_NUMERALS);
+        m_totalNumerals = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_NUMERALS);
         //total proper nouns
-        m_totalProperNouns = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_PROPER_NOUNS);
+        m_totalProperNouns = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_PROPER_NOUNS);
         //total Overly Long Sentences
-        m_totalOverlyLongSentences = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_OVERLY_LONG_SENTENCES);
+        m_totalOverlyLongSentences = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_OVERLY_LONG_SENTENCES);
         //supplementary stats
-        SetTotalWordsFromCompleteSentencesAndHeaders(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_WORDS_FROM_COMPLETE_SENTENCES_AND_HEADERS));
-        SetTotalSentencesFromCompleteSentencesAndHeaders(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_SENTENCES_FROM_COMPLETE_SENTENCES_AND_HEADERS));
-        SetTotalNumeralsFromCompleteSentencesAndHeaders(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_NUMERALS_FROM_COMPLETE_SENTENCES_AND_HEADERS));
-        SetTotalCharactersFromCompleteSentencesAndHeaders(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS_FROM_COMPLETE_SENTENCES_AND_HEADERS));
+        SetTotalWordsFromCompleteSentencesAndHeaders(
+            XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+                wxGetApp().GetAppOptions().XML_TOTAL_WORDS_FROM_COMPLETE_SENTENCES_AND_HEADERS));
+        SetTotalSentencesFromCompleteSentencesAndHeaders(
+            XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+                wxGetApp().GetAppOptions().XML_TOTAL_SENTENCES_FROM_COMPLETE_SENTENCES_AND_HEADERS));
+        SetTotalNumeralsFromCompleteSentencesAndHeaders(
+            XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+                wxGetApp().GetAppOptions().XML_TOTAL_NUMERALS_FROM_COMPLETE_SENTENCES_AND_HEADERS));
+        SetTotalCharactersFromCompleteSentencesAndHeaders(
+            XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+                wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS_FROM_COMPLETE_SENTENCES_AND_HEADERS));
         //special types of sentences
-        m_totalInterrogativeSentences = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_INTERROGATIVE_SENTENCES);
-        m_totalExclamatorySentences = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_TOTAL_EXCLAMATORY_SENTENCES);
+        m_totalInterrogativeSentences = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_INTERROGATIVE_SENTENCES);
+        m_totalExclamatorySentences = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_TOTAL_EXCLAMATORY_SENTENCES);
         //longest sentence
-        m_longestSentence = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_LONGEST_SENTENCES);
+        m_longestSentence = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_LONGEST_SENTENCES);
         //longest sentence index
-        m_longestSentenceIndex = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_LONGEST_SENTENCE_INDEX);
+        m_longestSentenceIndex = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_LONGEST_SENTENCE_INDEX);
         //difficult Sentence Length
-        SetDifficultSentenceLength(static_cast<int>(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DIFFICULT_SENTENCE_LENGTH)));
+        SetDifficultSentenceLength(static_cast<int>(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DIFFICULT_SENTENCE_LENGTH)));
         //grammar stats
-        SetMisspelledWordCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_MISSPELLING_COUNT));
-        SetDuplicateWordCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DUPLICATE_WORD_COUNT));
-        SetWordyPhraseCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_WORDY_PHRASE_COUNT));
-        SetClicheCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_CLICHE_COUNT));
-        SetRedundantPhraseCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_REDUNDANT_PHRASE_COUNT));
-        SetWordingErrorCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_WORDING_ERROR_COUNT));
-        SetSentenceStartingWithConjunctionsCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_SENTENCE_CONJUNCTION_START_COUNT));
-        SetSentenceStartingWithLowercaseCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_SENTENCE_LOWERCASE_START_COUNT));
+        SetMisspelledWordCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_MISSPELLING_COUNT));
+        SetDuplicateWordCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DUPLICATE_WORD_COUNT));
+        SetWordyPhraseCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_WORDY_PHRASE_COUNT));
+        SetClicheCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_CLICHE_COUNT));
+        SetRedundantPhraseCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_REDUNDANT_PHRASE_COUNT));
+        SetWordingErrorCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_WORDING_ERROR_COUNT));
+        SetSentenceStartingWithConjunctionsCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_SENTENCE_CONJUNCTION_START_COUNT));
+        SetSentenceStartingWithLowercaseCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_SENTENCE_LOWERCASE_START_COUNT));
         SetMismatchedArticleCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_ARTICLE_MISMATCH_COUNT));
-        SetPassiveVoicesCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_PASSIVE_VOICE_COUNT));
-        SetOverusedWordsBySentenceCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_OVERUSED_WORDS_BY_SENTENCE_COUNT));
+        SetPassiveVoicesCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_PASSIVE_VOICE_COUNT));
+        SetOverusedWordsBySentenceCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_OVERUSED_WORDS_BY_SENTENCE_COUNT));
         //Dolch stats
-        m_dolchConjunctionCounts.first = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_CONJUNCTIONS_COUNT);
-        m_dolchConjunctionCounts.second = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_CONJUNCTIONS_COUNT);
-        m_dolchPrepositionCounts.first = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_PREPOSITIONS_COUNT);
-        m_dolchPrepositionCounts.second = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_PREPOSITIONS_COUNT);
-        m_dolchPronounCounts.first = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_PRONOUNS_COUNT);
-        m_dolchPronounCounts.second = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_PRONOUNS_COUNT);
-        m_dolchAdverbCounts.first = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_ADVERBS_COUNT);
-        m_dolchAdverbCounts.second = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_ADVERBS_COUNT);
-        m_dolchAdjectiveCounts.first = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_ADJECTIVES_COUNT);
-        m_dolchAdjectiveCounts.second = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_ADJECTIVES_COUNT);
-        m_dolchVerbCounts.first = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_VERBS_COUNT);
-        m_dolchVerbCounts.second = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_VERBS_COUNT);
-        m_dolchNounCounts.first = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_NOUNS_COUNT);
-        m_dolchNounCounts.second = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_NOUNS_COUNT);
-        SetUnusedDolchConjunctions(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_CONJUNCTIONS_COUNT));
-        SetUnusedDolchPrepositions(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_PREPOSITIONS_COUNT));
-        SetUnusedDolchPronouns(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_PRONOUNS_COUNT));
-        SetUnusedDolchAdverbs(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_ADVERBS_COUNT));
-        SetUnusedDolchAdjectives(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_ADJECTIVES_COUNT));
-        SetUnusedDolchVerbs(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_VERBS_COUNT));
-        SetUnusedDolchNouns(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_NOUNS_COUNT));
+        m_dolchConjunctionCounts.first = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_CONJUNCTIONS_COUNT);
+        m_dolchConjunctionCounts.second = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_CONJUNCTIONS_COUNT);
+        m_dolchPrepositionCounts.first = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_PREPOSITIONS_COUNT);
+        m_dolchPrepositionCounts.second = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_PREPOSITIONS_COUNT);
+        m_dolchPronounCounts.first = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_PRONOUNS_COUNT);
+        m_dolchPronounCounts.second = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_PRONOUNS_COUNT);
+        m_dolchAdverbCounts.first = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_ADVERBS_COUNT);
+        m_dolchAdverbCounts.second = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_ADVERBS_COUNT);
+        m_dolchAdjectiveCounts.first = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_ADJECTIVES_COUNT);
+        m_dolchAdjectiveCounts.second = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_ADJECTIVES_COUNT);
+        m_dolchVerbCounts.first = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_VERBS_COUNT);
+        m_dolchVerbCounts.second = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_VERBS_COUNT);
+        m_dolchNounCounts.first = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_NOUNS_COUNT);
+        m_dolchNounCounts.second = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_NOUNS_COUNT);
+        SetUnusedDolchConjunctions(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_CONJUNCTIONS_COUNT));
+        SetUnusedDolchPrepositions(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_PREPOSITIONS_COUNT));
+        SetUnusedDolchPronouns(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_PRONOUNS_COUNT));
+        SetUnusedDolchAdverbs(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_ADVERBS_COUNT));
+        SetUnusedDolchAdjectives(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_ADJECTIVES_COUNT));
+        SetUnusedDolchVerbs(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_VERBS_COUNT));
+        SetUnusedDolchNouns(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+            wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_NOUNS_COUNT));
         }
     else
         {
-        LogMessage(wxString::Format(_(L"Warning: \"%s\" section not found in project file."), currentStartTag), 
+        LogMessage(wxString::Format(_(L"Warning: \"%s\" section not found in project file."), currentStartTag),
                 _(L"Error"), wxOK|wxICON_ERROR);
         }
 
-    //read in any custom tests (these may or may not be in a project's meta data)
+    // read in any custom tests (these may or may not be in a project's meta data)
     currentStartTag.clear();
     currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_CUSTOM_TESTS);
     const wchar_t* customTestSection = std::wcsstr(settingsFileText, currentStartTag.wc_str() );
@@ -574,10 +674,13 @@ void ProjectDoc::LoadMetaFile(const wchar_t* settingsFileText)
             const wchar_t* customTestEnd = std::wcsstr(customTest, L"/>");
             if (!customTestEnd || customTestEnd > customTestSectionEnd)
                 { break; }
-            //read in the values
-            wxString textName = XmlFormat::GetAttributeString(customTest, customTestEnd, wxGetApp().GetAppOptions().XML_TEST_NAME);
-            const long unfamiliarCount = XmlFormat::GetAttributeLongValue(customTest, customTestEnd, wxGetApp().GetAppOptions().XML_UNFAMILIAR_WORD_COUNT);
-            const long uniqueUnfamiliarCount = XmlFormat::GetAttributeLongValue(customTest, customTestEnd, wxGetApp().GetAppOptions().XML_UNIQUE_UNFAMILIAR_WORD_COUNT);
+            // read in the values
+            wxString textName = XmlFormat::GetAttributeString(customTest, customTestEnd,
+                wxGetApp().GetAppOptions().XML_TEST_NAME);
+            const long unfamiliarCount = XmlFormat::GetAttributeLongValue(customTest, customTestEnd,
+                wxGetApp().GetAppOptions().XML_UNFAMILIAR_WORD_COUNT);
+            const long uniqueUnfamiliarCount = XmlFormat::GetAttributeLongValue(customTest, customTestEnd,
+                wxGetApp().GetAppOptions().XML_UNIQUE_UNFAMILIAR_WORD_COUNT);
             if (HasCustomTest(textName))
                 {
                 GetCustomTest(textName)->SetUnfamiliarWordCount(unfamiliarCount);
@@ -592,9 +695,9 @@ void ProjectDoc::LoadMetaFile(const wchar_t* settingsFileText)
 bool ProjectDoc::OnOpenDocument(const wxString& filename)
     {
     wxLogMessage(L"Opening project \"%s\"", filename);
-    //make sure there aren't any projects getting updated before we start opening a new one.
-    //opening a project may try to add new custom tests, which would cause a race condition with
-    //the processing project
+    // make sure there aren't any projects getting updated before we start opening a new one.
+    // opening a project may try to add new custom tests, which would cause a race condition with
+    // the processing project
     wxList docs = wxGetApp().GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
@@ -607,7 +710,7 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
     if (!wxFile::Exists(filename) )
         {
         LogMessage(
-            wxString::Format(_(L"'%s': unable to open project file. File not found."), filename), 
+            wxString::Format(_(L"'%s': unable to open project file. File not found."), filename),
             _(L"Error"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
@@ -661,19 +764,19 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
         }
     catch (const MemoryMappedInvalidFileType&)
         {
-        LogMessage(_(L"Invalid file."), 
+        LogMessage(_(L"Invalid file."),
             _(L"Project Open"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
     catch (const MemoryMappedFileCloudFileError&)
         {
-        LogMessage(_(L"Unable to open file from Cloud service."), 
+        LogMessage(_(L"Unable to open file from Cloud service."),
             _(L"Project Open"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
     catch (const MemoryMappedFileException&)
         {
-        /*Couldn't get a map of the file for unknown reason, so buffer it.*/
+        /* Couldn't get a map of the file for unknown reason, so buffer it.*/
         if (!LockProjectFile())
             { return false; }
         auto projectFileText = std::make_unique<char[]>(m_File.Length()+1);
@@ -685,25 +788,28 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
     catch (...)
         {
         LogMessage(
-            wxString::Format(_(L"'%s': unable to open project file."), GetFilename()), 
+            wxString::Format(_(L"'%s': unable to open project file."), GetFilename()),
             _(L"Project Open"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
 
     wxBusyCursor bc;
 
-    /*if the indexed text was found in the project or external file
-    then reanalyze everything.  This should be the normal scenario and
-    would only fail if the text was not embedded and the 
-    external file could not be found (if applicable).*/
+    /* If the indexed text was found in the project or external file
+       then reanalyze everything.  This should be the normal scenario and
+       would only fail if the text was not embedded and the 
+       external file could not be found (if applicable).*/
     if (LoadingOriginalTextSucceeded())
         {
-        /*if they set this to exclude headers and such, make sure we actually have some
-        valid sentences to work with*/
-        if ((GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis || GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings) &&
+        /* if they set this to exclude headers and such, make sure we actually have some
+           valid sentences to work with*/
+        if ((GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
+            GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings) &&
             GetWords()->get_complete_sentence_count() == 0)
             {
-            LogMessage(_(L"You have requested to ignore incomplete sentences, but there are no other valid sentences in the text. Incomplete sentences will need to be included in the analysis."), 
+            LogMessage(_(L"You have requested to ignore incomplete sentences, but there are no other "
+                          "valid sentences in the text. Incomplete sentences will need to be included "
+                          "in the analysis."),
                        _(L"Warning"), wxOK|wxICON_EXCLAMATION);
             SetInvalidSentenceMethod(InvalidSentence::IncludeAsFullSentences);
             }
@@ -739,8 +845,8 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
         }
     else
         {
-        /*Don't bother calling CalculateStatistics(), just use the values
-        loaded from the settings file in the project*/
+        /* Don't bother calling CalculateStatistics(), just use the values
+           loaded from the settings file in the project*/
         if (GetTotalWords() == 0)
             {
             LogMessage(_(L"No words were found in this file."),
@@ -750,17 +856,17 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
 
         wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Loading project...")));
 
-        /*Don't bother calling LoadHardWords() if the original text was lost*/
-        /*Don't bother calling DisplayHighlightedText() if the original text was lost*/
-        /*Don't bother deleting m_word_frequency_map if the original text was lost*/
+        /* Don't bother calling LoadHardWords() if the original text was lost*/
+        /* Don't bother calling DisplayHighlightedText() if the original text was lost*/
+        /* Don't bother deleting m_word_frequency_map if the original text was lost*/
         DisplayReadabilityScores(false);
         DisplayStatistics();
         DisplayReadabilityGraphs();
-        /*Don't bother calling DisplayWordsBreakdown() if the original text was lost*/
+        /* Don't bother calling DisplayWordsBreakdown() if the original text was lost*/
         }
 
-    /*Don't call "Modify(false)" because if the external document could not be found when
-    loading the project and user searched for the document then the modified flag is set*/
+    /* Don't call "Modify(false)" because if the external document could not be found when
+       loading the project and user searched for the document then the modified flag is set*/
     SetDocumentSaved(true);
 
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
@@ -782,10 +888,10 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
 //------------------------------------------------
 bool ProjectDoc::RunProjectWizard(const wxString& path)
     {
-    //make sure document content is cleared
+    // make sure document content is cleared
     FreeDocumentText();
 
-    //Run through the project wizard
+    // Run through the project wizard
     ProjectWizardDlg* wizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::StandardProject, path);
     if (wizard->ShowModal() != wxID_OK)
         {
@@ -810,16 +916,21 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
         SetTextSource(TextSource::EnteredText);
         }
 
-    //get readability options that were selected
+    // get readability options that were selected
     if (wizard->IsDocumentTypeSelected() )
         {
-        //general documents
+        // general documents
         if (wizard->GetSelectedDocumentType() == readability::document_classification::general_document)
             {
             for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
-                { rTest->include(rTest->get_test().has_document_classification(readability::document_classification::general_document) && rTest->get_test().has_language(GetProjectLanguage())); }
+                {
+                rTest->include(
+                    rTest->get_test().has_document_classification(
+                        readability::document_classification::general_document) &&
+                    rTest->get_test().has_language(GetProjectLanguage()));
+                }
             for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.begin();
                 pos != m_custom_word_tests.end();
                 ++pos)
@@ -828,13 +939,18 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
                     { AddCustomReadabilityTest(wxString(pos->get_name().c_str())); }
                 }
             }
-        //technical manuals and documents
+        // technical manuals and documents
         else if (wizard->GetSelectedDocumentType() == readability::document_classification::technical_document)
             {
             for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
-                { rTest->include(rTest->get_test().has_document_classification(readability::document_classification::technical_document) && rTest->get_test().has_language(GetProjectLanguage())); }
+                {
+                rTest->include(
+                    rTest->get_test().has_document_classification(
+                        readability::document_classification::technical_document) &&
+                    rTest->get_test().has_language(GetProjectLanguage()));
+                }
             for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.begin();
                 pos != m_custom_word_tests.end();
                 ++pos)
@@ -843,10 +959,10 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
                     { AddCustomReadabilityTest(wxString(pos->get_name().c_str())); }
                 }
             }
-        //short, terse forms
+        // short, terse forms
         else if (wizard->GetSelectedDocumentType() == readability::document_classification::nonnarrative_document)
             {
-            //override how headers and lists are counted so that they are always included if this is a form
+            // override how headers and lists are counted so that they are always included if this is a form
             SetInvalidSentenceMethod(InvalidSentence::IncludeAsFullSentences);
 
             for (auto rTest = GetReadabilityTests().get_tests().begin();
@@ -997,16 +1113,16 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             }
         wxGetApp().GetAppOptions().SetTestByIndustry(wizard->GetSelectedIndustryType());
         }
-    //user manually selected the readability test to run
+    // user manually selected the readability test to run
     else if (wizard->IsManualTestSelected() )
         {
-        //manually selected standard tests
+        // manually selected standard tests
         SetReadabilityTests(wizard->GetReadabilityTestsInfo());
         for (auto rTest = GetReadabilityTests().get_tests().begin();
             rTest != GetReadabilityTests().get_tests().end();
             ++rTest)
             {
-            //turn off any selected tests that don't belong to the project's language
+            // turn off any selected tests that don't belong to the project's language
             if (!rTest->get_test().has_language(GetProjectLanguage()))
                 { rTest->include(false); }
             }
@@ -1023,8 +1139,8 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             }
         else
             { IncludeDolchSightWords(false); }
-        //Custom tests. See what was selected, look it up in the global list of test, and add
-        //its unique test ID to the options manager's list of included custom tests.
+        // Custom tests. See what was selected, look it up in the global list of test, and add
+        // its unique test ID to the options manager's list of included custom tests.
         wxGetApp().GetAppOptions().GetIncludedCustomTests().clear();
         wxArrayInt selectedTestIndices = wizard->GetSelectedCustomTests();
         for (size_t i = 0; i < selectedTestIndices.Count(); ++i)
@@ -1041,7 +1157,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
         ApplyTestBundle(wizard->GetSelectedTestBundle());
         wxGetApp().GetAppOptions().SetSelectedTestBundle(wizard->GetSelectedTestBundle());
         }
-    //set parsing options based on how the user defined the structure of the document
+    // set parsing options based on how the user defined the structure of the document
     SetIgnoreBlankLinesForParagraphsParser(wizard->IsSplitLinesSelected());
     SetIgnoreIndentingForParagraphsParser(wizard->IsCenteredTextSelected());
     if ((wizard->IsSplitLinesSelected() ||
@@ -1053,9 +1169,9 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
         }
     else if (wizard->IsNewLinesAlwaysNewParagraphsSelected())
         { SetParagraphsParsingMethod(ParagraphParse::EachNewLineIsAParagraph); }
-    //pre-2007 Microsoft Word files (*.doc) are difficult to detect lists in, so if we are
-    //not explicitly specifying "fitted to the page" analysis for this project (above), then
-    //override the global option and set it to treat all newlines as the end of a paragraph.
+    // pre-2007 Microsoft Word files (*.doc) are difficult to detect lists in, so if we are
+    // not explicitly specifying "fitted to the page" analysis for this project (above), then
+    // override the global option and set it to treat all newlines as the end of a paragraph.
     else if (wizard->IsTextFromFileSelected() &&
         wxFileName(wizard->GetFilePath()).GetExt().CmpNoCase(_DT(L"doc")) == 0)
         {
@@ -1068,7 +1184,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
         }
     else if (wizard->IsFragmentedTextSelected())
         {
-        //override how headers and lists are counted so that they are always included if this is a form
+        // override how headers and lists are counted so that they are always included if this is a form
         SetInvalidSentenceMethod(InvalidSentence::IncludeAsFullSentences);
         for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.begin();
             pos != m_custom_word_tests.end();
@@ -1079,10 +1195,12 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             }
         }
 
-    wxGetApp().GetAppOptions().SetTextSource(wizard->IsTextFromFileSelected() ? TextSource::FromFile : TextSource::EnteredText);
-    wxGetApp().GetAppOptions().SetTestRecommendation(wizard->IsDocumentTypeSelected() ? TestRecommendation::BasedOnDocumentType :
-                                            wizard->IsIndustrySelected() ? TestRecommendation::BasedOnIndustry :
-                                            wizard->IsTestBundleSelected() ? TestRecommendation::UseBundle : TestRecommendation::ManuallySelectTests);
+    wxGetApp().GetAppOptions().SetTextSource(wizard->IsTextFromFileSelected() ?
+        TextSource::FromFile : TextSource::EnteredText);
+    wxGetApp().GetAppOptions().SetTestRecommendation(wizard->IsDocumentTypeSelected() ?
+        TestRecommendation::BasedOnDocumentType :
+        wizard->IsIndustrySelected() ? TestRecommendation::BasedOnIndustry :
+        wizard->IsTestBundleSelected() ? TestRecommendation::UseBundle : TestRecommendation::ManuallySelectTests);
     wxGetApp().GetAppOptions().SaveOptionsFile();
     wizard->Destroy();
     return true;
@@ -1111,7 +1229,8 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
            but point user in the right direction.*/
         SetReadabilityTestResult(ReadabilityMessages::GetDolchLabel(),
                 ReadabilityMessages::GetDolchLabel(),
-                L"<tr><td>" + wxString(_(L"Refer to the <a href=\"#Dolch\">Dolch Sight Words</a> section.")) + L"</td></tr>",
+                L"<tr><td>" + wxString(_(L"Refer to the <a href=\"#Dolch\">Dolch Sight Words</a> section.")) +
+                L"</td></tr>",
                 std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
                 wxEmptyString,
                 std::numeric_limits<double>::quiet_NaN(),
@@ -1136,10 +1255,13 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
             wxString text = view->GetReadabilityScoresList()->GetExplanationsText();
             if (text.empty())
                 { text = _(L"No tests are currently in the project."); }
-            HtmlTableWindow* scoresReport = dynamic_cast<HtmlTableWindow*>(view->GetReadabilityResultsView().FindWindowById(BaseProjectView::READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID));
+            HtmlTableWindow* scoresReport =
+                dynamic_cast<HtmlTableWindow*>(view->GetReadabilityResultsView().FindWindowById(
+                    BaseProjectView::READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID));
             if (!scoresReport)
                 {
-                scoresReport = new HtmlTableWindow(view->GetSplitter(), BaseProjectView::READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID);
+                scoresReport = new HtmlTableWindow(view->GetSplitter(),
+                                                   BaseProjectView::READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID);
                 scoresReport->Hide();
                 scoresReport->SetName(_(L"Summary Report"));
                 scoresReport->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_HTML_MENU") );
@@ -1162,16 +1284,21 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
         else
             {
             // we are getting rid of this window (if nothing in it)
-            view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID);
+            view->GetReadabilityResultsView().RemoveWindowById(
+                BaseProjectView::READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID);
             }
 
         // add/remove the goals
         if (GetTestGoals().size() || GetStatGoals().size())
             {
-            ListCtrlEx* goalsList = dynamic_cast<ListCtrlEx*>(view->GetReadabilityResultsView().FindWindowById(BaseProjectView::READABILITY_GOALS_PAGE_ID));
+            ListCtrlEx* goalsList =
+                dynamic_cast<ListCtrlEx*>(view->GetReadabilityResultsView().FindWindowById(
+                    BaseProjectView::READABILITY_GOALS_PAGE_ID));
             if (!goalsList)
                 {
-                goalsList = new ListCtrlEx(view->GetSplitter(), BaseProjectView::READABILITY_GOALS_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxBORDER_SUNKEN);
+                goalsList = new ListCtrlEx(view->GetSplitter(),
+                    BaseProjectView::READABILITY_GOALS_PAGE_ID, wxDefaultPosition, wxDefaultSize,
+                    wxLC_REPORT|wxBORDER_SUNKEN);
                 goalsList->Hide();
                 goalsList->SetLabel(_(L"Goals"));
                 goalsList->SetName(_(L"Goals"));
@@ -1191,14 +1318,17 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
                 {
                 const auto insertedItem = goalsList->InsertItem(0,
                     wxString::Format(L"%s %s",
-                        (goal.GetPassFailFlags().all() ? BaseProjectView::GetCheckmarkEmoji() : BaseProjectView::GetWarningEmoji()),
+                        (goal.GetPassFailFlags().all() ?
+                            BaseProjectView::GetCheckmarkEmoji() : BaseProjectView::GetWarningEmoji()),
                         goalName));
                 if (!std::isnan(goal.GetMinGoal()))
                     {
                     goalsList->SetItemText(insertedItem, 1,
                         wxString::Format(L"%s %s",
-                            (goal.GetPassFailFlags()[0] ? BaseProjectView::GetCheckmarkEmoji() : BaseProjectView::GetWarningEmoji()),
-                            wxNumberFormatter::ToString(goal.GetMinGoal(), 1, wxNumberFormatter::Style::Style_NoTrailingZeroes)));
+                            (goal.GetPassFailFlags()[0] ?
+                                BaseProjectView::GetCheckmarkEmoji() : BaseProjectView::GetWarningEmoji()),
+                            wxNumberFormatter::ToString(goal.GetMinGoal(), 1,
+                                wxNumberFormatter::Style::Style_NoTrailingZeroes)));
                     }
                 // no goal means that it "passed"
                 else
@@ -1207,8 +1337,10 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
                     {
                     goalsList->SetItemText(insertedItem, 2,
                         wxString::Format(L"%s %s",
-                        (goal.GetPassFailFlags()[1] ? BaseProjectView::GetCheckmarkEmoji() : BaseProjectView::GetWarningEmoji()),
-                            wxNumberFormatter::ToString(goal.GetMaxGoal(), 1, wxNumberFormatter::Style::Style_NoTrailingZeroes)));
+                        (goal.GetPassFailFlags()[1] ?
+                            BaseProjectView::GetCheckmarkEmoji() : BaseProjectView::GetWarningEmoji()),
+                            wxNumberFormatter::ToString(goal.GetMaxGoal(), 1,
+                                wxNumberFormatter::Style::Style_NoTrailingZeroes)));
                     }
                 else
                     { goalsList->SetItemText(insertedItem, 2, BaseProjectView::GetCheckmarkEmoji()); }
@@ -1240,7 +1372,7 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
             }
         else
             {
-            //we are getting rid of this window (if nothing in it)
+            // we are getting rid of this window (if nothing in it)
             view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::READABILITY_GOALS_PAGE_ID);
             }
         }
@@ -1294,13 +1426,13 @@ bool ProjectDoc::OnNewDocument()
 
     LoadExcludePhrases();
 
-    //load appended template file (if there is one)
+    // load appended template file (if there is one)
     LoadAppendedDocument();
 
-    //load the document
+    // load the document
     if (GetTextSource() == TextSource::FromFile)
         {
-        //there is embedded text (that may have been passed from a batch project), so load that here.
+        // there is embedded text (that may have been passed from a batch project), so load that here.
         if (GetDocumentStorageMethod() == TextStorage::EmbedText && GetDocumentText().length())
             { LoadDocument(); }
         else if (!LoadExternalDocument() )
@@ -1311,38 +1443,40 @@ bool ProjectDoc::OnNewDocument()
     else if (GetTextSource() == TextSource::EnteredText)
         {
         LoadManuallyEnteredText();
-        /*need to set storage method to embed if using manually entered text;
-        otherwise, the text will get lost*/
+        /* need to set storage method to embed if using manually entered text;
+           otherwise, the text will get lost*/
         SetDocumentStorageMethod(TextStorage::EmbedText);
         }
 
     if (GetWords() == nullptr)
         {
-        LogMessage(_(L"An unknown error occurred while loading the document."), 
+        LogMessage(_(L"An unknown error occurred while loading the document."),
                     _(L"Error"), wxOK|wxICON_ERROR);
         return false;
         }
 
-    /*see if there is an inordinate amount of titles/headers/bullets, and if they
-    are asking to these then make sure they understand that a large part of the
-    document will be ignored.
+    /* See if there is an inordinate amount of titles/headers/bullets, and if they
+       are asking to these then make sure they understand that a large part of the
+       document will be ignored.
        Note that we don't bother with this check with webpages because they normally
-    contain lists for things like menus that we would indeed want to ignore.*/
+       contain lists for things like menus that we would indeed want to ignore.*/
     FilePathResolver resolvePath(GetOriginalDocumentFilePath(), true);
     if (GetWords()->get_sentence_count() > 0 &&
         !resolvePath.IsWebFile())
         {
-        /*if document is nothing but valid sentences then it is OK.*/
+        /* if document is nothing but valid sentences then it is OK.*/
         if (GetWords()->get_sentence_count() == GetWords()->get_complete_sentence_count())
             {
-            //NOOP
+            // NOOP
             }
         else
             {
-            const double numberOfInvalidSentencesPercentage = safe_divide<double>((GetWords()->get_sentence_count() - GetWords()->get_complete_sentence_count()),
+            const double numberOfInvalidSentencesPercentage =
+                safe_divide<double>((GetWords()->get_sentence_count() - GetWords()->get_complete_sentence_count()),
                 GetWords()->get_sentence_count());
             if (numberOfInvalidSentencesPercentage > 0.60f &&
-                (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis || GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings))
+                (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
+                 GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings))
                 {
                 auto warningIter = wxGetApp().GetAppOptions().GetWarning(_DT(L"high-count-sentences-being-ignored"));
                 if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
@@ -1352,7 +1486,8 @@ bool ProjectDoc::OnNewDocument()
                                                     warningIter->GetTitle(), warningIter->GetFlags());
                     msg.SetEscapeId(wxID_NO);
                     msg.ShowCheckBox(_(L"Remember my answer"));
-                    msg.SetYesNoLabels(_(L"Include incomplete sentences"), _(L"Continue excluding incomplete sentences"));
+                    msg.SetYesNoLabels(_(L"Include incomplete sentences"),
+                                       _(L"Continue excluding incomplete sentences"));
                     const int dlgResponse = msg.ShowModal();
                     if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
                         msg.IsCheckBoxChecked())
@@ -1369,7 +1504,8 @@ bool ProjectDoc::OnNewDocument()
             }
         }
 
-    if (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis || GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
+    if (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
+        GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
         { CalculateStatisticsIgnoringInvalidSentences(); }
     else if (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences)
         { CalculateStatistics(); }
@@ -1420,17 +1556,17 @@ bool ProjectDoc::OnNewDocument()
             { LogMessage(*WarningManager::GetWarning(_DT(L"document-less-than-100-words")), true); }
         }
 
-    //check for sentences that got broken up by paragraph breaks and warn if there are lot of them,
-    //this indicates a messed up file.
-    //We do this here so not to interrupt the creation of the project too much.
+    // Check for sentences that got broken up by paragraph breaks and warn if there are lot of them,
+    // this indicates a messed up file.
+    // We do this here so not to interrupt the creation of the project too much.
     size_t paragraphBrokenSentences = 0;
     for (std::vector<size_t>::const_iterator pos = GetWords()->get_lowercase_beginning_sentences().begin();
         pos != GetWords()->get_lowercase_beginning_sentences().end();
         ++pos)
         {
-        //if there is a complete, 3-word or more sentence starting with a lowercased letter
-        //following an incomplete sentence (that would not be a list item or header),
-        //then this might be a sentence accidentally split by two lines (e.g., a paragraph break)
+        // if there is a complete, 3-word or more sentence starting with a lowercased letter
+        // following an incomplete sentence (that would not be a list item or header),
+        // then this might be a sentence accidentally split by two lines (e.g., a paragraph break)
         if (*pos > 0 &&
             GetWords()->get_sentences()[*pos].get_word_count() > 3 &&
             GetWords()->get_sentences()[(*pos)].get_type() == grammar::sentence_paragraph_type::complete &&
@@ -1441,14 +1577,18 @@ bool ProjectDoc::OnNewDocument()
         {
         if (WarningManager::HasWarning(_DT(L"sentences-split-by-paragraph-breaks")))
             {
-            auto warningMsg = *WarningManager::GetWarning(_DT(L"sentences-split-by-paragraph-breaks"));
-            warningMsg.SetMessage(wxString::Format(_(L"This document contains at least %zu sentences that appear to be split by paragraph breaks. This may lead to incorrect results.\nPlease review your document to verify that this is intentional."), paragraphBrokenSentences));
+            auto warningMsg = *WarningManager::GetWarning(
+                _DT(L"sentences-split-by-paragraph-breaks"));
+            warningMsg.SetMessage(wxString::Format(
+                _(L"This document contains at least %zu sentences that appear to be split by paragraph breaks. "
+                   "This may lead to incorrect results.\n"
+                   "Please review your document to verify that this is intentional."), paragraphBrokenSentences));
             LogMessage(warningMsg, true);
             }
         }
 
-    //Go through the sentences and see if any are not complete but considered valid because of their length.
-    //If any are found, then mention it to the user.
+    // Go through the sentences and see if any are not complete but considered valid because of their length.
+    // If any are found, then mention it to the user.
     size_t sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength = 0;
     std::vector<punctuation::punctuation_mark>::const_iterator punctPos = GetWords()->get_punctuation().begin();
     wxArrayString longIncompleteSentences;
@@ -1456,12 +1596,14 @@ bool ProjectDoc::OnNewDocument()
          sentPos != GetWords()->get_sentences().end();
          ++sentPos)
         {
-        //note our special case for list item lines ending with semicolons will be ignored here
-        if (sentPos->is_valid() && !sentPos->ends_with_valid_punctuation() && sentPos->get_ending_punctuation() != common_lang_constants::SEMICOLON &&
+        // note our special case for list item lines ending with semicolons will be ignored here
+        if (sentPos->is_valid() && !sentPos->ends_with_valid_punctuation() &&
+            sentPos->get_ending_punctuation() != common_lang_constants::SEMICOLON &&
             sentPos->get_word_count() > GetIncludeIncompleteSentencesIfLongerThanValue())
             {
             ++sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength;
-            longIncompleteSentences.Add(ProjectReportFormat::FormatSentence(this, *sentPos, punctPos, GetWords()->get_punctuation().end()));
+            longIncompleteSentences.Add(ProjectReportFormat::FormatSentence(this, *sentPos, punctPos,
+                GetWords()->get_punctuation().end()));
             }
         }
     if (sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength > 0)
@@ -1475,9 +1617,15 @@ bool ProjectDoc::OnNewDocument()
                 wxGetApp().GetAppOptions().GetRibbonHoverColor(),
                 wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
                 LD_CLOSE_BUTTON|LD_DONT_SHOW_AGAIN, wxID_ANY,
-                warningIter->GetTitle(), wxString::Format(_(L"This document contains %zu incomplete sentence(s) longer than %zu words which will be included in the analysis.\n\nTo change this, increase the \"Include incomplete sentences containing more than...\" option under Project Properties->Document Indexing."), sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength, GetIncludeIncompleteSentencesIfLongerThanValue()));
+                warningIter->GetTitle(), wxString::Format(
+                _(L"This document contains %zu incomplete sentence(s) longer than %zu words which will be "
+                   "included in the analysis.\n\nTo change this, increase the "
+                   "\"Include incomplete sentences containing more than...\" option under "
+                   "Project Properties->Document Indexing."),
+                sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength,
+                GetIncludeIncompleteSentencesIfLongerThanValue()));
             const int dlgResponse = listDlg.ShowModal();
-            //save the checkbox status
+            // save the checkbox status
             if (listDlg.IsCheckBoxChecked())
                 {
                 warningIter->Show(false);
@@ -1510,8 +1658,11 @@ void ProjectDoc::DisplayWordsBreakdown()
         }
 
     // complex words (3+ syllable)
-    ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::HARD_WORDS_LIST_PAGE_ID));
-    //data will be null if call to LoadHardWords() failed (will happen if document was missing or other project failure).
+    ListCtrlEx* listView =
+        dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+            BaseProjectView::HARD_WORDS_LIST_PAGE_ID));
+    // data will be null if call to LoadHardWords() failed
+    // (will happen if document was missing or other project failure).
     if (GetWordsBreakdownInfo().Is3PlusSyllablesEnabled() &&
         GetTotalUnique3PlusSyllableWords() > 0 && Get3SyllablePlusData())
         {
@@ -1523,7 +1674,9 @@ void ProjectDoc::DisplayWordsBreakdown()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::HARD_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView = new ListCtrlEx(view->GetSplitter(),
+                BaseProjectView::HARD_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
+                wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetThreeSyllableListWordsLabel());
             listView->SetName(BaseProjectView::GetThreeSyllableListWordsLabel());
@@ -1539,9 +1692,12 @@ void ProjectDoc::DisplayWordsBreakdown()
             UpdateListOptions(listView);
             // sort by syllable count, then frequency, then words (highest to lowest)
             std::vector<std::pair<size_t,Wisteria::SortDirection>> columnsToSort;
-            columnsToSort.push_back(std::pair<size_t,Wisteria::SortDirection>(1, Wisteria::SortDirection::SortDescending));
-            columnsToSort.push_back(std::pair<size_t,Wisteria::SortDirection>(2, Wisteria::SortDirection::SortDescending));
-            columnsToSort.push_back(std::pair<size_t,Wisteria::SortDirection>(0, Wisteria::SortDirection::SortAscending));
+            columnsToSort.push_back(
+                std::pair<size_t,Wisteria::SortDirection>(1, Wisteria::SortDirection::SortDescending));
+            columnsToSort.push_back(
+                std::pair<size_t,Wisteria::SortDirection>(2, Wisteria::SortDirection::SortDescending));
+            columnsToSort.push_back(
+                std::pair<size_t,Wisteria::SortDirection>(0, Wisteria::SortDirection::SortAscending));
             listView->SortColumns(columnsToSort);
 
             if (view->GetWordsBreakdownView().GetWindowCount() == 0)
@@ -1557,7 +1713,8 @@ void ProjectDoc::DisplayWordsBreakdown()
         }
 
     // long words (6+ characters)
-    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::LONG_WORDS_LIST_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        BaseProjectView::LONG_WORDS_LIST_PAGE_ID));
     if (GetWordsBreakdownInfo().Is6PlusCharacterEnabled() &&
         GetTotalUnique6CharsPlusWords() > 0 && Get6CharacterPlusData())
         {
@@ -1569,7 +1726,9 @@ void ProjectDoc::DisplayWordsBreakdown()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::LONG_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView = new ListCtrlEx(view->GetSplitter(),
+                BaseProjectView::LONG_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
+                wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetSixCharWordsListLabel());
             listView->SetName(BaseProjectView::GetSixCharWordsListLabel());
@@ -1585,9 +1744,12 @@ void ProjectDoc::DisplayWordsBreakdown()
             UpdateListOptions(listView);
             // sort by character count, then frequency, then word (highest to lowest)
             std::vector<std::pair<size_t,Wisteria::SortDirection>> columnsToSort;
-            columnsToSort.push_back(std::pair<size_t,Wisteria::SortDirection>(1, Wisteria::SortDirection::SortDescending));
-            columnsToSort.push_back(std::pair<size_t,Wisteria::SortDirection>(2, Wisteria::SortDirection::SortDescending));
-            columnsToSort.push_back(std::pair<size_t,Wisteria::SortDirection>(0, Wisteria::SortDirection::SortAscending));
+            columnsToSort.push_back(
+                std::pair<size_t,Wisteria::SortDirection>(1, Wisteria::SortDirection::SortDescending));
+            columnsToSort.push_back(
+                std::pair<size_t,Wisteria::SortDirection>(2, Wisteria::SortDirection::SortDescending));
+            columnsToSort.push_back(
+                std::pair<size_t,Wisteria::SortDirection>(0, Wisteria::SortDirection::SortAscending));
             listView->SortColumns(columnsToSort);
 
             if (view->GetWordsBreakdownView().GetWindowCount() == 0)
@@ -1603,7 +1765,8 @@ void ProjectDoc::DisplayWordsBreakdown()
         }
 
     // hard words (DC)
-    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::DC_WORDS_LIST_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        BaseProjectView::DC_WORDS_LIST_PAGE_ID));
     if (GetWordsBreakdownInfo().IsDCUnfamiliarEnabled() &&
         IsDaleChallLikeTestIncluded() && GetTotalUniqueDCHardWords() > 0 && GetDaleChallHardWordData())
         {
@@ -1615,7 +1778,9 @@ void ProjectDoc::DisplayWordsBreakdown()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::DC_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView = new ListCtrlEx(view->GetSplitter(),
+                BaseProjectView::DC_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
+                wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetDaleChallLabel());
             listView->SetName(wxString::Format(_(L"%s (Unfamiliar) List"), BaseProjectView::GetDaleChallLabel()) );
@@ -1628,7 +1793,7 @@ void ProjectDoc::DisplayWordsBreakdown()
             listView->DistributeColumns();
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             UpdateListOptions(listView);
-            
+
             if (view->GetWordsBreakdownView().GetWindowCount() == 0)
                 { view->GetWordsBreakdownView().AddWindow(listView); }
             else
@@ -1642,9 +1807,11 @@ void ProjectDoc::DisplayWordsBreakdown()
         }
 
     // hard words (Spache)
-    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID));
     if (GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled() &&
-        GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()) && GetTotalUniqueHardWordsSpache() > 0 && GetSpacheHardWordData())
+        GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()) &&
+        GetTotalUniqueHardWordsSpache() > 0 && GetSpacheHardWordData())
         {
         if (listView)
             {
@@ -1654,7 +1821,9 @@ void ProjectDoc::DisplayWordsBreakdown()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView = new ListCtrlEx(view->GetSplitter(),
+                BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
+                wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetSpacheLabel());
             listView->SetName(wxString::Format(_(L"%s (Unfamiliar) List"), BaseProjectView::GetSpacheLabel()) );
@@ -1681,9 +1850,11 @@ void ProjectDoc::DisplayWordsBreakdown()
         }
 
     // hard words (Harris-Jacobson)
-    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID));
     if (GetWordsBreakdownInfo().IsHarrisJacobsonUnfamiliarEnabled() &&
-        GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()) && GetTotalUniqueHarrisJacobsonHardWords() > 0 && GetHarrisJacobsonHardWordDataData())
+        GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()) &&
+        GetTotalUniqueHarrisJacobsonHardWords() > 0 && GetHarrisJacobsonHardWordDataData())
         {
         if (listView)
             {
@@ -1693,10 +1864,13 @@ void ProjectDoc::DisplayWordsBreakdown()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView = new ListCtrlEx(view->GetSplitter(),
+                BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
+                wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetHarrisJacobsonLabel());
-            listView->SetName(wxString::Format(_(L"%s (Unfamiliar) List"), BaseProjectView::GetHarrisJacobsonLabel()) );
+            listView->SetName(wxString::Format(_(L"%s (Unfamiliar) List"),
+                BaseProjectView::GetHarrisJacobsonLabel()) );
             listView->EnableGridLines();
             listView->InsertColumn(0, _(L"Unfamiliar Word"));
             listView->InsertColumn(1, _(L"Frequency"));
@@ -1724,7 +1898,8 @@ void ProjectDoc::DisplayWordsBreakdown()
         pos != GetCustTestsInUse().end();
         ++pos)
         {
-        listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(pos->GetIterator()->get_interface_id(), CLASSINFO(ListCtrlEx)));
+        listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+            pos->GetIterator()->get_interface_id(), CLASSINFO(ListCtrlEx)));
         if (GetWordsBreakdownInfo().IsCustomTestsUnfamiliarEnabled() &&
             pos->GetIterator()->is_using_familiar_words() &&
             pos->GetUniqueUnfamiliarWordCount() > 0 &&
@@ -1739,7 +1914,8 @@ void ProjectDoc::DisplayWordsBreakdown()
                 }
             else
                 {
-                listView = new ListCtrlEx(view->GetSplitter(), pos->GetIterator()->get_interface_id(), wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView = new ListCtrlEx(view->GetSplitter(), pos->GetIterator()->get_interface_id(),
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
                 listView->Hide();
                 listView->SetLabel(pos->GetIterator()->get_name().c_str());
                 listView->SetName(wxString(pos->GetIterator()->get_name().c_str()) + _(L" (Unfamiliar) List"));
@@ -1766,7 +1942,8 @@ void ProjectDoc::DisplayWordsBreakdown()
         }
 
     // all words
-    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::ALL_WORDS_LIST_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        BaseProjectView::ALL_WORDS_LIST_PAGE_ID));
     if (GetWordsBreakdownInfo().IsAllWordsEnabled() &&
         GetTotalWords() > 0 && GetAllWordsBaseData())
         {
@@ -1779,7 +1956,8 @@ void ProjectDoc::DisplayWordsBreakdown()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::ALL_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::ALL_WORDS_LIST_PAGE_ID,
+                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetAllWordsLabel());
             listView->SetName(BaseProjectView::GetAllWordsLabel());
@@ -1807,7 +1985,8 @@ void ProjectDoc::DisplayWordsBreakdown()
         }
 
     // important words list
-    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID));
     if (GetWordsBreakdownInfo().IsAllWordsCondensedEnabled() &&
         GetTotalWords() > 0 && GetImportantWordsBaseData() &&
         // don't bother with condensed list if it has the same item count as the all words list
@@ -1822,7 +2001,9 @@ void ProjectDoc::DisplayWordsBreakdown()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView = new ListCtrlEx(view->GetSplitter(),
+                BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
+                wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetImportantWordsLabel());
             listView->SetName(BaseProjectView::GetImportantWordsLabel());
@@ -1848,7 +2029,8 @@ void ProjectDoc::DisplayWordsBreakdown()
 
 #if wxDEBUG_LEVEL >= 2
     // display it
-    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::PROPER_NOUNS_LIST_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        BaseProjectView::PROPER_NOUNS_LIST_PAGE_ID));
     if (GetWordsBreakdownInfo().IsProperNounsEnabled() &&
         GetProperNounsData() && GetProperNounsData()->GetItemCount())
         {
@@ -1860,7 +2042,9 @@ void ProjectDoc::DisplayWordsBreakdown()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::PROPER_NOUNS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView = new ListCtrlEx(view->GetSplitter(),
+                BaseProjectView::PROPER_NOUNS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
+                wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetProperNounsLabel());
             listView->SetName(BaseProjectView::GetProperNounsLabel());
@@ -1887,7 +2071,8 @@ void ProjectDoc::DisplayWordsBreakdown()
         }
 
     // contractions
-    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::CONTRACTIONS_LIST_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        BaseProjectView::CONTRACTIONS_LIST_PAGE_ID));
     if (GetWordsBreakdownInfo().IsContractionsEnabled() &&
         GetContractionsData() && GetContractionsData()->GetItemCount())
         {
@@ -1899,7 +2084,8 @@ void ProjectDoc::DisplayWordsBreakdown()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::CONTRACTIONS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::CONTRACTIONS_LIST_PAGE_ID,
+                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetContractionsLabel());
             listView->SetName(BaseProjectView::GetContractionsLabel());
@@ -1934,24 +2120,29 @@ void ProjectDoc::DisplaySentenceCharts()
     wxGCDC gdc(view->GetDocFrame());
 
     // box plot of sentence lengths
-    if (GetSentencesBreakdownInfo().IsLengthsBoxPlotEnabled() && m_sentenceWordLengths->GetRowCount())
+    if (GetSentencesBreakdownInfo().IsLengthsBoxPlotEnabled() &&
+        m_sentenceWordLengths->GetRowCount())
         {
-        Wisteria::Canvas* sentenceBoxPlotCanvas = dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(BaseProjectView::SENTENCE_BOX_PLOT_PAGE_ID));
+        Wisteria::Canvas* sentenceBoxPlotCanvas =
+            dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(
+                BaseProjectView::SENTENCE_BOX_PLOT_PAGE_ID));
         if (!sentenceBoxPlotCanvas)
             {
-            sentenceBoxPlotCanvas = new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::SENTENCE_BOX_PLOT_PAGE_ID);
+            sentenceBoxPlotCanvas = new Wisteria::Canvas(view->GetSplitter(),
+                BaseProjectView::SENTENCE_BOX_PLOT_PAGE_ID);
             sentenceBoxPlotCanvas->SetFixedObjectsGridSize(1,1);
             sentenceBoxPlotCanvas->SetFixedObject(0,0,std::make_shared<BoxPlot>(sentenceBoxPlotCanvas));
             sentenceBoxPlotCanvas->Hide();
             sentenceBoxPlotCanvas->SetLabel(BaseProjectView::GetSentenceLengthBoxPlotLabel());
             sentenceBoxPlotCanvas->SetName(BaseProjectView::GetSentenceLengthBoxPlotLabel());
             sentenceBoxPlotCanvas->GetTopTitles().push_back(
-                GraphItems::Label(GraphItemInfo(_(L"Sentence-lengths Spread")).Scaling(sentenceBoxPlotCanvas->GetScaling()).Pen(wxNullPen)));
+                GraphItems::Label(GraphItemInfo(_(L"Sentence-lengths Spread")).Scaling(
+                    sentenceBoxPlotCanvas->GetScaling()).Pen(wxNullPen)));
             sentenceBoxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             sentenceBoxPlotCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
             view->GetSentencesBreakdownView().AddWindow(sentenceBoxPlotCanvas);
             }
-        auto sentenceBoxPlot = std::dynamic_pointer_cast<BoxPlot>(sentenceBoxPlotCanvas->GetFixedObject(0,0));
+        auto sentenceBoxPlot = std::dynamic_pointer_cast<BoxPlot>(sentenceBoxPlotCanvas->GetFixedObject(0, 0));
         sentenceBoxPlot->SetBrushScheme(
                     std::make_shared<Brushes::Schemes::BrushScheme>(
                         Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
@@ -1960,7 +2151,8 @@ void ProjectDoc::DisplaySentenceCharts()
 
         UpdateGraphOptions(sentenceBoxPlotCanvas);
 
-        sentenceBoxPlot->SetShadowType(IsDisplayingDropShadows() ? ShadowType::RightSideAndBottomShadow : ShadowType::NoShadow);
+        sentenceBoxPlot->SetShadowType(IsDisplayingDropShadows() ?
+            ShadowType::RightSideAndBottomShadow : ShadowType::NoShadow);
         sentenceBoxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
         sentenceBoxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
         sentenceBoxPlot->SetOpacity(GetGraphBoxOpacity());
@@ -1972,12 +2164,16 @@ void ProjectDoc::DisplaySentenceCharts()
         { view->GetSentencesBreakdownView().RemoveWindowById(BaseProjectView::SENTENCE_BOX_PLOT_PAGE_ID); }
 
     // histogram of sentence lengths
-    if (GetSentencesBreakdownInfo().IsLengthsHistogramEnabled() && m_sentenceWordLengths->GetRowCount())
+    if (GetSentencesBreakdownInfo().IsLengthsHistogramEnabled() &&
+        m_sentenceWordLengths->GetRowCount())
         {
-        Wisteria::Canvas* sentenceHistogramCanvas = dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(BaseProjectView::SENTENCE_HISTOGRAM_PAGE_ID));
+        Wisteria::Canvas* sentenceHistogramCanvas =
+            dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(
+                BaseProjectView::SENTENCE_HISTOGRAM_PAGE_ID));
         if (!sentenceHistogramCanvas)
             {
-            sentenceHistogramCanvas = new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::SENTENCE_HISTOGRAM_PAGE_ID);
+            sentenceHistogramCanvas = new Wisteria::Canvas(view->GetSplitter(),
+                BaseProjectView::SENTENCE_HISTOGRAM_PAGE_ID);
             sentenceHistogramCanvas->SetFixedObjectsGridSize(1,1);
             sentenceHistogramCanvas->SetFixedObject(0,0,
                 std::make_shared<Histogram>(sentenceHistogramCanvas,
@@ -1993,13 +2189,14 @@ void ProjectDoc::DisplaySentenceCharts()
             }
         UpdateGraphOptions(sentenceHistogramCanvas);
 
-        auto sentenceHistogram = std::dynamic_pointer_cast<Histogram>(sentenceHistogramCanvas->GetFixedObject(0,0));
+        auto sentenceHistogram = std::dynamic_pointer_cast<Histogram>(sentenceHistogramCanvas->GetFixedObject(0, 0));
         wxASSERT(sentenceHistogram);
 
         sentenceHistogram->GetTitle().SetText(_(L"Sentence-lengths Distribution"));
         sentenceHistogram->GetTitle().SetRelativeAlignment(RelativeAlignment::Centered);
         sentenceHistogram->SetSortable(false);
-        sentenceHistogram->SetShadowType(IsDisplayingDropShadows() ? ShadowType::RightSideShadow : ShadowType::NoShadow);
+        sentenceHistogram->SetShadowType(IsDisplayingDropShadows() ?
+            ShadowType::RightSideShadow : ShadowType::NoShadow);
         sentenceHistogram->SetBarEffect(GetHistogramBarEffect());
         sentenceHistogram->SetBarOpacity(GetHistogramBarOpacity());
         sentenceHistogram->SetBrushScheme(
@@ -2029,10 +2226,13 @@ void ProjectDoc::DisplaySentenceCharts()
         GetWords()->get_paragraph_count() : GetWords()->get_valid_paragraph_count();
     if (GetSentencesBreakdownInfo().IsLengthsHeatmapEnabled() && m_sentenceWordLengths->GetRowCount())
         {
-        Wisteria::Canvas* sentenceHeatmapCanvas = dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(BaseProjectView::SENTENCE_HEATMAP_PAGE_ID));
+        Wisteria::Canvas* sentenceHeatmapCanvas =
+            dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(
+                BaseProjectView::SENTENCE_HEATMAP_PAGE_ID));
         if (!sentenceHeatmapCanvas)
             {
-            sentenceHeatmapCanvas = new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::SENTENCE_HEATMAP_PAGE_ID);
+            sentenceHeatmapCanvas = new Wisteria::Canvas(view->GetSplitter(),
+                BaseProjectView::SENTENCE_HEATMAP_PAGE_ID);
             sentenceHeatmapCanvas->SetFixedObjectsGridSize(1,2);
             sentenceHeatmapCanvas->SetFixedObject(0,0,std::make_shared<HeatMap>(sentenceHeatmapCanvas));
             sentenceHeatmapCanvas->Hide();
@@ -2045,7 +2245,7 @@ void ProjectDoc::DisplaySentenceCharts()
             }
         UpdateGraphOptions(sentenceHeatmapCanvas);
 
-        auto heatMap = std::dynamic_pointer_cast<HeatMap>(sentenceHeatmapCanvas->GetFixedObject(0,0));
+        auto heatMap = std::dynamic_pointer_cast<HeatMap>(sentenceHeatmapCanvas->GetFixedObject(0, 0));
         heatMap->SetCanvasMargins(5, 5, 5, 5);
         heatMap->SetData(m_sentenceWordLengths,
             GetSentenceWordCountsColumnName(),
@@ -2054,10 +2254,13 @@ void ProjectDoc::DisplaySentenceCharts()
              paragraphCount <= 50 ? 2 :
              paragraphCount <= 75 ? 3 :
              paragraphCount <= 100 ? 4 : 5));
-        
+
         heatMap->GetCaption().SetText((paragraphCount <= 500) ?
-            _(L"Paragraph order is displayed top-to-bottom.\nSentence order is displayed left-to-right within each paragraph.\nLonger sentences (relative to the document) are darker; shorter ones are lighter.") :
-            _(L"Sentence order is displayed left-to-right, top-to-bottom.\nLonger sentences (relative to the document) are darker; shorter ones are lighter."));
+            _(L"Paragraph order is displayed top-to-bottom.\nSentence order is displayed left-to-right "
+               "within each paragraph.\nLonger sentences (relative to the document) are darker; "
+               "shorter ones are lighter.") :
+            _(L"Sentence order is displayed left-to-right, top-to-bottom.\nLonger sentences "
+               "(relative to the document) are darker; shorter ones are lighter."));
         heatMap->GetTitle().SetRelativeAlignment(Wisteria::RelativeAlignment::Centered);
         heatMap->GetTitle().SetText(_(L"Sentence-lengths Heatmap"));
         heatMap->SetLeftPadding(5);
@@ -2090,7 +2293,7 @@ void ProjectDoc::DisplayWordCharts()
         {
         if (!wordBarChartCanvas)
             {
-            wordBarChartCanvas = new Wisteria::Canvas(view->GetSplitter(), 
+            wordBarChartCanvas = new Wisteria::Canvas(view->GetSplitter(),
                                                       BaseProjectView::WORD_BREAKDOWN_PAGE_ID);
             wordBarChartCanvas->SetFixedObjectsGridSize(1, 1);
             wordBarChartCanvas->SetFixedObject(0, 0, std::make_shared<BarChart>(wordBarChartCanvas));
@@ -2098,7 +2301,8 @@ void ProjectDoc::DisplayWordCharts()
             wordBarChartCanvas->SetLabel(BaseProjectView::GetWordCountsLabel());
             wordBarChartCanvas->SetName(BaseProjectView::GetWordCountsLabel());
             wordBarChartCanvas->GetTopTitles().push_back(GraphItems::Label(
-                GraphItemInfo(_(L"Word Totals (by Category)")).Scaling(wordBarChartCanvas->GetScaling()).Pen(wxNullPen)));
+                GraphItemInfo(_(L"Word Totals (by Category)")).
+                Scaling(wordBarChartCanvas->GetScaling()).Pen(wxNullPen)));
             wordBarChartCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             wordBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
             std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0,0))->SetSortable(true);
@@ -2142,57 +2346,73 @@ void ProjectDoc::DisplayWordCharts()
                                                   GetGraphBarEffect(), GetGraphBarOpacity()));
             }
         wordBarChart->AddBar(BarChart::Bar(++currentBar,
-            { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalMonoSyllabicWords())).Brush(GetBarChartBarColor())) } },
+            { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalMonoSyllabicWords())).
+                Brush(GetBarChartBarColor())) } },
             wxNumberFormatter::ToString(GetTotalMonoSyllabicWords(), 0,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Monosyllabic")),
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
+            GraphItems::Label(_(L"Monosyllabic")),
             GetGraphBarEffect(), GetGraphBarOpacity()) );
         if (IsDaleChallLikeTestIncluded())
             {
             wordBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalHardWordsDaleChall())).Brush(GetBarChartBarColor())) } },
+                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalHardWordsDaleChall())).
+                    Brush(GetBarChartBarColor())) } },
                 wxNumberFormatter::ToString(GetTotalHardWordsDaleChall(), 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"DC (unfamiliar)")),
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
+                GraphItems::Label(_(L"DC (unfamiliar)")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
             }
         if (GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()))
             {
             wordBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalHardWordsSpache())).Brush(GetBarChartBarColor())) } },
+                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalHardWordsSpache())).
+                    Brush(GetBarChartBarColor())) } },
                 wxNumberFormatter::ToString(GetTotalHardWordsSpache(), 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Spache (unfamiliar)")),
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
+                GraphItems::Label(_(L"Spache (unfamiliar)")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
             }
         if (GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()))
             {
             wordBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalHardWordsHarrisJacobson())).Brush(GetBarChartBarColor())) } },
+                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalHardWordsHarrisJacobson())).
+                    Brush(GetBarChartBarColor())) } },
                 wxNumberFormatter::ToString(GetTotalHardWordsHarrisJacobson(), 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"HJ (unfamiliar)")),
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
+                GraphItems::Label(_(L"HJ (unfamiliar)")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
             }
         wordBarChart->AddBar(BarChart::Bar(++currentBar,
-            { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotal3PlusSyllabicWords())).Brush(GetBarChartBarColor())) } },
+            { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotal3PlusSyllabicWords())).
+                Brush(GetBarChartBarColor())) } },
             wxNumberFormatter::ToString(GetTotal3PlusSyllabicWords(), 0,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"3+ syllables")),
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
+            GraphItems::Label(_(L"3+ syllables")),
             GetGraphBarEffect(), GetGraphBarOpacity()) );
         wordBarChart->AddBar(BarChart::Bar(++currentBar,
-            { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalLongWords())).Brush(GetBarChartBarColor())) } },
+            { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalLongWords())).
+                Brush(GetBarChartBarColor())) } },
             wxNumberFormatter::ToString(GetTotalLongWords(), 0,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"6+ characters")),
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
+            GraphItems::Label(_(L"6+ characters")),
             GetGraphBarEffect(), GetGraphBarOpacity()) );
         if (GetReadabilityTests().is_test_included(ReadabilityMessages::EFLAW()))
             {
             wordBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalMiniWords())).Brush(GetBarChartBarColor())) } },
+                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalMiniWords())).
+                    Brush(GetBarChartBarColor())) } },
                 wxNumberFormatter::ToString(GetTotalMiniWords(), 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"EFLAW miniwords")),
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
+                GraphItems::Label(_(L"EFLAW miniwords")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
             }
         // all the words
         wordBarChart->AddBar(BarChart::Bar(++currentBar,
-            { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalWords())).Brush(GetBarChartBarColor())) } },
+            { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalWords())).
+                Brush(GetBarChartBarColor())) } },
             wxNumberFormatter::ToString(GetTotalWords(), 0,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Total Words")),
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
+            GraphItems::Label(_(L"Total Words")),
             GetGraphBarEffect(), GetGraphBarOpacity()) );
 
         // update the bar labels
@@ -2280,7 +2500,7 @@ void ProjectDoc::DisplayWordCharts()
         {
         if (!hardWordCloudCanvas)
             {
-            hardWordCloudCanvas = new Wisteria::Canvas(view->GetSplitter(), 
+            hardWordCloudCanvas = new Wisteria::Canvas(view->GetSplitter(),
                                                        BaseProjectView::HARD_WORD_CLOUD_PAGE_ID);
             hardWordCloudCanvas->SetFixedObjectsGridSize(1, 1);
             hardWordCloudCanvas->SetFixedObject(0, 0, std::make_shared<WordCloud>(hardWordCloudCanvas));
@@ -2356,8 +2576,8 @@ void ProjectDoc::AddCrawfordGraph(const bool setFocus)
         {
         crawfordGraphView = new Wisteria::Canvas(view->GetSplitter(),
                                                  BaseProjectView::CRAWFORD_GRAPH_PAGE_ID);
-        crawfordGraphView->SetFixedObjectsGridSize(1,1);
-        
+        crawfordGraphView->SetFixedObjectsGridSize(1, 1);
+
         crawfordGraphView->Hide();
         crawfordGraphView->SetLabel(BaseProjectView::GetCrawfordGraphLabel());
         crawfordGraphView->SetName(BaseProjectView::GetCrawfordGraphLabel());
@@ -2552,7 +2772,7 @@ void ProjectDoc::AddLixGauge(const bool setFocus)
         lixGaugeView = new Wisteria::Canvas(view->GetSplitter(),
                                             BaseProjectView::LIX_GAUGE_PAGE_ID);
         lixGaugeView->SetFixedObjectsGridSize(1, 1);
-        
+
         lixGaugeView->Hide();
         lixGaugeView->SetLabel(BaseProjectView::GetLixGaugeLabel());
         lixGaugeView->SetName(BaseProjectView::GetLixGaugeLabel());
@@ -2585,15 +2805,16 @@ void ProjectDoc::AddLixGauge(const bool setFocus)
 void ProjectDoc::AddFleschChart(const bool setFocus)
     {
     const double ASL = safe_divide<double>(GetTotalWords(), GetTotalSentences());
-    const double ASW = safe_divide<double>((GetFleschNumeralSyllabizeMethod() == FleschNumeralSyllabize::NumeralIsOneSyllable) ?
-                                                GetTotalSyllablesNumeralsOneSyllable() : GetTotalSyllables(),
-                                    GetTotalWords());
+    const double ASW = safe_divide<double>(
+        (GetFleschNumeralSyllabizeMethod() == FleschNumeralSyllabize::NumeralIsOneSyllable) ?
+            GetTotalSyllablesNumeralsOneSyllable() : GetTotalSyllables(),
+        GetTotalWords());
     readability::flesch_difficulty diffLevel;
     const size_t score = readability::flesch_reading_ease(GetTotalWords(),
-                                        (GetFleschNumeralSyllabizeMethod() == FleschNumeralSyllabize::NumeralIsOneSyllable) ?
-                                            GetTotalSyllablesNumeralsOneSyllable() : GetTotalSyllables(),
-                                        GetTotalSentences(),
-                                        diffLevel);
+        (GetFleschNumeralSyllabizeMethod() == FleschNumeralSyllabize::NumeralIsOneSyllable) ?
+            GetTotalSyllablesNumeralsOneSyllable() : GetTotalSyllables(),
+        GetTotalSentences(),
+        diffLevel);
 
     const wxString wordsColumnName{ _DT(L"WORDS") };
     const wxString scoresColumnName{ _DT(L"SCORES") };
@@ -2626,7 +2847,7 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
         fleschChartCanvas = new Wisteria::Canvas(view->GetSplitter(),
                                                  BaseProjectView::FLESCH_CHART_PAGE_ID);
         fleschChartCanvas->SetFixedObjectsGridSize(1, 1);
-        
+
         fleschChartCanvas->Hide();
         fleschChartCanvas->SetLabel(BaseProjectView::GetFleschChartLabel());
         fleschChartCanvas->SetName(BaseProjectView::GetFleschChartLabel());
@@ -2775,7 +2996,7 @@ bool ProjectDoc::AddSchwartzTest(const bool setFocus)
         }
     else
         {
-        const wxString INFLUENCE_DESCRIPTION = 
+        const wxString INFLUENCE_DESCRIPTION =
             schwartzGraph->GetScores().front().IsWordsHard() ?
             _(L"3+ syllable words in the text primarily influenced this score.") :
             _(L"The sentence lengths in the text primarily influenced this score.");
@@ -2895,7 +3116,7 @@ bool ProjectDoc::AddFraseTest(const bool setFocus)
                                               BaseProjectView::FRASE_PAGE_ID);
 
         fraseGraphView->SetFixedObjectsGridSize(1, 1);
-        
+
         fraseGraphView->Hide();
         fraseGraphView->SetLabel(BaseProjectView::GetFraseLabel());
         fraseGraphView->SetName(BaseProjectView::GetFraseLabel());
@@ -2937,7 +3158,7 @@ bool ProjectDoc::AddFraseTest(const bool setFocus)
         }
     else
         {
-        const wxString INFLUENCE_DESCRIPTION = 
+        const wxString INFLUENCE_DESCRIPTION =
             fraseGraph->GetScores().front().IsWordsHard() ?
             _(L"3+ syllable words in the text primarily influenced this score.") :
             _(L"The sentence lengths in the text primarily influenced this score.");
@@ -2979,7 +3200,8 @@ void ProjectDoc::DisplayReadabilityGraphs()
         //remove Fry graph if test is not included (Note that this chart is added by AddFryTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::FRY()))
             { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::FRY_PAGE_ID); }
-        //remove GPM (Spanish) Fry graph if test is not included (Note that this chart is added by AddGilliamPenaMountainFryTest, not here).
+        //remove GPM (Spanish) Fry graph if test is not included
+        // (Note that this chart is added by AddGilliamPenaMountainFryTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::GPM_FRY()))
             { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::GPM_FRY_PAGE_ID); }
         //remove FRASE graph if test is not included (Note that this chart is added by AddFraseTest, not here).
@@ -2997,7 +3219,8 @@ void ProjectDoc::DisplayReadabilityGraphs()
         //remove Lix Gauge if test is not included (Note that this chart is added by AddLixTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::LIX()))
             { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::LIX_GAUGE_PAGE_ID); }
-        //remove German Lix Gauge if neither German Lix test is included (Note that this chart is added by AddLixGermanXXX, not here).
+        //remove German Lix Gauge if neither German Lix test is included
+        // (Note that this chart is added by AddLixGermanXXX, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::LIX_GERMAN_CHILDRENS_LITERATURE()) &&
             !GetReadabilityTests().is_test_included(ReadabilityMessages::LIX_GERMAN_TECHNICAL()))
             { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::LIX_GAUGE_GERMAN_PAGE_ID); }
@@ -3013,26 +3236,30 @@ void ProjectDoc::DisplayReadabilityGraphs()
         //Dolch graphs
         if (IsIncludingDolchSightWords())
             {
-            Wisteria::Canvas* coverageBarChartCanvas = dynamic_cast<Wisteria::Canvas*>(view->GetDolchSightWordsView().FindWindowById(BaseProjectView::DOLCH_COVERAGE_CHART_PAGE_ID));
+            Wisteria::Canvas* coverageBarChartCanvas =
+                dynamic_cast<Wisteria::Canvas*>(view->GetDolchSightWordsView().FindWindowById(
+                    BaseProjectView::DOLCH_COVERAGE_CHART_PAGE_ID));
             if (!coverageBarChartCanvas)
                 {
-                coverageBarChartCanvas = new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::DOLCH_COVERAGE_CHART_PAGE_ID);
-                coverageBarChartCanvas->SetFixedObjectsGridSize(1,1);
-                coverageBarChartCanvas->SetFixedObject(0,0,std::make_shared<BarChart>(coverageBarChartCanvas));
+                coverageBarChartCanvas = new Wisteria::Canvas(view->GetSplitter(),
+                    BaseProjectView::DOLCH_COVERAGE_CHART_PAGE_ID);
+                coverageBarChartCanvas->SetFixedObjectsGridSize(1, 1);
+                coverageBarChartCanvas->SetFixedObject(0, 0, std::make_shared<BarChart>(coverageBarChartCanvas));
                 coverageBarChartCanvas->Hide();
                 coverageBarChartCanvas->SetLabel(BaseProjectView::GetCoverageChartTabLabel());
                 coverageBarChartCanvas->SetName(BaseProjectView::GetCoverageChartTabLabel());
                 coverageBarChartCanvas->GetTopTitles().push_back(
                     GraphItems::Label(
-                        GraphItemInfo(_(L"Dolch Word Coverage")).Scaling(coverageBarChartCanvas->GetScaling()).Pen(wxNullPen)));
+                        GraphItemInfo(_(L"Dolch Word Coverage")).
+                        Scaling(coverageBarChartCanvas->GetScaling()).Pen(wxNullPen)));
                 coverageBarChartCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                 coverageBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
-                std::dynamic_pointer_cast<BarChart>(coverageBarChartCanvas->GetFixedObject(0,0))->SetSortable(true);
+                std::dynamic_pointer_cast<BarChart>(coverageBarChartCanvas->GetFixedObject(0, 0))->SetSortable(true);
                 view->GetDolchSightWordsView().AddWindow(coverageBarChartCanvas);
                 }
             UpdateGraphOptions(coverageBarChartCanvas);
 
-            auto coverageBarChart = std::dynamic_pointer_cast<BarChart>(coverageBarChartCanvas->GetFixedObject(0,0));
+            auto coverageBarChart = std::dynamic_pointer_cast<BarChart>(coverageBarChartCanvas->GetFixedObject(0, 0));
             wxASSERT(coverageBarChart);
 
             coverageBarChart->ClearBars();
@@ -3049,43 +3276,59 @@ void ProjectDoc::DisplayReadabilityGraphs()
             coverageBarChart->GetScalingAxis().GetGridlinePen() = wxNullPen;
 
             size_t currentBar = 0;
-            const double dolchNounPercentage = safe_divide<double>((ProjectReportFormat::MAX_DOLCH_NOUNS-GetUnusedDolchNouns()),ProjectReportFormat::MAX_DOLCH_NOUNS)*100;
+            const double dolchNounPercentage =
+                safe_divide<double>((ProjectReportFormat::MAX_DOLCH_NOUNS-GetUnusedDolchNouns()),
+                    ProjectReportFormat::MAX_DOLCH_NOUNS) * 100;
             coverageBarChart->AddBar(BarChart::Bar(++currentBar,
                 {
                     { BarChart::BarBlock(BarChart::BarBlockInfo(dolchNounPercentage).Brush(GetDolchNounColor())) }
                 },
                 wxNumberFormatter::ToString(dolchNounPercentage, 1,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"%", GraphItems::Label(_(L"Nouns")),
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
+                L"%", GraphItems::Label(_(L"Nouns")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
-            const double dolchVerbsPercentage = safe_divide<double>((ProjectReportFormat::MAX_DOLCH_VERBS-GetUnusedDolchVerbs()),ProjectReportFormat::MAX_DOLCH_VERBS)*100;
+            const double dolchVerbsPercentage =
+                safe_divide<double>((ProjectReportFormat::MAX_DOLCH_VERBS - GetUnusedDolchVerbs()),
+                    ProjectReportFormat::MAX_DOLCH_VERBS)*100;
             coverageBarChart->AddBar(BarChart::Bar(++currentBar,
                 {
                     { BarChart::BarBlock(BarChart::BarBlockInfo(dolchVerbsPercentage).Brush(GetDolchVerbsColor())) }
                 },
                 wxNumberFormatter::ToString(dolchVerbsPercentage, 1,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"%", GraphItems::Label(_(L"Verbs")),
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
+                L"%", GraphItems::Label(_(L"Verbs")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
-            const double dolchAdjectivesPercentage = safe_divide<double>((ProjectReportFormat::MAX_DOLCH_ADJECTIVE_WORDS-GetUnusedDolchAdjectives()),ProjectReportFormat::MAX_DOLCH_ADJECTIVE_WORDS)*100;
+            const double dolchAdjectivesPercentage =
+                safe_divide<double>((ProjectReportFormat::MAX_DOLCH_ADJECTIVE_WORDS - GetUnusedDolchAdjectives()),
+                    ProjectReportFormat::MAX_DOLCH_ADJECTIVE_WORDS)*100;
             coverageBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(dolchAdjectivesPercentage).Brush(GetDolchAdjectivesColor())) } },
+                { { BarChart::BarBlock(BarChart::BarBlockInfo(dolchAdjectivesPercentage).
+                    Brush(GetDolchAdjectivesColor())) } },
                 wxNumberFormatter::ToString(dolchAdjectivesPercentage, 1,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"%", GraphItems::Label(_(L"Adjectives")),
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
+                L"%", GraphItems::Label(_(L"Adjectives")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
-            const double dolchAdverbsPercentage = safe_divide<double>((ProjectReportFormat::MAX_DOLCH_ADVERB_WORDS-GetUnusedDolchAdverbs()),ProjectReportFormat::MAX_DOLCH_ADVERB_WORDS)*100;
+            const double dolchAdverbsPercentage =
+                safe_divide<double>((ProjectReportFormat::MAX_DOLCH_ADVERB_WORDS-GetUnusedDolchAdverbs()),
+                    ProjectReportFormat::MAX_DOLCH_ADVERB_WORDS)*100;
             coverageBarChart->AddBar(BarChart::Bar(++currentBar,
                 { { BarChart::BarBlock(BarChart::BarBlockInfo(dolchAdverbsPercentage).Brush(GetDolchAdverbsColor())) } },
                 wxNumberFormatter::ToString(dolchAdverbsPercentage, 1,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"%", GraphItems::Label(_(L"Adverbs")),
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
+                L"%", GraphItems::Label(_(L"Adverbs")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
-            const double dolchPronounsPercentage = safe_divide<double>((ProjectReportFormat::MAX_DOLCH_PRONOUN_WORDS-GetUnusedDolchPronouns()),ProjectReportFormat::MAX_DOLCH_PRONOUN_WORDS)*100;
+            const double dolchPronounsPercentage =
+                safe_divide<double>((ProjectReportFormat::MAX_DOLCH_PRONOUN_WORDS-GetUnusedDolchPronouns()),
+                    ProjectReportFormat::MAX_DOLCH_PRONOUN_WORDS)*100;
             coverageBarChart->AddBar(BarChart::Bar(++currentBar,
                 { { BarChart::BarBlock(BarChart::BarBlockInfo(dolchPronounsPercentage).Brush(GetDolchPronounsColor())) } },
                 wxNumberFormatter::ToString(dolchPronounsPercentage, 1,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"%", GraphItems::Label(_(L"Pronouns")),
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
+                L"%", GraphItems::Label(_(L"Pronouns")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
             const double dolchPrepositionsPercentage = safe_divide<double>((ProjectReportFormat::MAX_DOLCH_PREPOSITION_WORDS-GetUnusedDolchPrepositions()),ProjectReportFormat::MAX_DOLCH_PREPOSITION_WORDS)*100;
@@ -3114,7 +3357,9 @@ void ProjectDoc::DisplayReadabilityGraphs()
             const size_t totalDolchWords = m_dolchConjunctionCounts.second + m_dolchPrepositionCounts.second + m_dolchPronounCounts.second +
                 m_dolchAdverbCounts.second + m_dolchAdjectiveCounts.second + m_dolchVerbCounts.second + m_dolchNounCounts.second;
 
-            Wisteria::Canvas* wordBarChartCanvas = dynamic_cast<Wisteria::Canvas*>(view->GetDolchSightWordsView().FindWindowById(BaseProjectView::DOLCH_BREAKDOWN_PAGE_ID));
+            Wisteria::Canvas* wordBarChartCanvas =
+                dynamic_cast<Wisteria::Canvas*>(view->GetDolchSightWordsView().FindWindowById(
+                    BaseProjectView::DOLCH_BREAKDOWN_PAGE_ID));
             if (!wordBarChartCanvas)
                 {
                 wordBarChartCanvas = new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::DOLCH_BREAKDOWN_PAGE_ID);
@@ -3125,7 +3370,8 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 wordBarChartCanvas->SetName(BaseProjectView::GetWordCountsLabel());
                 wordBarChartCanvas->GetTopTitles().push_back(
                     GraphItems::Label(
-                        GraphItemInfo(_(L"Dolch Word Breakdown")).Scaling(wordBarChartCanvas->GetScaling()).Pen(wxNullPen)));
+                        GraphItemInfo(_(L"Dolch Word Breakdown")).
+                        Scaling(wordBarChartCanvas->GetScaling()).Pen(wxNullPen)));
                 wordBarChartCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                 wordBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
                 std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0,0))->SetSortable(true);
@@ -3139,7 +3385,8 @@ void ProjectDoc::DisplayReadabilityGraphs()
             dolchBarChart->SetBarOrientation(static_cast<Wisteria::Orientation>(GetBarChartOrientation()));
             dolchBarChart->GetBarAxis().SetLabelDisplay(Wisteria::AxisLabelDisplay::DisplayOnlyCustomLabels);
             dolchBarChart->GetScalingAxis().SetLabelDisplay(Wisteria::AxisLabelDisplay::DisplayCustomLabelsOrValues);
-            dolchBarChart->SetShadowType(IsDisplayingDropShadows() ? ShadowType::RightSideShadow : ShadowType::NoShadow);
+            dolchBarChart->SetShadowType(IsDisplayingDropShadows() ?
+                ShadowType::RightSideShadow : ShadowType::NoShadow);
             dolchBarChart->IncludeSpacesBetweenBars(true);
             dolchBarChart->SetBinLabelDisplay(IsDisplayingBarLabels() ?
                 BinLabelDisplay::BinValue : BinLabelDisplay::NoDisplay);
@@ -3226,7 +3473,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
         }
     catch (...)
         {
-        LogMessage(_(L"An unknown error occurred. Unable to create graphs."), 
+        LogMessage(_(L"An unknown error occurred. Unable to create graphs."),
             _(L"Error"), wxOK|wxICON_EXCLAMATION);
         }
     }
@@ -3247,7 +3494,9 @@ void ProjectDoc::DisplayStatistics()
 
     if (GetStatisticsInfo().IsReportEnabled())
         {
-        HtmlTableWindow* summaryReportWindow = dynamic_cast<HtmlTableWindow*>(view->GetSummaryView().FindWindowById(BaseProjectView::STATS_REPORT_PAGE_ID));
+        HtmlTableWindow* summaryReportWindow =
+            dynamic_cast<HtmlTableWindow*>(view->GetSummaryView().FindWindowById(
+                BaseProjectView::STATS_REPORT_PAGE_ID));
         if (summaryReportWindow == nullptr)
             {
             summaryReportWindow = new HtmlTableWindow(view->GetSplitter(), BaseProjectView::STATS_REPORT_PAGE_ID);
@@ -3266,10 +3515,13 @@ void ProjectDoc::DisplayStatistics()
 
         std::wstring formattedStats = ProjectReportFormat::FormatHtmlReportStart(
                 wxGetApp().GetAppOptions().GetControlBackgroundColor(),
-                ((wxGetApp().GetAppOptions().GetControlBackgroundColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK)) +
-            ProjectReportFormat::FormatStatisticsInfo(this, wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT), view->GetSummaryStatisticsListData()) +
+                ((wxGetApp().GetAppOptions().GetControlBackgroundColor().
+                    GetLuminance() < .5f) ? *wxWHITE : *wxBLACK)) +
+            ProjectReportFormat::FormatStatisticsInfo(this, wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT),
+                view->GetSummaryStatisticsListData()) +
             ProjectReportFormat::FormatHtmlReportEnd();
-        //if document failed to be loaded and we are just showing the basic stats, then remove the links to the various windows that won't be shown
+        // if document failed to be loaded and we are just showing the basic stats,
+        // then remove the links to the various windows that won't be shown
         if (!LoadingOriginalTextSucceeded())
             { lily_of_the_valley::html_format::strip_hyperlinks(formattedStats); }
 
@@ -3281,10 +3533,12 @@ void ProjectDoc::DisplayStatistics()
 
     if (GetStatisticsInfo().IsTableEnabled())
         {
-        ListCtrlEx* tabularStatsList = dynamic_cast<ListCtrlEx*>(view->GetSummaryView().FindWindowById(BaseProjectView::STATS_LIST_PAGE_ID));
+        ListCtrlEx* tabularStatsList = dynamic_cast<ListCtrlEx*>(view->GetSummaryView().FindWindowById(
+            BaseProjectView::STATS_LIST_PAGE_ID));
         if (tabularStatsList == nullptr)
             {
-            tabularStatsList = new ListCtrlEx(view->GetSplitter(), BaseProjectView::STATS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            tabularStatsList = new ListCtrlEx(view->GetSplitter(), BaseProjectView::STATS_LIST_PAGE_ID,
+                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             tabularStatsList->Hide();
             tabularStatsList->SetLabel(BaseProjectView::GetTabularReportLabel());
             tabularStatsList->SetName(BaseProjectView::GetTabularReportLabel());
@@ -3297,24 +3551,29 @@ void ProjectDoc::DisplayStatistics()
             tabularStatsList->InsertColumn(2, _(L"Percentage"));
             tabularStatsList->SetVirtualDataProvider(view->GetSummaryStatisticsListData());
             }
-        tabularStatsList->SetVirtualDataSize(view->GetSummaryStatisticsListData()->GetItemCount(), view->GetSummaryStatisticsListData()->GetColumnCount());
+        tabularStatsList->SetVirtualDataSize(view->GetSummaryStatisticsListData()->GetItemCount(),
+            view->GetSummaryStatisticsListData()->GetColumnCount());
         tabularStatsList->SetColumnWidth(0, tabularStatsList->EstimateColumnWidth(0));
         tabularStatsList->SetColumnWidth(1, wxLIST_AUTOSIZE_USEHEADER);
         tabularStatsList->SetColumnWidth(2, tabularStatsList->EstimateColumnWidth(2));
         tabularStatsList->Resort();
         tabularStatsList->DistributeColumns();
-        const auto buddyWindowPosition = view->GetSummaryView().FindWindowPositionById(BaseProjectView::STATS_REPORT_PAGE_ID);
-        view->GetSummaryView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, tabularStatsList);
+        const auto buddyWindowPosition = view->GetSummaryView().FindWindowPositionById(
+            BaseProjectView::STATS_REPORT_PAGE_ID);
+        view->GetSummaryView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ?
+            buddyWindowPosition+1 : 0, tabularStatsList);
         }
     else
         {
-        //we are getting rid of this window (if it was included before)
+        // we are getting rid of this window (if it was included before)
         view->GetSummaryView().RemoveWindowById(BaseProjectView::STATS_LIST_PAGE_ID);
         }
 
     if (IsIncludingDolchSightWords())
         {
-        HtmlTableWindow* sumWindow = dynamic_cast<HtmlTableWindow*>(view->GetDolchSightWordsView().FindWindowById(BaseProjectView::DOLCH_STATS_PAGE_ID));
+        HtmlTableWindow* sumWindow =
+            dynamic_cast<HtmlTableWindow*>(view->GetDolchSightWordsView().FindWindowById(
+                BaseProjectView::DOLCH_STATS_PAGE_ID));
         if (!sumWindow)
             {
             sumWindow = new HtmlTableWindow(view->GetSplitter(), BaseProjectView::DOLCH_STATS_PAGE_ID);
@@ -3329,7 +3588,7 @@ void ProjectDoc::DisplayStatistics()
             sumWindow->SetLeftPrinterFooter(wxGetApp().GetAppOptions().GetLeftPrinterFooter());
             sumWindow->SetCenterPrinterFooter(wxGetApp().GetAppOptions().GetCenterPrinterFooter());
             sumWindow->SetRightPrinterFooter(wxGetApp().GetAppOptions().GetRightPrinterFooter());
-            
+
             view->GetDolchSightWordsView().AddWindow(sumWindow);
             }
         wxASSERT(sumWindow);
@@ -3338,7 +3597,8 @@ void ProjectDoc::DisplayStatistics()
                 wxGetApp().GetAppOptions().GetControlBackgroundColor(),
                 ColorContrast::BlackOrWhiteContrast(wxGetApp().GetAppOptions().GetControlBackgroundColor()),
                 _(L"Dolch Summary")) +
-                ProjectReportFormat::FormatDolchStatisticsInfo(this, true, wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT), nullptr) +
+                ProjectReportFormat::FormatDolchStatisticsInfo(this, true,
+                    wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT), nullptr) +
             ProjectReportFormat::FormatHtmlReportEnd());
         }
     else
@@ -3428,7 +3688,7 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
                            sencentesColumnName);
 
         fryGraphView->SetFixedObject(0, 0, gFryGraph);
-        
+
         view->GetReadabilityResultsView().AddWindow(fryGraphView);
         }
     UpdateGraphOptions(fryGraphView);
@@ -3476,7 +3736,7 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
         }
     else
         {
-        const wxString INFLUENCE_DESCRIPTION = 
+        const wxString INFLUENCE_DESCRIPTION =
             gFryGraph->GetScores().front().IsWordsHard() ?
             _(L"3+ syllable words in the text primarily influenced this grade level score.") :
             _(L"The sentence lengths in the text primarily influenced this grade level score.");
@@ -3508,7 +3768,7 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
 
     GetReadabilityTests().include_test(CURRENT_TEST_KEY, true);
 
-    //if they asked to set focus to the score then select the graph
+    // if they asked to set focus to the score then select the graph
     if (setFocus)
         {
         view->UpdateSideBarIcons();
@@ -3585,7 +3845,7 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
                                             BaseProjectView::FRY_PAGE_ID);
 
         fryGraphView->SetFixedObjectsGridSize(1, 1);
-        
+
         fryGraphView->Hide();
         fryGraphView->SetLabel(BaseProjectView::GetFryLabel());
         fryGraphView->SetName(BaseProjectView::GetFryLabel());
@@ -3650,13 +3910,13 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
         }
     else
         {
-        const wxString INFLUENCE_DESCRIPTION = 
+        const wxString INFLUENCE_DESCRIPTION =
             fryGraph->GetScores().front().IsWordsHard() ?
             _(L"3+ syllable words in the text primarily influenced this grade level score.") :
             _(L"The sentence lengths in the text primarily influenced this grade level score.");
         const size_t gradeValue = fryGraph->GetScores().front().GetScore();
 
-        const wxString description = 
+        const wxString description =
             ProjectReportFormat::FormatTestResult(
                 GetReadabilityMessageCatalog().GetGradeScaleDescription(gradeValue) + L"<br />" +
                 INFLUENCE_DESCRIPTION,
@@ -3681,7 +3941,7 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
 
     GetReadabilityTests().include_test(CURRENT_TEST_KEY, true);
 
-    //if they asked to set focus to the score then select the graph
+    // if they asked to set focus to the score then select the graph
     if (setFocus)
         {
         view->UpdateSideBarIcons();
@@ -3774,7 +4034,7 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
                             sencentesColumnName);
 
         raygorGraphView->SetFixedObject(0, 0, raygorGraph);
-        
+
         view->GetReadabilityResultsView().AddWindow(raygorGraphView);
         }
     UpdateGraphOptions(raygorGraphView);
@@ -3816,7 +4076,7 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
         }
     else
         {
-        const wxString INFLUENCE_DESCRIPTION = 
+        const wxString INFLUENCE_DESCRIPTION =
             raygorGraph->GetScores().at(0).IsWordsHard() ?
             _(L"6+ character words in the text primarily influenced this grade level score.") :
             _(L"The sentence lengths in the text primarily influenced this grade level score.");
@@ -3846,7 +4106,7 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
 
     GetReadabilityTests().include_test(CURRENT_TEST_KEY, true);
 
-    //if they asked to set focus to the score then select the graph
+    // if they asked to set focus to the score then select the graph
     if (setFocus)
         {
         view->UpdateSideBarIcons();
@@ -3896,7 +4156,8 @@ void ProjectDoc::SetReadabilityTestResult(const wxString& testId,
                                     const double clozeScore,
                                     const bool setFocus)
     {
-    BaseProject::SetReadabilityTestResult(testId, testName, description, USGradeLevel, readerAge, indexScore, clozeScore, setFocus);
+    BaseProject::SetReadabilityTestResult(testId, testName, description, USGradeLevel, readerAge,
+                                          indexScore, clozeScore, setFocus);
 
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
     wxASSERT_LEVEL_2_MSG(view, "Invalid view when adding test!");
@@ -3905,7 +4166,8 @@ void ProjectDoc::SetReadabilityTestResult(const wxString& testId,
     // format the explanation window
     const wxString explanationString = wxString::Format(
         L"<table class='minipage' style='width:100%%;'><tr>\n"
-         "<th colspan='2' style='background:%s; text-align:left'><span style='color:%s;'>%s</span></th></tr>\n%s\n</table>",
+         "<th colspan='2' style='background:%s; text-align:left'>"
+         "<span style='color:%s;'>%s</span></th></tr>\n%s\n</table>",
         ProjectReportFormat::GetReportHeaderColor().GetAsString(wxC2S_HTML_SYNTAX),
         ProjectReportFormat::GetReportHeaderFontColor().GetAsString(wxC2S_HTML_SYNTAX),
             testName, description);
@@ -3916,7 +4178,8 @@ void ProjectDoc::SetReadabilityTestResult(const wxString& testId,
         {
         location = view->GetReadabilityScoresList()->GetResultsListCtrl()->AddRow(testName);
         }
-    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 1, USGradeLevel.second, NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
+    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 1, USGradeLevel.second,
+        NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
     view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 2, readerAge);
     if (std::isnan(indexScore))
         { view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 3, wxEmptyString); }
@@ -3928,20 +4191,23 @@ void ProjectDoc::SetReadabilityTestResult(const wxString& testId,
         { view->GetReadabilityScoresList()->GetDataProvider()->SetItemValue(location, 4, round_to_integer(clozeScore)); }
     view->GetReadabilityScoresList()->GetExplanations()[testName] = explanationString;
 
-    //select item and select scores window in the main project view
+    // select item and select scores window in the main project view
     location = view->GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(testName);
     view->GetReadabilityScoresList()->GetResultsListCtrl()->Select(location);
-    //don't call Focus() because that will call EnsureVisible and cause interface problems, just set the state
-    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemState(location, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
-    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(0, view->GetReadabilityScoresList()->GetResultsListCtrl()->EstimateColumnWidth(0));
+    // don't call Focus() because that will call EnsureVisible and cause interface problems, just set the state
+    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemState(location,
+        wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
+    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(0,
+        view->GetReadabilityScoresList()->GetResultsListCtrl()->EstimateColumnWidth(0));
     view->GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(1, wxLIST_AUTOSIZE_USEHEADER);
     view->GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
     view->GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(3, wxLIST_AUTOSIZE_USEHEADER);
-    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetSize(view->GetReadabilityScoresList()->GetResultsListCtrl()->GetSize());
+    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetSize(
+        view->GetReadabilityScoresList()->GetResultsListCtrl()->GetSize());
 
     if (setFocus)
         {
-        //focus the project section
+        // focus the project section
         view->GetSideBar()->SelectFolder(
             view->GetSideBar()->FindFolder(BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID));
         }
@@ -3954,24 +4220,32 @@ void ProjectDoc::UpdateHighlightedTextWindows()
     // DC
     if (GetWordsBreakdownInfo().IsDCUnfamiliarEnabled() && IsDaleChallLikeTestIncluded() )
         {
-        const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(BaseProjectView::DC_WORDS_LIST_PAGE_ID);
-        view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, m_dcTextWindow);
+        const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(
+            BaseProjectView::DC_WORDS_LIST_PAGE_ID);
+        view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ?
+            buddyWindowPosition+1 : 0, m_dcTextWindow);
         }
     else
         { view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::DC_WORDS_TEXT_PAGE_ID); }
     // Spache
-    if (GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled() && GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()))
+    if (GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled() && GetReadabilityTests().is_test_included(
+        ReadabilityMessages::SPACHE()))
         {
-        const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID);
-        view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, m_spacheTextWindow);
+        const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(
+            BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID);
+        view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ?
+            buddyWindowPosition+1 : 0, m_spacheTextWindow);
         }
     else
         { view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID); }
     // HJ
-    if (GetWordsBreakdownInfo().IsHarrisJacobsonUnfamiliarEnabled() && GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()))
+    if (GetWordsBreakdownInfo().IsHarrisJacobsonUnfamiliarEnabled() &&
+        GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()))
         {
-        const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID);
-        view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, m_hjTextWindow);
+        const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(
+            BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID);
+        view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ?
+            buddyWindowPosition+1 : 0, m_hjTextWindow);
         }
     else
         { view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID); }
@@ -4025,8 +4299,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 endSection += L"\\ulnone";
                 mainFontHeader += _DT(L"\\ul");
                 }
-
-            mainFontHeader += wxString::Format(L"\\f0\\fs%d ", textViewFont.GetPointSize()*2/*"fs" command is in half points*/);
+            // "fs" command is in half points
+            mainFontHeader += wxString::Format(L"\\f0\\fs%d ", textViewFont.GetPointSize()*2);
 
             endSection += L"\\par}";
 
@@ -4034,7 +4308,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             };
 
         // returns color table and color table index for the default font color
-        const auto formatColorTable = [this, highlightColor, formatFontHeader](const wxColour& backgroundColor, wxString& endSection)
+        const auto formatColorTable =
+            [this, highlightColor, formatFontHeader]
+            (const wxColour& backgroundColor, wxString& endSection)
             {
             ColorContrast colorContrast(backgroundColor);
             const wxColour highlightColorAdjusted = (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
@@ -4134,7 +4410,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             wxString::Format(L"{\\highlight11\\cf%d ", dolchVerbsTextColorIndexBGMode) :
             L"{\\cf11 " :
             wxEmptyString;
-        const wxString DOLCH_NOUN_BEGIN = IsHighlightingDolchNouns() ? 
+        const wxString DOLCH_NOUN_BEGIN = IsHighlightingDolchNouns() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\highlight12\\cf%d ", dolchNounTextColorIndexBGMode) :
             L"{\\cf12 " :
@@ -4202,12 +4478,12 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             wxString::Format(L"{\\cb10\\cf%d ", dolchAdjectivesTextColorIndexBGMode) :
             L"{\\cf10 " :
             wxEmptyString;
-        const wxString DOLCH_VERB_BEGIN = IsHighlightingDolchNouns() ? 
+        const wxString DOLCH_VERB_BEGIN = IsHighlightingDolchNouns() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\cb11\\cf%d ", dolchVerbsTextColorIndexBGMode) :
             L"{\\cf11 " :
             wxEmptyString;
-        const wxString DOLCH_NOUN_BEGIN = IsHighlightingDolchNouns() ? 
+        const wxString DOLCH_NOUN_BEGIN = IsHighlightingDolchNouns() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\cb12\\cf%d ", dolchNounTextColorIndexBGMode) :
             L"{\\cf12 " :
@@ -4232,9 +4508,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             L"{\\cb9 " : L"{";
         const wxString DOLCH_ADJECTIVE_BEGIN_LEGEND = IsHighlightingDolchAdjectives() ?
             L"{\\cb10 " : L"{";
-        const wxString DOLCH_VERB_BEGIN_LEGEND = IsHighlightingDolchVerbs() ? 
+        const wxString DOLCH_VERB_BEGIN_LEGEND = IsHighlightingDolchVerbs() ?
             L"{\\cb11 " : L"{";
-        const wxString DOLCH_NOUN_BEGIN_LEGEND = IsHighlightingDolchNouns() ? 
+        const wxString DOLCH_NOUN_BEGIN_LEGEND = IsHighlightingDolchNouns() ?
             L"{\\cb12 " : L"{";
     #elif defined(__WXGTK__)
         /// @todo add black/white contrasting in HighlightBackground mode
@@ -4314,10 +4590,10 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         const wxString DOLCH_ADJECTIVE_BEGIN_LEGEND = IsHighlightingDolchAdjectives() ?
             wxString::Format(L"<span background=\"%s\">", dolchAdjectivesTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
-        const wxString DOLCH_VERB_BEGIN_LEGEND = IsHighlightingDolchVerbs() ? 
+        const wxString DOLCH_VERB_BEGIN_LEGEND = IsHighlightingDolchVerbs() ?
             wxString::Format(L"<span background=\"%s\">", dolchVerbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
-        const wxString DOLCH_NOUN_BEGIN_LEGEND = IsHighlightingDolchNouns() ? 
+        const wxString DOLCH_NOUN_BEGIN_LEGEND = IsHighlightingDolchNouns() ?
             wxString::Format(L"<span background=\"%s\">", dolchNounTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
     #endif
@@ -4327,7 +4603,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         const wxString BOLD_BEGIN = L"{\\b";
         const wxString BOLD_END = L"}";
         const wxString TAB_SYMBOL = L"    ";
-        const wxString CRLF = L"\\par\n";        
+        const wxString CRLF = L"\\par\n";
 
         wxString fontFamily;
         switch (textViewFont.GetFamily() )
@@ -4359,14 +4635,14 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
         const wxString headerSection = wxString::Format(L"{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1033{\\fonttbl{\\f0\\%s\\fcharset0 %s;}}",
             fontFamily, textViewFont.GetFaceName() );
-        
+
         wxString endSection;
         const auto [colorTableThemed, mainFontHeaderThemed] = formatColorTable(GetTextReportBackgroundColor(), endSection);
         const auto [colorTableWhitePaper, mainFontHeaderWhitePaper] = formatColorTable(*wxWHITE, endSection);
 
         const auto headerThemed = headerSection+colorTableThemed+mainFontHeaderThemed;
         const auto headerWhitePaper = headerSection+colorTableWhitePaper+mainFontHeaderWhitePaper;
-        
+
     #elif defined(__WXGTK__)
         const wxString headerSection = wxString::Format(L"<span face=\"%s\" size=\"%u\" style=\"%s\" weight=\"%s\" underline=\"%s\">",
                                                        textViewFont.GetFaceName(),
@@ -4467,7 +4743,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                     #endif
                                         CRLF);
         const wxString writingStyleLegendLabel = _(L"Style (Wordy items, redundant phrases, passive voice, and clich\351s)");
-        const wxString writingStyleLegendLine = (GetProjectLanguage() == readability::test_language::english_test) ? 
+        const wxString writingStyleLegendLine = (GetProjectLanguage() == readability::test_language::english_test) ?
                                     wxString::Format(L"%s    %s   %s  %s%s",
                                         CRLF,
                                         PHRASE_HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
@@ -4620,7 +4896,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 (textViewFont.GetPointSize()-2)*2,
                                 ignoredSentencesLegendLine,
                                 unfamiliarHarrisJacobsonWordsLegendLine,
-                                textViewFont.GetPointSize()*2); 
+                                textViewFont.GetPointSize()*2);
         const wxString dolchWindowLegend = wxString::Format(L" \\pard\\fs%u%s%s%s%s%s%s%s%s \\fs%u\\par\n",
                                 (textViewFont.GetPointSize()-2)*2,
                                 ignoredSentencesLegendLine,
@@ -4833,25 +5109,30 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             }
 
         // DC highlighted words
-        m_dcTextWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::DC_WORDS_TEXT_PAGE_ID));
-        // we will always format this for an English project, even if test is not included. That way, if the test is included later we just have to show it.
+        m_dcTextWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
+            BaseProjectView::DC_WORDS_TEXT_PAGE_ID));
+        // We will always format this for an English project, even if test is not included.
+        // That way, if the test is included later we just have to show it.
         if (GetProjectLanguage() == readability::test_language::english_test)
             {
             if (!m_dcTextWindow)
                 {
-                m_dcTextWindow = new FormattedTextCtrl(view->GetSplitter(), BaseProjectView::DC_WORDS_TEXT_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+                m_dcTextWindow = new FormattedTextCtrl(view->GetSplitter(),
+                    BaseProjectView::DC_WORDS_TEXT_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
                 m_dcTextWindow->Hide();
                 m_dcTextWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_MENU"));
                 m_dcTextWindow->SetLabel(_(L"Dale-Chall (Unfamiliar) Report"));
                 m_dcTextWindow->SetName(_(L"Dale-Chall (Unfamiliar) Report"));
                 }
             UpdateTextWindowOptions(m_dcTextWindow);
-            size_t textLength = 0;
-            if (GetDaleChallTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
+            size_t textLength{ 0 };
+            if (GetDaleChallTextExclusionMode() ==
+                SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
                 textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                         isNotDCWord,
-                                        docText.get(), textBufferLength, headerThemed, endSection, unfamiliarDCWordsLegend,
+                                        docText.get(), textBufferLength, headerThemed, endSection,
+                                        unfamiliarDCWordsLegend,
                                         IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
                                         // forcibly exclude lists but include headers, invalid words will also be valid
                                         true,
@@ -4868,7 +5149,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                         isNotDCWord,
-                                        docText.get(), textBufferLength, headerThemed, endSection, unfamiliarDCWordsLegend,
+                                        docText.get(), textBufferLength, headerThemed, endSection,
+                                        unfamiliarDCWordsLegend,
                                         IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
                                         textBeingExcluded,
                                         GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
@@ -4885,11 +5167,13 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
             isNotDCWord.Reset();
 
-            if (GetDaleChallTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
+            if (GetDaleChallTextExclusionMode() ==
+                SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
                 FormatWordCollectionHighlightedWords(GetWords(),
                                         isNotDCWord,
-                                        docText.get(), textBufferLength, headerWhitePaper, endSection, unfamiliarDCWordsLegend,
+                                        docText.get(), textBufferLength, headerWhitePaper, endSection,
+                                        unfamiliarDCWordsLegend,
                                         IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
                                         // forcibly exclude lists but include headers, invalid words will also be valid
                                         true,
@@ -4906,7 +5190,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 FormatWordCollectionHighlightedWords(GetWords(),
                                         isNotDCWord,
-                                        docText.get(), textBufferLength, headerWhitePaper, endSection, unfamiliarDCWordsLegend,
+                                        docText.get(), textBufferLength, headerWhitePaper, endSection,
+                                        unfamiliarDCWordsLegend,
                                         IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
                                         textBeingExcluded,
                                         GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
@@ -4922,36 +5207,47 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             }
         if (GetWordsBreakdownInfo().IsDCUnfamiliarEnabled() && IsDaleChallLikeTestIncluded() )
             {
-            const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(BaseProjectView::DC_WORDS_LIST_PAGE_ID);
-            view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, m_dcTextWindow);
+            const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(
+                BaseProjectView::DC_WORDS_LIST_PAGE_ID);
+            view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ?
+                buddyWindowPosition+1 : 0, m_dcTextWindow);
             }
         else
             { view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::DC_WORDS_TEXT_PAGE_ID); }
 
         // Spache highlighted words
-        m_spacheTextWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID));
-        // we will always format this for an English project, even if test is not included. That way, if the test is included later we just have to show it.
+        m_spacheTextWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
+            BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID));
+        // We will always format this for an English project, even if test is not included.
+        // That way, if the test is included later we just have to show it.
         if (GetProjectLanguage() == readability::test_language::english_test)
             {
             m_spacheTextWindow = buildTextWindow(m_spacheTextWindow, BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID,
                 _(L"Spache (Unfamiliar) Report"), isNotSpacheWord, unfamiliarSpacheWordsLegend);
             }
-        if (GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled() && GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()) )
+        if (GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled() &&
+            GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()) )
             {
-            const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID);
-            view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, m_spacheTextWindow);
+            const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(
+                BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID);
+            view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ?
+                buddyWindowPosition+1 : 0, m_spacheTextWindow);
             }
         else
             { view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID); }
 
         // HJ highlighted words
-        m_hjTextWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID));
-        // we will always format this for an English project, even if test is not included. That way, if the test is included later we just have to show it.
+        m_hjTextWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
+            BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID));
+        // We will always format this for an English project, even if test is not included.
+        // That way, if the test is included later we just have to show it.
         if (GetProjectLanguage() == readability::test_language::english_test)
             {
             if (!m_hjTextWindow)
                 {
-                m_hjTextWindow = new FormattedTextCtrl(view->GetSplitter(), BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+                m_hjTextWindow = new FormattedTextCtrl(view->GetSplitter(),
+                    BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID, wxDefaultPosition,
+                    wxDefaultSize, wxTE_READONLY);
                 m_hjTextWindow->Hide();
                 m_hjTextWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_MENU"));
                 m_hjTextWindow->SetLabel(_(L"Harris-Jacobson (Unfamiliar) Report"));
@@ -4959,13 +5255,16 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 }
             UpdateTextWindowOptions(m_hjTextWindow);
             size_t textLength = 0;
-            if (GetHarrisJacobsonTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
+            if (GetHarrisJacobsonTextExclusionMode() ==
+                SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
                 textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                     isNotHJWord,
-                                    docText.get(), textBufferLength, headerThemed, endSection, unfamiliarHarrisJacobsonWordsLegend,
+                                    docText.get(), textBufferLength, headerThemed, endSection,
+                                    unfamiliarHarrisJacobsonWordsLegend,
                                     IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
-                                    // HJ explicitly states what to exclude, so always show what it is excluding in this window
+                                    // HJ explicitly states what to exclude, so always show what it is
+                                    // excluding in this window
                                     true,
                                     true,
                                     false,
@@ -4980,7 +5279,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                     isNotHJWord,
-                                    docText.get(), textBufferLength, headerThemed, endSection, unfamiliarHarrisJacobsonWordsLegend,
+                                    docText.get(), textBufferLength, headerThemed, endSection,
+                                    unfamiliarHarrisJacobsonWordsLegend,
                                     IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
                                     textBeingExcluded,
                                     GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
@@ -4997,13 +5297,16 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
             isNotHJWord.Reset();
 
-            if (GetHarrisJacobsonTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
+            if (GetHarrisJacobsonTextExclusionMode() ==
+                SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
                 FormatWordCollectionHighlightedWords(GetWords(),
                                     isNotHJWord,
-                                    docText.get(), textBufferLength, headerWhitePaper, endSection, unfamiliarHarrisJacobsonWordsLegend,
+                                    docText.get(), textBufferLength, headerWhitePaper, endSection,
+                                    unfamiliarHarrisJacobsonWordsLegend,
                                     IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
-                                    // HJ explicitly states what to exclude, so always show what it is excluding in this window
+                                    // HJ explicitly states what to exclude, so always show what it
+                                    // is excluding in this window
                                     true,
                                     true,
                                     false,
@@ -5018,7 +5321,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 FormatWordCollectionHighlightedWords(GetWords(),
                                     isNotHJWord,
-                                    docText.get(), textBufferLength, headerWhitePaper, endSection, unfamiliarHarrisJacobsonWordsLegend,
+                                    docText.get(), textBufferLength, headerWhitePaper, endSection,
+                                    unfamiliarHarrisJacobsonWordsLegend,
                                     IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
                                     textBeingExcluded,
                                     GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
@@ -5032,10 +5336,13 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 }
             m_hjTextWindow->SetUnthemedFormattedText(docText.get());
             }
-        if (GetWordsBreakdownInfo().IsHarrisJacobsonUnfamiliarEnabled() && GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()) )
+        if (GetWordsBreakdownInfo().IsHarrisJacobsonUnfamiliarEnabled() &&
+            GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()) )
             {
-            const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID);
-            view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, m_hjTextWindow);
+            const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(
+                BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID);
+            view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ?
+                buddyWindowPosition+1 : 0, m_hjTextWindow);
             }
         else
             { view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID); }
@@ -5260,11 +5567,13 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         if (GetGrammarInfo().IsHighlightedReportEnabled())
             {
             // display this in the Grammar section
-            FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetGrammarView().FindWindowById(BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID));
+            FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetGrammarView().FindWindowById(
+                BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID));
             if (!textWindow)
                 {
                 textWindow = new FormattedTextCtrl(view->GetSplitter(),
-                    BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+                    BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID, wxDefaultPosition,
+                    wxDefaultSize, wxTE_READONLY);
                 textWindow->Hide();
                 textWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_MENU"));
                 textWindow->SetLabel(_(L"Highlighted Report"));
@@ -5274,12 +5583,14 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             UpdateTextWindowOptions(textWindow);
             const size_t textLength = FormatWordCollectionHighlightedGrammarIssues(GetWords(),
                                         GetDifficultSentenceLength(),
-                                        docText.get(), textBufferLength, headerThemed, endSection, wordinessWindowLegend,
+                                        docText.get(), textBufferLength, headerThemed, endSection,
+                                        wordinessWindowLegend,
                                         HIGHLIGHT_BEGIN, HIGHLIGHT_END,
                                         ERROR_HIGHLIGHT_BEGIN,
                                         PHRASE_HIGHLIGHT_BEGIN,
                                         IGNORE_HIGHLIGHT_BEGIN,
-                                        // if default style is bold, then don't use bold tags internally because that will mess up the RTF
+                                        // if default style is bold, then don't use bold tags internally
+                                        // because that will mess up the RTF
                                         (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? wxString{} : BOLD_BEGIN,
                                         (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? wxString{} : BOLD_END,
                                         TAB_SYMBOL, CRLF,
@@ -5297,12 +5608,14 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
             FormatWordCollectionHighlightedGrammarIssues(GetWords(),
                                         GetDifficultSentenceLength(),
-                                        docText.get(), textBufferLength, headerWhitePaper, endSection, wordinessWindowLegend,
+                                        docText.get(), textBufferLength, headerWhitePaper, endSection,
+                                        wordinessWindowLegend,
                                         HIGHLIGHT_BEGIN, HIGHLIGHT_END,
                                         ERROR_HIGHLIGHT_BEGIN,
                                         PHRASE_HIGHLIGHT_BEGIN,
                                         IGNORE_HIGHLIGHT_BEGIN,
-                                        // if default style is bold, then don't use bold tags internally because that will mess up the RTF
+                                        // if default style is bold, then don't use bold tags internally because
+                                        // that will mess up the RTF
                                         (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? wxString{} : BOLD_BEGIN,
                                         (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? wxString{} : BOLD_END,
                                         TAB_SYMBOL, CRLF,
@@ -5322,7 +5635,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         // Dolch sight words
         if (IsIncludingDolchSightWords())
             {
-            FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID));
+            FormattedTextCtrl* textWindow =
+                dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(
+                    BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID));
             textWindow = buildTextWindow(textWindow, BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID,
                 _(L"Highlighted Dolch Words"), isDolchWord, dolchWindowLegend);
             view->GetDolchSightWordsView().AddWindow(textWindow);
@@ -5332,7 +5647,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
         if (IsIncludingDolchSightWords())
             {
-            FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID));
+            FormattedTextCtrl* textWindow =
+                dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(
+                    BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID));
             textWindow = buildTextWindow(textWindow, BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID,
                 _(L"Highlighted Non-Dolch Words"), isNotDolchWord, nonDolchWordsLegend);
             view->GetDolchSightWordsView().AddWindow(textWindow);
@@ -5342,7 +5659,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         }
     catch (...)
         {
-        wxMessageBox(_(L"An internal error occurred while formatting the highlighted text. Please contact the software vendor."), _(L"Error"),
+        wxMessageBox(
+            _(L"An internal error occurred while formatting the highlighted text. "
+               "Please contact the software vendor."), _(L"Error"),
             wxICON_EXCLAMATION|wxOK);
         }
     }
@@ -5363,34 +5682,34 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
             }
         catch (const MemoryMappedFileShareViolationException&)
             {
-            LogMessage(_(L"Project appears to be open by another application. Cannot save project."), 
+            LogMessage(_(L"Project appears to be open by another application. Cannot save project."),
                 _(L"Project Save"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
-        //don't care about the file being empty or whatever, just if it's locked
+        // don't care about the file being empty or whatever, just if it's locked
         catch (...)
             {}
         m_FileReadOnly = false;
         m_File.Close();
         }
 
-    //if we opened earlier in read only mode then bail
+    // if we opened earlier in read only mode then bail
     if (m_FileReadOnly)
         {
-        LogMessage(_(L"Project file was opened as read only. Unable to save."), 
+        LogMessage(_(L"Project file was opened as read only. Unable to save."),
                 _(L"Project Save"), wxOK|wxICON_INFORMATION);
         return false;
         }
 
     if (!m_File.IsOpened() )
         {
-        //if the file is already there and it is in use then fail.
-        //otherwise, may be a new project needing to be created. Either way, we need to
-        //truncate the file (and maybe create it), so open it for writing.
+        // If the file is already there and it is in use then fail.
+        // otherwise, may be a new project needing to be created. Either way, we need to
+        // truncate the file (and maybe create it), so open it for writing.
         if (!m_File.Open(filename, wxFile::write) )
             {
             m_FileReadOnly = true;
-            LogMessage(_(L"File appears to be open by another application. Cannot save project."), 
+            LogMessage(_(L"File appears to be open by another application. Cannot save project."),
                 _(L"Project Save"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
@@ -5402,7 +5721,9 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
     //Write the meta data information, such as statistics
     //---------------------------------------------------
     wxString metaFileText = wxEmptyString; wxString sectionText = wxEmptyString;
-    metaFileText.append(L"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<").append(wxGetApp().GetAppOptions().XML_OFFICE_DOCUMENT_META_HEADER).append(L">\n\t<").append(wxGetApp().GetAppOptions().XML_OFFICE_META).append(L">\n");
+    metaFileText.append(L"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<").
+        append(wxGetApp().GetAppOptions().XML_OFFICE_DOCUMENT_META_HEADER).
+        append(L">\n\t<").append(wxGetApp().GetAppOptions().XML_OFFICE_META).append(L">\n");
     //statistics section
     metaFileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_STATISTICS);
     //text size
@@ -5673,7 +5994,7 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
     m_File.Close();
     if (!out.Commit())
         {
-        LogMessage(_(L"Unable to save project file. File may be locked by another process."), 
+        LogMessage(_(L"Unable to save project file. File may be locked by another process."),
                    _(L"Project Error"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
@@ -5730,7 +6051,9 @@ void ProjectDoc::DisplayOverlyLongSentences()
     // long sentences
     if (GetSentencesBreakdownInfo().IsLongSentencesEnabled() && m_overlyLongSentenceData->GetItemCount())
         {
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID));
+        ListCtrlEx* listView =
+            dynamic_cast<ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(
+                BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID));
         if (listView)
             {
             listView->SetVirtualDataProvider(m_overlyLongSentenceData);
@@ -5740,7 +6063,7 @@ void ProjectDoc::DisplayOverlyLongSentences()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID, 
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetLongSentencesLabel());
@@ -5756,8 +6079,10 @@ void ProjectDoc::DisplayOverlyLongSentences()
             UpdateListOptions(listView);
             // sort by length (high to low), then by index (low to high, order of appearance in the document)
             std::vector<std::pair<size_t,Wisteria::SortDirection>> columnsToSort;
-            columnsToSort.push_back(std::pair<size_t,Wisteria::SortDirection>(1, Wisteria::SortDirection::SortDescending));
-            columnsToSort.push_back(std::pair<size_t,Wisteria::SortDirection>(2, Wisteria::SortDirection::SortAscending));
+            columnsToSort.push_back(
+                std::pair<size_t,Wisteria::SortDirection>(1, Wisteria::SortDirection::SortDescending));
+            columnsToSort.push_back(
+                std::pair<size_t,Wisteria::SortDirection>(2, Wisteria::SortDirection::SortAscending));
             listView->SortColumns(columnsToSort);
             view->GetSentencesBreakdownView().AddWindow(listView);
             }
@@ -5790,8 +6115,10 @@ void ProjectDoc::DisplayGrammar()
         m_misspelledWordData->SetItemText(uniqueMisspellingCount, 0, mIter->first.c_str());
         m_misspelledWordData->SetItemValue(uniqueMisspellingCount++, 1, mIter->second);
         }
-    m_misspelledWordData->SetSize(misspelledWords.get_data().size());//totally redundant, but fixes mysterious painting issue when project is refreshed
-    ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID));
+    // totally redundant, but fixes mysterious painting issue when project is refreshed
+    m_misspelledWordData->SetSize(misspelledWords.get_data().size());
+    ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+        BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID));
     if (GetGrammarInfo().IsMisspellingsEnabled() && m_misspelledWordData->GetItemCount())
         {
         if (listView)
@@ -5803,7 +6130,7 @@ void ProjectDoc::DisplayGrammar()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID, 
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetMisspellingsLabel());
@@ -5834,9 +6161,12 @@ void ProjectDoc::DisplayGrammar()
         {
         const word_case_insensitive_no_stem& dupWord = GetWords()->get_word(dupWordIndices[i]);
         m_dupWordData->SetItemText(i, 0, wxString::Format(L"%s %s", dupWord.c_str(), dupWord.c_str()));
-        m_dupWordData->SetItemValue(i, 1, dupWord.get_sentence_index()+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));//make it one-indexed
+        m_dupWordData->SetItemValue(i, 1, dupWord.get_sentence_index() + 1,
+            // make it one-indexed
+            NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
         }
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(BaseProjectView::DUPLICATES_LIST_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+        BaseProjectView::DUPLICATES_LIST_PAGE_ID));
     if (GetGrammarInfo().IsRepeatedWordsEnabled() && m_dupWordData->GetItemCount())
         {
         if (listView)
@@ -5848,7 +6178,7 @@ void ProjectDoc::DisplayGrammar()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::DUPLICATES_LIST_PAGE_ID, 
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::DUPLICATES_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetRepeatedWordsLabel());
@@ -5886,7 +6216,8 @@ void ProjectDoc::DisplayGrammar()
         m_incorrectArticleData->SetItemText(uniqueIncorrectArticleCount, 0, mIter->first.c_str());
         m_incorrectArticleData->SetItemValue(uniqueIncorrectArticleCount++, 1, mIter->second);
         }
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(BaseProjectView::INCORRECT_ARTICLE_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+        BaseProjectView::INCORRECT_ARTICLE_PAGE_ID));
     if (GetGrammarInfo().IsArticleMismatchesEnabled() && m_incorrectArticleData->GetItemCount())
         {
         if (listView)
@@ -5898,7 +6229,7 @@ void ProjectDoc::DisplayGrammar()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::INCORRECT_ARTICLE_PAGE_ID, 
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::INCORRECT_ARTICLE_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetArticleMismatchesLabel());
@@ -5971,7 +6302,8 @@ void ProjectDoc::DisplayGrammar()
     m_clichePhraseData->SetSize(clicheCount);
 
     // Wording errors
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+        BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID));
     if (GetGrammarInfo().IsWordingErrorsEnabled() && m_wordingErrorData->GetItemCount())
         {
         if (listView)
@@ -6007,7 +6339,8 @@ void ProjectDoc::DisplayGrammar()
         }
 
     // redundant phrases
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+        BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID));
     if (GetGrammarInfo().IsRedundantPhrasesEnabled() && m_redundantPhraseData->GetItemCount())
         {
         if (listView)
@@ -6019,7 +6352,7 @@ void ProjectDoc::DisplayGrammar()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID, 
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetRedundantPhrasesTabLabel());
@@ -6047,8 +6380,8 @@ void ProjectDoc::DisplayGrammar()
     // reset punctuation marker
     auto punctPos = GetWords()->get_punctuation().begin();
     size_t previousSentencePos = 0;
-    std::vector<punctuation::punctuation_mark>::const_iterator previousPunctPos = GetWords()->get_punctuation().begin();
-    for (std::vector<std::pair<size_t,std::set<size_t>>>::const_iterator overUsedWordsListsIter = GetWords()->get_overused_words_by_sentence().begin();
+    auto previousPunctPos = GetWords()->get_punctuation().cbegin();
+    for (auto overUsedWordsListsIter = GetWords()->get_overused_words_by_sentence().begin();
         overUsedWordsListsIter != GetWords()->get_overused_words_by_sentence().end();
         ++overUsedWordsListsIter)
         {
@@ -6059,7 +6392,8 @@ void ProjectDoc::DisplayGrammar()
             { punctPos = previousPunctPos; }
         previousPunctPos = punctPos;
         previousSentencePos = overUsedWordsListsIter->first;
-        wxString currentSentence = ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[overUsedWordsListsIter->first],
+        wxString currentSentence = ProjectReportFormat::FormatSentence(this,
+            GetWords()->get_sentences()[overUsedWordsListsIter->first],
             punctPos, GetWords()->get_punctuation().end());
         // format the list of like words
         wxString theWords;
@@ -6069,19 +6403,26 @@ void ProjectDoc::DisplayGrammar()
             { theWords.append(GetWords()->get_word((*overusedWordsIter)).c_str()).append(L"; "); }
         theWords.Trim();
         theWords.RemoveLast();
-        GetOverusedWordsBySentenceData()->SetItemText(overUsedWordsListsIter-GetWords()->get_overused_words_by_sentence().begin(), 0,
+        GetOverusedWordsBySentenceData()->SetItemText(
+            overUsedWordsListsIter-GetWords()->get_overused_words_by_sentence().begin(), 0,
             theWords);
-        GetOverusedWordsBySentenceData()->SetItemText(overUsedWordsListsIter-GetWords()->get_overused_words_by_sentence().begin(), 1,
+        GetOverusedWordsBySentenceData()->SetItemText(
+            overUsedWordsListsIter-GetWords()->get_overused_words_by_sentence().begin(), 1,
             currentSentence);
-        GetOverusedWordsBySentenceData()->SetItemValue(overUsedWordsListsIter-GetWords()->get_overused_words_by_sentence().begin(), 2,
-                // Use word count (not valid word count) since this is for grammar analysis.
-                // This relates more to what a reader is seeing, not a readability analysis
-                GetWords()->get_sentences()[overUsedWordsListsIter->first].get_word_count());
-        GetOverusedWordsBySentenceData()->SetItemValue(overUsedWordsListsIter-GetWords()->get_overused_words_by_sentence().begin(), 3,
-           (overUsedWordsListsIter->first)+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+        GetOverusedWordsBySentenceData()->SetItemValue(
+            overUsedWordsListsIter-GetWords()->get_overused_words_by_sentence().begin(), 2,
+            // Use word count (not valid word count) since this is for grammar analysis.
+            // This relates more to what a reader is seeing, not a readability analysis
+            GetWords()->get_sentences()[overUsedWordsListsIter->first].get_word_count());
+        GetOverusedWordsBySentenceData()->SetItemValue(
+            overUsedWordsListsIter-GetWords()->get_overused_words_by_sentence().begin(), 3,
+            (overUsedWordsListsIter->first) + 1,
+            NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
         }
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID));
-    if (GetGrammarInfo().IsOverUsedWordsBySentenceEnabled() && GetOverusedWordsBySentenceData() && GetOverusedWordsBySentenceData()->GetItemCount())
+    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+        BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID));
+    if (GetGrammarInfo().IsOverUsedWordsBySentenceEnabled() &&
+        GetOverusedWordsBySentenceData() && GetOverusedWordsBySentenceData()->GetItemCount())
         {
         if (listView)
             {
@@ -6091,7 +6432,8 @@ void ProjectDoc::DisplayGrammar()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID,
+                                      wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetOverusedWordsBySentenceLabel());
             listView->SetName(BaseProjectView::GetOverusedWordsBySentenceLabel());
@@ -6105,10 +6447,12 @@ void ProjectDoc::DisplayGrammar()
             listView->DistributeColumns();
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             UpdateListOptions(listView);
-            //sort by sentence length, then words (lowest to highest)
+            // sort by sentence length, then words (lowest to highest)
             std::vector<std::pair<size_t,Wisteria::SortDirection>> columnsToSort;
-            columnsToSort.push_back(std::pair<size_t,Wisteria::SortDirection>(2, Wisteria::SortDirection::SortAscending));
-            columnsToSort.push_back(std::pair<size_t,Wisteria::SortDirection>(0, Wisteria::SortDirection::SortAscending));
+            columnsToSort.push_back(std::pair<size_t, Wisteria::SortDirection>(2,
+                Wisteria::SortDirection::SortAscending));
+            columnsToSort.push_back(std::pair<size_t, Wisteria::SortDirection>(0,
+                Wisteria::SortDirection::SortAscending));
             listView->SortColumns(columnsToSort);
 
             view->GetGrammarView().AddWindow(listView);
@@ -6121,7 +6465,8 @@ void ProjectDoc::DisplayGrammar()
         }
 
     // Wordy items
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+        BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID));
     if (GetGrammarInfo().IsWordyPhrasesEnabled() && m_wordyPhraseData->GetItemCount())
         {
         if (listView)
@@ -6133,7 +6478,7 @@ void ProjectDoc::DisplayGrammar()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID, 
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetWordyPhrasesTabLabel());
@@ -6157,7 +6502,8 @@ void ProjectDoc::DisplayGrammar()
         }
 
     // Cliches
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(BaseProjectView::CLICHES_LIST_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+        BaseProjectView::CLICHES_LIST_PAGE_ID));
     if (GetGrammarInfo().IsClichesEnabled() && m_clichePhraseData->GetItemCount())
         {
         if (listView)
@@ -6169,7 +6515,7 @@ void ProjectDoc::DisplayGrammar()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::CLICHES_LIST_PAGE_ID, 
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::CLICHES_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetClichesTabLabel());
@@ -6201,8 +6547,8 @@ void ProjectDoc::DisplayGrammar()
         for (size_t wordCounter = 0; wordCounter < passiveVoiceIndices[i].second; ++wordCounter)
             {
             currentPassivePhrase += (wordCounter == passiveVoiceIndices[i].second-1) ?
-                traits::case_insensitive_wstring_ex(GetWords()->get_word(passiveVoiceIndices[i].first+wordCounter)) :
-                traits::case_insensitive_wstring_ex(GetWords()->get_word(passiveVoiceIndices[i].first+wordCounter) + L' ');
+                traits::case_insensitive_wstring_ex(GetWords()->get_word(passiveVoiceIndices[i].first + wordCounter)) :
+                traits::case_insensitive_wstring_ex(GetWords()->get_word(passiveVoiceIndices[i].first + wordCounter) + L' ');
             }
         passiveVoicePhrases.insert(currentPassivePhrase);
         }
@@ -6216,7 +6562,8 @@ void ProjectDoc::DisplayGrammar()
         m_passiveVoiceData->SetItemText(uniquePassiveVoiceCount, 0, mIter->first.c_str());
         m_passiveVoiceData->SetItemValue(uniquePassiveVoiceCount++, 1, mIter->second);
         }
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(BaseProjectView::PASSIVE_VOICE_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+        BaseProjectView::PASSIVE_VOICE_PAGE_ID));
     if (GetGrammarInfo().IsPassiveVoiceEnabled() && m_passiveVoiceData->GetItemCount())
         {
         if (listView)
@@ -6228,7 +6575,7 @@ void ProjectDoc::DisplayGrammar()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::PASSIVE_VOICE_PAGE_ID, 
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::PASSIVE_VOICE_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetPassiveLabel());
@@ -6262,16 +6609,20 @@ void ProjectDoc::DisplayGrammar()
         pos != GetWords()->get_conjunction_beginning_sentences().end();
         ++pos)
         {
-        currentSentence = ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[*pos], punctPos, GetWords()->get_punctuation().end());
+        currentSentence = ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[*pos],
+            punctPos, GetWords()->get_punctuation().end());
 
         m_sentenceStartingWithConjunctionsData->SetItemText(sentenceStartingWithConjunctionsCount, 0, currentSentence);
         m_sentenceStartingWithConjunctionsData->SetItemValue(sentenceStartingWithConjunctionsCount++, 1,
-            (*pos)+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));//add 1 to make it one-indexed
+            // add 1 to make it one-indexed
+            (*pos)+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
         }
     m_sentenceStartingWithConjunctionsData->SetSize(sentenceStartingWithConjunctionsCount);
     // display it
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID));
-    if (GetGrammarInfo().IsConjunctionStartingSentencesEnabled() && m_sentenceStartingWithConjunctionsData->GetItemCount())
+    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+        BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID));
+    if (GetGrammarInfo().IsConjunctionStartingSentencesEnabled() &&
+        m_sentenceStartingWithConjunctionsData->GetItemCount())
         {
         if (listView)
             {
@@ -6282,7 +6633,7 @@ void ProjectDoc::DisplayGrammar()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID, 
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel());
@@ -6314,15 +6665,18 @@ void ProjectDoc::DisplayGrammar()
         pos != GetWords()->get_lowercase_beginning_sentences().end();
         ++pos)
         {
-        currentSentence = ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[*pos], punctPos, GetWords()->get_punctuation().end());
+        currentSentence = ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[*pos],
+            punctPos, GetWords()->get_punctuation().end());
 
         m_sentenceStartingWithLowercaseData->SetItemText(sentenceStartingWithLowercaseCount, 0, currentSentence);
         m_sentenceStartingWithLowercaseData->SetItemValue(sentenceStartingWithLowercaseCount++, 1,
-           (*pos)+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));//add 1 to make it one-indexed
+           // add 1 to make it one-indexed
+           (*pos)+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
         }
     m_sentenceStartingWithLowercaseData->SetSize(sentenceStartingWithLowercaseCount);
     // display it
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+        BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID));
     if (GetGrammarInfo().IsLowercaseSentencesEnabled() && m_sentenceStartingWithLowercaseData->GetItemCount())
         {
         if (listView)
@@ -6334,7 +6688,7 @@ void ProjectDoc::DisplayGrammar()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID, 
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetSentenceStartingWithLowercaseTabLabel());
@@ -6366,8 +6720,9 @@ void ProjectDoc::DisplaySightWords()
     if (!view)
         { return; }
 
-    //Dolch words
-    ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID));
+    // Dolch words
+    ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
+        BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID));
     if (IsIncludingDolchSightWords() && GetDolchWordData()->GetItemCount())
         {
         if (listView)
@@ -6378,7 +6733,8 @@ void ProjectDoc::DisplaySightWords()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID,
+                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetDolchWordTabLabel());
             listView->SetName(BaseProjectView::GetDolchWordTabLabel());
@@ -6398,7 +6754,8 @@ void ProjectDoc::DisplaySightWords()
         { view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID); }
 
     // non-Dolch words
-    listView = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
+        BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID));
     if (IsIncludingDolchSightWords() && GetNonDolchWordData()->GetItemCount())
         {
         if (listView)
@@ -6409,7 +6766,8 @@ void ProjectDoc::DisplaySightWords()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID,
+                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetNonDolchWordTabLabel());
             listView->SetName(BaseProjectView::GetNonDolchWordTabLabel());
@@ -6428,7 +6786,8 @@ void ProjectDoc::DisplaySightWords()
         { view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID); }
 
     // unused Dolch words
-    listView = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID));
+    listView = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
+        BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID));
     if (IsIncludingDolchSightWords() && GetUnusedDolchWordData()->GetItemCount())
         {
         if (listView)
@@ -6439,7 +6798,8 @@ void ProjectDoc::DisplaySightWords()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID,
+                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetUnusedDolchWordTabLabel());
             listView->SetName(BaseProjectView::GetUnusedDolchWordTabLabel());
@@ -6470,25 +6830,29 @@ void ProjectDoc::CalculateGraphData()
         wordPos != GetWords()->get_words().cend();
         ++wordPos)
         {
-        if (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis || GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
+        if (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
+            GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
             {
             if (wordPos->is_valid())
                 {
-                if (wordPos->is_numeric() && GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable)
+                if (wordPos->is_numeric() &&
+                    GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable)
                     {
                     m_syllableCounts->AddRow(Data::RowInfo().
                         Continuous({ 1 }).Categoricals({ 0 }));
                     }
                 else
                     {
-                    m_syllableCounts->AddRow(Data::RowInfo().Continuous({ static_cast<double>(wordPos->get_syllable_count()) }).
+                    m_syllableCounts->AddRow(Data::RowInfo().
+                        Continuous({ static_cast<double>(wordPos->get_syllable_count()) }).
                         Categoricals({ 0 }).Id(wordPos->c_str()));
                     }
                 }
             }
         else
             {
-            if (wordPos->is_numeric() && GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable)
+            if (wordPos->is_numeric() &&
+                GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable)
                 {
                 m_syllableCounts->AddRow(Data::RowInfo().
                     Continuous({ 1 }).
@@ -6496,7 +6860,8 @@ void ProjectDoc::CalculateGraphData()
                 }
             else
                 {
-                m_syllableCounts->AddRow(Data::RowInfo().Continuous({ static_cast<double>(wordPos->get_syllable_count()) } ).
+                m_syllableCounts->AddRow(Data::RowInfo().
+                    Continuous({ static_cast<double>(wordPos->get_syllable_count()) } ).
                     Categoricals({ 0 }).Id(wordPos->c_str()));
                 }
             }
@@ -6507,7 +6872,8 @@ void ProjectDoc::CalculateGraphData()
     m_sentenceWordLengths->AddContinuousColumn(GetSentenceIndicesColumnName());
     m_sentenceWordLengths->AddCategoricalColumn(GetGroupColumnName());
     m_sentenceWordLengths->Reserve(GetTotalSentences());
-    if (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis || GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
+    if (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
+        GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
         {
         for (auto paragraphIter = GetWords()->get_paragraphs().cbegin();
             paragraphIter != GetWords()->get_paragraphs().cend();
@@ -6561,29 +6927,38 @@ void ProjectDoc::CalculateGraphData()
         const size_t sentenceIndex = sentenceIndicesColumn->GetValue(labelsPos - wordCountColumn->GetValues().cbegin());
         if (sentenceIndex < GetWords()->get_sentences().size())
             {
-            wxASSERT_LEVEL_2((GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ? (GetWords()->get_sentences()[sentenceIndex].get_word_count() == *labelsPos) : (GetWords()->get_sentences()[sentenceIndex].get_valid_word_count() == *labelsPos));
+            wxASSERT_LEVEL_2((GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
+                (GetWords()->get_sentences()[sentenceIndex].get_word_count() == *labelsPos) :
+                (GetWords()->get_sentences()[sentenceIndex].get_valid_word_count() == *labelsPos));
             if (*labelsPos > outlierInfo.get_upper_outlier_boundary() ||
                 *labelsPos < outlierInfo.get_lower_outlier_boundary())
                 {
                 auto punctPos = GetWords()->get_punctuation().begin();
                 wxString currentSentence = wxString::Format(_(L"Sentence #%s (%s)"),
                     wxNumberFormatter::ToString(sentenceIndex+1/*add 1 to make it one-indexed*/,0,
-                        wxNumberFormatter::Style::Style_NoTrailingZeroes | wxNumberFormatter::Style::Style_WithThousandsSep),
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep),
                     ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[sentenceIndex],
                         punctPos, GetWords()->get_punctuation().end()) );
                 if (currentSentence.length() >= 100)
                     { currentSentence.Truncate(99).Append(wchar_t{ 8230 }); }
-                m_sentenceWordLengths->GetIdColumn().SetValue(labelsPos - wordCountColumn->GetValues().cbegin(), currentSentence.wc_str());
+                m_sentenceWordLengths->GetIdColumn().
+                    SetValue(labelsPos - wordCountColumn->GetValues().cbegin(), currentSentence.wc_str());
                 }
             else
                 {
                 m_sentenceWordLengths->GetIdColumn().SetValue(labelsPos - wordCountColumn->GetValues().cbegin(),
                     wxString::Format(_(L"Sentence #%s"),
                         wxNumberFormatter::ToString(sentenceIndex+1/*add 1 to make it one-indexed*/,0,
-                            wxNumberFormatter::Style::Style_NoTrailingZeroes | wxNumberFormatter::Style::Style_WithThousandsSep)).wc_str() );
+                            wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                            wxNumberFormatter::Style::Style_WithThousandsSep)).wc_str() );
                 }
             }
         else
-            { wxFAIL_MSG(wxString::Format(L"Invalid sentence index (%i out of %i) when updating box plot labels!", sentenceIndex, GetWords()->get_sentences().size())); }
+            {
+            wxFAIL_MSG(wxString::Format(
+                L"Invalid sentence index (%i out of %i) when updating box plot labels!",
+                sentenceIndex, GetWords()->get_sentences().size()));
+            }
         }
     }

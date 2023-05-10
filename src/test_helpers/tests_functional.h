@@ -294,7 +294,7 @@ private:
 /** @brief Functor used for the text highlighted windows.
     @details Specifically, highlights words that are not Dolch words.*/
 template<typename word_typeT>
-class IsNotDolchWordWithLevelHighlighting 
+class IsNotDolchWordWithLevelHighlighting
     {
 public:
     IsNotDolchWordWithLevelHighlighting<word_typeT>(
@@ -372,7 +372,7 @@ public:
         CustomReadabilityTestInterfaceT wordTest,
         const wxString& beginHighlight, const wxString& endHighlight,
         const wxString& beginExcludeHighlight, const wxString& endExcludeHighlight) :
-        m_wordTest(wordTest), 
+        m_wordTest(wordTest),
         m_beginHighlight(beginHighlight), m_endHighlight(endHighlight),
         m_beginExcludeHighlight(beginExcludeHighlight),
         m_endExcludeHighlight(endExcludeHighlight)

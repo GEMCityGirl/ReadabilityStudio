@@ -105,7 +105,8 @@ void ToolsOptionsDlg::OnNumberSyllabizeChange([[maybe_unused]] wxCommandEvent& e
     TransferDataFromWindow();
     if (m_readTestsSyllableLabel)
         {
-        m_readTestsSyllableLabel->SetLabel((m_syllabicationMethod == static_cast<int>(NumeralSyllabize::WholeWordIsOneSyllable)) ?
+        m_readTestsSyllableLabel->SetLabel(
+            (m_syllabicationMethod == static_cast<int>(NumeralSyllabize::WholeWordIsOneSyllable)) ?
             _(L"* Numeral syllabication system default: numerals are one syllable.") :
             _(L"* Numeral syllabication system default: sound out each digit."));
         }
@@ -728,7 +729,7 @@ bool ToolsOptionsDlg::Create(wxWindow* parent, wxWindowID id, const wxString& ca
 //-------------------------------------------------------------
 bool ToolsOptionsDlg::HaveDocumentOptionsChanged() const
     {
-    return m_longSentencesNumberOfWords.has_changed() ||           
+    return m_longSentencesNumberOfWords.has_changed() ||
            m_longSentencesOutliers.has_changed() ||
            m_sentenceLength.has_changed() ||
            m_minDocWordCountForBatch.has_changed() ||
@@ -825,7 +826,7 @@ bool ToolsOptionsDlg::HaveGraphOptionsChanged() const
            // barchart options
            (IsPropertyAvailable(m_barChartPropertyGrid,GetOpacityLabel()) && m_barChartPropertyGrid->IsPropertyModified(GetOpacityLabel())) ||
            (IsPropertyAvailable(m_barChartPropertyGrid,GetColorLabel()) && m_barChartPropertyGrid->IsPropertyModified(GetColorLabel())) ||
-           (IsPropertyAvailable(m_barChartPropertyGrid,GeOrientationLabel()) && m_barChartPropertyGrid->IsPropertyModified(GeOrientationLabel())) ||           
+           (IsPropertyAvailable(m_barChartPropertyGrid,GeOrientationLabel()) && m_barChartPropertyGrid->IsPropertyModified(GeOrientationLabel())) ||
            (IsPropertyAvailable(m_barChartPropertyGrid,GetEffectLabel()) && m_barChartPropertyGrid->IsPropertyModified(GetEffectLabel())) ||
            (IsPropertyAvailable(m_barChartPropertyGrid,GetLabelsOnBarsLabel()) && m_barChartPropertyGrid->IsPropertyModified(GetLabelsOnBarsLabel())) ||
            // histogram options
@@ -944,7 +945,7 @@ bool ToolsOptionsDlg::ValidateOptions()
     TransferDataToWindow();
     if (IsBatchProjectSettings() && m_fileList && m_fileList->GetItemCount() == 0)
         {
-        wxMessageBox(_(L"Project must contain at least one document."), 
+        wxMessageBox(_(L"Project must contain at least one document."),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
         SelectPage(PROJECT_SETTINGS_PAGE);
         return false;
@@ -959,7 +960,7 @@ bool ToolsOptionsDlg::ValidateOptions()
         if (resolvePath.IsInvalidFile() ||
             (resolvePath.IsLocalOrNetworkFile() && !wxFile::Exists(m_filePath.get_value())) )
             {
-            wxMessageBox(wxString::Format(_(L"\"%s\": file not found."), m_filePath.get_value() ), 
+            wxMessageBox(wxString::Format(_(L"\"%s\": file not found."), m_filePath.get_value() ),
                  wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
             SelectPage(PROJECT_SETTINGS_PAGE);
             return false;
@@ -969,7 +970,7 @@ bool ToolsOptionsDlg::ValidateOptions()
         {
         if (!wxFile::Exists(m_appendedDocumentFilePath.get_value()) )
             {
-            wxMessageBox(wxString::Format(_(L"\"%s\": file not found."), m_appendedDocumentFilePath.get_value() ), 
+            wxMessageBox(wxString::Format(_(L"\"%s\": file not found."), m_appendedDocumentFilePath.get_value() ),
                  wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
             SelectPage(PROJECT_SETTINGS_PAGE);
             return false;
@@ -981,7 +982,7 @@ bool ToolsOptionsDlg::ValidateOptions()
             (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetEffectLabel()) && static_cast<BoxEffect>(m_boxPlotsPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())) == BoxEffect::Stipple)) &&
         !wxFile::Exists(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel())))
         {
-        wxMessageBox(wxString::Format(_(L"\"%s\": image brush file not found."), m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel()) ), 
+        wxMessageBox(wxString::Format(_(L"\"%s\": image brush file not found."), m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel()) ),
              wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
         wxFileDialog fd
             (this, _(L"Select Custom Brush Image"),
@@ -996,7 +997,7 @@ bool ToolsOptionsDlg::ValidateOptions()
         !m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()).empty() &&
         !wxFile::Exists(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel())) )
         {
-        wxMessageBox(wxString::Format(_(L"\"%s\": graph background image file not found."), m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()) ), 
+        wxMessageBox(wxString::Format(_(L"\"%s\": graph background image file not found."), m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()) ),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
         wxFileDialog fd
             (this, _(L"Select Background Image"),
@@ -1010,7 +1011,7 @@ bool ToolsOptionsDlg::ValidateOptions()
     if ((IsPropertyAvailable(m_generalGraphPropertyGrid,GetLogoImageLabel()) && m_generalGraphPropertyGrid->GetPropertyValueAsString(GetLogoImageLabel()).length()) &&
         !wxFile::Exists(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetLogoImageLabel())) )
         {
-        wxMessageBox(wxString::Format(_(L"\"%s\": graph logo image file not found."), m_generalGraphPropertyGrid->GetPropertyValueAsString(GetLogoImageLabel()) ), 
+        wxMessageBox(wxString::Format(_(L"\"%s\": graph logo image file not found."), m_generalGraphPropertyGrid->GetPropertyValueAsString(GetLogoImageLabel()) ),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
         wxFileDialog fd
             (this, _(L"Select Logo Image"),
@@ -1022,8 +1023,8 @@ bool ToolsOptionsDlg::ValidateOptions()
         m_generalGraphPropertyGrid->SetPropertyValue(GetLogoImageLabel(), fd.GetPath());
         }
     if (!IsStandardProjectSettings() &&
-        IsPropertyAvailable(m_histogramPropertyGrid,GetBinSortingLabel()) && 
-        IsPropertyAvailable(m_histogramPropertyGrid,GetIntervalDisplayLabel()) && 
+        IsPropertyAvailable(m_histogramPropertyGrid,GetBinSortingLabel()) &&
+        IsPropertyAvailable(m_histogramPropertyGrid,GetIntervalDisplayLabel()) &&
         m_histogramPropertyGrid->GetPropertyValueAsInt(GetBinSortingLabel()) == 0 &&
         m_histogramPropertyGrid->GetPropertyValueAsInt(GetIntervalDisplayLabel()) != 1)
         {
@@ -1037,7 +1038,7 @@ bool ToolsOptionsDlg::ValidateOptions()
     if (m_excludedPhrasesPath.get_value().length() &&
         !wxFile::Exists(m_excludedPhrasesPath.get_value()) )
         {
-        wxMessageBox(wxString::Format(_(L"\"%s\": excluded phrase file not found."), m_excludedPhrasesPath.get_value() ), 
+        wxMessageBox(wxString::Format(_(L"\"%s\": excluded phrase file not found."), m_excludedPhrasesPath.get_value() ),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
         SelectPage(ANALYSIS_INDEXING_PAGE);
         return false;
@@ -1378,7 +1379,7 @@ void ToolsOptionsDlg::SaveOptions()
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetCountIndependentClausesLabel()))
             { wxGetApp().GetAppOptions().SetFogUseSentenceUnits(m_readabilityTestsPropertyGrid->GetPropertyValueAsBool(GetCountIndependentClausesLabel())); }
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetFleschNumeralSyllabicationLabel()))
-            { wxGetApp().GetAppOptions().SetFleschNumeralSyllabizeMethod(static_cast<FleschNumeralSyllabize>(m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetFleschNumeralSyllabicationLabel()))); }       
+            { wxGetApp().GetAppOptions().SetFleschNumeralSyllabizeMethod(static_cast<FleschNumeralSyllabize>(m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetFleschNumeralSyllabicationLabel()))); }
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetFleschKincaidNumeralSyllabicationLabel()))
             { wxGetApp().GetAppOptions().SetFleschKincaidNumeralSyllabizeMethod(static_cast<FleschKincaidNumeralSyllabize>(m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetFleschKincaidNumeralSyllabicationLabel()))); }
 
@@ -1638,7 +1639,7 @@ void ToolsOptionsDlg::OnExportSettings([[maybe_unused]] wxCommandEvent& event)
 
     if (HaveOptionsChanged())
         {
-        if (wxMessageBox(_(L"Some of your settings have changed but have not been saved yet.\nDo you wish to save these changes before exporting?"), 
+        if (wxMessageBox(_(L"Some of your settings have changed but have not been saved yet.\nDo you wish to save these changes before exporting?"),
                 _(L"Loading Settings"), wxYES_NO|wxYES_DEFAULT|wxICON_QUESTION) == wxYES)
             { SaveOptions(); }
         }
@@ -1668,7 +1669,7 @@ void ToolsOptionsDlg::OnImportSettings([[maybe_unused]] wxCommandEvent& event)
     if (dialog.ShowModal() != wxID_OK)
         { return; }
 
-    wxMessageBox(_(L"Settings from the selected file will now be applied."), 
+    wxMessageBox(_(L"Settings from the selected file will now be applied."),
                 _(L"Loading Settings"), wxOK|wxICON_INFORMATION);
     wxGetApp().GetAppOptions().LoadOptionsFile(dialog.GetPath(), false, false);
     Close();
@@ -1677,7 +1678,7 @@ void ToolsOptionsDlg::OnImportSettings([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------------
 void ToolsOptionsDlg::OnResetSettings([[maybe_unused]] wxCommandEvent& event)
     {
-    if (wxMessageBox(_(L"Do you wish to reset all of your program and user settings?"), 
+    if (wxMessageBox(_(L"Do you wish to reset all of your program and user settings?"),
                 _(L"Reset Settings"), wxYES_NO|wxYES_DEFAULT|wxICON_QUESTION) == wxYES)
         {
         wxGetApp().GetAppOptions().ResetSettings();
@@ -2167,7 +2168,7 @@ void ToolsOptionsDlg::CreateControls()
         m_exclusionBlockTagsLabel = new wxStaticText(AnalysisIndexingPage, ID_EXCLUSION_TAG_BLOCK_LABEL, _(L"Exclude text between:"),
             wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
         m_exclusionBlockTagsLabel->Enable((m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) || (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeExceptForHeadings)));
-        exclusionBlockTagsSizer->Add(m_exclusionBlockTagsLabel, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT, wxSizerFlags::GetDefaultBorder()); 
+        exclusionBlockTagsSizer->Add(m_exclusionBlockTagsLabel, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT, wxSizerFlags::GetDefaultBorder());
         wxArrayString exclusionBlockTagsOptions;
         exclusionBlockTagsOptions.Add(_(L"Not enabled"));
         exclusionBlockTagsOptions.Add(_(L"^ and ^"));
@@ -2311,7 +2312,7 @@ void ToolsOptionsDlg::CreateControls()
             //Results
             m_gradeLevelPropertyGrid->Append(new wxPropertyCategory(GetScoreResultsLabel()) );
             m_gradeLevelPropertyGrid->SetPropertyHelpString(GetScoreResultsLabel(), _(L"The options in this section customize which results to display in the Scores section."));
-            
+
             m_gradeLevelPropertyGrid->Append(new wxBoolProperty(GetIncludeScoreSummaryLabel(),wxPG_LABEL,(m_readabilityProjectDoc ? m_readabilityProjectDoc->IsIncludingScoreSummaryReport() : wxGetApp().GetAppOptions().IsIncludingScoreSummaryReport())));
             m_gradeLevelPropertyGrid->SetPropertyAttribute(GetIncludeScoreSummaryLabel(), wxPG_BOOL_USE_CHECKBOX, true);
             m_gradeLevelPropertyGrid->SetPropertyHelpString(GetIncludeScoreSummaryLabel(), _(L"Check this option to include a summary report of the test scores in the results."));
@@ -2521,7 +2522,7 @@ void ToolsOptionsDlg::CreateControls()
         m_wordsBreakdownPropertyGrid->SetPropertyAttribute(BaseProjectView::GetDifficultWordCloudLabel(),
                                                            wxPG_BOOL_USE_CHECKBOX, true);
         m_wordsBreakdownPropertyGrid->SetPropertyHelpString(BaseProjectView::GetDifficultWordCloudLabel(),
-            _(L"Check this to include the difficult word cloud in the results."));       
+            _(L"Check this to include the difficult word cloud in the results."));
 
         m_wordsBreakdownPropertyGrid->Append(new wxBoolProperty(BaseProjectView::GetDaleChallLabel(), wxPG_LABEL, (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetWordsBreakdownInfo().IsDCUnfamiliarEnabled() : wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsDCUnfamiliarEnabled())) );
         m_wordsBreakdownPropertyGrid->SetPropertyAttribute(BaseProjectView::GetDaleChallLabel(), wxPG_BOOL_USE_CHECKBOX, true);
@@ -2559,7 +2560,7 @@ void ToolsOptionsDlg::CreateControls()
         wxPanel* Panel = new wxPanel(m_sideBar, SENTENCES_BREAKDOWN_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
-        m_sideBar->AddPage(Panel, BaseProjectView::GetSentencesBreakdownLabel(), SENTENCES_BREAKDOWN_PAGE, 
+        m_sideBar->AddPage(Panel, BaseProjectView::GetSentencesBreakdownLabel(), SENTENCES_BREAKDOWN_PAGE,
             // if the only section being shown, then show this page
             (GetSectionsBeingShown() == SentencesBreakdown),
             14);
@@ -2654,7 +2655,7 @@ void ToolsOptionsDlg::CreateControls()
         m_grammarPropertyGrid->Append(new wxBoolProperty(BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel(), wxPG_LABEL, (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetGrammarInfo().IsConjunctionStartingSentencesEnabled() : wxGetApp().GetAppOptions().GetGrammarInfo().IsConjunctionStartingSentencesEnabled())) );
         m_grammarPropertyGrid->SetPropertyAttribute(BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel(), wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel(), _(L"Check this to include conjunction-starting sentences in the results."));
-            
+
         m_grammarPropertyGrid->Append(new wxBoolProperty(BaseProjectView::GetSentenceStartingWithLowercaseTabLabel(), wxPG_LABEL, (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetGrammarInfo().IsLowercaseSentencesEnabled() : wxGetApp().GetAppOptions().GetGrammarInfo().IsLowercaseSentencesEnabled())) );
         m_grammarPropertyGrid->SetPropertyAttribute(BaseProjectView::GetSentenceStartingWithLowercaseTabLabel(), wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(BaseProjectView::GetSentenceStartingWithLowercaseTabLabel(), _(L"Check this to include lowercased sentences in the results."));
@@ -2690,7 +2691,7 @@ void ToolsOptionsDlg::CreateControls()
         m_grammarPropertyGrid->Append(new wxBoolProperty(GetIgnoreSocialMediaLabel(), wxPG_LABEL, (m_readabilityProjectDoc ? m_readabilityProjectDoc->SpellCheckIsIgnoringSocialMediaTags() : wxGetApp().GetAppOptions().SpellCheckIsIgnoringSocialMediaTags())));
         m_grammarPropertyGrid->SetPropertyAttribute(GetIgnoreSocialMediaLabel(), wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(GetIgnoreSocialMediaLabel(), _(L"Check this to ignore hashtags, such as #ReadabilityFormulasRock."));
-        
+
         pgMan->SelectProperty(GetSpellCheckerLabel());
         pgMan->SetDescBoxHeight(FromDIP(wxSize(200, 200)).GetHeight());
 
@@ -2909,7 +2910,7 @@ void ToolsOptionsDlg::CreateControls()
     if (GetSectionsBeingShown() & GraphsSection)
         {
         wxPanel* GraphGeneralPage = new wxPanel(m_sideBar, GRAPH_GENERAL_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-        m_sideBar->AddPage(GraphGeneralPage, GetGraphsLabel(), GRAPH_GENERAL_PAGE, 
+        m_sideBar->AddPage(GraphGeneralPage, GetGraphsLabel(), GRAPH_GENERAL_PAGE,
             // if the only section being shown, then show this page
             (GetSectionsBeingShown() == GraphsSection),
             7);
@@ -3246,7 +3247,7 @@ void ToolsOptionsDlg::CreateControls()
             }
         }
 
-    //select the appropriate options if this is a project properties dialog
+    // select the appropriate options if this is a project properties dialog
     if (GetSectionsBeingShown() == GraphsSection)
         { SelectPage(ToolsOptionsDlg::GRAPH_GENERAL_PAGE); }
     else if (GetSectionsBeingShown() == TextSection)
@@ -3425,23 +3426,28 @@ void ToolsOptionsDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
         default:
             topic = L"index.html";
             };
-        wxLaunchDefaultBrowser(wxFileName::FileNameToURL(wxGetApp().GetMainFrame()->GetHelpDirectory() + wxFileName::GetPathSeparator() + topic));
+        wxLaunchDefaultBrowser(
+            wxFileName::FileNameToURL(wxGetApp().GetMainFrame()->GetHelpDirectory() +
+                                      wxFileName::GetPathSeparator() + topic));
         }
     }
 
 //-------------------------------------------------------------
-void ToolsOptionsDlg::CreateLabelHeader(wxWindow* parent, wxSizer* parentSizer, const wxString& title, const bool addSidePadding /*= false*/) const
+void ToolsOptionsDlg::CreateLabelHeader(wxWindow* parent, wxSizer* parentSizer, const wxString& title,
+                                        const bool addSidePadding /*= false*/) const
     {
     wxASSERT_LEVEL_2(parent && parentSizer);
     if (!parent || !parentSizer)
         { return; }
-    //The title
+    // The title
     wxBoxSizer* titleSizer = new wxBoxSizer(wxHORIZONTAL);
-    wxStaticText* titleText = new wxStaticText(parent, wxID_ANY, title, wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
+    wxStaticText* titleText =
+        new wxStaticText(parent, wxID_ANY, title, wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
     titleSizer->Add(titleText);
     titleSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-    //The static line
-    titleSizer->Add(new wxStaticLine(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL), 1, wxALIGN_CENTER_VERTICAL);
+    // The static line
+    titleSizer->Add(new wxStaticLine(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL),
+                                     1, wxALIGN_CENTER_VERTICAL);
     if (addSidePadding)
         { parentSizer->Add(titleSizer, 0, wxEXPAND|wxLEFT|wxRIGHT, wxSizerFlags::GetDefaultBorder()); }
     else
@@ -3462,13 +3468,17 @@ void ToolsOptionsDlg::SelectPage(const int pageId)
         }
     }
 
+//-------------------------------------------------------------
 bool ToolsOptionsDlg::IsGeneralSettings() const noexcept
     { return !m_readabilityProjectDoc; }
+//-------------------------------------------------------------
 bool ToolsOptionsDlg::IsStandardProjectSettings() const
     { return (m_readabilityProjectDoc && m_readabilityProjectDoc->IsKindOf(CLASSINFO(ProjectDoc))); }
+//-------------------------------------------------------------
 bool ToolsOptionsDlg::IsBatchProjectSettings() const
     { return (m_readabilityProjectDoc && m_readabilityProjectDoc->IsKindOf(CLASSINFO(BatchProjectDoc))); }
 
+//-------------------------------------------------------------
 wxString ToolsOptionsDlg::ExpandPath(wxString path) const
     {
     if (path.starts_with(_DT(L"@[EXAMPLESDIR]")))

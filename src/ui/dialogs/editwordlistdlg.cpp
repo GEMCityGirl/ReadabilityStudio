@@ -56,7 +56,7 @@ bool EditWordListDlg::Save(const wxString& filePath)
             { outputWords[i] = m_wordData->GetItemText(i,0); }
         // sort and remove duplicates
         std::sort(std::execution::par, outputWords.begin(), outputWords.end());
-        std::vector<OutputStringType>::iterator endOfUniquePos = 
+        std::vector<OutputStringType>::iterator endOfUniquePos =
             std::unique(outputWords.begin(), outputWords.end());
         if (endOfUniquePos != outputWords.end())
             { outputWords.erase(endOfUniquePos, outputWords.end()); }
@@ -111,7 +111,7 @@ bool EditWordListDlg::Save(const wxString& filePath)
         {
         wxMessageBox(wxString::Format(
             _(L"Unable to save \"%s\".\n"
-              "Verify that you have write access to this file or that it is not in use."), 
+              "Verify that you have write access to this file or that it is not in use."),
             filePath), _(L"Error"), wxOK|wxICON_ERROR);
         return false;
         }
@@ -246,7 +246,7 @@ void EditWordListDlg::OnFilePathChanged(wxCommandEvent& event)
         wxString buffer;
         if (!Wisteria::TextStream::ReadFile(m_wordListFilePath, buffer) )
             {
-            wxMessageBox(_(L"Error loading word list file."), 
+            wxMessageBox(_(L"Error loading word list file."),
                 _(L"Error"), wxOK|wxICON_EXCLAMATION);
             return;
             }

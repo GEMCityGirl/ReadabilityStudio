@@ -60,6 +60,8 @@ public:
     [[nodiscard]] wxWindow* GetActiveProjectWindow() noexcept
         { return m_activeWindow; }
 
+    /// Fills the menus in the ribbon and checks/toggles all the options on the ribbon to match the project's settings.
+    /// Also autofits the sidebar and makes the project the active document/window.
     void Present();
 
     void ShowInfoMessage(const WarningMessage& message);

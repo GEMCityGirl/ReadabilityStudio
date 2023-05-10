@@ -37,7 +37,7 @@ void NewCustomWordTestSimpleDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     }
 
 //-------------------------------------------------------------
-void NewCustomWordTestSimpleDlg::OnBrowseForFileClick([[maybe_unused]] wxCommandEvent& event)  
+void NewCustomWordTestSimpleDlg::OnBrowseForFileClick([[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
     wxFileDialog dialog

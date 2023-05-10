@@ -167,7 +167,7 @@ namespace Wisteria::Graphs
             m_longSentencesPoints);
         invalidSentenceArea->SetBackgroundFill(Colors::GradientFill(*wxWHITE));
         AddObject(invalidSentenceArea);
-        
+
         // long word region
         GetPhysicalCoordinates(160.5, 20.0, m_longWordPoints[0]);
         GetPhysicalCoordinates(161, 19.2, m_longWordPoints[1]);
@@ -443,7 +443,7 @@ namespace Wisteria::Graphs
 
         // the explanatory legends (embedded on the graph)
         const wxFont legendFont(
-            wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize(), 
+            wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize(),
             wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD,
             false, GetFancyFontFaceName());
         // main label on graph

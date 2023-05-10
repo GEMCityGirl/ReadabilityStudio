@@ -92,7 +92,7 @@ void TestBundleDlg::CreateControls()
                                style, wxTextValidator(wxFILTER_NONE, &m_descriptionName));
             descriptionBoxSizer->Add(m_bundleDescriptionCtrl, 1,
                 wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
-            
+
             mainPanelSizer->Add(descriptionBoxSizer, 1,
                 wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
             }
@@ -136,7 +136,7 @@ void TestBundleDlg::CreateControls()
 
             // used in the Goals grid below
             availableTestNames.push_back(sTest.get_test().get_long_name().c_str());
-            
+
             // set the test to included (i.e., checked) if it is already included in the bundle
             sTest.include(
                 m_testBundle.GetTestGoals().find(
@@ -445,7 +445,7 @@ void TestBundleDlg::CreateControls()
               "outside of a given range.\nDouble click in the grid to select a "
               "test and edit its constraints.")), 0, wxALL, wxSizerFlags::GetDefaultBorder());
         }
-    
+
     mainSizer->Add(CreateSeparatedButtonSizer(wxOK|wxCANCEL|wxHELP),
                    wxSizerFlags().Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
 

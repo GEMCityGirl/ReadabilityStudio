@@ -530,101 +530,117 @@ void BatchProjectDoc::LoadDolchSection()
         pos != m_docs.end();
         ++pos)
         {
-        //dolch words
+        // dolch words
         if ((*pos)->LoadingOriginalTextSucceeded() )
             {
-            //completion stats
+            // completion stats
             m_dolchCompletionData->SetItemText(dolchDocumentCount, 0, (*pos)->GetOriginalDocumentFilePath());
             m_dolchCompletionData->SetItemText(dolchDocumentCount, 1, (*pos)->GetOriginalDocumentDescription());
-            const double dolchConjunctionPercentage = safe_divide<double>((ProjectReportFormat::MAX_DOLCH_CONJUNCTION_WORDS-(*pos)->GetUnusedDolchConjunctions()),ProjectReportFormat::MAX_DOLCH_CONJUNCTION_WORDS)*100;
-            const double dolchPrepositionsPercentage = safe_divide<double>((ProjectReportFormat::MAX_DOLCH_PREPOSITION_WORDS-(*pos)->GetUnusedDolchPrepositions()),ProjectReportFormat::MAX_DOLCH_PREPOSITION_WORDS)*100;
-            const double dolchPronounsPercentage = safe_divide<double>((ProjectReportFormat::MAX_DOLCH_PRONOUN_WORDS-(*pos)->GetUnusedDolchPronouns()),ProjectReportFormat::MAX_DOLCH_PRONOUN_WORDS)*100;
-            const double dolchAdverbsPercentage = safe_divide<double>((ProjectReportFormat::MAX_DOLCH_ADVERB_WORDS-(*pos)->GetUnusedDolchAdverbs()),ProjectReportFormat::MAX_DOLCH_ADVERB_WORDS)*100;
-            const double dolchAdjectivesPercentage = safe_divide<double>((ProjectReportFormat::MAX_DOLCH_ADJECTIVE_WORDS-(*pos)->GetUnusedDolchAdjectives()),ProjectReportFormat::MAX_DOLCH_ADJECTIVE_WORDS)*100;
-            const double dolchVerbsPercentage = safe_divide<double>((ProjectReportFormat::MAX_DOLCH_VERBS-(*pos)->GetUnusedDolchVerbs()),ProjectReportFormat::MAX_DOLCH_VERBS)*100;
-            const double dolchNounPercentage = safe_divide<double>((ProjectReportFormat::MAX_DOLCH_NOUNS-(*pos)->GetUnusedDolchNouns()),ProjectReportFormat::MAX_DOLCH_NOUNS)*100;
-            m_dolchCompletionData->SetItemValue(dolchDocumentCount, 2, dolchConjunctionPercentage, NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
-            m_dolchCompletionData->SetItemValue(dolchDocumentCount, 3, dolchPrepositionsPercentage, NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
-            m_dolchCompletionData->SetItemValue(dolchDocumentCount, 4, dolchPronounsPercentage, NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
-            m_dolchCompletionData->SetItemValue(dolchDocumentCount, 5, dolchAdverbsPercentage, NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
-            m_dolchCompletionData->SetItemValue(dolchDocumentCount, 6, dolchAdjectivesPercentage, NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
-            m_dolchCompletionData->SetItemValue(dolchDocumentCount, 7, dolchVerbsPercentage, NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
-            m_dolchCompletionData->SetItemValue(dolchDocumentCount, 8, dolchNounPercentage, NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
+            const double dolchConjunctionPercentage =
+                safe_divide<double>((ProjectReportFormat::MAX_DOLCH_CONJUNCTION_WORDS-(*pos)->GetUnusedDolchConjunctions()),ProjectReportFormat::MAX_DOLCH_CONJUNCTION_WORDS)*100;
+            const double dolchPrepositionsPercentage =
+                safe_divide<double>((ProjectReportFormat::MAX_DOLCH_PREPOSITION_WORDS-(*pos)->GetUnusedDolchPrepositions()),ProjectReportFormat::MAX_DOLCH_PREPOSITION_WORDS)*100;
+            const double dolchPronounsPercentage =
+                safe_divide<double>((ProjectReportFormat::MAX_DOLCH_PRONOUN_WORDS-(*pos)->GetUnusedDolchPronouns()),ProjectReportFormat::MAX_DOLCH_PRONOUN_WORDS)*100;
+            const double dolchAdverbsPercentage =
+                safe_divide<double>((ProjectReportFormat::MAX_DOLCH_ADVERB_WORDS-(*pos)->GetUnusedDolchAdverbs()),ProjectReportFormat::MAX_DOLCH_ADVERB_WORDS)*100;
+            const double dolchAdjectivesPercentage =
+                safe_divide<double>((ProjectReportFormat::MAX_DOLCH_ADJECTIVE_WORDS-(*pos)->GetUnusedDolchAdjectives()),ProjectReportFormat::MAX_DOLCH_ADJECTIVE_WORDS)*100;
+            const double dolchVerbsPercentage =
+                safe_divide<double>((ProjectReportFormat::MAX_DOLCH_VERBS-(*pos)->GetUnusedDolchVerbs()),ProjectReportFormat::MAX_DOLCH_VERBS)*100;
+            const double dolchNounPercentage =
+                safe_divide<double>((ProjectReportFormat::MAX_DOLCH_NOUNS-(*pos)->GetUnusedDolchNouns()),ProjectReportFormat::MAX_DOLCH_NOUNS)*100;
+            m_dolchCompletionData->SetItemValue(dolchDocumentCount, 2, dolchConjunctionPercentage,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
+            m_dolchCompletionData->SetItemValue(dolchDocumentCount, 3, dolchPrepositionsPercentage,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
+            m_dolchCompletionData->SetItemValue(dolchDocumentCount, 4, dolchPronounsPercentage,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
+            m_dolchCompletionData->SetItemValue(dolchDocumentCount, 5, dolchAdverbsPercentage,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
+            m_dolchCompletionData->SetItemValue(dolchDocumentCount, 6, dolchAdjectivesPercentage,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
+            m_dolchCompletionData->SetItemValue(dolchDocumentCount, 7, dolchVerbsPercentage,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
+            m_dolchCompletionData->SetItemValue(dolchDocumentCount, 8, dolchNounPercentage,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
             //word stats
             size_t columnCount = 0;
-            m_dolchWordsBatchData->SetItemText(dolchDocumentCount, columnCount++, (*pos)->GetOriginalDocumentFilePath());
-            m_dolchWordsBatchData->SetItemText(dolchDocumentCount, columnCount++, (*pos)->GetOriginalDocumentDescription());
-            m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++, 
+            m_dolchWordsBatchData->SetItemText(dolchDocumentCount, columnCount++,
+                (*pos)->GetOriginalDocumentFilePath());
+            m_dolchWordsBatchData->SetItemText(dolchDocumentCount, columnCount++,
+                (*pos)->GetOriginalDocumentDescription());
+            m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++,
                         safe_divide<double>((*pos)->GetDolchConjunctionCounts().second,(*pos)->GetTotalWords())*100,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
             if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
-                m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++, 
+                m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++,
                         (*pos)->GetDolchConjunctionCounts().second,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
                 }
 
-            m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++, 
+            m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++,
                         safe_divide<double>((*pos)->GetDolchPrepositionWordCounts().second,(*pos)->GetTotalWords())*100,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
             if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
-                m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++, 
+                m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++,
                         (*pos)->GetDolchPrepositionWordCounts().second,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
                 }
 
-            m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++, 
+            m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++,
                         safe_divide<double>((*pos)->GetDolchPronounCounts().second,(*pos)->GetTotalWords())*100,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
             if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
-                m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++, 
+                m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++,
                         (*pos)->GetDolchPronounCounts().second,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
                 }
 
-            m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++, 
+            m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++,
                         safe_divide<double>((*pos)->GetDolchAdverbCounts().second,(*pos)->GetTotalWords())*100,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
             if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
-                m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++, 
+                m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++,
                         (*pos)->GetDolchAdverbCounts().second,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
                 }
 
-            m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++, 
+            m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++,
                         safe_divide<double>((*pos)->GetDolchAdjectiveCounts().second,(*pos)->GetTotalWords())*100,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
             if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
-                m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++, 
+                m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++,
                         (*pos)->GetDolchAdjectiveCounts().second,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
                 }
 
-            m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++, 
+            m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++,
                         safe_divide<double>((*pos)->GetDolchVerbsCounts().second,(*pos)->GetTotalWords())*100,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
             if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
-                m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++, 
+                m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++,
                         (*pos)->GetDolchVerbsCounts().second,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
                 }
 
-            m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++, 
+            m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++,
                         safe_divide<double>((*pos)->GetDolchNounCounts().second,(*pos)->GetTotalWords())*100,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
             if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
-                m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++, 
+                m_dolchWordsBatchData->SetItemValue(dolchDocumentCount, columnCount++,
                         (*pos)->GetDolchNounCounts().second,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
                 }
 
-            //non-word stats
+            // non-word stats
             m_NonDolchWordsData->SetItemText(dolchDocumentCount, 0, (*pos)->GetOriginalDocumentFilePath());
             m_NonDolchWordsData->SetItemText(dolchDocumentCount, 1, (*pos)->GetOriginalDocumentDescription());
             const size_t totalDolchWords = (*pos)->GetDolchConjunctionCounts().second + (*pos)->GetDolchPrepositionWordCounts().second +
@@ -680,81 +696,89 @@ void BatchProjectDoc::LoadHardWordsSection()
             m_hardWordsData->SetItemText(hardWordRowCount, columnIndex++, (*pos)->GetOriginalDocumentDescription());
             //total overall words
             m_hardWordsData->SetItemValue(hardWordRowCount, columnIndex++,
-                (*pos)->GetTotalWords(), NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                (*pos)->GetTotalWords(),
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
             //complex words
             m_hardWordsData->SetItemValue(hardWordRowCount, columnIndex++,
                 safe_divide<double>((*pos)->GetTotal3PlusSyllabicWords(),(*pos)->GetTotalWords())*100,
                 NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
             m_hardWordsData->SetItemValue(hardWordRowCount, columnIndex++,
-                (*pos)->GetTotal3PlusSyllabicWords(), NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
-            //long words
+                (*pos)->GetTotal3PlusSyllabicWords(),
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+            // long words
             m_hardWordsData->SetItemValue(hardWordRowCount, columnIndex++,
                 safe_divide<double>((*pos)->GetTotalLongWords(),(*pos)->GetTotalWords())*100,
                 NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
             m_hardWordsData->SetItemValue(hardWordRowCount, columnIndex++,
-                (*pos)->GetTotalLongWords(), NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                (*pos)->GetTotalLongWords(),
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
             if (GetStatisticsReportInfo().IsExtendedWordsEnabled())
                 {
-                //hard SMOG words (numerals fully syllabized)
+                // hard SMOG words (numerals fully syllabized)
                 if (IsSmogLikeTestIncluded())
                     {
                     m_hardWordsData->SetItemValue(hardWordRowCount, columnIndex++,
                         safe_divide<double>((*pos)->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(),(*pos)->GetTotalWords())*100,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
                     m_hardWordsData->SetItemValue(hardWordRowCount, columnIndex++,
-                        (*pos)->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(), NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                        (*pos)->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(),
+                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
                     }
-                //hard FOG words
+                // hard FOG words
                 if (GetReadabilityTests().is_test_included(ReadabilityMessages::GUNNING_FOG()) )
                     {
                     m_hardWordsData->SetItemValue(hardWordRowCount, columnIndex++,
                         safe_divide<double>((*pos)->GetTotalHardWordsFog(),(*pos)->GetTotalWords())*100,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
                     m_hardWordsData->SetItemValue(hardWordRowCount, columnIndex++,
-                        (*pos)->GetTotalHardWordsFog(), NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                        (*pos)->GetTotalHardWordsFog(),
+                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
                     }
-                //hard DC words
+                // hard DC words
                 const size_t totalWordCountForDC = (GetDaleChallTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
                     (*pos)->GetTotalWordsFromCompleteSentencesAndHeaders() : (*pos)->GetTotalWords();
                 const size_t totalWordCountForHJ = (GetHarrisJacobsonTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
                         (*pos)->GetTotalWordsFromCompleteSentencesAndHeaders() : (*pos)->GetTotalWords();
                 const size_t totalNumeralCountForHJ = (GetHarrisJacobsonTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
                     (*pos)->GetTotalNumeralsFromCompleteSentencesAndHeaders() : (*pos)->GetTotalNumerals();
-                //hard DC words
+                // hard DC words
                 if (IsDaleChallLikeTestIncluded())
                     {
                     m_hardWordsData->SetItemValue(hardWordRowCount, columnIndex++,
                         safe_divide<double>((*pos)->GetTotalHardWordsDaleChall(),totalWordCountForDC)*100,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
                     m_hardWordsData->SetItemValue(hardWordRowCount, columnIndex++,
-                        (*pos)->GetTotalHardWordsDaleChall(), NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                        (*pos)->GetTotalHardWordsDaleChall(),
+                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
                     }
-                //hard spache words
+                // hard spache words
                 if (GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()) )
                     {
                     m_hardWordsData->SetItemValue(hardWordRowCount, columnIndex++,
                         safe_divide<double>((*pos)->GetTotalHardWordsSpache(),(*pos)->GetTotalWords())*100,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
                     m_hardWordsData->SetItemValue(hardWordRowCount, columnIndex++,
-                        (*pos)->GetTotalHardWordsSpache(), NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                        (*pos)->GetTotalHardWordsSpache(),
+                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
                     }
-                //hard HJ words
+                // hard HJ words
                 if (GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()) )
                     {
                     m_hardWordsData->SetItemValue(hardWordRowCount, columnIndex++,
                         safe_divide<double>((*pos)->GetTotalHardWordsHarrisJacobson(),totalWordCountForHJ-totalNumeralCountForHJ)*100,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
                     m_hardWordsData->SetItemValue(hardWordRowCount, columnIndex++,
-                        (*pos)->GetTotalHardWordsHarrisJacobson(), NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                        (*pos)->GetTotalHardWordsHarrisJacobson(),
+                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
                     }
-                for (std::vector<CustomReadabilityTestInterface>::const_iterator custTestPos = (*pos)->GetCustTestsInUse().begin();
+                for (auto custTestPos = (*pos)->GetCustTestsInUse().begin();
                      custTestPos != (*pos)->GetCustTestsInUse().end();
                      ++custTestPos)
                     {
                     if (!custTestPos->GetIterator()->is_using_familiar_words())
                         { continue; }
 
-                    //special logic for calculating word percentage if test is based on DC or HJ
+                    // special logic for calculating word percentage if test is based on DC or HJ
                     const size_t totalWordCountForCustomTest =
                         custTestPos->IsDaleChallFormula() ?
                             totalWordCountForDC :
@@ -764,7 +788,8 @@ void BatchProjectDoc::LoadHardWordsSection()
                         safe_divide<double>(custTestPos->GetUnfamiliarWordCount(),totalWordCountForCustomTest)*100,
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,1,true));
                     m_hardWordsData->SetItemValue(hardWordRowCount, columnIndex++,
-                        custTestPos->GetUnfamiliarWordCount(), NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                        custTestPos->GetUnfamiliarWordCount(),
+                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
                     }
                 }
             ++hardWordRowCount;
@@ -882,7 +907,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             {
             (*pos)->SetParagraphsParsingMethod(ParagraphParse::EachNewLineIsAParagraph);
             }
-        
+
         FilePathResolver fileResolve((*pos)->GetOriginalDocumentFilePath(), false);
         if (fileResolve.IsExcelCell())
             {
@@ -897,7 +922,8 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                     wxString fileBySameNameInProjectDirectory;
                     if (FindMissingFile(fn.GetFullPath(), fileBySameNameInProjectDirectory))
                         {
-                        (*pos)->SetOriginalDocumentFilePath(fileBySameNameInProjectDirectory+(*pos)->GetOriginalDocumentFilePath().substr(excelTag+5));
+                        (*pos)->SetOriginalDocumentFilePath(
+                            fileBySameNameInProjectDirectory+(*pos)->GetOriginalDocumentFilePath().substr(excelTag+5));
                         excelTag = (*pos)->GetOriginalDocumentFilePath().MakeLower().find(_DT(L".xlsx#"));
                         fn.Assign(fileBySameNameInProjectDirectory);
                         SetModifiedFlag();
@@ -915,29 +941,41 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                         {
                         excelFilePos = excelFiles.insert(
                             std::pair<wxString,ExcelFile*>(workSheetPath, new ExcelFile(fn.GetFullPath()))).first;
-                        //read in the worksheets
+                        // read in the worksheets
                         wxString workBookFileText = excelFilePos->second->m_zip.ReadTextFile(L"xl/workbook.xml");
-                        excelFilePos->second->m_xlsx_extract.read_worksheet_names(workBookFileText.wc_str(), workBookFileText.length());
-                        //read in the string table
-                        const wxString sharedStrings = excelFilePos->second->m_zip.ReadTextFile(L"xl/sharedStrings.xml");
+                        excelFilePos->second->m_xlsx_extract.read_worksheet_names(
+                            workBookFileText.wc_str(), workBookFileText.length());
+                        // read in the string table
+                        const wxString sharedStrings =
+                            excelFilePos->second->m_zip.ReadTextFile(L"xl/sharedStrings.xml");
                         if (sharedStrings.length())
                             {
-                            excelFilePos->second->m_xlsx_extract.read_shared_strings(sharedStrings.wc_str(), sharedStrings.length());
+                            excelFilePos->second->m_xlsx_extract.read_shared_strings(
+                                sharedStrings.wc_str(), sharedStrings.length());
                             }
                         }
 
-                    //find the sheet to get the cells from
-                    std::vector<std::wstring>::const_iterator sheetPos = std::find(excelFilePos->second->m_xlsx_extract.get_worksheet_names().begin(), excelFilePos->second->m_xlsx_extract.get_worksheet_names().end(), worksheetName.wc_str());
+                    // find the sheet to get the cells from
+                    auto sheetPos =
+                        std::find(excelFilePos->second->m_xlsx_extract.get_worksheet_names().begin(),
+                                  excelFilePos->second->m_xlsx_extract.get_worksheet_names().end(),
+                                  worksheetName.wc_str());
                     if (sheetPos != excelFilePos->second->m_xlsx_extract.get_worksheet_names().end())
                         {
-                        const wxString internalSheetName = wxString::Format(L"xl/worksheets/sheet%zu.xml", (sheetPos-excelFilePos->second->m_xlsx_extract.get_worksheet_names().begin())+1);
-                        //see if this worksheet is already loaded
+                        const wxString internalSheetName =
+                            wxString::Format(L"xl/worksheets/sheet%zu.xml",
+                                (sheetPos-excelFilePos->second->m_xlsx_extract.get_worksheet_names().begin())+1);
+                        // see if this worksheet is already loaded
                         ExcelFile::Workbook::iterator internalSheetPos =
                             excelFilePos->second->m_worksheets.find(internalSheetName);
-                        if (internalSheetPos == excelFilePos->second->m_worksheets.end())//wasn't loaded before, so load it now
+                        // wasn't loaded before, so load it now
+                        if (internalSheetPos == excelFilePos->second->m_worksheets.end())
                             {
                             std::pair<ExcelFile::Workbook::iterator,bool> insertPos =
-                                excelFilePos->second->m_worksheets.insert(std::pair<wxString,lily_of_the_valley::xlsx_extract_text::worksheet>(internalSheetName,lily_of_the_valley::xlsx_extract_text::worksheet()));
+                                excelFilePos->second->m_worksheets.insert(
+                                    std::pair<wxString,lily_of_the_valley::xlsx_extract_text::worksheet>(
+                                        internalSheetName,
+                                        lily_of_the_valley::xlsx_extract_text::worksheet()));
                             internalSheetPos = insertPos.first;
                             const wxString sheetFile = excelFilePos->second->m_zip.ReadTextFile(internalSheetName);
                             if (sheetFile.length())
@@ -948,17 +986,21 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                                     internalSheetPos->second);
                                 }
                             }
-                        wxString cellText = excelFilePos->second->m_xlsx_extract.get_cell_text(CellName.wc_str(), internalSheetPos->second);
+                        wxString cellText =
+                            excelFilePos->second->m_xlsx_extract.get_cell_text(CellName.wc_str(),
+                                                                               internalSheetPos->second);
                         fileResolver.ResolvePath(cellText, false);
                         if (!fileResolver.IsInvalidFile())
                             {
                             // this will change the spreadsheet cell path to the real file path
-                            (*pos)->LoadDocumentAsSubProject(fileResolver.GetResolvedPath(), wxEmptyString, GetMinDocWordCountForBatch() );
+                            (*pos)->LoadDocumentAsSubProject(fileResolver.GetResolvedPath(),
+                                wxEmptyString, GetMinDocWordCountForBatch() );
                             }
                         else
                             {
                             (*pos)->SetDocumentText(cellText);
-                            (*pos)->LoadDocumentAsSubProject((*pos)->GetOriginalDocumentFilePath(), (*pos)->GetDocumentText(), GetMinDocWordCountForBatch() );
+                            (*pos)->LoadDocumentAsSubProject((*pos)->GetOriginalDocumentFilePath(),
+                                (*pos)->GetDocumentText(), GetMinDocWordCountForBatch() );
                             }
                         }
                     else
@@ -982,31 +1024,40 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                     wxString fileBySameNameInProjectDirectory;
                     if (FindMissingFile(fn.GetFullPath(), fileBySameNameInProjectDirectory))
                         {
-                        (*pos)->SetOriginalDocumentFilePath(fileBySameNameInProjectDirectory+(*pos)->GetOriginalDocumentFilePath().substr(archiveTag+4));
+                        (*pos)->SetOriginalDocumentFilePath(fileBySameNameInProjectDirectory +
+                            (*pos)->GetOriginalDocumentFilePath().substr(archiveTag+4));
                         archiveTag = (*pos)->GetOriginalDocumentFilePath().MakeLower().find(_DT(L".zip#"));
                         fn.Assign(fileBySameNameInProjectDirectory);
                         SetModifiedFlag();
                         }
                     }
-                std::map<wxString,Wisteria::ZipCatalog*>::const_iterator archiveFilePos = archiveFiles.find(fn.GetFullPath());
+                auto archiveFilePos = archiveFiles.find(fn.GetFullPath());
                 if (archiveFilePos == archiveFiles.end())
                     {
                     archiveFilePos = archiveFiles.insert(
-                        std::pair<wxString,Wisteria::ZipCatalog*>(fn.GetFullPath(), new Wisteria::ZipCatalog(fn.GetFullPath()))).first;
+                        std::pair<wxString,Wisteria::ZipCatalog*>(fn.GetFullPath(),
+                                  new Wisteria::ZipCatalog(fn.GetFullPath()))).first;
                     }
                 wxMemoryOutputStream memstream;
-                if (!archiveFilePos->second->ReadFile((*pos)->GetOriginalDocumentFilePath().substr(archiveTag+5), memstream) &&
+                if (!archiveFilePos->second->ReadFile(
+                        (*pos)->GetOriginalDocumentFilePath().substr(archiveTag+5), memstream) &&
                     archiveFilePos->second->GetMessages().size())
                     {
-                    AddQuietSubProjectMessage(archiveFilePos->second->GetMessages().back().m_message, archiveFilePos->second->GetMessages().back().m_icon);
+                    AddQuietSubProjectMessage(archiveFilePos->second->GetMessages().back().m_message,
+                                              archiveFilePos->second->GetMessages().back().m_icon);
                     archiveFilePos->second->ClearMessages();
                     }
-                //Only load the document if the archive read didn't fail. Otherwise, LoadDocumentNoUI()
-                //will try to load the ZIP file and get the same error.
+                // Only load the document if the archive read didn't fail. Otherwise, LoadDocumentNoUI()
+                // will try to load the ZIP file and get the same error.
                 if (memstream.GetLength())
                     {
-                    const std::pair<bool,wxString> extractResult = (*pos)->ExtractRawText(static_cast<const char*>(memstream.GetOutputStreamBuffer()->GetBufferStart()), memstream.GetLength(), wxFileName((*pos)->GetOriginalDocumentFilePath()).GetExt());
-                    (*pos)->LoadDocumentAsSubProject((*pos)->GetOriginalDocumentFilePath(), extractResult.second, GetMinDocWordCountForBatch() );
+                    const std::pair<bool,wxString> extractResult =
+                        (*pos)->ExtractRawText(static_cast<const char*>(
+                            memstream.GetOutputStreamBuffer()->GetBufferStart()),
+                            memstream.GetLength(),
+                            wxFileName((*pos)->GetOriginalDocumentFilePath()).GetExt());
+                    (*pos)->LoadDocumentAsSubProject((*pos)->GetOriginalDocumentFilePath(),
+                        extractResult.second, GetMinDocWordCountForBatch() );
                     }
                 else
                     { (*pos)->SetLoadingOriginalTextSucceeded(false); }
@@ -1016,7 +1067,8 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             }
         else
             {
-            if (fileResolve.IsLocalOrNetworkFile() && !wxFile::Exists((*pos)->GetOriginalDocumentFilePath()) )
+            if (fileResolve.IsLocalOrNetworkFile() &&
+                !wxFile::Exists((*pos)->GetOriginalDocumentFilePath()) )
                 {
                 wxString fileBySameNameInProjectDirectory;
                 if (FindMissingFile((*pos)->GetOriginalDocumentFilePath(), fileBySameNameInProjectDirectory))
@@ -1025,20 +1077,22 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                     SetModifiedFlag();
                     }
                 }
-            (*pos)->LoadDocumentAsSubProject((*pos)->GetOriginalDocumentFilePath(), (*pos)->GetDocumentText(), GetMinDocWordCountForBatch() );
+            (*pos)->LoadDocumentAsSubProject((*pos)->GetOriginalDocumentFilePath(),
+                                             (*pos)->GetDocumentText(), GetMinDocWordCountForBatch() );
             }
-        //passing in an archived file that we extracted here will cause the subproject to use embedded text, see reset it after loading the document
+        // passing in an archived file that we extracted here will cause the
+        // subproject to use embedded text, see reset it after loading the document
         (*pos)->SetDocumentStorageMethod(GetDocumentStorageMethod());
-        //free the text from the document to conserve memory (unless we are embedding it in the project)
+        // free the text from the document to conserve memory (unless we are embedding it in the project)
         if (GetDocumentStorageMethod() == TextStorage::NoEmbedText)
             { (*pos)->FreeDocumentText(); }
 
         if ((*pos)->LoadingOriginalTextSucceeded())
             { ++successfullyLoadedDocs; }
 
-        //NOTE: Grammar info needs to be loaded here before the documents' word collections are deleted
+        // NOTE: Grammar info needs to be loaded here before the documents' word collections are deleted
 
-        //misspellings
+        // misspellings
         if ((*pos)->LoadingOriginalTextSucceeded() &&
             (*pos)->GetWords()->get_misspelled_words().size())
             {
@@ -1064,12 +1118,12 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 else
                     { misspelledWordsStr.Append(L'\"').Append(dwIter->first.c_str()).Append(L"\", "); }
                 }
-            //chop off the last ", "
+            // chop off the last ", "
             if (misspelledWordsStr.length() > 2)
                 { misspelledWordsStr.RemoveLast(2); }
             GetMisspelledWordData()->SetItemText(misspelledWordCount++, 4, misspelledWordsStr);
             }
-        //repeated (duplicate) words
+        // repeated (duplicate) words
         if ((*pos)->LoadingOriginalTextSucceeded() &&
             (*pos)->GetWords()->get_duplicate_word_indices().size())
             {
@@ -1139,7 +1193,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             m_overusedWordBySentenceData->SetItemText(overusedWordBySentenceCount, 1, (*pos)->GetOriginalDocumentDescription());
             m_overusedWordBySentenceData->SetItemValue(overusedWordBySentenceCount, 2,
                 (*pos)->GetWords()->get_overused_words_by_sentence().size());
-            
+
             wxString theWords;
             for (std::vector<std::pair<size_t,std::set<size_t>>>::const_iterator overUsedWordsListsIter = (*pos)->GetWords()->get_overused_words_by_sentence().begin();
                 overUsedWordsListsIter != (*pos)->GetWords()->get_overused_words_by_sentence().end();
@@ -1655,7 +1709,7 @@ void BatchProjectDoc::LoadScoresSection()
                         {
                         wxString TOO_DIFFICULT_DESCRIPTION =
                             _(L"Text is too difficult to be classified to a specific grade level because it contains too many ");
-                        TOO_DIFFICULT_DESCRIPTION += fryGraph->GetScores().at(i).IsWordsHard() ? 
+                        TOO_DIFFICULT_DESCRIPTION += fryGraph->GetScores().at(i).IsWordsHard() ?
                                                     _(L"high syllable words.") :
                                                     _(L"long sentences.");
                         m_scoreRawData->SetItemText(i, currentColumn++, TOO_DIFFICULT_DESCRIPTION);
@@ -1700,7 +1754,7 @@ void BatchProjectDoc::LoadScoresSection()
                         wxString TOO_DIFFICULT_DESCRIPTION =
                             _(L"Text is too difficult to be classified to a specific grade level "
                               "because it contains too many ");
-                        TOO_DIFFICULT_DESCRIPTION += fryGraph->GetScores().at(i).IsWordsHard() ? 
+                        TOO_DIFFICULT_DESCRIPTION += fryGraph->GetScores().at(i).IsWordsHard() ?
                                                     _(L"high syllable words.") :
                                                     _(L"long sentences.");
                         m_scoreRawData->SetItemText(i, currentColumn++, TOO_DIFFICULT_DESCRIPTION);
@@ -1749,7 +1803,7 @@ void BatchProjectDoc::LoadScoresSection()
                             _(L"Text is too difficult to be classified to a specific grade "
                               "level because it contains too many ");
                         TOO_DIFFICULT_DESCRIPTION +=
-                            schwartzGraph->GetScores().at(i).IsWordsHard() ? 
+                            schwartzGraph->GetScores().at(i).IsWordsHard() ?
                                 _(L"high syllable words.") :
                                 _(L"long sentences.");
                         m_scoreRawData->SetItemText(i, currentColumn++,
@@ -1796,7 +1850,7 @@ void BatchProjectDoc::LoadScoresSection()
                         wxString TOO_DIFFICULT_DESCRIPTION =
                             _(L"Text is too difficult to be classified to a specific grade level "
                               "because it contains too many ");
-                        TOO_DIFFICULT_DESCRIPTION += raygorGraph->GetScores().at(i).IsWordsHard() ? 
+                        TOO_DIFFICULT_DESCRIPTION += raygorGraph->GetScores().at(i).IsWordsHard() ?
                                                     _(L"6+ character words.") :
                                                     _(L"long sentences.");
                         m_scoreRawData->SetItemText(i, currentColumn++, TOO_DIFFICULT_DESCRIPTION);
@@ -2564,7 +2618,8 @@ void BatchProjectDoc::DisplayCrawfordGraph()
                  (Colors::Schemes::ColorScheme{
                      ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
             }
-       
+
+
         wxGCDC gdc(view->GetDocFrame());
         view->GetCrawfordGraph()->CalcAllSizes(gdc);
         }
@@ -2740,7 +2795,7 @@ void BatchProjectDoc::DisplayFleschChart()
             fleschChartCanvas = new Wisteria::Canvas(view->GetSplitter(),
                                                      BaseProjectView::FLESCH_CHART_PAGE_ID);
             fleschChartCanvas->SetFixedObjectsGridSize(1, 1);
-            
+
             fleschChart =
                 std::make_shared<FleschChart>(fleschChartCanvas,
                     std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
@@ -3022,7 +3077,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
     // Raygor
     const wxString totalWordsLessNumerals{ _DT(L"TOTALWORDSLESSNUMERALS") };
     const wxString total6PlusCharWordsLessNumerals{ _DT(L"TOTAL6PLUSCHARWORDSLESSNUMERALS") };
-    
+
     auto scoreDataset = std::make_shared<Wisteria::Data::Dataset>();
 
     scoreDataset->GetIdColumn().SetName(_DT(L"DOCS"));
@@ -3371,7 +3426,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
         }
 
     // Raygor graph
-    Wisteria::Canvas* raygorGraphCanvas = 
+    Wisteria::Canvas* raygorGraphCanvas =
         dynamic_cast<Wisteria::Canvas*>(view->GetScoresView().
             FindWindowById(BaseProjectView::RAYGOR_PAGE_ID));
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::RAYGOR()) &&
@@ -3393,7 +3448,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
                 IsShowingGroupLegends() ?
                     std::optional<const wxString>(groupColumnName) :
                     std::nullopt);
-            
+
             raygorGraphCanvas->SetFixedObject(0, 0, raygorGraph);
             raygorGraphCanvas->Hide();
             view->SetRaygorGraph(raygorGraphCanvas);
@@ -3417,7 +3472,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
                     std::nullopt);
             }
         UpdateGraphOptions(view->GetRaygorGraph());
-        
+
         raygorGraph->SetInvalidAreaColor(GetInvalidAreaColor());
 
         // add legend if grouping
@@ -3506,7 +3561,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                 boxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
                 boxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
                 UpdateGraphOptions(boxPlotCanvas);
- 
+
                 // Adjust the axis range and load its labels,
                 // and force the grade (Y) axis to show the full range of Kindergarten through Doctorate.
                 boxPlot->GetLeftYAxis().SetRange(0, 19, 0, 1, 1);
@@ -3749,11 +3804,11 @@ void BatchProjectDoc::DisplayBoxPlots()
 
                 if (boxPlot->GetBoxCount() > 1)
                     {
-                    boxPlotCanvas->SetFixedObjectsGridSize(1, 2); 
+                    boxPlotCanvas->SetFixedObjectsGridSize(1, 2);
                     boxPlotCanvas->SetFixedObject(0, 1,
                         boxPlot->CreateLegend(LegendOptions().PlacementHint(LegendCanvasPlacementHint::RightOfGraph)));
                     }
-                
+
                 boxPlot->GetTitle() = GraphItems::Label(
                     GraphItemInfo(testPos->GetIterator()->get_name().c_str()).DPIScaling(boxPlotCanvas->GetDPIScaleFactor()).
                                  Scaling(boxPlotCanvas->GetScaling()).Pen(wxNullPen));
@@ -3996,7 +4051,7 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
             {
             //override how headers and lists are counted so that they are always included if this is a form
             SetInvalidSentenceMethod(InvalidSentence::IncludeAsFullSentences);
-            
+
             for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
@@ -4236,14 +4291,15 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
         }
     //remove any duplicates
     std::sort(GetSourceFilesInfo().begin(), GetSourceFilesInfo().end());
-    auto endOfUniquePos = 
+    auto endOfUniquePos =
         std::unique(GetSourceFilesInfo().begin(), GetSourceFilesInfo().end());
     if (endOfUniquePos != GetSourceFilesInfo().end())
         { GetSourceFilesInfo().erase(endOfUniquePos, GetSourceFilesInfo().end()); }
     //if using random subsampling
     if (wizard->IsRandomSampling())
         {
-        const size_t sampleSize = GetSourceFilesInfo().size() * safe_divide<double>(wizard->GetRandomSamplePercentage(),100);
+        const size_t sampleSize = GetSourceFilesInfo().size() *
+            safe_divide<double>(wizard->GetRandomSamplePercentage(), 100);
         std::uniform_int_distribution<> randNum(0, GetSourceFilesInfo().size()-1);
 
         wxGetApp().GetAppOptions().SetBatchRandomSamplingSize(wizard->GetRandomSamplePercentage());
@@ -4251,13 +4307,15 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
             {
             const size_t index = randNum(wxGetApp().GetRandomNumberEngine());
             if (index < GetSourceFilesInfo().size())
-                { GetSourceFilesInfo().erase(GetSourceFilesInfo().begin()+index); }
+                { GetSourceFilesInfo().erase(GetSourceFilesInfo().begin() + index); }
             }
         }
 
-    wxGetApp().GetAppOptions().SetTestRecommendation(wizard->IsDocumentTypeSelected() ? TestRecommendation::BasedOnDocumentType :
-                                            wizard->IsIndustrySelected() ? TestRecommendation::BasedOnIndustry :
-                                            wizard->IsTestBundleSelected() ? TestRecommendation::UseBundle : TestRecommendation::ManuallySelectTests);
+    wxGetApp().GetAppOptions().SetTestRecommendation(wizard->IsDocumentTypeSelected() ?
+        TestRecommendation::BasedOnDocumentType :
+        wizard->IsIndustrySelected() ? TestRecommendation::BasedOnIndustry :
+        wizard->IsTestBundleSelected() ?
+            TestRecommendation::UseBundle : TestRecommendation::ManuallySelectTests);
     wxGetApp().GetAppOptions().SaveOptionsFile();
     wizard->Destroy();
     return true;
@@ -4279,7 +4337,7 @@ bool BatchProjectDoc::OnSaveDocument(const wxString& filename)
             }
         catch (const MemoryMappedFileShareViolationException&)
             {
-            LogMessage(_(L"File appears to be open by another application. Cannot save project."), 
+            LogMessage(_(L"File appears to be open by another application. Cannot save project."),
                 _(L"Project Save"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
@@ -4293,7 +4351,7 @@ bool BatchProjectDoc::OnSaveDocument(const wxString& filename)
     //if we opened earlier in read only mode then bail
     if (m_FileReadOnly)
         {
-        LogMessage(_(L"Project file was opened as read only. Unable to save."), 
+        LogMessage(_(L"Project file was opened as read only. Unable to save."),
                 _(L"Project Save"), wxOK|wxICON_INFORMATION);
         return false;
         }
@@ -4304,7 +4362,7 @@ bool BatchProjectDoc::OnSaveDocument(const wxString& filename)
         if (!m_File.Open(filename, wxFile::write) )
             {
             m_FileReadOnly = true;
-            LogMessage(_(L"File appears to be open by another application. Cannot save project."), 
+            LogMessage(_(L"File appears to be open by another application. Cannot save project."),
                 _(L"Project Save"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
@@ -4353,7 +4411,7 @@ bool BatchProjectDoc::OnSaveDocument(const wxString& filename)
     m_File.Close();
     if (!out.Commit())
         {
-        LogMessage(_(L"Unable to save project file. File may be locked by another process."), 
+        LogMessage(_(L"Unable to save project file. File may be locked by another process."),
                 _(L"Project Error"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
@@ -4391,7 +4449,7 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
     if (!wxFile::Exists(filename) )
         {
         LogMessage(
-            wxString::Format(_(L"'%s': unable to open project file. File not found."), filename), 
+            wxString::Format(_(L"'%s': unable to open project file. File not found."), filename),
             _(L"Error"), wxOK|wxICON_ERROR);
         return false;
         }
@@ -4423,7 +4481,7 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
         if (m_File.Open(GetFilename(), wxFile::read) )
             {
             m_FileReadOnly = true;
-            LogMessage(_(L"File appears to be open by another application. Project file will be opened as read only."), 
+            LogMessage(_(L"File appears to be open by another application. Project file will be opened as read only."),
                 _(L"Project Open"), wxOK|wxICON_INFORMATION);
             }
         else
@@ -4447,13 +4505,13 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
         }
     catch (const MemoryMappedInvalidFileType&)
         {
-        LogMessage(_(L"Invalid file."), 
+        LogMessage(_(L"Invalid file."),
             _(L"Project Open"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
     catch (const MemoryMappedFileCloudFileError&)
         {
-        LogMessage(_(L"Unable to open file from Cloud service."), 
+        LogMessage(_(L"Unable to open file from Cloud service."),
             _(L"Project Open"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
@@ -4567,7 +4625,7 @@ void BatchProjectDoc::LoadProjectFile(const char* projectFileText, const size_t 
         { LoadSettingsFile(settingsFile); }
     else
         {
-        LogMessage(_(L"Settings file could not be found in the project file. Default settings will be used."), 
+        LogMessage(_(L"Settings file could not be found in the project file. Default settings will be used."),
                 wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
         }
 
@@ -5113,7 +5171,7 @@ void BatchProjectDoc::DisplayHardWords()
                     wxString::Format(_(L"%s unfamiliar words"), pos->GetIterator()->get_name().c_str()));
                 }
             }
-        UpdateListOptions(listView); 
+        UpdateListOptions(listView);
         listView->SetVirtualDataProvider(m_hardWordsData);
         listView->SetVirtualDataSize(m_hardWordsData->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
@@ -5278,7 +5336,7 @@ void BatchProjectDoc::DisplaySightWords()
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _(L"Nouns")); }
 
-        UpdateListOptions(listView); 
+        UpdateListOptions(listView);
         listView->SetColumnFilePathTruncationMode(0, GetFilePathTruncationMode());
         listView->SetVirtualDataProvider(m_dolchWordsBatchData);
         listView->SetVirtualDataSize(m_dolchWordsBatchData->GetItemCount());
@@ -5317,7 +5375,7 @@ void BatchProjectDoc::DisplaySightWords()
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _(L"Non-Dolch Words")); }
 
-        UpdateListOptions(listView); 
+        UpdateListOptions(listView);
         listView->SetColumnFilePathTruncationMode(0, GetFilePathTruncationMode());
         listView->SetVirtualDataProvider(m_NonDolchWordsData);
         listView->SetVirtualDataSize(m_NonDolchWordsData->GetItemCount());

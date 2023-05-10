@@ -58,7 +58,7 @@ public:
     /// @private
     ~ExplanationListCtrl()
         { wxDELETE(m_data); }
-    
+
     /// @brief Splits the windows to show the items in the list control.
     void FitWindows();
     /// @brief Updates the HTML window to display the associated text

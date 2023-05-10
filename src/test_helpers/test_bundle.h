@@ -106,7 +106,7 @@ public:
         { return m_name; }
     void SetName(const string_type& name)
         { m_name = name; }
-    
+
     /// @returns The bundle's description.
     [[nodiscard]]
     const string_type& GetDescription() const noexcept

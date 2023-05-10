@@ -84,7 +84,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
             (activeProject && activeProject->IsKindOf(CLASSINFO(ProjectDoc)));
         BaseProjectDoc* project = isUsingActiveProject ? activeProject : blankProject.get();
         wxASSERT(project);
-        
+
         if (!project->GetFormulaParser().compile(GetFormula()))
             {
             wxMessageBox(wxString::Format(_(L"Syntax error in formula at position %s:\n %s\n^"),
@@ -367,7 +367,7 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
 
     m_math.insert(wxString(_DT(L"SIN(x)\t") + _(L"Sine of the angle x in radians.")).ToStdWstring());
     m_math.insert(wxString(_DT(L"COS(x)\t") + _(L"Cosine of the angle x in radians.")).ToStdWstring());
-    m_math.insert(wxString(_DT(L"ATAN(x)\t") + _(L"Arc tangent of x.")).ToStdWstring()); 
+    m_math.insert(wxString(_DT(L"ATAN(x)\t") + _(L"Arc tangent of x.")).ToStdWstring());
     m_math.insert(wxString(_DT(L"SINH(x)\t") + _(L"Hyperbolic sine of x.")).ToStdWstring());
     m_math.insert(wxString(_DT(L"COSH(x)\t") + _(L"Hyperbolic cosine of x.")).ToStdWstring());
     m_math.insert(wxString(_DT(L"CLAMP(x,start,end)\t") + _(L"Constrains x within the range of start and end.")).ToStdWstring());

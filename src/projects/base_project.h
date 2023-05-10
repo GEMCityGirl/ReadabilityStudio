@@ -229,7 +229,7 @@ public:
         wxDELETE(m_formulaParser);
         wxDELETE(m_messages);
         wxDELETE(m_words);
-        wxDELETE(m_word_frequency_map); 
+        wxDELETE(m_word_frequency_map);
         wxDELETE(m_3SybPlusData);
         wxDELETE(m_6CharPlusData);
         wxDELETE(m_DCHardWordsData);
@@ -1118,80 +1118,115 @@ public:
     /// Reviews all possible stats goals in the project.
     void ReviewStatGoals();
 
-    void SetReviewer(const wxString& reviewer) 
+    void SetReviewer(const wxString& reviewer)
         { m_reviewer = reviewer; }
-    [[nodiscard]] const wxString& GetReviewer() const noexcept
+    [[nodiscard]]
+    const wxString& GetReviewer() const noexcept
         { return m_reviewer; }
     void SetStatus(const wxString& status)
         { m_status = status; }
     /// @returns The status label of the project.
-    [[nodiscard]] const wxString& GetStatus() const noexcept
+    [[nodiscard]]
+    const wxString& GetStatus() const noexcept
         { return m_status; }
 
-    [[nodiscard]] const std::vector<double>& GetAggregatedGradeScores() const noexcept
+    [[nodiscard]]
+    const std::vector<double>& GetAggregatedGradeScores() const noexcept
         { return m_aggregatedGradeScores; }
-    [[nodiscard]] std::vector<double>& GetAggregatedGradeScores() noexcept
+    [[nodiscard]]
+    std::vector<double>& GetAggregatedGradeScores() noexcept
         { return m_aggregatedGradeScores; }
 
-    [[nodiscard]] const std::vector<double>& GetAggregatedClozeScores() const noexcept
+    [[nodiscard]]
+    const std::vector<double>& GetAggregatedClozeScores() const noexcept
         { return m_aggregatedClozeScores; }
-    [[nodiscard]] std::vector<double>& GetAggregatedClozeScores() noexcept
+    [[nodiscard]]
+    std::vector<double>& GetAggregatedClozeScores() noexcept
         { return m_aggregatedClozeScores; }
 
-    [[nodiscard]] bool IsIncludingClozeTest() const;
-    [[nodiscard]] bool IsIncludingGradeTest() const;
+    /// Indicates whether a test is included which includes a cloze score.
+    [[nodiscard]]
+    bool IsIncludingClozeTest() const;
+    /// Indicates whether a test is included which includes a grade-level score.
+    [[nodiscard]]
+    bool IsIncludingGradeTest() const;
     virtual void RemoveMisspellings(const wxArrayString&) {}
 
-    [[nodiscard]] const ListCtrlExNumericDataProvider* Get3SyllablePlusData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* Get3SyllablePlusData() const noexcept
         { return m_3SybPlusData; }
-    [[nodiscard]] ListCtrlExNumericDataProvider* Get3SyllablePlusData() noexcept
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* Get3SyllablePlusData() noexcept
         { return m_3SybPlusData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* Get6CharacterPlusData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* Get6CharacterPlusData() const noexcept
         { return m_6CharPlusData; }
-    [[nodiscard]] ListCtrlExNumericDataProvider* Get6CharacterPlusData() noexcept
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* Get6CharacterPlusData() noexcept
         { return m_6CharPlusData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetDaleChallHardWordData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetDaleChallHardWordData() const noexcept
         { return m_DCHardWordsData; }
-    [[nodiscard]] ListCtrlExNumericDataProvider* GetDaleChallHardWordData() noexcept
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* GetDaleChallHardWordData() noexcept
         { return m_DCHardWordsData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetSpacheHardWordData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetSpacheHardWordData() const noexcept
         { return m_SpacheHardWordsData; }
-    [[nodiscard]] ListCtrlExNumericDataProvider* GetSpacheHardWordData() noexcept
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* GetSpacheHardWordData() noexcept
         { return m_SpacheHardWordsData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetHarrisJacobsonHardWordDataData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetHarrisJacobsonHardWordDataData() const noexcept
         { return m_harrisJacobsonHardWordsData; }
-    [[nodiscard]] ListCtrlExNumericDataProvider* GetHarrisJacobsonHardWordDataData() noexcept
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* GetHarrisJacobsonHardWordDataData() noexcept
         { return m_harrisJacobsonHardWordsData; }
-    [[nodiscard]] const ListCtrlExDataProvider* GetUnusedDolchWordData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExDataProvider* GetUnusedDolchWordData() const noexcept
         { return m_unusedDolchWordsData; }
-    [[nodiscard]] ListCtrlExDataProvider* GetUnusedDolchWordData() noexcept
+    [[nodiscard]]
+    ListCtrlExDataProvider* GetUnusedDolchWordData() noexcept
         { return m_unusedDolchWordsData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetDolchWordData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetDolchWordData() const noexcept
         { return m_dolchWordsData; }
-    [[nodiscard]] ListCtrlExNumericDataProvider* GetDolchWordData() noexcept
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* GetDolchWordData() noexcept
         { return m_dolchWordsData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetNonDolchWordData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetNonDolchWordData() const noexcept
         { return m_nonDolchWordsData; }
-    [[nodiscard]] ListCtrlExNumericDataProvider* GetNonDolchWordData() noexcept
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* GetNonDolchWordData() noexcept
         { return m_nonDolchWordsData; }
-    [[nodiscard]] ListCtrlExNumericDataProvider* GetImportantWordsBaseData() noexcept
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* GetImportantWordsBaseData() noexcept
         { return m_importantWordsBaseData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetImportantWordsBaseData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetImportantWordsBaseData() const noexcept
         { return m_importantWordsBaseData; }
-    [[nodiscard]] ListCtrlExNumericDataProvider* GetAllWordsBaseData() noexcept
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* GetAllWordsBaseData() noexcept
         { return m_AllWordsBaseData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetAllWordsBaseData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetAllWordsBaseData() const noexcept
         { return m_AllWordsBaseData; }
-    [[nodiscard]] ListCtrlExNumericDataProvider* GetProperNounsData() noexcept
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* GetProperNounsData() noexcept
         { return m_ProperNounsData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetProperNounsData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetProperNounsData() const noexcept
         { return m_ProperNounsData; }
-    [[nodiscard]] ListCtrlExNumericDataProvider* GetContractionsData() noexcept
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* GetContractionsData() noexcept
         { return m_contractionsData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetContractionsData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetContractionsData() const noexcept
         { return m_contractionsData; }
 
-    [[nodiscard]] wxString GetExcludedPhrasesPath() const
+    [[nodiscard]]
+    wxString GetExcludedPhrasesPath() const
         { return m_excludedPhrasesPath; }
     void SetExcludedPhrasesPath(const wxString& path)
         { m_excludedPhrasesPath = path; }
@@ -1208,12 +1243,12 @@ public:
         if (!GetExcludedPhrasesPath().empty())
             {
             wxString phrases, filePath(GetExcludedPhrasesPath()), fileBySameNameInProjectDirectory;
-            //if file not found, then try to search for it in the subdirectories from where the project is
+            // if file not found, then try to search for it in the subdirectories from where the project is
             if (!wxFile::Exists(filePath) && FindMissingFile(filePath, fileBySameNameInProjectDirectory))
                 { filePath = fileBySameNameInProjectDirectory; }
             if (Wisteria::TextStream::ReadFile(filePath, phrases))
                 {
-                //path may have been changed from ReadFile()
+                // path may have been changed from ReadFile()
                 if (CompareFilePaths(GetExcludedPhrasesPath(), filePath) != 0)
                     {
                     SetModifiedFlag();
@@ -1224,7 +1259,8 @@ public:
             else
                 {
                 LogMessage(wxString::Format(
-                    _(L"Exclusion phrase list not found:\n\n%s\n\nList will not be included in this project."), filePath),
+                    _(L"Exclusion phrase list not found:\n\n%s\n\nList will not be included in this project."),
+                    filePath),
                     _(L"Warning"), wxOK|wxICON_EXCLAMATION);
                 SetModifiedFlag();
                 SetExcludedPhrasesPath(wxEmptyString);
@@ -1233,49 +1269,64 @@ public:
         }
     void ShareExcludePhrases(const BaseProject& that) noexcept
         { m_excluded_phrases = that.m_excluded_phrases; }
-    //Tags for excluding blocks of text
-    [[nodiscard]] const std::vector<std::pair<wchar_t,wchar_t>>& GetExclusionBlockTags() const noexcept
+    // Tags for excluding blocks of text
+    [[nodiscard]]
+    const std::vector<std::pair<wchar_t,wchar_t>>& GetExclusionBlockTags() const noexcept
         { return m_exclusionBlockTags; }
-    [[nodiscard]] std::vector<std::pair<wchar_t,wchar_t>>& GetExclusionBlockTags() noexcept
+    [[nodiscard]]
+    std::vector<std::pair<wchar_t,wchar_t>>& GetExclusionBlockTags() noexcept
         { return m_exclusionBlockTags; }
     void SetExclusionBlockTags(const std::vector<std::pair<wchar_t,wchar_t>>& tags)
         { m_exclusionBlockTags = tags; }
-    //whether the first occurrence of an excluded phrase should be included
-    [[nodiscard]] bool IsIncludingExcludedPhraseFirstOccurrence() const noexcept
+    // whether the first occurrence of an excluded phrase should be included
+    [[nodiscard]]
+    bool IsIncludingExcludedPhraseFirstOccurrence() const noexcept
         { return m_includeExcludedPhraseFirstOccurrence; }
     void IncludeExcludedPhraseFirstOccurrence(const bool include) noexcept
         { m_includeExcludedPhraseFirstOccurrence = include; }
 
-    [[nodiscard]] StatisticsReportInfo& GetStatisticsReportInfo() noexcept
+    [[nodiscard]]
+    StatisticsReportInfo& GetStatisticsReportInfo() noexcept
         { return m_statsReportInfo; }
-    [[nodiscard]] const StatisticsReportInfo& GetStatisticsReportInfo() const noexcept
+    [[nodiscard]]
+    const StatisticsReportInfo& GetStatisticsReportInfo() const noexcept
         { return m_statsReportInfo; }
 
-    [[nodiscard]] StatisticsInfo& GetStatisticsInfo() noexcept
+    [[nodiscard]]
+    StatisticsInfo& GetStatisticsInfo() noexcept
         { return m_statsInfo; }
-    [[nodiscard]] const StatisticsInfo& GetStatisticsInfo() const noexcept
+    [[nodiscard]]
+    const StatisticsInfo& GetStatisticsInfo() const noexcept
         { return m_statsInfo; }
 
-    [[nodiscard]] GrammarInfo& GetGrammarInfo() noexcept
+    [[nodiscard]]
+    GrammarInfo& GetGrammarInfo() noexcept
         { return m_grammarInfo; }
-    [[nodiscard]] const GrammarInfo& GetGrammarInfo() const noexcept
+    [[nodiscard]]
+    const GrammarInfo& GetGrammarInfo() const noexcept
         { return m_grammarInfo; }
 
-    [[nodiscard]] WordsBreakdownInfo& GetWordsBreakdownInfo() noexcept
+    [[nodiscard]]
+    WordsBreakdownInfo& GetWordsBreakdownInfo() noexcept
         { return m_wordsBreakdownInfo; }
-    [[nodiscard]] const WordsBreakdownInfo& GetWordsBreakdownInfo() const noexcept
+    [[nodiscard]]
+    const WordsBreakdownInfo& GetWordsBreakdownInfo() const noexcept
         { return m_wordsBreakdownInfo; }
 
-    [[nodiscard]] SentencesBreakdownInfo& GetSentencesBreakdownInfo() noexcept
+    [[nodiscard]]
+    SentencesBreakdownInfo& GetSentencesBreakdownInfo() noexcept
         { return m_sentencesBreakdownInfo; }
-    [[nodiscard]] const SentencesBreakdownInfo& GetSentencesBreakdownInfo() const noexcept
+    [[nodiscard]]
+    const SentencesBreakdownInfo& GetSentencesBreakdownInfo() const noexcept
         { return m_sentencesBreakdownInfo; }
 
-    [[nodiscard]] const double_frequency_set<word_case_insensitive_no_stem>* GetWordsWithFrequencies() const noexcept
+    [[nodiscard]]
+    const double_frequency_set<word_case_insensitive_no_stem>* GetWordsWithFrequencies() const noexcept
         { return m_word_frequency_map; }
 
     /// @returns The stop list, based on the project's language.
-    [[nodiscard]] const word_list& GetStopList() const noexcept
+    [[nodiscard]]
+    const word_list& GetStopList() const noexcept
         {
         return (GetProjectLanguage() == readability::test_language::spanish_test) ? spanish_stoplist :
                 (GetProjectLanguage() == readability::test_language::german_test) ? german_stoplist : english_stoplist;
@@ -1397,7 +1448,7 @@ protected:
     [[nodiscard]]
     virtual wxString GetProjectDirectory() const
         { return m_projectDirectory; }
-    void SetProjectDirectory(const wxString& projectDir) 
+    void SetProjectDirectory(const wxString& projectDir)
         { m_projectDirectory = projectDir; }
 
     [[nodiscard]]

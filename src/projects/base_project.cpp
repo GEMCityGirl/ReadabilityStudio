@@ -62,7 +62,7 @@ std::map<comparable_first_pair<Goal::string_type, Goal::string_type>, std::funct
 using namespace lily_of_the_valley;
 using namespace Wisteria;
 
-//------------------------------------------------
+//-------------------------------------------------------
 bool BaseProject::LoadAppendedDocument()
     {
     if (GetAppendedDocumentFilePath().length())
@@ -74,14 +74,17 @@ bool BaseProject::LoadAppendedDocument()
                 { SetAppendedDocumentFilePath(fileBySameNameInProjectDirectory); }
             else
                 {
-                LogMessage(wxString::Format(_(L"\"%s\": appended template file not found."), GetAppendedDocumentFilePath()), 
+                LogMessage(wxString::Format(
+                    _(L"\"%s\": appended template file not found."), GetAppendedDocumentFilePath()),
                      wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
                 SetAppendedDocumentText(wxEmptyString);
                 return false;
                 }
             }
         MemoryMappedFile sourceFile(GetAppendedDocumentFilePath(), true, true);
-        const std::pair<bool,wxString> extractResult = ExtractRawText(static_cast<const char*>(sourceFile.GetStream()), sourceFile.GetMapSize(), wxFileName(GetAppendedDocumentFilePath()).GetExt());
+        const std::pair<bool,wxString> extractResult =
+            ExtractRawText(static_cast<const char*>(sourceFile.GetStream()), sourceFile.GetMapSize(),
+                wxFileName(GetAppendedDocumentFilePath()).GetExt());
         SetAppendedDocumentText(extractResult.first ? extractResult.second : wxString{});
         return extractResult.first;
         }
@@ -90,6 +93,7 @@ bool BaseProject::LoadAppendedDocument()
     return true;
     }
 
+//-------------------------------------------------------
 void BaseProject::UpdateDocumentSettings()
     {
     wxASSERT(GetWords());
@@ -124,7 +128,7 @@ void BaseProject::UpdateDocumentSettings()
         tagPos != m_exclusionBlockTags.end();
         ++tagPos)
         { GetWords()->add_exclusion_block_tags(tagPos->first, tagPos->second); }
-    //language-specific settings
+    // language-specific settings
     if (GetProjectLanguage() == readability::test_language::spanish_test &&
         (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
         wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode())) )
@@ -170,11 +174,12 @@ void BaseProject::UpdateDocumentSettings()
         }
     }
 
+//-------------------------------------------------------
 void BaseProject::LogMessage(wxString message, const wxString& title, const int icon,
                              const wxString& messageId /*= wxEmptyString*/,
                              const bool queue /*= false*/)
     {
-    //skip warning if it was asked to be suppressed already
+    // skip warning if it was asked to be suppressed already
     std::vector<WarningMessage>::iterator warningIter =
             wxGetApp().GetAppOptions().GetWarning(messageId);
     if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
@@ -208,6 +213,7 @@ void BaseProject::LogMessage(wxString message, const wxString& title, const int 
         { wxLogVerbose(L"%s", message); }
     }
 
+//-------------------------------------------------------
 void BaseProject::FormatFilteredText(wxString& text, const bool romanizeText,
                                      const bool removeEllipses, const bool removeBullets,
                                      const bool removeFilePaths, const bool stripAbbreviations,
@@ -215,7 +221,8 @@ void BaseProject::FormatFilteredText(wxString& text, const bool romanizeText,
     {
     if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
         {
-        wxMessageBox(_(L"Filtered document exporting is only available in the Professional Edition of Readability Studio."), 
+        wxMessageBox(
+            _(L"Filtered document exporting is only available in the Professional Edition of Readability Studio."),
             _(L"Feature Not Licensed"), wxOK|wxICON_INFORMATION);
         return;
         }
@@ -236,7 +243,8 @@ void BaseProject::FormatFilteredText(wxString& text, const bool romanizeText,
     FormatFilteredWordCollection(project->GetWords(),
         wxStringBuffer(text, textLength),
         textLength,
-        (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ? InvalidTextFilterFormat::IncludeAllText : InvalidTextFilterFormat::IncludeOnlyValidText,
+        (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
+            InvalidTextFilterFormat::IncludeAllText : InvalidTextFilterFormat::IncludeOnlyValidText,
         removeFilePaths, stripAbbreviations);
     text.Trim(false); text.Trim(true); text.Prepend(L"\t");
 
@@ -244,7 +252,7 @@ void BaseProject::FormatFilteredText(wxString& text, const bool romanizeText,
     text = Romanize(text, text.length(), romanizeText, removeEllipses, removeBullets, narrowFullWithText);
     }
 
-/// Indicates whether a test is included which includes a cloze score
+//-------------------------------------------------------
 bool BaseProject::IsIncludingClozeTest() const
     {
     for (auto rTests = GetReadabilityTests().get_tests().begin();
@@ -266,7 +274,7 @@ bool BaseProject::IsIncludingClozeTest() const
     return false;
     }
 
-///Indicates whether a test is included which includes a grade-level score
+//-------------------------------------------------------
 bool BaseProject::IsIncludingGradeTest() const
     {
     for (auto rTests = GetReadabilityTests().get_tests().begin();
@@ -274,24 +282,27 @@ bool BaseProject::IsIncludingGradeTest() const
         ++rTests)
         {
         if (rTests->is_included() &&
-            (rTests->get_test().get_test_type() == readability::readability_test_type::grade_level ||
-            rTests->get_test().get_test_type() == readability::readability_test_type::index_value_and_grade_level ||
-            rTests->get_test().get_test_type() == readability::readability_test_type::grade_level_and_predicted_cloze_score))
+            (rTests->get_test().get_test_type() ==
+                readability::readability_test_type::grade_level ||
+            rTests->get_test().get_test_type() ==
+                readability::readability_test_type::index_value_and_grade_level ||
+            rTests->get_test().get_test_type() ==
+                readability::readability_test_type::grade_level_and_predicted_cloze_score))
             { return true; }
         }
-    for (std::vector<CustomReadabilityTestInterface>::const_iterator customTestPos = GetCustTestsInUse().begin();
-            customTestPos != GetCustTestsInUse().end();
-            ++customTestPos)
+    for (const auto& customTest : GetCustTestsInUse())
         {
-        if (customTestPos->GetIterator()->get_test_type() == readability::readability_test_type::grade_level)
+        if (customTest.GetIterator()->get_test_type() == readability::readability_test_type::grade_level)
             { return true; }
         }
     return false;
     }
 
+//-------------------------------------------------------
 BaseProject::BaseProject() :
     m_minDocWordCountForBatch(wxGetApp().GetAppOptions().GetMinDocWordCountForBatch()),
-    m_includeIncompleteSentencesIfLongerThan(wxGetApp().GetAppOptions().GetIncludeIncompleteSentencesIfLongerThanValue()),
+    m_includeIncompleteSentencesIfLongerThan(wxGetApp().GetAppOptions().
+        GetIncludeIncompleteSentencesIfLongerThanValue()),
 
     m_difficultSentenceLength(wxGetApp().GetAppOptions().GetDifficultSentenceLength()),
 
@@ -349,7 +360,7 @@ BaseProject::BaseProject() :
     ResetStandardReadabilityTests(m_readabilityTests);
     // bind the standard test functions with their respective IDs
     m_standardTestFunctions.reserve(GetDefaultReadabilityTestsTemplate().get_test_count());
-    //DEGREES_OF_READING_POWER
+    // DEGREES_OF_READING_POWER
     std::pair<std::vector<readability::readability_test>::const_iterator, bool> testPos =
         GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::DEGREES_OF_READING_POWER());
     if (testPos.second)
@@ -357,21 +368,21 @@ BaseProject::BaseProject() :
         m_standardTestFunctions.push_back(comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
             &BaseProject::AddDegreesOfReadingPowerTest));
         }
-    //DEGREES_OF_READING_POWER_GE
+    // DEGREES_OF_READING_POWER_GE
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::DEGREES_OF_READING_POWER_GE());
     if (testPos.second)
         {
         m_standardTestFunctions.push_back(comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
             &BaseProject::AddDegreesOfReadingPowerGeTest));
         }
-    //SOL_SPANISH
+    // SOL_SPANISH
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::SOL_SPANISH());
     if (testPos.second)
         {
         m_standardTestFunctions.push_back(comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
             &BaseProject::AddSolSpanishTest));
         }
-    //CRAWFORD
+    // CRAWFORD
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::CRAWFORD());
     if (testPos.second)
         {
@@ -715,6 +726,7 @@ BaseProject::BaseProject() :
     m_readMessages.SetLongGradeScaleFormat(wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
     }
 
+//-------------------------------------------------------
 void BaseProject::ResetStandardReadabilityTests(TestCollectionType& readabilityTests)
     {
     readabilityTests.clear();
@@ -722,6 +734,7 @@ void BaseProject::ResetStandardReadabilityTests(TestCollectionType& readabilityT
     readabilityTests.add_tests(m_defaultReadabilityTestsTemplate.get_tests());
     }
 
+//-------------------------------------------------------
 void BaseProject::InitializeStandardReadabilityTests()
     {
     wxASSERT_MSG(m_defaultReadabilityTestsTemplate.get_test_count() == 0, __WXFUNCTION__ + wxString(" called twice?"));
@@ -2200,11 +2213,13 @@ void BaseProject::LoadHardWords()
             pos != m_customTestsInUse.end();
             ++pos)
             {
-            /*if not using familiar word then skip. Also need to skip if using CustomHJ or
-            CustomDC (if regular DC is excluding only list items)--in that case, it will be handled in next loop.*/ 
+            /* if not using familiar word then skip. Also need to skip if using CustomHJ or
+               CustomDC (if regular DC is excluding only list items)--in that case, it will be handled in next loop.*/
             if (!pos->GetIterator()->is_using_familiar_words() ||
-                (pos->IsHarrisJacobsonFormula() && GetHarrisJacobsonTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ||
-                (pos->IsDaleChallFormula() && GetDaleChallTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings))
+                (pos->IsHarrisJacobsonFormula() &&
+                    GetHarrisJacobsonTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ||
+                (pos->IsDaleChallFormula() &&
+                    GetDaleChallTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings))
                 { continue; }
             if (!pos->GetIterator()->is_word_familiar(wordPos->first,
                     false, pos->GetIterator()->is_including_numeric_as_familiar()))
@@ -2731,7 +2746,7 @@ void BaseProject::CalculateStatisticsIgnoringInvalidSentences()
                 }
             }
 
-        std::vector<grammar::sentence_info>::const_iterator longestSent = 
+        std::vector<grammar::sentence_info>::const_iterator longestSent =
             std::max_element(GetWords()->get_sentences().begin(),
             GetWords()->get_sentences().end(),
             grammar::complete_sentence_length_less());
@@ -3593,7 +3608,7 @@ bool BaseProject::LoadExternalDocument()
         catch (const MemoryMappedFileCloudFileError&)
             {
             LogMessage(wxString::Format(_(L"%s:\n\nUnable to open file from Cloud service."),
-                                        GetOriginalDocumentFilePath()), 
+                                        GetOriginalDocumentFilePath()),
                 _(L"Error"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
@@ -3776,12 +3791,13 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
             }
         else
             {
-            const double numberOfInvalidSentencesPercentage = safe_divide<double>((GetWords()->get_sentence_count() - GetWords()->get_complete_sentence_count()),
+            const double numberOfInvalidSentencesPercentage =
+                safe_divide<double>((GetWords()->get_sentence_count() - GetWords()->get_complete_sentence_count()),
                 GetWords()->get_sentence_count());
             if (numberOfInvalidSentencesPercentage > 0.60f &&
-                (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis || GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings))
+                (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
+                    GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings))
                 {
-                
                 if (WarningManager::HasWarning(_DT(L"high-count-sentences-being-ignored")))
                     {
                     auto warningMsg = *WarningManager::GetWarning(_DT(L"high-count-sentences-being-ignored"));
@@ -6831,17 +6847,19 @@ void BaseProject::SyncCustomTests()
         pos != m_customTestsInUse.end();
         /*in loop*/)
         {
-        CustomReadabilityTestCollection::iterator testIter = 
+        CustomReadabilityTestCollection::iterator testIter =
             std::find(m_custom_word_tests.begin(), m_custom_word_tests.end(), pos->GetTestName());
-        //shouldn't happen, but remove test from project if not found in the global system
+        // shouldn't happen, but remove test from project if not found in the global system
         if (testIter == m_custom_word_tests.end())
             {
             pos = m_customTestsInUse.erase(pos);
             continue;
             }
         pos->SetIterator(testIter);
-        pos->SetIsDaleChallFormula(pos->GetIterator()->get_formula().find(ReadabilityFormulaParser::GetCustomNewDaleChallSignature()) != -1);
-        pos->SetIsHarrisJacobsonFormula(pos->GetIterator()->get_formula().find(ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature()) != -1);
+        pos->SetIsDaleChallFormula(pos->GetIterator()->get_formula().find(
+            ReadabilityFormulaParser::GetCustomNewDaleChallSignature()) != -1);
+        pos->SetIsHarrisJacobsonFormula(pos->GetIterator()->get_formula().find(
+            ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature()) != -1);
         ++pos;
         }
     }
@@ -6851,18 +6869,19 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
     {
     ClearReadabilityTestResult();
 
-    //first, see if this is a legit custom test that is loaded in the global system
+    // first, see if this is a legit custom test that is loaded in the global system
     const CustomReadabilityTestCollection::const_iterator testIter =
             std::find(m_custom_word_tests.cbegin(), m_custom_word_tests.cend(), name);
     if (testIter == m_custom_word_tests.cend())
         { return false; }
 
-    std::vector<CustomReadabilityTestInterface>::iterator pos = std::find(m_customTestsInUse.begin(), m_customTestsInUse.end(), name);
-    //see if test needs to be included
+    auto pos = std::find(m_customTestsInUse.begin(), m_customTestsInUse.end(), name);
+    // see if test needs to be included
     if (pos == m_customTestsInUse.end())
         {
         m_customTestsInUse.push_back(CustomReadabilityTestInterface(name));
-        SyncCustomTests(); //reset the internal iterators that point to the global tests
+        // reset the internal iterators that point to the global tests
+        SyncCustomTests();
         pos = std::find(m_customTestsInUse.begin(), m_customTestsInUse.end(), name);
         if (pos == m_customTestsInUse.end())
             { return false; }
@@ -6872,19 +6891,20 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
         {
         if (!GetTotalWords())
             {
-            LogMessage(_(L"Unable to calculate custom readability test: at least one word must be present in document."),
+            LogMessage(
+                _(L"Unable to calculate custom readability test: at least one word must be present in document."),
                 _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
             return false;
             }
         try
             {
-            //put together a description detailing the formula and stemming type used by this test
+            // put together a description detailing the formula and stemming type used by this test
             wxString customDescription = wxString::Format(L"<p>%s</p>\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;%s</p>",
                 _(L"This is a custom test using the following formula:"),
                 ProjectReportFormat::FormatFormulaToHtml(pos->GetIterator()->get_formula().c_str()) );
             if (pos->GetIterator()->is_using_familiar_words())
                 {
-                customDescription += wxString::Format(L"<p>%s</p>\r\n<ul>\r\n", 
+                customDescription += wxString::Format(L"<p>%s</p>\r\n<ul>\r\n",
                     _(L"This test uses the following criteria to determine word familiarity:") );
                 if (pos->GetIterator()->is_including_dale_chall_list())
                     { customDescription += wxString(L"<li>") + wxString::Format(_(L"%s familiar word list"), _DT(L"New Dale Chall")) + wxString(L"</li>"); }
@@ -6900,7 +6920,9 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                     if (pos->GetIterator()->get_stemming_type() == stemming::stemming_type::no_stemming)
                         {
                         customDescription += _(L"A custom word list:") +
-                            wxString::Format(L"<br />&nbsp;&nbsp;&nbsp;&nbsp;&ldquo;<span style=\"font-style:italic;\">%s</span>&rdquo;",
+                            wxString::Format(
+                                L"<br />&nbsp;&nbsp;&nbsp;&nbsp;&ldquo;"
+                                 "<span style=\"font-style:italic;\">%s</span>&rdquo;",
                                 pos->GetIterator()->get_familiar_word_list_file_path().c_str());
                         }
                     else
@@ -6908,14 +6930,17 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                         customDescription += wxString::Format(_(L"A custom word list (that is using %s stemming):"),
                             ProjectReportFormat::GetStemmingDisplayName(pos->GetIterator()->get_stemming_type())) +
                             wxString::Format(
-                                L"<br />&nbsp;&nbsp;&nbsp;&nbsp;&ldquo;<span style=\"font-style:italic;\">%s</span>&rdquo;",
+                                L"<br />&nbsp;&nbsp;&nbsp;&nbsp;&ldquo;"
+                                 "<span style=\"font-style:italic;\">%s</span>&rdquo;",
                                 pos->GetIterator()->get_familiar_word_list_file_path().c_str());
                         }
                     customDescription += wxString(L"</li>");
                     }
-                if (pos->GetIterator()->get_proper_noun_method() == readability::proper_noun_counting_method::all_proper_nouns_are_familiar)
+                if (pos->GetIterator()->get_proper_noun_method() ==
+                    readability::proper_noun_counting_method::all_proper_nouns_are_familiar)
                     { customDescription += wxString(L"<li>") + _(L"Proper nouns") + wxString(L"</li>"); }
-                else if (pos->GetIterator()->get_proper_noun_method() == readability::proper_noun_counting_method::only_count_first_instance_of_proper_noun_as_unfamiliar)
+                else if (pos->GetIterator()->get_proper_noun_method() ==
+                    readability::proper_noun_counting_method::only_count_first_instance_of_proper_noun_as_unfamiliar)
                     { customDescription += wxString(L"<li>") + _(L"Proper nouns (except first occurrence)") + wxString(L"</li>"); }
                 if (pos->GetIterator()->is_including_numeric_as_familiar())
                     { customDescription += wxString(L"<li>") + _(L"Numerals") + wxString(L"</li>"); }
@@ -6927,14 +6952,16 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
             try
                 {
                 GetFormulaParser().UpdateVariables();
-                [[maybe_unused]] auto notUsedRes = GetFormulaParser().evaluate(wxString(pos->GetIterator()->get_formula().c_str()));
+                [[maybe_unused]] auto notUsedRes =
+                    GetFormulaParser().evaluate(wxString(pos->GetIterator()->get_formula().c_str()));
                 if (!GetFormulaParser().success())
                     {
                     SetReadabilityTestResult(wxString(pos->GetIterator()->get_name().c_str()),
                         wxString(pos->GetIterator()->get_name().c_str()),
                         customDescription,
                         std::make_pair(std::numeric_limits<double>::quiet_NaN(),
-                            wxString::Format(_(L"Syntax error in formula at position %s."), std::to_wstring(GetFormulaParser().get_last_error_position()))),
+                            wxString::Format(_(L"Syntax error in formula at position %s."),
+                                std::to_wstring(GetFormulaParser().get_last_error_position()))),
                         wxEmptyString, std::numeric_limits<double>::quiet_NaN(),
                         std::numeric_limits<double>::quiet_NaN(), false);
                     }
@@ -6949,10 +6976,15 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                             {
                             SetReadabilityTestResult(wxString(pos->GetIterator()->get_name().c_str()),
                                 wxString(pos->GetIterator()->get_name().c_str()),
-                                L"<tr><td>" + GetReadabilityMessageCatalog().GetGradeScaleDescription(static_cast<size_t>(gradeBegin)) + L"</td></tr>" +
+                                L"<tr><td>" +
+                                GetReadabilityMessageCatalog().GetGradeScaleDescription(
+                                    static_cast<size_t>(gradeBegin)) + L"</td></tr>" +
                                     customDescription,
-                                std::make_pair(gradeBegin, wxNumberFormatter::ToString(gradeBegin, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes)),
-                                ReadabilityMessages::GetAgeFromUSGrade(gradeBegin, gradeEnd, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
+                                std::make_pair(gradeBegin,
+                                    wxNumberFormatter::ToString(gradeBegin, 0,
+                                        wxNumberFormatter::Style::Style_NoTrailingZeroes)),
+                                ReadabilityMessages::GetAgeFromUSGrade(gradeBegin, gradeEnd,
+                                    GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
                                 std::numeric_limits<double>::quiet_NaN(),
                                 std::numeric_limits<double>::quiet_NaN(), false);
                             }
@@ -6960,10 +6992,16 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                             {
                             SetReadabilityTestResult(wxString(pos->GetIterator()->get_name().c_str()),
                                 wxString(pos->GetIterator()->get_name().c_str()),
-                                L"<tr><td>" + GetReadabilityMessageCatalog().GetGradeScaleDescription(gradeBegin, gradeEnd) + L"</td></tr>\n" +
+                                L"<tr><td>" + GetReadabilityMessageCatalog().
+                                    GetGradeScaleDescription(gradeBegin, gradeEnd) + L"</td></tr>\n" +
                                     customDescription,
-                                std::make_pair(safe_divide<double>(gradeBegin + gradeEnd, 2), wxNumberFormatter::ToString(gradeBegin, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes) + wxString(L"-") + wxNumberFormatter::ToString(gradeEnd, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes)),
-                                ReadabilityMessages::GetAgeFromUSGrade(gradeBegin, gradeEnd, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
+                                std::make_pair(safe_divide<double>(gradeBegin + gradeEnd, 2),
+                                    wxNumberFormatter::ToString(gradeBegin, 0,
+                                        wxNumberFormatter::Style::Style_NoTrailingZeroes) + wxString(L"-") +
+                                    wxNumberFormatter::ToString(gradeEnd, 0,
+                                        wxNumberFormatter::Style::Style_NoTrailingZeroes)),
+                                ReadabilityMessages::GetAgeFromUSGrade(gradeBegin, gradeEnd,
+                                    GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
                                 std::numeric_limits<double>::quiet_NaN(),
                                 std::numeric_limits<double>::quiet_NaN(), false);
                             }
@@ -6973,31 +7011,39 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                         const double score = readability::truncate_k12_plus_grade(GetFormulaParser().get_result());
                         SetReadabilityTestResult(wxString(pos->GetIterator()->get_name().c_str()),
                             wxString(pos->GetIterator()->get_name().c_str()),
-                            L"<tr><td>" + GetReadabilityMessageCatalog().GetGradeScaleDescription(score) + L"</td></tr>\n" +
+                            L"<tr><td>" + GetReadabilityMessageCatalog().GetGradeScaleDescription(score) +
+                                L"</td></tr>\n" +
                                 customDescription,
-                            std::make_pair(score, wxNumberFormatter::ToString(score, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes)),
-                            ReadabilityMessages::GetAgeFromUSGrade(score, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
+                            std::make_pair(score, wxNumberFormatter::ToString(score, 1,
+                                wxNumberFormatter::Style::Style_NoTrailingZeroes)),
+                            ReadabilityMessages::GetAgeFromUSGrade(score,
+                                GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
                             std::numeric_limits<double>::quiet_NaN(),
                             std::numeric_limits<double>::quiet_NaN(), false);
                         }
                     }
-                else if (pos->GetIterator()->get_test_type() == readability::readability_test_type::index_value)
+                else if (pos->GetIterator()->get_test_type() ==
+                    readability::readability_test_type::index_value)
                     {
                     const double score = GetFormulaParser().get_result();
                     SetReadabilityTestResult(wxString(pos->GetIterator()->get_name().c_str()),
                         wxString(pos->GetIterator()->get_name().c_str()),
-                        L"<tr><td>" + _(L"Score: ") + wxNumberFormatter::ToString(score, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes) + L"</td></tr>\n" +
+                        L"<tr><td>" + _(L"Score: ") + wxNumberFormatter::ToString(score, 1,
+                            wxNumberFormatter::Style::Style_NoTrailingZeroes) + L"</td></tr>\n" +
                         customDescription,
                         std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
                         wxEmptyString, score,
                         std::numeric_limits<double>::quiet_NaN(), false);
                     }
-                else if (pos->GetIterator()->get_test_type() == readability::readability_test_type::predicted_cloze_score)
+                else if (pos->GetIterator()->get_test_type() ==
+                    readability::readability_test_type::predicted_cloze_score)
                     {
                     const double score = GetFormulaParser().get_result();
                     SetReadabilityTestResult(wxString(pos->GetIterator()->get_name().c_str()),
                         wxString(pos->GetIterator()->get_name().c_str()),
-                        L"<tr><td>" + _(L"Predicted cloze score: ") + wxNumberFormatter::ToString(score, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes) + L"</td></tr>\n" +
+                        L"<tr><td>" + _(L"Predicted cloze score: ") +
+                        wxNumberFormatter::ToString(score, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes) +
+                        L"</td></tr>\n" +
                         customDescription,
                         std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
                         wxEmptyString, std::numeric_limits<double>::quiet_NaN(), score, false);
@@ -7033,9 +7079,10 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
     }
 
 //-------------------------------------------------------
-std::vector<CustomReadabilityTestInterface>::iterator BaseProject::RemoveCustomReadabilityTest(const wxString& testName, [[maybe_unused]] const int Id)
+std::vector<CustomReadabilityTestInterface>::iterator BaseProject::RemoveCustomReadabilityTest(
+    const wxString& testName, [[maybe_unused]] const int Id)
     {
-    std::vector<CustomReadabilityTestInterface>::iterator testPos =
+    auto testPos =
         std::find(m_customTestsInUse.begin(), m_customTestsInUse.end(), testName);
     if (testPos == m_customTestsInUse.end())
         { return testPos; }
@@ -7077,7 +7124,7 @@ bool BaseProject::RemoveTest(const wxString& name)
 
 bool BaseProject::FindMissingFile(const wxString& filePath, wxString& fileBySameNameInProjectDirectory)
     {
-    //if file not found, then try to search for it in the subdirectories from where the project is
+    // if file not found, then try to search for it in the subdirectories from where the project is
     fileBySameNameInProjectDirectory = FindFileInMatchingDirStructure(GetProjectDirectory(), filePath);
     if (wxFile::Exists(fileBySameNameInProjectDirectory) )
         {
@@ -7086,7 +7133,11 @@ bool BaseProject::FindMissingFile(const wxString& filePath, wxString& fileBySame
         if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
             warningIter->ShouldBeShown())
             {
-            wxRichMessageDialog msg(wxGetApp().GetMainFrame(), wxString::Format(_(L"%s:\n\nFile could not be located. However, a file by the same name was found at:\n\n%s\n\nDo you wish to use this file instead?"), filePath, fileBySameNameInProjectDirectory),
+            wxRichMessageDialog msg(wxGetApp().GetMainFrame(),
+                wxString::Format(
+                    _(L"%s:\n\nFile could not be located. However, a file by the same name was found at:"
+                       "\n\n%s\n\nDo you wish to use this file instead?"),
+                    filePath, fileBySameNameInProjectDirectory),
                 warningIter->GetTitle(), warningIter->GetFlags());
             msg.ShowCheckBox(_(L"Remember my answer"));
             const int dlgResponse = msg.ShowModal();
@@ -7122,7 +7173,7 @@ bool BaseProject::FindMissingFile(const wxString& filePath, wxString& fileBySame
             return false;
             }
         }
-    //alternate file path not found
+    // alternate file path not found
     else
         {
         fileBySameNameInProjectDirectory.Clear();
@@ -7140,14 +7191,15 @@ void BaseProject::CopySettings(const BaseProject& that)
     m_status = that.GetStatus();
     m_appendedDocumentFilePath = that.GetAppendedDocumentFilePath();
 
-    SetProjectDirectory(that.GetProjectDirectory());//this is only needed if we need to go searching for a missing document file
+    // this is only needed if we need to go searching for a missing document file
+    SetProjectDirectory(that.GetProjectDirectory());
 
-    //phrases to be excluded
+    // phrases to be excluded
     m_excludedPhrasesPath = that.GetExcludedPhrasesPath();
 
     m_exclusionBlockTags = that.GetExclusionBlockTags();
 
-    //indexing and project options
+    // indexing and project options
     m_difficultSentenceLength = that.GetDifficultSentenceLength();
     m_longSentenceMethod = that.GetLongSentenceMethod();
     m_numeralSyllabicationMethod = that.GetNumeralSyllabicationMethod();
@@ -7171,7 +7223,7 @@ void BaseProject::CopySettings(const BaseProject& that)
     m_varianceMethod = that.GetVarianceMethod();
     m_minDocWordCountForBatch = that.m_minDocWordCountForBatch;
 
-    //grammar
+    // grammar
     m_spellcheck_ignore_proper_nouns = that.m_spellcheck_ignore_proper_nouns;
     m_spellcheck_ignore_uppercased = that.m_spellcheck_ignore_uppercased;
     m_spellcheck_ignore_numerals = that.m_spellcheck_ignore_numerals;
@@ -7180,7 +7232,7 @@ void BaseProject::CopySettings(const BaseProject& that)
     m_allow_colloquialisms = that.m_allow_colloquialisms;
     m_spellcheck_ignore_social_media_tags = that.m_spellcheck_ignore_social_media_tags;
 
-    //tests inclusion
+    // tests inclusion
     m_readabilityTests.clear();
     m_readabilityTests = that.m_readabilityTests;
 
@@ -7193,7 +7245,7 @@ void BaseProject::CopySettings(const BaseProject& that)
 
     m_includeScoreSummaryReport = that.IsIncludingScoreSummaryReport();
 
-    //test-specific options
+    // test-specific options
     m_hjTextExclusion = that.m_hjTextExclusion;
     m_dcTextExclusion = that.m_dcTextExclusion;
     m_dcProperNounCountingMethod = that.m_dcProperNounCountingMethod;
@@ -7208,8 +7260,9 @@ void BaseProject::CopySettings(const BaseProject& that)
     m_wordsBreakdownInfo = that.GetWordsBreakdownInfo();
     m_sentencesBreakdownInfo = that.GetSentencesBreakdownInfo();
 
-    //remove any custom tests that this project has that the other one doesn't.
-    //We don't want to arbitrarily clear this out, because we want to retain the statistics for any custom tests that will remain in here.
+    // Remove any custom tests that this project has that the other one doesn't.
+    // We don't want to arbitrarily clear this out, because we want to retain the
+    // statistics for any custom tests that will remain in here.
     for (std::vector<CustomReadabilityTestInterface>::const_iterator pos = GetCustTestsInUse().begin();
         pos != GetCustTestsInUse().end();
         /*handled in the loop*/)
@@ -7225,7 +7278,7 @@ void BaseProject::CopySettings(const BaseProject& that)
         pos != that.GetCustTestsInUse().end();
         ++pos)
         {
-        std::vector<CustomReadabilityTestInterface>::const_iterator customTestPos = std::find(GetCustTestsInUse().begin(), GetCustTestsInUse().end(), pos->GetTestName());
+        auto customTestPos = std::find(GetCustTestsInUse().cbegin(), GetCustTestsInUse().cend(), pos->GetTestName());
         //see if test needs to be added
         if (customTestPos == GetCustTestsInUse().end())
             { m_customTestsInUse.push_back(CustomReadabilityTestInterface(pos->GetTestName())); }
@@ -7243,7 +7296,8 @@ bool BaseProject::VerifyTestBeforeAdding(const std::pair<std::vector<ProjectTest
     // see if test relates to the language for the project
     if (!theTest.first->get_test().has_language(GetProjectLanguage()) )
         {
-        LogMessage(wxString::Format(_(L"\"%s\" is not compatible with this project's language. This test will be removed."),
+        LogMessage(wxString::Format(
+            _(L"\"%s\" is not compatible with this project's language. This test will be removed."),
             theTest.first->get_test().get_short_name().c_str()),
             _(L"Warning"), wxOK|wxICON_EXCLAMATION);
         GetReadabilityTests().include_test(theTest.first->get_test().get_id().c_str(), false);

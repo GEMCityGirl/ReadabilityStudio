@@ -529,7 +529,7 @@ namespace LuaScripting
             { wxLogError(L"%s: %s", badImage.first, badImage.second); }
         if (badImageSizes.size() == 0)
             { wxLogMessage(L"No image issues found in help folder."); }
-        
+
         lua_pushboolean(L, true);
         return 1;
         }

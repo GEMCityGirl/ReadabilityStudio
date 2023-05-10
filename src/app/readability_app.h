@@ -144,6 +144,7 @@ public:
 
     void AddTestBundleToMenus(const wxString& bundleName);
     void RemoveTestBundleFromMenus(const wxString& bundleName);
+    /// This also adds the new test to the menu of each open document/view, as well as the mainframe.
     void AddCustomTestToMenus(const wxString& testName);
     void RemoveCustomTestFromMenus(const wxString& testName);
 
@@ -293,6 +294,8 @@ public:
     void UpdateRibbonTheme(wxRibbonBar* ribbon);
 
     void FillPrintMenu(wxMenu& printMenu, const RibbonType rtype);
+    /// Adds a list of words to the custom dictionary
+    ///     (based on language of the project that it is coming from).
     void AddWordsToDictionaries(const wxArrayString& theWords, const readability::test_language lang);
     void EditDictionary(const readability::test_language lang);
     /// This is just used for testing purposes, to validate that the word lists are properly presorted.

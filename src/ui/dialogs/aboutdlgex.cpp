@@ -25,7 +25,7 @@ void AboutDialogEx::OnUpdateLicense([[maybe_unused]] wxCommandEvent& event)
         {
         wxMessageBox(
             _(L"Unable to save license file. "
-              "You must have Administrator privileges to update your license file."), 
+              "You must have Administrator privileges to update your license file."),
             _(L"Error"), wxOK|wxICON_EXCLAMATION, this);
         return;
         }
@@ -34,14 +34,14 @@ void AboutDialogEx::OnUpdateLicense([[maybe_unused]] wxCommandEvent& event)
                                          wxTheApp->GetAppName()))
         {
         wxMessageBox(
-            _(L"Unable to open updated license file. Please close and reopen the application."), 
+            _(L"Unable to open updated license file. Please close and reopen the application."),
             _(L"Error"), wxOK|wxICON_EXCLAMATION, this);
         return;
         }
     FillLicenseGrid();
     wxMessageBox(
             _(L"License Update Complete. Please close and reopen the application for all "
-              "changes to take effect."), 
+              "changes to take effect."),
             _(L"License Update"), wxOK|wxICON_INFORMATION, this);
     wxLogMessage(L"License Updated.");
     }

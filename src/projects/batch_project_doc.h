@@ -13,15 +13,13 @@
 class BatchProjectDoc final : public BaseProjectDoc
     {
 public:
-    BatchProjectDoc() 
+    BatchProjectDoc()
         {
         // batches don't use manually entered text, so just set this to reflect that
         SetTextSource(TextSource::FromFile);
         }
     BatchProjectDoc(const BatchProjectDoc&) = delete;
-    BatchProjectDoc(BatchProjectDoc&&) = delete;
     BatchProjectDoc& operator=(const BatchProjectDoc&) = delete;
-    BatchProjectDoc& operator=(BatchProjectDoc&&) = delete;
     ~BatchProjectDoc()
         {
         wxDELETE(m_scoreRawData);

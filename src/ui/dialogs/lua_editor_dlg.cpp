@@ -509,7 +509,7 @@ void LuaEditorDlg::SetThemeColor(const wxColour& color)
     ThemedToolbarArt* toolbarArt = new ThemedToolbarArt();
     toolbarArt->SetThemeColor(color);
     m_toolbar->SetArtProvider(toolbarArt);
-    
+
     // notebook (and its children edit windows)
     FlatTabArt* notebookArt = new FlatTabArt();
     notebookArt->SetColour(color);

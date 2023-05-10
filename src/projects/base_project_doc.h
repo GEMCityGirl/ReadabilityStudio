@@ -15,13 +15,9 @@ class BaseProjectDoc : public BaseProject, public wxDocument
 public:
     BaseProjectDoc();
     BaseProjectDoc(const BaseProjectDoc&) = delete;
-    BaseProjectDoc(BaseProjectDoc&&) = delete;
     BaseProjectDoc& operator=(const BaseProjectDoc&) = delete;
-    BaseProjectDoc& operator=(BaseProjectDoc&&) = delete;
     ~BaseProjectDoc()
-        {
-        m_File.Close();
-        }
+        { m_File.Close(); }
 
     /** Call this if you have constructed a project document
         and need to copy over all settings from another project. In turn, this would be like
@@ -31,9 +27,10 @@ public:
     void CopyDocumentLevelSettings(const BaseProjectDoc& that);
 
     static bool AddGlobalCustomReadabilityTest(CustomReadabilityTest& customTest);
-    /// When we switched to the Tinyexpr formula engine (circa 2019),
+    /// When we switched to the Tinyexpr++ formula engine (circa 2020),
     /// the syntax slightly changed, so this updates custom test formulas to work with the new parser.
-    static CustomReadabilityTest::string_type UpdateCustumReadabilityTest(const CustomReadabilityTest::string_type& formula);
+    static CustomReadabilityTest::string_type UpdateCustumReadabilityTest(
+        const CustomReadabilityTest::string_type& formula);
     static void RemoveGlobalCustomReadabilityTest(const wxString& testName);
     static void RemoveAllGlobalCustomReadabilityTests();
 
@@ -43,7 +40,7 @@ public:
     /// @returns @c true if bundle was successfully applied.
     bool ApplyTestBundle(const wxString& bundleName);
 
-    //graph information
+    // graph information
     //------------------------------    
     void SetStippleImagePath(const wxString& filePath);
     [[nodiscard]] wxString GetStippleImagePath() const
@@ -365,7 +362,7 @@ public:
         { m_exportSentencesBreakdown = exportItem; }
     [[nodiscard]] static bool IsExportingSentencesBreakdown() noexcept
         { return m_exportSentencesBreakdown; }
-    
+
     static void ExportGraphs(const bool exportItem) noexcept
         { m_exportGraphs = exportItem; }
     [[nodiscard]] static bool IsExportingGraphs() noexcept
@@ -426,11 +423,12 @@ public:
 
     /// @brief Determines whether the project is safe to have its options or tests changed.
     /// @returns @c false if the project is being reloaded.
-    [[nodiscard]] bool IsSafeToUpdate() const
+    [[nodiscard]]
+    bool IsSafeToUpdate() const
         {
         if (IsProcessing())
             {
-            wxMessageBox(_(L"Project still being reloaded. Please wait..."), 
+            wxMessageBox(_(L"Project still being reloaded. Please wait..."),
                     GetTitle(), wxOK|wxICON_EXCLAMATION);
             return false;
             }
@@ -439,13 +437,15 @@ public:
         }
 
     /// @returns The path part of the project file location.
-    [[nodiscard]] wxString GetProjectDirectory() const override
+    [[nodiscard]]
+    wxString GetProjectDirectory() const override
         { return wxFileName(GetFilename()).GetPath(); }
 
     ///how file paths are shown in batch projects
     void SetFilePathTruncationMode(const ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode TruncMode) noexcept
         { m_filePathTruncationMode = TruncMode; }
-    [[nodiscard]] ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode GetFilePathTruncationMode() const noexcept
+    [[nodiscard]]
+    ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode GetFilePathTruncationMode() const noexcept
         { return m_filePathTruncationMode; }
 
     ///event functions
@@ -457,11 +457,14 @@ public:
         { SetTitle(title); }
 
     //used for the contents of a project (zip) file
-    [[nodiscard]] static const wxString ProjectSettingsFileLabel()
+    [[nodiscard]]
+    static const wxString ProjectSettingsFileLabel()
         { return L"settings.xml"; }
-    [[nodiscard]] static const wxString ProjectContentFileLabel()
+    [[nodiscard]]
+    static const wxString ProjectContentFileLabel()
         { return L"content0.txt"; }
-    [[nodiscard]] static const wxString ProjectMetaFileLabel()
+    [[nodiscard]]
+    static const wxString ProjectMetaFileLabel()
         { return L"meta.xml"; }
 protected:
     /// @returns The goal values of a test goal (if specified in the project).
@@ -482,7 +485,8 @@ protected:
                 std::numeric_limits<double>::quiet_NaN()) :
             std::make_tuple(foundStat->GetMinGoal(), foundStat->GetMaxGoal());
         }
-    [[nodiscard]] wxBitmap LoadBitmapFromProject(const wxString& fileName) const
+    [[nodiscard]]
+    wxBitmap LoadBitmapFromProject(const wxString& fileName) const
         {
         if (!wxFile::Exists(GetFilename()) || fileName.empty())
             { return wxNullBitmap; }
@@ -498,15 +502,16 @@ protected:
             { return wxNullBitmap; }
         }
     /// @returns the application's printer data.
-    [[nodiscard]] static wxPrintData* GetPrintData();
+    [[nodiscard]]
+    static wxPrintData* GetPrintData();
     wxString FormatProjectSettings() const;
-    //project status
+    // project status
     bool LockProjectFile();
 
     bool m_FileReadOnly{ false };
     wxFile m_File;
 
-    //general graph information (that can apply to both standard and batch projects)
+    // general graph information (that can apply to both standard and batch projects)
     bool m_useGraphBackGroundImageLinearGradient{ false };
     bool m_displayDropShadows{ false };
     wxBitmapBundle m_graphBackgroundImage;
@@ -536,21 +541,25 @@ protected:
     bool m_fleschChartConnectPoints{ true };
     bool m_useEnglishLabelsGermanLix{ false };
 
-    //Histogram options
-    Wisteria::Graphs::Histogram::BinningMethod m_histogramBinningMethod{ Wisteria::Graphs::Histogram::BinningMethod::BinUniqueValues };
-    Wisteria::BinLabelDisplay m_histrogramBinLabelDisplayMethod{ Wisteria::BinLabelDisplay::NoDisplay };
-    Wisteria::RoundingMethod m_histrogramRoundingMethod{ Wisteria::RoundingMethod::Round };
-    Wisteria::Graphs::Histogram::IntervalDisplay m_histrogramIntervalDisplay{ Wisteria::Graphs::Histogram::IntervalDisplay::Cutpoints };
+    // Histogram options
+    Wisteria::Graphs::Histogram::BinningMethod m_histogramBinningMethod
+        { Wisteria::Graphs::Histogram::BinningMethod::BinUniqueValues };
+    Wisteria::BinLabelDisplay m_histrogramBinLabelDisplayMethod
+        { Wisteria::BinLabelDisplay::NoDisplay };
+    Wisteria::RoundingMethod m_histrogramRoundingMethod
+        { Wisteria::RoundingMethod::Round };
+    Wisteria::Graphs::Histogram::IntervalDisplay m_histrogramIntervalDisplay
+        { Wisteria::Graphs::Histogram::IntervalDisplay::Cutpoints };
     wxColour m_histogramBarColor;
     uint8_t m_histogramBarOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_histogramBarEffect{ Wisteria::BoxEffect::Solid };
-    //Bar chart options
+    // Bar chart options
     wxColour m_barChartBarColor;
     Wisteria::Orientation m_barChartOrientation{ Wisteria::Orientation::Vertical };
     uint8_t m_graphBarOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_graphBarEffect{ Wisteria::BoxEffect::Glassy };
     bool m_barDisplayLabels{ true };
-    //box plot options
+    // box plot options
     bool m_boxPlotShowAllPoints{ false };
     bool m_boxDisplayLabels{ false };
     bool m_boxConnectMiddlePoints{ false };
@@ -558,7 +567,7 @@ protected:
     uint8_t m_graphBoxOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_graphBoxEffect{ Wisteria::BoxEffect::Glassy };
 
-    //text highlighting options
+    // text highlighting options
     wxColour m_textViewHighlightColor;
     wxColour m_excludedTextHighlightColor;
     wxColour m_wordyPhraseHighlightColor;
@@ -588,12 +597,16 @@ protected:
     bool m_highlightDolchNouns{ false };
 
     //batch project options
-    ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_filePathTruncationMode { ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames };
+    ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_filePathTruncationMode
+        { ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames };
 
     //"Export All" options
-    wxString m_exportFolder;//different for each document
-    wxString m_exportFile;//different for each document
-    static wxString m_exportListExt;//these should be shared for everyone
+    // different for each document
+    wxString m_exportFolder;
+    // different for each document
+    wxString m_exportFile;
+    // these should be shared for everyone
+    static wxString m_exportListExt;
     static wxString m_exportTextViewExt;
     static wxString m_exportGraphExt;
     static bool m_exportHardWordLists;

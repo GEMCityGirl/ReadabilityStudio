@@ -40,7 +40,6 @@ namespace LuaScripting
                 }
             else
                 { return true; }
-            
             }
         bool ReloadIfNotDelayed();
         bool ReloadIfNotDelayedSimple();
@@ -98,7 +97,8 @@ namespace LuaScripting
         // TEXT EXCLUSION OPTIONS
         ///Specifies how text should be excluded.
         int SetTextExclusion(lua_State *L);
-        ///Specifies the minimum number of words that will make a sentence missing terminating punctuation be considered complete.
+        /// Specifies the minimum number of words that will make a sentence
+        /// missing terminating punctuation be considered complete.
         int SetIncludeIncompleteTolerance(lua_State *L);
         ///Specifies whether or not to aggressively exclude.
         int AggressivelyDeduceLists(lua_State *L);
@@ -143,8 +143,9 @@ namespace LuaScripting
         int AddTest(lua_State *L);
         //Reanalyzes the documents.
         int Reload(lua_State*);
-        //Closes the project.
-        //SaveChanges Specifies whether to save any changes made to the project before closing it. Default is to not save any changes.
+        // Closes the project.
+        // SaveChanges Specifies whether to save any changes made to the project before closing it.
+        // Default is to not save any changes.
         int Close(lua_State *L);
         //Exports all of the results from the project into a folder.
         //FolderPath The folder to save the project's results.
@@ -274,7 +275,8 @@ namespace LuaScripting
         //TEXT EXCLUSION OPTIONS
         //Specifies how text should be excluded.
         int SetTextExclusion(lua_State *L);
-        //Specifies the minimum number of words that will make a sentence missing terminating punctuation be considered complete.
+        //Specifies the minimum number of words that will make a sentence missing
+        //terminating punctuation be considered complete.
         int SetIncludeIncompleteTolerance(lua_State *L);
         //Specifies whether or not to aggressively exclude.
         int AggressivelyDeduceLists(lua_State *L);
@@ -315,7 +317,8 @@ namespace LuaScripting
         //Reanalyzes the documents.
         int Reload(lua_State*);
         //Closes the project.
-        //SaveChanges Specifies whether to save any changes made to the project before closing it. Default is to not save any changes.
+        //SaveChanges Specifies whether to save any changes made to the project before closing it.
+        //Default is to not save any changes.
         int Close(lua_State *L);
         //Exports all of the results from the project into a folder.
         //FolderPath The folder to save the project's results.

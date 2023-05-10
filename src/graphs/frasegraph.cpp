@@ -322,7 +322,7 @@ namespace Wisteria::Graphs
             const size_t colorIndex = IsUsingGrouping() ?
                 GetSchemeIndexFromGroupId(GetGroupColumn()->GetValue(i)) :
                 0;
-            
+
             // see where the point is on this graph (not the backscreen) and
             // add it to be physically plotted
             if (GetPhysicalCoordinates(m_results[i].m_wordStatistic,

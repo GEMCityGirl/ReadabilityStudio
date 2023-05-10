@@ -17,7 +17,7 @@ void DocGroupSelectDlg::CreateControls()
     choices.push_back(_(L"Use documents' descriptions (will be loaded during import)"));
     choices.push_back(_(L"Use a grouping label"));
 
-    wxRadioBox* radioBox = new wxRadioBox(this, wxID_ANY, 
+    wxRadioBox* radioBox = new wxRadioBox(this, wxID_ANY,
         _(L"Select how to label the document(s):"), wxDefaultPosition, wxDefaultSize,
         choices, 0, wxRA_SPECIFY_ROWS, wxGenericValidator(&m_selected));
 

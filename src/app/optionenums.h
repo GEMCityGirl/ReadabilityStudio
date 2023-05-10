@@ -96,7 +96,7 @@ enum class SpecializedTestTextExclusion
 enum class VarianceMethod
     {
     SampleVariance,
-    PopulationVariance    
+    PopulationVariance
     };
 
 /** @}*/

@@ -120,7 +120,7 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
             m_filePath = path;
             }
         }
-    
+
     CreateControls();
     Centre();
 
@@ -464,7 +464,7 @@ void ProjectWizardDlg::CreateControls()
             noteLabel->Wrap(ScaledNoteWidth);
             wxBoxSizer* noteSizer = new wxBoxSizer(wxHORIZONTAL);
             noteSizer->Add(noteLabel, 1, wxLEFT, wxSizerFlags::GetDefaultBorder()*3);
-            
+
             wxButton* moreInfoButton = new wxButton(page, FRAGMENTED_LINK_ID,
                                                     wxString{}, wxDefaultPosition,
                                                     wxDefaultSize, wxBU_NOTEXT|wxBORDER_NONE);
@@ -474,7 +474,7 @@ void ProjectWizardDlg::CreateControls()
             noteSizer->SetMinSize(ScaledNoteWidth, -1);
 
             sparseLablesSizer->Add(noteSizer);
-            
+
             sparseSizer->Add(sparseLablesSizer, 0, wxALIGN_CENTER);
 
             sparseSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());

@@ -96,19 +96,22 @@ void ReadabilityApp::EditDictionary(const readability::test_language lang)
         if (lang == readability::test_language::spanish_test)
             {
             wxString ExtraDictionaryText;
-            if (wxFile::Exists(m_CustomSpanishDictionaryPath) && Wisteria::TextStream::ReadFile(m_CustomSpanishDictionaryPath, ExtraDictionaryText))
+            if (wxFile::Exists(m_CustomSpanishDictionaryPath) &&
+                Wisteria::TextStream::ReadFile(m_CustomSpanishDictionaryPath, ExtraDictionaryText))
                 { BaseProject::known_custom_spanish_spellings.load_words(ExtraDictionaryText, true, false); }
             }
         else if (lang == readability::test_language::german_test)
             {
             wxString ExtraDictionaryText;
-            if (wxFile::Exists(m_CustomGermanDictionaryPath) && Wisteria::TextStream::ReadFile(m_CustomGermanDictionaryPath, ExtraDictionaryText))
+            if (wxFile::Exists(m_CustomGermanDictionaryPath) &&
+                Wisteria::TextStream::ReadFile(m_CustomGermanDictionaryPath, ExtraDictionaryText))
                 { BaseProject::known_custom_german_spellings.load_words(ExtraDictionaryText, true, false); }
             }
         else
             {
             wxString ExtraDictionaryText;
-            if (wxFile::Exists(m_CustomEnglishDictionaryPath) && Wisteria::TextStream::ReadFile(m_CustomEnglishDictionaryPath, ExtraDictionaryText))
+            if (wxFile::Exists(m_CustomEnglishDictionaryPath) &&
+                Wisteria::TextStream::ReadFile(m_CustomEnglishDictionaryPath, ExtraDictionaryText))
                 { BaseProject::known_custom_english_spellings.load_words(ExtraDictionaryText, true, false); }
             }
 
@@ -127,8 +130,11 @@ void ReadabilityApp::EditDictionary(const readability::test_language lang)
 void ReadabilityApp::ShowSplashscreen()
     {
     if (m_splashscreenImagePaths.GetCount() > 0 &&
-        !wxGetMouseState().ShiftDown() && //holding down shift will prevent the splashscreen from showing
-        argc < 2) //if there are command lines then don't show the splashscreen, an error message may appear under it and lock the program
+        // holding down shift will prevent the splashscreen from showing
+        !wxGetMouseState().ShiftDown() &&
+        // if there are command lines then don't show the splashscreen,
+        // an error message may appear under it and lock the program
+        argc < 2)
         {
         std::uniform_int_distribution<size_t> randNum(0, GetSplashscreenPaths().GetCount()-1);
         const size_t imageIndex = randNum(GetRandomNumberEngine());
@@ -152,7 +158,7 @@ void ReadabilityApp::ShowSplashscreen()
     Yield();
     }
 
-/// Adds a list of words to the custom dictionary (based on language of the project that it is coming from).
+//-------------------------------------------
 void ReadabilityApp::AddWordsToDictionaries(const wxArrayString& theWords, const readability::test_language lang)
     {
     wxString customDictionaryPath = m_CustomEnglishDictionaryPath;
@@ -206,6 +212,7 @@ void ReadabilityApp::AddWordsToDictionaries(const wxArrayString& theWords, const
     outputFile.Write(outputStr, wxConvUTF8);
     }
 
+//-------------------------------------------
 void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
     {
     // this prevents logic blocks in here from overlapping
@@ -230,17 +237,20 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
                     lily_of_the_valley::rtf_extract_text filter_rtf(
                         lily_of_the_valley::rtf_extract_text::rtf_extraction_type::rtf_to_html);
                     MemoryMappedFile licFile(licenseAgreementPath, true, true);
-                    licDlg.GetLicenseWindow()->SetPage(wxString(filter_rtf(static_cast<char*>(licFile.GetStream()), licFile.GetMapSize())) );
+                    licDlg.GetLicenseWindow()->SetPage(
+                        wxString(filter_rtf(static_cast<char*>(licFile.GetStream()), licFile.GetMapSize())) );
                     }
                 catch (...)
                     {
-                    //can't open the license agreement (shouldn't happen), so just let it slide.
-                    //refusing to open the program under this rare circumstance seems a bit extreme.
+                    // can't open the license agreement (shouldn't happen), so just let it slide.
+                    // refusing to open the program under this rare circumstance seems a bit extreme.
                     GetAppOptions().SetLicenseAccepted(true);
                     }
                 if (licDlg.ShowModal() != licDlg.GetAffirmativeId())
                     {
-                    wxMessageBox(_(L"Program features will be disabled until End User License Agreement is accepted.\nPlease restart the program to accept the license agreement."),
+                    wxMessageBox(
+                        _(L"Program features will be disabled until End User License Agreement is accepted.\n"
+                           "Please restart the program to accept the license agreement."),
                         _(L"Warning"), wxOK|wxICON_EXCLAMATION, nullptr);
                     GetAppOptions().SetLicenseAccepted(false);
                     GetLicenseAdmin().DisableAllFeatures();
@@ -250,19 +260,37 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
                 }
             initEventProcessing = false;
             }
-        //The command line may need an active loop (if a progress bar is used), so we handle it here instead of OnInit().
+        // The command line may need an active loop (if a progress bar is used),
+        // so we handle it here instead of OnInit().
         if (!hasCommandLineBeenParsed && !initEventProcessing)
             {
             initEventProcessing = true;
             hasCommandLineBeenParsed = true;
-            //parse the command line
+            // parse the command line
             const wxCmdLineEntryDesc cmdLineDesc[] =
                 {
-                    { wxCMD_LINE_SWITCH, _DT("help"), _DT("help"), wxTRANSLATE("Displays the help"), wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
-                    { wxCMD_LINE_OPTION, _DT("bg"), _DT("background"), wxTRANSLATE("Sets the graph background image for the input project"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-                    { wxCMD_LINE_OPTION, _DT("lua"), _DT("lua"), wxTRANSLATE("Runs a Lua script"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-                    { wxCMD_LINE_OPTION, _DT("loglevel"), _DT("loglevel"), wxTRANSLATE("Log report level (0 = none, 1 = standard, 2 = verbose, 3 = max)."), wxCMD_LINE_VAL_NUMBER, wxCMD_LINE_PARAM_OPTIONAL },
-                    { wxCMD_LINE_PARAM, nullptr, nullptr, wxTRANSLATE("Input file"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
+                    {
+                        wxCMD_LINE_SWITCH, _DT("help"), _DT("help"), wxTRANSLATE("Displays the help"),
+                            wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP
+                    },
+                    {
+                        wxCMD_LINE_OPTION, _DT("bg"), _DT("background"),
+                        wxTRANSLATE("Sets the graph background image for the input project"),
+                        wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL
+                    },
+                    {
+                        wxCMD_LINE_OPTION, _DT("lua"), _DT("lua"), wxTRANSLATE("Runs a Lua script"),
+                        wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL
+                    },
+                    {
+                        wxCMD_LINE_OPTION, _DT("loglevel"), _DT("loglevel"),
+                        wxTRANSLATE("Log report level (0 = none, 1 = standard, 2 = verbose, 3 = max)."),
+                        wxCMD_LINE_VAL_NUMBER, wxCMD_LINE_PARAM_OPTIONAL
+                    },
+                    {
+                        wxCMD_LINE_PARAM, nullptr, nullptr, wxTRANSLATE("Input file"), wxCMD_LINE_VAL_STRING,
+                        wxCMD_LINE_PARAM_OPTIONAL
+                    },
                     { wxCMD_LINE_NONE, nullptr, nullptr, nullptr, wxCMD_LINE_VAL_NONE, 0 }
                 };
             wxCmdLineParser cmdParser(cmdLineDesc, argc, argv);
@@ -288,7 +316,7 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
                     wxLog::SetLogLevel(wxLOG_Max);
                     }
                 }
-            //run a Lua script
+            // run a Lua script
             wxString luaScriptPath;
             if (GetLicenseAdmin().IsFeatureEnabled(FeatureProfessionalCode()) &&
                 cmdParser.Found(_DT(L"lua"), &luaScriptPath))
@@ -298,14 +326,14 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
                     { GetLuaRunner().RunLuaCode(luaScript, luaScriptPath); }
                 }
 
-            //see if they want to display the help
+            // see if they want to display the help
             if (CommandLineResult == -1)
                 { GetMainFrame()->DisplayHelp(); }
             else if (CommandLineResult == 0 && cmdParser.GetParamCount() > 0)
                 {
                 wxFileName fn(cmdParser.GetParam(0));
                 fn.Normalize(wxPATH_NORM_LONG|wxPATH_NORM_DOTS|wxPATH_NORM_TILDE|wxPATH_NORM_ABSOLUTE);
-                //allow ability to open native files or import something from command line
+                // allow ability to open native files or import something from command line
                 size_t i = 0;
                 for (i = 0; i < GetMainFrame()->GetDefaultFileExtentions().GetCount(); ++i)
                     {
@@ -315,7 +343,8 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
                         break;
                         }
                     }
-                //not a recognized project extension, so open the file as a new standard project (note that we will bypass the wizard)
+                // not a recognized project extension, so open the file as a new standard project
+                // (note that we will bypass the wizard)
                 if (i == GetMainFrame()->GetDefaultFileExtentions().GetCount())
                     {
                     const auto& templateList = GetDocManager()->GetTemplates();
@@ -324,10 +353,11 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
                         wxDocTemplate* docTemplate = dynamic_cast<wxDocTemplate*>(templateList.Item(j)->GetData());
                         if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(CLASSINFO(ProjectDoc)))
                             {
-                            ProjectDoc* newDoc = dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(fn.GetFullPath(), wxDOC_NEW));
+                            ProjectDoc* newDoc =
+                                dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(fn.GetFullPath(), wxDOC_NEW));
                             if (newDoc && !newDoc->OnNewDocument() )
                                 {
-                                //Document is implicitly deleted by DeleteAllViews
+                                // Document is implicitly deleted by DeleteAllViews
                                 newDoc->DeleteAllViews();
                                 newDoc = nullptr;
                                 }
@@ -355,11 +385,12 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
         }
     }
 
+//-------------------------------------------
 void ReadabilityApp::InitializeReadabilityFeatures()
     {
     const wxString SERIAL_NUMBER_AND_FEATURE_DEFAULT_PRIVATE_KEY = _DT(L"PyGf5k8d");
 
-    //licensing codes
+    // licensing codes
     const ByteInfo FEATURE_ENGLISH_READABILITY_TESTS_BYTEINFO(0, 0, true);
     const wxString FEATURE_ENGLISH_READABILITY_PRIVATE_KEY = _DT(L"lkI6f42Z");
 
@@ -387,17 +418,25 @@ void ReadabilityApp::InitializeReadabilityFeatures()
 
     GetLicenseAdmin().SetPrivateKey(SERIAL_NUMBER_AND_FEATURE_DEFAULT_PRIVATE_KEY);
 
-    GetLicenseAdmin().SetFeaturePrivateKey(FeatureEnglishReadabilityTestsCode(), FEATURE_ENGLISH_READABILITY_PRIVATE_KEY);
-    GetLicenseAdmin().SetFeatureDescription(FeatureEnglishReadabilityTestsCode(), _(L"English readability tests"));
+    GetLicenseAdmin().SetFeaturePrivateKey(FeatureEnglishReadabilityTestsCode(),
+                                           FEATURE_ENGLISH_READABILITY_PRIVATE_KEY);
+    GetLicenseAdmin().SetFeatureDescription(FeatureEnglishReadabilityTestsCode(),
+                                            _(L"English readability tests"));
 
-    GetLicenseAdmin().SetFeaturePrivateKey(FeatureLanguagePackCode(), FEATURE_LANGUAGE_PACK_READABILITY_PRIVATE_KEY);
-    GetLicenseAdmin().SetFeatureDescription(FeatureLanguagePackCode(), _(L"Language Pack (non-English readability tests)"));
+    GetLicenseAdmin().SetFeaturePrivateKey(FeatureLanguagePackCode(),
+                                           FEATURE_LANGUAGE_PACK_READABILITY_PRIVATE_KEY);
+    GetLicenseAdmin().SetFeatureDescription(FeatureLanguagePackCode(),
+                                            _(L"Language Pack (non-English readability tests)"));
 
-    GetLicenseAdmin().SetFeaturePrivateKey(FEATURE_HIGHLIGHTED_TEXT_VIEWS, FEATURE_HIGHLIGHTED_TEXT_VIEWS_PRIVATE_KEY);
-    GetLicenseAdmin().SetFeatureDescription(FEATURE_HIGHLIGHTED_TEXT_VIEWS, _(L"Highlighted document display"));
+    GetLicenseAdmin().SetFeaturePrivateKey(FEATURE_HIGHLIGHTED_TEXT_VIEWS,
+                                           FEATURE_HIGHLIGHTED_TEXT_VIEWS_PRIVATE_KEY);
+    GetLicenseAdmin().SetFeatureDescription(FEATURE_HIGHLIGHTED_TEXT_VIEWS,
+                                            _(L"Highlighted document display"));
 
-    GetLicenseAdmin().SetFeaturePrivateKey(FEATURE_SUMMARY_STATISTICS, FEATURE_SUMMARY_STATISTICS_PRIVATE_KEY);
-    GetLicenseAdmin().SetFeatureDescription(FEATURE_SUMMARY_STATISTICS, _(L"Summary statistics"));
+    GetLicenseAdmin().SetFeaturePrivateKey(FEATURE_SUMMARY_STATISTICS,
+                                           FEATURE_SUMMARY_STATISTICS_PRIVATE_KEY);
+    GetLicenseAdmin().SetFeatureDescription(FEATURE_SUMMARY_STATISTICS,
+                                            _(L"Summary statistics"));
 
     GetLicenseAdmin().SetFeaturePrivateKey(FEATURE_SUMMARY_GRAPHS, FEATURE_SUMMARY_GRAPHS_PRIVATE_KEY);
     GetLicenseAdmin().SetFeatureDescription(FEATURE_SUMMARY_GRAPHS, _(L"Summary graph"));
@@ -409,15 +448,21 @@ void ReadabilityApp::InitializeReadabilityFeatures()
     GetLicenseAdmin().SetFeatureDescription(FeatureProfessionalCode(), _(L"Professional"));
 
 #if defined SERIAL_NUMBER_GENERATOR_ENABLED || defined LICENSE_FILE_GENERATOR_ENABLED
-    GetLicenseAdmin().SetFeatureByteInfo(FeatureEnglishReadabilityTestsCode(), FEATURE_ENGLISH_READABILITY_TESTS_BYTEINFO);
-    GetLicenseAdmin().SetFeatureByteInfo(FeatureLanguagePackCode(), FEATURE_LANGUAGE_PACK_READABILITY_TESTS_BYTEINFO);
+    GetLicenseAdmin().SetFeatureByteInfo(FeatureEnglishReadabilityTestsCode(),
+        FEATURE_ENGLISH_READABILITY_TESTS_BYTEINFO);
+    GetLicenseAdmin().SetFeatureByteInfo(FeatureLanguagePackCode(),
+        FEATURE_LANGUAGE_PACK_READABILITY_TESTS_BYTEINFO);
 
-    GetLicenseAdmin().SetFeatureByteInfo(FEATURE_HIGHLIGHTED_TEXT_VIEWS, FEATURE_HIGHLIGHTED_TEXT_VIEWS_BYTEINFO);
-    GetLicenseAdmin().SetFeatureByteInfo(FEATURE_SUMMARY_STATISTICS, FEATURE_SUMMARY_STATISTICS_BYTEINFO);
-    GetLicenseAdmin().SetFeatureByteInfo(FEATURE_SUMMARY_GRAPHS, FEATURE_SUMMARY_GRAPHS_BYTEINFO);
-    GetLicenseAdmin().SetFeatureByteInfo(FEATURE_DIFFICULT_WORDS, FEATURE_DIFFICULT_WORDS_BYTEINFO);
-
-    GetLicenseAdmin().SetFeatureByteInfo(FeatureProfessionalCode(), FEATURE_PROFESSIONAL_BYTEINFO);
+    GetLicenseAdmin().SetFeatureByteInfo(FEATURE_HIGHLIGHTED_TEXT_VIEWS,
+                                         FEATURE_HIGHLIGHTED_TEXT_VIEWS_BYTEINFO);
+    GetLicenseAdmin().SetFeatureByteInfo(FEATURE_SUMMARY_STATISTICS,
+                                         FEATURE_SUMMARY_STATISTICS_BYTEINFO);
+    GetLicenseAdmin().SetFeatureByteInfo(FEATURE_SUMMARY_GRAPHS,
+                                         FEATURE_SUMMARY_GRAPHS_BYTEINFO);
+    GetLicenseAdmin().SetFeatureByteInfo(FEATURE_DIFFICULT_WORDS,
+                                         FEATURE_DIFFICULT_WORDS_BYTEINFO);
+    GetLicenseAdmin().SetFeatureByteInfo(FeatureProfessionalCode(),
+                                         FEATURE_PROFESSIONAL_BYTEINFO);
 #endif
 
     GetLicenseAdmin().AddProduct(ProductType(L"101", _(L"Single-user License"),
@@ -447,6 +492,7 @@ void ReadabilityApp::InitializeReadabilityFeatures()
         ProductType::License::SiteLicense, ProductType::Type::StandardWithLanguagePack));
     }
 
+//-------------------------------------------
 bool ReadabilityApp::OnInit()
     {
     SetAppName(_DT(L"Readability Studio"));
@@ -507,19 +553,22 @@ bool ReadabilityApp::OnInit()
         wxLog::SetLogLevel(wxLOG_Max);
         m_advancedImport = true;
         }
- 
+
     GetAppOptions().LoadOptionsFile(AppSettingFolderPath + L"Settings.xml", true);
     wxLogMessage(L"Settings file loaded from: " + AppSettingFolderPath + L"Settings.xml");
 
-    LoadInterface();//this needs to be called before prompting for the serial number because wxGetTextFromUser will need a parent
+    // this needs to be called before prompting for the
+    // serial number because wxGetTextFromUser will need a parent
+    LoadInterface();
 
     wxString licensePath = FindResourceFile(L"rs.xml");
-    //if couldn't be loaded from the shared users' folder, then go to the user's settings folder.
-    if (!GetLicenseAdmin().LoadLicenseFile(licensePath, GetAppName()) && wxFileName::FileExists(AppSettingFolderPath + L"rs.xml") )
+    // if couldn't be loaded from the shared users' folder, then go to the user's settings folder.
+    if (!GetLicenseAdmin().LoadLicenseFile(licensePath, GetAppName()) &&
+        wxFileName::FileExists(AppSettingFolderPath + L"rs.xml") )
         { licensePath = AppSettingFolderPath + L"rs.xml"; }
     if (!GetLicenseAdmin().LoadLicenseFile(licensePath, GetAppName()))
         {
-        //loop until they hit cancel or enter a valid serial number
+        // loop until they hit cancel or enter a valid serial number
         while (true)
             {
             wxString serialNumber = wxGetTextFromUser(_(L"Serial number:"), _(L"Please Enter Your Serial Number"));
@@ -536,7 +585,8 @@ bool ReadabilityApp::OnInit()
         {
         // get this info from our Windows installer
         wxLogNull logNo;
-        wxRegKey key(wxRegKey::HKLM, L"Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{FBFBEAB6-622A-4E16-893D-216C25FF6A69}_is1");
+        wxRegKey key(wxRegKey::HKLM,
+            L"Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{FBFBEAB6-622A-4E16-893D-216C25FF6A69}_is1");
         key.Open(wxRegKey::Read);
         wxString value;
         if (key.QueryValue(_DT(L"Inno Setup: User Info: Organization"), value))
@@ -548,7 +598,7 @@ bool ReadabilityApp::OnInit()
         if (GetLicenseAdmin().GetUserName().empty())
             { GetLicenseAdmin().SetUserName(wxGetUserName()); }
 
-        //try to save it to the shared users' application data folder
+        // try to save it to the shared users' application data folder
     #ifdef __WXMSW__
         if (wxFileName::Mkdir(wxStandardPaths::Get().GetConfigDir(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
@@ -567,11 +617,13 @@ bool ReadabilityApp::OnInit()
         //save the licensing info now that we have it and have validated it
         if (!GetLicenseAdmin().SaveLicenseFile(licensePath))
             {
-            //if couldn't be saved in the shared users' folder, then save to the user's settings folder.
+            // if couldn't be saved in the shared users' folder, then save to the user's settings folder.
             licensePath = AppSettingFolderPath + L"rs.xml";
             if (!GetLicenseAdmin().SaveLicenseFile(licensePath))
                 {
-                wxMessageBox(wxString::Format(_(L"Unable to save license file:\n\n\"%s\"\n\nFile may be write-protected or you may not have privileges to write it."), licensePath),
+                wxMessageBox(wxString::Format(
+                    _(L"Unable to save license file:\n\n\"%s\"\n\nFile may be write-protected or "
+                       "you may not have privileges to write it."), licensePath),
                     _(L"Error"), wxOK|wxICON_ERROR, GetMainFrame());
                 return false;
                 }
@@ -669,17 +721,21 @@ bool ReadabilityApp::OnInit()
     SetDocumentVersionNumber(_DT(L"8.0")); // 2021 release
 
     // create the document template
-    [[maybe_unused]] wxDocTemplate* docTemplate = new wxDocTemplate(GetDocManager(), _(L"Standard Project"), _DT(L"*.rsp"), wxEmptyString, GetAppFileExtension(),
-                                     GetAppFileExtension() + _DT(L" Doc"), _DT(L"View"),
-                                     CLASSINFO(ProjectDoc),
-                                     CLASSINFO(ProjectView));
+    [[maybe_unused]] wxDocTemplate* docTemplate =
+        new wxDocTemplate(GetDocManager(), _(L"Standard Project"), _DT(L"*.rsp"),
+            wxEmptyString, GetAppFileExtension(),
+            GetAppFileExtension() + _DT(L" Doc"), _DT(L"View"),
+            CLASSINFO(ProjectDoc),
+            CLASSINFO(ProjectView));
 
     if (GetLicenseAdmin().IsFeatureEnabled(FeatureProfessionalCode()))
         {
-        [[maybe_unused]] wxDocTemplate* batchDocTemplate = new wxDocTemplate(GetDocManager(), _(L"Batch Project"), _DT(L"*.rsbp"), wxEmptyString, _DT(L"rsbp"),
-                                         _DT(L"rsbp Doc"), _DT(L"View"),
-                                         CLASSINFO(BatchProjectDoc),
-                                         CLASSINFO(BatchProjectView));
+        [[maybe_unused]] wxDocTemplate* batchDocTemplate =
+            new wxDocTemplate(GetDocManager(), _(L"Batch Project"), _DT(L"*.rsbp"),
+                wxEmptyString, _DT(L"rsbp"),
+                _DT(L"rsbp Doc"), _DT(L"View"),
+                CLASSINFO(BatchProjectDoc),
+                CLASSINFO(BatchProjectView));
         }
 
     wxArrayString extensions;
@@ -717,7 +773,7 @@ bool ReadabilityApp::OnInit()
     // load the full set of user settings
     GetAppOptions().LoadOptionsFile(AppSettingFolderPath + L"Settings.xml", false);
 
-    //add some standard test bundles
+    // add some standard test bundles
     // PSK
     TestBundle PskBundle(ReadabilityMessages::GetPskBundleName().wc_str());
     PskBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::PSK_DALE_CHALL().wc_str() });
@@ -775,7 +831,7 @@ bool ReadabilityApp::OnInit()
     BaseProject::m_testBundles.insert(ConsentFormsBundle);
     dynamic_cast<MainFrame*>(GetMainFrame())->AddTestBundleToMenus(ConsentFormsBundle.GetName().c_str());
 
-    //See if ClearType is turned on. If not, then graphs will look awful, so ask user about turning it on.
+    // See if ClearType is turned on. If not, then graphs will look awful, so ask user about turning it on.
 #ifdef __WXMSW__
     int fontSmoothing{ 0 }, smoothingType{ 0 };
     ::SystemParametersInfo(SPI_GETFONTSMOOTHING, 0, &fontSmoothing, 0);
@@ -825,7 +881,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     if (!theFile.Open(FindResourceFile(L"Words.wad"), wxFile::read) )
         {
         wxMessageBox(_(L"Word & phrase file missing or corrupt. Please reinstall."),
-            _(L"Error"), wxOK|wxICON_EXCLAMATION); 
+            _(L"Error"), wxOK|wxICON_EXCLAMATION);
         return false;
         }
     auto wordyZipFileText = std::make_unique<char[]>(theFile.Length()+1);
@@ -902,18 +958,21 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     BaseProject::known_programming_spellings.load_words(ProgrammingSpellingsFileText, false, false);
     m_CustomEnglishDictionaryPath = AppSettingFolderPath + L"DictionaryEN.txt";
     wxString ExtraDictionaryText;
-    if (wxFile::Exists(m_CustomEnglishDictionaryPath) && Wisteria::TextStream::ReadFile(m_CustomEnglishDictionaryPath, ExtraDictionaryText))
+    if (wxFile::Exists(m_CustomEnglishDictionaryPath) &&
+        Wisteria::TextStream::ReadFile(m_CustomEnglishDictionaryPath, ExtraDictionaryText))
         { BaseProject::known_custom_english_spellings.load_words(ExtraDictionaryText, true, false); }
     // if the custom dictionary doesn't exist, then create an empty file
     else if (!wxFile::Exists(m_CustomEnglishDictionaryPath))
         {
         wxFile outputFile(m_CustomEnglishDictionaryPath, wxFile::write);
-        outputFile.Write(L" "/*put a space in the file so that it isn't zero length, that will prevent memory map exceptions later*/, wxConvUTF8);
+        // put a space in the file so that it isn't zero length, that will prevent memory map exceptions later
+        outputFile.Write(L" ", wxConvUTF8);
         }
 
     BaseProject::known_spanish_spellings.load_words(SpanishspellingsFileText, false, false);
     m_CustomSpanishDictionaryPath = AppSettingFolderPath + L"DictionaryES.txt";
-    if (wxFile::Exists(m_CustomSpanishDictionaryPath) && Wisteria::TextStream::ReadFile(m_CustomSpanishDictionaryPath, ExtraDictionaryText))
+    if (wxFile::Exists(m_CustomSpanishDictionaryPath) &&
+        Wisteria::TextStream::ReadFile(m_CustomSpanishDictionaryPath, ExtraDictionaryText))
         { BaseProject::known_custom_spanish_spellings.load_words(ExtraDictionaryText, true, false); }
     // if the custom dictionary doesn't exist, then create an empty file
     else if (!wxFile::Exists(m_CustomSpanishDictionaryPath))
@@ -924,22 +983,30 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
 
     BaseProject::known_german_spellings.load_words(GermanspellingsFileText, false, false);
     m_CustomGermanDictionaryPath = AppSettingFolderPath + L"DictionaryDE.txt";
-    if (wxFile::Exists(m_CustomGermanDictionaryPath) && Wisteria::TextStream::ReadFile(m_CustomGermanDictionaryPath, ExtraDictionaryText))
+    if (wxFile::Exists(m_CustomGermanDictionaryPath) &&
+        Wisteria::TextStream::ReadFile(m_CustomGermanDictionaryPath, ExtraDictionaryText))
         { BaseProject::known_custom_german_spellings.load_words(ExtraDictionaryText, true, false); }
-    //if the custom dictionary doesn't exist, then create an empty file
+    // if the custom dictionary doesn't exist, then create an empty file
     else if (!wxFile::Exists(m_CustomGermanDictionaryPath))
         {
         wxFile outputFile(m_CustomGermanDictionaryPath, wxFile::write);
         outputFile.Write(L" ", wxConvUTF8);
         }
 
-    BaseProject::copyright_notice_phrases.load_phrases(copyRightNoticePhraseFileText, false, false);
-    BaseProject::citation_phrases.load_phrases(citationPhraseFileText, false, false);
-    grammar::is_non_proper_word::get_word_list().load_words(properNounStopList, true, false);
-    grammar::is_abbreviation::get_abbreviations().load_words(abbreviationsFileText, true, false);
-    grammar::is_english_passive_voice::get_past_participle_exeptions().load_words(pastParticipleExceptionsFileText, true, false);
-    grammar::is_incorrect_english_article::get_a_exceptions().load_words(aExceptionsFileText, true, false);
-    grammar::is_incorrect_english_article::get_an_exceptions().load_words(anExceptionsFileText, true, false);
+    BaseProject::copyright_notice_phrases.load_phrases(
+        copyRightNoticePhraseFileText, false, false);
+    BaseProject::citation_phrases.load_phrases(
+        citationPhraseFileText, false, false);
+    grammar::is_non_proper_word::get_word_list().load_words(
+        properNounStopList, true, false);
+    grammar::is_abbreviation::get_abbreviations().load_words(
+        abbreviationsFileText, true, false);
+    grammar::is_english_passive_voice::get_past_participle_exeptions().load_words(
+        pastParticipleExceptionsFileText, true, false);
+    grammar::is_incorrect_english_article::get_a_exceptions().load_words(
+        aExceptionsFileText, true, false);
+    grammar::is_incorrect_english_article::get_an_exceptions().load_words(
+        anExceptionsFileText, true, false);
 
     return true;
     }
@@ -948,8 +1015,8 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
 bool ReadabilityApp::VerifyWordLists()
     {
     bool retVal = true;
-    //verify the dictionaries are sorted
-    //English
+    // verify the dictionaries are sorted
+    // English
     if (!BaseProject::known_english_spellings.is_sorted())
         {
         wxLogError(L"English dictionary is not sorted.");
@@ -972,7 +1039,7 @@ bool ReadabilityApp::VerifyWordLists()
     else
         { wxLogMessage(L"Custom English dictionary is sorted properly."); }
 
-    //Spanish
+    // Spanish
     if (!BaseProject::known_spanish_spellings.is_sorted())
         {
         wxLogError(L"Spanish dictionary is not sorted.");
@@ -988,7 +1055,7 @@ bool ReadabilityApp::VerifyWordLists()
     else
         { wxLogMessage(L"Custom Spanish dictionary is sorted properly."); }
 
-    //German
+    // German
     if (!BaseProject::known_german_spellings.is_sorted())
         {
         wxLogError(_DT(L"German dictionary is not sorted."));
@@ -1004,7 +1071,7 @@ bool ReadabilityApp::VerifyWordLists()
     else
         { wxLogMessage(_DT(L"Custom German dictionary is sorted properly.")); }
 
-    //Proper nouns list
+    // Proper nouns list
     if (!BaseProject::known_proper_nouns.is_sorted())
         {
         wxLogError(_DT(L"Proper nouns are not sorted."));
@@ -1020,7 +1087,7 @@ bool ReadabilityApp::VerifyWordLists()
     else
         { wxLogMessage(_DT(L"Personal nouns are sorted properly.")); }
 
-    //word lists
+    // word lists
     if (!BaseProject::m_dale_chall_word_list.is_sorted())
         {
         wxLogError(_DT(L"DC words are not sorted."));
@@ -1054,7 +1121,7 @@ bool ReadabilityApp::VerifyWordLists()
     else
         { wxLogMessage(_DT(L"HJ words are sorted properly.")); }
 
-    //the phrases
+    // the phrases
     if (!BaseProject::english_wordy_phrases.is_sorted())
         {
         wxLogError(_DT(L"English phrases are not sorted."));
@@ -1197,6 +1264,7 @@ void ReadabilityApp::LoadInterface()
     SetTopWindow(GetMainFrame());
     }
 
+//-----------------------------------
 int ReadabilityApp::OnExit()
     {
     wxLogDebug(__WXFUNCTION__);
@@ -1205,6 +1273,7 @@ int ReadabilityApp::OnExit()
     return BaseApp::OnExit();
     }
 
+//-----------------------------------
 void ReadabilityApp::EditCustomTest(CustomReadabilityTest& selectedTest)
     {
     // make sure there aren't any projects getting updated before we start changing these tests
@@ -1229,35 +1298,47 @@ void ReadabilityApp::EditCustomTest(CustomReadabilityTest& selectedTest)
     dlg.SetFamiliarWordsMustBeOnEachIncludedList(selectedTest.is_familiar_words_must_be_on_each_included_list());
     dlg.SetProperNounMethod(static_cast<int>(selectedTest.get_proper_noun_method()));
     dlg.SetIncludingNumeric(selectedTest.is_including_numeric_as_familiar());
-    dlg.SetChildrensPublishingSelected(selectedTest.has_industry_classification(readability::industry_classification::childrens_publishing_industry));
-    dlg.SetAdultPublishingSelected(selectedTest.has_industry_classification(readability::industry_classification::adult_publishing_industry));
-    dlg.SetSecondaryLanguageSelected(selectedTest.has_industry_classification(readability::industry_classification::sedondary_language_industry));
-    dlg.SetBroadcastingSelected(selectedTest.has_industry_classification(readability::industry_classification::broadcasting_industry));
-    dlg.SetChildrensHealthCareTestSelected(selectedTest.has_industry_classification(readability::industry_classification::childrens_healthcare_industry));
-    dlg.SetAdultHealthCareTestSelected(selectedTest.has_industry_classification(readability::industry_classification::adult_healthcare_industry));
-    dlg.SetMilitaryTestSelected(selectedTest.has_industry_classification(readability::industry_classification::military_government_industry));
-    dlg.SetGeneralDocumentSelected(selectedTest.has_document_classification(readability::document_classification::general_document));
-    dlg.SetTechnicalDocumentSelected(selectedTest.has_document_classification(readability::document_classification::technical_document));
-    dlg.SetNonNarrativeFormSelected(selectedTest.has_document_classification(readability::document_classification::nonnarrative_document));
-    dlg.SetYoungAdultAndAdultLiteratureSelected(selectedTest.has_document_classification(readability::document_classification::adult_literature_document));
-    dlg.SetChildrensLiteratureSelected(selectedTest.has_document_classification(readability::document_classification::childrens_literature_document));
+    dlg.SetChildrensPublishingSelected(selectedTest.has_industry_classification(
+        readability::industry_classification::childrens_publishing_industry));
+    dlg.SetAdultPublishingSelected(selectedTest.has_industry_classification(
+        readability::industry_classification::adult_publishing_industry));
+    dlg.SetSecondaryLanguageSelected(selectedTest.has_industry_classification(
+        readability::industry_classification::sedondary_language_industry));
+    dlg.SetBroadcastingSelected(selectedTest.has_industry_classification(
+        readability::industry_classification::broadcasting_industry));
+    dlg.SetChildrensHealthCareTestSelected(selectedTest.has_industry_classification(
+        readability::industry_classification::childrens_healthcare_industry));
+    dlg.SetAdultHealthCareTestSelected(selectedTest.has_industry_classification(
+        readability::industry_classification::adult_healthcare_industry));
+    dlg.SetMilitaryTestSelected(selectedTest.has_industry_classification(
+        readability::industry_classification::military_government_industry));
+    dlg.SetGeneralDocumentSelected(selectedTest.has_document_classification(
+        readability::document_classification::general_document));
+    dlg.SetTechnicalDocumentSelected(selectedTest.has_document_classification(
+        readability::document_classification::technical_document));
+    dlg.SetNonNarrativeFormSelected(selectedTest.has_document_classification(
+        readability::document_classification::nonnarrative_document));
+    dlg.SetYoungAdultAndAdultLiteratureSelected(selectedTest.has_document_classification(
+        readability::document_classification::adult_literature_document));
+    dlg.SetChildrensLiteratureSelected(selectedTest.has_document_classification(
+        readability::document_classification::childrens_literature_document));
     if (dlg.IsIncludingCustomWordList())
         { dlg.SelectPage(CustomTestDlg::ID_WORD_LIST_PAGE); }
     if (dlg.ShowModal() == wxID_OK)
         {
         wxBusyCursor wait;
 
-        //get the word file text here, in case the path is wrong and the user needs to correct it
+        // get the word file text here, in case the path is wrong and the user needs to correct it
         wxString filePath = dlg.GetWordListFilePath();
         wxString fileText;
-        //load custom word file if they are using one. If not then just load an empty string into this list
+        // load custom word file if they are using one. If not then just load an empty string into this list
         if (dlg.IsIncludingCustomWordList())
             {
             if (!Wisteria::TextStream::ReadFile(filePath, fileText))
                 { return; }
             }
 
-        //update the test's info now
+        // update the test's info now
         selectedTest.set_stemming_type(dlg.GetStemmingType());
         selectedTest.set_formula(dlg.GetFormula().wc_str());
         selectedTest.set_test_type(static_cast<readability::readability_test_type>(dlg.GetTestType()));
@@ -1268,25 +1349,50 @@ void ReadabilityApp::EditCustomTest(CustomReadabilityTest& selectedTest)
         selectedTest.include_harris_jacobson_list(dlg.IsIncludingHJList());
         selectedTest.include_stocker_list(dlg.IsIncludingStockerList());
         selectedTest.set_familiar_words_must_be_on_each_included_list(dlg.IsFamiliarWordsMustBeOnEachIncludedList());
-        selectedTest.set_proper_noun_method(static_cast<readability::proper_noun_counting_method>(dlg.GetProperNounMethod()));
+        selectedTest.set_proper_noun_method(
+            static_cast<readability::proper_noun_counting_method>(dlg.GetProperNounMethod()));
         selectedTest.include_numeric_as_familiar(dlg.IsIncludingNumeric());
-        selectedTest.add_industry_classification(readability::industry_classification::childrens_publishing_industry, dlg.IsChildrensPublishingSelected());
-        selectedTest.add_industry_classification(readability::industry_classification::adult_publishing_industry, dlg.IsAdultPublishingSelected());
-        selectedTest.add_industry_classification(readability::industry_classification::sedondary_language_industry, dlg.IsSecondaryLanguageSelected());
-        selectedTest.add_industry_classification(readability::industry_classification::broadcasting_industry, dlg.IsBroadcastingSelected());
-        selectedTest.add_industry_classification(readability::industry_classification::childrens_healthcare_industry, dlg.IsChildrensHealthCareTestSelected());
-        selectedTest.add_industry_classification(readability::industry_classification::adult_healthcare_industry, dlg.IsAdultHealthCareTestSelected());
-        selectedTest.add_industry_classification(readability::industry_classification::military_government_industry, dlg.IsMilitaryTestSelected());
-        selectedTest.add_document_classification(readability::document_classification::general_document, dlg.IsGeneralDocumentSelected());
-        selectedTest.add_document_classification(readability::document_classification::technical_document, dlg.IsTechnicalDocumentSelected());
-        selectedTest.add_document_classification(readability::document_classification::nonnarrative_document, dlg.IsNonNarrativeFormSelected());
-        selectedTest.add_document_classification(readability::document_classification::adult_literature_document, dlg.IsYoungAdultAndAdultLiteratureSelected());
-        selectedTest.add_document_classification(readability::document_classification::childrens_literature_document, dlg.IsChildrensLiteratureSelected());
+        selectedTest.add_industry_classification(
+            readability::industry_classification::childrens_publishing_industry,
+            dlg.IsChildrensPublishingSelected());
+        selectedTest.add_industry_classification(
+            readability::industry_classification::adult_publishing_industry,
+            dlg.IsAdultPublishingSelected());
+        selectedTest.add_industry_classification(
+            readability::industry_classification::sedondary_language_industry,
+            dlg.IsSecondaryLanguageSelected());
+        selectedTest.add_industry_classification(
+            readability::industry_classification::broadcasting_industry,
+            dlg.IsBroadcastingSelected());
+        selectedTest.add_industry_classification(
+            readability::industry_classification::childrens_healthcare_industry,
+            dlg.IsChildrensHealthCareTestSelected());
+        selectedTest.add_industry_classification(
+            readability::industry_classification::adult_healthcare_industry,
+            dlg.IsAdultHealthCareTestSelected());
+        selectedTest.add_industry_classification(
+            readability::industry_classification::military_government_industry,
+            dlg.IsMilitaryTestSelected());
+        selectedTest.add_document_classification(
+            readability::document_classification::general_document,
+            dlg.IsGeneralDocumentSelected());
+        selectedTest.add_document_classification(
+            readability::document_classification::technical_document,
+            dlg.IsTechnicalDocumentSelected());
+        selectedTest.add_document_classification(
+            readability::document_classification::nonnarrative_document,
+            dlg.IsNonNarrativeFormSelected());
+        selectedTest.add_document_classification(
+            readability::document_classification::adult_literature_document,
+            dlg.IsYoungAdultAndAdultLiteratureSelected());
+        selectedTest.add_document_classification(
+            readability::document_classification::childrens_literature_document,
+            dlg.IsChildrensLiteratureSelected());
 
-        //reload the word file
+        // reload the word file
         selectedTest.load_custom_familiar_words(fileText);
 
-        //reload any projects that have this test in it
+        // reload any projects that have this test in it
         if ((docs.GetCount() > 0) &&
             wxMessageBox(_(L"Do you wish to recalculate any open projects that include this test?"),
                 _(L"Project Update"), wxYES_NO|wxICON_QUESTION) == wxYES)
@@ -1297,7 +1403,7 @@ void ReadabilityApp::EditCustomTest(CustomReadabilityTest& selectedTest)
                 if (doc && doc->HasCustomTest(selectedTest.get_name().c_str()))
                     {
                     doc->Modify(true);
-                    //projects will need to do a full re-indexing
+                    // projects will need to do a full re-indexing
                     doc->RefreshRequired(ProjectRefresh::FullReindexing);
                     doc->RefreshProject();
                     }
@@ -1306,6 +1412,7 @@ void ReadabilityApp::EditCustomTest(CustomReadabilityTest& selectedTest)
         }
     }
 
+//-----------------------------------
 void ReadabilityApp::FillPrintMenu(wxMenu& printMenu, const RibbonType rtype)
     {
     wxMenuItem* item(nullptr);
@@ -1314,7 +1421,7 @@ void ReadabilityApp::FillPrintMenu(wxMenu& printMenu, const RibbonType rtype)
         item = new wxMenuItem(&printMenu, wxID_PRINT, _(L"Print...")+_DT(L"\tCtrl+P"));
         item->SetBitmap(GetResourceManager().GetSVG(L"ribbon/print.svg"));
         printMenu.Append(item);
-    //OSX's print dialog has its own built-in Preview option
+    // OSX's print dialog has its own built-in Preview option
     #ifndef __WXOSX__
         item = new wxMenuItem(&printMenu, wxID_PREVIEW, _(L"Print Preview..."));
         item->SetBitmap(GetResourceManager().GetSVG(L"ribbon/preview.svg"));
@@ -1329,6 +1436,7 @@ void ReadabilityApp::FillPrintMenu(wxMenu& printMenu, const RibbonType rtype)
     printMenu.Append(item);
     }
 
+//-----------------------------------
 void ReadabilityApp::UpdateSideBarTheme(Wisteria::UI::SideBar* sidebar)
     {
     SideBarColorScheme colorScheme;
@@ -1343,6 +1451,7 @@ void ReadabilityApp::UpdateSideBarTheme(Wisteria::UI::SideBar* sidebar)
     sidebar->SetColorScheme(colorScheme);
     }
 
+//-----------------------------------
 Wisteria::UI::SideBar* ReadabilityApp::CreateSideBar(wxWindow* frame, const wxWindowID id)
     {
     auto sideBar = new SideBar(frame, id);
@@ -1353,6 +1462,7 @@ Wisteria::UI::SideBar* ReadabilityApp::CreateSideBar(wxWindow* frame, const wxWi
     return sideBar;
     }
 
+//-----------------------------------
 wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc)
     {
     const auto readRibbonButtonSVG = [this](const auto& path)
@@ -1369,14 +1479,17 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
     const RibbonType rtype = (doc == nullptr) ? RibbonType::MainFrameRibbon :
         doc->IsKindOf(CLASSINFO(ProjectDoc)) ? RibbonType::StandardProjectRibbon : RibbonType::BatchProjectRibbon;
     //Home tab
-    wxRibbonBar* ribbon = new wxRibbonBar(frame, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxRIBBON_BAR_SHOW_PAGE_ICONS|wxRIBBON_BAR_DEFAULT_STYLE);
+    wxRibbonBar* ribbon = new wxRibbonBar(frame, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                          wxRIBBON_BAR_SHOW_PAGE_ICONS|wxRIBBON_BAR_DEFAULT_STYLE);
         {
         wxRibbonPage* homePage = new wxRibbonPage(ribbon, wxID_ANY,
             _(L"Home"),
            GetResourceManager().
             GetSVG(L"ribbon/home.svg").
             GetBitmap(GetMainFrame()->FromDIP(wxSize(16, 16))));
-        wxRibbonPanel* projectPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Project"), wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+        wxRibbonPanel* projectPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Project"), wxNullBitmap,
+                                                        wxDefaultPosition, wxDefaultSize,
+                                                        wxRIBBON_PANEL_NO_AUTO_MINIMISE);
         wxRibbonButtonBar* projectButtonBar = new wxRibbonButtonBar(projectPanel);
         projectButtonBar->AddHybridButton(wxID_NEW, _(L"New"),
             readRibbonButtonSVG(L"ribbon/document.svg"),
@@ -1386,7 +1499,9 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             _(L"Open an existing project."));
         if (rtype == RibbonType::BatchProjectRibbon)
             {
-            wxRibbonPanel* documentsPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Documents"), wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            wxRibbonPanel* documentsPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Documents"), wxNullBitmap,
+                                                              wxDefaultPosition, wxDefaultSize,
+                                                              wxRIBBON_PANEL_NO_AUTO_MINIMISE);
             wxRibbonButtonBar* documentsButtonBar = new wxRibbonButtonBar(documentsPanel);
             documentsButtonBar->AddButton(XRCID("ID_SEND_TO_STANDARD_PROJECT"),
                 _(L"Subproject"),
@@ -1420,8 +1535,10 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 readRibbonButtonSVG(L"ribbon/project-settings.svg"),
                 _(L"Change the settings for this project."));
 
-            //edit section
-            wxRibbonPanel* editPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Edit"), wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            // edit section
+            wxRibbonPanel* editPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Edit"), wxNullBitmap,
+                                                         wxDefaultPosition, wxDefaultSize,
+                                                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
             wxRibbonButtonBar* editButtonBar = new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
             editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
                 readRibbonButtonSVG(L"ribbon/copy.svg"),
@@ -1433,7 +1550,9 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         else if (rtype == RibbonType::MainFrameRibbon)
             {
             // settings section
-            wxRibbonPanel* settingsPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Settings"), wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            wxRibbonPanel* settingsPanel =
+                new wxRibbonPanel(homePage, wxID_ANY, _(L"Settings"), wxNullBitmap, wxDefaultPosition,
+                                  wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
             wxRibbonButtonBar* settingsButtonBar = new wxRibbonButtonBar(settingsPanel);
             settingsButtonBar->AddDropdownButton(XRCID("ID_PRINT_OPTIONS"),
                 _(L"Printing"),
@@ -1446,7 +1565,9 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 readRibbonButtonSVG(L"ribbon/configure.svg"),
                 _(L"Change the program's general options."));
             //test section
-            wxRibbonPanel* readabilityTestsPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Readability Tests"), wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            wxRibbonPanel* readabilityTestsPanel =
+                new wxRibbonPanel(homePage, wxID_ANY, _(L"Readability Tests"), wxNullBitmap, wxDefaultPosition,
+                                  wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
             wxRibbonButtonBar* readabilityTestsBar = new wxRibbonButtonBar(readabilityTestsPanel);
             readabilityTestsBar->AddDropdownButton(XRCID("ID_CUSTOM_TESTS"), _(L"Custom"),
                 readRibbonButtonSVG(L"ribbon/formula.svg"),
@@ -1465,8 +1586,10 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 _(L"Blank Graphs"),
                 readRibbonButtonSVG(L"ribbon/blank-graphs.svg"),
                 _(L"Print or save blank readability graph templates."));
-            //tools section
-            wxRibbonPanel* toolsPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Tools"), wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            // tools section
+            wxRibbonPanel* toolsPanel =
+                new wxRibbonPanel(homePage, wxID_ANY, _(L"Tools"), wxNullBitmap, wxDefaultPosition,
+                                  wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
             wxRibbonButtonBar* toolButtonBar = new wxRibbonButtonBar(toolsPanel);
             toolButtonBar->AddButton(XRCID("ID_WEB_HARVEST"), _(L"Web Harvester"),
                 readRibbonButtonSVG(L"ribbon/web-export.svg"),
@@ -1532,62 +1655,68 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         wxRibbonButtonBar* deductionButtonBar =
             new wxRibbonButtonBar(deductionPanel, MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR);
         deductionButtonBar->AddDropdownButton(XRCID("ID_LINE_ENDS"), _(L"Line Ends"),
-                                              readRibbonButtonSVG(L"ribbon/paragraph.svg"),
-                                              _(L"Control how line ends effect paragraph detection."));
+            readRibbonButtonSVG(L"ribbon/paragraph.svg"),
+            _(L"Control how line ends effect paragraph detection."));
         deductionButtonBar->AddToggleButton(XRCID("ID_IGNORE_BLANK_LINES"), _(L"Ignore Blank Lines"),
-                                            readRibbonButtonSVG(L"ribbon/blank-lines.svg"),
-                                            _(L"Control whether blank lines should affect how paragraph breaks are detected."));
+            readRibbonButtonSVG(L"ribbon/blank-lines.svg"),
+            _(L"Control whether blank lines should affect how paragraph breaks are detected."));
         deductionButtonBar->AddToggleButton(XRCID("ID_IGNORE_INDENTING"), _(L"Ignore Indenting"),
-                                            readRibbonButtonSVG(L"ribbon/indenting.svg"),
-                                            _(L"Control whether indenting should affect how paragraph breaks are detected."));
+            readRibbonButtonSVG(L"ribbon/indenting.svg"),
+            _(L"Control whether indenting should affect how paragraph breaks are detected."));
         deductionButtonBar->AddToggleButton(XRCID("ID_SENTENCES_CAPITALIZED"), _(L"Strict Capitalization"),
-                                            readRibbonButtonSVG(L"ribbon/capital-letter.svg"),
-                                            _(L"Change whether sentences must begin with capital letters when determining sentence breaks."));
+            readRibbonButtonSVG(L"ribbon/capital-letter.svg"),
+            _(L"Change whether sentences must begin with capital letters when determining sentence breaks."));
         // text exclusion
         wxRibbonPanel* exclusionPanel =
-            new wxRibbonPanel(documentPage, wxID_ANY, _(L"Text Exclusion"), wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            new wxRibbonPanel(documentPage, wxID_ANY, _(L"Text Exclusion"), wxNullBitmap, wxDefaultPosition,
+                              wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
         wxRibbonButtonBar* exclusionButtonBar =
             new wxRibbonButtonBar(exclusionPanel, MainFrame::ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR);
         exclusionButtonBar->AddDropdownButton(XRCID("ID_TEXT_EXCLUSION"), _(L"Exclusion"),
-                                              readRibbonButtonSVG(L"ribbon/proofreading-delete.svg"),
-                                              _(L"Select how text should be excluded from the analysis."));
+            readRibbonButtonSVG(L"ribbon/proofreading-delete.svg"),
+            _(L"Select how text should be excluded from the analysis."));
         exclusionButtonBar->AddButton(XRCID("ID_INCOMPLETE_THRESHOLD"), _(L"Incomplete Threshold"),
-                                      readRibbonButtonSVG(L"ribbon/period-needed.svg"),
-                                      _(L"Specify the minimum length of an incomplete sentence that should be considered valid."));
+            readRibbonButtonSVG(L"ribbon/period-needed.svg"),
+            _(L"Specify the minimum length of an incomplete sentence that should be considered valid."));
         exclusionButtonBar->AddToggleButton(XRCID("ID_EXCLUDE_AGGRESSIVELY"), _(L"Aggressive"),
-                                            readRibbonButtonSVG(L"ribbon/aggressive-list.svg"),
-                                            _(L"Aggressively excludes list items and citations (if applicable)."));
+            readRibbonButtonSVG(L"ribbon/aggressive-list.svg"),
+            _(L"Aggressively excludes list items and citations (if applicable)."));
         exclusionButtonBar->AddToggleButton(XRCID("ID_EXCLUDE_COPYRIGHT_NOTICES"), _(L"Copyrights"),
-                                            readRibbonButtonSVG(L"ribbon/ignore-copyright.svg"),
-                                            _(L"Exclude trailing copyright statements from the analysis."));
+            readRibbonButtonSVG(L"ribbon/ignore-copyright.svg"),
+            _(L"Exclude trailing copyright statements from the analysis."));
         exclusionButtonBar->AddToggleButton(XRCID("ID_EXCLUDE_TRAILING_CITATIONS"), _(L"Citations"),
-                                            readRibbonButtonSVG(L"ribbon/citation.svg")),
-                                            _(L"Exclude trailing citations from the analysis.");
+            readRibbonButtonSVG(L"ribbon/citation.svg")),
+            _(L"Exclude trailing citations from the analysis.");
         exclusionButtonBar->AddToggleButton(XRCID("ID_EXCLUDE_FILE_ADDRESSES"), _(L"File Names"),
-                                            readRibbonButtonSVG(L"ribbon/internet.svg"),
-                                            _(L"Exclude file names and website addresses from the analysis."));
+            readRibbonButtonSVG(L"ribbon/internet.svg"),
+            _(L"Exclude file names and website addresses from the analysis."));
         exclusionButtonBar->AddToggleButton(XRCID("ID_EXCLUDE_NUMERALS"), _(L"Numerals"),
-                                            readRibbonButtonSVG(L"ribbon/ignore-numerals.svg"),
-                                            _(L"Exclude numbers from the analysis."));
+            readRibbonButtonSVG(L"ribbon/ignore-numerals.svg"),
+            _(L"Exclude numbers from the analysis."));
         exclusionButtonBar->AddToggleButton(XRCID("ID_EXCLUDE_PROPER_NOUNS"), _(L"Proper Nouns"),
-                                            readRibbonButtonSVG(L"ribbon/person.svg"),
-                                            _(L"Exclude proper names from the analysis."));
+            readRibbonButtonSVG(L"ribbon/person.svg"),
+            _(L"Exclude proper names from the analysis."));
         exclusionButtonBar->AddButton(XRCID("ID_EXCLUDE_WORD_LIST"), _(L"Exclude Words"),
-                                      readRibbonButtonSVG(L"ribbon/exclusion-list.svg"),
-                                      _(L"Add a custom list of words and phrases to exclude from the analysis."));
+            readRibbonButtonSVG(L"ribbon/exclusion-list.svg"),
+            _(L"Add a custom list of words and phrases to exclude from the analysis."));
         exclusionButtonBar->AddDropdownButton(XRCID("ID_EXCLUSION_TAGS"), _(L"Exclusion Tags"),
-                                              readRibbonButtonSVG(L"ribbon/exclusion-tags.svg"),
-                                              _(L"Specify tags that will exclude all text between them."));
+            readRibbonButtonSVG(L"ribbon/exclusion-tags.svg"),
+            _(L"Specify tags that will exclude all text between them."));
         // numeral syllabizing
-        wxRibbonPanel* numeralsPanel = new wxRibbonPanel(documentPage, wxID_ANY, _(L"Numerals"), wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-        wxRibbonButtonBar* numeralsButtonBar = new wxRibbonButtonBar(numeralsPanel, MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR);
+        wxRibbonPanel* numeralsPanel =
+            new wxRibbonPanel(documentPage, wxID_ANY, _(L"Numerals"), wxNullBitmap, wxDefaultPosition,
+                              wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+        wxRibbonButtonBar* numeralsButtonBar =
+            new wxRibbonButtonBar(numeralsPanel, MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR);
         numeralsButtonBar->AddDropdownButton(XRCID("ID_NUMERAL_SYLLABICATION"), _(L"Syllabication"),
                                              readRibbonButtonSVG(L"ribbon/number-syllabize.svg"),
                                              _(L"Specify how syllables should be counted for numbers."));
 
         // Readability tests tab
         wxRibbonPage* testsPage = new wxRibbonPage(ribbon, wxID_ANY, _(L"Readability"), wxNullBitmap);
-        wxRibbonPanel* standardTestsPanel = new wxRibbonPanel(testsPage, wxID_ANY, _(L"Tests"), wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+        wxRibbonPanel* standardTestsPanel =
+            new wxRibbonPanel(testsPage, wxID_ANY, _(L"Tests"), wxNullBitmap, wxDefaultPosition,
+                              wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
         wxRibbonButtonBar* standardTestsBar = new wxRibbonButtonBar(standardTestsPanel);
 
         standardTestsBar->AddDropdownButton(XRCID("ID_PRIMARY_AGE_TESTS_BUTTON"),
@@ -1618,7 +1747,9 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             readRibbonButtonSVG(L"ribbon/delete.svg"),
             _(L"Remove the selected test from the project."));
         // readability tools section
-        wxRibbonPanel* readabilityToolsPanel = new wxRibbonPanel(testsPage, wxID_ANY, _(L"Tools"), wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+        wxRibbonPanel* readabilityToolsPanel =
+            new wxRibbonPanel(testsPage, wxID_ANY, _(L"Tools"), wxNullBitmap, wxDefaultPosition,
+                              wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
         wxRibbonButtonBar* readabilityToolBar = new wxRibbonButtonBar(readabilityToolsPanel);
         readabilityToolBar->AddButton(XRCID("ID_TESTS_OVERVIEW"),
             _(L"Tests Overview"),
@@ -1640,7 +1771,9 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
 
         // Tools tab
         wxRibbonPage* toolsPage = new wxRibbonPage(ribbon, wxID_ANY, _(L"Tools"));
-        wxRibbonPanel* toolsPanel = new wxRibbonPanel(toolsPage, wxID_ANY, _(L"Tools & Settings"), wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+        wxRibbonPanel* toolsPanel =
+            new wxRibbonPanel(toolsPage, wxID_ANY, _(L"Tools & Settings"), wxNullBitmap, wxDefaultPosition,
+                              wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
         wxRibbonButtonBar* toolButtonBar = new wxRibbonButtonBar(toolsPanel);
         toolButtonBar->AddButton(XRCID("ID_WEB_HARVEST"),
             _(L"Web Harvester"),
@@ -1723,18 +1856,30 @@ void ReadabilityApp::UpdateRibbonTheme(wxRibbonBar* ribbon)
                                               GetAppOptions().GetRibbonInactiveTabColor(),
                                               GetAppOptions().GetRibbonHoverColor());
 
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_COLOUR, GetAppOptions().GetRibbonActiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_DISABLED_COLOUR, GetAppOptions().GetRibbonInactiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_TOP_COLOUR, GetAppOptions().GetRibbonActiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_GRADIENT_TOP_COLOUR, GetAppOptions().GetRibbonActiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_COLOUR, GetAppOptions().GetRibbonHoverFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_GRADIENT_COLOUR, GetAppOptions().GetRibbonActiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_TAB_ACTIVE_LABEL_COLOUR, GetAppOptions().GetRibbonActiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_PANEL_LABEL_COLOUR, GetAppOptions().GetRibbonActiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_PANEL_MINIMISED_LABEL_COLOUR, GetAppOptions().GetRibbonActiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_PANEL_HOVER_LABEL_COLOUR, GetAppOptions().GetRibbonHoverFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_TAB_LABEL_COLOUR, GetAppOptions().GetRibbonInactiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_TAB_HOVER_LABEL_COLOUR, GetAppOptions().GetRibbonHoverFontColor());
+    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_COLOUR,
+                                        GetAppOptions().GetRibbonActiveFontColor());
+    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_DISABLED_COLOUR,
+                                        GetAppOptions().GetRibbonInactiveFontColor());
+    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_TOP_COLOUR,
+                                        GetAppOptions().GetRibbonActiveFontColor());
+    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_GRADIENT_TOP_COLOUR,
+                                        GetAppOptions().GetRibbonActiveFontColor());
+    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_COLOUR,
+                                        GetAppOptions().GetRibbonHoverFontColor());
+    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_GRADIENT_COLOUR,
+                                        GetAppOptions().GetRibbonActiveFontColor());
+    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_TAB_ACTIVE_LABEL_COLOUR,
+                                        GetAppOptions().GetRibbonActiveFontColor());
+    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_PANEL_LABEL_COLOUR,
+                                        GetAppOptions().GetRibbonActiveFontColor());
+    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_PANEL_MINIMISED_LABEL_COLOUR,
+                                        GetAppOptions().GetRibbonActiveFontColor());
+    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_PANEL_HOVER_LABEL_COLOUR,
+                                        GetAppOptions().GetRibbonHoverFontColor());
+    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_TAB_LABEL_COLOUR,
+                                        GetAppOptions().GetRibbonInactiveFontColor());
+    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_TAB_HOVER_LABEL_COLOUR,
+                                        GetAppOptions().GetRibbonHoverFontColor());
     }
 
 //---------------------------------------------------
@@ -1824,6 +1969,7 @@ void MainFrame::OnRibbonBarHelpClicked([[maybe_unused]] wxRibbonBarEvent& event)
     OnHelpContents(cmd);
     }
 
+//-------------------------------------------------------
 void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     DUMP_PROFILER_REPORT();
@@ -1832,7 +1978,8 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
             wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
             wxGetApp().GetAppOptions().GetRibbonHoverColor(),
             wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
-            LD_SAVE_BUTTON|LD_COPY_BUTTON|LD_PRINT_BUTTON|LD_SELECT_ALL_BUTTON|LD_FIND_BUTTON|LD_COLUMN_HEADERS|LD_SORT_BUTTON, wxID_ANY, _(L"Profile Report"),
+            LD_SAVE_BUTTON|LD_COPY_BUTTON|LD_PRINT_BUTTON|LD_SELECT_ALL_BUTTON|
+            LD_FIND_BUTTON|LD_COLUMN_HEADERS|LD_SORT_BUTTON, wxID_ANY, _(L"Profile Report"),
             wxEmptyString, wxDefaultPosition, FromDIP(wxSize(800, 400)));
 
     profileReportDialog.GetListCtrl()->ClearAll();
@@ -1875,18 +2022,21 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
 
     //fit the columns
     profileReportDialog.GetListCtrl()->DistributeColumns();
-    profileReportDialog.GetListCtrl()->SortColumn(2, Wisteria::SortDirection::SortDescending);//sort by time, largest to smallest
+    // sort by time, largest to smallest
+    profileReportDialog.GetListCtrl()->SortColumn(2, Wisteria::SortDirection::SortDescending);
 
     profileReportDialog.ShowModal();
     }
 
+//-------------------------------------------------------
 void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     ListDlg logReportDialog(this,
             wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
             wxGetApp().GetAppOptions().GetRibbonHoverColor(),
             wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
-            LD_SAVE_BUTTON|LD_COPY_BUTTON|LD_PRINT_BUTTON|LD_SELECT_ALL_BUTTON|LD_FIND_BUTTON|LD_COLUMN_HEADERS|LD_SORT_BUTTON, wxID_ANY,
+            LD_SAVE_BUTTON|LD_COPY_BUTTON|LD_PRINT_BUTTON|LD_SELECT_ALL_BUTTON|LD_FIND_BUTTON|
+            LD_COLUMN_HEADERS|LD_SORT_BUTTON, wxID_ANY,
             wxString::Format(_(L"Log Report: %s Log Level"),
                 wxLog::GetVerbose() ? _(L"Verbose") :
                     _(L"Standard")),
@@ -1943,6 +2093,7 @@ void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
     logReportDialog.ShowModal();
     }
 
+//-------------------------------------------------------
 void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     //test overview dialog
@@ -1950,7 +2101,8 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
             wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
             wxGetApp().GetAppOptions().GetRibbonHoverColor(),
             wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
-            LD_SAVE_BUTTON|LD_COPY_BUTTON|LD_PRINT_BUTTON|LD_SELECT_ALL_BUTTON|LD_COLUMN_HEADERS|LD_FIND_BUTTON|LD_SORT_BUTTON, wxID_ANY, _(L"Readability Tests Overview"),
+            LD_SAVE_BUTTON|LD_COPY_BUTTON|LD_PRINT_BUTTON|LD_SELECT_ALL_BUTTON|
+            LD_COLUMN_HEADERS|LD_FIND_BUTTON|LD_SORT_BUTTON, wxID_ANY, _(L"Readability Tests Overview"),
             wxEmptyString, wxDefaultPosition, FromDIP(wxSize(800, 400)));
     testsOverviewDlg.GetListCtrl()->ClearAll();
     testsOverviewDlg.GetListCtrl()->InsertColumn(0, _(L"Name"));
@@ -1961,14 +2113,15 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
     testsOverviewDlg.GetListCtrl()->InsertColumn(5, _(L"Word Familiarity"));
     testsOverviewDlg.GetListCtrl()->InsertColumn(6, _(L"Sentence Length"));
     testsOverviewDlg.GetListCtrl()->InsertColumn(7, _(L"Description"));
-    testsOverviewDlg.GetListCtrl()->SetVirtualDataSize(BaseProject::GetDefaultReadabilityTestsTemplate().get_tests().size(), 8);
+    testsOverviewDlg.GetListCtrl()->SetVirtualDataSize(
+        BaseProject::GetDefaultReadabilityTestsTemplate().get_tests().size(), 8);
     BaseProjectDoc::UpdateListOptions(testsOverviewDlg.GetListCtrl());
     size_t i = 0;
-    for (std::vector<readability::readability_test>::const_iterator testPos = BaseProject::GetDefaultReadabilityTestsTemplate().get_tests().begin();
+    for (auto testPos = BaseProject::GetDefaultReadabilityTestsTemplate().get_tests().begin();
          testPos != BaseProject::GetDefaultReadabilityTestsTemplate().get_tests().end();
          ++testPos, ++i)
         {
-        //test type
+        // test type
         testsOverviewDlg.GetListCtrl()->SetItemText(i, 0,
             wxString(testPos->get_long_name().c_str()));
         switch (testPos->get_test_type())
@@ -1991,7 +2144,7 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
         default:
             testsOverviewDlg.GetListCtrl()->SetItemText(i, 1, _(L"Grade level"));
             };
-        //language
+        // language
         wxString languages;
         if (testPos->has_language(readability::test_language::english_test))
             { languages += _(L"English") + _DT(L"/"); }
@@ -2002,40 +2155,54 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
         if (languages.length())
             { languages.RemoveLast(); }
         testsOverviewDlg.GetListCtrl()->SetItemText(i, 2, languages);
-        //word complexity
-        const wxString wordComplexity = testPos->has_factor(readability::test_factor::word_complexity_2_plus_syllables) ?
-            _(L" X (2 or more syllables)") : testPos->has_factor(readability::test_factor::word_complexity_3_plus_syllables) ?
-            _(L" X (3 or more syllables)") : testPos->has_factor(readability::test_factor::word_complexity_density) ?
-            _(L" X (syllable density)") : testPos->has_factor(readability::test_factor::word_complexity) ?
+        // word complexity
+        const wxString wordComplexity =
+            testPos->has_factor(readability::test_factor::word_complexity_2_plus_syllables) ?
+            _(L" X (2 or more syllables)") :
+                testPos->has_factor(readability::test_factor::word_complexity_3_plus_syllables) ?
+            _(L" X (3 or more syllables)") :
+                testPos->has_factor(readability::test_factor::word_complexity_density) ?
+            _(L" X (syllable density)") :
+                testPos->has_factor(readability::test_factor::word_complexity) ?
             wxString(_DT(L" X ")) : wxString{};
         testsOverviewDlg.GetListCtrl()->SetItemText(i, 3, wordComplexity);
-        //word length
-        const wxString wordLength = testPos->has_factor(readability::test_factor::word_length_3_less) ?
-            _(L" X (3 or less characters)") : testPos->has_factor(readability::test_factor::word_length_6_plus) ?
-            _(L" X (6 or more characters)") : testPos->has_factor(readability::test_factor::word_length_7_plus) ?
-            _(L" X (7 or more characters)") : testPos->has_factor(readability::test_factor::word_length) ?
+        // word length
+        const wxString wordLength =
+            testPos->has_factor(readability::test_factor::word_length_3_less) ?
+            _(L" X (3 or less characters)") :
+                testPos->has_factor(readability::test_factor::word_length_6_plus) ?
+            _(L" X (6 or more characters)") :
+                testPos->has_factor(readability::test_factor::word_length_7_plus) ?
+            _(L" X (7 or more characters)") :
+                testPos->has_factor(readability::test_factor::word_length) ?
             wxString(_DT(L" X ")) : wxString{};
         testsOverviewDlg.GetListCtrl()->SetItemText(i, 4, wordLength);
-        //word familiarity
-        const wxString wordFamiliarity = testPos->has_factor(readability::test_factor::word_familiarity_spache) ?
-            _(L" X (Spache rules)") : testPos->has_factor(readability::test_factor::word_familiarity_dale_chall) ?
-            _(L" X (Dale-Chall rules)") : testPos->has_factor(readability::test_factor::word_familiarity_harris_jacobson) ?
+        // word familiarity
+        const wxString wordFamiliarity =
+            testPos->has_factor(readability::test_factor::word_familiarity_spache) ?
+            _(L" X (Spache rules)") :
+                testPos->has_factor(readability::test_factor::word_familiarity_dale_chall) ?
+            _(L" X (Dale-Chall rules)") :
+                testPos->has_factor(readability::test_factor::word_familiarity_harris_jacobson) ?
             _(L" X (Harris-Jacobson rules)") : wxString{};
         testsOverviewDlg.GetListCtrl()->SetItemText(i, 5, wordFamiliarity);
-        //sentence length
-        testsOverviewDlg.GetListCtrl()->SetItemText(i, 6, testPos->has_factor(readability::test_factor::sentence_length) ?
+        // sentence length
+        testsOverviewDlg.GetListCtrl()->SetItemText(i, 6,
+            testPos->has_factor(readability::test_factor::sentence_length) ?
             _DT(L" X ") : wxString{});
-        //description
+        // description
         lily_of_the_valley::html_extract_text filter_html;
         testsOverviewDlg.GetListCtrl()->SetItemText(i, 7,
-            wxString(filter_html(testPos->get_description().c_str(), testPos->get_description().length(), true, false)) );
+            wxString(filter_html(testPos->get_description().c_str(),
+            testPos->get_description().length(), true, false)) );
         }
-    //fit the columns
+    // fit the columns
     testsOverviewDlg.GetListCtrl()->DistributeColumns();
 
     testsOverviewDlg.ShowModal();
     }
 
+//-------------------------------------------------------
 void MainFrame::OnBlankGraph(wxCommandEvent& event)
     {
     BaseProject project;
@@ -2139,7 +2306,9 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         }
     }
 
-MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame, const wxArrayString& defaultFileExtensions, const wxString& title,
+//-------------------------------------------------------
+MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
+          const wxArrayString& defaultFileExtensions, const wxString& title,
           const wxPoint& pos, const wxSize& size, long type) :
           Wisteria::UI::BaseMainFrame(manager, frame, defaultFileExtensions, title, pos, size, type),
           CUSTOM_TEST_RANGE(1000),
@@ -2280,8 +2449,10 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame, const wxArrayString&
 //---------------------------------------------------
 void ReadabilityApp::UpdateStartPageTheme()
     {
-    GetMainFrameEx()->GetStartPage()->SetButtonAreaBackgroundColor(GetAppOptions().GetStartPageBackstageBackgroundColor());
-    GetMainFrameEx()->GetStartPage()->SetMRUBackgroundColor(GetAppOptions().GetStartPageDetailBackgroundColor());
+    GetMainFrameEx()->GetStartPage()->SetButtonAreaBackgroundColor(
+        GetAppOptions().GetStartPageBackstageBackgroundColor());
+    GetMainFrameEx()->GetStartPage()->SetMRUBackgroundColor(
+        GetAppOptions().GetStartPageDetailBackgroundColor());
     }
 
 //---------------------------------------------------
@@ -2511,17 +2682,18 @@ void MainFrame::OnOpenExample(wxCommandEvent& event)
     if (pos == MainFrame::GetExamplesMenuIds().cend())
         { return; }
     const FilePathResolver fn(pos->second, false);
-    //create a batch project from the example file
+    // create a batch project from the example file
     if (FilePathResolver::IsSpreadsheet(fn.GetResolvedPath()) ||
         FilePathResolver::IsArchive(fn.GetResolvedPath()))
         {
         wxDocTemplate* docTemplate = wxGetApp().GetDocManager()->FindTemplate(CLASSINFO(BatchProjectDoc));
         if (docTemplate)
             {
-            BatchProjectDoc* newDoc = dynamic_cast<BatchProjectDoc*>(docTemplate->CreateDocument(fn.GetResolvedPath(), wxDOC_NEW));
+            BatchProjectDoc* newDoc =
+                dynamic_cast<BatchProjectDoc*>(docTemplate->CreateDocument(fn.GetResolvedPath(), wxDOC_NEW));
             if (newDoc && !newDoc->OnNewDocument() )
                 {
-                //Document is implicitly deleted by DeleteAllViews
+                // Document is implicitly deleted by DeleteAllViews
                 newDoc->DeleteAllViews();
                 }
             if (newDoc && newDoc->GetFirstView() )
@@ -2533,7 +2705,7 @@ void MainFrame::OnOpenExample(wxCommandEvent& event)
                 }
             }
         }
-    //create a standard project from the example file
+    // create a standard project from the example file
     else
         {
         wxArrayString choices;
@@ -2552,10 +2724,11 @@ void MainFrame::OnOpenExample(wxCommandEvent& event)
             wxDocTemplate* docTemplate = wxGetApp().GetDocManager()->FindTemplate(CLASSINFO(ProjectDoc));
             if (docTemplate)
                 {
-                ProjectDoc* newDoc = dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(fn.GetResolvedPath(), wxDOC_NEW));
+                ProjectDoc* newDoc =
+                    dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(fn.GetResolvedPath(), wxDOC_NEW));
                 if (newDoc && !newDoc->OnNewDocument() )
                     {
-                    //Document is implicitly deleted by DeleteAllViews
+                    // Document is implicitly deleted by DeleteAllViews
                     newDoc->DeleteAllViews();
                     newDoc = nullptr;
                     }
@@ -2602,7 +2775,8 @@ void MainFrame::OnScriptEditor([[maybe_unused]] wxCommandEvent& event)
     {
     if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
         {
-        wxMessageBox(_(L"Lua Scripting is only available in the Professional Edition of Readability Studio."),
+        wxMessageBox(
+            _(L"Lua Scripting is only available in the Professional Edition of Readability Studio."),
             _(L"Feature Not Licensed"), wxOK|wxICON_INFORMATION);
         return;
         }
@@ -2613,24 +2787,25 @@ void MainFrame::OnScriptEditor([[maybe_unused]] wxCommandEvent& event)
         }
     }
 
-///This also adds the new test to the menu of each open document/view, as well as the mainframe
 //-------------------------------------------------------
 void MainFrame::AddCustomTestToMenus(const wxString& testName)
     {
     const int menuId = CUSTOM_TEST_RANGE.GetNextId();
     if (menuId == wxNOT_FOUND)
         {
-        wxMessageBox(_(L"Unable to add custom test to menu: not enough menu IDs, please contact software vendor to remove this limitation."),
-                       _(L"Error"), wxOK|wxICON_ERROR);
+        wxMessageBox(
+            _(L"Unable to add custom test to menu: not enough menu IDs, "
+               "please contact software vendor to remove this limitation."),
+            _(L"Error"), wxOK|wxICON_ERROR);
         return;
         }
     m_customTestMenuIds.insert(std::make_pair(menuId, testName));
-    //set a unique ID for this test for use in the sidebar (this is different from the menu ID).
+    // set a unique ID for this test for use in the sidebar (this is different from the menu ID).
     CustomReadabilityTestCollection::iterator testIter =
         std::find(BaseProject::m_custom_word_tests.begin(), BaseProject::m_custom_word_tests.end(), testName);
     if (testIter != BaseProject::m_custom_word_tests.end())
         { testIter->set_interface_id(BaseProjectView::GetCustomTestSidebarIdRange().GetNextId()); }
-    //add it to any open views' menus now
+    // add it to any open views' menus now
     auto& docs = wxGetApp().GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
@@ -2649,12 +2824,14 @@ void MainFrame::AddTestBundleToMenus(const wxString& bundleName)
     const int menuId = TEST_BUNDLE_RANGE.GetNextId();
     if (menuId == wxNOT_FOUND)
         {
-        wxMessageBox(_(L"Unable to add test bundle to menu: not enough menu IDs, please contact software vendor to remove this limitation."),
-                       _(L"Error"), wxOK|wxICON_ERROR);
+        wxMessageBox(
+            _(L"Unable to add test bundle to menu: not enough menu IDs, "
+               "please contact software vendor to remove this limitation."),
+            _(L"Error"), wxOK|wxICON_ERROR);
         return;
         }
     m_testBundleMenuIds.insert(std::make_pair(menuId, bundleName));
-    //add it to any open views' menus now
+    // add it to any open views' menus now
     auto& docs = wxGetApp().GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
@@ -2670,7 +2847,7 @@ void MainFrame::AddTestBundleToMenus(const wxString& bundleName)
 //-------------------------------------------------------
 void MainFrame::RemoveTestBundleFromMenus(const wxString& bundleName)
     {
-    std::map<int, wxString>::iterator menuPos = m_testBundleMenuIds.begin();
+   auto menuPos = m_testBundleMenuIds.begin();
     for (/*initialized already*/;
         menuPos != m_testBundleMenuIds.end();
         ++menuPos)
@@ -2682,7 +2859,7 @@ void MainFrame::RemoveTestBundleFromMenus(const wxString& bundleName)
         { return; }
     m_testBundleMenuIds.erase(menuPos);
 
-    //remove it from any open views' menus now
+    // remove it from any open views' menus now
     auto& docs = wxGetApp().GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
@@ -2710,7 +2887,7 @@ void MainFrame::RemoveCustomTestFromMenus(const wxString& testName)
         { return; }
     m_customTestMenuIds.erase(menuPos);
 
-    //remove it from any open views' menus now
+    // remove it from any open views' menus now
     auto& docs = wxGetApp().GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
@@ -2831,12 +3008,12 @@ void MainFrame::AddExamplesToMenu(wxMenu* exampleMenu)
             dir.GetAllFiles(exampleFolder, &files, wxEmptyString, wxDIR_FILES) == 0)
             { return; }
         files.Sort();
-        //go through all the example files and add them to the menu
+        // go through all the example files and add them to the menu
         for (size_t i = 0; i < files.GetCount(); ++i)
             {
             wxFileName fName(files[i]);
-            //see if we already have a menu ID for this example file; otherwise, make a new ID
-            std::map<int, wxString>::iterator menuPos = m_examplesMenuIds.begin();
+            // see if we already have a menu ID for this example file; otherwise, make a new ID
+            auto menuPos = m_examplesMenuIds.begin();
             for (/*initialized already*/;
                 menuPos != m_examplesMenuIds.end();
                 ++menuPos)
@@ -2845,7 +3022,7 @@ void MainFrame::AddExamplesToMenu(wxMenu* exampleMenu)
                     { break; }
                 }
             const int menuId = (menuPos == m_examplesMenuIds.end()) ? EXAMPLE_RANGE.GetNextId() : menuPos->first;
-            //bail if we run out of menu IDs
+            // bail if we run out of menu IDs
             if (menuId == wxNOT_FOUND)
                 { break; }
             if (menuPos == m_examplesMenuIds.end())
@@ -2864,7 +3041,8 @@ void MainFrame::FillMenuWithBlankGraphs(wxMenu* blankGraphsMenu)
         while (blankGraphsMenu->GetMenuItemCount())
             { blankGraphsMenu->Destroy(blankGraphsMenu->FindItemByPosition(0)); }
 
-        wxMenuItem* menuItem = new wxMenuItem(blankGraphsMenu, XRCID("ID_BLANK_DB2_GRAPH"), BaseProjectView::GetDB2Label());
+        wxMenuItem* menuItem =
+            new wxMenuItem(blankGraphsMenu, XRCID("ID_BLANK_DB2_GRAPH"), BaseProjectView::GetDB2Label());
         menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/danielson-bryan-2.svg"));
         blankGraphsMenu->Append(menuItem);
 
@@ -2924,47 +3102,34 @@ void MainFrame::FillMenuWithGradeScales(wxMenu* menu)
         { menu->Destroy(menu->FindItemByPosition(0)); }
 
     // these options get checked, so can't use icons on them
-    wxMenuItem* menuItem = new wxMenuItem(menu, XRCID("ID_K12_US"), _(L"K-12+ (United States of America)"), wxEmptyString, wxITEM_CHECK);
-    menu->Append(menuItem);
-
-    menuItem = new wxMenuItem(menu, XRCID("ID_K12_NEWFOUNDLAND"), _(L"K-12+ (Newfoundland and Labrador)"), wxEmptyString, wxITEM_CHECK);
-    menu->Append(menuItem);
-
-    menuItem = new wxMenuItem(menu, XRCID("ID_K12_BC"), _(L"K-12+ (British Columbia/Yukon)"), wxEmptyString, wxITEM_CHECK);
-    menu->Append(menuItem);
-
-    menuItem = new wxMenuItem(menu, XRCID("ID_K12_NEW_BRUNSWICK"), _(L"K-12+ (New Brunswick)"), wxEmptyString, wxITEM_CHECK);
-    menu->Append(menuItem);
-
-    menuItem = new wxMenuItem(menu, XRCID("ID_K12_NOVA_SCOTIA"), _(L"K-12+ (Nova Scotia)"), wxEmptyString, wxITEM_CHECK);
-    menu->Append(menuItem);
-
-    menuItem = new wxMenuItem(menu, XRCID("ID_K12_ONTARIO"), _(L"K-12+ (Ontario)"), wxEmptyString, wxITEM_CHECK);
-    menu->Append(menuItem);
-
-    menuItem = new wxMenuItem(menu, XRCID("ID_K12_SASKATCHEWAN"), _(L"K-12+ (Saskatchewan)"), wxEmptyString, wxITEM_CHECK);
-    menu->Append(menuItem);
-
-    menuItem = new wxMenuItem(menu, XRCID("ID_K12_PE"), _(L"K-12+ (Prince Edward Island)"), wxEmptyString, wxITEM_CHECK);
-    menu->Append(menuItem);
-
-    menuItem = new wxMenuItem(menu, XRCID("ID_K12_MANITOBA"), _(L"K-12+ (Manitoba)"), wxEmptyString, wxITEM_CHECK);
-    menu->Append(menuItem);
-
-    menuItem = new wxMenuItem(menu, XRCID("ID_K12_NT"), _(L"K-12+ (Northwest Territories)"), wxEmptyString, wxITEM_CHECK);
-    menu->Append(menuItem);
-
-    menuItem = new wxMenuItem(menu, XRCID("ID_K12_ALBERTA"), _(L"K-12+ (Alberta)"), wxEmptyString, wxITEM_CHECK);
-    menu->Append(menuItem);
-
-    menuItem = new wxMenuItem(menu, XRCID("ID_K12_NUNAVUT"), _(L"K-12+ (Nunavut)"), wxEmptyString, wxITEM_CHECK);
-    menu->Append(menuItem);
-
-    menuItem = new wxMenuItem(menu, XRCID("ID_QUEBEC"), _DT(L"Quebec"), wxEmptyString, wxITEM_CHECK);
-    menu->Append(menuItem);
-
-    menuItem = new wxMenuItem(menu, XRCID("ID_ENGLAND"), _(L"Key stages (England & Wales)"), wxEmptyString, wxITEM_CHECK);
-    menu->Append(menuItem);
+    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_US"), _(L"K-12+ (United States of America)"),
+                                wxEmptyString, wxITEM_CHECK));
+    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_NEWFOUNDLAND"), _(L"K-12+ (Newfoundland and Labrador)"),
+                                wxEmptyString, wxITEM_CHECK));
+    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_BC"), _(L"K-12+ (British Columbia/Yukon)"),
+                                wxEmptyString, wxITEM_CHECK));
+    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_NEW_BRUNSWICK"), _(L"K-12+ (New Brunswick)"),
+                                wxEmptyString, wxITEM_CHECK));
+    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_NOVA_SCOTIA"), _(L"K-12+ (Nova Scotia)"),
+                                wxEmptyString, wxITEM_CHECK));
+    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_ONTARIO"), _(L"K-12+ (Ontario)"),
+                                wxEmptyString, wxITEM_CHECK));
+    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_SASKATCHEWAN"), _(L"K-12+ (Saskatchewan)"),
+                                wxEmptyString, wxITEM_CHECK));
+    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_PE"), _(L"K-12+ (Prince Edward Island)"),
+                                wxEmptyString, wxITEM_CHECK));
+    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_MANITOBA"), _(L"K-12+ (Manitoba)"),
+                                wxEmptyString, wxITEM_CHECK));
+    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_NT"), _(L"K-12+ (Northwest Territories)"),
+                                wxEmptyString, wxITEM_CHECK));
+    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_ALBERTA"), _(L"K-12+ (Alberta)"),
+                                wxEmptyString, wxITEM_CHECK));
+    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_NUNAVUT"), _(L"K-12+ (Nunavut)"),
+                                wxEmptyString, wxITEM_CHECK));
+    menu->Append(new wxMenuItem(menu, XRCID("ID_QUEBEC"), _DT(L"Quebec"),
+                                wxEmptyString, wxITEM_CHECK));
+    menu->Append(new wxMenuItem(menu, XRCID("ID_ENGLAND"), _(L"Key stages (England & Wales)"),
+                                wxEmptyString, wxITEM_CHECK));
     }
 
 //-------------------------------------------------------
@@ -2974,12 +3139,14 @@ void MainFrame::FillMenuWithWordList(wxMenu* wordListMenu)
         {
         while (wordListMenu->GetMenuItemCount())
             { wordListMenu->Destroy(wordListMenu->FindItemByPosition(0)); }
-        wxMenuItem* menuItem = new wxMenuItem(wordListMenu, XRCID("ID_DOLCH_WORD_LIST_WINDOW"), _(L"Dolch Sight Words"));
+        wxMenuItem* menuItem = new wxMenuItem(wordListMenu, XRCID("ID_DOLCH_WORD_LIST_WINDOW"),
+                                              _(L"Dolch Sight Words"));
         menuItem->SetBitmap(
             wxGetApp().GetResourceManager().GetSVG(L"tests/dolch.svg"));
         wordListMenu->Append(menuItem);
 
-        menuItem = new wxMenuItem(wordListMenu, XRCID("ID_HARRIS_JACOBSON_WORD_LIST_WINDOW"), _DT(L"Harris-Jacobson"));
+        menuItem = new wxMenuItem(wordListMenu, XRCID("ID_HARRIS_JACOBSON_WORD_LIST_WINDOW"),
+                                  _DT(L"Harris-Jacobson"));
         menuItem->SetBitmap(
             wxGetApp().GetResourceManager().GetSVG(L"tests/spache-test.svg"));
         wordListMenu->Append(menuItem);
@@ -2994,7 +3161,8 @@ void MainFrame::FillMenuWithWordList(wxMenu* wordListMenu)
             wxGetApp().GetResourceManager().GetSVG(L"tests/spache-test.svg"));
         wordListMenu->Append(menuItem);
 
-        menuItem = new wxMenuItem(wordListMenu, XRCID("ID_STOCKER_CATHOLIC_WORD_LIST_WINDOW"), _(L"Stocker's Catholic Supplement"));
+        menuItem = new wxMenuItem(wordListMenu, XRCID("ID_STOCKER_CATHOLIC_WORD_LIST_WINDOW"),
+                                  _(L"Stocker's Catholic Supplement"));
         menuItem->SetBitmap(
             wxGetApp().GetResourceManager().GetSVG(L"tests/stocker.svg"));
         wordListMenu->Append(menuItem);
@@ -3006,7 +3174,8 @@ void MainFrame::FillMenuWithWordList(wxMenu* wordListMenu)
     }
 
 //-------------------------------------------------------
-void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProject* project, const bool includeDocMenuItems)
+void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProject* project,
+                                        const bool includeDocMenuItems)
     {
     if (testBundleMenu)
         {
@@ -3046,13 +3215,16 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
                         BaseProject::m_testBundles.find(TestBundle(bundle.second.wc_str()));
                     if (testIter == BaseProject::m_testBundles.cend())
                         {
-                        wxMessageBox(_(L"Unable to add test bundle to menu: internal error, please contact software vendor."),
+                        wxMessageBox(
+                            _(L"Unable to add test bundle to menu: internal error, please contact software vendor."),
                             _(L"Error"), wxOK|wxICON_ERROR);
                         return;
                         }
-                    // make sure that if the bundle has a language (meaning it is a standard system one), then make sure it matches the project.
+                    // make sure that if the bundle has a language (meaning it is a standard system one),
+                    // then make sure it matches the project.
                     if (project &&
-                        (testIter->GetLanguage() == readability::test_language::unknown_language || testIter->GetLanguage() == project->GetProjectLanguage()) )
+                        (testIter->GetLanguage() == readability::test_language::unknown_language ||
+                         testIter->GetLanguage() == project->GetProjectLanguage()) )
                         {
                         if (separatorNeeded)
                             {
@@ -3097,7 +3269,8 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
                 break;
                 }
             }
-        auto editMenuItem = testBundleMenu->Append(XRCID("ID_EDIT_CUSTOM_TEST_BUNDLE"), _(L"Edit...")); //locked ones can still be viewed from the editor
+        // locked ones can still be viewed from the editor
+        auto editMenuItem = testBundleMenu->Append(XRCID("ID_EDIT_CUSTOM_TEST_BUNDLE"), _(L"Edit..."));
         wxASSERT_LEVEL_2(editMenuItem);
         editMenuItem->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_EDIT"));
         if (hasRemovableBundles)
@@ -3110,18 +3283,19 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
     }
 
 //-------------------------------------------------------
-void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProject* project, const bool includeDocMenuItems)
+void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProject* project,
+                                        const bool includeDocMenuItems)
     {
     if (customTestMenu)
         {
-        //clear the menu
+        // clear the menu
         while (customTestMenu->GetMenuItemCount())
             { customTestMenu->Destroy(customTestMenu->FindItemByPosition(0)); }
 
-        //if there are tests then add editing options and the tests themselves
+        // if there are tests then add editing options and the tests themselves
         if (includeDocMenuItems && MainFrame::GetCustomTestMenuIds().size() > 0)
             {
-            //add all of the global custom tests to this view's menu (if they aren't already on it)
+            // add all of the global custom tests to this view's menu (if they aren't already on it)
             for (std::map<int, wxString>::const_iterator pos = MainFrame::GetCustomTestMenuIds().begin();
                 pos != MainFrame::GetCustomTestMenuIds().end();
                 ++pos)
@@ -3129,10 +3303,12 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
                 if (customTestMenu->FindItem(pos->first) == nullptr)
                     {
                     CustomReadabilityTestCollection::const_iterator testIter =
-                        std::find(BaseProject::m_custom_word_tests.begin(), BaseProject::m_custom_word_tests.end(), pos->second);
+                        std::find(BaseProject::m_custom_word_tests.begin(),
+                                  BaseProject::m_custom_word_tests.end(), pos->second);
                     if (testIter == BaseProject::m_custom_word_tests.end())
                         {
-                        wxMessageBox(_(L"Unable to add custom test to menu: internal error, please contact software vendor."),
+                        wxMessageBox(
+                            _(L"Unable to add custom test to menu: internal error, please contact software vendor."),
                             _(L"Error"), wxOK|wxICON_ERROR);
                         return;
                         }
@@ -3153,13 +3329,16 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
         if (!project ||
             (project && project->GetProjectLanguage() == readability::test_language::english_test))
             {
-            addMenuItem = customTestMenu->Append(XRCID("ID_ADD_CUSTOM_NEW_DALE_CHALL_TEST"), wxString::Format(_(L"Add Custom \"%s\"..."), _DT(L"New Dale-Chall")) );
+            addMenuItem = customTestMenu->Append(XRCID("ID_ADD_CUSTOM_NEW_DALE_CHALL_TEST"),
+                wxString::Format(_(L"Add Custom \"%s\"..."), _DT(L"New Dale-Chall")) );
             addMenuItem->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"tests/dale-chall-test.svg"));
-            addMenuItem = customTestMenu->Append(XRCID("ID_ADD_CUSTOM_SPACHE_TEST"), wxString::Format(_(L"Add Custom \"%s\"..."), _DT(L"Spache")) );
+            addMenuItem = customTestMenu->Append(XRCID("ID_ADD_CUSTOM_SPACHE_TEST"),
+                wxString::Format(_(L"Add Custom \"%s\"..."), _DT(L"Spache")) );
             addMenuItem->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"tests/spache-test.svg"));
-            addMenuItem = customTestMenu->Append(XRCID("ID_ADD_CUSTOM_HARRIS_JACOBSON_TEST"), wxString::Format(_(L"Add Custom \"%s\"..."), _DT(L"Harris-Jacobson")) );
+            addMenuItem = customTestMenu->Append(XRCID("ID_ADD_CUSTOM_HARRIS_JACOBSON_TEST"),
+                wxString::Format(_(L"Add Custom \"%s\"..."), _DT(L"Harris-Jacobson")) );
             addMenuItem->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"tests/spache-test.svg"));
             }
@@ -3182,7 +3361,7 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
 //-------------------------------------------------------
 void MainFrame::OnRemoveCustomTest([[maybe_unused]] wxCommandEvent& event)
     {
-    //make sure there aren't any projects getting updated before we start changing these tests
+    // make sure there aren't any projects getting updated before we start changing these tests
     const auto& docs = wxGetApp().GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
@@ -3203,7 +3382,8 @@ void MainFrame::OnRemoveCustomTest([[maybe_unused]] wxCommandEvent& event)
     if (dlg.ShowModal() == wxID_CANCEL)
         { return; }
     const auto selectedTestIndex = dlg.GetSelection();
-    if (selectedTestIndex < 0 || selectedTestIndex >= static_cast<int>(BaseProject::m_custom_word_tests.size()))
+    if (selectedTestIndex < 0 ||
+        selectedTestIndex >= static_cast<int>(BaseProject::m_custom_word_tests.size()))
         { return; }
 
     CustomReadabilityTest selectedTest =
@@ -3308,7 +3488,8 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
                     true, &BaseProject::m_dale_chall_word_list,
                     false, &BaseProject::m_spache_word_list,
                     false, &BaseProject::m_harris_jacobson_word_list,
-                    wxGetApp().GetAppOptions().IsIncludingStockerCatholicSupplement(), &BaseProject::m_stocker_catholic_word_list,
+                    wxGetApp().GetAppOptions().IsIncludingStockerCatholicSupplement(),
+                    &BaseProject::m_stocker_catholic_word_list,
                     false,
                     wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod(),
                     true,
@@ -3476,7 +3657,8 @@ void MainFrame::OnEditCustomTest([[maybe_unused]] wxCommandEvent& event)
     if (selDlg.ShowModal() == wxID_CANCEL)
         { return; }
     const auto selectedTestIndex = selDlg.GetSelection();
-    if (selectedTestIndex < 0 || selectedTestIndex >= static_cast<int>(BaseProject::m_custom_word_tests.size()))
+    if (selectedTestIndex < 0 ||
+        selectedTestIndex >= static_cast<int>(BaseProject::m_custom_word_tests.size()))
         { return; }
 
     wxGetApp().EditCustomTest(BaseProject::m_custom_word_tests[selectedTestIndex]);
@@ -3498,7 +3680,8 @@ void MainFrame::Paste()
                 wxDocTemplate* docTemplate = dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
                 if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(CLASSINFO(ProjectDoc)))
                     {
-                    ProjectDoc* newDoc = dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(data.GetText(), wxDOC_NEW));
+                    ProjectDoc* newDoc =
+                        dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(data.GetText(), wxDOC_NEW));
                     if (newDoc && !newDoc->OnNewDocument() )
                         {
                         //Document is implicitly deleted by DeleteAllViews
@@ -3583,8 +3766,8 @@ void MainFrame::OnClose(wxCloseEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnOpenDocument([[maybe_unused]] wxCommandEvent& event)
     {
-    wxFileDialog dialog
-            (this,
+    wxFileDialog dialog(
+            this,
             _(L"Select Document to Analyze"),
             wxEmptyString,
             wxEmptyString,
@@ -3598,10 +3781,11 @@ void MainFrame::OnOpenDocument([[maybe_unused]] wxCommandEvent& event)
         wxDocTemplate* docTemplate = dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
         if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(CLASSINFO(ProjectDoc)))
             {
-            ProjectDoc* newDoc = dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(dialog.GetPath(), wxDOC_NEW));
+            ProjectDoc* newDoc =
+                dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(dialog.GetPath(), wxDOC_NEW));
             if (newDoc && !newDoc->OnNewDocument() )
                 {
-                //Document is implicitly deleted by DeleteAllViews
+                // Document is implicitly deleted by DeleteAllViews
                 newDoc->DeleteAllViews();
                 newDoc = nullptr;
                 }
@@ -3620,7 +3804,8 @@ void MainFrame::OnOpenDocument([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
     {
-    const BaseProjectDoc* activeProject = dynamic_cast<const BaseProjectDoc*>(GetDocumentManager()->GetCurrentDocument());
+    const BaseProjectDoc* activeProject =
+        dynamic_cast<const BaseProjectDoc*>(GetDocumentManager()->GetCurrentDocument());
     if (!activeProject)
         { DisplayHelp(); }
     else if (activeProject->IsKindOf(CLASSINFO(ProjectDoc)))
@@ -3790,11 +3975,13 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
     {
     wxString updateFileContent, contentType;
 #ifdef __WXMAC__
-    wxString updatedFilePath = _DT(L"http://oleandersoftware.com/downloads/readabilitystudio/CurrentMacVersionReadabilityStudio.txt");
+    wxString updatedFilePath =
+        _DT(L"http://oleandersoftware.com/downloads/readabilitystudio/CurrentMacVersionReadabilityStudio.txt");
     long responseCode;
     if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false, false) )
         {
-        updatedFilePath = _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
+        updatedFilePath =
+            _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
         if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false) )
             {
             wxMessageBox(wxString::Format(_(L"An error occurred while trying to connect to the website:\t%s"),
@@ -3804,7 +3991,8 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
             }
         }
 #else
-    wxString updatedFilePath = _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
+    wxString updatedFilePath =
+        _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
     long responseCode;
     if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent,
                                                   contentType, responseCode, false) )
@@ -3820,12 +4008,16 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
 
     if (wxGetApp().GetAppVersion() < currentVersion)
         {
-        if (wxMessageBox(wxString::Format(_(L"There is a new version of %s currently available.\nDo you wish to go to the download page?"), wxGetApp().GetAppName()), 
+        if (wxMessageBox(wxString::Format(
+            _(L"There is a new version of %s currently available.\nDo you wish to go to the download page?"),
+            wxGetApp().GetAppName()),
             wxGetApp().GetAppName(), wxYES_NO|wxICON_QUESTION) == wxYES)
             {
             if (!::wxLaunchDefaultBrowser(_DT(L"https://oleandersoftware.com/readabilitystudioupdate.html")))
                 {
-                wxMessageBox(_(L"Unable to open default browser. Please make sure that you have an Internet browser installed and are connected to the Internet."), 
+                wxMessageBox(
+                    _(L"Unable to open default browser. Please make sure that you have an Internet browser "
+                       "installed and are connected to the Internet."),
                     _(L"Error"), wxOK|wxICON_ERROR);
                 }
             }
@@ -3891,15 +4083,21 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
         {
         wxProgressDialog progressDlg(_(L"Duplicate Files"), _(L"Searching for duplicate files..."),
             files.size(),
-            this, wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_ESTIMATED_TIME|wxPD_REMAINING_TIME|wxPD_CAN_ABORT|wxPD_APP_MODAL);
+            this,
+            wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_ESTIMATED_TIME|wxPD_REMAINING_TIME|
+            wxPD_CAN_ABORT|wxPD_APP_MODAL);
         progressDlg.Centre();
 
         int counter{ 1 };
         for (const auto& curFile : files)
             {
             progressDlg.SetTitle(wxString::Format(_(L"Processing %s of %s files..."),
-                wxNumberFormatter::ToString(counter, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
-                wxNumberFormatter::ToString(files.size(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep)));
+                wxNumberFormatter::ToString(counter, 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep),
+                wxNumberFormatter::ToString(files.size(), 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep)));
             if (!progressDlg.Update(counter,
                 wxFileName(curFile).GetFullName()))
                 { return; }
@@ -3944,7 +4142,9 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
         fileListDlg.GetListCtrl()->SetVirtualDataSize(rowCount);
         fileListDlg.GetListCtrl()->DistributeColumns(-1);
         fileListDlg.GetInforBar()->ShowMessage(
-            wxString::Format(_(L"Found %d duplicate files. You can select and delete duplicates from a group, leaving one file for the group."), fileListDlg.GetListCtrl()->GetItemCount()-(groupId-1)),
+            wxString::Format(
+                _(L"Found %d duplicate files. You can select and delete duplicates from a group, "
+                   "leaving one file for the group."), fileListDlg.GetListCtrl()->GetItemCount() - (groupId - 1)),
             wxICON_INFORMATION);
         }
     if (rowCount == 0)
@@ -3972,11 +4172,16 @@ void MainFrame::OnToolsChapterSplit([[maybe_unused]] wxRibbonButtonBarEvent& eve
             {
             MemoryMappedFile filemap(dialog.GetPath(), true, true);
             BaseProject project;
-            auto extractedResult = project.ExtractRawText(static_cast<const char*>(filemap.GetStream()), filemap.GetMapSize(),  wxFileName(dialog.GetPath()).GetExt());
+            auto extractedResult =
+                project.ExtractRawText(static_cast<const char*>(filemap.GetStream()), filemap.GetMapSize(),
+                                       wxFileName(dialog.GetPath()).GetExt());
             if (extractedResult.first)
                 { cSplit.SplitIntoChapters(extractedResult.second.wc_str()); }
             else
-                { wxMessageBox(_(L"Unable to split document."), wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK); }
+                {
+                wxMessageBox(_(L"Unable to split document."), wxGetApp().GetAppDisplayName(),
+                             wxICON_EXCLAMATION|wxOK);
+                }
             }
         catch (...)
             {
