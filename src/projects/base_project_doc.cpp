@@ -751,16 +751,16 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         {
         /* See if the project is a newer format than the current version that this
            product supports. Try to be forward compatibility, but some info will be lost.*/
-        const wchar_t* endTag = ::wxStrchr(projectSection, L'>');
+        const wchar_t* endTag = std::wcschr(projectSection, L'>');
         const wchar_t* version = std::wcsstr(projectSection, wxGetApp().GetAppOptions().XML_VERSION);
         if (version && endTag &&
             (version < endTag))
             {
-            version = ::wxStrchr(version, L'\"');
+            version = std::wcschr(version, L'\"');
             if (version)
                 {
                 ++version;
-                const wchar_t* versionEnd = ::wxStrchr(version, L'\"');
+                const wchar_t* versionEnd = std::wcschr(version, L'\"');
                 if (versionEnd)
                     {
                     docVersionNumber.assign(version, (versionEnd-version));
