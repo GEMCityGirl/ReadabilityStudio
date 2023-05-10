@@ -4,12 +4,14 @@
 [submodule "docs/doxygen/doxygen-awesome-css"]
 	path = docs/doxygen/doxygen-awesome-css
 	url = https://github.com/jothepro/doxygen-awesome-css
+	branch = main
 [submodule "src/lua"]
 	path = src/lua
 	url = https://github.com/lua/lua.git
 [submodule "src/Catch2"]
 	path = src/Catch2
 	url = https://github.com/catchorg/Catch2.git
+	branch = devel
 [submodule "src/tinyexpr-plusplus"]
 	path = src/tinyexpr-plusplus
 	url = https://github.com/Blake-Madden/tinyexpr-plusplus.git
