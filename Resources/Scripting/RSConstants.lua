@@ -18,123 +18,123 @@ SortOrder =
 
 SideBarSection =
   {
-  WordsBreakdown = 10053,
-  SentencesBreakdown = 10079,
-  ReadabilityScores = 10054,
-  Grammar = 10057,
-  Dolch = 10058,
-  Warnings = 10059,
-  BoxPlots = 10060,
-  Histograms = 10061,
-  Statistics = 10062
+  WordsBreakdown = 8067,
+  SentencesBreakdown = 8074,
+  ReadabilityScores = 8068,
+  Grammar = 8069,
+  Dolch = 8070,
+  Warnings = 8045,
+  BoxPlots = 8071,
+  Histograms = 8072,
+  Statistics = 8073
   }
 
 ReportType =
   {
-  StatisticsSummaryReport = 10042,
-  ReadabilityScoresTabularReport = 10069,
-  ReadabilityScoresSummaryReport = 10070
+  StatisticsSummaryReport = 8055,
+  ReadabilityScoresTabularReport = 8057,
+  ReadabilityScoresSummaryReport = 8058
   }
 
 GraphType =
   {
-  WordBarChart = 10008,
-  SentenceBoxPlox = 10063,
-  SentenceHistogram = 10086,
-  SentenceHeatmap = 10080,
-  Fry = 10009,
-  GpmFry = 10044,
-  Raygor = 10010,
-  Schwartz = 10082,
-  Lix = 10083,
-  DolchCoverageChart = 10012,
-  DolchWordBarChart = 10013,
-  Frase = 10047,
-  Flesch = 10048,
-  Crawford = 10049,
-  SyllableHistogram = 10071,
-  GermanLix = 10084,
-  DanielsonBryan2 = 10085,
-  ThreePlusSyllableWordCloud = 10088
+  WordBarChart = 8022,
+  SentenceBoxPlox = 8035,
+  SentenceHistogram = 8036,
+  SentenceHeatmap = 8038,
+  Fry = 8023,
+  GpmFry = 8034,
+  Raygor = 8024,
+  Schwartz = 8026,
+  Lix = 8027,
+  DolchCoverageChart = 8032,
+  DolchWordBarChart = 8033,
+  Frase = 8025,
+  Flesch = 8030,
+  Crawford = 8031,
+  SyllableHistogram = 8037,
+  GermanLix = 8028,
+  DanielsonBryan2 = 8029,
+  ThreePlusSyllableWordCloud = 8039
   }
 
 DolchResultType =
   {
-  HighlightedDolchWordsReport = 10034,
-  HighlightedNonDolchWordsReport = 10035,
-  DolchWordsList = 10031,
-  NonDolchWordsList = 10032,
-  UnusedDolchWordsList = 10033,
-  DolchCoverageChart = 10012,
-  DolchBreakDownChart = 10013,
-  DolchStatisticsSummary = 10037,
-  DolchWordsBatchSummary = 10018,
-  NonDolchWordsBatchSummary = 10019,
-  DolchCoverageBatchSummary = 10017
+  HighlightedDolchWordsReport = 8052,
+  HighlightedNonDolchWordsReport = 8053,
+  DolchWordsList = 8049,
+  NonDolchWordsList = 8050,
+  UnusedDolchWordsList = 8051,
+  DolchCoverageChart = 8032,
+  DolchBreakDownChart = 8033,
+  DolchStatisticsSummary = 8054,
+  DolchWordsBatchSummary = 8043,
+  NonDolchWordsBatchSummary = 8044,
+  DolchCoverageBatchSummary = 8042
   }
 
 ListType =
   {
-  ConjunctionStartingSentences = 10001,
-  ArticleMismatch = 10072,
-  PassiveVoice = 10073,
-  Cliches = 10005,
-  MisspelledWords = 10051,
-  LowercasedSentences = 10002,
-  WordingErrors = 10052,
-  RedundantPhrases = 10004,
-  Wordiness = 10003,
-  ThreePlusSyllableWords = 10025,
-  SixPlusCharacterWords = 10026,
-  DaleChallUnfamiliarWords = 10027,
-  SpacheUnfamiliarWords = 10028,
-  HarrisJacobsonUnfamiliarWords = 10039,
-  AllWords = 10029,
-  AllWordsCondensed = 10078,
-  OverusedWordsBySentence = 10077,
-  ProperNouns = 10076,
-  Contractions = 10081,
-  ConjunctionStartingSentences = 10001,
-  WordyItems = 10003,
-  RedundantPhrases = 10004,
-  RepeatedWords = 10006,
-  LongSentences = 10007,
-  MisspelledWords = 10051,
-  WordingErrors = 10052,
-  DolchWords = 10031,
-  NonDolchWords = 10032,
-  UnusedDolchWords = 10033,
-  StatisticsTabularReport = 10043,
-  BatchRawScores = 10015,
-  BatchScoresSummary = 10021,
-  BatchAggregatedGradeScoresSummary = 10045,
-  BatchAggregatedClozeScoresSummary = 10046,
-  BatchDifficultWords = 10055,
-  BatchDolchCoverage = 10017,
-  BatchDolchWords = 10018,
-  BatchNonDolchWords = 10019,
-  BatchWarning = 10059,
-  Goals = 10087
+  ConjunctionStartingSentences = 8001,
+  ArticleMismatch = 8007,
+  PassiveVoice = 8008,
+  Cliches = 8005,
+  MisspelledWords = 8020,
+  LowercasedSentences = 8002,
+  WordingErrors = 8021,
+  RedundantPhrases = 8004,
+  Wordiness = 8003,
+  ThreePlusSyllableWords = 8010,
+  SixPlusCharacterWords = 8011,
+  DaleChallUnfamiliarWords = 8012,
+  SpacheUnfamiliarWords = 8013,
+  HarrisJacobsonUnfamiliarWords = 8019,
+  AllWords = 8014,
+  AllWordsCondensed = 8015,
+  OverusedWordsBySentence = 8018,
+  ProperNouns = 8016,
+  Contractions = 8017,
+  ConjunctionStartingSentences = 8001,
+  WordyItems = 8003,
+  RedundantPhrases = 8004,
+  RepeatedWords = 8006,
+  LongSentences = 8009,
+  MisspelledWords = 8020,
+  WordingErrors = 8021,
+  DolchWords = 8049,
+  NonDolchWords = 8050,
+  UnusedDolchWords = 8051,
+  StatisticsTabularReport = 8056,
+  BatchRawScores = 8040,
+  BatchScoresSummary = 8046,
+  BatchAggregatedGradeScoresSummary = 8047,
+  BatchAggregatedClozeScoresSummary = 8048,
+  BatchDifficultWords = 8041,
+  BatchDolchCoverage = 8042,
+  BatchDolchWords = 8043,
+  BatchNonDolchWords = 8044,
+  BatchWarning = 8045,
+  Goals = 8060
   }
 
 BatchScoreResultType =
   {
-  RawScores = 10015,
-  AggregatedScoreStatistics = 10021,
-  AggregatedGradeScoresByDocument = 10045,
-  AggregatedClozeScoresByDocument = 10046
+  RawScores = 8040,
+  AggregatedScoreStatistics = 8046,
+  AggregatedGradeScoresByDocument = 8047,
+  AggregatedClozeScoresByDocument = 8048
   }
 
 HighlightedReportType =
   {
-  ThreePlusSyllableHighlightedWords = 10068,
-  SixPlusCharacterHighlightedWords = 10064,
-  DaleChallUnfamiliarHighlightedWords = 10065,
-  SpacheUnfamiliarHighlightedWords = 10066,
-  HarrisJacobsonUnfamiliarHighlightedWords = 10067,
-  GrammarHighlightedIssues = 10036,
-  DolchHighlightedWords = 10034,
-  NonDolchHighlightedWords = 10035
+  ThreePlusSyllableHighlightedWords = 8065,
+  SixPlusCharacterHighlightedWords = 8061,
+  DaleChallUnfamiliarHighlightedWords = 8062,
+  SpacheUnfamiliarHighlightedWords = 8063,
+  HarrisJacobsonUnfamiliarHighlightedWords = 8064,
+  GrammarHighlightedIssues = 8066,
+  DolchHighlightedWords = 8052,
+  NonDolchHighlightedWords = 8053
   }
 
 TestType =

@@ -269,97 +269,97 @@ public:
 
     // list IDs
     //----------
-    static constexpr int SENTENCES_CONJUNCTION_START_LIST_PAGE_ID = 10001;
-    static constexpr int SENTENCES_LOWERCASE_START_LIST_PAGE_ID = 10002;
-    static constexpr int WORDY_PHRASES_LIST_PAGE_ID = 10003;
-    static constexpr int REDUNDANT_PHRASE_LIST_PAGE_ID = 10004;
-    static constexpr int CLICHES_LIST_PAGE_ID = 10005;
-    static constexpr int DUPLICATES_LIST_PAGE_ID = 10006;
-    static constexpr int INCORRECT_ARTICLE_PAGE_ID = 10072;
-    static constexpr int PASSIVE_VOICE_PAGE_ID = 10073;
-    static constexpr int LONG_SENTENCES_LIST_PAGE_ID = 10007;
-    static constexpr int HARD_WORDS_LIST_PAGE_ID = 10025;
-    static constexpr int LONG_WORDS_LIST_PAGE_ID = 10026;
-    static constexpr int DC_WORDS_LIST_PAGE_ID = 10027;
-    static constexpr int SPACHE_WORDS_LIST_PAGE_ID = 10028;
-    static constexpr int ALL_WORDS_LIST_PAGE_ID = 10029;
-    static constexpr int ALL_WORDS_CONDENSED_LIST_PAGE_ID = 10078;
-    static constexpr int PROPER_NOUNS_LIST_PAGE_ID = 10076;
-    static constexpr int CONTRACTIONS_LIST_PAGE_ID = 10081;
-    static constexpr int OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID = 10077;
-    static constexpr int HARRIS_JACOBSON_WORDS_LIST_PAGE_ID = 10039;
-    static constexpr int MISSPELLED_WORD_LIST_PAGE_ID = 10051;
-    static constexpr int WORDING_ERRORS_LIST_PAGE_ID = 10052;
+    static constexpr int SENTENCES_CONJUNCTION_START_LIST_PAGE_ID = wxID_HIGHEST;
+    static constexpr int SENTENCES_LOWERCASE_START_LIST_PAGE_ID = wxID_HIGHEST + 1;
+    static constexpr int WORDY_PHRASES_LIST_PAGE_ID = wxID_HIGHEST + 2;
+    static constexpr int REDUNDANT_PHRASE_LIST_PAGE_ID = wxID_HIGHEST + 3;
+    static constexpr int CLICHES_LIST_PAGE_ID = wxID_HIGHEST + 4;
+    static constexpr int DUPLICATES_LIST_PAGE_ID = wxID_HIGHEST + 5;
+    static constexpr int INCORRECT_ARTICLE_PAGE_ID = wxID_HIGHEST + 6;
+    static constexpr int PASSIVE_VOICE_PAGE_ID = wxID_HIGHEST + 7;
+    static constexpr int LONG_SENTENCES_LIST_PAGE_ID = wxID_HIGHEST + 8;
+    static constexpr int HARD_WORDS_LIST_PAGE_ID = wxID_HIGHEST + 9;
+    static constexpr int LONG_WORDS_LIST_PAGE_ID = wxID_HIGHEST + 10;
+    static constexpr int DC_WORDS_LIST_PAGE_ID = wxID_HIGHEST + 11;
+    static constexpr int SPACHE_WORDS_LIST_PAGE_ID = wxID_HIGHEST + 12;
+    static constexpr int ALL_WORDS_LIST_PAGE_ID = wxID_HIGHEST + 13;
+    static constexpr int ALL_WORDS_CONDENSED_LIST_PAGE_ID = wxID_HIGHEST + 14;
+    static constexpr int PROPER_NOUNS_LIST_PAGE_ID = wxID_HIGHEST + 15;
+    static constexpr int CONTRACTIONS_LIST_PAGE_ID = wxID_HIGHEST + 16;
+    static constexpr int OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID = wxID_HIGHEST + 17;
+    static constexpr int HARRIS_JACOBSON_WORDS_LIST_PAGE_ID = wxID_HIGHEST + 18;
+    static constexpr int MISSPELLED_WORD_LIST_PAGE_ID = wxID_HIGHEST + 19;
+    static constexpr int WORDING_ERRORS_LIST_PAGE_ID = wxID_HIGHEST + 20;
     // graph IDs
     //----------
-    static constexpr int WORD_BREAKDOWN_PAGE_ID = 10008;
-    static constexpr int FRY_PAGE_ID = 10009;
-    static constexpr int RAYGOR_PAGE_ID = 10010;
-    static constexpr int FRASE_PAGE_ID = 10047;
-    static constexpr int SCHWARTZ_PAGE_ID = 10082;
-    static constexpr int LIX_GAUGE_PAGE_ID = 10083;
-    static constexpr int LIX_GAUGE_GERMAN_PAGE_ID = 10084;
-    static constexpr int DB2_PAGE_ID = 10085;
-    static constexpr int FLESCH_CHART_PAGE_ID = 10048;
-    static constexpr int CRAWFORD_GRAPH_PAGE_ID = 10049;
-    static constexpr int DOLCH_COVERAGE_CHART_PAGE_ID = 10012;
-    static constexpr int DOLCH_BREAKDOWN_PAGE_ID = 10013;
-    static constexpr int GPM_FRY_PAGE_ID = 10044;
-    static constexpr int SENTENCE_BOX_PLOT_PAGE_ID = 10063;
-    static constexpr int SENTENCE_HISTOGRAM_PAGE_ID = 10086;
-    static constexpr int SYLLABLE_HISTOGRAM_PAGE_ID = 10071;
-    static constexpr int SENTENCE_HEATMAP_PAGE_ID = 10080;
-    static constexpr int HARD_WORD_CLOUD_PAGE_ID = 10088;
+    static constexpr int WORD_BREAKDOWN_PAGE_ID = wxID_HIGHEST + 21;
+    static constexpr int FRY_PAGE_ID = wxID_HIGHEST + 22;
+    static constexpr int RAYGOR_PAGE_ID = wxID_HIGHEST + 23;
+    static constexpr int FRASE_PAGE_ID = wxID_HIGHEST + 24;
+    static constexpr int SCHWARTZ_PAGE_ID = wxID_HIGHEST + 25;
+    static constexpr int LIX_GAUGE_PAGE_ID = wxID_HIGHEST + 26;
+    static constexpr int LIX_GAUGE_GERMAN_PAGE_ID = wxID_HIGHEST + 27;
+    static constexpr int DB2_PAGE_ID = wxID_HIGHEST + 28;
+    static constexpr int FLESCH_CHART_PAGE_ID = wxID_HIGHEST + 29;
+    static constexpr int CRAWFORD_GRAPH_PAGE_ID = wxID_HIGHEST + 30;
+    static constexpr int DOLCH_COVERAGE_CHART_PAGE_ID = wxID_HIGHEST + 31;
+    static constexpr int DOLCH_BREAKDOWN_PAGE_ID = wxID_HIGHEST + 32;
+    static constexpr int GPM_FRY_PAGE_ID = wxID_HIGHEST + 33;
+    static constexpr int SENTENCE_BOX_PLOT_PAGE_ID = wxID_HIGHEST + 34;
+    static constexpr int SENTENCE_HISTOGRAM_PAGE_ID = wxID_HIGHEST + 35;
+    static constexpr int SYLLABLE_HISTOGRAM_PAGE_ID = wxID_HIGHEST + 36;
+    static constexpr int SENTENCE_HEATMAP_PAGE_ID = wxID_HIGHEST + 37;
+    static constexpr int HARD_WORD_CLOUD_PAGE_ID = wxID_HIGHEST + 38;
     // batch IDs
     //----------
-    static constexpr int ID_SCORE_LIST_PAGE_ID = 10015;
-    static constexpr int ID_DIFFICULT_WORDS_LIST_PAGE_ID = 10055;
-    static constexpr int ID_DOLCH_COVERAGE_LIST_PAGE_ID = 10017;
-    static constexpr int ID_DOLCH_WORDS_LIST_PAGE_ID = 10018;
-    static constexpr int ID_NON_DOLCH_WORDS_LIST_PAGE_ID = 10019;
+    static constexpr int ID_SCORE_LIST_PAGE_ID = wxID_HIGHEST + 39;
+    static constexpr int ID_DIFFICULT_WORDS_LIST_PAGE_ID = wxID_HIGHEST + 40;
+    static constexpr int ID_DOLCH_COVERAGE_LIST_PAGE_ID = wxID_HIGHEST + 41;
+    static constexpr int ID_DOLCH_WORDS_LIST_PAGE_ID = wxID_HIGHEST + 42;
+    static constexpr int ID_NON_DOLCH_WORDS_LIST_PAGE_ID = wxID_HIGHEST + 43;
     // only window in the warnings section,
     // so we will re-use this ID for the sidebar section also (below)
-    static constexpr int ID_WARNING_LIST_PAGE_ID = 10059;
-    static constexpr int ID_SCORE_STATS_LIST_PAGE_ID = 10021;
-    static constexpr int ID_AGGREGATED_DOC_SCORES_LIST_PAGE_ID = 10045;
-    static constexpr int ID_AGGREGATED_CLOZE_SCORES_LIST_PAGE_ID = 10046;
+    static constexpr int ID_WARNING_LIST_PAGE_ID = wxID_HIGHEST + 44;
+    static constexpr int ID_SCORE_STATS_LIST_PAGE_ID = wxID_HIGHEST + 45;
+    static constexpr int ID_AGGREGATED_DOC_SCORES_LIST_PAGE_ID = wxID_HIGHEST + 46;
+    static constexpr int ID_AGGREGATED_CLOZE_SCORES_LIST_PAGE_ID = wxID_HIGHEST + 47;
     // Dolch IDs
     //----------
-    static constexpr int DOLCH_WORDS_LIST_PAGE_ID = 10031;
-    static constexpr int NON_DOLCH_WORDS_LIST_PAGE_ID = 10032;
-    static constexpr int UNUSED_DOLCH_WORDS_LIST_PAGE_ID = 10033;
-    static constexpr int DOLCH_WORDS_TEXT_PAGE_ID = 10034;
-    static constexpr int NON_DOLCH_WORDS_TEXT_PAGE_ID = 10035;
-    static constexpr int DOLCH_STATS_PAGE_ID = 10037;
+    static constexpr int DOLCH_WORDS_LIST_PAGE_ID = wxID_HIGHEST + 48;
+    static constexpr int NON_DOLCH_WORDS_LIST_PAGE_ID = wxID_HIGHEST + 49;
+    static constexpr int UNUSED_DOLCH_WORDS_LIST_PAGE_ID = wxID_HIGHEST + 50;
+    static constexpr int DOLCH_WORDS_TEXT_PAGE_ID = wxID_HIGHEST + 51;
+    static constexpr int NON_DOLCH_WORDS_TEXT_PAGE_ID = wxID_HIGHEST + 52;
+    static constexpr int DOLCH_STATS_PAGE_ID = wxID_HIGHEST + 53;
     // stats/scores IDs
     //----------
-    static constexpr int STATS_REPORT_PAGE_ID = 10042;
-    static constexpr int STATS_LIST_PAGE_ID = 10043;
-    static constexpr int READABILITY_SCORES_PAGE_ID = 10069;
-    static constexpr int READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID = 10070;
-    static constexpr int READABILITY_GOALS_PAGE_ID = 10087;
+    static constexpr int STATS_REPORT_PAGE_ID = wxID_HIGHEST + 54;
+    static constexpr int STATS_LIST_PAGE_ID = wxID_HIGHEST + 55;
+    static constexpr int READABILITY_SCORES_PAGE_ID = wxID_HIGHEST + 56;
+    static constexpr int READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID = wxID_HIGHEST + 57;
+    static constexpr int READABILITY_GOALS_PAGE_ID = wxID_HIGHEST + 58;
     // highlighted words IDs
     //----------
-    static constexpr int LONG_WORDS_TEXT_PAGE_ID = 10064;
-    static constexpr int DC_WORDS_TEXT_PAGE_ID = 10065;
-    static constexpr int SPACHE_WORDS_TEXT_PAGE_ID = 10066;
-    static constexpr int HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID = 10067;
-    static constexpr int HARD_WORDS_TEXT_PAGE_ID = 10068;
-    static constexpr int LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID = 10036;
+    static constexpr int LONG_WORDS_TEXT_PAGE_ID = wxID_HIGHEST + 59;
+    static constexpr int DC_WORDS_TEXT_PAGE_ID = wxID_HIGHEST + 60;
+    static constexpr int SPACHE_WORDS_TEXT_PAGE_ID = wxID_HIGHEST + 61;
+    static constexpr int HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID = wxID_HIGHEST + 62;
+    static constexpr int HARD_WORDS_TEXT_PAGE_ID = wxID_HIGHEST + 63;
+    static constexpr int LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID = wxID_HIGHEST + 64;
     // sidebar IDs (main categories)
     //----------
-    static constexpr int SIDEBAR_WORDS_BREAKDOWN_SECTION_ID = 10053;
-    static constexpr int SIDEBAR_READABILITY_SCORES_SECTION_ID = 10054;
-    static constexpr int SIDEBAR_GRAMMAR_SECTION_ID = 10057;
-    static constexpr int SIDEBAR_DOLCH_SECTION_ID = 10058;
+    static constexpr int SIDEBAR_WORDS_BREAKDOWN_SECTION_ID = wxID_HIGHEST + 65;
+    static constexpr int SIDEBAR_READABILITY_SCORES_SECTION_ID = wxID_HIGHEST + 66;
+    static constexpr int SIDEBAR_GRAMMAR_SECTION_ID = wxID_HIGHEST + 67;
+    static constexpr int SIDEBAR_DOLCH_SECTION_ID = wxID_HIGHEST + 68;
     static constexpr int SIDEBAR_WARNINGS_SECTION_ID = ID_WARNING_LIST_PAGE_ID;
-    static constexpr int SIDEBAR_BOXPLOTS_SECTION_ID = 10060;
-    static constexpr int SIDEBAR_HISTOGRAMS_SECTION_ID = 10061;
-    static constexpr int SIDEBAR_STATS_SUMMARY_SECTION_ID = 10062;
-    static constexpr int SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID = 10079;
+    static constexpr int SIDEBAR_BOXPLOTS_SECTION_ID = wxID_HIGHEST + 69;
+    static constexpr int SIDEBAR_HISTOGRAMS_SECTION_ID = wxID_HIGHEST + 70;
+    static constexpr int SIDEBAR_STATS_SUMMARY_SECTION_ID = wxID_HIGHEST + 71;
+    static constexpr int SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID = wxID_HIGHEST + 72;
     // Sidebar IDs for custom test windows.
-    // Don't add any IDs between here and 21,000; we will lock this whole range for that.
-    static constexpr int SIDEBAR_CUSTOM_TESTS_START_ID = 20'000;
+    // Don't add any IDs between here and 1,000 above it; we will lock this whole range for that.
+    static constexpr int SIDEBAR_CUSTOM_TESTS_START_ID = wxID_HIGHEST + 100;
     static IdRange& GetCustomTestSidebarIdRange() noexcept
         { return m_customTestSidebarIdRange; }
 protected:
@@ -369,8 +369,8 @@ protected:
     Wisteria::UI::InfoBarEx* m_infoBar{ nullptr };
     wxMenuBar* m_menuBar{ nullptr };
 
-    static constexpr int LEFT_PANE = 10074;
-    static constexpr int SPLITTER_ID = 10075;
+    static constexpr int LEFT_PANE = wxID_HIGHEST + 73;
+    static constexpr int SPLITTER_ID = wxID_HIGHEST + 74;
 private:
     void OnActivateView(bool activate, wxView*, wxView*) override;
 
