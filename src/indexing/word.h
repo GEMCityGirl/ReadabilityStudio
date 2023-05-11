@@ -87,30 +87,36 @@ public:
 
     /// @returns Whether this word doesn't equal @c that.
     /// @param that The word to compare against.
-    [[nodiscard]] bool operator!=(const word<Tchar_traits, Tstemmer>& that) const noexcept
+    [[nodiscard]]
+    bool operator!=(const word<Tchar_traits, Tstemmer>& that) const noexcept
         { return compare(that) != 0; }
     /// @returns Whether this word is less than @c that.
     /// @param that The word to compare against.
-    [[nodiscard]] bool operator<(const word<Tchar_traits, Tstemmer>& that) const noexcept
+    [[nodiscard]]
+    bool operator<(const word<Tchar_traits, Tstemmer>& that) const noexcept
         { return compare(that) < 0; }
 
     /// @returns Whether the words are the same, compared by stems.
     /// @param that The word to compare against.
-    [[nodiscard]] bool operator==(const word<Tchar_traits, Tstemmer>& that) const noexcept
+    [[nodiscard]]
+    bool operator==(const word<Tchar_traits, Tstemmer>& that) const noexcept
         {return compare(that) == 0; }
     /// @returns Whether the words are the same, compared by stems.
     /// @param that The word to compare against.
-    [[nodiscard]] bool operator==(const wchar_t* that) const
+    [[nodiscard]]
+    bool operator==(const wchar_t* that) const
         { return compare(that) == 0; }
     /// @returns The comparison result against other word, comparing by the stems.
     /// @param that The word to compare against.
     /// @note This is the main comparison function that all other compare() and
     ///     operators functions rely on.
-    [[nodiscard]] int compare(const word<Tchar_traits, Tstemmer>& that) const noexcept
+    [[nodiscard]]
+    int compare(const word<Tchar_traits, Tstemmer>& that) const noexcept
         { return m_stem.compare(that.m_stem); }
     /// @returns The comparison result against other word, comparing by the stems.
     /// @param that The word to compare against.
-    [[nodiscard]] int compare(const wchar_t* that) const
+    [[nodiscard]]
+    int compare(const wchar_t* that) const
         { return compare(word<Tchar_traits, Tstemmer>(that)); }
 
     /// @returns The length of the word, excluding punctuation like apostrophes.
@@ -294,7 +300,7 @@ public:
     inline bool is_capitalized_not_in_caps() const
         {
         return (std::basic_string<wchar_t, Tchar_traits>::length() == 0) ? false :
-            (std::basic_string<wchar_t, Tchar_traits>::length() == 1) ? 
+            (std::basic_string<wchar_t, Tchar_traits>::length() == 1) ?
                 characters::is_character::is_upper(
                     std::basic_string<wchar_t, Tchar_traits>::operator[](0)) :
             (characters::is_character::is_upper(

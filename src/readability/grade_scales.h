@@ -55,7 +55,7 @@ namespace readability
             - Primary (Kindergarten-Grade 3)
             - Intermediate (Grade 4-6)
             - Junior Secondary (Grade 7-9)
-            - Senior Secondary (Grade 10-12)*/   
+            - Senior Secondary (Grade 10-12)*/
         k12_plus_northwest_territories,
         /** https://www.ednet.ns.ca/pdfdocs/psp/psp_03_04_full.pdf
             - Elementary (Primary-Grade 6)

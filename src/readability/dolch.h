@@ -66,7 +66,7 @@ namespace readability
         /// @private
         [[nodiscard]]
         const word_type& get_word() const noexcept
-            { return m_word; }   
+            { return m_word; }
         /// @private
         [[nodiscard]]
         sight_word_type get_type() const noexcept
@@ -129,7 +129,7 @@ namespace readability
                     { sightWord = sight_word_type::verb; }
                 else
                     { sightWord = sight_word_type::noun; }
-                m_sight_words.insert(sight_word(rowStrings[0], sightWord));        
+                m_sight_words.insert(sight_word(rowStrings[0], sightWord));
                 } while (text);
             }
         /// @private
@@ -162,7 +162,7 @@ namespace readability
             {}
         /// @private
         is_dolch_word() = default;
-        
+
         /** @brief Interface to search for a word on the list.
             @param the_word The word to search for.
             @returns @c true if the word being search for is on the list.
