@@ -1017,7 +1017,7 @@ private:
         // is the word in our custom list of programming-specific words?
         typename wordlistT::word_type strippedWord{ the_word.c_str() };
         if (m_programmer_wordlist && std::binary_search(m_programmer_wordlist->get_words().begin(),
-                            m_programmer_wordlist->get_words().end(), 
+                            m_programmer_wordlist->get_words().end(),
                             strippedWord) )
             { return true; }
         // remove ampersands in case this is UI string with accelerator keys in it
@@ -1049,10 +1049,10 @@ private:
         // first, see if the full word is already in our dictionaries
         typename wordlistT::word_type compValue{ the_word.c_str() };
         if (std::binary_search(m_wordlist->get_words().begin(),
-                            m_wordlist->get_words().end(), 
+                            m_wordlist->get_words().end(),
                             compValue) ||
             std::binary_search(m_secondary_wordlist->get_words().begin(),
-                            m_secondary_wordlist->get_words().end(), 
+                            m_secondary_wordlist->get_words().end(),
                             compValue))
             { return true; }
 
@@ -1078,10 +1078,10 @@ private:
                 // after the '-' shouldn't make it unfamiliar
                 else if (compValue.length() > 0 &&
                     !std::binary_search(m_wordlist->get_words().begin(),
-                                m_wordlist->get_words().end(), 
+                                m_wordlist->get_words().end(),
                                 compValue) &&
                     !std::binary_search(m_secondary_wordlist->get_words().begin(),
-                                m_secondary_wordlist->get_words().end(), 
+                                m_secondary_wordlist->get_words().end(),
                                 compValue))
                     { return false; }
                 }

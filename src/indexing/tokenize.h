@@ -33,11 +33,14 @@ namespace tokenize
             @param text The text block to analyze.
             @param length The length of the text block.
             @param always_treat_linefeeds_as_end_of_paragraph Whether to consider newlines as the end of a paragraph.
-             If false, then parser will intelligently deduce when a paragraph starts. This is recommended for text
-             split by newlines to fit a page.
-            @param ignore_blank_lines_when_determing_paragraph_split Whether to ignore blank lines between lines when deducing if two lines are part of the same paragraph.
-            @param ignore_indenting_when_determing_paragraph_split Whether to review line indenting when deducing if a line is a bullet point.
-            @param sentence_start_must_be_uppercased Whether sentences must be uppercased. Recommended to be false when analyzing sloppy writing.*/
+                If @c false, then parser will intelligently deduce when a paragraph starts.
+                This is recommended for text split by newlines to fit a page.
+            @param ignore_blank_lines_when_determing_paragraph_split Whether to ignore blank lines
+                between lines when deducing if two lines are part of the same paragraph.
+            @param ignore_indenting_when_determing_paragraph_split Whether to review line
+                indenting when deducing if a line is a bullet point.
+            @param sentence_start_must_be_uppercased Whether sentences must be uppercased.\n
+                Recommended to be false when analyzing sloppy writing.*/
         document_tokenize(const wchar_t* text, const size_t length,
                           const bool always_treat_linefeeds_as_end_of_paragraph,
                           const bool ignore_blank_lines_when_determing_paragraph_split,
@@ -46,7 +49,7 @@ namespace tokenize
                             m_sentence_position(0),
                             m_current_sentence_index(0), m_current_paragraph_index(0),
                             m_current_char(text), m_text_block_beginning(text),
-                            m_text_block_end(text + length)/*null terminator included*/,
+                            m_text_block_end(text + length)/* null terminator included*/,
                             m_text_block_length(length),
                             m_current_word_length(0),
                             m_word_count(0),
@@ -60,13 +63,13 @@ namespace tokenize
                             m_pending_sentence_ending_punctuation_pos(nullptr),
                             m_current_leading_end_of_line_count(0),
                             m_moved_past_beginning_nontext(false),
-                            /*enables "smart" paragraph separation if false*/
+                            // enables "smart" paragraph separation if false
                             m_treat_eol_as_eop(always_treat_linefeeds_as_end_of_paragraph),
                             m_ignore_blank_lines(ignore_blank_lines_when_determing_paragraph_split),
                             m_ignore_indenting(ignore_indenting_when_determing_paragraph_split),
                             isEndOfSentence(sentence_start_must_be_uppercased)
                             {
-                            //skip anything like "***" at the start of the file.
+                            // skip anything like "***" at the start of the file.
                             const std::pair<bool,size_t> lineSepResult = is_formatted_line_separator(m_current_char);
                             if (lineSepResult.first)
                                 { m_current_char += lineSepResult.second; }
@@ -74,7 +77,8 @@ namespace tokenize
         document_tokenize() = delete;
         /** @brief Read to the next word in the text.
             @returns The start of the next word, or null if at the end of the document.*/
-        [[nodiscard]] const wchar_t* operator()()
+        [[nodiscard]]
+        const wchar_t* operator()()
             {
             PROFILE();
             //should only happen if text was null to begin with
@@ -90,14 +94,14 @@ namespace tokenize
             bool encounteredSentenceEnder = false;
             bool encounteredNewLine = false;
             bool isUrl{ false };
-            //scan ahead and look for the first legit character to stop on
+            // scan ahead and look for the first legit character to stop on
             const wchar_t* scanPosition = m_current_char;
             while (scanPosition != m_text_block_end)
                 {
                 if (is_character.can_character_begin_word(scanPosition[0]) )
                     { break; }
-                //record whether or not there are any newlines between previous and next word.
-                //this will help deduce whether the punctuation should be connected to the previous or next word.
+                // record whether or not there are any newlines between previous and next word.
+                // this will help deduce whether the punctuation should be connected to the previous or next word.
                 else if (m_moved_past_beginning_nontext &&
                     isEol(scanPosition[0]) )
                     {
@@ -115,8 +119,8 @@ namespace tokenize
                     }
                 ++scanPosition;
                 }
-            //Skip anything like "***" or "---" after that last word if we are coming up to the end of a line.
-            //Also force a new paragraph if we encounter this.
+            // Skip anything like "***" or "---" after that last word if we are coming up to the end of a line.
+            // Also force a new paragraph if we encounter this.
             const std::pair<bool,size_t> lineSepResult = is_trailing_formatted_line_separator(m_current_char);
             if (lineSepResult.first)
                 {
@@ -160,7 +164,10 @@ namespace tokenize
                     else
                         {
                         if (encounteredNewLine)
-                            { m_punctuation.emplace_back(punctuation::punctuation_mark(m_current_char[0], m_word_count, true) ); }
+                            {
+                            m_punctuation.emplace_back(
+                                punctuation::punctuation_mark(m_current_char[0], m_word_count, true) );
+                            }
                         else
                             {
                             m_punctuation.emplace_back(punctuation::punctuation_mark(m_current_char[0], m_word_count,
@@ -172,7 +179,7 @@ namespace tokenize
                 }
             m_moved_past_beginning_nontext = true;
 
-            //see if this might be a header paragraph
+            // see if this might be a header paragraph
             if (is_at_eol() && (m_is_at_end_of_sentence == false) )
                 {
                 isEol(m_current_char, m_text_block_end);
@@ -180,25 +187,31 @@ namespace tokenize
                 const wchar_t* const origionalStop = m_current_char;
                 m_current_char += isEol.get_characters_skipped_count();
                 m_current_leading_end_of_line_count = isEol.get_eol_count();
-                /*If previous line was a TOC line (e.g., "Overview....17") then start a new sentence and paragraph.
+                /* If previous line was a TOC line (e.g., "Overview....17") then start a new sentence and paragraph.
                    Otherwise, if previous line doesn't have a valid sentence ender, but followed
-                by more than one line feed, then assume that this is a 
-                header. Treat it like it really is a sentence and a separate paragraph.
+                   by more than one line feed, then assume that this is a 
+                   header. Treat it like it really is a sentence and a separate paragraph.
                    If we are always treating a line feed as a new sentence
-                then just do that.
+                   then just do that.
                    Also, see if the next line is indented, bulleted, or a line of symbols uses as a line separator.
-                If so, then treat it as a new sentence and paragraph too.*/
+                   If so, then treat it as a new sentence and paragraph too.*/
                 if (m_word_count > 0 &&
                     m_is_previous_word_numeric && get_punctuation().size() > 2 &&
                     get_punctuation().at(get_punctuation().size()-1).get_word_position() == m_word_count-1 &&
                     get_punctuation().at(get_punctuation().size()-2).get_word_position() == m_word_count-1 &&
-                    string_util::is_either<wchar_t>(string_util::full_width_to_narrow(get_punctuation().at(get_punctuation().size()-1).get_punctuation_mark()), L'.', common_lang_constants::ELLIPSE) &&
-                    string_util::is_either<wchar_t>(string_util::full_width_to_narrow(get_punctuation().at(get_punctuation().size()-2).get_punctuation_mark()), L'.', common_lang_constants::ELLIPSE))
+                    string_util::is_either<wchar_t>(
+                        string_util::full_width_to_narrow(
+                            get_punctuation().at(get_punctuation().size()-1).get_punctuation_mark()), L'.',
+                        common_lang_constants::ELLIPSE) &&
+                    string_util::is_either<wchar_t>(
+                        string_util::full_width_to_narrow(
+                            get_punctuation().at(get_punctuation().size()-2).get_punctuation_mark()), L'.',
+                        common_lang_constants::ELLIPSE))
                     {
                     ++m_current_sentence_index;
                     ++m_current_paragraph_index;
                     m_current_sentence_ending_punctuation = L' ';
-                    //reset for the next word (its position will be the first in the next sentence)
+                    // reset for the next word (its position will be the first in the next sentence)
                     m_sentence_position = 0;
                     }
                 else if (m_treat_eol_as_eop ||
@@ -209,13 +222,13 @@ namespace tokenize
                     ++m_current_sentence_index;
                     ++m_current_paragraph_index;
                     m_current_sentence_ending_punctuation = L' ';
-                    //reset for the next word (its position will be the first in the next sentence)
+                    // reset for the next word (its position will be the first in the next sentence)
                     m_sentence_position = 0;
                     }
                 else if (is_bulleted(m_current_char).first)
                     {
                     bool nextToOtherBulletedLine = false;
-                    //look forward to next line and see if it is a bullet
+                    // look forward to next line and see if it is a bullet
                     const size_t nextNewlineOffset = std::wcscspn(m_current_char, L"\r\n");
                     if (nextNewlineOffset != -1 && ((m_current_char+nextNewlineOffset) < m_text_block_end))
                         {
@@ -226,12 +239,16 @@ namespace tokenize
                             is_bulleted(nextNewline).first)
                             { nextToOtherBulletedLine = true; }
                         }
-                    //if next line is not a bullet, then see if previous line was one
+                    // if next line is not a bullet, then see if previous line was one
                     if (!nextToOtherBulletedLine && (origionalStop > m_text_block_beginning))
                         {
-                        const size_t previousNewlineOffset = string_util::find_last_of(m_text_block_beginning, L"\r\n", (origionalStop-m_text_block_beginning)-1);
-                        //previous newline or start of text
-                        const wchar_t* previousNewline = (previousNewlineOffset != -1) ? (m_text_block_beginning+previousNewlineOffset) : m_text_block_beginning;
+                        const size_t previousNewlineOffset =
+                            string_util::find_last_of(m_text_block_beginning, L"\r\n",
+                            (origionalStop-m_text_block_beginning)-1);
+                        // previous newline or start of text
+                        const wchar_t* previousNewline =
+                            (previousNewlineOffset != -1) ?
+                            (m_text_block_beginning+previousNewlineOffset) : m_text_block_beginning;
                         assert(previousNewline); assert(previousNewline<m_text_block_end);
                         while (string_util::is_either<wchar_t>(*previousNewline, L'\n', L'\r'))
                             { ++previousNewline; }
@@ -244,7 +261,7 @@ namespace tokenize
                         ++m_current_sentence_index;
                         ++m_current_paragraph_index;
                         m_current_sentence_ending_punctuation = L' ';
-                        //reset for the next word (its position will be the first in the next sentence)
+                        // reset for the next word (its position will be the first in the next sentence)
                         m_sentence_position = 0;
                         }
                     }
@@ -261,17 +278,19 @@ namespace tokenize
                 }
             else if (m_is_at_end_of_sentence)
                 {
-                m_current_sentence_ending_punctuation = m_pending_sentence_ending_punctuation_pos ? *m_pending_sentence_ending_punctuation_pos : L'.';
+                m_current_sentence_ending_punctuation =
+                    m_pending_sentence_ending_punctuation_pos ? *m_pending_sentence_ending_punctuation_pos : L'.';
                 ++m_current_sentence_index;
-                m_sentence_position = 0;//reset for the next word
+                // reset for the next word
+                m_sentence_position = 0;
                 m_is_at_end_of_sentence = false;
-                /*move past any leading trash characters and
-                see if previous sentence was the end of a paragraph*/
+                /* move past any leading trash characters and
+                   see if previous sentence was the end of a paragraph*/
                 while (m_current_char != m_text_block_end)
                     {
-                    /*only count one new paragraph from last sentence.
-                    Sometimes there may be many blank lines between paragraphs,
-                    so don't count extra carriage returns as different paragraphs*/
+                    /* only count one new paragraph from last sentence.
+                       Sometimes there may be many blank lines between paragraphs,
+                       so don't count extra carriage returns as different paragraphs*/
                     if (isEol(m_current_char[0]) )
                         {
                         isEol(m_current_char, m_text_block_end);
@@ -296,14 +315,14 @@ namespace tokenize
                 m_current_sentence_ending_punctuation = L' ';
                 }
 
-            //move past any formatted line breaks that we will be skipped
+            // move past any formatted line breaks that we will be skipped
             if (encounteredNewLine)
                 {
                 const std::pair<bool,size_t> currentLineSepResult = is_formatted_line_separator(m_current_char);
                 if (currentLineSepResult.first)
                     { m_current_char += currentLineSepResult.second; }
                 }
-            //move past any leading trash characters
+            // move past any leading trash characters
             while (m_current_char < m_text_block_end)
                 {
                 if (is_character.can_character_begin_word(m_current_char[0]))
@@ -326,25 +345,29 @@ namespace tokenize
                     }
                 if (isPunctuation(m_current_char[0]))
                     {
-                    // only count punctuation if it is not sentence terminating punctuation (that is handled elsewhere)
+                    // only count punctuation if it is not sentence
+                    // terminating punctuation (that is handled elsewhere)
                     if (!m_is_at_end_of_sentence ||
                         // if at the end of a sentence, make sure we still count " or ( after the period
                         (!isEndOfSentence.can_character_end_sentence_strict(m_current_char[0]) ))
-                        { m_punctuation.emplace_back(punctuation::punctuation_mark(m_current_char[0], m_word_count, false) ); }
+                        {
+                        m_punctuation.emplace_back(
+                            punctuation::punctuation_mark(m_current_char[0], m_word_count, false) );
+                        }
                     }
                 ++m_current_char;
                 }
 
             if (m_current_char == m_text_block_end)
                 { return nullptr; }
-            //reset from previous return    
+            // reset from previous return    
             m_at_eol = false;
 
             const wchar_t* const word_start = m_current_char++;
 
             while (m_current_char != m_text_block_end)
                 {
-                //see if it's a character (it is one that can end a sentence, then handle that later)
+                // see if it's a character (it is one that can end a sentence, then handle that later)
                 if (is_character(m_current_char[0]) &&
                     !isEndOfSentence.can_character_end_sentence_strict(m_current_char[0]))
                     {
@@ -354,13 +377,13 @@ namespace tokenize
                         !isUrl &&
                         !i18n_string_util::is_url(word_start, m_current_char-word_start))
                         {
-                        //if a dash (double hyphen) then quit
+                        // if a dash (double hyphen) then quit
                         if (m_current_char+1 != m_text_block_end &&
                             (characters::is_character::is_hyphen(m_current_char[1]) ) )
                             { break; }
                         else
                             {
-                            //skip current hyphen and then step over any newlines/spaces to connect this word
+                            // skip current hyphen and then step over any newlines/spaces to connect this word
                             ++m_current_char;
                             while (m_current_char != m_text_block_end)
                                 {
@@ -401,10 +424,12 @@ namespace tokenize
                         else if (is_character(scanAhead[0]) &&
                             !isEndOfSentence.can_character_end_sentence_strict(scanAhead[0]))
                             { m_current_char = scanAhead; }
-                        // we are at the end of the word, so if a short word then include superscript as part of the word
+                        // we are at the end of the word, so if a short word then
+                        // include superscript as part of the word
                         else if (m_current_char-word_start < 4)
                             { m_current_char = scanAhead; }
-                        // or word is too long, so it's probably a citation. Stop and let the indexer see it as punctuation.
+                        // or word is too long, so it's probably a citation.
+                        // Stop and let the indexer see it as punctuation.
                         else
                             { break; }
                         }
@@ -422,7 +447,8 @@ namespace tokenize
                                         m_sentence_position) )
                         {
                         m_is_at_end_of_sentence = true;
-                        m_pending_sentence_ending_punctuation_pos = m_text_block_beginning + (m_current_char-m_text_block_beginning);
+                        m_pending_sentence_ending_punctuation_pos =
+                            m_text_block_beginning + (m_current_char-m_text_block_beginning);
                         break;
                         }
                     /* for situations like "now?' he", where a non-standard quote symbol
@@ -453,22 +479,26 @@ namespace tokenize
                 // obscure situations like a dash then double quote then hard return marking the end of a sentence
                 else if (isEndOfSentence.can_character_end_sentence_passive(m_current_char[0]) &&
                          isEndOfSentence(m_text_block_beginning,
-                                            m_text_block_length,
-                                            m_current_char-m_text_block_beginning,
-                                            word_start-m_text_block_beginning,
-                                            m_sentence_position))
+                                         m_text_block_length,
+                                         m_current_char-m_text_block_beginning,
+                                         word_start-m_text_block_beginning,
+                                         m_sentence_position))
                     {
                     m_is_at_end_of_sentence = true;
-                    m_pending_sentence_ending_punctuation_pos = m_text_block_beginning + (m_current_char-m_text_block_beginning);
+                    m_pending_sentence_ending_punctuation_pos = m_text_block_beginning +
+                        (m_current_char-m_text_block_beginning);
                     break;
                     }
-                // or see if it's a parenthetical clause/quote/copyright symbol/asterisk at the end of a sentence, or trailing copyright symbol on word
-                else if (isEndOfSentence.can_character_begin_or_end_parenthetical_or_quoted_section(m_current_char[0]) ||
+                // or see if it's a parenthetical clause/quote/copyright symbol/asterisk at the
+                // end of a sentence, or trailing copyright symbol on word
+                else if (isEndOfSentence.
+                        can_character_begin_or_end_parenthetical_or_quoted_section(m_current_char[0]) ||
                     is_character.can_character_appear_between_word_and_eol(m_current_char[0]) )
                     {
                     const wchar_t* nextChar = m_current_char+1;
                     // eat any white space or other braces/parenthesis between the ')' and next character
-                    while (characters::is_character::is_space(nextChar[0]) || isEndOfSentence.can_character_begin_or_end_parenthetical_or_quoted_section(nextChar[0]) )
+                    while (characters::is_character::is_space(nextChar[0]) ||
+                           isEndOfSentence.can_character_begin_or_end_parenthetical_or_quoted_section(nextChar[0]) )
                         { ++nextChar; }
                     // now see if the next valid character is a sentence ending punctuation mark
                     if ((nextChar < m_text_block_end) &&
@@ -479,7 +509,8 @@ namespace tokenize
                                            m_sentence_position) )
                         {
                         m_is_at_end_of_sentence = true;
-                        m_pending_sentence_ending_punctuation_pos = m_text_block_beginning + (nextChar-m_text_block_beginning);
+                        m_pending_sentence_ending_punctuation_pos =
+                            m_text_block_beginning + (nextChar-m_text_block_beginning);
                         break;
                         }
                     /* otherwise, we still need to break and return the current word because
@@ -524,12 +555,15 @@ namespace tokenize
                 else if (m_current_char[0] == common_lang_constants::SPACE ||
                          is_character.is_dash_or_hyphen(m_current_char[0]))
                     {
-                    const wchar_t* currentPeekChar = m_current_char+1; 
+                    const wchar_t* currentPeekChar = m_current_char + 1;
                     // eat any spaces, dashes, or right brackets/parentheses
                     while (currentPeekChar < m_text_block_end &&
-                        (currentPeekChar[0] == common_lang_constants::SPACE || is_character.is_dash_or_hyphen(currentPeekChar[0]) ||
-                         traits::case_insensitive_ex::eq(currentPeekChar[0], common_lang_constants::RIGHT_PARENTHESIS) ||
-                         traits::case_insensitive_ex::eq(currentPeekChar[0], common_lang_constants::RIGHT_BRACKET)) )
+                        (currentPeekChar[0] == common_lang_constants::SPACE ||
+                         is_character.is_dash_or_hyphen(currentPeekChar[0]) ||
+                         traits::case_insensitive_ex::eq(currentPeekChar[0],
+                             common_lang_constants::RIGHT_PARENTHESIS) ||
+                         traits::case_insensitive_ex::eq(currentPeekChar[0],
+                             common_lang_constants::RIGHT_BRACKET)) )
                         { ++currentPeekChar; }
                     /* If what we moved to is a line or sentence terminator then move the
                        current char to where we scanned ahead to and set the line/sentence state for
@@ -544,12 +578,14 @@ namespace tokenize
                                             m_sentence_position) )
                             {
                             m_is_at_end_of_sentence = true;
-                            m_pending_sentence_ending_punctuation_pos = m_text_block_beginning + (currentPeekChar-m_text_block_beginning);
-                            //the punctuation between this word and sentence terminator will be picked up in the run
+                            m_pending_sentence_ending_punctuation_pos =
+                                m_text_block_beginning + (currentPeekChar-m_text_block_beginning);
+                            // the punctuation between this word and sentence terminator
+                            // will be picked up in the run
                             break;
                             }
-                        //hit a period or something, but it's not the end of a sentence. Just stop and pick
-                        //it up as the next word later.
+                        // hit a period or something, but it's not the end of a sentence. Just stop and pick
+                        // it up as the next word later.
                         else
                             { break; }
                         }
@@ -559,10 +595,11 @@ namespace tokenize
                         m_current_char = currentPeekChar;
                         break;
                         }
-                    //if just spaces (and maybe following dashes) after the word but it is not terminated by a line end
-                    //or sentence terminator, then just stop on this word and have the indexer scan
-                    //these spaces or dashes in the next pass. Note that hyphens that can actually
-                    //be part of a word will tell the parser to keep scanning.
+                    // if just spaces (and maybe following dashes) after the word but it is
+                    // not terminated by a line end or sentence terminator, then just stop on this
+                    // word and have the indexer scan these spaces or dashes in the next pass.
+                    // Note that hyphens that can actually
+                    // be part of a word will tell the parser to keep scanning.
                     else if (!is_character(m_current_char[0]))
                         { break; }
                     }
@@ -585,15 +622,16 @@ namespace tokenize
                     else
                         { break; }
                     }
-                else //otherwise consider this the end of the word
+                // otherwise consider this the end of the word
+                else
                     { break; }
                 }
 
-            //return the current word
+            // return the current word
             if (m_current_char > word_start)
                 {
                 const wchar_t* wordEnd = word_start+((m_current_char-word_start)-1);
-                //step back if the last character cannot syntactically end a word
+                // step back if the last character cannot syntactically end a word
                 while (wordEnd > word_start &&
                     !is_character.can_character_end_word(*wordEnd))
                     { --wordEnd; }
@@ -609,7 +647,7 @@ namespace tokenize
                 while (wordEnd > word_start &&
                        is_character.is_single_quote(*wordEnd))
                     {
-                    //...allow things like "[be]in'" (colloquial "[be]ing") to be a full word though
+                    // ...allow things like "[be]in'" (colloquial "[be]ing") to be a full word though
                     if ((wordEnd-word_start) >= 4 &&
                         traits::case_insensitive_ex::eq(wordEnd[-1],L'n') &&
                         traits::case_insensitive_ex::eq(wordEnd[-2],L'i') &&
@@ -626,9 +664,10 @@ namespace tokenize
                 m_current_word_length = (wordEnd-word_start)+1;
                 /* If truly at the end of a sentence, then see if the last word is an acronym or abbreviation.
                    If so, then include the trailing period as part of the word.
-                   Note that at this point, abbreviations that are mid-sentence will have already been returned from here.
-                   So now we are just seeing if the last word of a sentence is an abbreviation (that is rare, but possible)
-                   and adding the period to the word if that's the case.*/
+                   Note that at this point, abbreviations that are mid-sentence
+                   will have already been returned from here.
+                   So now we are just seeing if the last word of a sentence is an abbreviation
+                   (that is rare, but possible) and adding the period to the word if that's the case.*/
                 if (m_is_at_end_of_sentence &&
                     characters::is_character::is_period(m_current_char[0]))
                     {
@@ -649,55 +688,67 @@ namespace tokenize
                 { return nullptr; }
             }
         /** @returns The index (into the document) of the last parsed paragraph. This is zero-based.*/
-        [[nodiscard]] inline size_t get_current_sentence_index() const noexcept
+        [[nodiscard]]
+        inline size_t get_current_sentence_index() const noexcept
             { return m_current_sentence_index; }
         /** @returns The index (into the document) of the last parsed sentence. This is zero-based.*/
-        [[nodiscard]] inline size_t get_current_paragraph_index() const noexcept
+        [[nodiscard]]
+        inline size_t get_current_paragraph_index() const noexcept
             { return m_current_paragraph_index; }
         /** @returns The position in the current sentence that the last parsed word is in.
             @note This internally is 1-based index because the counter is incremented before the
                   current word is returned instead of the next time operator() is called. This is just
                   easier because then you don't have to mess with a state flag just for this one variable.*/
-        [[nodiscard]] inline size_t get_sentence_position() const noexcept
+        [[nodiscard]]
+        inline size_t get_sentence_position() const noexcept
             { return (m_sentence_position == 0) ? 0 : m_sentence_position-1; }
         /** @returns The length of the last word parsed.
             @note This will not include punctuation surrounding the word.*/
-        [[nodiscard]] inline size_t get_current_word_length() const noexcept
+        [[nodiscard]]
+        inline size_t get_current_word_length() const noexcept
             { return m_current_word_length; }
         /** @returns @c true if the last parsed word is at the end of a line.
             @note If the word as at the end of a sentence, then the newline won't be seen until
                   the next tokenize. In this situation, call get_current_leading_end_of_line_count to see
                   how many newlines are proceeding the next word.*/
-        [[nodiscard]] inline bool is_at_eol() const noexcept
+        [[nodiscard]]
+        inline bool is_at_eol() const noexcept
             { return m_at_eol; }
         /// @returns @c true if the last read word has a tab in front of it.
-        [[nodiscard]] bool is_tabbed() const noexcept
+        [[nodiscard]]
+        bool is_tabbed() const noexcept
             { return m_is_tabbed; }
         /** @returns @c true if the last word parsed was numeric.*/
-        [[nodiscard]] inline bool is_numeric() const noexcept
+        [[nodiscard]]
+        inline bool is_numeric() const noexcept
             { return m_is_numeric; }
         /** @returns @c true if the last word is split (e.g., a hyphenated word, split by a newline). In this case
                      the call will need to strip the newline(s)/space(s) out.*/
-        [[nodiscard]] inline bool is_split_word() const noexcept
+        [[nodiscard]]
+        inline bool is_split_word() const noexcept
             { return m_is_split_word; }
         /** @returns The sentence ending punctuation from the last word parse (assuming that the last
             word was the last word in a sentence). If not at the end of a sentence, then a space is returned.
             @note This won't get read until you tokenize the first word in the next sentence.*/
-        [[nodiscard]] inline wchar_t get_current_sentence_ending_punctuation() const noexcept
+        [[nodiscard]]
+        inline wchar_t get_current_sentence_ending_punctuation() const noexcept
             { return m_current_sentence_ending_punctuation; }
         /** @returns The number of proceeding newlines in front of the last word parsed.*/
-        [[nodiscard]] inline size_t get_current_leading_end_of_line_count() const noexcept
+        [[nodiscard]]
+        inline size_t get_current_leading_end_of_line_count() const noexcept
             { return m_current_leading_end_of_line_count; }
         /** @returns The punctuation indexed so far.
             @note This accumulates with every tokenizing.*/
-        [[nodiscard]] inline const std::vector<punctuation::punctuation_mark>& get_punctuation() const noexcept
+        [[nodiscard]]
+        inline const std::vector<punctuation::punctuation_mark>& get_punctuation() const noexcept
             { return m_punctuation; }
         /** Determines if text is a formatted line break (e.g., "----------") at the start of a new line.
             Three or more consecutive line break characters will trigger this.
             @param next_line The line of text to review.
             @returns A pair indicating whether it is a line break or not and the length of the
                      line break if true.*/
-        [[nodiscard]] std::pair<bool,size_t> is_formatted_line_separator(const wchar_t* next_line) const noexcept
+        [[nodiscard]]
+        std::pair<bool,size_t> is_formatted_line_separator(const wchar_t* next_line) const noexcept
             {
             if (next_line == nullptr)
                 { return std::pair<bool,size_t>(false,0); }
@@ -720,7 +771,8 @@ namespace tokenize
             @param next_line The line of text to review.
             @returns A pair indicating whether it is a line break or not and the length of the
                      line break if true.*/
-        [[nodiscard]] std::pair<bool,size_t> is_trailing_formatted_line_separator(const wchar_t* next_line) const noexcept
+        [[nodiscard]]
+        std::pair<bool,size_t> is_trailing_formatted_line_separator(const wchar_t* next_line) const noexcept
             {
             if (next_line == nullptr)
                 { return std::pair<bool,size_t>(false,0); }
@@ -732,8 +784,10 @@ namespace tokenize
                 ++charCounts;
                 ++next_line;
                 }
-            const bool at_eol = (next_line >= m_text_block_end) || characters::is_character::is_space_vertical(next_line[0]);
-            return std::pair<bool,size_t>((charCounts >= 3 && at_eol), (charCounts >= 3 && at_eol) ? (next_line-start) : 0);
+            const bool at_eol =
+                (next_line >= m_text_block_end) || characters::is_character::is_space_vertical(next_line[0]);
+            return std::pair<bool,size_t>(
+                (charCounts >= 3 && at_eol), (charCounts >= 3 && at_eol) ? (next_line-start) : 0);
             }
 
         /** @brief Sets a list of known (spelled correctly) words.
@@ -746,9 +800,11 @@ namespace tokenize
         ///     after this tokenizer is finished.
         std::vector<punctuation::punctuation_mark> m_punctuation;
     protected:
-        /** @returns @c true if character is something that can be used to create a formatted line break (e.g., "----------").
+        /** @returns @c true if character is something that can be used to create a
+                formatted line break (e.g., "----------").
             @param ch The character to analyze.*/
-        [[nodiscard]] constexpr static bool is_formatted_line_separator_char(const wchar_t ch) noexcept
+        [[nodiscard]]
+        constexpr static bool is_formatted_line_separator_char(const wchar_t ch) noexcept
             {
             return string_util::is_one_of(string_util::full_width_to_narrow(ch), L"+@-#*");
             }

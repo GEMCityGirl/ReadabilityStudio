@@ -165,11 +165,11 @@ namespace grammar
             if (text[0] == 0)
                 { return std::pair<bool,size_t>(false,0); }
             // first see if it's a bullet
-            else if (string_util::is_either<wchar_t>(text[0], 0x95, 0x2022)/*bullet*/ ||
-                text[0] == 0x2023 /*triangle bullet*/ ||
-                text[0] == 0x25A0 /*filled in square*/ ||
-                text[0] == 0x25CF /*filled in circle*/ ||
-                text[0] == 0xB7   /*middle dot*/)
+            else if (string_util::is_either<wchar_t>(text[0], 0x95, 0x2022)/* bullet*/ ||
+                text[0] == 0x2023 /* triangle bullet*/ ||
+                text[0] == 0x25A0 /* filled in square*/ ||
+                text[0] == 0x25CF /* filled in circle*/ ||
+                text[0] == 0xB7   /* middle dot*/)
                 { return std::pair<bool,size_t>(true,1); }
             // or a dash followed by a space
             else if (characters::is_character::is_hyphen(text[0]) &&
@@ -202,11 +202,11 @@ namespace grammar
                     current_char[0] == 0x09 ||
                     current_char[0] == 0x29 ||
                     current_char[0] == 0xFF09 ||
-                    //colon only makes sense if it is followed by a space. If it part of the numeric work
-                    //then it must be a time or something.
+                    // colon only makes sense if it is followed by a space. If it part of the numeric work
+                    // then it must be a time or something.
                     (current_char[0] == L':' && characters::is_character::is_space_horizontal(current_char[1])))
                     {
-                    //sometimes you might see "1.) Some info", so skip all expected punctuation
+                    // sometimes you might see "1.) Some info", so skip all expected punctuation
                     do
                         {
                         ++current_char;
@@ -219,20 +219,20 @@ namespace grammar
                     }
                 else
                     {
-                    //scan to the next line and see if it starts with a number too. If so,
-                    //then this more than likely is a list of some sort (e.g., a recipe).
+                    // scan to the next line and see if it starts with a number too. If so,
+                    // then this more than likely is a list of some sort (e.g., a recipe).
                     is_end_of_line isEol;
                     const wchar_t* nextLine = current_char;
                     while (nextLine[0] != 0 && string_util::is_neither<wchar_t>(nextLine[0],10,13))
                         { ++nextLine; }
                     if (nextLine[0] == 0)
                         { return std::pair<bool,size_t>(false,0); }
-                    //hit the next newline, so skip to the start of the line
+                    // hit the next newline, so skip to the start of the line
                     const wchar_t* const newLineStart = nextLine;
                     while (nextLine[0] != 0 && characters::is_character::is_space(nextLine[0]))
                         { ++nextLine; }
-                    //see how many newlines are after this line. If more than 1, then this is probably
-                    //a bullet.
+                    // see how many newlines are after this line. If more than 1, then this is probably
+                    // a bullet.
                     isEol(newLineStart, nextLine);
                     if (isEol.get_eol_count() > 1)
                         { return std::pair<bool,size_t>(true,(current_char-text)); }
@@ -242,7 +242,8 @@ namespace grammar
                         std::pair<bool,size_t>(false,0);
                     }
                 }
-            /* ..or a letter bullet point. Note that we only count a single-digit, lowercased letter as a bullet point.
+            /* ..or a letter bullet point. Note that we only count a single-digit,
+               lowercased letter as a bullet point.
                Counting anything else could be a real word or (in the case of being uppercased) an initial.*/
             else if (characters::is_character::is_lower(current_char[0]) && current_char[1] != 0)
                 {
@@ -283,7 +284,8 @@ namespace grammar
             @param text The block of text to analyze.
             @param length The length of the text being analyzed.
             @param current_position The position in the text (usually a period) to analyze.
-            @param previous_word_position The position in the text of the start of the word in front of the period we are analyzing.
+            @param previous_word_position The position in the text of the start of the word in
+                front of the period we are analyzing.
             @param sentence_position_of_previous_word The position in the sentence of the proceeding word.*/
         [[nodiscard]]
         bool operator()(const wchar_t* text,
@@ -300,7 +302,7 @@ namespace grammar
                so ignore it and treat it like part of the sentence*/
             if (sentence_position_of_previous_word == 0)
                 {
-                //check each digit to verify that they are a number or period
+                // check each digit to verify that they are a number or period
                 if (string_util::find_first_not_of<wchar_t>(text+previous_word_position,
                                                     (current_position - previous_word_position),
                                                     common_lang_constants::NUMBERS_AND_DOT, 21)
@@ -310,11 +312,11 @@ namespace grammar
 
             if (can_character_end_sentence_passive(text[current_position]) )
                 {
-                //end of text, so definitely ends sentence
+                // end of text, so definitely ends sentence
                 if (current_position == (length-1) )
                     { return true; }
-                //watch out for ill-formatted quotes in the middle of a sentence
-                //(e.g., "'hi there',! and 'goodbye',! he said.").
+                // watch out for ill-formatted quotes in the middle of a sentence
+                // (e.g., "'hi there',! and 'goodbye',! he said.").
                 if (current_position > 0 &&
                     traits::case_insensitive_ex::eq(text[current_position-1], L','))
                     { return false; }
@@ -348,40 +350,44 @@ namespace grammar
                             characters::is_character::is_double_quote(text[current_position+1]) &&
                             characters::is_character::is_space_vertical(text[current_position+2]));
                     }
-                /* Watch out for lines in a Table of Contents, where there is a space, just one dot, and the page number.
+                /* Watch out for lines in a Table of Contents, where there is a space,
+                   just one dot, and the page number.
                    For example:
 
                    "Welcome to WIC . 13"
 
                    Note that if there is no space before the period, then we will not do this check,
                    that would lead to a false positive more often than not.*/
-                if ((characters::is_character::is_period(text[current_position]) || text[current_position] == common_lang_constants::ELLIPSE) &&
+                if ((characters::is_character::is_period(text[current_position]) ||
+                    text[current_position] == common_lang_constants::ELLIPSE) &&
                     current_position > 0 &&
                     characters::is_character::is_space_horizontal(text[current_position-1]))
                     {
                     size_t i = current_position+1;
-                    //skip any spaces (real spaces, not newlines)
+                    // skip any spaces (real spaces, not newlines)
                     while (i < length &&
                         characters::is_character::is_space_horizontal(text[i]))
                         { ++i; }
-                    //if the next word starts with a number, then it might be a page number
+                    // if the next word starts with a number, then it might be a page number
                     if (i < length && is_character.is_numeric(text[i]))
                         {
-                        //skip any more text that is part of the number (possible page number)
+                        // skip any more text that is part of the number (possible page number)
                         while (i < length && !characters::is_character::is_space(text[i]))
                             { ++i; }
-                        //this looks like a single-dot TOC line
+                        // this looks like a single-dot TOC line
                         if (i < length &&
                             (text[i] == L'\n' || text[i] == L'\r'))
                             { return false; }
                         }
                     }
-                //special case for ellipse, interrobangs, or multiple exclamation points.
-                //skip the extra punctuation.
-                if (can_character_end_sentence_strict(text[current_position+1]) ||
-                    (current_position+2 < length && characters::is_character::is_space(text[current_position+1]) && can_character_end_sentence_strict(text[current_position+2])) )
+                // special case for ellipse, interrobangs, or multiple exclamation points.
+                // skip the extra punctuation.
+                if (can_character_end_sentence_strict(text[current_position + 1]) ||
+                    (current_position + 2 < length &&
+                     characters::is_character::is_space(text[current_position + 1]) &&
+                     can_character_end_sentence_strict(text[current_position + 2])) )
                     {
-                    //eat up any more sentence-ending punctuation
+                    // eat up any more sentence-ending punctuation
                     size_t i(0);
                     size_t periodCount = characters::is_character::is_period(text[current_position]) ? 1 : 0;
                     size_t ellipsesCount = (text[current_position] == common_lang_constants::ELLIPSE) ? 1 : 0;
@@ -398,7 +404,7 @@ namespace grammar
                             { ++ellipsesCount; }
                         lastSentenceEndingPunctuation = i;
                         }
-                    //if the rest of the document is whitespace then assume end of sentence
+                    // if the rest of the document is whitespace then assume end of sentence
                     if (i >= length)
                         { return true; }
                     // "words. . . . This is a new sentence." is fine, this would appear in a
@@ -408,21 +414,27 @@ namespace grammar
                     // "Welcome to WIC........ 13"
                     if (periodCount > 4 || ellipsesCount > 1)
                         { return false; }
-                    //move the current (sentence-ending) punctuation to the last one in the sequence
+                    // move the current (sentence-ending) punctuation to the last one in the sequence
                     current_position = lastSentenceEndingPunctuation;
                     }
-                // "word1. (word2", will be an end of sentence (regardless of case), unless word1 is an abbreviation/acronym/initial.
+                // "word1. (word2", will be an end of sentence
+                // (regardless of case), unless word1 is an abbreviation/acronym/initial.
                 if (characters::is_character::is_space_horizontal(text[current_position+1]))
                     {
-                    size_t nextNonSpace = current_position+1;
+                    size_t nextNonSpace = current_position + 1;
                     while (nextNonSpace < length &&
                            characters::is_character::is_space_horizontal(text[nextNonSpace]))
                         { ++nextNonSpace; }
                     if (nextNonSpace+1 < length &&
                         traits::case_insensitive_ex::eq(text[nextNonSpace], L'('))
-                        { return !(isAbbreviation(text+previous_word_position, (original_position-previous_word_position)+1) ||
-                                  isAcronym(text+previous_word_position, (current_position-previous_word_position)+1) ||
-                                  ((current_position-previous_word_position) == 1 && characters::is_character::is_alpha(text[previous_word_position])) ); }
+                        {
+                        return
+                            !(isAbbreviation(text+previous_word_position,
+                                             (original_position-previous_word_position)+1) ||
+                              isAcronym(text+previous_word_position, (current_position-previous_word_position)+1) ||
+                             ((current_position-previous_word_position) == 1 &&
+                               characters::is_character::is_alpha(text[previous_word_position])) );
+                        }
                     }
                 // citation (superscripted number) after a sentence? Skip over that.
                 if (string_util::is_superscript_number(text[current_position+1]))
@@ -457,58 +469,67 @@ namespace grammar
                          traits::case_insensitive_ex::eq(text[previous_word_position+1], L's') &&
                          traits::case_insensitive_ex::eq(text[previous_word_position+2], L'w')) ) )
                         {
-                        //if inside of parentheses, then it is part of current sentence.
+                        // if inside of parentheses, then it is part of current sentence.
                         if (can_character_begin_or_end_parenthetical_or_quoted_section(text[current_position+1]))
                             { return false; }
-                        else//it's followed by a space, then if followed by lowercased word then definitely part of the current sentence.
+                        // it's followed by a space, then if followed by lowercased word then
+                        // definitely part of the current sentence.
+                        else
                             {
-                            if ((current_position+2 < length && is_character.is_lower(text[current_position+2])) ||
-                                (current_position+3 < length && characters::is_character::is_space(text[current_position+2]) && is_character.is_lower(text[current_position+3])) )
+                            if ((current_position+2 < length &&
+                                 is_character.is_lower(text[current_position+2])) ||
+                                (current_position+3 < length &&
+                                 characters::is_character::is_space(text[current_position+2]) &&
+                                 is_character.is_lower(text[current_position+3])) )
                                 { return false; }
                             }
                         }
-                    //Now verify that the next character can begin a sentence
-                    //first, if the .?!: is followed by a CRLF or form feed and not an abbreviation then it's most likely end of sentence
+                    //  Now verify that the next character can begin a sentence
+                    // first, if the .?!: is followed by a CRLF or form feed and not an abbreviation then
+                    // it's most likely end of sentence
                     if (characters::is_character::is_space_vertical(text[current_position+1]))
                         { return true; }
-                    //eat up extra (secondary) parenthesis or quote if present. Rare, but it happens
+                    // eat up extra (secondary) parenthesis or quote if present. Rare, but it happens
                     if (current_position+2 < length &&
                         can_character_begin_or_end_parenthetical_or_quoted_section(text[current_position+2]))
                         { ++current_position; }
-                    //eat up whitespace up to the next word
+                    // eat up whitespace up to the next word
                     size_t i(0);
                     bool nonWordPunctEncountered = false;
                     for (i = current_position+2; i < length; ++i)
                         {
                         if (!characters::is_character::is_space(text[i]) )
                             {
-                            //skip any "garbage" punctuation in between words
+                            // skip any "garbage" punctuation in between words
                             if (!is_character.can_character_begin_word(text[i]))
                                 {
                                 nonWordPunctEncountered = true;
                                 continue;
                                 }
-                            //found a legit character to start the next word...
+                            // found a legit character to start the next word...
                             else
                                 { break; }
                             }
-                        // if the .?!: is followed by a CRLF and not an abbreviation then it's most likely end of sentence
+                        // if the .?!: is followed by a CRLF and not an abbreviation
+                        // then it's most likely end of sentence
                         if (characters::is_character::is_space_vertical(text[i]))
                             { return true; }
                         }
-                    //if the rest of the document is whitespace then assume end of sentence (even if this is last word is an abbreviation or acronym).
+                    // if the rest of the document is whitespace then assume end of sentence
+                    // (even if this is last word is an abbreviation or acronym).
                     if (i >= length)
                         { return true; }
 
-                    //if the word is just one letter then it is probably an initial.
-                    //A single number or non-letter at the end of a sentence is OK.
+                    // if the word is just one letter then it is probably an initial.
+                    // A single number or non-letter at the end of a sentence is OK.
                     if ((original_position-previous_word_position) == 1 &&
                         characters::is_character::is_alpha(text[previous_word_position]) &&
                         characters::is_character::is_period(text[original_position]))
                         { return false; }
                     // Special case with "no. of." (number of).
                     // We can't make "no." an abbreviation because it is such a common word that can end a sentence.
-                    // Note that "of" is a case sensitive comparison, so "No. Of course not." would be seen as two sentences.
+                    // Note that "of" is a case sensitive comparison, so "No. Of course not."
+                    // would be seen as two sentences.
                     // Note that we also treat "no. #" and "no. [0-9]" as an abbreviation.
                     else if ((previous_word_position+2 < length &&
                              traits::case_insensitive_ex::eq(text[previous_word_position], L'n') &&
@@ -521,14 +542,14 @@ namespace grammar
                                  (string_util::full_width_to_narrow(text[i]) == L'#') ||
                                  is_character.is_numeric(text[i])) )
                         { return false; }
-                    //"Vs." can never start a sentence, so if a word is in front of it that ends with a period
-                    //then it must be an unknown abbreviation
+                    // "Vs." can never start a sentence, so if a word is in front of it that ends with a period
+                    // then it must be an unknown abbreviation
                     else if (i+2 < length &&
                              traits::case_insensitive_ex::eq(text[i], L'v') &&
                              traits::case_insensitive_ex::eq(text[i+1], L's') &&
                              characters::is_character::is_period(text[i+2]))
                         { return false; }
-                    //Special logic for ambiguous abbreviations
+                    // Special logic for ambiguous abbreviations
                     else if ((current_position-previous_word_position) == 3 &&
                         // "Jan." can be a person's name or an abbreviation for January
                         ((string_util::full_width_to_narrow(text[previous_word_position]) == L'J' &&
@@ -540,9 +561,11 @@ namespace grammar
                             traits::case_insensitive_ex::eq(text[previous_word_position+2], L'r'))) )
                         { return !is_character.is_numeric(text[i]); }
                     // see if it's just an abbreviation or acronym
-                    else if (isAbbreviation(text+previous_word_position, (original_position-previous_word_position)+1) )
+                    else if (isAbbreviation(text+previous_word_position,
+                                (original_position-previous_word_position)+1) )
                         { return false; }
-                    else if (isAcronym.is_dotted_acronym(text+previous_word_position, (current_position-previous_word_position)+1) )
+                    else if (isAcronym.is_dotted_acronym(text+previous_word_position,
+                             (current_position-previous_word_position)+1) )
                         { return false; }
                     /* "Hello." he said (this is one sentence)
                        "Hello." Blake said (this is two sentences)
@@ -591,7 +614,8 @@ namespace grammar
             else
                 { return false; }
             }
-        /** @returns @c true if a character can start a sentence. This can be a letter, left parenthesis, dash, or quote.
+        /** @returns @c true if a character can start a sentence.
+                This can be a letter, left parenthesis, dash, or quote.
             @param ch The character to review.*/
         [[nodiscard]]
         inline bool can_character_begin_sentence(const wchar_t ch) const noexcept
@@ -638,18 +662,21 @@ namespace grammar
         /** @returns @c true if a character can be valid sentence-ending punctuation.
             @param character The character to review.
             @note This variation returns true if character is a standard stop character (e.g., '?' or '.')
-                  or something like ':' or ellipse followed by a hard return, or special characters that must be followed
-                  by something else (e.g., a dash which later must be determined to be followed by a quote). This function
-                  should only be used if you plan to further review the character (e.g., by calling operator()).*/
+                or something like ':' or ellipse followed by a hard return, or special characters that must be followed
+                by something else (e.g., a dash which later must be determined to be followed by a quote).
+                This function should only be used if you plan to further review the character
+                (e.g., by calling operator()).*/
         [[nodiscard]]
         inline static bool can_character_end_sentence_passive(const wchar_t character) noexcept
             {
             return (can_character_end_sentence_strict(character) || characters::is_character::is_dash(character));
             }
-        /** @returns @c true if a character can be a valid beginning or ending to a parenthetical section following a sentence.
+        /** @returns @c true if a character can be a valid beginning or ending to a
+                parenthetical section following a sentence.
             @param character The character to review.*/
         [[nodiscard]]
-        inline static bool can_character_begin_or_end_parenthetical_or_quoted_section(const wchar_t character) noexcept
+        inline static bool can_character_begin_or_end_parenthetical_or_quoted_section(
+            const wchar_t character) noexcept
             {
             return (traits::case_insensitive_ex::eq(character, L'(') ||
                     traits::case_insensitive_ex::eq(character, L')') ||
@@ -688,11 +715,11 @@ namespace grammar
                       const size_t end_index,
                       const wchar_t ending_punctuation) noexcept
             : m_begin_index(begin_index), m_end_index(end_index),
-                m_size((end_index - begin_index)+1),
-                m_valid_size((end_index - begin_index) + 1),
-                m_ending_punctuation(ending_punctuation),
-            // sentence will have at least one unit
-                m_unit_count(1)
+              m_size((end_index - begin_index)+1),
+              m_valid_size((end_index - begin_index) + 1),
+              m_ending_punctuation(ending_punctuation),
+              // sentence will have at least one unit
+              m_unit_count(1)
             {
             m_is_valid = ends_with_valid_punctuation();
             m_sentence_type = m_is_valid ?

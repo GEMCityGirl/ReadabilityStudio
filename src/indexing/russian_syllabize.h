@@ -17,16 +17,33 @@
 
 namespace grammar
     {
-    //Counts the number of syllables in a (single-digit) number
+    /// Counts the number of syllables in a (single-digit) number.
     class syllabize_russian_number
         {
     public:
         size_t operator()(const wchar_t number) const noexcept
             {
-            return ((number == common_lang_constants::NUMBER_2 || number == common_lang_constants::NUMBER_3 || number == common_lang_constants::NUMBER_6) || (number == common_lang_constants::NUMBER_2_FULL_WIDTH || number == common_lang_constants::NUMBER_3_FULL_WIDTH || number == common_lang_constants::NUMBER_6_FULL_WIDTH)) ?
-                    1 : ((number == common_lang_constants::NUMBER_0 || number == common_lang_constants::NUMBER_1 || number == common_lang_constants::NUMBER_4 || number == common_lang_constants::NUMBER_5 || number == common_lang_constants::NUMBER_8) || (number == common_lang_constants::NUMBER_0_FULL_WIDTH || number == common_lang_constants::NUMBER_1_FULL_WIDTH || number == common_lang_constants::NUMBER_4_FULL_WIDTH || number == common_lang_constants::NUMBER_5_FULL_WIDTH || number == common_lang_constants::NUMBER_8_FULL_WIDTH)) ?
-                    2 : ((number == common_lang_constants::NUMBER_7 || number == common_lang_constants::NUMBER_9) || (number == common_lang_constants::NUMBER_7_FULL_WIDTH || number == common_lang_constants::NUMBER_9_FULL_WIDTH)) ?
-                    3 : 0;///@todo change syllable count to language-specific values.
+            /// @todo change syllable count to language-specific values.
+            return ((number == common_lang_constants::NUMBER_2 || number == common_lang_constants::NUMBER_3 ||
+                    number == common_lang_constants::NUMBER_6) ||
+                    (number == common_lang_constants::NUMBER_2_FULL_WIDTH ||
+                    number == common_lang_constants::NUMBER_3_FULL_WIDTH ||
+                    number == common_lang_constants::NUMBER_6_FULL_WIDTH)) ?
+                    1 : ((number == common_lang_constants::NUMBER_0 ||
+                          number == common_lang_constants::NUMBER_1 ||
+                          number == common_lang_constants::NUMBER_4 ||
+                          number == common_lang_constants::NUMBER_5 ||
+                          number == common_lang_constants::NUMBER_8) ||
+                          (number == common_lang_constants::NUMBER_0_FULL_WIDTH ||
+                           number == common_lang_constants::NUMBER_1_FULL_WIDTH ||
+                           number == common_lang_constants::NUMBER_4_FULL_WIDTH ||
+                           number == common_lang_constants::NUMBER_5_FULL_WIDTH ||
+                           number == common_lang_constants::NUMBER_8_FULL_WIDTH)) ?
+                    2 : ((number == common_lang_constants::NUMBER_7 ||
+                          number == common_lang_constants::NUMBER_9) ||
+                         (number == common_lang_constants::NUMBER_7_FULL_WIDTH ||
+                          number == common_lang_constants::NUMBER_9_FULL_WIDTH)) ?
+                    3 : 0;
             }
         };
 
@@ -37,10 +54,10 @@ namespace grammar
         {
     public:
         russian_syllabize() {}
-        ///Main interface for syllabizing a block of text
+        /// Main interface for syllabizing a block of text.
         size_t operator()(const wchar_t* start, const size_t length)
             {
-            //reset our data
+            // reset our data
             reset();
             if (start == nullptr || length == 0)
                 { return 0; }
@@ -96,8 +113,8 @@ namespace grammar
                         {
                         ++current_char;
                         }
-                    //if it is two consecutive vowels then make sure they
-                    //aren't separate syllables
+                    // if it is two consecutive vowels then make sure they
+                    // aren't separate syllables
                     if (is_vowels_separate_syllables(start,
                             start_of_block - start,
                             (current_char+1)-start_of_block,
@@ -111,19 +128,21 @@ namespace grammar
                         }
                     m_previous_vowel = current_char - start;
                     }
-                //syllabize numbers
+                // syllabize numbers
                 else if (characters::is_character::is_numeric(current_char[0]) )
                     {
                     size_t characters_counted = 0;
-                    m_syllable_count += syllabify_numeral<syllabize_russian_number>(current_char, end, characters_counted, common_lang_constants::PERIOD, common_lang_constants::COMMA);
+                    m_syllable_count +=
+                        syllabify_numeral<syllabize_russian_number>(current_char, end, characters_counted,
+                            common_lang_constants::PERIOD, common_lang_constants::COMMA);
                     current_char += characters_counted;
                     if (current_char >= end)
                         { break; }
-                    //else, we already moved to the next character to analyze, so just restart loop
+                    // else, we already moved to the next character to analyze, so just restart loop
                     else
                         { continue; }
                     }
-                //syllabize any pertinent symbols
+                // syllabize any pertinent symbols
                 m_syllable_count += get_symbol_syllable_count(start, end, current_char);
                 if (!current_char_is_vowel)
                     {
@@ -132,18 +151,19 @@ namespace grammar
                 ++current_char;
                 }
 
-            //all words are at least one syllable (even all consonant acronyms)
+            // all words are at least one syllable (even all consonant acronyms)
             m_syllable_count = (m_syllable_count > 0) ? m_syllable_count : 1;
             return m_syllable_count;
             }
     protected:
-        ///Sees if a word begins with a special prefixes which should always end as a syllable division.
-        ///Note that some of the prefixes from the article are omitted because they actually produce
-        ///incorrect results.
-        ///@returns A pair with the syllable count and length of the prefix
+        /// Sees if a word begins with a special prefixes which should always end as a syllable division.
+        /// Note that some of the prefixes from the article are omitted because they actually produce
+        /// incorrect results.
+        /// @returns A pair with the syllable count and length of the prefix
         inline static std::pair<size_t,size_t> get_prefix_length(const wchar_t* start, const size_t length)
             {
-            return std::pair<size_t,size_t>(0,0);///@todo dummy holder
+            /// @todo dummy holder
+            return std::pair<size_t,size_t>(0, 0);
             }
         //--------------------------------------------------
         bool is_vowels_separate_syllables(const wchar_t word[],

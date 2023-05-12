@@ -23,9 +23,22 @@ namespace grammar
     public:
         constexpr size_t operator()(const wchar_t number) const noexcept
             {
-            return ((number == common_lang_constants::NUMBER_2 || number == common_lang_constants::NUMBER_3 || number == common_lang_constants::NUMBER_6) || (number == common_lang_constants::NUMBER_2_FULL_WIDTH || number == common_lang_constants::NUMBER_3_FULL_WIDTH || number == common_lang_constants::NUMBER_6_FULL_WIDTH)) ?
-                    1 : ((number == common_lang_constants::NUMBER_0 || number == common_lang_constants::NUMBER_1 || number == common_lang_constants::NUMBER_4 || number == common_lang_constants::NUMBER_5 || number == common_lang_constants::NUMBER_8) || (number == common_lang_constants::NUMBER_0_FULL_WIDTH || number == common_lang_constants::NUMBER_1_FULL_WIDTH || number == common_lang_constants::NUMBER_4_FULL_WIDTH || number == common_lang_constants::NUMBER_5_FULL_WIDTH || number == common_lang_constants::NUMBER_8_FULL_WIDTH)) ?
-                    2 : ((number == common_lang_constants::NUMBER_7 || number == common_lang_constants::NUMBER_9) || (number == common_lang_constants::NUMBER_7_FULL_WIDTH || number == common_lang_constants::NUMBER_9_FULL_WIDTH)) ?
+            return ((number == common_lang_constants::NUMBER_2 || number == common_lang_constants::NUMBER_3 ||
+                     number == common_lang_constants::NUMBER_6) ||
+                     (number == common_lang_constants::NUMBER_2_FULL_WIDTH ||
+                      number == common_lang_constants::NUMBER_3_FULL_WIDTH ||
+                      number == common_lang_constants::NUMBER_6_FULL_WIDTH)) ?
+                    1 : ((number == common_lang_constants::NUMBER_0 || number == common_lang_constants::NUMBER_1 ||
+                          number == common_lang_constants::NUMBER_4 || number == common_lang_constants::NUMBER_5 ||
+                          number == common_lang_constants::NUMBER_8) ||
+                         (number == common_lang_constants::NUMBER_0_FULL_WIDTH ||
+                          number == common_lang_constants::NUMBER_1_FULL_WIDTH ||
+                          number == common_lang_constants::NUMBER_4_FULL_WIDTH ||
+                          number == common_lang_constants::NUMBER_5_FULL_WIDTH ||
+                             number == common_lang_constants::NUMBER_8_FULL_WIDTH)) ?
+                    2 : ((number == common_lang_constants::NUMBER_7 || number == common_lang_constants::NUMBER_9) ||
+                         (number == common_lang_constants::NUMBER_7_FULL_WIDTH ||
+                          number == common_lang_constants::NUMBER_9_FULL_WIDTH)) ?
                     3 : 0;
             }
         };
@@ -74,27 +87,31 @@ namespace grammar
             m_previous_block_vowel = m_previous_vowel = m_length;
             bool is_in_vowel_block = false;
             bool current_char_is_vowel = false;
-            const wchar_t* current_char = start;            
+            const wchar_t* current_char = start;
 
             while (current_char != end)
                 {
                 current_char_is_vowel = isChar.is_vowel(current_char[0]);
-                current_char_is_vowel = (traits::case_insensitive_ex::eq(current_char[0], common_lang_constants::LOWER_Y) && is_consonant_y(start, current_char - start) ) ?
+                current_char_is_vowel =
+                    (traits::case_insensitive_ex::eq(current_char[0], common_lang_constants::LOWER_Y) &&
+                        is_consonant_y(start, current_char - start) ) ?
                     false : current_char_is_vowel;
 
                 bool next_char_is_vowel = false;
-                /*if last letter, then there is no next letter*/
+                // if last letter, then there is no next letter
                 if ((m_length-1) == static_cast<size_t>(current_char-start) )
                     { next_char_is_vowel = false; }
                 else
                     {
                     next_char_is_vowel = isChar.is_vowel(current_char[1]);
-                    next_char_is_vowel = (traits::case_insensitive_ex::eq(current_char[1], common_lang_constants::LOWER_Y) && is_consonant_y(start, (current_char+1) - start) ) ?
+                    next_char_is_vowel =
+                        (traits::case_insensitive_ex::eq(current_char[1], common_lang_constants::LOWER_Y) &&
+                            is_consonant_y(start, (current_char+1) - start) ) ?
                         false : next_char_is_vowel;
                     }
 
                 is_in_vowel_block = current_char_is_vowel && next_char_is_vowel;
-                //if it's a vowel and it's the only one in this block
+                // if it's a vowel and it's the only one in this block
                 if (current_char_is_vowel && !is_in_vowel_block)
                     {
                     ++m_syllable_count;
@@ -108,8 +125,8 @@ namespace grammar
                         {
                         ++current_char;
                         }
-                    //if it is two consecutive vowels then make sure they
-                    //aren't separate syllables
+                    // if it is two consecutive vowels then make sure they
+                    // aren't separate syllables
                     if (is_vowels_separate_syllables(start,
                             start_of_block - start,
                             (current_char+1)-start_of_block) )
@@ -122,19 +139,21 @@ namespace grammar
                         }
                     m_previous_vowel = current_char - start;
                     }
-                //syllabize numbers
+                // syllabize numbers
                 else if (characters::is_character::is_numeric_simple(current_char[0]) )
                     {
                     size_t characters_counted = 0;
-                    m_syllable_count += syllabify_numeral<syllabize_spanish_number>(current_char, end, characters_counted, common_lang_constants::COMMA, common_lang_constants::PERIOD);
+                    m_syllable_count +=
+                        syllabify_numeral<syllabize_spanish_number>(current_char, end, characters_counted,
+                            common_lang_constants::COMMA, common_lang_constants::PERIOD);
                     current_char += characters_counted;
                     if (current_char >= end)
                         { break; }
-                    //else, we already moved to the next character to analyze, so just restart loop
+                    // else, we already moved to the next character to analyze, so just restart loop
                     else
                         { continue; }
                     }
-                //syllabize any pertinent symbols
+                // syllabize any pertinent symbols
                 m_syllable_count += get_symbol_syllable_count(start, end, current_char);
                 if (!current_char_is_vowel)
                     {
@@ -144,7 +163,7 @@ namespace grammar
                 }
 
             finalize_special_cases(start);
-            //all words are at least one syllable (even all consonant acronyms)
+            // all words are at least one syllable (even all consonant acronyms)
             m_syllable_count = (m_syllable_count > 0) ? m_syllable_count : 1;
             return m_syllable_count;
             }
@@ -152,7 +171,7 @@ namespace grammar
         inline void finalize_special_cases(const wchar_t* start) noexcept
             {
             assert(start);
-            //Irish names with proceeding "Mc" is a separate syllable
+            // Irish names with proceeding "Mc" is a separate syllable
             if (m_length >= 2 &&
                 traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_M) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_C))
@@ -248,14 +267,14 @@ namespace grammar
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_E) &&
                 traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_O))
                 { return std::pair<size_t,size_t>(2,5); }
-            //pronounced as "a-e-ro"
+            // pronounced as "a-e-ro"
             else if (length >= 4 &&
                 traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_A) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_E) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_R) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_O))
                 { return std::pair<size_t,size_t>(3,4); }
-            //pronounced as "aer-o"
+            // pronounced as "aer-o"
             else if (length >= 4 && traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_A) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_E) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_R) &&
@@ -315,7 +334,7 @@ namespace grammar
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_T) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_A))
                 { return std::pair<size_t,size_t>(2,4); }
-            else if (length >= 4 && 
+            else if (length >= 4 &&
                 traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_O) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_M) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_N) &&
@@ -398,7 +417,7 @@ namespace grammar
             {
             return (traits::case_insensitive_ex::eq(vowel, common_lang_constants::LOWER_I) ||
                 traits::case_insensitive_ex::eq(vowel, common_lang_constants::LOWER_U)||
-                //although the umlaut is an accent, it doesn't make U strong
+                // although the umlaut is an accent, it doesn't make U strong
                 traits::case_insensitive_ex::eq(vowel, common_lang_constants::LOWER_U_UMLAUTS));
             }
         /** @brief Determines if a block of vowels are separate syllables.
@@ -411,42 +430,50 @@ namespace grammar
                                           size_t position, size_t vowel_block_size) const noexcept
             {
             assert(word);
-            //four consecutive vowels would be odd, so just return true
+            // four consecutive vowels would be odd, so just return true
             if (vowel_block_size > 3)
                 { return true; }
             else if (vowel_block_size == 3)
                 {
-                //special case for "uiad[oa]" to be handled later
+                // special case for "uiad[oa]" to be handled later
                 if (position <= (m_length-5) &&
                      traits::case_insensitive_ex::eq(word[position], common_lang_constants::LOWER_U) &&
                     traits::case_insensitive_ex::eq(word[position+1], common_lang_constants::LOWER_I) &&
                     traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_A) &&
                     traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_D) &&
-                    (traits::case_insensitive_ex::eq(word[position+4], common_lang_constants::LOWER_O) || traits::case_insensitive_ex::eq(word[position+4], common_lang_constants::LOWER_A)) )
+                    (traits::case_insensitive_ex::eq(word[position+4], common_lang_constants::LOWER_O) ||
+                        traits::case_insensitive_ex::eq(word[position+4], common_lang_constants::LOWER_A)) )
                     { ++position; }
                 else
                     {
-                    //two strongs next to each other will split
+                    // two strongs next to each other will split
                     return ((is_strong_vowel(word[position]) && is_strong_vowel(word[position+1])) ||
                             (is_strong_vowel(word[position+1]) && is_strong_vowel(word[position+2])));
                     }
                 }
 
-            //TUOS[OA] and STRUS[OA]--"uo" splits, even though 'u' is weak
+            // TUOS[OA] and STRUS[OA]--"uo" splits, even though 'u' is weak
             if (position > 0 &&
                 position <= (m_length-4) &&
-                traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_T) && traits::case_insensitive_ex::eq(word[position], common_lang_constants::LOWER_U) &&
-                traits::case_insensitive_ex::eq(word[position+1], common_lang_constants::LOWER_O) && traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_S) &&
-                (traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_O) || traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_A)))
+                traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_T) &&
+                traits::case_insensitive_ex::eq(word[position], common_lang_constants::LOWER_U) &&
+                traits::case_insensitive_ex::eq(word[position+1], common_lang_constants::LOWER_O) &&
+                traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_S) &&
+                (traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_O) ||
+                    traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_A)))
                 { return true; }
             else if (position > 2 &&
                 position <= (m_length-4) &&
-                traits::case_insensitive_ex::eq(word[position-3], common_lang_constants::LOWER_S) && traits::case_insensitive_ex::eq(word[position-2], common_lang_constants::LOWER_T) &&
-                traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_R) && traits::case_insensitive_ex::eq(word[position], common_lang_constants::LOWER_U) &&
-                traits::case_insensitive_ex::eq(word[position+1], common_lang_constants::LOWER_O) && traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_S) &&
-                (traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_O) || traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_A)))
+                traits::case_insensitive_ex::eq(word[position-3], common_lang_constants::LOWER_S) &&
+                traits::case_insensitive_ex::eq(word[position-2], common_lang_constants::LOWER_T) &&
+                traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_R) &&
+                traits::case_insensitive_ex::eq(word[position], common_lang_constants::LOWER_U) &&
+                traits::case_insensitive_ex::eq(word[position+1], common_lang_constants::LOWER_O) &&
+                traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_S) &&
+                (traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_O) ||
+                    traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_A)))
                 { return true; }
-            //FIANZ[UA]
+            // FIANZ[UA]
             else if (position > 0 &&
                 position <= (m_length-5) &&
                 traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_F) &&
@@ -457,7 +484,7 @@ namespace grammar
                 (traits::case_insensitive_ex::eq(word[position+4], common_lang_constants::LOWER_U) ||
                  traits::case_insensitive_ex::eq(word[position+4], common_lang_constants::LOWER_A)) )
                 { return true; }
-            //IAD[OA]--"ia" splits, even though 'i' is weak
+            // IAD[OA]--"ia" splits, even though 'i' is weak
             else if (position > 0 &&
                 position <= (m_length-4) &&
                 traits::case_insensitive_ex::eq(word[position], common_lang_constants::LOWER_I) &&
@@ -466,7 +493,7 @@ namespace grammar
                 (traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_O) ||
                  traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_A)) )
                 {
-                //exception for "criado"
+                // exception for "criado"
                 if (position == 2 &&
                     traits::case_insensitive_ex::eq(word[position-2], common_lang_constants::LOWER_C) &&
                     traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_R))
@@ -474,10 +501,10 @@ namespace grammar
                 else
                     { return true; }
                 }
-            //two strong together will split--this is the standard rule, but exceptions need to be checked first
+            // two strong together will split--this is the standard rule, but exceptions need to be checked first
             else if (is_strong_vowel(word[position]) && is_strong_vowel(word[position+1]))
                 { return true; }
-            //two weak vowels or one strong and regular (i.e., not accented) weak vowel are one sound
+            // two weak vowels or one strong and regular (i.e., not accented) weak vowel are one sound
             else
                 { return false; }
             }

@@ -36,7 +36,8 @@ namespace grammar
     /** @brief Results that calls to equal_to_words() can produce.*/
     enum class phrase_comparison_result
         {
-        phrase_longer_than,   /*!< The phrase has more words than stream of the words it was compared to. This will be an immediate short circuit. */
+        phrase_longer_than,   /*!< The phrase has more words than stream of the words it was compared to.
+                                   This will be an immediate short circuit. */
         phrase_equal,         /*!< The phrase is equal to the words it was compared to. */
         phrase_less_than,     /*!< The phrase is less than (lexicographically) the words it was compared to. */
         phrase_greater_than,  /*!< The phrase is greater than (lexigraphically) the words it was compared to. */
@@ -57,7 +58,8 @@ namespace grammar
         explicit phrase(const word_typeT& src)
             { m_words.push_back(src); }
         /** @returns The phrase_type of the phrase. For example, it could be redundant or a cliché.*/
-        [[nodiscard]] phrase_type get_type() const noexcept
+        [[nodiscard]]
+        phrase_type get_type() const noexcept
             { return m_phrase_type; }
         /** @brief Sets the phrase_type of the phrase. For example, it could be redundant or a cliché.
             @param type The phrase_type to set the phrase to.*/
@@ -100,13 +102,15 @@ namespace grammar
             except that one phrase has more words (in which case that phrase is "bigger").
             @param that The phrase to compare against.
             @returns @c true if less than other phrase, false if equal to or greater than the other phrase.*/
-        [[nodiscard]] bool operator<(const phrase& that) const
+        [[nodiscard]]
+        bool operator<(const phrase& that) const
             {
             size_t i = 0;
             for (i = 0; i < get_word_count(); ++i)
                 {
-                /*if all the previous words in these phrases were the same, but now we have reached the last of the words
-                in the other phrase, then this phrase must be bigger*/
+                /* if all the previous words in these phrases were the same,
+                   but now we have reached the last of the words
+                   in the other phrase, then this phrase must be bigger*/
                 if (i >= that.get_word_count())
                     { return false; }
                 const int cmpResult = m_words[i].compare(that.m_words[i]);
@@ -120,7 +124,8 @@ namespace grammar
             return false;
             }
         /** @returns @c true if all the words between the two phrases are the same.*/
-        [[nodiscard]] bool operator==(const phrase& that) const
+        [[nodiscard]]
+        bool operator==(const phrase& that) const
             {
             if (get_word_count() != that.get_word_count() )
                 { return false; }
@@ -141,7 +146,9 @@ namespace grammar
             be the number of words in the sequence until the end of the sentence.
             @returns A pair containing a bool (indicating if it was a match) and a phrase_comparison_result.*/
         template<typename Tword_iter>
-        [[nodiscard]] std::pair<bool,phrase_comparison_result> equal_to_words(const Tword_iter& words, const size_t position, const size_t max_word_count) const
+        [[nodiscard]]
+        std::pair<bool,phrase_comparison_result> equal_to_words(const Tword_iter& words,
+            const size_t position, const size_t max_word_count) const
             {
             if (get_word_count() > max_word_count)
                 { return std::make_pair(false,phrase_comparison_result::phrase_longer_than); }
@@ -150,7 +157,11 @@ namespace grammar
                 {
                 auto compRes = m_words[i].compare((words+i)->c_str());
                 if (compRes != 0)
-                    { return std::make_pair(false, compRes < 0 ? phrase_comparison_result::phrase_less_than : phrase_comparison_result::phrase_greater_than); }
+                    {
+                    return std::make_pair(false, compRes < 0 ?
+                        phrase_comparison_result::phrase_less_than :
+                        phrase_comparison_result::phrase_greater_than);
+                    }
                 }
             // before returning true, make sure there isn't a proceeding word exception
             if (get_proceeding_exceptions().size() && position > 0)
@@ -224,7 +235,8 @@ namespace grammar
         std::set<word_typeT> m_proceeding_exceptions;
         };
 
-    /** Wrapper for a collection of phrases that can be easily searched, compared against (with variable word-length phrases), sorted, and load from a file.*/
+    /** Wrapper for a collection of phrases that can be easily searched,
+            compared against (with variable word-length phrases), sorted, and load from a file.*/
     class phrase_collection
         {
     public:
@@ -259,7 +271,7 @@ namespace grammar
             phrase_word_pair searchValue(searchPhrase, traits::case_insensitive_wstring_ex());
 
             // find the first phrase that begins with the first word(s)
-            std::vector<phrase_word_pair>::const_iterator foundPhrase = 
+            std::vector<phrase_word_pair>::const_iterator foundPhrase =
                 std::lower_bound(m_phrases.begin(), m_phrases.end(), searchValue);
             if (foundPhrase == m_phrases.end())
                 { return npos; }
@@ -268,12 +280,14 @@ namespace grammar
                 {
                 if (foundPhrase->first.equal_to_words(words, position, max_word_count).first)
                     {
-                    // look ahead to see if there are any bigger phrases that match these words before returning this index
+                    // look ahead to see if there are any bigger phrases that match these
+                    // words before returning this index
                     std::vector<phrase_word_pair>::const_iterator nextPhrase = foundPhrase+1;
                     while (nextPhrase != m_phrases.end() &&
                            nextPhrase->first.get_words()[0].compare(words[0].c_str()) == 0)
                         {
-                        const auto nextPhraseCompareResult = nextPhrase->first.equal_to_words(words, position, max_word_count);
+                        const auto nextPhraseCompareResult =
+                            nextPhrase->first.equal_to_words(words, position, max_word_count);
                         // If the next phrase matches, then move the found iterator.
                         // Note that we will keep going though in case there is yet another larger, matching phrase.
                         if (nextPhraseCompareResult.first)
@@ -284,7 +298,7 @@ namespace grammar
                         // Move onto the next phrase in the list and see if that matches.
                         else if (nextPhraseCompareResult.second != phrase_comparison_result::phrase_greater_than)
                             { ++nextPhrase; }
-                        //If the next phrase in the list is greater than this text block, then we are finally done.
+                        // If the next phrase in the list is greater than this text block, then we are finally done.
                         else
                             { break; }
                         }
@@ -307,7 +321,8 @@ namespace grammar
             @param text The text stream to load the phrases from.
             @param sort_phrases Whether or not to sort the phrases after loading them. If loading multiple streams,
                    then it is more optimcal to set this to false and to call sort() after loading all other streams.
-            @param preserve_phrases Whether phrases already in the list should be kept. False will clear the old list while loading the new phrases, True will preserve them.*/
+            @param preserve_phrases Whether phrases already in the list should be kept.
+                @c false will clear the old list while loading the new phrases, @c true will preserve them.*/
         void load_phrases(const wchar_t* text, const bool sort_phrases, const bool preserve_phrases)
             {
             if (!text)
@@ -323,7 +338,8 @@ namespace grammar
                 { return; }
             m_phrases.reserve(m_phrases.size()+lineCount);
 
-            std::vector<traits::case_insensitive_wstring_ex> rowStrings(5); //the phrase, the suggestion, its type (optional), and proceeding/trailing exceptions (optional)
+            // the phrase, the suggestion, its type (optional), and proceeding/trailing exceptions (optional)
+            std::vector<traits::case_insensitive_wstring_ex> rowStrings(5);
             lily_of_the_valley::standard_delimited_character_column
                 tabbedColumn(lily_of_the_valley::text_column_delimited_character_parser{ L'\t' }, 5);
             lily_of_the_valley::text_row<traits::case_insensitive_wstring_ex> row(std::nullopt);
@@ -334,7 +350,8 @@ namespace grammar
             lily_of_the_valley::standard_delimited_character_column
                 spacedColumn(lily_of_the_valley::text_column_delimited_character_parser{ L' ' }, std::nullopt);
             lily_of_the_valley::text_row<traits::case_insensitive_wstring_ex> phraseRow(std::nullopt);
-            phraseRow.treat_consecutive_delimitors_as_one(true); // just grabbing list of words, extra spaces can be ignored
+            // just grabbing list of words, extra spaces can be ignored
+            phraseRow.treat_consecutive_delimitors_as_one(true);
             phraseRow.allow_column_resizing();
             phraseRow.add_column(spacedColumn);
             phraseRow.set_values(&newPhrasePair.first.get_words());
@@ -345,7 +362,8 @@ namespace grammar
                 if (row.get_number_of_columns_last_read() < 1)
                     { continue; }
 
-                // phrase should have at least one word (normally more than one, but we will be flexible and allow one-word "phrases")
+                // phrase should have at least one word (normally more than one,
+                // but we will be flexible and allow one-word "phrases")
                 phraseRow.read(rowStrings[0].c_str());
                 if (phraseRow.get_number_of_columns_last_read() < 1)
                     { continue; }
@@ -356,7 +374,8 @@ namespace grammar
                     { newPhrasePair.second = rowStrings[1].c_str(); }
                 else
                     { newPhrasePair.second = L""; }
-                // the type column is optional. They can put 0 (wordy), 1 (redundant), 2 (cliche), or 3 (phrasing error) in there to classify
+                // the type column is optional.
+                // They can put 0 (wordy), 1 (redundant), 2 (cliche), or 3 (phrasing error) in there to classify
                 // the phrase. It will default to WORDY if the row doesn't specify this.
                 if (row.get_number_of_columns_last_read() < 3)
                     { newPhrasePair.first.set_type(phrase_type::phrase_wordy); }
@@ -370,7 +389,8 @@ namespace grammar
                     { newPhrasePair.first.set_type(phrase_type::phrase_error); }
                 else
                     { newPhrasePair.first.set_type(phrase_type::phrase_wordy); }
-                // Proceeding exception rule is optional. This would be a word after the phrase that would negate our normal comparison logic.
+                // Proceeding exception rule is optional.
+                // This would be a word after the phrase that would negate our normal comparison logic.
                 // For example, the phrase "I are" is normally wrong, but in the case of
                 // "and I are" it is correct. So "and" would be our proceeding word exception.
                 if (row.get_number_of_columns_last_read() > 3)
@@ -387,7 +407,8 @@ namespace grammar
                     }
                 else
                     { newPhrasePair.first.get_proceeding_exceptions().clear(); }
-                // Trailing exception rule is optional. This would be a word after the phrase that would negate our normal comparison logic.
+                // Trailing exception rule is optional.
+                // This would be a word after the phrase that would negate our normal comparison logic.
                 // For example, the phrase "could of" is normally meant to be "could have", but in the case of
                 // "could of course" it is correct. So "course" would be our trailing word exception.
                 if (row.get_number_of_columns_last_read() > 4)
@@ -420,7 +441,7 @@ namespace grammar
         void remove_duplicates()
             {
             std::sort(std::execution::par, m_phrases.begin(), m_phrases.end());
-            std::vector<phrase_word_pair>::iterator endOfUniquePos = 
+            std::vector<phrase_word_pair>::iterator endOfUniquePos =
                 std::unique(m_phrases.begin(), m_phrases.end());
             if (endOfUniquePos != m_phrases.end())
                 { m_phrases.erase(endOfUniquePos, m_phrases.end()); }

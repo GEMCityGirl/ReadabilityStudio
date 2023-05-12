@@ -17,21 +17,21 @@ std::set<is_english_coordinating_conjunction::string_type> is_english_coordinati
 std::set<is_spanish_coordinating_conjunction::string_type> is_spanish_coordinating_conjunction::m_conjunctions =
     {
     L"&",
-    L"e",    //and
-    L"ni",   //nor
-    L"o",    //or
-    L"pero", //but
-    L"sino", //but
-    L"u",    //or
-    L"y"     //and
+    L"e",    // and
+    L"ni",   // nor
+    L"o",    // or
+    L"pero", // but
+    L"sino", // but
+    L"u",    // or
+    L"y"     // and
     };
 
 std::set<is_german_coordinating_conjunction::string_type> is_german_coordinating_conjunction::m_conjunctions =
     {
     L"&",
-    L"und",    //and
-    L"oder",   //or
-    L"denn",   //for, because
-    L"aber",   //but
-    L"sondern",//but (instead)
+    L"und",     // and
+    L"oder",    // or
+    L"denn",    // for, because
+    L"aber",    // but
+    L"sondern", // but (instead)
     };

@@ -10,7 +10,7 @@
 
 using namespace grammar;
 
-std::set<is_negating::string_type> is_negating::m_words = 
+std::set<is_negating::string_type> is_negating::m_words =
     { L"ain't", L"aren't", L"can't", L"cannot",
       L"couldn't", L"didn't", L"doesn't", L"don't",
       L"hadn't", L"hasn't", L"haven't", L"isn't",

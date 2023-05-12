@@ -115,34 +115,46 @@ namespace readability
         {
     public:
         test_with_classification() noexcept = default;
-        test_with_classification(//industry
-                                  const bool industryChildrensPublishingSelected,
-                                  const bool industryAdultPublishingSelected,
-                                  const bool industrySecondaryLanguageSelected,
-                                  const bool industryChildrensHealthCareSelected,
-                                  const bool industryAdultHealthCareSelected,
-                                  const bool industryMilitaryGovernmentSelected,
-                                  const bool industryBroadcastingSelected,
-                                  //document
-                                  const bool documentGeneralSelected,
-                                  const bool documentTechSelected,
-                                  const bool documentNonNarrativeFormSelected,
-                                  const bool documentYoungAdultSelected,
-                                  const bool documentChildrenSelected)
+        test_with_classification(// industry
+                                 const bool industryChildrensPublishingSelected,
+                                 const bool industryAdultPublishingSelected,
+                                 const bool industrySecondaryLanguageSelected,
+                                 const bool industryChildrensHealthCareSelected,
+                                 const bool industryAdultHealthCareSelected,
+                                 const bool industryMilitaryGovernmentSelected,
+                                 const bool industryBroadcastingSelected,
+                                 // document
+                                 const bool documentGeneralSelected,
+                                 const bool documentTechSelected,
+                                 const bool documentNonNarrativeFormSelected,
+                                 const bool documentYoungAdultSelected,
+                                 const bool documentChildrenSelected)
             {
-            add_industry_classification(industry_classification::childrens_publishing_industry, industryChildrensPublishingSelected);
-            add_industry_classification(industry_classification::adult_publishing_industry, industryAdultPublishingSelected);
-            add_industry_classification(industry_classification::childrens_healthcare_industry, industryChildrensHealthCareSelected);
-            add_industry_classification(industry_classification::adult_healthcare_industry, industryAdultHealthCareSelected);
-            add_industry_classification(industry_classification::military_government_industry, industryMilitaryGovernmentSelected);
-            add_industry_classification(industry_classification::sedondary_language_industry, industrySecondaryLanguageSelected);
-            add_industry_classification(industry_classification::broadcasting_industry, industryBroadcastingSelected);
+            add_industry_classification(
+                industry_classification::childrens_publishing_industry, industryChildrensPublishingSelected);
+            add_industry_classification(
+                industry_classification::adult_publishing_industry, industryAdultPublishingSelected);
+            add_industry_classification(
+                industry_classification::childrens_healthcare_industry, industryChildrensHealthCareSelected);
+            add_industry_classification(
+                industry_classification::adult_healthcare_industry, industryAdultHealthCareSelected);
+            add_industry_classification(
+                industry_classification::military_government_industry, industryMilitaryGovernmentSelected);
+            add_industry_classification(
+                industry_classification::sedondary_language_industry, industrySecondaryLanguageSelected);
+            add_industry_classification(
+                industry_classification::broadcasting_industry, industryBroadcastingSelected);
 
-            add_document_classification(document_classification::general_document, documentGeneralSelected);
-            add_document_classification(document_classification::technical_document, documentTechSelected);
-            add_document_classification(document_classification::nonnarrative_document, documentNonNarrativeFormSelected);
-            add_document_classification(document_classification::adult_literature_document, documentYoungAdultSelected);
-            add_document_classification(document_classification::childrens_literature_document, documentChildrenSelected);
+            add_document_classification(
+                document_classification::general_document, documentGeneralSelected);
+            add_document_classification(
+                document_classification::technical_document, documentTechSelected);
+            add_document_classification(
+                document_classification::nonnarrative_document, documentNonNarrativeFormSelected);
+            add_document_classification(
+                document_classification::adult_literature_document, documentYoungAdultSelected);
+            add_document_classification(
+                document_classification::childrens_literature_document, documentChildrenSelected);
             }
         test_with_classification(const test_with_classification& that) noexcept
             { copy_classifications(that); }
@@ -151,24 +163,24 @@ namespace readability
         /// Manual assignment. Derived classed are advised to directly call this in its own assignment operations.
         void copy_classifications(const test_with_classification& that) noexcept
             {
-            //industry
+            // industry
             m_industry_classification = that.m_industry_classification;
-            //document
+            // document
             m_document_classificaiton = that.m_document_classificaiton;
-            //language
+            // language
             m_language = that.m_language;
-            //factors
+            // factors
             m_test_factors = that.m_test_factors;
-            //teaching level
+            // teaching level
             m_teaching_level = that.m_teaching_level;
             }
-        //industry association
+        // industry association
         void add_industry_classification(const industry_classification industry, const bool set_flag)
             { m_industry_classification.set(static_cast<size_t>(industry), set_flag); }
         [[nodiscard]]
         bool has_industry_classification(const industry_classification industry) const
             { return m_industry_classification.test(static_cast<size_t>(industry)); }
-        //document type association
+        // document type association
         void add_document_classification(const document_classification doc, const bool set_flag)
             { m_document_classificaiton.set(static_cast<size_t>(doc), set_flag); }
         [[nodiscard]]
@@ -198,14 +210,14 @@ namespace readability
             { m_teaching_level.set(static_cast<size_t>(level), true); }
         [[nodiscard]]
         bool has_teaching_level(const test_teaching_level level) const
-            { return m_teaching_level.test(static_cast<size_t>(level)); }        
+            { return m_teaching_level.test(static_cast<size_t>(level)); }
         void reset_teaching_levels() noexcept
             { m_teaching_level.reset(); }
     protected:
-        //industry
+        // industry
         std::bitset<static_cast<size_t>(industry_classification::INDUSTRY_CLASSIFICATION_COUNT)>
             m_industry_classification{ 0 };
-        //document
+        // document
         std::bitset<static_cast<size_t>(document_classification::DOCUMENT_CLASSIFICATION_COUNT)>
             m_document_classificaiton{ 0 };
         // language
@@ -233,19 +245,23 @@ namespace readability
             {}
         explicit readability_test(const int id)
             { m_interfaceId = id; }
-        /** Constructor meant for normal use.
-            @param id The (string-based) ID of the test. This is used for internal identification of the test across the
-                      program, resources, and documentation.
+        /** @brief Constructor meant for normal use.
+            @param id The (string-based) ID of the test.
+                This is used for internal identification of the test across the program,
+                resources, and documentation.
             @param interface_id The ID used for the menus.
             @param short_name A user-facing short name for the test.
             @param long_name A user-facing long name for the test.
             @param description A user-facing description for the test.
             @param test_type The type of test that this is.
-            @param is_integral Whether the test's results is truncated to an integer value (i.e., no floating-point precision).
+            @param is_integral Whether the test's results is truncated to an integer value
+                (i.e., no floating-point precision).
             @param formula If a linear-regression-based test, the formula of the test.
-                           This can be an expression used as the basis for a custom test; refer to the readability test formula parser's
-                           commands to build a usable expression. (Note that this expression should be in US format.)
-                           Also note that if this test uses something like a table or graph, then this does not apply and should be an empty string.*/
+                This can be an expression used as the basis for a custom test; refer to the
+                readability test formula parser's commands to build a usable expression.
+                (Note that this expression should be in US format.)
+                Also note that if this test uses something like a table or graph, then this
+                does not apply and should be an empty string.*/
         readability_test(const wchar_t* id,
                          const int interface_id,
                          const wchar_t* short_name,
@@ -366,7 +382,7 @@ namespace readability
                 { m_tests.push_back(test_typeT(*testPos)); }
             // sort and remove any duplicates
             std::sort(m_tests.begin(), m_tests.end());
-            typename std::vector<test_typeT>::iterator endOfUniquePos = 
+            typename std::vector<test_typeT>::iterator endOfUniquePos =
                 std::unique(m_tests.begin(), m_tests.end());
             if (endOfUniquePos != m_tests.end())
                 { m_tests.erase(endOfUniquePos, m_tests.end()); }
@@ -421,7 +437,7 @@ namespace readability
             {
             auto [iterator, found] = find_test(test);
             if (!found)
-                { return string_type(L""); }
+                { return string_type{}; }
             else
                 { return iterator->get_test().get_id(); }
             }
@@ -432,7 +448,7 @@ namespace readability
             {
             auto [iterator, found] = find_test(test);
             if (!found)
-                { return string_type(L""); }
+                { return string_type{}; }
             else
                 { return iterator->get_test().get_short_name(); }
             }
@@ -443,7 +459,7 @@ namespace readability
             {
             auto [iterator, found] = find_test(test);
             if (!found)
-                { return string_type(L""); }
+                { return string_type{}; }
             else
                 { return iterator->get_test().get_long_name(); }
             }
@@ -454,39 +470,48 @@ namespace readability
             {
             auto [iterator, found] = find_test(test);
             if (!found)
-                { return string_type(L""); }
+                { return string_type{}; }
             else
                 { return iterator->get_test().get_description(); }
             }
         /// Searches for a test.
-        /// @param test The test to find (this key can be an ID (the integer or string one), short name, or long name).
-        /// @returns A pair: the iterator to the test and a boolean indicating whether the test was found or not.
+        /// @param test The test to find (this key can be an ID
+        ///     (the integer or string one), short name, or long name).
+        /// @returns A pair: the iterator to the test and a boolean
+        ///     indicating whether the test was found or not.
         template<typename T>
         [[nodiscard]]
         std::pair<typename std::vector<test_typeT>::iterator, bool> find_test(const T& test)
             {
             // first, do a binary search (by ID) as this is a fast and most common way to find a test
-            typename std::vector<test_typeT>::iterator pos = std::lower_bound(m_tests.begin(), m_tests.end(), readability_test(test));
+            auto pos = std::lower_bound(m_tests.begin(), m_tests.end(), readability_test(test));
             if (pos != m_tests.end() && *pos == readability_test(test))
                 { return std::pair<typename std::vector<test_typeT>::iterator, bool>(pos, true); }
-            // if that fails, then search items one-by-one (in case caller is searching by long name or short name)
+            // if that fails, then search items one-by-one
+            // (in case caller is searching by long name or short name)
             pos = std::find(m_tests.begin(), m_tests.end(), readability_test(test));
-            return std::pair<typename std::vector<test_typeT>::iterator, bool>(pos, (pos != m_tests.end())/*whether it was found or not*/);
+
+            // whether it was found or not
+            return std::pair<typename std::vector<test_typeT>::iterator, bool>(pos, (pos != m_tests.end()));
             }
         /// Searches for a test.
-        /// @param test The test to find (this key can be an ID (the integer or string one), short name, or long name).
-        /// @returns A pair: the iterator to the test and a boolean indicating whether the test was found or not.
+        /// @param test The test to find (this key can be an ID
+        ///     (the integer or string one), short name, or long name).
+        /// @returns A pair: the iterator to the test and a boolean
+        ///     indicating whether the test was found or not.
         template<typename T>
         [[nodiscard]]
         std::pair<typename std::vector<test_typeT>::const_iterator, bool> find_test(const T& test) const
             {
             // first, do a binary search (by ID) as this is a fast and most common way to find a test
-            typename std::vector<test_typeT>::const_iterator pos = std::lower_bound(m_tests.cbegin(), m_tests.cend(), readability_test(test));
+            auto pos = std::lower_bound(m_tests.cbegin(), m_tests.cend(), readability_test(test));
             if (pos != m_tests.cend() && *pos == readability_test(test))
                 { return std::pair<typename std::vector<test_typeT>::const_iterator, bool>(pos, true); }
             // if that fails, then search items one-by-one (in case caller is searching by long name or short name)
             pos = std::find(m_tests.cbegin(), m_tests.cend(), readability_test(test));
-            return std::pair<typename std::vector<test_typeT>::const_iterator, bool>(pos, (pos != m_tests.cend())/*whether it was found or not*/);
+
+            // whether it was found or not
+            return std::pair<typename std::vector<test_typeT>::const_iterator, bool>(pos, (pos != m_tests.cend()));
             }
         [[nodiscard]]
         std::vector<test_typeT>& get_tests() noexcept

@@ -23,9 +23,10 @@ namespace text_transform
     class romanization_conversion_table
         {
     public:
+        /// @todo modernize this initialization.
         romanization_conversion_table()
             {
-            //German letters
+            // German letters
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0xF6),L"oe"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0xD6),L"Oe"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0xFC),L"ue"));
@@ -33,10 +34,10 @@ namespace text_transform
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0xE4),L"ae"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0xC4),L"Ae"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0xDF),L"ss"));
-            //Spanish letters (that have a Latin equivalent)
+            // Spanish letters (that have a Latin equivalent)
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(241),L"nn"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(209),L"Nn"));
-            //Scandinavian letters (that have a Latin equivalent)
+            // Scandinavian letters (that have a Latin equivalent)
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(229),L"aa"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(197),L"Aa"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(198),L"Ae"));
@@ -45,7 +46,7 @@ namespace text_transform
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(140),L"Oe"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0x0153),L"oe"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(156),L"oe"));
-            //characters that regrettably just have to have their accents stripped
+            // characters that regrettably just have to have their accents stripped
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(192),L"A"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(193),L"A"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(194),L"A"));
@@ -93,10 +94,10 @@ namespace text_transform
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(251),L"u"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(253),L"y"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(255),L"y"));
-            //bullets
+            // bullets
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0x2022),std::wstring(1, 0xB7)) );
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(149),std::wstring(1, 0xB7)) );
-            //smart (single) quotes
+            // smart (single) quotes
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0x201A),L"\'"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0x2039),L"\'"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0x203A),L"\'"));
@@ -108,7 +109,7 @@ namespace text_transform
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(145),L"\'"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(146),L"\'"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(155),L"\'"));
-            //smart (double) quotes
+            // smart (double) quotes
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0x201E),L"\""));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0x201C),L"\""));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0x201D),L"\""));
@@ -117,7 +118,7 @@ namespace text_transform
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(187),L"\""));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(147),L"\""));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(148),L"\""));
-            //ligatures
+            // ligatures
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0xFB00),L"ff"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0xFB01),L"fi"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0xFB02),L"fl"));
@@ -125,31 +126,32 @@ namespace text_transform
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0xFB04),L"ffl"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0xFB05),L"ft"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0xFB06),L"st"));
-            //ellipsis
+            // ellipsis
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0x2026),L"..."));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(133),L"..."));
-            //dashes
+            // dashes
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0x2012),L"--"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0x2013),L"--"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0x2014),L"--"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0x2015),L"--"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(150),L"--"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(151),L"--"));
-            //soft hyphen
+            // soft hyphen
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0x00AD),L"-"));
-            //copyright symbols
+            // copyright symbols
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(169),L"(c)"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(174),L"(r)"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(0x2122),L"(tm)"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(153),L"(tm)"));
-            //fractions
+            // fractions
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(188),L"1/4"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(189),L"1/2"));
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(190),L"3/4"));
-            //other math symbols
+            // other math symbols
             m_replacements.emplace(std::make_pair(static_cast<wchar_t>(177),L"+-"));
             }
-        [[nodiscard]] const std::map<wchar_t,std::wstring>& get_table() const noexcept
+        [[nodiscard]]
+        const std::map<wchar_t,std::wstring>& get_table() const noexcept
             { return m_replacements; }
     private:
         std::map<wchar_t,std::wstring> m_replacements;
@@ -174,7 +176,8 @@ namespace text_transform
             @param remove_bullets Whether to remove bullets and list-item numbers.
             @param narrow_full_width_characters Whether to convert full-width characters to their narrow counterparts.
             @returns A string encoded to simpler text.*/
-        [[nodiscard]] std::wstring operator()(const wchar_t* text, size_t length,
+        [[nodiscard]]
+        std::wstring operator()(const wchar_t* text, size_t length,
                                 const bool replace_extended_ascii_characters,
                                 const bool remove_ellipses,
                                 const bool remove_bullets,
@@ -189,16 +192,19 @@ namespace text_transform
 
             for (size_t i = 0; i < length; ++i)
                 {
-                if (remove_bullets) // this should be done before anything else because of how it scans ahead
+                // this should be done before anything else because of how it scans ahead
+                if (remove_bullets)
                     {
                      if (i == 0 || text[i] == L'\n' || text[i] == L'\r')
                         {
                         while (i < length && characters::is_character::is_space(text[i]))
-                            { encoded_text += text[i++]; }//copy over any whitespace (including the newline we are on)
+                            // copy over any whitespace (including the newline we are on)
+                            { encoded_text += text[i++]; }
                         const std::pair<bool,size_t> bullet = is_bullet(text+i);
                         if (bullet.first)
                             {
-                            // if there is not a proceeding character in front of this bullet already, then replace the bullet with a tab
+                            // if there is not a proceeding character in front of this bullet already,
+                            // then replace the bullet with a tab
                             if (encoded_text.length() == 0 || encoded_text[encoded_text.length()-1] != L'\t')
                                 { encoded_text += L'\t'; }
                             i += bullet.second; // skip full length of the bullet
@@ -217,8 +223,9 @@ namespace text_transform
                         traits::case_insensitive_ex::eq(text[i+1], L'.') &&
                         traits::case_insensitive_ex::eq(text[i+2], L'.'))
                         {
-                        lookAhead = i+3;
-                        i += 2; // skip the following periods when the main loop restarts
+                        lookAhead = i + 3;
+                        // skip the following periods when the main loop restarts
+                        i += 2;
                         }
                     // if on an ellipse, then turn it into a period (for end of sentence) or a space
                     if (lookAhead > i)
