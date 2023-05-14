@@ -83,6 +83,7 @@ namespace LuaScripting
             }
         return 0;
         }
+
     bool StandardProject::ReloadIfNotDelayedSimple()
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -95,6 +96,7 @@ namespace LuaScripting
             }
         return 0;
         }
+
     int StandardProject::DelayReloading(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -246,6 +248,7 @@ namespace LuaScripting
         lua_pushinteger(L, m_project ? m_project->GetTotalHardWordsHarrisJacobson() : 0);
         return 1;
         }
+
     int StandardProject::SetTextExclusion(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -256,6 +259,7 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
+
     int StandardProject::SetIncludeIncompleteTolerance(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -265,6 +269,7 @@ namespace LuaScripting
         m_project->SetIncludeIncompleteSentencesIfLongerThanValue(lua_tonumber(L, 2));
         return 0;
         };
+
     int StandardProject::AggressivelyDeduceLists(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -275,6 +280,7 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
+
     int StandardProject::ExcludeCopyrightNotices(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -285,6 +291,7 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
+
     int StandardProject::ExcludeTrailingCitations(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -295,6 +302,7 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
+
     int StandardProject::ExcludeFileAddress(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -305,6 +313,7 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
+
     int StandardProject::ExcludeNumerals(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -315,6 +324,7 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
+
     int StandardProject::ExcludeProperNouns(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -325,6 +335,7 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
+
     //Sets the filepath to the phrase exclusion list
     //filePath Path to phrase exclusion list
     int StandardProject::SetPhraseExclusionList(lua_State *L)
@@ -379,6 +390,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
     int StandardProject::ApplyGraphBackgroundFade(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -389,6 +401,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
     int StandardProject::SetGraphBackgroundImage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -399,6 +412,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
     int StandardProject::SetGraphBackgroundOpacity(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -409,6 +423,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
     int StandardProject::SetPlotBackgroundColor(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -420,6 +435,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
     int StandardProject::SetPlotBackgroundOpacity(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -430,6 +446,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
     int StandardProject::SetGraphWatermark(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -440,6 +457,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
     int StandardProject::SetGraphLogoImage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -450,6 +468,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
     int StandardProject::SetGraphCustomBrushImage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -460,6 +479,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
     int StandardProject::DisplayGraphDropShadows(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -470,6 +490,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
     int StandardProject::SetBarChartBarColor(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -481,6 +502,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
     int StandardProject::SetBarChartBarOpacity(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -491,6 +513,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
     int StandardProject::SetBarChartBarEffect(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -501,6 +524,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
+
     int StandardProject::SetBarChartOrientation(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -523,6 +547,7 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         }
+
     int StandardProject::GetProjectLanguage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -530,6 +555,7 @@ namespace LuaScripting
         lua_pushnumber(L,static_cast<int>(m_project->GetProjectLanguage()));
         return 1;
         }
+
     int StandardProject::SetReviewer(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -540,6 +566,7 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         }
+
     int StandardProject::GetReviewer(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -547,6 +574,7 @@ namespace LuaScripting
         lua_pushstring(L, wxGetApp().GetAppOptions().GetReviewer().utf8_str());
         return 1;
         }
+
     int StandardProject::SetDocumentStorageMethod(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -557,6 +585,7 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
+
     int StandardProject::GetDocumentStorageMethod(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -575,6 +604,7 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
+
     int StandardProject::GetParagraphsParsingMethod(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -636,8 +666,8 @@ namespace LuaScripting
             else
                 {
                 std::map<int, wxString>::const_iterator pos;
-                for (pos = MainFrame::GetCustomTestMenuIds().begin();
-                    pos != MainFrame::GetCustomTestMenuIds().end();
+                for (pos = MainFrame::GetCustomTestMenuIds().cbegin();
+                    pos != MainFrame::GetCustomTestMenuIds().cend();
                     ++pos)
                     {
                     if (pos->second.CmpNoCase(testName) == 0)
@@ -649,10 +679,10 @@ namespace LuaScripting
                     CustomReadabilityTestCollection::iterator testIter =
                         std::find(BaseProject::m_custom_word_tests.begin(),
                                   BaseProject::m_custom_word_tests.end(), testName);
-                    //find the test
+                    // find the test
                     if (testIter != BaseProject::m_custom_word_tests.end())
                         {
-                        //projects will need to do a full re-indexing
+                        // projects will need to do a full re-indexing
                         m_project->RefreshRequired(ProjectRefresh::FullReindexing);
                         m_project->RefreshProject();
                         }
@@ -678,7 +708,7 @@ namespace LuaScripting
         return 1;
         }
 
-    //Reanalyzes the documents.
+    // Reanalyzes the documents.
     int StandardProject::Reload(lua_State*)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -763,6 +793,7 @@ namespace LuaScripting
                 {
                 wxMessageBox(_(L"Unable to find the scores in the project."),
                      _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                return 0;
                 }
             }
         return 0;
@@ -786,20 +817,29 @@ namespace LuaScripting
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
+            const auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+            if (idPos == wxGetApp().GetDynamicIdMap().cend())
+                {
+                wxMessageBox(wxString::Format(
+                    _(L"Unable to find the specified graph (%d) in the project."),
+                        static_cast<int>(lua_tonumber(L, 2))),
+                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                return 0;
+                }
             Wisteria::Canvas* graphWindow =
-                dynamic_cast<Wisteria::Canvas*>(view->GetReadabilityResultsView().FindWindowById(lua_tonumber(L, 2)) );
+                dynamic_cast<Wisteria::Canvas*>(view->GetReadabilityResultsView().FindWindowById(idPos->second) );
             // look in stats summary section if not in the readability section
             if (!graphWindow)
-                { graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetSummaryView().FindWindowById(lua_tonumber(L, 2)) ); }
+                { graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetSummaryView().FindWindowById(idPos->second) ); }
             // look in word section if not in the stats section
             if (!graphWindow)
-                { graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().FindWindowById(lua_tonumber(L, 2)) ); }
+                { graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().FindWindowById(idPos->second) ); }
             // look in sentence section if not in the words section
             if (!graphWindow)
-                { graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(lua_tonumber(L, 2)) ); }
+                { graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(idPos->second) ); }
             // look in Dolch section if not in the stats summary section
             if (!graphWindow)
-                { graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetDolchSightWordsView().FindWindowById(lua_tonumber(L, 2)) ); }
+                { graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetDolchSightWordsView().FindWindowById(idPos->second) ); }
             if (graphWindow)
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
@@ -825,6 +865,7 @@ namespace LuaScripting
                     _(L"Unable to find the specified graph (%d) in the project."),
                         static_cast<int>(lua_tonumber(L, 2))),
                     _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                return 0;
                 }
             }
         return 0;
@@ -843,21 +884,25 @@ namespace LuaScripting
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
+            wxWindowID windowId= lua_tonumber(L, 2);
+            if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+                windowMappedId != wxGetApp().GetDynamicIdMap().cend())
+                { windowId = windowMappedId->second; }
             FormattedTextCtrl* textWindow =
                 dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
-                    lua_tonumber(L, 2), CLASSINFO(FormattedTextCtrl)) );
+                    windowId, CLASSINFO(FormattedTextCtrl)) );
             // look in grammar section if not in the highlighted words section
             if (!textWindow)
                 {
                 textWindow =
-                    dynamic_cast<FormattedTextCtrl*>(view->GetGrammarView().FindWindowById(lua_tonumber(L, 2)) );
+                    dynamic_cast<FormattedTextCtrl*>(view->GetGrammarView().FindWindowById(windowId) );
                 }
             // look in Dolch section if not in the grammar section
             if (!textWindow)
                 {
                 textWindow =
                     dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(
-                        lua_tonumber(L, 2)) );
+                        windowId) );
                 }
             if (textWindow)
                 {
@@ -874,6 +919,7 @@ namespace LuaScripting
                     _(L"Unable to find the specified highlighted words (%d) in the project."),
                         static_cast<int>(lua_tonumber(L, 2))),
                     _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                return 0;
                 }
             }
         return 0;
@@ -893,35 +939,48 @@ namespace LuaScripting
         if (view)
             {
             const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
-            if (lua_tonumber(L, 2) == BaseProjectView::STATS_REPORT_PAGE_ID)
+            wxWindowID windowId= lua_tonumber(L, 2);
+            if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+                windowMappedId != wxGetApp().GetDynamicIdMap().cend())
+                { windowId = windowMappedId->second; }
+            if (windowId == BaseProjectView::STATS_REPORT_PAGE_ID)
                 {
-                HtmlTableWindow* window = dynamic_cast<HtmlTableWindow*>(view->GetSummaryView().FindWindowById(lua_tonumber(L, 2)) );
+                HtmlTableWindow* window =
+                    dynamic_cast<HtmlTableWindow*>(
+                        view->GetSummaryView().FindWindowById(windowId) );
                 if (window)
                     {
                     const wxString originalLabel = window->GetLabel();
-                    window->SetLabel(originalLabel + wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
+                    window->SetLabel(originalLabel + wxString::Format(L" [%s]",
+                                     wxFileName::StripExtension(doc->GetTitle())));
                     lua_pushboolean(L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
                     window->SetLabel(originalLabel);
                     }
                 }
-            else if (lua_tonumber(L, 2) == BaseProjectView::READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID)
+            else if (windowId == BaseProjectView::READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID)
                 {
-                HtmlTableWindow* window = dynamic_cast<HtmlTableWindow*>(view->GetReadabilityResultsView().FindWindowById(lua_tonumber(L, 2)) );
+                HtmlTableWindow* window =
+                    dynamic_cast<HtmlTableWindow*>(
+                        view->GetReadabilityResultsView().FindWindowById(windowId));
                 if (window)
                     {
                     const wxString originalLabel = window->GetLabel();
-                    window->SetLabel(originalLabel + wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
+                    window->SetLabel(originalLabel + wxString::Format(L" [%s]",
+                                     wxFileName::StripExtension(doc->GetTitle())));
                     lua_pushboolean(L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
                     window->SetLabel(originalLabel);
                     }
                 }
-            else if (lua_tonumber(L, 2) == BaseProjectView::READABILITY_SCORES_PAGE_ID)
+            else if (windowId == BaseProjectView::READABILITY_SCORES_PAGE_ID)
                 {
-                ExplanationListCtrl* window = dynamic_cast<ExplanationListCtrl*>(view->GetReadabilityResultsView().FindWindowById(lua_tonumber(L, 2)) );
+                ExplanationListCtrl* window =
+                    dynamic_cast<ExplanationListCtrl*>(
+                        view->GetReadabilityResultsView().FindWindowById(windowId));
                 if (window)
                     {
                     const wxString originalLabel = window->GetLabel();
-                    window->SetLabel(originalLabel + wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
+                    window->SetLabel(originalLabel + wxString::Format(L" [%s]",
+                                    wxFileName::StripExtension(doc->GetTitle())));
                     lua_pushboolean(L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
                     window->SetLabel(originalLabel);
                     }
@@ -929,9 +988,10 @@ namespace LuaScripting
             else
                 {
                 wxMessageBox(wxString::Format(
-                    _(L"Unable to find the specified list (%d) in the project."),
+                    _(L"Unable to find the specified report (%d) in the project."),
                         static_cast<int>(lua_tonumber(L, 2))),
                     _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                return 0;
                 }
             }
         return 0;
@@ -950,15 +1010,19 @@ namespace LuaScripting
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
-            ListCtrlEx* listWindow = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(lua_tonumber(L, 2)) );
+            wxWindowID windowId= lua_tonumber(L, 2);
+            if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+                windowMappedId != wxGetApp().GetDynamicIdMap().cend())
+                { windowId = windowMappedId->second; }
+            ListCtrlEx* listWindow = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(windowId) );
             if (!listWindow)//look in grammar section if not in the highlighted words section
-                { listWindow = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(lua_tonumber(L, 2)) ); }
+                { listWindow = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(windowId) ); }
             if (!listWindow)//look in sentences section if not in the grammar section
-                { listWindow = dynamic_cast<ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(lua_tonumber(L, 2)) ); }
+                { listWindow = dynamic_cast<ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(windowId) ); }
             if (!listWindow)//look in Dolch section if not in the sentences section
-                { listWindow = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(lua_tonumber(L, 2)) ); }
+                { listWindow = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(windowId) ); }
             if (!listWindow)//look in stats section if not in the Dolch section
-                { listWindow = dynamic_cast<ListCtrlEx*>(view->GetSummaryView().FindWindowById(lua_tonumber(L, 2)) ); }
+                { listWindow = dynamic_cast<ListCtrlEx*>(view->GetSummaryView().FindWindowById(windowId) ); }
             if (listWindow)
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
@@ -980,6 +1044,7 @@ namespace LuaScripting
                     _(L"Unable to find the specified list (%d) in the project."),
                         static_cast<int>(lua_tonumber(L, 2))),
                     _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                return 0;
                 }
             }
         return 0;
@@ -1026,15 +1091,18 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
+        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+            { return 0; }
+
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
-            const int windowToSelect = lua_tonumber(L, 2);
-            Wisteria::UI::SideBar::SideBarSubItem subItem;
-            subItem.m_id = windowToSelect;
-            subItem.m_iconIndex = 0;
+            wxWindowID windowId = lua_tonumber(L, 2);
+            if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+                windowMappedId != wxGetApp().GetDynamicIdMap().cend())
+                { windowId = windowMappedId->second; }
             const auto [parentPos, childPos] = view->GetSideBar()->FindSubItem(
-                BaseProjectView::SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, subItem);
+                BaseProjectView::SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, windowId);
             if (parentPos.has_value() && childPos.has_value())
                 {
                 view->GetSideBar()->CollapseAll();
@@ -1042,7 +1110,8 @@ namespace LuaScripting
                 if (lua_gettop(L) >= 3)
                     {
                     wxWindow* selWindow =
-                        view->GetWordsBreakdownView().FindWindowById(windowToSelect, wxCLASSINFO(FormattedTextCtrl));
+                        view->GetWordsBreakdownView().FindWindowById(windowId,
+                                                                     wxCLASSINFO(FormattedTextCtrl));
                     if (selWindow && selWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)))
                         {
                         dynamic_cast<FormattedTextCtrl*>(selWindow)->ShowPosition(lua_tonumber(L, 3));
@@ -1057,6 +1126,7 @@ namespace LuaScripting
         wxGetApp().Yield();
         return 0;
         }
+
     // Shows or hides the sidebar
     int StandardProject::ShowSidebar(lua_State *L)
         {
@@ -1083,6 +1153,7 @@ namespace LuaScripting
             }
         return 0;
         }
+
     /* Selects the specified section and subwindow.
        Section The section to select.
        Window The subwindow in the section to select.*/
@@ -1090,10 +1161,27 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
+        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+            { return 0; }
+
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
-            const auto [parentPos, childPos] = view->GetSideBar()->FindSubItem(lua_tonumber(L, 2), lua_tonumber(L, 3));
+            const auto sectionId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+            if (sectionId == wxGetApp().GetDynamicIdMap().cend())
+                {
+                wxMessageBox(wxString::Format(
+                    _(L"Unable to find the specified section (%d) in the project."),
+                        static_cast<int>(lua_tonumber(L, 2))),
+                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                return 0;
+                }
+            wxWindowID windowId = lua_tonumber(L, 3);
+            if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 3));
+                windowMappedId != wxGetApp().GetDynamicIdMap().cend())
+                { windowId = windowMappedId->second; }
+            const auto [parentPos, childPos] =
+                view->GetSideBar()->FindSubItem(sectionId->second, windowId);
             if (parentPos.has_value() && childPos.has_value())
                 {
                 view->GetSideBar()->CollapseAll();
@@ -1101,7 +1189,7 @@ namespace LuaScripting
                 }
             else
                 {
-                const auto index = view->GetSideBar()->FindFolder(lua_tonumber(L, 2));
+                const auto index = view->GetSideBar()->FindFolder(sectionId->second);
                 if (index.has_value())
                     {
                     view->GetSideBar()->CollapseAll();
@@ -1113,6 +1201,7 @@ namespace LuaScripting
         wxGetApp().Yield();
         return 0;
         }
+
     /* Selects the Readability Results section of the project and highlights a test by index.
        TestToSelect The test to select, based on position in the list.*/
     int StandardProject::SelectReadabilityTest(lua_State *L)
@@ -1134,6 +1223,7 @@ namespace LuaScripting
         wxGetApp().Yield();
         return 0;
         }
+
     /* Sorts a list.
        ListToSort The list window to sort. Refer to ListTypes enumeration.
        ColumnToSort The column in the list to sort.
@@ -1147,29 +1237,45 @@ namespace LuaScripting
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
-            const wxWindowID listID = lua_tonumber(L, 2);
+            wxWindowID windowId = lua_tonumber(L, 2);
+            if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+                windowMappedId != wxGetApp().GetDynamicIdMap().cend())
+                { windowId = windowMappedId->second; }
             // look in the words section
-            ListCtrlEx* listWindow = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(listID) );
+            ListCtrlEx* listWindow =
+                dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(windowId) );
             // look in grammar section if not in the highlighted words section
             if (!listWindow)
-                { listWindow = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(listID) ); }
+                {
+                listWindow =
+                    dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(windowId) );
+                }
             // look in Dolch section if not in the grammar section
             if (!listWindow)
-                { listWindow = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(listID) ); }
+                {
+                listWindow =
+                    dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(windowId) );
+                }
             // look in stats section if not in the Dolch section
             if (!listWindow)
-                { listWindow = dynamic_cast<ListCtrlEx*>(view->GetSummaryView().FindWindowById(listID) ); }
+                {
+                listWindow =
+                    dynamic_cast<ListCtrlEx*>(view->GetSummaryView().FindWindowById(windowId) );
+                }
             // look in stats section if not in the sentences section
             if (!listWindow)
-                { listWindow = dynamic_cast<ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(listID) ); }
+                {
+                listWindow =
+                    dynamic_cast<ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(windowId) );
+                }
             if (listWindow)
                 {
                 std::vector<std::pair<size_t,Wisteria::SortDirection>> columns;
                 for (int i = 3; i <= lua_gettop(L); i+=2)
                     {
                     columns.push_back(
-                        std::pair<size_t,Wisteria::SortDirection>(lua_tonumber(L, i)-1/* make it zero-indexed*/,
-                                 static_cast<Wisteria::SortDirection>(static_cast<int>(lua_tonumber(L, i+1)))));
+                        std::pair<size_t,Wisteria::SortDirection>(lua_tonumber(L, i) -1 /* make it zero-indexed*/,
+                                 static_cast<Wisteria::SortDirection>(static_cast<int>(lua_tonumber(L, i + 1)))));
                     }
                 listWindow->SortColumns(columns);
                 }
@@ -1177,6 +1283,7 @@ namespace LuaScripting
         wxGetApp().Yield();
         return 0;
         }
+
     /* Sorts a graph.
        GraphToSort The graph window to sort. Refer to GraphTypes enumeration.
        Order The order to sort.*/
@@ -1189,16 +1296,40 @@ namespace LuaScripting
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
-            const wxWindowID listID = lua_tonumber(L, 2);
-            Wisteria::Canvas* graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetSummaryView().FindWindowById(listID) );
-            if (!graphWindow) // look in Dolch section if not in the summary section
-                { graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetDolchSightWordsView().FindWindowById(listID)); }
-            if (!graphWindow) // look in words section
-                { graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().FindWindowById(listID)); }
-            if (!graphWindow) // look in sentences section
-                { graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(listID)); }
-            if (!graphWindow) // look in grammar section
-                { graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetGrammarView().FindWindowById(listID)); }
+            const auto graphID = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+            if (graphID == wxGetApp().GetDynamicIdMap().cend())
+                {
+                wxMessageBox(wxString::Format(
+                    _(L"Unable to find the specified graph (%d) in the project."),
+                        static_cast<int>(lua_tonumber(L, 2))),
+                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                return 0;
+                }
+            Wisteria::Canvas* graphWindow =
+                dynamic_cast<Wisteria::Canvas*>(view->GetSummaryView().FindWindowById(graphID->second) );
+            // look in Dolch section if not in the summary section
+            if (!graphWindow)
+                {
+                graphWindow =
+                    dynamic_cast<Wisteria::Canvas*>(view->GetDolchSightWordsView().FindWindowById(graphID->second));
+                }
+            // look in words section
+            if (!graphWindow)
+                {
+                graphWindow =
+                    dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().FindWindowById(graphID->second));
+                }
+            // look in sentences section
+            if (!graphWindow)
+                {
+                graphWindow =
+                dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(graphID->second));
+                }
+            // look in grammar section
+            if (!graphWindow)
+                { graphWindow =
+                dynamic_cast<Wisteria::Canvas*>(view->GetGrammarView().FindWindowById(graphID->second));
+                }
             if (graphWindow)
                 {
                 std::dynamic_pointer_cast<BarChart>(
@@ -1207,9 +1338,11 @@ namespace LuaScripting
                         static_cast<Wisteria::SortDirection>(static_cast<int>(lua_tonumber(L, 3))));
                 }
             }
-        wxGetApp().Yield(); // yield so that the view can be fully refreshed before proceeding
+        // yield so that the view can be fully refreshed before proceeding
+        wxGetApp().Yield();
         return 0;
         }
+
     /* Selects a set of rows in a list in the Words Breakdown section.
        WindowToSelect The list window to select items in.
        RowsToSelect Rows to select. This can be a variable number of arguments.*/
@@ -1220,14 +1353,17 @@ namespace LuaScripting
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
-            const int windowToSelect = lua_tonumber(L, 2);
+            wxWindowID windowId = lua_tonumber(L, 2);
+            if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+                windowMappedId != wxGetApp().GetDynamicIdMap().cend())
+                { windowId = windowMappedId->second; }
             const auto [parentPos, childPos] = view->GetSideBar()->FindSubItem(
-                BaseProjectView::SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, windowToSelect);
+                BaseProjectView::SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, windowId);
             if (parentPos.has_value() && childPos.has_value())
                 {
                 view->GetSideBar()->CollapseAll();
                 view->GetSideBar()->SelectSubItem(parentPos.value(), childPos.value());
-                wxWindow* selWindow = view->GetWordsBreakdownView().FindWindowById(windowToSelect);
+                wxWindow* selWindow = view->GetWordsBreakdownView().FindWindowById(windowId);
                 if (selWindow && selWindow->IsKindOf(CLASSINFO(ListCtrlEx)))
                     {
                     for (int i = 3; i <= lua_gettop(L); ++i)
@@ -1240,6 +1376,7 @@ namespace LuaScripting
         wxGetApp().Yield();
         return 0;
         }
+
     /* Selects and scrolls down a text window.
        WindowToSelect The text window to select.
        Position Character position to scroll into view.*/
@@ -1250,19 +1387,22 @@ namespace LuaScripting
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
-            const int windowToSelect = lua_tonumber(L, 2);
+            wxWindowID windowId = lua_tonumber(L, 2);
+            if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+                windowMappedId != wxGetApp().GetDynamicIdMap().cend())
+                { windowId = windowMappedId->second; }
             auto item = view->GetSideBar()->FindSubItem(
-                BaseProjectView::SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, windowToSelect);
+                BaseProjectView::SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, windowId);
             if (!item.second.has_value())
                 { item = view->GetSideBar()->FindSubItem(
-                    BaseProjectView::SIDEBAR_GRAMMAR_SECTION_ID, windowToSelect); }
+                    BaseProjectView::SIDEBAR_GRAMMAR_SECTION_ID, windowId); }
             if (item.second.has_value())
                 {
                 view->GetSideBar()->CollapseAll();
                 view->GetSideBar()->SelectSubItem(item.first.value(), item.second.value());
-                wxWindow* selWindow = view->GetWordsBreakdownView().FindWindowById(windowToSelect);
+                wxWindow* selWindow = view->GetWordsBreakdownView().FindWindowById(windowId);
                 if (selWindow == nullptr)
-                    { selWindow = view->GetGrammarView().FindWindowById(windowToSelect); }
+                    { selWindow = view->GetGrammarView().FindWindowById(windowId); }
                 if (selWindow && selWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)))
                     {
                     dynamic_cast<FormattedTextCtrl*>(selWindow)->ShowPosition(lua_tonumber(L, 3));
@@ -1276,6 +1416,7 @@ namespace LuaScripting
     /* Select the text window in the Grammar section. Also can optionally select a range of text.
        StartPosition Character position to begin selection.
        EndPosition Character position to end selection.*/
+
     int StandardProject::SelectTextGrammarWindow(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1308,18 +1449,19 @@ namespace LuaScripting
         wxGetApp().Yield();
         return 0;
         }
+
     //HIDDEN interfaces for testing and screenshots
     //Opens the properties dialog and the specified page
     int StandardProject::OpenProperties(lua_State *L)
         {
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
-            { return 0; }
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
         if (m_settingsDlg == nullptr)
             { m_settingsDlg = new ToolsOptionsDlg(wxGetApp().GetMainFrame(), m_project); }
 
-        auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+        const auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
         if (idPos != wxGetApp().GetDynamicIdMap().cend())
             { m_settingsDlg->SelectPage(idPos->second); }
         else
@@ -1470,6 +1612,7 @@ namespace LuaScripting
         // yield so that the view can be fully refreshed before proceeding
         wxGetApp().Yield();
         }
+
     //-------------------------------------------------------------
     bool BatchProject::ReloadIfNotDelayed()
         {
@@ -1628,6 +1771,7 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
+
     //Sets the filepath to the phrase exclusion list
     //filePath Path to phrase exclusion list
     int BatchProject::SetPhraseExclusionList(lua_State *L)
@@ -1641,7 +1785,8 @@ namespace LuaScripting
         ReloadIfNotDelayed();
         return 0;
         };
-    ///Sets the tags to exclude blocks of text.
+
+    // Sets the tags to exclude blocks of text.
     int BatchProject::SetBlockExclusionTags(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -2061,7 +2206,16 @@ namespace LuaScripting
         if (view)
             {
             ListCtrlEx* listWindow = nullptr;
-            const auto [parentPos, childPos] = view->GetSideBar()->FindSubItem(lua_tonumber(L, 2));
+            const auto listId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+            if (listId == wxGetApp().GetDynamicIdMap().cend())
+                {
+                wxMessageBox(wxString::Format(
+                    _(L"Unable to find the specified list (%d) in the project."),
+                        static_cast<int>(lua_tonumber(L, 2))),
+                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                return 0;
+                }
+            const auto [parentPos, childPos] = view->GetSideBar()->FindSubItem(listId->second);
             if (parentPos.has_value() && childPos.has_value())
                 {
                 view->GetSideBar()->SelectSubItem(parentPos.value(), childPos.value());
@@ -2071,7 +2225,7 @@ namespace LuaScripting
                 }
             else
                 {
-                const auto index = view->GetSideBar()->FindFolder(lua_tonumber(L, 2));
+                const auto index = view->GetSideBar()->FindFolder(listId->second);
                 if (index.has_value())
                     {
                     view->GetSideBar()->SelectFolder(index.value());
@@ -2101,6 +2255,7 @@ namespace LuaScripting
         wxGetApp().Yield();
         return 0;
         }
+
     //Saves a graph from the project as an image.
     //SideBarSection The section that the graph is in.
     //GraphId Which graph to save.
@@ -2119,7 +2274,25 @@ namespace LuaScripting
         if (view)
             {
             Wisteria::Canvas* graphWindow = nullptr;
-            const auto [parentPos, childPos] = view->GetSideBar()->FindSubItem(lua_tonumber(L, 2),lua_tonumber(L, 3));
+            const auto sectionId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+            if (sectionId == wxGetApp().GetDynamicIdMap().cend())
+                {
+                wxMessageBox(wxString::Format(
+                    _(L"Unable to find the specified section (%d) in the project."),
+                        static_cast<int>(lua_tonumber(L, 2))),
+                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                return 0;
+                }
+            const auto graphId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 3));
+            if (graphId == wxGetApp().GetDynamicIdMap().cend())
+                {
+                wxMessageBox(wxString::Format(
+                    _(L"Unable to find the specified graph (%d) in the project."),
+                        static_cast<int>(lua_tonumber(L, 3))),
+                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                return 0;
+                }
+            const auto [parentPos, childPos] = view->GetSideBar()->FindSubItem(sectionId->second, graphId->second);
             if (parentPos.has_value() && childPos.has_value())
                 {
                 view->GetSideBar()->SelectSubItem(parentPos.value(), childPos.value());
@@ -2135,7 +2308,10 @@ namespace LuaScripting
                                       wxFileName::StripExtension(doc->GetTitle())));
                 Wisteria::UI::ImageExportOptions opt;
                 if (lua_gettop(L) >= 5 && lua_toboolean(L, 5))
-                    { opt.m_mode = static_cast<decltype(opt.m_mode)>(Wisteria::UI::ImageExportOptions::ColorMode::Greyscale); }
+                    {
+                    opt.m_mode = static_cast<decltype(opt.m_mode)>(
+                        Wisteria::UI::ImageExportOptions::ColorMode::Greyscale);
+                    }
                 if (lua_gettop(L) >= 6)
                     { opt.m_imageSize.SetWidth(lua_tonumber(L, 6)); }
                 if (lua_gettop(L) >= 7)
@@ -2147,8 +2323,9 @@ namespace LuaScripting
                 {
                 wxMessageBox(wxString::Format(
                     _(L"Unable to find the specified graph (%d) in the project."),
-                        static_cast<int>(lua_tonumber(L, 2))),
+                        static_cast<int>(lua_tonumber(L, 3))),
                     _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                return 0;
                 }
             }
         wxGetApp().Yield();
@@ -2206,16 +2383,37 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
+        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+            { return 0; }
+
         BatchProjectView* view = dynamic_cast<BatchProjectView*>(m_project->GetFirstView());
         if (view)
             {
-            const auto [parentPos, childPos] = view->GetSideBar()->FindSubItem(lua_tonumber(L, 2), lua_tonumber(L, 3));
+            const auto sectionId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+            if (sectionId == wxGetApp().GetDynamicIdMap().cend())
+                {
+                wxMessageBox(wxString::Format(
+                    _(L"Unable to find the specified section (%d) in the project."),
+                        static_cast<int>(lua_tonumber(L, 2))),
+                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                return 0;
+                }
+            const auto windowId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 3));
+            if (windowId == wxGetApp().GetDynamicIdMap().cend())
+                {
+                wxMessageBox(wxString::Format(
+                    _(L"Unable to find the specified window (%d) in the project."),
+                        static_cast<int>(lua_tonumber(L, 3))),
+                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                return 0;
+                }
+            const auto [parentPos, childPos] = view->GetSideBar()->FindSubItem(sectionId->second, windowId->second);
             if (parentPos.has_value() && childPos.has_value())
                 {
                 view->GetSideBar()->CollapseAll();
                 view->GetSideBar()->SelectSubItem(parentPos.value(), childPos.value());
                 }
-            const auto index = view->GetSideBar()->FindFolder(lua_tonumber(L, 2));
+            const auto index = view->GetSideBar()->FindFolder(sectionId->second);
             if (index.has_value())
                 {
                 view->GetSideBar()->CollapseAll();
@@ -2234,6 +2432,8 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
+        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+            { return 0; }
         BatchProjectView* view = dynamic_cast<BatchProjectView*>(m_project->GetFirstView());
         if (view)
             {
@@ -2243,7 +2443,16 @@ namespace LuaScripting
                 columns.push_back(std::pair<size_t,Wisteria::SortDirection>(lua_tonumber(L, i)-1,
                                   static_cast<Wisteria::SortDirection>(static_cast<int>(lua_tonumber(L, i+1)))));
                 }
-            const auto [parentPos, childPos] = view->GetSideBar()->FindSubItem(lua_tonumber(L, 2));
+            const auto windowOrSectionId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+            if (windowOrSectionId == wxGetApp().GetDynamicIdMap().cend())
+                {
+                wxMessageBox(wxString::Format(
+                    _(L"Unable to find the specified list (%d) in the project."),
+                        static_cast<int>(lua_tonumber(L, 2))),
+                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                return 0;
+                }
+            const auto [parentPos, childPos] = view->GetSideBar()->FindSubItem(windowOrSectionId->second);
             if (parentPos.has_value() && childPos.has_value())
                 {
                 view->GetSideBar()->SelectSubItem(parentPos.value(), childPos.value());
@@ -2253,7 +2462,7 @@ namespace LuaScripting
                 }
             else
                 {
-                const auto index = view->GetSideBar()->FindFolder(lua_tonumber(L, 2));
+                const auto index = view->GetSideBar()->FindFolder(windowOrSectionId->second);
                 if (index.has_value())
                     {
                     view->GetSideBar()->SelectFolder(index.value());
@@ -2271,14 +2480,14 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int BatchProject::OpenProperties(lua_State *L)
         {
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
-            { return 0; }
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
         if (m_settingsDlg == nullptr)
             { m_settingsDlg = new ToolsOptionsDlg(wxGetApp().GetMainFrame(), m_project); }
 
-        auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+        const auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
         if (idPos != wxGetApp().GetDynamicIdMap().cend())
             { m_settingsDlg->SelectPage(idPos->second); }
         else
