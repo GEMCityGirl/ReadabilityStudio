@@ -150,14 +150,22 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
         listData->SetSize(listDataItemCount+MAX_SUMMARY_STAT_ROWS, 3);
         }
 
-    const size_t totalDolchWords = project->GetDolchConjunctionCounts().second + project->GetDolchPrepositionWordCounts().second + project->GetDolchPronounCounts().second +
-        project->GetDolchAdverbCounts().second + project->GetDolchAdjectiveCounts().second + project->GetDolchVerbsCounts().second + project->GetDolchNounCounts().second;
-    const size_t totalDolchWordsExcludingNouns = project->GetDolchConjunctionCounts().second + project->GetDolchPrepositionWordCounts().second + project->GetDolchPronounCounts().second +
-        project->GetDolchAdverbCounts().second + project->GetDolchAdjectiveCounts().second + project->GetDolchVerbsCounts().second;
+    const size_t totalDolchWords =
+        project->GetDolchConjunctionCounts().second + project->GetDolchPrepositionWordCounts().second +
+        project->GetDolchPronounCounts().second +
+        project->GetDolchAdverbCounts().second + project->GetDolchAdjectiveCounts().second +
+        project->GetDolchVerbsCounts().second + project->GetDolchNounCounts().second;
+    const size_t totalDolchWordsExcludingNouns =
+        project->GetDolchConjunctionCounts().second + project->GetDolchPrepositionWordCounts().second +
+        project->GetDolchPronounCounts().second +
+        project->GetDolchAdverbCounts().second + project->GetDolchAdjectiveCounts().second +
+        project->GetDolchVerbsCounts().second;
     const double totalDolchPercentage = safe_divide<double>(totalDolchWords,project->GetTotalWords())*100;
-    const double totalDolchExcludingNounsPercentage = safe_divide<double>(totalDolchWordsExcludingNouns,project->GetTotalWords())*100;
+    const double totalDolchExcludingNounsPercentage =
+        safe_divide<double>(totalDolchWordsExcludingNouns,project->GetTotalWords())*100;
 
-    const bool containsHighPercentageOfNonDochWords = ((totalDolchPercentage < 70) || (totalDolchExcludingNounsPercentage< 60));
+    const bool containsHighPercentageOfNonDochWords =
+        ((totalDolchPercentage < 70) || (totalDolchExcludingNounsPercentage< 60));
     wxString HTMLText;
 
     if (!project->GetStatisticsReportInfo().HasDolchStatisticsEnabled())
@@ -167,8 +175,9 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
     wxMemoryDC measuringDc(bmp);
     measuringDc.SetFont(measuringDc.GetFont().Larger().Larger());
     // will likely be the longest label (even after translation)
-    const auto labelColumnWidth = safe_divide<long>(measuringDc.GetTextExtent(_(L"Number of Dolch words (excluding nouns):")).GetWidth(),
-                                                    wxGetApp().GetDPIScaleFactor());
+    const auto labelColumnWidth =
+        safe_divide<long>(measuringDc.GetTextExtent(_(L"Number of Dolch words (excluding nouns):")).GetWidth(),
+            wxGetApp().GetDPIScaleFactor());
     // the total number of words would be the largest (i.e., widest)
     // number possible, so measure using that
     const auto numberColumnWidth = safe_divide<long>(
@@ -179,7 +188,9 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
 
     const auto formatHeader = [](const wxString& label)
         {
-        return wxString::Format(L"\n<tr class='report-column-header' style='background:%s;'><td colspan='3'><span style='color:%s;'>%s</span></td></tr>",
+        return wxString::Format(
+            L"\n<tr class='report-column-header' style='background:%s;'>"
+             "<td colspan='3'><span style='color:%s;'>%s</span></td></tr>",
             GetReportHeaderColor().GetAsString(wxC2S_HTML_SYNTAX),
             GetReportHeaderFontColor().GetAsString(wxC2S_HTML_SYNTAX),
             label);
@@ -188,9 +199,11 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
     const auto formatRow = [labelColumnWidth, numberColumnWidth]
                             (const wxString& label, const wxString& value, const wxString& percent)
         {
-        return wxString::Format(L"\n<tr><td style='min-width:%ipx; width:40%%;'>%s</td>"
-            "<td style='text-align:right; width:%ipx;'>%s</td>"
-            "<td style='text-align:left;'>%s</td></tr>", labelColumnWidth, label, numberColumnWidth, value, percent);
+        return wxString::Format(
+            L"\n<tr><td style='min-width:%ipx; width:40%%;'>%s</td>"
+             "<td style='text-align:right; width:%ipx;'>%s</td>"
+             "<td style='text-align:left;'>%s</td></tr>",
+            labelColumnWidth, label, numberColumnWidth, value, percent);
         };
 
     if (project->GetStatisticsReportInfo().IsDolchCoverageEnabled())
@@ -198,13 +211,27 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
         // list completions
         HTMLText += tableStart + formatHeader(_(L"Dolch Word Coverage"));
 
-        const double dolchConjuctionPercentage = safe_divide<double>((MAX_DOLCH_CONJUNCTION_WORDS - project->GetUnusedDolchConjunctions()), MAX_DOLCH_CONJUNCTION_WORDS) * 100;
-        const double dolchPronounsPercentage = safe_divide<double>((MAX_DOLCH_PRONOUN_WORDS - project->GetUnusedDolchPronouns()), MAX_DOLCH_PRONOUN_WORDS) * 100;
-        const double dolchPrepositionsPercentage = safe_divide<double>((MAX_DOLCH_PREPOSITION_WORDS - project->GetUnusedDolchPrepositions()), MAX_DOLCH_PREPOSITION_WORDS) * 100;
-        const double dolchAdverbsPercentage = safe_divide<double>((MAX_DOLCH_ADVERB_WORDS - project->GetUnusedDolchAdverbs()), MAX_DOLCH_ADVERB_WORDS) * 100;
-        const double dolchAdjectivesPercentage = safe_divide<double>((MAX_DOLCH_ADJECTIVE_WORDS - project->GetUnusedDolchAdjectives()), MAX_DOLCH_ADJECTIVE_WORDS) * 100;
-        const double dolchVerbsPercentage = safe_divide<double>((MAX_DOLCH_VERBS - project->GetUnusedDolchVerbs()), MAX_DOLCH_VERBS) * 100;
-        const double dolchNounPercentage = safe_divide<double>((MAX_DOLCH_NOUNS - project->GetUnusedDolchNouns()), MAX_DOLCH_NOUNS) * 100;
+        const double dolchConjuctionPercentage =
+            safe_divide<double>((MAX_DOLCH_CONJUNCTION_WORDS - project->GetUnusedDolchConjunctions()),
+                MAX_DOLCH_CONJUNCTION_WORDS) * 100;
+        const double dolchPronounsPercentage =
+            safe_divide<double>((MAX_DOLCH_PRONOUN_WORDS - project->GetUnusedDolchPronouns()),
+                MAX_DOLCH_PRONOUN_WORDS) * 100;
+        const double dolchPrepositionsPercentage =
+            safe_divide<double>((MAX_DOLCH_PREPOSITION_WORDS - project->GetUnusedDolchPrepositions()),
+                MAX_DOLCH_PREPOSITION_WORDS) * 100;
+        const double dolchAdverbsPercentage =
+            safe_divide<double>((MAX_DOLCH_ADVERB_WORDS - project->GetUnusedDolchAdverbs()),
+                MAX_DOLCH_ADVERB_WORDS) * 100;
+        const double dolchAdjectivesPercentage =
+            safe_divide<double>((MAX_DOLCH_ADJECTIVE_WORDS - project->GetUnusedDolchAdjectives()),
+                MAX_DOLCH_ADJECTIVE_WORDS) * 100;
+        const double dolchVerbsPercentage =
+            safe_divide<double>((MAX_DOLCH_VERBS - project->GetUnusedDolchVerbs()),
+                MAX_DOLCH_VERBS) * 100;
+        const double dolchNounPercentage =
+            safe_divide<double>((MAX_DOLCH_NOUNS - project->GetUnusedDolchNouns()),
+                MAX_DOLCH_NOUNS) * 100;
 
         // Conjunctions
             {
@@ -1152,20 +1179,31 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
         if (listData)
             {
             listData->SetItemText(listDataItemCount, 0, _(L"Number of monosyllabic words"));
-            listData->SetItemText(listDataItemCount, 1, wxNumberFormatter::ToString(project->GetTotalMonoSyllabicWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+            listData->SetItemText(listDataItemCount, 1,
+                wxNumberFormatter::ToString(project->GetTotalMonoSyllabicWords(), 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep));
             listData->SetItemText(listDataItemCount++, 2, wxNumberFormatter::ToString(
-                    safe_divide<double>(project->GetTotalMonoSyllabicWords(),project->GetTotalWords())*100, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words"));
+                    safe_divide<double>(project->GetTotalMonoSyllabicWords(),
+                        project->GetTotalWords())*100, 1,
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words"));
             }
 
         // unique monosyllabic words
         HTMLText += formatRow(_(L"Number of unique monosyllabic words:"),
-            wxNumberFormatter::ToString(project->GetTotalUniqueMonoSyllablicWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep)) +
+            wxNumberFormatter::ToString(project->GetTotalUniqueMonoSyllablicWords(), 0,
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                wxNumberFormatter::Style::Style_WithThousandsSep)) +
             L"\n</table>";
 
         if (listData)
             {
             listData->SetItemText(listDataItemCount, 0, _(L"Number of unique monosyllabic words"));
-            listData->SetItemText(listDataItemCount++, 1, wxNumberFormatter::ToString(project->GetTotalUniqueMonoSyllablicWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+            listData->SetItemText(listDataItemCount++, 1,
+                wxNumberFormatter::ToString(project->GetTotalUniqueMonoSyllablicWords(), 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep));
             }
 
         // 3+ syllable
@@ -1175,26 +1213,41 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
         else
             { currentLabel = _(L"Number of complex (3+ syllable) words:"); }
         HTMLText += formatRow(currentLabel,
-            wxNumberFormatter::ToString(project->GetTotal3PlusSyllabicWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
+            wxNumberFormatter::ToString(project->GetTotal3PlusSyllabicWords(), 0,
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                wxNumberFormatter::Style::Style_WithThousandsSep),
             wxString(L"(" + wxNumberFormatter::ToString(
-                safe_divide<double>(project->GetTotal3PlusSyllabicWords(),project->GetTotalWords())*100, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words)")));
+                safe_divide<double>(project->GetTotal3PlusSyllabicWords(),
+                    project->GetTotalWords())*100, 1,
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words)")));
 
         if (listData)
             {
             listData->SetItemText(listDataItemCount, 0, _(L"Number of complex (3+ syllable) words"));
-            listData->SetItemText(listDataItemCount, 1, wxNumberFormatter::ToString(project->GetTotal3PlusSyllabicWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+            listData->SetItemText(listDataItemCount, 1,
+                wxNumberFormatter::ToString(project->GetTotal3PlusSyllabicWords(), 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep));
             listData->SetItemText(listDataItemCount++, 2, wxNumberFormatter::ToString(
-                safe_divide<double>(project->GetTotal3PlusSyllabicWords(),project->GetTotalWords())*100, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words"));
+                safe_divide<double>(project->GetTotal3PlusSyllabicWords(),project->GetTotalWords())*100, 1,
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words"));
             }
         // unique 3+ syllable words
         HTMLText += formatRow(_(L"Number of unique 3+ syllable words:"),
-            wxNumberFormatter::ToString(project->GetTotalUnique3PlusSyllableWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep)) +
+            wxNumberFormatter::ToString(project->GetTotalUnique3PlusSyllableWords(), 0,
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                wxNumberFormatter::Style::Style_WithThousandsSep)) +
             L"\n</table>";
 
         if (listData)
             {
             listData->SetItemText(listDataItemCount, 0, _(L"Number of unique 3+ syllable words"));
-            listData->SetItemText(listDataItemCount++, 1, wxNumberFormatter::ToString(project->GetTotalUnique3PlusSyllableWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+            listData->SetItemText(listDataItemCount++, 1,
+                wxNumberFormatter::ToString(project->GetTotalUnique3PlusSyllableWords(), 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep));
             }
 
         // long words (6 characters or more)
@@ -1204,25 +1257,38 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
         else
             { currentLabel = _(L"Number of long (6+ characters) words:"); }
         HTMLText += formatRow(currentLabel,
-            wxNumberFormatter::ToString(project->GetTotalLongWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
+            wxNumberFormatter::ToString(project->GetTotalLongWords(), 0,
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
             wxString(L"(" + wxNumberFormatter::ToString(
-                safe_divide<double>(project->GetTotalLongWords(),project->GetTotalWords())*100, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words)")));
+                safe_divide<double>(project->GetTotalLongWords(),project->GetTotalWords())*100, 1,
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words)")));
 
         if (listData)
             {
             listData->SetItemText(listDataItemCount, 0, _(L"Number of long (6+ characters) words"));
-            listData->SetItemText(listDataItemCount, 1, wxNumberFormatter::ToString(project->GetTotalLongWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+            listData->SetItemText(listDataItemCount, 1,
+                wxNumberFormatter::ToString(project->GetTotalLongWords(), 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep));
             listData->SetItemText(listDataItemCount++, 2, wxNumberFormatter::ToString(
-                safe_divide<double>(project->GetTotalLongWords(),project->GetTotalWords())*100, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words"));
+                safe_divide<double>(project->GetTotalLongWords(),project->GetTotalWords())*100, 1,
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words"));
             }
         // unique long words
         HTMLText += formatRow(_(L"Number of unique long words:"),
-            wxNumberFormatter::ToString(project->GetTotalUnique6CharsPlusWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep)) +
+            wxNumberFormatter::ToString(project->GetTotalUnique6CharsPlusWords(), 0,
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                wxNumberFormatter::Style::Style_WithThousandsSep)) +
             L"\n</table>";
         if (listData)
             {
             listData->SetItemText(listDataItemCount, 0, _(L"Number of unique long words"));
-            listData->SetItemText(listDataItemCount++, 1, wxNumberFormatter::ToString(project->GetTotalUnique6CharsPlusWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+            listData->SetItemText(listDataItemCount++, 1,
+                wxNumberFormatter::ToString(project->GetTotalUnique6CharsPlusWords(), 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep));
             }
 
         if (project->IsSmogLikeTestIncluded())
@@ -1230,51 +1296,83 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             // SMOG
             HTMLText += tableStart + formatHeader(_(L"SMOG Words"));
             HTMLText += formatRow(_(L"Number of SMOG hard words (3+ syllables, numerals fully syllabized):"),
-                        wxNumberFormatter::ToString(project->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
+                        wxNumberFormatter::ToString(project->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(), 0,
+                            wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                            wxNumberFormatter::Style::Style_WithThousandsSep),
                         wxString(L"(" + wxNumberFormatter::ToString(
-                            safe_divide<double>(project->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(),project->GetTotalWords())*100, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words)")));
+                            safe_divide<double>(project->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(),
+                                project->GetTotalWords())*100, 1,
+                            wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                            wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words)")));
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of SMOG hard words (3+ syllables, numerals fully syllabized)"));
-                listData->SetItemText(listDataItemCount, 1, wxNumberFormatter::ToString(project->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                listData->SetItemText(listDataItemCount, 0,
+                    _(L"Number of SMOG hard words (3+ syllables, numerals fully syllabized)"));
+                listData->SetItemText(listDataItemCount, 1,
+                    wxNumberFormatter::ToString(project->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(), 0,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 listData->SetItemText(listDataItemCount++, 2, wxNumberFormatter::ToString(
-                    safe_divide<double>(project->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(),project->GetTotalWords())*100, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words"));
+                    safe_divide<double>(project->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(),
+                        project->GetTotalWords())*100, 1,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words"));
                 }
             // unique SMOG words
             HTMLText += formatRow(_(L"Number of unique SMOG hard words:"),
-                wxNumberFormatter::ToString(project->GetUnique3PlusSyllabicWordsNumeralsFullySyllabized(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep)) +
+                wxNumberFormatter::ToString(project->GetUnique3PlusSyllabicWordsNumeralsFullySyllabized(), 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep)) +
                 L"\n</table>";
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0, _(L"Number of unique SMOG hard words"));
-                listData->SetItemText(listDataItemCount++, 1, wxNumberFormatter::ToString(project->GetUnique3PlusSyllabicWordsNumeralsFullySyllabized(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                listData->SetItemText(listDataItemCount++, 1,
+                    wxNumberFormatter::ToString(project->GetUnique3PlusSyllabicWordsNumeralsFullySyllabized(), 0,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 }
             }
         if (project->GetReadabilityTests().is_test_included(ReadabilityMessages::GUNNING_FOG()))
             {
             // Fog
             HTMLText += tableStart + formatHeader(_(L"Fog Words")) +
-                        formatRow(_(L"Number of Fog hard words (3+ syllables, with <a href=\"#FogHelp\">exceptions</a>):"),
-                wxNumberFormatter::ToString(project->GetTotalHardWordsFog(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
+                formatRow(_(L"Number of Fog hard words (3+ syllables, with <a href=\"#FogHelp\">exceptions</a>):"),
+                wxNumberFormatter::ToString(project->GetTotalHardWordsFog(), 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep),
                 L"(" + wxNumberFormatter::ToString(
-                    safe_divide<double>(project->GetTotalHardWordsFog(),project->GetTotalWords())*100, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words)"));
+                    safe_divide<double>(project->GetTotalHardWordsFog(),project->GetTotalWords())*100, 1,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words)"));
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of Fog hard words (3+ syllables, with exceptions)"));
-                listData->SetItemText(listDataItemCount, 1, wxNumberFormatter::ToString(project->GetTotalHardWordsFog(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                listData->SetItemText(listDataItemCount, 0,
+                    _(L"Number of Fog hard words (3+ syllables, with exceptions)"));
+                listData->SetItemText(listDataItemCount, 1,
+                    wxNumberFormatter::ToString(project->GetTotalHardWordsFog(), 0,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 listData->SetItemText(listDataItemCount++, 2, wxNumberFormatter::ToString(
-                    safe_divide<double>(project->GetTotalHardWordsFog(),project->GetTotalWords())*100, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words"));
+                    safe_divide<double>(project->GetTotalHardWordsFog(),project->GetTotalWords())*100, 1,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words"));
                 }
             // unique fog words
             HTMLText += formatRow(_(L"Number of unique Fog hard words:"),
-                wxNumberFormatter::ToString(project->GetTotalUniqueHardFogWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep)) +
+                wxNumberFormatter::ToString(project->GetTotalUniqueHardFogWords(), 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep)) +
                 L"\n</table>";
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Fog hard words"));
-                listData->SetItemText(listDataItemCount++, 1, wxNumberFormatter::ToString(project->GetTotalUniqueHardFogWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                listData->SetItemText(listDataItemCount++, 1,
+                    wxNumberFormatter::ToString(project->GetTotalUniqueHardFogWords(), 0,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 }
             }
 
@@ -1293,7 +1391,9 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 }
             }
 
-        const size_t totalWordCountForDC = (project->GetDaleChallTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
+        const size_t totalWordCountForDC =
+            (project->GetDaleChallTextExclusionMode() ==
+                SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
                 project->GetTotalWordsFromCompleteSentencesAndHeaders() : project->GetTotalWords();
         if (project->IsDaleChallLikeTestIncluded() )
             {
@@ -1305,78 +1405,125 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             else
                 { currentLabel = _(L"Number of Dale-Chall unfamiliar words:"); }
             HTMLText += formatRow(currentLabel,
-                wxNumberFormatter::ToString(project->GetTotalHardWordsDaleChall(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
+                wxNumberFormatter::ToString(project->GetTotalHardWordsDaleChall(), 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep),
                 wxString(L"(" + wxNumberFormatter::ToString(
-                    safe_divide<double>(project->GetTotalHardWordsDaleChall(), totalWordCountForDC)*100, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
+                    safe_divide<double>(project->GetTotalHardWordsDaleChall(), totalWordCountForDC)*100, 1,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep) +
                     L"% " + _(L"of all words)")));
 
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0, _(L"Number of Dale-Chall unfamiliar words"));
-                listData->SetItemText(listDataItemCount, 1, wxNumberFormatter::ToString(project->GetTotalHardWordsDaleChall(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                listData->SetItemText(listDataItemCount, 1,
+                    wxNumberFormatter::ToString(project->GetTotalHardWordsDaleChall(), 0,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 listData->SetItemText(listDataItemCount++, 2, wxNumberFormatter::ToString(
-                    safe_divide<double>(project->GetTotalHardWordsDaleChall(), totalWordCountForDC)*100, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
+                    safe_divide<double>(project->GetTotalHardWordsDaleChall(), totalWordCountForDC)*100, 1,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep) +
                     L"% " + _(L"of all words"));
                 }
             // unique Dale Chall hard words
             HTMLText += formatRow(_(L"Number of unique Dale-Chall unfamiliar words:"),
-                wxNumberFormatter::ToString(project->GetTotalUniqueDCHardWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep)) +
+                wxNumberFormatter::ToString(project->GetTotalUniqueDCHardWords(), 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep)) +
                 L"\n</table>";
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Dale-Chall unfamiliar words"));
-                listData->SetItemText(listDataItemCount++, 1, wxNumberFormatter::ToString(project->GetTotalUniqueDCHardWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                listData->SetItemText(listDataItemCount++, 1,
+                    wxNumberFormatter::ToString(project->GetTotalUniqueDCHardWords(), 0,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 }
 
-            if (project->GetDaleChallTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
+            if (project->GetDaleChallTextExclusionMode() ==
+                SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
-                HTMLText += FormatHtmlNoteSection(_(L"New Dale-Chall treats headers and sub-headers as full sentences and excludes all other incomplete sentences (regardless of your current analysis settings). This is taken into account when calculating the unfamiliar word count and percentage."));
+                HTMLText += FormatHtmlNoteSection(
+                    _(L"New Dale-Chall treats headers and sub-headers as full sentences and excludes all "
+                       "other incomplete sentences (regardless of your current analysis settings). "
+                       "This is taken into account when calculating the unfamiliar word count and percentage."));
                 }
             if (project->IsIncludingStockerCatholicSupplement())
                 {
-                HTMLText += FormatHtmlNoteSection(_(L"Stocker's Catholic supplement is being included with the standard New Dale-Chall word list."));
+                HTMLText += FormatHtmlNoteSection(
+                    _(L"Stocker's Catholic supplement is being included with the standard New Dale-Chall word list."));
                 }
             }
 
-        const size_t totalWordCountForHJ = (project->GetHarrisJacobsonTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
+        const size_t totalWordCountForHJ =
+            (project->GetHarrisJacobsonTextExclusionMode() ==
+                SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
             project->GetTotalWordsFromCompleteSentencesAndHeaders() : project->GetTotalWords();
-        const size_t totalNumeralCountForHJ = (project->GetHarrisJacobsonTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
+        const size_t totalNumeralCountForHJ =
+            (project->GetHarrisJacobsonTextExclusionMode() ==
+                SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
             project->GetTotalNumeralsFromCompleteSentencesAndHeaders() : project->GetTotalNumerals();
         if (project->GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()) )
             {
             // Harris-Jacobson
             HTMLText += tableStart + formatHeader(_(L"Harris-Jacobson Unfamiliar Words"));
-            if (project->GetTotalHardWordsHarrisJacobson() > 0 && project->GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()))
-                { currentLabel = _(L"Number of <a href=\"#HarrisJacobsonWords\">Harris-Jacobson</a> unfamiliar words:"); }
+            if (project->GetTotalHardWordsHarrisJacobson() > 0 &&
+                project->GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()))
+                {
+                currentLabel = _(L"Number of <a href=\"#HarrisJacobsonWords\">Harris-Jacobson</a> unfamiliar words:");
+                }
             else
                 { currentLabel = _(L"Number of Harris-Jacobson unfamiliar words:"); }
             HTMLText += formatRow(currentLabel,
-                wxNumberFormatter::ToString(project->GetTotalHardWordsHarrisJacobson(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
+                wxNumberFormatter::ToString(project->GetTotalHardWordsHarrisJacobson(), 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep),
                 L"(" + wxNumberFormatter::ToString(
-                    safe_divide<double>(project->GetTotalHardWordsHarrisJacobson(),totalWordCountForHJ-totalNumeralCountForHJ)*100, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words)"));
+                    safe_divide<double>(project->GetTotalHardWordsHarrisJacobson(),
+                        totalWordCountForHJ-totalNumeralCountForHJ)*100, 1,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words)"));
 
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0, _(L"Number of Harris-Jacobson unfamiliar words"));
-                listData->SetItemText(listDataItemCount, 1, wxNumberFormatter::ToString(project->GetTotalHardWordsHarrisJacobson(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                listData->SetItemText(listDataItemCount, 1,
+                    wxNumberFormatter::ToString(project->GetTotalHardWordsHarrisJacobson(), 0,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 listData->SetItemText(listDataItemCount++, 2, wxNumberFormatter::ToString(
-                    safe_divide<double>(project->GetTotalHardWordsHarrisJacobson(),totalWordCountForHJ-totalNumeralCountForHJ)*100, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
+                    safe_divide<double>(project->GetTotalHardWordsHarrisJacobson(),
+                        totalWordCountForHJ-totalNumeralCountForHJ)*100, 1,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep) +
                     L"% " + _(L"of all words"));
                 }
 
             // unique Harris-Jacobson hard words
             HTMLText += formatRow(_(L"Number of unique Harris-Jacobson unfamiliar words:"),
-                wxNumberFormatter::ToString(project->GetTotalUniqueHarrisJacobsonHardWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep)) +
+                wxNumberFormatter::ToString(project->GetTotalUniqueHarrisJacobsonHardWords(), 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep)) +
                 L"\n</table>";
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Harris-Jacobson unfamiliar words"));
-                listData->SetItemText(listDataItemCount++, 1, wxNumberFormatter::ToString(project->GetTotalUniqueHarrisJacobsonHardWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                listData->SetItemText(listDataItemCount++, 1,
+                    wxNumberFormatter::ToString(project->GetTotalUniqueHarrisJacobsonHardWords(), 0,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 }
 
-            if (project->GetHarrisJacobsonTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
+            if (project->GetHarrisJacobsonTextExclusionMode() ==
+                SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
-                HTMLText += FormatHtmlNoteSection(_(L"Harris-Jacobson treats headers and sub-headers as full sentences and excludes all other incomplete sentences (regardless of your current analysis settings). It also excludes all numerals from the total word count&mdash;this is taken into account when calculating the unfamiliar word count and percentage."));
+                HTMLText += FormatHtmlNoteSection(
+                    _(L"Harris-Jacobson treats headers and sub-headers as full sentences and excludes all other "
+                       "incomplete sentences (regardless of your current analysis settings). "
+                       "It also excludes all numerals from the total word count&mdash;this is taken into account "
+                       "when calculating the unfamiliar word count and percentage."));
                 }
             }
 
@@ -1384,22 +1531,32 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             {
             // Spache
             HTMLText += tableStart + formatHeader(_(L"Spache Unfamiliar Words"));
-            if (project->GetTotalHardWordsSpache() > 0 && project->GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()))
+            if (project->GetTotalHardWordsSpache() > 0 &&
+                project->GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()))
                 { currentLabel = _(L"Number of <a href=\"#SpacheWords\">Spache</a> unfamiliar words:"); }
             else
                 { currentLabel = _(L"Number of Spache unfamiliar words:"); }
             HTMLText += formatRow(currentLabel,
-                wxNumberFormatter::ToString(project->GetTotalHardWordsSpache(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
+                wxNumberFormatter::ToString(project->GetTotalHardWordsSpache(), 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep),
                 L"(" + wxNumberFormatter::ToString(
-                    safe_divide<double>(project->GetTotalHardWordsSpache(),project->GetTotalWords())*100, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
+                    safe_divide<double>(project->GetTotalHardWordsSpache(),project->GetTotalWords())*100, 1,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep) +
                 L"% " + _(L"of all words)"));
 
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0, _(L"Number of Spache unfamiliar words"));
-                listData->SetItemText(listDataItemCount, 1, wxNumberFormatter::ToString(project->GetTotalHardWordsSpache(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                listData->SetItemText(listDataItemCount, 1,
+                    wxNumberFormatter::ToString(project->GetTotalHardWordsSpache(), 0,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 listData->SetItemText(listDataItemCount++, 2, wxNumberFormatter::ToString(
-                    safe_divide<double>(project->GetTotalHardWordsSpache(),project->GetTotalWords())*100, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
+                    safe_divide<double>(project->GetTotalHardWordsSpache(),project->GetTotalWords())*100, 1,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep) +
                     L"% " + _(L"of all words"));
                 }
 
@@ -1436,7 +1593,10 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 {
                 listData->SetItemText(listDataItemCount, 0,
                     _(L"Number of McAlpine EFLAW miniwords (1-3 characters, except for numerals)"));
-                listData->SetItemText(listDataItemCount, 1, wxNumberFormatter::ToString(project->GetTotalMiniWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                listData->SetItemText(listDataItemCount, 1,
+                    wxNumberFormatter::ToString(project->GetTotalMiniWords(), 0,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 listData->SetItemText(listDataItemCount++, 2, wxNumberFormatter::ToString(
                     safe_divide<double>(project->GetTotalMiniWords(),project->GetTotalWords())*100, 1,
                     wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -1453,7 +1613,10 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0, _(L"Number of unique McAlpine EFLAW miniwords words"));
-                listData->SetItemText(listDataItemCount++, 1, wxNumberFormatter::ToString(project->GetTotalUniqueMiniWords(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                listData->SetItemText(listDataItemCount++, 1,
+                    wxNumberFormatter::ToString(project->GetTotalUniqueMiniWords(), 0,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 }
             }
 
@@ -1477,9 +1640,13 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             // total unfamiliar words
             HTMLText += tableStart + formatHeader(testName) +
                         formatRow(wxString::Format(_(L"Number of %s unfamiliar words:"), testName),
-                wxNumberFormatter::ToString(pos->GetUnfamiliarWordCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
+                wxNumberFormatter::ToString(pos->GetUnfamiliarWordCount(), 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep),
                 L"(" + wxNumberFormatter::ToString(
-                    safe_divide<double>(pos->GetUnfamiliarWordCount(),totalWordCountForCustomTest)*100, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
+                    safe_divide<double>(pos->GetUnfamiliarWordCount(),totalWordCountForCustomTest)*100, 1,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep) +
                             L"% " + _(L"of all words)"));
 
             if (listData)
@@ -1532,13 +1699,17 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             if (project->GetMisspelledWordCount())
                 { currentLabel += L"</a>"; }
             HTMLText += formatRow(currentLabel,
-                        wxNumberFormatter::ToString(project->GetMisspelledWordCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                        wxNumberFormatter::ToString(project->GetMisspelledWordCount(), 0,
+                            wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                            wxNumberFormatter::Style::Style_WithThousandsSep));
 
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0, _(L"Misspellings"));
                 listData->SetItemText(listDataItemCount++, 1,
-                    wxNumberFormatter::ToString(project->GetMisspelledWordCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                    wxNumberFormatter::ToString(project->GetMisspelledWordCount(), 0,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 }
             }
         // repeated words
@@ -1552,13 +1723,16 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 { currentLabel += L"</a>"; }
             HTMLText += formatRow(currentLabel,
                         wxNumberFormatter::ToString(project->GetDuplicateWordCount(), 0,
-                            wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                            wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                            wxNumberFormatter::Style::Style_WithThousandsSep));
 
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0, _(L"Repeated words"));
                 listData->SetItemText(listDataItemCount++, 1,
-                    wxNumberFormatter::ToString(project->GetDuplicateWordCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                    wxNumberFormatter::ToString(project->GetDuplicateWordCount(), 0,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 }
             }
         /// @todo Need to add these grammar features to other languages too
@@ -1575,13 +1749,16 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                     { currentLabel += L"</a>"; }
                 HTMLText += formatRow(currentLabel,
                             wxNumberFormatter::ToString(project->GetMismatchedArticleCount(), 0,
-                                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                                wxNumberFormatter::Style::Style_WithThousandsSep));
 
                 if (listData)
                     {
                     listData->SetItemText(listDataItemCount, 0, _(L"Article mismatches"));
                     listData->SetItemText(listDataItemCount++, 1,
-                        wxNumberFormatter::ToString(project->GetMismatchedArticleCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                        wxNumberFormatter::ToString(project->GetMismatchedArticleCount(), 0,
+                            wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                            wxNumberFormatter::Style::Style_WithThousandsSep));
                     }
                 }
             // Wording Errors
@@ -1595,13 +1772,16 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                     { currentLabel += L"</a>"; }
                 HTMLText += formatRow(currentLabel,
                             wxNumberFormatter::ToString(project->GetWordingErrorCount(), 0,
-                                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                                wxNumberFormatter::Style::Style_WithThousandsSep));
 
                 if (listData)
                     {
                     listData->SetItemText(listDataItemCount, 0, _(L"Wording errors"));
                     listData->SetItemText(listDataItemCount++, 1,
-                        wxNumberFormatter::ToString(project->GetWordingErrorCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                        wxNumberFormatter::ToString(project->GetWordingErrorCount(), 0,
+                            wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                            wxNumberFormatter::Style::Style_WithThousandsSep));
                     }
                 }
             // redundant phrase count
@@ -1615,13 +1795,16 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                     { currentLabel += L"</a>"; }
                 HTMLText += formatRow(currentLabel,
                             wxNumberFormatter::ToString(project->GetRedundantPhraseCount(), 0,
-                                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                                wxNumberFormatter::Style::Style_WithThousandsSep));
 
                 if (listData)
                     {
                     listData->SetItemText(listDataItemCount, 0, _(L"Redundant phrases"));
                     listData->SetItemText(listDataItemCount++, 1,
-                        wxNumberFormatter::ToString(project->GetRedundantPhraseCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                        wxNumberFormatter::ToString(project->GetRedundantPhraseCount(), 0,
+                            wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                            wxNumberFormatter::Style::Style_WithThousandsSep));
                     }
                 }
             // overused words (by sentence)
@@ -1634,13 +1817,17 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 if (project->GetOverusedWordsBySentenceCount())
                     { currentLabel += L"</a>"; }
                 HTMLText += formatRow(currentLabel,
-                            wxNumberFormatter::ToString(project->GetOverusedWordsBySentenceCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                            wxNumberFormatter::ToString(project->GetOverusedWordsBySentenceCount(), 0,
+                                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                                wxNumberFormatter::Style::Style_WithThousandsSep));
 
                 if (listData)
                     {
                     listData->SetItemText(listDataItemCount, 0, _(L"Overused words (x sentence)"));
                     listData->SetItemText(listDataItemCount++, 1,
-                        wxNumberFormatter::ToString(project->GetOverusedWordsBySentenceCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                        wxNumberFormatter::ToString(project->GetOverusedWordsBySentenceCount(), 0,
+                            wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                            wxNumberFormatter::Style::Style_WithThousandsSep));
                     }
                 }
             // wordiness
@@ -1653,13 +1840,17 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 if (project->GetWordyPhraseCount())
                     { currentLabel += L"</a>"; }
                 HTMLText += formatRow(currentLabel,
-                            wxNumberFormatter::ToString(project->GetWordyPhraseCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                            wxNumberFormatter::ToString(project->GetWordyPhraseCount(), 0,
+                                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                                wxNumberFormatter::Style::Style_WithThousandsSep));
 
                 if (listData)
                     {
                     listData->SetItemText(listDataItemCount, 0, _(L"Wordy items"));
                     listData->SetItemText(listDataItemCount++, 1,
-                        wxNumberFormatter::ToString(project->GetWordyPhraseCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                        wxNumberFormatter::ToString(project->GetWordyPhraseCount(), 0,
+                            wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                            wxNumberFormatter::Style::Style_WithThousandsSep));
                     }
                 }
             // cliches
@@ -1672,12 +1863,17 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 if (project->GetClicheCount())
                     { currentLabel += L"</a>"; }
                 HTMLText += formatRow(currentLabel,
-                            wxNumberFormatter::ToString(project->GetClicheCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                            wxNumberFormatter::ToString(project->GetClicheCount(), 0,
+                                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                                wxNumberFormatter::Style::Style_WithThousandsSep));
 
                 if (listData)
                     {
                     listData->SetItemText(listDataItemCount, 0, BaseProjectView::GetClichesTabLabel());
-                    listData->SetItemText(listDataItemCount++, 1, wxNumberFormatter::ToString(project->GetClicheCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                    listData->SetItemText(listDataItemCount++, 1,
+                        wxNumberFormatter::ToString(project->GetClicheCount(), 0,
+                            wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                            wxNumberFormatter::Style::Style_WithThousandsSep));
                     }
                 }
             // passive voice
@@ -1690,13 +1886,17 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 if (project->GetPassiveVoicesCount())
                     { currentLabel += L"</a>"; }
                 HTMLText += formatRow(currentLabel,
-                            wxNumberFormatter::ToString(project->GetPassiveVoicesCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                            wxNumberFormatter::ToString(project->GetPassiveVoicesCount(), 0,
+                                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                                wxNumberFormatter::Style::Style_WithThousandsSep));
 
                 if (listData)
                     {
                     listData->SetItemText(listDataItemCount, 0, _(L"Passive voice"));
                     listData->SetItemText(listDataItemCount++, 1,
-                        wxNumberFormatter::ToString(project->GetPassiveVoicesCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                        wxNumberFormatter::ToString(project->GetPassiveVoicesCount(), 0,
+                            wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                            wxNumberFormatter::Style::Style_WithThousandsSep));
                     }
                 }
             }
@@ -1710,12 +1910,19 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             if (project->GetSentenceStartingWithConjunctionsCount())
                 { currentLabel += L"</a>"; }
             HTMLText += formatRow(currentLabel,
-                        wxNumberFormatter::ToString(project->GetSentenceStartingWithConjunctionsCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                        wxNumberFormatter::ToString(
+                            project->GetSentenceStartingWithConjunctionsCount(), 0,
+                            wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                            wxNumberFormatter::Style::Style_WithThousandsSep));
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, BaseProjectView::GetSentenceStartingWithConjunctionsLabel());
-                listData->SetItemText(listDataItemCount++, 1, wxNumberFormatter::ToString(project->GetSentenceStartingWithConjunctionsCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                listData->SetItemText(listDataItemCount, 0,
+                    BaseProjectView::GetSentenceStartingWithConjunctionsLabel());
+                listData->SetItemText(listDataItemCount++, 1,
+                    wxNumberFormatter::ToString(project->GetSentenceStartingWithConjunctionsCount(), 0,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 }
             }
         // lowercased sentences
@@ -1730,25 +1937,33 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             if (project->GetSentenceStartingWithLowercaseCount())
                 { currentLabel += L"</a>"; }
             HTMLText += formatRow(currentLabel,
-                        wxNumberFormatter::ToString(project->GetSentenceStartingWithLowercaseCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                        wxNumberFormatter::ToString(project->GetSentenceStartingWithLowercaseCount(), 0,
+                            wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                            wxNumberFormatter::Style::Style_WithThousandsSep));
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, BaseProjectView::GetSentenceStartingWithLowercaseLabel());
-                listData->SetItemText(listDataItemCount++, 1, wxNumberFormatter::ToString(project->GetSentenceStartingWithLowercaseCount(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                listData->SetItemText(listDataItemCount, 0,
+                    BaseProjectView::GetSentenceStartingWithLowercaseLabel());
+                listData->SetItemText(listDataItemCount++, 1,
+                    wxNumberFormatter::ToString(project->GetSentenceStartingWithLowercaseCount(), 0,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 }
             }
 
         HTMLText += L"\n<tr><td colspan=\"3\">" +
             FormatHtmlNoteSection(
-                _(L"Grammar statistics do not directly factor into readability formulas; however, they can be useful suggestions for improving the document.")) +
+                _(L"Grammar statistics do not directly factor into readability formulas; however, "
+                   "they can be useful suggestions for improving the document.")) +
             L"</td></tr>\n";
 
         if (project->GetSentenceStartMustBeUppercased())
             {
             HTMLText += L"\n<tr><td colspan=\"3\">" +
                 FormatHtmlNoteSection(
-                    _(L"* This project's sentence-deduction method is set to only accept capitalized sentences. Lowercased-sentence detection will be limited to sentences that begin new paragraphs.")) +
+                    _(L"* This project's sentence-deduction method is set to only accept capitalized sentences. "
+                       "Lowercased-sentence detection will be limited to sentences that begin new paragraphs.")) +
                 L"</td></tr>\n";
             }
 
