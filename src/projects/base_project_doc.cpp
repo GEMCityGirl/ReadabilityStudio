@@ -29,7 +29,7 @@ Wisteria::UI::ImageExportOptions BaseProjectDoc::m_imageExportOptions;
 
 BaseProjectDoc::BaseProjectDoc() :
     m_FileReadOnly(false),
-    //graph options
+    // graph options
     m_useGraphBackGroundImageLinearGradient(wxGetApp().GetAppOptions().GetGraphBackGroundLinearGradient()),
     m_displayDropShadows(wxGetApp().GetAppOptions().IsDisplayingDropShadows()),
     m_graphBackGroundImagePath(wxGetApp().GetAppOptions().GetBackGroundImagePath()),
@@ -55,7 +55,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_graphInvalidAreaColor(wxGetApp().GetAppOptions().GetInvalidAreaColor()),
     m_fleschChartConnectPoints(wxGetApp().GetAppOptions().IsConnectingFleschPoints()),
     m_useEnglishLabelsGermanLix(wxGetApp().GetAppOptions().IsUsingEnglishLabelsForGermanLix()),
-    //histogram options
+    // histogram options
     m_histogramBinningMethod(wxGetApp().GetAppOptions().GetHistorgramBinningMethod()),
     m_histrogramBinLabelDisplayMethod(wxGetApp().GetAppOptions().GetHistrogramBinLabelDisplay()),
     m_histrogramRoundingMethod(wxGetApp().GetAppOptions().GetHistogramRoundingMethod()),
@@ -63,20 +63,20 @@ BaseProjectDoc::BaseProjectDoc() :
     m_histogramBarColor(wxGetApp().GetAppOptions().GetHistogramBarColor()),
     m_histogramBarOpacity(wxGetApp().GetAppOptions().GetHistogramBarOpacity()),
     m_histogramBarEffect(wxGetApp().GetAppOptions().GetHistogramBarEffect()),
-    //bar chart options
+    // bar chart options
     m_barChartBarColor(wxGetApp().GetAppOptions().GetBarChartBarColor()),
     m_barChartOrientation(wxGetApp().GetAppOptions().GetBarChartOrientation()),
     m_graphBarOpacity(wxGetApp().GetAppOptions().GetGraphBarOpacity()),
     m_graphBarEffect(wxGetApp().GetAppOptions().GetGraphBarEffect()),
     m_barDisplayLabels(wxGetApp().GetAppOptions().IsDisplayingBarLabels()),
-    //box plot options
+    // box plot options
     m_boxPlotShowAllPoints(wxGetApp().GetAppOptions().IsShowingAllBoxPlotPoints()),
     m_boxDisplayLabels(wxGetApp().GetAppOptions().IsDisplayingBoxPlotLabels()),
     m_boxConnectMiddlePoints(wxGetApp().GetAppOptions().IsConnectingBoxPlotMiddlePoints()),
     m_graphBoxColor(wxGetApp().GetAppOptions().GetGraphBoxColor()),
     m_graphBoxOpacity(wxGetApp().GetAppOptions().GetGraphBoxOpacity()),
     m_graphBoxEffect(wxGetApp().GetAppOptions().GetGraphBoxEffect()),
-    //text highlighting options
+    // text highlighting options
     m_textViewHighlightColor(wxGetApp().GetAppOptions().GetTextHighlightColor() ),
     m_excludedTextHighlightColor(wxGetApp().GetAppOptions().GetExcludedTextHighlightColor() ),
     m_wordyPhraseHighlightColor(wxGetApp().GetAppOptions().GetWordyPhraseHighlightColor() ),
@@ -84,7 +84,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_textHighlight(wxGetApp().GetAppOptions().GetTextHighlightMethod() ),
     m_textViewFont(wxGetApp().GetAppOptions().GetTextViewFont()),
     m_fontColor(wxGetApp().GetAppOptions().GetTextFontColor()),
-    //dolch colors
+    // dolch colors
     m_dolchConjunctionsColor(wxGetApp().GetAppOptions().GetDolchConjunctionsColor()),
     m_dolchPrepositionsColor(wxGetApp().GetAppOptions().GetDolchPrepositionsColor()),
     m_dolchPronounsColor(wxGetApp().GetAppOptions().GetDolchPronounsColor()),
@@ -100,10 +100,10 @@ BaseProjectDoc::BaseProjectDoc() :
     m_highlightDolchAdjectives(wxGetApp().GetAppOptions().IsHighlightingDolchAdjectives()),
     m_highlightDolchVerbs(wxGetApp().GetAppOptions().IsHighlightingDolchVerbs()),
     m_highlightDolchNouns(wxGetApp().GetAppOptions().IsHighlightingDolchNouns()),
-    //batch options
+    // batch options
     m_filePathTruncationMode(wxGetApp().GetAppOptions().GetFilePathTruncationMode())
     {
-    //call this to load the images
+    // call this to load the images
     SetBackGroundImagePath(wxGetApp().GetAppOptions().GetBackGroundImagePath());
     SetStippleImagePath(wxGetApp().GetAppOptions().GetGraphStippleImagePath());
     SetWatermarkLogoPath(wxGetApp().GetAppOptions().GetWatermarkLogo());
@@ -114,12 +114,12 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that)
     {
     CopySettings(that);
 
-    //load appended template file (if there is one)
+    // load appended template file (if there is one)
     LoadAppendedDocument();
 
-    //load the excluded phrases.
+    // load the excluded phrases.
     LoadExcludePhrases();
-    //graph settings
+    // graph settings
     m_useGraphBackGroundImageLinearGradient = that.m_useGraphBackGroundImageLinearGradient;
     m_displayDropShadows = that.m_displayDropShadows;
     m_graphBackgroundImage = that.m_graphBackgroundImage;
@@ -173,7 +173,8 @@ void BaseProjectDoc::SetBackGroundImagePath(const wxString& filePath)
         if (wxFile::Exists(filePath))
             {
             m_graphBackgroundImage = wxBitmapBundle(
-                wxGetApp().GetResourceManager().GetBitmap(m_graphBackGroundImagePath,wxBITMAP_TYPE_ANY).ConvertToImage());
+                wxGetApp().GetResourceManager().GetBitmap(
+                    m_graphBackGroundImagePath,wxBITMAP_TYPE_ANY).ConvertToImage());
             }
         else
             {
@@ -507,8 +508,8 @@ void BaseProjectDoc::RemoveAllGlobalCustomReadabilityTests()
         { return; }
 
     wxArrayString testNames;
-    for (CustomReadabilityTestCollection::const_iterator pos = BaseProject::m_custom_word_tests.begin();
-        pos != BaseProject::m_custom_word_tests.end();
+    for (CustomReadabilityTestCollection::const_iterator pos = BaseProject::m_custom_word_tests.cbegin();
+        pos != BaseProject::m_custom_word_tests.cend();
         ++pos)
         { testNames.Add(pos->get_name().c_str()); }
     // remove tests from all of the projects' menus
@@ -808,7 +809,9 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         SetStatus(XmlFormat::GetString(docParsingSection, docParsingSectionEnd,
                                        wxGetApp().GetAppOptions().XML_STATUS));
         // appended doc
-        SetAppendedDocumentFilePath(XmlFormat::GetString(docParsingSection, docParsingSectionEnd, wxGetApp().GetAppOptions().XML_APPENDED_DOC_PATH));
+        SetAppendedDocumentFilePath(
+            XmlFormat::GetString(docParsingSection, docParsingSectionEnd,
+                wxGetApp().GetAppOptions().XML_APPENDED_DOC_PATH));
         LoadAppendedDocument();
         // see if the original file is embedded in the project or just linked too
         SetDocumentStorageMethod(static_cast<TextStorage>(XmlFormat::GetLong(docParsingSection, docParsingSectionEnd,
@@ -827,12 +830,17 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         long truncMode = XmlFormat::GetLong(docParsingSection, docParsingSectionEnd,
                                         wxGetApp().GetAppOptions().XML_FILE_PATH_TRUNC_MODE,
                                         static_cast<long>(wxGetApp().GetAppOptions().GetFilePathTruncationMode()));
-        if (truncMode >= static_cast<decltype(truncMode)>(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::COLUMN_FILE_PATHS_TRUNCATION_MODE_COUNT))
+        if (truncMode >=
+            static_cast<decltype(truncMode)>(
+                ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::COLUMN_FILE_PATHS_TRUNCATION_MODE_COUNT))
             { truncMode = static_cast<decltype(truncMode)>(wxGetApp().GetAppOptions().GetFilePathTruncationMode()); }
         SetFilePathTruncationMode(static_cast<ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode>(truncMode));
         // The project's language (used for determining which tests can be used)
-        readability::test_language projectLanguage = static_cast<readability::test_language>(XmlFormat::GetLong(docParsingSection, docParsingSectionEnd, wxGetApp().GetAppOptions().XML_PROJECT_LANGUAGE,
-                                                                static_cast<long>(wxGetApp().GetAppOptions().GetProjectLanguage())));
+        readability::test_language projectLanguage =
+            static_cast<readability::test_language>(
+                XmlFormat::GetLong(docParsingSection, docParsingSectionEnd,
+                                   wxGetApp().GetAppOptions().XML_PROJECT_LANGUAGE,
+                                   static_cast<long>(wxGetApp().GetAppOptions().GetProjectLanguage())));
         if (projectLanguage != readability::test_language::english_test &&
             !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
             !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
@@ -1266,7 +1274,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
     if (graphsSection && graphsSectionEnd &&
         (graphsSection < graphsSectionEnd) )
         {
-        //background color and images
+        // background color and images
         SetBackGroundImagePath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_PATH));
 
@@ -1677,7 +1685,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             static_cast<ReadabilityMessages::ReadingAgeDisplay>(
                 XmlFormat::GetLong(readabilityTestSection, readabilityTestSectionEnd,
                 wxGetApp().GetAppOptions().XML_READING_AGE_FORMAT,
-                static_cast<long>(wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().GetReadingAgeDisplay()))) );
+                static_cast<long>(wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().GetReadingAgeDisplay()))));
         GetReadabilityMessageCatalog().SetGradeScale(
             static_cast<readability::grade_scale>(XmlFormat::GetLong(readabilityTestSection, readabilityTestSectionEnd,
             wxGetApp().GetAppOptions().XML_READABILITY_TEST_GRADE_SCALE_DISPLAY,
@@ -1882,7 +1890,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             _(L"Error"), wxOK|wxICON_ERROR);
         }
 
-    //fix any issues with items loaded from this file
+    // fix any issues with items loaded from this file
     Wisteria::GraphItems::Label::FixFont(m_xAxisFont);
     Wisteria::GraphItems::Label::FixFont(m_yAxisFont);
     Wisteria::GraphItems::Label::FixFont(m_topTitleFont);
@@ -2003,7 +2011,7 @@ wxString BaseProjectDoc::FormatProjectSettings() const
         SpellCheckIsIgnoringSocialMediaTags(), 3);
     fileText += sectionText;
 
-    //which grammar features are included
+    // which grammar features are included
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAMMAR_INFO, GetGrammarInfo().ToString(), 2);
     fileText += sectionText;
 
@@ -2045,8 +2053,8 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText += sectionText;
     // text block tag exclusion
     fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS).append(L">\n");
-    for (std::vector<std::pair<wchar_t,wchar_t>>::const_iterator currentExcludeTag = GetExclusionBlockTags().begin();
-        currentExcludeTag != GetExclusionBlockTags().end();
+    for (auto currentExcludeTag = GetExclusionBlockTags().cbegin();
+        currentExcludeTag != GetExclusionBlockTags().cend();
         ++currentExcludeTag)
         {
         const wchar_t excludeTagsStr[3] = { currentExcludeTag->first, currentExcludeTag->second, 0 };
@@ -2078,7 +2086,7 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_CITATIONS,
         IsIgnoringTrailingCitations(), 2);
     fileText += sectionText;
-    //whether to use aggressive list deduction
+    // whether to use aggressive list deduction
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_AGGRESSIVE_EXCLUSION,
         IsExcludingAggressively(), 2);
     fileText += sectionText;
@@ -2171,40 +2179,54 @@ wxString BaseProjectDoc::FormatProjectSettings() const
             int_to_bool(pos->GetIterator()->is_familiar_words_must_be_on_each_included_list()), 3);
         fileText += sectionText;
         // industry association
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_CHILDRENS_PUBLISHING, int_to_bool(pos->GetIterator()->has_industry_classification(readability::industry_classification::childrens_publishing_industry)), 3);
+        XmlFormat::FormatSection(
+            sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_CHILDRENS_PUBLISHING,
+            int_to_bool(pos->GetIterator()->has_industry_classification(
+                readability::industry_classification::childrens_publishing_industry)), 3);
         fileText += sectionText;
         XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_ADULTPUBLISHING,
-            int_to_bool(pos->GetIterator()->has_industry_classification(readability::industry_classification::adult_publishing_industry)), 3);
+            int_to_bool(pos->GetIterator()->has_industry_classification(
+                readability::industry_classification::adult_publishing_industry)), 3);
         fileText += sectionText;
         XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_SECONDARY_LANGUAGE,
-            int_to_bool(pos->GetIterator()->has_industry_classification(readability::industry_classification::sedondary_language_industry)), 3);
+            int_to_bool(pos->GetIterator()->has_industry_classification(
+                readability::industry_classification::sedondary_language_industry)), 3);
         fileText += sectionText;
         XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_CHILDRENS_HEALTHCARE,
-            int_to_bool(pos->GetIterator()->has_industry_classification(readability::industry_classification::childrens_healthcare_industry)), 3);
+            int_to_bool(pos->GetIterator()->has_industry_classification(
+                readability::industry_classification::childrens_healthcare_industry)), 3);
         fileText += sectionText;
         XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_ADULT_HEALTHCARE,
-            int_to_bool(pos->GetIterator()->has_industry_classification(readability::industry_classification::adult_healthcare_industry)), 3);
+            int_to_bool(pos->GetIterator()->has_industry_classification(
+                readability::industry_classification::adult_healthcare_industry)), 3);
         fileText += sectionText;
         XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_MILITARY_GOVERNMENT,
-            int_to_bool(pos->GetIterator()->has_industry_classification(readability::industry_classification::military_government_industry)), 3);
+            int_to_bool(pos->GetIterator()->has_industry_classification(
+                readability::industry_classification::military_government_industry)), 3);
         fileText += sectionText;
         XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_BROADCASTING,
-            int_to_bool(pos->GetIterator()->has_industry_classification(readability::industry_classification::broadcasting_industry)), 3);
+            int_to_bool(pos->GetIterator()->has_industry_classification(
+                readability::industry_classification::broadcasting_industry)), 3);
         fileText += sectionText;
         XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_GENERAL,
-            int_to_bool(pos->GetIterator()->has_document_classification(readability::document_classification::general_document)), 3);
+            int_to_bool(pos->GetIterator()->has_document_classification(
+                readability::document_classification::general_document)), 3);
         fileText += sectionText;
         XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_TECHNICAL,
-            int_to_bool(pos->GetIterator()->has_document_classification(readability::document_classification::technical_document)), 3);
+            int_to_bool(pos->GetIterator()->has_document_classification(
+                readability::document_classification::technical_document)), 3);
         fileText += sectionText;
         XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_FORM,
-            int_to_bool(pos->GetIterator()->has_document_classification(readability::document_classification::nonnarrative_document)), 3);
+            int_to_bool(pos->GetIterator()->has_document_classification(
+                readability::document_classification::nonnarrative_document)), 3);
         fileText += sectionText;
         XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_YOUNGADULT,
-            int_to_bool(pos->GetIterator()->has_document_classification(readability::document_classification::adult_literature_document)), 3);
+            int_to_bool(pos->GetIterator()->has_document_classification(
+                readability::document_classification::adult_literature_document)), 3);
         fileText += sectionText;
         XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_CHILDREN_LIT,
-            int_to_bool(pos->GetIterator()->has_document_classification(readability::document_classification::childrens_literature_document)), 3);
+            int_to_bool(pos->GetIterator()->has_document_classification(
+                readability::document_classification::childrens_literature_document)), 3);
         fileText += sectionText;
 
         fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_CUSTOM_FAMILIAR_WORD_TEST).append(L">\n");
@@ -2283,7 +2305,7 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BINNING_LABEL_DISPLAY,
         static_cast<int>(GetHistrogramBinLabelDisplay()), 3);
     fileText += sectionText;
-    //rounding
+    // rounding
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_ROUNDING_METHOD,
         static_cast<int>(GetHistogramRoundingMethod()), 3);
     fileText += sectionText;
@@ -2347,7 +2369,7 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BOX_CONNECT_MIDDLE_POINTS,
         static_cast<int>(IsConnectingBoxPlotMiddlePoints()), 3);
     fileText += sectionText;
-    //box display labels
+    // box display labels
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BOX_DISPLAY_LABELS,
         static_cast<int>(IsDisplayingBoxPlotLabels()), 3);
     fileText += sectionText;

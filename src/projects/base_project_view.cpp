@@ -1298,7 +1298,7 @@ void BaseProjectView::OnTestBundle(wxCommandEvent& event)
                     doc->AddCustomReadabilityTest(wxString(pos->get_name().c_str()));
                     }
                 }
-            //see if Dolch section should be added
+            // see if Dolch section should be added
             if (((basedOnIndustry &&
                 selectedIndustry == readability::industry_classification::childrens_publishing_industry) ||
                 (basedOnIndustry &&
@@ -1307,7 +1307,7 @@ void BaseProjectView::OnTestBundle(wxCommandEvent& event)
                  selectedDocument == readability::document_classification::childrens_literature_document)) &&
                 (doc->GetProjectLanguage() == readability::test_language::english_test))
                 { doc->IncludeDolchSightWords(); }
-            //if Dolch was added or removed then refresh
+            // if Dolch was added or removed then refresh
             if ((!hadDolchSightWords && doc->IsIncludingDolchSightWords()) ||
                 (hadDolchSightWords && !doc->IsIncludingDolchSightWords()) )
                 { doc->RefreshRequired(ProjectRefresh::FullReindexing); }
@@ -1494,7 +1494,7 @@ void BaseProjectView::OnCustomTest(wxCommandEvent& event)
     if (doc && doc->IsSafeToUpdate())
         {
         doc->AddCustomReadabilityTest(pos->second);
-        //projects will need to do a full re-indexing
+        // projects will need to do a full re-indexing
         doc->RefreshRequired(ProjectRefresh::FullReindexing);
         doc->RefreshProject();
         }
@@ -2051,7 +2051,7 @@ void BaseProjectView::Present()
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->ToggleButton(XRCID("ID_EXCLUDE_FILE_ADDRESSES"), doc->IsIgnoringFileAddresses());
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->ToggleButton(XRCID("ID_EXCLUDE_NUMERALS"), doc->IsIgnoringNumerals());
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->ToggleButton(XRCID("ID_EXCLUDE_PROPER_NOUNS"), doc->IsIgnoringProperNouns());
-            //disable exclusion buttons
+            // disable exclusion buttons
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(XRCID("ID_EXCLUDE_AGGRESSIVELY"), (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(XRCID("ID_EXCLUDE_COPYRIGHT_NOTICES"), (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(XRCID("ID_EXCLUDE_TRAILING_CITATIONS"), (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
@@ -2071,7 +2071,7 @@ void BaseProjectView::Present()
             }
         }
 
-    //fit the sidebar to its labels' sizes
+    // fit the sidebar to its labels' sizes
     const size_t sideBarMinimumWidth = GetSideBar()->AdjustWidthToFitItems();
     GetSplitter()->SetMinimumPaneSize(sideBarMinimumWidth);
     GetSplitter()->SplitVertically(GetSideBar(), GetSplitter()->GetWindow2(), sideBarMinimumWidth);
@@ -2154,7 +2154,7 @@ void BaseProjectView::ShowSideBar(const bool show /*= true*/)
 //-------------------------------------------------------
 bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     {
-    //hide the empty mainframe when a document window is opened
+    // hide the empty mainframe when a document window is opened
     wxGetApp().GetMainFrame()->Hide();
 
     m_frame = CreateChildFrame(doc, this);
@@ -2203,7 +2203,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     GetInfoBar()->SetShowHideEffects(wxSHOW_EFFECT_SLIDE_TO_BOTTOM, wxSHOW_EFFECT_SLIDE_TO_TOP);
     mainSizer->Add(GetInfoBar(),0,wxEXPAND);
 
-    //initialize ribbon menus
+    // initialize ribbon menus
     wxGetApp().FillPrintMenu(m_printMenu, ReadabilityApp::RibbonType::StandardProjectRibbon);
     m_fileOpenMenu.Append(wxID_OPEN, _(L"Open Project...") + L"\tCtrl+O");
     wxGetApp().GetDocManager()->FileHistoryUseMenu(&m_fileOpenMenu);
@@ -2253,10 +2253,10 @@ BaseProjectView::~BaseProjectView()
         if (GetMenuBar())
             { m_menuBar->Destroy(); m_menuBar = nullptr; }
         }
-    //OnClose() should handle this (even on failure), but doesn't hurt to check this here too.
+    // OnClose() should handle this (even on failure), but doesn't hurt to check this here too.
     if (wxGetApp().GetDocumentCount() == 1)
         {
-        //show the empty mainframe when the last document is being closed
+        // show the empty mainframe when the last document is being closed
         wxArrayString mruFiles;
         for (size_t i = 0; i < wxGetApp().GetDocManager()->GetFileHistory()->GetCount(); ++i)
             { mruFiles.Add(wxGetApp().GetDocManager()->GetFileHistory()->GetHistoryFile(i)); }
@@ -2270,7 +2270,7 @@ BaseProjectView::~BaseProjectView()
 //-------------------------------------------------------
 void BaseProjectView::OnActivateView(bool activate, wxView*, wxView*)
     {
-    //if the frame (and its views) are ready for showing then show it
+    // if the frame (and its views) are ready for showing then show it
     if (activate && m_presentedSuccessfully && GetDocFrame())
         {
         GetDocFrame()->Show(true);
