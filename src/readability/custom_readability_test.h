@@ -61,7 +61,7 @@ namespace readability
                     const bool familiar_words_must_be_on_each_included_list,
                     const readability::proper_noun_counting_method properNounMethod,
                     const bool treat_numeric_as_familiar,
-                    //industry
+                    // industry
                     const bool industryChildrensPublishingSelected,
                     const bool industryAdultPublishingSelected,
                     const bool industrySecondaryLanguageSelected,
@@ -69,7 +69,7 @@ namespace readability
                     const bool industryAdultHealthCareSelected,
                     const bool industryMilitaryGovernmentSelected,
                     const bool industryBroadcastingSelected,
-                    //document
+                    // document
                     const bool documentGeneralSelected,
                     const bool documentTechSelected,
                     const bool documentNonNarrativeFormSelected,
@@ -78,8 +78,9 @@ namespace readability
                     :
                     test_with_classification(industryChildrensPublishingSelected, industryAdultPublishingSelected,
                         industrySecondaryLanguageSelected, industryChildrensHealthCareSelected,
-                        industryAdultHealthCareSelected, industryMilitaryGovernmentSelected, industryBroadcastingSelected,
-                        documentGeneralSelected, documentTechSelected, documentNonNarrativeFormSelected, documentYoungAdultSelected,
+                        industryAdultHealthCareSelected, industryMilitaryGovernmentSelected,
+                        industryBroadcastingSelected, documentGeneralSelected, documentTechSelected,
+                        documentNonNarrativeFormSelected, documentYoungAdultSelected,
                         documentChildrenSelected),
                     m_name(name),
                     m_formula(formula),
@@ -93,7 +94,8 @@ namespace readability
                     m_include_spache_list(inc_spache_list),
                     is_spache_word(spache_list, proper_noun_counting_method::all_proper_nouns_are_unfamiliar, false),
                     m_include_harris_jacobson_list(inc_harris_jacobson_list),
-                    is_harris_jacobson_word(harris_jacobson_list, proper_noun_counting_method::all_proper_nouns_are_unfamiliar, false),
+                    is_harris_jacobson_word(harris_jacobson_list,
+                        proper_noun_counting_method::all_proper_nouns_are_unfamiliar, false),
                     m_include_stocker_list(inc_stocker_list),
                     is_stocker_word(stocker_list, proper_noun_counting_method::all_proper_nouns_are_unfamiliar, false),
                     m_familiar_words_must_be_on_all_included_list(familiar_words_must_be_on_each_included_list),
@@ -116,52 +118,68 @@ namespace readability
             /* These other object don't use extended flags (that is handled by the
                is_word_familiar_proper_or_numeric object), so turn these flags off so that these
                object simply tell if a word is on a list.*/
-            is_dc_word.set_proper_noun_method(proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+            is_dc_word.set_proper_noun_method(
+                proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
             is_dc_word.include_numeric_as_familiar(false);
 
-            is_spache_word.set_proper_noun_method(proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+            is_spache_word.set_proper_noun_method(
+                proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
             is_spache_word.include_numeric_as_familiar(false);
 
-            is_harris_jacobson_word.set_proper_noun_method(proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+            is_harris_jacobson_word.set_proper_noun_method(
+                proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
             is_harris_jacobson_word.include_numeric_as_familiar(false);
 
-            is_stocker_word.set_proper_noun_method(proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+            is_stocker_word.set_proper_noun_method(
+                proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
             is_stocker_word.include_numeric_as_familiar(false);
 
-            is_word_familiar_no_stem.set_proper_noun_method(proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+            is_word_familiar_no_stem.set_proper_noun_method(
+                proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
             is_word_familiar_no_stem.include_numeric_as_familiar(false);
 
-            is_word_familiar_danish_stem.set_proper_noun_method(proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+            is_word_familiar_danish_stem.set_proper_noun_method(
+                proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
             is_word_familiar_danish_stem.include_numeric_as_familiar(false);
 
-            is_word_familiar_dutch_stem.set_proper_noun_method(proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+            is_word_familiar_dutch_stem.set_proper_noun_method(
+                proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
             is_word_familiar_dutch_stem.include_numeric_as_familiar(false);
 
-            is_word_familiar_english_stem.set_proper_noun_method(proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+            is_word_familiar_english_stem.set_proper_noun_method(
+                proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
             is_word_familiar_english_stem.include_numeric_as_familiar(false);
 
-            is_word_familiar_finnish_stem.set_proper_noun_method(proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+            is_word_familiar_finnish_stem.set_proper_noun_method(
+                proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
             is_word_familiar_finnish_stem.include_numeric_as_familiar(false);
 
-            is_word_familiar_french_stem.set_proper_noun_method(proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+            is_word_familiar_french_stem.set_proper_noun_method(
+                proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
             is_word_familiar_french_stem.include_numeric_as_familiar(false);
 
-            is_word_familiar_german_stem.set_proper_noun_method(proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+            is_word_familiar_german_stem.set_proper_noun_method(
+                proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
             is_word_familiar_german_stem.include_numeric_as_familiar(false);
 
-            is_word_familiar_italian_stem.set_proper_noun_method(proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+            is_word_familiar_italian_stem.set_proper_noun_method(
+                proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
             is_word_familiar_italian_stem.include_numeric_as_familiar(false);
 
-            is_word_familiar_norwegian_stem.set_proper_noun_method(proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+            is_word_familiar_norwegian_stem.set_proper_noun_method(
+                proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
             is_word_familiar_norwegian_stem.include_numeric_as_familiar(false);
 
-            is_word_familiar_portuguese_stem.set_proper_noun_method(proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+            is_word_familiar_portuguese_stem.set_proper_noun_method(
+                proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
             is_word_familiar_portuguese_stem.include_numeric_as_familiar(false);
 
-            is_word_familiar_swedish_stem.set_proper_noun_method(proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+            is_word_familiar_swedish_stem.set_proper_noun_method(
+                proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
             is_word_familiar_swedish_stem.include_numeric_as_familiar(false);
 
-            is_word_familiar_spanish_stem.set_proper_noun_method(proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
+            is_word_familiar_spanish_stem.set_proper_noun_method(
+                proper_noun_counting_method::all_proper_nouns_are_unfamiliar);
             is_word_familiar_spanish_stem.include_numeric_as_familiar(false);
             }
 
@@ -171,7 +189,8 @@ namespace readability
         bool operator==(const custom_test<word_typeT>& that) const
             {
             return ((m_name == that.m_name) &&
-                (string_util::remove_all_whitespace<string_type>(get_formula()) == string_util::remove_all_whitespace<string_type>(that.get_formula())) &&
+                (string_util::remove_all_whitespace<string_type>(get_formula()) ==
+                    string_util::remove_all_whitespace<string_type>(that.get_formula())) &&
                 (m_result_type == that.m_result_type) &&
                 (m_familiar_word_list_file_path == that.m_familiar_word_list_file_path) &&
                 (m_stemming_type == that.m_stemming_type) &&
@@ -180,9 +199,12 @@ namespace readability
                 (m_include_spache_list == that.m_include_spache_list) &&
                 (m_include_harris_jacobson_list == that.m_include_harris_jacobson_list) &&
                 (m_include_stocker_list == that.m_include_stocker_list) &&
-                (is_word_familiar_proper_or_numeric.get_proper_noun_method() == that.is_word_familiar_proper_or_numeric.get_proper_noun_method()) &&
-                (is_word_familiar_proper_or_numeric.is_including_numeric_as_familiar() == that.is_word_familiar_proper_or_numeric.is_including_numeric_as_familiar()) &&
-                (m_familiar_words_must_be_on_all_included_list == that.m_familiar_words_must_be_on_all_included_list));
+                (is_word_familiar_proper_or_numeric.get_proper_noun_method() ==
+                    that.is_word_familiar_proper_or_numeric.get_proper_noun_method()) &&
+                (is_word_familiar_proper_or_numeric.is_including_numeric_as_familiar() ==
+                    that.is_word_familiar_proper_or_numeric.is_including_numeric_as_familiar()) &&
+                (m_familiar_words_must_be_on_all_included_list ==
+                    that.m_familiar_words_must_be_on_all_included_list));
             }
         /// @private
         [[nodiscard]]
@@ -242,7 +264,7 @@ namespace readability
         const string_type& get_familiar_word_list_file_path() const noexcept
             { return m_familiar_word_list_file_path; }
 
-        //get/set numeric/proper noun inclusion
+        // get/set numeric/proper noun inclusion
         [[nodiscard]]
         readability::proper_noun_counting_method get_proper_noun_method() const noexcept
             { return is_word_familiar_proper_or_numeric.get_proper_noun_method(); }
@@ -260,7 +282,7 @@ namespace readability
         bool is_including_custom_familiar_word_list() const noexcept
             { return m_include_custom_familiar_word_list; }
 
-        //get/set for DC and Spache lists inclusion
+        // get/set for DC and Spache lists inclusion
         void include_dale_chall_list(const bool include) noexcept
             { m_include_dale_chall_list = include; }
         [[nodiscard]]
@@ -278,7 +300,7 @@ namespace readability
         [[nodiscard]]
         bool is_including_harris_jacobson_list() const noexcept
             { return m_include_harris_jacobson_list; }
-        
+
         void include_stocker_list(const bool include) noexcept
             { m_include_stocker_list = include; }
         [[nodiscard]]
@@ -345,8 +367,7 @@ namespace readability
 
             // remove any duplicates
             std::sort(std::execution::par, wordData.begin(), wordData.end());
-            typename std::vector<string_type>::iterator endOfUniquePos = 
-                std::unique(wordData.begin(), wordData.end());
+            auto endOfUniquePos = std::unique(wordData.begin(), wordData.end());
             if (endOfUniquePos != wordData.end())
                 { wordData.erase(endOfUniquePos, wordData.end()); }
             }
@@ -449,7 +470,7 @@ namespace readability
                 // then set this flag to true
                 if (currentToken.length() > 0)
                     { validTokenFound = true; }
-                //in case we have something like "one-", then the fact that there is
+                // in case we have something like "one-", then the fact that there is
                 // no second word after the '-' shouldn't make it unfamiliar
                 if (currentToken.length() > 0)
                     {
