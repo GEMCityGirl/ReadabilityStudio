@@ -713,7 +713,7 @@ void BatchProjectView::OnDocumentDelete([[maybe_unused]] wxRibbonButtonBarEvent&
                 _("Do you wish to remove these documents from the project?"));
             listDlg.SetCheckBoxLabel(_("Always delete without prompting"));
             const int dlgResponse = listDlg.ShowModal();
-            //save the checkbox status
+            // save the checkbox status
             if (listDlg.IsCheckBoxChecked() && (dlgResponse == wxID_YES))
                 {
                 warningIter->Show(false);
@@ -1557,9 +1557,9 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
     // shouldn't happen
     if (!list)
         { return; }
-    //If nothing is selected in the raw score list then just select this item and return--
-    //selecting this item will simply fire the OnScoreItemSelected event and return here.
-    //The point of selecting the item (if nothing is selected) is to prevent OnActiveView from clearing the stats panes.
+    // If nothing is selected in the raw score list then just select this item and return--
+    // selecting this item will simply fire the OnScoreItemSelected event and return here.
+    // The point of selecting the item (if nothing is selected) is to prevent OnActiveView from clearing the stats panes.
     if (list->GetSelectedItemCount() == 0)
         {
         list->Select(scoreListItem);
@@ -1923,7 +1923,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                 }
             }
         }
-    //the hard word list views
+    // the hard word list views
     if (includeHardWordLists)
         {
         if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel(),
@@ -2006,7 +2006,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                 }
             }
         }
-    //Sight Words
+    // Sight Words
     if (includeSightWords && GetDolchSightWordsView().GetWindowCount() )
         {
         if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetDolchLabel(),
@@ -2034,7 +2034,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                 }
             }
         }
-    //warnings
+    // warnings
     if (includeWarnings && GetWarningsView()->GetItemCount())
         {
         if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() +
@@ -2368,8 +2368,9 @@ void BatchProjectView::OnExportScoresAndStatistics([[maybe_unused]] wxCommandEve
 
     const ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(GetScoresView().FindWindowById(ID_SCORE_LIST_PAGE_ID));
     wxASSERT(list);
+    // shouldn't happe
     if (!list)
-        { return; }//shouldn't happen
+        { return; }n
 
     std::wstring HTMLText =
         wxString::Format(L"<!DOCTYPE html>\n<html>\n<head>\n    "
@@ -2704,7 +2705,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                     {
                     wxFileName(fdialog.GetPath()).SetPermissions(wxS_DEFAULT);
                     wxFile filteredFile(fdialog.GetPath(), wxFile::write);
-                    //write out UTF-8 Windows marker if text isn't being Romanized
+                    // write out UTF-8 Windows marker if text isn't being Romanized
                 #ifdef __WXMSW__
                     if (validDocText.length() && !optDlg.IsReplacingCharacters())
                         { filteredFile.Write(utf8::bom, sizeof(utf8::bom)); }
@@ -2718,7 +2719,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                 }
             else if (event.GetId() == XRCID("ID_SEND_TO_STANDARD_PROJECT"))
                 {
-                //create a standard project and dump the text into it
+                // create a standard project and dump the text into it
                 const wxList& templateList = wxGetApp().GetDocManager()->GetTemplates();
                 for (size_t i = 0; i < templateList.GetCount(); ++i)
                     {
@@ -2887,7 +2888,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
         return;
         }
 
-    //if they were just hitting Cancel then close
+    // if they were just hitting Cancel then close
     if (event.GetEventType() == wxEVT_COMMAND_FIND_CLOSE)
         { return; }
 

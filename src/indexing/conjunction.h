@@ -113,14 +113,31 @@ namespace grammar
             if (text == nullptr || text[0] == 0 || length == 0)
                 { return false; }
             // coordinating conjunctions
-            return (length == 1 && string_util::is_either<wchar_t>(text[0], 0x0418, 0x0438)) || // i (and/both...and)
-                (length == 1 && string_util::is_either<wchar_t>(text[0], 0x0410, 0x0430)) || // a (but)
-                (length == 2 && string_util::is_either<wchar_t>(text[0], 0x041D, 0x043D) && string_util::is_either<wchar_t>(text[1], 0x0418, 0x0438)) || //ni (neither...nor)
-                (length == 2 && string_util::is_either<wchar_t>(text[0], 0x041D, 0x043D) && string_util::is_either<wchar_t>(text[1], 0x041E, 0x043E)) || //no (but)
-                (length == 2 && string_util::is_either<wchar_t>(text[0], 0x0414, 0x0434) && string_util::is_either<wchar_t>(text[1], 0x0410, 0x0430)) || //da (and)
-                (length == 2 && string_util::is_either<wchar_t>(text[0], 0x0422, 0x0442) && string_util::is_either<wchar_t>(text[1], 0x041E, 0x043E)) || //to (first...then)
-                (length == 3 && string_util::is_either<wchar_t>(text[0], 0x041A, 0x043A) && string_util::is_either<wchar_t>(text[1], 0x0422, 0x0442) && string_util::is_either<wchar_t>(text[2], 0x041E, 0x043E)) || //kto (some...other)
-                (length == 3 && string_util::is_either<wchar_t>(text[0], 0x0418, 0x0438) && string_util::is_either<wchar_t>(text[1], 0x041B, 0x043B) && string_util::is_either<wchar_t>(text[2], 0x0418, 0x0438)); //ili (either...or)
+            return (length == 1 &&
+                   // i (and/both...and)
+                   string_util::is_either<wchar_t>(text[0], 0x0418, 0x0438)) ||
+                // a (but)
+                (length == 1 && string_util::is_either<wchar_t>(text[0], 0x0410, 0x0430)) ||
+                (length == 2 && string_util::is_either<wchar_t>(text[0], 0x041D, 0x043D) &&
+                 // ni (neither...nor)
+                 string_util::is_either<wchar_t>(text[1], 0x0418, 0x0438)) ||
+                (length == 2 && string_util::is_either<wchar_t>(text[0], 0x041D, 0x043D) &&
+                 // no (but)
+                 string_util::is_either<wchar_t>(text[1], 0x041E, 0x043E)) ||
+                (length == 2 && string_util::is_either<wchar_t>(text[0], 0x0414, 0x0434) &&
+                 // da (and)
+                 string_util::is_either<wchar_t>(text[1], 0x0410, 0x0430)) ||
+                (length == 2 && string_util::is_either<wchar_t>(text[0], 0x0422, 0x0442) &&
+                 // to (first...then)
+                 string_util::is_either<wchar_t>(text[1], 0x041E, 0x043E)) ||
+                (length == 3 && string_util::is_either<wchar_t>(text[0], 0x041A, 0x043A) &&
+                 string_util::is_either<wchar_t>(text[1], 0x0422, 0x0442) &&
+                 // kto (some...other)
+                 string_util::is_either<wchar_t>(text[2], 0x041E, 0x043E)) ||
+                (length == 3 && string_util::is_either<wchar_t>(text[0], 0x0418, 0x0438) &&
+                 string_util::is_either<wchar_t>(text[1], 0x041B, 0x043B) &&
+                 // ili (either...or)
+                 string_util::is_either<wchar_t>(text[2], 0x0418, 0x0438));
             }
         };
     }

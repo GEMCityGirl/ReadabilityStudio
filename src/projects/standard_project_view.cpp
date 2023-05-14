@@ -86,7 +86,8 @@ wxBEGIN_EVENT_TABLE(ProjectView, BaseProjectView)
     EVT_MENU(XRCID("ID_EXCLUDE_SELECTED"), ProjectView::OnMenuCommand)
     EVT_MENU(XRCID("ID_MULTI_COLUMN_SORT_ASCENDING"), ProjectView::OnMenuCommand)
     EVT_MENU(XRCID("ID_MULTI_COLUMN_SORT_DESCENDING"), ProjectView::OnMenuCommand)
-    EVT_MENU(XRCID("ID_DOLCH"), ProjectView::OnAddTest)//not actually a test (it doesn't have an ID), but we'll add it in this function
+    // not actually a test (it doesn't have an ID), but we'll add it in this function
+    EVT_MENU(XRCID("ID_DOLCH"), ProjectView::OnAddTest)
     EVT_FIND(wxID_ANY, ProjectView::OnFind)
     EVT_FIND_NEXT(wxID_ANY, ProjectView::OnFind)
     EVT_FIND_CLOSE(wxID_ANY, ProjectView::OnFind)
@@ -371,7 +372,7 @@ void ProjectView::OnEditGraphOptions(wxCommandEvent& event)
     default:
         optionsDlg.SelectPage(ToolsOptionsDlg::GRAPH_GENERAL_PAGE);
         };
-    //don't refresh the whole project, just update the graphs
+    // don't refresh the whole project, just update the graphs
     if (optionsDlg.ShowModal() == wxID_OK)
         { dynamic_cast<ProjectDoc*>(GetDocument())->RefreshGraphs(); }
     }
@@ -528,8 +529,8 @@ void ProjectView::OnTestListDblClick([[maybe_unused]] wxListEvent& event)
         { wxGetApp().GetMainFrame()->DisplayHelp(L"reviewing-dolch.html.html"); }
     }
 
-///Double clicking on an item in the hard word list will jump to the respective text window and find the word
-///that you clicked on.
+/// Double clicking on an item in the hard word list will jump to the respective text window and find the word
+/// that you clicked on.
 //------------------------------------------------------
 void ProjectView::OnListDblClick(wxListEvent& event)
     {
@@ -595,7 +596,7 @@ void ProjectView::OnListDblClick(wxListEvent& event)
             { findText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
         textId = LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID;
         break;
-    //grammar lists will just use the same text window
+    // grammar lists will just use the same text window
     case SENTENCES_CONJUNCTION_START_LIST_PAGE_ID:
         [[fallthrough]];
     case SENTENCES_LOWERCASE_START_LIST_PAGE_ID:
@@ -633,16 +634,16 @@ void ProjectView::OnListDblClick(wxListEvent& event)
         textId = NON_DOLCH_WORDS_TEXT_PAGE_ID;
         break;
     default:
-        //custom test
+        // custom test
         foundWindow = GetWordsBreakdownView().FindWindowById(event.GetId());
         if (foundWindow)
             { findText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
         textId = event.GetId();
         }
 
-    //find the first occurrence of the selected word.
-    //First, look in the word breakdown section for the respective test window,
-    //then the grammar section and finally the Dolch section.
+    // find the first occurrence of the selected word.
+    // First, look in the word breakdown section for the respective test window,
+    // then the grammar section and finally the Dolch section.
     wxWindow* theWindow = GetWordsBreakdownView().FindWindowById(textId, CLASSINFO(FormattedTextCtrl));
     if (!theWindow)
         { theWindow = GetGrammarView().FindWindowById(textId, CLASSINFO(FormattedTextCtrl)); }
@@ -653,14 +654,14 @@ void ProjectView::OnListDblClick(wxListEvent& event)
         FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(theWindow);
         textWindow->SetSelection(0,0);
         textWindow->FindText(findText, true, true, false);
-        //Search by label for custom tests (the list and report have the same ID); otherwise, search by ID.
+        // Search by label for custom tests (the list and report have the same ID); otherwise, search by ID.
         GetSideBar()->SelectSubItem(
             (event.GetId() == textId) ?
             GetSideBar()->FindSubItem(textWindow->GetLabel()) :
             GetSideBar()->FindSubItem(textId));
         }
 
-    //update the search panel to remember the string we searched for
+    // update the search panel to remember the string we searched for
     m_searchCtrl->SetFindString(findText);
     }
 
@@ -702,7 +703,7 @@ void ProjectView::OnLaunchSourceFile([[maybe_unused]] wxRibbonButtonBarEvent& ev
                         return;
                         }
                     }
-                //or if they said "yes" before, then use the found path
+                // or if they said "yes" before, then use the found path
                 else if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
                     warningIter->GetPreviousResponse() == wxID_YES)
                     {
@@ -743,14 +744,14 @@ void ProjectView::OnLaunchSourceFile([[maybe_unused]] wxRibbonButtonBarEvent& ev
         }
     }
 
-//add/remove the icon to the list view on the side panel
+// add/remove the icon to the list view on the side panel
 //-------------------------------------------------------
 void ProjectView::UpdateSideBarIcons()
     {
     GetSideBar()->SaveState();
     GetSideBar()->DeleteAllFolders();
 
-    //readability tests
+    // readability tests
     //-----------------
     if (GetReadabilityResultsView().GetWindowCount() > 0)
         {
@@ -786,7 +787,7 @@ void ProjectView::UpdateSideBarIcons()
             }
         }
 
-    //Summary statistics window
+    // Summary statistics window
     if (GetSummaryView().GetWindowCount() > 0)
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetSummaryStatisticsLabel(), SIDEBAR_STATS_SUMMARY_SECTION_ID, 2);
@@ -855,7 +856,7 @@ void ProjectView::UpdateSideBarIcons()
             }
         }
 
-    //sight words
+    // sight words
     if (GetDolchSightWordsView().GetWindowCount() > 0)
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetDolchLabel(), SIDEBAR_DOLCH_SECTION_ID, 5);
@@ -889,7 +890,7 @@ void ProjectView::OnAddTest(wxCommandEvent& event)
     else
         {
         doc->GetReadabilityTests().include_test(doc->GetReadabilityTests().get_test_id(event.GetId()).c_str(), true);
-        //refresh
+        // refresh
         doc->RefreshRequired(ProjectRefresh::Minimal);
         doc->RefreshProject();
         const long testToSelect = GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(doc->GetReadabilityTests().get_test_long_name(event.GetId()).c_str());
@@ -897,7 +898,7 @@ void ProjectView::OnAddTest(wxCommandEvent& event)
             { GetReadabilityScoresList()->GetResultsListCtrl()->Select(testToSelect); }
         GetSideBar()->SelectSubItem(
             GetSideBar()->FindSubItem(BaseProjectView::READABILITY_SCORES_PAGE_ID));
-        doc->ShowQueuedMessages();//show any warning messages from the test being ran
+        doc->ShowQueuedMessages();// show any warning messages from the test being ran
         if (WarningManager::HasWarning(_DT(L"click-test-to-view")))
             { ShowInfoMessage(*WarningManager::GetWarning(_DT(L"click-test-to-view"))); }
         }
@@ -995,7 +996,7 @@ void ProjectView::OnAddToDictionary([[maybe_unused]] wxCommandEvent& event)
 void ProjectView::OnRibbonButtonCommand(wxRibbonButtonBarEvent& event)
     {
     wxCommandEvent cmd(wxEVT_MENU, event.GetId());
-    //the document frame needs to handle document events
+    // the document frame needs to handle document events
     if (event.GetId() == wxID_OPEN ||
         event.GetId() == wxID_NEW ||
         event.GetId() == wxID_SAVE)
@@ -1239,7 +1240,7 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
 //---------------------------------------------------
 void ProjectView::OnFind(wxFindDialogEvent &event)
     {
-    //if they were just hitting Cancel then close
+    // if they were just hitting Cancel then close
     if (event.GetEventType() == wxEVT_COMMAND_FIND_CLOSE)
         { return; }
 
@@ -1288,7 +1289,7 @@ bool ProjectView::OnCreate(wxDocument* doc, long flags)
     m_menuBar = wxXmlResource::Get()->LoadMenuBar(L"ID_DOCMENUBAR");
 #endif
 
-    //connect the test events
+    // connect the test events
     for (auto rTest = dynamic_cast<const BaseProjectDoc*>(doc)->GetReadabilityTests().get_tests().begin();
          rTest != dynamic_cast<const BaseProjectDoc*>(doc)->GetReadabilityTests().get_tests().end();
          ++rTest)
@@ -1315,7 +1316,7 @@ void ProjectView::UpdateStatistics()
     statRowAttribs.SetBackgroundColour(listRowColour.ChangeLightness(alpha));
 
     const wxString selectedItem = GetReadabilityScoresList()->GetResultsListCtrl()->GetSelectedText();
-    //remove stats rows if already in here because we have to recalculate everything
+    // remove stats rows if already in here because we have to recalculate everything
     long statIconLocation = GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(GetAverageLabel());
     if (statIconLocation != wxNOT_FOUND)
         { GetReadabilityScoresList()->GetResultsListCtrl()->DeleteItem(statIconLocation); }
@@ -1328,12 +1329,12 @@ void ProjectView::UpdateStatistics()
     statIconLocation = GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(GetStdDevLabel());
     if (statIconLocation != wxNOT_FOUND)
         { GetReadabilityScoresList()->GetResultsListCtrl()->DeleteItem(statIconLocation); }
-    //update the averages of the scores
+    // update the averages of the scores
     const int rowCount = GetReadabilityScoresList()->GetResultsListCtrl()->GetItemCount();
     if (rowCount > 1)
         {
         std::vector<double> grades, ages, clozeScores;
-        //tally up the numbers in the age and grade columns
+        // tally up the numbers in the age and grade columns
         for (int i = 0; i < rowCount; ++i)
             {
             double value = 0;
@@ -1349,7 +1350,7 @@ void ProjectView::UpdateStatistics()
                  gradeMedian(_(L"N/A")), ageMedian(_(L"N/A")), clozeMedian(_(L"N/A")),
                  gradeMode(_(L"N/A")), ageMode(_(L"N/A")), clozeMode(_(L"N/A")),
                  gradeStdDev(_(L"N/A")), ageStdDev(_(L"N/A")), clozeStdDev(_(L"N/A"));
-        //get the average grade
+        // get the average grade
         if (grades.size() > 0)
             {
             gradeAverage = wxNumberFormatter::ToString(statistics::mean(grades), 1,
@@ -1369,11 +1370,11 @@ void ProjectView::UpdateStatistics()
                         NumberFormatInfo::NumberFormatType::CustomFormatting) +
                     L"; ";
                 }
-            //chop off the last "; "
+            // chop off the last "; "
             if (gradeMode.length() > 2)
                 { gradeMode.RemoveLast(2); }
             }
-        //get the average grade level
+        // get the average grade level
         if (ages.size() > 0)
             {
             ageAverage = wxNumberFormatter::ToString(statistics::mean(ages), 1,
@@ -1390,11 +1391,11 @@ void ProjectView::UpdateStatistics()
                 ageMode += wxNumberFormatter::ToString(*modesIter, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes) +
                     L"; ";
                 }
-            //chop off the last "; "
+            // chop off the last "; "
             if (ageMode.length() > 2)
                 { ageMode.RemoveLast(2); }
             }
-        //get the average cloze score
+        // get the average cloze score
         if (clozeScores.size() > 0)
             {
             clozeAverage = wxNumberFormatter::ToString(statistics::mean(clozeScores), 2,
@@ -1411,7 +1412,7 @@ void ProjectView::UpdateStatistics()
                 clozeMode += wxNumberFormatter::ToString(*modesIter, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes) +
                     L"; ";
                 }
-            //chop off the last "; "
+            // chop off the last "; "
             if (clozeMode.length() > 2)
                 { clozeMode.RemoveLast(2); }
             }
@@ -1438,7 +1439,7 @@ void ProjectView::UpdateStatistics()
 
         if (doc->GetStatisticsReportInfo().IsExtendedInformationEnabled())
             {
-            //Mode
+            // Mode
             long statLocation = GetReadabilityScoresList()->GetResultsListCtrl()->AddRow(GetModeLabel());
             GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(statLocation, 1, gradeMode);
             GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(statLocation, 2, ageMode);
@@ -1446,7 +1447,7 @@ void ProjectView::UpdateStatistics()
             GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(statLocation, 4, clozeMode);
             GetReadabilityScoresList()->GetResultsListCtrl()->SetRowAttributes(statLocation, statRowAttribs);
 
-            //format the explanation of the modes
+            // format the explanation of the modes
             explanationString = L"<table class='minipage' style='width:100%;'>" +
                 wxString::Format(L"\n\t<thead><tr><td style='background:%s;'><span style='color:%s;'>",
                     ProjectReportFormat::GetReportHeaderColor().GetAsString(wxC2S_HTML_SYNTAX),
@@ -1460,7 +1461,7 @@ void ProjectView::UpdateStatistics()
 
             GetReadabilityScoresList()->GetExplanations()[GetModeLabel()] = explanationString;
 
-            //Median
+            // Median
             statLocation = GetReadabilityScoresList()->GetResultsListCtrl()->AddRow(GetMedianLabel());
             GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(statLocation, 1, gradeMedian, NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
             GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(statLocation, 2, ageMedian);
@@ -1482,7 +1483,7 @@ void ProjectView::UpdateStatistics()
 
             GetReadabilityScoresList()->GetExplanations()[GetMedianLabel()] = explanationString;
 
-            //get the standard deviation
+            // get the standard deviation
             if (grades.size() < 2)
                 { gradeStdDev = _(L"N/A"); }
             else
@@ -1539,7 +1540,7 @@ void ProjectView::UpdateStatistics()
         { GetReadabilityScoresList()->GetResultsListCtrl()->SetSortedColumn(0, Wisteria::SortDirection::SortAscending); }
     GetReadabilityScoresList()->GetResultsListCtrl()->Resort();
 
-    //select the item user had selected before the update
+    // select the item user had selected before the update
     const auto selectedItemLocation = GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(selectedItem);
     if (selectedItemLocation != wxNOT_FOUND)
         { GetReadabilityScoresList()->GetResultsListCtrl()->Select(selectedItemLocation); }
@@ -1607,7 +1608,7 @@ void ProjectView::OnLongFormat([[maybe_unused]] wxRibbonButtonBarEvent& event)
     doc->SetModifiedFlag();
     }
 
-//A test result is being removed from the project
+// A test result is being removed from the project
 //-------------------------------------------------------
 void ProjectView::OnTestDeleteMenu([[maybe_unused]] wxCommandEvent& event)
     {
@@ -1661,10 +1662,10 @@ void ProjectView::OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& event)
 
         ProjectDoc* doc = dynamic_cast<ProjectDoc*>(GetDocument());
         doc->RemoveTest(testToRemove);
-        //if removing Dolch, we need remove the Dolch section
+        // if removing Dolch, we need remove the Dolch section
         if (testToRemove == ReadabilityMessages::GetDolchLabel())
             { GetDolchSightWordsView().Clear(); }
-        //remove the Averages row if there are no tests left
+        // remove the Averages row if there are no tests left
         if (GetReadabilityScoresList()->GetResultsListCtrl()->GetItemCount() == 1)
             {
             const long location = GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(GetAverageLabel(), 0);
@@ -1675,7 +1676,7 @@ void ProjectView::OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& event)
             {
             GetReadabilityScoresList()->GetExplanationView()->SetPage(wxString(L"<html><body>") + _(L"No readability test results currently available.") + wxString(L"</body></html>"));
             }
-        //which tests are included may affect which stats and bars on the bar chart are included
+        // which tests are included may affect which stats and bars on the bar chart are included
         doc->RefreshRequired(ProjectRefresh::Minimal);
         doc->RefreshProject();
         }
@@ -1683,7 +1684,7 @@ void ProjectView::OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& event)
         { wxMessageBox(_(L"Please select a test to remove."), wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION); }
     }
 
-///project view side bar was clicked
+/// project view side bar was clicked
 //-------------------------------------------------------
 void ProjectView::OnItemSelected(wxCommandEvent& event)
     {
@@ -2579,7 +2580,7 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
         if (folder.empty() || !wxFileName::Mkdir(folder, wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL) )
             { return false; }
         }
-    //validate the extensions
+    // validate the extensions
     if (listExt.empty())
         { listExt = L".htm"; }
     else if (listExt[0] != L'.')
@@ -2600,7 +2601,7 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
     wxBusyCursor bc;
     wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Exporting project...")));
 
-    //the results window
+    // the results window
     if (includeTestScores)
         {
         if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
@@ -2649,7 +2650,7 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                 }
             }
         }
-    //the statistics
+    // the statistics
     if (includeStatistics && GetSummaryView().GetWindowCount())
         {
         if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetSummaryStatisticsLabel(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
@@ -2767,7 +2768,7 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                 }
             }
         }
-    //grammar
+    // grammar
     if (includeGrammar && GetGrammarView().GetWindowCount() )
         {
         if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetGrammarLabel(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
@@ -2810,7 +2811,7 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                 }
             }
         }
-    //Sight Words
+    // Sight Words
     if (includeSightWords && GetDolchSightWordsView().GetWindowCount() )
         {
         if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetDolchLabel(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
@@ -2883,7 +2884,7 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
         if (!wxFileName::Mkdir(filePath.GetPathWithSep() + _DT(L"images"), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL) )
             { return false; }
         }
-    //validate the extension
+    // validate the extension
     if (graphExt.empty())
         { graphExt = L".png"; }
     else if (graphExt[0] != L'.')

@@ -81,7 +81,7 @@
     checking for duplicate test IDs ourselves.*/
 using CustomReadabilityTestCollection = std::vector<CustomReadabilityTest>;
 
-///Helper structure for handling an Excel (XLSX) file.
+/// Helper structure for handling an Excel (XLSX) file.
 struct ExcelFile
     {
     explicit ExcelFile(const wxString& filePath) : m_zip(filePath) {}
@@ -111,8 +111,8 @@ public:
           m_unfamiliarWordCount(that.m_unfamiliarWordCount),
           m_iter(that.m_iter),
           m_listViewData(nullptr)
-          //don't copy over list view data (not copy safe), but that should be empty anyway. This will
-          //be filled in later after the next recalculation.
+          // don't copy over list view data (not copy safe), but that should be empty anyway. This will
+          // be filled in later after the next recalculation.
         {}
     CustomReadabilityTestInterface& operator=(const CustomReadabilityTestInterface& that)
         {
@@ -124,23 +124,29 @@ public:
             m_unfamiliarWordCount = that.m_unfamiliarWordCount;
             m_iter = that.m_iter;
             }
-        //don't copy over list view data (not copy safe), but that should be empty anyway. This will
-        //be filled in later after the next recalculation.
+        // don't copy over list view data (not copy safe), but that should be empty anyway. This will
+        // be filled in later after the next recalculation.
         return *this;
         }
     ~CustomReadabilityTestInterface()
         { wxDELETE(m_listViewData); }
-    [[nodiscard]] inline bool operator<(const CustomReadabilityTestInterface& that) const
+    [[nodiscard]]
+    inline bool operator<(const CustomReadabilityTestInterface& that) const
         { return m_testName < that.m_testName; }
-    [[nodiscard]] inline bool operator==(const CustomReadabilityTestInterface& that) const
+    [[nodiscard]]
+    inline bool operator==(const CustomReadabilityTestInterface& that) const
         { return m_testName == that.m_testName; }
-    [[nodiscard]] inline bool operator==(const wxString& testName) const
+    [[nodiscard]]
+    inline bool operator==(const wxString& testName) const
         { return m_testName == testName; }
-    [[nodiscard]] inline bool operator()(const word_case_insensitive_no_stem& theWord) const
+    [[nodiscard]]
+    inline bool operator()(const word_case_insensitive_no_stem& theWord) const
         { return m_iter->is_word_familiar(theWord); }
-    [[nodiscard]] const double& GetUniqueUnfamiliarWordCount() const noexcept
+    [[nodiscard]]
+    const double& GetUniqueUnfamiliarWordCount() const noexcept
         { return m_uniqueUnfamiliarWordCount; }
-    [[nodiscard]] const double& GetUnfamiliarWordCount() const noexcept
+    [[nodiscard]]
+    const double& GetUnfamiliarWordCount() const noexcept
         { return m_unfamiliarWordCount; }
     void SetUniqueUnfamiliarWordCount(const double wordCount) noexcept
         { m_uniqueUnfamiliarWordCount = wordCount; }
@@ -151,7 +157,8 @@ public:
     void IncrementUnfamiliarWordCount(const double size) noexcept
         { m_unfamiliarWordCount += size; }
 
-    [[nodiscard]] const wxString& GetTestName() const noexcept
+    [[nodiscard]]
+    const wxString& GetTestName() const noexcept
         { return m_testName; }
     /// Flushes out recorded values. Call this before re-calculating the test.
     void Reset()
@@ -165,29 +172,34 @@ public:
         { m_iter->reset(); }
     void SetIterator(const CustomReadabilityTestCollection::iterator& iter) noexcept
         { m_iter = iter; }
-    [[nodiscard]] CustomReadabilityTestCollection::const_iterator GetIterator() const noexcept
+    [[nodiscard]]
+    CustomReadabilityTestCollection::const_iterator GetIterator() const noexcept
         { return m_iter; }
-    [[nodiscard]] ListCtrlExNumericDataProvider* GetListViewData()
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* GetListViewData()
         {
         if (m_listViewData == nullptr)
             { m_listViewData = new ListCtrlExNumericDataProvider; }
         return m_listViewData;
         }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetListViewData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetListViewData() const noexcept
         {
         wxASSERT(m_listViewData);
         return m_listViewData;
         }
 
-    //flags indicating that the formula is a specialized familiar word test
+    // flags indicating that the formula is a specialized familiar word test
     void SetIsDaleChallFormula(const bool enableFlag)
         { m_formulasFlags.set(0, enableFlag); }
-    [[nodiscard]] bool IsDaleChallFormula() const
+    [[nodiscard]]
+    bool IsDaleChallFormula() const
         { return m_formulasFlags[0]; }
 
     void SetIsHarrisJacobsonFormula(const bool enableFlag)
         { m_formulasFlags.set(1, enableFlag); }
-    [[nodiscard]] bool IsHarrisJacobsonFormula() const
+    [[nodiscard]]
+    bool IsHarrisJacobsonFormula() const
         { return m_formulasFlags[1]; }
 private:
     // DC and HJ have their own explicit, unique logic for how numerals and proper nouns are handled,
@@ -221,9 +233,7 @@ public:
 
     BaseProject();
     BaseProject(const BaseProject&) = delete;
-    BaseProject(BaseProject&&) = delete;
     BaseProject& operator==(const BaseProject&) = delete;
-    BaseProject& operator==(BaseProject&&) = delete;
     virtual ~BaseProject()
         {
         wxDELETE(m_formulaParser);
@@ -247,14 +257,18 @@ public:
           a batch project will share its phrase list with its subprojects, so these
           subprojects should not delete that list pointer.*/
         }
-    [[nodiscard]] wxString GetCurrentCustomTest() const
+    [[nodiscard]]
+    wxString GetCurrentCustomTest() const
         { return m_currentCustTest; }
     //-------------------------------------
-    [[nodiscard]] ReadabilityFormulaParser& GetFormulaParser()
+    [[nodiscard]]
+    ReadabilityFormulaParser& GetFormulaParser()
         {
         if (m_formulaParser == nullptr)
             {
-            m_formulaParser = new ReadabilityFormulaParser(this, wxNumberFormatter::GetDecimalSeparator(), FormulaFormat::GetListSeparator());
+            m_formulaParser =
+                new ReadabilityFormulaParser(this, wxNumberFormatter::GetDecimalSeparator(),
+                                             FormulaFormat::GetListSeparator());
             }
         return *m_formulaParser;
         }
@@ -265,18 +279,22 @@ public:
                             const bool narrowFullWithText) const;
     /** @brief Loads a "thin" project where only the statistics, scores, and hard word lists are loaded.
         @param path The document's file path.
-        @param text The document's text to load. If this is blank, the @c path will be loaded and analyzed. If this has content,
-         then this will override @c path and be used instead.
-        @param minWordCount The minimum number of words to be acceptable for this to be a legitimate document. If the document has less words
-         than this then LoadingOriginalTextSucceeded() will return false and an error will be issued.*/
+        @param text The document's text to load.\n
+            If this is blank, the @c path will be loaded and analyzed. If this has content,
+            then this will override @c path and be used instead.
+        @param minWordCount The minimum number of words to be acceptable for this to be a legitimate document.\n
+            If the document has less words than this then LoadingOriginalTextSucceeded()
+            will return @c false and an error will be issued.*/
     bool LoadDocumentAsSubProject(const wxString& path,
                           const wxString& text /*if text is already loaded; otherwise, just pass in empty string*/,
                           const size_t minWordCount);
     /** @brief Sets the project to "dirty" (i.e., it contains unsaved changes).
-        @details This should be implemented by derived documents. The non UI version of this class simply ignores this.*/
+        @details This should be implemented by derived documents.\n
+            The non UI version of this class simply ignores this.*/
     virtual void SetModifiedFlag() {}
     /** @brief Sets the project's title.
-        @details This should be implemented by derived documents. The non UI version of this class simply ignores this.*/
+        @details This should be implemented by derived documents.\n
+            The non UI version of this class simply ignores this.*/
     virtual void SetDocumentTitle(const wxString&) {}
     /// If an appended document is being included, then this loads that into the buffer.
     bool LoadAppendedDocument();
@@ -307,73 +325,88 @@ public:
     void DeleteUniqueWordMap()
         { wxDELETE(m_word_frequency_map); }
 
-    [[nodiscard]] const CaseInSensitiveNonStemmingDocument* GetWords() const noexcept
+    [[nodiscard]]
+    const CaseInSensitiveNonStemmingDocument* GetWords() const noexcept
         { return m_words; }
-    [[nodiscard]] CaseInSensitiveNonStemmingDocument* GetWords() noexcept
+    [[nodiscard]]
+    CaseInSensitiveNonStemmingDocument* GetWords() noexcept
         { return m_words; }
 
-    [[nodiscard]] int GetDifficultSentenceLength() const noexcept
+    [[nodiscard]]
+    int GetDifficultSentenceLength() const noexcept
         { return m_difficultSentenceLength; }
     void SetDifficultSentenceLength(const int length) noexcept
         { m_difficultSentenceLength = length; }
 
-    [[nodiscard]] size_t GetDuplicateWordCount() const noexcept
+    [[nodiscard]]
+    size_t GetDuplicateWordCount() const noexcept
         { return m_duplicateWordCount; }
     void SetDuplicateWordCount(const size_t dupCount) noexcept
         { m_duplicateWordCount = dupCount; }
 
-    [[nodiscard]] size_t GetMismatchedArticleCount() const noexcept
+    [[nodiscard]]
+    size_t GetMismatchedArticleCount() const noexcept
         { return m_mismatchedArticleCount; }
     void SetMismatchedArticleCount(const size_t martCount) noexcept
         { m_mismatchedArticleCount = martCount; }
 
-    [[nodiscard]] size_t GetOverusedWordsBySentenceCount() const noexcept
+    [[nodiscard]]
+    size_t GetOverusedWordsBySentenceCount() const noexcept
         { return m_overusedWordsBySentenceCount; }
     void SetOverusedWordsBySentenceCount(const size_t ovCount) noexcept
         { m_overusedWordsBySentenceCount = ovCount; }
 
-    [[nodiscard]] size_t GetPassiveVoicesCount() const noexcept
+    [[nodiscard]]
+    size_t GetPassiveVoicesCount() const noexcept
         { return m_passiveVoiceCount; }
     void SetPassiveVoicesCount(const size_t passiveVoiceCount) noexcept
         { m_passiveVoiceCount = passiveVoiceCount; }
 
-    [[nodiscard]] size_t GetMisspelledWordCount() const noexcept
+    [[nodiscard]]
+    size_t GetMisspelledWordCount() const noexcept
         { return m_misspelledWordCount; }
     void SetMisspelledWordCount(const size_t MisspelledCount) noexcept
         { m_misspelledWordCount = MisspelledCount; }
 
-    [[nodiscard]] size_t GetWordyPhraseCount() const noexcept
+    [[nodiscard]]
+    size_t GetWordyPhraseCount() const noexcept
         { return m_wordyPhraseCount; }
     void SetWordyPhraseCount(const size_t wordyPhraseCount) noexcept
         { m_wordyPhraseCount = wordyPhraseCount; }
 
-    [[nodiscard]] size_t GetRedundantPhraseCount() const noexcept
+    [[nodiscard]]
+    size_t GetRedundantPhraseCount() const noexcept
         { return m_redundantPhraseCount; }
     void SetRedundantPhraseCount(const size_t count) noexcept
         { m_redundantPhraseCount = count; }
 
-    [[nodiscard]] size_t GetWordingErrorCount() const noexcept
+    [[nodiscard]]
+    size_t GetWordingErrorCount() const noexcept
         { return m_wordingErrorCount; }
     void SetWordingErrorCount(const size_t count) noexcept
         { m_wordingErrorCount = count; }
 
-    [[nodiscard]] size_t GetClicheCount() const noexcept
+    [[nodiscard]]
+    size_t GetClicheCount() const noexcept
         { return m_clicheCount; }
     void SetClicheCount(const size_t clicheCount) noexcept
         { m_clicheCount = clicheCount; }
 
-    [[nodiscard]] size_t GetSentenceStartingWithConjunctionsCount() const noexcept
+    [[nodiscard]]
+    size_t GetSentenceStartingWithConjunctionsCount() const noexcept
         { return m_sentenceStartingWithConjunctionsCount; }
     void SetSentenceStartingWithConjunctionsCount(const size_t count) noexcept
         { m_sentenceStartingWithConjunctionsCount = count; }
 
-    [[nodiscard]] size_t GetSentenceStartingWithLowercaseCount() const noexcept
+    [[nodiscard]]
+    size_t GetSentenceStartingWithLowercaseCount() const noexcept
         { return m_sentenceStartingWithLowercaseCount; }
     void SetSentenceStartingWithLowercaseCount(const size_t count) noexcept
         { m_sentenceStartingWithLowercaseCount = count; }
 
     /** Determines if any test that uses the DC word list is included in the project.*/
-    [[nodiscard]] bool IsDaleChallLikeTestIncluded() const
+    [[nodiscard]]
+    bool IsDaleChallLikeTestIncluded() const
         {
         return (GetReadabilityTests().is_test_included(ReadabilityMessages::DALE_CHALL()) ||
             GetReadabilityTests().is_test_included(ReadabilityMessages::PSK_DALE_CHALL()) ||
@@ -383,7 +416,8 @@ public:
             GetReadabilityTests().is_test_included(ReadabilityMessages::DEGREES_OF_READING_POWER_GE()));
         }
     /** Determines if any SMOG-related test is included in the project.*/
-    [[nodiscard]] bool IsSmogLikeTestIncluded() const
+    [[nodiscard]]
+    bool IsSmogLikeTestIncluded() const
         {
         return (GetReadabilityTests().is_test_included(ReadabilityMessages::SMOG()) ||
                 GetReadabilityTests().is_test_included(ReadabilityMessages::SMOG_SIMPLIFIED()) ||
@@ -391,112 +425,135 @@ public:
                 GetReadabilityTests().is_test_included(ReadabilityMessages::SMOG_BAMBERGER_VANECEK()));
         }
 
-    ///analysis options
-    [[nodiscard]] LongSentence GetLongSentenceMethod() const noexcept
+    /// analysis options
+    [[nodiscard]]
+    LongSentence GetLongSentenceMethod() const noexcept
         { return m_longSentenceMethod; }
     void SetLongSentenceMethod(const LongSentence longSentenceMethod) noexcept
         { m_longSentenceMethod = longSentenceMethod; }
-    ///number method
-    [[nodiscard]] NumeralSyllabize GetNumeralSyllabicationMethod() const noexcept
+    /// number method
+    [[nodiscard]]
+    NumeralSyllabize GetNumeralSyllabicationMethod() const noexcept
         { return m_numeralSyllabicationMethod; }
     void SetNumeralSyllabicationMethod(const NumeralSyllabize numberMethod) noexcept
         { m_numeralSyllabicationMethod = numberMethod; }
-    ///whether to ignore blank lines when figuring out if we are at the end of a paragraph
-    [[nodiscard]] bool GetIgnoreBlankLinesForParagraphsParser() const noexcept
+    /// whether to ignore blank lines when figuring out if we are at the end of a paragraph
+    [[nodiscard]]
+    bool GetIgnoreBlankLinesForParagraphsParser() const noexcept
         { return m_ignoreBlankLinesForParagraphsParser; }
     void SetIgnoreBlankLinesForParagraphsParser(const bool ignore) noexcept
         { m_ignoreBlankLinesForParagraphsParser = ignore; }
-    ///whether we should ignore indenting when parsing paragraphs
-    [[nodiscard]] bool GetIgnoreIndentingForParagraphsParser() const noexcept
+    /// whether we should ignore indenting when parsing paragraphs
+    [[nodiscard]]
+    bool GetIgnoreIndentingForParagraphsParser() const noexcept
         { return m_ignoreIndentingForParagraphsParser; }
     void SetIgnoreIndentingForParagraphsParser(const bool ignore) noexcept
         { m_ignoreIndentingForParagraphsParser = ignore; }
-    ///whether the first word of a sentence must be capitalized
-    [[nodiscard]] bool GetSentenceStartMustBeUppercased() const noexcept
+    /// whether the first word of a sentence must be capitalized
+    [[nodiscard]]
+    bool GetSentenceStartMustBeUppercased() const noexcept
         { return m_sentenceStartMustBeUppercased; }
     void SetSentenceStartMustBeUppercased(const bool uppercased) noexcept
         { m_sentenceStartMustBeUppercased = uppercased; }
-    //whether trailing citation paragraphs are getting ignored
-    [[nodiscard]] bool IsIgnoringTrailingCitations() const noexcept
+    // whether trailing citation paragraphs are getting ignored
+    [[nodiscard]]
+    bool IsIgnoringTrailingCitations() const noexcept
         { return m_ignoreTrailingCitations; }
     void IgnoreTrailingCitations(const bool ignore = true) noexcept
         { m_ignoreTrailingCitations = ignore; }
-    //whether numerals are getting ignored
-    [[nodiscard]] bool IsIgnoringNumerals() const noexcept
+    // whether numerals are getting ignored
+    [[nodiscard]]
+    bool IsIgnoringNumerals() const noexcept
         { return m_ignoreNumerals; }
     void IgnoreNumerals(const bool ignore = true) noexcept
         { m_ignoreNumerals = ignore; }
-    //whether Proper Nouns are getting ignored
-    [[nodiscard]] bool IsIgnoringProperNouns() const noexcept
+    // whether Proper Nouns are getting ignored
+    [[nodiscard]]
+    bool IsIgnoringProperNouns() const noexcept
         { return m_ignoreProperNouns; }
     void IgnoreProperNouns(const bool ignore = true) noexcept
         { m_ignoreProperNouns = ignore; }
-    //whether file addresses are getting ignored
-    [[nodiscard]] bool IsIgnoringFileAddresses() const noexcept
+    // whether file addresses are getting ignored
+    [[nodiscard]]
+    bool IsIgnoringFileAddresses() const noexcept
         { return m_ignoreFileAddresses; }
     void IgnoreFileAddresses(const bool ignore = true) noexcept
         { m_ignoreFileAddresses = ignore; }
-    //whether to use aggressive list deduction
-    [[nodiscard]] bool IsExcludingAggressively() const noexcept
+    // whether to use aggressive list deduction
+    [[nodiscard]]
+    bool IsExcludingAggressively() const noexcept
         { return m_aggressiveExclusion; }
     void AggressiveExclusion(const bool aggressive = true) noexcept
         { m_aggressiveExclusion = aggressive; }
-    ///whether trailing copyright/trademark paragraphs are getting ignored
-    [[nodiscard]] bool IsIgnoringTrailingCopyrightNoticeParagraphs() const noexcept
+    /// whether trailing copyright/trademark paragraphs are getting ignored
+    [[nodiscard]]
+    bool IsIgnoringTrailingCopyrightNoticeParagraphs() const noexcept
         { return m_ignoreTrailingCopyrightNoticeParagraphs; }
     void IgnoreTrailingCopyrightNoticeParagraphs(const bool ignore = true) noexcept
         { m_ignoreTrailingCopyrightNoticeParagraphs = ignore; }
-    ///paragraph parsing
-    [[nodiscard]] ParagraphParse GetParagraphsParsingMethod() const noexcept
+    /// paragraph parsing
+    [[nodiscard]]
+    ParagraphParse GetParagraphsParsingMethod() const noexcept
         { return m_paragraphsParsingMethod; }
     void SetParagraphsParsingMethod(const ParagraphParse parsingMethod) noexcept
         { m_paragraphsParsingMethod = parsingMethod; }
-    ///method to determine how to handle headers and lists
-    [[nodiscard]] InvalidSentence GetInvalidSentenceMethod() const noexcept
+    /// method to determine how to handle headers and lists
+    [[nodiscard]]
+    InvalidSentence GetInvalidSentenceMethod() const noexcept
         { return m_invalidSentenceMethod; }
     void SetInvalidSentenceMethod(const InvalidSentence method) noexcept
         { m_invalidSentenceMethod = method; }
-    ///Number of words that will make an incomplete sentence actually complete
-    [[nodiscard]] size_t GetIncludeIncompleteSentencesIfLongerThanValue() const noexcept
+    /// Number of words that will make an incomplete sentence actually complete
+    [[nodiscard]]
+    size_t GetIncludeIncompleteSentencesIfLongerThanValue() const noexcept
         { return m_includeIncompleteSentencesIfLongerThan; }
     void SetIncludeIncompleteSentencesIfLongerThanValue(const size_t wordCount) noexcept
         { m_includeIncompleteSentencesIfLongerThan = wordCount; }
-    ///document storage/linking information
-    [[nodiscard]] TextStorage GetDocumentStorageMethod() const noexcept
+    /// document storage/linking information
+    [[nodiscard]]
+    TextStorage GetDocumentStorageMethod() const noexcept
         { return m_documentStorageMethod; };
     void SetDocumentStorageMethod(const TextStorage method) noexcept
         { m_documentStorageMethod = method; };
-    //grammar
-    [[nodiscard]] bool SpellCheckIsIgnoringProperNouns() const noexcept
+    // grammar
+    [[nodiscard]]
+    bool SpellCheckIsIgnoringProperNouns() const noexcept
         { return m_spellcheck_ignore_proper_nouns; }
     void SpellCheckIgnoreProperNouns(const bool ignore) noexcept
         { m_spellcheck_ignore_proper_nouns = ignore; }
-    [[nodiscard]] bool SpellCheckIsIgnoringUppercased() const noexcept
+    [[nodiscard]]
+    bool SpellCheckIsIgnoringUppercased() const noexcept
         { return m_spellcheck_ignore_uppercased; }
     void SpellCheckIgnoreUppercased(const bool ignore) noexcept
         { m_spellcheck_ignore_uppercased = ignore; }
-    [[nodiscard]] bool SpellCheckIsIgnoringNumerals() const noexcept
+    [[nodiscard]]
+    bool SpellCheckIsIgnoringNumerals() const noexcept
         { return m_spellcheck_ignore_numerals; }
     void SpellCheckIgnoreNumerals(const bool ignore) noexcept
         { m_spellcheck_ignore_numerals = ignore; }
-    [[nodiscard]] bool SpellCheckIsIgnoringFileAddresses() const noexcept
+    [[nodiscard]]
+    bool SpellCheckIsIgnoringFileAddresses() const noexcept
         { return m_spellcheck_ignore_file_addresses; }
     void SpellCheckIgnoreFileAddresses(const bool ignore) noexcept
         { m_spellcheck_ignore_file_addresses = ignore; }
-    [[nodiscard]] bool SpellCheckIsIgnoringProgrammerCode() const noexcept
+    [[nodiscard]]
+    bool SpellCheckIsIgnoringProgrammerCode() const noexcept
         { return m_spellcheck_ignore_programmer_code; }
     void SpellCheckIgnoreProgrammerCode(const bool ignore) noexcept
         { m_spellcheck_ignore_programmer_code = ignore; }
-    [[nodiscard]] bool SpellCheckIsIgnoringSocialMediaTags() const noexcept
+    [[nodiscard]]
+    bool SpellCheckIsIgnoringSocialMediaTags() const noexcept
         { return m_spellcheck_ignore_social_media_tags; }
     void SpellCheckIgnoreSocialMediaTags(const bool ignore) noexcept
         { m_spellcheck_ignore_social_media_tags = ignore; }
-    [[nodiscard]] bool SpellCheckIsAllowingColloquialisms() const noexcept
+    [[nodiscard]]
+    bool SpellCheckIsAllowingColloquialisms() const noexcept
         { return m_allow_colloquialisms; }
     void SpellCheckAllowColloquialisms(const bool allow) noexcept
         { m_allow_colloquialisms = allow; }
     /// @returns The text source (was the text from a document or manually entered?).
-    [[nodiscard]] TextSource GetTextSource() const noexcept
+    [[nodiscard]]
+    TextSource GetTextSource() const noexcept
         { return m_textSource; }
     /// Sets where the text being analyzed is coming from.
     /// @param ts The text source methods.
@@ -504,7 +561,8 @@ public:
         { m_textSource = ts; }
     /** @returns The original document file path. Not the project path, but the file being analyzed.
         @param index The index into the list of documents.*/
-    [[nodiscard]] wxString GetOriginalDocumentFilePath(const size_t index = 0) const
+    [[nodiscard]]
+    wxString GetOriginalDocumentFilePath(const size_t index = 0) const
         {
         if (m_sourceFilePaths.size() <= index)
             { return wxEmptyString; }
@@ -527,7 +585,8 @@ public:
         }
     /** @returns The original document description.
         @param index The index into the list of documents.*/
-    [[nodiscard]] wxString GetOriginalDocumentDescription(const size_t index = 0) const
+    [[nodiscard]]
+    wxString GetOriginalDocumentDescription(const size_t index = 0) const
         {
         if (m_sourceFilePaths.size() <= index)
             { return wxEmptyString; }
@@ -549,164 +608,217 @@ public:
             { m_sourceFilePaths[index].second = description; }
         }
     /// @returns The file path to the document being appended for analysis (optional)
-    [[nodiscard]] wxString GetAppendedDocumentFilePath() const
+    [[nodiscard]]
+    wxString GetAppendedDocumentFilePath() const
         { return m_appendedDocumentFilePath; }
     /// Sets the file path to the document being appended for analysis (optional).
     /// @param path The file path to the document.
     void SetAppendedDocumentFilePath(const wxString& path)
         { m_appendedDocumentFilePath = path; }
     /// @returns The size of the text streamed from the file (or manually entered).
-    [[nodiscard]] size_t GetTextSize() const noexcept
+    [[nodiscard]]
+    size_t GetTextSize() const noexcept
         { return m_textSize; }
     void SetTextSize(const size_t size) noexcept
         { m_textSize = size; }
-    [[nodiscard]] bool LoadingOriginalTextSucceeded() const noexcept
+    [[nodiscard]]
+    bool LoadingOriginalTextSucceeded() const noexcept
         { return m_loadingOriginalTextSucceeded; }
     void SetLoadingOriginalTextSucceeded(const bool succeeded) noexcept
         { m_loadingOriginalTextSucceeded = succeeded; }
     /// @returns variance method
-    [[nodiscard]] VarianceMethod GetVarianceMethod() const noexcept
+    [[nodiscard]]
+    VarianceMethod GetVarianceMethod() const noexcept
         { return m_varianceMethod; }
     void SetVarianceMethod(const VarianceMethod method) noexcept
         { m_varianceMethod = method; }
-    ///min doc size
+    /// min doc size
     void SetMinDocWordCountForBatch(const size_t docSize) noexcept
         { m_minDocWordCountForBatch = docSize; }
-    [[nodiscard]] size_t GetMinDocWordCountForBatch() const noexcept
+    [[nodiscard]]
+    size_t GetMinDocWordCountForBatch() const noexcept
         { return m_minDocWordCountForBatch; }
 
-    [[nodiscard]] const double& GetTotalSyllables() const noexcept
+    [[nodiscard]]
+    const double& GetTotalSyllables() const noexcept
         { return m_totalSyllables; }
-    [[nodiscard]] const double& GetTotalSyllablesNumeralsFullySyllabized() const noexcept
+    [[nodiscard]]
+    const double& GetTotalSyllablesNumeralsFullySyllabized() const noexcept
         { return m_totalSyllablesNumeralsFullySyllabized; }
-    [[nodiscard]] const double& GetTotalSyllablesNumeralsOneSyllable() const noexcept
+    [[nodiscard]]
+    const double& GetTotalSyllablesNumeralsOneSyllable() const noexcept
         { return m_totalSyllablesNumeralsOneSyllable; }
-    [[nodiscard]] const double& GetTotalCharacters() const noexcept
+    [[nodiscard]]
+    const double& GetTotalCharacters() const noexcept
         { return m_totalCharacters; }
-    [[nodiscard]] const double& GetTotalCharactersPlusPunctuation() const noexcept
+    [[nodiscard]]
+    const double& GetTotalCharactersPlusPunctuation() const noexcept
         { return m_totalCharactersPlusPunctuation; }
-    [[nodiscard]] const double& GetTotal3PlusSyllabicWords() const noexcept
+    [[nodiscard]]
+    const double& GetTotal3PlusSyllabicWords() const noexcept
         { return m_total3plusSyllableWords; }
-    [[nodiscard]] const double& GetTotalMonoSyllabicWords() const noexcept
+    [[nodiscard]]
+    const double& GetTotalMonoSyllabicWords() const noexcept
         { return m_totalMonoSyllabic; }
-    [[nodiscard]] const double& GetTotalHardWordsSpache() const noexcept
+    [[nodiscard]]
+    const double& GetTotalHardWordsSpache() const noexcept
         { return m_totalHardWordsSpache; }
-    [[nodiscard]] const double& GetTotalHardWordsDaleChall() const noexcept
+    [[nodiscard]]
+    const double& GetTotalHardWordsDaleChall() const noexcept
         { return m_totalHardWordsDaleChall; }
-    [[nodiscard]] const double& GetTotalHardWordsHarrisJacobson() const noexcept
+    [[nodiscard]]
+    const double& GetTotalHardWordsHarrisJacobson() const noexcept
         { return m_totalHardWordsHarrisJacobson; }
-    [[nodiscard]] const double& GetTotalHardWordsFog() const noexcept
+    [[nodiscard]]
+    const double& GetTotalHardWordsFog() const noexcept
         { return m_totalHardWordsFog; }
-    [[nodiscard]] const double& GetTotal3PlusSyllabicWordsNumeralsFullySyllabized() const noexcept
+    [[nodiscard]]
+    const double& GetTotal3PlusSyllabicWordsNumeralsFullySyllabized() const noexcept
         { return m_total3PlusSyllabicWordsNumeralsFullySyllabized; }
-    [[nodiscard]] const double& GetTotalHardWordsSol() const noexcept
+    [[nodiscard]]
+    const double& GetTotalHardWordsSol() const noexcept
         { return m_totalHardWordsSol; }
-    [[nodiscard]] const double& GetTotalLongWords() const noexcept
+    [[nodiscard]]
+    const double& GetTotalLongWords() const noexcept
         { return m_totalLongWords; }
-    [[nodiscard]] const double& GetTotalSixPlusCharacterWordsIgnoringNumerals() const noexcept
+    [[nodiscard]]
+    const double& GetTotalSixPlusCharacterWordsIgnoringNumerals() const noexcept
         { return m_totalSixPlusCharacterWordsIgnoringNumerals; }
-    [[nodiscard]] const double& GetTotalHardLixRixWords() const noexcept
+    [[nodiscard]]
+    const double& GetTotalHardLixRixWords() const noexcept
         { return m_totalHardWordsLixRix; }
-    [[nodiscard]] const double& GetTotalMiniWords() const noexcept
+    [[nodiscard]]
+    const double& GetTotalMiniWords() const noexcept
         { return m_totalMiniWords; }
-    [[nodiscard]] const double& GetTotalWords() const noexcept
+    [[nodiscard]]
+    const double& GetTotalWords() const noexcept
         { return m_totalWords; }
-    [[nodiscard]] const double& GetTotalNumerals() const noexcept
+    [[nodiscard]]
+    const double& GetTotalNumerals() const noexcept
         { return m_totalNumerals; }
-    [[nodiscard]] const double& GetTotalProperNouns() const noexcept
+    [[nodiscard]]
+    const double& GetTotalProperNouns() const noexcept
         { return m_totalProperNouns; }
-    [[nodiscard]] const double& GetTotalOverlyLongSentences() const noexcept
+    [[nodiscard]]
+    const double& GetTotalOverlyLongSentences() const noexcept
         { return m_totalOverlyLongSentences; }
-    [[nodiscard]] const double& GetTotalInterrogativeSentences() const noexcept
+    [[nodiscard]]
+    const double& GetTotalInterrogativeSentences() const noexcept
         { return m_totalInterrogativeSentences; }
-    [[nodiscard]] const double& GetTotalExclamatorySentences() const noexcept
+    [[nodiscard]]
+    const double& GetTotalExclamatorySentences() const noexcept
         { return m_totalExclamatorySentences; }
-    [[nodiscard]] const double& GetLongestSentence() const noexcept
+    [[nodiscard]]
+    const double& GetLongestSentence() const noexcept
         { return m_longestSentence; }
-    [[nodiscard]] const double& GetLongestSentenceIndex() const noexcept
+    [[nodiscard]]
+    const double& GetLongestSentenceIndex() const noexcept
         { return m_longestSentenceIndex; }
-    [[nodiscard]] const double& GetTotalSyllablesIgnoringNumeralsAndProperNouns() const noexcept
+    [[nodiscard]]
+    const double& GetTotalSyllablesIgnoringNumeralsAndProperNouns() const noexcept
         { return m_totalSyllablesIgnoringNumeralsAndProperNouns; }
-    //supplementary stat functions needed for some tests
-    [[nodiscard]] const double& GetTotalWordsFromCompleteSentencesAndHeaders() const noexcept
+    // supplementary stat functions needed for some tests
+    [[nodiscard]]
+    const double& GetTotalWordsFromCompleteSentencesAndHeaders() const noexcept
         { return m_totalWordsFromCompleteSentencesAndHeaders; }
     void SetTotalWordsFromCompleteSentencesAndHeaders(const double val) noexcept
         { m_totalWordsFromCompleteSentencesAndHeaders = val; }
-    [[nodiscard]] const double& GetTotalSentencesFromCompleteSentencesAndHeaders() const noexcept
+    [[nodiscard]]
+    const double& GetTotalSentencesFromCompleteSentencesAndHeaders() const noexcept
         { return m_totalSentencesFromCompleteSentencesAndHeaders; }
     void SetTotalSentencesFromCompleteSentencesAndHeaders(const double val) noexcept
         { m_totalSentencesFromCompleteSentencesAndHeaders = val; }
-    [[nodiscard]] const double& GetTotalNumeralsFromCompleteSentencesAndHeaders() const noexcept
+    [[nodiscard]]
+    const double& GetTotalNumeralsFromCompleteSentencesAndHeaders() const noexcept
         { return m_totalNumeralsFromCompleteSentencesAndHeaders; }
     void SetTotalNumeralsFromCompleteSentencesAndHeaders(const double val) noexcept
         { m_totalNumeralsFromCompleteSentencesAndHeaders = val; }
-    [[nodiscard]] const double& GetTotalCharactersFromCompleteSentencesAndHeaders() const noexcept
+    [[nodiscard]]
+    const double& GetTotalCharactersFromCompleteSentencesAndHeaders() const noexcept
         { return m_totalCharactersFromCompleteSentencesAndHeaders; }
     void SetTotalCharactersFromCompleteSentencesAndHeaders(const double val) noexcept
         { m_totalCharactersFromCompleteSentencesAndHeaders = val; }
 
-    //unique value get/set functions
-    [[nodiscard]] const double& GetTotalUniqueWords() const noexcept
+    // unique value get/set functions
+    [[nodiscard]]
+    const double& GetTotalUniqueWords() const noexcept
         { return m_uniqueWords; }
     void SetTotalUniqueWords(const double val) noexcept
         { m_uniqueWords = val; }
-    [[nodiscard]] const double& GetTotalUniqueHardWordsSpache() const noexcept
+    [[nodiscard]]
+    const double& GetTotalUniqueHardWordsSpache() const noexcept
         { return m_uniqueSpacheHardWords; }
     void SetTotalUniqueHardWordsSpache(const double val) noexcept
         { m_uniqueSpacheHardWords = val; }
-    [[nodiscard]] const double& GetTotalUniqueMonoSyllablicWords() const noexcept
+    [[nodiscard]]
+    const double& GetTotalUniqueMonoSyllablicWords() const noexcept
         { return m_uniqueMonoSyllablicWords; }
     void SetTotalUniqueMonoSyllablicWords(const double val) noexcept
         { m_uniqueMonoSyllablicWords = val; }
-    [[nodiscard]] const double& GetTotalUnique6CharsPlusWords() const noexcept
+    [[nodiscard]]
+    const double& GetTotalUnique6CharsPlusWords() const noexcept
         { return m_unique6CharsPlusWords; }
     void SetTotalUnique6CharsPlusWords(const double val) noexcept
         { m_unique6CharsPlusWords = val; }
-    [[nodiscard]] const double& GetTotalUnique3PlusSyllableWords() const noexcept
+    [[nodiscard]]
+    const double& GetTotalUnique3PlusSyllableWords() const noexcept
         { return m_unique3PlusSyllableWords; }
     void SetTotalUnique3PlusSyllableWords(const double val) noexcept
         { m_unique3PlusSyllableWords = val; }
-    [[nodiscard]] const double& GetUnique3PlusSyllabicWordsNumeralsFullySyllabized() const noexcept
+    [[nodiscard]]
+    const double& GetUnique3PlusSyllabicWordsNumeralsFullySyllabized() const noexcept
         { return m_unique3PlusSyllabicWordsNumeralsFullySyllabized; }
     void SetUnique3PlusSyllabicWordsNumeralsFullySyllabized(const double val) noexcept
         { m_unique3PlusSyllabicWordsNumeralsFullySyllabized = val; }
-    [[nodiscard]] const double& GetTotalUniqueDCHardWords() const noexcept
+    [[nodiscard]]
+    const double& GetTotalUniqueDCHardWords() const noexcept
         { return m_uniqueDCHardWords; }
     void SetTotalUniqueDCHardWords(const double val) noexcept
         { m_uniqueDCHardWords = val; }
-    [[nodiscard]] const double& GetTotalUniqueHarrisJacobsonHardWords() const noexcept
+    [[nodiscard]]
+    const double& GetTotalUniqueHarrisJacobsonHardWords() const noexcept
         { return m_uniqueHarrisJacobsonHardWords; }
     void SetTotalUniqueHarrisJacobsonHardWords(const double val) noexcept
         { m_uniqueHarrisJacobsonHardWords = val; }
-    [[nodiscard]] const double& GetTotalUniqueMiniWords() const noexcept
+    [[nodiscard]]
+    const double& GetTotalUniqueMiniWords() const noexcept
         { return m_uniqueMiniWords; }
     void SetTotalUniqueMiniWords(const double val) noexcept
         { m_uniqueMiniWords = val; }
-    [[nodiscard]] const double& GetTotalUniqueHardFogWords() const noexcept
+    [[nodiscard]]
+    const double& GetTotalUniqueHardFogWords() const noexcept
         { return m_uniqueHardFogWords; }
     void SetTotalUniqueHardFogWords(const double val) noexcept
         { m_uniqueHardFogWords = val; }
 
-    [[nodiscard]] const double& GetTotalSentences() const noexcept
+    [[nodiscard]]
+    const double& GetTotalSentences() const noexcept
         { return m_totalSentences; }
-    [[nodiscard]] const double& GetTotalSentenceUnits() const noexcept
+    [[nodiscard]]
+    const double& GetTotalSentenceUnits() const noexcept
         { return m_totalSentenceUnits; }
-    [[nodiscard]] const double& GetTotalParagraphs() const noexcept
+    [[nodiscard]]
+    const double& GetTotalParagraphs() const noexcept
         { return m_totalParagraphs; }
 
-    [[nodiscard]] wxString GetLastTestName() const
+    [[nodiscard]]
+    wxString GetLastTestName() const
         { return m_testName; }
-    [[nodiscard]] wxString GetLastGradeLevel() const
+    [[nodiscard]]
+    wxString GetLastGradeLevel() const
         { return m_gradeLevel; }
-    [[nodiscard]] wxString GetLastReaderAge() const
+    [[nodiscard]]
+    wxString GetLastReaderAge() const
         { return m_readerAge; }
-    [[nodiscard]] double GetLastIndexScore() const noexcept
+    [[nodiscard]]
+    double GetLastIndexScore() const noexcept
         { return m_indexScore; }
-    [[nodiscard]] double GetLastClozeScore() const noexcept
+    [[nodiscard]]
+    double GetLastClozeScore() const noexcept
         { return m_clozeScore; }
 
-    ///functions to calculate and include tests
-    ///Graphical tests need to be virtual because projects add these differently
+    /// functions to calculate and include tests
+    /// Graphical tests need to be virtual because projects add these differently
     bool AddStandardReadabilityTest(const wxString& id, const bool setFocus = true);
     typedef bool (BaseProject::*AddTestFunction)(const bool);
     std::vector<comparable_first_pair<int, AddTestFunction>> m_standardTestFunctions;
@@ -766,17 +878,18 @@ public:
         { return GetReadabilityTests().include_test(ReadabilityMessages::FRASE(), true); }
     virtual bool AddSchwartzTest(const bool /*setFocus = true, not used here*/)
         { return GetReadabilityTests().include_test(ReadabilityMessages::SCHWARTZ(), true); }
-    ///by default, will not actually calculate the test, it just includes it
+    /// by default, will not actually calculate the test, it just includes it
     bool AddCustomReadabilityTest(const wxString& name, const bool calculate = false);
-    ///this will calculate all of the included custom tests
+    /// this will calculate all of the included custom tests
     void AddCustomReadabilityTests();
-    ///functions to simply include a test (will not calculate it)
+    /// functions to simply include a test (will not calculate it)
     void IncludeDolchSightWords(const bool include = true) noexcept
         { m_includeDolchSightWords = include; }
-    [[nodiscard]] bool IsIncludingDolchSightWords() const noexcept
+    [[nodiscard]]
+    bool IsIncludingDolchSightWords() const noexcept
         { return m_includeDolchSightWords; }
 
-    ///Will not remove the tests, simply removes their inclusion flag.
+    /// Will not remove the tests, simply removes their inclusion flag.
     void ExcludeAllTests()
         {
         for (auto& rTest : GetReadabilityTests().get_tests())
@@ -785,14 +898,15 @@ public:
         ExcludeAllCustomTestsTests();
         }
 
-    ///Will not remove the tests, simply removes their inclusion flag.
+    /// Will not remove the tests, simply removes their inclusion flag.
     virtual void ExcludeAllCustomTestsTests()
         { m_customTestsInUse.clear(); }
 
     bool RemoveTest(const wxString& name);
 
-    ///reload functions
-    [[nodiscard]] bool IsProcessing() const noexcept
+    /// reload functions
+    [[nodiscard]]
+    bool IsProcessing() const noexcept
         { return m_isRefreshing; }
     void SetProcessing(const bool processing = true) noexcept
         { m_isRefreshing = processing; }
@@ -800,19 +914,25 @@ public:
 
     void SetUIMode(const bool hasUI) noexcept
         { m_hasUI = hasUI; }
-    [[nodiscard]] bool HasUI() const noexcept
+    [[nodiscard]]
+    bool HasUI() const noexcept
         { return m_hasUI; }
-    ///If there is no UI attached to the project, then queue a message to be handled by the caller later.
-    ///If there is a UI, then display the message in a message box right away.
-    ///@param message The message to show to the user.
-    ///@param title The title for the message box (only used if there is a UI involved).
-    ///@param icon The icon to be shown on the message box. If no UI, this can be used to show the severity of the message (e.g., wxICON_EXCLAMATION).
-    ///@param messageId If using the WarningMessage system, then this parameter should specify the ID of the warning to look up.
-    ///@param queue Whether the message should be queued for showing later. It will not be shown until ShowQueuedMessages() is called.
-    void LogMessage(wxString message, const wxString& title, const int icon, const wxString& messageId = wxEmptyString, const bool queue = false);
+    /// If there is no UI attached to the project, then queue a message to be handled by the caller later.
+    /// If there is a UI, then display the message in a message box right away.
+    /// @param message The message to show to the user.
+    /// @param title The title for the message box (only used if there is a UI involved).
+    /// @param icon The icon to be shown on the message box.
+    ///     If no UI, this can be used to show the severity of the message (e.g., wxICON_EXCLAMATION).
+    /// @param messageId If using the WarningMessage system,
+    ///     then this parameter should specify the ID of the warning to look up.
+    /// @param queue Whether the message should be queued for showing later.
+    ///     It will not be shown until ShowQueuedMessages() is called.
+    void LogMessage(wxString message, const wxString& title, const int icon,
+                    const wxString& messageId = wxEmptyString, const bool queue = false);
     void LogMessage(const WarningMessage& message, const bool queue = false)
         {
-        if (message.ShouldBeShown())//in case this is something that the user asked to be suppressed
+        // in case this is something that the user asked to be suppressed
+        if (message.ShouldBeShown())
             { LogMessage(message.GetMessage(), message.GetTitle(), message.GetFlags(), message.GetId(), queue); }
         }
     /// Clear the queued list of error/warning messages encountered while loading.
@@ -829,7 +949,8 @@ public:
             { m_messages = new std::vector<WarningMessage>; }
         return m_messages;
         }
-    /// Adds a message that will be added to a list, where the caller will be responsible for showing them via GetMessages().
+    /// Adds a message that will be added to a list, where the caller will be responsible
+    /// for showing them via GetMessages().
     /// Normally, LogMessage should be called unless you need to explicitly not show the message right away.
     void AddQuietSubProjectMessage(const wxString& message, const int icon)
         {
@@ -839,7 +960,8 @@ public:
         }
 
     /// @return the messages that won't be shown until client asks from them to be shown.
-    [[nodiscard]] const std::vector<WarningMessage>& GetQueuedMessages() const noexcept
+    [[nodiscard]]
+    const std::vector<WarningMessage>& GetQueuedMessages() const noexcept
         { return m_queuedMessages; }
     /// Saves a message to be shown later, when ShowQueuedMessages() is called.
     /// @param message The message to queue.
@@ -852,68 +974,76 @@ public:
     /// @note Should be implemented by caller, as this subsystem has no UI.
     virtual void ShowQueuedMessages() {}
 
-    [[nodiscard]] bool HasCustomTest(const wxString& testName) const
+    [[nodiscard]]
+    bool HasCustomTest(const wxString& testName) const
         {
         for (auto pos = m_customTestsInUse.cbegin();
             pos != m_customTestsInUse.cend();
             ++pos)
             {
-            //can't use the interface's internal iterator's comparison because it might be out of sync
-            //when this is called. We need to do the comparison ourselves, so just make be sure that this
-            //is the same type of comparison done by the iterator.
+            // can't use the interface's internal iterator's comparison because it might be out of sync
+            // when this is called. We need to do the comparison ourselves, so just make be sure that this
+            // is the same type of comparison done by the iterator.
             if (pos->GetTestName().CmpNoCase(testName) == 0)
                 { return true; }
             }
         return false;
         }
     /// Call HasCustomTest() before calling this to verify that the test will be available.
-    [[nodiscard]] std::vector<CustomReadabilityTestInterface>::iterator GetCustomTest(const wxString& testName)
+    [[nodiscard]]
+    std::vector<CustomReadabilityTestInterface>::iterator GetCustomTest(const wxString& testName)
         {
         for (std::vector<CustomReadabilityTestInterface>::iterator pos = m_customTestsInUse.begin();
             pos != m_customTestsInUse.end();
             ++pos)
             {
-            //can't use the interface's internal iterator's comparison because it might be out of sync
-            //when this is called. We need to do the comparison ourselves, so just make be sure that this
-            //is the same type of comparison done by the iterator.
+            // can't use the interface's internal iterator's comparison because it might be out of sync
+            // when this is called. We need to do the comparison ourselves, so just make be sure that this
+            // is the same type of comparison done by the iterator.
             if (pos->GetTestName().CmpNoCase(testName) == 0)
                 { return pos; }
             }
         return m_customTestsInUse.end();
         }
     /// Call HasCustomTest() before calling this to verify that the test will be available.
-    [[nodiscard]] std::vector<CustomReadabilityTestInterface>::const_iterator GetCustomTest(const wxString& testName) const
+    [[nodiscard]]
+    std::vector<CustomReadabilityTestInterface>::const_iterator GetCustomTest(const wxString& testName) const
         {
         for (auto pos = m_customTestsInUse.cbegin();
             pos != m_customTestsInUse.cend();
             ++pos)
             {
-            //can't use the interface's internal iterator's comparison because it might be out of sync
-            //when this is called. We need to do the comparison ourselves, so just make be sure that this
-            //is the same type of comparison done by the iterator.
+            // can't use the interface's internal iterator's comparison because it might be out of sync
+            // when this is called. We need to do the comparison ourselves, so just make be sure that this
+            // is the same type of comparison done by the iterator.
             if (pos->GetTestName().CmpNoCase(testName) == 0)
                 { return pos; }
             }
         return m_customTestsInUse.end();
         }
     void SyncCustomTests();
-    [[nodiscard]] const std::vector<CustomReadabilityTestInterface>& GetCustTestsInUse() const noexcept
+    [[nodiscard]]
+    const std::vector<CustomReadabilityTestInterface>& GetCustTestsInUse() const noexcept
         { return m_customTestsInUse; }
-    [[nodiscard]] std::vector<CustomReadabilityTestInterface>& GetCustTestsInUse() noexcept
+    [[nodiscard]]
+    std::vector<CustomReadabilityTestInterface>& GetCustTestsInUse() noexcept
         { return m_customTestsInUse; }
-    ///subclass might want to implement its own version of this to remove test from its interface
-    virtual std::vector<CustomReadabilityTestInterface>::iterator RemoveCustomReadabilityTest(const wxString& testName, [[maybe_unused]] const int Id);
+    /// subclass might want to implement its own version of this to remove test from its interface
+    virtual std::vector<CustomReadabilityTestInterface>::iterator
+        RemoveCustomReadabilityTest(const wxString& testName, [[maybe_unused]] const int Id);
 
     void SetDocumentText(const wxString& text)
         { m_documentContent = text; }
-    [[nodiscard]] const wxString& GetDocumentText() const noexcept
+    [[nodiscard]]
+    const wxString& GetDocumentText() const noexcept
         { return m_documentContent; }
     void FreeDocumentText()
         { m_documentContent.Clear(); }
 
     void SetAppendedDocumentText(const wxString& text)
         { m_appendedDocumentContent = text; }
-    [[nodiscard]] const wxString& GetAppendedDocumentText() const noexcept
+    [[nodiscard]]
+    const wxString& GetAppendedDocumentText() const noexcept
         { return m_appendedDocumentContent; }
 
     /** @returns A @c true value and raw/encoded text converted into a
@@ -921,149 +1051,189 @@ public:
         @param sourceFileText The encoded text to filter.
         @param streamSize The size of the text stream.
         @param fileExtension The file's extension.*/
-    [[nodiscard]] std::pair<bool,wxString> ExtractRawText(
+    [[nodiscard]]
+    std::pair<bool,wxString> ExtractRawText(
         const char* sourceFileText,
         const size_t streamSize, const wxString& fileExtension);
 
-    [[nodiscard]] const double& GetUnusedDolchConjunctions() const noexcept
+    [[nodiscard]]
+    const double& GetUnusedDolchConjunctions() const noexcept
         { return m_unusedDolchConjunctions; }
     void SetUnusedDolchConjunctions(const double val) noexcept
         { m_unusedDolchConjunctions = val; }
-    [[nodiscard]] const double& GetUnusedDolchPrepositions() const noexcept
+    [[nodiscard]]
+    const double& GetUnusedDolchPrepositions() const noexcept
         { return m_unusedDolchPrepositions; }
     void SetUnusedDolchPrepositions(const double val) noexcept
         { m_unusedDolchPrepositions = val; }
-    [[nodiscard]] const double& GetUnusedDolchPronouns() const noexcept
+    [[nodiscard]]
+    const double& GetUnusedDolchPronouns() const noexcept
         { return m_unusedDolchPronouns; }
     void SetUnusedDolchPronouns(const double val) noexcept
         { m_unusedDolchPronouns = val; }
-    [[nodiscard]] const double& GetUnusedDolchAdverbs() const noexcept
+    [[nodiscard]]
+    const double& GetUnusedDolchAdverbs() const noexcept
         { return m_unusedDolchAdverbs; }
     void SetUnusedDolchAdverbs(const double val) noexcept
         { m_unusedDolchAdverbs = val; }
-    [[nodiscard]] const double& GetUnusedDolchAdjectives() const noexcept
+    [[nodiscard]]
+    const double& GetUnusedDolchAdjectives() const noexcept
         { return m_unusedDolchAdjectives; }
     void SetUnusedDolchAdjectives(const double val) noexcept
         { m_unusedDolchAdjectives = val; }
-    [[nodiscard]] const double& GetUnusedDolchVerbs() const noexcept
+    [[nodiscard]]
+    const double& GetUnusedDolchVerbs() const noexcept
         { return m_unusedDolchVerbs; }
     void SetUnusedDolchVerbs(const double val) noexcept
         { m_unusedDolchVerbs = val; }
-    [[nodiscard]] const double& GetUnusedDolchNouns() const noexcept
+    [[nodiscard]]
+    const double& GetUnusedDolchNouns() const noexcept
         { return m_unusedDolchNounsWords; }
     void SetUnusedDolchNouns(const double val) noexcept
         { m_unusedDolchNounsWords = val; }
 
-    [[nodiscard]] std::pair<size_t,size_t> GetDolchConjunctionCounts() const noexcept
+    [[nodiscard]
+        std::pair<size_t,size_t> GetDolchConjunctionCounts() const noexcept
         { return m_dolchConjunctionCounts; }
-    [[nodiscard]] std::pair<size_t,size_t> GetDolchPrepositionWordCounts() const noexcept
+    [[nodiscard]]
+    std::pair<size_t,size_t> GetDolchPrepositionWordCounts() const noexcept
         { return m_dolchPrepositionCounts; }
-    [[nodiscard]] std::pair<size_t,size_t> GetDolchPronounCounts() const noexcept
+    [[nodiscard]]
+    std::pair<size_t,size_t> GetDolchPronounCounts() const noexcept
         { return m_dolchPronounCounts; }
-    [[nodiscard]] std::pair<size_t,size_t> GetDolchAdverbCounts() const noexcept
+    [[nodiscard]]
+    std::pair<size_t,size_t> GetDolchAdverbCounts() const noexcept
         { return m_dolchAdverbCounts; }
-    [[nodiscard]] std::pair<size_t,size_t> GetDolchAdjectiveCounts() const noexcept
+    [[nodiscard]]
+    std::pair<size_t,size_t> GetDolchAdjectiveCounts() const noexcept
         { return m_dolchAdjectiveCounts; }
-    [[nodiscard]] std::pair<size_t,size_t> GetDolchVerbsCounts() const noexcept
+    [[nodiscard]]
+    std::pair<size_t,size_t> GetDolchVerbsCounts() const noexcept
         { return m_dolchVerbCounts; }
-    [[nodiscard]] std::pair<size_t,size_t> GetDolchNounCounts() const noexcept
+    [[nodiscard]]
+    std::pair<size_t,size_t> GetDolchNounCounts() const noexcept
         { return m_dolchNounCounts; }
 
     /// @returns The total number of standard tests (and Dolch) available in the system.
-    [[nodiscard]] size_t GetStandardTestCount() const noexcept
+    [[nodiscard]]
+    size_t GetStandardTestCount() const noexcept
         { return GetReadabilityTests().get_tests().size() + 1 /*Dolch*/; }
     /// @returns The number of custom tests.
     [[nodiscard]]
     static size_t GetCustomTestCount() noexcept
         { return m_custom_word_tests.size(); }
-    /// @returns The number of standard tests that can have multiple results (e.g., a grade level and predicted cloze score).
-    [[nodiscard]] size_t GetMultiResultTestCount() const noexcept
+    /// @returns The number of standard tests that can have multiple results
+    ///     (e.g., a grade level and predicted cloze score).
+    [[nodiscard]]
+    size_t GetMultiResultTestCount() const noexcept
         {
         size_t testCount(0);
         for (const auto& test : GetReadabilityTests().get_tests())
             {
-            if (test.get_test().get_test_type() == readability::readability_test_type::index_value_and_grade_level ||
-                test.get_test().get_test_type() == readability::readability_test_type::grade_level_and_predicted_cloze_score)
+            if (test.get_test().get_test_type() ==
+                    readability::readability_test_type::index_value_and_grade_level ||
+                test.get_test().get_test_type() ==
+                    readability::readability_test_type::grade_level_and_predicted_cloze_score)
                 { ++testCount; }
             }
         return testCount;
         }
 
-    [[nodiscard]] const std::vector<comparable_first_pair<wxString,wxString>>& GetSourceFilesInfo() const noexcept
+    [[nodiscard]]
+    const std::vector<comparable_first_pair<wxString,wxString>>& GetSourceFilesInfo() const noexcept
         { return m_sourceFilePaths; }
-    [[nodiscard]] std::vector<comparable_first_pair<wxString,wxString>>& GetSourceFilesInfo() noexcept
+    [[nodiscard]]
+    std::vector<comparable_first_pair<wxString,wxString>>& GetSourceFilesInfo() noexcept
         { return m_sourceFilePaths; }
 
     void SetReadabilityTests(const TestCollectionType& that) noexcept
         { m_readabilityTests = that; }
-    [[nodiscard]] TestCollectionType& GetReadabilityTests() noexcept
+    [[nodiscard]]
+    TestCollectionType& GetReadabilityTests() noexcept
         { return m_readabilityTests; }
-    [[nodiscard]] const TestCollectionType& GetReadabilityTests() const noexcept
+    [[nodiscard]]
+    const TestCollectionType& GetReadabilityTests() const noexcept
         { return m_readabilityTests; }
 
     static void InitializeStandardReadabilityTests();
     static void ResetStandardReadabilityTests(TestCollectionType& readabilityTests);
-    [[nodiscard]] static const readability::readability_test_collection<readability::readability_test>& GetDefaultReadabilityTestsTemplate() noexcept
+    [[nodiscard]]
+    static const readability::readability_test_collection<readability::readability_test>&
+        GetDefaultReadabilityTestsTemplate() noexcept
         { return m_defaultReadabilityTestsTemplate; }
 
-    [[nodiscard]] const ReadabilityMessages& GetReadabilityMessageCatalog() const noexcept
+    [[nodiscard]]
+    const ReadabilityMessages& GetReadabilityMessageCatalog() const noexcept
         { return m_readMessages; }
-    [[nodiscard]] ReadabilityMessages& GetReadabilityMessageCatalog() noexcept
+    [[nodiscard]]
+    ReadabilityMessages& GetReadabilityMessageCatalog() noexcept
         { return m_readMessages; }
-    [[nodiscard]] ReadabilityMessages* GetReadabilityMessageCatalogPtr() noexcept
+    [[nodiscard]]
+    ReadabilityMessages* GetReadabilityMessageCatalogPtr() noexcept
         { return &m_readMessages; }
 
-    //test options
-    [[nodiscard]] SpecializedTestTextExclusion GetHarrisJacobsonTextExclusionMode() const noexcept
+    // test options
+    [[nodiscard]]
+    SpecializedTestTextExclusion GetHarrisJacobsonTextExclusionMode() const noexcept
         { return m_hjTextExclusion; }
     void SetHarrisJacobsonTextExclusionMode(const SpecializedTestTextExclusion mode) noexcept
         { m_hjTextExclusion = mode; }
 
-    [[nodiscard]] SpecializedTestTextExclusion GetDaleChallTextExclusionMode() const noexcept
+    [[nodiscard]]
+    SpecializedTestTextExclusion GetDaleChallTextExclusionMode() const noexcept
         { return m_dcTextExclusion; }
     void SetDaleChallTextExclusionMode(const SpecializedTestTextExclusion mode) noexcept
         { m_dcTextExclusion = mode; }
 
-    [[nodiscard]] readability::proper_noun_counting_method GetDaleChallProperNounCountingMethod() const noexcept
+    [[nodiscard]]
+    readability::proper_noun_counting_method GetDaleChallProperNounCountingMethod() const noexcept
         { return m_dcProperNounCountingMethod; }
     void SetDaleChallProperNounCountingMethod(const readability::proper_noun_counting_method mode) noexcept
         { m_dcProperNounCountingMethod = mode; }
 
     void IncludeStockerCatholicSupplement(const bool includeSupplement) noexcept
         { m_includeStockerCatholicDCSupplement = includeSupplement; }
-    [[nodiscard]] bool IsIncludingStockerCatholicSupplement() const noexcept
+    [[nodiscard]]
+    bool IsIncludingStockerCatholicSupplement() const noexcept
         { return m_includeStockerCatholicDCSupplement; }
 
-    [[nodiscard]] bool FogUseSentenceUnits() const noexcept
+    [[nodiscard]]
+    bool FogUseSentenceUnits() const noexcept
         { return m_fogUseSentenceUnits; }
     void SetFogUseSentenceUnits(const bool useUnits) noexcept
         { m_fogUseSentenceUnits = useUnits; }
 
-    [[nodiscard]] FleschNumeralSyllabize GetFleschNumeralSyllabizeMethod() const noexcept
+    [[nodiscard]]
+    FleschNumeralSyllabize GetFleschNumeralSyllabizeMethod() const noexcept
         { return m_fleschNumeralSyllabizeMethod; }
     void SetFleschNumeralSyllabizeMethod(const FleschNumeralSyllabize method) noexcept
         { m_fleschNumeralSyllabizeMethod = method; }
 
-    [[nodiscard]] FleschKincaidNumeralSyllabize GetFleschKincaidNumeralSyllabizeMethod() const noexcept
+    [[nodiscard]]
+    FleschKincaidNumeralSyllabize GetFleschKincaidNumeralSyllabizeMethod() const noexcept
         { return m_fleschKincaidNumeralSyllabizeMethod; }
     void SetFleschKincaidNumeralSyllabizeMethod(const FleschKincaidNumeralSyllabize method) noexcept
         { m_fleschKincaidNumeralSyllabizeMethod = method; }
 
-    [[nodiscard]] bool IsIncludingScoreSummaryReport() const noexcept
+    [[nodiscard]]
+    bool IsIncludingScoreSummaryReport() const noexcept
         { return m_includeScoreSummaryReport; }
     void IncludeScoreSummaryReport(const bool include) noexcept
         { m_includeScoreSummaryReport = include; }
 
     void SetProjectLanguage(const readability::test_language lang) noexcept
         { m_language = lang; }
-    [[nodiscard]] readability::test_language GetProjectLanguage() const noexcept
+    [[nodiscard]]
+    readability::test_language GetProjectLanguage() const noexcept
         { return m_language; }
 
     /// @returns The test goals in the project.
-    [[nodiscard]] const std::set<TestGoal>& GetTestGoals() const noexcept
+    [[nodiscard]]
+    const std::set<TestGoal>& GetTestGoals() const noexcept
         { return m_testGoals; }
     /// @returns The test goals in the project.
-    [[nodiscard]] std::set<TestGoal>& GetTestGoals() noexcept
+    [[nodiscard]]
+    std::set<TestGoal>& GetTestGoals() noexcept
         { return m_testGoals; }
     /// Sets the test goals.
     /// @param goals The goals to copy overs.
@@ -1079,10 +1249,12 @@ public:
         }
 
     /// @returns The stat goals in the project.
-    [[nodiscard]] const std::set<StatGoal>& GetStatGoals() const noexcept
+    [[nodiscard]]
+    const std::set<StatGoal>& GetStatGoals() const noexcept
         { return m_statGoals; }
     /// @returns The stat goals in the project.
-    [[nodiscard]] std::set<StatGoal>& GetStatGoals() noexcept
+    [[nodiscard]]
+    std::set<StatGoal>& GetStatGoals() noexcept
         { return m_statGoals; }
     /// Sets the stat goals.
     /// @param goals The goals to copy overs.
@@ -1098,7 +1270,8 @@ public:
         }
 
     /// @returns The list of statistics goals available to choose from.
-    [[nodiscard]] static const auto& GetStatGoalLabels() noexcept
+    [[nodiscard]]
+    static const auto& GetStatGoalLabels() noexcept
         { return m_statGoalLabels; }
 
     /// Sees if a given test has goal constraints specified, and if so,
@@ -1394,11 +1567,11 @@ protected:
     void HandleFailedTestCalculation(const wxString& testName);
     [[nodiscard]]
     bool FindMissingFile(const wxString& filePath, wxString& fileBySameNameInProjectDirectory);
-    virtual void AddDB2Plot([[maybe_unused]] const bool setFocus) {}//only AddDB2 should call this
-    virtual void AddLixGermanGuage([[maybe_unused]] const bool setFocus) {}//only AddLixGermanXXX should call this
-    virtual void AddLixGauge([[maybe_unused]] const bool setFocus) {}//only AddLixTest should call this
-    virtual void AddFleschChart([[maybe_unused]] const bool setFocus) {}//only AddFleschTest should call this
-    virtual void AddCrawfordGraph([[maybe_unused]] const bool setFocus) {}//only AddCrawford should call this
+    virtual void AddDB2Plot([[maybe_unused]] const bool setFocus) {}// only AddDB2 should call this
+    virtual void AddLixGermanGuage([[maybe_unused]] const bool setFocus) {}// only AddLixGermanXXX should call this
+    virtual void AddLixGauge([[maybe_unused]] const bool setFocus) {}// only AddLixTest should call this
+    virtual void AddFleschChart([[maybe_unused]] const bool setFocus) {}// only AddFleschTest should call this
+    virtual void AddCrawfordGraph([[maybe_unused]] const bool setFocus) {}// only AddCrawford should call this
     /** @returns @c true value and raw/encoded text (usually HTML) converted into a filtered string on success,
             @c false and empty string otherwise.
         @param sourceFileText The encoded text to filter.
@@ -1461,7 +1634,7 @@ protected:
     std::shared_ptr<Wisteria::Data::Dataset> m_threePlusSyllableWords
         { nullptr };
 
-    //unique word count and total count for each category
+    // unique word count and total count for each category
     std::pair<size_t, size_t> m_dolchConjunctionCounts{ 0, 0 };
     std::pair<size_t, size_t> m_dolchPrepositionCounts{ 0, 0 };
     std::pair<size_t, size_t> m_dolchPronounCounts{ 0, 0 };
@@ -1470,8 +1643,8 @@ protected:
     std::pair<size_t, size_t> m_dolchVerbCounts{ 0, 0 };
     std::pair<size_t, size_t> m_dolchNounCounts{ 0, 0 };
 
-    //Statistics values
-    //totals
+    // Statistics values
+    // totals
     double m_totalWords{ 0 };
     double m_totalSentences{ 0 };
     double m_totalSentenceUnits{ 0 };
@@ -1638,7 +1811,7 @@ private:
     WordsBreakdownInfo m_wordsBreakdownInfo;
     SentencesBreakdownInfo m_sentencesBreakdownInfo;
 
-    //stores document text
+    // stores document text
     wxString m_documentContent;
     size_t m_textSize{ 0 };
 
@@ -1648,7 +1821,7 @@ private:
     wxString m_gradeLevel;
     wxString m_readerAge;
 
-    //phrases and word to exclude entirely from the document
+    // phrases and word to exclude entirely from the document
     wxString m_excludedPhrasesPath;
     std::vector<std::pair<wchar_t,wchar_t>> m_exclusionBlockTags;
 
@@ -1659,7 +1832,8 @@ private:
     std::vector<comparable_first_pair<wxString,wxString>> m_sourceFilePaths;
     wxString m_appendedDocumentFilePath;
     std::vector<double> m_aggregatedGradeScores;
-    std::vector<double> m_aggregatedClozeScores;//these are actually integers that get rounded, but stored as doubles so that they can be set to NaN if invalid.
+    // these are actually integers that get rounded, but stored as doubles so that they can be set to NaN if invalid.
+    std::vector<double> m_aggregatedClozeScores;
 
     stemming::english_stem<> m_english_stem;
     stemming::spanish_stem<> m_spanish_stem;

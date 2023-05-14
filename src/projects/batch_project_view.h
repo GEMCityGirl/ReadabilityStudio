@@ -106,70 +106,70 @@ public:
         { return m_sightWordView; }
     [[nodiscard]] const WindowContainer& GetDolchSightWordsView() const noexcept
         { return m_sightWordView; }
-    //Fry
+    // Fry
     [[nodiscard]] Wisteria::Canvas* GetFryGraph() noexcept
         { return m_fryGraph; }
     [[nodiscard]] const Wisteria::Canvas* GetFryGraph() const noexcept
         { return m_fryGraph; }
     void SetFryGraph(Wisteria::Canvas* graph) noexcept
         { m_fryGraph = graph; }
-    //Flesch
+    // Flesch
     [[nodiscard]] Wisteria::Canvas* GetFleschChart() noexcept
         { return m_fleschChart; }
     [[nodiscard]] const Wisteria::Canvas* GetFleschChart() const noexcept
         { return m_fleschChart; }
     void SetFleschChart(Wisteria::Canvas* chart) noexcept
         { m_fleschChart = chart; }
-    //DB2
+    // DB2
     [[nodiscard]] Wisteria::Canvas* GetDB2Plot() noexcept
         { return m_db2Plot; }
     [[nodiscard]] const Wisteria::Canvas* GetDB2Plot() const noexcept
         { return m_db2Plot; }
     void SetDB2Plot(Wisteria::Canvas* chart) noexcept
         { m_db2Plot = chart; }
-    //GPM (Spanish) Fry
+    // GPM (Spanish) Fry
     [[nodiscard]] Wisteria::Canvas* GetGpmFryGraph() noexcept
         { return m_GpmFryGraph; }
     [[nodiscard]] const Wisteria::Canvas* GetGpmFryGraph() const noexcept
         { return m_GpmFryGraph; }
     void SetGpmFryGraph(Wisteria::Canvas* graph) noexcept
         { m_GpmFryGraph = graph; }
-    //Frase
+    // Frase
     [[nodiscard]] Wisteria::Canvas* GetFraseGraph() noexcept
         { return m_FraseGraph; }
     [[nodiscard]] const Wisteria::Canvas* GetFraseGraph() const noexcept
         { return m_FraseGraph; }
     void SetFraseGraph(Wisteria::Canvas* graph) noexcept
         { m_FraseGraph = graph; }
-    //Schwartz
+    // Schwartz
     [[nodiscard]] Wisteria::Canvas* GetSchwartzGraph() noexcept
         { return m_SchwartzGraph; }
     [[nodiscard]] const Wisteria::Canvas* GetSchwartzGraph() const noexcept
         { return m_SchwartzGraph; }
     void SetSchwartzGraph(Wisteria::Canvas* graph) noexcept
         { m_SchwartzGraph = graph; }
-    //Lix
+    // Lix
     [[nodiscard]] Wisteria::Canvas* GetLixGauge() noexcept
         { return m_LixGauge; }
     [[nodiscard]] const Wisteria::Canvas* GetLixGauge() const noexcept
         { return m_LixGauge; }
     void SetLixGauge(Wisteria::Canvas* graph) noexcept
         { m_LixGauge = graph; }
-    //German Lix
+    // German Lix
     [[nodiscard]] Wisteria::Canvas* GetGermanLixGauge() noexcept
         { return m_GermanLixGauge; }
     [[nodiscard]] const Wisteria::Canvas* GetGermanLixGauge() const noexcept
         { return m_GermanLixGauge; }
     void SetGermanLixGauge(Wisteria::Canvas* graph) noexcept
         { m_GermanLixGauge = graph; }
-    //Raygor
+    // Raygor
     [[nodiscard]] Wisteria::Canvas* GetRaygorGraph() noexcept
         { return m_raygorGraph; }
     [[nodiscard]] const Wisteria::Canvas* GetRaygorGraph() const noexcept
         { return m_raygorGraph; }
     void SetRaygorGraph(Wisteria::Canvas* graph) noexcept
         { m_raygorGraph = graph; }
-    //Crawford
+    // Crawford
     [[nodiscard]] Wisteria::Canvas* GetCrawfordGraph() noexcept
         { return m_crawfordGraph; }
     [[nodiscard]] const Wisteria::Canvas* GetCrawfordGraph() const noexcept
@@ -195,7 +195,7 @@ public:
         const bool includeTestScores, const bool includeWordiness, const bool includeSightWords,
         const bool includeWarnings,
         const Wisteria::UI::ImageExportOptions& graphOptions);
-    //label functions
+    // label functions
     [[nodiscard]] static wxString FormatClozeValuesLabel(const wxString& testName)
         { return testName + _(" (pred. cloze scores)"); }
     [[nodiscard]] static wxString StripClozeValuesLabel(const wxString& testName)

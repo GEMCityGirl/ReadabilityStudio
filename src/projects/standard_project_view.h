@@ -19,12 +19,11 @@ public:
     ProjectView() :
         m_statsListData(new ListCtrlExDataProvider)
         {
-        Bind(wxEVT_COMMAND_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, SIDEBAR_CUSTOM_TESTS_START_ID, SIDEBAR_CUSTOM_TESTS_START_ID+1000);
+        Bind(wxEVT_COMMAND_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this,
+             SIDEBAR_CUSTOM_TESTS_START_ID, SIDEBAR_CUSTOM_TESTS_START_ID+1000);
         }
     ProjectView(const ProjectView&) = delete;
-    ProjectView(ProjectView&&) = delete;
     ProjectView& operator=(const ProjectView&) = delete;
-    ProjectView& operator=(ProjectView&&) = delete;
     /// @brief Destructor.
     ~ProjectView()
         { wxDELETE(m_statsListData); }
@@ -77,46 +76,63 @@ public:
                    const bool includeTextReports,
                    const Wisteria::UI::ImageExportOptions& graphOptions);
 
-    //view classes
-    [[nodiscard]] WindowContainer& GetReadabilityResultsView() noexcept
+    // view classes
+    [[nodiscard]]
+    WindowContainer& GetReadabilityResultsView() noexcept
         { return m_readabilityResultsView; }
-    [[nodiscard]] const WindowContainer& GetReadabilityResultsView() const noexcept
+    [[nodiscard]]
+    const WindowContainer& GetReadabilityResultsView() const noexcept
         { return m_readabilityResultsView; }
 
-    [[nodiscard]] WindowContainer& GetSummaryView() noexcept
+    [[nodiscard]]
+    WindowContainer& GetSummaryView() noexcept
         { return m_summaryView; }
-    [[nodiscard]] const WindowContainer& GetSummaryView() const noexcept
+    [[nodiscard]]
+    const WindowContainer& GetSummaryView() const noexcept
         { return m_summaryView; }
 
-    [[nodiscard]] WindowContainer& GetWordsBreakdownView() noexcept
+    [[nodiscard]]
+    WindowContainer& GetWordsBreakdownView() noexcept
         { return m_WordsBreakdownView; }
-    [[nodiscard]] const WindowContainer& GetWordsBreakdownView() const noexcept
+    [[nodiscard]]
+    const WindowContainer& GetWordsBreakdownView() const noexcept
         { return m_WordsBreakdownView; }
 
-    [[nodiscard]] WindowContainer& GetSentencesBreakdownView() noexcept
+    [[nodiscard]]
+    WindowContainer& GetSentencesBreakdownView() noexcept
         { return m_sentencesBreakdownView; }
-    [[nodiscard]] const WindowContainer& GetSentencesBreakdownView() const noexcept
+    [[nodiscard]]
+    const WindowContainer& GetSentencesBreakdownView() const noexcept
         { return m_sentencesBreakdownView; }
 
-    [[nodiscard]] WindowContainer& GetGrammarView() noexcept
+    [[nodiscard]]
+    WindowContainer& GetGrammarView() noexcept
         { return m_grammarView; }
-    [[nodiscard]] const WindowContainer& GetGrammarView() const noexcept
+    [[nodiscard]]
+    const WindowContainer& GetGrammarView() const noexcept
         { return m_grammarView; }
 
-    [[nodiscard]] WindowContainer& GetDolchSightWordsView() noexcept
+    [[nodiscard]]
+    WindowContainer& GetDolchSightWordsView() noexcept
         { return m_sightWordView; }
-    [[nodiscard]] const WindowContainer& GetDolchSightWordsView() const noexcept
+    [[nodiscard]]
+    const WindowContainer& GetDolchSightWordsView() const noexcept
         { return m_sightWordView; }
 
-    //Shortcuts to the sub-windows
-    [[nodiscard]] ListCtrlExDataProvider* GetSummaryStatisticsListData() noexcept
+    // Shortcuts to the sub-windows
+    [[nodiscard]]
+    ListCtrlExDataProvider* GetSummaryStatisticsListData() noexcept
         { return m_statsListData; }
-    [[nodiscard]] ExplanationListCtrl* GetReadabilityScoresList()
-        { return dynamic_cast<ExplanationListCtrl*>(GetReadabilityResultsView().FindWindowById(READABILITY_SCORES_PAGE_ID)); }
+    [[nodiscard]]
+    ExplanationListCtrl* GetReadabilityScoresList()
+        {
+        return dynamic_cast<ExplanationListCtrl*>(
+            GetReadabilityResultsView().FindWindowById(READABILITY_SCORES_PAGE_ID));
+        }
 
     void OnAddTest(wxCommandEvent& event);
 private:
-    //menu commands
+    // menu commands
     void OnTextWindowColorsChange([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnTextWindowFontChange([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnGradeScale(wxCommandEvent& event);
@@ -128,7 +144,7 @@ private:
     void OnAddToDictionary([[maybe_unused]] wxCommandEvent& event);
     void OnLaunchSourceFile([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnEditGraphOptions(wxCommandEvent& event);
-    //handles more generic events that may need to be handled by the window itself (e.g., a graph printing)
+    // handles more generic events that may need to be handled by the window itself (e.g., a graph printing)
     void OnMenuCommand(wxCommandEvent& event);
     void OnRibbonButtonCommand(wxRibbonButtonBarEvent& event);
     void OnItemSelected(wxCommandEvent& event);
@@ -141,7 +157,7 @@ private:
 
     void UpdateSideBarIcons();
     void UpdateStatistics();
-    //view classes
+    // view classes
     WindowContainer m_readabilityResultsView;
     WindowContainer m_summaryView;
     WindowContainer m_WordsBreakdownView;

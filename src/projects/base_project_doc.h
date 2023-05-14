@@ -64,7 +64,7 @@ public:
         { return m_graphPlotBackGroundOpacity; }
     void SetGraphPlotBackGroundOpacity(const uint8_t opacity) noexcept
         { m_graphPlotBackGroundOpacity = opacity; }
-    ///water mark functions
+    /// water mark functions
     void SetWatermark(const wxString& watermark)
         { m_watermark = watermark; }
     [[nodiscard]] wxString GetWatermark() const
@@ -72,17 +72,17 @@ public:
     void SetWatermarkLogoPath(const wxString& filePath);
     [[nodiscard]] wxString GetWatermarkLogoPath() const
         { return m_watermarkImagePath; }
-    ///whether gradient is used for graph backgrounds
+    /// whether gradient is used for graph backgrounds
     void SetGraphBackGroundLinearGradient(const bool useGradient) noexcept
         { m_useGraphBackGroundImageLinearGradient = useGradient; }
     [[nodiscard]] bool GetGraphBackGroundLinearGradient() const noexcept
         { return m_useGraphBackGroundImageLinearGradient; }
-    ///whether drop shadows should be shown
+    /// whether drop shadows should be shown
     void DisplayDropShadows(const bool display) noexcept
         { m_displayDropShadows = display; }
     [[nodiscard]] bool IsDisplayingDropShadows() const noexcept
         { return m_displayDropShadows; }
-    ///axis font colors
+    /// axis font colors
     [[nodiscard]] wxColour GetXAxisFontColor() const noexcept
         { return m_xAxisFontColor; }
     void SetXAxisFontColor(const wxColour& color)
@@ -91,7 +91,7 @@ public:
         { return m_yAxisFontColor; }
     void SetYAxisFontColor(const wxColour& color)
         { m_yAxisFontColor = color; }
-    ///axis fonts
+    /// axis fonts
     [[nodiscard]] wxFont GetXAxisFont() const noexcept
         { return m_xAxisFont; }
     void SetXAxisFont(const wxFont& font)
@@ -100,7 +100,7 @@ public:
         { return m_yAxisFont; }
     void SetYAxisFont(const wxFont& font)
         { m_yAxisFont = font; }
-    ///title fonts
+    /// title fonts
     [[nodiscard]] wxColour GetTopTitleGraphFontColor() const noexcept
         { return m_topTitleFontColor; }
     void SetTopTitleGraphFontColor(const wxColour& color)
@@ -133,12 +133,12 @@ public:
         { return m_rightTitleFont; }
     void SetRightTitleGraphFont(const wxFont& font)
         { m_rightTitleFont = font; }
-    ///invalid area color
+    /// invalid area color
     [[nodiscard]] wxColour GetInvalidAreaColor() const noexcept
         { return m_graphInvalidAreaColor; }
     void SetInvalidAreaColor(const wxColour& color)
         { m_graphInvalidAreaColor = color; }
-    //Flesch connection lines
+    // Flesch connection lines
     void ConnectFleschPoints(const bool connect) noexcept
         { m_fleschChartConnectPoints = connect; }
     [[nodiscard]] bool IsConnectingFleschPoints() const noexcept
@@ -151,7 +151,7 @@ public:
     [[nodiscard]] bool IsUsingEnglishLabelsForGermanLix() const noexcept
         { return m_useEnglishLabelsGermanLix; }
 
-    ///Histogram options
+    /// Histogram options
     [[nodiscard]] Wisteria::Graphs::Histogram::BinningMethod GetHistorgramBinningMethod() const noexcept
         { return m_histogramBinningMethod; }
     void SetHistorgramBinningMethod(const Wisteria::Graphs::Histogram::BinningMethod method) noexcept
@@ -180,7 +180,7 @@ public:
         { return m_histogramBarEffect; }
     void SetHistogramBarEffect(const Wisteria::BoxEffect effect) noexcept
         { m_histogramBarEffect = effect; }
-    //Bar chart options
+    // Bar chart options
     [[nodiscard]] wxColour GetBarChartBarColor() const noexcept
         { return m_barChartBarColor; }
     void SetBarChartBarColor(const wxColour color)
@@ -201,7 +201,7 @@ public:
         { m_barDisplayLabels = display; }
     [[nodiscard]] bool IsDisplayingBarLabels() const noexcept
         { return m_barDisplayLabels; }
-    //Box Plot options
+    // Box Plot options
     void ShowAllBoxPlotPoints(const bool show) noexcept
         { m_boxPlotShowAllPoints = show; }
     [[nodiscard]] bool IsShowingAllBoxPlotPoints() const noexcept
@@ -231,37 +231,37 @@ public:
         { return m_textHighlight; }
     void SetTextHighlightMethod(const TextHighlight highlight) noexcept
         { m_textHighlight = highlight; }
-    //text highlighting
+    // text highlighting
     [[nodiscard]] wxColour GetTextHighlightColor() const noexcept
         { return m_textViewHighlightColor; }
     void SetTextHighlightColor(const wxColour& color)
         { m_textViewHighlightColor = color; }
-    //excluded sentences
+    // excluded sentences
     [[nodiscard]] wxColour GetExcludedTextHighlightColor() const noexcept
         { return m_excludedTextHighlightColor; }
     void SetExcludedTextHighlightColor(const wxColour& color)
         { m_excludedTextHighlightColor = color; }
-    //color to highlight repeated words
+    // color to highlight repeated words
     [[nodiscard]] wxColour GetDuplicateWordHighlightColor() const noexcept
         { return m_duplicateWordHighlightColor; }
     void SetDuplicateWordHighlightColor(const wxColour& color)
         { m_duplicateWordHighlightColor = color; }
-    //color for wordy items
+    // color for wordy items
     [[nodiscard]] wxColour GetWordyPhraseHighlightColor() const noexcept
         { return m_wordyPhraseHighlightColor; }
     void SetWordyPhraseHighlightColor(const wxColour& color)
         { m_wordyPhraseHighlightColor = color; }
-    //text view font and color
+    // text view font and color
     [[nodiscard]] wxFont GetTextViewFont() const noexcept
         { return m_textViewFont; }
     void SetTextViewFont(const wxFont& font)
         { m_textViewFont = font; }
-    //text color
+    // text color
     [[nodiscard]] wxColour GetTextFontColor() const noexcept
         { return m_fontColor; }
     void SetTextFontColor(const wxColour& color)
         { m_fontColor = color; }
-    //dolch colors
+    // dolch colors
     [[nodiscard]] wxColour GetDolchConjunctionsColor() const noexcept
         { return m_dolchConjunctionsColor; }
     void SetDolchConjunctionsColor(const wxColour& color)
@@ -441,14 +441,14 @@ public:
     wxString GetProjectDirectory() const override
         { return wxFileName(GetFilename()).GetPath(); }
 
-    ///how file paths are shown in batch projects
+    /// how file paths are shown in batch projects
     void SetFilePathTruncationMode(const ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode TruncMode) noexcept
         { m_filePathTruncationMode = TruncMode; }
     [[nodiscard]]
     ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode GetFilePathTruncationMode() const noexcept
         { return m_filePathTruncationMode; }
 
-    ///event functions
+    /// event functions
     bool OnCloseDocument() override;
 
     void SetModifiedFlag() override
@@ -456,7 +456,7 @@ public:
     void SetDocumentTitle(const wxString& title) override
         { SetTitle(title); }
 
-    //used for the contents of a project (zip) file
+    // used for the contents of a project (zip) file
     [[nodiscard]]
     static const wxString ProjectSettingsFileLabel()
         { return L"settings.xml"; }
@@ -577,10 +577,10 @@ protected:
     wxFont m_textViewFont;
     wxColour m_fontColor;
 
-    //text windows
+    // text windows
     bool m_textReportBackgroundColorFromTheme{ true };
 
-    //dolch colors
+    // dolch colors
     wxColour m_dolchConjunctionsColor;
     wxColour m_dolchPrepositionsColor;
     wxColour m_dolchPronounsColor;
@@ -596,7 +596,7 @@ protected:
     bool m_highlightDolchVerbs{ true };
     bool m_highlightDolchNouns{ false };
 
-    //batch project options
+    // batch project options
     ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_filePathTruncationMode
         { ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames };
 

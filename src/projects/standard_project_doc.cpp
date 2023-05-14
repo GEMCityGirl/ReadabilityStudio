@@ -104,7 +104,7 @@ void ProjectDoc::RefreshStatisticsReports()
     if (!IsSafeToUpdate())
         { return; }
 
-    //if refresh is not necessary then return
+    // if refresh is not necessary then return
     if (IsRefreshRequired() == false)
         { return; }
 
@@ -135,7 +135,7 @@ void ProjectDoc::RefreshGraphs()
     if (!IsSafeToUpdate())
         { return; }
 
-    //if refresh is not necessary then return
+    // if refresh is not necessary then return
     if (IsRefreshRequired() == false)
         { return; }
 
@@ -157,7 +157,7 @@ void ProjectDoc::RefreshProject()
     if (!IsSafeToUpdate())
         { return; }
 
-    //if refresh is not necessary then return
+    // if refresh is not necessary then return
     if (IsRefreshRequired() == false)
         { return; }
 
@@ -209,7 +209,7 @@ void ProjectDoc::RefreshProject()
         {
         if (!LoadExternalDocument() )
             {
-            //if the loading failed then reset everything and bail
+            // if the loading failed then reset everything and bail
             ResetRefreshRequired();
             return;
             }
@@ -308,7 +308,7 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
     {
     Wisteria::ZipCatalog cat(projectFileText, textLength);
 
-    //open the project settings file
+    // open the project settings file
     wxString settingsFile = cat.ReadTextFile(ProjectSettingsFileLabel());
     if (!settingsFile.empty())
         { LoadSettingsFile(settingsFile); }
@@ -439,120 +439,120 @@ void ProjectDoc::LoadMetaFile(const wchar_t* settingsFileText)
     if (statsSection && statsSectionEnd &&
         (statsSection < statsSectionEnd) )
         {
-        //size of the text string
+        // size of the text string
         SetTextSize(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TEXT_SIZE));
-        //unique words
+        // unique words
         SetTotalUniqueWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_UNIQUE_WORDS));
-        //unique monosyllabic words
+        // unique monosyllabic words
         SetTotalUniqueMonoSyllablicWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_UNIQUE_MONOSYLLABLIC_WORDS));
-        //unique 6 Chars+ Words
+        // unique 6 Chars+ Words
         SetTotalUnique6CharsPlusWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_UNIQUE_SIXCHAR_PLUS_WORDS));
-        //unique 3+ Syllable Words
+        // unique 3+ Syllable Words
         SetTotalUnique3PlusSyllableWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_UNIQUE_THREE_SYLLABLE_PLUS_WORDS));
-        //unique DC Hard Words
+        // unique DC Hard Words
         SetTotalUniqueDCHardWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_UNIQUE_DC_HARD_WORDS));
-        //unique Spache Hard Words
+        // unique Spache Hard Words
         SetTotalUniqueHardWordsSpache(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_UNIQUE_SPACHE_HARD_WORDS));
-        //unique Harris Jacobson Hard Words
+        // unique Harris Jacobson Hard Words
         SetTotalUniqueHarrisJacobsonHardWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_UNIQUE_HARRIS_JACOBSON_HARD_WORDS));
-        //unique Mini Words
+        // unique Mini Words
         SetTotalUniqueMiniWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_UNIQUE_MINI_WORDS));
-        //unique Hard Fog Words
+        // unique Hard Fog Words
         SetTotalUniqueHardFogWords(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_UNIQUE_FOG_HARD_WORDS));
-        //unique Hard Words (numerals fully syllabized)
+        // unique Hard Words (numerals fully syllabized)
         SetUnique3PlusSyllabicWordsNumeralsFullySyllabized(
             XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
                 wxGetApp().GetAppOptions().XML_UNIQUE_SMOG_WORDS_WORDS));
-        //total Words
+        // total Words
         m_totalWords = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_WORDS);
-        //total Sentences
+        // total Sentences
         m_totalSentences = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_SENTENCES);
-        //total sentence units
+        // total sentence units
         m_totalSentenceUnits = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_SENTENCE_UNITS);
-        //total Paragraphs
+        // total Paragraphs
         m_totalParagraphs = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_PARAGRAPH);
-        //total Syllables
+        // total Syllables
         m_totalSyllables = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLE);
-        //total Characters
+        // total Characters
         m_totalCharacters = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS);
-        //total characters and punctuation (this includes punctuation that is part of the words and between them)
+        // total characters and punctuation (this includes punctuation that is part of the words and between them)
         m_totalCharactersPlusPunctuation = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS_PLUS_PUNCTUATION);
-        //total Mono Syllabic
+        // total Mono Syllabic
         m_totalMonoSyllabic = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_MONOSYLLABIC_WORDS);
-        //total 3plus Syllable Words
+        // total 3plus Syllable Words
         m_total3plusSyllableWords = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_THREE_PLUSSYLLABLE_WORDS);
-        //total Hard Words Spache
+        // total Hard Words Spache
         m_totalHardWordsSpache = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_SPACHE_HARD_WORDS);
-        //total Hard Words Harris-Jacobson
+        // total Hard Words Harris-Jacobson
         m_totalHardWordsHarrisJacobson = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_HARRIS_JACOBSON_HARD_WORDS);
-        //total Hard Words Dale Chall
+        // total Hard Words Dale Chall
         m_totalHardWordsDaleChall = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_DALECHALL_HARD_WORDS);
-        //total Hard Words Fog
+        // total Hard Words Fog
         m_totalHardWordsFog = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_FOG_HARDWORDS);
-        //total Hard Words (numerals fully syllabized)
+        // total Hard Words (numerals fully syllabized)
         m_total3PlusSyllabicWordsNumeralsFullySyllabized =
             XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
                 wxGetApp().GetAppOptions().XML_TOTAL_SMOG_HARD_WORDS);
-        //total Hard Words Sol
+        // total Hard Words Sol
         m_totalHardWordsSol = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_SOL_HARD_WORDS);
-        //total Hard Lix/Rix words
+        // total Hard Lix/Rix words
         m_totalHardWordsLixRix = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_LIX_RIX_HARD_WORDS);
-        //total Syllables Ignoring Numerals
+        // total Syllables Ignoring Numerals
         m_totalSyllablesIgnoringNumerals = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_IGNORING_NUMERALS);
-        //Number of syllables, numerals just one syllable
+        // Number of syllables, numerals just one syllable
         m_totalSyllablesNumeralsOneSyllable = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_NUMERALS_ONE_SYLLABLE);
-        //Number of syllables, numerals fully syllabized
+        // Number of syllables, numerals fully syllabized
         m_totalSyllablesNumeralsFullySyllabized = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_NUMERALS_FULLY_SYLLABIZED);
-        //total Syllables Ignoring Numerals
+        // total Syllables Ignoring Numerals
         m_totalSyllablesIgnoringNumeralsAndProperNouns =
             XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
                 wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_IGNORING_NUMERALS_AND_PROPER_NOUNS);
-        //total Long Words
+        // total Long Words
         m_totalLongWords = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_LONG_WORDS);
         m_totalSixPlusCharacterWordsIgnoringNumerals = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_LONG_WORDS_IGNORING_NUMERALS);
-        //total MiniWords
+        // total MiniWords
         m_totalMiniWords = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_MINIWORDS);
-        //total Numerals
+        // total Numerals
         m_totalNumerals = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_NUMERALS);
-        //total proper nouns
+        // total proper nouns
         m_totalProperNouns = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_PROPER_NOUNS);
-        //total Overly Long Sentences
+        // total Overly Long Sentences
         m_totalOverlyLongSentences = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_OVERLY_LONG_SENTENCES);
-        //supplementary stats
+        // supplementary stats
         SetTotalWordsFromCompleteSentencesAndHeaders(
             XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
                 wxGetApp().GetAppOptions().XML_TOTAL_WORDS_FROM_COMPLETE_SENTENCES_AND_HEADERS));
@@ -565,21 +565,21 @@ void ProjectDoc::LoadMetaFile(const wchar_t* settingsFileText)
         SetTotalCharactersFromCompleteSentencesAndHeaders(
             XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
                 wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS_FROM_COMPLETE_SENTENCES_AND_HEADERS));
-        //special types of sentences
+        // special types of sentences
         m_totalInterrogativeSentences = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_INTERROGATIVE_SENTENCES);
         m_totalExclamatorySentences = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_TOTAL_EXCLAMATORY_SENTENCES);
-        //longest sentence
+        // longest sentence
         m_longestSentence = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_LONGEST_SENTENCES);
-        //longest sentence index
+        // longest sentence index
         m_longestSentenceIndex = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_LONGEST_SENTENCE_INDEX);
-        //difficult Sentence Length
+        // difficult Sentence Length
         SetDifficultSentenceLength(static_cast<int>(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_DIFFICULT_SENTENCE_LENGTH)));
-        //grammar stats
+        // grammar stats
         SetMisspelledWordCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_MISSPELLING_COUNT));
         SetDuplicateWordCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
@@ -601,7 +601,7 @@ void ProjectDoc::LoadMetaFile(const wchar_t* settingsFileText)
             wxGetApp().GetAppOptions().XML_PASSIVE_VOICE_COUNT));
         SetOverusedWordsBySentenceCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_OVERUSED_WORDS_BY_SENTENCE_COUNT));
-        //Dolch stats
+        // Dolch stats
         m_dolchConjunctionCounts.first = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_CONJUNCTIONS_COUNT);
         m_dolchConjunctionCounts.second = XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
@@ -728,7 +728,7 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
         sourceFile.MapFile(GetFilename());
         const char* projectFileText = static_cast<char*>(sourceFile.GetStream());
         SetLoadingOriginalTextSucceeded(LoadProjectFile(projectFileText, sourceFile.GetMapSize()));
-        //unmap and lock the file while project is open
+        // unmap and lock the file while project is open
         sourceFile.UnmapFile();
         if (!LockProjectFile())
             { return false; }
@@ -1008,7 +1008,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             }
         wxGetApp().GetAppOptions().SetTestByDocumentType(wizard->GetSelectedDocumentType());
         }
-    //user selected the program to use recommended tests by industry
+    // user selected the program to use recommended tests by industry
     else if (wizard->IsIndustrySelected() )
         {
         if (wizard->GetSelectedIndustryType() == readability::industry_classification::childrens_publishing_industry)
@@ -1164,7 +1164,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
          wizard->IsCenteredTextSelected()) &&
          !wizard->IsNewLinesAlwaysNewParagraphsSelected())
         {
-        //also override paragraph ending logic if special format parsing is requested
+        // also override paragraph ending logic if special format parsing is requested
         SetParagraphsParsingMethod(ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs);
         }
     else if (wizard->IsNewLinesAlwaysNewParagraphsSelected())
@@ -3197,43 +3197,43 @@ void ProjectDoc::DisplayReadabilityGraphs()
         ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
         wxGCDC gdc(view->GetDocFrame());
 
-        //remove Fry graph if test is not included (Note that this chart is added by AddFryTest, not here).
+        // remove Fry graph if test is not included (Note that this chart is added by AddFryTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::FRY()))
             { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::FRY_PAGE_ID); }
-        //remove GPM (Spanish) Fry graph if test is not included
+        // remove GPM (Spanish) Fry graph if test is not included
         // (Note that this chart is added by AddGilliamPenaMountainFryTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::GPM_FRY()))
             { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::GPM_FRY_PAGE_ID); }
-        //remove FRASE graph if test is not included (Note that this chart is added by AddFraseTest, not here).
+        // remove FRASE graph if test is not included (Note that this chart is added by AddFraseTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::FRASE()))
             { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::FRASE_PAGE_ID); }
-        //remove Schwartz graph if test is not included (Note that this chart is added by AddSchwartzTest, not here).
+        // remove Schwartz graph if test is not included (Note that this chart is added by AddSchwartzTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::SCHWARTZ()))
             { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::SCHWARTZ_PAGE_ID); }
-        //remove Flesch Chart graph if test is not included (Note that this chart is added by AddFleschTest, not here).
+        // remove Flesch Chart graph if test is not included (Note that this chart is added by AddFleschTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::FLESCH()))
             { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::FLESCH_CHART_PAGE_ID); }
-        //remove DB2 graph if test is not included (Note that this chart is added by AddDB2, not here).
+        // remove DB2 graph if test is not included (Note that this chart is added by AddDB2, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::DANIELSON_BRYAN_2()))
             { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::DB2_PAGE_ID); }
-        //remove Lix Gauge if test is not included (Note that this chart is added by AddLixTest, not here).
+        // remove Lix Gauge if test is not included (Note that this chart is added by AddLixTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::LIX()))
             { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::LIX_GAUGE_PAGE_ID); }
-        //remove German Lix Gauge if neither German Lix test is included
+        // remove German Lix Gauge if neither German Lix test is included
         // (Note that this chart is added by AddLixGermanXXX, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::LIX_GERMAN_CHILDRENS_LITERATURE()) &&
             !GetReadabilityTests().is_test_included(ReadabilityMessages::LIX_GERMAN_TECHNICAL()))
             { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::LIX_GAUGE_GERMAN_PAGE_ID); }
-        //remove Crawford graph if test is not included (Note that this chart is added by AddCrawfordTest, not here).
+        // remove Crawford graph if test is not included (Note that this chart is added by AddCrawfordTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::CRAWFORD()))
             { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::CRAWFORD_GRAPH_PAGE_ID); }
-        //remove Raygor graph if test is not included (Note that this chart is added by AddRaygorTest, not here).
+        // remove Raygor graph if test is not included (Note that this chart is added by AddRaygorTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::RAYGOR()))
             { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::RAYGOR_PAGE_ID); }
-        //need to sort the list of scores after adding the graph tests to it
+        // need to sort the list of scores after adding the graph tests to it
         view->GetReadabilityScoresList()->GetResultsListCtrl()->SortColumn(0, Wisteria::SortDirection::SortAscending);
 
-        //Dolch graphs
+        // Dolch graphs
         if (IsIncludingDolchSightWords())
             {
             Wisteria::Canvas* coverageBarChartCanvas =
@@ -3353,7 +3353,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
 
             coverageBarChartCanvas->CalcAllSizes(gdc);
 
-            //Dolch words breakdown chart
+            // Dolch words breakdown chart
             const size_t totalDolchWords = m_dolchConjunctionCounts.second + m_dolchPrepositionCounts.second + m_dolchPronounCounts.second +
                 m_dolchAdverbCounts.second + m_dolchAdjectiveCounts.second + m_dolchVerbCounts.second + m_dolchNounCounts.second;
 
@@ -3485,7 +3485,7 @@ void ProjectDoc::DisplaySentencesBreakdown()
     DisplaySentenceCharts();
     }
 
-///load the general stats view
+/// load the general stats view
 //-------------------------------------------------------
 void ProjectDoc::DisplayStatistics()
     {
@@ -4418,13 +4418,13 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         // terminator
         const wxString HIGHLIGHT_END = L"}";
 
-        //these are used for the legend lines because they are always set to use background highlighting
+        // these are used for the legend lines because they are always set to use background highlighting
         const wxString HIGHLIGHT_BEGIN_LEGEND = L"{\\highlight2 ";
         const wxString HIGHLIGHT_END_LEGEND = L"}";
         const wxString DUPLICATE_HIGHLIGHT_BEGIN_LEGEND = L"{\\highlight3 ";
         const wxString PHRASE_HIGHLIGHT_BEGIN_LEGEND = L"{\\highlight4 ";
         const wxString IGNORE_HIGHLIGHT_BEGIN_LEGEND = L"{\\highlight5 ";
-        //dolch highlighting
+        // dolch highlighting
         const wxString DOLCH_CONJUNCTION_BEGIN_LEGEND = IsHighlightingDolchConjunctions() ?
             L"{\\highlight6 " : L"{";
         const wxString DOLCH_PREPOSITIONS_BEGIN_LEGEND = IsHighlightingDolchPrepositions() ?
@@ -4452,7 +4452,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         const wxString IGNORE_HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\cb5\\cf%d ", excludedTextColorIndexBGMode) :
             L"{\\cf5 ";
-        //dolch highlighting
+        // dolch highlighting
         const wxString DOLCH_CONJUNCTION_BEGIN = IsHighlightingDolchConjunctions() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\cb6\\cf%d ", dolchConjunctionsTextColorIndexBGMode) :
@@ -4491,13 +4491,13 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         // terminator
         const wxString HIGHLIGHT_END = L"}";
 
-        //these are used for the legend lines because they are always set to use background highlighting
+        // these are used for the legend lines because they are always set to use background highlighting
         const wxString HIGHLIGHT_BEGIN_LEGEND = L"{\\cb2 ";
         const wxString HIGHLIGHT_END_LEGEND = L"}";
         const wxString DUPLICATE_HIGHLIGHT_BEGIN_LEGEND = L"{\\cb3 ";
         const wxString PHRASE_HIGHLIGHT_BEGIN_LEGEND = L"{\\cb4 ";
         const wxString IGNORE_HIGHLIGHT_BEGIN_LEGEND = L"{\\cb5 ";
-        //dolch highlighting
+        // dolch highlighting
         const wxString DOLCH_CONJUNCTION_BEGIN_LEGEND = IsHighlightingDolchConjunctions() ?
             L"{\\cb6 " : L"{";
         const wxString DOLCH_PREPOSITIONS_BEGIN_LEGEND = IsHighlightingDolchPrepositions() ?
@@ -4568,13 +4568,13 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         const wxString TAB_SYMBOL = L"    ";
         const wxString CRLF = L"\n";
 
-        //these are used for the legend lines because they are always set to use background highlighting
+        // these are used for the legend lines because they are always set to use background highlighting
         const wxString HIGHLIGHT_BEGIN_LEGEND = wxString::Format(L"<span background=\"%s\">", highlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
         const wxString HIGHLIGHT_END_LEGEND = L"</span>";
         const wxString DUPLICATE_HIGHLIGHT_BEGIN_LEGEND = wxString::Format(L"<span background=\"%s\">", errorHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
         const wxString PHRASE_HIGHLIGHT_BEGIN_LEGEND = wxString::Format(L"<span background=\"%s\">", styleHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
         const wxString IGNORE_HIGHLIGHT_BEGIN_LEGEND = wxString::Format(L"<span background=\"%s\" strikethrough=\"true\">", excludedTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
-        //dolch highlighting
+        // dolch highlighting
         const wxString DOLCH_CONJUNCTION_BEGIN_LEGEND = IsHighlightingDolchConjunctions() ?
             wxString::Format(L"<span background=\"%s\">", dolchConjunctionsextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
@@ -4653,7 +4653,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         const wxString endSection = L"</span>";
     #endif
 
-        //lines used for the legends
+        // lines used for the legends
         wxString currentLegendLabel{ _(L"Excluded text") };
         const wxString ignoredSentencesLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
                                         CRLF,
@@ -4866,7 +4866,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             dolch2WordsLegendLine.length() + dolch3WordsLegendLine.length() + dolch4WordsLegendLine.length() +
             dolch5WordsLegendLine.length() + dolchVerbsLegendLine.length() + dolchNounsLegendLine.length() +
             nonDolchWordsLegendLine.length() + 1000/*little extra padding for anything added around the legend lines*/;
-    //the legends
+    // the legends
     #if defined (__WXMSW__) || defined (__WXOSX__)
         const wxString plaintTextWindowLegend = wxString::Format(L" \\pard\\fs%u%s \\fs%u\\par\n",
                                 (textViewFont.GetPointSize()-2)*2,
@@ -4922,7 +4922,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 textViewFont.GetPointSize()*2);
 
     #elif defined(__WXGTK__)
-        //note that font "size" in Pango is 1024th of a point
+        // note that font "size" in Pango is 1024th of a point
         const wxString plaintTextWindowLegend = wxString::Format(L"<span size=\"%u\">%s</span>\n",
                                 ((textViewFont.GetPointSize()-2)*1024),
                                 ignoredSentencesLegendLine);
@@ -4994,7 +4994,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         IsNotDolchWordWithLevelHighlighting<word_case_insensitive_no_stem>
                             isNotDolchWord(&m_dolch_word_list, HIGHLIGHT_BEGIN, HIGHLIGHT_END);
 
-        //get the full count of all chars (including ignored ones) and their punctuation
+        // get the full count of all chars (including ignored ones) and their punctuation
         const size_t fullCharWithPunctCount = std::accumulate(GetWords()->get_words().begin(),
                     GetWords()->get_words().end(), static_cast<size_t>(0),
                     add_word_size<word_case_insensitive_no_stem>() );
@@ -5007,13 +5007,13 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
            Note that for encoding, the worst case scenario is a char to be expanded to 7 chars. In RTF,
            a unicode value will be "\u0000?", so assume the worst that every character and punctuation
            may be expanded into that.*/
-        const size_t textBufferLength = fullCharWithPunctCount*7 + //some characters have to be encoded for RTF or Pango
+        const size_t textBufferLength = fullCharWithPunctCount*7 + // some characters have to be encoded for RTF or Pango
             headerSection.length() + colorTableThemed.length() + mainFontHeaderThemed.length() +
-            (GetWords()->get_sentence_count()*3) + //two spaces after each sentence, and ending punctuations
+            (GetWords()->get_sentence_count()*3) + // two spaces after each sentence, and ending punctuations
             (GetWords()->get_paragraph_count()*(CRLF.length()+TAB_SYMBOL.length())) +
             (paragraphLeadingLines*(CRLF.length()+TAB_SYMBOL.length())) +
-            (GetWords()->get_punctuation().size()*7) + //some punctuation has to be escaped or encoded for RTF or Pango
-            (GetWords()->get_word_count() * (HIGHLIGHT_BEGIN.length()+HIGHLIGHT_END.length()+2)) + //gets the spaces between each word too
+            (GetWords()->get_punctuation().size()*7) + // some punctuation has to be escaped or encoded for RTF or Pango
+            (GetWords()->get_word_count() * (HIGHLIGHT_BEGIN.length()+HIGHLIGHT_END.length()+2)) + // gets the spaces between each word too
             (GetWords()->get_sentence_count() * (BOLD_BEGIN.length()+BOLD_END.length()+8/*3 spaces, 2 parenthesis, and 3 spots for the number*/)) +
             endSection.length() + maxLegendSize + 1;
 
@@ -5675,7 +5675,7 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
     if (!GetFilename().empty() &&
         GetFilename() != filename)
         {
-        //must be coming from Save As, so make sure file isn't locked
+        // must be coming from Save As, so make sure file isn't locked
         try
             {
             MemoryMappedFile sourceFile(filename);
@@ -5718,125 +5718,125 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
     SetFilename(filename, true);
     SetTitle(ParseTitleFromFileName(filename));
 
-    //Write the meta data information, such as statistics
+    // Write the meta data information, such as statistics
     //---------------------------------------------------
     wxString metaFileText = wxEmptyString; wxString sectionText = wxEmptyString;
     metaFileText.append(L"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<").
         append(wxGetApp().GetAppOptions().XML_OFFICE_DOCUMENT_META_HEADER).
         append(L">\n\t<").append(wxGetApp().GetAppOptions().XML_OFFICE_META).append(L">\n");
-    //statistics section
+    // statistics section
     metaFileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_STATISTICS);
-    //text size
+    // text size
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TEXT_SIZE, GetTextSize());
     metaFileText += sectionText;
-    //unique words
+    // unique words
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_WORDS, GetTotalUniqueWords());
     metaFileText += sectionText;
-    //unique monosyllabic words
+    // unique monosyllabic words
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_MONOSYLLABLIC_WORDS, GetTotalUniqueMonoSyllablicWords());
     metaFileText += sectionText;
-    //unique 6 Chars+ Words
+    // unique 6 Chars+ Words
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_SIXCHAR_PLUS_WORDS, GetTotalUnique6CharsPlusWords());
     metaFileText += sectionText;
-    //unique 3+ Syllable Words
+    // unique 3+ Syllable Words
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_THREE_SYLLABLE_PLUS_WORDS, GetTotalUnique3PlusSyllableWords());
     metaFileText += sectionText;
-    //unique DC Hard Words
+    // unique DC Hard Words
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_DC_HARD_WORDS, GetTotalUniqueDCHardWords());
     metaFileText += sectionText;
-    //unique Spache Hard Words
+    // unique Spache Hard Words
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_SPACHE_HARD_WORDS, GetTotalUniqueHardWordsSpache());
     metaFileText += sectionText;
-    //unique Harris-Jacobson Hard Words
+    // unique Harris-Jacobson Hard Words
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_HARRIS_JACOBSON_HARD_WORDS, GetTotalUniqueHarrisJacobsonHardWords());
     metaFileText += sectionText;
-    //unique Mini Words
+    // unique Mini Words
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_MINI_WORDS, GetTotalUniqueMiniWords());
     metaFileText += sectionText;
-    //unique Hard Fog Words
+    // unique Hard Fog Words
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_FOG_HARD_WORDS, GetTotalUniqueHardFogWords());
     metaFileText += sectionText;
-    //unique Hard Words (numerals fully syllabized)
+    // unique Hard Words (numerals fully syllabized)
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_SMOG_WORDS_WORDS, GetUnique3PlusSyllabicWordsNumeralsFullySyllabized());
     metaFileText += sectionText;
-    //total Words
+    // total Words
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_WORDS, GetTotalWords());
     metaFileText += sectionText;
-    //total Sentences
+    // total Sentences
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SENTENCES, GetTotalSentences());
     metaFileText += sectionText;
-    //total Sentence units
+    // total Sentence units
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SENTENCE_UNITS, GetTotalSentenceUnits());
     metaFileText += sectionText;
-    //total Paragraphs
+    // total Paragraphs
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_PARAGRAPH, GetTotalParagraphs());
     metaFileText += sectionText;
-    //total Syllables
+    // total Syllables
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLE, GetTotalSyllables());
     metaFileText += sectionText;
-    //total Characters
+    // total Characters
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS, GetTotalCharacters());
     metaFileText += sectionText;
-    //total characters + punctuation
+    // total characters + punctuation
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS_PLUS_PUNCTUATION, GetTotalCharactersPlusPunctuation());
     metaFileText += sectionText;
-    //total Mono Syllabic
+    // total Mono Syllabic
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_MONOSYLLABIC_WORDS, GetTotalMonoSyllabicWords());
     metaFileText += sectionText;
-    //total 3+ Syllable Words
+    // total 3+ Syllable Words
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_THREE_PLUSSYLLABLE_WORDS, GetTotal3PlusSyllabicWords());
     metaFileText += sectionText;
-    //total Hard Words Spache
+    // total Hard Words Spache
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SPACHE_HARD_WORDS, GetTotalHardWordsSpache());
     metaFileText += sectionText;
-    //total Hard Words Harris-Jacobson
+    // total Hard Words Harris-Jacobson
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_HARRIS_JACOBSON_HARD_WORDS, GetTotalHardWordsHarrisJacobson());
     metaFileText += sectionText;
-    //total Hard Words Dale Chall
+    // total Hard Words Dale Chall
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_DALECHALL_HARD_WORDS, GetTotalHardWordsDaleChall());
     metaFileText += sectionText;
-    //total Hard Words Fog
+    // total Hard Words Fog
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_FOG_HARDWORDS, GetTotalHardWordsFog());
     metaFileText += sectionText;
-    //total Hard Words (numerals fully syllabized)
+    // total Hard Words (numerals fully syllabized)
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SMOG_HARD_WORDS, GetTotal3PlusSyllabicWordsNumeralsFullySyllabized());
     metaFileText += sectionText;
-    //total Hard Words SOL
+    // total Hard Words SOL
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SOL_HARD_WORDS, GetTotalHardWordsSol());
     metaFileText += sectionText;
-    //total Hard Lix/Rix words
+    // total Hard Lix/Rix words
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_LIX_RIX_HARD_WORDS, GetTotalHardLixRixWords());
     metaFileText += sectionText;
-    //total Syllables Ignoring Numerals
+    // total Syllables Ignoring Numerals
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_IGNORING_NUMERALS, m_totalSyllablesIgnoringNumerals);
     metaFileText += sectionText;
-    //Number of syllables, numerals just one syllable
+    // Number of syllables, numerals just one syllable
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_NUMERALS_ONE_SYLLABLE, GetTotalSyllablesNumeralsOneSyllable());
     metaFileText += sectionText;
-    //Number of syllables, numerals fully syllabized
+    // Number of syllables, numerals fully syllabized
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_NUMERALS_FULLY_SYLLABIZED, GetTotalSyllablesNumeralsFullySyllabized());
     metaFileText += sectionText;
-    //total Syllables Ignoring Numerals and proper nouns
+    // total Syllables Ignoring Numerals and proper nouns
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_IGNORING_NUMERALS_AND_PROPER_NOUNS, GetTotalSyllablesIgnoringNumeralsAndProperNouns());
     metaFileText += sectionText;
-    //total Long Words
+    // total Long Words
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_LONG_WORDS, GetTotalLongWords());
     metaFileText += sectionText;
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_LONG_WORDS_IGNORING_NUMERALS, GetTotalSixPlusCharacterWordsIgnoringNumerals());
     metaFileText += sectionText;
-    //total MiniWords
+    // total MiniWords
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_MINIWORDS, GetTotalMiniWords());
     metaFileText += sectionText;
-    //total Numerals
+    // total Numerals
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_NUMERALS, GetTotalNumerals());
     metaFileText += sectionText;
-    //total proper nouns
+    // total proper nouns
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_PROPER_NOUNS, GetTotalProperNouns());
     metaFileText += sectionText;
-    //total Overly Long Sentences
+    // total Overly Long Sentences
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_OVERLY_LONG_SENTENCES, GetTotalOverlyLongSentences());
     metaFileText += sectionText;
-    //supplementary stats
+    // supplementary stats
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_WORDS_FROM_COMPLETE_SENTENCES_AND_HEADERS, GetTotalWordsFromCompleteSentencesAndHeaders());
     metaFileText += sectionText;
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SENTENCES_FROM_COMPLETE_SENTENCES_AND_HEADERS, GetTotalSentencesFromCompleteSentencesAndHeaders());
@@ -5845,21 +5845,21 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
     metaFileText += sectionText;
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS_FROM_COMPLETE_SENTENCES_AND_HEADERS, GetTotalCharactersFromCompleteSentencesAndHeaders());
     metaFileText += sectionText;
-    //special sentences
+    // special sentences
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_INTERROGATIVE_SENTENCES, GetTotalInterrogativeSentences());
     metaFileText += sectionText;
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_EXCLAMATORY_SENTENCES, GetTotalExclamatorySentences());
     metaFileText += sectionText;
-    //Longest Sentence
+    // Longest Sentence
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_LONGEST_SENTENCES, GetLongestSentence());
     metaFileText += sectionText;
-    //longest sentence index
+    // longest sentence index
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_LONGEST_SENTENCE_INDEX, GetLongestSentenceIndex());
     metaFileText += sectionText;
-    //difficult Sentence Length
+    // difficult Sentence Length
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DIFFICULT_SENTENCE_LENGTH, GetDifficultSentenceLength());
     metaFileText += sectionText;
-    //grammar info
+    // grammar info
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_MISSPELLING_COUNT, GetMisspelledWordCount());
     metaFileText += sectionText;
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DUPLICATE_WORD_COUNT, GetDuplicateWordCount());
@@ -5882,7 +5882,7 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
     metaFileText += sectionText;
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_OVERUSED_WORDS_BY_SENTENCE_COUNT, GetOverusedWordsBySentenceCount());
     metaFileText += sectionText;
-    //Dolch stats
+    // Dolch stats
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_CONJUNCTIONS_COUNT, GetDolchConjunctionCounts().first);
     metaFileText += sectionText;
     XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_CONJUNCTIONS_COUNT, GetDolchConjunctionCounts().second);
@@ -5951,10 +5951,10 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
     wxTempFileOutputStream out(filename);
     wxZipOutputStream zip(out, 9/*Maximum compression*/);
 
-    //settings.xml
+    // settings.xml
     Wisteria::ZipCatalog::WriteText(zip, ProjectSettingsFileLabel(), FormatProjectSettings());
 
-    //meta.xml
+    // meta.xml
     Wisteria::ZipCatalog::WriteText(zip, ProjectMetaFileLabel(), metaFileText);
 
     /* If storing indexed text then include it.
@@ -5990,7 +5990,7 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
         }
     zip.Close();
 
-    //close the project, replace it with the temp file, and (re)lock it
+    // close the project, replace it with the temp file, and (re)lock it
     m_File.Close();
     if (!out.Commit())
         {
@@ -6018,14 +6018,14 @@ void ProjectDoc::DisplayOverlyLongSentences()
         return;
         }
 
-    //list the overly long sentences
+    // list the overly long sentences
     m_overlyLongSentenceData->DeleteAllItems();
     m_overlyLongSentenceData->SetSize(GetWords()->get_sentence_count(), 3);
     size_t longSenteceCount = 0;
     const grammar::sentence_length_greater_than sentenceGreater(GetDifficultSentenceLength());
     const grammar::complete_sentence_length_greater_than completeSentenceGreater(GetDifficultSentenceLength());
     wxString currentSentence;
-    //punctuation markers
+    // punctuation markers
     std::vector<punctuation::punctuation_mark>::const_iterator punctPos = GetWords()->get_punctuation().begin();
     for (std::vector<grammar::sentence_info>::const_iterator pos = GetWords()->get_sentences().begin();
         pos != GetWords()->get_sentences().end();
@@ -6043,7 +6043,9 @@ void ProjectDoc::DisplayOverlyLongSentences()
             else
                 { m_overlyLongSentenceData->SetItemValue(longSenteceCount, 1, pos->get_valid_word_count()); }
             m_overlyLongSentenceData->SetItemValue(longSenteceCount++, 2,
-                (pos - GetWords()->get_sentences().begin())+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));//add 1 to make it one-indexed
+                // add 1 to make it one-indexed
+                (pos - GetWords()->get_sentences().begin())+1,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
             }
         }
     m_overlyLongSentenceData->SetSize(longSenteceCount);
@@ -6272,28 +6274,32 @@ void ProjectDoc::DisplayGrammar()
             m_clichePhraseData->SetItemText(clicheCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
             m_clichePhraseData->SetItemText(clicheCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
             m_clichePhraseData->SetItemValue(clicheCount++, 2,
-                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));//make 1-based index
+                // make 1-based index
+                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
             }
         else if (wordyPhrases[wordyIndices[i].second].first.get_type() == grammar::phrase_type::phrase_redundant)
             {
             m_redundantPhraseData->SetItemText(redundantPhraseCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
             m_redundantPhraseData->SetItemText(redundantPhraseCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
             m_redundantPhraseData->SetItemValue(redundantPhraseCount++, 2,
-                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));//make 1-based index
+                // make 1-based index
+                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
             }
         else if (wordyPhrases[wordyIndices[i].second].first.get_type() == grammar::phrase_type::phrase_error)
             {
             m_wordingErrorData->SetItemText(wordingErrorCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
             m_wordingErrorData->SetItemText(wordingErrorCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
             m_wordingErrorData->SetItemValue(wordingErrorCount++, 2,
-                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));//make 1-based index
+                // make 1-based index
+                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
             }
         else
             {
             m_wordyPhraseData->SetItemText(wordyPhraseCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
             m_wordyPhraseData->SetItemText(wordyPhraseCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
             m_wordyPhraseData->SetItemValue(wordyPhraseCount++, 2,
-                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));//make 1-based index
+                // make 1-based index
+                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
             }
         }
     m_wordyPhraseData->SetSize(wordyPhraseCount);

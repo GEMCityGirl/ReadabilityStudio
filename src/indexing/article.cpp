@@ -42,23 +42,31 @@ bool is_incorrect_english_article::operator()(const wchar_t* article, const size
                                         characters::is_character::is_consonant(word[3]) &&
                                         characters::is_character::is_consonant(word[4]));
     // or weird consonant combination at the start of an acronym (e.g., "LGA", "NCAA")
-    const bool oddAcronymConsonantCombo = (word_length >= 2 &&
-                                characters::is_character::is_upper(word[0]) &&
-                                characters::is_character::is_upper(word[1]) &&
-                                // only certain consonant combinations make sense to look like a word you would pronounce
-                                ((traits::case_insensitive_ex::eq_case_sensitive(word[0], 'F') && characters::is_character::is_consonant(word[1]) &&
-                                    (!traits::case_insensitive_ex::eq_case_sensitive(word[1], 'L') && !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'R'))) ||
-                                (traits::case_insensitive_ex::eq_case_sensitive(word[0], 'L') && characters::is_character::is_consonant(word[1])) ||
-                                (traits::case_insensitive_ex::eq_case_sensitive(word[0], 'M') && characters::is_character::is_consonant(word[1])) ||
-                                (traits::case_insensitive_ex::eq_case_sensitive(word[0], 'N') && characters::is_character::is_consonant(word[1])) ||
-                                (traits::case_insensitive_ex::eq_case_sensitive(word[0], 'R') && characters::is_character::is_consonant(word[1])) ||
-                                (traits::case_insensitive_ex::eq_case_sensitive(word[0], 'S') && characters::is_character::is_consonant(word[1]) &&
-                                    (!traits::case_insensitive_ex::eq_case_sensitive(word[1], 'C') &&
-                                    !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'L') &&
-                                    !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'M') &&
-                                    !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'T') &&
-                                    !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'W'))))
-                                );
+    const bool oddAcronymConsonantCombo =
+        (word_length >= 2 &&
+         characters::is_character::is_upper(word[0]) &&
+         characters::is_character::is_upper(word[1]) &&
+         // only certain consonant combinations make sense to look like a word you would pronounce
+         ((traits::case_insensitive_ex::eq_case_sensitive(word[0], 'F') &&
+           characters::is_character::is_consonant(word[1]) &&
+            (!traits::case_insensitive_ex::eq_case_sensitive(word[1], 'L') &&
+             !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'R'))) ||
+         (traits::case_insensitive_ex::eq_case_sensitive(word[0], 'L') &&
+          characters::is_character::is_consonant(word[1])) ||
+         (traits::case_insensitive_ex::eq_case_sensitive(word[0], 'M') &&
+          characters::is_character::is_consonant(word[1])) ||
+         (traits::case_insensitive_ex::eq_case_sensitive(word[0], 'N') &&
+          characters::is_character::is_consonant(word[1])) ||
+         (traits::case_insensitive_ex::eq_case_sensitive(word[0], 'R') &&
+          characters::is_character::is_consonant(word[1])) ||
+         (traits::case_insensitive_ex::eq_case_sensitive(word[0], 'S') &&
+          characters::is_character::is_consonant(word[1]) &&
+            (!traits::case_insensitive_ex::eq_case_sensitive(word[1], 'C') &&
+             !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'L') &&
+             !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'M') &&
+             !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'T') &&
+             !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'W'))))
+        );
     const grammar::is_acronym isAcronym;
     const bool useLetterSoundedOut = (startsWith5Consonants ||
         (word_length == 1) ||

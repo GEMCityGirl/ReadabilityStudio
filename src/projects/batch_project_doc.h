@@ -230,13 +230,13 @@ private:
     std::vector<BaseProject*> m_docs;
     std::map<traits::case_insensitive_wstring_ex, Wisteria::Data::GroupIdType> m_docLabels;
     Wisteria::Data::ColumnWithStringTable::StringTableType m_groupStringTable;
-    //score list data
+    // score list data
     ListCtrlExNumericDataProvider* m_scoreRawData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_goalsData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_scoreStatsData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_aggregatedGradeScoresData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_aggregatedClozeScoresData{ new ListCtrlExNumericDataProvider };
-    //grammar list data
+    // grammar list data
     ListCtrlExNumericDataProvider* m_dupWordData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_incorrectArticleData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_passiveVoiceData{ new ListCtrlExNumericDataProvider };
@@ -251,11 +251,11 @@ private:
     ListCtrlExNumericDataProvider* m_sentenceStartingWithLowercaseData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_allWordsBatchData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_importantWordsBatchData{ new ListCtrlExNumericDataProvider };
-    //difficult words list data
+    // difficult words list data
     ListCtrlExNumericDataProvider* m_hardWordsData{ new ListCtrlExNumericDataProvider };
-    //warnings list data
+    // warnings list data
     ListCtrlExDataProvider* m_warnings{ new ListCtrlExDataProvider };
-    //dolch list data
+    // dolch list data
     ListCtrlExNumericDataProvider* m_dolchCompletionData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_dolchWordsBatchData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_NonDolchWordsData{ new ListCtrlExNumericDataProvider };

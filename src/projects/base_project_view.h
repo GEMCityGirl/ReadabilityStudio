@@ -111,7 +111,7 @@ public:
     [[nodiscard]] Wisteria::UI::SearchPanel* GetSearchPanel() noexcept
         { return m_searchCtrl; }
 
-    //labels for the icons on the left-side pane used for project navigation
+    // labels for the icons on the left-side pane used for project navigation
     [[nodiscard]] static wxString GetFormattedReportLabel()
         { return _(L"Formatted Report"); }
     [[nodiscard]] static wxString GetTabularReportLabel()
@@ -138,7 +138,7 @@ public:
         { return _(L"Readability Graphs"); }
     [[nodiscard]] static wxString GetWarningLabel()
         { return _(L"Warnings"); }
-    //label functions
+    // label functions
     [[nodiscard]] static wxString GetSentenceStartingWithConjunctionsLabel()
         { return _(L"Sentences that begin with conjunctions"); }
     [[nodiscard]] static wxString GetSentenceStartingWithConjunctionsTabLabel()
@@ -173,7 +173,7 @@ public:
         { return _(L"Lengths (Density)"); }
     [[nodiscard]] static wxString GetDifficultWordCloudLabel()
         { return _(L"Difficult Word Cloud"); }
-    //Dolch labels
+    // Dolch labels
     [[nodiscard]] static wxString GetDolchWordTabLabel()
         { return _(L"Dolch Words"); }
     [[nodiscard]] static wxString GetNonDolchWordTabLabel()
@@ -182,10 +182,10 @@ public:
         { return _(L"Unused Dolch Words"); }
     [[nodiscard]] static wxString GetDolchCoverageTabLabel()
         { return _(L"Dolch Word Coverage"); }
-    //batch tab labels
+    // batch tab labels
     [[nodiscard]] static wxString GetRawScoresTabLabel()
         { return _(L"Raw Scores"); }
-    //stat headers
+    // stat headers
     [[nodiscard]] static wxString GetAverageLabel()
         { return _(L"Average (Mean)"); }
     [[nodiscard]] static wxString GetMedianLabel()
@@ -194,10 +194,10 @@ public:
         { return _(L"Mode(s)"); }
     [[nodiscard]] static wxString GetStdDevLabel()
         { return _(L"Std. Dev."); }
-    //errors
+    // errors
     [[nodiscard]] static wxString GetFailedLabel()
         { return L"\x26A0 " + _(L"Failed"); } // includes warning emoji
-    //tab labels
+    // tab labels
     [[nodiscard]] static wxString GetAllWordsLabel()
         { return _(L"All Words"); }
     [[nodiscard]] static wxString GetImportantWordsLabel()
@@ -414,7 +414,7 @@ private:
     void OnEditEnglishDictionary([[maybe_unused]] wxCommandEvent& event);
     void OnEditDictionaryProjectSettings([[maybe_unused]] wxCommandEvent& event);
     void OnEditDictionary([[maybe_unused]] wxCommandEvent& event);
-    //document indexing options
+    // document indexing options
     void OnNumeralSyllabication([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnNumeralSyllabicationOptions([[maybe_unused]] wxCommandEvent& event);
     void OnLongSentences([[maybe_unused]] wxRibbonButtonBarEvent& event);
@@ -441,7 +441,7 @@ private:
     void OnFindMenu([[maybe_unused]] wxCommandEvent& event);
     void OnFindNext([[maybe_unused]] wxCommandEvent& event);
     void OnDraw(wxDC*) override {};
-    //custom test functions
+    // custom test functions
     void OnAddCustomTest(wxCommandEvent& event);
     void OnEditCustomTest(wxCommandEvent& event);
     void OnRemoveCustomTest(wxCommandEvent& event);
@@ -477,19 +477,19 @@ private:
     wxToolBar* m_quickToolbar{ nullptr };
     wxSplitterWindow* m_splitter{ nullptr };
     wxBoxSizer* m_workSpaceSizer{ nullptr };
-    //status flags
+    // status flags
     bool m_presentedSuccessfully{ false };
     bool m_sidebarShown{ true };
 
     long m_maxColumnWidth{ 200 };
 
-    //logged messages
+    // logged messages
     std::set<WarningMessage> m_queuedMessages;
     /// @return the messages that won't be shown until client asks from them to be shown.
     [[nodiscard]] const std::set<WarningMessage>& GetQueuedMessages() const noexcept
         { return m_queuedMessages; }
-    ///Saves a message to be shown later, when ShowQueuedMessages() is called.
-    ///@param message The message to queue.
+    /// Saves a message to be shown later, when ShowQueuedMessages() is called.
+    /// @param message The message to queue.
     void AddQueuedMessage(const WarningMessage& message)
         { m_queuedMessages.insert(message); }
 

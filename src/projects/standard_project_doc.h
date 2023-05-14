@@ -49,16 +49,16 @@ public:
     /// @private
     bool OnSaveDocument(const wxString& filename) final;
 
-    //refresh functions
+    // refresh functions
     void RefreshProject() final;
-    //only refresh the graphs, this assumes that no windows are being added or removed from the project
+    // only refresh the graphs, this assumes that no windows are being added or removed from the project
     void RefreshGraphs() final;
-    //only refresh statistics reports
+    // only refresh statistics reports
     void RefreshStatisticsReports() final;
 
     void ShowQueuedMessages() final;
 
-    //Name is all that is really needed if we know that the test is already loaded globally
+    // Name is all that is really needed if we know that the test is already loaded globally
     std::vector<CustomReadabilityTestInterface>::iterator
         RemoveCustomReadabilityTest(const wxString& testName, const int Id) final;
 
