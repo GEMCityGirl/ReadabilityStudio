@@ -121,7 +121,7 @@ namespace readability
             if (StemText.get_language() == stemming::stemming_type::no_stemming)
                 {
                 if (std::binary_search(m_wordlist->get_words().cbegin(),
-                                    m_wordlist->get_words().cend(), 
+                                    m_wordlist->get_words().cend(),
                                     the_word))
                     { return true; }
                 }
@@ -130,7 +130,7 @@ namespace readability
                 word_typeT compValue{ the_word };
                 StemText(compValue);
                 if (std::binary_search(m_wordlist->get_words().cbegin(),
-                                    m_wordlist->get_words().cend(), 
+                                    m_wordlist->get_words().cend(),
                                     compValue))
                     { return true; }
                 }
@@ -154,7 +154,7 @@ namespace readability
                     // is no second word after the '-' shouldn't make it unfamiliar
                     if (compValue.length() > 0 &&
                         !std::binary_search(m_wordlist->get_words().cbegin(),
-                                    m_wordlist->get_words().cend(), 
+                                    m_wordlist->get_words().cend(),
                                     compValue))
                         { return false; }
                     }
@@ -315,8 +315,9 @@ namespace readability
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word/sentence parameter."); }
-        const size_t index = static_cast<size_t>(round_to_integer(number_of_words/static_cast<double>(number_of_sentences) +
-                                                (100*static_cast<double>(number_of_longwords/static_cast<double>(number_of_words))) ) );
+        const size_t index =
+            static_cast<size_t>(round_to_integer(number_of_words/static_cast<double>(number_of_sentences) +
+                (100*static_cast<double>(number_of_longwords/static_cast<double>(number_of_words))) ) );
 
         difficulty_level = lix_index_to_difficulty_level(index);
 

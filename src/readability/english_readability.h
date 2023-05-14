@@ -102,8 +102,9 @@ namespace readability
         a faster (non-syllable counting) and word parsing algorithm for UNIVAC computers. 
         In the original article, the statistic of "number of spaces between words" is suggested,
         rather than explicitly saying "number of words". Logically, this should be the number of words minus 1.
-        However, in the article's example, number of spaces between words is the same as number of words (even when there are dashes
-        connecting words). It is therefore assumed that the authors' intention was to count the number of words using the following logic:
+        However, in the article's example, number of spaces between words is the same as number of words
+        (even when there are dashes connecting words). It is therefore assumed that the authors' intention
+        was to count the number of words using the following logic:
             1. Count the number of spaces.
             2. Treat dashes connecting words as spaces.
             3. Add 1, to take into account how there would be one less space than words.
@@ -162,7 +163,8 @@ namespace readability
         {
         if (number_of_sentences == 0)
             { throw std::domain_error("invalid sentence count."); }
-        return truncate_k12_plus_grade(safe_divide<double>((number_of_syllables-number_of_words),number_of_sentences));
+        return truncate_k12_plus_grade(
+            safe_divide<double>((number_of_syllables-number_of_words),number_of_sentences));
         }
 
     /** Automated Readability Index test, also known as "ARI" or "auto."
@@ -259,13 +261,14 @@ namespace readability
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("Not enough sentences or words in formula."); }
 
-        //sample is valid and reasonable, so see what the grade levels are
-        const double sampleSizeNormalizationFactor = DALE_CHALL_SAMPLE_SIZE_COEFFICIENT/static_cast<double>(number_of_words);
+        // sample is valid and reasonable, so see what the grade levels are
+        const double sampleSizeNormalizationFactor =
+            DALE_CHALL_SAMPLE_SIZE_COEFFICIENT/static_cast<double>(number_of_words);
         number_of_sentences = static_cast<size_t>(number_of_sentences*sampleSizeNormalizationFactor);
         number_of_unfamiliar_words = static_cast<size_t>(number_of_unfamiliar_words*sampleSizeNormalizationFactor);
 
-        /*even after normalization, the text may have too many sentences or
-        unfamiliar words--in that case consider it to be very high level reading*/
+        /* even after normalization, the text may have too many sentences or
+           unfamiliar words--in that case consider it to be very high level reading*/
         if (number_of_sentences > 50 || number_of_unfamiliar_words > 50)
             {
             grade_range_begin = grade_range_end = 16;
@@ -1082,14 +1085,15 @@ namespace readability
         return truncate_k12_plus_grade(gradeLevel);
         }
 
-    /** U.S. grade level and predicted close score test, meant for secondary ages (4th grade) to college level.
-         The Coleman-Liau formula is based on text ranging from .4 to 16.3. This formula usually
-         yields the lowest grade when applied to technical documents.
-         This test is historically applied to 100 word samplings.
+    /** @brief U.S. grade level and predicted close score test, meant for secondary ages (4th grade) to college level.
+        @details The Coleman-Liau formula is based on text ranging from .4 to 16.3. This formula usually
+            yields the lowest grade when applied to technical documents.
+            This test is historically applied to 100 word samplings.
         @param number_of_words The number of words in the sample.
         @param number_of_letters The number of letters.
         @param number_of_sentences The number of sentences.
-        @param[out] predicted_cloze_score The calculated predicted cloze score (in fractional format, multiply by 100 to get the cloze %).
+        @param[out] predicted_cloze_score The calculated predicted cloze score
+            (in fractional format, multiply by 100 to get the cloze %).
         @returns The calculated grade level.*/
     [[nodiscard]] inline double coleman_liau(const size_t number_of_words,
                                              const size_t number_of_letters,
@@ -1105,7 +1109,9 @@ namespace readability
         double normalizedSentenceVal = number_of_sentences*sampleSizeCoefficient;
 
         predicted_cloze_score = (141.8401 - (.214590*normalizedLettersVal)) + (1.079812*normalizedSentenceVal);
-        predicted_cloze_score = std::clamp<double>(safe_divide<double>(predicted_cloze_score, 100), -1.0, 1.0);//convert to fractional percentage
+        // convert to fractional percentage
+        predicted_cloze_score =
+            std::clamp<double>(safe_divide<double>(predicted_cloze_score, 100), -1.0, 1.0);
         const double gradeLevel = (-27.4004*predicted_cloze_score) + 23.06395;
 
         return truncate_k12_plus_grade(gradeLevel);
@@ -1273,13 +1279,15 @@ namespace readability
         @returns The grade-level score.*/
     [[nodiscard]]
     inline double degrees_of_reading_power_ge(const uint32_t number_of_words,
-                                const uint32_t number_of_familiar_dale_chall_words,
-                                const uint32_t number_of_characters,
-                                const uint32_t number_of_sentences)
+                                              const uint32_t number_of_familiar_dale_chall_words,
+                                              const uint32_t number_of_characters,
+                                              const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word or sentence count"); }
-        const size_t dprScore = static_cast<size_t>(round_to_integer(degrees_of_reading_power(number_of_words, number_of_familiar_dale_chall_words,
+        const size_t dprScore =
+            static_cast<size_t>(
+                round_to_integer(degrees_of_reading_power(number_of_words, number_of_familiar_dale_chall_words,
             number_of_characters, number_of_sentences)));
         return std::clamp<double>(degrees_of_reading_power_to_ge(dprScore), 0, 18);
         }
@@ -1333,10 +1341,11 @@ namespace readability
         @param number_of_big_words Number of 3+ syllable words from the sample.
         @param number_of_sentences Number of sentences in the sample.
         @param truncate_score_to_range Whether or not score should be boxed into the 0-19 range. The SOL
-            formula can calculate high (e.g., 25) scores with Spanish (that have to been be converted to the English scale),
+            formula can calculate high (e.g., 25) scores with Spanish
+            (that have to been be converted to the English scale),
             so pass in false for situations like that.
         @return U.S. K-12 grade scale value of the document.*/
-    [[nodiscard]] 
+    [[nodiscard]]
     inline double smog(const uint32_t number_of_big_words,
                        const uint32_t number_of_sentences,
                        const bool truncate_score_to_range = true)
@@ -1383,7 +1392,7 @@ namespace readability
             round_decimal_place(predictedRawScore, 10),
             1.1, 8.0);
         // step 7
-        predictedRawScore *= 10;//just so we can switch on this value
+        predictedRawScore *= 10; // just so we can switch on this value
         switch (static_cast<int>(predictedRawScore))
             {
         case 11:
@@ -1586,13 +1595,14 @@ namespace readability
                         common_lang_constants::COMPOUND_WORD_SEPARATORS.length());
                     if (dashPos == nullptr)
                         {
-                        //we are at the word after the last hyphen
+                        // we are at the word after the last hyphen
                         syllableCount = syllabize(lastPos, (fog_word+length)-lastPos);
                         if (syllableCount >= 3)
                             { return false; }
                         }
                     }
-                return true;//all parts are less than 3 syllables
+                // all parts are less than 3 syllables
+                return true;
                 }
             else if (syllable_count == 3 &&
                 //"ed"
@@ -1668,12 +1678,12 @@ namespace readability
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word count."); }
-
         // (((easy words + (3 * hard words)) / sentences ) - 3) / 2
         const size_t numberOfEasyWords = number_of_words - number_of_hard_words;
         return truncate_k12_plus_grade(
             safe_divide<double>(
-                safe_divide<double>(static_cast<double>(numberOfEasyWords) + (3*number_of_hard_words), number_of_sentences) - 3,
+                safe_divide<double>(static_cast<double>(numberOfEasyWords) +
+                    (3*number_of_hard_words), number_of_sentences) - 3,
                 2)
             );
         }
@@ -1723,12 +1733,15 @@ namespace readability
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word or sentence count."); }
-        const double monoSyllabicWordPercentage = safe_divide<double>(number_of_monosyllabic_words,number_of_words)*100;
+
+        const double monoSyllabicWordPercentage =
+            safe_divide<double>(number_of_monosyllabic_words,number_of_words)*100;
         const double ASL = safe_divide<double>(number_of_words,number_of_sentences);
 
-        const auto result = static_cast<size_t>(std::clamp<double>(
-                                                   round_to_integer(-31.517 - (1.015*ASL) + (1.599*monoSyllabicWordPercentage)),
-                                                   0,100));
+        const auto result =
+            static_cast<size_t>(std::clamp<double>(
+                round_to_integer(-31.517 - (1.015*ASL) + (1.599*monoSyllabicWordPercentage)),
+                0,100));
         difficulty_level = flesch_score_to_difficulty_level(result);
 
         return result;
@@ -1746,7 +1759,8 @@ namespace readability
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word or sentence count."); }
-        const double monoSyllabicWordPercentage = safe_divide<double>(number_of_monosyllabic_words,number_of_words)*100;
+        const double monoSyllabicWordPercentage =
+            safe_divide<double>(number_of_monosyllabic_words,number_of_words)*100;
         const double ASL = safe_divide<double>(number_of_words,number_of_sentences);
 
         return truncate_k12_plus_grade(22.05 + (.387*ASL) - (.307*monoSyllabicWordPercentage));
@@ -1764,7 +1778,8 @@ namespace readability
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word or sentence count."); }
-        const double monoSyllabicWordPercentage = safe_divide<double>(number_of_monosyllabic_words,number_of_words)*100;
+        const double monoSyllabicWordPercentage =
+            safe_divide<double>(number_of_monosyllabic_words,number_of_words)*100;
         const double ASL = safe_divide<double>(number_of_words,number_of_sentences);
 
         return truncate_k12_plus_grade(8.4335 + (.0923*ASL) - (.0648*monoSyllabicWordPercentage));
@@ -1787,7 +1802,8 @@ namespace readability
         if (number_of_words == 0 || number_of_units == 0)
             { throw std::domain_error("invalid word or unit count."); }
         const double AUL = safe_divide<double>(number_of_words,number_of_units);
-        const double PSP = safe_divide<double>(number_of_polysyllabic_words,number_of_words);//should remain in fractal format
+        // should remain in fractal format
+        const double PSP = safe_divide<double>(number_of_polysyllabic_words,number_of_words);
         index_score = round_decimal_place(std::clamp(AUL*PSP*10, 4.0, 34.5), 10);
         if (index_score <= 8.0)
             { return 0; }
