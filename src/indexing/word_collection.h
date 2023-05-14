@@ -1736,7 +1736,7 @@ private:
                     {
                     // double words
                     if ((m_words[wordCounter].length() == m_words[wordCounter+1].length()) &&
-                        string_util::stricmp<wchar_t>(m_words[wordCounter].c_str()
+                        string_util::stricmp<wchar_t>(m_words[wordCounter].c_str(),
                                                       m_words[wordCounter+1].c_str()) == 0)
                         {
                         // If next word has punctuation in front of it then do not count this.
@@ -1769,7 +1769,7 @@ private:
                             {
                             // noop, this is OK. Just prevent this from being reported as an error
                             }
-                        / /No punctuation in front of next word, then this is good to check
+                        // No punctuation in front of next word, then this is good to check
                         else if (!(punctPos != m_punctuation.end() && punctPos->get_word_position() == wordCounter+1))
                             {
                             m_incorrect_articles.push_back(wordCounter);

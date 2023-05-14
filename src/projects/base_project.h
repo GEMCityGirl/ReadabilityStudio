@@ -1092,7 +1092,7 @@ public:
     void SetUnusedDolchNouns(const double val) noexcept
         { m_unusedDolchNounsWords = val; }
 
-    [[nodiscard]
+    [[nodiscard]]
         std::pair<size_t,size_t> GetDolchConjunctionCounts() const noexcept
         { return m_dolchConjunctionCounts; }
     [[nodiscard]]

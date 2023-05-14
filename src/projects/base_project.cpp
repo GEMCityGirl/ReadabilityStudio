@@ -270,8 +270,8 @@ bool BaseProject::IsIncludingClozeTest() const
                 readability::readability_test_type::grade_level_and_predicted_cloze_score))
             { return true; }
         }
-    for (std::vector<CustomReadabilityTestInterface>::const_iterator customTestPos = GetCustTestsInUse().begin();
-            customTestPos != GetCustTestsInUse().end();
+    for (std::vector<CustomReadabilityTestInterface>::const_iterator customTestPos = GetCustTestsInUse().cbegin();
+            customTestPos != GetCustTestsInUse().cend();
             ++customTestPos)
         {
         if (customTestPos->GetIterator()->get_test_type() == readability::readability_test_type::predicted_cloze_score)
@@ -1945,7 +1945,7 @@ void BaseProject::LoadHardWords()
 
     // calculate the Dolch level completions
     std::set<readability::sight_word> unusedDolchWords;
-    for (auto = BaseProjectDoc::m_dolch_word_list.get_words().cbegin();
+    for (auto DolchPos = BaseProjectDoc::m_dolch_word_list.get_words().cbegin();
          DolchPos != BaseProjectDoc::m_dolch_word_list.get_words().cend();
          ++DolchPos)
         {
@@ -2189,8 +2189,8 @@ void BaseProject::LoadHardWords()
                         GetTotalUnique3PlusSyllableWords(), 1, wordPos->first.get_syllable_count() );
                     Get3SyllablePlusData()->SetItemValue(
                         GetTotalUnique3PlusSyllableWords(), 2, wordPos->second.first);
-                    std::pair<bool,word_list_with_replacements::word_type> replacement = ]
-                    difficult_word_replacement_list.find(wordPos->first.c_str());
+                    std::pair<bool,word_list_with_replacements::word_type> replacement =
+                        difficult_word_replacement_list.find(wordPos->first.c_str());
                     if (replacement.first)
                         {
                         Get3SyllablePlusData()->SetItemText(
@@ -3067,9 +3067,9 @@ void BaseProject::CalculateStatisticsIgnoringInvalidSentences()
             }
 
         std::vector<grammar::sentence_info>::const_iterator longestSent =
-            std::max_element(GetWords()->get_sentences().begin(),
-            GetWords()->get_sentences().end(),
-            grammar::complete_sentence_length_less());
+            std::max_element(GetWords()->get_sentences().cbegin(),
+                GetWords()->get_sentences().cend(),
+                grammar::complete_sentence_length_less());
         m_longestSentence = longestSent->get_valid_word_count();
         // be sure to add 1 to make it one-indexed when being displayed
         m_longestSentenceIndex = (longestSent - GetWords()->get_sentences().begin());
@@ -3178,8 +3178,8 @@ void BaseProject::CalculateStatistics()
     // load the unique words and their frequencies
     m_word_frequency_map = new double_frequency_set<word_case_insensitive_no_stem>;
     std::vector<word_case_insensitive_no_stem>::const_iterator currentWord;
-    for (std::vector<grammar::sentence_info>::const_iterator sentPos = GetWords()->get_sentences().begin();
-        sentPos != GetWords()->get_sentences().end();
+    for (std::vector<grammar::sentence_info>::const_iterator sentPos = GetWords()->get_sentences().cbegin();
+        sentPos != GetWords()->get_sentences().cend();
         ++sentPos)
         {
         // go through the words in the current sentence and add them to the map
@@ -3240,8 +3240,8 @@ void BaseProject::CalculateStatistics()
             }
 
         std::vector<grammar::sentence_info>::const_iterator longestSent =
-            std::max_element(GetWords()->get_sentences().begin(),
-            GetWords()->get_sentences().end() );
+            std::max_element(GetWords()->get_sentences().cbegin(),
+                GetWords()->get_sentences().cend() );
         m_longestSentence = longestSent->get_word_count();
         // be sure to add 1 to make it one-indexed when being displayed
         m_longestSentenceIndex = (longestSent - GetWords()->get_sentences().begin());
@@ -4197,8 +4197,8 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
     // check for sentences that got broken up by paragraph breaks and warn if there are lot of them,
     // this indicates a messed up file.
     size_t paragraphBrokenSentences = 0;
-    for (std::vector<size_t>::const_iterator pos = GetWords()->get_lowercase_beginning_sentences().begin();
-        pos != GetWords()->get_lowercase_beginning_sentences().end();
+    for (std::vector<size_t>::const_iterator pos = GetWords()->get_lowercase_beginning_sentences().cbegin();
+        pos != GetWords()->get_lowercase_beginning_sentences().cend();
         ++pos)
         {
         // if there is a complete, 3-word or more sentence starting with a lowercased letter
@@ -4225,8 +4225,8 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
     // Go through the sentences and see if any are not complete but considered valid because of their length.
     // If any are found, then mention it to the user.
     size_t sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength = 0;
-    for (std::vector<grammar::sentence_info>::const_iterator sentPos = GetWords()->get_sentences().begin();
-         sentPos != GetWords()->get_sentences().end();
+    for (std::vector<grammar::sentence_info>::const_iterator sentPos = GetWords()->get_sentences().cbegin();
+         sentPos != GetWords()->get_sentences().cend();
          ++sentPos)
         {
         if (sentPos->is_valid() &&
@@ -5634,7 +5634,7 @@ bool BaseProject::AddStandardReadabilityTest(const wxString& id, const bool setF
             }
         }
     std::vector<comparable_first_pair<int, AddTestFunction>>::const_iterator addTestFunction =
-        std::lower_bound(m_standardTestFunctions.begin(), m_standardTestFunctions.end(),
+        std::lower_bound(m_standardTestFunctions.cbegin(), m_standardTestFunctions.cend(),
             comparable_first_pair<int, AddTestFunction>(theTest.first->get_test().get_interface_id(),nullptr));
     // this vector is sorted (so lower_bound should work), but in case it fails then do a brute force search.
     if (addTestFunction == m_standardTestFunctions.end() ||
@@ -5652,7 +5652,7 @@ bool BaseProject::AddStandardReadabilityTest(const wxString& id, const bool setF
         }
     else
         {
-        wxFAIL_MSG(wxString::Format(L"%s test function pointer not found, unable to add test.",id ));
+        wxFAIL_MSG(wxString::Format(L"%s test function pointer not found, unable to add test.", id));
         return false;
         }
     }
@@ -5846,9 +5846,10 @@ bool BaseProject::AddPskFogTest(const bool setFocus)
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(), description,
             std::make_pair(gradeValue, displayableGradeLevel),
-            ReadabilityMessages::GetAgeFromUSGrade(gradeValue, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
-            std::numeric_limits<double>::quiet_NaN(),
-            std::numeric_limits<double>::quiet_NaN(), setFocus);
+            ReadabilityMessages::GetAgeFromUSGrade(gradeValue,
+                GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
+                std::numeric_limits<double>::quiet_NaN(),
+                std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
     catch (...)
         {
@@ -5915,9 +5916,10 @@ bool BaseProject::AddFogTest(const bool setFocus)
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(), description,
             std::make_pair(gradeValue, displayableGradeLevel),
-            ReadabilityMessages::GetAgeFromUSGrade(gradeValue, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
-            std::numeric_limits<double>::quiet_NaN(),
-            std::numeric_limits<double>::quiet_NaN(), setFocus);
+            ReadabilityMessages::GetAgeFromUSGrade(gradeValue,
+                GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
+                std::numeric_limits<double>::quiet_NaN(),
+                std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
     catch (...)
         {
@@ -5971,9 +5973,10 @@ bool BaseProject::AddForcastTest(const bool setFocus)
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
             std::make_pair(gradeValue, displayableGradeLevel),
-            ReadabilityMessages::GetAgeFromUSGrade(gradeValue, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
-            std::numeric_limits<double>::quiet_NaN(),
-            std::numeric_limits<double>::quiet_NaN(), setFocus);
+            ReadabilityMessages::GetAgeFromUSGrade(gradeValue,
+                GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
+                std::numeric_limits<double>::quiet_NaN(),
+                std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
     catch (...)
         {
@@ -6101,9 +6104,10 @@ bool BaseProject::AddDanielsonBryan1Test(const bool setFocus)
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
             std::make_pair(gradeValue, displayableGradeLevel),
-            ReadabilityMessages::GetAgeFromUSGrade(gradeValue, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
-            std::numeric_limits<double>::quiet_NaN(),
-            std::numeric_limits<double>::quiet_NaN(), setFocus);
+            ReadabilityMessages::GetAgeFromUSGrade(gradeValue,
+                GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
+                std::numeric_limits<double>::quiet_NaN(),
+                std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
     catch (...)
         {
@@ -6358,9 +6362,10 @@ bool BaseProject::AddNewFarrJenkinsPatersonTest(const bool setFocus)
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
             std::make_pair(gradeValue, displayableGradeLevel),
-            ReadabilityMessages::GetAgeFromUSGrade(gradeValue, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
-            std::numeric_limits<double>::quiet_NaN(),
-            std::numeric_limits<double>::quiet_NaN(), setFocus);
+            ReadabilityMessages::GetAgeFromUSGrade(gradeValue,
+                GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
+                std::numeric_limits<double>::quiet_NaN(),
+                std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
     catch (...)
         {
@@ -6423,9 +6428,10 @@ bool BaseProject::AddPskFarrJenkinsPatersonTest(const bool setFocus)
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
             std::make_pair(gradeValue, displayableGradeLevel),
-            ReadabilityMessages::GetAgeFromUSGrade(gradeValue, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
-            std::numeric_limits<double>::quiet_NaN(),
-            std::numeric_limits<double>::quiet_NaN(), setFocus);
+            ReadabilityMessages::GetAgeFromUSGrade(gradeValue,
+                GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
+                std::numeric_limits<double>::quiet_NaN(),
+                std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
     catch (...)
         {
@@ -6555,9 +6561,10 @@ bool BaseProject::AddFleschKincaidTest(const bool setFocus)
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
             std::make_pair(gradeValue, displayableGradeLevel),
-            ReadabilityMessages::GetAgeFromUSGrade(gradeValue, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
-            std::numeric_limits<double>::quiet_NaN(),
-            std::numeric_limits<double>::quiet_NaN(), setFocus);
+            ReadabilityMessages::GetAgeFromUSGrade(gradeValue,
+                GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
+                std::numeric_limits<double>::quiet_NaN(),
+                std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
     catch (...)
         {
@@ -6683,9 +6690,10 @@ bool BaseProject::AddAriTest(const bool setFocus)
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
             std::make_pair(gradeValue, displayableGradeLevel),
-            ReadabilityMessages::GetAgeFromUSGrade(gradeValue, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
-            std::numeric_limits<double>::quiet_NaN(),
-            std::numeric_limits<double>::quiet_NaN(), setFocus);
+            ReadabilityMessages::GetAgeFromUSGrade(gradeValue,
+                GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
+                std::numeric_limits<double>::quiet_NaN(),
+                std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
     catch (...)
         {
@@ -6746,9 +6754,10 @@ bool BaseProject::AddNewAriTest(const bool setFocus)
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
             std::make_pair(gradeValue, displayableGradeLevel),
-            ReadabilityMessages::GetAgeFromUSGrade(gradeValue, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
-            std::numeric_limits<double>::quiet_NaN(),
-            std::numeric_limits<double>::quiet_NaN(), setFocus);
+            ReadabilityMessages::GetAgeFromUSGrade(gradeValue,
+                GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
+                std::numeric_limits<double>::quiet_NaN(),
+                std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
     catch (...)
         {
@@ -6809,9 +6818,10 @@ bool BaseProject::AddSimplifiedAriTest(const bool setFocus)
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
             std::make_pair(gradeValue, displayableGradeLevel),
-            ReadabilityMessages::GetAgeFromUSGrade(gradeValue, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
-            std::numeric_limits<double>::quiet_NaN(),
-            std::numeric_limits<double>::quiet_NaN(), setFocus);
+            ReadabilityMessages::GetAgeFromUSGrade(gradeValue,
+                GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
+                std::numeric_limits<double>::quiet_NaN(),
+                std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
     catch (...)
         {
@@ -6954,9 +6964,10 @@ bool BaseProject::AddHarrisJacobsonTest(const bool setFocus)
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
             std::make_pair(gradeValue, displayableGradeLevel),
-            ReadabilityMessages::GetAgeFromUSGrade(gradeValue, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
-            std::numeric_limits<double>::quiet_NaN(),
-            std::numeric_limits<double>::quiet_NaN(), setFocus);
+            ReadabilityMessages::GetAgeFromUSGrade(gradeValue,
+                GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
+                std::numeric_limits<double>::quiet_NaN(),
+                std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
     catch (...)
         {
@@ -7285,9 +7296,10 @@ bool BaseProject::AddLixGermanTechnical(const bool setFocus)
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
             std::make_pair(gradeLevel, displayableScore),
-            ReadabilityMessages::GetAgeFromUSGrade(gradeLevel, GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
-            val,
-            std::numeric_limits<double>::quiet_NaN(), setFocus);
+            ReadabilityMessages::GetAgeFromUSGrade(gradeLevel,
+                GetReadabilityMessageCatalog().GetReadingAgeDisplay()),
+                val,
+                std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
     catch (...)
         {
@@ -7819,8 +7831,8 @@ void BaseProject::CopySettings(const BaseProject& that)
         }
     /* add any custom tests that other project has.  If this project already has the test then leave it alone
        and have its statistics kept intact.*/
-    for (std::vector<CustomReadabilityTestInterface>::const_iterator pos = that.GetCustTestsInUse().begin();
-        pos != that.GetCustTestsInUse().end();
+    for (std::vector<CustomReadabilityTestInterface>::const_iterator pos = that.GetCustTestsInUse().cbegin();
+        pos != that.GetCustTestsInUse().cend();
         ++pos)
         {
         auto customTestPos = std::find(GetCustTestsInUse().cbegin(), GetCustTestsInUse().cend(), pos->GetTestName());

@@ -1231,7 +1231,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 (*pos)->GetWords()->get_overused_words_by_sentence().size());
 
             wxString theWords;
-            for (auto = (*pos)->GetWords()->get_overused_words_by_sentence().cbegin();
+            for (auto overUsedWordsListsIter = (*pos)->GetWords()->get_overused_words_by_sentence().cbegin();
                 overUsedWordsListsIter != (*pos)->GetWords()->get_overused_words_by_sentence().cend();
                 ++overUsedWordsListsIter)
                 {

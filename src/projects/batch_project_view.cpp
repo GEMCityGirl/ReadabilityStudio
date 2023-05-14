@@ -2368,9 +2368,9 @@ void BatchProjectView::OnExportScoresAndStatistics([[maybe_unused]] wxCommandEve
 
     const ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(GetScoresView().FindWindowById(ID_SCORE_LIST_PAGE_ID));
     wxASSERT(list);
-    // shouldn't happe
+    // shouldn't happen
     if (!list)
-        { return; }n
+        { return; }
 
     std::wstring HTMLText =
         wxString::Format(L"<!DOCTYPE html>\n<html>\n<head>\n    "
