@@ -209,7 +209,8 @@ void ProjectView::OnSummation([[maybe_unused]] wxRibbonButtonBarEvent& event)
             {
             viewDlg.AddValue(wxString::Format(_(L"Total %s Unfamiliar Words"), customTestName),
                 wxNumberFormatter::ToString(doc->GetCustomTest(customTestName)->GetListViewData()->GetColumnSum(1), 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep));
             }
         }
     viewDlg.Create(GetDocFrame(), wxID_ANY, _(L"Column Summations"));
@@ -223,8 +224,10 @@ void ProjectView::OnExportAll([[maybe_unused]] wxCommandEvent& event)
     if (!doc->IsSafeToUpdate())
         { return; }
     wxArrayString choices, descriptions;
-    choices.Add(_(L"Single report")); descriptions.Add(_(L"Saves the results into a single <span style='font-weight: bold;'>HTML</span> report."));
-    choices.Add(_(L"Separate files")); descriptions.Add(_(L"Saves each result window to a separate file."));
+    choices.Add(_(L"Single report"));
+    descriptions.Add(_(L"Saves the results into a single <span style='font-weight: bold;'>HTML</span> report."));
+    choices.Add(_(L"Separate files"));
+    descriptions.Add(_(L"Saves each result window to a separate file."));
     Wisteria::UI::RadioBoxDlg exportTypesDlg(GetDocFrame(),
         _(L"Select How to Export"), wxEmptyString, _(L"Export methods:"), _(L"Export All"),
         choices, descriptions);
@@ -272,7 +275,8 @@ void ProjectView::OnExportAll([[maybe_unused]] wxCommandEvent& event)
     doc->ExportLists(dlg.IsExportingLists());
     doc->ExportTextReports(dlg.IsExportingTextReports());
     doc->GetImageExportOptions() = dlg.GetImageExportOptions();
-    doc->SetModifiedFlag(); // export folder paths may have changed
+    // export folder paths may have changed
+    doc->SetModifiedFlag();
     }
 
 //------------------------------------------------------
@@ -306,8 +310,10 @@ void ProjectView::OnExportFilteredDocument([[maybe_unused]] wxCommandEvent& even
         optDlg.IsRemovingFilePaths(), optDlg.IsStrippingAbbreviations(),
         optDlg.IsNarrowingFullWidthCharacters());
 
-    FilteredTextPreviewDlg dlg(GetDocFrame(), doc->GetInvalidSentenceMethod(), doc->IsIgnoringTrailingCopyrightNoticeParagraphs(), doc->IsIgnoringTrailingCitations(),
-        optDlg.IsReplacingCharacters(), optDlg.IsRemovingEllipses(), optDlg.IsRemovingBullets(), optDlg.IsRemovingFilePaths(), optDlg.IsStrippingAbbreviations());
+    FilteredTextPreviewDlg dlg(GetDocFrame(), doc->GetInvalidSentenceMethod(),
+        doc->IsIgnoringTrailingCopyrightNoticeParagraphs(), doc->IsIgnoringTrailingCitations(),
+        optDlg.IsReplacingCharacters(), optDlg.IsRemovingEllipses(), optDlg.IsRemovingBullets(),
+        optDlg.IsRemovingFilePaths(), optDlg.IsStrippingAbbreviations());
     dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"how-text-is-excluded.html");
     dlg.SetFilteredValue(validDocText);
     if (dlg.ShowModal() == wxID_OK)
@@ -758,34 +764,58 @@ void ProjectView::UpdateSideBarIcons()
     //-----------------
     if (GetReadabilityResultsView().GetWindowCount() > 0)
         {
-        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetReadabilityScoresLabel(), SIDEBAR_READABILITY_SCORES_SECTION_ID, 1);
+        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetReadabilityScoresLabel(),
+                                 SIDEBAR_READABILITY_SCORES_SECTION_ID, 1);
         for (size_t i = 0; i < GetReadabilityResultsView().GetWindowCount(); ++i)
             {
             const bool isGraph = typeid(*GetReadabilityResultsView().GetWindow(i)) == typeid(Wisteria::Canvas);
 
-            GetSideBar()->InsertSubItemById(SIDEBAR_READABILITY_SCORES_SECTION_ID, GetReadabilityResultsView().GetWindow(i)->GetName(),
+            GetSideBar()->InsertSubItemById(SIDEBAR_READABILITY_SCORES_SECTION_ID,
+                GetReadabilityResultsView().GetWindow(i)->GetName(),
                 GetReadabilityResultsView().GetWindow(i)->GetId(),
-                GetReadabilityResultsView().GetWindow(i)->GetId() == READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID ? 17 :
-                GetReadabilityResultsView().GetWindow(i)->GetId() == READABILITY_SCORES_PAGE_ID ? 23 :
-                GetReadabilityResultsView().GetWindow(i)->GetId() == READABILITY_GOALS_PAGE_ID ? 28 :
+                GetReadabilityResultsView().GetWindow(i)->GetId() == READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID ?
+                    17 :
+                GetReadabilityResultsView().GetWindow(i)->GetId() == READABILITY_SCORES_PAGE_ID ?
+                    23 :
+                GetReadabilityResultsView().GetWindow(i)->GetId() == READABILITY_GOALS_PAGE_ID ?
+                    28 :
                 (isGraph &&
-                     typeid(*dynamic_cast<Wisteria::Canvas*>(GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0,0)) == typeid(FleschChart)) ? 18 :
+                     typeid(*dynamic_cast<Wisteria::Canvas*>(
+                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(FleschChart)) ?
+                    18 :
                 (isGraph &&
-                     typeid(*dynamic_cast<Wisteria::Canvas*>(GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0,0)) == typeid(FraseGraph)) ? 19 :
+                     typeid(*dynamic_cast<Wisteria::Canvas*>(
+                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(FraseGraph)) ?
+                    19 :
                 (isGraph &&
-                     typeid(*dynamic_cast<Wisteria::Canvas*>(GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0,0)) == typeid(FryGraph)) ? 20 :
+                     typeid(*dynamic_cast<Wisteria::Canvas*>(
+                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(FryGraph)) ?
+                    20 :
                 (isGraph &&
-                     typeid(*dynamic_cast<Wisteria::Canvas*>(GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0,0)) == typeid(RaygorGraph)) ? 21 :
+                     typeid(*dynamic_cast<Wisteria::Canvas*>(
+                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(RaygorGraph)) ?
+                    21 :
                 (isGraph &&
-                     typeid(*dynamic_cast<Wisteria::Canvas*>(GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0,0)) == typeid(CrawfordGraph)) ? 22 :
+                     typeid(*dynamic_cast<Wisteria::Canvas*>(
+                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(CrawfordGraph)) ?
+                    22 :
                 (isGraph &&
-                     typeid(*dynamic_cast<Wisteria::Canvas*>(GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0,0)) == typeid(SchwartzGraph)) ? 25 :
+                     typeid(*dynamic_cast<Wisteria::Canvas*>(
+                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(SchwartzGraph)) ?
+                    25 :
                 (isGraph &&
-                     typeid(*dynamic_cast<Wisteria::Canvas*>(GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0,0)) == typeid(LixGauge)) ? 26 :
+                     typeid(*dynamic_cast<Wisteria::Canvas*>(
+                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(LixGauge)) ?
+                    26 :
                 (isGraph &&
-                     typeid(*dynamic_cast<Wisteria::Canvas*>(GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0,0)) == typeid(LixGaugeGerman)) ? 26 :
+                     typeid(*dynamic_cast<Wisteria::Canvas*>(
+                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(LixGaugeGerman)) ?
+                    26 :
                 (isGraph &&
-                     typeid(*dynamic_cast<Wisteria::Canvas*>(GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0,0)) == typeid(DanielsonBryan2Plot)) ? 27 :
+                     typeid(*dynamic_cast<Wisteria::Canvas*>(
+                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                         typeid(DanielsonBryan2Plot)) ?
+                    27 :
                     9);
             }
         }
@@ -793,7 +823,8 @@ void ProjectView::UpdateSideBarIcons()
     // Summary statistics window
     if (GetSummaryView().GetWindowCount() > 0)
         {
-        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetSummaryStatisticsLabel(), SIDEBAR_STATS_SUMMARY_SECTION_ID, 2);
+        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetSummaryStatisticsLabel(),
+                                 SIDEBAR_STATS_SUMMARY_SECTION_ID, 2);
         for (size_t i = 0; i < GetSummaryView().GetWindowCount(); ++i)
             {
             GetSideBar()->InsertSubItemById(SIDEBAR_STATS_SUMMARY_SECTION_ID, GetSummaryView().GetWindow(i)->GetName(),
@@ -806,21 +837,29 @@ void ProjectView::UpdateSideBarIcons()
     // Words breakdown
     if (GetWordsBreakdownView().GetWindowCount() > 0)
         {
-        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetWordsBreakdownLabel(), SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, 13);
+        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetWordsBreakdownLabel(),
+                                 SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, 13);
         for (size_t i = 0; i < GetWordsBreakdownView().GetWindowCount(); ++i)
             {
             const bool isGraph = typeid(*GetWordsBreakdownView().GetWindow(i)) == typeid(Wisteria::Canvas);
 
-            GetSideBar()->InsertSubItemById(SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, GetWordsBreakdownView().GetWindow(i)->GetName(),
+            GetSideBar()->InsertSubItemById(SIDEBAR_WORDS_BREAKDOWN_SECTION_ID,
+                GetWordsBreakdownView().GetWindow(i)->GetName(),
                 GetWordsBreakdownView().GetWindow(i)->GetId(),
                 GetWordsBreakdownView().GetWindow(i)->IsKindOf(CLASSINFO(FormattedTextCtrl)) ? 0 :
                     GetWordsBreakdownView().GetWindow(i)->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 :
                     (isGraph &&
-                        typeid(*dynamic_cast<Wisteria::Canvas*>(GetWordsBreakdownView().GetWindow(i))->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::Histogram)) ? 6 :
+                        typeid(*dynamic_cast<Wisteria::Canvas*>(
+                            GetWordsBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                        typeid(Wisteria::Graphs::Histogram)) ? 6 :
                     (isGraph &&
-                        typeid(*dynamic_cast<Wisteria::Canvas*>(GetWordsBreakdownView().GetWindow(i))->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::BarChart)) ? 16 :
+                        typeid(*dynamic_cast<Wisteria::Canvas*>(
+                            GetWordsBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                        typeid(Wisteria::Graphs::BarChart)) ? 16 :
                     (isGraph &&
-                        typeid(*dynamic_cast<Wisteria::Canvas*>(GetWordsBreakdownView().GetWindow(i))->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::WordCloud)) ? 29 :
+                        typeid(*dynamic_cast<Wisteria::Canvas*>(
+                            GetWordsBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                        typeid(Wisteria::Graphs::WordCloud)) ? 29 :
                     9);
             }
         }
@@ -828,20 +867,28 @@ void ProjectView::UpdateSideBarIcons()
     // Sentences breakdown
     if (GetSentencesBreakdownView().GetWindowCount() > 0)
         {
-        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetSentencesBreakdownLabel(), SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID, 14);
+        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetSentencesBreakdownLabel(),
+                                 SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID, 14);
         for (size_t i = 0; i < GetSentencesBreakdownView().GetWindowCount(); ++i)
             {
             const bool isGraph = typeid(*GetSentencesBreakdownView().GetWindow(i)) == typeid(Wisteria::Canvas);
 
-            GetSideBar()->InsertSubItemById(SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID, GetSentencesBreakdownView().GetWindow(i)->GetName(),
+            GetSideBar()->InsertSubItemById(SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID,
+                GetSentencesBreakdownView().GetWindow(i)->GetName(),
                 GetSentencesBreakdownView().GetWindow(i)->GetId(),
                 GetSentencesBreakdownView().GetWindow(i)->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 :
                 (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetSentencesBreakdownView().GetWindow(i))->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::BoxPlot)) ? 7 :
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetSentencesBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                    typeid(Wisteria::Graphs::BoxPlot)) ? 7 :
                 (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetSentencesBreakdownView().GetWindow(i))->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::Histogram)) ? 6 :
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetSentencesBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                    typeid(Wisteria::Graphs::Histogram)) ? 6 :
                 (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetSentencesBreakdownView().GetWindow(i))->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::HeatMap)) ? 24 :
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetSentencesBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                    typeid(Wisteria::Graphs::HeatMap)) ? 24 :
                 9);
             }
         }
@@ -852,7 +899,8 @@ void ProjectView::UpdateSideBarIcons()
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetGrammarLabel(), SIDEBAR_GRAMMAR_SECTION_ID, 4);
         for (size_t i = 0; i < GetGrammarView().GetWindowCount(); ++i)
             {
-            GetSideBar()->InsertSubItemById(SIDEBAR_GRAMMAR_SECTION_ID, GetGrammarView().GetWindow(i)->GetName(),
+            GetSideBar()->InsertSubItemById(SIDEBAR_GRAMMAR_SECTION_ID,
+                GetGrammarView().GetWindow(i)->GetName(),
                 GetGrammarView().GetWindow(i)->GetId(),
                 GetGrammarView().GetWindow(i)->IsKindOf(CLASSINFO(FormattedTextCtrl)) ? 0 :
                     GetGrammarView().GetWindow(i)->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 : 9);
@@ -867,12 +915,15 @@ void ProjectView::UpdateSideBarIcons()
             {
             const bool isGraph = typeid(*GetDolchSightWordsView().GetWindow(i)) == typeid(Wisteria::Canvas);
 
-            GetSideBar()->InsertSubItemById(SIDEBAR_DOLCH_SECTION_ID, GetDolchSightWordsView().GetWindow(i)->GetName(),
+            GetSideBar()->InsertSubItemById(SIDEBAR_DOLCH_SECTION_ID,
+                GetDolchSightWordsView().GetWindow(i)->GetName(),
                 GetDolchSightWordsView().GetWindow(i)->GetId(),
                 GetDolchSightWordsView().GetWindow(i)->IsKindOf(CLASSINFO(FormattedTextCtrl)) ? 0 :
                     GetDolchSightWordsView().GetWindow(i)->IsKindOf(CLASSINFO(HtmlTableWindow)) ? 17 :
                     (isGraph &&
-                        typeid(*dynamic_cast<Wisteria::Canvas*>(GetDolchSightWordsView().GetWindow(i))->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::BarChart)) ? 16 :
+                        typeid(*dynamic_cast<Wisteria::Canvas*>(
+                            GetDolchSightWordsView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                        typeid(Wisteria::Graphs::BarChart)) ? 16 :
                     GetDolchSightWordsView().GetWindow(i)->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 : 9);
             }
         }
@@ -892,16 +943,20 @@ void ProjectView::OnAddTest(wxCommandEvent& event)
         { doc->AddDolchSightWords(); }
     else
         {
-        doc->GetReadabilityTests().include_test(doc->GetReadabilityTests().get_test_id(event.GetId()).c_str(), true);
+        doc->GetReadabilityTests().include_test(
+            doc->GetReadabilityTests().get_test_id(event.GetId()).c_str(), true);
         // refresh
         doc->RefreshRequired(ProjectRefresh::Minimal);
         doc->RefreshProject();
-        const long testToSelect = GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(doc->GetReadabilityTests().get_test_long_name(event.GetId()).c_str());
+        const long testToSelect =
+            GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(
+                doc->GetReadabilityTests().get_test_long_name(event.GetId()).c_str());
         if (testToSelect != wxNOT_FOUND)
             { GetReadabilityScoresList()->GetResultsListCtrl()->Select(testToSelect); }
         GetSideBar()->SelectSubItem(
             GetSideBar()->FindSubItem(BaseProjectView::READABILITY_SCORES_PAGE_ID));
-        doc->ShowQueuedMessages();// show any warning messages from the test being ran
+        // show any warning messages from the test being ran
+        doc->ShowQueuedMessages();
         if (WarningManager::HasWarning(_DT(L"click-test-to-view")))
             { ShowInfoMessage(*WarningManager::GetWarning(_DT(L"click-test-to-view"))); }
         }
@@ -959,7 +1014,8 @@ void ProjectView::OnGradeScale(wxCommandEvent& event)
 //---------------------------------------------------
 void ProjectView::OnAddToDictionary([[maybe_unused]] wxCommandEvent& event)
     {
-    const ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(GetGrammarView().FindWindowById(MISSPELLED_WORD_LIST_PAGE_ID));
+    const ListCtrlEx* listView =
+        dynamic_cast<ListCtrlEx*>(GetGrammarView().FindWindowById(MISSPELLED_WORD_LIST_PAGE_ID));
     if (listView)
         {
         GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(MISSPELLED_WORD_LIST_PAGE_ID));
@@ -979,7 +1035,8 @@ void ProjectView::OnAddToDictionary([[maybe_unused]] wxCommandEvent& event)
                 _(L"Add to Dictionary"), wxOK|wxICON_INFORMATION);
             return;
             }
-        wxGetApp().AddWordsToDictionaries(newWords, dynamic_cast<BaseProjectDoc*>(GetDocument())->GetProjectLanguage());
+        wxGetApp().AddWordsToDictionaries(newWords,
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->GetProjectLanguage());
         wxList docs = wxGetApp().GetDocManager()->GetDocuments();
         for (size_t i = 0; i < docs.GetCount(); ++i)
             {
@@ -1028,12 +1085,15 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
     else if (event.GetId() == XRCID("ID_SORT_ASCENDING") &&
         GetActiveProjectWindow() &&
         typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-        (typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::BarChart) ||
-         typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::Histogram)) )
+        (typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+            typeid(Wisteria::Graphs::BarChart) ||
+         typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+            typeid(Wisteria::Graphs::Histogram)) )
         {
         Wisteria::Canvas* barChart = dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow());
         std::dynamic_pointer_cast<Wisteria::Graphs::BarChart>(
-            barChart->GetFixedObject(0,0))->SortBars(BarChart::BarSortComparison::SortByBarLength, Wisteria::SortDirection::SortAscending);
+            barChart->GetFixedObject(0, 0))->SortBars(
+                BarChart::BarSortComparison::SortByBarLength, Wisteria::SortDirection::SortAscending);
         barChart->Refresh();
         barChart->Update();
         return;
@@ -1041,12 +1101,15 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
     else if (event.GetId() == XRCID("ID_SORT_DESCENDING") &&
         GetActiveProjectWindow() &&
          typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-        (typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::BarChart) ||
-         typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::Histogram)) )
+        (typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+            typeid(Wisteria::Graphs::BarChart) ||
+         typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+            typeid(Wisteria::Graphs::Histogram)) )
         {
         Wisteria::Canvas* barChart = dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow());
         std::dynamic_pointer_cast<Wisteria::Graphs::BarChart>(
-            barChart->GetFixedObject(0,0))->SortBars(BarChart::BarSortComparison::SortByBarLength, Wisteria::SortDirection::SortDescending);
+            barChart->GetFixedObject(0, 0))->SortBars(
+                BarChart::BarSortComparison::SortByBarLength, Wisteria::SortDirection::SortDescending);
         barChart->Refresh();
         barChart->Update();
         return;
@@ -1184,7 +1247,9 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
             wxFile outputFile(filePath, wxFile::write);
             if (!outputFile.IsOpened())
                 {
-                wxMessageBox(wxString::Format(_(L"Unable to save \"%s\".\nVerify that you have write access to this file or that it is not in use."), filePath), _(L"Error"), wxOK|wxICON_ERROR);
+                wxMessageBox(wxString::Format(
+                    _(L"Unable to save \"%s\".\nVerify that you have write access to "
+                       "this file or that it is not in use."), filePath), _(L"Error"), wxOK|wxICON_ERROR);
                 }
             else
                 {
@@ -1264,16 +1329,26 @@ bool ProjectView::OnCreate(wxDocument* doc, long flags)
     ExplanationListCtrl* readabilityScoresView = new ExplanationListCtrl(GetSplitter(), READABILITY_SCORES_PAGE_ID,
         wxDefaultPosition, wxDefaultSize, _(L"Scores"));
     readabilityScoresView->Hide();
-    readabilityScoresView->GetDataProvider()->SetNumberFormatter(dynamic_cast<BaseProjectDoc*>(doc)->GetReadabilityMessageCatalogPtr());
+    readabilityScoresView->GetDataProvider()->SetNumberFormatter(
+        dynamic_cast<BaseProjectDoc*>(doc)->GetReadabilityMessageCatalogPtr());
     readabilityScoresView->GetResultsListCtrl()->SetVirtualDataSize(0, 5);
-    readabilityScoresView->GetResultsListCtrl()->InsertColumn(0, _(L"Test"), wxLIST_FORMAT_LEFT, wxLIST_AUTOSIZE_USEHEADER);
-    readabilityScoresView->GetResultsListCtrl()->InsertColumn(1, _(L"Grade Level"), wxLIST_FORMAT_LEFT, wxLIST_AUTOSIZE_USEHEADER);
-    readabilityScoresView->GetResultsListCtrl()->InsertColumn(2, _(L"Reader Age"), wxLIST_FORMAT_LEFT, wxLIST_AUTOSIZE_USEHEADER);
-    readabilityScoresView->GetResultsListCtrl()->InsertColumn(3, _(L"Scale Value"), wxLIST_FORMAT_LEFT, wxLIST_AUTOSIZE_USEHEADER);
-    readabilityScoresView->GetResultsListCtrl()->InsertColumn(4, _(L"Predicted Cloze Score"), wxLIST_FORMAT_LEFT, wxLIST_AUTOSIZE_USEHEADER);
-    readabilityScoresView->GetExplanationView()->SetPage(wxString(L"<html><body>") + _(L"No readability test results currently available.") + wxString(L"</body></html>"));
-    readabilityScoresView->GetResultsListCtrl()->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_READABILITY_SCORE_LIST") );
-    readabilityScoresView->GetExplanationView()->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_HTML_MENU_NO_SAVE") );
+    readabilityScoresView->GetResultsListCtrl()->InsertColumn(0,
+        _(L"Test"), wxLIST_FORMAT_LEFT, wxLIST_AUTOSIZE_USEHEADER);
+    readabilityScoresView->GetResultsListCtrl()->InsertColumn(1,
+        _(L"Grade Level"), wxLIST_FORMAT_LEFT, wxLIST_AUTOSIZE_USEHEADER);
+    readabilityScoresView->GetResultsListCtrl()->InsertColumn(2,
+        _(L"Reader Age"), wxLIST_FORMAT_LEFT, wxLIST_AUTOSIZE_USEHEADER);
+    readabilityScoresView->GetResultsListCtrl()->InsertColumn(3,
+        _(L"Scale Value"), wxLIST_FORMAT_LEFT, wxLIST_AUTOSIZE_USEHEADER);
+    readabilityScoresView->GetResultsListCtrl()->InsertColumn(4,
+        _(L"Predicted Cloze Score"), wxLIST_FORMAT_LEFT, wxLIST_AUTOSIZE_USEHEADER);
+    readabilityScoresView->GetExplanationView()->SetPage(
+        wxString(L"<html><body>") + _(L"No readability test results currently available.") +
+        wxString(L"</body></html>"));
+    readabilityScoresView->GetResultsListCtrl()->AssignContextMenu(
+        wxXmlResource::Get()->LoadMenu(L"IDM_READABILITY_SCORE_LIST") );
+    readabilityScoresView->GetExplanationView()->AssignContextMenu(
+        wxXmlResource::Get()->LoadMenu(L"IDM_HTML_MENU_NO_SAVE") );
     readabilityScoresView->SetPrinterSettings(wxGetApp().GetPrintData());
     readabilityScoresView->SetLeftPrinterHeader(wxGetApp().GetAppOptions().GetLeftPrinterHeader());
     readabilityScoresView->SetCenterPrinterHeader(wxGetApp().GetAppOptions().GetCenterPrinterHeader());
@@ -1341,11 +1416,14 @@ void ProjectView::UpdateStatistics()
         for (int i = 0; i < rowCount; ++i)
             {
             double value = 0;
-            if (ReadabilityMessages::GetScoreValue(GetReadabilityScoresList()->GetResultsListCtrl()->GetItemTextEx(i, 1), value))
+            if (ReadabilityMessages::GetScoreValue(
+                GetReadabilityScoresList()->GetResultsListCtrl()->GetItemTextEx(i, 1), value))
                 { grades.push_back(value); }
-            if (ReadabilityMessages::GetScoreValue(GetReadabilityScoresList()->GetResultsListCtrl()->GetItemTextEx(i, 2), value))
+            if (ReadabilityMessages::GetScoreValue(
+                GetReadabilityScoresList()->GetResultsListCtrl()->GetItemTextEx(i, 2), value))
                 { ages.push_back(value); }
-            if (ReadabilityMessages::GetScoreValue(GetReadabilityScoresList()->GetResultsListCtrl()->GetItemTextEx(i, 4), value))
+            if (ReadabilityMessages::GetScoreValue(
+                GetReadabilityScoresList()->GetResultsListCtrl()->GetItemTextEx(i, 4), value))
                 { clozeScores.push_back(value); }
             }
 
@@ -1391,7 +1469,8 @@ void ProjectView::UpdateStatistics()
                  modesIter != modes.cend();
                  ++modesIter)
                 {
-                ageMode += wxNumberFormatter::ToString(*modesIter, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes) +
+                ageMode +=
+                    wxNumberFormatter::ToString(*modesIter, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes) +
                     L"; ";
                 }
             // chop off the last "; "
@@ -1412,7 +1491,8 @@ void ProjectView::UpdateStatistics()
                  modesIter != modes.cend();
                  ++modesIter)
                 {
-                clozeMode += wxNumberFormatter::ToString(*modesIter, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes) +
+                clozeMode += wxNumberFormatter::ToString(*modesIter, 0,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes) +
                     L"; ";
                 }
             // chop off the last "; "
@@ -1421,7 +1501,9 @@ void ProjectView::UpdateStatistics()
             }
 
         const int firstStatLocation = GetReadabilityScoresList()->GetResultsListCtrl()->AddRow(GetAverageLabel());
-        GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(firstStatLocation, 1, gradeAverage, NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
+        GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(
+            firstStatLocation, 1, gradeAverage,
+            NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
         GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(firstStatLocation, 2, ageAverage);
         GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(firstStatLocation, 3, _(L"N/A"));
         GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(firstStatLocation, 4, clozeAverage);
@@ -1434,8 +1516,13 @@ void ProjectView::UpdateStatistics()
                 ProjectReportFormat::GetReportHeaderFontColor().GetAsString(wxC2S_HTML_SYNTAX));
         explanationString += _(L"Averages");
         explanationString += L"</span></td></tr></thead>\n\t<tr><td>";
-        explanationString +=  wxString::Format(_(L"<p>Average grade level: %s<br />Average reading age: %s<br />Average predicted cloze score: %s</p><p>Note that an average of the scale values is not applicable because the scales used between tests are different.</p>"),
-            doc->GetReadabilityMessageCatalog().GetFormattedValue(gradeAverage, NumberFormatInfo::NumberFormatType::CustomFormatting), ageAverage,
+        explanationString +=
+            wxString::Format(
+                _(L"<p>Average grade level: %s<br />Average reading age: %s<br />"
+                   "Average predicted cloze score: %s</p><p>Note that an average of the "
+                   "scale values is not applicable because the scales used between tests are different.</p>"),
+            doc->GetReadabilityMessageCatalog().GetFormattedValue(gradeAverage,
+                NumberFormatInfo::NumberFormatType::CustomFormatting), ageAverage,
             clozeAverage) + L"</td></tr>\n</table>";
 
         GetReadabilityScoresList()->GetExplanations()[GetAverageLabel()] = explanationString;
@@ -1457,7 +1544,13 @@ void ProjectView::UpdateStatistics()
                     ProjectReportFormat::GetReportHeaderFontColor().GetAsString(wxC2S_HTML_SYNTAX));
             explanationString += _(L"Modes");
             explanationString += L"</span></td></tr></thead>\n\t<tr><td>";
-            explanationString +=  wxString::Format(_(L"<p>Grade level mode(s): %s<br />Reading age mode(s): %s<br />Predicted cloze score mode(s): %s</p><p>The mode is the most frequently occurring value in a range of data. Note that grade-level scores are rounded down when searching for the mode.</p><p>Note that a mode of the scale values is not applicable because the scales used between tests are different.</p>"),
+            explanationString +=
+                wxString::Format(
+                    _(L"<p>Grade level mode(s): %s<br />Reading age mode(s): %s<br />"
+                       "Predicted cloze score mode(s): %s</p><p>The mode is the most frequently "
+                       "occurring value in a range of data. Note that grade-level scores are rounded down "
+                       "when searching for the mode.</p><p>Note that a mode of the scale values is not "
+                       "applicable because the scales used between tests are different.</p>"),
                 gradeMode,
                 ageMode, clozeMode) +
                 L"</td></tr>\n</table>";
@@ -1466,7 +1559,8 @@ void ProjectView::UpdateStatistics()
 
             // Median
             statLocation = GetReadabilityScoresList()->GetResultsListCtrl()->AddRow(GetMedianLabel());
-            GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(statLocation, 1, gradeMedian, NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
+            GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(statLocation, 1, gradeMedian,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
             GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(statLocation, 2, ageMedian);
             GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(statLocation, 3, _(L"N/A"));
             GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(statLocation, 4, clozeMedian);
@@ -1479,8 +1573,14 @@ void ProjectView::UpdateStatistics()
                     ProjectReportFormat::GetReportHeaderFontColor().GetAsString(wxC2S_HTML_SYNTAX));
             explanationString += _(L"Medians");
             explanationString += L"</span></td></tr></thead>\n\t<tr><td>";
-            explanationString +=  wxString::Format(_(L"<p>Grade level median: %s<br />Reading age median: %s<br />Predicted cloze score median: %s</p><p>The median is the midpoint of a given range of values that divides them into lower and higher halves.</p><p>Note that a median of the scale values is not applicable because the scales used between tests are different.</p>"),
-                doc->GetReadabilityMessageCatalog().GetFormattedValue(gradeMedian, NumberFormatInfo::NumberFormatType::CustomFormatting),
+            explanationString +=  wxString::Format(
+                _(L"<p>Grade level median: %s<br />Reading age median: %s<br />"
+                   "Predicted cloze score median: %s</p><p>The median is the midpoint of a "
+                   "given range of values that divides them into lower and higher halves.</p><p>"
+                   "Note that a median of the scale values is not applicable because the scales "
+                   "used between tests are different.</p>"),
+                doc->GetReadabilityMessageCatalog().GetFormattedValue(gradeMedian,
+                    NumberFormatInfo::NumberFormatType::CustomFormatting),
                 ageMedian, clozeMedian) +
                 L"</td></tr>\n</table>";
 
@@ -1513,7 +1613,8 @@ void ProjectView::UpdateStatistics()
                 }
 
             statLocation = GetReadabilityScoresList()->GetResultsListCtrl()->AddRow(GetStdDevLabel());
-            GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(statLocation, 1, gradeStdDev, NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
+            GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(statLocation, 1, gradeStdDev,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
             GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(statLocation, 2, ageStdDev);
             GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(statLocation, 3, _(L"N/A"));
             GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(statLocation, 4, clozeStdDev);
@@ -1526,8 +1627,17 @@ void ProjectView::UpdateStatistics()
                     ProjectReportFormat::GetReportHeaderFontColor().GetAsString(wxC2S_HTML_SYNTAX));
             explanationString += _(L"Standard Deviations");
             explanationString += L"</span></td></tr></thead>\n    <tr><td>";
-            explanationString +=  wxString::Format(_(L"<p>Grade level std. dev.: %s<br />Reading age std. dev.: %s<br />Predicted cloze score std. dev.: %s</p><p>Standard deviation is the measurement of how far values in a range of data are spread apart from each other.</p><p>Note that at least two valid test scores are required to have any standard deviation. Also note that a standard deviation of the scale values is not applicable because the scales used between tests are different.</p>"),
-                doc->GetReadabilityMessageCatalog().GetFormattedValue(gradeStdDev, NumberFormatInfo::NumberFormatType::CustomFormatting),
+            explanationString +=
+                wxString::Format(
+                    _(L"<p>Grade level std. dev.: %s<br />Reading age std. dev.: %s<br />"
+                       "Predicted cloze score std. dev.: %s</p><p>"
+                       "Standard deviation is the measurement of how far values in a range "
+                       "of data are spread apart from each other.</p><p>Note that at least two "
+                       "valid test scores are required to have any standard deviation. "
+                       "Also note that a standard deviation of the scale values is not applicable "
+                       "because the scales used between tests are different.</p>"),
+                doc->GetReadabilityMessageCatalog().GetFormattedValue(gradeStdDev,
+                    NumberFormatInfo::NumberFormatType::CustomFormatting),
                 ageStdDev, clozeStdDev) +
                 L"</td></tr>\n</table>";
 
@@ -1540,7 +1650,9 @@ void ProjectView::UpdateStatistics()
         { GetReadabilityScoresList()->GetResultsListCtrl()->SetSortableRange(0, 0); }
 
     if (GetReadabilityScoresList()->GetResultsListCtrl()->GetSortedColumn() == -1)
-        { GetReadabilityScoresList()->GetResultsListCtrl()->SetSortedColumn(0, Wisteria::SortDirection::SortAscending); }
+        {
+        GetReadabilityScoresList()->GetResultsListCtrl()->SetSortedColumn(0, Wisteria::SortDirection::SortAscending);
+        }
     GetReadabilityScoresList()->GetResultsListCtrl()->Resort();
 
     // select the item user had selected before the update
@@ -1605,9 +1717,11 @@ void ProjectView::OnLongFormat([[maybe_unused]] wxRibbonButtonBarEvent& event)
     wxWindowUpdateLocker noUpdates(doc->GetDocumentWindow());
     BaseProjectProcessingLock processingLock(doc);
 
-    doc->GetReadabilityMessageCatalog().SetLongGradeScaleFormat(!doc->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
+    doc->GetReadabilityMessageCatalog().SetLongGradeScaleFormat(
+        !doc->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
     GetReadabilityScoresList()->GetResultsListCtrl()->Refresh();
-    GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(1, GetReadabilityScoresList()->GetResultsListCtrl()->EstimateColumnWidth(1));
+    GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(1,
+        GetReadabilityScoresList()->GetResultsListCtrl()->EstimateColumnWidth(1));
     doc->SetModifiedFlag();
     }
 
@@ -1624,7 +1738,8 @@ void ProjectView::OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     if (GetActiveProjectWindow() && GetActiveProjectWindow()->GetId() != READABILITY_SCORES_PAGE_ID)
         {
-        const auto [parentId, childId] = GetSideBar()->FindSubItem(SIDEBAR_READABILITY_SCORES_SECTION_ID, READABILITY_SCORES_PAGE_ID);
+        const auto [parentId, childId] =
+            GetSideBar()->FindSubItem(SIDEBAR_READABILITY_SCORES_SECTION_ID, READABILITY_SCORES_PAGE_ID);
         if (!childId.has_value())
             { return; }
         GetSideBar()->SelectSubItem(parentId.value(), childId.value());
@@ -1642,7 +1757,8 @@ void ProjectView::OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& event)
         if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
             warningIter->ShouldBeShown())
             {
-            wxRichMessageDialog msg(GetDocFrame(), wxString::Format(_(L"Do you wish to remove \"%s\" from the project?"), testToRemove),
+            wxRichMessageDialog msg(GetDocFrame(),
+                wxString::Format(_(L"Do you wish to remove \"%s\" from the project?"), testToRemove),
                 _(L"Remove Test"), wxYES_NO|wxNO_DEFAULT|wxICON_QUESTION);
             msg.SetEscapeId(wxID_NO);
             msg.ShowCheckBox(_(L"Always delete without prompting"));
@@ -1677,7 +1793,9 @@ void ProjectView::OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& event)
             }
         if (GetReadabilityScoresList()->GetResultsListCtrl()->GetItemCount() == 0)
             {
-            GetReadabilityScoresList()->GetExplanationView()->SetPage(wxString(L"<html><body>") + _(L"No readability test results currently available.") + wxString(L"</body></html>"));
+            GetReadabilityScoresList()->GetExplanationView()->SetPage(
+                wxString(L"<html><body>") + _(L"No readability test results currently available.") +
+                wxString(L"</body></html>"));
             }
         // which tests are included may affect which stats and bars on the bar chart are included
         doc->RefreshRequired(ProjectRefresh::Minimal);
@@ -1728,7 +1846,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
+                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
+                    wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
@@ -1793,7 +1912,9 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             _(L"Long Format"),
                             readRibbonButtonSVG(L"ribbon/grade-display.svg"),
                             _(L"Display scores in long format."));
-                        editButtonBar->ToggleButton(XRCID("ID_LONG_FORMAT"), dynamic_cast<ProjectDoc*>(GetDocument())->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
+                        editButtonBar->ToggleButton(XRCID("ID_LONG_FORMAT"),
+                            dynamic_cast<ProjectDoc*>(
+                                GetDocument())->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
                         editButtonBar->AddDropdownButton(XRCID("ID_GRADE_SCALES"),
                             _(L"Grade Scale"),
                             readRibbonButtonSVG(L"ribbon/education.svg"),
@@ -1845,7 +1966,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
+                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
+                    wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, false);
                 }
             if (GetRibbon())
@@ -1861,10 +1983,12 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(wxID_SAVE, _(L"Save")+L"\tCtrl+S")->SetBitmap(saveIcon);
                     m_exportMenu.Append(wxID_SAVEAS, _(L"Save As..."));
                     m_exportMenu.AppendSeparator();
-                    auto exportItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
+                    auto exportItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
+                        wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                     m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
 
                     wxString exportImg;
                     switch (event.GetInt())
@@ -1925,7 +2049,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     editButtonBar->ToggleButton(XRCID("ID_DROP_SHADOW"),
                         dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
 
-                    const auto graphType = dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0,0);
+                    const auto graphType = dynamic_cast<Wisteria::Canvas*>(
+                        GetActiveProjectWindow())->GetFixedObject(0, 0);
 
                     if (typeid(*graphType) == typeid(LixGaugeGerman))
                         {
@@ -1970,7 +2095,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()));
+                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
+                    wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()));
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
@@ -1985,7 +2111,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
                         {
                         m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"), _(L"Copy with Column Headers"));
-                        m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"), _(L"Copy (First Column Only)")+L"\tShift+Ctrl+C");
+                        m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"),
+                            _(L"Copy (First Column Only)")+L"\tShift+Ctrl+C");
                         }
                     m_copyMenu.Append(XRCID("ID_COPY_ALL"), _(L"Copy All"));
                     while (m_exportMenu.GetMenuItemCount())
@@ -1993,10 +2120,12 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(wxID_SAVE, _(L"Save")+L"\tCtrl+S")->SetBitmap(saveIcon);
                     m_exportMenu.Append(wxID_SAVEAS, _(L"Save As..."));
                     m_exportMenu.AppendSeparator();
-                    auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
+                    auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
+                        wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                     m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
 
                     auto editButtonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonBar);
@@ -2664,7 +2793,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                         {
                         ExplanationListCtrl* list = dynamic_cast<ExplanationListCtrl*>(activeWindow);
                         list->SetLabel(
-                            wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                            wxString::Format(L"%s [%s]", list->GetName(),
+                                             wxFileName::StripExtension(doc->GetTitle())));
                         list->Save(
                             folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel() +
                             wxFileName::GetPathSeparator() +
@@ -2684,7 +2814,6 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                         HtmlTableWindow* reportWindow = dynamic_cast<HtmlTableWindow*>(activeWindow);
                         reportWindow->SetLabel(
                             wxString::Format(L"%s [%s]", reportWindow->GetName(),
-                                
                                 wxFileName::StripExtension(doc->GetTitle())));
                         reportWindow->Save(folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel() +
                             wxFileName::GetPathSeparator() +
@@ -2694,7 +2823,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                         {
                         ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(activeWindow);
                         list->SetLabel(
-                            wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                            wxString::Format(L"%s [%s]", list->GetName(),
+                                             wxFileName::StripExtension(doc->GetTitle())));
                         list->Save(
                             folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel() +
                             wxFileName::GetPathSeparator() +
@@ -2724,7 +2854,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                         {
                         HtmlTableWindow* html = dynamic_cast<HtmlTableWindow*>(activeWindow);
                         html->SetLabel(
-                            wxString::Format(L"%s [%s]", html->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                            wxString::Format(L"%s [%s]", html->GetName(),
+                                             wxFileName::StripExtension(doc->GetTitle())));
                         html->Save(
                             folder + wxFileName::GetPathSeparator() + GetSummaryStatisticsLabel() +
                             wxFileName::GetPathSeparator() +
@@ -2734,7 +2865,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                         {
                         ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(activeWindow);
                         list->SetLabel(
-                            wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                            wxString::Format(L"%s [%s]", list->GetName(),
+                                             wxFileName::StripExtension(doc->GetTitle())));
                         list->Save(
                             folder + wxFileName::GetPathSeparator() + GetSummaryStatisticsLabel() +
                             wxFileName::GetPathSeparator() +
@@ -2773,7 +2905,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                         {
                         ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(activeWindow);
                         list->SetLabel(
-                            wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                            wxString::Format(L"%s [%s]", list->GetName(),
+                                wxFileName::StripExtension(doc->GetTitle())));
                         list->Save(
                             folder + wxFileName::GetPathSeparator() + GetSentencesBreakdownLabel() +
                             wxFileName::GetPathSeparator() +
@@ -2813,7 +2946,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                         {
                         ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(activeWindow);
                         list->SetLabel(
-                            wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                            wxString::Format(L"%s [%s]", list->GetName(),
+                                wxFileName::StripExtension(doc->GetTitle())));
                         list->Save(
                             folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel() +
                             wxFileName::GetPathSeparator() +
@@ -2833,7 +2967,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                         {
                         FormattedTextCtrl* text = dynamic_cast<FormattedTextCtrl*>(activeWindow);
                         text->SetTitleName(
-                            wxString::Format(L"%s [%s]", text->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                            wxString::Format(L"%s [%s]", text->GetName(),
+                                wxFileName::StripExtension(doc->GetTitle())));
                         text->Save(
                             folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel() +
                             wxFileName::GetPathSeparator() +
@@ -2863,27 +2998,33 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                         {
                         ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(activeWindow);
                         list->SetLabel(
-                            wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                            wxString::Format(L"%s [%s]", list->GetName(),
+                                wxFileName::StripExtension(doc->GetTitle())));
                         list->Save(
-                            folder + wxFileName::GetPathSeparator() + GetGrammarLabel() + wxFileName::GetPathSeparator() +
+                            folder + wxFileName::GetPathSeparator() + GetGrammarLabel() +
+                            wxFileName::GetPathSeparator() +
                             list->GetLabel() + listExt, GridExportOptions());
                         }
                     else if (activeWindow->IsKindOf(CLASSINFO(HtmlTableWindow)) )
                         {
                         HtmlTableWindow* html = dynamic_cast<HtmlTableWindow*>(activeWindow);
                         html->SetLabel(
-                            wxString::Format(L"%s [%s]", html->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                            wxString::Format(L"%s [%s]", html->GetName(),
+                                wxFileName::StripExtension(doc->GetTitle())));
                         html->Save(
-                            folder + wxFileName::GetPathSeparator() + GetGrammarLabel() + wxFileName::GetPathSeparator() +
+                            folder + wxFileName::GetPathSeparator() + GetGrammarLabel() +
+                            wxFileName::GetPathSeparator() +
                             html->GetLabel() + L".htm");
                         }
                     else if (activeWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)) && includeTextReports)
                         {
                         FormattedTextCtrl* text = dynamic_cast<FormattedTextCtrl*>(activeWindow);
                         text->SetTitleName(
-                            wxString::Format(L"%s [%s]", text->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                            wxString::Format(L"%s [%s]", text->GetName(),
+                                wxFileName::StripExtension(doc->GetTitle())));
                         text->Save(
-                            folder + wxFileName::GetPathSeparator() + GetGrammarLabel() + wxFileName::GetPathSeparator() +
+                            folder + wxFileName::GetPathSeparator() + GetGrammarLabel() +
+                            wxFileName::GetPathSeparator() +
                             text->GetTitleName() + textExt);
                         }
                     }
@@ -2910,36 +3051,44 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                         {
                         ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(activeWindow);
                         list->SetLabel(
-                            wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                            wxString::Format(L"%s [%s]", list->GetName(),
+                                wxFileName::StripExtension(doc->GetTitle())));
                         list->Save(
-                            folder + wxFileName::GetPathSeparator() + GetDolchLabel() + wxFileName::GetPathSeparator() +
+                            folder + wxFileName::GetPathSeparator() + GetDolchLabel() +
+                            wxFileName::GetPathSeparator() +
                             list->GetLabel() + listExt, GridExportOptions());
                         }
                     else if (activeWindow->IsKindOf(CLASSINFO(HtmlTableWindow)) )
                         {
                         HtmlTableWindow* html = dynamic_cast<HtmlTableWindow*>(activeWindow);
                         html->SetLabel(
-                            wxString::Format(L"%s [%s]", html->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                            wxString::Format(L"%s [%s]", html->GetName(),
+                                wxFileName::StripExtension(doc->GetTitle())));
                         html->Save(
-                            folder + wxFileName::GetPathSeparator() + GetDolchLabel() + wxFileName::GetPathSeparator() +
+                            folder + wxFileName::GetPathSeparator() + GetDolchLabel() +
+                            wxFileName::GetPathSeparator() +
                             html->GetLabel() + L".htm");
                         }
                     else if (activeWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)) && includeTextReports)
                         {
                         FormattedTextCtrl* text = dynamic_cast<FormattedTextCtrl*>(activeWindow);
                         text->SetTitleName(
-                            wxString::Format(L"%s [%s]", text->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                            wxString::Format(L"%s [%s]", text->GetName(),
+                                wxFileName::StripExtension(doc->GetTitle())));
                         text->Save(
-                            folder + wxFileName::GetPathSeparator() + GetDolchLabel() + wxFileName::GetPathSeparator() +
+                            folder + wxFileName::GetPathSeparator() + GetDolchLabel() +
+                            wxFileName::GetPathSeparator() +
                             text->GetTitleName() + textExt);
                         }
                     else if (typeid(*activeWindow) == typeid(Wisteria::Canvas))
                         {
                         Wisteria::Canvas* graph = dynamic_cast<Wisteria::Canvas*>(activeWindow);
                         graph->SetLabel(
-                            wxString::Format(L"%s [%s]", graph->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                            wxString::Format(L"%s [%s]", graph->GetName(),
+                                wxFileName::StripExtension(doc->GetTitle())));
                         graph->Save(
-                            folder + wxFileName::GetPathSeparator() + GetDolchLabel() + wxFileName::GetPathSeparator() +
+                            folder + wxFileName::GetPathSeparator() + GetDolchLabel() +
+                            wxFileName::GetPathSeparator() +
                             graph->GetLabel() + graphExt, graphOptions);
                         }
                     }

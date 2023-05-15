@@ -830,16 +830,28 @@ namespace LuaScripting
                 dynamic_cast<Wisteria::Canvas*>(view->GetReadabilityResultsView().FindWindowById(idPos->second) );
             // look in stats summary section if not in the readability section
             if (!graphWindow)
-                { graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetSummaryView().FindWindowById(idPos->second) ); }
+                {
+                graphWindow =
+                    dynamic_cast<Wisteria::Canvas*>(view->GetSummaryView().FindWindowById(idPos->second) );
+                }
             // look in word section if not in the stats section
             if (!graphWindow)
-                { graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().FindWindowById(idPos->second) ); }
+                {
+                graphWindow =
+                    dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().FindWindowById(idPos->second) );
+                }
             // look in sentence section if not in the words section
             if (!graphWindow)
-                { graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(idPos->second) ); }
+                {
+                graphWindow =
+                    dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(idPos->second) );
+                }
             // look in Dolch section if not in the stats summary section
             if (!graphWindow)
-                { graphWindow = dynamic_cast<Wisteria::Canvas*>(view->GetDolchSightWordsView().FindWindowById(idPos->second) ); }
+                {
+                graphWindow =
+                    dynamic_cast<Wisteria::Canvas*>(view->GetDolchSightWordsView().FindWindowById(idPos->second) );
+                }
             if (graphWindow)
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
@@ -1014,28 +1026,41 @@ namespace LuaScripting
             if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
                 windowMappedId != wxGetApp().GetDynamicIdMap().cend())
                 { windowId = windowMappedId->second; }
-            ListCtrlEx* listWindow = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(windowId) );
+            ListCtrlEx* listWindow =
+                dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(windowId) );
             if (!listWindow)// look in grammar section if not in the highlighted words section
-                { listWindow = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(windowId) ); }
+                {
+                listWindow = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(windowId) );
+                }
             if (!listWindow)// look in sentences section if not in the grammar section
-                { listWindow = dynamic_cast<ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(windowId) ); }
+                {
+                listWindow = dynamic_cast<ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(windowId) );
+                }
             if (!listWindow)// look in Dolch section if not in the sentences section
-                { listWindow = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(windowId) ); }
+                {
+                listWindow = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(windowId) );
+                }
             if (!listWindow)// look in stats section if not in the Dolch section
-                { listWindow = dynamic_cast<ListCtrlEx*>(view->GetSummaryView().FindWindowById(windowId) ); }
+                {
+                listWindow = dynamic_cast<ListCtrlEx*>(view->GetSummaryView().FindWindowById(windowId) );
+                }
             if (listWindow)
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
                 const wxString originalLabel = listWindow->GetLabel();
-                listWindow->SetLabel(originalLabel + wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
+                listWindow->SetLabel(originalLabel + wxString::Format(L" [%s]",
+                                     wxFileName::StripExtension(doc->GetTitle())));
                 GridExportOptions exportOptions;
                 exportOptions.m_fromRow = (lua_gettop(L) > 3) ? lua_tonumber(L, 4) : 1;
                 exportOptions.m_toRow = (lua_gettop(L) > 4) ? lua_tonumber(L, 5) : -1;
                 exportOptions.m_fromColumn = (lua_gettop(L) > 5) ? lua_tonumber(L, 6) : 1;
                 exportOptions.m_toColumn = (lua_gettop(L) > 6) ? lua_tonumber(L, 7) : -1;
-                exportOptions.m_includeColumnHeaders = (lua_gettop(L) > 7) ? int_to_bool(lua_toboolean(L, 8)) : true;
-                exportOptions.m_pageUsingPrinterSettings = (lua_gettop(L) > 8) ? int_to_bool(lua_toboolean(L, 9)) : false;
-                lua_pushboolean(L, listWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8), exportOptions));
+                exportOptions.m_includeColumnHeaders =
+                    (lua_gettop(L) > 7) ? int_to_bool(lua_toboolean(L, 8)) : true;
+                exportOptions.m_pageUsingPrinterSettings =
+                    (lua_gettop(L) > 8) ? int_to_bool(lua_toboolean(L, 9)) : false;
+                lua_pushboolean(L, listWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8),
+                                exportOptions));
                 listWindow->SetLabel(originalLabel);
                 }
             else
@@ -2245,9 +2270,12 @@ namespace LuaScripting
                 exportOptions.m_toRow = (lua_gettop(L) > 4) ? lua_tonumber(L, 5) : -1;
                 exportOptions.m_fromColumn = (lua_gettop(L) > 5) ? lua_tonumber(L, 6) : 1;
                 exportOptions.m_toColumn = (lua_gettop(L) > 6) ? lua_tonumber(L, 7) : -1;
-                exportOptions.m_includeColumnHeaders = (lua_gettop(L) > 7) ? int_to_bool(lua_toboolean(L, 8)) : true;
-                exportOptions.m_pageUsingPrinterSettings = (lua_gettop(L) > 8) ? int_to_bool(lua_toboolean(L, 9)) : false;
-                lua_pushboolean(L, listWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8), exportOptions));
+                exportOptions.m_includeColumnHeaders =
+                    (lua_gettop(L) > 7) ? int_to_bool(lua_toboolean(L, 8)) : true;
+                exportOptions.m_pageUsingPrinterSettings =
+                    (lua_gettop(L) > 8) ? int_to_bool(lua_toboolean(L, 9)) : false;
+                lua_pushboolean(L, listWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8),
+                    exportOptions));
                 listWindow->SetLabel(originalLabel);
                 listWindow->SetFocus();
                 }

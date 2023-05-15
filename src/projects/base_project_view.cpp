@@ -102,7 +102,8 @@ wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_BOX_STYLE"), BaseProjectView::OnBoxStyleButton)
     EVT_MENU(XRCID("ID_EDIT_BOX_COLOR"), BaseProjectView::OnEditGraphColor)
     EVT_MENU(XRCID("ID_EDIT_BOX_OPACITY"), BaseProjectView::OnEditGraphOpacity)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_GRAPH_BACKGROUND"), BaseProjectView::OnEditGraphBackgroundButton)
+    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(
+        XRCID("ID_EDIT_GRAPH_BACKGROUND"), BaseProjectView::OnEditGraphBackgroundButton)
     EVT_MENU(XRCID("ID_EDIT_GRAPH_BKIMAGE_OPACITY"), BaseProjectView::OnEditGraphOpacity)
     EVT_MENU(XRCID("ID_EDIT_PLOT_BKCOLOR"), BaseProjectView::OnEditGraphColor)
     EVT_MENU(XRCID("ID_EDIT_PLOT_BKCOLOR_OPACITY"), BaseProjectView::OnEditGraphOpacity)
@@ -149,10 +150,14 @@ wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_DICTIONARY"), BaseProjectView::OnDictionaryDropdown)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_GRAPH_SORT"), BaseProjectView::OnGraphSortDropdown)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(wxID_PRINT, BaseProjectView::OnPrintDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_PRIMARY_AGE_TESTS_BUTTON"), BaseProjectView::OnPrimaryAgeTestsDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_SECONDARY_AGE_TESTS_BUTTON"), BaseProjectView::OnSecondaryAgeTestsDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_ADULT_TESTS_BUTTON"), BaseProjectView::OnAdultTestsDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_SECOND_LANGUAGE_TESTS_BUTTON"), BaseProjectView::OnSecondLanguageTestsDropdown)
+    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(
+        XRCID("ID_PRIMARY_AGE_TESTS_BUTTON"), BaseProjectView::OnPrimaryAgeTestsDropdown)
+    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(
+        XRCID("ID_SECONDARY_AGE_TESTS_BUTTON"), BaseProjectView::OnSecondaryAgeTestsDropdown)
+    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(
+        XRCID("ID_ADULT_TESTS_BUTTON"), BaseProjectView::OnAdultTestsDropdown)
+    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(
+        XRCID("ID_SECOND_LANGUAGE_TESTS_BUTTON"), BaseProjectView::OnSecondLanguageTestsDropdown)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_CUSTOM_TESTS"), BaseProjectView::OnCustomTestsDropdown)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_TEST_BUNDLES"), BaseProjectView::OnTestBundlesDropdown)
     EVT_RIBBONBAR_TAB_LEFT_DCLICK(wxID_ANY, BaseProjectView::OnDClickRibbonBar)
@@ -1017,7 +1022,8 @@ void BaseProjectView::OnLineEndOptions(wxCommandEvent& event)
 
     if (GetRibbon())
         {
-        wxWindow* deductionButtonBar = GetRibbon()->FindWindow(MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR);
+        wxWindow* deductionButtonBar =
+            GetRibbon()->FindWindow(MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR);
         if (deductionButtonBar && deductionButtonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)->EnableButton(
@@ -1284,7 +1290,8 @@ void BaseProjectView::OnTestBundle(wxCommandEvent& event)
                 const bool matchesClassification = basedOnIndustry ?
                     rTest->get_test().has_industry_classification(selectedIndustry) :
                     rTest->get_test().has_document_classification(selectedDocument);
-                rTest->include(matchesClassification && rTest->get_test().has_language(doc->GetProjectLanguage()) );
+                rTest->include(matchesClassification &&
+                               rTest->get_test().has_language(doc->GetProjectLanguage()) );
                 }
             // custom tests
             for (CustomReadabilityTestCollection::const_iterator pos = doc->m_custom_word_tests.begin();
@@ -1965,9 +1972,13 @@ void BaseProjectView::Present()
         {
         for (size_t i = 0; i < m_histobarLabelsMenu.GetMenuItemCount(); ++i)
             { m_histobarLabelsMenu.FindItemByPosition(i)->Check(false); }
-        wxMenuItem* item = m_histobarLabelsMenu.FindItem((doc->GetHistrogramBinLabelDisplay() == BinLabelDisplay::BinPercentage) ? XRCID("ID_HISTOBAR_LABELS_PERCENTAGE") :
-            (doc->GetHistrogramBinLabelDisplay() == BinLabelDisplay::BinValue) ? XRCID("ID_HISTOBAR_LABELS_COUNT") :
-            (doc->GetHistrogramBinLabelDisplay() == BinLabelDisplay::BinValueAndPercentage) ? XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT") :
+        wxMenuItem* item = m_histobarLabelsMenu.FindItem(
+            (doc->GetHistrogramBinLabelDisplay() == BinLabelDisplay::BinPercentage) ?
+                XRCID("ID_HISTOBAR_LABELS_PERCENTAGE") :
+            (doc->GetHistrogramBinLabelDisplay() == BinLabelDisplay::BinValue) ?
+                XRCID("ID_HISTOBAR_LABELS_COUNT") :
+            (doc->GetHistrogramBinLabelDisplay() == BinLabelDisplay::BinValueAndPercentage) ?
+                XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT") :
             XRCID("ID_HISTOBAR_NO_LABELS"));
         if (item)
             { item->Check(true); }
@@ -1976,7 +1987,8 @@ void BaseProjectView::Present()
         {
         for (size_t i = 0; i < m_longSentencesMenu.GetMenuItemCount(); ++i)
             { m_longSentencesMenu.FindItemByPosition(i)->Check(false); }
-        wxMenuItem* item = m_longSentencesMenu.FindItem((doc->GetLongSentenceMethod() == LongSentence::LongerThanSpecifiedLength) ?
+        wxMenuItem* item = m_longSentencesMenu.FindItem(
+            (doc->GetLongSentenceMethod() == LongSentence::LongerThanSpecifiedLength) ?
             XRCID("ID_LS_LONGER_THAN") :
             XRCID("ID_LS_OUTLIER_RANGE"));
         if (item)
@@ -1986,7 +1998,8 @@ void BaseProjectView::Present()
         {
         for (size_t i = 0; i < m_lineEndsMenu.GetMenuItemCount(); ++i)
             { m_lineEndsMenu.FindItemByPosition(i)->Check(false); }
-        wxMenuItem* item = m_lineEndsMenu.FindItem((doc->GetParagraphsParsingMethod() == ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs) ?
+        wxMenuItem* item = m_lineEndsMenu.FindItem(
+            (doc->GetParagraphsParsingMethod() == ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs) ?
             XRCID("ID_LE_ONLY_AFTER_VALID_SENTENCE") : XRCID("ID_LE_ALWAYS_NEW_PARAGRAPH"));
         if (item)
             { item->Check(true); }
@@ -1995,7 +2008,8 @@ void BaseProjectView::Present()
         {
         for (size_t i = 0; i < m_textExclusionMenu.GetMenuItemCount(); ++i)
             { m_textExclusionMenu.FindItemByPosition(i)->Check(false); }
-        wxMenuItem* item = m_textExclusionMenu.FindItem((doc->GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis) ?
+        wxMenuItem* item = m_textExclusionMenu.FindItem(
+            (doc->GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis) ?
             XRCID("ID_TE_ALL_INCOMPLETE") :
             (doc->GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ? XRCID("ID_TE_NO_EXCLUDE") :
             XRCID("ID_TE_ALL_INCOMPLETE_EXCEPT_HEADERS"));
@@ -2006,14 +2020,20 @@ void BaseProjectView::Present()
         {
         for (size_t i = 0; i < m_exclusionTagsMenu.GetMenuItemCount(); ++i)
             { m_exclusionTagsMenu.FindItemByPosition(i)->Check(false); }
-        wxMenuItem* item = m_exclusionTagsMenu.FindItem((doc->GetExclusionBlockTags().size() == 0) ?
-            XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED") :
-            (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'^', L'^')) ? XRCID("ID_EXCLUSION_TAGS_CAROTS") :
-                (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'<', L'>')) ? XRCID("ID_EXCLUSION_TAGS_ANGLES") :
-                (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'[', L']')) ? XRCID("ID_EXCLUSION_TAGS_BRACES") :
-                (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'{', L'}')) ? XRCID("ID_EXCLUSION_TAGS_CURLIES") :
-                (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'(', L')')) ? XRCID("ID_EXCLUSION_TAGS_PARANS") :
-            XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED"));
+        wxMenuItem* item = m_exclusionTagsMenu.FindItem(
+            (doc->GetExclusionBlockTags().size() == 0) ?
+                XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED") :
+            (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'^', L'^')) ?
+                XRCID("ID_EXCLUSION_TAGS_CAROTS") :
+            (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'<', L'>')) ?
+                XRCID("ID_EXCLUSION_TAGS_ANGLES") :
+            (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'[', L']')) ?
+                XRCID("ID_EXCLUSION_TAGS_BRACES") :
+            (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'{', L'}')) ?
+                XRCID("ID_EXCLUSION_TAGS_CURLIES") :
+            (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'(', L')')) ?
+                XRCID("ID_EXCLUSION_TAGS_PARANS") :
+                XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED"));
         if (item)
             { item->Check(true); }
         }
@@ -2021,7 +2041,8 @@ void BaseProjectView::Present()
         {
         for (size_t i = 0; i < m_numeralSyllabicationMenu.GetMenuItemCount(); ++i)
             { m_numeralSyllabicationMenu.FindItemByPosition(i)->Check(false); }
-        wxMenuItem* item = m_numeralSyllabicationMenu.FindItem((doc->GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable) ?
+        wxMenuItem* item = m_numeralSyllabicationMenu.FindItem(
+            (doc->GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable) ?
             XRCID("ID_NUMSYL_ONE") :
             XRCID("ID_NUMSYL_EACH_DIGIT"));
         if (item)
@@ -2033,33 +2054,61 @@ void BaseProjectView::Present()
         wxWindow* deductionButtonBar = GetRibbon()->FindWindow(MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR);
         if (deductionButtonBar && deductionButtonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
             {
-            dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)->ToggleButton(XRCID("ID_IGNORE_BLANK_LINES"), doc->GetIgnoreBlankLinesForParagraphsParser());
-            dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)->ToggleButton(XRCID("ID_IGNORE_INDENTING"), doc->GetIgnoreIndentingForParagraphsParser());
-            dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)->ToggleButton(XRCID("ID_SENTENCES_CAPITALIZED"), doc->GetSentenceStartMustBeUppercased());
-            if (dynamic_cast<BaseProjectDoc*>(GetDocument())->GetParagraphsParsingMethod() == ParagraphParse::EachNewLineIsAParagraph)
+            dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)->ToggleButton(
+                XRCID("ID_IGNORE_BLANK_LINES"), doc->GetIgnoreBlankLinesForParagraphsParser());
+            dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)->ToggleButton(
+                XRCID("ID_IGNORE_INDENTING"), doc->GetIgnoreIndentingForParagraphsParser());
+            dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)->ToggleButton(
+                XRCID("ID_SENTENCES_CAPITALIZED"), doc->GetSentenceStartMustBeUppercased());
+            if (dynamic_cast<BaseProjectDoc*>(GetDocument())->GetParagraphsParsingMethod() ==
+                ParagraphParse::EachNewLineIsAParagraph)
                 {
-                dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)->EnableButton(XRCID("ID_IGNORE_BLANK_LINES"), false);
-                dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)->EnableButton(XRCID("ID_IGNORE_INDENTING"), false);
+                dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)->EnableButton(
+                    XRCID("ID_IGNORE_BLANK_LINES"), false);
+                dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)->EnableButton(
+                    XRCID("ID_IGNORE_INDENTING"), false);
                 }
             }
         wxWindow* exclusionButtonBar = GetRibbon()->FindWindow(MainFrame::ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR);
         if (exclusionButtonBar && exclusionButtonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
             {
-            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->ToggleButton(XRCID("ID_EXCLUDE_AGGRESSIVELY"), doc->IsExcludingAggressively());
-            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->ToggleButton(XRCID("ID_EXCLUDE_COPYRIGHT_NOTICES"), doc->IsIgnoringTrailingCopyrightNoticeParagraphs());
-            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->ToggleButton(XRCID("ID_EXCLUDE_TRAILING_CITATIONS"), doc->IsIgnoringTrailingCitations());
-            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->ToggleButton(XRCID("ID_EXCLUDE_FILE_ADDRESSES"), doc->IsIgnoringFileAddresses());
-            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->ToggleButton(XRCID("ID_EXCLUDE_NUMERALS"), doc->IsIgnoringNumerals());
-            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->ToggleButton(XRCID("ID_EXCLUDE_PROPER_NOUNS"), doc->IsIgnoringProperNouns());
+            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->ToggleButton(
+                XRCID("ID_EXCLUDE_AGGRESSIVELY"), doc->IsExcludingAggressively());
+            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->ToggleButton(
+                XRCID("ID_EXCLUDE_COPYRIGHT_NOTICES"), doc->IsIgnoringTrailingCopyrightNoticeParagraphs());
+            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->ToggleButton(
+                XRCID("ID_EXCLUDE_TRAILING_CITATIONS"), doc->IsIgnoringTrailingCitations());
+            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->ToggleButton(
+                XRCID("ID_EXCLUDE_FILE_ADDRESSES"), doc->IsIgnoringFileAddresses());
+            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->ToggleButton(
+                XRCID("ID_EXCLUDE_NUMERALS"), doc->IsIgnoringNumerals());
+            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->ToggleButton(
+                XRCID("ID_EXCLUDE_PROPER_NOUNS"), doc->IsIgnoringProperNouns());
             // disable exclusion buttons
-            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(XRCID("ID_EXCLUDE_AGGRESSIVELY"), (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
-            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(XRCID("ID_EXCLUDE_COPYRIGHT_NOTICES"), (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
-            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(XRCID("ID_EXCLUDE_TRAILING_CITATIONS"), (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
-            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(XRCID("ID_EXCLUDE_FILE_ADDRESSES"), (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
-            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(XRCID("ID_EXCLUDE_NUMERALS"), (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
-            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(XRCID("ID_EXCLUDE_PROPER_NOUNS"), (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
-            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(XRCID("ID_EXCLUDE_WORD_LIST"), (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
-            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(XRCID("ID_EXCLUSION_TAGS"), (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
+            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(
+                XRCID("ID_EXCLUDE_AGGRESSIVELY"),
+                (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
+            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(
+                XRCID("ID_EXCLUDE_COPYRIGHT_NOTICES"),
+                (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
+            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(
+                XRCID("ID_EXCLUDE_TRAILING_CITATIONS"),
+                (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
+            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(
+                XRCID("ID_EXCLUDE_FILE_ADDRESSES"),
+                (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
+            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(
+                XRCID("ID_EXCLUDE_NUMERALS"),
+                (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
+            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(
+                XRCID("ID_EXCLUDE_PROPER_NOUNS"),
+                (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
+            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(
+                XRCID("ID_EXCLUDE_WORD_LIST"),
+                (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
+            dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(
+                XRCID("ID_EXCLUSION_TAGS"),
+                (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
             }
         wxWindow* numeralButtonBar = GetRibbon()->FindWindow(MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR);
         if (numeralButtonBar && numeralButtonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)))

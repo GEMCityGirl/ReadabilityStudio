@@ -596,7 +596,9 @@ void ProjectDoc::LoadMetaFile(const wchar_t* settingsFileText)
             wxGetApp().GetAppOptions().XML_SENTENCE_CONJUNCTION_START_COUNT));
         SetSentenceStartingWithLowercaseCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_SENTENCE_LOWERCASE_START_COUNT));
-        SetMismatchedArticleCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_ARTICLE_MISMATCH_COUNT));
+        SetMismatchedArticleCount(
+            XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
+                wxGetApp().GetAppOptions().XML_ARTICLE_MISMATCH_COUNT));
         SetPassiveVoicesCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
             wxGetApp().GetAppOptions().XML_PASSIVE_VOICE_COUNT));
         SetOverusedWordsBySentenceCount(XmlFormat::GetAttributeLongValue(statsSection, statsSectionEnd,
@@ -931,8 +933,8 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
                         readability::document_classification::general_document) &&
                     rTest->get_test().has_language(GetProjectLanguage()));
                 }
-            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.begin();
-                pos != m_custom_word_tests.end();
+            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
+                pos != m_custom_word_tests.cend();
                 ++pos)
                 {
                 if (pos->has_document_classification(readability::document_classification::general_document))
@@ -951,8 +953,8 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
                         readability::document_classification::technical_document) &&
                     rTest->get_test().has_language(GetProjectLanguage()));
                 }
-            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.begin();
-                pos != m_custom_word_tests.end();
+            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
+                pos != m_custom_word_tests.cend();
                 ++pos)
                 {
                 if (pos->has_document_classification(readability::document_classification::technical_document))
@@ -968,9 +970,13 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
-                { rTest->include(rTest->get_test().has_document_classification(readability::document_classification::nonnarrative_document) && rTest->get_test().has_language(GetProjectLanguage())); }
-            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.begin();
-                pos != m_custom_word_tests.end();
+                {
+                rTest->include(rTest->get_test().has_document_classification(
+                    readability::document_classification::nonnarrative_document) &&
+                    rTest->get_test().has_language(GetProjectLanguage()));
+                }
+            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
+                pos != m_custom_word_tests.cend();
                 ++pos)
                 {
                 if (pos->has_document_classification(readability::document_classification::nonnarrative_document))
@@ -982,27 +988,37 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
-                { rTest->include(rTest->get_test().has_document_classification(readability::document_classification::adult_literature_document) && rTest->get_test().has_language(GetProjectLanguage())); }
-            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.begin();
-                pos != m_custom_word_tests.end();
+                {
+                rTest->include(rTest->get_test().has_document_classification(
+                    readability::document_classification::adult_literature_document) &&
+                    rTest->get_test().has_language(GetProjectLanguage()));
+                }
+            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
+                pos != m_custom_word_tests.cend();
                 ++pos)
                 {
                 if (pos->has_document_classification(readability::document_classification::adult_literature_document))
                     { AddCustomReadabilityTest(wxString(pos->get_name().c_str())); }
                 }
             }
-        else if (wizard->GetSelectedDocumentType() == readability::document_classification::childrens_literature_document)
+        else if (wizard->GetSelectedDocumentType() ==
+            readability::document_classification::childrens_literature_document)
             {
             for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
-                { rTest->include(rTest->get_test().has_document_classification(readability::document_classification::childrens_literature_document) && rTest->get_test().has_language(GetProjectLanguage())); }
+                {
+                rTest->include(rTest->get_test().has_document_classification(
+                    readability::document_classification::childrens_literature_document) &&
+                    rTest->get_test().has_language(GetProjectLanguage()));
+                }
             IncludeDolchSightWords((GetProjectLanguage() == readability::test_language::english_test));
-            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.begin();
-                pos != m_custom_word_tests.end();
+            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
+                pos != m_custom_word_tests.cend();
                 ++pos)
                 {
-                if (pos->has_document_classification(readability::document_classification::childrens_literature_document))
+                if (pos->has_document_classification(
+                    readability::document_classification::childrens_literature_document))
                     { AddCustomReadabilityTest(wxString(pos->get_name().c_str())); }
                 }
             }
@@ -1016,13 +1032,18 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
-                { rTest->include(rTest->get_test().has_industry_classification(readability::industry_classification::childrens_publishing_industry) && rTest->get_test().has_language(GetProjectLanguage())); }
+                {
+                rTest->include(rTest->get_test().has_industry_classification(
+                    readability::industry_classification::childrens_publishing_industry) &&
+                    rTest->get_test().has_language(GetProjectLanguage()));
+                }
             IncludeDolchSightWords((GetProjectLanguage() == readability::test_language::english_test));
-            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.begin();
-                pos != m_custom_word_tests.end();
+            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
+                pos != m_custom_word_tests.cend();
                 ++pos)
                 {
-                if (pos->has_industry_classification(readability::industry_classification::childrens_publishing_industry))
+                if (pos->has_industry_classification(
+                    readability::industry_classification::childrens_publishing_industry))
                     { AddCustomReadabilityTest(wxString(pos->get_name().c_str())); }
                 }
             }
@@ -1031,69 +1052,96 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
-                { rTest->include(rTest->get_test().has_industry_classification(readability::industry_classification::adult_publishing_industry) && rTest->get_test().has_language(GetProjectLanguage())); }
-            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.begin();
-                pos != m_custom_word_tests.end();
+                {
+                rTest->include(rTest->get_test().has_industry_classification(
+                    readability::industry_classification::adult_publishing_industry) &&
+                    rTest->get_test().has_language(GetProjectLanguage()));
+                }
+            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
+                pos != m_custom_word_tests.cend();
                 ++pos)
                 {
                 if (pos->has_industry_classification(readability::industry_classification::adult_publishing_industry))
                     { AddCustomReadabilityTest(wxString(pos->get_name().c_str())); }
                 }
             }
-        else if (wizard->GetSelectedIndustryType() == readability::industry_classification::sedondary_language_industry)
+        else if (wizard->GetSelectedIndustryType() ==
+            readability::industry_classification::sedondary_language_industry)
             {
             for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
-                { rTest->include(rTest->get_test().has_industry_classification(readability::industry_classification::sedondary_language_industry) && rTest->get_test().has_language(GetProjectLanguage())); }
+                {
+                rTest->include(rTest->get_test().has_industry_classification(
+                    readability::industry_classification::sedondary_language_industry) &&
+                    rTest->get_test().has_language(GetProjectLanguage()));
+                }
             IncludeDolchSightWords((GetProjectLanguage() == readability::test_language::english_test));
-            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.begin();
-                pos != m_custom_word_tests.end();
+            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
+                pos != m_custom_word_tests.cend();
                 ++pos)
                 {
-                if (pos->has_industry_classification(readability::industry_classification::sedondary_language_industry))
+                if (pos->has_industry_classification(
+                    readability::industry_classification::sedondary_language_industry))
                     { AddCustomReadabilityTest(wxString(pos->get_name().c_str())); }
                 }
             }
-        else if (wizard->GetSelectedIndustryType() == readability::industry_classification::childrens_healthcare_industry)
+        else if (wizard->GetSelectedIndustryType() ==
+            readability::industry_classification::childrens_healthcare_industry)
             {
             for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
-                { rTest->include(rTest->get_test().has_industry_classification(readability::industry_classification::childrens_healthcare_industry) && rTest->get_test().has_language(GetProjectLanguage())); }
-            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.begin();
-                pos != m_custom_word_tests.end();
+                {
+                rTest->include(rTest->get_test().has_industry_classification(
+                    readability::industry_classification::childrens_healthcare_industry) &&
+                    rTest->get_test().has_language(GetProjectLanguage()));
+                }
+            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
+                pos != m_custom_word_tests.cend();
                 ++pos)
                 {
-                if (pos->has_industry_classification(readability::industry_classification::childrens_healthcare_industry))
+                if (pos->has_industry_classification(
+                    readability::industry_classification::childrens_healthcare_industry))
                     { AddCustomReadabilityTest(wxString(pos->get_name().c_str())); }
                 }
             }
-        else if (wizard->GetSelectedIndustryType() == readability::industry_classification::adult_healthcare_industry)
+        else if (wizard->GetSelectedIndustryType() ==
+            readability::industry_classification::adult_healthcare_industry)
             {
             for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
-                { rTest->include(rTest->get_test().has_industry_classification(readability::industry_classification::adult_healthcare_industry) && rTest->get_test().has_language(GetProjectLanguage())); }
-            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.begin();
-                pos != m_custom_word_tests.end();
+                {
+                rTest->include(rTest->get_test().has_industry_classification(
+                    readability::industry_classification::adult_healthcare_industry) &&
+                    rTest->get_test().has_language(GetProjectLanguage()));
+                }
+            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
+                pos != m_custom_word_tests.cend();
                 ++pos)
                 {
                 if (pos->has_industry_classification(readability::industry_classification::adult_healthcare_industry))
                     { AddCustomReadabilityTest(wxString(pos->get_name().c_str())); }
                 }
             }
-        else if (wizard->GetSelectedIndustryType() == readability::industry_classification::military_government_industry)
+        else if (wizard->GetSelectedIndustryType() ==
+            readability::industry_classification::military_government_industry)
             {
             for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
-                { rTest->include(rTest->get_test().has_industry_classification(readability::industry_classification::military_government_industry) && rTest->get_test().has_language(GetProjectLanguage())); }
-            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.begin();
-                pos != m_custom_word_tests.end();
+                {
+                rTest->include(rTest->get_test().has_industry_classification(
+                    readability::industry_classification::military_government_industry) &&
+                    rTest->get_test().has_language(GetProjectLanguage()));
+                }
+            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
+                pos != m_custom_word_tests.cend();
                 ++pos)
                 {
-                if (pos->has_industry_classification(readability::industry_classification::military_government_industry))
+                if (pos->has_industry_classification(
+                    readability::industry_classification::military_government_industry))
                     { AddCustomReadabilityTest(wxString(pos->get_name().c_str())); }
                 }
             }
@@ -1102,9 +1150,13 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             for (auto rTest = GetReadabilityTests().get_tests().begin();
                 rTest != GetReadabilityTests().get_tests().end();
                 ++rTest)
-                { rTest->include(rTest->get_test().has_industry_classification(readability::industry_classification::broadcasting_industry) && rTest->get_test().has_language(GetProjectLanguage())); }
-            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.begin();
-                pos != m_custom_word_tests.end();
+                {
+                rTest->include(rTest->get_test().has_industry_classification(
+                    readability::industry_classification::broadcasting_industry) &&
+                    rTest->get_test().has_language(GetProjectLanguage()));
+                }
+            for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
+                pos != m_custom_word_tests.cend();
                 ++pos)
                 {
                 if (pos->has_industry_classification(readability::industry_classification::broadcasting_industry))
@@ -3284,7 +3336,8 @@ void ProjectDoc::DisplayReadabilityGraphs()
                     { BarChart::BarBlock(BarChart::BarBlockInfo(dolchNounPercentage).Brush(GetDolchNounColor())) }
                 },
                 wxNumberFormatter::ToString(dolchNounPercentage, 1,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep) +
                 L"%", GraphItems::Label(_(L"Nouns")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
@@ -3296,7 +3349,8 @@ void ProjectDoc::DisplayReadabilityGraphs()
                     { BarChart::BarBlock(BarChart::BarBlockInfo(dolchVerbsPercentage).Brush(GetDolchVerbsColor())) }
                 },
                 wxNumberFormatter::ToString(dolchVerbsPercentage, 1,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep) +
                 L"%", GraphItems::Label(_(L"Verbs")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
@@ -3307,7 +3361,8 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 { { BarChart::BarBlock(BarChart::BarBlockInfo(dolchAdjectivesPercentage).
                     Brush(GetDolchAdjectivesColor())) } },
                 wxNumberFormatter::ToString(dolchAdjectivesPercentage, 1,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep) +
                 L"%", GraphItems::Label(_(L"Adjectives")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
@@ -3315,9 +3370,13 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 safe_divide<double>((ProjectReportFormat::MAX_DOLCH_ADVERB_WORDS-GetUnusedDolchAdverbs()),
                     ProjectReportFormat::MAX_DOLCH_ADVERB_WORDS)*100;
             coverageBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(dolchAdverbsPercentage).Brush(GetDolchAdverbsColor())) } },
+                {
+                    { BarChart::BarBlock(
+                        BarChart::BarBlockInfo(dolchAdverbsPercentage).Brush(GetDolchAdverbsColor())) }
+                },
                 wxNumberFormatter::ToString(dolchAdverbsPercentage, 1,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep) +
                 L"%", GraphItems::Label(_(L"Adverbs")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
@@ -3325,44 +3384,66 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 safe_divide<double>((ProjectReportFormat::MAX_DOLCH_PRONOUN_WORDS-GetUnusedDolchPronouns()),
                     ProjectReportFormat::MAX_DOLCH_PRONOUN_WORDS)*100;
             coverageBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(dolchPronounsPercentage).Brush(GetDolchPronounsColor())) } },
+                {
+                    { BarChart::BarBlock(
+                        BarChart::BarBlockInfo(dolchPronounsPercentage).Brush(GetDolchPronounsColor())) }
+                },
                 wxNumberFormatter::ToString(dolchPronounsPercentage, 1,
                 wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
                 L"%", GraphItems::Label(_(L"Pronouns")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
-            const double dolchPrepositionsPercentage = safe_divide<double>((ProjectReportFormat::MAX_DOLCH_PREPOSITION_WORDS-GetUnusedDolchPrepositions()),ProjectReportFormat::MAX_DOLCH_PREPOSITION_WORDS)*100;
+            const double dolchPrepositionsPercentage =
+                safe_divide<double>(
+                    (ProjectReportFormat::MAX_DOLCH_PREPOSITION_WORDS-GetUnusedDolchPrepositions()),
+                     ProjectReportFormat::MAX_DOLCH_PREPOSITION_WORDS)*100;
             coverageBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(dolchPrepositionsPercentage).Brush(GetDolchPrepositionsColor())) } },
+                {
+                    { BarChart::BarBlock(
+                        BarChart::BarBlockInfo(dolchPrepositionsPercentage).Brush(GetDolchPrepositionsColor())) }
+                },
                 wxNumberFormatter::ToString(dolchPrepositionsPercentage, 1,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"%", GraphItems::Label(_(L"Prepositions")),
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep) + L"%", GraphItems::Label(_(L"Prepositions")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
-            const double dolchConjunctionsPercentage = safe_divide<double>((ProjectReportFormat::MAX_DOLCH_CONJUNCTION_WORDS-GetUnusedDolchConjunctions()),ProjectReportFormat::MAX_DOLCH_CONJUNCTION_WORDS)*100;
+            const double dolchConjunctionsPercentage =
+                safe_divide<double>(
+                    (ProjectReportFormat::MAX_DOLCH_CONJUNCTION_WORDS-GetUnusedDolchConjunctions()),
+                     ProjectReportFormat::MAX_DOLCH_CONJUNCTION_WORDS)*100;
             coverageBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(dolchConjunctionsPercentage).Brush(GetDolchConjunctionsColor())) } },
+                {
+                    { BarChart::BarBlock(
+                        BarChart::BarBlockInfo(dolchConjunctionsPercentage).Brush(GetDolchConjunctionsColor())) }
+                },
                 wxNumberFormatter::ToString(dolchConjunctionsPercentage, 1,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) + L"%", GraphItems::Label(_(L"Conjunctions")),
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep) +
+                L"%", GraphItems::Label(_(L"Conjunctions")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
             // update the bar labels
             coverageBarChart->SetBinLabelDisplay(IsDisplayingBarLabels() ?
                 BinLabelDisplay::BinPercentage : BinLabelDisplay::NoDisplay);
 
-            coverageBarChart->SortBars(BarChart::BarSortComparison::SortByBarLength, coverageBarChart->GetSortDirection());
+            coverageBarChart->SortBars(
+                BarChart::BarSortComparison::SortByBarLength, coverageBarChart->GetSortDirection());
 
             coverageBarChartCanvas->CalcAllSizes(gdc);
 
             // Dolch words breakdown chart
-            const size_t totalDolchWords = m_dolchConjunctionCounts.second + m_dolchPrepositionCounts.second + m_dolchPronounCounts.second +
-                m_dolchAdverbCounts.second + m_dolchAdjectiveCounts.second + m_dolchVerbCounts.second + m_dolchNounCounts.second;
+            const size_t totalDolchWords = m_dolchConjunctionCounts.second +
+                m_dolchPrepositionCounts.second + m_dolchPronounCounts.second +
+                m_dolchAdverbCounts.second + m_dolchAdjectiveCounts.second +
+                m_dolchVerbCounts.second + m_dolchNounCounts.second;
 
             Wisteria::Canvas* wordBarChartCanvas =
                 dynamic_cast<Wisteria::Canvas*>(view->GetDolchSightWordsView().FindWindowById(
                     BaseProjectView::DOLCH_BREAKDOWN_PAGE_ID));
             if (!wordBarChartCanvas)
                 {
-                wordBarChartCanvas = new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::DOLCH_BREAKDOWN_PAGE_ID);
+                wordBarChartCanvas =
+                    new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::DOLCH_BREAKDOWN_PAGE_ID);
                 wordBarChartCanvas->SetFixedObjectsGridSize(1,1);
                 wordBarChartCanvas->SetFixedObject(0,0,std::make_shared<BarChart>(wordBarChartCanvas));
                 wordBarChartCanvas->Hide();
@@ -3378,7 +3459,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 view->GetDolchSightWordsView().AddWindow(wordBarChartCanvas);
                 }
             UpdateGraphOptions(wordBarChartCanvas);
-            auto dolchBarChart = std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0,0));
+            auto dolchBarChart = std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0, 0));
             wxASSERT(dolchBarChart);
 
             dolchBarChart->ClearBars();
@@ -3397,64 +3478,114 @@ void ProjectDoc::DisplayReadabilityGraphs()
             currentBar = 0;
 
             dolchBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetDolchNounCounts().second)).Brush(GetDolchNounColor())) } },
+                {
+                    { BarChart::BarBlock(
+                        BarChart::BarBlockInfo(static_cast<double>(GetDolchNounCounts().second)).
+                        Brush(GetDolchNounColor())) }
+                },
                 wxNumberFormatter::ToString(GetDolchNounCounts().second, 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Nouns")),
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Nouns")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
             dolchBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetDolchVerbsCounts().second)).Brush(GetDolchVerbsColor())) } },
+                {
+                    { BarChart::BarBlock(
+                        BarChart::BarBlockInfo(static_cast<double>(GetDolchVerbsCounts().second)).
+                        Brush(GetDolchVerbsColor())) }
+                },
                 wxNumberFormatter::ToString(GetDolchVerbsCounts().second, 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Verbs")),
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Verbs")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
             dolchBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetDolchAdjectiveCounts().second)).Brush(GetDolchAdjectivesColor())) } },
+                {
+                    { BarChart::BarBlock(
+                       BarChart::BarBlockInfo(static_cast<double>(GetDolchAdjectiveCounts().second)).
+                       Brush(GetDolchAdjectivesColor())) }
+                },
                 wxNumberFormatter::ToString(GetDolchAdjectiveCounts().second, 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Adjectives")),
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Adjectives")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
             dolchBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetDolchAdverbCounts().second)).Brush(GetDolchAdverbsColor())) } },
+                {
+                    { BarChart::BarBlock(
+                       BarChart::BarBlockInfo(static_cast<double>(GetDolchAdverbCounts().second)).
+                       Brush(GetDolchAdverbsColor())) }
+                },
                 wxNumberFormatter::ToString(GetDolchAdverbCounts().second, 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Adverbs")),
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Adverbs")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
             dolchBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetDolchPronounCounts().second)).Brush(GetDolchPronounsColor())) } },
+                {
+                    { BarChart::BarBlock(
+                       BarChart::BarBlockInfo(static_cast<double>(GetDolchPronounCounts().second)).
+                       Brush(GetDolchPronounsColor())) }
+                },
                 wxNumberFormatter::ToString(GetDolchPronounCounts().second, 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Pronouns")),
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Pronouns")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
             dolchBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetDolchPrepositionWordCounts().second)).Brush(GetDolchPrepositionsColor())) } },
+                {
+                    { BarChart::BarBlock(
+                        BarChart::BarBlockInfo(static_cast<double>(GetDolchPrepositionWordCounts().second)).
+                            Brush(GetDolchPrepositionsColor())) }
+                },
                 wxNumberFormatter::ToString(GetDolchPrepositionWordCounts().second, 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Prepositions")),
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Prepositions")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
             dolchBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetDolchConjunctionCounts().second)).Brush(GetDolchConjunctionsColor())) } },
+                {
+                    { BarChart::BarBlock(
+                        BarChart::BarBlockInfo(static_cast<double>(GetDolchConjunctionCounts().second)).
+                        Brush(GetDolchConjunctionsColor())) }
+                },
                 wxNumberFormatter::ToString(GetDolchConjunctionCounts().second, 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Conjunctions")),
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Conjunctions")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
             dolchBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalWords() - totalDolchWords)).Brush(GetBarChartBarColor())) } },
+                {
+                    { BarChart::BarBlock(
+                        BarChart::BarBlockInfo(static_cast<double>(GetTotalWords() - totalDolchWords)).
+                        Brush(GetBarChartBarColor())) }
+                },
                 wxNumberFormatter::ToString((GetTotalWords()-totalDolchWords), 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Non-Dolch Words")),
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Non-Dolch Words")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
             dolchBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(totalDolchWords)).Brush(GetBarChartBarColor())) } },
+                {
+                    { BarChart::BarBlock(
+                        BarChart::BarBlockInfo(static_cast<double>(totalDolchWords)).
+                            Brush(GetBarChartBarColor())) }
+                },
                 wxNumberFormatter::ToString(totalDolchWords, 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Total Dolch Words")),
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Total Dolch Words")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
             // all the words
             dolchBarChart->AddBar(BarChart::Bar(++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalWords())).Brush(GetBarChartBarColor())) } },
+                {
+                    { BarChart::BarBlock(
+                        BarChart::BarBlockInfo(static_cast<double>(GetTotalWords())).
+                        Brush(GetBarChartBarColor())) }
+                },
                 wxNumberFormatter::ToString(GetTotalWords(), 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Total Words")),
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                    wxNumberFormatter::Style::Style_WithThousandsSep), GraphItems::Label(_(L"Total Words")),
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
             // update the bar labels
@@ -4184,11 +4315,18 @@ void ProjectDoc::SetReadabilityTestResult(const wxString& testId,
     if (std::isnan(indexScore))
         { view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 3, wxEmptyString); }
     else
-        { view->GetReadabilityScoresList()->GetDataProvider()->SetItemValue(location, 3, round_decimal_place(indexScore, 10), NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)); }
+        {
+        view->GetReadabilityScoresList()->GetDataProvider()->SetItemValue(
+            location, 3, round_decimal_place(indexScore, 10),
+            NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1));
+        }
     if (std::isnan(clozeScore))
         { view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 4, wxEmptyString); }
     else
-        { view->GetReadabilityScoresList()->GetDataProvider()->SetItemValue(location, 4, round_to_integer(clozeScore)); }
+        {
+        view->GetReadabilityScoresList()->GetDataProvider()->SetItemValue(
+            location, 4, round_to_integer(clozeScore));
+        }
     view->GetReadabilityScoresList()->GetExplanations()[testName] = explanationString;
 
     // select item and select scores window in the main project view
@@ -4316,25 +4454,35 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             const wxColour highlightColorAdjusted = (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(highlightColor) : highlightColor;
 
-            const wxColour errorHighlightColor = (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
+            const wxColour errorHighlightColor =
+                (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetDuplicateWordHighlightColor()) : GetDuplicateWordHighlightColor();
-            const wxColour styleHighlightColor = (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
+            const wxColour styleHighlightColor =
+                (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetWordyPhraseHighlightColor()) : GetWordyPhraseHighlightColor();
-            const wxColour excludedTextHighlightColor = (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
+            const wxColour excludedTextHighlightColor =
+                (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetExcludedTextHighlightColor()) : GetExcludedTextHighlightColor();
-            const wxColour dolchConjunctionsTextHighlightColor = (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
+            const wxColour dolchConjunctionsTextHighlightColor =
+                (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetDolchConjunctionsColor()) : GetDolchConjunctionsColor();
-            const wxColour dolchPrepositionsTextHighlightColor = (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
+            const wxColour dolchPrepositionsTextHighlightColor =
+                (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetDolchPrepositionsColor()) : GetDolchPrepositionsColor();
-            const wxColour dolchPronounsTextHighlightColor = (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
+            const wxColour dolchPronounsTextHighlightColor =
+                (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetDolchPronounsColor()) : GetDolchPronounsColor();
-            const wxColour dolchAdverbsTextHighlightColor = (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
+            const wxColour dolchAdverbsTextHighlightColor =
+                (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetDolchAdverbsColor()) : GetDolchAdverbsColor();
-            const wxColour dolchAdjectivesTextHighlightColor = (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
+            const wxColour dolchAdjectivesTextHighlightColor =
+                (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetDolchAdjectivesColor()) : GetDolchAdjectivesColor();
-            const wxColour dolchVerbsTextHighlightColor = (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
+            const wxColour dolchVerbsTextHighlightColor =
+                (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetDolchVerbsColor()) : GetDolchVerbsColor();
-            const wxColour dolchNounTextHighlightColor = (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
+            const wxColour dolchNounTextHighlightColor =
+                (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetDolchNounColor()) : GetDolchNounColor();
 
             // black is at position 1,
@@ -4347,20 +4495,29 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 highlightColorAdjusted.Red(), highlightColorAdjusted.Green(), highlightColorAdjusted.Blue(),
                 errorHighlightColor.Red(), errorHighlightColor.Green(), errorHighlightColor.Blue(),
                 styleHighlightColor.Red(), styleHighlightColor.Green(), styleHighlightColor.Blue(),
-                excludedTextHighlightColor.Red(), excludedTextHighlightColor.Green(), excludedTextHighlightColor.Blue(),
-                dolchConjunctionsTextHighlightColor.Red(), dolchConjunctionsTextHighlightColor.Green(), dolchConjunctionsTextHighlightColor.Blue(),
-                dolchPrepositionsTextHighlightColor.Red(), dolchPrepositionsTextHighlightColor.Green(), dolchPrepositionsTextHighlightColor.Blue(),
-                dolchPronounsTextHighlightColor.Red(), dolchPronounsTextHighlightColor.Green(), dolchPronounsTextHighlightColor.Blue(),
-                dolchAdverbsTextHighlightColor.Red(), dolchAdverbsTextHighlightColor.Green(), dolchAdverbsTextHighlightColor.Blue());
+                excludedTextHighlightColor.Red(), excludedTextHighlightColor.Green(),
+                excludedTextHighlightColor.Blue(),
+                dolchConjunctionsTextHighlightColor.Red(), dolchConjunctionsTextHighlightColor.Green(),
+                dolchConjunctionsTextHighlightColor.Blue(),
+                dolchPrepositionsTextHighlightColor.Red(), dolchPrepositionsTextHighlightColor.Green(),
+                dolchPrepositionsTextHighlightColor.Blue(),
+                dolchPronounsTextHighlightColor.Red(), dolchPronounsTextHighlightColor.Green(),
+                dolchPronounsTextHighlightColor.Blue(),
+                dolchAdverbsTextHighlightColor.Red(), dolchAdverbsTextHighlightColor.Green(),
+                dolchAdverbsTextHighlightColor.Blue());
             colorTable += wxString::Format(
                 L"\\red%u\\green%u\\blue%u;\\red%u"
                 "\\green%u\\blue%u;\\red%u\\green%u\\blue%u;"
                 "\\red255\\green255\\blue255;}",
-                dolchAdjectivesTextHighlightColor.Red(), dolchAdjectivesTextHighlightColor.Green(), dolchAdjectivesTextHighlightColor.Blue(),
-                dolchVerbsTextHighlightColor.Red(), dolchVerbsTextHighlightColor.Green(), dolchVerbsTextHighlightColor.Blue(),
-                dolchNounTextHighlightColor.Red(), dolchNounTextHighlightColor.Green(), dolchNounTextHighlightColor.Blue());
+                dolchAdjectivesTextHighlightColor.Red(), dolchAdjectivesTextHighlightColor.Green(),
+                dolchAdjectivesTextHighlightColor.Blue(),
+                dolchVerbsTextHighlightColor.Red(), dolchVerbsTextHighlightColor.Green(),
+                dolchVerbsTextHighlightColor.Blue(),
+                dolchNounTextHighlightColor.Red(), dolchNounTextHighlightColor.Green(),
+                dolchNounTextHighlightColor.Blue());
 
-            const auto [mainFontHeaderThemed, ending] = formatFontHeader(((backgroundColor.GetLuminance() < .5f) ? 13 : 1));
+            const auto [mainFontHeaderThemed, ending] =
+                formatFontHeader(((backgroundColor.GetLuminance() < .5f) ? 13 : 1));
             endSection = ending;
 
             return std::make_pair(colorTable, mainFontHeaderThemed);
@@ -4516,7 +4673,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         /// @todo add black/white contrasting in HighlightBackground mode
         const wxString HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"<span background=\"%s\">", highlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
-            wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">", highlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
+            wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
+                highlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
         const wxString HIGHLIGHT_END = L"</span>";
         const wxString ERROR_HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"<span background=\"%s\">", errorHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
@@ -4525,42 +4683,58 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             wxString::Format(L"<span background=\"%s\">", styleHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString::Format(L"<span foreground=\"%s\">", styleHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
         const wxString IGNORE_HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-            wxString::Format(L"<span background=\"%s\" strikethrough=\"true\">", excludedTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
-            wxString::Format(L"<span foreground=\"%s\" strikethrough=\"true\">", excludedTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
+            wxString::Format(L"<span background=\"%s\" strikethrough=\"true\">",
+                excludedTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+            wxString::Format(L"<span foreground=\"%s\" strikethrough=\"true\">",
+                excludedTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
         const wxString DOLCH_CONJUNCTION_BEGIN = IsHighlightingDolchConjunctions() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-               wxString::Format(L"<span background=\"%s\">", dolchConjunctionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
-               wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">", dolchConjunctionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+               wxString::Format(L"<span background=\"%s\">",
+                   dolchConjunctionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+               wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
+                   dolchConjunctionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
         const wxString DOLCH_PREPOSITIONS_BEGIN = IsHighlightingDolchPrepositions() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-               wxString::Format(L"<span background=\"%s\">", dolchPrepositionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
-               wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">", dolchPrepositionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+               wxString::Format(L"<span background=\"%s\">",
+                   dolchPrepositionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+               wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
+                   dolchPrepositionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
         const wxString DOLCH_PRONOUN_BEGIN = IsHighlightingDolchPronouns() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-               wxString::Format(L"<span background=\"%s\">", dolchPronounsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
-               wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">", dolchPronounsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+               wxString::Format(L"<span background=\"%s\">",
+                   dolchPronounsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+               wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
+                   dolchPronounsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
         const wxString DOLCH_ADVERB_BEGIN = IsHighlightingDolchAdverbs() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-               wxString::Format(L"<span background=\"%s\">", dolchAdverbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
-               wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">", dolchAdverbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+               wxString::Format(L"<span background=\"%s\">",
+                   dolchAdverbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+               wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
+                   dolchAdverbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
         const wxString DOLCH_ADJECTIVE_BEGIN = IsHighlightingDolchAdjectives() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-               wxString::Format(L"<span background=\"%s\">", dolchAdjectivesTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
-               wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">", dolchAdjectivesTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+               wxString::Format(L"<span background=\"%s\">",
+                   dolchAdjectivesTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+               wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
+                   dolchAdjectivesTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
         const wxString DOLCH_VERB_BEGIN = IsHighlightingDolchVerbs() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-               wxString::Format(L"<span background=\"%s\">", dolchVerbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
-               wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">", dolchVerbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+               wxString::Format(L"<span background=\"%s\">",
+                   dolchVerbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+               wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
+                   dolchVerbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
         const wxString DOLCH_NOUN_BEGIN = IsHighlightingDolchNouns() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-               wxString::Format(L"<span background=\"%s\">", dolchNounTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
-               wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">", dolchNounTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+               wxString::Format(L"<span background=\"%s\">",
+                   dolchNounTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+               wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
+                   dolchNounTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
         const wxString IGNORE_HIGHLIGHT_END = L"</span>";
         const wxString BOLD_BEGIN = L"<b>";
@@ -4569,32 +4743,44 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         const wxString CRLF = L"\n";
 
         // these are used for the legend lines because they are always set to use background highlighting
-        const wxString HIGHLIGHT_BEGIN_LEGEND = wxString::Format(L"<span background=\"%s\">", highlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
+        const wxString HIGHLIGHT_BEGIN_LEGEND =
+            wxString::Format(L"<span background=\"%s\">", highlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
         const wxString HIGHLIGHT_END_LEGEND = L"</span>";
-        const wxString DUPLICATE_HIGHLIGHT_BEGIN_LEGEND = wxString::Format(L"<span background=\"%s\">", errorHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
-        const wxString PHRASE_HIGHLIGHT_BEGIN_LEGEND = wxString::Format(L"<span background=\"%s\">", styleHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
-        const wxString IGNORE_HIGHLIGHT_BEGIN_LEGEND = wxString::Format(L"<span background=\"%s\" strikethrough=\"true\">", excludedTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
+        const wxString DUPLICATE_HIGHLIGHT_BEGIN_LEGEND =
+            wxString::Format(L"<span background=\"%s\">", errorHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
+        const wxString PHRASE_HIGHLIGHT_BEGIN_LEGEND =
+            wxString::Format(L"<span background=\"%s\">", styleHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
+        const wxString IGNORE_HIGHLIGHT_BEGIN_LEGEND =
+            wxString::Format(L"<span background=\"%s\" strikethrough=\"true\">",
+                excludedTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) );
         // dolch highlighting
         const wxString DOLCH_CONJUNCTION_BEGIN_LEGEND = IsHighlightingDolchConjunctions() ?
-            wxString::Format(L"<span background=\"%s\">", dolchConjunctionsextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+            wxString::Format(L"<span background=\"%s\">",
+                dolchConjunctionsextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
         const wxString DOLCH_PREPOSITIONS_BEGIN_LEGEND = IsHighlightingDolchPrepositions() ?
-            wxString::Format(L"<span background=\"%s\">", dolchPrepositionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+            wxString::Format(L"<span background=\"%s\">",
+                dolchPrepositionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
         const wxString DOLCH_PRONOUN_BEGIN_LEGEND = IsHighlightingDolchPronouns() ?
-            wxString::Format(L"<span background=\"%s\">", dolchPronounsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+            wxString::Format(L"<span background=\"%s\">",
+                dolchPronounsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
         const wxString DOLCH_ADVERB_BEGIN_LEGEND = IsHighlightingDolchAdverbs() ?
-            wxString::Format(L"<span background=\"%s\">", dolchAdverbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+            wxString::Format(L"<span background=\"%s\">",
+                dolchAdverbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
         const wxString DOLCH_ADJECTIVE_BEGIN_LEGEND = IsHighlightingDolchAdjectives() ?
-            wxString::Format(L"<span background=\"%s\">", dolchAdjectivesTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+            wxString::Format(L"<span background=\"%s\">",
+                dolchAdjectivesTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
         const wxString DOLCH_VERB_BEGIN_LEGEND = IsHighlightingDolchVerbs() ?
-            wxString::Format(L"<span background=\"%s\">", dolchVerbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+            wxString::Format(L"<span background=\"%s\">",
+                dolchVerbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
         const wxString DOLCH_NOUN_BEGIN_LEGEND = IsHighlightingDolchNouns() ?
-            wxString::Format(L"<span background=\"%s\">", dolchNounTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+            wxString::Format(L"<span background=\"%s\">",
+                dolchNounTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
     #endif
 
@@ -4633,230 +4819,239 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             fontFamily = L"fnil";
             };
 
-        const wxString headerSection = wxString::Format(L"{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1033{\\fonttbl{\\f0\\%s\\fcharset0 %s;}}",
+        const wxString headerSection =
+            wxString::Format(L"{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1033{\\fonttbl{\\f0\\%s\\fcharset0 %s;}}",
             fontFamily, textViewFont.GetFaceName() );
 
         wxString endSection;
-        const auto [colorTableThemed, mainFontHeaderThemed] = formatColorTable(GetTextReportBackgroundColor(), endSection);
-        const auto [colorTableWhitePaper, mainFontHeaderWhitePaper] = formatColorTable(*wxWHITE, endSection);
+        const auto [colorTableThemed, mainFontHeaderThemed] =
+            formatColorTable(GetTextReportBackgroundColor(), endSection);
+        const auto [colorTableWhitePaper, mainFontHeaderWhitePaper] =
+            formatColorTable(*wxWHITE, endSection);
 
         const auto headerThemed = headerSection+colorTableThemed+mainFontHeaderThemed;
         const auto headerWhitePaper = headerSection+colorTableWhitePaper+mainFontHeaderWhitePaper;
 
     #elif defined(__WXGTK__)
-        const wxString headerSection = wxString::Format(L"<span face=\"%s\" size=\"%u\" style=\"%s\" weight=\"%s\" underline=\"%s\">",
-                                                       textViewFont.GetFaceName(),
-                                                       textViewFont.GetPointSize()*1024,//"size" in Pango is 1024th of a point
-                                                       (textViewFont.GetStyle() == wxFONTSTYLE_ITALIC) ? _DT(L"italic") : _DT(L"normal"),
-                                                       (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? _DT(L"bold") : _DT(L"normal"),
-                                                       textViewFont.GetUnderlined() ? _DT(L"single") : _DT(L"none"));
+        const wxString headerSection =
+            wxString::Format(L"<span face=\"%s\" size=\"%u\" style=\"%s\" weight=\"%s\" underline=\"%s\">",
+                textViewFont.GetFaceName(),
+                // "size" in Pango is 1024th of a point
+                textViewFont.GetPointSize()*1024,
+                (textViewFont.GetStyle() == wxFONTSTYLE_ITALIC) ? _DT(L"italic") : _DT(L"normal"),
+                (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? _DT(L"bold") : _DT(L"normal"),
+                textViewFont.GetUnderlined() ? _DT(L"single") : _DT(L"none"));
         const wxString endSection = L"</span>";
     #endif
 
         // lines used for the legends
         wxString currentLegendLabel{ _(L"Excluded text") };
         const wxString ignoredSentencesLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                                        CRLF,
-                                        IGNORE_HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                                    #ifdef __WXGTK__
-                                        lily_of_the_valley:html_encode_text::simple_encode(
-                                            { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                                    #else
-                                        rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                                    #endif
-                                        CRLF);
+                CRLF,
+                IGNORE_HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley:html_encode_text::simple_encode(
+                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #endif
+                CRLF);
         currentLegendLabel = _(L"3+ syllable words");
         const wxString hardWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                                        CRLF,
-                                        HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                                    #ifdef __WXGTK__
-                                        lily_of_the_valley:html_encode_text::simple_encode(
-                                            { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                                    #else
-                                        rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                                    #endif
-                                        CRLF);
+                CRLF,
+                HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley:html_encode_text::simple_encode(
+                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #endif
+                CRLF);
         currentLegendLabel = _(L"6+ character words");
         const wxString longWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                                        CRLF,
-                                        HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                                    #ifdef __WXGTK__
-                                        lily_of_the_valley:html_encode_text::simple_encode(
-                                            { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                                    #else
-                                        rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                                    #endif
-                                        CRLF);
+                CRLF,
+                HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley:html_encode_text::simple_encode(
+                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #endif
+                CRLF);
         currentLegendLabel = _(L"Unfamiliar New Dale-Chall words");
         const wxString unfamiliarDCWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                                        CRLF,
-                                        HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                                    #ifdef __WXGTK__
-                                        lily_of_the_valley:html_encode_text::simple_encode(
-                                            { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                                    #else
-                                        rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                                    #endif
-                                        CRLF);
+                CRLF,
+                HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley:html_encode_text::simple_encode(
+                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #endif
+                CRLF);
         currentLegendLabel = _(L"Unfamiliar Spache Revised words");
         const wxString unfamiliarSpacheWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                                        CRLF,
-                                        HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                                    #ifdef __WXGTK__
-                                        lily_of_the_valley:html_encode_text::simple_encode(
-                                            { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                                    #else
-                                        rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                                    #endif
-                                        CRLF);
+                CRLF,
+                HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley:html_encode_text::simple_encode(
+                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #endif
+                CRLF);
         currentLegendLabel = _(L"Unfamiliar Harris-Jacobson words");
         const wxString unfamiliarHarrisJacobsonWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                                        CRLF,
-                                        HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                                    #ifdef __WXGTK__
-                                        lily_of_the_valley:html_encode_text::simple_encode(
-                                            { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                                    #else
-                                        rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                                    #endif
-                                        CRLF);
+                CRLF,
+                HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley:html_encode_text::simple_encode(
+                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #endif
+                CRLF);
         currentLegendLabel = _(L"Overly-long sentences");
         const wxString longSentencesLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                                        CRLF,
-                                        HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                                    #ifdef __WXGTK__
-                                        lily_of_the_valley:html_encode_text::simple_encode(
-                                            { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                                    #else
-                                        rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                                    #endif
-                                        CRLF);
-        const wxString grammarIssuesLegendLabel = (GetProjectLanguage() == readability::test_language::english_test) ? _(L"Errors (Repeated words, wording errors, mismatched articles, and misspellings)") : _(L"Errors (Repeated words)");
+                CRLF,
+                HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley:html_encode_text::simple_encode(
+                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #endif
+                CRLF);
+        const wxString grammarIssuesLegendLabel =
+            (GetProjectLanguage() == readability::test_language::english_test) ?
+            _(L"Errors (Repeated words, wording errors, mismatched articles, and misspellings)") :
+            _(L"Errors (Repeated words)");
         const wxString grammarIssuesLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                                        CRLF,
-                                        DUPLICATE_HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                                    #ifdef __WXGTK__
-                                        lily_of_the_valley:html_encode_text::simple_encode(
-                                            { grammarIssuesLegendLabel.wc_str(), grammarIssuesLegendLabel.length() }).c_str(),
-                                    #else
-                                        rtfEncode({ grammarIssuesLegendLabel.wc_str(), grammarIssuesLegendLabel.length()}).c_str(),
-                                    #endif
-                                        CRLF);
-        const wxString writingStyleLegendLabel = _(L"Style (Wordy items, redundant phrases, passive voice, and clich\351s)");
+                CRLF,
+                DUPLICATE_HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley:html_encode_text::simple_encode(
+                    { grammarIssuesLegendLabel.wc_str(), grammarIssuesLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ grammarIssuesLegendLabel.wc_str(), grammarIssuesLegendLabel.length()}).c_str(),
+            #endif
+                CRLF);
+        const wxString writingStyleLegendLabel =
+            _(L"Style (Wordy items, redundant phrases, passive voice, and clich\351s)");
         const wxString writingStyleLegendLine = (GetProjectLanguage() == readability::test_language::english_test) ?
-                                    wxString::Format(L"%s    %s   %s  %s%s",
-                                        CRLF,
-                                        PHRASE_HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                                    #ifdef __WXGTK__
-                                        lily_of_the_valley:html_encode_text::simple_encode(
-                                            { writingStyleLegendLabel.wc_str(), writingStyleLegendLabel.length() }).c_str(),
-                                    #else
-                                        rtfEncode({ writingStyleLegendLabel.wc_str(), writingStyleLegendLabel.length() }).c_str(),
-                                    #endif
-                                        CRLF) :
-                                    wxString{};
+            wxString::Format(L"%s    %s   %s  %s%s",
+                CRLF,
+                PHRASE_HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley:html_encode_text::simple_encode(
+                    { writingStyleLegendLabel.wc_str(), writingStyleLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ writingStyleLegendLabel.wc_str(), writingStyleLegendLabel.length() }).c_str(),
+            #endif
+                CRLF) :
+            wxString{};
         currentLegendLabel = _(L"Dolch conjunctions");
         const wxString dolch1WordsLegendLine = IsHighlightingDolchConjunctions() ?
             wxString::Format(L"%s    %s   %s  %s%s",
-                        CRLF,
-                        DOLCH_CONJUNCTION_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                    #ifdef __WXGTK__
-                        lily_of_the_valley:html_encode_text::simple_encode(
-                            { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                    #else
-                        rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                    #endif
-                        CRLF) :
+                    CRLF,
+                    DOLCH_CONJUNCTION_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+                #ifdef __WXGTK__
+                    lily_of_the_valley:html_encode_text::simple_encode(
+                        { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                #else
+                    rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                #endif
+                    CRLF) :
             wxString{};
         currentLegendLabel = _(L"Dolch prepositions");
         const wxString dolch2WordsLegendLine = IsHighlightingDolchPrepositions() ?
             wxString::Format(L"%s    %s   %s  %s%s",
-                        CRLF,
-                        DOLCH_PREPOSITIONS_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                    #ifdef __WXGTK__
-                        lily_of_the_valley:html_encode_text::simple_encode(
-                            { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                    #else
-                        rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                    #endif
-                        CRLF) :
+                    CRLF,
+                    DOLCH_PREPOSITIONS_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+                #ifdef __WXGTK__
+                    lily_of_the_valley:html_encode_text::simple_encode(
+                        { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                #else
+                    rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                #endif
+                    CRLF) :
             wxString{};
         currentLegendLabel = _(L"Dolch pronouns");
         const wxString dolch3WordsLegendLine = IsHighlightingDolchPronouns() ?
             wxString::Format(L"%s    %s   %s  %s%s",
-                        CRLF,
-                        DOLCH_PRONOUN_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                    #ifdef __WXGTK__
-                        lily_of_the_valley:html_encode_text::simple_encode(
-                            { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                    #else
-                        rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                    #endif
-                        CRLF) :
+                    CRLF,
+                    DOLCH_PRONOUN_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+                #ifdef __WXGTK__
+                    lily_of_the_valley:html_encode_text::simple_encode(
+                        { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                #else
+                    rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                #endif
+                    CRLF) :
             wxString{};
         currentLegendLabel = _(L"Dolch adverbs");
         const wxString dolch4WordsLegendLine = IsHighlightingDolchAdverbs() ?
             wxString::Format(L"%s    %s   %s  %s%s",
-                        CRLF,
-                        DOLCH_ADVERB_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                    #ifdef __WXGTK__
-                        lily_of_the_valley:html_encode_text::simple_encode(
-                            { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                    #else
-                        rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                    #endif
-                        CRLF) :
+                    CRLF,
+                    DOLCH_ADVERB_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+                #ifdef __WXGTK__
+                    lily_of_the_valley:html_encode_text::simple_encode(
+                        { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                #else
+                    rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                #endif
+                    CRLF) :
             wxString{};
         currentLegendLabel = _(L"Dolch adjectives");
         const wxString dolch5WordsLegendLine = IsHighlightingDolchAdjectives() ?
             wxString::Format(L"%s    %s   %s  %s%s",
-                        CRLF,
-                        DOLCH_ADJECTIVE_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                    #ifdef __WXGTK__
-                        lily_of_the_valley:html_encode_text::simple_encode(
-                            { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                    #else
-                        rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                    #endif
-                        CRLF) :
+                    CRLF,
+                    DOLCH_ADJECTIVE_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+                #ifdef __WXGTK__
+                    lily_of_the_valley:html_encode_text::simple_encode(
+                        { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                #else
+                    rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                #endif
+                    CRLF) :
             wxString{};
         currentLegendLabel = _(L"Dolch verbs");
         const wxString dolchVerbsLegendLine = IsHighlightingDolchVerbs() ?
             wxString::Format(L"%s    %s   %s  %s%s",
-                        CRLF,
-                        DOLCH_VERB_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                    #ifdef __WXGTK__
-                        lily_of_the_valley:html_encode_text::simple_encode(
-                            { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                    #else
-                        rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                    #endif
-                        CRLF) :
+                    CRLF,
+                    DOLCH_VERB_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+                #ifdef __WXGTK__
+                    lily_of_the_valley:html_encode_text::simple_encode(
+                        { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                #else
+                    rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                #endif
+                    CRLF) :
             wxString{};
         currentLegendLabel = _(L"Dolch nouns");
         const wxString dolchNounsLegendLine = IsHighlightingDolchNouns() ?
             wxString::Format(L"%s    %s   %s  %s%s",
-                        CRLF,
-                        DOLCH_NOUN_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                    #ifdef __WXGTK__
-                        lily_of_the_valley:html_encode_text::simple_encode(
-                            { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                    #else
-                        rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                    #endif
-                        CRLF) :
+                    CRLF,
+                    DOLCH_NOUN_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+                #ifdef __WXGTK__
+                    lily_of_the_valley:html_encode_text::simple_encode(
+                        { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                #else
+                    rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                #endif
+                    CRLF) :
             wxString{};
         currentLegendLabel = _(L"Non-Dolch words");
         const wxString nonDolchWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                                        CRLF,
-                                        HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                                    #ifdef __WXGTK__
-                                        lily_of_the_valley:html_encode_text::simple_encode(
-                                            { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                                    #else
-                                        rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                                    #endif
-                                        CRLF);
+                CRLF,
+                HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley:html_encode_text::simple_encode(
+                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #endif
+                CRLF);
 
         const size_t maxLegendSize = ignoredSentencesLegendLine.length() + hardWordsLegendLine.length() +
             longWordsLegendLine.length() + unfamiliarDCWordsLegendLine.length() +
@@ -4969,13 +5164,17 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
     #endif
 
         SyllableCountGreaterEqualWithHighlighting<word_case_insensitive_no_stem>
-            is3PlusSyllables(3, (GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable), HIGHLIGHT_BEGIN, HIGHLIGHT_END);
+            is3PlusSyllables(3,
+                (GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable),
+                HIGHLIGHT_BEGIN, HIGHLIGHT_END);
         WordLengthGreaterEqualsWithHighlighting<word_case_insensitive_no_stem>
             is6PlusChars(6, HIGHLIGHT_BEGIN, HIGHLIGHT_END);
         IsNotFamiliarWordWithHighlighting<word_case_insensitive_no_stem,
                          const word_list,
                          stemming::no_op_stem<word_case_insensitive_no_stem>>
-                            isNotDCWord(IsIncludingStockerCatholicSupplement() ? &BaseProject::m_dale_chall_plus_stocker_catholic_word_list : &BaseProject::m_dale_chall_word_list,
+                            isNotDCWord(IsIncludingStockerCatholicSupplement() ?
+                                &BaseProject::m_dale_chall_plus_stocker_catholic_word_list :
+                                &BaseProject::m_dale_chall_word_list,
                             HIGHLIGHT_BEGIN, HIGHLIGHT_END,
                             readability::proper_noun_counting_method(GetDaleChallProperNounCountingMethod()));
         IsNotFamiliarWordWithHighlighting<word_case_insensitive_no_stem,
@@ -4990,7 +5189,10 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                             IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END,
                             readability::proper_noun_counting_method::all_proper_nouns_are_familiar);
         IsDolchWordWithLevelHighlighting<word_case_insensitive_no_stem>
-                            isDolchWord(&m_dolch_word_list, DOLCH_CONJUNCTION_BEGIN, DOLCH_PREPOSITIONS_BEGIN, DOLCH_PRONOUN_BEGIN, DOLCH_ADVERB_BEGIN, DOLCH_ADJECTIVE_BEGIN, DOLCH_VERB_BEGIN, DOLCH_NOUN_BEGIN, HIGHLIGHT_END);
+                            isDolchWord(&m_dolch_word_list,
+                                DOLCH_CONJUNCTION_BEGIN, DOLCH_PREPOSITIONS_BEGIN,
+                                DOLCH_PRONOUN_BEGIN, DOLCH_ADVERB_BEGIN, DOLCH_ADJECTIVE_BEGIN,
+                                DOLCH_VERB_BEGIN, DOLCH_NOUN_BEGIN, HIGHLIGHT_END);
         IsNotDolchWordWithLevelHighlighting<word_case_insensitive_no_stem>
                             isNotDolchWord(&m_dolch_word_list, HIGHLIGHT_BEGIN, HIGHLIGHT_END);
 
@@ -4999,27 +5201,34 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     GetWords()->get_words().end(), static_cast<size_t>(0),
                     add_word_size<word_case_insensitive_no_stem>() );
         size_t paragraphLeadingLines = 0;
-        for (std::vector<grammar::paragraph_info>::const_iterator para_iter = GetWords()->get_paragraphs().begin();
-                para_iter != GetWords()->get_paragraphs().end();
+        for (std::vector<grammar::paragraph_info>::const_iterator para_iter = GetWords()->get_paragraphs().cbegin();
+                para_iter != GetWords()->get_paragraphs().cend();
                 ++para_iter)
             { paragraphLeadingLines += para_iter->get_leading_end_of_line_count(); }
         /* Set the size of the buffers for the worst case scenario that every word is highlighted.
            Note that for encoding, the worst case scenario is a char to be expanded to 7 chars. In RTF,
            a unicode value will be "\u0000?", so assume the worst that every character and punctuation
            may be expanded into that.*/
-        const size_t textBufferLength = fullCharWithPunctCount*7 + // some characters have to be encoded for RTF or Pango
+        // some characters have to be encoded for RTF or Pango
+        const size_t textBufferLength = fullCharWithPunctCount*7 +
             headerSection.length() + colorTableThemed.length() + mainFontHeaderThemed.length() +
-            (GetWords()->get_sentence_count()*3) + // two spaces after each sentence, and ending punctuations
+            // two spaces after each sentence, and ending punctuations
+            (GetWords()->get_sentence_count()*3) +
             (GetWords()->get_paragraph_count()*(CRLF.length()+TAB_SYMBOL.length())) +
             (paragraphLeadingLines*(CRLF.length()+TAB_SYMBOL.length())) +
-            (GetWords()->get_punctuation().size()*7) + // some punctuation has to be escaped or encoded for RTF or Pango
-            (GetWords()->get_word_count() * (HIGHLIGHT_BEGIN.length()+HIGHLIGHT_END.length()+2)) + // gets the spaces between each word too
-            (GetWords()->get_sentence_count() * (BOLD_BEGIN.length()+BOLD_END.length()+8/*3 spaces, 2 parenthesis, and 3 spots for the number*/)) +
+            // some punctuation has to be escaped or encoded for RTF or Pango
+            (GetWords()->get_punctuation().size()*7) +
+            // gets the spaces between each word too
+            (GetWords()->get_word_count() * (HIGHLIGHT_BEGIN.length()+HIGHLIGHT_END.length()+2)) +
+            /*3 spaces, 2 parenthesis, and 3 spots for the number*/
+            (GetWords()->get_sentence_count() * (BOLD_BEGIN.length()+BOLD_END.length()+8)) +
             endSection.length() + maxLegendSize + 1;
 
         auto docText = std::make_unique<wchar_t[]>(textBufferLength+1);
 
-        const bool textBeingExcluded = (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis || GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings);
+        const bool textBeingExcluded =
+            (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
+             GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings);
 
         // creates and load text into a formatted text window
         const auto buildTextWindow = [this, view, textBeingExcluded, textBufferLength,
@@ -5031,7 +5240,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             {
             if (!textWindow)
                 {
-                textWindow = new FormattedTextCtrl(view->GetSplitter(), ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+                textWindow =
+                    new FormattedTextCtrl(view->GetSplitter(), ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
                 textWindow->Hide();
                 textWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_MENU"));
                 textWindow->SetLabel(label);
@@ -5076,7 +5286,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
         // 3+ syllable highlighted words
             {
-            FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::HARD_WORDS_TEXT_PAGE_ID));
+            FormattedTextCtrl* textWindow =
+                dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
+                    BaseProjectView::HARD_WORDS_TEXT_PAGE_ID));
             // always included for any language
                 {
                 textWindow = buildTextWindow(textWindow, BaseProjectView::HARD_WORDS_TEXT_PAGE_ID,
@@ -5084,8 +5296,10 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 }
             if (GetWordsBreakdownInfo().Is3PlusSyllablesEnabled() && GetTotalUnique3PlusSyllableWords() > 0)
                 {
-                const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(BaseProjectView::HARD_WORDS_LIST_PAGE_ID);
-                view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, textWindow);
+                const auto buddyWindowPosition =
+                    view->GetWordsBreakdownView().FindWindowPositionById(BaseProjectView::HARD_WORDS_LIST_PAGE_ID);
+                view->GetWordsBreakdownView().InsertWindow(
+                    (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, textWindow);
                 }
             else
                 { view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::HARD_WORDS_TEXT_PAGE_ID); }
@@ -5093,7 +5307,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
         // 6+ character highlighted words
             {
-            FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(BaseProjectView::LONG_WORDS_TEXT_PAGE_ID));
+            FormattedTextCtrl* textWindow =
+                dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
+                    BaseProjectView::LONG_WORDS_TEXT_PAGE_ID));
             // always included for any language
                 {
                 textWindow = buildTextWindow(textWindow, BaseProjectView::LONG_WORDS_TEXT_PAGE_ID,
@@ -5101,8 +5317,10 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 }
             if (GetWordsBreakdownInfo().Is6PlusCharacterEnabled() && GetTotalUnique6CharsPlusWords() > 0)
                 {
-                const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(BaseProjectView::LONG_WORDS_LIST_PAGE_ID);
-                view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, textWindow);
+                const auto buddyWindowPosition =
+                    view->GetWordsBreakdownView().FindWindowPositionById(BaseProjectView::LONG_WORDS_LIST_PAGE_ID);
+                view->GetWordsBreakdownView().InsertWindow(
+                    (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, textWindow);
                 }
             else
                 { view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::LONG_WORDS_TEXT_PAGE_ID); }
@@ -5352,35 +5570,45 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             pos != GetCustTestsInUse().end();
             ++pos)
             {
-            const wxString windowLabel(wxString::Format( _(L"%s (Unfamiliar) Report"), pos->GetIterator()->get_name().c_str()));
-            FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(pos->GetIterator()->get_interface_id(), CLASSINFO(FormattedTextCtrl)) );
+            const wxString windowLabel(
+                wxString::Format( _(L"%s (Unfamiliar) Report"), pos->GetIterator()->get_name().c_str()));
+            FormattedTextCtrl* textWindow =
+                dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
+                    pos->GetIterator()->get_interface_id(), CLASSINFO(FormattedTextCtrl)) );
 
             if (pos->GetIterator()->is_using_familiar_words())
                 {
                 if (!textWindow)
                     {
-                    textWindow = new FormattedTextCtrl(view->GetSplitter(), pos->GetIterator()->get_interface_id(), wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+                    textWindow =
+                        new FormattedTextCtrl(view->GetSplitter(), pos->GetIterator()->get_interface_id(),
+                                              wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
                     textWindow->Hide();
                     textWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_MENU"));
                     textWindow->SetLabel(windowLabel);
                     textWindow->SetName(windowLabel);
                     // find respective list and add it beneath that
-                    auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(pos->GetIterator()->get_interface_id(), CLASSINFO(ListCtrlEx));
-                    view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, textWindow);
+                    auto buddyWindowPosition =
+                        view->GetWordsBreakdownView().FindWindowPositionById(
+                            pos->GetIterator()->get_interface_id(), CLASSINFO(ListCtrlEx));
+                    view->GetWordsBreakdownView().InsertWindow(
+                        (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, textWindow);
                     }
                 UpdateTextWindowOptions(textWindow);
-                const wxString unfamiliarCountLabel = wxString::Format(_(L"Unfamiliar %s words"), pos->GetIterator()->get_name().c_str());
+                const wxString unfamiliarCountLabel =
+                    wxString::Format(_(L"Unfamiliar %s words"), pos->GetIterator()->get_name().c_str());
                 const wxString unfamiliarWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                                            CRLF,
-                                            HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
-                                        #ifdef __WXGTK__
-                                            lily_of_the_valley:html_encode_text::simple_encode(
-                                                { unfamiliarCountLabel.wc_str(), unfamiliarCountLabel.length() }).c_str(),
-                                        #else
-                                            rtfEncode({ unfamiliarCountLabel.wc_str(), unfamiliarCountLabel.length() }).c_str(),
-                                        #endif
-                                            CRLF);
-                const wxString unfamiliarWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",///@todo add pango code here for GTK+
+                        CRLF,
+                        HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
+                    #ifdef __WXGTK__
+                        lily_of_the_valley:html_encode_text::simple_encode(
+                            { unfamiliarCountLabel.wc_str(), unfamiliarCountLabel.length() }).c_str(),
+                    #else
+                        rtfEncode({ unfamiliarCountLabel.wc_str(), unfamiliarCountLabel.length() }).c_str(),
+                    #endif
+                        CRLF);
+                const wxString unfamiliarWordsLegend =
+                    wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",///@todo add pango code here for GTK+
                                     (textViewFont.GetPointSize()-2)*2,
                                     ignoredSentencesLegendLine,
                                     unfamiliarWordsLegendLine,
@@ -5388,8 +5616,10 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
                 IsNotCustomFamiliarWordWithHighlighting<std::vector<CustomReadabilityTestInterface>::iterator>
                     notCustomWord(pos, HIGHLIGHT_BEGIN, HIGHLIGHT_END);
-                IsNotCustomFamiliarWordExcludeNumeralsWithHighlighting<std::vector<CustomReadabilityTestInterface>::iterator>
-                    notCustomWordExcludeNumberals(pos, HIGHLIGHT_BEGIN, HIGHLIGHT_END, IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END);
+                IsNotCustomFamiliarWordExcludeNumeralsWithHighlighting<
+                    std::vector<CustomReadabilityTestInterface>::iterator>
+                    notCustomWordExcludeNumberals(pos, HIGHLIGHT_BEGIN, HIGHLIGHT_END,
+                                                  IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END);
 
                 // clear cached first instances of proper nouns
                 notCustomWord.Reset();
@@ -5397,44 +5627,48 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
                 size_t textLength = 0;
                 // special text exclusion logic is used for Custom HJ and DC tests
-                if ((pos->IsHarrisJacobsonFormula() && GetHarrisJacobsonTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ||
-                    (pos->IsDaleChallFormula() && GetDaleChallTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings))
+                if ((pos->IsHarrisJacobsonFormula() &&
+                     GetHarrisJacobsonTextExclusionMode() ==
+                        SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ||
+                    (pos->IsDaleChallFormula() &&
+                     GetDaleChallTextExclusionMode() ==
+                        SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings))
                     {
                     if (pos->IsHarrisJacobsonFormula())
                         {
                         textLength = FormatWordCollectionHighlightedWords(GetWords(),
-                                                notCustomWordExcludeNumberals,
-                                                docText.get(), textBufferLength, headerThemed, endSection,
-                                                unfamiliarWordsLegend,
-                                                IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
-                                                // forcibly exclude lists but include headers, invalid words will also be valid
-                                                true,
-                                                true,
-                                                false,
-                                            #ifdef __WXGTK__
-                                                false
-                                            #else
-                                                true
-                                            #endif
-                                                );
+                                notCustomWordExcludeNumberals,
+                                docText.get(), textBufferLength, headerThemed, endSection,
+                                unfamiliarWordsLegend,
+                                IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
+                                // forcibly exclude lists but include headers, invalid words will also be valid
+                                true,
+                                true,
+                                false,
+                            #ifdef __WXGTK__
+                                false
+                            #else
+                                true
+                            #endif
+                                );
                         }
                     else
                         {
                         textLength = FormatWordCollectionHighlightedWords(GetWords(),
-                                                notCustomWord,
-                                                docText.get(), textBufferLength, headerThemed, endSection,
-                                                unfamiliarWordsLegend,
-                                                IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
-                                                // forcibly exclude lists but include headers, invalid words will also be valid
-                                                true,
-                                                true,
-                                                false,
-                                            #ifdef __WXGTK__
-                                                false
-                                            #else
-                                                true
-                                            #endif
-                                                );
+                                notCustomWord,
+                                docText.get(), textBufferLength, headerThemed, endSection,
+                                unfamiliarWordsLegend,
+                                IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
+                                // forcibly exclude lists but include headers, invalid words will also be valid
+                                true,
+                                true,
+                                false,
+                            #ifdef __WXGTK__
+                                false
+                            #else
+                                true
+                            #endif
+                                );
                         }
                     }
                 else
@@ -5442,36 +5676,36 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     if (pos->IsHarrisJacobsonFormula())
                         {
                         textLength = FormatWordCollectionHighlightedWords(GetWords(),
-                                                notCustomWordExcludeNumberals,
-                                                docText.get(), textBufferLength, headerThemed, endSection,
-                                                unfamiliarWordsLegend,
-                                                IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
-                                                textBeingExcluded,
-                                                GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                                                textBeingExcluded,
-                                            #ifdef __WXGTK__
-                                                false
-                                            #else
-                                                true
-                                            #endif
-                                                );
+                                notCustomWordExcludeNumberals,
+                                docText.get(), textBufferLength, headerThemed, endSection,
+                                unfamiliarWordsLegend,
+                                IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
+                                textBeingExcluded,
+                                GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                                textBeingExcluded,
+                            #ifdef __WXGTK__
+                                false
+                            #else
+                                true
+                            #endif
+                                );
                         }
                     else
                         {
                         textLength = FormatWordCollectionHighlightedWords(GetWords(),
-                                            notCustomWord,
-                                            docText.get(), textBufferLength, headerThemed, endSection,
-                                            unfamiliarWordsLegend,
-                                            IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
-                                            textBeingExcluded,
-                                            GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                                            textBeingExcluded,
-                                        #ifdef __WXGTK__
-                                            false
-                                        #else
-                                            true
-                                        #endif
-                                            );
+                                notCustomWord,
+                                docText.get(), textBufferLength, headerThemed, endSection,
+                                unfamiliarWordsLegend,
+                                IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
+                                textBeingExcluded,
+                                GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                                textBeingExcluded,
+                            #ifdef __WXGTK__
+                                false
+                            #else
+                                true
+                            #endif
+                                );
                         }
                     }
                 textWindow->SetMaxLength(static_cast<unsigned long>(textLength));
@@ -5480,44 +5714,48 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 notCustomWord.Reset();
                 notCustomWordExcludeNumberals.Reset();
 
-                if ((pos->IsHarrisJacobsonFormula() && GetHarrisJacobsonTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ||
-                    (pos->IsDaleChallFormula() && GetDaleChallTextExclusionMode() == SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings))
+                if ((pos->IsHarrisJacobsonFormula() &&
+                     GetHarrisJacobsonTextExclusionMode() ==
+                        SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ||
+                    (pos->IsDaleChallFormula() &&
+                     GetDaleChallTextExclusionMode() ==
+                        SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings))
                     {
                     if (pos->IsHarrisJacobsonFormula())
                         {
                         FormatWordCollectionHighlightedWords(GetWords(),
-                                                notCustomWordExcludeNumberals,
-                                                docText.get(), textBufferLength, headerWhitePaper, endSection,
-                                                unfamiliarWordsLegend,
-                                                IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
-                                                // forcibly exclude lists but include headers, invalid words will also be valid
-                                                true,
-                                                true,
-                                                false,
-                                            #ifdef __WXGTK__
-                                                false
-                                            #else
-                                                true
-                                            #endif
-                                                );
+                                notCustomWordExcludeNumberals,
+                                docText.get(), textBufferLength, headerWhitePaper, endSection,
+                                unfamiliarWordsLegend,
+                                IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
+                                // forcibly exclude lists but include headers, invalid words will also be valid
+                                true,
+                                true,
+                                false,
+                            #ifdef __WXGTK__
+                                false
+                            #else
+                                true
+                            #endif
+                                );
                         }
                     else
                         {
                         FormatWordCollectionHighlightedWords(GetWords(),
-                                                notCustomWord,
-                                                docText.get(), textBufferLength, headerWhitePaper, endSection,
-                                                unfamiliarWordsLegend,
-                                                IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
-                                                // forcibly exclude lists but include headers, invalid words will also be valid
-                                                true,
-                                                true,
-                                                false,
-                                            #ifdef __WXGTK__
-                                                false
-                                            #else
-                                                true
-                                            #endif
-                                                );
+                                notCustomWord,
+                                docText.get(), textBufferLength, headerWhitePaper, endSection,
+                                unfamiliarWordsLegend,
+                                IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
+                                // forcibly exclude lists but include headers, invalid words will also be valid
+                                true,
+                                true,
+                                false,
+                            #ifdef __WXGTK__
+                                false
+                            #else
+                                true
+                            #endif
+                                );
                         }
                     }
                 else
@@ -5525,36 +5763,36 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     if (pos->IsHarrisJacobsonFormula())
                         {
                         FormatWordCollectionHighlightedWords(GetWords(),
-                                                notCustomWordExcludeNumberals,
-                                                docText.get(), textBufferLength, headerWhitePaper, endSection,
-                                                unfamiliarWordsLegend,
-                                                IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
-                                                textBeingExcluded,
-                                                GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                                                textBeingExcluded,
-                                            #ifdef __WXGTK__
-                                                false
-                                            #else
-                                                true
-                                            #endif
-                                                );
+                                notCustomWordExcludeNumberals,
+                                docText.get(), textBufferLength, headerWhitePaper, endSection,
+                                unfamiliarWordsLegend,
+                                IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
+                                textBeingExcluded,
+                                GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                                textBeingExcluded,
+                            #ifdef __WXGTK__
+                                false
+                            #else
+                                true
+                            #endif
+                                );
                         }
                     else
                         {
                         FormatWordCollectionHighlightedWords(GetWords(),
-                                            notCustomWord,
-                                            docText.get(), textBufferLength, headerWhitePaper, endSection,
-                                            unfamiliarWordsLegend,
-                                            IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
-                                            textBeingExcluded,
-                                            GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                                            textBeingExcluded,
-                                        #ifdef __WXGTK__
-                                            false
-                                        #else
-                                            true
-                                        #endif
-                                            );
+                                notCustomWord,
+                                docText.get(), textBufferLength, headerWhitePaper, endSection,
+                                unfamiliarWordsLegend,
+                                IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
+                                textBeingExcluded,
+                                GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                                textBeingExcluded,
+                            #ifdef __WXGTK__
+                                false
+                            #else
+                                true
+                            #endif
+                                );
                         }
                     }
                 textWindow->SetUnthemedFormattedText(docText.get());
@@ -5582,26 +5820,26 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 }
             UpdateTextWindowOptions(textWindow);
             const size_t textLength = FormatWordCollectionHighlightedGrammarIssues(GetWords(),
-                                        GetDifficultSentenceLength(),
-                                        docText.get(), textBufferLength, headerThemed, endSection,
-                                        wordinessWindowLegend,
-                                        HIGHLIGHT_BEGIN, HIGHLIGHT_END,
-                                        ERROR_HIGHLIGHT_BEGIN,
-                                        PHRASE_HIGHLIGHT_BEGIN,
-                                        IGNORE_HIGHLIGHT_BEGIN,
-                                        // if default style is bold, then don't use bold tags internally
-                                        // because that will mess up the RTF
-                                        (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? wxString{} : BOLD_BEGIN,
-                                        (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? wxString{} : BOLD_END,
-                                        TAB_SYMBOL, CRLF,
-                                        textBeingExcluded,
-                                        textBeingExcluded,
-                                    #ifdef __WXGTK__
-                                        false
-                                    #else
-                                        true
-                                    #endif
-                                        );
+                    GetDifficultSentenceLength(),
+                    docText.get(), textBufferLength, headerThemed, endSection,
+                    wordinessWindowLegend,
+                    HIGHLIGHT_BEGIN, HIGHLIGHT_END,
+                    ERROR_HIGHLIGHT_BEGIN,
+                    PHRASE_HIGHLIGHT_BEGIN,
+                    IGNORE_HIGHLIGHT_BEGIN,
+                    // if default style is bold, then don't use bold tags internally
+                    // because that will mess up the RTF
+                    (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? wxString{} : BOLD_BEGIN,
+                    (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? wxString{} : BOLD_END,
+                    TAB_SYMBOL, CRLF,
+                    textBeingExcluded,
+                    textBeingExcluded,
+                #ifdef __WXGTK__
+                    false
+                #else
+                    true
+                #endif
+                    );
 
             textWindow->SetMaxLength(static_cast<unsigned long>(textLength));
             textWindow->SetFormattedText(docText.get());
@@ -5727,199 +5965,283 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
     // statistics section
     metaFileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_STATISTICS);
     // text size
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TEXT_SIZE, GetTextSize());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TEXT_SIZE, GetTextSize());
     metaFileText += sectionText;
     // unique words
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_WORDS, GetTotalUniqueWords());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_UNIQUE_WORDS, GetTotalUniqueWords());
     metaFileText += sectionText;
     // unique monosyllabic words
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_MONOSYLLABLIC_WORDS, GetTotalUniqueMonoSyllablicWords());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_UNIQUE_MONOSYLLABLIC_WORDS, GetTotalUniqueMonoSyllablicWords());
     metaFileText += sectionText;
     // unique 6 Chars+ Words
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_SIXCHAR_PLUS_WORDS, GetTotalUnique6CharsPlusWords());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_UNIQUE_SIXCHAR_PLUS_WORDS, GetTotalUnique6CharsPlusWords());
     metaFileText += sectionText;
     // unique 3+ Syllable Words
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_THREE_SYLLABLE_PLUS_WORDS, GetTotalUnique3PlusSyllableWords());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_UNIQUE_THREE_SYLLABLE_PLUS_WORDS, GetTotalUnique3PlusSyllableWords());
     metaFileText += sectionText;
     // unique DC Hard Words
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_DC_HARD_WORDS, GetTotalUniqueDCHardWords());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_UNIQUE_DC_HARD_WORDS, GetTotalUniqueDCHardWords());
     metaFileText += sectionText;
     // unique Spache Hard Words
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_SPACHE_HARD_WORDS, GetTotalUniqueHardWordsSpache());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_UNIQUE_SPACHE_HARD_WORDS, GetTotalUniqueHardWordsSpache());
     metaFileText += sectionText;
     // unique Harris-Jacobson Hard Words
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_HARRIS_JACOBSON_HARD_WORDS, GetTotalUniqueHarrisJacobsonHardWords());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_UNIQUE_HARRIS_JACOBSON_HARD_WORDS, GetTotalUniqueHarrisJacobsonHardWords());
     metaFileText += sectionText;
     // unique Mini Words
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_MINI_WORDS, GetTotalUniqueMiniWords());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_UNIQUE_MINI_WORDS, GetTotalUniqueMiniWords());
     metaFileText += sectionText;
     // unique Hard Fog Words
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_FOG_HARD_WORDS, GetTotalUniqueHardFogWords());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_UNIQUE_FOG_HARD_WORDS, GetTotalUniqueHardFogWords());
     metaFileText += sectionText;
     // unique Hard Words (numerals fully syllabized)
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_SMOG_WORDS_WORDS, GetUnique3PlusSyllabicWordsNumeralsFullySyllabized());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_UNIQUE_SMOG_WORDS_WORDS, GetUnique3PlusSyllabicWordsNumeralsFullySyllabized());
     metaFileText += sectionText;
     // total Words
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_WORDS, GetTotalWords());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_WORDS, GetTotalWords());
     metaFileText += sectionText;
     // total Sentences
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SENTENCES, GetTotalSentences());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_SENTENCES, GetTotalSentences());
     metaFileText += sectionText;
     // total Sentence units
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SENTENCE_UNITS, GetTotalSentenceUnits());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_SENTENCE_UNITS, GetTotalSentenceUnits());
     metaFileText += sectionText;
     // total Paragraphs
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_PARAGRAPH, GetTotalParagraphs());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_PARAGRAPH, GetTotalParagraphs());
     metaFileText += sectionText;
     // total Syllables
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLE, GetTotalSyllables());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLE, GetTotalSyllables());
     metaFileText += sectionText;
     // total Characters
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS, GetTotalCharacters());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS, GetTotalCharacters());
     metaFileText += sectionText;
     // total characters + punctuation
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS_PLUS_PUNCTUATION, GetTotalCharactersPlusPunctuation());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS_PLUS_PUNCTUATION, GetTotalCharactersPlusPunctuation());
     metaFileText += sectionText;
     // total Mono Syllabic
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_MONOSYLLABIC_WORDS, GetTotalMonoSyllabicWords());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_MONOSYLLABIC_WORDS, GetTotalMonoSyllabicWords());
     metaFileText += sectionText;
     // total 3+ Syllable Words
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_THREE_PLUSSYLLABLE_WORDS, GetTotal3PlusSyllabicWords());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_THREE_PLUSSYLLABLE_WORDS, GetTotal3PlusSyllabicWords());
     metaFileText += sectionText;
     // total Hard Words Spache
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SPACHE_HARD_WORDS, GetTotalHardWordsSpache());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_SPACHE_HARD_WORDS, GetTotalHardWordsSpache());
     metaFileText += sectionText;
     // total Hard Words Harris-Jacobson
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_HARRIS_JACOBSON_HARD_WORDS, GetTotalHardWordsHarrisJacobson());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_HARRIS_JACOBSON_HARD_WORDS, GetTotalHardWordsHarrisJacobson());
     metaFileText += sectionText;
     // total Hard Words Dale Chall
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_DALECHALL_HARD_WORDS, GetTotalHardWordsDaleChall());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_DALECHALL_HARD_WORDS, GetTotalHardWordsDaleChall());
     metaFileText += sectionText;
     // total Hard Words Fog
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_FOG_HARDWORDS, GetTotalHardWordsFog());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_FOG_HARDWORDS, GetTotalHardWordsFog());
     metaFileText += sectionText;
     // total Hard Words (numerals fully syllabized)
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SMOG_HARD_WORDS, GetTotal3PlusSyllabicWordsNumeralsFullySyllabized());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_SMOG_HARD_WORDS, GetTotal3PlusSyllabicWordsNumeralsFullySyllabized());
     metaFileText += sectionText;
     // total Hard Words SOL
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SOL_HARD_WORDS, GetTotalHardWordsSol());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_SOL_HARD_WORDS, GetTotalHardWordsSol());
     metaFileText += sectionText;
     // total Hard Lix/Rix words
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_LIX_RIX_HARD_WORDS, GetTotalHardLixRixWords());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_LIX_RIX_HARD_WORDS, GetTotalHardLixRixWords());
     metaFileText += sectionText;
     // total Syllables Ignoring Numerals
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_IGNORING_NUMERALS, m_totalSyllablesIgnoringNumerals);
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_IGNORING_NUMERALS, m_totalSyllablesIgnoringNumerals);
     metaFileText += sectionText;
     // Number of syllables, numerals just one syllable
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_NUMERALS_ONE_SYLLABLE, GetTotalSyllablesNumeralsOneSyllable());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_NUMERALS_ONE_SYLLABLE,
+        GetTotalSyllablesNumeralsOneSyllable());
     metaFileText += sectionText;
     // Number of syllables, numerals fully syllabized
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_NUMERALS_FULLY_SYLLABIZED, GetTotalSyllablesNumeralsFullySyllabized());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_NUMERALS_FULLY_SYLLABIZED,
+        GetTotalSyllablesNumeralsFullySyllabized());
     metaFileText += sectionText;
     // total Syllables Ignoring Numerals and proper nouns
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_IGNORING_NUMERALS_AND_PROPER_NOUNS, GetTotalSyllablesIgnoringNumeralsAndProperNouns());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_SYLLABLES_IGNORING_NUMERALS_AND_PROPER_NOUNS,
+        GetTotalSyllablesIgnoringNumeralsAndProperNouns());
     metaFileText += sectionText;
     // total Long Words
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_LONG_WORDS, GetTotalLongWords());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_LONG_WORDS, GetTotalLongWords());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_LONG_WORDS_IGNORING_NUMERALS, GetTotalSixPlusCharacterWordsIgnoringNumerals());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_LONG_WORDS_IGNORING_NUMERALS,
+        GetTotalSixPlusCharacterWordsIgnoringNumerals());
     metaFileText += sectionText;
     // total MiniWords
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_MINIWORDS, GetTotalMiniWords());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_MINIWORDS, GetTotalMiniWords());
     metaFileText += sectionText;
     // total Numerals
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_NUMERALS, GetTotalNumerals());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_NUMERALS, GetTotalNumerals());
     metaFileText += sectionText;
     // total proper nouns
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_PROPER_NOUNS, GetTotalProperNouns());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_PROPER_NOUNS, GetTotalProperNouns());
     metaFileText += sectionText;
     // total Overly Long Sentences
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_OVERLY_LONG_SENTENCES, GetTotalOverlyLongSentences());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_OVERLY_LONG_SENTENCES, GetTotalOverlyLongSentences());
     metaFileText += sectionText;
     // supplementary stats
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_WORDS_FROM_COMPLETE_SENTENCES_AND_HEADERS, GetTotalWordsFromCompleteSentencesAndHeaders());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_WORDS_FROM_COMPLETE_SENTENCES_AND_HEADERS,
+        GetTotalWordsFromCompleteSentencesAndHeaders());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_SENTENCES_FROM_COMPLETE_SENTENCES_AND_HEADERS, GetTotalSentencesFromCompleteSentencesAndHeaders());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_SENTENCES_FROM_COMPLETE_SENTENCES_AND_HEADERS,
+        GetTotalSentencesFromCompleteSentencesAndHeaders());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_NUMERALS_FROM_COMPLETE_SENTENCES_AND_HEADERS, GetTotalNumeralsFromCompleteSentencesAndHeaders());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_NUMERALS_FROM_COMPLETE_SENTENCES_AND_HEADERS,
+        GetTotalNumeralsFromCompleteSentencesAndHeaders());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS_FROM_COMPLETE_SENTENCES_AND_HEADERS, GetTotalCharactersFromCompleteSentencesAndHeaders());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_CHARACTERS_FROM_COMPLETE_SENTENCES_AND_HEADERS,
+        GetTotalCharactersFromCompleteSentencesAndHeaders());
     metaFileText += sectionText;
     // special sentences
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_INTERROGATIVE_SENTENCES, GetTotalInterrogativeSentences());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_INTERROGATIVE_SENTENCES, GetTotalInterrogativeSentences());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TOTAL_EXCLAMATORY_SENTENCES, GetTotalExclamatorySentences());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_TOTAL_EXCLAMATORY_SENTENCES, GetTotalExclamatorySentences());
     metaFileText += sectionText;
     // Longest Sentence
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_LONGEST_SENTENCES, GetLongestSentence());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_LONGEST_SENTENCES, GetLongestSentence());
     metaFileText += sectionText;
     // longest sentence index
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_LONGEST_SENTENCE_INDEX, GetLongestSentenceIndex());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_LONGEST_SENTENCE_INDEX, GetLongestSentenceIndex());
     metaFileText += sectionText;
     // difficult Sentence Length
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DIFFICULT_SENTENCE_LENGTH, GetDifficultSentenceLength());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DIFFICULT_SENTENCE_LENGTH, GetDifficultSentenceLength());
     metaFileText += sectionText;
     // grammar info
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_MISSPELLING_COUNT, GetMisspelledWordCount());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_MISSPELLING_COUNT, GetMisspelledWordCount());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DUPLICATE_WORD_COUNT, GetDuplicateWordCount());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DUPLICATE_WORD_COUNT, GetDuplicateWordCount());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_WORDY_PHRASE_COUNT, GetWordyPhraseCount());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_WORDY_PHRASE_COUNT, GetWordyPhraseCount());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_REDUNDANT_PHRASE_COUNT, GetRedundantPhraseCount());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_REDUNDANT_PHRASE_COUNT, GetRedundantPhraseCount());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_WORDING_ERROR_COUNT, GetWordingErrorCount());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_WORDING_ERROR_COUNT, GetWordingErrorCount());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_CLICHE_COUNT, GetClicheCount());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_CLICHE_COUNT, GetClicheCount());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_SENTENCE_CONJUNCTION_START_COUNT, GetSentenceStartingWithConjunctionsCount());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_SENTENCE_CONJUNCTION_START_COUNT, GetSentenceStartingWithConjunctionsCount());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_SENTENCE_LOWERCASE_START_COUNT, GetSentenceStartingWithLowercaseCount());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_SENTENCE_LOWERCASE_START_COUNT, GetSentenceStartingWithLowercaseCount());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_ARTICLE_MISMATCH_COUNT, GetMismatchedArticleCount());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_ARTICLE_MISMATCH_COUNT, GetMismatchedArticleCount());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_PASSIVE_VOICE_COUNT, GetPassiveVoicesCount());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_PASSIVE_VOICE_COUNT, GetPassiveVoicesCount());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_OVERUSED_WORDS_BY_SENTENCE_COUNT, GetOverusedWordsBySentenceCount());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_OVERUSED_WORDS_BY_SENTENCE_COUNT, GetOverusedWordsBySentenceCount());
     metaFileText += sectionText;
     // Dolch stats
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_CONJUNCTIONS_COUNT, GetDolchConjunctionCounts().first);
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_CONJUNCTIONS_COUNT, GetDolchConjunctionCounts().first);
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_CONJUNCTIONS_COUNT, GetDolchConjunctionCounts().second);
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_CONJUNCTIONS_COUNT, GetDolchConjunctionCounts().second);
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_PREPOSITIONS_COUNT, GetDolchPrepositionWordCounts().first);
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_PREPOSITIONS_COUNT, GetDolchPrepositionWordCounts().first);
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_PREPOSITIONS_COUNT, GetDolchPrepositionWordCounts().second);
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_PREPOSITIONS_COUNT, GetDolchPrepositionWordCounts().second);
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_PRONOUNS_COUNT, GetDolchPronounCounts().first);
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_PRONOUNS_COUNT, GetDolchPronounCounts().first);
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_PRONOUNS_COUNT, GetDolchPronounCounts().second);
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_PRONOUNS_COUNT, GetDolchPronounCounts().second);
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_ADVERBS_COUNT, GetDolchAdverbCounts().first);
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_ADVERBS_COUNT, GetDolchAdverbCounts().first);
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_ADVERBS_COUNT, GetDolchAdverbCounts().second);
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_ADVERBS_COUNT, GetDolchAdverbCounts().second);
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_ADJECTIVES_COUNT, GetDolchAdjectiveCounts().first);
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_ADJECTIVES_COUNT, GetDolchAdjectiveCounts().first);
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_ADJECTIVES_COUNT, GetDolchAdjectiveCounts().second);
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_ADJECTIVES_COUNT, GetDolchAdjectiveCounts().second);
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_NOUNS_COUNT, GetDolchNounCounts().first);
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_UNIQUE_NOUNS_COUNT, GetDolchNounCounts().first);
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_NOUNS_COUNT, GetDolchNounCounts().second);
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_TOTAL_NOUNS_COUNT, GetDolchNounCounts().second);
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_CONJUNCTIONS_COUNT, GetUnusedDolchConjunctions());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_CONJUNCTIONS_COUNT, GetUnusedDolchConjunctions());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_PREPOSITIONS_COUNT, GetUnusedDolchPrepositions());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_PREPOSITIONS_COUNT, GetUnusedDolchPrepositions());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_PRONOUNS_COUNT, GetUnusedDolchPronouns());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_PRONOUNS_COUNT, GetUnusedDolchPronouns());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_ADVERBS_COUNT, GetUnusedDolchAdverbs());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_ADVERBS_COUNT, GetUnusedDolchAdverbs());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_ADJECTIVES_COUNT, GetUnusedDolchAdjectives());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_ADJECTIVES_COUNT, GetUnusedDolchAdjectives());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_VERBS_COUNT, GetUnusedDolchVerbs());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_VERBS_COUNT, GetUnusedDolchVerbs());
     metaFileText += sectionText;
-    XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_NOUNS_COUNT, GetUnusedDolchNouns());
+    XmlFormat::FormatAttribute(sectionText,
+        wxGetApp().GetAppOptions().XML_DOLCH_UNUSED_NOUNS_COUNT, GetUnusedDolchNouns());
     metaFileText += sectionText;
 
     metaFileText.append(L" />\n").append(L"\t</").append(wxGetApp().GetAppOptions().XML_OFFICE_META).append(L">\n");
@@ -5933,11 +6255,14 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
         if (!pos->GetIterator()->is_using_familiar_words())
             { continue; }
         metaFileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_CUSTOM_FAMILIAR_WORD_TEST);
-        XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_TEST_NAME, wxString(pos->GetIterator()->get_name().c_str()));
+        XmlFormat::FormatAttribute(sectionText,
+            wxGetApp().GetAppOptions().XML_TEST_NAME, wxString(pos->GetIterator()->get_name().c_str()));
         metaFileText += sectionText;
-        XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNFAMILIAR_WORD_COUNT, pos->GetUnfamiliarWordCount());
+        XmlFormat::FormatAttribute(sectionText,
+            wxGetApp().GetAppOptions().XML_UNFAMILIAR_WORD_COUNT, pos->GetUnfamiliarWordCount());
         metaFileText += sectionText;
-        XmlFormat::FormatAttribute(sectionText, wxGetApp().GetAppOptions().XML_UNIQUE_UNFAMILIAR_WORD_COUNT, pos->GetUniqueUnfamiliarWordCount());
+        XmlFormat::FormatAttribute(sectionText,
+            wxGetApp().GetAppOptions().XML_UNIQUE_UNFAMILIAR_WORD_COUNT, pos->GetUniqueUnfamiliarWordCount());
         metaFileText += sectionText;
         metaFileText.append(L" />\n");
         }
@@ -6035,7 +6360,8 @@ void ProjectDoc::DisplayOverlyLongSentences()
             (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences && sentenceGreater(*pos)) ||
             (GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings && completeSentenceGreater(*pos)))
             {
-            currentSentence = ProjectReportFormat::FormatSentence(this, *pos, punctPos, GetWords()->get_punctuation().end());
+            currentSentence =
+                ProjectReportFormat::FormatSentence(this, *pos, punctPos, GetWords()->get_punctuation().end());
 
             m_overlyLongSentenceData->SetItemText(longSenteceCount, 0, currentSentence);
             if (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences)
@@ -6271,35 +6597,47 @@ void ProjectDoc::DisplayGrammar()
         {
         if (wordyPhrases[wordyIndices[i].second].first.get_type() == grammar::phrase_type::phrase_cliche)
             {
-            m_clichePhraseData->SetItemText(clicheCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
-            m_clichePhraseData->SetItemText(clicheCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
+            m_clichePhraseData->SetItemText(
+                clicheCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
+            m_clichePhraseData->SetItemText(
+                clicheCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
             m_clichePhraseData->SetItemValue(clicheCount++, 2,
                 // make 1-based index
-                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
             }
         else if (wordyPhrases[wordyIndices[i].second].first.get_type() == grammar::phrase_type::phrase_redundant)
             {
-            m_redundantPhraseData->SetItemText(redundantPhraseCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
-            m_redundantPhraseData->SetItemText(redundantPhraseCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
+            m_redundantPhraseData->SetItemText(
+                redundantPhraseCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
+            m_redundantPhraseData->SetItemText(
+                redundantPhraseCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
             m_redundantPhraseData->SetItemValue(redundantPhraseCount++, 2,
                 // make 1-based index
-                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
             }
         else if (wordyPhrases[wordyIndices[i].second].first.get_type() == grammar::phrase_type::phrase_error)
             {
-            m_wordingErrorData->SetItemText(wordingErrorCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
-            m_wordingErrorData->SetItemText(wordingErrorCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
+            m_wordingErrorData->SetItemText(
+                wordingErrorCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
+            m_wordingErrorData->SetItemText(
+                wordingErrorCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
             m_wordingErrorData->SetItemValue(wordingErrorCount++, 2,
                 // make 1-based index
-                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
             }
         else
             {
-            m_wordyPhraseData->SetItemText(wordyPhraseCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
-            m_wordyPhraseData->SetItemText(wordyPhraseCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
+            m_wordyPhraseData->SetItemText(
+                wordyPhraseCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
+            m_wordyPhraseData->SetItemText(
+                wordyPhraseCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
             m_wordyPhraseData->SetItemValue(wordyPhraseCount++, 2,
                 // make 1-based index
-                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
             }
         }
     m_wordyPhraseData->SetSize(wordyPhraseCount);
@@ -6553,8 +6891,10 @@ void ProjectDoc::DisplayGrammar()
         for (size_t wordCounter = 0; wordCounter < passiveVoiceIndices[i].second; ++wordCounter)
             {
             currentPassivePhrase += (wordCounter == passiveVoiceIndices[i].second-1) ?
-                traits::case_insensitive_wstring_ex(GetWords()->get_word(passiveVoiceIndices[i].first + wordCounter)) :
-                traits::case_insensitive_wstring_ex(GetWords()->get_word(passiveVoiceIndices[i].first + wordCounter) + L' ');
+                traits::case_insensitive_wstring_ex(
+                    GetWords()->get_word(passiveVoiceIndices[i].first + wordCounter)) :
+                traits::case_insensitive_wstring_ex(
+                    GetWords()->get_word(passiveVoiceIndices[i].first + wordCounter) + L' ');
             }
         passiveVoicePhrases.insert(currentPassivePhrase);
         }
@@ -6894,8 +7234,9 @@ void ProjectDoc::CalculateGraphData()
                     if (GetWords()->get_sentences()[sentenceIndex].is_valid())
                         {
                         m_sentenceWordLengths->AddRow(Data::RowInfo().
-                            Continuous({ static_cast<double>(GetWords()->get_sentences()[sentenceIndex].get_valid_word_count()),
-                                         static_cast<double>(sentenceIndex) }).
+                            Continuous({
+                                static_cast<double>(GetWords()->get_sentences()[sentenceIndex].get_valid_word_count()),
+                                static_cast<double>(sentenceIndex) }).
                             Categoricals({ static_cast<Data::GroupIdType>(
                                 std::distance(GetWords()->get_paragraphs().cbegin(), paragraphIter)) }));
                         }

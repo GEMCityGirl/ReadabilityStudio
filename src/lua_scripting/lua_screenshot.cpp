@@ -245,7 +245,9 @@ namespace LuaScripting
             }
         std::vector<std::pair<size_t,Wisteria::SortDirection>> sortInfo;
         for (size_t i = 0; i < columns.size(); ++i)
-            { sortInfo.push_back(std::pair<size_t,Wisteria::SortDirection>(i, Wisteria::SortDirection::SortAscending)); }
+            {
+            sortInfo.push_back(std::pair<size_t,Wisteria::SortDirection>(i, Wisteria::SortDirection::SortAscending));
+            }
         LuaListCtrlSortDlg->FillSortCriteria(sortInfo);
         LuaListCtrlSortDlg->Show();
         wxGetApp().Yield();
@@ -269,13 +271,16 @@ namespace LuaScripting
         {
         if (LuaFilteredTextPreviewDlg == nullptr)
             {
-            LuaFilteredTextPreviewDlg = new FilteredTextPreviewDlg(wxGetApp().GetMainFrame(), InvalidSentence::ExcludeFromAnalysis, true, true, true, true, true, true, true, true);
+            LuaFilteredTextPreviewDlg =
+                new FilteredTextPreviewDlg(wxGetApp().GetMainFrame(), InvalidSentence::ExcludeFromAnalysis,
+                                           true, true, true, true, true, true, true, true);
             }
         wxDocument* currentDoc = wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument();
         if (currentDoc && currentDoc->IsKindOf(CLASSINFO(ProjectDoc)) )
             {
             wxString filteredText;
-            dynamic_cast<ProjectDoc*>(currentDoc)->FormatFilteredText(filteredText, true, true, true, true, true, true);
+            dynamic_cast<ProjectDoc*>(currentDoc)->FormatFilteredText(
+                filteredText, true, true, true, true, true, true);
             LuaFilteredTextPreviewDlg->SetFilteredValue(filteredText);
             }
         LuaFilteredTextPreviewDlg->ShowDetails();
@@ -789,7 +794,10 @@ namespace LuaScripting
             }
         // set the stemming type (if provided)
         if (lua_gettop(L) > 1)
-            { LuaCustomTestDlg->SetStemmingType(static_cast<stemming::stemming_type>(static_cast<int>(lua_tonumber(L, 2)))); }
+            {
+            LuaCustomTestDlg->SetStemmingType(
+                static_cast<stemming::stemming_type>(static_cast<int>(lua_tonumber(L, 2))));
+            }
         // other word lists
         if (lua_gettop(L) > 2)
             { LuaCustomTestDlg->SetIncludingDaleChallList(int_to_bool(lua_toboolean(L, 3))); }

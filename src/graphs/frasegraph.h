@@ -32,7 +32,9 @@ namespace Wisteria::Graphs
          - Blank group labels will be lumped into a "[NO GROUP]" category.
 
         @par Citation:
-            Vari-Cartier, Patricia. “Development and Validation of a New Instrument to Assess the Readability of Spanish Prose.” *The Modern Language Journal*, vol. 65, no. 2, 1981, pp. 141-48.*/
+            Vari-Cartier, Patricia. “Development and Validation of a New Instrument to
+            Assess the Readability of Spanish Prose.” *The Modern Language Journal*,
+            vol. 65, no. 2, 1981, pp. 141-48.*/
     class FraseGraph final : public PolygonReadabilityGraph
         {
     public:

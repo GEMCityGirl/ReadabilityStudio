@@ -710,7 +710,6 @@ public:
     void SetRibbonHoverColor(const wxColour& color)
         { m_ribbonHoverColor = color; }
     [[nodiscard]]
-   
     wxColour GetRibbonHoverFontColor() const
         { return m_ribbonHoverFontColor; }
     void SetRibbonHoverFontColor(const wxColour& color)

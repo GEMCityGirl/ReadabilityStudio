@@ -1072,12 +1072,24 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
         HTMLText += tableStart + formatHeader(_(L"Sentences"));
 
         if (project->GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis)
-            { currentLabel = _(L"Number of sentences (excluding incomplete sentences, see notes <a href=\"#incompsent\">below</a>):"); }
+            {
+            currentLabel =
+                _(L"Number of sentences (excluding incomplete sentences, "
+                   "see notes <a href=\"#incompsent\">below</a>):");
+            }
         else if (project->GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
-            { currentLabel = _(L"Number of sentences (excluding lists and tables, see notes <a href=\"#incompsent\">below</a>):"); }
+            {
+            currentLabel =
+                _(L"Number of sentences (excluding lists and tables, see notes <a href=\"#incompsent\">below</a>):");
+            }
         else
-            { currentLabel = _(L"Number of sentences:"); }
-        HTMLText += formatRow(currentLabel, wxNumberFormatter::ToString(project->GetTotalSentences(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+            {
+            currentLabel =
+                _(L"Number of sentences:");
+            }
+        HTMLText += formatRow(currentLabel, wxNumberFormatter::ToString(project->GetTotalSentences(), 0,
+            wxNumberFormatter::Style::Style_NoTrailingZeroes|
+            wxNumberFormatter::Style::Style_WithThousandsSep));
 
         if (listData)
             {
@@ -1093,17 +1105,28 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
         if (project->GetStatisticsReportInfo().IsExtendedInformationEnabled())
             {
             if (project->GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis)
-                { currentLabel = _(L"Number of units/independent clauses (excluding incomplete sentences, see notes <a href=\"#incompsent\">below</a>):"); }
+                {
+                currentLabel =
+                    _(L"Number of units/independent clauses (excluding incomplete sentences, see notes "
+                       "<a href=\"#incompsent\">below</a>):");
+                }
             else if (project->GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
-                { currentLabel = _(L"Number of units/independent clauses (excluding lists and tables, see notes <a href=\"#incompsent\">below</a>):"); }
+                {
+                currentLabel =
+                    _(L"Number of units/independent clauses (excluding lists and tables, see notes "
+                       "<a href=\"#incompsent\">below</a>):");
+                }
             else
                 { currentLabel = _(L"Number of units/independent clauses:"); }
-            HTMLText += formatRow(currentLabel, wxNumberFormatter::ToString(project->GetTotalSentenceUnits(), 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+            HTMLText += formatRow(currentLabel, wxNumberFormatter::ToString(project->GetTotalSentenceUnits(), 0,
+                wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                wxNumberFormatter::Style::Style_WithThousandsSep));
 
             if (listData)
                 {
                 currentLabel = _(L"Number of units/independent clauses");
-                listData->SetItemText(listDataItemCount, 0, htmlStrip(currentLabel, currentLabel.length(), true, false));
+                listData->SetItemText(listDataItemCount, 0,
+                    htmlStrip(currentLabel, currentLabel.length(), true, false));
                 listData->SetItemText(listDataItemCount++, 1,
                     wxNumberFormatter::ToString(project->GetTotalSentenceUnits(), 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|

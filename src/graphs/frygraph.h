@@ -32,9 +32,11 @@ namespace Wisteria::Graphs
          - Blank group labels will be lumped into a "[NO GROUP]" category.
 
         @par Citation:
-            Fry, Edward. “A Readability Formula That Saves Time.” *Journal of Reading*, vol. 11, no. 7, 1968, pp. 513-16, 575-78.
+            Fry, Edward. “A Readability Formula That Saves Time.” *Journal of Reading*, vol. 11, no. 7, 1968,
+            pp. 513-16, 575-78.
 
-            Gilliam, Bettye, Sylvia C. Peña, and Lee Mountain. “The Fry Graph Applied to Spanish Readability.” *Reading Teacher*, vol. 33, 1980, pp. 426-30.*/
+            Gilliam, Bettye, Sylvia C. Peña, and Lee Mountain. “The Fry Graph Applied to Spanish Readability.”
+            *Reading Teacher*, vol. 33, 1980, pp. 426-30.*/
     class FryGraph final : public PolygonReadabilityGraph
         {
     public:

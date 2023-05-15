@@ -54,8 +54,10 @@ wxBEGIN_EVENT_TABLE(BatchProjectView, BaseProjectView)
     EVT_LIST_ITEM_SELECTED(BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID, BatchProjectView::OnNonScoreItemSelected)
     EVT_LIST_ITEM_SELECTED(BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID, BatchProjectView::OnNonScoreItemSelected)
     EVT_LIST_ITEM_SELECTED(BaseProjectView::CLICHES_LIST_PAGE_ID, BatchProjectView::OnNonScoreItemSelected)
-    EVT_LIST_ITEM_SELECTED(BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID, BatchProjectView::OnNonScoreItemSelected)
-    EVT_LIST_ITEM_SELECTED(BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID, BatchProjectView::OnNonScoreItemSelected)
+    EVT_LIST_ITEM_SELECTED(BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID,
+        BatchProjectView::OnNonScoreItemSelected)
+    EVT_LIST_ITEM_SELECTED(BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID,
+        BatchProjectView::OnNonScoreItemSelected)
     EVT_LIST_ITEM_SELECTED(BaseProjectView::ALL_WORDS_LIST_PAGE_ID, BatchProjectView::OnNonScoreItemSelected)
     EVT_LIST_ITEM_SELECTED(BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID, BatchProjectView::OnNonScoreItemSelected)
     EVT_LIST_ITEM_SELECTED(BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID, BatchProjectView::OnNonScoreItemSelected)
@@ -66,8 +68,10 @@ wxBEGIN_EVENT_TABLE(BatchProjectView, BaseProjectView)
     EVT_LIST_ITEM_SELECTED(BaseProjectView::ID_DOLCH_WORDS_LIST_PAGE_ID, BatchProjectView::OnNonScoreItemSelected)
     EVT_LIST_ITEM_SELECTED(BaseProjectView::ID_NON_DOLCH_WORDS_LIST_PAGE_ID, BatchProjectView::OnNonScoreItemSelected)
     EVT_LIST_ITEM_SELECTED(BaseProjectView::ID_WARNING_LIST_PAGE_ID, BatchProjectView::OnNonScoreItemSelected)
-    EVT_LIST_ITEM_SELECTED(BaseProjectView::ID_AGGREGATED_DOC_SCORES_LIST_PAGE_ID, BatchProjectView::OnNonScoreItemSelected)
-    EVT_LIST_ITEM_SELECTED(BaseProjectView::ID_AGGREGATED_CLOZE_SCORES_LIST_PAGE_ID, BatchProjectView::OnNonScoreItemSelected)
+    EVT_LIST_ITEM_SELECTED(BaseProjectView::ID_AGGREGATED_DOC_SCORES_LIST_PAGE_ID,
+        BatchProjectView::OnNonScoreItemSelected)
+    EVT_LIST_ITEM_SELECTED(BaseProjectView::ID_AGGREGATED_CLOZE_SCORES_LIST_PAGE_ID,
+        BatchProjectView::OnNonScoreItemSelected)
     EVT_MENU(XRCID("ID_K12_US"), BatchProjectView::OnGradeScale)
     EVT_MENU(XRCID("ID_K12_NEWFOUNDLAND"), BatchProjectView::OnGradeScale)
     EVT_MENU(XRCID("ID_K12_BC"), BatchProjectView::OnGradeScale)
@@ -472,12 +476,14 @@ void BatchProjectView::UpdateSideBarIcons()
 
     if (GetScoresView().GetWindowCount() > 0)
         {
-        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetReadabilityScoresLabel(), SIDEBAR_READABILITY_SCORES_SECTION_ID, 1);
+        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetReadabilityScoresLabel(),
+                                 SIDEBAR_READABILITY_SCORES_SECTION_ID, 1);
         for (size_t i = 0; i < GetScoresView().GetWindowCount(); ++i)
             {
             const bool isGraph = typeid(*GetScoresView().GetWindow(i)) == typeid(Wisteria::Canvas);
 
-            GetSideBar()->InsertSubItemById(SIDEBAR_READABILITY_SCORES_SECTION_ID, GetScoresView().GetWindow(i)->GetName(),
+            GetSideBar()->InsertSubItemById(
+                SIDEBAR_READABILITY_SCORES_SECTION_ID, GetScoresView().GetWindow(i)->GetName(),
                 GetScoresView().GetWindow(i)->GetId(),
                 GetScoresView().GetWindow(i)->GetId() == ID_SCORE_LIST_PAGE_ID ? 15 :
                 GetScoresView().GetWindow(i)->GetId() == ID_SCORE_STATS_LIST_PAGE_ID ? 15 :
@@ -485,29 +491,39 @@ void BatchProjectView::UpdateSideBarIcons()
                 GetScoresView().GetWindow(i)->GetId() == ID_AGGREGATED_CLOZE_SCORES_LIST_PAGE_ID ? 15 :
                 GetScoresView().GetWindow(i)->GetId() == READABILITY_GOALS_PAGE_ID ? 28 :
                 (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetScoresView().GetWindow(i))->GetFixedObject(0,0)) == typeid(FleschChart)) ? 18 :
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(FleschChart)) ? 18 :
                 (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetScoresView().GetWindow(i))->GetFixedObject(0,0)) == typeid(FraseGraph)) ? 19 :
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(FraseGraph)) ? 19 :
                 (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetScoresView().GetWindow(i))->GetFixedObject(0,0)) == typeid(FryGraph)) ? 20 :
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(FryGraph)) ? 20 :
                 (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetScoresView().GetWindow(i))->GetFixedObject(0,0)) == typeid(RaygorGraph)) ? 21 :
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(RaygorGraph)) ? 21 :
                 (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetScoresView().GetWindow(i))->GetFixedObject(0,0)) == typeid(CrawfordGraph)) ? 22 :
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(CrawfordGraph)) ? 22 :
                 (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetScoresView().GetWindow(i))->GetFixedObject(0,0)) == typeid(SchwartzGraph)) ? 25 :
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(SchwartzGraph)) ? 25 :
                 (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetScoresView().GetWindow(i))->GetFixedObject(0,0)) == typeid(LixGauge)) ? 26 :
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(LixGauge)) ? 26 :
                 (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetScoresView().GetWindow(i))->GetFixedObject(0,0)) == typeid(LixGaugeGerman)) ? 26 :
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(LixGaugeGerman)) ? 26 :
                 (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetScoresView().GetWindow(i))->GetFixedObject(0,0)) == typeid(DanielsonBryan2Plot)) ? 27 :
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(DanielsonBryan2Plot)) ? 27 :
                     9);
             }
         }
     if (GetHistogramsView().GetWindowCount() > 0)
         {
-        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetHistogramsLabel(), SIDEBAR_HISTOGRAMS_SECTION_ID, 6);
+        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetHistogramsLabel(),
+                                 SIDEBAR_HISTOGRAMS_SECTION_ID, 6);
         for (size_t i = 0; i < GetHistogramsView().GetWindowCount(); ++i)
             {
             GetSideBar()->InsertSubItemById(SIDEBAR_HISTOGRAMS_SECTION_ID, GetHistogramsView().GetWindow(i)->GetName(),
@@ -525,19 +541,23 @@ void BatchProjectView::UpdateSideBarIcons()
         }
     if (GetWordsBreakdownView().GetWindowCount() > 0)
         {
-        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetWordsBreakdownLabel(), SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, 13);
+        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetWordsBreakdownLabel(),
+                                 SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, 13);
         for (size_t i = 0; i < GetWordsBreakdownView().GetWindowCount(); ++i)
             {
-            GetSideBar()->InsertSubItemById(SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, GetWordsBreakdownView().GetWindow(i)->GetName(),
+            GetSideBar()->InsertSubItemById(
+                SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, GetWordsBreakdownView().GetWindow(i)->GetName(),
                 GetWordsBreakdownView().GetWindow(i)->GetId(), 9);
             }
         }
     if (GetSentencesBreakdownView().GetWindowCount() > 0)
         {
-        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetSentencesBreakdownLabel(), SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID, 14);
+        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetSentencesBreakdownLabel(),
+                                 SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID, 14);
         for (size_t i = 0; i < GetSentencesBreakdownView().GetWindowCount(); ++i)
             {
-            GetSideBar()->InsertSubItemById(SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID, GetSentencesBreakdownView().GetWindow(i)->GetName(),
+            GetSideBar()->InsertSubItemById(
+                SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID, GetSentencesBreakdownView().GetWindow(i)->GetName(),
                 GetSentencesBreakdownView().GetWindow(i)->GetId(), 9);
             }
         }
@@ -560,7 +580,9 @@ void BatchProjectView::UpdateSideBarIcons()
             }
         }
     if (GetWarningsView()->GetItemCount() > 0)
-        { GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetWarningLabel(), SIDEBAR_WARNINGS_SECTION_ID, 8); }
+        {
+        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetWarningLabel(), SIDEBAR_WARNINGS_SECTION_ID, 8);
+        }
 
     GetSideBar()->ResetState();
     }
@@ -794,7 +816,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                 {
                 if (GetMenuBar())
                     {
-                    GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
+                    GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."),
+                                           GetActiveProjectWindow()->GetName()) );
                     MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, false);
                     MenuBarEnableAll(GetMenuBar(), wxID_DELETE, false);
                     }
@@ -814,14 +837,25 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         m_exportMenu.Append(wxID_SAVE, _("Save")+L"\tCtrl+S")->SetBitmap(saveIcon);
                         m_exportMenu.Append(wxID_SAVEAS, _("Save As..."));
                         m_exportMenu.AppendSeparator();
-                        auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
-                        m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _("Export All..."))->SetBitmap(exportAllIcon);
+                        auto exportMenuItem = m_exportMenu.Append(
+                            XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."),
+                                GetActiveProjectWindow()->GetName()) );
+                        m_exportMenu.Append(
+                            XRCID("ID_EXPORT_ALL"), _("Export All..."))->SetBitmap(exportAllIcon);
                         m_exportMenu.AppendSeparator();
-                        m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"), _("Export Scores && Statistics..."))->SetBitmap(reportIcon);
-                        m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"), _("Export Statistics Report..."))->SetBitmap(reportIcon);
+                        m_exportMenu.Append(
+                            XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                            _("Export Scores && Statistics..."))->SetBitmap(reportIcon);
+                        m_exportMenu.Append(
+                            XRCID("ID_EXPORT_STATISTICS"),
+                            _("Export Statistics Report..."))->SetBitmap(reportIcon);
                         m_exportMenu.AppendSeparator();
-                        m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), _("Export Filtered Document..."))->SetBitmap(filterIcon);
-                        m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"), _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
+                        m_exportMenu.Append(
+                            XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                            _("Export Filtered Document..."))->SetBitmap(filterIcon);
+                        m_exportMenu.Append(
+                            XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                            _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                         editButtonBar->ClearButtons();
                         editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _("Background"),
@@ -840,8 +874,11 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                                                        _("Shadows"),
                                                        readRibbonButtonSVG(L"ribbon/shadow.svg"),
                                                        _("Display drop shadows on the graphs."));
-                        editButtonBar->ToggleButton(XRCID("ID_DROP_SHADOW"), dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
-                        auto graph = dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0,0);
+                        editButtonBar->ToggleButton(
+                            XRCID("ID_DROP_SHADOW"),
+                            dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                        auto graph = dynamic_cast<Wisteria::Canvas*>(
+                            GetActiveProjectWindow())->GetFixedObject(0, 0);
                         if (typeid(*graph) == typeid(FleschChart))
                             {
                             exportMenuItem->SetBitmap(
@@ -862,38 +899,50 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                                                      _("Change the color of the invalid regions."));
                             if (typeid(*graph) == typeid(FryGraph))
                                 {
-                                exportMenuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/fry-test.svg"));
+                                exportMenuItem->SetBitmap(
+                                    wxGetApp().GetResourceManager().GetSVG(L"tests/fry-test.svg"));
                                 }
                             else if (typeid(*graph) == typeid(RaygorGraph))
                                 {
-                                exportMenuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/raygor-test.svg"));
+                                exportMenuItem->SetBitmap(
+                                    wxGetApp().GetResourceManager().GetSVG(L"tests/raygor-test.svg"));
                                 }
                             else if (typeid(*graph) == typeid(SchwartzGraph))
                                 {
-                                exportMenuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/schwartz.svg"));
+                                exportMenuItem->SetBitmap(
+                                    wxGetApp().GetResourceManager().GetSVG(L"tests/schwartz.svg"));
                                 }
                             }
                         else if (typeid(*graph) == typeid(LixGaugeGerman))
                             {
-                            exportMenuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/lix-german-technical.svg"));
+                            exportMenuItem->SetBitmap(
+                                wxGetApp().GetResourceManager().GetSVG(L"tests/lix-german-technical.svg"));
                             editButtonBar->AddToggleButton(XRCID("ID_USE_ENGLISH_LABELS"), _("English Labels"),
                                                            readRibbonButtonSVG(L"ribbon/german2english.svg"),
                                                            _("Use translated (English) labels for the brackets."));
-                            editButtonBar->ToggleButton(XRCID("ID_USE_ENGLISH_LABELS"), dynamic_cast<BatchProjectDoc*>(GetDocument())->IsUsingEnglishLabelsForGermanLix());
+                            editButtonBar->ToggleButton(
+                                XRCID("ID_USE_ENGLISH_LABELS"),
+                                dynamic_cast<BatchProjectDoc*>(GetDocument())->IsUsingEnglishLabelsForGermanLix());
                             }
                         else if (typeid(*graph) == typeid(LixGauge))
                             {
-                            exportMenuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/lix-test.svg"));
+                            exportMenuItem->SetBitmap(
+                                wxGetApp().GetResourceManager().GetSVG(L"tests/lix-test.svg"));
                             }
                         else if (typeid(*graph) == typeid(DanielsonBryan2Plot))
                             {
-                            exportMenuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/danielson-bryan-2.svg"));
+                            exportMenuItem->SetBitmap(
+                                wxGetApp().GetResourceManager().GetSVG(L"tests/danielson-bryan-2.svg"));
                             }
                         else if (typeid(*graph) == typeid(CrawfordGraph))
-                            { exportMenuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/crawford.svg")); }
+                            {
+                            exportMenuItem->SetBitmap(
+                                wxGetApp().GetResourceManager().GetSVG(L"tests/crawford.svg"));
+                            }
                         else if (typeid(*graph) == typeid(FraseGraph))
                             {
-                            exportMenuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/frase.svg"));
+                            exportMenuItem->SetBitmap(
+                                wxGetApp().GetResourceManager().GetSVG(L"tests/frase.svg"));
                             }
                         editButtonBar->AddButton(wxID_COPY, _("Copy"),
                                                  readRibbonButtonSVG(L"ribbon/copy.svg"),
@@ -923,22 +972,37 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         while (m_copyMenu.GetMenuItemCount())
                             { m_copyMenu.Destroy(m_copyMenu.FindItemByPosition(0)); }
                         m_copyMenu.Append(wxID_COPY, _("Copy")+L"\tCtrl+C");
-                        m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"), _("Copy with Column Headers"));
-                        m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"), _("Copy (First Column Only)")+L"\tShift+Ctrl+C");
-                        m_copyMenu.Append(XRCID("ID_COPY_ALL"), _("Copy All"));
+                        m_copyMenu.Append(
+                            XRCID("ID_COPY_WITH_COLUMN_HEADERS"), _("Copy with Column Headers"));
+                        m_copyMenu.Append(
+                            XRCID("ID_COPY_FIRST_COLUMN"), _("Copy (First Column Only)")+L"\tShift+Ctrl+C");
+                        m_copyMenu.Append(
+                            XRCID("ID_COPY_ALL"), _("Copy All"));
                         while (m_exportMenu.GetMenuItemCount())
                             { m_exportMenu.Destroy(m_exportMenu.FindItemByPosition(0)); }
                         m_exportMenu.Append(wxID_SAVE, _("Save")+L"\tCtrl+S")->SetBitmap(saveIcon);
                         m_exportMenu.Append(wxID_SAVEAS, _("Save As..."));
                         m_exportMenu.AppendSeparator();
-                        auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."), GetActiveProjectWindow()->GetName()) );
-                        m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _("Export All..."))->SetBitmap(exportAllIcon);
+                        auto exportMenuItem =
+                            m_exportMenu.Append(
+                                XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."),
+                                    GetActiveProjectWindow()->GetName()) );
+                        m_exportMenu.Append(
+                            XRCID("ID_EXPORT_ALL"), _("Export All..."))->SetBitmap(exportAllIcon);
                         m_exportMenu.AppendSeparator();
-                        m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"), _("Export Scores && Statistics..."))->SetBitmap(reportIcon);
-                        m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"), _("Export Statistics Report..."))->SetBitmap(reportIcon);
+                        m_exportMenu.Append(
+                            XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                            _("Export Scores && Statistics..."))->SetBitmap(reportIcon);
+                        m_exportMenu.Append(
+                            XRCID("ID_EXPORT_STATISTICS"),
+                            _("Export Statistics Report..."))->SetBitmap(reportIcon);
                         m_exportMenu.AppendSeparator();
-                        m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), _("Export Filtered Document..."))->SetBitmap(filterIcon);
-                        m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"), _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
+                        m_exportMenu.Append(
+                            XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                            _("Export Filtered Document..."))->SetBitmap(filterIcon);
+                        m_exportMenu.Append(
+                            XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                            _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                         if (event.GetInt() == READABILITY_GOALS_PAGE_ID)
                             { exportMenuItem->SetBitmap(goalsIcon); }
@@ -953,7 +1017,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                             readRibbonButtonSVG(L"ribbon/grade-display.svg"),
                             _("Display scores in long format."));
                         editButtonRibbonBar->ToggleButton(XRCID("ID_LONG_FORMAT"),
-                            dynamic_cast<BatchProjectDoc*>(GetDocument())->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
+                            dynamic_cast<BatchProjectDoc*>(
+                                GetDocument())->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
                         editButtonRibbonBar->AddDropdownButton(XRCID("ID_GRADE_SCALES"),
                             _("Grade Scale"),
                             readRibbonButtonSVG(L"ribbon/education.svg"),
@@ -1083,7 +1148,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         {
                         const auto plot = canvas->GetFixedObject(0, 0);
                         if (plot != nullptr && typeid(*plot) == typeid(Wisteria::Graphs::Histogram) &&
-                            std::dynamic_pointer_cast<Wisteria::Graphs::Graph2D>(plot)->HasProperty(_DT(L"ISGRADEPLOT")))
+                            std::dynamic_pointer_cast<Wisteria::Graphs::Graph2D>(plot)->HasProperty(
+                                _DT(L"ISGRADEPLOT")))
                             {
                             editButtonRibbonBar->AddDropdownButton(XRCID("ID_GRADE_SCALES"),
                                 _("Grade Scale"),
@@ -1559,7 +1625,8 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
         { return; }
     // If nothing is selected in the raw score list then just select this item and return--
     // selecting this item will simply fire the OnScoreItemSelected event and return here.
-    // The point of selecting the item (if nothing is selected) is to prevent OnActiveView from clearing the stats panes.
+    // The point of selecting the item (if nothing is selected) is to prevent
+    // OnActiveView from clearing the stats panes.
     if (list->GetSelectedItemCount() == 0)
         {
         list->Select(scoreListItem);
@@ -1640,7 +1707,9 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
                 if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
                     {
                     scoreText += L"\n<tr><td>" + ReadabilityMessages::GetDrpUnitDescription(score) + L"</td></tr>";
-                    scoreText += L"\n<tr><td>" + wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) + L"</td></tr></table>";
+                    scoreText += L"\n<tr><td>" +
+                        wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
+                        L"</td></tr></table>";
                     }
                 }
             else if (frasePos.second && *frasePos.first == readability::readability_test(currentTest))
@@ -1648,17 +1717,25 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
                 if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
                     {
                     scoreText += L"\n<tr><td>" + ReadabilityMessages::GetFraseDescription(score) + L"</td></tr>";
-                    scoreText += L"\n<tr><td>" + wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) + L"</td></tr></table>";
+                    scoreText += L"\n<tr><td>" +
+                        wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
+                        L"</td></tr></table>";
                     }
                 }
-            else if (standardTestPos.first->get_test().get_test_type() == readability::readability_test_type::grade_level ||
-                standardTestPos.first->get_test().get_test_type() == readability::readability_test_type::index_value_and_grade_level ||
-                standardTestPos.first->get_test().get_test_type() == readability::readability_test_type::grade_level_and_predicted_cloze_score)
+            else if (standardTestPos.first->get_test().get_test_type() ==
+                    readability::readability_test_type::grade_level ||
+                standardTestPos.first->get_test().get_test_type() ==
+                    readability::readability_test_type::index_value_and_grade_level ||
+                standardTestPos.first->get_test().get_test_type() ==
+                    readability::readability_test_type::grade_level_and_predicted_cloze_score)
                 {
                 if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
                     {
-                    scoreText += L"\n<tr><td>" + doc->GetReadabilityMessageCatalog().GetGradeScaleDescription(score) + L"</td></tr>";
-                    scoreText += L"\n<tr><td>" + wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) + L"</td></tr></table>";
+                    scoreText += L"\n<tr><td>" +
+                        doc->GetReadabilityMessageCatalog().GetGradeScaleDescription(score) + L"</td></tr>";
+                    scoreText += L"\n<tr><td>" +
+                        wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
+                        L"</td></tr></table>";
                     }
                 // just show whatever message is in the list if we can't convert it to a value
                 else
@@ -1666,12 +1743,16 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
                     scoreText += L"\n<tr><td>" + list->GetItemTextEx(scoreListItem, i) + L"</td></tr></table>";
                     }
                 }
-            else if (standardTestPos.first->get_test().get_test_type() == readability::readability_test_type::predicted_cloze_score)
+            else if (standardTestPos.first->get_test().get_test_type() ==
+                readability::readability_test_type::predicted_cloze_score)
                 {
                 if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
                     {
-                    scoreText += L"\n<tr><td>" + doc->GetReadabilityMessageCatalog().GetPredictedClozeDescription(score) + L"</td></tr>";
-                    scoreText += L"\n<tr><td>" + wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) + L"</td></tr></table>";
+                    scoreText += L"\n<tr><td>" +
+                        doc->GetReadabilityMessageCatalog().GetPredictedClozeDescription(score) + L"</td></tr>";
+                    scoreText += L"\n<tr><td>" +
+                        wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
+                        L"</td></tr></table>";
                     }
                 }
             }
@@ -2521,10 +2602,12 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
         wxString currentDocName;
         if (doc->GetFilePathTruncationMode() == ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::TruncatePaths)
             { currentDocName = GetShortenedFileName(doc->GetDocuments()[i]->GetOriginalDocumentFilePath()); }
-        else if (doc->GetFilePathTruncationMode() == ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames)
+        else if (doc->GetFilePathTruncationMode() ==
+            ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames)
             {
             wxFileName fn(doc->GetDocuments()[i]->GetOriginalDocumentFilePath());
-            currentDocName = fn.GetFullName().empty() ? doc->GetDocuments()[i]->GetOriginalDocumentFilePath() : fn.GetFullName();
+            currentDocName = fn.GetFullName().empty() ?
+                doc->GetDocuments()[i]->GetOriginalDocumentFilePath() : fn.GetFullName();
             }
         else
             { currentDocName = doc->GetDocuments()[i]->GetOriginalDocumentFilePath(); }

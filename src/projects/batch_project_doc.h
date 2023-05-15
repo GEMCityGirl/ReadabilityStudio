@@ -69,17 +69,21 @@ public:
         { return m_docs; }
 
     /// @returns The unique list of labels connected to the documents.
-    [[nodiscard]] const std::map<traits::case_insensitive_wstring_ex, Wisteria::Data::GroupIdType>& GetDocumentLabels() const noexcept
+    [[nodiscard]]
+    const std::map<traits::case_insensitive_wstring_ex, Wisteria::Data::GroupIdType>&
+        GetDocumentLabels() const noexcept
         { return m_docLabels; }
     /// @returns The maximum number of groups that the data can be broken into for graphs.
-    [[nodiscard]] size_t GetMaxGroupCount() const noexcept
+    [[nodiscard]]
+    size_t GetMaxGroupCount() const noexcept
         { return m_maxGroupCount; }
     /// Sets the maximum number of groups allows to bin the documents into (based on their description/group label).
     void SetMaxGroupCount(const size_t maxCount) noexcept
         { m_maxGroupCount = maxCount; }
     /** @returns The document from the batch by name. If document name isn't found in the batch, then null is returned.
         @param docName The full name (including filepath) of the document.*/
-    [[nodiscard]] const BaseProject* GetDocument(const wxString& docName) const
+    [[nodiscard]]
+    const BaseProject* GetDocument(const wxString& docName) const
         {
         for (auto doc : GetDocuments())
             {
@@ -90,42 +94,60 @@ public:
         }
     void RemoveDocument(const wxString& docName);
     void RemoveMisspellings(const wxArrayString& misspellingsToRemove) final;
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetMisspelledWordData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetMisspelledWordData() const noexcept
         { return m_misspelledWordData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetRepeatedWordData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetRepeatedWordData() const noexcept
         { return m_dupWordData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetIncorrectArticleData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetIncorrectArticleData() const noexcept
         { return m_incorrectArticleData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetOverusedWordBySentenceData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetOverusedWordBySentenceData() const noexcept
         { return m_overusedWordBySentenceData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetPassiveVoiceData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetPassiveVoiceData() const noexcept
         { return m_passiveVoiceData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetWordyItemsData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetWordyItemsData() const noexcept
         { return m_wordyPhraseData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetRedundantPhrasesData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetRedundantPhrasesData() const noexcept
         { return m_redundantPhraseData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetWordingErrorsData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetWordingErrorsData() const noexcept
         { return m_wordingErrorData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetClicheData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetClicheData() const noexcept
         { return m_clichePhraseData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetAllWordsBatchData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetAllWordsBatchData() const noexcept
         { return m_allWordsBatchData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetImportantWordsBatchData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetImportantWordsBatchData() const noexcept
         { return m_importantWordsBatchData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetLongSentencesData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetLongSentencesData() const noexcept
         { return m_overlyLongSentenceData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetConjunctionStartingSentencesData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetConjunctionStartingSentencesData() const noexcept
         { return m_sentenceStartingWithConjunctionsData; }
-    [[nodiscard]] const ListCtrlExNumericDataProvider* GetLowerCasedSentencesData() const noexcept
+    [[nodiscard]]
+    const ListCtrlExNumericDataProvider* GetLowerCasedSentencesData() const noexcept
         { return m_sentenceStartingWithLowercaseData; }
 private:
-    [[nodiscard]] ListCtrlExNumericDataProvider* GetMisspelledWordData() noexcept
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* GetMisspelledWordData() noexcept
         { return m_misspelledWordData; }
-    [[nodiscard]] ListCtrlExNumericDataProvider* GetRepeatedWordData() noexcept
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* GetRepeatedWordData() noexcept
         { return m_dupWordData; }
-    [[nodiscard]] ListCtrlExNumericDataProvider* GetAllWordsBatchData() noexcept
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* GetAllWordsBatchData() noexcept
         { return m_allWordsBatchData; }
-    [[nodiscard]] ListCtrlExNumericDataProvider* GetImportantWordsBatchData() noexcept
+    [[nodiscard]]
+    ListCtrlExNumericDataProvider* GetImportantWordsBatchData() noexcept
         { return m_importantWordsBatchData; }
     void DisplayFleschChart();
     void DisplayDB2Plot();
@@ -142,9 +164,9 @@ private:
     void LoadDolchSection();
     void DisplayReadabilityGraphs();
     void DisplayHistograms();
-    void DisplayHistogram(const wxString& name, const wxWindowID Id, const wxString& topLabel, const wxString& bottomLabel,
-                          std::shared_ptr<const Wisteria::Data::Dataset> data, const bool includeTest, const bool isTestGradeLevel,
-                          const bool startAtOne);
+    void DisplayHistogram(const wxString& name, const wxWindowID Id, const wxString& topLabel,
+                          const wxString& bottomLabel, std::shared_ptr<const Wisteria::Data::Dataset> data,
+                          const bool includeTest, const bool isTestGradeLevel, const bool startAtOne);
     void DisplayBoxPlots();
     void DisplayScores();
     void DisplayWarnings();

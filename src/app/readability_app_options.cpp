@@ -856,7 +856,7 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
             appearanceNode->FirstChildElement(XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR.mb_str());
         if (startPageBackStageBackgroundColorNode)
             {
-            int red = 
+            int red =
                 startPageBackStageBackgroundColorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(), 255);
             int green =
                 startPageBackStageBackgroundColorNode->ToElement()->IntAttribute(XmlFormat::GetGreen().mb_str(), 255);
@@ -1625,7 +1625,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             bool_to_int(m_ignoreTrailingCitations)));
                     }
                 // whether to aggressively exclude
-                auto aggressivelyDeducingLists = documentAnalysisNode->FirstChildElement(XML_AGGRESSIVE_EXCLUSION.mb_str());
+                auto aggressivelyDeducingLists = documentAnalysisNode->FirstChildElement(
+                    XML_AGGRESSIVE_EXCLUSION.mb_str());
                 if (aggressivelyDeducingLists)
                     {
                     m_aggressiveExclusion =
@@ -2499,7 +2500,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                 {
                                 const wxString faceNameStr =
                                     Wisteria::TextStream::CharStreamToUnicode(faceName, std::strlen(faceName));
-                                const wchar_t* filteredText = 
+                                const wchar_t* filteredText =
                                     filter_html(faceNameStr, faceNameStr.length(), true, false);
                                 if (filteredText && wxFontEnumerator::IsValidFacename(filteredText))
                                     { m_yAxisFont.SetFaceName(wxString(filteredText)); }
@@ -3077,7 +3078,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     m_textHighlightColor.Set(red, green, blue);
                     }
                 // the highlight color for dolch words
-                auto dolchConjunctionsColorNode = textViewNode->FirstChildElement(XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR.mb_str());
+                auto dolchConjunctionsColorNode = textViewNode->FirstChildElement(
+                    XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR.mb_str());
                 if (dolchConjunctionsColorNode)
                     {
                     int red =
@@ -3091,9 +3093,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             XmlFormat::GetBlue().mb_str(), GetDolchConjunctionsColor().Blue());
                     SetDolchConjunctionsColor(wxColour(red, green, blue));
                     m_highlightDolchConjunctions =
-                         int_to_bool(dolchConjunctionsColorNode->ToElement()->IntAttribute(XML_INCLUDE.mb_str(), bool_to_int(m_highlightDolchConjunctions)));
+                         int_to_bool(dolchConjunctionsColorNode->ToElement()->IntAttribute(
+                             XML_INCLUDE.mb_str(), bool_to_int(m_highlightDolchConjunctions)));
                     }
-                auto dolchPrepositionsColorNode = textViewNode->FirstChildElement(XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR.mb_str());
+                auto dolchPrepositionsColorNode = textViewNode->FirstChildElement(
+                    XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR.mb_str());
                 if (dolchPrepositionsColorNode)
                     {
                     int red =
@@ -3107,9 +3111,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             XmlFormat::GetBlue().mb_str(), GetDolchPrepositionsColor().Blue());
                     SetDolchPrepositionsColor(wxColour(red, green, blue));
                     m_highlightDolchPrepositions =
-                         int_to_bool(dolchPrepositionsColorNode->ToElement()->IntAttribute(XML_INCLUDE.mb_str(), bool_to_int(m_highlightDolchPrepositions)));
+                         int_to_bool(dolchPrepositionsColorNode->ToElement()->IntAttribute(
+                             XML_INCLUDE.mb_str(), bool_to_int(m_highlightDolchPrepositions)));
                     }
-                auto dolchPronounsColorNode = textViewNode->FirstChildElement(XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR.mb_str());
+                auto dolchPronounsColorNode = textViewNode->FirstChildElement(
+                    XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR.mb_str());
                 if (dolchPronounsColorNode)
                     {
                     int red =
@@ -3126,7 +3132,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                          int_to_bool(dolchPronounsColorNode->ToElement()->IntAttribute(
                              XML_INCLUDE.mb_str(), bool_to_int(m_highlightDolchPronouns)));
                     }
-                auto dolchAdverbsColorNode = textViewNode->FirstChildElement(XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR.mb_str());
+                auto dolchAdverbsColorNode = textViewNode->FirstChildElement(
+                    XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR.mb_str());
                 if (dolchAdverbsColorNode)
                     {
                     int red =
@@ -3158,7 +3165,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             XmlFormat::GetBlue().mb_str(), GetDolchAdjectivesColor().Blue());
                     SetDolchAdjectivesColor(wxColour(red, green, blue));
                     m_highlightDolchAdjectives =
-                         int_to_bool(dolchAdjectivesColorNode->ToElement()->IntAttribute(XML_INCLUDE.mb_str(), bool_to_int(m_highlightDolchAdjectives)));
+                         int_to_bool(dolchAdjectivesColorNode->ToElement()->IntAttribute(
+                             XML_INCLUDE.mb_str(), bool_to_int(m_highlightDolchAdjectives)));
                     }
                 auto dolchVerbColorNode = textViewNode->FirstChildElement(XML_DOLCH_VERBS_HIGHLIGHTCOLOR.mb_str());
                 if (dolchVerbColorNode)
@@ -3174,7 +3182,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             XmlFormat::GetBlue().mb_str(), GetDolchVerbsColor().Blue());
                     SetDolchVerbsColor(wxColour(red, green, blue));
                     m_highlightDolchVerbs =
-                         int_to_bool(dolchVerbColorNode->ToElement()->IntAttribute(XML_INCLUDE.mb_str(), bool_to_int(m_highlightDolchVerbs)));
+                         int_to_bool(dolchVerbColorNode->ToElement()->IntAttribute(
+                             XML_INCLUDE.mb_str(), bool_to_int(m_highlightDolchVerbs)));
                     }
                 auto dolchNounColorNode = textViewNode->FirstChildElement(XML_DOLCH_NOUNS_HIGHLIGHTCOLOR.mb_str());
                 if (dolchNounColorNode)
@@ -3257,7 +3266,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     int pointSize =
                         fontNode->ToElement()->IntAttribute(XmlFormat::GetFontPointSize().mb_str(),
                             wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize());
-                    int style = 
+                    int style =
                         fontNode->ToElement()->IntAttribute(XmlFormat::GetFontStyle().mb_str(), wxFONTSTYLE_NORMAL);
                     int weight =
                         fontNode->ToElement()->IntAttribute(XmlFormat::GetFontWeight().mb_str(), wxFONTWEIGHT_NORMAL);

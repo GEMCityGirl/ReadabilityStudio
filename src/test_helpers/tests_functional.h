@@ -167,7 +167,8 @@ public:
     [[nodiscard]]
     bool operator()(const word_typeT& the_word) const
         {
-        m_inExcludeState = false;//reset
+        // reset
+        m_inExcludeState = false;
         if (the_word.is_numeric())
             {
             m_inExcludeState = true;

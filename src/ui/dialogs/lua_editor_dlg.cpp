@@ -47,7 +47,7 @@ public:
             { r = wxRect(rect.x, rect.y, rect.width+2, rect.height); }
         // TODO: else if (m_flags &wxAUI_NB_LEFT) {}
         // TODO: else if (m_flags &wxAUI_NB_RIGHT) {}
-        else //for wxAUI_NB_TOP
+        else // for wxAUI_NB_TOP
             { r = wxRect(rect.x, rect.y, rect.width+2, rect.height-3); }
 
         wxDCBrushChanger bch(dc, m_baseColourBrush);
@@ -191,7 +191,7 @@ public:
             border_points[4] = wxPoint(tab_x + tab_width, tab_y + tab_height - 6);
             border_points[5] = wxPoint(tab_x + tab_width, tab_y);
             }
-        else //if (m_flags & wxAUI_NB_TOP) {}
+        else // if (m_flags & wxAUI_NB_TOP) {}
             {
             border_points[0] = wxPoint(tab_x, tab_y + tab_height - 4);
             border_points[1] = wxPoint(tab_x, tab_y + 2);
@@ -239,7 +239,7 @@ public:
                 dc.SetPen(wxPen(m_baseColour.ChangeLightness(170)));
             // TODO: else if (m_flags &wxAUI_NB_LEFT) {}
             // TODO: else if (m_flags &wxAUI_NB_RIGHT) {}
-            else //for wxAUI_NB_TOP
+            else // for wxAUI_NB_TOP
                 dc.SetPen(m_baseColourPen);
             dc.DrawLine(border_points[0].x + 1,
                 border_points[0].y,

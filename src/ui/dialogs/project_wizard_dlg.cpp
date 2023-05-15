@@ -1588,7 +1588,7 @@ void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent& eve
             { warningIter->Show(false); }
         }
 
-    //set the default name of the project to the last folder of the file selected here.
+    // set the default name of the project to the last folder of the file selected here.
     const wxArrayString folders = wxFileName(wxFileName(files[0]).GetPathWithSep()).GetDirs();
     SetLastSelectedFolder(folders.size() ? folders.back() : wxString{});
 

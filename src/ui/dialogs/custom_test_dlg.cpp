@@ -743,7 +743,8 @@ void CustomTestDlg::CreateControls()
                    "to determine if a word is familiar."));
 
             m_wordListsPropertyGrid->Append(new wxBoolProperty(GetIncludeSpacheWordListLabel(),wxPG_LABEL,false));
-            m_wordListsPropertyGrid->SetPropertyAttribute(GetIncludeSpacheWordListLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_wordListsPropertyGrid->SetPropertyAttribute(
+                GetIncludeSpacheWordListLabel(), wxPG_BOOL_USE_CHECKBOX, true);
             m_wordListsPropertyGrid->SetPropertyHelpString(GetIncludeSpacheWordListLabel(),
                 _(L"Check this option to use the Spache Revised word list (along with any other selected word lists) "
                    "to determine if a word is familiar."));

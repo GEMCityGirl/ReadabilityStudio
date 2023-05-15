@@ -27,7 +27,7 @@ wxEND_EVENT_TABLE()
 //---------------------------------------------
 bool EditWordListDlg::Save(const wxString& filePath)
     {
-    //if empty then get the user to save the word list
+    // if empty then get the user to save the word list
     if (filePath.empty())
         {
         TransferDataFromWindow();
@@ -205,7 +205,7 @@ void EditWordListDlg::CreateControls()
     toolbarSizer->Add(listButton);
     wordListSizer->Add(toolbarSizer, 0, wxALIGN_RIGHT);
 
-    //the word list
+    // the word list
     m_wordsList = new ListCtrlEx(this, wxID_ANY, wxDefaultPosition,
         FromDIP(wxSize(400, 300)),
         wxLC_VIRTUAL|wxLC_EDIT_LABELS|wxLC_REPORT|wxLC_ALIGN_LEFT|wxBORDER_THEME);
@@ -280,7 +280,7 @@ void EditWordListDlg::OnFilePathChanged(wxCommandEvent& event)
                 maxColumnCount = wxMin(wxMax(tokenizer.CountTokens(), maxColumnCount), 5);
                 }
             m_wordData->SetSize(rowCount,5);
-            //now read it
+            // now read it
             rowCount = importer.read(buffer, rowCount, 5, true);
 
             m_wordsList->DeleteAllColumns();

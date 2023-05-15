@@ -167,7 +167,7 @@ public:
         { return m_testSelectionMethod == 2; }
     [[nodiscard]] bool IsTestBundleSelected() const noexcept
         { return m_testSelectionMethod == 3; }
-    //document type
+    // document type
     [[nodiscard]] readability::document_classification GetSelectedDocumentType() const noexcept
         { return static_cast<readability::document_classification>(m_selectedDocType); }
     void SelectDocumentType(const readability::document_classification docType)
@@ -175,7 +175,7 @@ public:
         m_selectedDocType = static_cast<decltype(m_selectedDocType)>(docType);
         TransferDataToWindow();
         }
-    //industry type
+    // industry type
     [[nodiscard]]
     readability::industry_classification GetSelectedIndustryType() const noexcept
         { return static_cast<readability::industry_classification>(m_selectedIndustryType); }
@@ -184,7 +184,7 @@ public:
         m_selectedIndustryType = static_cast<decltype(m_selectedIndustryType)>(industryType);
         TransferDataToWindow();
         }
-    //tests
+    // tests
     [[nodiscard]]
     BaseProject::TestCollectionType& GetReadabilityTestsInfo()
         {

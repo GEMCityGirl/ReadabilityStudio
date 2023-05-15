@@ -42,10 +42,10 @@ static size_t FormatWordCollectionHighlightedWords(const documentT* theDocument,
     std::wcsncpy(text+documentTextLength, legend, legend.length() );
     documentTextLength += legend.length();
 
-    //punctuation markers
+    // punctuation markers
     std::vector<punctuation::punctuation_mark>::const_iterator punctPos = theDocument->get_punctuation().begin();
     std::vector<punctuation::punctuation_mark>::const_iterator punctEnd = theDocument->get_punctuation().end();
-    //temp word
+    // temp word
     lily_of_the_valley::rtf_encode_text rtfEncode;
     std::wstring currentWord;
     for (std::vector<grammar::paragraph_info>::const_iterator para_iter = theDocument->get_paragraphs().begin();
@@ -120,10 +120,11 @@ static size_t FormatWordCollectionHighlightedWords(const documentT* theDocument,
                     documentTextLength += IGNORE_HIGHLIGHT_BEGIN.length();
                     std::wcsncpy(text+documentTextLength, currentWord.c_str(), currentWord.length() );
                     documentTextLength += currentWord.length();
-                    std::wcsncpy(text+documentTextLength, IGNORE_HIGHLIGHT_END.wc_str(), IGNORE_HIGHLIGHT_END.length() );
+                    std::wcsncpy(text+documentTextLength,
+                        IGNORE_HIGHLIGHT_END.wc_str(), IGNORE_HIGHLIGHT_END.length() );
                     documentTextLength += IGNORE_HIGHLIGHT_END.length();
                     }
-                //or highlight if this word meets our criteria for highlighting
+                // or highlight if this word meets our criteria for highlighting
                 else if (!currentSentenceShouldBeHighlightedAsInvalid &&
                     shouldHighlight(theDocument->get_word(i) ) )
                     {

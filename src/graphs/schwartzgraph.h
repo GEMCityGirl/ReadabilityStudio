@@ -32,7 +32,8 @@ namespace Wisteria::Graphs
          - Blank group labels will be lumped into a "[NO GROUP]" category.
 
         @par Citation:
-            Schwartz, Roswitha E. W. “An Exploratory Effort to Design a Readability Graph for German Material.” 1975. State University of New York at Albany, Reading Department. Unpublished study.*/
+            Schwartz, Roswitha E. W. “An Exploratory Effort to Design a Readability Graph for German Material.” 1975.
+            State University of New York at Albany, Reading Department. Unpublished study.*/
     class SchwartzGraph final : public PolygonReadabilityGraph
         {
     public:
