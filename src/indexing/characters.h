@@ -23,6 +23,16 @@ namespace characters
     class is_character
         {
     public:
+        /// @brief Determines if a given value is either of two other given values.
+        /// @param value The value to compare with.
+        /// @param first The first value to compare against.
+        /// @param second The second value to compare against.
+        /// @returns @c true if value is either of the other values.
+        template<typename T>
+        [[nodiscard]]
+        static inline constexpr bool is_either(const T value, const T first,
+                                               const T second) noexcept
+            { return (value == first || value == second); }
         /** @returns @c true if a character is a letter.
             @param ch The letter to be reviewed.*/
         [[nodiscard]]
@@ -609,16 +619,6 @@ namespace characters
                      // control characters
                      ((ch >= 0x00) && (ch <= 0x20)) );
             }
-        /// @brief Determines if a given value is either of two other given values.
-        /// @param value The value to compare with.
-        /// @param first The first value to compare against.
-        /// @param second The second value to compare against.
-        /// @returns @c true if value is either of the other values.
-        template<typename T>
-        [[nodiscard]]
-        static inline constexpr bool is_either(const T value, const T first,
-                                               const T second) noexcept
-            { return (value == first || value == second); }
         };
     }
 
