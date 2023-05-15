@@ -90,9 +90,9 @@ void ReadabilityApp::EditDictionary(const readability::test_language lang)
     editDlg.SetHelpTopic(GetMainFrame()->GetHelpDirectory(), L"document-analysis.html");
     if (editDlg.ShowModal() == wxID_OK)
         {
-        //custom dictionary will be written back to with edit words at this point, so just reload it.
+        // custom dictionary will be written back to with edit words at this point, so just reload it.
         wxBusyCursor wait;
-        //reload the custom dictionary
+        // reload the custom dictionary
         if (lang == readability::test_language::spanish_test)
             {
             wxString ExtraDictionaryText;
@@ -115,7 +115,7 @@ void ReadabilityApp::EditDictionary(const readability::test_language lang)
                 { BaseProject::known_custom_english_spellings.load_words(ExtraDictionaryText, true, false); }
             }
 
-        //reload the projects
+        // reload the projects
         auto& docs = wxGetApp().GetDocManager()->GetDocuments();
         for (size_t i = 0; i < docs.GetCount(); ++i)
             {
@@ -499,7 +499,7 @@ bool ReadabilityApp::OnInit()
     SetAppSubName(GetAppVersion());
     SetVendorName(_DT(L"Oleander Software"));
 
-    //set licensing feature information
+    // set licensing feature information
     InitializeReadabilityFeatures();
 
     wxString AppSettingFolderPath;
@@ -614,7 +614,7 @@ bool ReadabilityApp::OnInit()
     #else
         ///@todo need Linux location
     #endif
-        //save the licensing info now that we have it and have validated it
+        // save the licensing info now that we have it and have validated it
         if (!GetLicenseAdmin().SaveLicenseFile(licensePath))
             {
             // if couldn't be saved in the shared users' folder, then save to the user's settings folder.
@@ -1315,11 +1315,11 @@ void ReadabilityApp::LoadInterface()
             wxMenu* readMenu = GetMainFrame()->GetMenuBar()->GetMenu(readMenuIndex);
             if (readMenu)
                 {
-                //custom tests
+                // custom tests
                 GetMainFrameEx()->m_customTestsRegularMenu = new wxMenu;
                 readMenu->AppendSubMenu(GetMainFrameEx()->m_customTestsRegularMenu, _(L"Custom Tests"));
                 MainFrame::FillMenuWithCustomTests(GetMainFrameEx()->m_customTestsRegularMenu, nullptr, false);
-                //add test bundles
+                // add test bundles
                 GetMainFrameEx()->m_testsBundleRegularMenu= new wxMenu;
                 readMenu->AppendSubMenu(GetMainFrameEx()->m_testsBundleRegularMenu, _(L"Test Bundles"));
                 MainFrame::FillMenuWithTestBundles(GetMainFrameEx()->m_testsBundleRegularMenu, nullptr, false);
@@ -1552,7 +1552,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
 
     const RibbonType rtype = (doc == nullptr) ? RibbonType::MainFrameRibbon :
         doc->IsKindOf(CLASSINFO(ProjectDoc)) ? RibbonType::StandardProjectRibbon : RibbonType::BatchProjectRibbon;
-    //Home tab
+    // Home tab
     wxRibbonBar* ribbon = new wxRibbonBar(frame, wxID_ANY, wxDefaultPosition, wxDefaultSize,
                                           wxRIBBON_BAR_SHOW_PAGE_ICONS|wxRIBBON_BAR_DEFAULT_STYLE);
         {
@@ -1638,7 +1638,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             settingsButtonBar->AddButton(wxID_PREFERENCES, _(L"Options"),
                 readRibbonButtonSVG(L"ribbon/configure.svg"),
                 _(L"Change the program's general options."));
-            //test section
+            // test section
             wxRibbonPanel* readabilityTestsPanel =
                 new wxRibbonPanel(homePage, wxID_ANY, _(L"Readability Tests"), wxNullBitmap, wxDefaultPosition,
                                   wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2085,16 +2085,16 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
     importer.add_row_definition(lily_of_the_valley::text_row<ListCtrlExDataProvider::ListCellString>(1));
     importer.add_row_definition(myRow);
 
-    //see how many lines are in the file
+    // see how many lines are in the file
     lily_of_the_valley::text_preview preview;
     size_t rowCount = preview(buffer, L'\t', true, false);
-    //now read it
+    // now read it
     rowCount = importer.read(buffer, rowCount, 7, true);
 
     profileReportDialog.GetListCtrl()->SetVirtualDataSize(rowCount, 7);
     profileReportDialog.GetListCtrl()->SetItemCount(static_cast<long>((rowCount)));
 
-    //fit the columns
+    // fit the columns
     profileReportDialog.GetListCtrl()->DistributeColumns();
     // sort by time, largest to smallest
     profileReportDialog.GetListCtrl()->SortColumn(2, Wisteria::SortDirection::SortDescending);
@@ -2170,7 +2170,7 @@ void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    //test overview dialog
+    // test overview dialog
     ListDlg testsOverviewDlg(this,
             wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
             wxGetApp().GetAppOptions().GetRibbonHoverColor(),
@@ -3253,7 +3253,7 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
     {
     if (testBundleMenu)
         {
-        //clear the menu
+        // clear the menu
         while (testBundleMenu->GetMenuItemCount())
             { testBundleMenu->Destroy(testBundleMenu->FindItemByPosition(0)); }
         if (includeDocMenuItems)
@@ -3486,7 +3486,7 @@ void MainFrame::OnEditCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
     for (std::set<TestBundle>::const_iterator pos = BaseProject::m_testBundles.begin();
         pos != BaseProject::m_testBundles.end();
         ++pos)
-        { bundleNames.Add(pos->GetName().c_str()); }//locked bundled will be viewed as read only
+        { bundleNames.Add(pos->GetName().c_str()); }// locked bundled will be viewed as read only
     wxSingleChoiceDialog dlg(this, _(L"Select bundle to edit:"), _(L"Edit Bundle"), bundleNames);
     dlg.SetSize(400, -1);
     dlg.Center();
@@ -3495,10 +3495,10 @@ void MainFrame::OnEditCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
 
     std::set<TestBundle>::iterator testBundleIter =
         BaseProject::m_testBundles.find(TestBundle(dlg.GetStringSelection().wc_str()));
-    if (testBundleIter == BaseProject::m_testBundles.end())//shouldn't happen
+    if (testBundleIter == BaseProject::m_testBundles.end())// shouldn't happen
         { return; }
 
-    //set iterators cannot be edited directly. We will make a copy of the bundle and then reinsert it.
+    // set iterators cannot be edited directly. We will make a copy of the bundle and then reinsert it.
     TestBundle bundle = *testBundleIter;
     TestBundleDlg bundleDlg(this, bundle);
     bundleDlg.SetHelpTopic(GetHelpDirectory(), L"test-bundles.html");
@@ -3528,7 +3528,7 @@ void MainFrame::OnRemoveCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
 
     std::set<TestBundle>::iterator testBundleIter =
         BaseProject::m_testBundles.find(TestBundle(dlg.GetStringSelection().wc_str()));
-    if (testBundleIter == BaseProject::m_testBundles.end())//shouldn't happen
+    if (testBundleIter == BaseProject::m_testBundles.end())// shouldn't happen
         { return; }
     BaseProject::m_testBundles.erase(testBundleIter);
 
@@ -3747,7 +3747,7 @@ void MainFrame::Paste()
             {
             wxTextDataObject data;
             wxTheClipboard->GetData(data);
-            //create a standard project and dump the text into it
+            // create a standard project and dump the text into it
             const auto& templateList = m_docManager->GetTemplates();
             for (size_t i = 0; i < templateList.GetCount(); ++i)
                 {
@@ -3758,7 +3758,7 @@ void MainFrame::Paste()
                         dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(data.GetText(), wxDOC_NEW));
                     if (newDoc && !newDoc->OnNewDocument() )
                         {
-                        //Document is implicitly deleted by DeleteAllViews
+                        // Document is implicitly deleted by DeleteAllViews
                         newDoc->DeleteAllViews();
                         newDoc = nullptr;
                         }
@@ -4050,12 +4050,12 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
     wxString updateFileContent, contentType;
 #ifdef __WXMAC__
     wxString updatedFilePath =
-        _DT(L"http://oleandersoftware.com/downloads/readabilitystudio/CurrentMacVersionReadabilityStudio.txt");
+        _DT(L"http:// oleandersoftware.com/downloads/readabilitystudio/CurrentMacVersionReadabilityStudio.txt");
     long responseCode;
     if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false, false) )
         {
         updatedFilePath =
-            _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
+            _DT(L"https:// oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
         if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false) )
             {
             wxMessageBox(wxString::Format(_(L"An error occurred while trying to connect to the website:\t%s"),
@@ -4066,7 +4066,7 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
         }
 #else
     wxString updatedFilePath =
-        _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
+        _DT(L"https:// oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
     long responseCode;
     if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent,
                                                   contentType, responseCode, false) )
@@ -4087,7 +4087,7 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
             wxGetApp().GetAppName()),
             wxGetApp().GetAppName(), wxYES_NO|wxICON_QUESTION) == wxYES)
             {
-            if (!::wxLaunchDefaultBrowser(_DT(L"https://oleandersoftware.com/readabilitystudioupdate.html")))
+            if (!::wxLaunchDefaultBrowser(_DT(L"https:// oleandersoftware.com/readabilitystudioupdate.html")))
                 {
                 wxMessageBox(
                     _(L"Unable to open default browser. Please make sure that you have an Internet browser "

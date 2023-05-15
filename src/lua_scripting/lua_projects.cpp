@@ -30,7 +30,7 @@ namespace LuaScripting
 
     StandardProject::StandardProject(lua_State *L)
         {
-        if (lua_gettop(L) > 1)//see if a path was passed in
+        if (lua_gettop(L) > 1)// see if a path was passed in
             {
             wxString path(luaL_checkstring(L, 2), wxConvUTF8);
             wxFileName fn(path);
@@ -336,8 +336,8 @@ namespace LuaScripting
         return 0;
         };
 
-    //Sets the filepath to the phrase exclusion list
-    //filePath Path to phrase exclusion list
+    // Sets the filepath to the phrase exclusion list
+    // filePath Path to phrase exclusion list
     int StandardProject::SetPhraseExclusionList(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -378,7 +378,7 @@ namespace LuaScripting
         return 0;
         };
 
-    //GRAPH OPTIONS
+    // GRAPH OPTIONS
     int StandardProject::SetGraphBackgroundColor(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -536,7 +536,7 @@ namespace LuaScripting
         return 0;
         }
 
-    //PROJECT SETTINGS
+    // PROJECT SETTINGS
     int StandardProject::SetProjectLanguage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -748,8 +748,8 @@ namespace LuaScripting
         return 0;
         }
 
-    //Exports all of the results from the project into a folder.
-    //FolderPath The folder to save the project's results.
+    // Exports all of the results from the project into a folder.
+    // FolderPath The folder to save the project's results.
     int StandardProject::ExportAll(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -799,14 +799,14 @@ namespace LuaScripting
         return 0;
         }
 
-    //Saves a graph from the project as an image.
-    //GraphType Which graph to save. Available types are: GraphsTypes.WordBarChart,
-    //GraphsTypes.Fry, GraphsTypes.GpmFry, GraphsTypes.FRASE, GraphsTypes.Raygor,
-    //GraphsTypes.DolchCoverageChart, GraphsTypes.DolchWordBarChart, GraphsTypes.Flesch.
-    //FilePath The file path to save the graph.
-    //GrayScale Whether to save the image in black & white.
-    //Width The width of the output image.
-    //Height The height of the output image.
+    // Saves a graph from the project as an image.
+    // GraphType Which graph to save. Available types are: GraphsTypes.WordBarChart,
+    // GraphsTypes.Fry, GraphsTypes.GpmFry, GraphsTypes.FRASE, GraphsTypes.Raygor,
+    // GraphsTypes.DolchCoverageChart, GraphsTypes.DolchWordBarChart, GraphsTypes.Flesch.
+    // FilePath The file path to save the graph.
+    // GrayScale Whether to save the image in black & white.
+    // Width The width of the output image.
+    // Height The height of the output image.
     int StandardProject::ExportGraph(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -925,9 +925,9 @@ namespace LuaScripting
         return 0;
         }
 
-    //Saves a summary report from the project.
-    //ReportType Which report to save.
-    //FilePath The file path to save the report.
+    // Saves a summary report from the project.
+    // ReportType Which report to save.
+    // FilePath The file path to save the report.
     int StandardProject::ExportReport(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -997,9 +997,9 @@ namespace LuaScripting
         return 0;
         }
 
-    //Saves a list from the project.
-    //ListType Which list to save.
-    //FilePath The file path to save the list.
+    // Saves a list from the project.
+    // ListType Which list to save.
+    // FilePath The file path to save the list.
     int StandardProject::ExportList(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1015,13 +1015,13 @@ namespace LuaScripting
                 windowMappedId != wxGetApp().GetDynamicIdMap().cend())
                 { windowId = windowMappedId->second; }
             ListCtrlEx* listWindow = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(windowId) );
-            if (!listWindow)//look in grammar section if not in the highlighted words section
+            if (!listWindow)// look in grammar section if not in the highlighted words section
                 { listWindow = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(windowId) ); }
-            if (!listWindow)//look in sentences section if not in the grammar section
+            if (!listWindow)// look in sentences section if not in the grammar section
                 { listWindow = dynamic_cast<ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(windowId) ); }
-            if (!listWindow)//look in Dolch section if not in the sentences section
+            if (!listWindow)// look in Dolch section if not in the sentences section
                 { listWindow = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(windowId) ); }
-            if (!listWindow)//look in stats section if not in the Dolch section
+            if (!listWindow)// look in stats section if not in the Dolch section
                 { listWindow = dynamic_cast<ListCtrlEx*>(view->GetSummaryView().FindWindowById(windowId) ); }
             if (listWindow)
                 {
@@ -1450,8 +1450,8 @@ namespace LuaScripting
         return 0;
         }
 
-    //HIDDEN interfaces for testing and screenshots
-    //Opens the properties dialog and the specified page
+    // HIDDEN interfaces for testing and screenshots
+    // Opens the properties dialog and the specified page
     int StandardProject::OpenProperties(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1772,8 +1772,8 @@ namespace LuaScripting
         return 0;
         };
 
-    //Sets the filepath to the phrase exclusion list
-    //filePath Path to phrase exclusion list
+    // Sets the filepath to the phrase exclusion list
+    // filePath Path to phrase exclusion list
     int BatchProject::SetPhraseExclusionList(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -2091,8 +2091,8 @@ namespace LuaScripting
         return 0;
         };
 
-    //Adds a test to the project.
-    //TestName The name of the test to add to the project.
+    // Adds a test to the project.
+    // TestName The name of the test to add to the project.
     int BatchProject::AddTest(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -2152,7 +2152,7 @@ namespace LuaScripting
         return 1;
         }
 
-    //Reanalyzes the documents.
+    // Reanalyzes the documents.
     int BatchProject::Reload(lua_State*)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -2192,9 +2192,9 @@ namespace LuaScripting
         return 0;
         }
 
-    //Saves a list from the project.
-    //ListType Which list to save.
-    //FilePath The file path to save the list.
+    // Saves a list from the project.
+    // ListType Which list to save.
+    // FilePath The file path to save the list.
     int BatchProject::ExportList(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -2256,13 +2256,13 @@ namespace LuaScripting
         return 0;
         }
 
-    //Saves a graph from the project as an image.
-    //SideBarSection The section that the graph is in.
-    //GraphId Which graph to save.
-    //FilePath The file path to save the graph.
-    //GrayScale Whether to save the image in black & white.
-    //Width The width of the output image.
-    //Height The height of the output image.
+    // Saves a graph from the project as an image.
+    // SideBarSection The section that the graph is in.
+    // GraphId Which graph to save.
+    // FilePath The file path to save the graph.
+    // GrayScale Whether to save the image in black & white.
+    // Width The width of the output image.
+    // Height The height of the output image.
     int BatchProject::ExportGraph(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -2332,8 +2332,8 @@ namespace LuaScripting
         return 0;
         }
 
-    //Exports all of the results from the project into a folder.
-    //FolderPath The folder to save the project's results.
+    // Exports all of the results from the project into a folder.
+    // FolderPath The folder to save the project's results.
     int BatchProject::ExportAll(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))

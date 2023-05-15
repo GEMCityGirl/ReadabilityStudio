@@ -388,7 +388,9 @@ namespace LuaScripting
         LuaStandardProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaStandardProjectWizard->Show();
         wxGetApp().Yield();
-        ::wxSleep(2);//animation for radio button change takes a second (and it's in a separate thread), so wait for the UI to finish updating
+        // animation for radio button change takes a second (and it's in a separate thread),
+        // so wait for the UI to finish updating
+        ::wxSleep(2);
         return 0;
         }
 
@@ -402,7 +404,7 @@ namespace LuaScripting
         LuaStandardProjectWizard->SelectPage(2);
         if (lua_gettop(L) > 0)
             {
-            const int selected = lua_tonumber(L, 1)-1;//make zero-indexed
+            const int selected = lua_tonumber(L, 1)-1; // make zero-indexed
             LuaStandardProjectWizard->SelectIndustryType(static_cast<readability::industry_classification>(selected));
             }
         LuaStandardProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
@@ -422,7 +424,7 @@ namespace LuaScripting
         LuaStandardProjectWizard->SelectPage(2);
         if (lua_gettop(L) > 0)
             {
-            const int selection = lua_tonumber(L, 1)-1;//make zero-indexed
+            const int selection = lua_tonumber(L, 1)-1; // make zero-indexed
             LuaStandardProjectWizard->SelectDocumentType(static_cast<readability::document_classification>(selection));
             }
         LuaStandardProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
@@ -440,7 +442,7 @@ namespace LuaScripting
         LuaStandardProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::StandardProject);
         if (lua_gettop(L) > 0)
             {
-            const int selectedDocType = lua_tonumber(L, 1)-1/*make zero-indexed*/;
+            const int selectedDocType = lua_tonumber(L, 1)-1/* make zero-indexed*/;
             (selectedDocType == 0) ?
                 LuaStandardProjectWizard->SetNarrativeSelected() :
                 LuaStandardProjectWizard->SetFragmentedTextSelected();
@@ -569,7 +571,7 @@ namespace LuaScripting
         LuaBatchProjectWizard->SelectPage(2);
         if (lua_gettop(L) > 0)
             {
-            const int selected = lua_tonumber(L, 1)-1;//make zero-indexed
+            const int selected = lua_tonumber(L, 1)-1; // make zero-indexed
             LuaBatchProjectWizard->SelectIndustryType(static_cast<readability::industry_classification>(selected));
             }
         LuaBatchProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
@@ -589,7 +591,7 @@ namespace LuaScripting
         LuaBatchProjectWizard->SelectPage(2);
         if (lua_gettop(L) > 0)
             {
-            const int selection = lua_tonumber(L, 1)-1;//make zero-indexed
+            const int selection = lua_tonumber(L, 1)-1; // make zero-indexed
             LuaBatchProjectWizard->SelectDocumentType(static_cast<readability::document_classification>(selection));
             }
         LuaBatchProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
@@ -654,8 +656,8 @@ namespace LuaScripting
         LuaBatchProjectWizard->GetFileList()->DeleteAllItems();
         if (lua_gettop(L) > 0)
             {
-            LuaBatchProjectWizard->GetFileList()->SetVirtualDataSize(1,1);
-            LuaBatchProjectWizard->GetFileList()->SetItemText(0,0,wxString(luaL_checkstring(L, 1), wxConvUTF8));
+            LuaBatchProjectWizard->GetFileList()->SetVirtualDataSize(1, 1);
+            LuaBatchProjectWizard->GetFileList()->SetItemText(0, 0, wxString(luaL_checkstring(L, 1), wxConvUTF8));
             }
         LuaBatchProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaBatchProjectWizard->Show();
@@ -775,7 +777,7 @@ namespace LuaScripting
         if (LuaCustomTestDlg == nullptr)
             { LuaCustomTestDlg = new CustomTestDlg(wxGetApp().GetMainFrame()); }
         LuaCustomTestDlg->SelectPage(CustomTestDlg::ID_WORD_LIST_PAGE);
-        //set the custom words
+        // set the custom words
         if (lua_gettop(L) > 0)
             {
             wxString wordFile(luaL_checklstring(L, 1, nullptr), wxConvUTF8);

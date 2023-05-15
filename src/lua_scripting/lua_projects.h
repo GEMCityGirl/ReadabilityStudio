@@ -95,30 +95,30 @@ namespace LuaScripting
         // cppcheck-suppress functionConst
         int GetParagraphsParsingMethod(lua_State *L);
         // TEXT EXCLUSION OPTIONS
-        ///Specifies how text should be excluded.
+        /// Specifies how text should be excluded.
         int SetTextExclusion(lua_State *L);
         /// Specifies the minimum number of words that will make a sentence
         /// missing terminating punctuation be considered complete.
         int SetIncludeIncompleteTolerance(lua_State *L);
-        ///Specifies whether or not to aggressively exclude.
+        /// Specifies whether or not to aggressively exclude.
         int AggressivelyDeduceLists(lua_State *L);
-        ///Specifies whether or not to exclude copyright notices.
+        /// Specifies whether or not to exclude copyright notices.
         int ExcludeCopyrightNotices(lua_State *L);
-        ///Specifies whether or not to exclude trailing citations.
+        /// Specifies whether or not to exclude trailing citations.
         int ExcludeTrailingCitations(lua_State *L);
-        ///Specifies whether or not to exclude file addresses.
+        /// Specifies whether or not to exclude file addresses.
         int ExcludeFileAddress(lua_State *L);
-        ///Specifies whether or not to exclude numerals.
+        /// Specifies whether or not to exclude numerals.
         int ExcludeNumerals(lua_State *L);
-        ///Specifies whether or not to exclude proper nouns.
+        /// Specifies whether or not to exclude proper nouns.
         int ExcludeProperNouns(lua_State *L);
-        ///Sets the filepath to the phrase exclusion list
-        ///filePath Path to phrase exclusion list.
+        /// Sets the filepath to the phrase exclusion list
+        /// filePath Path to phrase exclusion list.
         int SetPhraseExclusionList(lua_State *L);
-        ///Sets the tags to exclude blocks of text.
+        /// Sets the tags to exclude blocks of text.
         int SetBlockExclusionTags(lua_State *L);
 
-        ///Sets the file path to the document being appended for analysis.
+        /// Sets the file path to the document being appended for analysis.
         int SetAppendedDocumentFilePath(lua_State *L);
 
         // GRAPH OPTIONS
@@ -138,43 +138,43 @@ namespace LuaScripting
         int SetBarChartOrientation(lua_State *L);
 
         // TEST OPTIONS
-        //Adds a test to the project.
-        //TestName The name of the test to add to the project.
+        // Adds a test to the project.
+        // TestName The name of the test to add to the project.
         int AddTest(lua_State *L);
-        //Reanalyzes the documents.
+        // Reanalyzes the documents.
         int Reload(lua_State*);
         // Closes the project.
         // SaveChanges Specifies whether to save any changes made to the project before closing it.
         // Default is to not save any changes.
         int Close(lua_State *L);
-        //Exports all of the results from the project into a folder.
-        //FolderPath The folder to save the project's results.
+        // Exports all of the results from the project into a folder.
+        // FolderPath The folder to save the project's results.
         int ExportAll(lua_State *L);
-        //Saves a graph from the project as an image.
-        //GraphType Which graph to save. Available types are: GraphsTypes.WordBarChart,
-        //GraphsTypes.Fry, GraphsTypes.GpmFry, GraphsTypes.FRASE, GraphsTypes.Raygor,
-        //GraphsTypes.DolchCoverageChart, GraphsTypes.DolchWordBarChart, GraphsTypes.Flesch.
-        //FilePath The file path to save the graph.
-        //GrayScale Whether to save the image in black & white.
-        //Width The width of the output image.
-        //Height The height of the output image.
+        // Saves a graph from the project as an image.
+        // GraphType Which graph to save. Available types are: GraphsTypes.WordBarChart,
+        // GraphsTypes.Fry, GraphsTypes.GpmFry, GraphsTypes.FRASE, GraphsTypes.Raygor,
+        // GraphsTypes.DolchCoverageChart, GraphsTypes.DolchWordBarChart, GraphsTypes.Flesch.
+        // FilePath The file path to save the graph.
+        // GrayScale Whether to save the image in black & white.
+        // Width The width of the output image.
+        // Height The height of the output image.
         int ExportGraph(lua_State *L);
-        //Saves the scores to an HTML file.
-        //FilePath The file path to save the scores.
+        // Saves the scores to an HTML file.
+        // FilePath The file path to save the scores.
         int ExportScores(lua_State *L);
-        //Saves a highlighted words report from the project.
-        //HighlightedReportType Which report to save.
-        //FilePath The file path to save the report.
+        // Saves a highlighted words report from the project.
+        // HighlightedReportType Which report to save.
+        // FilePath The file path to save the report.
         int ExportHighlightedWords(lua_State *L);
-        //Saves a summary report from the project.
-        //ReportType Which report to save.
-        //FilePath The file path to save the report.
+        // Saves a summary report from the project.
+        // ReportType Which report to save.
+        // FilePath The file path to save the report.
         int ExportReport(lua_State *L);
-        //Saves a list from the project.
-        //ListType Which list to save.
-        //FilePath The file path to save the list.
+        // Saves a list from the project.
+        // ListType Which list to save.
+        // FilePath The file path to save the list.
         int ExportList(lua_State *L);
-        //Saves a copy of the project's document with excluded text (and other optional items) filtered out.
+        // Saves a copy of the project's document with excluded text (and other optional items) filtered out.
         int ExportFilteredText(lua_State *L);
         /*Sorts a list.
         ListToSort The list window to sort. Refer to ListTypes enumeration.
@@ -191,7 +191,7 @@ namespace LuaScripting
         int SelectWindow(lua_State *L);
         int ShowSidebar(lua_State *L);
 
-        //HIDDEN interfaces for testing and screenshots
+        // HIDDEN interfaces for testing and screenshots
         /*Selects and sorts a list in the Words Breakdown section.
         WindowToSelect The list window to select items in. Refer to ListType enumeration.
         RowsToSelect Rows to select.*/
@@ -212,7 +212,7 @@ namespace LuaScripting
         /*Selects the Readability Results section of the project and highlights a test by index.
         TestToSelect The test to select, based on position in the list.*/
         int SelectReadabilityTest(lua_State *L);
-        //Opens the properties dialog and the specified page
+        // Opens the properties dialog and the specified page
         int OpenProperties(lua_State *L);
         int CloseProperties(lua_State*);
         };
@@ -272,34 +272,34 @@ namespace LuaScripting
         int SetFilePathDisplayMode(lua_State *L);
         // cppcheck-suppress functionConst
         int GetFilePathDisplayMode(lua_State *L);
-        //TEXT EXCLUSION OPTIONS
-        //Specifies how text should be excluded.
+        // TEXT EXCLUSION OPTIONS
+        // Specifies how text should be excluded.
         int SetTextExclusion(lua_State *L);
-        //Specifies the minimum number of words that will make a sentence missing
-        //terminating punctuation be considered complete.
+        // Specifies the minimum number of words that will make a sentence missing
+        // terminating punctuation be considered complete.
         int SetIncludeIncompleteTolerance(lua_State *L);
-        //Specifies whether or not to aggressively exclude.
+        // Specifies whether or not to aggressively exclude.
         int AggressivelyDeduceLists(lua_State *L);
-        //Specifies whether or not to exclude copyright notices.
+        // Specifies whether or not to exclude copyright notices.
         int ExcludeCopyrightNotices(lua_State *L);
-        //Specifies whether or not to exclude trailing citations.
+        // Specifies whether or not to exclude trailing citations.
         int ExcludeTrailingCitations(lua_State *L);
-        //Specifies whether or not to exclude file addresses.
+        // Specifies whether or not to exclude file addresses.
         int ExcludeFileAddress(lua_State *L);
-        //Specifies whether or not to exclude numerals.
+        // Specifies whether or not to exclude numerals.
         int ExcludeNumerals(lua_State *L);
-        //Specifies whether or not to exclude proper nouns.
+        // Specifies whether or not to exclude proper nouns.
         int ExcludeProperNouns(lua_State *L);
-        //Sets the filepath to the phrase exclusion list
-        //filePath Path to phrase exclusion list
+        // Sets the filepath to the phrase exclusion list
+        // filePath Path to phrase exclusion list
         int SetPhraseExclusionList(lua_State *L);
-        ///Sets the tags to exclude blocks of text.
+        /// Sets the tags to exclude blocks of text.
         int SetBlockExclusionTags(lua_State *L);
 
-        ///Sets the file path to the document being appended for analysis.
+        /// Sets the file path to the document being appended for analysis.
         int SetAppendedDocumentFilePath(lua_State *L);
 
-        //GRAPH OPTIONS
+        // GRAPH OPTIONS
         int SetGraphBackgroundColor(lua_State *L);
         int ApplyGraphBackgroundFade(lua_State *L);
         int SetGraphBackgroundImage(lua_State *L);
@@ -311,29 +311,29 @@ namespace LuaScripting
         int SetGraphCustomBrushImage(lua_State *L);
         int DisplayGraphDropShadows(lua_State *L);
 
-        //Adds a test to the project.
-        //TestName The name of the test to add to the project.
+        // Adds a test to the project.
+        // TestName The name of the test to add to the project.
         int AddTest(lua_State *L);
-        //Reanalyzes the documents.
+        // Reanalyzes the documents.
         int Reload(lua_State*);
-        //Closes the project.
-        //SaveChanges Specifies whether to save any changes made to the project before closing it.
-        //Default is to not save any changes.
+        // Closes the project.
+        // SaveChanges Specifies whether to save any changes made to the project before closing it.
+        // Default is to not save any changes.
         int Close(lua_State *L);
-        //Exports all of the results from the project into a folder.
-        //FolderPath The folder to save the project's results.
+        // Exports all of the results from the project into a folder.
+        // FolderPath The folder to save the project's results.
         int ExportAll(lua_State *L);
-        //Saves a list from the project.
-        //ListType Which list to save.
-        //FilePath The file path to save the list.
+        // Saves a list from the project.
+        // ListType Which list to save.
+        // FilePath The file path to save the list.
         int ExportList(lua_State *L);
-        //Saves a graph from the project as an image.
-        //SideBarSection The section that the graph is in.
-        //GraphId Which graph to save.
-        //FilePath The file path to save the graph.
-        //GrayScale Whether to save the image in black & white.
-        //Width The width of the output image.
-        //Height The height of the output image.
+        // Saves a graph from the project as an image.
+        // SideBarSection The section that the graph is in.
+        // GraphId Which graph to save.
+        // FilePath The file path to save the graph.
+        // GrayScale Whether to save the image in black & white.
+        // Width The width of the output image.
+        // Height The height of the output image.
         int ExportGraph(lua_State *L);
         /*Selects a window in the project.*/
         int SelectWindow(lua_State*);
@@ -343,7 +343,7 @@ namespace LuaScripting
         ColumnToSort The column in the list to sort.
         Order The order to sort.*/
         int SortList(lua_State *L);
-        //hidden functions just used for screenshots
+        // hidden functions just used for screenshots
         int OpenProperties(lua_State *L);
         int CloseProperties(lua_State*);
         };

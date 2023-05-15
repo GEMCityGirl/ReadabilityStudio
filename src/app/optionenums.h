@@ -12,7 +12,7 @@
 #ifndef __OPTION_ENUMS_H__
 #define __OPTION_ENUMS_H__
 
-//helper enumerations
+// helper enumerations
 //--------------------------------------------------
 enum class InvalidTextFilterFormat
     {

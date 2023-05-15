@@ -144,7 +144,8 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
         if (project->GetFormulaParser().is_function_used(
                 ReadabilityFormulaParser::SignatureToFunctionName(
                     ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) &&
-            GetProperNounMethod() != static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()))
+            GetProperNounMethod() !=
+                static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()))
             {
             std::vector<WarningMessage>::iterator warningIter =
                 wxGetApp().GetAppOptions().GetWarning(_DT(L"ndc-proper-noun-conflict"));
@@ -344,7 +345,8 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
 
     m_operators.insert(wxString(_DT(L"*\t") + _(L"Multiplication.")).ToStdWstring());
     m_operators.insert(wxString(_DT(L"/\t") + _(L"Division.")).ToStdWstring());
-    m_operators.insert(wxString(_DT(L"%\t") + _(L"Modulus: Divides two values and returns the remainder.")).ToStdWstring());
+    m_operators.insert(wxString(_DT(L"%\t") +
+        _(L"Modulus: Divides two values and returns the remainder.")).ToStdWstring());
     m_operators.insert(wxString(_DT(L"+\t") + _(L"Addition.")).ToStdWstring());
     m_operators.insert(wxString(_DT(L"-\t") + _(L"Subtraction.")).ToStdWstring());
     m_operators.insert(wxString(_DT(L"^\t") + _(L"Exponentiation.")).ToStdWstring());
@@ -360,7 +362,8 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     m_logic.insert(
         wxString(FormulaFormat::FormatMathExpressionFromUS(
             _DT(L"IF(condition,value_if_true,value_if_false)\t")) +
-        _(L"If \"condition\" is true (non-zero), then \"value_if_true\" is returned; otherwise, \"value_if_false\" is returned.")).ToStdWstring());
+        _(L"If \"condition\" is true (non-zero), then \"value_if_true\" is returned; "
+           "otherwise, \"value_if_false\" is returned.")).ToStdWstring());
     m_logic.insert(
         wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"NOT(value)\t")) +
             _(L"Returns the logical negation of \"value.\"")).ToStdWstring());
@@ -370,7 +373,8 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     m_math.insert(wxString(_DT(L"ATAN(x)\t") + _(L"Arc tangent of x.")).ToStdWstring());
     m_math.insert(wxString(_DT(L"SINH(x)\t") + _(L"Hyperbolic sine of x.")).ToStdWstring());
     m_math.insert(wxString(_DT(L"COSH(x)\t") + _(L"Hyperbolic cosine of x.")).ToStdWstring());
-    m_math.insert(wxString(_DT(L"CLAMP(x,start,end)\t") + _(L"Constrains x within the range of start and end.")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"CLAMP(x,start,end)\t") +
+        _(L"Constrains x within the range of start and end.")).ToStdWstring());
     m_math.insert(wxString(_DT(L"COT(x)\t") + _(L"Cotangent of x.")).ToStdWstring());
     m_math.insert(wxString(_DT(L"TAN(x)\t") + _(L"Tangent of x.")).ToStdWstring());
     m_math.insert(wxString(_DT(L"EXP(x)\t") + _(L"Exponential function (Euler to the power of x).")).ToStdWstring());
@@ -378,20 +382,32 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     m_math.insert(wxString(_DT(L"LOG(x)\t") + _(L"Common logarithm of x (base 10).")).ToStdWstring());
     m_math.insert(wxString(_DT(L"SQRT(x)\t") + _(L"Square root of x.")).ToStdWstring());
     m_math.insert(wxString(_DT(L"ABS(x)\t") + _(L"Absolute value of x.")).ToStdWstring());
-    m_math.insert(wxString(_DT(L"SIGN(x)\t") + _(L"Returns the sign of x. For example, ") + _DT(L"\'x<0\' = -1, \'x=0\' = 0, \'x>0\' = 1") ).ToStdWstring());
-    m_math.insert(wxString(_DT(L"TRUNC(x)\t") + _(L"Discards the fractional part of a number. For example, ") + FormulaFormat::FormatMathExpressionFromUS(_DT(L" TRUNC(-3.2) = -3, TRUNC(3.2) = 3")) ).ToStdWstring());
-    m_math.insert(wxString(_DT(L"CEIL(x)\t") + _(L"Returns the smallest integer not less than x. For example, ") + FormulaFormat::FormatMathExpressionFromUS(_DT(L"CEIL(-3.2) = -3, CEIL(3.2) = 4")) ).ToStdWstring());
-    m_math.insert(wxString(_DT(L"FLOOR(x)\t") + _(L"Returns the largest integer not greater than x. For example, ") + FormulaFormat::FormatMathExpressionFromUS(_DT(L"FLOOR(-3.2) = -4, FLOOR(3.2) = 3")) ).ToStdWstring());
+    m_math.insert(wxString(_DT(L"SIGN(x)\t") +
+        _(L"Returns the sign of x. For example, ") +
+        _DT(L"\'x<0\' = -1, \'x=0\' = 0, \'x>0\' = 1") ).ToStdWstring());
+    m_math.insert(wxString(_DT(L"TRUNC(x)\t") +
+        _(L"Discards the fractional part of a number. For example, ") +
+        FormulaFormat::FormatMathExpressionFromUS(_DT(L" TRUNC(-3.2) = -3, TRUNC(3.2) = 3")) ).ToStdWstring());
+    m_math.insert(wxString(_DT(L"CEIL(x)\t") +
+        _(L"Returns the smallest integer not less than x. For example, ") +
+        FormulaFormat::FormatMathExpressionFromUS(_DT(L"CEIL(-3.2) = -3, CEIL(3.2) = 4")) ).ToStdWstring());
+    m_math.insert(wxString(_DT(L"FLOOR(x)\t") +
+        _(L"Returns the largest integer not greater than x. For example, ") +
+        FormulaFormat::FormatMathExpressionFromUS(_DT(L"FLOOR(-3.2) = -4, FLOOR(3.2) = 3")) ).ToStdWstring());
     m_math.insert(
         wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"ROUND(x,n)\t")) +
-            _(L"Returns the number x rounded to n decimal places. (n is optional and defaults to zero.) For example, ") +
-            FormulaFormat::FormatMathExpressionFromUS(_DT(L"ROUND(-11.6, 0) = 12, ROUND(-11.6) = 12, ROUND(1.5, 0) = 2, ROUND(1.55, 1) = 1.6, ROUND(3.1415, 3) = 3.142"))).ToStdWstring());
+            _(L"Returns the number x rounded to n decimal places. "
+               "(n is optional and defaults to zero.) For example, ") +
+            FormulaFormat::FormatMathExpressionFromUS(
+                _DT(L"ROUND(-11.6, 0) = 12, ROUND(-11.6) = 12, ROUND(1.5, 0) = 2, "
+                     "ROUND(1.55, 1) = 1.6, ROUND(3.1415, 3) = 3.142"))).ToStdWstring());
     m_math.insert(
         wxString(_DT(L"RAND()\t") +
                  _(L"Generates a random floating point number within the range of 0 and 1.")).ToStdWstring());
     m_math.insert(
         wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"POWER(base,exponent)\t")) +
-        _(L"The Power function raises Base to any power. For fractional exponents, Base must be greater than 0.")).ToStdWstring());
+        _(L"The Power function raises Base to any power. "
+           "For fractional exponents, Base must be greater than 0.")).ToStdWstring());
     m_math.insert(
         wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"MIN(value,value2,...)\t")) +
         _(L"Returns the lowest value from a specified range of values.")).ToStdWstring());
@@ -408,62 +424,127 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
 
     m_customFamiliarWords.insert(
         wxString(ReadabilityFormulaParser::GetCustomNewDaleChallSignature() +
-                 L"\t" + _(L"Performs a New Dale-Chall test with a custom familiar word list. Note that this test will use the same text exclusion rules as the Dale-Chall test (overriding your system defaults).")).ToStdWstring());
+                 L"\t" + _(L"Performs a New Dale-Chall test with a custom familiar word list. "
+                  "Note that this test will use the same text exclusion rules as the Dale-Chall "
+                  "test (overriding your system defaults).")).ToStdWstring());
     m_customFamiliarWords.insert(
         wxString(ReadabilityFormulaParser::GetCustomSpacheSignature() +
                 L"\t" + _(L"Performs a Spache Revised test with a custom familiar word list.")).ToStdWstring());
     m_customFamiliarWords.insert(
        wxString(ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature() +
-                L"\t" + _(L"Performs a Harris-Jacobson test with a custom familiar word list. Note that this test will use the same text exclusion rules as the Harris-Jacobson test (overriding your system defaults).")).ToStdWstring());
+                L"\t" +
+           _(L"Performs a Harris-Jacobson test with a custom familiar word list. "
+              "Note that this test will use the same text exclusion rules as the "
+              "Harris-Jacobson test (overriding your system defaults).")).ToStdWstring());
 
-    m_generalDocumentStatistics.insert(wxString(_DT(L"SyllableCount()\t") + _(L"Returns the number of syllables from the document.\n\nThis function takes an argument specifying which numeral syllabizing method to use. These values are: Default, NumeralsFullySyllabized, and NumeralsAreOneSyllable")).ToStdWstring());
-    m_generalDocumentStatistics.insert(wxString(_DT(L"CharacterCount()\t") + _(L"Returns the number of characters (i.e., letters and numbers) from the document.\n\nThis function takes an argument specifying which text exclusion method to use. These values are: Default, DaleChall, and HarrisJacobson")).ToStdWstring());
-    m_generalDocumentStatistics.insert(wxString(_DT(L"CharacterPlusPunctuationCount()\t") + _(L"Returns the number of characters (i.e., letters and numbers) and punctuation from the document.\n\nNote that sentence-ending punctuation is not included in this count.")).ToStdWstring());
+    m_generalDocumentStatistics.insert(wxString(_DT(L"SyllableCount()\t") +
+        _(L"Returns the number of syllables from the document.\n\n"
+           "This function takes an argument specifying which numeral syllabizing method to use. "
+           "These values are: Default, NumeralsFullySyllabized, and NumeralsAreOneSyllable")).ToStdWstring());
+    m_generalDocumentStatistics.insert(wxString(_DT(L"CharacterCount()\t") +
+        _(L"Returns the number of characters (i.e., letters and numbers) from the document.\n\n"
+           "This function takes an argument specifying which text exclusion method to use. "
+           "These values are: Default, DaleChall, and HarrisJacobson")).ToStdWstring());
+    m_generalDocumentStatistics.insert(wxString(_DT(L"CharacterPlusPunctuationCount()\t") +
+        _(L"Returns the number of characters (i.e., letters and numbers) and punctuation from the document.\n\n"
+           "Note that sentence-ending punctuation is not included in this count.")).ToStdWstring());
 
-    m_wordFunctions.insert(wxString(_DT(L"FamiliarWordCount()\t") + _(L"Returns the number of familiar words (from a custom list) the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"UnfamiliarWordCount()\t") + _(L"Returns the number of unfamiliar words (from a custom list) the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"UniqueUnfamiliarWordCount()\t") + _(L"Returns the number of unique unfamiliar words (from a custom list) from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"UnfamiliarHarrisJacobsonWordCount()\t") + _(L"Returns the number of unfamiliar Harris-Jacobson words from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"UniqueUnfamiliarHarrisJacobsonWordCount()\t") + _(L"Returns the number of unique unfamiliar Harris-Jacobson words from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"FamiliarHarrisJacobsonWordCount()\t") + _(L"Returns the number of familiar Harris-Jacobson words from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"UnfamiliarDaleChallWordCount()\t") + _(L"Returns the number of unfamiliar New Dale-Chall words from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"UniqueUnfamiliarDaleChallWordCount()\t") + _(L"Returns the number of unique unfamiliar New Dale-Chall words from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"FamiliarDaleChallWordCount()\t") + _(L"Returns the number of familiar Dale-Chall words from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"UnfamiliarSpacheWordCount()\t") + _(L"Returns the number of unfamiliar Spache words from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"UniqueUnfamiliarSpacheWordCount()\t") + _(L"Returns the number of unique unfamiliar Spache words from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"FamiliarSpacheWordCount()\t") + _(L"Returns the number of familiar Spache words from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"SixCharacterPlusWordCount()\t") + _(L"Returns the number of words consisting of six or more characters from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"SevenCharacterPlusWordCount()\t") + _(L"Returns the number of words consisting of seven or more characters from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"OneSyllableWordCount()\t") + _(L"Returns the number of monosyllabic words from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"ThreeSyllablePlusWordCount()\t") + _(L"Returns the number of words consisting of three or more syllables from the document.\n\nThis function takes an argument specifying which numeral syllabizing method to use. These values are: Default or NumeralsFullySyllabized")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"WordCount()\t") + _(L"Returns the number of words from the document.\n\nThis function takes an argument specifying which text exclusion method to use. These values are: Default, DaleChall, and HarrisJacobson")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"NumeralCount()\t") + _(L"Returns the number of numerals from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"ProperNounCount()\t") + _(L"Returns the number of proper nouns from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"UniqueWordCount()\t") + _(L"Returns the number of unique words from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"UniqueSixCharacterPlusWordCount()\t") + _(L"Returns the number of unique words consisting of six or more characters from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"UniqueThreeSyllablePlusWordCount()\t") + _(L"Returns the number of unique words consisting of three or more syllables from the document.\n\nThis function takes an argument specifying which numeral syllabizing method to use. These values are: Default or NumeralsFullySyllabized")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"UniqueOneSyllableWordCount()\t") + _(L"Returns the number of unique monosyllabic words from the document.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"HardFogWordCount()\t") + _(L"Returns the number of difficult Gunning Fog words.")).ToStdWstring());
-    m_wordFunctions.insert(wxString(_DT(L"MiniWordCount()\t") + _(L"Returns the number of miniwords from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"FamiliarWordCount()\t") +
+        _(L"Returns the number of familiar words (from a custom list) the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UnfamiliarWordCount()\t") +
+        _(L"Returns the number of unfamiliar words (from a custom list) the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UniqueUnfamiliarWordCount()\t") +
+        _(L"Returns the number of unique unfamiliar words (from a custom list) from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UnfamiliarHarrisJacobsonWordCount()\t") +
+        _(L"Returns the number of unfamiliar Harris-Jacobson words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UniqueUnfamiliarHarrisJacobsonWordCount()\t") +
+        _(L"Returns the number of unique unfamiliar Harris-Jacobson words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"FamiliarHarrisJacobsonWordCount()\t") +
+        _(L"Returns the number of familiar Harris-Jacobson words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UnfamiliarDaleChallWordCount()\t") +
+        _(L"Returns the number of unfamiliar New Dale-Chall words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UniqueUnfamiliarDaleChallWordCount()\t") +
+        _(L"Returns the number of unique unfamiliar New Dale-Chall words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"FamiliarDaleChallWordCount()\t") +
+        _(L"Returns the number of familiar Dale-Chall words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UnfamiliarSpacheWordCount()\t") +
+        _(L"Returns the number of unfamiliar Spache words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UniqueUnfamiliarSpacheWordCount()\t") +
+        _(L"Returns the number of unique unfamiliar Spache words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"FamiliarSpacheWordCount()\t") +
+        _(L"Returns the number of familiar Spache words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"SixCharacterPlusWordCount()\t") +
+        _(L"Returns the number of words consisting of six or more characters from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"SevenCharacterPlusWordCount()\t") +
+        _(L"Returns the number of words consisting of seven or more characters from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"OneSyllableWordCount()\t") +
+        _(L"Returns the number of monosyllabic words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"ThreeSyllablePlusWordCount()\t") +
+        _(L"Returns the number of words consisting of three or more syllables from the document.\n\n"
+           "This function takes an argument specifying which numeral syllabizing method to use. "
+           "These values are: Default or NumeralsFullySyllabized")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"WordCount()\t") +
+        _(L"Returns the number of words from the document.\n\n"
+           "This function takes an argument specifying which text exclusion method to use. "
+           "These values are: Default, DaleChall, and HarrisJacobson")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"NumeralCount()\t") +
+        _(L"Returns the number of numerals from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"ProperNounCount()\t") +
+        _(L"Returns the number of proper nouns from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UniqueWordCount()\t") +
+        _(L"Returns the number of unique words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UniqueSixCharacterPlusWordCount()\t") +
+        _(L"Returns the number of unique words consisting of six or more characters "
+           "from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UniqueThreeSyllablePlusWordCount()\t") +
+        _(L"Returns the number of unique words consisting of three or more syllables from the document.\n\n"
+           "This function takes an argument specifying which numeral syllabizing method to use. "
+           "These values are: Default or NumeralsFullySyllabized")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"UniqueOneSyllableWordCount()\t") +
+        _(L"Returns the number of unique monosyllabic words from the document.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"HardFogWordCount()\t") +
+        _(L"Returns the number of difficult Gunning Fog words.")).ToStdWstring());
+    m_wordFunctions.insert(wxString(_DT(L"MiniWordCount()\t") +
+        _(L"Returns the number of miniwords from the document.")).ToStdWstring());
 
-    m_sentenceFunctions.insert(wxString(_DT(L"SentenceCount()\t") + _(L"Returns the number of sentences from the document.\n\nThis function takes an argument specifying which text exclusion method to use. These values are: Default, DaleChall, HarrisJacobson, and GunningFog")).ToStdWstring());
-    m_sentenceFunctions.insert(wxString(_DT(L"IndependentClauseCount()\t") + _(L"Returns the number of units/independent clauses from the document.") + _DT(L"\n\n") + ReadabilityMessages::GetUnitNote()).ToStdWstring());
+    m_sentenceFunctions.insert(wxString(_DT(L"SentenceCount()\t") +
+        _(L"Returns the number of sentences from the document.\n\n"
+           "This function takes an argument specifying which text exclusion method to use. "
+           "These values are: Default, DaleChall, HarrisJacobson, and GunningFog")).ToStdWstring());
+    m_sentenceFunctions.insert(wxString(_DT(L"IndependentClauseCount()\t") +
+        _(L"Returns the number of units/independent clauses from the document.") + _DT(L"\n\n") +
+        ReadabilityMessages::GetUnitNote()).ToStdWstring());
 
-    m_shortcuts.insert(wxString(_DT(L"B\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"SyllableCount(Default)"))).ToStdWstring());
-    m_shortcuts.insert(wxString(_DT(L"C\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"ThreeSyllablePlusWordCount(Default)"))).ToStdWstring());
-    m_shortcuts.insert(wxString(_DT(L"D\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"FamiliarDaleChallWordCount()"))).ToStdWstring());
-    m_shortcuts.insert(wxString(_DT(L"F\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"HardFogWordCount()"))).ToStdWstring());
-    m_shortcuts.insert(wxString(_DT(L"L\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"SixCharacterPlusWordCount()"))).ToStdWstring());
-    m_shortcuts.insert(wxString(_DT(L"M\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"OneSyllableWordCount()"))).ToStdWstring());
-    m_shortcuts.insert(wxString(_DT(L"R\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"CharacterCount(Default)"))).ToStdWstring());
-    m_shortcuts.insert(wxString(_DT(L"RP\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"CharacterPlusPunctuationCount()"))).ToStdWstring());
-    m_shortcuts.insert(wxString(_DT(L"S\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"SentenceCount(Default)"))).ToStdWstring());
-    m_shortcuts.insert(wxString(_DT(L"U\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"IndependentClauseCount()"))).ToStdWstring());
-    m_shortcuts.insert(wxString(_DT(L"UDC\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"UnfamiliarDaleChallWordCount()"))).ToStdWstring());
-    m_shortcuts.insert(wxString(_DT(L"UUS\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"UniqueUnfamiliarSpacheWordCount()"))).ToStdWstring());
-    m_shortcuts.insert(wxString(_DT(L"W\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"WordCount(Default)"))).ToStdWstring());
-    m_shortcuts.insert(wxString(_DT(L"X\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"SevenCharacterPlusWordCount()"))).ToStdWstring());
-    m_shortcuts.insert(wxString(_DT(L"T\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"MiniWordCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"B\t") + wxString::Format(_(L"Shortcut for %s."),
+        _DT(L"SyllableCount(Default)"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"C\t") + wxString::Format(_(L"Shortcut for %s."),
+        _DT(L"ThreeSyllablePlusWordCount(Default)"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"D\t") + wxString::Format(_(L"Shortcut for %s."),
+        _DT(L"FamiliarDaleChallWordCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"F\t") + wxString::Format(_(L"Shortcut for %s."),
+        _DT(L"HardFogWordCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"L\t") + wxString::Format(_(L"Shortcut for %s."),
+        _DT(L"SixCharacterPlusWordCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"M\t") + wxString::Format(_(L"Shortcut for %s."),
+        _DT(L"OneSyllableWordCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"R\t") + wxString::Format(_(L"Shortcut for %s."),
+        _DT(L"CharacterCount(Default)"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"RP\t") + wxString::Format(_(L"Shortcut for %s."),
+        _DT(L"CharacterPlusPunctuationCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"S\t") + wxString::Format(_(L"Shortcut for %s."),
+        _DT(L"SentenceCount(Default)"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"U\t") + wxString::Format(_(L"Shortcut for %s."),
+        _DT(L"IndependentClauseCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"UDC\t") + wxString::Format(_(L"Shortcut for %s."),
+        _DT(L"UnfamiliarDaleChallWordCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"UUS\t") + wxString::Format(_(L"Shortcut for %s."),
+        _DT(L"UniqueUnfamiliarSpacheWordCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"W\t") + wxString::Format(_(L"Shortcut for %s."),
+        _DT(L"WordCount(Default)"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"X\t") + wxString::Format(_(L"Shortcut for %s."),
+        _DT(L"SevenCharacterPlusWordCount()"))).ToStdWstring());
+    m_shortcuts.insert(wxString(_DT(L"T\t") + wxString::Format(_(L"Shortcut for %s."),
+        _DT(L"MiniWordCount()"))).ToStdWstring());
 
     CreateControls();
     Centre();
@@ -515,23 +596,26 @@ void CustomTestDlg::CreateControls()
 
     // general page
         {
-        wxPanel* mainPage = new wxPanel(m_sideBarBook, ID_GENERAL_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxPanel* mainPage =
+            new wxPanel(m_sideBarBook, ID_GENERAL_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         mainPage->SetSizer(mainPanelSizer);
         m_sideBarBook->AddPage(mainPage, _(L"General Settings"), ID_GENERAL_PAGE, true);
 
-        //if no test name then we are in "add new test" mode
+        // if no test name then we are in "add new test" mode
         if (m_testName.empty())
             {
-            wxStaticBoxSizer* nameBoxSizer = new wxStaticBoxSizer(new wxStaticBox(mainPage, wxID_ANY, _(L"Test name:")), wxVERTICAL);
+            wxStaticBoxSizer* nameBoxSizer =
+                new wxStaticBoxSizer(new wxStaticBox(mainPage, wxID_ANY, _(L"Test name:")), wxVERTICAL);
             mainPanelSizer->Add(nameBoxSizer, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
 
-            m_testNameCtrl = new wxTextCtrl(nameBoxSizer->GetStaticBox(), ID_TEST_NAME_FIELD, wxEmptyString, wxDefaultPosition, wxDefaultSize,
-                                                  0, wxTextValidator(wxFILTER_NONE, &m_testName));
+            m_testNameCtrl =
+                new wxTextCtrl(nameBoxSizer->GetStaticBox(), ID_TEST_NAME_FIELD, wxEmptyString,
+                               wxDefaultPosition, wxDefaultSize, 0, wxTextValidator(wxFILTER_NONE, &m_testName));
             nameBoxSizer->Add(m_testNameCtrl, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
             mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             }
-        //test type
+        // test type
             {
             wxBoxSizer* testTypeSizer = new wxBoxSizer(wxHORIZONTAL);
             mainPanelSizer->Add(testTypeSizer, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
@@ -604,62 +688,88 @@ void CustomTestDlg::CreateControls()
             }
         }
 
-    //Familiar word options
+    // Familiar word options
         {
-        wxPanel* WordListPanel = new wxPanel(m_sideBarBook, ID_WORD_LIST_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxPanel* WordListPanel =
+            new wxPanel(m_sideBarBook, ID_WORD_LIST_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         m_sideBarBook->AddPage(WordListPanel, _(L"Familiar Words"), ID_WORD_LIST_PAGE, false);
 
-        //word lists
+        // word lists
             {
             wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
             WordListPanel->SetSizer(panelSizer);
             m_sideBarBook->AddSubPage(WordListPanel, _(L"Word Lists"), ID_WORD_LIST_PAGE, false, 0);
 
-            wxPropertyGridManager* pgMan = new wxPropertyGridManager(WordListPanel, ID_WORD_LIST_PG, wxDefaultPosition, wxDefaultSize,wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
+            wxPropertyGridManager* pgMan =
+                new wxPropertyGridManager(WordListPanel, ID_WORD_LIST_PG, wxDefaultPosition,
+                    wxDefaultSize, wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
             m_wordListsPropertyGrid = pgMan->AddPage();
-            //custom word list
+            // custom word list
             m_wordListsPropertyGrid->Append(new wxPropertyCategory(GetCustomFamiliarWordListLabel()) );
             m_wordListsPropertyGrid->Append(new wxBoolProperty(GetIncludeCustomListLabel(),wxPG_LABEL,false));
             m_wordListsPropertyGrid->SetPropertyAttribute(GetIncludeCustomListLabel(), wxPG_BOOL_USE_CHECKBOX, true);
-            m_wordListsPropertyGrid->SetPropertyHelpString(GetIncludeCustomListLabel(), _(L"Check this option to use your own word list to determine if a word is familiar."));
+            m_wordListsPropertyGrid->SetPropertyHelpString(GetIncludeCustomListLabel(),
+                _(L"Check this option to use your own word list to determine if a word is familiar."));
 
             m_wordListsPropertyGrid->Append(new WordListProperty(GetFileContainingFamiliarWordsLabel(),wxPG_LABEL));
-            m_wordListsPropertyGrid->SetPropertyAttribute(GetFileContainingFamiliarWordsLabel(),wxPG_DIALOG_TITLE,_(L"Edit Word List"));
-            m_wordListsPropertyGrid->SetPropertyAttribute(GetFileContainingFamiliarWordsLabel(),wxPG_HELP_PATH,wxGetApp().GetMainFrame()->GetHelpDirectory());
-            m_wordListsPropertyGrid->SetPropertyAttribute(GetFileContainingFamiliarWordsLabel(),wxPG_TOPIC_PATH,_DT(L"document-analysis.html"));
-            m_wordListsPropertyGrid->SetPropertyHelpString(GetFileContainingFamiliarWordsLabel(), _(L"Enter the path to the familiar-word list into this field. This list must be a text file where each word is separated by a space, tab, comma, semicolon, or new line."));
+            m_wordListsPropertyGrid->SetPropertyAttribute(GetFileContainingFamiliarWordsLabel(), wxPG_DIALOG_TITLE,
+                _(L"Edit Word List"));
+            m_wordListsPropertyGrid->SetPropertyAttribute(GetFileContainingFamiliarWordsLabel(), wxPG_HELP_PATH,
+                wxGetApp().GetMainFrame()->GetHelpDirectory());
+            m_wordListsPropertyGrid->SetPropertyAttribute(GetFileContainingFamiliarWordsLabel(), wxPG_TOPIC_PATH,
+                _DT(L"document-analysis.html"));
+            m_wordListsPropertyGrid->SetPropertyHelpString(GetFileContainingFamiliarWordsLabel(),
+                _(L"Enter the path to the familiar-word list into this field. This list must be a text file "
+                   "where each word is separated by a space, tab, comma, semicolon, or new line."));
 
             wxPGChoices stemLanguages;
             for (size_t i = 0; i < static_cast<size_t>(stemming::stemming_type::STEMMING_TYPE_COUNT); ++i)
                 {
-                stemLanguages.Add(ProjectReportFormat::GetStemmingDisplayName(static_cast<stemming::stemming_type>(i)));
+                stemLanguages.Add(
+                    ProjectReportFormat::GetStemmingDisplayName(static_cast<stemming::stemming_type>(i)));
                 }
-            m_wordListsPropertyGrid->Append(new wxEnumProperty(GetStemmingLanguageLabel(), wxPG_LABEL, stemLanguages, 0) );
-            m_wordListsPropertyGrid->SetPropertyHelpString(GetStemmingLanguageLabel(), _(L"Select from this list the stemming method (if any) to use when comparing your familiar words with the words in a document."));
+            m_wordListsPropertyGrid->Append(
+                new wxEnumProperty(GetStemmingLanguageLabel(), wxPG_LABEL, stemLanguages, 0) );
+            m_wordListsPropertyGrid->SetPropertyHelpString(GetStemmingLanguageLabel(),
+                _(L"Select from this list the stemming method (if any) to use when comparing your familiar "
+                   "words with the words in a document."));
 
-            //standard word lists
+            // standard word lists
             m_wordListsPropertyGrid->Append(new wxPropertyCategory(GetStandardWordListsLabel()) );
             m_wordListsPropertyGrid->Append(new wxBoolProperty(GetIncludeDCWordListLabel(),wxPG_LABEL,false));
             m_wordListsPropertyGrid->SetPropertyAttribute(GetIncludeDCWordListLabel(), wxPG_BOOL_USE_CHECKBOX, true);
-            m_wordListsPropertyGrid->SetPropertyHelpString(GetIncludeDCWordListLabel(), _(L"Check this option to use the New Dale-Chall word list (along with any other selected word lists) to determine if a word is familiar."));
+            m_wordListsPropertyGrid->SetPropertyHelpString(GetIncludeDCWordListLabel(),
+                _(L"Check this option to use the New Dale-Chall word list (along with any other selected word lists) "
+                   "to determine if a word is familiar."));
 
             m_wordListsPropertyGrid->Append(new wxBoolProperty(GetIncludeSpacheWordListLabel(),wxPG_LABEL,false));
             m_wordListsPropertyGrid->SetPropertyAttribute(GetIncludeSpacheWordListLabel(), wxPG_BOOL_USE_CHECKBOX, true);
-            m_wordListsPropertyGrid->SetPropertyHelpString(GetIncludeSpacheWordListLabel(), _(L"Check this option to use the Spache Revised word list (along with any other selected word lists) to determine if a word is familiar."));
+            m_wordListsPropertyGrid->SetPropertyHelpString(GetIncludeSpacheWordListLabel(),
+                _(L"Check this option to use the Spache Revised word list (along with any other selected word lists) "
+                   "to determine if a word is familiar."));
 
             m_wordListsPropertyGrid->Append(new wxBoolProperty(GetIncludeHJWordListLabel(),wxPG_LABEL,false));
             m_wordListsPropertyGrid->SetPropertyAttribute(GetIncludeHJWordListLabel(), wxPG_BOOL_USE_CHECKBOX, true);
-            m_wordListsPropertyGrid->SetPropertyHelpString(GetIncludeHJWordListLabel(), _(L"Check this option to use the Harris-Jacobson word list (along with any other selected word lists) to determine if a word is familiar."));
+            m_wordListsPropertyGrid->SetPropertyHelpString(GetIncludeHJWordListLabel(),
+                _(L"Check this option to use the Harris-Jacobson word list (along with any other selected word lists) "
+                   "to determine if a word is familiar."));
 
             m_wordListsPropertyGrid->Append(new wxBoolProperty(GetIncludeStockerWordListLabel(),wxPG_LABEL,false));
-            m_wordListsPropertyGrid->SetPropertyAttribute(GetIncludeStockerWordListLabel(), wxPG_BOOL_USE_CHECKBOX, true);
-            m_wordListsPropertyGrid->SetPropertyHelpString(GetIncludeStockerWordListLabel(), _(L"Check this option to include Stocker's supplementary word list for Catholic students (along with any other selected word lists) to determine if a word is familiar."));
+            m_wordListsPropertyGrid->SetPropertyAttribute(
+                GetIncludeStockerWordListLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_wordListsPropertyGrid->SetPropertyHelpString(GetIncludeStockerWordListLabel(),
+                _(L"Check this option to include Stocker's supplementary word list for Catholic students "
+                   "(along with any other selected word lists) to determine if a word is familiar."));
 
-            //other options
+            // other options
             m_wordListsPropertyGrid->Append(new wxPropertyCategory(GetOtherLabel()) );
             m_wordListsPropertyGrid->Append(new wxBoolProperty(GetFamiliarWordsOnAllLabel(),wxPG_LABEL,false));
             m_wordListsPropertyGrid->SetPropertyAttribute(GetFamiliarWordsOnAllLabel(), wxPG_BOOL_USE_CHECKBOX, true);
-            m_wordListsPropertyGrid->SetPropertyHelpString(GetFamiliarWordsOnAllLabel(), _(L"Check this option to consider words familiar only if they appear on your custom list and other selected lists.\n\nThis option is only recommended for special situations where you only want to find words that appear within a union of your word list and another list(s) (e.g., Spache)."));
+            m_wordListsPropertyGrid->SetPropertyHelpString(GetFamiliarWordsOnAllLabel(),
+                _(L"Check this option to consider words familiar only if they appear on your "
+                   "custom list and other selected lists.\n\nThis option is only recommended for "
+                   "special situations where you only want to find words that appear within a union "
+                   "of your word list and another list(s) (e.g., Spache)."));
 
             pgMan->SetDescBoxHeight(FromDIP(wxSize(125, 125)).GetHeight());
 
@@ -669,14 +779,17 @@ void CustomTestDlg::CreateControls()
 
             panelSizer->Add(pgMan, 1, wxEXPAND);
             }
-        //proper nouns and numbers
+        // proper nouns and numbers
             {
-            wxPanel* Panel = new wxPanel(m_sideBarBook, ID_PROPER_NUMERALS_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+            wxPanel* Panel =
+                new wxPanel(m_sideBarBook, ID_PROPER_NUMERALS_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
             wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
             Panel->SetSizer(panelSizer);
             m_sideBarBook->AddSubPage(Panel, _(L"Proper Nouns & Numerals"), ID_PROPER_NUMERALS_PAGE, false, 0);
 
-            wxPropertyGridManager* pgMan = new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
+            wxPropertyGridManager* pgMan =
+                new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                    wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
             m_properNounsNumbersPropertyGrid = pgMan->AddPage();
             // proper nouns
             m_properNounsNumbersPropertyGrid->Append(new wxPropertyCategory(GetProperNounsLabel()) );
@@ -684,13 +797,17 @@ void CustomTestDlg::CreateControls()
             properNounMethods.Add(_(L"Count as unfamiliar"));
             properNounMethods.Add(_(L"Count as familiar"));
             properNounMethods.Add(_(L"Count only first occurrence of each as unfamiliar"));
-            m_properNounsNumbersPropertyGrid->Append(new wxEnumProperty(GetFamiliarityLabel(), wxPG_LABEL, properNounMethods, 1) );
-            m_properNounsNumbersPropertyGrid->SetPropertyHelpString(GetFamiliarityLabel(), _(L"Controls how proper nouns are handled in terms of being familiar words."));
+            m_properNounsNumbersPropertyGrid->Append(
+                new wxEnumProperty(GetFamiliarityLabel(), wxPG_LABEL, properNounMethods, 1) );
+            m_properNounsNumbersPropertyGrid->SetPropertyHelpString(GetFamiliarityLabel(),
+                _(L"Controls how proper nouns are handled in terms of being familiar words."));
             // nouns
             m_properNounsNumbersPropertyGrid->Append(new wxPropertyCategory(GetNumeralsLabel()) );
             m_properNounsNumbersPropertyGrid->Append(new wxBoolProperty(GetNumeralsAsFamiliarLabel(),wxPG_LABEL,true));
-            m_properNounsNumbersPropertyGrid->SetPropertyAttribute(GetNumeralsAsFamiliarLabel(), wxPG_BOOL_USE_CHECKBOX, true);
-            m_properNounsNumbersPropertyGrid->SetPropertyHelpString(GetNumeralsAsFamiliarLabel(), _(L"Check this to also consider numeric words as familiar."));
+            m_properNounsNumbersPropertyGrid->SetPropertyAttribute(
+                GetNumeralsAsFamiliarLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_properNounsNumbersPropertyGrid->SetPropertyHelpString(GetNumeralsAsFamiliarLabel(),
+                _(L"Check this to also consider numeric words as familiar."));
 
             pgMan->SelectProperty(GetProperNounsLabel());
 
@@ -761,7 +878,7 @@ void CustomTestDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     // validate the test name
     if (m_testNameCtrl)
         {
-        //if a new test, then make sure it isn't empty
+        // if a new test, then make sure it isn't empty
         if (m_testName.empty())
             {
             wxMessageBox(_(L"Please enter a test name."),

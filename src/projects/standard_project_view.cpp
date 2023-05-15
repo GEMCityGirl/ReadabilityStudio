@@ -330,7 +330,8 @@ void ProjectView::OnExportFilteredDocument([[maybe_unused]] wxCommandEvent& even
 //------------------------------------------------------
 void ProjectView::OnEditGraphOptions(wxCommandEvent& event)
     {
-    ToolsOptionsDlg optionsDlg(GetDocFrame(), dynamic_cast<ProjectDoc*>(GetDocument()), ToolsOptionsDlg::GraphsSection);
+    ToolsOptionsDlg optionsDlg(GetDocFrame(), dynamic_cast<ProjectDoc*>(GetDocument()),
+                               ToolsOptionsDlg::GraphsSection);
     switch (event.GetId())
         {
     case FRY_PAGE_ID:
@@ -714,7 +715,9 @@ void ProjectView::OnLaunchSourceFile([[maybe_unused]] wxRibbonButtonBarEvent& ev
                     }
                 }
             EditTextDlg dlg(GetDocFrame(), wxID_ANY, _(L"Edit Embedded Document"),
-                doc->GetAppendedDocumentText().length() ? _(L"Note: The appended template document is not included here.\nOnly the embedded text is editable from this dialog."): wxString{});
+                doc->GetAppendedDocumentText().length() ?
+                _(L"Note: The appended template document is not included here.\n"
+                   "Only the embedded text is editable from this dialog."): wxString{});
             dlg.SetValue(doc->GetDocumentText());
             if (dlg.ShowModal() == wxID_OK)
                 {
@@ -2021,9 +2024,12 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             _(L"Shadows"),
                             readRibbonButtonSVG(L"ribbon/shadow.svg"),
                             _(L"Display drop shadows on the graphs."));
-                        editButtonBar->ToggleButton(XRCID("ID_DROP_SHADOW"), dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                        editButtonBar->ToggleButton(XRCID("ID_DROP_SHADOW"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                         if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-                            typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::Histogram))
+                            typeid(*dynamic_cast<Wisteria::Canvas*>(
+                                GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+                                    typeid(Wisteria::Graphs::Histogram))
                             {
                             exportMenuItem->SetBitmap(histogramIcon);
                             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"),
@@ -2036,17 +2042,23 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                                 _(L"Changes what is displayed on the bars' labels."));
                             }
                         else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-                            typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::HeatMap))
+                            typeid(*dynamic_cast<Wisteria::Canvas*>(
+                                GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+                                    typeid(Wisteria::Graphs::HeatMap))
                             {
                             exportMenuItem->SetBitmap(heatmapIcon);
                             }
                         else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-                            typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::WordCloud))
+                            typeid(*dynamic_cast<Wisteria::Canvas*>(
+                                GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+                                    typeid(Wisteria::Graphs::WordCloud))
                             {
                             exportMenuItem->SetBitmap(wordCloudIcon);
                             }
                         else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-                            typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::BoxPlot))
+                            typeid(*dynamic_cast<Wisteria::Canvas*>(
+                                GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+                                    typeid(Wisteria::Graphs::BoxPlot))
                             {
                             exportMenuItem->SetBitmap(boxPlotIcon);
                             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_BOX_STYLE"),
@@ -2057,12 +2069,14 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                                 _(L"Display Labels"),
                                 readRibbonButtonSVG(L"ribbon/show-all-labels.svg"),
                                 _(L"Displays labels on the box and whiskers."));
-                            editButtonBar->ToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_LABELS"), dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingBoxPlotLabels());
+                            editButtonBar->ToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_LABELS"),
+                                dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingBoxPlotLabels());
                             editButtonBar->AddToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"),
                                 _(L"Display Points"),
                                 readRibbonButtonSVG(L"ribbon/show-all-points.svg"),
                                 _(L"Displays all data points onto the plot."));
-                            editButtonBar->ToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"), dynamic_cast<ProjectDoc*>(GetDocument())->IsShowingAllBoxPlotPoints());
+                            editButtonBar->ToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"),
+                                dynamic_cast<ProjectDoc*>(GetDocument())->IsShowingAllBoxPlotPoints());
                             }
                         editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
                             readRibbonButtonSVG(L"ribbon/copy.svg"),
@@ -2107,7 +2121,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()));
+                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."),
+                                       GetActiveProjectWindow()->GetName()));
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
@@ -2122,7 +2137,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
                         {
                         m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"), _(L"Copy with Column Headers"));
-                        m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"), _(L"Copy (First Column Only)")+L"\tShift+Ctrl+C");
+                        m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"),
+                            _(L"Copy (First Column Only)")+L"\tShift+Ctrl+C");
                         }
                     m_copyMenu.Append(XRCID("ID_COPY_ALL"), _(L"Copy All"));
                     while (m_exportMenu.GetMenuItemCount())
@@ -2130,10 +2146,12 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(wxID_SAVE, _(L"Save")+L"\tCtrl+S")->SetBitmap(saveIcon);
                     m_exportMenu.Append(wxID_SAVEAS, _(L"Save As..."));
                     m_exportMenu.AppendSeparator();
-                    auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
+                    auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
+                        wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                     m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonRibbonBar);
@@ -2193,7 +2211,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
+                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."),
+                                       GetActiveProjectWindow()->GetName()) );
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
@@ -2213,10 +2232,12 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(wxID_SAVE, _(L"Save")+L"\tCtrl+S")->SetBitmap(saveIcon);
                     m_exportMenu.Append(wxID_SAVEAS, _(L"Save As..."));
                     m_exportMenu.AppendSeparator();
-                    auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
+                    auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
+                        wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                     m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonRibbonBar);
@@ -2244,9 +2265,12 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             _(L"Shadows"),
                             readRibbonButtonSVG(L"ribbon/shadow.svg"),
                             _(L"Display drop shadows on the graphs."));
-                        editButtonRibbonBar->ToggleButton(XRCID("ID_DROP_SHADOW"), dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                        editButtonRibbonBar->ToggleButton(XRCID("ID_DROP_SHADOW"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                         if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-                            typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::Histogram))
+                            typeid(*dynamic_cast<Wisteria::Canvas*>(
+                                GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+                                    typeid(Wisteria::Graphs::Histogram))
                             {
                             exportMenuItem->SetBitmap(histogramIcon);
                             editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"),
@@ -2259,7 +2283,9 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                                 _(L"Changes what is displayed on the bars' labels."));
                             }
                         else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-                            typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::BarChart))
+                            typeid(*dynamic_cast<Wisteria::Canvas*>(
+                                GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+                                    typeid(Wisteria::Graphs::BarChart))
                             {
                             exportMenuItem->SetBitmap(barChartIcon);
                             editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_BAR_STYLE"),
@@ -2274,7 +2300,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                                 _(L"Labels"),
                                 readRibbonButtonSVG(L"ribbon/bar-labels.svg"),
                                 _(L"Shows or hides the bars' labels."));
-                            editButtonRibbonBar->ToggleButton(XRCID("ID_EDIT_BAR_LABELS"), dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingBarLabels());
+                            editButtonRibbonBar->ToggleButton(XRCID("ID_EDIT_BAR_LABELS"),
+                                dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingBarLabels());
                             editButtonRibbonBar->AddDropdownButton(XRCID("ID_GRAPH_SORT"),
                                 _(L"Sort"),
                                 readRibbonButtonSVG(L"ribbon/bar-sort.svg"),
@@ -2351,7 +2378,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
+                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
+                    wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
@@ -2365,8 +2393,10 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_copyMenu.Append(wxID_COPY, _(L"Copy")+L"\tCtrl+C")->SetBitmap(copyIcon);
                     if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
                         {
-                        m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"), _(L"Copy with Column Headers"));
-                        m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"), _(L"Copy (First Column Only)")+L"\tShift+Ctrl+C");
+                        m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"),
+                            _(L"Copy with Column Headers"));
+                        m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"),
+                            _(L"Copy (First Column Only)")+L"\tShift+Ctrl+C");
                         }
                     m_copyMenu.Append(XRCID("ID_COPY_ALL"), _(L"Copy All"));
                     while (m_exportMenu.GetMenuItemCount())
@@ -2374,10 +2404,13 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(wxID_SAVE, _(L"Save")+L"\tCtrl+S")->SetBitmap(saveIcon);
                     m_exportMenu.Append(wxID_SAVEAS, _(L"Save As..."));
                     m_exportMenu.AppendSeparator();
-                    auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
-                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
+                    auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
+                        wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
+                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"),
+                        _(L"Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonRibbonBar);
@@ -2437,7 +2470,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
+                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
+                    wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
@@ -2451,8 +2485,10 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_copyMenu.Append(wxID_COPY, _(L"Copy")+L"\tCtrl+C")->SetBitmap(copyIcon);
                     if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
                         {
-                        m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"), _(L"Copy with Column Headers"));
-                        m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"), _(L"Copy (First Column Only)")+L"\tShift+Ctrl+C");
+                        m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"),
+                            _(L"Copy with Column Headers"));
+                        m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"),
+                            _(L"Copy (First Column Only)")+L"\tShift+Ctrl+C");
                         }
                     m_copyMenu.Append(XRCID("ID_COPY_ALL"), _(L"Copy All"));
                     while (m_exportMenu.GetMenuItemCount())
@@ -2460,10 +2496,13 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(wxID_SAVE, _(L"Save")+L"\tCtrl+S")->SetBitmap(saveIcon);
                     m_exportMenu.Append(wxID_SAVEAS, _(L"Save As..."));
                     m_exportMenu.AppendSeparator();
-                    auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
-                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
+                    auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
+                        wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
+                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"),
+                        _(L"Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonRibbonBar);
@@ -2481,7 +2520,9 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             _(L"Change the highlight colors."));
                         }
                     else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-                             typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0,0)) == typeid(Wisteria::Graphs::BarChart))
+                             typeid(*dynamic_cast<Wisteria::Canvas*>(
+                                 GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+                                    typeid(Wisteria::Graphs::BarChart))
                         {
                         exportMenuItem->SetBitmap(barChartIcon);
                         editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
@@ -2504,7 +2545,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             _(L"Shadows"),
                             readRibbonButtonSVG(L"ribbon/shadow.svg"),
                             _(L"Display drop shadows on the graphs."));
-                        editButtonRibbonBar->ToggleButton(XRCID("ID_DROP_SHADOW"), dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                        editButtonRibbonBar->ToggleButton(XRCID("ID_DROP_SHADOW"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                         editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_BAR_STYLE"),
                             _(L"Bar Style"),
                             readRibbonButtonSVG(L"ribbon/bar-top-to-bottom.svg"),
@@ -2513,7 +2555,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             _(L"Labels"),
                             readRibbonButtonSVG(L"ribbon/bar-labels.svg"),
                             _(L"Shows or hides the bars' labels."));
-                        editButtonRibbonBar->ToggleButton(XRCID("ID_EDIT_BAR_LABELS"), dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingBarLabels());
+                        editButtonRibbonBar->ToggleButton(XRCID("ID_EDIT_BAR_LABELS"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingBarLabels());
                         editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_BAR_ORIENTATION"),
                             _(L"Orientation"),
                             readRibbonButtonSVG(L"ribbon/axis-orientation.svg"),
@@ -2604,7 +2647,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
     // the results window
     if (includeTestScores)
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel(),
+                               wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
             wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."), GetReadabilityScoresLabel()),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
@@ -2619,31 +2663,41 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                     if (activeWindow->IsKindOf(CLASSINFO(ExplanationListCtrl)) )
                         {
                         ExplanationListCtrl* list = dynamic_cast<ExplanationListCtrl*>(activeWindow);
-                        list->SetLabel(wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                        list->SetLabel(
+                            wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         list->Save(
-                            folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel() + wxFileName::GetPathSeparator() +
+                            folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel() +
+                            wxFileName::GetPathSeparator() +
                             list->GetLabel() + L".htm", ExplanationListExportOptions::ExportGrid);
                         }
                     else if (activeWindow->IsKindOf(CLASSINFO(Wisteria::Canvas)) )
                         {
                         Wisteria::Canvas* graphWindow = dynamic_cast<Wisteria::Canvas*>(activeWindow);
-                        graphWindow->SetLabel(wxString::Format(L"%s [%s]", graphWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
-                        graphWindow->Save(folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel() + wxFileName::GetPathSeparator() +
+                        graphWindow->SetLabel(wxString::Format(L"%s [%s]", graphWindow->GetName(),
+                            wxFileName::StripExtension(doc->GetTitle())));
+                        graphWindow->Save(folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel() +
+                            wxFileName::GetPathSeparator() +
                             graphWindow->GetLabel() + graphExt, graphOptions);
                         }
                     else if (activeWindow->IsKindOf(CLASSINFO(HtmlTableWindow)) )
                         {
                         HtmlTableWindow* reportWindow = dynamic_cast<HtmlTableWindow*>(activeWindow);
-                        reportWindow->SetLabel(wxString::Format(L"%s [%s]", reportWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
-                        reportWindow->Save(folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel() + wxFileName::GetPathSeparator() +
+                        reportWindow->SetLabel(
+                            wxString::Format(L"%s [%s]", reportWindow->GetName(),
+                                
+                                wxFileName::StripExtension(doc->GetTitle())));
+                        reportWindow->Save(folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel() +
+                            wxFileName::GetPathSeparator() +
                             reportWindow->GetLabel() + L".htm");
                         }
                     else if (activeWindow->IsKindOf(CLASSINFO(ListCtrlEx)))
                         {
                         ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(activeWindow);
-                        list->SetLabel(wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                        list->SetLabel(
+                            wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         list->Save(
-                            folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel() + wxFileName::GetPathSeparator() +
+                            folder + wxFileName::GetPathSeparator() + GetReadabilityScoresLabel() +
+                            wxFileName::GetPathSeparator() +
                             list->GetLabel() + listExt, GridExportOptions());
                         }
                     }
@@ -2653,7 +2707,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
     // the statistics
     if (includeStatistics && GetSummaryView().GetWindowCount())
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetSummaryStatisticsLabel(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetSummaryStatisticsLabel(),
+                               wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
             wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."), GetSummaryStatisticsLabel()),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
@@ -2668,24 +2723,31 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                     if (activeWindow->IsKindOf(CLASSINFO(HtmlTableWindow)) )
                         {
                         HtmlTableWindow* html = dynamic_cast<HtmlTableWindow*>(activeWindow);
-                        html->SetLabel(wxString::Format(L"%s [%s]", html->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                        html->SetLabel(
+                            wxString::Format(L"%s [%s]", html->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         html->Save(
-                            folder + wxFileName::GetPathSeparator() + GetSummaryStatisticsLabel() + wxFileName::GetPathSeparator() +
+                            folder + wxFileName::GetPathSeparator() + GetSummaryStatisticsLabel() +
+                            wxFileName::GetPathSeparator() +
                             html->GetLabel() + L".htm");
                         }
                     else if (activeWindow->IsKindOf(CLASSINFO(ListCtrlEx)) && includeLists)
                         {
                         ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(activeWindow);
-                        list->SetLabel(wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                        list->SetLabel(
+                            wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         list->Save(
-                            folder + wxFileName::GetPathSeparator() + GetSummaryStatisticsLabel() + wxFileName::GetPathSeparator() +
+                            folder + wxFileName::GetPathSeparator() + GetSummaryStatisticsLabel() +
+                            wxFileName::GetPathSeparator() +
                             list->GetLabel() + listExt, GridExportOptions());
                         }
                     else if (typeid(*activeWindow) == typeid(Wisteria::Canvas))
                         {
                         Wisteria::Canvas* graphWindow = dynamic_cast<Wisteria::Canvas*>(activeWindow);
-                        graphWindow->SetLabel(wxString::Format(L"%s [%s]", graphWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
-                        graphWindow->Save(folder + wxFileName::GetPathSeparator() + GetSummaryStatisticsLabel() + wxFileName::GetPathSeparator() +
+                        graphWindow->SetLabel(
+                            wxString::Format(L"%s [%s]", graphWindow->GetName(),
+                                wxFileName::StripExtension(doc->GetTitle())));
+                        graphWindow->Save(folder + wxFileName::GetPathSeparator() + GetSummaryStatisticsLabel() +
+                            wxFileName::GetPathSeparator() +
                             graphWindow->GetLabel() + graphExt, graphOptions);
                         }
                     }
@@ -2694,7 +2756,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
         }
     if (includeSentencesBreakdown && GetSentencesBreakdownView().GetWindowCount())
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetSentencesBreakdownLabel(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetSentencesBreakdownLabel(),
+                               wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
             wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."), GetSentencesBreakdownLabel()),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
@@ -2709,16 +2772,21 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                     if (activeWindow->IsKindOf(CLASSINFO(ListCtrlEx)) && includeLists)
                         {
                         ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(activeWindow);
-                        list->SetLabel(wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                        list->SetLabel(
+                            wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         list->Save(
-                            folder + wxFileName::GetPathSeparator() + GetSentencesBreakdownLabel() + wxFileName::GetPathSeparator() +
+                            folder + wxFileName::GetPathSeparator() + GetSentencesBreakdownLabel() +
+                            wxFileName::GetPathSeparator() +
                             list->GetLabel() + listExt, GridExportOptions());
                         }
                     else if (typeid(*activeWindow) == typeid(Wisteria::Canvas))
                         {
                         Wisteria::Canvas* graphWindow = dynamic_cast<Wisteria::Canvas*>(activeWindow);
-                        graphWindow->SetLabel(wxString::Format(L"%s [%s]", graphWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
-                        graphWindow->Save(folder + wxFileName::GetPathSeparator() + GetSentencesBreakdownLabel() + wxFileName::GetPathSeparator() +
+                        graphWindow->SetLabel(
+                            wxString::Format(L"%s [%s]", graphWindow->GetName(),
+                                wxFileName::StripExtension(doc->GetTitle())));
+                        graphWindow->Save(folder + wxFileName::GetPathSeparator() + GetSentencesBreakdownLabel() +
+                            wxFileName::GetPathSeparator() +
                             graphWindow->GetLabel() + graphExt, graphOptions);
                         }
                     }
@@ -2744,24 +2812,31 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                     if (activeWindow->IsKindOf(CLASSINFO(ListCtrlEx)) && includeLists)
                         {
                         ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(activeWindow);
-                        list->SetLabel(wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                        list->SetLabel(
+                            wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         list->Save(
-                            folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel() + wxFileName::GetPathSeparator() +
+                            folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel() +
+                            wxFileName::GetPathSeparator() +
                             list->GetLabel() + listExt, GridExportOptions());
                         }
                     else if (activeWindow->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                         {
                         Wisteria::Canvas* graphWindow = dynamic_cast<Wisteria::Canvas*>(activeWindow);
-                        graphWindow->SetLabel(wxString::Format(L"%s [%s]", graphWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
-                        graphWindow->Save(folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel() + wxFileName::GetPathSeparator() +
+                        graphWindow->SetLabel(
+                            wxString::Format(L"%s [%s]", graphWindow->GetName(),
+                                wxFileName::StripExtension(doc->GetTitle())));
+                        graphWindow->Save(folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel() +
+                            wxFileName::GetPathSeparator() +
                             graphWindow->GetLabel() + graphExt, graphOptions);
                         }
                     else if (activeWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)) && includeTextReports)
                         {
                         FormattedTextCtrl* text = dynamic_cast<FormattedTextCtrl*>(activeWindow);
-                        text->SetTitleName(wxString::Format(L"%s [%s]", text->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                        text->SetTitleName(
+                            wxString::Format(L"%s [%s]", text->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         text->Save(
-                            folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel() + wxFileName::GetPathSeparator() +
+                            folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel() +
+                            wxFileName::GetPathSeparator() +
                             text->GetTitleName() + textExt);
                         }
                     }
@@ -2771,7 +2846,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
     // grammar
     if (includeGrammar && GetGrammarView().GetWindowCount() )
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetGrammarLabel(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetGrammarLabel(),
+                               wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
             wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."), GetGrammarLabel()),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
@@ -2786,7 +2862,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                     if (activeWindow->IsKindOf(CLASSINFO(ListCtrlEx)) && includeLists)
                         {
                         ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(activeWindow);
-                        list->SetLabel(wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                        list->SetLabel(
+                            wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         list->Save(
                             folder + wxFileName::GetPathSeparator() + GetGrammarLabel() + wxFileName::GetPathSeparator() +
                             list->GetLabel() + listExt, GridExportOptions());
@@ -2794,7 +2871,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                     else if (activeWindow->IsKindOf(CLASSINFO(HtmlTableWindow)) )
                         {
                         HtmlTableWindow* html = dynamic_cast<HtmlTableWindow*>(activeWindow);
-                        html->SetLabel(wxString::Format(L"%s [%s]", html->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                        html->SetLabel(
+                            wxString::Format(L"%s [%s]", html->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         html->Save(
                             folder + wxFileName::GetPathSeparator() + GetGrammarLabel() + wxFileName::GetPathSeparator() +
                             html->GetLabel() + L".htm");
@@ -2802,7 +2880,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                     else if (activeWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)) && includeTextReports)
                         {
                         FormattedTextCtrl* text = dynamic_cast<FormattedTextCtrl*>(activeWindow);
-                        text->SetTitleName(wxString::Format(L"%s [%s]", text->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                        text->SetTitleName(
+                            wxString::Format(L"%s [%s]", text->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         text->Save(
                             folder + wxFileName::GetPathSeparator() + GetGrammarLabel() + wxFileName::GetPathSeparator() +
                             text->GetTitleName() + textExt);
@@ -2814,7 +2893,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
     // Sight Words
     if (includeSightWords && GetDolchSightWordsView().GetWindowCount() )
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetDolchLabel(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetDolchLabel(),
+                               wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
             wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."), GetDolchLabel()),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
@@ -2829,7 +2909,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                     if (activeWindow->IsKindOf(CLASSINFO(ListCtrlEx)) && includeLists)
                         {
                         ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(activeWindow);
-                        list->SetLabel(wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                        list->SetLabel(
+                            wxString::Format(L"%s [%s]", list->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         list->Save(
                             folder + wxFileName::GetPathSeparator() + GetDolchLabel() + wxFileName::GetPathSeparator() +
                             list->GetLabel() + listExt, GridExportOptions());
@@ -2837,7 +2918,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                     else if (activeWindow->IsKindOf(CLASSINFO(HtmlTableWindow)) )
                         {
                         HtmlTableWindow* html = dynamic_cast<HtmlTableWindow*>(activeWindow);
-                        html->SetLabel(wxString::Format(L"%s [%s]", html->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                        html->SetLabel(
+                            wxString::Format(L"%s [%s]", html->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         html->Save(
                             folder + wxFileName::GetPathSeparator() + GetDolchLabel() + wxFileName::GetPathSeparator() +
                             html->GetLabel() + L".htm");
@@ -2845,7 +2927,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                     else if (activeWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)) && includeTextReports)
                         {
                         FormattedTextCtrl* text = dynamic_cast<FormattedTextCtrl*>(activeWindow);
-                        text->SetTitleName(wxString::Format(L"%s [%s]", text->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                        text->SetTitleName(
+                            wxString::Format(L"%s [%s]", text->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         text->Save(
                             folder + wxFileName::GetPathSeparator() + GetDolchLabel() + wxFileName::GetPathSeparator() +
                             text->GetTitleName() + textExt);
@@ -2853,7 +2936,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                     else if (typeid(*activeWindow) == typeid(Wisteria::Canvas))
                         {
                         Wisteria::Canvas* graph = dynamic_cast<Wisteria::Canvas*>(activeWindow);
-                        graph->SetLabel(wxString::Format(L"%s [%s]", graph->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                        graph->SetLabel(
+                            wxString::Format(L"%s [%s]", graph->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                         graph->Save(
                             folder + wxFileName::GetPathSeparator() + GetDolchLabel() + wxFileName::GetPathSeparator() +
                             graph->GetLabel() + graphExt, graphOptions);
@@ -2924,7 +3008,8 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
         canvas->Save(filePath.GetPathWithSep() + _DT(L"images") + wxFileName::GetPathSeparator() +
             canvas->GetLabel() + graphExt, graphOptions);
 
-        outputText += wxString::Format(L"%s\n<div class='minipage figure'>\n<img src='images\\%s' />\n<div class='caption'>%s</div>\n</div>\n",
+        outputText += wxString::Format(
+            L"%s\n<div class='minipage figure'>\n<img src='images\\%s' />\n<div class='caption'>%s</div>\n</div>\n",
             (includeLeadingPageBreak ? pageBreak : wxEmptyString),
             canvas->GetLabel()+graphExt,
             wxString::Format(_(L"Figure %zu.%zu: %s"), sectionCounter, figureCounter++,
@@ -3005,7 +3090,8 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
                 {
                 if (activeWindow->IsKindOf(CLASSINFO(ExplanationListCtrl)) )
                     {
-                    formatList(dynamic_cast<ExplanationListCtrl*>(activeWindow)->GetResultsListCtrl(), includeLeadingPageBreak);
+                    formatList(dynamic_cast<ExplanationListCtrl*>(activeWindow)->GetResultsListCtrl(),
+                        includeLeadingPageBreak);
                     includeLeadingPageBreak = true;
                     }
                 else if (activeWindow->IsKindOf(CLASSINFO(Wisteria::Canvas)) )
@@ -3098,7 +3184,8 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
         bool includeLeadingPageBreak{ false };
         ++sectionCounter;
         figureCounter = tableCounter = 1;
-        outputText += wxString::Format(L"\n\n%s<div class='report-section'><a name='sentencesbreakdown'></a>%s</div>\n",
+        outputText += wxString::Format(
+            L"\n\n%s<div class='report-section'><a name='sentencesbreakdown'></a>%s</div>\n",
             (hasSections ? pageBreak : wxEmptyString),
             htmlEncode({ GetSentencesBreakdownLabel().wc_str() }, true).c_str());
         hasSections = true;

@@ -4,7 +4,7 @@
 #include "lua.hpp"
 #include <string.h> // For strlen
 
-//Available from http://lua-users.org/wiki/LuaLunaFive
+// Available from http://lua-users.org/wiki/LuaLunaFive
 // 2015-09-16: Register uses __call in metatable to create a new class
 
 template < typename T > class Luna {

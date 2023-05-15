@@ -1468,7 +1468,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0, _(L"Number of proper nouns"));
-                listData->SetItemText(listDataItemCount, 1, 
+                listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(project->GetTotalProperNouns(), 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
                         wxNumberFormatter::Style::Style_WithThousandsSep));
