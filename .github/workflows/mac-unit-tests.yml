@@ -1,17 +1,18 @@
-name: Linux Unit Tests
+name: macOS Unit Tests
 on: [push]
 
 jobs:
   build:
     name: unit-tests
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: 'recursive'
 
-      - name: build & run tests
+      - name: Build & run tests
         run: |
+             brew install grep
              cd ..
              git clone https://github.com/catchorg/Catch2.git
              cd ReadabilityStudio/tests
@@ -21,8 +22,8 @@ jobs:
              ./RSTestRunner > results.txt 2>&1
              cat results.txt
              ./RSTestRunner --reporter JUnit::out=rs-junit.xml
-             errors=$(cat rs-junit.xml | grep -Po '(errors)="\K[^"]*')
-             failures=$(cat rs-junit.xml | grep -Po '(failures)="\K[^"]*')
+             errors=$(cat rs-junit.xml | ggrep -Po '(errors)="\K[^"]*')
+             failures=$(cat rs-junit.xml | ggrep -Po '(failures)="\K[^"]*')
              if [ "$errors" -gt 0 ]; then
                echo "Error count is: ${errors}"
                exit 1
