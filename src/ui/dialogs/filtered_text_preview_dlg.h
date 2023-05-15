@@ -70,7 +70,7 @@ public:
         TransferDataToWindow();
         }
     /// @brief Expands the details window beneath the preview.
-    /// @param show @c true to exand it, @c false to collapse it.
+    /// @param show @c true to expand it, @c false to collapse it.
     void ShowDetails(const bool show = true)
         {
         if (m_collpane)

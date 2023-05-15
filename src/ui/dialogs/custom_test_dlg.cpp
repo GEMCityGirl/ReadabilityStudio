@@ -419,7 +419,7 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
         wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"SUM(value,value2,...)\t")) +
         _(L"Returns the sum of a specified range of values.")).ToStdWstring());
     m_statistics.insert(
-        wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"AVGERAGE(value,value2,...)\t")) +
+        wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"AVERAGE(value,value2,...)\t")) +
         _(L"Returns the average of a specified range of values.")).ToStdWstring());
 
     m_customFamiliarWords.insert(

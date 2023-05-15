@@ -386,7 +386,7 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
             }
         else
             {
-            // disable (and later reenable) the Run button while the script runs
+            // disable (and later re-enable) the Run button while the script runs
             m_toolbar->EnableTool(XRCID("ID_RUN"), false);
 
             // run the script

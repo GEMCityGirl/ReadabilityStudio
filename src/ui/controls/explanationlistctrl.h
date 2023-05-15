@@ -30,7 +30,7 @@ enum class ExplanationListExportOptions
     {
     /// @brief Export just the grid.
     ExportGrid,
-    /// @brief Export just the explainations.
+    /// @brief Export just the explanations.
     ExportExplanations,
     /// @brief Export both the grid and associated explanations.
     ExportBoth

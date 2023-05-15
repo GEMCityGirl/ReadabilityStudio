@@ -257,21 +257,21 @@ public:
         // finish tagging the words
         //-------------------------
         // file address
-        for_each(std::execution::par,
+        for_each(
             m_words.begin(), m_words.end(),
             [](auto& word)
                 { word.set_file_address(i18n_string_util::is_file_address(word.c_str(), word.length())); }
             );
         // social media
         is_social_media_tag<Tword_type> isSmTag;
-        for_each(std::execution::par,
+        for_each(
             m_words.begin(), m_words.end(),
             [&isSmTag = std::as_const(isSmTag)](auto& word)
                 { word.set_social_media_tag(isSmTag(word)); }
             );
         // abbreviation
         grammar::is_abbreviation isAbbreviation;
-        for_each(std::execution::par,
+        for_each(
             m_words.begin(), m_words.end(),
             [&isAbbreviation = std::as_const(isAbbreviation)](auto& word)
                 { word.set_abbreviation_tag(isAbbreviation(word.c_str(), word.length())); }
@@ -1523,7 +1523,7 @@ private:
             if (wordPos->is_exclamatory() && !wordPos->is_proper_noun() )
                 {
                 // perform a case-INsensitive search here because all of these words will be in all caps.
-                auto propPos = std::find_if(std::execution::par,
+                auto propPos = std::find_if(
                                 properWords.get_data().cbegin(), properWords.get_data().cend(),
                                 string_util::equal_basic_string_i_compare_map<Tword_type,
                                              size_t>(Tword_type(wordPos->c_str())));
@@ -1987,7 +1987,7 @@ private:
                 }
             for (const auto& uncommonWord : uncommonWords.get_data())
                 {
-                // word apeared more than once in the sentence
+                // word appeared more than once in the sentence
                 if (uncommonWord.second.second > 1)
                     {
                     m_overused_words_by_sentence.emplace_back(
@@ -2320,7 +2320,7 @@ private:
                         { ignore_paragraph(*para_iter); }
 
                     // Create a forward iterator to one paragraph AFTER the header that we just dealt with,
-                    // and then work aroud way downward through those citations.
+                    // and then work around way downward through those citations.
                     // Note that assigning base() from a reverse_iterator to a forward_iterator automatically
                     // points it to the next item (yes, this is how it works).
                     auto paragraphIgnoreIter{ para_iter.base() };

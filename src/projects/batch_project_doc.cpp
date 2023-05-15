@@ -5743,7 +5743,7 @@ void BatchProjectDoc::SetScoreStatsRow(ListCtrlExNumericDataProvider* dataGrid,
         {
         constexpr int HIGHER_PRECISION = 3;
         std::vector<double> sortedData(data.begin(), data.end());
-        std::sort(std::execution::par, sortedData.begin(), sortedData.end());
+        std::sort(sortedData.begin(), sortedData.end());
 
         double minVal = *std::min_element(sortedData.begin(), sortedData.end());
         double maxVal = *std::max_element(sortedData.begin(), sortedData.end());

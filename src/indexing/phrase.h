@@ -14,7 +14,6 @@
 
 #include <vector>
 #include <cstdarg>
-#include <execution>
 #include "character_traits.h"
 #include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 #include "../Wisteria-Dataviz/src/import/text_matrix.h"
@@ -40,7 +39,7 @@ namespace grammar
                                    This will be an immediate short circuit. */
         phrase_equal,         /*!< The phrase is equal to the words it was compared to. */
         phrase_less_than,     /*!< The phrase is less than (lexicographically) the words it was compared to. */
-        phrase_greater_than,  /*!< The phrase is greater than (lexigraphically) the words it was compared to. */
+        phrase_greater_than,  /*!< The phrase is greater than (lexicographically) the words it was compared to. */
         phrase_rule_exception /*!< The phrase doesn't equal the text because of trailing or proceeding text rule. */
         };
 
@@ -85,7 +84,7 @@ namespace grammar
         void copy_words(const std::vector<word_typeT>& src, const size_t count)
             {
             m_words.resize(count);
-            std::copy(std::execution::par, src.begin(), src.begin()+count, m_words.begin());
+            std::copy(src.begin(), src.begin()+count, m_words.begin());
             }
         /** Copies a vector of words into the phrase. Note that the current contents of
             the phrase will be cleared.
@@ -94,7 +93,7 @@ namespace grammar
         void copy_words(typename std::vector<word_typeT>::const_iterator src, const size_t count)
             {
             m_words.resize(count);
-            std::copy(std::execution::par, src, src+count, m_words.begin());
+            std::copy(src, src+count, m_words.begin());
             }
         /** Indicates whether or not this phrase is less than another phrase.
             A phrase is less than other phrase if sorts alphabetically before the other phrase.
@@ -435,12 +434,12 @@ namespace grammar
         /** Sorts the phrases. If loading multiple lists (from load_phrases()), this it is usually
             optimal to not sort while loading them, but instead sort them afterwards.*/
         void sort() noexcept
-            { std::sort(std::execution::par, m_phrases.begin(), m_phrases.end()); }
+            { std::sort(m_phrases.begin(), m_phrases.end()); }
         /** Removes all duplicate phrases (the strings in the phrases are compared, other fields are ignored).
             @note This will also sort the phrases.*/
         void remove_duplicates()
             {
-            std::sort(std::execution::par, m_phrases.begin(), m_phrases.end());
+            std::sort(m_phrases.begin(), m_phrases.end());
             std::vector<phrase_word_pair>::iterator endOfUniquePos =
                 std::unique(m_phrases.begin(), m_phrases.end());
             if (endOfUniquePos != m_phrases.end())

@@ -13,7 +13,6 @@
 #define __CUSTOM_READABILITY_TEST_H__
 
 #include <algorithm>
-#include <execution>
 #include <string>
 #include "readability.h"
 #include "readability_test.h"
@@ -366,7 +365,7 @@ namespace readability
                 }
 
             // remove any duplicates
-            std::sort(std::execution::par, wordData.begin(), wordData.end());
+            std::sort(wordData.begin(), wordData.end());
             auto endOfUniquePos = std::unique(wordData.begin(), wordData.end());
             if (endOfUniquePos != wordData.end())
                 { wordData.erase(endOfUniquePos, wordData.end()); }

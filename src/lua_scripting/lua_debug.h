@@ -21,7 +21,7 @@ namespace LuaScripting
         of arguments where passed to a function.
         @param L The Lua state.
         @param minParemeterCount The minimum parameter count for the function.
-        @param functionName The function's name (to display if an error occurrs).
+        @param functionName The function's name (to display if an error occurs).
         @returns @c true if enough arguments where passed to the function.*/
     [[nodiscard]]
     bool VerifyParameterCount(lua_State* L, const int minParemeterCount,

@@ -55,7 +55,7 @@ bool EditWordListDlg::Save(const wxString& filePath)
         for (size_t i = 0; i < m_wordData->GetItemCount(); ++i)
             { outputWords[i] = m_wordData->GetItemText(i,0); }
         // sort and remove duplicates
-        std::sort(std::execution::par, outputWords.begin(), outputWords.end());
+        std::sort(outputWords.begin(), outputWords.end());
         std::vector<OutputStringType>::iterator endOfUniquePos =
             std::unique(outputWords.begin(), outputWords.end());
         if (endOfUniquePos != outputWords.end())

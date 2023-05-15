@@ -425,7 +425,7 @@ public:
     [[nodiscard]]
     bool IsUsingLongGradeScaleFormat() const noexcept
         { return m_useLongFormatGradeScale; }
-    /// @brief Specifies whether grades should be formated into long format.
+    /// @brief Specifies whether grades should be formatted into long format.
     /// @param useLongFormat @c true to enable long-format grade formatting,
     ///     @c false to format scores as numbers.
     void SetLongGradeScaleFormat(const bool useLongFormat) noexcept

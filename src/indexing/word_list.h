@@ -14,7 +14,6 @@
 
 #include <map>
 #include <algorithm>
-#include <execution>
 #include "character_traits.h"
 #include "../Wisteria-Dataviz/src/import/text_matrix.h"
 #include "../Wisteria-Dataviz/src/import/text_preview.h"
@@ -102,13 +101,13 @@ public:
         {
         const size_t previousSize = get_list_size();
         m_words.resize(m_words.size() + theWords.size());
-        std::copy(std::execution::par, theWords.cbegin(), theWords.cend(),
+        std::copy(theWords.cbegin(), theWords.cend(),
                   m_words.begin() + previousSize);
         sort();
         }
     /** @brief Sorts the word list (in A-Z [ascending] order).*/
     void sort() noexcept
-        { std::sort(std::execution::par, m_words.begin(), m_words.end()); }
+        { std::sort(m_words.begin(), m_words.end()); }
     /** @brief Sorts and removes any duplicate words in the list.*/
     void remove_duplicates()
         {
