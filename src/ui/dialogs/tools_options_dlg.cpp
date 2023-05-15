@@ -1386,73 +1386,180 @@ void ToolsOptionsDlg::SaveOptions()
         m_readabilityProjectDoc->SetDifficultSentenceLength(m_sentenceLength);
         m_readabilityProjectDoc->SetMinDocWordCountForBatch(m_minDocWordCountForBatch);
         if (IsPropertyAvailable(m_sentencesBreakdownPropertyGrid,BaseProjectView::GetLongSentencesLabel()))
-            { m_readabilityProjectDoc->GetSentencesBreakdownInfo().EnableLongSentences(m_sentencesBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetLongSentencesLabel())); }
+            {
+            m_readabilityProjectDoc->GetSentencesBreakdownInfo().EnableLongSentences(
+                m_sentencesBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetLongSentencesLabel()));
+            }
         if (IsPropertyAvailable(m_sentencesBreakdownPropertyGrid,BaseProjectView::GetSentenceLengthBoxPlotLabel()))
-            { m_readabilityProjectDoc->GetSentencesBreakdownInfo().EnableLengthsBoxPlot(m_sentencesBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSentenceLengthBoxPlotLabel())); }
+            {
+            m_readabilityProjectDoc->GetSentencesBreakdownInfo().EnableLengthsBoxPlot(
+                m_sentencesBreakdownPropertyGrid->GetPropertyValueAsBool(
+                    BaseProjectView::GetSentenceLengthBoxPlotLabel()));
+            }
         if (IsPropertyAvailable(m_sentencesBreakdownPropertyGrid,BaseProjectView::GetSentenceLengthHeatmapLabel()))
-            { m_readabilityProjectDoc->GetSentencesBreakdownInfo().EnableLengthsHeatmap(m_sentencesBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSentenceLengthHeatmapLabel())); }
+            {
+            m_readabilityProjectDoc->GetSentencesBreakdownInfo().EnableLengthsHeatmap(
+                m_sentencesBreakdownPropertyGrid->GetPropertyValueAsBool(
+                    BaseProjectView::GetSentenceLengthHeatmapLabel()));
+            }
         if (IsPropertyAvailable(m_sentencesBreakdownPropertyGrid,BaseProjectView::GetSentenceLengthHistogramLabel()))
-            { m_readabilityProjectDoc->GetSentencesBreakdownInfo().EnableLengthsHistogram(m_sentencesBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSentenceLengthHistogramLabel())); }
+            {
+            m_readabilityProjectDoc->GetSentencesBreakdownInfo().EnableLengthsHistogram(
+                m_sentencesBreakdownPropertyGrid->GetPropertyValueAsBool(
+                    BaseProjectView::GetSentenceLengthHistogramLabel()));
+            }
         if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetWordCountsLabel()))
-            { m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableWordBarchart(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetWordCountsLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetSyllableCountsLabel()))
-            { m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableSyllableHistogram(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSyllableCountsLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetThreeSyllableWordsLabel()))
-            { m_readabilityProjectDoc->GetWordsBreakdownInfo().Enable3PlusSyllables(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetThreeSyllableWordsLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetSixCharWordsLabel()))
-            { m_readabilityProjectDoc->GetWordsBreakdownInfo().Enable6PlusCharacter(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSixCharWordsLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetDifficultWordCloudLabel()))
-            { m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableDifficultWordCloud(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetDifficultWordCloudLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetDaleChallLabel()))
-            { m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableDCUnfamiliar(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetDaleChallLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetSpacheLabel()))
-            { m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableSpacheUnfamiliar(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSpacheLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetHarrisJacobsonLabel()))
-            { m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableHarrisJacobsonUnfamiliar(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetHarrisJacobsonLabel())); }
+            {
+            m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableWordBarchart(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetWordCountsLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetSyllableCountsLabel()))
+            {
+            m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableSyllableHistogram(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSyllableCountsLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetThreeSyllableWordsLabel()))
+            {
+            m_readabilityProjectDoc->GetWordsBreakdownInfo().Enable3PlusSyllables(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetThreeSyllableWordsLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetSixCharWordsLabel()))
+            {
+            m_readabilityProjectDoc->GetWordsBreakdownInfo().Enable6PlusCharacter(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSixCharWordsLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetDifficultWordCloudLabel()))
+            {
+            m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableDifficultWordCloud(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetDifficultWordCloudLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetDaleChallLabel()))
+            {
+            m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableDCUnfamiliar(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetDaleChallLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetSpacheLabel()))
+            {
+            m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableSpacheUnfamiliar(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSpacheLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetHarrisJacobsonLabel()))
+            {
+            m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableHarrisJacobsonUnfamiliar(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetHarrisJacobsonLabel()));
+            }
         if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,GetCustomTestsLabel()))
-            { m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableCustomTestsUnfamiliar(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(GetCustomTestsLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetAllWordsLabel()))
-            { m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableAllWords(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetAllWordsLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetImportantWordsLabel()))
-            { m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableAllWordsCondensed(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetImportantWordsLabel())); }
+            {
+            m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableCustomTestsUnfamiliar(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(GetCustomTestsLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetAllWordsLabel()))
+            {
+            m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableAllWords(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetAllWordsLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetImportantWordsLabel()))
+            {
+            m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableAllWordsCondensed(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetImportantWordsLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetIgnoreProperNounsLabel()))
-            { m_readabilityProjectDoc->SpellCheckIgnoreProperNouns(m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreProperNounsLabel())); }
+            {
+            m_readabilityProjectDoc->SpellCheckIgnoreProperNouns(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreProperNounsLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetIgnoreUppercasedWordsLabel()))
-            { m_readabilityProjectDoc->SpellCheckIgnoreUppercased(m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreUppercasedWordsLabel())); }
+            {
+            m_readabilityProjectDoc->SpellCheckIgnoreUppercased(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreUppercasedWordsLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetIgnoreNumeralsLabel()))
-            { m_readabilityProjectDoc->SpellCheckIgnoreNumerals(m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreNumeralsLabel())); }
+            {
+            m_readabilityProjectDoc->SpellCheckIgnoreNumerals(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreNumeralsLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetIgnoreFileAddressesLabel()))
-            { m_readabilityProjectDoc->SpellCheckIgnoreFileAddresses(m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreFileAddressesLabel())); }
+            {
+            m_readabilityProjectDoc->SpellCheckIgnoreFileAddresses(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreFileAddressesLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetIgnoreProgrammerCodeLabel()))
-            { m_readabilityProjectDoc->SpellCheckIgnoreProgrammerCode(m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreProgrammerCodeLabel())); }
+            {
+            m_readabilityProjectDoc->SpellCheckIgnoreProgrammerCode(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreProgrammerCodeLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetAllowColloquialismsLabel()))
-            { m_readabilityProjectDoc->SpellCheckAllowColloquialisms(m_grammarPropertyGrid->GetPropertyValueAsBool(GetAllowColloquialismsLabel())); }
+            {
+            m_readabilityProjectDoc->SpellCheckAllowColloquialisms(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetAllowColloquialismsLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetIgnoreSocialMediaLabel()))
-            { m_readabilityProjectDoc->SpellCheckIgnoreSocialMediaTags(m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreSocialMediaLabel())); }
+            {
+            m_readabilityProjectDoc->SpellCheckIgnoreSocialMediaTags(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreSocialMediaLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetGrammarHighlightedReportLabel()))
-            { m_readabilityProjectDoc->GetGrammarInfo().EnableHighlightedReport(m_grammarPropertyGrid->GetPropertyValueAsBool(GetGrammarHighlightedReportLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetMisspellingsLabel()))
-            { m_readabilityProjectDoc->GetGrammarInfo().EnableMisspellings(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetMisspellingsLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetRepeatedWordsLabel()))
-            { m_readabilityProjectDoc->GetGrammarInfo().EnableRepeatedWords(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetRepeatedWordsLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetArticleMismatchesLabel()))
-            { m_readabilityProjectDoc->GetGrammarInfo().EnableArticleMismatches(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetArticleMismatchesLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetPhrasingErrorsTabLabel()))
-            { m_readabilityProjectDoc->GetGrammarInfo().EnableWordingErrors(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetPhrasingErrorsTabLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetRedundantPhrasesTabLabel()))
-            { m_readabilityProjectDoc->GetGrammarInfo().EnableRedundantPhrases(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetRedundantPhrasesTabLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetOverusedWordsBySentenceLabel()))
-            { m_readabilityProjectDoc->GetGrammarInfo().EnableOverUsedWordsBySentence(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetOverusedWordsBySentenceLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetWordyPhrasesTabLabel()))
-            { m_readabilityProjectDoc->GetGrammarInfo().EnableWordyPhrases(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetWordyPhrasesTabLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetClichesTabLabel()))
-            { m_readabilityProjectDoc->GetGrammarInfo().EnableCliches(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetClichesTabLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetPassiveLabel()))
-            { m_readabilityProjectDoc->GetGrammarInfo().EnablePassiveVoice(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetPassiveLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel()))
-            { m_readabilityProjectDoc->GetGrammarInfo().EnableConjunctionStartingSentences(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel())); }
+            {
+            m_readabilityProjectDoc->GetGrammarInfo().EnableHighlightedReport(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetGrammarHighlightedReportLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetMisspellingsLabel()))
+            {
+            m_readabilityProjectDoc->GetGrammarInfo().EnableMisspellings(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetMisspellingsLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetRepeatedWordsLabel()))
+            {
+            m_readabilityProjectDoc->GetGrammarInfo().EnableRepeatedWords(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetRepeatedWordsLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetArticleMismatchesLabel()))
+            {
+            m_readabilityProjectDoc->GetGrammarInfo().EnableArticleMismatches(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetArticleMismatchesLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetPhrasingErrorsTabLabel()))
+            {
+            m_readabilityProjectDoc->GetGrammarInfo().EnableWordingErrors(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetPhrasingErrorsTabLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetRedundantPhrasesTabLabel()))
+            {
+            m_readabilityProjectDoc->GetGrammarInfo().EnableRedundantPhrases(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetRedundantPhrasesTabLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetOverusedWordsBySentenceLabel()))
+            {
+            m_readabilityProjectDoc->GetGrammarInfo().EnableOverUsedWordsBySentence(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetOverusedWordsBySentenceLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetWordyPhrasesTabLabel()))
+            {
+            m_readabilityProjectDoc->GetGrammarInfo().EnableWordyPhrases(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetWordyPhrasesTabLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetClichesTabLabel()))
+            {
+            m_readabilityProjectDoc->GetGrammarInfo().EnableCliches(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetClichesTabLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetPassiveLabel()))
+            {
+            m_readabilityProjectDoc->GetGrammarInfo().EnablePassiveVoice(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetPassiveLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel()))
+            {
+            m_readabilityProjectDoc->GetGrammarInfo().EnableConjunctionStartingSentences(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(
+                    BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetSentenceStartingWithLowercaseTabLabel()))
-            { m_readabilityProjectDoc->GetGrammarInfo().EnableLowercaseSentences(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSentenceStartingWithLowercaseTabLabel())); }
+            {
+            m_readabilityProjectDoc->GetGrammarInfo().EnableLowercaseSentences(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(
+                    BaseProjectView::GetSentenceStartingWithLowercaseTabLabel()));
+            }
         m_readabilityProjectDoc->SetFilePathTruncationMode(
             static_cast<ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode>(m_filePathTruncationMode.get_value()));
         m_readabilityProjectDoc->SetNumeralSyllabicationMethod(
@@ -1495,19 +1602,45 @@ void ToolsOptionsDlg::SaveOptions()
 
         // test-specific options
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetDCTextExclusionLabel()))
-            { m_readabilityProjectDoc->SetDaleChallTextExclusionMode(static_cast<SpecializedTestTextExclusion>(m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetDCTextExclusionLabel()))); }
+            {
+            m_readabilityProjectDoc->SetDaleChallTextExclusionMode(
+                static_cast<SpecializedTestTextExclusion>(m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(
+                    GetDCTextExclusionLabel())));
+            }
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetProperNounsLabel()))
-            { m_readabilityProjectDoc->SetDaleChallProperNounCountingMethod(static_cast<readability::proper_noun_counting_method>(m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetProperNounsLabel()))); }
+            {
+            m_readabilityProjectDoc->SetDaleChallProperNounCountingMethod(
+                static_cast<readability::proper_noun_counting_method>
+                (m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetProperNounsLabel())));
+            }
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetIncludeStockerLabel()))
-            { m_readabilityProjectDoc->IncludeStockerCatholicSupplement(m_readabilityTestsPropertyGrid->GetPropertyValueAsBool(GetIncludeStockerLabel())); }
+            {
+            m_readabilityProjectDoc->IncludeStockerCatholicSupplement(
+                m_readabilityTestsPropertyGrid->GetPropertyValueAsBool(GetIncludeStockerLabel()));
+            }
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetHJCTextExclusionLabel()))
-            { m_readabilityProjectDoc->SetHarrisJacobsonTextExclusionMode(static_cast<SpecializedTestTextExclusion>(m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetHJCTextExclusionLabel()))); }
+            {
+            m_readabilityProjectDoc->SetHarrisJacobsonTextExclusionMode(
+                static_cast<SpecializedTestTextExclusion>(
+                    m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetHJCTextExclusionLabel())));
+            }
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetCountIndependentClausesLabel()))
-            { m_readabilityProjectDoc->SetFogUseSentenceUnits(m_readabilityTestsPropertyGrid->GetPropertyValueAsBool(GetCountIndependentClausesLabel())); }
+            {
+            m_readabilityProjectDoc->SetFogUseSentenceUnits(
+                m_readabilityTestsPropertyGrid->GetPropertyValueAsBool(GetCountIndependentClausesLabel()));
+            }
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetFleschNumeralSyllabicationLabel()))
-            { m_readabilityProjectDoc->SetFleschNumeralSyllabizeMethod(static_cast<FleschNumeralSyllabize>(m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetFleschNumeralSyllabicationLabel()))); }
+            {
+            m_readabilityProjectDoc->SetFleschNumeralSyllabizeMethod(
+                static_cast<FleschNumeralSyllabize>(
+                    m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetFleschNumeralSyllabicationLabel())));
+            }
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetFleschKincaidNumeralSyllabicationLabel()))
-            { m_readabilityProjectDoc->SetFleschKincaidNumeralSyllabizeMethod(static_cast<FleschKincaidNumeralSyllabize>(m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetFleschKincaidNumeralSyllabicationLabel()))); }
+            {
+            m_readabilityProjectDoc->SetFleschKincaidNumeralSyllabizeMethod(
+                static_cast<FleschKincaidNumeralSyllabize>(m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(
+                    GetFleschKincaidNumeralSyllabicationLabel())));
+            }
 
         SaveTextWindowOptions();
         SaveProjectGraphOptions();
@@ -1540,109 +1673,264 @@ void ToolsOptionsDlg::SaveOptions()
         wxGetApp().GetAppOptions().HighlightDolchVerbs(m_highlightDolchVerbs);
         wxGetApp().GetAppOptions().HighlightDolchNouns(m_highlightDolchNouns);
         if (IsPropertyAvailable(m_gradeLevelPropertyGrid,GetCalculationLabel()))
-            { wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().SetReadingAgeDisplay(static_cast<ReadabilityMessages::ReadingAgeDisplay>(m_gradeLevelPropertyGrid->GetPropertyValueAsInt(GetCalculationLabel()))); }
+            {
+            wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().SetReadingAgeDisplay(
+                static_cast<ReadabilityMessages::ReadingAgeDisplay>(
+                    m_gradeLevelPropertyGrid->GetPropertyValueAsInt(GetCalculationLabel())));
+            }
         if (IsPropertyAvailable(m_gradeLevelPropertyGrid,GetGradeScaleLabel()))
-            { wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().SetGradeScale(static_cast<readability::grade_scale>(m_gradeLevelPropertyGrid->GetPropertyValueAsInt(GetGradeScaleLabel()))); }
+            {
+            wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().SetGradeScale(
+                static_cast<readability::grade_scale>(m_gradeLevelPropertyGrid->GetPropertyValueAsInt(
+                    GetGradeScaleLabel())));
+            }
         if (IsPropertyAvailable(m_gradeLevelPropertyGrid,GetGradesLongFormatLabel()))
-            { wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().SetLongGradeScaleFormat(m_gradeLevelPropertyGrid->GetPropertyValueAsBool(GetGradesLongFormatLabel())); }
+            {
+            wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().SetLongGradeScaleFormat(
+                m_gradeLevelPropertyGrid->GetPropertyValueAsBool(GetGradesLongFormatLabel()));
+            }
         if (IsPropertyAvailable(m_gradeLevelPropertyGrid,GetIncludeScoreSummaryLabel()))
-            { wxGetApp().GetAppOptions().IncludeScoreSummaryReport(m_gradeLevelPropertyGrid->GetPropertyValueAsBool(GetIncludeScoreSummaryLabel())); }
+            {
+            wxGetApp().GetAppOptions().IncludeScoreSummaryReport(
+                m_gradeLevelPropertyGrid->GetPropertyValueAsBool(GetIncludeScoreSummaryLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetParagraphsLabel()))
-            { wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableParagraph(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetParagraphsLabel())); }
+            {
+            wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableParagraph(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetParagraphsLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetSentencesLabel()))
-            { wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableSentences(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetSentencesLabel())); }
+            {
+            wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableSentences(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetSentencesLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetWordsLabel()))
-            { wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableWords(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetWordsLabel())); }
+            {
+            wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableWords(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetWordsLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetExtendedWordsLabel()))
-            { wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableExtendedWords(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetExtendedWordsLabel())); }
+            {
+            wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableExtendedWords(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetExtendedWordsLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetGrammarLabel()))
-            { wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableGrammar(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetGrammarLabel())); }
+            {
+            wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableGrammar(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetGrammarLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetNotesLabel()))
-            { wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableNotes(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetNotesLabel())); }
+            {
+            wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableNotes(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetNotesLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetExtendedInformationLabel()))
-            { wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableExtendedInformation(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetExtendedInformationLabel())); }
+            {
+            wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableExtendedInformation(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetExtendedInformationLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetCoverageLabel()))
-            { wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableDolchCoverage(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetCoverageLabel())); }
+            {
+            wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableDolchCoverage(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetCoverageLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetDolchWordsLabel()))
-            { wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableDolchWords(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetDolchWordsLabel())); }
+            {
+            wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableDolchWords(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetDolchWordsLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetDolchExplanationLabel()))
-            { wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableDolchExplanation(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetDolchExplanationLabel())); }
+            {
+            wxGetApp().GetAppOptions().GetStatisticsReportInfo().EnableDolchExplanation(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetDolchExplanationLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,BaseProjectView::GetFormattedReportLabel()))
-            { wxGetApp().GetAppOptions().GetStatisticsInfo().EnableReport(m_statisticsPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetFormattedReportLabel())); }
+            {
+            wxGetApp().GetAppOptions().GetStatisticsInfo().EnableReport(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetFormattedReportLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,BaseProjectView::GetTabularReportLabel()))
-            { wxGetApp().GetAppOptions().GetStatisticsInfo().EnableTable(m_statisticsPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetTabularReportLabel())); }
+            {
+            wxGetApp().GetAppOptions().GetStatisticsInfo().EnableTable(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetTabularReportLabel()));
+            }
         wxGetApp().GetAppOptions().SetLongSentenceMethod(m_longSentencesNumberOfWords ?
             LongSentence::LongerThanSpecifiedLength : LongSentence::OutlierLength);
         wxGetApp().GetAppOptions().SetDifficultSentenceLength(m_sentenceLength);
         wxGetApp().GetAppOptions().SetMinDocWordCountForBatch(m_minDocWordCountForBatch);
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetIgnoreProperNounsLabel()))
-            { wxGetApp().GetAppOptions().SpellCheckIgnoreProperNouns(m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreProperNounsLabel())); }
+            {
+            wxGetApp().GetAppOptions().SpellCheckIgnoreProperNouns(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreProperNounsLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetIgnoreUppercasedWordsLabel()))
-            { wxGetApp().GetAppOptions().SpellCheckIgnoreUppercased(m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreUppercasedWordsLabel())); }
+            {
+            wxGetApp().GetAppOptions().SpellCheckIgnoreUppercased(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreUppercasedWordsLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetIgnoreNumeralsLabel()))
-            { wxGetApp().GetAppOptions().SpellCheckIgnoreNumerals(m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreNumeralsLabel())); }
+            {
+            wxGetApp().GetAppOptions().SpellCheckIgnoreNumerals(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreNumeralsLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetIgnoreFileAddressesLabel()))
-            { wxGetApp().GetAppOptions().SpellCheckIgnoreFileAddresses(m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreFileAddressesLabel())); }
+            {
+            wxGetApp().GetAppOptions().SpellCheckIgnoreFileAddresses(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreFileAddressesLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetIgnoreProgrammerCodeLabel()))
-            { wxGetApp().GetAppOptions().SpellCheckIgnoreProgrammerCode(m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreProgrammerCodeLabel())); }
+            {
+            wxGetApp().GetAppOptions().SpellCheckIgnoreProgrammerCode(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreProgrammerCodeLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetAllowColloquialismsLabel()))
-            { wxGetApp().GetAppOptions().SpellCheckAllowColloquialisms(m_grammarPropertyGrid->GetPropertyValueAsBool(GetAllowColloquialismsLabel())); }
+            {
+            wxGetApp().GetAppOptions().SpellCheckAllowColloquialisms(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetAllowColloquialismsLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetIgnoreSocialMediaLabel()))
-            { wxGetApp().GetAppOptions().SpellCheckIgnoreSocialMediaTags(m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreSocialMediaLabel())); }
-        if (IsPropertyAvailable(m_sentencesBreakdownPropertyGrid,BaseProjectView::GetLongSentencesLabel()))
-            { wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().EnableLongSentences(m_sentencesBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetLongSentencesLabel())); }
-        if (IsPropertyAvailable(m_sentencesBreakdownPropertyGrid,BaseProjectView::GetSentenceLengthBoxPlotLabel()))
-            { wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().EnableLengthsBoxPlot(m_sentencesBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSentenceLengthBoxPlotLabel())); }
-        if (IsPropertyAvailable(m_sentencesBreakdownPropertyGrid,BaseProjectView::GetSentenceLengthHeatmapLabel()))
-            { wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().EnableLengthsHeatmap(m_sentencesBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSentenceLengthHeatmapLabel())); }
-        if (IsPropertyAvailable(m_sentencesBreakdownPropertyGrid,BaseProjectView::GetSentenceLengthHistogramLabel()))
-            { wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().EnableLengthsHistogram(m_sentencesBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSentenceLengthHistogramLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetWordCountsLabel()))
-            { wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableWordBarchart(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetWordCountsLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetSyllableCountsLabel()))
-            { wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableSyllableHistogram(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSyllableCountsLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetThreeSyllableWordsLabel()))
-            { wxGetApp().GetAppOptions().GetWordsBreakdownInfo().Enable3PlusSyllables(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetThreeSyllableWordsLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetSixCharWordsLabel()))
-            { wxGetApp().GetAppOptions().GetWordsBreakdownInfo().Enable6PlusCharacter(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSixCharWordsLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetDifficultWordCloudLabel()))
-            { wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableDifficultWordCloud(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetDifficultWordCloudLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetDaleChallLabel()))
-            { wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableDCUnfamiliar(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetDaleChallLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetSpacheLabel()))
-            { wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableSpacheUnfamiliar(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSpacheLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetHarrisJacobsonLabel()))
-            { wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableHarrisJacobsonUnfamiliar(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetHarrisJacobsonLabel())); }
+            {
+            wxGetApp().GetAppOptions().SpellCheckIgnoreSocialMediaTags(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetIgnoreSocialMediaLabel())); }
+        if (IsPropertyAvailable(m_sentencesBreakdownPropertyGrid, BaseProjectView::GetLongSentencesLabel()))
+            {
+            wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().EnableLongSentences(
+                m_sentencesBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetLongSentencesLabel()));
+            }
+        if (IsPropertyAvailable(m_sentencesBreakdownPropertyGrid, BaseProjectView::GetSentenceLengthBoxPlotLabel()))
+            {
+            wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().EnableLengthsBoxPlot(
+                m_sentencesBreakdownPropertyGrid->GetPropertyValueAsBool(
+                    BaseProjectView::GetSentenceLengthBoxPlotLabel()));
+            }
+        if (IsPropertyAvailable(m_sentencesBreakdownPropertyGrid, BaseProjectView::GetSentenceLengthHeatmapLabel()))
+            {
+            wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().EnableLengthsHeatmap(
+                m_sentencesBreakdownPropertyGrid->GetPropertyValueAsBool(
+                    BaseProjectView::GetSentenceLengthHeatmapLabel()));
+            }
+        if (IsPropertyAvailable(m_sentencesBreakdownPropertyGrid, BaseProjectView::GetSentenceLengthHistogramLabel()))
+            {
+            wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().EnableLengthsHistogram(
+                m_sentencesBreakdownPropertyGrid->GetPropertyValueAsBool(
+                    BaseProjectView::GetSentenceLengthHistogramLabel())); }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetWordCountsLabel()))
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableWordBarchart(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetWordCountsLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetSyllableCountsLabel()))
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableSyllableHistogram(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSyllableCountsLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetThreeSyllableWordsLabel()))
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().Enable3PlusSyllables(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetThreeSyllableWordsLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetSixCharWordsLabel()))
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().Enable6PlusCharacter(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSixCharWordsLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetDifficultWordCloudLabel()))
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableDifficultWordCloud(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetDifficultWordCloudLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetDaleChallLabel()))
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableDCUnfamiliar(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetDaleChallLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetSpacheLabel()))
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableSpacheUnfamiliar(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSpacheLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetHarrisJacobsonLabel()))
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableHarrisJacobsonUnfamiliar(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetHarrisJacobsonLabel()));
+            }
         if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,GetCustomTestsLabel()))
-            { wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableCustomTestsUnfamiliar(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(GetCustomTestsLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetAllWordsLabel()))
-            { wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableAllWords(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetAllWordsLabel())); }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetImportantWordsLabel()))
-            { wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableAllWordsCondensed(m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetImportantWordsLabel())); }
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableCustomTestsUnfamiliar(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(GetCustomTestsLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetAllWordsLabel()))
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableAllWords(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetAllWordsLabel()));
+            }
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetImportantWordsLabel()))
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableAllWordsCondensed(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetImportantWordsLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetGrammarHighlightedReportLabel()))
-            { wxGetApp().GetAppOptions().GetGrammarInfo().EnableHighlightedReport(m_grammarPropertyGrid->GetPropertyValueAsBool(GetGrammarHighlightedReportLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetMisspellingsLabel()))
-            { wxGetApp().GetAppOptions().GetGrammarInfo().EnableMisspellings(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetMisspellingsLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetRepeatedWordsLabel()))
-            { wxGetApp().GetAppOptions().GetGrammarInfo().EnableRepeatedWords(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetRepeatedWordsLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetArticleMismatchesLabel()))
-            { wxGetApp().GetAppOptions().GetGrammarInfo().EnableArticleMismatches(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetArticleMismatchesLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetPhrasingErrorsTabLabel()))
-            { wxGetApp().GetAppOptions().GetGrammarInfo().EnableWordingErrors(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetPhrasingErrorsTabLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetRedundantPhrasesTabLabel()))
-            { wxGetApp().GetAppOptions().GetGrammarInfo().EnableRedundantPhrases(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetRedundantPhrasesTabLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetOverusedWordsBySentenceLabel()))
-            { wxGetApp().GetAppOptions().GetGrammarInfo().EnableOverUsedWordsBySentence(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetOverusedWordsBySentenceLabel())); }
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableHighlightedReport(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetGrammarHighlightedReportLabel())); 
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetMisspellingsLabel()))
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableMisspellings(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetMisspellingsLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetRepeatedWordsLabel()))
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableRepeatedWords(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetRepeatedWordsLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetArticleMismatchesLabel()))
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableArticleMismatches(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetArticleMismatchesLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetPhrasingErrorsTabLabel()))
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableWordingErrors(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetPhrasingErrorsTabLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetRedundantPhrasesTabLabel()))
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableRedundantPhrases(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetRedundantPhrasesTabLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetOverusedWordsBySentenceLabel()))
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableOverUsedWordsBySentence(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetOverusedWordsBySentenceLabel()));
+            }
         if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetWordyPhrasesTabLabel()))
-            { wxGetApp().GetAppOptions().GetGrammarInfo().EnableWordyPhrases(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetWordyPhrasesTabLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetClichesTabLabel()))
-            { wxGetApp().GetAppOptions().GetGrammarInfo().EnableCliches(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetClichesTabLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetPassiveLabel()))
-            { wxGetApp().GetAppOptions().GetGrammarInfo().EnablePassiveVoice(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetPassiveLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel()))
-            { wxGetApp().GetAppOptions().GetGrammarInfo().EnableConjunctionStartingSentences(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel())); }
-        if (IsPropertyAvailable(m_grammarPropertyGrid,BaseProjectView::GetSentenceStartingWithLowercaseTabLabel()))
-            { wxGetApp().GetAppOptions().GetGrammarInfo().EnableLowercaseSentences(m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSentenceStartingWithLowercaseTabLabel())); }
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableWordyPhrases(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetWordyPhrasesTabLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetClichesTabLabel()))
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableCliches(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetClichesTabLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetPassiveLabel()))
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnablePassiveVoice(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetPassiveLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel()))
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableConjunctionStartingSentences(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(
+                    BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel()));
+            }
+        if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetSentenceStartingWithLowercaseTabLabel()))
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableLowercaseSentences(
+                m_grammarPropertyGrid->GetPropertyValueAsBool(
+                    BaseProjectView::GetSentenceStartingWithLowercaseTabLabel()));
+            }
         wxGetApp().GetAppOptions().SetFilePathTruncationMode(
             static_cast<ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode>(m_filePathTruncationMode.get_value()));
         wxGetApp().GetAppOptions().SetNumeralSyllabicationMethod(
@@ -1681,32 +1969,44 @@ void ToolsOptionsDlg::SaveOptions()
 
         // test-specific options
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetDCTextExclusionLabel()))
-            { wxGetApp().GetAppOptions().SetDaleChallTextExclusionMode(
+            {
+            wxGetApp().GetAppOptions().SetDaleChallTextExclusionMode(
                 static_cast<SpecializedTestTextExclusion>(
-                    m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetDCTextExclusionLabel()))); }
+                    m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetDCTextExclusionLabel())));
+            }
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetProperNounsLabel()))
-            { wxGetApp().GetAppOptions().SetDaleChallProperNounCountingMethod(
+            {
+            wxGetApp().GetAppOptions().SetDaleChallProperNounCountingMethod(
                 static_cast<readability::proper_noun_counting_method>(
-                    m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetProperNounsLabel()))); }
+                    m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetProperNounsLabel())));
+            }
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetIncludeStockerLabel()))
-            { wxGetApp().GetAppOptions().IncludeStockerCatholicSupplement(
-                m_readabilityTestsPropertyGrid->GetPropertyValueAsBool(GetIncludeStockerLabel())); }
+            {
+            wxGetApp().GetAppOptions().IncludeStockerCatholicSupplement(
+                m_readabilityTestsPropertyGrid->GetPropertyValueAsBool(GetIncludeStockerLabel()));
+            }
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetHJCTextExclusionLabel()))
-            { wxGetApp().GetAppOptions().SetHarrisJacobsonTextExclusionMode(
+            {
+            wxGetApp().GetAppOptions().SetHarrisJacobsonTextExclusionMode(
                 static_cast<SpecializedTestTextExclusion>(
-                    m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetHJCTextExclusionLabel()))); }
+                    m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetHJCTextExclusionLabel())));
+            }
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetCountIndependentClausesLabel()))
             { wxGetApp().GetAppOptions().SetFogUseSentenceUnits(
                 m_readabilityTestsPropertyGrid->GetPropertyValueAsBool(GetCountIndependentClausesLabel())); }
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetFleschNumeralSyllabicationLabel()))
-            { wxGetApp().GetAppOptions().SetFleschNumeralSyllabizeMethod(
+            {
+            wxGetApp().GetAppOptions().SetFleschNumeralSyllabizeMethod(
                 static_cast<FleschNumeralSyllabize>(
-                    m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetFleschNumeralSyllabicationLabel()))); }
+                    m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(GetFleschNumeralSyllabicationLabel())));
+            }
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetFleschKincaidNumeralSyllabicationLabel()))
-            { wxGetApp().GetAppOptions().SetFleschKincaidNumeralSyllabizeMethod(
+            {
+            wxGetApp().GetAppOptions().SetFleschKincaidNumeralSyllabizeMethod(
                 static_cast<FleschKincaidNumeralSyllabize>(
                     m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(
-                        GetFleschKincaidNumeralSyllabicationLabel()))); }
+                        GetFleschKincaidNumeralSyllabicationLabel())));
+            }
 
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetBackgroundColorLabel()))
             { wxGetApp().GetAppOptions().SetBackGroundColor(wxAny(m_generalGraphPropertyGrid->GetProperty(GetBackgroundColorLabel())->GetValue()).As<wxColour>()); }
@@ -1751,22 +2051,46 @@ void ToolsOptionsDlg::SaveOptions()
         if (IsPropertyAvailable(m_histogramPropertyGrid,GetColorLabel()))
             { wxGetApp().GetAppOptions().SetHistogramBarColor(wxAny(m_histogramPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>()); }
         if (IsPropertyAvailable(m_histogramPropertyGrid,GetOpacityLabel()))
-            { wxGetApp().GetAppOptions().SetHistogramBarOpacity(static_cast<uint8_t>(m_histogramPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel()))); }
+            {
+            wxGetApp().GetAppOptions().SetHistogramBarOpacity(
+                static_cast<uint8_t>(m_histogramPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel())));
+            }
         if (IsPropertyAvailable(m_histogramPropertyGrid,GetEffectLabel()))
-            { wxGetApp().GetAppOptions().SetHistogramBarEffect(static_cast<BoxEffect>(m_histogramPropertyGrid->GetPropertyValueAsInt(GetEffectLabel()))); }
+            {
+            wxGetApp().GetAppOptions().SetHistogramBarEffect(
+                static_cast<BoxEffect>(m_histogramPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())));
+            }
 
         if (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetColorLabel()))
-            { wxGetApp().GetAppOptions().SetGraphBoxColor(wxAny(m_boxPlotsPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>()); }
+            {
+            wxGetApp().GetAppOptions().SetGraphBoxColor(
+                wxAny(m_boxPlotsPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>());
+            }
         if (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetOpacityLabel()))
-            { wxGetApp().GetAppOptions().SetGraphBoxOpacity(static_cast<uint8_t>(m_boxPlotsPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel()))); }
+            {
+            wxGetApp().GetAppOptions().SetGraphBoxOpacity(
+                static_cast<uint8_t>(m_boxPlotsPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel())));
+            }
         if (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetEffectLabel()))
-            { wxGetApp().GetAppOptions().SetGraphBoxEffect(static_cast<BoxEffect>(m_boxPlotsPropertyGrid->GetPropertyValueAsInt(GetEffectLabel()))); }
+            {
+            wxGetApp().GetAppOptions().SetGraphBoxEffect(
+                static_cast<BoxEffect>(m_boxPlotsPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())));
+            }
         if (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetLabelsOnBoxesLabel()))
-            { wxGetApp().GetAppOptions().DisplayBoxPlotLabels(m_boxPlotsPropertyGrid->GetPropertyValueAsBool(GetLabelsOnBoxesLabel())); }
+            {
+            wxGetApp().GetAppOptions().DisplayBoxPlotLabels(
+                m_boxPlotsPropertyGrid->GetPropertyValueAsBool(GetLabelsOnBoxesLabel()));
+            }
         if (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetConnectBoxesLabel()))
-            { wxGetApp().GetAppOptions().ConnectBoxPlotMiddlePoints(m_boxPlotsPropertyGrid->GetPropertyValueAsBool(GetConnectBoxesLabel())); }
+            {
+            wxGetApp().GetAppOptions().ConnectBoxPlotMiddlePoints(
+                m_boxPlotsPropertyGrid->GetPropertyValueAsBool(GetConnectBoxesLabel()));
+            }
         if (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetShowAllDataPointsLabel()))
-            { wxGetApp().GetAppOptions().ShowAllBoxPlotPoints(m_boxPlotsPropertyGrid->GetPropertyValueAsBool(GetShowAllDataPointsLabel())); }
+            {
+            wxGetApp().GetAppOptions().ShowAllBoxPlotPoints(
+                m_boxPlotsPropertyGrid->GetPropertyValueAsBool(GetShowAllDataPointsLabel()));
+            }
 
         wxGetApp().GetAppOptions().SetXAxisFont(m_xAxisFont);
         wxGetApp().GetAppOptions().SetXAxisFontColor(m_xAxisFontColor);
@@ -1781,11 +2105,21 @@ void ToolsOptionsDlg::SaveOptions()
         wxGetApp().GetAppOptions().SetRightTitleGraphFont(m_rightTitleFont);
         wxGetApp().GetAppOptions().SetRightTitleGraphFontColor(m_rightTitleFontColor);
         if (IsPropertyAvailable(m_readabilityGraphPropertyGrid,GetInvalidRegionsColorLabel()))
-            { wxGetApp().GetAppOptions().SetInvalidAreaColor(wxAny(m_readabilityGraphPropertyGrid->GetProperty(GetInvalidRegionsColorLabel())->GetValue()).As<wxColour>()); }
+            {
+            wxGetApp().GetAppOptions().SetInvalidAreaColor(
+                wxAny(m_readabilityGraphPropertyGrid->GetProperty(
+                    GetInvalidRegionsColorLabel())->GetValue()).As<wxColour>());
+            }
         if (IsPropertyAvailable(m_readabilityGraphPropertyGrid,GetUseEnglishLabelsForGermanLixLabel()))
-            { wxGetApp().GetAppOptions().UseEnglishLabelsForGermanLix(m_readabilityGraphPropertyGrid->GetPropertyValueAsBool(GetUseEnglishLabelsForGermanLixLabel())); }
+            {
+            wxGetApp().GetAppOptions().UseEnglishLabelsForGermanLix(
+                m_readabilityGraphPropertyGrid->GetPropertyValueAsBool(GetUseEnglishLabelsForGermanLixLabel()));
+        }
         if (IsPropertyAvailable(m_readabilityGraphPropertyGrid,GetFleshChartConnectPointsLabel()))
-            { wxGetApp().GetAppOptions().ConnectFleschPoints(m_readabilityGraphPropertyGrid->GetPropertyValueAsBool(GetFleshChartConnectPointsLabel())); }
+            {
+            wxGetApp().GetAppOptions().ConnectFleschPoints(
+                m_readabilityGraphPropertyGrid->GetPropertyValueAsBool(GetFleshChartConnectPointsLabel()));
+            }
         }
     }
 
@@ -1795,29 +2129,65 @@ void ToolsOptionsDlg::SaveStatisticsOptions()
     if (m_readabilityProjectDoc && HaveOptionsChanged())
         {
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetParagraphsLabel()))
-            { m_readabilityProjectDoc->GetStatisticsReportInfo().EnableParagraph(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetParagraphsLabel())); }
+            {
+            m_readabilityProjectDoc->GetStatisticsReportInfo().EnableParagraph(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetParagraphsLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetSentencesLabel()))
-            { m_readabilityProjectDoc->GetStatisticsReportInfo().EnableSentences(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetSentencesLabel())); }
+            {
+            m_readabilityProjectDoc->GetStatisticsReportInfo().EnableSentences(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetSentencesLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetWordsLabel()))
-            { m_readabilityProjectDoc->GetStatisticsReportInfo().EnableWords(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetWordsLabel())); }
+            {
+            m_readabilityProjectDoc->GetStatisticsReportInfo().EnableWords(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetWordsLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetExtendedWordsLabel()))
-            { m_readabilityProjectDoc->GetStatisticsReportInfo().EnableExtendedWords(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetExtendedWordsLabel())); }
+            {
+            m_readabilityProjectDoc->GetStatisticsReportInfo().EnableExtendedWords(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetExtendedWordsLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetGrammarLabel()))
-            { m_readabilityProjectDoc->GetStatisticsReportInfo().EnableGrammar(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetGrammarLabel())); }
+            {
+            m_readabilityProjectDoc->GetStatisticsReportInfo().EnableGrammar(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetGrammarLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetNotesLabel()))
-            { m_readabilityProjectDoc->GetStatisticsReportInfo().EnableNotes(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetNotesLabel())); }
+            {
+            m_readabilityProjectDoc->GetStatisticsReportInfo().EnableNotes(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetNotesLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetExtendedInformationLabel()))
-            { m_readabilityProjectDoc->GetStatisticsReportInfo().EnableExtendedInformation(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetExtendedInformationLabel())); }
+            {
+            m_readabilityProjectDoc->GetStatisticsReportInfo().EnableExtendedInformation(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetExtendedInformationLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetCoverageLabel()))
-            { m_readabilityProjectDoc->GetStatisticsReportInfo().EnableDolchCoverage(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetCoverageLabel())); }
+            {
+            m_readabilityProjectDoc->GetStatisticsReportInfo().EnableDolchCoverage(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetCoverageLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetDolchWordsLabel()))
-            { m_readabilityProjectDoc->GetStatisticsReportInfo().EnableDolchWords(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetDolchWordsLabel())); }
+            {
+            m_readabilityProjectDoc->GetStatisticsReportInfo().EnableDolchWords
+            (m_statisticsPropertyGrid->GetPropertyValueAsBool(GetDolchWordsLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,GetDolchExplanationLabel()))
-            { m_readabilityProjectDoc->GetStatisticsReportInfo().EnableDolchExplanation(m_statisticsPropertyGrid->GetPropertyValueAsBool(GetDolchExplanationLabel())); }
+            {
+            m_readabilityProjectDoc->GetStatisticsReportInfo().EnableDolchExplanation(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(GetDolchExplanationLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,BaseProjectView::GetFormattedReportLabel()))
-            { m_readabilityProjectDoc->GetStatisticsInfo().EnableReport(m_statisticsPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetFormattedReportLabel())); }
+            {
+            m_readabilityProjectDoc->GetStatisticsInfo().EnableReport(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetFormattedReportLabel()));
+            }
         if (IsPropertyAvailable(m_statisticsPropertyGrid,BaseProjectView::GetTabularReportLabel()))
-            { m_readabilityProjectDoc->GetStatisticsInfo().EnableTable(m_statisticsPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetTabularReportLabel())); }
+            {
+            m_readabilityProjectDoc->GetStatisticsInfo().EnableTable(
+                m_statisticsPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetTabularReportLabel()));
+            }
 
         m_readabilityProjectDoc->RefreshRequired(ProjectRefresh::Minimal);
         }
