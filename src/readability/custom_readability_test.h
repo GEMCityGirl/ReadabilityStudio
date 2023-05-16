@@ -547,7 +547,7 @@ namespace readability
                 { return false; }
             // if the word is on the standard word lists and we are not using a custom word list
             // then it is on every list in use, so return true.
-            if (isOnAllIncludedStandardLists && !m_include_custom_familiar_word_list)
+            if (!m_include_custom_familiar_word_list)
                 { return true; }
 
             if (m_include_custom_familiar_word_list)
