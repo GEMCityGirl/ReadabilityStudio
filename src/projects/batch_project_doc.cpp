@@ -2318,7 +2318,7 @@ void BatchProjectDoc::DisplayWarnings()
         {
         view->GetWarningsView()->SetColumnWidth(0, view->GetWarningsView()->EstimateColumnWidth(0));
         view->GetWarningsView()->SetColumnWidth(1,
-            wxMin(view->GetWarningsView()->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+            std::min(view->GetWarningsView()->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         view->GetWarningsView()->SetColumnWidth(2, view->GetWarningsView()->EstimateColumnWidth(2));
         }
     view->GetWarningsView()->Refresh();
@@ -2676,7 +2676,7 @@ void BatchProjectDoc::DisplaySummaryStatisticsWindow(const wxString& windowName,
     UpdateListOptions(listView);
     listView->SetColumnFilePathTruncationMode(0, GetFilePathTruncationMode());
     listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-    listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+    listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
     for (long i = 2; i < listView->GetColumnCount(); ++i)
         { listView->SetColumnWidth(i, wxLIST_AUTOSIZE_USEHEADER); }
     if (listView->GetSortedColumn() == -1)
@@ -4973,10 +4973,10 @@ void BatchProjectDoc::DisplayGrammar()
         listView->SetVirtualDataProvider(GetMisspelledWordData());
         listView->SetVirtualDataSize(GetMisspelledWordData()->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         listView->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
         listView->SetColumnWidth(3, wxLIST_AUTOSIZE_USEHEADER);
-        listView->SetColumnWidth(4, wxMin(listView->EstimateColumnWidth(4), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(4, std::min(listView->EstimateColumnWidth(4), view->GetMaxColumnWidth()));
         if (listView->GetSortedColumn() == -1)
             { listView->SortColumn(0, Wisteria::SortDirection::SortAscending); }
         else
@@ -5012,9 +5012,9 @@ void BatchProjectDoc::DisplayGrammar()
         listView->SetVirtualDataProvider(GetRepeatedWordData());
         listView->SetVirtualDataSize(GetRepeatedWordData()->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         listView->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
-        listView->SetColumnWidth(3, wxMin(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(3, std::min(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
         if (listView->GetSortedColumn() == -1)
             { listView->SortColumn(0, Wisteria::SortDirection::SortAscending); }
         else
@@ -5050,9 +5050,9 @@ void BatchProjectDoc::DisplayGrammar()
         listView->SetVirtualDataProvider(m_incorrectArticleData);
         listView->SetVirtualDataSize(m_incorrectArticleData->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         listView->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
-        listView->SetColumnWidth(3, wxMin(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(3, std::min(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
         if (listView->GetSortedColumn() == -1)
             { listView->SortColumn(0, Wisteria::SortDirection::SortAscending); }
         else
@@ -5089,10 +5089,10 @@ void BatchProjectDoc::DisplayGrammar()
         listView->SetVirtualDataProvider(m_wordingErrorData);
         listView->SetVirtualDataSize(m_wordingErrorData->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         listView->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
-        listView->SetColumnWidth(3, wxMin(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
-        listView->SetColumnWidth(4, wxMin(listView->EstimateColumnWidth(4), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(3, std::min(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(4, std::min(listView->EstimateColumnWidth(4), view->GetMaxColumnWidth()));
         if (listView->GetSortedColumn() == -1)
             { listView->SortColumn(0, Wisteria::SortDirection::SortAscending); }
         else
@@ -5129,10 +5129,10 @@ void BatchProjectDoc::DisplayGrammar()
         listView->SetVirtualDataProvider(m_redundantPhraseData);
         listView->SetVirtualDataSize(m_redundantPhraseData->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         listView->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
-        listView->SetColumnWidth(3, wxMin(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
-        listView->SetColumnWidth(4, wxMin(listView->EstimateColumnWidth(4), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(3, std::min(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(4, std::min(listView->EstimateColumnWidth(4), view->GetMaxColumnWidth()));
         if (listView->GetSortedColumn() == -1)
             { listView->SortColumn(0, Wisteria::SortDirection::SortAscending); }
         else
@@ -5168,9 +5168,9 @@ void BatchProjectDoc::DisplayGrammar()
         listView->SetVirtualDataProvider(m_overusedWordBySentenceData);
         listView->SetVirtualDataSize(m_overusedWordBySentenceData->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         listView->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
-        listView->SetColumnWidth(3, wxMin(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(3, std::min(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
         if (listView->GetSortedColumn() == -1)
             { listView->SortColumn(0, Wisteria::SortDirection::SortAscending); }
         else
@@ -5207,10 +5207,10 @@ void BatchProjectDoc::DisplayGrammar()
         listView->SetVirtualDataProvider(m_wordyPhraseData);
         listView->SetVirtualDataSize(m_wordyPhraseData->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         listView->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
-        listView->SetColumnWidth(3, wxMin(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
-        listView->SetColumnWidth(4, wxMin(listView->EstimateColumnWidth(4), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(3, std::min(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(4, std::min(listView->EstimateColumnWidth(4), view->GetMaxColumnWidth()));
         if (listView->GetSortedColumn() == -1)
             { listView->SortColumn(0, Wisteria::SortDirection::SortAscending); }
         else
@@ -5247,10 +5247,10 @@ void BatchProjectDoc::DisplayGrammar()
         listView->SetVirtualDataProvider(m_clichePhraseData);
         listView->SetVirtualDataSize(m_clichePhraseData->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         listView->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
-        listView->SetColumnWidth(3, wxMin(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
-        listView->SetColumnWidth(4, wxMin(listView->EstimateColumnWidth(4), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(3, std::min(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(4, std::min(listView->EstimateColumnWidth(4), view->GetMaxColumnWidth()));
         if (listView->GetSortedColumn() == -1)
             { listView->SortColumn(0, Wisteria::SortDirection::SortAscending); }
         else
@@ -5286,9 +5286,9 @@ void BatchProjectDoc::DisplayGrammar()
         listView->SetVirtualDataProvider(m_passiveVoiceData);
         listView->SetVirtualDataSize(m_passiveVoiceData->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         listView->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
-        listView->SetColumnWidth(3, wxMin(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(3, std::min(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
         if (listView->GetSortedColumn() == -1)
             { listView->SortColumn(0, Wisteria::SortDirection::SortAscending); }
         else
@@ -5325,9 +5325,9 @@ void BatchProjectDoc::DisplayGrammar()
         listView->SetVirtualDataProvider(m_sentenceStartingWithConjunctionsData);
         listView->SetVirtualDataSize(m_sentenceStartingWithConjunctionsData->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         listView->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
-        listView->SetColumnWidth(3, wxMin(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(3, std::min(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
         if (listView->GetSortedColumn() == -1)
             { listView->SortColumn(0, Wisteria::SortDirection::SortAscending); }
         else
@@ -5363,9 +5363,9 @@ void BatchProjectDoc::DisplayGrammar()
         listView->SetVirtualDataProvider(m_sentenceStartingWithLowercaseData);
         listView->SetVirtualDataSize(m_sentenceStartingWithLowercaseData->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         listView->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
-        listView->SetColumnWidth(3, wxMin(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(3, std::min(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
         if (listView->GetSortedColumn() == -1)
             { listView->SortColumn(0, Wisteria::SortDirection::SortAscending); }
         else
@@ -5407,7 +5407,7 @@ void BatchProjectDoc::DisplaySentencesBreakdown()
         listView->SetVirtualDataProvider(m_overlyLongSentenceData);
         listView->SetVirtualDataSize(m_overlyLongSentenceData->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         listView->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
         listView->SetColumnWidth(3, wxLIST_AUTOSIZE_USEHEADER);
         listView->SetColumnWidth(4, listView->EstimateColumnWidth(3));
@@ -5481,8 +5481,8 @@ void BatchProjectDoc::DisplayHardWords()
                 listView->InsertColumn(columnIndex++, _(L"% of HJ unfamiliar words"));
                 listView->InsertColumn(columnIndex++, _(L"HJ unfamiliar words"));
                 }
-            for (std::vector<CustomReadabilityTestInterface>::const_iterator pos = GetCustTestsInUse().begin();
-                pos != GetCustTestsInUse().end();
+            for (std::vector<CustomReadabilityTestInterface>::const_iterator pos = GetCustTestsInUse().cbegin();
+                pos != GetCustTestsInUse().cend();
                 ++pos)
                 {
                 if (!pos->GetIterator()->is_using_familiar_words())
@@ -5497,7 +5497,7 @@ void BatchProjectDoc::DisplayHardWords()
         listView->SetVirtualDataProvider(m_hardWordsData);
         listView->SetVirtualDataSize(m_hardWordsData->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         for (long i = 2; i < listView->GetColumnCount(); ++i)
             { listView->SetColumnWidth(i, wxLIST_AUTOSIZE_USEHEADER); }
         if (listView->GetSortedColumn() == -1)
@@ -5613,7 +5613,7 @@ void BatchProjectDoc::DisplaySightWords()
         listView->SetVirtualDataProvider(m_dolchCompletionData);
         listView->SetVirtualDataSize(m_dolchCompletionData->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         for (long i = 2; i < listView->GetColumnCount(); ++i)
             { listView->SetColumnWidth(i, wxLIST_AUTOSIZE_USEHEADER); }
         if (listView->GetSortedColumn() == -1)
@@ -5672,7 +5672,7 @@ void BatchProjectDoc::DisplaySightWords()
         listView->SetVirtualDataProvider(m_dolchWordsBatchData);
         listView->SetVirtualDataSize(m_dolchWordsBatchData->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         for (long i = 2; i < listView->GetColumnCount(); ++i)
             { listView->SetColumnWidth(i, wxLIST_AUTOSIZE_USEHEADER); }
         if (listView->GetSortedColumn() == -1)
@@ -5713,7 +5713,7 @@ void BatchProjectDoc::DisplaySightWords()
         listView->SetVirtualDataProvider(m_NonDolchWordsData);
         listView->SetVirtualDataSize(m_NonDolchWordsData->GetItemCount());
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, wxMin(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
         for (long i = 2; i < listView->GetColumnCount(); ++i)
             { listView->SetColumnWidth(i, wxLIST_AUTOSIZE_USEHEADER); }
         if (listView->GetSortedColumn() == -1)
@@ -5827,7 +5827,7 @@ void BatchProjectDoc::SetScoreStatsRow(ListCtrlExNumericDataProvider* dataGrid,
             {
             dataGrid->SetItemValue(rowNum, currentColumn++, Skewness,
                 NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
-                    wxMax(decimalSize, HIGHER_PRECISION)));
+                    std::max(decimalSize, HIGHER_PRECISION)));
             }
 
         if (sortedData.size() < 4)
@@ -5839,7 +5839,7 @@ void BatchProjectDoc::SetScoreStatsRow(ListCtrlExNumericDataProvider* dataGrid,
             {
             dataGrid->SetItemValue(rowNum, currentColumn++, Kurtosis,
                 NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
-                    wxMax(decimalSize, HIGHER_PRECISION)));
+                    std::max(decimalSize, HIGHER_PRECISION)));
             }
 
         if (sortedData.size() < 2)
@@ -5853,10 +5853,10 @@ void BatchProjectDoc::SetScoreStatsRow(ListCtrlExNumericDataProvider* dataGrid,
             {
             dataGrid->SetItemValue(rowNum, currentColumn++, stddev,
                 NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
-                    wxMax(decimalSize, HIGHER_PRECISION)));
+                    std::max(decimalSize, HIGHER_PRECISION)));
             dataGrid->SetItemValue(rowNum, currentColumn++, Variance,
                 NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
-                    wxMax(decimalSize, HIGHER_PRECISION)));
+                    std::max(decimalSize, HIGHER_PRECISION)));
             }
         dataGrid->SetItemValue(rowNum, currentColumn++, lowerQuartile,
             NumberFormatInfo(allowCustomFormatting ?

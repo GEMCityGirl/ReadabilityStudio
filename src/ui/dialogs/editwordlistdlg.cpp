@@ -277,7 +277,7 @@ void EditWordListDlg::OnFilePathChanged(wxCommandEvent& event)
                 {
                 tokenizer.SetString(wxString(rowPos->first, (rowPos->second-rowPos->first)),
                                     L'\t', wxTOKEN_RET_EMPTY_ALL);
-                maxColumnCount = wxMin(wxMax(tokenizer.CountTokens(), maxColumnCount), 5);
+                maxColumnCount = std::min<size_t>(std::max(tokenizer.CountTokens(), maxColumnCount), 5);
                 }
             m_wordData->SetSize(rowCount,5);
             // now read it

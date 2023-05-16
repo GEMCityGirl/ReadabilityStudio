@@ -1521,8 +1521,8 @@ void BaseProjectView::OnFindNext([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------
 wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view)
     {
-    const wxSize windowSize(wxMax(wxGetApp().GetMainFrame()->GetClientSize().GetWidth(), 800),
-                            wxMax(wxGetApp().GetMainFrame()->GetClientSize().GetHeight(), 600) );
+    const wxSize windowSize(std::max(wxGetApp().GetMainFrame()->GetClientSize().GetWidth(), 800),
+                            std::max(wxGetApp().GetMainFrame()->GetClientSize().GetHeight(), 600) );
 
     wxFileName fn(doc->GetFilename());
     wxString title = fn.GetName().length() ? fn.GetName() : wxFileName::StripExtension(doc->GetTitle());
