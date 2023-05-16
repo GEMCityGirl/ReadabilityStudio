@@ -33,7 +33,7 @@ public:
         @param logo The application's logo.
         @param AppVersion The application's version.
         @param copyright The copyright string.
-        @param licenseAdmin The license administator interface.
+        @param licenseAdmin The license administrator interface.
         @param id The dialog's ID.
         @param pos The dialog's position.
         @param size The dialog's size.
