@@ -21,6 +21,7 @@ namespace grammar
     class syllabize_spanish_number
         {
     public:
+        [[nodiscard]]
         constexpr size_t operator()(const wchar_t number) const noexcept
             {
             return ((number == common_lang_constants::NUMBER_2 || number == common_lang_constants::NUMBER_3 ||
@@ -85,13 +86,11 @@ namespace grammar
                 }
 
             m_previous_block_vowel = m_previous_vowel = m_length;
-            bool is_in_vowel_block = false;
-            bool current_char_is_vowel = false;
             const wchar_t* current_char = start;
 
             while (current_char != end)
                 {
-                current_char_is_vowel = isChar.is_vowel(current_char[0]);
+                bool current_char_is_vowel = isChar.is_vowel(current_char[0]);
                 current_char_is_vowel =
                     (traits::case_insensitive_ex::eq(current_char[0], common_lang_constants::LOWER_Y) &&
                         is_consonant_y(start, current_char - start) ) ?
@@ -110,7 +109,7 @@ namespace grammar
                         false : next_char_is_vowel;
                     }
 
-                is_in_vowel_block = current_char_is_vowel && next_char_is_vowel;
+                bool is_in_vowel_block = current_char_is_vowel && next_char_is_vowel;
                 // if it's a vowel and it's the only one in this block
                 if (current_char_is_vowel && !is_in_vowel_block)
                     {

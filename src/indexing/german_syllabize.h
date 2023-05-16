@@ -23,7 +23,8 @@ namespace grammar
     public:
         /** @returns The number of syllables for a given number.
             @param number The number to review.*/
-        [[nodiscard]] size_t operator()(const wchar_t number) const noexcept
+        [[nodiscard]]
+        size_t operator()(const wchar_t number) const noexcept
             {
             if (!characters::is_character::is_numeric_simple(number))
                 { return 0; }
@@ -35,7 +36,7 @@ namespace grammar
     class german_syllabize final : public base_syllabize
         {
     public:
-        german_syllabize() noexcept {}
+        german_syllabize() noexcept = default;
         /** @brief Main interface for syllabizing a block of text.
             @param start The start of the text to parse.
             @param length The length of the text.
@@ -43,8 +44,7 @@ namespace grammar
         [[nodiscard]]
         size_t operator()(const wchar_t* start, const size_t length) final
             {
-            assert(start);
-            assert(std::wcslen(start) >= length);
+            assert(start && std::wcslen(start) >= length);
             // reset our data
             reset();
             if (start == nullptr || length == 0)
@@ -79,13 +79,11 @@ namespace grammar
                 }
 
             m_previous_block_vowel = m_previous_vowel = m_length;
-            bool is_in_vowel_block = false;
-            bool current_char_is_vowel = false;
             const wchar_t* current_char = start;
 
             while (current_char != end)
                 {
-                current_char_is_vowel = isChar.is_vowel(current_char[0]);
+                bool current_char_is_vowel = isChar.is_vowel(current_char[0]);
 
                 bool next_char_is_vowel = false;
                 /* if last letter, then there is no next letter*/
@@ -96,7 +94,7 @@ namespace grammar
                     next_char_is_vowel = isChar.is_vowel(current_char[1]);
                     }
 
-                is_in_vowel_block = current_char_is_vowel && next_char_is_vowel;
+                bool is_in_vowel_block = current_char_is_vowel && next_char_is_vowel;
                 // if it's a vowel and it's the first one in this block
                 if (current_char_is_vowel && !is_in_vowel_block)
                     {
@@ -150,7 +148,8 @@ namespace grammar
             @param start The start of the text to parse.
             @param length The length of the text.
             @returns @c true if the word begins with a valid past tense ("ge") prefix.*/
-        [[nodiscard]] inline static bool has_past_tense_prefix(const wchar_t* start, const size_t length) noexcept
+        [[nodiscard]]
+        inline static bool has_past_tense_prefix(const wchar_t* start, const size_t length) noexcept
             {
             assert(start);
             assert(std::wcslen(start) >= length);
@@ -343,8 +342,7 @@ namespace grammar
                     (traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_F) ||
                      traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_S)))
                     { return std::pair<size_t,size_t>(1,3); }
-                else if (length >= 3 &&
-                    traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_B) &&
+                else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_B) &&
                     traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_E) &&
                     traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_I))
                     { return std::pair<size_t,size_t>(1,3); }
@@ -352,8 +350,7 @@ namespace grammar
                     traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_I) &&
                     traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_N))
                     { return std::pair<size_t,size_t>(1,3); }
-                else if (length >= 3 &&
-                    traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_H) &&
+                else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_H) &&
                     traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_I) &&
                     traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_N))
                     { return std::pair<size_t,size_t>(1,3); }
