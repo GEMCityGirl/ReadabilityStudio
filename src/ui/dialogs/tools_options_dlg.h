@@ -536,8 +536,8 @@ private:
     BackupVariable<bool> m_ignoreNumerals;
     BackupVariable<bool> m_ignoreProperNouns;
     BackupVariable<wxString> m_excludedPhrasesPath;
-    BackupVariable<bool> m_includeExcludedPhraseFirstOccurrence;
     bool m_excludedPhrasesEdited{ false };
+    BackupVariable<bool> m_includeExcludedPhraseFirstOccurrence;
     BackupVariable<std::vector<std::pair<wchar_t,wchar_t>>> m_exclusionBlockTags;
     int m_exclusionBlockTagsOption{ 0 };
     BackupVariable<int> m_includeIncompleteSentencesIfLongerThan;

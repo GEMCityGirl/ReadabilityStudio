@@ -1240,11 +1240,11 @@ private:
     SentencesBreakdownInfo m_sentencesBreakdownInfo;
 
     wxString m_optionsFile;
-    wxColour m_duplicateWordHighlightColor;
     wxColour m_wordyPhraseHighlightColor;
+    TextHighlight m_textHighlight{ TextHighlight::HighlightBackground };
     wxColour m_textHighlightColor;
     wxColour m_excludedTextHighlightColor;
-    TextHighlight m_textHighlight{ TextHighlight::HighlightBackground };
+    wxColour m_duplicateWordHighlightColor;
     wxColour m_fontColor;
     wxFont m_textViewFont;
     LongSentence m_longSentenceMethod{ LongSentence::LongerThanSpecifiedLength };
@@ -1594,7 +1594,6 @@ public:
     const wxString XML_DOLCH_VERBS_HIGHLIGHTCOLOR;
     const wxString XML_DOLCH_NOUNS_HIGHLIGHTCOLOR;
     // theming
-    const wxString XML_APPEARANCE;
     const wxString XML_THEME_NAME;
     const wxString XML_CONTROL_BACKGROUND_COLOR;
     const wxString XML_RIBBON_ACTIVE_TAB_COLOR;
@@ -1605,6 +1604,7 @@ public:
     const wxString XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR;
     const wxString XML_STARTPAGE_DETAIL_BACKGROUND_COLOR;
     // general options
+    const wxString XML_APPEARANCE;
     const wxString XML_WINDOW_MAXIMIZED;
     const wxString XML_WINDOW_WIDTH;
     const wxString XML_WINDOW_HEIGHT;
