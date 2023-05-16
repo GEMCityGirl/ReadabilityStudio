@@ -113,14 +113,13 @@ namespace grammar
         template<typename Tsyllabizer>
         bool syllabize_if_contains_periods(const wchar_t* start, const wchar_t* end)
             {
-            size_t periodCount = 0;
             auto periodPos = string_util::strncspn(start, m_length, L".\uFF0E\uFF61", 3);
             const wchar_t* period = (periodPos == m_length) ? nullptr : start+periodPos;
             if (period)
                 {
                 Tsyllabizer dotSyllabize;
+                size_t periodCount = 0;
                 size_t separateSectionsSyllableCount = 0;
-                size_t currentSectionLength = 0;
                 const wchar_t* currentSection = start;
                 while (period)
                     {
@@ -131,8 +130,7 @@ namespace grammar
                         { /*NOOP*/ }
                     else
                         { ++periodCount; }
-                    currentSectionLength = period-currentSection;
-                    separateSectionsSyllableCount += dotSyllabize(currentSection, currentSectionLength);
+                    separateSectionsSyllableCount += dotSyllabize(currentSection, period-currentSection);
                     currentSection = period+1;
                     periodPos = string_util::strncspn(++period, m_length-(currentSection-start), L".\uFF0E\uFF61", 3);
                     period = (periodPos == m_length-(currentSection-start) || m_length-(currentSection-start) == 0) ?
@@ -163,12 +161,10 @@ namespace grammar
                 {
                 Tsyllabizer dashSyllabize;
                 size_t separateSectionsSyllableCount = 0;
-                size_t currentSectionLength = 0;
                 const wchar_t* currentSection = start;
                 while (dash)
                     {
-                    currentSectionLength = dash-currentSection;
-                    separateSectionsSyllableCount += dashSyllabize(currentSection, currentSectionLength);
+                    separateSectionsSyllableCount += dashSyllabize(currentSection, dash-currentSection);
                     currentSection = dash+1;
                     dashPos = string_util::strncspn(++dash, m_length-(currentSection-start), L"-\uFF0D", 2);
                     dash = (dashPos == m_length-(currentSection-start) || m_length-(currentSection-start) == 0) ?
