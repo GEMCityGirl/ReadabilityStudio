@@ -90,7 +90,7 @@ namespace grammar
                 current_char_is_vowel = isChar.is_vowel(current_char[0]);
 
                 bool next_char_is_vowel = false;
-                /*if last letter, then there is no next letter*/
+                /* if last letter, then there is no next letter*/
                 if ((m_length-1) == static_cast<size_t>(current_char-start) )
                     { next_char_is_vowel = false; }
                 else
@@ -99,7 +99,7 @@ namespace grammar
                     }
 
                 is_in_vowel_block = current_char_is_vowel && next_char_is_vowel;
-                //if it's a vowel and it's the first one in this block
+                // if it's a vowel and it's the first one in this block
                 if (current_char_is_vowel && !is_in_vowel_block)
                     {
                     ++m_syllable_count;

@@ -1872,7 +1872,7 @@ void ToolsOptionsDlg::SaveOptions()
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetGrammarHighlightedReportLabel()))
             {
             wxGetApp().GetAppOptions().GetGrammarInfo().EnableHighlightedReport(
-                m_grammarPropertyGrid->GetPropertyValueAsBool(GetGrammarHighlightedReportLabel())); 
+                m_grammarPropertyGrid->GetPropertyValueAsBool(GetGrammarHighlightedReportLabel()));
             }
         if (IsPropertyAvailable(m_grammarPropertyGrid, BaseProjectView::GetMisspellingsLabel()))
             {
@@ -2008,48 +2008,113 @@ void ToolsOptionsDlg::SaveOptions()
                         GetFleschKincaidNumeralSyllabicationLabel())));
             }
 
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetBackgroundColorLabel()))
-            { wxGetApp().GetAppOptions().SetBackGroundColor(wxAny(m_generalGraphPropertyGrid->GetProperty(GetBackgroundColorLabel())->GetValue()).As<wxColour>()); }
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetBackgroundColorLabel()))
+            {
+            wxGetApp().GetAppOptions().SetBackGroundColor(
+                wxAny(m_generalGraphPropertyGrid->GetProperty(
+                    GetBackgroundColorLabel())->GetValue()).As<wxColour>());
+            }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetImageLabel()))
-            { wxGetApp().GetAppOptions().SetBackGroundImagePath(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel())); }
+            {
+            wxGetApp().GetAppOptions().SetBackGroundImagePath(
+                m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()));
+            }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetWatermarkLabel()))
-            { wxGetApp().GetAppOptions().SetWatermark(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetWatermarkLabel())); }
+            {
+            wxGetApp().GetAppOptions().SetWatermark(
+                m_generalGraphPropertyGrid->GetPropertyValueAsString(GetWatermarkLabel()));
+            }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetLogoImageLabel()))
-            { wxGetApp().GetAppOptions().SetWatermarkLogo(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetLogoImageLabel())); }
+            {
+            wxGetApp().GetAppOptions().SetWatermarkLogo(
+                m_generalGraphPropertyGrid->GetPropertyValueAsString(GetLogoImageLabel()));
+            }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetImageOpacityLabel()))
-            { wxGetApp().GetAppOptions().SetGraphBackGroundOpacity(static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageOpacityLabel()))); }
+            {
+            wxGetApp().GetAppOptions().SetGraphBackGroundOpacity(
+                static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageOpacityLabel())));
+            }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetApplyFadeLabel()))
-            { wxGetApp().GetAppOptions().SetGraphBackGroundLinearGradient(m_generalGraphPropertyGrid->GetPropertyValueAsBool(GetApplyFadeLabel())); }
+            {
+            wxGetApp().GetAppOptions().SetGraphBackGroundLinearGradient(
+                m_generalGraphPropertyGrid->GetPropertyValueAsBool(GetApplyFadeLabel()));
+            }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetColorLabel()))
-            { wxGetApp().GetAppOptions().SetPlotBackGroundColor(wxAny(m_generalGraphPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>()); }
+            {
+            wxGetApp().GetAppOptions().SetPlotBackGroundColor(
+                wxAny(m_generalGraphPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>());
+            }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetOpacityLabel()))
-            { wxGetApp().GetAppOptions().SetGraphPlotBackGroundOpacity(static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel()))); }
+            {
+            wxGetApp().GetAppOptions().SetGraphPlotBackGroundOpacity(
+                static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel())));
+            }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetCustomImageBrushLabel()))
-            { wxGetApp().GetAppOptions().SetGraphStippleImagePath(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel())); }
+            {
+            wxGetApp().GetAppOptions().SetGraphStippleImagePath(
+                m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel())); }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetDisplayDropShadowsLabel()))
-            { wxGetApp().GetAppOptions().DisplayDropShadows(m_generalGraphPropertyGrid->GetPropertyValueAsBool(GetDisplayDropShadowsLabel())); }
+            {
+            wxGetApp().GetAppOptions().DisplayDropShadows(
+                m_generalGraphPropertyGrid->GetPropertyValueAsBool(GetDisplayDropShadowsLabel()));
+            }
 
         if (IsPropertyAvailable(m_barChartPropertyGrid,GetColorLabel()))
-            { wxGetApp().GetAppOptions().SetBarChartBarColor(wxAny(m_barChartPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>()); }
+            {
+            wxGetApp().GetAppOptions().SetBarChartBarColor(
+                wxAny(m_barChartPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>());
+            }
         if (IsPropertyAvailable(m_barChartPropertyGrid,GetOpacityLabel()))
-            { wxGetApp().GetAppOptions().SetGraphBarOpacity(static_cast<uint8_t>(m_barChartPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel()))); }
+            {
+            wxGetApp().GetAppOptions().SetGraphBarOpacity(
+                static_cast<uint8_t>(m_barChartPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel())));
+            }
         if (IsPropertyAvailable(m_barChartPropertyGrid,GeOrientationLabel()))
-            { wxGetApp().GetAppOptions().SetBarChartOrientation(static_cast<Wisteria::Orientation>(m_barChartPropertyGrid->GetPropertyValueAsInt(GeOrientationLabel()))); }
+            {
+            wxGetApp().GetAppOptions().SetBarChartOrientation(
+                static_cast<Wisteria::Orientation>(
+                    m_barChartPropertyGrid->GetPropertyValueAsInt(GeOrientationLabel())));
+            }
         if (IsPropertyAvailable(m_barChartPropertyGrid,GetEffectLabel()))
-            { wxGetApp().GetAppOptions().SetGraphBarEffect(static_cast<BoxEffect>(m_barChartPropertyGrid->GetPropertyValueAsInt(GetEffectLabel()))); }
+            {
+            wxGetApp().GetAppOptions().SetGraphBarEffect(
+                static_cast<BoxEffect>(m_barChartPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())));
+            }
         if (IsPropertyAvailable(m_barChartPropertyGrid,GetLabelsOnBarsLabel()))
-            { wxGetApp().GetAppOptions().DisplayBarLabels(m_barChartPropertyGrid->GetPropertyValueAsBool(GetLabelsOnBarsLabel())); }
+            {
+            wxGetApp().GetAppOptions().DisplayBarLabels(
+                m_barChartPropertyGrid->GetPropertyValueAsBool(GetLabelsOnBarsLabel()));
+            }
 
         if (IsPropertyAvailable(m_histogramPropertyGrid,GetBinSortingLabel()))
-            { wxGetApp().GetAppOptions().SetHistorgramBinningMethod(static_cast<Histogram::BinningMethod>(m_histogramPropertyGrid->GetPropertyValueAsInt(GetBinSortingLabel()))); }
+            {
+            wxGetApp().GetAppOptions().SetHistorgramBinningMethod(
+                static_cast<Histogram::BinningMethod>(
+                    m_histogramPropertyGrid->GetPropertyValueAsInt(GetBinSortingLabel())));
+            }
         if (IsPropertyAvailable(m_histogramPropertyGrid,GetGradeLevelRoundingLabel()))
-            { wxGetApp().GetAppOptions().SetHistogramRoundingMethod(static_cast<RoundingMethod>(m_histogramPropertyGrid->GetPropertyValueAsInt(GetGradeLevelRoundingLabel()))); }
+            {
+            wxGetApp().GetAppOptions().SetHistogramRoundingMethod(
+                static_cast<RoundingMethod>(
+                    m_histogramPropertyGrid->GetPropertyValueAsInt(GetGradeLevelRoundingLabel())));
+            }
         if (IsPropertyAvailable(m_histogramPropertyGrid,GetBinLabelsLabel()))
-            { wxGetApp().GetAppOptions().SetHistrogramBinLabelDisplay(static_cast<BinLabelDisplay>(m_histogramPropertyGrid->GetPropertyValueAsInt(GetBinLabelsLabel()))); }
+            {
+            wxGetApp().GetAppOptions().SetHistrogramBinLabelDisplay(
+                static_cast<BinLabelDisplay>(
+                    m_histogramPropertyGrid->GetPropertyValueAsInt(GetBinLabelsLabel())));
+            }
         if (IsPropertyAvailable(m_histogramPropertyGrid,GetIntervalDisplayLabel()))
-            { wxGetApp().GetAppOptions().SetHistogramIntervalDisplay(static_cast<Histogram::IntervalDisplay>(m_histogramPropertyGrid->GetPropertyValueAsInt(GetIntervalDisplayLabel()))); }
+            {
+            wxGetApp().GetAppOptions().SetHistogramIntervalDisplay(
+                static_cast<Histogram::IntervalDisplay>(
+                    m_histogramPropertyGrid->GetPropertyValueAsInt(GetIntervalDisplayLabel())));
+            }
         if (IsPropertyAvailable(m_histogramPropertyGrid,GetColorLabel()))
-            { wxGetApp().GetAppOptions().SetHistogramBarColor(wxAny(m_histogramPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>()); }
+            {
+            wxGetApp().GetAppOptions().SetHistogramBarColor(
+                wxAny(m_histogramPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>());
+            }
         if (IsPropertyAvailable(m_histogramPropertyGrid,GetOpacityLabel()))
             {
             wxGetApp().GetAppOptions().SetHistogramBarOpacity(

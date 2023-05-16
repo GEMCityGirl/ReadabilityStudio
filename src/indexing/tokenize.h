@@ -81,7 +81,7 @@ namespace tokenize
         const wchar_t* operator()()
             {
             PROFILE();
-            //should only happen if text was null to begin with
+            // should only happen if text was null to begin with
             if (!m_current_char)
                 { return nullptr; }
 
@@ -89,7 +89,7 @@ namespace tokenize
             m_is_numeric = m_is_split_word = m_is_tabbed = false;
             m_current_leading_end_of_line_count = 0;
 
-            //move past any leading trash characters
+            // move past any leading trash characters
             bool whiteSpaceEncountered = false;
             bool encounteredSentenceEnder = false;
             bool encounteredNewLine = false;
@@ -138,7 +138,7 @@ namespace tokenize
                     m_at_eol = true;
                     break;
                     }
-                //see if we have hit any whitespace yet between the upcoming new word and the previous one
+                // see if we have hit any whitespace yet between the upcoming new word and the previous one
                 if (characters::is_character::is_space(m_current_char[0]))
                     {
                     if (m_current_char[0] == common_lang_constants::TAB)
@@ -676,7 +676,7 @@ namespace tokenize
                         { ++m_current_word_length; }
                     }
 
-                //See if the word is a numeral
+                // See if the word is a numeral
                 m_is_numeric = is_character.is_numeric(word_start, m_current_word_length);
 
                 ++m_sentence_position;

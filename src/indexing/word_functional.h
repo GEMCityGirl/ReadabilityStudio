@@ -304,7 +304,7 @@ private:
     bool m_treat_numerals_as_monosyllabic{ false };
     };
 
-//used for std::accumulate
+// used for std::accumulate
 template<typename word_typeT>
 class add_syllable_size
     {
@@ -323,7 +323,7 @@ private:
     bool m_treat_numerals_as_monosyllabic{ false };
     };
 
-///use this when ignoring words from bullet points and headers
+/// use this when ignoring words from bullet points and headers
 template<typename word_typeT>
 class add_valid_syllable_size
     {
@@ -360,7 +360,7 @@ public:
         }
     };
 
-///use this when ignoring words from bullet points and headers
+/// use this when ignoring words from bullet points and headers
 template<typename word_typeT>
 class add_valid_syllable_size_ignore_numerals
     {
@@ -390,7 +390,7 @@ public:
         }
     };
 
-///use this when ignoring words from bullet points and headers
+/// use this when ignoring words from bullet points and headers
 template<typename word_typeT>
 class add_valid_syllable_size_ignore_numerals_and_proper_nouns
     {
@@ -1044,7 +1044,7 @@ private:
     [[nodiscard]] bool is_on_list(const T& the_word) const
         {
         if (m_wordlist == nullptr || m_secondary_wordlist == nullptr || the_word.length() == 0)
-            { return false; } //no list or word is blank, then don't bother looking
+            { return false; } // no list or word is blank, then don't bother looking
 
         // first, see if the full word is already in our dictionaries
         typename wordlistT::word_type compValue{ the_word.c_str() };

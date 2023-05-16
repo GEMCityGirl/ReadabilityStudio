@@ -155,8 +155,8 @@ public:
                                 tokenize_text.get_sentence_position(),
                                 tokenize_text.get_current_paragraph_index(),
                                 tokenize_text.is_numeric(),
-                                //these are really calculated after the entire document is loaded,
-                                //so just set reasonable default values for now
+                                // these are really calculated after the entire document is loaded,
+                                // so just set reasonable default values for now
                                 true, false, false,
                                 count_syllables(current_char, tokenize_text.get_current_word_length()),
                                 count_punctuation({ current_char, tokenize_text.get_current_word_length() }) );
@@ -169,8 +169,8 @@ public:
                                 tokenize_text.get_sentence_position(),
                                 tokenize_text.get_current_paragraph_index(),
                                 tokenize_text.is_numeric(),
-                                //these are really calculated after the entire document is loaded,
-                                //so just set reasonable default values for now
+                                // these are really calculated after the entire document is loaded,
+                                // so just set reasonable default values for now
                                 true, false, false,
                                 count_syllables(current_char, tokenize_text.get_current_word_length()),
                                 count_punctuation({ current_char, tokenize_text.get_current_word_length() }) );
@@ -563,7 +563,7 @@ public:
                         ((is_exclusion_aggressive() && sentPos->get_word_count() < 10) ||
                          (sentPos->get_word_count() < 5)) )
                         {
-                        sentPos->set_valid(false);//paragraph will be set to invalid later
+                        sentPos->set_valid(false);// paragraph will be set to invalid later
                         sentPos->set_type(grammar::sentence_paragraph_type::list_item);
                         // If aggressively setting list items, then change surrounding sentences to list items also
                         // (in case they were headers or incomplete sentences).
@@ -1273,7 +1273,7 @@ private:
                 wordPos->set_acronym(false);
                 }
             // now review whether the word is proper
-            if (wordPos->length() > 1 && //an initial would have a period after it or 'I' aren't considered proper
+            if (wordPos->length() > 1 && // an initial would have a period after it or 'I' aren't considered proper
                 wordPos->is_capitalized() &&
                 // headers might be considered valid, but for deducing proper nouns we should
                 // only look at "real" sentences because headers generally uppercase each important word,
@@ -1349,7 +1349,7 @@ private:
             }
 
         // Second pass, going over words whose capitalization can be ambiguous (first word of sentence, etc.)
-        punctPos = m_punctuation.size() ? m_punctuation.begin() : m_punctuation.end();//reset for second pass
+        punctPos = m_punctuation.size() ? m_punctuation.begin() : m_punctuation.end();// reset for second pass
         for (auto sentPos = m_sentences.cbegin();
             sentPos != m_sentences.cend();
             ++sentPos)
@@ -1538,7 +1538,7 @@ private:
                         { wordPos->set_acronym(false); }
                     }
                 }
-            //mark a word personal if proper and a known person name or an unknown word
+            // mark a word personal if proper and a known person name or an unknown word
             //(which would probably be a new name that we don't have on our list).
             if (wordPos->is_proper_noun() &&
                 !wordPos->is_acronym() &&
@@ -1547,7 +1547,7 @@ private:
                 { wordPos->set_personal(true); }
             }
         }
-    ///Searches for negated phrases (e.g., "not happy", "doesn't care").
+    /// Searches for negated phrases (e.g., "not happy", "doesn't care").
     void search_for_negated_phrases()
         {
         PROFILE();
@@ -1569,7 +1569,7 @@ private:
                 while (punctPos != m_punctuation.end() && (punctPos->get_word_position() <= wordCounter))
                     { ++punctPos; }
                 if (IsNegating({ m_words[wordCounter].c_str(), m_words[wordCounter].length() }) &&
-                    //if next word has punctuation in front of it then do not count this.
+                    // if next word has punctuation in front of it then do not count this.
                     !(punctPos != m_punctuation.end() && punctPos->get_word_position() == wordCounter+1))
                     {
                     auto startWord = wordCounter++;
@@ -1862,7 +1862,7 @@ private:
                     { ++validWordCountCurrentSentence; }
                 }
             sent_iter->set_valid_word_count(validWordCountCurrentSentence);
-            //all words excluded? then this is an invalid sentence.
+            // all words excluded? then this is an invalid sentence.
             if (sent_iter->get_valid_word_count() == 0)
                 { sent_iter->set_valid(false); }
             else
@@ -1878,7 +1878,7 @@ private:
              ++para_iter)
             {
             size_t validSentenceCountCurrentParagraph = 0;
-            //go through the sentences
+            // go through the sentences
             for (size_t sentenceCounter = para_iter->get_first_sentence_index();
                  sentenceCounter <= para_iter->get_last_sentence_index();
                  ++sentenceCounter)
@@ -1901,7 +1901,8 @@ private:
         PROFILE();
         m_valid_punctuation_count = 0;
         size_t currentSentence = 0;
-        size_t currentUnitCount = 1;//sentences will have at least one unit
+        // sentences will have at least one unit
+        size_t currentUnitCount = 1;
         size_t currentWordPos = static_cast<size_t>(-1);
         for (auto punctIter = m_punctuation.cbegin();
             punctIter != m_punctuation.cend();
@@ -1922,10 +1923,10 @@ private:
                 traits::case_insensitive_ex::eq(punctIter->get_punctuation_mark(), common_lang_constants::SEMICOLON) ||
                 is_character.is_dash_or_hyphen(punctIter->get_punctuation_mark()))
                 {
-                //avoid consecutive unit delimiters (i.e., ones that are attached to the same word)
+                // avoid consecutive unit delimiters (i.e., ones that are attached to the same word)
                 if (punctIter->get_word_position() == currentWordPos)
                     { continue; }
-                //in case we are on a punctuation trailing the last word of the document
+                // in case we are on a punctuation trailing the last word of the document
                 else if (punctIter->get_word_position() >= m_words.size())
                     { currentWordPos = m_words.size()-1; }
                 else
@@ -1933,16 +1934,17 @@ private:
                 const size_t sentenceIndex = m_words[currentWordPos].get_sentence_index();
                 if (sentenceIndex == currentSentence)
                     { ++currentUnitCount; }
-                //we are in a new sentence now
+                // we are in a new sentence now
                 else
                     {
                     m_sentences[currentSentence].set_unit_count(currentUnitCount);
-                    currentUnitCount = 2;//reset to minimum one unit + the current unit delimiter
+                    // reset to minimum one unit + the current unit delimiter
+                    currentUnitCount = 2;
                     currentSentence = sentenceIndex;
                     }
                 }
             }
-        //update the final sentence with a unit delimiter in it
+        // update the final sentence with a unit delimiter in it
         if (m_sentences.size())
             { m_sentences[currentSentence].set_unit_count(currentUnitCount); }
         }
@@ -1997,9 +1999,9 @@ private:
                 }
             }
         }
-    ///Examines a paragraph to see if it contains copyright information and excludes it if it does.
-    ///Note that this function is fairly simple in its deduction and is safe to use on any paragraph
-    ///throughout the document.
+    /// Examines a paragraph to see if it contains copyright information and excludes it if it does.
+    /// Note that this function is fairly simple in its deduction and is safe to use on any paragraph
+    /// throughout the document.
     void ignore_copyright_notice_paragraphs_simple()
         {
         PROFILE();
@@ -2050,7 +2052,7 @@ private:
                 m_sentences[currentParagraph.get_first_sentence_index()];
             const grammar::sentence_info& lastSentenceInParagraph =
                 m_sentences[currentParagraph.get_last_sentence_index()];
-            //search the paragraph for copyright, registered, or trademark symbols.
+            // search the paragraph for copyright, registered, or trademark symbols.
             if (m_punctuation.size())
                 {
                 auto punctPos =
@@ -2108,7 +2110,7 @@ private:
              ++sentenceCounter)
             {
             m_sentences[sentenceCounter].set_valid(false);
-            //go through the words in the sentence
+            // go through the words in the sentence
             for (size_t wordCounter = m_sentences[sentenceCounter].get_first_word_index();
                 wordCounter <= m_sentences[sentenceCounter].get_last_word_index();
                 ++wordCounter)
@@ -2408,12 +2410,12 @@ private:
     multi_value_aggregate_map<grammar::phrase<Tword_type>, size_t> m_aggregated_tokens;
     size_t m_current_sentence_begin{ 0 };
     size_t m_current_paragraph_begin{ 0 };
-    //specialized statistics
+    // specialized statistics
     size_t m_valid_punctuation_count{ 0 };
     size_t m_valid_paragraph_count{ 0 };
     size_t m_complete_sentence_count{ 0 };
     size_t m_valid_word_count{ 0 };
-    //flags
+    // flags
     bool m_treat_eol_as_eos{ false };
     bool m_ignore_blank_lines_when_determing_paragraph_split{ false };
     bool m_ignore_indenting_when_determing_paragraph_split{ false };

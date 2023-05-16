@@ -238,7 +238,7 @@ namespace grammar
                         { return std::pair<bool,size_t>(true,(current_char-text)); }
                     return characters::is_character::is_numeric(nextLine[0]) ?
                         std::pair<bool,size_t>(true,(current_char-text)) :
-                        //anything else means that this probably is not a numeric bullet
+                        // anything else means that this probably is not a numeric bullet
                         std::pair<bool,size_t>(false,0);
                     }
                 }
@@ -324,14 +324,14 @@ namespace grammar
                    by a newline. This is the assumption that it is proceeding a list of some sort.*/
                 if (traits::case_insensitive_ex::eq(text[current_position], L':'))
                     {
-                    //eat up "regular" whitespace (space or tab) after colon first
+                    // eat up "regular" whitespace (space or tab) after colon first
                     size_t i;
                     for (i = current_position+1; i < length; ++i)
                         {
                         if (!characters::is_character::is_space_horizontal(text[i]) )
                             { break; }
                         }
-                    //if the rest of the document is whitespace then assume end of sentence
+                    // if the rest of the document is whitespace then assume end of sentence
                     if (i >= length)
                         { return true; }
                     return characters::is_character::is_space_vertical(text[i]);
@@ -622,11 +622,11 @@ namespace grammar
             {
             return ((m_sentence_start_must_be_uppercased && is_character.can_character_begin_word_uppercase(ch)) ||
                     (!m_sentence_start_must_be_uppercased && is_character.can_character_begin_word(ch)) ||
-                    //or is a left parenthesis (sometimes sentences start with these)
+                    // or is a left parenthesis (sometimes sentences start with these)
                     traits::case_insensitive_ex::eq(ch, 40) ||
-                    //or various hyphens/dashes, sometimes follows a quote from a person
+                    // or various hyphens/dashes, sometimes follows a quote from a person
                     is_character.is_dash_or_hyphen(ch) ||
-                     //or if simply a quote symbol
+                     // or if simply a quote symbol
                     is_character.is_quote(ch) );
             }
         /** @returns @c true if a character can be valid sentence-ending punctuation, other than period and ellipsis.
@@ -639,7 +639,7 @@ namespace grammar
             return (traits::case_insensitive_ex::eq(character, L'!') ||
                     traits::case_insensitive_ex::eq(character, L'?') ||
                     character == 0x85 || /*horizontal ellipse on Windows*/
-                    character == common_lang_constants::INTERROBANG || //interrobang
+                    character == common_lang_constants::INTERROBANG || // interrobang
                     // special case when a colon is at the end of a line
                     traits::case_insensitive_ex::eq(character, L':'));
             }
@@ -655,7 +655,7 @@ namespace grammar
                     traits::case_insensitive_ex::eq(character, L'?') ||
                     character == 0x85 || /*horizontal ellipse on Windows*/
                     character == common_lang_constants::ELLIPSE/*Unicode horizontal ellipse*/ ||
-                    character == common_lang_constants::INTERROBANG || //interrobang
+                    character == common_lang_constants::INTERROBANG || // interrobang
                     // special case when a colon is at the end of a line
                     traits::case_insensitive_ex::eq(character, L':'));
             }

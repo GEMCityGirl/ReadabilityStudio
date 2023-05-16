@@ -171,7 +171,7 @@ namespace characters
                     (letter >= 0xE8 && letter <= 0xEF) ||
                     (letter >= 0xF2 && letter <= 0xF6) ||
                     (letter >= 0xF8 && letter <= 0xFC) ||
-                    (letter >= 0x152 && letter <= 0x153) || //OE ligature
+                    (letter >= 0x152 && letter <= 0x153) || // OE ligature
                     // e with macron
                     (letter == 0x0112 || letter == 0x0113) ||
                     // basic Russian alphabet
@@ -199,13 +199,15 @@ namespace characters
                     (letter >= L'F' && letter <= L'H') ||
                     (letter >= L'J' && letter <= L'N') ||
                     (letter >= L'P' && letter <= L'T') ||
-                    (letter >= L'V' && letter <= L'X') || //just treat 'y' as a vowel for the sake of argument
+                    // just treat 'y' as a vowel for the sake of argument
+                    (letter >= L'V' && letter <= L'X') ||
                     (letter == L'Z') ||
                     (letter >= L'b' && letter <= L'd') ||
                     (letter >= L'f' && letter <= L'h') ||
                     (letter >= L'j' && letter <= L'n') ||
                     (letter >= L'p' && letter <= L't') ||
-                    (letter >= L'v' && letter <= L'x') || //just treat 'y' as a vowel for the sake of argument
+                    // just treat 'y' as a vowel for the sake of argument
+                    (letter >= L'v' && letter <= L'x') ||
                     (letter == L'z') ||
                     // superscripts
                     (letter == 0x1D47) ||
@@ -234,13 +236,15 @@ namespace characters
                     (letter >= 0xFF26 && letter <= 0xFF28) ||
                     (letter >= 0xFF2A && letter <= 0xFF2E) ||
                     (letter >= 0xFF30 && letter <= 0xFF34) ||
-                    (letter >= 0xFF36 && letter <= 0xFF38) || //just treat 'y' as a vowel for the sake of argument
+                    // just treat 'y' as a vowel for the sake of argument
+                    (letter >= 0xFF36 && letter <= 0xFF38) ||
                     (letter == 0xFF3A) ||
                     (letter >= 0xFF42 && letter <= 0xFF44) ||
                     (letter >= 0xFF46 && letter <= 0xFF48) ||
                     (letter >= 0xFF4A && letter <= 0xFF4E) ||
                     (letter >= 0xFF50 && letter <= 0xFF54) ||
-                    (letter >= 0xFF56 && letter <= 0xFF58) || //just treat 'y' as a vowel for the sake of argument
+                    // just treat 'y' as a vowel for the sake of argument
+                    (letter >= 0xFF56 && letter <= 0xFF58) ||
                     (letter == 0xFF5A) ||
                     // Extended ASCII Western European letters
                     (letter == 0xC7) || // upper C with cedilla
@@ -285,12 +289,12 @@ namespace characters
                 true : (is_alpha(ch) && !string_util::is_superscript(ch) && !string_util::is_subscript(ch)) ?
                 // Doxygen tags (e.g., @note) or used as a whole word (e.g., "meet @ 5:00")
                 true : is_either<wchar_t>(ch, L'@', 0xFF20) ?
-                true : (ch == 0x9F) ? //Y with diaeresis
+                true : (ch == 0x9F) ? // Y with diaeresis
                 true : is_either<wchar_t>(ch, 163, 0xFFE1) ?  // Pound Sterling
                 true : is_either<wchar_t>(ch, 0x80, 0x20AC) ? // Euro
-                true : (ch == 0x20B1) ? //Cuban peso
-                true : (ch == 0x20A9) ? //Korean Won (currency)
-                true : (ch  == 177) ?   //plus/minus±
+                true : (ch == 0x20B1) ? // Cuban peso
+                true : (ch == 0x20A9) ? // Korean Won (currency)
+                true : (ch  == 177) ?   // plus/minus±
                 true : false;
             }
         /** @returns @c true if a character is an uppercased letter that normally can start a sentence.
@@ -327,9 +331,9 @@ namespace characters
                 true : is_apostrophe(ch) ?
                 true : is_either<wchar_t>(ch, L'@', 0xFF20) ? // could be an entire word
                 true : is_either<wchar_t>(ch, 92, 0xFF3C) ? /*\*/
-                true : (ch == 0x9F) ?   //Y with diaeresis
-                true : is_either<wchar_t>(ch, 162, 0xFFE0) ? //cent
-                true : is_either<wchar_t>(ch, 176, 0xFFEE) ? //degree
+                true : (ch == 0x9F) ?   // Y with diaeresis
+                true : is_either<wchar_t>(ch, 162, 0xFFE0) ? // cent
+                true : is_either<wchar_t>(ch, 176, 0xFFEE) ? // degree
                 true : false;
             }
         /** @returns @c true if a character can appear inside the word.
@@ -351,10 +355,10 @@ namespace characters
                 true : is_either<wchar_t>(ch, 92, 0xFF3C) ? /*\*/
                 true : (ch >= 0x5F && ch <= 0x60) ? // _`
                 true : (ch >= 0xFF3F && ch <= 0xFF40) ? // full-width _`
-                true : (ch == 126) ? //tilde (usually appear inside a file path)
-                true : (ch == 159) ? //Y with diaeresis
-                true : is_either<wchar_t>(ch, 162, 0xFFE0) ? //cent
-                true : is_either<wchar_t>(ch, 176, 0xFFEE) ? //degree
+                true : (ch == 126) ? // tilde (usually appear inside a file path)
+                true : (ch == 159) ? // Y with diaeresis
+                true : is_either<wchar_t>(ch, 162, 0xFFE0) ? // cent
+                true : is_either<wchar_t>(ch, 176, 0xFFEE) ? // degree
                 true : false;
             }
         /** @returns @c true if a character is a hyphen.

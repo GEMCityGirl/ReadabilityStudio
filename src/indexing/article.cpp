@@ -80,7 +80,8 @@ bool is_incorrect_english_article::operator()(const wchar_t* article, const size
         // if an acronym and no vowels (including wide versions), then each letter should be sounded out
         (isAcronym(word, word_length) &&
             string_util::strncspn(word, word_length,
-                L"aeiouy\uFF41\uFF45\uFF49\uFF4F\uFF55\uFF59AEIOUY\uFF21\uFF25\uFF29\uFF2F\uFF35\uFF39", 24) == word_length) );
+                L"aeiouy\uFF41\uFF45\uFF49\uFF4F\uFF55\uFF59AEIOUY\uFF21\uFF25\uFF29\uFF2F\uFF35\uFF39", 24) ==
+                    word_length) );
     const bool isYear = (word_length == 4 && characters::is_character::is_numeric(word[0]) &&
         characters::is_character::is_numeric(word[1]) && characters::is_character::is_numeric(word[2]) &&
         characters::is_character::is_numeric(word[3]));
