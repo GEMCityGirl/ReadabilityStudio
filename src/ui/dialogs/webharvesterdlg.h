@@ -47,7 +47,7 @@ public:
         m_domains(domainStrings), m_hideLocalDownloadOption(hideLocalDownloadOption),
         m_downloadFilesLocally(downloadFilesLocally),
         m_keepWebPathWhenDownloading(keepWebPathWhenDownloading),
-        m_downloadFolder(downloadFolder), m_userAgent(userAgent), m_urls(urls)
+        m_downloadFolder(downloadFolder), m_urls(urls), m_userAgent(userAgent)
         { Create(parent, id, caption, pos, size, style); }
     /// @private
     ~WebHarvesterDlg()
