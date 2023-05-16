@@ -50,17 +50,18 @@ namespace readability
     /** @brief Helper function to convert eflaw index to human-readable difficulty level.
         @param index The Eflaw index score to convert.
         @returns The Eflaw difficulty level.*/
-    [[nodiscard]] inline eflaw_difficulty eflaw_index_to_difficulty(const size_t index) noexcept
+    [[nodiscard]]
+    inline eflaw_difficulty eflaw_index_to_difficulty(const size_t index) noexcept
         {
         if (index <= 20)
             {
             return eflaw_difficulty::eflaw_very_easy;
             }
-        else if (index >= 21 && index <= 25)
+        else if (index <= 25)
             {
             return eflaw_difficulty::eflaw_easy;
             }
-        else if (index >= 26 && index <= 29)
+        else if (index <= 29)
             {
             return eflaw_difficulty::eflaw_confusing;
             }

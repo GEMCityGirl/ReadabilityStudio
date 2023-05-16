@@ -361,23 +361,23 @@ namespace readability
             {
             return flesch_difficulty::flesch_very_difficult;
             }
-        else if (result >= 30 && result <= 49)
+        else if (result <= 49)
             {
             return flesch_difficulty::flesch_difficult;
             }
-        else if (result >= 50 && result <= 59)
+        else if (result <= 59)
             {
             return flesch_difficulty::flesch_fairly_difficult;
             }
-        else if (result >= 60 && result <= 69)
+        else if (result <= 69)
             {
             return flesch_difficulty::flesch_standard;
             }
-        else if (result >= 70 && result <= 79)
+        else if (result <= 79)
             {
             return flesch_difficulty::flesch_fairly_easy;
             }
-        else if (result >= 80 && result <= 89)
+        else if (result <= 89)
             {
             return flesch_difficulty::flesch_easy;
             }
