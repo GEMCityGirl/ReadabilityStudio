@@ -436,7 +436,7 @@ void ProjectDoc::LoadMetaFile(const wchar_t* settingsFileText)
         return;
         }
     const wchar_t* statsSectionEnd = std::wcsstr(statsSection, L">");
-    if (statsSection && statsSectionEnd &&
+    if (statsSectionEnd &&
         (statsSection < statsSectionEnd) )
         {
         // size of the text string
@@ -665,7 +665,7 @@ void ProjectDoc::LoadMetaFile(const wchar_t* settingsFileText)
     const wchar_t* customTest = customTestSection;
     currentStartTag.clear();
     currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_CUSTOM_FAMILIAR_WORD_TEST);
-    if (customTestSection && customTestSectionEnd &&
+    if (customTestSectionEnd &&
         (customTestSection < customTestSectionEnd) )
         {
         while (customTest)
