@@ -37,9 +37,8 @@ namespace grammar
         bool operator()(const wchar_t* text, const size_t length,
                         const wchar_t* nextWord = nullptr, const size_t nextWordLength = 0) const
             {
-            NON_UNIT_TEST_ASSERT(text);
-            NON_UNIT_TEST_ASSERT(std::wcslen(text) == length);
-            NON_UNIT_TEST_ASSERT((nextWord==nullptr) || (std::wcslen(nextWord) == nextWordLength));
+            NON_UNIT_TEST_ASSERT(text && std::wcslen(text) == length);
+            NON_UNIT_TEST_ASSERT((nextWord == nullptr) || (std::wcslen(nextWord) == nextWordLength));
             if (text == nullptr || text[0] == 0 || length < 3)
                 { return false; }
             for (size_t i = 0; i < length; ++i)
