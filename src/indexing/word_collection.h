@@ -19,7 +19,6 @@
 #include <string>
 #include <stdexcept>
 #include <cstdlib>
-#include <memory_resource>
 #include "word_functional.h"
 #include "sentence.h"
 #include "syllable.h"
