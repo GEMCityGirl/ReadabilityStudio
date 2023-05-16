@@ -63,7 +63,7 @@ namespace traits
 
         inline static bool eq(const char_type& first, const char_type& second) noexcept
             {
-            //special logic for apostrophes
+            // special logic for apostrophes
             if (characters::is_character::is_apostrophe(first) && characters::is_character::is_apostrophe(second))
                 { return true; }
             return (tolower(first) == tolower(second) );
@@ -72,7 +72,7 @@ namespace traits
         /// @todo Unit test
         inline static constexpr bool eq_case_sensitive(const char_type& first, const char_type& second) noexcept
             {
-            //special logic for apostrophes
+            // special logic for apostrophes
             if (characters::is_character::is_apostrophe(first) && characters::is_character::is_apostrophe(second))
                 { return true; }
             return (string_util::full_width_to_narrow(first) == string_util::full_width_to_narrow(second) );
@@ -80,7 +80,7 @@ namespace traits
 
         inline static bool lt(const char_type& first, const char_type& second) noexcept
             {
-            //special logic for apostrophes
+            // special logic for apostrophes
             if (characters::is_character::is_apostrophe(first) && characters::is_character::is_apostrophe(second))
                 { return false; }
             else if (characters::is_character::is_apostrophe(first))
@@ -93,7 +93,7 @@ namespace traits
         /// @todo unit test!
         inline static bool lt_case_sensitive(const char_type& first, const char_type& second) noexcept
             {
-            //special logic for apostrophes
+            // special logic for apostrophes
             if (characters::is_character::is_apostrophe(first) && characters::is_character::is_apostrophe(second))
                 { return false; }
             else if (characters::is_character::is_apostrophe(first))
@@ -106,7 +106,7 @@ namespace traits
         /// @todo Unit test
         inline static bool le(const char_type& first, const char_type& second) noexcept
             {
-            //special logic for apostrophes
+            // special logic for apostrophes
             if (characters::is_character::is_apostrophe(first) && characters::is_character::is_apostrophe(second))
                 { return false; }
             else if (characters::is_character::is_apostrophe(first))
@@ -119,7 +119,7 @@ namespace traits
         /// @todo Unit test
         inline static bool ge(const char_type& first, const char_type& second) noexcept
             {
-            //special logic for apostrophes
+            // special logic for apostrophes
             if (characters::is_character::is_apostrophe(first) && characters::is_character::is_apostrophe(second))
                 { return false; }
             else if (characters::is_character::is_apostrophe(first))
@@ -143,6 +143,7 @@ namespace traits
               { return 1; }
             for (size_t i = 0; i < n; ++i)
               {
+              // cppcheck-suppress arrayIndexOutOfBounds
               if (!eq(s1[i], s2[i]) )
                   {
                   return lt(s1[i], s2[i]) ? -1 : 1;
@@ -195,15 +196,15 @@ namespace traits
               size_t j = 1;
               for (size_t i = 0; i < n1; i+=j)
                   {
-                  //if the first character of the substring matches then start comparing
+                  // if the first character of the substring matches then start comparing
                   if (eq(s1[i], s2[0]) )
                       {
-                      //if only looking for one character then return
+                      // if only looking for one character then return
                       if (n2 == 1)
                           {
                           return s1+i;
                           }
-                      //already know the first chars match, so start at next one
+                      // already know the first chars match, so start at next one
                       for (j = 1; j < n2; ++j)
                           {
                           if (!eq(s1[i+j], s2[j]) )
@@ -211,7 +212,7 @@ namespace traits
                               break;
                               }
                           }
-                      //if every character matched then return it
+                      // if every character matched then return it
                       if (n2 == j)
                           {
                           return s1+i;
