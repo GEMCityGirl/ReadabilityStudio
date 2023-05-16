@@ -215,13 +215,13 @@ void ReadabilityApp::AddWordsToDictionaries(const wxArrayString& theWords, const
 //-------------------------------------------
 void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
     {
-    // this prevents logic blocks in here from overlapping
-    // (showing dialogs in here can cause this function to be reentered)
-    static bool initEventProcessing = false;
-    static bool hasCommandLineBeenParsed = false;
-    static bool acceptedLicenseAgreement = false;
     if (loop && loop->IsOk() && loop->IsMain())
         {
+        // this prevents logic blocks in here from overlapping
+        // (showing dialogs in here can cause this function to be reentered)
+        static bool initEventProcessing = false;
+        static bool hasCommandLineBeenParsed = false;
+        static bool acceptedLicenseAgreement = false;
         // EULA agreement
         if (!acceptedLicenseAgreement && !initEventProcessing)
             {
@@ -1621,7 +1621,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 readRibbonButtonSVG(L"ribbon/select-all.svg"),
                 _(L"Select All"));
             }
-        else if (rtype == RibbonType::MainFrameRibbon)
+        else // rtype == RibbonType::MainFrameRibbon
             {
             // settings section
             wxRibbonPanel* settingsPanel =
@@ -3401,7 +3401,7 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
                                              _(L"Add Custom Test Based on..."));
         addMenuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/add.svg"));
         if (!project ||
-            (project && project->GetProjectLanguage() == readability::test_language::english_test))
+            project->GetProjectLanguage() == readability::test_language::english_test)
             {
             addMenuItem = customTestMenu->Append(XRCID("ID_ADD_CUSTOM_NEW_DALE_CHALL_TEST"),
                 wxString::Format(_(L"Add Custom \"%s\"..."), _DT(L"New Dale-Chall")) );
