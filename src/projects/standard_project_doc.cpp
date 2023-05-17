@@ -3302,7 +3302,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 coverageBarChartCanvas->SetName(BaseProjectView::GetCoverageChartTabLabel());
                 coverageBarChartCanvas->GetTopTitles().push_back(
                     GraphItems::Label(
-                        GraphItemInfo(_(L"Dolch Word Coverage")).
+                        GraphItemInfo(_(L"Dolch Word Coverage (%)")).
                         Scaling(coverageBarChartCanvas->GetScaling()).Pen(wxNullPen)));
                 coverageBarChartCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                 coverageBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
@@ -3318,10 +3318,9 @@ void ProjectDoc::DisplayReadabilityGraphs()
             coverageBarChart->SetBarOrientation(static_cast<Wisteria::Orientation>(GetBarChartOrientation()));
             coverageBarChart->GetBarAxis().SetLabelDisplay(Wisteria::AxisLabelDisplay::DisplayOnlyCustomLabels);
             coverageBarChart->GetScalingAxis().SetLabelDisplay(Wisteria::AxisLabelDisplay::DisplayCustomLabelsOrValues);
+            coverageBarChart->GetScalingAxis().SetRange(0, 100, 0, 10, 2);
             coverageBarChart->SetShadowType(IsDisplayingDropShadows() ?
                 ShadowType::RightSideShadow : ShadowType::NoShadow);
-            coverageBarChart->SetBinLabelDisplay(IsDisplayingBarLabels() ?
-                BinLabelDisplay::BinPercentage : BinLabelDisplay::NoDisplay);
             coverageBarChart->IncludeSpacesBetweenBars(true);
             coverageBarChart->GetRightYAxis().Show(false);
             coverageBarChart->GetTopXAxis().Show(false);
@@ -3339,7 +3338,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 wxNumberFormatter::Style::Style_NoTrailingZeroes|
                     wxNumberFormatter::Style::Style_WithThousandsSep) +
                 L"%", GraphItems::Label(_(L"Nouns")),
-                GetGraphBarEffect(), GetGraphBarOpacity()) );
+                GetGraphBarEffect(), GetGraphBarOpacity()), false);
 
             const double dolchVerbsPercentage =
                 safe_divide<double>((ProjectReportFormat::MAX_DOLCH_VERBS - GetUnusedDolchVerbs()),
@@ -3352,7 +3351,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 wxNumberFormatter::Style::Style_NoTrailingZeroes|
                     wxNumberFormatter::Style::Style_WithThousandsSep) +
                 L"%", GraphItems::Label(_(L"Verbs")),
-                GetGraphBarEffect(), GetGraphBarOpacity()) );
+                GetGraphBarEffect(), GetGraphBarOpacity()), false);
 
             const double dolchAdjectivesPercentage =
                 safe_divide<double>((ProjectReportFormat::MAX_DOLCH_ADJECTIVE_WORDS - GetUnusedDolchAdjectives()),
@@ -3364,7 +3363,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 wxNumberFormatter::Style::Style_NoTrailingZeroes|
                     wxNumberFormatter::Style::Style_WithThousandsSep) +
                 L"%", GraphItems::Label(_(L"Adjectives")),
-                GetGraphBarEffect(), GetGraphBarOpacity()) );
+                GetGraphBarEffect(), GetGraphBarOpacity()), false);
 
             const double dolchAdverbsPercentage =
                 safe_divide<double>((ProjectReportFormat::MAX_DOLCH_ADVERB_WORDS-GetUnusedDolchAdverbs()),
@@ -3378,7 +3377,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 wxNumberFormatter::Style::Style_NoTrailingZeroes|
                     wxNumberFormatter::Style::Style_WithThousandsSep) +
                 L"%", GraphItems::Label(_(L"Adverbs")),
-                GetGraphBarEffect(), GetGraphBarOpacity()) );
+                GetGraphBarEffect(), GetGraphBarOpacity()), false);
 
             const double dolchPronounsPercentage =
                 safe_divide<double>((ProjectReportFormat::MAX_DOLCH_PRONOUN_WORDS-GetUnusedDolchPronouns()),
@@ -3391,7 +3390,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 wxNumberFormatter::ToString(dolchPronounsPercentage, 1,
                 wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
                 L"%", GraphItems::Label(_(L"Pronouns")),
-                GetGraphBarEffect(), GetGraphBarOpacity()) );
+                GetGraphBarEffect(), GetGraphBarOpacity()), false);
 
             const double dolchPrepositionsPercentage =
                 safe_divide<double>(
@@ -3405,7 +3404,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 wxNumberFormatter::ToString(dolchPrepositionsPercentage, 1,
                     wxNumberFormatter::Style::Style_NoTrailingZeroes|
                     wxNumberFormatter::Style::Style_WithThousandsSep) + L"%", GraphItems::Label(_(L"Prepositions")),
-                GetGraphBarEffect(), GetGraphBarOpacity()) );
+                GetGraphBarEffect(), GetGraphBarOpacity()), false);
 
             const double dolchConjunctionsPercentage =
                 safe_divide<double>(
@@ -3420,11 +3419,11 @@ void ProjectDoc::DisplayReadabilityGraphs()
                     wxNumberFormatter::Style::Style_NoTrailingZeroes|
                     wxNumberFormatter::Style::Style_WithThousandsSep) +
                 L"%", GraphItems::Label(_(L"Conjunctions")),
-                GetGraphBarEffect(), GetGraphBarOpacity()) );
+                GetGraphBarEffect(), GetGraphBarOpacity()), false);
 
             // update the bar labels
             coverageBarChart->SetBinLabelDisplay(IsDisplayingBarLabels() ?
-                BinLabelDisplay::BinPercentage : BinLabelDisplay::NoDisplay);
+                BinLabelDisplay::BinValue : BinLabelDisplay::NoDisplay);
 
             coverageBarChart->SortBars(
                 BarChart::BarSortComparison::SortByBarLength, coverageBarChart->GetSortDirection());
