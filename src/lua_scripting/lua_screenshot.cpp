@@ -89,8 +89,12 @@ namespace LuaScripting
                     std::make_pair(lua_tonumber(L, i), lua_tonumber(L, i+1)));
                 }
             }
+        wxWindowID windowId = lua_tonumber(L, 2);
+        if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+            windowMappedId != wxGetApp().GetDynamicIdMap().cend())
+            { windowId = windowMappedId->second; }
         lua_pushboolean(L, Screenshot::SaveScreenshotOfTextWindow(path,
-            lua_tonumber(L, 2), lua_toboolean(L, 3), highlightPoints));
+            windowId, lua_toboolean(L, 3), highlightPoints));
         return 1;
         }
 
@@ -134,8 +138,12 @@ namespace LuaScripting
             { endColumn = lua_tonumber(L, 6); }
         if (lua_gettop(L) >= 7)
             { cuttOffRow = lua_tonumber(L, 7); }
+        wxWindowID windowId = lua_tonumber(L, 2);
+        if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
+            windowMappedId != wxGetApp().GetDynamicIdMap().cend())
+            { windowId = windowMappedId->second; }
         lua_pushboolean(L, Screenshot::SaveScreenshotOfListControl(path,
-            lua_tonumber(L, 2),
+            windowId,
             // make zero-indexed
             startRow == -1 ? -1 : startRow-1,
             endRow == -1 ? -1 : endRow-1,
