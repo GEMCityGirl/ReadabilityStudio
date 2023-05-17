@@ -41,6 +41,27 @@ namespace LuaScripting
             else
                 { return true; }
             }
+        /// @note This takes into account the boolean parameter in the front
+        ///     passed to Lunar objects, so @c minParemeterCount should be the actual
+        ///     expected number of parameters.
+        bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
+                                  const wxString& functionName)
+            {
+            wxASSERT(L);
+            wxASSERT(minParemeterCount >= 0);
+            // skip over the boolean param passed in the front indicating success of
+            // routing the function to the class object.
+            if ((lua_gettop(L) - 1) < minParemeterCount)
+                {
+                wxMessageBox(wxString::Format(
+                    _(L"%s: Invalid number of arguments.\n\n%d expected, %d provided."),
+                        functionName, minParemeterCount, (lua_gettop(L) - 1)),
+                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                return false;
+                }
+            else
+                { return true; }
+            }
         bool ReloadIfNotDelayed();
         bool ReloadIfNotDelayedSimple();
         bool m_delayReloading{ false };
@@ -231,6 +252,27 @@ namespace LuaScripting
                 wxMessageBox(
                     wxString::Format(_(L"%s: Accessing project that is already closed."), functionName),
                     _(L"Warning"), wxOK|wxICON_INFORMATION);
+                return false;
+                }
+            else
+                { return true; }
+            }
+        /// @note This takes into account the boolean parameter in the front
+        ///     passed to Lunar objects, so @c minParemeterCount should be the actual
+        ///     expected number of parameters.
+        bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
+                                  const wxString& functionName)
+            {
+            wxASSERT(L);
+            wxASSERT(minParemeterCount >= 0);
+            // skip over the boolean param passed in the front indicating success of
+            // routing the function to the class object.
+            if ((lua_gettop(L) - 1) < minParemeterCount)
+                {
+                wxMessageBox(wxString::Format(
+                    _(L"%s: Invalid number of arguments.\n\n%d expected, %d provided."),
+                        functionName, minParemeterCount, (lua_gettop(L) - 1)),
+                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
                 return false;
                 }
             else

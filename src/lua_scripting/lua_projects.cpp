@@ -101,7 +101,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_delayReloading = int_to_bool(lua_toboolean(L, 2));
         return 0;
@@ -117,7 +117,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
         if (m_project->GetFirstView() && m_project->GetFirstView()->GetFrame())
             {
@@ -253,7 +253,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetInvalidSentenceMethod(static_cast<InvalidSentence>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayed();
@@ -264,7 +264,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetIncludeIncompleteSentencesIfLongerThanValue(lua_tonumber(L, 2));
         return 0;
@@ -274,7 +274,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->AggressiveExclusion(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
@@ -285,7 +285,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->IgnoreTrailingCopyrightNoticeParagraphs(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
@@ -296,7 +296,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->IgnoreTrailingCitations(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
@@ -307,7 +307,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->IgnoreFileAddresses(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
@@ -318,7 +318,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->IgnoreNumerals(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
@@ -329,7 +329,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->IgnoreProperNouns(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
@@ -342,7 +342,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetExcludedPhrasesPath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         m_project->LoadExcludePhrases();
@@ -355,7 +355,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         const wxString exclusionTags(luaL_checkstring(L, 2), wxConvUTF8);
         m_project->GetExclusionBlockTags().clear();
@@ -370,7 +370,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetAppendedDocumentFilePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         m_project->LoadAppendedDocument();
@@ -383,7 +383,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
             { return 0; }
         m_project->SetBackGroundColor(
             wxColour(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4)));
@@ -395,7 +395,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetGraphBackGroundLinearGradient(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayedSimple();
@@ -406,7 +406,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetBackGroundImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
@@ -417,7 +417,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetGraphBackGroundOpacity(lua_tonumber(L, 2));
         ReloadIfNotDelayedSimple();
@@ -428,7 +428,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
             { return 0; }
         m_project->SetPlotBackGroundColor(
             wxColour(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4)));
@@ -440,7 +440,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetGraphPlotBackGroundOpacity(lua_tonumber(L, 2));
         ReloadIfNotDelayedSimple();
@@ -451,7 +451,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetWatermark(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
@@ -462,7 +462,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetWatermarkLogoPath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
@@ -473,7 +473,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetStippleImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
@@ -484,7 +484,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->DisplayDropShadows(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayedSimple();
@@ -495,7 +495,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
             { return 0; }
         m_project->SetBarChartBarColor(
             wxColour(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4)));
@@ -507,7 +507,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetGraphBarOpacity(lua_tonumber(L, 2));
         ReloadIfNotDelayedSimple();
@@ -518,7 +518,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetGraphBarEffect(static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayedSimple();
@@ -529,7 +529,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetBarChartOrientation(static_cast<Wisteria::Orientation>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayedSimple();
@@ -541,7 +541,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetProjectLanguage(static_cast<readability::test_language>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayed();
@@ -560,7 +560,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         wxGetApp().GetAppOptions().SetReviewer(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayed();
@@ -579,7 +579,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetDocumentStorageMethod(static_cast<TextStorage>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayed();
@@ -598,7 +598,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetParagraphsParsingMethod(static_cast<ParagraphParse>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayed();
@@ -617,7 +617,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         if (lua_gettop(L) >= 2)
             { m_project->SpellCheckIgnoreProperNouns(int_to_bool(lua_toboolean(L, 2))); }
@@ -771,7 +771,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
@@ -811,7 +811,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
@@ -890,7 +890,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
@@ -944,7 +944,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
@@ -1016,7 +1016,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
@@ -1080,7 +1080,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 7, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 6, __WXFUNCTION__))
             { return 0; }
         wxString filteredText;
         m_project->FormatFilteredText(filteredText, int_to_bool(lua_toboolean(L, 3)),
@@ -1116,7 +1116,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
@@ -1157,7 +1157,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         auto view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
@@ -1186,7 +1186,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
@@ -1269,7 +1269,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
@@ -1328,7 +1328,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
@@ -1493,7 +1493,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         if (m_settingsDlg == nullptr)
             { m_settingsDlg = new ToolsOptionsDlg(wxGetApp().GetMainFrame(), m_project); }
@@ -1683,7 +1683,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_delayReloading = int_to_bool(lua_toboolean(L, 2));
         return 0;
@@ -1701,7 +1701,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
         if (m_project->GetFirstView() && m_project->GetFirstView()->GetFrame())
             {
@@ -1717,7 +1717,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetIncludeIncompleteSentencesIfLongerThanValue(lua_tonumber(L, 2));
         ReloadIfNotDelayed();
@@ -1729,7 +1729,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetInvalidSentenceMethod(
             static_cast<InvalidSentence>(static_cast<int>(lua_tonumber(L, 2))));
@@ -1742,7 +1742,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->AggressiveExclusion(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
@@ -1754,7 +1754,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->IgnoreTrailingCopyrightNoticeParagraphs(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
@@ -1766,7 +1766,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->IgnoreTrailingCitations(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
@@ -1779,7 +1779,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->IgnoreFileAddresses(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
@@ -1791,7 +1791,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->IgnoreNumerals(int_to_bool(lua_toboolean(L, 2)));
         return 0;
@@ -1802,7 +1802,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->IgnoreProperNouns(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
@@ -1815,7 +1815,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetExcludedPhrasesPath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         m_project->LoadExcludePhrases();
@@ -1828,7 +1828,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         const wxString exclusionTags(luaL_checkstring(L, 2), wxConvUTF8);
         m_project->GetExclusionBlockTags().clear();
@@ -1844,7 +1844,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetAppendedDocumentFilePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         m_project->LoadAppendedDocument();
@@ -1857,7 +1857,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
             { return 0; }
         m_project->SetBackGroundColor(
             wxColour(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4)));
@@ -1870,7 +1870,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetGraphBackGroundLinearGradient(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayedSimple();
@@ -1882,7 +1882,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetBackGroundImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
@@ -1894,7 +1894,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetGraphBackGroundOpacity(lua_tonumber(L, 2));
         ReloadIfNotDelayedSimple();
@@ -1906,7 +1906,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
             { return 0; }
         m_project->SetPlotBackGroundColor(
             wxColour(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4)));
@@ -1919,7 +1919,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetGraphPlotBackGroundOpacity(lua_tonumber(L, 2));
         ReloadIfNotDelayedSimple();
@@ -1931,7 +1931,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetWatermark(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
@@ -1943,7 +1943,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetWatermarkLogoPath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
@@ -1955,7 +1955,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetStippleImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
@@ -1967,7 +1967,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->DisplayDropShadows(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayedSimple();
@@ -1979,7 +1979,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetProjectLanguage(
             static_cast<readability::test_language>(static_cast<int>(lua_tonumber(L, 2))));
@@ -2001,7 +2001,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         wxGetApp().GetAppOptions().SetReviewer(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayed();
@@ -2022,7 +2022,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetDocumentStorageMethod(
             static_cast<TextStorage>(static_cast<int>(lua_tonumber(L, 2))));
@@ -2044,7 +2044,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetParagraphsParsingMethod(
             static_cast<ParagraphParse>(static_cast<int>(lua_tonumber(L, 2))));
@@ -2066,7 +2066,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetMinDocWordCountForBatch(static_cast<int>(lua_tonumber(L, 2)));
         ReloadIfNotDelayed();
@@ -2087,7 +2087,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         m_project->SetFilePathTruncationMode(
             static_cast<ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode>(
@@ -2110,7 +2110,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         if (lua_gettop(L) >= 2)
             { m_project->SpellCheckIgnoreProperNouns(int_to_bool(lua_toboolean(L, 2))); }
@@ -2236,7 +2236,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
 
         BatchProjectView* view = dynamic_cast<BatchProjectView*>(m_project->GetFirstView());
@@ -2307,7 +2307,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
             { return 0; }
 
         BatchProjectView* view = dynamic_cast<BatchProjectView*>(m_project->GetFirstView());
@@ -2392,7 +2392,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         auto view = dynamic_cast<BatchProjectView*>(m_project->GetFirstView());
         if (view)
@@ -2421,7 +2421,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
         BatchProjectView* view = dynamic_cast<BatchProjectView*>(m_project->GetFirstView());
@@ -2479,7 +2479,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         BatchProjectView* view = dynamic_cast<BatchProjectView*>(m_project->GetFirstView());
         if (view)
@@ -2529,7 +2529,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         if (m_settingsDlg == nullptr)
             { m_settingsDlg = new ToolsOptionsDlg(wxGetApp().GetMainFrame(), m_project); }
