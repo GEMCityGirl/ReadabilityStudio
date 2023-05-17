@@ -117,6 +117,7 @@ Anatollo
 ANCOVA
 Andalusia
 Andalusian
+Andes
 Andorra
 Andreas
 Andres
@@ -570,6 +571,7 @@ Coleridge
 Colima
 Colombia
 Colombian
+Colombine
 Colombo
 Coloradan
 Colorado

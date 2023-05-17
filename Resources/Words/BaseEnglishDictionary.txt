@@ -61610,7 +61610,7 @@ hams
 hamster
 hamster's
 hamsters
-Hamstring
+hamstring
 hamstring's
 hamstringing
 hamstrings
@@ -61623,8 +61623,6 @@ Hana
 Hana's
 Hanan
 Hanan's
-Hancock
-Hancock's
 hand
 hand's
 handbag

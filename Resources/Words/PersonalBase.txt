@@ -751,7 +751,6 @@ Anderea
 Anders
 Andersen
 Anderson
-Andes
 Andi
 Andie
 Andonarro
@@ -3308,7 +3307,6 @@ Colman
 Colo
 Coloma
 Colombia
-Colombine
 Colson
 Coltan
 Colten
@@ -6696,6 +6694,7 @@ Hammel
 Hammet
 Hammond
 Hampton
+Hancock
 Handcox
 Handel
 Handelsman
