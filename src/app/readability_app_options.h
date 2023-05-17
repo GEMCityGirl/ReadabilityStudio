@@ -1218,7 +1218,7 @@ private:
     /// @note This assumes the double is written in US format (and no thousands separator).
     [[nodiscard]]
     double TiXmlNodeToDouble(const tinyxml2::XMLNode* node, const wxString& tagToRead);
-    wxColour m_dolchConjunctionsColor;
+    wxColour m_dolchConjunctionsColor{ wxColour{ 255, 255, 0 } };
     wxColour m_dolchPrepositionsColor;
     wxColour m_dolchPronounsColor;
     wxColour m_dolchAdverbsColor;
@@ -1299,25 +1299,25 @@ private:
     int m_appWindowWidth{ 800 };
     int m_appWindowHeight{ 700 };
     wxString m_themeName{ _DT(L"System") };
-    wxColour m_controlBackgroundColor;
+    wxColour m_controlBackgroundColor{ *wxWHITE };
     // ribbon
-    wxColour m_ribbonActiveTabColor;
-    wxColour m_ribbonInactiveTabColor;
-    wxColour m_ribbonHoverColor;
-    wxColour m_ribbonHoverFontColor;
-    wxColour m_ribbonActiveFontColor;
-    wxColour m_ribbonInactiveFontColor;
+    wxColour m_ribbonActiveTabColor{ wxColour{ 245, 246, 247 } };
+    wxColour m_ribbonInactiveTabColor{ wxColour{ 254, 254, 254 } };
+    wxColour m_ribbonHoverColor{ wxColour{ 232, 239, 247 } };
+    wxColour m_ribbonHoverFontColor{ *wxBLACK };
+    wxColour m_ribbonActiveFontColor{ *wxBLACK };
+    wxColour m_ribbonInactiveFontColor{ *wxBLACK };
     // sidebar
-    wxColour m_sideBarBackgroundColor;
-    wxColour m_sideBarParentColor;
-    wxColour m_sideBarActiveColor;
-    wxColour m_sideBarActiveFontColor;
-    wxColour m_sideBarFontColor;
-    wxColour m_sideBarHoverColor;
-    wxColour m_sideBarHoverFontColor;
+    wxColour m_sideBarBackgroundColor{ wxColour{ 200, 211, 231 } }; // Serenity
+    wxColour m_sideBarParentColor{ wxColour{ 180, 189, 207 } }; // slightly darker
+    wxColour m_sideBarActiveColor{ wxColour{ L"#FDB759" } }; // orange
+    wxColour m_sideBarActiveFontColor{ *wxBLACK };
+    wxColour m_sideBarFontColor{ *wxBLACK };
+    wxColour m_sideBarHoverColor{ wxColour{ 253, 211, 155 } }; // slightly lighter
+    wxColour m_sideBarHoverFontColor{ *wxBLACK };
     // start page
-    wxColour m_startPageBackstageBackgroundColor;
-    wxColour m_startPageDetailBackgroundColor;
+    wxColour m_startPageBackstageBackgroundColor{ wxColour{ 145, 168, 208 } };
+    wxColour m_startPageDetailBackgroundColor{ *wxWHITE };
     // license and other startup dialogs
     bool m_licenseAccepted{ false };
     // last opened file locations

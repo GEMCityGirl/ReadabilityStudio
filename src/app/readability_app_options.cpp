@@ -11,7 +11,6 @@ using namespace Wisteria::Graphs;
 wxDECLARE_APP(ReadabilityApp);
 
 ReadabilityAppOptions::ReadabilityAppOptions() :
-    m_dolchConjunctionsColor(255, 255, 0),
     m_dolchPrepositionsColor(0, 245, 255),
     m_dolchPronounsColor(198, 226, 255),
     m_dolchAdverbsColor(0, 250, 154),
@@ -20,25 +19,6 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     m_dolchNounColor(255, 182, 193),
     m_textHighlight(TextHighlight::HighlightBackground),
     m_fontColor(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT)),
-    m_themeName(_DT(L"System")),
-    m_controlBackgroundColor(*wxWHITE),
-    m_ribbonActiveTabColor(wxColour(245, 246, 247)),
-    m_ribbonInactiveTabColor(wxColour(254, 254, 254)),
-    m_ribbonHoverColor(wxColour(232, 239, 247)),
-    m_ribbonHoverFontColor(*wxBLACK),
-    m_ribbonActiveFontColor(*wxBLACK),
-    m_ribbonInactiveFontColor(*wxBLACK),
-
-    m_sideBarBackgroundColor(wxColour(200, 211, 231)), // Serenity
-    m_sideBarParentColor(wxColour(180, 189, 207)), // slightly darker
-    m_sideBarActiveColor(L"#FDB759"), // orange
-    m_sideBarActiveFontColor(*wxBLACK),
-    m_sideBarFontColor(*wxBLACK),
-    m_sideBarHoverColor(wxColour(253, 211, 155)), // slightly lighter
-    m_sideBarHoverFontColor(*wxBLACK),
-
-    m_startPageBackstageBackgroundColor(wxColour(145,168,208)),
-    m_startPageDetailBackgroundColor(*wxWHITE),
     // graph information
     m_graphBackGroundColor(255,255,255),
     m_graphPlotBackGroundColor(255,255,255),
