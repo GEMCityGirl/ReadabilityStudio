@@ -1168,7 +1168,7 @@ namespace LuaScripting
                 { windowId = windowMappedId->second; }
 
             view->GetSideBar()->CollapseAll();
-            
+
             wxWindow* selWindow = view->GetWordsBreakdownView().
                     FindWindowById(windowId, wxCLASSINFO(FormattedTextCtrl));
             if (selWindow && selWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)))
