@@ -183,7 +183,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddoctypetechselected." .. FileEx
 ScreenshotLib.CloseStandardProjectWizard()
 
 -- Batch project wizard
-ScreenshotLib.ShowBatchProjectWizardTextSourcePage(ScreenshotProjectsFolder .. "Topics")
+ScreenshotLib.ShowBatchProjectWizardTextSourcePage(ScreenshotProjectsFolder .. "Topics2008")
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchselectfilesloaded." .. FileExtension)
 ScreenshotLib.BatchProjectWizardTextSourcePageSetFiles()
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchselectfiles." .. FileExtension)
