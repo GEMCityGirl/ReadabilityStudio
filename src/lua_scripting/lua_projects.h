@@ -29,6 +29,7 @@ namespace LuaScripting
         {
         ProjectDoc* m_project{ nullptr };
         ToolsOptionsDlg* m_settingsDlg{ nullptr };
+         [[nodiscard]]
         bool VerifyProjectIsOpen(const wxString& functionName) const
             {
             if (!m_project)
@@ -44,8 +45,9 @@ namespace LuaScripting
         /// @note This takes into account the boolean parameter in the front
         ///     passed to Lunar objects, so @c minParemeterCount should be the actual
         ///     expected number of parameters.
-        bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
-                                  const wxString& functionName)
+        [[nodiscard]]
+        static bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
+                                         const wxString& functionName)
             {
             wxASSERT(L);
             wxASSERT(minParemeterCount >= 0);
@@ -260,8 +262,9 @@ namespace LuaScripting
         /// @note This takes into account the boolean parameter in the front
         ///     passed to Lunar objects, so @c minParemeterCount should be the actual
         ///     expected number of parameters.
-        bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
-                                  const wxString& functionName)
+        [[nodiscard]]
+        static bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
+                                         const wxString& functionName)
             {
             wxASSERT(L);
             wxASSERT(minParemeterCount >= 0);
