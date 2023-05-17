@@ -1240,11 +1240,11 @@ private:
     SentencesBreakdownInfo m_sentencesBreakdownInfo;
 
     wxString m_optionsFile;
-    wxColour m_wordyPhraseHighlightColor;
+    wxColour m_wordyPhraseHighlightColor{ wxColour{ 0, 255, 255 } };
     TextHighlight m_textHighlight{ TextHighlight::HighlightBackground };
-    wxColour m_textHighlightColor;
-    wxColour m_excludedTextHighlightColor;
-    wxColour m_duplicateWordHighlightColor;
+    wxColour m_textHighlightColor{ wxColour{ 152, 251, 152 } };
+    wxColour m_excludedTextHighlightColor{ wxColour{ 175, 175, 175 } };
+    wxColour m_duplicateWordHighlightColor{ wxColour{ 255, 128, 128 } };
     wxColour m_fontColor;
     wxFont m_textViewFont;
     LongSentence m_longSentenceMethod{ LongSentence::LongerThanSpecifiedLength };
@@ -1371,7 +1371,7 @@ private:
     uint8_t m_graphBarOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_graphBarEffect{ Wisteria::BoxEffect::Glassy };
     wxString m_stippleImagePath;
-    wxColour m_graphBoxColor;
+    wxColour m_graphBoxColor{ wxColour{ 0,128,64 } };
     uint8_t m_graphBoxOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_graphBoxEffect{ Wisteria::BoxEffect::Glassy };
     // project settings

@@ -19,10 +19,6 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     m_dolchVerbColor(254, 208, 112),
     m_dolchNounColor(255, 182, 193),
     m_textHighlight(TextHighlight::HighlightBackground),
-    m_textHighlightColor(152, 251, 152),
-    m_excludedTextHighlightColor(175, 175, 175),
-    m_duplicateWordHighlightColor(255, 128, 128),
-    m_wordyPhraseHighlightColor(0, 255, 255),
     m_fontColor(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT)),
     m_themeName(_DT(L"System")),
     m_controlBackgroundColor(*wxWHITE),
@@ -58,7 +54,6 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     m_graphInvalidAreaColor(193,205,193),// honeydew
     m_histogramBarColor(182,164,204),// lavender
     m_barChartBarColor(107,183,196),// rain color
-    m_graphBoxColor(0,128,64),
     // XML file constants
     // project file tags
     XML_PROJECT_HEADER(_DT(L"oleander-readability-studio-project")),
