@@ -648,7 +648,7 @@ void ProjectView::OnListDblClick(wxListEvent& event)
         textId = event.GetId();
         }
 
-    // find the first occurrence of the selected word.
+    // Find the first occurrence of the selected word.
     // First, look in the word breakdown section for the respective test window,
     // then the grammar section and finally the Dolch section.
     wxWindow* theWindow = GetWordsBreakdownView().FindWindowById(textId, CLASSINFO(FormattedTextCtrl));
@@ -659,9 +659,10 @@ void ProjectView::OnListDblClick(wxListEvent& event)
     if (theWindow && theWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
         {
         FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(theWindow);
-        textWindow->SetSelection(0,0);
+        textWindow->SetSelection(0, 0);
         textWindow->FindText(findText, true, true, false);
-        // Search by label for custom tests (the list and report have the same ID); otherwise, search by ID.
+        // Search by label for custom word-list tests (the list and report have the same ID);
+        // otherwise, search by ID.
         GetSideBar()->SelectSubItem(
             (event.GetId() == textId) ?
             GetSideBar()->FindSubItem(textWindow->GetLabel()) :
@@ -2329,6 +2330,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         }
     else if (event.GetExtraLong() == SIDEBAR_WORDS_BREAKDOWN_SECTION_ID)
         {
+        // Note that word-list tests can have a list control and highlighted report
+        // with the same integral ID, so rely on searching by the ID and name of the window.
         m_activeWindow = GetWordsBreakdownView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());
         if (!GetActiveProjectWindow())
             { m_activeWindow = GetWordsBreakdownView().FindWindowById(event.GetInt()); }
