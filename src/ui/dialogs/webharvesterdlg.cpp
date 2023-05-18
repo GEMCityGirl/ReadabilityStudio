@@ -367,7 +367,6 @@ void WebHarvesterDlg::CreateControls()
 //-------------------------------------------------------------
 void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester)
     {
-    wxArrayString validExtensions;
     wxStringTokenizer tkz(ExtractExtensionsFromFileFilter(GetSelectedDocFilter()), L"*.;");
     wxString nextFileExt;
     while (tkz.HasMoreTokens() )
