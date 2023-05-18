@@ -806,7 +806,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     if (event.GetExtraLong() == SIDEBAR_READABILITY_SCORES_SECTION_ID)
         {
         m_activeWindow = GetScoresView().FindWindowById(event.GetInt());
-        wxASSERT_LEVEL_2(GetActiveProjectWindow());
+        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1062,7 +1062,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             {
             // some tests have two box plots
             m_activeWindow = GetBoxPlotView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());
-            wxASSERT_LEVEL_2(GetActiveProjectWindow());
+            wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
             if (GetActiveProjectWindow())
                 {
                 GetSplitter()->GetWindow2()->Hide();
@@ -1074,7 +1074,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             {
             // some tests have two histograms
             m_activeWindow = GetHistogramsView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());
-            wxASSERT_LEVEL_2(GetActiveProjectWindow());
+            wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
             if (GetActiveProjectWindow())
                 {
                 GetSplitter()->GetWindow2()->Hide();
@@ -1210,7 +1210,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_WORDS_BREAKDOWN_SECTION_ID)
         {
         m_activeWindow = GetWordsBreakdownView().FindWindowById(event.GetInt());
-        wxASSERT_LEVEL_2(GetActiveProjectWindow());
+        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1282,7 +1282,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID)
         {
         m_activeWindow = GetSentencesBreakdownView().FindWindowById(event.GetInt());
-        wxASSERT_LEVEL_2(GetActiveProjectWindow());
+        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1327,7 +1327,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonRibbonBar);
+                    wxASSERT(editButtonRibbonBar != nullptr);
 
                     editButtonRibbonBar->ClearButtons();
                     editButtonRibbonBar->AddHybridButton(wxID_COPY,
@@ -1358,7 +1358,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_GRAMMAR_SECTION_ID)
         {
         m_activeWindow = GetGrammarView().FindWindowById(event.GetInt());
-        wxASSERT_LEVEL_2(GetActiveProjectWindow());
+        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1405,7 +1405,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonRibbonBar);
+                    wxASSERT(editButtonRibbonBar != nullptr);
 
                     editButtonRibbonBar->ClearButtons();
                     editButtonRibbonBar->AddHybridButton(wxID_COPY,
@@ -1436,7 +1436,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_DOLCH_SECTION_ID)
         {
         m_activeWindow = GetDolchSightWordsView().FindWindowById(event.GetInt());
-        wxASSERT_LEVEL_2(GetActiveProjectWindow());
+        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1483,7 +1483,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonRibbonBar);
+                    wxASSERT(editButtonRibbonBar != nullptr);
 
                     editButtonRibbonBar->ClearButtons();
                     editButtonRibbonBar->AddHybridButton(wxID_COPY,
@@ -1510,7 +1510,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetInt() == SIDEBAR_WARNINGS_SECTION_ID)
         {
         m_activeWindow = GetWarningsView();
-        wxASSERT_LEVEL_2(GetActiveProjectWindow());
+        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1557,7 +1557,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonRibbonBar);
+                    wxASSERT(editButtonRibbonBar != nullptr);
 
                     editButtonRibbonBar->ClearButtons();
                     editButtonRibbonBar->AddHybridButton(wxID_COPY,
@@ -1619,7 +1619,7 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
     if (scoreListItem == wxNOT_FOUND)
         { return; }
     ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(GetScoresView().FindWindowById(ID_SCORE_LIST_PAGE_ID));
-    wxASSERT(list);
+    wxASSERT(list != nullptr);
     // shouldn't happen
     if (!list)
         { return; }
@@ -1649,7 +1649,7 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
     for (long i = 2/*skip document and description column*/; i < list->GetColumnCount(); ++i)
         {
         const wxString currentTestFullName = list->GetColumnName(i);
-        // we will want grade level columns, but not cloze or Index values
+        // we will want grade level columns, but not cloze or index values
         const wxString currentTest = StripGradeLevelsLabel(currentTestFullName);
         auto standardTestPos = doc->GetReadabilityTests().get_test(currentTest);
         if (standardTestPos.second)
@@ -2281,7 +2281,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
             }
         outputText += wxString::Format(
             L"\n\n%s<div class=\"report-section\"><a name=\"box-plots\"></a>%s</div>\n",
-            (hasSections ? pageBreak : wxEmptyString),
+            pageBreak,
             htmlEncode({ GetBoxPlotsLabel().wc_str(), GetBoxPlotsLabel().length() }, true));
         includeLeadingPageBreak = false; // reset for new subsection
         for (size_t i = 0; i < GetBoxPlotView().GetWindowCount(); ++i)
@@ -2412,7 +2412,10 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
     const wxString cssPath = filePath.GetPathWithSep() + L"style.css";
     if (wxFileName::FileExists(cssTemplatePath))
         {
-        wxCopyFile(cssTemplatePath, cssPath, true);
+        if (!wxCopyFile(cssTemplatePath, cssPath, true))
+            {
+            wxLogWarning(L"Failed to copy CSS file '%s' to '%s'.", cssTemplatePath, cssPath);
+            }
         }
 
     wxFileName(filePath.GetFullPath()).SetPermissions(wxS_DEFAULT);
