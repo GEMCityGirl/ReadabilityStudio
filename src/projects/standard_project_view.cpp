@@ -1431,7 +1431,7 @@ void ProjectView::UpdateStatistics()
         wxString gradeAverage(_(L"N/A")), ageAverage(_(L"N/A")), clozeAverage(_(L"N/A")),
                  gradeMedian(_(L"N/A")), ageMedian(_(L"N/A")), clozeMedian(_(L"N/A")),
                  gradeMode(_(L"N/A")), ageMode(_(L"N/A")), clozeMode(_(L"N/A")),
-                 gradeStdDev(_(L"N/A")), ageStdDev(_(L"N/A")), clozeStdDev(_(L"N/A"));
+                 ageStdDev(_(L"N/A")), clozeStdDev(_(L"N/A"));
         // get the average grade
         if (grades.size() > 0)
             {
@@ -1588,13 +1588,12 @@ void ProjectView::UpdateStatistics()
             GetReadabilityScoresList()->GetExplanations()[GetMedianLabel()] = explanationString;
 
             // get the standard deviation
-            if (grades.size() < 2)
-                { gradeStdDev = _(L"N/A"); }
-            else
-                {
-                gradeStdDev = wxNumberFormatter::ToString(statistics::standard_deviation(grades,
+            wxString gradeStdDev = ((grades.size() < 2) ?
+                _(L"N/A") :
+                wxNumberFormatter::ToString(statistics::standard_deviation(grades,
                                 doc->GetVarianceMethod() == VarianceMethod::SampleVariance), 1,
-                                wxNumberFormatter::Style::Style_NoTrailingZeroes); }
+                                wxNumberFormatter::Style::Style_NoTrailingZeroes));
+
             if (ages.size() < 2)
                 {
                 ageStdDev = _(L"N/A"); }
@@ -1839,7 +1838,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         event.GetInt() == READABILITY_GOALS_PAGE_ID)
         {
         m_activeWindow = GetReadabilityResultsView().FindWindowById(event.GetInt());
-        wxASSERT_LEVEL_2(GetActiveProjectWindow());
+        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1895,7 +1894,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                         }
 
                     auto editButtonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonBar);
+                    wxASSERT(editButtonBar != nullptr);
                     editButtonBar->ClearButtons();
                     if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(wxHtmlWindow)) )
                         {
@@ -2335,7 +2334,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         m_activeWindow = GetWordsBreakdownView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());
         if (!GetActiveProjectWindow())
             { m_activeWindow = GetWordsBreakdownView().FindWindowById(event.GetInt()); }
-        wxASSERT_LEVEL_2(GetActiveProjectWindow());
+        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2502,7 +2501,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_GRAMMAR_SECTION_ID)
         {
         m_activeWindow = GetGrammarView().FindWindowById(event.GetInt());
-        wxASSERT_LEVEL_2(GetActiveProjectWindow());
+        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2545,7 +2544,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                         _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonRibbonBar);
+                    wxASSERT(editButtonRibbonBar != nullptr);
                     editButtonRibbonBar->ClearButtons();
                     if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
                         {
@@ -2594,7 +2593,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_DOLCH_SECTION_ID)
         {
         m_activeWindow = GetDolchSightWordsView().FindWindowById(event.GetInt());
-        wxASSERT_LEVEL_2(GetActiveProjectWindow());
+        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2637,7 +2636,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                         _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonRibbonBar);
+                    wxASSERT(editButtonRibbonBar != nullptr);
                     editButtonRibbonBar->ClearButtons();
                     if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
                         {
@@ -3469,11 +3468,17 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
     const wxString cssPath = filePath.GetPathWithSep() + L"style.css";
     if (wxFileName::FileExists(cssTemplatePath))
         {
-        wxCopyFile(cssTemplatePath, cssPath, true);
-        // add text window styling to it
-        wxFile cssFile(cssPath, wxFile::OpenMode::write_append);
-        if (cssFile.IsOpened())
-            { cssFile.Write(textWindowStyleSection); }
+        if (!wxCopyFile(cssTemplatePath, cssPath, true))
+            {
+            wxLogWarning(L"Failed to copy CSS file '%s' to '%s'.", cssTemplatePath, cssPath);
+            }
+        else
+            {
+            // add text window styling to it
+            wxFile cssFile(cssPath, wxFile::OpenMode::write_append);
+            if (cssFile.IsOpened())
+                { cssFile.Write(textWindowStyleSection); }
+            }
         }
 
     wxFileName(filePath.GetFullPath()).SetPermissions(wxS_DEFAULT);
