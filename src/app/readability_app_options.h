@@ -1347,7 +1347,7 @@ private:
     wxFont m_bottomTitleFont;
     wxColour m_leftTitleFontColor{ *wxBLACK };
     wxFont m_leftTitleFont;
-    wxColour m_rightTitleFontColo{ *wxBLACK };
+    wxColour m_rightTitleFontColor{ *wxBLACK };
     wxFont m_rightTitleFont;
     // a "rainy" look for the readability graphs
     wxColour m_graphInvalidAreaColor{ wxColour{ 193, 205, 193 } }; // honeydew
