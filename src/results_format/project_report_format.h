@@ -81,7 +81,7 @@ public:
                                               ListCtrlExDataProviderBase* listData);
     /** @brief Formats a full sentence from a project's sentence information structure.
         @param project The project containing the sentence and words.
-        @param sentenceIter The iterator to the sentence structure.
+        @param sentence The iterator to the sentence structure.
         @param[out] punctStart The current position of the punctuation info for the document.
             This is updated (i.e., moved) by this function so that in the next call it can
             start off from the same place. This prevents having to scan through the entire
@@ -92,7 +92,7 @@ public:
     [[nodiscard]]
     static wxString FormatSentence(
         const BaseProject* project,
-        const grammar::sentence_info& sentenceIter,
+        const grammar::sentence_info& sentence,
         std::vector<punctuation::punctuation_mark>::const_iterator& punctStart,
         const std::vector<punctuation::punctuation_mark>::const_iterator& punctEnd);
     /// @returns The header color for a report table.
