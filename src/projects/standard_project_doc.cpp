@@ -7273,6 +7273,7 @@ void ProjectDoc::CalculateGraphData()
         const size_t sentenceIndex = sentenceIndicesColumn->GetValue(labelsPos - wordCountColumn->GetValues().cbegin());
         if (sentenceIndex < GetWords()->get_sentences().size())
             {
+            // cppcheck-suppress assertWithSideEffect
             wxASSERT_LEVEL_2((GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
                 (GetWords()->get_sentences()[sentenceIndex].get_word_count() == *labelsPos) :
                 (GetWords()->get_sentences()[sentenceIndex].get_valid_word_count() == *labelsPos));

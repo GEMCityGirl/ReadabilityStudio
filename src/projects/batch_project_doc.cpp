@@ -96,7 +96,9 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
         {
         if (GetMisspelledWordData()->GetItemValue(i, 1) == 0)
             {
+            // cppcheck-suppress assertWithSideEffect
             wxASSERT_LEVEL_2(GetMisspelledWordData()->GetItemValue(i, 2) == 0);
+            // cppcheck-suppress assertWithSideEffect
             wxASSERT_LEVEL_2_MSG(GetMisspelledWordData()->GetItemText(i, 3).empty(),
                 GetMisspelledWordData()->GetItemText(i, 3));
             GetMisspelledWordData()->DeleteItem(i);
@@ -5899,7 +5901,9 @@ void BatchProjectDoc::RemoveDocument(const wxString& docName)
     // also remove the filepath from the list of file paths.  These should already be synced up, so
     // we can remove it from the same position.  If they are not synced up, then something is wrong, so
     // then we would re-sync everything to fix it.
+    // cppcheck-suppress assertWithSideEffect
     wxASSERT_LEVEL_2(position < GetSourceFilesInfo().size());
+    // cppcheck-suppress assertWithSideEffect
     wxASSERT_LEVEL_2(CompareFilePaths(GetOriginalDocumentFilePath(position), docName) == 0);
     if (position < GetSourceFilesInfo().size() &&
         CompareFilePaths(GetOriginalDocumentFilePath(position), docName) == 0)

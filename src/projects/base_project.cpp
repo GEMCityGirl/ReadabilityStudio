@@ -100,7 +100,7 @@ bool BaseProject::LoadAppendedDocument()
 //-------------------------------------------------------
 void BaseProject::UpdateDocumentSettings()
     {
-    wxASSERT(GetWords());
+    wxASSERT_MSG(GetWords() != nullptr, L"Invalid word collection when updating document settings!");
     GetWords()->set_allowable_incomplete_sentence_size(GetIncludeIncompleteSentencesIfLongerThanValue());
     GetWords()->set_aggressive_exclusion(IsExcludingAggressively());
     GetWords()->ignore_trailing_copyright_notice_paragraphs(IsIgnoringTrailingCopyrightNoticeParagraphs());
