@@ -1739,7 +1739,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             // DC
             HTMLText += tableStart + formatHeader(_(L"Dale-Chall Unfamiliar Words"));
 
-            if (project->GetTotalHardWordsDaleChall() > 0 && project->IsDaleChallLikeTestIncluded())
+            if (project->GetTotalHardWordsDaleChall() > 0)
                 { currentLabel = _(L"Number of <a href=\"#DaleChallWords\">Dale-Chall</a> unfamiliar words:"); }
             else
                 { currentLabel = _(L"Number of Dale-Chall unfamiliar words:"); }
@@ -1808,8 +1808,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             {
             // Harris-Jacobson
             HTMLText += tableStart + formatHeader(_(L"Harris-Jacobson Unfamiliar Words"));
-            if (project->GetTotalHardWordsHarrisJacobson() > 0 &&
-                project->GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()))
+            if (project->GetTotalHardWordsHarrisJacobson() > 0)
                 {
                 currentLabel = _(L"Number of <a href=\"#HarrisJacobsonWords\">Harris-Jacobson</a> unfamiliar words:");
                 }
@@ -1870,8 +1869,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             {
             // Spache
             HTMLText += tableStart + formatHeader(_(L"Spache Unfamiliar Words"));
-            if (project->GetTotalHardWordsSpache() > 0 &&
-                project->GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()))
+            if (project->GetTotalHardWordsSpache() > 0)
                 { currentLabel = _(L"Number of <a href=\"#SpacheWords\">Spache</a> unfamiliar words:"); }
             else
                 { currentLabel = _(L"Number of Spache unfamiliar words:"); }
