@@ -186,7 +186,7 @@ wxString WebHarvester::DownloadFile(wxString& Url,
     const auto bookMarkIndex = Url.find(L'#', true);
     if (bookMarkIndex != wxString::npos)
         { Url.Truncate(bookMarkIndex); }
-    Url = Url.Strip(wxString::both);
+    Url.Trim(true).Trim(false);
     // encode any spaces
     Url.Replace(L" ", L"%20");
 
@@ -328,7 +328,7 @@ wxString WebHarvester::GetContentType(wxString& Url, long& responseCode)
     if (Url.empty() )
         { return wxString{}; }
     // encode any spaces
-    Url = Url.Strip(wxString::both);
+    Url.Trim(true).Trim(false);
     Url.Replace(L" ", L"%20");
 
     m_downloader.RequestResponse(Url);
@@ -342,6 +342,9 @@ wxString WebHarvester::GetContentType(wxString& Url, long& responseCode)
 wxString WebHarvester::CreateNewFileName(const wxString& filePath)
     {
     wxString dir, name, ext;
+    // False positive with cppcheck when using --library=wxwidgets,
+    // as this version of SplitPath returns void.
+    // cppcheck-suppress ignoredReturnValue
     wxFileName::SplitPath(filePath, &dir, &name, &ext);
     wxString newFilePath;
     for (size_t i = 0; i < 1'000; ++i)
@@ -428,7 +431,7 @@ bool WebHarvester::ReadWebPage(wxString& Url,
     const auto bookMarkIndex = Url.find(L'#', true);
     if (bookMarkIndex != wxString::npos)
         { Url.Truncate(bookMarkIndex); }
-    Url = Url.Strip(wxString::both);
+    Url.Trim(true).Trim(false);
     // encode any spaces
     Url.Replace(L" ", L"%20");
 
