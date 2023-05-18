@@ -236,7 +236,10 @@ public:
         {
         wxString begin;
         if (testName.EndsWith(_(" (pred. cloze scores)"), &begin))
-            { return begin.Strip(wxString::both); }
+            {
+            begin.Trim();
+            return begin;
+            }
         else
             { return testName; }
         }
@@ -248,7 +251,10 @@ public:
         {
         wxString begin;
         if (testName.EndsWith(_(" (index values)"), &begin))
-            { return begin.Strip(wxString::both); }
+            {
+            begin.Trim();
+            return begin;
+            }
         else
             { return testName; }
         }
@@ -260,7 +266,10 @@ public:
         {
         wxString begin;
         if (testName.EndsWith(_(" (grade levels)"), &begin))
-            { return begin.Strip(wxString::both); }
+            {
+            begin.Trim();
+            return begin;
+            }
         else
             { return testName; }
         }
