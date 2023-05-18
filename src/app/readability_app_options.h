@@ -1219,12 +1219,12 @@ private:
     [[nodiscard]]
     double TiXmlNodeToDouble(const tinyxml2::XMLNode* node, const wxString& tagToRead);
     wxColour m_dolchConjunctionsColor{ wxColour{ 255, 255, 0 } };
-    wxColour m_dolchPrepositionsColor;
-    wxColour m_dolchPronounsColor;
-    wxColour m_dolchAdverbsColor;
-    wxColour m_dolchAdjectivesColor;
-    wxColour m_dolchVerbColor;
-    wxColour m_dolchNounColor;
+    wxColour m_dolchPrepositionsColor{ wxColour{ 0, 245, 255 } };
+    wxColour m_dolchPronounsColor{ wxColour{ 198, 226, 255 } };
+    wxColour m_dolchAdverbsColor{ wxColour{ 0, 250, 154 }  };
+    wxColour m_dolchAdjectivesColor{ wxColour{ 221, 160, 221 } };
+    wxColour m_dolchVerbColor{ wxColour{ 254, 208, 112 } };
+    wxColour m_dolchNounColor{ wxColour{ 255, 182, 193 } };
     bool m_highlightDolchConjunctions{ true };
     bool m_highlightDolchPrepositions{ true };
     bool m_highlightDolchPronouns{ true };
@@ -1333,23 +1333,24 @@ private:
     wxString m_graphBackGroundImagePath;
     wxString m_watermark;
     wxString m_watermarkImg;
-    wxColour m_graphBackGroundColor;
-    wxColour m_graphPlotBackGroundColor;
+    wxColour m_graphBackGroundColor{ *wxWHITE };
+    wxColour m_graphPlotBackGroundColor{ *wxWHITE };
     uint8_t m_graphBackGroundOpacity{ wxALPHA_OPAQUE };
     uint8_t m_graphPlotBackGroundOpacity{ wxALPHA_TRANSPARENT };
-    wxColour m_xAxisFontColor;
+    wxColour m_xAxisFontColor{ *wxBLACK };
     wxFont m_xAxisFont;
-    wxColour m_yAxisFontColor;
+    wxColour m_yAxisFontColor{ *wxBLACK };
     wxFont m_yAxisFont;
-    wxColour m_topTitleFontColor;
+    wxColour m_topTitleFontColor{ *wxBLACK };
     wxFont m_topTitleFont;
-    wxColour m_bottomTitleFontColor;
+    wxColour m_bottomTitleFontColor{ *wxBLACK };
     wxFont m_bottomTitleFont;
-    wxColour m_leftTitleFontColor;
+    wxColour m_leftTitleFontColor{ *wxBLACK };
     wxFont m_leftTitleFont;
-    wxColour m_rightTitleFontColor;
+    wxColour m_rightTitleFontColo{ *wxBLACK };
     wxFont m_rightTitleFont;
-    wxColour m_graphInvalidAreaColor;
+    // a "rainy" look for the readability graphs
+    wxColour m_graphInvalidAreaColor{ wxColour{ 193, 205, 193 } }; // honeydew
     bool m_fleschChartConnectPoints{ true };
     bool m_useEnglishLabelsGermanLix{ false };
     // Histogram options
@@ -1361,12 +1362,12 @@ private:
         { Wisteria::RoundingMethod::RoundDown };
     Wisteria::Graphs::Histogram::IntervalDisplay m_histrogramIntervalDisplay
         { Wisteria::Graphs::Histogram::IntervalDisplay::Cutpoints };
-    wxColour m_histogramBarColor;
+    wxColour m_histogramBarColor{ wxColour{ 182, 164, 204 } }; // lavender
     uint8_t m_histogramBarOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_histogramBarEffect{ Wisteria::BoxEffect::Glassy };
     // Bar chart options
     bool m_barDisplayLabels{ true };
-    wxColour m_barChartBarColor;
+    wxColour m_barChartBarColor{ wxColour{ 107, 183, 196 } }; // rain color
     Wisteria::Orientation m_barChartOrientation{ Wisteria::Orientation::Horizontal };
     uint8_t m_graphBarOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_graphBarEffect{ Wisteria::BoxEffect::Glassy };

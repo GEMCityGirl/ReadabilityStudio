@@ -331,7 +331,16 @@ BaseProject::BaseProject() :
     m_language(wxGetApp().GetAppOptions().GetProjectLanguage()),
     m_reviewer(wxGetApp().GetAppOptions().GetReviewer()),
     m_status(wxGetApp().GetAppOptions().GetStatus()),
-    m_appendedDocumentFilePath(wxGetApp().GetAppOptions().GetAppendedDocumentFilePath()),
+
+    // grammar
+    m_spellcheck_ignore_proper_nouns(wxGetApp().GetAppOptions().SpellCheckIsIgnoringProperNouns()),
+    m_spellcheck_ignore_uppercased(wxGetApp().GetAppOptions().SpellCheckIsIgnoringUppercased()),
+    m_spellcheck_ignore_numerals(wxGetApp().GetAppOptions().SpellCheckIsIgnoringNumerals()),
+    m_spellcheck_ignore_file_addresses(wxGetApp().GetAppOptions().SpellCheckIsIgnoringFileAddresses()),
+    m_spellcheck_ignore_programmer_code(wxGetApp().GetAppOptions().SpellCheckIsIgnoringProgrammerCode()),
+    m_allow_colloquialisms(wxGetApp().GetAppOptions().SpellCheckIsAllowingColloquialisms()),
+    m_spellcheck_ignore_social_media_tags(wxGetApp().GetAppOptions().SpellCheckIsIgnoringSocialMediaTags()),
+
     // analysis
     m_ignoreBlankLinesForParagraphsParser(wxGetApp().GetAppOptions().GetIgnoreBlankLinesForParagraphsParser()),
     m_ignoreIndentingForParagraphsParser(wxGetApp().GetAppOptions().GetIgnoreIndentingForParagraphsParser()),
@@ -343,14 +352,6 @@ BaseProject::BaseProject() :
     m_ignoreNumerals(wxGetApp().GetAppOptions().IsIgnoringNumerals()),
     m_ignoreProperNouns(wxGetApp().GetAppOptions().IsIgnoringProperNouns()),
     m_includeExcludedPhraseFirstOccurrence(wxGetApp().GetAppOptions().IsIncludingExcludedPhraseFirstOccurrence()),
-    // grammar
-    m_spellcheck_ignore_proper_nouns(wxGetApp().GetAppOptions().SpellCheckIsIgnoringProperNouns()),
-    m_spellcheck_ignore_uppercased(wxGetApp().GetAppOptions().SpellCheckIsIgnoringUppercased()),
-    m_spellcheck_ignore_numerals(wxGetApp().GetAppOptions().SpellCheckIsIgnoringNumerals()),
-    m_spellcheck_ignore_file_addresses(wxGetApp().GetAppOptions().SpellCheckIsIgnoringFileAddresses()),
-    m_spellcheck_ignore_programmer_code(wxGetApp().GetAppOptions().SpellCheckIsIgnoringProgrammerCode()),
-    m_allow_colloquialisms(wxGetApp().GetAppOptions().SpellCheckIsAllowingColloquialisms()),
-    m_spellcheck_ignore_social_media_tags(wxGetApp().GetAppOptions().SpellCheckIsIgnoringSocialMediaTags()),
 
     m_fogUseSentenceUnits(wxGetApp().GetAppOptions().FogUseSentenceUnits()),
     m_includeStockerCatholicDCSupplement(wxGetApp().GetAppOptions().IsIncludingStockerCatholicSupplement()),
@@ -361,7 +362,8 @@ BaseProject::BaseProject() :
     m_wordsBreakdownInfo(wxGetApp().GetAppOptions().GetWordsBreakdownInfo()),
     m_sentencesBreakdownInfo(wxGetApp().GetAppOptions().GetSentencesBreakdownInfo()),
     m_excludedPhrasesPath(wxGetApp().GetAppOptions().GetExcludedPhrasesPath()),
-    m_exclusionBlockTags(wxGetApp().GetAppOptions().GetExclusionBlockTags())
+    m_exclusionBlockTags(wxGetApp().GetAppOptions().GetExclusionBlockTags()),
+    m_appendedDocumentFilePath(wxGetApp().GetAppOptions().GetAppendedDocumentFilePath())
     {
     ResetStandardReadabilityTests(m_readabilityTests);
     // bind the standard test functions with their respective IDs

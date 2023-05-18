@@ -11,29 +11,8 @@ using namespace Wisteria::Graphs;
 wxDECLARE_APP(ReadabilityApp);
 
 ReadabilityAppOptions::ReadabilityAppOptions() :
-    m_dolchPrepositionsColor(0, 245, 255),
-    m_dolchPronounsColor(198, 226, 255),
-    m_dolchAdverbsColor(0, 250, 154),
-    m_dolchAdjectivesColor(221, 160, 221),
-    m_dolchVerbColor(254, 208, 112),
-    m_dolchNounColor(255, 182, 193),
     m_textHighlight(TextHighlight::HighlightBackground),
     m_fontColor(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT)),
-    // graph information
-    m_graphBackGroundColor(255,255,255),
-    m_graphPlotBackGroundColor(255,255,255),
-    m_graphBackGroundOpacity(wxALPHA_OPAQUE),
-    m_graphPlotBackGroundOpacity(wxALPHA_TRANSPARENT),
-    m_xAxisFontColor(0, 0, 0),
-    m_yAxisFontColor(0, 0, 0),
-    m_topTitleFontColor(0, 0, 0),
-    m_bottomTitleFontColor(0, 0, 0),
-    m_leftTitleFontColor(0, 0, 0),
-    m_rightTitleFontColor(0, 0, 0),
-    // a "rainy" look for the readability graphs
-    m_graphInvalidAreaColor(193,205,193),// honeydew
-    m_histogramBarColor(182,164,204),// lavender
-    m_barChartBarColor(107,183,196),// rain color
     // XML file constants
     // project file tags
     XML_PROJECT_HEADER(_DT(L"oleander-readability-studio-project")),
