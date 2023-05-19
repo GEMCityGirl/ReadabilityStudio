@@ -4938,18 +4938,23 @@ void ToolsOptionsDlg::CreateControls()
         {
         const ProjectView* view = dynamic_cast<const ProjectView*>(m_readabilityProjectDoc->GetFirstView());
         const auto selectedID = view->GetSideBar()->GetSelectedFolderId();
-        if (typeid(*view->GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-            (typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                typeid(PolygonReadabilityGraph) ||
-             typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                typeid(FleschChart) ||
-             typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                typeid(LixGauge) ||
-             typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                typeid(LixGaugeGerman) ||
-             typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                typeid(CrawfordGraph)) )
-            { SelectPage(GRAPH_READABILITY_GRAPHS_PAGE); }
+        if (typeid(*view->GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+            {
+            const auto& graphType =
+                typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0));
+            if (graphType == typeid(FleschChart) ||
+                graphType == typeid(LixGauge) ||
+                graphType == typeid(LixGaugeGerman) ||
+                graphType == typeid(CrawfordGraph) ||
+                graphType == typeid(DanielsonBryan2Plot) ||
+                graphType == typeid(FraseGraph) ||
+                graphType == typeid(FryGraph) ||
+                graphType == typeid(RaygorGraph) ||
+                graphType == typeid(SchwartzGraph) )
+                { SelectPage(GRAPH_READABILITY_GRAPHS_PAGE); }
+            else
+                { SelectPage(GRAPH_GENERAL_PAGE); }
+            }
         else if (!selectedID.has_value())
             { SelectPage(SCORES_DISPLAY_PAGE); }
         else if (selectedID == BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID)
@@ -4971,20 +4976,23 @@ void ToolsOptionsDlg::CreateControls()
         {
         const BatchProjectView* view = dynamic_cast<const BatchProjectView*>(m_readabilityProjectDoc->GetFirstView());
         const auto selectedID = view->GetSideBar()->GetSelectedFolderId();
-        if (typeid(*view->GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-            (typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                typeid(PolygonReadabilityGraph) ||
-             typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                typeid(FleschChart) ||
-             typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                typeid(LixGaugeGerman) ||
-             typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                typeid(LixGauge) ||
-             typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                typeid(DanielsonBryan2Plot) ||
-             typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                typeid(CrawfordGraph)) )
-            { SelectPage(GRAPH_READABILITY_GRAPHS_PAGE); }
+        if (typeid(*view->GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+            {
+            const auto& graphType =
+                typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0));
+            if (graphType == typeid(FleschChart) ||
+                graphType == typeid(LixGauge) ||
+                graphType == typeid(LixGaugeGerman) ||
+                graphType == typeid(CrawfordGraph) ||
+                graphType == typeid(DanielsonBryan2Plot) ||
+                graphType == typeid(FraseGraph) ||
+                graphType == typeid(FryGraph) ||
+                graphType == typeid(RaygorGraph) ||
+                graphType == typeid(SchwartzGraph) )
+                { SelectPage(GRAPH_READABILITY_GRAPHS_PAGE); }
+            else
+                { SelectPage(GRAPH_GENERAL_PAGE); }
+            }
         else if (!selectedID.has_value())
             { SelectPage(SCORES_DISPLAY_PAGE); }
         else if (selectedID == BatchProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID)
