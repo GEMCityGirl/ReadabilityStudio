@@ -1,5 +1,7 @@
 dofile(Application.GetLuaConstantsPath())
 
+ScreenshotLib.ShowScriptEditor(false)
+
 -- input
 ScreenshotProjectsFolder = Application.GetAbsoluteFilePath(
             Debug.GetScriptFolderPath(),
@@ -8,9 +10,6 @@ ScreenshotProjectsFolder = Application.GetAbsoluteFilePath(
 -- output
 ImagePath = Debug.GetScriptFolderPath().."images/"
 FileExtension = "bmp"
-
--- have to hard code this for now
-ImageMagickPath="C:\\Program Files\\ImageMagick\\magick.exe"
 
 function wait(seconds)
   local start = os.time()
@@ -1018,6 +1017,7 @@ sp = StandardProject(ScreenshotProjectsFolder .. "Ubuntu Desktop.rsp")
 sp:ScrollTextWindow(HighlightedReportType.ThreePlusSyllableHighlightedWords, 2500)
 ScreenshotLib.SnapScreenshot(ImagePath .. "incompletesentences." .. FileExtension)
 
+sp:DelayReloading(true) -- prevent reloading website in case we are offline
 sp:SetDocumentStorageMethod(TextStorage.NoEmbedText)
 sp:OpenProperties(OptionsPageType.ProjectSettings)
 ScreenshotLib.SnapScreenshot(ImagePath .. "reloadwebpage." .. FileExtension)
@@ -1035,12 +1035,7 @@ bitmaps = Application.FindFiles(ImagePath, "*." .. FileExtension)
 
 for i,v in ipairs(bitmaps)
 do
-    command = "\"\"" .. ImageMagickPath .. "\" convert \"" ..
-              v .. "\" -resize 1000^> \"" .. string.gsub(v,"." .. FileExtension,".png") .. "\"\""
-    os.execute(command)
-    os.remove(v)
+    ScreenshotLib.ConvertImage(v, 1000, 1000)
 end
 
--- Just for reference now. Nice way to add shadows to images, but looks bad with dark mode help
--- magick.exe convert DB2Plot.png ( +clone -background black -shadow 60x5+10+10 ) +swap -background white -layers merge +repage DB2Plot.png
--- DB2Plot.png ( +clone -background black -shadow 60x5+10+10 ) +swap -background white -layers merge +repage DB2Plot.png
+ScreenshotLib.ShowScriptEditor()
