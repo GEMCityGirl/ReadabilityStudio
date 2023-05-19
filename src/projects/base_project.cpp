@@ -2526,7 +2526,7 @@ void BaseProject::LoadHardWords()
             { m_threePlusSyllableWords = std::make_shared<Wisteria::Data::Dataset>(); }
         m_threePlusSyllableWords->Clear();
         m_threePlusSyllableWords->AddCategoricalColumn(GetWordsColumnName());
-        m_threePlusSyllableWords->AddContinuousColumn(GetWordsCountsSColumnName());
+        m_threePlusSyllableWords->AddContinuousColumn(GetWordsCountsColumnName());
         wxASSERT_MSG(m_threePlusSyllableWords->GetCategoricalColumns().size() == 1,
             L"Hard word dataset invalid!");
         wxASSERT_MSG(m_threePlusSyllableWords->GetRowCount() == 0,
@@ -2535,7 +2535,7 @@ void BaseProject::LoadHardWords()
         auto hardWordsColumn =
             m_threePlusSyllableWords->GetCategoricalColumn(GetWordsColumnName());
         auto hardWordsFreqColumn =
-            m_threePlusSyllableWords->GetContinuousColumn(GetWordsCountsSColumnName());
+            m_threePlusSyllableWords->GetContinuousColumn(GetWordsCountsColumnName());
 
         wxString allValuesStr;
         for (const auto& [hardWordStem, hardWordFreqInfo] : importantWordsStemmedWithCounts.get_data())
@@ -2545,7 +2545,7 @@ void BaseProject::LoadHardWords()
             auto mostFrequentWordVariation =
                 std::max_element(hardWordFreqInfo.first.get_data().cbegin(),
                     hardWordFreqInfo.first.get_data().cend(),
-                    [](const auto lhv, const auto rhv) noexcept
+                    [](const auto& lhv, const auto& rhv) noexcept
                     { return lhv.second < rhv.second; });
             wxASSERT_MSG(mostFrequentWordVariation != hardWordFreqInfo.first.get_data().cend(),
                 L"Empty word list for stemmed word?!");

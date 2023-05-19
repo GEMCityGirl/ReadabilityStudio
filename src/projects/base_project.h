@@ -24,7 +24,7 @@
 #include <memory>
 #include <functional>
 #include <algorithm>
-#include "../../../SRC/Licensing/LicenseAdmin.h"
+#include "../../../Licensing/LicenseAdmin.h"
 #include "../tinyxml2/tinyxml2.h"
 #include "../readability/english_readability.h"
 #include "../readability/spanish_readability.h"
@@ -1628,7 +1628,7 @@ protected:
     static wxString GetWordsColumnName()
         { return L"WORDS"; }
     [[nodiscard]]
-    static wxString GetWordsCountsSColumnName()
+    static wxString GetWordsCountsColumnName()
         { return L"WORD_COUNTS"; }
 
     std::shared_ptr<Wisteria::Data::Dataset> m_threePlusSyllableWords
