@@ -21,7 +21,7 @@
 #include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/thumbnail.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
-#include "../../../../SRC/Licensing/LicenseAdmin.h"
+#include "../../../../Licensing/LicenseAdmin.h"
 #include "doc_group_select_dlg.h"
 #include "webharvesterdlg.h"
 

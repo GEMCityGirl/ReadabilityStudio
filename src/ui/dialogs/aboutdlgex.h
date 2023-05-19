@@ -22,7 +22,7 @@
 #include <wx/utils.h>
 #include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
-#include "../../../../SRC/Licensing/LicenseAdmin.h"
+#include "../../../../Licensing/LicenseAdmin.h"
 
 /// @brief Enhanced About dialog for an application.
 class AboutDialogEx final : public wxDialog
