@@ -19,12 +19,14 @@
 /// @internal This is documented in the ReadabilityStudioAPI help.
 namespace LuaScripting
     {
+    int ShowScriptEditor(lua_State *L);
     int SnapScreenshot(lua_State *L);
     int SnapScreenshotOfPropertGrid(lua_State *L);
     int SnapScreenshotOfTextWindow(lua_State *L);
     int SnapScreenshotOfListControl(lua_State *L);
     int SnapScreenshotOfRibbon(lua_State *L);
     int HighlightScreenshot(lua_State *L);
+    int ConvertImage(lua_State *L);
     int ShowStandardProjectWizardLanguagePage(lua_State*);
     int ShowStandardProjectWizardTextSourcePage(lua_State *L);
     int ShowStandardProjectWizardTextFromFilePage(lua_State *L);
@@ -148,6 +150,8 @@ namespace LuaScripting
             { "SnapScreenshotOfListControl", SnapScreenshotOfListControl },
             { "SnapScreenshotOfRibbon", SnapScreenshotOfRibbon },
             { "HighlightScreenshot", HighlightScreenshot },
+            { "ConvertImage", ConvertImage },
+            { "ShowScriptEditor", ShowScriptEditor },
             { nullptr, nullptr }
         };
     }

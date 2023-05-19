@@ -49,6 +49,31 @@ namespace LuaScripting
     ListCtrlSortDlg* LuaListCtrlSortDlg = nullptr;
     EditWordListDlg* LuaEditWordListDlg = nullptr;
     DocGroupSelectDlg* LuaDocGroupSelectDlg = nullptr;
+    
+    //-------------------------------------------------------------
+    int ShowScriptEditor(lua_State *L)
+        {
+        if (wxGetApp().GetMainFrameEx()->GetLuaEditor())
+            {
+            wxGetApp().GetMainFrameEx()->GetLuaEditor()->Show(
+            lua_gettop(L) > 0 ?
+            lua_toboolean(L, 1) :
+            true);
+            }
+        return 1;
+        }
+    
+    //-------------------------------------------------------------
+    int ConvertImage(lua_State *L)
+        {
+        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+            { return 0; }
+
+        lua_pushboolean(L,
+            Screenshot::ConvertImageToPng(wxString{ luaL_checkstring(L, 1), wxConvUTF8 },
+                wxSize(lua_tonumber(L, 2), lua_tonumber(L, 3)), true));
+        return 1;
+        }
 
     //-------------------------------------------------------------
     int SnapScreenshot(lua_State *L)
