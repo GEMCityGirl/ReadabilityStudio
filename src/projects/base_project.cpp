@@ -2583,6 +2583,7 @@ void BaseProject::LoadHardWords()
                     { return lhv.second < rhv.second; });
             wxASSERT_MSG(mostFrequentWordVariation != hardWordFreqInfo.first.get_data().cend(),
                 L"Empty word list for stemmed word?!");
+            // add the next word to the dataset's string table
             const auto nextKey = hardWordsColumn->GetNextKey();
             if (mostFrequentWordVariation != hardWordFreqInfo.first.get_data().cend())
                 {
@@ -2596,6 +2597,8 @@ void BaseProject::LoadHardWords()
                 hardWordsColumn->GetStringTable().insert(
                     std::make_pair(nextKey, hardWordStem.c_str()));
                 }
+            // add the new string table ID (i.e., the current word) and
+            // respective frequency to the current row
             hardWordsColumn->SetValue(wordCloudWordsCount, nextKey);
             hardWordsFreqColumn->SetValue(wordCloudWordsCount++, hardWordFreqInfo.second);
             }
