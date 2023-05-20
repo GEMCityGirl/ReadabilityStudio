@@ -159,16 +159,21 @@ public:
         TransferDataToWindow();
         UpdateTestSelectionMethodUI();
         }
-    [[nodiscard]] bool IsDocumentTypeSelected() const noexcept
+    [[nodiscard]]
+    bool IsDocumentTypeSelected() const noexcept
         { return m_testSelectionMethod == 0; }
-    [[nodiscard]] bool IsIndustrySelected() const noexcept
+    [[nodiscard]]
+    bool IsIndustrySelected() const noexcept
         { return m_testSelectionMethod == 1; }
-    [[nodiscard]] bool IsManualTestSelected() const noexcept
+    [[nodiscard]]
+    bool IsManualTestSelected() const noexcept
         { return m_testSelectionMethod == 2; }
-    [[nodiscard]] bool IsTestBundleSelected() const noexcept
+    [[nodiscard]]
+    bool IsTestBundleSelected() const noexcept
         { return m_testSelectionMethod == 3; }
     // document type
-    [[nodiscard]] readability::document_classification GetSelectedDocumentType() const noexcept
+    [[nodiscard]]
+    readability::document_classification GetSelectedDocumentType() const noexcept
         { return static_cast<readability::document_classification>(m_selectedDocType); }
     void SelectDocumentType(const readability::document_classification docType)
         {

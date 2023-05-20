@@ -30,15 +30,18 @@ public:
         { m_statItemsToInclude.set(); }
     void Set(const wxString& val)
         { m_statItemsToInclude = std::bitset<64>(val.ToStdString()); }
-    [[nodiscard]] wxString ToString() const
+    [[nodiscard]]
+    wxString ToString() const
         { return wxString{ m_statItemsToInclude.to_string() }; }
     void EnableReport(const bool enable)
         { m_statItemsToInclude.set(0,enable); }
-    [[nodiscard]] bool IsReportEnabled() const
+    [[nodiscard]]
+    bool IsReportEnabled() const
         { return m_statItemsToInclude[0]; }
     void EnableTable(const bool enable)
         { m_statItemsToInclude.set(1,enable); }
-    [[nodiscard]] bool IsTableEnabled() const
+    [[nodiscard]]
+    bool IsTableEnabled() const
         { return m_statItemsToInclude[1]; }
 private:
     std::bitset<64> m_statItemsToInclude{ 0 };
@@ -224,59 +227,73 @@ public:
         { m_wordsBreakdownItemsToInclude.set(); }
     void Set(const wxString& val)
         { m_wordsBreakdownItemsToInclude = std::bitset<64>(val.ToStdString()); }
-    [[nodiscard]] wxString ToString() const
+    [[nodiscard]]
+    wxString ToString() const
         { return wxString{ m_wordsBreakdownItemsToInclude.to_string() }; }
     void EnableWordBarchart(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(0,enable); }
-    [[nodiscard]] bool IsWordBarchartEnabled() const
+    [[nodiscard]]
+    bool IsWordBarchartEnabled() const
         { return m_wordsBreakdownItemsToInclude[0]; }
     void EnableSyllableHistogram(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(1,enable); }
-    [[nodiscard]] bool IsSyllableHistogramEnabled() const
+    [[nodiscard]]
+    bool IsSyllableHistogramEnabled() const
         { return m_wordsBreakdownItemsToInclude[1]; }
     void Enable3PlusSyllables(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(2,enable); }
-    [[nodiscard]] bool Is3PlusSyllablesEnabled() const
+    [[nodiscard]]
+    bool Is3PlusSyllablesEnabled() const
         { return m_wordsBreakdownItemsToInclude[2]; }
     void Enable6PlusCharacter(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(3,enable); }
-    [[nodiscard]] bool Is6PlusCharacterEnabled() const
+    [[nodiscard]]
+    bool Is6PlusCharacterEnabled() const
         { return m_wordsBreakdownItemsToInclude[3]; }
     void EnableDCUnfamiliar(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(4,enable); }
-    [[nodiscard]] bool IsDCUnfamiliarEnabled() const
+    [[nodiscard]]
+    bool IsDCUnfamiliarEnabled() const
         { return m_wordsBreakdownItemsToInclude[4]; }
     void EnableSpacheUnfamiliar(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(5,enable); }
-    [[nodiscard]] bool IsSpacheUnfamiliarEnabled() const
+    [[nodiscard]]
+    bool IsSpacheUnfamiliarEnabled() const
         { return m_wordsBreakdownItemsToInclude[5]; }
     void EnableHarrisJacobsonUnfamiliar(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(6,enable); }
-    [[nodiscard]] bool IsHarrisJacobsonUnfamiliarEnabled() const
+    [[nodiscard]]
+    bool IsHarrisJacobsonUnfamiliarEnabled() const
         { return m_wordsBreakdownItemsToInclude[6]; }
     void EnableCustomTestsUnfamiliar(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(7,enable); }
-    [[nodiscard]] bool IsCustomTestsUnfamiliarEnabled() const
+    [[nodiscard]]
+    bool IsCustomTestsUnfamiliarEnabled() const
         { return m_wordsBreakdownItemsToInclude[7]; }
     void EnableAllWords(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(8,enable); }
-    [[nodiscard]] bool IsAllWordsEnabled() const
+    [[nodiscard]]
+    bool IsAllWordsEnabled() const
         { return m_wordsBreakdownItemsToInclude[8]; }
     void EnableAllWordsCondensed(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(9,enable); }
-    [[nodiscard]] bool IsAllWordsCondensedEnabled() const
+    [[nodiscard]]
+    bool IsAllWordsCondensedEnabled() const
         { return m_wordsBreakdownItemsToInclude[9]; }
     void EnableProperNouns(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(10,enable); }
-    [[nodiscard]] bool IsProperNounsEnabled() const
+    [[nodiscard]]
+    bool IsProperNounsEnabled() const
         { return m_wordsBreakdownItemsToInclude[10]; }
     void EnableContractions(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(11,enable); }
-    [[nodiscard]] bool IsContractionsEnabled() const
+    [[nodiscard]]
+    bool IsContractionsEnabled() const
         { return m_wordsBreakdownItemsToInclude[11]; }
     void EnableDifficultWordCloud(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(12, enable); }
-    [[nodiscard]] bool IsDifficultWordCloudEnabled() const
+    [[nodiscard]]
+    bool IsDifficultWordCloudEnabled() const
         { return m_wordsBreakdownItemsToInclude[12]; }
 private:
     std::bitset<64> m_wordsBreakdownItemsToInclude{ 0 };

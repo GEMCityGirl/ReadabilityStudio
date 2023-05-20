@@ -141,7 +141,12 @@ private:
 class word_list_with_replacements
     {
 public:
+    /// @private
     word_list_with_replacements() = default;
+    /// @private
+    word_list_with_replacements(const word_list&) = delete;
+    /// @private
+    word_list_with_replacements& operator=(const word_list_with_replacements&) = delete;
     /// @private
     using word_type = traits::case_insensitive_wstring_ex;
 
@@ -207,10 +212,6 @@ public:
     void clear() noexcept
         { m_word_map.clear(); }
 private:
-    word_list_with_replacements(const word_list&) = delete;
-    word_list_with_replacements(word_list&&) = delete;
-    word_list_with_replacements& operator=(const word_list_with_replacements&) = delete;
-    word_list_with_replacements& operator=(word_list_with_replacements&&) = delete;
     std::map<word_type,word_type> m_word_map;
     };
 

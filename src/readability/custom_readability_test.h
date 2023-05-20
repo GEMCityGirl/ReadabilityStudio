@@ -389,7 +389,8 @@ namespace readability
         ///This version overrides the test's current proper noun and numeric logic for special situations.
         ///Note that the proper flag is just true or false for simplicity, so "count first occurrence" option is not
         ///available here.
-        [[nodiscard]] inline bool is_word_familiar(const word_typeT& theWord,
+        [[nodiscard]] 
+        inline bool is_word_familiar(const word_typeT& theWord,
                                      const bool treat_proper_as_familiar,
                                      const bool treat_numeric_as_familiar) const
             {
@@ -431,7 +432,8 @@ namespace readability
 
         /// @returns Whether the test is included in something
         ///     (currently just used for test bundles).
-        [[nodiscard]] bool is_included() const noexcept
+        [[nodiscard]]
+        bool is_included() const noexcept
             { return m_included; }
         /// @returns Whether to include the test in a test bundle (or any other need).
         /// @param inc @c true to include the test, false to remove.

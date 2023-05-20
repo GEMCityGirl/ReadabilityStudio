@@ -410,7 +410,8 @@ namespace grammar
             @param vowel_block_size How many vowels are in this block to review.
             @param is_first_vowel_block_in_word Whether this is the first block of vowels encountered in @c word.
             @returns The number of syllables in this vowel block.*/
-        [[nodiscard]] size_t get_vowel_block_syllable_count(const wchar_t* word,
+        [[nodiscard]]
+        size_t get_vowel_block_syllable_count(const wchar_t* word,
                                           const size_t position, const size_t vowel_block_size,
                                           const bool is_first_vowel_block_in_word) const noexcept
             {

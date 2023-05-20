@@ -65,7 +65,8 @@ public:
     static const wxString FLESCH_KINCAID()
         { return wxString(_DT(L"flesch-kincaid-test")); }
     /// @returns FRY key.
-    [[nodiscard]] static const wxString FRY()
+    [[nodiscard]]
+    static const wxString FRY()
         { return wxString(_DT(L"fry-test")); }
     /// @returns GUNNING_FOG key.
     [[nodiscard]]
@@ -237,7 +238,8 @@ public:
     static const wxString SCHWARTZ()
         { return wxString(_DT(L"schwartz")); }
     /// @returns ELF key.
-    [[nodiscard]] static const wxString ELF()
+    [[nodiscard]]
+    static const wxString ELF()
         { return wxString(_DT(L"easy-listening-formula")); }
     /// @returns DANIELSON_BRYAN_1 key.
     [[nodiscard]]
@@ -457,7 +459,8 @@ private:
     [[nodiscard]]
     static const wxString GetHighlightEnd()
         { return L"</span></span>"; }
-    [[nodiscard]] static wxString GetUSGradeScaleLabel(size_t value);
+    [[nodiscard]]
+    static wxString GetUSGradeScaleLabel(size_t value);
     // Canada
     [[nodiscard]]
     static wxString GetNewfoundlandAndLabradorScaleLabel(size_t value);

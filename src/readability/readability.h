@@ -63,7 +63,8 @@ namespace readability
         void set_proper_noun_method(const readability::proper_noun_counting_method properMethod) noexcept
             { m_properNounMethod = properMethod; }
         /** @returns Whether numeric words should always be familiar*/
-        [[nodiscard]] bool is_including_numeric_as_familiar() const noexcept
+        [[nodiscard]]
+        bool is_including_numeric_as_familiar() const noexcept
             { return m_treat_numeric_as_familiar; }
         /** @brief Sets whether numeric words should always be familiar.
             @param should_include Whether numeric words should always be familiar.*/

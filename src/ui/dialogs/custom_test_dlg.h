@@ -250,7 +250,8 @@ public:
         if (m_properNounsNumbersPropertyGrid)
             { m_properNounsNumbersPropertyGrid->SetPropertyValue(GetNumeralsAsFamiliarLabel(),include); }
         }
-    [[nodiscard]] bool IsIncludingNumeric() const
+    [[nodiscard]]
+    bool IsIncludingNumeric() const
         {
         wxASSERT(m_properNounsNumbersPropertyGrid);
         return m_properNounsNumbersPropertyGrid ?

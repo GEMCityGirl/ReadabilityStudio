@@ -1096,10 +1096,11 @@ namespace readability
         @param[out] predicted_cloze_score The calculated predicted cloze score
             (in fractional format, multiply by 100 to get the cloze %).
         @returns The calculated grade level.*/
-    [[nodiscard]] inline double coleman_liau(const size_t number_of_words,
-                                             const size_t number_of_letters,
-                                             const size_t number_of_sentences,
-                                             double& predicted_cloze_score)
+    [[nodiscard]]
+    inline double coleman_liau(const size_t number_of_words,
+                               const size_t number_of_letters,
+                               const size_t number_of_sentences,
+                               double& predicted_cloze_score)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
             { throw std::domain_error("invalid word/sentence count."); }
@@ -1186,7 +1187,8 @@ namespace readability
     /** @brief Helper function for converting DRP to grade (Carver)
         @param dprScore The degrees of reading power score.
         @returns The grade level.*/
-    [[nodiscard]] inline constexpr double degrees_of_reading_power_to_ge(const size_t dprScore) noexcept
+    [[nodiscard]]
+    inline constexpr double degrees_of_reading_power_to_ge(const size_t dprScore) noexcept
         {
         double gradeLevel = 0;
         if (dprScore <= 39)
@@ -1568,9 +1570,10 @@ namespace readability
         @param length The length of the word.
         @param syllable_count The number of syllables in the word.
         @returns @c true if words is easy.*/
-    [[nodiscard]] inline bool is_easy_gunning_fog_word(const wchar_t* fog_word,
-                                                       const size_t length,
-                                                       const size_t syllable_count)
+    [[nodiscard]]
+    inline bool is_easy_gunning_fog_word(const wchar_t* fog_word,
+                                         const size_t length,
+                                         const size_t syllable_count)
         {
         assert(fog_word);
         assert(fog_word && std::wcslen(fog_word) >= length);

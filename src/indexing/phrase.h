@@ -20,7 +20,7 @@
 #include "../Wisteria-Dataviz/src/import/text_preview.h"
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
 
-/// Namespace for grammar analysis.
+/// @brief Namespace for grammar analysis.
 namespace grammar
     {
     /** @brief Enumeration for phrase types.*/
@@ -50,7 +50,7 @@ namespace grammar
     class phrase
         {
     public:
-        /// @brief Default constructor.
+        /// @private
         phrase() = default;
         /** @brief Simple 1-word "phrase".
             @param src The word to initialize the phrase to.*/
@@ -71,14 +71,15 @@ namespace grammar
         /** @brief Removes all of the words from the phrase.*/
         void clear_words() noexcept
             { m_words.clear(); }
-        /** Resizes the number of words.
-            This function is useful for when something else writes new words without removing the old ones.
+        /** @brief Resizes the number of words.
+            @details This function is useful for when something else writes new
+                words without removing the old ones.
             @note If you shrink it, then trailing words will be lost.
             @param count The new size (i.e., word count) of the phrase.*/
         void resize(const size_t count)
             { m_words.resize(count); }
-        /** Copies a vector of words into the phrase. Note that the current contents of
-            the phrase will be cleared.
+        /** @brief Copies a vector of words into the phrase.
+            @note The current contents of the phrase will be cleared.
             @param src The string vector to copy from.
             @param count The number of items from the source vector to copy over.*/
         void copy_words(const std::vector<word_typeT>& src, const size_t count)
@@ -86,8 +87,8 @@ namespace grammar
             m_words.resize(count);
             std::copy(src.begin(), src.begin()+count, m_words.begin());
             }
-        /** Copies a vector of words into the phrase. Note that the current contents of
-            the phrase will be cleared.
+        /** @brief Copies a vector of words into the phrase.
+            @note The current contents of the phrase will be cleared.
             @param src The start of the string vector to copy from.
             @param count The number of items from the source vector to copy over.*/
         void copy_words(typename std::vector<word_typeT>::const_iterator src, const size_t count)
@@ -95,12 +96,12 @@ namespace grammar
             m_words.resize(count);
             std::copy(src, src+count, m_words.begin());
             }
-        /** Indicates whether or not this phrase is less than another phrase.
-            A phrase is less than other phrase if sorts alphabetically before the other phrase.
-            The number of words in the phrase only matters if all the words match between two phrases,
-            except that one phrase has more words (in which case that phrase is "bigger").
+        /** @brief Indicates whether or not this phrase is less than another phrase.
+            @details A phrase is less than other phrase if sorts alphabetically before the other phrase.\n
+                The number of words in the phrase only matters if all the words match between two phrases,
+                except that one phrase has more words (in which case that phrase is "bigger").
             @param that The phrase to compare against.
-            @returns @c true if less than other phrase, false if equal to or greater than the other phrase.*/
+            @returns @c true if less than other phrase, @c false if equal to or greater than the other phrase.*/
         [[nodiscard]]
         bool operator<(const phrase& that) const
             {
@@ -135,14 +136,16 @@ namespace grammar
                 }
             return true;
             }
-        /** Compares a range of words to see if the first few words matches this phrase.
-            The word range can be bigger than the phrase, we just want to compare the phrase
-            against the first few words.
-            @param words An iterator to a container of words (should have the same interface as std::basic_string).
-            @param position The position in the sentence of word sequence. If this is zero (meaning the passed in
-            sequence is the start of the sentence), then the proceeding exception logic will not be used.
-            @param max_word_count The maximum number of words from the sequence to compare against. This would usually
-            be the number of words in the sequence until the end of the sentence.
+        /** @brief Compares a range of words to see if the first few words matches this phrase.
+            @details The word range can be bigger than the phrase, we just want to compare the phrase
+                against the first few words.
+            @param words An iterator to a container of words
+                (should have the same interface as `std::basic_string`).
+            @param position The position in the sentence of word sequence.\n
+                If this is zero (meaning the passed in sequence is the start of the sentence),
+                then the proceeding exception logic will not be used.
+            @param max_word_count The maximum number of words from the sequence to compare against.
+                This would usually be the number of words in the sequence until the end of the sentence.
             @returns A pair containing a bool (indicating if it was a match) and a phrase_comparison_result.*/
         template<typename Tword_iter>
         [[nodiscard]]
@@ -177,19 +180,24 @@ namespace grammar
             return std::make_pair(true,phrase_comparison_result::phrase_equal);
             }
         /** @returns Whether or not the phrase is empty (i.e., doesn't have any words).*/
-        [[nodiscard]] bool is_empty() const noexcept
+        [[nodiscard]]
+        bool is_empty() const noexcept
             { return m_words.empty(); }
         /** @returns The number of words in the phrase.*/
-        [[nodiscard]] size_t get_word_count() const noexcept
+        [[nodiscard]]
+        size_t get_word_count() const noexcept
             { return m_words.size(); }
         /** @returns The words in the phrase as a vector of strings.*/
-        [[nodiscard]] const std::vector<word_typeT>& get_words() const noexcept
+        [[nodiscard]]
+        const std::vector<word_typeT>& get_words() const noexcept
             { return m_words; }
         /** @returns Direct access to the internal vector of strings.*/
-        [[nodiscard]] std::vector<word_typeT>& get_words() noexcept
+        [[nodiscard]]
+        std::vector<word_typeT>& get_words() noexcept
             { return m_words; }
         /** @returns The phrase formatted into a string.*/
-        [[nodiscard]] const traits::case_insensitive_wstring_ex to_string() const
+        [[nodiscard]]
+        const traits::case_insensitive_wstring_ex to_string() const
             {
             traits::case_insensitive_wstring_ex full_string;
             for (size_t i = 0; i < get_word_count(); ++i)
@@ -209,10 +217,12 @@ namespace grammar
         void set_trailing_exceptions(const std::set<word_typeT>& except)
             { m_trailing_exceptions = except; }
         /** @returns The trailing exception.*/
-        [[nodiscard]] const std::set<word_typeT>& get_trailing_exceptions() const noexcept
+        [[nodiscard]]
+        const std::set<word_typeT>& get_trailing_exceptions() const noexcept
             { return m_trailing_exceptions; }
         /** @returns The trailing exception.*/
-        [[nodiscard]] std::set<word_typeT>& get_trailing_exceptions() noexcept
+        [[nodiscard]]
+        std::set<word_typeT>& get_trailing_exceptions() noexcept
             { return m_trailing_exceptions; }
         /** Sets the proceeding exceptions, which are used in equal_to_words(). If equal_to_words()
             determines if a sequence of strings matches the phrase, then it will be equal unless
@@ -222,10 +232,12 @@ namespace grammar
         void set_proceeding_exceptions(const std::set<word_typeT>& except)
             { m_proceeding_exceptions = except; }
         /** @returns The proceeding exception.*/
-        [[nodiscard]] const std::set<word_typeT>& get_proceeding_exceptions() const noexcept
+        [[nodiscard]]
+        const std::set<word_typeT>& get_proceeding_exceptions() const noexcept
             { return m_proceeding_exceptions; }
         /** @returns The proceeding exception.*/
-        [[nodiscard]] std::set<word_typeT>& get_proceeding_exceptions() noexcept
+        [[nodiscard]]
+        std::set<word_typeT>& get_proceeding_exceptions() noexcept
             { return m_proceeding_exceptions; }
     private:
         std::vector<word_typeT> m_words;
@@ -254,10 +266,11 @@ namespace grammar
             @param allow_one_word_phrase Whether or not any of our phrases only contain one word.
             @returns The index into the phrase collection of the matching phrase, or npos if no match is found.*/
         template<typename Tword_iter>
-        [[nodiscard]] size_t operator()(const Tword_iter& words,
-                                        const size_t position,
-                                        const size_t max_word_count,
-                                        const bool allow_one_word_phrase) const
+        [[nodiscard]]
+        size_t operator()(const Tword_iter& words,
+                          const size_t position,
+                          const size_t max_word_count,
+                          const bool allow_one_word_phrase) const
             {
             if (max_word_count < 1)
                 { return npos; }
@@ -308,7 +321,8 @@ namespace grammar
             return npos;
             }
         /** @returns A vector of the phrases.*/
-        [[nodiscard]] const std::vector<phrase_word_pair>& get_phrases() const noexcept
+        [[nodiscard]]
+        const std::vector<phrase_word_pair>& get_phrases() const noexcept
             { return m_phrases; }
         /** Loads phrases from a text stream.
             Each row in this text should be a phrase, and the column values (tab-delimited) are:
@@ -449,7 +463,8 @@ namespace grammar
         void clear_phrases() noexcept
             { m_phrases.clear(); }
         /** @returns @c true if the list is sorted (in ascending order).*/
-        [[nodiscard]] bool is_sorted() const
+        [[nodiscard]]
+        bool is_sorted() const
             {
             return std::is_sorted(m_phrases.cbegin(), m_phrases.cend());
             }

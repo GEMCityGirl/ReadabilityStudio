@@ -62,10 +62,12 @@ public:
     void RefreshGraphs() final;
 
     /// @returns A const reference to the batch's documents.
-    [[nodiscard]] const std::vector<BaseProject*>& GetDocuments() const noexcept
+    [[nodiscard]]
+    const std::vector<BaseProject*>& GetDocuments() const noexcept
         { return m_docs; }
     /// @returns A reference to the batch's documents.
-    [[nodiscard]] std::vector<BaseProject*>& GetDocuments() noexcept
+    [[nodiscard]]
+    std::vector<BaseProject*>& GetDocuments() noexcept
         { return m_docs; }
 
     /// @returns The unique list of labels connected to the documents.

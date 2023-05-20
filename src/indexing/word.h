@@ -124,19 +124,25 @@ public:
     size_t get_length_excluding_punctuation() const noexcept
         { return std::basic_string<wchar_t, Tchar_traits>::length() - m_punctuation_count; }
     /// @returns The number of punctuation marks in the word.
-    [[nodiscard]] size_t get_punctuation_count() const noexcept
+    [[nodiscard]]
+    size_t get_punctuation_count() const noexcept
         { return m_punctuation_count; }
     void set_syllable_count(const size_t count)
         { m_syllable_count = count; }
-    [[nodiscard]] size_t get_syllable_count() const noexcept
+    [[nodiscard]]
+    size_t get_syllable_count() const noexcept
         { return m_syllable_count; }
-    [[nodiscard]] size_t get_sentence_index() const noexcept
+    [[nodiscard]]
+    size_t get_sentence_index() const noexcept
         { return m_sentence_index; }
-    [[nodiscard]] size_t get_paragraph_index() const noexcept
+    [[nodiscard]]
+    size_t get_paragraph_index() const noexcept
         { return m_paragraph_index; }
-    [[nodiscard]] size_t get_sentence_position() const noexcept
+    [[nodiscard]]
+    size_t get_sentence_position() const noexcept
         { return m_sentence_position; }
-    [[nodiscard]] const wchar_t* get_stem() const noexcept
+    [[nodiscard]]
+    const wchar_t* get_stem() const noexcept
         { return m_stem.c_str(); }
     [[nodiscard]]
     inline bool is_capitalized() const
@@ -162,57 +168,68 @@ public:
     // flags
     inline void set_numeric(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::numeric_flag), enable); }
-    [[nodiscard]] inline bool is_numeric() const noexcept
+    [[nodiscard]]
+    inline bool is_numeric() const noexcept
         { return flags[static_cast<size_t>(word_flags::numeric_flag)]; }
 
     inline void set_valid(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::is_valid_flag), enable); }
-    [[nodiscard]] inline bool is_valid() const noexcept
+    [[nodiscard]]
+    inline bool is_valid() const noexcept
         { return flags[static_cast<size_t>(word_flags::is_valid_flag)]; }
 
     inline void set_proper_noun(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::proper_noun_flag), enable); }
-    [[nodiscard]] inline bool is_proper_noun() const noexcept
+    [[nodiscard]]
+    inline bool is_proper_noun() const noexcept
         { return flags[static_cast<size_t>(word_flags::proper_noun_flag)]; }
 
     void set_personal(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::personal_flag), enable); }
-    [[nodiscard]] bool is_personal() const
+    [[nodiscard]]
+    bool is_personal() const
         { return flags[static_cast<size_t>(word_flags::personal_flag)]; }
 
     void set_contraction(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::contraction_flag), enable); }
-    [[nodiscard]] inline bool is_contraction() const noexcept
+    [[nodiscard]]
+    inline bool is_contraction() const noexcept
         { return flags[static_cast<size_t>(word_flags::contraction_flag)]; }
 
     inline void set_acronym(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::acronym_flag), enable); }
-    [[nodiscard]] inline bool is_acronym() const noexcept
+    [[nodiscard]]
+    inline bool is_acronym() const noexcept
         { return flags[static_cast<size_t>(word_flags::acronym_flag)]; }
 
     inline void set_exclamatory(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::exclamatory_flag), enable); }
-    [[nodiscard]] inline bool is_exclamatory() const noexcept
+    [[nodiscard]]
+    inline bool is_exclamatory() const noexcept
         { return flags[static_cast<size_t>(word_flags::exclamatory_flag)]; }
 
     inline void set_file_address(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::file_address_flag), enable); }
-    [[nodiscard]] inline bool is_file_address() const noexcept
+    [[nodiscard]]
+    inline bool is_file_address() const noexcept
         { return flags[static_cast<size_t>(word_flags::file_address_flag)]; }
 
     inline void set_custom_tagged(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::custom_tagged_flag), enable); }
-    [[nodiscard]] inline bool is_custom_tagged() const
+    [[nodiscard]]
+    inline bool is_custom_tagged() const
         { return flags[static_cast<size_t>(word_flags::custom_tagged_flag)]; }
 
     inline void set_social_media_tag(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::social_media_tag_flag), enable); }
-    [[nodiscard]] inline bool is_social_media_tag() const
+    [[nodiscard]]
+    inline bool is_social_media_tag() const
         { return flags[static_cast<size_t>(word_flags::social_media_tag_flag)]; }
 
     inline void set_abbreviation_tag(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::abbreviation_flag), enable); }
-    [[nodiscard]] inline bool is_abbreviation_tag() const
+    [[nodiscard]]
+    inline bool is_abbreviation_tag() const
         { return flags[static_cast<size_t>(word_flags::abbreviation_flag)]; }
 private:
     std::basic_string<wchar_t, Tchar_traits> m_stem;
@@ -273,17 +290,21 @@ public:
     [[nodiscard]]
     inline size_t get_length_excluding_punctuation() const noexcept
         { return std::basic_string<wchar_t, Tchar_traits>::length() - m_punctuation_count; }
-    [[nodiscard]] inline size_t get_punctuation_count() const noexcept
+    [[nodiscard]]
+    inline size_t get_punctuation_count() const noexcept
         { return m_punctuation_count; }
     inline void set_syllable_count(const size_t count) noexcept
         { m_syllable_count = count; }
-    [[nodiscard]] inline size_t get_syllable_count() const noexcept
+    [[nodiscard]]
+    inline size_t get_syllable_count() const noexcept
         { return m_syllable_count; }
-    [[nodiscard]] [[nodiscard]] inline size_t get_sentence_index() const noexcept
+    [[nodiscard]]
+    inline size_t get_sentence_index() const noexcept
         { return m_sentence_index; }
     inline size_t get_paragraph_index() const noexcept
         { return m_paragraph_index; }
-    [[nodiscard]] inline size_t get_sentence_position() const noexcept
+    [[nodiscard]]
+    inline size_t get_sentence_position() const noexcept
         { return m_sentence_position; }
     [[nodiscard]]
     inline const wchar_t* get_stem() const
@@ -311,57 +332,68 @@ public:
     // flags
     inline void set_numeric(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::numeric_flag), enable); }
-    [[nodiscard]] inline bool is_numeric() const noexcept
+    [[nodiscard]]
+    inline bool is_numeric() const noexcept
         { return flags[static_cast<size_t>(word_flags::numeric_flag)]; }
 
     inline void set_valid(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::is_valid_flag), enable); }
-    [[nodiscard]] inline bool is_valid() const noexcept
+    [[nodiscard]]
+    inline bool is_valid() const noexcept
         { return flags[static_cast<size_t>(word_flags::is_valid_flag)]; }
 
     inline void set_proper_noun(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::proper_noun_flag), enable); }
-    [[nodiscard]] inline bool is_proper_noun() const noexcept
+    [[nodiscard]]
+    inline bool is_proper_noun() const noexcept
         { return flags[static_cast<size_t>(word_flags::proper_noun_flag)]; }
 
     void set_personal(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::personal_flag), enable); }
-    [[nodiscard]] bool is_personal() const
+    [[nodiscard]]
+    bool is_personal() const
         { return flags[static_cast<size_t>(word_flags::personal_flag)]; }
 
     void set_contraction(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::contraction_flag), enable); }
-    [[nodiscard]] bool is_contraction() const
+    [[nodiscard]]
+    bool is_contraction() const
         { return flags[static_cast<size_t>(word_flags::contraction_flag)]; }
 
     inline void set_acronym(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::acronym_flag), enable); }
-    [[nodiscard]] inline bool is_acronym() const noexcept
+    [[nodiscard]]
+    inline bool is_acronym() const noexcept
         { return flags[static_cast<size_t>(word_flags::acronym_flag)]; }
 
     inline void set_exclamatory(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::exclamatory_flag), enable); }
-    [[nodiscard]] inline bool is_exclamatory() const noexcept
+    [[nodiscard]]
+    inline bool is_exclamatory() const noexcept
         { return flags[static_cast<size_t>(word_flags::exclamatory_flag)]; }
 
     inline void set_file_address(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::file_address_flag), enable); }
-    [[nodiscard]] inline bool is_file_address() const noexcept
+    [[nodiscard]]
+    inline bool is_file_address() const noexcept
         { return flags[static_cast<size_t>(word_flags::file_address_flag)]; }
 
     inline void set_custom_tagged(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::custom_tagged_flag), enable); }
-    [[nodiscard]] inline bool is_custom_tagged() const
+    [[nodiscard]]
+    inline bool is_custom_tagged() const
         { return flags[static_cast<size_t>(word_flags::custom_tagged_flag)]; }
 
     inline void set_social_media_tag(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::social_media_tag_flag), enable); }
-    [[nodiscard]] inline bool is_social_media_tag() const
+    [[nodiscard]]
+    inline bool is_social_media_tag() const
         { return flags[static_cast<size_t>(word_flags::social_media_tag_flag)]; }
 
     inline void set_abbreviation_tag(const bool enable)
         { flags.set(static_cast<size_t>(word_flags::abbreviation_flag), enable); }
-    [[nodiscard]] inline bool is_abbreviation_tag() const
+    [[nodiscard]]
+    inline bool is_abbreviation_tag() const
         { return flags[static_cast<size_t>(word_flags::abbreviation_flag)]; }
 private:
     size_t m_sentence_index{ 0 };

@@ -29,7 +29,8 @@ public:
     /** @brief Constructor, which takes the position of the punctuation in the word.
         @param position The position of the punctuation in the word.*/
     explicit punctuation_mark_count_if_word_position(const size_t position) noexcept
-        : m_word_position(position) {}
+        : m_word_position(position)
+        {}
     punctuation_mark_count_if_word_position() = delete;
     /** @returns @c true if a valid punctuation mark based on its position in the word.
         @param punct The type of punctuation that this mark is.*/
@@ -140,7 +141,7 @@ template<typename word_typeT>
 class valid_syllable_count_greater_equal
     {
 public:
-    /** Constructor that takes the required syllable count and how to treat numerals.
+    /** @brief Constructor that takes the required syllable count and how to treat numerals.
         @param count The expected number of syllables that a passing word should have.
         @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one syllable.\n
             Default is @c false.*/
@@ -266,7 +267,8 @@ class syllable_count_greater
     {
 public:
     explicit syllable_count_greater(size_t count, bool treat_numerals_as_monosyllabic = false) noexcept
-        : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
+        : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic)
+        {}
     syllable_count_greater() = delete;
     [[nodiscard]]
     inline bool operator()(const word_typeT& the_word) const
@@ -312,7 +314,8 @@ public:
     explicit add_syllable_size(const bool treat_numerals_as_monosyllabic = false) noexcept
         : m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic) {}
     add_syllable_size() = delete;
-    [[nodiscard]] size_t operator()(const size_t result, const word_typeT& the_word) const
+    [[nodiscard]]
+    size_t operator()(const size_t result, const word_typeT& the_word) const
         {
         return static_cast<size_t>(
             (m_treat_numerals_as_monosyllabic && the_word.is_numeric()) ?
@@ -587,7 +590,8 @@ public:
         @param the_word The word to review.
         @returns @c true if current word's length is greater than or equal to the
             seeded length (if word is valid).*/
-    [[nodiscard]] inline bool operator()(const word_typeT& the_word) const noexcept
+    [[nodiscard]]
+    inline bool operator()(const word_typeT& the_word) const noexcept
         {
         if (the_word.is_valid())
             { return the_word.length() >= m_count; }
@@ -1041,7 +1045,8 @@ private:
     /// @returns @c true if the given string is on either of the supplied lists.
     /// @param the_word The word to search for.
     template<typename T>
-    [[nodiscard]] bool is_on_list(const T& the_word) const
+    [[nodiscard]]
+    bool is_on_list(const T& the_word) const
         {
         if (m_wordlist == nullptr || m_secondary_wordlist == nullptr || the_word.length() == 0)
             { return false; } // no list or word is blank, then don't bother looking

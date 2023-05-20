@@ -248,155 +248,230 @@ private:
     static constexpr int ID_THEME_COMBO = wxID_HIGHEST + 79;
     static constexpr int ID_ADDITIONAL_FILE_FIELD = wxID_HIGHEST + 80;
 
-    [[nodiscard]] wxString GetCustomTestsLabel() const
+    [[nodiscard]]
+    wxString GetCustomTestsLabel() const
         { return _(L"Custom Tests"); }
-    [[nodiscard]] wxString GetInvalidRegionsColorLabel() const
+    [[nodiscard]]
+    wxString GetInvalidRegionsColorLabel() const
         { return _(L"Invalid regions color"); }
-    [[nodiscard]] wxString GetFleshChartConnectPointsLabel() const
+    [[nodiscard]]
+    wxString GetFleshChartConnectPointsLabel() const
         { return _(L"Connect points"); }
-    [[nodiscard]] wxString GetUseEnglishLabelsForGermanLixLabel() const
+    [[nodiscard]]
+    wxString GetUseEnglishLabelsForGermanLixLabel() const
         { return _(L"Use English translations for German Lix gauge"); }
-    [[nodiscard]] wxString GetColorLabel() const
+    [[nodiscard]]
+    wxString GetColorLabel() const
         { return _(L"Color"); }
-    [[nodiscard]] wxString GetBackgroundColorLabel() const
+    [[nodiscard]]
+    wxString GetBackgroundColorLabel() const
         { return _DT(L"BGCOLOR"); }
-    [[nodiscard]] wxString GetEffectLabel() const
+    [[nodiscard]]
+    wxString GetEffectLabel() const
         { return _(L"Effect"); }
-    [[nodiscard]] wxString GetOpacityLabel() const
+    [[nodiscard]]
+    wxString GetOpacityLabel() const
         { return _(L"Opacity"); }
-    [[nodiscard]] wxString GetImageOpacityLabel() const
+    [[nodiscard]]
+    wxString GetImageOpacityLabel() const
         { return _(L"Image opacity"); }
-    [[nodiscard]] wxString GetLabelsOnBarsLabel() const
+    [[nodiscard]]
+    wxString GetLabelsOnBarsLabel() const
         { return _(L"Display labels on bars"); }
-    [[nodiscard]] wxString GetLabelsOnBoxesLabel() const
+    [[nodiscard]]
+    wxString GetLabelsOnBoxesLabel() const
         { return _(L"Display box & whisker labels"); }
-    [[nodiscard]] wxString GetConnectBoxesLabel() const
+    [[nodiscard]]
+    wxString GetConnectBoxesLabel() const
         { return _(L"Connect middle points"); }
-    [[nodiscard]] wxString GetShowAllDataPointsLabel() const
+    [[nodiscard]]
+    wxString GetShowAllDataPointsLabel() const
         { return _(L"Show all data points"); }
-    [[nodiscard]] wxString GeOrientationLabel() const
+    [[nodiscard]]
+    wxString GeOrientationLabel() const
         { return _(L"Orientation"); }
-    [[nodiscard]] wxString GetBinSortingLabel() const
+    [[nodiscard]]
+    wxString GetBinSortingLabel() const
         { return _(L"Sorting"); }
-    [[nodiscard]] wxString GetGradeLevelRoundingLabel() const
+    [[nodiscard]]
+    wxString GetGradeLevelRoundingLabel() const
         { return _(L"Grade level/index value rounding"); }
-    [[nodiscard]] wxString GetIntervalDisplayLabel() const
+    [[nodiscard]]
+    wxString GetIntervalDisplayLabel() const
         { return _(L"Interval display"); }
-    [[nodiscard]] wxString GetBinLabelsLabel() const
+    [[nodiscard]]
+    wxString GetBinLabelsLabel() const
         { return _(L"Labels"); }
-    [[nodiscard]] wxString GetDisplayDropShadowsLabel() const
+    [[nodiscard]]
+    wxString GetDisplayDropShadowsLabel() const
         { return _(L"Display drop shadows"); }
-    [[nodiscard]] wxString GetCustomImageBrushLabel() const
+    [[nodiscard]]
+    wxString GetCustomImageBrushLabel() const
         { return _(L"Custom image brush"); }
-    [[nodiscard]] wxString GetWatermarkLabel() const
+    [[nodiscard]]
+    wxString GetWatermarkLabel() const
         { return _(L"Watermark"); }
-    [[nodiscard]] wxString GetLogoImageLabel() const
+    [[nodiscard]]
+    wxString GetLogoImageLabel() const
         { return _(L"Logo image"); }
-    [[nodiscard]] wxString GetImageLabel() const
+    [[nodiscard]]
+    wxString GetImageLabel() const
         { return _(L"Image"); }
-    [[nodiscard]] wxString GetApplyFadeLabel() const
+    [[nodiscard]]
+    wxString GetApplyFadeLabel() const
         { return _(L"Apply color fade"); }
-    [[nodiscard]] wxString GetBackgroundLabel() const
+    [[nodiscard]]
+    wxString GetBackgroundLabel() const
         { return _(L"Background"); }
-    [[nodiscard]] wxString GetIgnoreProperNounsLabel() const
+    [[nodiscard]]
+    wxString GetIgnoreProperNounsLabel() const
         { return _(L"Ignore proper nouns"); }
-    [[nodiscard]] wxString GetIgnoreUppercasedWordsLabel() const
+    [[nodiscard]]
+    wxString GetIgnoreUppercasedWordsLabel() const
         { return _(L"Ignore UPPERCASED words"); }
-    [[nodiscard]] wxString GetIgnoreNumeralsLabel() const
+    [[nodiscard]]
+    wxString GetIgnoreNumeralsLabel() const
         { return _(L"Ignore numerals"); }
-    [[nodiscard]] wxString GetIgnoreFileAddressesLabel() const
+    [[nodiscard]]
+    wxString GetIgnoreFileAddressesLabel() const
         { return _(L"Ignore Internet and file addresses"); }
-    [[nodiscard]] wxString GetIgnoreProgrammerCodeLabel() const
+    [[nodiscard]]
+    wxString GetIgnoreProgrammerCodeLabel() const
         { return _(L"Ignore programmer code"); }
-    [[nodiscard]] wxString GetAllowColloquialismsLabel() const
+    [[nodiscard]]
+    wxString GetAllowColloquialismsLabel() const
         { return _(L"Allow colloquialisms"); }
-    [[nodiscard]] wxString GetIgnoreSocialMediaLabel() const
+    [[nodiscard]]
+    wxString GetIgnoreSocialMediaLabel() const
         { return _(L"Ignore social media hashtags"); }
-    [[nodiscard]] wxString GetResultsLabel() const
+    [[nodiscard]]
+    wxString GetResultsLabel() const
         { return _(L"Results"); }
-    [[nodiscard]] wxString GetGrammarHighlightedReportLabel() const
+    [[nodiscard]]
+    wxString GetGrammarHighlightedReportLabel() const
         { return _(L"Highlighted Report"); }
-    [[nodiscard]] wxString GetSpellCheckerLabel() const
+    [[nodiscard]]
+    wxString GetSpellCheckerLabel() const
         { return _(L"Spell Checker"); }
-    [[nodiscard]] wxString GetDolchStatisticsReportLabel() const
+    [[nodiscard]]
+    wxString GetDolchStatisticsReportLabel() const
         { return _(L"Dolch Report"); }
-    [[nodiscard]] wxString GetCoverageLabel() const
+    [[nodiscard]]
+    wxString GetCoverageLabel() const
         { return _(L"Coverage"); }
-    [[nodiscard]] wxString GetDolchWordsLabel() const
+    [[nodiscard]]
+    wxString GetDolchWordsLabel() const
         { return _DT(L"DOLCHWORDS"); }
-    [[nodiscard]] wxString GetDolchExplanationLabel() const
+    [[nodiscard]]
+    wxString GetDolchExplanationLabel() const
         { return _(L"Explanation"); }
-    [[nodiscard]] wxString GetStatisticsReportLabel() const
+    [[nodiscard]]
+    wxString GetStatisticsReportLabel() const
         { return _(L"Summary Report"); }
-    [[nodiscard]] wxString GetParagraphsLabel() const
+    [[nodiscard]]
+    wxString GetParagraphsLabel() const
         { return _(L"Paragraphs"); }
-    [[nodiscard]] wxString GetSentencesLabel() const
+    [[nodiscard]]
+    wxString GetSentencesLabel() const
         { return _(L"Sentences"); }
-    [[nodiscard]] wxString GetWordsLabel() const
+    [[nodiscard]]
+    wxString GetWordsLabel() const
         { return _(L"Words"); }
-    [[nodiscard]] wxString GetExtendedWordsLabel() const
+    [[nodiscard]]
+    wxString GetExtendedWordsLabel() const
         { return _(L"Extended Words"); }
-    [[nodiscard]] wxString GetGrammarLabel() const
+    [[nodiscard]]
+    wxString GetGrammarLabel() const
         { return _(L"Grammar"); }
-    [[nodiscard]] wxString GetNotesLabel() const
+    [[nodiscard]]
+    wxString GetNotesLabel() const
         { return _(L"Notes"); }
-    [[nodiscard]] wxString GetExtendedInformationLabel() const
+    [[nodiscard]]
+    wxString GetExtendedInformationLabel() const
         { return _(L"Extended Information"); }
-    [[nodiscard]] wxString GetFryLikeLabel() const
+    [[nodiscard]]
+    wxString GetFryLikeLabel() const
         { return _(L"Fry/GPM/Raygor/Schwartz"); }
-    [[nodiscard]] wxString GetFleschChartLabel() const
+    [[nodiscard]]
+    wxString GetFleschChartLabel() const
         { return _(L"Flesch Chart"); }
-    [[nodiscard]] wxString GetLixGaugeLabel() const
+    [[nodiscard]]
+    wxString GetLixGaugeLabel() const
         { return _(L"Lix Gauge"); }
-    [[nodiscard]] wxString GetBarAppearanceLabel() const
+    [[nodiscard]]
+    wxString GetBarAppearanceLabel() const
         { return _(L"Bar Appearance"); }
-    [[nodiscard]] wxString GetBinningOptionsLabel() const
+    [[nodiscard]]
+    wxString GetBinningOptionsLabel() const
         { return _(L"Binning Options"); }
-    [[nodiscard]] wxString GetBinDisplayLabel() const
+    [[nodiscard]]
+    wxString GetBinDisplayLabel() const
         { return _(L"Bin Display"); }
-    [[nodiscard]] wxString GetBoxAppearanceLabel() const
+    [[nodiscard]]
+    wxString GetBoxAppearanceLabel() const
         { return _(L"Box Appearance"); }
-    [[nodiscard]] wxString GetBoxOptionsLabel() const
+    [[nodiscard]]
+    wxString GetBoxOptionsLabel() const
         { return _(L"Box Options"); }
-    [[nodiscard]] wxString GetGraphBackgroundLabel() const
+    [[nodiscard]]
+    wxString GetGraphBackgroundLabel() const
         { return _(L"Background"); }
-    [[nodiscard]] wxString GetPlotAreaBackgroundLabel() const
+    [[nodiscard]]
+    wxString GetPlotAreaBackgroundLabel() const
         { return _(L"Plot Area Background"); }
-    [[nodiscard]] wxString GetWatermarksLogosLabel() const
+    [[nodiscard]]
+    wxString GetWatermarksLogosLabel() const
         { return _(L"Watermarks & Logos"); }
-    [[nodiscard]] wxString GetEffectsLabel() const
+    [[nodiscard]]
+    wxString GetEffectsLabel() const
         { return _(L"Effects"); }
-    [[nodiscard]] wxString GetGradeScaleLabel() const
+    [[nodiscard]]
+    wxString GetGradeScaleLabel() const
         { return _(L"Grade scale"); }
-    [[nodiscard]] wxString GetGradeLabel() const
+    [[nodiscard]]
+    wxString GetGradeLabel() const
         { return _(L"Grade Display"); }
-    [[nodiscard]] wxString GetGradesLongFormatLabel() const
+    [[nodiscard]]
+    wxString GetGradesLongFormatLabel() const
         { return _(L"Display scores in long format"); }
-    [[nodiscard]] wxString GetReadingAgeLabel() const
+    [[nodiscard]]
+    wxString GetReadingAgeLabel() const
         { return _(L"Reading Age Display"); }
-    [[nodiscard]] wxString GetScoreResultsLabel() const
+    [[nodiscard]]
+    wxString GetScoreResultsLabel() const
         { return _(L"Results"); }
-    [[nodiscard]] wxString GetIncludeScoreSummaryLabel() const
+    [[nodiscard]]
+    wxString GetIncludeScoreSummaryLabel() const
         { return _(L"Include test-summary report"); }
-    [[nodiscard]] wxString GetCalculationLabel() const
+    [[nodiscard]]
+    wxString GetCalculationLabel() const
         { return _(L"Calculation"); }
-    [[nodiscard]] wxString GetCountIndependentClausesLabel() const
+    [[nodiscard]]
+    wxString GetCountIndependentClausesLabel() const
         { return _(L"Count independent clauses"); }
-    [[nodiscard]] wxString GetNumeralSyllabicationLabel() const
+    [[nodiscard]]
+    wxString GetNumeralSyllabicationLabel() const
         { return _(L"Numeral syllabication"); }
-    [[nodiscard]] wxString GetFleschNumeralSyllabicationLabel() const
+    [[nodiscard]]
+    wxString GetFleschNumeralSyllabicationLabel() const
         { return _DT(L"FLESCHNUMSYL"); }
-    [[nodiscard]] wxString GetFleschKincaidNumeralSyllabicationLabel() const
+    [[nodiscard]]
+    wxString GetFleschKincaidNumeralSyllabicationLabel() const
         { return _DT(L"FLESCHKINCAIDNUMSYL"); }
-    [[nodiscard]] wxString GetIncludeStockerLabel() const
+    [[nodiscard]]
+    wxString GetIncludeStockerLabel() const
         { return _(L"Include Catholic Supplement"); }
-    [[nodiscard]] wxString GetProperNounsLabel() const
+    [[nodiscard]]
+    wxString GetProperNounsLabel() const
         { return _(L"Proper nouns"); }
-    [[nodiscard]] wxString GetTextExclusionLabel() const
+    [[nodiscard]]
+    wxString GetTextExclusionLabel() const
         { return _(L"Text exclusion"); }
-    [[nodiscard]] wxString GetDCTextExclusionLabel() const
+    [[nodiscard]]
+    wxString GetDCTextExclusionLabel() const
         { return _DT(L"DCTEXTEXCLUSION"); }
-    [[nodiscard]] wxString GetHJCTextExclusionLabel() const
+    [[nodiscard]]
+    wxString GetHJCTextExclusionLabel() const
         { return _DT(L"HJTEXTEXCLUSION"); }
 
     /// Replaces various filepath shortcuts to the full pathway

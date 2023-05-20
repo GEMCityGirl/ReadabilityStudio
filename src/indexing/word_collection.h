@@ -2143,7 +2143,8 @@ private:
         @warning This assumes that you have already hit a "References" header and you are simply
                  trying to determine if what comes after it is a citation. This should not be called
                  on any arbitrary paragraph.*/
-    [[nodiscard]] bool is_paragraph_citation(const grammar::paragraph_info& theParagraph) const noexcept
+    [[nodiscard]]
+    bool is_paragraph_citation(const grammar::paragraph_info& theParagraph) const noexcept
         {
         // is a word a year in a citation?
         const auto is_year = [](const Tword_type& theWord) noexcept

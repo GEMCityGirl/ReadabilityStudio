@@ -99,172 +99,250 @@ public:
     wxMenu* m_customTestsRegularMenu{ nullptr };
     wxMenu m_testsBundleMenu;
     wxMenu* m_testsBundleRegularMenu{ nullptr };
-    [[nodiscard]] wxDocChildFrame* CreateChildFrame(wxDocument* doc, wxView* view);
-    [[nodiscard]] wxDocChildFrame* GetDocFrame() noexcept
+    [[nodiscard]]
+    wxDocChildFrame* CreateChildFrame(wxDocument* doc, wxView* view);
+    [[nodiscard]]
+    wxDocChildFrame* GetDocFrame() noexcept
         { return m_frame; }
-    [[nodiscard]] wxRibbonBar* GetRibbon() noexcept
+    [[nodiscard]]
+    wxRibbonBar* GetRibbon() noexcept
         { return m_ribbon; }
 
-    [[nodiscard]] wxToolBar* GetQuickToolbar() noexcept
+    [[nodiscard]]
+    wxToolBar* GetQuickToolbar() noexcept
         { return m_quickToolbar; }
 
-    [[nodiscard]] Wisteria::UI::SearchPanel* GetSearchPanel() noexcept
+    [[nodiscard]]
+    Wisteria::UI::SearchPanel* GetSearchPanel() noexcept
         { return m_searchCtrl; }
 
     // labels for the icons on the left-side pane used for project navigation
-    [[nodiscard]] static wxString GetFormattedReportLabel()
+    [[nodiscard]]
+    static wxString GetFormattedReportLabel()
         { return _(L"Formatted Report"); }
-    [[nodiscard]] static wxString GetTabularReportLabel()
+    [[nodiscard]]
+    static wxString GetTabularReportLabel()
         { return _(L"Tabular Report"); }
-    [[nodiscard]] static wxString GetWordsBreakdownLabel()
+    [[nodiscard]]
+    static wxString GetWordsBreakdownLabel()
         { return _(L"Words Breakdown"); }
-    [[nodiscard]] static wxString GetSentencesBreakdownLabel()
+    [[nodiscard]]
+    static wxString GetSentencesBreakdownLabel()
         { return _(L"Sentences Breakdown"); }
-    [[nodiscard]] static wxString GetDifficultWordsLabel()
+    [[nodiscard]]
+    static wxString GetDifficultWordsLabel()
         { return _(L"Difficult Words"); }
-    [[nodiscard]] static wxString GetReadabilityScoresLabel()
+    [[nodiscard]]
+    static wxString GetReadabilityScoresLabel()
         { return _(L"Readability Scores"); }
-    [[nodiscard]] static wxString GetHighlightedReportsLabel()
+    [[nodiscard]]
+    static wxString GetHighlightedReportsLabel()
         { return _(L"Highlighted Reports"); }
-    [[nodiscard]] static wxString GetGraphsLabel()
+    [[nodiscard]]
+    static wxString GetGraphsLabel()
         { return _(L"Graphs"); }
-    [[nodiscard]] static wxString GetGrammarLabel()
+    [[nodiscard]]
+    static wxString GetGrammarLabel()
         { return _(L"Grammar"); }
-    [[nodiscard]] static wxString GetDolchLabel()
+    [[nodiscard]]
+    static wxString GetDolchLabel()
         { return _(L"Sight Words"); }
-    [[nodiscard]] static wxString GetBoxPlotsLabel()
+    [[nodiscard]]
+    static wxString GetBoxPlotsLabel()
         { return _(L"Box Plots"); }
-    [[nodiscard]] static wxString GetTestGraphsLabel()
+    [[nodiscard]]
+    static wxString GetTestGraphsLabel()
         { return _(L"Readability Graphs"); }
-    [[nodiscard]] static wxString GetWarningLabel()
+    [[nodiscard]]
+    static wxString GetWarningLabel()
         { return _(L"Warnings"); }
     // label functions
-    [[nodiscard]] static wxString GetSentenceStartingWithConjunctionsLabel()
+    [[nodiscard]]
+    static wxString GetSentenceStartingWithConjunctionsLabel()
         { return _(L"Sentences that begin with conjunctions"); }
-    [[nodiscard]] static wxString GetSentenceStartingWithConjunctionsTabLabel()
+    [[nodiscard]]
+    static wxString GetSentenceStartingWithConjunctionsTabLabel()
         { return _(L"Conjunction-starting Sentences"); }
-    [[nodiscard]] static wxString GetSentenceStartingWithLowercaseLabel()
+    [[nodiscard]]
+    static wxString GetSentenceStartingWithLowercaseLabel()
         { return _(L"Sentences that begin with lowercased words"); }
-    [[nodiscard]] static wxString GetSentenceStartingWithLowercaseTabLabel()
+    [[nodiscard]]
+    static wxString GetSentenceStartingWithLowercaseTabLabel()
         { return _(L"Lowercased Sentences"); }
-    [[nodiscard]] static wxString GetWordyPhrasesTabLabel()
+    [[nodiscard]]
+    static wxString GetWordyPhrasesTabLabel()
         { return _(L"Wordy Items"); }
-    [[nodiscard]] static wxString GetRedundantPhrasesTabLabel()
+    [[nodiscard]]
+    static wxString GetRedundantPhrasesTabLabel()
         { return _(L"Redundant Phrases"); }
-    [[nodiscard]] static wxString GetClichesTabLabel()
+    [[nodiscard]]
+    static wxString GetClichesTabLabel()
         { return _(L"Clich\351s"); }
-    [[nodiscard]] static wxString GetPhrasingErrorsTabLabel()
+    [[nodiscard]]
+    static wxString GetPhrasingErrorsTabLabel()
         { return _(L"Wording Errors"); }
-    [[nodiscard]] static wxString GetSummaryStatisticsLabel()
+    [[nodiscard]]
+    static wxString GetSummaryStatisticsLabel()
         { return _(L"Summary Statistics"); }
-    [[nodiscard]] static wxString GetHistogramsLabel()
+    [[nodiscard]]
+    static wxString GetHistogramsLabel()
         { return _(L"Histograms"); }
-    [[nodiscard]] static wxString GetCoverageChartTabLabel()
+    [[nodiscard]]
+    static wxString GetCoverageChartTabLabel()
         { return _(L"Coverage Chart"); }
-    [[nodiscard]] static wxString GetWordCountsLabel()
+    [[nodiscard]]
+    static wxString GetWordCountsLabel()
         { return _(L"Word Counts"); }
-    [[nodiscard]] static wxString GetSyllableCountsLabel()
+    [[nodiscard]]
+    static wxString GetSyllableCountsLabel()
         { return _(L"Syllable Counts"); }
-    [[nodiscard]] static wxString GetSentenceLengthBoxPlotLabel()
+    [[nodiscard]]
+    static wxString GetSentenceLengthBoxPlotLabel()
         { return _(L"Lengths (Spread)"); }
-    [[nodiscard]] static wxString GetSentenceLengthHistogramLabel()
+    [[nodiscard]]
+    static wxString GetSentenceLengthHistogramLabel()
         { return _(L"Lengths (Distribution)"); }
-    [[nodiscard]] static wxString GetSentenceLengthHeatmapLabel()
+    [[nodiscard]] 
+   static wxString GetSentenceLengthHeatmapLabel()
         { return _(L"Lengths (Density)"); }
-    [[nodiscard]] static wxString GetDifficultWordCloudLabel()
+    [[nodiscard]]
+    static wxString GetDifficultWordCloudLabel()
         { return _(L"Difficult Word Cloud"); }
     // Dolch labels
-    [[nodiscard]] static wxString GetDolchWordTabLabel()
+    [[nodiscard]]
+    static wxString GetDolchWordTabLabel()
         { return _(L"Dolch Words"); }
-    [[nodiscard]] static wxString GetNonDolchWordTabLabel()
+    [[nodiscard]]
+    static wxString GetNonDolchWordTabLabel()
         { return _(L"Non-Dolch Words"); }
-    [[nodiscard]] static wxString GetUnusedDolchWordTabLabel()
+    [[nodiscard]]
+    static wxString GetUnusedDolchWordTabLabel()
         { return _(L"Unused Dolch Words"); }
-    [[nodiscard]] static wxString GetDolchCoverageTabLabel()
+    [[nodiscard]]
+    static wxString GetDolchCoverageTabLabel()
         { return _(L"Dolch Word Coverage"); }
     // batch tab labels
-    [[nodiscard]] static wxString GetRawScoresTabLabel()
+    [[nodiscard]]
+    static wxString GetRawScoresTabLabel()
         { return _(L"Raw Scores"); }
     // stat headers
-    [[nodiscard]] static wxString GetAverageLabel()
+    [[nodiscard]]
+    static wxString GetAverageLabel()
         { return _(L"Average (Mean)"); }
-    [[nodiscard]] static wxString GetMedianLabel()
+    [[nodiscard]]
+    static wxString GetMedianLabel()
         { return _(L"Median"); }
-    [[nodiscard]] static wxString GetModeLabel()
+    [[nodiscard]]
+    static wxString GetModeLabel()
         { return _(L"Mode(s)"); }
-    [[nodiscard]] static wxString GetStdDevLabel()
+    [[nodiscard]]
+    static wxString GetStdDevLabel()
         { return _(L"Std. Dev."); }
     // errors
-    [[nodiscard]] static wxString GetFailedLabel()
+    [[nodiscard]]
+    static wxString GetFailedLabel()
         { return L"\x26A0 " + _(L"Failed"); } // includes warning emoji
     // tab labels
-    [[nodiscard]] static wxString GetAllWordsLabel()
+    [[nodiscard]]
+    static wxString GetAllWordsLabel()
         { return _(L"All Words"); }
-    [[nodiscard]] static wxString GetImportantWordsLabel()
+    [[nodiscard]]
+    static wxString GetImportantWordsLabel()
         { return _(L"Important Words"); }
-    [[nodiscard]] static wxString GetRepeatedWordsLabel()
+    [[nodiscard]]
+    static wxString GetRepeatedWordsLabel()
         { return _(L"Repeated Words"); }
-    [[nodiscard]] static wxString GetLongSentencesLabel()
+    [[nodiscard]]
+    static wxString GetLongSentencesLabel()
         { return _(L"Long Sentences"); }
-    [[nodiscard]] static wxString GetRaygorLabel()
+    [[nodiscard]]
+    static wxString GetRaygorLabel()
         { return _(L"Raygor Estimate"); }
-    [[nodiscard]] static wxString GetFryLabel()
+    [[nodiscard]]
+    static wxString GetFryLabel()
         { return _(L"Fry Graph"); }
-    [[nodiscard]] static wxString GetGilliamPenanMountainFryLabel()
+    [[nodiscard]]
+    static wxString GetGilliamPenanMountainFryLabel()
         { return _(L"Gilliam-Pe\U000000F1a-Mountain Graph"); }
-    [[nodiscard]] static wxString GetFraseLabel()
+    [[nodiscard]]
+    static wxString GetFraseLabel()
         { return _(L"FRASE Graph"); }
-    [[nodiscard]] static wxString GetSchwartzLabel()
+    [[nodiscard]]
+    static wxString GetSchwartzLabel()
         { return _(L"Schwartz Graph"); }
-    [[nodiscard]] static wxString GetLixGaugeLabel()
+    [[nodiscard]]
+    static wxString GetLixGaugeLabel()
         { return _(L"Lix Gauge"); }
-    [[nodiscard]] static wxString GetGermanLixGaugeLabel()
+    [[nodiscard]]
+    static wxString GetGermanLixGaugeLabel()
         { return _(L"German Lix Gauge"); }
-    [[nodiscard]] static wxString GetFleschChartLabel()
+    [[nodiscard]]
+    static wxString GetFleschChartLabel()
         { return _(L"Flesch Chart"); }
-    [[nodiscard]] static wxString GetDB2Label()
+    [[nodiscard]]
+    static wxString GetDB2Label()
         { return _(L"Danielson-Bryan 2"); }
-    [[nodiscard]] static wxString GetCrawfordGraphLabel()
+    [[nodiscard]]
+    static wxString GetCrawfordGraphLabel()
         { return _(L"Crawford Graph"); }
-    [[nodiscard]] static wxString GetSixCharWordsLabel()
+    [[nodiscard]]
+    static wxString GetSixCharWordsLabel()
         { return _(L"6+ Characters"); }
-    [[nodiscard]] static wxString GetSixCharWordsListLabel()
+    [[nodiscard]]
+    static wxString GetSixCharWordsListLabel()
         { return _(L"6+ Characters List"); }
-    [[nodiscard]] static wxString GetSixCharWordsReportLabel()
+    [[nodiscard]]
+    static wxString GetSixCharWordsReportLabel()
         { return _(L"6+ Characters Report"); }
-    [[nodiscard]] static wxString GetThreeSyllableWordsLabel()
+    [[nodiscard]]
+    static wxString GetThreeSyllableWordsLabel()
         { return _(L"3+ Syllables"); }
-    [[nodiscard]] static wxString GetThreeSyllableListWordsLabel()
+    [[nodiscard]]
+    static wxString GetThreeSyllableListWordsLabel()
         { return _(L"3+ Syllables List"); }
-    [[nodiscard]] static wxString GetThreeSyllableReportWordsLabel()
+    [[nodiscard]]
+    static wxString GetThreeSyllableReportWordsLabel()
         { return _(L"3+ Syllables Report"); }
-    [[nodiscard]] static wxString GetProperNounsLabel()
+    [[nodiscard]]
+    static wxString GetProperNounsLabel()
         { return _(L"Proper Nouns"); }
-    [[nodiscard]] static wxString GetContractionsLabel()
+    [[nodiscard]]
+    static wxString GetContractionsLabel()
         { return _(L"Contractions"); }
-    [[nodiscard]] static wxString GetOverusedWordsBySentenceLabel()
+    [[nodiscard]]
+    static wxString GetOverusedWordsBySentenceLabel()
         { return _(L"Overused Words (x Sentence)"); }
-    [[nodiscard]] static wxString GetMisspellingsLabel()
+    [[nodiscard]]
+    static wxString GetMisspellingsLabel()
         { return _(L"Misspellings"); }
-    [[nodiscard]] static wxString GetArticleMismatchesLabel()
+    [[nodiscard]]
+    static wxString GetArticleMismatchesLabel()
         { return _(L"Article Mismatches"); }
-    [[nodiscard]] static wxString GetPassiveLabel()
+    [[nodiscard]]
+    static wxString GetPassiveLabel()
         { return _(L"Passive Voice"); }
-    [[nodiscard]] static wxString GetDaleChallLabel()
+    [[nodiscard]]
+    static wxString GetDaleChallLabel()
         { return _DT(L"Dale-Chall"); }
-    [[nodiscard]] static wxString GetSpacheLabel()
+    [[nodiscard]]
+    static wxString GetSpacheLabel()
         { return _DT(L"Spache"); }
-    [[nodiscard]] static wxString GetHarrisJacobsonLabel()
+    [[nodiscard]]
+    static wxString GetHarrisJacobsonLabel()
         { return _DT(L"Harris-Jacobson"); }
     // icon emojis used for goals, reports, and test results
-    [[nodiscard]] static wxString GetCheckmarkEmoji()
+    [[nodiscard]]
+    static wxString GetCheckmarkEmoji()
         { return L"\x2714"; }
-    [[nodiscard]] static wxString GetWarningEmoji()
+    [[nodiscard]]
+    static wxString GetWarningEmoji()
         { return L"\x26A0"; }
-    [[nodiscard]] static wxString GetNoteEmoji()
+    [[nodiscard]]
+    static wxString GetNoteEmoji()
         { return L"\U0001F4DD"; }
 
-    [[nodiscard]] long GetMaxColumnWidth() const noexcept
+    [[nodiscard]]
+    long GetMaxColumnWidth() const noexcept
         { return m_maxColumnWidth; }
 
     // list IDs
@@ -486,7 +564,8 @@ private:
     // logged messages
     std::set<WarningMessage> m_queuedMessages;
     /// @return the messages that won't be shown until client asks from them to be shown.
-    [[nodiscard]] const std::set<WarningMessage>& GetQueuedMessages() const noexcept
+    [[nodiscard]]
+    const std::set<WarningMessage>& GetQueuedMessages() const noexcept
         { return m_queuedMessages; }
     /// Saves a message to be shown later, when ShowQueuedMessages() is called.
     /// @param message The message to queue.

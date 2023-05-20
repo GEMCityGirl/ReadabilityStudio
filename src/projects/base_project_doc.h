@@ -43,93 +43,115 @@ public:
     // graph information
     //------------------------------    
     void SetStippleImagePath(const wxString& filePath);
-    [[nodiscard]] wxString GetStippleImagePath() const
+    [[nodiscard]]
+    wxString GetStippleImagePath() const
         { return m_stippleImagePath; }
     void SetBackGroundImagePath(const wxString& filePath);
-    [[nodiscard]] wxString GetBackGroundImagePath() const
+    [[nodiscard]]
+    wxString GetBackGroundImagePath() const
         { return m_graphBackGroundImagePath; }
-    [[nodiscard]] wxColour GetBackGroundColor() const noexcept
+    [[nodiscard]]
+    wxColour GetBackGroundColor() const noexcept
         { return m_graphBackGroundColor; }
     void SetBackGroundColor(const wxColour& color)
         { m_graphBackGroundColor = color; }
-    [[nodiscard]] wxColour GetPlotBackGroundColor() const noexcept
+    [[nodiscard]]
+    wxColour GetPlotBackGroundColor() const noexcept
         { return m_graphPlotBackGroundColor; }
     void SetPlotBackGroundColor(const wxColour& color)
         { m_graphPlotBackGroundColor = color; }
-    [[nodiscard]] uint8_t GetGraphBackGroundOpacity() const noexcept
+    [[nodiscard]]
+    uint8_t GetGraphBackGroundOpacity() const noexcept
         { return m_graphBackGroundOpacity; }
     void SetGraphBackGroundOpacity(const uint8_t opacity) noexcept
         { m_graphBackGroundOpacity = opacity; }
-    [[nodiscard]] uint8_t GetGraphPlotBackGroundOpacity() const noexcept
+    [[nodiscard]]
+    uint8_t GetGraphPlotBackGroundOpacity() const noexcept
         { return m_graphPlotBackGroundOpacity; }
     void SetGraphPlotBackGroundOpacity(const uint8_t opacity) noexcept
         { m_graphPlotBackGroundOpacity = opacity; }
     /// water mark functions
     void SetWatermark(const wxString& watermark)
         { m_watermark = watermark; }
-    [[nodiscard]] wxString GetWatermark() const
+    [[nodiscard]]
+    wxString GetWatermark() const
         { return m_watermark; }
     void SetWatermarkLogoPath(const wxString& filePath);
-    [[nodiscard]] wxString GetWatermarkLogoPath() const
+    [[nodiscard]]
+    wxString GetWatermarkLogoPath() const
         { return m_watermarkImagePath; }
     /// whether gradient is used for graph backgrounds
     void SetGraphBackGroundLinearGradient(const bool useGradient) noexcept
         { m_useGraphBackGroundImageLinearGradient = useGradient; }
-    [[nodiscard]] bool GetGraphBackGroundLinearGradient() const noexcept
+    [[nodiscard]]
+    bool GetGraphBackGroundLinearGradient() const noexcept
         { return m_useGraphBackGroundImageLinearGradient; }
     /// whether drop shadows should be shown
     void DisplayDropShadows(const bool display) noexcept
         { m_displayDropShadows = display; }
-    [[nodiscard]] bool IsDisplayingDropShadows() const noexcept
+    [[nodiscard]]
+    bool IsDisplayingDropShadows() const noexcept
         { return m_displayDropShadows; }
     /// axis font colors
-    [[nodiscard]] wxColour GetXAxisFontColor() const noexcept
+    [[nodiscard]]
+    wxColour GetXAxisFontColor() const noexcept
         { return m_xAxisFontColor; }
     void SetXAxisFontColor(const wxColour& color)
         { m_xAxisFontColor = color; }
-    [[nodiscard]] wxColour GetYAxisFontColor() const noexcept
+    [[nodiscard]]
+    wxColour GetYAxisFontColor() const noexcept
         { return m_yAxisFontColor; }
     void SetYAxisFontColor(const wxColour& color)
         { m_yAxisFontColor = color; }
     /// axis fonts
-    [[nodiscard]] wxFont GetXAxisFont() const noexcept
+    [[nodiscard]]
+    wxFont GetXAxisFont() const noexcept
         { return m_xAxisFont; }
     void SetXAxisFont(const wxFont& font)
         { m_xAxisFont = font; }
-    [[nodiscard]] wxFont GetYAxisFont() const noexcept
+    [[nodiscard]]
+    wxFont GetYAxisFont() const noexcept
         { return m_yAxisFont; }
     void SetYAxisFont(const wxFont& font)
         { m_yAxisFont = font; }
     /// title fonts
-    [[nodiscard]] wxColour GetTopTitleGraphFontColor() const noexcept
+    [[nodiscard]]
+    wxColour GetTopTitleGraphFontColor() const noexcept
         { return m_topTitleFontColor; }
     void SetTopTitleGraphFontColor(const wxColour& color)
         { m_topTitleFontColor = color; }
-    [[nodiscard]] wxFont GetTopTitleGraphFont() const  noexcept
+    [[nodiscard]]
+    wxFont GetTopTitleGraphFont() const  noexcept
         { return m_topTitleFont; }
     void SetTopTitleGraphFont(const wxFont& font)
         { m_topTitleFont = font; }
-    [[nodiscard]] wxColour GetBottomTitleGraphFontColor() const noexcept
+    [[nodiscard]]
+    wxColour GetBottomTitleGraphFontColor() const noexcept
         { return m_bottomTitleFontColor; }
     void SetBottomTitleGraphFontColor(const wxColour& color)
         { m_bottomTitleFontColor = color; }
-    [[nodiscard]] wxFont GetBottomTitleGraphFont() const noexcept
+    [[nodiscard]]
+    wxFont GetBottomTitleGraphFont() const noexcept
         { return m_bottomTitleFont; }
     void SetBottomTitleGraphFont(const wxFont& font)
         { m_bottomTitleFont = font; }
-    [[nodiscard]] wxColour GetLeftTitleGraphFontColor() const noexcept
+    [[nodiscard]]
+    wxColour GetLeftTitleGraphFontColor() const noexcept
         { return m_leftTitleFontColor; }
     void SetLeftTitleGraphFontColor(const wxColour& color)
         { m_leftTitleFontColor = color; }
-    [[nodiscard]] wxFont GetLeftTitleGraphFont() const noexcept
+    [[nodiscard]]
+    wxFont GetLeftTitleGraphFont() const noexcept
         { return m_leftTitleFont; }
     void SetLeftTitleGraphFont(const wxFont& font)
         { m_leftTitleFont = font; }
-    [[nodiscard]] wxColour GetRightTitleGraphFontColor() const noexcept
+    [[nodiscard]]
+    wxColour GetRightTitleGraphFontColor() const noexcept
         { return m_rightTitleFontColor; }
     void SetRightTitleGraphFontColor(const wxColour& color)
         { m_rightTitleFontColor = color; }
-    [[nodiscard]] wxFont GetRightTitleGraphFont() const noexcept
+    [[nodiscard]]
+    wxFont GetRightTitleGraphFont() const noexcept
         { return m_rightTitleFont; }
     void SetRightTitleGraphFont(const wxFont& font)
         { m_rightTitleFont = font; }
@@ -141,241 +163,293 @@ public:
     // Flesch connection lines
     void ConnectFleschPoints(const bool connect) noexcept
         { m_fleschChartConnectPoints = connect; }
-    [[nodiscard]] bool IsConnectingFleschPoints() const noexcept
+    [[nodiscard]]
+    bool IsConnectingFleschPoints() const noexcept
         { return m_fleschChartConnectPoints; }
     /** Sets whether to use English labels for the brackets on German Lix gauges.
         @param useEnglish True to use the translated (English) labels.*/
     void UseEnglishLabelsForGermanLix(const bool useEnglish) noexcept
         { m_useEnglishLabelsGermanLix = useEnglish; }
     /// @returns @c true if English labels are being used for the brackets on German Lix gauges.
-    [[nodiscard]] bool IsUsingEnglishLabelsForGermanLix() const noexcept
+    [[nodiscard]]
+    bool IsUsingEnglishLabelsForGermanLix() const noexcept
         { return m_useEnglishLabelsGermanLix; }
 
     /// Histogram options
-    [[nodiscard]] Wisteria::Graphs::Histogram::BinningMethod GetHistorgramBinningMethod() const noexcept
+    [[nodiscard]]
+    Wisteria::Graphs::Histogram::BinningMethod GetHistorgramBinningMethod() const noexcept
         { return m_histogramBinningMethod; }
     void SetHistorgramBinningMethod(const Wisteria::Graphs::Histogram::BinningMethod method) noexcept
         { m_histogramBinningMethod = method; }
-    [[nodiscard]] Wisteria::BinLabelDisplay GetHistrogramBinLabelDisplay() const noexcept
+    [[nodiscard]]
+    Wisteria::BinLabelDisplay GetHistrogramBinLabelDisplay() const noexcept
         { return m_histrogramBinLabelDisplayMethod; }
     void SetHistrogramBinLabelDisplay(const Wisteria::BinLabelDisplay display) noexcept
         { m_histrogramBinLabelDisplayMethod = display; }
-    [[nodiscard]] Wisteria::RoundingMethod GetHistogramRoundingMethod() const noexcept
+    [[nodiscard]]
+    Wisteria::RoundingMethod GetHistogramRoundingMethod() const noexcept
         { return m_histrogramRoundingMethod; }
     void SetHistogramRoundingMethod(const Wisteria::RoundingMethod rounding) noexcept
         { m_histrogramRoundingMethod = rounding; }
     void SetHistogramIntervalDisplay(const Wisteria::Graphs::Histogram::IntervalDisplay display) noexcept
         { m_histrogramIntervalDisplay = display; }
-    [[nodiscard]] Wisteria::Graphs::Histogram::IntervalDisplay GetHistogramIntervalDisplay() const noexcept
+    [[nodiscard]]
+    Wisteria::Graphs::Histogram::IntervalDisplay GetHistogramIntervalDisplay() const noexcept
         { return m_histrogramIntervalDisplay; }
-    [[nodiscard]] wxColour GetHistogramBarColor() const noexcept
+    [[nodiscard]]
+    wxColour GetHistogramBarColor() const noexcept
         { return m_histogramBarColor; }
     void SetHistogramBarColor(const wxColour color)
         { m_histogramBarColor = color; }
-    [[nodiscard]] uint8_t GetHistogramBarOpacity() const noexcept
+    [[nodiscard]]
+    uint8_t GetHistogramBarOpacity() const noexcept
         { return m_histogramBarOpacity; }
     void SetHistogramBarOpacity(const uint8_t opacity) noexcept
         { m_histogramBarOpacity = opacity; }
-    [[nodiscard]] Wisteria::BoxEffect GetHistogramBarEffect() const noexcept
+    [[nodiscard]]
+    Wisteria::BoxEffect GetHistogramBarEffect() const noexcept
         { return m_histogramBarEffect; }
     void SetHistogramBarEffect(const Wisteria::BoxEffect effect) noexcept
         { m_histogramBarEffect = effect; }
     // Bar chart options
-    [[nodiscard]] wxColour GetBarChartBarColor() const noexcept
+    [[nodiscard]]
+    wxColour GetBarChartBarColor() const noexcept
         { return m_barChartBarColor; }
     void SetBarChartBarColor(const wxColour color)
         { m_barChartBarColor = color; }
-    [[nodiscard]] Wisteria::Orientation GetBarChartOrientation() const noexcept
+    [[nodiscard]]
+    Wisteria::Orientation GetBarChartOrientation() const noexcept
         { return m_barChartOrientation; }
     void SetBarChartOrientation(const Wisteria::Orientation orient) noexcept
         { m_barChartOrientation = orient; }
-    [[nodiscard]] uint8_t GetGraphBarOpacity() const noexcept
+    [[nodiscard]]
+    uint8_t GetGraphBarOpacity() const noexcept
         { return m_graphBarOpacity; }
     void SetGraphBarOpacity(const uint8_t opacity) noexcept
         { m_graphBarOpacity = opacity; }
-    [[nodiscard]] Wisteria::BoxEffect GetGraphBarEffect() const noexcept
+    [[nodiscard]]
+    Wisteria::BoxEffect GetGraphBarEffect() const noexcept
         { return m_graphBarEffect; }
     void SetGraphBarEffect(const Wisteria::BoxEffect effect) noexcept
         { m_graphBarEffect = effect; }
     void DisplayBarLabels(const bool display = true) noexcept
         { m_barDisplayLabels = display; }
-    [[nodiscard]] bool IsDisplayingBarLabels() const noexcept
+    [[nodiscard]]
+    bool IsDisplayingBarLabels() const noexcept
         { return m_barDisplayLabels; }
     // Box Plot options
     void ShowAllBoxPlotPoints(const bool show) noexcept
         { m_boxPlotShowAllPoints = show; }
-    [[nodiscard]] bool IsShowingAllBoxPlotPoints() const noexcept
+    [[nodiscard]]
+    bool IsShowingAllBoxPlotPoints() const noexcept
         { return m_boxPlotShowAllPoints; }
     void DisplayBoxPlotLabels(const bool display = true) noexcept
         { m_boxDisplayLabels = display; }
-    [[nodiscard]] bool IsDisplayingBoxPlotLabels() const noexcept
+    [[nodiscard]]
+    bool IsDisplayingBoxPlotLabels() const noexcept
         { return m_boxDisplayLabels; }
     void ConnectBoxPlotMiddlePoints(const bool connect = true) noexcept
         { m_boxConnectMiddlePoints = connect; }
-    [[nodiscard]] bool IsConnectingBoxPlotMiddlePoints() const noexcept
+    [[nodiscard]]
+    bool IsConnectingBoxPlotMiddlePoints() const noexcept
         { return m_boxConnectMiddlePoints; }
-    [[nodiscard]] wxColour GetGraphBoxColor() const noexcept
+    [[nodiscard]]
+    wxColour GetGraphBoxColor() const noexcept
         { return m_graphBoxColor; }
     void SetGraphBoxColor(const wxColour& color)
         { m_graphBoxColor = color; }
-    [[nodiscard]] uint8_t GetGraphBoxOpacity() const noexcept
+    [[nodiscard]]
+    uint8_t GetGraphBoxOpacity() const noexcept
         { return m_graphBoxOpacity; }
     void SetGraphBoxOpacity(const uint8_t opacity) noexcept
         { m_graphBoxOpacity = opacity; }
-    [[nodiscard]] Wisteria::BoxEffect GetGraphBoxEffect() const noexcept
+    [[nodiscard]]
+    Wisteria::BoxEffect GetGraphBoxEffect() const noexcept
         { return m_graphBoxEffect; }
     void SetGraphBoxEffect(const Wisteria::BoxEffect effect) noexcept
         { m_graphBoxEffect = effect; }
     // text highlighting
-    [[nodiscard]] TextHighlight GetTextHighlightMethod() noexcept
+    [[nodiscard]]
+    TextHighlight GetTextHighlightMethod() noexcept
         { return m_textHighlight; }
     void SetTextHighlightMethod(const TextHighlight highlight) noexcept
         { m_textHighlight = highlight; }
     // text highlighting
-    [[nodiscard]] wxColour GetTextHighlightColor() const noexcept
+    [[nodiscard]]
+    wxColour GetTextHighlightColor() const noexcept
         { return m_textViewHighlightColor; }
     void SetTextHighlightColor(const wxColour& color)
         { m_textViewHighlightColor = color; }
     // excluded sentences
-    [[nodiscard]] wxColour GetExcludedTextHighlightColor() const noexcept
+    [[nodiscard]]
+    wxColour GetExcludedTextHighlightColor() const noexcept
         { return m_excludedTextHighlightColor; }
     void SetExcludedTextHighlightColor(const wxColour& color)
         { m_excludedTextHighlightColor = color; }
     // color to highlight repeated words
-    [[nodiscard]] wxColour GetDuplicateWordHighlightColor() const noexcept
+    [[nodiscard]]
+    wxColour GetDuplicateWordHighlightColor() const noexcept
         { return m_duplicateWordHighlightColor; }
     void SetDuplicateWordHighlightColor(const wxColour& color)
         { m_duplicateWordHighlightColor = color; }
     // color for wordy items
-    [[nodiscard]] wxColour GetWordyPhraseHighlightColor() const noexcept
+    [[nodiscard]]
+    wxColour GetWordyPhraseHighlightColor() const noexcept
         { return m_wordyPhraseHighlightColor; }
     void SetWordyPhraseHighlightColor(const wxColour& color)
         { m_wordyPhraseHighlightColor = color; }
     // text view font and color
-    [[nodiscard]] wxFont GetTextViewFont() const noexcept
+    [[nodiscard]]
+    wxFont GetTextViewFont() const noexcept
         { return m_textViewFont; }
     void SetTextViewFont(const wxFont& font)
         { m_textViewFont = font; }
     // text color
-    [[nodiscard]] wxColour GetTextFontColor() const noexcept
+    [[nodiscard]]
+    wxColour GetTextFontColor() const noexcept
         { return m_fontColor; }
     void SetTextFontColor(const wxColour& color)
         { m_fontColor = color; }
     // dolch colors
-    [[nodiscard]] wxColour GetDolchConjunctionsColor() const noexcept
+    [[nodiscard]]
+    wxColour GetDolchConjunctionsColor() const noexcept
         { return m_dolchConjunctionsColor; }
     void SetDolchConjunctionsColor(const wxColour& color)
         { m_dolchConjunctionsColor = color; }
-    [[nodiscard]] wxColour GetDolchPrepositionsColor() const noexcept
+    [[nodiscard]]
+    wxColour GetDolchPrepositionsColor() const noexcept
         { return m_dolchPrepositionsColor; }
     void SetDolchPrepositionsColor(const wxColour& color)
         { m_dolchPrepositionsColor = color; }
-    [[nodiscard]] wxColour GetDolchPronounsColor() const noexcept
+    [[nodiscard]]
+    wxColour GetDolchPronounsColor() const noexcept
         { return m_dolchPronounsColor; }
     void SetDolchPronounsColor(const wxColour& color)
         { m_dolchPronounsColor = color; }
-    [[nodiscard]] wxColour GetDolchAdverbsColor() const noexcept
+    [[nodiscard]]
+    wxColour GetDolchAdverbsColor() const noexcept
         { return m_dolchAdverbsColor; }
     void SetDolchAdverbsColor(const wxColour& color)
         { m_dolchAdverbsColor = color; }
-    [[nodiscard]] wxColour GetDolchAdjectivesColor() const noexcept
+    [[nodiscard]]
+    wxColour GetDolchAdjectivesColor() const noexcept
         { return m_dolchAdjectivesColor; }
     void SetDolchAdjectivesColor(const wxColour& color)
         { m_dolchAdjectivesColor = color; }
-    [[nodiscard]] wxColour GetDolchVerbsColor() const noexcept
+    [[nodiscard]]
+    wxColour GetDolchVerbsColor() const noexcept
         { return m_dolchVerbsColor; }
     void SetDolchVerbsColor(const wxColour& color)
         { m_dolchVerbsColor = color; }
-    [[nodiscard]] wxColour GetDolchNounColor() const noexcept
+    [[nodiscard]]
+    wxColour GetDolchNounColor() const noexcept
         { return m_dolchNounColor; }
     void SetDolchNounColor(const wxColour& color)
         { m_dolchNounColor = color; }
 
-    [[nodiscard]] bool IsHighlightingDolchConjunctions() const noexcept
+    [[nodiscard]]
+    bool IsHighlightingDolchConjunctions() const noexcept
         { return m_highlightDolchConjunctions; }
     void HighlightDolchConjunctions(const bool highlight = true) noexcept
         { m_highlightDolchConjunctions = highlight; }
 
-    [[nodiscard]] bool IsHighlightingDolchPrepositions() const noexcept
+    [[nodiscard]]
+    bool IsHighlightingDolchPrepositions() const noexcept
         { return m_highlightDolchPrepositions; }
     void HighlightDolchPrepositions(const bool highlight = true) noexcept
         { m_highlightDolchPrepositions = highlight; }
 
-    [[nodiscard]] bool IsHighlightingDolchPronouns() const noexcept
+    [[nodiscard]]
+    bool IsHighlightingDolchPronouns() const noexcept
         { return m_highlightDolchPronouns; }
     void HighlightDolchPronouns(const bool highlight = true) noexcept
         { m_highlightDolchPronouns = highlight; }
 
-    [[nodiscard]] bool IsHighlightingDolchAdverbs() const noexcept
+    [[nodiscard]]
+    bool IsHighlightingDolchAdverbs() const noexcept
         { return m_highlightDolchAdverbs; }
     void HighlightDolchAdverbs(const bool highlight = true) noexcept
         { m_highlightDolchAdverbs = highlight; }
 
-    [[nodiscard]] bool IsHighlightingDolchAdjectives() const noexcept
+    [[nodiscard]]
+    bool IsHighlightingDolchAdjectives() const noexcept
         { return m_highlightDolchAdjectives; }
     void HighlightDolchAdjectives(const bool highlight = true) noexcept
         { m_highlightDolchAdjectives = highlight; }
 
-    [[nodiscard]] bool IsHighlightingDolchVerbs() const noexcept
+    [[nodiscard]]
+    bool IsHighlightingDolchVerbs() const noexcept
         { return m_highlightDolchVerbs; }
     void HighlightDolchVerbs(const bool highlight = true) noexcept
         { m_highlightDolchVerbs = highlight; }
 
-    [[nodiscard]] bool IsHighlightingDolchNouns() const noexcept
+    [[nodiscard]]
+    bool IsHighlightingDolchNouns() const noexcept
         { return m_highlightDolchNouns; }
     void HighlightDolchNouns(const bool highlight = true) noexcept
         { m_highlightDolchNouns = highlight; }
 
     /// @returns The background color used for the text windows
-    [[nodiscard]] wxColour GetTextReportBackgroundColor() const;
+    [[nodiscard]]
+    wxColour GetTextReportBackgroundColor() const;
 
     void SetExportFolder(const wxString& folder)
         { m_exportFolder = folder; }
-    [[nodiscard]] wxString GetExportFolder() const
+    [[nodiscard]]
+    wxString GetExportFolder() const
         { return m_exportFolder; }
     void SetExportFile(const wxString& file)
         { m_exportFile = file; }
-    [[nodiscard]] wxString GetExportFile() const
+    [[nodiscard]]
+    wxString GetExportFile() const
         { return m_exportFile; }
 
     static void SetExportTextViewExt(const wxString& extension)
         { m_exportTextViewExt = extension; }
-    [[nodiscard]] static wxString GetExportTextViewExt()
+    [[nodiscard]]
+    static wxString GetExportTextViewExt()
         { return m_exportTextViewExt; }
 
     static void SetExportListExt(const wxString& extension)
         { m_exportListExt = extension; }
-    [[nodiscard]] static wxString GetExportListExt()
+    [[nodiscard]]
+    static wxString GetExportListExt()
         { return m_exportListExt; }
 
     static void SetExportGraphExt(const wxString& extension)
         { m_exportGraphExt = extension; }
-    [[nodiscard]] static wxString GetExportGraphExt()
+    [[nodiscard]]
+    static wxString GetExportGraphExt()
         { return m_exportGraphExt; }
 
     static void ExportHardWordLists(const bool exportItem) noexcept
         { m_exportHardWordLists = exportItem; }
-    [[nodiscard]] static bool IsExportingHardWordLists() noexcept
+    [[nodiscard]]
+    static bool IsExportingHardWordLists() noexcept
         { return m_exportHardWordLists; }
 
     static void ExportSentencesBreakdown(const bool exportItem) noexcept
         { m_exportSentencesBreakdown = exportItem; }
-    [[nodiscard]] static bool IsExportingSentencesBreakdown() noexcept
+    [[nodiscard]]
+    static bool IsExportingSentencesBreakdown() noexcept
         { return m_exportSentencesBreakdown; }
 
     static void ExportGraphs(const bool exportItem) noexcept
         { m_exportGraphs = exportItem; }
-    [[nodiscard]] static bool IsExportingGraphs() noexcept
+    [[nodiscard]]
+    static bool IsExportingGraphs() noexcept
         { return m_exportGraphs; }
 
     static void ExportTestResults(const bool exportItem) noexcept
         { m_exportTestResults = exportItem; }
-    [[nodiscard]] static bool IsExportingTestResults() noexcept
+    [[nodiscard]]
+    static bool IsExportingTestResults() noexcept
         { return m_exportTestResults; }
 
     static void ExportStatistics(const bool exportItem) noexcept
         { m_exportStatistics = exportItem; }
-    [[nodiscard]] static bool IsExportingStatistics() noexcept
+    [[nodiscard]]
+    static bool IsExportingStatistics() noexcept
         { return m_exportStatistics; }
 
     static void ExportWordiness(const bool exportItem) noexcept
@@ -385,25 +459,30 @@ public:
 
     static void ExportSightWords(const bool exportItem) noexcept
         { m_exportSightWords = exportItem; }
-    [[nodiscard]] static bool IsExportingSightWords() noexcept
+    [[nodiscard]]
+    static bool IsExportingSightWords() noexcept
         { return m_exportSightWords; }
 
     static void ExportWarnings(const bool exportItem) noexcept
         { m_exportWarnings = exportItem; }
-    [[nodiscard]] static bool IsExportingWarnings() noexcept
+    [[nodiscard]]
+    static bool IsExportingWarnings() noexcept
         { return m_exportWarnings; }
 
     static void ExportLists(const bool exportItem) noexcept
         { m_exportingLists = exportItem; }
-    [[nodiscard]] static bool IsExportingLists() noexcept
+    [[nodiscard]]
+    static bool IsExportingLists() noexcept
         { return m_exportingLists; }
 
     static void ExportTextReports(const bool exportItem) noexcept
         { m_exportingTextReports = exportItem; }
-    [[nodiscard]] static bool IsExportingTextReports() noexcept
+    [[nodiscard]]
+    static bool IsExportingTextReports() noexcept
         { return m_exportingTextReports; }
 
-    [[nodiscard]] static Wisteria::UI::ImageExportOptions& GetImageExportOptions() noexcept
+    [[nodiscard]]
+    static Wisteria::UI::ImageExportOptions& GetImageExportOptions() noexcept
         { return m_imageExportOptions; }
 
     void LoadSettingsFile(const wchar_t* settingsFileText);
