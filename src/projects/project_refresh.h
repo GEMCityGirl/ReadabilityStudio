@@ -23,11 +23,11 @@ public:
         /// @brief Don't refresh anything.
         NoRefresh = 0,
         /// @brief Refresh only the reports and graphs.
-        Minimal = 0x0010,
+        Minimal = (1 << 0),
         /// @brief Refresh the highlighted text (standard projects).
-        TextSection = 0x0020,
+        TextSection = (1 << 1),
         /// @brief Reload the document(s) and refresh all results.
-        FullReindexing = 0x0040
+        FullReindexing = (1 << 2)
         };
     /// @brief Adds a flag indicating what needs to be updated on the next
     ///     call to RefreshProject().
