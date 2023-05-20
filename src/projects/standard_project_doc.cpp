@@ -2581,7 +2581,7 @@ void ProjectDoc::DisplayWordCharts()
 
         auto wordCloud = std::dynamic_pointer_cast<WordCloud>(hardWordCloudCanvas->GetFixedObject(0, 0));
         wxASSERT_LEVEL_2(wordCloud);
-        wordCloud->SetData(m_threePlusSyllableWords, GetWordsColumnName(), GetWordsCountsColumnName());
+        wordCloud->SetData(m_difficultUncommonWordsDataset, GetWordsColumnName(), GetWordsCountsColumnName());
 
         hardWordCloudCanvas->CalcAllSizes(gdc);
         }

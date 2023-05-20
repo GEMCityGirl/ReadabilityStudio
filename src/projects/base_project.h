@@ -84,7 +84,8 @@ using CustomReadabilityTestCollection = std::vector<CustomReadabilityTest>;
 /// Helper structure for handling an Excel (XLSX) file.
 struct ExcelFile
     {
-    explicit ExcelFile(const wxString& filePath) : m_zip(filePath) {}
+    explicit ExcelFile(const wxString& filePath) : m_zip(filePath)
+        {}
     lily_of_the_valley::xlsx_extract_text m_xlsx_extract{ false };
     using Workbook = std::map<wxString,lily_of_the_valley::xlsx_extract_text::worksheet>;
     Workbook m_worksheets;
@@ -98,19 +99,14 @@ class CustomReadabilityTestInterface
 public:
     CustomReadabilityTestInterface() = delete;
     explicit CustomReadabilityTestInterface(const wxString& testName)
-         : m_formulasFlags(0),
-           m_testName(testName),
-           m_uniqueUnfamiliarWordCount(0),
-           m_unfamiliarWordCount(0),
-           m_listViewData(nullptr)
+         :m_testName(testName)
         {}
     CustomReadabilityTestInterface(const CustomReadabilityTestInterface& that) :
           m_formulasFlags(that.m_formulasFlags),
           m_testName(that.m_testName),
           m_uniqueUnfamiliarWordCount(that.m_uniqueUnfamiliarWordCount),
           m_unfamiliarWordCount(that.m_unfamiliarWordCount),
-          m_iter(that.m_iter),
-          m_listViewData(nullptr)
+          m_iter(that.m_iter)
           // don't copy over list view data (not copy safe), but that should be empty anyway. This will
           // be filled in later after the next recalculation.
         {}
@@ -204,7 +200,7 @@ public:
 private:
     // DC and HJ have their own explicit, unique logic for how numerals and proper nouns are handled,
     // so we include flags for custom test to use those behaviors
-    std::bitset<2> m_formulasFlags; // Dale-chall = 0, Harris-Jacobson = 1
+    std::bitset<2> m_formulasFlags{ 0 }; // Dale-chall = 0, Harris-Jacobson = 1
     wxString m_testName;
     double m_uniqueUnfamiliarWordCount{ 0 };
     double m_unfamiliarWordCount{ 0 };
@@ -252,10 +248,10 @@ public:
         wxDELETE(m_contractionsData);
         wxDELETE(m_importantWordsBaseData);
         wxDELETE(m_AllWordsBaseData);
-        /*Note that m_excluded_phrases should not be deleted here, it should be
-          deleted by the standard or batch project that owns it. This is because
-          a batch project will share its phrase list with its subprojects, so these
-          subprojects should not delete that list pointer.*/
+        /* Note that m_excluded_phrases should not be deleted here, it should be
+           deleted by the standard or batch project that owns it. This is because
+           a batch project will share its phrase list with its subprojects, so these
+           subprojects should not delete that list pointer.*/
         }
     [[nodiscard]]
     wxString GetCurrentCustomTest() const
@@ -455,31 +451,31 @@ public:
         { return m_sentenceStartMustBeUppercased; }
     void SetSentenceStartMustBeUppercased(const bool uppercased) noexcept
         { m_sentenceStartMustBeUppercased = uppercased; }
-    // whether trailing citation paragraphs are getting ignored
+    /// whether trailing citation paragraphs are getting ignored
     [[nodiscard]]
     bool IsIgnoringTrailingCitations() const noexcept
         { return m_ignoreTrailingCitations; }
     void IgnoreTrailingCitations(const bool ignore = true) noexcept
         { m_ignoreTrailingCitations = ignore; }
-    // whether numerals are getting ignored
+    /// whether numerals are getting ignored
     [[nodiscard]]
     bool IsIgnoringNumerals() const noexcept
         { return m_ignoreNumerals; }
     void IgnoreNumerals(const bool ignore = true) noexcept
         { m_ignoreNumerals = ignore; }
-    // whether Proper Nouns are getting ignored
+    /// whether Proper Nouns are getting ignored
     [[nodiscard]]
     bool IsIgnoringProperNouns() const noexcept
         { return m_ignoreProperNouns; }
     void IgnoreProperNouns(const bool ignore = true) noexcept
         { m_ignoreProperNouns = ignore; }
-    // whether file addresses are getting ignored
+    /// whether file addresses are getting ignored
     [[nodiscard]]
     bool IsIgnoringFileAddresses() const noexcept
         { return m_ignoreFileAddresses; }
     void IgnoreFileAddresses(const bool ignore = true) noexcept
         { m_ignoreFileAddresses = ignore; }
-    // whether to use aggressive list deduction
+    /// whether to use aggressive list deduction
     [[nodiscard]]
     bool IsExcludingAggressively() const noexcept
         { return m_aggressiveExclusion; }
@@ -515,7 +511,7 @@ public:
         { return m_documentStorageMethod; };
     void SetDocumentStorageMethod(const TextStorage method) noexcept
         { m_documentStorageMethod = method; };
-    // grammar
+    /// grammar
     [[nodiscard]]
     bool SpellCheckIsIgnoringProperNouns() const noexcept
         { return m_spellcheck_ignore_proper_nouns; }
@@ -898,7 +894,7 @@ public:
         ExcludeAllCustomTestsTests();
         }
 
-    /// Will not remove the tests, simply removes their inclusion flag.
+    /// Will not remove the custom tests, simply removes their inclusion flag.
     virtual void ExcludeAllCustomTestsTests()
         { m_customTestsInUse.clear(); }
 
@@ -935,7 +931,7 @@ public:
         if (message.ShouldBeShown())
             { LogMessage(message.GetMessage(), message.GetTitle(), message.GetFlags(), message.GetId(), queue); }
         }
-    /// Clear the queued list of error/warning messages encountered while loading.
+    /// @brief Clear the queued list of error/warning messages encountered while loading.
     void ClearSubProjectMessages()
         {
         if (GetSubProjectMessages())
@@ -963,14 +959,14 @@ public:
     [[nodiscard]]
     const std::vector<WarningMessage>& GetQueuedMessages() const noexcept
         { return m_queuedMessages; }
-    /// Saves a message to be shown later, when ShowQueuedMessages() is called.
+    /// @brief Saves a message to be shown later, when ShowQueuedMessages() is called.
     /// @param message The message to queue.
     void AddQueuedMessage(const WarningMessage& message)
         { m_queuedMessages.push_back(message); }
-    /// Clears the queued-up messages.
+    /// @brief Clears the queued-up messages.
     void ClearQueuedMessages() noexcept
         { m_queuedMessages.clear(); }
-    /// Shows all of the queued-up messages and then clears them.
+    /// @brief Shows all of the queued-up messages and then clears them.
     /// @note Should be implemented by caller, as this subsystem has no UI.
     virtual void ShowQueuedMessages() {}
 
@@ -989,7 +985,7 @@ public:
             }
         return false;
         }
-    /// Call HasCustomTest() before calling this to verify that the test will be available.
+    /// @note Call HasCustomTest() before calling this to verify that the test will be available.
     [[nodiscard]]
     std::vector<CustomReadabilityTestInterface>::iterator GetCustomTest(const wxString& testName)
         {
@@ -1005,7 +1001,7 @@ public:
             }
         return m_customTestsInUse.end();
         }
-    /// Call HasCustomTest() before calling this to verify that the test will be available.
+    /// @note Call HasCustomTest() before calling this to verify that the test will be available.
     [[nodiscard]]
     std::vector<CustomReadabilityTestInterface>::const_iterator GetCustomTest(const wxString& testName) const
         {
@@ -1288,7 +1284,7 @@ public:
     /// @returns @c true if the statistic was found to have a goal.
     bool ReviewStatGoal(const wxString& statName, const double value);
 
-    /// Reviews all possible stats goals in the project.
+    /// @brief Reviews all possible stats goals in the project.
     void ReviewStatGoals();
 
     void SetReviewer(const wxString& reviewer)
@@ -1317,10 +1313,10 @@ public:
     std::vector<double>& GetAggregatedClozeScores() noexcept
         { return m_aggregatedClozeScores; }
 
-    /// Indicates whether a test is included which includes a cloze score.
+    /// @returns Whether a test is included which includes a cloze score.
     [[nodiscard]]
     bool IsIncludingClozeTest() const;
-    /// Indicates whether a test is included which includes a grade-level score.
+    /// @returns Whether a test is included which includes a grade-level score.
     [[nodiscard]]
     bool IsIncludingGradeTest() const;
     virtual void RemoveMisspellings(const wxArrayString&) {}
@@ -1502,7 +1498,8 @@ public:
     const word_list& GetStopList() const noexcept
         {
         return (GetProjectLanguage() == readability::test_language::spanish_test) ? spanish_stoplist :
-                (GetProjectLanguage() == readability::test_language::german_test) ? german_stoplist : english_stoplist;
+                (GetProjectLanguage() == readability::test_language::german_test) ? german_stoplist :
+            english_stoplist;
         }
 
     static grammar::phrase_collection english_wordy_phrases;
@@ -1567,11 +1564,21 @@ protected:
     void HandleFailedTestCalculation(const wxString& testName);
     [[nodiscard]]
     bool FindMissingFile(const wxString& filePath, wxString& fileBySameNameInProjectDirectory);
-    virtual void AddDB2Plot([[maybe_unused]] const bool setFocus) {}// only AddDB2 should call this
-    virtual void AddLixGermanGuage([[maybe_unused]] const bool setFocus) {}// only AddLixGermanXXX should call this
-    virtual void AddLixGauge([[maybe_unused]] const bool setFocus) {}// only AddLixTest should call this
-    virtual void AddFleschChart([[maybe_unused]] const bool setFocus) {}// only AddFleschTest should call this
-    virtual void AddCrawfordGraph([[maybe_unused]] const bool setFocus) {}// only AddCrawford should call this
+    // only AddDB2Test should call this
+    virtual void AddDB2Plot([[maybe_unused]] const bool setFocus)
+        {}
+    // only AddLixGermanTest should call this
+    virtual void AddLixGermanGuage([[maybe_unused]] const bool setFocus)
+        {}
+    // only AddLixTest should call this
+    virtual void AddLixGauge([[maybe_unused]] const bool setFocus)
+        {}
+    // only AddFleschTest should call this
+    virtual void AddFleschChart([[maybe_unused]] const bool setFocus)
+        {}
+    // only AddCrawfordTest should call this
+    virtual void AddCrawfordGraph([[maybe_unused]] const bool setFocus)
+        {}
     /** @returns @c true value and raw/encoded text (usually HTML) converted into a filtered string on success,
             @c false and empty string otherwise.
         @param sourceFileText The encoded text to filter.
@@ -1631,7 +1638,8 @@ protected:
     static wxString GetWordsCountsColumnName()
         { return L"WORD_COUNTS"; }
 
-    std::shared_ptr<Wisteria::Data::Dataset> m_threePlusSyllableWords
+    // dataset for word cloud
+    std::shared_ptr<Wisteria::Data::Dataset> m_difficultUncommonWordsDataset
         { nullptr };
 
     // unique word count and total count for each category
@@ -1829,10 +1837,11 @@ private:
     wxString m_currentCustTest;
 
     // file name and optional short name description
-    std::vector<comparable_first_pair<wxString,wxString>> m_sourceFilePaths;
+    std::vector<comparable_first_pair<wxString, wxString>> m_sourceFilePaths;
     wxString m_appendedDocumentFilePath;
     std::vector<double> m_aggregatedGradeScores;
-    // these are actually integers that get rounded, but stored as doubles so that they can be set to NaN if invalid.
+    // these are actually integers that get rounded,
+    // but stored as doubles so that they can be set to NaN if invalid.
     std::vector<double> m_aggregatedClozeScores;
 
     stemming::english_stem<> m_english_stem;
@@ -1855,7 +1864,8 @@ private:
     static readability::readability_test_collection<readability::readability_test> m_defaultReadabilityTestsTemplate;
     };
 
-/// Used to mark a project as being loaded or refreshed. Will automatically unlock project when it goes out of scope.
+/// Used to mark a project as being loaded or refreshed.
+/// Will automatically unlock project when it goes out of scope.
 class BaseProjectProcessingLock
     {
 public:
@@ -1863,9 +1873,7 @@ public:
         { m_project->SetProcessing(true); }
     BaseProjectProcessingLock() = delete;
     BaseProjectProcessingLock(const BaseProjectProcessingLock&) = delete;
-    BaseProjectProcessingLock(BaseProjectProcessingLock&&) = delete;
     BaseProjectProcessingLock& operator=(const BaseProjectProcessingLock&) = delete;
-    BaseProjectProcessingLock& operator=(BaseProjectProcessingLock&&) = delete;
     ~BaseProjectProcessingLock()
         { m_project->SetProcessing(false); }
 private:
