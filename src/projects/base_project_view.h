@@ -567,7 +567,7 @@ private:
     [[nodiscard]]
     const std::set<WarningMessage>& GetQueuedMessages() const noexcept
         { return m_queuedMessages; }
-    /// Saves a message to be shown later, when ShowQueuedMessages() is called.
+    /// @brief Saves a message to be shown later, when ShowQueuedMessages() is called.
     /// @param message The message to queue.
     void AddQueuedMessage(const WarningMessage& message)
         { m_queuedMessages.insert(message); }

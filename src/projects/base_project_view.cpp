@@ -225,7 +225,7 @@ void BaseProjectView::OnBarStyleSelected(wxCommandEvent& event)
             wxFileDialog fd
                 (GetDocFrame(), _(L"Select Custom Brush Image"),
                 wxGetApp().GetAppOptions().GetImagePath(),
-                wxEmptyString, wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
+                wxString{}, wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
             if (fd.ShowModal() != wxID_OK)
                 { return; }
@@ -260,7 +260,7 @@ void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
             {
             wxFileDialog fd
                 (GetDocFrame(), _(L"Select Custom Brush Image"),
-                wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString,
+                wxGetApp().GetAppOptions().GetImagePath(), wxString{},
                 wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
             if (fd.ShowModal() != wxID_OK)
@@ -284,7 +284,7 @@ void BaseProjectView::OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEve
 
     wxFileDialog fd
         (GetDocFrame(), _(L"Select Custom Brush Image"),
-        wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString,
+        wxGetApp().GetAppOptions().GetImagePath(), wxString{},
         wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
     if (fd.ShowModal() != wxID_OK)
@@ -308,7 +308,7 @@ void BaseProjectView::OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& e
 
     wxFileDialog fd
         (GetDocFrame(), _(L"Select Custom Brush Image"),
-        wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString,
+        wxGetApp().GetAppOptions().GetImagePath(), wxString{},
         wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
     if (fd.ShowModal() != wxID_OK)
@@ -332,7 +332,7 @@ void BaseProjectView::OnBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& e
 
     wxFileDialog fd
         (GetDocFrame(), _(L"Select Custom Brush Image"),
-        wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString,
+        wxGetApp().GetAppOptions().GetImagePath(), wxString{},
         wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
     if (fd.ShowModal() != wxID_OK)
@@ -363,7 +363,7 @@ void BaseProjectView::OnBoxStyleSelected(wxCommandEvent& event)
             {
             wxFileDialog fd
                 (GetDocFrame(), _(L"Select Custom Brush Image"),
-                wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString,
+                wxGetApp().GetAppOptions().GetImagePath(), wxString{},
                 wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
             if (fd.ShowModal() != wxID_OK)
@@ -834,7 +834,7 @@ void BaseProjectView::OnIncompleteThreshold([[maybe_unused]] wxRibbonButtonBarEv
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     const long len = wxGetNumberFromUser(
         _(L"Include incomplete sentences containing more than:"),
-        wxEmptyString, _(L"Incomplete Sentence Threshold"),
+        wxString{}, _(L"Incomplete Sentence Threshold"),
         doc->GetIncludeIncompleteSentencesIfLongerThanValue(), 0, std::numeric_limits<int>::max());
     if (len == -1)
         { return; }
@@ -879,7 +879,7 @@ void BaseProjectView::OnLongSentencesOptions(wxCommandEvent& event)
     if (event.GetId() == XRCID("ID_LS_LONGER_THAN"))
         {
         const long len = wxGetNumberFromUser(
-            _(L"Consider sentences overly long if longer than:"), wxEmptyString, _(L"Long Sentences"),
+            _(L"Consider sentences overly long if longer than:"), wxString{}, _(L"Long Sentences"),
             doc->GetDifficultSentenceLength(), 0, std::numeric_limits<int>::max());
         if (len == -1)
             { return; }
@@ -1577,7 +1577,7 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     m_graphBackgroundMenu.Append(item);
 
     item = new wxMenuItem(&m_graphBackgroundMenu,
-        XRCID("ID_GRAPH_BKCOLOR_FADE"), _(L"Apply Fade"), wxEmptyString, wxITEM_CHECK);
+        XRCID("ID_GRAPH_BKCOLOR_FADE"), _(L"Apply Fade"), wxString{}, wxITEM_CHECK);
     m_graphBackgroundMenu.Append(item);
 
     item = new wxMenuItem(&m_graphBackgroundMenu,
@@ -1604,13 +1604,13 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
 
     // histogram bar labels
     m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
-        XRCID("ID_HISTOBAR_LABELS_COUNT"), _(L"Counts"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_HISTOBAR_LABELS_COUNT"), _(L"Counts"), wxString{}, wxITEM_CHECK));
     m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
-        XRCID("ID_HISTOBAR_LABELS_PERCENTAGE"), _(L"Percentages"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_HISTOBAR_LABELS_PERCENTAGE"), _(L"Percentages"), wxString{}, wxITEM_CHECK));
     m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
-        XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT"), _(L"Counts && Percentages"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT"), _(L"Counts && Percentages"), wxString{}, wxITEM_CHECK));
     m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
-        XRCID("ID_HISTOBAR_NO_LABELS"), _(L"No labels"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_HISTOBAR_NO_LABELS"), _(L"No labels"), wxString{}, wxITEM_CHECK));
 
     // zoom
     item = new wxMenuItem(&m_zoomMenu, wxID_ZOOM_IN, _(L"Zoom In"));
@@ -1668,38 +1668,46 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     m_barStyleMenu.AppendSeparator();
 
     // way to change the stipple brush if one is already selected
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SELECT_BRUSH"), _(L"Select custom image brush..."));
+    item = new wxMenuItem(&m_barStyleMenu,
+        XRCID("ID_BAR_SELECT_BRUSH"), _(L"Select custom image brush..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_barStyleMenu.Append(item);
 
     // histogram bar style menu
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_EDIT_HISTOGRAM_BAR_COLOR"), _(L"Color..."));
+    item = new wxMenuItem(&m_histoBarStyleMenu,
+        XRCID("ID_EDIT_HISTOGRAM_BAR_COLOR"), _(L"Color..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
     m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_EDIT_HISTOBAR_OPACITY"), _(L"Opacity..."));
+    item = new wxMenuItem(&m_histoBarStyleMenu,
+        XRCID("ID_EDIT_HISTOBAR_OPACITY"), _(L"Opacity..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
     m_histoBarStyleMenu.Append(item);
 
     m_histoBarStyleMenu.AppendSeparator();
 
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SYTLE_SOLID"), _(L"Solid"));
+    item = new wxMenuItem(&m_histoBarStyleMenu,
+        XRCID("ID_HISTOGRAM_BAR_SYTLE_SOLID"), _(L"Solid"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
     m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SYTLE_GLASS"), _(L"Glass effect"));
+    item = new wxMenuItem(&m_histoBarStyleMenu,
+        XRCID("ID_HISTOGRAM_BAR_SYTLE_GLASS"), _(L"Glass effect"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
     m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SYTLE_BTOT"), _(L"Color fade, bottom to top"));
+    item = new wxMenuItem(&m_histoBarStyleMenu,
+        XRCID("ID_HISTOGRAM_BAR_SYTLE_BTOT"), _(L"Color fade, bottom to top"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
     m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SYTLE_TTOB"), _(L"Color fade, top to bottom"));
+    item = new wxMenuItem(&m_histoBarStyleMenu,
+        XRCID("ID_HISTOGRAM_BAR_SYTLE_TTOB"), _(L"Color fade, top to bottom"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
     m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SYTLE_BRUSH"), _(L"Custom image brush"));
+    item = new wxMenuItem(&m_histoBarStyleMenu,
+        XRCID("ID_HISTOGRAM_BAR_SYTLE_BRUSH"), _(L"Custom image brush"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_histoBarStyleMenu.Append(item);
 
@@ -1777,40 +1785,40 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     // document indexing menus
     m_lineEndsMenu.Append(new wxMenuItem(&m_lineEndsMenu, XRCID("ID_LE_ONLY_AFTER_VALID_SENTENCE"),
                           _(L"Only begin a new paragraph if following a valid sentence"),
-                          wxEmptyString, wxITEM_CHECK));
+                          wxString{}, wxITEM_CHECK));
     m_lineEndsMenu.Append(new wxMenuItem(&m_lineEndsMenu, XRCID("ID_LE_ALWAYS_NEW_PARAGRAPH"),
-                          _(L"Always begin a new paragraph"), wxEmptyString, wxITEM_CHECK));
+                          _(L"Always begin a new paragraph"), wxString{}, wxITEM_CHECK));
 
     m_longSentencesMenu.Append(new wxMenuItem(&m_longSentencesMenu, XRCID("ID_LS_LONGER_THAN"),
-                               _(L"If longer than..."), wxEmptyString, wxITEM_CHECK));
+                               _(L"If longer than..."), wxString{}, wxITEM_CHECK));
     m_longSentencesMenu.Append(new wxMenuItem(&m_longSentencesMenu,
-        XRCID("ID_LS_OUTLIER_RANGE"), _(L"Outside outlier range"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_LS_OUTLIER_RANGE"), _(L"Outside outlier range"), wxString{}, wxITEM_CHECK));
 
     m_textExclusionMenu.Append(new wxMenuItem(&m_textExclusionMenu,
-        XRCID("ID_TE_ALL_INCOMPLETE"), _(L"Exclude all incomplete sentences"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_TE_ALL_INCOMPLETE"), _(L"Exclude all incomplete sentences"), wxString{}, wxITEM_CHECK));
     m_textExclusionMenu.Append(new wxMenuItem(&m_textExclusionMenu,
-        XRCID("ID_TE_NO_EXCLUDE"), _(L"Do not exclude any text"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_TE_NO_EXCLUDE"), _(L"Do not exclude any text"), wxString{}, wxITEM_CHECK));
     m_textExclusionMenu.Append(new wxMenuItem(&m_textExclusionMenu,
         XRCID("ID_TE_ALL_INCOMPLETE_EXCEPT_HEADERS"),
-        _(L"Exclude all incomplete sentences, except headings"), wxEmptyString, wxITEM_CHECK));
+        _(L"Exclude all incomplete sentences, except headings"), wxString{}, wxITEM_CHECK));
 
     m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu,
-        XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED"), _(L"Not enabled"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED"), _(L"Not enabled"), wxString{}, wxITEM_CHECK));
     m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu,
-        XRCID("ID_EXCLUSION_TAGS_CAROTS"), _(L"^ and ^"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_EXCLUSION_TAGS_CAROTS"), _(L"^ and ^"), wxString{}, wxITEM_CHECK));
     m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu,
-        XRCID("ID_EXCLUSION_TAGS_ANGLES"), _(L"< and >"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_EXCLUSION_TAGS_ANGLES"), _(L"< and >"), wxString{}, wxITEM_CHECK));
     m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu,
-        XRCID("ID_EXCLUSION_TAGS_BRACES"), _(L"[ and ]"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_EXCLUSION_TAGS_BRACES"), _(L"[ and ]"), wxString{}, wxITEM_CHECK));
     m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu,
-        XRCID("ID_EXCLUSION_TAGS_CURLIES"), _(L"{ and }"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_EXCLUSION_TAGS_CURLIES"), _(L"{ and }"), wxString{}, wxITEM_CHECK));
     m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu,
-        XRCID("ID_EXCLUSION_TAGS_PARANS"), _(L"( and )"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_EXCLUSION_TAGS_PARANS"), _(L"( and )"), wxString{}, wxITEM_CHECK));
 
     m_numeralSyllabicationMenu.Append(new wxMenuItem(&m_numeralSyllabicationMenu,
-        XRCID("ID_NUMSYL_ONE"), _(L"Numerals are one syllable"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_NUMSYL_ONE"), _(L"Numerals are one syllable"), wxString{}, wxITEM_CHECK));
     m_numeralSyllabicationMenu.Append(new wxMenuItem(&m_numeralSyllabicationMenu,
-        XRCID("ID_NUMSYL_EACH_DIGIT"), _(L"Sound out each digit"), wxEmptyString, wxITEM_CHECK));
+        XRCID("ID_NUMSYL_EACH_DIGIT"), _(L"Sound out each digit"), wxString{}, wxITEM_CHECK));
 
     return subframe;
     }
@@ -2011,7 +2019,8 @@ void BaseProjectView::Present()
         wxMenuItem* item = m_textExclusionMenu.FindItem(
             (doc->GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis) ?
             XRCID("ID_TE_ALL_INCOMPLETE") :
-            (doc->GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ? XRCID("ID_TE_NO_EXCLUDE") :
+            (doc->GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
+            XRCID("ID_TE_NO_EXCLUDE") :
             XRCID("ID_TE_ALL_INCOMPLETE_EXCEPT_HEADERS"));
         if (item)
             { item->Check(true); }
@@ -2051,7 +2060,8 @@ void BaseProjectView::Present()
 
     if (GetRibbon())
         {
-        wxWindow* deductionButtonBar = GetRibbon()->FindWindow(MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR);
+        wxWindow* deductionButtonBar =
+            GetRibbon()->FindWindow(MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR);
         if (deductionButtonBar && deductionButtonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)->ToggleButton(
@@ -2355,7 +2365,8 @@ void BaseProjectView::OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarEvent&
     if (!activeProject || !activeProject->IsSafeToUpdate())
         { return; }
     // if a standard project with manually entered text then there is no file to link to
-    if (activeProject->IsKindOf(CLASSINFO(ProjectDoc)) && activeProject->GetTextSource() == TextSource::EnteredText)
+    if (activeProject->IsKindOf(CLASSINFO(ProjectDoc)) &&
+        activeProject->GetTextSource() == TextSource::EnteredText)
         {
         wxMessageBox(
             _(L"Only projects that originated from a file can be reloaded. "
@@ -2377,7 +2388,8 @@ void BaseProjectView::OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarEvent&
             {
             FilePathResolver resolvePath(activeProject->GetOriginalDocumentFilePath(), true);
             if (resolvePath.IsInvalidFile() ||
-                (resolvePath.IsLocalOrNetworkFile() && !wxFile::Exists(activeProject->GetOriginalDocumentFilePath())) )
+                (resolvePath.IsLocalOrNetworkFile() &&
+                    !wxFile::Exists(activeProject->GetOriginalDocumentFilePath())) )
                 {
                 wxMessageBox(wxString::Format(
                     _(L"%s: file not found."), activeProject->GetOriginalDocumentFilePath() ),
