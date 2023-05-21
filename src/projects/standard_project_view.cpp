@@ -119,6 +119,7 @@ wxBEGIN_EVENT_TABLE(ProjectView, BaseProjectView)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_SUMMATION"), ProjectView::OnSummation)
 wxEND_EVENT_TABLE()
 
+//------------------------------------------------------
 void ProjectView::OnSummation([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     const ProjectDoc* doc = dynamic_cast<const ProjectDoc*>(GetDocument());
