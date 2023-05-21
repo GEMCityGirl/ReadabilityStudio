@@ -15,6 +15,7 @@
 #include <algorithm>
 #include <functional>
 #include <set>
+#include <string_view>
 #include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 #include "character_traits.h"
 
@@ -25,12 +26,14 @@ namespace grammar
         {
     public:
         /// @private
-        virtual ~is_coordinating_conjunction() {}
+        virtual ~is_coordinating_conjunction()
+            {}
         /** @brief Determines if a word is a coordinating conjunction.
             @param text The word to review.
-            @param length The length of the word.
             @returns Whether or not this word is a coordinating conjunction.*/
-        virtual bool operator()(const wchar_t* text, const size_t length) const = 0;
+        virtual bool operator()(const std::wstring_view text) const = 0;
+        /// @private
+        using string_type = std::basic_string_view<wchar_t, traits::case_insensitive_ex>;
         };
 
     /** @brief Predicate for determining if a word is an
@@ -40,18 +43,21 @@ namespace grammar
     public:
         /** @brief Determines if a word is an English coordinating conjunction.
             @param text The word to review.
-            @param length The length of the word.
             @returns Whether or not this word is a coordinating conjunction.*/
         [[nodiscard]]
-        bool operator()(const wchar_t* text, const size_t length) const final
+        bool operator()(const std::wstring_view text) const final
             {
-            if (text == nullptr || text[0] == 0 || length == 0)
+            if (text.empty())
                 { return false; }
-            return m_conjunctions.find(string_type(text,length)) != m_conjunctions.cend();
+            return m_conjunctions.find(
+                string_type(text.data(), text.length())) != m_conjunctions.cend();
             }
     private:
-        using string_type = std::basic_string<wchar_t, traits::case_insensitive_ex>;
-        static std::set<string_type> m_conjunctions;
+        const std::set<string_type> m_conjunctions =
+            {
+            L"&", L"and", L"but", L"nor",
+            L"or", L"so", L"yet"
+            };
         };
 
     /** Predicate for determining if a word is a Spanish coordinating
@@ -61,18 +67,27 @@ namespace grammar
     public:
         /** @brief Determines if a word is a Spanish coordinating conjunction.
             @param text The word to review.
-            @param length The length of the word.
             @returns Whether or not this word is a coordinating conjunction.*/
         [[nodiscard]]
-        bool operator()(const wchar_t* text, const size_t length) const final
+        bool operator()(const std::wstring_view text) const final
             {
-            if (text == nullptr || text[0] == 0 || length == 0)
+            if (text.empty())
                 { return false; }
-            return m_conjunctions.find(string_type(text,length)) != m_conjunctions.cend();
+            return m_conjunctions.find(
+                string_type(text.data(), text.length())) != m_conjunctions.cend();
             }
     private:
-        using string_type = std::basic_string<wchar_t, traits::case_insensitive_ex>;
-        static std::set<string_type> m_conjunctions;
+        const std::set<string_type> m_conjunctions =
+            {
+            L"&",
+            L"e",    // and
+            L"ni",   // nor
+            L"o",    // or
+            L"pero", // but
+            L"sino", // but
+            L"u",    // or
+            L"y"     // and
+            };
         };
 
     /** @brief Predicate for determining if a word is a German coordinating 
@@ -82,18 +97,25 @@ namespace grammar
     public:
         /** @brief Determines if a word is a German coordinating conjunction.
             @param text The word to review.
-            @param length The length of the word.
             @returns Whether or not this word is a coordinating conjunction.*/
         [[nodiscard]]
-        bool operator()(const wchar_t* text, const size_t length) const final
+        bool operator()(const std::wstring_view text) const final
             {
-            if (text == nullptr || text[0] == 0 || length == 0)
+            if (text.empty())
                 { return false; }
-            return m_conjunctions.find(string_type(text,length)) != m_conjunctions.cend();
+            return m_conjunctions.find(
+                string_type(text.data(), text.length())) != m_conjunctions.cend();
             }
     private:
-        using string_type = traits::case_insensitive_wstring_ex;
-        static std::set<string_type> m_conjunctions;
+        const std::set<string_type> m_conjunctions =
+            {
+            L"&",
+            L"und",     // and
+            L"oder",    // or
+            L"denn",    // for, because
+            L"aber",    // but
+            L"sondern", // but (instead)
+            };
         };
 
     /// @brief Predicate for determining if a word is a Russian coordinating
@@ -105,36 +127,36 @@ namespace grammar
     public:
         /** @brief Determines if a word is a Russian coordinating conjunction.
             @param text The word to review.
-            @param length The length of the word.
+
             @returns Whether or not this word is a coordinating conjunction.*/
         [[nodiscard]]
-        bool operator()(const wchar_t* text, const size_t length) const noexcept final
+        bool operator()(const std::wstring_view text) const noexcept final
             {
-            if (text == nullptr || text[0] == 0 || length == 0)
+            if (text.empty())
                 { return false; }
             // coordinating conjunctions
-            return (length == 1 &&
+            return (text.length() == 1 &&
                    // i (and/both...and)
                    string_util::is_either<wchar_t>(text[0], 0x0418, 0x0438)) ||
                 // a (but)
-                (length == 1 && string_util::is_either<wchar_t>(text[0], 0x0410, 0x0430)) ||
-                (length == 2 && string_util::is_either<wchar_t>(text[0], 0x041D, 0x043D) &&
+                (text.length() == 1 && string_util::is_either<wchar_t>(text[0], 0x0410, 0x0430)) ||
+                (text.length() == 2 && string_util::is_either<wchar_t>(text[0], 0x041D, 0x043D) &&
                  // ni (neither...nor)
                  string_util::is_either<wchar_t>(text[1], 0x0418, 0x0438)) ||
-                (length == 2 && string_util::is_either<wchar_t>(text[0], 0x041D, 0x043D) &&
+                (text.length() == 2 && string_util::is_either<wchar_t>(text[0], 0x041D, 0x043D) &&
                  // no (but)
                  string_util::is_either<wchar_t>(text[1], 0x041E, 0x043E)) ||
-                (length == 2 && string_util::is_either<wchar_t>(text[0], 0x0414, 0x0434) &&
+                (text.length() == 2 && string_util::is_either<wchar_t>(text[0], 0x0414, 0x0434) &&
                  // da (and)
                  string_util::is_either<wchar_t>(text[1], 0x0410, 0x0430)) ||
-                (length == 2 && string_util::is_either<wchar_t>(text[0], 0x0422, 0x0442) &&
+                (text.length() == 2 && string_util::is_either<wchar_t>(text[0], 0x0422, 0x0442) &&
                  // to (first...then)
                  string_util::is_either<wchar_t>(text[1], 0x041E, 0x043E)) ||
-                (length == 3 && string_util::is_either<wchar_t>(text[0], 0x041A, 0x043A) &&
+                (text.length() == 3 && string_util::is_either<wchar_t>(text[0], 0x041A, 0x043A) &&
                  string_util::is_either<wchar_t>(text[1], 0x0422, 0x0442) &&
                  // kto (some...other)
                  string_util::is_either<wchar_t>(text[2], 0x041E, 0x043E)) ||
-                (length == 3 && string_util::is_either<wchar_t>(text[0], 0x0418, 0x0438) &&
+                (text.length() == 3 && string_util::is_either<wchar_t>(text[0], 0x0418, 0x0438) &&
                  string_util::is_either<wchar_t>(text[1], 0x041B, 0x043B) &&
                  // ili (either...or)
                  string_util::is_either<wchar_t>(text[2], 0x0418, 0x0438));

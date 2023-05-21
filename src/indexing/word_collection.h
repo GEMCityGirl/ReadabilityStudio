@@ -683,7 +683,7 @@ public:
                     if (m_sentences[sentenceCounter].get_word_count() >= 1)
                         {
                         const Tword_type& firstWord = m_words[m_sentences[sentenceCounter].get_first_word_index()];
-                        if (isConjunction(firstWord.c_str(), firstWord.length()))
+                        if (isConjunction(std::wstring_view{ firstWord.c_str(), firstWord.length() }))
                             { m_conjunction_beginning_sentences.push_back(sentenceCounter); }
                         // see if the first word of the sentence is followed by a "=". If so, then
                         // it's an equation, so that will be OK to start a sentence and still be lowercased.

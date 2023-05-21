@@ -1651,100 +1651,79 @@ TEST_CASE("Abbreviations", "[abbreviations]")
 
 TEST_CASE("Spanish conjunction", "[conjunction]")
     {
-    SECTION("Null")
-        {
-        is_spanish_coordinating_conjunction isConj;
-        CHECK(isConj(nullptr, 5) == false);
-        CHECK(isConj(L"", 3) == false);
-        CHECK(isConj(L"pero", 0) == false);
-        }
     SECTION("All")
         {
         is_spanish_coordinating_conjunction isConj;
-        CHECK(isConj(L"y", 1));
-        CHECK(isConj(L"e", 1));
-        CHECK(isConj(L"o", 1));
-        CHECK(isConj(L"u", 1));
-        CHECK(isConj(L"Y", 1));
-        CHECK(isConj(L"E", 1));
-        CHECK(isConj(L"O", 1));
-        CHECK(isConj(L"U", 1));
-        CHECK(isConj(L"peRo", 4));
-        CHECK(isConj(L"SIno", 4));
-        CHECK(isConj(L"nI", 2));
+        CHECK(isConj(L"y"));
+        CHECK(isConj(L"e"));
+        CHECK(isConj(L"o"));
+        CHECK(isConj(L"u"));
+        CHECK(isConj(L"Y"));
+        CHECK(isConj(L"E"));
+        CHECK(isConj(L"O"));
+        CHECK(isConj(L"U"));
+        CHECK(isConj(L"peRo"));
+        CHECK(isConj(L"SIno"));
+        CHECK(isConj(L"nI"));
         }
     SECTION("NonConjunctions")
         {
         is_spanish_coordinating_conjunction isConj;
-        CHECK(isConj(L"Perot", 5) == false);
-        CHECK(isConj(L"Ye", 2) == false);
-        CHECK(isConj(L"sin", 3) == false);
-        CHECK(isConj(L"nin", 3) == false);
+        CHECK(isConj(L"Perot") == false);
+        CHECK(isConj(L"Ye") == false);
+        CHECK(isConj(L"sin") == false);
+        CHECK(isConj(L"nin") == false);
         }
     }
 
 TEST_CASE("English conjunction", "[conjunction]")
     {
-    SECTION("Null")
-        {
-        is_english_coordinating_conjunction isConj;
-        CHECK(isConj(nullptr, 5) == false);
-        CHECK(isConj(L"", 3) == false);
-        CHECK(isConj(L"and", 0) == false);
-        }
     SECTION("All")
         {
         is_english_coordinating_conjunction isConj;
-        CHECK(isConj(L"anD", 3));
-        CHECK(isConj(L"BUt", 3));
-        CHECK(isConj(L"Or", 2));
-        CHECK(isConj(L"yeT", 3));
-        CHECK(isConj(L"nOr", 3));
-        CHECK(isConj(L"So", 2));
+        CHECK(isConj(L"anD"));
+        CHECK(isConj(L"BUt"));
+        CHECK(isConj(L"Or"));
+        CHECK(isConj(L"yeT"));
+        CHECK(isConj(L"nOr"));
+        CHECK(isConj(L"So"));
         }
     SECTION("NonConjunctions")
         {
         is_english_coordinating_conjunction isConj;
-        CHECK(isConj(L"An", 2) == false);
-        CHECK(isConj(L"a", 1) == false);
-        CHECK(isConj(L"a", 2) == false);
-        CHECK(isConj(L"anderson", 8) == false);
-        CHECK(isConj(L"butt", 4) == false);
-        CHECK(isConj(L"ore", 3) == false);
-        CHECK(isConj(L"some", 4) == false);
+        CHECK(isConj(L"An") == false);
+        CHECK(isConj(L"a") == false);
+        CHECK(isConj(L"a") == false);
+        CHECK(isConj(L"anderson") == false);
+        CHECK(isConj(L"butt") == false);
+        CHECK(isConj(L"ore") == false);
+        CHECK(isConj(L"some") == false);
         }
     }
 
 TEST_CASE("German conjunction", "[conjunction]")
     {
-    SECTION("Null")
-        {
-        is_german_coordinating_conjunction isConj;
-        CHECK(isConj(nullptr, 5) == false);
-        CHECK(isConj(L"", 3) == false);
-        CHECK(isConj(L"pero", 0) == false);
-        }
     SECTION("All")
         {
         is_german_coordinating_conjunction isConj;
-        CHECK(isConj(L"und", 3));
-        CHECK(isConj(L"oder", 4));
-        CHECK(isConj(L"denn", 4));
-        CHECK(isConj(L"aber", 4));
-        CHECK(isConj(L"sondern", 7));
-        CHECK(isConj(L"UND", 3));
-        CHECK(isConj(L"ODER", 4));
-        CHECK(isConj(L"DENN", 4));
-        CHECK(isConj(L"ABER", 4));
-        CHECK(isConj(L"SONDERN", 7));
+        CHECK(isConj(L"und"));
+        CHECK(isConj(L"oder"));
+        CHECK(isConj(L"denn"));
+        CHECK(isConj(L"aber"));
+        CHECK(isConj(L"sondern"));
+        CHECK(isConj(L"UND"));
+        CHECK(isConj(L"ODER"));
+        CHECK(isConj(L"DENN"));
+        CHECK(isConj(L"ABER"));
+        CHECK(isConj(L"SONDERN"));
         }
     SECTION("NonConjunctions")
         {
         is_german_coordinating_conjunction isConj;
-        CHECK(isConj(L"undie", 5) == false);
-        CHECK(isConj(L"ode", 3) == false);
-        CHECK(isConj(L"abers", 5) == false);
-        CHECK(isConj(L"sond", 4) == false);
+        CHECK(isConj(L"undie") == false);
+        CHECK(isConj(L"ode") == false);
+        CHECK(isConj(L"abers") == false);
+        CHECK(isConj(L"sond") == false);
         }
     }
 
