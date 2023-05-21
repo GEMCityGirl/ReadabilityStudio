@@ -2182,8 +2182,8 @@ void ProjectDoc::DisplaySentenceCharts()
             {
             sentenceBoxPlotCanvas = new Wisteria::Canvas(view->GetSplitter(),
                 BaseProjectView::SENTENCE_BOX_PLOT_PAGE_ID);
-            sentenceBoxPlotCanvas->SetFixedObjectsGridSize(1,1);
-            sentenceBoxPlotCanvas->SetFixedObject(0,0,std::make_shared<BoxPlot>(sentenceBoxPlotCanvas));
+            sentenceBoxPlotCanvas->SetFixedObjectsGridSize(1, 1);
+            sentenceBoxPlotCanvas->SetFixedObject(0, 0, std::make_shared<BoxPlot>(sentenceBoxPlotCanvas));
             sentenceBoxPlotCanvas->Hide();
             sentenceBoxPlotCanvas->SetLabel(BaseProjectView::GetSentenceLengthBoxPlotLabel());
             sentenceBoxPlotCanvas->SetName(BaseProjectView::GetSentenceLengthBoxPlotLabel());
@@ -2194,7 +2194,8 @@ void ProjectDoc::DisplaySentenceCharts()
             sentenceBoxPlotCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
             view->GetSentencesBreakdownView().AddWindow(sentenceBoxPlotCanvas);
             }
-        auto sentenceBoxPlot = std::dynamic_pointer_cast<BoxPlot>(sentenceBoxPlotCanvas->GetFixedObject(0, 0));
+        auto sentenceBoxPlot =
+            std::dynamic_pointer_cast<BoxPlot>(sentenceBoxPlotCanvas->GetFixedObject(0, 0));
         sentenceBoxPlot->SetBrushScheme(
                     std::make_shared<Brushes::Schemes::BrushScheme>(
                         Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
@@ -2227,7 +2228,7 @@ void ProjectDoc::DisplaySentenceCharts()
             sentenceHistogramCanvas = new Wisteria::Canvas(view->GetSplitter(),
                 BaseProjectView::SENTENCE_HISTOGRAM_PAGE_ID);
             sentenceHistogramCanvas->SetFixedObjectsGridSize(1,1);
-            sentenceHistogramCanvas->SetFixedObject(0,0,
+            sentenceHistogramCanvas->SetFixedObject(0, 0,
                 std::make_shared<Histogram>(sentenceHistogramCanvas,
                     std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
                         *std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
@@ -2241,7 +2242,8 @@ void ProjectDoc::DisplaySentenceCharts()
             }
         UpdateGraphOptions(sentenceHistogramCanvas);
 
-        auto sentenceHistogram = std::dynamic_pointer_cast<Histogram>(sentenceHistogramCanvas->GetFixedObject(0, 0));
+        auto sentenceHistogram =
+            std::dynamic_pointer_cast<Histogram>(sentenceHistogramCanvas->GetFixedObject(0, 0));
         wxASSERT(sentenceHistogram);
 
         sentenceHistogram->GetTitle().SetText(_(L"Sentence-lengths Distribution"));
@@ -2285,8 +2287,8 @@ void ProjectDoc::DisplaySentenceCharts()
             {
             sentenceHeatmapCanvas = new Wisteria::Canvas(view->GetSplitter(),
                 BaseProjectView::SENTENCE_HEATMAP_PAGE_ID);
-            sentenceHeatmapCanvas->SetFixedObjectsGridSize(1,2);
-            sentenceHeatmapCanvas->SetFixedObject(0,0,std::make_shared<HeatMap>(sentenceHeatmapCanvas));
+            sentenceHeatmapCanvas->SetFixedObjectsGridSize(1, 2);
+            sentenceHeatmapCanvas->SetFixedObject(0, 0, std::make_shared<HeatMap>(sentenceHeatmapCanvas));
             sentenceHeatmapCanvas->Hide();
             sentenceHeatmapCanvas->SetLabel(BaseProjectView::GetSentenceLengthHeatmapLabel());
             sentenceHeatmapCanvas->SetName(BaseProjectView::GetSentenceLengthHeatmapLabel());
@@ -2357,7 +2359,7 @@ void ProjectDoc::DisplayWordCharts()
                 Scaling(wordBarChartCanvas->GetScaling()).Pen(wxNullPen)));
             wordBarChartCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             wordBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
-            std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0,0))->SetSortable(true);
+            std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0, 0))->SetSortable(true);
             std::dynamic_pointer_cast<BarChart>(
                 wordBarChartCanvas->GetFixedObject(0, 0))->SetSortDirection(Wisteria::SortDirection::SortDescending);
             view->GetWordsBreakdownView().InsertWindow(0, wordBarChartCanvas);
@@ -2581,7 +2583,8 @@ void ProjectDoc::DisplayWordCharts()
 
         auto wordCloud = std::dynamic_pointer_cast<WordCloud>(hardWordCloudCanvas->GetFixedObject(0, 0));
         wxASSERT_LEVEL_2(wordCloud);
-        wordCloud->SetData(m_difficultUncommonWordsDataset, GetWordsColumnName(), GetWordsCountsColumnName());
+        wordCloud->SetData(m_difficultUncommonWordsDataset,
+                           GetWordsColumnName(), GetWordsCountsColumnName(), 2);
 
         hardWordCloudCanvas->CalcAllSizes(gdc);
         }
@@ -2777,7 +2780,7 @@ void ProjectDoc::AddLixGermanGuage(const bool setFocus)
     UpdateGraphOptions(lixGaugeView);
 
     // in case this option changed
-    std::dynamic_pointer_cast<LixGaugeGerman>(lixGaugeView->GetFixedObject(0,0))->
+    std::dynamic_pointer_cast<LixGaugeGerman>(lixGaugeView->GetFixedObject(0, 0))->
         UseEnglishLabels(IsUsingEnglishLabelsForGermanLix());
     lixGaugeView->CalcAllSizes(gdc);
 
@@ -2920,7 +2923,7 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
         }
     UpdateGraphOptions(fleschChartCanvas);
 
-    std::dynamic_pointer_cast<FleschChart>(fleschChartCanvas->GetFixedObject(0,0))->
+    std::dynamic_pointer_cast<FleschChart>(fleschChartCanvas->GetFixedObject(0, 0))->
         ShowConnectionLine(IsConnectingFleschPoints());
     fleschChartCanvas->CalcAllSizes(gdc);
 
@@ -3443,8 +3446,8 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 {
                 wordBarChartCanvas =
                     new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::DOLCH_BREAKDOWN_PAGE_ID);
-                wordBarChartCanvas->SetFixedObjectsGridSize(1,1);
-                wordBarChartCanvas->SetFixedObject(0,0,std::make_shared<BarChart>(wordBarChartCanvas));
+                wordBarChartCanvas->SetFixedObjectsGridSize(1, 1);
+                wordBarChartCanvas->SetFixedObject(0, 0, std::make_shared<BarChart>(wordBarChartCanvas));
                 wordBarChartCanvas->Hide();
                 wordBarChartCanvas->SetLabel(BaseProjectView::GetWordCountsLabel());
                 wordBarChartCanvas->SetName(BaseProjectView::GetWordCountsLabel());
@@ -3454,7 +3457,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
                         Scaling(wordBarChartCanvas->GetScaling()).Pen(wxNullPen)));
                 wordBarChartCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                 wordBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
-                std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0,0))->SetSortable(true);
+                std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0, 0))->SetSortable(true);
                 view->GetDolchSightWordsView().AddWindow(wordBarChartCanvas);
                 }
             UpdateGraphOptions(wordBarChartCanvas);
@@ -3790,7 +3793,7 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
     if (fryGraphView)
         {
         auto gFryGraph =
-            std::dynamic_pointer_cast<FryGraph>(fryGraphView->GetFixedObject(0,0));
+            std::dynamic_pointer_cast<FryGraph>(fryGraphView->GetFixedObject(0, 0));
         wxASSERT(gFryGraph);
         gFryGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName,
                             sencentesColumnName);

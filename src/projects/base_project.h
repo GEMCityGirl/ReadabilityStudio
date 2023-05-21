@@ -1587,7 +1587,8 @@ protected:
         @param[out] label A descriptive label from the HTML file (e.g., title, subject, keywords).*/
     [[nodiscard]]
     static std::pair<bool,wxString> ExtractRawTextWithEncoding(
-        const wxString& sourceFileText, const wxString& fileExtension, const wxFileName& fileName, wxString& label);
+        const wxString& sourceFileText, const wxString& fileExtension,
+        const wxFileName& fileName, wxString& label);
     void CalculateStatistics();
     void CalculateStatisticsIgnoringInvalidSentences();
     void LoadHardWords();
@@ -1861,7 +1862,8 @@ private:
 
     std::vector<WarningMessage> m_queuedMessages;
 
-    static readability::readability_test_collection<readability::readability_test> m_defaultReadabilityTestsTemplate;
+    static readability::readability_test_collection<readability::readability_test>
+        m_defaultReadabilityTestsTemplate;
     };
 
 /// Used to mark a project as being loaded or refreshed.
