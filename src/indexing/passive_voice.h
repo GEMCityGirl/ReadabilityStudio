@@ -15,6 +15,7 @@
 #include <algorithm>
 #include <functional>
 #include <set>
+#include <string_view>
 #include "word_list.h"
 #include "character_traits.h"
 
@@ -25,7 +26,7 @@ namespace grammar
         {
     public:
         /// @private
-        using string_type = traits::case_insensitive_wstring_ex;
+        using string_type = std::basic_string_view<wchar_t, traits::case_insensitive_ex>;
         /** @brief Determines if a word combination is passive voice.
             @param words The list of words
                 ("to be" verb and any past participles and what not after it).
@@ -44,7 +45,7 @@ namespace grammar
             if (max_word_count < 2)
                 { return false; }
             // see is the verb is a "to be" verb
-            if (m_to_be_verbs.find(string_type(words[0].c_str())) == m_to_be_verbs.cend())
+            if (m_to_be_verbs.find(string_type{ words[0].c_str(), words[0].length() }) == m_to_be_verbs.cend())
                 { return false; }
             // step over "not" after "to be"
             if (traits::case_insensitive_ex::compare(words[1].c_str(), L"not", words[1].length()) == 0)

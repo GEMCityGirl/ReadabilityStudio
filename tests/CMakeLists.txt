@@ -29,7 +29,7 @@ ADD_COMPILE_OPTIONS("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ../src/indexing/article.cpp ../src/indexing/abbreviation.cpp
-../src/indexing/contraction.cpp ../src/indexing/double_words.cpp
+../src/indexing/conjunction.cpp ../src/indexing/contraction.cpp ../src/indexing/double_words.cpp
 ../src/indexing/negating_word.cpp ../src/indexing/passive_voice.cpp ../src/indexing/pronoun.cpp
 ../src/indexing/romanize.cpp ../src/indexing/stop_lists.cpp ../src/indexing/syllable.cpp
 ../src/Wisteria-Dataviz/src/i18n-check/src/i18n_string_util.cpp

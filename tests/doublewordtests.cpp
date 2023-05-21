@@ -11,33 +11,32 @@ TEST_CASE("Double Words", "[double words]")
     SECTION("Nulls")
         {
         grammar::is_double_word_exception dwe;
-        CHECK(dwe(nullptr, 1));
-        CHECK(dwe(L"that", 0));
+        CHECK(dwe(L""));
         }
     SECTION("English")
         {
         grammar::is_double_word_exception dwe;
-        CHECK_FALSE(dwe(L"thats", 5));
-        CHECK_FALSE(dwe(L"H", 1));
-        CHECK(dwe(L"tHat", 4));
-        CHECK(dwe(L"Had", 3));
-        CHECK(dwe(L"HA", 2));
+        CHECK_FALSE(dwe(L"thats"));
+        CHECK_FALSE(dwe(L"H"));
+        CHECK(dwe(L"tHat"));
+        CHECK(dwe(L"Had"));
+        CHECK(dwe(L"HA"));
         // using CTOR to init data, so make sure second object has the same results
         grammar::is_double_word_exception dwe2;
-        CHECK_FALSE(dwe2(L"thats", 5));
-        CHECK_FALSE(dwe2(L"H", 1));
-        CHECK(dwe2(L"tHat", 4));
-        CHECK(dwe2(L"Had", 3));
-        CHECK(dwe2(L"HA", 2));
+        CHECK_FALSE(dwe2(L"thats"));
+        CHECK_FALSE(dwe2(L"H"));
+        CHECK(dwe2(L"tHat"));
+        CHECK(dwe2(L"Had"));
+        CHECK(dwe2(L"HA"));
         }
     SECTION("German")
         {
         grammar::is_double_word_exception dwe;
-        CHECK_FALSE(dwe(L"si", 2));
-        CHECK(dwe(L"sie", 3));
-        CHECK(dwe(L"das", 3));
-        CHECK(dwe(L"der", 3));
-        CHECK(dwe(L"die", 3));
-        CHECK_FALSE(dwe(L"died", 4));
+        CHECK_FALSE(dwe(L"si"));
+        CHECK(dwe(L"sie"));
+        CHECK(dwe(L"das"));
+        CHECK(dwe(L"der"));
+        CHECK(dwe(L"die"));
+        CHECK_FALSE(dwe(L"died"));
         }
     }

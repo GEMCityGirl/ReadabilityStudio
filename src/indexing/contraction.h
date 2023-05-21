@@ -15,6 +15,7 @@
 #include <algorithm>
 #include <functional>
 #include <set>
+#include <string_view>
 #include "character_traits.h"
 #include "../Wisteria-Dataviz/src/debug/debug_assert.h"
 
@@ -73,7 +74,7 @@ namespace grammar
             return false;
             }
     private:
-        using string_type = traits::case_insensitive_wstring_ex;
+        using string_type = std::basic_string_view<wchar_t, traits::case_insensitive_ex>;
         static std::set<string_type> m_s_contractions;
         static std::set<string_type> m_s_contractions_following_word;
         static std::set<string_type> m_contraction_without_apostrophe;

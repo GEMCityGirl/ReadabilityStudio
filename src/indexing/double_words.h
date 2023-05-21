@@ -17,31 +17,30 @@
 #include <functional>
 #include <set>
 #include <cwctype>
+#include <string_view>
 #include "character_traits.h"
 
 namespace grammar
     {
     /** @brief Class to determine if a set of double words is grammatically correct.
-
-        Works for English and German text.*/
+        @details Works for English and German text.*/
     class is_double_word_exception
         {
     public:
         /// @brief Determines if a word is grammatically correct if repeated.
         /// @param text The word to review.
-        /// @param length The length of the word.
         /// @returns @c true if this word is allowed to be repeated.
         [[nodiscard]]
-        bool operator()(const wchar_t* text, const size_t length) const
+        bool operator()(const std::wstring_view text) const
             {
-            if (text == nullptr || text[0] == 0 || length == 0 ||
-                (length == 1 && characters::is_character::is_punctuation(text[0])))
+            if (text.empty() || // if empty, then I suppose it should be an exception
+                (text.length() == 1 && characters::is_character::is_punctuation(text[0])))
                 { return true; }
-            return m_double_word_exceptions.find(string_type(text,length)) !=
+            return m_double_word_exceptions.find(string_type{ text.data(), text.length() }) !=
                 m_double_word_exceptions.cend();
             }
     private:
-        using string_type = traits::case_insensitive_wstring_ex;
+        using string_type = std::basic_string_view<wchar_t, traits::case_insensitive_ex>;
         static std::set<string_type> m_double_word_exceptions;
         };
     }

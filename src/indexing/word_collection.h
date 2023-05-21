@@ -1747,7 +1747,7 @@ private:
                             !(m_words[wordCounter].length() == 2 &&
                               characters::is_character::is_period(m_words[wordCounter][1])) &&
                             !m_words[wordCounter].is_numeric() &&
-                            !is_double_word_allowed(m_words[wordCounter].c_str(),m_words[wordCounter].length()))
+                            !is_double_word_allowed({ m_words[wordCounter].c_str(),m_words[wordCounter].length() }))
                             {
                             m_duplicate_word_indices.push_back(wordCounter + 1);
                             // This is an error, so no reason to do any further analysis. Go to the next word.
@@ -1973,7 +1973,7 @@ private:
                     !currentWord.is_numeric() &&
                     !currentWord.is_proper_noun() &&
                     !currentWord.is_acronym() &&
-                    !is_double_word_allowed(currentWord.c_str(), currentWord.length()) &&
+                    !is_double_word_allowed({ currentWord.c_str(), currentWord.length() }) &&
                     (!m_stop_list || !m_stop_list->find(currentWord.c_str())) )
                     {
                     if (stem_word)

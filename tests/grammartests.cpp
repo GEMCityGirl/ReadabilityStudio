@@ -1419,32 +1419,32 @@ TEST_CASE("Double words", "[double words]")
     SECTION("English")
         {
         is_double_word_exception exp;
-        CHECK(exp(L"ha", 2));
-        CHECK(exp(L"hat", 3) == false);
-        CHECK(exp(L"h", 1) == false);
-        CHECK(exp(L"had", 3));
-        CHECK(exp(L"that", 4));
+        CHECK(exp(L"ha"));
+        CHECK(exp(L"hat") == false);
+        CHECK(exp(L"h") == false);
+        CHECK(exp(L"had"));
+        CHECK(exp(L"that"));
         }
     SECTION("German")
         {
         is_double_word_exception exp;
-        CHECK(exp(L"das", 3));
-        CHECK(exp(L"dast", 4) == false);
-        CHECK(exp(L"da", 2) == false);
-        CHECK(exp(L"der", 3));
-        CHECK(exp(L"die", 3));
-        CHECK(exp(L"sie", 3));
+        CHECK(exp(L"das"));
+        CHECK(exp(L"dast") == false);
+        CHECK(exp(L"da") == false);
+        CHECK(exp(L"der"));
+        CHECK(exp(L"die"));
+        CHECK(exp(L"sie"));
         }
     SECTION("Single Letter")
         {
         is_double_word_exception exp;
-        CHECK(exp(L"a", 1) == false);
+        CHECK(exp(L"a") == false);
         }
     SECTION("Single Punctuation And Number")
         {
         is_double_word_exception exp;
-        CHECK(exp(L"#", 1));
-        CHECK(exp(L"$", 1));
+        CHECK(exp(L"#"));
+        CHECK(exp(L"$"));
         }
     }
 

@@ -32,10 +32,10 @@ namespace grammar
             {
             if (text.empty())
                 { return false; }
-            return m_words.find(string_type(text.data(), text.length())) != m_words.cend();
+            return m_words.find(string_type{ text.data(), text.length() }) != m_words.cend();
             }
     private:
-        using string_type = traits::case_insensitive_wstring_ex;
+        using string_type = std::basic_string_view<wchar_t, traits::case_insensitive_ex>;
         static std::set<string_type> m_words;
         };
     }

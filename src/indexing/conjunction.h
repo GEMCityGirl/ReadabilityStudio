@@ -32,6 +32,7 @@ namespace grammar
             @param text The word to review.
             @returns Whether or not this word is a coordinating conjunction.*/
         virtual bool operator()(const std::wstring_view text) const = 0;
+    protected:
         /// @private
         using string_type = std::basic_string_view<wchar_t, traits::case_insensitive_ex>;
         };
@@ -53,11 +54,7 @@ namespace grammar
                 string_type(text.data(), text.length())) != m_conjunctions.cend();
             }
     private:
-        const std::set<string_type> m_conjunctions =
-            {
-            L"&", L"and", L"but", L"nor",
-            L"or", L"so", L"yet"
-            };
+        static std::set<string_type> m_conjunctions;
         };
 
     /** Predicate for determining if a word is a Spanish coordinating
@@ -77,17 +74,7 @@ namespace grammar
                 string_type(text.data(), text.length())) != m_conjunctions.cend();
             }
     private:
-        const std::set<string_type> m_conjunctions =
-            {
-            L"&",
-            L"e",    // and
-            L"ni",   // nor
-            L"o",    // or
-            L"pero", // but
-            L"sino", // but
-            L"u",    // or
-            L"y"     // and
-            };
+        static std::set<string_type> m_conjunctions;
         };
 
     /** @brief Predicate for determining if a word is a German coordinating 
@@ -107,15 +94,7 @@ namespace grammar
                 string_type(text.data(), text.length())) != m_conjunctions.cend();
             }
     private:
-        const std::set<string_type> m_conjunctions =
-            {
-            L"&",
-            L"und",     // and
-            L"oder",    // or
-            L"denn",    // for, because
-            L"aber",    // but
-            L"sondern", // but (instead)
-            };
+        static std::set<string_type> m_conjunctions;
         };
 
     /// @brief Predicate for determining if a word is a Russian coordinating
