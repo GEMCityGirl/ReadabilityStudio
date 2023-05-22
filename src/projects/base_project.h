@@ -20,6 +20,7 @@
 #include <wx/richmsgdlg.h>
 #include <map>
 #include <set>
+#include <unordered_map>
 #include <vector>
 #include <memory>
 #include <functional>
@@ -817,7 +818,7 @@ public:
     /// Graphical tests need to be virtual because projects add these differently
     bool AddStandardReadabilityTest(const wxString& id, const bool setFocus = true);
     typedef bool (BaseProject::*AddTestFunction)(const bool);
-    std::vector<comparable_first_pair<int, AddTestFunction>> m_standardTestFunctions;
+    std::unordered_map<int, AddTestFunction> m_standardTestFunctions;
     bool AddNewDaleChallTest(const bool setFocus = true);
     bool AddSmogTest(const bool setFocus = true);
     bool AddModifiedSmogTest(const bool setFocus = true);

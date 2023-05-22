@@ -373,412 +373,410 @@ BaseProject::BaseProject() :
         GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::DEGREES_OF_READING_POWER());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddDegreesOfReadingPowerTest));
         }
     // DEGREES_OF_READING_POWER_GE
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::DEGREES_OF_READING_POWER_GE());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddDegreesOfReadingPowerGeTest));
         }
     // SOL_SPANISH
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::SOL_SPANISH());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddSolSpanishTest));
         }
     // CRAWFORD
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::CRAWFORD());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddCrawfordTest));
         }
     // FRASE
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::FRASE());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddFraseTest));
         }
     // GPM_FRY
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::GPM_FRY());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddGilliamPenaMountainFryTest));
         }
     // PSK_FARR_JENKINS_PATERSON
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::PSK_FARR_JENKINS_PATERSON());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddPskFarrJenkinsPatersonTest));
         }
     // SPACHE
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::SPACHE());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddSpacheTest));
         }
     // HARRIS_JACOBSON
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::HARRIS_JACOBSON());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddHarrisJacobsonTest));
         }
     // ARI
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::ARI());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddAriTest));
         }
     // GUNNING_FOG
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::GUNNING_FOG());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddFogTest));
         }
     // LIX
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::LIX());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddLixTest));
         }
     // RIX
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::RIX());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddRixTest));
         }
     // DALE_CHALL
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::DALE_CHALL());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddNewDaleChallTest));
         }
     // COLEMAN_LIAU
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::COLEMAN_LIAU());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddColemanLiauTest));
         }
     // FORCAST
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::FORCAST());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddForcastTest));
         }
     // FLESCH
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::FLESCH());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddFleschTest));
         }
     // NEW_FOG
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::NEW_FOG());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddNewFogCountTest));
         }
     // FLESCH_KINCAID_SIMPLIFIED
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::FLESCH_KINCAID_SIMPLIFIED());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddFleschKincaidSimplifiedTest));
         }
     // FLESCH_KINCAID
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::FLESCH_KINCAID());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddFleschKincaidTest));
         }
     // EFLAW
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::EFLAW());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddEflawTest));
         }
     // SMOG
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::SMOG());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddSmogTest));
         }
     // SMOG_BAMBERGER_VANECEK
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::SMOG_BAMBERGER_VANECEK());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddSmogBambergerVanecekTest));
         }
     // SCHWARTZ
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::SCHWARTZ());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddSchwartzTest));
         }
     // QU
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::QU());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddQuBambergerVanecekTest));
         }
     // MODIFIED_SMOG
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::MODIFIED_SMOG());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddModifiedSmogTest));
         }
     // SMOG_SIMPLIFIED
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::SMOG_SIMPLIFIED());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddSmogSimplifiedTest));
         }
     // SIMPLE_ARI
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::SIMPLE_ARI());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddSimplifiedAriTest));
         }
     // NEW_ARI
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::NEW_ARI());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddNewAriTest));
         }
     // PSK_FLESCH
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::PSK_FLESCH());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddPskFleschTest));
         }
     // FRY
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::FRY());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddFryTest));
         }
     // RAYGOR
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::RAYGOR());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddRaygorTest));
         }
     // PSK_DALE_CHALL
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::PSK_DALE_CHALL());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddPskDaleChallTest));
         }
     // BORMUTH_CLOZE_MEAN
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::BORMUTH_CLOZE_MEAN());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddBormuthClozeMeanTest));
         }
     // BORMUTH_GRADE_PLACEMENT_35
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::BORMUTH_GRADE_PLACEMENT_35());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddBormuthGradePlacement35Test));
         }
     // FARR_JENKINS_PATERSON
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::FARR_JENKINS_PATERSON());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddFarrJenkinsPatersonTest));
         }
     // PSK_GUNNING_FOG
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::PSK_GUNNING_FOG());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddPskFogTest));
         }
     // NEW_FARR_JENKINS_PATERSON
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::NEW_FARR_JENKINS_PATERSON());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddNewFarrJenkinsPatersonTest));
         }
     // WHEELER_SMITH
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::WHEELER_SMITH());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddWheelerSmithTest));
         }
     // AMSTAD
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::AMSTAD());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddAmstadTest));
         }
     // WHEELER_SMITH_BAMBERGER_VANECEK
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::WHEELER_SMITH_BAMBERGER_VANECEK());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddWheelerSmithBambergerVanecekTest));
         }
     // NEUE_WIENER_SACHTEXTFORMEL1
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL1());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddNeueWienerSachtextformel1));
         }
     // NEUE_WIENER_SACHTEXTFORMEL2
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL2());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddNeueWienerSachtextformel2));
         }
     // NEUE_WIENER_SACHTEXTFORMEL3
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL3());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddNeueWienerSachtextformel3));
         }
     // LIX_GERMAN_CHILDRENS_LITERATURE
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::LIX_GERMAN_CHILDRENS_LITERATURE());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddLixGermanChildrensLiterature));
         }
     // LIX_GERMAN_TECHNICAL
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::LIX_GERMAN_TECHNICAL());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddLixGermanTechnical));
         }
     // RIX_GERMAN_FICTION
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::RIX_GERMAN_FICTION());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddRixGermanFiction));
         }
     // RIX_GERMAN_NONFICTION
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::RIX_GERMAN_NONFICTION());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddRixGermanNonFiction));
         }
     // ELF
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::ELF());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddElfTest));
         }
     // DANIELSON_BRYAN_1
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::DANIELSON_BRYAN_1());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddDanielsonBryan1Test));
         }
     // DANIELSON_BRYAN_2
     testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::DANIELSON_BRYAN_2());
     if (testPos.second)
         {
-        m_standardTestFunctions.push_back(
-            comparable_first_pair<int, AddTestFunction>(testPos.first->get_interface_id(),
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos.first->get_interface_id(),
             &BaseProject::AddDanielsonBryan2Test));
         }
-
-    std::sort(m_standardTestFunctions.begin(), m_standardTestFunctions.end());
 
     m_readMessages.SetReadingAgeDisplay(
         wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().GetReadingAgeDisplay());
@@ -799,7 +797,8 @@ void BaseProject::ResetStandardReadabilityTests(TestCollectionType& readabilityT
 //-------------------------------------------------------
 void BaseProject::InitializeStandardReadabilityTests()
     {
-    wxASSERT_MSG(m_defaultReadabilityTestsTemplate.get_test_count() == 0, __WXFUNCTION__ + wxString(" called twice?"));
+    wxASSERT_MSG(m_defaultReadabilityTestsTemplate.get_test_count() == 0,
+                 __WXFUNCTION__ + wxString(" called twice?"));
     m_defaultReadabilityTestsTemplate.clear();
     // degrees of reading power
         {
@@ -5696,18 +5695,10 @@ bool BaseProject::AddStandardReadabilityTest(const wxString& id, const bool setF
             LogMessage(warningMsg, true);
             }
         }
-    std::vector<comparable_first_pair<int, AddTestFunction>>::const_iterator addTestFunction =
-        std::lower_bound(m_standardTestFunctions.cbegin(), m_standardTestFunctions.cend(),
-            comparable_first_pair<int, AddTestFunction>(theTest.first->get_test().get_interface_id(),nullptr));
-    // this vector is sorted (so lower_bound should work), but in case it fails then do a brute force search.
-    if (addTestFunction == m_standardTestFunctions.end() ||
-        addTestFunction->first != theTest.first->get_test().get_interface_id())
-        {
-        wxFAIL_MSG(L"Standard test function pointer not found via sorted search.");
-        addTestFunction = std::find(m_standardTestFunctions.begin(), m_standardTestFunctions.end(),
-            comparable_first_pair<int, AddTestFunction>(theTest.first->get_test().get_interface_id(),nullptr));
-        }
-    if (addTestFunction != m_standardTestFunctions.end() &&
+
+    const auto addTestFunction = m_standardTestFunctions.find(
+        theTest.first->get_test().get_interface_id());
+    if (addTestFunction != m_standardTestFunctions.cend() &&
         addTestFunction->first == theTest.first->get_test().get_interface_id() &&
         addTestFunction->second != nullptr)
         {
