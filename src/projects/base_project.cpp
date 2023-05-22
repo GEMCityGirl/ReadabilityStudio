@@ -2788,7 +2788,7 @@ void BaseProject::LoadHardWords()
                     if (wordPos->second.first == nonProperCount || wordPos->second.first == 1)
                         {
                         GetDaleChallHardWordData()->SetItemValue(
-                            GetTotalUniqueDCHardWords(), 1,wordPos->second.first);
+                            GetTotalUniqueDCHardWords(), 1, wordPos->second.first);
                         }
                     else if (nonProperCount == 0)
                         {
