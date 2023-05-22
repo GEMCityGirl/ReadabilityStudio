@@ -671,8 +671,8 @@ namespace tokenize
                 if (m_is_at_end_of_sentence &&
                     characters::is_character::is_period(m_current_char[0]))
                     {
-                    if (isAbbreviation(word_start, m_current_word_length+1) ||
-                        isAcronym.is_dotted_acronym(word_start, m_current_word_length+1))
+                    if (isAbbreviation({ word_start, m_current_word_length + 1 }) ||
+                        isAcronym.is_dotted_acronym({ word_start, m_current_word_length + 1 }))
                         { ++m_current_word_length; }
                     }
 

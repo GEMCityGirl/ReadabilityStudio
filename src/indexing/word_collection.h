@@ -273,7 +273,7 @@ public:
         for_each(
             m_words.begin(), m_words.end(),
             [&isAbbreviation = std::as_const(isAbbreviation)](auto& word)
-                { word.set_abbreviation_tag(isAbbreviation(word.c_str(), word.length())); }
+                { word.set_abbreviation_tag(isAbbreviation({ word.c_str(), word.length() })); }
             );
         // contractions
             {
@@ -291,12 +291,14 @@ public:
                         { ++punctPos; }
                 if (punctPos != m_punctuation.end() && punctPos->get_word_position() == i+1 &&
                     punctPos->is_connected_to_previous_word())
-                    { m_words[i].set_contraction(isContraction(m_words[i].c_str(), m_words[i].length())); }
+                    {
+                    m_words[i].set_contraction(isContraction({ m_words[i].c_str(), m_words[i].length() }));
+                    }
                 else
                     {
                     // ...otherwise, we should include the following word in the analysis
-                    m_words[i].set_contraction(isContraction(m_words[i].c_str(), m_words[i].length(),
-                        m_words[i+1].c_str(), m_words[i+1].length()));
+                    m_words[i].set_contraction(isContraction({ m_words[i].c_str(), m_words[i].length() },
+                        { m_words[i + 1].c_str(), m_words[i + 1].length() }));
                     }
                 }
             }
@@ -384,7 +386,7 @@ public:
                 {
                 const Tword_type& theWord =
                     m_words[m_sentences[para_iter->get_first_sentence_index()].get_first_word_index()];
-                if (isAbbreviation(theWord.c_str(),theWord.length()))
+                if (isAbbreviation({ theWord.c_str(),theWord.length() }))
                     {
                     // individual words will be updated to valid later
                     m_sentences[para_iter->get_first_sentence_index()].set_valid(m_treat_header_words_as_valid);
@@ -1191,7 +1193,7 @@ private:
                 { continue; }
             // see if in all caps and then look at the words around it to see if it is
             // an acronym or simply uppercased word
-            else if (isAcronym(wordPos->c_str(), wordPos->length()))
+            else if (isAcronym({ wordPos->c_str(), wordPos->length() }))
                 {
                 // if it has more than one period in it and more than half uppercase letters then it absolutely
                 // must be an acronym. Same for if it ends with a lowercase 's' (e.g., "ATMs").
@@ -1208,7 +1210,7 @@ private:
                     if (otherWord != m_words.end() &&
                         // words need to be in the same sentence
                         otherWord->get_sentence_index() == wordPos->get_sentence_index() &&
-                        isAcronym(otherWord->c_str(), otherWord->length()) )
+                        isAcronym({ otherWord->c_str(), otherWord->length() }))
                         {
                         // following word is uppercased too, so don't treat this as
                         // an acronym or proper
@@ -1225,7 +1227,7 @@ private:
                         otherWord = wordPos-1;
                         // words need to be in the same sentence
                         if (otherWord->get_sentence_index() == wordPos->get_sentence_index() &&
-                            isAcronym(otherWord->c_str(), otherWord->length()))
+                            isAcronym({ otherWord->c_str(), otherWord->length() }))
                             {
                             // proceeding word is uppercased too, so don't treat this as
                             // an acronym or proper
@@ -1254,7 +1256,7 @@ private:
                     if (otherWord != m_words.end() &&
                         // words need to be in the same sentence
                         otherWord->get_sentence_index() == wordPos->get_sentence_index() &&
-                        isAcronym(otherWord->c_str(), otherWord->length()))
+                        isAcronym({ otherWord->c_str(), otherWord->length() }))
                         {
                         // following word is uppercased too, so don't treat this as
                         // an acronym or proper
@@ -1524,15 +1526,17 @@ private:
                 // perform a case-INsensitive search here because all of these words will be in all caps.
                 auto propPos = std::find_if(
                                 properWords.get_data().cbegin(), properWords.get_data().cend(),
-                                string_util::equal_basic_string_i_compare_map<Tword_type,
-                                             size_t>(Tword_type(wordPos->c_str())));
+                                string_util::equal_basic_string_i_compare_map<Tword_type, size_t>
+                                    (Tword_type(wordPos->c_str())));
                 if (propPos != properWords.get_data().end() ||
                         // note that the *known* proper nouns are already case insensitive.
                         is_known_proper_nouns->find(wordPos->c_str()) )
                     {
                     wordPos->set_proper_noun(true);
                     if (propPos != properWords.get_data().end())
-                        { wordPos->set_acronym(isAcronym(propPos->first.c_str(), propPos->first.length()) ); }
+                        {
+                        wordPos->set_acronym(isAcronym({ propPos->first.c_str(), propPos->first.length() }));
+                        }
                     // none of the known proper nouns are acronyms
                     else
                         { wordPos->set_acronym(false); }

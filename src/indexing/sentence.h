@@ -429,9 +429,10 @@ namespace grammar
                         traits::case_insensitive_ex::eq(text[nextNonSpace], L'('))
                         {
                         return
-                            !(isAbbreviation(text+previous_word_position,
-                                             (original_position-previous_word_position)+1) ||
-                              isAcronym(text+previous_word_position, (current_position-previous_word_position)+1) ||
+                            !(isAbbreviation({ text + previous_word_position,
+                                               (original_position - previous_word_position) + 1 }) ||
+                                isAcronym({ text + previous_word_position,
+                                            (current_position - previous_word_position) + 1 }) ||
                              ((current_position-previous_word_position) == 1 &&
                                characters::is_character::is_alpha(text[previous_word_position])) );
                         }
@@ -561,11 +562,12 @@ namespace grammar
                             traits::case_insensitive_ex::eq(text[previous_word_position+2], L'r'))) )
                         { return !is_character.is_numeric(text[i]); }
                     // see if it's just an abbreviation or acronym
-                    else if (isAbbreviation(text+previous_word_position,
-                                (original_position-previous_word_position)+1) )
+                    else if (isAbbreviation({ text+previous_word_position,
+                                (original_position-previous_word_position) + 1 }) )
                         { return false; }
-                    else if (isAcronym.is_dotted_acronym(text+previous_word_position,
-                             (current_position-previous_word_position)+1) )
+                    else if (isAcronym.is_dotted_acronym(
+                            { text + previous_word_position,
+                              (current_position - previous_word_position) + 1 }))
                         { return false; }
                     /* "Hello." he said (this is one sentence)
                        "Hello." Blake said (this is two sentences)

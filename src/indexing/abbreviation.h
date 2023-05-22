@@ -32,10 +32,10 @@ namespace grammar
                 (based on predefined list of abbreviations, or if text block is four
                 consecutive consonants in front of a period).
             @param text The text block to analyze.
-            @param length The length of the text block to analyze.
-                This will be the start of the text block up to the period.*/
+            @note The length of the text block to analyze should be
+                the start of the text block up to the period.*/
         [[nodiscard]]
-        bool operator()(const wchar_t* text, const size_t length) const;
+        bool operator()(const std::wstring_view text) const;
         /** @returns The list of abbreviations.
                 This is where you can specify what is considered an abbreviation.
             @warning The abbreviations you add must include the trailing period.*/
@@ -51,17 +51,16 @@ namespace grammar
         {
     public:
         /** @returns @c true if more than half of the letters are uppercased.
-            @param text The text stream to analyze.
-            @param length The length of the text stream.*/
+            @param text The text stream to analyze.*/
         [[nodiscard]]
-        inline bool operator()(const wchar_t* text, const size_t length) const noexcept
+        inline bool operator()(const std::wstring_view text) const noexcept
             {
             m_dot_count = 0;
             m_ends_with_lower_s = false;
-            if (text == nullptr || text[0] == 0 || length < 2)
+            if (text.length() < 2)
                 { return false; }
             size_t letterCount{ 0 }, upperCaseLetterCount{ 0 }, lowerCaseLetterCount{ 0 };
-            for (size_t i = 0; i < length; ++i)
+            for (size_t i = 0; i < text.length(); ++i)
                 {
                 if (text[i] == 0)
                     { break; }
@@ -85,7 +84,7 @@ namespace grammar
             if (letterCount < 2)
                 { return false; }
             m_ends_with_lower_s =
-                (string_util::full_width_to_narrow(text[length-1]) == common_lang_constants::LOWER_S);
+                (string_util::full_width_to_narrow(text.back()) == common_lang_constants::LOWER_S);
             return (upperCaseLetterCount*2 > letterCount);
             }
 
@@ -96,22 +95,21 @@ namespace grammar
 
         /** @returns Whether the last operator() ended with an 's'.
             @note This only applies to words longer than 2 letters,
-                  so "Is" would actually return false here because it is
-                  not an acronym and is irrelevant.*/
+                so "Is" would actually return false here because it is
+                not an acronym and is irrelevant.*/
         [[nodiscard]]
         bool ends_with_lower_s() const noexcept
             { return m_ends_with_lower_s; }
 
         /** @returns Whether a word follows the Letter/Number and Dot pattern (e.g., "K.A.O.S.").
-            @param text The text stream to read.
-            @param length The length of the text stream.*/
+            @param text The text stream to read.*/
         [[nodiscard]]
-        static bool is_dotted_acronym(const wchar_t* text, const size_t length) noexcept
+        static bool is_dotted_acronym(const std::wstring_view text) noexcept
             {
-            if (text == nullptr || text[0] == 0 || length < 4)
+            if (text.length() < 4)
                 { return false; }
             size_t i = 0;
-            for (; i+1 < length; i+=2)
+            for (; i+1 < text.length(); i+=2)
                 {
                 if (characters::is_character::is_alpha(text[i]) &&
                     traits::case_insensitive_ex::eq(text[i + 1], common_lang_constants::PERIOD))
@@ -120,12 +118,12 @@ namespace grammar
                     { break; }
                 }
             // see if followed by numbers (that can be part of the acronym, such as F.A.K.K.2)
-            if (i < length)
+            if (i < text.length())
                 {
-                while (i < length && characters::is_character::is_numeric(text[i]))
+                while (i < text.length() && characters::is_character::is_numeric(text[i]))
                     { ++i; }
                 }
-            return (i == length);
+            return (i == text.length());
             }
     private:
         mutable size_t m_dot_count{ 0 };

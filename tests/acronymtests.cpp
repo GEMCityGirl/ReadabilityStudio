@@ -36,67 +36,64 @@ TEST_CASE("Acronyms", "[acronyms]")
     SECTION("Acronym2")
         {
         is_acronym isAcronym;
-        CHECK_FALSE(isAcronym(L"A", 1));
-        CHECK_FALSE(isAcronym(L"A.", 2));
-        CHECK_FALSE(isAcronym(L"86L", 3));
-        CHECK_FALSE(isAcronym(L"Hello", 5));
-        CHECK_FALSE(isAcronym(L"HeLlo", 5));
-        CHECK(isAcronym(L"ID's", 4));
-        CHECK(isAcronym(L"KAOS", 4));
-        CHECK(isAcronym(L"UN", 2));
-        CHECK(isAcronym(L"U.N.", 4));
-        CHECK(isAcronym(L"UN", 3));
-        CHECK_FALSE(isAcronym(L"Is", 2));
-        CHECK_FALSE(isAcronym(L"iOS", 3));
-        CHECK(isAcronym(L"IOs", 3));
-        CHECK_FALSE(isAcronym(nullptr, 5));
-        CHECK_FALSE(isAcronym(L"", 1));
-        CHECK_FALSE(isAcronym(L"", 0));
+        CHECK_FALSE(isAcronym(L"A"));
+        CHECK_FALSE(isAcronym(L"A."));
+        CHECK_FALSE(isAcronym(L"86L"));
+        CHECK_FALSE(isAcronym(L"Hello"));
+        CHECK_FALSE(isAcronym(L"HeLlo"));
+        CHECK(isAcronym(L"ID's"));
+        CHECK(isAcronym(L"KAOS"));
+        CHECK(isAcronym(L"UN"));
+        CHECK(isAcronym(L"U.N."));
+        CHECK(isAcronym(L"UN"));
+        CHECK_FALSE(isAcronym(L"Is"));
+        CHECK_FALSE(isAcronym(L"iOS"));
+        CHECK(isAcronym(L"IOs"));
+        CHECK_FALSE(isAcronym(L""));
         }
     SECTION("Acronym Dotted")
         {
-        CHECK_FALSE(is_acronym::is_dotted_acronym(nullptr, 0));
-        CHECK(is_acronym::is_dotted_acronym(L"N.A.R.C.", 8));
-        CHECK_FALSE(is_acronym::is_dotted_acronym(L"image.bmp.", 10));
-        CHECK_FALSE(is_acronym::is_dotted_acronym(L"MR.", 3));
-        CHECK_FALSE(is_acronym::is_dotted_acronym(L"N.A", 3));
-        CHECK_FALSE(is_acronym::is_dotted_acronym(L"NARC", 4));
-        CHECK_FALSE(is_acronym::is_dotted_acronym(L"ETC...", 6));
-        CHECK(is_acronym::is_dotted_acronym(L"U.N.", 4));
-        CHECK_FALSE(is_acronym::is_dotted_acronym(L"n.d.).", 6));
-        CHECK(is_acronym::is_dotted_acronym(L"F.A.K.K.2", 9));
-        CHECK(is_acronym::is_dotted_acronym(L"F.A.K.K.²", 9));
-        CHECK(is_acronym::is_dotted_acronym(L"F.A.K.K.21", 10));
+        CHECK_FALSE(is_acronym::is_dotted_acronym(L""));
+        CHECK(is_acronym::is_dotted_acronym(L"N.A.R.C."));
+        CHECK_FALSE(is_acronym::is_dotted_acronym(L"image.bmp."));
+        CHECK_FALSE(is_acronym::is_dotted_acronym(L"MR."));
+        CHECK_FALSE(is_acronym::is_dotted_acronym(L"N.A"));
+        CHECK_FALSE(is_acronym::is_dotted_acronym(L"NARC"));
+        CHECK_FALSE(is_acronym::is_dotted_acronym(L"ETC..."));
+        CHECK(is_acronym::is_dotted_acronym(L"U.N."));
+        CHECK_FALSE(is_acronym::is_dotted_acronym(L"n.d.)."));
+        CHECK(is_acronym::is_dotted_acronym(L"F.A.K.K.2"));
+        CHECK(is_acronym::is_dotted_acronym(L"F.A.K.K.²"));
+        CHECK(is_acronym::is_dotted_acronym(L"F.A.K.K.21"));
         }
     SECTION("Acronym Dot Count")
         {
         is_acronym isAcronym;
-        CHECK_FALSE(isAcronym(nullptr, 0));
         CHECK(isAcronym.get_dot_count() == 0);
-        CHECK(isAcronym(L"N.A.R.C.", 8));
+        CHECK(isAcronym(L"N.A.R.C."));
         CHECK(isAcronym.get_dot_count() == 4);
-        CHECK_FALSE(isAcronym(L"image.bmp.", 10));
+        CHECK_FALSE(isAcronym(L"image.bmp."));
         // not an acronym, so dots don't get counted
         CHECK(isAcronym.get_dot_count() == 0);
-        CHECK(isAcronym(L"MR.", 3));
+        CHECK(isAcronym(L"MR."));
         CHECK(isAcronym.get_dot_count() == 1);
-        CHECK(isAcronym(L"N.A", 3));
+        CHECK(isAcronym(L"N.A"));
         CHECK(isAcronym.get_dot_count() == 1);
-        CHECK(isAcronym(L"NARC", 4));
+        CHECK(isAcronym(L"NARC"));
         CHECK(isAcronym.get_dot_count() == 0);
-        CHECK(isAcronym(L"ETC...", 6));
+        CHECK(isAcronym(L"ETC..."));
         CHECK(isAcronym.get_dot_count() == 3);
-        CHECK(isAcronym(L"U.N.", 4));
+        CHECK(isAcronym(L"U.N."));
         CHECK(isAcronym.get_dot_count() == 2);
         }
     SECTION("Acronym Ends With S")
         {
         is_acronym isAcronym;
-        CHECK(isAcronym(L"N.A.R.C.s", 9));
+        CHECK(isAcronym(L"N.A.R.C.s"));
         CHECK(isAcronym.ends_with_lower_s());
-        CHECK(isAcronym(L"N.A.R.C.", 8));
+        CHECK(isAcronym(L"N.A.R.C."));
         CHECK_FALSE(isAcronym.ends_with_lower_s());
-        CHECK_FALSE(isAcronym(L"is", 2));
+        CHECK_FALSE(isAcronym(L"is"));
         CHECK_FALSE(isAcronym.ends_with_lower_s());
         }
     }

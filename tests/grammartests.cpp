@@ -1517,25 +1517,23 @@ TEST_CASE("Abbreviations simple", "[abbreviations]")
 
     SECTION("Test Nulls")
         {
-        CHECK_FALSE(abb(nullptr, 1));
-        CHECK_FALSE(abb(L"std.", 0));
-        CHECK_FALSE(abb(L"", 0));
+        CHECK_FALSE(abb(L""));
         }
     SECTION("Known")
         {
-        CHECK(abb(L"std.", 4));
-        CHECK(abb(L"dept.", 5));
-        CHECK_FALSE(abb(L"stand.", 6));
+        CHECK(abb(L"std."));
+        CHECK(abb(L"dept."));
+        CHECK_FALSE(abb(L"stand."));
         }
     SECTION("Unknown")
         {
-        CHECK(abb(L"stdr.", 5)); // all consonants
+        CHECK(abb(L"stdr.")); // all consonants
         }
     SECTION("Slash")
         {
-        CHECK(abb(L"class/dept.", 11)); // dept. is an abbreviation
-        CHECK_FALSE(abb(L"class/depart.", 13)); // depart. is not an abbreviation
-        CHECK_FALSE(abb(L"class/", 6)); // nothing there
+        CHECK(abb(L"class/dept.")); // dept. is an abbreviation
+        CHECK_FALSE(abb(L"class/depart.")); // depart. is not an abbreviation
+        CHECK_FALSE(abb(L"class/")); // nothing there
         }
     }
 
@@ -1608,44 +1606,44 @@ TEST_CASE("Abbreviations", "[abbreviations]")
     SECTION("Known Abbreviations")
         {
         const wchar_t* text = L"Hi Mr. Smith, are you and Ms. Smith going to MRU. ";
-        CHECK(isAbbreviation(text+3, 3));
-        CHECK(isAbbreviation(text+26, 3));
-        CHECK(isAbbreviation(text+45, 4) == false);
+        CHECK(isAbbreviation({ text + 3, 3 }));
+        CHECK(isAbbreviation({ text + 26, 3 }));
+        CHECK(isAbbreviation({ text + 45, 4 }) == false);
         }
     SECTION("Unknown Abbreviations")
         {
         const wchar_t* text = L"Go to the Rptr. room";
-        CHECK(isAbbreviation(text+10, 5));
+        CHECK(isAbbreviation({ text + 10, 5 }));
         }
     SECTION("Actually Acronym")
         {
         const wchar_t* text = L"Go to the RPTR. room";
-        CHECK(isAbbreviation(text+10, 5) == false);
+        CHECK(isAbbreviation({ text + 10, 5 }) == false);
         }
     SECTION("Hyphenated Abbreviations")
         {
         const wchar_t* text = L"Standard/std. deviation.";
-        CHECK(isAbbreviation(text, 13));
+        CHECK(isAbbreviation({ text, 13 }));
         }
     SECTION("Double Abbreviation")
         {
         const wchar_t* text = L"st.dev.";
-        CHECK(isAbbreviation(text, 7));
+        CHECK(isAbbreviation(text));
         }
     SECTION("Not Abbreviation Too Short To Deduce")
         {
         const wchar_t* text = L"zt.";
-        CHECK(isAbbreviation(text, 3) == false);
+        CHECK(isAbbreviation(text) == false);
         }
     SECTION("Not Abbreviation Really Acronym")
         {
         const wchar_t* text = L"k.a.o.s.";
-        CHECK(isAbbreviation(text, 8) == false);
+        CHECK(isAbbreviation(text) == false);
         }
     SECTION("Not Abbreviation Really Initial")
         {
         const wchar_t* text = L"P.";
-        CHECK(isAbbreviation(text, 2) == false);
+        CHECK(isAbbreviation(text) == false);
         }
     }
 

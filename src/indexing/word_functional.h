@@ -1077,7 +1077,8 @@ private:
                 if (characters::is_character::is_numeric(compValue.c_str(), compValue.length()))
                     { continue; }
                 // if ignoring uppercase, then see if this part of the word is an acronym
-                else if (is_ignoring_uppercased() && isAcronym(compValue.c_str(), compValue.length()) )
+                else if (is_ignoring_uppercased() &&
+                    isAcronym({ compValue.c_str(), compValue.length() }))
                     { continue; }
                 // in case we have something like "one-", then the fact that there is no second word
                 // after the '-' shouldn't make it unfamiliar

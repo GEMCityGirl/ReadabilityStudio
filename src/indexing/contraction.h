@@ -17,7 +17,6 @@
 #include <set>
 #include <string_view>
 #include "character_traits.h"
-#include "../Wisteria-Dataviz/src/debug/debug_assert.h"
 
 namespace grammar
     {
@@ -28,37 +27,33 @@ namespace grammar
     public:
         /** @returns @c true if text block is a contraction.
             @param text The text block to analyze.
-            @param length The length of the text block to analyze. This will be the start of the
-                   text block up to the end of the word.
             @param nextWord The word following this one, needed for a deeper analysis if the
-                   contraction ends with "'s" and may be ambiguous. This is optional.
-            @param nextWordLength The length of the following word.
-                Required if @c nextWord is non-null.*/
+                   contraction ends with "'s" and may be ambiguous. This is optional.*/
         [[nodiscard]]
-        bool operator()(const wchar_t* text, const size_t length,
-                        const wchar_t* nextWord = nullptr, const size_t nextWordLength = 0) const
+        bool operator()(const std::wstring_view text,
+            const std::wstring_view nextWord = std::wstring_view{}) const
             {
-            NON_UNIT_TEST_ASSERT(text && std::wcslen(text) == length);
-            NON_UNIT_TEST_ASSERT((nextWord == nullptr) || (std::wcslen(nextWord) == nextWordLength));
-            if (text == nullptr || text[0] == 0 || length < 3)
+            if (text.length() < 3)
                 { return false; }
-            for (size_t i = 0; i < length; ++i)
+            for (size_t i = 0; i < text.length(); ++i)
                 {
                 if (characters::is_character::is_apostrophe(text[i]))
                     {
-                    if (length > 2 && i == length-2 &&
-                        traits::case_insensitive_ex::eq(text[length-1], L's'))
+                    if (text.length() > 2 && i == text.length() - 2 &&
+                        traits::case_insensitive_ex::eq(text.back(), L's'))
                         {
-                        // if something like "that's", then we know it is "that is" and indeed a contraction
-                        if (m_s_contractions.find(string_type(text,length)) != m_s_contractions.end())
+                        // If something like "that's", then we know it is "that is" and indeed a contraction.
+                        if (m_s_contractions.find(
+                                string_type{ text.data(), text.length() }) != m_s_contractions.cend())
                             { return true; }
-                        // otherwise, it might be a possessive word, review it...
+                        // ...otherwise, it might be a possessive word; review it.
                         else
                             {
-                            if (nextWord && nextWordLength > 0)
+                            if (nextWord.length() > 0)
                                 {
-                                return m_s_contractions_following_word.find(string_type(nextWord,nextWordLength)) !=
-                                    m_s_contractions_following_word.cend();
+                                return m_s_contractions_following_word.find(
+                                    string_type{ nextWord.data(), nextWord.length() }) !=
+                                        m_s_contractions_following_word.cend();
                                 }
                             return false;
                             }
@@ -68,7 +63,7 @@ namespace grammar
                     }
                 }
             // "it [word]" being contracted to "t[word]"
-            if (m_contraction_without_apostrophe.find(string_type(text, length)) !=
+            if (m_contraction_without_apostrophe.find(string_type{ text.data(), text.length() }) !=
                     m_contraction_without_apostrophe.cend())
                 { return true; }
             return false;
