@@ -101,7 +101,9 @@ namespace LuaScripting
         // otherwise, it is a regular link
         wxFileName fn(path);
         if (fn.IsRelative())
-            { fn.MakeAbsolute(wxFileName(currentFile).GetPath()); }
+            {
+            [[maybe_unused]] auto absRes = fn.MakeAbsolute(wxFileName(currentFile).GetPath());
+            }
         // if an image, then check its dimensions
         if (isImage)
             {

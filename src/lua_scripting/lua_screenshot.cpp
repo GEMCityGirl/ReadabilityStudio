@@ -49,7 +49,7 @@ namespace LuaScripting
     ListCtrlSortDlg* LuaListCtrlSortDlg = nullptr;
     EditWordListDlg* LuaEditWordListDlg = nullptr;
     DocGroupSelectDlg* LuaDocGroupSelectDlg = nullptr;
-    
+
     //-------------------------------------------------------------
     int ShowScriptEditor(lua_State *L)
         {
@@ -62,7 +62,7 @@ namespace LuaScripting
             }
         return 1;
         }
-    
+
     //-------------------------------------------------------------
     int ConvertImage(lua_State *L)
         {

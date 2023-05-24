@@ -202,8 +202,8 @@ public:
     [[nodiscard]]
     static wxString GetSentenceLengthHistogramLabel()
         { return _(L"Lengths (Distribution)"); }
-    [[nodiscard]] 
-   static wxString GetSentenceLengthHeatmapLabel()
+    [[nodiscard]]
+    static wxString GetSentenceLengthHeatmapLabel()
         { return _(L"Lengths (Density)"); }
     [[nodiscard]]
     static wxString GetDifficultWordCloudLabel()
