@@ -100,6 +100,7 @@ bool BaseProject::LoadAppendedDocument()
 //-------------------------------------------------------
 void BaseProject::UpdateDocumentSettings()
     {
+    // cppcheck-suppress assertWithSideEffect
     wxASSERT_MSG(GetWords() != nullptr, L"Invalid word collection when updating document settings!");
     GetWords()->set_allowable_incomplete_sentence_size(GetIncludeIncompleteSentencesIfLongerThanValue());
     GetWords()->set_aggressive_exclusion(IsExcludingAggressively());
@@ -5676,7 +5677,7 @@ bool BaseProject::AddStandardReadabilityTest(const wxString& id, const bool setF
                 *wxGetApp().GetAppOptions().GetWarning(_DT(L"new-dale-chall-text-exclusion-differs-note"));
             warningMsg.SetMessage(wxString::Format(
                 _(L"NOTE: %s uses a specialized method for excluding text that may differ from the system default.\n"
-                   "This behavior can be changed from the \"Readability Scores\"->\"Test Options\" page of the "
+                   "This behavior can be changed from the \"Readability Scores\" \x00BB \"Test Options\" page of the "
                    "Options and Project Properties dialogs."), GetReadabilityTests().get_test_long_name(id).c_str()));
             LogMessage(warningMsg, true);
             }
@@ -5690,7 +5691,7 @@ bool BaseProject::AddStandardReadabilityTest(const wxString& id, const bool setF
                 _DT(L"harris-jacobson-text-exclusion-differs-note"));
             warningMsg.SetMessage(wxString::Format(
                 _(L"NOTE: %s uses a specialized method for excluding text that may differ from the system default.\n"
-                   "This behavior can be changed from the \"Readability Scores\"->\"Test Options\" page of the "
+                   "This behavior can be changed from the \"Readability Scores\" \x00BB \"Test Options\" page of the "
                    "Options and Project Properties dialogs."), GetReadabilityTests().get_test_long_name(id).c_str()));
             LogMessage(warningMsg, true);
             }
