@@ -1430,9 +1430,8 @@ void ProjectView::UpdateStatistics()
             }
 
         wxString gradeAverage(_(L"N/A")), ageAverage(_(L"N/A")), clozeAverage(_(L"N/A")),
-                 gradeMedian(_(L"N/A")), ageMedian(_(L"N/A")), clozeMedian(_(L"N/A")),
-                 gradeMode(_(L"N/A")), ageMode(_(L"N/A")), clozeMode(_(L"N/A")),
-                 ageStdDev(_(L"N/A")), clozeStdDev(_(L"N/A"));
+            gradeMedian(_(L"N/A")), ageMedian(_(L"N/A")), clozeMedian(_(L"N/A")),
+            gradeMode(_(L"N/A")), ageMode(_(L"N/A")), clozeMode(_(L"N/A"));
         // get the average grade
         if (grades.size() > 0)
             {
@@ -1595,23 +1594,19 @@ void ProjectView::UpdateStatistics()
                                 doc->GetVarianceMethod() == VarianceMethod::SampleVariance), 1,
                                 wxNumberFormatter::Style::Style_NoTrailingZeroes));
 
-            if (ages.size() < 2)
-                {
-                ageStdDev = _(L"N/A"); }
-            else
-                {
-                ageStdDev = wxNumberFormatter::ToString(statistics::standard_deviation(ages,
+            const wxString ageStdDev =
+                ((ages.size() < 2) ?
+                 _(L"N/A") :
+                 wxNumberFormatter::ToString(statistics::standard_deviation(ages,
                                 doc->GetVarianceMethod() == VarianceMethod::SampleVariance), 1,
-                                wxNumberFormatter::Style::Style_NoTrailingZeroes);
-                }
-            if (clozeScores.size() < 2)
-                { clozeStdDev = _(L"N/A"); }
-            else
-                {
-                clozeStdDev = wxNumberFormatter::ToString(statistics::standard_deviation(clozeScores,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes));
+
+            const wxString clozeStdDev =
+                ((clozeScores.size() < 2) ?
+                 _(L"N/A") :
+                 wxNumberFormatter::ToString(statistics::standard_deviation(clozeScores,
                                 doc->GetVarianceMethod() == VarianceMethod::SampleVariance), 2,
-                                wxNumberFormatter::Style::Style_NoTrailingZeroes);
-                }
+                                wxNumberFormatter::Style::Style_NoTrailingZeroes));
 
             statLocation = GetReadabilityScoresList()->GetResultsListCtrl()->AddRow(GetStdDevLabel());
             GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(statLocation, 1, gradeStdDev,
@@ -1839,6 +1834,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         event.GetInt() == READABILITY_GOALS_PAGE_ID)
         {
         m_activeWindow = GetReadabilityResultsView().FindWindowById(event.GetInt());
+        // cppcheck-suppress assertWithSideEffect
         wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
@@ -1959,6 +1955,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         event.GetInt() == GPM_FRY_PAGE_ID)
         {
         m_activeWindow = GetReadabilityResultsView().FindWindowById(event.GetInt());
+        // cppcheck-suppress assertWithSideEffect
         wxASSERT_LEVEL_2(GetActiveProjectWindow());
         if (GetActiveProjectWindow())
             {
@@ -2088,6 +2085,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID)
         {
         m_activeWindow = GetSentencesBreakdownView().FindWindowById(event.GetInt());
+        // cppcheck-suppress assertWithSideEffect
         wxASSERT_LEVEL_2(GetActiveProjectWindow());
         if (GetActiveProjectWindow())
             {
@@ -2243,6 +2241,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_STATS_SUMMARY_SECTION_ID)
         {
         m_activeWindow = GetSummaryView().FindWindowById(event.GetInt());
+        // cppcheck-suppress assertWithSideEffect
         wxASSERT_LEVEL_2(GetActiveProjectWindow());
         if (GetActiveProjectWindow())
             {
@@ -2335,6 +2334,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         m_activeWindow = GetWordsBreakdownView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());
         if (!GetActiveProjectWindow())
             { m_activeWindow = GetWordsBreakdownView().FindWindowById(event.GetInt()); }
+        // cppcheck-suppress assertWithSideEffect
         wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
@@ -2502,6 +2502,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_GRAMMAR_SECTION_ID)
         {
         m_activeWindow = GetGrammarView().FindWindowById(event.GetInt());
+        // cppcheck-suppress assertWithSideEffect
         wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
@@ -2594,6 +2595,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_DOLCH_SECTION_ID)
         {
         m_activeWindow = GetDolchSightWordsView().FindWindowById(event.GetInt());
+        // cppcheck-suppress assertWithSideEffect
         wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
