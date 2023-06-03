@@ -806,6 +806,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     if (event.GetExtraLong() == SIDEBAR_READABILITY_SCORES_SECTION_ID)
         {
         m_activeWindow = GetScoresView().FindWindowById(event.GetInt());
+        // cppcheck-suppress assertWithSideEffect
         wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
@@ -1062,6 +1063,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             {
             // some tests have two box plots
             m_activeWindow = GetBoxPlotView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());
+            // cppcheck-suppress assertWithSideEffect
             wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
             if (GetActiveProjectWindow())
                 {
@@ -1074,6 +1076,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             {
             // some tests have two histograms
             m_activeWindow = GetHistogramsView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());
+            // cppcheck-suppress assertWithSideEffect
             wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
             if (GetActiveProjectWindow())
                 {
@@ -1210,6 +1213,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_WORDS_BREAKDOWN_SECTION_ID)
         {
         m_activeWindow = GetWordsBreakdownView().FindWindowById(event.GetInt());
+        // cppcheck-suppress assertWithSideEffect
         wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
@@ -1282,6 +1286,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID)
         {
         m_activeWindow = GetSentencesBreakdownView().FindWindowById(event.GetInt());
+        // cppcheck-suppress assertWithSideEffect
         wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
@@ -1358,6 +1363,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_GRAMMAR_SECTION_ID)
         {
         m_activeWindow = GetGrammarView().FindWindowById(event.GetInt());
+        // cppcheck-suppress assertWithSideEffect
         wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
@@ -1436,6 +1442,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_DOLCH_SECTION_ID)
         {
         m_activeWindow = GetDolchSightWordsView().FindWindowById(event.GetInt());
+        // cppcheck-suppress assertWithSideEffect
         wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
@@ -1510,6 +1517,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetInt() == SIDEBAR_WARNINGS_SECTION_ID)
         {
         m_activeWindow = GetWarningsView();
+        // cppcheck-suppress assertWithSideEffect
         wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
