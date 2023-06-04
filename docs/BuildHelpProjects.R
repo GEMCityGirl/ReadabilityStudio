@@ -4,18 +4,19 @@ library(readr)
 library(stringr)
 
 docFolder <- dirname(rstudioapi::getSourceEditorContext()$path)
+source(glue("{docFolder}/ReadabilityStudioDocs/R/appdown.r"))
 
 # delete previous builds
 unlink(glue("{docFolder}/ReadabilityStudioAPI/docs"), recursive=T)
-unlink(glue("{docFolder}/ReadabilityStudio/docs"), recursive=T)
-unlink(glue("{docFolder}/ReadabilityStudio/_bookdown_files"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityStudioDocs/docs"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityStudioDocs/_bookdown_files"), recursive=T)
 unlink(glue("{docFolder}/Coding-Bible/docs"), recursive=T)
 
 setwd(glue("{docFolder}/Coding-Bible/"))
 bookdown::render_book(input="index.Rmd",
                       output_dir="docs")
 
-setwd(glue("{docFolder}/ReadabilityStudio/"))
+setwd(glue("{docFolder}/ReadabilityStudioDocs/"))
 combine_files("01-Overviews.Rmd", "overviews",
               ("(intro|program)"))
 combine_files("92-Acknowledgements.Rmd", "acknowledgements",
@@ -29,7 +30,7 @@ bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::gitbook",
                       output_dir="docs")
 # used on github to serve the book
-write(c(" "), file=glue("{docFolder}/ReadabilityStudio/docs/.nojekyll"))
+write(c(" "), file=glue("{docFolder}/ReadabilityStudioDocs/docs/.nojekyll"))
 
 setwd(glue("{docFolder}/ReadabilityStudioAPI/"))
 combine_files("30-Enums.Rmd", "enums")
