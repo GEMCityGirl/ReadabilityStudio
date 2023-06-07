@@ -7585,7 +7585,7 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                 {
                 GetFormulaParser().UpdateVariables();
                 [[maybe_unused]] auto notUsedRes =
-                    GetFormulaParser().evaluate(wxString(pos->GetIterator()->get_formula().c_str()));
+                    GetFormulaParser().evaluate(wxString(pos->GetIterator()->get_formula().c_str()).ToStdString());
                 if (!GetFormulaParser().success())
                     {
                     SetReadabilityTestResult(wxString(pos->GetIterator()->get_name().c_str()),

@@ -663,7 +663,7 @@ bool BaseProjectDoc::AddGlobalCustomReadabilityTest(CustomReadabilityTest& custo
     try
         {
         BaseProject project;
-        if (!project.GetFormulaParser().compile(wxString(customTest.get_formula().c_str())))
+        if (!project.GetFormulaParser().compile(wxString(customTest.get_formula().c_str()).ToStdString()))
             {
             wxMessageBox(wxString::Format(_(L"Error in formula, cannot add custom test \"%s\":\n\n"),
                 customTest.get_name().c_str()),

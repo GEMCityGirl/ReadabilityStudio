@@ -85,7 +85,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
         BaseProjectDoc* project = isUsingActiveProject ? activeProject : blankProject.get();
         wxASSERT(project);
 
-        if (!project->GetFormulaParser().compile(GetFormula()))
+        if (!project->GetFormulaParser().compile(GetFormula().ToStdString()))
             {
             wxMessageBox(wxString::Format(_(L"Syntax error in formula at position %s:\n %s\n^"),
                 std::to_wstring(project->GetFormulaParser().get_last_error_position()),
@@ -96,7 +96,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
         // if using Custom DC test but DC word list is not included then ask them about it
         if (project->GetFormulaParser().is_function_used(
                 ReadabilityFormulaParser::SignatureToFunctionName(
-                    ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) &&
+                    ReadabilityFormulaParser::GetCustomNewDaleChallSignature()).ToStdString()) &&
             !IsIncludingDaleChallList())
             {
             if (wxMessageBox(
@@ -112,7 +112,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
         // if using Custom Spache test but Spache word list is not included then ask them about it
         if (project->GetFormulaParser().is_function_used(
             ReadabilityFormulaParser::SignatureToFunctionName(
-                ReadabilityFormulaParser::GetCustomSpacheSignature())) &&
+                ReadabilityFormulaParser::GetCustomSpacheSignature()).ToStdString()) &&
             !IsIncludingSpacheList())
             {
             if (wxMessageBox(
@@ -128,7 +128,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
         // if using Custom HJ test but HJ word list is not included then ask them about it
         if (project->GetFormulaParser().is_function_used(
                 ReadabilityFormulaParser::SignatureToFunctionName(
-                    ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) &&
+                    ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature()).ToStdString()) &&
             !IsIncludingHJList())
             {
             if (wxMessageBox(
@@ -143,7 +143,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
             }
         if (project->GetFormulaParser().is_function_used(
                 ReadabilityFormulaParser::SignatureToFunctionName(
-                    ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) &&
+                    ReadabilityFormulaParser::GetCustomNewDaleChallSignature()).ToStdString()) &&
             GetProperNounMethod() !=
                 static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()))
             {
@@ -187,7 +187,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
         // nag the user about using similar options to HJ
         if (project->GetFormulaParser().is_function_used(
                 ReadabilityFormulaParser::SignatureToFunctionName(
-                    ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) &&
+                    ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature()).ToStdString()) &&
             !IsIncludingNumeric())
             {
             std::vector<WarningMessage>::iterator warningIter =
@@ -206,16 +206,16 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
         // then make sure at least one word list is defined
         if ((project->GetFormulaParser().is_function_used(
                 ReadabilityFormulaParser::SignatureToFunctionName(
-                    ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) ||
+                    ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature()).ToStdString()) ||
             project->GetFormulaParser().is_function_used("UnfamiliarWordCount") ||
             project->GetFormulaParser().is_function_used("FamiliarWordCount") ||
             project->GetFormulaParser().is_function_used("UniqueUnfamiliarWordCount") ||
             project->GetFormulaParser().is_function_used(
                 ReadabilityFormulaParser::SignatureToFunctionName(
-                    ReadabilityFormulaParser::GetCustomSpacheSignature())) ||
+                    ReadabilityFormulaParser::GetCustomSpacheSignature()).ToStdString()) ||
             project->GetFormulaParser().is_function_used(
                 ReadabilityFormulaParser::SignatureToFunctionName(
-                    ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) )
+                    ReadabilityFormulaParser::GetCustomNewDaleChallSignature()).ToStdString()) )
             &&
             (!IsIncludingCustomWordList() && !IsIncludingSpacheList() &&
              !IsIncludingHJList() && !IsIncludingDaleChallList() && !IsIncludingStockerList()))
@@ -230,16 +230,16 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
         // not using it then at least point that out to make sure that was the intention
         if ((!project->GetFormulaParser().is_function_used(
                 ReadabilityFormulaParser::SignatureToFunctionName(
-                    ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) &&
+                    ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature()).ToStdString()) &&
             !project->GetFormulaParser().is_function_used("UnfamiliarWordCount") &&
             !project->GetFormulaParser().is_function_used("FamiliarWordCount") &&
             !project->GetFormulaParser().is_function_used("UniqueUnfamiliarWordCount") &&
             !project->GetFormulaParser().is_function_used(
                 ReadabilityFormulaParser::SignatureToFunctionName(
-                    ReadabilityFormulaParser::GetCustomSpacheSignature())) &&
+                    ReadabilityFormulaParser::GetCustomSpacheSignature()).ToStdString()) &&
             !project->GetFormulaParser().is_function_used(
                 ReadabilityFormulaParser::SignatureToFunctionName(
-                    ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) ) &&
+                    ReadabilityFormulaParser::GetCustomNewDaleChallSignature()).ToStdString()) ) &&
             (IsIncludingCustomWordList() || IsIncludingSpacheList() ||
              IsIncludingHJList() || IsIncludingDaleChallList() || IsIncludingStockerList()))
             {
@@ -250,13 +250,13 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
             }
         if ((project->GetFormulaParser().is_function_used(
                 ReadabilityFormulaParser::SignatureToFunctionName(
-                    ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())) ||
+                    ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature()).ToStdString()) ||
             project->GetFormulaParser().is_function_used(
                 ReadabilityFormulaParser::SignatureToFunctionName(
-                    ReadabilityFormulaParser::GetCustomSpacheSignature())) ||
+                    ReadabilityFormulaParser::GetCustomSpacheSignature()).ToStdString()) ||
             project->GetFormulaParser().is_function_used(
                 ReadabilityFormulaParser::SignatureToFunctionName(
-                    ReadabilityFormulaParser::GetCustomNewDaleChallSignature())) ) &&
+                    ReadabilityFormulaParser::GetCustomNewDaleChallSignature()).ToStdString()) ) &&
             m_testTypeCombo->GetSelection() != static_cast<int>(readability::readability_test_type::grade_level))
             {
             wxMessageBox(
