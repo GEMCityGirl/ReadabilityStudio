@@ -7808,6 +7808,7 @@ australopithicene
 australopithicenes
 australopiths
 auteur
+auth
 authentic
 authentically
 authenticate
@@ -16160,10 +16161,10 @@ bêtes
 bêtise
 c
 c'mon
-C's
+c's
 c.
 c.elegans
-CA
+ca
 CAA
 cab
 cab's
@@ -32488,6 +32489,7 @@ denunciation
 denunciation's
 denunciations
 denunciative
+deny
 denying
 denyingly
 deodorant
@@ -37413,6 +37415,7 @@ DPs
 dpt
 dr
 dr's
+dr.
 dr.'s
 drab
 drabbed
@@ -38028,6 +38031,7 @@ dsRNA's
 dsRNAs
 DST
 DTP
+du
 dual
 dualism
 dualism's
@@ -39205,6 +39209,7 @@ Edlin's
 EDP
 eds
 EDT
+edu
 educ
 educabilities
 educability
@@ -39380,6 +39385,7 @@ effusiveness
 effusiveness's
 EFL
 EFT
+eg
 EGA
 EGA's
 egad
@@ -39516,6 +39522,7 @@ eights
 eighty
 eighty's
 eightyfold
+eigth
 einsteinium
 einsteinium's
 einsteiniums
@@ -42219,6 +42226,7 @@ equivocator
 equivocator's
 equivocators
 equol
+er
 ERA
 era's
 eradicable
@@ -42736,6 +42744,9 @@ eszett's
 eszetts
 eszetts'
 et
+et-al
+et-al.
+et.
 eta
 eta's
 etalon
@@ -55329,6 +55340,7 @@ hacktivist's
 hacktivists
 hackwork
 hackworks
+had
 Hadamard
 Hadamard's
 Hadar
@@ -57973,7 +57985,7 @@ Hg₂Br
 Hg₂Cl
 Hg₂CrO
 HHS
-HI
+hi
 Hi's
 Hialeah
 Hialeah's
@@ -82739,12 +82751,15 @@ MPs
 MPV
 mr
 mr's
+mr.
 MRI
 mRNA
 mRNA's
 mRNAs
 mrs
+mrs.
 ms
+ms.
 MSc
 mses
 MSG
@@ -100259,6 +100274,7 @@ presence
 presence's
 presences
 present
+present's
 presentable
 presentableness
 presentableness's
@@ -104107,6 +104123,7 @@ quotient
 quotient's
 quotients
 quoting
+qv
 qwerty
 qwertys
 r
@@ -105306,6 +105323,7 @@ rd
 rd's
 RDA
 RDS
+re
 reabbreviate
 reabbreviated
 reabbreviates
@@ -106519,6 +106537,7 @@ recuperation
 recuperation's
 recuperations
 recuperative
+recur
 recurred
 recurrence
 recurrence's
@@ -107039,6 +107058,7 @@ reexposing
 reexposure
 ref
 ref's
+ref.
 reface
 refaced
 refaces
@@ -107306,6 +107326,7 @@ refrozen
 refry
 refrying
 refs
+refs.
 Refsum
 refuel
 refueled
@@ -129238,7 +129259,7 @@ Szilard's
 séance
 séance's
 séances
-T
+t
 T'ang
 T's
 t.
@@ -131633,12 +131654,14 @@ thanklessnesses
 thanks
 Thant
 Thant's
+thanx
 Thar
 Thar's
 that
 that'd
 that'll
 that's
+that've
 Thatch
 thatch's
 thatched
@@ -131819,6 +131842,7 @@ there
 there'd
 there'll
 there's
+there've
 thereabout
 thereabouts
 thereafter
@@ -132747,6 +132771,7 @@ tigress
 tigress's
 tigresses
 tike's
+til
 tilapia
 tilde
 tilde's
@@ -137161,7 +137186,7 @@ umpiring
 umps
 umpteen
 umpteenth
-UN
+un
 Una
 Una's
 unabashed
@@ -145134,6 +145159,7 @@ whelping
 whelps
 when
 when're
+when's
 whence
 whences
 whenever
@@ -145145,6 +145171,7 @@ where're
 where's
 whereabout
 whereabouts
+whereafter
 whereas
 whereases
 whereat
@@ -146982,7 +147009,7 @@ wussiest
 wussy
 WV
 WW
-WWW
+www
 WY
 Wye
 Wye's

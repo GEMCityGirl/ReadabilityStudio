@@ -1364,6 +1364,7 @@ Eden
 Edgbaston
 Edgewater
 Edgewood
+Edinburgh
 eDiscovery
 Edmonton
 Edmundsbury
@@ -4076,7 +4077,6 @@ Thomistic
 ThoughtCo
 Thrace
 Thracian
-Thu
 Thule
 Thunderbird
 Thur
