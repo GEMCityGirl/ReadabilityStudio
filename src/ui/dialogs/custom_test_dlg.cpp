@@ -368,18 +368,12 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
         wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"NOT(value)\t")) +
             _(L"Returns the logical negation of \"value.\"")).ToStdWstring());
 
-    m_math.insert(wxString(_DT(L"SIN(x)\t") + _(L"Sine of the angle x in radians.")).ToStdWstring());
-    m_math.insert(wxString(_DT(L"COS(x)\t") + _(L"Cosine of the angle x in radians.")).ToStdWstring());
-    m_math.insert(wxString(_DT(L"ATAN(x)\t") + _(L"Arc tangent of x.")).ToStdWstring());
-    m_math.insert(wxString(_DT(L"SINH(x)\t") + _(L"Hyperbolic sine of x.")).ToStdWstring());
-    m_math.insert(wxString(_DT(L"COSH(x)\t") + _(L"Hyperbolic cosine of x.")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"MOD(Number,Divisor)\t") + _(L"Returns the remainder after *Number is divided by Divisor. The result has the same sign as divisor.")).ToStdWstring());
     m_math.insert(wxString(_DT(L"CLAMP(x,start,end)\t") +
         _(L"Constrains x within the range of start and end.")).ToStdWstring());
-    m_math.insert(wxString(_DT(L"COT(x)\t") + _(L"Cotangent of x.")).ToStdWstring());
-    m_math.insert(wxString(_DT(L"TAN(x)\t") + _(L"Tangent of x.")).ToStdWstring());
     m_math.insert(wxString(_DT(L"EXP(x)\t") + _(L"Exponential function (Euler to the power of x).")).ToStdWstring());
     m_math.insert(wxString(_DT(L"LN(x)\t") + _(L"Natural logarithm of x (base Euler).")).ToStdWstring());
-    m_math.insert(wxString(_DT(L"LOG(x)\t") + _(L"Common logarithm of x (base 10).")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"LOG10(x)\t") + _(L"Common logarithm of x (base 10).")).ToStdWstring());
     m_math.insert(wxString(_DT(L"SQRT(x)\t") + _(L"Square root of x.")).ToStdWstring());
     m_math.insert(wxString(_DT(L"ABS(x)\t") + _(L"Absolute value of x.")).ToStdWstring());
     m_math.insert(wxString(_DT(L"SIGN(x)\t") +
