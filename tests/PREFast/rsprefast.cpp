@@ -1,0 +1,43 @@
+// This is used as a CMake project for code analysis.
+
+#include "src/indexing/word_list.h"
+#include "src/indexing/word_functional.h"
+#include "src/indexing/word_collection.h"
+#include "src/indexing/word.h"
+#include "src/indexing/tokenize.h"
+#include "src/indexing/syllable.h"
+#include "src/indexing/stop_lists.h"
+#include "src/indexing/spanish_syllabize.h"
+#include "src/indexing/sentence.h"
+#include "src/indexing/russian_syllabize.h"
+#include "src/indexing/romanize.h"
+#include "src/indexing/punctuation.h"
+#include "src/indexing/pronoun.h"
+#include "src/indexing/phrase.h"
+#include "src/indexing/passive_voice.h"
+#include "src/indexing/paragraph.h"
+#include "src/indexing/negating_word.h"
+#include "src/indexing/german_syllabize.h"
+#include "src/indexing/double_words.h"
+#include "src/indexing/contraction.h"
+#include "src/indexing/conjunction.h"
+#include "src/indexing/characters.h"
+#include "src/indexing/character_traits.h"
+#include "src/indexing/article.h"
+#include "src/indexing/abbreviation.h"
+#include "src/indexing/word_list.h"
+#include "src/readability/custom_readability_test.h"
+#include "src/readability/dolch.h"
+#include "src/readability/english_readability.h"
+#include "src/readability/german_readability.h"
+#include "src/readability/grade_scales.h"
+#include "src/readability/readability.h"
+#include "src/readability/readability_enums.h"
+#include "src/readability/readability_project_test.h"
+#include "src/readability/readability_test.h"
+#include "src/readability/spanish_readability.h"
+
+int main()
+    {
+    return EXIT_SUCCESS;
+    }
