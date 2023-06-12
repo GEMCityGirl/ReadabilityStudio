@@ -772,7 +772,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                         {
                         LogMessage(wxString::Format(
                             _(L"Warning: This project was saved from a newer version of Readability Studio. "
-                              "Some information may be lost.")),
+                               "Some information may be lost.")),
                             _(L"Version Conflict"), wxOK|wxICON_INFORMATION);
                         }
                     }
