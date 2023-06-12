@@ -1599,10 +1599,10 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
         allWordsStemmedWithCounts.insert(stemmed, wordPos->first, wordPos->second.first);
         }
 
-    // condensed important words
+    // condensed key words
         {
-        GetImportantWordsBatchData()->DeleteAllItems();
-        GetImportantWordsBatchData()->SetSize(allWordsStemmedWithCounts.get_data().size(), 2);
+        GetKeyWordsBatchData()->DeleteAllItems();
+        GetKeyWordsBatchData()->SetSize(allWordsStemmedWithCounts.get_data().size(), 2);
 
         size_t uniqueImportWordsCount{ 0 };
         const auto& commonWords = GetStopList();
@@ -1627,12 +1627,12 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             // only add if all word variations were uncommon and non-numeric
             if (!unimportantWordEncountered && allValuesStr.length())
                 {
-                GetImportantWordsBatchData()->SetItemText(uniqueImportWordsCount, 0, allValuesStr);
-                GetImportantWordsBatchData()->SetItemValue(uniqueImportWordsCount, 1, allWords.second.second);
+                GetKeyWordsBatchData()->SetItemText(uniqueImportWordsCount, 0, allValuesStr);
+                GetKeyWordsBatchData()->SetItemValue(uniqueImportWordsCount, 1, allWords.second.second);
                 ++uniqueImportWordsCount;
                 }
             }
-        GetImportantWordsBatchData()->SetSize(uniqueImportWordsCount);
+        GetKeyWordsBatchData()->SetSize(uniqueImportWordsCount);
         }
 
     GetRepeatedWordData()->SetSize(dupWordCount);
@@ -5541,11 +5541,11 @@ void BatchProjectDoc::DisplayHardWords()
     else
         { view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::ALL_WORDS_LIST_PAGE_ID); }
 
-    // important words (uncommon words removed, remaining stemmed and combined)
-    if (GetImportantWordsBatchData()->GetItemCount() &&
+    // key words (uncommon words removed, remaining stemmed and combined)
+    if (GetKeyWordsBatchData()->GetItemCount() &&
         // don't bother with condensed list if it has the same item count as the all words list
         //(that would mean that there was no condensing [stemming] that took place and that these lists are the same).
-        (GetImportantWordsBatchData()->GetItemCount() != GetAllWordsBatchData()->GetItemCount()))
+        (GetKeyWordsBatchData()->GetItemCount() != GetAllWordsBatchData()->GetItemCount()))
         {
         ListCtrlEx* listView =
             dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
@@ -5555,8 +5555,8 @@ void BatchProjectDoc::DisplayHardWords()
             listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
-            listView->SetLabel(BaseProjectView::GetImportantWordsLabel());
-            listView->SetName(BaseProjectView::GetImportantWordsLabel());
+            listView->SetLabel(BaseProjectView::GetKeyWordsLabel());
+            listView->SetName(BaseProjectView::GetKeyWordsLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
             listView->InsertColumn(0, _(L"Word"));
@@ -5565,8 +5565,8 @@ void BatchProjectDoc::DisplayHardWords()
             view->GetWordsBreakdownView().AddWindow(listView);
             }
         UpdateListOptions(listView);
-        listView->SetVirtualDataProvider(GetImportantWordsBatchData());
-        listView->SetVirtualDataSize(GetImportantWordsBatchData()->GetItemCount());
+        listView->SetVirtualDataProvider(GetKeyWordsBatchData());
+        listView->SetVirtualDataSize(GetKeyWordsBatchData()->GetItemCount());
         listView->Resort();
         listView->DistributeColumns();
         }

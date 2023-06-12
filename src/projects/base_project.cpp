@@ -2036,7 +2036,7 @@ void BaseProject::LoadHardWords()
     // Load proper nouns and all words lists
     multi_value_frequency_aggregate_map<traits::case_insensitive_wstring_ex,
                                         traits::case_insensitive_wstring_ex>
-        importantWordsStemmedWithCounts, importantDifficultWordsStemmedWithCounts;
+        keyWordsStemmedWithCounts, keyDifficultWordsStemmedWithCounts;
     auto stemmer = CreateStemmer();
 
     size_t uniqueProperNouns{ 0 }, uniqueContractions{ 0 };
@@ -2109,7 +2109,7 @@ void BaseProject::LoadHardWords()
             {
             traits::case_insensitive_wstring_ex currentWord(wordPos->first.c_str());
             (*stemmer)(currentWord);
-            importantWordsStemmedWithCounts.insert(
+            keyWordsStemmedWithCounts.insert(
                 // the stem and original word
                 currentWord, wordPos->first,
                 // overall frequency of current word (not the proper noun count)
@@ -2125,7 +2125,7 @@ void BaseProject::LoadHardWords()
             {
             traits::case_insensitive_wstring_ex currentWord(wordPos->first.c_str());
             (*stemmer)(currentWord);
-            importantDifficultWordsStemmedWithCounts.insert(
+            keyDifficultWordsStemmedWithCounts.insert(
                 // the stem and original word
                 currentWord, wordPos->first,
                 // overall frequency of current word (not the proper noun count)
@@ -2530,18 +2530,18 @@ void BaseProject::LoadHardWords()
             }
         }
 
-    // important words (uncommon words removed, remaining stemmed and combined)
+    // key words (uncommon words removed, remaining stemmed and combined)
     size_t uniqueImportWordsCount{ 0 };
     if (HasUI())
         {
-        if (GetImportantWordsBaseData() == nullptr)
-            { m_importantWordsBaseData = new ListCtrlExNumericDataProvider; }
-        GetImportantWordsBaseData()->DeleteAllItems();
-        GetImportantWordsBaseData()->SetSize(importantWordsStemmedWithCounts.get_data().size(), 2);
+        if (GetKeyWordsBaseData() == nullptr)
+            { m_keyWordsBaseData = new ListCtrlExNumericDataProvider; }
+        GetKeyWordsBaseData()->DeleteAllItems();
+        GetKeyWordsBaseData()->SetSize(keyWordsStemmedWithCounts.get_data().size(), 2);
 
-        // IMPORTANT WORDS LISTCONTROL
+        // KEY WORDS LISTCONTROL
         wxString allValuesStr;
-        for (const auto& [hardWordStem, hardWordFreqInfo] : importantWordsStemmedWithCounts.get_data())
+        for (const auto& [hardWordStem, hardWordFreqInfo] : keyWordsStemmedWithCounts.get_data())
             {
             // aggregate all the variations of the current word that share a common stem
             allValuesStr.clear();
@@ -2551,8 +2551,8 @@ void BaseProject::LoadHardWords()
             allValuesStr.RemoveLast();
             wxASSERT_MSG(allValuesStr.length(), L"Empty word list from stemmed word!");
 
-            GetImportantWordsBaseData()->SetItemText(uniqueImportWordsCount, 0, allValuesStr);
-            GetImportantWordsBaseData()->SetItemValue(uniqueImportWordsCount++, 1, hardWordFreqInfo.second);
+            GetKeyWordsBaseData()->SetItemText(uniqueImportWordsCount, 0, allValuesStr);
+            GetKeyWordsBaseData()->SetItemValue(uniqueImportWordsCount++, 1, hardWordFreqInfo.second);
             }
 
         if (m_difficultUncommonWordsDataset == nullptr)
@@ -2565,7 +2565,7 @@ void BaseProject::LoadHardWords()
         wxASSERT_MSG(m_difficultUncommonWordsDataset->GetRowCount() == 0,
             L"Hard word dataset should be empty!");
         m_difficultUncommonWordsDataset->Resize(
-            importantDifficultWordsStemmedWithCounts.get_data().size());
+            keyDifficultWordsStemmedWithCounts.get_data().size());
         auto hardWordsColumn =
             m_difficultUncommonWordsDataset->GetCategoricalColumn(GetWordsColumnName());
         auto hardWordsFreqColumn =
@@ -2573,7 +2573,7 @@ void BaseProject::LoadHardWords()
 
         // WORD CLOUD DATASET
         size_t wordCloudWordsCount{ 0 };
-        for (const auto& [hardWordStem, hardWordFreqInfo] : importantDifficultWordsStemmedWithCounts.get_data())
+        for (const auto& [hardWordStem, hardWordFreqInfo] : keyDifficultWordsStemmedWithCounts.get_data())
             {
             // which variation of the current stem occurs the most often
             auto mostFrequentWordVariation =
@@ -2935,10 +2935,10 @@ void BaseProject::LoadHardWords()
             GetContractionsData()->SetSize(uniqueContractions);
             GetContractionsData()->ShrinkToFit();
             }
-        if (GetImportantWordsBaseData())
+        if (GetKeyWordsBaseData())
             {
-            GetImportantWordsBaseData()->SetSize(uniqueImportWordsCount);
-            GetImportantWordsBaseData()->ShrinkToFit();
+            GetKeyWordsBaseData()->SetSize(uniqueImportWordsCount);
+            GetKeyWordsBaseData()->ShrinkToFit();
             }
         if (Get3SyllablePlusData())
             {

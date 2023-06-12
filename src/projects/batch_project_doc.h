@@ -36,7 +36,7 @@ public:
         wxDELETE(m_wordyPhraseData);
         wxDELETE(m_clichePhraseData);
         wxDELETE(m_allWordsBatchData);
-        wxDELETE(m_importantWordsBatchData);
+        wxDELETE(m_keyWordsBatchData);
         wxDELETE(m_redundantPhraseData);
         wxDELETE(m_wordingErrorData);
         wxDELETE(m_hardWordsData);
@@ -127,8 +127,8 @@ public:
     const ListCtrlExNumericDataProvider* GetAllWordsBatchData() const noexcept
         { return m_allWordsBatchData; }
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetImportantWordsBatchData() const noexcept
-        { return m_importantWordsBatchData; }
+    const ListCtrlExNumericDataProvider* GetKeyWordsBatchData() const noexcept
+        { return m_keyWordsBatchData; }
     [[nodiscard]]
     const ListCtrlExNumericDataProvider* GetLongSentencesData() const noexcept
         { return m_overlyLongSentenceData; }
@@ -149,8 +149,8 @@ private:
     ListCtrlExNumericDataProvider* GetAllWordsBatchData() noexcept
         { return m_allWordsBatchData; }
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetImportantWordsBatchData() noexcept
-        { return m_importantWordsBatchData; }
+    ListCtrlExNumericDataProvider* GetKeyWordsBatchData() noexcept
+        { return m_keyWordsBatchData; }
     void DisplayFleschChart();
     void DisplayDB2Plot();
     void DisplayCrawfordGraph();
@@ -274,7 +274,7 @@ private:
     ListCtrlExNumericDataProvider* m_sentenceStartingWithConjunctionsData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_sentenceStartingWithLowercaseData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_allWordsBatchData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_importantWordsBatchData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_keyWordsBatchData{ new ListCtrlExNumericDataProvider };
     // difficult words list data
     ListCtrlExNumericDataProvider* m_hardWordsData{ new ListCtrlExNumericDataProvider };
     // warnings list data

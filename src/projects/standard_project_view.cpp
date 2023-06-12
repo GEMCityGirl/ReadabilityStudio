@@ -175,7 +175,7 @@ void ProjectView::OnSummation([[maybe_unused]] wxRibbonButtonBarEvent& event)
     else if (GetActiveProjectWindow()->GetId() == ALL_WORDS_CONDENSED_LIST_PAGE_ID)
         {
         viewDlg.AddValue(_(L"Total Words"),
-            wxNumberFormatter::ToString(doc->GetImportantWordsBaseData()->GetColumnSum(1), 0,
+            wxNumberFormatter::ToString(doc->GetKeyWordsBaseData()->GetColumnSum(1), 0,
                 wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep)); }
     else if (GetActiveProjectWindow()->GetId() == PROPER_NOUNS_LIST_PAGE_ID)
         {

@@ -1146,8 +1146,8 @@ bool ToolsOptionsDlg::HaveWordsBreakdownOptionsChanged() const
                m_wordsBreakdownPropertyGrid->IsPropertyModified(GetCustomTestsLabel())) ||
            (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetAllWordsLabel()) &&
                m_wordsBreakdownPropertyGrid->IsPropertyModified(BaseProjectView::GetAllWordsLabel())) ||
-           (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetImportantWordsLabel()) &&
-               m_wordsBreakdownPropertyGrid->IsPropertyModified(BaseProjectView::GetImportantWordsLabel()));
+           (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetKeyWordsLabel()) &&
+               m_wordsBreakdownPropertyGrid->IsPropertyModified(BaseProjectView::GetKeyWordsLabel()));
     }
 
 //-------------------------------------------------------------
@@ -1458,10 +1458,10 @@ void ToolsOptionsDlg::SaveOptions()
             m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableAllWords(
                 m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetAllWordsLabel()));
             }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetImportantWordsLabel()))
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetKeyWordsLabel()))
             {
             m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableAllWordsCondensed(
-                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetImportantWordsLabel()));
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetKeyWordsLabel()));
             }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetIgnoreProperNounsLabel()))
             {
@@ -1864,10 +1864,10 @@ void ToolsOptionsDlg::SaveOptions()
             wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableAllWords(
                 m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetAllWordsLabel()));
             }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetImportantWordsLabel()))
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetKeyWordsLabel()))
             {
             wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableAllWordsCondensed(
-                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetImportantWordsLabel()));
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetKeyWordsLabel()));
             }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetGrammarHighlightedReportLabel()))
             {
@@ -3808,14 +3808,14 @@ void ToolsOptionsDlg::CreateControls()
             _(L"Check this to include a list of all words in the results."));
 
         m_wordsBreakdownPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetImportantWordsLabel(), wxPG_LABEL,
+            new wxBoolProperty(BaseProjectView::GetKeyWordsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
                 m_readabilityProjectDoc->GetWordsBreakdownInfo().IsAllWordsCondensedEnabled() :
                 wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsAllWordsCondensedEnabled())) );
         m_wordsBreakdownPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetImportantWordsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            BaseProjectView::GetKeyWordsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
         m_wordsBreakdownPropertyGrid->SetPropertyHelpString(
-            BaseProjectView::GetImportantWordsLabel(),
+            BaseProjectView::GetKeyWordsLabel(),
             _(L"Check this to include a list of all words (in condensed form) in the results. "
                "Words with the same root (e.g., \"run\" and \"running\") will be combined into one row."));
 

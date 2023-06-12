@@ -207,7 +207,7 @@ public:
         { return _(L"Lengths (Density)"); }
     [[nodiscard]]
     static wxString GetDifficultWordCloudLabel()
-        { return _(L"Difficult Word Cloud"); }
+        { return _(L"Key Difficult Word Cloud"); }
     // Dolch labels
     [[nodiscard]]
     static wxString GetDolchWordTabLabel()
@@ -247,8 +247,8 @@ public:
     static wxString GetAllWordsLabel()
         { return _(L"All Words"); }
     [[nodiscard]]
-    static wxString GetImportantWordsLabel()
-        { return _(L"Important Words"); }
+    static wxString GetKeyWordsLabel()
+        { return _(L"Key Words"); }
     [[nodiscard]]
     static wxString GetRepeatedWordsLabel()
         { return _(L"Repeated Words"); }

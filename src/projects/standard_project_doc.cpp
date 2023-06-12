@@ -2036,18 +2036,18 @@ void ProjectDoc::DisplayWordsBreakdown()
         view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::ALL_WORDS_LIST_PAGE_ID);
         }
 
-    // important words list
+    // key words list
     listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
         BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID));
     if (GetWordsBreakdownInfo().IsAllWordsCondensedEnabled() &&
-        GetTotalWords() > 0 && GetImportantWordsBaseData() &&
+        GetTotalWords() > 0 && GetKeyWordsBaseData() &&
         // don't bother with condensed list if it has the same item count as the all words list
         // (that would mean that there was no condensing [stemming] that took place and that these lists are the same).
-        (GetImportantWordsBaseData()->GetItemCount() != GetAllWordsBaseData()->GetItemCount()))
+        (GetKeyWordsBaseData()->GetItemCount() != GetAllWordsBaseData()->GetItemCount()))
         {
         if (listView)
             {
-            listView->SetVirtualDataSize(GetImportantWordsBaseData()->GetItemCount());
+            listView->SetVirtualDataSize(GetKeyWordsBaseData()->GetItemCount());
             listView->Resort();
             listView->DistributeColumns();
             }
@@ -2057,13 +2057,13 @@ void ProjectDoc::DisplayWordsBreakdown()
                 BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
                 wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
-            listView->SetLabel(BaseProjectView::GetImportantWordsLabel());
-            listView->SetName(BaseProjectView::GetImportantWordsLabel());
+            listView->SetLabel(BaseProjectView::GetKeyWordsLabel());
+            listView->SetName(BaseProjectView::GetKeyWordsLabel());
             listView->EnableGridLines();
             listView->InsertColumn(0, _(L"Word"));
             listView->InsertColumn(1, _(L"Frequency"));
-            listView->SetVirtualDataProvider(GetImportantWordsBaseData());
-            listView->SetVirtualDataSize(GetImportantWordsBaseData()->GetItemCount());
+            listView->SetVirtualDataProvider(GetKeyWordsBaseData());
+            listView->SetVirtualDataSize(GetKeyWordsBaseData()->GetItemCount());
             listView->DistributeColumns();
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
             UpdateListOptions(listView);

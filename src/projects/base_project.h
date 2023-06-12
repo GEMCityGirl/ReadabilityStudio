@@ -247,7 +247,7 @@ public:
         wxDELETE(m_nonDolchWordsData);
         wxDELETE(m_ProperNounsData);
         wxDELETE(m_contractionsData);
-        wxDELETE(m_importantWordsBaseData);
+        wxDELETE(m_keyWordsBaseData);
         wxDELETE(m_AllWordsBaseData);
         /* Note that m_excluded_phrases should not be deleted here, it should be
            deleted by the standard or batch project that owns it. This is because
@@ -1371,11 +1371,11 @@ public:
     ListCtrlExNumericDataProvider* GetNonDolchWordData() noexcept
         { return m_nonDolchWordsData; }
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetImportantWordsBaseData() noexcept
-        { return m_importantWordsBaseData; }
+    ListCtrlExNumericDataProvider* GetKeyWordsBaseData() noexcept
+        { return m_keyWordsBaseData; }
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetImportantWordsBaseData() const noexcept
-        { return m_importantWordsBaseData; }
+    const ListCtrlExNumericDataProvider* GetKeyWordsBaseData() const noexcept
+        { return m_keyWordsBaseData; }
     [[nodiscard]]
     ListCtrlExNumericDataProvider* GetAllWordsBaseData() noexcept
         { return m_AllWordsBaseData; }
@@ -1804,7 +1804,7 @@ private:
     ListCtrlExNumericDataProvider* m_nonDolchWordsData{ nullptr };
     ListCtrlExNumericDataProvider* m_ProperNounsData{ nullptr };
     ListCtrlExNumericDataProvider* m_contractionsData{ nullptr };
-    ListCtrlExNumericDataProvider* m_importantWordsBaseData{ nullptr };
+    ListCtrlExNumericDataProvider* m_keyWordsBaseData{ nullptr };
     ListCtrlExNumericDataProvider* m_AllWordsBaseData{ nullptr };
 
     CaseInSensitiveNonStemmingDocument* m_words{ nullptr };
