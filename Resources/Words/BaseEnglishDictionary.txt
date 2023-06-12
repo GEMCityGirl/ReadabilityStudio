@@ -4297,8 +4297,6 @@ angelfish
 angelfish's
 angelfishes
 angelic
-angelica
-angelica's
 angelical
 angelically
 angelicas
@@ -34021,6 +34019,7 @@ dicier
 diciest
 dicing
 dicing's
+dick
 dick's
 dicked
 dickens
@@ -70580,6 +70579,9 @@ lanthanums
 lanyard
 lanyard's
 lanyards
+laocoon
+laocoon's
+laocoons
 lap
 lap's
 laparoscope

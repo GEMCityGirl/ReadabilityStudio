@@ -887,7 +887,7 @@ Angeleno
 Angeles
 Angeli
 Angelia
-Angelic
+Angelica
 Angelicia
 Angelico
 Angelika
@@ -4193,7 +4193,6 @@ Cornelius
 Cornell
 Cornelle
 Corney
-Cornhill
 Cornie
 Cornwall
 Cornwallis
@@ -5230,7 +5229,6 @@ Diaz
 DiBiaggio
 Dibley
 DiCaprio
-Dick
 Dickerson
 Dickinson
 Dickson
@@ -8991,6 +8989,7 @@ Jacky
 Jaclyn
 Jaclynn
 Jaco
+Jacob
 Jacobella
 Jacoberto
 Jacobson
@@ -11264,7 +11263,6 @@ Lantz
 Lanz
 Lanzhou
 Lao
-Laocoon
 Laois
 Laos
 Lapeer
@@ -11885,7 +11883,6 @@ Lome
 Lomé
 Lon
 Lona
-London
 Lonee
 Longfellow
 Longford
@@ -12720,6 +12717,7 @@ Martel
 Martell
 Martese
 Martez
+Martha
 Marti
 Martial
 Martice
@@ -13117,7 +13115,6 @@ Mercedez
 Mercer
 Mercia
 Mercilla
-Mercy
 Merenda
 Mereschkowski
 Meri
@@ -13979,7 +13976,6 @@ Nordhoff
 Nordström
 Noreen
 Norene
-Norfolk
 Noriega
 Norina
 Norine
@@ -17743,7 +17739,6 @@ Tony
 Tonya
 Tople
 Topo
-Topper
 Topsy
 Tor
 Toree
@@ -18534,11 +18529,9 @@ Welles
 Wellesley
 Wellington
 Wellman
-WellPoint
 Wells
 Welmers
 Welsch
-Welsh
 Welstead
 Welton
 Welwyn
