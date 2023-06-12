@@ -368,10 +368,13 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
         wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"NOT(value)\t")) +
             _(L"Returns the logical negation of \"value.\"")).ToStdWstring());
 
-    m_math.insert(wxString(_DT(L"MOD(Number,Divisor)\t") + _(L"Returns the remainder after *Number is divided by Divisor. The result has the same sign as divisor.")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"MOD(Number,Divisor)\t") +
+        _(L"Returns the remainder after Number is divided by Divisor. "
+           "The result has the same sign as divisor.")).ToStdWstring());
     m_math.insert(wxString(_DT(L"CLAMP(x,start,end)\t") +
         _(L"Constrains x within the range of start and end.")).ToStdWstring());
-    m_math.insert(wxString(_DT(L"EXP(x)\t") + _(L"Exponential function (Euler to the power of x).")).ToStdWstring());
+    m_math.insert(wxString(_DT(L"EXP(x)\t") +
+        _(L"Exponential function (Euler to the power of x).")).ToStdWstring());
     m_math.insert(wxString(_DT(L"LN(x)\t") + _(L"Natural logarithm of x (base Euler).")).ToStdWstring());
     m_math.insert(wxString(_DT(L"LOG10(x)\t") + _(L"Common logarithm of x (base 10).")).ToStdWstring());
     m_math.insert(wxString(_DT(L"SQRT(x)\t") + _(L"Square root of x.")).ToStdWstring());
@@ -399,7 +402,7 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
         wxString(_DT(L"RAND()\t") +
                  _(L"Generates a random floating point number within the range of 0 and 1.")).ToStdWstring());
     m_math.insert(
-        wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"POWER(base,exponent)\t")) +
+        wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"POWER(Base,Exponent)\t")) +
         _(L"The Power function raises Base to any power. "
            "For fractional exponents, Base must be greater than 0.")).ToStdWstring());
     m_math.insert(
