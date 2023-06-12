@@ -30,7 +30,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          submodules: 'true'
+          submodules: 'recursive'
           
       - name: Move files
         run: Copy-Item -Path ${{ env.build }}\tests\PREFast\* -Destination ${{ env.build }}
