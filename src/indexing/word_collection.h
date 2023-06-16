@@ -1992,11 +1992,20 @@ private:
                 }
             for (const auto& uncommonWord : uncommonWords.get_data())
                 {
-                // word appeared more than once in the sentence
+                // Word appeared more than once in the sentence.
                 if (uncommonWord.second.second > 1)
                     {
-                    m_overused_words_by_sentence.emplace_back(
-                        // insert the sentence and word indices of the overly-used uncommon word
+                    // If something like "He coughed and coughed.", then just ignore it.
+                    if (uncommonWord.second.first.size() == 2)
+                        {
+                        const auto firstWord = uncommonWord.second.first.cbegin();
+                        const auto secondtWord = std::next(firstWord);
+                        if (((*firstWord) + 1) == *secondtWord ||
+                            ((*firstWord) + 2) == *secondtWord)
+                            { continue; }
+                        }
+                    m_overused_words_by_sentence.push_back(
+                        // Insert the sentence and word indices of the overly-used uncommon word.
                         std::make_pair(sent_iter - m_sentences.cbegin(),
                                        uncommonWord.second.first));
                     }
