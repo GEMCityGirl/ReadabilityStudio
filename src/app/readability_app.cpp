@@ -1608,6 +1608,10 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 _(L"Properties"),
                 readRibbonButtonSVG(L"ribbon/project-settings.svg"),
                 _(L"Change the settings for this project."));
+            projectButtonBar->AddButton(XRCID("ID_TOGGLE_SIDEBAR"),
+                _(L"Toggle Sidebar"),
+                readRibbonButtonSVG(L"ribbon/toggle-sidebar.svg"),
+                _(L"Shows or hides the sidebar."));
 
             // edit section
             wxRibbonPanel* editPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Edit"), wxNullBitmap,
