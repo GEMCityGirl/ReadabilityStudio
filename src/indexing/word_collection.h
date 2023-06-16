@@ -1312,7 +1312,7 @@ private:
                 while (punctPos != m_punctuation.end() && punctPos->get_word_position() == currentWordIndex)
                     {
                     /* If the word has a double quote *in front* of it then we will deal with it later.
-                       Treat it as if it were the first word of a sentence (basically, we see it as dialogue).*/
+                       Treat it as if it were the first word of a sentence (basically, we see it as dialogue). */
                     if (!punctPos->is_connected_to_previous_word() &&
                         is_character.is_double_quote(punctPos->get_punctuation_mark()))
                         {
@@ -1322,7 +1322,7 @@ private:
                     /* If the word has a single quote *in front* of it then we will maybe deal with it later.
                        If the closing single quote is more than 3 words away or the next punctuation
                        not a single quote, then we will treat it as if it were the first word of a sentence
-                       (basically, we see it as embedded dialogue).*/
+                       (basically, we see it as embedded dialogue). */
                     else if (!punctPos->is_connected_to_previous_word() &&
                         is_character.is_single_quote(punctPos->get_punctuation_mark()) &&
                         punctPos+1 != m_punctuation.end() &&
@@ -1359,7 +1359,7 @@ private:
             /* If an incomplete sentence then go through its words and set them to proper if they
                were capitalized and found to have been proper elsewhere. Because all words in most headers
                are capitalized, we have to do treat these words differently than complete sentences.
-               Note that headers may be considered valid sentences, so explicitly look at the sentence's type.*/
+               Note that headers may be considered valid sentences, so explicitly look at the sentence's type. */
             if (sentPos->get_type() != grammar::sentence_paragraph_type::complete)
                 {
                 for (size_t i = sentPos->get_first_word_index();
@@ -1375,22 +1375,24 @@ private:
                         {
                         if (is_known_proper_nouns->find(currentWord.c_str()) )
                             { currentWord.set_proper_noun(true); }
-                        const auto propPos = properWords.get_data().find(Tword_type(currentWord.c_str()));
-                        if (propPos != properWords.get_data().end())
+                        const auto propPos = properWords.get_data().find(currentWord);
+                        if (propPos != properWords.get_data().cend())
                             {
-                            const auto nonPropPos = nonProperWords.get_data().find(Tword_type(currentWord.c_str()));
-                            if (nonPropPos == nonProperWords.get_data().end()||
+                            const auto nonPropPos = nonProperWords.get_data().find(currentWord);
+                            if (nonPropPos == nonProperWords.get_data().cend()||
                                 propPos->second > nonPropPos->second)
                                 { currentWord.set_proper_noun(true); }
                             }
                         }
                     }
                 }
-            /* Otherwise, go through the words that begin each sentence. If they are found to have been a proper
-               noun elsewhere, then mark them as proper.*/
+            /* Otherwise, go through the words that begin each sentence.
+               If they are found to have been a proper noun elsewhere,
+               then mark them as proper. */
             else
                 {
-                // move punctuation index to be after the current word, whether it is the next actual word or beyond.
+                // move punctuation index to be after the current word,
+                // whether it is the next actual word or beyond.
                 while (punctPos != m_punctuation.end() &&
                        (punctPos->get_word_position() <= sentPos->get_first_word_index()))
                     { ++punctPos; }
@@ -1407,11 +1409,11 @@ private:
                         continue;
                         }
                     // it's in the proper nouns that we detected...
-                    const auto propPos = properWords.get_data().find(Tword_type(currentWord.c_str()));
-                    if (propPos != properWords.get_data().end())
+                    const auto propPos = properWords.get_data().find(currentWord);
+                    if (propPos != properWords.get_data().cend())
                         {
-                        const auto nonPropPos = nonProperWords.get_data().find(Tword_type(currentWord.c_str()));
-                        if (nonPropPos == nonProperWords.get_data().end() ||
+                        const auto nonPropPos = nonProperWords.get_data().find(currentWord);
+                        if (nonPropPos == nonProperWords.get_data().cend() ||
                             propPos->second > nonPropPos->second)
                             {
                             currentWord.set_proper_noun(true);
@@ -1423,7 +1425,7 @@ private:
                 // but isn't displayed anywhere else in the text.
                 if (currentWord.is_acronym() && !currentWord.is_proper_noun() )
                     {
-                    // "NOTE: some important info..." Here, "NOTE:" is an exclamatory "attention getter",
+                    // "NOTE: some important info..." Here, "NOTE:" is an exclamatory "attention getter,"
                     // so don't mark it as proper, and change it from an acronym to an exclamatory word.
                     // Note that if "NOTE" was found elsewhere (mid-sentence)
                     // in the document, then it will be marked as proper above and we won't get this far.
@@ -1449,7 +1451,7 @@ private:
                     characters::is_character::is_upper(currentWord[0]) &&
                     characters::is_character::is_upper(currentWord[dashPos+1]))
                     {
-                    properWords.insert(Tword_type(currentWord.c_str()));
+                    properWords.insert(currentWord);
                     currentWord.set_proper_noun(true);
                     continue;
                     }
@@ -1474,7 +1476,7 @@ private:
             if (currentWord.is_capitalized() &&
                 currentWord.length() > 1 &&
                 !currentWord.is_numeric() &&
-                (properWords.get_data().find(Tword_type(currentWord.c_str())) != properWords.get_data().end() ||
+                (properWords.get_data().find(currentWord) != properWords.get_data().cend() ||
                              is_known_proper_nouns->find(currentWord.c_str(), currentWord.length()) ))
                 {
                 currentWord.set_proper_noun(true);
@@ -1484,7 +1486,7 @@ private:
             // but isn't displayed anywhere else in the text.
             if (currentWord.is_acronym() && !currentWord.is_proper_noun() )
                 {
-                // "NOTE: some important info..." Here, "NOTE:" is an exclamatory "attention getter",
+                // "NOTE: some important info..." Here, "NOTE:" is an exclamatory "attention getter,"
                 // so don't mark it as proper, and change it from an acronym to an exclamatory word.
                 // Note that if "NOTE" was found elsewhere (mid-sentence)
                 // in the document, then it will be marked as proper above and we won't get this far.
@@ -1509,7 +1511,7 @@ private:
                 characters::is_character::is_upper(currentWord[0]) &&
                 characters::is_character::is_upper(currentWord[dashPos+1]))
                 {
-                properWords.insert(Tword_type(currentWord.c_str()));
+                properWords.insert(currentWord);
                 currentWord.set_proper_noun(true);
                 continue;
                 }
@@ -1528,12 +1530,12 @@ private:
                                 properWords.get_data().cbegin(), properWords.get_data().cend(),
                                 string_util::equal_basic_string_i_compare_map<Tword_type, size_t>
                                     (Tword_type(wordPos->c_str())));
-                if (propPos != properWords.get_data().end() ||
-                        // note that the *known* proper nouns are already case insensitive.
-                        is_known_proper_nouns->find(wordPos->c_str()) )
+                if (propPos != properWords.get_data().cend() ||
+                    // note that the *known* proper nouns are already case insensitive.
+                    is_known_proper_nouns->find(wordPos->c_str()) )
                     {
                     wordPos->set_proper_noun(true);
-                    if (propPos != properWords.get_data().end())
+                    if (propPos != properWords.get_data().cend())
                         {
                         wordPos->set_acronym(isAcronym({ propPos->first.c_str(), propPos->first.length() }));
                         }
@@ -1542,12 +1544,10 @@ private:
                         { wordPos->set_acronym(false); }
                     }
                 }
-            // mark a word personal if proper and a known person name or an unknown word
-            //(which would probably be a new name that we don't have on our list).
+            // Mark a word personal if proper and a known personal name
             if (wordPos->is_proper_noun() &&
                 !wordPos->is_acronym() &&
-                (is_known_personal_nouns->find(wordPos->c_str(), wordPos->length()) ||
-                !is_correctly_spelled(Tword_type(wordPos->c_str()))) )
+                is_known_personal_nouns->find(wordPos->c_str(), wordPos->length()) )
                 { wordPos->set_personal(true); }
             }
         }
