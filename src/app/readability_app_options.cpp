@@ -111,6 +111,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_INVALID_AREA_COLOR(_DT(L"invalid-area-color-1")),
     XML_FLESCH_CHART_SETTINGS(_DT(L"flesch-chart-settings")),
     XML_INCLUDE_CONNECTION_LINE(_DT(L"include-connection-line")),
+    XML_FLESCH_RULER_DOC_GROUPS(_DT(L"flesch-ruler-doc-groups")),
     XML_LIX_SETTINGS(_DT(L"lix-settings")),
     XML_USE_ENGLISH_LABELS(_DT(L"use-english-labels")),
     XML_X_AXIS(_DT(L"x-axis")),
@@ -645,6 +646,7 @@ void ReadabilityAppOptions::ResetSettings()
     // honeydew
     m_graphInvalidAreaColor = wxColour(193, 205, 193);
     m_fleschChartConnectPoints = true;
+    m_fleschChartSyllableRulerDocGroups = false;
     m_useEnglishLabelsGermanLix = false;
     m_histogramBinningMethod = Histogram::BinningMethod::BinByIntegerRange;
     m_histrogramBinLabelDisplayMethod = BinLabelDisplay::BinValue;
@@ -2307,6 +2309,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         ConnectFleschPoints(
                             int_to_bool(connectionLine->ToElement()->IntAttribute(
                                 XML_INCLUDE.mb_str(), bool_to_int(IsConnectingFleschPoints()))));
+                        }
+                    auto rulerDocGroup =
+                        fleschChartSettingsNode->FirstChildElement(XML_FLESCH_RULER_DOC_GROUPS.mb_str());
+                    if (rulerDocGroup)
+                        {
+                        IncludeFleschRulerDocGroups(
+                            int_to_bool(rulerDocGroup->ToElement()->IntAttribute(
+                                XML_VALUE.mb_str(), bool_to_int(IsIncludingFleschRulerDocGroups()))));
                         }
                     }
                 // Lix
@@ -4056,6 +4066,11 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto connectionLine = doc.NewElement(XML_INCLUDE_CONNECTION_LINE.mb_str());
     connectionLine->SetAttribute(XML_INCLUDE.mb_str(), bool_to_int(IsConnectingFleschPoints()) );
     fleschChartSettings->InsertEndChild(connectionLine);
+
+    auto rulerDocGroup = doc.NewElement(XML_FLESCH_RULER_DOC_GROUPS.mb_str());
+    rulerDocGroup->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsIncludingFleschRulerDocGroups()) );
+    fleschChartSettings->InsertEndChild(rulerDocGroup);
+
     graphDefaultsSection->InsertEndChild(fleschChartSettings);
     // Fry/Raygor
     auto fryRaygor = doc.NewElement(XML_FRY_RAYGOR_SETTINGS.mb_str());

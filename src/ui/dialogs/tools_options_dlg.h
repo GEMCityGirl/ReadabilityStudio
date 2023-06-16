@@ -257,6 +257,9 @@ private:
     [[nodiscard]]
     wxString GetFleshChartConnectPointsLabel() const
         { return _(L"Connect points"); }
+     [[nodiscard]]
+    wxString GetFleshSyllableRulerDocGroupsLabel() const
+        { return _(L"Display grouped documents on syllable ruler"); }
     [[nodiscard]]
     wxString GetUseEnglishLabelsForGermanLixLabel() const
         { return _(L"Use English translations for German Lix gauge"); }

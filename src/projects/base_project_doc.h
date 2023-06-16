@@ -166,6 +166,12 @@ public:
     [[nodiscard]]
     bool IsConnectingFleschPoints() const noexcept
         { return m_fleschChartConnectPoints; }
+    // Flesch document groups next to the syllable ruler
+    void IncludeFleschRulerDocGroups(const bool connect) noexcept
+        { m_fleschChartSyllableRulerDocGroups = connect; }
+    [[nodiscard]]
+    bool IsIncludingFleschRulerDocGroups() const noexcept
+        { return m_fleschChartSyllableRulerDocGroups; }
     /** Sets whether to use English labels for the brackets on German Lix gauges.
         @param useEnglish True to use the translated (English) labels.*/
     void UseEnglishLabelsForGermanLix(const bool useEnglish) noexcept
@@ -618,6 +624,7 @@ protected:
     wxFont m_rightTitleFont;
     wxColour m_graphInvalidAreaColor;
     bool m_fleschChartConnectPoints{ true };
+    bool m_fleschChartSyllableRulerDocGroups{ false };
     bool m_useEnglishLabelsGermanLix{ false };
 
     // Histogram options

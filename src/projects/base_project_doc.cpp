@@ -54,6 +54,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_rightTitleFont(wxGetApp().GetAppOptions().GetRightTitleGraphFont()),
     m_graphInvalidAreaColor(wxGetApp().GetAppOptions().GetInvalidAreaColor()),
     m_fleschChartConnectPoints(wxGetApp().GetAppOptions().IsConnectingFleschPoints()),
+    m_fleschChartSyllableRulerDocGroups(wxGetApp().GetAppOptions().IsIncludingFleschRulerDocGroups()),
     m_useEnglishLabelsGermanLix(wxGetApp().GetAppOptions().IsUsingEnglishLabelsForGermanLix()),
     // histogram options
     m_histogramBinningMethod(wxGetApp().GetAppOptions().GetHistorgramBinningMethod()),
@@ -146,6 +147,7 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that)
     // readability graphs
     m_graphInvalidAreaColor = that.m_graphInvalidAreaColor;
     m_fleschChartConnectPoints = that.m_fleschChartConnectPoints;
+    m_fleschChartSyllableRulerDocGroups = that.m_fleschChartSyllableRulerDocGroups;
     m_useEnglishLabelsGermanLix = that.m_useEnglishLabelsGermanLix;
     // box plot
     m_boxPlotShowAllPoints = that.IsShowingAllBoxPlotPoints();
@@ -1343,6 +1345,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 XmlFormat::GetBoolean(fleschChartSection, fleschChartSectionEnd,
                     wxGetApp().GetAppOptions().XML_INCLUDE_CONNECTION_LINE,
                     wxGetApp().GetAppOptions().IsConnectingFleschPoints()));
+            IncludeFleschRulerDocGroups(
+                XmlFormat::GetBoolean(fleschChartSection, fleschChartSectionEnd,
+                    wxGetApp().GetAppOptions().XML_FLESCH_RULER_DOC_GROUPS,
+                    wxGetApp().GetAppOptions().IsIncludingFleschRulerDocGroups()));
             }
 
         // box plot settings
@@ -2284,6 +2290,9 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_FLESCH_CHART_SETTINGS).append(L">\n");
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_CONNECTION_LINE,
         IsConnectingFleschPoints(), 3);
+    fileText += sectionText;
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_FLESCH_RULER_DOC_GROUPS,
+        IsIncludingFleschRulerDocGroups(), 3);
     fileText += sectionText;
     fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_FLESCH_CHART_SETTINGS).append(L">\n");
     // fry/raygor invalid area colors

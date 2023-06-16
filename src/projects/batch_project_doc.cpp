@@ -2975,7 +2975,8 @@ void BatchProjectDoc::DisplayFleschChart()
                 scoresColumnName, syllablesColumnName,
                 IsShowingGroupLegends() ?
                     std::optional<const wxString>(groupColumnName) :
-                    std::nullopt);
+                    std::nullopt,
+                IsIncludingFleschRulerDocGroups());
             fleschChartCanvas->SetFixedObject(0, 0, fleschChart);
             fleschChartCanvas->Hide();
             view->SetFleschChart(fleschChartCanvas);
@@ -2995,7 +2996,8 @@ void BatchProjectDoc::DisplayFleschChart()
                 scoresColumnName, syllablesColumnName,
                 IsShowingGroupLegends() ?
                     std::optional<const wxString>(groupColumnName) :
-                    std::nullopt);
+                    std::nullopt,
+                IsIncludingFleschRulerDocGroups());
             }
         wxASSERT(fleschChart);
         UpdateGraphOptions(view->GetFleschChart());

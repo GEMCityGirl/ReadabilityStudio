@@ -1026,6 +1026,12 @@ public:
     [[nodiscard]]
     bool IsConnectingFleschPoints() const noexcept
         { return m_fleschChartConnectPoints; }
+    // Flesch document groups next to the syllable ruler
+    void IncludeFleschRulerDocGroups(const bool connect) noexcept
+        { m_fleschChartSyllableRulerDocGroups = connect; }
+    [[nodiscard]]
+    bool IsIncludingFleschRulerDocGroups() const noexcept
+        { return m_fleschChartSyllableRulerDocGroups; }
     /** Sets whether to use English labels for the brackets on German Lix gauges.
         @param useEnglish True to use the translated (English) labels.*/
     void UseEnglishLabelsForGermanLix(const bool useEnglish) noexcept
@@ -1369,6 +1375,7 @@ private:
     // a "rainy" look for the readability graphs
     wxColour m_graphInvalidAreaColor{ wxColour{ 193, 205, 193 } }; // honeydew
     bool m_fleschChartConnectPoints{ true };
+    bool m_fleschChartSyllableRulerDocGroups{ false };
     bool m_useEnglishLabelsGermanLix{ false };
     // Histogram options
     Wisteria::Graphs::Histogram::BinningMethod m_histogramBinningMethod
@@ -1533,6 +1540,7 @@ public:
     const wxString XML_INVALID_AREA_COLOR;
     const wxString XML_FLESCH_CHART_SETTINGS;
     const wxString XML_INCLUDE_CONNECTION_LINE;
+    const wxString XML_FLESCH_RULER_DOC_GROUPS;
     const wxString XML_LIX_SETTINGS;
     const wxString XML_USE_ENGLISH_LABELS;
     const wxString XML_X_AXIS;

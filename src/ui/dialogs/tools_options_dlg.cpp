@@ -1078,7 +1078,9 @@ bool ToolsOptionsDlg::HaveGraphOptionsChanged() const
            (IsPropertyAvailable(m_readabilityGraphPropertyGrid,GetUseEnglishLabelsForGermanLixLabel()) &&
                m_readabilityGraphPropertyGrid->IsPropertyModified(GetUseEnglishLabelsForGermanLixLabel())) ||
            (IsPropertyAvailable(m_readabilityGraphPropertyGrid,GetFleshChartConnectPointsLabel()) &&
-               m_readabilityGraphPropertyGrid->IsPropertyModified(GetFleshChartConnectPointsLabel()));
+               m_readabilityGraphPropertyGrid->IsPropertyModified(GetFleshChartConnectPointsLabel())) ||
+           (IsPropertyAvailable(m_readabilityGraphPropertyGrid,GetFleshSyllableRulerDocGroupsLabel()) &&
+               m_readabilityGraphPropertyGrid->IsPropertyModified(GetFleshSyllableRulerDocGroupsLabel()));
     }
 
 //-------------------------------------------------------------
@@ -2179,11 +2181,16 @@ void ToolsOptionsDlg::SaveOptions()
             {
             wxGetApp().GetAppOptions().UseEnglishLabelsForGermanLix(
                 m_readabilityGraphPropertyGrid->GetPropertyValueAsBool(GetUseEnglishLabelsForGermanLixLabel()));
-        }
+            }
         if (IsPropertyAvailable(m_readabilityGraphPropertyGrid,GetFleshChartConnectPointsLabel()))
             {
             wxGetApp().GetAppOptions().ConnectFleschPoints(
                 m_readabilityGraphPropertyGrid->GetPropertyValueAsBool(GetFleshChartConnectPointsLabel()));
+            }
+        if (IsPropertyAvailable(m_readabilityGraphPropertyGrid,GetFleshSyllableRulerDocGroupsLabel()))
+            {
+            wxGetApp().GetAppOptions().IncludeFleschRulerDocGroups(
+                m_readabilityGraphPropertyGrid->GetPropertyValueAsBool(GetFleshSyllableRulerDocGroupsLabel()));
             }
         }
     }
@@ -2469,6 +2476,11 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
             {
             m_readabilityProjectDoc->ConnectFleschPoints(
                 m_readabilityGraphPropertyGrid->GetPropertyValueAsBool(GetFleshChartConnectPointsLabel()));
+            }
+        if (IsPropertyAvailable(m_readabilityGraphPropertyGrid,GetFleshSyllableRulerDocGroupsLabel()))
+            {
+            m_readabilityProjectDoc->IncludeFleschRulerDocGroups(
+                m_readabilityGraphPropertyGrid->GetPropertyValueAsBool(GetFleshSyllableRulerDocGroupsLabel()));
             }
 
         m_readabilityProjectDoc->RefreshRequired(ProjectRefresh::Minimal);
@@ -3500,7 +3512,18 @@ void ToolsOptionsDlg::CreateControls()
                 GetFleshChartConnectPointsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
             m_readabilityGraphPropertyGrid->SetPropertyHelpString(
                 GetFleshChartConnectPointsLabel(),
-                _(L"Check this to connect the factor and score points on the Flesch chart."));
+                _(L"Check this to connect the factor and score points."));
+
+            m_readabilityGraphPropertyGrid->Append(
+                new wxBoolProperty(GetFleshSyllableRulerDocGroupsLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ?
+                    m_readabilityProjectDoc->IsIncludingFleschRulerDocGroups() :
+                    wxGetApp().GetAppOptions().IsIncludingFleschRulerDocGroups())));
+            m_readabilityGraphPropertyGrid->SetPropertyAttribute(
+                GetFleshSyllableRulerDocGroupsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+                GetFleshSyllableRulerDocGroupsLabel(),
+                _(L"Check this to display document names grouped along the syllable ruler."));
 
             // Lix gauge
             m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetLixGaugeLabel()) );
