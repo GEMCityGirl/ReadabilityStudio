@@ -228,7 +228,7 @@ private:
                                         const bool multiSelectable);
 
     /// @returns `true` if there is more than one document label, but not more than
-    ///  the max number of groups for the legends.
+    ///     the max number of groups for the legends.
     [[nodiscard]]
     bool IsShowingGroupLegends() const noexcept
         {

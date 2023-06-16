@@ -485,7 +485,7 @@ namespace grammar
                                 { return false; }
                             }
                         }
-                    //  Now verify that the next character can begin a sentence
+                    // Now verify that the next character can begin a sentence
                     // first, if the .?!: is followed by a CRLF or form feed and not an abbreviation then
                     // it's most likely end of sentence
                     if (characters::is_character::is_space_vertical(text[current_position+1]))

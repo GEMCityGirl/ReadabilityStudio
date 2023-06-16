@@ -348,7 +348,7 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
         else
             {
             /* If text was manually entered before but not embedded for some reason, then it's lost.
-               This should not happen unless you manually tamper with the project file.*/
+               This should not happen unless you manually tamper with the project file. */
             if (GetTextSource() == TextSource::EnteredText)
                 {
                 if (WarningManager::HasWarning(_DT(L"no-embedded-text")))
@@ -362,7 +362,7 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                 return false;
                 }
             // ...otherwise, external file was supposed to be embedded but internal copy of the text couldn't be found.
-            //  Try to reload it.
+            // Try to reload it.
             else
                 {
                 if (LoadExternalDocument())
@@ -373,8 +373,8 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                         _(L"Warning"), wxOK|wxICON_INFORMATION);
                     return true;
                     }
-                // should not happen.  File was supposed to be embedded, but wasn't in the project file
-                // and external file can't be found either
+                // Should not happen. File was supposed to be embedded, but wasn't in the project file
+                // and external file can't be found either.
                 else
                     {
                     LogMessage(
