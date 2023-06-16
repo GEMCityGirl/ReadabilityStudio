@@ -465,6 +465,9 @@ absorbers
 absorbing
 absorbingly
 absorbs
+absorptiometer
+absorptiometer's
+absorptiometers
 absorptiometry
 absorption
 absorption's
@@ -4781,6 +4784,7 @@ antedating
 antediluvian
 antediluvians
 antegrade
+antehistorical
 anteing
 antelope
 antelope's
@@ -16812,6 +16816,10 @@ camphechlor
 camphene
 camphor
 camphor's
+camphorate
+camphorated
+camphorates
+camphorating
 camphors
 campier
 campiest
@@ -19296,6 +19304,7 @@ challengingly
 challis
 challis's
 challises
+chalybeate
 chamber
 chamber's
 chambered
@@ -28941,12 +28950,15 @@ cryptofauna
 cryptogram
 cryptogram's
 cryptograms
+cryptograph
+cryptograph's
 cryptographer
 cryptographer's
 cryptographers
 cryptographic
 cryptographically
 cryptographies
+cryptographs
 cryptography
 cryptography's
 cryptologic
@@ -38274,6 +38286,8 @@ dumdum's
 dumdums
 dummied
 dummies
+dummkopf
+dummkopf's
 dummy
 dummy's
 dummying
@@ -48456,6 +48470,9 @@ footballer's
 footballers
 footballing
 footballs
+footboard
+footboard's
+footboards
 footbridge
 footbridge's
 footbridges
@@ -52134,6 +52151,9 @@ gigantically
 giganticness
 giganticness's
 gigantism
+gigantosteologies
+gigantosteology
+gigantosteology's
 gigaton
 gigaton's
 gigatons
@@ -54231,6 +54251,7 @@ groaner
 groaner's
 groaners
 groaning
+groanings
 groans
 groat
 groat's
@@ -54334,6 +54355,9 @@ grouching
 grouchy
 ground
 ground's
+groundbreaker
+groundbreaker's
+groundbreakers
 groundbreaking
 groundbreakings
 grounded
@@ -59530,6 +59554,7 @@ hovering
 hovers
 how
 how'd
+how're
 how's
 howbeit
 howdah
@@ -78299,6 +78324,9 @@ micropreneur
 micropreneur's
 micropreneurial
 micropreneurs
+microprobe
+microprobe's
+microprobes
 microprocessing
 microprocessor
 microprocessor's
@@ -87588,6 +87616,7 @@ omni's
 omnibus
 omnibus's
 omnibuses
+omnichrome
 omnidirectional
 omnipotence
 omnipotence's
@@ -94284,6 +94313,7 @@ phantasm's
 phantasmagoria
 phantasmagoria's
 phantasmagorias
+phantasmagoric
 phantasmal
 phantasms
 phantasy's
@@ -110113,6 +110143,11 @@ riposting
 ripped
 ripper
 ripper's
+rippermania
+rippermania's
+rippermanias
+ripperology
+ripperology's
 rippers
 ripping
 rippingly
@@ -114880,6 +114915,8 @@ seminary
 seminary's
 seminiferous
 seminumerical
+semioblivion
+semiobscurity
 semiofficial
 semiologist
 semiologist's
@@ -114912,6 +114949,9 @@ semisolid
 semisolids
 semisovereign
 semispinalis
+semistranger
+semistranger's
+semistrangers
 semistructured
 semisweet
 semitendinosus
@@ -124004,6 +124044,7 @@ stomachers
 stomaches
 stomachful
 stomachfuls
+stomachic
 stomaching
 stomachless
 stomachs
@@ -138589,6 +138630,7 @@ unpatronizing's
 unpaved
 unpenalized
 unpeople
+unpeopled
 unperceived
 unperceptive
 unperforated
@@ -138710,6 +138752,7 @@ unpropertied
 unpropitious
 unprotected
 unprotectedly
+unprotesting
 unprovability
 unprovable
 unproved

@@ -2900,7 +2900,7 @@ for reasons of	because	0
 for sell	for sale	3		
 for that matter	also, further	0		
 for that reason	therefore, thus	0		
-for the birds	worthless	2		
+for the birds	worthless	2	except	
 for the foreseeable future	for a while, for now	0		
 for the most part	generally, almost all, largely	0		
 for the purpose of	to, for, of	0		
@@ -4861,7 +4861,7 @@ of her own accord	willingly	0
 of her own free will	willingly	0		
 of his own accord	willingly	0		
 of his own free will	willingly	0		
-of it's	of its	3	false;true;right;wrong;correct;incorrect	
+of it's	of its	3		false;true;right;wrong;correct;incorrect
 of major importance	is important, are important, was important	0		
 of my own accord	willingly	0		
 of my own free will	willingly	0		
@@ -7132,7 +7132,7 @@ under circumstances in which	if	0
 under no circumstances	at all, never, no matter what, in no way	0		
 under no obligation	not obligated	0		
 under obligation	obligated	0		
-under the counter	a transaction done on the sly	2		
+under the counter	a transaction done on the sly	2	kept	
 under the provisions of	under, of	0		
 under the weather	sick, ill	2		
 undergraduate student	undergraduate	0		

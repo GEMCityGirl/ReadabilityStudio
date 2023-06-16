@@ -4,6 +4,7 @@
 A&M
 A.C.M.E.
 Ababa
+Abbeville
 Aberdeenshire
 Aboriginal
 Aborigine
@@ -776,6 +777,7 @@ Cabo
 Cabrillo
 Cadillac
 Cadiz
+Caernarvonshire
 Cahokia
 Cahra
 Caicos
@@ -1014,6 +1016,7 @@ Churchill
 Churchillian
 Chuvash
 CIA
+Cimmerian
 Cinacalcet
 Cincinnati
 Cinerama
@@ -1207,6 +1210,7 @@ Databook
 Datamedia
 DataPilot
 Datha
+Dauphine
 Davao
 Davenport
 Daventry
@@ -1329,6 +1333,7 @@ Duluth
 Dunbartonshire
 Dunedin
 Dunfermline
+Dunford
 Dungannon
 Dunkirk
 Dunstable
@@ -1430,6 +1435,7 @@ Eniwetok
 Enola
 Enoxaparin
 Enron
+Envermeu
 Eocene
 Ephesian
 Ephesus
@@ -1598,6 +1604,7 @@ FiveThirtyEight
 Fla
 Flatpak
 Flemish
+Flensburg
 FlexBank
 FlexLM
 Flextronics
@@ -1614,6 +1621,7 @@ Floridan
 Florina
 Florinda
 FlyerCard
+Folkestone
 Folkstone
 Folsom
 Folstone
@@ -1827,6 +1835,7 @@ Gothicized
 Gothicizes
 Gothicizing
 GoToMeeting
+Goulston
 Govwin
 Graceland
 Graffias
@@ -1854,6 +1863,7 @@ Grenadines
 Grenville
 Groupon
 GrubHub
+Gruetzner
 Guadalajara
 Guadalcanal
 Guadalquivir
@@ -1876,6 +1886,7 @@ Guernsey
 Guerrero
 Guiana
 Guidewell
+Guilderland
 Guinea
 Guinean
 Guiyang
@@ -1899,6 +1910,7 @@ Hampden
 Hampshire
 Hampstead
 Hampton
+Hanbury
 Hangzhou
 Hannover
 Hanoi
@@ -1950,6 +1962,7 @@ Hellenizes
 Hellenizing
 Helsinki
 Helvetian
+Hempstead
 Herbalife
 Herculaneum
 Hereford
@@ -1962,6 +1975,7 @@ Herzegovina
 Hesse
 Hessen
 Hessian
+Heyshott
 Hezbollah
 Hibernia
 Hibernian
@@ -1991,6 +2005,7 @@ Hohokam
 Holandric
 Holland
 Hollander
+Holliswood
 Hollywood
 Holstein
 Holyhead
@@ -2009,6 +2024,7 @@ Hopi
 Hopkinsian
 Hottentot
 Houdaille
+Houndsditch
 Hounslow
 Houston
 Howrah
@@ -2021,6 +2037,7 @@ HUD
 Huddersfield
 Huggies
 Huguenot
+Humana
 Humber
 Humberside
 Humboldt
@@ -2327,6 +2344,7 @@ Kirtland
 Kissee
 KitchenAid
 Kitts
+Kitzbuhel
 Kiwanis
 KKK
 Klan
@@ -3570,6 +3588,7 @@ Retin
 Reuss
 Reuters
 Revlon
+Reykjanes
 Reykjavik
 Reykjavík
 Rheinland
@@ -3775,6 +3794,7 @@ Secheron
 secobarbital
 Sedgefield
 Sedgemoor
+Selden
 Selectric
 Selestina
 Selfridge
@@ -3829,6 +3849,7 @@ Shintoism
 Shintoist
 Shippensburg
 Shopify
+Shoreditch
 Shorelight
 Shortfin
 Shoshone
@@ -3896,6 +3917,7 @@ Smithsonian
 Smithtown
 Snapchat
 Snapple
+Sneffels
 SoBe
 Socratic
 Sodom
@@ -3940,6 +3962,7 @@ Speedo
 Speedwagon
 SpinBrush
 Spinoza
+Spitalfields
 Splenda
 Spokane
 SportClips
@@ -3961,6 +3984,7 @@ Stalingrad
 Stalinism
 Stalinist
 Stamboul
+Stapi
 Starbreeze
 Starbucks
 StarKist
@@ -4646,6 +4670,7 @@ Wheatland
 Whig
 Whiggish
 Whiskeytown
+Whitechape
 Whitechapel
 Whitefield
 Whitehall
@@ -4712,6 +4737,7 @@ Wroclaw
 Wronskian
 Wuhan
 Wurlitzer
+Wurttemberg
 WWI
 WWII
 WWIII
