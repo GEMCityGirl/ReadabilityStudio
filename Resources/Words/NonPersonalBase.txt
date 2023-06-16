@@ -1367,6 +1367,7 @@ Edgewater
 Edgewood
 Edinburgh
 eDiscovery
+Ediva
 Edmonton
 Edmundsbury
 Edsel
@@ -1410,6 +1411,8 @@ Englishmen
 Englishness
 Englishwoman
 Englishwomen
+Enid
+Enif
 Eniwetok
 Enola
 Enoxaparin
@@ -1423,11 +1426,14 @@ Epispadias
 Epsom
 Equifax
 Equuleus
+Erda
 Erfurt
 Eridanus
 Erie
 Eritrea
+Erlang
 Erskine
+Escondido
 Eskalith
 Eskimo
 Espagnol
@@ -1478,8 +1484,10 @@ Euroscepticism
 Eurostar
 eurozone
 Eurythmics
+Eustace
 Eustachian
 Eustacia
+Euston
 Evanston
 Evansville
 Everest
@@ -1496,6 +1504,7 @@ Exmoor
 Experian
 Exxon
 ExxonMobil
+Ezri
 Facebooked
 Facebooking
 Facebooks
@@ -1715,10 +1724,12 @@ Gaussian
 Gaza
 Gaziantep
 Gazza
+Gdansk
 GeekWire
 Gehenna
 Geico
 Geiger
+Genesco
 Geneva
 Genoese
 GenoPheno
@@ -1748,6 +1759,8 @@ Giacinta
 Giacobo
 Gibraltar
 Giddings
+Gienah
+Giffer
 Gigafactory
 Gillingham
 Ginsberg
@@ -1765,6 +1778,7 @@ Gloucestershire
 glucagon
 Gmail
 Gnosticism
+Goa
 Gobi
 GoDaddy
 GoFundMe
@@ -1781,6 +1795,7 @@ Googler
 Googles
 Googling
 GOP
+Gorham
 Gorky
 Gosport
 Goth
@@ -1835,21 +1850,30 @@ Guam
 Guamanian
 Guanahani
 Guanajuato
+Guangzhou
 Guantanamo
+Guarani
 Guatemala
 Guatemalan
+Guayaquil
 Guermessa
+Guernsey
 Guerrero
 Guiana
 Guidewell
 Guinea
 Guinean
+Guiyang
+Gujranwala
 Guyana
 Guyanese
 Gymnogyps
+Hagstrom
 Hague
+Haiphong
 Haiti
 Haitian
+Haleakala
 Halifax
 Halliburton
 Halloween
@@ -1857,6 +1881,9 @@ Hambleton
 Hamburg
 Hamiltonian
 Hampshire
+Hampstead
+Hampton
+Hangzhou
 Hannover
 Hanoi
 Hanover
@@ -1868,8 +1895,11 @@ Harrisburg
 Harrisonburg
 Harrogate
 Hartford
+Hartlepool
+Hartline
 Harvard
 Hasbro
+Hastings
 Hauts
 Havana
 Hawaii
@@ -1908,6 +1938,7 @@ Herculaneum
 Hereford
 Herefordshire
 Hermanus
+Hermosillo
 Hertz
 Hertzler
 Herzegovina
@@ -1945,8 +1976,10 @@ Holland
 Hollander
 Hollywood
 Holstein
+Holyhead
 HomeGoods
 Homeric
+Homerton
 Honda
 Honduran
 Honduras
@@ -1957,7 +1990,11 @@ Hoosier
 Hooverville
 Hopi
 Hopkinsian
+Hottentot
+Houdaille
+Hounslow
 Houston
+Howrah
 Hox
 Hts
 Hubblecast
@@ -1968,6 +2005,8 @@ Huddersfield
 Huggies
 Huguenot
 Humber
+Humberside
+Humboldt
 Humvee
 Hun
 Hungarian
@@ -1980,6 +2019,7 @@ Hyacinthe
 Hyacinthia
 Hyacinthie
 Hyades
+Hyannis
 Hyderabad
 hydrocodone
 Hyperloop
@@ -2045,6 +2085,7 @@ Indonesian
 Indore
 Indra
 Indurain
+Indy
 Informatica
 Infosys
 Initech
@@ -2094,6 +2135,7 @@ Islamophobia
 Islandia
 Islay
 Islington
+ISO
 Ispell
 Israel
 Israeli
@@ -2107,6 +2149,8 @@ Italy
 Itanagar
 Itasca
 ITCorp
+Ithaca
+Ithacan
 iTunes
 Itza
 iWatch
@@ -2114,6 +2158,7 @@ Iwo
 J.Crew
 Jacksonian
 Jacksonville
+Jacobean
 Jacobian
 Jacobin
 Jacobite
@@ -2202,6 +2247,9 @@ Kansapedia
 Kansas
 Kantian
 Kaohsiung
+Karachi
+Karaganda
+Karakorum
 Karo
 Kashmir
 Katakana
@@ -2348,12 +2396,14 @@ Laphroaig
 Laplace
 Lapland
 Laredo
+Lascaux
 LaTeX
 Latia
 Latin
 Latvia
 Latvian
 Lauderdale
+Launceston
 Laurentian
 Lauterbur
 Laverty
@@ -2361,6 +2411,7 @@ Lawnview
 Lawrenceville
 Leamington
 Leavenworth
+Lebanese
 Lebanon
 Lecompton
 Lego
@@ -2637,6 +2688,7 @@ Melbourn
 Melbourne
 Memling
 Memphis
+Mendelism
 Menkalinan
 Mennonite
 Merck
@@ -2645,6 +2697,7 @@ Mercurian
 Mercury
 MerKadoTeknia
 Merrimac
+Merrimack
 Merseyside
 Mesoamerica
 Mesoamerica's
@@ -2742,6 +2795,7 @@ Mongolic
 Monmouthshire
 Monoceros
 Monocerotis
+Monongahela
 Monrovia
 Montana
 Montanan
@@ -2754,6 +2808,8 @@ Montevideo
 Monticello
 Montpelier
 Montreal
+Montrose
+Montserrat
 Moor
 Moorish
 MooseJaw
@@ -2769,6 +2825,9 @@ Morocco
 Moroni
 Morristown
 Moscow
+Mossberg
+Mosul
+Motherwell
 Motorola
 Motown
 Mouawad
@@ -3451,6 +3510,8 @@ Rangoon
 Raphaelite
 RapidMiner
 Rappite
+Rasalgethi
+Rasalhague
 Rastafarian
 Ravden
 Ravensbruck
@@ -3475,6 +3536,7 @@ Relaxin
 Renaissance
 Renfrewshire
 Reno
+Rensselaer
 Renville
 Resveratrol
 Retin
@@ -3488,6 +3550,7 @@ Rhine
 Rhineland
 Rhinelander
 Rhode
+Rhodes
 Rhodesia
 Rhodesian
 Rhône
@@ -3870,6 +3933,7 @@ StartWire
 Staten
 Statesboro
 Stelter
+Stevenage
 Stevia
 Stivers
 Stockholm
