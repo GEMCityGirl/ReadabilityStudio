@@ -2230,6 +2230,9 @@ do have as	do [you/I/we/they] have as	3
 do not put any stock in	do not trust	2		
 do not remember	forget	0		
 do note have	do not have	3		
+doberman pincher	doberman pinscher	3		
+doberman pincher's	doberman pinscher's	3		
+doberman pinchers	doberman pinschers	3		
 doctorate degree	doctorate	0		
 doctorate degrees	doctorates	0		
 does away with	removes, cancels, ends	0		
@@ -4858,7 +4861,7 @@ of her own accord	willingly	0
 of her own free will	willingly	0		
 of his own accord	willingly	0		
 of his own free will	willingly	0		
-of it's	of its	3		
+of it's	of its	3	false;true;right;wrong;correct;incorrect	
 of major importance	is important, are important, was important	0		
 of my own accord	willingly	0		
 of my own free will	willingly	0		

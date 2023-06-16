@@ -4213,6 +4213,9 @@ androgen
 androgen's
 androgenic
 androgens
+androgyne
+androgyne's
+androgynes
 androgynies
 androgynous
 androgyny
@@ -8606,6 +8609,9 @@ backlasher
 backlashes
 backlashing
 backless
+backlight
+backlighting
+backlights
 backlit
 backlog
 backlog's
@@ -10481,6 +10487,9 @@ beeswaxes
 beeswaxing
 beet
 beet's
+beetfield
+beetfield's
+beetfields
 beetle
 beetle's
 beetled
@@ -12205,6 +12214,9 @@ blackboard's
 blackboards
 blackbodies
 blackbody
+blackbread
+blackbread's
+blackbreads
 blackcurrant
 blackcurrant's
 blackcurrants
@@ -13012,6 +13024,9 @@ blusteringly
 blusterous
 blusters
 blustery
+blutwurst
+blutwurst's
+blutwursts
 blvd
 BM
 bmp
@@ -13394,7 +13409,11 @@ bonito
 bonito's
 bonitos
 bonjour
+bonk
+bonked
 bonkers
+bonking
+bonks
 bonnet
 bonnet's
 bonneted
@@ -13538,6 +13557,7 @@ boomerangs
 boomeritis
 boomers
 booming
+boomingly
 boomings
 booms
 boomtown
@@ -28098,6 +28118,9 @@ creedal
 creeds
 creek
 creek's
+creekbed
+creekbed's
+creekbeds
 creeks
 creekside
 creel
@@ -29100,6 +29123,9 @@ cuff
 cuff's
 cuffed
 cuffing
+cufflink
+cufflink's
+cufflinks
 cuffs
 cuing
 cuisine
@@ -36753,6 +36779,9 @@ dogmatists
 dogs
 dogsbody
 dogsbody's
+dogtag
+dogtag's
+dogtags
 dogtooth
 dogtooth's
 dogtrot
@@ -36992,6 +37021,9 @@ door's
 doorbell
 doorbell's
 doorbells
+doorchime
+doorchime's
+doorchimes
 doored
 doorhandles
 dooring
@@ -38213,6 +38245,9 @@ dulls
 dully
 dulness's
 duly
+dum-dum
+dum-dum's
+dum-dums
 dumb
 dumbbell
 dumbbell's
@@ -44092,6 +44127,7 @@ explorable
 exploration
 exploration's
 explorations
+exploratorily
 exploratory
 explore
 explored
@@ -44616,6 +44652,9 @@ eyefuls
 eyeglass
 eyeglass's
 eyeglasses
+eyehole
+eyehole's
+eyeholes
 eyeing
 eyelash
 eyelash's
@@ -45947,6 +45986,7 @@ fence's
 fenced
 fencepost
 fencepost's
+fenceposts
 fencer
 fencer's
 fencers
@@ -47285,6 +47325,7 @@ flapper
 flapper's
 flappers
 flapping
+flappingly
 flaps
 flaps's
 flare
@@ -49219,6 +49260,9 @@ fourpenny
 fourposter
 fourposter's
 fourposters
+fourragière
+fourragière's
+fourragières
 fours
 fourscore
 fourscores
@@ -49478,6 +49522,9 @@ fraudulent
 fraudulently
 fraudulentness
 frauen
+frauenkirche
+frauenkirche's
+frauenkirchen
 fraught
 fraughted
 fraughting
@@ -50045,6 +50092,7 @@ frump's
 frumpier
 frumpiest
 frumpish
+frumpishly
 frumps
 frumpy
 frustrate
@@ -71060,6 +71108,7 @@ lethality's
 lethally
 lethals
 lethargic
+lethargical
 lethargically
 lethargies
 lethargy
@@ -74465,7 +74514,7 @@ malamute's
 malamutes
 Malanie
 Malanie's
-malaprop
+Malaprop
 Malaprop's
 malapropism
 malapropism's
@@ -80988,6 +81037,7 @@ moonlighters
 moonlighting
 moonlighting's
 moonlights
+moonlike
 moonlit
 moonrise
 moons
@@ -88010,6 +88060,9 @@ optive
 optoelectronic
 optoelectronics
 optoelectronics's
+optometer
+optometer's
+optometers
 optometric
 optometries
 optometrist
@@ -95514,6 +95567,9 @@ pinpricked
 pinpricking
 pinpricks
 pins
+pinscher
+pinscher's
+pinschers
 pinsetter
 pinsetter's
 pinsetters
@@ -127400,6 +127456,9 @@ sweatshirts
 sweatshop
 sweatshop's
 sweatshops
+sweatsock
+sweatsock's
+sweatsocks
 sweaty
 swede
 Swedenborg
@@ -129000,6 +129059,7 @@ tarot's
 tarots
 tarp
 tarp's
+tarpaper
 tarpapered
 tarpaulin
 tarpaulin's
@@ -134227,6 +134287,7 @@ trews
 trey's
 treys
 tri
+tri-focals
 triable
 triableness
 triableness's
@@ -144888,6 +144949,7 @@ winker
 winker's
 winkers
 winking
+winkings
 winkle
 winkle's
 winkled

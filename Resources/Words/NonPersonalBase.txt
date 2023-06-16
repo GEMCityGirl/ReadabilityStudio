@@ -120,6 +120,7 @@ Alphecca
 Alpheratz
 Alpine
 Alpinist
+Alplaus
 Alport
 Alprazolam
 Alsace
@@ -181,6 +182,7 @@ Andes
 Andorra
 Andreas
 Andres
+Angelus
 Angevin
 Angkor
 Anglican
@@ -322,6 +324,7 @@ Artair
 Arthurian
 ArtStreet
 Aruba
+Arveiron
 Aryan
 ASCI
 ASCII
@@ -386,6 +389,7 @@ Auguste
 AUI
 Auria
 Auriga
+Ausable
 Auschwitz
 Austin
 Australasia
@@ -488,6 +492,7 @@ Barbadian
 Barbados
 Barbarossa
 Barbuda
+Barca-Lounger
 Barcelona
 Barclaycard
 Barstow
@@ -675,6 +680,7 @@ Brazilian
 Brazzaville
 Breckenridge
 Bremen
+Breslau
 Brexit
 Briand
 Bridgend
@@ -886,6 +892,7 @@ Celanese
 Celt
 Celtic
 Cengage
+Cenis
 Centauri
 Centralia
 Centralian
@@ -928,6 +935,7 @@ Cheeto
 Chelmsford
 Chelmsleywood
 Cheltenham
+Chemnitz
 ChemStation
 ChemWiki
 Chengdu
@@ -1078,6 +1086,7 @@ Constancia
 Cookstown
 Copenhagen
 Copernican
+Copet
 Copland
 Coppertone
 Corinthian
@@ -1099,6 +1108,7 @@ Costco
 Cote
 Cotonou
 Cotopaxi
+Coupar
 Couperin
 Coursera
 Coverity
@@ -1172,6 +1182,7 @@ DaimlerChrysler
 Dakar
 Dakota
 Dakotan
+Dakto
 Dalian
 Dallas
 Dalmatia
@@ -1296,10 +1307,12 @@ Doxygen
 Drakensberg
 Dramamine
 Drambuie
+Drance
 Drano
 Dravidian
 Dreamliner
 Dresden
+Dresdener
 Drexler
 Dropbox
 Drybar
@@ -1731,6 +1744,8 @@ Geico
 Geiger
 Genesco
 Geneva
+Genevan
+Genevese
 Genoese
 GenoPheno
 Genworth
@@ -1880,6 +1895,7 @@ Halloween
 Hambleton
 Hamburg
 Hamiltonian
+Hampden
 Hampshire
 Hampstead
 Hampton
@@ -1902,6 +1918,7 @@ Hasbro
 Hastings
 Hauts
 Havana
+Havre-de-Grace
 Hawaii
 Hawaiian
 Hawaiin
@@ -2219,6 +2236,7 @@ Jungian
 JUnit
 Juno
 Jupiter
+Jura
 Jurassic
 Jurua
 Jurvetson
@@ -2324,6 +2342,7 @@ Kodak
 Koenigsberg
 Kolonia
 Komodo
+Konigstein
 Koran
 Koranic
 Kordula
@@ -2342,6 +2361,7 @@ Krasnodar
 Krasnoyarsk
 Kremlin
 Kresge
+Kreuzkirche
 Krieger
 Kristian
 Kroc
@@ -2632,6 +2652,7 @@ MarkTen
 Marriott
 Mars
 Marseillaise
+Marseilles
 Marshall
 Martian
 Martinique
@@ -2797,6 +2818,7 @@ Monoceros
 Monocerotis
 Monongahela
 Monrovia
+Montalegre
 Montana
 Montanan
 Montenegrin
@@ -3061,6 +3083,7 @@ Nukuʻalofa
 Nunavut
 Nuneaton
 Nuremberg
+Nuremburg
 Nutrasweet
 NV
 NW
@@ -3244,6 +3267,7 @@ Pentecost
 Pentecostal
 Pentecostalism
 Pentium
+Pentland
 PeopleSoft
 Peoria
 Pepperidge
@@ -3264,6 +3288,7 @@ Peruvian
 Peterbilt
 Peterborough
 Petersburg
+Petersburgh
 Petronia
 Petronilla
 Petronille
@@ -3316,12 +3341,14 @@ Pixar
 Pkware
 Pkware's
 Plainfield
+Plainpalais
 Plainview
 Plano
 Platonism
 Platonist
 Platteville
 Plattsburgh
+Plauen
 PlayStation
 Playtex
 Pluto
@@ -3540,6 +3567,7 @@ Rensselaer
 Renville
 Resveratrol
 Retin
+Reuss
 Reuters
 Revlon
 Reykjavik
@@ -3570,6 +3598,7 @@ RiverMobile
 Riverview
 RIX
 Riyadh
+Roadmaster
 Roanoke
 Robertsonian
 Robinsonville
@@ -3592,6 +3621,7 @@ Rome
 Romero
 Rommel
 RomneyCare
+Roncesvalles
 Roomify
 Rooseveltian
 Rorschach
@@ -3604,6 +3634,7 @@ Roswell
 Rotarian
 Rotterdam
 Roussillon
+Royalton
 Royce
 RStudio
 Rubaiyat
@@ -3638,6 +3669,7 @@ Saigon
 Salem
 Salerno
 Salesforce
+Saleve
 Salford
 Salisbury
 Sallisaw
@@ -3739,6 +3771,7 @@ Scythia
 Seagram
 Sears
 Seattle
+Secheron
 secobarbital
 Sedgefield
 Sedgemoor
@@ -3763,6 +3796,7 @@ Serbia
 Serbian
 Serengeti
 Seri
+Servox
 Setosa
 Sevastopol
 Sevenoaks
@@ -3926,6 +3960,7 @@ Stairmaster
 Stalingrad
 Stalinism
 Stalinist
+Stamboul
 Starbreeze
 Starbucks
 StarKist
@@ -3964,6 +3999,7 @@ Sudoku
 Suez
 Suffolk
 Sufism
+Sugarbush
 Suisse
 Sulzberger
 Sumatra
@@ -4066,6 +4102,7 @@ Tasmanian
 Tatiana
 Tatiania
 Tatooine
+Tavernier
 Taylorism
 Taylorist
 Tbilisi
@@ -4139,6 +4176,7 @@ Thimphu
 ThinPrep
 Thomism
 Thomistic
+Thonon
 ThoughtCo
 Thrace
 Thracian
@@ -4183,6 +4221,7 @@ TiVo
 Tlaxcala
 Tobaccoville
 Tobago
+Tobruk
 Tocqueville
 TOEFL
 Togo
@@ -4220,6 +4259,8 @@ Tourette
 Toyota
 Trafalgar
 Trajan
+Tralfamadore
+Tralfamadorian
 Transamerica
 TransCanada
 Transcaucasia
@@ -4259,6 +4300,7 @@ Tucuman
 Tue
 Tues
 Tuesday
+Tuileries
 Tulane
 Tulsa
 Tulsan
@@ -4383,6 +4425,7 @@ Uzi
 VA
 Vaduz
 Vail
+Valais
 Vale
 Valencia
 Valentia
@@ -4406,6 +4449,7 @@ Vaselined
 Vaselines
 Vaselining
 Vatican
+Vaud
 Vaudois
 VBScript
 Vectrin
@@ -4503,6 +4547,7 @@ Wachovia
 Waco
 Wagnerian
 Wahhabi
+Wakefield
 Wal-Mart
 Walbridge
 Waldensian
@@ -4585,6 +4630,8 @@ Westfalen
 Westfield
 Westhampton
 Westminster
+Westmoreland
+Westmorland
 Westphalia
 Westport
 Westview
@@ -4651,6 +4698,7 @@ Wonderlane
 Woodlawn
 Woodstock
 Woolongong
+Woolwich
 Woonsocket
 Wooster
 Worcester
