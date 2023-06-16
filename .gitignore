@@ -16,3 +16,5 @@ Docs/ReadabilityStudioAPI/.Rproj.user
 *.db
 /tests/out/
 /.vs
+.Rproj.user
+.Rhistory

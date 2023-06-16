@@ -2,7 +2,9 @@
 
 ## Editing
 
-The documentation is stored in **bookdown** projects in the **ReadabilityStudio** and **ReadabilityStudioAPI** folders. The markdown files (\*.Rmd) can be edited in **RStudio**.
+The documentation is stored in **bookdown** projects in the **ReadabilityStudioDocs** and **ReadabilityStudioAPI** folders. The markdown files (\*.Rmd) can be edited in **RStudio**.
+
+**ReadabilityStudioDocs** is stored in a separate git repository and included as a submodule in the **ReadabilityStudio** project.
 
 ## Screenshots
 
@@ -10,9 +12,9 @@ The documentation is stored in **bookdown** projects in the **ReadabilityStudio*
 
 To generate screenshots, do the following:
 
-- Run the script **Generate Screenshots.lua**
+- Run the script **docs/Generate Screenshots.lua** from *Readability Studio*
 
-This will generate all new screenshots in the root **ReadabilityStudio/images**. The subdirectory **NonGenerated** will not be effected, but does not to be. It should not contain images effected by the program's UI changes and should not contain images with content that should be localized.
+This will generate all new screenshots in the root **ReadabilityStudioDocs/images**. The subdirectory **NonGenerated** will not be effected, but does not need to be. It should not contain images effected by the program's UI changes and should not contain images with content that should be localized.
 
 ### Reviewing Screenshots {-}
 
@@ -33,7 +35,4 @@ After generating new screenshots, [build](#building-help) the help and review th
 
 ## Building {#building-help}
 
-From **RStudio**, build the following projects:
-
-- **ReadabilityStudio/ReadabilityStudio.Rproj**
-- **ReadabilityStudioAPI/ReadabilityStudioAPI.Rproj**
+From **RStudio**, run **BuildHelpProjects.R** to build both help projects.

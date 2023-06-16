@@ -2,15 +2,13 @@
 
 ## Art Assets
 
-All original assets are stored in **Resources/Art Assets**. New or edited materials should be saved into the appropriate folder in **Resources/ReadabilityStudio** in PNG format (except the `splash` folder, these are JPEGs)
-
-Images in the **Resources/ReadabilityStudio/ribbon** and **Resources/ReadabilityStudio/tests** folders should be ~256x256 pixels in size (or smaller). After saving, run the script **Resources/Scale Icons.lua** to rescale and center any images if necessary.
+All art assets are stored in **Resources/Images**. Images should be saved into the appropriate folder in SVG format (except the `splash` folder, these are JPEGs). SVGs should have an aspect ratio with the same width and height.
 
 ## Word Lists
 
 ### Editing Lists {-}
 
-In the `Words` folder, the following folders contain word lists used by the program. Some can be edited, others are generated. Also, all these files are meant for all languages, unless otherwise noted.
+In the **Resources/Words** folder, the following folders contain word lists used by the program. Some can be edited, others are generated. Also, all these files are meant for all languages, unless otherwise noted.
 
 Please refer to the following file & folder breakdown for reference:
 
@@ -61,4 +59,4 @@ Please refer to the following file & folder breakdown for reference:
 
 ### Finalizing Lists {-}
 
-Run the script **Finalize Word Lists.lua** to sort, merge, remove duplicates, and generate supplemental word lists.
+Run the script **Resources/Finalize Word Lists.lua** from *Readability Studio* to sort, merge, remove duplicates, and generate supplemental word lists.

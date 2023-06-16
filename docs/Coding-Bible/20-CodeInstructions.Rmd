@@ -4,42 +4,41 @@
 
 Do the following to add a new option both to the program and its projects.
 
-- Add the variable and `GetXXX()/SetXXX()` functions to **ReadabilityAppOptions.h**.
-- Add XML constant tag for variable in **ReadabilityAppOptions.h** (and define in **ReadabilityAppOptions.cpp**).
-- Initialize the variable in **ReadabilityAppOptions.cpp**.
-- Add reset logic for variable in **ReadabilityAppOptions.cpp** (`ResetSettings()` function).
-- Add logic to read value in **ReadabilityAppOptions.cpp** (`LoadSettings()` function).
-- Add logic to save value in **ReadabilityAppOptions.cpp** (`SaveOptionsFile()` function).
-- Add the variable and `GetXXX()/SetXXX()` functions to **BaseProject.h** if a value that subprojects in a batch would need. UI and graph related options should be in **BaseProjectDoc.h** instead.
-- Initialize variable with value from `ReadabilityAppOptions` in the `BaseProject` or `BaseProjectDoc` constructor (**BaseProject.cpp** or **BaseProjectDoc.cpp**).
-- Add copy operation for variable in `BaseProject::CopySettings()` or `BaseProjectDoc::CopyDocumentLevelSettings()`.
+- Add the variable and `GetXXX()/SetXXX()` functions to **src/app/readability_app_options.h**.
+- Add an XML constant tag for aformentioned variable in **src/app/readability_app_options.h** (and define in **src/app/readability_app_options.cpp**).
+- Add reset logic for variable in **src/app/readability_app_options.cpp** (`ResetSettings()` function). (This should be the same value as the initializer value in the header file.)
+- Add logic to read value in **src/app/readability_app_options.cpp** (`LoadOptionsFile()` function).
+- Add logic to save value in **src/app/readability_app_options.cpp** (`SaveOptionsFile()` function).
+- Add the variable and `GetXXX()/SetXXX()` functions to **src/projects/base_project.h** if a base-level value that subprojects in a batch would need. UI and graph related options should be in **src/projects/base_project_doc.h** instead.
+- Initialize variable with value from `ReadabilityAppOptions` in the `BaseProject` (base-level options) or `BaseProjectDoc` constructor (**src/projects/base_project.cpp** or **src/projects/base_project_doc.cpp**).
+- Add copy operation for variable in `BaseProject::CopySettings()` (base-level options) or `BaseProjectDoc::CopyDocumentLevelSettings()`.
 - Add reading logic to `BaseProjectDoc::LoadSettingsFile()`.
 - Add write logic to `BaseProjectDoc::FormatProjectSettings()`.
-- Add variable to **ToolsOptionsDlg.h**.
-- Add initialization to variable from `ReadabilityAppOptions` or project in `ToolsOptionsDlg`’s constructor. Note that if the option is in a property grid, then there is no direct variable and instead you use a string label get and set the values from the property grid.
-- Add change watching logic for variable to `ToolsOptionsDlg::HaveDocumentOptionsChanged()`.
-- Add saving logic to `ToolsOptionsDlg::SaveOptions()` (and other saving functions, if applicable).
+- Add variable to **src/ui/dialogs/tools_options_dlg.h** (if not a value shown in a property grid). If a value in a property grid, then add a function that returns the string for the value in the property grid; this will be used also as a look-up key.
+- Add initialization to variable from `ReadabilityAppOptions` or project in `ToolsOptionsDlg`’s constructor. Note that if the option is in a property grid, then there is no direct variable and instead you use a string label to get and set the values from the property grid.
+- Add change watching logic for variable to `ToolsOptionsDlg::HaveXXXOptionsChanged()` (note there are different versions of these functions for each type of feature).
+- Add saving logic to `ToolsOptionsDlg::SaveOptions()` (and related `ToolsOptionsDlg::SaveProjectXXXOptions()` function, if applicable).
 - Attach variable to interface in `ToolsOptionsDlg::CreateControls()`.
 - Use the variable in the program where applicable.
 - Add it to the documentation.
 
 ## Add a New Test {#add-a-new-test}
 
-- Add the actual function to **english_readability.h** (or other file if a different language). (This only applies to linear regression based tests with formula, note tests that calculate their values graphically [e.g., **Fry**].)
+- Add the actual function to **src/readability/english_readability.h** (or other file if a different language). (This only applies to linear regression based tests with a formula, not tests that calculate their values graphically [e.g., **Fry**].)
 - Add its definition to `BaseProject::InitializeStandardReadabilityTests()`.
-- Add internal name constant to **ReadabilityMessages.h/cpp**. This will be a string ID that is used throughout the program, documentation, and resources to identify the test.
-- Add its `AddXXXTest()` function to **BaseProject.cpp**.
+- Add internal name constant to **src/results_format/readability_messages.h/cpp**. This will be a string ID that is used throughout the program, documentation, and resources to identify the test.
+- Add its `AddXXXTest()` function to **src/projects/base_project.cpp**.
 - If a graphical test (e.g., **Fry**), then also do the following:
-  - The `AddXXXTest()` function must be virtual and derived in **Projectdoc.h/cpp** also.
-  - If a graphical test that’s a supplement to a test (that already has its own `AddXXXTest()` function), then call the graphical `AddXXXTest()` from the test’s original `AddXXXTest()` function in **BaseProject.cpp**.
+  - The `AddXXXTest()` function must be virtual and derived in **src/projects/standard_project_doc.h/cpp** also.
+  - If a graphical test that’s a supplement to a test (that already has its own `AddXXXTest()` function), then call the graphical `AddXXXTest()` from the test’s original `AddXXXTest()` function in **src/projects/base_project.cpp**.
   - Handle its exclusion in `ProjectDoc::DisplayReadabilityGraphs()`.
-  - Add its `GetXXXLabel()` function in **BaseProjectView.h**.
-  - Define its graph window ID in **BaseProjectView.h**.
+  - Add its `GetXXXLabel()` function in **src/projects/base_project_view.h**.
+  - Define its graph window ID in **src/projects/base_project_view.h**.
   - Add aforementioned window ID into the `GraphType` enum in **Resources/Scripting/RSConstants.lua**.
   - Add to `GraphType`'s list of values in **Resources/Scripting/RSLibraries.api**.
-  - Update `GraphType` in API docs (**Docs/ReadabilityStudioAPI/30-Enums.Rmd**).
+  - Update `GraphType` in API docs (**docs/ReadabilityStudioAPI/enums/GraphType.md**).
   - Handle that aforementioned window ID in `ProjectView::OnEditGraphOptions()`, `ProjectView::OnHyperlinkClicked()`, `ProjectView::OnItemSelected()`, `MainFrame::OnHelpContents()`, and `BatchProjectDoc::DisplayReadabilityGraphs()`.
-  - Add `Set/GetXXXGraph()` functions to **BatchProjectView.h**.
+  - Add `Set/GetXXXGraph()` functions to **src/projects/batch_project_view.h**.
   - Show/hide window in `BatchProjectDoc::DisplayScores()`.
   - Load results in `BatchProjectDoc::LoadScores()` if graph handles scoring instead of the formula (e.g., **Fry**).
   - Add its icon loading to `MainFrame::MainFrame()`.
@@ -49,7 +48,7 @@ Do the following to add a new option both to the program and its projects.
 - If an index test, add its score formatting logic to `BatchProjectView::UpdateStatAndTestPanes()`.
 - Document it in the help.
   - If a graphical test, automate making a screenshot of the graph for the help.
-- Add an icon to **Resources/ReadabilityStudio/tests** in PNG format with the same name as the test's string ID.
+- Add an icon to **Resources/Images/tests** in SVG format with the same name as the test's string ID.
 
 ## Add a New Familiar Word List
 
@@ -61,14 +60,14 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 :::
 
 - Create a word list file and add to the resources (**Resources/Words/WordLists**). (This should be a single column text file.)
-- Add a `word_list` object to `BaseProject` (**BaseProject.h**).
+- Add a `word_list` object to `BaseProject` (**src/projects/base_project.h**).
 - Load the text file into aforementioned `word_list` in `ReadabilityApp::LoadWordLists()`
 - Add a check that the list is sorted in `ReadabilityApp::VerifyWordLists()`.
 
 ### Add statistics fields {-}
 
 - Add unique and total unfamiliar word statistic fields to `BaseProject`.
-- Add XML constants in **ReadabilityAppOptions.h/cpp** for these unique and total values.
+- Add XML constants in **src/app/readability_app_options.h/cpp** for these unique and total values.
 - Add `GetXXX()/SetXXX()` functions in `BaseProject` for these fields.
 - Zero out these values in `BaseProject`’s constructor and initializers.
 - Zero out these values in `BaseProject::LoadHardWords()`.
@@ -77,12 +76,12 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 - Format and display these values in `BaseProject::FormatStatisticsInfo()`.
 - Load these values in `ProjectDoc::LoadMetaFile()`.
 - Save these values in `ProjectDoc::OnSaveDocument()`.
-- Add unfamiliar label to **BaseProjectView.h**.
-  
+- Add unfamiliar label to **base_project_view.h**.
+
 ### Add support for the list window {-}
-- Add a page ID for the list in **BaseProjectView.h**.
+- Add a page ID for the list in **src/projects/base_project_view.h**.
 - Add this ID to the `ListType` enumeration in **Resources/Scripting/RSConstants.lua**.
-- Add this new enumeration value to the `ListType` in **Docs/ReadabilityStudioAPI/30-Enums.Rmd**.
+- Add this new enumeration value to the `ListType` in **docs/ReadabilityStudioAPI/enums/ListType.md**.
 - Add hard word list data provider to `BaseProject`.
 - Initialize the data provider in `BaseProject`’s constructor.
 - Delete the data provider in `BaseProject`’s destructor.
@@ -93,10 +92,10 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 - Add handler for ID to jump to the respective highlighted text window in `ProjectView::OnListDblClick()` (see following instructions for highlighted test window).
 
 ### Add support for the text window {-}
-- Add a page ID for the text window in **BaseProjectView.h**.
+- Add a page ID for the text window in **src/projects/base_project_view.h**.
 - Add this ID to the `HighlightedReportType` enumeration in **Resources/Scripting/RSConstants.lua**.
-- Add this new enumeration value to the `HighlightedReportType` in **Docs/ReadabilityStudioAPI/30-Enums.Rmd**.
-- Add a `wxFormattedTextCtrl` window in **ProjectDoc.h**.
+- Add this new enumeration value to the `HighlightedReportType` in **docs/ReadabilityStudioAPI/enums/HighlightedReportType.md**.
+- Add a `wxFormattedTextCtrl` window in **src/projects/standard_project_doc.h**.
 - Add **UN**familiar function object (based on `IsNotFamiliarWordWithHighlighting`) to `ProjectDoc::DisplayHighlightedText()`. (An example is `isNotDCWord`.)
 - Add a legend line for the word list in text window in `ProjectDoc::DisplayHighlightedText()`.
 - Add the legend’s line length to `maxLegendSize`.
@@ -119,7 +118,7 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 
 ### Custom test support (low-level) {-}
 
-- Add word list to `custom_test` (**custom_readability_test.h**) class using a `is_familiar_word` object.
+- Add word list to `custom_test` (**src/readability/custom_readability_test.h**) class using a `is_familiar_word` object.
 - Add flag for including that list, along with getter and setter functions.
   - These should be initialized to `false`.
 - In `custom_test`'s constructor, set the `is_familiar_word` object to use the test's prescribed proper noun and number logic.
@@ -127,14 +126,14 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 
 ### Custom test support (higher-level) {-}
 
-- Add XML string constant for saving word list flag for custom tests to **ReadabilityAppOptions.h** (e.g., `XML_INCLUDE_HARRIS_JACOBSON_LIST`).
+- Add XML string constant for saving word list flag for custom tests to **src/app/readability_app_options.h** (e.g., `XML_INCLUDE_HARRIS_JACOBSON_LIST`).
 - Update any calls to `BaseProjectDoc::AddGlobalCustomReadabilityTest()` to include the word list and respective flag (the `CustomReadabilityTest` typedef passed to this will need these passed to its constructor).
-- Add save and read logic for flag in **BaseProjectDoc.cpp**.
+- Add save and read logic for flag in **src/projects/base_project_doc.cpp**.
 - Add save and read logic for settings file (`ReadabilityAppOptions::LoadOptionsFile()` and `ReadabilityAppOptions::ReadabilityAppOptions::SaveOptionsFile()`).
-- Add logic to `ShowCustomTestDialogFamiliarWords()` and `SetCustomTestDialogIncludedLists()` in **LuaScreenshot.cpp**.
-- Set and read this flag from `EditCustomTest` in **ReadabilityApp.cpp**.
-- Add logic to `OnAddCustomTest()` in **ReadabilityApp.cpp**.
-- In `AddCustomReadabilityTest()` (**BaseProject.cpp**), mention the inclusion of this list in the test's description.
+- Add logic to `ShowCustomTestDialogFamiliarWords()` and `SetCustomTestDialogIncludedLists()` in **src/lua_scripting/lua_screenshot.cpp**.
+- Set and read this flag from `EditCustomTest` in **src/app/readability_app.cpp**.
+- Add logic to `OnAddCustomTest()` in **src/app/readability_app.cpp**.
+- In `AddCustomReadabilityTest()` (**src/projects/base_project.cpp**), mention the inclusion of this list in the test's description.
 
 ### Custom test diaog {-}
 
@@ -148,22 +147,22 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 
 ### Custom test formula {-}
 
-- Add a `GetCustomXXXSignature()` function in **ReadabilityFormulaParser.h** that returns the label `"CustomXXX()"` (where `XXX` is the name of the word-list test).
-- Add a `static double CustomXXX(const te_expr* context)` function in **ReadabilityFormulaParser.cpp** that handles a custom version of the original test. This function is what gets mapped to `"CustomXXX()."` (Refer to `CustomNewDaleChall()` as an example.)
+- Add a `GetCustomXXXSignature()` function in **src/test_helpers/readability_formula_parser.h** that returns the label `"CustomXXX()"` (where `XXX` is the name of the word-list test).
+- Add a `static double CustomXXX(const te_expr* context)` function in **src/test_helpers/readability_formula_parser.cpp** that handles a custom version of the original test. This function is what gets mapped to `"CustomXXX()."` (Refer to `CustomNewDaleChall()` as an example.)
 - Map this function in `ReadabilityFormulaParser::ReadabilityFormulaParser()`.
 - Add the new `` function to `m_customFamiliarWords` in `CustomTestDlg::Create()`.
 - Add handling logic for this function to `CustomTestDlg::ValidateFormula()`.
 - Add a menu option to create a new test based on `"CustomXXX()."`
-  - Add a menu event mapping for adding a new test using this new formula in **ReadabilityApp.cpp**.
+  - Add a menu event mapping for adding a new test using this new formula in **src/app/readability_app.cpp**.
   - Add handling logic to `MainFrame::OnAddCustomTest()`.
 - If the original word test has custom logic for how to handle text exclusion:
-  - Add a bit for it in `CustomReadabilityTestInterface` in **BaseProject.h**.
+  - Add a bit for it in `CustomReadabilityTestInterface` in **src/projects/base_project.h**.
   - Handle the text exclusion logic in `BaseProject::LoadHardWords()`.
   - In the custom test dialog, warn the user if they select exclusion/proper noun/number options that differ from the test.
 
 ### Word list dialog {-}
 
-- Add page and list IDs for the word list to **WordListDlg.h**.
+- Add page and list IDs for the word list to **ui/dialogs/word_list_dlg.h**.
 - Handle the list being selected in `WordListDlg::GetActiveList()`.
 - Create the list by calling `AddSingleColumnPage()` in `WordListDlg::CreateControls()`.
 
@@ -172,13 +171,13 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 If it is a more complex word list (with categories, like **Dolch**), then that will need its own logic.
 :::
 
-- Add a menu ID for the word list and map it to `MainFrame::OnWordListByPage` (**ReadabilityApp.cpp**).
+- Add a menu ID for the word list and map it to `MainFrame::OnWordListByPage` (**src/app/readability_app.cpp**).
 - Add the word list to the menu in `MainFrame::FillMenuWithWordList()`.
 - Handle the menu option for the word list in `MainFrame::OnWordListByPage()`.
 
 ## Adding a New Custom-Test Formula Function
 
-- Add a static function wrapper to the function you wish to call from the program in **ReadabilityFormulaParser.cpp** (e.g., `HardFogWordCount`).
+- Add a static function wrapper to the function you wish to call from the program in **src/test_helpers/readability_formula_parser.cpp** (e.g., `HardFogWordCount`).
 - Map the function (and shortcut, if applicable) in `ReadabilityFormulaParser::ReadabilityFormulaParser()`.
 - Document the function in `CustomTestDlg::Create()`.
-- Document the function in **24-CustomTestAndBundles.rmd** in the help.
+- Document the function in **docs/ReadabilityStudioDocs/24-CustomTestAndBundles.rmd** in the help.
