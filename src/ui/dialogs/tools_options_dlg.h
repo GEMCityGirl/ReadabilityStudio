@@ -102,58 +102,88 @@ public:
     void OnHelp([[maybe_unused]] wxCommandEvent& event);
     void OnContextHelp([[maybe_unused]] wxHelpEvent& event);
     void OnOK([[maybe_unused]] wxCommandEvent& event);
-    [[nodiscard]] bool HaveOptionsChanged() const;
-    [[nodiscard]] bool HaveDocumentOptionsChanged() const;
-    [[nodiscard]] bool HaveGraphOptionsChanged() const;
-    [[nodiscard]] bool HaveTextViewOptionsChanged() const noexcept;
-    [[nodiscard]] bool HaveTestDisplayOptionsChanged() const;
-    [[nodiscard]] bool HaveStatisticsOptionsChanged() const;
-    [[nodiscard]] bool HaveWordsBreakdownOptionsChanged() const;
-    [[nodiscard]] bool HaveSentencesBreakdownOptionsChanged() const;
+    [[nodiscard]]
+    bool HaveOptionsChanged() const;
+    [[nodiscard]]
+    bool HaveDocumentOptionsChanged() const;
+    [[nodiscard]]
+    bool HaveGraphOptionsChanged() const;
+    [[nodiscard]]
+    bool HaveTextViewOptionsChanged() const noexcept;
+    [[nodiscard]]
+    bool HaveTestDisplayOptionsChanged() const;
+    [[nodiscard]]
+    bool HaveStatisticsOptionsChanged() const;
+    [[nodiscard]]
+    bool HaveWordsBreakdownOptionsChanged() const;
+    [[nodiscard]]
+    bool HaveSentencesBreakdownOptionsChanged() const;
 
     void SelectPage(const int pageId);
 
-    [[nodiscard]] bool IsGeneralSettings() const noexcept;
-    [[nodiscard]] bool IsStandardProjectSettings() const;
-    [[nodiscard]] bool IsBatchProjectSettings() const;
+    [[nodiscard]]
+    bool IsGeneralSettings() const noexcept;
+    [[nodiscard]]
+    bool IsStandardProjectSettings() const;
+    [[nodiscard]]
+    bool IsBatchProjectSettings() const;
 
-    [[nodiscard]] static wxString GetReadabilityScoresLabel()
+    [[nodiscard]]
+    static wxString GetReadabilityScoresLabel()
         { return _(L"Readability Scores"); }
-    [[nodiscard]] static wxString GetGeneralSettingsLabel()
+    [[nodiscard]]
+    static wxString GetGeneralSettingsLabel()
         { return _(L"General Settings"); }
-    [[nodiscard]] static wxString GetStatisticsLabel()
+    [[nodiscard]]
+    static wxString GetStatisticsLabel()
         { return _(L"Statistics"); }
-    [[nodiscard]] static wxString GetAnalysisLabel()
+    [[nodiscard]]
+    static wxString GetAnalysisLabel()
         { return _(L"Analysis"); }
-    [[nodiscard]] static wxString GetDolchSightWordsLabel()
+    [[nodiscard]]
+    static wxString GetDolchSightWordsLabel()
         { return _(L"Dolch Sight Words"); }
-    [[nodiscard]] static wxString GetDocumentViewsLabel()
+    [[nodiscard]]
+    static wxString GetDocumentViewsLabel()
         { return _(L"Document Views"); }
-    [[nodiscard]] static wxString GetDifficultWordListsLabel()
+    [[nodiscard]]
+    static wxString GetDifficultWordListsLabel()
         { return _(L"Difficult word lists"); }
-    [[nodiscard]] static wxString GetGraphsLabel()
+    [[nodiscard]]
+    static wxString GetGraphsLabel()
         { return ProjectView::GetGraphsLabel(); }
-    [[nodiscard]] static wxString GetGeneralLabel()
+    [[nodiscard]]
+    static wxString GetGeneralLabel()
         { return _(L"General"); }
-    [[nodiscard]] static wxString GetAxisSettingsLabel()
+    [[nodiscard]]
+    static wxString GetAxisSettingsLabel()
         { return _(L"Axes"); }
-    [[nodiscard]] static wxString GetTitlesLabel()
+    [[nodiscard]]
+    static wxString GetTitlesLabel()
         { return _(L"Titles"); }
-    [[nodiscard]] static wxString GetReadabilityGraphLabel()
+    [[nodiscard]]
+    static wxString GetReadabilityGraphLabel()
         { return _(L"Readability Graphs"); }
-    [[nodiscard]] static wxString GetBarChartLabel()
+    [[nodiscard]]
+    static wxString GetBarChartLabel()
         { return _(L"Bar Charts"); }
-    [[nodiscard]] static wxString GetBoxPlotLabel()
+    [[nodiscard]]
+    static wxString GetBoxPlotLabel()
         { return _(L"Box Plots"); }
-    [[nodiscard]] static wxString GetHistogramsLabel()
+    [[nodiscard]]
+    static wxString GetHistogramsLabel()
         { return _(L"Histograms"); }
-    [[nodiscard]] static wxString GetProjectSettingsLabel()
+    [[nodiscard]]
+    static wxString GetProjectSettingsLabel()
         { return _(L"Project Settings"); }
-    [[nodiscard]] static wxString GetSentencesWordsLabel()
+    [[nodiscard]]
+    static wxString GetSentencesWordsLabel()
         { return _(L"Sentences && Words"); }
-    [[nodiscard]] static wxString GetTestOptionsLabel()
+    [[nodiscard]]
+    static wxString GetTestOptionsLabel()
         { return _(L"Test Options"); }
-    [[nodiscard]] static wxString GetScoreDisplayLabel()
+    [[nodiscard]]
+    static wxString GetScoreDisplayLabel()
         { return _(L"Scores"); }
 
     void OnAddFilesClick([[maybe_unused]] wxCommandEvent& event);

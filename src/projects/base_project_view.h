@@ -43,21 +43,29 @@ public:
         m_splitter->SplitVertically(m_splitter->GetWindow1(), m_splitter->GetWindow2(), leftPaneWidth);
         }
     void ShowSideBar(const bool show = true);
-    [[nodiscard]] wxMenuBar* GetMenuBar() noexcept
+    [[nodiscard]]
+    wxMenuBar* GetMenuBar() noexcept
         { return m_menuBar; }
-    [[nodiscard]] wxSplitterWindow* GetSplitter() noexcept
+    [[nodiscard]]
+    wxSplitterWindow* GetSplitter() noexcept
         { return m_splitter; }
-    [[nodiscard]] wxBoxSizer* GetWorkSpaceSizer() noexcept
+    [[nodiscard]]
+    wxBoxSizer* GetWorkSpaceSizer() noexcept
         { return m_workSpaceSizer; }
-    [[nodiscard]] Wisteria::UI::SideBar* GetSideBar() noexcept
+    [[nodiscard]]
+    Wisteria::UI::SideBar* GetSideBar() noexcept
         { return m_sideBar; }
-    [[nodiscard]] const Wisteria::UI::SideBar* GetSideBar() const noexcept
+    [[nodiscard]]
+    const Wisteria::UI::SideBar* GetSideBar() const noexcept
         { return m_sideBar; }
-    [[nodiscard]] Wisteria::UI::InfoBarEx* GetInfoBar() noexcept
+    [[nodiscard]]
+    Wisteria::UI::InfoBarEx* GetInfoBar() noexcept
         { return m_infoBar; }
-    [[nodiscard]] const wxWindow* GetActiveProjectWindow() const noexcept
+    [[nodiscard]]
+    const wxWindow* GetActiveProjectWindow() const noexcept
         { return m_activeWindow; }
-    [[nodiscard]] wxWindow* GetActiveProjectWindow() noexcept
+    [[nodiscard]]
+    wxWindow* GetActiveProjectWindow() noexcept
         { return m_activeWindow; }
 
     /// Fills the menus in the ribbon and checks/toggles all the options on the ribbon to match the project's settings.

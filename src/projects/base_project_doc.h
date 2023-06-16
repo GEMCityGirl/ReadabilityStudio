@@ -156,7 +156,8 @@ public:
     void SetRightTitleGraphFont(const wxFont& font)
         { m_rightTitleFont = font; }
     /// invalid area color
-    [[nodiscard]] wxColour GetInvalidAreaColor() const noexcept
+    [[nodiscard]]
+    wxColour GetInvalidAreaColor() const noexcept
         { return m_graphInvalidAreaColor; }
     void SetInvalidAreaColor(const wxColour& color)
         { m_graphInvalidAreaColor = color; }

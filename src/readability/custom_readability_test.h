@@ -389,7 +389,7 @@ namespace readability
         ///This version overrides the test's current proper noun and numeric logic for special situations.
         ///Note that the proper flag is just true or false for simplicity, so "count first occurrence" option is not
         ///available here.
-        [[nodiscard]] 
+        [[nodiscard]]
         inline bool is_word_familiar(const word_typeT& theWord,
                                      const bool treat_proper_as_familiar,
                                      const bool treat_numeric_as_familiar) const
