@@ -2723,29 +2723,32 @@ void ToolsOptionsDlg::CreateControls()
                 new wxStaticBoxSizer(wxVERTICAL, projectSettingsPage, _(L"Batch options"));
 
             wxBoxSizer* minDocSizeBoxSizer = new wxBoxSizer(wxHORIZONTAL);
+            batchOptionsBox->Add(minDocSizeBoxSizer, 0, wxEXPAND|wxLEFT, wxSizerFlags::GetDefaultBorder());
+
             wxStaticText* minDocSizeLabel =
-                new wxStaticText(projectSettingsPage, wxID_STATIC, _(L"Minimum document word count:"),
+                new wxStaticText(batchOptionsBox->GetStaticBox(), wxID_STATIC, _(L"Minimum document word count:"),
                     wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
             minDocSizeBoxSizer->Add(minDocSizeLabel, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT,
                                     wxSizerFlags::GetDefaultBorder());
 
-            batchOptionsBox->Add(minDocSizeBoxSizer, 0, wxEXPAND|wxLEFT, wxSizerFlags::GetDefaultBorder());
             wxSpinCtrl* minDocWordCountForBatchSpinCtrl =
-                new wxSpinCtrl(projectSettingsPage, wxID_ANY, std::to_wstring(m_minDocWordCountForBatch.get_value()),
+                new wxSpinCtrl(batchOptionsBox->GetStaticBox(), wxID_ANY,
+                               std::to_wstring(m_minDocWordCountForBatch.get_value()),
                                wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1,
                                std::numeric_limits<int>::max(), 0);
             minDocWordCountForBatchSpinCtrl->SetValidator(wxGenericValidator(&m_minDocWordCountForBatch));
             minDocSizeBoxSizer->Add(minDocWordCountForBatchSpinCtrl, 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
             wxBoxSizer* fileTruncSizer = new wxBoxSizer(wxHORIZONTAL);
-            fileTruncSizer->Add(new wxStaticText(projectSettingsPage, wxID_STATIC, _(L"File path display:")), 0,
+            fileTruncSizer->Add(new wxStaticText(batchOptionsBox->GetStaticBox(),
+                                                 wxID_STATIC, _(L"File path display:")), 0,
                                                  wxALIGN_CENTER_VERTICAL|wxRIGHT, wxSizerFlags::GetDefaultBorder());
 
             wxArrayString truncModes;
             truncModes.Add(_(L"Partially truncate the file path"));
             truncModes.Add(_(L"Show only the file name"));
             truncModes.Add(_(L"Show the full file path"));
-            wxChoice* fileTruncCombo = new wxChoice(projectSettingsPage, wxID_ANY,
+            wxChoice* fileTruncCombo = new wxChoice(batchOptionsBox->GetStaticBox(), wxID_ANY,
                                                 wxDefaultPosition, wxDefaultSize, truncModes,
                                                 0, wxGenericValidator(&m_filePathTruncationMode));
             fileTruncSizer->Add(fileTruncCombo, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT, wxSizerFlags::GetDefaultBorder());
