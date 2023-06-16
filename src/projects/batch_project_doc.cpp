@@ -2961,6 +2961,10 @@ void BatchProjectDoc::DisplayFleschChart()
             dynamic_cast<Wisteria::Canvas*>(view->GetScoresView().
                 FindWindowById(BaseProjectView::FLESCH_CHART_PAGE_ID));
 
+        // document name brackets next to syllable ruler will
+        // will override the legend. (It would be to busy showing both of these.)
+        const bool showLegend = (IsShowingGroupLegends() && !IsIncludingFleschRulerDocGroups());
+
         if (!fleschChartCanvas)
             {
             fleschChartCanvas = new Wisteria::Canvas(view->GetSplitter(),
@@ -2973,7 +2977,7 @@ void BatchProjectDoc::DisplayFleschChart()
                     *std::make_shared<Wisteria::Colors::Schemes::EarthTones>()));
             fleschChart->SetData(scoreDataset, wordsColumnName,
                 scoresColumnName, syllablesColumnName,
-                IsShowingGroupLegends() ?
+                showLegend ?
                     std::optional<const wxString>(groupColumnName) :
                     std::nullopt,
                 IsIncludingFleschRulerDocGroups());
@@ -2994,7 +2998,7 @@ void BatchProjectDoc::DisplayFleschChart()
             wxASSERT(fleschChart);
             fleschChart->SetData(scoreDataset, wordsColumnName,
                 scoresColumnName, syllablesColumnName,
-                IsShowingGroupLegends() ?
+                showLegend ?
                     std::optional<const wxString>(groupColumnName) :
                     std::nullopt,
                 IsIncludingFleschRulerDocGroups());
@@ -3004,7 +3008,7 @@ void BatchProjectDoc::DisplayFleschChart()
 
         fleschChart->ShowConnectionLine(IsConnectingFleschPoints());
 
-        if (IsShowingGroupLegends())
+        if (showLegend)
             {
             view->GetFleschChart()->SetFixedObjectsGridSize(1, 2);
             view->GetFleschChart()->SetFixedObject(0, 1,
