@@ -121,7 +121,7 @@ public:
     void SetTopTitleGraphFontColor(const wxColour& color)
         { m_topTitleFontColor = color; }
     [[nodiscard]]
-    wxFont GetTopTitleGraphFont() const 
+    wxFont GetTopTitleGraphFont() const
         { return m_topTitleFont; }
     void SetTopTitleGraphFont(const wxFont& font)
         { m_topTitleFont = font; }
@@ -136,12 +136,12 @@ public:
     void SetBottomTitleGraphFont(const wxFont& font)
         { m_bottomTitleFont = font; }
     [[nodiscard]]
-    wxColour GetLeftTitleGraphFontColor() const 
+    wxColour GetLeftTitleGraphFontColor() const
         { return m_leftTitleFontColor; }
     void SetLeftTitleGraphFontColor(const wxColour& color)
         { m_leftTitleFontColor = color; }
     [[nodiscard]]
-    wxFont GetLeftTitleGraphFont() const 
+    wxFont GetLeftTitleGraphFont() const
         { return m_leftTitleFont; }
     void SetLeftTitleGraphFont(const wxFont& font)
         { m_leftTitleFont = font; }
