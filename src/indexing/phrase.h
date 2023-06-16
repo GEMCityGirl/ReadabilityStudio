@@ -216,6 +216,9 @@ namespace grammar
             @param except The trailing exception to use.*/
         void set_trailing_exceptions(const std::set<word_typeT>& except)
             { m_trailing_exceptions = except; }
+        /// @private
+        void set_trailing_exceptions(std::set<word_typeT>&& except)
+            { m_trailing_exceptions = std::move(except); }
         /** @returns The trailing exception.*/
         [[nodiscard]]
         const std::set<word_typeT>& get_trailing_exceptions() const noexcept
@@ -231,6 +234,9 @@ namespace grammar
             @param except The proceeding exception to use.*/
         void set_proceeding_exceptions(const std::set<word_typeT>& except)
             { m_proceeding_exceptions = except; }
+        /// @private
+        void set_proceeding_exceptions(std::set<word_typeT>&& except)
+            { m_proceeding_exceptions = std::move(except); }
         /** @returns The proceeding exception.*/
         [[nodiscard]]
         const std::set<word_typeT>& get_proceeding_exceptions() const noexcept
@@ -403,7 +409,7 @@ namespace grammar
                 else
                     { newPhrasePair.first.set_type(phrase_type::phrase_wordy); }
                 // Proceeding exception rule is optional.
-                // This would be a word after the phrase that would negate our normal comparison logic.
+                // This would be a word before the phrase that would negate our normal comparison logic.
                 // For example, the phrase "I are" is normally wrong, but in the case of
                 // "and I are" it is correct. So "and" would be our proceeding word exception.
                 if (row.get_number_of_columns_last_read() > 3)
@@ -414,9 +420,9 @@ namespace grammar
                         {
                         const auto nTok = tkzr.get_next_token();
                         if (nTok.length())
-                            { expts.emplace(nTok); }
+                            { expts.emplace(std::move(nTok)); }
                         }
-                    newPhrasePair.first.set_proceeding_exceptions(expts);
+                    newPhrasePair.first.set_proceeding_exceptions(std::move(expts));
                     }
                 else
                     { newPhrasePair.first.get_proceeding_exceptions().clear(); }
@@ -432,9 +438,9 @@ namespace grammar
                         {
                         const auto nTok = tkzr.get_next_token();
                         if (nTok.length())
-                            { expts.emplace(nTok); }
+                            { expts.emplace(std::move(nTok)); }
                         }
-                    newPhrasePair.first.set_trailing_exceptions(expts);
+                    newPhrasePair.first.set_trailing_exceptions(std::move(expts));
                     }
                 else
                     { newPhrasePair.first.get_trailing_exceptions().clear(); }
