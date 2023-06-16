@@ -51,12 +51,12 @@ public:
     wxString GetBackGroundImagePath() const
         { return m_graphBackGroundImagePath; }
     [[nodiscard]]
-    wxColour GetBackGroundColor() const noexcept
+    wxColour GetBackGroundColor() const
         { return m_graphBackGroundColor; }
     void SetBackGroundColor(const wxColour& color)
         { m_graphBackGroundColor = color; }
     [[nodiscard]]
-    wxColour GetPlotBackGroundColor() const noexcept
+    wxColour GetPlotBackGroundColor() const
         { return m_graphPlotBackGroundColor; }
     void SetPlotBackGroundColor(const wxColour& color)
         { m_graphPlotBackGroundColor = color; }
@@ -94,70 +94,70 @@ public:
         { return m_displayDropShadows; }
     /// axis font colors
     [[nodiscard]]
-    wxColour GetXAxisFontColor() const noexcept
+    wxColour GetXAxisFontColor() const
         { return m_xAxisFontColor; }
     void SetXAxisFontColor(const wxColour& color)
         { m_xAxisFontColor = color; }
     [[nodiscard]]
-    wxColour GetYAxisFontColor() const noexcept
+    wxColour GetYAxisFontColor() const
         { return m_yAxisFontColor; }
     void SetYAxisFontColor(const wxColour& color)
         { m_yAxisFontColor = color; }
     /// axis fonts
     [[nodiscard]]
-    wxFont GetXAxisFont() const noexcept
+    wxFont GetXAxisFont() const
         { return m_xAxisFont; }
     void SetXAxisFont(const wxFont& font)
         { m_xAxisFont = font; }
     [[nodiscard]]
-    wxFont GetYAxisFont() const noexcept
+    wxFont GetYAxisFont() const
         { return m_yAxisFont; }
     void SetYAxisFont(const wxFont& font)
         { m_yAxisFont = font; }
     /// title fonts
     [[nodiscard]]
-    wxColour GetTopTitleGraphFontColor() const noexcept
+    wxColour GetTopTitleGraphFontColor() const
         { return m_topTitleFontColor; }
     void SetTopTitleGraphFontColor(const wxColour& color)
         { m_topTitleFontColor = color; }
     [[nodiscard]]
-    wxFont GetTopTitleGraphFont() const  noexcept
+    wxFont GetTopTitleGraphFont() const 
         { return m_topTitleFont; }
     void SetTopTitleGraphFont(const wxFont& font)
         { m_topTitleFont = font; }
     [[nodiscard]]
-    wxColour GetBottomTitleGraphFontColor() const noexcept
+    wxColour GetBottomTitleGraphFontColor() const
         { return m_bottomTitleFontColor; }
     void SetBottomTitleGraphFontColor(const wxColour& color)
         { m_bottomTitleFontColor = color; }
     [[nodiscard]]
-    wxFont GetBottomTitleGraphFont() const noexcept
+    wxFont GetBottomTitleGraphFont() const
         { return m_bottomTitleFont; }
     void SetBottomTitleGraphFont(const wxFont& font)
         { m_bottomTitleFont = font; }
     [[nodiscard]]
-    wxColour GetLeftTitleGraphFontColor() const noexcept
+    wxColour GetLeftTitleGraphFontColor() const 
         { return m_leftTitleFontColor; }
     void SetLeftTitleGraphFontColor(const wxColour& color)
         { m_leftTitleFontColor = color; }
     [[nodiscard]]
-    wxFont GetLeftTitleGraphFont() const noexcept
+    wxFont GetLeftTitleGraphFont() const 
         { return m_leftTitleFont; }
     void SetLeftTitleGraphFont(const wxFont& font)
         { m_leftTitleFont = font; }
     [[nodiscard]]
-    wxColour GetRightTitleGraphFontColor() const noexcept
+    wxColour GetRightTitleGraphFontColor() const
         { return m_rightTitleFontColor; }
     void SetRightTitleGraphFontColor(const wxColour& color)
         { m_rightTitleFontColor = color; }
     [[nodiscard]]
-    wxFont GetRightTitleGraphFont() const noexcept
+    wxFont GetRightTitleGraphFont() const
         { return m_rightTitleFont; }
     void SetRightTitleGraphFont(const wxFont& font)
         { m_rightTitleFont = font; }
     /// invalid area color
     [[nodiscard]]
-    wxColour GetInvalidAreaColor() const noexcept
+    wxColour GetInvalidAreaColor() const
         { return m_graphInvalidAreaColor; }
     void SetInvalidAreaColor(const wxColour& color)
         { m_graphInvalidAreaColor = color; }
