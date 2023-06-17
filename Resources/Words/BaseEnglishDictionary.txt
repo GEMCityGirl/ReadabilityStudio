@@ -7966,6 +7966,8 @@ autographs
 autogyro
 autogyro's
 autogyros
+autohypnotism
+autohypnotism's
 autoignition
 autoignition's
 autoimmune
@@ -16316,6 +16318,7 @@ cadaver's
 cadaverine
 cadaverous
 cadaverously
+cadaverousness
 cadavers
 caddie
 caddied
@@ -19006,6 +19009,7 @@ centromeric
 centrosome
 centrosomes
 cents
+centuried
 centuries
 centurion
 centurion's
@@ -26153,6 +26157,9 @@ conventionalists
 conventionalities
 conventionality
 conventionality's
+conventionalization
+conventionalization's
+conventionalizations
 conventionalize
 conventionalized
 conventionalizes
@@ -29620,6 +29627,9 @@ cuticle
 cuticle's
 cuticles
 cuticular
+cutie
+cutie's
+cuties
 cutings
 cutis
 cutlass
@@ -30042,6 +30052,7 @@ dados
 dads
 daemon
 daemon's
+daemoniac
 daemonic
 daemons
 daffier
@@ -30288,6 +30299,7 @@ daredevil's
 daredevilries
 daredevilry
 daredevils
+daren't
 darer
 darer's
 darers
@@ -35785,6 +35797,7 @@ disorderliness
 disorderliness's
 disorderly
 disorders
+disorganisation
 disorganization
 disorganization's
 disorganizations
@@ -37049,6 +37062,7 @@ doorkeepers
 doorknob
 doorknob's
 doorknobs
+doorless
 doorman
 doorman's
 doormat
@@ -42741,6 +42755,9 @@ eternals
 eternities
 eternity
 eternity's
+etext
+etext's
+etexts
 ethane
 ethane's
 ethanediol
@@ -42765,6 +42782,7 @@ ethereal
 ethereally
 etherealness
 etherealness's
+etheric
 etherise
 etherised
 etherises
@@ -43001,6 +43019,8 @@ europium's
 europiums
 euros
 euryhaline
+eurythmic
+eurythmics
 eusocial
 eustacy
 eustatic
@@ -45230,6 +45250,7 @@ fangs
 fanlight
 fanlight's
 fanlights
+fanlike
 fanned
 fannies
 fanning
@@ -45389,6 +45410,7 @@ fasciculus
 fasciitis
 fascinate
 fascinated
+fascinatedly
 fascinates
 fascinating
 fascinatingly
@@ -48798,6 +48820,8 @@ foresees
 foreshadow
 foreshadowed
 foreshadowing
+foreshadowing's
+foreshadowings
 foreshadows
 foreshore
 foreshore's
@@ -58847,6 +58871,7 @@ honeycomb
 honeycomb's
 honeycombed
 honeycombing
+honeycombings
 honeycombs
 honeycreeper
 honeycreeper's
@@ -60364,6 +60389,7 @@ hyperaesthetic
 hyperaldosteronism
 hyperandrogenism
 hyperandrogenism's
+hyperatomic
 hyperbaric
 hyperbilirubinemia
 hyperbola
@@ -64625,6 +64651,9 @@ insomniac
 insomniacs
 insomnias
 insomuch
+insosuit
+insosuit's
+insosuits
 insouciance
 insouciance's
 insouciances
@@ -71521,6 +71550,7 @@ licked
 licker
 licker's
 lickerish
+lickety
 licking
 licking's
 lickings
@@ -71693,6 +71723,7 @@ lightface's
 lightfaced
 lightfaces
 lightheaded
+lightheadedly
 lightheadedness
 lighthearted
 lightheartedly
@@ -71754,6 +71785,7 @@ liken
 likened
 likeness
 likeness's
+likenesses
 likening
 likens
 liker
@@ -72985,6 +73017,7 @@ looming's
 looms
 loon
 loon's
+looney
 loonier
 loonies
 looniest
@@ -73880,6 +73913,7 @@ mach's
 machete
 machete's
 machetes
+machina
 machinable
 machinate
 machinated
@@ -74602,6 +74636,7 @@ malformation
 malformation's
 malformations
 malformed
+malforming
 malfunction
 malfunctioned
 malfunctioning
@@ -81048,8 +81083,6 @@ moonbeam
 moonbeam's
 moonbeams
 mooned
-Mooney
-Mooney's
 moonflower
 mooning
 moonless
@@ -94308,6 +94341,7 @@ phalloides
 phallus
 phallus's
 phalluses
+phantasies
 phantasm
 phantasm's
 phantasmagoria
@@ -94316,6 +94350,7 @@ phantasmagorias
 phantasmagoric
 phantasmal
 phantasms
+phantasy
 phantasy's
 phantom
 phantom's
@@ -95001,6 +95036,7 @@ physiognomically
 physiognomies
 physiognomy
 physiognomy's
+physiographic
 physiographies
 physiography
 physiography's
@@ -97910,6 +97946,7 @@ positivists
 positivity
 positron
 positron's
+positronic
 positrons
 posits
 poss
@@ -98273,6 +98310,7 @@ pounder
 pounder's
 pounders
 pounding
+poundings
 pounds
 pour
 pourable
@@ -98949,6 +98987,7 @@ prehistorically
 prehistories
 prehistory
 prehistory's
+prehuman
 prehypertension
 preindustrial
 preinitialize
@@ -104606,6 +104645,9 @@ reanimating
 reanimation
 reanimation's
 reanimations
+reanimator
+reanimator's
+reanimators
 reanneal
 reannealed
 reannealing
@@ -104705,6 +104747,7 @@ reasoner's
 reasoners
 reasoning
 reasoning's
+reasoningly
 reasonings
 reasonless
 reasons
@@ -110411,9 +110454,15 @@ robins
 Robles
 Robles's
 robo
+robopsychologist
+robopsychologist's
+robopsychologists
 robot
 robot's
 robotic
+roboticist
+roboticist's
+roboticists
 robotics
 robotise
 robotised
@@ -117044,6 +117093,7 @@ shuckses
 shudder
 shuddered
 shuddering
+shudderingly
 shudders
 shuddery
 shuffle
@@ -117654,6 +117704,7 @@ Simenon's
 Simeon
 Simeon's
 simian
+simianism
 simians
 similar
 similarities
@@ -119692,6 +119743,7 @@ snowiness
 snowiness's
 snowinesses
 snowing
+snowless
 snowline
 snowman
 snowman's
@@ -120886,6 +120938,7 @@ spaded
 spadeful
 spadeful's
 spadefuls
+spadeless
 spader
 spader's
 spades
@@ -126241,6 +126294,7 @@ sulphonylurea
 sulphur
 sulphur's
 sulphured
+sulphureous
 sulphuric
 sulphuring
 sulphurous
@@ -134300,6 +134354,7 @@ trephinations
 trephine
 trephine's
 trephines
+trepidancy
 trepidation
 trepidation's
 trepidations
@@ -136112,6 +136167,9 @@ ultracentrifuge
 ultracentrifuge's
 ultraconservative
 ultraconservatives
+ultradimensionalities
+ultradimensionality
+ultradimensionality's
 ultrafast
 ultrafiltration
 ultrahigh
@@ -136139,6 +136197,9 @@ ultrasuede
 ultraviolet
 ultraviolet's
 ultraviolets
+ultrawave
+ultrawave's
+ultrawaves
 ULTRIX
 ULTRIX's
 ululate
@@ -136386,6 +136447,7 @@ unattributed
 unaudited
 unauthentic
 unauthenticated
+unauthorised
 unauthorized
 unauthorizedly
 unauthorizedness
@@ -137843,6 +137905,8 @@ ungerminated
 ungirded
 unglamorous
 unglazed
+unglimpsed
+unglistening
 unglued
 ungodlier
 ungodliness
@@ -138515,11 +138579,13 @@ unmovable
 unmoveable
 unmoved
 unmoving
+unmuffled
 unmurmuring
 unmusical
 unmusically
 unmuzzled
 unmyelinated
+unnamable
 unnameable
 unnamed
 unnationalized
@@ -138655,6 +138721,7 @@ unpin
 unpinned
 unpinning
 unpins
+unplaceable
 unplaced
 unplagued
 unplanned
@@ -139090,6 +139157,7 @@ unselfishness
 unselfishness's
 unselfishnesses
 unsellable
+unsensing
 unsensitized
 unsent
 unsentimental
@@ -139540,6 +139608,7 @@ unwaxed
 unwearable
 unwearied
 unweariedly
+unweathered
 unwed
 unwedge
 unweighed
@@ -142110,10 +142179,16 @@ visitor's
 visitors
 visits
 visive
+visivox
+visivox's
+visivoxes
 visor
 visor's
 visored
 visoring
+visorphone
+visorphone's
+visorphones
 visors
 vista
 vista's
@@ -144383,6 +144458,7 @@ whispering's
 whisperingly
 whisperings
 whispers
+whispery
 whist
 whist's
 whisted

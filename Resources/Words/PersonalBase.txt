@@ -530,6 +530,7 @@ Algina
 Algis
 Algrenon
 Alhambra
+Alhazred
 Alhena
 Alhertina
 Alhola
@@ -1293,6 +1294,7 @@ Ashbey
 Ashburn
 Ashby
 Ashcroft
+Ashe
 Asheley
 Ashely
 Asher
@@ -2337,6 +2339,7 @@ Boesch
 Bogard
 Bogart
 Bogdan
+Bogert
 Boggs
 Bogorad
 Bohdana
@@ -2906,6 +2909,7 @@ Bullock
 Bullwinkle
 Bultmann
 Buluswar
+Bulwer
 Bumbry
 Bumppo
 Bunche
@@ -2973,6 +2977,7 @@ Buxton
 Buñuel
 Byanna
 Byars
+Byerley
 Byers
 Byford
 Byon
@@ -4387,6 +4392,7 @@ Crystie
 Csaki
 Csikszentmihalyi
 Csomor
+Cthulhu
 Cuartio
 Cuarto
 Cuayáhuitl
@@ -4497,6 +4503,7 @@ Dagmar
 Dagny
 Dagoberta
 Dagoberto
+Dagon
 Daguerre
 Dagwood
 Dahl
@@ -7303,6 +7310,7 @@ Gearalt
 Gearard
 Geary
 Gedeon
+Gedney
 Gedye
 Geelhoed
 Geena
@@ -8249,6 +8257,7 @@ Harriot
 Harriott
 Harris
 Harrison
+Harroway
 Harry
 Harte
 Hartig
@@ -10157,6 +10166,7 @@ Kalle
 Kallen
 Kalley
 Kalli
+Kallner
 Kally
 Kalmyk
 Kalogrides
@@ -11173,6 +11183,7 @@ Krakauer
 Kraken
 Krall
 Kramer
+Kranon
 Krantz
 Krause
 Krauss
@@ -11494,6 +11505,7 @@ Lanka
 Lanna
 Lanni
 Lannie
+Lanning
 Lanny
 Lantz
 Lanz
@@ -11791,6 +11803,7 @@ Leno
 Lenoir
 Lenora
 Lenore
+Lenton
 Lents
 Lentz
 Lenz
@@ -13126,6 +13139,7 @@ Maurizio
 Maury
 Mavia
 Mavis
+Mawson
 Maxfield
 Maxi
 Maxie
@@ -13240,6 +13254,7 @@ McGregor
 McGrew
 McGue
 McGuffey
+McGuffy
 McGuire
 McHaffie
 McHenry
@@ -13717,6 +13732,7 @@ Montrez
 Montserrat
 Monty
 Moona
+Mooney
 Moore
 Mooresville
 Mopsy
@@ -13788,6 +13804,7 @@ Motivalli
 Motrichuk
 Mott
 Mouhamadou
+Moulton
 Mountbatten
 Moussier
 Moussorgsky
@@ -14131,6 +14148,7 @@ Newton
 Newtown
 Neyfakh
 Neyman
+Ngoma
 Nguyen
 Ngwudike
 Nia
@@ -14390,6 +14408,7 @@ Oalo
 Obama
 Obed
 Obergefell
+Obermann
 Obermeyer
 Oberon
 Obert
@@ -14659,6 +14678,7 @@ Ozzy
 Paavo
 Pabla
 Pablo
+Pabodie
 Paca
 Pace
 Pacey
@@ -15801,6 +15821,7 @@ Roediger
 Roeleveld
 Roelofs
 Roenigk
+Roerich
 Roesch
 Roethke
 Roethlisberg
@@ -17521,6 +17542,7 @@ Symington
 Syria
 Szasz
 Szczerski
+Szegeczowska
 Szilagyi
 Szonyi
 Szymborska
@@ -18625,6 +18647,7 @@ Vilhelm
 Vilhelmina
 Viliam
 Viljo
+Villafranca
 Ville
 Villeneuve
 Villette
@@ -18698,6 +18721,7 @@ Vonny
 Vontricia
 Voronoi
 Vova
+Vrasayana
 Vreugdenhil
 Vries
 Vulpecula

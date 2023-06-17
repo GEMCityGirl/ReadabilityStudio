@@ -4861,7 +4861,7 @@ of her own accord	willingly	0
 of her own free will	willingly	0		
 of his own accord	willingly	0		
 of his own free will	willingly	0		
-of it's	of its	3		false;true;right;wrong;correct;incorrect
+of it's	of its	3		correct;false;incorrect;right;true;wrong
 of major importance	is important, are important, was important	0		
 of my own accord	willingly	0		
 of my own free will	willingly	0		
@@ -5298,7 +5298,7 @@ place emphasis on	emphasize	0
 place in jeopardy	jeopardize, endanger	0		
 place into question	challenge, question, doubt	0		
 place of business	business, work	0		
-place were	place where	3		it
+place were	place where	3		enough;it
 placed a burden on	burdened	0		
 placed a priority on	favored, preferred, prioritized	0		
 placed a strain on	strained, taxed, hampered	0		
@@ -6360,7 +6360,7 @@ solitary	alone, single	0
 some but not all	some	0		
 some extend	some extent	3		
 some how	somehow	3		
-some one	someone	3		
+some one	someone	3		billion;hundred;million;thousand;trillion
 some thing	something	3		
 some times	sometimes	3		of
 some what	somewhat	3		
@@ -7566,7 +7566,6 @@ you am	you are	3
 you can bet your bottom dollar	you can be sure of it	2		
 you has	you have	3	to	
 you herd	you heard	3		
-you here	you hear	3	are	
 you thing	you think	3		
 you was	you were	3		
 you yourself	you	1		

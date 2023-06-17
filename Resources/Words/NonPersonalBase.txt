@@ -307,6 +307,7 @@ Arizonan
 Arizonian
 Arkansan
 Arkansas
+Arkham
 Arkhangelsk
 Arlington
 Armageddon
@@ -1358,6 +1359,7 @@ EAL
 Ealham
 Ealing
 Earth
+Earthman
 Easter
 Easthampton
 Eastland
@@ -1582,6 +1584,7 @@ FHA
 FIA
 Fibrinogen
 FICA
+Fictioneers
 Fieldhouse
 Fifa
 Fifine
@@ -2056,6 +2059,8 @@ Hyades
 Hyannis
 Hyderabad
 hydrocodone
+Hyperborea
+Hyperborean
 Hyperloop
 Hyundai
 I.D.
@@ -2330,6 +2335,7 @@ Kilobase
 Kindercam
 Kingsborough
 Kingsbury
+Kingsport
 Kingston
 Kingstown
 Kinko
@@ -2577,6 +2583,7 @@ Läsbarhetsindex
 Maalox
 Mac
 MacBook
+Macchu
 Macedon
 Macedonia
 Macedonian
@@ -2708,6 +2715,7 @@ McCarthyism
 McDonaldisation
 McDonaldization
 Mclntosh
+McMurdo
 Mecca
 Mecklenburg
 Medford
@@ -2972,6 +2980,7 @@ Neb
 Nebr
 Nebraska
 Nebraskan
+Necronomicon
 Nemariam
 Neosporin
 Nepal
@@ -3029,6 +3038,7 @@ Nickelback
 Nicosia
 Nicotera
 Niedersachsen
+Nietzscheism
 Niger
 Nigeria
 Nigerian
@@ -3343,6 +3353,7 @@ Piedmont
 Pierre
 Piggly
 Pilocarpine
+Piltdown
 Pinehurst
 Pinterest
 Pipestone
@@ -3470,6 +3481,7 @@ Psychometrika
 PTA
 PTO
 Ptolemaic
+Ptolemaism
 Ptolemaist
 Publix
 Puebla
@@ -3675,6 +3687,7 @@ S&P
 Saab
 Saarbrücken
 Saarland
+Sabbatarianism
 Sacculina
 Sachsen
 Sacramento
@@ -4218,6 +4231,7 @@ Tibetan
 Ticonderoga
 Tiebold
 Tienanmen
+Tientsin
 Tiffin
 Tigris
 Tijuana
@@ -4385,6 +4399,7 @@ Ukraine
 Ukrainian
 Ulaanbaatar
 Ulster
+Ulthar
 UNESCO
 Ungava
 Unguis
