@@ -95,7 +95,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -113,29 +113,29 @@
        y="41.236694"
        ry="0.45206666" />
     <rect
-       style="opacity:1;fill:#fdb759;fill-opacity:1;stroke:#24221c;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:#fdb759;fill-opacity:1;stroke:#24221c;stroke-width:0.45365828;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4518-2"
-       width="78.59005"
-       height="19.831816"
-       x="75.085754"
-       y="61.049023"
-       ry="0.45251125" />
+       width="64.546341"
+       height="19.878157"
+       x="89.129463"
+       y="61.002678"
+       ry="0.45356867" />
     <rect
-       style="opacity:1;fill:#b4bdcf;fill-opacity:1;stroke:#24221c;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:#b4bdcf;fill-opacity:1;stroke:#24221c;stroke-width:0.45365828;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4518-2-6"
-       width="78.59005"
-       height="19.831816"
-       x="75.085754"
+       width="64.546341"
+       height="19.878157"
+       x="89.129463"
        y="80.880836"
-       ry="0.45251125" />
+       ry="0.45356867" />
     <rect
-       style="opacity:1;fill:#b4bdcf;fill-opacity:1;stroke:#24221c;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:#b4bdcf;fill-opacity:1;stroke:#24221c;stroke-width:0.45365828;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4518-2-5"
-       width="78.59005"
-       height="19.831816"
-       x="75.085754"
+       width="64.546341"
+       height="19.878157"
+       x="89.129463"
        y="100.71265"
-       ry="0.45251125" />
+       ry="0.45356867" />
     <g
        id="g5592"
        transform="translate(0.68186626,-23.493502)">
@@ -171,7 +171,7 @@
     </g>
     <g
        id="g5592-7"
-       transform="rotate(-180,73.594054,107.64599)">
+       transform="rotate(-180,70.948224,107.64599)">
       <g
          transform="matrix(0,-0.03311624,0.03311624,0,187.59564,118.24802)"
          id="g3446-5"
