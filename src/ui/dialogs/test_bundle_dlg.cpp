@@ -73,7 +73,7 @@ void TestBundleDlg::CreateControls()
             wxStaticBoxSizer* nameBoxSizer =
                 new wxStaticBoxSizer(new wxStaticBox(page, wxID_ANY, _(L"Name:")), wxVERTICAL);
 
-            m_bundleNameCtrl = new wxTextCtrl(page, wxID_ANY, wxEmptyString, wxDefaultPosition,
+            m_bundleNameCtrl = new wxTextCtrl(nameBoxSizer->GetStaticBox(), wxID_ANY, wxString{}, wxDefaultPosition,
                                               wxDefaultSize, 0,
                                               wxTextValidator(wxFILTER_NONE, &m_bundleName));
             nameBoxSizer->Add(m_bundleNameCtrl, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
@@ -88,7 +88,8 @@ void TestBundleDlg::CreateControls()
             const long style = m_testBundle.IsLocked() ?
                 wxTE_MULTILINE|wxTE_READONLY : wxTE_MULTILINE;
             m_bundleDescriptionCtrl =
-                new wxTextCtrl(page, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize,
+                new wxTextCtrl(descriptionBoxSizer->GetStaticBox(),
+                               wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
                                style, wxTextValidator(wxFILTER_NONE, &m_descriptionName));
             descriptionBoxSizer->Add(m_bundleDescriptionCtrl, 1,
                 wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());

@@ -607,7 +607,7 @@ void CustomTestDlg::CreateControls()
             mainPanelSizer->Add(nameBoxSizer, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
 
             m_testNameCtrl =
-                new wxTextCtrl(nameBoxSizer->GetStaticBox(), ID_TEST_NAME_FIELD, wxEmptyString,
+                new wxTextCtrl(nameBoxSizer->GetStaticBox(), ID_TEST_NAME_FIELD, wxString{},
                                wxDefaultPosition, wxDefaultSize, 0, wxTextValidator(wxFILTER_NONE, &m_testName));
             nameBoxSizer->Add(m_testNameCtrl, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
             mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());

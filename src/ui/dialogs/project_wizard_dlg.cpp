@@ -415,11 +415,13 @@ void ProjectWizardDlg::CreateControls()
             {
             wxBoxSizer* narrativeSizer = new wxBoxSizer(wxHORIZONTAL);
             wxBoxSizer* narrativeLablesSizer = new wxBoxSizer(wxVERTICAL);
-            wxRadioButton* narrativeRadioButton = new wxRadioButton(page, ID_NARRATIVE_RADIO_BUTTON,
+            wxRadioButton* narrativeRadioButton =
+                new wxRadioButton(docTypeSizer->GetStaticBox(), ID_NARRATIVE_RADIO_BUTTON,
                 _(L"&Narrative text"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP,
                 wxGenericValidator(&m_narrativeSelected));
             narrativeLablesSizer->Add(narrativeRadioButton);
-            wxStaticText* noteLabel = new wxStaticText(page, ID_NARRATIVE_LABEL,
+            wxStaticText* noteLabel =
+                new wxStaticText(docTypeSizer->GetStaticBox(), ID_NARRATIVE_LABEL,
                 _(L"Document contains flowing sentences and paragraphs. "
                   "Items such as headers and list items are not part of the narrative text and "
                   "should be ignored."),
@@ -445,18 +447,20 @@ void ProjectWizardDlg::CreateControls()
             imageLabel.Draw(memDc);
             memDc.SelectObject(wxNullBitmap);
             narrativeSizer->AddStretchSpacer();
-            narrativeSizer->Add(new Thumbnail(page, previewImage) );
+            narrativeSizer->Add(new Thumbnail(docTypeSizer->GetStaticBox(), previewImage) );
             docTypeSizer->Add(narrativeSizer, 0, wxALL|wxEXPAND, wxSizerFlags::GetDefaultBorder());
             }
         // non-narrative text
             {
             wxBoxSizer* sparseSizer = new wxBoxSizer(wxHORIZONTAL);
             wxBoxSizer* sparseLablesSizer = new wxBoxSizer(wxVERTICAL);
-            wxRadioButton* sparseRadioButton = new wxRadioButton(page, ID_NONNARRATIVE_RADIO_BUTTON,
+            wxRadioButton* sparseRadioButton =
+                new wxRadioButton(docTypeSizer->GetStaticBox(), ID_NONNARRATIVE_RADIO_BUTTON,
                 _(L"Non-narrative, &fragmented text"), wxDefaultPosition, wxDefaultSize, 0,
                 wxGenericValidator(&m_fragmentedTextSelected));
             sparseLablesSizer->Add(sparseRadioButton);
-            wxStaticText* noteLabel = new wxStaticText(page, ID_NONNARRATIVE_LABEL,
+            wxStaticText* noteLabel =
+                new wxStaticText(docTypeSizer->GetStaticBox(), ID_NONNARRATIVE_LABEL,
                 _(L"Instead of the standard sentence and paragraph structure, the document mostly "
                    "consists of list items and terse sentence fragments. "
                    "NOTE: this option will disable text exclusion."),
@@ -465,7 +469,7 @@ void ProjectWizardDlg::CreateControls()
             wxBoxSizer* noteSizer = new wxBoxSizer(wxHORIZONTAL);
             noteSizer->Add(noteLabel, 1, wxLEFT, wxSizerFlags::GetDefaultBorder()*3);
 
-            wxButton* moreInfoButton = new wxButton(page, FRAGMENTED_LINK_ID,
+            wxButton* moreInfoButton = new wxButton(docTypeSizer->GetStaticBox(), FRAGMENTED_LINK_ID,
                                                     wxString{}, wxDefaultPosition,
                                                     wxDefaultSize, wxBU_NOTEXT|wxBORDER_NONE);
             moreInfoButton->SetBitmap(
@@ -491,20 +495,22 @@ void ProjectWizardDlg::CreateControls()
             imageLabel.Draw(memDc);
             memDc.SelectObject(wxNullBitmap);
             sparseSizer->AddStretchSpacer();
-            sparseSizer->Add(new Thumbnail(page, previewImage));
+            sparseSizer->Add(new Thumbnail(docTypeSizer->GetStaticBox(), previewImage));
             docTypeSizer->Add(sparseSizer, 0, wxALL|wxEXPAND, wxSizerFlags::GetDefaultBorder());
             }
         // text with "broken lines"
             {
             wxBoxSizer* narrativeSizer = new wxBoxSizer(wxHORIZONTAL);
             wxBoxSizer* narrativeLablesSizer = new wxBoxSizer(wxVERTICAL);
-            wxCheckBox* narrativeButton = new wxCheckBox(page, ID_SENTENCES_SPLIT_RADIO_BUTTON,
+            wxCheckBox* narrativeButton =
+                new wxCheckBox(docLayoutSizer->GetStaticBox(), ID_SENTENCES_SPLIT_RADIO_BUTTON,
                 _(L"&Sentences are split by illustrations or extra spacing"),
                 wxDefaultPosition, wxDefaultSize, wxCHK_2STATE, wxGenericValidator(&m_splitLinesSelected));
             narrativeLablesSizer->Add(narrativeButton);
             narrativeLablesSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-            wxStaticText* noteLabel = new wxStaticText(page, ID_SENTENCES_SPLIT_LABEL,
+            wxStaticText* noteLabel =
+                new wxStaticText(docLayoutSizer->GetStaticBox(), ID_SENTENCES_SPLIT_LABEL,
                 _(L"The document's sentences may be wrapped around illustrations or contain "
                    "empty lines between them. This is common for children's picture books."),
                 wxDefaultPosition, wxDefaultSize, 0);
@@ -513,9 +519,10 @@ void ProjectWizardDlg::CreateControls()
             noteSizer->Add(noteLabel, 1, wxLEFT, wxSizerFlags::GetDefaultBorder()*3);
             noteSizer->SetMinSize(ScaledNoteWidth, -1);
 
-            wxButton* moreInfoButton = new wxButton(page, NARRATIVE_WITH_ILLUSTRATIONS_LINK_ID,
-                                                    wxString{}, wxDefaultPosition, wxDefaultSize,
-                                                    wxBU_NOTEXT|wxBORDER_NONE);
+            wxButton* moreInfoButton =
+                new wxButton(docLayoutSizer->GetStaticBox(), NARRATIVE_WITH_ILLUSTRATIONS_LINK_ID,
+                             wxString{}, wxDefaultPosition, wxDefaultSize,
+                             wxBU_NOTEXT|wxBORDER_NONE);
             moreInfoButton->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/help-button.svg"));
             noteSizer->Add(moreInfoButton, wxSizerFlags().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
@@ -537,7 +544,7 @@ void ProjectWizardDlg::CreateControls()
                 wxSizerFlags::GetDefaultBorder()));
             imageLabel.Draw(memDc);
             memDc.SelectObject(wxNullBitmap);
-            narrativeSizer->Add(new Thumbnail(page, previewImage) );
+            narrativeSizer->Add(new Thumbnail(docLayoutSizer->GetStaticBox(), previewImage) );
             narrativeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
             previewImage = wxGetApp().GetScaledImage(L"wizard/NarrativeWithLines.png", wxBITMAP_TYPE_PNG,
@@ -553,18 +560,19 @@ void ProjectWizardDlg::CreateControls()
             imageLabel.Draw(memDc2);
             memDc2.SelectObject(wxNullBitmap);
             narrativeSizer->AddStretchSpacer();
-            narrativeSizer->Add(new Thumbnail(page, previewImage) );
+            narrativeSizer->Add(new Thumbnail(docLayoutSizer->GetStaticBox(), previewImage) );
             docLayoutSizer->Add(narrativeSizer, 0, wxALL|wxEXPAND, wxSizerFlags::GetDefaultBorder());
             }
         // centered text
             {
             wxBoxSizer* centeredSizer = new wxBoxSizer(wxHORIZONTAL);
             wxBoxSizer* centeredLablesSizer = new wxBoxSizer(wxVERTICAL);
-            wxCheckBox* centeredButton = new wxCheckBox(page, wxID_ANY,
+            wxCheckBox* centeredButton =
+                new wxCheckBox(docLayoutSizer->GetStaticBox(), wxID_ANY,
                 _(L"Centered/left-aligned text"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE,
                 wxGenericValidator(&m_centeredText));
             centeredLablesSizer->Add(centeredButton);
-            wxStaticText* noteLabel = new wxStaticText(page, wxID_STATIC,
+            wxStaticText* noteLabel = new wxStaticText(docLayoutSizer->GetStaticBox(), wxID_STATIC,
                 _(L"Text is indented to be centered or left-aligned on the page. "
                    "Selecting this option will instruct the program to ignore indenting when "
                    "deducing where paragraphs begin and end."),
@@ -573,7 +581,7 @@ void ProjectWizardDlg::CreateControls()
             wxBoxSizer* noteSizer = new wxBoxSizer(wxHORIZONTAL);
             noteSizer->Add(noteLabel, 1, wxLEFT, wxSizerFlags::GetDefaultBorder()*3);
 
-            wxButton* moreInfoButton = new wxButton(page, CENTERED_TEXT_LINK_ID,
+            wxButton* moreInfoButton = new wxButton(docLayoutSizer->GetStaticBox(), CENTERED_TEXT_LINK_ID,
                                                     wxString{}, wxDefaultPosition, wxDefaultSize,
                                                     wxBU_NOTEXT|wxBORDER_NONE);
             moreInfoButton->SetBitmap(
@@ -597,18 +605,20 @@ void ProjectWizardDlg::CreateControls()
             imageLabel.Draw(memDc);
             memDc.SelectObject(wxNullBitmap);
             centeredSizer->AddStretchSpacer();
-            centeredSizer->Add(new Thumbnail(page, previewImage) );
+            centeredSizer->Add(new Thumbnail(docLayoutSizer->GetStaticBox(), previewImage) );
             docLayoutSizer->Add(centeredSizer, 0, wxALL|wxEXPAND, wxSizerFlags::GetDefaultBorder());
             }
         // new lines are always new paragraphs (overrides center text option above)
             {
             wxBoxSizer* wrappedSizer = new wxBoxSizer(wxHORIZONTAL);
             wxBoxSizer* wrappedLablesSizer = new wxBoxSizer(wxVERTICAL);
-            wxCheckBox* wrappedButton = new wxCheckBox(page, ID_HARD_RETURN_CHECKBOX,
+            wxCheckBox* wrappedButton =
+                new wxCheckBox(docLayoutSizer->GetStaticBox(), ID_HARD_RETURN_CHECKBOX,
                 _(L"Line ends (i.e., hard returns) mark the start of a new paragraph"),
                 wxDefaultPosition, wxDefaultSize, wxCHK_2STATE, wxGenericValidator(&m_newLinesAlwaysNewParagraphs));
             wrappedLablesSizer->Add(wrappedButton);
-            wxStaticText* noteLabel = new wxStaticText(page, ID_HARD_RETURN_LABEL,
+            wxStaticText* noteLabel =
+                new wxStaticText(docLayoutSizer->GetStaticBox(), ID_HARD_RETURN_LABEL,
                 _(L"Hard returns in the text always force the start of a new paragraph. "
                    "Selecting this option will instruct the program to treat all line ends as the end of the "
                    "sentence and paragraph, regardless of whether it ends with a period."),
@@ -637,7 +647,7 @@ void ProjectWizardDlg::CreateControls()
             imageLabel.Draw(memDc);
             memDc.SelectObject(wxNullBitmap);
             wrappedSizer->AddStretchSpacer();
-            wrappedSizer->Add(new Thumbnail(page, previewImage));
+            wrappedSizer->Add(new Thumbnail(docLayoutSizer->GetStaticBox(), previewImage));
             wrappedSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
             previewImage = wxGetApp().GetScaledImage(L"wizard/LineEndsAreNewParagraphs.png", wxBITMAP_TYPE_PNG,
@@ -652,7 +662,7 @@ void ProjectWizardDlg::CreateControls()
             imageLabel.Draw(memDc2);
             memDc2.SelectObject(wxNullBitmap);
             wrappedSizer->AddStretchSpacer();
-            wrappedSizer->Add(new Thumbnail(page, previewImage) );
+            wrappedSizer->Add(new Thumbnail(docLayoutSizer->GetStaticBox(), previewImage) );
             docLayoutSizer->Add(wrappedSizer, 0, wxALL|wxEXPAND, wxSizerFlags::GetDefaultBorder());
             }
         pageSizer->Add(optionsSizer, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
