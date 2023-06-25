@@ -2036,7 +2036,8 @@ void BaseProject::LoadHardWords()
     // Load proper nouns and all words lists
     multi_value_frequency_aggregate_map<traits::case_insensitive_wstring_ex,
                                         traits::case_insensitive_wstring_ex>
-        keyWordsStemmedWithCounts, keyDifficultWordsStemmedWithCounts;
+        keyWordsStemmedWithCounts;
+
     auto stemmer = CreateStemmer();
 
     size_t uniqueProperNouns{ 0 }, uniqueContractions{ 0 };
@@ -2103,32 +2104,18 @@ void BaseProject::LoadHardWords()
             }
         // important (stemmed) words with a list of their variations occurring in the document
         if (HasUI() &&
+            (GetWordsBreakdownInfo().IsWordCloudEnabled() ||
+             GetWordsBreakdownInfo().IsKeyWordsEnabled()) &&
             !wordPos->first.is_file_address() &&
             !wordPos->first.is_numeric() &&
             !GetWords()->is_word_common(wordPos->first.c_str()) )
             {
-            traits::case_insensitive_wstring_ex currentWord(wordPos->first.c_str());
-            (*stemmer)(currentWord);
+            traits::case_insensitive_wstring_ex stemmedWord(wordPos->first.c_str());
+            (*stemmer)(stemmedWord);
             keyWordsStemmedWithCounts.insert(
                 // the stem and original word
-                currentWord, wordPos->first,
-                // overall frequency of current word (not the proper noun count)
-                wordPos->second.first);
-            }
-        // important (stemmed) 3+ syllable words with a list of their variations
-        // occurring in the document
-        if (HasUI() &&
-            wordPos->first.get_syllable_count() >= 3 &&
-            !wordPos->first.is_file_address() &&
-            !wordPos->first.is_numeric() &&
-            !GetWords()->is_word_common(wordPos->first.c_str()) )
-            {
-            traits::case_insensitive_wstring_ex currentWord(wordPos->first.c_str());
-            (*stemmer)(currentWord);
-            keyDifficultWordsStemmedWithCounts.insert(
-                // the stem and original word
-                currentWord, wordPos->first,
-                // overall frequency of current word (not the proper noun count)
+                stemmedWord, wordPos->first,
+                // overall frequency of current word
                 wordPos->second.first);
             }
         // dolch sight words
@@ -2534,73 +2521,75 @@ void BaseProject::LoadHardWords()
     size_t uniqueImportWordsCount{ 0 };
     if (HasUI())
         {
+        // key words list
         if (GetKeyWordsBaseData() == nullptr)
             { m_keyWordsBaseData = new ListCtrlExNumericDataProvider; }
         GetKeyWordsBaseData()->DeleteAllItems();
         GetKeyWordsBaseData()->SetSize(keyWordsStemmedWithCounts.get_data().size(), 2);
 
-        // KEY WORDS LISTCONTROL
-        wxString allValuesStr;
-        for (const auto& [hardWordStem, hardWordFreqInfo] : keyWordsStemmedWithCounts.get_data())
-            {
-            // aggregate all the variations of the current word that share a common stem
-            allValuesStr.clear();
-            for (const auto& subWord : hardWordFreqInfo.first.get_data())
-                { allValuesStr.append(subWord.first.c_str()).append(L"; "); }
-            allValuesStr.Trim();
-            allValuesStr.RemoveLast();
-            wxASSERT_MSG(allValuesStr.length(), L"Empty word list from stemmed word!");
-
-            GetKeyWordsBaseData()->SetItemText(uniqueImportWordsCount, 0, allValuesStr);
-            GetKeyWordsBaseData()->SetItemValue(uniqueImportWordsCount++, 1, hardWordFreqInfo.second);
-            }
-
-        if (m_difficultUncommonWordsDataset == nullptr)
-            { m_difficultUncommonWordsDataset = std::make_shared<Wisteria::Data::Dataset>(); }
-        m_difficultUncommonWordsDataset->Clear();
-        m_difficultUncommonWordsDataset->AddCategoricalColumn(GetWordsColumnName());
-        m_difficultUncommonWordsDataset->AddContinuousColumn(GetWordsCountsColumnName());
-        wxASSERT_MSG(m_difficultUncommonWordsDataset->GetCategoricalColumns().size() == 1,
+        // word cloud
+        if (m_keyWordsDataset == nullptr)
+            { m_keyWordsDataset = std::make_shared<Wisteria::Data::Dataset>(); }
+        m_keyWordsDataset->Clear();
+        m_keyWordsDataset->AddCategoricalColumn(GetWordsColumnName());
+        m_keyWordsDataset->AddContinuousColumn(GetWordsCountsColumnName());
+        wxASSERT_MSG(m_keyWordsDataset->GetCategoricalColumns().size() == 1,
             L"Hard word dataset invalid!");
-        wxASSERT_MSG(m_difficultUncommonWordsDataset->GetRowCount() == 0,
+        wxASSERT_MSG(m_keyWordsDataset->GetRowCount() == 0,
             L"Hard word dataset should be empty!");
-        m_difficultUncommonWordsDataset->Resize(
-            keyDifficultWordsStemmedWithCounts.get_data().size());
-        auto hardWordsColumn =
-            m_difficultUncommonWordsDataset->GetCategoricalColumn(GetWordsColumnName());
-        auto hardWordsFreqColumn =
-            m_difficultUncommonWordsDataset->GetContinuousColumn(GetWordsCountsColumnName());
+        m_keyWordsDataset->Resize(
+            keyWordsStemmedWithCounts.get_data().size());
+        auto keyWordsColumn =
+            m_keyWordsDataset->GetCategoricalColumn(GetWordsColumnName());
+        auto keydWordsFreqColumn =
+            m_keyWordsDataset->GetContinuousColumn(GetWordsCountsColumnName());
 
-        // WORD CLOUD DATASET
+        wxString allValuesStr;
         size_t wordCloudWordsCount{ 0 };
-        for (const auto& [hardWordStem, hardWordFreqInfo] : keyDifficultWordsStemmedWithCounts.get_data())
+        for (const auto& [keyWordStem, keyWordFreqInfo] : keyWordsStemmedWithCounts.get_data())
             {
-            // which variation of the current stem occurs the most often
-            auto mostFrequentWordVariation =
-                std::max_element(hardWordFreqInfo.first.get_data().cbegin(),
-                    hardWordFreqInfo.first.get_data().cend(),
-                    [](const auto& lhv, const auto& rhv) noexcept
-                    { return lhv.second < rhv.second; });
-            wxASSERT_MSG(mostFrequentWordVariation != hardWordFreqInfo.first.get_data().cend(),
-                L"Empty word list for stemmed word?!");
-            // add the next word to the dataset's string table
-            const auto nextKey = hardWordsColumn->GetNextKey();
-            if (mostFrequentWordVariation != hardWordFreqInfo.first.get_data().cend())
+            if (GetWordsBreakdownInfo().IsKeyWordsEnabled())
                 {
-                hardWordsColumn->GetStringTable().insert(
-                    std::make_pair(nextKey, mostFrequentWordVariation->first.c_str()));
+                // aggregate all the variations of the current word that share a common stem
+                allValuesStr.clear();
+                for (const auto& subWord : keyWordFreqInfo.first.get_data())
+                    { allValuesStr.append(subWord.first.c_str()).append(L"; "); }
+                allValuesStr.Trim().RemoveLast();
+                wxASSERT_MSG(allValuesStr.length(), L"Empty word list from stemmed word?!");
+
+                GetKeyWordsBaseData()->SetItemText(uniqueImportWordsCount, 0, allValuesStr);
+                GetKeyWordsBaseData()->SetItemValue(uniqueImportWordsCount++, 1, keyWordFreqInfo.second);
                 }
-            // could never happen, but for robustness sake use the stem word
-            // if the word list for the stem is empty
-            else
+
+            if (GetWordsBreakdownInfo().IsWordCloudEnabled())
                 {
-                hardWordsColumn->GetStringTable().insert(
-                    std::make_pair(nextKey, hardWordStem.c_str()));
+                // which variation of the current stem occurs the most often
+                auto mostFrequentWordVariation =
+                    std::max_element(keyWordFreqInfo.first.get_data().cbegin(),
+                        keyWordFreqInfo.first.get_data().cend(),
+                        [](const auto& lhv, const auto& rhv) noexcept
+                        { return lhv.second < rhv.second; });
+                wxASSERT_MSG(mostFrequentWordVariation != keyWordFreqInfo.first.get_data().cend(),
+                    L"Empty word list for stemmed word?!");
+                // add the next word to the dataset's string table
+                const auto nextKey = keyWordsColumn->GetNextKey();
+                if (mostFrequentWordVariation != keyWordFreqInfo.first.get_data().cend())
+                    {
+                    keyWordsColumn->GetStringTable().insert(
+                        std::make_pair(nextKey, mostFrequentWordVariation->first.c_str()));
+                    }
+                // could never happen, but for robustness sake use the stem word
+                // if the word list for the stem is empty
+                else
+                    {
+                    keyWordsColumn->GetStringTable().insert(
+                        std::make_pair(nextKey, keyWordStem.c_str()));
+                    }
+                // add the new string table ID (i.e., the current word) and
+                // respective frequency to the current row
+                keyWordsColumn->SetValue(wordCloudWordsCount, nextKey);
+                keydWordsFreqColumn->SetValue(wordCloudWordsCount++, keyWordFreqInfo.second);
                 }
-            // add the new string table ID (i.e., the current word) and
-            // respective frequency to the current row
-            hardWordsColumn->SetValue(wordCloudWordsCount, nextKey);
-            hardWordsFreqColumn->SetValue(wordCloudWordsCount++, hardWordFreqInfo.second);
             }
         }
 
