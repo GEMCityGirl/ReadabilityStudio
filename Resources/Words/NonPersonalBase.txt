@@ -1374,6 +1374,8 @@ Eccles
 Ecclesia
 Ecclesiastes
 EcoBoost
+ECochG
+ECoG
 Ecolab
 Econometrica
 Economica
@@ -1439,6 +1441,7 @@ Enoxaparin
 Enron
 Envermeu
 Eocene
+EPA
 Ephesian
 Ephesus
 EpiPen
@@ -1757,6 +1760,7 @@ Genesco
 Geneva
 Genevan
 Genevese
+Genoa
 Genoese
 GenoPheno
 Genworth
@@ -2124,6 +2128,7 @@ Indonesian
 Indore
 Indra
 Indurain
+Indus
 Indy
 Informatica
 Infosys
@@ -2166,6 +2171,7 @@ Irishwoman
 Irishwomen
 Iroquoian
 Iroquois
+IRS
 Islam
 Islamabad
 Islamic
@@ -2219,7 +2225,9 @@ Javadoc
 Javanese
 JavaScript
 Jayawardenepura
+Jazeera
 JCPenney
+Jedi
 Jeffersonian
 Jello
 Jennerian
@@ -2698,15 +2706,19 @@ Matlab
 Mattachine
 Mattel
 Matterhorn
+Maui
 Mauritania
 Mauritanian
 Mauritian
 Mauritius
 Maurya
+Maxi
+Maxtor
 Maxwellian
 Maxx
 Mayan
 Maybelline
+Mayfair
 Mayotte
 Maytag
 Mazda
@@ -2727,6 +2739,7 @@ Medigap
 Medina
 Meditech
 Mediterranean
+Medway
 MegaCorp
 Meibomian
 Melanesia
@@ -2738,6 +2751,7 @@ Memphis
 Mendelism
 Menkalinan
 Mennonite
+Mensa
 Merck
 Mercosur
 Mercurian
@@ -2809,6 +2823,7 @@ Missourian
 Misérables
 Misérables's
 MIT
+Mitsubishi
 MLA
 Mobil
 Mobutu
@@ -2844,6 +2859,7 @@ Monoceros
 Monocerotis
 Monongahela
 Monrovia
+Monsanto
 Montalegre
 Montana
 Montanan
@@ -3287,6 +3303,7 @@ Pekingese
 Peloponnese
 Pembrokeshire
 Penh
+Penn
 Pennsylvania
 Pennsylvanian
 Pennzoil
