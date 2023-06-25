@@ -67,7 +67,8 @@ bool EditWordListDlg::Save(const wxString& filePath)
         }
     else
         {
-        m_wordsList->FormatToText(outputStr,false,0,-1,0,-1,false);
+        m_wordsList->FormatToText(outputStr, ListCtrlEx::ExportRowSelection::ExportAll,
+                                  0, -1, 0, -1, false);
         grammar::phrase_collection phrases;
         phrases.load_phrases(outputStr, true, false);
         phrases.remove_duplicates();
