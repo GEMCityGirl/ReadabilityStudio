@@ -1566,14 +1566,18 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
         }
 
     // move all the words (from all documents) into lists
-    multi_value_aggregate_map<traits::case_insensitive_wstring_ex,word_case_insensitive_no_stem>
-        allWordsStemmedWithCounts;
+    multi_value_frequency_aggregate_map<traits::case_insensitive_wstring_ex,
+                                        traits::case_insensitive_wstring_ex>
+        keyWordsStemmedWithCounts;
     stemming::english_stem<traits::case_insensitive_wstring_ex> englishStem;
     stemming::spanish_stem<traits::case_insensitive_wstring_ex> spanishStem;
     stemming::german_stem<traits::case_insensitive_wstring_ex> germanStem;
 
     GetAllWordsBatchData()->DeleteAllItems();
     GetAllWordsBatchData()->SetSize(wordsFromAllDocs.get_data().size(), 3);
+
+    auto stemmer = CreateStemmer();
+    const auto& commonWords = GetStopList();
     size_t i = 0;
     for (auto wordPos = wordsFromAllDocs.get_data().cbegin();
         wordPos != wordsFromAllDocs.get_data().cend();
@@ -1583,54 +1587,38 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
         GetAllWordsBatchData()->SetItemValue(i, 1, wordPos->second.first);
         GetAllWordsBatchData()->SetItemValue(i, 2, wordPos->second.second);
 
-        traits::case_insensitive_wstring_ex stemmed(wordPos->first.c_str());
-        switch (GetProjectLanguage())
+        if (!wordPos->first.is_file_address() &&
+            !wordPos->first.is_numeric() &&
+            !commonWords.contains(wordPos->first.c_str()))
             {
-            case readability::test_language::english_test:
-                englishStem(stemmed);
-                break;
-            case readability::test_language::spanish_test:
-                spanishStem(stemmed);
-                break;
-            case readability::test_language::german_test:
-                germanStem(stemmed);
-                break;
+            traits::case_insensitive_wstring_ex stemmedWord(wordPos->first.c_str());
+            (*stemmer)(stemmedWord);
+            keyWordsStemmedWithCounts.insert(
+                // the stem and original word
+                stemmedWord, wordPos->first,
+                // overall frequency of current word
+                wordPos->second.first);
             }
-        allWordsStemmedWithCounts.insert(stemmed, wordPos->first, wordPos->second.first);
         }
 
     // condensed key words
         {
         GetKeyWordsBatchData()->DeleteAllItems();
-        GetKeyWordsBatchData()->SetSize(allWordsStemmedWithCounts.get_data().size(), 2);
+        GetKeyWordsBatchData()->SetSize(keyWordsStemmedWithCounts.get_data().size(), 2);
 
         size_t uniqueImportWordsCount{ 0 };
-        const auto& commonWords = GetStopList();
         wxString allValuesStr;
-        for (const auto& allWords : allWordsStemmedWithCounts.get_data())
+        for (const auto& [keyWordStem, keyWordFreqInfo] : keyWordsStemmedWithCounts.get_data())
             {
-            bool unimportantWordEncountered{ false };
             // aggregate all the variations of the current word that share a common stem
             allValuesStr.clear();
-            for (const auto& currentWord : allWords.second.first)
-                {
-                if (commonWords.find(currentWord.c_str()) ||
-                    currentWord.is_file_address() ||
-                    currentWord.is_numeric())
-                    {
-                    unimportantWordEncountered = true;
-                    continue;
-                    }
-                allValuesStr.append(currentWord.c_str()).append(L"; ");
-                }
+            for (const auto& subWord : keyWordFreqInfo.first.get_data())
+                { allValuesStr.append(subWord.first.c_str()).append(L"; "); }
             allValuesStr.Trim().RemoveLast();
-            // only add if all word variations were uncommon and non-numeric
-            if (!unimportantWordEncountered && allValuesStr.length())
-                {
-                GetKeyWordsBatchData()->SetItemText(uniqueImportWordsCount, 0, allValuesStr);
-                GetKeyWordsBatchData()->SetItemValue(uniqueImportWordsCount, 1, allWords.second.second);
-                ++uniqueImportWordsCount;
-                }
+
+            GetKeyWordsBatchData()->SetItemText(uniqueImportWordsCount, 0, allValuesStr);
+            GetKeyWordsBatchData()->SetItemValue(uniqueImportWordsCount, 1, keyWordFreqInfo.second);
+            ++uniqueImportWordsCount;
             }
         GetKeyWordsBatchData()->SetSize(uniqueImportWordsCount);
         }
