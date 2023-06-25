@@ -2039,7 +2039,7 @@ void ProjectDoc::DisplayWordsBreakdown()
     // key words list
     listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
         BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID));
-    if (GetWordsBreakdownInfo().IsAllWordsCondensedEnabled() &&
+    if (GetWordsBreakdownInfo().IsKeyWordsEnabled() &&
         GetTotalWords() > 0 && GetKeyWordsBaseData() &&
         // don't bother with condensed list if it has the same item count as the all words list
         // (that would mean that there was no condensing [stemming] that took place and that these lists are the same).
@@ -2546,23 +2546,23 @@ void ProjectDoc::DisplayWordCharts()
         view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::SYLLABLE_HISTOGRAM_PAGE_ID);
         }
 
-    // difficult-word cloud
-    Wisteria::Canvas* hardWordCloudCanvas =
+    // word cloud
+    Wisteria::Canvas* wordCloudCanvas =
         dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().FindWindowById(
-            BaseProjectView::HARD_WORD_CLOUD_PAGE_ID));
-    if (GetWordsBreakdownInfo().IsDifficultWordCloudEnabled())
+            BaseProjectView::WORD_CLOUD_PAGE_ID));
+    if (GetWordsBreakdownInfo().IsWordCloudEnabled())
         {
-        if (!hardWordCloudCanvas)
+        if (!wordCloudCanvas)
             {
-            hardWordCloudCanvas = new Wisteria::Canvas(view->GetSplitter(),
-                                                       BaseProjectView::HARD_WORD_CLOUD_PAGE_ID);
-            hardWordCloudCanvas->SetFixedObjectsGridSize(1, 1);
-            hardWordCloudCanvas->SetFixedObject(0, 0, std::make_shared<WordCloud>(hardWordCloudCanvas));
-            hardWordCloudCanvas->Hide();
-            hardWordCloudCanvas->SetLabel(BaseProjectView::GetDifficultWordCloudLabel());
-            hardWordCloudCanvas->SetName(BaseProjectView::GetDifficultWordCloudLabel());
-            hardWordCloudCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
-            hardWordCloudCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
+            wordCloudCanvas = new Wisteria::Canvas(view->GetSplitter(),
+                                                       BaseProjectView::WORD_CLOUD_PAGE_ID);
+            wordCloudCanvas->SetFixedObjectsGridSize(1, 1);
+            wordCloudCanvas->SetFixedObject(0, 0, std::make_shared<WordCloud>(wordCloudCanvas));
+            wordCloudCanvas->Hide();
+            wordCloudCanvas->SetLabel(BaseProjectView::GetWordCloudLabel());
+            wordCloudCanvas->SetName(BaseProjectView::GetWordCloudLabel());
+            wordCloudCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
+            wordCloudCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
 
             // place beneath bar charts (if included)
             int otherGraphPosition{ wxNOT_FOUND };
@@ -2577,21 +2577,23 @@ void ProjectDoc::DisplayWordCharts()
                 (otherGraphPosition != wxNOT_FOUND) ?
                     otherGraphPosition + 1 :
                     0,
-                hardWordCloudCanvas);
+                wordCloudCanvas);
             }
-        UpdateGraphOptions(hardWordCloudCanvas);
+        UpdateGraphOptions(wordCloudCanvas);
 
-        auto wordCloud = std::dynamic_pointer_cast<WordCloud>(hardWordCloudCanvas->GetFixedObject(0, 0));
+        auto wordCloud = std::dynamic_pointer_cast<WordCloud>(wordCloudCanvas->GetFixedObject(0, 0));
         wxASSERT_LEVEL_2(wordCloud);
-        wordCloud->SetData(m_difficultUncommonWordsDataset,
-                           GetWordsColumnName(), GetWordsCountsColumnName(), 2);
+        // top 100 words, with a min frequency of 2
+        wordCloud->SetData(m_keyWordsDataset,
+                           GetWordsColumnName(), GetWordsCountsColumnName(), 2,
+                           std::nullopt, 100);
 
-        hardWordCloudCanvas->CalcAllSizes(gdc);
+        wordCloudCanvas->CalcAllSizes(gdc);
         }
     else
         {
         // we are getting rid of this window (if nothing in it)
-        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::HARD_WORD_CLOUD_PAGE_ID);
+        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::WORD_CLOUD_PAGE_ID);
         }
     }
 

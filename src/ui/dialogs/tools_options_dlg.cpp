@@ -1136,8 +1136,8 @@ bool ToolsOptionsDlg::HaveWordsBreakdownOptionsChanged() const
                m_wordsBreakdownPropertyGrid->IsPropertyModified(BaseProjectView::GetThreeSyllableWordsLabel())) ||
            (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetSixCharWordsLabel()) &&
                m_wordsBreakdownPropertyGrid->IsPropertyModified(BaseProjectView::GetSixCharWordsLabel())) ||
-           (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetDifficultWordCloudLabel()) &&
-               m_wordsBreakdownPropertyGrid->IsPropertyModified(BaseProjectView::GetDifficultWordCloudLabel())) ||
+           (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetWordCloudLabel()) &&
+               m_wordsBreakdownPropertyGrid->IsPropertyModified(BaseProjectView::GetWordCloudLabel())) ||
            (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetDaleChallLabel()) &&
                m_wordsBreakdownPropertyGrid->IsPropertyModified(BaseProjectView::GetDaleChallLabel())) ||
            (IsPropertyAvailable(m_wordsBreakdownPropertyGrid,BaseProjectView::GetSpacheLabel()) &&
@@ -1430,10 +1430,10 @@ void ToolsOptionsDlg::SaveOptions()
             m_readabilityProjectDoc->GetWordsBreakdownInfo().Enable6PlusCharacter(
                 m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSixCharWordsLabel()));
             }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetDifficultWordCloudLabel()))
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetWordCloudLabel()))
             {
-            m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableDifficultWordCloud(
-                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetDifficultWordCloudLabel()));
+            m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableWordCloud(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetWordCloudLabel()));
             }
         if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetDaleChallLabel()))
             {
@@ -1462,7 +1462,7 @@ void ToolsOptionsDlg::SaveOptions()
             }
         if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetKeyWordsLabel()))
             {
-            m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableAllWordsCondensed(
+            m_readabilityProjectDoc->GetWordsBreakdownInfo().EnableKeyWords(
                 m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetKeyWordsLabel()));
             }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetIgnoreProperNounsLabel()))
@@ -1836,10 +1836,10 @@ void ToolsOptionsDlg::SaveOptions()
             wxGetApp().GetAppOptions().GetWordsBreakdownInfo().Enable6PlusCharacter(
                 m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetSixCharWordsLabel()));
             }
-        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetDifficultWordCloudLabel()))
+        if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetWordCloudLabel()))
             {
-            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableDifficultWordCloud(
-                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetDifficultWordCloudLabel()));
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableWordCloud(
+                m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetWordCloudLabel()));
             }
         if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetDaleChallLabel()))
             {
@@ -1868,7 +1868,7 @@ void ToolsOptionsDlg::SaveOptions()
             }
         if (IsPropertyAvailable(m_wordsBreakdownPropertyGrid, BaseProjectView::GetKeyWordsLabel()))
             {
-            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableAllWordsCondensed(
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableKeyWords(
                 m_wordsBreakdownPropertyGrid->GetPropertyValueAsBool(BaseProjectView::GetKeyWordsLabel()));
             }
         if (IsPropertyAvailable(m_grammarPropertyGrid,GetGrammarHighlightedReportLabel()))
@@ -3765,15 +3765,15 @@ void ToolsOptionsDlg::CreateControls()
             _(L"Check this to include the 6+ character words in the results."));
 
         m_wordsBreakdownPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetDifficultWordCloudLabel(), wxPG_LABEL,
+            new wxBoolProperty(BaseProjectView::GetWordCloudLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetWordsBreakdownInfo().IsDifficultWordCloudEnabled() :
-                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsDifficultWordCloudEnabled())) );
-        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(BaseProjectView::GetDifficultWordCloudLabel(),
+                m_readabilityProjectDoc->GetWordsBreakdownInfo().IsWordCloudEnabled() :
+                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsWordCloudEnabled())) );
+        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(BaseProjectView::GetWordCloudLabel(),
                                                            wxPG_BOOL_USE_CHECKBOX, true);
         m_wordsBreakdownPropertyGrid->SetPropertyHelpString(
-            BaseProjectView::GetDifficultWordCloudLabel(),
-            _(L"Check this to include the difficult word cloud in the results."));
+            BaseProjectView::GetWordCloudLabel(),
+            _(L"Check this to include the key word cloud in the results."));
 
         m_wordsBreakdownPropertyGrid->Append(
             new wxBoolProperty(BaseProjectView::GetDaleChallLabel(), wxPG_LABEL,
@@ -3836,8 +3836,8 @@ void ToolsOptionsDlg::CreateControls()
         m_wordsBreakdownPropertyGrid->Append(
             new wxBoolProperty(BaseProjectView::GetKeyWordsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetWordsBreakdownInfo().IsAllWordsCondensedEnabled() :
-                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsAllWordsCondensedEnabled())) );
+                m_readabilityProjectDoc->GetWordsBreakdownInfo().IsKeyWordsEnabled() :
+                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsKeyWordsEnabled())) );
         m_wordsBreakdownPropertyGrid->SetPropertyAttribute(
             BaseProjectView::GetKeyWordsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
         m_wordsBreakdownPropertyGrid->SetPropertyHelpString(

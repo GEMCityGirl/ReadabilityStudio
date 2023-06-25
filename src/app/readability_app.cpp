@@ -725,7 +725,7 @@ bool ReadabilityApp::OnInit()
         { 8036, BaseProjectView::SENTENCE_HISTOGRAM_PAGE_ID },
         { 8037, BaseProjectView::SYLLABLE_HISTOGRAM_PAGE_ID },
         { 8038, BaseProjectView::SENTENCE_HEATMAP_PAGE_ID },
-        { 8039, BaseProjectView::HARD_WORD_CLOUD_PAGE_ID },
+        { 8039, BaseProjectView::WORD_CLOUD_PAGE_ID },
         { 8040, BaseProjectView::ID_SCORE_LIST_PAGE_ID },
         { 8041, BaseProjectView::ID_DIFFICULT_WORDS_LIST_PAGE_ID },
         { 8042, BaseProjectView::ID_DOLCH_COVERAGE_LIST_PAGE_ID },
@@ -3954,7 +3954,7 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
         case BaseProjectView::SENTENCE_HEATMAP_PAGE_ID:
             DisplayHelp(_DT(L"reviewing-sentences-breakdown.html"));
             break;
-        case BaseProjectView::HARD_WORD_CLOUD_PAGE_ID:
+        case BaseProjectView::WORD_CLOUD_PAGE_ID:
             DisplayHelp(_DT(L"reviewing-word-clouds.html"));
             break;
         case BaseProjectView::READABILITY_SCORES_PAGE_ID:

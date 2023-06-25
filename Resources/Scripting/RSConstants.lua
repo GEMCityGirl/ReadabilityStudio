@@ -55,7 +55,7 @@ GraphType =
   SyllableHistogram = 8037,
   GermanLix = 8028,
   DanielsonBryan2 = 8029,
-  ThreePlusSyllableWordCloud = 8039
+  WordCloud = 8039
   }
 
 DolchResultType =

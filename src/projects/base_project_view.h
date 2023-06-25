@@ -214,8 +214,8 @@ public:
     static wxString GetSentenceLengthHeatmapLabel()
         { return _(L"Lengths (Density)"); }
     [[nodiscard]]
-    static wxString GetDifficultWordCloudLabel()
-        { return _(L"Key Difficult Word Cloud"); }
+    static wxString GetWordCloudLabel()
+        { return _(L"Key Word Cloud"); }
     // Dolch labels
     [[nodiscard]]
     static wxString GetDolchWordTabLabel()
@@ -395,7 +395,7 @@ public:
     static constexpr int SENTENCE_HISTOGRAM_PAGE_ID = wxID_HIGHEST + 35;
     static constexpr int SYLLABLE_HISTOGRAM_PAGE_ID = wxID_HIGHEST + 36;
     static constexpr int SENTENCE_HEATMAP_PAGE_ID = wxID_HIGHEST + 37;
-    static constexpr int HARD_WORD_CLOUD_PAGE_ID = wxID_HIGHEST + 38;
+    static constexpr int WORD_CLOUD_PAGE_ID = wxID_HIGHEST + 38;
     // batch IDs
     //----------
     static constexpr int ID_SCORE_LIST_PAGE_ID = wxID_HIGHEST + 39;

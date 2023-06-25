@@ -1641,7 +1641,7 @@ protected:
         { return L"WORD_COUNTS"; }
 
     // dataset for word cloud
-    std::shared_ptr<Wisteria::Data::Dataset> m_difficultUncommonWordsDataset
+    std::shared_ptr<Wisteria::Data::Dataset> m_keyWordsDataset
         { nullptr };
 
     // unique word count and total count for each category

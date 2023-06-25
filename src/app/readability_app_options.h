@@ -275,10 +275,10 @@ public:
     [[nodiscard]]
     bool IsAllWordsEnabled() const
         { return m_wordsBreakdownItemsToInclude[8]; }
-    void EnableAllWordsCondensed(const bool enable)
+    void EnableKeyWords(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(9,enable); }
     [[nodiscard]]
-    bool IsAllWordsCondensedEnabled() const
+    bool IsKeyWordsEnabled() const
         { return m_wordsBreakdownItemsToInclude[9]; }
     void EnableProperNouns(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(10,enable); }
@@ -290,10 +290,10 @@ public:
     [[nodiscard]]
     bool IsContractionsEnabled() const
         { return m_wordsBreakdownItemsToInclude[11]; }
-    void EnableDifficultWordCloud(const bool enable)
+    void EnableWordCloud(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(12, enable); }
     [[nodiscard]]
-    bool IsDifficultWordCloudEnabled() const
+    bool IsWordCloudEnabled() const
         { return m_wordsBreakdownItemsToInclude[12]; }
 private:
     std::bitset<64> m_wordsBreakdownItemsToInclude{ 0 };
