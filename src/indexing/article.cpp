@@ -243,7 +243,7 @@ bool is_incorrect_english_article::is_an_exception(const wchar_t* word, const si
         { return false; }
 
     // if a known (full-word, case-insensitive) exception
-    if (get_an_exceptions().find(word, word_length))
+    if (get_an_exceptions().contains(word, word_length))
         { return true; }
     else if (traits::case_insensitive_ex::compare(word, L"hono", 4) == 0 ||
         traits::case_insensitive_ex::compare(word, L"hour", 4) == 0 ||
@@ -270,7 +270,7 @@ bool is_incorrect_english_article::is_a_exception(const wchar_t* word, const siz
             L"uti", L"uto" };
 
     // if a known (full-word, case-insensitive) exception
-    if (get_a_exceptions().find(word, word_length))
+    if (get_a_exceptions().contains(word, word_length))
         { return true; }
     // a
     else if (traits::case_insensitive_ex::eq(word[0], L'a'))

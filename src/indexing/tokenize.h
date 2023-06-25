@@ -653,7 +653,7 @@ namespace tokenize
                         traits::case_insensitive_ex::eq(wordEnd[-2],L'i') &&
                         // but watch out for legit words like "domain"
                         (m_known_spellings == nullptr ||
-                         !m_known_spellings->find(std::wstring_view(word_start, wordEnd-word_start).data())))
+                         !m_known_spellings->contains(std::wstring_view(word_start, wordEnd-word_start).data())))
                         { break; }
                     else
                         {

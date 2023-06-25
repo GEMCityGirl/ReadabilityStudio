@@ -59,7 +59,7 @@ namespace grammar
             // if this is [to be][not][past participle]
             if (is_past_participle(words[analyzePosition]) )
                 {
-                if (m_past_participle_exeptions.find(words[analyzePosition].c_str()) )
+                if (m_past_participle_exeptions.contains(words[analyzePosition].c_str()) )
                     {
                     // "ed" word should be followed by preposition showing
                     // that something is affecting "I".

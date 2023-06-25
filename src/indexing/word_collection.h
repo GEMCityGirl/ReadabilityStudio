@@ -800,6 +800,7 @@ public:
     /// @note These phrases' sizes can differ, so the second value should be used to look up the phrase
     ///     from the known phrase list to see how many words it is. This differs from the other phrase vectors
     ///     (which are auto-detected) that simply store the word count as the second value.
+    [[nodiscard]]
     const auto& get_known_phrase_indices() const noexcept
         { return m_known_phrase_indices; }
 
@@ -808,22 +809,26 @@ public:
     ///     (that don't begin or end with auxiliary words).\n
     ///     This is broken down by word index (into the document) and the number of words
     ///     that the phrase takes up. These are detected during the analysis stage.
+    [[nodiscard]]
     const auto& get_n_grams_indices() const noexcept
         { return m_n_grams_indices; }
 
     /// @returns The indices of heuristically detected proper phrases in the document.
     ///     This is broken down by word index (into the document) and the number of words that the phrase takes up.
     ///     These are detected during the analysis stage.
+    [[nodiscard]]
     const auto& get_proper_phrase_indices() const noexcept
         { return m_proper_phrase_indices; }
 
     /// @returns The indices of heuristically detected negating phrases in the document.
     /// This is broken down by word index (into the document) and the number of words that the phrase takes up.
     /// These are detected during the analysis stage.
+    [[nodiscard]]
     const auto& get_negating_phrase_indices() const noexcept
         { return m_negating_phrase_indices; }
 
     /// @returns Information about which word count combinations the phrase auto detector is looking for.
+    [[nodiscard]]
     const auto& get_n_gram_sizes_to_auto_detect() const noexcept
         { return m_n_gram_sizes_to_auto_detect; }
 
@@ -839,6 +844,7 @@ public:
 
     /// @returns Whether or not a specific n-gram size (i.e., word count) is set to be auto-detected.
     /// @param wordCount The word count of the n-gram.
+    [[nodiscard]]
     bool is_n_gram_size_being_searched_for(const size_t wordCount) const
         {
         return std::find(m_n_gram_sizes_to_auto_detect.begin(), m_n_gram_sizes_to_auto_detect.end(), wordCount)
@@ -846,28 +852,36 @@ public:
         }
 
     /// @returns The number of *all* sentences (both valid and invalid).
+    [[nodiscard]]
     inline size_t get_sentence_count() const noexcept
         { return m_sentences.size(); }
     /// @returns The number of sentences words.
+    [[nodiscard]]
     inline size_t get_complete_sentence_count() const noexcept
         { return m_complete_sentence_count; }
 
     /// @returns The number of *all* paragraphs (both valid and invalid).
+    [[nodiscard]]
     inline size_t get_paragraph_count() const noexcept
         { return m_paragraphs.size(); }
     /// @returns The number of paragraphs words.
+    [[nodiscard]]
     inline size_t get_valid_paragraph_count() const noexcept
         { return m_valid_paragraph_count; }
 
+    [[nodiscard]]
     inline size_t get_punctuation_count() const noexcept
         { return m_punctuation.size(); }
+    [[nodiscard]]
     inline size_t get_valid_punctuation_count() const noexcept
         { return m_valid_punctuation_count; }
 
     /// @returns The number of *all* words (both valid and invalid).
+    [[nodiscard]]
     inline size_t get_word_count() const noexcept
         { return m_words.size(); }
     /// @returns The number of valid words.
+    [[nodiscard]]
     inline size_t get_valid_word_count() const noexcept
         { return m_valid_word_count; }
 
@@ -892,11 +906,13 @@ public:
     void treat_header_words_as_valid(const bool treatAsValid) noexcept
         { m_treat_header_words_as_valid = treatAsValid; }
 
+    [[nodiscard]]
     bool is_exclusion_aggressive() const noexcept
         { return m_aggressive_exclusion; }
     void set_aggressive_exclusion(const bool aggressive) noexcept
         { m_aggressive_exclusion = aggressive; }
 
+    [[nodiscard]]
     bool searches_for_proper_nouns() const noexcept
         { return m_search_for_proper_nouns; }
     void set_search_for_proper_nouns(const bool search) noexcept
@@ -904,6 +920,7 @@ public:
 
     /// @returns Whether to search heuristically for proper phrases.
     /// @note searches_for_proper_nouns() should be enabled for this to work.
+    [[nodiscard]]
     bool searches_for_proper_phrases() const noexcept
         { return m_search_for_proper_phrases; }
     /// Sets whether to search heuristically for proper phrases.
@@ -913,6 +930,7 @@ public:
 
     /// @returns Whether to search heuristically for negated phrases (e.g., "won't help").
     /// @note searches_for_proper_nouns() should be enabled for this to work.
+    [[nodiscard]]
     bool searches_for_negated_phrases() const noexcept
         { return m_search_for_negated_phrases; }
     /// Sets whether to search heuristically for negated phrases.
@@ -920,6 +938,7 @@ public:
     void set_search_for_negated_phrases(const bool search) noexcept
         { m_search_for_negated_phrases = search; }
 
+    [[nodiscard]]
     bool searches_for_passive_voice() const noexcept
         { return m_search_passive_voice; }
     void set_search_for_passive_voice(const bool search) noexcept
@@ -927,6 +946,7 @@ public:
 
     void set_allowable_incomplete_sentence_size(const size_t size) noexcept
         { m_allowable_incomplete_sentence_size = size; }
+    [[nodiscard]]
     size_t get_allowable_incomplete_sentence_size() const noexcept
         { return m_allowable_incomplete_sentence_size; }
 
@@ -964,7 +984,8 @@ public:
         { m_stop_list = stop_list; }
     /** @returns Whether the word at \c index is on the common word stop list.
         @note If no stop list is defined (or \c index is at an invalid position)
-        then this will return false.*/
+        then this will return @c false.*/
+    [[nodiscard]]
     bool is_word_common(const size_t index) const
         {
         assert(index < m_words.size());
@@ -975,30 +996,36 @@ public:
         @param theWord The word to search for. This can be any word
             (i.e., does not have to be related to the document itself).
         @note Will return false if stop list has not been set.*/
+    [[nodiscard]]
     bool is_word_common(const wchar_t* theWord) const
         {
         assert(theWord);
-        return (theWord && m_stop_list && m_stop_list->find(theWord));
+        return (theWord && m_stop_list && m_stop_list->contains(theWord));
         }
 
+    [[nodiscard]]
     is_correctly_spelled_word<Tword_type, word_list>& get_spell_checker() noexcept
         { return is_correctly_spelled; }
 
+    [[nodiscard]]
     bool is_excluding_file_addresses() const noexcept
         { return m_exclude_file_addresses; }
     void exclude_file_addresses(const bool exclude) noexcept
         { m_exclude_file_addresses = exclude; }
 
+    [[nodiscard]]
     bool is_excluding_numerals() const noexcept
         { return m_exclude_numerals; }
     void exclude_numerals(const bool exclude) noexcept
         { m_exclude_numerals = exclude; }
 
+    [[nodiscard]]
     bool is_excluding_proper_nouns() const noexcept
         { return m_exclude_proper_nouns; }
     void exclude_proper_nouns(const bool exclude) noexcept
         { m_exclude_proper_nouns = exclude; }
 
+    [[nodiscard]]
     bool is_including_excluded_phrase_first_occurrence() const noexcept
         { return m_include_excluded_phrase_first_occurrence; }
     void include_excluded_phrase_first_occurrence(const bool exclude) noexcept
@@ -1016,6 +1043,7 @@ public:
             { m_exclusion_block_tags.push_back(std::make_pair(tag1,tag2)); }
         }
     /// @returns The punctuation marks that indicate where sections of text should be excluded.
+    [[nodiscard]]
     const auto& get_exclusion_block_tags() const noexcept
         { return m_exclusion_block_tags; }
     /// Removes the punctuation marks that indicate where blocks of text should be excluded.
@@ -1023,6 +1051,7 @@ public:
         { m_exclusion_block_tags.clear(); }
 
     /// @returns The (known, predefined) phrases data within the document.
+    [[nodiscard]]
     const grammar::phrase_collection& get_known_phrases() const noexcept
         { return *is_known_phrase; }
 
@@ -1030,6 +1059,7 @@ public:
     ///     respective word positions and frequencies from the document.
     /// @note Call aggregate_tokens() prior to using this. aggregate_tokens() should be called after the document
     ///     is loaded.
+    [[nodiscard]]
     const multi_value_aggregate_map<grammar::phrase<Tword_type>,size_t>& get_aggregated_tokens() const noexcept
         { return m_aggregated_tokens; }
 
@@ -1338,7 +1368,7 @@ private:
                 if (!wordIsAtStartOfQuote)
                     {
                     // watch out for auxiliary words which are not really proper
-                    if (!non_proper.get_word_list().find(wordPos->c_str()) )
+                    if (!non_proper.get_word_list().contains(wordPos->c_str()) )
                         {
                         wordPos->set_proper_noun(true);
                         properWords.insert(Tword_type(wordPos->c_str()));
@@ -1373,7 +1403,7 @@ private:
                         currentWord.length() > 1 &&
                         !currentWord.is_numeric())
                         {
-                        if (is_known_proper_nouns->find(currentWord.c_str()) )
+                        if (is_known_proper_nouns->contains(currentWord.c_str()) )
                             { currentWord.set_proper_noun(true); }
                         const auto propPos = properWords.get_data().find(currentWord);
                         if (propPos != properWords.get_data().cend())
@@ -1403,7 +1433,7 @@ private:
                     currentWord.length() > 1 &&
                     !currentWord.is_numeric())
                     {
-                    if (is_known_proper_nouns->find(currentWord.c_str()) )
+                    if (is_known_proper_nouns->contains(currentWord.c_str()) )
                         {
                         currentWord.set_proper_noun(true);
                         continue;
@@ -1477,7 +1507,7 @@ private:
                 currentWord.length() > 1 &&
                 !currentWord.is_numeric() &&
                 (properWords.get_data().find(currentWord) != properWords.get_data().cend() ||
-                             is_known_proper_nouns->find(currentWord.c_str(), currentWord.length()) ))
+                             is_known_proper_nouns->contains(currentWord.c_str(), currentWord.length()) ))
                 {
                 currentWord.set_proper_noun(true);
                 continue;
@@ -1532,7 +1562,7 @@ private:
                                     (Tword_type(wordPos->c_str())));
                 if (propPos != properWords.get_data().cend() ||
                     // note that the *known* proper nouns are already case insensitive.
-                    is_known_proper_nouns->find(wordPos->c_str()) )
+                    is_known_proper_nouns->contains(wordPos->c_str()) )
                     {
                     wordPos->set_proper_noun(true);
                     if (propPos != properWords.get_data().cend())
@@ -1547,7 +1577,7 @@ private:
             // Mark a word personal if proper and a known personal name
             if (wordPos->is_proper_noun() &&
                 !wordPos->is_acronym() &&
-                is_known_personal_nouns->find(wordPos->c_str(), wordPos->length()) )
+                is_known_personal_nouns->contains(wordPos->c_str(), wordPos->length()) )
                 { wordPos->set_personal(true); }
             }
         }
@@ -1708,8 +1738,8 @@ private:
                     // make sure we were able to read in a phrase of the requested size before
                     // punctuation short circuits it
                     if ((wordCounter-startWord) == phraseSize &&
-                        (!m_stop_list || (!m_stop_list->find(m_words[startWord].c_str()) &&
-                         !m_stop_list->find(m_words[wordCounter-1].c_str()))) )
+                        (!m_stop_list || (!m_stop_list->contains(m_words[startWord].c_str()) &&
+                         !m_stop_list->contains(m_words[wordCounter-1].c_str()))) )
                         { phraseIndices.push_back(std::make_pair(startWord, wordCounter-startWord)); }
                     // step back to the beginning of the phrase, loop will increment to the following word
                     wordCounter = startWord;
@@ -1978,7 +2008,7 @@ private:
                     !currentWord.is_proper_noun() &&
                     !currentWord.is_acronym() &&
                     !is_double_word_allowed({ currentWord.c_str(), currentWord.length() }) &&
-                    (!m_stop_list || !m_stop_list->find(currentWord.c_str())) )
+                    (!m_stop_list || !m_stop_list->contains(currentWord.c_str())) )
                     {
                     if (stem_word)
                         {

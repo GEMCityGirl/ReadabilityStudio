@@ -65,23 +65,23 @@ public:
     [[nodiscard]]
     size_t get_list_size() const noexcept
         { return m_words.size(); }
-    /** @brief Determines if a given strings is in the list.
+    /** @brief Determines if a given string is in the list.
         @param search_word The word to search for.
         @returns @c true if the word is found.
         @note The list should be sorted before calling this.*/
     [[nodiscard]]
-    const bool find(const wchar_t* search_word) const
+    const bool contains(const wchar_t* search_word) const
         {
         return std::binary_search(get_words().cbegin(), get_words().cend(),
                                   word_type(search_word));
         }
-    /** @brief Determines if a given strings is in the list.
+    /** @brief Determines if a given string is in the list.
         @param search_word The word to search for.
         @param length The length of the @c word.
         @returns @c true if the word is found.
         @note The list should be sorted before calling this.*/
     [[nodiscard]]
-    const bool find(const wchar_t* search_word, const size_t length) const
+    const bool contains(const wchar_t* search_word, const size_t length) const
         {
         return std::binary_search(get_words().cbegin(), get_words().cend(),
                                   word_type(search_word, length));
