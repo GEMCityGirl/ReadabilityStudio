@@ -334,6 +334,7 @@ void ExportAllDlg::CreateControls()
                                      wxCB_DROPDOWN|wxCB_READONLY);
         m_listCombo->Append(L"htm");
         m_listCombo->Append(L"txt");
+        m_listCombo->Append(L"tex");
         m_listCombo->SetStringSelection(m_listExt);
         m_listCombo->Enable(m_exportingLists);
         exportTypeBoxSizer->Add(m_listCombo, 0, wxALIGN_LEFT|wxALL,
