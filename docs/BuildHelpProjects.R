@@ -53,11 +53,13 @@ file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-prog
           glue("{docFolder}/ReadabilityStudioAPI/images/cover-programming.png"),
           TRUE)
 setwd(glue("{docFolder}/ReadabilityStudioAPI/"))
-combine_files("30-Enums.Rmd", "enums")
+combine_files("10-Objects.Rmd", "objects")
 combine_files("20-Libraries.Rmd", "libraries")
+combine_files("30-Enums.Rmd", "enums")
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::gitbook",
                       output_dir="docs")
 write(c(" "), file=glue("{docFolder}/ReadabilityStudioAPI/docs/.nojekyll"))
-unlink(glue("{docFolder}/ReadabilityStudioAPI/30-Enums.Rmd"))
+unlink(glue("{docFolder}/ReadabilityStudioAPI/10-Objects.Rmd"))
 unlink(glue("{docFolder}/ReadabilityStudioAPI/20-Libraries.Rmd"))
+unlink(glue("{docFolder}/ReadabilityStudioAPI/30-Enums.Rmd"))
