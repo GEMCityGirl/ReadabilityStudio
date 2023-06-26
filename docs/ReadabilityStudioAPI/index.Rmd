@@ -3,7 +3,14 @@ title: "Readability Studio 2023 API Reference"
 description: "Readability Studio 2023 API Reference"
 author: "Blake Madden"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+output:
+  bookdown::pdf_book:
+    template: "latex/default.tex"
+    includes:
+      in_header: "latex/preamble.tex"
+  bookdown::gitbook:
+    toc_depth: 2
+date: 2023
 documentclass: book
 biblio-style: mla
 nocite: '@*'
@@ -18,14 +25,14 @@ knitr::opts_chunk$set(message=F, warning=F, dev='svg', eval=F, echo=T)
 
 # Preface {#cover .unnumbered}
 
-::: {.note}
+<!-- Just want this preface in the gitbook.
+     PDF output will have its own copyright page after the title.-->
 
-This is preliminary documentation for an upcoming release of Readability Studio. If you have any feedback, please feel free to file an issue on [Github](https://github.com/Blake-Madden/ReadabilityStudioDocs). Thank you.
+:::{.wrapfigure data-latex="{r}{0.5\\textwidth}" style="width: 48%;"}
+![](images/cover-programming.png){width=48%}
 :::
 
-```{asis, echo=!knitr::is_latex_output()}
-<p style="text-align: center; padding: 10px;"><img src="images/cover-programming.png" alt="Readability Studio 2023 API Reference cover" /></p>
-```
+This is the programming reference manual for the software product *Readability Studio*.
 
 ![](images/CC_BY-NC-ND.png)
 

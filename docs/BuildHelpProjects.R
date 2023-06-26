@@ -10,6 +10,7 @@ source(glue("{docFolder}/ReadabilityStudioDocs/R/appdown.r"))
 # delete previous builds
 unlink(glue("{docFolder}/ReadabilityStudioAPI/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioAPI/images"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityStudioAPI/latex"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioDocs/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioDocs/_bookdown_files"), recursive=T)
 unlink(glue("{docFolder}/Coding-Bible/docs"), recursive=T)
@@ -52,12 +53,18 @@ file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-prog
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-programming.png"),
           glue("{docFolder}/ReadabilityStudioAPI/images/cover-programming.png"),
           TRUE)
+dir_copy(glue("{docFolder}/ReadabilityStudioDocs/latex"),
+         glue("{docFolder}/ReadabilityStudioAPI/latex"),
+         TRUE)
 setwd(glue("{docFolder}/ReadabilityStudioAPI/"))
 combine_files("10-Objects.Rmd", "objects")
 combine_files("20-Libraries.Rmd", "libraries")
 combine_files("30-Enums.Rmd", "enums")
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::gitbook",
+                      output_dir="docs")
+bookdown::render_book(input="index.Rmd",
+                      output_format="bookdown::pdf_book",
                       output_dir="docs")
 write(c(" "), file=glue("{docFolder}/ReadabilityStudioAPI/docs/.nojekyll"))
 unlink(glue("{docFolder}/ReadabilityStudioAPI/10-Objects.Rmd"))

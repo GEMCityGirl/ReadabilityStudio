@@ -18,4 +18,5 @@ Docs/ReadabilityStudioAPI/.Rproj.user
 /.vs
 .Rproj.user
 .Rhistory
-docs/ReadabilityStudioAPI/10-Objects.Rmd
+docs/ReadabilityStudioAPI/latex/
+docs/ReadabilityStudioAPI/latex/images
