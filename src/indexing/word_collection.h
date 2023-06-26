@@ -2042,19 +2042,22 @@ private:
                 }
             }
         }
-    /// Examines a paragraph to see if it contains copyright information and excludes it if it does.
+    /// Examines a paragraph to see if starts with a copyright symbol and excludes it if it does.
     /// Note that this function is fairly simple in its deduction and is safe to use on any paragraph
-    /// throughout the document.
+    /// throughout the document. (Even in aggressive exclusion, it will just allow one more sentence
+    /// and still be fairly strict.)
     void ignore_copyright_notice_paragraphs_simple()
         {
         PROFILE();
+        const size_t maxSentenceCount = (is_exclusion_aggressive() ? 3 : 2);
         for (auto currentParagraph = m_paragraphs.begin();
              currentParagraph != m_paragraphs.end();
              ++currentParagraph)
             {
             if (!currentParagraph->is_valid())
                 { continue; }
-            if (currentParagraph->get_sentence_count() >= 1 && currentParagraph->get_sentence_count() <= 2)
+            if (currentParagraph->get_sentence_count() >= 1 &&
+                currentParagraph->get_sentence_count() <= maxSentenceCount)
                 {
                 const grammar::sentence_info& firstSentenceInParagraph =
                     m_sentences[currentParagraph->get_first_sentence_index()];

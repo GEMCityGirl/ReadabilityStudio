@@ -1758,7 +1758,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             _(L"Specify the minimum length of an incomplete sentence that should be considered valid."));
         exclusionButtonBar->AddToggleButton(XRCID("ID_EXCLUDE_AGGRESSIVELY"), _(L"Aggressive"),
             readRibbonButtonSVG(L"ribbon/aggressive-list.svg"),
-            _(L"Aggressively excludes list items and citations (if applicable)."));
+            _(L"Aggressively excludes list items, citations, and copyright notices (if applicable)."));
         exclusionButtonBar->AddToggleButton(XRCID("ID_EXCLUDE_COPYRIGHT_NOTICES"), _(L"Copyrights"),
             readRibbonButtonSVG(L"ribbon/ignore-copyright.svg"),
             _(L"Exclude trailing copyright statements from the analysis."));
