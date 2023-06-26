@@ -5,6 +5,7 @@
 #include "../results_format/project_report_format.h"
 #include "../ui/dialogs/project_wizard_dlg.h"
 #include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
+#include "../Wisteria-Dataviz/src/graphs/wordcloud.h"
 #include "../indexing/character_traits.h"
 
 using namespace Wisteria;
@@ -1569,9 +1570,6 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
     multi_value_frequency_aggregate_map<traits::case_insensitive_wstring_ex,
                                         traits::case_insensitive_wstring_ex>
         keyWordsStemmedWithCounts;
-    stemming::english_stem<traits::case_insensitive_wstring_ex> englishStem;
-    stemming::spanish_stem<traits::case_insensitive_wstring_ex> spanishStem;
-    stemming::german_stem<traits::case_insensitive_wstring_ex> germanStem;
 
     GetAllWordsBatchData()->DeleteAllItems();
     GetAllWordsBatchData()->SetSize(wordsFromAllDocs.get_data().size(), 3);
@@ -1601,12 +1599,30 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             }
         }
 
-    // condensed key words
+    // prepare word cloud dataset
+    if (m_keyWordsDataset == nullptr)
+        { m_keyWordsDataset = std::make_shared<Wisteria::Data::Dataset>(); }
+    m_keyWordsDataset->Clear();
+    m_keyWordsDataset->AddCategoricalColumn(GetWordsColumnName());
+    m_keyWordsDataset->AddContinuousColumn(GetWordsCountsColumnName());
+    wxASSERT_MSG(m_keyWordsDataset->GetCategoricalColumns().size() == 1,
+        L"Hard word dataset invalid!");
+    wxASSERT_MSG(m_keyWordsDataset->GetRowCount() == 0,
+        L"Hard word dataset should be empty!");
+    m_keyWordsDataset->Resize(
+        keyWordsStemmedWithCounts.get_data().size());
+    auto keyWordsColumn =
+        m_keyWordsDataset->GetCategoricalColumn(GetWordsColumnName());
+    auto keydWordsFreqColumn =
+        m_keyWordsDataset->GetContinuousColumn(GetWordsCountsColumnName());
+
+    // condensed key words & word cloud
         {
         GetKeyWordsBatchData()->DeleteAllItems();
         GetKeyWordsBatchData()->SetSize(keyWordsStemmedWithCounts.get_data().size(), 2);
 
         size_t uniqueImportWordsCount{ 0 };
+        size_t wordCloudWordsCount{ 0 };
         wxString allValuesStr;
         for (const auto& [keyWordStem, keyWordFreqInfo] : keyWordsStemmedWithCounts.get_data())
             {
@@ -1617,8 +1633,35 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             allValuesStr.Trim().RemoveLast();
 
             GetKeyWordsBatchData()->SetItemText(uniqueImportWordsCount, 0, allValuesStr);
-            GetKeyWordsBatchData()->SetItemValue(uniqueImportWordsCount, 1, keyWordFreqInfo.second);
-            ++uniqueImportWordsCount;
+            GetKeyWordsBatchData()->SetItemValue(uniqueImportWordsCount++, 1, keyWordFreqInfo.second);
+
+            // word cloud
+            // which variation of the current stem occurs the most often
+            auto mostFrequentWordVariation =
+                std::max_element(keyWordFreqInfo.first.get_data().cbegin(),
+                    keyWordFreqInfo.first.get_data().cend(),
+                    [](const auto& lhv, const auto& rhv) noexcept
+                    { return lhv.second < rhv.second; });
+            wxASSERT_MSG(mostFrequentWordVariation != keyWordFreqInfo.first.get_data().cend(),
+                L"Empty word list for stemmed word?!");
+            // add the next word to the dataset's string table
+            const auto nextKey = keyWordsColumn->GetNextKey();
+            if (mostFrequentWordVariation != keyWordFreqInfo.first.get_data().cend())
+                {
+                keyWordsColumn->GetStringTable().insert(
+                    std::make_pair(nextKey, mostFrequentWordVariation->first.c_str()));
+                }
+            // could never happen, but for robustness sake use the stem word
+            // if the word list for the stem is empty
+            else
+                {
+                keyWordsColumn->GetStringTable().insert(
+                    std::make_pair(nextKey, keyWordStem.c_str()));
+                }
+            // add the new string table ID (i.e., the current word) and
+            // respective frequency to the current row
+            keyWordsColumn->SetValue(wordCloudWordsCount, nextKey);
+            keydWordsFreqColumn->SetValue(wordCloudWordsCount++, keyWordFreqInfo.second);
             }
         GetKeyWordsBatchData()->SetSize(uniqueImportWordsCount);
         }
@@ -5538,7 +5581,8 @@ void BatchProjectDoc::DisplayHardWords()
     // key words (uncommon words removed, remaining stemmed and combined)
     if (GetKeyWordsBatchData()->GetItemCount() &&
         // don't bother with condensed list if it has the same item count as the all words list
-        //(that would mean that there was no condensing [stemming] that took place and that these lists are the same).
+        // (that would mean that there was no condensing [stemming] that took place and that
+        // these lists are the same).
         (GetKeyWordsBatchData()->GetItemCount() != GetAllWordsBatchData()->GetItemCount()))
         {
         ListCtrlEx* listView =
@@ -5568,6 +5612,43 @@ void BatchProjectDoc::DisplayHardWords()
         {
         // we are getting rid of this window (if nothing in it)
         view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID);
+        }
+
+    // word cloud
+    wxGCDC gdc(view->GetDocFrame());
+    Wisteria::Canvas* wordCloudCanvas =
+        dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().FindWindowById(
+            BaseProjectView::WORD_CLOUD_PAGE_ID));
+    if (m_keyWordsDataset->GetRowCount())
+        {
+        if (!wordCloudCanvas)
+            {
+            wordCloudCanvas = new Wisteria::Canvas(view->GetSplitter(),
+                                                   BaseProjectView::WORD_CLOUD_PAGE_ID);
+            wordCloudCanvas->SetFixedObjectsGridSize(1, 1);
+            wordCloudCanvas->SetFixedObject(0, 0, std::make_shared<WordCloud>(wordCloudCanvas));
+            wordCloudCanvas->Hide();
+            wordCloudCanvas->SetLabel(BaseProjectView::GetWordCloudLabel());
+            wordCloudCanvas->SetName(BaseProjectView::GetWordCloudLabel());
+            wordCloudCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
+            wordCloudCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
+            view->GetWordsBreakdownView().AddWindow(wordCloudCanvas);
+            }
+        UpdateGraphOptions(wordCloudCanvas);
+
+        auto wordCloud = std::dynamic_pointer_cast<WordCloud>(wordCloudCanvas->GetFixedObject(0, 0));
+        wxASSERT_LEVEL_2(wordCloud);
+        // top 100 words, with a min frequency of 2
+        wordCloud->SetData(m_keyWordsDataset,
+                           GetWordsColumnName(), GetWordsCountsColumnName(), 2,
+                           std::nullopt, 100);
+
+        wordCloudCanvas->CalcAllSizes(gdc);
+        }
+    else
+        {
+        // we are getting rid of this window (if nothing in it)
+        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::WORD_CLOUD_PAGE_ID);
         }
     }
 

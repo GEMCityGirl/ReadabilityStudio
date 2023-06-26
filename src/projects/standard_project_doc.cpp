@@ -2550,12 +2550,13 @@ void ProjectDoc::DisplayWordCharts()
     Wisteria::Canvas* wordCloudCanvas =
         dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().FindWindowById(
             BaseProjectView::WORD_CLOUD_PAGE_ID));
-    if (GetWordsBreakdownInfo().IsWordCloudEnabled())
+    if (GetWordsBreakdownInfo().IsWordCloudEnabled() &&
+        m_keyWordsDataset->GetRowCount())
         {
         if (!wordCloudCanvas)
             {
             wordCloudCanvas = new Wisteria::Canvas(view->GetSplitter(),
-                                                       BaseProjectView::WORD_CLOUD_PAGE_ID);
+                                                   BaseProjectView::WORD_CLOUD_PAGE_ID);
             wordCloudCanvas->SetFixedObjectsGridSize(1, 1);
             wordCloudCanvas->SetFixedObject(0, 0, std::make_shared<WordCloud>(wordCloudCanvas));
             wordCloudCanvas->Hide();
