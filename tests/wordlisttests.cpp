@@ -878,12 +878,12 @@ TEST_CASE("Word lists", "[word-list]")
         {
         word_list WL;
         WL.load_words(L"the\na\nby\ndo", true, false);
-        CHECK(WL.find(L"a"));
-        CHECK(WL.find(L"By"));
-        CHECK(WL.find(L"DO"));
-        CHECK(WL.find(L"tHe"));
-        CHECK(WL.find(L"d") == false);
-        CHECK(WL.find(L"then") == false);
+        CHECK(WL.contains(L"a"));
+        CHECK(WL.contains(L"By"));
+        CHECK(WL.contains(L"DO"));
+        CHECK(WL.contains(L"tHe"));
+        CHECK(WL.contains(L"d") == false);
+        CHECK(WL.contains(L"then") == false);
         }
     SECTION("WL Remove Duplicates")
         {
