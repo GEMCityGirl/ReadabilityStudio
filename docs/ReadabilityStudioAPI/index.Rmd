@@ -1,13 +1,15 @@
 --- 
-title: "Readability Studio 2021 API Reference"
-description: "Readability Studio 2021 API Reference"
+title: "Readability Studio 2023 API Reference"
+description: "Readability Studio 2023 API Reference"
 author: "Blake Madden"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
-biblio-style: mlalike
-link-citations: yes
-cover-image: "images/NonGenerated/cover.png"
+biblio-style: mla
+nocite: '@*'
+csl: modern-language-association.csl
+cover-image: "images/cover-programming.png"
+pdf-cover: "images/cover-programming.pdf"
 ---
 
 ```{r, include=FALSE}
@@ -22,9 +24,9 @@ This is preliminary documentation for an upcoming release of Readability Studio.
 :::
 
 ```{asis, echo=!knitr::is_latex_output()}
-<p style="text-align: center; padding: 10px;"><img src="images/NonGenerated/cover.png" alt="Readability Studio 2021 API Reference cover" /></p>
+<p style="text-align: center; padding: 10px;"><img src="images/cover-programming.png" alt="Readability Studio 2023 API Reference cover" /></p>
 ```
 
-![](images/NonGenerated/CC_BY-NC-ND.png)
+![](images/CC_BY-NC-ND.png)
 
 This book is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).

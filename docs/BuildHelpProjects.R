@@ -2,19 +2,27 @@ library(bookdown)
 library(glue)
 library(readr)
 library(stringr)
+library(fs)
 
 docFolder <- dirname(rstudioapi::getSourceEditorContext()$path)
 source(glue("{docFolder}/ReadabilityStudioDocs/R/appdown.r"))
 
 # delete previous builds
 unlink(glue("{docFolder}/ReadabilityStudioAPI/docs"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityStudioAPI/images"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioDocs/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioDocs/_bookdown_files"), recursive=T)
 unlink(glue("{docFolder}/Coding-Bible/docs"), recursive=T)
 
+# Coding Bible
+##############
+
 setwd(glue("{docFolder}/Coding-Bible/"))
 bookdown::render_book(input="index.Rmd",
                       output_dir="docs")
+
+# User Manual
+#############
 
 setwd(glue("{docFolder}/ReadabilityStudioDocs/"))
 combine_files("01-Overviews.Rmd", "overviews",
@@ -32,6 +40,18 @@ bookdown::render_book(input="index.Rmd",
 # used on github to serve the book
 write(c(" "), file=glue("{docFolder}/ReadabilityStudioDocs/docs/.nojekyll"))
 
+# Programming Manual
+####################
+dir_create(glue("{docFolder}/ReadabilityStudioAPI/images"))
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/CC_BY-NC-ND.png"),
+          glue("{docFolder}/ReadabilityStudioAPI/images/CC_BY-NC-ND.png"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-programming.pdf"),
+          glue("{docFolder}/ReadabilityStudioAPI/images/cover-programming.pdf"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-programming.png"),
+          glue("{docFolder}/ReadabilityStudioAPI/images/cover-programming.png"),
+          TRUE)
 setwd(glue("{docFolder}/ReadabilityStudioAPI/"))
 combine_files("30-Enums.Rmd", "enums")
 combine_files("20-Libraries.Rmd", "libraries")
