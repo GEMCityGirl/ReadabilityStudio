@@ -1,5 +1,6 @@
 --- 
-title: "Readability Studio 2023 Readability Tests Reference"
+title: "Readability Studio 2023"
+subtitle: "Readability Tests Reference"
 description: "Readability Studio 2023 Readability Tests Reference"
 author: "Blake Madden"
 site: bookdown::bookdown_site

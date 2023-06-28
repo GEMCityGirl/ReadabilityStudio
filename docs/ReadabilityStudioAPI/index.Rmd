@@ -1,5 +1,6 @@
 --- 
-title: "Readability Studio 2023 Programming Reference"
+title: "Readability Studio 2023"
+subtitle: "Programming Reference"
 description: "Readability Studio 2023 Programming Reference"
 author: "Blake Madden"
 site: bookdown::bookdown_site
