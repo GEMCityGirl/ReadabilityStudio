@@ -420,8 +420,8 @@ bool WebHarvester::ReadWebPage(wxString& Url,
                                long& responseCode,
                                const bool acceptOnlyHtmlOrScriptFiles /*= true*/)
     {
-    webPageContent.Clear();
-    contentType.Clear();
+    webPageContent.clear();
+    contentType.clear();
     responseCode = 404;
 
     if (Url.empty() )
@@ -437,7 +437,8 @@ bool WebHarvester::ReadWebPage(wxString& Url,
 
     if (!m_downloader.Read(Url))
         {
-        wxLogWarning(L"%s: Unable to connect to page.", Url);
+        responseCode = m_downloader.GetLastStatus();
+        wxLogWarning(L"%s: Unable to connect to page, error code #%i.", Url, responseCode);
         return false;
         }
 
@@ -447,7 +448,7 @@ bool WebHarvester::ReadWebPage(wxString& Url,
         wxLogWarning(L"%s: Unable to connect to page, error code #%i.", Url, responseCode);
         return false;
         }
-    else
+    else if (m_downloader.GetLastRead().size())
         {
         contentType = m_downloader.GetLastContentType();
         if (contentType.empty())
@@ -501,7 +502,7 @@ bool WebHarvester::ReadWebPage(wxString& Url,
 //----------------------------------
 bool WebHarvester::IsPageHtml(wxString& Url, wxString& contentType)
     {
-    contentType.Clear();
+    contentType.clear();
     if (Url.empty() )
         { return false; }
 
