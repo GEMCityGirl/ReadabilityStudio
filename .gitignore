@@ -1,6 +1,7 @@
 # Output files
 Docs/Coding-Bible/docs
 Docs/ReadabilityStudioAPI/docs
+Docs/ReadabilityTestsReference/docs
 Resources/Words/Dictionaries/English.txt
 Resources/Words/Programming/All Languages.txt
 Resources/Words/ProperNouns/Personal.txt
@@ -22,4 +23,14 @@ docs/ReadabilityStudioAPI/latex/
 docs/ReadabilityStudioAPI/css/
 docs/ReadabilityStudioAPI/images/
 docs/ReadabilityStudioAPI/R/
-
+docs/ReadabilityStudioAPI/modern-language-association.csl
+docs/ReadabilityTestsReference/latex/
+docs/ReadabilityTestsReference/css/
+docs/ReadabilityTestsReference/images/
+docs/ReadabilityTestsReference/R/
+docs/ReadabilityTestsReference/modern-language-association.csl
+docs/ReadabilityTestsReference/20-ReadabilityTestsEnglish.rmd
+docs/ReadabilityTestsReference/21-ReadabilityTestsSpanish.rmd
+docs/ReadabilityTestsReference/23-ReadabilityTestsGerman.rmd
+docs/ReadabilityTestsReference/91-Citations.rmd
+docs/ReadabilityTestsReference/93-Author.rmd

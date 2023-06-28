@@ -1,0 +1,45 @@
+--- 
+title: "Readability Studio 2023 Readability Tests Reference"
+description: "Readability Studio 2023 Readability Tests Reference"
+author: "Blake Madden"
+site: bookdown::bookdown_site
+output:
+  bookdown::pdf_book:
+    template: "latex/default.tex"
+    includes:
+      in_header: "latex/preamble.tex"
+  bookdown::gitbook:
+    toc_depth: 2
+date: 2023
+documentclass: book
+biblio-style: mla
+nocite: '@*'
+csl: modern-language-association.csl
+cover-image: "images/cover.png"
+pdf-cover: "images/cover.pdf"
+---
+
+```{r, include=FALSE}
+source('R/appdown.r')
+```
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(message=F, warning=F, dev='svg', eval=F, echo=T)
+```
+
+```{asis, echo=knitr::is_html_output()}
+# Preface {#cover .unnumbered}
+
+<!-- Just want this preface in the gitbook.
+     PDF output will have its own copyright page after the title.-->
+
+:::{.wrapfigure data-latex="{r}{0.5\\textwidth}" style="width: 48%;"}
+![](images/cover.png){width=48%}
+:::
+
+This is the readability tests reference manual for the software product *Readability Studio*.
+
+![](images/CC_BY-NC-ND.png)
+
+This book is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+```

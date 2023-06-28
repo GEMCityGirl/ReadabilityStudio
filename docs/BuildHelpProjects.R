@@ -7,12 +7,18 @@ library(fs)
 docFolder <- dirname(rstudioapi::getSourceEditorContext()$path)
 source(glue("{docFolder}/ReadabilityStudioDocs/R/appdown.r"))
 
-# delete previous builds
+# delete previous builds and helper files copied from
+# the main project into others
 unlink(glue("{docFolder}/ReadabilityStudioAPI/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioAPI/images"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioAPI/latex"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioAPI/css"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioAPI/R"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityStudioAPI/ReadabilityTestsReference"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityStudioAPI/ReadabilityTestsReference"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityStudioAPI/ReadabilityTestsReference"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityStudioAPI/ReadabilityTestsReference"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityStudioAPI/ReadabilityTestsReference"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioDocs/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioDocs/_bookdown_files"), recursive=T)
 unlink(glue("{docFolder}/Coding-Bible/docs"), recursive=T)
@@ -55,6 +61,9 @@ file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-prog
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-programming.png"),
           glue("{docFolder}/ReadabilityStudioAPI/images/cover.png"),
           TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/modern-language-association.csl"),
+          glue("{docFolder}/ReadabilityStudioAPI/modern-language-association.csl"),
+          TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/latex"),
          glue("{docFolder}/ReadabilityStudioAPI/latex"),
          TRUE)
@@ -78,3 +87,51 @@ write(c(" "), file=glue("{docFolder}/ReadabilityStudioAPI/docs/.nojekyll"))
 unlink(glue("{docFolder}/ReadabilityStudioAPI/10-Objects.Rmd"))
 unlink(glue("{docFolder}/ReadabilityStudioAPI/20-Libraries.Rmd"))
 unlink(glue("{docFolder}/ReadabilityStudioAPI/30-Enums.Rmd"))
+
+# Tests Reference Manual
+####################
+dir_create(glue("{docFolder}/ReadabilityTestsReference/images"))
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/CC_BY-NC-ND.png"),
+          glue("{docFolder}/ReadabilityTestsReference/images/CC_BY-NC-ND.png"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-tests.pdf"),
+          glue("{docFolder}/ReadabilityTestsReference/images/cover.pdf"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-tests.png"),
+          glue("{docFolder}/ReadabilityTestsReference/images/cover.png"),
+          TRUE)
+dir_copy(glue("{docFolder}/ReadabilityStudioDocs/latex"),
+         glue("{docFolder}/ReadabilityTestsReference/latex"),
+         TRUE)
+dir_copy(glue("{docFolder}/ReadabilityStudioDocs/css"),
+         glue("{docFolder}/ReadabilityTestsReference/css"),
+         TRUE)
+dir_copy(glue("{docFolder}/ReadabilityStudioDocs/R"),
+         glue("{docFolder}/ReadabilityTestsReference/R"),
+         TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/20-ReadabilityTestsEnglish.rmd"),
+          glue("{docFolder}/ReadabilityTestsReference/20-ReadabilityTestsEnglish.rmd"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/21-ReadabilityTestsSpanish.rmd"),
+          glue("{docFolder}/ReadabilityTestsReference/21-ReadabilityTestsSpanish.rmd"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/23-ReadabilityTestsGerman.rmd"),
+          glue("{docFolder}/ReadabilityTestsReference/23-ReadabilityTestsGerman.rmd"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/91-Citations.rmd"),
+          glue("{docFolder}/ReadabilityTestsReference/91-Citations.rmd"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/93-Author.rmd"),
+          glue("{docFolder}/ReadabilityTestsReference/93-Author.rmd"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/modern-language-association.csl"),
+          glue("{docFolder}/ReadabilityTestsReference/modern-language-association.csl"),
+          TRUE)
+setwd(glue("{docFolder}/ReadabilityTestsReference/"))
+bookdown::render_book(input="index.Rmd",
+                      output_format="bookdown::gitbook",
+                      output_dir="docs")
+bookdown::render_book(input="index.Rmd",
+                      output_format="bookdown::pdf_book",
+                      output_dir="docs")
+write(c(" "), file=glue("{docFolder}/ReadabilityTestsReference/docs/.nojekyll"))
