@@ -11,6 +11,8 @@ source(glue("{docFolder}/ReadabilityStudioDocs/R/appdown.r"))
 unlink(glue("{docFolder}/ReadabilityStudioAPI/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioAPI/images"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioAPI/latex"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityStudioAPI/css"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityStudioAPI/R"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioDocs/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioDocs/_bookdown_files"), recursive=T)
 unlink(glue("{docFolder}/Coding-Bible/docs"), recursive=T)
@@ -48,13 +50,19 @@ file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/CC_BY-NC-N
           glue("{docFolder}/ReadabilityStudioAPI/images/CC_BY-NC-ND.png"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-programming.pdf"),
-          glue("{docFolder}/ReadabilityStudioAPI/images/cover-programming.pdf"),
+          glue("{docFolder}/ReadabilityStudioAPI/images/cover.pdf"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-programming.png"),
-          glue("{docFolder}/ReadabilityStudioAPI/images/cover-programming.png"),
+          glue("{docFolder}/ReadabilityStudioAPI/images/cover.png"),
           TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/latex"),
          glue("{docFolder}/ReadabilityStudioAPI/latex"),
+         TRUE)
+dir_copy(glue("{docFolder}/ReadabilityStudioDocs/css"),
+         glue("{docFolder}/ReadabilityStudioAPI/css"),
+         TRUE)
+dir_copy(glue("{docFolder}/ReadabilityStudioDocs/R"),
+         glue("{docFolder}/ReadabilityStudioAPI/R"),
          TRUE)
 setwd(glue("{docFolder}/ReadabilityStudioAPI/"))
 combine_files("10-Objects.Rmd", "objects")

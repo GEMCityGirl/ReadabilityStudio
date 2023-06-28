@@ -1,6 +1,6 @@
 --- 
-title: "Readability Studio 2023 API Reference"
-description: "Readability Studio 2023 API Reference"
+title: "Readability Studio 2023 Programming Reference"
+description: "Readability Studio 2023 Programming Reference"
 author: "Blake Madden"
 site: bookdown::bookdown_site
 output:
@@ -15,21 +15,26 @@ documentclass: book
 biblio-style: mla
 nocite: '@*'
 csl: modern-language-association.csl
-cover-image: "images/cover-programming.png"
-pdf-cover: "images/cover-programming.pdf"
+cover-image: "images/cover.png"
+pdf-cover: "images/cover.pdf"
 ---
+
+```{r, include=FALSE}
+source('R/appdown.r')
+```
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(message=F, warning=F, dev='svg', eval=F, echo=T)
 ```
 
+```{asis, echo=knitr::is_html_output()}
 # Preface {#cover .unnumbered}
 
 <!-- Just want this preface in the gitbook.
      PDF output will have its own copyright page after the title.-->
 
 :::{.wrapfigure data-latex="{r}{0.5\\textwidth}" style="width: 48%;"}
-![](images/cover-programming.png){width=48%}
+![](images/cover.png){width=48%}
 :::
 
 This is the programming reference manual for the software product *Readability Studio*.
@@ -37,3 +42,4 @@ This is the programming reference manual for the software product *Readability S
 ![](images/CC_BY-NC-ND.png)
 
 This book is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+```

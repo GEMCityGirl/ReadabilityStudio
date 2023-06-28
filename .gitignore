@@ -9,14 +9,17 @@ Resources/Words/ProperNouns/All.txt
 docs/doxygen/html
 /tests/bin/
 /tests/.vs/
+/tests/out/
 
 # Configuration files
 Docs/Coding-Bible/.Rproj.user
 Docs/ReadabilityStudioAPI/.Rproj.user
 *.db
-/tests/out/
 /.vs
 .Rproj.user
 .Rhistory
 docs/ReadabilityStudioAPI/latex/
-docs/ReadabilityStudioAPI/latex/images
+docs/ReadabilityStudioAPI/css/
+docs/ReadabilityStudioAPI/images/
+docs/ReadabilityStudioAPI/R/
+
