@@ -14,11 +14,14 @@ unlink(glue("{docFolder}/ReadabilityStudioAPI/images"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioAPI/latex"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioAPI/css"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioAPI/R"), recursive=T)
-unlink(glue("{docFolder}/ReadabilityStudioAPI/ReadabilityTestsReference"), recursive=T)
-unlink(glue("{docFolder}/ReadabilityStudioAPI/ReadabilityTestsReference"), recursive=T)
-unlink(glue("{docFolder}/ReadabilityStudioAPI/ReadabilityTestsReference"), recursive=T)
-unlink(glue("{docFolder}/ReadabilityStudioAPI/ReadabilityTestsReference"), recursive=T)
-unlink(glue("{docFolder}/ReadabilityStudioAPI/ReadabilityTestsReference"), recursive=T)
+
+unlink(glue("{docFolder}/ReadabilityTestsReference/docs"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityTestsReference/images"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityTestsReference/latex"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityTestsReference/css"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityTestsReference/R"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityTestsReference/data"), recursive=T)
+
 unlink(glue("{docFolder}/ReadabilityStudioDocs/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioDocs/_bookdown_files"), recursive=T)
 unlink(glue("{docFolder}/Coding-Bible/docs"), recursive=T)
@@ -108,6 +111,9 @@ dir_copy(glue("{docFolder}/ReadabilityStudioDocs/css"),
          TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/R"),
          glue("{docFolder}/ReadabilityTestsReference/R"),
+         TRUE)
+dir_copy(glue("{docFolder}/ReadabilityStudioDocs/data"),
+         glue("{docFolder}/ReadabilityTestsReference/data"),
          TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/20-ReadabilityTestsEnglish.rmd"),
           glue("{docFolder}/ReadabilityTestsReference/20-ReadabilityTestsEnglish.rmd"),
