@@ -3879,6 +3879,7 @@ Shintoism
 Shintoist
 Shippensburg
 Shopify
+ShopRite
 Shoreditch
 Shorelight
 Shortfin
@@ -4021,6 +4022,7 @@ StarKist
 StartWire
 Staten
 Statesboro
+Statista
 Stelter
 Stevenage
 Stevia
@@ -4311,6 +4313,7 @@ Totemism
 Tottenham
 Toulouse
 Tourette
+TowerGroup
 Toyota
 Trafalgar
 Trajan
