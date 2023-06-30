@@ -24,10 +24,6 @@ pdf-cover: "images/cover.pdf"
 source('R/appdown.r')
 ```
 
-```{r, include=FALSE}
-knitr::opts_chunk$set(message=F, warning=F, dev='svg', eval=F, echo=T)
-```
-
 ```{asis, echo=knitr::is_html_output()}
 # Preface {#cover .unnumbered}
 

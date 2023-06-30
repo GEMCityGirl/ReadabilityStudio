@@ -36,6 +36,7 @@ bookdown::render_book(input="index.Rmd",
 # User Manual
 #############
 
+UserManualMode = TRUE
 setwd(glue("{docFolder}/ReadabilityStudioDocs/"))
 combine_files("01-Overviews.Rmd", "overviews",
               ("(intro|program)"))
@@ -54,6 +55,7 @@ write(c(" "), file=glue("{docFolder}/ReadabilityStudioDocs/docs/.nojekyll"))
 
 # Programming Manual
 ####################
+
 dir_create(glue("{docFolder}/ReadabilityStudioAPI/images"))
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/CC_BY-NC-ND.png"),
           glue("{docFolder}/ReadabilityStudioAPI/images/CC_BY-NC-ND.png"),
@@ -93,6 +95,8 @@ unlink(glue("{docFolder}/ReadabilityStudioAPI/30-Enums.Rmd"))
 
 # Tests Reference Manual
 ####################
+
+UserManualMode = F
 dir_create(glue("{docFolder}/ReadabilityTestsReference/images"))
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/CC_BY-NC-ND.png"),
           glue("{docFolder}/ReadabilityTestsReference/images/CC_BY-NC-ND.png"),
@@ -102,6 +106,33 @@ file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-test
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-tests.png"),
           glue("{docFolder}/ReadabilityTestsReference/images/cover.png"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/FleschChart.png"),
+          glue("{docFolder}/ReadabilityTestsReference/images/FleschChart.png"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/frygraph.png"),
+          glue("{docFolder}/ReadabilityTestsReference/images/frygraph.png"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/LixGauge.png"),
+          glue("{docFolder}/ReadabilityTestsReference/images/LixGauge.png"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/raygorgraph.png"),
+          glue("{docFolder}/ReadabilityTestsReference/images/raygorgraph.png"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/CrawfordGraph.png"),
+          glue("{docFolder}/ReadabilityTestsReference/images/CrawfordGraph.png"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/FraseGraph.png"),
+          glue("{docFolder}/ReadabilityTestsReference/images/FraseGraph.png"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/GpmFry.png"),
+          glue("{docFolder}/ReadabilityTestsReference/images/GpmFry.png"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/GermanLixGauge.png"),
+          glue("{docFolder}/ReadabilityTestsReference/images/GermanLixGauge.png"),
+          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/Schwartz.png"),
+          glue("{docFolder}/ReadabilityTestsReference/images/Schwartz.png"),
           TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/latex"),
          glue("{docFolder}/ReadabilityTestsReference/latex"),

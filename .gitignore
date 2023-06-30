@@ -11,6 +11,7 @@ docs/doxygen/html
 /tests/bin/
 /tests/.vs/
 /tests/out/
+*.log
 
 # Configuration files
 Docs/Coding-Bible/.Rproj.user
@@ -28,6 +29,7 @@ docs/ReadabilityTestsReference/latex/
 docs/ReadabilityTestsReference/css/
 docs/ReadabilityTestsReference/images/
 docs/ReadabilityTestsReference/R/
+docs/ReadabilityTestsReference/data/
 docs/ReadabilityTestsReference/modern-language-association.csl
 docs/ReadabilityTestsReference/20-ReadabilityTestsEnglish.rmd
 docs/ReadabilityTestsReference/21-ReadabilityTestsSpanish.rmd
