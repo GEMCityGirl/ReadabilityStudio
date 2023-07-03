@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## HighlightedReportType {-}
 
 The following highlighted report windows are available.
@@ -12,3 +13,4 @@ NonDolchHighlightedWords | The highlighted **non-Dolch** word report.
 SixPlusCharacterHighlightedWords | The highlighted 6+ character word report.
 SpacheUnfamiliarHighlightedWords | The highlighted **Spache** unfamiliar word report.
 ThreePlusSyllableHighlightedWords | The highlighted 3+ syllable word report.
+:::

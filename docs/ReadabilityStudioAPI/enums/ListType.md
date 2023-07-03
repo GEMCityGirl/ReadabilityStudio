@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## ListType {-}
 
 The following types of lists are available.
@@ -36,3 +37,4 @@ UnusedDolchWords   |   The list of unused **Dolch** words (standard projects onl
 Wordiness   |   The wordy items list.
 WordingErrors   |   The wording errors list.
 WordyItems   |   The wordy items list.
+:::

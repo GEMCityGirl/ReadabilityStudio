@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## DolchResultType {-}
 
 The following Dolch result windows are available.
@@ -15,3 +16,4 @@ HighlightedNonDolchWordsReport   |   The highlighted **non-Dolch** word report (
 NonDolchWordsBatchSummary   |   The **non-Dolch** summary list (batch projects only).
 NonDolchWordsList   |   The list of **non-Dolch** words (standard projects only).
 UnusedDolchWordsList   |   The list of unused **Dolch** words (standard projects only).
+:::

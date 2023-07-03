@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## GraphType {-}
 
 The following graph types are available.
@@ -22,3 +23,5 @@ SentenceHeatmap   |   Heatmap showing the density of sentence lengths.
 SyllableHistogram    |   Histogram showing the distribution of words by syllable size.
 WordBarChart   |   Bar chart showing the totals of various word categories (standard projects only).
 ThreePlusSyllableWordCloud   |   Word cloud of 3+ syllable words (standard projects only).
+:::
+
