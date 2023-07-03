@@ -21,6 +21,8 @@ unlink(glue("{docFolder}/ReadabilityTestsReference/latex"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityTestsReference/css"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityTestsReference/R"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityTestsReference/data"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityTestsReference/scoring-notes"), recursive=T)
+unlink(glue("{docFolder}/ReadabilityTestsReference/acknowledgements"), recursive=T)
 
 unlink(glue("{docFolder}/ReadabilityStudioDocs/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioDocs/_bookdown_files"), recursive=T)
@@ -42,6 +44,7 @@ combine_files("01-Overviews.Rmd", "overviews",
               ("(intro|program)"))
 combine_files("92-Acknowledgements.Rmd", "acknowledgements",
               ("(intro|assistance)"))
+combine_files("41-ScoringNotes.rmd", "scoring-notes")
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::pdf_book",
                       output_dir="docs")
@@ -134,6 +137,12 @@ file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/GermanLixGauge.png"),
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/Schwartz.png"),
           glue("{docFolder}/ReadabilityTestsReference/images/Schwartz.png"),
           TRUE)
+dir_copy(glue("{docFolder}/ReadabilityStudioDocs/scoring-notes"),
+         glue("{docFolder}/ReadabilityTestsReference/scoring-notes"),
+         TRUE)
+dir_copy(glue("{docFolder}/ReadabilityStudioDocs/acknowledgements"),
+         glue("{docFolder}/ReadabilityTestsReference/acknowledgements"),
+         TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/latex"),
          glue("{docFolder}/ReadabilityTestsReference/latex"),
          TRUE)
@@ -146,6 +155,9 @@ dir_copy(glue("{docFolder}/ReadabilityStudioDocs/R"),
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/data"),
          glue("{docFolder}/ReadabilityTestsReference/data"),
          TRUE)
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/overviews/01-intro.rmd"),
+          glue("{docFolder}/ReadabilityTestsReference/01-intro.rmd"),
+          TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/20-ReadabilityTestsEnglish.rmd"),
           glue("{docFolder}/ReadabilityTestsReference/20-ReadabilityTestsEnglish.rmd"),
           TRUE)
@@ -164,6 +176,11 @@ file_copy(glue("{docFolder}/ReadabilityStudioDocs/93-Author.rmd"),
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/modern-language-association.csl"),
           glue("{docFolder}/ReadabilityTestsReference/modern-language-association.csl"),
           TRUE)
+combine_files("41-ScoringNotes.rmd", "scoring-notes",
+              "(intro|grade[-]level[-]results|cloze)")
+combine_files("92-Acknowledgements.Rmd", "acknowledgements",
+              ("(intro|assistance)"))
+
 setwd(glue("{docFolder}/ReadabilityTestsReference/"))
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::gitbook",

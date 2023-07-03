@@ -30,6 +30,8 @@ docs/ReadabilityTestsReference/css/
 docs/ReadabilityTestsReference/images/
 docs/ReadabilityTestsReference/R/
 docs/ReadabilityTestsReference/data/
+docs/ReadabilityTestsReference/scoring-notes
+docs/ReadabilityTestsReference/acknowledgements
 docs/ReadabilityTestsReference/modern-language-association.csl
 docs/ReadabilityTestsReference/20-ReadabilityTestsEnglish.rmd
 docs/ReadabilityTestsReference/21-ReadabilityTestsSpanish.rmd
@@ -37,3 +39,5 @@ docs/ReadabilityTestsReference/23-ReadabilityTestsGerman.rmd
 docs/ReadabilityTestsReference/91-Citations.rmd
 docs/ReadabilityTestsReference/93-Author.rmd
 docs/ReadabilityTestsReference/41-ScoringNotes.rmd
+docs/ReadabilityTestsReference/92-Acknowledgements.Rmd
+docs/ReadabilityTestsReference/01-intro.rmd
