@@ -1,4 +1,0 @@
-# Overview
-
-Readability Studio provides numerous readability tests for English, Spanish, and German documents. This manual is a reference for those tests, explaining their uses, origins, methodologies, and validation.
-
