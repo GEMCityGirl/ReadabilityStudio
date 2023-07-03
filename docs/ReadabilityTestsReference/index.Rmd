@@ -34,7 +34,7 @@ source('R/appdown.r')
 ![](images/cover.png){width=48%}
 :::
 
-Readability Studio provides numerous readability tests for English, Spanish, and German documents.
+*Readability Studio* provides numerous readability tests for English, Spanish, and German documents.
 This manual is a reference for those tests, explaining their uses, origins, methodologies, and validation.
 
 ![](images/CC_BY-NC-ND.png)
