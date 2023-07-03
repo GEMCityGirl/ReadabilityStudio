@@ -2,7 +2,7 @@
 
 Checks for broken links and bad image sizes in a folder of HTML files.
 
-:::{.note}
+::: {.notesection data-latex=""}
 Issues are recorded into the program's log. View the log report to see any issues found when calling this function.
 :::
 

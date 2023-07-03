@@ -12,7 +12,7 @@ Parameter | Description
 | :-- | :-- |
 Test | The ID of the test to add.
 
-::: {.note}
+::: {.notesection data-latex=""}
 For a custom test, use the name of the test.
 :::
 

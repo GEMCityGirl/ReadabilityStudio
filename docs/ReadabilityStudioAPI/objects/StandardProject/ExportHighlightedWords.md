@@ -13,7 +13,7 @@ Parameter | Description
 HighlightedWordReportType | The [highlighted text window](#highlightedreporttype) to save.
 OutputFilePath | The folder to save the scores.
 
-:::{.note}
+::: {.notesection data-latex=""}
 Use [Application.GetTestId()](#gettestid) to export the highlighted-words report for a custom test (see example below).
 :::
 

@@ -12,7 +12,6 @@ Parameter | Description
 | :-- | :-- |
 Tags | The pair of tags that will exclude all text between them.
 
-::: {.note}
-
+::: {.notesection data-latex=""}
 Pass in an empty string to turn off this option.
 :::
