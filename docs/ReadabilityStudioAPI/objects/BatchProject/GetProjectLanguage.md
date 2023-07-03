@@ -6,6 +6,6 @@ Returns the language of the project.
 Language GetProjectLanguage()
 ```
 
-### Return Value {-}
+### Return value {-}
 
 The language of the project as a [Language](#language) value.

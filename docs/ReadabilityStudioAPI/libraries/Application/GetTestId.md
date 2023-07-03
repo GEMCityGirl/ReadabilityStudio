@@ -12,6 +12,6 @@ Parameter | Description
 | :-- | :-- |
 TestName | The name of the test.
 
-### Return Value {-}
+### Return value {-}
 
 The numeric ID of the test.

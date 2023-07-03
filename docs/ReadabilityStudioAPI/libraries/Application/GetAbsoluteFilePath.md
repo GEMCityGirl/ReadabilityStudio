@@ -13,7 +13,7 @@ Parameter | Description
 BasePath | The full base path.
 RelativePath | The path of the file that is relative to the base path.
 
-### Return Value {-}
+### Return value {-}
 
 The full file path.
 

@@ -6,6 +6,6 @@ Returns the folder path to the application.
 string GetProgramPath() 
 ```
 
-### Return Value {-}
+### Return value {-}
 
 The folder path to the application.

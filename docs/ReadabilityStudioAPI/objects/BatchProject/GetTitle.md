@@ -6,6 +6,6 @@ Returns the title of the project.
 string GetTitle()
 ```
 
-### Return Value {-}
+### Return value {-}
 
 The title of the project.

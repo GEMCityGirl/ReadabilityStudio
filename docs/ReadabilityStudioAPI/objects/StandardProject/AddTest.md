@@ -16,7 +16,7 @@ Test | The [ID](#tests) of the test to add. (For a custom test, use the name of 
 You must call [Reload()](#standard-reload) after calling this function to run the test(s). For optimization, multiple calls to `AddTest()` should be queued together, followed by a call to `Reload()` to begin processing them.
 :::
 
-### Return Value {-}
+### Return value {-}
 
 `true` if the test was successfully added; otherwise, `false`.
 

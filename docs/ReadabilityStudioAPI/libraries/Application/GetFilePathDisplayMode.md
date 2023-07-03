@@ -6,6 +6,6 @@ Returns how filepaths are displayed in batch projects.
 FilePathDisplayMode GetFilePathDisplayMode()
 ```
 
-### Return Value {-}
+### Return value {-}
 
 How [filepaths](#filepathdisplaymode) are being displayed.

@@ -6,6 +6,6 @@ Returns the path to the user's documents folder.
 string GetDocumentsPath() 
 ```
 
-### Return Value {-}
+### Return value {-}
 
 The path to the user's documents folder.

@@ -13,10 +13,9 @@ Parameter | Description
 Test | The ID of the test to add.
 
 ::: {.note}
-
 For a custom test, use the name of the test.
 :::
 
-### Return Value {-}
+### Return value {-}
 
 `true` if the test was successfully added; otherwise, `false`.

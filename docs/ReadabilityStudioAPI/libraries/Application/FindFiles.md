@@ -13,6 +13,6 @@ Parameter | Description
 FolderPath | The folder to search in.
 FileFilter | The file pattern to search for.
 
-### Return Value {-}
+### Return value {-}
 
 A table listing the files.

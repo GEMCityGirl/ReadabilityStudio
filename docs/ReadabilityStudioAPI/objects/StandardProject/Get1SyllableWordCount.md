@@ -6,6 +6,6 @@ Returns the number of monosyllabic words from the document.
 integer Get1SyllableWordCount()
 ```
 
-### Return Value {-}
+### Return value {-}
 
 The number of monosyllabic words from the document.

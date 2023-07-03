@@ -7,6 +7,6 @@ Returns how filepaths are displayed in the lists.
 FilePathDisplayMode GetFilePathDisplayMode()
 ```
 
-### Return Value {-}
+### Return value {-}
 
 The filepaths display of the lists as a [FilePathDisplayMode](#filepathdisplaymode) value.

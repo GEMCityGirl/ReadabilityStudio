@@ -6,6 +6,6 @@ Returns the active batch project.
 BatchProject GetActiveBatchProject()
 ```
 
-### Return Value {-}
+### Return value {-}
 
 The active [batch project](#batchproject).

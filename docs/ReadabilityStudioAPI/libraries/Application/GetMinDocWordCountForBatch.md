@@ -6,6 +6,6 @@ Returns the minimum number of words that a document must have to be included in 
 integer GetMinDocWordCountForBatch()
 ```
 
-### Return Value {-}
+### Return value {-}
 
 The minimum number of words that a document must have to be included in batch projects.

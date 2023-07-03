@@ -12,7 +12,7 @@ Parameter | Description
 | :-- | :-- |
 ImagePath | The file path of the image.
 
-### Return Value {-}
+### Return value {-}
 
 A table of the image's information.
 

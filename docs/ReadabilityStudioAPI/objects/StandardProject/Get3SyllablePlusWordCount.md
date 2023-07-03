@@ -6,6 +6,6 @@ Returns the number of words consisting of three or more syllables from the docum
 integer Get3SyllablePlusWordCount()
 ```
 
-### Return Value {-}
+### Return value {-}
 
 The number of words consisting of three or more syllables from the document.

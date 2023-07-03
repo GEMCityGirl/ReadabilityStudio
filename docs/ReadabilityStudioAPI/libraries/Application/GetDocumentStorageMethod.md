@@ -6,6 +6,6 @@ Returns whether projects embed their documents or link to them.
 TextStorage GetDocumentStorageMethod()
 ```
 
-### Return Value {-}
+### Return value {-}
 
 How projects are [embedding or linking](#textstorage) to their source.

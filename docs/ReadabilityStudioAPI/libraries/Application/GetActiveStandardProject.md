@@ -6,6 +6,6 @@ Returns the active standard project.
 StandardProject GetActiveStandardProject()
 ```
 
-### Return Value {-}
+### Return value {-}
 
 The active [standard project](#standardproject).

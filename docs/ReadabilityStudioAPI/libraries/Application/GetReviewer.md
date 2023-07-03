@@ -6,6 +6,6 @@ Returns the user name of the software.
 string GetReviewer()
 ```
 
-### Return Value {-}
+### Return value {-}
 
 The user name of the software.

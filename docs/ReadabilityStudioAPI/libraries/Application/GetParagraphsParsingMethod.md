@@ -6,6 +6,6 @@ Returns how hard returns help determine how paragraphs and sentences are detecte
 ParagraphParse GetParagraphsParsingMethod()
 ```
 
-### Return Value {-}
+### Return value {-}
 
 The paragraph parsing method.
