@@ -1,7 +1,7 @@
 --- 
 title: "Readability Studio 2023"
-subtitle: "Readability Tests Reference"
-description: "Readability Studio 2023 Readability Tests Reference"
+subtitle: "Readability Test Reference"
+description: "Readability Studio 2023 Readability Test Reference"
 author: "Blake Madden"
 site: bookdown::bookdown_site
 output:
@@ -34,7 +34,8 @@ source('R/appdown.r')
 ![](images/cover.png){width=48%}
 :::
 
-This is the readability tests reference manual for the software product *Readability Studio*.
+Readability Studio provides numerous readability tests for English, Spanish, and German documents.
+This manual is a reference for those tests, explaining their uses, origins, methodologies, and validation.
 
 ![](images/CC_BY-NC-ND.png)
 
