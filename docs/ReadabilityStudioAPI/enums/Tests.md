@@ -1,4 +1,3 @@
-
 ## Tests {-}
 
 The following tests are available.
@@ -59,7 +58,5 @@ WheelerSmith   |   Wheeler-Smith
 WheelerSmithBambergerVanecek   |   Wheeler-Smith (Bamberger-Vanecek)
 
 :::{.note}
-
 Custom test can be accessed through [Application.GetTestID()](#gettestid).
 :::
-
