@@ -1,3 +1,4 @@
+:::: {.minipage data-latex="{\textwidth}"}
 ## Print {-}
 
 Prints a message to the script editor's debug window.
@@ -12,8 +13,7 @@ Parameter | Description
 | :-- | :-- |
 Message | The message to print.
 
-:::{.tip}
-
+::: {.tipsection data-latex=""}
 `Message` can be HTML-formatted text.
 :::
 
@@ -28,3 +28,4 @@ do
     Debug.Print("<b>"..i.."</b>: "..v)
 end
 ```
+::::
