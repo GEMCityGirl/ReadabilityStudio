@@ -12,7 +12,7 @@ ExportGraph(GraphType,
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 GraphType | The [graph](#graphtype) to export.
 OutputFilePath | The folder to save the graph.
@@ -39,7 +39,8 @@ sp:ExportGraph(GraphType.SyllableHistogram,
                Application.GetDocumentsPath() .. "Review/RecipeSyllableHistogram.png",
                -- color image
                false,
-               -- 500 pixels wide (height will be adjusted to maintain aspect ratio)
+               -- 500 pixels wide
+               -- (height will be adjusted to maintain aspect ratio)
                500)
 
 sp:Close()

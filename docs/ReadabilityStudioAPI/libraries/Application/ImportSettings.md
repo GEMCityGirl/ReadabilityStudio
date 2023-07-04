@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## ImportSettings {-}
 
 Imports the specified settings file, which will configure the general options of the program.
@@ -8,6 +9,7 @@ ImportSettings(SettingsFileToImport)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 SettingsFileToImport | The filepath to import the program's settings from.
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## SetCenterPrintHeader {-}
 
 Sets the label to appear in the center top of printouts.
@@ -8,6 +9,7 @@ SetCenterPrintHeader(Label)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Label | The label to appear in the center top of printouts.
+:::

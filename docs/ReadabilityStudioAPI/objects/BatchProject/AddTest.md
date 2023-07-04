@@ -8,7 +8,7 @@ boolean AddTest(Test)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Test | The ID of the test to add.
 

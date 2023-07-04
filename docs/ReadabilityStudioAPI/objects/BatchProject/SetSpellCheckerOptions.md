@@ -13,7 +13,7 @@ SetSpellCheckerOptions(IgnoreProperNouns,
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 IgnoreProperNouns | Set to `true` to ignore proper nouns.
 IgnoreUppercased | Set to `true` to ignore words that are in all caps.

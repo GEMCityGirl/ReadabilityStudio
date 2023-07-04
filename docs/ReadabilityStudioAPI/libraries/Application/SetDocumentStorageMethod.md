@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## SetDocumentStorageMethod {-}
 
 Sets whether projects embed their source documents or link to them.
@@ -8,6 +9,8 @@ SetDocumentStorageMethod(TextStorage)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 TextStorage | How projects should [embed or link](#textstorage) to their documents.
+:::
+

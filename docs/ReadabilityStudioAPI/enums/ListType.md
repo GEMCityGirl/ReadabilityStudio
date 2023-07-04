@@ -3,7 +3,7 @@
 
 The following types of lists are available.
 
-Value   |   Description
+**Value**   |   **Description**
 | :-- | :--
 AllWords   |   The list of all words from the document ([standard projects](#standardproject) only).
 BatchAggregatedClozeScoresSummary   |   The Cloze-scores aggregated statistics report, listed by document (batch projects only).

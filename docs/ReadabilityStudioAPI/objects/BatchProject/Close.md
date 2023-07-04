@@ -8,6 +8,6 @@ Close(SaveChanges)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 SaveChanges | Specifies whether to save any changes made to the project. The default is `false`.

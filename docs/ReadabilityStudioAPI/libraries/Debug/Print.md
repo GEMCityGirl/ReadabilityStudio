@@ -9,7 +9,7 @@ Print(Message)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Message | The message to print.
 

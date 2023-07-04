@@ -9,7 +9,7 @@ SelectWindow(SideBarSection,
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 SideBarSection | The [section](#sidebarsection) of the project that the window is in.
 WindowId | The ID of the window to select.

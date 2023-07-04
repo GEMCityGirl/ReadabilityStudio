@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## SetGraphBackgroundOpacity {-}
 
 Sets the opacity of graph backgrounds. 0 is fully transparent, and 255 is opaque.
@@ -8,6 +9,7 @@ SetGraphBackgroundOpacity(OpacityLevel)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 OpacityLevel | The opacity of graph backgrounds.
+:::

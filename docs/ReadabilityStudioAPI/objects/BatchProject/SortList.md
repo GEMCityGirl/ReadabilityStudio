@@ -11,7 +11,7 @@ SortList(ListType,
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 ListType | The [list](#listtype) to sort.
 ColumnToSort | The column to sort by.

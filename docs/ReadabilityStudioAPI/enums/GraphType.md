@@ -3,7 +3,7 @@
 
 The following graph types are available.
 
-Value   |   Description
+**Value**   |   **Description**
 | :-- | :-- |
 Crawford   |   **Crawford** readability graph.
 DanielsonBryan2   |   **Danielson Bryan 2** readability graph (a variation of **Flesch Reading Ease**).

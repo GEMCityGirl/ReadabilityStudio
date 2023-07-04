@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## SetWindowSize {-}
 
 Resizes the program's window size to the specified width and height.
@@ -8,7 +9,8 @@ SetWindowSize(Width,Height)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Width | The program window width.
 Height | The program window height.
+:::

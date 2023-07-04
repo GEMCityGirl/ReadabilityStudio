@@ -8,6 +8,6 @@ ShowSidebar(boolean)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Show | `true` to show the sidebar, `false` to hide it.

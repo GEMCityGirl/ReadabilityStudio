@@ -8,6 +8,6 @@ SetGraphCustomBrushImage(ImageFilePath)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 ImageFilePath | The filepath to the image to be used for custom brushes.

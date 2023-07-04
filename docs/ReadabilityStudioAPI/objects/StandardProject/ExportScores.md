@@ -8,6 +8,6 @@ ExportScores(OutputFilePath)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 OutputFilePath | The folder to save the scores.

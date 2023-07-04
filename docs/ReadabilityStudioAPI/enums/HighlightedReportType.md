@@ -3,7 +3,7 @@
 
 The following highlighted report windows are available.
 
-Value   |   Description
+**Value**   |   **Description**
 | :-- | :-- |
 DaleChallUnfamiliarHighlightedWords | The highlighted **Dale-Chall** unfamiliar word report.
 DolchHighlightedWords | The highlighted **Dolch** word report.

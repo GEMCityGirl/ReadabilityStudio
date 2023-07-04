@@ -8,6 +8,6 @@ SetIncludeIncompleteTolerance(WordCount)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 WordCount | The minimum number of words that will make a sentence missing terminating punctuation be considered complete.

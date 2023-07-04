@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## SetRightPrintFooter {-}
 
 Sets the label to appear in the bottom right corner of printouts.
@@ -8,6 +9,7 @@ SetRightPrintFooter(Label)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Label | The label to appear in the bottom right corner of printouts.
+:::

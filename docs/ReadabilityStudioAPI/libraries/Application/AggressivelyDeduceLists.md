@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## AggressivelyDeduceLists {-}
 
 Specifies whether to use aggressive list deduction.
@@ -8,6 +9,8 @@ AggressivelyDeduceLists(BeAggressive)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Exclude | Specifies whether to use aggressive list deduction.
+:::
+

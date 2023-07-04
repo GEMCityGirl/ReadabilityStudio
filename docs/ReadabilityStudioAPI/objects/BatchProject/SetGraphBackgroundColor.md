@@ -8,7 +8,7 @@ SetGraphBackgroundColor(Red,Green,Blue)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Red | The red channel of the color.
 Green | The green channel of the color.

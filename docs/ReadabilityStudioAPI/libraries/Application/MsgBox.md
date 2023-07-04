@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## MsgBox {-}
 
 Displays a message (with optional title).
@@ -8,7 +9,8 @@ MsgBox(Message,Title)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Message | The message to show.
 Title | (Optional) The title of the message box.
+:::

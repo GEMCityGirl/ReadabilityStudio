@@ -3,7 +3,7 @@
 
 The following text exclusion methods are available.
 
-Value   |   Description
+**Value**   |   **Description**
 | :-- | :-- |
 DoNotExcludeAnyText   |   No text should be excluded from analysis.
 ExcludeIncompleteSentences   |   All incomplete sentences should be excluded from the analysis.

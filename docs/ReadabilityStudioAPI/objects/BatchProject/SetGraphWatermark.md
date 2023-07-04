@@ -8,6 +8,6 @@ SetGraphWatermark(Label)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Label | The watermark to be written across graphs.

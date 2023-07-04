@@ -8,6 +8,6 @@ ExcludeNumerals(Exclude)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Exclude | `true` to exclude numerals.

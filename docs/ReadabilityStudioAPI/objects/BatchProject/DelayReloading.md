@@ -8,6 +8,6 @@ DelayReloading(Delay)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Delay | Specifies whether to delay reloading the project.

@@ -8,6 +8,6 @@ SetGraphBackgroundOpacity(OpacityLevel)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 OpacityLevel | The opacity of graph backgrounds. 0 is fully transparent, and 255 is opaque.

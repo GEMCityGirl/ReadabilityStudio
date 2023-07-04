@@ -8,6 +8,6 @@ ExportSettings(SettingsFileToExport)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 SettingsFileToExport | The filepath to save the program's settings to.

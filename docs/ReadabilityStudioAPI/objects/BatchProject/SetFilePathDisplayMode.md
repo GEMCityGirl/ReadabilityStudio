@@ -8,6 +8,6 @@ SetFilePathDisplayMode(FilePathDisplayMode)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 FilePathDisplayMode | The [filepath display](#filepathdisplaymode) to use for the project's lists.

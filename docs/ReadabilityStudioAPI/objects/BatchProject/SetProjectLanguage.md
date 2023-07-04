@@ -8,6 +8,6 @@ SetProjectLanguage(Language)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Language | The [Language](#language) to set the project to.

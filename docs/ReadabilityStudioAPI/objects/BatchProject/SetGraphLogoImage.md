@@ -8,6 +8,6 @@ SetGraphLogoImage(ImageFilePath)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 ImageFilePath | The filepath to the image to be used for a logo on all graphs.

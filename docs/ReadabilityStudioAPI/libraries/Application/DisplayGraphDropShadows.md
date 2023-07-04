@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## DisplayGraphDropShadows {-}
 
 Specifies whether to use shadows underneath items (such as bars) on all the graphs.
@@ -8,6 +9,7 @@ DisplayGraphDropShadows(UseShadows)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 UseShadows | Whether to use shadows underneath items (such as bars) on all the graphs.
+:::

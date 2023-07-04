@@ -8,6 +8,6 @@ ExportAll(OutputFolder)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 OutputFolder | The folder to save the project's results.

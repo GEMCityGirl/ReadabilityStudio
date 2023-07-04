@@ -8,6 +8,6 @@ SetDocumentStorageMethod(TextStorage)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 TextStorage | The [text storage method](#textstorage) to use for the project.

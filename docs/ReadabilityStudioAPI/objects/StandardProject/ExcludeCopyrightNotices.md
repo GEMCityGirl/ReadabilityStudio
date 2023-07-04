@@ -8,6 +8,6 @@ ExcludeCopyrightNotices(Exclude)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Exclude | `true` to exclude copyright notices.

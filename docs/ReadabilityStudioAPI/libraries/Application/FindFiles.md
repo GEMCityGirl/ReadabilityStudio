@@ -8,7 +8,7 @@ table FindFiles(FolderPath,FileFilter)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 FolderPath | The folder to search in.
 FileFilter | The file pattern to search for.

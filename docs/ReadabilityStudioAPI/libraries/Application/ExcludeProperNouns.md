@@ -8,6 +8,6 @@ ExcludeProperNouns(Exclude)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Exclude | `true` to exclude proper nouns, `false` to include them.

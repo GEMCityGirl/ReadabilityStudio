@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## SetCenterPrintFooter {-}
 
 Sets the label to appear in the center bottom of printouts.
@@ -8,6 +9,7 @@ SetCenterPrintFooter(Label)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Label | The label to appear in the center bottom of printouts.
+:::

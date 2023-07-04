@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## SetTextExclusion {-}
 
 Specifies how text should be excluded.
@@ -8,7 +9,7 @@ SetTextExclusion(TextExclusionType)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 TextExclusionType | How text should be [excluded](#textexclusiontype).
 
@@ -18,3 +19,4 @@ TextExclusionType | How text should be [excluded](#textexclusiontype).
 -- don't exclude any text for all future projects
 Application.SetTextExclusion(TextExclusionType.DoNotExcludeAnyText)
 ```
+:::

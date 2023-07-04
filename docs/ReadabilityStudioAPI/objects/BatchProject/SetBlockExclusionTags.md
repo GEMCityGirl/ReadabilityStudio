@@ -8,7 +8,7 @@ SetBlockExclusionTags(Tags)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Tags | The pair of tags that will exclude all text between them.
 

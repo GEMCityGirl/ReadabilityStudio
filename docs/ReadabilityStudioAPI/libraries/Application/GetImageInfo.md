@@ -8,7 +8,7 @@ table GetImageInfo()
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 ImagePath | The file path of the image.
 

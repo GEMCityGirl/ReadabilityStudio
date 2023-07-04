@@ -15,7 +15,7 @@ ExportList(ListType,
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 ListType | The [list](#listtype) to export.
 OutputFilePath | The folder to save the list.
@@ -39,7 +39,8 @@ sp:SortList(ListType.AllWords, 3, SortOrder.SortDescending,
             1, SortOrder.SortDescending)
 -- export the list after sorting it
 sp:ExportList(ListType.AllWords,
-              Application.GetDocumentsPath() .. "ExportList/ChristmasCarolAllWordsListSortedDesc.htm")
+              Application.GetDocumentsPath() ..
+              "ExportList/ChristmasCarolAllWordsListSortedDesc.htm")
 
 sp:Close()
 ```

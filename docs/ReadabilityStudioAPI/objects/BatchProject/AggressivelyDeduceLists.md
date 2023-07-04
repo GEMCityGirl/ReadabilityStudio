@@ -8,6 +8,6 @@ AggressivelyDeduceLists(BeAggressive)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 BeAggressive | Set to `true` to use aggressive list deduction.

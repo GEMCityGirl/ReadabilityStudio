@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## RemoveAllCustomTests {-}
 
 Removes all custom tests from the program.
@@ -5,3 +6,4 @@ Removes all custom tests from the program.
 ```{sql}
 RemoveAllCustomTests()
 ```
+:::

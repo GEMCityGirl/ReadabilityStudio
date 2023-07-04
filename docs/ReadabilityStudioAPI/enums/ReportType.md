@@ -3,7 +3,7 @@
 
 The following report types are available.
 
-Value   |   Description
+**Value**   |   **Description**
 | :-- | :-- |
 StatisticsSummaryReport   |   The statistics summary report.
 ReadabilityScoresSummaryReport   |   The readability-scores summary report.

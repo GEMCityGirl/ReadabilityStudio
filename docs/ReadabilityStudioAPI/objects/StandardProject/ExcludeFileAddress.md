@@ -8,6 +8,6 @@ ExcludeFileAddress(Exclude)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Exclude | `true` to exclude filepaths and URLs.

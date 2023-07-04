@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## SetGraphWatermark {-}
 
 Sets the watermark to be written across graphs.
@@ -8,6 +9,7 @@ SetGraphWatermark(Label)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Label | The text to draw across the graphs.
+:::

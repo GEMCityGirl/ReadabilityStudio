@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## DownloadFile {-}
 
 Downloads a file into the specified folder.
@@ -8,7 +9,8 @@ DownloadFile(FileToDownload,FolderToDownloadTo)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
-FileToDownload | The file to download
+FileToDownload | The file to download.
 FolderToDownloadTo | A folder to download the file into.
+:::

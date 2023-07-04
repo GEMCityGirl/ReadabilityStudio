@@ -8,6 +8,6 @@ SetGraphBackgroundImage(ImageFilePath)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 ImageFilePath | The filepath of the image to use for the graph's backgrounds.

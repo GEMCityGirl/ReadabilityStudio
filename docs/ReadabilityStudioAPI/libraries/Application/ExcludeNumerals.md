@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## ExcludeNumerals {-}
 
 Specifies whether to exclude numerals from the document analysis.
@@ -8,6 +9,7 @@ ExcludeNumerals(Exclude)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Exclude | `true` to exclude numerals, `false` to include them.
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## SetFilePathDisplayMode {-}
 
 Sets how filepaths are displayed in the lists for batch projects.
@@ -8,6 +9,7 @@ SetFilePathDisplayMode(FilePathDisplayMode)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 FilePathDisplayMode | How [filepaths](#filepathdisplaymode) should be displayed.
+:::

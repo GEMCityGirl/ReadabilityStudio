@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## LogError {-}
 
 Logs an error message to be shown once the script is finished running.
@@ -8,6 +9,7 @@ LogError(ErrorMessage)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 ErrorMessage | The error message to log.
+:::

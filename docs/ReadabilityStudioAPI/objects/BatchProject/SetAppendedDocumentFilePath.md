@@ -8,6 +8,6 @@ SetAppendedDocumentFilePath(FilePath)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 FilePath | The file path to the document being appended for analysis.

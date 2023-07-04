@@ -1,6 +1,7 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## GetReviewer {-}
 
-Returns the user name of the software.
+Returns the user name for the software.
 
 ```{sql}
 string GetReviewer()
@@ -8,4 +9,5 @@ string GetReviewer()
 
 ### Return value {-}
 
-The user name of the software.
+The user name for the software.
+:::

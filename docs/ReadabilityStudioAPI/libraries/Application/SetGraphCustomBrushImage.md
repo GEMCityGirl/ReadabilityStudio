@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## SetGraphCustomBrushImage {-}
 
 Sets the image to be used for custom brushes.
@@ -8,6 +9,7 @@ SetGraphCustomBrushImage(ImageFilePath)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 ImageFilePath | The filepath to the image to use for custom brushes.
+:::

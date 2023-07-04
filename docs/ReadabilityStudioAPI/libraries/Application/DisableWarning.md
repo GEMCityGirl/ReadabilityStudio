@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## DisableWarning {-}
 
 Disables the specified warning.
@@ -6,8 +7,10 @@ Disables the specified warning.
 DisableWarning()
 ```
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 WarningId | The warning's string ID.
 
-Refer to [EnableWarning](#enablewarning) for a list of warning IDs.
+Refer to **[EnableWarning()](#enablewarning)** for a list of warning IDs.
+:::
+

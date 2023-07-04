@@ -3,7 +3,7 @@
 
 The following values are available for selection a section in a project.
 
-Value   |   Description
+**Value**   |   **Description**
 | :-- | :-- |
 BoxPlots   |   The box plots section ([batch project](#batchproject) only).
 Dolch   |   The **Dolch** section.

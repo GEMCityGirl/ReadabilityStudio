@@ -16,7 +16,7 @@ ExportList(ListType,
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 ListType | The [list](#listtype) to export.
 OutputFilePath | The folder to save the list.

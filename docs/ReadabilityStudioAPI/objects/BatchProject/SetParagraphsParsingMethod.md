@@ -8,6 +8,6 @@ SetParagraphsParsingMethod(ParagraphParse)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 ParagraphParse | The paragraph parsing method.

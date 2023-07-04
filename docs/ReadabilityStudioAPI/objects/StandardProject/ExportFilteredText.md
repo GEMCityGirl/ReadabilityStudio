@@ -13,7 +13,7 @@ ExportFilteredText(OutputFilePath,
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 OutputFilePath | The folder to save the filtered document.
 RomanizeText | Whether to converted extended ASCII characters to simpler versions (e.g., replacing smart quotes with straight quotes)

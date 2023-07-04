@@ -13,7 +13,7 @@ ExportGraph(SideBarSection,
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 SideBarSection | Which [section](#sidebarsection) of the results the graph is in.
 GraphType | The [graph](#graphtype) to export.

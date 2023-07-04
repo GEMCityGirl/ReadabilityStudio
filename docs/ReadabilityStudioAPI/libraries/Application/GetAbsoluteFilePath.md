@@ -8,7 +8,7 @@ string GetAbsoluteFilePath()
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 BasePath | The full base path.
 RelativePath | The path of the file that is relative to the base path.

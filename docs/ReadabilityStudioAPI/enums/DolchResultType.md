@@ -3,7 +3,7 @@
 
 The following Dolch result windows are available.
 
-Value   |   Description
+**Value**   |   **Description**
 | :-- | :-- |
 DolchBreakDownChart   |   Bar chart showing the totals of each **Dolch** category (standard projects only).
 DolchCoverageBatchSummary   |   The **Dolch** coverage list ([batch projects](#batchproject) only).

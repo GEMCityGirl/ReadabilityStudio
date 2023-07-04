@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## SetRightPrintHeader {-}
 
 Sets the label to appear in the top right corner of printouts.
@@ -8,6 +9,7 @@ SetRightPrintHeader(Label)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Label | The label to appear in the top right corner of printouts.
+:::

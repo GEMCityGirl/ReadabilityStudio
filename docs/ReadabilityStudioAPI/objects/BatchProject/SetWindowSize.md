@@ -8,7 +8,7 @@ SetWindowSize(Width,Height)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :--  | :-- |
 Width  | The project window width.
 Height | The project window height.

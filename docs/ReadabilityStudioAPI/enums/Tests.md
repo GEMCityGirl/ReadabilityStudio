@@ -2,7 +2,7 @@
 
 The following tests are available.
 
-Value   |   Description
+**Value**   |   **Description**
 | :-- | :-- |
 Amstad   |   Amstad
 Ari   |   Automated Readability Index

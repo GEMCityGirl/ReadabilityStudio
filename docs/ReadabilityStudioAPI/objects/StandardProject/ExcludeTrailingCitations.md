@@ -8,6 +8,6 @@ ExcludeTrailingCitations(Exclude)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Exclude | `true` to exclude trailing citations.

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## SetBarChartOrientation {-}
 
 Sets the bar charts' orientation.
@@ -8,6 +9,7 @@ SetBarChartOrientation(Orientation)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Orientation | The bar charts' [orientation](#orientation).
+:::

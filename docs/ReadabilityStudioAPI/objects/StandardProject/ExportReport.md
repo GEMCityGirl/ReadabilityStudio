@@ -8,7 +8,7 @@ ExportReport(ReportType, OutputFilePath)
 
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 ReportType | The [report](#reporttype) to save.
 OutputFilePath | The folder to save the scores.

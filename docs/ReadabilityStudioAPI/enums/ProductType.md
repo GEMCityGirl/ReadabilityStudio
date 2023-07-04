@@ -3,7 +3,7 @@
 
 The following releases of Readability Studio are available.
 
-Value   |   Description
+**Value**   |   **Description**
 | :-- | :-- |
 ProductMac32BitIntel   |   Mac 32-bit Intel (not available since 2015)
 ProductMac32BitPowerPC   |   Mac 32-bit PowerPC (not available since 2013)

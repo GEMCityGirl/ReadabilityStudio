@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## SplashScreen {-}
 
 Displays the image from the list of splashscreens at the specified index.
@@ -7,6 +8,7 @@ SplashScreen(Index)
 ```
 ### Parameters {-}
 
-Parameter | Description
+**Parameter** | **Description**
 | :-- | :-- |
 Index | Index of which image from the list of splashscreens to display.
+:::
