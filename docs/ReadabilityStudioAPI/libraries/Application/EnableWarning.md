@@ -38,3 +38,5 @@ bkimage-zoomin-noupscale  |  Prompt about how background images will not be upsc
 note-project-properties  |  Prompt about how settings are embedded in projects and how to edit them.
 batch-goals  |  Prompt about how the Goals window works in a batch project.
 prompt-for-batch-label  |  Prompt for labels when adding documents to a batch project.
+
+***

@@ -20,3 +20,6 @@ FolderPath | The folder containing the HTML files to review.
 FollowExternalLinks | Whether to verify links going outside of the folder being reviewed.
 :::
 
+***
+
+

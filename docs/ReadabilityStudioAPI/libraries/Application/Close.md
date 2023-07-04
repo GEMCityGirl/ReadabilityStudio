@@ -7,3 +7,5 @@ Closes the program.
 Close()
 ```
 :::
+
+***

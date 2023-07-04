@@ -13,3 +13,5 @@ SetBarChartOrientation(Orientation)
 | :-- | :-- |
 Orientation | The bar charts' [orientation](#orientation).
 :::
+
+***

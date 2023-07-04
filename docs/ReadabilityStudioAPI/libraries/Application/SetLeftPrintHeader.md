@@ -13,3 +13,5 @@ SetLeftPrintHeader(Label)
 | :-- | :-- |
 Label | The label to appear in the top left corner of printouts.
 :::
+
+***

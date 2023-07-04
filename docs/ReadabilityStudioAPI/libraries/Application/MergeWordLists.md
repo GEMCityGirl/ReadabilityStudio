@@ -12,5 +12,7 @@ MergeWordLists(OutputFilePath,Input1,Input2,...)
 **Parameter** | **Description**
 | :-- | :-- |
 OutputFilePath | The output filepaths to merge the files into.
-Input1,Input2,... | A list of files to merged into OutputFilePath.
+Input1,Input2,... | A list of files to merged into **OutputFilePath**.
 :::
+
+***

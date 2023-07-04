@@ -7,3 +7,5 @@ Resets the program's settings.
 ResetSettings()
 ```
 :::
+
+***

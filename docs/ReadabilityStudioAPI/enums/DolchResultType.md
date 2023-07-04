@@ -17,3 +17,4 @@ NonDolchWordsBatchSummary   |   The **non-Dolch** summary list (batch projects o
 NonDolchWordsList   |   The list of **non-Dolch** words (standard projects only).
 UnusedDolchWordsList   |   The list of unused **Dolch** words (standard projects only).
 :::
+

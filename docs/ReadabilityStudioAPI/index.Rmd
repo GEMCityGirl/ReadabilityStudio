@@ -1,7 +1,7 @@
 --- 
 title: "Readability Studio 2023"
-subtitle: "Programming Reference"
-description: "Readability Studio 2023 Programming Reference"
+subtitle: "Programming Manual"
+description: "Readability Studio 2023 Programming Manual"
 author: "Blake Madden"
 site: bookdown::bookdown_site
 output:
@@ -38,7 +38,7 @@ knitr::opts_chunk$set(message=F, warning=F, dev='svg', eval=F, echo=T)
 ![](images/cover.png){width=48%}
 :::
 
-This is the programming reference manual for the software product *Readability Studio*.
+This is the programming manual for the software product *Readability Studio*.
 
 ![](images/CC_BY-NC-ND.png)
 

@@ -13,3 +13,5 @@ ApplyGraphBackgroundFade(UseColorFade)
 | :-- | :-- |
 UseColorFade | Whether to use a color fade on graph backgrounds.
 :::
+
+***

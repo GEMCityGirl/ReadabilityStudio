@@ -58,5 +58,6 @@ WheelerSmith   |   Wheeler-Smith
 WheelerSmithBambergerVanecek   |   Wheeler-Smith (Bamberger-Vanecek)
 
 ::: {.notesection data-latex=""}
-Custom test can be accessed through [Application.GetTestID()](#gettestid).
+Custom tests can be accessed through **[Application.GetTestID()](#gettestid)**.
 :::
+

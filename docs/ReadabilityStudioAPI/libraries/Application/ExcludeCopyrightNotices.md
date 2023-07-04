@@ -11,5 +11,7 @@ ExcludeCopyrightNotices(Exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-Exclude | `true` to exclude copyright notices, `false` to include them.
+Exclude | **true** to exclude copyright notices, **false** to include them.
 :::
+
+***

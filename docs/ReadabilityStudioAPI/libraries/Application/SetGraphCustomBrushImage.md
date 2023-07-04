@@ -13,3 +13,5 @@ SetGraphCustomBrushImage(ImageFilePath)
 | :-- | :-- |
 ImageFilePath | The filepath to the image to use for custom brushes.
 :::
+
+***

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## ExcludeTrailingCitations {-}
 
 Specifies whether to exclude trailing citations from the document analysis.
@@ -10,4 +11,7 @@ ExcludeTrailingCitations(Exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-Exclude | `true` to exclude trailing citations, `false` to include them.
+Exclude | **true** to exclude trailing citations, **false** to include them.
+:::
+
+***

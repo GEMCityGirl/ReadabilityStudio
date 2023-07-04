@@ -9,3 +9,4 @@ DoNotExcludeAnyText   |   No text should be excluded from analysis.
 ExcludeIncompleteSentences   |   All incomplete sentences should be excluded from the analysis.
 ExcludeIncompleteSentencesExceptForHeadings   |   All incomplete sentences (except headers and footers) should be excluded from the analysis.
 :::
+

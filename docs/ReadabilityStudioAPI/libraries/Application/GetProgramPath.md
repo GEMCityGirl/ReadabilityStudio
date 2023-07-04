@@ -11,3 +11,5 @@ string GetProgramPath()
 
 The folder path to the application.
 :::
+
+***

@@ -7,3 +7,5 @@ Suppresses most warnings and prompts throughout the program.
 DisableAllWarnings()
 ```
 :::
+
+***

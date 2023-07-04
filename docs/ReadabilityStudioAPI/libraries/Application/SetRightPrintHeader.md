@@ -13,3 +13,5 @@ SetRightPrintHeader(Label)
 | :-- | :-- |
 Label | The label to appear in the top right corner of printouts.
 :::
+
+***

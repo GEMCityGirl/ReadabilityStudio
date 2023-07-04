@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## ProductType {-}
 
-The following releases of Readability Studio are available.
+The following releases of *Readability Studio* are available.
 
 **Value**   |   **Description**
 | :-- | :-- |

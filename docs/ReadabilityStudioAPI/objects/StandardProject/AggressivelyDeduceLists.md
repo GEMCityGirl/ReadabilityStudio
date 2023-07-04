@@ -10,4 +10,4 @@ AggressivelyDeduceLists(BeAggressive)
 
 **Parameter** | **Description**
 | :-- | :-- |
-BeAggressive | Set to `true` to use aggressive list deduction.
+BeAggressive | Set to **true** to use aggressive list deduction.

@@ -13,3 +13,5 @@ SetProjectLanguage(Language)
 | :-- | :-- |
 Language | Which [Language](#language) to set as the default language for new projects.
 :::
+
+***

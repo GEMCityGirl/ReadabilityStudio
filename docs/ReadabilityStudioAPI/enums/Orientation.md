@@ -8,7 +8,3 @@ The following types of orientation are available.
 Horizontal   |   Left and right.
 Vertical   |   Up and down.
 :::
-
-
-
-

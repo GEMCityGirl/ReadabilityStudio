@@ -13,3 +13,5 @@ SetBarChartBarEffect(BarEffect)
 | :-- | :-- |
 BarEffect | The [effect](#bareffect) used to display bars in bar charts.
 :::
+
+***

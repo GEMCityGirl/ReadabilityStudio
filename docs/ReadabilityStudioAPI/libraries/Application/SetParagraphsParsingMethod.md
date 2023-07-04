@@ -13,3 +13,5 @@ SetParagraphsParsingMethod(ParagraphParse)
 | :-- | :-- |
 ParagraphParse | The paragraph parsing method.
 :::
+
+***

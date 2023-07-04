@@ -11,5 +11,7 @@ ExcludeNumerals(Exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-Exclude | `true` to exclude numerals, `false` to include them.
+Exclude | **true** to exclude numerals, **false** to include them.
 :::
+
+***

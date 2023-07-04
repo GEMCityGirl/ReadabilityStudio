@@ -12,3 +12,5 @@ SplashScreen(Index)
 | :-- | :-- |
 Index | Index of which image from the list of splashscreens to display.
 :::
+
+***

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## FindFiles {-}
 
 Searches the specified folder (recursively) for files matching the given file filter (e.g., "*.docx") and returns the retrieved filepaths.
@@ -16,3 +17,6 @@ FileFilter | The file pattern to search for.
 ### Return value {-}
 
 A table listing the files.
+:::
+
+***

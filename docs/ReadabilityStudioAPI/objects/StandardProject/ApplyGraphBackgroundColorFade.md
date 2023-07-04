@@ -10,4 +10,4 @@ ApplyGraphBackgroundColorFade(UseColorFade)
 
 **Parameter** | **Description**
 | :-- | :-- |
-UseColorFade | `true` to use a color fade across graph backgrounds.
+UseColorFade | **true** to use a color fade across graph backgrounds.

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## ExportSettings {-}
 
 Exports the program's general settings to the specified file.
@@ -11,3 +12,6 @@ ExportSettings(SettingsFileToExport)
 **Parameter** | **Description**
 | :-- | :-- |
 SettingsFileToExport | The filepath to save the program's settings to.
+:::
+
+***

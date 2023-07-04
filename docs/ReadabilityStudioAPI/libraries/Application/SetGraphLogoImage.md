@@ -13,3 +13,5 @@ SetGraphLogoImage(ImageFilePath)
 | :-- | :-- |
 ImageFilePath | The filepath to the image to use for graph logos.
 :::
+
+***

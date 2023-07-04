@@ -10,4 +10,4 @@ ExcludeCopyrightNotices(Exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-Exclude | `true` to exclude copyright notices.
+Exclude | **true** to exclude copyright notices.

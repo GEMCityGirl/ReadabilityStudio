@@ -24,4 +24,3 @@ SyllableHistogram    |   Histogram showing the distribution of words by syllable
 WordBarChart   |   Bar chart showing the totals of various word categories (standard projects only).
 ThreePlusSyllableWordCloud   |   Word cloud of 3+ syllable words (standard projects only).
 :::
-

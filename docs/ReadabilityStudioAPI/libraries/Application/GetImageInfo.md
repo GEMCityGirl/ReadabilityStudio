@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## GetImageInfo {-}
 
 Returns the details of a given file.
@@ -27,3 +28,6 @@ do
     Debug.Print("<b>"..i.."</b>: "..v)
 end
 ```
+:::
+
+***

@@ -13,3 +13,5 @@ SetFilePathDisplayMode(FilePathDisplayMode)
 | :-- | :-- |
 FilePathDisplayMode | How [filepaths](#filepathdisplaymode) should be displayed.
 :::
+
+***

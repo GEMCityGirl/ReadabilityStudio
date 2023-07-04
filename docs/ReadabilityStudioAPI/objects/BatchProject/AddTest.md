@@ -18,4 +18,4 @@ For a custom test, use the name of the test.
 
 ### Return value {-}
 
-`true` if the test was successfully added; otherwise, `false`.
+**true** if the test was successfully added; otherwise, **false**.

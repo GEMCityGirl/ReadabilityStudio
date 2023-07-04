@@ -13,3 +13,5 @@ SetRightPrintFooter(Label)
 | :-- | :-- |
 Label | The label to appear in the bottom right corner of printouts.
 :::
+
+***

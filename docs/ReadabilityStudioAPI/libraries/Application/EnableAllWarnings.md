@@ -7,3 +7,5 @@ Enables all warnings and prompts throughout the program.
 EnableAllWarnings()
 ```
 :::
+
+***

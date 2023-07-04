@@ -7,3 +7,5 @@ Clears the script editor's debug window.
 Clear(Message)
 ```
 :::
+
+***

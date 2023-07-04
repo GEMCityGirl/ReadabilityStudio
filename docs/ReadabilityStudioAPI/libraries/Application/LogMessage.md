@@ -13,3 +13,5 @@ LogMessage(Message)
 | :-- | :-- |
 Message | The message to log.
 :::
+
+***

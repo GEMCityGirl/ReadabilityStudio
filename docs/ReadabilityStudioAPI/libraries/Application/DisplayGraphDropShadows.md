@@ -13,3 +13,5 @@ DisplayGraphDropShadows(UseShadows)
 | :-- | :-- |
 UseShadows | Whether to use shadows underneath items (such as bars) on all the graphs.
 :::
+
+***

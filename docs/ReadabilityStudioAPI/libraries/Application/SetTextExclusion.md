@@ -20,3 +20,5 @@ TextExclusionType | How text should be [excluded](#textexclusiontype).
 Application.SetTextExclusion(TextExclusionType.DoNotExcludeAnyText)
 ```
 :::
+
+***

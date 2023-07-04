@@ -11,3 +11,5 @@ string GetScriptFolderPath()
 This will return an empty string if the current script has not been saved yet.
 :::
 ::::
+
+***

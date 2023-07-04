@@ -10,4 +10,4 @@ Close(SaveChanges)
 
 **Parameter** | **Description**
 | :-- | :-- |
-SaveChanges | Specifies whether to save any changes made to the project. The default is `false`.
+SaveChanges | Specifies whether to save any changes made to the project. The default is **false**.

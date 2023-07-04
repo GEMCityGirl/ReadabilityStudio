@@ -13,3 +13,5 @@ SetCenterPrintFooter(Label)
 | :-- | :-- |
 Label | The label to appear in the center bottom of printouts.
 :::
+
+***

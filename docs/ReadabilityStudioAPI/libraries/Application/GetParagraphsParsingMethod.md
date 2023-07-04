@@ -11,3 +11,5 @@ ParagraphParse GetParagraphsParsingMethod()
 
 The paragraph parsing method.
 :::
+
+***

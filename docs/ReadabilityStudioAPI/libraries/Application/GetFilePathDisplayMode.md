@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## GetFilePathDisplayMode {-}
 
 Returns how filepaths are displayed in batch projects.
@@ -9,3 +10,6 @@ FilePathDisplayMode GetFilePathDisplayMode()
 ### Return value {-}
 
 How [filepaths](#filepathdisplaymode) are being displayed.
+:::
+
+***

@@ -14,3 +14,4 @@ SetIncludeIncompleteTolerance(WordCount)
 WordCount | The minimum number of words that will make a sentence missing terminating punctuation be considered complete.
 :::
 
+***

@@ -13,3 +13,5 @@ SetCenterPrintHeader(Label)
 | :-- | :-- |
 Label | The label to appear in the center top of printouts.
 :::
+
+***

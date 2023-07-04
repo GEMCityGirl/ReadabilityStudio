@@ -14,3 +14,4 @@ SetDocumentStorageMethod(TextStorage)
 TextStorage | How projects should [embed or link](#textstorage) to their documents.
 :::
 
+***
