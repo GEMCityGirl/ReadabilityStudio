@@ -3,15 +3,17 @@
 
 Sets how filepaths are displayed in the lists for batch projects.
 
+### Syntax {-}
+
 ```{sql}
 SetFilePathDisplayMode(FilePathDisplayMode)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-FilePathDisplayMode | How [filepaths](#filepathdisplaymode) should be displayed.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+FilePathDisplayMode | **[FilePathDisplayMode](#filepathdisplaymode)** | How filepaths should be displayed.
 :::
 
 ***

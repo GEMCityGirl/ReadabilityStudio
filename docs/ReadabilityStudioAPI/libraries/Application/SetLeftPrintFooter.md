@@ -3,15 +3,17 @@
 
 Sets the label to appear in the bottom left corner of printouts.
 
+### Syntax {-}
+
 ```{sql}
 SetLeftPrintFooter(Label)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-Label | The label to appear in the bottom left corner of printouts.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+Label | **string** | The label to appear in the bottom left corner of printouts.
 :::
 
 ***

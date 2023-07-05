@@ -3,6 +3,8 @@
 
 Removes all custom tests from the program.
 
+### Syntax {-}
+
 ```{sql}
 RemoveAllCustomTests()
 ```

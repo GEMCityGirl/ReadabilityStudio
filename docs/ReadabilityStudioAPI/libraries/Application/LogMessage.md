@@ -3,15 +3,17 @@
 
 Logs a message to be shown once the script is finished running.
 
+### Syntax {-}
+
 ```{sql}
 LogMessage(Message)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-Message | The message to log.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+Message | **string** | The message to log.
 :::
 
 ***

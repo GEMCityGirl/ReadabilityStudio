@@ -3,18 +3,22 @@
 
 Combines a base path with a relative path and returns the full file path.
 
+### Syntax {-}
+
 ```{sql}
 string GetAbsoluteFilePath()
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-BasePath | The full base path.
-RelativePath | The path of the file that is relative to the base path.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+BasePath | **string** | The full base path.
+RelativePath | **string** | The path of the file that is relative to the base path.
 
 ### Return value {-}
+
+Type: **string**
 
 The full file path.
 

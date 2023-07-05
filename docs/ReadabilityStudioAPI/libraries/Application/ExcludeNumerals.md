@@ -3,15 +3,17 @@
 
 Specifies whether to exclude numerals from the document analysis.
 
+### Syntax {-}
+
 ```{sql}
 ExcludeNumerals(Exclude)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-Exclude | **true** to exclude numerals, **false** to include them.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+Exclude | **boolean** | **true** to exclude numerals, **false** to include them.
 :::
 
 ***

@@ -3,6 +3,8 @@
 
 Closes the program.
 
+### Syntax {-}
+
 ```{sql}
 Close()
 ```

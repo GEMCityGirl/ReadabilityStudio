@@ -3,15 +3,17 @@
 
 Specifies how text should be excluded.
 
+### Syntax {-}
+
 ```{sql}
 SetTextExclusion(TextExclusionType)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-TextExclusionType | How text should be [excluded](#textexclusiontype).
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+TextExclusionType | **[TextExclusionType](#textexclusiontype)** | How text should be excluded.
 
 ### Example {-}
 

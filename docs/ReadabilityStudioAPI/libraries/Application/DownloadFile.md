@@ -3,16 +3,18 @@
 
 Downloads a file into the specified folder.
 
+### Syntax {-}
+
 ```{sql}
 DownloadFile(FileToDownload,FolderToDownloadTo)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-FileToDownload | The file to download.
-FolderToDownloadTo | A folder to download the file into.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+FileToDownload | **string** | The file to download.
+FolderToDownloadTo | **string** | A folder to download the file into.
 :::
 
 ***

@@ -3,13 +3,17 @@
 
 Returns how filepaths are displayed in batch projects.
 
+### Syntax {-}
+
 ```{sql}
 FilePathDisplayMode GetFilePathDisplayMode()
 ```
 
 ### Return value {-}
 
-How [filepaths](#filepathdisplaymode) are being displayed.
+Type: **[FilePathDisplayMode](#filepathdisplaymode)**
+
+How filepaths are being displayed.
 :::
 
 ***

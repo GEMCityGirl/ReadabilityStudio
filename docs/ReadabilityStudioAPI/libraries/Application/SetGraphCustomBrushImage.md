@@ -3,15 +3,17 @@
 
 Sets the image to be used for custom brushes.
 
+### Syntax {-}
+
 ```{sql}
 SetGraphCustomBrushImage(ImageFilePath)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-ImageFilePath | The filepath to the image to use for custom brushes.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+ImageFilePath | **string** | The filepath to the image to use for custom brushes.
 :::
 
 ***

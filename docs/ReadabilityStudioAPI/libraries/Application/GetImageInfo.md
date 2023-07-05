@@ -3,17 +3,21 @@
 
 Returns the details of a given file.
 
+### Syntax {-}
+
 ```{sql}
 table GetImageInfo()
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-ImagePath | The file path of the image.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+ImagePath | **string** | The file path of the image.
 
 ### Return value {-}
+
+Type: **table**
 
 A table of the image's information.
 

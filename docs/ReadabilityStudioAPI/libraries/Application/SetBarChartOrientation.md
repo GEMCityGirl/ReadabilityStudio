@@ -3,15 +3,17 @@
 
 Sets the bar charts' orientation.
 
+### Syntax {-}
+
 ```{sql}
 SetBarChartOrientation(Orientation)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-Orientation | The bar charts' [orientation](#orientation).
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+Orientation | **[Orientation](#orientation)** | The bar charts' orientation.
 :::
 
 ***

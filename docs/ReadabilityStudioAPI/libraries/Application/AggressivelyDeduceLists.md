@@ -3,15 +3,17 @@
 
 Specifies whether to use aggressive list deduction.
 
+### Syntax {-}
+
 ```{sql}
 AggressivelyDeduceLists(BeAggressive)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-Exclude | Specifies whether to use aggressive list deduction.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+Exclude | **boolean**|  Specifies whether to use aggressive list deduction.
 :::
 
 ***

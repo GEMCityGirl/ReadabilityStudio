@@ -3,15 +3,17 @@
 
 Specifies whether to exclude proper nouns from the document analysis.
 
+### Syntax {-}
+
 ```{sql}
 ExcludeProperNouns(Exclude)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-Exclude | **true** to exclude proper nouns, **false** to include them.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+Exclude | **boolean** | **true** to exclude proper nouns, **false** to include them.
 :::
 
 ***

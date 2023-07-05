@@ -3,13 +3,17 @@
 
 Returns whether projects embed their documents or link to them.
 
+### Syntax {-}
+
 ```{sql}
 TextStorage GetDocumentStorageMethod()
 ```
 
 ### Return value {-}
 
-How projects are [embedding or linking](#textstorage) to their source.
+Type: **[TextStorage](#textstorage)**
+
+How projects are embedding or linking to their source.
 :::
 
 ***

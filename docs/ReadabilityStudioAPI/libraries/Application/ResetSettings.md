@@ -3,6 +3,8 @@
 
 Resets the program's settings.
 
+### Syntax {-}
+
 ```{sql}
 ResetSettings()
 ```

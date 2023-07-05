@@ -3,18 +3,20 @@
 
 Prints a message to the script editor's debug window.
 
+### Syntax {-}
+
 ```{sql}
 Print(Message)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-Message | The message to print.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+Message | **string** | The message to print.
 
 ::: {.tipsection data-latex=""}
-`Message` can be HTML-formatted text.
+*Message* can be HTML-formatted text.
 :::
 
 ### Example {-}

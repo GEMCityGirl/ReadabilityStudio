@@ -3,15 +3,17 @@
 
 Sets the effect used to display bars in bar charts.
 
+### Syntax {-}
+
 ```{sql}
 SetBarChartBarEffect(BarEffect)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-BarEffect | The [effect](#bareffect) used to display bars in bar charts.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+BarEffect | **[BarEffect](#bareffect)** | The effect used to display bars in bar charts.
 :::
 
 ***

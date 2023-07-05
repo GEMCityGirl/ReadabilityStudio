@@ -3,13 +3,17 @@
 
 Returns the active batch project.
 
+### Syntax {-}
+
 ```{sql}
 BatchProject GetActiveBatchProject()
 ```
 
 ### Return value {-}
 
-The active [batch project](#batchproject).
+Type: **[BatchProject](#batchproject)**
+
+The active batch project.
 :::
 
 ***

@@ -3,15 +3,17 @@
 
 Sets how hard returns help determine how paragraphs and sentences are detected.
 
+### Syntax {-}
+
 ```{sql}
 SetParagraphsParsingMethod(ParagraphParse)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-ParagraphParse | The paragraph parsing method.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+ParagraphParse | **[ParagraphParse](#paragraphparse)** The paragraph parsing method.
 :::
 
 ***

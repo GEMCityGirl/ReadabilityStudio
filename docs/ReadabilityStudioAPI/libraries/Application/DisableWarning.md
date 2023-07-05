@@ -3,13 +3,15 @@
 
 Disables the specified warning.
 
+### Syntax {-}
+
 ```{sql}
 DisableWarning()
 ```
 
-**Parameter** | **Description**
-| :-- | :-- |
-WarningId | The warning's string ID.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+WarningId | **string** | The warning's string ID.
 
 Refer to **[EnableWarning()](#enablewarning)** for a list of warning IDs.
 :::

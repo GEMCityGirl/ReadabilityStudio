@@ -3,6 +3,8 @@
 
 Sets which items the spell checker should ignore.
 
+### Syntax {-}
+
 ```{sql}
 SetSpellCheckerOptions(IgnoreProperNouns,
                        IgnoreUppercased,
@@ -13,13 +15,13 @@ SetSpellCheckerOptions(IgnoreProperNouns,
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-IgnoreProperNouns | **true** to ignore proper nouns.
-IgnoreUppercased | **true** to ignore uppercased words.
-IgnoreNumerals | **true** to ignore numerals.
-IgnoreFileAddresses | **true** to ignore filepaths and URLs.
-IgnoreProgrammerCode | **true** to ignore programmer code.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+IgnoreProperNouns | **boolean** | **true** to ignore proper nouns.
+IgnoreUppercased | **boolean** | **true** to ignore uppercased words.
+IgnoreNumerals | **boolean** | **true** to ignore numerals.
+IgnoreFileAddresses | **boolean** | **true** to ignore filepaths and URLs.
+IgnoreProgrammerCode | **boolean** | **true** to ignore programmer code.
 :::
 
 ***

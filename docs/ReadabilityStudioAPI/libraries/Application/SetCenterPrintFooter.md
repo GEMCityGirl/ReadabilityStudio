@@ -3,15 +3,17 @@
 
 Sets the label to appear in the center bottom of printouts.
 
+### Syntax {-}
+
 ```{sql}
 SetCenterPrintFooter(Label)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-Label | The label to appear in the center bottom of printouts.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+Label | **string** | The label to appear in the center bottom of printouts.
 :::
 
 ***

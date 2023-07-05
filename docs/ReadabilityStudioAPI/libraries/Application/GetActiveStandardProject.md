@@ -3,13 +3,17 @@
 
 Returns the active standard project.
 
+### Syntax {-}
+
 ```{sql}
 StandardProject GetActiveStandardProject()
 ```
 
 ### Return value {-}
 
-The active [standard project](#standardproject).
+Type: **[StandardProject](#standardproject)**
+
+The active standard project.
 :::
 
 ***

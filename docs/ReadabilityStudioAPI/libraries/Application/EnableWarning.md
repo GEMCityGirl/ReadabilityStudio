@@ -2,13 +2,15 @@
 
 Enables the specified warning.
 
+### Syntax {-}
+
 ```{sql}
 EnableWarning()
 ```
 
-**Parameter** | **Description**
-| :-- | :-- |
-WarningId | The warning's string ID.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+WarningId | **string** | The warning's string ID.
 
 The following warning IDs are available:
 

@@ -3,15 +3,17 @@
 
 Specifies whether to exclude copyright notices from the document analysis.
 
+### Syntax {-}
+
 ```{sql}
 ExcludeCopyrightNotices(Exclude)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-Exclude | **true** to exclude copyright notices, **false** to include them.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+Exclude | **boolean** | **true** to exclude copyright notices, **false** to include them.
 :::
 
 ***

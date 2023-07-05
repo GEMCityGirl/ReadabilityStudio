@@ -3,14 +3,16 @@
 
 Writes a string to the specified file path.
 
+### Syntax {-}
+
 ```{sql}
 WriteToFile(FilePath,Message)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Description**
-| :-- | :-- |
-FilePath | The file to write to (will be overwritten if file exists).
-Message | The text to write to the file.
+**Parameter** | **Type** | **Description**
+| :-- | :-- | :-- |
+FilePath | **string** | The file to write to (will be overwritten if file exists).
+Message | **string** | The text to write to the file.
 :::
