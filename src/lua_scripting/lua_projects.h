@@ -29,7 +29,7 @@ namespace LuaScripting
         {
         ProjectDoc* m_project{ nullptr };
         ToolsOptionsDlg* m_settingsDlg{ nullptr };
-         [[nodiscard]]
+        [[nodiscard]]
         bool VerifyProjectIsOpen(const wxString& functionName) const
             {
             if (!m_project)
@@ -124,7 +124,7 @@ namespace LuaScripting
         /// missing terminating punctuation be considered complete.
         int SetIncludeIncompleteTolerance(lua_State *L);
         /// Specifies whether or not to aggressively exclude.
-        int AggressivelyDeduceLists(lua_State *L);
+        int AggressivelyExclude(lua_State *L);
         /// Specifies whether or not to exclude copyright notices.
         int ExcludeCopyrightNotices(lua_State *L);
         /// Specifies whether or not to exclude trailing citations.
@@ -324,7 +324,7 @@ namespace LuaScripting
         // terminating punctuation be considered complete.
         int SetIncludeIncompleteTolerance(lua_State *L);
         // Specifies whether or not to aggressively exclude.
-        int AggressivelyDeduceLists(lua_State *L);
+        int AggressivelyExclude(lua_State *L);
         // Specifies whether or not to exclude copyright notices.
         int ExcludeCopyrightNotices(lua_State *L);
         // Specifies whether or not to exclude trailing citations.

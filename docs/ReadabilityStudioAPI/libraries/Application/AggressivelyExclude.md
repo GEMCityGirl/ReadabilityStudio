@@ -1,12 +1,12 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## AggressivelyDeduceLists {-}
+## AggressivelyExclude {-}
 
 Specifies whether to use aggressive list deduction.
 
 ### Syntax {-}
 
 ```{sql}
-AggressivelyDeduceLists(BeAggressive)
+AAggressivelyExclude(BeAggressive)
 ```
 
 ### Parameters {-}

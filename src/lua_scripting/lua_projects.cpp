@@ -276,7 +276,7 @@ namespace LuaScripting
         return 0;
         };
 
-    int StandardProject::AggressivelyDeduceLists(lua_State *L)
+    int StandardProject::AggressivelyExclude(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
@@ -1606,7 +1606,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, SetPhraseExclusionList),
       LUNA_DECLARE_METHOD(StandardProject, SetBlockExclusionTags),
       LUNA_DECLARE_METHOD(StandardProject, SetAppendedDocumentFilePath),
-      LUNA_DECLARE_METHOD(StandardProject, AggressivelyDeduceLists),
+      LUNA_DECLARE_METHOD(StandardProject, AggressivelyExclude),
       LUNA_DECLARE_METHOD(StandardProject, SetTextExclusion),
       LUNA_DECLARE_METHOD(StandardProject, SetIncludeIncompleteTolerance),
       LUNA_DECLARE_METHOD(StandardProject, ExcludeCopyrightNotices),
@@ -1799,7 +1799,7 @@ namespace LuaScripting
         };
 
     //-------------------------------------------------------------
-    int BatchProject::AggressivelyDeduceLists(lua_State *L)
+    int BatchProject::AggressivelyExclude(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }

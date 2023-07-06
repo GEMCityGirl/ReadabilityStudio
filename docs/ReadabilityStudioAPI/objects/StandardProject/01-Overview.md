@@ -23,7 +23,7 @@ sp = StandardProject(Application.GetDocumentsPath() ..
 -- Delay reloading
 sp:DelayReloading(true)
 -- Change a few options
-sp:AggressivelyDeduceLists(true)
+sp:AggressivelyExclude(true)
 -- Reindex the document so that the
 -- changes take effect.
 sp:Reload()

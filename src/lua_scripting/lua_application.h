@@ -81,7 +81,7 @@ namespace LuaScripting
     // sentence missing terminating punctuation be considered complete.
     int SetIncludeIncompleteTolerance(lua_State *L);
     // Specifies whether or not to aggressively exclude.
-    int AggressivelyDeduceLists(lua_State *L);
+    int AggressivelyExclude(lua_State *L);
     // Specifies whether or not to exclude copyright notices.
     int ExcludeCopyrightNotices(lua_State *L);
     // Specifies whether or not to exclude trailing citations.
@@ -164,7 +164,7 @@ namespace LuaScripting
             { "DisableWarning", DisableWarning },
             { "SetTextExclusion", SetTextExclusion },
             { "SetIncludeIncompleteTolerance", SetIncludeIncompleteTolerance },
-            { "AggressivelyDeduceLists", AggressivelyDeduceLists },
+            { "AggressivelyExclude", AggressivelyExclude },
             { "ExcludeCopyrightNotices", ExcludeCopyrightNotices },
             { "ExcludeTrailingCitations", ExcludeTrailingCitations },
             { "ExcludeFileAddress", ExcludeFileAddress },

@@ -1138,7 +1138,7 @@ namespace LuaScripting
         return 0;
         }
     //-------------------------------------------------------------
-    int AggressivelyDeduceLists(lua_State *L)
+    int AggressivelyExclude(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
