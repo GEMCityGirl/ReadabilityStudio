@@ -17,7 +17,7 @@ ImagePath | **string** | The file path of the image.
 
 ### Return value {-}
 
-Type: **table**
+Type: **table** \
 
 A table of the image's information.
 

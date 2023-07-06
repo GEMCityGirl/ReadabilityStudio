@@ -13,7 +13,7 @@ AggressivelyDeduceLists(BeAggressive)
 
 **Parameter** | **Type** | **Description**
 | :-- | :-- | :-- |
-Exclude | **boolean**|  Specifies whether to use aggressive list deduction.
+Exclude | **boolean** |  Specifies whether to use aggressive list deduction.
 :::
 
 ***

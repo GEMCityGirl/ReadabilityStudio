@@ -17,7 +17,7 @@ TestName | **string** | The name of the test.
 
 ### Return value {-}
 
-Type: **number**
+Type: **number** \
 
 The numeric ID of the test.
 :::

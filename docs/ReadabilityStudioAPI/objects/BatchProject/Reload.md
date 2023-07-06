@@ -6,6 +6,6 @@ Reanalyzes the project's documents.
 Reload()
 ```
 
-### See Also {-}
+### See also {-}
 
 [DelayReloading()](#batch-delayreloading)

@@ -18,7 +18,7 @@ RelativePath | **string** | The path of the file that is relative to the base pa
 
 ### Return value {-}
 
-Type: **string**
+Type: **string** \
 
 The full file path.
 
