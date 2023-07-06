@@ -224,6 +224,8 @@ public:
         @param[in,out] Url The webpage (may be altered if redirected).
         @param[out] webPageContent The content of the page.
         @param[out] contentType The MIME type (and possibly charset) of the page.
+        @param[out] statusText Any possible information from the server
+            (usually extended error information).
         @param[out] responseCode The response code when connecting to the page.
         @param acceptOnlyHtmlOrScriptFiles Whether only HTML or
             JS script files should be read.
@@ -232,6 +234,7 @@ public:
     bool ReadWebPage(wxString& Url,
                      wxString& webPageContent,
                      wxString& contentType,
+                     wxString& statusText,
                      long& responseCode,
                      const bool acceptOnlyHtmlOrScriptFiles = true);
     /// @brief Attempts to connect to @c url.

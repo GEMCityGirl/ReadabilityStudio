@@ -4051,16 +4051,16 @@ void MainFrame::OnHelpManual([[maybe_unused]] wxRibbonButtonBarEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    wxString updateFileContent, contentType;
+    wxString updateFileContent, contentType, statusText;
 #ifdef __WXMAC__
     wxString updatedFilePath =
         _DT(L"http:// oleandersoftware.com/downloads/readabilitystudio/CurrentMacVersionReadabilityStudio.txt");
     long responseCode;
-    if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false, false) )
+    if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, statusText, responseCode, false) )
         {
         updatedFilePath =
             _DT(L"https:// oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
-        if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, responseCode, false) )
+        if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, statusText, responseCode, false) )
             {
             wxMessageBox(wxString::Format(_(L"An error occurred while trying to connect to the website:\t%s"),
                                             WebHarvester::GetResponseMessage(responseCode)),
@@ -4073,7 +4073,7 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
         _DT(L"https:// oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
     long responseCode;
     if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent,
-                                                  contentType, responseCode, false) )
+                                                  contentType, statusText, responseCode, false) )
         {
         wxMessageBox(wxString::Format(_(L"An error occurred while trying to connect to the website:\t%s"),
                                         WebHarvester::GetResponseMessage(responseCode)),

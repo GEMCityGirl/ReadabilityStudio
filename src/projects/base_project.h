@@ -914,8 +914,12 @@ public:
     [[nodiscard]]
     bool HasUI() const noexcept
         { return m_hasUI; }
-    /// If there is no UI attached to the project, then queue a message to be handled by the caller later.
-    /// If there is a UI, then display the message in a message box right away.
+    /// @brief Logs a message to multiple outputs.
+    /// @details If there is no UI attached to the project,
+    ///     then queue a message to be handled by the caller later.
+    ///     If there is a UI, then display the message in a message box right away.\n
+    ///     The message will also be sent to the logging system, using the icon to
+    ///     determine which logging level to use.
     /// @param message The message to show to the user.
     /// @param title The title for the message box (only used if there is a UI involved).
     /// @param icon The icon to be shown on the message box.

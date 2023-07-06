@@ -417,11 +417,13 @@ wxString WebHarvester::GetResponseMessage(const int responseCode)
 bool WebHarvester::ReadWebPage(wxString& Url,
                                wxString& webPageContent,
                                wxString& contentType,
+                               wxString& statusText,
                                long& responseCode,
                                const bool acceptOnlyHtmlOrScriptFiles /*= true*/)
     {
     webPageContent.clear();
     contentType.clear();
+    statusText.clear();
     responseCode = 404;
 
     if (Url.empty() )
@@ -438,11 +440,13 @@ bool WebHarvester::ReadWebPage(wxString& Url,
     if (!m_downloader.Read(Url))
         {
         responseCode = m_downloader.GetLastStatus();
+        statusText = m_downloader.GetLastStatusText();
         wxLogWarning(L"%s: Unable to connect to page, error code #%i.", Url, responseCode);
         return false;
         }
 
     responseCode = m_downloader.GetLastStatus();
+    statusText = m_downloader.GetLastStatusText();
     if (IsBadResponseCode(responseCode))
         {
         wxLogWarning(L"%s: Unable to connect to page, error code #%i.", Url, responseCode);
@@ -590,8 +594,9 @@ bool WebHarvester::CrawlLinks(wxString& url,
         {
         // read in the page
         wxString contentType;
+        wxString statusText;
         long responseCode{ 0 };
-        if (!ReadWebPage(url, fileText, contentType, responseCode, true) )
+        if (!ReadWebPage(url, fileText, contentType, statusText, responseCode, true) )
             {
             --m_currentLevel;
             return false;

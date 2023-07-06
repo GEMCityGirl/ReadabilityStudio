@@ -3853,10 +3853,10 @@ bool BaseProject::LoadExternalDocument()
         { GetProjectDirectory() }));
     if (resolvePath.IsHTTPFile() || resolvePath.IsHTTPSFile())
         {
-        wxString content, contentType;
+        wxString content, contentType, statusText;
         long responseCode;
         wxString urlPath = GetOriginalDocumentFilePath();
-        if (wxGetApp().GetWebHarvester().ReadWebPage(urlPath, content, contentType,
+        if (wxGetApp().GetWebHarvester().ReadWebPage(urlPath, content, contentType, statusText,
                                                      responseCode, false))
             {
             wxString title;
@@ -3888,8 +3888,9 @@ bool BaseProject::LoadExternalDocument()
             }
         else
             {
-            LogMessage(wxString::Format(_(L"Unable to open webpage. The following error occurred:\n%s"),
-                         WebHarvester::GetResponseMessage(responseCode)),
+            LogMessage(wxString::Format(_(L"Unable to open webpage. The following error occurred:\n%s\n%s"),
+                       WebHarvester::GetResponseMessage(responseCode),
+                       statusText),
                 _(L"Error"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
@@ -4028,7 +4029,10 @@ bool BaseProject::LoadExternalDocument()
         wxMemoryOutputStream memstream;
         if (!zc.ReadFile(GetOriginalDocumentFilePath().substr(poundInFile+5), memstream) &&
             zc.GetMessages().size())
-            { LogMessage(zc.GetMessages().back().m_message, poundFn.GetFullPath(), zc.GetMessages().back().m_icon); }
+            {
+            LogMessage(zc.GetMessages().back().m_message,
+                       poundFn.GetFullPath(), zc.GetMessages().back().m_icon);
+            }
         const std::pair<bool,wxString> extractResult =
             ExtractRawText(static_cast<const char*>(memstream.GetOutputStreamBuffer()->GetBufferStart()),
                 memstream.GetLength(), wxFileName(GetOriginalDocumentFilePath()).GetExt());
@@ -4112,7 +4116,8 @@ bool BaseProject::LoadExternalDocument()
     }
 
 //-------------------------------------------------------
-bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString& text, const size_t minWordCount)
+bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString& text,
+                                           const size_t minWordCount)
     {
     if (!path.empty())
         { wxLogMessage(L"Analyzing %s", path); }
@@ -4176,7 +4181,8 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
         else
             {
             const double numberOfInvalidSentencesPercentage =
-                safe_divide<double>((GetWords()->get_sentence_count() - GetWords()->get_complete_sentence_count()),
+                safe_divide<double>((GetWords()->get_sentence_count() -
+                                     GetWords()->get_complete_sentence_count()),
                 GetWords()->get_sentence_count());
             if (numberOfInvalidSentencesPercentage > 0.60f &&
                 (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
@@ -4272,7 +4278,7 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
                 _(L"This document contains %d incomplete sentences longer than %zu words which will be "
                    "included in the analysis.\n\nTo change this, increase the "
                    "\"Include incomplete sentences containing more than...\" "
-                   "option under Project Properties->Document Indexing."),
+                   "option under Project Properties \x00BB Document Indexing."),
                 sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength,
                 GetIncludeIncompleteSentencesIfLongerThanValue()));
             LogMessage(warningMsg);
