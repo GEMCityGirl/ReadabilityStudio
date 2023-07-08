@@ -2681,7 +2681,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, SetPhraseExclusionList),
       LUNA_DECLARE_METHOD(BatchProject, SetBlockExclusionTags),
       LUNA_DECLARE_METHOD(BatchProject, SetAppendedDocumentFilePath),
-      LUNA_DECLARE_METHOD(BatchProject, AggressivelyDeduceLists),
+      LUNA_DECLARE_METHOD(BatchProject, AggressivelyExclude),
       LUNA_DECLARE_METHOD(BatchProject, SetTextExclusion),
       LUNA_DECLARE_METHOD(BatchProject, SetIncludeIncompleteTolerance),
       LUNA_DECLARE_METHOD(BatchProject, ExcludeCopyrightNotices),
