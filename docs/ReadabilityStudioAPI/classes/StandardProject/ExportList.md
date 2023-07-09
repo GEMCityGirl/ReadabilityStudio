@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## ExportList {#standard-exportlist .unnumbered}
 
-Saves the specified list as a HTML or text file to *OutputFilePath*.
+Saves\index{Lists!exporting} the specified list as an HTML, text, or LaTeX file to *OutputFilePath*.
 
 ### Syntax {-}
 
@@ -33,19 +33,21 @@ includePageBreaks | (Optional) Specifies whether to insert page breaks. Note tha
 
 ```{sql}
 -- Open a project from the user's "Documents" folder
-sp = StandardProject(Application.GetDocumentsPath() .. "Consent Form.rsp")
+consentForm = StandardProject(Application.GetDocumentsPath() ..
+                              "Consent Form.rsp")
 -- Sort the "All Words" list.
 -- Will sort by the third column (Z-A sorting), and in case of a tie, then sort
 -- by the second then the first column.
-sp:SortList(ListType.AllWords, 3, SortOrder.SortDescending,
+consentForm:SortList(ListType.AllWords,
+            3, SortOrder.SortDescending,
             2, SortOrder.SortDescending,
             1, SortOrder.SortDescending)
 -- export the list after sorting it
-sp:ExportList(ListType.AllWords,
+consentForm:ExportList(ListType.AllWords,
               Application.GetDocumentsPath() ..
-              "ExportList/ChristmasCarolAllWordsListSortedDesc.htm")
+              "ExportList/ConsentFormAllWordsListSortedDesc.htm")
 
-sp:Close()
+consentForm:Close()
 ```
 :::
 

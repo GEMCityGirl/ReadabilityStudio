@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## ExportGraph {#standard-exportgraph .unnumbered}
 
-Saves the specified graph as an image.
+Saves\index{Graphs!exporting} the specified graph as an image.
 
 ### Syntax {-}
 
@@ -28,17 +28,17 @@ height | (Optional) Specifies the height of the image.
 ```{sql}
 -- Opens a document from user's "Documents" folder,
 -- exports 3 of its graphs, then closes the project.
-sp = StandardProject(Application.GetDocumentsPath() .. "Turkey Brining.docx")
+recipe = StandardProject(Application.GetDocumentsPath() .. "Turkey Brining.docx")
 
-sp:ExportGraph(GraphType.SentenceBoxPlox,
+recipe:ExportGraph(GraphType.SentenceBoxPlox,
                Application.GetDocumentsPath() .. "Review/RecipeSentBoxPlot.png")
 
-sp:ExportGraph(GraphType.WordBarChart,
+recipe:ExportGraph(GraphType.WordBarChart,
                Application.GetDocumentsPath() .. "Review/RecipeWordBarChart.png",
                -- save it as black & white
                true)
 
-sp:ExportGraph(GraphType.SyllableHistogram,
+recipe:ExportGraph(GraphType.SyllableHistogram,
                Application.GetDocumentsPath() .. "Review/RecipeSyllableHistogram.png",
                -- color image
                false,
@@ -46,7 +46,7 @@ sp:ExportGraph(GraphType.SyllableHistogram,
                -- (height will be adjusted to maintain aspect ratio)
                500)
 
-sp:Close()
+recipe:Close()
 ```
 :::
 

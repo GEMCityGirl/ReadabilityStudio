@@ -6,7 +6,7 @@ Adds a test to the project.
 ### Syntax {-}
 
 ```{sql}
-boolean AddTest(Test/string test)
+boolean AddTest(Test (or string) test)
 ```
 
 ### Parameters {-}
@@ -26,13 +26,13 @@ Type: **boolean** \
 ```{sql}
 -- Opens a document from user's "Documents" folder
 -- and adds some tests.
-sp = StandardProject(Application.GetDocumentsPath() ..
-                     "Consent Form.docx")
+consentForm = StandardProject(Application.GetDocumentsPath() ..
+                              "Consent Form.docx")
 
-sp:AddTest(Tests.DanielsonBryan1)
-sp:AddTest(Tests.DanielsonBryan2)
--- assuming we have a custom test by this name
-sp:AddTest("Patient Consent Formula")
+consentForm:AddTest(Tests.DanielsonBryan1)
+consentForm:AddTest(Tests.DanielsonBryan2)
+-- assuming we have a custom test by this name.
+consentForm:AddTest("Patient Consent Formula")
 ```
 :::
 
