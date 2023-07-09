@@ -6,15 +6,16 @@ Resizes the program's window size to the specified width and height.
 ### Syntax {-}
 
 ```{sql}
-SetWindowSize(Width,Height)
+SetWindowSize(number width,
+              number height)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-Width | **number** | The program window width.
-Height | **number** | The program window height.
+**Parameter** | **Description**
+| :-- | :-- |
+width | The program window width.
+height | The program window height.
 :::
 
 ***

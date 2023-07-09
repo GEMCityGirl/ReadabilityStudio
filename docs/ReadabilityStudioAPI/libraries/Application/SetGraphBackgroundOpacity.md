@@ -6,14 +6,14 @@ Sets the opacity of graph backgrounds. **0** is fully transparent, and **255** i
 ### Syntax {-}
 
 ```{sql}
-SetGraphBackgroundOpacity(OpacityLevel)
+SetGraphBackgroundOpacity(number opacityLevel)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-OpacityLevel | **number** | The opacity of graph backgrounds.
+**Parameter** | **Description**
+| :-- | :-- |
+opacityLevel | The opacity of graph backgrounds.
 :::
 
 ***

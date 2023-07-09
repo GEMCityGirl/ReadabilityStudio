@@ -2,20 +2,23 @@
 ## SetPlotBackgroundColor {-}
 
 Sets the plot area color for all graphs. The color is created by specifying the red, blue, and green channels of the color.
+(Values should be between **0** - **255**.)
 
 ### Syntax {-}
 
 ```{sql}
-SetPlotBackgroundColor(Red,Green,Blue)
+SetPlotBackgroundColor(number red,
+                       number green,
+                       number blue)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-Red | **number** | The red channel of the color.
-Green | **number** | The green channel of the color.
-Blue | **number** | The blue channel of the color.
+**Parameter** | **Description**
+| :-- | :-- |
+red | The red channel of the color.
+green | The green channel of the color.
+blue | The blue channel of the color.
 :::
 
 ***

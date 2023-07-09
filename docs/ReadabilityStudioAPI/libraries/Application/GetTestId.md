@@ -1,19 +1,20 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## GetTestId {-}
 
-Returns the numeric ID of a test, which should be passed in as a string. This function can be used to find a custom test's window.
+Returns the numeric ID of a test, which should be passed in as a string.
+This function can be used to find a custom test's window.
 
 ### Syntax {-}
 
 ```{sql}
-integer GetTestId(TestName)
+integer GetTestId(string testName)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-TestName | **string** | The name of the test.
+**Parameter** | **Description**
+| :-- | :-- |
+testName | The name of the test.
 
 ### Return value {-}
 

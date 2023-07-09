@@ -6,14 +6,14 @@ Specifies the minimum number of words that will make a sentence missing terminat
 ### Syntax {-}
 
 ```{sql}
-SetIncludeIncompleteTolerance(WordCount)
+SetIncludeIncompleteTolerance(number wordCount)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-WordCount | **number** | The minimum number of words that will make a sentence missing terminating punctuation be considered complete.
+**Parameter** | **Description**
+| :-- | :-- |
+wordCount | The minimum number of words that will make a sentence missing terminating punctuation be considered complete.
 :::
 
 ***

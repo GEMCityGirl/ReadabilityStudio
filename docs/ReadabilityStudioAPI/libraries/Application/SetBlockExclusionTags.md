@@ -6,14 +6,14 @@ Specifies a pair of tags that will have all text between them excluded from the 
 ### Syntax {-}
 
 ```{sql}
-SetBlockExclusionTags(Tags)
+SetBlockExclusionTags(string tags)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-Tags | **string** | A two-character string containing a pair of exclusion tags.
+**Parameter** | **Description**
+| :-- | :-- |
+tags | A two-character string containing a pair of exclusion tags.
 
 ::: {.notesection data-latex=""}
 Pass in an empty string to turn off this option.

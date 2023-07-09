@@ -6,14 +6,14 @@ Imports the specified settings file, which will configure the general options of
 ### Syntax {-}
 
 ```{sql}
-ImportSettings(SettingsFileToImport)
+ImportSettings(string settingsFileToImport)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-SettingsFileToImport | **string** | The filepath to import the program's settings from.
+**Parameter** | **Description**
+| :-- | :-- |
+settingsFileToImport | The filepath to import the program's settings from.
 :::
 
 ***

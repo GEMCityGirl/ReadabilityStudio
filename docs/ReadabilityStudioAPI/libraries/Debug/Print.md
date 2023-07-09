@@ -6,14 +6,14 @@ Prints a message to the script editor's debug window.
 ### Syntax {-}
 
 ```{sql}
-Print(Message)
+Print(string message)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-Message | **string** | The message to print.
+**Parameter** | **Description**
+| :-- | :-- |
+message | The message to print.
 
 ::: {.tipsection data-latex=""}
 *Message* can be HTML-formatted text.

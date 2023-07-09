@@ -6,14 +6,14 @@ Sets the minimum number of words that a document must have to be included in bat
 ### Syntax {-}
 
 ```{sql}
-SetMinDocWordCountForBatch(Count)
+SetMinDocWordCountForBatch(number count)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-Count | **number** | The minimum number of words that a document must have to be included in batch projects.
+**Parameter** | **Description**
+| :-- | :-- |
+count | The minimum number of words that a document must have to be included in batch projects.
 :::
 
 ***

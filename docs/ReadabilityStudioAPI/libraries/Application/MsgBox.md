@@ -6,15 +6,16 @@ Displays a message (with optional title).
 ### Syntax {-}
 
 ```{sql}
-MsgBox(Message,Title)
+MsgBox(string message,
+       string title)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-Message | **string** | The message to show.
-Title | **string** | (Optional) The title of the message box.
+**Parameter** | **Description**
+| :-- | :-- |
+message | The message to show.
+title | (Optional) The title of the message box.
 :::
 
 ***

@@ -6,14 +6,14 @@ Specifies whether to use a color fade on graph backgrounds.
 ### Syntax {-}
 
 ```{sql}
-ApplyGraphBackgroundFade(UseColorFade)
+ApplyGraphBackgroundFade(boolean useColorFade)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-UseColorFade | **boolean** | Whether to use a color fade on graph backgrounds.
+**Parameter** | **Description**
+| :-- | :-- |
+useColorFade | Whether to use a color fade on graph backgrounds.
 :::
 
 ***

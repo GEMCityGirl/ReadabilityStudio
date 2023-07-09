@@ -1,30 +1,33 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## ExportList {#standard-exportlist .unnumbered}
 
-Saves the specified list as a HTML or text file to **OutputFilePath**.
+Saves the specified list as a HTML or text file to *OutputFilePath*.
+
+### Syntax {-}
 
 ```{sql}
-ExportList(ListType,
-           OutputFilePath,
-           FromRow,
-           ToRow,
-           FromColumn,
-           ToColumn,
-           IncludeHeaders,
-           IncludePageBreaks)
+ExportList(ListType type,
+           string outputFilePath,
+           number fromRow,
+           number toRow,
+           number fromColumn,
+           number toColumn,
+           boolean includeHeaders,
+           boolean IncludePageBreaks)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-ListType | The [list](#listtype) to export.
-OutputFilePath | The folder to save the list.
-FromRow | (Optional) Specifies the row to begin from. The default is the first row.
-ToRow | (Optional) Specifies the last row. Enter -1 to specify the last row in the list.
-FromColumn | (Optional) Specifies the row to column from. The default is the first column.
-ToColumn | (Optional) Specifies the last column. Enter -1 to specify the last column in the list.
-IncludeHeaders | (Optional) Specifies whether to include the column headers.
-IncludePageBreaks | (Optional) Specifies whether to insert page breaks. Note that this is only applicable if exporting as HTML.
+type | The [list](#listtype) to export.
+string outputFilePath | The folder to save the list.
+fromRow | (Optional) Specifies the row to begin from. The default is the first row.
+toRow | (Optional) Specifies the last row. Enter **-1** to specify the last row in the list.
+fromColumn | (Optional) Specifies the row to column from. The default is the first column.
+toColumn | (Optional) Specifies the last column. Enter **-1** to specify the last column in the list.
+includeHeaders | (Optional) Specifies whether to include the column headers.
+includePageBreaks | (Optional) Specifies whether to insert page breaks. Note that this is only applicable if exporting as HTML.
 
 ### Example {-}
 
@@ -44,3 +47,6 @@ sp:ExportList(ListType.AllWords,
 
 sp:Close()
 ```
+:::
+
+***

@@ -22,4 +22,6 @@ You must call [Reload()](#standard-reload) after calling this function to run th
 
 ### Return value {-}
 
+Type: **boolean**
+
 **true** if the test was successfully added; otherwise, **false**.

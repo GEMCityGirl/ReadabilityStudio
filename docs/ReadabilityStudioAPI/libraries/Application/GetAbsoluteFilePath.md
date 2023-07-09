@@ -6,15 +6,16 @@ Combines a base path with a relative path and returns the full file path.
 ### Syntax {-}
 
 ```{sql}
-string GetAbsoluteFilePath()
+string GetAbsoluteFilePath(string basePath
+                           string relativePath)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-BasePath | **string** | The full base path.
-RelativePath | **string** | The path of the file that is relative to the base path.
+**Parameter** | **Description**
+| :-- | :-- |
+basePath | The full base path.
+relativePath | The path of the file that is relative to the base path.
 
 ### Return value {-}
 

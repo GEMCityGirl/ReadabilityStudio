@@ -6,15 +6,16 @@ Downloads a file into the specified folder.
 ### Syntax {-}
 
 ```{sql}
-DownloadFile(FileToDownload,FolderToDownloadTo)
+DownloadFile(string fileToDownload,
+             string folderToDownloadTo)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-FileToDownload | **string** | The file to download.
-FolderToDownloadTo | **string** | A folder to download the file into.
+**Parameter** | **Description**
+| :-- | :-- |
+fileToDownload | The file to download.
+folderToDownloadTo | A folder to download the file into.
 :::
 
 ***

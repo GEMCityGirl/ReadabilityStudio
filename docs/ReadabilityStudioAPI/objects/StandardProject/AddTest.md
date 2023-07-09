@@ -6,14 +6,14 @@ Adds a test to the project.
 ### Syntax {-}
 
 ```{sql}
-boolean AddTest(Test)
+boolean AddTest(Test/string test)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-Test | **[Test](#tests)** or **string** | The ID of the test to add. (For a custom test, use the name of the test.)
+**Parameter** | **Description**
+| :-- | :-- |
+test | **[Test](#tests)** or The ID of the test to add. (For a custom test, use the name of the test.)
 
 ### Return value {-}
 
@@ -37,4 +37,3 @@ sp:AddTest("Patient Consent Formula")
 :::
 
 ***
-

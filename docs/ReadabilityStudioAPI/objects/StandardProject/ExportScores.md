@@ -1,13 +1,19 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## ExportScores {#standard-exportscores .unnumbered}
 
-Saves the project's test scores to **OutputFilePath**.
+Saves the project's test scores to *OutputFilePath*.
+
+### Syntax {-}
 
 ```{sql}
-ExportScores(OutputFilePath)
+ExportScores(string outputFilePath)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-OutputFilePath | The folder to save the scores.
+outputFilePath | The folder to save the scores.
+:::
+
+***

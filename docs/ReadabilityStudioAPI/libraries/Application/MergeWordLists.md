@@ -6,15 +6,18 @@ Merges multiple word lists into an output file.
 ### Syntax {-}
 
 ```{sql}
-MergeWordLists(OutputFilePath,Input1,Input2,...)
+MergeWordLists(string outputFilePath,
+               string input1,
+               string input2,
+               ...)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-OutputFilePath | **string** | The output filepaths to merge the files into.
-Input1,Input2,... | **string** | A list of files to merged into *OutputFilePath*.
+**Parameter** | **Description**
+| :-- | :-- |
+outputFilePath | The output filepaths to merge the files into.
+input1,input2,... | A list of files to merged into *outputFilePath*.
 :::
 
 ***

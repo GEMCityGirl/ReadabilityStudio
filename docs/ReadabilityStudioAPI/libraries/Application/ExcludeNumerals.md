@@ -6,14 +6,14 @@ Specifies whether to exclude numerals from the document analysis.
 ### Syntax {-}
 
 ```{sql}
-ExcludeNumerals(Exclude)
+ExcludeNumerals(boolean exclude)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-Exclude | **boolean** | **true** to exclude numerals, **false** to include them.
+**Parameter** | **Description**
+| :-- | :-- |
+exclude | **true** to exclude numerals, **false** to include them.
 :::
 
 ***

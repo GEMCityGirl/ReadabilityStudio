@@ -6,14 +6,14 @@ Sets the bar charts' orientation.
 ### Syntax {-}
 
 ```{sql}
-SetBarChartOrientation(Orientation)
+SetBarChartOrientation(Orientation orientation)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-Orientation | **[Orientation](#orientation)** | The bar charts' orientation.
+**Parameter** | **Description**
+| :-- | :-- |
+orientation | The bar charts' [orientation](#orientation).
 :::
 
 ***

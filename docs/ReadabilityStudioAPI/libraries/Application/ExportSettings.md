@@ -6,14 +6,14 @@ Exports the program's general settings to the specified file.
 ### Syntax {-}
 
 ```{sql}
-ExportSettings(SettingsFileToExport)
+ExportSettings(string settingsFileToExport)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-SettingsFileToExport | **string** | The filepath to save the program's settings to.
+**Parameter** | **Description**
+| :-- | :-- |
+settingsFileToExport | The filepath to save the program's settings to.
 :::
 
 ***

@@ -6,14 +6,14 @@ Sets the effect used to display bars in bar charts.
 ### Syntax {-}
 
 ```{sql}
-SetBarChartBarEffect(BarEffect)
+SetBarChartBarEffect(BarEffect effect)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-BarEffect | **[BarEffect](#bareffect)** | The effect used to display bars in bar charts.
+**Parameter** | **Description**
+| :-- | :-- |
+effect | The [effect](#bareffect) used to display bars in bar charts.
 :::
 
 ***

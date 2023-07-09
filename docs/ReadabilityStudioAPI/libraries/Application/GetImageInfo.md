@@ -6,14 +6,14 @@ Returns the details of a given file.
 ### Syntax {-}
 
 ```{sql}
-table GetImageInfo()
+table GetImageInfo(string imagePath)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-ImagePath | **string** | The file path of the image.
+**Parameter** | **Description**
+| :-- | :-- |
+imagePath | The file path of the image.
 
 ### Return value {-}
 

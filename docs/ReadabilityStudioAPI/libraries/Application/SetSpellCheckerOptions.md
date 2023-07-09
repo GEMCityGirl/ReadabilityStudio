@@ -6,22 +6,22 @@ Sets which items the spell checker should ignore.
 ### Syntax {-}
 
 ```{sql}
-SetSpellCheckerOptions(IgnoreProperNouns,
-                       IgnoreUppercased,
-                       IgnoreNumerals,
-                       IgnoreFileAddresses,
-                       IgnoreProgrammerCode)
+SetSpellCheckerOptions(boolean ignoreProperNouns,
+                       boolean ignoreUppercased,
+                       boolean ignoreNumerals,
+                       boolean ignoreFileAddresses,
+                       boolean ignoreProgrammerCode)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-IgnoreProperNouns | **boolean** | **true** to ignore proper nouns.
-IgnoreUppercased | **boolean** | **true** to ignore uppercased words.
-IgnoreNumerals | **boolean** | **true** to ignore numerals.
-IgnoreFileAddresses | **boolean** | **true** to ignore filepaths and URLs.
-IgnoreProgrammerCode | **boolean** | **true** to ignore programmer code.
+**Parameter** | **Description**
+| :-- | :-- |
+ignoreProperNouns | **true** to ignore proper nouns.
+ignoreUppercased | **true** to ignore uppercased words.
+ignoreNumerals | **true** to ignore numerals.
+ignoreFileAddresses | **true** to ignore filepaths and URLs.
+ignoreProgrammerCode | **true** to ignore programmer code.
 :::
 
 ***

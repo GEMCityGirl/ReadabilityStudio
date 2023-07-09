@@ -1,17 +1,21 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## ExportReport {#standard-exportreport .unnumbered}
 
 Saves the specified report.
 
+### Syntax {-}
+
 ```{sql}
-ExportReport(ReportType, OutputFilePath) 
+ExportReport(Report reportType,
+             string outputFilePath) 
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-ReportType | The [report](#reporttype) to save.
-OutputFilePath | The folder to save the scores.
+reportType | The [report](#reporttype) to save.
+outputFilePath | The folder to save the scores.
 
 ### Example {-}
 
@@ -23,3 +27,6 @@ sp:ExportReport(ReportType.ReadabilityScoresTabularReport,
 
 sp:Close()
 ```
+:::
+
+***

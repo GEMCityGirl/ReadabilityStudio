@@ -6,14 +6,14 @@ Sets the opacity of graph plot areas. **0** is fully transparent, and **255** is
 ### Syntax {-}
 
 ```{sql}
-SetPlotBackgroundOpacity(OpacityLevel)
+SetPlotBackgroundOpacity(number opacityLevel)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-OpacityLevel | **number** | The opacity of graph plot areas.
+**Parameter** | **Description**
+| :-- | :-- |
+opacityLevel | The opacity of graph plot areas.
 :::
 
 ***

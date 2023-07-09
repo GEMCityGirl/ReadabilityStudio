@@ -6,14 +6,14 @@ Sets the label to appear in the bottom right corner of printouts.
 ### Syntax {-}
 
 ```{sql}
-SetRightPrintFooter(Label)
+SetRightPrintFooter(string label)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-Label | **string** | The label to appear in the bottom right corner of printouts.
+**Parameter** | **Description**
+| :-- | :-- |
+label | The label to appear in the bottom right corner of printouts.
 :::
 
 ***

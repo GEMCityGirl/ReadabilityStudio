@@ -1,13 +1,19 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## ExcludeTrailingCitations {#standard-excludetrailingcitations .unnumbered}
 
 Specifies whether to exclude trailing citations.
 
+### Syntax {-}
+
 ```{sql}
-ExcludeTrailingCitations(Exclude)
+ExcludeTrailingCitations(boolean exclude)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-Exclude | **true** to exclude trailing citations.
+exclude | **true** to exclude trailing citations.
+:::
+
+***

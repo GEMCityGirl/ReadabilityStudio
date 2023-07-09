@@ -1,13 +1,19 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## ExcludeFileAddress {#standard-excludefileaddress .unnumbered}
 
 Specifies whether to exclude filepaths and URLs.
 
+### Syntax {-}
+
 ```{sql}
-ExcludeFileAddress(Exclude)
+ExcludeFileAddress(boolean exclude)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-Exclude | **true** to exclude filepaths and URLs.
+exclude | **true** to exclude filepaths and URLs.
+:::
+
+***

@@ -1,13 +1,19 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## ExcludeCopyrightNotices {#standard-excludecopyrightnotices .unnumbered}
 
 Specifies whether to exclude copyright notices.
 
+### Syntax {-}
+
 ```{sql}
-ExcludeCopyrightNotices(Exclude)
+ExcludeCopyrightNotices(boolean exclude)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-Exclude | **true** to exclude copyright notices.
+exclude | **true** to exclude copyright notices.
+:::
+
+***

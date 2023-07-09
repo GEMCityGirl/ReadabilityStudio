@@ -1,13 +1,19 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## ExcludeNumerals {#standard-excludenumerals .unnumbered}
 
 Specifies whether to exclude numerals.
 
+### Syntax {-}
+
 ```{sql}
-ExcludeNumerals(Exclude)
+ExcludeNumerals(boolean exclude)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-Exclude | **true** to exclude numerals.
+exclude | **true** to exclude numerals.
+:::
+
+***

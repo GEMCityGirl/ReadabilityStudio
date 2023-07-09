@@ -6,14 +6,14 @@ Specifies how text should be excluded.
 ### Syntax {-}
 
 ```{sql}
-SetTextExclusion(TextExclusionType)
+SetTextExclusion(TextExclusionType textExclusionType)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-TextExclusionType | **[TextExclusionType](#textexclusiontype)** | How text should be excluded.
+**Parameter** | **Description**
+| :-- | :-- |
+textExclusionType | How text should be [excluded](#textexclusiontype).
 
 ### Example {-}
 

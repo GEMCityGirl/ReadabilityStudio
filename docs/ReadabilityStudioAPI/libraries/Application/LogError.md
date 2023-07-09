@@ -6,14 +6,14 @@ Logs an error message to be shown once the script is finished running.
 ### Syntax {-}
 
 ```{sql}
-LogError(ErrorMessage)
+LogError(string errorMessage)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-ErrorMessage | **string** | The error message to log.
+**Parameter** | **Description**
+| :-- | :-- |
+errorMessage | The error message to log.
 :::
 
 ***

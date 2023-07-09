@@ -6,14 +6,14 @@ Changes the default language for new projects. This will affect syllable countin
 ### Syntax {-}
 
 ```{sql}
-SetProjectLanguage(Language)
+SetProjectLanguage(Language lang)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-Language | **[Language](#language)** | Which language to set as the default language for new projects.
+**Parameter** | **Description**
+| :-- | :-- |
+lang | Which [language](#language) to set as the default language for new projects.
 :::
 
 ***

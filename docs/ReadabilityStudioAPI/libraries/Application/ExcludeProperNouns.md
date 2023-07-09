@@ -6,14 +6,14 @@ Specifies whether to exclude proper nouns from the document analysis.
 ### Syntax {-}
 
 ```{sql}
-ExcludeProperNouns(Exclude)
+ExcludeProperNouns(boolean exclude)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-Exclude | **boolean** | **true** to exclude proper nouns, **false** to include them.
+**Parameter** | **Description**
+| :-- | :-- |
+exclude | **true** to exclude proper nouns, **false** to include them.
 :::
 
 ***

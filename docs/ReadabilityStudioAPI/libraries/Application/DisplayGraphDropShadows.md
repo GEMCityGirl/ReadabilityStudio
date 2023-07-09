@@ -6,14 +6,14 @@ Specifies whether to use shadows underneath items (such as bars) on all the grap
 ### Syntax {-}
 
 ```{sql}
-DisplayGraphDropShadows(UseShadows)
+DisplayGraphDropShadows(boolean useShadows)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-UseShadows | **boolean** | Whether to use shadows underneath items (such as bars) on all the graphs.
+**Parameter** | **Description**
+| :-- | :-- |
+useShadows | Whether to use shadows underneath items (such as bars) on all the graphs.
 :::
 
 ***

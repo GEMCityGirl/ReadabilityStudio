@@ -1,17 +1,20 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## ExportHighlightedWords {#standard-exporthighlightedwords .unnumbered}
 
 Saves the specified highlighted words as an RTF or HTML report.
 
+### Syntax {-}
+
 ```{sql}
-ExportHighlightedWords(HighlightedWordReportType, OutputFilePath)
+ExportHighlightedWords(highlightedWordReportType, outputFilePath)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-HighlightedWordReportType | The [highlighted text window](#highlightedreporttype) to save.
-OutputFilePath | The folder to save the scores.
+highlightedWordReportType | The [highlighted text window](#highlightedreporttype) to save.
+outputFilePath | The folder to save the scores.
 
 ::: {.notesection data-latex=""}
 Use [Application.GetTestId()](#gettestid) to export the highlighted-words report for a custom test (see example below).
@@ -34,3 +37,6 @@ sp:ExportHighlightedWords(HighlightedReportType.ThreePlusSyllableHighlightedWord
 
 sp:Close()
 ```
+:::
+
+***

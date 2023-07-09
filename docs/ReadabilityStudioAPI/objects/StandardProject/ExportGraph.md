@@ -1,24 +1,27 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## ExportGraph {#standard-exportgraph .unnumbered}
 
 Saves the specified graph as an image.
 
+### Syntax {-}
+
 ```{sql}
-ExportGraph(GraphType,
-            OutputFilePath,
-            GrayScale,
-            Width,
-            Height)
+ExportGraph(GraphType type,
+            string outputFilePath,
+            boolean grayScale,
+            number width,
+            number height)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-GraphType | The [graph](#graphtype) to export.
-OutputFilePath | The folder to save the graph.
-GrayScale | (Optional) Set to **true** to save the image as black &amp; white.
-Width | (Optional) Specifies the width of the image.
-Height | (Optional) Specifies the height of the image.
+type | The [graph](#graphtype) to export.
+outputFilePath | The folder to save the graph.
+grayScale | (Optional) Set to **true** to save the image as black &amp; white.
+width | (Optional) Specifies the width of the image.
+height | (Optional) Specifies the height of the image.
 
 ### Example {-}
 
@@ -45,3 +48,6 @@ sp:ExportGraph(GraphType.SyllableHistogram,
 
 sp:Close()
 ```
+:::
+
+***

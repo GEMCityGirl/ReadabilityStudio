@@ -6,14 +6,14 @@ Sets whether projects embed their source documents or link to them.
 ### Syntax {-}
 
 ```{sql}
-SetDocumentStorageMethod(TextStorage)
+SetDocumentStorageMethod(TextStorage textStorage)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-TextStorage | **[TextStorage](#textstorage)** | How projects should embed or link to their documents.
+**Parameter** | **Description**
+| :-- | :-- |
+textStorage | How projects should [embed or link](#textstorage) to their documents.
 :::
 
 ***

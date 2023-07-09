@@ -6,14 +6,14 @@ Logs a message to be shown once the script is finished running.
 ### Syntax {-}
 
 ```{sql}
-LogMessage(Message)
+LogMessage(string message)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-Message | **string** | The message to log.
+**Parameter** | **Description**
+| :-- | :-- |
+message | The message to log.
 :::
 
 ***

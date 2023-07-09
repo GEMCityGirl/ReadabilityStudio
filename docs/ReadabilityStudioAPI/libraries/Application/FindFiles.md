@@ -6,15 +6,16 @@ Searches the specified folder (recursively) for files matching the given file fi
 ### Syntax {-}
 
 ```{sql}
-table FindFiles(FolderPath,FileFilter)
+table FindFiles(string folderPath,
+                string fileFilter)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-FolderPath | **string** | The folder to search in.
-FileFilter | **string** | The file pattern to search for.
+**Parameter** | **Description**
+| :-- | :-- |
+folderPath | The folder to search in.
+fileFilter | The file pattern to search for.
 
 ### Return value {-}
 

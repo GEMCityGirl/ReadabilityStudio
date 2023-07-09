@@ -1,19 +1,19 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## AggressivelyExclude {-}
 
-Specifies whether to use aggressive list deduction.
+Specifies whether to use aggressive text exclusion.
 
 ### Syntax {-}
 
 ```{sql}
-AAggressivelyExclude(BeAggressive)
+AggressivelyExclude(boolean beAggressive)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-Exclude | **boolean** |  Specifies whether to use aggressive list deduction.
+**Parameter** **Description**
+| :-- | :-- |
+beAggressive | Specifies whether to use aggressive text exclusion.
 :::
 
 ***

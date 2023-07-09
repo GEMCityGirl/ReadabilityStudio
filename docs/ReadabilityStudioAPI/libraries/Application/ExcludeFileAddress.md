@@ -6,14 +6,14 @@ Specifies whether to exclude filepaths and URLs from the document analysis.
 ### Syntax {-}
 
 ```{sql}
-ExcludeFileAddress(Exclude)
+ExcludeFileAddress(boolean exclude)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-Exclude | **boolean** | **true** to exclude filepaths and URLs, **false** to include them.
+**Parameter** | **Description**
+| :-- | :-- |
+exclude | **true** to exclude filepaths and URLs, **false** to include them.
 :::
 
 ***

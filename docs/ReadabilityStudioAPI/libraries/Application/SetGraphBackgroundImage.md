@@ -6,14 +6,14 @@ Sets the image to be used for graph backgrounds.
 ### Syntax {-}
 
 ```{sql}
-SetGraphBackgroundImage(ImageFilePath)
+SetGraphBackgroundImage(string imageFilePath)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-ImageFilePath | **string** | The filepath to the image to use for graph backgrounds.
+**Parameter** | **Description**
+| :-- | :-- |
+imageFilePath | The filepath to the image to use for graph backgrounds.
 :::
 
 ***

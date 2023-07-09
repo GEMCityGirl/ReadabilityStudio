@@ -6,14 +6,14 @@ Sets the watermark to be written across graphs.
 ### Syntax {-}
 
 ```{sql}
-SetGraphWatermark(Label)
+SetGraphWatermark(string label)
 ```
 
 ### Parameters {-}
 
-**Parameter** | **Type** | **Description**
-| :-- | :-- | :-- |
-Label | **string** | The text to draw across the graphs.
+**Parameter** | **Description**
+| :-- | :-- |
+label | The text to draw across the graphs.
 :::
 
 ***

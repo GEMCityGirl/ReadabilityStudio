@@ -1,13 +1,19 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## DisplayGraphDropShadows {#standard-displaygraphdropshadows .unnumbered}
 
 Specifies whether to use shadows underneath items (such as bars) on all the graphs.
 
+### Syntax {-}
+
 ```{sql}
-DisplayGraphDropShadows(UseShadows)
+DisplayGraphDropShadows(boolean useShadows)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-UseShadows | **true** to use shadows underneath items (such as bars) on all the graphs.
+useShadows | **true** to use shadows underneath items (such as bars) on all the graphs.
+:::
+
+***
