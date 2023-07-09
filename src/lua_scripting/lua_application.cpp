@@ -598,10 +598,6 @@ namespace LuaScripting
 
         wxFileName(path).SetPermissions(wxS_DEFAULT);
         wxFile outputFile(path, wxFile::write);
-    #ifdef __WXMSW__
-        if (outputStr.length())
-            { outputFile.Write(utf8::bom, sizeof(utf8::bom)); }
-    #endif
         outputFile.Write(outputStr, wxConvUTF8);
         return 0;
         }
@@ -691,10 +687,6 @@ namespace LuaScripting
 
         wxFileName(outputPath).SetPermissions(wxS_DEFAULT);
         wxFile outputFile(outputPath, wxFile::write);
-    #ifdef __WXMSW__
-        if (outputStr.length())
-            { outputFile.Write(utf8::bom, sizeof(utf8::bom)); }
-    #endif
         outputFile.Write(outputStr, wxConvUTF8);
 
         wxGetApp().Yield();
@@ -741,10 +733,6 @@ namespace LuaScripting
 
         wxFileName(outputPath).SetPermissions(wxS_DEFAULT);
         wxFile outputFile(outputPath, wxFile::write);
-    #ifdef __WXMSW__
-        if (outputStr.length())
-            { outputFile.Write(utf8::bom, sizeof(utf8::bom)); }
-    #endif
         outputFile.Write(outputStr, wxConvUTF8);
 
         wxGetApp().Yield();
@@ -828,10 +816,6 @@ namespace LuaScripting
 
         wxFileName(outputPath).SetPermissions(wxS_DEFAULT);
         wxFile outputFile(outputPath, wxFile::write);
-    #ifdef __WXMSW__
-        if (outputStr.length())
-            { outputFile.Write(utf8::bom, sizeof(utf8::bom)); }
-    #endif
         outputFile.Write(outputStr, wxConvUTF8);
 
         wxGetApp().Yield();
@@ -903,10 +887,6 @@ namespace LuaScripting
 
         wxFileName(path).SetPermissions(wxS_DEFAULT);
         wxFile outputFile(path, wxFile::write);
-    #ifdef __WXMSW__
-        if (outputStr.length())
-            { outputFile.Write(utf8::bom, sizeof(utf8::bom)); }
-    #endif
         lua_pushboolean(L, outputFile.Write(outputStr, wxConvUTF8));
 
         wxGetApp().Yield();
@@ -951,10 +931,6 @@ namespace LuaScripting
 
         wxFileName(path).SetPermissions(wxS_DEFAULT);
         wxFile outputFile(path, wxFile::write);
-    #ifdef __WXMSW__
-        if (outputStr.length())
-            { outputFile.Write(utf8::bom, sizeof(utf8::bom)); }
-    #endif
         lua_pushboolean(L, outputFile.Write(outputStr, wxConvUTF8));
 
         wxGetApp().Yield();
