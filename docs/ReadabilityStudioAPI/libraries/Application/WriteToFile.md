@@ -6,8 +6,8 @@ Writes a string to the specified file path.
 ### Syntax {-}
 
 ```{sql}
-WriteToFile(string filePath,
-            string message)
+boolean WriteToFile(string filePath,
+                    string message)
 ```
 
 ### Parameters {-}
@@ -16,4 +16,10 @@ WriteToFile(string filePath,
 | :-- | :-- |
 filePath | The file to write to (will be overwritten if file exists).
 message | The text to write to the file.
+
+### Return value {-}
+
+Type: **boolean** \
+
+Returns **true** if output was successfully written to the file.
 :::

@@ -598,8 +598,9 @@ namespace LuaScripting
 
         wxFileName(path).SetPermissions(wxS_DEFAULT);
         wxFile outputFile(path, wxFile::write);
-        outputFile.Write(outputStr, wxConvUTF8);
-        return 0;
+        lua_pushboolean(L,
+            outputFile.Write(outputStr, wxConvUTF8));
+        return 1;
         }
 
     //-------------------------------------------------------------
