@@ -1068,9 +1068,10 @@ namespace LuaScripting
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         wxString filePath(luaL_checkstring(L, 1), wxConvUTF8);
-        wxGetApp().GetAppOptions().LoadOptionsFile(filePath, false, false);
+        lua_pushboolean(L,
+            wxGetApp().GetAppOptions().LoadOptionsFile(filePath, false, false));
         wxGetApp().Yield();
-        return 0;
+        return 1;
         }
     //-------------------------------------------------------------
     int ExportSettings(lua_State* L)
@@ -1078,9 +1079,10 @@ namespace LuaScripting
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         wxString filePath(luaL_checkstring(L, 1), wxConvUTF8);
-        wxGetApp().GetAppOptions().SaveOptionsFile(filePath);
+        lua_pushboolean(L,
+            wxGetApp().GetAppOptions().SaveOptionsFile(filePath));
         wxGetApp().Yield();
-        return 0;
+        return 1;
         }
     //-------------------------------------------------------------
     int ResetSettings(lua_State*)
