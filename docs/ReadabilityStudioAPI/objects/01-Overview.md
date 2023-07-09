@@ -1,2 +1,2 @@
-# (PART) Objects {-}
+# (PART) Classes {-}
 
