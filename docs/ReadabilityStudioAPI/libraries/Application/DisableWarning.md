@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## DisableWarning {-}
 
-Disables the specified warning.
+Disables\index{Warnings!disabling} the specified warning.
 
 ### Syntax {-}
 

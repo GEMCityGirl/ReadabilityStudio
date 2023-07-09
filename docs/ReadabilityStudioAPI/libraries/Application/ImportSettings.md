@@ -6,7 +6,7 @@ Imports the specified settings file, which will configure the general options of
 ### Syntax {-}
 
 ```{sql}
-ImportSettings(string settingsFileToImport)
+boolean ImportSettings(string settingsFileToImport)
 ```
 
 ### Parameters {-}
@@ -14,6 +14,12 @@ ImportSettings(string settingsFileToImport)
 **Parameter** | **Description**
 | :-- | :-- |
 settingsFileToImport | The filepath to import the program's settings from.
+
+### Return value {-}
+
+Type: **boolean** \
+
+Returns **true** if settings were successfully imported.
 :::
 
 ***

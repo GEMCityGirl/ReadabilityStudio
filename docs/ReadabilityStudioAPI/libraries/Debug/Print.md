@@ -1,7 +1,7 @@
 :::: {.minipage data-latex="{\textwidth}"}
 ## Print {-}
 
-Prints a message to the script editor's debug window.
+Prints\index{Debugger!printing message to} a message to the script editor's debug window.
 
 ### Syntax {-}
 

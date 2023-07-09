@@ -17,6 +17,7 @@ The folder path of the currently running script.
 
 ::: {.warningsection data-latex=""}
 This will return an empty string if the current script has not been saved yet.
+A warning explaining this will also appear in the editor's debug window.
 :::
 ::::
 

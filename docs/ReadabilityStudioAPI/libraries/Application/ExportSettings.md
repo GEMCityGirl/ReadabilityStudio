@@ -6,7 +6,7 @@ Exports the program's general settings to the specified file.
 ### Syntax {-}
 
 ```{sql}
-ExportSettings(string settingsFileToExport)
+boolean ExportSettings(string settingsFileToExport)
 ```
 
 ### Parameters {-}
@@ -14,6 +14,11 @@ ExportSettings(string settingsFileToExport)
 **Parameter** | **Description**
 | :-- | :-- |
 settingsFileToExport | The filepath to save the program's settings to.
-:::
 
+### Return value {-}
+
+Type: **boolean** \
+
+Returns **true** if settings were successfully exported.
+:::
 ***

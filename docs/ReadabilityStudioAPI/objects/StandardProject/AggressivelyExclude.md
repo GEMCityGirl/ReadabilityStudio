@@ -1,7 +1,7 @@
 :::: {.minipage data-latex="{\textwidth}"}
 ## AggressivelyExclude {#standard-aggressivelyexclude .unnumbered}
 
-Specifies whether to use aggressive list deduction.
+Specifies whether to use aggressive text exclusion.
 
 ### Syntax {-}
 
