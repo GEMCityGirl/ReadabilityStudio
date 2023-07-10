@@ -47,10 +47,10 @@ Application.MergeWordLists(
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words\\WordLists\\Harris-Jacobson.txt",    Debug.GetScriptFolderPath().."Words\\WordLists\\Harris-Jacobson.txt")
 Application.MergeWordLists(
-Debug.GetScriptFolderPath().."Words\\WordLists\\Revised Spache.txt",    Debug.GetScriptFolderPath().."Words\\WordLists\\Revised Spache.txt")
+    Debug.GetScriptFolderPath().."Words\\WordLists\\Revised Spache.txt",    Debug.GetScriptFolderPath().."Words\\WordLists\\Revised Spache.txt")
 -- Expand the proper nouns to possessive forms
--- (personal base is used by an upcoming test as well, so it gets added to the resources
---  as a new file also.)
+-- (personal base is used by an upcoming test as well,
+--  so it gets added to the resources as a new file also.)
 Application.ExpandWordList(
     Debug.GetScriptFolderPath().."Words\\PersonalBase.txt",    Debug.GetScriptFolderPath().."Words\\ProperNouns\\Personal.txt", "s", "'s")
 
@@ -69,7 +69,8 @@ os.remove(Debug.GetScriptFolderPath().."NonPersonalTEMP.txt")
 Application.MergePhraseLists(
     Debug.GetScriptFolderPath().."Words\\WordyPhrases\\English.txt",
     Debug.GetScriptFolderPath().."Words\\WordyPhrases\\English.txt")
--- Create single word list from wordy phrase listApplication.PhraseListToWordList(Debug.GetScriptFolderPath().."Words\\WordyPhrases\\English.txt",    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\SingleWordReplacementsEnglish.txt")
+-- Create single word list from wordy phrase listApplication.PhraseListToWordList(
+    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\English.txt",    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\SingleWordReplacementsEnglish.txt")
 
 Application.CrossReferenceWordLists(
     Debug.GetScriptFolderPath().."Words\\WordyPhrases\\SingleWordReplacementsEnglish.txt",    Debug.GetScriptFolderPath().."Words\\WordLists\\New Dale-Chall.txt",    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\Dale-ChallReplacements.txt")
@@ -103,7 +104,8 @@ Application.MergeWordLists(
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words\\Programming\\VisualBasic.txt",
     Debug.GetScriptFolderPath().."Words\\Programming\\VisualBasic.txt")
-Application.MergeWordLists(Debug.GetScriptFolderPath().."Words\\Programming\\R.txt",
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\Programming\\R.txt",
     Debug.GetScriptFolderPath().."Words\\Programming\\R.txt")
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words\\Programming\\All Languages.txt",
