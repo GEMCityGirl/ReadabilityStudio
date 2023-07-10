@@ -4060,7 +4060,8 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
         {
         updatedFilePath =
             _DT(L"https:// oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
-        if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, statusText, responseCode, false) )
+        if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent,
+                                       contentType, statusText, responseCode, false) )
             {
             wxMessageBox(wxString::Format(_(L"An error occurred while trying to connect to the website:\t%s"),
                                             WebHarvester::GetResponseMessage(responseCode)),
