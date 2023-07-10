@@ -18,11 +18,11 @@ boolean MergeWordLists(string outputFilePath,
 | :-- | :-- |
 outputFilePath | The output filepaths to merge the files into.
 input1,input2,... | A list of files to be merged into *outputFilePath*.
-:::
 
 ### Return value {-}
 
 Type: **boolean** \
 
 Returns **true** if files were successfully merged.
+:::
 ***
