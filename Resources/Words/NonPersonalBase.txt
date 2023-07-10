@@ -1454,23 +1454,31 @@ Erda
 Erfurt
 Eridanus
 Erie
+Eris
 Eritrea
 Erlang
+Erse
 Erskine
 Escondido
 Eskalith
 Eskimo
 Espagnol
 Esperanto
+Espoo
+ESSA
 Essene
 Essequibo
 Essex
+Essie
+ESTA
 Estep
+Estes
 Estonia
 Estonian
 Estriol
 Estée
 Etchingham
+ETHE
 Ethiopia
 Ethiopian
 Etna
@@ -1481,6 +1489,7 @@ Eucharist
 Eucharistic
 Eudaimonia
 Eudora
+Eugenia
 Eugenics
 Eulerian
 Eumelanin
@@ -1514,6 +1523,7 @@ Eustacia
 Euston
 Evanston
 Evansville
+Evenki
 Everest
 Everglades
 Evernote
@@ -1528,6 +1538,7 @@ Exmoor
 Experian
 Exxon
 ExxonMobil
+Eyde
 Ezri
 Facebooked
 Facebooking
@@ -1897,10 +1908,14 @@ Guilderland
 Guinea
 Guinean
 Guiyang
+Gujarat
+Gujarati
 Gujranwala
+Gullah
 Guyana
 Guyanese
 Gymnogyps
+Haas
 Hagstrom
 Hague
 Haiphong
@@ -2073,6 +2088,8 @@ iBackPack
 Ibadan
 Iberia
 Iberian
+Ibero
+Ibiza
 IBM
 Ibuprofen
 ICC
@@ -3337,6 +3354,8 @@ Petersburgh
 Petronia
 Petronilla
 Petronille
+Peugeot
+Pewaukee
 Pfalz
 Pfizer
 Phanerozoic
@@ -3369,6 +3388,7 @@ Pickwickian
 Piedmont
 Pierre
 Piggly
+Pillsbury
 Pilocarpine
 Piltdown
 Pinehurst
@@ -3601,6 +3621,7 @@ Recplex
 Reddit
 Redgate
 Redlands
+Redmond
 Reebok
 Reedville
 Regulus
@@ -3640,10 +3661,12 @@ Ridgefield
 Riga
 Ringworld
 Rio
+Ritalin
 Rittenberg
 Ritz
 RiverMobile
 Riverview
+Riviera
 RIX
 Riyadh
 Roadmaster
@@ -3652,6 +3675,7 @@ Robertsonian
 Robinsonville
 Robitussin
 Rochester
+Rockaway
 Rockies
 Rockland
 Rockville
@@ -3659,6 +3683,7 @@ Rogaine
 Rogerian
 Roku
 Rolex
+Rollo
 Rolodex
 Roman
 Romania
@@ -3700,12 +3725,14 @@ Rutland
 Ruttger
 Rwanda
 Rwandan
+Réunion
 S&P
 Saab
 Saarbrücken
 Saarland
 Sabbatarianism
 Sacculina
+Sachs
 Sachsen
 Sacramento
 Safeway
@@ -3774,6 +3801,7 @@ Satyanarayanan
 Saud
 Saudi
 Saukville
+Savannah
 Savonarola
 Saxon
 Saxony
@@ -3874,6 +3902,7 @@ Shi'ite
 Shia
 Shiite
 Shijiazhuang
+Shiloh
 Shinto
 Shintoism
 Shintoist
@@ -3952,6 +3981,7 @@ Sneffels
 SoBe
 Socratic
 Sodom
+Soho
 Solarcentury
 Solaris
 Solomon
@@ -3966,7 +3996,9 @@ Somme
 Songhay
 Sonicbrush
 Soninke
+Sonoma
 Sonora
+Sony
 Sophoclean
 Sorrentine
 Southampton
@@ -4015,6 +4047,7 @@ Stalingrad
 Stalinism
 Stalinist
 Stamboul
+Standford
 Stapi
 Starbreeze
 Starbucks
@@ -4090,6 +4123,7 @@ Susquehannock
 Sussex
 Suva
 Suwanee
+Suzuki
 Swabian
 Swahili
 Swaziland
@@ -4103,6 +4137,7 @@ Swiss
 Switz
 Switzerland
 Sybase
+Sydney
 Sylvania
 Sylvatic
 Symantec
@@ -4307,6 +4342,7 @@ Torontonian
 Torontonians
 Torquay
 Torquemada
+Tory
 Toshiba
 Tostitos
 Totemism
@@ -4324,6 +4360,7 @@ TransCanada
 Transcaucasia
 Trastevere
 Trastuzumab
+Traver
 Treadwell
 Treblinka
 Trekkie
@@ -4606,6 +4643,9 @@ Wachovia
 Waco
 Wagnerian
 Wahhabi
+Waikato
+Waikiki
+Wakayama
 Wakefield
 Wal-Mart
 Walbridge
@@ -4624,6 +4664,8 @@ Walpurgisnacht
 Walsall
 Walsingham
 Wampanoag
+Wansbeck
+Wansee
 Warby
 Warcraft
 Wareham
@@ -4641,6 +4683,7 @@ Waterloo
 Watertown
 WATS
 Wattenberg
+Watusi
 Waukesha
 Waunona
 Waupaca
@@ -4779,6 +4822,7 @@ WWIII
 wxWidgets
 wxWindows
 Wycombe
+Wye
 Wykeham
 Wyo
 Wyoming
