@@ -48,10 +48,10 @@ namespace LuaScripting
     int SetWindowSize(lua_State *L);
     int GetTestId(lua_State *L);
     int SplashScreen(lua_State *L);
-    int GetFileCheckSum(lua_State *L);
+    int CheckHtmlLinks(lua_State *L);
     // Internal testing functions
     int QAVerify(lua_State *L);
-    int CheckHtmlLinks(lua_State *L);
+    int GetFileCheckSum(lua_State *L);
     int Crash(lua_State*);
     // Setting functions
     int ImportSettings(lua_State* L);

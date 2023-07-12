@@ -1339,6 +1339,16 @@ namespace LuaScripting
             wxGetApp().GetAppOptions().SpellCheckIgnoreProgrammerCode(
                 int_to_bool(lua_toboolean(L, 5)));
             }
+        if (lua_gettop(L) >= 6)
+            {
+            wxGetApp().GetAppOptions().SpellCheckIgnoreSocialMediaTags(
+                int_to_bool(lua_toboolean(L, 6)));
+            }
+        if (lua_gettop(L) >= 7)
+            {
+            wxGetApp().GetAppOptions().SpellCheckAllowColloquialisms(
+                int_to_bool(lua_toboolean(L, 7)));
+            }
         wxGetApp().Yield();
         return 0;
         }
