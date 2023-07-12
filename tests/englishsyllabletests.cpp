@@ -4,8 +4,53 @@
 #include "../src/indexing/syllable.h"
 #include "../src/indexing/word.h"
 #include "../src/indexing/word_functional.h"
+#include "read_dictionaries.h"
 
 using namespace grammar;
+
+TEST_CASE("English syllabizer baselines", "[syllable]")
+    {
+    english_syllabize syllabize;
+    const auto [loaded, engSyllableBaselineStr] = read_utf8_file("EnglishSyllableBaseline.txt");
+    size_t baselinePos{ 0 };
+    std::wstring toFixLater;
+    std::wstring passingStrings;
+    std::wstring_view engSyllableBaseline{ engSyllableBaselineStr };
+    while (baselinePos != std::wstring::npos)
+        {
+        size_t previousStart = baselinePos;
+        baselinePos = engSyllableBaseline.find(L'\n', baselinePos);
+        if (baselinePos == std::wstring::npos)
+            { break; }
+        const auto currentLine =
+            engSyllableBaseline.substr(previousStart, (baselinePos - previousStart));
+        auto tabPos = currentLine.find(L'\t');
+        if (tabPos == std::wstring::npos)
+            { continue; }
+        const auto currentWord = currentLine.substr(0, tabPos);
+        const auto currentSyllableCount =
+            std::wcstod(currentLine.substr(++tabPos).data(), nullptr);
+        if (const auto result = syllabize(currentWord.data(), currentWord.length());
+            result != currentSyllableCount)
+            {
+            toFixLater += std::wstring{ currentWord } + L'\t' +
+                std::to_wstring(static_cast<int>(currentSyllableCount)) + L'\t' +
+                std::to_wstring(static_cast<int>(result)) + L'\n';
+            }
+        else
+            {
+            passingStrings += std::wstring{ currentWord } + L'\t' +
+                std::to_wstring(static_cast<int>(currentSyllableCount)) + L'\n';
+            }
+        CHECK(syllabize(currentWord.data(), currentWord.length()) == currentSyllableCount);
+        ++baselinePos;
+        }
+    std::wofstream passing("Passing.txt");
+    passing << passingStrings;
+
+    std::wofstream failing("Failing.txt");
+    failing << toFixLater;
+    }
 
 TEST_CASE("English syllabizer", "[syllable]")
     {
