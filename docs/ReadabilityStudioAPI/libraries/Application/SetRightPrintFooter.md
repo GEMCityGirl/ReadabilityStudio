@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## SetRightPrintFooter {-}
 
-Sets the label to appear in the bottom right corner of printouts.
+Sets the label to appear in the bottom right corner of printouts\index{Printing!headers & footers}.
 
 ### Syntax {-}
 
@@ -15,5 +15,18 @@ SetRightPrintFooter(string label)
 | :-- | :-- |
 label | The label to appear in the bottom right corner of printouts.
 :::
+
+### Example {-}
+
+```{sql}
+-- Set headers and footers for printouts.
+Application.SetLeftPrintHeader("")
+Application.SetCenterPrintHeader("@TITLE@")
+Application.SetRightPrintHeader("Page @PAGENUM@ of @PAGESCNT@")
+
+Application.SetRightPrintFooter("Page @PAGENUM@")
+Application.SetCenterPrintFooter("")
+Application.SetRightPrintFooter("Printed on @DATE@")
+```
 
 ***

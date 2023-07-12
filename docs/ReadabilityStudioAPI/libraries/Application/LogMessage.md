@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## LogMessage {-}
 
-Logs a message to be shown once the script is finished running.
+Sends a message to program's logging system.
 
 ### Syntax {-}
 

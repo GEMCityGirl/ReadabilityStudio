@@ -15,7 +15,7 @@ DownloadFile(string fileToDownload,
 **Parameter** | **Description**
 | :-- | :-- |
 fileToDownload | The file to download.
-folderToDownloadTo | A folder to download the file into.
+folderToDownloadTo | The folder to download the file into.
 :::
 
 ***

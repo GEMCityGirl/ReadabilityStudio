@@ -20,7 +20,7 @@ testName | The name of the test.
 
 Type: **number** \
 
-The numeric ID of the test.
+The numeric ID of the test. Will be **-1** if test was not found.
 :::
 
 ***

@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## LogError {-}
 
-Logs an error message to be shown once the script is finished running.
+Sends an error message to program's logging system.
 
 ### Syntax {-}
 

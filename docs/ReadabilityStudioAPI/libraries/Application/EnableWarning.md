@@ -5,12 +5,12 @@ Enables\index{Warnings!enabling} the specified warning.
 ### Syntax {-}
 
 ```{sql}
-EnableWarning(string WarningId)
+EnableWarning(string warningId)
 ```
 
 **Parameter** | **Description**
 | :-- | :-- |
-WarningId | The warning's string ID.
+warningId | The warning's string ID.
 
 The following warning IDs are available:
 

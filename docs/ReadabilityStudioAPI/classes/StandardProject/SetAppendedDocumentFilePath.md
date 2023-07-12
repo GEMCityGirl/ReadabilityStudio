@@ -1,5 +1,5 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## SetAppendedDocumentFilePath {#batch-setappendeddocumentfilepath .unnumbered}
+## SetAppendedDocumentFilePath {#standard-setappendeddocumentfilepath .unnumbered}
 
 Specifies the file path to the document being appended for analysis.
 
@@ -29,7 +29,6 @@ consentForm:SetAppendedDocumentFilePath(
 
 consentForm:Close(false)
 ```
-:::
 
 ::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to **[DelayReloading()](#standard-delayreloading)** and **[Reload()](#standard-reload)**.

@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+:::: {.minipage data-latex="{\textwidth}"}
 ## CheckHtmlLinks {-}
 
 Checks for broken links and bad image sizes in a folder of HTML files.
@@ -16,13 +16,11 @@ CheckHtmlLinks(string folderPath,
 | :-- | :-- |
 folderPath | The folder containing the HTML files to review.
 followExternalLinks | Whether to verify links going outside of the folder being reviewed.
-:::
 
 ::: {.notesection data-latex=""}
 Issues are recorded into the program's log.
-View the log report to see any issues found when calling this function.
+View the log report(**Log Report** on the **Tools** tab) to see any issues that were found after calling this.
 :::
+::::
 
 ***
-
-

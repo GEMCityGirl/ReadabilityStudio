@@ -1,5 +1,5 @@
 :::: {.minipage data-latex="{\textwidth}"}
-## SetTextExclusion {#batch-settextexclusion .unnumbered}
+## SetTextExclusion {#standard-settextexclusion .unnumbered}
 
 Specifies how text should be excluded while parsing the source document.
 
@@ -21,4 +21,3 @@ This can be optimized by placing it in between calls to **[DelayReloading()](#st
 ::::
 
 ***
-

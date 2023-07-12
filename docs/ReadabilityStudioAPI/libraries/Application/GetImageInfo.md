@@ -19,7 +19,7 @@ imagePath | The file path of the image.
 
 Type: **table** \
 
-A table of the image's information.
+A two-column table of the image's information.
 
 ### Example {-}
 

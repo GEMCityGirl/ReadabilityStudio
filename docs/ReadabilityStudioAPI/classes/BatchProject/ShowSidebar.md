@@ -1,5 +1,5 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## ShowSidebar {-}
+## ShowSidebar {#batch-showsidebar .unnumbered}
 
 Show or hides the project's sidebar\index{User interface!project sidebar}.
 

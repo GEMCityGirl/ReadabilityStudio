@@ -1,5 +1,5 @@
 :::: {.minipage data-latex="{\textwidth}"}
-## SetBlockExclusionTags {#batch-setblockexclusiontags .unnumbered}
+## SetBlockExclusionTags {#standard-setblockexclusiontags .unnumbered}
 
 Specifies a pair of tags that will exclude all text between them.
 

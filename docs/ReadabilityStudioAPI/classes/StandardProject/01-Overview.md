@@ -24,6 +24,7 @@ consentForm = StandardProject(Application.GetDocumentsPath() ..
 consentForm:DelayReloading(true)
 -- Change a few options.
 consentForm:AggressivelyExclude(true)
+consentForm:ExcludeTrailingCitations(true)
 -- Reindex the document so that the changes take effect.
 consentForm:Reload()
 
