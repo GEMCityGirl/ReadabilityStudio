@@ -64,18 +64,18 @@ namespace LuaScripting
             { return; }
         for (;;)
             {
-            const int percentIndex = path.find(L'%');
-            if (percentIndex == wxNOT_FOUND ||
+            const size_t percentIndex = path.find(L'%');
+            if (percentIndex == wxString::npos ||
                 static_cast<size_t>(percentIndex) > path.length()-3)
                 { break; }
             size_t hexLength(static_cast<size_t>(-1));
-            wchar_t value =
+            const wchar_t value =
                 string_util::axtoi(path.substr(percentIndex+1, 2).wc_str(), hexLength);
             path.replace(percentIndex, 3, wxString(1, value));
             }
         // strip off bookmark (if there is one)
-        const int bookMarkIndex = path.find(L'#', true);
-        if (bookMarkIndex != wxNOT_FOUND)
+        const size_t bookMarkIndex = path.find(L'#', true);
+        if (bookMarkIndex != wxString::npos)
             {
             path.erase(bookMarkIndex);
             if (path.length() == 0)
@@ -83,11 +83,11 @@ namespace LuaScripting
             }
         // if link to a local CHM file then try to see if the
         // decompiled file is in the local file system
-        if (path.find(_DT(L".chm::")) != wxNOT_FOUND ||
-            path.find(_DT(L".CHM::")) != wxNOT_FOUND)
+        if (path.find(_DT(L".chm::")) != wxString::npos ||
+            path.find(_DT(L".CHM::")) != wxString::npos)
             {
-            path.Replace(_DT(L".chm::"), wxEmptyString);
-            path.Replace(_DT(L".CHM::"), wxEmptyString);
+            path.Replace(_DT(L".chm::"), wxString{});
+            path.Replace(_DT(L".CHM::"), wxString{});
             path.Prepend(wxFileName::GetCwd() + L'\\');
             if (!wxFileName::FileExists(path))
                 {
@@ -437,15 +437,15 @@ namespace LuaScripting
                 file.ReadAll(&fileContent, *wxConvCurrent);
                 file.Close();
 
-                int start = fileContent.find(L"[FILES]");
-                if (start == wxNOT_FOUND)
+                size_t start = fileContent.find(L"[FILES]");
+                if (start == wxString::npos)
                     { continue; }
                 start += 7;
-                int end = fileContent.find(L"\n[", start);
-                if (end == wxNOT_FOUND)
+                size_t end = fileContent.find(L"\n[", start);
+                if (end == wxString::npos)
                     {
                     end = fileContent.find(L"\r[", start);
-                    if (end == wxNOT_FOUND)
+                    if (end == wxString::npos)
                         { continue; }
                     }
                 fileContent = fileContent.substr(start, end-start);
@@ -670,7 +670,7 @@ namespace LuaScripting
                 {
                 wxString replacementStr = tokenizer.GetNextToken();
                 replacementStr.Trim(true); replacementStr.Trim(false);
-                if (replacementStr.find(L' ') == wxNOT_FOUND)
+                if (replacementStr.find(L' ') == wxString::npos)
                     {
                     if (wordList.contains(replacementStr))
                         {
