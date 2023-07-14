@@ -13,7 +13,7 @@ ExcludeCopyrightNotices(boolean exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-exclude | **true** to exclude copyright notices.
+exclude | `true` to exclude copyright notices.
 :::
 
 ::: {.tipsection data-latex=""}

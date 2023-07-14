@@ -10,4 +10,4 @@ ExcludeTrailingCitations(Exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-Exclude | **true** to exclude trailing citations.
+Exclude | `true` to exclude trailing citations.

@@ -17,9 +17,9 @@ settingsFileToImport | The filepath to import the program's settings from.
 
 ### Return value {-}
 
-Type: **boolean** \
+Type: `boolean` \
 
-Returns **true** if settings were successfully imported.
+Returns `true` if settings were successfully imported.
 :::
 
 ***

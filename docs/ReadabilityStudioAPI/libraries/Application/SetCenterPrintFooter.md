@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## SetCenterPrintFooter {-}
 
-Sets the label to appear in the center bottom of printouts\index{Printing!headers & footers}.
+Sets the label to appear in the center bottom of printouts\index{Printing!headers \& footers}.
 
 ### Syntax {-}
 

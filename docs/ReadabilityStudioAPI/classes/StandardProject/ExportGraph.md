@@ -19,7 +19,7 @@ ExportGraph(GraphType type,
 | :-- | :-- |
 type | The [graph](#graphtype) to export.
 outputFilePath | The folder to save the graph.
-grayScale | (Optional) Set to **true** to save the image as black &amp; white.
+grayScale | (Optional) Set to `true` to save the image as black &amp; white.
 width | (Optional) Specifies the width of the image.
 height | (Optional) Specifies the height of the image.
 

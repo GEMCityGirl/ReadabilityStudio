@@ -12,7 +12,7 @@ integer GetMinDocWordCountForBatch()
 
 ### Return value {-}
 
-Type: **number** \
+Type: `number` \
 
 The minimum number of words that a document must have to be included in batch projects.
 :::

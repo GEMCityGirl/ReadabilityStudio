@@ -13,7 +13,7 @@ ExcludeTrailingCitations(boolean exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-exclude | **true** to exclude trailing citations.
+exclude | `true` to exclude trailing citations.
 :::
 
 ### Example {-}

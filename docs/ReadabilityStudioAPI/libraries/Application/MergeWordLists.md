@@ -21,8 +21,8 @@ input1,input2,... | A list of files to be merged into *outputFilePath*.
 
 ### Return value {-}
 
-Type: **boolean** \
+Type: `boolean` \
 
-Returns **true** if files were successfully merged.
+Returns `true` if files were successfully merged.
 :::
 ***

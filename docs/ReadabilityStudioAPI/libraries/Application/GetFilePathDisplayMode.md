@@ -11,7 +11,7 @@ FilePathDisplayMode GetFilePathDisplayMode()
 
 ### Return value {-}
 
-Type: **[FilePathDisplayMode](#filepathdisplaymode)** \
+Type: `[FilePathDisplayMode](#filepathdisplaymode)` \
 
 How filepaths are being displayed.
 :::

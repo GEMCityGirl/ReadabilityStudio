@@ -11,7 +11,7 @@ TextStorage GetDocumentStorageMethod()
 
 ### Return value {-}
 
-Type: **[TextStorage](#textstorage)** \
+Type: `[TextStorage](#textstorage)` \
 
 How projects are embedding or linking to their source.
 :::

@@ -11,7 +11,7 @@ string GetReviewer()
 
 ### Return value {-}
 
-Type: **string** \
+Type: `string` \
 
 The user name for the software.
 :::

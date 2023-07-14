@@ -11,7 +11,7 @@ integer Get3SyllablePlusWordCount()
 
 ### Return value {-}
 
-Type: **integer** \
+Type: `integer` \
 
 The number of words consisting of three or more syllables from the document.
 :::

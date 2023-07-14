@@ -13,7 +13,7 @@ ExcludeNumerals(boolean exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-exclude | **true** to exclude numerals.
+exclude | `true` to exclude numerals.
 :::
 
 ### Example {-}

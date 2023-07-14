@@ -11,7 +11,7 @@ Language GetProjectLanguage()
 
 ### Return value {-}
 
-Type: **Language** \
+Type: `Language` \
 
 The default language for new projects.
 :::

@@ -19,7 +19,7 @@ relativePath | The path of the file that is relative to the base path.
 
 ### Return value {-}
 
-Type: **string** \
+Type: `string` \
 
 The full file path.
 

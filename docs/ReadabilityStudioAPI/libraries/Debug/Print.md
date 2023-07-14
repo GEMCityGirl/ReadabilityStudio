@@ -16,7 +16,7 @@ Print(string message)
 message | The message to print.
 
 ::: {.tipsection data-latex=""}
-*Message* can be HTML-formatted text.
+*message* can be HTML-formatted text.
 :::
 
 ### Example {-}

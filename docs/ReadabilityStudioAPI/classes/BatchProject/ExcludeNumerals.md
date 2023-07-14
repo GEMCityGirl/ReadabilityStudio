@@ -10,4 +10,4 @@ ExcludeNumerals(Exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-Exclude | **true** to exclude numerals.
+Exclude | `true` to exclude numerals.

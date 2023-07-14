@@ -11,7 +11,7 @@ ShowSidebar(boolean show)
 
 **Parameter** | **Description**
 | :-- | :-- |
-show | **true** to show the sidebar, **false** to hide it.
+show | `true` to show the sidebar, `false` to hide it.
 :::
 
 ***

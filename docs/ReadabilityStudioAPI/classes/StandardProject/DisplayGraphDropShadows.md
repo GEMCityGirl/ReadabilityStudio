@@ -13,7 +13,7 @@ DisplayGraphDropShadows(boolean useShadows)
 
 **Parameter** | **Description**
 | :-- | :-- |
-useShadows | **true** to use shadows underneath items (such as bars) on all the graphs.
+useShadows | `true` to use shadows underneath items (such as bars) on all the graphs.
 :::
 
 ***

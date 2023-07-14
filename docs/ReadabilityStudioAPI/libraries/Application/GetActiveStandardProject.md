@@ -11,7 +11,7 @@ StandardProject GetActiveStandardProject()
 
 ### Return value {-}
 
-Type: **[StandardProject](#standardproject)** \
+Type: `[StandardProject](#standardproject)` \
 
 The active standard project.
 :::

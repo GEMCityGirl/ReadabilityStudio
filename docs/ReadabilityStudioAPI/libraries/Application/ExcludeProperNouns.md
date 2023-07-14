@@ -13,7 +13,7 @@ ExcludeProperNouns(boolean exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-exclude | **true** to exclude proper nouns, **false** to include them.
+exclude | `true` to exclude proper nouns, `false` to include them.
 :::
 
 ***

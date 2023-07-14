@@ -19,7 +19,7 @@ fileFilter | The file pattern to search for.
 
 ### Return value {-}
 
-Type: **table** \
+Type: `table` \
 
 A table listing the files.
 :::

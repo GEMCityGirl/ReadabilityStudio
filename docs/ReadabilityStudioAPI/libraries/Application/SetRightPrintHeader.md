@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## SetRightPrintHeader {-}
 
-Sets the label to appear in the top right corner of printouts\index{Printing!headers & footers}.
+Sets the label to appear in the top right corner of printouts\index{Printing!headers \& footers}.
 
 ### Syntax {-}
 

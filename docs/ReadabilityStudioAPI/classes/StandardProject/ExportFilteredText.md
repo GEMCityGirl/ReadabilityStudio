@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## ExportFilteredText {#standard-exportfilteredtext .unnumbered}
 
-Saves a copy of the project's document with excluded text (and other optional items) filtered out. Returns **true** if successful.
+Saves a copy of the project's document with excluded text (and other optional items) filtered out. Returns `true` if successful.
 
 ### Syntax {-}
 

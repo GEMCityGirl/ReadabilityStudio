@@ -17,7 +17,7 @@ imagePath | The file path of the image.
 
 ### Return value {-}
 
-Type: **table** \
+Type: `table` \
 
 A two-column table of the image's information.
 

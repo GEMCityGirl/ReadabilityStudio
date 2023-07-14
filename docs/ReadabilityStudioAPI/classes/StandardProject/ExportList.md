@@ -23,9 +23,9 @@ ExportList(ListType type,
 type | The [list](#listtype) to export.
 string outputFilePath | The folder to save the list.
 fromRow | (Optional) Specifies the row to begin from. The default is the first row.
-toRow | (Optional) Specifies the last row. Enter **-1** to specify the last row in the list.
+toRow | (Optional) Specifies the last row. Enter `-1` to specify the last row in the list.
 fromColumn | (Optional) Specifies the row to column from. The default is the first column.
-toColumn | (Optional) Specifies the last column. Enter **-1** to specify the last column in the list.
+toColumn | (Optional) Specifies the last column. Enter `-1` to specify the last column in the list.
 includeHeaders | (Optional) Specifies whether to include the column headers.
 includePageBreaks | (Optional) Specifies whether to insert page breaks. Note that this is only applicable if exporting as HTML.
 

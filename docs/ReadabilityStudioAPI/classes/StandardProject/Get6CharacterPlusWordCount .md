@@ -11,7 +11,7 @@ integer Get6CharacterPlusWordCount()
 
 ### Return value {-}
 
-Type: **integer** \
+Type: `integer` \
 
 The number of words consisting of six or more characters from the document.
 :::

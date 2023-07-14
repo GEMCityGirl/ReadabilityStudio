@@ -11,7 +11,7 @@ BatchProject GetActiveBatchProject()
 
 ### Return value {-}
 
-Type: **[BatchProject](#batchproject)** \
+Type: `[BatchProject](#batchproject)` \
 
 The active batch project.
 :::

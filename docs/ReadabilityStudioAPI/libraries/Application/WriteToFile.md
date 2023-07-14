@@ -19,7 +19,7 @@ message | The text to write to the file.
 
 ### Return value {-}
 
-Type: **boolean** \
+Type: `boolean` \
 
-Returns **true** if output was successfully written to the file.
+Returns `true` if output was successfully written to the file.
 :::

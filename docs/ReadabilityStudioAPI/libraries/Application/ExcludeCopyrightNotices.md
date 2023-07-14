@@ -13,7 +13,7 @@ ExcludeCopyrightNotices(boolean exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-exclude | **true** to exclude copyright notices, **false** to include them.
+exclude | `true` to exclude copyright notices, `false` to include them.
 :::
 
 ***

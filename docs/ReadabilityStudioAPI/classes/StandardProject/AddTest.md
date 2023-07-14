@@ -17,9 +17,9 @@ test | **[Test](#tests)** or The ID of the test to add. (For a custom test, use 
 
 ### Return value {-}
 
-Type: **boolean** \
+Type: `boolean` \
 
-**true** if the test was successfully added; otherwise, **false**.
+`true` if the test was successfully added; otherwise, `false`.
 
 ### Example {-}
 

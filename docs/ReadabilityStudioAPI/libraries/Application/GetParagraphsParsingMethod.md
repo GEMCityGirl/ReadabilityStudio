@@ -11,7 +11,7 @@ ParagraphParse GetParagraphsParsingMethod()
 
 ### Return value {-}
 
-Type: **[ParagraphParse](#paragraphparse)** \
+Type: `[ParagraphParse](#paragraphparse)` \
 
 The paragraph parsing method.
 :::

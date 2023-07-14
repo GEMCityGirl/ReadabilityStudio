@@ -11,7 +11,7 @@ string GetScriptFolderPath()
 
 ### Return value {-}
 
-Type: **string** \
+Type: `string` \
 
 The folder path of the currently running script.
 

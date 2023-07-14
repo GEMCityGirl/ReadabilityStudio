@@ -10,4 +10,4 @@ ExcludeProperNouns(Exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-Exclude | **true** to exclude proper nouns.
+Exclude | `true` to exclude proper nouns.

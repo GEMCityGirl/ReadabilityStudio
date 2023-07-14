@@ -11,7 +11,7 @@ integer Get1SyllableWordCount()
 
 ### Return value {-}
 
-Type: **integer** \
+Type: `integer` \
 
 The number of monosyllabic words from the document.
 :::

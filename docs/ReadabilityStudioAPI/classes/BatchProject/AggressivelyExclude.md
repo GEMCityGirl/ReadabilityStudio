@@ -11,7 +11,7 @@ AggressivelyExclude(boolean beAggressive)
 
 **Parameter** | **Description**
 | :-- | :-- |
-beAggressive | Set to **true** to use aggressive text exclusion.
+beAggressive | Set to `true` to use aggressive text exclusion.
 :::
 
 ***

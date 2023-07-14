@@ -13,7 +13,7 @@ Close(boolean saveChanges)
 
 **Parameter** | **Description**
 | :-- | :-- |
-saveChanges | Specifies whether to save any changes made to the project. The default is **false**.
+saveChanges | Specifies whether to save any changes made to the project. The default is `false`.
 
 ### Example {-}
 

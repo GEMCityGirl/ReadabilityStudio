@@ -11,7 +11,7 @@ string GetDocumentsPath()
 
 ### Return value {-}
 
-Type: **string** \
+Type: `string` \
 
 The path to the user's documents folder.
 :::

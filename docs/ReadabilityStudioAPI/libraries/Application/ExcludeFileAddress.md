@@ -13,7 +13,7 @@ ExcludeFileAddress(boolean exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-exclude | **true** to exclude filepaths and URLs, **false** to include them.
+exclude | `true` to exclude filepaths and URLs, `false` to include them.
 :::
 
 ***

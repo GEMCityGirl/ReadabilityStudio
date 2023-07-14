@@ -18,9 +18,9 @@ testName | The name of the test.
 
 ### Return value {-}
 
-Type: **number** \
+Type: `number` \
 
-The numeric ID of the test. Will be **-1** if test was not found.
+The numeric ID of the test. Will be `-1` if test was not found.
 :::
 
 ***

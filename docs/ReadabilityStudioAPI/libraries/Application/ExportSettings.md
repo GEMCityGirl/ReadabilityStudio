@@ -17,8 +17,8 @@ settingsFileToExport | The filepath to save the program's settings to.
 
 ### Return value {-}
 
-Type: **boolean** \
+Type: `boolean` \
 
-Returns **true** if settings were successfully exported.
+Returns `true` if settings were successfully exported.
 :::
 ***

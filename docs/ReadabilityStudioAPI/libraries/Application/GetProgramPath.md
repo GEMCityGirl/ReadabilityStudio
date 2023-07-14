@@ -11,7 +11,7 @@ string GetProgramPath()
 
 ### Return value {-}
 
-Type: **string** \
+Type: `string` \
 
 The folder path to the application.
 :::

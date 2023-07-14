@@ -10,4 +10,4 @@ ExcludeFileAddress(Exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-Exclude | **true** to exclude filepaths and URLs.
+Exclude | `true` to exclude filepaths and URLs.
