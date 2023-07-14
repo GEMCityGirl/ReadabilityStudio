@@ -1,5 +1,15 @@
 # Documentation
 
+## Style
+
+The following styles should be applied to all help projects:
+
+- Software and library names should be italicized.
+- References to dialog/menu/button/tab names should be bolded.
+- File names and paths should be bolded.
+- Data types (programming docs) should be in typewriter font.
+- Parameters to functions (programming docs) should be italicized.
+
 ## Editing
 
 The documentation is stored in **bookdown** projects in the **ReadabilityStudioDocs** and **ReadabilityStudioAPI** folders. The markdown files (\*.Rmd) can be edited in **RStudio**.
@@ -14,7 +24,7 @@ To generate screenshots, do the following:
 
 - Run the script **docs/Generate Screenshots.lua** from *Readability Studio*
 
-This will generate all new screenshots in the root **ReadabilityStudioDocs/images**. The subdirectory **NonGenerated** will not be effected, but does not need to be. It should not contain images effected by the program's UI changes and should not contain images with content that should be localized.
+This will generate all new screenshots in the root **docs/ReadabilityStudioDocs/images**. The subdirectory **NonGenerated** will not be effected, but does not need to be. It should not contain images effected by the program's UI changes and should not contain images with content that should be localized.
 
 ### Reviewing Screenshots {-}
 
@@ -35,4 +45,4 @@ After generating new screenshots, [build](#building-help) the help and review th
 
 ## Building {#building-help}
 
-From **RStudio**, run **BuildHelpProjects.R** to build both help projects.
+From **RStudio**, run **docs/BuildHelpProjects.R** to build all help projects.
