@@ -183,6 +183,15 @@ BaseProjectView::BaseProjectView()
             ShowSideBar(m_sidebarShown);
             },
         XRCID("ID_TOGGLE_SIDEBAR"));
+
+    Bind(wxEVT_MENU,
+        [this]([[maybe_unused]] wxCommandEvent&)
+            {
+            GetRibbon()->ShowPanels(
+                GetRibbon()->GetDisplayMode() == wxRIBBON_BAR_MINIMIZED ?
+                wxRIBBON_BAR_EXPANDED : wxRIBBON_BAR_MINIMIZED);
+            },
+        XRCID("ID_TOGGLE_RIBBON"));
     }
 
 //---------------------------------------------------
@@ -2275,7 +2284,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
 
     m_frame->SetSizer(mainSizer);
 
-    wxAcceleratorEntry accelEntries[15];
+    wxAcceleratorEntry accelEntries[16];
     accelEntries[0].Set(wxACCEL_NORMAL, WXK_F1, wxID_HELP);
     accelEntries[1].Set(wxACCEL_CMD, static_cast<int>(L'N'), wxID_NEW);
     accelEntries[2].Set(wxACCEL_CMD, static_cast<int>(L'O'), wxID_OPEN);
@@ -2291,6 +2300,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     accelEntries[12].Set(wxACCEL_CMD, WXK_DELETE, XRCID("ID_REMOVE_TEST"));
     accelEntries[13].Set(wxACCEL_NORMAL, WXK_F2, XRCID("ID_TOGGLE_SIDEBAR"));
     accelEntries[14].Set(wxACCEL_NORMAL, WXK_F3, XRCID("ID_FIND_NEXT"));
+    accelEntries[15].Set(wxACCEL_CMD, WXK_F1, XRCID("ID_TOGGLE_RIBBON"));
     wxAcceleratorTable accelTable(std::size(accelEntries), accelEntries);
     m_frame->SetAcceleratorTable(accelTable);
 
