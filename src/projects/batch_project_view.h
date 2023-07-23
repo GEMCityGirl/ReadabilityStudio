@@ -228,6 +228,7 @@ public:
         const bool includeGrammarIssues,
         const bool includeSightWords,
         const bool includeWarnings,
+        const bool includeSummaryStats,
         const Wisteria::UI::ImageExportOptions& graphOptions);
     bool ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
         const bool includeHardWordLists,
@@ -237,6 +238,7 @@ public:
         const bool includeGrammarIssues,
         const bool includeSightWords,
         const bool includeWarnings,
+        const bool includeSummaryStats,
         const Wisteria::UI::ImageExportOptions& graphOptions);
     // label functions
     [[nodiscard]]

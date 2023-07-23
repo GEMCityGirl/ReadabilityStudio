@@ -1916,6 +1916,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
         const bool includeGrammarIssues,
         const bool includeSightWords,
         const bool includeWarnings,
+        const bool includeSummaryStats,
         const Wisteria::UI::ImageExportOptions& graphOptions)
     {
     const BatchProjectDoc* doc = dynamic_cast<const BatchProjectDoc*>(GetDocument());
@@ -1947,8 +1948,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                 (includeSightWords ? GetDolchSightWordsView().GetWindowCount() : 0) +
                 (includeHardWordLists ? GetWordsBreakdownView().GetWindowCount() : 0) +
                 (includeSentencesBreakdown ? GetSentencesBreakdownView().GetWindowCount() : 0) +
-                ((includeHardWordLists || includeSentencesBreakdown) ?
-                    GetSummaryStatsView().GetWindowCount() : 0) +
+                (includeSummaryStats ? GetSummaryStatsView().GetWindowCount() : 0) +
                 (includeWarnings ? 1 : 0)),
             GetDocFrame(), wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_CAN_ABORT|wxPD_APP_MODAL);
     progressDlg.Centre();
@@ -2102,7 +2102,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
             }
         }
     // summary statistics
-    if (includeSentencesBreakdown || includeHardWordLists)
+    if (includeSummaryStats)
         {
         if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetSummaryStatisticsLabel(),
             wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
@@ -2221,6 +2221,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         const bool includeGrammarIssues,
         const bool includeSightWords,
         const bool includeWarnings,
+        const bool includeSummaryStats,
         const Wisteria::UI::ImageExportOptions& graphOptions)
     {
     const BatchProjectDoc* doc = dynamic_cast<const BatchProjectDoc*>(GetDocument());
@@ -2397,7 +2398,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
             }
         }
     // summary stats list
-    if (includeSentencesBreakdown || includeHardWordLists)
+    if (includeSummaryStats)
         {
         bool includeLeadingPageBreak{ false };
         ++sectionCounter;
@@ -2483,7 +2484,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         { TOC += L"<a href=\"#hardwordlist\">" + GetWordsBreakdownLabel() + L"</a><br />\r\n"; }
     if (includeSentencesBreakdown)
         { TOC += L"<a href=\"#sentencebreakdown\">" + GetSentencesBreakdownLabel() + L"</a><br />\r\n"; }
-    if (includeSentencesBreakdown || includeHardWordLists)
+    if (includeSummaryStats)
         { TOC += L"<a href=\"#summarystats\">" + GetSummaryStatisticsLabel() + L"</a><br />\r\n"; }
     if (includeGrammarIssues && GetGrammarView().GetWindowCount())
         { TOC += L"<a href=\"#grammar\">" + GetGrammarLabel() + L"</a><br />\r\n"; }
@@ -2776,6 +2777,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                 dlg.IsExportingGraphs(),
                 dlg.IsExportingTestResults(), dlg.IsExportingGrammar(),
                 dlg.IsExportingSightWords(), dlg.IsExportingWarnings(),
+                dlg.IsExportingStatistics(),
                 dlg.GetImageExportOptions());
             }
         else
@@ -2786,6 +2788,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                 dlg.IsExportingGraphs(),
                 dlg.IsExportingTestResults(), dlg.IsExportingGrammar(),
                 dlg.IsExportingSightWords(), dlg.IsExportingWarnings(),
+                dlg.IsExportingStatistics(),
                 dlg.GetImageExportOptions());
             }
         doc->SetExportFile(dlg.GetFilePath());

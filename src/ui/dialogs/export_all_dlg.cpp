@@ -265,6 +265,11 @@ void ExportAllDlg::CreateControls()
         inclusionSectionBoxSizer->Add(testResultsCheck, 0, wxEXPAND|wxALL,
                                       wxSizerFlags::GetDefaultBorder());
 
+        wxCheckBox* statisticsCheck = new wxCheckBox(this, wxID_ANY, _(L"Summary statistics"),
+            wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportStatistics));
+        inclusionSectionBoxSizer->Add(statisticsCheck, 0, wxEXPAND|wxALL,
+                                      wxSizerFlags::GetDefaultBorder());
+
         wxCheckBox* graphCheck = new wxCheckBox(this, wxID_ANY, _(L"Histograms/box plots"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportGraphs));
         inclusionSectionBoxSizer->Add(graphCheck, 0, wxEXPAND|wxALL,
