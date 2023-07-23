@@ -177,7 +177,7 @@ bool BatchProjectDoc::OnNewDocument()
     LoadAppendedDocument();
 
     wxProgressDialog progressDlg(_(L"Creating Project"), _(L"Analyzing documents..."),
-        static_cast<int>(GetSourceFilesInfo().size()+12),
+        static_cast<int>(GetSourceFilesInfo().size()+13),
         nullptr, wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_CAN_ABORT|wxPD_APP_MODAL);
     progressDlg.Centre();
     int counter{ 1 };
@@ -213,6 +213,10 @@ bool BatchProjectDoc::OnNewDocument()
     if (!progressDlg.Update(counter++, _(L"Loading scores...")))
         { return false; }
     LoadScoresSection();
+    
+    if (!progressDlg.Update(counter++, _(L"Loading summary statistics...")))
+        { return false; }
+    LoadSummaryStatsSection();
 
     if (!progressDlg.Update(counter++))
         { return false; }
@@ -234,6 +238,7 @@ bool BatchProjectDoc::OnNewDocument()
         { return false; }
     DisplayHardWords();
     DisplaySentencesBreakdown();
+    DisplaySummaryStats();
 
     if (!progressDlg.Update(counter++))
         { return false; }
@@ -444,7 +449,7 @@ void BatchProjectDoc::RefreshProject()
     BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     wxProgressDialog progressDlg(wxString::Format(_(L"Reloading \"%s\""), GetTitle()),
         _(L"Analyzing documents..."),
-        IsDocumentReindexingRequired() ? static_cast<int>(GetSourceFilesInfo().size()+12) : 12,
+        IsDocumentReindexingRequired() ? static_cast<int>(GetSourceFilesInfo().size()+13) : 13,
         wxGetApp().GetMainFrame(), wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_APP_MODAL);
     progressDlg.Centre();
     int counter{ 1 };
@@ -492,6 +497,9 @@ void BatchProjectDoc::RefreshProject()
     progressDlg.Update(counter++, _(L"Loading scores..."));
     LoadScoresSection();
 
+    progressDlg.Update(counter++, _(L"Loading summary statistics..."));
+    LoadSummaryStatsSection();
+
     progressDlg.Update(counter++);
     DisplayScores();
 
@@ -507,6 +515,7 @@ void BatchProjectDoc::RefreshProject()
     progressDlg.Update(counter++);
     DisplayHardWords();
     DisplaySentencesBreakdown();
+    DisplaySummaryStats();
 
     progressDlg.Update(counter++);
     DisplaySightWords();
@@ -843,6 +852,35 @@ void BatchProjectDoc::LoadHardWordsSection()
         }
 
     m_hardWordsData->SetSize(hardWordRowCount);
+    }
+
+//------------------------------------------------------------
+void BatchProjectDoc::LoadSummaryStatsSection()
+    {
+    m_summaryStatsData->DeleteAllItems();
+
+    m_summaryStatsColumnNames.clear();
+    m_summaryStatsColumnNames = { _(L"Document"), _(L"Label") };
+    if (GetStatisticsReportInfo().IsParagraphEnabled())
+        {
+        m_summaryStatsColumnNames.push_back(_(L"Number of paragraphs"));
+        }
+    m_summaryStatsData->SetSize(m_docs.size(), m_summaryStatsColumnNames.size());
+
+    size_t rowCount{ 0 };
+    for (const auto& doc : m_docs)
+        {
+        m_summaryStatsData->SetItemText(rowCount, 0, doc->GetOriginalDocumentFilePath());
+        m_summaryStatsData->SetItemText(rowCount, 1, doc->GetOriginalDocumentDescription());
+        if (GetStatisticsReportInfo().IsParagraphEnabled())
+            {
+            m_summaryStatsData->SetItemValue(rowCount, 2, doc->GetTotalParagraphs());
+            }
+        
+        ++rowCount;
+        }
+
+    m_summaryStatsData->SetSize(rowCount);
     }
 
 //------------------------------------------------------------
@@ -4868,7 +4906,7 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
 
     wxProgressDialog progressDlg(wxString::Format(_(L"Opening \"%s\""), GetTitle()),
         _(L"Analyzing documents..."),
-        static_cast<int>(GetSourceFilesInfo().size()+12),
+        static_cast<int>(GetSourceFilesInfo().size()+13),
         nullptr, wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_CAN_ABORT|wxPD_APP_MODAL);
     progressDlg.Centre();
     int counter{ 1 };
@@ -4908,6 +4946,10 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
         { return false; }
     LoadScoresSection();
 
+    if (!progressDlg.Update(counter++, _(L"Loading summary statistics...")))
+        { return false; }
+    LoadSummaryStatsSection();
+
     if (!progressDlg.Update(counter++))
         { return false; }
     DisplayScores();
@@ -4928,6 +4970,7 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
         { return false; }
     DisplayHardWords();
     DisplaySentencesBreakdown();
+    DisplaySummaryStats();
 
     if (!progressDlg.Update(counter++))
         { return false; }
@@ -5412,6 +5455,50 @@ void BatchProjectDoc::DisplayGrammar()
         }
     else
         { view->GetGrammarView().RemoveWindowById(BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID); }
+    }
+
+//-------------------------------------------------------
+void BatchProjectDoc::DisplaySummaryStats()
+    {
+    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    // summary stats
+    ListCtrlEx* listView =
+        dynamic_cast<ListCtrlEx*>(view->GetSummaryStatsView().FindWindowById(
+            BaseProjectView::STATS_LIST_PAGE_ID));
+    if (m_summaryStatsData->GetItemCount())
+        {
+        if (!listView)
+            {
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::STATS_LIST_PAGE_ID,
+                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView->Hide();
+            listView->SetLabel(BaseProjectView::GetSummaryStatisticsLabel());
+            listView->SetName(BaseProjectView::GetSummaryStatisticsLabel());
+            listView->EnableGridLines();
+            listView->EnableItemViewOnDblClick();
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+            view->GetSummaryStatsView().AddWindow(listView);
+            }
+        listView->DeleteAllColumns();
+        for (size_t i = 0; i < m_summaryStatsColumnNames.size(); ++i)
+            { listView->InsertColumn(i, m_summaryStatsColumnNames[i]); }
+        
+        UpdateListOptions(listView);
+        listView->SetColumnFilePathTruncationMode(0, GetFilePathTruncationMode());
+        listView->SetVirtualDataProvider(m_summaryStatsData);
+        listView->SetVirtualDataSize(m_summaryStatsData->GetItemCount());
+        listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        for (size_t i = 2; i < m_summaryStatsColumnNames.size(); ++i)
+            { listView->SetColumnWidth(i, wxLIST_AUTOSIZE_USEHEADER); }
+
+        if (listView->GetSortedColumn() == -1)
+            { listView->SortColumn(0, Wisteria::SortDirection::SortAscending); }
+        else
+            { listView->Resort(); }
+        }
+    else
+        { view->GetSummaryStatsView().RemoveWindowById(BaseProjectView::STATS_LIST_PAGE_ID); }
     }
 
 //-------------------------------------------------------

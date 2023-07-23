@@ -40,6 +40,7 @@ public:
         wxDELETE(m_redundantPhraseData);
         wxDELETE(m_wordingErrorData);
         wxDELETE(m_hardWordsData);
+        wxDELETE(m_summaryStatsData);
         wxDELETE(m_overlyLongSentenceData);
         wxDELETE(m_sentenceStartingWithConjunctionsData);
         wxDELETE(m_sentenceStartingWithLowercaseData);
@@ -161,6 +162,7 @@ private:
     bool RunProjectWizard(const wxString& path);
     bool LoadDocuments(wxProgressDialog& progressDlg);
     void LoadScoresSection();
+    void LoadSummaryStatsSection();
     void LoadWarningsSection();
     void LoadHardWordsSection();
     void LoadDolchSection();
@@ -175,6 +177,7 @@ private:
     void DisplayGrammar();
     void DisplaySentencesBreakdown();
     void DisplayHardWords();
+    void DisplaySummaryStats();
     void DisplaySightWords();
 
     void InitializeDocuments();
@@ -277,6 +280,9 @@ private:
     ListCtrlExNumericDataProvider* m_keyWordsBatchData{ new ListCtrlExNumericDataProvider };
     // difficult words list data
     ListCtrlExNumericDataProvider* m_hardWordsData{ new ListCtrlExNumericDataProvider };
+    // summary stats data
+    ListCtrlExNumericDataProvider* m_summaryStatsData{ new ListCtrlExNumericDataProvider };
+    std::vector<wxString> m_summaryStatsColumnNames;
     // warnings list data
     ListCtrlExDataProvider* m_warnings{ new ListCtrlExDataProvider };
     // dolch list data

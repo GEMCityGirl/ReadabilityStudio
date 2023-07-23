@@ -15,7 +15,7 @@ class BatchProjectView final : public BaseProjectView
     {
     wxDECLARE_NO_COPY_CLASS(BatchProjectView);
 public:
-    BatchProjectView() = default;
+    BatchProjectView();
 
     void OnGradeScale(wxCommandEvent& event);
     void OnLongFormat([[maybe_unused]] wxRibbonButtonBarEvent& event);
@@ -112,6 +112,12 @@ public:
     [[nodiscard]]
     const WindowContainer& GetSentencesBreakdownView() const noexcept
         { return m_sentencesBreakdownView; }
+    [[nodiscard]]
+    WindowContainer& GetSummaryStatsView() noexcept
+        { return m_summaryStatsView; }
+    [[nodiscard]]
+    const WindowContainer& GetSummaryStatsView() const noexcept
+        { return m_summaryStatsView; }
     [[nodiscard]]
     WindowContainer& GetDolchSightWordsView() noexcept
         { return m_sightWordView; }
@@ -294,6 +300,7 @@ private:
     ListCtrlEx* m_warningsView{ nullptr };
     WindowContainer m_wordsBreakdownView;
     WindowContainer m_sentencesBreakdownView;
+    WindowContainer m_summaryStatsView;
     WindowContainer m_grammarView;
     WindowContainer m_sightWordView;
     Wisteria::Canvas* m_fleschChart{ nullptr };

@@ -119,6 +119,13 @@ wxBEGIN_EVENT_TABLE(BatchProjectView, BaseProjectView)
 wxEND_EVENT_TABLE()
 
 //-------------------------------------------------------
+BatchProjectView::BatchProjectView()
+    {
+    Bind(wxEVT_LIST_ITEM_SELECTED, &BatchProjectView::OnNonScoreItemSelected,
+         this, BaseProjectView::STATS_LIST_PAGE_ID);
+    }
+
+//-------------------------------------------------------
 void BatchProjectView::OnLongFormat([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(GetDocument());
@@ -561,6 +568,17 @@ void BatchProjectView::UpdateSideBarIcons()
                 GetSentencesBreakdownView().GetWindow(i)->GetId(), 9);
             }
         }
+    if (GetSummaryStatsView().GetWindowCount() > 0)
+        {
+        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetSummaryStatisticsLabel(),
+                                 SIDEBAR_STATS_SUMMARY_SECTION_ID, 2);
+        for (size_t i = 0; i < GetSummaryStatsView().GetWindowCount(); ++i)
+            {
+            GetSideBar()->InsertSubItemById(
+                SIDEBAR_STATS_SUMMARY_SECTION_ID, GetSummaryStatsView().GetWindow(i)->GetName(),
+                GetSummaryStatsView().GetWindow(i)->GetId(), 9);
+            }
+        }
     if (GetGrammarView().GetWindowCount() > 0)
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetGrammarLabel(), SIDEBAR_GRAMMAR_SECTION_ID, 4);
@@ -618,6 +636,12 @@ void BatchProjectView::RemoveFromAllListCtrls(const wxString& valueToRemove)
     for (size_t i = 0; i < GetSentencesBreakdownView().GetWindowCount(); ++i)
         {
         activeWindow = GetSentencesBreakdownView().GetWindow(i);
+        if (activeWindow && activeWindow->IsKindOf(CLASSINFO(ListCtrlEx)))
+            { dynamic_cast<ListCtrlEx*>(activeWindow)->RemoveAll(valueToRemove); }
+        }
+    for (size_t i = 0; i < GetSummaryStatsView().GetWindowCount(); ++i)
+        {
+        activeWindow = GetSummaryStatsView().GetWindow(i);
         if (activeWindow && activeWindow->IsKindOf(CLASSINFO(ListCtrlEx)))
             { dynamic_cast<ListCtrlEx*>(activeWindow)->RemoveAll(valueToRemove); }
         }
@@ -1210,9 +1234,12 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                 }
             }
         }
-    else if (event.GetExtraLong() == SIDEBAR_WORDS_BREAKDOWN_SECTION_ID)
+    else if (event.GetExtraLong() == SIDEBAR_WORDS_BREAKDOWN_SECTION_ID ||
+             event.GetExtraLong() == SIDEBAR_STATS_SUMMARY_SECTION_ID)
         {
-        m_activeWindow = GetWordsBreakdownView().FindWindowById(event.GetInt());
+        m_activeWindow = (event.GetExtraLong() == SIDEBAR_WORDS_BREAKDOWN_SECTION_ID ?
+            GetWordsBreakdownView().FindWindowById(event.GetInt()) :
+            GetSummaryStatsView().FindWindowById(event.GetInt()) );
         // cppcheck-suppress assertWithSideEffect
         wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
@@ -1870,6 +1897,8 @@ wxWindow* BatchProjectView::FindWindowById(const int Id)
         { return GetWordsBreakdownView().FindWindowById(Id); }
     else if (GetSentencesBreakdownView().FindWindowById(Id))
         { return GetSentencesBreakdownView().FindWindowById(Id); }
+    else if (GetSummaryStatsView().FindWindowById(Id))
+        { return GetSummaryStatsView().FindWindowById(Id); }
     else if (GetDolchSightWordsView().FindWindowById(Id))
         { return GetDolchSightWordsView().FindWindowById(Id); }
     else if (GetWarningsView()->GetId() == Id)
@@ -1916,6 +1945,8 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                 (includeSightWords ? GetDolchSightWordsView().GetWindowCount() : 0) +
                 (includeHardWordLists ? GetWordsBreakdownView().GetWindowCount() : 0) +
                 (includeSentencesBreakdown ? GetSentencesBreakdownView().GetWindowCount() : 0) +
+                ((includeHardWordLists || includeSentencesBreakdown) ?
+                    GetSummaryStatsView().GetWindowCount() : 0) +
                 (includeWarnings ? 1 : 0)),
             GetDocFrame(), wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_CAN_ABORT|wxPD_APP_MODAL);
     progressDlg.Centre();
@@ -2059,6 +2090,35 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                         listWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
                     listWindow->Save(folder + wxFileName::GetPathSeparator() +
                         GetSentencesBreakdownLabel() + wxFileName::GetPathSeparator() +
+                            listWindow->GetLabel() + listExt,
+                        GridExportOptions());
+                    }
+                wxGetApp().Yield(true);
+                if (!progressDlg.Update(counter++))
+                    { return false; }
+                }
+            }
+        }
+    // summary statistics
+    if (includeSentencesBreakdown || includeHardWordLists)
+        {
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetSummaryStatisticsLabel(),
+            wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+            {
+            wxMessageBox(wxString::Format(_("Unable to create \"%s\" folder."), GetSummaryStatisticsLabel()),
+                wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
+            }
+        else
+            {
+            for (size_t i = 0; i < GetSummaryStatsView().GetWindowCount(); ++i)
+                {
+                ListCtrlEx* listWindow = dynamic_cast<ListCtrlEx*>(GetSummaryStatsView().GetWindow(i));
+                if (listWindow)
+                    {
+                    listWindow->SetLabel(wxString::Format(L"%s [%s]",
+                        listWindow->GetName(), wxFileName::StripExtension(doc->GetTitle())));
+                    listWindow->Save(folder + wxFileName::GetPathSeparator() +
+                        GetSummaryStatisticsLabel() + wxFileName::GetPathSeparator() +
                             listWindow->GetLabel() + listExt,
                         GridExportOptions());
                     }
@@ -2332,6 +2392,23 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
             includeLeadingPageBreak = true;
             }
         }
+    // summary stats list
+    if (includeSentencesBreakdown || includeHardWordLists)
+        {
+        bool includeLeadingPageBreak{ false };
+        ++sectionCounter;
+        figureCounter = tableCounter = 1;
+        outputText += wxString::Format(
+            L"\n\n%s<div class=\"report-section\"><a name=\"summarystats\"></a>%s</div>\n",
+            (hasSections ? pageBreak : wxEmptyString),
+            htmlEncode({ GetSummaryStatisticsLabel().wc_str(), GetSummaryStatisticsLabel().length() }, true));
+        hasSections = true;
+        for (size_t i = 0; i < GetSummaryStatsView().GetWindowCount(); ++i)
+            {
+            formatList(dynamic_cast<ListCtrlEx*>(GetSummaryStatsView().GetWindow(i)), includeLeadingPageBreak);
+            includeLeadingPageBreak = true;
+            }
+        }
     // grammar
     if (includeWordiness && GetGrammarView().GetWindowCount() )
         {
@@ -2402,6 +2479,8 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         { TOC += L"<a href=\"#hardwordlist\">" + GetWordsBreakdownLabel() + L"</a><br />\r\n"; }
     if (includeSentencesBreakdown)
         { TOC += L"<a href=\"#sentencebreakdown\">" + GetSentencesBreakdownLabel() + L"</a><br />\r\n"; }
+    if (includeSentencesBreakdown || includeHardWordLists)
+        { TOC += L"<a href=\"#summarystats\">" + GetSummaryStatisticsLabel() + L"</a><br />\r\n"; }
     if (includeWordiness && GetGrammarView().GetWindowCount())
         { TOC += L"<a href=\"#grammar\">" + GetGrammarLabel() + L"</a><br />\r\n"; }
     if (includeSightWords && GetDolchSightWordsView().GetWindowCount())
