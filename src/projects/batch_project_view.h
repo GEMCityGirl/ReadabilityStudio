@@ -52,6 +52,7 @@ public:
                 id == READABILITY_GOALS_PAGE_ID ||
                 id == ID_DIFFICULT_WORDS_LIST_PAGE_ID ||
                 id == LONG_SENTENCES_LIST_PAGE_ID ||
+                id == STATS_LIST_PAGE_ID ||
                 id == SENTENCES_CONJUNCTION_START_LIST_PAGE_ID ||
                 id == SENTENCES_LOWERCASE_START_LIST_PAGE_ID ||
                 id == DUPLICATES_LIST_PAGE_ID ||
