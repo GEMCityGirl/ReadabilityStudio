@@ -889,16 +889,41 @@ void BatchProjectDoc::LoadSummaryStatsSection()
         {
         m_summaryStatsColumnNames.push_back(_(L"Number of paragraphs"));
         }
+    if (GetStatisticsReportInfo().IsSentencesEnabled())
+        {
+        m_summaryStatsColumnNames.push_back(_(L"Number of sentences"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of units/independent clauses"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of difficult sentences"));
+        m_summaryStatsColumnNames.push_back(_(L"Longest sentence"));
+        m_summaryStatsColumnNames.push_back(_(L"Average sentence length"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of interrogative sentences (questions)"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of exclamatory sentences"));
+        }
     m_summaryStatsData->SetSize(m_docs.size(), m_summaryStatsColumnNames.size());
 
     size_t rowCount{ 0 };
     for (const auto& doc : m_docs)
         {
-        m_summaryStatsData->SetItemText(rowCount, 0, doc->GetOriginalDocumentFilePath());
-        m_summaryStatsData->SetItemText(rowCount, 1, doc->GetOriginalDocumentDescription());
+        size_t columnCount{ 0 };
+        m_summaryStatsData->SetItemText(rowCount, columnCount++, doc->GetOriginalDocumentFilePath());
+        m_summaryStatsData->SetItemText(rowCount, columnCount++, doc->GetOriginalDocumentDescription());
         if (GetStatisticsReportInfo().IsParagraphEnabled())
             {
-            m_summaryStatsData->SetItemValue(rowCount, 2, doc->GetTotalParagraphs());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalParagraphs());
+            }
+        if (GetStatisticsReportInfo().IsSentencesEnabled())
+            {
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalSentences());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalSentenceUnits());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalOverlyLongSentences());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetLongestSentence());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                safe_divide<double>(doc->GetTotalWords(),
+                                    doc->GetTotalSentences()),
+                Wisteria::NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
+                                           1, false));
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalInterrogativeSentences());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalExclamatorySentences());
             }
         
         ++rowCount;
