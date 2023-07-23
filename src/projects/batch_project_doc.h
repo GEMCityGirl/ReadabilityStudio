@@ -61,6 +61,8 @@ public:
     void RefreshProject() final;
     /// Only refresh the graphs, this assumes that no windows are being added or removed from the project.
     void RefreshGraphs() final;
+    // only refresh statistics reports
+    void RefreshStatisticsReports() final;
 
     /// @returns A const reference to the batch's documents.
     [[nodiscard]]
@@ -215,20 +217,20 @@ private:
                                  const std::vector<double>& data, const int decimalSize,
                                  const VarianceMethod varianceMethod,
                                  const bool allowCustomFormatting);
-    /** @brief Fills a list control with data.
+    /** @brief Fills a score list control with statistics.
         @param The name of the list control.
         @param windowId The window ID of the list control.
         @param data The data grid used for the list control (will be written to).
         @param firstColumnName The label for the first column in @c data.
         @param optionalSecondColumnName An optional label for the second column.
-         If empty, will not be used for the second column.
+         If empty, will not be used for the second column.\n
          This parameter only makes sense for adding a description next to a document.
-        @param multiSelectable True to make the list control multi-item selectable.*/
-    void DisplaySummaryStatisticsWindow(const wxString& windowName, const int windowId,
-                                        ListCtrlExNumericDataProvider* data,
-                                        const wxString& firstColumnName,
-                                        const wxString& optionalSecondColumnName,
-                                        const bool multiSelectable);
+        @param multiSelectable @c true to make the list control multi-item selectable.*/
+    void DisplayScoreStatisticsWindow(const wxString& windowName, const int windowId,
+                                      ListCtrlExNumericDataProvider* data,
+                                      const wxString& firstColumnName,
+                                      const wxString& optionalSecondColumnName,
+                                      const bool multiSelectable);
 
     /// @returns `true` if there is more than one document label, but not more than
     ///     the max number of groups for the legends.

@@ -407,6 +407,30 @@ void BatchProjectDoc::RemoveFailedDocuments()
     }
 
 //------------------------------------------------
+void BatchProjectDoc::RefreshStatisticsReports()
+    {
+    if (!IsSafeToUpdate())
+        { return; }
+
+    // if refresh is not necessary then return
+    if (IsRefreshRequired() == false)
+        { return; }
+    BaseProjectProcessingLock processingLock(this);
+    wxWindowUpdateLocker noUpdates(GetDocumentWindow());
+
+    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    const wxString currentlySelectedFile = view->GetCurrentlySelectedFileName();
+
+    LoadSummaryStatsSection();
+    DisplaySummaryStats();
+    view->UpdateStatAndTestPanes(currentlySelectedFile);
+
+    Modify(true);
+    GetDocumentWindow()->Refresh();
+    ResetRefreshRequired();
+    }
+
+//------------------------------------------------
 void BatchProjectDoc::RefreshGraphs()
     {
     if (!IsSafeToUpdate())
@@ -2639,12 +2663,12 @@ void BatchProjectDoc::DisplayScores()
         view->GetScoresView().RemoveWindowById(BaseProjectView::READABILITY_GOALS_PAGE_ID);
         }
 
-    DisplaySummaryStatisticsWindow(_(L"Score Summary"), BaseProjectView::ID_SCORE_STATS_LIST_PAGE_ID,
+    DisplayScoreStatisticsWindow(_(L"Score Summary"), BaseProjectView::ID_SCORE_STATS_LIST_PAGE_ID,
         m_scoreStatsData, _(L"Test"), wxEmptyString, false);
     // aggregated grade level scores, listed by document
     if (IsIncludingGradeTest())
         {
-        DisplaySummaryStatisticsWindow(_(L"Grade Score Summary (x Document)"),
+        DisplayScoreStatisticsWindow(_(L"Grade Score Summary (x Document)"),
             BaseProjectView::ID_AGGREGATED_DOC_SCORES_LIST_PAGE_ID,
             m_aggregatedGradeScoresData, _(L"Document"), _(L"Label"), true);
         }
@@ -2654,7 +2678,7 @@ void BatchProjectDoc::DisplayScores()
     // aggregated predicted cloze scores, listed by document
     if (IsIncludingClozeTest())
         {
-        DisplaySummaryStatisticsWindow(_(L"Cloze Score Summary (x Document)"),
+        DisplayScoreStatisticsWindow(_(L"Cloze Score Summary (x Document)"),
             BaseProjectView::ID_AGGREGATED_CLOZE_SCORES_LIST_PAGE_ID,
             m_aggregatedClozeScoresData, _(L"Document"), _(L"Label"), true);
         }
@@ -2698,7 +2722,7 @@ void BatchProjectDoc::DisplayScores()
     }
 
 //------------------------------------------------------------
-void BatchProjectDoc::DisplaySummaryStatisticsWindow(const wxString& windowName, const int windowId,
+void BatchProjectDoc::DisplayScoreStatisticsWindow(const wxString& windowName, const int windowId,
                                                      ListCtrlExNumericDataProvider* data,
                                                      const wxString& firstColumnName,
                                                      const wxString& optionalSecondColumnName,
@@ -2730,7 +2754,7 @@ void BatchProjectDoc::DisplaySummaryStatisticsWindow(const wxString& windowName,
     listView->InsertColumn(currentColumnCount++, _(L"Range"));
     listView->InsertColumn(currentColumnCount++, _(L"Mode(s)"));
     listView->InsertColumn(currentColumnCount++, _(L"Means"));
-    // if verbose then add the extra columns
+    // if verbose, then add the extra columns
     if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
         {
         listView->InsertColumn(currentColumnCount++, _(L"Median"));

@@ -1289,6 +1289,13 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     wxASSERT(editButtonRibbonBar);
 
                     editButtonRibbonBar->ClearButtons();
+                    if (event.GetExtraLong() == SIDEBAR_STATS_SUMMARY_SECTION_ID)
+                        {
+                        editButtonRibbonBar->AddButton(XRCID("ID_EDIT_STATS_REPORT"),
+                            _(L"Edit Statistics"),
+                            readRibbonButtonSVG(L"ribbon/edit-report.svg"),
+                            _(L"Select which statistics to include in the report."));
+                        }
                     editButtonRibbonBar->AddHybridButton(wxID_COPY,
                         _("Copy"),
                         readRibbonButtonSVG(L"ribbon/copy.svg"),
