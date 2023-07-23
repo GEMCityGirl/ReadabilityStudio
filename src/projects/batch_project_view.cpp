@@ -1864,6 +1864,9 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
                 L"</span><hr>";
             std::wstring text = docTable +
                 ProjectReportFormat::FormatStatisticsInfo(doc->GetDocuments()[i],
+                    // use the batches settings, which may have just been updated,
+                    // not the subproject's
+                    doc->GetStatisticsReportInfo(),
                     wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT), nullptr);
             lily_of_the_valley::html_format::strip_hyperlinks(text);
             m_statsReport->GetHtmlWindow()->SetPage(
@@ -2716,6 +2719,7 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
 
         wxString formattedStats =
             ProjectReportFormat::FormatStatisticsInfo(doc->GetDocuments()[i],
+                doc->GetStatisticsReportInfo(),
                 wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT), nullptr);
         if (stripLinks(formattedStats.wc_str(), formattedStats.length()))
             { formattedStats.assign(stripLinks.get_filtered_text(), stripLinks.get_filtered_text_length()); }

@@ -134,6 +134,7 @@ wxString ProjectReportFormat::FormatFormulaToHtml(const wxString& formula)
 
 //------------------------------------------------
 wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* project,
+                                                        const StatisticsReportInfo statsInfo,
                                                         const bool includeExplanation,
                                                         const wxColour attentionColor,
                                                         ListCtrlExDataProviderBase* listData)
@@ -168,7 +169,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
         ((totalDolchPercentage < 70) || (totalDolchExcludingNounsPercentage< 60));
     wxString HTMLText;
 
-    if (!project->GetStatisticsReportInfo().HasDolchStatisticsEnabled())
+    if (!statsInfo.HasDolchStatisticsEnabled())
         { HTMLText += _(L"No Dolch statistics <a href=\"#SelectStatistics\">currently selected</a>."); }
 
     wxBitmap bmp(100,100);
@@ -206,7 +207,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
             labelColumnWidth, label, numberColumnWidth, value, percent);
         };
 
-    if (project->GetStatisticsReportInfo().IsDolchCoverageEnabled())
+    if (statsInfo.IsDolchCoverageEnabled())
         {
         // list completions
         HTMLText += tableStart + formatHeader(_(L"Dolch Word Coverage"));
@@ -515,7 +516,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
         }
 
     // total words
-    if (project->GetStatisticsReportInfo().IsDolchWordsEnabled())
+    if (statsInfo.IsDolchWordsEnabled())
         {
         HTMLText += tableStart + formatHeader(_(L"Dolch Words"));
 
@@ -894,7 +895,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
             }
         }
 
-    if (includeExplanation && project->GetStatisticsReportInfo().IsDolchExplanationEnabled())
+    if (includeExplanation && statsInfo.IsDolchExplanationEnabled())
         {
         HTMLText += tableStart + formatHeader(_(L"Explanation"));
         HTMLText += L"\n<tr><td style='width:100%'><p>";
@@ -957,6 +958,7 @@ wxString ProjectReportFormat::FormatHtmlReportEnd()
 
 //------------------------------------------------
 wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
+                                                   const StatisticsReportInfo statsInfo,
                                                    const wxColour attentionColor,
                                                    ListCtrlExDataProviderBase* listData)
     {
@@ -989,7 +991,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
     const double averageSyllableCount =
         safe_divide<double>(project->GetTotalSyllables(),project->GetTotalWords());
 
-    if (!project->GetStatisticsReportInfo().HasStatisticsEnabled())
+    if (!statsInfo.HasStatisticsEnabled())
         { HTMLText += _(L"No statistics <a href=\"#SelectStatistics\">currently selected</a>."); }
 
     wxBitmap bmp(100, 100);
@@ -1034,7 +1036,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             labelColumnWidth, label, numberColumnWidth, value, percent);
         };
 
-    if (project->GetStatisticsReportInfo().IsParagraphEnabled())
+    if (statsInfo.IsParagraphEnabled())
         {
         // number of paragraphs
         HTMLText += tableStart + formatHeader(_(L"Paragraphs")) +
@@ -1070,7 +1072,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             }
         }
 
-    if (project->GetStatisticsReportInfo().IsSentencesEnabled())
+    if (statsInfo.IsSentencesEnabled())
         {
         // Number of sentences
         HTMLText += tableStart + formatHeader(_(L"Sentences"));
@@ -1106,7 +1108,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             }
 
         // Number of sentence units
-        if (project->GetStatisticsReportInfo().IsExtendedInformationEnabled())
+        if (statsInfo.IsExtendedInformationEnabled())
             {
             if (project->GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis)
                 {
@@ -1310,7 +1312,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             }
         }
 
-    if (project->GetStatisticsReportInfo().IsWordsEnabled())
+    if (statsInfo.IsWordsEnabled())
         {
         // Number of words
         HTMLText += tableStart + formatHeader(_(L"Words"));
@@ -1460,7 +1462,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             }
         }
 
-    if (project->GetStatisticsReportInfo().IsExtendedWordsEnabled())
+    if (statsInfo.IsExtendedWordsEnabled())
         {
         // Numeric words
         HTMLText += tableStart + formatHeader(_(L"Numerals (Numbers, Dates, Currency, etc.)")) +
@@ -1740,14 +1742,14 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 }
             }
 
-        if (project->GetStatisticsReportInfo().IsExtendedInformationEnabled())
+        if (statsInfo.IsExtendedInformationEnabled())
             {
             // resize the list grid (if using one) to fit its data, then the call to Dolch
             // stats will append to that and resize it again. Then we will add some more rows
             // for the rest of the stats.
             if (listData)
                 { listData->SetSize(listDataItemCount, 3); }
-            HTMLText += FormatDolchStatisticsInfo(project, false, attentionColor, listData);
+            HTMLText += FormatDolchStatisticsInfo(project, statsInfo, false, attentionColor, listData);
             if (listData)
                 {
                 listDataItemCount = listData->GetItemCount();
@@ -2052,7 +2054,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             }
         }
 
-    if (project->GetStatisticsReportInfo().IsGrammarEnabled() &&
+    if (statsInfo.IsGrammarEnabled() &&
         project->GetGrammarInfo().IsAnyFeatureEnabled())
         {
         // grammar section
@@ -2339,7 +2341,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
         HTMLText += L"\n</table>";
         }
 
-    if (project->GetStatisticsReportInfo().IsExtendedInformationEnabled())
+    if (statsInfo.IsExtendedInformationEnabled())
         {
         // file/text stream info section
         HTMLText += tableStart +
@@ -2376,7 +2378,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
         }
 
     // Notes section
-    if (project->GetStatisticsReportInfo().IsNotesEnabled() &&
+    if (statsInfo.IsNotesEnabled() &&
         (project->GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
         project->GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings ||
         project->GetTotalWords() < 300 ||
@@ -2411,7 +2413,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                         wxFileName(project->GetAppendedDocumentFilePath()).GetFullName());
             HTMLText += L"</td></tr>";
             }
-        if (project->GetStatisticsReportInfo().IsExtendedInformationEnabled())
+        if (statsInfo.IsExtendedInformationEnabled())
             {
             HTMLText += L"\n<tr><td style='width:100%;'>";
             HTMLText += _(L"Averages are calculated using arithmetic mean "

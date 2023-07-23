@@ -3653,7 +3653,9 @@ void ProjectDoc::DisplayStatistics()
                 wxGetApp().GetAppOptions().GetControlBackgroundColor(),
                 ((wxGetApp().GetAppOptions().GetControlBackgroundColor().
                     GetLuminance() < .5f) ? *wxWHITE : *wxBLACK)) +
-            ProjectReportFormat::FormatStatisticsInfo(this, wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT),
+            ProjectReportFormat::FormatStatisticsInfo(this,
+                GetStatisticsReportInfo(),
+                wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT),
                 view->GetSummaryStatisticsListData()) +
             ProjectReportFormat::FormatHtmlReportEnd();
         // if document failed to be loaded and we are just showing the basic stats,
@@ -3733,7 +3735,8 @@ void ProjectDoc::DisplayStatistics()
                 wxGetApp().GetAppOptions().GetControlBackgroundColor(),
                 ColorContrast::BlackOrWhiteContrast(wxGetApp().GetAppOptions().GetControlBackgroundColor()),
                 _(L"Dolch Summary")) +
-                ProjectReportFormat::FormatDolchStatisticsInfo(this, true,
+                ProjectReportFormat::FormatDolchStatisticsInfo(this,
+                    GetStatisticsReportInfo(), true,
                     wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT), nullptr) +
             ProjectReportFormat::FormatHtmlReportEnd());
         }

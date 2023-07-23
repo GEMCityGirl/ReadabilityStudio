@@ -57,15 +57,18 @@ public:
                                      const wxString& note = wxEmptyString);
     /** @returns Project statistics information from a project.
         @param project The project to analyze statistics from.
+        @param statsInfo Information about which statistics to include.
         @param attentionColor Color to highlight important details.
         @param[out] listData An optional data grid to store tabular results.\n
             Pass in null to ignore this parameter.*/
     [[nodiscard]]
     static wxString FormatStatisticsInfo(const BaseProject* project,
+                                         const StatisticsReportInfo statsInfo,
                                          const wxColour attentionColor,
                                          ListCtrlExDataProviderBase* listData);
     /** @returns Dolch statistics information from a project.
         @param project The project to analyze Dolch statistics from.
+        @param statsInfo Information about which statistics to include.
         @param includeExplanation True to include detailed explanations in the report.
         @param attentionColor Color to highlight important details.
         @param[out] listData An optional data grid to store tabular results.\n
@@ -76,6 +79,7 @@ public:
                Dolch statistics to its own @c listData argument.*/
     [[nodiscard]]
     static wxString FormatDolchStatisticsInfo(const BaseProject* project,
+                                              const StatisticsReportInfo statsInfo,
                                               const bool includeExplanation,
                                               const wxColour attentionColor,
                                               ListCtrlExDataProviderBase* listData);
