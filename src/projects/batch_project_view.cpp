@@ -1912,7 +1912,9 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
         const bool includeHardWordLists,
         const bool includeSentencesBreakdown,
         const bool includeGraphs,
-        const bool includeTestScores, const bool includeWordiness, const bool includeSightWords,
+        const bool includeTestScores,
+        const bool includeGrammarIssues,
+        const bool includeSightWords,
         const bool includeWarnings,
         const Wisteria::UI::ImageExportOptions& graphOptions)
     {
@@ -1941,7 +1943,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                 (includeTestScores ? GetScoresView().GetWindowCount() : 0) +
                 (includeGraphs ? GetBoxPlotView().GetWindowCount() : 0) +
                 (includeGraphs ? GetHistogramsView().GetWindowCount() : 0) +
-                (includeWordiness ? GetGrammarView().GetWindowCount() : 0) +
+                (includeGrammarIssues ? GetGrammarView().GetWindowCount() : 0) +
                 (includeSightWords ? GetDolchSightWordsView().GetWindowCount() : 0) +
                 (includeHardWordLists ? GetWordsBreakdownView().GetWindowCount() : 0) +
                 (includeSentencesBreakdown ? GetSentencesBreakdownView().GetWindowCount() : 0) +
@@ -2129,7 +2131,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
             }
         }
     // grammar
-    if (includeWordiness && GetGrammarView().GetWindowCount() )
+    if (includeGrammarIssues && GetGrammarView().GetWindowCount() )
         {
         if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetGrammarLabel(),
             wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
@@ -2215,7 +2217,9 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         const bool includeHardWordLists,
         const bool includeSentencesBreakdown,
         const bool includeGraphs,
-        const bool includeTestScores, const bool includeWordiness, const bool includeSightWords,
+        const bool includeTestScores,
+        const bool includeGrammarIssues,
+        const bool includeSightWords,
         const bool includeWarnings,
         const Wisteria::UI::ImageExportOptions& graphOptions)
     {
@@ -2410,7 +2414,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
             }
         }
     // grammar
-    if (includeWordiness && GetGrammarView().GetWindowCount() )
+    if (includeGrammarIssues && GetGrammarView().GetWindowCount() )
         {
         bool includeLeadingPageBreak{ false };
         ++sectionCounter;
@@ -2481,7 +2485,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         { TOC += L"<a href=\"#sentencebreakdown\">" + GetSentencesBreakdownLabel() + L"</a><br />\r\n"; }
     if (includeSentencesBreakdown || includeHardWordLists)
         { TOC += L"<a href=\"#summarystats\">" + GetSummaryStatisticsLabel() + L"</a><br />\r\n"; }
-    if (includeWordiness && GetGrammarView().GetWindowCount())
+    if (includeGrammarIssues && GetGrammarView().GetWindowCount())
         { TOC += L"<a href=\"#grammar\">" + GetGrammarLabel() + L"</a><br />\r\n"; }
     if (includeSightWords && GetDolchSightWordsView().GetWindowCount())
         { TOC += L"<a href=\"#dolch\">" + GetDolchLabel() + L"</a><br />\r\n"; }

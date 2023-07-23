@@ -224,14 +224,18 @@ public:
         const bool includeHardWordLists,
         const bool includeSentencesBreakdown,
         const bool includeGraphs,
-        const bool includeTestScores, const bool includeWordiness, const bool includeSightWords,
+        const bool includeTestScores,
+        const bool includeGrammarIssues,
+        const bool includeSightWords,
         const bool includeWarnings,
         const Wisteria::UI::ImageExportOptions& graphOptions);
     bool ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
         const bool includeHardWordLists,
         const bool includeSentencesBreakdown,
         const bool includeGraphs,
-        const bool includeTestScores, const bool includeWordiness, const bool includeSightWords,
+        const bool includeTestScores,
+        const bool includeGrammarIssues,
+        const bool includeSightWords,
         const bool includeWarnings,
         const Wisteria::UI::ImageExportOptions& graphOptions);
     // label functions
