@@ -899,6 +899,113 @@ void BatchProjectDoc::LoadSummaryStatsSection()
         m_summaryStatsColumnNames.push_back(_(L"Number of interrogative sentences (questions)"));
         m_summaryStatsColumnNames.push_back(_(L"Number of exclamatory sentences"));
         }
+    if (GetStatisticsReportInfo().IsWordsEnabled())
+        {
+        m_summaryStatsColumnNames.push_back(_(L"Number of words"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of unique words"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of syllables"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of characters (punctuation excluded)"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of characters + punctuation"));
+        m_summaryStatsColumnNames.push_back(_(L"Average number of characters"));
+        m_summaryStatsColumnNames.push_back(_(L"Average number of syllables"));
+        }
+    if (GetStatisticsReportInfo().IsExtendedWordsEnabled())
+        {
+        m_summaryStatsColumnNames.push_back(_(L"Number of numerals"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of proper nouns"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of monosyllabic words"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of unique monosyllabic words"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of complex (3+ syllable) words"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of unique 3+ syllable words"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of long (6+ characters) words"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of unique long words"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of SMOG hard words"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of unique SMOG hard words"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of Fog hard words"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of unique Fog hard words"));
+        if (IsIncludingDolchSightWords())
+            {
+            if (GetStatisticsReportInfo().IsDolchCoverageEnabled())
+                {
+                m_summaryStatsColumnNames.push_back(_(L"Number of conjunctions used"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of prepositions used"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of pronouns used"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of adverbs used"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of adjectives used"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of verbs used"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of nouns used"));
+                }
+            if (GetStatisticsReportInfo().IsDolchWordsEnabled())
+                {
+                m_summaryStatsColumnNames.push_back(_(L"Number of Dolch words"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of Dolch words (excluding nouns)"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of non-Dolch words"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of Dolch conjunctions"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of unique Dolch conjunctions"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of Dolch prepositions"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of unique Dolch prepositions"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of Dolch pronouns"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of unique Dolch pronouns"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of Dolch adverbs"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of unique Dolch adverbs"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of Dolch adjectives"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of unique Dolch adjectives"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of Dolch verbs"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of unique Dolch verbs"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of Dolch nouns"));
+                m_summaryStatsColumnNames.push_back(_(L"Number of unique Dolch nouns"));
+                }
+            }
+        if (IsDaleChallLikeTestIncluded() )
+            {
+            m_summaryStatsColumnNames.push_back(_(L"Number of Dale-Chall unfamiliar words"));
+            m_summaryStatsColumnNames.push_back(_(L"Number of unique Dale-Chall unfamiliar words"));
+            }
+        if (GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()))
+            {
+            m_summaryStatsColumnNames.push_back(_(L"Number of Harris-Jacobson unfamiliar words"));
+            m_summaryStatsColumnNames.push_back(_(L"Number of unique Harris-Jacobson unfamiliar words"));
+            }
+        if (GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()))
+            {
+            m_summaryStatsColumnNames.push_back(_(L"Number of Spache unfamiliar words"));
+            m_summaryStatsColumnNames.push_back(_(L"Number of unique Spache unfamiliar words"));
+            }
+        if (GetReadabilityTests().is_test_included(ReadabilityMessages::EFLAW()))
+            {
+            m_summaryStatsColumnNames.push_back(_(L"Number of McAlpine EFLAW miniwords"));
+            m_summaryStatsColumnNames.push_back(_(L"Number of unique McAlpine EFLAW miniwords words"));
+            }
+        for (const auto& cTests : GetCustTestsInUse())
+            {
+            m_summaryStatsColumnNames.push_back(
+                wxString::Format(_(L"Number of %s unfamiliar words"),
+                                 cTests.GetIterator()->get_name().c_str()));
+            m_summaryStatsColumnNames.push_back(
+                wxString::Format(_(L"Number of unique %s unfamiliar words"),
+                                 cTests.GetIterator()->get_name().c_str()));
+            }
+        
+        }
+    if (GetStatisticsReportInfo().IsGrammarEnabled() &&
+        GetGrammarInfo().IsAnyFeatureEnabled())
+        {
+        m_summaryStatsColumnNames.push_back(_(L"Number of misspellings"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of repeated words"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of article mismatches"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of wording errors"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of redundant phrases"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of overused words (x sentence)"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of wordy items"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of Clich\351s"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of passive voices"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of sentences that begin with conjunctions"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of Sentences that begin with lowercased words"));
+        }
+    if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
+        {
+        m_summaryStatsColumnNames.push_back(_(L"Text size (Kbs.)"));
+        }
     m_summaryStatsData->SetSize(m_docs.size(), m_summaryStatsColumnNames.size());
 
     size_t rowCount{ 0 };
@@ -924,6 +1031,162 @@ void BatchProjectDoc::LoadSummaryStatsSection()
                                            1, false));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalInterrogativeSentences());
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalExclamatorySentences());
+            }
+        if (GetStatisticsReportInfo().IsWordsEnabled())
+            {
+            const double averageCharacterCount =
+                safe_divide<double>(doc->GetTotalCharacters(), doc->GetTotalWords());
+            const double averageSyllableCount =
+                safe_divide<double>(doc->GetTotalSyllables(), doc->GetTotalWords());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalWords());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalUniqueWords());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalSyllables());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalCharacters());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalCharactersPlusPunctuation());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, averageCharacterCount,
+                Wisteria::NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
+                                           1, false));
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, averageSyllableCount,
+                Wisteria::NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
+                                           1, false));
+            }
+        if (GetStatisticsReportInfo().IsExtendedWordsEnabled())
+            {
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalNumerals());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalProperNouns());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalMonoSyllabicWords());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalUniqueMonoSyllablicWords());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotal3PlusSyllabicWords());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalUnique3PlusSyllableWords());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalLongWords());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalUnique6CharsPlusWords());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                doc->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                doc->GetUnique3PlusSyllabicWordsNumeralsFullySyllabized());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalHardWordsFog());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalUniqueHardFogWords());
+            if (IsIncludingDolchSightWords())
+                {
+                if (GetStatisticsReportInfo().IsDolchCoverageEnabled())
+                    {
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        ProjectReportFormat::MAX_DOLCH_CONJUNCTION_WORDS - doc->GetUnusedDolchConjunctions());
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        ProjectReportFormat::MAX_DOLCH_PREPOSITION_WORDS - doc->GetUnusedDolchPrepositions());
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        ProjectReportFormat::MAX_DOLCH_PRONOUN_WORDS - doc->GetUnusedDolchPronouns());
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        ProjectReportFormat::MAX_DOLCH_ADVERB_WORDS - doc->GetUnusedDolchAdverbs());
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        ProjectReportFormat::MAX_DOLCH_ADJECTIVE_WORDS - doc->GetUnusedDolchAdjectives());
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        ProjectReportFormat::MAX_DOLCH_VERBS - doc->GetUnusedDolchVerbs());
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        ProjectReportFormat::MAX_DOLCH_NOUNS - doc->GetUnusedDolchNouns());
+                    }
+                if (GetStatisticsReportInfo().IsDolchWordsEnabled())
+                    {
+                    const size_t totalDolchWords =
+                            doc->GetDolchConjunctionCounts().second +
+                            doc->GetDolchPrepositionWordCounts().second +
+                            doc->GetDolchPronounCounts().second +
+                            doc->GetDolchAdverbCounts().second + doc->GetDolchAdjectiveCounts().second +
+                            doc->GetDolchVerbsCounts().second + doc->GetDolchNounCounts().second;
+                    const size_t totalDolchWordsExcludingNouns =
+                        doc->GetDolchConjunctionCounts().second + doc->GetDolchPrepositionWordCounts().second +
+                        doc->GetDolchPronounCounts().second +
+                        doc->GetDolchAdverbCounts().second + doc->GetDolchAdjectiveCounts().second +
+                        doc->GetDolchVerbsCounts().second;
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++, totalDolchWords);
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++, totalDolchWordsExcludingNouns);
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        doc->GetTotalWords() - totalDolchWords);
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        doc->GetDolchConjunctionCounts().second);
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        doc->GetDolchConjunctionCounts().first);
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        doc->GetDolchPrepositionWordCounts().second);
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        doc->GetDolchPrepositionWordCounts().first);
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        doc->GetDolchPronounCounts().second);
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        doc->GetDolchPronounCounts().first);
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        doc->GetDolchAdverbCounts().second);
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        doc->GetDolchAdverbCounts().first);
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        doc->GetDolchAdjectiveCounts().second);
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        doc->GetDolchAdjectiveCounts().first);
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        doc->GetDolchVerbsCounts().second);
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        doc->GetDolchVerbsCounts().first);
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        doc->GetDolchNounCounts().second);
+                    m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                        doc->GetDolchNounCounts().first);
+                    }
+                }
+            if (IsDaleChallLikeTestIncluded() )
+                {
+                m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalHardWordsDaleChall());
+                m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalUniqueDCHardWords());
+                }
+            if (GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()))
+                {
+                m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                    doc->GetTotalHardWordsHarrisJacobson());
+                m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                    doc->GetTotalUniqueHarrisJacobsonHardWords());
+                }
+            if (GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()))
+                {
+                m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                    doc->GetTotalHardWordsSpache());
+                m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                    doc->GetTotalUniqueHardWordsSpache());
+                }
+            if (GetReadabilityTests().is_test_included(ReadabilityMessages::EFLAW()))
+                {
+                m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                    doc->GetTotalMiniWords());
+                m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                    doc->GetTotalUniqueMiniWords());
+                }
+            for (const auto& cTest : doc->GetCustTestsInUse())
+                {
+                m_summaryStatsData->SetItemValue(rowCount, columnCount++, cTest.GetUnfamiliarWordCount());
+                m_summaryStatsData->SetItemValue(rowCount, columnCount++, cTest.GetUniqueUnfamiliarWordCount());
+                }
+            }
+        if (GetStatisticsReportInfo().IsGrammarEnabled() &&
+            GetGrammarInfo().IsAnyFeatureEnabled())
+            {
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetMisspelledWordCount());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetDuplicateWordCount());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetMismatchedArticleCount());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetWordingErrorCount());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetRedundantPhraseCount());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetOverusedWordsBySentenceCount());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetWordyPhraseCount());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetClicheCount());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetPassiveVoicesCount());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                doc->GetSentenceStartingWithConjunctionsCount());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                doc->GetSentenceStartingWithLowercaseCount());
+            }
+        if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
+            {
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++,
+                safe_divide<double>(doc->GetTextSize(), 1024),
+                Wisteria::NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
+                2, true));
             }
         
         ++rowCount;
