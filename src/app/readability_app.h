@@ -227,7 +227,7 @@ public:
 
     [[nodiscard]]
     wxString GetAppVersion() const
-        { return L"2021.1"; }
+        { return L"2021.2"; }
     void EditCustomTest(CustomReadabilityTest& selectedTest);
     /// web harvester info
     [[nodiscard]]
