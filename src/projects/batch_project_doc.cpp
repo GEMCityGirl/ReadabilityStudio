@@ -415,14 +415,29 @@ void BatchProjectDoc::RefreshStatisticsReports()
     // if refresh is not necessary then return
     if (IsRefreshRequired() == false)
         { return; }
-    BaseProjectProcessingLock processingLock(this);
-    wxWindowUpdateLocker noUpdates(GetDocumentWindow());
 
     BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     const wxString currentlySelectedFile = view->GetCurrentlySelectedFileName();
+    const auto selectedItem = view->GetSideBar()->GetSelectedFolderId();
+
+    BaseProjectProcessingLock processingLock(this);
+    wxWindowUpdateLocker noUpdates(GetDocumentWindow());
 
     LoadSummaryStatsSection();
     DisplaySummaryStats();
+    
+    view->UpdateSideBarIcons();
+    view->Present();
+    UpdateAllViews();
+
+    auto selectedIndex = view->GetSideBar()->FindFolder(selectedItem);
+    if (!selectedIndex.has_value())
+        {
+        selectedIndex = view->GetSideBar()->
+            FindFolder(BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID);
+        }
+    view->GetSideBar()->SelectFolder(selectedIndex, false);
+
     view->UpdateStatAndTestPanes(currentlySelectedFile);
 
     Modify(true);
@@ -5862,7 +5877,9 @@ void BatchProjectDoc::DisplaySummaryStats()
     ListCtrlEx* listView =
         dynamic_cast<ListCtrlEx*>(view->GetSummaryStatsView().FindWindowById(
             BaseProjectView::STATS_LIST_PAGE_ID));
-    if (m_summaryStatsData->GetItemCount())
+    if (m_summaryStatsData->GetItemCount() &&
+        GetStatisticsInfo().IsTableEnabled() &&
+        GetStatisticsReportInfo().HasStatisticsEnabled())
         {
         if (!listView)
             {
