@@ -126,12 +126,12 @@ namespace Wisteria::Graphs
         {
         Graph2D::RecalcSizes(dc);
 
-        wxASSERT_MSG((!m_backscreen ||
+        assert((!m_backscreen ||
             m_backscreen->GetBoundingBox(dc).GetWidth() ==
-            Canvas::GetDefaultCanvasWidthDIPs()), L"Invalid backscreen size!");
-        wxASSERT_MSG((!m_backscreen ||
+            Canvas::GetDefaultCanvasWidthDIPs()) && L"Invalid backscreen size!");
+        assert((!m_backscreen ||
             m_backscreen->GetBoundingBox(dc).GetHeight() ==
-            Canvas::GetDefaultCanvasHeightDIPs()), L"Invalid backscreen size!");
+            Canvas::GetDefaultCanvasHeightDIPs()) && L"Invalid backscreen size!");
 
         // divider line
         GetPhysicalCoordinates(188, 15, m_dividerLinePoints[0]);
@@ -233,11 +233,11 @@ namespace Wisteria::Graphs
         if (GetDataset() == nullptr)
             { return; }
 
-        wxASSERT_MSG(m_backscreen, L"Backscreen not set!");
-        wxASSERT_MSG(m_backscreen->GetBoundingBox(dc).GetWidth() ==
-            Canvas::GetDefaultCanvasWidthDIPs(), L"Invalid backscreen size!");
-        wxASSERT_MSG(m_backscreen->GetBoundingBox(dc).GetHeight() ==
-            Canvas::GetDefaultCanvasHeightDIPs(), L"Invalid backscreen size!");
+        assert(m_backscreen && L"Backscreen not set!");
+        assert(m_backscreen->GetBoundingBox(dc).GetWidth() ==
+            Canvas::GetDefaultCanvasWidthDIPs() && L"Invalid backscreen size!");
+        assert(m_backscreen->GetBoundingBox(dc).GetHeight() ==
+            Canvas::GetDefaultCanvasHeightDIPs() && L"Invalid backscreen size!");
 
         auto points = std::make_shared<GraphItems::Points2D>(wxNullPen);
         points->SetScaling(GetScaling());

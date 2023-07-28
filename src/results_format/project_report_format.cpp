@@ -139,7 +139,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
                                                         const wxColour attentionColor,
                                                         ListCtrlExDataProviderBase* listData)
     {
-    wxASSERT(project);
+    assert(project);
     if (!project)
         { return wxString{}; }
     if (!project->IsIncludingDolchSightWords())
@@ -2625,7 +2625,7 @@ wxString ProjectReportFormat::FormatSentence(const BaseProject* project,
     std::vector<punctuation::punctuation_mark>::const_iterator& punctStart,
     const std::vector<punctuation::punctuation_mark>::const_iterator& punctEnd)
     {
-    wxASSERT(project);
+    assert(project);
     if (!project)
         { return wxString{}; }
     wxString currentSentence;

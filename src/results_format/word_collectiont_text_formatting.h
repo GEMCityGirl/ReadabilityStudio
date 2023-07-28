@@ -247,7 +247,7 @@ static size_t FormatWordCollectionHighlightedWords(const documentT* theDocument,
     // terminate the string
     text[documentTextLength] = 0;
 
-    wxASSERT(documentTextLength < bufferSize);
+    assert(documentTextLength < bufferSize);
 
     return documentTextLength;
     }
@@ -574,7 +574,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(const documentT* theD
     // terminate the string
     text[documentTextLength] = 0;
 
-    wxASSERT(documentTextLength < bufferSize);
+    assert(documentTextLength < bufferSize);
 
     return documentTextLength;
     }
@@ -587,7 +587,7 @@ static size_t FormatFilteredWordCollection(const documentT* theDocument,
                                            const bool removeFilePaths,
                                            const bool stripAbbreviations)
     {
-    wxASSERT(text);
+    assert(text);
     if (!text)
         { return 0; }
     std::wmemset(text, L' ', bufferSize);
@@ -744,7 +744,7 @@ static size_t FormatFilteredWordCollection(const documentT* theDocument,
     // terminate the string
     text[documentTextLength] = 0;
 
-    wxASSERT(documentTextLength < bufferSize);
+    assert(documentTextLength < bufferSize);
 
     return documentTextLength;
     }

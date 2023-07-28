@@ -1293,7 +1293,7 @@ void ReadabilityApp::LoadInterface()
     // create the menubar (macOS only)
 #ifdef __WXOSX__
     wxMenuBar* menuBar = wxXmlResource::Get()->LoadMenuBar(_DT(L"ID_MENUBAR"));
-    wxASSERT(menuBar);
+    assert(menuBar);
     if (menuBar)
         { GetMainFrame()->SetMenuBar(menuBar); }
     else
@@ -3334,7 +3334,7 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
         if (includeDocMenuItems)
             { testBundleMenu->AppendSeparator(); }
         auto addMenuItem = testBundleMenu->Append(XRCID("ID_ADD_CUSTOM_TEST_BUNDLE"), _(L"Add..."));
-        wxASSERT_LEVEL_2(addMenuItem);
+        assert(addMenuItem);
         addMenuItem->SetBitmap(
             wxGetApp().GetResourceManager().GetSVG(L"ribbon/add.svg"));
         // if there are editable bundles, then add menu items for them
@@ -3349,12 +3349,12 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
             }
         // locked ones can still be viewed from the editor
         auto editMenuItem = testBundleMenu->Append(XRCID("ID_EDIT_CUSTOM_TEST_BUNDLE"), _(L"Edit..."));
-        wxASSERT_LEVEL_2(editMenuItem);
+        assert(editMenuItem);
         editMenuItem->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_EDIT"));
         if (hasRemovableBundles)
             {
             auto removeMenuItem = testBundleMenu->Append(XRCID("ID_REMOVE_CUSTOM_TEST_BUNDLE"), _(L"Remove..."));
-            wxASSERT_LEVEL_2(removeMenuItem);
+            assert(removeMenuItem);
             removeMenuItem->SetBitmap(wxArtProvider::GetBitmapBundle(wxART_DELETE));
             }
         }
@@ -3398,7 +3398,7 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
         if (includeDocMenuItems && MainFrame::GetCustomTestMenuIds().size() > 0)
             { customTestMenu->AppendSeparator(); }
         auto addMenuItem = customTestMenu->Append(XRCID("ID_ADD_CUSTOM_TEST"), _(L"Add..."));
-        wxASSERT_LEVEL_2(addMenuItem);
+        assert(addMenuItem);
         addMenuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/add.svg"));
 
         addMenuItem = customTestMenu->Append(XRCID("ID_ADD_CUSTOM_TEST_BASED_ON"),
@@ -3426,11 +3426,11 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
             {
             customTestMenu->AppendSeparator();
             auto editMenuItem = customTestMenu->Append(XRCID("ID_EDIT_CUSTOM_TEST"), _(L"Edit..."));
-            wxASSERT_LEVEL_2(editMenuItem);
+            assert(editMenuItem);
             editMenuItem->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_EDIT"));
 
             auto removeMenuItem =customTestMenu->Append(XRCID("ID_REMOVE_CUSTOM_TEST"), _(L"Remove..."));
-            wxASSERT_LEVEL_2(removeMenuItem);
+            assert(removeMenuItem);
             removeMenuItem->SetBitmap(wxArtProvider::GetBitmapBundle(wxART_DELETE));
             }
         }

@@ -182,7 +182,7 @@ public:
     [[nodiscard]]
     const ListCtrlExNumericDataProvider* GetListViewData() const noexcept
         {
-        wxASSERT(m_listViewData);
+        assert(m_listViewData);
         return m_listViewData;
         }
 

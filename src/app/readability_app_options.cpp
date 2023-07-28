@@ -3274,7 +3274,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
 //------------------------------------------------
 bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxString{}*/)
     {
-    wxASSERT(!m_optionsFile.empty() );
+    assert(!m_optionsFile.empty() );
 
     lily_of_the_valley::html_encode_text encode;
 

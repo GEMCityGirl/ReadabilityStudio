@@ -17,8 +17,8 @@ namespace LuaScripting
     bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
                               const wxString& functionName)
         {
-        wxASSERT(L);
-        wxASSERT(minParemeterCount >= 0);
+        assert(L);
+        assert(minParemeterCount >= 0);
         if (lua_gettop(L) < minParemeterCount)
             {
             wxMessageBox(wxString::Format(

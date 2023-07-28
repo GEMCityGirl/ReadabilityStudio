@@ -708,7 +708,7 @@ void BaseProjectView::OnEditGraphColor(wxCommandEvent& event)
     wxGetApp().GetAppOptions().CopyCustomColoursToColourData(data);
     data.SetChooseFull(true);
     auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_MSG(doc, L"Invalid document when editing graph colors!");
+    assert(doc && L"Invalid document when editing graph colors!");
     if (event.GetId() == XRCID("ID_EDIT_GRAPH_BKCOLOR"))
         { data.SetColour(doc->GetBackGroundColor()); }
     else if (event.GetId() == XRCID("ID_EDIT_BOX_COLOR"))
@@ -2353,7 +2353,7 @@ void BaseProjectView::OnActivateView(bool activate, wxView*, wxView*)
 void BaseProjectView::OnProjectSettings([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT(doc);
+    assert(doc);
     if (!doc || !doc->IsSafeToUpdate())
         { return; }
     ToolsOptionsDlg optionsDlg(GetDocFrame(), doc);

@@ -94,7 +94,7 @@ ListCtrlEx* WordListDlg::GetActiveList()
     else if (currentId == DOLCH_PAGE_ID)
         { listCtrl = m_sideBar->GetCurrentPage()->FindWindow(DOLCH_LIST_ID); }
 
-    wxASSERT_MSG(listCtrl && listCtrl->IsKindOf(CLASSINFO(ListCtrlEx)),
+    assert(listCtrl && listCtrl->IsKindOf(CLASSINFO(ListCtrlEx)) &&
         L"Invalid list control in word list dialog?!");
     return (listCtrl && listCtrl->IsKindOf(CLASSINFO(ListCtrlEx))) ?
         dynamic_cast<ListCtrlEx*>(listCtrl) : nullptr;

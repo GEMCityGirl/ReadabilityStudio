@@ -194,12 +194,12 @@ namespace Wisteria::Graphs
         {
         Graph2D::RecalcSizes(dc);
 
-        wxASSERT_MSG((!m_backscreen ||
+        assert((!m_backscreen ||
             m_backscreen->GetBoundingBox(dc).GetWidth() ==
-            Canvas::GetDefaultCanvasWidthDIPs()), L"Invalid backscreen size!");
-        wxASSERT_MSG((!m_backscreen ||
+            Canvas::GetDefaultCanvasWidthDIPs()) && L"Invalid backscreen size!");
+        assert((!m_backscreen ||
             m_backscreen->GetBoundingBox(dc).GetHeight() ==
-            Canvas::GetDefaultCanvasHeightDIPs()), L"Invalid backscreen size!");
+            Canvas::GetDefaultCanvasHeightDIPs()) && L"Invalid backscreen size!");
 
         // long sentence danger area
         GetPhysicalCoordinates(108 + GetSyllableAxisOffset(), 2.0, m_longSentencesPoints[0]);
@@ -323,7 +323,7 @@ namespace Wisteria::Graphs
                 &m_gradeLinePoints[pointIter], 2));
             }
 
-        wxASSERT_MSG(GetMessageCatalog(), L"Label manager not set in Fry Graph!");
+        assert(GetMessageCatalog() && L"Label manager not set in Fry Graph!");
 
         // draw the grade areas (for selecting)
         AddObject(std::make_shared<GraphItems::Polygon>(
@@ -386,11 +386,11 @@ namespace Wisteria::Graphs
         if (GetDataset() == nullptr)
             { return; }
 
-        wxASSERT_MSG(m_backscreen, L"Backscreen not set!");
-        wxASSERT_MSG(m_backscreen->GetBoundingBox(dc).GetWidth() ==
-            Canvas::GetDefaultCanvasWidthDIPs(), L"Invalid backscreen size!");
-        wxASSERT_MSG(m_backscreen->GetBoundingBox(dc).GetHeight() ==
-            Canvas::GetDefaultCanvasHeightDIPs(), L"Invalid backscreen size!");
+        assert(m_backscreen && L"Backscreen not set!");
+        assert(m_backscreen->GetBoundingBox(dc).GetWidth() ==
+            Canvas::GetDefaultCanvasWidthDIPs() && L"Invalid backscreen size!");
+        assert(m_backscreen->GetBoundingBox(dc).GetHeight() ==
+            Canvas::GetDefaultCanvasHeightDIPs() && L"Invalid backscreen size!");
 
         auto points = std::make_shared<GraphItems::Points2D>(wxNullPen);
         points->SetScaling(GetScaling());

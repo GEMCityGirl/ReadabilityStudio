@@ -37,7 +37,7 @@ bool WordListProperty::DoSetAttribute(const wxString& name, wxVariant& value)
 //------------------------------------------------------
 bool WordListProperty::DisplayEditorDialog(wxPropertyGrid* pg, wxVariant& value)
     {
-    wxASSERT_MSG(value.IsType(_DT("string")), "Function called for incompatible property");
+    assert(value.IsType(_DT("string")) && "Function called for incompatible property");
 
     EditWordListDlg editDlg(pg->GetPanel(),
         wxID_ANY, m_dlgTitle.length() ? m_dlgTitle : _(L"Edit Word List"));

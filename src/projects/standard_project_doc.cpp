@@ -2244,7 +2244,7 @@ void ProjectDoc::DisplaySentenceCharts()
 
         auto sentenceHistogram =
             std::dynamic_pointer_cast<Histogram>(sentenceHistogramCanvas->GetFixedObject(0, 0));
-        wxASSERT(sentenceHistogram);
+        assert(sentenceHistogram);
 
         sentenceHistogram->GetTitle().SetText(_(L"Sentence-lengths Distribution"));
         sentenceHistogram->GetTitle().SetRelativeAlignment(RelativeAlignment::Centered);
@@ -2367,7 +2367,7 @@ void ProjectDoc::DisplayWordCharts()
         UpdateGraphOptions(wordBarChartCanvas);
 
         auto wordBarChart = std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0, 0));
-        wxASSERT(wordBarChart);
+        assert(wordBarChart);
 
         wordBarChart->ClearBars();
         wordBarChart->SetBarOrientation(static_cast<Wisteria::Orientation>(GetBarChartOrientation()));
@@ -2512,7 +2512,7 @@ void ProjectDoc::DisplayWordCharts()
         UpdateGraphOptions(histoCanvas);
 
         auto syllableHistogram = std::dynamic_pointer_cast<Histogram>(histoCanvas->GetFixedObject(0, 0));
-        wxASSERT_LEVEL_2(syllableHistogram);
+        assert(syllableHistogram);
 
         syllableHistogram->GetTitle().SetText(_(L"Words (by Syllable Count)"));
         syllableHistogram->GetTitle().SetRelativeAlignment(RelativeAlignment::Centered);
@@ -2583,7 +2583,7 @@ void ProjectDoc::DisplayWordCharts()
         UpdateGraphOptions(wordCloudCanvas);
 
         auto wordCloud = std::dynamic_pointer_cast<WordCloud>(wordCloudCanvas->GetFixedObject(0, 0));
-        wxASSERT_LEVEL_2(wordCloud);
+        assert(wordCloud);
         // top 100 words, with a min frequency of 2
         wordCloud->SetData(m_keyWordsDataset,
                            GetWordsColumnName(), GetWordsCountsColumnName(), 2,
@@ -2917,7 +2917,7 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
                 std::make_shared<Colors::Schemes::ColorScheme>
                  (Colors::Schemes::ColorScheme{
                      ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
-        wxASSERT(fleschChart);
+        assert(fleschChart);
         fleschChart->SetData(scoreDataset, wordsColumnName, scoresColumnName, syllablesColumnName);
         fleschChartCanvas->SetFixedObject(0, 0, fleschChart);
 
@@ -2997,7 +2997,7 @@ bool ProjectDoc::AddSchwartzTest(const bool setFocus)
         {
         auto schwartzGraph =
             std::dynamic_pointer_cast<SchwartzGraph>(schwartzGraphView->GetFixedObject(0, 0));
-        wxASSERT_LEVEL_2(schwartzGraph);
+        assert(schwartzGraph);
         schwartzGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName,
                                sencentesColumnName);
         schwartzGraphView->CalcAllSizes(gdc);
@@ -3031,7 +3031,7 @@ bool ProjectDoc::AddSchwartzTest(const bool setFocus)
 
     auto schwartzGraph =
         std::dynamic_pointer_cast<SchwartzGraph>(schwartzGraphView->GetFixedObject(0, 0));
-    wxASSERT_LEVEL_2(schwartzGraph);
+    assert(schwartzGraph);
 
     schwartzGraph->SetInvalidAreaColor(GetInvalidAreaColor());
     schwartzGraphView->CalcAllSizes(gdc);
@@ -3164,7 +3164,7 @@ bool ProjectDoc::AddFraseTest(const bool setFocus)
         {
         auto fraseGraph =
             std::dynamic_pointer_cast<FraseGraph>(fraseGraphView->GetFixedObject(0, 0));
-        wxASSERT(fraseGraph);
+        assert(fraseGraph);
         fraseGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName,
                             sencentesColumnName);
         }
@@ -3201,7 +3201,7 @@ bool ProjectDoc::AddFraseTest(const bool setFocus)
         { return false; }
 
     auto fraseGraph = std::dynamic_pointer_cast<FraseGraph>(fraseGraphView->GetFixedObject(0, 0));
-    wxASSERT(fraseGraph);
+    assert(fraseGraph);
     if (fraseGraph->GetScores().front().IsScoreInvalid())
         {
         const wxString description = L"<tr><td>" +
@@ -3318,7 +3318,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
             UpdateGraphOptions(coverageBarChartCanvas);
 
             auto coverageBarChart = std::dynamic_pointer_cast<BarChart>(coverageBarChartCanvas->GetFixedObject(0, 0));
-            wxASSERT(coverageBarChart);
+            assert(coverageBarChart);
 
             coverageBarChart->ClearBars();
             coverageBarChart->SetBarOrientation(static_cast<Wisteria::Orientation>(GetBarChartOrientation()));
@@ -3465,7 +3465,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 }
             UpdateGraphOptions(wordBarChartCanvas);
             auto dolchBarChart = std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0, 0));
-            wxASSERT(dolchBarChart);
+            assert(dolchBarChart);
 
             dolchBarChart->ClearBars();
             dolchBarChart->SetBarOrientation(static_cast<Wisteria::Orientation>(GetBarChartOrientation()));
@@ -3626,7 +3626,7 @@ void ProjectDoc::DisplaySentencesBreakdown()
 void ProjectDoc::DisplayStatistics()
     {
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
-    wxASSERT(view);
+    assert(view);
 
     if (GetStatisticsInfo().IsReportEnabled())
         {
@@ -3729,7 +3729,7 @@ void ProjectDoc::DisplayStatistics()
 
             view->GetDolchSightWordsView().AddWindow(sumWindow);
             }
-        wxASSERT(sumWindow);
+        assert(sumWindow);
         sumWindow->SetPage(
             ProjectReportFormat::FormatHtmlReportStart(
                 wxGetApp().GetAppOptions().GetControlBackgroundColor(),
@@ -3800,7 +3800,7 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
         {
         auto gFryGraph =
             std::dynamic_pointer_cast<FryGraph>(fryGraphView->GetFixedObject(0, 0));
-        wxASSERT(gFryGraph);
+        assert(gFryGraph);
         gFryGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName,
                             sencentesColumnName);
         fryGraphView->CalcAllSizes(gdc);
@@ -3973,7 +3973,7 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
         {
         auto fryGraph =
             std::dynamic_pointer_cast<FryGraph>(fryGraphView->GetFixedObject(0, 0));
-        wxASSERT(fryGraph);
+        assert(fryGraph);
         fryGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName,
                             sencentesColumnName);
         fryGraphView->CalcAllSizes(gdc);
@@ -4146,7 +4146,7 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
         {
         auto raygorGraph =
             std::dynamic_pointer_cast<RaygorGraph>(raygorGraphView->GetFixedObject(0, 0));
-        wxASSERT(raygorGraph);
+        assert(raygorGraph);
         raygorGraph->SetData(scoreDataset, wordsColumnName, sixCharWordsColumnName,
                             sencentesColumnName);
         }
@@ -7283,7 +7283,7 @@ void ProjectDoc::CalculateGraphData()
         if (sentenceIndex < GetWords()->get_sentences().size())
             {
             // cppcheck-suppress assertWithSideEffect
-            wxASSERT_LEVEL_2((GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
+            assert((GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
                 (GetWords()->get_sentences()[sentenceIndex].get_word_count() == *labelsPos) :
                 (GetWords()->get_sentences()[sentenceIndex].get_valid_word_count() == *labelsPos));
             if (*labelsPos > outlierInfo.get_upper_outlier_boundary() ||

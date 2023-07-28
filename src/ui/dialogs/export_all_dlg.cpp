@@ -16,7 +16,7 @@ ExportAllDlg::ExportAllDlg(wxWindow* parent, BaseProjectDoc* doc,
                   long style /*= wxDEFAULT_DIALOG_STYLE|wxCLIP_CHILDREN*/) :
         m_readabilityProjectDoc(doc), m_fileMode(fileMode)
     {
-    wxASSERT_MSG(doc, L"NULL document passed to export all dialog!");
+    assert(doc && L"NULL document passed to export all dialog!");
     wxString exportDir = doc->GetExportFolder();
     if (exportDir.empty())
         {
@@ -130,7 +130,7 @@ void ExportAllDlg::OnIncludeListsTextWindowsCheck([[maybe_unused]] wxCommandEven
 //-------------------------------------------------------------
 void ExportAllDlg::OnImageOptionsButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
-    wxASSERT_MSG(m_graphCombo, L"Graph file combobox not initialized!");
+    assert(m_graphCombo && L"Graph file combobox not initialized!");
 
     wxString ext{(m_graphCombo ? m_graphCombo->GetValue() : L"png")};
     Wisteria::UI::ImageExportDlg optDlg(this,

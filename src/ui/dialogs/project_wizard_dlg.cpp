@@ -1015,7 +1015,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
         #if wxDEBUG_LEVEL >= 2
             if (!lily_of_the_valley::xlsx_extract_text::verify_sheet(wrk).first)
                 {
-                wxASSERT_MSG(0, wxString(L"Excel worksheet cell's out of order. First incorrect cell: ") +
+                wxFAIL_MSG(wxString(L"Excel worksheet cell's out of order. First incorrect cell: ") +
                                 lily_of_the_valley::xlsx_extract_text::verify_sheet(wrk).second.c_str());
                 }
             // verify that the filtering looks OK when debugging

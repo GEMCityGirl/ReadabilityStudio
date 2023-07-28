@@ -127,14 +127,14 @@ public:
     ///Get/Set word list file path functions
     void SetWordListFilePath(const wxString& path)
         {
-        wxASSERT(m_wordListsPropertyGrid);
+        assert(m_wordListsPropertyGrid);
         if (m_wordListsPropertyGrid)
             { m_wordListsPropertyGrid->SetPropertyValue(GetFileContainingFamiliarWordsLabel(), path); }
         }
     [[nodiscard]]
     wxString GetWordListFilePath() const
         {
-        wxASSERT(m_wordListsPropertyGrid);
+        assert(m_wordListsPropertyGrid);
         return m_wordListsPropertyGrid ?
             m_wordListsPropertyGrid->GetPropertyValueAsString(GetFileContainingFamiliarWordsLabel()) :
             wxString{};
@@ -142,7 +142,7 @@ public:
 
     void SetIncludingDaleChallList(const bool include)
         {
-        wxASSERT(m_wordListsPropertyGrid);
+        assert(m_wordListsPropertyGrid);
         if (m_wordListsPropertyGrid)
             { m_wordListsPropertyGrid->SetPropertyValue(GetIncludeDCWordListLabel(),include); }
         UpdateOptions();
@@ -150,14 +150,14 @@ public:
     [[nodiscard]]
     bool IsIncludingDaleChallList() const
         {
-        wxASSERT(m_wordListsPropertyGrid);
+        assert(m_wordListsPropertyGrid);
         return m_wordListsPropertyGrid ?
             m_wordListsPropertyGrid->GetPropertyValueAsBool(GetIncludeDCWordListLabel()) : false;
         }
 
     void SetIncludingCustomWordList(const bool include)
         {
-        wxASSERT(m_wordListsPropertyGrid);
+        assert(m_wordListsPropertyGrid);
         if (m_wordListsPropertyGrid)
             { m_wordListsPropertyGrid->SetPropertyValue(GetIncludeCustomListLabel(), include); }
         UpdateOptions();
@@ -165,14 +165,14 @@ public:
     [[nodiscard]]
     bool IsIncludingCustomWordList() const
         {
-        wxASSERT(m_wordListsPropertyGrid);
+        assert(m_wordListsPropertyGrid);
         return m_wordListsPropertyGrid ?
             m_wordListsPropertyGrid->GetPropertyValueAsBool(GetIncludeCustomListLabel()) : false;
         }
 
     void SetIncludingSpacheList(const bool include)
         {
-        wxASSERT(m_wordListsPropertyGrid);
+        assert(m_wordListsPropertyGrid);
         if (m_wordListsPropertyGrid)
             { m_wordListsPropertyGrid->SetPropertyValue(GetIncludeSpacheWordListLabel(), include); }
         UpdateOptions();
@@ -180,14 +180,14 @@ public:
     [[nodiscard]]
     bool IsIncludingSpacheList() const
         {
-        wxASSERT(m_wordListsPropertyGrid);
+        assert(m_wordListsPropertyGrid);
         return m_wordListsPropertyGrid ?
             m_wordListsPropertyGrid->GetPropertyValueAsBool(GetIncludeSpacheWordListLabel()) : false;
         }
 
     void SetIncludingHJList(const bool include)
         {
-        wxASSERT(m_wordListsPropertyGrid);
+        assert(m_wordListsPropertyGrid);
         if (m_wordListsPropertyGrid)
             { m_wordListsPropertyGrid->SetPropertyValue(GetIncludeHJWordListLabel(), include); }
         UpdateOptions();
@@ -195,14 +195,14 @@ public:
     [[nodiscard]]
     bool IsIncludingHJList() const
         {
-        wxASSERT(m_wordListsPropertyGrid);
+        assert(m_wordListsPropertyGrid);
         return m_wordListsPropertyGrid ?
             m_wordListsPropertyGrid->GetPropertyValueAsBool(GetIncludeHJWordListLabel()) : false;
         }
 
     void SetIncludingStockerList(const bool include)
         {
-        wxASSERT(m_wordListsPropertyGrid);
+        assert(m_wordListsPropertyGrid);
         if (m_wordListsPropertyGrid)
             { m_wordListsPropertyGrid->SetPropertyValue(GetIncludeStockerWordListLabel(), include); }
         UpdateOptions();
@@ -210,21 +210,21 @@ public:
     [[nodiscard]]
     bool IsIncludingStockerList() const
         {
-        wxASSERT(m_wordListsPropertyGrid);
+        assert(m_wordListsPropertyGrid);
         return m_wordListsPropertyGrid ?
             m_wordListsPropertyGrid->GetPropertyValueAsBool(GetIncludeStockerWordListLabel()) : false;
         }
 
     void SetFamiliarWordsMustBeOnEachIncludedList(const bool include)
         {
-        wxASSERT(m_wordListsPropertyGrid);
+        assert(m_wordListsPropertyGrid);
         if (m_wordListsPropertyGrid)
             { m_wordListsPropertyGrid->SetPropertyValue(GetFamiliarWordsOnAllLabel(), include); }
         }
     [[nodiscard]]
     bool IsFamiliarWordsMustBeOnEachIncludedList() const
         {
-        wxASSERT(m_wordListsPropertyGrid);
+        assert(m_wordListsPropertyGrid);
         return m_wordListsPropertyGrid ?
             m_wordListsPropertyGrid->IsPropertyEnabled(GetFamiliarWordsOnAllLabel()) &&
             m_wordListsPropertyGrid->GetPropertyValueAsBool(GetFamiliarWordsOnAllLabel()) : false;
@@ -232,28 +232,28 @@ public:
 
     void SetProperNounMethod(const int method)
         {
-        wxASSERT(m_properNounsNumbersPropertyGrid);
+        assert(m_properNounsNumbersPropertyGrid);
         if (m_properNounsNumbersPropertyGrid)
             { m_properNounsNumbersPropertyGrid->SetPropertyValue(GetFamiliarityLabel(), method); }
         }
     [[nodiscard]]
     int GetProperNounMethod() const
         {
-        wxASSERT(m_properNounsNumbersPropertyGrid);
+        assert(m_properNounsNumbersPropertyGrid);
         return m_properNounsNumbersPropertyGrid ?
             m_properNounsNumbersPropertyGrid->GetPropertyValueAsInt(GetFamiliarityLabel()) : 0;
         }
 
     void SetIncludingNumeric(const bool include)
         {
-        wxASSERT(m_properNounsNumbersPropertyGrid);
+        assert(m_properNounsNumbersPropertyGrid);
         if (m_properNounsNumbersPropertyGrid)
             { m_properNounsNumbersPropertyGrid->SetPropertyValue(GetNumeralsAsFamiliarLabel(),include); }
         }
     [[nodiscard]]
     bool IsIncludingNumeric() const
         {
-        wxASSERT(m_properNounsNumbersPropertyGrid);
+        assert(m_properNounsNumbersPropertyGrid);
         return m_properNounsNumbersPropertyGrid ?
             m_properNounsNumbersPropertyGrid->GetPropertyValueAsBool(GetNumeralsAsFamiliarLabel()) : false;
         }
@@ -279,91 +279,91 @@ public:
     [[nodiscard]]
     bool IsChildrensPublishingSelected() const
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         return m_associationPropertyGrid ?
             m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[0]) : false;
         }
     void SetChildrensPublishingSelected(const bool select)
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_professionNames[0], select); }
         }
     [[nodiscard]]
     bool IsAdultPublishingSelected() const
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         return m_associationPropertyGrid ?
             m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[1]) : false;
         }
     void SetAdultPublishingSelected(const bool select)
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_professionNames[1], select); }
         }
     [[nodiscard]]
     bool IsChildrensHealthCareTestSelected() const
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         return m_associationPropertyGrid ?
             m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[2]) : false;
         }
     void SetChildrensHealthCareTestSelected(const bool select)
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_professionNames[2], select); }
         }
     [[nodiscard]]
     bool IsAdultHealthCareTestSelected() const
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         return m_associationPropertyGrid ?
             m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[3]) : false;
         }
     void SetAdultHealthCareTestSelected(const bool select)
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_professionNames[3], select); }
         }
     [[nodiscard]]
     bool IsMilitaryTestSelected() const
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         return m_associationPropertyGrid ?
             m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[4]) : false;
         }
     void SetMilitaryTestSelected(const bool select)
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_professionNames[4], select); }
         }
     [[nodiscard]]
     bool IsSecondaryLanguageSelected() const
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         return m_associationPropertyGrid ?
             m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[5]) : false;
         }
     void SetSecondaryLanguageSelected(const bool select)
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_professionNames[5], select); }
         }
     [[nodiscard]]
     bool IsBroadcastingSelected() const
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         return m_associationPropertyGrid ?
             m_associationPropertyGrid->GetPropertyValueAsBool(m_professionNames[6]) : false;
         }
     void SetBroadcastingSelected(const bool select)
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_professionNames[6], select); }
         }
@@ -371,65 +371,65 @@ public:
     [[nodiscard]]
     bool IsGeneralDocumentSelected() const
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         return m_associationPropertyGrid ?
             m_associationPropertyGrid->GetPropertyValueAsBool(m_documentNames[0]) : false;
         }
     void SetGeneralDocumentSelected(const bool select)
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_documentNames[0], select); }
         }
     [[nodiscard]]
     bool IsTechnicalDocumentSelected() const
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         return m_associationPropertyGrid ?
             m_associationPropertyGrid->GetPropertyValueAsBool(m_documentNames[1]) : false;
         }
     void SetTechnicalDocumentSelected(const bool select)
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_documentNames[1], select); }
         }
     [[nodiscard]]
     bool IsNonNarrativeFormSelected() const
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         return m_associationPropertyGrid ?
             m_associationPropertyGrid->GetPropertyValueAsBool(m_documentNames[2]) : false;
         }
     void SetNonNarrativeFormSelected(const bool select)
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_documentNames[2], select); }
         }
     [[nodiscard]]
     bool IsYoungAdultAndAdultLiteratureSelected() const
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         return m_associationPropertyGrid ?
             m_associationPropertyGrid->GetPropertyValueAsBool(m_documentNames[3]) : false;
         }
     void SetYoungAdultAndAdultLiteratureSelected(const bool select)
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_documentNames[3], select); }
         }
     [[nodiscard]]
     bool IsChildrensLiteratureSelected() const
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         return m_associationPropertyGrid ?
             m_associationPropertyGrid->GetPropertyValueAsBool(m_documentNames[4]) : false;
         }
     void SetChildrensLiteratureSelected(const bool select)
         {
-        wxASSERT(m_associationPropertyGrid);
+        assert(m_associationPropertyGrid);
         if (m_associationPropertyGrid)
             { m_associationPropertyGrid->SetPropertyValue(m_documentNames[4], select); }
         }

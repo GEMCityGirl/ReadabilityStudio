@@ -831,7 +831,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
         {
         m_activeWindow = GetScoresView().FindWindowById(event.GetInt());
         // cppcheck-suppress assertWithSideEffect
-        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
+        assert(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -853,7 +853,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                         {
                         auto editButtonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                        wxASSERT(editButtonBar);
+                        assert(editButtonBar);
                         while (m_copyMenu.GetMenuItemCount())
                             { m_copyMenu.Destroy(m_copyMenu.FindItemByPosition(0)); }
                         m_copyMenu.Append(wxID_COPY, _("Copy")+L"\tCtrl+C")->SetBitmap(copyIcon);
@@ -1034,7 +1034,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         else
                             { exportMenuItem->SetBitmap(listIcon); }
                         auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                        wxASSERT(editButtonRibbonBar);
+                        assert(editButtonRibbonBar);
 
                         editButtonRibbonBar->ClearButtons();
                         editButtonRibbonBar->AddToggleButton(XRCID("ID_LONG_FORMAT"),
@@ -1088,7 +1088,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             // some tests have two box plots
             m_activeWindow = GetBoxPlotView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());
             // cppcheck-suppress assertWithSideEffect
-            wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
+            assert(GetActiveProjectWindow() != nullptr);
             if (GetActiveProjectWindow())
                 {
                 GetSplitter()->GetWindow2()->Hide();
@@ -1101,7 +1101,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             // some tests have two histograms
             m_activeWindow = GetHistogramsView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());
             // cppcheck-suppress assertWithSideEffect
-            wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
+            assert(GetActiveProjectWindow() != nullptr);
             if (GetActiveProjectWindow())
                 {
                 GetSplitter()->GetWindow2()->Hide();
@@ -1144,7 +1144,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                 auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                wxASSERT(editButtonRibbonBar);
+                assert(editButtonRibbonBar);
                 editButtonRibbonBar->ClearButtons();
                 editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
                     _("Background"),
@@ -1241,7 +1241,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             GetWordsBreakdownView().FindWindowById(event.GetInt()) :
             GetSummaryStatsView().FindWindowById(event.GetInt()) );
         // cppcheck-suppress assertWithSideEffect
-        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
+        assert(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1286,7 +1286,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonRibbonBar);
+                    assert(editButtonRibbonBar);
 
                     editButtonRibbonBar->ClearButtons();
                     if (event.GetExtraLong() == SIDEBAR_STATS_SUMMARY_SECTION_ID)
@@ -1321,7 +1321,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
         {
         m_activeWindow = GetSentencesBreakdownView().FindWindowById(event.GetInt());
         // cppcheck-suppress assertWithSideEffect
-        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
+        assert(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1366,7 +1366,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonRibbonBar != nullptr);
+                    assert(editButtonRibbonBar != nullptr);
 
                     editButtonRibbonBar->ClearButtons();
                     editButtonRibbonBar->AddHybridButton(wxID_COPY,
@@ -1398,7 +1398,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
         {
         m_activeWindow = GetGrammarView().FindWindowById(event.GetInt());
         // cppcheck-suppress assertWithSideEffect
-        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
+        assert(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1445,7 +1445,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonRibbonBar != nullptr);
+                    assert(editButtonRibbonBar != nullptr);
 
                     editButtonRibbonBar->ClearButtons();
                     editButtonRibbonBar->AddHybridButton(wxID_COPY,
@@ -1477,7 +1477,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
         {
         m_activeWindow = GetDolchSightWordsView().FindWindowById(event.GetInt());
         // cppcheck-suppress assertWithSideEffect
-        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
+        assert(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1524,7 +1524,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonRibbonBar != nullptr);
+                    assert(editButtonRibbonBar != nullptr);
 
                     editButtonRibbonBar->ClearButtons();
                     editButtonRibbonBar->AddHybridButton(wxID_COPY,
@@ -1552,7 +1552,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
         {
         m_activeWindow = GetWarningsView();
         // cppcheck-suppress assertWithSideEffect
-        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
+        assert(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1599,7 +1599,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         _("Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonRibbonBar != nullptr);
+                    assert(editButtonRibbonBar != nullptr);
 
                     editButtonRibbonBar->ClearButtons();
                     editButtonRibbonBar->AddHybridButton(wxID_COPY,
@@ -1661,7 +1661,7 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
     if (scoreListItem == wxNOT_FOUND)
         { return; }
     ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(GetScoresView().FindWindowById(ID_SCORE_LIST_PAGE_ID));
-    wxASSERT(list != nullptr);
+    assert(list != nullptr);
     // shouldn't happen
     if (!list)
         { return; }
@@ -2553,7 +2553,7 @@ void BatchProjectView::OnExportScoresAndStatistics([[maybe_unused]] wxCommandEve
         { return; }
 
     const ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(GetScoresView().FindWindowById(ID_SCORE_LIST_PAGE_ID));
-    wxASSERT(list);
+    assert(list);
     // shouldn't happen
     if (!list)
         { return; }

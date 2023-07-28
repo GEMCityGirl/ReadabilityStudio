@@ -5153,7 +5153,7 @@ void ToolsOptionsDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
 void ToolsOptionsDlg::CreateLabelHeader(wxWindow* parent, wxSizer* parentSizer, const wxString& title,
                                         const bool addSidePadding /*= false*/) const
     {
-    wxASSERT_LEVEL_2(parent && parentSizer);
+    assert(parent && parentSizer);
     if (!parent || !parentSizer)
         { return; }
     // The title

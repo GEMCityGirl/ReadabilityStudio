@@ -324,7 +324,7 @@ public:
                                           const wxBitmapType type = wxBITMAP_TYPE_PNG,
                                           const wxSize imageSize = wxSize(32, 32))
         {
-        wxASSERT(GetMainFrame());
+        assert(GetMainFrame());
         const wxSize scaledSize = GetMainFrame()->FromDIP(imageSize);
         wxBitmap bmp = GetResourceManager().GetBitmap(image, type);
 

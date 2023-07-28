@@ -379,7 +379,7 @@ namespace LuaScripting
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxASSERT(wxGetApp().GetSplashscreenPaths().GetCount());
+        assert(wxGetApp().GetSplashscreenPaths().GetCount());
         const auto index =
             std::clamp<size_t>(lua_tonumber(L, 1)-1/*make it zero-indexed*/, 0,
                                wxGetApp().GetSplashscreenPaths().GetCount()-1);

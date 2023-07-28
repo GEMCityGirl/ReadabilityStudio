@@ -101,7 +101,7 @@ bool BaseProject::LoadAppendedDocument()
 void BaseProject::UpdateDocumentSettings()
     {
     // cppcheck-suppress assertWithSideEffect
-    wxASSERT_MSG(GetWords() != nullptr, L"Invalid word collection when updating document settings!");
+    assert(GetWords() != nullptr && L"Invalid word collection when updating document settings!");
     GetWords()->set_allowable_incomplete_sentence_size(GetIncludeIncompleteSentencesIfLongerThanValue());
     GetWords()->set_aggressive_exclusion(IsExcludingAggressively());
     GetWords()->ignore_trailing_copyright_notice_paragraphs(IsIgnoringTrailingCopyrightNoticeParagraphs());
@@ -798,8 +798,8 @@ void BaseProject::ResetStandardReadabilityTests(TestCollectionType& readabilityT
 //-------------------------------------------------------
 void BaseProject::InitializeStandardReadabilityTests()
     {
-    wxASSERT_MSG(m_defaultReadabilityTestsTemplate.get_test_count() == 0,
-                 __WXFUNCTION__ + wxString(" called twice?"));
+    assert(m_defaultReadabilityTestsTemplate.get_test_count() == 0 &&
+           "InitializeStandardReadabilityTests called twice?");
     m_defaultReadabilityTestsTemplate.clear();
     // degrees of reading power
         {
@@ -2048,7 +2048,7 @@ void BaseProject::LoadHardWords()
         {
         // the values are the words are frequency count (first) and the number
         // of those that are proper second)
-        wxASSERT_LEVEL_2(wordPos->second.first >= wordPos->second.second);
+        assert(wordPos->second.first >= wordPos->second.second);
         /* subtract number of times word is proper from total count of word
            to see if at least on instance is NOT proper. If they are equal, then
            all instances are proper and therefore cannot be an UNfamiliar word.*/
@@ -2533,9 +2533,9 @@ void BaseProject::LoadHardWords()
         m_keyWordsDataset->Clear();
         m_keyWordsDataset->AddCategoricalColumn(GetWordsColumnName());
         m_keyWordsDataset->AddContinuousColumn(GetWordsCountsColumnName());
-        wxASSERT_MSG(m_keyWordsDataset->GetCategoricalColumns().size() == 1,
+        assert(m_keyWordsDataset->GetCategoricalColumns().size() == 1 &&
             L"Hard word dataset invalid!");
-        wxASSERT_MSG(m_keyWordsDataset->GetRowCount() == 0,
+        assert(m_keyWordsDataset->GetRowCount() == 0 &&
             L"Hard word dataset should be empty!");
         m_keyWordsDataset->Resize(
             keyWordsStemmedWithCounts.get_data().size());
@@ -2555,7 +2555,7 @@ void BaseProject::LoadHardWords()
                 for (const auto& subWord : keyWordFreqInfo.first.get_data())
                     { allValuesStr.append(subWord.first.c_str()).append(L"; "); }
                 allValuesStr.Trim().RemoveLast();
-                wxASSERT_MSG(allValuesStr.length(), L"Empty word list from stemmed word?!");
+                assert(allValuesStr.length() && L"Empty word list from stemmed word?!");
 
                 GetKeyWordsBaseData()->SetItemText(uniqueImportWordsCount, 0, allValuesStr);
                 GetKeyWordsBaseData()->SetItemValue(uniqueImportWordsCount++, 1, keyWordFreqInfo.second);
@@ -2569,7 +2569,7 @@ void BaseProject::LoadHardWords()
                         keyWordFreqInfo.first.get_data().cend(),
                         [](const auto& lhv, const auto& rhv) noexcept
                         { return lhv.second < rhv.second; });
-                wxASSERT_MSG(mostFrequentWordVariation != keyWordFreqInfo.first.get_data().cend(),
+                assert(mostFrequentWordVariation != keyWordFreqInfo.first.get_data().cend() &&
                     L"Empty word list for stemmed word?!");
                 // add the next word to the dataset's string table
                 const auto nextKey = keyWordsColumn->GetNextKey();
@@ -2661,7 +2661,7 @@ void BaseProject::LoadHardWords()
         wordPos != complete_sent_and_header_word_frequency_map.get_data().cend();
         ++wordPos)
         {
-        wxASSERT_LEVEL_2(wordPos->second.first >= wordPos->second.second);
+        assert(wordPos->second.first >= wordPos->second.second);
         /* subtract number of times word is proper from total count of word
            to see if at least on instance is NOT proper. If they are equal, then
            all instances are proper and therefore cannot be an UNfamiliar word.*/
@@ -7918,7 +7918,7 @@ bool BaseProject::VerifyTestBeforeAdding(
     const std::pair<std::vector<ProjectTestType>::const_iterator, bool>& theTest)
     {
     // see if the test was found in the list of known tests (this shouldn't be an issue)
-    wxASSERT_LEVEL_2(theTest.second);
+    assert(theTest.second);
     if (!theTest.second)
         { throw std::exception(); }
     // see if test relates to the language for the project

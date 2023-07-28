@@ -49,8 +49,8 @@ namespace LuaScripting
         static bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
                                          const wxString& functionName)
             {
-            wxASSERT(L);
-            wxASSERT(minParemeterCount >= 0);
+            assert(L);
+            assert(minParemeterCount >= 0);
             // skip over the boolean param passed in the front indicating success of
             // routing the function to the class object.
             if ((lua_gettop(L) - 1) < minParemeterCount)
@@ -266,8 +266,8 @@ namespace LuaScripting
         static bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
                                          const wxString& functionName)
             {
-            wxASSERT(L);
-            wxASSERT(minParemeterCount >= 0);
+            assert(L);
+            assert(minParemeterCount >= 0);
             // skip over the boolean param passed in the front indicating success of
             // routing the function to the class object.
             if ((lua_gettop(L) - 1) < minParemeterCount)

@@ -83,7 +83,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
         const bool isUsingActiveProject =
             (activeProject && activeProject->IsKindOf(CLASSINFO(ProjectDoc)));
         BaseProjectDoc* project = isUsingActiveProject ? activeProject : blankProject.get();
-        wxASSERT(project);
+        assert(project);
 
         if (!project->GetFormulaParser().compile(GetFormula().ToStdString()))
             {
@@ -297,8 +297,8 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
 //-------------------------------------------------------------
 void CustomTestDlg::UpdateOptions()
     {
-    wxASSERT(m_wordListsPropertyGrid);
-    wxASSERT(m_properNounsNumbersPropertyGrid);
+    assert(m_wordListsPropertyGrid);
+    assert(m_properNounsNumbersPropertyGrid);
     if (!m_wordListsPropertyGrid || !m_properNounsNumbersPropertyGrid)
         { return; }
     m_wordListsPropertyGrid->EnableProperty(GetFileContainingFamiliarWordsLabel(), IsIncludingCustomWordList());
