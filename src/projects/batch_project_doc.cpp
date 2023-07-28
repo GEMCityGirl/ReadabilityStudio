@@ -1030,28 +1030,28 @@ void BatchProjectDoc::LoadSummaryStatsSection()
         m_summaryStatsData->SetItemText(rowCount, columnCount++, doc->GetOriginalDocumentDescription());
         if (GetStatisticsReportInfo().IsParagraphEnabled())
             {
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of paragraphs"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of paragraphs"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalParagraphs());
             }
         if (GetStatisticsReportInfo().IsSentencesEnabled())
             {
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of sentences"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of sentences"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalSentences());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of units/independent clauses"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of units/independent clauses"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalSentenceUnits());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of difficult sentences"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of difficult sentences"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalOverlyLongSentences());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Longest sentence"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Longest sentence"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetLongestSentence());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Average sentence length"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Average sentence length"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                 safe_divide<double>(doc->GetTotalWords(),
                                     doc->GetTotalSentences()),
                 Wisteria::NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
                                            1, false));
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of interrogative sentences (questions)"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of interrogative sentences (questions)"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalInterrogativeSentences());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of exclamatory sentences"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of exclamatory sentences"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalExclamatorySentences());
             }
         if (GetStatisticsReportInfo().IsWordsEnabled())
@@ -1060,76 +1060,76 @@ void BatchProjectDoc::LoadSummaryStatsSection()
                 safe_divide<double>(doc->GetTotalCharacters(), doc->GetTotalWords());
             const double averageSyllableCount =
                 safe_divide<double>(doc->GetTotalSyllables(), doc->GetTotalWords());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of words"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalWords());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique words"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalUniqueWords());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of syllables"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of syllables"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalSyllables());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of characters (punctuation excluded)"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of characters (punctuation excluded)"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalCharacters());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of characters + punctuation"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of characters + punctuation"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalCharactersPlusPunctuation());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Average number of characters"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Average number of characters"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, averageCharacterCount,
                 Wisteria::NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
                                            1, false));
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Average number of syllables"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Average number of syllables"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, averageSyllableCount,
                 Wisteria::NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
                                            1, false));
             }
         if (GetStatisticsReportInfo().IsExtendedWordsEnabled())
             {
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of numerals"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of numerals"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalNumerals());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of proper nouns"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of proper nouns"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalProperNouns());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of monosyllabic words"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of monosyllabic words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalMonoSyllabicWords());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique monosyllabic words"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique monosyllabic words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalUniqueMonoSyllablicWords());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of complex (3+ syllable) words"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of complex (3+ syllable) words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotal3PlusSyllabicWords());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique 3+ syllable words"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique 3+ syllable words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalUnique3PlusSyllableWords());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of long (6+ characters) words"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of long (6+ characters) words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalLongWords());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique long words"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique long words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalUnique6CharsPlusWords());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of SMOG hard words"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of SMOG hard words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                 doc->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique SMOG hard words"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique SMOG hard words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                 doc->GetUnique3PlusSyllabicWordsNumeralsFullySyllabized());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of Fog hard words"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of Fog hard words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalHardWordsFog());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique Fog hard words"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique Fog hard words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalUniqueHardFogWords());
             if (IsIncludingDolchSightWords())
                 {
                 if (GetStatisticsReportInfo().IsDolchCoverageEnabled())
                     {
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of conjunctions used"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of conjunctions used"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         ProjectReportFormat::MAX_DOLCH_CONJUNCTION_WORDS - doc->GetUnusedDolchConjunctions());
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of prepositions used"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of prepositions used"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         ProjectReportFormat::MAX_DOLCH_PREPOSITION_WORDS - doc->GetUnusedDolchPrepositions());
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of pronouns used"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of pronouns used"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         ProjectReportFormat::MAX_DOLCH_PRONOUN_WORDS - doc->GetUnusedDolchPronouns());
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of adverbs used"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of adverbs used"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         ProjectReportFormat::MAX_DOLCH_ADVERB_WORDS - doc->GetUnusedDolchAdverbs());
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of adjectives used"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of adjectives used"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         ProjectReportFormat::MAX_DOLCH_ADJECTIVE_WORDS - doc->GetUnusedDolchAdjectives());
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of verbs used"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of verbs used"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         ProjectReportFormat::MAX_DOLCH_VERBS - doc->GetUnusedDolchVerbs());
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of nouns used"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of nouns used"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         ProjectReportFormat::MAX_DOLCH_NOUNS - doc->GetUnusedDolchNouns());
                     }
@@ -1146,104 +1146,104 @@ void BatchProjectDoc::LoadSummaryStatsSection()
                         doc->GetDolchPronounCounts().second +
                         doc->GetDolchAdverbCounts().second + doc->GetDolchAdjectiveCounts().second +
                         doc->GetDolchVerbsCounts().second;
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch words"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch words"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++, totalDolchWords);
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch words (excluding nouns)"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch words (excluding nouns)"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++, totalDolchWordsExcludingNouns);
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of non-Dolch words"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of non-Dolch words"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         doc->GetTotalWords() - totalDolchWords);
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch conjunctions"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch conjunctions"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         doc->GetDolchConjunctionCounts().second);
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique Dolch conjunctions"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique Dolch conjunctions"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         doc->GetDolchConjunctionCounts().first);
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch prepositions"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch prepositions"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         doc->GetDolchPrepositionWordCounts().second);
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique Dolch prepositions"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique Dolch prepositions"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         doc->GetDolchPrepositionWordCounts().first);
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch pronouns"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch pronouns"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         doc->GetDolchPronounCounts().second);
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique Dolch pronouns"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique Dolch pronouns"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         doc->GetDolchPronounCounts().first);
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch adverbs"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch adverbs"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         doc->GetDolchAdverbCounts().second);
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique Dolch adverbs"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique Dolch adverbs"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         doc->GetDolchAdverbCounts().first);
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch adjectives"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch adjectives"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         doc->GetDolchAdjectiveCounts().second);
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique Dolch adjectives"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique Dolch adjectives"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         doc->GetDolchAdjectiveCounts().first);
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch verbs"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch verbs"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         doc->GetDolchVerbsCounts().second);
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique Dolch verbs"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique Dolch verbs"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         doc->GetDolchVerbsCounts().first);
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch nouns"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of Dolch nouns"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         doc->GetDolchNounCounts().second);
-                    wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique Dolch nouns"));
+                    wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique Dolch nouns"));
                     m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                         doc->GetDolchNounCounts().first);
                     }
                 }
             if (IsDaleChallLikeTestIncluded() )
                 {
-                wxASSERT(m_summaryStatsColumnNames[columnCount] ==
+                wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] ==
                     _(L"Number of Dale-Chall unfamiliar words"));
                 m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalHardWordsDaleChall());
-                wxASSERT(m_summaryStatsColumnNames[columnCount] ==
+                wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] ==
                     _(L"Number of unique Dale-Chall unfamiliar words"));
                 m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalUniqueDCHardWords());
                 }
             if (GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()))
                 {
-                wxASSERT(m_summaryStatsColumnNames[columnCount] ==
+                wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] ==
                     _(L"Number of Harris-Jacobson unfamiliar words"));
                 m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                     doc->GetTotalHardWordsHarrisJacobson());
-                wxASSERT(m_summaryStatsColumnNames[columnCount] ==
+                wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] ==
                     _(L"Number of unique Harris-Jacobson unfamiliar words"));
                 m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                     doc->GetTotalUniqueHarrisJacobsonHardWords());
                 }
             if (GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()))
                 {
-                wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of Spache unfamiliar words"));
+                wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of Spache unfamiliar words"));
                 m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                     doc->GetTotalHardWordsSpache());
-                wxASSERT(m_summaryStatsColumnNames[columnCount] ==
+                wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] ==
                     _(L"Number of unique Spache unfamiliar words"));
                 m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                     doc->GetTotalUniqueHardWordsSpache());
                 }
             if (GetReadabilityTests().is_test_included(ReadabilityMessages::EFLAW()))
                 {
-                wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of McAlpine EFLAW miniwords"));
+                wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of McAlpine EFLAW miniwords"));
                 m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                     doc->GetTotalMiniWords());
-                wxASSERT(m_summaryStatsColumnNames[columnCount] ==
+                wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] ==
                     _(L"Number of unique McAlpine EFLAW miniwords words"));
                 m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                     doc->GetTotalUniqueMiniWords());
                 }
             for (const auto& cTest : doc->GetCustTestsInUse())
                 {
-                wxASSERT(m_summaryStatsColumnNames[columnCount] ==
+                wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] ==
                     wxString::Format(_(L"Number of %s unfamiliar words"),
                                  cTest.GetIterator()->get_name().c_str()));
                 m_summaryStatsData->SetItemValue(rowCount, columnCount++, cTest.GetUnfamiliarWordCount());
-                wxASSERT(m_summaryStatsColumnNames[columnCount] ==
+                wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] ==
                     wxString::Format(_(L"Number of unique %s unfamiliar words"),
                                  cTest.GetIterator()->get_name().c_str()));
                 m_summaryStatsData->SetItemValue(rowCount, columnCount++, cTest.GetUniqueUnfamiliarWordCount());
@@ -1252,36 +1252,36 @@ void BatchProjectDoc::LoadSummaryStatsSection()
         if (GetStatisticsReportInfo().IsGrammarEnabled() &&
             GetGrammarInfo().IsAnyFeatureEnabled())
             {
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of misspellings"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of misspellings"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetMisspelledWordCount());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of repeated words"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of repeated words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetDuplicateWordCount());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of article mismatches"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of article mismatches"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetMismatchedArticleCount());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of wording errors"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of wording errors"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetWordingErrorCount());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of redundant phrases"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of redundant phrases"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetRedundantPhraseCount());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of overused words (x sentence)"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of overused words (x sentence)"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetOverusedWordsBySentenceCount());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of wordy items"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of wordy items"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetWordyPhraseCount());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of Clich\351s"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of Clich\351s"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetClicheCount());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Number of passive voices"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Number of passive voices"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetPassiveVoicesCount());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] ==
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] ==
                 _(L"Number of sentences that begin with conjunctions"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                 doc->GetSentenceStartingWithConjunctionsCount());
-            wxASSERT(m_summaryStatsColumnNames[columnCount] ==
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] ==
                 _(L"Number of Sentences that begin with lowercased words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                 doc->GetSentenceStartingWithLowercaseCount());
             }
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             {
-            wxASSERT(m_summaryStatsColumnNames[columnCount] == _(L"Text size (Kbs.)"));
+            wxASSERT_LEVEL_2(m_summaryStatsColumnNames[columnCount] == _(L"Text size (Kbs.)"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++,
                 safe_divide<double>(doc->GetTextSize(), 1024),
                 Wisteria::NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
@@ -1408,7 +1408,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             {
             FilePathResolver fileResolver;
             size_t excelTag = (*pos)->GetOriginalDocumentFilePath().MakeLower().find(_DT(L".xlsx#"));
-            wxASSERT(excelTag != -1);
+            wxASSERT_LEVEL_2(excelTag != -1);
             if (excelTag != -1)
                 {
                 wxFileName fn((*pos)->GetOriginalDocumentFilePath().substr(0, excelTag+5));
@@ -1510,7 +1510,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
         else if (fileResolve.IsArchivedFile())
             {
             size_t archiveTag = (*pos)->GetOriginalDocumentFilePath().MakeLower().find(_DT(L".zip#"));
-            wxASSERT(archiveTag != -1);
+            wxASSERT_LEVEL_2(archiveTag != -1);
             if (archiveTag != -1)
                 {
                 wxFileName fn((*pos)->GetOriginalDocumentFilePath().substr(0, archiveTag+4));
@@ -3242,7 +3242,7 @@ void BatchProjectDoc::DisplayCrawfordGraph()
             {
             crawfordGraph = std::dynamic_pointer_cast<CrawfordGraph>
                 (view->GetCrawfordGraph()->GetFixedObject(0, 0));
-            wxASSERT(crawfordGraph);
+            wxASSERT_LEVEL_2(crawfordGraph);
             crawfordGraph->SetData(scoreDataset, scoresColumnName, syllablesColumnName,
                 IsShowingGroupLegends() ?
                     std::optional<const wxString>(groupColumnName) :
@@ -3349,7 +3349,7 @@ void BatchProjectDoc::DisplayDB2Plot()
             {
             db2Plot = std::dynamic_pointer_cast<DanielsonBryan2Plot>
                 (view->GetDB2Plot()->GetFixedObject(0, 0));
-            wxASSERT(db2Plot);
+            wxASSERT_LEVEL_2(db2Plot);
             db2Plot->SetData(scoreDataset, scoresColumnName,
                 IsShowingGroupLegends() ?
                     std::optional<const wxString>(groupColumnName) :
@@ -3475,7 +3475,7 @@ void BatchProjectDoc::DisplayFleschChart()
             {
             fleschChart = std::dynamic_pointer_cast<FleschChart>
                 (view->GetFleschChart()->GetFixedObject(0, 0));
-            wxASSERT(fleschChart);
+            wxASSERT_LEVEL_2(fleschChart);
             fleschChart->SetData(scoreDataset, wordsColumnName,
                 scoresColumnName, syllablesColumnName,
                 showLegend ?
@@ -3483,7 +3483,7 @@ void BatchProjectDoc::DisplayFleschChart()
                     std::nullopt,
                 IsIncludingFleschRulerDocGroups());
             }
-        wxASSERT(fleschChart);
+        wxASSERT_LEVEL_2(fleschChart);
         UpdateGraphOptions(view->GetFleschChart());
 
         fleschChart->ShowConnectionLine(IsConnectingFleschPoints());
@@ -3575,13 +3575,13 @@ void BatchProjectDoc::DisplayGermanLixGauge()
             {
             lixGauge = std::dynamic_pointer_cast<LixGaugeGerman>
                 (view->GetGermanLixGauge()->GetFixedObject(0, 0));
-            wxASSERT(lixGauge);
+            wxASSERT_LEVEL_2(lixGauge);
             lixGauge->SetData(scoreDataset, scoresColumnName,
                 IsShowingGroupLegends() ?
                     std::optional<const wxString>(groupColumnName) :
                     std::nullopt);
             }
-        wxASSERT(lixGauge);
+        wxASSERT_LEVEL_2(lixGauge);
         lixGauge->UseEnglishLabels(IsUsingEnglishLabelsForGermanLix());
         UpdateGraphOptions(view->GetGermanLixGauge());
 
@@ -3679,7 +3679,7 @@ void BatchProjectDoc::DisplayLixGauge()
             {
             lixGauge = std::dynamic_pointer_cast<LixGauge>
                 (view->GetLixGauge()->GetFixedObject(0, 0));
-            wxASSERT(lixGauge);
+            wxASSERT_LEVEL_2(lixGauge);
             lixGauge->SetData(scoreDataset, scoresColumnName,
                 IsShowingGroupLegends() ?
                     std::optional<const wxString>(groupColumnName) :
@@ -3820,7 +3820,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
             {
             fryGraph = std::dynamic_pointer_cast<FryGraph>
                 (view->GetFryGraph()->GetFixedObject(0, 0));
-            wxASSERT(fryGraph);
+            wxASSERT_LEVEL_2(fryGraph);
             fryGraph->SetData(scoreDataset, totalWordsColumnName,
                 totalSyllablesNumeralsFullySyllabizedColumnName,
                 totalSentencesColumnName,
@@ -3895,7 +3895,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
             {
             gFryGraph = std::dynamic_pointer_cast<FryGraph>
                 (view->GetGpmFryGraph()->GetFixedObject(0, 0));
-            wxASSERT(gFryGraph);
+            wxASSERT_LEVEL_2(gFryGraph);
             gFryGraph->SetData(scoreDataset, totalWordsColumnName,
                 totalSyllablesNumeralsFullySyllabizedColumnName,
                 totalSentencesColumnName,
@@ -3971,7 +3971,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
             {
             schwartzGraph = std::dynamic_pointer_cast<SchwartzGraph>
                 (view->GetSchwartzGraph()->GetFixedObject(0, 0));
-            wxASSERT(schwartzGraph);
+            wxASSERT_LEVEL_2(schwartzGraph);
             schwartzGraph->SetData(scoreDataset, totalWordsColumnName,
                 totalSyllablesNumeralsOneSyllableColumnName,
                 totalSentenceUnitsColumnName,
@@ -4048,7 +4048,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
             {
             fraseGraph = std::dynamic_pointer_cast<FraseGraph>
                 (view->GetFraseGraph()->GetFixedObject(0, 0));
-            wxASSERT(fraseGraph);
+            wxASSERT_LEVEL_2(fraseGraph);
             fraseGraph->SetData(scoreDataset, totalWordsColumnName,
                 totalSyllablesColumnName,
                 totalSentencesColumnName,
@@ -4122,7 +4122,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
             {
             raygorGraph = std::dynamic_pointer_cast<RaygorGraph>
                 (view->GetRaygorGraph()->GetFixedObject(0, 0));
-            wxASSERT(raygorGraph);
+            wxASSERT_LEVEL_2(raygorGraph);
             raygorGraph->SetData(scoreDataset, totalWordsLessNumerals,
                 total6PlusCharWordsLessNumerals,
                 totalSentencesColumnName,
@@ -5437,7 +5437,7 @@ void BatchProjectDoc::DisplayGrammar()
     {
     PROFILE();
     BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
-    wxASSERT(view);
+    wxASSERT_LEVEL_2(view);
 
     // Misspelled words
     ListCtrlEx* listView =
@@ -6497,7 +6497,7 @@ void BatchProjectDoc::SyncFilePathsWithDocuments()
         pos != m_docs.cend();
         ++pos)
         {
-        wxASSERT((*pos)->GetSourceFilesInfo().size());
+        wxASSERT_LEVEL_2((*pos)->GetSourceFilesInfo().size());
         GetSourceFilesInfo().push_back((*pos)->GetSourceFilesInfo().at(0));
         }
     }
