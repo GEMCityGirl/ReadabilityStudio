@@ -213,7 +213,7 @@ bool BatchProjectDoc::OnNewDocument()
     if (!progressDlg.Update(counter++, _(L"Loading scores...")))
         { return false; }
     LoadScoresSection();
-    
+
     if (!progressDlg.Update(counter++, _(L"Loading summary statistics...")))
         { return false; }
     LoadSummaryStatsSection();
@@ -425,7 +425,7 @@ void BatchProjectDoc::RefreshStatisticsReports()
 
     LoadSummaryStatsSection();
     DisplaySummaryStats();
-    
+
     view->UpdateSideBarIcons();
     view->Present();
     UpdateAllViews();
@@ -1000,7 +1000,6 @@ void BatchProjectDoc::LoadSummaryStatsSection()
                 wxString::Format(_(L"Number of unique %s unfamiliar words"),
                                  cTests.GetIterator()->get_name().c_str()));
             }
-        
         }
     if (GetStatisticsReportInfo().IsGrammarEnabled() &&
         GetGrammarInfo().IsAnyFeatureEnabled())
@@ -1244,7 +1243,7 @@ void BatchProjectDoc::LoadSummaryStatsSection()
                     wxString::Format(_(L"Number of %s unfamiliar words"),
                                  cTest.GetIterator()->get_name().c_str()));
                 m_summaryStatsData->SetItemValue(rowCount, columnCount++, cTest.GetUnfamiliarWordCount());
-                wxASSERT(m_summaryStatsColumnNames[columnCount] == 
+                wxASSERT(m_summaryStatsColumnNames[columnCount] ==
                     wxString::Format(_(L"Number of unique %s unfamiliar words"),
                                  cTest.GetIterator()->get_name().c_str()));
                 m_summaryStatsData->SetItemValue(rowCount, columnCount++, cTest.GetUniqueUnfamiliarWordCount());
@@ -1288,7 +1287,7 @@ void BatchProjectDoc::LoadSummaryStatsSection()
                 Wisteria::NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
                 2, true));
             }
-        
+
         ++rowCount;
         }
 
@@ -5896,7 +5895,7 @@ void BatchProjectDoc::DisplaySummaryStats()
         listView->DeleteAllColumns();
         for (size_t i = 0; i < m_summaryStatsColumnNames.size(); ++i)
             { listView->InsertColumn(i, m_summaryStatsColumnNames[i]); }
-        
+
         UpdateListOptions(listView);
         listView->SetColumnFilePathTruncationMode(0, GetFilePathTruncationMode());
         listView->SetVirtualDataProvider(m_summaryStatsData);
