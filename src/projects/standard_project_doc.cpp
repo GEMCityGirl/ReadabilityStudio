@@ -3685,7 +3685,7 @@ void ProjectDoc::DisplayStatistics()
             tabularStatsList->EnableGridLines();
             tabularStatsList->EnableItemViewOnDblClick();
             tabularStatsList->InsertColumn(0, _(L"Statistic"));
-            tabularStatsList->InsertColumn(1, _(L"Count"));
+            tabularStatsList->InsertColumn(1, _(L"Value"));
             tabularStatsList->InsertColumn(2, _(L"Percentage"));
             tabularStatsList->SetVirtualDataProvider(view->GetSummaryStatisticsListData());
             }

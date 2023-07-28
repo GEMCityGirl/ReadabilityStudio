@@ -134,7 +134,7 @@ wxString ProjectReportFormat::FormatFormulaToHtml(const wxString& formula)
 
 //------------------------------------------------
 wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* project,
-                                                        const StatisticsReportInfo statsInfo,
+                                                        const StatisticsReportInfo& statsInfo,
                                                         const bool includeExplanation,
                                                         const wxColour attentionColor,
                                                         ListCtrlExDataProviderBase* listData)
@@ -260,7 +260,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0,
-                    _(L"Conjunctions used:"));
+                    _(L"Number of conjunctions used"));
                 listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(MAX_DOLCH_CONJUNCTION_WORDS-project->GetUnusedDolchConjunctions(), 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -294,7 +294,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Prepositions used:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of prepositions used"));
                 listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(MAX_DOLCH_PREPOSITION_WORDS-project->GetUnusedDolchPrepositions(), 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -330,7 +330,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Pronouns used:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of pronouns used"));
                 listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(MAX_DOLCH_PRONOUN_WORDS-project->GetUnusedDolchPronouns(), 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -363,7 +363,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Adverbs used:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of adverbs used"));
                 listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(MAX_DOLCH_ADVERB_WORDS-project->GetUnusedDolchAdverbs(), 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -396,7 +396,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Adjectives used:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of adjectives used"));
                 listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(MAX_DOLCH_ADJECTIVE_WORDS-project->GetUnusedDolchAdjectives(), 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -429,7 +429,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Verbs used:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of verbs used"));
                 listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(MAX_DOLCH_VERBS-project->GetUnusedDolchVerbs(), 0,
                     wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -464,7 +464,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Nouns used:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of nouns used"));
                 listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(MAX_DOLCH_NOUNS-project->GetUnusedDolchNouns(), 0,
                     wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -543,7 +543,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch words:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch words"));
                 listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(totalDolchWords, 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -578,7 +578,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch words (excluding nouns):"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch words (excluding nouns)"));
                 listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(totalDolchWordsExcludingNouns, 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -614,7 +614,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of non-Dolch words:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of non-Dolch words"));
                 listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(project->GetTotalWords()-totalDolchWords, 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -639,7 +639,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch conjunctions:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch conjunctions"));
                 listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(project->GetDolchConjunctionCounts().second, 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -656,7 +656,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
                     wxNumberFormatter::Style::Style_WithThousandsSep), L"");
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Dolch conjunctions:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Dolch conjunctions"));
                 listData->SetItemText(listDataItemCount++, 1,
                     wxNumberFormatter::ToString(project->GetDolchConjunctionCounts().first, 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -665,17 +665,19 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
             }
         // Prepositions words
             {
-            const wxString valueStr = wxNumberFormatter::ToString(project->GetDolchPrepositionWordCounts().second, 0,
+            const wxString valueStr = wxNumberFormatter::ToString(
+                project->GetDolchPrepositionWordCounts().second, 0,
                 wxNumberFormatter::Style::Style_NoTrailingZeroes|
                 wxNumberFormatter::Style::Style_WithThousandsSep);
             const wxString percentStr = wxString(L"(" + wxNumberFormatter::ToString(
-                safe_divide<double>(project->GetDolchPrepositionWordCounts().second, project->GetTotalWords())*100, 1,
+                safe_divide<double>(project->GetDolchPrepositionWordCounts().second,
+                                    project->GetTotalWords())*100, 1,
                 wxNumberFormatter::Style::Style_NoTrailingZeroes|
                 wxNumberFormatter::Style::Style_WithThousandsSep) + L"% " + _(L"of all words)"));
             HTMLText += formatRow(_(L"Number of Dolch prepositions:"), valueStr, percentStr);
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch prepositions:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch prepositions"));
                 listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(project->GetDolchPrepositionWordCounts().second, 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -693,7 +695,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
                     wxNumberFormatter::Style::Style_WithThousandsSep), L"");
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Dolch prepositions:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Dolch prepositions"));
                 listData->SetItemText(listDataItemCount++, 1,
                     wxNumberFormatter::ToString(project->GetDolchPrepositionWordCounts().first, 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -713,7 +715,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch pronouns:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch pronouns"));
                 listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(project->GetDolchPronounCounts().second, 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -730,7 +732,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
                     wxNumberFormatter::Style::Style_WithThousandsSep), L"");
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Dolch pronouns:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Dolch pronouns"));
                 listData->SetItemText(listDataItemCount++, 1,
                     wxNumberFormatter::ToString(project->GetDolchPronounCounts().first, 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -750,7 +752,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch adverbs:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch adverbs"));
                 listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(project->GetDolchAdverbCounts().second, 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -767,7 +769,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
                     wxNumberFormatter::Style::Style_WithThousandsSep), L"");
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Dolch adverbs:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Dolch adverbs"));
                 listData->SetItemText(listDataItemCount++, 1,
                     wxNumberFormatter::ToString(project->GetDolchAdverbCounts().first, 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -787,8 +789,11 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch adjectives:"));
-                listData->SetItemText(listDataItemCount, 1, wxNumberFormatter::ToString(project->GetDolchAdjectiveCounts().second, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch adjectives"));
+                listData->SetItemText(listDataItemCount, 1,
+                    wxNumberFormatter::ToString(project->GetDolchAdjectiveCounts().second, 0,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes|
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
                 listData->SetItemText(listDataItemCount++, 2, wxNumberFormatter::ToString(
                     safe_divide<double>(project->GetDolchAdjectiveCounts().second,
                         project->GetTotalWords())*100, 1,
@@ -802,7 +807,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
                     wxNumberFormatter::Style::Style_WithThousandsSep), L"");
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Dolch adjectives:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Dolch adjectives"));
                 listData->SetItemText(listDataItemCount++, 1,
                     wxNumberFormatter::ToString(project->GetDolchAdjectiveCounts().first, 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -823,7 +828,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch verbs:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch verbs"));
                 listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(project->GetDolchVerbsCounts().second, 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -841,7 +846,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
                     wxNumberFormatter::Style::Style_WithThousandsSep), L"");
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Dolch verbs:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Dolch verbs"));
                 listData->SetItemText(listDataItemCount++, 1,
                     wxNumberFormatter::ToString(project->GetDolchVerbsCounts().first, 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -860,7 +865,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
             HTMLText += formatRow(_(L"Number of Dolch nouns:"), valueStr, percentStr);
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch nouns:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch nouns"));
                 listData->SetItemText(listDataItemCount, 1,
                     wxNumberFormatter::ToString(project->GetDolchNounCounts().second, 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -878,7 +883,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
                     wxNumberFormatter::Style::Style_WithThousandsSep), L"");
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Dolch nouns:"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Dolch nouns"));
                 listData->SetItemText(listDataItemCount++, 1,
                     wxNumberFormatter::ToString(project->GetDolchNounCounts().first, 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -958,7 +963,7 @@ wxString ProjectReportFormat::FormatHtmlReportEnd()
 
 //------------------------------------------------
 wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
-                                                   const StatisticsReportInfo statsInfo,
+                                                   const StatisticsReportInfo& statsInfo,
                                                    const wxColour attentionColor,
                                                    ListCtrlExDataProviderBase* listData)
     {
@@ -1742,14 +1747,14 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 }
             }
 
-        if (statsInfo.IsExtendedInformationEnabled())
+        if (project->IsIncludingDolchSightWords())
             {
-            // resize the list grid (if using one) to fit its data, then the call to Dolch
-            // stats will append to that and resize it again. Then we will add some more rows
-            // for the rest of the stats.
+            // Resize the list grid (if using one) to fit its data, then the call to Dolch
+            // stats will append to that and resize it again. 
             if (listData)
                 { listData->SetSize(listDataItemCount, 3); }
             HTMLText += FormatDolchStatisticsInfo(project, statsInfo, false, attentionColor, listData);
+            // ...then we will add some more rows for the rest of the stats.
             if (listData)
                 {
                 listDataItemCount = listData->GetItemCount();
@@ -2066,7 +2071,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             currentLabel.clear();
             if (project->GetMisspelledWordCount())
                 { currentLabel += L"<a href=\"#Misspellings\">"; }
-            currentLabel += _(L"Misspellings");
+            currentLabel += _(L"Misspellings:");
             if (project->GetMisspelledWordCount())
                 { currentLabel += L"</a>"; }
             HTMLText += formatRow(currentLabel,
@@ -2076,7 +2081,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Misspellings"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of misspellings"));
                 listData->SetItemText(listDataItemCount++, 1,
                     wxNumberFormatter::ToString(project->GetMisspelledWordCount(), 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -2089,7 +2094,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             currentLabel.clear();
             if (project->GetDuplicateWordCount())
                 { currentLabel += L"<a href=\"#RepeatedWords\">"; }
-            currentLabel += _(L"Repeated words");
+            currentLabel += _(L"Repeated words:");
             if (project->GetDuplicateWordCount())
                 { currentLabel += L"</a>"; }
             HTMLText += formatRow(currentLabel,
@@ -2099,7 +2104,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Repeated words"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of repeated words"));
                 listData->SetItemText(listDataItemCount++, 1,
                     wxNumberFormatter::ToString(project->GetDuplicateWordCount(), 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -2115,7 +2120,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 currentLabel.clear();
                 if (project->GetMismatchedArticleCount())
                     { currentLabel += L"<a href=\"#MismatchedArtcles\">"; }
-                currentLabel += _(L"Article mismatches");
+                currentLabel += _(L"Article mismatches:");
                 if (project->GetMismatchedArticleCount())
                     { currentLabel += L"</a>"; }
                 HTMLText += formatRow(currentLabel,
@@ -2125,7 +2130,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
 
                 if (listData)
                     {
-                    listData->SetItemText(listDataItemCount, 0, _(L"Article mismatches"));
+                    listData->SetItemText(listDataItemCount, 0, _(L"Number of article mismatches"));
                     listData->SetItemText(listDataItemCount++, 1,
                         wxNumberFormatter::ToString(project->GetMismatchedArticleCount(), 0,
                             wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -2138,7 +2143,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 currentLabel.clear();
                 if (project->GetWordingErrorCount())
                     { currentLabel += L"<a href=\"#WordingErrors\">"; }
-                currentLabel += _(L"Wording errors");
+                currentLabel += _(L"Wording errors:");
                 if (project->GetWordingErrorCount())
                     { currentLabel += L"</a>"; }
                 HTMLText += formatRow(currentLabel,
@@ -2148,7 +2153,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
 
                 if (listData)
                     {
-                    listData->SetItemText(listDataItemCount, 0, _(L"Wording errors"));
+                    listData->SetItemText(listDataItemCount, 0, _(L"Number of wording errors"));
                     listData->SetItemText(listDataItemCount++, 1,
                         wxNumberFormatter::ToString(project->GetWordingErrorCount(), 0,
                             wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -2161,7 +2166,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 currentLabel.clear();
                 if (project->GetRedundantPhraseCount())
                     { currentLabel += L"<a href=\"#RedundantPhrases\">"; }
-                currentLabel += _(L"Redundant phrases");
+                currentLabel += _(L"Redundant phrases:");
                 if (project->GetRedundantPhraseCount())
                     { currentLabel += L"</a>"; }
                 HTMLText += formatRow(currentLabel,
@@ -2171,7 +2176,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
 
                 if (listData)
                     {
-                    listData->SetItemText(listDataItemCount, 0, _(L"Redundant phrases"));
+                    listData->SetItemText(listDataItemCount, 0, _(L"Number of redundant phrases"));
                     listData->SetItemText(listDataItemCount++, 1,
                         wxNumberFormatter::ToString(project->GetRedundantPhraseCount(), 0,
                             wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -2184,7 +2189,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 currentLabel.clear();
                 if (project->GetOverusedWordsBySentenceCount())
                     { currentLabel += L"<a href=\"#OverusedWordsBySentence\">"; }
-                currentLabel += _(L"Overused words (x sentence)");
+                currentLabel += _(L"Overused words (x sentence):");
                 if (project->GetOverusedWordsBySentenceCount())
                     { currentLabel += L"</a>"; }
                 HTMLText += formatRow(currentLabel,
@@ -2194,7 +2199,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
 
                 if (listData)
                     {
-                    listData->SetItemText(listDataItemCount, 0, _(L"Overused words (x sentence)"));
+                    listData->SetItemText(listDataItemCount, 0, _(L"Number of overused words (x sentence)"));
                     listData->SetItemText(listDataItemCount++, 1,
                         wxNumberFormatter::ToString(project->GetOverusedWordsBySentenceCount(), 0,
                             wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -2207,7 +2212,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 currentLabel.clear();
                 if (project->GetWordyPhraseCount())
                     { currentLabel += L"<a href=\"#WordyPhrases\">"; }
-                currentLabel += _(L"Wordy items");
+                currentLabel += _(L"Wordy items:");
                 if (project->GetWordyPhraseCount())
                     { currentLabel += L"</a>"; }
                 HTMLText += formatRow(currentLabel,
@@ -2217,7 +2222,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
 
                 if (listData)
                     {
-                    listData->SetItemText(listDataItemCount, 0, _(L"Wordy items"));
+                    listData->SetItemText(listDataItemCount, 0, _(L"Number of wordy items"));
                     listData->SetItemText(listDataItemCount++, 1,
                         wxNumberFormatter::ToString(project->GetWordyPhraseCount(), 0,
                             wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -2230,7 +2235,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 currentLabel.clear();
                 if (project->GetClicheCount() > 0)
                     { currentLabel += L"<a href=\"#Cliches\">"; }
-                currentLabel += BaseProjectView::GetClichesTabLabel();
+                currentLabel += BaseProjectView::GetClichesTabLabel() + L":";
                 if (project->GetClicheCount())
                     { currentLabel += L"</a>"; }
                 HTMLText += formatRow(currentLabel,
@@ -2240,7 +2245,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
 
                 if (listData)
                     {
-                    listData->SetItemText(listDataItemCount, 0, BaseProjectView::GetClichesTabLabel());
+                    listData->SetItemText(listDataItemCount, 0, _(L"Number of Clich\351s"));
                     listData->SetItemText(listDataItemCount++, 1,
                         wxNumberFormatter::ToString(project->GetClicheCount(), 0,
                             wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -2253,7 +2258,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 currentLabel.clear();
                 if (project->GetPassiveVoicesCount())
                     { currentLabel += L"<a href=\"#PassiveVoice\">"; }
-                currentLabel += _(L"Passive voice");
+                currentLabel += _(L"Passive voice:");
                 if (project->GetPassiveVoicesCount())
                     { currentLabel += L"</a>"; }
                 HTMLText += formatRow(currentLabel,
@@ -2263,7 +2268,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
 
                 if (listData)
                     {
-                    listData->SetItemText(listDataItemCount, 0, _(L"Passive voice"));
+                    listData->SetItemText(listDataItemCount, 0, _(L"Number of passive voices"));
                     listData->SetItemText(listDataItemCount++, 1,
                         wxNumberFormatter::ToString(project->GetPassiveVoicesCount(), 0,
                             wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -2277,7 +2282,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             currentLabel.clear();
             if (project->GetSentenceStartingWithConjunctionsCount() > 0)
                 { currentLabel += L"<a href=\"#SentenceStartingWithConjunctions\">"; }
-            currentLabel += BaseProjectView::GetSentenceStartingWithConjunctionsLabel();
+            currentLabel += BaseProjectView::GetSentenceStartingWithConjunctionsLabel() + L":";
             if (project->GetSentenceStartingWithConjunctionsCount())
                 { currentLabel += L"</a>"; }
             HTMLText += formatRow(currentLabel,
@@ -2289,7 +2294,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0,
-                    BaseProjectView::GetSentenceStartingWithConjunctionsLabel());
+                    _(L"Number of sentences that begin with conjunctions"));
                 listData->SetItemText(listDataItemCount++, 1,
                     wxNumberFormatter::ToString(project->GetSentenceStartingWithConjunctionsCount(), 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -2304,7 +2309,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 { currentLabel += L"<a href=\"#SentenceStartingWithLowercase\">"; }
             if (project->GetSentenceStartMustBeUppercased())
                 { currentLabel += L"* "; }
-            currentLabel += BaseProjectView::GetSentenceStartingWithLowercaseLabel();
+            currentLabel += BaseProjectView::GetSentenceStartingWithLowercaseLabel() + L":";
             if (project->GetSentenceStartingWithLowercaseCount())
                 { currentLabel += L"</a>"; }
             HTMLText += formatRow(currentLabel,
@@ -2315,7 +2320,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0,
-                    BaseProjectView::GetSentenceStartingWithLowercaseLabel());
+                    _(L"Number of Sentences that begin with lowercased words"));
                 listData->SetItemText(listDataItemCount++, 1,
                     wxNumberFormatter::ToString(project->GetSentenceStartingWithLowercaseCount(), 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
@@ -2351,16 +2356,16 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
         // file path (if not manually entered text)
         if (project->GetOriginalDocumentFilePath().length())
             {
-            HTMLText += formatRow(_(L"Path"), wxString{},
+            HTMLText += formatRow(_(L"Path:"), wxString{},
                 project->GetOriginalDocumentFilePath());
             }
         if (project->GetAppendedDocumentFilePath().length())
             {
-            HTMLText += formatRow(_(L"Additional Document Path"), wxString{},
+            HTMLText += formatRow(_(L"Additional document path:"), wxString{},
                 project->GetAppendedDocumentFilePath());
             }
         // text size
-        HTMLText += formatRow(_(L"Text size"), wxString{},
+        HTMLText += formatRow(_(L"Text size:"), wxString{},
             wxNumberFormatter::ToString(safe_divide<double>(project->GetTextSize(),1024), 2,
                 wxNumberFormatter::Style::Style_NoTrailingZeroes|
                 wxNumberFormatter::Style::Style_WithThousandsSep) +

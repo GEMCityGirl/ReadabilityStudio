@@ -63,7 +63,7 @@ public:
             Pass in null to ignore this parameter.*/
     [[nodiscard]]
     static wxString FormatStatisticsInfo(const BaseProject* project,
-                                         const StatisticsReportInfo statsInfo,
+                                         const StatisticsReportInfo& statsInfo,
                                          const wxColour attentionColor,
                                          ListCtrlExDataProviderBase* listData);
     /** @returns Dolch statistics information from a project.
@@ -79,7 +79,7 @@ public:
                Dolch statistics to its own @c listData argument.*/
     [[nodiscard]]
     static wxString FormatDolchStatisticsInfo(const BaseProject* project,
-                                              const StatisticsReportInfo statsInfo,
+                                              const StatisticsReportInfo& statsInfo,
                                               const bool includeExplanation,
                                               const wxColour attentionColor,
                                               ListCtrlExDataProviderBase* listData);
