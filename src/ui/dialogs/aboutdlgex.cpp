@@ -151,7 +151,7 @@ void AboutDialogEx::CreateControls()
         auto productInfoGrid = new wxFlexGridSizer(2, wxSize(wxSizerFlags::GetDefaultBorder(), 0));
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Version:")));
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, m_appVersion));
-    #ifdef __WXDEBUG__
+    #ifndef NDEBUG
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Build:")));
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Debug")));
     #endif

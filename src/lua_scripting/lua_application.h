@@ -199,7 +199,7 @@ namespace LuaScripting
             { "MergePhraseLists", MergePhraseLists },
             { "QAVerify", QAVerify },
             { "CheckHtmlLinks", CheckHtmlLinks },
-        #ifdef __WXDEBUG__
+        #ifndef NDEBUG
             // just used in debug builds for testing crash reporter
             { _DT("Crash"), Crash },
         #endif
