@@ -1012,7 +1012,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
                         }
                     }
                 }
-        #if wxDEBUG_LEVEL >= 2
+        #ifndef NDEBUG
             if (!lily_of_the_valley::xlsx_extract_text::verify_sheet(wrk).first)
                 {
                 wxFAIL_MSG(wxString(L"Excel worksheet cell's out of order. First incorrect cell: ") +

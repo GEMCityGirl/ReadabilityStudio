@@ -1672,8 +1672,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             toolButtonBar->AddButton(XRCID("ID_WEB_HARVEST"), _(L"Web Harvester"),
                 readRibbonButtonSVG(L"ribbon/web-export.svg"),
                 _(L"Download and analyze multiple webpages."));
-            if (wxDEBUG_LEVEL >= 2)
-                {
+        #ifndef NDEBUG
                 toolButtonBar->AddButton(XRCID("ID_CHAPTER_SPLIT"),
                     _(L"Chapter Split"),
                     readRibbonButtonSVG(L"ribbon/chapter-split.svg"),
@@ -1682,7 +1681,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     _(L"Find Duplicates"),
                    readRibbonButtonSVG(L"ribbon/duplicate-files.svg"),
                     _(L"Search for (and remove) duplicate files."));
-                }
+        #endif
             toolButtonBar->AddButton(XRCID("ID_VIEW_LOG_REPORT"),
                     _(L"Log Report"),
                      readRibbonButtonSVG(L"ribbon/log-book.svg"));
@@ -1692,7 +1691,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     _(L"Lua Script"),
                     readRibbonButtonSVG(L"ribbon/lua.svg"));
                 }
-            #if wxDEBUG_LEVEL >= 2
+            #ifndef NDEBUG
                 #ifdef ENABLE_PROFILING
                     toolButtonBar->AddButton(XRCID("ID_VIEW_PROFILE_REPORT"),
                         _(L"Profile Report"),
@@ -1881,7 +1880,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 _(L"Lua Script"),
                 readRibbonButtonSVG(L"ribbon/lua.svg"));
             }
-        #if wxDEBUG_LEVEL >= 2
+        #ifndef NDEBUG
             #ifdef ENABLE_PROFILING
                 toolButtonBar->AddButton(XRCID("ID_VIEW_PROFILE_REPORT"),
                     _(L"Profile Report"),

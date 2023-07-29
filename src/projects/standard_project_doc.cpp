@@ -2079,7 +2079,7 @@ void ProjectDoc::DisplayWordsBreakdown()
         view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID);
         }
 
-#if wxDEBUG_LEVEL >= 2
+#ifndef NDEBUG
     // display it
     listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
         BaseProjectView::PROPER_NOUNS_LIST_PAGE_ID));

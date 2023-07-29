@@ -539,7 +539,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int Crash(lua_State*)
         {
-#if wxDEBUG_LEVEL >= 2
+#ifndef NDEBUG
         wxString* bogus{ nullptr };
         bogus->Length();
 #endif
