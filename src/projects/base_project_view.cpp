@@ -251,7 +251,7 @@ void BaseProjectView::OnBarStyleSelected(wxCommandEvent& event)
 void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(baseDoc, L"Failed to get document!");
+    assert(baseDoc && L"Failed to get document!");
     if (!baseDoc)
         { return; }
 
@@ -287,7 +287,7 @@ void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
 void BaseProjectView::OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(baseDoc, L"Failed to get document!");
+    assert(baseDoc && L"Failed to get document!");
     if (!baseDoc)
         { return; }
 
@@ -311,7 +311,7 @@ void BaseProjectView::OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEve
 void BaseProjectView::OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(baseDoc, L"Failed to get document!");
+    assert(baseDoc && L"Failed to get document!");
     if (!baseDoc)
         { return; }
 
@@ -335,7 +335,7 @@ void BaseProjectView::OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& e
 void BaseProjectView::OnBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(baseDoc, L"Failed to get document!");
+    assert(baseDoc && L"Failed to get document!");
     if (!baseDoc)
         { return; }
 
@@ -408,7 +408,7 @@ void BaseProjectView::OnBoxPlotShowLabelsButton([[maybe_unused]] wxRibbonButtonB
 void BaseProjectView::OnBarLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(doc, L"Failed to get document!");
+    assert(doc && L"Failed to get document!");
     if (!doc)
         { return; }
 
@@ -430,7 +430,7 @@ void BaseProjectView::OnFleschConnectLinesButton([[maybe_unused]] wxRibbonButton
 void BaseProjectView::OnEnglishLabels([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(doc, L"Failed to get document!");
+    assert(doc && L"Failed to get document!");
     if (!doc)
         { return; }
 
@@ -443,7 +443,7 @@ void BaseProjectView::OnEnglishLabels([[maybe_unused]] wxRibbonButtonBarEvent& e
 void BaseProjectView::OnGraphLogo([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(doc, L"Failed to get document!");
+    assert(doc && L"Failed to get document!");
     if (!doc)
         { return; }
 
@@ -509,7 +509,7 @@ void BaseProjectView::OnGraphColorFade([[maybe_unused]] wxCommandEvent& event)
 void BaseProjectView::OnEditGraphBackgroundImage([[maybe_unused]] wxCommandEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(doc, L"Failed to get document!");
+    assert(doc && L"Failed to get document!");
     if (!doc)
         { return; }
 
@@ -632,7 +632,7 @@ void BaseProjectView::OnEditGraphOpacity(wxCommandEvent& event)
         };
 
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    wxASSERT_LEVEL_2_MSG(doc, L"Failed to get document!");
+    assert(doc && L"Failed to get document!");
     if (!doc)
         { return; }
 
@@ -1188,7 +1188,7 @@ void BaseProjectView::OnCustomTestBundle(wxCommandEvent& event)
     if (GetDocument() )
         {
         auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-        wxASSERT_LEVEL_2(doc);
+        assert(doc);
         if (doc && doc->IsSafeToUpdate())
             {
             const bool hadDolchSightWords = doc->IsIncludingDolchSightWords();

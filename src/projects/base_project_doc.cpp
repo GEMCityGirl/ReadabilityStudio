@@ -419,7 +419,7 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
     canvas->SetBackgroundImage(m_graphBackgroundImage, GetGraphBackGroundOpacity());
 
     auto graph = std::dynamic_pointer_cast<Wisteria::Graphs::Graph2D>(canvas->GetFixedObject(0, 0));
-    wxASSERT_LEVEL_2_MSG(graph, L"No graph on the canvas!");
+    assert(graph && L"No graph on the canvas!");
 
     graph->SetBackgroundColor(
         Colors::ColorContrast::ChangeOpacity(GetPlotBackGroundColor(),
@@ -710,7 +710,7 @@ bool BaseProjectDoc::AddGlobalCustomReadabilityTest(CustomReadabilityTest& custo
     m_custom_word_tests.push_back(customTest);
 
     MainFrame* mainFrame = dynamic_cast<MainFrame*>(wxGetApp().GetMainFrame());
-    wxASSERT_LEVEL_2(mainFrame);
+    assert(mainFrame);
     if (mainFrame)
         { mainFrame->AddCustomTestToMenus(customTest.get_name().c_str()); }
 

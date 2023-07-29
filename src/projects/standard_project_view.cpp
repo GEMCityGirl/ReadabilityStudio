@@ -1835,7 +1835,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         {
         m_activeWindow = GetReadabilityResultsView().FindWindowById(event.GetInt());
         // cppcheck-suppress assertWithSideEffect
-        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
+        assert(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1956,7 +1956,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         {
         m_activeWindow = GetReadabilityResultsView().FindWindowById(event.GetInt());
         // cppcheck-suppress assertWithSideEffect
-        wxASSERT_LEVEL_2(GetActiveProjectWindow());
+        assert(GetActiveProjectWindow());
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2086,7 +2086,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         {
         m_activeWindow = GetSentencesBreakdownView().FindWindowById(event.GetInt());
         // cppcheck-suppress assertWithSideEffect
-        wxASSERT_LEVEL_2(GetActiveProjectWindow());
+        assert(GetActiveProjectWindow());
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2242,7 +2242,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         {
         m_activeWindow = GetSummaryView().FindWindowById(event.GetInt());
         // cppcheck-suppress assertWithSideEffect
-        wxASSERT_LEVEL_2(GetActiveProjectWindow());
+        assert(GetActiveProjectWindow());
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2335,7 +2335,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         if (!GetActiveProjectWindow())
             { m_activeWindow = GetWordsBreakdownView().FindWindowById(event.GetInt()); }
         // cppcheck-suppress assertWithSideEffect
-        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
+        assert(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2503,7 +2503,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         {
         m_activeWindow = GetGrammarView().FindWindowById(event.GetInt());
         // cppcheck-suppress assertWithSideEffect
-        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
+        assert(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2596,7 +2596,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         {
         m_activeWindow = GetDolchSightWordsView().FindWindowById(event.GetInt());
         // cppcheck-suppress assertWithSideEffect
-        wxASSERT_LEVEL_2(GetActiveProjectWindow() != nullptr);
+        assert(GetActiveProjectWindow() != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();

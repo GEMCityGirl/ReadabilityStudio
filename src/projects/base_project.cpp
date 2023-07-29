@@ -7946,7 +7946,7 @@ void BaseProject::HandleFailedTestCalculation(const wxString& testName)
 //------------------------------------------------
 bool BaseProject::ReviewTestGoal(const wxString& testName, const double score)
     {
-    wxASSERT_LEVEL_2_MSG(!std::isnan(score) ||
+    assert((!std::isnan(score) ||
         // doesn't have an actual score
         testName == ReadabilityMessages::GetDolchLabel() ||
         // these tests can fail
@@ -7954,7 +7954,7 @@ bool BaseProject::ReviewTestGoal(const wxString& testName, const double score)
         testName == ReadabilityMessages::FRY() ||
         testName == ReadabilityMessages::GPM_FRY() ||
         testName == ReadabilityMessages::RAYGOR() ||
-        testName == ReadabilityMessages::SCHWARTZ(), L"Score should not be NaN!");
+        testName == ReadabilityMessages::SCHWARTZ()) && L"Score should not be NaN!");
     if (GetTestGoals().size() == 0)
         { return false; }
 
@@ -7992,7 +7992,7 @@ void BaseProject::ReviewStatGoals()
 //------------------------------------------------
 bool BaseProject::ReviewStatGoal(const wxString& statName, const double value)
     {
-    wxASSERT_LEVEL_2_MSG(!std::isnan(value), L"Stat value should not be NaN!");
+    assert(!std::isnan(value) && L"Stat value should not be NaN!");
     if (GetStatGoals().size() == 0)
         { return false; }
 

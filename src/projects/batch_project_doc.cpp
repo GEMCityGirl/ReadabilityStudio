@@ -4198,7 +4198,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                     }
 
                 auto boxPlot = std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
-                wxASSERT_LEVEL_2_MSG(boxPlot, "Invalid dynamic cast to box plot!");
+                assert(boxPlot && "Invalid dynamic cast to box plot!");
                 boxPlot->SetBrushScheme(
                     std::make_shared<Brushes::Schemes::BrushScheme>(
                         Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
@@ -4271,7 +4271,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                     }
 
                 auto boxPlot = std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
-                wxASSERT_LEVEL_2_MSG(boxPlot, "Invalid dynamic cast to box plot!");
+                assert(boxPlot && "Invalid dynamic cast to box plot!");
                 boxPlot->SetBrushScheme(
                     std::make_shared<Brushes::Schemes::BrushScheme>(
                         Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
@@ -4422,7 +4422,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
                 auto boxPlot = std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
-                wxASSERT_LEVEL_2_MSG(boxPlot, "Invalid dynamic cast to box plot!");
+                assert(boxPlot && "Invalid dynamic cast to box plot!");
                 boxPlot->SetBrushScheme(
                     std::make_shared<Brushes::Schemes::BrushScheme>(
                         Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
@@ -4488,7 +4488,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
                 auto boxPlot = std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
-                wxASSERT_LEVEL_2_MSG(boxPlot, "Invalid dynamic cast to box plot!");
+                assert(boxPlot && "Invalid dynamic cast to box plot!");
                 boxPlot->SetData(scoreDataset,
                     GetScoreColumnName(),
                     // if more documents than groups, then use grouping
@@ -4665,7 +4665,7 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
         UpdateGraphOptions(canvas);
 
         auto histogram = std::dynamic_pointer_cast<Histogram>(canvas->GetFixedObject(0, 0));
-        wxASSERT_LEVEL_2_MSG(histogram, "Invalid histogram cast!");
+        assert(histogram && "Invalid histogram cast!");
         histogram->SetBrushScheme(
             std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
                 *std::make_shared<Wisteria::Colors::Schemes::EarthTones>()));
