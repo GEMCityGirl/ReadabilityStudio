@@ -12,6 +12,8 @@ docs/doxygen/html
 /tests/.vs/
 /tests/out/
 *.log
+installers/Windows/Output/
+installers/Windows/release/
 
 # Configuration files
 Docs/Coding-Bible/.Rproj.user

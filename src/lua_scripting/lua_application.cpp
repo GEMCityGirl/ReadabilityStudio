@@ -541,7 +541,7 @@ namespace LuaScripting
         {
 #ifndef NDEBUG
         wxString* bogus{ nullptr };
-        bogus->Length();
+        bogus->length();
 #endif
         return 0;
         }
