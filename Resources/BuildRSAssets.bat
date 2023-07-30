@@ -8,7 +8,7 @@ XCOPY /Y /R /S "Z:\ReadabilityStudio\Docs\ReadabilityStudioAPI\docs" "Z:\Project
 
 ::Lua Reference
 DEL /Q /S "Z:\Projects\Readability Studio\LuaManual\"
-XCOPY /Y /R /S "Z:\SRC\lua\doc\*.*" "Z:\Projects\Readability Studio\LuaManual\"
+XCOPY /Y /R /S "Z:\src\lua\doc\*.*" "Z:\Projects\Readability Studio\LuaManual\"
 
 ::Lua scripting files
 XCOPY /Y /R Z:\ReadabilityStudio\Resources\Scripting\RS* "z:\Projects\Readability Studio\"
@@ -21,8 +21,7 @@ MOVE /Y Z:\ReadabilityStudio\Resources\res.zip Z:\ReadabilityStudio\Resources\re
 XCOPY /Y /R Z:\ReadabilityStudio\Resources\res.wad "z:\Projects\Readability Studio\vc_mswud\"
 XCOPY /Y /R Z:\ReadabilityStudio\Resources\res.wad "z:\Projects\Readability Studio\vc_mswu\"
 XCOPY /Y /R Z:\ReadabilityStudio\Resources\res.wad "z:\Projects\Readability Studio\"
-XCOPY /Y /R Z:\ReadabilityStudio\Resources\res.wad "Z:\Installers\ReadabilityStudio\UNIX Installer\release\ReadabilityStudio\"
-XCOPY /Y /R Z:\ReadabilityStudio\Resources\res.wad "Z:\Installers\ReadabilityStudio\Windows Installer\release\"
+XCOPY /Y /R Z:\ReadabilityStudio\Resources\res.wad "Z:\Installers\Windows\release\"
 DEL Z:\ReadabilityStudio\Resources\res.wad
 
 ::create the word and phrase file
@@ -33,17 +32,10 @@ MOVE /Y Z:\ReadabilityStudio\Resources\Words.zip Z:\ReadabilityStudio\Resources\
 XCOPY /Y /R Z:\ReadabilityStudio\Resources\Words.wad "z:\Projects\Readability Studio\vc_mswud\"
 XCOPY /Y /R Z:\ReadabilityStudio\Resources\Words.wad "z:\Projects\Readability Studio\vc_mswu\"
 XCOPY /Y /R Z:\ReadabilityStudio\Resources\Words.wad "z:\Projects\Readability Studio\"
-XCOPY /Y /R Z:\ReadabilityStudio\Resources\Words.wad "Z:\Installers\ReadabilityStudio\UNIX Installer\release\ReadabilityStudio\"
-XCOPY /Y /R Z:\ReadabilityStudio\Resources\Words.wad "Z:\Installers\ReadabilityStudio\Windows Installer\release\"
+XCOPY /Y /R Z:\ReadabilityStudio\Resources\Words.wad "Z:\Installers\Windows\release\"
 DEL Z:\ReadabilityStudio\Resources\Words.wad
 
 ::copy over production program files
-XCOPY /Y /R "Z:\Projects\Readability Studio\vc_mswu\*.exe" "Z:\Installers\ReadabilityStudio\Windows Installer\release\"
-XCOPY /Y /R "Z:\SRC\lua\src\*.dll" "Z:\Installers\ReadabilityStudio\Windows Installer\release\"
-XCOPY /Y /R "Z:\SRC\curl\builds\libcurl-vc15-x86-release-dll-ipv6-sspi-winssl\bin\*.dll" "Z:\Installers\ReadabilityStudio\Windows Installer\release\"
-
-::copy over the other files to the non-Windows installers
-XCOPY /Y /R Z:\Installers\redist\license.rtf "Z:\Installers\ReadabilityStudio\UNIX Installer\release\ReadabilityStudio\"
-mkdir "Z:\Installers\ReadabilityStudio\UNIX Installer\release\ReadabilityStudio\examples"
-cd "Z:\Installers\ReadabilityStudio\UNIX Installer\release\ReadabilityStudio\examples"
-XCOPY /Y /R Z:\ReadabilityStudio\Examples /e
+XCOPY /Y /R "Z:\Projects\Readability Studio\vc_mswu\*.exe" "Z:\Installers\Windows\release\"
+XCOPY /Y /R "Z:\SRC\lua\src\*.dll" "Z:\Installers\Windows\release\"
+XCOPY /Y /R "Z:\SRC\curl\builds\libcurl-vc15-x86-release-dll-ipv6-sspi-winssl\bin\*.dll" "Z:\Installers\Windows\release\"
