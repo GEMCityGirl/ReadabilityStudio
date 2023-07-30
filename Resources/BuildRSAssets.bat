@@ -37,5 +37,3 @@ DEL Z:\ReadabilityStudio\Resources\Words.wad
 
 ::copy over production program files
 XCOPY /Y /R "Z:\Projects\Readability Studio\vc_mswu\*.exe" "Z:\Installers\Windows\release\"
-XCOPY /Y /R "Z:\SRC\lua\src\*.dll" "Z:\Installers\Windows\release\"
-XCOPY /Y /R "Z:\SRC\curl\builds\libcurl-vc15-x86-release-dll-ipv6-sspi-winssl\bin\*.dll" "Z:\Installers\Windows\release\"
