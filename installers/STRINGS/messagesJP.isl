@@ -1,0 +1,15 @@
+﻿[CustomMessages]
+WindowsInstallerComplete=Windows installerによる更新完了。本更新を進める前にコンピューターの再起動をしてください
+VCUpdateComplete=VC++ランタイムの更新完了。本更新を進める前にコンピューターの再起動をしてください
+FolderCreationError=インストールフォルダを作成できません。インストールは中断されました。
+ProgramFiles=プログラムファイル
+HelpFiles=ヘルプファイル
+Examples=例
+Documentation=ドキュメンテーション
+ConfiguringSystemUpdates=システム更新を構成中。お待ちください。
+Typical=標準
+Custom=カスタム
+VCUpdateError=VC++ランタイムのインストールエラー。ソフトウェアベンダに問い合わせください。
+UpdateErrorAnotherInstaller=他のインストールが既に実施中です。このインストール前に該当インストールを終了ください。
+UpdateErrorInvalidRights=インストールに必要な許可がありません。管理者としてインストールください。
+UpdateErrorTempUnwritable=TempフォルダがFULLもしくはアクセス不可能です。Tempフォルダが存在することと、更新可能であることを確認ください。

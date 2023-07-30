@@ -1,0 +1,7 @@
+Name: "en"; MessagesFile: "compiler:Default.isl,..\STRINGS\messagesEN.isl"
+Name: "fr"; MessagesFile: "compiler:Languages\French.isl,..\STRINGS\messagesFR.isl"
+Name: "de"; MessagesFile: "compiler:Languages\German.isl,..\STRINGS\messagesDE.isl"
+Name: "es"; MessagesFile: "compiler:Languages\Spanish.isl,..\STRINGS\messagesES.isl"
+Name: "pt"; MessagesFile: "compiler:Languages\Portuguese.isl,..\STRINGS\messagesPT.isl"
+Name: "jp"; MessagesFile: "compiler:Languages\Japanese.isl,..\STRINGS\messagesJP.isl"
+Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl,..\STRINGS\messagesRU.isl"
