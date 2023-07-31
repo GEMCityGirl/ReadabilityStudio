@@ -23,6 +23,4 @@
 	path = src/Wisteria-Dataviz
 	url = https://github.com/Blake-Madden/Wisteria-Dataviz.git
 	branch = main
-[submodule "docs/ReadabilityStudioDocs"]
-	path = docs/ReadabilityStudioDocs
-	url = https://github.com/Blake-Madden/ReadabilityStudioDocs.git
+
