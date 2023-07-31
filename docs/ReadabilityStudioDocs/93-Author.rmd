@@ -1,0 +1,9 @@
+<!-- PDF will include its own author page after the index-->
+
+```{r, eval=knitr::is_html_output(), results = 'asis', echo=F}
+if (length(rmarkdown::metadata$authorbio))
+  {
+  cat('\n\n# About the Author {.unnumbered}\n\n')
+  cat(rmarkdown::metadata$authorbio)
+  }
+```

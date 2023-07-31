@@ -1,0 +1,127 @@
+## Open-Source Tools & Content
+
+The following open-source software, artwork, and example files were used to create *Readability Studio*.
+
+### Documentation & Project Management Software {-}
+***
+
+#### Bookdown {-}
+Write HTML, PDF, ePub, and Kindle books with R Markdown.
+
+[https://www.bookdown.org/](https://www.bookdown.org/)
+
+#### Doxygen {-}
+Doxygen is the de facto standard tool for generating documentation from annotated C++ sources, but it also supports other popular programming languages such as C, Objective-C, C#, PHP, Java, Python, IDL (Corba, Microsoft, and UNO/OpenOffice flavors), Fortran, VHDL and to some extent D.
+
+[http://doxygen.nl/](http://doxygen.nl/)
+
+#### LibreOffice {-}
+LibreOffice is a free and powerful office suite, and a successor to OpenOffice.org (commonly known as OpenOffice). Its clean interface and feature-rich tools help you unleash your creativity and enhance your productivity.
+
+[https://www.libreoffice.org/](https://www.libreoffice.org/)
+
+#### MiKTeX {-}
+
+MiKTeX is a modern TeX distribution for Windows, Linux and macOS.
+
+[https://miktex.org/](https://miktex.org/)
+
+#### Pandoc {-}
+
+A universal document converter.
+
+If you need to convert files from one markup format into another, pandoc is your swiss-army knife.
+
+[https://pandoc.org/](https://pandoc.org/)
+
+### Software Development, Quality Assurance & Packaging Software {-}
+***
+
+#### 7-Zip {-}
+7-Zip is a file archiver with a high compression ratio.
+
+[https://www.7-zip.org/](https://www.7-zip.org/)
+
+#### CppUnit {-}
+CppUnit is the C++ port of the famous JUnit framework for unit testing. Test output is in XML for automatic testing and GUI based for supervised tests.
+
+[https://www.freedesktop.org/wiki/Software/cppunit/](https://www.freedesktop.org/wiki/Software/cppunit/)
+
+#### GCC, the GNU Compiler Collection {-}
+The GNU Compiler Collection includes front ends for C, C++, Objective-C, Fortran, Ada, Go, and D, as well as libraries for these languages (libstdc++,...). GCC was originally written as the compiler for the GNU operating system. The GNU system was developed to be 100% free software, free in the sense that it respects the user's freedom.  
+
+R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.
+
+[https://www.gnu.org/](https://www.gnu.org/)
+
+#### git {-}
+Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+
+[https://git-scm.com/](https://git-scm.com/)
+
+#### Inno Setup {-}
+Inno Setup is a free installer for Windows programs by Jordan Russell and Martijn Laan. First introduced in 1997, Inno Setup today rivals and even surpasses many commercial installers in feature set and stability.
+
+[https://jrsoftware.org](https://jrsoftware.org)
+
+#### KDevelop {-}
+A cross-platform IDE for C, C++, Python, QML/JavaScript and PHP.
+
+[https://www.kdevelop.org/](https://www.kdevelop.org/)
+
+### Artwork Editing Software {-}
+***
+
+#### GNU Image Manipulation Program {-}
+The Free & Open Source Image Editor.
+
+[https://www.gimp.org/](https://www.gimp.org/)
+
+#### ImageMagick {-}
+Use ImageMagick^®^ to create, edit, compose, or convert bitmap images. It can read and write images in a variety of formats (over 200) including PNG, JPEG, GIF, HEIC, TIFF, DPX, EXR, WebP, Postscript, PDF, and SVG. Use ImageMagick to resize, flip, mirror, rotate, distort, shear and transform images, adjust image colors, apply various special effects, or draw text, lines, polygons, ellipses and Bézier curves.
+
+[https://imagemagick.org/](https://imagemagick.org/)
+
+#### Inkscape {-}
+Inkscape is a professional vector graphics editor for Linux, Windows and macOS. It's free and open source.
+
+[https://inkscape.org/](https://inkscape.org/)
+
+### Data Analysis Software {-}
+***
+
+#### R {-}
+R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.
+
+[https://www.r-project.org/](https://www.r-project.org/)
+
+#### RStudio {-}
+
+Open source and enterprise-ready professional software for data science.
+
+[https://rstudio.com/](https://rstudio.com/)
+
+### Content {-}
+***
+
+#### Project Gutenberg {-}
+
+Project Gutenberg is a library of over 60,000 free eBooks. Choose among free epub and Kindle eBooks, download them or read them online. You will find the world's great literature here, with focus on older works for which U.S. copyright has expired. Thousands of volunteers digitized and diligently proofread the eBooks, for enjoyment and education.
+
+[https://www.gutenberg.org/](https://www.gutenberg.org/)
+
+#### Free SVG.org {-}
+
+Free SVG vector files. 
+
+Download and upload SVG images with CC0 public domain license.
+
+[https://freesvg.org/](https://freesvg.org/)
+
+#### Unsplash {-}
+
+The internet’s source of freely-usable images.
+
+Powered by creators everywhere.
+
+[https://unsplash.com/](https://unsplash.com/)

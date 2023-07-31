@@ -1,0 +1,23 @@
+## Proper Nouns\index{proper nouns!in difficult word lists} in the Difficult Word Lists {#proper-nouns-in-lists}
+
+When reviewing your difficult word lists, you may notice that some proper nouns are displayed with additional information. This is to help discern how many times the given word is considered unfamiliar in the document (for certain tests).
+
+Certain tests, such as [Spache Revised](#spache-test)\index{Spache Revised!proper nouns}, treat all proper nouns as familiar, even if they do not appear on the test's familiar-word list. However, if the same word occurs in the document as non-proper, then that instance will be considered unfamiliar if it is not on the test's familiar-word list.
+
+Consider the following example:
+
+::: {.fancyquotes data-latex=''}
+The *Daily Examiner* reported today that a tax examiner is reviewing the company's records. The examiner will have his full report by the end of the week.
+:::
+
+The list of unfamiliar Harris-Jacobson words will report the following:
+
+`Examiner    2 (3 total occurrences, 1 proper and familiar, 2 non-proper and unfamiliar)`
+
+This means that *Examiner* in the phrase *Daily Examiner* is proper and Harris-Jacobson\index{Harris-Jacobson Wide Range!proper nouns} treated it as familiar. Although the word *examiner* is not a familiar Harris-Jacobson word, a reader will recognize that it is proper. From there, he/she can deduct that it is the name of a specific person, place, or thing (e.g., a newspaper). Therefore, it is somewhat familiar to the reader, even if he/she does not know the word.
+
+However, the other two instances of *examiner* are regular nouns. Because *examiner* is not on the Harris-Jacobson familiar-word list, these two instances are considered unfamiliar. When Harris-Jacobson is computed, a frequency count of 2 (not 3) will be used for this particular word when tallying the number of unfamiliar words.
+
+If a word appears only in proper form throughout the document, then it will not appear on various unfamiliar lists (e.g., Spache). A proper noun will never appear on these lists unless there are conflicting non-proper instances of the same word.
+
+Note that this also applies to any [custom tests](#creating-custom-test) that treat proper nouns as familiar.

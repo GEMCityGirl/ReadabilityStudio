@@ -1,0 +1,346 @@
+# Publishing the Results
+
+## Exporting {#exporting}
+
+All graphs\index{graphs!exporting}, lists\index{lists!exporting}, statistical summaries\index{summaries!exporting}, and highlighted text reports\index{text reports!exporting} can be exported from *Readability Studio*. This is useful for reviewing the results outside the program, as well as publishing and sharing them with colleagues.
+
+To export any window, go to the **Home** tab and click the `r keys("Save")` button, or right click on the window and select **Save**.
+
+Numerous formats are available for each type of window:
+
+- [Highlighted text](#text-window-export): HTML and RTF
+- Statistic summaries: HTML
+- [Test results](#scores-export): HTML
+- Word, phrase, and sentence [lists](#export-list): HTML and Text
+- [Graphs](#image-export): PNG, BMP, TIFF, JPEG, GIF, TARGA, and SVG
+
+All windows can also be exported at once by clicking the arrow beneath `r keys("Save")` and selecting [**Export All...**](#export-all-options).
+
+## Scores Export Options{#scores-export}
+
+When [exporting](#exporting)\index{exporting!scores} readability scores\index{scores!exporting} from a standard project, the following export options are available:
+
+### Select which section to save {-}
+
+::: {.optionssection data-latex=""}
+**Grid**: Saves the grid of readability scores.
+
+**Explanations**: Saves a report of the explanations associated with the scores.
+
+**Both**: Saves the scores grid and explanations.
+:::
+
+## Text Window Export Options {#text-window-export}
+
+When [exporting](#exporting)\index{exporting!text reports} a text report\index{text reports!exporting}, the following export formats are available:
+
+::: {.optionssection data-latex=""}
+**HTML**: A format that can be displayed in Internet browsers and most word-processing programs.
+
+**RTF**: A format that can be displayed in most word-processing programs.
+:::
+
+::: {.tipsection data-latex=""}
+If you plan to edit this output, then **RTF** is recommended. (Most word processors support editing this format.)
+:::
+
+## Image Export Options {#image-export}
+
+When [exporting](#exporting)\index{exporting!graphs} a graph\index{graphs!exporting|(}, you will first be prompted for an image format to export as. The following formats\index{graphs!export formats} are available to choose from:
+
+::: {.optionssection data-latex=""}
+**PNG**: A lossless-compressed image format. The image can be compressed to a smaller size without any loss of quality.
+
+**JPG**: A lossy-compressed image format. Some image quality may be lost, compared to other formats such as PNG.
+
+**BMP**: An uncompressed raster (i.e., pixel based) image format.
+
+**TIFF**: This format can either be compressed or uncompressed and offers both lossy and lossless compression. This format is generally preferred for desktop publishing.
+
+**TARGA**: A raster (i.e., pixel based) image format.
+
+**GIF**: A raster (i.e., pixel based) image format. Note that this image format is limited to 256 colors.
+
+**SVG**: A format that uses vector (rather than raster) drawing. Vector-based images can be scaled to much larger sizes, without the loss of quality that raster images would experience.
+:::
+
+After selecting the image format, these additional options will be provided:
+
+### Image Size {-}
+
+**Width**: Enter the width of the exported image into this field.
+
+**Height**: Enter the height of the exported image into this field.
+
+::: {.notesection data-latex=""}
+When you change the width or height, the other measurement will be adjusted automatically to maintain the aspect ratio.
+:::
+
+### Color Mode {-}
+
+::: {.optionssection data-latex=""}
+**RGB (Color)**: Select this option to save the image in color.
+
+**Grayscale**: Select this option to save the image in shades of gray.
+:::
+
+### TIFF options {-}
+
+This option is available only when exporting as a TIFF file.
+
+:::: {.optionssection data-latex=""}
+::: {.optionssectiontitle data-latex=""}
+Compression
+:::
+
+This option specifies the compression level of the TIFF file and includes the following options:
+
+**None**: do not compress the image
+
+**Lempel-Ziv & Welch**: lossless compression, but may generate larger images than other compression methods.
+
+**JPEG**: lossy compression method. Suitable for high-color images, but some quality may be lost.
+
+**Deflate**: lossless, high-compression method.\index{graphs!exporting|)}
+::::
+
+## List Export Options {#export-list}
+
+When [exporting](#exporting)\index{exporting!lists} a list\index{lists!exporting}, you will be provided with the following formats to export as:
+
+::: {.optionssection data-latex=""}
+**HTML**: A format that includes formatting and can be opened in browsers and spreadsheet programs.
+
+**TXT**: A tab-delimited file with no formatting (i.e., colors will be lost).
+
+**LaTeX**: A TeX file with the list formatted into a `longtable{}` environment that can be
+included in a larger LaTeX document.
+:::
+
+After selecting the file format, these additional options will be provided.
+
+**Include column headers**: Check this option to include the column headers in the output.
+
+**Export all rows**: Select this option to export all rows and columns from the list.
+
+**Export selected rows**: Select this option to only export the selected rows in the list.
+
+**Export a range of rows**: Select this option to specify the rows (and columns) to export.
+
+**Paginate using printer settings**: Check this option to split the list into smaller tables with page breaks between them. These tables will be sized to fit your current [printer](#printing) paper size and orientation. Additionally, a page break will be inserted between each table, which will appear when you print this output from a browser. To change either your paper size or orientation, select **Page Setup** from the `r keys("Print")` button's menu.
+
+This option only applies to HTML exporting and when exporting either all rows or a range.
+
+### Range {-}
+
+The options here specify the range of columns and rows to export.
+
+**Rows: from**: Enter the starting row to export into this field.
+
+**Columns: from**: Enter the starting column to export into this field.
+
+**Rows: to**: Enter the ending row to export into this field.
+
+**Columns: to**: Enter the ending column to export into this field.
+
+## Export All Options {#export-all-options}
+
+Select **Export All**\index{exporting!projects} from the `r keys("Save")` button's menu to display the **Export All Options** dialog.
+
+This dialog provides options for [exporting](#exporting) an entire project into a single report or folder of separate files.
+
+**Folder to export to**: Enter the folder path where you want to export the project to into this field. (Only applies if you are exporting as separate files.)
+
+### Sections to export {-}
+
+**Test scores**: Select this option to export all the windows from the [**Readability Scores**](#reviewing-test-scores) section.
+
+**Summary statistics**: Select this option to export all the windows from the [**Summary Statistics**](#reviewing-statistics) section.
+
+**Histograms/box plots**: Select this option to export all [histograms](#reviewing-batch-histograms) and [box plots](#reviewing-batch-box-plots). This option only applies to batch projects.
+
+**Words breakdown**: Select this option to export all the windows from the [**Words Breakdown**](#reviewing-word-breakdowns) section.
+
+**Sentences breakdown**: Select this option to export all the windows from the [**Sentences Breakdown**](#reviewing-sentences-breakdown) section.
+
+**Grammar section**: Select this option to export all the windows from the **Grammar** section.
+
+**Dolch sight words section**: Select this option to export all the windows from the [**Dolch Sight Words**](#reviewing-dolch) section. This option only applies if **Dolch Sight Words** is included in the project.
+
+**Warnings section**: Select this option to export all the project's [warnings](#reviewing-batch-warnings). This option only applies to batch projects.
+
+### Export file types {-}
+
+**Export lists as**: Select the file type that you want to save list windows as from this list. This option only applies when exporting as separate files.
+
+**Export text reports as**: Select the file type that you want to save text reports as from this list. This option only applies to standard projects, and when exporting as separate files.
+
+**Export graphs as**: Select the image type that you want to save graphs as from this list.
+
+**Image Options**: Click this button to further customize how to save the graphs as images. This includes options such as color mode and image size. Note that the options available on this dialog will depend on which image type is selected.
+
+**Include lists**: Select this option to include lists in the output. It is recommended to unselect this option for larger documents. This option only applies to standard projects.
+
+**Include text reports**: Select this option to include highlighted text reports in the output. It is recommended to unselect this option for larger documents. This option only applies to standard projects.
+
+## Printing {#printing}
+
+All graphs\index{graphs!printing}, lists\index{lists!printing}, statistical summaries\index{summaries!printing}, and highlighted text reports\index{text reports!printing} can be printed from *Readability Studio*. This is useful for reviewing the results outside the program, and for publishing and sharing them with colleagues.
+
+To print\index{printing} any window, go to the **Home** tab and click the `r keys("Print")` button, or right click on the window and select **Print**.
+
+:::  {.wrapfigure data-latex="{r}{0.5\\textwidth}" style="width: 48%;"}
+![](Images/printerheadersfooters.png){width=48%}
+:::
+
+Clicking the arrow beneath the `r keys("Print")` button will open a menu containing additional printing options. For example, to change the paper size or orientation of your printouts, select **Page Setup** from this menu.
+
+To add headers or footers to your printouts, select **Headers & Footers** from this menu.
+
+Headers and footers support placeholder tags for items such as page, date, and time information.
+These tags are expanded dynamically when printing takes place. These tags are:
+
+- `@TITLE@`: The title of the printed document.
+- `@DATE@`: The date when it was printed.
+- `@TIME@`: The time when it was printed.
+- `@PAGENUM@`: The current page number.
+- `@PAGESCNT@`: The number of printed pages.
+
+For example, when printing:
+
+> *\@PAGENUM\@ (of \@PAGESCNT\@ pages)*
+
+may expand to:
+
+> *1 (of 7 pages)*
+
+Custom values can also be entered here (e.g., the editor's name).
+
+To preview a window before printing it, select **Print Preview** from this menu.
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("Images/NonGenerated/printpreview.png")
+```
+
+::: {.notesection data-latex=""}
+The preview option is only available on Windows. On macOS, the system print dialog has its own native preview option.
+:::
+
+## Exporting Filtered Documents {#filtering-export}
+
+Document filtering (or “cleaning”) is the removal or conversion of items from a document to assist a textual analysis. This includes items that are not meant to be analyzed, such as:
+
+- Headers
+- Footers
+- Captions
+- Copyright notices
+- Citations
+- (Short) list items
+
+Also, the romanization of items that may cause issues with legacy programs:
+
+- Non-English letters (e.g., *é*)
+- Advanced punctuation (e.g., *—*)
+- Non-sentence-ending periods (e.g., ellipses and abbreviations)
+
+The first set of items are normally excluded from analysis because they a.) are not part of the narrative text and b.) skew the average sentence length.
+
+By default, *Readability Studio* will automatically ignore these items, rather than requiring you to manually remove them from your document. This is helpful by saving time and by not having to maintain two copies of your document: the original and the “cleansed” version used for analysis.
+
+The second set of items do not cause issue with *Readability Studio*. It can recognize extended characters (e.g., *é*, *—*, etc.) and can properly deduce sentence endings. For these reasons, document cleaning is generally not necessary within *Readability Studio*.
+
+Refer to \@ref(how-text-is-excluded) to learn how *Readability Studio* automatically filters documents.
+
+### Exporting Filtered Documents {-}
+
+There may be times when you would need a filtered copy of your document. For example, you might need to process your document through another program which does not have auto-filtering. In this situation, you can export a copy of your document with these aforementioned items removed. Then you can analyze your document with other software without needing to manually filter it.
+
+To do this, click on the **Home** tab of the ribbon, click on the arrow below the `r keys("Save")` button, and select **Export Filtered Document**.
+
+`r menu(c('Home','Save','Export Filtered Document'))`
+
+After excluding incomplete sentences from your document, you will be presented with additional options (see below). Once you have specified your filtering options, the **Preview Filtered Document** dialog (shown on the right) will be displayed. This dialog will show a preview of the filtered document, along with listing the filtering options being used.
+
+```{r echo=F, fig.align='center', out.width='50%'}
+knitr::include_graphics("Images/FilterTextPreview.png")
+```
+
+Finally, click `r keys("OK")` to save the file.
+
+::: {.tipsection data-latex=""}
+Which incomplete-sentence removal method used is controlled by your project's [text exclusion options](#options-text-exclusion).
+:::
+
+### Additional Filtering Options {-#additional-filtering-options}
+
+When exporting a filtered version of your document, the program will first remove incomplete sentences (if applicable). This removal will be based on your project's [text exclusion](#options-text-exclusion) settings. After this text exclusion is applied, additional conversion options will be available from the **Additional Filtering Options** dialog. From this dialog, you can apply the following filters to the exported copy of your document.
+
+**Romanize (replace special characters)**: Check this option to replace accented and extended characters with their ASCII equivalents. This option is required if you are needing the filtered document to be in ASCII (7-bit) format. The following Romanization replacements are used:
+
+```{r, echo=F}
+library(tidyverse)
+library(magrittr)
+
+asciiData <- tibble("Extended\nASCII Character" = c("ö", "ü", "ä", "ß", "ñ",
+                                                   "å", "æ", "œ", "à", "á",
+                                                   "â", "ã", "å", "ç", "è",
+                                                   "é", "ê", "ë", "ì", "í",
+                                                   "î", "ï", "ò", "ó", "ô",
+                                                   "õ", "ø", "ù", "ú", "û"),
+                    "Replacement" = c("oe", "ue", "ae", "ss", "nn",
+                                      "aa", "ae", "oe", "a", "a",
+                                      "a", "a", "a", "c", "e",
+                                      "e", "e", "e", "i", "i",
+                                      "i", "i", "o", "o", "o",
+                                      "o", "o", "u", "u", "u"),
+                    "Extended\nASCII Character " = c("ý", "ÿ", verbatim("•"), "‚", "‹",
+                                                    "›", "‘", "’", "`", "„",
+                                                    "“", "”", "«", "»", "…",
+                                                    verbatim("‒"), verbatim("–"), verbatim("—"), verbatim("―"), "©",
+                                                    "®", trademark(), "¼", "½", "¾",
+                                                    "±", "", "", "", "" ),
+                    "Replacement " = c("y", "y", verbatim("·"), verbatim("'"), verbatim("'"),
+                                       verbatim("'"), verbatim("'"), verbatim("'"), verbatim("'"), verbatim("\""),
+                                       verbatim("\""), verbatim("\""), verbatim("\""), verbatim("\""), verbatim("..."),
+                                       verbatim("--"), verbatim("--"), verbatim("--"), verbatim("--"), verbatim("(c)"),
+                                       verbatim("(r)"), "(tm)", "1/4", "1/2", "3/4",
+                                       "+-", "", "", "", ""))
+
+# add linebreaks to the column headers for print
+if (knitr::is_latex_output())
+  {  colnames(asciiData) %<>% kableExtra::linebreak(align='c') }
+
+kableExtra::kbl(asciiData, booktabs=T, centering=T, align='r', escape=F) %>%
+  kableExtra::kable_classic(full_width=F) %>%
+  kableExtra::column_spec(2, border_right = T)
+```
+
+Any extended ASCII character not listed above will be removed from the document.
+
+**Remove ellipses**: Check this option to remove ellipses (if in the middle of a sentence) or replace with a *.* (if at the end of a sentence).
+
+**Remove bullets and list-item numbering**: Check this option to remove bullet symbols and numbers that appear in front of list items.
+
+**Remove Internet and file addresses**: Check this option to remove Internet URLs and file paths.
+
+**Remove trailing periods from abbreviations and acronyms**: Check this option to remove the last period from abbreviations and acronyms. For example:
+
+::: {.fancyquotes data-latex=''}
+Dr. Jones has requested a copy of the S.W.O.T. report.
+:::
+
+will be exported as:
+
+::: {.fancyquotes data-latex=''}
+Dr Jones has requested a copy of the S.W.O.T report.
+:::
+
+This option is recommended for other programs that may have difficulty deducing sentences properly because of these periods.
+
+**Narrow full-width characters**: Check this option to convert full-width characters to their narrow counterparts. For example:
+
+> *Ｈｅｌｌｏ*
+
+will be exported as:
+
+> *Hello*

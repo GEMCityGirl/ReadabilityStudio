@@ -1,0 +1,532 @@
+## New Features and Enhancements {#new-features}
+
+### Readability Studio 2023 {-}
+***
+
+#### General Enhancements {-}
+
+- Printer [headers and footers](#printing) are now more customizable.
+- Sidebar improvements:
+  - Clicking an expanded folder will collapse it. (Double clicking it is no longer necessary.)
+  - Can now be shown/hidden with the F2 key or from the ribbon.
+
+#### Graph Enhancements {-}
+
+- Graphs now use Direct2D for rendering on Windows, resulting in faster drawing and sharper text.
+- Images are now saved with 300 DPI resolution.
+- Sentence heatmaps now show the sentences' word counts.
+- Selected items now remain selected when you resize a graph window.
+- Box plots now use Tukey hinges method for calculating quartiles. (This matches what R does.)
+- Removed box plot IQR coefficient option; blox plot now just use quartiles.
+- Added grouping support to box plots in batch projects.
+- Sorting horizontal bars now works more intuitively.
+
+#### Analysis/Test Enhancements {-}
+
+- Added **Display grouped documents on syllable ruler** feature to Flesch chart.
+- Aggressive exclusion will now make copyright notice exclusion more aggressive also.
+- Custom-test formulas can now contain C/C++ style comments.
+  This includes multi-line (text inside of `/*` and `*/`) and single-line (`//`) comments.
+- All Words (Condensed) will now exclude more variations of common words.
+- Renamed All Words (Condensed) to Key Words.
+- Overused Words (x Sentence) now only looks at words containing more than three characters.
+- Overused Words (x Sentence) now ignores words that are part of a phrase (e.g., "*again* and *again*").
+
+#### Importing/Exporting Enhancements {-}
+
+- Lists can now be exported as LaTeX (in `longtable{}` environments).
+
+#### Bug Fixes {-}
+
+- **Dolch** statistics will now only be shown in the summary report if **Dolch** is included in the project.
+
+### Readability Studio 2020/2021 {-}
+***
+
+#### General Enhancements {-}
+
+- Added **Line ends mark the start of a new paragraph** layout option to the [project wizard](#creating-standard-project).
+- Added test bundles option to the project wizard.
+- Added ability to include descriptions for any document included in a batch project. (The program will fill in these descriptions automatically, based on the document's title.)
+- Added ability to apply group labels to documents in a batch project.
+- Added option to include a document description in standard projects.
+- Added dark theme support (macOS).
+- Added theming (Windows).
+- Improved program's appearance on high-resolution displays.
+- When selecting foreground text highlighting, the font color will be adjusted to contrast with the report's background.
+- Added browse button to **Project Settings** dialog to add document(s) to a batch project.
+- Redesigned **Test Bundle** dialog.
+- Reorganized test bundles menu and added icons.
+- Added buttons to add and delete items from the batch project wizard's file list.
+- Added summation button for **Passive Phrases** list in standard projects.
+- When validating a formula on the **Custom Test** dialog, the calculated value will be displayed based on the active project (if a standard project).
+- Functions are now highlighted in the custom test editor.
+- Refreshed numerous icons.
+- Improved formatting of tests and statistics summary reports.
+- Improved Web Harvester:
+  - Cancel button is more responsive now.
+  - Improved dialog appearance.
+  - Added an option to log broken links.
+  - Image files can now be downloaded.
+  - Improved error reporting when unable to connect to the root webpage.
+  - When downloading webpages without file extensions, the program will now append an extension based on its MIME type.
+  - Added **Restricted to same folder** domain-restriction option.
+  - Removed the **Verify pages' mimetypes before harvesting** option. Program will now determine whether checking MIME types is necessary.
+- Added **Function** column to log report.
+- Added sort button to log report.
+- Improved **About** dialog.
+- Most-recently-used file list can now be cleared on the start page.
+- Start page now shows files' paths and last access times.
+
+#### Analysis/Test Enhancements {-}
+
+- Added [goals](#reviewing-goals) feature to warn if a document's scores or statistics do not fall within a certain range.
+- Words can now be added to excluded word list directly from list windows.
+- Added [Schwartz test](#schwartz) (German projects only).
+- Added a graph to visualize Lix index scores.
+- Added a graph to visualize German Lix index scores.
+- Added a graph to visualize Danielson-Bryan 2 scores.
+- Added new *Patient Consent Forms* test bundle. This includes tests and goals recommended for consent forms.
+- Rix now uses sentence units\index{sentences!units} in its calculation to better match the test's recommendations.
+- Expanded the difficulty-level descriptions for the German Lix tests.
+- Redesigned Flesch chart to look more like the version from *The Art of Readable Writing*.
+- Instruction label now shown on all Flesch charts (not just blank ones).
+- Added custom test features:
+  - Added feature to create custom tests based on any existing regression-based test. Refer to \@ref(creating-custom-flesch-test) for an example.
+  - Added `GunningFog` option to `SentenceCount()` function. This will return the sentence count using the system's [Gunning Fog method](#options-gunning-fog).
+  - Added `MiniWordCount()` function.
+  - Added `HardFogWordCount()` function.
+- [Farr-Jenkins-Paterson](#farr-jenkins-paterson) now includes floating-point precision in its results.
+- Added sentence-lengths histogram (standard projects).
+- Bins in the syllable, sentence-length, grade-level, and predicted cloze score histograms now begin at 1^st^ grade or Kindergarten.
+- Improved document indexing performance.
+- Improved detection of Unicode spaces and line separators when indexing sentences.
+- Improved detection of longer internet address.
+- Triangle bullet points are now detected.
+- \@ can now be seen as a full word (or prefix/suffix of a word).
+- Improved detection of sentence endings when followed by a citation (e.g., *End of sentence.^17^ A new sentence.*).
+- Improved article-mismatch detection.
+- Improved English syllabizer.
+- [Trailing citation](#options-text-exclusion) exclusion is now less aggressive when a references section may be in the middle of a document.
+- The [Aggressively exclude](#options-text-exclusion) option will now override the **Include incomplete sentences containing more than [15] words** option when reviewing list items.
+- Sentences that contain only numbers and single-letter words are now more aggressively excluded.
+- Improved detection of website URLs when indexing text.
+- Fractions (½, ¼, and ¾), superscripts (^0^-^9^), and subscripts (~0~-~9~) are now recognized by syllable counters.
+- Full-width (Ｆｕｌｌ－ｗｉｄｔｈ) English letters, numbers, and punctuation are now recognized.
+- Expanded words ignored by spell checker when **ignore programming words** is selected.
+- [Overused words (x Sentence)](#reviewing-overused-by-sentence) now excludes acronyms.
+- [All Words (Condensed)](#reviewing-word-breakdowns) now excludes common words (e.g., *the*), numerals, and filenames.
+- Lix and Rix are now available in the **Adult** readability tests menu.
+- Added **Ignore social media hashtags** option to spell-checker.
+- Expanded spell-checker to include government, economics, business, accounting, chemistry, biology, and psychology terminology.
+- New formula-parsing engine used for custom tests. This includes the following changes:
+  - `AVG` function has been renamed `AVERAGE`.
+  - `COTAN` function has been renamed `COT`.
+  - `RANDOM` function has been renamed `RAND` and always returns a value between 0 and 1 (same as Excel).
+  - `INTPOW` function has been removed; use `POWER` instead.
+  - `LOGN` function has been removed.
+  - Logical `!` operator has been removed; use new `NOT` function instead.
+  - Added new logical functions `NOT`, `AND`, and `OR`.
+  - Added new function `CLAMP`. This is useful for constraining grade-level scores within a range.
+
+#### Importing/Exporting Enhancements {-}
+
+- Loading a spreadsheet into a batch project can now import each cell as either a document or a filepath.
+- Added an option to the batch project wizard for entering individual web pages.
+- Improved list printing:
+  - All columns are now included on one page, instead of long columns being on a separate page.
+  - Lists are now split to fit more on the page, reducing the number of printed pages.
+- Added **Image options** for graphs when selecting **Export All** for a project.
+- Added **Include lists** and **Include text reports** options to **Export All** for projects. This is useful for preventing large lists and highlighted text from being included in reports.
+- Improved the appearance of output report when exporting a project as a single HTML file:
+  - Lists are now split horizontally to fit more on printed pages.
+  - Sections are now paginated when printed.
+  - Subsections will now be printed on the same page.
+- Improvements to HTML importer:
+  - Improved handling of malformed title, style, and script sections.
+  - Added support for superscripts and subscripts.
+  - Annotations are now removed from the text.
+  - `${}` Javascript placeholders are now removed from the text.
+- Improvements to Word 97–2003 importer to better handle Unicode and corrupted files.
+- Improvements to RTF importer (improved Unicode and footnote support).
+- Improvements to C++ source file importer (improved handling of escaped quotes).
+- Added **Narrow full-width characters** option to [document filtering](#additional-filtering-options).
+- When exporting filtered documents from a batch project, the folder structure of the original documents will be recreated in the output folder. This will prevent files with the same name overwriting each other.
+
+#### Graph Enhancements {-}
+
+- Added beeswarm jittering to Danielson-Bryan 2, Flesch Reading Ease, Lix, German Lix, and box plots (in batch projects).
+- Sentence heatmap now groups sentences by paragraph.
+- Improved graph rendering performance.
+- Custom brush now maintains the aspect ratio of its image.
+- Added option to not include labels on histograms.
+- Added option to not include labels on barcharts.
+- Graph [watermarks](#watermark-and-logo) now support the tags `&[DATETIME]`, `&[DATE]`, and `&[TIME]`. These are expanded to their literal values at the time of rendering the graph.
+- Color fades are now included when exporting as SVG.
+
+#### Documentation Enhancements {-}
+
+- Upgraded the documentation to [bookdown](https://www.bookdown.org/) format.
+- Documentation now also available as a printable PDF.
+- Expanded documentation for all tests.
+- Added new overviews:
+  - "How Tests are Calculated"
+  - "Grade Level Clamping"
+  - "How Tests can Fail"
+- Added new examples:
+  - "Finding Difficult Sections"
+  - "Reviewing a Flyer"
+  - "Using a Custom Brush"
+  - "Preserving Hard Returns in a Document"
+  - "Sentences Broken by Blank Lines"
+  - "Including an Addendum"
+  - "Creating an Unclamped Flesch-Kincaid"
+  - "Adding Descriptive Labels to Documents"
+  - "Grouping Documents in a Batch"
+- Added option to either open example documents as new projects or view them in your default editor.
+- Expanded the glossary.
+- Updated citations to MLA 8^th^ edition format.
+
+#### Bug Fixes {-}
+
+- If an appended document is not found when loading a project, the program will now search for it in the subfolders around the project file.
+- Labels on histogram (when bars are selected) now combine and are sorted case insensitively.
+- Fixed font scaling when zooming in on graphs with stacked labels.
+- Fixed batch project **Export All** where graphs would appear duplicated in the report.
+- Office 2007 filepaths (e.g., *documents\\import.xlsx*) mentioned in a document are now seen as file names.
+- Fixed crash when trying to analyze a document that is on OneDrive but not properly synced on the local file system.
+- Fixed outdated menubar options on macOS.
+- **New Project from Clipboard** option will more intelligently determine whether the clipboard content is a file path or plain text.
+- Fixed crash in Word 97-2003 (\*.doc) importer.
+- Fixed custom-test word lists appearing twice when reloading project.
+
+### Readability Studio 2019 {-}
+***
+
+#### General Enhancements {-}
+
+- Added option to append an [additional document](#additional-document) to any document that you analyze.
+- Rearranged grammar results in order of importance.
+- Added new [Sentences Breakdown](#reviewing-sentences-breakdown) section to standard and batch projects. The sentence-length box plot formerly shown in the **Summary Statistics** section is now available here in standard projects. Overly-long sentence lists formerly shown in the **Grammar** section for both types of projects are now in here.
+- Highlighted-word reports are now under the new **Words Breakdown** section. Each word report is included underneath its respective word list. For example, the **3+ syllable** highlighted report will appear beneath the **3+ syllable** tabular list.
+- Added new **All Words** list to batch projects.
+- Added new [Overused Words (x Sentence)](#reviewing-overused-by-sentence) list to standard and batch projects.
+- Added new [All Words (Condensed)](#reviewing-word-breakdowns) list to standard and batch projects.
+- Added new **Sentence Length** [heatmap](#reviewing-sentences-breakdown) to standard projects.
+- Added [**Allow colloquialisms**](#options-grammar) feature to the English spell checker.
+- Which results to include in the **Summary Statistics** section can now be individually toggled.
+- Which results to include in the **Grammar** section can now be individually toggled.
+- Which results to include in the **Scores** section can now be individually toggled.
+- Which results to include in the **Words Breakdown** section can now be toggled.
+- Which results to include in the **Sentences Breakdown** section can now be toggled.
+- [Reviewer](#project-settings) and **Status** information can now be added to projects.
+- Warning messages that are being suppressed will now not be included in the [Warning](#reviewing-batch-warnings) section of a batch.
+- While a project is open, the search bar will autocomplete items that you have already searched for.
+- [**Log Report**](#log-report) button is now always available. (This option was not available unless verbose logging was enabled in previous releases.)
+- Added **Timestamp** and **Source** columns to **Log Report** window.
+- Most test warning messages are now shown in the infobar (instead of message boxes), making them less intrusive.
+- Improved program display when running under higher screen resolutions.
+- Added new icons to subitems in projects' sidebars.
+- Added `-bg` (graph background) [command line](#command-line-options) option.
+- Simplified **About** dialog.
+
+#### Analysis/Test Enhancements {-}
+
+- Improved article-mismatch detection when the following word is a year or time.
+- Improved article-mismatch detection for acronyms.
+- Improvements to bullet point detection.
+- Improvements to proper noun detection.
+- Improvements to abbreviation detection for abbreviated month names.
+- Improved proper noun detection. Words in headers and at the start of sentences are marked as proper if the number of mid-sentence occurrences of the same word are capitalized is more than the occurrences that aren't.
+- Lines of text that appear to be equations will be marked as incomplete sentences.
+- The option **Aggressively deduce lists** is now **Aggressively exclude**. Enabling this will now make citation-section exclusion more aggressive.
+- Updated Portuguese stemmer to latest standard.
+- Two single quotes after a word are now seen as a double quote.
+- Expanded spell-checker to include medical terminology.
+
+#### Importing/Exporting Enhancements {-}
+
+- Added support for OpenDocument Presentation files.
+- Added support for HTTPS website links (password-protected pages not supported).
+- Improvements to OpenDocument Text importer.
+- Added SVG exporting for graphs. (Bar and box color fade is not currently supported.)
+- Improvements to workaround bad formatting when importing HTML documents.
+- Improved Symbol font correction in HTML files.
+- Added log messages for importing/formatting issues encountered while loading documents.
+- Added page breaks to **Export All** HTML report.
+- Performance improvements to the HTML importer.
+- Performance improvements to archive file importer.
+- Workaround for importing DOC documents that are actually HTML files.
+
+#### Graph Enhancements {-}
+
+- Selecting outliers in [sentence-length box plots](#reviewing-sentences-breakdown) will now show a preview of the sentence.
+- Removed unnecessary axis information from box plots, offering a cleaner appearance.
+- Selecting a bar in a histogram will now show its first 25 observations.
+- Selecting a point on a score chart (e.g., Fry) in a batch project will show the corresponding documents name on the point.
+- Selecting an area in a score chart (e.g., grade or level areas in a Fry or Crawford chart) will show a descriptive label on that area.
+- Brackets in Flesch chart are now color coded.
+- Added instruction label to blank Flesch charts.
+- Added support for multiline graph watermarks.
+
+#### Bug Fixes {-}
+
+- Fixed crash in Word 97-2003 (\*.doc) importer.
+- Fixed error messages being blocked by the splash screen when opening certain projects.
+- Fixed unnecessary warning message on Windows 10 when the custom dictionary file is blank.
+- Fixed intermittent crash with large list-control data.
+- Fixed times (e.g., *5:30*) at the start of a line from being seen as a bullet point.
+- Fixed issue with certain JPEG images being drawn with an incorrect orientation.
+- If trying to import a PDF file, an error message is now shown that PDF files are not supported.
+- PowerPoint, PHP, and macro-enabled Word files are now shown in the **File Open** dialog when **All Documents** is selected.
+- Fixed an intermittent issue on macOS where entering a new serial number in the **About** dialog would freeze the program.
+
+### Readability Studio 2015 {-}
+***
+
+#### General Enhancements {-}
+
+- Batch projects now use as much as 77% less memory than before.
+- Added **Broadcasting** as an industry to choose from on the project wizard.
+- Added **text size** statistic to the output.
+- Added ability to choose which sections of statistics appear in the summary reports.
+- **Total Words** column added to the **Words Breakdown** list in batch projects.
+- Excluded text is now shown as stricken out in the text reports.
+- New, improved project wizard. All pages are now integrated into a single dialog.
+- Tooltips are now shown on the ribbon.
+- Help button and toggle button added to the ribbon.
+- Added hide/show button to project sidebar.
+- Ribbon and sidebar now have a flat appearance.
+- Added ribbon and multi-column sorting to **Test Overview** dialog.
+- Word lists (e.g., **Dale-Chall familiar words**) are now in a single window.
+- **Tests Explanation** and **Statistics** windows in batch projects now have copy and save buttons.
+- Graph editing options are now available on the ribbon.
+- Added **Long Format** and **Grade Scale** options to the ribbon (when the score window is selected).
+- The font and highlighting of text reports can now be changed from the ribbon.
+- Export options are now located under the `r keys("Save")` button (on the ribbon).
+- **Start Page** is now integrated into the main window and can be accessed whenever there aren't any open projects.
+- Added **Review Program Options** to the **Start Page**.
+- **Start Page** now can show more files in its most-recently-used list.
+- Changed parts of the **Options** dialog to use property grids.
+- Improved font display throughout the program.
+
+#### Analysis/Test Enhancements {-}
+
+- Added feature to exclude text in between specified tags (e.g., '<' and '>').
+- Added new option to not exclude the first occurrence of excluded words/phrases found in a document.
+- Improvements to article mismatch detection.
+- Improvements to detecting initials.
+- List items ending with semicolons will now be seen as valid sentences.
+- Table of Contents lines are now seen as separate sentences and paragraphs (and are excluded by default).
+- If a sentence contains nothing but excluded words, then that sentence will not be included in the overall sentence count.
+
+#### Importing/Exporting Enhancements {-}
+
+- Projects can now be exported into a single HTML report.
+- Batch projects can now analyze cells inside of Excel 2007 (\*.xlsx) files.
+- Batch projects can now analyze documents inside of archive (\*.zip) files.
+- Added the ability to save a spreadsheet of scores and (high-level) statistics from a batch.
+- Statistics report of all documents in a batch project can now be exported.
+- C/C++ source files can now be analyzed (Doxygen comments and GETTEXT strings).
+- Added GIF and TGA to **Export All** options.
+- When changing the width or height of a graph when exporting it as an image, the program will now automatically adjust the size to maintain the aspect ratio.
+- Icons are now included when exporting reports as HTML.
+- Underlining and italics are now included when exporting text reports to HTML.
+- **Export All** folder path will now be remembered by the project.
+- Performance improvements to the Open-Document Text importer.
+- Improvements to the Word 2007 importer.
+
+#### Graph Enhancements {-}
+
+- Graph logos are now scaled down to 100x100 pixels.
+- Graphs can now show a custom color and image as its background together (color will be shown underneath the image).
+- Graph background image opacity editor now shows the image with the proper aspect ratio.
+- Color of axis labels can now be changed.
+- Short/long words and sentences labels added to the [Fry graph](#fry-test).
+- Grade levels are now shown in long format on batch project histograms if there is enough space for them.
+
+#### Bug Fixes {-}
+
+- Fixed issue where some font information was not saved properly in projects.
+
+### Readability Studio 2012 {-}
+***
+
+#### General Enhancements {-}
+
+- *Readability Studio* now available for Mac OS X^®^ (v10.5 and above).
+- New ribbon interface.
+- Improved project sidebar for easier results navigation.
+- Suggested replacements are now shown in the difficult and unfamiliar word lists.
+- A search bar is now available at the top of the program.
+- A new start page has been added to open and create projects from.
+- Word list windows (e.g., the New Dale-Chall window) can now be searched.
+- Test explanations in the results now show the tests' factors in a grid (for easier reading).
+- Multiple-column sorting added to lists in the results.
+- Summation option added for most lists in the results.
+- Improved printing of summary report and test results windows.
+- Test bundles added, which enable you to add a specific set of tests to a project with one button click.
+- Shortcuts for creating custom [New Dale-Chall](#dale-chall-test), [Spache](#spache-test), and [Harris-Jacobson](#harris-jacobson) added.
+- An overview window showing all tests and their respective factors and descriptions is now available.
+
+#### Analysis/Test Enhancements {-}
+
+- German project support added (*Professional* or *Language Pack* edition).
+- New tests added:
+    - [Danielson-Bryan 1 & 2](#danielson-bryan-1)
+    - [Easy Listening Formula](#easy-listening-formula)
+    - [Amstad](#amstad)
+    - [Lix (German children's literature)](#lix-german-childrens-literature)
+    - [Lix (German technical literature)](#lix-german-technical)
+    - [Neue Wiener Sachtextformel 1–3](#neue-wiener-sachtextformel1)
+    - [Quadratwurzelverfahren](#qu-bamberger-vanecek)
+    - [Rix (German fiction)](#rix-german-fiction)
+    - [Rix (German non-fiction)](#rix-german-nonfiction)
+    - [SMOG (Bamberger-Vanecek)](#smog-bamberger-vanecek)
+    - [Wheeler-Smith (Bamberger-Vanecek)](#wheeler-smith-bamberger-vanecek)
+- New grammar checking features for English projects:
+    - spell checker
+    - article mismatches
+    - passive voice
+- The following can now be excluded from analyses:
+    - internet and file addresses
+    - numerals
+    - proper nouns
+    - custom words and phrases
+- [Stocker's Catholic supplement](#stocker-catholic-supplement) now available for New Dale-Chall and custom tests.
+
+#### Importing/Exporting Enhancements {-}
+
+- PowerPoint^®^ 2007 importing added.
+- IDL file importing added.
+- [Filtered document](#filtering-export) exporting added (*Professional* edition).
+
+#### Graph Enhancements {-}
+
+- Graph zooming added.
+- Improved appearance of graphs on larger displays. Graph fonts and lines will now scale as graphs are resized.
+- Blank templates of readability graphs can now be saved, copied, and printed.
+- The color and opacity of graph plot areas can now be customized.
+- A box plot showing the document's sentence lengths added to standard projects.
+
+### Readability Studio 3.0/3.1/3.2 (2009–2010) {-}
+***
+
+#### General Enhancements {-}
+
+- Added blue fade to toolbar, statusbar, tabs, and menubar.
+- Shortened names on some of the tabs to make them easier to navigate.
+- Improved appearance of **Notes** and **Warnings** in the statistics and score windows.
+- Some warnings can now be suppressed.
+
+#### Analysis/Test Enhancements {-}
+
+- Added ability to display different grade scales. Currently, U.S., Canadian, and U.K. grade scales are available. This affects:
+    - score lists (standard project)
+    - raw and aggregated scores lists (batch project)
+    - explanations for each test
+    - tooltips in Fry and Raygor graphs
+    - bin labels with grade histograms
+    - y axis of box plots
+- Added Spanish document analysis features. This includes specialized Spanish syllabizer and tests:
+    - Added [Gilliam-Peña-Mountain Fry Graph](#gilliam-pena-mountain-fry-graph).
+    - Added [Crawford](#crawford) test.
+    - Added [FRASE](#frase) graph.
+    - Added [SOL](#sol-spanish) test.
+- Added new English tests:
+    - Added [Dale-Chall (PSK)](#psk-dale-chall) test.
+    - Added [Bormuth Cloze Mean](#bormuth-cloze-mean-machine-passage) test.
+    - Added [Bormuth Grade Placement](#bormuth-grade-placement-35-machine-passage) test.
+    - Added [Gunning Fog (PSK)](#psk-fog) test.
+    - Added [Farr-Jenkins-Paterson](#farr-jenkins-paterson) test.
+    - Added [Farr-Jenkins-Paterson (PSK)](#psk-farr-jenkins-paterson) test.
+    - Added [Wheeler-Smith](#wheeler-smith) test.
+    - Added [Degrees of Reading Power](#degrees-of-reading-power) test.
+    - Added [Degrees of Reading Power](#degrees-of-reading-power-grade-equivalent) test (grade level).
+    - Added [Harris-Jacobson](#harris-jacobson) test.
+- Added high-precision option to [SMOG](#smog-test) test.
+- Added **count independent clauses as separate sentences** option to [Gunning Fog](#gunning-fog-test).
+- Gunning Fog now treats words made three syllables by adding *ed* or *es* as easy.
+- Added custom formula functionality to [custom tests](#creating-custom-test).
+- Added ability to specify the result type of custom tests (e.g., index level or grade level).
+- Added ability for custom tests to control how proper nouns are handled (including the ability to count only the first occurrence of a proper noun as unfamiliar).
+- Custom tests no longer require custom word lists (just the standard lists can be selected).
+- Added predicted cloze score to [Coleman-Liau](#coleman-liau-test) test.
+- [New Dale-Chall](#dale-chall-test) now has custom text exclusion options to use either the recommended instructions or the system defaults.
+- New Dale-Chall has the ability to control how proper nouns are handled (including the ability to count only the first occurrence of a proper noun as unfamiliar).
+- [Fry](#fry-test) graph now uses updated instructions for numerals and proper nouns based on the 1977 article *Fry's Readability Graph: Clarifications, Validity, and Extension to Level 17*.
+- Added **ignore left alignment/tabbing** option to document analysis.
+- Random sampling percentage default changed to 15 (from 25).
+- Consolidated **end of paragraph** and **sentence deduction** options into one section.
+- Reworded **incomplete sentences** section in the options to **text exclusion**.
+- Added new text exclusion method for including headers and sub-headers (as full sentences), but excluding all other incomplete sentences.
+- **Independent clause count** statistic now included in the statistics report. An independent clause is a section of text which ends with a period, exclamation mark, question mark, [interrobang](#glossary)\index{interrobangs}, colon, semicolon, or dash.
+- Mode now included in Standard projects’ test score statistics.
+- Batch project now includes valid n, range, standard error, skewness, and kurtosis in the aggregated statistics.
+- \+ is now added to maximum level test scores.
+- Text exclusion can now be adjusted to include incomplete sentences containing a specified number of words.
+
+#### Importing/Exporting Enhancements {-}
+
+- **All Words** list now includes syllable and character count columns.
+- Added **unique words count** to the **Statistics** window.
+- Summary statistics now available in tabular format.
+- When printing lists, the table is now split into smaller tables with page breaks between them. In addition, the header row appears on each page. Tables are also split into separate pages if there are too many columns to fit on one page.
+- When exporting lists as HTML, the aforementioned page break feature can optionally be included.
+- Borders for lists, statistics window, and test window are now ½ inch (instead of a full inch) when printing.
+- Optimized list HTML output (output files are 10–15% smaller).
+- Added TIFF compression options.
+- Added quantization (256 color reduction) option.
+- Added Targa image (\*.tga) exporting.
+- Added support for large JPEG importing.
+- Added GIF exporting.
+- Added GIF compression options.
+- Removed deprecated PNG bit-depth option.
+- Image size can now be customized.
+- Added ability to import macro enabled Word 2007 (\*.docm) files.
+- Added stand-alone **Web Harvester** feature to **Tools** menu.
+- Web harvester can now harvest more than one root website.
+
+#### Graph Enhancements {-}
+
+- [Raygor](#raygor-test) graph now shows *College* and *Professor* as the labels for the last two slices.
+- Added image stippling option (i.e., custom brush) for bar charts, histograms, and box plots.
+
+#### Bug Fixes {-}
+
+- License file is now written to *users/application data* folder for Windows XP SP3 and Vista SP1 compliance.
+- Score statistics are now only included if you have more than one test score.
+- Euro symbol (€) is now seen as two syllables.
+- Removed restrictions where tests would fail to be calculated if the number of difficult words was zero.
+- Improved proper-noun detection (stop list used for ambiguous capitalized words was greatly expanded).
+- Test-specific statistics are now only included if the respective test is included in the project.
+- Word-count bars are now only included on the word breakdown bar chart if the respective test is included in the project.
+- Fixed **Long sentences** text report not appearing on Japanese systems.
+- Improved handling of smart apostrophes and ellipses.
+
+### Readability Studio 2.0 (2008) {-}
+***
+
+#### Bug Fixes {-}
+
+- Fixed Windows HTML clipboard option to use UTF-8 properly (copying **Statistics** window into Excel would look corrupt).
+- Norwegian aspect of custom test wasn’t working (word list would be empty).
+- Smart apostrophes were not being recognized by word indexer.
+- Different apostrophes were not being seen as the same character by familiar-word tests.
+- *It’ll* and *dino* added to New Dale-Chall word list.
+- Word 2007 importer was bringing in paragraph offset values as part of the text.
+- Incorrect warning about document version number on non-English locales.
+- Printing large lists would truncate excess columns.
+
+### Readability Studio 1.2 (2007) {-}
+***
+
+#### General Enhancements {-}
+
+- Program is now fully Unicode.
+- Fixed printing issues.
+
+### Readability Studio 1.0/1.1 (2006) {-}
+***
+
+Initial Windows^®^ Release.

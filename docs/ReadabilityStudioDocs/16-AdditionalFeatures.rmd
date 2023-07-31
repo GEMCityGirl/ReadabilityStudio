@@ -1,0 +1,156 @@
+# Additional Features {#additional-features}
+
+This chapter discusses additional features not directly related to readability. This includes features such crawling and downloading documents from a website, as well as logging and command line options.
+
+## Web Harvester {#web-harvester}
+
+The **Web Harvester** dialog enables you to gather (and optionally download) links from a website. To access this dialog, select the **Tools** tab on the ribbon and click the `r keys('Web Harvest')` button under **Tools & Settings**.
+
+#### Harvesting {-}
+
+**Websites to Harvest**: Enter the base webpage(s) to begin your search into this list.
+
+**Depth Level**: Enter the depth of the website that you want to crawl. A level of 1 will gather only the links from the main page, whereas a level of 2 will gather all the links from the main page and then gather all links from those pages.
+
+**File types to include**: Select from this list the types of documents to include from the website.
+
+**Log broken links**: Check this option to check for broken links while harvesting and save them to the [log report](#log-report).
+
+::: {.warningsection data-latex=""}
+Checking this option will degrade performance as each web link must be connected to and verified.
+:::
+
+**User Agent**: Enter into this field your user agent. The user agent is the name of the client program that is sent to a website as you crawl it.
+
+#### Domain Restriction {-}
+
+:::: {.optionssection data-latex=""}
+::: {.optionssectiontitle data-latex=""}
+Domain Restriction
+:::
+
+Select from this list the domain restriction that you want to use.
+
+**Not restricted to any domain**: Select this option to harvest all links from the website, regardless of domain.
+
+**Domain restricted**: Select this option to only harvest links with the same domain as the webpage you specify (e.g., *company.com*).
+
+**Subdomain restricted**: Select this option to only harvest links with the same subdomain as the base webpage (e.g., *sales.company.com*).
+
+**Restricted to user-defined domain(s)**: Select this option to only harvest links from a provided list of domains. If folders are included in a specified domain, then the harvesting will be restricted to that folder. For example, if *www.news.mybusiness.com/articles* is specified, then only files from the folder *articles* in the subdomain *www.news.mybusiness.com* will be harvested.
+
+**Restricted to external domains**: Select this option to only harvest links from domains other than the webpage that you specify.
+
+**Restricted to same folder**: Select this option to only harvest links from the same web folder as the base URL. For example, if your base webpage is *www.mybusiness.com/history/aboutus.html*, then links will only be harvested from *www.mybusiness.com/history/*.
+::::
+
+**User-defined Domain(s)**: Enter all user-defined domains in this list. This option is only applicable if domain restriction is set to user-defined domains.
+
+#### Download {-}
+
+These options enable you to download the files from the website prior to analyzing them. Rather than analyzing the files directly from the website, the application will analyze the local files. If [file linking](#options-document) is enabled, then the project will link to these local files instead of the website.
+
+This option is recommended if you need to make edits to the files before analyzing them. It may also be recommended to improve performance, as analyzing local files will be faster than reading them from a website.
+
+If you intend to review a website and need to always analyze its latest changes, then it is not recommended to download the website. Rather, you should analyze the website directly and enable file linking. To directly analyze the website, uncheck the option **Download files locally**.
+
+**Download files locally**: Select this option to download the files from the website locally.
+
+**Folder to download files to**: Enter in this field the folder path where the website's files should be downloaded.
+
+**Use website's folder structure**: Select this option to organize the downloaded files into a folder structure similar to the website's folder structure. Deselecting this option will download the files into a flat folder structure.
+
+## Command Line Options {#command-line-options}
+
+The following command line options are available for *Readability Studio*:
+
+| Command | Description |
+| :-- | :-- |
+| `"filename"` | Opens *filename*, which can be the path to a project or document. If the path supplied is a folder, then a [batch project](#creating-batch-project) will be created using all documents found recursively within the folder. |
+| `-bg` | Path to an image file to use as *filename*'s graph background. (This option only applies if a *filename* parameter is supplied.) Also, *filename* must refer to a document or folder (i.e., not a *Readability Studio* project file) that will be used to create a new project. |
+| `-loglevel=n` | This parameter specifies how much information to [log](#log-report) while the program is running, where *n* is a value between 0-2 (0 = none, 1 = standard, 2 = verbose). |
+| `-help` | Displays the help. |
+
+The following example would open the document *PatientAgreement.rtf* and use the image *Sunset.png* as the graphs' background:
+
+::: {.darkmode data-latex=''}
+`ReadStudio "C:\Documents\PatientAgreement.rtf" -bg "C:\Images\Sunset.png"`
+:::
+
+This example would tell the program to log the maximum level of information while running:
+
+::: {.darkmode data-latex=''}
+`ReadStudio -loglevel=2`
+:::
+
+Note that verbose logging can also be enabled by holding down the `r keys("Shift")` (`r os_logo('windows')`) or `r keys("\\shift")` (`r os_logo('apple')`) button on your keyboard while the program opens.
+
+## Log Report {#log-report}
+
+While it is running, *Readability Studio* logs various diagnostic information. This information can provide details such as:
+
+- The location of where the program is loading its license and settings files
+- Parsing errors encountered while reading documents (e.g., malformed HTML files)
+- Warnings and errors encountered while performing analyses
+- The paths of documents being analyzed (verbose mode only)
+- Information about the operating system (e.g., OS version, default font, etc.)
+
+The log's level of detail is controlled by either the [command line](#command-line-options) or by holding down the `r keys("Shift")` (`r os_logo('windows')`) or `r keys("\\shift")` (`r os_logo('apple')`) button on your keyword while the program starts. (Holding `r keys("Shift")` (`r os_logo('windows')`) or `r keys("\\shift")` (`r os_logo('apple')`) instructs the program to use maximum, verbose logging.)
+
+To view this diagnostic information, go to the **Tools** tab on the ribbon, then click **Log Report** under the **Tools & Settings** section. From the **Log Report** dialog, you can review, save, and print any of this information.
+
+The messages in this report are displayed such that:
+
+-   General messages have a plain (white) background
+-   Warnings have a yellow background
+-   Errors have a red background
+
+This information can be useful if you are experiencing issues with loading a document.
+
+## Batch Project Import Features {#batch-project-import-features}
+
+### Select Labeling
+
+When adding documents to a batch project, you will be prompted about how to label them. Labeling is a useful way of either grouping your documents or applying a description to them.
+
+After selecting a group of documents, you will be presented with this dialog to specify how labeling should be done. On this dialog, you can select whether to use your documents' descriptions as their labels, or to use a single label to group them by.
+
+::: {.optionssection data-latex=""}
+**Use documents' descriptions (will be loaded during import)**: Select this to use each document's own description as its label. This is useful when document names may not be descriptive enough; this will show the document's description next to its name.
+
+**Use a grouping label**: Select this to use your provided label as a grouping label for the selected documents. This is useful when you want to cluster the documents in you batch into subgroups. (These subgroups are visualized on various graphs, such as Fry\index{Fry} and the histograms.)
+:::
+
+**Do not show this again (always use document descriptions)**: Check this to no longer prompt for how to label batch documents; document descriptions will always be used instead.
+
+Refer to \@ref(adding-labels-to-batch) and \@ref(grouping-docs-in-batch) for examples of this feature.
+
+### Select Directory
+
+This dialog enables you to select a folder of documents for [batch](#creating-batch-project) analysis.
+
+**Folder path**: Enter the path to the folder of documents that you want to include.
+
+**File types to include**: Select from this list the types of documents to include from the folder.
+
+**Search directories recursively**: Check this option to include files from all subfolders inside of the selected folder.
+
+### Select Archive File
+
+This dialog enables you to select an archive file (e.g., a compressed \*.zip file) that contains your documents for [batch](#creating-batch-project) analysis.
+
+**Folder path**: Enter the path to the archive file that you want to include.
+
+**File types to include**: Select from this list the types of documents to include from the archive. All files in the archive matching these document types will be included in the analysis.
+
+### Worksheet Preview
+
+When importing a spreadsheet into a batch, this dialog enables you to specify which worksheets and cells to import. Note that only text cells can be imported as documents, so numeric cells will be blank here.
+
+**Import**:
+
+**All text cells**: Select this option to import the entire worksheet.
+
+**Only highlighted cells**: Select this option to only import the selected cells (which will be highlighted blue). A block of cells can be selected by holding down the left mouse button and dragging the cursor around the block. Individual cells can be selected by holding down the `r keys("Ctrl")` (`r os_logo('windows')`) or `r keys("\\cmd")` (`r os_logo('apple')`) button on the keyboard and clicking the cells. Also, entire columns and rows can be selected by clicking the column header or row label, respectively.
+
+Note that selections can also be discontiguous. For example, if you hold down the `r keys("Ctrl")` (`r os_logo('windows')`) or `r keys("\\cmd")` (`r os_logo('apple')`) button and click the column headers *A* and then *D*, then these two columns will be imported.
