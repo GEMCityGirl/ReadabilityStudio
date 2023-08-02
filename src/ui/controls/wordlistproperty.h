@@ -15,7 +15,7 @@
 #define wxPG_PHRASE_MODE L"wxPG_PHRASE_MODE"
 
 /// @brief Property grid feature for editing a word list.
-class WXDLLIMPEXP_PROPGRID WordListProperty final : public wxLongStringProperty
+class WordListProperty final : public wxLongStringProperty
     {
     wxDECLARE_DYNAMIC_CLASS(WordListProperty);
 public:
