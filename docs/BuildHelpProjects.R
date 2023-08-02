@@ -53,6 +53,8 @@ combine_files("92-Acknowledgements.Rmd", "acknowledgements")
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::gitbook",
                       output_dir="docs")
+unlink(glue("{docFolder}/ReadabilityStudioDocs/41-ScoringNotes.rmd"))
+unlink(glue("{docFolder}/ReadabilityStudioDocs/92-Acknowledgements.Rmd"))
 # used on github to serve the book
 write(c(" "), file=glue("{docFolder}/ReadabilityStudioDocs/docs/.nojekyll"))
 
@@ -188,4 +190,5 @@ bookdown::render_book(input="index.Rmd",
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::pdf_book",
                       output_dir="docs")
-write(c(" "), file=glue("{docFolder}/ReadabilityTestsReference/docs/.nojekyll"))
+unlink(glue("{docFolder}/ReadabilityTestsReference/41-ScoringNotes.rmd"))
+unlink(glue("{docFolder}/ReadabilityTestsReference/92-Acknowledgements.Rmd"))
