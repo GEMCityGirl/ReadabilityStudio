@@ -7,11 +7,14 @@
 # License:     3-Clause BSD license
 #############################################################################
 
+PROJECT(ReadStudio)
+
 # Declare the minimum required CMake version
 # Note that CMake 3.24 is needed if compiling wxWidgets 3.2
 CMAKE_MINIMUM_REQUIRED(VERSION 3.14)
 SET(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_CXX_STANDARD_REQUIRED True)
+
 
 IF(NOT CMAKE_CONFIGURATION_TYPES)
     GET_PROPERTY(HAVE_MULTI_CONFIG_GENERATOR GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
@@ -29,8 +32,6 @@ IF(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     # Set the possible values of build type for cmake-gui
     SET_PROPERTY(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release")
 ENDIF()
-
-PROJECT(ReadStudio)
 
 # Build the documentation (not available on Windows)
 ########################
@@ -65,7 +66,7 @@ ENDIF()
 # Windows: set wxWidgets_ROOT_DIR to the wxWidgets root path
 
 # Find wxWidgets and select its components
-FIND_PACKAGE(wxWidgets REQUIRED core base adv html ribbon xml xrc qa propgrid OPTIONAL_COMPONENTS net)
+FIND_PACKAGE(wxWidgets REQUIRED core base adv html ribbon xml xrc qa propgrid scintilla stc aui net)
 # Include the wxWidgets use file to initialize various settings
 INCLUDE(${wxWidgets_USE_FILE})
 MESSAGE(STATUS "Adding wxWidgets libraries: ${wxWidgets_LIBRARIES}")
@@ -88,12 +89,12 @@ ADD_COMPILE_OPTIONS("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 ########################
 # (run "tools/Build CMake Files List.R" to update this)
 INCLUDE(${CMAKE_SOURCE_DIR}/tools/files.cmake)
-ADD_EXECUTABLE(${PROJECT_NAME} WIN32 MACOSX_BUNDLE)
+ADD_EXECUTABLE(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${APP_SRC_FILES} ../Licensing/CyoDecode.cpp ../Licensing/CyoEncode.cpp ../Licensing/LicenseAdmin.cpp ../Licensing/LicenseDlg.cpp ../Licensing/Rijndael.cpp)
 TARGET_INCLUDE_DIRECTORIES(${PROJECT_NAME} PUBLIC ${wxWidgets_INCLUDE_DIRS})
 
 # Set definitions, warnings, and optimizations (will propagate to the demo project also)
 IF(MSVC)
-    TARGET_COMPILE_DEFINITIONS(${PROJECT_NAME} PUBLIC __WXMSW__ _CRT_SECURE_NO_WARNINGS
+    TARGET_COMPILE_DEFINITIONS(${PROJECT_NAME} PUBLIC __WXMSW__ _CRT_SECURE_NO_WARNINGS CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED
         $<$<CONFIG:Debug>:__WXDEBUG__> $<$<CONFIG:Release>:NDEBUG>)
     # /Zc:__cplusplus tells MSVC to set the C++ version what we are
     # actually compiling as. The default behavior in MSVC is to say that the
@@ -112,24 +113,22 @@ IF(MSVC)
     TARGET_COMPILE_OPTIONS(${PROJECT_NAME} PUBLIC /Zc:__cplusplus /MP /W3 /WX /wd6211
                            $<$<CONFIG:Debug>:/Od> $<$<CONFIG:Release>:/O2>)
 ELSEIF(MINGW OR MSYS)
-    TARGET_COMPILE_DEFINITIONS(${PROJECT_NAME} PUBLIC __WXMSW__
+    TARGET_COMPILE_DEFINITIONS(${PROJECT_NAME} PUBLIC __WXMSW__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED
             $<$<CONFIG:Debug>:__WXDEBUG__> $<$<CONFIG:Release>:NDEBUG>)
     TARGET_COMPILE_OPTIONS(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -Werror
                            $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O2>)
 # TODO: Experimental code for macOS (undergoing testing currently)
 ELSEIF(APPLE)
-    TARGET_COMPILE_DEFINITIONS(${PROJECT_NAME} PUBLIC __WXOSX__
+    TARGET_COMPILE_DEFINITIONS(${PROJECT_NAME} PUBLIC __WXOSX__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED
         $<$<CONFIG:Debug>:__WXDEBUG__> $<$<CONFIG:Release>:NDEBUG>)
     TARGET_COMPILE_OPTIONS(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -Werror
                            $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O2>)
 ELSEIF(UNIX)
-    TARGET_COMPILE_DEFINITIONS(${PROJECT_NAME} PUBLIC __WXGTK__
+    TARGET_COMPILE_DEFINITIONS(${PROJECT_NAME} PUBLIC __WXGTK__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED
         $<$<CONFIG:Debug>:__WXDEBUG__> $<$<CONFIG:Release>:NDEBUG>)
     TARGET_COMPILE_OPTIONS(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -Werror
                            $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O2>)
 ENDIF()
-
-
 
 # Build the app
 ########################
@@ -148,10 +147,14 @@ MESSAGE(STATUS "Building the program...")
 
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/build")
+SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 # Link required libraries to the executable
 IF(WIN32)
     TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
+    # HACK!
+    TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/lib/vc_x64_lib/wxlexillad.lib)
+    # END HACK!
 ELSEIF(UNIX)
     # Add OpenMP for mutlithreading
     FIND_PACKAGE(OpenMP)
@@ -164,10 +167,14 @@ MESSAGE(STATUS "Copying application resources...")
 ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${CMAKE_SOURCE_DIR}/docs/ReadabilityStudioDocs/docs $<TARGET_FILE_DIR:${WISTERIA_APP}>/docs)
+                   ${CMAKE_SOURCE_DIR}/docs/ReadabilityStudioDocs/docs $<TARGET_FILE_DIR:${PROJECT_NAME}>/docs)
+ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                   ${CMAKE_SOURCE_DIR}/Resources/Scripting $<TARGET_FILE_DIR:${PROJECT_NAME}>)
 
 IF(APPLE)
-    SET_TARGET_PROPERTIES(${WISTERIA_APP} PROPERTIES
+    SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES
         RESOURCE "app/wxmac.icns"
         MACOSX_BUNDLE_ICON_FILE wxmac.icns
         MACOSX_BUNDLE_COPYRIGHT "Copyright Blake Madden"
