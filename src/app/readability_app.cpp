@@ -9,7 +9,7 @@
 #include "../ui/dialogs/editwordlistdlg.h"
 #include "../ui/dialogs/project_wizard_dlg.h"
 #include "../document_helpers/chapter_split.h"
-#include "../../../../Licensing/LicenseDlg.h"
+#include "../../../Licensing/LicenseDlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/filelistdlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/getdirdlg.h"
 #include "../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"

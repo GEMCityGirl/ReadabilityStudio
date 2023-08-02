@@ -15,7 +15,7 @@
 #include <wx/evtloop.h>
 #include <map>
 #include <algorithm>
-#include "../../../../Licensing/LicenseAdmin.h"
+#include "../../../Licensing/LicenseAdmin.h"
 #include "../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/printerheaderfooterdlg.h"
 #include "../Wisteria-Dataviz/src/util/formulaformat.h"
