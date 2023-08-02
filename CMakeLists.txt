@@ -15,7 +15,6 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.14)
 SET(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_CXX_STANDARD_REQUIRED True)
 
-
 IF(NOT CMAKE_CONFIGURATION_TYPES)
     GET_PROPERTY(HAVE_MULTI_CONFIG_GENERATOR GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
     # Set default configuration types for multi-config generators
@@ -66,9 +65,13 @@ ENDIF()
 # Windows: set wxWidgets_ROOT_DIR to the wxWidgets root path
 
 # Find wxWidgets and select its components
-FIND_PACKAGE(wxWidgets REQUIRED core base adv html ribbon xml xrc qa propgrid scintilla stc aui net)
+SET(wxWidgets_USE_STATIC 1)
+FIND_PACKAGE(wxWidgets 3.3 COMPONENTS core base xrc propgrid xml aui ribbon qa stc net REQUIRED CONFIG)
+
 # Include the wxWidgets use file to initialize various settings
+IF(wxWidgets_USE_FILE)
 INCLUDE(${wxWidgets_USE_FILE})
+ENDIF()
 MESSAGE(STATUS "Adding wxWidgets libraries: ${wxWidgets_LIBRARIES}")
 MESSAGE(STATUS "Adding wxWidgets configuration file: ${wxWidgets_CONFIGURATION}/wx/setup.h")
 
@@ -152,9 +155,6 @@ SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 # Link required libraries to the executable
 IF(WIN32)
     TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
-    # HACK!
-    TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/lib/vc_x64_lib/wxlexillad.lib)
-    # END HACK!
 ELSEIF(UNIX)
     # Add OpenMP for mutlithreading
     FIND_PACKAGE(OpenMP)
