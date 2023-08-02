@@ -10,6 +10,7 @@ docs/ReadabilityStudioDocs/docs
 *.log
 installers/Windows/Output/
 installers/Windows/release/
+/out/
 
 # Intermediate build files
 Resources/Words/Dictionaries/English.txt
@@ -51,3 +52,5 @@ Docs/ReadabilityStudioAPI/.Rproj.user
 /.vs
 .Rproj.user
 .Rhistory
+/CMakeSettings.json
+

@@ -1,7 +1,7 @@
 # Automatically generated from 'Build CMake Files List.R'
 # DO NOT MODIFY MANUALLY!
 
-SET(WISTERIA_SRC
+SET(APP_SRC_FILES
     src/app/readability_app.cpp
     src/app/readability_app_options.cpp
     src/document_helpers/chapter_split.cpp
@@ -105,6 +105,7 @@ SET(WISTERIA_SRC
     src/Wisteria-Dataviz/src/graphs/table.cpp
     src/Wisteria-Dataviz/src/graphs/wcurveplot.cpp
     src/Wisteria-Dataviz/src/graphs/wordcloud.cpp
+    src/Wisteria-Dataviz/src/i18n-check/src/i18n_review.cpp
     src/Wisteria-Dataviz/src/i18n-check/src/i18n_string_util.cpp
     src/Wisteria-Dataviz/src/i18n-check/src/rc_file_review.cpp
     src/Wisteria-Dataviz/src/import/cpp_extract_text.cpp
