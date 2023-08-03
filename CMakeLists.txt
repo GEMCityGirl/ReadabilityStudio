@@ -7,13 +7,13 @@
 # License:     3-Clause BSD license
 #############################################################################
 
-PROJECT(ReadStudio)
-
 # Declare the minimum required CMake version
 # Note that CMake 3.24 is needed if compiling wxWidgets 3.2
 CMAKE_MINIMUM_REQUIRED(VERSION 3.14)
 SET(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_CXX_STANDARD_REQUIRED True)
+
+PROJECT(ReadStudio)
 
 IF(NOT CMAKE_CONFIGURATION_TYPES)
     GET_PROPERTY(HAVE_MULTI_CONFIG_GENERATOR GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
@@ -120,7 +120,7 @@ ELSEIF(MINGW OR MSYS)
             $<$<CONFIG:Debug>:__WXDEBUG__> $<$<CONFIG:Release>:NDEBUG>)
     TARGET_COMPILE_OPTIONS(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -Werror
                            $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O2>)
-# TODO: Experimental code for macOS (undergoing testing currently)
+# TODO: Experimental code for macOS
 ELSEIF(APPLE)
     TARGET_COMPILE_DEFINITIONS(${PROJECT_NAME} PUBLIC __WXOSX__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED
         $<$<CONFIG:Debug>:__WXDEBUG__> $<$<CONFIG:Release>:NDEBUG>)
@@ -162,7 +162,7 @@ ELSEIF(UNIX)
     TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${wxWidgets_LIBRARIES} ${TBB_LIB} OpenMP::OpenMP_CXX)
 ENDIF()
 
-# Copy help into build folder
+# Copy help, scripts, and resources into build folder
 MESSAGE(STATUS "Copying application resources...")
 ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
                    POST_BUILD
@@ -172,6 +172,16 @@ ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                    ${CMAKE_SOURCE_DIR}/Resources/Scripting $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+# Zip up images and menu resources
+ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>/res.wad" --format=zip --files-from="${CMAKE_SOURCE_DIR}/tools/images.cmake"
+                   WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Resources/Images")
+# Word lists
+ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Words.wad" --format=zip --files-from="${CMAKE_SOURCE_DIR}/tools/words.cmake"
+                   WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Resources/Words")
 
 IF(APPLE)
     SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES
