@@ -541,6 +541,7 @@ namespace LuaScripting
         {
 #ifndef NDEBUG
         wxString* bogus{ nullptr };
+        // cppcheck-suppress ignoredReturnValue
         bogus->length();
 #endif
         return 0;
