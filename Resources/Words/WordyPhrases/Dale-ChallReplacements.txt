@@ -1,4 +1,4 @@
-﻿abdicate	quit
+abdicate	quit
 abdicated	quit
 abdicates	quits
 abdicating	quitting

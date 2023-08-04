@@ -1,4 +1,4 @@
-﻿abatement	decrease
+abatement	decrease
 abbreviate	shorten
 abbreviated	shortened
 abbreviates	shortens

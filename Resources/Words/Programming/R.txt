@@ -1,4 +1,4 @@
-﻿as.data.frame
+as.data.frame
 as.factor
 break
 col.names

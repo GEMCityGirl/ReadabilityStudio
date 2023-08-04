@@ -1,4 +1,4 @@
-﻿bgcolor
+bgcolor
 font-style
 font-weight
 fontface

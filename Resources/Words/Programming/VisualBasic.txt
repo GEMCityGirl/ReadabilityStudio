@@ -1,4 +1,4 @@
-﻿#Const
+#Const
 #Else
 #ElseIf
 #End

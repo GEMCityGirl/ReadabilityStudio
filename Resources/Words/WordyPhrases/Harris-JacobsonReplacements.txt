@@ -1,4 +1,4 @@
-﻿abdomen	stomach
+abdomen	stomach
 abeyance	waiting
 abhor	hate
 abhorred	hated
