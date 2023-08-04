@@ -42,6 +42,7 @@ UserManualMode = TRUE
 setwd(glue("{docFolder}/ReadabilityStudioDocs/"))
 combine_files("01-Overviews.Rmd", "overviews",
               ("(intro|program)"))
+combine_files("90-Glossaries.rmd", "glossary")
 combine_files("92-Acknowledgements.Rmd", "acknowledgements",
               ("(intro|assistance)"))
 combine_files("41-ScoringNotes.rmd", "scoring-notes")
@@ -53,8 +54,10 @@ combine_files("92-Acknowledgements.Rmd", "acknowledgements")
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::gitbook",
                       output_dir="docs")
+unlink(glue("{docFolder}/ReadabilityStudioDocs/01-Overviews.Rmd"))
 unlink(glue("{docFolder}/ReadabilityStudioDocs/41-ScoringNotes.rmd"))
 unlink(glue("{docFolder}/ReadabilityStudioDocs/92-Acknowledgements.Rmd"))
+unlink(glue("{docFolder}/ReadabilityStudioDocs/90-Glossaries.rmd"))
 # used on github to serve the book
 write(c(" "), file=glue("{docFolder}/ReadabilityStudioDocs/docs/.nojekyll"))
 

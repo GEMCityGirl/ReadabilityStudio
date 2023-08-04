@@ -1,0 +1,97 @@
+# Keyboard Shortcuts
+
+<!-- no break spaces are to add blank lines between each row in the shortcuts table,
+     making it easier to read.-->
+
+::: {.minipage data-latex="{\textwidth}"}
+Table: Application Shortcuts
+
+------------------------------------------------------------------------------------------------
+To do this                              Press                                               
+--------------------------------------- --------------------------------------------------------
+Open the help                           `r keys('F1')`
+
+&nbsp;                                  &nbsp;
+
+Enable verbose logging                  Hold down `r keys('Shift')` (`r os_logo('windows')`) or
+                                        `r keys('\\shift')` (`r os_logo('apple')`)<br>\linebreak
+                                        while the program loads
+------------------------------------------------------------------------------------------------
+:::
+
+::: {.minipage data-latex="{\textwidth}"}
+Table: Project Shortcuts
+
+------------------------------------------------------------------------------------------------
+To do this                              Press                                               
+--------------------------------------- --------------------------------------------------------
+Show/hide the sidebar                   `r keys('F2')`                                          
+
+&nbsp;                                  &nbsp;
+
+Show/hide the ribbon                    `r keys(c('Ctrl','F1'))` (`r os_logo('windows')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','F1'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Reload the active project               `r keys('F5')`
+
+&nbsp;                                  &nbsp;
+
+Create a new project from the clipboard `r keys(c('Ctrl','V'))` (`r os_logo('windows')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','V'))` (`r os_logo('apple')`) 
+
+&nbsp;                                  &nbsp;
+
+Save the active project                 `r keys(c('Ctrl','S'))` (`r os_logo('windows')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','S'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Print the active window                 `r keys(c('Ctrl','P'))` (`r os_logo('windows')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','P'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Remove the selected test                `r keys(c('Ctrl', 'Del'))` (`r os_logo('windows')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','\\backdel'))` (`r os_logo('apple')`)
+------------------------------------------------------------------------------------------------
+:::
+
+::: {.minipage data-latex="{\textwidth}"}
+Table: Graph Shortcuts
+
+------------------------------------------------------------------------------------------------
+To do this                              Press                                               
+--------------------------------------- --------------------------------------------------------
+Zoom in                                 `r keys('{+}')`                                     
+
+&nbsp;                                  &nbsp;
+
+Zoom out                                `r keys('-')`                                       
+
+&nbsp;                                  &nbsp;
+
+Reset zoom                              `r keys('*')`                                       
+------------------------------------------------------------------------------------------------
+:::
+
+::: {.minipage data-latex="{\textwidth}"}
+Table: Lists Shortcuts
+
+------------------------------------------------------------------------------------------------
+To do this                              Press                                               
+--------------------------------------- --------------------------------------------------------
+Removes selected item(s) from a list    `r keys('Del')` (`r os_logo('windows')`) or<br>\linebreak
+                                        `r keys('\\backdel')` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Edits selected item in a list           `r keys('Ins')`                                      
+
+&nbsp;                                  &nbsp;
+
+Add a new item to a list                `r keys(c('Ctrl','Ins'))` (`r os_logo('windows')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','Ins'))` (`r os_logo('apple')`)
+------------------------------------------------------------------------------------------------
+:::
