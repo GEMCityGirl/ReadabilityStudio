@@ -26,7 +26,7 @@ ENDIF()
 ADD_COMPILE_OPTIONS("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
 ADD_COMPILE_OPTIONS("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
-SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 
 ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ../src/indexing/article.cpp ../src/indexing/abbreviation.cpp
 ../src/indexing/conjunction.cpp ../src/indexing/contraction.cpp ../src/indexing/double_words.cpp
@@ -51,7 +51,7 @@ MESSAGE(STATUS "Copying test files...")
 ADD_CUSTOM_COMMAND(TARGET ${CMAKE_PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${CMAKE_SOURCE_DIR}/Dictionaries $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>)
+                   ${CMAKE_CURRENT_SOURCE_DIR}/Dictionaries $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>)
 
 # load the test cases into the runner
 INCLUDE(CTest)
