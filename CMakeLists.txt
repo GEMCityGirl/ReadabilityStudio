@@ -9,7 +9,7 @@
 
 # Declare the minimum required CMake version
 # Note that CMake 3.24 is needed if compiling wxWidgets 3.2
-CMAKE_MINIMUM_REQUIRED(VERSION 3.14)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.24)
 SET(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_CXX_STANDARD_REQUIRED True)
 
@@ -32,48 +32,20 @@ IF(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     SET_PROPERTY(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release")
 ENDIF()
 
-# Build the documentation (not available on Windows)
-########################
-IF(NOT WIN32)
-    # https://vicrucann.github.io/tutorials/quick-cmake-doxygen/
-    FIND_PACKAGE(Doxygen)
-    IF(DOXYGEN_FOUND)
-        # set input and output files
-        SET(DOXYGEN_IN "${CMAKE_SOURCE_DIR}/docs/doxygen/Doxyfile")
-        IF(EXISTS ${DOXYGEN_IN})
-            MESSAGE("Doxygen build started")
-
-            # note the option ALL which allows to build
-            # the docs together with the application
-            ADD_CUSTOM_TARGET( doc_doxygen ALL
-                COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_IN}
-                WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/docs/doxygen"
-                COMMENT "Generating API documentation with Doxygen"
-                VERBATIM )
-        ELSE()
-            MESSAGE("Doxygen project file missing (${DOXYGEN_IN}).")
-        ENDIF()
-    ELSE(DOXYGEN_FOUND)
-        MESSAGE("Doxygen not found. API documentation will not be generated.")
-    ENDIF()
-ENDIF()
-
 # Setup wxWidgets
 ########################
 
-# Linux: install the wxWidgets development files to your system
-# Windows: set wxWidgets_ROOT_DIR to the wxWidgets root path
-
-# Find wxWidgets and select its components
+# Find wxWidgets (wxWidgetsConfig.cmake, specifically) and select its components
+SET(wxWidgets_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/out/install/x64-${CMAKE_BUILD_TYPE}/lib/cmake/wxWidgets")
 SET(wxWidgets_USE_STATIC 1)
 FIND_PACKAGE(wxWidgets 3.3 COMPONENTS core base xrc propgrid xml aui ribbon qa stc net REQUIRED CONFIG)
 
 # Include the wxWidgets use file to initialize various settings
 IF(wxWidgets_USE_FILE)
-INCLUDE(${wxWidgets_USE_FILE})
+    INCLUDE(${wxWidgets_USE_FILE})
 ENDIF()
 MESSAGE(STATUS "Adding wxWidgets libraries: ${wxWidgets_LIBRARIES}")
-MESSAGE(STATUS "Adding wxWidgets configuration file: ${wxWidgets_CONFIGURATION}/wx/setup.h")
+MESSAGE(STATUS "Adding wxWidgets: ${wxPLATFORM_LIB_DIR}")
 
 IF(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
     # If no deployment target has been set default to the minimum supported
@@ -88,12 +60,20 @@ ENDIF()
 ADD_COMPILE_OPTIONS("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
 ADD_COMPILE_OPTIONS("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
-# Build Wisteria library
+# Build binary
 ########################
 # (run "tools/Build CMake Files List.R" to update this)
 INCLUDE(${CMAKE_SOURCE_DIR}/tools/files.cmake)
+IF(WIN32)
+    # Include an RC file and HiDPI manifest for Windows (provided by wxWidgets)
+    SET(wxUSE_DPI_AWARE_MANIFEST 1)
+    LIST(APPEND APP_SRC_FILES ${CMAKE_SOURCE_DIR}/ReadStudio.rc)
+    LIST(APPEND APP_SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/include/wx/msw/wx_dpi_aware.manifest")
+ELSEIF(APPLE)
+    # Add an icon for the apple .app file
+    LIST(APPEND APP_SRC_FILES ${CMAKE_SOURCE_DIR}/app/wxmac.icns)
+ENDIF()
 ADD_EXECUTABLE(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${APP_SRC_FILES} ../Licensing/CyoDecode.cpp ../Licensing/CyoEncode.cpp ../Licensing/LicenseAdmin.cpp ../Licensing/LicenseDlg.cpp ../Licensing/Rijndael.cpp)
-TARGET_INCLUDE_DIRECTORIES(${PROJECT_NAME} PUBLIC ${wxWidgets_INCLUDE_DIRS})
 
 # Set definitions, warnings, and optimizations (will propagate to the demo project also)
 IF(MSVC)
@@ -133,18 +113,6 @@ ELSEIF(UNIX)
                            $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O2>)
 ENDIF()
 
-# Build the app
-########################
-IF(WIN32)
-    # Include an RC file and HiDPI manifest for Windows (provided by wxWidgets)
-    SET(wxUSE_DPI_AWARE_MANIFEST 1)
-    LIST(APPEND APP_SRC_FILES ${wxWidgets_ROOT_DIR}/include/wx/msw/wx.rc)
-    LIST(APPEND APP_SRC_FILES ${wxWidgets_ROOT_DIR}/include/wx/msw/wx_dpi_aware.manifest)
-ELSEIF(APPLE)
-    # Add an icon for the apple .app file
-    LIST(APPEND APP_SRC_FILES ${CMAKE_SOURCE_DIR}/app/wxmac.icns)
-ENDIF()
-
 # Define the build target for the executable and copy it into the "app" subfolder
 MESSAGE(STATUS "Building the program...")
 
@@ -172,16 +140,36 @@ ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                    ${CMAKE_SOURCE_DIR}/Resources/Scripting $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                   ${CMAKE_SOURCE_DIR}/Resources/Themes $<TARGET_FILE_DIR:${PROJECT_NAME}>/Themes)
+ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                   ${CMAKE_SOURCE_DIR}/Resources/ReportThemes $<TARGET_FILE_DIR:${PROJECT_NAME}>/ReportThemes)
 # Zip up images and menu resources
 ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>/res.wad" --format=zip --files-from="${CMAKE_SOURCE_DIR}/tools/images.cmake"
+                   COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>/res.wad" "${CMAKE_SOURCE_DIR}/installers/resources/"
+                   COMMENT "Building resourse bundle and copying to build and installer folders."
                    WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Resources/Images")
 # Word lists
 ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Words.wad" --format=zip --files-from="${CMAKE_SOURCE_DIR}/tools/words.cmake"
+                   COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Words.wad" "${CMAKE_SOURCE_DIR}/installers/resources/"
+                   COMMENT "Building word lists and copying to build and installer folders."
                    WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Resources/Words")
+
+# Copy application to installer folder (if a production build)
+IF(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+    ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
+                       POST_BUILD
+                       COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${PROJECT_NAME}>" "${CMAKE_SOURCE_DIR}/installers/Windows/Release"
+                       COMMENT "Copying binary to installer folder.")
+ENDIF()
 
 IF(APPLE)
     SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES
