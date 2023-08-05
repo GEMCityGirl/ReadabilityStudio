@@ -14,6 +14,8 @@
 *.log
 
 # Intermediate build files
+/Catch2
+/CMakeFiles
 /Resources/Words/Dictionaries/English.txt
 /Resources/Words/Programming/All Languages.txt
 /Resources/Words/ProperNouns/Personal.txt
