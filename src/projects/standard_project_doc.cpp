@@ -86,7 +86,7 @@ std::vector<CustomReadabilityTestInterface>::iterator ProjectDoc::RemoveCustomRe
 //------------------------------------------------
 void ProjectDoc::LoadManuallyEnteredText()
     {
-    SetOriginalDocumentFilePath(wxEmptyString);
+    SetOriginalDocumentFilePath(wxString{});
     try
         {
         LoadDocument();
@@ -353,7 +353,7 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                 {
                 if (WarningManager::HasWarning(_DT(L"no-embedded-text")))
                     {
-                    auto warningMsg = *WarningManager::GetWarning(_DT(L"no-embedded-text"));
+                    WarningMessage warningMsg = *WarningManager::GetWarning(_DT(L"no-embedded-text"));
                     warningMsg.SetMessage(
                         _(L"Manually entered text could not be found in the project file.\n"
                            "Only previously calculated scores and statistics will be displayed."));
@@ -1283,8 +1283,8 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
                 ReadabilityMessages::GetDolchLabel(),
                 L"<tr><td>" + wxString(_(L"Refer to the <a href=\"#Dolch\">Dolch Sight Words</a> section.")) +
                 L"</td></tr>",
-                std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
-                wxEmptyString,
+                std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}),
+                wxString{},
                 std::numeric_limits<double>::quiet_NaN(),
                 std::numeric_limits<double>::quiet_NaN(), false);
         }
@@ -1454,7 +1454,7 @@ bool ProjectDoc::OnCreate(const wxString& path, long flags)
             {
             SetOriginalDocumentFilePath(path);
             SetTextSource(TextSource::FromFile);
-            return wxDocument::OnCreate(wxEmptyString, flags);
+            return wxDocument::OnCreate(wxString{}, flags);
             }
         // otherwise, use the wizard if raw text (or no text, or examples file path) was passed in
         else
@@ -1629,7 +1629,7 @@ bool ProjectDoc::OnNewDocument()
         {
         if (WarningManager::HasWarning(_DT(L"sentences-split-by-paragraph-breaks")))
             {
-            auto warningMsg = *WarningManager::GetWarning(
+            WarningMessage warningMsg = *WarningManager::GetWarning(
                 _DT(L"sentences-split-by-paragraph-breaks"));
             warningMsg.SetMessage(wxString::Format(
                 _(L"This document contains at least %zu sentences that appear to be split by paragraph breaks. "
@@ -3047,8 +3047,8 @@ bool ProjectDoc::AddSchwartzTest(const bool setFocus)
 
         SetReadabilityTestResult(CURRENT_TEST_KEY,
             theTest.first->get_test().get_long_name().c_str(), description,
-            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
-            wxEmptyString,
+            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}),
+            wxString{},
             std::numeric_limits<double>::quiet_NaN(), // will be shown as an empty string
             std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
@@ -3209,8 +3209,8 @@ bool ProjectDoc::AddFraseTest(const bool setFocus)
 
         SetReadabilityTestResult(CURRENT_TEST_KEY,
             theTest.first->get_test().get_long_name().c_str(), description,
-            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
-            wxEmptyString,
+            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}),
+            wxString{},
             std::numeric_limits<double>::quiet_NaN()/*Will be shown as an empty string*/,
             std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
@@ -3229,8 +3229,8 @@ bool ProjectDoc::AddFraseTest(const bool setFocus)
 
         SetReadabilityTestResult(CURRENT_TEST_KEY,
             theTest.first->get_test().get_long_name().c_str(), description,
-            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
-            wxEmptyString, val,
+            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}),
+            wxString{}, val,
             std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
 
@@ -4321,7 +4321,7 @@ void ProjectDoc::SetReadabilityTestResult(const wxString& testId,
         NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
     view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 2, readerAge);
     if (std::isnan(indexScore))
-        { view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 3, wxEmptyString); }
+        { view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 3, wxString{}); }
     else
         {
         view->GetReadabilityScoresList()->GetDataProvider()->SetItemValue(
@@ -4329,7 +4329,7 @@ void ProjectDoc::SetReadabilityTestResult(const wxString& testId,
             NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1));
         }
     if (std::isnan(clozeScore))
-        { view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 4, wxEmptyString); }
+        { view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 4, wxString{}); }
     else
         {
         view->GetReadabilityScoresList()->GetDataProvider()->SetItemValue(
@@ -4549,37 +4549,37 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\highlight6\\cf%d ", dolchConjunctionsTextColorIndexBGMode) :
             L"{\\cf6 " :
-            wxEmptyString;
+            wxString{};
         const wxString DOLCH_PREPOSITIONS_BEGIN = IsHighlightingDolchPrepositions() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\highlight7\\cf%d ", dolchPrepositionsTextColorIndexBGMode) :
             L"{\\cf7 " :
-            wxEmptyString;
+            wxString{};
         const wxString DOLCH_PRONOUN_BEGIN = IsHighlightingDolchPronouns() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\highlight8\\cf%d ", dolchPronounsTextColorIndexBGMode) :
             L"{\\cf8 " :
-            wxEmptyString;
+            wxString{};
         const wxString DOLCH_ADVERB_BEGIN = IsHighlightingDolchAdverbs() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\highlight9\\cf%d ", dolchAdverbsTextColorIndexBGMode) :
             L"{\\cf9 " :
-            wxEmptyString;
+            wxString{};
         const wxString DOLCH_ADJECTIVE_BEGIN = IsHighlightingDolchAdjectives() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\highlight10\\cf%d ", dolchAdjectivesTextColorIndexBGMode) :
             L"{\\cf10 " :
-            wxEmptyString;
+            wxString{};
         const wxString DOLCH_VERB_BEGIN = IsHighlightingDolchVerbs() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\highlight11\\cf%d ", dolchVerbsTextColorIndexBGMode) :
             L"{\\cf11 " :
-            wxEmptyString;
+            wxString{};
         const wxString DOLCH_NOUN_BEGIN = IsHighlightingDolchNouns() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\highlight12\\cf%d ", dolchNounTextColorIndexBGMode) :
             L"{\\cf12 " :
-            wxEmptyString;
+            wxString{};
         // terminator
         const wxString HIGHLIGHT_END = L"}";
 
@@ -4622,37 +4622,37 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\cb6\\cf%d ", dolchConjunctionsTextColorIndexBGMode) :
             L"{\\cf6 " :
-            wxEmptyString;
+            wxString{};
         const wxString DOLCH_PREPOSITIONS_BEGIN = IsHighlightingDolchPrepositions() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\cb7\\cf%d ", dolchPrepositionsTextColorIndexBGMode) :
             L"{\\cf7 " :
-            wxEmptyString;
+            wxString{};
         const wxString DOLCH_PRONOUN_BEGIN = IsHighlightingDolchPronouns() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\cb8\\cf%d ", dolchPronounsTextColorIndexBGMode) :
             L"{\\cf8 " :
-            wxEmptyString;
+            wxString{};
         const wxString DOLCH_ADVERB_BEGIN = IsHighlightingDolchAdverbs() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\cb9\\cf%d ", dolchAdverbsTextColorIndexBGMode) :
             L"{\\cf9 " :
-            wxEmptyString;
+            wxString{};
         const wxString DOLCH_ADJECTIVE_BEGIN = IsHighlightingDolchAdjectives() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\cb10\\cf%d ", dolchAdjectivesTextColorIndexBGMode) :
             L"{\\cf10 " :
-            wxEmptyString;
+            wxString{};
         const wxString DOLCH_VERB_BEGIN = IsHighlightingDolchNouns() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\cb11\\cf%d ", dolchVerbsTextColorIndexBGMode) :
             L"{\\cf11 " :
-            wxEmptyString;
+            wxString{};
         const wxString DOLCH_NOUN_BEGIN = IsHighlightingDolchNouns() ?
             (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"{\\cb12\\cf%d ", dolchNounTextColorIndexBGMode) :
             L"{\\cf12 " :
-            wxEmptyString;
+            wxString{};
         // terminator
         const wxString HIGHLIGHT_END = L"}";
 
@@ -5966,7 +5966,7 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
 
     // Write the meta data information, such as statistics
     //---------------------------------------------------
-    wxString metaFileText = wxEmptyString; wxString sectionText = wxEmptyString;
+    wxString metaFileText = wxString{}; wxString sectionText = wxString{};
     metaFileText.append(L"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<").
         append(wxGetApp().GetAppOptions().XML_OFFICE_DOCUMENT_META_HEADER).
         append(L">\n\t<").append(wxGetApp().GetAppOptions().XML_OFFICE_META).append(L">\n");

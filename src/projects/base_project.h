@@ -562,7 +562,7 @@ public:
     wxString GetOriginalDocumentFilePath(const size_t index = 0) const
         {
         if (m_sourceFilePaths.size() <= index)
-            { return wxEmptyString; }
+            { return wxString{}; }
         return m_sourceFilePaths[index].first;
         }
     /** Sets the document path, at a given index. Standard projects just has one of these (index 0),
@@ -586,7 +586,7 @@ public:
     wxString GetOriginalDocumentDescription(const size_t index = 0) const
         {
         if (m_sourceFilePaths.size() <= index)
-            { return wxEmptyString; }
+            { return wxString{}; }
         return m_sourceFilePaths[index].second;
         }
     /** Sets the document description, at a given index. Standard projects just has one of these (index 0),
@@ -929,7 +929,7 @@ public:
     /// @param queue Whether the message should be queued for showing later.
     ///     It will not be shown until ShowQueuedMessages() is called.
     void LogMessage(wxString message, const wxString& title, const int icon,
-                    const wxString& messageId = wxEmptyString, const bool queue = false);
+                    const wxString& messageId = wxString{}, const bool queue = false);
     void LogMessage(const WarningMessage& message, const bool queue = false)
         {
         // in case this is something that the user asked to be suppressed
@@ -957,7 +957,7 @@ public:
         {
         if (GetSubProjectMessages() == nullptr)
             { m_messages = new std::vector<WarningMessage>; }
-        m_messages->emplace_back(wxEmptyString,message,wxEmptyString,wxEmptyString,icon);
+        m_messages->emplace_back(wxString{},message,wxString{},wxString{},icon);
         }
 
     /// @return the messages that won't be shown until client asks from them to be shown.
@@ -1437,7 +1437,7 @@ public:
                     filePath),
                     _(L"Warning"), wxOK|wxICON_EXCLAMATION);
                 SetModifiedFlag();
-                SetExcludedPhrasesPath(wxEmptyString);
+                SetExcludedPhrasesPath(wxString{});
                 }
             }
         }

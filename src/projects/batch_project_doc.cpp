@@ -1489,7 +1489,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                             {
                             // this will change the spreadsheet cell path to the real file path
                             (*pos)->LoadDocumentAsSubProject(fileResolver.GetResolvedPath(),
-                                wxEmptyString, GetMinDocWordCountForBatch() );
+                                wxString{}, GetMinDocWordCountForBatch() );
                             }
                         else
                             {
@@ -2289,7 +2289,7 @@ void BatchProjectDoc::LoadScoresSection()
                         }
                     else
                         {
-                        m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString);
+                        m_scoreRawData->SetItemText(i, currentColumn++, wxString{});
                         (*pos)->ReviewTestGoal(ReadabilityMessages::FRY(),
                             std::numeric_limits<double>::quiet_NaN());
                         }
@@ -2334,7 +2334,7 @@ void BatchProjectDoc::LoadScoresSection()
                         }
                     else
                         {
-                        m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString);
+                        m_scoreRawData->SetItemText(i, currentColumn++, wxString{});
                         (*pos)->ReviewTestGoal(ReadabilityMessages::GPM_FRY(),
                             std::numeric_limits<double>::quiet_NaN());
                         }
@@ -2384,7 +2384,7 @@ void BatchProjectDoc::LoadScoresSection()
                         }
                     else
                         {
-                        m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString);
+                        m_scoreRawData->SetItemText(i, currentColumn++, wxString{});
                         (*pos)->ReviewTestGoal(ReadabilityMessages::SCHWARTZ(),
                             std::numeric_limits<double>::quiet_NaN());
                         }
@@ -2430,7 +2430,7 @@ void BatchProjectDoc::LoadScoresSection()
                         }
                     else
                         {
-                        m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString);
+                        m_scoreRawData->SetItemText(i, currentColumn++, wxString{});
                         (*pos)->ReviewTestGoal(ReadabilityMessages::RAYGOR(),
                             std::numeric_limits<double>::quiet_NaN());
                         }
@@ -2447,7 +2447,7 @@ void BatchProjectDoc::LoadScoresSection()
                     (*pos)->GetAggregatedGradeScores().push_back(value);
                     }
                 else
-                    { m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString); }
+                    { m_scoreRawData->SetItemText(i, currentColumn++, wxString{}); }
                 }
             // index tests
             else if (rTests->is_included() &&
@@ -2480,7 +2480,7 @@ void BatchProjectDoc::LoadScoresSection()
                         }
                     else
                         {
-                        m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString);
+                        m_scoreRawData->SetItemText(i, currentColumn++, wxString{});
                         (*pos)->ReviewTestGoal(ReadabilityMessages::FRASE(),
                             std::numeric_limits<double>::quiet_NaN());
                         }
@@ -2496,7 +2496,7 @@ void BatchProjectDoc::LoadScoresSection()
                         NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1) );
                     }
                 else
-                    { m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString); }
+                    { m_scoreRawData->SetItemText(i, currentColumn++, wxString{}); }
                 }
             // cloze tests
             else if (rTests->is_included() &&
@@ -2513,7 +2513,7 @@ void BatchProjectDoc::LoadScoresSection()
                     (*pos)->GetAggregatedClozeScores().push_back((*pos)->GetLastClozeScore());
                     }
                 else
-                    { m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString); }
+                    { m_scoreRawData->SetItemText(i, currentColumn++, wxString{}); }
                 }
             // grade and index test
             else if (rTests->is_included() &&
@@ -2531,7 +2531,7 @@ void BatchProjectDoc::LoadScoresSection()
                             NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1) );
                         }
                     else
-                        { m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString); }
+                        { m_scoreRawData->SetItemText(i, currentColumn++, wxString{}); }
                     if (ReadabilityMessages::GetScoreValue((*pos)->GetLastGradeLevel(), value))
                         {
                         rTests->get_grade_point_collection()->AddRow(Data::RowInfo().
@@ -2543,12 +2543,12 @@ void BatchProjectDoc::LoadScoresSection()
                         (*pos)->GetAggregatedGradeScores().push_back(value);
                         }
                     else
-                        { m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString); }
+                        { m_scoreRawData->SetItemText(i, currentColumn++, wxString{}); }
                     }
                 else
                     {
-                    m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString);
-                    m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString);
+                    m_scoreRawData->SetItemText(i, currentColumn++, wxString{});
+                    m_scoreRawData->SetItemText(i, currentColumn++, wxString{});
                     }
                 }
             // grade and cloze score
@@ -2569,7 +2569,7 @@ void BatchProjectDoc::LoadScoresSection()
                         (*pos)->GetAggregatedGradeScores().push_back(value);
                         }
                     else
-                        { m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString); }
+                        { m_scoreRawData->SetItemText(i, currentColumn++, wxString{}); }
                     if (!std::isnan((*pos)->GetLastClozeScore()))
                         {
                         rTests->get_cloze_point_collection()->AddRow(Data::RowInfo().
@@ -2580,12 +2580,12 @@ void BatchProjectDoc::LoadScoresSection()
                         (*pos)->GetAggregatedClozeScores().push_back((*pos)->GetLastClozeScore());
                         }
                     else
-                        { m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString); }
+                        { m_scoreRawData->SetItemText(i, currentColumn++, wxString{}); }
                     }
                 else
                     {
-                    m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString);
-                    m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString);
+                    m_scoreRawData->SetItemText(i, currentColumn++, wxString{});
+                    m_scoreRawData->SetItemText(i, currentColumn++, wxString{});
                     }
                 }
             }
@@ -2629,10 +2629,10 @@ void BatchProjectDoc::LoadScoresSection()
                     (*pos)->GetAggregatedClozeScores().push_back((*pos)->GetLastClozeScore());
                     }
                 else
-                    { m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString); }
+                    { m_scoreRawData->SetItemText(i, currentColumn++, wxString{}); }
                 }
             else
-                { m_scoreRawData->SetItemText(i, currentColumn++, wxEmptyString); }
+                { m_scoreRawData->SetItemText(i, currentColumn++, wxString{}); }
             }
         // increment this here because our current index into the score data will not be the same as the
         // index into the current document if any of the documents failed
@@ -2657,7 +2657,7 @@ void BatchProjectDoc::LoadScoresSection()
             readability::readability_test_type::grade_level)
             {
             SetScoreStatsRow(m_scoreStatsData, rTests->get_test().get_long_name().c_str(),
-                wxEmptyString, currentRow++,
+                wxString{}, currentRow++,
                 rTests->get_grade_point_collection()->GetContinuousColumn(GetScoreColumnName())->GetValues(),
                 rTests->get_test().is_integral() ? 0 : 1, GetVarianceMethod(), true);
             }
@@ -2665,7 +2665,7 @@ void BatchProjectDoc::LoadScoresSection()
             readability::readability_test_type::index_value)
             {
             SetScoreStatsRow(m_scoreStatsData, rTests->get_test().get_long_name().c_str(),
-                wxEmptyString, currentRow++,
+                wxString{}, currentRow++,
                 rTests->get_index_point_collection()->GetContinuousColumn(GetScoreColumnName())->GetValues(),
                 rTests->get_test().is_integral() ? 0 : 1, GetVarianceMethod(), false);
             }
@@ -2673,7 +2673,7 @@ void BatchProjectDoc::LoadScoresSection()
             readability::readability_test_type::predicted_cloze_score)
             {
             SetScoreStatsRow(m_scoreStatsData, rTests->get_test().get_long_name().c_str(),
-                wxEmptyString, currentRow++,
+                wxString{}, currentRow++,
                 rTests->get_cloze_point_collection()->GetContinuousColumn(GetScoreColumnName())->GetValues(),
                 0, GetVarianceMethod(), false);
             }
@@ -2682,12 +2682,12 @@ void BatchProjectDoc::LoadScoresSection()
             {
             SetScoreStatsRow(m_scoreStatsData,
                 BatchProjectView::FormatIndexValuesLabel(rTests->get_test().get_long_name().c_str()),
-                wxEmptyString, currentRow++,
+                wxString{}, currentRow++,
                 rTests->get_index_point_collection()->GetContinuousColumn(GetScoreColumnName())->GetValues(),
                 rTests->get_test().is_integral() ? 0 : 1, GetVarianceMethod(), false);
             SetScoreStatsRow(m_scoreStatsData,
                 BatchProjectView::FormatGradeLevelsLabel(rTests->get_test().get_long_name().c_str()),
-                wxEmptyString, currentRow++,
+                wxString{}, currentRow++,
                 rTests->get_grade_point_collection()->GetContinuousColumn(GetScoreColumnName())->GetValues(),
                 rTests->get_test().is_integral() ? 0 : 1, GetVarianceMethod(), true);
             }
@@ -2696,12 +2696,12 @@ void BatchProjectDoc::LoadScoresSection()
             {
             SetScoreStatsRow(m_scoreStatsData,
                 BatchProjectView::FormatGradeLevelsLabel(rTests->get_test().get_long_name().c_str()),
-                wxEmptyString, currentRow++,
+                wxString{}, currentRow++,
                 rTests->get_grade_point_collection()->GetContinuousColumn(GetScoreColumnName())->GetValues(),
                 rTests->get_test().is_integral() ? 0 : 1, GetVarianceMethod(), true);
             SetScoreStatsRow(m_scoreStatsData,
                 BatchProjectView::FormatClozeValuesLabel(rTests->get_test().get_long_name().c_str()),
-                wxEmptyString, currentRow++,
+                wxString{}, currentRow++,
                 rTests->get_cloze_point_collection()->GetContinuousColumn(GetScoreColumnName())->GetValues(),
                 0, GetVarianceMethod(), false);
             }
@@ -2720,7 +2720,7 @@ void BatchProjectDoc::LoadScoresSection()
         {
         SetScoreStatsRow(m_scoreStatsData,
             GetCustTestsInUse()[(testVectorsPos-m_customTestScores.begin())].GetTestName(),
-            wxEmptyString, currentRow++,
+            wxString{}, currentRow++,
             (*testVectorsPos)->GetContinuousColumn(GetScoreColumnName())->GetValues(),
             1, GetVarianceMethod(),
 
@@ -3051,7 +3051,7 @@ void BatchProjectDoc::DisplayScores()
         }
 
     DisplayScoreStatisticsWindow(_(L"Score Summary"), BaseProjectView::ID_SCORE_STATS_LIST_PAGE_ID,
-        m_scoreStatsData, _(L"Test"), wxEmptyString, false);
+        m_scoreStatsData, _(L"Test"), wxString{}, false);
     // aggregated grade level scores, listed by document
     if (IsIncludingGradeTest())
         {
@@ -5166,7 +5166,7 @@ bool BatchProjectDoc::OnSaveDocument(const wxString& filename)
         {
         int counter{ 1 };
         wxProgressDialog progressDlg(wxString::Format(_(L"Saving \"%s\""), GetTitle()),
-            wxEmptyString, static_cast<int>(m_docs.size()),
+            wxString{}, static_cast<int>(m_docs.size()),
             nullptr, wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_CAN_ABORT|wxPD_APP_MODAL);
         progressDlg.Centre();
         /* Use buffered output stream, NOT text output stream. Text output buffer
@@ -6384,7 +6384,7 @@ void BatchProjectDoc::SetScoreStatsRow(ListCtrlExNumericDataProvider* dataGrid,
                     NumberFormatInfo::NumberFormatType::StandardFormatting, 0));
             }
         else // shouldn't happen
-            { dataGrid->SetItemText(rowNum, currentColumn++, wxEmptyString); }
+            { dataGrid->SetItemText(rowNum, currentColumn++, wxString{}); }
 
         dataGrid->SetItemValue(rowNum, currentColumn++, meansVal,
             NumberFormatInfo(allowCustomFormatting ?

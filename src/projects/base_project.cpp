@@ -81,7 +81,7 @@ bool BaseProject::LoadAppendedDocument()
                 LogMessage(wxString::Format(
                     _(L"\"%s\": appended template file not found."), GetAppendedDocumentFilePath()),
                      wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
-                SetAppendedDocumentText(wxEmptyString);
+                SetAppendedDocumentText(wxString{});
                 return false;
                 }
             }
@@ -93,7 +93,7 @@ bool BaseProject::LoadAppendedDocument()
         return extractResult.first;
         }
     else
-        { SetAppendedDocumentText(wxEmptyString); }
+        { SetAppendedDocumentText(wxString{}); }
     return true;
     }
 
@@ -181,7 +181,7 @@ void BaseProject::UpdateDocumentSettings()
 
 //-------------------------------------------------------
 void BaseProject::LogMessage(wxString message, const wxString& title, const int icon,
-                             const wxString& messageId /*= wxEmptyString*/,
+                             const wxString& messageId /*= wxString{}*/,
                              const bool queue /*= false*/)
     {
     // skip warning if it was asked to be suppressed already
@@ -192,7 +192,7 @@ void BaseProject::LogMessage(wxString message, const wxString& title, const int 
         { return; }
 
     if (queue)
-        { AddQueuedMessage(WarningMessage(messageId,message,title,wxEmptyString,icon)); }
+        { AddQueuedMessage(WarningMessage(messageId,message,title,wxString{},icon)); }
     else if (HasUI())
         {
         wxRichMessageDialog msg(wxGetApp().GetMainFrame(), message,
@@ -3341,7 +3341,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawTextWithEncoding(const wxString&
     catch (...)
         {
         wxLogWarning(L"An unknown error occurred while importing %s.", fileName.GetFullPath());
-        return std::make_pair(false, wxEmptyString);
+        return std::make_pair(false, wxString{});
         }
     }
 
@@ -3352,7 +3352,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
     {
     PROFILE();
     if (sourceFileText == nullptr || streamSize == 0)
-        { return std::make_pair(false, wxEmptyString); }
+        { return std::make_pair(false, wxString{}); }
     wxLogMessage(wxString::Format(L"%s parser being called.", fileExtension.Upper()));
 
     const WebPageExtension isHtmlExtension;
@@ -3382,43 +3382,43 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             {
             LogMessage(_(L"Unable to import RTF file. Stack underflow."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (rtf_extract_text::rtfparse_stack_overflow)
             {
             LogMessage(_(L"Unable to import RTF file. Stack overflow."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (rtf_extract_text::rtfparse_unmatched_brace)
             {
             LogMessage(_(L"Unable to import RTF file. Unmatched brace."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (rtf_extract_text::rtfparse_assertion)
             {
             LogMessage(_(L"Unable to import RTF file. Assertion."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (rtf_extract_text::rtfparse_invalid_hex)
             {
             LogMessage(_(L"Unable to import RTF file. Invalid hex value."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (rtf_extract_text::rtfparse_bad_table)
             {
             LogMessage(_(L"Unable to import RTF file. Bad table."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (...)
             {
             LogMessage(_(L"An unknown error occurred while importing. Unable to continue creating project."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         }
     else if (fileExtension.CmpNoCase(L"doc") == 0 ||
@@ -3447,43 +3447,43 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             {
             LogMessage(_(L"Invalid RTF file."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (word1997_extract_text::cfb_bad_bat)
             {
             LogMessage(_(L"Word file is corrupted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (word1997_extract_text::cfb_bad_bat_entry)
             {
             LogMessage(_(L"Word file is corrupted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (word1997_extract_text::cfb_bad_xbat)
             {
             LogMessage(_(L"Word file is corrupted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (word1997_extract_text::cfb_bad_xbat_entry)
             {
             LogMessage(_(L"Word file is corrupted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (word1997_extract_text::msword_encrypted)
             {
             LogMessage(_(L"Word file is encrypted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (word1997_extract_text::msword_corrupted)
             {
             LogMessage(_(L"Word file is corrupted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (word1997_extract_text::msword_fastsaved)
             {
@@ -3491,25 +3491,25 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                 _(L"Word file is fast-saved and could not be read.\n"
                    "Please save file with fast-saving turned off and try again."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (word1997_extract_text::msword_header_not_found)
             {
             LogMessage(_(L"File does not appear to be a valid Word file."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (word1997_extract_text::msword_root_enrty_not_found)
             {
             LogMessage(_(L"File does not appear to be a valid Word file."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (...)
             {
             LogMessage(_(L"An unknown error occurred while importing. Unable to continue creating project."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         }
     else if (fileExtension.CmpNoCase(L"docx") == 0 ||
@@ -3537,7 +3537,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             {
             LogMessage(_(L"Unable to open Word document, file is either password-protected or corrupt."),
                 wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         const wxString docxFileText = archive.ReadTextFile(L"word/document.xml");
         try
@@ -3551,7 +3551,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             {
             LogMessage(_(L"An unknown error occurred while importing. Unable to continue creating project."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         }
     else if (fileExtension.CmpNoCase(L"hhc") == 0 ||
@@ -3575,12 +3575,12 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             {
             LogMessage(_(L"An unknown error occurred while importing. Unable to continue creating project."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         }
     else if (isHtmlExtension(fileExtension))
         {
-        std::pair<bool,wxString> extractResult(false,wxEmptyString);
+        std::pair<bool,wxString> extractResult(false,wxString{});
         wxString label;
         // if UTF-8 or simply 7-bit ASCII, then just convert as UTF-8 and run the HTML parser on it
         if (utf8::is_valid(sourceFileText,sourceFileText+streamSize))
@@ -3602,7 +3602,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             {
             LogMessage(_(L"An unknown error occurred while importing. Unable to continue creating project."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         // set the description to the title (unless user specified a description already, e.g., from a batch project).
         SetOriginalDocumentDescription(
@@ -3633,19 +3633,19 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             {
             LogMessage(_(L"File does not appear to be a valid Postscript file."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (lily_of_the_valley::postscript_extract_text::postscript_version_not_supported)
             {
             LogMessage(_(L"Only PostScript versions 1-2 are supported. Unable to import file."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         catch (...)
             {
             LogMessage(_(L"An unknown error occurred while importing. Unable to continue creating project."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         }
     // OpenDocument text or presentation files
@@ -3677,7 +3677,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             {
             LogMessage(wxString::Format(_(L"Unable to open ODT/ODP document: %s"),
                 archive.GetMessages().at(0).m_message), wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         try
             {
@@ -3690,7 +3690,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             {
             LogMessage(_(L"An unknown error occurred while importing. Unable to continue creating project."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         }
     else if (fileExtension.CmpNoCase(L"pptx") == 0 ||
@@ -3719,7 +3719,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             {
             LogMessage(_(L"Unable to open PowerPoint document; file is either password-protected or corrupt."),
                 wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK);
-            return std::make_pair(false, wxEmptyString);
+            return std::make_pair(false, wxString{});
             }
         for (size_t i = 1;/*breaks when no more pages are found*/;++i)
             {
@@ -3739,7 +3739,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                     LogMessage(
                         _(L"An unknown error occurred while importing. Unable to continue creating project."),
                         _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-                    return std::make_pair(false, wxEmptyString);
+                    return std::make_pair(false, wxString{});
                     }
                 }
             else
@@ -3799,7 +3799,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
         {
         LogMessage(_(L"PDF files are not supported."),
                    _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-        return std::make_pair(false, wxEmptyString);
+        return std::make_pair(false, wxString{});
         }
     // Unknown (or no) extension
     else
@@ -3807,7 +3807,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
         // See if it is HTML, given that a lot of web pages may not use a known file extension
         if (string_util::stristr(sourceFileText, "<html") )
             {
-            std::pair<bool,wxString> extractResult(false, wxEmptyString);
+            std::pair<bool,wxString> extractResult(false, wxString{});
             wxString title;
             // if UTF-8 or simply 7-bit ASCII, then just convert as UTF-8 and run the HTML parser on it
             if (utf8::is_valid(sourceFileText,sourceFileText+streamSize))
@@ -4306,7 +4306,7 @@ bool BaseProject::AddBormuthClozeMeanTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4317,7 +4317,7 @@ bool BaseProject::AddBormuthClozeMeanTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4355,8 +4355,8 @@ bool BaseProject::AddBormuthClozeMeanTest(const bool setFocus)
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
-            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
-            wxEmptyString,
+            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}),
+            wxString{},
             std::numeric_limits<double>::quiet_NaN(), val, setFocus);
         }
     catch (...)
@@ -4384,7 +4384,7 @@ bool BaseProject::AddBormuthGradePlacement35Test(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4395,7 +4395,7 @@ bool BaseProject::AddBormuthGradePlacement35Test(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4464,7 +4464,7 @@ bool BaseProject::AddPskDaleChallTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4473,7 +4473,7 @@ bool BaseProject::AddPskDaleChallTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4539,7 +4539,7 @@ bool BaseProject::AddNewDaleChallTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4550,7 +4550,7 @@ bool BaseProject::AddNewDaleChallTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4629,7 +4629,7 @@ bool BaseProject::AddDegreesOfReadingPowerGeTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4640,7 +4640,7 @@ bool BaseProject::AddDegreesOfReadingPowerGeTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4712,7 +4712,7 @@ bool BaseProject::AddDegreesOfReadingPowerTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4724,7 +4724,7 @@ bool BaseProject::AddDegreesOfReadingPowerTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4761,8 +4761,8 @@ bool BaseProject::AddDegreesOfReadingPowerTest(const bool setFocus)
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
-            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
-            wxEmptyString, val,
+            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}),
+            wxString{}, val,
             std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
     catch (...)
@@ -4789,7 +4789,7 @@ bool BaseProject::AddSolSpanishTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4845,7 +4845,7 @@ bool BaseProject::AddElfTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4899,7 +4899,7 @@ bool BaseProject::AddSmogSimplifiedTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4957,7 +4957,7 @@ bool BaseProject::AddModifiedSmogTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5017,7 +5017,7 @@ bool BaseProject::AddQuBambergerVanecekTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5077,7 +5077,7 @@ bool BaseProject::AddSmogBambergerVanecekTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5136,7 +5136,7 @@ bool BaseProject::AddSmogTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5195,7 +5195,7 @@ bool BaseProject::AddCrawfordTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5255,7 +5255,7 @@ bool BaseProject::AddNeueWienerSachtextformel1(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5264,7 +5264,7 @@ bool BaseProject::AddNeueWienerSachtextformel1(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5323,7 +5323,7 @@ bool BaseProject::AddNeueWienerSachtextformel2(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5332,7 +5332,7 @@ bool BaseProject::AddNeueWienerSachtextformel2(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5390,7 +5390,7 @@ bool BaseProject::AddNeueWienerSachtextformel3(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5399,7 +5399,7 @@ bool BaseProject::AddNeueWienerSachtextformel3(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5456,7 +5456,7 @@ bool BaseProject::AddWheelerSmithBambergerVanecekTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5465,7 +5465,7 @@ bool BaseProject::AddWheelerSmithBambergerVanecekTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5525,7 +5525,7 @@ bool BaseProject::AddWheelerSmithTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5534,7 +5534,7 @@ bool BaseProject::AddWheelerSmithTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5594,7 +5594,7 @@ bool BaseProject::AddColemanLiauTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5603,7 +5603,7 @@ bool BaseProject::AddColemanLiauTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5720,7 +5720,7 @@ bool BaseProject::AddSpacheTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5729,7 +5729,7 @@ bool BaseProject::AddSpacheTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5785,7 +5785,7 @@ bool BaseProject::AddNewFogCountTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5795,7 +5795,7 @@ bool BaseProject::AddNewFogCountTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5854,7 +5854,7 @@ bool BaseProject::AddPskFogTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5864,7 +5864,7 @@ bool BaseProject::AddPskFogTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5924,7 +5924,7 @@ bool BaseProject::AddFogTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5934,7 +5934,7 @@ bool BaseProject::AddFogTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -5994,7 +5994,7 @@ bool BaseProject::AddForcastTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6052,7 +6052,7 @@ bool BaseProject::AddAmstadTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6061,7 +6061,7 @@ bool BaseProject::AddAmstadTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6087,8 +6087,8 @@ bool BaseProject::AddAmstadTest(const bool setFocus)
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
-            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
-            wxEmptyString,
+            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}),
+            wxString{},
             val,
             std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
@@ -6116,7 +6116,7 @@ bool BaseProject::AddDanielsonBryan1Test(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6125,7 +6125,7 @@ bool BaseProject::AddDanielsonBryan1Test(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6182,7 +6182,7 @@ bool BaseProject::AddDanielsonBryan2Test(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6191,7 +6191,7 @@ bool BaseProject::AddDanielsonBryan2Test(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6215,8 +6215,8 @@ bool BaseProject::AddDanielsonBryan2Test(const bool setFocus)
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
-            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
-            wxEmptyString,
+            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}),
+            wxString{},
             val,
             std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
@@ -6246,7 +6246,7 @@ bool BaseProject::AddFleschTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6255,7 +6255,7 @@ bool BaseProject::AddFleschTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6281,8 +6281,8 @@ bool BaseProject::AddFleschTest(const bool setFocus)
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
-            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
-            wxEmptyString,
+            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}),
+            wxString{},
             val,
             std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
@@ -6312,7 +6312,7 @@ bool BaseProject::AddFarrJenkinsPatersonTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6321,7 +6321,7 @@ bool BaseProject::AddFarrJenkinsPatersonTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6346,8 +6346,8 @@ bool BaseProject::AddFarrJenkinsPatersonTest(const bool setFocus)
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
-            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
-            wxEmptyString,
+            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}),
+            wxString{},
             val,
             std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
@@ -6374,7 +6374,7 @@ bool BaseProject::AddNewFarrJenkinsPatersonTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6383,7 +6383,7 @@ bool BaseProject::AddNewFarrJenkinsPatersonTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6440,7 +6440,7 @@ bool BaseProject::AddPskFarrJenkinsPatersonTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6449,7 +6449,7 @@ bool BaseProject::AddPskFarrJenkinsPatersonTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6505,7 +6505,7 @@ bool BaseProject::AddFleschKincaidSimplifiedTest(const bool setFocus)
         {
         LogMessage(wxString::Format(_(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6513,7 +6513,7 @@ bool BaseProject::AddFleschKincaidSimplifiedTest(const bool setFocus)
         {
         LogMessage(wxString::Format(_(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6571,7 +6571,7 @@ bool BaseProject::AddFleschKincaidTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6580,7 +6580,7 @@ bool BaseProject::AddFleschKincaidTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6639,7 +6639,7 @@ bool BaseProject::AddPskFleschTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6648,7 +6648,7 @@ bool BaseProject::AddPskFleschTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6706,7 +6706,7 @@ bool BaseProject::AddAriTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6715,7 +6715,7 @@ bool BaseProject::AddAriTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6772,7 +6772,7 @@ bool BaseProject::AddNewAriTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6781,7 +6781,7 @@ bool BaseProject::AddNewAriTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6838,7 +6838,7 @@ bool BaseProject::AddSimplifiedAriTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6847,7 +6847,7 @@ bool BaseProject::AddSimplifiedAriTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6904,7 +6904,7 @@ bool BaseProject::AddEflawTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6913,7 +6913,7 @@ bool BaseProject::AddEflawTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6939,8 +6939,8 @@ bool BaseProject::AddEflawTest(const bool setFocus)
 
         SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             description,
-            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
-            wxEmptyString,
+            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}),
+            wxString{},
             val,
             std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
@@ -6970,7 +6970,7 @@ bool BaseProject::AddHarrisJacobsonTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -6982,7 +6982,7 @@ bool BaseProject::AddHarrisJacobsonTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -7053,7 +7053,7 @@ bool BaseProject::AddRixTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -7062,7 +7062,7 @@ bool BaseProject::AddRixTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -7119,7 +7119,7 @@ bool BaseProject::AddRixGermanFiction(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -7128,7 +7128,7 @@ bool BaseProject::AddRixGermanFiction(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -7186,7 +7186,7 @@ bool BaseProject::AddRixGermanNonFiction(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -7195,7 +7195,7 @@ bool BaseProject::AddRixGermanNonFiction(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -7253,7 +7253,7 @@ bool BaseProject::AddLixGermanChildrensLiterature(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -7262,7 +7262,7 @@ bool BaseProject::AddLixGermanChildrensLiterature(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -7323,7 +7323,7 @@ bool BaseProject::AddLixGermanTechnical(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -7332,7 +7332,7 @@ bool BaseProject::AddLixGermanTechnical(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -7393,7 +7393,7 @@ bool BaseProject::AddLixTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -7402,7 +7402,7 @@ bool BaseProject::AddLixTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -7503,7 +7503,7 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
             LogMessage(
                 _(L"Unable to calculate custom readability test: "
                    "at least one word must be present in document."),
-                _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+                _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
             return false;
             }
         try
@@ -7589,7 +7589,7 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                         std::make_pair(std::numeric_limits<double>::quiet_NaN(),
                             wxString::Format(_(L"Syntax error in formula at position %s."),
                                 std::to_wstring(GetFormulaParser().get_last_error_position()))),
-                        wxEmptyString, std::numeric_limits<double>::quiet_NaN(),
+                        wxString{}, std::numeric_limits<double>::quiet_NaN(),
                         std::numeric_limits<double>::quiet_NaN(), false);
                     }
                 else if (pos->GetIterator()->get_test_type() == readability::readability_test_type::grade_level)
@@ -7658,8 +7658,8 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                         L"<tr><td>" + _(L"Score: ") + wxNumberFormatter::ToString(score, 1,
                             wxNumberFormatter::Style::Style_NoTrailingZeroes) + L"</td></tr>\n" +
                         customDescription,
-                        std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
-                        wxEmptyString, score,
+                        std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}),
+                        wxString{}, score,
                         std::numeric_limits<double>::quiet_NaN(), false);
                     }
                 else if (pos->GetIterator()->get_test_type() ==
@@ -7672,8 +7672,8 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                         wxNumberFormatter::ToString(score, 1, wxNumberFormatter::Style::Style_NoTrailingZeroes) +
                         L"</td></tr>\n" +
                         customDescription,
-                        std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
-                        wxEmptyString, std::numeric_limits<double>::quiet_NaN(), score, false);
+                        std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}),
+                        wxString{}, std::numeric_limits<double>::quiet_NaN(), score, false);
                     }
                 }
             catch (const std::exception& ex)
@@ -7682,23 +7682,23 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                     wxString(pos->GetIterator()->get_name().c_str()),
                     customDescription,
                     std::make_pair(std::numeric_limits<double>::quiet_NaN(), ex.what()),
-                    wxEmptyString, std::numeric_limits<double>::quiet_NaN(),
+                    wxString{}, std::numeric_limits<double>::quiet_NaN(),
                     std::numeric_limits<double>::quiet_NaN(), false);
                 }
             catch (...)
                 {
                 SetReadabilityTestResult(wxString(pos->GetIterator()->get_name().c_str()),
                         wxString(pos->GetIterator()->get_name().c_str()),
-                        wxEmptyString,
-                        std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxEmptyString),
-                        wxEmptyString, std::numeric_limits<double>::quiet_NaN(),
+                        wxString{},
+                        std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}),
+                        wxString{}, std::numeric_limits<double>::quiet_NaN(),
                         std::numeric_limits<double>::quiet_NaN(), false);
                 }
             }
         catch (...)
             {
             LogMessage(wxString::Format(_(L"Unable to calculate %s."), pos->GetIterator()->get_name().c_str()),
-                _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+                _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
             return false;
             }
         }
@@ -7939,7 +7939,7 @@ void BaseProject::HandleFailedTestCalculation(const wxString& testName)
     {
     LogMessage(wxString::Format(_(L"Unable to calculate %s."),
         GetReadabilityTests().get_test_short_name(testName).c_str()),
-        _(L"Error"), wxOK|wxICON_ERROR, wxEmptyString, true);
+        _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
     GetReadabilityTests().include_test(testName, false);
     }
 

@@ -229,7 +229,7 @@ void BatchProjectView::OnBatchExportFilteredDocuments([[maybe_unused]] wxCommand
     {
     BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(GetDocument());
 
-    wxDirDialog dirDlg(nullptr, _("Select Output Directory"), wxEmptyString,
+    wxDirDialog dirDlg(nullptr, _("Select Output Directory"), wxString{},
                         wxDD_DEFAULT_STYLE|wxDD_DIR_MUST_EXIST);
     if (dirDlg.ShowModal() != wxID_OK)
         { return; }
@@ -2272,7 +2272,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
 
     const auto formatImageOutput =
         [&outputText, &sectionCounter, &figureCounter, pageBreak, doc, htmlEncode, graphExt, graphOptions, filePath]
-        (Wisteria::Canvas* canvas, const bool includeLeadingPageBreak, const wxString& subFolder = wxEmptyString)
+        (Wisteria::Canvas* canvas, const bool includeLeadingPageBreak, const wxString& subFolder = wxString{})
         {
         if (!canvas)
             { return; }
@@ -2282,7 +2282,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
 
         outputText += wxString::Format(
             L"%s\n<div class='minipage figure'>\n<img src='images%s\\%s' />\n<div class='caption'>%s</div>\n</div>\n",
-            (includeLeadingPageBreak ? pageBreak : wxEmptyString),
+            (includeLeadingPageBreak ? pageBreak : wxString{}),
             subFolder,
             canvas->GetLabel()+graphExt,
             wxString::Format(_(L"Figure %d.%d: %s"), sectionCounter, figureCounter++,
@@ -2305,7 +2305,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         std::wstring htmlText{ buffer.ToStdWstring() };
         lily_of_the_valley::html_format::strip_hyperlinks(htmlText);
 
-        outputText += (includeLeadingPageBreak ? pageBreak : wxEmptyString) +
+        outputText += (includeLeadingPageBreak ? pageBreak : wxString{}) +
             html_extract_text::get_body(htmlText);
         };
 
@@ -2321,7 +2321,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         figureCounter = tableCounter = 1;
         outputText += wxString::Format(
             L"\n\n%s<div class=\"report-section\"><a name=\"scores\"></a>%s</div>\n",
-            (hasSections ? pageBreak : wxEmptyString),
+            (hasSections ? pageBreak : wxString{}),
             htmlEncode({ GetReadabilityScoresLabel().wc_str(), GetReadabilityScoresLabel().length() }, true));
         // indicates that a section has already been written out after the TOC so that we
         // know if we need to insert a page break in front of the next section
@@ -2352,7 +2352,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         figureCounter = tableCounter = 1;
         outputText += wxString::Format
             (L"\n\n%s<div class=\"report-section\"><a name=\"histograms\"></a>%s</div>\n",
-            (hasSections ? pageBreak : wxEmptyString),
+            (hasSections ? pageBreak : wxString{}),
             htmlEncode({ GetHistogramsLabel().wc_str(), GetHistogramsLabel().length() }, true));
         hasSections = true;
         for (size_t i = 0; i < GetHistogramsView().GetWindowCount(); ++i)
@@ -2381,7 +2381,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         ++sectionCounter;
         figureCounter = tableCounter = 1;
         outputText += wxString::Format(L"\n\n%s<div class=\"report-section\"><a name=\"hardwordlist\"></a>%s</div>\n",
-            (hasSections ? pageBreak : wxEmptyString),
+            (hasSections ? pageBreak : wxString{}),
             htmlEncode({ GetWordsBreakdownLabel().wc_str(), GetWordsBreakdownLabel().length() }, true));
         hasSections = true;
         for (size_t i = 0; i < GetWordsBreakdownView().GetWindowCount(); ++i)
@@ -2398,7 +2398,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         figureCounter = tableCounter = 1;
         outputText += wxString::Format(
             L"\n\n%s<div class=\"report-section\"><a name=\"sentencebreakdown\"></a>%s</div>\n",
-            (hasSections ? pageBreak : wxEmptyString),
+            (hasSections ? pageBreak : wxString{}),
             htmlEncode({ GetSentencesBreakdownLabel().wc_str(), GetSentencesBreakdownLabel().length() }, true));
         hasSections = true;
         for (size_t i = 0; i < GetSentencesBreakdownView().GetWindowCount(); ++i)
@@ -2415,7 +2415,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         figureCounter = tableCounter = 1;
         outputText += wxString::Format(
             L"\n\n%s<div class=\"report-section\"><a name=\"summarystats\"></a>%s</div>\n",
-            (hasSections ? pageBreak : wxEmptyString),
+            (hasSections ? pageBreak : wxString{}),
             htmlEncode({ GetSummaryStatisticsLabel().wc_str(), GetSummaryStatisticsLabel().length() }, true));
         hasSections = true;
         for (size_t i = 0; i < GetSummaryStatsView().GetWindowCount(); ++i)
@@ -2431,7 +2431,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         ++sectionCounter;
         figureCounter = tableCounter = 1;
         outputText += wxString::Format(L"\n\n%s<div class=\"report-section\"><a name=\"grammar\"></a>%s</div>\n",
-            (hasSections ? pageBreak : wxEmptyString),
+            (hasSections ? pageBreak : wxString{}),
             htmlEncode({ GetGrammarLabel().wc_str(), GetGrammarLabel().length() }, true));
         hasSections = true;
         for (size_t i = 0; i < GetGrammarView().GetWindowCount(); ++i)
@@ -2447,7 +2447,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         ++sectionCounter;
         figureCounter = tableCounter = 1;
         outputText += wxString::Format(L"\n\n%s<div class=\"report-section\"><a name=\"dolch\"></a>%s</div>\n",
-            (hasSections ? pageBreak : wxEmptyString),
+            (hasSections ? pageBreak : wxString{}),
             htmlEncode({ GetDolchLabel().wc_str(), GetDolchLabel().length() }, true));
         hasSections = true;
         for (size_t i = 0; i < GetDolchSightWordsView().GetWindowCount(); ++i)
@@ -2462,7 +2462,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
         ++sectionCounter;
         figureCounter = tableCounter = 1;
         outputText += wxString::Format(L"\n\n%s<div class=\"report-section\"><a name=\"warnings\"></a>%s</div>\n",
-            (hasSections ? pageBreak : wxEmptyString),
+            (hasSections ? pageBreak : wxString{}),
             htmlEncode({ GetWarningLabel().wc_str(), GetWarningLabel().length() }, true));
         formatList(GetWarningsView(), false);
         }
@@ -2545,7 +2545,7 @@ void BatchProjectView::OnExportScoresAndStatistics([[maybe_unused]] wxCommandEve
 
     wxFileDialog fdialog(GetDocFrame(),
             _("Export Scores & Statistics"),
-            wxEmptyString,
+            wxString{},
             doc->GetTitle() + _(" Scores & Statistics"),
             _("HTML Files (*.htm;*.html)|*.htm;*.html"),
             wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
@@ -2632,7 +2632,7 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
     BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(GetDocument());
     wxFileDialog fdialog(GetDocFrame(),
             _("Export Statistics Report"),
-            wxEmptyString,
+            wxString{},
             doc->GetTitle() + _(" Summary Statistics Report"),
             _("HTML Files (*.htm;*.html)|*.htm;*.html"),
             wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
@@ -2769,7 +2769,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
         choices.Add(_("Separate files")); descriptions.Add(
             _("Saves each result window to a separate file."));
         Wisteria::UI::RadioBoxDlg exportTypesDlg(GetDocFrame(),
-            _("Select How to Export"), wxEmptyString, _("Export methods:"), _("Export All"),
+            _("Select How to Export"), wxString{}, _("Export methods:"), _("Export All"),
             choices, descriptions);
         if (exportTypesDlg.ShowModal() != wxID_OK)
             { return; }
@@ -2868,7 +2868,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
 
                 wxFileDialog fdialog(GetDocFrame(),
                         _("Export Filtered Document"),
-                        wxEmptyString,
+                        wxString{},
                         wxFileName(subProject->GetOriginalDocumentFilePath()).GetName(),
                         _("Text Files (*.txt)|*.txt"),
                         wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
@@ -3054,7 +3054,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                     if (resolvePath.IsArchivedFile())
                         {
                         wxMessageBox(_("Files inside of archives files cannot be edited."),
-                            wxEmptyString, wxOK|wxICON_INFORMATION);
+                            wxString{}, wxOK|wxICON_INFORMATION);
                         }
                     else if (resolvePath.IsExcelCell())
                         {
