@@ -651,7 +651,7 @@ bool BaseProjectDoc::AddGlobalCustomReadabilityTest(CustomReadabilityTest& custo
                     _(L"Please specify a different name:"),
                     _(L"Enter New Test Name"), name, wxGetApp().GetMainFrame());
                 // Cancel was pressed
-                if (name == wxEmptyString)
+                if (name.empty())
                     { return false; }
                 continue;
                 }
