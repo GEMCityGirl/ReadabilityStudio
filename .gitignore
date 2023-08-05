@@ -55,3 +55,4 @@
 .Rproj.user
 .Rhistory
 *.db
+/cpp.hint
