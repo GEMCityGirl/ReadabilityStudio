@@ -35,6 +35,18 @@ setwd(glue("{docFolder}/Coding-Bible/"))
 bookdown::render_book(input="index.Rmd",
                       output_dir="docs")
 
+# Shortcuts Cheatsheet
+######################
+
+setwd(glue("{docFolder}/ShortcutsCheatsheet/"))
+file_copy(glue("{docFolder}/ReadabilityStudioDocs/glossary/02-shortcuts.rmd"),
+          glue("{docFolder}/ShortcutsCheatsheet/02-shortcuts.rmd"),
+          TRUE)
+bookdown::render_book(input="index.Rmd",
+                      output_format="bookdown::pdf_book",
+                      output_dir="docs")
+unlink(glue("{docFolder}/ShortcutsCheatsheet/02-shortcuts.rmd"))
+
 # User Manual
 #############
 

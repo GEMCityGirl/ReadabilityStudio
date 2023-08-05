@@ -1,0 +1,21 @@
+--- 
+title: "Readability Studio 2023"
+subtitle: "Shortcuts Cheatsheet"
+description: "Shortcuts Cheatsheet"
+author: "Blake Madden"
+site: bookdown::bookdown_site
+output:
+  bookdown::pdf_book:
+    template: "latex/default.tex"
+    includes:
+      in_header: "latex/preamble.tex"
+  bookdown::gitbook:
+    toc_depth: 0
+date: 2023
+documentclass: scrartcl
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(message=F, warning=F, dev='svg', eval=F, echo=T)
+```
+
