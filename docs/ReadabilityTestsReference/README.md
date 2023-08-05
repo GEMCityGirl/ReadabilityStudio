@@ -1,1 +1,0 @@
-# Readability Tests Reference
