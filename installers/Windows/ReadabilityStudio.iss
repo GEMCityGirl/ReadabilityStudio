@@ -43,6 +43,8 @@ Source: ..\..\Resources\ReportThemes\*; DestDir: {app}\ReportThemes; Components:
 Source: ..\..\Resources\Themes\*; DestDir: {app}\Themes; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 ; help files
 Source: ..\..\docs\ReadabilityStudioDocs\docs\*; DestDir: {app}\ReadabilityStudioDocs; Components: HelpFiles; Excludes: "thumbs.db,*.tex,*.log,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\..\docs\ReadabilityTestsReference\docs\ReadabilityTestReference.pdf; DestDir: {app}\ReadabilityStudioDocs; Components: HelpFiles; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\..\docs\ShortcutsCheatsheet\docs\ShortcutsCheatsheet.pdf; DestDir: {app}\ReadabilityStudioDocs; Components: HelpFiles; Flags: replacesameversion restartreplace recursesubdirs
 ;FUTURE-RELEASE Source: ..\..\docs\ReadabilityStudioAPI\ReadabilityStudioAPI\*; DestDir: {app}\ReadabilityStudioAPI; Components: HelpFiles; Excludes: "thumbs.db,*.tex,*.log,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
 ;FUTURE-RELEASE Source: ..\..\src\lua\doc\*; DestDir: {app}\LuaManual; Components: HelpFiles; Excludes: "thumbs.db"; Flags: replacesameversion restartreplace recursesubdirs
 ; examples
