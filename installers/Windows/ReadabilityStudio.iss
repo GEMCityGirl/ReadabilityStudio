@@ -29,8 +29,6 @@ OutputBaseFilename=rssetup2021.2
 ; determine the version.
 
 [Files]
-; dependancies (not necessary anymore with VC++ redist being in Windows update)
-;Source: ..\..\redist\VC_redist.x86; DestDir: {app}; Check: ShouldInstallWrkStationInstaller
 ; program files
 Source: release\ReadStudio.exe; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace
 ; resource files (required part of programs)
@@ -94,11 +92,6 @@ Name: {app}; Type: dirifempty
 var
   Upgrade: Boolean;
 
-function ShouldInstallWrkStationInstaller(): Boolean;
-begin
-  Result := true;
-end;
-
 function InitializeSetup(): Boolean;
 var
   userName: String;
@@ -115,36 +108,6 @@ begin
     Upgrade := false;
 
   Result := true
-end;
-
-procedure CurStepChanged(CurStep: TSetupStep);
-var
-  Form: TSetupForm;
-  FormLabel: TLabel;
-begin
-  if (CurStep=ssPostInstall) then
-    begin
-      Form := CreateCustomForm();
-      Form.ClientWidth := ScaleX(300);
-      Form.ClientHeight := ScaleY(100);
-      Form.Caption := ExpandConstant('{cm:SystemUpdates}');
-
-      FormLabel := TLabel.Create(Form);
-      FormLabel.Parent := Form;
-      FormLabel.Width := ScaleX(250);
-      FormLabel.Height := ScaleY(60);
-      FormLabel.Left := 10;
-      FormLabel.Top := 10;
-      FormLabel.Caption := ExpandConstant('{cm:ConfiguringSystemUpdates}');
-  
-      Form.Show()
-
-      // VC2015-2019 seems to be part of Windows update now, maybe don't need this anymore
-      // InstallSystemUpdates()
-
-      Form.Free()
-  
-    end;
 end;
 
 // see if certain dialogs should be skipped if we are in upgrade mode
