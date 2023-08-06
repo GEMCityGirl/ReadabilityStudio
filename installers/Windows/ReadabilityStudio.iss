@@ -34,8 +34,8 @@ OutputBaseFilename=rssetup2021.2
 ; program files
 Source: release\ReadStudio.exe; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace
 ; resource files (required part of programs)
-Source: release\res.wad; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
-Source: release\Words.wad; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\resources\res.wad; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\resources\Words.wad; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\Resources\Scripting\*.api; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\Resources\Scripting\*.lua; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\redist\license.rtf; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion
