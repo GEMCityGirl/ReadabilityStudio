@@ -24,6 +24,8 @@ unlink(glue("{docFolder}/ReadabilityTestsReference/data"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityTestsReference/scoring-notes"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityTestsReference/acknowledgements"), recursive=T)
 
+unlink(glue("{docFolder}/ShortcutsCheatsheet/docs"), recursive=T)
+
 unlink(glue("{docFolder}/ReadabilityStudioDocs/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioDocs/_bookdown_files"), recursive=T)
 unlink(glue("{docFolder}/Coding-Bible/docs"), recursive=T)
@@ -199,9 +201,6 @@ combine_files("92-Acknowledgements.Rmd", "acknowledgements",
               ("(intro|assistance)"))
 
 setwd(glue("{docFolder}/ReadabilityTestsReference/"))
-bookdown::render_book(input="index.Rmd",
-                      output_format="bookdown::gitbook",
-                      output_dir="docs")
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::pdf_book",
                       output_dir="docs")
