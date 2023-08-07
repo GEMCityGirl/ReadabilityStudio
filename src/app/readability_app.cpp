@@ -533,10 +533,10 @@ bool ReadabilityApp::OnInit()
     for (const auto& splash : splashScreens)
         { AddSplashscreenImagePath(splash); }
 
-    if (!LoadWordLists(AppSettingFolderPath) )
+    if (!BaseApp::OnInit())
         { return false; }
 
-    if (!BaseApp::OnInit())
+    if (!LoadWordLists(AppSettingFolderPath) )
         { return false; }
 
     // init random number generators
