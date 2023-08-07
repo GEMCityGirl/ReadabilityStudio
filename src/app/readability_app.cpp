@@ -1903,6 +1903,10 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             _(L"Manual"),
             readRibbonButtonSVG(L"ribbon/help-manual.svg"),
             _(L"Read the manual."));
+        helpButtonBar->AddButton(XRCID("ID_SHORTCUTS_CHEATSHEET"),
+            _(L"Shortcuts"),
+            readRibbonButtonSVG(L"ribbon/keyboard-shortcuts.svg"),
+            _(L"Display the keyboard shortcuts cheatsheet."));
         helpButtonBar->AddHybridButton(XRCID("ID_EXAMPLES"),
             _(L"Example Documents"),
             readRibbonButtonSVG(L"ribbon/examples.svg"),
@@ -2491,6 +2495,15 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
             OnHelpManual(event);
             },
         XRCID("ID_HELP_MANUAL"));
+
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED,
+        [this]([[maybe_unused]] wxRibbonButtonBarEvent&)
+            {
+            const wxString manualPath = GetHelpDirectory() + wxFileName::GetPathSeparator() +
+                _DT(L"ShortcutsCheatsheet.pdf");
+            wxLaunchDefaultApplication(manualPath);
+            },
+        XRCID("ID_SHORTCUTS_CHEATSHEET"));
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_MENU,

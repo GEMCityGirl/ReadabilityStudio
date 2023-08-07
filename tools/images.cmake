@@ -78,6 +78,7 @@ ribbon/image.svg
 ribbon/indenting.svg
 ribbon/internet.svg
 ribbon/invalid-region.svg
+ribbon/keyboard-shortcuts.svg
 ribbon/left-titles.svg
 ribbon/list.svg
 ribbon/log-book.svg
