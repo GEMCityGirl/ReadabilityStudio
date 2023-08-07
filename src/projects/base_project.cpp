@@ -4275,7 +4275,7 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
             {
             auto warningMsg = *WarningManager::GetWarning(_DT(L"incomplete-sentences-valid-from-length"));
             warningMsg.SetMessage(wxString::Format(
-                _(L"This document contains %d incomplete sentences longer than %zu words which will be "
+                _(L"This document contains %zu incomplete sentences longer than %zu words which will be "
                    "included in the analysis.\n\nTo change this, increase the "
                    "\"Include incomplete sentences containing more than...\" "
                    "option under Project Properties \x00BB Document Indexing."),
