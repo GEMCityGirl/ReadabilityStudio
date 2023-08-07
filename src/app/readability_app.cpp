@@ -1903,6 +1903,10 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             _(L"Manual"),
             readRibbonButtonSVG(L"ribbon/help-manual.svg"),
             _(L"Read the manual."));
+        helpButtonBar->AddButton(XRCID("ID_TESTS_REFERENCE"),
+            _(L"Tests Reference"),
+            readRibbonButtonSVG(L"ribbon/tests-overview.svg"),
+            _(L"Read the readability tests reference."));
         helpButtonBar->AddButton(XRCID("ID_SHORTCUTS_CHEATSHEET"),
             _(L"Shortcuts"),
             readRibbonButtonSVG(L"ribbon/keyboard-shortcuts.svg"),
@@ -2495,6 +2499,15 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
             OnHelpManual(event);
             },
         XRCID("ID_HELP_MANUAL"));
+
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED,
+        [this]([[maybe_unused]] wxRibbonButtonBarEvent&)
+            {
+            const wxString manualPath = GetHelpDirectory() + wxFileName::GetPathSeparator() +
+                _DT(L"ReadabilityTestReference.pdf");
+            wxLaunchDefaultApplication(manualPath);
+            },
+        XRCID("ID_TESTS_REFERENCE"));
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED,
         [this]([[maybe_unused]] wxRibbonButtonBarEvent&)
