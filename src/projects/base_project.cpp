@@ -4278,9 +4278,10 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
                 _(L"This document contains %zu incomplete sentences longer than %zu words which will be "
                    "included in the analysis.\n\nTo change this, increase the "
                    "\"Include incomplete sentences containing more than...\" "
-                   "option under Project Properties \x00BB Document Indexing."),
+                   "option under \"Project Properties\"%s\"Document Indexing\"."),
                 sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength,
-                GetIncludeIncompleteSentencesIfLongerThanValue()));
+                GetIncludeIncompleteSentencesIfLongerThanValue(),
+                L" \x00BB "));
             LogMessage(warningMsg);
             }
         }
@@ -5672,8 +5673,10 @@ bool BaseProject::AddStandardReadabilityTest(const wxString& id, const bool setF
                 *wxGetApp().GetAppOptions().GetWarning(_DT(L"new-dale-chall-text-exclusion-differs-note"));
             warningMsg.SetMessage(wxString::Format(
                 _(L"NOTE: %s uses a specialized method for excluding text that may differ from the system default.\n"
-                   "This behavior can be changed from the \"Readability Scores\" \x00BB \"Test Options\" page of the "
-                   "Options and Project Properties dialogs."), GetReadabilityTests().get_test_long_name(id).c_str()));
+                   "This behavior can be changed from the \"Readability Scores\"%s\"Test Options\" page of the "
+                   "Options and Project Properties dialogs."),
+                GetReadabilityTests().get_test_long_name(id).c_str(),
+                L" \x00BB "));
             LogMessage(warningMsg, true);
             }
         }
@@ -5686,8 +5689,10 @@ bool BaseProject::AddStandardReadabilityTest(const wxString& id, const bool setF
                 _DT(L"harris-jacobson-text-exclusion-differs-note"));
             warningMsg.SetMessage(wxString::Format(
                 _(L"NOTE: %s uses a specialized method for excluding text that may differ from the system default.\n"
-                   "This behavior can be changed from the \"Readability Scores\" \x00BB \"Test Options\" page of the "
-                   "Options and Project Properties dialogs."), GetReadabilityTests().get_test_long_name(id).c_str()));
+                    "This behavior can be changed from the \"Readability Scores\"%s\"Test Options\" page of the "
+                    "Options and Project Properties dialogs."),
+                GetReadabilityTests().get_test_long_name(id).c_str(),
+                L" \x00BB "));
             LogMessage(warningMsg, true);
             }
         }
