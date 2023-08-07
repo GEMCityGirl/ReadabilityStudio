@@ -178,14 +178,14 @@ void EditWordListDlg::CreateControls()
     mainSizer->Add(wordFilePathSizer, 0, wxEXPAND|wxTOP|wxLEFT|wxRIGHT,
                    wxSizerFlags::GetDefaultBorder());
 
-    m_wordListFilePathCtrl = new wxTextCtrl(this, ID_FILE_PATH_FIELD,
+    m_wordListFilePathCtrl = new wxTextCtrl(wordFilePathSizer->GetStaticBox(), ID_FILE_PATH_FIELD,
         wxString{}, wxDefaultPosition, wxDefaultSize,
         wxBORDER_THEME, wxTextValidator(wxFILTER_NONE, &m_wordListFilePath));
     m_wordListFilePathCtrl->AutoCompleteFileNames();
     wordFilePathSizer->Add(m_wordListFilePathCtrl, 1, wxEXPAND|wxLEFT|wxTOP|wxBOTTOM,
         wxSizerFlags::GetDefaultBorder());
 
-    wordFilePathSizer->Add(new wxBitmapButton(this, ID_BROWSE_FOR_FILE,
+    wordFilePathSizer->Add(new wxBitmapButton(wordFilePathSizer->GetStaticBox(), ID_BROWSE_FOR_FILE,
         wxArtProvider::GetBitmap(wxART_FILE_OPEN,wxART_BUTTON, FromDIP(wxSize(16, 16)))), 0,
             wxALIGN_CENTER_VERTICAL|wxRIGHT|wxTOP|wxBOTTOM, wxSizerFlags::GetDefaultBorder());
 
