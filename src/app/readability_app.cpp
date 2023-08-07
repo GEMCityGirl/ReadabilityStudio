@@ -527,14 +527,14 @@ bool ReadabilityApp::OnInit()
             }
         }
 
+    if (!BaseApp::OnInit())
+        { return false; }
+
     GetResourceManager().LoadArchive(FindResourceFile(L"res.wad"));
 
     const auto splashScreens = GetResourceManager().GetFilesInFolder(_DT(L"splash"));
     for (const auto& splash : splashScreens)
         { AddSplashscreenImagePath(splash); }
-
-    if (!BaseApp::OnInit())
-        { return false; }
 
     if (!LoadWordLists(AppSettingFolderPath) )
         { return false; }
