@@ -26,7 +26,10 @@ TEST_CASE("English syllabizer baselines", "[syllable]")
             engSyllableBaseline.substr(previousStart, (baselinePos - previousStart));
         auto tabPos = currentLine.find(L'\t');
         if (tabPos == std::wstring::npos)
-            { continue; }
+            {
+            ++baselinePos;
+            continue;
+            }
         const auto currentWord = currentLine.substr(0, tabPos);
         const auto currentSyllableCount =
             std::wcstod(currentLine.substr(++tabPos).data(), nullptr);
