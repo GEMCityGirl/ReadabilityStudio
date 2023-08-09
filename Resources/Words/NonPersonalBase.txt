@@ -1934,6 +1934,10 @@ Halton
 Hamal
 Hambleton
 Hamburg
+Hamey
+Hamhung
+Hamid
+Hamilcar
 Hamiltonian
 Hamitic
 Hampden
@@ -1947,8 +1951,12 @@ Hannover
 Hanoi
 Hanover
 Hanoverian
+Hansiain
 Hanukkah
+Harald
 Harare
+Harbert
+Harbin
 Harlem
 Harrisburg
 Harrisonburg
@@ -2031,12 +2039,16 @@ Hillview
 Himalaya
 Himalayan
 Himalayas
+Hinayana
 Hindi
 Hindu
 Hinduism
 Hindustan
 Hindustani
+Hipparchus
 Hippocratic
+Hiram
+Hirey
 Hiroshima
 Hirsutism
 Hispanic
@@ -2046,26 +2058,32 @@ Hittite
 Hoboken
 Hogwarts
 Hohokam
+Hokkaido
 Holandric
 Holland
 Hollander
+Hollerith
 Holliswood
 Hollywood
 Holstein
 Holyhead
+Holyoke
 HomeGoods
 Homeric
 Homerton
 Honda
+Hondo
 Honduran
 Honduras
 Hong
 Honiara
 Honolulu
+Honshu
 Hoosier
 Hooverville
 Hopi
 Hopkinsian
+Hormuz
 Hottentot
 Houdaille
 Houndsditch
@@ -2522,6 +2540,9 @@ Leone
 Leopoldville
 Lesotho
 Leste
+Levant
+Levin
+Levite
 Levittown
 Lewisham
 Lexington
@@ -2549,6 +2570,7 @@ Lilliput
 Lilliputian
 Lilongwe
 Lima
+Limavady
 Limousin
 Limpopo
 Lincolnshire
@@ -2639,6 +2661,7 @@ Maalox
 Mac
 MacBook
 Macchu
+Macclesfield
 Macedon
 Macedonia
 Macedonian
@@ -2729,6 +2752,7 @@ Markism
 Markkula
 Markovian
 MarkTen
+Marquette
 Marriott
 Mars
 Marseillaise
@@ -2799,6 +2823,9 @@ Mendelism
 Menkalinan
 Mennonite
 Mensa
+Merak
+Mercado
+Mercedes
 Merck
 Mercosur
 Mercurian
@@ -2807,6 +2834,7 @@ MerKadoTeknia
 Merrimac
 Merrimack
 Merseyside
+Mesabi
 Mesoamerica
 Mesoamerica's
 Mesoamerican
@@ -2816,12 +2844,16 @@ Mesopotamia
 Mesopotamian
 Mesozoic
 Messerschmidt
+Messiaen
+Messina
 MetaSource
 Methodism
 Methodist
+Methuen
 methylphenidate
 MetLife
 Metrecal
+Meuse
 Mex
 Mexicali
 Mexican
@@ -2910,6 +2942,7 @@ Monsanto
 Montalegre
 Montana
 Montanan
+Montclair
 Montenegrin
 Montenegro
 Monterey
@@ -2918,6 +2951,7 @@ Montessori
 Montevideo
 Monticello
 Montpelier
+Montrachet
 Montreal
 Montrose
 Montserrat
@@ -2926,6 +2960,7 @@ Moorish
 MooseJaw
 Moravia
 Moravian
+Morecambe
 Morelos
 Moresby
 Mormon
@@ -3189,6 +3224,7 @@ NY
 NYC
 Nyquil
 NYSE
+NYSSA
 NZ
 O'Lakes
 Oakland
@@ -4026,7 +4062,9 @@ Slovaks
 Slovene
 Slovenia
 Slovenian
+Smallwood
 Smartwater
+Smethwick
 Smithsonian
 Smithtown
 Snapchat
@@ -4095,6 +4133,7 @@ Squaresville
 Squibb
 Squintum
 Sri
+Srinagar
 Staffordshire
 Stairmaster
 Stalingrad
@@ -4112,6 +4151,7 @@ StartWire
 Staten
 Statesboro
 Statista
+Stellenbosch
 Stelter
 Stevenage
 Stevia
@@ -4121,6 +4161,7 @@ Stockholm
 Stockport
 Stonehenge
 Stonemill
+Stornoway
 Stourbridge
 Stradivaris
 Strasbourg
@@ -4148,6 +4189,7 @@ Suffolk
 Sufism
 Sugarbush
 Suisse
+Sulawesi
 Sulzberger
 Sumatra
 Sumatran
@@ -4155,6 +4197,7 @@ Sumeria
 Sumerian
 Summerdale
 Sumter
+Sumycin
 Sundance
 Sundanese
 Sunday
@@ -4171,6 +4214,7 @@ Supercuts
 Superdome
 SuperPAC
 Sur
+Surabaya
 SurfAid
 Surgicenter
 Surinam
@@ -4181,9 +4225,13 @@ Susquehannock
 Sussex
 Suva
 Suwanee
+Suzhou
 Suzuki
+Svalbard
+Sverdlovsk
 Swabian
 Swahili
+Swarthmore
 Swaziland
 Swed
 Swede
@@ -4206,6 +4254,7 @@ Syrian
 Szechuan
 São
 Tabasco
+Tabun
 Tacoma
 Tadzhikstan
 Tagalog
@@ -4218,6 +4267,7 @@ Taiwan
 Taiwanese
 Tajikistan
 Takata
+Taklamakan
 Taliban
 Talladega
 Tallahassee
@@ -4230,7 +4280,9 @@ Talmudist
 Tamaulipas
 Tampa
 Tampax
+Tamra
 Tanapox
+Tandem
 Tanganyika
 Tangier
 Tanzania
@@ -4240,6 +4292,7 @@ Taoist
 Taoistic
 Tarantism
 Tarawa
+Tarazed
 Tarrytown
 Tartary
 Tartuffe
@@ -4423,6 +4476,7 @@ Treadwell
 Treblinka
 Trekkie
 Tremetol
+Trent
 Trenton
 Trevelyan
 Treviño
@@ -4543,6 +4597,7 @@ Upanishad
 UpWork
 Ur
 Urachus
+Ural
 Urania
 Uranian
 Uranus
@@ -4552,6 +4607,7 @@ Urbana
 Urbano
 Urbanus
 Urdu
+Uris
 Uruguay
 Uruguayan
 Urumqi
@@ -4951,6 +5007,9 @@ Yellowstone
 Yemen
 Yemeni
 Yemenite
+Yenisei
+Yenisey
+Yeovil
 Yerevan
 Yggdrasil
 Yiddish
@@ -5003,6 +5062,8 @@ Zamora
 Zantac
 Zanzibar
 Zappos
+Zaria
+Zarla
 Zawahiri
 ZDNet
 Zealand
@@ -5012,6 +5073,7 @@ Zeebrugge
 Zeeland
 Zennist
 Zetland
+Zhengzhou
 Zillow
 Zimbabwe
 Zimbabwean
