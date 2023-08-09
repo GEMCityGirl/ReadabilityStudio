@@ -40,11 +40,11 @@ namespace grammar
         assert(current_char);
         if (current_char[0] == common_lang_constants::POUND)
             { return 1; }
-        //"plus/minus" if symbol is at front of word
+        // "plus/minus" if symbol is at front of word
         else if (start == current_char &&
             traits::case_insensitive_ex::eq(current_char[0], 177))
             { return 3; }
-        //"dollars" or "pesos" (Cuban) if dollar symbol is at front of word
+        // "dollars" or "pesos" (Cuban) if dollar symbol is at front of word
         else if (start == current_char &&
             (traits::case_insensitive_ex::eq(current_char[0], common_lang_constants::DOLLAR_SIGN) ||
              traits::case_insensitive_ex::eq(current_char[0], 0x20B1)))
@@ -61,11 +61,11 @@ namespace grammar
         else if (start == current_char &&
             traits::case_insensitive_ex::eq(current_char[0], 163))
             { return 1; }
-        //"cents" if  symbol is at end of word
+        // "cents" if  symbol is at end of word
         else if ((end-1) == current_char &&
             traits::case_insensitive_ex::eq(current_char[0], 162))
             { return 1; }
-        //"percent"/"degrees"/"one-half"/"one-fourth"/"three-fourth" if at end of word
+        // "percent"/"degrees"/"one-half"/"one-fourth"/"three-fourth" if at end of word
         else if ((end-1) == current_char &&
             (traits::case_insensitive_ex::eq(current_char[0], common_lang_constants::PERCENTAGE_SIGN) ||
                 traits::case_insensitive_ex::eq(current_char[0], 176) ||
@@ -447,11 +447,11 @@ namespace grammar
             { return false; }
         if (!traits::case_insensitive_ex::eq(word[position], common_lang_constants::LOWER_U) )
             { return false; }
-        //"qu" makes the 'u' silent
+        // "qu" makes the 'u' silent
         else if ( (position > 0) &&
                 traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_Q) )
             { return true; }
-        //"gu[vowel]" makes the 'u' silent (forms a "gw" sound)
+        // "gu[vowel]" makes the 'u' silent (forms a "gw" sound)
         // exceptions exists though, such as "ambiguity"
         else if ( (position > 0) &&
                 (position+2 <= m_length) &&
@@ -1509,7 +1509,7 @@ namespace grammar
                 traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_Z) ||
                 traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_S) )
                 { return false; }
-            //...esia
+            // ...esia
             else if ((position+3) <= m_length &&
                 traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_I) &&
                 traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_A) )
@@ -1726,7 +1726,7 @@ namespace grammar
                         traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_M) &&
                         traits::case_insensitive_ex::eq(word[position+4], common_lang_constants::LOWER_E)) ) )
                     { return true; }
-                //"ninety" and "safety" are special cases that set the 'e' to be silent
+                // "ninety" and "safety" are special cases that set the 'e' to be silent
                 else if (position >= 3 &&
                     m_length >= 6 &&
                     ((traits::case_insensitive_ex::eq(word[0], common_lang_constants::LOWER_N) &&
@@ -2098,7 +2098,7 @@ namespace grammar
             // if at the end of the word then they split (boa)
             if (position+2 == m_length)
                 {
-                //"cocoa" is and exception
+                // "cocoa" is and exception
                 if (m_length == 5 &&
                     traits::case_insensitive_ex::eq(word[0], common_lang_constants::LOWER_C) &&
                     traits::case_insensitive_ex::eq(word[1], common_lang_constants::LOWER_O) &&
@@ -2114,7 +2114,7 @@ namespace grammar
                 traits::case_insensitive_ex::eq(word[3], common_lang_constants::LOWER_C) &&
                 traits::case_insensitive_ex::eq(word[4], common_lang_constants::LOWER_H))
                 { return true; }
-            //...otherwise it's one sound
+            // ...otherwise it's one sound
             else
                 { return false; }
             }
@@ -2123,7 +2123,7 @@ namespace grammar
             traits::case_insensitive_ex::eq(word[position], common_lang_constants::LOWER_U) &&
             traits::case_insensitive_ex::eq(word[position+1], common_lang_constants::LOWER_E))
             {
-            ///@bug Puert-o Rico is broken.
+            /// @bug Puert-o Rico is broken.
             if ((position+2) < m_length &&
                 (traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_T) ||
                 traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_R) ||
@@ -2211,7 +2211,8 @@ namespace grammar
             {
             // if at the end of the word then always split (e.g., bio, radio, io)
             if (position + 2 == m_length ||
-                // lion, dion, pion
+                // ...or this "io" is the only vowel block in the word.
+                // (e.g, lion, dion, pion, scion)
                 (m_previous_vowel == m_length))
                 {
                 return true;
@@ -2584,7 +2585,7 @@ namespace grammar
                         traits::case_insensitive_ex::eq(word[position-2], common_lang_constants::LOWER_C) &&
                         traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_R))
                         {
-                        //"creature" special case
+                        // "creature" special case
                         if (position+3 < m_length &&
                             traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_U))
                             { return false; }
@@ -2831,7 +2832,7 @@ namespace grammar
                 return false;
                 }
             }
-        /// OE
+        // OE
         else if ((position+1 < m_length) &&
             traits::case_insensitive_ex::eq(word[position], common_lang_constants::LOWER_O) &&
             traits::case_insensitive_ex::eq(word[position+1], common_lang_constants::LOWER_E))
@@ -2843,7 +2844,7 @@ namespace grammar
                 {
                 return false;
                 }
-            // tomatoe, doe
+            // tomatoe, doe, toe
             else if (position+2 == m_length)
                 {
                 return false;
@@ -2943,7 +2944,7 @@ namespace grammar
             else if ( (position+2 < m_length) &&
                 traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_N) )
                 {
-                //"science", "client"
+                // "science", "client"
                 if (is_first_vowel_block_in_word && position > 1)
                     { return true; }
                 // watch out for "cien"
@@ -3093,15 +3094,15 @@ namespace grammar
 
                 if (position > 1 /*"pier" won't split*/ && (position+3 == m_length))
                     {
-                    //"ier" may be replacing a lower 'y' at the end of a word                    
+                    // "ier" may be replacing a lower 'y' at the end of a word                    
                     return true;
                     }
                 // out-li-ers
-                else if (position > 1 && //"piers" won't split
+                else if (position > 1 && // "piers" won't split
                     position+4 == m_length &&
                     traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_S))
                     { return true; }
-                //"ier" is inside the word
+                // "ier" is inside the word
                 else if (isChar.is_vowel(word[position+3]) )
                     {
                     // antierosion
