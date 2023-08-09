@@ -12,6 +12,10 @@
 /installers/Windows/release/
 /installers/resources
 /out/
+/TestResults
+/tests/gui-tests/.vs
+/tests/gui-tests/Bin
+/tests/gui-tests/out
 *.log
 
 # Intermediate build files

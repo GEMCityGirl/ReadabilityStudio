@@ -5,6 +5,7 @@
 
 using namespace Catch::Matchers;
 using namespace readability;
+using namespace Wisteria;
 
 TEST_CASE("Readability Messages", "[messages][readability]")
     {
@@ -105,7 +106,7 @@ TEST_CASE("Readability Messages", "[messages][readability]")
         CHECK(messages.GetGradeScale() == readability::grade_scale::k12_plus_nunavut);
         messages.SetLongGradeScaleFormat(true);
         CHECK(messages.IsUsingLongGradeScaleFormat());
-        CHECK_EQUAL(wxString(L"Grade 4, first month of class completed"), messages.GetFormattedValue(L"4.1", NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)));
+        CHECK(wxString(L"Grade 4, first month of class completed") == messages.GetFormattedValue(L"4.1", NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)));
         }
     SECTION("QuebecScaleLabel")
         {
@@ -114,7 +115,7 @@ TEST_CASE("Readability Messages", "[messages][readability]")
         CHECK(messages.GetGradeScale() == readability::grade_scale::quebec);
         messages.SetLongGradeScaleFormat(true);
         CHECK(messages.IsUsingLongGradeScaleFormat());
-        CHECK_EQUAL(wxString(L"Grade 4 (\xC9\x63\x6F\x6C\x65 Primaire), first month of class completed"),
+        CHECK(wxString(L"Grade 4 (\xC9\x63\x6F\x6C\x65 Primaire), first month of class completed") ==
             messages.GetFormattedValue(L"4.1", NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1)));
         }
     SECTION("GetAgeFromUSGrade")
@@ -153,15 +154,15 @@ TEST_CASE("Readability Messages", "[messages][readability]")
         ReadabilityMessages messages;
         double value;
         CHECK(messages.GetScoreValue(L"1.2", value));
-        CHECK_DOUBLES_EQUAL(value, 1.2, 0.01);
+        CHECK_THAT(value, WithinRel(1.2, 0.01));
         CHECK(messages.GetScoreValue(L"13-15", value));
-        CHECK_DOUBLES_EQUAL(value, 14, 0.01);
+        CHECK_THAT(value, WithinRel(14, 0.01));
         CHECK(messages.GetScoreValue(L"4-5", value));
-        CHECK_DOUBLES_EQUAL(value, 4.5, 0.01);
+        CHECK_THAT(value, WithinRel(4.5, 0.01));
         CHECK(messages.GetScoreValue(L"", value) == false);
-        CHECK_DOUBLES_EQUAL(value, 0, 0.01);
+        CHECK_THAT(value, WithinRel(0, 0.01));
         CHECK(messages.GetScoreValue(L"bogus", value) == false);
-        CHECK_DOUBLES_EQUAL(value, 0, 0.01);
+        CHECK_THAT(value, WithinRel(0, 0.01));
         }
     SECTION("GetFormattedTextUSShortFormat")
         {

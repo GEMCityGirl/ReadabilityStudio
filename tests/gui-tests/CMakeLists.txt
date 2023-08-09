@@ -28,7 +28,7 @@ IF(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     SET_PROPERTY(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release")
 ENDIF()
 
-PROJECT(WisteriaGuiTestRunner)
+PROJECT(RSGuiTestRunner)
 
 # Setup wxWidgets
 ########################
@@ -51,9 +51,16 @@ ENDIF()
 ADD_COMPILE_OPTIONS("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
 ADD_COMPILE_OPTIONS("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+ADD_EXECUTABLE(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${TEST_SRC_FILES}
+               ${CMAKE_CURRENT_SOURCE_DIR}/messagetests.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/testingmain.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/testableframe.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/../../src/results_format/readability_messages.cpp)
+
 # Set definitions, warnings, and optimizations (will propagate to the demo project also)
 IF(MSVC)
-    TARGET_COMPILE_DEFINITIONS(Wisteria PUBLIC __WXMSW__ _CRT_SECURE_NO_WARNINGS __UNITTEST
+    TARGET_COMPILE_DEFINITIONS(${PROJECT_NAME} PRIVATE __WXMSW__ _CRT_SECURE_NO_WARNINGS __UNITTEST
         $<$<CONFIG:Debug>:__WXDEBUG__ wxDEBUG_LEVEL=2> $<$<CONFIG:Release>:wxDEBUG_LEVEL=0>)
     # /Zc:__cplusplus tells MSVC to set the C++ version what we are
     # actually compiling as. The default behavior in MSVC is to say that the
@@ -69,18 +76,18 @@ IF(MSVC)
     # /wd6211 turns off C6211 warning: leaking memory due to an exception.
     # wxWidgets uses heap-based objects for most everything, and MVSC complains
     # about not wrapping all of this logic in try blocks.
-    TARGET_COMPILE_OPTIONS(Wisteria PUBLIC /Zc:__cplusplus /MP /W3 /WX /wd6211
+    TARGET_COMPILE_OPTIONS(${PROJECT_NAME} PRIVATE /Zc:__cplusplus /MP /W3 /WX /wd6211
                            $<$<CONFIG:Debug>:/Od> $<$<CONFIG:Release>:/O2>)
 # Placeholder code for macOS (needs testing)
 #ELSEIF(APPLE)
-#    TARGET_COMPILE_DEFINITIONS(Wisteria PUBLIC __WXOSX__ __UNITTEST
+#    TARGET_COMPILE_DEFINITIONS(${PROJECT_NAME} PRIVATE __WXOSX__ __UNITTEST
 #        $<$<CONFIG:Debug>:__WXDEBUG__ wxDEBUG_LEVEL=2> $<$<CONFIG:Release>:wxDEBUG_LEVEL=0>)
-#    TARGET_COMPILE_OPTIONS(Wisteria PUBLIC -Wall -Wextra -Wpedantic
+#    TARGET_COMPILE_OPTIONS(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic
 #                           $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O2>)
 ELSEIF(UNIX)
-    TARGET_COMPILE_DEFINITIONS(Wisteria PUBLIC __WXGTK__ __UNITTEST
+    TARGET_COMPILE_DEFINITIONS(${PROJECT_NAME} PRIVATE __WXGTK__ __UNITTEST
         $<$<CONFIG:Debug>:__WXDEBUG__ wxDEBUG_LEVEL=2> $<$<CONFIG:Release>:wxDEBUG_LEVEL=0>)
-    TARGET_COMPILE_OPTIONS(Wisteria PUBLIC -Wall -Wextra -Wpedantic
+    TARGET_COMPILE_OPTIONS(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic
                            $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O2>)
 ENDIF()
 
@@ -95,22 +102,15 @@ ELSE()
     FIND_PACKAGE(Catch2 3 REQUIRED)
 ENDIF()
 
-# Define the build target for the executable
-MESSAGE(STATUS "Preparing the test runner...")
-SET(TEST_APP RSGuiTestRunner)
-INCLUDE(${CMAKE_SOURCE_DIR}/messagestests.cpp)
-SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
-ADD_EXECUTABLE(${TEST_APP} WIN32 MACOSX_BUNDLE ${TEST_SRC_FILES})
-
 # Link required libraries to the executable
 IF(WIN32)
-    TARGET_LINK_LIBRARIES(${TEST_APP} PRIVATE Catch2::Catch2 ${wxWidgets_LIBRARIES})
+    TARGET_LINK_LIBRARIES(${CMAKE_PROJECT_NAME} Catch2::Catch2 ${wxWidgets_LIBRARIES})
 ELSEIF(UNIX)
     FIND_LIBRARY(TBB_LIB tbb)
-    TARGET_LINK_LIBRARIES(${TEST_APP} ${wxWidgets_LIBRARIES} ${TBB_LIB} Catch2::Catch2)
+    TARGET_LINK_LIBRARIES(${CMAKE_PROJECT_NAME} ${wxWidgets_LIBRARIES} ${TBB_LIB} Catch2::Catch2)
 ENDIF()
 
 # load the test cases into the runner
 INCLUDE(CTest)
 INCLUDE(Catch)
-CATCH_DISCOVER_TESTS(${TEST_APP})
+CATCH_DISCOVER_TESTS(${CMAKE_PROJECT_NAME})
