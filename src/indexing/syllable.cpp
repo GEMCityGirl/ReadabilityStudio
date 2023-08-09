@@ -2855,6 +2855,12 @@ namespace grammar
             // tomatoe, doe, toe
             else if (position+2 == m_length)
                 {
+                // Chloe is an exception here
+                if (position >= 3 &&
+                    (traits::case_insensitive_ex::eq(word[position - 3], common_lang_constants::LOWER_C) &&
+                     traits::case_insensitive_ex::eq(word[position - 2], common_lang_constants::LOWER_H) &&
+                     traits::case_insensitive_ex::eq(word[position - 1], common_lang_constants::LOWER_L)) )
+                    { return true; }
                 return false;
                 }
             // does, hoed
