@@ -2878,7 +2878,7 @@ namespace grammar
                 { return false; }
             // phoenix
             else if (position >= 2 &&
-                (traits::case_insensitive_ex::eq(word[position-2], common_lang_constants::LOWER_P) ||
+                (traits::case_insensitive_ex::eq(word[position-2], common_lang_constants::LOWER_P) &&
                     traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_H)) )
                 {
                 return false;
