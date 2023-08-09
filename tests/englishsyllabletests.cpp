@@ -554,6 +554,7 @@ TEST_CASE("English syllabizer", "[syllable]")
     SECTION("Silent E")
         {
         english_syllabize syllabize;
+        CHECK(syllabize(L"phoebe", 6) == 2);
         CHECK(syllabize(L"gobble", 6) == 2);
         CHECK(syllabize(L"gobbledegook", 12) == 4);
         CHECK(syllabize(L"gobbledygook", 12) == 4);
@@ -668,6 +669,7 @@ TEST_CASE("English syllabizer", "[syllable]")
         CHECK(syllabize(L"dished", 6) == 1);
         CHECK(syllabize(L"artefact", 8) == 3);
 
+        CHECK(syllabize(L"PHOEBE", 6) == 2);
         CHECK(syllabize(L"GOBBLE", 6) == 2);
         CHECK(syllabize(L"GOBBLEDEGOOK", 12) == 4);
         CHECK(syllabize(L"GOBBLEDYGOOK", 12) == 4);

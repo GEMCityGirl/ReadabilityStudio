@@ -12,13 +12,13 @@ namespace grammar
     {
     std::set<traits::case_insensitive_wstring_ex> english_syllabize::m_e_disconnecting_prefixes =
         { L"corr", L"minn", L"diss", L"disc", L"comm",
-          L"dysp", L"ind", L"cer", L"alg", L"coh",
+          L"dysp", L"ind", L"cer", L"alg", L"coh", L"phoeb",
           L"art", L"ben", L"tel", L"dis", L"irr", L"all",
           L"alp", L"amn", L"arr", L"agg", L"ass", L"eff",
           L"ell", L"ill", L"imm", L"un", L"dand" };
     std::set<traits::case_insensitive_wstring_ex> english_syllabize::m_non_affecting_suffixes_4 =
         { L"ness", L"ment", L"room", L"shoe", L"pick",
-          L"maid", L"yard", L"book", L"hill" };;
+          L"maid", L"yard", L"book", L"hill" };
 
     std::pair<bool,size_t> base_syllabize::is_special_math_word(const wchar_t* start, const size_t length) noexcept
         {
