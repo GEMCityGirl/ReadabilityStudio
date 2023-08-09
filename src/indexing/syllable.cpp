@@ -2240,6 +2240,14 @@ namespace grammar
                 {
                 return false;
                 }
+            // coerCION does not split, but acfiCIONado does
+            else if (position > 0 &&
+                position+2 < m_length &&
+                traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_N) &&
+                traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_C) &&
+                (position + 3 == m_length ||
+                 !traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_A)))
+                { return false; }
             // fashion
             else if ((position > 1) &&
                 ((position + 2) < m_length) &&
