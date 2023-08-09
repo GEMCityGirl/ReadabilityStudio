@@ -51,6 +51,44 @@ ENDIF()
 MESSAGE(STATUS "Adding wxWidgets libraries: ${wxWidgets_LIBRARIES}")
 MESSAGE(STATUS "Adding wxWidgets: ${wxPLATFORM_LIB_DIR}")
 
+# Run ALL unit-test suites for this program and its submodules
+IF(BUILD_TESTING)
+    SET(BUILD_TEMP ${CMAKE_CURRENT_SOURCE_DIR}/BuildTemp)
+    FILE(REMOVE_RECURSE ${BUILD_TEMP})
+    FILE(REMOVE_RECURSE ${CMAKE_CURRENT_SOURCE_DIR}/TestResults)
+    FILE(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/TestResults)
+
+    # submodule test suites
+    FUNCTION(RUN_TEST_SUITE TEST_PROJECT TEST_FOLDER TEST_RUNNER)
+        EXECUTE_PROCESS(COMMAND ${CMAKE_COMMAND} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+                                -S ${CMAKE_CURRENT_SOURCE_DIR}/src/${TEST_PROJECT}/${TEST_FOLDER} -B ${BUILD_TEMP})
+        EXECUTE_PROCESS(COMMAND ${CMAKE_COMMAND} --build ${BUILD_TEMP} --config ${CMAKE_BUILD_TYPE})
+        EXECUTE_PROCESS(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/src/${TEST_PROJECT}/${TEST_FOLDER}/bin/${CMAKE_BUILD_TYPE}/${TEST_RUNNER}
+                                --reporter=junit --out=${CMAKE_CURRENT_SOURCE_DIR}/TestResults/${TEST_RUNNER}-results.xml
+                        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src/${TEST_PROJECT}/${TEST_FOLDER}/bin/${CMAKE_BUILD_TYPE}")
+        FILE(REMOVE_RECURSE ${BUILD_TEMP})
+    ENDFUNCTION()
+
+    # test suites for RS specifically
+    FUNCTION(RUN_RS_TEST_SUITE TEST_FOLDER TEST_RUNNER)
+        EXECUTE_PROCESS(COMMAND ${CMAKE_COMMAND} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+                                -S ${CMAKE_CURRENT_SOURCE_DIR}/${TEST_FOLDER} -B ${BUILD_TEMP})
+        EXECUTE_PROCESS(COMMAND ${CMAKE_COMMAND} --build ${BUILD_TEMP} --config ${CMAKE_BUILD_TYPE})
+        EXECUTE_PROCESS(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${TEST_FOLDER}/bin/${CMAKE_BUILD_TYPE}/${TEST_RUNNER}
+                                --reporter=junit --out=${CMAKE_CURRENT_SOURCE_DIR}/TestResults/${TEST_RUNNER}-results.xml
+                        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${TEST_FOLDER}/bin/${CMAKE_BUILD_TYPE}")
+        FILE(REMOVE_RECURSE ${BUILD_TEMP})
+    ENDFUNCTION()
+
+    RUN_TEST_SUITE(OleanderStemmingLibrary tests OleanderStemTestRunner)
+    RUN_TEST_SUITE(Wisteria-Dataviz/src/i18n-check tests i18nTestRunner)
+    RUN_TEST_SUITE(tinyexpr-plusplus tests TETestRunner)
+    RUN_TEST_SUITE(Wisteria-Dataviz tests WisteriaTestRunner)
+    RUN_TEST_SUITE(Wisteria-Dataviz tests/gui-tests WisteriaGuiTestRunner)
+    RUN_RS_TEST_SUITE(tests RSTestRunner)
+    RUN_RS_TEST_SUITE(tests/gui-tests RSGuiTestRunner)
+ENDIF()
+
 IF(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
     # If no deployment target has been set default to the minimum supported
     # OS version (this has to be set before the first project() call)
