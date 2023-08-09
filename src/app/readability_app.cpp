@@ -1672,20 +1672,24 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             toolButtonBar->AddButton(XRCID("ID_WEB_HARVEST"), _(L"Web Harvester"),
                 readRibbonButtonSVG(L"ribbon/web-export.svg"),
                 _(L"Download and analyze multiple webpages."));
-        #ifndef NDEBUG
-                toolButtonBar->AddButton(XRCID("ID_CHAPTER_SPLIT"),
-                    _(L"Chapter Split"),
-                    readRibbonButtonSVG(L"ribbon/chapter-split.svg"),
-                    _(L"Split a document into smaller documents."));
-                toolButtonBar->AddButton(XRCID("ID_FIND_DUPLICATE_FILES"),
-                    _(L"Find Duplicates"),
-                   readRibbonButtonSVG(L"ribbon/duplicate-files.svg"),
-                    _(L"Search for (and remove) duplicate files."));
-        #endif
+    #ifndef NDEBUG
+            toolButtonBar->AddButton(XRCID("ID_CHAPTER_SPLIT"),
+                _(L"Chapter Split"),
+                readRibbonButtonSVG(L"ribbon/chapter-split.svg"),
+                _(L"Split a document into smaller documents."));
+            toolButtonBar->AddButton(XRCID("ID_FIND_DUPLICATE_FILES"),
+                _(L"Find Duplicates"),
+                readRibbonButtonSVG(L"ribbon/duplicate-files.svg"),
+                _(L"Search for (and remove) duplicate files."));
+    #endif
             toolButtonBar->AddButton(XRCID("ID_VIEW_LOG_REPORT"),
                     _(L"Log Report"),
                      readRibbonButtonSVG(L"ribbon/log-book.svg"));
-            if (wxGetMouseState().ShiftDown() || wxDEBUG_LEVEL >= 2)
+            if (wxGetMouseState().ShiftDown()
+                #ifndef NDEBUG
+                    || true
+                #endif
+                )
                 {
                 toolButtonBar->AddButton(XRCID("ID_SCRIPT_WINDOW"),
                     _(L"Lua Script"),
@@ -1856,17 +1860,16 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             _(L"Web Harvester"),
             readRibbonButtonSVG(L"ribbon/web-export.svg"),
             _(L"Download and analyze multiple webpages."));
-        if (wxGetMouseState().ShiftDown() || wxDEBUG_LEVEL >= 2)
-            {
-            toolButtonBar->AddButton(XRCID("ID_CHAPTER_SPLIT"),
-                _(L"Chapter Split"),
-                readRibbonButtonSVG(L"ribbon/chapter-split.svg"),
-                _(L"Split a document into smaller documents."));
-            toolButtonBar->AddButton(XRCID("ID_FIND_DUPLICATE_FILES"),
-                _(L"Find Duplicates"),
-                readRibbonButtonSVG(L"ribbon/duplicate-files.svg"),
-                _(L"Search for and remove duplicate files."));
-            }
+    #ifndef NDEBUG
+        toolButtonBar->AddButton(XRCID("ID_CHAPTER_SPLIT"),
+            _(L"Chapter Split"),
+            readRibbonButtonSVG(L"ribbon/chapter-split.svg"),
+            _(L"Split a document into smaller documents."));
+        toolButtonBar->AddButton(XRCID("ID_FIND_DUPLICATE_FILES"),
+            _(L"Find Duplicates"),
+            readRibbonButtonSVG(L"ribbon/duplicate-files.svg"),
+            _(L"Search for and remove duplicate files."));
+    #endif
         toolButtonBar->AddButton(wxID_PREFERENCES,
             _(L"Options"),
             readRibbonButtonSVG(L"ribbon/configure.svg"),
@@ -1874,7 +1877,12 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         toolButtonBar->AddButton(XRCID("ID_VIEW_LOG_REPORT"),
             _(L"Log Report"),
             readRibbonButtonSVG(L"ribbon/log-book.svg"));
-        if (wxGetMouseState().ShiftDown() || wxDEBUG_LEVEL >= 2)
+        if (wxGetMouseState().ShiftDown()
+            // turn on for debug (not release) build
+            #ifndef NDEBUG
+                || true
+            #endif
+            )
             {
             toolButtonBar->AddButton(XRCID("ID_SCRIPT_WINDOW"),
                 _(L"Lua Script"),
