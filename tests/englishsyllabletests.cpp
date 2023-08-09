@@ -218,6 +218,22 @@ TEST_CASE("English syllabizer", "[syllable]")
         CHECK(syllabize(L"RESILIENT", 9) == 3);
         CHECK(syllabize(L"CONSCIENTIOUS", 13) == 4);
         }
+    SECTION("OE")
+        {
+        english_syllabize syllabize;
+        CHECK(syllabize(L"phoenix", 7) == 2);
+        CHECK(syllabize(L"schoen", 6) == 1);
+        CHECK(syllabize(L"Chloe", 5) == 2);
+        CHECK(syllabize(L"Chloe's", 7) == 2);
+        CHECK(syllabize(L"coercion", 8) == 3);
+        CHECK(syllabize(L"scion", 5) == 2);
+        CHECK(syllabize(L"scions", 6) == 2);
+        CHECK(syllabize(L"suspicion", 9) == 3);
+        CHECK(syllabize(L"doer", 4) == 2);
+        CHECK(syllabize(L"toe", 3) == 1);
+        CHECK(syllabize(L"amoeba", 6) == 3);
+        CHECK(syllabize(L"amoebas", 7) == 3);
+        }
     SECTION("OI")
         {
         english_syllabize syllabize;

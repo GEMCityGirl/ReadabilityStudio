@@ -2848,7 +2848,7 @@ namespace grammar
             // toe-nail, woe-ful
             if (position == 1 &&
                 (traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_T) ||
-                traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_W)) )
+                 traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_W)) )
                 {
                 return false;
                 }
@@ -2866,7 +2866,7 @@ namespace grammar
             // does, hoed
             else if (position+3 == m_length &&
                 (traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_S) ||
-                    traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_D)) )
+                 traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_D)) )
                 {
                 return false;
                 }
@@ -2879,11 +2879,28 @@ namespace grammar
             // phoenix
             else if (position >= 2 &&
                 (traits::case_insensitive_ex::eq(word[position-2], common_lang_constants::LOWER_P) &&
-                    traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_H)) )
-                {
-                return false;
-                }
-            // coerce
+                 traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_H)) )
+                { return false; }
+            // shoe
+            else if (position >= 2 &&
+                (traits::case_insensitive_ex::eq(word[position-2], common_lang_constants::LOWER_S) &&
+                 traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_H)) )
+                { return false; }
+            // Schoen
+            else if (position >= 3 &&
+                (traits::case_insensitive_ex::eq(word[position - 3], common_lang_constants::LOWER_S) &&
+                 traits::case_insensitive_ex::eq(word[position - 2], common_lang_constants::LOWER_C) &&
+                 traits::case_insensitive_ex::eq(word[position - 1], common_lang_constants::LOWER_H)) )
+                { return false; }
+            // amoeba
+            else if (position >= 2 &&
+                position + 3 <= m_length &&
+                (traits::case_insensitive_ex::eq(word[position - 2], common_lang_constants::LOWER_A) &&
+                 traits::case_insensitive_ex::eq(word[position - 1], common_lang_constants::LOWER_M) &&
+                 traits::case_insensitive_ex::eq(word[position + 2], common_lang_constants::LOWER_B)) )
+                { return false; }
+            // coerce, coedit
+            // Also, "oe"s not handle here are usually a part of compound word that would split
             else
                 {
                 return true;
