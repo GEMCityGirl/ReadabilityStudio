@@ -412,6 +412,7 @@ $if(natbib)$
 $endif$
 $if(biblatex)$
 \usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
+\setlength\bibitemsep{\baselineskip}
 $for(bibliography)$
 \addbibresource{$bibliography$}
 $endfor$
