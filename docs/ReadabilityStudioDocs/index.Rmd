@@ -46,8 +46,6 @@ For those interested in the formulas,
 refer to ch. \@ref(english-readability-tests),
 ch. \@ref(spanish-readability-tests),
 and ch. \@ref(german-readability-tests) for formula overviews.
-For further reading, refer to ch. \@ref(bibliography) for a concise list
-of articles discussing these formulas.
 
 ![](images/NonGenerated/CC_BY-NC-ND.png)
 
