@@ -1,0 +1,46 @@
+## SOL\index{SOL|(ii} {#sol-spanish}
+
+The SOL readability formula (Contreras 21–29) calculates the grade level of a document based on complex-word density.
+
+SOL is a modified version of [SMOG](#smog-test)\index{SMOG!variations!SOL (Spanish)} (McLaughlin 639–646) that was recalibrated for Spanish text. This test calculates the SMOG score of a Spanish document, and then adjusts the score to take into account the comparably higher complex-word counts found in Spanish text. This adjustment is similar to what [Gilliam-Peña-Mountain](#gilliam-pena-mountain-fry-graph)\index{Gilliam-Peña-Mountain!compared to SOL} (426–430) uses for plotting Spanish text onto the [Fry graph](#fry-test)\index{Fry}.
+
+This test was trained on multiple blocks of 30-sentence samples from the following English, Spanish, and French materials:
+
+- *The Lancet* (Spanish and English)
+- *El Pais* (Spanish)
+- *Le Monde* (French)
+- *International Herald Tribune* (English)
+- *The Quixote* (Spanish, English, and French)
+- *The Bible* (Spanish, English, and French)
+- *Snow White and the Seven Dwarfs* (Spanish, English, and French)
+- *The Three Bears* (Spanish, English, and French)
+- *The Wolf and the Seven Little Kids* (Spanish, English, and French)
+- *The Three Little Pigs* (Spanish, English, and French)
+- Story books (a set of story books) (Spanish, English, and French)
+
+SMOG scores for these samples (including available translations) were collected. Next, the scores between each language for every set of material were then correlated. The researchers found significantly higher SMOG scores for French compared to English, and higher SMOG scores for Spanish compared to French. To adjust for these differences, the following regression equation was built to convert a Spanish SMOG calculation to English ($r^2 = 0.60$):
+
+```{definition, sol, name="SOL formula"}
+$$
+G = (1.0430*\sqrt{C} + 3.1291)*.74 - 2.51
+$$
+```
+
+Where:
+
++:----+:----------------------------------------+
+| G   | Grade level                             |
++-----+-----------------------------------------+
+| C   | Number of complex words (3+ syllables)\ |
+|     | from 30 sentences                       |
++-----+-----------------------------------------+
+
+```{r, results='asis', eval=T, echo=F}
+OptionsDesc <- ", so the program overrides your [numeral syllabication](#document-analysis) setting for this test"
+
+glue('Like SMOG, this test fully syllabizes numerals\\index{numerals!SOL} (i.e., sounds them out)$if_else(UserManualMode, OptionsDesc, "")^. It also excludes lists and tables, but includes headers and footers (Contreras et al. 23). (SMOG does not explicitly follow this rule.)', .open='$', .close='^')
+```
+
+Note that this test uses the high-precision version of the SMOG formula. This is recommended by the authors to avoid any rounding issues when converting scores between Spanish and English (Contreras et al. 24).
+
+This test requires 3 10-sentence samples, but [normalization](#glossary) can be used to analyze larger samples or entire documents.\index{SOL|)}

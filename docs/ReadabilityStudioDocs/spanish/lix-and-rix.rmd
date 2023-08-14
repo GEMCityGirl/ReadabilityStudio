@@ -1,0 +1,9 @@
+## Lix {#lix-spanish}
+
+Refer to \@ref(lix-test).
+
+## Rix {#rix-spanish}
+
+Refer to \@ref(rix-test).
+
+\newpage

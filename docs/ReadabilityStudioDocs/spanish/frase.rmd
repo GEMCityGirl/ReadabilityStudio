@@ -1,0 +1,42 @@
+## FRASE\index{FRASE|(ii} Graph {#frase}
+
+FRASE (Fry Readability Adaptation for Spanish Evaluation)\index{Fry!derivatives!FRASE} (Vari-Cartier 141–148) is a graphical test for Spanish text. This test calculates a document's language level from its average number of sentences and syllables per hundred words. These averages are plotted onto a chart where their intersection determines the reading level of the content.
+
+The test uses methodologies borrowed from the [Fry](#fry-test) graph, such as using the same factors (sentence length and syllable count). However, it also includes adjustments which differentiate it. One adjustment is that is X axis begins at 182 (Fry begins at 108)—this is used to account for Spanish text having higher syllable counts compared to English. The second adjustment is that it uses reading levels (“Beginning,” “Intermediate,” “Advanced Intermediate,” and “Advanced”), rather than grade levels. By using reading levels, documents can be classified more broadly into reading groups, which makes this test ideal for SSL (Spanish as a second language) readers.
+
+The FRASE graph is designed for most text and can be used for both primary and secondary-age reading materials, as well as SSL materials. It was trained on eight textbooks representing the four levels of difficulty:
+
+- *Nueva Vista*
+- *Español: A Descubrirlo*
+- *Entre Nosotros*
+- *Vista Hispánica*
+- *Civilización y Cultura*
+- *Multivista Cultura*
+- *Español: Curso Primero*
+- *Perspectivas*
+
+These textbooks “covered a variety of reading topics which dealt with family life, entertainment, customs, the hispanic people, history, and politics” (Vari-Cartier 143). 300-350 word excerpts were randomly selected from each book, scored on a FRASE graph, and then objectively and subjectively validated.
+
+These validation involved correlating the FRASE scores against “teacher judgments, Spaulding formula ratings, cloze\index{cloze} test scores, and informal multiple choice tests” (144). (The “teacher judgments” validation involved 16 secondary-level Spanish teachers ranking the samples into the levels of beginner, intermediate, advanced intermediate, and advanced.) The comparisons were significantly correlated, with the following results:
+
+- cloze tests: $r = -0.93$
+- Spaulding scores: $r = 0.91$
+- teacher judgments: $r = 0.95$
+- multiple choice tests: $r = -0.97$
+
+Below is an example of a FRASE graph:
+
+```{r frase, echo=F, fig.cap='FRASE graph', fig.align='center', out.width='75%'}
+knitr::include_graphics("Images/FraseGraph.png")
+```
+
+The FRASE graph procedure is:
+
+- Extract a 100-word passage from the selection. If the material is long, take subsamples from the beginning, middle, and end.
+- Count the number of sentences in each passage. Count a half sentence as .5.
+- Count the number of syllables in each passage.
+- Find the intersecting point on the plot. The quadrant where the point lies indicates the reading level of the document.
+
+This test is designed for 100-word samples, with 3 samples being recommended for best results. ([Normalization](#glossary) can also be used to analyze larger samples or entire documents.)\index{FRASE|)}
+
+\newpage
