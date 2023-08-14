@@ -1,6 +1,6 @@
-# Glossary {#glossary}
+# Glossary {#glossary .unnumbered}
 
-## Readability Terms {#readability-glossary}
+## Readability Terms {#readability-glossary .unnumbered}
 
 :::: {.glsentry data-latex=''}
 ::: {.glsterm data-latex=''}
@@ -58,7 +58,7 @@ A section of text ending with a period, exclamation mark, question mark, interro
 
 \newpage
 
-## Statistical Terms {#stat-terms}
+## Statistical Terms {#stat-terms .unnumbered}
 
 ::: {.glsterm data-latex=''}
 box plots\index{box plots}
