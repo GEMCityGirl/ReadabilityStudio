@@ -15,7 +15,10 @@ lof: yes
 date: 2023
 links-as-notes: true
 linestretch: 1.15
+biblio-title: References
+bibliography: cites.bib
 biblio-style: mla
+biblatexoptions: maxbibnames=3
 link-citations: yes
 nocite: '@*'
 csl: modern-language-association.csl
