@@ -56,6 +56,7 @@ UserManualMode = TRUE
 setwd(glue("{docFolder}/ReadabilityStudioDocs/"))
 combine_files("01-Overviews.Rmd", "overviews",
               ("(intro|program)"))
+combine_files("21-ReadabilityTestsSpanish.rmd", "spanish")
 combine_files("90-Glossaries.rmd", "glossary")
 combine_files("92-Acknowledgements.Rmd", "acknowledgements",
               ("(intro|assistance)"))
@@ -69,6 +70,7 @@ bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::gitbook",
                       output_dir="docs")
 unlink(glue("{docFolder}/ReadabilityStudioDocs/01-Overviews.Rmd"))
+unlink(glue("{docFolder}/ReadabilityStudioDocs/21-ReadabilityTestsSpanish.rmd"))
 unlink(glue("{docFolder}/ReadabilityStudioDocs/41-ScoringNotes.rmd"))
 unlink(glue("{docFolder}/ReadabilityStudioDocs/92-Acknowledgements.Rmd"))
 unlink(glue("{docFolder}/ReadabilityStudioDocs/90-Glossaries.rmd"))
@@ -195,6 +197,7 @@ file_copy(glue("{docFolder}/ReadabilityStudioDocs/93-Author.rmd"),
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/modern-language-association.csl"),
           glue("{docFolder}/ReadabilityTestsReference/modern-language-association.csl"),
           TRUE)
+combine_files("21-ReadabilityTestsSpanish.rmd", "spanish")
 combine_files("41-ScoringNotes.rmd", "scoring-notes",
               "(intro|grade[-]level[-]results|cloze)")
 combine_files("92-Acknowledgements.Rmd", "acknowledgements",
@@ -204,5 +207,6 @@ setwd(glue("{docFolder}/ReadabilityTestsReference/"))
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::pdf_book",
                       output_dir="docs")
+unlink(glue("{docFolder}/ReadabilityTestsReference/21-ReadabilityTestsSpanish.rmd"))
 unlink(glue("{docFolder}/ReadabilityTestsReference/41-ScoringNotes.rmd"))
 unlink(glue("{docFolder}/ReadabilityTestsReference/92-Acknowledgements.Rmd"))
