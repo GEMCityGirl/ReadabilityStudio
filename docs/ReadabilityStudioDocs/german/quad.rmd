@@ -25,7 +25,7 @@ kableExtra::kbl(quadData, booktabs=T, centering=T, align='l', escape=F) %>%
 ```
 
 ::: {.notesection data-latex=""}
-Based on the examples from Bamberger-Vanecek [-@{bamberger-vanecek}78], the grade-level score should be truncated to one-point precision, not rounded.
+Based on the examples from Bamberger-Vanecek [-@{bamberger-vanecek}78], the grade-level score should be truncated (or "floored") to one-point precision, not rounded.
 \index{Quadratwurzelverfahren|)}
 :::
 
