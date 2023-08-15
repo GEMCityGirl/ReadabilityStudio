@@ -1,0 +1,119 @@
+## Schwartz German Readability Graph {#schwartz}
+
+The Schwartz German Readability Graph\index{Schwartz German Readability Graph|(ii} (1–21) is a derivative of [Fry’s](#fry-test) readability graph and is designed for instructional textbooks for primary and secondary students. Like Fry, it relies on sentence length and word complexity (i.e., syllable counts) to determine a document’s difficulty.
+
+As an elementary teacher, Schwartz\index{Fry!derivatives!Schwartz} was familiar with English tests and had found them “extremely helpful in classifying texts according to levels and fitting a student with proper reading material” (3). Later, as a high school German teacher, she was often asked if there were any German readability tests.
+
+After corresponding with Prof. George Klare and Dr. Richard Bamberger, she confirmed that only two German tests existed (as well as some unpublished cloze\index{cloze} procedure experiments). She then interviewed West German publishers to see how they classified school textbooks. They informed her that their process was to compare student dictionaries against their materials to gauge difficulty, as well as use large print and illustrations.
+
+Schwartz then set out to create a German readability test, given the lack of such a tool at the time. She initially experimented with word frequencies as a factor, but decided that sentence length and word complexity were easier to calculate when computer assistance wasn’t available. She also determined that a graphical test—such as Fry—was easier to use by classroom teachers than regression formulas. Hence, Schwartz created a new graph similar to Fry, but adjusted it for the West German basal readers that she used in her study.
+
+When designing the graph, Schwartz adjusted the syllable-count axis to take into account German words' tendency to have higher syllable counts. As she noted, “It is commonplace that the average German word contains more syllables than the average English one” (14). In her samples, she noted that English averaged 25 syllables per 100 words, while German averaged 37 (14).
+
+Another difference from the Fry graph is that some grade bands cover two grades (whereas each band on a Fry graph represents a unique grade).
+
+```{r echo=F, fig.show = 'hold', out.width='50%', fig.cap='Comparison of bands between Schwartz and Fry graphs, respectively'}
+knitr::include_graphics("Images/Schwartz.png")
+knitr::include_graphics("Images/frygraph.png")
+```
+
+::: {.minipage data-latex="{\textwidth}"}
+As Schwartz noted:
+
+> Furthermore, it might be of interest to the American reader to note that it used to be quite common in Germany to have certain reader levels combined in one volume: usually third and fourth, fifth and sixth, seventh and eighth, sometimes even fifth through eighth, and that often there was no distinction made inside the book itself as to in which grade a particular text had to be read. (5–6)
+:::
+
+In the study, between 15–21 random 100-word samples were taken from 2^nd^–8^th^ grade textbooks and between 11–15 100-word samples from 1^st^ grade textbooks. The following textbooks were used:
+
+::: {.minipage data-latex="{\textwidth}"}
+Grade 1:
+
+- *Bunte Lesewelt*
+- *Bei uns daheim*
+- *Unsere neue Fibel*
+- *Bunte Welt*
+- *Mein erstes Buch zum Anschauen, Zeichnen, Lesen und Schreiben*
+:::
+
+::: {.minipage data-latex="{\textwidth}"}
+Grade 2:
+
+- *Mein Lesebuch für das 2. Schuljahr*
+- *Lesebuch für das 2. Schuljahr der Grundschule*
+- *schwarz auf weiß, Primarstufe, Text 2*
+- *Deutsches Lesebuch für die Grundschule für das zweite Schuljahr*
+- *auswahl, Lesebuch für Schulen, Grundschule 2. Schuljahr*
+- *Lesebuch für die Volksschulen, 2. Schuljahr*
+:::
+
+::: {.minipage data-latex="{\textwidth}"}
+Grade 3:
+
+- *Mein Lesebuch für das 3. Schuljahr*
+- *Lesebuch für das 3. Schuljahr der Grundschule*
+- *Deutsches Lesebuch für das dritte und vierte Schuljahr*
+- *schwarz auf weiß, ein neues Lesebuch- Drittes Schuljahr*
+:::
+
+::: {.minipage data-latex="{\textwidth}"}
+Grade 4:
+
+- *Mein Lesebuch für das 4. Schuljahr*
+- *Lesebuch für das 4. Schuljahr der Grundschule*
+- *Geschichten Berichte Gedichte*
+- *schwarz auf weiß, ein neues Lesebuch- Viertes Schuljahr*
+- *Deutsches Lesebuch, Viertes Schuljahr*
+:::
+
+::: {.minipage data-latex="{\textwidth}"}
+Grades 5/6:
+
+- *Kein schöner Land*
+- *Bayerishes Lesebuch für das 5. und 6. Schuljahr*
+- *Lesebuch für die Volksschulen*
+:::
+
+::: {.minipage data-latex="{\textwidth}"}
+Grades 7/8:
+
+- *Bayerisches Lesebuch für das seibte und achte Schuljahr*
+- *Lesebuch für die Volksschulen, Vierter Band. 7. und 8. Schuljahr*
+- *Lesebuch. C 8 (8. Schuljahr)*
+:::
+
+::: {.minipage data-latex="{\textwidth}"}
+Schwartz noted the following validation results:
+
+- Grade 1: 83% of the 70 samples fell in the grade 1 band on the graph, 91% falling in either the grade 1 or 2 bands.
+- Grade 2: 30.5% of the 105 samples fell in grade 2, although 82% fell in the 1, 2, or 3/4 bands.
+- Grades 3 and 4: 29% of the 164 samples fell in the 3/4 band, although 77% fell within the 2, 3/4 , or 5/6 bands.
+- Grades 5 and 6: 40% of the 72 samples fell in the 5/6 band, while 81% fell in the 3/4, 5/6, or 7/8 bands.
+:::
+
+Altogether, of the 411 samples for grade levels 1–6, 75% of them either fell into the proper band on the graph, or within one grade level.
+
+::: {.minipage data-latex="{\textwidth}"}
+When counting the sentences and syllables in a document, Schwartz had the following recommendations:
+
+- Exclude headers (“headlines”)
+- Treat numerals as one syllable
+- Speech set off by a colon mid-sentence should be counted as a separate sentence
+:::
+
+```{r, results='asis', eval=T, echo=F}
+OptionsDesc <- "Because of this, the program uses sentence units when counting sentences. Numerals are also counted as one syllable by the program, regardless of the project\'s settings."
+
+OtherDesc <- "Because of this, sentence units should be used when counting sentences. Numerals should also be counted as one syllable."
+
+glue('Regarding the last point, it could be inferred that independent clauses set off by colons, semicolons, and em dashes should also be counted as separate sentences. $if_else(UserManualMode, OptionsDesc, OtherDesc)^', .open='$', .close='^')
+```
+
+Plotting and interpreting the Schwartz graph is the same as other Fry-like graphs. Once you have found the average number of syllables and sentences per 100-words, plot the intersection of these two statistics on the graph. The band that the point falls in will represent the grade-level score of the sample.\index{Schwartz German Readability Graph|)}
+
+::: {.notesection data-latex=""}
+An item of interest when interpreting this graph is the x axis. Although the labels read *25*, *26*, etc., they actually represent *125*, *126*, etc. The *100+* with the arrow underneath it (to the left) indicates that the axis labels should have 100 added to them. This is done to make the labels more compact.
+
+Although this is an unusual display, this is how the graph is drawn in the original article. Therefore, to preserve fidelity with the source material, it is recommended to use this same style.
+:::
+
+\newpage

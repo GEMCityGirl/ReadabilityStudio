@@ -1,0 +1,37 @@
+## SMOG (Bamberger-Vanecek)\index{SMOG!variations!Bamberger-Vanecek (German)} {#smog-bamberger-vanecek}
+
+SMOG (Bamberger-Vanecek) (78) is a German variation of [SMOG](#smog-test) designed for secondary-age readers. This test calculates the grade level of a document based on complex-word density.
+
+```{r, results='asis', eval=T, echo=F}
+OptionsDesc <- ", so the program overrides your [numeral syllabication](#numsyllable) setting when calculating it"
+
+glue('Note that numerals\\index{numerals!SMOG (Bamberger-Vanecek)} are fully syllabized (i.e., sounded out) for this test$if_else(UserManualMode, OptionsDesc, "")^.', .open='$', .close='^')
+```
+
+```{definition, smogde, name="SMOG (Bamberger-Vanecek) formula"}
+$$
+G = \sqrt{C} - 2
+$$
+```
+
+Where:
+
+```{r, echo=F}
+smogBVData <- tibble(col1 = c("G", "C"),
+                     col2 = markdown_to_kable_cell(c("Grade level",
+                              "Number of 3+ syllable^a^ words from 30 sentences")))
+
+colnames(smogBVData) <- rep('', ncol(smogBVData))
+kableExtra::kbl(smogBVData, booktabs=T, centering=T, align='l', escape=F) %>%
+  kableExtra::kable_classic(full_width=F) %>%
+  footnote(alphabet = c(markdown_to_kable_footnote('“*drei- und mehrsilbigen*”')),
+           escape=F, threeparttable=T)
+```
+
+This test requires a 10-sentence sample, with 3 samples being recommended for best results. ([Normalization](#glossary) can also be used to analyze larger samples or entire documents.)
+
+::: {.notesection data-latex=""}
+Based on the examples from Bamberger-Vanecek (78), the grade-level score should be truncated to one-point precision, not rounded.
+:::
+
+\newpage

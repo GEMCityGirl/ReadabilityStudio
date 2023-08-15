@@ -1,0 +1,31 @@
+## Lix {#lix-german}
+
+Refer to \@ref(lix-test).
+
+## Lix\index{Lix!variations!German children's literature} (German children's literature) {#lix-german-childrens-literature}
+
+This test is a German variation of [Läsbarhetsindex (Lix)](#lix-test) designed for children's literature. It uses the same index-score formula as Lix, but uses different scales for assigning the difficulty and grade-level scores. This adjustment was developed by Renström (152–153) and Bamberger & Vanecek (64, 187) for use with German literature ranging from 1^st^ to 8^th^ grade. (Renström developed the adjusted difficulty gauge; Bamberger & Vanecek developed the grade-level conversion.)
+
+Note that this test differs from the original Lix approach of using the same scoring for any document, regardless of language. Instead, this test is designed specifically for German materials, adjusting the grade-level score and classification of the index value.
+
+Regarding the index score, the following variation of the Lix gauge is used classify the difficulty (Renström 153; Bamberger and Vanecek 65; Schulz 53):
+
+```{r germanLix, echo=F, fig.cap="German Lix gauge (children's literature)", fig.align='center', out.width='75%'}
+knitr::include_graphics("Images/GermanLixGauge.png")
+```
+
+This version adjusts the scaling of the score, assuming that German text is inherently more difficult than other languages. It also includes additional levels of difficulty (e.g., “children and young adult”).
+
+::: {.minipage data-latex="{\textwidth}"}
+To convert the Lix index score to a grade, this test uses the following table:
+
+```{r, echo=F}
+kableExtra::kbl(dplyr::as_tibble(read_delim("data/LixGermanLixChildrensLit.txt", "\t", escape_double=F, trim_ws=T)) %>%
+                  dplyr::mutate_all(markdown_to_kable_cell),
+                booktabs=T, centering=T, linesep="",
+                caption="Lix (German children's literature) Conversion Table",
+                align='rl', escape=F)
+```
+:::
+
+\newpage

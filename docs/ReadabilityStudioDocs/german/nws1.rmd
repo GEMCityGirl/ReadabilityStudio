@@ -1,0 +1,32 @@
+## Neue Wiener Sachtextformel 1\index{Neue Wiener Sachtextformel 1|ii} {#neue-wiener-sachtextformel1}
+
+Neue Wiener Sachtextformel 1 (1.nWS) (Bamberger-Vanecek 83, 187) is used for evaluating German nonfiction (specifically, 6^th^-10^th^ grade materials). This test returns a grade-level score based on word length/complexity and sentence length.
+
+```{definition, nws1, name="Neue Wiener Sachtextformel 1 formula"}
+\begin{align*}
+  G = & 0.1935*((C/W)*100) + 0.1672*(W/S) + \\
+      & 0.1297*((X/W)*100) - 0.0327*((M/W)*100) - 0.875
+\end{align*}
+```
+
+Where:
+
+```{r, echo=F}
+nws1Data <- tibble(col1 = c("G", "C", "X", "M", "S", "W"),
+                   col2 = markdown_to_kable_cell(c("Grade level",
+                             "Number of 3+ syllable^a^ words",
+                             "Number of 7+ character^b^ words",
+                             "Number of monosyllabic^c^ words",
+                             "Number of sentences",
+                             "Number of words")))
+
+colnames(nws1Data) <- rep('', ncol(nws1Data))
+kableExtra::kbl(nws1Data, booktabs=T, centering=T, align='l', escape=F, linesep="") %>%
+  kableExtra::kable_classic(full_width=F) %>%
+  footnote(alphabet = c(markdown_to_kable_footnote('“*drei- und mehrsilbigen*”'),
+                      markdown_to_kable_footnote('“*mehr als sechs buchstaben*”'),
+                      markdown_to_kable_footnote('“*einsilbigen*”')),
+           escape=F, threeparttable=T)
+```
+
+\newpage

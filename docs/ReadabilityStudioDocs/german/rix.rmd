@@ -1,0 +1,75 @@
+## Rix {#rix-german}
+
+Refer to \@ref(rix-test).
+
+## Rix\index{Rix!variations!German (fiction)} (German fiction) {#rix-german-fiction}
+
+This test is a German variation of [Rix](#rix-test) designed for fiction books. It uses a modified index-score formula from Rix, as well as different logic for assigning a grade-level score. This test was developed by Bamberger & Vanecek (64, 187) for use with German fiction ranging from 1^st^ to 11^th^ grade.
+
+```{definition, rixfictionde, name="Rix (German fiction) formula"}
+$$
+I = ((100*(X/W))/(U*(100/W))) * 10
+$$
+```
+
+Where:
+
++:----+:-------------------------------------+
+| I   | Rix index score                      |
++-----+--------------------------------------+
+| W   | Number words                         |
++-----+--------------------------------------+
+| X   | Number of long words (7+ characters) |
++-----+--------------------------------------+
+| U   | Number of sentence units\index{sentences!units} |
++-----+--------------------------------------+
+
+::: {.minipage data-latex="{\textwidth}"}
+To convert the Rix index score to a grade, this test uses the following table:
+
+```{r, echo=F}
+kableExtra::kbl(dplyr::as_tibble(read_delim("data/RixGermanFiction.txt", "\t", escape_double=F, trim_ws=T)) %>%
+                  dplyr::mutate_all(markdown_to_kable_cell),
+                booktabs=T, centering=T, linesep="",
+                caption="Rix Index Score (German Fiction) to Grade Level Conversion Table",
+                align='rl', escape=F)
+```
+:::
+
+\newpage
+
+## Rix\index{Rix!variations!German (non-fiction)} (German non-fiction) {#rix-german-nonfiction}
+
+This test is a German variation of [Rix](#rix-test) designed for non-fiction books. It uses a modified index-score formula from Rix, as well as different logic for assigning a grade-level score. This test was developed by Bamberger & Vanecek (64, 187) for use with German non-fiction ranging from 4^th^ to 14^th^ grade.
+
+```{definition, rixnonfictionde, name="Rix (German non-fiction) formula"}
+$$
+I = ((100*(X/W))/(U*(100/W))) * 10
+$$
+```
+
+Where:
+
++:----+:-------------------------------------+
+| I   | Rix index score                      |
++-----+--------------------------------------+
+| W   | Number words                         |
++-----+--------------------------------------+
+| X   | Number of long words (7+ characters) |
++-----+--------------------------------------+
+| U   | Number of sentence units\index{sentences!units} |
++-----+--------------------------------------+
+
+::: {.minipage data-latex="{\textwidth}"}
+To convert the Rix index score to a grade, this test uses the following table:
+
+```{r, echo=F}
+kableExtra::kbl(dplyr::as_tibble(read_delim("data/RixGermanNonFiction.txt", "\t", escape_double=F, trim_ws=T)) %>%
+                  dplyr::mutate_all(markdown_to_kable_cell),
+                booktabs=T, centering=T, linesep="",
+                caption="Rix Index Score (German Non-fiction) to Grade Level Conversion Table",
+                align='rl', escape=F)
+```
+:::
+
+\newpage

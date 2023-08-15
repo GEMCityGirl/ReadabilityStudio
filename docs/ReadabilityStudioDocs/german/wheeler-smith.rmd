@@ -1,0 +1,40 @@
+## Wheeler-Smith (Bamberger-Vanecek)\index{Wheeler-Smith!variations!Bamberger-Vanecek (German)} {#wheeler-smith-bamberger-vanecek}
+
+Wheeler-Smith (Bamberger-Vanecek) (77, 186) is a German variation of [Wheeler-Smith](#wheeler-smith) designed for both primary and secondary-age reading material. It calculates the grade level of a document based on [unit](#glossary)\index{sentences!units} length and number of complex words.
+
+```{definition, wheelersmithde, name="Wheeler-Smith (Bamberger-Vanecek) formula"}
+$$
+I = ((W/U)*((C/W)*100)) / 10
+$$
+```
+
+Where:
+
+```{r, echo=F}
+wheelersmithBVData <- tibble(col1 = c("I", "C", "W", "U"),
+                             col2 = markdown_to_kable_cell(c("Index value",
+                                      "Number of 3+ syllable^a^ words",
+                                      "Number of words",
+                                      "Number of units")))
+
+colnames(wheelersmithBVData) <- rep('', ncol(wheelersmithBVData))
+kableExtra::kbl(wheelersmithBVData, booktabs=T, centering=T, align='l', escape=F) %>%
+  kableExtra::kable_classic(full_width=F) %>%
+  footnote(alphabet = c(markdown_to_kable_footnote('“*drei- und mehrsilbigen*”')),
+           escape=F, threeparttable=T)
+```
+
+Then, find the index value in the following chart to acquire the final readability score:
+
+```{r, echo=F}
+kableExtra::kbl(read_delim("data/WheelerSmithBV.txt", "\t", escape_double=F, trim_ws=T),
+                booktabs=T, centering=T, linesep="",
+                caption="Wheeler-Smith (Bamberger-Vanecek) Conversion Table",
+                align='lr', escape=F)
+```
+
+::: {.notesection data-latex=""}
+Although Bamberger and Vanecek (77, 186) do not specify using units\index{sentences!units} instead of sentences, the use of units is assumed to match Wheeler-Smith.
+
+Based on the examples from Bamberger and Vanecek (77, 186), index values should be truncated to one-point precision, not rounded.
+:::
