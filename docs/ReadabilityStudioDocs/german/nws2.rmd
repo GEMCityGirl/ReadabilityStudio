@@ -12,11 +12,10 @@ Neue Wiener Sachtextformel 2 (2.nWS) was developed by Bamberger & Vanecek for ev
 Where:
 
 ```{r, echo=F}
-nws2Data <- tibble(col1 = c("G", "C", "X", "M", "S", "W"),
+nws2Data <- tibble(col1 = c("G", "C", "X", "S", "W"),
                    col2 = markdown_to_kable_cell(c("Grade level",
                                      "Number of 3+ syllable^a^ words",
                                      "Number of 7+ character^b^ words",
-                                     "Number of monosyllabic^c^ words",
                                      "Number of sentences",
                                      "Number of words")))
 
@@ -24,8 +23,7 @@ colnames(nws2Data) <- rep('', ncol(nws2Data))
 kableExtra::kbl(nws2Data, booktabs=T, centering=T, align='l', escape=F, linesep="") %>%
   kableExtra::kable_classic(full_width=F) %>%
   footnote(alphabet = c(markdown_to_kable_footnote('“*drei- und mehrsilbigen*”'),
-                      markdown_to_kable_footnote('“*mehr als sechs buchstaben*”'),
-                      markdown_to_kable_footnote('“*einsilbigen*”')),
+                      markdown_to_kable_footnote('“*mehr als sechs buchstaben*”')),
            escape=F, threeparttable=T)
 ```
 
