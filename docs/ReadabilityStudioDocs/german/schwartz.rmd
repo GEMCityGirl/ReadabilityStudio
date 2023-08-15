@@ -1,14 +1,14 @@
 ## Schwartz German Readability Graph {#schwartz}
 
-The Schwartz German Readability Graph\index{Schwartz German Readability Graph|(ii} (1–21) is a derivative of [Fry’s](#fry-test) readability graph and is designed for instructional textbooks for primary and secondary students. Like Fry, it relies on sentence length and word complexity (i.e., syllable counts) to determine a document’s difficulty.
+The Schwartz German Readability Graph\index{Schwartz German Readability Graph|(ii} [-@{schwartz}1–21] is a derivative of [Fry’s](#fry-test) readability graph and is designed for instructional textbooks for primary and secondary students. Like Fry, it relies on sentence length and word complexity (i.e., syllable counts) to determine a document’s difficulty.
 
-As an elementary teacher, Schwartz\index{Fry!derivatives!Schwartz} was familiar with English tests and had found them “extremely helpful in classifying texts according to levels and fitting a student with proper reading material” (3). Later, as a high school German teacher, she was often asked if there were any German readability tests.
+As an elementary teacher, Schwartz\index{Fry!derivatives!Schwartz} was familiar with English tests and had found them "extremely helpful in classifying texts according to levels and fitting a student with proper reading material" [-@{schwartz}3]. Later, as a high school German teacher, she was often asked if there were any German readability tests.
 
 After corresponding with Prof. George Klare and Dr. Richard Bamberger, she confirmed that only two German tests existed (as well as some unpublished cloze\index{cloze} procedure experiments). She then interviewed West German publishers to see how they classified school textbooks. They informed her that their process was to compare student dictionaries against their materials to gauge difficulty, as well as use large print and illustrations.
 
-Schwartz then set out to create a German readability test, given the lack of such a tool at the time. She initially experimented with word frequencies as a factor, but decided that sentence length and word complexity were easier to calculate when computer assistance wasn’t available. She also determined that a graphical test—such as Fry—was easier to use by classroom teachers than regression formulas. Hence, Schwartz created a new graph similar to Fry, but adjusted it for the West German basal readers that she used in her study.
+Schwartz then set out to create a German readability test, given the lack of such a tool at the time. She initially experimented with word frequencies as a factor, but decided that sentence length and word complexity were easier to calculate when computer assistance wasn't available. She also determined that a graphical test—such as Fry—was easier to use by classroom teachers than regression formulas. Hence, Schwartz created a new graph similar to Fry, but adjusted it for the West German basal readers that she used in her study.
 
-When designing the graph, Schwartz adjusted the syllable-count axis to take into account German words' tendency to have higher syllable counts. As she noted, “It is commonplace that the average German word contains more syllables than the average English one” (14). In her samples, she noted that English averaged 25 syllables per 100 words, while German averaged 37 (14).
+When designing the graph, Schwartz adjusted the syllable-count axis to take into account German words' tendency to have higher syllable counts. As she noted, "It is commonplace that the average German word contains more syllables than the average English one" [-@{schwartz}14]. In her samples, she noted that English averaged 25 syllables per 100 words, while German averaged 37 [-@{schwartz}14].
 
 Another difference from the Fry graph is that some grade bands cover two grades (whereas each band on a Fry graph represents a unique grade).
 
@@ -20,7 +20,7 @@ knitr::include_graphics("Images/frygraph.png")
 ::: {.minipage data-latex="{\textwidth}"}
 As Schwartz noted:
 
-> Furthermore, it might be of interest to the American reader to note that it used to be quite common in Germany to have certain reader levels combined in one volume: usually third and fourth, fifth and sixth, seventh and eighth, sometimes even fifth through eighth, and that often there was no distinction made inside the book itself as to in which grade a particular text had to be read. (5–6)
+> Furthermore, it might be of interest to the American reader to note that it used to be quite common in Germany to have certain reader levels combined in one volume: usually third and fourth, fifth and sixth, seventh and eighth, sometimes even fifth through eighth, and that often there was no distinction made inside the book itself as to in which grade a particular text had to be read. [-@{schwartz}5–6]
 :::
 
 In the study, between 15–21 random 100-word samples were taken from 2^nd^–8^th^ grade textbooks and between 11–15 100-word samples from 1^st^ grade textbooks. The following textbooks were used:
