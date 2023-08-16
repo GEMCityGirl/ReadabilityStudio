@@ -1,0 +1,39 @@
+## (Powers-Sumner-Kearl) Dale-Chall\index{Powers-Sumner-Kearl!recalculated tests!Dale-Chall|(} {#psk-dale-chall}
+
+The (Powers-Sumner-Kearl) Dale-Chall readability formula (99-105) calculates the grade level of a document based on sentence length and number of unfamiliar Dale-Chall words.
+
+The goal of Powers, Sumner, and Kearl was to develop updated versions of four popular readability formulas: Dale-Chall\index{Dale-Chall!Powers-Sumner-Kearl recalculation}, Flesch, Gunning Fog, and Farr-Jenkins-Paterson. These updated formulas would be based on the newer (1950) edition of the McCall-Crabbs test criterion. By using this revised test material, Powers, Sumner, and Kearl aimed to “modernize the formulas by taking advantage of the more recently administered tests” and to “establish formulas which are derived from identical materials” (Powers, Sumner, and Kearl 100).
+
+The training materials used to build the regression formulas were 383 prose passages from the 1950 edition of McCall-Crabbs's *Standard Test Lessons in Reading*. For validation, the formulas were tested against 113 samples from “various publications” (Powers, Sumner, and Kearl 100). Their results (shown below) implied somewhat strong correlations for their Dale-Chall and Flesch formulas and mild correlations for their FJP and Gunning Fog formulas:
+
+- recalculated Dale-Chall: $r^2 = 0.5092$
+- recalculated Flesch: $r^2 = 0.4034$
+- recalculated Gunning Fog: $r^2 = 0.3440$
+- recalculated Farr-Jenkins-Paterson: $r^2 = 0.3407$
+
+The recalculated Dale-Chall formula is as follows:
+
+```{definition, pskdalechall, name="(PSK) Dale-Chall formula"}
+\begin{align*}
+  G = & 3.2672 + (.0596*(W/S)) + \\
+      & (.1155*((UDC/W)*100))
+\end{align*}
+```
+
+Where:
+
++:----+:--------------------------------------+
+| G   | Grade level                           |
++-----+---------------------------------------+
+| S   | Number of sentences                   |
++-----+---------------------------------------+
+| UDC | Number of unfamiliar Dale-Chall words |
++-----+---------------------------------------+
+| W   | Number of words                       |
++-----+---------------------------------------+
+
+Although this is an update of the 1948 Dale-Chall formula, the 1995 [New Dale-Chall](#dale-chall-test)\index{New Dale-Chall!recommendation over Dale-Chall} test is recommended instead. This formula does not apply as much weight to the sentence length factor as New Dale-Chall does and comparatively yields lower results for difficult (i.e., upper-secondary education) documents. Therefore, this test should only be used for primary and lower-secondary educational documents. It is also only recommended if [floating-point precision](#grade-level-results) for the results is required, as New Dale-Chall uses grade ranges instead.
+
+\index{Powers-Sumner-Kearl!recalculated tests!Dale-Chall|)}
+
+\newpage

@@ -1,0 +1,32 @@
+## Modified SMOG\index{Modified SMOG|(ii} {#modified-smog}
+
+The Modified SMOG\index{SMOG!variations!Modified SMOG} test (L. Smith 129–132) calculates the grade level of a document based on sentence length and number of difficult (i.e., 3 or more syllable) words and is designed for primary and secondary-age materials.
+
+Modified SMOG differs from [SMOG](#smog-test) in the following ways:
+
+- It uses the unique number of difficult words (rather than the total).
+- It uses a smaller constant in its formula.
+- The score is rounded, rather than floored.
+
+Because of these adjustments, it will generally produce scores closer to other tests than SMOG does—in particular, the Fry graph (L. Smith 129).
+
+The author's decision to not count repeated difficult words was a major factor in making this test more appropriate for primary readers. As he explains, in a particular pre-primer book “the word 'kangaroo' appeared 52 times . . . it was the only polysyllabic word in the book. To count the word more than once would have inflated the readability score to an unrealistic level” (130).
+
+The steps for calculating Modified SMOG are:
+
+- Take 3 10-sentence samples.
+- Count the number of unique words containing 3 or more syllables.
+- Calculate the square root of this count and round it.
+- If this square root is 4 or more, then add 1. Otherwise, the square root should remain the same. This will be the grade level score.
+
+```{r, results='asis', eval=T, echo=F}
+OptionsDesc <- ", so the program overrides your [numeral syllabication](#numsyllable) setting when calculating it."
+
+AltDesc <- "."
+
+glue('Note that numerals\\index{numerals!Modified SMOG} are fully syllabized (i.e., sounded out) for this test$if_else(UserManualMode, OptionsDesc, AltDesc)^', .open='$', .close='^')
+```
+
+This test requires a 10-sentence sample, with 3 samples being recommended for best results. ([Normalization](#glossary) can also be used to analyze larger samples or entire documents.)\index{Modified SMOG|)}
+
+\newpage

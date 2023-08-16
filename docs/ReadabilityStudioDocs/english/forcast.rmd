@@ -1,0 +1,33 @@
+## FORCAST\index{FORCAST|(ii} {#forcast-test}
+
+The FORCAST readability formula (Caylor 13–17) was devised for assessing U.S. army technical manuals and forms. It is the only test not designed for running narrative, so it is best suited for multiple-choice quizzes, applications, entrance forms, etc. This test calculates the grade level of a document based on its number of monosyllabic words.
+
+This formula was trained against U.S. Army “job reading material” (Caylor 13), using the criterion of cloze\index{cloze} passages where readers scored around 35% comprehension. (Most other tests usually use the 50% criterion.) The researchers initially tested regression equations using 15 variables for their new formula, but noted the single factor of monosyllabic words yielded a “sufficiently high” (Caylor 15) correlation of $r = 0.86$ against the mean cloze scores. Based on this, the following formula was derived:
+
+```{definition, forcast, name="FORCAST formula"}
+$$
+G = 20-(M/10)
+$$
+```
+
+Where:
+
++:----+:---------------------------------------------+
+| G   | Grade level                                  |
++-----+----------------------------------------------+
+| M   | Number of monosyllabic words (per 150-words) |
++-----+----------------------------------------------+
+
+A follow-up study for U.S. Air Force regulation materials was later administered (Hooke 13–21). This study included 900 Air Force personnel across 13 bases and used the 40% cloze criterion. The researchers noted during the study that reviewers' estimated grade levels for regulation documents were generally higher than actual FORCAST scores. Based on this, the authors recommended more extensive use of this test for Air Force materials.
+
+Note that FORCAST results may be slightly different from other tests because it does not take sentence length into account. If your document is structured mostly with tables and lists, then expect some variance between the FORCAST grade level and other tests' grade levels.
+
+This test is designed for a 150-word sample, but [normalization](#glossary) can be used to analyze entire documents.
+
+::: {.notesection data-latex=""}
+The name FORCAST is a pseudo acronym for its authors: J. Patrick **FOR**d, John S. **CA**ylor, and Thomas G. **ST**icht.
+:::
+
+\index{FORCAST|)}
+
+\newpage

@@ -1,0 +1,100 @@
+## Harris-Jacobson Wide Range\index{Harris-Jacobson Wide Range|(ii} {#harris-jacobson}
+
+The Harris-Jacobson Wide Range Readability Formula readability test (19–30; Chapter 3) calculates the grade level of a document based on sentence length and number of unique unfamiliar words. Words are unfamiliar if they do not appear on a list of common words that are known to most second-grade students. The following are also considered familiar:
+
+- Regular verb forms of any common word (i.e., *ing*, *es*, *s*, *ed*, and *ies* endings). Irregular forms are not familiar.
+- Regular plural and possessive forms of any common word (i.e., *s*, *es*, and *ies* endings). Irregular forms are not familiar.
+- Adjectival or adverbial forms of common words. This includes forms with endings such as *ly*, *est*, *er*, and *ily*.
+- Hyphenated words if both parts of the word are common words. For example, *apple-tree* and *and/or* would be familiar. (Note that forward slashes (*/*) are treated like hyphens in this context.) Although this rule is not explicitly stated in *Basic Reading Vocabularies*, it is recommended because both [Spache](#spache-test) and [New Dale-Chall](#dale-chall-test) apply it.
+- All proper nouns.\index{proper nouns!Harris-Jacobson}
+
+Note that numerals\index{numerals!Harris-Jacobson} are entirely excluded from this test and are considered neither familiar nor unfamiliar.
+
+The Wide Range Readability Formula is based on previous Harris-Jacobson formulas designed for preprimer through eighth-grade reader-level materials. The Wide Range variation was trained on a new series of basal readers (30; Chapter 3). This series included:
+
+```{r, echo=F}
+library(kableExtra)
+
+primaryTable <- tibble("Primary Levels" = c("1 preprimer",
+                                            "1 primer",
+                                            "1 first reader",
+                                            "2 second readers",
+                                            "2 third readers"))
+secondaryTable <- tibble("Secondary Levels" = c("1 fourth reader",
+                                                "1 fifth reader",
+                                                "1 sixth reader",
+                                                "1 seventh reader",
+                                                "1 eighth reader"))
+kableExtra::kbl(list(primaryTable, secondaryTable),
+                booktabs=T, centering=T) %>%
+            kableExtra::kable_classic(full_width=F)
+```
+
+Using these new basal readers as the test's criterion, a new regression equation and expanded word list were built for the Wide Range formula. This new formula could significantly correlate samples from these books to their reported reading levels. Further, to predict readability scores for materials beyond the eighth-grade level, the look-up table used by the test (see below) was extrapolated to include secondary and adult-level materials.
+
+::: {.notesection data-latex=""}
+This test treats headers and subheaders as full sentences, but excludes lists and tables. The default [text exclusion](#options-text-exclusion) method\index{text exclusion!Harris-Jacobson Wide Range} will be overridden for this specific test.
+:::
+
+::: {.minipage data-latex="{\textwidth}"}
+Harris-Jacobson is calculated from the following steps:
+
+- Obtain the V1 score: (Number of unique hard words / Number of words) \* 100.
+- Obtain the V2 score: Number of words / Number of sentences.
+- Multiply V1 by .245.
+- Multiply the V2 score by .160.
+- Add together the result of step 3, step 4, and .642 to achieve the predicted raw score.
+- Round off the predicted raw score to one decimal place.
+- Find the predicted raw score in the following table to acquire the final readability score:
+:::
+
+```{r, echo=F}
+library(tidyverse)
+
+# needs to be strings because of footnote for 8.5
+hjScoreTable <- tibble("Predicted\nRaw Score" = c("1.1", "1.2", "1.3", "1.4", "1.5",
+                                                 "1.6", "1.7", "1.8", "1.9", "2.0",
+                                                 "2.1", "2.2", "2.3", "2.4", "2.5",
+                                                 "2.6", "2.7", "2.8", "2.9", "3.0",
+                                                 "3.1", "3.2", "3.3", "3.4", "3.5",
+                                                 "3.6", "3.7", "3.8", "3.9", "4.0",
+                                                 "4.1", "4.2", "4.3", "4.4", "4.5"),
+                       "Readability\nScore" = c("1.0", "1.0", "1.0", "1.1", "1.2",
+                                               "1.3", "1.4", "1.5", "1.7", "1.8",
+                                               "1.9", "2.0", "2.1", "2.2", "2.3",
+                                               "2.4", "2.6", "2.7", "2.8", "2.9",
+                                               "3.1", "3.2", "3.3", "3.4", "3.5",
+                                               "3.6", "3.7", "3.8", "3.9", "4.0",
+                                               "4.1", "4.3", "4.5", "4.6", "4.7"),
+                       "Predicted\nRaw Score " = c("4.6", "4.7", "4.8", "4.9", "5.0",
+                                                 "5.1", "5.2", "5.3", "5.4", "5.5",
+                                                 "5.6", "5.7", "5.8", "5.9", "6.0",
+                                                 "6.1", "6.2", "6.3", "6.4", "6.5",
+                                                 "6.6", "6.7", "6.8", "6.9", "7.0",
+                                                 "7.1", "7.2", "7.3", "7.4", "7.5",
+                                                 "7.6", "7.7", "7.8", "7.9", "8.0"),
+                       "Readability\nScore " = c("4.8", "5.0", "5.2", "5.4", "5.5",
+                                               "5.7", "5.9", "6.0", "6.2", "6.4",
+                                               "6.5", "6.7", "6.9", "7.1", "7.3",
+                                               "7.5", "7.7", "7.9", "8.1", "8.3",
+                                               markdown_to_kable_cell("8.5^a^"),"8.7", "8.9", "9.1", "9.2",
+                                               "9.4", "9.6", "9.8", "10.1", "10.3",
+                                               "10.5","10.7","10.9","11.1", "11.3"))
+
+# add linebreaks in print
+if (knitr::is_latex_output())
+  { colnames(hjScoreTable) %<>% kableExtra::linebreak(align='c') }
+
+footnoteLabel <- "Readability scores above 8.5 were derived by extrapolation (21; Chapter 3)"
+
+kableExtra::kbl(hjScoreTable, booktabs=T, centering=T, align='r',escape=F) %>%
+  kableExtra::kable_classic(full_width=F) %>%
+  kableExtra::column_spec(2, border_right = T) %>%
+  footnote(alphabet = footnoteLabel, threeparttable=T)
+```
+
+Because this formula is based on the usage of familiar words (rather than syllable or letter counts), it is often regarded as a more accurate test for younger readers.
+
+\index{Harris-Jacobson Wide Range|)}
+
+\newpage

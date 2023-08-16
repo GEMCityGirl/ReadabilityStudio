@@ -1,0 +1,51 @@
+## Flesch-Kincaid\index{Flesch-Kincaid|(ii} {#flesch-kincaid-test}
+
+The Flesch-Kincaid (Kincaid et al., *Derivation* 14) readability formula is a modified version of [Flesch Reading Ease](#flesch-test) that was recalculated “to be more suitable for Navy use” (Kincaid et al., *Derivation* 11); hence, it is designed for technical documents and manuals. In addition to being a recalculation, this variation of Flesch returns a grade-level result, rather than an index score. This test calculates the grade level of a document based on sentence length and syllable count.
+
+This test was trained against reading-test results from 531 U.S. Navy personnel from four Naval technical training schools. Using these results, the following multiple regression equation was derived:
+
+```{definition, fleschkincaid, name="Flesch-Kincaid formula"}
+$$
+G = (11.8*(B/W)) + (.39*(W/S)) - 15.59
+$$
+```
+
+A simplified variation was also provided:
+
+```{definition, fleschkincaidsimplified, name="Simplified Flesch-Kincaid formula"}
+$$
+G = (12*(B/W)) + (.4*(W/S)) - 16
+$$
+```
+
+Where:
+
++:----+:--------------------+
+| G   | Grade level         |
++-----+---------------------+
+| W   | Number of words     |
++-----+---------------------+
+| B   | Number of syllables |
++-----+---------------------+
+| S   | Number of sentences |
++-----+---------------------+
+
+Initially, this test was named New Reading Ease Formula (Kincaid et al., *Derivation* 14), but was later referred to as Flesch-Kincaid (Kincaid et al., *Development* 19).
+
+```{r, results='asis', eval=T, echo=F}
+OptionsDesc <- "This behavior can be adjusted from the [**Options**](#readability-test-options) dialog if you prefer a different numeral syllabizing method."
+
+glue('Note that this test sounds out numerals\'\\index{numerals!Flesch-Kincaid} digits when syllabizing. For example, “1918” will be counted as four syllables (“one”-“nine”-“one”-“eight”). $if_else(UserManualMode, OptionsDesc, "")^', .open='$', .close='^')
+```
+
+::: {.notesection data-latex=""}
+The simplified version of this formula uses a lower precision calculation. It was originally offered for making a manual calculation of this test easier. With the modern availability of computers, it is recommended to use the higher-precision formula.
+:::
+
+\index{Flesch-Kincaid|)}
+
+## Flesch-Kincaid (Simplified)\index{Flesch-Kincaid!variations!Flesch-Kincaid (simplified)} {#flesch-kincaid-test-simplified}
+
+Refer to \@ref(flesch-kincaid-test).
+
+\newpage

@@ -1,0 +1,41 @@
+## Degrees of Reading Power (GE)\index{Degrees of Reading Power (GE)|(ii} {#degrees-of-reading-power-grade-equivalent}
+
+The Degrees of Reading Power (grade equivalent) (Carver 303–316) test calculates the difficulty level of a document by performing the [DRP](#degrees-of-reading-power) test and then converting its units score into a grade level.
+
+This test was trained on the same 330 110-word passages used to build the [Bormuth](#bormuth-cloze-mean-machine-passage) test, along with an additional 30 samples. These additional samples were 100-word passages tested by students from the graduate library at the University of Maryland (Carver 305–306). Using these samples (and their cloze and Rauding scores), Carver built a table to convert between DRP units and grade levels (see below). Next, he compared the DRP-GE results against DRP units, Rauding scale scores, and cloze scores. The DRP-GE (grade equivalency) results strongly correlated with these other scores:
+
+- DRP: $r = 0.98$
+- Rauding Scale-GE\index{Rauding scale}: $r = 0.84$
+- cloze: $r = -0.81$
+
+To calculate the grade equivalency, first calculate the DRP difficulty of a document. Then, look up the DRP score from the following table to find its respective grade level:
+
+```{r, echo=F}
+library(tidyverse)
+
+# needs to be strings because of "0-39"
+drpTable <- tibble("DRP-Difficulty" = c("0–39", "40", "41", "42", "43",
+                                        "44", "45", "46", "47", "48",
+                                        "49", "50", "51", "52", "53",
+                                        "54", "55", "56", "57", "58"),
+                       "DRP-GE" = c("1.5", "1.6", "1.7", "1.7", "1.8",
+                                    "2.0", "2.1", "2.3", "2.5", "2.8",
+                                    "3.0", "3.3", "3.6", "3.9", "4.3",
+                                    "4.7", "5.1", "5.5", "5.9", "6.3"),
+                       "DRP-Difficulty " = c("59", "60", "61", "62", "63",
+                                             "64", "65", "66", "67", "68",
+                                             "69", "70", "71", "72", "73",
+                                             "74", "75", "76", "77", "78–100"),
+                       "DRP-GE " = c("6.8", "7.3", "7.8", "8.3", "8.8",
+                                    "9.4", "10.0", "10.6", "11.2", "11.8",
+                                    "12.5", "13.1", "13.7", "14.4", "15.0",
+                                    "15.7", "16.4", "17.1", "17.9", "18.0"))
+
+
+kableExtra::kbl(drpTable, booktabs=T, centering=T, align='r',escape=F) %>%
+  kableExtra::kable_classic(full_width=F) %>%
+  kableExtra::column_spec(2, border_right = T) 
+```
+\index{Degrees of Reading Power (GE)|)}
+
+\newpage

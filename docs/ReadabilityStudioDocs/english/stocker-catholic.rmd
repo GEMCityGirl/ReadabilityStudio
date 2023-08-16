@@ -1,0 +1,15 @@
+## Stocker's Catholic Supplement\index{Stocker's Catholic Supplement} {#stocker-catholic-supplement}
+
+Stocker's Catholic\index{Catholic words|see{Stocker's Catholic Supplement}} supplement [-@{stocker}87–89] is an extension to the [Dale-Chall](#dale-chall-test) word list designed for Catholic students. Based on a 1971 study of 4^th^-grade Catholic students[^Stocker], this list represents over 200 words (not on the standard Dale-Chall\index{New Dale-Chall!including Catholic words} list) familiar to 80% of them.
+
+This list is used along with the Dale-Chall\index{New Dale-Chall} list and offers more accurate scoring with materials meant for Catholic schools.
+
+```{r, results='asis', eval=UserManualMode, echo=F, include=UserManualMode}
+glue('To view this list, select the **Readability** tab, click the {keys("Word Lists")} button, and select **Stocker\'s Catholic Supplement** from the menu.
+
+To include this list as part of your New Dale-Chall scoring, select the **Tools** tab and click the {keys("Options")} button to display the [**Options**](#options-overview) dialog. Next, expand **Readability Scores**, select **Test Options**, and then check **Include Stocker\'s Catholic supplement**. After selecting this option, all New Dale-Chall tests performed in new projects will include this supplement.')
+```
+
+[^Stocker]: The students involved in this study were “6,743 randomly selected Catholic fourth-graders attending 136 parochial schools throughout the country” [-@{stocker}87–88].
+
+\newpage

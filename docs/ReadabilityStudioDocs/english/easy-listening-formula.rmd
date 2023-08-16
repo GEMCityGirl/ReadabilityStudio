@@ -1,0 +1,73 @@
+## Easy Listening Formula\index{Easy Listening Formula|(ii} {#easy-listening-formula}
+
+The Easy Listening Formula is designed for “listenability” and is meant for radio and television broadcasts. Fang (65) stated that broadcasted news generally has much shorter sentences compared to print media. Therefore, he created the ELF test to focus solely on complex-word density, not using sentence length as a factor. That is, rather than looking at a sentence’s word count, the density of syllables in a sentence is used instead.
+
+This test was trained on 36 television scripts from the following:
+
+- ABC
+- CBS
+- NBC
+- Local newscasts from the Los Angeles network stations KABC-TV, KNXT, and KNBC
+
+To compare listenability to readability, the study was also trained on 36 newspaper samples from the following:
+
+- *The New York Times*
+- *The Wall Street Journal*
+- *The Christian Science Monitor*
+- *The Los Angeles Times*
+- *The Chicago Tribune*
+- *The St. Louis Post-Dispatch*
+
+The newscasts yielded the following ELF ranges:
+
+- ABC: 9.9–12.0
+- CBS: 9.6–11.9
+- NBC: 8.7–10.7
+- KNXT: 11.5–13.1
+- KNBC: 10.2–12.3
+- KABC-TV: 6.4–9.0
+
+While the newspaper samples yielded the following:
+
+- *The New York Times*: 16.8–18.2
+- *The Wall Street Journal*: 13.8–15.1
+- *The Christian Science Monitor*: 10.3–13.1
+- *The Los Angeles Times*: 14.7–18.0
+- *The Chicago Tribune*: 14.2–18.6
+- *The St. Louis Post-Dispatch*: 11.3–17.1
+
+Note the stark difference between the printed and televised-material scores. This indicates a much higher complex-word density in printed news versus televised news.
+
+To further validate the test, Fang compared [Flesch Reading Ease](#flesch-test) scores against ELF and found a strong correlation of $r = 0.96$.
+
+The ELF score of a sentence is calculated by counting the number of syllables above one for each word. For example:
+
+::: {.fancyquotes data-latex=''}
+In any sentence, count each syllable above one per word.
+:::
+
+The above sentence contains three polysyllabic\index{polysyllabic} words: any (2), sentence (2), above (2), and syllable (3). In this case, *any*, *sentence*, and *above* each have 1 syllable above 1, and *syllable* has 2 syllables above one. Adding these values will yield a score of 5.
+
+This process is repeated for every sentence, and then these scores are averaged. A simpler method is shown below:
+
+```{definition, elf, name="Easy Listening Formula"}
+$$
+G = (B-W) / S
+$$
+```
+
+Where:
+
++:----+:--------------------+
+| G   | Grade level         |
++-----+---------------------+
+| W   | Number of words     |
++-----+---------------------+
+| B   | Number of syllables |
++-----+---------------------+
+| S   | Number of sentences |
++-----+---------------------+
+
+\index{Easy Listening Formula|)}
+
+\newpage

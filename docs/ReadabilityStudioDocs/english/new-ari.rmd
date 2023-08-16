@@ -1,0 +1,44 @@
+## New Automated Readability Index\index{New Automated Readability Index|ii} {#new-ari}
+
+The New Automated Readability Index\index{Automated Readability Index!variations!New Automated Readability Index} (Kincaid et al., *Derivation* 14) is a modified version of [ARI](#ari-test)\index{Automated Readability Index} that was recalculated “to be more suitable for Navy use” (Kincaid et al., *Derivation* 11); hence, it is designed for technical documents and manuals. This test calculates the grade level of a document based on sentence length and character count.
+
+This test was trained against reading-test results from 531 U.S. Navy personnel from four Naval technical training schools. Using these results, the following multiple regression equation was derived:
+
+```{definition, newari, name="New Automated Readability Index formula"}
+$$
+G = (5.84*(RP/W)) + (.37*(W/S)) - 26.01
+$$
+```
+
+Where:
+
+```{r, echo=F}
+newAriData <- tibble(col1 = c("G", "W", "RP", "S"),
+                     col2 = markdown_to_kable_cell(c("Grade level",
+                                    "Number of words",
+                                    "Number of strokes^a^",
+                                    "Number of sentences")))
+
+colnames(newAriData) <- rep('', ncol(newAriData))
+kableExtra::kbl(newAriData, booktabs=T, centering=T, align='l',escape=F) %>%
+  kableExtra::kable_classic(full_width=F) %>%
+  column_spec(2, width='10cm') %>%
+  footnote(alphabet = "Strokes are characters and punctuation (except for sentence-terminating punctuation).",
+           threeparttable=T)
+```
+
+A simplified variation was also provided:
+
+$$
+G = (6*(RP/W)) + (.4*(W/S)) - 27.4
+$$
+
+::: {.notesection data-latex=""}
+The simplified version of this formula uses lower precision. It was originally offered to make manual calculations of this test easier. With the modern availability of computers, it is recommended to use the higher-precision formula.
+:::
+
+## New Automated Readability Index (Simplified) {#new-ari-simplified}
+
+Refer to \@ref(new-ari)\index{New Automated Readability Index!variations!New Automated Readability Index (simplified)}.
+
+\newpage

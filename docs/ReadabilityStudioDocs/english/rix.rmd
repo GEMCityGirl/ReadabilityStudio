@@ -1,0 +1,57 @@
+## Rix\index{Rix|(ii} {#rix-test}
+
+The Rate Index (Rix)\index{Rix!compared to Lix} readability formula (Anderson 490–496) was designed for documents of any Western European language. It calculates a document’s index score based on sentence length and number of long words (i.e., words containing seven or more characters). It is based on the [Lix](#lix-test) readability formula (Björnsson 480-497) and follows the same philosophy of using a unified formula for multiple languages.
+
+“Rate” in this context refers to the rate of long words throughout the document. Comparing against other tests that traditionally recommend fixed sample sizes (e.g., [SMOG](#smog-test)), Anderson noted that Rix could be applied to any length of text without normalization. As he explained, “the concept of rate has the advantage of being applied over any number of sentences, for it is a running average” (Anderson 495).
+
+Regarding the factors used for this test, Anderson defined a sentence “as a sequence of words terminated by a full-stop (period), question or exclamation mark, colon, or semicolon” (Anderson 495). In other words, sentences [units](#glossary) should be used for the calculation. (As for Lix, Björnsson did not define how sentences should end, so it is recommended to use the traditional *.*, *?*, and *!* markers for that test.)
+
+As for defining long words, Anderson recommended “excluding hyphens, punctuation marks, and brackets” (495) when determining a word’s length. Although Björnsson did not explicitly state this for Lix, it is a reasonable assumption that that was his original intention.
+
+Prior to creating this formula, Anderson conducted a validation study for Lix, using a set of 36 prose passages. These 150-word passages were originally scored from a cloze\index{cloze} study (Miller and Coleman 851). Later, they were scored in another study involving judged-rankings and word-recollection tests (Aquino 346–356). (Both portions of Aquino’s study used 14 *Southwest Regional Laboratory for Educational Research and Development* employees.) Anderson analyzed the Lix scores against these other measurements and found significant correlations, as shown below:
+
+- against the Miller and Coleman’s cloze scores, $r = 0.89$
+- against word-recall scores, $r = 0.82$
+- against the judges’ rankings, $r = 0.88$
+
+After validating Lix, Anderson created Rix and compared the two tests’ results. He found that they almost perfectly correlated ($r = 0.99$). Afterwards, he validated Rix against the aforementioned 36-passage studies and found similarly strong correlations.
+
+\newpage
+
+```{definition, rix, name="Rix formula"}
+$$
+I = X/U
+$$
+```
+
+Where:\index{sentences!units}
+
++:--+:-------------------------------------+
+| I | Rix index score                      |
++---+--------------------------------------+
+| X | Number of long words (7+ characters) |
++---+--------------------------------------+
+| U | Number of sentence units             |
++---+--------------------------------------+
+
+::: {.minipage data-latex="{\textwidth}"}
+| Rix Index Score | Grade Level |
+| --: | --: |
+| 7.2 and above | College |
+| 6.2 and above | 12  |
+| 5.3 and above | 11  |
+| 4.5 and above | 10  |
+| 3.7 and above | 9   |
+| 3.0 and above | 8   |
+| 2.4 and above | 7   |
+| 1.8 and above | 6   |
+| 1.3 and above | 5   |
+| .8 and above | 4   |
+| .5 and above | 3   |
+| .2 and above | 2   |
+| Below .2 | 1   |
+
+Table: Rix Grade-level Conversion Table\index{Rix|)}
+:::
+
+\newpage

@@ -1,0 +1,56 @@
+## Fry\index{Fry|(ii} Graph {#fry-test}
+
+Fry (“Clarifications, Validity, and Extension” 242–252) is a graphical test for English documents. It calculates a document's grade level from its average number of sentences and syllables per hundred words. These averages are plotted onto a chart where their intersection determines the reading level of the content.
+
+The original version of this graph included grade levels 1–12 and college (Fry, “Formula That Saves Time” 513–516; *Instruction*, 217). It was trained against samples from the following books:
+
+- *Light in the Forest*
+- *Of Mice and Men*
+- *The Pearl*
+- *Shane*
+- *Death be Not Proud*
+- *Moon is Down*
+- *To Kill a Mockingbird*
+- *Tale of Two Cities*
+- *Silas Marner*
+- *Act One*
+
+The graph's results were compared to other tests, yielding the following correlations:
+
+- Dale-Chall: $r = 0.94$
+- Flesch Reading Ease: $r = 0.96$
+- Botel: $r = 0.78$
+- SRA: $r = 0.98$
+
+In 1977, Fry extended the graph to include grades 13–16 by extrapolating the averages from the preceding 3 years on the graph (*Extension* 251).
+
+The Fry graph is designed for both primary and secondary-age reading materials. Below is an example of a Fry graph:
+
+```{r fryGraph, echo=F, fig.cap='Fry graph', fig.align='center', out.width='75%'}
+knitr::include_graphics("Images/frygraph.png")
+```
+
+::: {.minipage data-latex="{\textwidth}"}
+Note the following aspects of this graph:
+
+- Grade levels from 1 to 17+ are represented by bands along the middle. If a score falls within one of these bands, then that will be the document's grade level.
+- A curved line running through the middle of the grade-level bands. This represents the “smoothed mean of the sample passages. If you plot a large number of passages with a wide range, they will tend to fall somewhere near the line” (“Clarifications, Validity, and Extension” 243).
+- Shaded areas in the bottom-left and top-right corners. These represent the long-sentences and long-words regions, respectively. If a document's score falls into either of these regions, then one of these factors is making the document too difficult to fit into a grade level.
+:::
+
+::: {.minipage data-latex="{\textwidth}"}
+The Fry graph instructions are:
+
+- Extract a 100-word passage from the selection. If the material is long, take subsamples from the beginning, middle, and end.
+- Count the number of sentences in each passage. Count a half sentence as .5.
+- Count the number of syllables in each passage.
+- Find the point on the chart.
+- If the sample's syllable or sentence count is too low or high for it to be plotted, then adjust that factor so that it can fit onto the chart. For example, if a sample has 187 syllables per 100 words, then this will need to be adjusted to 182.
+- Repeat this process for each sample, and then average the samples.
+:::
+
+This test is designed for 100-word samples, with 3 samples being recommended for best results. ([Normalization](#glossary) can also be used to analyze larger samples or entire documents.)
+
+Note that numerals\index{numerals!Fry} are fully syllabized for this test. For example, *1945* will be counted as four syllables (*one*-*nine*-*four*-*five*).\index{Fry|)}
+
+\newpage

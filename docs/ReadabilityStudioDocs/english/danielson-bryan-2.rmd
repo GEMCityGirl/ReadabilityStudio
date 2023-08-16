@@ -1,0 +1,47 @@
+## Danielson-Bryan 2\index{Danielson-Bryan 2|(ii} {#danielson-bryan-2}
+
+Danielson-Bryan 2 (206) calculates an index score of a document based on sentence length and character/punctuation count. It is a variant of [Flesch Reading Ease](#flesch-test)\index{Flesch Reading Ease!variations!Danielson-Bryan 2}, with the difference being that it uses character and punctuation counts instead of syllable counts. Being a variant of Flesch, its scores range from 0–100 (the higher the score, the easier to read), with average documents being within 60–70.
+
+DB2 was designed to be a faster method (compared to [Farr-Jenkins-Paterson](#farr-jenkins-paterson)\index{Farr-Jenkins-Paterson!compared to Danielson-Bryan}) of calculating readability scores on UNIVAC 1105 computers. Rather than counting syllables, DB2 counts characters and punctuation, which was simpler to analyze on computers of that era. This performance benefit is more of a historical reference now; modern computers can calculate syllable counts optimally.
+
+This test was trained against 376 passages from *McCall-Crabbs Standard Test Lessons in Reading* (1926 ed.). For validation, the derived formula had an $r^2 = 0.575$, similar to Farr-Jenkins-Paterson's $r^2 = 0.553$. This regression equation is as follows:
+
+```{definition, db2, name="Danielson-Bryan 2 formula"}
+$$
+I = 131.059 - 10.364*(RP/W) - .194*(RP/S)
+$$
+```
+
+Where:
+
+```{r, echo=F}
+db2Data <- tibble(col1 = c("I", "W", "RP", "S"),
+                  col2 = markdown_to_kable_cell(c("Flesch index score",
+                                    "Number of words^a^",
+                                    "Number of characters^b^",
+                                    "Number of sentences")))
+
+colnames(db2Data) <- rep('', ncol(db2Data))
+kableExtra::kbl(db2Data, booktabs=T, centering=T, align='l', escape=F) %>%
+  kableExtra::kable_classic(full_width=F) %>%
+  column_spec(2, width='10cm') %>%
+  footnote(alphabet = c("Refer to Danielson-Bryan 1 for an explanation of why number of words is used, instead of number of spaces between words.",
+                      "In this context, characters are letters, numbers, and punctuation (except for sentence-ending punctuation)"),
+           threeparttable=T)
+```
+
+| Flesch Score | Description |
+| --: | :-- |
+| 90–100 | Very easy, third-grade level |
+| 80–89 | Easy, fourth-grade level |
+| 70–79 | Fairly easy, fifth-grade level |
+| 60–69 | Standard, sixth-grade level |
+| 50–59 | Fairly difficult, junior high school level |
+| 30–49 | Difficult, high school level |
+| 0–29 | Very difficult, college level |
+
+Table: Danielson-Bryan 2 (Flesch Reading Ease) Index Table
+
+\index{Danielson-Bryan 2|)}
+
+\newpage

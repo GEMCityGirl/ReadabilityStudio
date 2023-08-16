@@ -1,0 +1,33 @@
+## Degrees of Reading Power\index{Degrees of Reading Power|(ii} {#degrees-of-reading-power}
+
+The Degrees of Reading Power (Kibby, 416–427; Carver, *Measuring* 303-316) formula calculates the difficulty level of a document in terms of DRP units. These units range from 0 (easy) to 100 (difficult).
+
+The DRP difficulty score of document is used to match it to a student based on their DRP ability score. DRP ability tests are manual tests administered to students to gauge their reading levels.
+
+This test is based on the [Bormuth Cloze](#bormuth-cloze-mean-machine-passage) test and uses the same criteria for its calculation. Basically, this test uses the Bormuth formula to calculate a [predicted cloze score](#cloze), converts it to percentage format, and then inverts it to arrive at the units score.
+
+```{definition, drp, name="Degrees of Reading Power formula"}
+\begin{align*}
+  U = & 100 - 100*(.886593 - .083640*(R/W) + \\
+      & .161911*(D/W)^3 - .021401*(W/S) + \\
+      & .000577*(W/S)^2 - .000005*(W/S)^3)
+\end{align*}
+```
+
+Where:
+
++:----+:------------------------------------+
+| U   | Units score                         |
++-----+-------------------------------------+
+| R   | Number of characters                |
++-----+-------------------------------------+
+| W   | Number of words                     |
++-----+-------------------------------------+
+| D   | Number of familiar [Dale-Chall](#dale-chall-test) words |
++-----+-------------------------------------+
+| S   | Number of sentences                 |
++-----+-------------------------------------+
+
+\index{Degrees of Reading Power|)}
+
+\newpage

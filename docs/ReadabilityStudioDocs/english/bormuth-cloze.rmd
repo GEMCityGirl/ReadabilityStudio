@@ -1,0 +1,38 @@
+## Bormuth Cloze Mean\index{Bormuth Cloze Mean|(ii} {#bormuth-cloze-mean-machine-passage}
+
+The Bormuth Cloze\index{cloze} Mean (Machine Computation for Passage Readability) Formula (79–132) calculates a [predicted cloze score](#cloze) for a document.
+
+This test is influenced by three variables (word length, sentence length, and word familiarity). Because it uses both word familiarity and syntactic complexity for its analysis, it is often recommended for student documents.
+
+For this formula, a study involving 2,600 students ranging from 4^th^-12^th^ grade (*Development* 97) was conducted. The students completed 330 110-word cloze passages, and their scores were correlated against numerous linguistic factors from the passages. After a series of factor analyses and multiple regressions, a series of formulas were created to predict cloze and grade-level scores for a passage. These formulas were then cross validated against 20 250–300 word passages (*Development* 105). These formulas correlated with between $r^2 = 0.81$ to $0.83$ with the original test data and between $r^2 = 0.92$ to $0.93$ with the cross validation data.
+
+Of these formulas, the predicted cloze formula is as follows:
+
+```{definition, bormuthcloze, name="Bormuth Cloze Mean formula"}
+\begin{align*}
+  C = & .886593 - .083640*(R/W) + .161911*(D/W)^3 - \\
+      & .021401*(W/S) + .000577*(W/S)^2 - .000005*(W/S)^3
+\end{align*}
+```
+
+Where:
+
++:----+:--------------------------------------+
+| C   | Estimated cloze score                 |
++-----+---------------------------------------+
+| R   | Number of characters                  |
++-----+---------------------------------------+
+| W   | Number of words                       |
++-----+---------------------------------------+
+| D   | Number of familiar [Dale-Chall](#dale-chall-test) words |
++-----+---------------------------------------+
+| S   | Number of sentences                   |
++-----+---------------------------------------+
+
+::: {.notesection data-latex=""}
+Cloze scores returned by this test should be in percentage format (e.g., 75) rather than fractal format (e.g., .75) to be consistent with other tests.
+:::
+
+\index{Bormuth Cloze Mean|)}
+
+\newpage

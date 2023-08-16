@@ -1,0 +1,81 @@
+## Lix\index{Lix|(ii} {#lix-test}
+
+The Läsbarhetsindex (Lix)\index{Lix!zzzzz@\igobble|seealso{Rix}} readability formula (Björnsson 480–497) was designed for documents of any Western European language. It calculates a document’s index score based on sentence length and number of long words (i.e., words containing seven or more characters). Viewing long words as those with seven or more characters is what differentiates it from similar tests (which use six or more characters). This difference is what allows it to be a more balanced “yardstick” that can be applied to numerous languages.
+
+The philosophy behind using one formula for multiple languages is that, at their core, most languages are similar in difficulty. This approach argues that a language having various idiosyncrasies and longer words is not why it scores at more difficult levels. The reason languages score higher is because of how they are used (i.e., word choice, writing style) and presented (e.g., longer paragraphs and sentences, less images). This differs from the reasoning behind other tests based on adjusted English formulas. Those tests are designed under the assumption that non-English languages are inherently more difficult (because of comparatively longer words). For example, [Gilliam-Peña-Mountain](#gilliam-pena-mountain-fry-graph)\index{Gilliam-Peña-Mountain} and the [German reinterpretation of Lix](#lix-german-technical) follow this logic of adjusting English formulas for non-English text. Lix, however, chooses to use the same formula to gauge multiple languages. It views documents that score higher to be a result of writing style and presentation, not the language itself.
+
+This test was originally designed for Danish, English, French, German, and Finnish and trained on “thousands of books and reading passages” (481) during 1968, 1969, 1974, 1975, and 1979. During the 1974 English study, the formula was tested with:
+
+- 20 children’s books
+- 30 fiction books
+- 30 non-fiction books
+- 20 technical books
+
+Other language studies were conducted later using newspaper articles as their training material. These languages included Danish, English, Finnish, French, German, Italian, Norwegian, Portuguese, Russian, Spanish, and Swedish. (Anderson conducted a separate study with Greek material in 1981.) The researchers’ findings noted the following average scores across the languages:
+
+- Swedish (47), Norwegian (48), and Danish (51) were the lowest scoring (i.e., easiest to read)
+- ...followed by English (52), French (55), and German (59)
+- ...then Italian (65), Spanish (67), and Portuguese (70)
+- ...and Finnish (72) and Russian (65) being the most difficult
+
+The researchers conjectured these differences had more to do with use of language than with the languages themselves (495).
+
+The index score of Lix can be summarized as follows:
+
+| Lix Score | Description |
+| --: | :-- |
+| 0–29 | Very easy (books for children) |
+| 30–39 | Easy (fiction) |
+| 40–49 | Average (factual prose) |
+| 50–59 | Difficult (technical literature) |
+| 60 and above | Very difficult |
+
+Table: Lix Index Table
+
+Note that Lix also includes a chart to visualize the meaning of its index score:
+
+```{r lixGauge, echo=F, fig.cap='Lix gauge', fig.align='center', out.width='75%'}
+knitr::include_graphics("Images/LixGauge.png")
+```
+
+```{definition, lix, name="Lix formula"}
+$$
+I = W/S + 100*(X/W)
+$$
+```
+
+Where:
+
++:----+:-------------------------------------+
+| I   | Lix index score                      |
++-----+--------------------------------------+
+| W   | Number of words                      |
++-----+--------------------------------------+
+| X   | Number of long words (7+ characters) |
++-----+--------------------------------------+
+| S   | Number of sentences                  |
++-----+--------------------------------------+
+
+::: {.minipage data-latex="{\textwidth}"}
+As a final note, Anderson contributed a grade-level conversion table for Lix index scores (Anderson 494) as follows:
+
+| Lix Score | Equivalent Grade Level |
+| --: | --: |
+| 56+ | College |
+| 52–55 | 12  |
+| 48–51 | 11  |
+| 44–47 | 10  |
+| 40–43 | 9   |
+| 36–39 | 8   |
+| 32–35 | 7   |
+| 28–31 | 6   |
+| 24–27 | 5   |
+| 20–23 | 4   |
+| 15–19 | 3   |
+| 10–14 | 2   |
+| Below 10 | 1   |
+
+Table: Lix Grade-level Conversion Table\index{Lix|)}
+:::
+
+\newpage

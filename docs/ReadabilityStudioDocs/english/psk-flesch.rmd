@@ -1,0 +1,38 @@
+## (Powers-Sumner-Kearl) Flesch\index{Powers-Sumner-Kearl!recalculated tests!Flesch Reading Ease|(} {#psk-test}
+
+The (Powers-Sumner-Kearl) Flesch readability formula (99–105) calculates the grade level of a document based on sentence length and number of syllables.
+
+The goal of Powers, Sumner, and Kearl was to develop updated versions of four popular readability formulas: Dale-Chall, Flesch\index{Flesch Reading Ease!Powers-Sumner-Kearl recalculation}, Gunning Fog, and Farr-Jenkins-Paterson. These updated formulas would be based on the newer (1950) edition of the McCall-Crabbs test criterion. By using this revised test material, Powers, Sumner, and Kearl aimed to “modernize the formulas by taking advantage of the more recently administered tests” and to “establish formulas which are derived from identical materials” (Powers, Sumner, and Kearl 100).
+
+The training materials used to build the regression formulas were 383 prose passages from the 1950 edition of McCall-Crabbs's *Standard Test Lessons in Reading*. For validation, the formulas were tested against 113 samples from “various publications” (Powers, Sumner, and Kearl 100). Their results (shown below) implied somewhat strong correlations for their Dale-Chall and Flesch formulas and mild correlations for their FJP and Gunning Fog formulas:
+
+- recalculated Dale-Chall: $r^2 = 0.5092$
+- recalculated Flesch: $r^2 = 0.4034$
+- recalculated Gunning Fog: $r^2 = 0.3440$
+- recalculated Farr-Jenkins-Paterson: $r^2 = 0.3407$
+
+The recalculated Flesch formula is as follows:
+
+```{definition, pskflesch, name="(PSK) Flesch formula"}
+$$
+G = (ASL * .0778) + (SY * .0455) - 2.2029
+$$
+```
+
+Where:
+
++:----+:----------------------------------+
+| G   | Grade level                       |
++-----+-----------------------------------+
+| ASL | Average sentence length           |
++-----+-----------------------------------+
+| SY  | Number of syllables per 100 words |
++-----+-----------------------------------+
+
+::: {.notesection data-latex=""}
+Note that this test treats numerals\index{numerals!(Powers-Sumner-Kearl) Flesch} as monosyllabic words, in conjunction with the original Flesch test.
+:::
+
+\index{Powers-Sumner-Kearl!recalculated tests!Flesch Reading Ease|)}
+
+\newpage

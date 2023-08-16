@@ -1,0 +1,43 @@
+## Gunning Fog\index{Gunning Fog|(ii} {#gunning-fog-test}
+
+The Gunning Fog readability formula (39–41) calculates the grade level of a document based on its number of sentences and complex words.
+
+Complex words are words that contain three or more syllables, with the exception of:
+
+- Proper nouns.\index{proper nouns!Gunning Fog}
+- Words made three syllables by adding *ed* or *es* (e.g., *created* or *trespasses*).
+```{r, results='asis', eval=T, echo=F}
+OptionsDesc <- "*Readability Studio* considers hyphenated words to be compound words (e.g., *horse-power* or *and/or*). "
+
+glue('- Compound words composed of simpler words. $if_else(UserManualMode, OptionsDesc, "")^Note that forward slashes (*/*) are treated like hyphens in this context.', .open='$', .close='^')
+```
+
+This test can optionally count independent clauses as separate sentences, as *The Technique of Clear Writing* instructs. It should be noted, however, that this can cause misleadingly low scores for documents that contain run-on sentences. Consider the follow:
+
+::: {.fancyquotes data-latex=''}
+The Meldorf^®^ statistical library is available in C++ source code–a low-level programming language–and in the form of a COM library–a Microsoft^®^ technology for inter-program communication; the COM library can be called from numerous languages, such as: Visual Basic, C#, and Delphi.
+:::
+
+If you treat independent clauses as separate sentences, then this will be seen as six small sentences and produce a Fog score of 10.2. If you count sentences by only looking for *.*, *?*, or *!*, then this will be counted as a single 44-word sentence and produce a Fog score of 19. To penalize run-on sentences (which is recommended), then leave the option [**Count independent clauses as separate sentences**](#readability-test-options) unchecked for this test.
+
+```{definition, gunningfog, name="Gunning Fog formula"}
+$$
+G = .4*(W/S+((F/W)*100))
+$$
+```
+
+Where:
+
++:----+:------------------------+
+| G   | Grade level             |
++-----+-------------------------+
+| W   | Number of words         |
++-----+-------------------------+
+| F   | Number of complex words |
++-----+-------------------------+
+| S   | Number of sentences     |
++-----+-------------------------+
+
+\index{Gunning Fog|)}
+
+\newpage

@@ -1,0 +1,55 @@
+## SMOG\index{SMOG|(ii} {#smog-test}
+
+The SMOG readability formula (McLaughlin 639–646) calculates the grade level of a document based on complex (i.e., 3 or more syllable) word density and is designed for secondary-age readers.
+
+SMOG attempts to predict “full comprehension” (L. Smith 129), whereas most other formulas predict 50%–75% comprehension. Because of this, SMOG will generally produce higher scores comparatively (usually 1–2 grade levels higher).
+
+This test was trained on 390 passages from the 1961 edition of *McCall-Crabbs Standard Tests Lessons in Reading*. The following regression equation was derived with a correlation of $r = 0.985$:
+
+```{definition, smog, name="SMOG formula"}
+$$
+G = 1.0430*\sqrt{C} + 3.1291
+$$
+```
+
+Where:
+
++:----+:---------------------------------------------------------+
+| G   | Grade level                                              |
++-----+----------------------------------------------------------+
+| C   | Number of complex (3+ syllables) words from 30 sentences |
++-----+----------------------------------------------------------+
+
+A simplified variation is also available (McLaughlin 643):
+
+```{definition, smogsimple, name="Simplified SMOG formula"}
+$$
+G = FLOOR(\sqrt{C}) + 3
+$$
+```
+
+$FLOOR$ refers to rounding the result of $\sqrt{C}$ down to the closest perfect square.
+
+::: {.notesection data-latex=""}
+The simplified version of this formula uses lower precision. It was originally offered to make manual calculations of this test easier.
+:::
+
+This test requires 3 10-sentence samples, but [normalization](#glossary) can be used to analyze entire documents.
+
+```{r, results='asis', eval=T, echo=F}
+OptionsDesc <- ", so the program overrides your [numeral syllabication](#numsyllable) setting when calculating it."
+
+AltDesc <- "."
+
+glue('Numerals\\index{numerals!SMOG} are fully syllabized (i.e., sounded out) for this test$if_else(UserManualMode, OptionsDesc, AltDesc)^', .open='$', .close='^')
+```
+
+Note that this test is often referred to as an acronym for “Simple Measure of Gobbledygook.” The origin of its name, however, is actually a nod to Robert Gunning's [Fog](#gunning-fog-test) index.
+
+\index{SMOG|)}
+
+## SMOG (Simplified)\index{SMOG!variations!SMOG (simplified))} {#smog-test-simplified}
+
+Refer to \@ref(smog-test).
+
+\newpage

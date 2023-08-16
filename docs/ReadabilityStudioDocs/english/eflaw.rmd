@@ -1,0 +1,45 @@
+## McAlpine EFLAW\index{McAlpine EFLAW|(ii} {#eflaw-test}
+
+The McAlpine EFLAW^©^ formula (McAlpine) is used to determine the ease of reading English text for ESL/EFL (English as a Second/Foreign Language) readers. This test calculates the index score of a document based on sentence length and number of miniwords (i.e., words that contain three or less letters).
+
+Where most other formulas penalize longer words, this test does the opposite, penalizing the use of miniwords. This is because it is designed for ESL readers, as McAlpine explains: “Miniwords are confusing because they have many meanings and are often a sign of wordiness or idioms. . . . these flaws bamboozle EFL readers.”
+
+To improve a score, McAlpine recommends lowering the use of miniwords and shortening all sentences to 20 words or less. She also recommends avoiding the following:
+
+- double negatives
+- negative questions (e.g., “Are you *not* currently an Ohio resident?”)
+- idioms/clichés (e.g., “tip of the iceberg”)
+- helper (auxiliary) verbs (e.g., “can,” “may”)
+- abstract nouns (e.g., “peace,” “tension”)
+- use of pronouns that may be unclear (e.g., “Gabi visited her mother after *she* was released from the hospital.”)
+
+```{definition, eflaw, name="McAlpine EFLAW formula"}
+$$
+I = (W + T) / S
+$$
+```
+
+Where:
+
++:----+:--------------------+
+| I   | The index score     |
++-----+---------------------+
+| W   | Number of words     |
++-----+---------------------+
+| T   | Number of miniwords |
++-----+---------------------+
+| S   | Number of sentences |
++-----+---------------------+
+
+| EFLAW Score | Description |
+| --: | :-- |
+| 1–20 | Very easy to understand |
+| 21–25 | Quite easy to understand |
+| 26–29 | Mildly difficult |
+| 30+ | Very confusing |
+
+Table: McAlpine EFLAW Index Table
+
+\index{McAlpine EFLAW|)}
+
+\newpage

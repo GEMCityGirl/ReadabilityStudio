@@ -1,0 +1,27 @@
+## New Dale-Chall\index{New Dale-Chall|(ii} {#dale-chall-test}
+
+The New Dale-Chall\index{Dale-Chall!zzzzz@\igobble|seealso{New Dale-Chall}} readability test (Chall *Manual*, 1-7) calculates the grade level of a document based on sentence length and number of unfamiliar words. Words are unfamiliar if they do not appear on a list of 3,000 common words that are known to most 4^th^ grade students. The following are also considered familiar:
+
+- Regular plural and possessive forms of common words (i.e., *s*, *es*, and *ies* endings). Irregular forms (e.g., *oxen*) are not familiar.
+- Adjectival and verb forms of common words with the following endings: *d*, *ed*, *ied*, *ing*, *s*, *es*, *ies*, *r*, *er*, *est*, *ier*, *iest*.
+- Compound and hyphenated words if both parts of the word are common words. For example, *long-haired* and *and/or* would be familiar. Note that forward slashes (*/*) are also treated as compound-word punctuation.
+- The [first instance of any proper noun](#options-dale-chall)—all subsequent occurrences are considered familiar.
+- All numerals.\index{numerals!New Dale-Chall}
+
+::: {.notesection data-latex=""}
+```{r, results='asis', eval=T, echo=F}
+OptionsDesc <- "The default [text exclusion](#options-text-exclusion) method\\index{text exclusion!New Dale-Chall} will be overridden for this specific test, although this behavior can be customized from the [**Options**](#readability-test-options) dialog."
+
+glue('This test treats headers and subheaders as full sentences, but excludes lists and tables. $if_else(UserManualMode, OptionsDesc, "")^', .open='$', .close='^')
+```
+:::
+
+The initial version of this test (Dale and Chall, “A Formula for Predicting Readability”) was a multiple regression trained against 376 passages from McCall-Crabbs *Standard Test Lessons in Reading*. After comparing the results of this formula against other tests (such as Flesch and Lorge), it was validated against manually judged reading levels from other materials. These materials included “fifty-passages of health-education materials” (18) with a correlation of $r = 0.92$. Also included were “78 passages on foreign affairs from current-events magazines, government pamphlets, and newspapers” (18) with a correlation of $r = 0.90$.
+
+The New Dale-Chall test replaces this regression equation by looking up the factors' intersection in a table and returning a grade range (e.g., *4* or *7-8*). (This grade range is a notable difference from other tests that use [floating-point precision](#grade-level-results) grade levels.) It also includes an updated version of the 3,000 common words.
+
+Because this test is based on the usage of familiar words (rather than syllable or letter counts), it is often regarded as a more accurate test for younger readers.
+
+\index{New Dale-Chall|)}
+
+\newpage

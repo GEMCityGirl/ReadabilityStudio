@@ -1,0 +1,45 @@
+## Spache Revised\index{Spache Revised|(ii} {#spache-test}
+
+The Spache Revised test [-@{spache:1974} 195–2003] calculates the grade level of a document based on sentence length and number of unique unfamiliar words. This test uses a list of 1,041 common words that are known to younger readers (4^th^ grade and below). Any word that does not appear on this list is considered unfamiliar. The following are also considered familiar:
+
+- Regular verb forms of any common word (i.e., *ing*, *es*, *s*, *ed*, and *ies* endings). Irregular forms are not familiar.
+- Regular plural and possessive forms of any common word (i.e., *s*, *es*, and *ies* endings). Irregular forms are not familiar.
+- Adjectival or adverbial forms of common words. This includes forms with endings such as *ly*, *est*, *er*, and *ily*.
+- Derivatives of common words where the function changes (e.g., an adjective changed to function as a noun) are not familiar unless explicitly on the common word list. For example, *brave* is a common word, but *bravery* would not be considered familiar.
+- Hyphenated words if both parts of the word are common words. For example, *apple-tree* and *and/or* would be familiar. Note that forward slashes (*/*) are treated like hyphens in this context.
+- All proper nouns.\index{proper nouns!Spache Revised}
+- All numerals\index{numerals!Spache Revised}.
+
+Spache Revised is generally used for primary age (i.e., Kindergarten to 7^th^ grade) readers to help classify school textbooks and literature. This differs from [New Dale-Chall](#dale-chall-test)\index{New Dale-Chall!compared to Spache Revised}, which is better meant for secondary age readers.
+
+Because this formula uses familiar words (rather than syllable or letter counts), it is often regarded as a more accurate test for younger readers.
+
+```{r, results='asis', eval=UserManualMode, echo=F, include=UserManualMode}
+glue('Note that *Readability Studio* uses the revised 1974 version of Spache.')
+```
+
+```{definition, spacherevised, name="Spache Revised formula"}
+$$
+G = (.121 * (W/S)) + (.082 * UUS) + .659
+$$
+```
+
+Where:
+
++-----+--------------------------------------------------+
+| G   | Grade level                                      |
++-----+--------------------------------------------------+
+| S   | Number of sentences                              |
++-----+--------------------------------------------------+
+| W   | Number of words                                  |
++-----+--------------------------------------------------+
+| UUS | Number of unique unfamiliar words per 100 words\ |
+|     | (see note below)                                 |
++-----+--------------------------------------------------+
+
+::: {.notesection data-latex=""}
+Spache recommends not counting the same unfamiliar word more than once if it appears in subsequent 100-word samples [-@{spache:1974}198]. For this reason, it is recommended to follow this practice when analyzing an entire document.
+:::
+\index{Spache Revised|)}
+
+\newpage
