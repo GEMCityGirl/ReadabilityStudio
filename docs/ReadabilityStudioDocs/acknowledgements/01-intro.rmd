@@ -1,1 +1,5 @@
+# (PART) Appendix {-}
+
 # Acknowledgements {.unnumbered}
+
+The author would like to thank the helpful library staff of [Edison State Community College](https://www.edisonohio.edu/) and [Wright State University](https://www.wright.edu/). Their assistance with tracking down hard-to-find articles—and helping me with the microfilm machine—is greatly appreciated.
