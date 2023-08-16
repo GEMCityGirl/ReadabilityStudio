@@ -11,9 +11,15 @@ output:
       in_header: "latex/preamble.tex"
   bookdown::gitbook:
     toc_depth: 2
-date: 2023
 documentclass: book
+date: 2023
+links-as-notes: true
+linestretch: 1.15
+biblio-title: References
+bibliography: cites.bib
 biblio-style: mla
+biblatexoptions: maxbibnames=3
+link-citations: yes
 nocite: '@*'
 csl: modern-language-association.csl
 cover-image: "images/cover.png"
