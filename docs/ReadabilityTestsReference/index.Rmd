@@ -18,7 +18,7 @@ linestretch: 1.15
 biblio-title: References
 bibliography: cites.bib
 biblio-style: mla
-biblatexoptions: maxbibnames=3
+biblatexoptions: maxbibnames=4
 link-citations: yes
 nocite: '@*'
 csl: modern-language-association.csl
