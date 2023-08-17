@@ -67,15 +67,15 @@ combine_files("01-Overviews.Rmd", "overviews",
 combine_files("20-ReadabilityTestsEnglish.rmd", "english")
 combine_files("21-ReadabilityTestsSpanish.rmd", "spanish")
 combine_files("22-ReadabilityTestsGerman.rmd", "german")
-combine_files("90-Glossaries.rmd", "glossary")
-combine_files("92-Acknowledgements.Rmd", "acknowledgements",
+combine_files("90-Acknowledgements.Rmd", "acknowledgements",
               ("(intro)"))
+combine_files("91-Glossaries.rmd", "glossary")
 combine_files("41-ScoringNotes.rmd", "scoring-notes")
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::pdf_book",
                       output_dir="docs")
 combine_files("01-Overviews.Rmd", "overviews")
-combine_files("92-Acknowledgements.Rmd", "acknowledgements")
+combine_files("90-Acknowledgements.Rmd", "acknowledgements")
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::gitbook",
                       output_dir="docs")
@@ -84,8 +84,8 @@ unlink(glue("{docFolder}/ReadabilityStudioDocs/20-ReadabilityTestsEnglish.rmd"))
 unlink(glue("{docFolder}/ReadabilityStudioDocs/21-ReadabilityTestsSpanish.rmd"))
 unlink(glue("{docFolder}/ReadabilityStudioDocs/22-ReadabilityTestsGerman.rmd"))
 unlink(glue("{docFolder}/ReadabilityStudioDocs/41-ScoringNotes.rmd"))
-unlink(glue("{docFolder}/ReadabilityStudioDocs/92-Acknowledgements.Rmd"))
-unlink(glue("{docFolder}/ReadabilityStudioDocs/90-Glossaries.rmd"))
+unlink(glue("{docFolder}/ReadabilityStudioDocs/90-Acknowledgements.Rmd"))
+unlink(glue("{docFolder}/ReadabilityStudioDocs/91-Glossaries.rmd"))
 # used on github to serve the book
 write(c(" "), file=glue("{docFolder}/ReadabilityStudioDocs/docs/.nojekyll"))
 
@@ -214,7 +214,7 @@ combine_files("21-ReadabilityTestsSpanish.rmd", "spanish")
 combine_files("22-ReadabilityTestsGerman.rmd", "german")
 combine_files("41-ScoringNotes.rmd", "scoring-notes",
               "(intro|grade[-]level[-]results|cloze)")
-combine_files("92-Acknowledgements.Rmd", "acknowledgements",
+combine_files("90-Acknowledgements.Rmd", "acknowledgements",
               ("(intro)"))
 
 setwd(glue("{docFolder}/ReadabilityTestsReference/"))
@@ -225,7 +225,7 @@ unlink(glue("{docFolder}/ReadabilityTestsReference/20-ReadabilityTestsEnglish.rm
 unlink(glue("{docFolder}/ReadabilityTestsReference/21-ReadabilityTestsSpanish.rmd"))
 unlink(glue("{docFolder}/ReadabilityTestsReference/22-ReadabilityTestsGerman.rmd"))
 unlink(glue("{docFolder}/ReadabilityTestsReference/41-ScoringNotes.rmd"))
-unlink(glue("{docFolder}/ReadabilityTestsReference/92-Acknowledgements.Rmd"))
+unlink(glue("{docFolder}/ReadabilityTestsReference/90-Acknowledgements.Rmd"))
 unlink(glue("{docFolder}/ReadabilityTestsReference/cites.bib"))
 unlink(glue("{docFolder}/ReadabilityTestsReference/modern-language-association.csl"))
 
