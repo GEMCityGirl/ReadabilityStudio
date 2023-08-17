@@ -582,7 +582,7 @@ To view any sentence in its original context, double-click on it. This will take
 
 ## Dolch Sight Words {#reviewing-dolch}
 
-The Dolch Sight Words (456–460) represent the most frequently occurring service words[^DolchPronounsFootnote] in most text, especially children's literature. Early readers need to learn and recognize these words to attain reading fluency. Many of these words cannot be sounded out or represented by pictures; therefore, they must be learned by sight[^DolchNounsListFootnote].
+The Dolch Sight Words [-@{dolch}456–60] represent the most frequently occurring service words[^DolchPronounsFootnote] in most text, especially children's literature. Early readers need to learn and recognize these words to attain reading fluency. Many of these words cannot be sounded out or represented by pictures; therefore, they must be learned by sight[^DolchNounsListFootnote].
 
 If you are writing educational materials for early readers, then use as many of these words as possible to help readers practice them. Also, keep the percentage of non-Dolch words low so that readers can better focus on the sight words.
 

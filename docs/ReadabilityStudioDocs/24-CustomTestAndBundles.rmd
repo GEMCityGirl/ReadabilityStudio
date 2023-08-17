@@ -429,7 +429,7 @@ By default, the industry and document-type bundles used in the [**New Project**]
 - Broadcasting
 :::
 
-More specific bundles based on research articles are also included, such as *Patient Consent Forms* and *Kincaid's Tests for Navy-Personnel Materials*. (Some of these bundles may include goals, if recommended in the original article.)
+More specific bundles based on research articles are also included, such as *Patient Consent Forms* [@{grundner}9-10] and *Kincaid's Tests for Navy-Personnel Materials*. (Some of these bundles may include goals, if recommended in the original article.)
 
 Select any of these bundles from the menu and all the tests within it will be added to the active project. Note that when you add a bundle to a project, all other tests currently in the project will be removed. This ensures that only the tests relevant to the bundle will be in the project after it is applied.
 
