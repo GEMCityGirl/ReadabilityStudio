@@ -1,8 +1,8 @@
 ## Fry\index{Fry|(ii} Graph {#fry-test}
 
-Fry (“Clarifications, Validity, and Extension” 242–252) is a graphical test for English documents. It calculates a document's grade level from its average number of sentences and syllables per hundred words. These averages are plotted onto a chart where their intersection determines the reading level of the content.
+Fry [-@{fry:1968}513-16, 575-78; -@{fry:extensions:1977}242–52] is a graphical test for English documents. It calculates a document's grade level from its average number of sentences and syllables per hundred words. These averages are plotted onto a chart where their intersection determines the reading level of the content.
 
-The original version of this graph included grade levels 1–12 and college (Fry, “Formula That Saves Time” 513–516; *Instruction*, 217). It was trained against samples from the following books:
+The original version of this graph included grade levels 1–12 and college [-@{fry:1968}513-516; -@{fry:elementary:1977}217]. It was trained against samples from the following books:
 
 - *Light in the Forest*
 - *Of Mice and Men*
@@ -22,7 +22,7 @@ The graph's results were compared to other tests, yielding the following correla
 - Botel: $r = 0.78$
 - SRA: $r = 0.98$
 
-In 1977, Fry extended the graph to include grades 13–16 by extrapolating the averages from the preceding 3 years on the graph (*Extension* 251).
+In 1977, Fry extended the graph to include grades 13–16 by extrapolating the averages from the preceding 3 years on the graph [-@{fry:extensions:1977}251].
 
 The Fry graph is designed for both primary and secondary-age reading materials. Below is an example of a Fry graph:
 
@@ -34,7 +34,7 @@ knitr::include_graphics("Images/frygraph.png")
 Note the following aspects of this graph:
 
 - Grade levels from 1 to 17+ are represented by bands along the middle. If a score falls within one of these bands, then that will be the document's grade level.
-- A curved line running through the middle of the grade-level bands. This represents the “smoothed mean of the sample passages. If you plot a large number of passages with a wide range, they will tend to fall somewhere near the line” (“Clarifications, Validity, and Extension” 243).
+- A curved line running through the middle of the grade-level bands. This represents the “smoothed mean of the sample passages. If you plot a large number of passages with a wide range, they will tend to fall somewhere near the line” [@{fry:extensions:1977}243].
 - Shaded areas in the bottom-left and top-right corners. These represent the long-sentences and long-words regions, respectively. If a document's score falls into either of these regions, then one of these factors is making the document too difficult to fit into a grade level.
 :::
 

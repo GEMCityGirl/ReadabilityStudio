@@ -1,6 +1,6 @@
 ## Modified SMOG\index{Modified SMOG|(ii} {#modified-smog}
 
-The Modified SMOG\index{SMOG!variations!Modified SMOG} test (L. Smith 129–132) calculates the grade level of a document based on sentence length and number of difficult (i.e., 3 or more syllable) words and is designed for primary and secondary-age materials.
+The Modified SMOG\index{SMOG!variations!Modified SMOG} test [@{lsmith}129–32] calculates the grade level of a document based on sentence length and number of difficult (i.e., 3 or more syllable) words and is designed for primary and secondary-age materials.
 
 Modified SMOG differs from [SMOG](#smog-test) in the following ways:
 
@@ -8,9 +8,9 @@ Modified SMOG differs from [SMOG](#smog-test) in the following ways:
 - It uses a smaller constant in its formula.
 - The score is rounded, rather than floored.
 
-Because of these adjustments, it will generally produce scores closer to other tests than SMOG does—in particular, the Fry graph (L. Smith 129).
+Because of these adjustments, it will generally produce scores closer to other tests than SMOG does—in particular, the Fry graph [@{lsmith}129].
 
-The author's decision to not count repeated difficult words was a major factor in making this test more appropriate for primary readers. As he explains, in a particular pre-primer book “the word 'kangaroo' appeared 52 times . . . it was the only polysyllabic word in the book. To count the word more than once would have inflated the readability score to an unrealistic level” (130).
+The author's decision to not count repeated difficult words was a major factor in making this test more appropriate for primary readers. As he explains, in a particular pre-primer book “the word 'kangaroo' appeared 52 times . . . it was the only polysyllabic word in the book. To count the word more than once would have inflated the readability score to an unrealistic level”  [@{lsmith}130].
 
 The steps for calculating Modified SMOG are:
 

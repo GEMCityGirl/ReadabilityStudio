@@ -1,10 +1,10 @@
 ## Danielson-Bryan 1\index{Danielson-Bryan 1|(ii} {#danielson-bryan-1}
 
-Danielson-Bryan 1 (206) is meant for student materials and calculates the grade level of a document based on sentence length and character count.
+Danielson-Bryan 1 [-@{danielson-bryan}206] is meant for student materials and calculates the grade level of a document based on sentence length and character count.
 
 DB1 was designed to be a faster method (compared to [Farr-Jenkins-Paterson](#farr-jenkins-paterson)\index{Farr-Jenkins-Paterson!compared to Danielson-Bryan}) of calculating readability scores on UNIVAC 1105 computers. Rather than counting syllables, DB1 counts characters and punctuation, which was simpler to analyze on computers of that era. This performance benefit is more of a historical reference now; modern computers can calculate syllable counts optimally.
 
-This test was trained against 383 selections from the 1950 edition of McCall-Crabbs *Standard Test Lessons in Reading* (McCall 1950). For validation, the derived formula had an $r^2 = 0.575$, similar to Farr-Jenkins-Paterson's $r^2 = 0.553$. This regression equation is as follows:
+This test was trained against 383 selections from the 1950 edition of McCall-Crabbs *Standard Test Lessons in Reading*. For validation, the derived formula had an $r^2 = 0.575$, similar to Farr-Jenkins-Paterson's $r^2 = 0.553$. This regression equation is as follows:
 
 ```{definition, db1, name="Danielson-Bryan 1 formula"}
 $$
@@ -29,7 +29,7 @@ kableExtra::kbl(db1Data, booktabs=T, centering=T, align='l',escape=F) %>%
            threeparttable=T)
 ```
 
-In the original article, the statistic of “number of spaces between words” is suggested, rather than explicitly saying “number of words.” Logically, this should be the number of words minus 1. However, in the article's example, number of spaces between words is the same as number of words (even when there are dashes connecting words). It is therefore assumed that the authors' intention was to count the number of words using the following logic:
+In the original article, the statistic of "number of spaces between words" is suggested, rather than explicitly saying "number of words." Logically, this should be the number of words minus 1. However, in the article's example, number of spaces between words is the same as number of words (even when there are dashes connecting words). It is therefore assumed that the authors' intention was to count the number of words using the following logic:
 
 - Count the number of spaces.
 - Treat dashes connecting words as spaces.

@@ -8,7 +8,7 @@ This test is a German variation of [Läsbarhetsindex (Lix)](#lix-test) designed 
 
 Note that this test differs from the original Lix approach of using the same scoring for any document, regardless of language. Instead, this test is designed specifically for German materials, adjusting the grade-level score and classification of the index value.
 
-Regarding the index score, the following variation of the Lix gauge is used classify the difficulty [@{renstrom} 153; @{bamberger-vanecek} 65; @{schulz} 53]:
+Regarding the index score, the following variation of the Lix gauge is used classify the difficulty [@{renstrom}153; @{bamberger-vanecek}65; @{schulz}53]:
 
 ```{r germanLix, echo=F, fig.cap="German Lix gauge (children's literature)", fig.align='center', out.width='75%'}
 knitr::include_graphics("Images/GermanLixGauge.png")
@@ -36,7 +36,7 @@ This test is a German variation of [Läsbarhetsindex (Lix)](#lix-test) designed 
 
 Note that this test differs from the original Lix approach of using the same scoring for any document, regardless of language. Instead, this test is designed specifically for German materials, adjusting the grade-level score and classification of the index value.
 
-Regarding the index score, the following variation of the Lix gauge is used classify the difficulty [@{renstrom} 153; @{bamberger-vanecek} 65; @{schulz} 53]:
+Regarding the index score, the following variation of the Lix gauge is used classify the difficulty [@{renstrom}153; @{bamberger-vanecek}65; @{schulz}53]:
 
 ```{r germanLix2, echo=F, fig.cap='German Lix gauge (technical literature)', fig.align='center', out.width='75%'}
 knitr::include_graphics("Images/GermanLixGauge.png")

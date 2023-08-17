@@ -1,8 +1,8 @@
 ## SMOG\index{SMOG|(ii} {#smog-test}
 
-The SMOG readability formula [@{mclaughlin} 639–46] calculates the grade level of a document based on complex (i.e., 3 or more syllable) word density and is designed for secondary-age readers.
+The SMOG readability formula [@{mclaughlin}639–46] calculates the grade level of a document based on complex (i.e., 3 or more syllable) word density and is designed for secondary-age readers.
 
-SMOG attempts to predict "full comprehension" [@{lsmith} 129], whereas most other formulas predict 50%–75% comprehension. Because of this, SMOG will generally produce higher scores comparatively (usually 1–2 grade levels higher).
+SMOG attempts to predict "full comprehension" [@{lsmith}129], whereas most other formulas predict 50%–75% comprehension. Because of this, SMOG will generally produce higher scores comparatively (usually 1–2 grade levels higher).
 
 This test was trained on 390 passages from the 1961 edition of *McCall-Crabbs Standard Tests Lessons in Reading*. The following regression equation was derived with a correlation of $r = 0.985$:
 

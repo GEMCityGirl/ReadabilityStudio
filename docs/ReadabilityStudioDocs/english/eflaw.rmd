@@ -1,6 +1,6 @@
 ## McAlpine EFLAW\index{McAlpine EFLAW|(ii} {#eflaw-test}
 
-The McAlpine EFLAW^©^ formula (McAlpine) is used to determine the ease of reading English text for ESL/EFL (English as a Second/Foreign Language) readers. This test calculates the index score of a document based on sentence length and number of miniwords (i.e., words that contain three or less letters).
+The McAlpine EFLAW^©^ formula [@{mcalpine}] is used to determine the ease of reading English text for ESL/EFL (English as a Second/Foreign Language) readers. This test calculates the index score of a document based on sentence length and number of miniwords (i.e., words that contain three or less letters).
 
 Where most other formulas penalize longer words, this test does the opposite, penalizing the use of miniwords. This is because it is designed for ESL readers, as McAlpine explains: “Miniwords are confusing because they have many meanings and are often a sign of wordiness or idioms. . . . these flaws bamboozle EFL readers.”
 

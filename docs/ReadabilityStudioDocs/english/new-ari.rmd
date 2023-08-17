@@ -1,6 +1,6 @@
 ## New Automated Readability Index\index{New Automated Readability Index|ii} {#new-ari}
 
-The New Automated Readability Index\index{Automated Readability Index!variations!New Automated Readability Index} (Kincaid et al., *Derivation* 14) is a modified version of [ARI](#ari-test)\index{Automated Readability Index} that was recalculated “to be more suitable for Navy use” (Kincaid et al., *Derivation* 11); hence, it is designed for technical documents and manuals. This test calculates the grade level of a document based on sentence length and character count.
+The New Automated Readability Index\index{Automated Readability Index!variations!New Automated Readability Index} is Kincaid et al.'s modified version of [ARI](#ari-test)\index{Automated Readability Index} [-@{kincaid-fishburne-rogers-chissom:1975}14] that was recalculated "to be more suitable for Navy use" [@{kincaid-fishburne-rogers-chissom:1975}11]; hence, it is designed for technical documents and manuals. This test calculates the grade level of a document based on sentence length and character count.
 
 This test was trained against reading-test results from 531 U.S. Navy personnel from four Naval technical training schools. Using these results, the following multiple regression equation was derived:
 

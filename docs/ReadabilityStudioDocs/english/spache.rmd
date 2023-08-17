@@ -1,6 +1,6 @@
 ## Spache Revised\index{Spache Revised|(ii} {#spache-test}
 
-The Spache Revised test [-@{spache:1974} 195–2003] calculates the grade level of a document based on sentence length and number of unique unfamiliar words. This test uses a list of 1,041 common words that are known to younger readers (4^th^ grade and below). Any word that does not appear on this list is considered unfamiliar. The following are also considered familiar:
+The Spache Revised test [-@{spache:1974}195–207] calculates the grade level of a document based on sentence length and number of unique unfamiliar words. This test uses a list of 1,041 common words that are known to younger readers (4^th^ grade and below). Any word that does not appear on this list is considered unfamiliar. The following are also considered familiar:
 
 - Regular verb forms of any common word (i.e., *ing*, *es*, *s*, *ed*, and *ies* endings). Irregular forms are not familiar.
 - Regular plural and possessive forms of any common word (i.e., *s*, *es*, and *ies* endings). Irregular forms are not familiar.
@@ -38,7 +38,7 @@ Where:
 +-----+--------------------------------------------------+
 
 ::: {.notesection data-latex=""}
-Spache recommends not counting the same unfamiliar word more than once if it appears in subsequent 100-word samples [-@{spache:1974}198]. For this reason, it is recommended to follow this practice when analyzing an entire document.
+Spache recommends not counting the same unfamiliar word more than once if it appears in subsequent 100-word samples [-@{spache:1974}200]. For this reason, it is recommended to follow this practice when analyzing an entire document.
 :::
 \index{Spache Revised|)}
 

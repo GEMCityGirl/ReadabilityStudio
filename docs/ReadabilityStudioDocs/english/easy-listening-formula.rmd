@@ -1,6 +1,6 @@
 ## Easy Listening Formula\index{Easy Listening Formula|(ii} {#easy-listening-formula}
 
-The Easy Listening Formula is designed for “listenability” and is meant for radio and television broadcasts. Fang (65) stated that broadcasted news generally has much shorter sentences compared to print media. Therefore, he created the ELF test to focus solely on complex-word density, not using sentence length as a factor. That is, rather than looking at a sentence’s word count, the density of syllables in a sentence is used instead.
+The Easy Listening Formula is designed for "listenability" and is meant for radio and television broadcasts. Fang [-@{fang}65] stated that broadcasted news generally has much shorter sentences compared to print media. Therefore, he created the ELF test to focus solely on complex-word density, not using sentence length as a factor. That is, rather than looking at a sentence’s word count, the density of syllables in a sentence is used instead.
 
 This test was trained on 36 television scripts from the following:
 

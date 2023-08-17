@@ -1,6 +1,6 @@
 ## Harris-Jacobson Wide Range\index{Harris-Jacobson Wide Range|(ii} {#harris-jacobson}
 
-The Harris-Jacobson Wide Range Readability Formula readability test (19–30; Chapter 3) calculates the grade level of a document based on sentence length and number of unique unfamiliar words. Words are unfamiliar if they do not appear on a list of common words that are known to most second-grade students. The following are also considered familiar:
+The Harris-Jacobson Wide Range Readability Formula readability test [-@{harris-jacobson}19–30] calculates the grade level of a document based on sentence length and number of unique unfamiliar words. Words are unfamiliar if they do not appear on a list of common words that are known to most second-grade students. The following are also considered familiar:
 
 - Regular verb forms of any common word (i.e., *ing*, *es*, *s*, *ed*, and *ies* endings). Irregular forms are not familiar.
 - Regular plural and possessive forms of any common word (i.e., *s*, *es*, and *ies* endings). Irregular forms are not familiar.

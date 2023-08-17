@@ -1,14 +1,14 @@
 ## Automated Readability Index\index{Automated Readability Index|(ii} {#ari-test}
 
-The Automated Readability Index– also called “ARI” or “auto”– (E. Smith) was originally created for U.S. Air Force materials. As such, it was designed for technical reports and manuals. This test calculates the grade level of a document based on sentence length and character count.
+The Automated Readability Index–also called "ARI" or "auto"–[@{esmith}] was originally created for U.S. Air Force materials. As such, it was designed for technical reports and manuals. This test calculates the grade level of a document based on sentence length and character count.
 
-Kincaid et al. (*Evaluating* 3, 6–15) also used this test for evaluating peered-prepared reading materials for three studies involving:
+Kincaid et al. [-@{kincaid:1972}3, 6–15] also used this test for evaluating peered-prepared reading materials for three studies involving:
 
 - 33 remedial high school students
 - 22 graduate students from Southern Georgia College
 - 14 trainees participating in a Public Service Careers project at Southern Georgia College
 
-They noted that for the high school study, the materials with lower ARI scores yielded better comprehension rates “as reflected in cloze scores” (Kincaid et al. 3). The graduate students and trainees from the other studies stated that the materials may not be appropriate for remedial high school readers (13, 15), but did agree that the stories were “authentic” and “interesting.”
+They noted that for the high school study, the materials with lower ARI scores yielded better comprehension rates "as reflected in cloze scores" [-@{kincaid:1972}3]. The graduate students and trainees from the other studies stated that the materials may not be appropriate for remedial high school readers [-@{kincaid:1972}13, 15], but did agree that the stories were "authentic" and "interesting."
 
 ```{definition, ari, name="ARI formula"}
 $$

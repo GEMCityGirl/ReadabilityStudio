@@ -2,7 +2,7 @@
 
 The Coleman-Liau formula calculates the grade level and estimated cloze\index{cloze} score of a document based on sentence length and character count.
 
-Coleman and Liau noted the difficulties of using computers to count syllables (283) for readability formulas. As a solution, they presented a new formula that used character counts as an alternative to syllable counting. This formula was derived from a regression equation trained on the 36 150-word passages from the Miller and Coleman cloze study (851). During validation, the factors of sentences and characters per 100 words yielded a strong correlation of $r^2 = .92$ against Miller and Coleman’s cloze scores.
+Coleman and Liau noted the difficulties of using computers to count syllables [-@{coleman-liau}283] for readability formulas. As a solution, they presented a new formula that used character counts as an alternative to syllable counting. This formula was derived from a regression equation trained on the 36 150-word passages from the Miller and Coleman cloze study [-@{miller-coleman}851]. During validation, the factors of sentences and characters per 100 words yielded a strong correlation of $r^2 = .92$ against Miller and Coleman’s cloze scores.
 
 Coleman-Liau calculates the [predicted cloze](#cloze) percentage with the following formula:
 
