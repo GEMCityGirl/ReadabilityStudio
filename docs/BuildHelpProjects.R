@@ -92,6 +92,7 @@ write(c(" "), file=glue("{docFolder}/ReadabilityStudioDocs/docs/.nojekyll"))
 # Programming Manual
 ####################
 
+setwd(glue("{docFolder}/ReadabilityStudioAPI/"))
 dir_create(glue("{docFolder}/ReadabilityStudioAPI/images"))
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/CC_BY-NC-ND.png"),
           glue("{docFolder}/ReadabilityStudioAPI/images/CC_BY-NC-ND.png"),
@@ -114,7 +115,7 @@ dir_copy(glue("{docFolder}/ReadabilityStudioDocs/css"),
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/R"),
          glue("{docFolder}/ReadabilityStudioAPI/R"),
          TRUE)
-setwd(glue("{docFolder}/ReadabilityStudioAPI/"))
+
 combine_files("10-Classes.Rmd", "classes")
 combine_files("20-Libraries.Rmd", "libraries")
 combine_files("30-Enums.Rmd", "enums")
@@ -133,6 +134,7 @@ unlink(glue("{docFolder}/ReadabilityStudioAPI/30-Enums.Rmd"))
 ####################
 
 UserManualMode = F
+setwd(glue("{docFolder}/ReadabilityTestsReference/"))
 dir_create(glue("{docFolder}/ReadabilityTestsReference/images"))
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/CC_BY-NC-ND.png"),
           glue("{docFolder}/ReadabilityTestsReference/images/CC_BY-NC-ND.png"),
@@ -217,7 +219,6 @@ combine_files("41-ScoringNotes.rmd", "scoring-notes",
 combine_files("90-Acknowledgements.Rmd", "acknowledgements",
               ("(intro)"))
 
-setwd(glue("{docFolder}/ReadabilityTestsReference/"))
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::pdf_book",
                       output_dir="docs")
