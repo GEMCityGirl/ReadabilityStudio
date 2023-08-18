@@ -544,6 +544,7 @@ void ProjectWizardDlg::CreateControls()
                 wxSizerFlags::GetDefaultBorder()));
             imageLabel.Draw(memDc);
             memDc.SelectObject(wxNullBitmap);
+            narrativeSizer->AddStretchSpacer();
             narrativeSizer->Add(new Thumbnail(docLayoutSizer->GetStaticBox(), previewImage) );
             narrativeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
@@ -559,7 +560,6 @@ void ProjectWizardDlg::CreateControls()
                 wxSizerFlags::GetDefaultBorder()));
             imageLabel.Draw(memDc2);
             memDc2.SelectObject(wxNullBitmap);
-            narrativeSizer->AddStretchSpacer();
             narrativeSizer->Add(new Thumbnail(docLayoutSizer->GetStaticBox(), previewImage) );
             docLayoutSizer->Add(narrativeSizer, 0, wxALL|wxEXPAND, wxSizerFlags::GetDefaultBorder());
             }
@@ -661,7 +661,6 @@ void ProjectWizardDlg::CreateControls()
                 wxSizerFlags::GetDefaultBorder()));
             imageLabel.Draw(memDc2);
             memDc2.SelectObject(wxNullBitmap);
-            wrappedSizer->AddStretchSpacer();
             wrappedSizer->Add(new Thumbnail(docLayoutSizer->GetStaticBox(), previewImage) );
             docLayoutSizer->Add(wrappedSizer, 0, wxALL|wxEXPAND, wxSizerFlags::GetDefaultBorder());
             }
