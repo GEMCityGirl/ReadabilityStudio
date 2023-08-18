@@ -5,10 +5,13 @@
 
 #### General Enhancements {-}
 
+- Added a [Summary Statistics](#reviewing-batch-summary-stats) list to batch projects.
 - Printer [headers and footers](#printing) are now more customizable.
 - Sidebar improvements:
   - Clicking an expanded folder will collapse it. (Double clicking it is no longer necessary.)
-  - Can now be shown/hidden with the F2 key or from the ribbon.
+  - Can now be shown/hidden with the `r keys('F2')` key or from the ribbon.
+- The **User agent** option previously available on the **Web Harvester** dialog has been moved to the **General Settings** page of the **Options** dialog.
+  This will allow for changing the user agent when reading single web pages, as well as when harvesting pages.
 
 #### Graph Enhancements {-}
 
@@ -23,7 +26,7 @@
 
 #### Analysis/Test Enhancements {-}
 
-- Added **Display grouped documents on syllable ruler** feature to Flesch chart.
+- Added **Display grouped documents on syllable ruler** feature to the Flesch chart.
 - Aggressive exclusion will now make copyright notice exclusion more aggressive also.
 - Custom-test formulas can now contain C/C++ style comments.
   This includes multi-line (text inside of `/*` and `*/`) and single-line (`//`) comments.
@@ -35,6 +38,12 @@
 #### Importing/Exporting Enhancements {-}
 
 - Lists can now be exported as LaTeX (in `longtable{}` environments).
+
+#### Documentation Enhancements {-}
+
+- In-text citations are now linked to the bibliography.
+- Keyboard shortcuts cheat sheet is now available from the **Documentation** tab of the ribbon.
+- Test reference is now available from the **Documentation** tab of the ribbon.
 
 #### Bug Fixes {-}
 

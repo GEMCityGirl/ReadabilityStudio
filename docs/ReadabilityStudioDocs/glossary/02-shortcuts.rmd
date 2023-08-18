@@ -1,4 +1,4 @@
-# Keyboard Shortcuts {.unnumbered}
+# Readability Studio Keyboard Shortcuts {.unnumbered}
 
 <!-- no break spaces are to add blank lines between each row in the shortcuts table,
      making it easier to read.-->
@@ -34,7 +34,7 @@ Show/hide the ribbon                    `r keys(c('Ctrl','F1'))` (`r os_logo('wi
 
 &nbsp;                                  &nbsp;
 
-Reload the active project               `r keys('F5')`
+Reload the project                      `r keys('F5')`
 
 &nbsp;                                  &nbsp;
 
@@ -43,7 +43,7 @@ Create a new project from the clipboard `r keys(c('Ctrl','V'))` (`r os_logo('win
 
 &nbsp;                                  &nbsp;
 
-Save the active project                 `r keys(c('Ctrl','S'))` (`r os_logo('windows')`) or<br>\linebreak
+Save the project                        `r keys(c('Ctrl','S'))` (`r os_logo('windows')`) or<br>\linebreak
                                         `r keys(c('\\cmd','S'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;

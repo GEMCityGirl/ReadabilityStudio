@@ -1,5 +1,13 @@
 # Reviewing Batch Projects
 
+::: {.tipsection data-latex=""}
+For any list that displays a document name in the first column, the following features are available: \
+
+To create a [standard project](#creating-standard-project) for any document in the list, select it and click the `r keys("Subproject")` button on the **Home** tab. This is useful for reviewing a particular document in greater detail. Note that when this standard project is created, it will copy all the project settings from the batch project. (These options may differ from your [global configurations](#options-overview).) \
+
+To remove any document in the list from the project, select it and press `r keys('Del')` (`r os_logo('windows')`) or `r keys('\\backdel')` (`r os_logo('apple')`) on your keyboard.
+:::
+
 ## Test Scores {#reviewing-batch-scores}
 
 After opening a project, click on the **Readability Scores** icon on the project sidebar. The following lists may be available: **Raw Scores**, **Goals**, **Score Summary**, **Grade Score Summary (x Document)**, and **Cloze Score Summary (x Document)**.
@@ -155,12 +163,6 @@ Note that test-specific word counts/percentages (e.g., Dale-Chall unfamiliar wor
 
 ![](Images/batchdifficultwordsverbose.png)
 
-To create a [standard project](#creating-standard-project) for any document in this list, select it and click the `r keys("Subproject")` button on the **Home** tab.
-
-This is useful for reviewing a particular document in greater detail. Note that when this standard project is created, it will copy all the project settings from the batch project. These options may differ from your [global configurations](#options-overview).
-
-To remove any document in this list from the project, select it and press `r keys('Del')` (`r os_logo('windows')`) or `r keys('\\backdel')` (`r os_logo('apple')`) on your keyboard.
-
 **All Words**: This list displays all the words from the documents and their respective frequency counts.
 
 **Key Words**: This list is the same as **All Words**, except that it excludes filenames, numeric words, and common words, and then combines the remaining words. In regards to combining words, words with the same root will be merged into a single row. For example, *report*, *reports*, and *reporting* will be combined into one row, with the frequency counts for all three words also combined. As for excluding words, common words (e.g., *the*), numerals, and filenames are not included in this list. (If no words can be combined and there are no common words to ignore, then this list will not be shown.)
@@ -185,13 +187,11 @@ To view a specific document's longest sentence, double-click on its row in this 
 knitr::include_graphics("Images/batchlongestsentenceviewitem.png")
 ```
 
-To create a [standard project](#creating-standard-project) for any document in this list, select it and click the `r keys("Subproject")` button on the **Home** tab.
-
-This is useful for reviewing a particular document in greater detail. Note that when this standard project is created, it will copy all the project settings from the batch project. These options may differ from your [global settings](#options-overview).
-
-To remove any document in this list from the project, select it and press `r keys('Del')` (`r os_logo('windows')`) or `r keys('\\backdel')` (`r os_logo('apple')`) on your keyboard.
-
 Note that if there are no long sentences in your documents, then this window will not be included.
+
+## Summary Statistics {#reviewing-batch-summary-stats}
+
+To display a list containing statistics of all your documents, click on the **Summary Statistics** icon on the project sidebar. To control which statistics are included in this list, click the `r keys('Edit Statistics')` button on the **Home** tab of the ribbon.
 
 ## Grammar {#reviewing-batch-grammar}
 
