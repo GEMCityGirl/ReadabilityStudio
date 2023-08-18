@@ -802,6 +802,12 @@ public:
         { return m_wordlistPath; }
     void SetWordListPath(const wxString& path)
         { m_wordlistPath = path; }
+    // internet
+    [[nodiscard]]
+    const wxString& GetUserAgent() const
+        { return m_userAgent; }
+    void SetUserAgent(wxString path)
+        { m_userAgent = std::move(path); }
     // graph information
     //------------------------------
     void ShowAllBoxPlotPoints(const bool show) noexcept
@@ -1347,6 +1353,12 @@ private:
     wxString m_imagePath;
     wxString m_projectPath;
     wxString m_wordlistPath;
+    // internet features
+    // Note that we call this a "web browser," although this may not be used
+    // in that context. Using words like "harvester," "crawler," and
+    // "scraper" will actually result in a forbidden response from some sites,
+    // so avoid using those words.
+    wxString m_userAgent{ _DT(L"Web-Browser/") + wxGetOsDescription() };
     // graph information
     bool m_boxPlotShowAllPoints{ false };
     bool m_boxDisplayLabels{ false };
@@ -1635,6 +1647,8 @@ public:
     const wxString XML_WINDOW_WIDTH;
     const wxString XML_WINDOW_HEIGHT;
     const wxString XML_LICENSE_ACCEPTED;
+    const wxString XML_USER_AGENT;
+    // general project options
     const wxString XML_REVIEWER;
     const wxString XML_STATUS;
     const wxString XML_APPENDED_DOC_PATH;

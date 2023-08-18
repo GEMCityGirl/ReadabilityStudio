@@ -1145,15 +1145,14 @@ namespace LuaScripting
             {
             LuaWebHarvesterDlg = new WebHarvesterDlg(wxGetApp().GetMainFrame(),
                 wxGetApp().GetLastSelectedWebPages(),
-                wxGetApp().m_harvesterOptions.GetDepthLevel(),
+                wxGetApp().GetWebHarvester().GetDepthLevel(),
                 wxGetApp().GetAppOptions().GetDocumentFilter(), wxGetApp().GetLastSelectedDocFilter(),
                 false,
-                wxGetApp().m_harvesterOptions.IsDownloadingFilesWhileCrawling(),
-                wxGetApp().m_harvesterOptions.IsKeepingWebPathWhenDownloading(),
-                wxGetApp().m_harvesterOptions.GetDownloadDirectory(),
-                wxGetApp().m_harvesterOptions.GetUserAgent(),
-                static_cast<int>(wxGetApp().m_harvesterOptions.GetDomainRestriction()),
-                wxGetApp().m_harvesterOptions.GetAllowableWebFolders());
+                wxGetApp().GetWebHarvester().IsDownloadingFilesWhileCrawling(),
+                wxGetApp().GetWebHarvester().IsKeepingWebPathWhenDownloading(),
+                wxGetApp().GetWebHarvester().GetDownloadDirectory(),
+                static_cast<int>(wxGetApp().GetWebHarvester().GetDomainRestriction()),
+                wxGetApp().GetWebHarvester().GetAllowableWebFolders());
             }
         LuaWebHarvesterDlg->Show();
         wxGetApp().Yield();

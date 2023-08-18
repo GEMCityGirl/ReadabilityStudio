@@ -586,7 +586,9 @@ private:
     ListCtrlEx* m_fileList{ nullptr };
     ListCtrlExDataProvider* m_fileData{ new ListCtrlExDataProvider };
 
-    // project language
+    BackupVariable<wxString> m_userAgent;
+
+    // project settings
     BackupVariable<int> m_projectLanguage;
     BackupVariable<wxString> m_reviewer;
     BackupVariable<wxString> m_status;

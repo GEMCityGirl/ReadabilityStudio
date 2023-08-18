@@ -1,28 +1,36 @@
 # Coding How-Tos
 
-## Add a New Option
+## Adding a New Option
 
-Do the following to add a new option both to the program and its projects.
+Do the following to add a new option both to the program and its projects:
 
 - Add the variable and `GetXXX()/SetXXX()` functions to **src/app/readability_app_options.h**.
 - Add an XML constant tag for aformentioned variable in **src/app/readability_app_options.h** (and define in **src/app/readability_app_options.cpp**).
 - Add reset logic for variable in **src/app/readability_app_options.cpp** (`ResetSettings()` function). (This should be the same value as the initializer value in the header file.)
 - Add logic to read value in **src/app/readability_app_options.cpp** (`LoadOptionsFile()` function).
 - Add logic to save value in **src/app/readability_app_options.cpp** (`SaveOptionsFile()` function).
+
+If the option is used in projects also, do the following:
+
 - Add the variable and `GetXXX()/SetXXX()` functions to **src/projects/base_project.h** if a base-level value that subprojects in a batch would need. UI and graph related options should be in **src/projects/base_project_doc.h** instead.
 - Initialize variable with value from `ReadabilityAppOptions` in the `BaseProject` (base-level options) or `BaseProjectDoc` constructor (**src/projects/base_project.cpp** or **src/projects/base_project_doc.cpp**).
 - Add copy operation for variable in `BaseProject::CopySettings()` (base-level options) or `BaseProjectDoc::CopyDocumentLevelSettings()`.
 - Add reading logic to `BaseProjectDoc::LoadSettingsFile()`.
 - Add write logic to `BaseProjectDoc::FormatProjectSettings()`.
-- Add variable to **src/ui/dialogs/tools_options_dlg.h** (if not a value shown in a property grid). If a value in a property grid, then add a function that returns the string for the value in the property grid; this will be used also as a look-up key.
-- Add initialization to variable from `ReadabilityAppOptions` or project in `ToolsOptionsDlg`’s constructor. Note that if the option is in a property grid, then there is no direct variable and instead you use a string label to get and set the values from the property grid.
+
+Finally:
+
+- Add variable to **src/ui/dialogs/tools_options_dlg.h** (if not a value shown in a property grid).
+  - If a value in a property grid, then add a function that returns the string for the value in the property grid; this will be used also as a look-up key.
+- Add initialization to variable from `ReadabilityAppOptions` or project in `ToolsOptionsDlg`’s constructor.
+  - Note that if the option is in a property grid, then there is no direct variable and instead you use a string label to get and set the values from the property grid.
 - Add change watching logic for variable to `ToolsOptionsDlg::HaveXXXOptionsChanged()` (note there are different versions of these functions for each type of feature).
 - Add saving logic to `ToolsOptionsDlg::SaveOptions()` (and related `ToolsOptionsDlg::SaveProjectXXXOptions()` function, if applicable).
 - Attach variable to interface in `ToolsOptionsDlg::CreateControls()`.
 - Use the variable in the program where applicable.
 - Add it to the documentation.
 
-## Add a New Test {#add-a-new-test}
+## Adding a New Test {#add-a-new-test}
 
 - Add the actual function to **src/readability/english_readability.h** (or other file if a different language). (This only applies to linear regression based tests with a formula, not tests that calculate their values graphically [e.g., **Fry**].)
 - Add its definition to `BaseProject::InitializeStandardReadabilityTests()`.
@@ -50,7 +58,7 @@ Do the following to add a new option both to the program and its projects.
   - If a graphical test, automate making a screenshot of the graph for the help.
 - Add an icon to **Resources/Images/tests** in SVG format with the same name as the test's string ID.
 
-## Add a New Familiar Word List
+## Adding a New Familiar Word List
 
 The following documents how to add a familiar word list (used by a test, such as **Dale-Chall**) to the program. These are extra steps in addendum to [adding a new test](#add-a-new-test).
 
@@ -64,7 +72,7 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 - Load the text file into aforementioned `word_list` in `ReadabilityApp::LoadWordLists()`
 - Add a check that the list is sorted in `ReadabilityApp::VerifyWordLists()`.
 
-### Add statistics fields {-}
+### Adding statistics fields {-}
 
 - Add unique and total unfamiliar word statistic fields to `BaseProject`.
 - Add XML constants in **src/app/readability_app_options.h/cpp** for these unique and total values.
@@ -78,7 +86,7 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 - Save these values in `ProjectDoc::OnSaveDocument()`.
 - Add unfamiliar label to **base_project_view.h**.
 
-### Add support for the list window {-}
+### Adding support for the list window {-}
 - Add a page ID for the list in **src/projects/base_project_view.h**.
 - Add this ID to the `ListType` enumeration in **Resources/Scripting/RSConstants.lua**.
 - Add this new enumeration value to the `ListType` in **docs/ReadabilityStudioAPI/enums/ListType.md**.
@@ -91,7 +99,7 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 - Add `EVT_LIST_ITEM_ACTIVATED` message mapping for list ID to `ProjectView::OnListDblClick()`.
 - Add handler for ID to jump to the respective highlighted text window in `ProjectView::OnListDblClick()` (see following instructions for highlighted test window).
 
-### Add support for the text window {-}
+### Adding support for the text window {-}
 - Add a page ID for the text window in **src/projects/base_project_view.h**.
 - Add this ID to the `HighlightedReportType` enumeration in **Resources/Scripting/RSConstants.lua**.
 - Add this new enumeration value to the `HighlightedReportType` in **docs/ReadabilityStudioAPI/enums/HighlightedReportType.md**.

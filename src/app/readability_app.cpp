@@ -4314,7 +4314,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         }
 
     WebHarvesterDlg webHarvestDlg(this, wxGetApp().GetLastSelectedWebPages(),
-        wxGetApp().m_harvesterOptions.GetDepthLevel(),
+        wxGetApp().GetWebHarvester().GetDepthLevel(),
             wxString::Format(_(L"Documents & Images (%s;%s)|%s;%s|"),
                 wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD,
                 wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD,
@@ -4325,12 +4325,11 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         wxGetApp().GetLastSelectedDocFilter(),
         // hide the option to change local file downloading
         true, true,
-        wxGetApp().m_harvesterOptions.IsKeepingWebPathWhenDownloading(),
-        wxGetApp().m_harvesterOptions.GetDownloadDirectory(),
-        wxGetApp().GetWebHarvester().GetUserAgent(),
-        static_cast<int>(wxGetApp().m_harvesterOptions.GetDomainRestriction()),
-        wxGetApp().m_harvesterOptions.GetAllowableWebFolders());
-    webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().m_harvesterOptions);
+        wxGetApp().GetWebHarvester().IsKeepingWebPathWhenDownloading(),
+        wxGetApp().GetWebHarvester().GetDownloadDirectory(),
+        static_cast<int>(wxGetApp().GetWebHarvester().GetDomainRestriction()),
+        wxGetApp().GetWebHarvester().GetAllowableWebFolders());
+    webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     // force downloading locally
     webHarvestDlg.DownloadFilesLocally(true);
     webHarvestDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"web-harvester.html"));
@@ -4340,7 +4339,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
 
     wxGetApp().SetLastSelectedWebPages(webHarvestDlg.GetUrls());
     wxGetApp().SetLastSelectedDocFilter(webHarvestDlg.GetSelectedDocFilter());
-    webHarvestDlg.UpdateHarvesterSettings(wxGetApp().m_harvesterOptions);
+    webHarvestDlg.UpdateHarvesterSettings(wxGetApp().GetWebHarvester());
 
     for (size_t i = 0; i < webHarvestDlg.GetUrls().GetCount(); ++i)
         {

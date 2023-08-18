@@ -251,15 +251,6 @@ void WebHarvesterDlg::CreateControls()
         auto logBrokenLinksCheckBox = new wxCheckBox(Panel, wxID_ANY, _(L"&Log broken links"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_logBrokenLinks));
         panelSizer->Add(logBrokenLinksCheckBox, 0, wxALL, wxSizerFlags::GetDefaultBorder());
-
-        wxBoxSizer* userAgentSizer = new wxBoxSizer(wxHORIZONTAL);
-        userAgentSizer->Add(new wxStaticText(Panel, wxID_STATIC,
-            _(L"User Agent:")), 0, wxALIGN_CENTER_VERTICAL);
-        userAgentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-        wxTextCtrl* userAgentEdit = new wxTextCtrl(Panel, wxID_ANY, wxString{},
-            wxDefaultPosition, wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_userAgent));
-        userAgentSizer->Add(userAgentEdit, 1, wxEXPAND);
-        panelSizer->Add(userAgentSizer, 0, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
         }
 
     // domain restriction page

@@ -34,7 +34,7 @@ public:
              const wxString& fullDocFilter, const wxString& selectedDocFilter,
              const bool hideLocalDownloadOption,
              const bool downloadFilesLocally, const bool keepWebPathWhenDownloading,
-             const wxString& downloadFolder, const wxString& userAgent,
+             const wxString& downloadFolder,
              const int domainRestriction,
              const wxArrayString& domainStrings,
              wxWindowID id = wxID_ANY, const wxString& caption = _(L"Web Harvester"),
@@ -47,7 +47,7 @@ public:
         m_domains(domainStrings), m_hideLocalDownloadOption(hideLocalDownloadOption),
         m_downloadFilesLocally(downloadFilesLocally),
         m_keepWebPathWhenDownloading(keepWebPathWhenDownloading),
-        m_urls(urls), m_downloadFolder(downloadFolder), m_userAgent(userAgent)
+        m_urls(urls), m_downloadFolder(downloadFolder)
         { Create(parent, id, caption, pos, size, style); }
     /// @private
     ~WebHarvesterDlg()
@@ -85,9 +85,6 @@ public:
     [[nodiscard]]
     const wxString& GetDownloadFolder() const noexcept
         { return m_downloadFolder; }
-    [[nodiscard]]
-    const wxString& GetUserAgent() const noexcept
-        { return m_userAgent; }
     [[nodiscard]]
     const wxString& GetRawHtmlPage() const noexcept
         { return m_rawHtmlPage; }
@@ -153,7 +150,6 @@ private:
     wxString m_rawHtmlPage;
 
     wxString m_downloadFolder;
-    wxString m_userAgent;
     };
 
 /** @}*/

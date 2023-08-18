@@ -206,6 +206,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_WINDOW_WIDTH(_DT(L"app-window-width")),
     XML_WINDOW_HEIGHT(_DT(L"app-window-height")),
     XML_LICENSE_ACCEPTED(_DT(L"license-accepted")),
+    XML_USER_AGENT(_DT(L"user-agent")),
     // project options
     XML_REVIEWER(_DT(L"project-reviewer")),
     XML_STATUS(_DT(L"project-status")),
@@ -623,6 +624,9 @@ void ReadabilityAppOptions::ResetSettings()
     m_documentStorageMethod = TextStorage::NoEmbedText;
     // theme
     m_themeName = _DT(L"System");
+    // internet
+    m_userAgent = _DT(L"Web-Browser/") + wxGetOsDescription();
+    wxGetApp().GetWebHarvester().SetUserAgent(m_userAgent);
     // graph information
     m_boxPlotShowAllPoints = false;
     m_boxDisplayLabels = false;
@@ -969,6 +973,23 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             {
             int value = licenseNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0);
             m_licenseAccepted = int_to_bool(value);
+            }
+
+        auto userAgentNode = configRootNode->FirstChildElement(XML_USER_AGENT.mb_str());
+        if (userAgentNode)
+            {
+            auto userAgent = userAgentNode->ToElement()->Attribute(XML_VALUE.mb_str());
+            if (userAgent)
+                {
+                const wxString userAgentStr =
+                    Wisteria::TextStream::CharStreamToUnicode(userAgent, std::strlen(userAgent));
+                const wchar_t* convertedStr = filter_html(userAgentStr, userAgentStr.length(), true, false);
+                if (convertedStr)
+                    {
+                    SetUserAgent(convertedStr);
+                    wxGetApp().GetWebHarvester().SetUserAgent(convertedStr);
+                    }
+                }
             }
         auto filePathsNode = configRootNode->FirstChildElement(FILE_OPEN_PATHS.mb_str());
         if (filePathsNode)
@@ -3374,6 +3395,11 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto licenseAccepted = doc.NewElement(XML_LICENSE_ACCEPTED.mb_str());
     licenseAccepted->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsLicenseAccepted()) );
     configSection->InsertEndChild(licenseAccepted);
+
+    auto userAgent = doc.NewElement(XML_USER_AGENT.mb_str());
+    userAgent->SetAttribute(XML_VALUE.mb_str(),
+        wxString(encode({ GetUserAgent().wc_str() }, false).c_str()).mb_str());
+    configSection->InsertEndChild(userAgent);
 
     // last opened file locations
     auto filePaths = doc.NewElement(FILE_OPEN_PATHS.mb_str());

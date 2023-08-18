@@ -240,8 +240,6 @@ public:
         { return m_lastSelectedDocFilter; }
     void SetLastSelectedDocFilter(const wxString& filter)
         { m_lastSelectedDocFilter = filter; }
-    // stores last used options of web harvester
-    WebHarvester m_harvesterOptions;
 
     [[nodiscard]]
     ReadabilityAppOptions& GetAppOptions()

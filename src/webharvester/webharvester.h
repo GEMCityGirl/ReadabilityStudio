@@ -429,7 +429,7 @@ public:
         // Needs to be initialized here because wxGetOsDescription()
         // can't be called during global startup.
         // Note that we call this a "web browser," although this may not be used
-        // in that context. Usering words like "harvester," "crawler," and
+        // in that context. Using words like "harvester," "crawler," and
         // "scraper" will actually result in a forbidden response from some sites,
         // so avoid using those words.
         return (m_userAgent.empty() ?

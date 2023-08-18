@@ -1417,15 +1417,14 @@ void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& 
 void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     WebHarvesterDlg webHarvestDlg(this, wxGetApp().GetLastSelectedWebPages(),
-        wxGetApp().m_harvesterOptions.GetDepthLevel(),
+        wxGetApp().GetWebHarvester().GetDepthLevel(),
         wxGetApp().GetAppOptions().GetDocumentFilter(), wxGetApp().GetLastSelectedDocFilter(),
         false,
-        wxGetApp().m_harvesterOptions.IsDownloadingFilesWhileCrawling(),
-        wxGetApp().m_harvesterOptions.IsKeepingWebPathWhenDownloading(),
-        wxGetApp().m_harvesterOptions.GetDownloadDirectory(),
-        wxGetApp().m_harvesterOptions.GetUserAgent(),
-        static_cast<int>(wxGetApp().m_harvesterOptions.GetDomainRestriction()),
-        wxGetApp().m_harvesterOptions.GetAllowableWebFolders());
+        wxGetApp().GetWebHarvester().IsDownloadingFilesWhileCrawling(),
+        wxGetApp().GetWebHarvester().IsKeepingWebPathWhenDownloading(),
+        wxGetApp().GetWebHarvester().GetDownloadDirectory(),
+        static_cast<int>(wxGetApp().GetWebHarvester().GetDomainRestriction()),
+        wxGetApp().GetWebHarvester().GetAllowableWebFolders());
     webHarvestDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"web-harvester.html");
     if (webHarvestDlg.ShowModal() != wxID_OK)
         { return; }
@@ -1449,7 +1448,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
 
     wxGetApp().SetLastSelectedWebPages(webHarvestDlg.GetUrls());
     wxGetApp().SetLastSelectedDocFilter(webHarvestDlg.GetSelectedDocFilter());
-    webHarvestDlg.UpdateHarvesterSettings(wxGetApp().m_harvesterOptions);
+    webHarvestDlg.UpdateHarvesterSettings(wxGetApp().GetWebHarvester());
 
     for (size_t urlCounter = 0; urlCounter < webHarvestDlg.GetUrls().GetCount(); ++urlCounter)
         {

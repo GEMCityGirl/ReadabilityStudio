@@ -636,6 +636,7 @@ void ToolsOptionsDlg::OnDolchNounHighlightColorSelect([[maybe_unused]] wxCommand
 ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= nullptr*/,
                                  const ToolSections sectionsToInclude /*= AllSections*/)  :
     m_readabilityProjectDoc(project),
+    m_userAgent(wxGetApp().GetAppOptions().GetUserAgent()),
     // project settings
     m_projectLanguage(static_cast<int>(project ?
         project->GetProjectLanguage() : wxGetApp().GetAppOptions().GetProjectLanguage())),
@@ -1339,6 +1340,11 @@ void ToolsOptionsDlg::SaveOptions()
         {
         SaveStatisticsOptions();
         return;
+        }
+    if (m_userAgent.has_changed())
+        {
+        wxGetApp().GetAppOptions().SetUserAgent(m_userAgent.get_value());
+        wxGetApp().GetWebHarvester().SetUserAgent(m_userAgent.get_value());
         }
     if (m_readabilityProjectDoc && HaveOptionsChanged())
         {
@@ -2665,6 +2671,24 @@ void ToolsOptionsDlg::CreateControls()
                     },
                 ID_THEME_COMBO);
         #endif
+
+            CreateLabelHeader(generalSettingsPage, docpanelSizer, _(L"Internet:"), true);
+
+            optionsSizer = new wxBoxSizer(wxVERTICAL);
+            docpanelSizer->Add(optionsSizer, 0, wxEXPAND | wxLEFT, OPTION_INDENT_SIZE);
+
+            wxBoxSizer* userAgentSizer = new wxBoxSizer(wxHORIZONTAL);
+            optionsSizer->Add(userAgentSizer, wxSizerFlags().Expand());
+
+            userAgentSizer->Add(
+                new wxStaticText(generalSettingsPage, wxID_STATIC, _(L"User agent:")),
+                0, wxALIGN_CENTER_VERTICAL);
+            wxTextCtrl* userAgentEdit =
+                new wxTextCtrl(generalSettingsPage, wxID_ANY, wxString{}, wxDefaultPosition,
+                    wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_userAgent));
+            userAgentSizer->Add(userAgentEdit,
+                wxSizerFlags(1).Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+            optionsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
             CreateLabelHeader(generalSettingsPage, docpanelSizer, _(L"Warnings && Prompts:"), true);
 
