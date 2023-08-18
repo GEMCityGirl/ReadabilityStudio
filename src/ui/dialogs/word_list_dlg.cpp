@@ -21,24 +21,24 @@ WordListDlg::WordListDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
         const wxSize& size /*= wxDefaultSize*/,
         long style /*= wxCAPTION|wxCLOSE_BOX|wxRESIZE_BORDER*/) :
         wxDialog(parent, id, caption, pos, size, style)
-        {
-        SetBackgroundColour(wxGetApp().GetAppOptions().GetControlBackgroundColor());
-        CreateControls();
-        Centre();
+    {
+    SetBackgroundColour(wxGetApp().GetAppOptions().GetControlBackgroundColor());
+    CreateControls();
+    Centre();
 
-        Bind(wxEVT_CLOSE_WINDOW, &WordListDlg::OnClose, this);
-        Bind(wxEVT_FIND, &WordListDlg::OnFind, this);
-        Bind(wxEVT_FIND_NEXT, &WordListDlg::OnFind, this);
-        Bind(wxEVT_BUTTON, &WordListDlg::OnNegative, this, wxID_NO);
-        Bind(wxEVT_BUTTON, &WordListDlg::OnNegative, this, wxID_CANCEL);
-        Bind(wxEVT_BUTTON, &WordListDlg::OnNegative, this, wxID_CLOSE);
-        Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &WordListDlg::OnRibbonButton, this, wxID_SAVE);
-        Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &WordListDlg::OnRibbonButton, this, wxID_PRINT);
-        Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &WordListDlg::OnRibbonButton, this, wxID_COPY);
-        Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &WordListDlg::OnRibbonButton, this, wxID_SELECTALL);
-        Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &WordListDlg::OnRibbonButton, this,
-             XRCID("ID_LIST_SORT"));
-        }
+    Bind(wxEVT_CLOSE_WINDOW, &WordListDlg::OnClose, this);
+    Bind(wxEVT_FIND, &WordListDlg::OnFind, this);
+    Bind(wxEVT_FIND_NEXT, &WordListDlg::OnFind, this);
+    Bind(wxEVT_BUTTON, &WordListDlg::OnNegative, this, wxID_NO);
+    Bind(wxEVT_BUTTON, &WordListDlg::OnNegative, this, wxID_CANCEL);
+    Bind(wxEVT_BUTTON, &WordListDlg::OnNegative, this, wxID_CLOSE);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &WordListDlg::OnRibbonButton, this, wxID_SAVE);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &WordListDlg::OnRibbonButton, this, wxID_PRINT);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &WordListDlg::OnRibbonButton, this, wxID_COPY);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &WordListDlg::OnRibbonButton, this, wxID_SELECTALL);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &WordListDlg::OnRibbonButton, this,
+            XRCID("ID_LIST_SORT"));
+    }
 
 //------------------------------------------------------
 void WordListDlg::SelectPage(const int pageId)

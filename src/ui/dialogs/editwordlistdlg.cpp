@@ -213,6 +213,8 @@ void EditWordListDlg::CreateControls()
     m_wordsList->EnableGridLines();
     m_wordsList->InsertColumn(0, wxString{});
     m_wordsList->SetColumnEditable(0);
+    m_wordsList->EnableItemAdd();
+    m_wordsList->EnableLabelEditing();
     m_wordsList->EnableItemDeletion();
     m_wordsList->SetVirtualDataProvider(m_wordData);
     m_wordsList->SetVirtualDataSize(1, 1);
@@ -332,7 +334,7 @@ void EditWordListDlg::OnFilePathChanged(wxCommandEvent& event)
     event.Skip(true);
     }
 
-    //---------------------------------------------
+//---------------------------------------------
 void EditWordListDlg::OnAddItem([[maybe_unused]] wxCommandEvent& event)
     { m_wordsList->EditItem(m_wordsList->AddRow(), 0); }
 

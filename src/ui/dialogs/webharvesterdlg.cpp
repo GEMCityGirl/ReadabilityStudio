@@ -175,21 +175,23 @@ void WebHarvesterDlg::CreateControls()
             wxID_ANY, _(L"Websites to Harvest")), wxVERTICAL);
         wxBoxSizer* urlButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
         wxBitmapButton* addUrlButton = new wxBitmapButton(Panel, ID_ADD_URL_BUTTON,
-            wxArtProvider::GetBitmap(L"ID_ADD", wxART_BUTTON, FromDIP(wxSize(16,16))));
+            wxArtProvider::GetBitmap(L"ID_ADD", wxART_BUTTON, FromDIP(wxSize(16, 16))));
         addUrlButton->SetToolTip(_(L"Add a website to the list"));
         urlButtonsSizer->Add(addUrlButton);
 
         wxBitmapButton* deleteUrlButton = new wxBitmapButton(Panel, ID_DELETE_URL_BUTTON,
-            wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize(16,16))));
+            wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize(16, 16))));
         deleteUrlButton->SetToolTip(_(L"Delete selected website"));
         urlButtonsSizer->Add(deleteUrlButton);
         urlSizer->Add(urlButtonsSizer, 0, wxALIGN_RIGHT);
 
         m_urlData->SetValues(m_urls);
-        m_urlList = new ListCtrlEx(urlSizer->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize,
+        m_urlList = new ListCtrlEx(urlSizer->GetStaticBox(), wxID_ANY, wxDefaultPosition, FromDIP(wxSize(600, 200)),
             wxLC_VIRTUAL|wxLC_EDIT_LABELS|wxLC_REPORT|wxLC_ALIGN_LEFT);
         urlSizer->Add(m_urlList, 1, wxEXPAND);
         m_urlList->EnableGridLines();
+        m_urlList->EnableItemAdd();
+        m_urlList->EnableLabelEditing();
         m_urlList->EnableItemDeletion();
         m_urlList->InsertColumn(0, _(L"Websites:"));
         m_urlList->SetColumnEditable(0);
@@ -241,7 +243,7 @@ void WebHarvesterDlg::CreateControls()
         m_docFilterCombo = new wxComboBox(Panel, wxID_ANY, wxString{}, wxDefaultPosition,
             // need to hardcode a size here because the file filter
             // string for all documents may be huge
-            wxSize(FromDIP(wxSize(100,100)).GetWidth(), -1),
+            wxSize(FromDIP(wxSize(100, 100)).GetWidth(), -1),
             choiceStrings,
             wxGetMouseState().ShiftDown() ? wxCB_DROPDOWN : wxCB_DROPDOWN|wxCB_READONLY);
         m_docFilterCombo->SetValue(m_selectedDocFilter);
@@ -298,10 +300,12 @@ void WebHarvesterDlg::CreateControls()
 
         m_domainData->SetValues(m_domains);
         m_domainList =
-            new ListCtrlEx(domainBoxSizer->GetStaticBox(), wxID_ANY, wxDefaultPosition, FromDIP(wxSize(400, 100)),
+            new ListCtrlEx(domainBoxSizer->GetStaticBox(), wxID_ANY, wxDefaultPosition, FromDIP(wxSize(600, 200)),
             wxLC_VIRTUAL | wxLC_EDIT_LABELS | wxLC_REPORT | wxLC_ALIGN_LEFT);
         domainBoxSizer->Add(m_domainList, 1, wxEXPAND|wxALL);
         m_domainList->EnableGridLines();
+        m_domainList->EnableItemAdd();
+        m_domainList->EnableLabelEditing();
         m_domainList->EnableItemDeletion();
         m_domainList->InsertColumn(0, _(L"User-defined Domain(s):"));
         m_domainList->SetColumnEditable(0);
@@ -385,7 +389,6 @@ void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester)
         }
     harvester.DownloadFilesWhileCrawling(IsDownloadFilesLocally());
     harvester.SetDownloadDirectory(GetDownloadFolder());
-    harvester.SetUserAgent(GetUserAgent());
     harvester.KeepWebPathWhenDownloading(IsRetainingWebsiteFolderStructure());
     harvester.SeachForBrokenLinks(m_logBrokenLinks);
     }
@@ -406,7 +409,6 @@ void WebHarvesterDlg::UpdateFromHarvesterSettings(const WebHarvester& harvester)
     m_selectedDomainRestriction = static_cast<int>(harvester.GetDomainRestriction());
     m_downloadFilesLocally = harvester.IsDownloadingFilesWhileCrawling();
     m_downloadFolder = harvester.GetDownloadDirectory();
-    m_userAgent = harvester.GetUserAgent();
     m_keepWebPathWhenDownloading = harvester.IsKeepingWebPathWhenDownloading();
     m_logBrokenLinks = harvester.IsSearchingForBrokenLinks();
 
