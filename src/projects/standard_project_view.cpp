@@ -2179,13 +2179,6 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                         else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
                             typeid(*dynamic_cast<Wisteria::Canvas*>(
                                 GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                                    typeid(Wisteria::Graphs::WordCloud))
-                            {
-                            exportMenuItem->SetBitmap(wordCloudIcon);
-                            }
-                        else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-                            typeid(*dynamic_cast<Wisteria::Canvas*>(
-                                GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
                                     typeid(Wisteria::Graphs::BoxPlot))
                             {
                             exportMenuItem->SetBitmap(boxPlotIcon);
@@ -2438,6 +2431,13 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                                 _(L"Sort"),
                                 readRibbonButtonSVG(L"ribbon/bar-sort.svg"),
                                 _(L"Sort the bars in the graph."));
+                            }
+                        else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
+                            typeid(*dynamic_cast<Wisteria::Canvas*>(
+                                GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+                            typeid(Wisteria::Graphs::WordCloud))
+                            {
+                            exportMenuItem->SetBitmap(wordCloudIcon);
                             }
                         editButtonRibbonBar->AddButton(wxID_COPY,
                             _(L"Copy"),

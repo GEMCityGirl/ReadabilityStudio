@@ -826,6 +826,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     const auto boxPlotIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/boxplot.svg");
     const auto reportIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/report.svg");
     const auto goalsIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/checklist.svg");
+    const auto wordCloudIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/word-cloud.svg");
 
     if (event.GetExtraLong() == SIDEBAR_READABILITY_SCORES_SECTION_ID)
         {
@@ -1272,7 +1273,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(wxID_SAVEAS, _("Save As..."));
                     m_exportMenu.AppendSeparator();
                     m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_("Export %s..."),
-                        GetActiveProjectWindow()->GetName()) )->SetBitmap(listIcon);
+                        GetActiveProjectWindow()->GetName()) )->SetBitmap(
+                            (event.GetInt() == WORD_CLOUD_PAGE_ID ? wordCloudIcon : listIcon));
                     m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _("Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
                     m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
