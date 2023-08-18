@@ -204,6 +204,11 @@ ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                    ${CMAKE_CURRENT_SOURCE_DIR}/Resources/ReportThemes $<TARGET_FILE_DIR:${PROJECT_NAME}>/ReportThemes)
+
+ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                   ${CMAKE_CURRENT_SOURCE_DIR}/Examples $<TARGET_FILE_DIR:${PROJECT_NAME}>/Examples)
 # Zip up images and menu resources
 ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
                    POST_BUILD
