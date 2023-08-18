@@ -504,7 +504,7 @@ This option only applies to batch projects, and only for batches containing fift
 
 #### Lix Gauge {-#options-lix-gauge}
 
-**Use English translations for German Lix gauge**: Check this to display Schulz’s (53) English translated bracket labels on the [German Lix](#lix-german-technical) gauge.
+**Use English translations for German Lix gauge**: Check this to display Schulz’s [-@{schulz}53] English translated bracket labels on the [German Lix](#lix-german-technical) gauge.
 
 \newpage
 

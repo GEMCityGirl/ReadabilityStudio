@@ -10,7 +10,7 @@ The Harris-Jacobson Wide Range Readability Formula readability test [-@{harris-j
 
 Note that numerals\index{numerals!Harris-Jacobson} are entirely excluded from this test and are considered neither familiar nor unfamiliar.
 
-The Wide Range Readability Formula is based on previous Harris-Jacobson formulas designed for preprimer through eighth-grade reader-level materials. The Wide Range variation was trained on a new series of basal readers (30; Chapter 3). This series included:
+The Wide Range Readability Formula is based on previous Harris-Jacobson formulas designed for preprimer through eighth-grade reader-level materials. The Wide Range variation was trained on a new series of basal readers [@{harris-jacobson}30]. This series included:
 
 ```{r, echo=F}
 library(kableExtra)
@@ -85,7 +85,7 @@ hjScoreTable <- tibble("Predicted\nRaw Score" = c("1.1", "1.2", "1.3", "1.4", "1
 if (knitr::is_latex_output())
   { colnames(hjScoreTable) %<>% kableExtra::linebreak(align='c') }
 
-footnoteLabel <- "Readability scores above 8.5 were derived by extrapolation (21; Chapter 3)"
+footnoteLabel <- "Readability scores above 8.5 were derived by extrapolation (21)"
 
 kableExtra::kbl(hjScoreTable, booktabs=T, centering=T, align='r',escape=F) %>%
   kableExtra::kable_classic(full_width=F) %>%

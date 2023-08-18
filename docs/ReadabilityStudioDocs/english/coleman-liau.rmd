@@ -32,7 +32,7 @@ Where:
 | S   | Number of sentences (per 100 words)  |
 +-----+--------------------------------------+
 
-Though not explicitly mentioned in their article (284), the estimated cloze % from the first equation must be converted to a fraction (i.e., divided by 100) to produce the expected results. For this reason, “$(E/100)$” is shown in the second equation, rather than just “estimated cloze %” as it appears in the source article. As an example, an estimated cloze % of 51.3 should yield a grade level of 9:
+Though not explicitly mentioned in their article [@{coleman-liau}284], the estimated cloze % from the first equation must be converted to a fraction (i.e., divided by 100) to produce the expected results. For this reason, “$(E/100)$” is shown in the second equation, rather than just “estimated cloze %” as it appears in the source article. As an example, an estimated cloze % of 51.3 should yield a grade level of 9:
 
 $$
 9 = (-27.4004*(51.3/100)) + 23.06395
