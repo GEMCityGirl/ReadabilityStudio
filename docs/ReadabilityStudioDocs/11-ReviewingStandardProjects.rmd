@@ -187,7 +187,7 @@ A **Notes** section may be included at the bottom of the formatted report if the
 
 ## Words Breakdown {#reviewing-word-breakdowns}
 
-After opening a project, click on the **Words Breakdown** icon on the project sidebar to view the lists and highlighted reports of difficult words:
+After opening a project, click on the **Words Breakdown** icon on the project sidebar to view the lists, highlighted reports, and graphs of difficult words:
 
 ![](Images/difficultwords.png)
 
@@ -207,9 +207,9 @@ The types of difficult-word lists that may be shown are:
 
 **Key Words**: This list is the same as **All Words**, except that it excludes filenames, numeric words, and common words, and then combines the remaining words. In regards to combining words, words with the same root will be merged into a single row. For example, *report*, *reports*, and *reporting* will be combined into one row, with the frequency counts for all three words also combined. As for excluding words, common words (e.g., *the*), numerals, and filenames are not included in this list. (If no words can be combined and there are no common words to ignore, then this list will not be shown.)
 
-Note that if you are ignoring incomplete sentences, then these lists will only include the words from complete sentences. If you need to review all the words from the document, then select the option [**Do not exclude any text**](#options-text-exclusion). Refer to \@ref(how-text-is-excluded) to learn more about how *Readability Studio* handles incomplete sentences.
-
-To view any of these lists, click on its name under the **Words Breakdown** section on the sidebar. For example, click on the **Words Breakdown** icon on the sidebar, and when it expands click on **3+ Syllables** underneath it.
+::: {.notesection data-latex=""}
+If you are ignoring incomplete sentences, then these lists will only include the words from complete sentences. If you need to review all the words from the document, then select the option [**Do not exclude any text**](#options-text-exclusion). Refer to \@ref(how-text-is-excluded) to learn more about how *Readability Studio* handles incomplete sentences.
+:::
 
 To find the most complex words, sort the **Syllable Count** column of the **3+ Syllables** list. You can sort any of the columns by clicking on the column header. To change the sorting order to either ascending or descending, click the column header a second time. As you can see below, the words with the most syllables are now shown at the top of the list.
 
@@ -237,7 +237,9 @@ The different types of text reports that may be shown are:
 
 You can change both the font and highlighting color by opening the [**Project Properties**](#options-overview) dialog and selecting [**Highlighted Reports**](#options-highlighted-reports). Note that changing these options from the **Project Properties** dialog will only affect the current project. If you want to make changes to any future projects, then go to the **Options** dialog from the **Tools** tab instead.
 
-A **Word Counts** [bar chart](#options-bar-charts) is also included in this section. This graph shows the total counts of each type of word (e.g., 3+ syllable words) and how each category compares to one another. This bar chart will appear like this:
+The different types of graphs that may be shown are:
+
+**Word Counts** [bar chart](#options-bar-charts): This graph shows the total counts of each type of word (e.g., 3+ syllable words) and how each category compares to one another. This bar chart will appear like this:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("Images/barchart.png")
@@ -245,7 +247,7 @@ knitr::include_graphics("Images/barchart.png")
 
 In the above example, we can see that there are 70 unfamiliar New Dale-Chall words, but only 42 3+ syllable words. From this, we could infer that we should first concentrate on replacing these unfamiliar words. Lists of these words can be found by clicking on the [**Difficult Words**](#reviewing-word-breakdowns) icon on the project sidebar.
 
-Finally, a histogram of the words (grouped by syllable count)\index{syllables!reviewing in the results} is also available:
+**Syllable Counts**: This is a histogram of the words, grouped by syllable count\index{syllables!reviewing in the results}.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("Images/SyllableCountHistogram.png")
@@ -258,6 +260,18 @@ The total value of a word count reflects the number of words, including repeats 
 :::
 
 See also \@ref(proper-nouns-in-lists) for more information about proper-noun handling.
+
+**Key Word Cloud**: In conjunction with the **Key Words** list, a key word cloud is also included to visualize the main concepts of the document(s).
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("Images/NonGenerated/key-word-cloud.png")
+```
+
+A word cloud shows words from a document in a random layout with randomly assigned colors. The size of each word is based on its relative frequency within the document. In other words, the larger the word, the more often it is used compared to other words.
+
+This particular word cloud displays the ~100 most frequently occurring key words appearing in the document. Like the **Key Words** list, these will be combined words with uncommon ones (e.g., *the*) removed. In the case of combined words, the most frequent instance of similar words will be shown. For example, if the word *report* appears more times than *reporting* and *reports*, then *report* will appear in the word cloud. Also, the size of the word *report* will be based on the number of times *report*, *reporting*, and *reports* all appear.
+
+In a batch project, this word cloud will show the key words across all documents.
 
 ## Sentences Breakdown\index{sentences!reviewing in the results|(ii} {#reviewing-sentences-breakdown}
 

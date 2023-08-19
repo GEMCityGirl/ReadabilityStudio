@@ -15,6 +15,7 @@
 
 #### Graph Enhancements {-}
 
+- Added a word cloud to visualize the key terms within a document.
 - Graphs now use Direct2D for rendering on Windows, resulting in faster drawing and sharper text.
 - Images are now saved with 300 DPI resolution.
 - Sentence heatmaps now show the sentences' word counts.
