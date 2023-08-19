@@ -3988,7 +3988,7 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
             DisplayHelp(_DT(L"reviewing-sentences-breakdown.html"));
             break;
         case BaseProjectView::WORD_CLOUD_PAGE_ID:
-            DisplayHelp(_DT(L"reviewing-word-clouds.html"));
+            DisplayHelp(_DT(L"reviewing-word-breakdowns.html"));
             break;
         case BaseProjectView::READABILITY_SCORES_PAGE_ID:
             [[fallthrough]];
