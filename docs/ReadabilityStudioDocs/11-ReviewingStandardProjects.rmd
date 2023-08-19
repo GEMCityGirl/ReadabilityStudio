@@ -128,6 +128,8 @@ Here, we can see that an entire collection of documents are plotted onto a singl
 
 You can also print or save a blank copy of any of these graphs. This is useful for printing handouts for instructors or students to use. To print a blank graph, go to the **Readability** tab on the ribbon, click the `r keys("Blank Graphs")` button, and select the graph that you wish to save.
 
+\newpage
+
 ## Goals {#reviewing-goals}
 
 Goals are recommended score ranges that a document should fall within.
@@ -147,6 +149,8 @@ In the above image, we can see that this project is recommending:
 Also, the warning icons indicate that currently the document is failing to meet all these criteria.
 
 Goals can be created through a [test bundle](#test-bundles). When the bundle is applied, both its tests and goals will be added to the project.
+
+\newpage
 
 ## Statistics {#reviewing-statistics}
 
@@ -184,6 +188,8 @@ A **Notes** section may be included at the bottom of the formatted report if the
 ::: {.notesection data-latex=""}
 3+ syllable words and [Fog](#gunning-fog-test) and [SMOG](#smog-test) hard words are all the same except for how numerals (e.g., phone numbers and dates) are handled. SMOG always sounds out each digit of a numeric word, whereas Fog ignores numeric words. You can control how numeric words are handled from the [**Document Indexing**](#document-analysis) section of the [**Options**](#options-overview) dialog (available on the **Tools** tab).
 :::
+
+\newpage
 
 ## Words Breakdown {#reviewing-word-breakdowns}
 
@@ -247,6 +253,7 @@ knitr::include_graphics("Images/barchart.png")
 
 In the above example, we can see that there are 70 unfamiliar New Dale-Chall words, but only 42 3+ syllable words. From this, we could infer that we should first concentrate on replacing these unfamiliar words. Lists of these words can be found by clicking on the [**Difficult Words**](#reviewing-word-breakdowns) icon on the project sidebar.
 
+:::: {.minipage data-latex="{\textwidth}"}
 **Syllable Counts**: This is a histogram of the words, grouped by syllable count\index{syllables!reviewing in the results}.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
@@ -260,7 +267,9 @@ The total value of a word count reflects the number of words, including repeats 
 :::
 
 See also \@ref(proper-nouns-in-lists) for more information about proper-noun handling.
+::::
 
+::: {.minipage data-latex="{\textwidth}"}
 **Key Word Cloud**: In conjunction with the **Key Words** list, a key word cloud is also included to visualize the main concepts of the document(s).
 
 ```{r echo=F, fig.align='center', out.width='75%'}
@@ -272,6 +281,9 @@ A word cloud shows words from a document in a random layout with randomly assign
 This particular word cloud displays the ~100 most frequently occurring key words appearing in the document. Like the **Key Words** list, these will be combined words with uncommon ones (e.g., *the*) removed. In the case of combined words, the most frequent instance of similar words will be shown. For example, if the word *report* appears more times than *reporting* and *reports*, then *report* will appear in the word cloud. Also, the size of the word *report* will be based on the number of times *report*, *reporting*, and *reports* all appear.
 
 In a batch project, this word cloud will show the key words across all documents.
+:::
+
+\newpage
 
 ## Sentences Breakdown\index{sentences!reviewing in the results|(ii} {#reviewing-sentences-breakdown}
 
@@ -332,6 +344,8 @@ To find the location of a sentence, click on the square and its sentence number 
 Refer to example \@ref(finding-difficult-sections) for a more detailed tutorial on sentence heatmaps.
 
 \index{sentences!reviewing in the results|)}
+
+\newpage
 
 ## Grammar {#reviewing-standard-grammar}
 
@@ -593,6 +607,8 @@ When they asked Blake if he would be willing to work over the weekend, he just *
 Note that if there are no sentences with overused words in your document, then this window will not be included.
 
 To view any sentence in its original context, double-click on it. This will take you to the [**Highlighted Report**](#reviewing-standard-grammar) page with that sentence selected.
+
+\newpage
 
 ## Dolch Sight Words {#reviewing-dolch}
 
