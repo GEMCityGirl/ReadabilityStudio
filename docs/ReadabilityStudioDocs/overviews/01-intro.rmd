@@ -40,7 +40,7 @@ glue('As a final note, there are a few hybrid tests which can be calculated via 
 $if_else(UserManualMode, OptionsDesc, "")^', .open='$', .close='^')
 ```
 
-## Grade Level Clamping {#grade-level-clamping}
+## Grade-level Clamping {#grade-level-clamping}
 
 A key difference between graph and table-based tests versus regression-based tests is how the former has defined upper limits for their scores. For example, graph-based tests acquire their scores by finding the intersection of certain factors (e.g., sentence length) within a set a bands. These bands represent grades, and there are a specific set of grade bands available. As an example, a [Fry](#fry-test) graph has bands ranging from 1^st^ grade to 17^th^ (i.e., college):
 
