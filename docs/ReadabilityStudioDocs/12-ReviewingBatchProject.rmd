@@ -81,6 +81,8 @@ Note that this subitem will only be available if at least one predicted cloze te
 
 Both of these tabs will include the same statistics as the **Score Summary** page.
 
+\newpage
+
 ## Histograms {#reviewing-batch-histograms}
 
 After opening a project, click on the **Histograms** icon on the project sidebar to view your documents' test scores graphically plotted as histograms.
@@ -115,6 +117,8 @@ knitr::include_graphics("Images/histoimproved.png")
 
 The binning method, label display, and general appearance of these histograms can be customized from the [**Histogram**](#options-histograms) page of either the [**Options**](#options-overview) or [**Project Properties**](#options-overview) dialog.
 
+\newpage
+
 ## Box Plots\index{box plots!reviewing in batch projects} {#reviewing-batch-box-plots}
 
 After opening a project, click on the **Score Box Plots** icon on the project sidebar to view the documents' test scores graphically shown as box plots.
@@ -135,6 +139,8 @@ knitr::include_graphics("Images/boxindex.png")
 ```
 
 As we can see above, the middle half of the documents fall within a marginally acceptable range of 46–60.5 (60–80 is normally preferred). The upper whisker goes up to 75, meaning that there are a decent number of document in the 60.5–75 range. Unfortunately, the lower whisker extends all the way to 33—this indicates a fair amount of difficult documents. As with the grade-level plot, this graph helps us conclude that some documents in this batch should be revised to lower their scores.
+
+\newpage
 
 ## Readability Graphs {#batch-readability-graphs}
 
@@ -169,6 +175,8 @@ Note that test-specific word counts/percentages (e.g., Dale-Chall unfamiliar wor
 
 **Key Word Cloud**: Refer to \@ref(reviewing-word-breakdowns).
 
+\newpage
+
 ## Long Sentences {#reviewing-batch-long-sentences}
 
 After opening a project, click on the **Sentences Breakdown** icon on the project sidebar and click on the **Long Sentences** subitem. This window will display a list of the difficult sentences from your documents.
@@ -190,6 +198,8 @@ knitr::include_graphics("Images/batchlongestsentenceviewitem.png")
 ```
 
 Note that if there are no long sentences in your documents, then this window will not be included.
+
+\newpage
 
 ## Summary Statistics {#reviewing-batch-summary-stats}
 
@@ -385,6 +395,8 @@ To view a specific document's overused words, right click on its row and select 
 
 Refer to \@ref(reviewing-standard-grammar) for an explanation about overused words.
 
+\newpage
+
 ## Dolch Sight Words {#reviewing-batch-dolch}
 
 After opening a project, click on the **Dolch Sight Words** icon on the project sidebar. There will be three lists available: **Dolch Word Coverage**, **Dolch Words**, and **Non-Dolch Words**.
@@ -406,6 +418,8 @@ The **Non-Dolch Words** subitem will display the percentages of words from each 
 ![](Images/batchdolchnonwords.png)
 
 Note that the raw counts of these words will also be included if [**Extended Information**](#options-summary-report) is enabled.
+
+\newpage
 
 ## Warnings {#reviewing-batch-warnings}
 

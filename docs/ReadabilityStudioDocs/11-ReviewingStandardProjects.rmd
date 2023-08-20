@@ -197,7 +197,9 @@ After opening a project, click on the **Words Breakdown** icon on the project si
 
 ![](Images/difficultwords.png)
 
-The types of difficult-word lists that may be shown are:
+### Reviewing Word Lists {-}
+
+The types of word lists that may be shown are:
 
 **3+ Syllables**: This list displays all the document's words that are three or more syllables\index{syllables!reviewing in the results}. It also displays how many syllables each word contains and their respective frequency counts. This window is only available if the document contains 3+ syllable words.
 
@@ -229,6 +231,8 @@ To find a specific word in a list, type the word into the **Search** bar at the 
 
 Double-click on any word in these lists to display the respective highlighted text report with the first instance of that word selected.
 
+### Reviewing Word Reports {-}
+
 The different types of text reports that may be shown are:
 
 **3+ Syllables**: This text report contains the document with all the words that are three or more syllables highlighted. This window is only available if the document contains 3+ syllable words.
@@ -242,6 +246,8 @@ The different types of text reports that may be shown are:
 **Harris-Jacobson (Unfamiliar)**: This text report contains the document with all the [Harris-Jacobson](#harris-jacobson)\index{Harris-Jacobson Wide Range!reviewing unfamiliar words} unfamiliar words highlighted. The Harris-Jacobson word list is a collection of words that are considered to be familiar to most primary-age readers. Words in the document that are not found on this list may be less familiar to younger readers and hence more difficult. This window is only available if the Harris-Jacobson test is included in the project.
 
 You can change both the font and highlighting color by opening the [**Project Properties**](#options-overview) dialog and selecting [**Highlighted Reports**](#options-highlighted-reports). Note that changing these options from the **Project Properties** dialog will only affect the current project. If you want to make changes to any future projects, then go to the **Options** dialog from the **Tools** tab instead.
+
+### Reviewing Word-based Graphs {-}
 
 The different types of graphs that may be shown are:
 
