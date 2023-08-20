@@ -2282,7 +2282,7 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
         // sentence length
         testsOverviewDlg.GetListCtrl()->SetItemText(i, 6,
             testPos->has_factor(readability::test_factor::sentence_length) ?
-            _DT(L" X ") : wxString{});
+            wxString{ _DT(L" X ") } : wxString{});
         // description
         lily_of_the_valley::html_extract_text filter_html;
         testsOverviewDlg.GetListCtrl()->SetItemText(i, 7,

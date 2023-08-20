@@ -3748,33 +3748,33 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         testBundle->InsertEndChild(testBundleDescription);
         // included tests
         auto testNames = doc.NewElement(XML_TEST_NAMES.mb_str());
-        for (const auto bundledTest : currentBundle->GetTestGoals())
+        for (const auto& bundledTest : currentBundle->GetTestGoals())
             {
             auto testName = doc.NewElement(XML_TEST_NAME.mb_str());
             wxString testNameEncoded = encode({ bundledTest.GetName().c_str() }, false).c_str();
             testName->SetAttribute(XML_VALUE.mb_str(), testNameEncoded.mb_str());
             testName->SetAttribute(XML_GOAL_MIN_VAL_GOAL.mb_str(),
                 (std::isnan(bundledTest.GetMinGoal()) ?
-                    wxString{} : wxString::FromCDouble(bundledTest.GetMinGoal()).mb_str()));
+                    "" : wxString::FromCDouble(bundledTest.GetMinGoal()).mb_str()));
             testName->SetAttribute(XML_GOAL_MAX_VAL_GOAL.mb_str(),
                 (std::isnan(bundledTest.GetMaxGoal()) ?
-                    wxString{} : wxString::FromCDouble(bundledTest.GetMaxGoal()).mb_str()));
+                    "" : wxString::FromCDouble(bundledTest.GetMaxGoal()).mb_str()));
             testNames->InsertEndChild(testName);
             }
         testBundle->InsertEndChild(testNames);
         // stats goals
         auto statGoals = doc.NewElement(XML_BUNDLE_STATISTICS.mb_str());
-        for (const auto bundledStat : currentBundle->GetStatGoals())
+        for (const auto& bundledStat : currentBundle->GetStatGoals())
             {
             auto statGoal = doc.NewElement(XML_BUNDLE_STATISTIC.mb_str());
             wxString testNameEncoded = encode({ bundledStat.GetName().c_str() }, false).c_str();
             statGoal->SetAttribute(XML_VALUE.mb_str(), testNameEncoded.mb_str());
             statGoal->SetAttribute(XML_GOAL_MIN_VAL_GOAL.mb_str(),
                 (std::isnan(bundledStat.GetMinGoal()) ?
-                    wxString{} : wxString::FromCDouble(bundledStat.GetMinGoal()).mb_str()));
+                    "" : wxString::FromCDouble(bundledStat.GetMinGoal()).mb_str()));
             statGoal->SetAttribute(XML_GOAL_MAX_VAL_GOAL.mb_str(),
                 (std::isnan(bundledStat.GetMaxGoal()) ?
-                    wxString{} : wxString::FromCDouble(bundledStat.GetMaxGoal()).mb_str()));
+                    "" : wxString::FromCDouble(bundledStat.GetMaxGoal()).mb_str()));
             statGoals->InsertEndChild(statGoal);
             }
         testBundle->InsertEndChild(statGoals);
