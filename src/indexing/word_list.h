@@ -70,7 +70,7 @@ public:
         @returns @c true if the word is found.
         @note The list should be sorted before calling this.*/
     [[nodiscard]]
-    const bool contains(const wchar_t* search_word) const
+    bool contains(const wchar_t* search_word) const
         {
         return std::binary_search(get_words().cbegin(), get_words().cend(),
                                   word_type(search_word));
@@ -81,7 +81,7 @@ public:
         @returns @c true if the word is found.
         @note The list should be sorted before calling this.*/
     [[nodiscard]]
-    const bool contains(const wchar_t* search_word, const size_t length) const
+    bool contains(const wchar_t* search_word, const size_t length) const
         {
         return std::binary_search(get_words().cbegin(), get_words().cend(),
                                   word_type(search_word, length));
