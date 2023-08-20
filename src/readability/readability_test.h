@@ -278,7 +278,7 @@ namespace readability
             m_is_integral(is_integral)
             { m_interfaceId = interface_id; }
         /// Copy CTOR.
-        readability_test(const readability_test& that) :
+        explicit readability_test(const readability_test& that) :
             m_id(that.m_id),
             m_short_name(that.m_short_name),
             m_long_name(that.m_long_name),
