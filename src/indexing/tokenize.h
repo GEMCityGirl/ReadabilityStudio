@@ -230,7 +230,8 @@ namespace tokenize
                     bool nextToOtherBulletedLine = false;
                     // look forward to next line and see if it is a bullet
                     const size_t nextNewlineOffset = std::wcscspn(m_current_char, L"\r\n");
-                    if (nextNewlineOffset != -1 && ((m_current_char+nextNewlineOffset) < m_text_block_end))
+                    if (nextNewlineOffset != std::wstring::npos &&
+                        ((m_current_char+nextNewlineOffset) < m_text_block_end))
                         {
                         const wchar_t* nextNewline = (m_current_char+nextNewlineOffset);
                         while (string_util::is_either<wchar_t>(*nextNewline, L'\n', L'\r'))
@@ -244,10 +245,10 @@ namespace tokenize
                         {
                         const size_t previousNewlineOffset =
                             string_util::find_last_of(m_text_block_beginning, L"\r\n",
-                            (origionalStop-m_text_block_beginning)-1);
+                                                      (origionalStop-m_text_block_beginning)-1);
                         // previous newline or start of text
                         const wchar_t* previousNewline =
-                            (previousNewlineOffset != -1) ?
+                            (previousNewlineOffset != std::wstring::npos) ?
                             (m_text_block_beginning+previousNewlineOffset) : m_text_block_beginning;
                         assert(previousNewline); assert(previousNewline<m_text_block_end);
                         while (string_util::is_either<wchar_t>(*previousNewline, L'\n', L'\r'))
