@@ -3,6 +3,7 @@ library(glue)
 library(readr)
 library(stringr)
 library(fs)
+library(lubridate)
 
 docFolder <- dirname(rstudioapi::getSourceEditorContext()$path)
 source(glue("{docFolder}/ReadabilityStudioDocs/R/appdown.r"))
