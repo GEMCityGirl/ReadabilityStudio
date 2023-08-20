@@ -25,7 +25,7 @@
 #include "../Wisteria-Dataviz/src/util/idhelpers.h"
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
 #include "../Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
-#include "../Wisteria-Dataviz/src/util/LogFile.h"
+#include "../Wisteria-Dataviz/src/util/logfile.h"
 #include "../Wisteria-Dataviz/src/ui/mainframe.h"
 #include "../Wisteria-Dataviz/src/ui/app.h"
 #include "../Wisteria-Dataviz/src/wxStartPage/startpage.h"
