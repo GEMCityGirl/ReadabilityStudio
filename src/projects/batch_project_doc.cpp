@@ -1408,8 +1408,8 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             {
             FilePathResolver fileResolver;
             size_t excelTag = (*pos)->GetOriginalDocumentFilePath().MakeLower().find(_DT(L".xlsx#"));
-            assert(excelTag != -1);
-            if (excelTag != -1)
+            assert(excelTag != std::wstring::npos);
+            if (excelTag != std::wstring::npos)
                 {
                 wxFileName fn((*pos)->GetOriginalDocumentFilePath().substr(0, excelTag+5));
                 if (!wxFile::Exists(fn.GetFullPath()) )
@@ -1510,8 +1510,8 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
         else if (fileResolve.IsArchivedFile())
             {
             size_t archiveTag = (*pos)->GetOriginalDocumentFilePath().MakeLower().find(_DT(L".zip#"));
-            assert(archiveTag != -1);
-            if (archiveTag != -1)
+            assert(archiveTag != std::wstring::npos);
+            if (archiveTag != std::wstring::npos)
                 {
                 wxFileName fn((*pos)->GetOriginalDocumentFilePath().substr(0, archiveTag+4));
                 if (!wxFile::Exists(fn.GetFullPath()) )
