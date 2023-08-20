@@ -1678,7 +1678,7 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
         }
 
     m_currentlySelectedFileName = list->GetItemTextEx(scoreListItem, 0);
-    std::wstring scoreText = L"<br /><span style='font-weight:bold;'>" +
+    wxString scoreText = L"<br /><span style='font-weight:bold;'>" +
             list->GetItemTextFormatted(scoreListItem, 0) + L"</span><hr>";
 
     BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(GetDocument());
@@ -1844,14 +1844,15 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
             }
         }
 
-    lily_of_the_valley::html_format::strip_hyperlinks(scoreText);
+    std::wstring scoreTextStrippedLinks{ scoreText };
+    lily_of_the_valley::html_format::strip_hyperlinks(scoreTextStrippedLinks);
     if (m_testExplanations)
         {
         m_testExplanations->GetHtmlWindow()->SetPage(
             ProjectReportFormat::FormatHtmlReportStart(
                 wxGetApp().GetAppOptions().GetControlBackgroundColor(),
                 Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                    wxGetApp().GetAppOptions().GetControlBackgroundColor())) + scoreText +
+                    wxGetApp().GetAppOptions().GetControlBackgroundColor())) + scoreTextStrippedLinks +
                     ProjectReportFormat::FormatHtmlReportEnd());
         }
 
