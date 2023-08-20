@@ -434,7 +434,7 @@ namespace Wisteria::Graphs
             wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).
                 GetPointSize()*1.25f, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC,
                 wxFONTWEIGHT_BOLD, false, GetFancyFontFaceName());
-        for (const auto level : GetLevelLabels())
+        for (const auto& level : GetLevelLabels())
             {
             wxPoint pt;
             GetPhysicalCoordinates(level.GetX(), level.GetY(), pt);
