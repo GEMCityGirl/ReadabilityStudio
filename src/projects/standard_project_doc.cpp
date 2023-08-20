@@ -4858,7 +4858,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 CRLF,
                 IGNORE_HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
-                lily_of_the_valley:html_encode_text::simple_encode(
+                lily_of_the_valley::html_encode_text::simple_encode(
                     { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #else
                 rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
@@ -4869,7 +4869,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 CRLF,
                 HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
-                lily_of_the_valley:html_encode_text::simple_encode(
+                lily_of_the_valley::html_encode_text::simple_encode(
                     { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #else
                 rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
@@ -4880,7 +4880,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 CRLF,
                 HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
-                lily_of_the_valley:html_encode_text::simple_encode(
+                lily_of_the_valley::html_encode_text::simple_encode(
                     { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #else
                 rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
@@ -4891,7 +4891,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 CRLF,
                 HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
-                lily_of_the_valley:html_encode_text::simple_encode(
+                lily_of_the_valley::html_encode_text::simple_encode(
                     { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #else
                 rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
@@ -4902,7 +4902,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 CRLF,
                 HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
-                lily_of_the_valley:html_encode_text::simple_encode(
+                lily_of_the_valley::html_encode_text::simple_encode(
                     { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #else
                 rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
@@ -4913,7 +4913,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 CRLF,
                 HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
-                lily_of_the_valley:html_encode_text::simple_encode(
+                lily_of_the_valley::html_encode_text::simple_encode(
                     { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #else
                 rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
@@ -4924,7 +4924,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 CRLF,
                 HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
-                lily_of_the_valley:html_encode_text::simple_encode(
+                lily_of_the_valley::html_encode_text::simple_encode(
                     { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #else
                 rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
@@ -4938,7 +4938,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 CRLF,
                 DUPLICATE_HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
-                lily_of_the_valley:html_encode_text::simple_encode(
+                lily_of_the_valley::html_encode_text::simple_encode(
                     { grammarIssuesLegendLabel.wc_str(), grammarIssuesLegendLabel.length() }).c_str(),
             #else
                 rtfEncode({ grammarIssuesLegendLabel.wc_str(), grammarIssuesLegendLabel.length()}).c_str(),
@@ -4951,7 +4951,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 CRLF,
                 PHRASE_HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
-                lily_of_the_valley:html_encode_text::simple_encode(
+                lily_of_the_valley::html_encode_text::simple_encode(
                     { writingStyleLegendLabel.wc_str(), writingStyleLegendLabel.length() }).c_str(),
             #else
                 rtfEncode({ writingStyleLegendLabel.wc_str(), writingStyleLegendLabel.length() }).c_str(),
@@ -4964,7 +4964,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     CRLF,
                     DOLCH_CONJUNCTION_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
                 #ifdef __WXGTK__
-                    lily_of_the_valley:html_encode_text::simple_encode(
+                    lily_of_the_valley::html_encode_text::simple_encode(
                         { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
                 #else
                     rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
@@ -4977,7 +4977,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     CRLF,
                     DOLCH_PREPOSITIONS_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
                 #ifdef __WXGTK__
-                    lily_of_the_valley:html_encode_text::simple_encode(
+                    lily_of_the_valley::html_encode_text::simple_encode(
                         { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
                 #else
                     rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
@@ -4990,7 +4990,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     CRLF,
                     DOLCH_PRONOUN_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
                 #ifdef __WXGTK__
-                    lily_of_the_valley:html_encode_text::simple_encode(
+                    lily_of_the_valley::html_encode_text::simple_encode(
                         { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
                 #else
                     rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
@@ -5003,7 +5003,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     CRLF,
                     DOLCH_ADVERB_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
                 #ifdef __WXGTK__
-                    lily_of_the_valley:html_encode_text::simple_encode(
+                    lily_of_the_valley::html_encode_text::simple_encode(
                         { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
                 #else
                     rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
@@ -5016,7 +5016,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     CRLF,
                     DOLCH_ADJECTIVE_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
                 #ifdef __WXGTK__
-                    lily_of_the_valley:html_encode_text::simple_encode(
+                    lily_of_the_valley::html_encode_text::simple_encode(
                         { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
                 #else
                     rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
@@ -5029,7 +5029,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     CRLF,
                     DOLCH_VERB_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
                 #ifdef __WXGTK__
-                    lily_of_the_valley:html_encode_text::simple_encode(
+                    lily_of_the_valley::html_encode_text::simple_encode(
                         { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
                 #else
                     rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
@@ -5042,7 +5042,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     CRLF,
                     DOLCH_NOUN_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
                 #ifdef __WXGTK__
-                    lily_of_the_valley:html_encode_text::simple_encode(
+                    lily_of_the_valley::html_encode_text::simple_encode(
                         { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
                 #else
                     rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
@@ -5054,7 +5054,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 CRLF,
                 HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
-                lily_of_the_valley:html_encode_text::simple_encode(
+                lily_of_the_valley::html_encode_text::simple_encode(
                     { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #else
                 rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
@@ -5609,7 +5609,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         CRLF,
                         HIGHLIGHT_BEGIN_LEGEND, HIGHLIGHT_END_LEGEND,
                     #ifdef __WXGTK__
-                        lily_of_the_valley:html_encode_text::simple_encode(
+                        lily_of_the_valley::html_encode_text::simple_encode(
                             { unfamiliarCountLabel.wc_str(), unfamiliarCountLabel.length() }).c_str(),
                     #else
                         rtfEncode({ unfamiliarCountLabel.wc_str(), unfamiliarCountLabel.length() }).c_str(),
