@@ -750,27 +750,23 @@ ReadabilityFormulaParser::ReadabilityFormulaParser(const BaseProject* project,
         },
         // constants for text exclusion/word & sentence counting
         {
-            _DT("Default"), 0
+            _DT("Default"), 0.0
         },
         {
-            "DaleChall", 1
+            "DaleChall", 1.0
         },
         {
-            "HarrisJacobson",
-            2
+            "HarrisJacobson", 2.0
         },
         {
-            "GunningFog",
-            3
+            "GunningFog", 3.0
         },
         // constants for syllable counting
         {
-            "NumeralsFullySyllabized",
-            1
+            "NumeralsFullySyllabized", 1.0
         },
         {
-            "NumeralsAreOneSyllable",
-            2
+            "NumeralsAreOneSyllable", 2.0
         }
         });
     }
