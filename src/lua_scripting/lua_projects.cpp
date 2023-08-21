@@ -1576,7 +1576,7 @@ namespace LuaScripting
 
     Luna<StandardProject>::PropertyType StandardProject::properties[] =
         {
-            { nullptr, nullptr }
+            { nullptr, nullptr, nullptr }
         };
 
     Luna<StandardProject>::FunctionType StandardProject::methods[] = {
@@ -2658,7 +2658,7 @@ namespace LuaScripting
 
     Luna<BatchProject>::PropertyType BatchProject::properties[] =
         {
-            { nullptr, nullptr }
+            { nullptr, nullptr, nullptr }
         };
 
     Luna<BatchProject>::FunctionType BatchProject::methods[] = {
