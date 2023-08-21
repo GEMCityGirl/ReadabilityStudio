@@ -621,13 +621,13 @@ void BaseProjectView::OnEditGraphOpacity(wxCommandEvent& event)
     wxBitmap bmp(wxGetApp().GetMainFrame()->FromDIP(wxSize(300, 300)));
     uint8_t opacity = wxALPHA_OPAQUE;
 
-    const auto fillSquare = [](wxBitmap& bmp, wxColour opacityColor)
+    const auto fillSquare = [](wxBitmap& theBmp, wxColour opacityColor)
         {
-        wxMemoryDC memDC(bmp);
+        wxMemoryDC memDC(theBmp);
         memDC.SetBrush(wxBrush(opacityColor));
         memDC.SetPen(*wxBLACK_PEN);
         memDC.Clear();
-        memDC.DrawRectangle(0, 0, bmp.GetWidth(), bmp.GetHeight());
+        memDC.DrawRectangle(0, 0, theBmp.GetWidth(), theBmp.GetHeight());
         memDC.SelectObject(wxNullBitmap);
         };
 
