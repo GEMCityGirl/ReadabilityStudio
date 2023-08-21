@@ -1214,7 +1214,7 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
             wxString outputStr;
             wxString expStr;
             /// @todo with c++20's format library, move this save code into phrase_collection
-            for (const auto phrase : phrases.get_phrases())
+            for (const auto& phrase : phrases.get_phrases())
                 {
                 outputStr += phrase.first.to_string().c_str();
                 // don't bother exporting blank columns
@@ -3196,7 +3196,7 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
         {
         if (!textWindow)
             { return; }
-        std::wstring htmlText = textWindow->GetFormattedTextHtml(wxString(textWindowStyleCounter++));
+        std::wstring htmlText = textWindow->GetFormattedTextHtml(wxString(textWindowStyleCounter++)).ToStdWstring();
         textWindowStyleSection += L"\n" +
             wxString(html_extract_text::get_style_section(htmlText));
         htmlText = html_extract_text::get_body(htmlText);
@@ -3213,7 +3213,7 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
         {
         if (!html)
             { return; }
-        std::wstring htmlText = *(html->GetParser()->GetSource());
+        std::wstring htmlText = (html->GetParser()->GetSource())->ToStdWstring();
         lily_of_the_valley::html_format::strip_hyperlinks(htmlText);
         htmlText = html_extract_text::get_body(htmlText);
         outputText += wxString::Format(L"\n%s<div class='caption'>%s</div>\n%s\n",
