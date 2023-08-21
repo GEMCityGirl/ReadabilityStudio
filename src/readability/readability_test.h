@@ -279,6 +279,7 @@ namespace readability
             { m_interfaceId = interface_id; }
         /// Copy CTOR.
         explicit readability_test(const readability_test& that) :
+            test_with_classification(that),
             m_id(that.m_id),
             m_short_name(that.m_short_name),
             m_long_name(that.m_long_name),
