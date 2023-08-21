@@ -6457,7 +6457,7 @@ void BatchProjectDoc::SetScoreStatsRow(ListCtrlExNumericDataProvider* dataGrid,
 //-------------------------------------------------------
 void BatchProjectDoc::RemoveDocument(const wxString& docName)
     {
-    size_t position = static_cast<size_t>(wxNOT_FOUND);
+    std::optional<size_t> position{ std::nullopt };
     for (std::vector<BaseProject*>::iterator pos = m_docs.begin();
         pos != m_docs.end();
         ++pos)
@@ -6471,18 +6471,18 @@ void BatchProjectDoc::RemoveDocument(const wxString& docName)
             }
         }
     // if not found then don't bother looking for it in the file paths list
-    if (position == wxNOT_FOUND)
+    if (!position.has_value())
         { return; }
     // also remove the filepath from the list of file paths.  These should already be synced up, so
     // we can remove it from the same position.  If they are not synced up, then something is wrong, so
     // then we would re-sync everything to fix it.
     // cppcheck-suppress assertWithSideEffect
-    assert(position < GetSourceFilesInfo().size());
+    assert(position.value() < GetSourceFilesInfo().size());
     // cppcheck-suppress assertWithSideEffect
-    assert(CompareFilePaths(GetOriginalDocumentFilePath(position), docName) == 0);
-    if (position < GetSourceFilesInfo().size() &&
-        CompareFilePaths(GetOriginalDocumentFilePath(position), docName) == 0)
-        { GetSourceFilesInfo().erase(GetSourceFilesInfo().begin()+position); }
+    assert(CompareFilePaths(GetOriginalDocumentFilePath(position.value()), docName) == 0);
+    if (position.value() < GetSourceFilesInfo().size() &&
+        CompareFilePaths(GetOriginalDocumentFilePath(position.value()), docName) == 0)
+        { GetSourceFilesInfo().erase(GetSourceFilesInfo().begin() + position.value()); }
     // should never happen, this is a fail safe
     else
         { SyncFilePathsWithDocuments(); }
