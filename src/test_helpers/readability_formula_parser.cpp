@@ -114,18 +114,18 @@ static double CustomNewDaleChall(const te_expr* context)
     const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
     const wxString testName = project->GetCurrentCustomTest();
     if (!project->HasCustomTest(testName))
-        { throw std::exception(_(L"Internal error: unable to find custom test by name.")); }
+        { throw std::runtime_error(_(L"Internal error: unable to find custom test by name.").ToUTF8()); }
     if (!project->GetCustomTest(testName)->GetIterator()->is_using_familiar_words())
         {
-        throw std::exception(
+        throw std::runtime_error(
             _(L"Test has not defined what an unfamiliar word is. "
                "Custom unfamiliar word test cannot be calculated."));
         }
     if (project->GetProjectLanguage() != readability::test_language::english_test)
         {
-        throw std::exception(
+        throw std::runtime_error(
             wxString::Format(_(L"%s function can only be used for English projects."),
-                ReadabilityFormulaParser::GetCustomNewDaleChallSignature()));
+                ReadabilityFormulaParser::GetCustomNewDaleChallSignature().ToUTF8()));
         }
     // lowest grade for DC
     double grade_value = 0;
@@ -153,8 +153,8 @@ static double CustomNewDaleChall(const te_expr* context)
         grade_value = static_cast<double>(join_int32s(static_cast<uint32_t>(gradeBegin),
                                                       static_cast<uint32_t>(gradeEnd)));
         }
-    catch (std::domain_error)
-        { throw std::exception(_(L"Unable to calculate custom New Dale Chall.")); }
+    catch (const std::domain_error&)
+        { throw std::runtime_error(_(L"Unable to calculate custom New Dale Chall.").ToUTF8()); }
     return grade_value;
     }
 
@@ -166,18 +166,18 @@ static double CustomSpache(const te_expr* context)
     const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
     const wxString testName = project->GetCurrentCustomTest();
     if (!project->HasCustomTest(testName))
-        { throw std::exception(_(L"Internal error: unable to find custom test by name.")); }
+        { throw std::runtime_error(_(L"Internal error: unable to find custom test by name.").ToUTF8()); }
     if (!project->GetCustomTest(testName)->GetIterator()->is_using_familiar_words())
         {
-        throw std::exception(
+        throw std::runtime_error(
             _(L"Test has not defined what an unfamiliar word is. "
-               "Custom unfamiliar word test cannot be calculated."));
+               "Custom unfamiliar word test cannot be calculated.").ToUTF8());
         }
     if (project->GetProjectLanguage() != readability::test_language::english_test)
         {
-        throw std::exception(
+        throw std::runtime_error(
             wxString::Format(_(L"%s function can only be used for English projects."),
-            ReadabilityFormulaParser::GetCustomSpacheSignature()));
+            ReadabilityFormulaParser::GetCustomSpacheSignature()).ToUTF8());
         }
     // lowest grade for Spache
     double grade_value = 0;
@@ -187,8 +187,8 @@ static double CustomSpache(const te_expr* context)
                 project->GetCustomTest(testName)->GetUniqueUnfamiliarWordCount(),
                 project->GetTotalSentences() );
         }
-    catch (std::domain_error)
-        { throw std::exception(_(L"Unable to calculate custom Spache.")); }
+    catch (const std::domain_error&)
+        { throw std::runtime_error(_(L"Unable to calculate custom Spache.").ToUTF8()); }
     return grade_value;
     }
 
@@ -200,18 +200,18 @@ static double CustomHarrisJacobson(const te_expr* context)
     const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
     const wxString testName = project->GetCurrentCustomTest();
     if (!project->HasCustomTest(testName))
-        { throw std::exception(_(L"Internal error: unable to find custom test by name.")); }
+        { throw std::runtime_error(_(L"Internal error: unable to find custom test by name.").ToUTF8()); }
     if (!project->GetCustomTest(testName)->GetIterator()->is_using_familiar_words())
         {
-        throw std::exception(
+        throw std::runtime_error(
             _(L"Test has not defined what an unfamiliar word is. "
-               "Custom unfamiliar word test cannot be calculated."));
+               "Custom unfamiliar word test cannot be calculated.").ToUTF8());
         }
     if (project->GetProjectLanguage() != readability::test_language::english_test)
         {
-        throw std::exception(
+        throw std::runtime_error(
             wxString::Format(_(L"%s function can only be used for English projects."),
-            ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature()));
+            ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature()).ToUTF8());
         }
     double grade_value = 1; // lowest grade for HJ
     try
@@ -233,8 +233,8 @@ static double CustomHarrisJacobson(const te_expr* context)
                 project->GetTotalSentences());
             }
         }
-    catch (std::domain_error)
-        { throw std::exception(_(L"Unable to calculate custom Harris-Jacobson.")); }
+    catch (const std::domain_error&)
+        { throw std::runtime_error(_(L"Unable to calculate custom Harris-Jacobson.").ToUTF8()); }
     return grade_value;
     }
 
@@ -246,7 +246,7 @@ static double UnfamiliarWordCount(const te_expr* context)
     const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
     const wxString testName = project->GetCurrentCustomTest();
     if (!project->HasCustomTest(testName))
-        { throw std::exception(_(L"Internal error: unable to find custom test by name.")); }
+        { throw std::runtime_error(_(L"Internal error: unable to find custom test by name.").ToUTF8()); }
     return project->GetCustomTest(testName)->GetUnfamiliarWordCount();
     }
 
@@ -258,7 +258,7 @@ static double UniqueUnfamiliarWordCount(const te_expr* context)
     const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
     const wxString testName = project->GetCurrentCustomTest();
     if (!project->HasCustomTest(testName))
-        { throw std::exception(_(L"Internal error: unable to find custom test by name.")); }
+        { throw std::runtime_error(_(L"Internal error: unable to find custom test by name.").ToUTF8()); }
     return project->GetCustomTest(testName)->GetUniqueUnfamiliarWordCount();
     }
 
@@ -270,7 +270,7 @@ static double FamiliarWordCount(const te_expr* context)
     const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
     const wxString testName = project->GetCurrentCustomTest();
     if (!project->HasCustomTest(testName))
-        { throw std::exception(_(L"Internal error: unable to find custom test by name.")); }
+        { throw std::runtime_error(_(L"Internal error: unable to find custom test by name.").ToUTF8()); }
     return project->GetTotalWords() - project->GetCustomTest(testName)->GetUnfamiliarWordCount();
     }
 
@@ -368,7 +368,7 @@ static double ProperNounCount(const te_expr* context)
     {
     if (dynamic_cast<const FormulaProject*>(context)->GetProject()->GetProjectLanguage() ==
             readability::test_language::german_test)
-        { throw std::exception(_(L"ProperNounCount() function not supported for German projects.")); }
+        { throw std::runtime_error(_(L"ProperNounCount() function not supported for German projects.").ToUTF8()); }
     return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalProperNouns();
     }
 
@@ -395,8 +395,8 @@ static double WordCount(const te_expr* context, const double wordType)
         }
     else
         {
-        throw std::exception(wxString::Format(_(L"Invalid value used in %s"),
-            wxString(__WXFUNCTION__)));
+        throw std::runtime_error(wxString::Format(_(L"Invalid value used in %s"),
+            wxString(__WXFUNCTION__)).ToUTF8());
         }
     }
 
@@ -414,8 +414,8 @@ static double ThreeSyllablePlusWordCount(const te_expr* context, const double wo
         }
     else
         {
-        throw std::exception(wxString::Format(_(L"Invalid value used in %s"),
-            wxString(__WXFUNCTION__)));
+        throw std::runtime_error(wxString::Format(_(L"Invalid value used in %s"),
+            wxString(__WXFUNCTION__)).ToUTF8());
         }
     }
 
@@ -435,8 +435,8 @@ static double UniqueThreeSyllablePlusWordCount(const te_expr* context, const dou
         }
     else
         {
-        throw std::exception(wxString::Format(_(L"Invalid value used in %s"),
-            wxString(__WXFUNCTION__)));
+        throw std::runtime_error(wxString::Format(_(L"Invalid value used in %s"),
+            wxString(__WXFUNCTION__)).ToUTF8());
         }
     }
 
@@ -458,8 +458,8 @@ static double SyllableCount(const te_expr* context, const double wordType)
         }
     else
         {
-        throw std::exception(wxString::Format(_(L"Invalid value used in %s"),
-            wxString(__WXFUNCTION__)));
+        throw std::runtime_error(wxString::Format(_(L"Invalid value used in %s"),
+            wxString(__WXFUNCTION__)).ToUTF8());
         }
     }
 
@@ -486,8 +486,8 @@ static double CharacterCount(const te_expr* context, const double wordType)
         }
     else
         {
-        throw std::exception(wxString::Format(_(L"Invalid value used in %s"),
-            wxString(__WXFUNCTION__)));
+        throw std::runtime_error(wxString::Format(_(L"Invalid value used in %s"),
+            wxString(__WXFUNCTION__)).ToUTF8());
         }
     }
 
@@ -521,8 +521,8 @@ static double SentenceCount(const te_expr* context, const double wordType)
         }
     else
         {
-        throw std::exception(wxString::Format(_(L"Invalid value used in %s"),
-            wxString(__WXFUNCTION__)));
+        throw std::runtime_error(wxString::Format(_(L"Invalid value used in %s"),
+            wxString(__WXFUNCTION__)).ToUTF8());
         }
     }
 
@@ -555,7 +555,7 @@ ReadabilityFormulaParser::ReadabilityFormulaParser(const BaseProject* project,
         (m_formualProject.GetProject()->GetTotalWords() -
             m_formualProject.GetProject()->GetTotalHardWordsDaleChall());
 
-    set_variables_and_functions({
+    set_variables_and_functions(std::set<te_variable>{
         // note that these constants must be char* (not whcar_t*)
         {
             _DT("UNIQUETHREESYLLABLEPLUSWORDCOUNT"),
