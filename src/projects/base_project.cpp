@@ -3378,37 +3378,37 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                         ));
             return std::make_pair(true,filteredText);
             }
-        catch (rtf_extract_text::rtfparse_stack_underflow)
+        catch (const rtf_extract_text::rtfparse_stack_underflow&)
             {
             LogMessage(_(L"Unable to import RTF file. Stack underflow."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
             return std::make_pair(false, wxString{});
             }
-        catch (rtf_extract_text::rtfparse_stack_overflow)
+        catch (const rtf_extract_text::rtfparse_stack_overflow&)
             {
             LogMessage(_(L"Unable to import RTF file. Stack overflow."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
             return std::make_pair(false, wxString{});
             }
-        catch (rtf_extract_text::rtfparse_unmatched_brace)
+        catch (const rtf_extract_text::rtfparse_unmatched_brace&)
             {
             LogMessage(_(L"Unable to import RTF file. Unmatched brace."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
             return std::make_pair(false, wxString{});
             }
-        catch (rtf_extract_text::rtfparse_assertion)
+        catch (const rtf_extract_text::rtfparse_assertion&)
             {
             LogMessage(_(L"Unable to import RTF file. Assertion."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
             return std::make_pair(false, wxString{});
             }
-        catch (rtf_extract_text::rtfparse_invalid_hex)
+        catch (const rtf_extract_text::rtfparse_invalid_hex&)
             {
             LogMessage(_(L"Unable to import RTF file. Invalid hex value."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
             return std::make_pair(false, wxString{});
             }
-        catch (rtf_extract_text::rtfparse_bad_table)
+        catch (const rtf_extract_text::rtfparse_bad_table&)
             {
             LogMessage(_(L"Unable to import RTF file. Bad table."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
@@ -3443,49 +3443,49 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                         ));
             return std::make_pair(true,filteredText);
             }
-        catch (rtf_extract_text::rtfparse_exception)
+        catch (const rtf_extract_text::rtfparse_exception&)
             {
             LogMessage(_(L"Invalid RTF file."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
             return std::make_pair(false, wxString{});
             }
-        catch (word1997_extract_text::cfb_bad_bat)
+        catch (const word1997_extract_text::cfb_bad_bat&)
             {
             LogMessage(_(L"Word file is corrupted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
             return std::make_pair(false, wxString{});
             }
-        catch (word1997_extract_text::cfb_bad_bat_entry)
+        catch (const word1997_extract_text::cfb_bad_bat_entry&)
             {
             LogMessage(_(L"Word file is corrupted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
             return std::make_pair(false, wxString{});
             }
-        catch (word1997_extract_text::cfb_bad_xbat)
+        catch (const word1997_extract_text::cfb_bad_xbat&)
             {
             LogMessage(_(L"Word file is corrupted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
             return std::make_pair(false, wxString{});
             }
-        catch (word1997_extract_text::cfb_bad_xbat_entry)
+        catch (const word1997_extract_text::cfb_bad_xbat_entry&)
             {
             LogMessage(_(L"Word file is corrupted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
             return std::make_pair(false, wxString{});
             }
-        catch (word1997_extract_text::msword_encrypted)
+        catch (const word1997_extract_text::msword_encrypted&)
             {
             LogMessage(_(L"Word file is encrypted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
             return std::make_pair(false, wxString{});
             }
-        catch (word1997_extract_text::msword_corrupted)
+        catch (const word1997_extract_text::msword_corrupted&)
             {
             LogMessage(_(L"Word file is corrupted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
             return std::make_pair(false, wxString{});
             }
-        catch (word1997_extract_text::msword_fastsaved)
+        catch (const word1997_extract_text::msword_fastsaved&)
             {
             LogMessage(
                 _(L"Word file is fast-saved and could not be read.\n"
@@ -3493,13 +3493,13 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
             return std::make_pair(false, wxString{});
             }
-        catch (word1997_extract_text::msword_header_not_found)
+        catch (const word1997_extract_text::msword_header_not_found&)
             {
             LogMessage(_(L"File does not appear to be a valid Word file."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
             return std::make_pair(false, wxString{});
             }
-        catch (word1997_extract_text::msword_root_enrty_not_found)
+        catch (const word1997_extract_text::msword_root_enrty_not_found&)
             {
             LogMessage(_(L"File does not appear to be a valid Word file."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
@@ -3629,13 +3629,13 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                         ));
             return std::make_pair(true,filteredText);
             }
-        catch (lily_of_the_valley::postscript_extract_text::postscript_header_not_found)
+        catch (const lily_of_the_valley::postscript_extract_text::postscript_header_not_found&)
             {
             LogMessage(_(L"File does not appear to be a valid Postscript file."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
             return std::make_pair(false, wxString{});
             }
-        catch (lily_of_the_valley::postscript_extract_text::postscript_version_not_supported)
+        catch (const lily_of_the_valley::postscript_extract_text::postscript_version_not_supported&)
             {
             LogMessage(_(L"Only PostScript versions 1-2 are supported. Unable to import file."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
@@ -7471,9 +7471,9 @@ void BaseProject::SyncCustomTests()
             }
         pos->SetIterator(testIter);
         pos->SetIsDaleChallFormula(pos->GetIterator()->get_formula().find(
-            ReadabilityFormulaParser::GetCustomNewDaleChallSignature()) != -1);
+            ReadabilityFormulaParser::GetCustomNewDaleChallSignature()) != std::wstring::npos);
         pos->SetIsHarrisJacobsonFormula(pos->GetIterator()->get_formula().find(
-            ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature()) != -1);
+            ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature()) != std::wstring::npos);
         ++pos;
         }
     }

@@ -73,7 +73,7 @@ wxString ProjectReportFormat::FormatFormulaToHtml(const wxString& formula)
             {
             const size_t endOfWord =
                 formula.find_first_not_of(L"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890", i);
-            if (endOfWord == -1)
+            if (endOfWord == std::wstring::npos)
                 {
                 formattedFormula += wordFormatStart;
                 formattedFormula += formula[i];

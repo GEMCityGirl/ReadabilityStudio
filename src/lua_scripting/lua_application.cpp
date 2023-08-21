@@ -853,7 +853,7 @@ namespace LuaScripting
 
         wxString outputStr;
         wxString expStr;
-        for (const auto phrase : phrases.get_phrases())
+        for (const auto& phrase : phrases.get_phrases())
             {
             outputStr += phrase.first.to_string().c_str();
             // don't bother exporting blank columns

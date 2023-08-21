@@ -301,7 +301,7 @@ void TestBundleDlg::CreateControls()
             m_testGoalsListCtrl->SetColumnNumericRange<double>(1, 0.0, 100.0);
             m_testGoalsListCtrl->SetColumnNumericRange<double>(2, 0.0, 100.0);
             m_testGoalsListCtrl->Enable(!m_testBundle.IsLocked());
-            for (const auto bundleTest : m_testBundle.GetTestGoals())
+            for (const auto& bundleTest : m_testBundle.GetTestGoals())
                 {
                 if (!std::isnan(bundleTest.GetMinGoal()) || !std::isnan(bundleTest.GetMaxGoal()))
                     {
@@ -391,7 +391,7 @@ void TestBundleDlg::CreateControls()
 
             // prepare the control
             wxArrayString availableStats;
-            for (const auto statName : BaseProject::GetStatGoalLabels())
+            for (const auto& statName : BaseProject::GetStatGoalLabels())
                 { availableStats.push_back(statName.first.second.c_str()); }
             availableStats.Sort();
             m_statGoalsListCtrl = new ListCtrlEx(page, wxID_ANY, wxDefaultPosition, wxDefaultSize,
@@ -408,7 +408,7 @@ void TestBundleDlg::CreateControls()
             m_statGoalsListCtrl->SetColumnNumericRange<double>(1, 0.0, 1'000'000.0);
             m_statGoalsListCtrl->SetColumnNumericRange<double>(2, 0.0, 1'000'000.0);
             m_statGoalsListCtrl->Enable(!m_testBundle.IsLocked());
-            for (const auto bundleStat : m_testBundle.GetStatGoals())
+            for (const auto& bundleStat : m_testBundle.GetStatGoals())
                 {
                 if (!std::isnan(bundleStat.GetMinGoal()) || !std::isnan(bundleStat.GetMaxGoal()))
                     {
