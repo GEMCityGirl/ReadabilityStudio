@@ -1865,18 +1865,19 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
             wxString docTable = L"<br /><span style='font-weight:bold;'>" +
                 list->GetItemTextFormatted(scoreListItem, 0) +
                 L"</span><hr>";
-            std::wstring text = docTable +
+            wxString text = docTable +
                 ProjectReportFormat::FormatStatisticsInfo(doc->GetDocuments()[i],
                     // use the batches settings, which may have just been updated,
                     // not the subproject's
                     doc->GetStatisticsReportInfo(),
                     wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT), nullptr);
-            lily_of_the_valley::html_format::strip_hyperlinks(text);
+            std::wstring textStripped{ text };
+            lily_of_the_valley::html_format::strip_hyperlinks(textStripped);
             m_statsReport->GetHtmlWindow()->SetPage(
                 ProjectReportFormat::FormatHtmlReportStart(
                     wxGetApp().GetAppOptions().GetControlBackgroundColor(),
                     Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                        wxGetApp().GetAppOptions().GetControlBackgroundColor())) + text +
+                        wxGetApp().GetAppOptions().GetControlBackgroundColor())) + textStripped +
                         ProjectReportFormat::FormatHtmlReportEnd());
             break;
             }
@@ -2561,7 +2562,7 @@ void BatchProjectView::OnExportScoresAndStatistics([[maybe_unused]] wxCommandEve
     if (!list)
         { return; }
 
-    std::wstring HTMLText =
+    wxString HTMLText =
         wxString::Format(L"<!DOCTYPE html>\n<html>\n<head>\n    "
             "<title>%s</title>\n</head>\n<body>\n<table border='1' style='width:100%%; border-collapse:collapse;'>",
             _("Scores &amp; Statistics")) +
@@ -2622,10 +2623,11 @@ void BatchProjectView::OnExportScoresAndStatistics([[maybe_unused]] wxCommandEve
         HTMLText += L"</tr>";
         }
     HTMLText += L"\n</table>\n</body>\n</html>";
-    lily_of_the_valley::html_format::set_encoding(HTMLText);
+    std::wstring strippedHTML{ HTMLText };
+    lily_of_the_valley::html_format::set_encoding(strippedHTML);
     wxFileName(fdialog.GetPath()).SetPermissions(wxS_DEFAULT);
     wxFile outFile(fdialog.GetPath(), wxFile::write);
-    outFile.Write(HTMLText);
+    outFile.Write(strippedHTML);
     }
 
 //---------------------------------------------------
@@ -2647,16 +2649,17 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
         nullptr, wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_CAN_ABORT|wxPD_APP_MODAL);
     int counter{ 1 };
 
-    std::wstring fileHeader = ProjectReportFormat::FormatHtmlReportStart(
+    wxString fileHeader = ProjectReportFormat::FormatHtmlReportStart(
         wxGetApp().GetAppOptions().GetControlBackgroundColor(),
         Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
             wxGetApp().GetAppOptions().GetControlBackgroundColor()), _("Summary Statistics")) +
         L"\n<h1><span style='text-decoration:underline;'>" +
         doc->GetTitle() + _(": Summary Statistics") + L"</span></h1>\n<h2>" + _("Files:") + L"</h2>\n";
-    lily_of_the_valley::html_format::strip_body_atributes(fileHeader);
+    std::wstring strippedFileHeader{ fileHeader };
+    lily_of_the_valley::html_format::strip_body_atributes(strippedFileHeader);
 
     wxTempFile outputFile(fdialog.GetPath());
-    if (!outputFile.Write(fileHeader))
+    if (!outputFile.Write(strippedFileHeader))
         {
         wxMessageBox(_("Unable to write to output file."),
             _("Error"), wxOK|wxICON_EXCLAMATION);
