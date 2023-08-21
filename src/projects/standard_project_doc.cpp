@@ -3649,7 +3649,7 @@ void ProjectDoc::DisplayStatistics()
             summaryReportWindow->SetRightPrinterFooter(wxGetApp().GetAppOptions().GetRightPrinterFooter());
             }
 
-        std::wstring formattedStats = ProjectReportFormat::FormatHtmlReportStart(
+        wxString formattedStats = ProjectReportFormat::FormatHtmlReportStart(
                 wxGetApp().GetAppOptions().GetControlBackgroundColor(),
                 ((wxGetApp().GetAppOptions().GetControlBackgroundColor().
                     GetLuminance() < .5f) ? *wxWHITE : *wxBLACK)) +
@@ -3661,7 +3661,11 @@ void ProjectDoc::DisplayStatistics()
         // if document failed to be loaded and we are just showing the basic stats,
         // then remove the links to the various windows that won't be shown
         if (!LoadingOriginalTextSucceeded())
-            { lily_of_the_valley::html_format::strip_hyperlinks(formattedStats); }
+            {
+            std::wstring strippedStatsText{ formattedStats };
+            lily_of_the_valley::html_format::strip_hyperlinks(strippedStatsText);
+            formattedStats = strippedStatsText;
+            }
 
         summaryReportWindow->SetPage(formattedStats);
         view->GetSummaryView().InsertWindow(0, summaryReportWindow);
@@ -4403,7 +4407,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
     PROFILE();
     if (GetWords() == nullptr)
         { return; }
-    lily_of_the_valley::rtf_encode_text rtfEncode;
+
     try
         {
         ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
@@ -4793,6 +4797,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
     #endif
 
     #if defined (__WXMSW__) || defined (__WXOSX__)
+        lily_of_the_valley::rtf_encode_text rtfEncode;
         // other formatting
         const wxString BOLD_BEGIN = L"{\\b";
         const wxString BOLD_END = L"}";
@@ -5240,8 +5245,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
         // creates and load text into a formatted text window
         const auto buildTextWindow = [this, view, textBeingExcluded, textBufferLength,
-                                      headerThemed, headerWhitePaper, endSection,
-                                      IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
+                                      &headerThemed, &headerWhitePaper, &endSection,
+                                      &IGNORE_HIGHLIGHT_BEGIN, &HIGHLIGHT_END, &TAB_SYMBOL, &CRLF,
                                       &docText]
                                      (FormattedTextCtrl* textWindow, const int ID, const wxString& label,
                                       auto& highlighter, const wxString& legend)
