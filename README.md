@@ -16,8 +16,11 @@ Readability Studio
 
 ## Windows
 
-  - Place "wxWidgets" at the same folder level as this project
-  - Open wxWidgets's CMake file in Visual Studio
+- Place "wxWidgets" at the same folder level as this project, downloading it with this command:
+```
+git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
+```
+- Open wxWidgets's CMake file in Visual Studio
   - Open **Project** > **CMake Project Settings** and enter `-DwxBUILD_SHARED=OFF` as a command line argument to CMake
   - Build wxWidgets
 - Open **ReadabilityStudio/docs/BuildHelpProjects.R** and source the entire script
@@ -25,11 +28,15 @@ Readability Studio
 
 ## Linux
 
-- Place "wxWidgets" at the same folder level as this project
-- Run the following:
+- Place "wxWidgets" at the same folder level as this project, downloading it with this command:
 ```
+git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
 cd wxWidgets
-cmake . -DwxBUILD_SHARED=OFF
+cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF
+cmake --build . --target install
+cd ..
+cd ReadabilityStudio
+cmake .
 cmake --build .
 ```
 
