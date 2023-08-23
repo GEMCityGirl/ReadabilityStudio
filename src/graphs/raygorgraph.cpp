@@ -41,6 +41,9 @@ namespace Wisteria::Graphs
                    "\U00002014UNIVERSITY OF MINNESOTA")).
             Scaling(GetScaling()).Pen(wxNullPen).
             LabelAlignment(TextAlignment::Centered));
+        GetTitle().GetHeaderInfo().Enable(true).
+            LabelAlignment(Wisteria::TextAlignment::Centered).
+            GetFont().MakeBold();
 
         GetBottomXAxis().SetRange(6, 44, 0, 2, 1);
         GetBottomXAxis().SetCustomLabel(6, GraphItems::Label(
