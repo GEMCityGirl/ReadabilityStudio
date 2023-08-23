@@ -1559,8 +1559,8 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         wxRibbonPage* homePage = new wxRibbonPage(ribbon, wxID_ANY,
             _(L"Home"),
            GetResourceManager().
-            GetSVG(L"ribbon/home.svg").
-            GetBitmap(GetMainFrame()->FromDIP(wxSize(16, 16))));
+           GetSVG(L"ribbon/home.svg").
+           GetBitmap(GetMainFrame()->FromDIP(wxSize(16, 16))));
         wxRibbonPanel* projectPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Project"), wxNullBitmap,
                                                         wxDefaultPosition, wxDefaultSize,
                                                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -3114,10 +3114,13 @@ void MainFrame::AddExamplesToMenu(wxMenu* exampleMenu)
         {
         wxDir dir;
         wxArrayString files;
-        const wxString exampleFolder = wxGetApp().FindResourceDirectory(_DT(L"examples"));
+        const wxString exampleFolder = wxGetApp().FindResourceDirectory(_DT(L"Examples"));
         if (!wxFileName::DirExists(exampleFolder) ||
             dir.GetAllFiles(exampleFolder, &files, wxEmptyString, wxDIR_FILES) == 0)
-            { return; }
+            {
+            wxLogWarning(L"Unable to find examples folder:\n%s", exampleFolder);
+            return;
+            }
         files.Sort();
         // go through all the example files and add them to the menu
         for (size_t i = 0; i < files.GetCount(); ++i)
