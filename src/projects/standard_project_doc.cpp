@@ -4412,6 +4412,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         {
         ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
 
+    #if defined (__WXMSW__) || defined (__WXOSX__)
         // When highlighting backgrounds, set the text colors to contrast against it.
         // Note that even though the text window might be dark (with white font), the highlighting
         // might be light and in that case we will want a dark font for that word.
@@ -4428,6 +4429,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         const int dolchVerbsTextColorIndexBGMode = (GetDolchVerbsColor().GetLuminance() < .5f) ? 13 : 1;
         const int dolchNounTextColorIndexBGMode = (GetDolchNounColor().GetLuminance() < .5f) ? 13 : 1;
         // or when highlighting by font color, change the font color to contrast against the window's background
+    #endif
 
         const auto formatFontHeader = [textViewFont](const size_t mainFontColorIndex)
             {
@@ -4457,43 +4459,59 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             return std::make_pair(mainFontHeader, endSection);
             };
 
+        wxColour errorHighlightColor;
+        wxColour styleHighlightColor;
+        wxColour excludedTextHighlightColor;
+        wxColour dolchConjunctionsTextHighlightColor;
+        wxColour dolchPrepositionsTextHighlightColor;
+        wxColour dolchPronounsTextHighlightColor;
+        wxColour dolchAdverbsTextHighlightColor;
+        wxColour dolchAdjectivesTextHighlightColor;
+        wxColour dolchVerbsTextHighlightColor;
+        wxColour dolchNounTextHighlightColor;
+
         // returns color table and color table index for the default font color
         const auto formatColorTable =
-            [this, highlightColor, formatFontHeader]
+            [this, highlightColor, formatFontHeader,
+            &errorHighlightColor, &styleHighlightColor, &excludedTextHighlightColor,
+            &dolchConjunctionsTextHighlightColor, &dolchPrepositionsTextHighlightColor,
+            &dolchPronounsTextHighlightColor, &dolchAdverbsTextHighlightColor,
+            &dolchAdjectivesTextHighlightColor, &dolchVerbsTextHighlightColor,
+            &dolchNounTextHighlightColor]
             (const wxColour& backgroundColor, wxString& endSection)
             {
             ColorContrast colorContrast(backgroundColor);
             const wxColour highlightColorAdjusted = (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(highlightColor) : highlightColor;
 
-            const wxColour errorHighlightColor =
+            errorHighlightColor =
                 (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetDuplicateWordHighlightColor()) : GetDuplicateWordHighlightColor();
-            const wxColour styleHighlightColor =
+            styleHighlightColor =
                 (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetWordyPhraseHighlightColor()) : GetWordyPhraseHighlightColor();
-            const wxColour excludedTextHighlightColor =
+            excludedTextHighlightColor =
                 (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetExcludedTextHighlightColor()) : GetExcludedTextHighlightColor();
-            const wxColour dolchConjunctionsTextHighlightColor =
+            dolchConjunctionsTextHighlightColor =
                 (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetDolchConjunctionsColor()) : GetDolchConjunctionsColor();
-            const wxColour dolchPrepositionsTextHighlightColor =
+            dolchPrepositionsTextHighlightColor =
                 (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetDolchPrepositionsColor()) : GetDolchPrepositionsColor();
-            const wxColour dolchPronounsTextHighlightColor =
+            dolchPronounsTextHighlightColor =
                 (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetDolchPronounsColor()) : GetDolchPronounsColor();
-            const wxColour dolchAdverbsTextHighlightColor =
+            dolchAdverbsTextHighlightColor =
                 (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetDolchAdverbsColor()) : GetDolchAdverbsColor();
-            const wxColour dolchAdjectivesTextHighlightColor =
+            dolchAdjectivesTextHighlightColor =
                 (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetDolchAdjectivesColor()) : GetDolchAdjectivesColor();
-            const wxColour dolchVerbsTextHighlightColor =
+            dolchVerbsTextHighlightColor =
                 (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetDolchVerbsColor()) : GetDolchVerbsColor();
-            const wxColour dolchNounTextHighlightColor =
+            dolchNounTextHighlightColor =
                 (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
                 colorContrast.Contrast(GetDolchNounColor()) : GetDolchNounColor();
 
@@ -4768,7 +4786,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         // dolch highlighting
         const wxString DOLCH_CONJUNCTION_BEGIN_LEGEND = IsHighlightingDolchConjunctions() ?
             wxString::Format(L"<span background=\"%s\">",
-                dolchConjunctionsextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
+                dolchConjunctionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString{};
         const wxString DOLCH_PREPOSITIONS_BEGIN_LEGEND = IsHighlightingDolchPrepositions() ?
             wxString::Format(L"<span background=\"%s\">",
@@ -4855,6 +4873,16 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? _DT(L"bold") : _DT(L"normal"),
                 textViewFont.GetUnderlined() ? _DT(L"single") : _DT(L"none"));
         const wxString endSection = L"</span>";
+
+        /// @todo broken, just getting this to compile
+        wxString dummyStr;
+        const auto [colorTableThemed, mainFontHeaderThemed] =
+            formatColorTable(GetTextReportBackgroundColor(), dummyStr);
+        const auto [colorTableWhitePaper, mainFontHeaderWhitePaper] =
+            formatColorTable(*wxWHITE, dummyStr);
+
+        const auto headerThemed = headerSection + colorTableThemed + mainFontHeaderThemed;
+        const auto headerWhitePaper = headerSection + colorTableWhitePaper + mainFontHeaderWhitePaper;
     #endif
 
         // lines used for the legends
