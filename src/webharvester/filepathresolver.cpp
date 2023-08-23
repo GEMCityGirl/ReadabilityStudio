@@ -15,9 +15,10 @@ wxDECLARE_APP(ReadabilityApp);
 wxString FilePathResolver::ResolvePath(const wxString& path, const bool attemptToConnect,
         std::initializer_list<wxString> pathsToSearch /*= std::initializer_list<wxString>{}*/)
     {
+    // will set m_path directly, so we can ignore the return value here
     FilePathResolverBase::ResolvePath(path, pathsToSearch);
     // if failed, see if it's a web file by trying to connect to it
-    if (attemptToConnect && m_fileType == FilePathType::InvalidFileType)
+    if (attemptToConnect && path.length() && m_fileType == FilePathType::InvalidFileType)
         {
         // See if it is an URL, but make sure this remotely resembles a legit URL first.
         // More than 3 spaces is really odd for an URL and is more than likely bogus
