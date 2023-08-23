@@ -1508,7 +1508,7 @@ bool ProjectDoc::OnNewDocument()
         }
 
     /* See if there is an inordinate amount of titles/headers/bullets, and if they
-       are asking to these then make sure they understand that a large part of the
+       are asking to ignore these then make sure they understand that a large part of the
        document will be ignored.
        Note that we don't bother with this check with webpages because they normally
        contain lists for things like menus that we would indeed want to ignore.*/
