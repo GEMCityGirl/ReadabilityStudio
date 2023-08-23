@@ -162,10 +162,12 @@ void WordListDlg::CreateControls()
                     wxRIBBON_PANEL_NO_AUTO_MINIMISE);
             wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(exportPage);
             buttonBar->AddButton(wxID_SAVE, _(L"Save"),
-                wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_BUTTON, FromDIP(wxSize(32, 32))),
+                wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
                 _(L"Save the list."));
             buttonBar->AddButton(wxID_PRINT, _(L"Print"),
-                wxArtProvider::GetBitmap(wxART_PRINT, wxART_BUTTON, FromDIP(wxSize(32, 32))),
+                wxArtProvider::GetBitmap(wxART_PRINT, wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
                 _(L"Print the list."));
             }
         // edit
@@ -174,15 +176,17 @@ void WordListDlg::CreateControls()
                 wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
             wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(editPage);
             buttonBar->AddButton(wxID_COPY, _(L"Copy Selection"),
-                wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON, FromDIP(wxSize(32, 32))),
+                wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
                 _(L"Copy the selected items."));
             buttonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
                 wxArtProvider::GetBitmap(L"ID_SELECT_ALL", wxART_BUTTON,
-                    FromDIP(wxSize(32,32))),
+                    FromDIP(wxSize(32,32))).ConvertToImage(),
                 _(L"Select the entire list."));
             buttonBar->AddButton(XRCID("ID_LIST_SORT"), _(L"Sort"),
                                  wxArtProvider::GetBitmap(L"ID_LIST_SORT", wxART_BUTTON,
-                                     FromDIP(wxSize(32, 32))), _(L"Sort the list."));
+                                     FromDIP(wxSize(32, 32))).ConvertToImage(),
+                _(L"Sort the list."));
             }
         ribbon->SetArtProvider(new Wisteria::UI::RibbonMetroArtProvider);
         wxGetApp().UpdateRibbonTheme(ribbon);
