@@ -56,6 +56,17 @@ ENDIF()
 MESSAGE(STATUS "Adding wxWidgets libraries: ${wxWidgets_LIBRARIES}")
 MESSAGE(STATUS "Adding wxWidgets: ${wxPLATFORM_LIB_DIR}")
 
+IF(UNIX AND NOT APPLE)
+    # GTK 3 dependency
+    FIND_PACKAGE(PkgConfig REQUIRED)
+    PKG_CHECK_MODULES(GTK3 REQUIRED gtk+-3.0)
+
+    # Setup CMake to use GTK+, tell the compiler where to look for headers
+    # and to the linker where to look for libraries
+    INCLUDE_DIRECTORIES(${GTK3_INCLUDE_DIRS})
+    LINK_DIRECTORIES(${GTK3_LIBRARY_DIRS})
+ENDIF()
+
 # Run ALL unit-test suites for this program and its submodules
 IF(BUILD_TESTING)
     SET(BUILD_TEMP ${CMAKE_CURRENT_SOURCE_DIR}/BuildTemp)
@@ -153,11 +164,12 @@ ELSEIF(APPLE)
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
     TARGET_COMPILE_OPTIONS(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -Werror
                            $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O2>)
+# TODO: Experimental code for Linux
 ELSEIF(UNIX)
     TARGET_COMPILE_DEFINITIONS(${PROJECT_NAME} PUBLIC __WXGTK__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
-    # don't include -Werror for now
-    TARGET_COMPILE_OPTIONS(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow
+    # don't include -Werror and -Wpedantic for now
+    TARGET_COMPILE_OPTIONS(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wshadow
                            $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O2>)
 ENDIF()
 
