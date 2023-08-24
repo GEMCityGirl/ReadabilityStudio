@@ -20,12 +20,6 @@ LibreOffice is a free and powerful office suite, and a successor to OpenOffice.o
 
 [https://www.libreoffice.org/](https://www.libreoffice.org/)
 
-#### MiKTeX {-}
-
-MiKTeX is a modern TeX distribution for Windows, Linux and macOS.
-
-[https://miktex.org/](https://miktex.org/)
-
 #### Pandoc {-}
 
 A universal document converter.
@@ -37,15 +31,27 @@ If you need to convert files from one markup format into another, pandoc is your
 ### Software Development, Quality Assurance & Packaging Software {-}
 ***
 
-#### 7-Zip {-}
-7-Zip is a file archiver with a high compression ratio.
+#### Catch2 {-}
+Catch2 is mainly a unit testing framework for C++, but it also provides basic micro-benchmarking features, and simple BDD macros.
 
-[https://www.7-zip.org/](https://www.7-zip.org/)
+[https://github.com/catchorg/Catch2](https://github.com/catchorg/Catch2)
 
-#### CppUnit {-}
-CppUnit is the C++ port of the famous JUnit framework for unit testing. Test output is in XML for automatic testing and GUI based for supervised tests.
+#### Clang {-}
 
-[https://www.freedesktop.org/wiki/Software/cppunit/](https://www.freedesktop.org/wiki/Software/cppunit/)
+A C language family frontend for LLVM.
+
+The Clang project provides a language front-end and tooling infrastructure for languages in the C language family
+(C, C++, Objective C/C++, OpenCL, CUDA, and RenderScript) for the LLVM project.
+Both a GCC-compatible compiler driver (clang) and an MSVC-compatible compiler driver (clang-cl.exe) are provided.
+You can get and build the source today.
+
+[https://clang.llvm.org/](https://clang.llvm.org/)
+
+#### CMake {-}
+
+CMake is an open-source, cross-platform family of tools designed to build, test and package software.
+
+[https://cmake.org/](https://cmake.org/)
 
 #### GCC, the GNU Compiler Collection {-}
 The GNU Compiler Collection includes front ends for C, C++, Objective-C, Fortran, Ada, Go, and D, as well as libraries for these languages (libstdc++,...). GCC was originally written as the compiler for the GNU operating system. The GNU system was developed to be 100% free software, free in the sense that it respects the user's freedom.  
@@ -64,11 +70,6 @@ Inno Setup is a free installer for Windows programs by Jordan Russell and Martij
 
 [https://jrsoftware.org](https://jrsoftware.org)
 
-#### KDevelop {-}
-A cross-platform IDE for C, C++, Python, QML/JavaScript and PHP.
-
-[https://www.kdevelop.org/](https://www.kdevelop.org/)
-
 ### Artwork Editing Software {-}
 ***
 
@@ -76,11 +77,6 @@ A cross-platform IDE for C, C++, Python, QML/JavaScript and PHP.
 The Free & Open Source Image Editor.
 
 [https://www.gimp.org/](https://www.gimp.org/)
-
-#### ImageMagick {-}
-Use ImageMagick^®^ to create, edit, compose, or convert bitmap images. It can read and write images in a variety of formats (over 200) including PNG, JPEG, GIF, HEIC, TIFF, DPX, EXR, WebP, Postscript, PDF, and SVG. Use ImageMagick to resize, flip, mirror, rotate, distort, shear and transform images, adjust image colors, apply various special effects, or draw text, lines, polygons, ellipses and Bézier curves.
-
-[https://imagemagick.org/](https://imagemagick.org/)
 
 #### Inkscape {-}
 Inkscape is a professional vector graphics editor for Linux, Windows and macOS. It's free and open source.
@@ -117,11 +113,3 @@ Free SVG vector files.
 Download and upload SVG images with CC0 public domain license.
 
 [https://freesvg.org/](https://freesvg.org/)
-
-#### Unsplash {-}
-
-The internet’s source of freely-usable images.
-
-Powered by creators everywhere.
-
-[https://unsplash.com/](https://unsplash.com/)
