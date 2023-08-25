@@ -47,7 +47,7 @@ class Banner : public wxWindow
 public:
     Banner(wxWindow *parent, wxWindowID id,
            const wxBitmapBundle& logo, const wxString& label) :
-           wxWindow(parent, id, wxDefaultPosition,wxSize(300, 50), wxFULL_REPAINT_ON_RESIZE),
+           wxWindow(parent, id, wxDefaultPosition, wxSize(300, 50), wxFULL_REPAINT_ON_RESIZE),
            m_logo(logo), m_label(label)
         {
         SetMinSize(FromDIP(wxSize(300, 50)));
@@ -63,7 +63,7 @@ public:
         wxCoord textWidth, textHeight;
         dc.GetTextExtent(m_label, &textWidth, &textHeight);
 
-        wxBitmap logo = m_logo.GetBitmap(FromDIP(wxSize(32, 32)));
+        wxBitmap logo = m_logo.GetBitmap(FromDIP(wxSize(32, 32))).ConvertToImage();
 
         const wxCoord leftBorder = (GetClientSize().GetWidth()/2)-((logo.GetWidth()/2)+(textWidth/2)+3);
 
@@ -140,7 +140,7 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
 //-------------------------------------------------------------
 void ProjectWizardDlg::CreateControls()
     {
-    const int ScaledNoteWidth = FromDIP(wxSize(500,500)).GetWidth();
+    const int ScaledNoteWidth = FromDIP(wxSize(500, 500)).GetWidth();
 
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
     m_sideBarBook = new SideBarBook(this, wxID_ANY);
