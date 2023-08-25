@@ -30,9 +30,11 @@ namespace Wisteria::Graphs
         GetCanvas()->SetLabel(_(L"Raygor Estimate"));
         GetCanvas()->SetName(_(L"Raygor Estimate"));
 
-        GetLeftYAxis().GetTitle().SetText(_(L"SENTENCES\n(per 100 words)"));
+        GetLeftYAxis().GetTitle().SetText((GetRaygorStyle() == RaygorStyle::Modern) ?
+            _(L"SENTENCES\n(per 100 words)") : _(L"SENTENCES"));
         GetLeftYAxis().GetTitle().SetTextAlignment(TextAlignment::Centered);
-        GetBottomXAxis().GetTitle().SetText(_(L"LONG WORDS\n(per 100 words)"));
+        GetBottomXAxis().GetTitle().SetText((GetRaygorStyle() == RaygorStyle::Modern) ?
+            _(L"LONG WORDS\n(per 100 words)") : _(L"LONG WORDS"));
         GetBottomXAxis().GetTitle().SetTextAlignment(TextAlignment::Centered);
 
         GetTitle() = GraphItems::Label(
@@ -48,17 +50,20 @@ namespace Wisteria::Graphs
         GetBottomXAxis().SetRange(6, 44, 0, 2, 1);
         GetBottomXAxis().SetCustomLabel(6, GraphItems::Label(
             wxNumberFormatter::ToString(6, 0,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes) + L"(-)"));
+                wxNumberFormatter::Style::Style_NoTrailingZeroes) +
+            ((GetRaygorStyle() == RaygorStyle::Modern) ? L"(-)" : wxString{})) );
         GetBottomXAxis().SetCustomLabel(44, GraphItems::Label(
             wxNumberFormatter::ToString(44, 0,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes)  +  L"(+)"));
+                wxNumberFormatter::Style::Style_NoTrailingZeroes) +
+            ((GetRaygorStyle() == RaygorStyle::Modern) ? L"(+)" : wxString{})));
         GetBottomXAxis().SetDisplayInterval(2, 1);
         GetBottomXAxis().ShowOuterLabels(true);
 
         // number of sentences axis goes down, unlike the Fry Graph that goes upwards
         GetLeftYAxis().ReverseScale(true);
         GetLeftYAxis().AddUnevenAxisPoint(3.2,
-            wxNumberFormatter::ToString(3.2, 1, wxNumberFormatter::Style::Style_None) + L"(-)");
+            wxNumberFormatter::ToString(3.2, 1, wxNumberFormatter::Style::Style_None) +
+            ((GetRaygorStyle() == RaygorStyle::Modern) ? L"(-)" : wxString{}));
         GetLeftYAxis().AddUnevenAxisPoint(3.4,
             wxNumberFormatter::ToString(3.4, 1, wxNumberFormatter::Style::Style_None));
         GetLeftYAxis().AddUnevenAxisPoint(3.6,
@@ -98,24 +103,44 @@ namespace Wisteria::Graphs
         GetLeftYAxis().AddUnevenAxisPoint(23.0,
             wxNumberFormatter::ToString(23.0, 1, wxNumberFormatter::Style::Style_None));
         GetLeftYAxis().AddUnevenAxisPoint(28.0,
-            wxNumberFormatter::ToString(28.0, 1, wxNumberFormatter::Style::Style_None) + L"(+)");
+            wxNumberFormatter::ToString(28.0, 1, wxNumberFormatter::Style::Style_None) +
+            ((GetRaygorStyle() == RaygorStyle::Modern) ? L"(+)" : wxString{}));
         GetLeftYAxis().AdjustRangeToLabels();
 
         GetLeftYAxis().EnableAutoStacking(false);
 
         // add the labels for the grades
-        AddLevelLabel(LevelLabel(8.4, 7.0, L"3", 3, 3));
-        AddLevelLabel(LevelLabel(10.7, 6.0, L"4", 4, 4));
-        AddLevelLabel(LevelLabel(12.4, 5.4, L"5", 5, 5));
-        AddLevelLabel(LevelLabel(14.4, 5.0, L"6", 6, 6));
-        AddLevelLabel(LevelLabel(17.2, 4.575, L"7", 7, 7));
-        AddLevelLabel(LevelLabel(21.3, 4, L"8", 8, 8));
-        AddLevelLabel(LevelLabel(24, 3.8, L"9", 9, 9));
-        AddLevelLabel(LevelLabel(26.4, 3.675, L"10", 10, 10));
-        AddLevelLabel(LevelLabel(28.8, 3.575, L"11", 11, 11));
-        AddLevelLabel(LevelLabel(31.2, 3.5, L"12", 12, 12));
-        AddLevelLabel(LevelLabel(34.5, 3.45, _(L"College"), 13, 16));
-        AddLevelLabel(LevelLabel(40, 3.4, _(L"Professor"), 17, 17));
+        if (GetRaygorStyle() == RaygorStyle::Modern)
+            {
+            AddLevelLabel(LevelLabel(8.4, 7.0, L"3", 3, 3));
+            AddLevelLabel(LevelLabel(10.7, 6.0, L"4", 4, 4));
+            AddLevelLabel(LevelLabel(12.4, 5.4, L"5", 5, 5));
+            AddLevelLabel(LevelLabel(14.4, 5.0, L"6", 6, 6));
+            AddLevelLabel(LevelLabel(17.2, 4.575, L"7", 7, 7));
+            AddLevelLabel(LevelLabel(21.3, 4, L"8", 8, 8));
+            AddLevelLabel(LevelLabel(24, 3.8, L"9", 9, 9));
+            AddLevelLabel(LevelLabel(26.4, 3.675, L"10", 10, 10));
+            AddLevelLabel(LevelLabel(28.8, 3.575, L"11", 11, 11));
+            AddLevelLabel(LevelLabel(31.2, 3.5, L"12", 12, 12));
+            AddLevelLabel(LevelLabel(34.5, 3.45, _(L"College"), 13, 16));
+            AddLevelLabel(LevelLabel(40, 3.4, _(L"Professor"), 17, 17));
+            }
+        else
+            {
+            AddLevelLabel(LevelLabel(17, 9.725, L"3", 3, 3));
+            AddLevelLabel(LevelLabel(19, 8.4, L"4", 4, 4));
+            AddLevelLabel(LevelLabel(20.5, 7.6, L"5", 5, 5));
+            AddLevelLabel(LevelLabel(22, 6.9, L"6", 6, 6));
+            AddLevelLabel(LevelLabel(24.5, 6.2, L"7", 7, 7));
+            AddLevelLabel(LevelLabel(27, 5.55, L"8", 8, 8));
+            AddLevelLabel(LevelLabel(29, 5.2, L"9", 9, 9));
+            AddLevelLabel(LevelLabel(30.75, 5, L"10", 10, 10));
+            AddLevelLabel(LevelLabel(32.5, 4.825, L"11", 11, 11));
+            AddLevelLabel(LevelLabel(34.5, 4.65, L"12", 12, 12));
+
+            AddLevelLabel(LevelLabel(37, 4.45, _(L"COL"), 13, 16));
+            AddLevelLabel(LevelLabel(42, 4.2, _(L"PROF"), 17, 17));
+            }
         }
 
     //----------------------------------------------------------------
@@ -202,7 +227,8 @@ namespace Wisteria::Graphs
         AddObject(std::make_shared<GraphItems::Polygon>(
             GraphItemInfo(_(L"Invalid region: sentences are too long")).
             Pen(wxNullPen).Brush(
-                wxBrush(ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))),
+                wxBrush(ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))).
+            Show((GetRaygorStyle() != RaygorStyle::Original)),
             m_longSentencesPoints));
         // long word region
         GetPhysicalCoordinates(18, 28.0, m_longWordPoints[0]);
@@ -218,7 +244,8 @@ namespace Wisteria::Graphs
         AddObject(std::make_shared<GraphItems::Polygon>(
             GraphItemInfo(_(L"Invalid region: too many long words")).
             Pen(wxNullPen).Brush(
-                wxBrush(ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))),
+                wxBrush(ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))).
+            Show((GetRaygorStyle() != RaygorStyle::Original)),
             m_longWordPoints));
         // divider line
         GetPhysicalCoordinates(6, 28, m_dividerLinePoints[0]); // not drawn, used for point region
@@ -280,10 +307,11 @@ namespace Wisteria::Graphs
 
         // draw the labels in the "danger areas"    
         wxPoint topCorner;
-        const auto dangerAreaFont =
+        const wxFont dangerAreaFont = (GetRaygorStyle() == RaygorStyle::Modern) ?
             wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).
-                   GetPointSize()*1.75f, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-                   wxFONTWEIGHT_BOLD, false, GetFancyFontFaceName());
+                GetPointSize() * 1.75f, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                wxFONTWEIGHT_BOLD, false, GetFancyFontFaceName()) :
+            wxFont(wxFontInfo().Family(wxFONTFAMILY_SWISS).Bold()).MakeLarger().MakeLarger();
         // draw the "Long Words" area label
             {
             GetPhysicalCoordinates(31, 14.5, topCorner);
@@ -433,10 +461,11 @@ namespace Wisteria::Graphs
 
         // Add the grade labels to the regions
         // (and highlight in red the one where the score lies)
-        const auto labelFont =
+        const wxFont labelFont = (GetRaygorStyle() == RaygorStyle::Modern) ?
             wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).
-                GetPointSize()*1.25f, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC,
-                wxFONTWEIGHT_BOLD, false, GetFancyFontFaceName());
+                GetPointSize() * 1.25f, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC,
+                wxFONTWEIGHT_BOLD, false, GetFancyFontFaceName()) :
+            wxFont(wxFontInfo().Family(wxFONTFAMILY_SWISS)).MakeLarger();
         for (const auto& level : GetLevelLabels())
             {
             wxPoint pt;
@@ -445,7 +474,13 @@ namespace Wisteria::Graphs
             auto levelLabel = std::make_shared<GraphItems::Label>(
                 GraphItemInfo(level.GetLabel()).Scaling(GetScaling()).
                 Pen(wxNullPen).
-                Font(labelFont).AnchorPoint(pt));
+                Font((GetRaygorStyle() == RaygorStyle::Modern) ?
+                    labelFont :
+                    // make "COL" and "PROF" bold
+                    level.GetLabel().length() > 2 ?
+                        labelFont.Bold() :
+                        labelFont).
+                AnchorPoint(pt));
             levelLabel->SetTextAlignment(TextAlignment::Centered);
             levelLabel->SetFontColor(
                 (GetScores().size() == 1 &&

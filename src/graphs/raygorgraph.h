@@ -16,6 +16,21 @@
 
 namespace Wisteria::Graphs
     {
+    enum class RaygorStyle
+        {
+        /// @brief Sans serif font for graph and region labels, abbreviated labels,
+        ///     no polygons for the too-difficult regions,
+        ///     and place the grade levels closer together.
+        Original,
+        /// @brief Same as Original, except includes too-difficult regions' polygons.
+        BaldwinKaufman,
+        /// @brief Same as BaldwinKaufman, except uses the default font for graph and region labels,
+        ///     says "College" and "Professor", adds "+" and "-" to the axes,
+        ///     and places grade labels further apart. This makes the
+        ///     graph look closer to a Fry graph.
+        Modern
+        };
+
     /// @brief Raygor readability graph.
     class RaygorGraph final : public PolygonReadabilityGraph
         {
@@ -56,6 +71,15 @@ namespace Wisteria::Graphs
         [[nodiscard]]
         const std::vector<Wisteria::ScorePoint>& GetScores() const noexcept
             { return m_results; }
+
+        /// @returns The style (appearance) of the graph.
+        [[nodiscard]]
+        RaygorStyle GetRaygorStyle() const noexcept
+            { return m_raygorStyle; }
+        /** @brief Sets the style for the graph.
+            @param style The appearance to use for the graph.*/
+        void SetRaygorStyle(const RaygorStyle style) noexcept
+            { m_raygorStyle = style; }
     private:
         void RecalcSizes(wxDC& dc) final;
         void CalculateScorePositions(wxDC& dc) final;
@@ -70,6 +94,8 @@ namespace Wisteria::Graphs
         const Wisteria::Data::Column<double>* m_numberOf6PlusCharWordsColumn{ nullptr };
         const Wisteria::Data::Column<double>* m_numberOfSentencesColumn{ nullptr };
         std::vector<Wisteria::ScorePoint> m_results;
+
+        RaygorStyle m_raygorStyle{ RaygorStyle::BaldwinKaufman };
 
         // used for consistent polygon calculations
         std::unique_ptr<RaygorGraph> m_backscreen{ nullptr };
