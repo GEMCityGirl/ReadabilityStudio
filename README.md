@@ -16,6 +16,12 @@ Readability Studio
 
 ## Windows
 
+Install the following tools to build *Readability Studio*:
+
+- Visual Studio
+- RStudio
+- InnoSetup
+
 - Place "wxWidgets" at the same folder level as this project, downloading it with this command:
 ```
 git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
@@ -27,6 +33,24 @@ git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
 - Open this project's CMake file in Visual Studio and build it
 
 ## Linux
+
+Install the following tools to build *Readability Studio*:
+
+- GCC (C++ and fortran compilers)
+- CMake
+- git
+- RStudio
+
+Install the following libraries *and* their development files:
+
+- GTK+ 3
+- libCURL
+- GStreamer
+- libsecret
+- TBB
+- OpenMP
+- libopenssl
+- libxml2
 
 - Place "wxWidgets" at the same folder level as this project, downloading it with this command:
 ```
