@@ -35,7 +35,7 @@ Table: Lix Index Table
 Note that Lix also includes a chart to visualize the meaning of its index score:
 
 ```{r lixGauge, echo=F, fig.cap='Lix gauge', fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/LixGauge.png")
+knitr::include_graphics("images/LixGauge.png")
 ```
 
 ```{definition, lix, name="Lix formula"}

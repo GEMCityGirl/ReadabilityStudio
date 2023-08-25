@@ -211,7 +211,7 @@ kurtosis\index{kurtosis}
 The peakedness of a distribution. Zero indicates a normal distribution, a negative value indicates a flat distribution, and a positive value indicates a sharp curve.  
 
 ```{r, echo=F, fig.cap='Negative and positive kurtosis', fig.align='center'}
-knitr::include_graphics("Images/NonGenerated/kurtosis.png")
+knitr::include_graphics("images/NonGenerated/kurtosis.png")
 ```
 :::
 ::::
@@ -375,7 +375,7 @@ skewness\index{skewness}
 The asymmetry of the probability distribution. A zero skew indicates a symmetrical balance in the distribution. A negative skew indicates that the left side of the distribution is longer and most of the values are concentrated on the right. A positive skew indicates that the right side of the distribution is longer and most of the values are concentrated on the left.  
 
 ```{r, echo=F, fig.cap='Negative and positive skewness', fig.align='center'}
-knitr::include_graphics("Images/NonGenerated/skewness.png")
+knitr::include_graphics("images/NonGenerated/skewness.png")
 ```
 :::
 ::::

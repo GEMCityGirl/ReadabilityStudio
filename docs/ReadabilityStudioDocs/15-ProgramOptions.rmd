@@ -10,11 +10,11 @@ These options can be configured both globally and for individual projects. Note 
 
 To set these options globally, click the `r keys("Options")` button on the **Tools** tab to open the **Options** dialog:
 
-![](Images/OptionsDlg.png)
+![](images/OptionsDlg.png)
 
 If you wish to change options for an individual project, then click the `r keys("Properties")` button on the **Home** tab to open the **Project Properties** dialog:
 
-![](Images/linktofile.png)
+![](images/linktofile.png)
 
 ## General Settings {#options-general-settings}
 

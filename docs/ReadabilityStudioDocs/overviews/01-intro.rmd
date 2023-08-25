@@ -27,8 +27,8 @@ Another method is lookup tables, where the intersection of factors (e.g., number
 The final method also relies on finding the intersection of factors, but on a graph instead of a table. Most of these plots are divided into bands or brackets, with each of these regions representing a grade or difficulty level. For example, Fry and Raygor use polygonal bands, while Flesch Reading Ease uses brackets along a “ruler”:
 
 ```{r echo=F, fig.show = 'hold', out.width='50%', fig.cap='Comparison of bands vs. brackets'}
-knitr::include_graphics("Images/frygraph.png")
-knitr::include_graphics("Images/FleschChart.png")
+knitr::include_graphics("images/frygraph.png")
+knitr::include_graphics("images/FleschChart.png")
 ```
 
 Once the intersection of two factors is located on the plot, the band or bracket that the intersection falls into will indicate the score.
@@ -45,7 +45,7 @@ $if_else(UserManualMode, OptionsDesc, "")^', .open='$', .close='^')
 A key difference between graph and table-based tests versus regression-based tests is how the former has defined upper limits for their scores. For example, graph-based tests acquire their scores by finding the intersection of certain factors (e.g., sentence length) within a set a bands. These bands represent grades, and there are a specific set of grade bands available. As an example, a [Fry](#fry-test) graph has bands ranging from 1^st^ grade to 17^th^ (i.e., college):
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/frygraph.png")
+knitr::include_graphics("images/frygraph.png")
 ```
 
 Likewise, table-based tests take a set of factors and look up the score from a table. These tables have a specific set of grade levels and will also have an upper limit. (Refer to table \@ref(tab:wheeler-smith-conversion-table) for an example.)
@@ -69,7 +69,7 @@ Most readability tests will return a result, even when the document being review
 It is possible, however, for certain graphical tests to not return a meaningful result. Tests such as Fry and Schwartz use plots that are divided into bands (i.e., polygonal strips) which represent different grade levels. To produce a result, these tests find the intersection of a document's statistics along the plot's axes. Once the intersection is found, the band that the point falls within will indicate the grade level of the document.
 
 ```{r echo=F, fig.align='center', fig.cap='Example of a graph with grade-level bands', out.width='75%'}
-knitr::include_graphics("Images/Schwartz.png")
+knitr::include_graphics("images/Schwartz.png")
 ```
 
 ```{r, results='asis', eval=T, echo=F}

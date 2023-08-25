@@ -6,7 +6,7 @@ Along with offering standard tests, such as [New Dale-Chall](#dale-chall-test)\i
 
 To create a custom test, go to the **Readability** tab, click the arrow beneath the `r keys("Custom Tests")` button and select **Add Test...** from the menu. At this point, the **Add Custom Test** dialog will be displayed:
 
-![](Images/AddCustomTest.png)
+![](images/AddCustomTest.png)
 
 In the **General Settings** section, enter a name for this test (e.g., “NDC Computer”) in the **Test name** field. This will be the name of the test as it appears in your results and on the menu.
 
@@ -27,7 +27,7 @@ To create a new formula based on Lix\index{Lix} that treats 6+ character words a
 To view the available functions, click the `r keys('ƒx')` button to display the **Function Browser** dialog:
 
 ```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("Images/FunctionBrowser.png")
+knitr::include_graphics("images/FunctionBrowser.png")
 ```
 
 Refer to \@ref(custom-test-functions) for a list of available functions.
@@ -60,17 +60,17 @@ If you are not using stemming, then it is recommended that you enter each inflec
 
 Along with your own word list, you can also use the New Dale-Chall, Spache, and Harris-Jacobson\index{word lists!combining} word lists. This enables you to make your word list an appendage to any of these standard tests, therefore creating your own extended version of these tests. This behavior can be toggled with the options shown below:
 
-![](Images/CustomTestIncludeLists.png)
+![](images/CustomTestIncludeLists.png)
 
 Standard familiar-word tests normally consider numbers and proper nouns as familiar. This is the default behavior for a custom test as well, but these can be toggled on the **Proper Nouns** and **Numbers** sections (shown below):
 
-![](Images/CustomTestTreat.png)
+![](images/CustomTestTreat.png)
 
 Finally, you can specify how this test interacts with the [**New Project**](#creating-standard-project) wizard by associating it with document types and industries. Click the **Classification** icon to display these options. Then select all the documents and industries that this test should relate to.
 
 For example, select the **Children's literature** and **Children's healthcare** check boxes (as shown below) and click `r keys("OK")`.
 
-![](Images/CustomTestWizardSettings.png)
+![](images/CustomTestWizardSettings.png)
 
 Now create a new project and select **Children's healthcare** as the industry type. Once the program loads the document, your custom test will be automatically included in the results.
 
@@ -435,7 +435,7 @@ Select any of these bundles from the menu and all the tests within it will be ad
 
 You can also create your own bundles. To do this, select **Add...** from the **Bundles** menu to open the **Add Test Bundle** dialog:
 
-![](Images/TestBundle.png)
+![](images/TestBundle.png)
 
 On the **General** page of this dialog, you will first enter a name for the bundle. (This name is how it will appear in the **Bundles** menu.) Next, you will select all the tests that you wish to include in this bundle. (Tests are available on the **Standard Tests**, **Custom Tests**, and **Vocabulary Tools** pages.)
 

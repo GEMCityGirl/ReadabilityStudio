@@ -9,17 +9,17 @@ In this example, we will import a document which contains short lines of text th
 First, let us view the document. From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "Job Posting." Next, you will be prompted to either create a new project or view the document; select **View document**. Once the document is opened, note the text in the upper left corner. Here we have short descriptions about a job posting that we will want to preserve as separate lines when we import:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/NonGenerated/JostPostingViewDocument.png")
+knitr::include_graphics("images/NonGenerated/JostPostingViewDocument.png")
 ```
 
 Close this document and return to *Readability Studio*. Click the `r keys('Example Documents')` button and again select "Job Posting." Next, select **Create a new project**. When the **New Project Wizard** appears, select the **Document Structure** page and check **Line ends (i.e., hard returns) mark the start of a new paragraph**:
 
-![](Images/wizarddocstructurehardreturns.png)
+![](images/wizarddocstructurehardreturns.png)
 
 Finally, click the `r keys('Finish')` button to create the project. When the project appears, select **Grammar** on the sidebar and select **Highlighted Report**. Note how the job descriptors at the top have been preserved as separate lines:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/JobPostingHighlightedText.png")
+knitr::include_graphics("images/JobPostingHighlightedText.png")
 ```
 
 Because these are terse, unterminated lines of text, they will also be excluded from our analyses.
@@ -35,27 +35,27 @@ In this example, we will import a picture book which has unusual sentence format
 From the **Help** tab, click the `r keys("Example Documents")` button and then select *The Tale of Peter Rabbit*. When prompted about what to do with the file, select **View document**. As shown below, we can see a sentence that is partially on top of an image, and the rest of it is split across multiple lines to fit next to the image.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/NonGenerated/PeterRabbitBrowser.png")
+knitr::include_graphics("images/NonGenerated/PeterRabbitBrowser.png")
 ```
 
 Close this document and return the **Help** tab. Click the `r keys("Example Documents")` button and again select *The Tale of Peter Rabbit*. This time, select **Create a new project**. From the [project wizard](#creating-standard-project), select the **Document Structure** page and note the option **Sentences are split**; selecting this will instruct the program to ignore hard returns and blank lines and combine these fragments into full sentences:
 
-![](Images/wizarddocstructuresentencessplit.png)
+![](images/wizarddocstructuresentencessplit.png)
 
 For this example, though, let’s leave this unchecked to see what happens. Next, select the **Test Selection** page and select **Children's literature**. Click `r keys("Finish")` to create the project.
 
 When the project appears, click on the **Words Breakdown** icon on the project sidebar and select **3+ Syllable Report**. Note how some sentences have been split into incomplete fragments (as it appeared in the book):
 
-![](Images/PeterRabbitSplitSentences.png)
+![](images/PeterRabbitSplitSentences.png)
 
 To correct this, we will change how sentences are deduced for this project. Click the `r keys("Properties")` button on the **Home** tab and then select **Document Indexing**. First, ensure that **Line ends** is set to **only begin a new paragraph if following a valid sentence** (this should be the default). Then check the options **Ignore blank lines** and **Ignore indenting** and click `r keys("OK")` to accept. (Note that we also selected **Ignore indenting** because this file contains some indented text.)
 
-![](Images/IgnoreBlankLines.png)
+![](images/IgnoreBlankLines.png)
 
 At this point, the project will be reanalyzed and these sentence fragments will be chained together:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/PeterRabbitChainedSentences.png")
+knitr::include_graphics("images/PeterRabbitChainedSentences.png")
 ```
 
 \newpage
@@ -67,106 +67,106 @@ When reviewing a document, it is usually preferable to ignore certain items, suc
 The first step is to open the example file “Danielson-Bryan.” From the **Help** tab, click the `r keys("Example Documents")` button and then select "Danielson-Bryan" from the menu. (When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`. A warning about an incomplete sentence being included because of its length will appear:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/NonGenerated/ExclusionExampleIncompleteSentWarning.png")
+knitr::include_graphics("images/NonGenerated/ExclusionExampleIncompleteSentWarning.png")
 ```
 
 For now click `r keys("Close")`, we will review this sentence later in this example.
 
 Once the project is loaded, on the **Home** tab click the `r keys("Properties")` button under the **Project** section. On the **Properties** dialog, click **Analysis** on the sidebar and select **Document Indexing**. Uncheck all the options shown below and click `r keys("OK")`:
 
-![](Images/ExclusionExampleAllExcluded.png)
+![](images/ExclusionExampleAllExcluded.png)
 
 Next, click **Grammar** on the project's sidebar and then click **Highlighted Report**. In this window, any text that is being excluded will be highlighted gray. For example, note that the header *Danielson-Bryan 1 Test* is excluded, as shown below:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/ExclusionExampleHeaderExcluded.png")
+knitr::include_graphics("images/ExclusionExampleHeaderExcluded.png")
 ```
 
 Scroll midway down the document and note how another header, an equation, and a table are also excluded. However, a couple of items in this block are being included that shouldn't be:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/ExclusionExamplePartialExcluded.png")
+knitr::include_graphics("images/ExclusionExamplePartialExcluded.png")
 ```
 
 The first is the sentence *Where:.* Sentences that end with a semicolon and are followed by a list will normally be considered valid. In this case though, we will want to exclude this sentence too. Open the **Properties** dialog again, click **Analysis** and select **Document Indexing**. Check the option **Aggressively deduce lists**, as shown below:
 
-![](Images/ExclusionExampleAggressiveList.png)
+![](images/ExclusionExampleAggressiveList.png)
 
 Checking this option will exclude\index{sentences!aggressively excluding} any valid sentence (containing less than 10 words) that is inside of a block of incomplete sentences. Click `r keys("OK")` and note how *Where:* is now excluded:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/ExclusionExampleWhereExcluded.png")
+knitr::include_graphics("images/ExclusionExampleWhereExcluded.png")
 ```
 
 The next item to note is the sentence *Number of characters\.\.\.*. This is really an item in a table that is missing a period, so we should be excluding it. However, currently it is being included because it contains more than 15 words. To adjust this, go back to the **Document Indexing** options for this project. Change the value for **Include incomplete sentences containing more than [15] words** to a higher value (e.g., 20) and click `r keys("OK")`:
 
-![](Images/ExclusionExampleIncompLengthValue.png)
+![](images/ExclusionExampleIncompLengthValue.png)
 
 Note how the *Number of characters\.\.\.* sentence is now excluded:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/ExclusionExampleLongSentenceExcluded.png")
+knitr::include_graphics("images/ExclusionExampleLongSentenceExcluded.png")
 ```
 
 Now scroll to the bottom of the report window and note the copyright notice:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/ExclusionExampleCopyrightIncluded.png")
+knitr::include_graphics("images/ExclusionExampleCopyrightIncluded.png")
 ```
 
 Go to the **Document Indexing** options, check **Also exclude copyright notices**, and click `r keys("OK")`:
 
-![](Images/ExclusionExampleCopyrightExcluded.png)
+![](images/ExclusionExampleCopyrightExcluded.png)
 
 Now this copyright notice will be excluded from the analysis:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/ExclusionExampleCopyrightExcludedNow.png")
+knitr::include_graphics("images/ExclusionExampleCopyrightExcludedNow.png")
 ```
 
 Along with incomplete sentences, specific types of words can also be excluded. For example, at the bottom of this window note the hyperlink *http://www.jstor.org/*. To exclude this, go to the **Document Indexing** options, check **Also exclude Internet and file addresses**, and click `r keys("OK")`:
 
-![](Images/ExclusionExampleUrlExcluded.png)
+![](images/ExclusionExampleUrlExcluded.png)
 
 Note how *http://www.jstor.org/* is now excluded:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/ExclusionExampleUrlExcludedNow.png")
+knitr::include_graphics("images/ExclusionExampleUrlExcludedNow.png")
 ```
 
 Other items, such as proper nouns\index{proper nouns!excluding} and numbers\index{numerals!excluding} can also be excluded. Go to the **Document Indexing** options, check **Also exclude numerals** and **Also exclude proper nouns**, and click `r keys("OK")`. Then scroll to the top of the report window. First note how numbers, such as the page citation and computer series, are now excluded:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/ExclusionExampleNumbersExcludedNow.png")
+knitr::include_graphics("images/ExclusionExampleNumbersExcludedNow.png")
 ```
 
 Also note how proper nouns, such as *Danielson-Bryan* and *UNIVAC*, are now excluded:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/ExclusionExampleProperExcludedNow.png")
+knitr::include_graphics("images/ExclusionExampleProperExcludedNow.png")
 ```
 
 You can also exclude specific words and phrases. From the **Document Indexing** options, click the edit button in the **Words & phrases to exclude** section:
 
-![](Images/ExclusionExampleEditListButton.png)
+![](images/ExclusionExampleEditListButton.png)
 
 In the **Edit Phrase List** dialog, either double click the grid or click the add item button to begin adding words or phrases to exclude. In one line enter *punctuation*, and in another line enter *sentence length*:
 
 ```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("Images/ExclusionExampleCustomWords.png")
+knitr::include_graphics("images/ExclusionExampleCustomWords.png")
 ```
 
 Click `r keys("OK")` and all instances of *punctuation* and *sentence length* are now excluded:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/ExclusionExampleCustomWordsExcludedNow.png")
+knitr::include_graphics("images/ExclusionExampleCustomWordsExcludedNow.png")
 ```
 
 Separate instances of *sentence* and *length* will still be included, they will only be excluded if they appear together to form the phrase *sentence length*. Refer to \@ref(document-analysis) for more on how custom word/phrase exclusion works.
 
 Along with editing the word list from the **Properties** dialog, you can also add words directly from the results. Select **Words Breakdown** on the sidebar and select any list under this section (e.g., **3+ Syllable List**). In this list window, select any words that you wish to exclude and click **Exclude Selected** on the **Home** tab of the ribbon:
 
-![](Images/RibbonEditListOptionsWithExcludeSelected.png)
+![](images/RibbonEditListOptionsWithExcludeSelected.png)
 
 The selected words will be added to your exclusion list and the project will then be updated.
 
@@ -175,7 +175,7 @@ Note that when excluding individual words, these words are treated as if they ar
 Another section of text that could be excluded is the citation at the bottom. Go to the **Document Indexing** options, check **Also exclude trailing citations** and click `r keys("OK")`. Scroll to the bottom of the document and note how everything below the header *Citations* is now excluded:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/ExclusionExampleCitationExcluded.png")
+knitr::include_graphics("images/ExclusionExampleCitationExcluded.png")
 ```
 
 At this point, all that remains in the analysis is the actual prose—all “noise” from the document has been filtered out.
@@ -195,25 +195,25 @@ The first step is to open the example file “Press Release.” From the **Help*
 Once the project is loaded, click **Grammar** on the project's sidebar and then click **Highlighted Report**. In this window, any text that is being excluded will be highlighted gray. For example, an indented list is being excluded, as shown below:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/ExclusionTagsExampleListExcluded.png")
+knitr::include_graphics("images/ExclusionTagsExampleListExcluded.png")
 ```
 
 However, note that are a few placeholders in this file, such as *\<Product\>*:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/ExclusionTagsExampleNotExcluding.png")
+knitr::include_graphics("images/ExclusionTagsExampleNotExcluding.png")
 ```
 
 We will want to exclude these items because they will not be in the final draft. However, because these are valid words and sentences (i.e., they are not headers, list items, etc.), then the [standard exclusion features](#options-text-exclusion) will not remove them. Also, using a list of exclusion words may be too aggressive. For example, adding *product* to an exclusion list will remove the *\<Product\>*, but it will also exclude any other instance of *product*. Also, the last paragraph is valid, but because it is just a comment we will want to exclude this also. For these situations, will we need to use tagged-block exclusion.
 
 Open the **Properties** dialog and select **Document Indexing** (`r menu(c("Home", "Properties", "Document Indexing"))`). Set the option **Exclude text between** to **\< and \>**, as shown below:
 
-![](Images/ExclusionTagsExampleOptions.png)
+![](images/ExclusionTagsExampleOptions.png)
 
 Selecting this option will exclude text in between pairs of angle brackets. Click `r keys("OK")` and note how the placeholders and final paragraph are now excluded:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/ExclusionTagsExampleExcluding.png")
+knitr::include_graphics("images/ExclusionTagsExampleExcluding.png")
 ```
 
 ::: {.tipsection data-latex=""}
@@ -229,36 +229,36 @@ In this example, we will analyze an updated flyer from a previous example (refer
 Along with policy changes to the program, they have redesigned the program’s flyer to appear more professional. Let’s first take a look at the updated flyer. From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "YA Enterprise Software Symposium." Next, you will be prompted to either create a new project or view the document; select **View document**. Once the document is opened, note how the flyer’s short text boxes have been replaced by full sentences:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/NonGenerated/YAEnterpriseSoftwareSymposium.png")
+knitr::include_graphics("images/NonGenerated/YAEnterpriseSoftwareSymposium.png")
 ```
 
 This means that when we import this document, we will specify that it is a narrative document and apply text exclusion. (This is in contrast to the earlier flyer, where we specified it as non-narrative, fragmented text.)
 
 Close this document and return to **Readability Studio**. Click the `r keys('Example Documents')` button and again select "YA Enterprise Software Symposium." Next, select **Create a new project**. When the **New Project Wizard** appears, select the **Document Structure** page and select **Narrative text**:
 
-![](Images/wizarddocstructurenarrativeselected.png)
+![](images/wizarddocstructurenarrativeselected.png)
 
 Next, select the **Test Selection** page and select **Manually select tests**. In the grid below, check **Flesch Reading Ease**:
 
-![](Images/AddendumWizardManualTests.png)
+![](images/AddendumWizardManualTests.png)
 
 Finally, click the `r keys('Finish')` button to create the project. When the project appears, select **Flesch Reading Ease** under the **Scores** section in the sidebar.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/AddendumFlesch1.png")
+knitr::include_graphics("images/AddendumFlesch1.png")
 ```
 
 Note that this new flyer is difficult, so let’s review it. Click **Words Breakdown** on the sidebar and then select **3+ Syllables Report**. As we scroll through this window, note the highlighted difficult words:
 
 ```{r echo=F, fig.show = 'hold', out.width='50%'}
-knitr::include_graphics("Images/AddendumHighlightedText1.png")
-knitr::include_graphics("Images/AddendumHighlightedText2.png")
+knitr::include_graphics("images/AddendumHighlightedText1.png")
+knitr::include_graphics("images/AddendumHighlightedText2.png")
 ```
 
 As we can see, this document could use some improving. Before we can do that, though, the new owners of our software company have also requested that a disclaimer be appended to all sign-up forms such as this. Rather than running a separate analysis on this disclaimer, we would like to append this document to our flyer and analyze them together. To do this, go to the **Home** tab of the ribbon and select **Properties**. On the **Properties** dialog, select **Project Settings** on the sidebar. Next, under the **Append Additional Document** section, click the folder button and navigate to the *examples* folder from where *Readability Studio* is installed. Select the file “Instructional Disclaimer.odt”:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/AddendumProperties.png")
+knitr::include_graphics("images/AddendumProperties.png")
 ```
 
 ::: {.tipsection data-latex=""}
@@ -268,19 +268,19 @@ You can also enter *@[EXAMPLESDIR]/Instructional Disclaimer.odt* into the **Appe
 Click `r keys('OK')` to accept. When the project finishes reloading, select **Flesch Reading Ease** under the **Scores** section again.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/AddendumFlesch2.png")
+knitr::include_graphics("images/AddendumFlesch2.png")
 ```
 
 Note how the document is now very difficult. Click **Words Breakdown** on the sidebar and then select **3+ Syllables Report**. As we scroll to where our disclaimer was appended, note the numerous difficult words:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/AddendumHighlightedText3.png")
+knitr::include_graphics("images/AddendumHighlightedText3.png")
 ```
 
 Next, click **Grammar** on the sidebar and then select **Highlighted Report**. Scrolling to the disclaimer portion of the document, note the numerous, meandering sentences:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/AddendumHighlightedText4.png")
+knitr::include_graphics("images/AddendumHighlightedText4.png")
 ```
 
 At this point, we will have quite of a bit of improvements to make to both the flyer and disclaimer. (And parents may want to start looking for a different summer camp.)
@@ -291,11 +291,11 @@ At this point, we will have quite of a bit of improvements to make to both the f
 
 [Test bundles](#test-bundles) are a convenient way to add multiple tests to a project at once. In this example, we will create a test bundle named “4F” which includes the [Fry](#fry-test), [FORCAST](#forcast-test), [Fog](#gunning-fog-test), and [Flesch-Kincaid](#flesch-kincaid-test) tests. The first step is to select the **Readability** tab, click the `r keys("Bundles")` button, and select **Add...** from the menu. This will open the **Add Test Bundle** dialog:
 
-![](Images/TestBundle.png)
+![](images/TestBundle.png)
 
 Enter the name “4F” into the **Bundle Name** text field. Next, select the **Standard Tests** page and check the Fry, FORCAST, Fog, and Flesch-Kincaid tests, as shown below:
 
-![](Images/TestBundle4F.png)
+![](images/TestBundle4F.png)
 
 Click the `r keys("OK")` button to accept.
 

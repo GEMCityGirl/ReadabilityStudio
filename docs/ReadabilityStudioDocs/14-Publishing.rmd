@@ -190,7 +190,7 @@ All graphs\index{graphs!printing}, lists\index{lists!printing}, statistical summ
 To print\index{printing} any window, go to the **Home** tab and click the `r keys("Print")` button, or right click on the window and select **Print**.
 
 :::  {.wrapfigure data-latex="{r}{0.5\\textwidth}" style="width: 48%;"}
-![](Images/printerheadersfooters.png){width=48%}
+![](images/printerheadersfooters.png){width=48%}
 :::
 
 Clicking the arrow beneath the `r keys("Print")` button will open a menu containing additional printing options. For example, to change the paper size or orientation of your printouts, select **Page Setup** from this menu.
@@ -219,7 +219,7 @@ Custom values can also be entered here (e.g., the editor's name).
 To preview a window before printing it, select **Print Preview** from this menu.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("Images/NonGenerated/printpreview.png")
+knitr::include_graphics("images/NonGenerated/printpreview.png")
 ```
 
 ::: {.notesection data-latex=""}
@@ -262,7 +262,7 @@ To do this, click on the **Home** tab of the ribbon, click on the arrow below th
 After excluding incomplete sentences from your document, you will be presented with additional options (see below). Once you have specified your filtering options, the **Preview Filtered Document** dialog (shown on the right) will be displayed. This dialog will show a preview of the filtered document, along with listing the filtering options being used.
 
 ```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("Images/FilterTextPreview.png")
+knitr::include_graphics("images/FilterTextPreview.png")
 ```
 
 Finally, click `r keys("OK")` to save the file.
