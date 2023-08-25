@@ -14,9 +14,7 @@ The following styles should be applied to all help projects:
 
 The documentation is stored in **bookdown** projects in the **ReadabilityStudioDocs** and **ReadabilityStudioAPI** folders. The markdown files (\*.Rmd) can be edited in **RStudio**.
 
-**ReadabilityStudioDocs** is stored in a separate git repository and included as a submodule in the **ReadabilityStudio** project.
-
-## Screenshots
+## Screenshots {#creating-screenshots}
 
 ### Generating Screenshots {-}
 
@@ -24,7 +22,8 @@ To generate screenshots, do the following:
 
 - Run the script **docs/Generate Screenshots.lua** from *Readability Studio*
 
-This will generate all new screenshots in the root **docs/ReadabilityStudioDocs/images**. The subdirectory **NonGenerated** will not be effected, but does not need to be. It should not contain images effected by the program's UI changes and should not contain images with content that should be localized.
+This will generate all new screenshots in the root **docs/ReadabilityStudioDocs/images**. The subdirectory **NonGenerated** will not be effected, but does not need to be.
+It should not contain images effected by the program's UI changes and should not contain images with content that should be localized.
 
 ### Reviewing Screenshots {-}
 
@@ -45,4 +44,6 @@ After generating new screenshots, [build](#building-help) the help and review th
 
 ## Building {#building-help}
 
-From **RStudio**, run **docs/BuildHelpProjects.R** to build all help projects.
+From *RStudio*, run **docs/BuildHelpProjects.R** to build all help projects. This should install all needed *R* and *LaTeX* packages the first time you run it,
+although you may need to uncomment the line `tinytex::install_tinytex()` once to install *tinytex*. If there are any errors will installing the *LaTeX* packages,
+run the script again; you may expericence connection issues to *ctan* and re-running the script will fix it.
