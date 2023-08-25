@@ -4,6 +4,16 @@ library(readr)
 library(stringr)
 library(fs)
 library(lubridate)
+library(tidyverse)
+library(kableExtra)
+library(Hmisc)
+library(cowplot)
+library(beeswarm)
+
+# Just run this one
+# tinytex::install_tinytex()
+# ...or this to update
+# tinytex::reinstall_tinytex()
 
 docFolder <- dirname(rstudioapi::getSourceEditorContext()$path)
 source(glue("{docFolder}/ReadabilityStudioDocs/R/appdown.r"))
@@ -49,6 +59,8 @@ bookdown::render_book(input="index.Rmd",
 # Shortcuts Cheatsheet
 ######################
 
+# Note that this book has its own LaTeX files (i.e., does not copy them from ReadabilityStudioDocs).
+# This "book" doesn't have any front or back matter, so its preample TeX file doesn't include that.
 setwd(glue("{docFolder}/ShortcutsCheatsheet/"))
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/glossary/02-shortcuts.rmd"),
           glue("{docFolder}/ShortcutsCheatsheet/02-shortcuts.rmd"),
