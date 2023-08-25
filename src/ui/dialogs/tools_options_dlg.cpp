@@ -844,37 +844,103 @@ bool ToolsOptionsDlg::Create(wxWindow* parent, wxWindowID id, const wxString& ca
     wxDialog::Create(parent, id, caption, pos, size, style);
     CreateControls();
 
-    if (IsGeneralSettings())
-        {
-        auto banner = new wxBannerWindow(this, wxTOP);
-        banner->SetText(wxString::Format(_(L"%s Options"), wxGetApp().GetAppDisplayName()),
-            _(L"These options will only affect new projects.\n"
-               "To change an existing project, click \"Properties\" on the Home tab."));
-        banner->SetGradient(ColorBrewer::GetColor(Color::White), ColorBrewer::GetColor(Color::PastelGray));
-
-        GetSizer()->Insert(0, banner, wxSizerFlags().Expand());
-        }
-    else
-        {
-        wxString displayableProjectName = m_readabilityProjectDoc ?
-            m_readabilityProjectDoc->GetTitle() : wxString{};
-        if (displayableProjectName.length() >= 50)
-            { displayableProjectName.Truncate(49).Append(static_cast<wchar_t>(8230)); }
-
-        auto banner = new wxBannerWindow(this, wxTOP);
-        banner->SetText(_(L"Project Properties"),
-            wxString::Format(
-                _(L"These options only affect the current project (\"%s\").\n"
-                   "To change options for future projects, click \"Options\" on the Tools tab."),
-                displayableProjectName));
-        banner->SetGradient(ColorBrewer::GetColor(Color::White), ColorBrewer::GetColor(Color::PastelGray));
-
-        GetSizer()->Insert(0, banner, wxSizerFlags().Expand());
-        }
-    Centre();
-
     // DDX variables bound to controls
     TransferDataToWindow();
+
+    // select the appropriate options if this is a project properties dialog
+    if (GetSectionsBeingShown() == GraphsSection)
+        { SelectPage(ToolsOptionsDlg::GRAPH_GENERAL_PAGE); }
+    else if (GetSectionsBeingShown() == TextSection)
+        { SelectPage(ToolsOptionsDlg::DOCUMENT_DISPLAY_GENERAL_PAGE); }
+    else if (GetSectionsBeingShown() == ProjectSection)
+        { SelectPage(ToolsOptionsDlg::PROJECT_SETTINGS_PAGE); }
+    else if (GetSectionsBeingShown() == ScoresSection)
+        { SelectPage(ToolsOptionsDlg::SCORES_TEST_OPTIONS_PAGE); }
+    else if (GetSectionsBeingShown() == DocumentIndexing)
+        { SelectPage(ToolsOptionsDlg::ANALYSIS_INDEXING_PAGE); }
+    else if (GetSectionsBeingShown() == Grammar)
+        { SelectPage(ToolsOptionsDlg::GRAMMAR_PAGE); }
+    else if (GetSectionsBeingShown() == Statistics)
+        { SelectPage(ToolsOptionsDlg::ANALYSIS_STATISTICS_PAGE); }
+    else if (IsStandardProjectSettings())
+        {
+        const ProjectView* view = dynamic_cast<const ProjectView*>(m_readabilityProjectDoc->GetFirstView());
+        const auto selectedID = view->GetSideBar()->GetSelectedFolderId();
+        if (typeid(*view->GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+            {
+            const auto& graphType =
+                typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0));
+            if (graphType == typeid(FleschChart) ||
+                graphType == typeid(LixGauge) ||
+                graphType == typeid(LixGaugeGerman) ||
+                graphType == typeid(CrawfordGraph) ||
+                graphType == typeid(DanielsonBryan2Plot) ||
+                graphType == typeid(FraseGraph) ||
+                graphType == typeid(FryGraph) ||
+                graphType == typeid(RaygorGraph) ||
+                graphType == typeid(SchwartzGraph) )
+                { SelectPage(GRAPH_READABILITY_GRAPHS_PAGE); }
+            else
+                { SelectPage(GRAPH_GENERAL_PAGE); }
+            }
+        else if (!selectedID.has_value())
+            { SelectPage(SCORES_DISPLAY_PAGE); }
+        else if (selectedID == BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID)
+            { SelectPage(SCORES_DISPLAY_PAGE); }
+        else if (selectedID == BaseProjectView::SIDEBAR_STATS_SUMMARY_SECTION_ID)
+            { SelectPage(ANALYSIS_INDEXING_PAGE); }
+        else if (selectedID == BaseProjectView::SIDEBAR_GRAMMAR_SECTION_ID)
+            { SelectPage(GRAMMAR_PAGE); }
+        else if (selectedID == BaseProjectView::SIDEBAR_DOLCH_SECTION_ID)
+            { SelectPage(DOCUMENT_DISPLAY_DOLCH_PAGE); }
+        else if (selectedID == BaseProjectView::SIDEBAR_WORDS_BREAKDOWN_SECTION_ID)
+            { SelectPage(WORDS_BREAKDOWN_PAGE); }
+        else if (selectedID == BaseProjectView::SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID)
+            { SelectPage(SENTENCES_BREAKDOWN_PAGE); }
+        else
+            { SelectPage(ANALYSIS_INDEXING_PAGE); }
+        }
+    else if (IsBatchProjectSettings())
+        {
+        const BatchProjectView* view = dynamic_cast<const BatchProjectView*>(m_readabilityProjectDoc->GetFirstView());
+        const auto selectedID = view->GetSideBar()->GetSelectedFolderId();
+        if (typeid(*view->GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+            {
+            const auto& graphType =
+                typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0));
+            if (graphType == typeid(FleschChart) ||
+                graphType == typeid(LixGauge) ||
+                graphType == typeid(LixGaugeGerman) ||
+                graphType == typeid(CrawfordGraph) ||
+                graphType == typeid(DanielsonBryan2Plot) ||
+                graphType == typeid(FraseGraph) ||
+                graphType == typeid(FryGraph) ||
+                graphType == typeid(RaygorGraph) ||
+                graphType == typeid(SchwartzGraph) )
+                { SelectPage(GRAPH_READABILITY_GRAPHS_PAGE); }
+            else
+                { SelectPage(GRAPH_GENERAL_PAGE); }
+            }
+        else if (!selectedID.has_value())
+            { SelectPage(SCORES_DISPLAY_PAGE); }
+        else if (selectedID == BatchProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID)
+            {
+            if (m_projectLanguage == static_cast<int>(readability::test_language::english_test))
+                { SelectPage(SCORES_TEST_OPTIONS_PAGE); }
+            else
+                { SelectPage(SCORES_DISPLAY_PAGE); }
+            }
+        else if (selectedID == BatchProjectView::SIDEBAR_HISTOGRAMS_SECTION_ID)
+            { SelectPage(GRAPH_HISTOGRAM_PAGE); }
+        else if (selectedID == BatchProjectView::SIDEBAR_BOXPLOTS_SECTION_ID)
+            { SelectPage(GRAPH_BOX_PLOT_PAGE); }
+        else if (selectedID == BatchProjectView::SIDEBAR_GRAMMAR_SECTION_ID)
+            { SelectPage(GRAMMAR_PAGE); }
+        else
+            { SelectPage(ANALYSIS_INDEXING_PAGE); }
+        }
+
+    Center();
 
     return true;
     }
@@ -4969,100 +5035,35 @@ void ToolsOptionsDlg::CreateControls()
             }
         }
 
-    // select the appropriate options if this is a project properties dialog
-    if (GetSectionsBeingShown() == GraphsSection)
-        { SelectPage(ToolsOptionsDlg::GRAPH_GENERAL_PAGE); }
-    else if (GetSectionsBeingShown() == TextSection)
-        { SelectPage(ToolsOptionsDlg::DOCUMENT_DISPLAY_GENERAL_PAGE); }
-    else if (GetSectionsBeingShown() == ProjectSection)
-        { SelectPage(ToolsOptionsDlg::PROJECT_SETTINGS_PAGE); }
-    else if (GetSectionsBeingShown() == ScoresSection)
-        { SelectPage(ToolsOptionsDlg::SCORES_TEST_OPTIONS_PAGE); }
-    else if (GetSectionsBeingShown() == DocumentIndexing)
-        { SelectPage(ToolsOptionsDlg::ANALYSIS_INDEXING_PAGE); }
-    else if (GetSectionsBeingShown() == Grammar)
-        { SelectPage(ToolsOptionsDlg::GRAMMAR_PAGE); }
-    else if (GetSectionsBeingShown() == Statistics)
-        { SelectPage(ToolsOptionsDlg::ANALYSIS_STATISTICS_PAGE); }
-    else if (IsStandardProjectSettings())
-        {
-        const ProjectView* view = dynamic_cast<const ProjectView*>(m_readabilityProjectDoc->GetFirstView());
-        const auto selectedID = view->GetSideBar()->GetSelectedFolderId();
-        if (typeid(*view->GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
-            {
-            const auto& graphType =
-                typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0));
-            if (graphType == typeid(FleschChart) ||
-                graphType == typeid(LixGauge) ||
-                graphType == typeid(LixGaugeGerman) ||
-                graphType == typeid(CrawfordGraph) ||
-                graphType == typeid(DanielsonBryan2Plot) ||
-                graphType == typeid(FraseGraph) ||
-                graphType == typeid(FryGraph) ||
-                graphType == typeid(RaygorGraph) ||
-                graphType == typeid(SchwartzGraph) )
-                { SelectPage(GRAPH_READABILITY_GRAPHS_PAGE); }
-            else
-                { SelectPage(GRAPH_GENERAL_PAGE); }
-            }
-        else if (!selectedID.has_value())
-            { SelectPage(SCORES_DISPLAY_PAGE); }
-        else if (selectedID == BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID)
-            { SelectPage(SCORES_DISPLAY_PAGE); }
-        else if (selectedID == BaseProjectView::SIDEBAR_STATS_SUMMARY_SECTION_ID)
-            { SelectPage(ANALYSIS_INDEXING_PAGE); }
-        else if (selectedID == BaseProjectView::SIDEBAR_GRAMMAR_SECTION_ID)
-            { SelectPage(GRAMMAR_PAGE); }
-        else if (selectedID == BaseProjectView::SIDEBAR_DOLCH_SECTION_ID)
-            { SelectPage(DOCUMENT_DISPLAY_DOLCH_PAGE); }
-        else if (selectedID == BaseProjectView::SIDEBAR_WORDS_BREAKDOWN_SECTION_ID)
-            { SelectPage(WORDS_BREAKDOWN_PAGE); }
-        else if (selectedID == BaseProjectView::SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID)
-            { SelectPage(SENTENCES_BREAKDOWN_PAGE); }
-        else
-            { SelectPage(ANALYSIS_INDEXING_PAGE); }
-        }
-    else if (IsBatchProjectSettings())
-        {
-        const BatchProjectView* view = dynamic_cast<const BatchProjectView*>(m_readabilityProjectDoc->GetFirstView());
-        const auto selectedID = view->GetSideBar()->GetSelectedFolderId();
-        if (typeid(*view->GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
-            {
-            const auto& graphType =
-                typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0));
-            if (graphType == typeid(FleschChart) ||
-                graphType == typeid(LixGauge) ||
-                graphType == typeid(LixGaugeGerman) ||
-                graphType == typeid(CrawfordGraph) ||
-                graphType == typeid(DanielsonBryan2Plot) ||
-                graphType == typeid(FraseGraph) ||
-                graphType == typeid(FryGraph) ||
-                graphType == typeid(RaygorGraph) ||
-                graphType == typeid(SchwartzGraph) )
-                { SelectPage(GRAPH_READABILITY_GRAPHS_PAGE); }
-            else
-                { SelectPage(GRAPH_GENERAL_PAGE); }
-            }
-        else if (!selectedID.has_value())
-            { SelectPage(SCORES_DISPLAY_PAGE); }
-        else if (selectedID == BatchProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID)
-            {
-            if (m_projectLanguage == static_cast<int>(readability::test_language::english_test))
-                { SelectPage(SCORES_TEST_OPTIONS_PAGE); }
-            else
-                { SelectPage(SCORES_DISPLAY_PAGE); }
-            }
-        else if (selectedID == BatchProjectView::SIDEBAR_HISTOGRAMS_SECTION_ID)
-            { SelectPage(GRAPH_HISTOGRAM_PAGE); }
-        else if (selectedID == BatchProjectView::SIDEBAR_BOXPLOTS_SECTION_ID)
-            { SelectPage(GRAPH_BOX_PLOT_PAGE); }
-        else if (selectedID == BatchProjectView::SIDEBAR_GRAMMAR_SECTION_ID)
-            { SelectPage(GRAMMAR_PAGE); }
-        else
-            { SelectPage(ANALYSIS_INDEXING_PAGE); }
-        }
-
     mainSizer->Add(CreateButtonSizer(wxOK|wxCANCEL|wxHELP), 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+
+    if (IsGeneralSettings())
+        {
+        auto banner = new wxBannerWindow(this, wxTOP);
+        banner->SetText(wxString::Format(_(L"%s Options"), wxGetApp().GetAppDisplayName()),
+            _(L"These options will only affect new projects.\n"
+               "To change an existing project, click \"Properties\" on the Home tab."));
+        banner->SetGradient(ColorBrewer::GetColor(Color::White), ColorBrewer::GetColor(Color::PastelGray));
+
+        mainSizer->Insert(0, banner, wxSizerFlags().Expand());
+        }
+    else
+        {
+        wxString displayableProjectName = m_readabilityProjectDoc ?
+            m_readabilityProjectDoc->GetTitle() : wxString{};
+        if (displayableProjectName.length() >= 50)
+            { displayableProjectName.Truncate(49).Append(static_cast<wchar_t>(8230)); }
+
+        auto banner = new wxBannerWindow(this, wxTOP);
+        banner->SetText(_(L"Project Properties"),
+            wxString::Format(
+                _(L"These options only affect the current project (\"%s\").\n"
+                   "To change options for future projects, click \"Options\" on the Tools tab."),
+                displayableProjectName));
+        banner->SetGradient(ColorBrewer::GetColor(Color::White), ColorBrewer::GetColor(Color::PastelGray));
+
+        mainSizer->Insert(0, banner, wxSizerFlags().Expand());
+        }
 
     SetSizerAndFit(mainSizer);
 
@@ -5212,9 +5213,11 @@ void ToolsOptionsDlg::SelectPage(const int pageId)
 //-------------------------------------------------------------
 bool ToolsOptionsDlg::IsGeneralSettings() const noexcept
     { return !m_readabilityProjectDoc; }
+
 //-------------------------------------------------------------
 bool ToolsOptionsDlg::IsStandardProjectSettings() const
     { return (m_readabilityProjectDoc && m_readabilityProjectDoc->IsKindOf(CLASSINFO(ProjectDoc))); }
+
 //-------------------------------------------------------------
 bool ToolsOptionsDlg::IsBatchProjectSettings() const
     { return (m_readabilityProjectDoc && m_readabilityProjectDoc->IsKindOf(CLASSINFO(BatchProjectDoc))); }
@@ -5225,7 +5228,7 @@ wxString ToolsOptionsDlg::ExpandPath(wxString path) const
     if (path.starts_with(_DT(L"@[EXAMPLESDIR]")))
         {
         path.Replace(_DT(L"@[EXAMPLESDIR]"),
-            wxGetApp().FindResourceDirectory(_DT(L"examples")));
+            wxGetApp().FindResourceDirectory(_DT(L"Examples")));
         }
     return path;
     }
