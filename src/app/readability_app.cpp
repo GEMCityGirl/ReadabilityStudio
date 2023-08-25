@@ -612,7 +612,7 @@ bool ReadabilityApp::OnInit()
            user's Library folder. A shared license file won't be possible on macOS.*/
         licensePath = AppSettingFolderPath + L"rs.xml";
     #else
-        ///@todo need Linux location
+        licensePath = AppSettingFolderPath + L"rs.xml";
     #endif
         // save the licensing info now that we have it and have validated it
         if (!GetLicenseAdmin().SaveLicenseFile(licensePath))
@@ -646,6 +646,9 @@ bool ReadabilityApp::OnInit()
 
     m_dynamicIdMap =
     {
+        // These are the IDs that this constants map to in "Resources/Scripting/RSConstants.lua";
+        // When adding a new constant (e.g., enum value) to RSConstants.lua, that numeric ID from there
+        // to the respective window ID here.
         { 30001, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR },
         { 30002, MainFrame::ID_PROOFING_RIBBON_BUTTON_BAR },
         { 30003, MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR },
