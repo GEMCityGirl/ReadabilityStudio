@@ -554,7 +554,7 @@ void ProjectWizardDlg::CreateControls()
             wxMemoryDC memDc2(previewImage);
             // draw the label
             imageLabel.SetText(_(L"Split sentences with extra lines between them will be chained together."));
-            imageLabel.SplitTextToFitBoundingBox(memDc, wxSize(memDc2.GetSize().GetWidth()*.50f,
+            imageLabel.SplitTextToFitBoundingBox(memDc2, wxSize(memDc2.GetSize().GetWidth()*.50f,
                 memDc2.GetSize().GetHeight()));
             imageLabel.SetAnchorPoint(wxPoint(memDc2.GetSize().GetWidth() - wxSizerFlags::GetDefaultBorder(),
                 wxSizerFlags::GetDefaultBorder()));
