@@ -153,21 +153,27 @@ void AboutDialogEx::CreateControls()
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, m_appVersion));
 #ifndef NDEBUG
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Build:")));
-        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Debug")));
+        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"DEBUG")));
 #endif
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Built on:")));
         wxDateTime buildDate;
         buildDate.ParseDate(__DATE__);
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, buildDate.Format(L"%B %d, %G")));
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Platform:")));
-        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, wxGetOsDescription()));
+        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY,
+#ifdef __WXGTK__
+            wxGetOsDescription() + L" (" + wxPlatformInfo::Get().GetLinuxDistributionInfo().Description + L")"
+#else
+            wxGetOsDescription()
+#endif
+            ));
 
         // put it all together
         mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, wxTheApp->GetAppName()), 0,
                                              wxALIGN_LEFT|wxLEFT, wxSizerFlags::GetDefaultBorder());
         mainPanelSizer->Add(productInfoGrid, 0, wxALIGN_LEFT|wxLEFT, wxSizerFlags::GetDefaultBorder());
-        mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, m_copyright), 0,
-                                             wxALIGN_LEFT|wxLEFT, wxSizerFlags::GetDefaultBorder());
+        mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, m_copyright),
+            wxSizerFlags().Left().Border(wxLEFT|wxBOTTOM, wxSizerFlags::GetDefaultBorder()));
         }
 
     // licensing page
