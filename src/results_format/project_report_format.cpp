@@ -201,8 +201,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
                             (const wxString& label, const wxString& value, const wxString& percent)
         {
         return wxString::Format(
-            L"\n<tr><td style='min-width:%ipx; width:40%%;'>%s</td>"
-             "<td style='text-align:right; width:%ipx;'>%s</td>"
+            L"\n<tr><td style='min-width:%ldpx; width:40%%;'>%s</td>"
+             "<td style='text-align:right; width:%ldpx;'>%s</td>"
              "<td style='text-align:left;'>%s</td></tr>",
             labelColumnWidth, label, numberColumnWidth, value, percent);
         };
@@ -1035,8 +1035,8 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                             (const wxString& label, const wxString& value,
                              const wxString& percent = wxString{})
         {
-        return wxString::Format(L"\n<tr><td style='min-width:%ipx; width:40%%;'>%s</td>"
-                                 "<td style='text-align:right; width:%ipx;'>%s</td>"
+        return wxString::Format(L"\n<tr><td style='min-width:%ldpx; width:40%%;'>%s</td>"
+                                 "<td style='text-align:right; width:%ldpx;'>%s</td>"
                                  "<td style='text-align:left;'>%s</td></tr>",
             labelColumnWidth, label, numberColumnWidth, value, percent);
         };
