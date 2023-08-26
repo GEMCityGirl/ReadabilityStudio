@@ -5289,7 +5289,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 textWindow->SetName(label);
                 }
             UpdateTextWindowOptions(textWindow);
-            const size_t textLength = FormatWordCollectionHighlightedWords(GetWords(),
+            [[maybe_unused]] const size_t textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                         highlighter,
                                         docText.get(), textBufferLength, headerThemed, endSection, legend,
                                         IGNORE_HIGHLIGHT_BEGIN, HIGHLIGHT_END, TAB_SYMBOL, CRLF,
@@ -5302,7 +5302,10 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                         true
                                     #endif
                                         );
+#ifndef __WXGTK__
+            // not necessary on Linux and causes an assert
             textWindow->SetMaxLength(static_cast<unsigned long>(textLength));
+#endif
             textWindow->SetFormattedText(docText.get());
 
             highlighter.Reset();
@@ -5384,7 +5387,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 m_dcTextWindow->SetName(_(L"Dale-Chall (Unfamiliar) Report"));
                 }
             UpdateTextWindowOptions(m_dcTextWindow);
-            size_t textLength{ 0 };
+            [[maybe_unused]] size_t textLength{ 0 };
             if (GetDaleChallTextExclusionMode() ==
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
@@ -5421,7 +5424,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                     #endif
                                         );
                 }
+#ifndef __WXGTK__
             m_dcTextWindow->SetMaxLength(static_cast<unsigned long>(textLength));
+#endif
             m_dcTextWindow->SetFormattedText(docText.get());
 
             isNotDCWord.Reset();
@@ -5513,7 +5518,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 m_hjTextWindow->SetName(_(L"Harris-Jacobson (Unfamiliar) Report"));
                 }
             UpdateTextWindowOptions(m_hjTextWindow);
-            size_t textLength = 0;
+            [[maybe_unused]] size_t textLength = 0;
             if (GetHarrisJacobsonTextExclusionMode() ==
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
@@ -5551,7 +5556,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 #endif
                                     );
                 }
+#ifndef __WXGTK__
             m_hjTextWindow->SetMaxLength(static_cast<unsigned long>(textLength));
+#endif
             m_hjTextWindow->SetFormattedText(docText.get());
 
             isNotHJWord.Reset();
@@ -5666,7 +5673,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 notCustomWord.Reset();
                 notCustomWordExcludeNumberals.Reset();
 
-                size_t textLength = 0;
+                [[maybe_unused]] size_t textLength = 0;
                 // special text exclusion logic is used for Custom HJ and DC tests
                 if ((pos->IsHarrisJacobsonFormula() &&
                      GetHarrisJacobsonTextExclusionMode() ==
@@ -5749,7 +5756,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 );
                         }
                     }
+#ifndef __WXGTK__
                 textWindow->SetMaxLength(static_cast<unsigned long>(textLength));
+#endif
                 textWindow->SetFormattedText(docText.get());
 
                 notCustomWord.Reset();
@@ -5860,7 +5869,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 view->GetGrammarView().InsertWindow(0, textWindow);
                 }
             UpdateTextWindowOptions(textWindow);
-            const size_t textLength = FormatWordCollectionHighlightedGrammarIssues(GetWords(),
+            [[maybe_unused]] const size_t textLength = FormatWordCollectionHighlightedGrammarIssues(GetWords(),
                     GetDifficultSentenceLength(),
                     docText.get(), textBufferLength, headerThemed, endSection,
                     wordinessWindowLegend,
@@ -5881,8 +5890,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     true
                 #endif
                     );
-
+#ifndef __WXGTK__
             textWindow->SetMaxLength(static_cast<unsigned long>(textLength));
+#endif
             textWindow->SetFormattedText(docText.get());
 
             FormatWordCollectionHighlightedGrammarIssues(GetWords(),
