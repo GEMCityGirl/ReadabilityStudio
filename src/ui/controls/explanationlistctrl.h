@@ -187,8 +187,6 @@ public:
         if (GetResultsListCtrl())
             { GetResultsListCtrl()->SetSortHelpTopic(helpProjectPath, sortTopicPath); }
         }
-    /// @private
-    static constexpr int EXPLANATION_LIST_CTRL_GRID = wxID_HIGHEST;
 private:
     ExplanationListCtrl() = default;
 

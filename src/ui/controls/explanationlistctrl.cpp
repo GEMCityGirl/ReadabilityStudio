@@ -23,7 +23,7 @@ ExplanationListCtrl::ExplanationListCtrl(wxWindow* parent, wxWindowID id,
                         const wxString& name /*= wxString{}*/) :
     wxSplitterWindow(parent, id, point, size, wxCLIP_CHILDREN|wxSP_NOBORDER, name)
     {
-    m_results_view = new ListCtrlEx(this, EXPLANATION_LIST_CTRL_GRID,
+    m_results_view = new ListCtrlEx(this, id,
                         wxDefaultPosition, wxDefaultSize,
                         wxLC_SINGLE_SEL|wxLC_REPORT|wxLC_VIRTUAL|wxBORDER_SUNKEN,
                         wxDefaultValidator);
@@ -47,8 +47,7 @@ ExplanationListCtrl::ExplanationListCtrl(wxWindow* parent, wxWindowID id,
     Bind(wxEVT_FIND_CLOSE, &ExplanationListCtrl::OnFind, this);
 
     Bind(wxEVT_SIZE, &ExplanationListCtrl::OnResize, this);
-    Bind(wxEVT_LIST_ITEM_SELECTED, &ExplanationListCtrl::OnItemSelected, this,
-         ExplanationListCtrl::EXPLANATION_LIST_CTRL_GRID);
+    Bind(wxEVT_LIST_ITEM_SELECTED, &ExplanationListCtrl::OnItemSelected, this, id);
     }
 
 //------------------------------------------------------
