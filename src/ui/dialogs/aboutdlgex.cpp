@@ -173,7 +173,8 @@ void AboutDialogEx::CreateControls()
                                              wxALIGN_LEFT|wxLEFT, wxSizerFlags::GetDefaultBorder());
         mainPanelSizer->Add(productInfoGrid, 0, wxALIGN_LEFT|wxLEFT, wxSizerFlags::GetDefaultBorder());
         mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, m_copyright),
-            wxSizerFlags().Left().Border(wxLEFT|wxBOTTOM, wxSizerFlags::GetDefaultBorder()));
+            wxSizerFlags().Left().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+        mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
         }
 
     // licensing page

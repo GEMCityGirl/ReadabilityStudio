@@ -101,6 +101,7 @@ void TestBundleDlg::CreateControls()
         mainPanelSizer->Add(new wxStaticText(page, wxID_STATIC,
             _(L"Bundles are a convenient way to apply a predefined list "
               "of tests and goals to a project.")), 0, wxALL, wxSizerFlags::GetDefaultBorder());
+        mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
         }
 
     constexpr size_t maxColumns{ 3 };
@@ -445,6 +446,7 @@ void TestBundleDlg::CreateControls()
             _(L"Goals are a way to warn if a statistic or test's score falls "
               "outside of a given range.\nDouble click in the grid to select a "
               "test and edit its constraints.")), 0, wxALL, wxSizerFlags::GetDefaultBorder());
+        mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
         }
 
     mainSizer->Add(CreateSeparatedButtonSizer(wxOK|wxCANCEL|wxHELP),
