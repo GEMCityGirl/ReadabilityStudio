@@ -4701,6 +4701,13 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             L"{\\cb12 " : L"{";
     #elif defined(__WXGTK__)
         /// @todo add black/white contrasting in HighlightBackground mode
+        /// @todo broken, just getting this to compile
+        wxString dummyStr;
+        const auto [colorTableThemed, mainFontHeaderThemed] =
+            formatColorTable(GetTextReportBackgroundColor(), dummyStr);
+        const auto [colorTableWhitePaper, mainFontHeaderWhitePaper] =
+            formatColorTable(*wxWHITE, dummyStr);
+
         const wxString HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
             wxString::Format(L"<span background=\"%s\">", highlightColor.GetAsString(wxC2S_HTML_SYNTAX) ) :
             wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
@@ -4770,7 +4777,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         const wxString BOLD_BEGIN = L"<b>";
         const wxString BOLD_END = L"</b>";
         const wxString TAB_SYMBOL = L"    ";
-        const wxString CRLF = L"\n";
+        const wxString CRLF = L"\r\n";
 
         // these are used for the legend lines because they are always set to use background highlighting
         const wxString HIGHLIGHT_BEGIN_LEGEND =
@@ -4865,7 +4872,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
     #elif defined(__WXGTK__)
         const wxString headerSection =
-            wxString::Format(L"<span face=\"%s\" size=\"%u\" style=\"%s\" weight=\"%s\" underline=\"%s\">",
+            wxString::Format(L"<span face=\"%s\" size=\"%u\" style=\"%s\" weight=\"%s\" underline=\"%s\">\n",
                 textViewFont.GetFaceName(),
                 // "size" in Pango is 1024th of a point
                 textViewFont.GetPointSize()*1024,
@@ -4874,15 +4881,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 textViewFont.GetUnderlined() ? _DT(L"single") : _DT(L"none"));
         const wxString endSection = L"</span>";
 
-        /// @todo broken, just getting this to compile
-        wxString dummyStr;
-        const auto [colorTableThemed, mainFontHeaderThemed] =
-            formatColorTable(GetTextReportBackgroundColor(), dummyStr);
-        const auto [colorTableWhitePaper, mainFontHeaderWhitePaper] =
-            formatColorTable(*wxWHITE, dummyStr);
-
-        const auto headerThemed = headerSection + colorTableThemed + mainFontHeaderThemed;
-        const auto headerWhitePaper = headerSection + colorTableWhitePaper + mainFontHeaderWhitePaper;
+        const auto headerThemed = headerSection;
+        const auto headerWhitePaper = headerSection;
     #endif
 
         // lines used for the legends
