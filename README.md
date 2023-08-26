@@ -47,6 +47,7 @@ Install the following libraries *and* their development files:
 - libCURL
 - GStreamer
 - libsecret
+- webkit
 - TBB
 - OpenMP
 - libopenssl
