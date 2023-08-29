@@ -1,0 +1,32 @@
+- Docs folder
+  - Lua manual provided by Lua.org, PUC-Rio
+    - MIT license
+  - Remain documentation was written by the Author
+- Examples folder
+  - "The Frog Prince," "The Tale of Peter Rabbit," and "A Christmas Carol" provided by Project Guttenburg
+  - Remaining examples were created by the Author
+- Resources folder
+  - Most icons provided from freesvg.org
+  - Other icons created by the Author
+  - Splashscreens were created by the Author
+- wxWidgets (3^rd^ party library)
+  - wxWindows license
+- src folder
+  - Catch2 (3^rd^ party library)
+  - lua (3^rd^ party library provided by Lua.org, PUC-Rio)
+    - MIT license
+  - OleanderStemmingLibrary
+    - BSD 3-Clause License
+  - tinyexpr-plusplus
+  - tinyxml2 (3^rd^ party library)
+  - Wisteria-Dataviz
+    - BSD 3-Clause License
+    - Contains the following submodules:
+      - CRCpp (3^rd^ party library)
+      - easyexif (3^rd^ party library)
+      - i18n-check
+      - utfcpp (3^rd^ party library)
+      - wxSimpleJSON (3^rd^ party library)
+        - wxWindows license
+      - wxStartPage
+        - BSD 3-Clause License
