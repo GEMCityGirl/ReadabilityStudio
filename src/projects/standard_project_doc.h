@@ -119,6 +119,76 @@ private:
                                     const double indexScore,
                                     const double clozeScore,
                                     const bool setFocus) final;
+    // Text window formatting helpers
+    //-------------------------------
+    struct HighlighterColors
+        {
+        wxColour highlightColor;
+        wxColour errorHighlightColor;
+        wxColour styleHighlightColor;
+        wxColour excludedTextHighlightColor;
+        wxColour dolchConjunctionsTextHighlightColor;
+        wxColour dolchPrepositionsTextHighlightColor;
+        wxColour dolchPronounsTextHighlightColor;
+        wxColour dolchAdverbsTextHighlightColor;
+        wxColour dolchAdjectivesTextHighlightColor;
+        wxColour dolchVerbsTextHighlightColor;
+        wxColour dolchNounTextHighlightColor;
+        };
+    struct HighlighterTags
+        {
+        wxString HIGHLIGHT_BEGIN;
+        wxString HIGHLIGHT_END;
+        wxString ERROR_HIGHLIGHT_BEGIN;
+        wxString PHRASE_HIGHLIGHT_BEGIN;
+        wxString IGNORE_HIGHLIGHT_BEGIN;
+        wxString DOLCH_CONJUNCTION_BEGIN;
+        wxString DOLCH_PREPOSITIONS_BEGIN;
+        wxString DOLCH_PRONOUN_BEGIN;
+        wxString DOLCH_ADVERB_BEGIN;
+        wxString DOLCH_ADJECTIVE_BEGIN;
+        wxString DOLCH_VERB_BEGIN;
+        wxString DOLCH_NOUN_BEGIN;
+        wxString HIGHLIGHT_BEGIN_LEGEND;
+        wxString HIGHLIGHT_END_LEGEND;
+        wxString DUPLICATE_HIGHLIGHT_BEGIN_LEGEND;
+        wxString PHRASE_HIGHLIGHT_BEGIN_LEGEND;
+        wxString IGNORE_HIGHLIGHT_BEGIN_LEGEND;
+        wxString DOLCH_CONJUNCTION_BEGIN_LEGEND;
+        wxString DOLCH_PREPOSITIONS_BEGIN_LEGEND;
+        wxString DOLCH_PRONOUN_BEGIN_LEGEND;
+        wxString DOLCH_ADVERB_BEGIN_LEGEND;
+        wxString DOLCH_ADJECTIVE_BEGIN_LEGEND;
+        wxString DOLCH_VERB_BEGIN_LEGEND;
+        wxString DOLCH_NOUN_BEGIN_LEGEND;
+        wxString BOLD_BEGIN;
+        wxString BOLD_END;
+        wxString TAB_SYMBOL;
+        wxString CRLF;
+        };
+    /// @brief Builds the colors and RTF color table (used by Windows and macOS).
+    [[nodiscard]]
+    HighlighterColors BuildReportColors(
+        const wxColour& highlightColor, const wxFont& textViewFont,
+        const wxColour& backgroundColor);
+    /// @brief Builds the tags used to highlight words in RTF or Pango.
+    /// @param highlightColor The default highlight color.
+    /// @param highlighterColors Highlight colors used for the tags when
+    ///     building for Pango (not used for RTF, since that uses indices into a color table).
+    /// @returns The tags used to build RTF or Pango content.
+    [[nodiscard]]
+    HighlighterTags BuildHighlighterTags(const wxColour& highlightColor,
+        [[maybe_unused]] HighlighterColors& highlighterColors);
+    /// @brief Formats the main font for an RTF's header.
+    std::pair<wxString, wxString> ProjectDoc::FormatRtfHeaderFont(
+        const wxFont& textViewFont,
+        const size_t mainFontColorIndex);
+    /// @brief Builds the RTF color table (used by Windows and macOS).
+    /// @returns RTF-formatted header sections (used by Windows and macOS).
+    std::tuple<wxString, wxString, wxString> BuildColorTable(
+        const wxColour& highlightColor, const wxFont& textViewFont,
+        HighlighterColors& highlighterColors,
+        const wxColour& backgroundColor);
 
     bool OnCreate(const wxString& path, long flags) final;
 
