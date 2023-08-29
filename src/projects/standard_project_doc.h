@@ -166,6 +166,26 @@ private:
         wxString TAB_SYMBOL;
         wxString CRLF;
         };
+    struct LegendLines
+        {
+        wxString ignoredSentencesLegendLine;
+        wxString hardWordsLegendLine;
+        wxString longWordsLegendLine;
+        wxString unfamiliarDCWordsLegendLine;
+        wxString unfamiliarHarrisJacobsonWordsLegendLine;
+        wxString unfamiliarSpacheWordsLegendLine;
+        wxString longSentencesLegendLine;
+        wxString grammarIssuesLegendLine;
+        wxString writingStyleLegendLine;
+        wxString dolch1WordsLegendLine;
+        wxString dolch2WordsLegendLine;
+        wxString dolch3WordsLegendLine;
+        wxString dolch4WordsLegendLine;
+        wxString dolch5WordsLegendLine;
+        wxString dolchVerbsLegendLine;
+        wxString dolchNounsLegendLine;
+        wxString nonDolchWordsLegendLine;
+        };
     /// @brief Builds the colors and RTF color table (used by Windows and macOS).
     [[nodiscard]]
     HighlighterColors BuildReportColors(
@@ -183,6 +203,8 @@ private:
     std::pair<wxString, wxString> ProjectDoc::FormatRtfHeaderFont(
         const wxFont& textViewFont,
         const size_t mainFontColorIndex);
+    [[nodiscard]]
+    std::pair<LegendLines, size_t> BuildLegendLines(const HighlighterTags& highlighterTags);
     /// @brief Builds the RTF color table (used by Windows and macOS).
     /// @returns RTF-formatted header sections (used by Windows and macOS).
     std::tuple<wxString, wxString, wxString> BuildColorTable(

@@ -4841,6 +4841,235 @@ ProjectDoc::HighlighterTags ProjectDoc::BuildHighlighterTags(const wxColour& hig
     }
 
 //-------------------------------------------------------
+std::pair<ProjectDoc::LegendLines, size_t> ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags)
+    {
+    lily_of_the_valley::rtf_encode_text rtfEncode;
+    LegendLines legendLines;
+
+    wxString currentLegendLabel{ _(L"Excluded text") };
+    legendLines.ignoredSentencesLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
+            highlighterTags.CRLF,
+            highlighterTags.IGNORE_HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+        #ifdef __WXGTK__
+            lily_of_the_valley::html_encode_text::simple_encode(
+                { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #else
+            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #endif
+        highlighterTags.CRLF);
+    currentLegendLabel = _(L"3+ syllable words");
+    legendLines.hardWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
+            highlighterTags.CRLF,
+            highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+        #ifdef __WXGTK__
+            lily_of_the_valley::html_encode_text::simple_encode(
+                { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #else
+            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #endif
+            highlighterTags.CRLF);
+    currentLegendLabel = _(L"6+ character words");
+    legendLines.longWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
+            highlighterTags.CRLF,
+            highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+        #ifdef __WXGTK__
+            lily_of_the_valley::html_encode_text::simple_encode(
+                { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #else
+            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #endif
+            highlighterTags.CRLF);
+    currentLegendLabel = _(L"Unfamiliar New Dale-Chall words");
+    legendLines.unfamiliarDCWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
+            highlighterTags.CRLF,
+            highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+        #ifdef __WXGTK__
+            lily_of_the_valley::html_encode_text::simple_encode(
+                { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #else
+            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #endif
+            highlighterTags.CRLF);
+    currentLegendLabel = _(L"Unfamiliar Spache Revised words");
+    legendLines.unfamiliarSpacheWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
+            highlighterTags.CRLF,
+            highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+        #ifdef __WXGTK__
+            lily_of_the_valley::html_encode_text::simple_encode(
+                { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #else
+            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #endif
+            highlighterTags.CRLF);
+    currentLegendLabel = _(L"Unfamiliar Harris-Jacobson words");
+    legendLines.unfamiliarHarrisJacobsonWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
+            highlighterTags.CRLF,
+            highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+        #ifdef __WXGTK__
+            lily_of_the_valley::html_encode_text::simple_encode(
+                { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #else
+            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #endif
+            highlighterTags.CRLF);
+    currentLegendLabel = _(L"Overly-long sentences");
+    legendLines.longSentencesLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
+            highlighterTags.CRLF,
+            highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+        #ifdef __WXGTK__
+            lily_of_the_valley::html_encode_text::simple_encode(
+                { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #else
+            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #endif
+            highlighterTags.CRLF);
+    currentLegendLabel =
+        (GetProjectLanguage() == readability::test_language::english_test) ?
+        _(L"Errors (Repeated words, wording errors, mismatched articles, and misspellings)") :
+        _(L"Errors (Repeated words)");
+    legendLines.grammarIssuesLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
+            highlighterTags.CRLF,
+            highlighterTags.DUPLICATE_HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+        #ifdef __WXGTK__
+            lily_of_the_valley::html_encode_text::simple_encode(
+                { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #else
+            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length()}).c_str(),
+        #endif
+            highlighterTags.CRLF);
+    currentLegendLabel =
+        _(L"Style (Wordy items, redundant phrases, passive voice, and clich\351s)");
+    legendLines.writingStyleLegendLine = (GetProjectLanguage() == readability::test_language::english_test) ?
+        wxString::Format(L"%s    %s   %s  %s%s",
+            highlighterTags.CRLF,
+            highlighterTags.PHRASE_HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+        #ifdef __WXGTK__
+            lily_of_the_valley::html_encode_text::simple_encode(
+                { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #else
+            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #endif
+            highlighterTags.CRLF) :
+        wxString{};
+    currentLegendLabel = _(L"Dolch conjunctions");
+    legendLines.dolch1WordsLegendLine = IsHighlightingDolchConjunctions() ?
+        wxString::Format(L"%s    %s   %s  %s%s",
+                highlighterTags.CRLF,
+                highlighterTags.DOLCH_CONJUNCTION_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley::html_encode_text::simple_encode(
+                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #endif
+                highlighterTags.CRLF) :
+        wxString{};
+    currentLegendLabel = _(L"Dolch prepositions");
+    legendLines.dolch2WordsLegendLine = IsHighlightingDolchPrepositions() ?
+        wxString::Format(L"%s    %s   %s  %s%s",
+                highlighterTags.CRLF,
+                highlighterTags.DOLCH_PREPOSITIONS_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley::html_encode_text::simple_encode(
+                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #endif
+                highlighterTags.CRLF) :
+        wxString{};
+    currentLegendLabel = _(L"Dolch pronouns");
+    legendLines.dolch3WordsLegendLine = IsHighlightingDolchPronouns() ?
+        wxString::Format(L"%s    %s   %s  %s%s",
+                highlighterTags.CRLF,
+                highlighterTags.DOLCH_PRONOUN_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley::html_encode_text::simple_encode(
+                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #endif
+                highlighterTags.CRLF) :
+        wxString{};
+    currentLegendLabel = _(L"Dolch adverbs");
+    legendLines.dolch4WordsLegendLine = IsHighlightingDolchAdverbs() ?
+        wxString::Format(L"%s    %s   %s  %s%s",
+                highlighterTags.CRLF,
+                highlighterTags.DOLCH_ADVERB_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley::html_encode_text::simple_encode(
+                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #endif
+                highlighterTags.CRLF) :
+        wxString{};
+    currentLegendLabel = _(L"Dolch adjectives");
+    legendLines.dolch5WordsLegendLine = IsHighlightingDolchAdjectives() ?
+        wxString::Format(L"%s    %s   %s  %s%s",
+                highlighterTags.CRLF,
+                highlighterTags.DOLCH_ADJECTIVE_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley::html_encode_text::simple_encode(
+                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #endif
+                highlighterTags.CRLF) :
+        wxString{};
+    currentLegendLabel = _(L"Dolch verbs");
+    legendLines.dolchVerbsLegendLine = IsHighlightingDolchVerbs() ?
+        wxString::Format(L"%s    %s   %s  %s%s",
+                highlighterTags.CRLF,
+                highlighterTags.DOLCH_VERB_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley::html_encode_text::simple_encode(
+                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #endif
+                highlighterTags.CRLF) :
+        wxString{};
+    currentLegendLabel = _(L"Dolch nouns");
+    legendLines.dolchNounsLegendLine = IsHighlightingDolchNouns() ?
+        wxString::Format(L"%s    %s   %s  %s%s",
+                highlighterTags.CRLF,
+                highlighterTags.DOLCH_NOUN_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+            #ifdef __WXGTK__
+                lily_of_the_valley::html_encode_text::simple_encode(
+                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #else
+                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            #endif
+                highlighterTags.CRLF) :
+        wxString{};
+    currentLegendLabel = _(L"Non-Dolch words");
+    legendLines.nonDolchWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
+            highlighterTags.CRLF,
+            highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+        #ifdef __WXGTK__
+            lily_of_the_valley::html_encode_text::simple_encode(
+                { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #else
+            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+        #endif
+            highlighterTags.CRLF);
+
+    return std::make_pair(legendLines,
+        (legendLines.ignoredSentencesLegendLine.length() + legendLines.hardWordsLegendLine.length() +
+        legendLines.longWordsLegendLine.length() + legendLines.unfamiliarDCWordsLegendLine.length() +
+        legendLines.unfamiliarHarrisJacobsonWordsLegendLine.length() +
+        legendLines.unfamiliarSpacheWordsLegendLine.length() + legendLines.longSentencesLegendLine.length() +
+        legendLines.grammarIssuesLegendLine.length() + legendLines.writingStyleLegendLine.length() +
+        legendLines.dolch1WordsLegendLine.length() +
+        legendLines.dolch2WordsLegendLine.length() + legendLines.dolch3WordsLegendLine.length() +
+        legendLines.dolch4WordsLegendLine.length() +
+        legendLines.dolch5WordsLegendLine.length() + legendLines.dolchVerbsLegendLine.length() +
+        legendLines.dolchNounsLegendLine.length() +
+        legendLines.nonDolchWordsLegendLine.length() +
+        1000/*little extra padding for anything added around the legend lines*/) );
+    }
+
+//-------------------------------------------------------
 void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wxFont& textViewFont)
     {
     PROFILE();
@@ -4917,276 +5146,61 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
     #endif
 
         // lines used for the legends
-        wxString currentLegendLabel{ _(L"Excluded text") };
-        const wxString ignoredSentencesLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
-                highlighterTags.IGNORE_HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-            #ifdef __WXGTK__
-                lily_of_the_valley::html_encode_text::simple_encode(
-                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-            #else
-                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-            #endif
-            highlighterTags.CRLF);
-        currentLegendLabel = _(L"3+ syllable words");
-        const wxString hardWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
-                highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-            #ifdef __WXGTK__
-                lily_of_the_valley::html_encode_text::simple_encode(
-                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-            #else
-                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-            #endif
-                highlighterTags.CRLF);
-        currentLegendLabel = _(L"6+ character words");
-        const wxString longWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
-                highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-            #ifdef __WXGTK__
-                lily_of_the_valley::html_encode_text::simple_encode(
-                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-            #else
-                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-            #endif
-                highlighterTags.CRLF);
-        currentLegendLabel = _(L"Unfamiliar New Dale-Chall words");
-        const wxString unfamiliarDCWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
-                highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-            #ifdef __WXGTK__
-                lily_of_the_valley::html_encode_text::simple_encode(
-                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-            #else
-                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-            #endif
-                highlighterTags.CRLF);
-        currentLegendLabel = _(L"Unfamiliar Spache Revised words");
-        const wxString unfamiliarSpacheWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
-                highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-            #ifdef __WXGTK__
-                lily_of_the_valley::html_encode_text::simple_encode(
-                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-            #else
-                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-            #endif
-                highlighterTags.CRLF);
-        currentLegendLabel = _(L"Unfamiliar Harris-Jacobson words");
-        const wxString unfamiliarHarrisJacobsonWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
-                highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-            #ifdef __WXGTK__
-                lily_of_the_valley::html_encode_text::simple_encode(
-                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-            #else
-                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-            #endif
-                highlighterTags.CRLF);
-        currentLegendLabel = _(L"Overly-long sentences");
-        const wxString longSentencesLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
-                highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-            #ifdef __WXGTK__
-                lily_of_the_valley::html_encode_text::simple_encode(
-                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-            #else
-                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-            #endif
-                highlighterTags.CRLF);
-        const wxString grammarIssuesLegendLabel =
-            (GetProjectLanguage() == readability::test_language::english_test) ?
-            _(L"Errors (Repeated words, wording errors, mismatched articles, and misspellings)") :
-            _(L"Errors (Repeated words)");
-        const wxString grammarIssuesLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
-                highlighterTags.DUPLICATE_HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-            #ifdef __WXGTK__
-                lily_of_the_valley::html_encode_text::simple_encode(
-                    { grammarIssuesLegendLabel.wc_str(), grammarIssuesLegendLabel.length() }).c_str(),
-            #else
-                rtfEncode({ grammarIssuesLegendLabel.wc_str(), grammarIssuesLegendLabel.length()}).c_str(),
-            #endif
-                highlighterTags.CRLF);
-        const wxString writingStyleLegendLabel =
-            _(L"Style (Wordy items, redundant phrases, passive voice, and clich\351s)");
-        const wxString writingStyleLegendLine = (GetProjectLanguage() == readability::test_language::english_test) ?
-            wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
-                highlighterTags.PHRASE_HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-            #ifdef __WXGTK__
-                lily_of_the_valley::html_encode_text::simple_encode(
-                    { writingStyleLegendLabel.wc_str(), writingStyleLegendLabel.length() }).c_str(),
-            #else
-                rtfEncode({ writingStyleLegendLabel.wc_str(), writingStyleLegendLabel.length() }).c_str(),
-            #endif
-                highlighterTags.CRLF) :
-            wxString{};
-        currentLegendLabel = _(L"Dolch conjunctions");
-        const wxString dolch1WordsLegendLine = IsHighlightingDolchConjunctions() ?
-            wxString::Format(L"%s    %s   %s  %s%s",
-                    highlighterTags.CRLF,
-                    highlighterTags.DOLCH_CONJUNCTION_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-                #ifdef __WXGTK__
-                    lily_of_the_valley::html_encode_text::simple_encode(
-                        { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                #else
-                    rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                #endif
-                    highlighterTags.CRLF) :
-            wxString{};
-        currentLegendLabel = _(L"Dolch prepositions");
-        const wxString dolch2WordsLegendLine = IsHighlightingDolchPrepositions() ?
-            wxString::Format(L"%s    %s   %s  %s%s",
-                    highlighterTags.CRLF,
-                    highlighterTags.DOLCH_PREPOSITIONS_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-                #ifdef __WXGTK__
-                    lily_of_the_valley::html_encode_text::simple_encode(
-                        { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                #else
-                    rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                #endif
-                    highlighterTags.CRLF) :
-            wxString{};
-        currentLegendLabel = _(L"Dolch pronouns");
-        const wxString dolch3WordsLegendLine = IsHighlightingDolchPronouns() ?
-            wxString::Format(L"%s    %s   %s  %s%s",
-                    highlighterTags.CRLF,
-                    highlighterTags.DOLCH_PRONOUN_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-                #ifdef __WXGTK__
-                    lily_of_the_valley::html_encode_text::simple_encode(
-                        { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                #else
-                    rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                #endif
-                    highlighterTags.CRLF) :
-            wxString{};
-        currentLegendLabel = _(L"Dolch adverbs");
-        const wxString dolch4WordsLegendLine = IsHighlightingDolchAdverbs() ?
-            wxString::Format(L"%s    %s   %s  %s%s",
-                    highlighterTags.CRLF,
-                    highlighterTags.DOLCH_ADVERB_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-                #ifdef __WXGTK__
-                    lily_of_the_valley::html_encode_text::simple_encode(
-                        { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                #else
-                    rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                #endif
-                    highlighterTags.CRLF) :
-            wxString{};
-        currentLegendLabel = _(L"Dolch adjectives");
-        const wxString dolch5WordsLegendLine = IsHighlightingDolchAdjectives() ?
-            wxString::Format(L"%s    %s   %s  %s%s",
-                    highlighterTags.CRLF,
-                    highlighterTags.DOLCH_ADJECTIVE_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-                #ifdef __WXGTK__
-                    lily_of_the_valley::html_encode_text::simple_encode(
-                        { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                #else
-                    rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                #endif
-                    highlighterTags.CRLF) :
-            wxString{};
-        currentLegendLabel = _(L"Dolch verbs");
-        const wxString dolchVerbsLegendLine = IsHighlightingDolchVerbs() ?
-            wxString::Format(L"%s    %s   %s  %s%s",
-                    highlighterTags.CRLF,
-                    highlighterTags.DOLCH_VERB_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-                #ifdef __WXGTK__
-                    lily_of_the_valley::html_encode_text::simple_encode(
-                        { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                #else
-                    rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                #endif
-                    highlighterTags.CRLF) :
-            wxString{};
-        currentLegendLabel = _(L"Dolch nouns");
-        const wxString dolchNounsLegendLine = IsHighlightingDolchNouns() ?
-            wxString::Format(L"%s    %s   %s  %s%s",
-                    highlighterTags.CRLF,
-                    highlighterTags.DOLCH_NOUN_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-                #ifdef __WXGTK__
-                    lily_of_the_valley::html_encode_text::simple_encode(
-                        { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                #else
-                    rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-                #endif
-                    highlighterTags.CRLF) :
-            wxString{};
-        currentLegendLabel = _(L"Non-Dolch words");
-        const wxString nonDolchWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
-                highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-            #ifdef __WXGTK__
-                lily_of_the_valley::html_encode_text::simple_encode(
-                    { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-            #else
-                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
-            #endif
-                highlighterTags.CRLF);
-
-        const size_t maxLegendSize = ignoredSentencesLegendLine.length() + hardWordsLegendLine.length() +
-            longWordsLegendLine.length() + unfamiliarDCWordsLegendLine.length() +
-            unfamiliarHarrisJacobsonWordsLegendLine.length() +
-            unfamiliarSpacheWordsLegendLine.length() + longSentencesLegendLine.length() +
-            grammarIssuesLegendLine.length() + writingStyleLegendLine.length() + dolch1WordsLegendLine.length() +
-            dolch2WordsLegendLine.length() + dolch3WordsLegendLine.length() + dolch4WordsLegendLine.length() +
-            dolch5WordsLegendLine.length() + dolchVerbsLegendLine.length() + dolchNounsLegendLine.length() +
-            nonDolchWordsLegendLine.length() + 1000/*little extra padding for anything added around the legend lines*/;
+        const auto [legendLines, maxLegendSize] = BuildLegendLines(highlighterTags);
 
     // the legends
     #if defined (__WXMSW__) || defined (__WXOSX__)
         const wxString plaintTextWindowLegend = wxString::Format(L" \\pard\\fs%u%s \\fs%u\\par\n",
                                 (textViewFont.GetPointSize()-2)*2,
-                                ignoredSentencesLegendLine,
+                                legendLines.ignoredSentencesLegendLine,
                                 textViewFont.GetPointSize()*2);
         const wxString hardWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
                                 (textViewFont.GetPointSize()-2)*2,
-                                ignoredSentencesLegendLine,
-                                hardWordsLegendLine,
+                                legendLines.ignoredSentencesLegendLine,
+                                legendLines.hardWordsLegendLine,
                                 textViewFont.GetPointSize()*2);
         const wxString longWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
                                 (textViewFont.GetPointSize()-2)*2,
-                                ignoredSentencesLegendLine,
-                                longWordsLegendLine,
+                                legendLines.ignoredSentencesLegendLine,
+                                legendLines.longWordsLegendLine,
                                 textViewFont.GetPointSize()*2);
         const wxString unfamiliarDCWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
                                 (textViewFont.GetPointSize()-2)*2,
-                                ignoredSentencesLegendLine,
-                                unfamiliarDCWordsLegendLine,
+                                legendLines.ignoredSentencesLegendLine,
+                                legendLines.unfamiliarDCWordsLegendLine,
                                 textViewFont.GetPointSize()*2);
         const wxString unfamiliarSpacheWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
                                 (textViewFont.GetPointSize()-2)*2,
-                                ignoredSentencesLegendLine,
-                                unfamiliarSpacheWordsLegendLine,
+                                legendLines.ignoredSentencesLegendLine,
+                                legendLines.unfamiliarSpacheWordsLegendLine,
                                 textViewFont.GetPointSize()*2);
         const wxString unfamiliarHarrisJacobsonWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
                                 (textViewFont.GetPointSize()-2)*2,
-                                ignoredSentencesLegendLine,
-                                unfamiliarHarrisJacobsonWordsLegendLine,
+                                legendLines.ignoredSentencesLegendLine,
+                                legendLines.unfamiliarHarrisJacobsonWordsLegendLine,
                                 textViewFont.GetPointSize()*2);
         const wxString dolchWindowLegend = wxString::Format(L" \\pard\\fs%u%s%s%s%s%s%s%s%s \\fs%u\\par\n",
                                 (textViewFont.GetPointSize()-2)*2,
-                                ignoredSentencesLegendLine,
-                                dolch1WordsLegendLine,
-                                dolch2WordsLegendLine,
-                                dolch3WordsLegendLine,
-                                dolch4WordsLegendLine,
-                                dolch5WordsLegendLine,
-                                dolchVerbsLegendLine,
-                                dolchNounsLegendLine,
+                                legendLines.ignoredSentencesLegendLine,
+                                legendLines.dolch1WordsLegendLine,
+                                legendLines.dolch2WordsLegendLine,
+                                legendLines.dolch3WordsLegendLine,
+                                legendLines.dolch4WordsLegendLine,
+                                legendLines.dolch5WordsLegendLine,
+                                legendLines.dolchVerbsLegendLine,
+                                legendLines.dolchNounsLegendLine,
                                 textViewFont.GetPointSize()*2);
         const wxString nonDolchWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
                                 (textViewFont.GetPointSize()-2)*2,
-                                ignoredSentencesLegendLine,
-                                nonDolchWordsLegendLine,
+                                legendLines.ignoredSentencesLegendLine,
+                                legendLines.nonDolchWordsLegendLine,
                                 textViewFont.GetPointSize()*2);
         const wxString wordinessWindowLegend = wxString::Format(L" \\pard\\fs%u%s%s%s%s \\fs%u\\par\n",
                                 (textViewFont.GetPointSize()-2)*2,
-                                ignoredSentencesLegendLine,
-                                longSentencesLegendLine,
-                                grammarIssuesLegendLine,
-                                writingStyleLegendLine,
+                                legendLines.ignoredSentencesLegendLine,
+                                legendLines.longSentencesLegendLine,
+                                legendLines.grammarIssuesLegendLine,
+                                legendLines.writingStyleLegendLine,
                                 textViewFont.GetPointSize()*2);
 
     #elif defined(__WXGTK__)
@@ -5714,7 +5728,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 const wxString unfamiliarWordsLegend =
                     wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",///@todo add pango code here for GTK+
                                     (textViewFont.GetPointSize()-2)*2,
-                                    ignoredSentencesLegendLine,
+                                    legendLines.ignoredSentencesLegendLine,
                                     unfamiliarWordsLegendLine,
                                     textViewFont.GetPointSize()*2);
 
