@@ -1131,6 +1131,25 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 }
             }
+        // just get the reviewer from project settings to be used for the start page
+        auto projectSettingsForReview = configRootNode->FirstChildElement(XML_PROJECT_SETTINGS.mb_str());
+        if (projectSettingsForReview)
+            {
+            auto projectReviewer = projectSettingsForReview->FirstChildElement(XML_REVIEWER.mb_str());
+            if (projectReviewer)
+                {
+                const char* reviewerChars = projectReviewer->ToElement()->Attribute(XML_VALUE.mb_str());
+                if (reviewerChars)
+                    {
+                    const wxString reviewerStr =
+                        Wisteria::TextStream::CharStreamToUnicode(reviewerChars, std::strlen(reviewerChars));
+                    const wchar_t* convertedStr =
+                        filter_html(reviewerStr, reviewerStr.length(), true, false);
+                    if (convertedStr)
+                        { SetReviewer(convertedStr); }
+                    }
+                }
+            }
         // if only loading general info, then quit after reading this node
         if (loadOnlyGeneralOptions)
             { return true; }

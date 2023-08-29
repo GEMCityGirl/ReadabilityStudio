@@ -2634,6 +2634,7 @@ void ReadabilityApp::InitStartPage()
     GetMainFrameEx()->m_startPage = new wxStartPage(GetMainFrameEx(), wxID_ANY, mruFiles,
         GetResourceManager().GetSVG(L"ribbon/app-logo.svg"));
 
+    GetMainFrameEx()->GetStartPage()->SetUserName(GetAppOptions().GetReviewer());
     GetMainFrameEx()->GetStartPage()->AddButton(
         GetResourceManager().GetSVG(L"ribbon/document.svg"),
         _(L"Create a New Project"));
