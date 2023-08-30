@@ -5730,7 +5730,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 UpdateTextWindowOptions(textWindow);
                 const wxString unfamiliarWordsLegendLine = 
                     BuildLegendLine(highlighterTags,
-                        wxString::Format(_(L"Unfamiliar %s words"), pos->GetIterator()->get_name().c_str());
+                        wxString::Format(_(L"Unfamiliar %s words"), pos->GetIterator()->get_name().c_str()) );
                 const wxString unfamiliarWordsLegend =
                     wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",///@todo add pango code here for GTK+
                                     (textViewFont.GetPointSize()-2)*2,
