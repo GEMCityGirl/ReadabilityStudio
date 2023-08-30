@@ -140,7 +140,6 @@ private:
     wxStaticText* m_localFolderLabel{ nullptr };
     wxStaticText* m_minFileSizeLabel{ nullptr };
     wxCheckBox* m_retainWebsiteFolderStuctureCheckBox{ nullptr };
-    wxCheckBox* m_verifyPageMimeTypeCheckBox{ nullptr };
     ListCtrlEx* m_urlList{ nullptr };
     wxBitmapButton* m_addDomainButton{ nullptr };
     wxBitmapButton* m_deleteDomainButton{ nullptr };

@@ -474,7 +474,7 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
         XRCID("ID_CLEAR"));
 
     Bind(wxEVT_TOOL,
-        [this]([[maybe_unused]] wxCommandEvent&)
+        []([[maybe_unused]] wxCommandEvent&)
             {
             const wxString helpPath =
                 wxGetApp().FindResourceFile(L"ReadabilityStudioAPI/index.html");
@@ -484,7 +484,7 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
         wxID_HELP);
 
     Bind(wxEVT_TOOL,
-        [this]([[maybe_unused]] wxCommandEvent&)
+        []([[maybe_unused]] wxCommandEvent&)
             {
             const wxString helpPath = wxGetApp().FindResourceFile(L"LuaManual/contents.html");
             if (wxFile::Exists(helpPath))

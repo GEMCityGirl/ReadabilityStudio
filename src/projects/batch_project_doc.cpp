@@ -1365,7 +1365,6 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
     m_clichePhraseData->DeleteAllItems();
     m_clichePhraseData->SetSize(m_docs.size(), 5);
 
-    size_t successfullyLoadedDocs = 0;
     size_t dupWordCount = 0;
     size_t incorrectArticleCount = 0;
     size_t overusedWordBySentenceCount = 0;
@@ -1581,9 +1580,6 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
         // free the text from the document to conserve memory (unless we are embedding it in the project)
         if (GetDocumentStorageMethod() == TextStorage::NoEmbedText)
             { (*pos)->FreeDocumentText(); }
-
-        if ((*pos)->LoadingOriginalTextSucceeded())
-            { ++successfullyLoadedDocs; }
 
         // NOTE: Grammar info needs to be loaded here before the documents' word collections are deleted
 
