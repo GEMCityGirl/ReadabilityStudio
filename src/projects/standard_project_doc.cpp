@@ -1366,7 +1366,7 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
             goalsList->DeleteAllItems();
 
             // subroutine to add a goal into our results list
-            const auto insertGoalIntoList = [this, goalsList](const TestGoal& goal, const wxString& goalName)
+            const auto insertGoalIntoList = [goalsList](const TestGoal& goal, const wxString& goalName)
                 {
                 const auto insertedItem = goalsList->InsertItem(0,
                     wxString::Format(L"%s %s",
@@ -5070,6 +5070,24 @@ std::pair<ProjectDoc::LegendLines, size_t> ProjectDoc::BuildLegendLines(const Hi
     }
 
 //-------------------------------------------------------
+    wxString ProjectDoc::BuildLegendLine(
+    const HighlighterTags& highlighterTags, const wxString& legendStr)
+    {
+    lily_of_the_valley::rtf_encode_text rtfEncode;
+
+    return wxString::Format(L"%s    %s   %s  %s%s",
+        highlighterTags.CRLF,
+        highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
+#ifdef __WXGTK__
+        lily_of_the_valley::html_encode_text::simple_encode(
+            { legendStr.wc_str(), legendStr.length() }).c_str(),
+#else
+        rtfEncode({ legendStr.wc_str(), legendStr.length() }).c_str(),
+#endif
+        highlighterTags.CRLF);
+    }
+
+//-------------------------------------------------------
 void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wxFont& textViewFont)
     {
     PROFILE();
@@ -5085,7 +5103,6 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         HighlighterTags highlighterTags = BuildHighlighterTags(highlightColor, highlighterColors);
 
     #if defined (__WXMSW__) || defined (__WXOSX__)
-        lily_of_the_valley::rtf_encode_text rtfEncode;
         // other formatting
         wxString fontFamily;
         switch (textViewFont.GetFamily() )
@@ -5290,10 +5307,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     GetWords()->get_words().end(), static_cast<size_t>(0),
                     add_word_size<word_case_insensitive_no_stem>() );
         size_t paragraphLeadingLines = 0;
-        for (std::vector<grammar::paragraph_info>::const_iterator para_iter = GetWords()->get_paragraphs().cbegin();
-                para_iter != GetWords()->get_paragraphs().cend();
-                ++para_iter)
-            { paragraphLeadingLines += para_iter->get_leading_end_of_line_count(); }
+        for (const auto& para : GetWords()->get_paragraphs())
+            { paragraphLeadingLines += para.get_leading_end_of_line_count(); }
         /* Set the size of the buffers for the worst case scenario that every word is highlighted.
            Note that for encoding, the worst case scenario is a char to be expanded to 7 chars. In RTF,
            a unicode value will be "\u0000?", so assume the worst that every character and punctuation
@@ -5713,18 +5728,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, textWindow);
                     }
                 UpdateTextWindowOptions(textWindow);
-                const wxString unfamiliarCountLabel =
-                    wxString::Format(_(L"Unfamiliar %s words"), pos->GetIterator()->get_name().c_str());
-                const wxString unfamiliarWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-                        highlighterTags.CRLF,
-                        highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
-                    #ifdef __WXGTK__
-                        lily_of_the_valley::html_encode_text::simple_encode(
-                            { unfamiliarCountLabel.wc_str(), unfamiliarCountLabel.length() }).c_str(),
-                    #else
-                        rtfEncode({ unfamiliarCountLabel.wc_str(), unfamiliarCountLabel.length() }).c_str(),
-                    #endif
-                        highlighterTags.CRLF);
+                const wxString unfamiliarWordsLegendLine = 
+                    BuildLegendLine(highlighterTags,
+                        wxString::Format(_(L"Unfamiliar %s words"), pos->GetIterator()->get_name().c_str());
                 const wxString unfamiliarWordsLegend =
                     wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",///@todo add pango code here for GTK+
                                     (textViewFont.GetPointSize()-2)*2,
