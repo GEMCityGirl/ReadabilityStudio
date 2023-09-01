@@ -598,12 +598,14 @@ namespace Wisteria::Graphs
         yBracketLong.SetBracketLineStyle(Wisteria::BracketLineStyle::NoConnectionLines);
         yBracketLong.GetLabel().SetTextOrientation(Orientation::Vertical);
         yBracketLong.SetPadding(0);
+        yBracketLong.GetLabel().SetFont(GetTopXAxis().GetFont());
         GetLeftYAxis().AddBracket(yBracketLong);
 
         Axis::AxisBracket yBracketShort(5.6, 25, 12.5, _(L"Short sentences"));
         yBracketShort.SetBracketLineStyle(Wisteria::BracketLineStyle::NoConnectionLines);
         yBracketShort.GetLabel().SetTextOrientation(Orientation::Vertical);
         yBracketShort.SetPadding(0);
+        yBracketShort.GetLabel().SetFont(GetTopXAxis().GetFont());
         GetLeftYAxis().AddBracket(yBracketShort);
 
         GetLeftYAxis().EnableAutoStacking(false);
@@ -615,6 +617,7 @@ namespace Wisteria::Graphs
         xBracketLong.SetBracketLineStyle(Wisteria::BracketLineStyle::NoConnectionLines);
         xBracketLong.GetLabel().SetTextOrientation(Orientation::Horizontal);
         xBracketLong.SetPadding(0);
+        xBracketLong.GetLabel().SetFont(GetLeftYAxis().GetFont());
         GetTopXAxis().AddBracket(xBracketLong);
 
         Axis::AxisBracket xBracketShort(
@@ -623,6 +626,7 @@ namespace Wisteria::Graphs
         xBracketShort.SetBracketLineStyle(Wisteria::BracketLineStyle::NoConnectionLines);
         xBracketShort.GetLabel().SetTextOrientation(Orientation::Horizontal);
         xBracketShort.SetPadding(0);
+        xBracketShort.GetLabel().SetFont(GetLeftYAxis().GetFont());
         GetTopXAxis().AddBracket(xBracketShort);
         }
 
