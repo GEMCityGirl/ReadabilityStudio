@@ -4434,7 +4434,7 @@ std::pair<wxString, wxString> ProjectDoc::FormatRtfHeaderFont(
 
 //-------------------------------------------------------
 ProjectDoc::HighlighterColors ProjectDoc::BuildReportColors(
-    const wxColour& highlightColor, const wxFont& textViewFont,
+    const wxColour& highlightColor,
     const wxColour& backgroundColor)
     {
     HighlighterColors highlighterColors;
@@ -4479,8 +4479,8 @@ ProjectDoc::HighlighterColors ProjectDoc::BuildReportColors(
 
 //-------------------------------------------------------
 std::tuple<wxString, wxString, wxString> ProjectDoc::BuildColorTable(
-    const wxColour& highlightColor, const wxFont& textViewFont,
-    HighlighterColors& highlighterColors,
+    const wxFont& textViewFont,
+    const HighlighterColors& highlighterColors,
     const wxColour& backgroundColor)
     {
     // black is at position 1,
@@ -4535,7 +4535,8 @@ std::tuple<wxString, wxString, wxString> ProjectDoc::BuildColorTable(
     }
 
 //-------------------------------------------------------
-ProjectDoc::HighlighterTags ProjectDoc::BuildHighlighterTags(const wxColour& highlightColor,
+ProjectDoc::HighlighterTags ProjectDoc::BuildHighlighterTags(
+    [[maybe_unused]] const wxColour& highlightColor,
     [[maybe_unused]] HighlighterColors& highlighterColors)
     {
     HighlighterTags highlighterTags;
@@ -4707,7 +4708,6 @@ ProjectDoc::HighlighterTags ProjectDoc::BuildHighlighterTags(const wxColour& hig
         L"{\\cb12 " : L"{";
 #elif defined(__WXGTK__)
     highlighterTags.HIGHLIGHT_END = L"</span>";
-    highlighterTags.IGNORE_HIGHLIGHT_END = L"</span>";
     highlighterTags.BOLD_BEGIN = L"<b>";
     highlighterTags.BOLD_END = L"</b>";
     highlighterTags.TAB_SYMBOL = L"    ";
@@ -4716,7 +4716,7 @@ ProjectDoc::HighlighterTags ProjectDoc::BuildHighlighterTags(const wxColour& hig
     /// @todo add black/white contrasting in HighlightBackground mode
     /// @todo broken, just getting this to compile
     highlighterTags.HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-        wxString::Format(L"<span background=\"%s\">"
+        wxString::Format(L"<span background=\"%s\">",
             highlighterColors.highlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
             highlighterColors.highlightColor.GetAsString(wxC2S_HTML_SYNTAX));
@@ -4841,10 +4841,10 @@ ProjectDoc::HighlighterTags ProjectDoc::BuildHighlighterTags(const wxColour& hig
     }
 
 //-------------------------------------------------------
-std::pair<ProjectDoc::LegendLines, size_t> ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags)
+std::pair<ProjectDoc::TextLegendLines, size_t> ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags)
     {
-    lily_of_the_valley::rtf_encode_text rtfEncode;
-    LegendLines legendLines;
+    [[maybe_unused]] lily_of_the_valley::rtf_encode_text rtfEncode;
+    TextLegendLines legendLines;
 
     wxString currentLegendLabel{ _(L"Excluded text") };
     legendLines.ignoredSentencesLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
@@ -5070,10 +5070,10 @@ std::pair<ProjectDoc::LegendLines, size_t> ProjectDoc::BuildLegendLines(const Hi
     }
 
 //-------------------------------------------------------
-    wxString ProjectDoc::BuildLegendLine(
+wxString ProjectDoc::BuildLegendLine(
     const HighlighterTags& highlighterTags, const wxString& legendStr)
     {
-    lily_of_the_valley::rtf_encode_text rtfEncode;
+    [[maybe_unused]] lily_of_the_valley::rtf_encode_text rtfEncode;
 
     return wxString::Format(L"%s    %s   %s  %s%s",
         highlighterTags.CRLF,
@@ -5088,25 +5088,143 @@ std::pair<ProjectDoc::LegendLines, size_t> ProjectDoc::BuildLegendLines(const Hi
     }
 
 //-------------------------------------------------------
-void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wxFont& textViewFont)
+wxString ProjectDoc::BuildLegend(const wxString& legendLine,
+    const ProjectDoc::TextLegendLines& legendLines,
+    const wxFont& textViewFont)
     {
-    PROFILE();
-    if (GetWords() == nullptr)
-        { return; }
+#if defined (__WXMSW__) || defined (__WXOSX__)
+    return wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
+        (textViewFont.GetPointSize() - 2) * 2,
+        legendLines.ignoredSentencesLegendLine,
+        legendLine,
+        textViewFont.GetPointSize() * 2);
+#else
+    return wxString::Format(L"<span size=\"%u\">%s%s</span>\n",
+        (textViewFont.GetPointSize() - 2) * 2,
+        legendLines.ignoredSentencesLegendLine,
+        legendLine);
+#endif
+    }
 
-    try
+//-------------------------------------------------------
+ProjectDoc::TextLegends ProjectDoc::BuildLegends(const ProjectDoc::TextLegendLines& legendLines,
+    const wxFont& textViewFont)
+    {
+    TextLegends textLegends;
+#if defined (__WXMSW__) || defined (__WXOSX__)
+    textLegends.plaintTextWindowLegend = wxString::Format(L" \\pard\\fs%u%s \\fs%u\\par\n",
+        (textViewFont.GetPointSize() - 2) * 2,
+        legendLines.ignoredSentencesLegendLine,
+        textViewFont.GetPointSize() * 2);
+    textLegends.hardWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
+        (textViewFont.GetPointSize() - 2) * 2,
+        legendLines.ignoredSentencesLegendLine,
+        legendLines.hardWordsLegendLine,
+        textViewFont.GetPointSize() * 2);
+    textLegends.longWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
+        (textViewFont.GetPointSize() - 2) * 2,
+        legendLines.ignoredSentencesLegendLine,
+        legendLines.longWordsLegendLine,
+        textViewFont.GetPointSize() * 2);
+    textLegends.unfamiliarDCWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
+        (textViewFont.GetPointSize() - 2) * 2,
+        legendLines.ignoredSentencesLegendLine,
+        legendLines.unfamiliarDCWordsLegendLine,
+        textViewFont.GetPointSize() * 2);
+    textLegends.unfamiliarSpacheWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
+        (textViewFont.GetPointSize() - 2) * 2,
+        legendLines.ignoredSentencesLegendLine,
+        legendLines.unfamiliarSpacheWordsLegendLine,
+        textViewFont.GetPointSize() * 2);
+    textLegends.unfamiliarHarrisJacobsonWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
+        (textViewFont.GetPointSize() - 2) * 2,
+        legendLines.ignoredSentencesLegendLine,
+        legendLines.unfamiliarHarrisJacobsonWordsLegendLine,
+        textViewFont.GetPointSize() * 2);
+    textLegends.dolchWindowLegend = wxString::Format(L" \\pard\\fs%u%s%s%s%s%s%s%s%s \\fs%u\\par\n",
+        (textViewFont.GetPointSize() - 2) * 2,
+        legendLines.ignoredSentencesLegendLine,
+        legendLines.dolch1WordsLegendLine,
+        legendLines.dolch2WordsLegendLine,
+        legendLines.dolch3WordsLegendLine,
+        legendLines.dolch4WordsLegendLine,
+        legendLines.dolch5WordsLegendLine,
+        legendLines.dolchVerbsLegendLine,
+        legendLines.dolchNounsLegendLine,
+        textViewFont.GetPointSize() * 2);
+    textLegends.nonDolchWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
+        (textViewFont.GetPointSize() - 2) * 2,
+        legendLines.ignoredSentencesLegendLine,
+        legendLines.nonDolchWordsLegendLine,
+        textViewFont.GetPointSize() * 2);
+    textLegends.wordinessWindowLegend = wxString::Format(L" \\pard\\fs%u%s%s%s%s \\fs%u\\par\n",
+        (textViewFont.GetPointSize() - 2) * 2,
+        legendLines.ignoredSentencesLegendLine,
+        legendLines.longSentencesLegendLine,
+        legendLines.grammarIssuesLegendLine,
+        legendLines.writingStyleLegendLine,
+        textViewFont.GetPointSize() * 2);
+
+#elif defined(__WXGTK__)
+    // note that font "size" in Pango is 1024th of a point
+    textLegends.plaintTextWindowLegend = wxString::Format(L"<span size=\"%u\">%s</span>\n",
+        ((textViewFont.GetPointSize() - 2) * 1024),
+        legendLines.ignoredSentencesLegendLine);
+    textLegends.hardWordsLegend = wxString::Format(L"<span size=\"%u\">%s%s</span>\n",
+        ((textViewFont.GetPointSize() - 2) * 1024),
+        legendLines.ignoredSentencesLegendLine,
+        legendLines.hardWordsLegendLine);
+    textLegends.longWordsLegend = wxString::Format(L"<span size=\"%u\">%s%s</span>\n",
+        ((textViewFont.GetPointSize() - 2) * 1024),
+        legendLines.ignoredSentencesLegendLine,
+        legendLines.longWordsLegendLine);
+    textLegends.unfamiliarDCWordsLegend = wxString::Format(L"<span size=\"%u\">%s%s</span>\n",
+        ((textViewFont.GetPointSize() - 2) * 1024),
+        legendLines.ignoredSentencesLegendLine,
+        legendLines.unfamiliarDCWordsLegendLine);
+    textLegends.unfamiliarSpacheWordsLegend = wxString::Format(L"<span size=\"%u\">%s%s</span>\n",
+        ((textViewFont.GetPointSize() - 2) * 1024),
+        legendLines.ignoredSentencesLegendLine,
+        legendLines.unfamiliarSpacheWordsLegendLine);
+    textLegends.unfamiliarHarrisJacobsonWordsLegend = wxString::Format(L"<span size=\"%u\">%s%s</span>\n",
+        ((textViewFont.GetPointSize() - 2) * 1024),
+        legendLines.ignoredSentencesLegendLine,
+        legendLines.unfamiliarHarrisJacobsonWordsLegendLine);
+    textLegends.dolchWindowLegend = wxString::Format(L"<span size=\"%u\">%s%s%s%s%s%s%s%s</span>\n",
+        ((textViewFont.GetPointSize() - 2) * 1024),
+        legendLines.ignoredSentencesLegendLine,
+        legendLines.dolch1WordsLegendLine,
+        legendLines.dolch2WordsLegendLine,
+        legendLines.dolch3WordsLegendLine,
+        legendLines.dolch4WordsLegendLine,
+        legendLines.dolch5WordsLegendLine,
+        legendLines.dolchVerbsLegendLine,
+        legendLines.dolchNounsLegendLine);
+    textLegends.nonDolchWordsLegend = wxString::Format(L"<span size=\"%u\">%s%s</span>\n",
+        ((textViewFont.GetPointSize() - 2) * 1024),
+        legendLines.ignoredSentencesLegendLine,
+        legendLines.nonDolchWordsLegendLine);
+    textLegends.wordinessWindowLegend = wxString::Format(L"<span size=\"%u\">%s%s%s%s</span>\n",
+        ((textViewFont.GetPointSize() - 2) * 1024),
+        legendLines.ignoredSentencesLegendLine,
+        legendLines.longSentencesLegendLine,
+        legendLines.grammarIssuesLegendLine,
+        legendLines.writingStyleLegendLine);
+#endif
+    return textLegends;
+    }
+
+//-------------------------------------------------------
+ProjectDoc::TextHeaders ProjectDoc::BuildHeaders(
+    [[maybe_unused]] const HighlighterColors& highlighterColors,
+    const wxFont& textViewFont)
+    {
+    TextHeaders textHeaders;
+#if defined (__WXMSW__) || defined (__WXOSX__)
+    // other formatting
+    wxString fontFamily;
+    switch (textViewFont.GetFamily())
         {
-        ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
-
-        HighlighterColors highlighterColors =
-            BuildReportColors(highlightColor, textViewFont, GetTextReportBackgroundColor());
-        HighlighterTags highlighterTags = BuildHighlighterTags(highlightColor, highlighterColors);
-
-    #if defined (__WXMSW__) || defined (__WXOSX__)
-        // other formatting
-        wxString fontFamily;
-        switch (textViewFont.GetFamily() )
-            {
         case wxFONTFAMILY_DEFAULT:
             fontFamily = L"fnil";
             break;
@@ -5130,142 +5248,69 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             break;
         default:
             fontFamily = L"fnil";
-            };
+        };
 
-        const wxString headerSection =
-            wxString::Format(L"{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1033{\\fonttbl{\\f0\\%s\\fcharset0 %s;}}",
-            fontFamily, textViewFont.GetFaceName() );
+    const wxString headerSection =
+        wxString::Format(L"{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1033{\\fonttbl{\\f0\\%s\\fcharset0 %s;}}",
+            fontFamily, textViewFont.GetFaceName());
 
-        const auto [colorTableThemed, mainFontHeaderThemed, ending] =
-            BuildColorTable(highlightColor, textViewFont, highlighterColors,
-                GetTextReportBackgroundColor());
-        const auto [colorTableWhitePaper, mainFontHeaderWhitePaper, endingWhitePaper] =
-            BuildColorTable(highlightColor, textViewFont, highlighterColors, *wxWHITE);
-        const wxString endSection = endingWhitePaper;
+    const auto [colorTableThemed, mainFontHeaderThemed, ending] =
+        BuildColorTable(textViewFont, highlighterColors,
+            GetTextReportBackgroundColor());
+    const auto [colorTableWhitePaper, mainFontHeaderWhitePaper, endingWhitePaper] =
+        BuildColorTable(textViewFont, highlighterColors, *wxWHITE);
+    textHeaders.endSection = endingWhitePaper;
 
-        const auto headerThemed = headerSection+colorTableThemed+mainFontHeaderThemed;
-        const auto headerWhitePaper = headerSection+colorTableWhitePaper+mainFontHeaderWhitePaper;
+    textHeaders.colorTableThemed = colorTableThemed;
+    textHeaders.mainFontHeaderThemed = mainFontHeaderThemed;
+    textHeaders.headerThemed = headerSection + colorTableThemed + mainFontHeaderThemed;
+    textHeaders.headerWhitePaper = headerSection + colorTableWhitePaper + mainFontHeaderWhitePaper;
 
-    #elif defined(__WXGTK__)
-        /// @todo need background color for whole window
-        const wxString headerSection =
-            wxString::Format(L"<span face=\"%s\" size=\"%u\" style=\"%s\" weight=\"%s\" underline=\"%s\">\n",
-                textViewFont.GetFaceName(),
-                // "size" in Pango is 1024th of a point
-                textViewFont.GetPointSize()*1024,
-                (textViewFont.GetStyle() == wxFONTSTYLE_ITALIC) ? _DT(L"italic") : _DT(L"normal"),
-                (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? _DT(L"bold") : _DT(L"normal"),
-                textViewFont.GetUnderlined() ? _DT(L"single") : _DT(L"none"));
-        const wxString endSection = L"</span>";
+#elif defined(__WXGTK__)
+    textHeaders.endSection = L"</span>";
 
-        const auto headerThemed = headerSection;
-        const auto headerWhitePaper = headerSection;
-    #endif
+    textHeaders.headerThemed =
+        wxString::Format(
+            L"<span background=\"%s\" foreground=\"%s\" face=\"%s\" size=\"%u\" style=\"%s\" weight=\"%s\" underline=\"%s\">\n",
+            GetTextReportBackgroundColor().GetAsString(wxC2S_HTML_SYNTAX),
+            ((GetTextReportBackgroundColor().GetLuminance() < .5f) ? L"white" : L"black"),
+            textViewFont.GetFaceName(),
+            // "size" in Pango is 1024th of a point
+            textViewFont.GetPointSize() * 1024,
+            (textViewFont.GetStyle() == wxFONTSTYLE_ITALIC) ? _DT(L"italic") : _DT(L"normal"),
+            (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? _DT(L"bold") : _DT(L"normal"),
+            textViewFont.GetUnderlined() ? _DT(L"single") : _DT(L"none"));;
+    textHeaders.headerWhitePaper =
+        wxString::Format(
+            L"<span background=\"white\" foreground=\"black\" face=\"%s\" size=\"%u\" style=\"%s\" weight=\"%s\" underline=\"%s\">\n",
+            textViewFont.GetFaceName(),
+            textViewFont.GetPointSize() * 1024,
+            (textViewFont.GetStyle() == wxFONTSTYLE_ITALIC) ? _DT(L"italic") : _DT(L"normal"),
+            (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? _DT(L"bold") : _DT(L"normal"),
+            textViewFont.GetUnderlined() ? _DT(L"single") : _DT(L"none"));;
+#endif
+    return textHeaders;
+    }
 
-        // lines used for the legends
+//-------------------------------------------------------
+void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wxFont& textViewFont)
+    {
+    PROFILE();
+    if (GetWords() == nullptr)
+        { return; }
+
+    try
+        {
+        ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
+
+        HighlighterColors highlighterColors =
+            BuildReportColors(highlightColor, GetTextReportBackgroundColor());
+        HighlighterTags highlighterTags = BuildHighlighterTags(highlightColor, highlighterColors);
+        // build the legends
         const auto [legendLines, maxLegendSize] = BuildLegendLines(highlighterTags);
+        const TextLegends textLegends = BuildLegends(legendLines, textViewFont);
 
-    // the legends
-    #if defined (__WXMSW__) || defined (__WXOSX__)
-        const wxString plaintTextWindowLegend = wxString::Format(L" \\pard\\fs%u%s \\fs%u\\par\n",
-                                (textViewFont.GetPointSize()-2)*2,
-                                legendLines.ignoredSentencesLegendLine,
-                                textViewFont.GetPointSize()*2);
-        const wxString hardWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
-                                (textViewFont.GetPointSize()-2)*2,
-                                legendLines.ignoredSentencesLegendLine,
-                                legendLines.hardWordsLegendLine,
-                                textViewFont.GetPointSize()*2);
-        const wxString longWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
-                                (textViewFont.GetPointSize()-2)*2,
-                                legendLines.ignoredSentencesLegendLine,
-                                legendLines.longWordsLegendLine,
-                                textViewFont.GetPointSize()*2);
-        const wxString unfamiliarDCWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
-                                (textViewFont.GetPointSize()-2)*2,
-                                legendLines.ignoredSentencesLegendLine,
-                                legendLines.unfamiliarDCWordsLegendLine,
-                                textViewFont.GetPointSize()*2);
-        const wxString unfamiliarSpacheWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
-                                (textViewFont.GetPointSize()-2)*2,
-                                legendLines.ignoredSentencesLegendLine,
-                                legendLines.unfamiliarSpacheWordsLegendLine,
-                                textViewFont.GetPointSize()*2);
-        const wxString unfamiliarHarrisJacobsonWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
-                                (textViewFont.GetPointSize()-2)*2,
-                                legendLines.ignoredSentencesLegendLine,
-                                legendLines.unfamiliarHarrisJacobsonWordsLegendLine,
-                                textViewFont.GetPointSize()*2);
-        const wxString dolchWindowLegend = wxString::Format(L" \\pard\\fs%u%s%s%s%s%s%s%s%s \\fs%u\\par\n",
-                                (textViewFont.GetPointSize()-2)*2,
-                                legendLines.ignoredSentencesLegendLine,
-                                legendLines.dolch1WordsLegendLine,
-                                legendLines.dolch2WordsLegendLine,
-                                legendLines.dolch3WordsLegendLine,
-                                legendLines.dolch4WordsLegendLine,
-                                legendLines.dolch5WordsLegendLine,
-                                legendLines.dolchVerbsLegendLine,
-                                legendLines.dolchNounsLegendLine,
-                                textViewFont.GetPointSize()*2);
-        const wxString nonDolchWordsLegend = wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",
-                                (textViewFont.GetPointSize()-2)*2,
-                                legendLines.ignoredSentencesLegendLine,
-                                legendLines.nonDolchWordsLegendLine,
-                                textViewFont.GetPointSize()*2);
-        const wxString wordinessWindowLegend = wxString::Format(L" \\pard\\fs%u%s%s%s%s \\fs%u\\par\n",
-                                (textViewFont.GetPointSize()-2)*2,
-                                legendLines.ignoredSentencesLegendLine,
-                                legendLines.longSentencesLegendLine,
-                                legendLines.grammarIssuesLegendLine,
-                                legendLines.writingStyleLegendLine,
-                                textViewFont.GetPointSize()*2);
-
-    #elif defined(__WXGTK__)
-        // note that font "size" in Pango is 1024th of a point
-        const wxString plaintTextWindowLegend = wxString::Format(L"<span size=\"%u\">%s</span>\n",
-                                ((textViewFont.GetPointSize()-2)*1024),
-                                ignoredSentencesLegendLine);
-        const wxString hardWordsLegend = wxString::Format(L"<span size=\"%u\">%s%s</span>\n",
-                                ((textViewFont.GetPointSize()-2)*1024),
-                                ignoredSentencesLegendLine,
-                                hardWordsLegendLine);
-        const wxString longWordsLegend = wxString::Format(L"<span size=\"%u\">%s%s</span>\n",
-                                ((textViewFont.GetPointSize()-2)*1024),
-                                ignoredSentencesLegendLine,
-                                longWordsLegendLine);
-        const wxString unfamiliarDCWordsLegend = wxString::Format(L"<span size=\"%u\">%s%s</span>\n",
-                                ((textViewFont.GetPointSize()-2)*1024),
-                                ignoredSentencesLegendLine,
-                                unfamiliarDCWordsLegendLine);
-        const wxString unfamiliarSpacheWordsLegend = wxString::Format(L"<span size=\"%u\">%s%s</span>\n",
-                                ((textViewFont.GetPointSize()-2)*1024),
-                                ignoredSentencesLegendLine,
-                                unfamiliarSpacheWordsLegendLine);
-        const wxString unfamiliarHarrisJacobsonWordsLegend = wxString::Format(L"<span size=\"%u\">%s%s</span>\n",
-                                ((textViewFont.GetPointSize()-2)*1024),
-                                ignoredSentencesLegendLine,
-                                unfamiliarHarrisJacobsonWordsLegendLine);
-        const wxString dolchWindowLegend = wxString::Format(L"<span size=\"%u\">%s%s%s%s%s%s%s%s</span>\n",
-                                ((textViewFont.GetPointSize()-2)*1024),
-                                ignoredSentencesLegendLine,
-                                dolch1WordsLegendLine,
-                                dolch2WordsLegendLine,
-                                dolch3WordsLegendLine,
-                                dolch4WordsLegendLine,
-                                dolch5WordsLegendLine,
-                                dolchVerbsLegendLine,
-                                dolchNounsLegendLine);
-        const wxString nonDolchWordsLegend = wxString::Format(L"<span size=\"%u\">%s%s</span>\n",
-                                ((textViewFont.GetPointSize()-2)*1024),
-                                ignoredSentencesLegendLine,
-                                nonDolchWordsLegendLine);
-        const wxString wordinessWindowLegend = wxString::Format(L"<span size=\"%u\">%s%s%s%s</span>\n",
-                                ((textViewFont.GetPointSize()-2)*1024),
-                                ignoredSentencesLegendLine,
-                                longSentencesLegendLine,
-                                grammarIssuesLegendLine,
-                                writingStyleLegendLine);
-    #endif
+        TextHeaders textHeaders = BuildHeaders(highlighterColors, textViewFont);
 
         SyllableCountGreaterEqualWithHighlighting<word_case_insensitive_no_stem>
             is3PlusSyllables(3,
@@ -5315,7 +5360,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
            may be expanded into that.*/
         // some characters have to be encoded for RTF or Pango
         const size_t textBufferLength = fullCharWithPunctCount*7 +
-            headerSection.length() + colorTableThemed.length() + mainFontHeaderThemed.length() +
+            textHeaders.headerThemed.length() + textHeaders.colorTableThemed.length() +
+            textHeaders.mainFontHeaderThemed.length() +
             // two spaces after each sentence, and ending punctuations
             (GetWords()->get_sentence_count()*3) +
             (GetWords()->get_paragraph_count()*(highlighterTags.CRLF.length() + highlighterTags.TAB_SYMBOL.length())) +
@@ -5328,7 +5374,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             /*3 spaces, 2 parenthesis, and 3 spots for the number*/
             (GetWords()->get_sentence_count() *
                 (highlighterTags.BOLD_BEGIN.length() + highlighterTags.BOLD_END.length()+8)) +
-            endSection.length() + maxLegendSize + 1;
+            textHeaders.endSection.length() + maxLegendSize + 1;
 
         auto docText = std::make_unique<wchar_t[]>(textBufferLength+1);
 
@@ -5338,7 +5384,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
         // creates and load text into a formatted text window
         const auto buildTextWindow = [this, view, textBeingExcluded, textBufferLength,
-                                      &headerThemed, &headerWhitePaper, &endSection,
+                                      &textHeaders,
                                       &highlighterTags,
                                       &docText]
                                      (FormattedTextCtrl* textWindow, const int ID, const wxString& label,
@@ -5356,7 +5402,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             UpdateTextWindowOptions(textWindow);
             [[maybe_unused]] const size_t textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                         highlighter,
-                                        docText.get(), textBufferLength, headerThemed, endSection, legend,
+                                        docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection, legend,
                                         highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                         highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
                                         textBeingExcluded,
@@ -5388,7 +5434,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
             FormatWordCollectionHighlightedWords(GetWords(),
                                     highlighter,
-                                    docText.get(), textBufferLength, headerWhitePaper, endSection, legend,
+                                    docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection, legend,
                                     highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                     highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
                                     textBeingExcluded,
@@ -5413,7 +5459,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             // always included for any language
                 {
                 textWindow = buildTextWindow(textWindow, BaseProjectView::HARD_WORDS_TEXT_PAGE_ID,
-                    BaseProjectView::GetThreeSyllableReportWordsLabel(), is3PlusSyllables, hardWordsLegend);
+                    BaseProjectView::GetThreeSyllableReportWordsLabel(), is3PlusSyllables, textLegends.hardWordsLegend);
                 }
             if (GetWordsBreakdownInfo().Is3PlusSyllablesEnabled() && GetTotalUnique3PlusSyllableWords() > 0)
                 {
@@ -5434,7 +5480,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             // always included for any language
                 {
                 textWindow = buildTextWindow(textWindow, BaseProjectView::LONG_WORDS_TEXT_PAGE_ID,
-                    BaseProjectView::GetSixCharWordsReportLabel(), is6PlusChars, longWordsLegend);
+                    BaseProjectView::GetSixCharWordsReportLabel(), is6PlusChars, textLegends.longWordsLegend);
                 }
             if (GetWordsBreakdownInfo().Is6PlusCharacterEnabled() && GetTotalUnique6CharsPlusWords() > 0)
                 {
@@ -5470,8 +5516,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                         isNotDCWord,
-                                        docText.get(), textBufferLength, headerThemed, endSection,
-                                        unfamiliarDCWordsLegend,
+                                        docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
+                                        textLegends.unfamiliarDCWordsLegend,
                                         highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                         highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
                                         // forcibly exclude lists but include headers, invalid words will also be valid
@@ -5489,8 +5535,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                         isNotDCWord,
-                                        docText.get(), textBufferLength, headerThemed, endSection,
-                                        unfamiliarDCWordsLegend,
+                                        docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
+                                        textLegends.unfamiliarDCWordsLegend,
                                         highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                         highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
                                         textBeingExcluded,
@@ -5515,8 +5561,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 FormatWordCollectionHighlightedWords(GetWords(),
                                         isNotDCWord,
-                                        docText.get(), textBufferLength, headerWhitePaper, endSection,
-                                        unfamiliarDCWordsLegend,
+                                        docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
+                                        textLegends.unfamiliarDCWordsLegend,
                                         highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                         highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
                                         // forcibly exclude lists but include headers, invalid words will also be valid
@@ -5534,8 +5580,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 FormatWordCollectionHighlightedWords(GetWords(),
                                         isNotDCWord,
-                                        docText.get(), textBufferLength, headerWhitePaper, endSection,
-                                        unfamiliarDCWordsLegend,
+                                        docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
+                                        textLegends.unfamiliarDCWordsLegend,
                                         highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                         highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
                                         textBeingExcluded,
@@ -5568,7 +5614,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         if (GetProjectLanguage() == readability::test_language::english_test)
             {
             m_spacheTextWindow = buildTextWindow(m_spacheTextWindow, BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID,
-                _(L"Spache (Unfamiliar) Report"), isNotSpacheWord, unfamiliarSpacheWordsLegend);
+                _(L"Spache (Unfamiliar) Report"), isNotSpacheWord, textLegends.unfamiliarSpacheWordsLegend);
             }
         if (GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled() &&
             GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()) )
@@ -5605,8 +5651,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                     isNotHJWord,
-                                    docText.get(), textBufferLength, headerThemed, endSection,
-                                    unfamiliarHarrisJacobsonWordsLegend,
+                                    docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
+                                    textLegends.unfamiliarHarrisJacobsonWordsLegend,
                                     highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                     highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
                                     // HJ explicitly states what to exclude, so always show what it is
@@ -5625,8 +5671,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                     isNotHJWord,
-                                    docText.get(), textBufferLength, headerThemed, endSection,
-                                    unfamiliarHarrisJacobsonWordsLegend,
+                                    docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
+                                    textLegends.unfamiliarHarrisJacobsonWordsLegend,
                                     highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                     highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
                                     textBeingExcluded,
@@ -5651,8 +5697,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 FormatWordCollectionHighlightedWords(GetWords(),
                                     isNotHJWord,
-                                    docText.get(), textBufferLength, headerWhitePaper, endSection,
-                                    unfamiliarHarrisJacobsonWordsLegend,
+                                    docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
+                                    textLegends.unfamiliarHarrisJacobsonWordsLegend,
                                     highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                     highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
                                     // HJ explicitly states what to exclude, so always show what it
@@ -5671,8 +5717,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 FormatWordCollectionHighlightedWords(GetWords(),
                                     isNotHJWord,
-                                    docText.get(), textBufferLength, headerWhitePaper, endSection,
-                                    unfamiliarHarrisJacobsonWordsLegend,
+                                    docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
+                                    textLegends.unfamiliarHarrisJacobsonWordsLegend,
                                     highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                     highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
                                     textBeingExcluded,
@@ -5732,11 +5778,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     BuildLegendLine(highlighterTags,
                         wxString::Format(_(L"Unfamiliar %s words"), pos->GetIterator()->get_name().c_str()) );
                 const wxString unfamiliarWordsLegend =
-                    wxString::Format(L" \\pard\\fs%u%s%s \\fs%u\\par\n",///@todo add pango code here for GTK+
-                                    (textViewFont.GetPointSize()-2)*2,
-                                    legendLines.ignoredSentencesLegendLine,
-                                    unfamiliarWordsLegendLine,
-                                    textViewFont.GetPointSize()*2);
+                    BuildLegend(unfamiliarWordsLegendLine, legendLines, textViewFont);
 
                 IsNotCustomFamiliarWordWithHighlighting<std::vector<CustomReadabilityTestInterface>::iterator>
                     notCustomWord(pos, highlighterTags.HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END);
@@ -5762,7 +5804,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         {
                         textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                 notCustomWordExcludeNumberals,
-                                docText.get(), textBufferLength, headerThemed, endSection,
+                                docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
                                 unfamiliarWordsLegend,
                                 highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                 highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5781,7 +5823,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         {
                         textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                 notCustomWord,
-                                docText.get(), textBufferLength, headerThemed, endSection,
+                                docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
                                 unfamiliarWordsLegend,
                                 highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                 highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5803,7 +5845,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         {
                         textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                 notCustomWordExcludeNumberals,
-                                docText.get(), textBufferLength, headerThemed, endSection,
+                                docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
                                 unfamiliarWordsLegend,
                                 highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                 highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5821,7 +5863,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         {
                         textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                 notCustomWord,
-                                docText.get(), textBufferLength, headerThemed, endSection,
+                                docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
                                 unfamiliarWordsLegend,
                                 highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                 highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5855,7 +5897,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         {
                         FormatWordCollectionHighlightedWords(GetWords(),
                                 notCustomWordExcludeNumberals,
-                                docText.get(), textBufferLength, headerWhitePaper, endSection,
+                                docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
                                 unfamiliarWordsLegend,
                                 highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                 highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5874,7 +5916,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         {
                         FormatWordCollectionHighlightedWords(GetWords(),
                                 notCustomWord,
-                                docText.get(), textBufferLength, headerWhitePaper, endSection,
+                                docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
                                 unfamiliarWordsLegend,
                                 highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                 highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5896,7 +5938,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         {
                         FormatWordCollectionHighlightedWords(GetWords(),
                                 notCustomWordExcludeNumberals,
-                                docText.get(), textBufferLength, headerWhitePaper, endSection,
+                                docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
                                 unfamiliarWordsLegend,
                                 highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                 highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5914,7 +5956,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         {
                         FormatWordCollectionHighlightedWords(GetWords(),
                                 notCustomWord,
-                                docText.get(), textBufferLength, headerWhitePaper, endSection,
+                                docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
                                 unfamiliarWordsLegend,
                                 highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                 highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5955,8 +5997,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             UpdateTextWindowOptions(textWindow);
             [[maybe_unused]] const size_t textLength = FormatWordCollectionHighlightedGrammarIssues(GetWords(),
                     GetDifficultSentenceLength(),
-                    docText.get(), textBufferLength, headerThemed, endSection,
-                    wordinessWindowLegend,
+                    docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
+                    textLegends.wordinessWindowLegend,
                     highlighterTags.HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                     highlighterTags.ERROR_HIGHLIGHT_BEGIN,
                     highlighterTags.PHRASE_HIGHLIGHT_BEGIN,
@@ -5991,8 +6033,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
             FormatWordCollectionHighlightedGrammarIssues(GetWords(),
                                         GetDifficultSentenceLength(),
-                                        docText.get(), textBufferLength, headerWhitePaper, endSection,
-                                        wordinessWindowLegend,
+                                        docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
+                                        textLegends.wordinessWindowLegend,
                                         highlighterTags.HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                         highlighterTags.ERROR_HIGHLIGHT_BEGIN,
                                         highlighterTags.PHRASE_HIGHLIGHT_BEGIN,
@@ -6024,7 +6066,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(
                     BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID));
             textWindow = buildTextWindow(textWindow, BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID,
-                _(L"Highlighted Dolch Words"), isDolchWord, dolchWindowLegend);
+                _(L"Highlighted Dolch Words"), isDolchWord, textLegends.dolchWindowLegend);
             view->GetDolchSightWordsView().AddWindow(textWindow);
             }
         else
@@ -6036,7 +6078,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(
                     BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID));
             textWindow = buildTextWindow(textWindow, BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID,
-                _(L"Highlighted Non-Dolch Words"), isNotDolchWord, nonDolchWordsLegend);
+                _(L"Highlighted Non-Dolch Words"), isNotDolchWord, textLegends.nonDolchWordsLegend);
             view->GetDolchSightWordsView().AddWindow(textWindow);
             }
         else

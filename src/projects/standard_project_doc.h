@@ -166,7 +166,7 @@ private:
         wxString TAB_SYMBOL;
         wxString CRLF;
         };
-    struct LegendLines
+    struct TextLegendLines
         {
         wxString ignoredSentencesLegendLine;
         wxString hardWordsLegendLine;
@@ -186,10 +186,30 @@ private:
         wxString dolchNounsLegendLine;
         wxString nonDolchWordsLegendLine;
         };
+    struct TextLegends
+        {
+        wxString plaintTextWindowLegend;
+        wxString hardWordsLegend;
+        wxString longWordsLegend;
+        wxString unfamiliarDCWordsLegend;
+        wxString unfamiliarSpacheWordsLegend;
+        wxString unfamiliarHarrisJacobsonWordsLegend;
+        wxString dolchWindowLegend;
+        wxString nonDolchWordsLegend;
+        wxString wordinessWindowLegend;
+        };
+    struct TextHeaders
+        {
+        wxString headerThemed;
+        wxString headerWhitePaper;
+        wxString mainFontHeaderThemed;
+        wxString colorTableThemed;
+        wxString endSection;
+        };
     /// @brief Builds the colors and RTF color table (used by Windows and macOS).
     [[nodiscard]]
     HighlighterColors BuildReportColors(
-        const wxColour& highlightColor, const wxFont& textViewFont,
+        const wxColour& highlightColor,
         const wxColour& backgroundColor);
     /// @brief Builds the tags used to highlight words in RTF or Pango.
     /// @param highlightColor The default highlight color.
@@ -197,22 +217,33 @@ private:
     ///     building for Pango (not used for RTF, since that uses indices into a color table).
     /// @returns The tags used to build RTF or Pango content.
     [[nodiscard]]
-    HighlighterTags BuildHighlighterTags(const wxColour& highlightColor,
+    HighlighterTags BuildHighlighterTags(
+        [[maybe_unused]] const wxColour& highlightColor,
         [[maybe_unused]] HighlighterColors& highlighterColors);
     /// @brief Formats the main font for an RTF's header.
-    std::pair<wxString, wxString> ProjectDoc::FormatRtfHeaderFont(
+    std::pair<wxString, wxString> FormatRtfHeaderFont(
         const wxFont& textViewFont,
         const size_t mainFontColorIndex);
     [[nodiscard]]
-    std::pair<LegendLines, size_t> BuildLegendLines(const HighlighterTags& highlighterTags);
+    std::pair<TextLegendLines, size_t> BuildLegendLines(const HighlighterTags& highlighterTags);
     [[nodiscard]]
     wxString BuildLegendLine(const HighlighterTags& highlighterTags, const wxString& legendStr);
     /// @brief Builds the RTF color table (used by Windows and macOS).
     /// @returns RTF-formatted header sections (used by Windows and macOS).
     std::tuple<wxString, wxString, wxString> BuildColorTable(
-        const wxColour& highlightColor, const wxFont& textViewFont,
-        HighlighterColors& highlighterColors,
+        const wxFont& textViewFont,
+        const HighlighterColors& highlighterColors,
         const wxColour& backgroundColor);
+    [[nodiscard]]
+    TextLegends BuildLegends(const TextLegendLines& legendLines, const wxFont& textViewFont);
+    [[nodiscard]]
+    wxString BuildLegend(const wxString& legendLine,
+        const TextLegendLines& legendLines,
+        const wxFont& textViewFont);
+    [[nodiscard]]
+    TextHeaders BuildHeaders(
+        [[maybe_unused]] const HighlighterColors& highlighterColors,
+        const wxFont& textViewFont);
 
     bool OnCreate(const wxString& path, long flags) final;
 
