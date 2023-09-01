@@ -21,6 +21,12 @@
 # Intermediate build files
 /Catch2
 /CMakeFiles
+/resource.h
+/src/app/version.h
+/installers/Windows/setup.isl
+/installers/Windows/icons.isl
+/docs/version_info.txt
+/resource.h
 /Resources/Words/Dictionaries/English.txt
 /Resources/Words/Programming/All Languages.txt
 /Resources/Words/ProperNouns/Personal.txt

@@ -1,8 +1,8 @@
 --- 
-title: "Readability Studio 2023"
+title: "`r PROGRAM_NAME` `r PROGRAM_VERSION`"
 subtitle: "User Manual"
-description: "Readability Studio 2023 Manual"
-author: "Blake Madden"
+description: "`r PROGRAM_NAME` `r PROGRAM_VERSION` Manual"
+author: "`r PROGRAM_AUTHOR`"
 site: bookdown::bookdown_site
 output:
   bookdown::pdf_book:
@@ -12,7 +12,7 @@ output:
 documentclass: book
 lot: yes
 lof: yes
-date: 2023
+date: "`r BUILD_YEAR`"
 links-as-notes: true
 linestretch: 1.15
 biblio-title: References

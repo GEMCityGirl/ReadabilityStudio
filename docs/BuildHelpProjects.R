@@ -49,6 +49,16 @@ clearFolders <- function()
 
 clearFolders()
 
+# Read dynamic values for the projects
+setwd(glue("{docFolder}/"))
+version_info <- read_delim("version_info.txt", 
+                           delim = "\t", escape_double = FALSE, 
+                           trim_ws = TRUE)
+BUILD_YEAR <- dplyr::filter(version_info, TAG == 'BUILD_YEAR')$VALUE
+PROGRAM_VERSION <- dplyr::filter(version_info, TAG == 'VERSION')$VALUE
+PROGRAM_AUTHOR <- dplyr::filter(version_info, TAG == 'PROGRAM_AUTHOR')$VALUE
+PROGRAM_NAME <- dplyr::filter(version_info, TAG == 'PROGRAM_NAME')$VALUE
+
 # Coding Bible
 ##############
 
@@ -60,7 +70,7 @@ bookdown::render_book(input="index.Rmd",
 ######################
 
 # Note that this book has its own LaTeX files (i.e., does not copy them from ReadabilityStudioDocs).
-# This "book" doesn't have any front or back matter, so its preample TeX file doesn't include that.
+# This "book" doesn't have any front or back matter, so its preamble TeX file doesn't include that.
 setwd(glue("{docFolder}/ShortcutsCheatsheet/"))
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/glossary/02-shortcuts.rmd"),
           glue("{docFolder}/ShortcutsCheatsheet/02-shortcuts.rmd"),

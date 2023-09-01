@@ -1,8 +1,8 @@
 --- 
-title: "Readability Studio 2023"
+title: "`r PROGRAM_NAME` `r PROGRAM_VERSION`"
 subtitle: "Programming Manual"
-description: "Readability Studio 2023 Programming Manual"
-author: "Blake Madden"
+description: "`r PROGRAM_NAME` `r PROGRAM_VERSION` Programming Manual"
+author: "`r PROGRAM_AUTHOR`"
 site: bookdown::bookdown_site
 output:
   bookdown::pdf_book:
@@ -11,7 +11,7 @@ output:
       in_header: "latex/preamble.tex"
   bookdown::gitbook:
     toc_depth: 2
-date: 2023
+date: "`r BUILD_YEAR`"
 documentclass: book
 biblio-style: mla
 nocite: '@*'

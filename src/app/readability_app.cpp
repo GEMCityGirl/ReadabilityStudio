@@ -795,7 +795,7 @@ bool ReadabilityApp::OnInit()
 
     SetAppFileExtension(_DT(L"rsp"));
     SetDocumentTypeName(_DT(L"ReadabilityStudio.Document") );
-    SetDocumentVersionNumber(_DT(L"8.0")); // 2021 release
+    SetDocumentVersionNumber(_READSTUDIO_PROGRAM_NUMBERED_VERSION);
 
     // create the document template
     [[maybe_unused]] wxDocTemplate* docTemplate =

@@ -1,29 +1,18 @@
 ﻿;Installer for Readability Studio
 [Setup]
-AppName=Readability Studio
-AppVerName=Readability Studio 2021.2
-AppPublisher=Oleander Software
-AppPublisherURL=https://www.oleandersoftware.com/
-AppVersion=2021.2
+#include "setup.isl"
 AppComments=Document readability analysis
-DefaultDirName={commonpf}\Readability Studio
-DefaultGroupName=Readability Studio
-UninstallDisplayIcon={app}\ReadStudio.exe
 MergeDuplicateFiles=true
 Compression=lzma
 SolidCompression=true
 UserInfoPage=true
 ChangesAssociations=true
 PrivilegesRequired=admin
-AppCopyright=Copyright © 2023 Oleander Software
 LicenseFile=..\redist\license.rtf
 ShowLanguageDialog=yes
 LanguageDetectionMethod=locale
-VersionInfoVersion=2021.2
-VersionInfoCopyright=2021.2
 AppID={{FBFBEAB6-622A-4E16-893D-216C25FF6A69}
 AppendDefaultDirName=no
-OutputBaseFilename=rssetup2021.2
 ; Windows 7 SP2 required, but don't use MinVersion because some
 ; customized Windows systems have their OS version messed up and InnoSetup can't
 ; determine the version.
@@ -52,7 +41,7 @@ Source: ..\..\Examples\*; DestDir: {app}\examples; Components: Examples; Exclude
 #include "lang.isl"
 
 [Icons]
-Name: {group}\Readability Studio 2021; Filename: {app}\ReadStudio.exe; IconIndex: 0
+#include "icons.isl"
 
 [Registry]
 ; Make is so that you can run the program from the command line

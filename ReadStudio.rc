@@ -50,8 +50,8 @@ WXICON_AAA              ICON                    "app-logo.ico"
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2021,2,0,0
- PRODUCTVERSION 2021,2,0,0
+ FILEVERSION _READSTUDIO_FILE_VERSION_RC
+ PRODUCTVERSION _READSTUDIO_PRODUCUCT_VERSION_RC
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -66,14 +66,14 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "CompanyName", "Oleander Software"
-            VALUE "FileDescription", "Readability Studio"
-            VALUE "FileVersion", "2021.2.0.0"
-            VALUE "InternalName", "Readability Studio"
-            VALUE "LegalCopyright", "Copyright (C) 2023"
-            VALUE "OriginalFilename", "ReadStudio.exe"
-            VALUE "ProductName", "Readability Studio"
-            VALUE "ProductVersion", "2021.2.0.0"
+            VALUE "CompanyName", _READSTUDIO_PUBLISHER
+            VALUE "FileDescription", _READSTUDIO_DESCRIPTION
+            VALUE "FileVersion", _READSTUDIO_PROGRAM_VERSION_RC
+            VALUE "InternalName", _READSTUDIO_DESCRIPTION
+            VALUE "LegalCopyright", _READSTUDIO_COPYRIGHT_RC
+            VALUE "OriginalFilename", _READSTUDIO_BINARY_NAME
+            VALUE "ProductName", _READSTUDIO_DESCRIPTION
+            VALUE "ProductVersion", _READSTUDIO_PROGRAM_VERSION_RC
         END
     END
     BLOCK "VarFileInfo"

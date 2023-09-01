@@ -1,8 +1,8 @@
 --- 
-title: "Readability Studio 2023"
+title: "`r PROGRAM_NAME` `r PROGRAM_VERSION`"
 subtitle: "Shortcuts Cheatsheet"
 description: "Shortcuts Cheatsheet"
-author: "Blake Madden"
+author: "`r PROGRAM_AUTHOR`"
 site: bookdown::bookdown_site
 output:
   bookdown::pdf_book:
@@ -11,11 +11,10 @@ output:
       in_header: "latex/preamble.tex"
   bookdown::gitbook:
     toc_depth: 0
-date: 2023
+date: "`r BUILD_YEAR`"
 documentclass: scrartcl
 ---
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(message=F, warning=F, dev='svg', eval=F, echo=T)
 ```
-

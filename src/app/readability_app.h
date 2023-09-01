@@ -15,6 +15,7 @@
 #include <wx/evtloop.h>
 #include <map>
 #include <algorithm>
+#include "version.h"
 #include "../../../Licensing/LicenseAdmin.h"
 #include "../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/printerheaderfooterdlg.h"
@@ -227,7 +228,7 @@ public:
 
     [[nodiscard]]
     wxString GetAppVersion() const
-        { return L"2021.2"; }
+        { return _READSTUDIO_PROGRAM_VERSION; }
     void EditCustomTest(CustomReadabilityTest& selectedTest);
     /// web harvester info
     [[nodiscard]]

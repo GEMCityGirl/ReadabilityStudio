@@ -1,0 +1,12 @@
+AppName=${ReadStudio_DESCRIPTION}
+AppVerName=${ReadStudio_DESCRIPTION} ${ReadStudio_VERSION_MAJOR}.${ReadStudio_VERSION_MINOR}
+AppPublisher=${PUBLISHER}
+AppPublisherURL=${ReadStudio_HOMEPAGE_URL}
+AppVersion=${ReadStudio_VERSION_MAJOR}.${ReadStudio_VERSION_MINOR}.${ReadStudio_VERSION_PATCH}.${ReadStudio_VERSION_TWEAK}
+VersionInfoVersion=${ReadStudio_VERSION_MAJOR}.${ReadStudio_VERSION_MINOR}.${ReadStudio_VERSION_PATCH}.${ReadStudio_VERSION_TWEAK}
+VersionInfoCopyright=${ReadStudio_VERSION_MAJOR}.${ReadStudio_VERSION_MINOR}.${ReadStudio_VERSION_PATCH}.${ReadStudio_VERSION_TWEAK}
+OutputBaseFilename=rssetup${ReadStudio_VERSION_MAJOR}.${ReadStudio_VERSION_MINOR}.${ReadStudio_VERSION_PATCH}.${ReadStudio_VERSION_TWEAK}
+AppCopyright=Copyright © ${BUILD_YEAR} ${PUBLISHER}
+DefaultDirName={commonpf}\${ReadStudio_DESCRIPTION}
+DefaultGroupName=${ReadStudio_DESCRIPTION}
+UninstallDisplayIcon={app}\${CMAKE_PROJECT_NAME}.exe

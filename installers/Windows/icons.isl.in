@@ -1,0 +1,1 @@
+Name: {group}\${ReadStudio_DESCRIPTION} ${ReadStudio_VERSION_MAJOR}; Filename: {app}\${CMAKE_PROJECT_NAME}.exe; IconIndex: 0

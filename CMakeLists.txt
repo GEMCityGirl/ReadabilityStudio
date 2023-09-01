@@ -8,12 +8,50 @@
 #############################################################################
 
 # Declare the minimum required CMake version
-# Note that CMake 3.24 is needed if compiling wxWidgets 3.2
+# Note that CMake 3.24 is needed for compiling wxWidgets
 CMAKE_MINIMUM_REQUIRED(VERSION 3.24)
 SET(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_CXX_STANDARD_REQUIRED True)
 
-PROJECT(ReadStudio)
+# Edit these values when bumping the release
+project(ReadStudio VERSION 2021.2.0.0 DESCRIPTION "Readability Studio" HOMEPAGE_URL https://www.oleandersoftware.com/)
+set(PROGRAM_NUMBERED_VERSION 8.0)
+set(PUBLISHER "Oleander Software")
+set(PROGRAM_AUTHOR "Blake Madden")
+
+# Build a displayable version string that only includes the necessary parts
+set(FULL_DISPLAY_VERSION ${ReadStudio_VERSION_MAJOR})
+if(NOT ${ReadStudio_VERSION_MINOR} EQUAL 0)
+    string(APPEND FULL_DISPLAY_VERSION ".${ReadStudio_VERSION_MINOR}")
+endif()
+if(NOT ${ReadStudio_VERSION_PATCH} EQUAL 0)
+    string(APPEND FULL_DISPLAY_VERSION ".${ReadStudio_VERSION_PATCH}")
+endif()
+if(NOT ${ReadStudio_VERSION_TWEAK} EQUAL 0)
+    string(APPEND FULL_DISPLAY_VERSION ".${ReadStudio_VERSION_TWEAK}")
+endif()
+string(TIMESTAMP BUILD_YEAR "%Y")
+
+message(STATUS "${ReadStudio_DESCRIPTION}")
+message(STATUS "Full version: ${ReadStudio_VERSION_MAJOR}.${ReadStudio_VERSION_MINOR}.${ReadStudio_VERSION_PATCH}.${ReadStudio_VERSION_TWEAK}")
+message(STATUS "Display version: ${FULL_DISPLAY_VERSION}")
+message(STATUS "Numbered Version: ${PROGRAM_NUMBERED_VERSION}")
+message(STATUS "Built in: ${BUILD_YEAR}")
+message(STATUS "Authored by: ${PROGRAM_AUTHOR}")
+message(STATUS "Published by: ${PUBLISHER}")
+message(STATUS "Homepage: ${ReadStudio_HOMEPAGE_URL}")
+message(STATUS "Output program file: ${CMAKE_PROJECT_NAME}")
+message(STATUS "Writing program info to build peripheral files.")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.in"
+               "${CMAKE_CURRENT_SOURCE_DIR}/src/app/version.h")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/resource.h.in"
+               "${CMAKE_CURRENT_SOURCE_DIR}/resource.h")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/version_info.txt.in"
+               "${CMAKE_CURRENT_SOURCE_DIR}/docs/version_info.txt")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/setup.isl.in"
+               "${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/setup.isl")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/icons.isl.in"
+               "${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/icons.isl")
 
 IF(NOT CMAKE_CONFIGURATION_TYPES)
     GET_PROPERTY(HAVE_MULTI_CONFIG_GENERATOR GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
