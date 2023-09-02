@@ -243,12 +243,12 @@ public:
     // label functions
     [[nodiscard]]
     static wxString FormatClozeValuesLabel(const wxString& testName)
-        { return testName + _(" (pred. cloze scores)"); }
+        { return testName + _(L" (pred. cloze scores)"); }
     [[nodiscard]]
     static wxString StripClozeValuesLabel(const wxString& testName)
         {
         wxString begin;
-        if (testName.EndsWith(_(" (pred. cloze scores)"), &begin))
+        if (testName.EndsWith(_(L" (pred. cloze scores)"), &begin))
             {
             begin.Trim();
             return begin;
@@ -258,12 +258,12 @@ public:
         }
     [[nodiscard]]
     static wxString FormatIndexValuesLabel(const wxString& testName)
-        { return testName + _(" (index values)"); }
+        { return testName + _(L" (index values)"); }
     [[nodiscard]]
     static wxString StripIndexValuesLabel(const wxString& testName)
         {
         wxString begin;
-        if (testName.EndsWith(_(" (index values)"), &begin))
+        if (testName.EndsWith(_(L" (index values)"), &begin))
             {
             begin.Trim();
             return begin;
@@ -273,12 +273,12 @@ public:
         }
     [[nodiscard]]
     static wxString FormatGradeLevelsLabel(const wxString& testName)
-        { return testName + _(" (grade levels)"); }
+        { return testName + _(L" (grade levels)"); }
     [[nodiscard]]
     static wxString StripGradeLevelsLabel(const wxString& testName)
         {
         wxString begin;
-        if (testName.EndsWith(_(" (grade levels)"), &begin))
+        if (testName.EndsWith(_(L" (grade levels)"), &begin))
             {
             begin.Trim();
             return begin;
