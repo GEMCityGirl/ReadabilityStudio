@@ -5215,11 +5215,12 @@ ProjectDoc::TextLegends ProjectDoc::BuildLegends(const ProjectDoc::TextLegendLin
     }
 
 //-------------------------------------------------------
-ProjectDoc::TextHeaders ProjectDoc::BuildHeaders(
+ProjectDoc::TextHeader ProjectDoc::BuildHeader(
+    const wxColour& backgroundColor,
     [[maybe_unused]] const HighlighterColors& highlighterColors,
     const wxFont& textViewFont)
     {
-    TextHeaders textHeaders;
+    TextHeader textHeaders;
 #if defined (__WXMSW__) || defined (__WXOSX__)
     // other formatting
     wxString fontFamily;
@@ -5255,35 +5256,22 @@ ProjectDoc::TextHeaders ProjectDoc::BuildHeaders(
             fontFamily, textViewFont.GetFaceName());
 
     const auto [colorTableThemed, mainFontHeaderThemed, ending] =
-        BuildColorTable(textViewFont, highlighterColors,
-            GetTextReportBackgroundColor());
-    const auto [colorTableWhitePaper, mainFontHeaderWhitePaper, endingWhitePaper] =
-        BuildColorTable(textViewFont, highlighterColors, *wxWHITE);
-    textHeaders.endSection = endingWhitePaper;
-
-    textHeaders.colorTableThemed = colorTableThemed;
-    textHeaders.mainFontHeaderThemed = mainFontHeaderThemed;
-    textHeaders.headerThemed = headerSection + colorTableThemed + mainFontHeaderThemed;
-    textHeaders.headerWhitePaper = headerSection + colorTableWhitePaper + mainFontHeaderWhitePaper;
+        BuildColorTable(textViewFont, highlighterColors, backgroundColor);
+    textHeaders.endSection = ending;
+    textHeaders.colorTable = colorTableThemed;
+    textHeaders.mainFontHeader = mainFontHeaderThemed;
+    textHeaders.header = headerSection + colorTableThemed + mainFontHeaderThemed;
 
 #elif defined(__WXGTK__)
     textHeaders.endSection = L"</span>";
 
-    textHeaders.headerThemed =
+    textHeaders.header =
         wxString::Format(
             L"<span background=\"%s\" foreground=\"%s\" face=\"%s\" size=\"%u\" style=\"%s\" weight=\"%s\" underline=\"%s\">\n",
-            GetTextReportBackgroundColor().GetAsString(wxC2S_HTML_SYNTAX),
-            ((GetTextReportBackgroundColor().GetLuminance() < .5f) ? L"white" : L"black"),
+            backgroundColor.GetAsString(wxC2S_HTML_SYNTAX),
+            ((backgroundColor.GetLuminance() < .5f) ? L"white" : L"black"),
             textViewFont.GetFaceName(),
             // "size" in Pango is 1024th of a point
-            textViewFont.GetPointSize() * 1024,
-            (textViewFont.GetStyle() == wxFONTSTYLE_ITALIC) ? _DT(L"italic") : _DT(L"normal"),
-            (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? _DT(L"bold") : _DT(L"normal"),
-            textViewFont.GetUnderlined() ? _DT(L"single") : _DT(L"none"));;
-    textHeaders.headerWhitePaper =
-        wxString::Format(
-            L"<span background=\"white\" foreground=\"black\" face=\"%s\" size=\"%u\" style=\"%s\" weight=\"%s\" underline=\"%s\">\n",
-            textViewFont.GetFaceName(),
             textViewFont.GetPointSize() * 1024,
             (textViewFont.GetStyle() == wxFONTSTYLE_ITALIC) ? _DT(L"italic") : _DT(L"normal"),
             (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? _DT(L"bold") : _DT(L"normal"),
@@ -5310,7 +5298,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         const auto [legendLines, maxLegendSize] = BuildLegendLines(highlighterTags);
         const TextLegends textLegends = BuildLegends(legendLines, textViewFont);
 
-        TextHeaders textHeaders = BuildHeaders(highlighterColors, textViewFont);
+        TextHeader textHeaderThemed = BuildHeader(GetTextReportBackgroundColor(), highlighterColors, textViewFont);
+        TextHeader textHeaderPaperWhite = BuildHeader(*wxWHITE, highlighterColors, textViewFont);
 
         SyllableCountGreaterEqualWithHighlighting<word_case_insensitive_no_stem>
             is3PlusSyllables(3,
@@ -5360,8 +5349,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
            may be expanded into that.*/
         // some characters have to be encoded for RTF or Pango
         const size_t textBufferLength = fullCharWithPunctCount*7 +
-            textHeaders.headerThemed.length() + textHeaders.colorTableThemed.length() +
-            textHeaders.mainFontHeaderThemed.length() +
+            textHeaderThemed.header.length() + textHeaderThemed.colorTable.length() +
+            textHeaderThemed.mainFontHeader.length() +
             // two spaces after each sentence, and ending punctuations
             (GetWords()->get_sentence_count()*3) +
             (GetWords()->get_paragraph_count()*(highlighterTags.CRLF.length() + highlighterTags.TAB_SYMBOL.length())) +
@@ -5374,7 +5363,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             /*3 spaces, 2 parenthesis, and 3 spots for the number*/
             (GetWords()->get_sentence_count() *
                 (highlighterTags.BOLD_BEGIN.length() + highlighterTags.BOLD_END.length()+8)) +
-            textHeaders.endSection.length() + maxLegendSize + 1;
+            textHeaderThemed.endSection.length() + maxLegendSize + 1;
 
         auto docText = std::make_unique<wchar_t[]>(textBufferLength+1);
 
@@ -5384,7 +5373,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
         // creates and load text into a formatted text window
         const auto buildTextWindow = [this, view, textBeingExcluded, textBufferLength,
-                                      &textHeaders,
+                                      &textHeaderThemed, &textHeaderPaperWhite,
                                       &highlighterTags,
                                       &docText]
                                      (FormattedTextCtrl* textWindow, const int ID, const wxString& label,
@@ -5402,7 +5391,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             UpdateTextWindowOptions(textWindow);
             [[maybe_unused]] const size_t textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                         highlighter,
-                                        docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection, legend,
+                                        docText.get(), textBufferLength,
+                                        textHeaderThemed.header, textHeaderThemed.endSection, legend,
                                         highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                         highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
                                         textBeingExcluded,
@@ -5434,7 +5424,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
             FormatWordCollectionHighlightedWords(GetWords(),
                                     highlighter,
-                                    docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection, legend,
+                                    docText.get(), textBufferLength,
+                                    textHeaderPaperWhite.header, textHeaderPaperWhite.endSection, legend,
                                     highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                     highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
                                     textBeingExcluded,
@@ -5516,7 +5507,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                         isNotDCWord,
-                                        docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
+                                        docText.get(), textBufferLength, textHeaderThemed.header, textHeaderThemed.endSection,
                                         textLegends.unfamiliarDCWordsLegend,
                                         highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                         highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5535,7 +5526,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                         isNotDCWord,
-                                        docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
+                                        docText.get(), textBufferLength, textHeaderThemed.header, textHeaderThemed.endSection,
                                         textLegends.unfamiliarDCWordsLegend,
                                         highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                         highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5561,7 +5552,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 FormatWordCollectionHighlightedWords(GetWords(),
                                         isNotDCWord,
-                                        docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
+                                        docText.get(), textBufferLength,
+                                        textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
                                         textLegends.unfamiliarDCWordsLegend,
                                         highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                         highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5580,7 +5572,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 FormatWordCollectionHighlightedWords(GetWords(),
                                         isNotDCWord,
-                                        docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
+                                        docText.get(), textBufferLength,
+                                        textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
                                         textLegends.unfamiliarDCWordsLegend,
                                         highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                         highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5651,7 +5644,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                     isNotHJWord,
-                                    docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
+                                    docText.get(), textBufferLength,
+                                    textHeaderThemed.header, textHeaderThemed.endSection,
                                     textLegends.unfamiliarHarrisJacobsonWordsLegend,
                                     highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                     highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5671,7 +5665,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                     isNotHJWord,
-                                    docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
+                                    docText.get(), textBufferLength,
+                                    textHeaderThemed.header, textHeaderThemed.endSection,
                                     textLegends.unfamiliarHarrisJacobsonWordsLegend,
                                     highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                     highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5697,7 +5692,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 FormatWordCollectionHighlightedWords(GetWords(),
                                     isNotHJWord,
-                                    docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
+                                    docText.get(), textBufferLength,
+                                    textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
                                     textLegends.unfamiliarHarrisJacobsonWordsLegend,
                                     highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                     highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5717,7 +5713,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 {
                 FormatWordCollectionHighlightedWords(GetWords(),
                                     isNotHJWord,
-                                    docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
+                                    docText.get(), textBufferLength,
+                                    textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
                                     textLegends.unfamiliarHarrisJacobsonWordsLegend,
                                     highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                     highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5804,7 +5801,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         {
                         textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                 notCustomWordExcludeNumberals,
-                                docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
+                                docText.get(), textBufferLength,
+                                textHeaderThemed.header, textHeaderThemed.endSection,
                                 unfamiliarWordsLegend,
                                 highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                 highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5823,7 +5821,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         {
                         textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                 notCustomWord,
-                                docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
+                                docText.get(), textBufferLength,
+                                textHeaderThemed.header, textHeaderThemed.endSection,
                                 unfamiliarWordsLegend,
                                 highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                 highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5845,7 +5844,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         {
                         textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                 notCustomWordExcludeNumberals,
-                                docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
+                                docText.get(), textBufferLength,
+                                textHeaderThemed.header, textHeaderThemed.endSection,
                                 unfamiliarWordsLegend,
                                 highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                 highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5863,7 +5863,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         {
                         textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                 notCustomWord,
-                                docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
+                                docText.get(), textBufferLength,
+                                textHeaderThemed.header, textHeaderThemed.endSection,
                                 unfamiliarWordsLegend,
                                 highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                 highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5897,7 +5898,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         {
                         FormatWordCollectionHighlightedWords(GetWords(),
                                 notCustomWordExcludeNumberals,
-                                docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
+                                docText.get(), textBufferLength,
+                                textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
                                 unfamiliarWordsLegend,
                                 highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                 highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5916,7 +5918,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         {
                         FormatWordCollectionHighlightedWords(GetWords(),
                                 notCustomWord,
-                                docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
+                                docText.get(), textBufferLength,
+                                textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
                                 unfamiliarWordsLegend,
                                 highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                 highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5938,7 +5941,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         {
                         FormatWordCollectionHighlightedWords(GetWords(),
                                 notCustomWordExcludeNumberals,
-                                docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
+                                docText.get(), textBufferLength,
+                                textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
                                 unfamiliarWordsLegend,
                                 highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                 highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5956,7 +5960,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         {
                         FormatWordCollectionHighlightedWords(GetWords(),
                                 notCustomWord,
-                                docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
+                                docText.get(), textBufferLength,
+                                textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
                                 unfamiliarWordsLegend,
                                 highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                 highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
@@ -5997,7 +6002,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             UpdateTextWindowOptions(textWindow);
             [[maybe_unused]] const size_t textLength = FormatWordCollectionHighlightedGrammarIssues(GetWords(),
                     GetDifficultSentenceLength(),
-                    docText.get(), textBufferLength, textHeaders.headerThemed, textHeaders.endSection,
+                    docText.get(), textBufferLength,
+                    textHeaderThemed.header, textHeaderThemed.endSection,
                     textLegends.wordinessWindowLegend,
                     highlighterTags.HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                     highlighterTags.ERROR_HIGHLIGHT_BEGIN,
@@ -6033,7 +6039,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
             FormatWordCollectionHighlightedGrammarIssues(GetWords(),
                                         GetDifficultSentenceLength(),
-                                        docText.get(), textBufferLength, textHeaders.headerWhitePaper, textHeaders.endSection,
+                                        docText.get(), textBufferLength,
+                                        textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
                                         textLegends.wordinessWindowLegend,
                                         highlighterTags.HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
                                         highlighterTags.ERROR_HIGHLIGHT_BEGIN,

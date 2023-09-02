@@ -198,12 +198,11 @@ private:
         wxString nonDolchWordsLegend;
         wxString wordinessWindowLegend;
         };
-    struct TextHeaders
+    struct TextHeader
         {
-        wxString headerThemed;
-        wxString headerWhitePaper;
-        wxString mainFontHeaderThemed;
-        wxString colorTableThemed;
+        wxString header;
+        wxString mainFontHeader;
+        wxString colorTable;
         wxString endSection;
         };
     /// @brief Builds the colors and RTF color table (used by Windows and macOS).
@@ -241,7 +240,8 @@ private:
         const TextLegendLines& legendLines,
         const wxFont& textViewFont);
     [[nodiscard]]
-    TextHeaders BuildHeaders(
+    TextHeader BuildHeader(
+        const wxColour& backgroundColor,
         [[maybe_unused]] const HighlighterColors& highlighterColors,
         const wxFont& textViewFont);
 
