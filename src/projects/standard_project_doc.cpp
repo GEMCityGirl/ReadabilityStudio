@@ -5313,6 +5313,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             BuildHeader(GetTextReportBackgroundColor(), highlighterColorsThemed, textViewFont);
         const TextHeader textHeaderPaperWhite = BuildHeader(*wxWHITE, highlighterColorsPaperWhite, textViewFont);
 
+        // specialized highlighters
         SyllableCountGreaterEqualWithHighlighting<word_case_insensitive_no_stem>
             is3PlusSyllablesThemed(3,
                 (GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable),
@@ -5353,6 +5354,46 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                             isNotDolchWordThemed(&m_dolch_word_list,
                                 highlighterTagsThemed.HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END);
 
+        SyllableCountGreaterEqualWithHighlighting<word_case_insensitive_no_stem>
+            is3PlusSyllablesPaperWhite(3,
+                (GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable),
+                highlighterTagsPaperWhite.HIGHLIGHT_BEGIN, highlighterTagsPaperWhite.HIGHLIGHT_END);
+        WordLengthGreaterEqualsWithHighlighting<word_case_insensitive_no_stem>
+            is6PlusCharsPaperWhite(6, highlighterTagsPaperWhite.HIGHLIGHT_BEGIN, highlighterTagsPaperWhite.HIGHLIGHT_END);
+        IsNotFamiliarWordWithHighlighting<word_case_insensitive_no_stem,
+            const word_list,
+            stemming::no_op_stem<word_case_insensitive_no_stem>>
+            isNotDCWordPaperWhite(IsIncludingStockerCatholicSupplement() ?
+                &BaseProject::m_dale_chall_plus_stocker_catholic_word_list :
+                &BaseProject::m_dale_chall_word_list,
+                highlighterTagsPaperWhite.HIGHLIGHT_BEGIN, highlighterTagsPaperWhite.HIGHLIGHT_END,
+                readability::proper_noun_counting_method(GetDaleChallProperNounCountingMethod()));
+        IsNotFamiliarWordWithHighlighting<word_case_insensitive_no_stem,
+            const word_list,
+            stemming::no_op_stem<word_case_insensitive_no_stem>>
+            isNotSpacheWordPaperWhite(&m_spache_word_list,
+                highlighterTagsPaperWhite.HIGHLIGHT_BEGIN, highlighterTagsPaperWhite.HIGHLIGHT_END,
+                readability::proper_noun_counting_method::all_proper_nouns_are_familiar);
+        IsNotFamiliarWordExcludeNumeralsWithHighlighting<word_case_insensitive_no_stem,
+            const word_list,
+            stemming::no_op_stem<word_case_insensitive_no_stem>>
+            isNotHJWordPaperWhite(&m_harris_jacobson_word_list,
+                highlighterTagsPaperWhite.HIGHLIGHT_BEGIN, highlighterTagsPaperWhite.HIGHLIGHT_END,
+                highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsPaperWhite.HIGHLIGHT_END,
+                readability::proper_noun_counting_method::all_proper_nouns_are_familiar);
+        IsDolchWordWithLevelHighlighting<word_case_insensitive_no_stem>
+            isDolchWordPaperWhite(&m_dolch_word_list,
+                highlighterTagsPaperWhite.DOLCH_CONJUNCTION_BEGIN,
+                highlighterTagsPaperWhite.DOLCH_PREPOSITIONS_BEGIN,
+                highlighterTagsPaperWhite.DOLCH_PRONOUN_BEGIN,
+                highlighterTagsPaperWhite.DOLCH_ADVERB_BEGIN,
+                highlighterTagsPaperWhite.DOLCH_ADJECTIVE_BEGIN,
+                highlighterTagsPaperWhite.DOLCH_VERB_BEGIN,
+                highlighterTagsPaperWhite.DOLCH_NOUN_BEGIN, highlighterTagsPaperWhite.HIGHLIGHT_END);
+        IsNotDolchWordWithLevelHighlighting<word_case_insensitive_no_stem>
+            isNotDolchWordPaperWhite(&m_dolch_word_list,
+                highlighterTagsPaperWhite.HIGHLIGHT_BEGIN, highlighterTagsPaperWhite.HIGHLIGHT_END);
+
         // get the full count of all chars (including ignored ones) and their punctuation
         const size_t fullCharWithPunctCount = std::accumulate(GetWords()->get_words().begin(),
                     GetWords()->get_words().end(), static_cast<size_t>(0),
@@ -5380,7 +5421,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             (GetWords()->get_word_count() *
                 (highlighterTagsThemed.HIGHLIGHT_BEGIN.length() +
                     highlighterTagsThemed.HIGHLIGHT_END.length()+2)) +
-            /*3 spaces, 2 parenthesis, and 3 spots for the number*/
+            /* 3 spaces, 2 parenthesis, and 3 spots for the number */
             (GetWords()->get_sentence_count() *
                 (highlighterTagsThemed.BOLD_BEGIN.length() + highlighterTagsThemed.BOLD_END.length()+8)) +
             textHeaderThemed.endSection.length() + maxLegendSizeThemed + 1;
@@ -5792,11 +5833,12 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, textWindow);
                     }
                 UpdateTextWindowOptions(textWindow);
-                const wxString unfamiliarWordsLegendLine = 
+
+                const wxString unfamiliarWordsLegendLineThemed = 
                     BuildLegendLine(highlighterTagsThemed,
                         wxString::Format(_(L"Unfamiliar %s words"), pos->GetIterator()->get_name().c_str()) );
                 const wxString unfamiliarWordsLegendThemed =
-                    BuildLegend(unfamiliarWordsLegendLine, legendLinesThemed, textViewFont);
+                    BuildLegend(unfamiliarWordsLegendLineThemed, legendLinesThemed, textViewFont);
 
                 IsNotCustomFamiliarWordWithHighlighting<std::vector<CustomReadabilityTestInterface>::iterator>
                     notCustomWord(pos, highlighterTagsThemed.HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END);
@@ -5909,6 +5951,12 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 notCustomWord.Reset();
                 notCustomWordExcludeNumberals.Reset();
 
+                const wxString unfamiliarWordsLegendLinePaperWhite =
+                    BuildLegendLine(highlighterTagsPaperWhite,
+                        wxString::Format(_(L"Unfamiliar %s words"), pos->GetIterator()->get_name().c_str()));
+                const wxString unfamiliarWordsLegendPaperWhite =
+                    BuildLegend(unfamiliarWordsLegendLinePaperWhite, legendLinesPaperWhite, textViewFont);
+
                 if ((pos->IsHarrisJacobsonFormula() &&
                      GetHarrisJacobsonTextExclusionMode() ==
                         SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ||
@@ -5922,7 +5970,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 notCustomWordExcludeNumberals,
                                 docText.get(), textBufferLength,
                                 textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
-                                unfamiliarWordsLegendThemed,
+                                unfamiliarWordsLegendPaperWhite,
                                 highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
                                 highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                 // forcibly exclude lists but include headers, invalid words will also be valid
@@ -5942,7 +5990,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 notCustomWord,
                                 docText.get(), textBufferLength,
                                 textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
-                                unfamiliarWordsLegendThemed,
+                                unfamiliarWordsLegendPaperWhite,
                                 highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
                                 highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                 // forcibly exclude lists but include headers, invalid words will also be valid
@@ -5965,7 +6013,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 notCustomWordExcludeNumberals,
                                 docText.get(), textBufferLength,
                                 textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
-                                unfamiliarWordsLegendThemed,
+                                unfamiliarWordsLegendPaperWhite,
                                 highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
                                 highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                 textBeingExcluded,
@@ -5984,7 +6032,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 notCustomWord,
                                 docText.get(), textBufferLength,
                                 textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
-                                unfamiliarWordsLegendThemed,
+                                unfamiliarWordsLegendPaperWhite,
                                 highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
                                 highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                 textBeingExcluded,
