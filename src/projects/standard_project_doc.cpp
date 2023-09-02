@@ -5501,6 +5501,16 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                     );
             textWindow->SetUnthemedFormattedText(docText.get());
 
+#ifdef DEBUG_EXPERIMENTAL_CODE
+            const auto tempFilePath = wxFileName::CreateTempFileName(label + L" Paper White");
+            wxFile textWindowDump(tempFilePath, wxFile::OpenMode::write);
+            if (textWindowDump.IsOpened())
+            {
+                textWindowDump.Write(docText.get());
+                wxLogDebug(L"Text view written to: %s", tempFilePath);
+            }
+#endif
+
             return textWindow;
             };
 
