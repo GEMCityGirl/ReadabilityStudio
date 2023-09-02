@@ -4537,7 +4537,7 @@ std::tuple<wxString, wxString, wxString> ProjectDoc::BuildColorTable(
 //-------------------------------------------------------
 ProjectDoc::HighlighterTags ProjectDoc::BuildHighlighterTags(
     [[maybe_unused]] const wxColour& highlightColor,
-    [[maybe_unused]] HighlighterColors& highlighterColors)
+    [[maybe_unused]] const HighlighterColors& highlighterColors)
     {
     HighlighterTags highlighterTags;
 
@@ -5291,15 +5291,15 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         {
         ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
 
-        HighlighterColors highlighterColors =
+        const HighlighterColors highlighterColors =
             BuildReportColors(highlightColor, GetTextReportBackgroundColor());
-        HighlighterTags highlighterTags = BuildHighlighterTags(highlightColor, highlighterColors);
+        const HighlighterTags highlighterTags = BuildHighlighterTags(highlightColor, highlighterColors);
         // build the legends
         const auto [legendLines, maxLegendSize] = BuildLegendLines(highlighterTags);
         const TextLegends textLegends = BuildLegends(legendLines, textViewFont);
 
-        TextHeader textHeaderThemed = BuildHeader(GetTextReportBackgroundColor(), highlighterColors, textViewFont);
-        TextHeader textHeaderPaperWhite = BuildHeader(*wxWHITE, highlighterColors, textViewFont);
+        const TextHeader textHeaderThemed = BuildHeader(GetTextReportBackgroundColor(), highlighterColors, textViewFont);
+        const TextHeader textHeaderPaperWhite = BuildHeader(*wxWHITE, highlighterColors, textViewFont);
 
         SyllableCountGreaterEqualWithHighlighting<word_case_insensitive_no_stem>
             is3PlusSyllables(3,

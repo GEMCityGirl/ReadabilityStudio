@@ -211,14 +211,15 @@ private:
         const wxColour& highlightColor,
         const wxColour& backgroundColor);
     /// @brief Builds the tags used to highlight words in RTF or Pango.
-    /// @param highlightColor The default highlight color.
+    /// @param highlightColor The default highlight color.\n
+    ///     This is only used for RTF, not Pango.
     /// @param highlighterColors Highlight colors used for the tags when
     ///     building for Pango (not used for RTF, since that uses indices into a color table).
     /// @returns The tags used to build RTF or Pango content.
     [[nodiscard]]
     HighlighterTags BuildHighlighterTags(
         [[maybe_unused]] const wxColour& highlightColor,
-        [[maybe_unused]] HighlighterColors& highlighterColors);
+        [[maybe_unused]] const HighlighterColors& highlighterColors);
     /// @brief Formats the main font for an RTF's header.
     std::pair<wxString, wxString> FormatRtfHeaderFont(
         const wxFont& textViewFont,
