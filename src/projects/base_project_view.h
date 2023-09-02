@@ -117,7 +117,7 @@ public:
         { return m_ribbon; }
 
     [[nodiscard]]
-    wxToolBar* GetQuickToolbar() noexcept
+    wxAuiToolBar* GetQuickToolbar() noexcept
         { return m_quickToolbar; }
 
     [[nodiscard]]
@@ -560,7 +560,7 @@ private:
     wxDocChildFrame* m_frame{ nullptr };
     wxRibbonBar* m_ribbon{ nullptr };
     Wisteria::UI::SideBar* m_sideBar{ nullptr };
-    wxToolBar* m_quickToolbar{ nullptr };
+    wxAuiToolBar* m_quickToolbar{ nullptr };
     wxSplitterWindow* m_splitter{ nullptr };
     wxBoxSizer* m_workSpaceSizer{ nullptr };
     // status flags

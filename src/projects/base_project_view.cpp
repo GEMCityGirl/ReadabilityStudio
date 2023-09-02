@@ -7,6 +7,7 @@
 #include "../ui/dialogs/tools_options_dlg.h"
 #include "../ui/dialogs/editwordlistdlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/opacitydlg.h"
+#include "../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
 
 wxDECLARE_APP(ReadabilityApp);
 
@@ -2228,7 +2229,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     m_frame = CreateChildFrame(doc, this);
     SetFrame(m_frame);
 
-    m_maxColumnWidth = GetDocFrame()->FromDIP(wxSize(200,200)).GetWidth();
+    m_maxColumnWidth = GetDocFrame()->FromDIP(wxSize(200, 200)).GetWidth();
 
     m_splitter = new wxSplitterWindow(m_frame, SPLITTER_ID,
                         wxDefaultPosition, m_frame->GetClientSize(),
@@ -2241,8 +2242,10 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
 
     wxBoxSizer* quickAccessToolbarSizer = new wxBoxSizer(wxHORIZONTAL);
     // quick access toolbar
-    m_quickToolbar = new wxToolBar(m_frame, wxID_ANY);
-    GetQuickToolbar()->SetBackgroundColour(wxGetApp().GetAppOptions().GetRibbonInactiveTabColor());
+    m_quickToolbar = new wxAuiToolBar(m_frame, wxID_ANY);
+    auto toolbarArt = new Wisteria::UI::ThemedAuiToolbarArt();
+    toolbarArt->SetThemeColor(wxGetApp().GetAppOptions().GetRibbonInactiveTabColor());
+    GetQuickToolbar()->SetArtProvider(toolbarArt);
     quickAccessToolbarSizer->Add(GetQuickToolbar(), 1, wxEXPAND);
     // save
     GetQuickToolbar()->AddTool(wxID_SAVE, _(L"Save the project"),
