@@ -22,7 +22,7 @@
     #pragma warning(disable: 4701 4702 4310 4244)
 #endif
 
-// don't build the interpretter, just the library
+// don't build the interpreter, just the library
 #define MAKE_LIB
 #include "../lua/onelua.c"
 
