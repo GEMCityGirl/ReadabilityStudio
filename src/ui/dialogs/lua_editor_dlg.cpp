@@ -345,13 +345,6 @@ public:
         }
     };
 
-class ThemedToolbarArt : public wxAuiGenericToolBarArt
-    {
-public:
-    void SetThemeColor(const wxColour& color)
-        { m_baseColour = color; }
-    };
-
 //-------------------------------------------------------
 LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
         const wxString& caption /*= _(L"Lua Script")*/,
@@ -506,7 +499,7 @@ void LuaEditorDlg::SetThemeColor(const wxColour& color)
     {
     m_mgr.GetArtProvider()->SetColour(wxAUI_DOCKART_BACKGROUND_COLOUR, color);
 
-    ThemedToolbarArt* toolbarArt = new ThemedToolbarArt();
+    ThemedAuiToolbarArt* toolbarArt = new ThemedAuiToolbarArt();
     toolbarArt->SetThemeColor(color);
     m_toolbar->SetArtProvider(toolbarArt);
 
@@ -672,8 +665,7 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
 //-------------------------------------------------------
 void LuaEditorDlg::CreateControls()
     {
-    m_toolbar = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-        wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_OVERFLOW | wxAUI_TB_VERTICAL);
+    m_toolbar = new wxAuiToolBar(this, wxID_ANY);
     m_toolbar->SetToolBitmapSize(FromDIP(wxSize(16, 16)));
     // wxID_NEW and such trigger parent events
     m_toolbar->AddTool(XRCID("ID_NEW"), _(L"New"),
@@ -700,7 +692,8 @@ void LuaEditorDlg::CreateControls()
         wxArtProvider::GetBitmapBundle(wxART_HELP_BOOK, wxART_BUTTON),
         _(L"View the Lua Reference Manual."));
     m_toolbar->AddSeparator();
-    m_toolbar->AddControl(new wxSearchCtrl(m_toolbar, wxID_ANY));
+    m_toolbar->AddControl(new wxSearchCtrl(m_toolbar, wxID_ANY, wxString{},
+        wxDefaultPosition, FromDIP(wxSize(200, -1)), 0));
 
     m_toolbar->Realize();
     m_mgr.AddPane(m_toolbar, wxAuiPaneInfo().
