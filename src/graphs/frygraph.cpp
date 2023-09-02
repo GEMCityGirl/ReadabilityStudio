@@ -349,11 +349,31 @@ namespace Wisteria::Graphs
             std::make_shared<GraphItems::Label>(
             GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL")).
             Pen(wxNullPen).Selectable(false).
+            // overriding scaling with a hard-coded font size returned from CalcDiagonalFontSize()
+            Scaling(1).DPIScaling(1).
             AnchorPoint(pt1).Anchoring(Anchoring::TopLeftCorner));
-        gradeLevelLabel->Tilt(-45);
-        wxFont labelFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT));
-        if (labelFont.SetFaceName(GetFancyFontFaceName()))
-            { gradeLevelLabel->SetFont(labelFont.Scale(GetScaling())); }
+        gradeLevelLabel->Tilt(-30);
+        // make it fit inside of the graph
+        wxRect plotArea = GetPlotAreaBoundingBox();
+        plotArea.SetHeight(plotArea.GetHeight() - (pt1.y - plotArea.GetTop()));
+        plotArea.SetWidth(plotArea.GetWidth() * math_constants::third);
+        wxFont labelFont(wxFontInfo().FaceName(GetFancyFontFaceName()));
+        labelFont.SetPointSize(Label::CalcDiagonalFontSize(dc, labelFont, plotArea,
+            30, gradeLevelLabel->GetText()));
+        gradeLevelLabel->SetFont(labelFont);
+        if constexpr(Settings::IsDebugFlagEnabled(DebugSettings::DrawExtraInformation))
+            {
+            dc.SetPen(*wxRED);
+            dc.SetBrush(*wxRED);
+            dc.DrawRectangle(plotArea);
+            plotArea.SetTop(pt1.y);
+            plotArea.SetLeft(pt1.x);
+            AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo().
+                Pen(*wxRED).Brush(wxNullBrush),
+                std::vector<wxPoint>{ plotArea.GetTopLeft(), plotArea.GetTopRight(),
+                                      plotArea.GetBottomRight(), plotArea.GetBottomLeft() }));
+            }
+
         AddObject(gradeLevelLabel);
 
         CalculateScorePositions(dc);
