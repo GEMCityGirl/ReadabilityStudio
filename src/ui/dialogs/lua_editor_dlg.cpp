@@ -697,7 +697,7 @@ void LuaEditorDlg::CreateControls()
 
     m_toolbar->Realize();
     m_mgr.AddPane(m_toolbar, wxAuiPaneInfo().
-        Name("auitoolbar").Caption(_(L"Tools")).
+        Name(L"auitoolbar").Caption(_(L"Tools")).
         ToolbarPane().Top().CloseButton(false).Fixed());
 
     m_notebook = new wxAuiNotebook(this, wxID_ANY,
