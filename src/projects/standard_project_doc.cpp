@@ -5291,50 +5291,59 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         {
         ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
 
-        const HighlighterColors highlighterColors =
+        // build the general highlighters
+        const HighlighterColors highlighterColorsThemed =
             BuildReportColors(highlightColor, GetTextReportBackgroundColor());
-        const HighlighterTags highlighterTags = BuildHighlighterTags(highlightColor, highlighterColors);
-        // build the legends
-        const auto [legendLines, maxLegendSize] = BuildLegendLines(highlighterTags);
-        const TextLegends textLegends = BuildLegends(legendLines, textViewFont);
+        const HighlighterTags highlighterTagsThemed = BuildHighlighterTags(highlightColor, highlighterColorsThemed);
 
-        const TextHeader textHeaderThemed = BuildHeader(GetTextReportBackgroundColor(), highlighterColors, textViewFont);
-        const TextHeader textHeaderPaperWhite = BuildHeader(*wxWHITE, highlighterColors, textViewFont);
+        // build the legends
+        const auto [legendLines, maxLegendSize] = BuildLegendLines(highlighterTagsThemed);
+        const TextLegends textLegendsThemed = BuildLegends(legendLines, textViewFont);
+
+        // build the headers
+        const TextHeader textHeaderThemed =
+            BuildHeader(GetTextReportBackgroundColor(), highlighterColorsThemed, textViewFont);
+        const TextHeader textHeaderPaperWhite = BuildHeader(*wxWHITE, highlighterColorsThemed, textViewFont);
 
         SyllableCountGreaterEqualWithHighlighting<word_case_insensitive_no_stem>
             is3PlusSyllables(3,
                 (GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable),
-                highlighterTags.HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END);
+                highlighterTagsThemed.HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END);
         WordLengthGreaterEqualsWithHighlighting<word_case_insensitive_no_stem>
-            is6PlusChars(6, highlighterTags.HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END);
+            is6PlusChars(6, highlighterTagsThemed.HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END);
         IsNotFamiliarWordWithHighlighting<word_case_insensitive_no_stem,
                          const word_list,
                          stemming::no_op_stem<word_case_insensitive_no_stem>>
                             isNotDCWord(IsIncludingStockerCatholicSupplement() ?
                                 &BaseProject::m_dale_chall_plus_stocker_catholic_word_list :
                                 &BaseProject::m_dale_chall_word_list,
-                                highlighterTags.HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
+                                highlighterTagsThemed.HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
                             readability::proper_noun_counting_method(GetDaleChallProperNounCountingMethod()));
         IsNotFamiliarWordWithHighlighting<word_case_insensitive_no_stem,
                          const word_list,
                          stemming::no_op_stem<word_case_insensitive_no_stem>>
-                            isNotSpacheWord(&m_spache_word_list, highlighterTags.HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
+                            isNotSpacheWord(&m_spache_word_list,
+                                highlighterTagsThemed.HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
                             readability::proper_noun_counting_method::all_proper_nouns_are_familiar);
         IsNotFamiliarWordExcludeNumeralsWithHighlighting<word_case_insensitive_no_stem,
                          const word_list,
                          stemming::no_op_stem<word_case_insensitive_no_stem>>
                             isNotHJWord(&m_harris_jacobson_word_list,
-                            highlighterTags.HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                            highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
+                            highlighterTagsThemed.HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                            highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
                             readability::proper_noun_counting_method::all_proper_nouns_are_familiar);
         IsDolchWordWithLevelHighlighting<word_case_insensitive_no_stem>
                             isDolchWord(&m_dolch_word_list,
-                                highlighterTags.DOLCH_CONJUNCTION_BEGIN, highlighterTags.DOLCH_PREPOSITIONS_BEGIN,
-                                highlighterTags.DOLCH_PRONOUN_BEGIN, highlighterTags.DOLCH_ADVERB_BEGIN,
-                                highlighterTags.DOLCH_ADJECTIVE_BEGIN, highlighterTags.DOLCH_VERB_BEGIN,
-                                highlighterTags.DOLCH_NOUN_BEGIN, highlighterTags.HIGHLIGHT_END);
+                                highlighterTagsThemed.DOLCH_CONJUNCTION_BEGIN,
+                                    highlighterTagsThemed.DOLCH_PREPOSITIONS_BEGIN,
+                                highlighterTagsThemed.DOLCH_PRONOUN_BEGIN,
+                                    highlighterTagsThemed.DOLCH_ADVERB_BEGIN,
+                                highlighterTagsThemed.DOLCH_ADJECTIVE_BEGIN,
+                                    highlighterTagsThemed.DOLCH_VERB_BEGIN,
+                                highlighterTagsThemed.DOLCH_NOUN_BEGIN, highlighterTagsThemed.HIGHLIGHT_END);
         IsNotDolchWordWithLevelHighlighting<word_case_insensitive_no_stem>
-                            isNotDolchWord(&m_dolch_word_list, highlighterTags.HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END);
+                            isNotDolchWord(&m_dolch_word_list,
+                                highlighterTagsThemed.HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END);
 
         // get the full count of all chars (including ignored ones) and their punctuation
         const size_t fullCharWithPunctCount = std::accumulate(GetWords()->get_words().begin(),
@@ -5353,16 +5362,19 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             textHeaderThemed.mainFontHeader.length() +
             // two spaces after each sentence, and ending punctuations
             (GetWords()->get_sentence_count()*3) +
-            (GetWords()->get_paragraph_count()*(highlighterTags.CRLF.length() + highlighterTags.TAB_SYMBOL.length())) +
-            (paragraphLeadingLines*(highlighterTags.CRLF.length() + highlighterTags.TAB_SYMBOL.length())) +
+            (GetWords()->get_paragraph_count() *
+                (highlighterTagsThemed.CRLF.length() + highlighterTagsThemed.TAB_SYMBOL.length())) +
+            (paragraphLeadingLines*(highlighterTagsThemed.CRLF.length() +
+                highlighterTagsThemed.TAB_SYMBOL.length())) +
             // some punctuation has to be escaped or encoded for RTF or Pango
             (GetWords()->get_punctuation().size()*7) +
             // gets the spaces between each word too
             (GetWords()->get_word_count() *
-                (highlighterTags.HIGHLIGHT_BEGIN.length() + highlighterTags.HIGHLIGHT_END.length()+2)) +
+                (highlighterTagsThemed.HIGHLIGHT_BEGIN.length() +
+                    highlighterTagsThemed.HIGHLIGHT_END.length()+2)) +
             /*3 spaces, 2 parenthesis, and 3 spots for the number*/
             (GetWords()->get_sentence_count() *
-                (highlighterTags.BOLD_BEGIN.length() + highlighterTags.BOLD_END.length()+8)) +
+                (highlighterTagsThemed.BOLD_BEGIN.length() + highlighterTagsThemed.BOLD_END.length()+8)) +
             textHeaderThemed.endSection.length() + maxLegendSize + 1;
 
         auto docText = std::make_unique<wchar_t[]>(textBufferLength+1);
@@ -5374,7 +5386,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         // creates and load text into a formatted text window
         const auto buildTextWindow = [this, view, textBeingExcluded, textBufferLength,
                                       &textHeaderThemed, &textHeaderPaperWhite,
-                                      &highlighterTags,
+                                      &highlighterTagsThemed,
                                       &docText]
                                      (FormattedTextCtrl* textWindow, const int ID, const wxString& label,
                                       auto& highlighter, const wxString& legend)
@@ -5393,8 +5405,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                         highlighter,
                                         docText.get(), textBufferLength,
                                         textHeaderThemed.header, textHeaderThemed.endSection, legend,
-                                        highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                        highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                        highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                        highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                         textBeingExcluded,
                                         GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
                                         textBeingExcluded,
@@ -5426,8 +5438,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                     highlighter,
                                     docText.get(), textBufferLength,
                                     textHeaderPaperWhite.header, textHeaderPaperWhite.endSection, legend,
-                                    highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                    highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                    highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                    highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                     textBeingExcluded,
                                     GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
                                     textBeingExcluded,
@@ -5450,7 +5462,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             // always included for any language
                 {
                 textWindow = buildTextWindow(textWindow, BaseProjectView::HARD_WORDS_TEXT_PAGE_ID,
-                    BaseProjectView::GetThreeSyllableReportWordsLabel(), is3PlusSyllables, textLegends.hardWordsLegend);
+                    BaseProjectView::GetThreeSyllableReportWordsLabel(), is3PlusSyllables,
+                        textLegendsThemed.hardWordsLegend);
                 }
             if (GetWordsBreakdownInfo().Is3PlusSyllablesEnabled() && GetTotalUnique3PlusSyllableWords() > 0)
                 {
@@ -5471,7 +5484,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             // always included for any language
                 {
                 textWindow = buildTextWindow(textWindow, BaseProjectView::LONG_WORDS_TEXT_PAGE_ID,
-                    BaseProjectView::GetSixCharWordsReportLabel(), is6PlusChars, textLegends.longWordsLegend);
+                    BaseProjectView::GetSixCharWordsReportLabel(), is6PlusChars, textLegendsThemed.longWordsLegend);
                 }
             if (GetWordsBreakdownInfo().Is6PlusCharacterEnabled() && GetTotalUnique6CharsPlusWords() > 0)
                 {
@@ -5508,9 +5521,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                         isNotDCWord,
                                         docText.get(), textBufferLength, textHeaderThemed.header, textHeaderThemed.endSection,
-                                        textLegends.unfamiliarDCWordsLegend,
-                                        highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                        highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                        textLegendsThemed.unfamiliarDCWordsLegend,
+                                        highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                        highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                         // forcibly exclude lists but include headers, invalid words will also be valid
                                         true,
                                         true,
@@ -5527,9 +5540,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 textLength = FormatWordCollectionHighlightedWords(GetWords(),
                                         isNotDCWord,
                                         docText.get(), textBufferLength, textHeaderThemed.header, textHeaderThemed.endSection,
-                                        textLegends.unfamiliarDCWordsLegend,
-                                        highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                        highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                        textLegendsThemed.unfamiliarDCWordsLegend,
+                                        highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                        highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                         textBeingExcluded,
                                         GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
                                         textBeingExcluded,
@@ -5554,9 +5567,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                         isNotDCWord,
                                         docText.get(), textBufferLength,
                                         textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
-                                        textLegends.unfamiliarDCWordsLegend,
-                                        highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                        highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                        textLegendsThemed.unfamiliarDCWordsLegend,
+                                        highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                        highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                         // forcibly exclude lists but include headers, invalid words will also be valid
                                         true,
                                         true,
@@ -5574,9 +5587,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                         isNotDCWord,
                                         docText.get(), textBufferLength,
                                         textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
-                                        textLegends.unfamiliarDCWordsLegend,
-                                        highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                        highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                        textLegendsThemed.unfamiliarDCWordsLegend,
+                                        highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                        highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                         textBeingExcluded,
                                         GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
                                         textBeingExcluded,
@@ -5607,7 +5620,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         if (GetProjectLanguage() == readability::test_language::english_test)
             {
             m_spacheTextWindow = buildTextWindow(m_spacheTextWindow, BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID,
-                _(L"Spache (Unfamiliar) Report"), isNotSpacheWord, textLegends.unfamiliarSpacheWordsLegend);
+                _(L"Spache (Unfamiliar) Report"), isNotSpacheWord, textLegendsThemed.unfamiliarSpacheWordsLegend);
             }
         if (GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled() &&
             GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()) )
@@ -5646,9 +5659,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                     isNotHJWord,
                                     docText.get(), textBufferLength,
                                     textHeaderThemed.header, textHeaderThemed.endSection,
-                                    textLegends.unfamiliarHarrisJacobsonWordsLegend,
-                                    highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                    highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                    textLegendsThemed.unfamiliarHarrisJacobsonWordsLegend,
+                                    highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                    highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                     // HJ explicitly states what to exclude, so always show what it is
                                     // excluding in this window
                                     true,
@@ -5667,9 +5680,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                     isNotHJWord,
                                     docText.get(), textBufferLength,
                                     textHeaderThemed.header, textHeaderThemed.endSection,
-                                    textLegends.unfamiliarHarrisJacobsonWordsLegend,
-                                    highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                    highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                    textLegendsThemed.unfamiliarHarrisJacobsonWordsLegend,
+                                    highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                    highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                     textBeingExcluded,
                                     GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
                                     textBeingExcluded,
@@ -5694,9 +5707,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                     isNotHJWord,
                                     docText.get(), textBufferLength,
                                     textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
-                                    textLegends.unfamiliarHarrisJacobsonWordsLegend,
-                                    highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                    highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                    textLegendsThemed.unfamiliarHarrisJacobsonWordsLegend,
+                                    highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                    highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                     // HJ explicitly states what to exclude, so always show what it
                                     // is excluding in this window
                                     true,
@@ -5715,9 +5728,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                     isNotHJWord,
                                     docText.get(), textBufferLength,
                                     textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
-                                    textLegends.unfamiliarHarrisJacobsonWordsLegend,
-                                    highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                    highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                    textLegendsThemed.unfamiliarHarrisJacobsonWordsLegend,
+                                    highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                    highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                     textBeingExcluded,
                                     GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
                                     textBeingExcluded,
@@ -5772,17 +5785,18 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     }
                 UpdateTextWindowOptions(textWindow);
                 const wxString unfamiliarWordsLegendLine = 
-                    BuildLegendLine(highlighterTags,
+                    BuildLegendLine(highlighterTagsThemed,
                         wxString::Format(_(L"Unfamiliar %s words"), pos->GetIterator()->get_name().c_str()) );
                 const wxString unfamiliarWordsLegend =
                     BuildLegend(unfamiliarWordsLegendLine, legendLines, textViewFont);
 
                 IsNotCustomFamiliarWordWithHighlighting<std::vector<CustomReadabilityTestInterface>::iterator>
-                    notCustomWord(pos, highlighterTags.HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END);
+                    notCustomWord(pos, highlighterTagsThemed.HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END);
                 IsNotCustomFamiliarWordExcludeNumeralsWithHighlighting<
                     std::vector<CustomReadabilityTestInterface>::iterator>
-                    notCustomWordExcludeNumberals(pos, highlighterTags.HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                        highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END);
+                    notCustomWordExcludeNumberals(pos,
+                        highlighterTagsThemed.HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                        highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END);
 
                 // clear cached first instances of proper nouns
                 notCustomWord.Reset();
@@ -5804,8 +5818,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 docText.get(), textBufferLength,
                                 textHeaderThemed.header, textHeaderThemed.endSection,
                                 unfamiliarWordsLegend,
-                                highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                 // forcibly exclude lists but include headers, invalid words will also be valid
                                 true,
                                 true,
@@ -5824,8 +5838,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 docText.get(), textBufferLength,
                                 textHeaderThemed.header, textHeaderThemed.endSection,
                                 unfamiliarWordsLegend,
-                                highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                 // forcibly exclude lists but include headers, invalid words will also be valid
                                 true,
                                 true,
@@ -5847,8 +5861,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 docText.get(), textBufferLength,
                                 textHeaderThemed.header, textHeaderThemed.endSection,
                                 unfamiliarWordsLegend,
-                                highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                 textBeingExcluded,
                                 GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
                                 textBeingExcluded,
@@ -5866,8 +5880,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 docText.get(), textBufferLength,
                                 textHeaderThemed.header, textHeaderThemed.endSection,
                                 unfamiliarWordsLegend,
-                                highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                 textBeingExcluded,
                                 GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
                                 textBeingExcluded,
@@ -5901,8 +5915,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 docText.get(), textBufferLength,
                                 textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
                                 unfamiliarWordsLegend,
-                                highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                 // forcibly exclude lists but include headers, invalid words will also be valid
                                 true,
                                 true,
@@ -5921,8 +5935,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 docText.get(), textBufferLength,
                                 textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
                                 unfamiliarWordsLegend,
-                                highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                 // forcibly exclude lists but include headers, invalid words will also be valid
                                 true,
                                 true,
@@ -5944,8 +5958,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 docText.get(), textBufferLength,
                                 textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
                                 unfamiliarWordsLegend,
-                                highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                 textBeingExcluded,
                                 GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
                                 textBeingExcluded,
@@ -5963,8 +5977,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 docText.get(), textBufferLength,
                                 textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
                                 unfamiliarWordsLegend,
-                                highlighterTags.IGNORE_HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                 textBeingExcluded,
                                 GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
                                 textBeingExcluded,
@@ -6004,16 +6018,18 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     GetDifficultSentenceLength(),
                     docText.get(), textBufferLength,
                     textHeaderThemed.header, textHeaderThemed.endSection,
-                    textLegends.wordinessWindowLegend,
-                    highlighterTags.HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                    highlighterTags.ERROR_HIGHLIGHT_BEGIN,
-                    highlighterTags.PHRASE_HIGHLIGHT_BEGIN,
-                    highlighterTags.IGNORE_HIGHLIGHT_BEGIN,
+                    textLegendsThemed.wordinessWindowLegend,
+                    highlighterTagsThemed.HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                    highlighterTagsThemed.ERROR_HIGHLIGHT_BEGIN,
+                    highlighterTagsThemed.PHRASE_HIGHLIGHT_BEGIN,
+                    highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN,
                     // if default style is bold, then don't use bold tags internally
                     // because that will mess up the RTF
-                    (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? wxString{} : highlighterTags.BOLD_BEGIN,
-                    (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? wxString{} : highlighterTags.BOLD_END,
-                    highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                    (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ?
+                        wxString{} : highlighterTagsThemed.BOLD_BEGIN,
+                    (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ?
+                        wxString{} : highlighterTagsThemed.BOLD_END,
+                    highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                     textBeingExcluded,
                     textBeingExcluded,
                 #ifdef __WXGTK__
@@ -6041,18 +6057,18 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                         GetDifficultSentenceLength(),
                                         docText.get(), textBufferLength,
                                         textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
-                                        textLegends.wordinessWindowLegend,
-                                        highlighterTags.HIGHLIGHT_BEGIN, highlighterTags.HIGHLIGHT_END,
-                                        highlighterTags.ERROR_HIGHLIGHT_BEGIN,
-                                        highlighterTags.PHRASE_HIGHLIGHT_BEGIN,
-                                        highlighterTags.IGNORE_HIGHLIGHT_BEGIN,
+                                        textLegendsThemed.wordinessWindowLegend,
+                                        highlighterTagsThemed.HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
+                                        highlighterTagsThemed.ERROR_HIGHLIGHT_BEGIN,
+                                        highlighterTagsThemed.PHRASE_HIGHLIGHT_BEGIN,
+                                        highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN,
                                         // if default style is bold, then don't use bold tags internally because
                                         // that will mess up the RTF
                                         (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ?
-                                            wxString{} : highlighterTags.BOLD_BEGIN,
+                                            wxString{} : highlighterTagsThemed.BOLD_BEGIN,
                                         (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ?
-                                            wxString{} : highlighterTags.BOLD_END,
-                                        highlighterTags.TAB_SYMBOL, highlighterTags.CRLF,
+                                            wxString{} : highlighterTagsThemed.BOLD_END,
+                                        highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                         textBeingExcluded,
                                         textBeingExcluded,
                                     #ifdef __WXGTK__
@@ -6073,7 +6089,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(
                     BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID));
             textWindow = buildTextWindow(textWindow, BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID,
-                _(L"Highlighted Dolch Words"), isDolchWord, textLegends.dolchWindowLegend);
+                _(L"Highlighted Dolch Words"), isDolchWord, textLegendsThemed.dolchWindowLegend);
             view->GetDolchSightWordsView().AddWindow(textWindow);
             }
         else
@@ -6085,7 +6101,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(
                     BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID));
             textWindow = buildTextWindow(textWindow, BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID,
-                _(L"Highlighted Non-Dolch Words"), isNotDolchWord, textLegends.nonDolchWordsLegend);
+                _(L"Highlighted Non-Dolch Words"), isNotDolchWord, textLegendsThemed.nonDolchWordsLegend);
             view->GetDolchSightWordsView().AddWindow(textWindow);
             }
         else
