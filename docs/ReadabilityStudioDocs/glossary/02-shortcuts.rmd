@@ -29,8 +29,7 @@ Show/hide the sidebar                   `r keys('F2')`
 
 &nbsp;                                  &nbsp;
 
-Show/hide the ribbon                    `r keys(c('Ctrl','F1'))` (`r os_logo('windows')`) or<br>\linebreak
-                                        `r keys(c('\\cmd','F1'))` (`r os_logo('apple')`)
+Show/hide the ribbon                    `r keys('F4')`
 
 &nbsp;                                  &nbsp;
 

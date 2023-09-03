@@ -2303,7 +2303,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     accelEntries[12].Set(wxACCEL_CMD, WXK_DELETE, XRCID("ID_REMOVE_TEST"));
     accelEntries[13].Set(wxACCEL_NORMAL, WXK_F2, XRCID("ID_TOGGLE_SIDEBAR"));
     accelEntries[14].Set(wxACCEL_NORMAL, WXK_F3, XRCID("ID_FIND_NEXT"));
-    accelEntries[15].Set(wxACCEL_CMD, WXK_F1, XRCID("ID_TOGGLE_RIBBON"));
+    accelEntries[15].Set(wxACCEL_NORMAL, WXK_F4, XRCID("ID_TOGGLE_RIBBON"));
     wxAcceleratorTable accelTable(std::size(accelEntries), accelEntries);
     m_frame->SetAcceleratorTable(accelTable);
 
