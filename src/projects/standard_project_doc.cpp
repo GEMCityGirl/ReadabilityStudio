@@ -4787,7 +4787,7 @@ ProjectDoc::HighlighterTags ProjectDoc::BuildHighlighterTags(
     highlighterTags.HIGHLIGHT_BEGIN_LEGEND =
         wxString::Format(L"<span background=\"%s\">",
             highlighterColors.highlightColor.GetAsString(wxC2S_HTML_SYNTAX));
-        
+  
     highlighterTags.DUPLICATE_HIGHLIGHT_BEGIN_LEGEND =
         wxString::Format(L"<span background=\"%s\">",
             highlighterColors.errorHighlightColor.GetAsString(wxC2S_HTML_SYNTAX));
@@ -5857,7 +5857,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     }
                 UpdateTextWindowOptions(textWindow);
 
-                const wxString unfamiliarWordsLegendLineThemed = 
+                const wxString unfamiliarWordsLegendLineThemed =
                     BuildLegendLine(highlighterTagsThemed,
                         wxString::Format(_(L"Unfamiliar %s words"), pos->GetIterator()->get_name().c_str()) );
                 const wxString unfamiliarWordsLegendThemed =
@@ -7584,10 +7584,13 @@ void ProjectDoc::CalculateGraphData()
         const size_t sentenceIndex = sentenceIndicesColumn->GetValue(labelsPos - wordCountColumn->GetValues().cbegin());
         if (sentenceIndex < GetWords()->get_sentences().size())
             {
-            // cppcheck-suppress assertWithSideEffect
-            assert((GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
-                (GetWords()->get_sentences()[sentenceIndex].get_word_count() == *labelsPos) :
-                (GetWords()->get_sentences()[sentenceIndex].get_valid_word_count() == *labelsPos));
+#ifndef NDEBUG
+            [[maybe_unused]] const auto debugWordCount =
+                (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
+                 GetWords()->get_sentences()[sentenceIndex].get_word_count() :
+                 GetWords()->get_sentences()[sentenceIndex].get_valid_word_count();
+            assert(debugWordCount == *labelsPos);
+#endif
             if (*labelsPos > outlierInfo.get_upper_outlier_boundary() ||
                 *labelsPos < outlierInfo.get_lower_outlier_boundary())
                 {
