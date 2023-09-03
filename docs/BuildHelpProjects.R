@@ -84,6 +84,7 @@ unlink(glue("{docFolder}/ShortcutsCheatsheet/02-shortcuts.rmd"))
 #############
 
 UserManualMode = TRUE
+IncludeLinux = FALSE
 setwd(glue("{docFolder}/ReadabilityStudioDocs/"))
 combine_files("01-Overviews.Rmd", "overviews",
               ("(intro|program)"))

@@ -38,6 +38,10 @@ When [exporting](#exporting)\index{exporting!text reports} a text report\index{t
 **HTML**: A format that can be displayed in Internet browsers and most word-processing programs.
 
 **RTF**: A format that can be displayed in most word-processing programs.
+
+```{r, results='asis', eval=IncludeLinux, echo=F, include=UserManualMode}
+glue('**Pango**: A format that can be rendered within libraries such as Cairo or FreeType. (This option is only available on Linux.)')
+```
 :::
 
 ::: {.tipsection data-latex=""}
