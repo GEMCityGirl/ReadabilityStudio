@@ -3196,7 +3196,7 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
         {
         if (!textWindow)
             { return; }
-        std::wstring htmlText = textWindow->GetFormattedTextHtml(wxString(textWindowStyleCounter++)).ToStdWstring();
+        std::wstring htmlText = textWindow->GetUnthemedFormattedTextHtml(wxString(textWindowStyleCounter++)).ToStdWstring();
         textWindowStyleSection += L"\n" +
             wxString(html_extract_text::get_style_section(htmlText));
         htmlText = html_extract_text::get_body(htmlText);
