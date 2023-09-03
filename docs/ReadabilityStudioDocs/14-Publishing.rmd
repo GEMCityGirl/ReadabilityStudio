@@ -8,7 +8,7 @@ To export any window, go to the **Home** tab and click the `r keys("Save")` butt
 
 Numerous formats are available for each type of window:
 
-- [Highlighted text](#text-window-export): `r glue(if_else(IncludeLinux, "HTML, RTF, and Pango (Linux only)", "HTML and RTF"))`
+- [Highlighted text](#text-window-export): `r glue(if_else(IncludeLinux, "HTML, RTF, and Pango (Παν語) (Pango is only available on Linux.)", "HTML and RTF"))`
 - Statistic summaries: HTML
 - [Test results](#scores-export): HTML
 - Word, phrase, and sentence [lists](#export-list): HTML, Text, and `r latex_logo(FALSE)`
