@@ -4713,8 +4713,6 @@ ProjectDoc::HighlighterTags ProjectDoc::BuildHighlighterTags(
     highlighterTags.TAB_SYMBOL = L"    ";
     highlighterTags.CRLF = L"\r\n";
     highlighterTags.HIGHLIGHT_END_LEGEND = L"</span>";
-    /// @todo add black/white contrasting in HighlightBackground mode
-    /// @todo broken, just getting this to compile
     highlighterTags.HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
         wxString::Format(L"<span background=\"%s\">",
             highlighterColors.highlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
