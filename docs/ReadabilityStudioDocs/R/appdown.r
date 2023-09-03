@@ -18,8 +18,46 @@ os_logo <- function(os)
     { knitr::asis_output(glue("\\fa{Hmisc::capitalize(os)}")) }
   else if (knitr::is_html_output())
     { knitr::asis_output(fontawesome::fa(glue('fab fa-{stringr::str_to_lower(os)}'))) }
+  }
+
+# @brief Displays the TeX logo, or simply the word "TeX" if not available.
+# @param withTrailingSpace Set to true to add a trailing space after the logo.
+tex_logo <- function(withTrailingSpace)
+  {
+  if (knitr::is_latex_output())
+    {
+    if (withTrailingSpace)
+      { knitr::asis_output("\\TeX\\ ") }
+    else
+      { knitr::asis_output("\\TeX") }
+    }
   else
-    { knitr::asis_output(text) }
+    {
+    if (withTrailingSpace)
+      { knitr::asis_output("TeX ") }
+    else
+      { knitr::asis_output("TeX") }
+    }
+  }
+
+# @brief Displays the LaTeX logo, or simply the word "LaTeX" if not available.
+# @param withTrailingSpace Set to true to add a trailing space after the logo.
+latex_logo <- function(withTrailingSpace)
+  {
+  if (knitr::is_latex_output())
+    {
+    if (withTrailingSpace)
+      { knitr::asis_output("\\LaTeX\\ ") }
+    else
+      { knitr::asis_output("\\LaTeX") }
+    }
+  else
+    {
+    if (withTrailingSpace)
+      { knitr::asis_output("LaTeX ") }
+    else
+      { knitr::asis_output("LaTeX") }
+    }
   }
 
 menu <- function(menuKeys)

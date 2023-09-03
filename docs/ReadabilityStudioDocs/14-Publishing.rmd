@@ -11,7 +11,7 @@ Numerous formats are available for each type of window:
 - [Highlighted text](#text-window-export): HTML and RTF
 - Statistic summaries: HTML
 - [Test results](#scores-export): HTML
-- Word, phrase, and sentence [lists](#export-list): HTML and Text
+- Word, phrase, and sentence [lists](#export-list): HTML, Text, and `r latex_logo(FALSE)`
 - [Graphs](#image-export): PNG, BMP, TIFF, JPEG, GIF, TARGA, and SVG
 
 All windows can also be exported at once by clicking the arrow beneath `r keys("Save")` and selecting [**Export All...**](#export-all-options).
@@ -117,8 +117,8 @@ When [exporting](#exporting)\index{exporting!lists} a list\index{lists!exporting
 
 **TXT**: A tab-delimited file with no formatting (i.e., colors will be lost).
 
-**LaTeX**: A TeX file with the list formatted into a `longtable{}` environment that can be
-included in a larger LaTeX document.
+**LaTeX**: A `r tex_logo(TRUE)`file with the list formatted into a `longtable{}` environment that can be
+included in a larger `r latex_logo(TRUE)`document.
 :::
 
 After selecting the file format, these additional options will be provided.
