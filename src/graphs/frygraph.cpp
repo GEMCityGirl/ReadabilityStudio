@@ -36,8 +36,11 @@ namespace Wisteria::Graphs
                     "New Brunswick, NJ 08904")).
                 Scaling(GetScaling()).Pen(wxNullPen).
                 LabelAlignment(TextAlignment::Centered));
+        GetTitle().GetFont().MakeSmaller();
         GetLeftYAxis().GetTitle().SetText(_(L"Average number of sentences per 100 words"));
+        GetLeftYAxis().GetTitle().GetFont().MakeSmaller();
         GetTopXAxis().GetTitle().SetText(_(L"Average number of syllables per 100 words"));
+        GetTopXAxis().GetTitle().GetFont().MakeSmaller();
 
         for (size_t i = 108 + GetSyllableAxisOffset(); i <= 180 + GetSyllableAxisOffset(); i +=2)
             {
