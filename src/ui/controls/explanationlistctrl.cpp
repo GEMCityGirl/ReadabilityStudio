@@ -171,7 +171,10 @@ void ExplanationListCtrl::PrintPreview(const ExplanationListExportOptions export
                          _(L"Print Preview"), wxOK|wxICON_QUESTION);
             return;
             }
-        wxPreviewFrame* frame = new wxPreviewFrame(preview, this, _(L"Print Preview"));
+        int x, y, width, height;
+        wxClientDisplayRect(&x, &y, &width, &height);
+        wxPreviewFrame* frame = new wxPreviewFrame(preview, this, _(L"Print Preview"),
+                                                   wxDefaultPosition, wxSize(width, height));
 
         frame->Centre(wxBOTH);
         frame->Initialize();
