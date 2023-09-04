@@ -1498,8 +1498,8 @@ void ReadabilityApp::FillPrintMenu(wxMenu& printMenu, const RibbonType rtype)
         item = new wxMenuItem(&printMenu, wxID_PRINT, _(L"Print...")+_DT(L"\tCtrl+P"));
         item->SetBitmap(GetResourceManager().GetSVG(L"ribbon/print.svg"));
         printMenu.Append(item);
-    // OSX's print dialog has its own built-in Preview option
-    #ifndef __WXOSX__
+    // macOS's and GTK+'s print dialogs have their own built-in preview option
+    #ifdef __WXMSW__
         item = new wxMenuItem(&printMenu, wxID_PREVIEW, _(L"Print Preview..."));
         item->SetBitmap(GetResourceManager().GetSVG(L"ribbon/preview.svg"));
         printMenu.Append(item);
