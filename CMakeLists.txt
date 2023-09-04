@@ -75,7 +75,7 @@ ENDIF()
 
 # Find wxWidgets (wxWidgetsConfig.cmake, specifically) and select its components
 IF(WIN32)
-    SET(wxWidgets_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/out/install/x64-${CMAKE_BUILD_TYPE}/lib/cmake/wxWidgets")
+    SET(wxWidgets_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/wxlib/x64-${CMAKE_BUILD_TYPE}/lib/cmake/wxWidgets")
 ELSEIF(UNIX)
     SET(wxWidgets_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/wxlib/lib/cmake/wxWidgets")
 ENDIF()
