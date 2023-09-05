@@ -38,7 +38,7 @@
 
 #### Importing/Exporting Enhancements {-}
 
-- Lists can now be exported as LaTeX (in `longtable{}` environments).
+- Lists can now be exported as `r latex_logo(TRUE)`(in `longtable{}` environments).
 
 #### Documentation Enhancements {-}
 
@@ -49,7 +49,8 @@
 #### Bug Fixes {-}
 
 - **Dolch** statistics will now only be shown in the summary report if Dolch Sight Words analysis is included in the project.
-- Fixed "APPROXIMATE GRADE LEVEL" label from sporadically going outside of the Fry graph.
+- Fixed "APPROXIMATE GRADE LEVEL" label and left axis title from occasionally going outside of the Fry graph.
+- Fixed sporadic message about a resource file needing to be buffered when opening the program.
 
 ### Readability Studio 2020/2021 {-}
 ***
