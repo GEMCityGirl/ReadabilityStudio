@@ -321,11 +321,6 @@ void ProjectView::OnExportFilteredDocument([[maybe_unused]] wxCommandEvent& even
         {
         wxFileName(fdialog.GetPath()).SetPermissions(wxS_DEFAULT);
         wxFile filteredFile(fdialog.GetPath(), wxFile::write);
-        // write out UTF-8 signature if text isn't being Romanized
-   #ifdef __WXMSW__
-        if (validDocText.length() && !optDlg.IsReplacingCharacters())
-            { filteredFile.Write(utf8::bom, sizeof(utf8::bom)); }
-    #endif
         if (!filteredFile.Write(validDocText))
             {
             wxMessageBox(_(L"Unable to write to output file."),
