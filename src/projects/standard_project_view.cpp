@@ -1862,8 +1862,11 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(XRCID("ID_EXPORT_ALL"),
                         _(L"Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
-                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _(L"Export Filtered Document..."), _(L"Export Filtered Document..."));
+                    exportFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportFilteredMenuItem);
 
                     wxString exportMenuIcon;
                     switch (event.GetInt())
@@ -1980,8 +1983,11 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                         wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                     m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
-                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _(L"Export Filtered Document..."), _(L"Export Filtered Document..."));
+                    exportFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportFilteredMenuItem);
 
                     wxString exportImg;
                     switch (event.GetInt())
@@ -2118,8 +2124,11 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                         wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                     m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
-                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _(L"Export Filtered Document..."), _(L"Export Filtered Document..."));
+                    exportFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportFilteredMenuItem);
 
                     auto editButtonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonBar);
@@ -2267,8 +2276,11 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                         wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                     m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
-                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _(L"Export Filtered Document..."), _(L"Export Filtered Document..."));
+                    exportFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportFilteredMenuItem);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonRibbonBar);
@@ -2356,8 +2368,11 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                         wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                     m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
-                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _(L"Export Filtered Document..."), _(L"Export Filtered Document..."));
+                    exportFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportFilteredMenuItem);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonRibbonBar);
@@ -2537,8 +2552,11 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(XRCID("ID_EXPORT_ALL"),
                         _(L"Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
-                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _(L"Export Filtered Document..."), _(L"Export Filtered Document..."));
+                    exportFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportFilteredMenuItem);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonRibbonBar != nullptr);
@@ -2630,8 +2648,11 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(XRCID("ID_EXPORT_ALL"),
                         _(L"Export All..."))->SetBitmap(exportAllIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
-                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _(L"Export Filtered Document..."), _(L"Export Filtered Document..."));
+                    exportFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportFilteredMenuItem);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     wxASSERT(editButtonRibbonBar != nullptr);

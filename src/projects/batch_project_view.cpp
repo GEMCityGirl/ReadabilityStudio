@@ -876,9 +876,12 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                             XRCID("ID_EXPORT_STATISTICS"),
                             _(L"Export Statistics Report..."))->SetBitmap(reportIcon);
                         m_exportMenu.AppendSeparator();
-                        m_exportMenu.Append(
-                            XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
-                            _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                        wxMenuItem* exportFilteredMenuItem =
+                            new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                            _(L"Export Filtered Document..."), _(L"Export Filtered Document..."));
+                        exportFilteredMenuItem->SetBitmap(filterIcon);
+                        m_exportMenu.Append(exportFilteredMenuItem);
+
                         m_exportMenu.Append(
                             XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
                             _(L"Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
@@ -1023,9 +1026,12 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                             XRCID("ID_EXPORT_STATISTICS"),
                             _(L"Export Statistics Report..."))->SetBitmap(reportIcon);
                         m_exportMenu.AppendSeparator();
-                        m_exportMenu.Append(
-                            XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
-                            _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                        wxMenuItem* exportFilteredMenuItem =
+                            new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                                _(L"Export Filtered Document..."), _(L"Export Filtered Document..."));
+                        exportFilteredMenuItem->SetBitmap(filterIcon);
+                        m_exportMenu.Append(exportFilteredMenuItem);
+
                         m_exportMenu.Append(
                             XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
                             _(L"Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
@@ -1139,8 +1145,12 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                 m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
                     _(L"Export Statistics Report..."))->SetBitmap(reportIcon);
                 m_exportMenu.AppendSeparator();
-                m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
-                    _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                wxMenuItem* exportFilteredMenuItem =
+                    new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                        _(L"Export Filtered Document..."), _(L"Export Filtered Document..."));
+                exportFilteredMenuItem->SetBitmap(filterIcon);
+                m_exportMenu.Append(exportFilteredMenuItem);
+
                 m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
                     _(L"Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
@@ -1282,8 +1292,12 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
                         _(L"Export Statistics Report..."))->SetBitmap(reportIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
-                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                            _(L"Export Filtered Document..."), _(L"Export Filtered Document..."));
+                    exportFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportFilteredMenuItem);
+
                     m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
                         _(L"Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
@@ -1362,8 +1376,12 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
                         _(L"Export Statistics Report..."))->SetBitmap(reportIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
-                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                            _(L"Export Filtered Document..."), _(L"Export Filtered Document..."));
+                    exportFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportFilteredMenuItem);
+
                     m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
                         _(L"Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
@@ -1441,8 +1459,12 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
                         _(L"Export Statistics Report..."))->SetBitmap(reportIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
-                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                            _(L"Export Filtered Document..."), _(L"Export Filtered Document..."));
+                    exportFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportFilteredMenuItem);
+
                     m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
                         _(L"Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
@@ -1520,8 +1542,12 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
                         _(L"Export Statistics Report..."))->SetBitmap(reportIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
-                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                            _(L"Export Filtered Document..."), _(L"Export Filtered Document..."));
+                    exportFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportFilteredMenuItem);
+
                     m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
                         _(L"Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
@@ -1595,8 +1621,12 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
                         _(L"Export Statistics Report..."))->SetBitmap(reportIcon);
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
-                        _(L"Export Filtered Document..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                            _(L"Export Filtered Document..."), _(L"Export Filtered Document..."));
+                    exportFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportFilteredMenuItem);
+
                     m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
                         _(L"Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
 
