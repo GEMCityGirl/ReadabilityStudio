@@ -62,11 +62,10 @@ public:
     /// @private
     FilteredTextPreviewDlg& operator=(const FilteredTextPreviewDlg& that) = delete;
     /** @brief Sets the text for the preview window.
-        @param text The preview text to use.
-        @todo Use move semantics.*/
-    void SetFilteredValue(const wxString& text)
+        @param text The preview text to use.*/
+    void SetFilteredValue(wxString text)
         {
-        m_filteredValue = text;
+        m_filteredValue = std::move(text);
         TransferDataToWindow();
         }
     /// @brief Expands the details window beneath the preview.
