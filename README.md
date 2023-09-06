@@ -18,41 +18,42 @@ Readability Studio
 
 Install the following tools to build *Readability Studio*:
 
-- Visual Studio
-- RStudio
-- InnoSetup
+- *Visual Studio*
+- *RStudio*
+- *InnoSetup*
 
 - Place "wxWidgets" at the same folder level as this project, downloading it with this command:
 ```
 git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
 ```
 - Open wxWidgets's CMake file in *Visual Studio*
-  - Open **Project** > **CMake Project Settings** and enter `-DwxBUILD_SHARED=OFF -DCMAKE_INSTALL_PREFIX=./wxlib` as a command line argument to CMake
+  - Open **Project** > **CMake Project Settings**
+    - Unchech **wxBUILD_SHARED** and change **MAKE_INSTALL_PREFIX** to *[path to wxWidgets]/wxlib* (*[path to wxWidgets]* will be a hard-coded path on your computer)
   - Select **Build** > **Build All**
   - Select **Build** > **Install wxWidgets** (really just copies the header, lib, and cmake files to the prefix folder)
-- Open **ReadabilityStudio/docs/BuildHelpProjects.R** and source the entire script
-- Open this project's CMake file in Visual Studio and build it
+- Open **ReadabilityStudio/docs/BuildHelpProjects.R** in *RStudio* and source the entire script
+- Open this project's CMake file in *Visual Studio* and build it
 
 ## Linux
 
 Install the following tools to build *Readability Studio*:
 
-- GCC (C++ and fortran compilers)
-- CMake
-- git
-- RStudio
+- *GCC* (C++ and fortran compilers)
+- *CMake*
+- *git*
+- *RStudio*
 
 Install the following libraries *and* their development files:
 
-- GTK+ 3
-- libCURL
-- GStreamer
-- libsecret
-- webkit
-- TBB
-- OpenMP
-- libopenssl
-- libxml2
+- *GTK+ 3*
+- *libCURL*
+- *GStreamer*
+- *libsecret*
+- *webkit*
+- *TBB*
+- *OpenMP*
+- *libopenssl*
+- *libxml2*
 
 - Place "wxWidgets" at the same folder level as this project, downloading it with this command:
 ```
