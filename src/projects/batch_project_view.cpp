@@ -866,8 +866,13 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         auto exportMenuItem = m_exportMenu.Append(
                             XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."),
                                 GetActiveProjectWindow()->GetName()) );
-                        m_exportMenu.Append(
-                            XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
+
+                        wxMenuItem* exportAllMenuItem =
+                            new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_ALL"),
+                                _(L"Export All..."), _(L"Export All..."));
+                        exportAllMenuItem->SetBitmap(exportAllIcon);
+                        m_exportMenu.Append(exportAllMenuItem);
+
                         m_exportMenu.AppendSeparator();
                         m_exportMenu.Append(
                             XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
@@ -1016,8 +1021,13 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                             m_exportMenu.Append(
                                 XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."),
                                     GetActiveProjectWindow()->GetName()) );
-                        m_exportMenu.Append(
-                            XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
+
+                        wxMenuItem* exportAllMenuItem =
+                            new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_ALL"),
+                                _(L"Export All..."), _(L"Export All..."));
+                        exportAllMenuItem->SetBitmap(exportAllIcon);
+                        m_exportMenu.Append(exportAllMenuItem);
+
                         m_exportMenu.AppendSeparator();
                         m_exportMenu.Append(
                             XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
@@ -1138,7 +1148,13 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                 m_exportMenu.AppendSeparator();
                 auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
                     wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
-                m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
+
+                wxMenuItem* exportAllMenuItem =
+                    new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_ALL"),
+                        _(L"Export All..."), _(L"Export All..."));
+                exportAllMenuItem->SetBitmap(exportAllIcon);
+                m_exportMenu.Append(exportAllMenuItem);
+
                 m_exportMenu.AppendSeparator();
                 m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
                     _(L"Export Scores && Statistics..."))->SetBitmap(reportIcon);
@@ -1285,7 +1301,13 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."),
                         GetActiveProjectWindow()->GetName()) )->SetBitmap(
                             (event.GetInt() == WORD_CLOUD_PAGE_ID ? wordCloudIcon : listIcon));
-                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
+
+                    wxMenuItem* exportAllMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_ALL"),
+                            _(L"Export All..."), _(L"Export All..."));
+                    exportAllMenuItem->SetBitmap(exportAllIcon);
+                    m_exportMenu.Append(exportAllMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
                         _(L"Export Scores && Statistics..."))->SetBitmap(reportIcon);
@@ -1369,7 +1391,13 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.AppendSeparator();
                     m_exportMenu.Append(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."),
                         GetActiveProjectWindow()->GetName()) )->SetBitmap(listIcon);
-                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
+
+                    wxMenuItem* exportAllMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_ALL"),
+                            _(L"Export All..."), _(L"Export All..."));
+                    exportAllMenuItem->SetBitmap(exportAllIcon);
+                    m_exportMenu.Append(exportAllMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
                         _(L"Export Scores && Statistics..."))->SetBitmap(reportIcon);
@@ -1452,7 +1480,13 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
                         wxString::Format(_(L"Export %s..."),
                             GetActiveProjectWindow()->GetName()) )->SetBitmap(listIcon);
-                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
+
+                    wxMenuItem* exportAllMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_ALL"),
+                            _(L"Export All..."), _(L"Export All..."));
+                    exportAllMenuItem->SetBitmap(exportAllIcon);
+                    m_exportMenu.Append(exportAllMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
                         _(L"Export Scores && Statistics..."))->SetBitmap(reportIcon);
@@ -1534,8 +1568,13 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
                         wxString::Format(_(L"Export %s..."),
                             GetActiveProjectWindow()->GetName()) )->SetBitmap(listIcon);
-                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"),
-                        _(L"Export All..."))->SetBitmap(exportAllIcon);
+
+                    wxMenuItem* exportAllMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_ALL"),
+                            _(L"Export All..."), _(L"Export All..."));
+                    exportAllMenuItem->SetBitmap(exportAllIcon);
+                    m_exportMenu.Append(exportAllMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
                         _(L"Export Scores && Statistics..."))->SetBitmap(reportIcon);
@@ -1613,8 +1652,13 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
                         wxString::Format(_(L"Export %s..."),
                             GetActiveProjectWindow()->GetName()) )->SetBitmap(listIcon);
-                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"),
-                        _(L"Export All..."))->SetBitmap(exportAllIcon);
+
+                    wxMenuItem* exportAllMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_ALL"),
+                            _(L"Export All..."), _(L"Export All..."));
+                    exportAllMenuItem->SetBitmap(exportAllIcon);
+                    m_exportMenu.Append(exportAllMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
                         _(L"Export Scores && Statistics..."))->SetBitmap(reportIcon);

@@ -1859,8 +1859,13 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.AppendSeparator();
                     auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
                         wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
-                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"),
-                        _(L"Export All..."))->SetBitmap(exportAllIcon);
+                    
+                    wxMenuItem* exportAllMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_ALL"),
+                            _(L"Export All..."), _(L"Export All..."));
+                    exportAllMenuItem->SetBitmap(exportAllIcon);
+                    m_exportMenu.Append(exportAllMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     wxMenuItem* exportFilteredMenuItem =
                         new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
@@ -1981,7 +1986,13 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.AppendSeparator();
                     auto exportItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
                         wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
-                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
+
+                    wxMenuItem* exportAllMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_ALL"),
+                            _(L"Export All..."), _(L"Export All..."));
+                    exportAllMenuItem->SetBitmap(exportAllIcon);
+                    m_exportMenu.Append(exportAllMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     wxMenuItem* exportFilteredMenuItem =
                         new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
@@ -2122,7 +2133,13 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.AppendSeparator();
                     auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
                         wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
-                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
+
+                    wxMenuItem* exportAllMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_ALL"),
+                            _(L"Export All..."), _(L"Export All..."));
+                    exportAllMenuItem->SetBitmap(exportAllIcon);
+                    m_exportMenu.Append(exportAllMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     wxMenuItem* exportFilteredMenuItem =
                         new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
@@ -2274,7 +2291,13 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.AppendSeparator();
                     auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
                         wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
-                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
+
+                    wxMenuItem* exportAllMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_ALL"),
+                            _(L"Export All..."), _(L"Export All..."));
+                    exportAllMenuItem->SetBitmap(exportAllIcon);
+                    m_exportMenu.Append(exportAllMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     wxMenuItem* exportFilteredMenuItem =
                         new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
@@ -2366,7 +2389,13 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.AppendSeparator();
                     auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
                         wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
-                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"), _(L"Export All..."))->SetBitmap(exportAllIcon);
+
+                    wxMenuItem* exportAllMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_ALL"),
+                            _(L"Export All..."), _(L"Export All..."));
+                    exportAllMenuItem->SetBitmap(exportAllIcon);
+                    m_exportMenu.Append(exportAllMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     wxMenuItem* exportFilteredMenuItem =
                         new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
@@ -2549,8 +2578,13 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.AppendSeparator();
                     auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
                         wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
-                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"),
-                        _(L"Export All..."))->SetBitmap(exportAllIcon);
+
+                    wxMenuItem* exportAllMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_ALL"),
+                            _(L"Export All..."), _(L"Export All..."));
+                    exportAllMenuItem->SetBitmap(exportAllIcon);
+                    m_exportMenu.Append(exportAllMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     wxMenuItem* exportFilteredMenuItem =
                         new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
@@ -2645,8 +2679,13 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.AppendSeparator();
                     auto exportMenuItem = m_exportMenu.Append(XRCID("ID_SAVE_ITEM"),
                         wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
-                    m_exportMenu.Append(XRCID("ID_EXPORT_ALL"),
-                        _(L"Export All..."))->SetBitmap(exportAllIcon);
+
+                    wxMenuItem* exportAllMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_ALL"),
+                            _(L"Export All..."), _(L"Export All..."));
+                    exportAllMenuItem->SetBitmap(exportAllIcon);
+                    m_exportMenu.Append(exportAllMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     wxMenuItem* exportFilteredMenuItem =
                         new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
