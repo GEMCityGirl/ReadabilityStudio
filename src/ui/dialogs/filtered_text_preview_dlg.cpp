@@ -17,7 +17,7 @@ void FilteredTextPreviewDlg::CreateControls()
     mainSizer->Add(previewWindowSizer, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
 
     previewWindowSizer->Add(new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition,
-                            FromDIP(wxSize(500,300)), wxTE_MULTILINE|wxTE_RICH2|wxTE_READONLY,
+                            FromDIP(wxSize(500, 300)), wxTE_MULTILINE|wxTE_RICH2|wxTE_READONLY,
                             wxGenericValidator(&m_filteredValue) ), 1, wxEXPAND);
 
     previewWindowSizer->AddSpacer(wxSizerFlags::GetDefaultBorder() * 2);
