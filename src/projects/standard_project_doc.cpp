@@ -4559,7 +4559,18 @@ ProjectDoc::HighlighterTags ProjectDoc::BuildHighlighterTags(
     const int dolchAdjectivesTextColorIndexBGMode = (GetDolchAdjectivesColor().GetLuminance() < .5f) ? 13 : 1;
     const int dolchVerbsTextColorIndexBGMode = (GetDolchVerbsColor().GetLuminance() < .5f) ? 13 : 1;
     const int dolchNounTextColorIndexBGMode = (GetDolchNounColor().GetLuminance() < .5f) ? 13 : 1;
-    // or when highlighting by font color, change the font color to contrast against the window's background
+#elif defined(__WXGTK__)
+    const wxColour highlightedTextColor = (highlightColor.GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+    const wxColour errorTextColor = (GetDuplicateWordHighlightColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+    const wxColour styleTextColor = (GetWordyPhraseHighlightColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+    const wxColour excludedTextColor = (GetExcludedTextHighlightColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+    const wxColour dolchConjunctionsTextColor = (GetDolchConjunctionsColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+    const wxColour dolchPrepositionsTextColor = (GetDolchPrepositionsColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+    const wxColour dolchPronounsTextColor = (GetDolchPronounsColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+    const wxColour dolchAdverbsTextColor = (GetDolchAdverbsColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+    const wxColour dolchAdjectivesTextColor = (GetDolchAdjectivesColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+    const wxColour dolchVerbsTextColor = (GetDolchVerbsColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+    const wxColour dolchNounTextColor = (GetDolchNounColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
 #endif
 
 #ifdef __WXMSW__
@@ -4716,71 +4727,82 @@ ProjectDoc::HighlighterTags ProjectDoc::BuildHighlighterTags(
     highlighterTags.CRLF = L"\r\n";
     highlighterTags.HIGHLIGHT_END_LEGEND = L"</span>";
     highlighterTags.HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-        wxString::Format(L"<span background=\"%s\">",
-            highlighterColors.highlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
+        wxString::Format(L"<span background=\"%s\" foreground=\"%s\">",
+            highlighterColors.highlightColor.GetAsString(wxC2S_HTML_SYNTAX),
+            highlightedTextColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
             highlighterColors.highlightColor.GetAsString(wxC2S_HTML_SYNTAX));
     highlighterTags.ERROR_HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-        wxString::Format(L"<span background=\"%s\">",
-            highlighterColors.errorHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
+        wxString::Format(L"<span background=\"%s\" foreground=\"%s\">",
+            highlighterColors.errorHighlightColor.GetAsString(wxC2S_HTML_SYNTAX),
+            errorTextColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString::Format(L"<span foreground=\"%s\">",
             highlighterColors.errorHighlightColor.GetAsString(wxC2S_HTML_SYNTAX));
     highlighterTags.PHRASE_HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-        wxString::Format(L"<span background=\"%s\">",
-            highlighterColors.styleHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
+        wxString::Format(L"<span background=\"%s\" foreground=\"%s\">",
+            highlighterColors.styleHighlightColor.GetAsString(wxC2S_HTML_SYNTAX),
+            styleTextColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString::Format(L"<span foreground=\"%s\">",
             highlighterColors.styleHighlightColor.GetAsString(wxC2S_HTML_SYNTAX));
     highlighterTags.IGNORE_HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-        wxString::Format(L"<span background=\"%s\" strikethrough=\"true\">",
-            highlighterColors.excludedTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
+        wxString::Format(L"<span background=\"%s\"  foreground=\"%s\" strikethrough=\"true\">",
+            highlighterColors.excludedTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX),
+            excludedTextColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString::Format(L"<span foreground=\"%s\" strikethrough=\"true\">",
             highlighterColors.excludedTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX));
     highlighterTags.DOLCH_CONJUNCTION_BEGIN = IsHighlightingDolchConjunctions() ?
         (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-        wxString::Format(L"<span background=\"%s\">",
-            highlighterColors.dolchConjunctionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
+        wxString::Format(L"<span background=\"%s\" foreground=\"%s\">",
+            highlighterColors.dolchConjunctionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX),
+            dolchConjunctionsTextColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
             highlighterColors.dolchConjunctionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString{};
     highlighterTags.DOLCH_PREPOSITIONS_BEGIN = IsHighlightingDolchPrepositions() ?
         (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-        wxString::Format(L"<span background=\"%s\">",
-            highlighterColors.dolchPrepositionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
+        wxString::Format(L"<span background=\"%s\" foreground=\"%s\">",
+            highlighterColors.dolchPrepositionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX),
+            dolchPrepositionsTextColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
             highlighterColors.dolchPrepositionsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString{};
     highlighterTags.DOLCH_PRONOUN_BEGIN = IsHighlightingDolchPronouns() ?
         (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-        wxString::Format(L"<span background=\"%s\">",
-            highlighterColors.dolchPronounsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
+        wxString::Format(L"<span background=\"%s\" foreground=\"%s\">",
+            highlighterColors.dolchPronounsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX),
+            dolchPronounsTextColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
             highlighterColors.dolchPronounsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString{};
     highlighterTags.DOLCH_ADVERB_BEGIN = IsHighlightingDolchAdverbs() ?
         (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-        wxString::Format(L"<span background=\"%s\">",
-            highlighterColors.dolchAdverbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
+        wxString::Format(L"<span background=\"%s\" foreground=\"%s\">",
+            highlighterColors.dolchAdverbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX),
+            dolchAdverbsTextColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
             highlighterColors.dolchAdverbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString{};
     highlighterTags.DOLCH_ADJECTIVE_BEGIN = IsHighlightingDolchAdjectives() ?
         (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-        wxString::Format(L"<span background=\"%s\">",
-            highlighterColors.dolchAdjectivesTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
+        wxString::Format(L"<span background=\"%s\" foreground=\"%s\">",
+            highlighterColors.dolchAdjectivesTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX),
+            dolchAdjectivesTextColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
             highlighterColors.dolchAdjectivesTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString{};
     highlighterTags.DOLCH_VERB_BEGIN = IsHighlightingDolchVerbs() ?
         (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-        wxString::Format(L"<span background=\"%s\">",
-            highlighterColors.dolchVerbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
+        wxString::Format(L"<span background=\"%s\" foreground=\"%s\">",
+            highlighterColors.dolchVerbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX),
+            dolchVerbsTextColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
             highlighterColors.dolchVerbsTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString{};
     highlighterTags.DOLCH_NOUN_BEGIN = IsHighlightingDolchNouns() ?
         (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
-        wxString::Format(L"<span background=\"%s\">",
-            highlighterColors.dolchNounTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
+        wxString::Format(L"<span background=\"%s\" foreground=\"%s\">",
+            highlighterColors.dolchNounTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX),
+            dolchNounTextColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString::Format(L"<span foreground=\"%s\" weight=\"heavy\">",
             highlighterColors.dolchNounTextHighlightColor.GetAsString(wxC2S_HTML_SYNTAX)) :
         wxString{};
