@@ -874,12 +874,18 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         m_exportMenu.Append(exportAllMenuItem);
 
                         m_exportMenu.AppendSeparator();
-                        m_exportMenu.Append(
-                            XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
-                            _(L"Export Scores && Statistics..."))->SetBitmap(reportIcon);
-                        m_exportMenu.Append(
-                            XRCID("ID_EXPORT_STATISTICS"),
-                            _(L"Export Statistics Report..."))->SetBitmap(reportIcon);
+                        wxMenuItem* exportScoresAndStatsMenuItem =
+                            new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                                _(L"Export Scores && Statistics..."), _(L"Export Scores && Statistics..."));
+                        exportScoresAndStatsMenuItem->SetBitmap(reportIcon);
+                        m_exportMenu.Append(exportScoresAndStatsMenuItem);
+
+                        wxMenuItem* exportStatsMenuItem =
+                            new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_STATISTICS"),
+                                _(L"Export Statistics Report..."), _(L"Export Statistics Report..."));
+                        exportStatsMenuItem->SetBitmap(reportIcon);
+                        m_exportMenu.Append(exportStatsMenuItem);
+
                         m_exportMenu.AppendSeparator();
                         wxMenuItem* exportFilteredMenuItem =
                             new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
@@ -887,9 +893,11 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         exportFilteredMenuItem->SetBitmap(filterIcon);
                         m_exportMenu.Append(exportFilteredMenuItem);
 
-                        m_exportMenu.Append(
-                            XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
-                            _(L"Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
+                        wxMenuItem* exportBatchFilteredMenuItem =
+                            new wxMenuItem(&m_exportMenu, XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                                _(L"Batch Export Filtered Document..."), _(L"Batch Export Filtered Document..."));
+                        exportBatchFilteredMenuItem->SetBitmap(filterIcon);
+                        m_exportMenu.Append(exportBatchFilteredMenuItem);
 
                         editButtonBar->ClearButtons();
                         editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
@@ -1029,12 +1037,18 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         m_exportMenu.Append(exportAllMenuItem);
 
                         m_exportMenu.AppendSeparator();
-                        m_exportMenu.Append(
-                            XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
-                            _(L"Export Scores && Statistics..."))->SetBitmap(reportIcon);
-                        m_exportMenu.Append(
-                            XRCID("ID_EXPORT_STATISTICS"),
-                            _(L"Export Statistics Report..."))->SetBitmap(reportIcon);
+                        wxMenuItem* exportScoresAndStatsMenuItem =
+                            new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                                _(L"Export Scores && Statistics..."), _(L"Export Scores && Statistics..."));
+                        exportScoresAndStatsMenuItem->SetBitmap(reportIcon);
+                        m_exportMenu.Append(exportScoresAndStatsMenuItem);
+
+                        wxMenuItem* exportStatsMenuItem =
+                            new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_STATISTICS"),
+                                _(L"Export Statistics Report..."), _(L"Export Statistics Report..."));
+                        exportStatsMenuItem->SetBitmap(reportIcon);
+                        m_exportMenu.Append(exportStatsMenuItem);
+
                         m_exportMenu.AppendSeparator();
                         wxMenuItem* exportFilteredMenuItem =
                             new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
@@ -1042,9 +1056,11 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         exportFilteredMenuItem->SetBitmap(filterIcon);
                         m_exportMenu.Append(exportFilteredMenuItem);
 
-                        m_exportMenu.Append(
-                            XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
-                            _(L"Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
+                        wxMenuItem* exportBatchFilteredMenuItem =
+                            new wxMenuItem(&m_exportMenu, XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                                _(L"Batch Export Filtered Document..."), _(L"Batch Export Filtered Document..."));
+                        exportBatchFilteredMenuItem->SetBitmap(filterIcon);
+                        m_exportMenu.Append(exportBatchFilteredMenuItem);
 
                         if (event.GetInt() == READABILITY_GOALS_PAGE_ID)
                             { exportMenuItem->SetBitmap(goalsIcon); }
@@ -1157,10 +1173,18 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                 m_exportMenu.Append(exportAllMenuItem);
 
                 m_exportMenu.AppendSeparator();
-                m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
-                    _(L"Export Scores && Statistics..."))->SetBitmap(reportIcon);
-                m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
-                    _(L"Export Statistics Report..."))->SetBitmap(reportIcon);
+                wxMenuItem* exportScoresAndStatsMenuItem =
+                    new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                        _(L"Export Scores && Statistics..."), _(L"Export Scores && Statistics..."));
+                exportScoresAndStatsMenuItem->SetBitmap(reportIcon);
+                m_exportMenu.Append(exportScoresAndStatsMenuItem);
+
+                wxMenuItem* exportStatsMenuItem =
+                    new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_STATISTICS"),
+                        _(L"Export Statistics Report..."), _(L"Export Statistics Report..."));
+                exportStatsMenuItem->SetBitmap(reportIcon);
+                m_exportMenu.Append(exportStatsMenuItem);
+
                 m_exportMenu.AppendSeparator();
                 wxMenuItem* exportFilteredMenuItem =
                     new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
@@ -1168,8 +1192,11 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                 exportFilteredMenuItem->SetBitmap(filterIcon);
                 m_exportMenu.Append(exportFilteredMenuItem);
 
-                m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
-                    _(L"Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
+                wxMenuItem* exportBatchFilteredMenuItem =
+                    new wxMenuItem(&m_exportMenu, XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                        _(L"Batch Export Filtered Document..."), _(L"Batch Export Filtered Document..."));
+                exportBatchFilteredMenuItem->SetBitmap(filterIcon);
+                m_exportMenu.Append(exportBatchFilteredMenuItem);
 
                 auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                 assert(editButtonRibbonBar);
@@ -1314,10 +1341,18 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(exportAllMenuItem);
 
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
-                        _(L"Export Scores && Statistics..."))->SetBitmap(reportIcon);
-                    m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
-                        _(L"Export Statistics Report..."))->SetBitmap(reportIcon);
+                    wxMenuItem* exportScoresAndStatsMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                            _(L"Export Scores && Statistics..."), _(L"Export Scores && Statistics..."));
+                    exportScoresAndStatsMenuItem->SetBitmap(reportIcon);
+                    m_exportMenu.Append(exportScoresAndStatsMenuItem);
+
+                    wxMenuItem* exportStatsMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_STATISTICS"),
+                            _(L"Export Statistics Report..."), _(L"Export Statistics Report..."));
+                    exportStatsMenuItem->SetBitmap(reportIcon);
+                    m_exportMenu.Append(exportStatsMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     wxMenuItem* exportFilteredMenuItem =
                         new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
@@ -1325,8 +1360,11 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     exportFilteredMenuItem->SetBitmap(filterIcon);
                     m_exportMenu.Append(exportFilteredMenuItem);
 
-                    m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
-                        _(L"Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportBatchFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                            _(L"Batch Export Filtered Document..."), _(L"Batch Export Filtered Document..."));
+                    exportBatchFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportBatchFilteredMenuItem);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     assert(editButtonRibbonBar);
@@ -1408,10 +1446,18 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(exportAllMenuItem);
 
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
-                        _(L"Export Scores && Statistics..."))->SetBitmap(reportIcon);
-                    m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
-                        _(L"Export Statistics Report..."))->SetBitmap(reportIcon);
+                    wxMenuItem* exportScoresAndStatsMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                            _(L"Export Scores && Statistics..."), _(L"Export Scores && Statistics..."));
+                    exportScoresAndStatsMenuItem->SetBitmap(reportIcon);
+                    m_exportMenu.Append(exportScoresAndStatsMenuItem);
+
+                    wxMenuItem* exportStatsMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_STATISTICS"),
+                            _(L"Export Statistics Report..."), _(L"Export Statistics Report..."));
+                    exportStatsMenuItem->SetBitmap(reportIcon);
+                    m_exportMenu.Append(exportStatsMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     wxMenuItem* exportFilteredMenuItem =
                         new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
@@ -1419,8 +1465,11 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     exportFilteredMenuItem->SetBitmap(filterIcon);
                     m_exportMenu.Append(exportFilteredMenuItem);
 
-                    m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
-                        _(L"Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportBatchFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                            _(L"Batch Export Filtered Document..."), _(L"Batch Export Filtered Document..."));
+                    exportBatchFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportBatchFilteredMenuItem);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     assert(editButtonRibbonBar != nullptr);
@@ -1500,10 +1549,18 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(exportAllMenuItem);
 
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
-                        _(L"Export Scores && Statistics..."))->SetBitmap(reportIcon);
-                    m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
-                        _(L"Export Statistics Report..."))->SetBitmap(reportIcon);
+                    wxMenuItem* exportScoresAndStatsMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                            _(L"Export Scores && Statistics..."), _(L"Export Scores && Statistics..."));
+                    exportScoresAndStatsMenuItem->SetBitmap(reportIcon);
+                    m_exportMenu.Append(exportScoresAndStatsMenuItem);
+
+                    wxMenuItem* exportStatsMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_STATISTICS"),
+                            _(L"Export Statistics Report..."), _(L"Export Statistics Report..."));
+                    exportStatsMenuItem->SetBitmap(reportIcon);
+                    m_exportMenu.Append(exportStatsMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     wxMenuItem* exportFilteredMenuItem =
                         new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
@@ -1511,8 +1568,11 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     exportFilteredMenuItem->SetBitmap(filterIcon);
                     m_exportMenu.Append(exportFilteredMenuItem);
 
-                    m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
-                        _(L"Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportBatchFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                            _(L"Batch Export Filtered Document..."), _(L"Batch Export Filtered Document..."));
+                    exportBatchFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportBatchFilteredMenuItem);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     assert(editButtonRibbonBar != nullptr);
@@ -1591,10 +1651,18 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(exportAllMenuItem);
 
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
-                        _(L"Export Scores && Statistics..."))->SetBitmap(reportIcon);
-                    m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
-                        _(L"Export Statistics Report..."))->SetBitmap(reportIcon);
+                    wxMenuItem* exportScoresAndStatsMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                            _(L"Export Scores && Statistics..."), _(L"Export Scores && Statistics..."));
+                    exportScoresAndStatsMenuItem->SetBitmap(reportIcon);
+                    m_exportMenu.Append(exportScoresAndStatsMenuItem);
+
+                    wxMenuItem* exportStatsMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_STATISTICS"),
+                            _(L"Export Statistics Report..."), _(L"Export Statistics Report..."));
+                    exportStatsMenuItem->SetBitmap(reportIcon);
+                    m_exportMenu.Append(exportStatsMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     wxMenuItem* exportFilteredMenuItem =
                         new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
@@ -1602,8 +1670,11 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     exportFilteredMenuItem->SetBitmap(filterIcon);
                     m_exportMenu.Append(exportFilteredMenuItem);
 
-                    m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
-                        _(L"Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportBatchFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                            _(L"Batch Export Filtered Document..."), _(L"Batch Export Filtered Document..."));
+                    exportBatchFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportBatchFilteredMenuItem);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     assert(editButtonRibbonBar != nullptr);
@@ -1678,10 +1749,18 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     m_exportMenu.Append(exportAllMenuItem);
 
                     m_exportMenu.AppendSeparator();
-                    m_exportMenu.Append(XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
-                        _(L"Export Scores && Statistics..."))->SetBitmap(reportIcon);
-                    m_exportMenu.Append(XRCID("ID_EXPORT_STATISTICS"),
-                        _(L"Export Statistics Report..."))->SetBitmap(reportIcon);
+                    wxMenuItem* exportScoresAndStatsMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                            _(L"Export Scores && Statistics..."), _(L"Export Scores && Statistics..."));
+                    exportScoresAndStatsMenuItem->SetBitmap(reportIcon);
+                    m_exportMenu.Append(exportScoresAndStatsMenuItem);
+
+                    wxMenuItem* exportStatsMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_STATISTICS"),
+                            _(L"Export Statistics Report..."), _(L"Export Statistics Report..."));
+                    exportStatsMenuItem->SetBitmap(reportIcon);
+                    m_exportMenu.Append(exportStatsMenuItem);
+
                     m_exportMenu.AppendSeparator();
                     wxMenuItem* exportFilteredMenuItem =
                         new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
@@ -1689,8 +1768,11 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     exportFilteredMenuItem->SetBitmap(filterIcon);
                     m_exportMenu.Append(exportFilteredMenuItem);
 
-                    m_exportMenu.Append(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
-                        _(L"Batch Export Filtered Documents..."))->SetBitmap(filterIcon);
+                    wxMenuItem* exportBatchFilteredMenuItem =
+                        new wxMenuItem(&m_exportMenu, XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                            _(L"Batch Export Filtered Document..."), _(L"Batch Export Filtered Document..."));
+                    exportBatchFilteredMenuItem->SetBitmap(filterIcon);
+                    m_exportMenu.Append(exportBatchFilteredMenuItem);
 
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     assert(editButtonRibbonBar != nullptr);
