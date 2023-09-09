@@ -4564,8 +4564,10 @@ ProjectDoc::HighlighterTags ProjectDoc::BuildHighlighterTags(
     const wxColour errorTextColor = (GetDuplicateWordHighlightColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
     const wxColour styleTextColor = (GetWordyPhraseHighlightColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
     const wxColour excludedTextColor = (GetExcludedTextHighlightColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
-    const wxColour dolchConjunctionsTextColor = (GetDolchConjunctionsColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
-    const wxColour dolchPrepositionsTextColor = (GetDolchPrepositionsColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+    const wxColour dolchConjunctionsTextColor =
+        (GetDolchConjunctionsColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+    const wxColour dolchPrepositionsTextColor =
+        (GetDolchPrepositionsColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
     const wxColour dolchPronounsTextColor = (GetDolchPronounsColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
     const wxColour dolchAdverbsTextColor = (GetDolchAdverbsColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
     const wxColour dolchAdjectivesTextColor = (GetDolchAdjectivesColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
@@ -4811,7 +4813,7 @@ ProjectDoc::HighlighterTags ProjectDoc::BuildHighlighterTags(
     highlighterTags.HIGHLIGHT_BEGIN_LEGEND =
         wxString::Format(L"<span background=\"%s\">",
             highlighterColors.highlightColor.GetAsString(wxC2S_HTML_SYNTAX));
-  
+
     highlighterTags.DUPLICATE_HIGHLIGHT_BEGIN_LEGEND =
         wxString::Format(L"<span background=\"%s\">",
             highlighterColors.errorHighlightColor.GetAsString(wxC2S_HTML_SYNTAX));

@@ -1860,7 +1860,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     auto exportMenuItem = new wxMenuItem(&m_exportMenu, XRCID("ID_SAVE_ITEM"),
                         wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                     m_exportMenu.Append(exportMenuItem);
-                    
+
                     wxMenuItem* exportAllMenuItem =
                         new wxMenuItem(&m_exportMenu, XRCID("ID_EXPORT_ALL"),
                             _(L"Export All..."), _(L"Export All..."));
