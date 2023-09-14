@@ -515,8 +515,8 @@ bool ReadabilityApp::OnInit()
         {
         if (!wxFileName::Mkdir(AppSettingFolderPath, wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
-            /*desperation move that should never happen--
-            just save the settings to the root folder*/
+            /* desperation move that should never happen--
+               just save the settings to the root folder*/
             #ifdef __WXMSW__
                 AppSettingFolderPath = L"C:\\";
             #elif defined(__WXOSX__)
@@ -529,6 +529,20 @@ bool ReadabilityApp::OnInit()
 
     if (!BaseApp::OnInit())
         { return false; }
+
+#ifndef NDEBUG
+    wxFileTranslationsLoader::AddCatalogLookupPathPrefix(L".");
+#endif
+    wxTranslations* const translations = new wxTranslations{};
+    wxTranslations::Set(translations);
+    if (!translations->AddCatalog(_READSTUDIO_BINARY_NAME))
+        {
+        wxLogDebug("Could not find application's translation catalog.");
+        }
+    if (!translations->AddStdCatalog())
+        {
+        wxLogDebug("Could not find standard translation catalog.");
+        }
 
     GetResourceManager().LoadArchive(FindResourceFile(L"res.wad"));
 
