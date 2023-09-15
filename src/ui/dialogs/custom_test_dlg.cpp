@@ -648,8 +648,9 @@ void CustomTestDlg::CreateControls()
 
             m_formulaCtrl = new CodeEditor(formulaBoxSizer->GetStaticBox(),
                 ID_FORMULA_FIELD, wxDefaultPosition,
-                wxSize(-1, FromDIP(wxSize(200, 200)).GetHeight()));
+                FromDIP(wxSize(700, 300)));
             m_formulaCtrl->SetLanguage(wxSTC_LEX_CPPNOCASE);
+            m_formulaCtrl->SetThemeColor(wxGetApp().GetAppOptions().GetControlBackgroundColor());
 
             m_formulaCtrl->AddFunctionsOrClasses(m_math);
             m_formulaCtrl->AddFunctionsOrClasses(m_logic);
