@@ -933,6 +933,13 @@ wxString ProjectReportFormat::FormatHtmlReportStart(
     [[maybe_unused]] const wxColour textColor,
     const wxString& title /*= wxString{}*/)
     {
+    wxString cssTemplatePath =
+        wxGetApp().FindResourceDirectory(_DT(L"ReportThemes")) +
+        wxFileName::GetPathSeparator() + L"Default.css";
+    wxString styleInfo;
+    if (wxFile::Exists(cssTemplatePath))
+        { Wisteria::TextStream::ReadFile(cssTemplatePath, styleInfo); }
+
     return wxString::Format(
         L"<!DOCTYPE html>"
         "\n<html>"
@@ -940,10 +947,11 @@ wxString ProjectReportFormat::FormatHtmlReportStart(
         "\n    <meta http-equiv='content-type' content='text/html; charset=UTF-8' />"
         "\n    <title>%s</title>"
         "\n    <style>"
+        "\n    %s"
         "\n    </style>"
         "\n</head>"
         "\n<body bgcolor=%s text=%s link=%s>",
-            title,
+            title, styleInfo,
 #ifdef __WXOSX__
         wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW).GetAsString(wxC2S_HTML_SYNTAX),
         wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT).GetAsString(wxC2S_HTML_SYNTAX),
