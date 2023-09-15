@@ -42,18 +42,21 @@ Install the following tools to build *Readability Studio*:
 - *CMake*
 - *git*
 - *RStudio*
+- *POEdit* (if editing the translations)
 
-Install the following libraries *and* their development files:
+Install the following libraries (*and* their development files if mentioned):
 
-- *GTK+ 3*
-- *libCURL*
-- *GStreamer*
-- *libsecret*
-- *webkit*
-- *TBB*
+- *GTK+ 3*, *gtk3-devel*
+- *libCURL*, *libcurl-devel*
+- *GStreamer*, *gstreamer-devel*
+- *libsecret*, *libsecret-devel*
+- *webkit*, *webkit2gtk3-devel*
+- *SDL2-devel*
+- *libnotify*, *libnotify-devel*
+- *TBB*, *tbb-devel*
 - *OpenMP*
-- *libopenssl*
-- *libxml2*
+- *libopenssl*, *libopenssl-3-devel*
+- *libxml2*, *libxml2-devel*
 
 - Place "wxWidgets" at the same folder level as this project, downloading it with this command:
 ```
