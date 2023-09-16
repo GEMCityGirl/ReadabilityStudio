@@ -1,16 +1,8 @@
-library(bookdown)
-library(glue)
-library(readr)
-library(stringr)
-library(fs)
-library(lubridate)
-library(tidyverse)
-library(kableExtra)
-library(Hmisc)
-library(cowplot)
-library(beeswarm)
+if (!require("pacman")) install.packages("pacman")
+library(pacman)
+pacman::p_load(bookdown, glue, readr, stringr, fs, lubridate, tidyverse, kableExtra, Hmisc, cowplot, beeswarm, tinytex)
 
-# Just run this one
+# Just run this once
 # tinytex::install_tinytex()
 # ...or this to update
 # tinytex::reinstall_tinytex()
