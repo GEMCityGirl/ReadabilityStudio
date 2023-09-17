@@ -1,0 +1,9 @@
+@software{{${CMAKE_PROJECT_NAME}},
+  author       = {${PROGRAM_AUTHOR}},
+  title        = {${ReadStudio_DESCRIPTION}},
+  url          = {${ReadStudio_HOMEPAGE_URL}},
+  organization = {${PUBLISHER}},
+  version      = {${FULL_DISPLAY_VERSION}},
+  year         = {${BUILD_YEAR}},
+  note         = {${PROGRAM_COMMENTS}}
+}

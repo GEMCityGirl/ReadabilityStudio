@@ -16,7 +16,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Edit these values when bumping the release
 project(ReadStudio VERSION 2021.2.0.0 DESCRIPTION "Readability Studio" HOMEPAGE_URL https://www.oleandersoftware.com/)
 set(PROGRAM_NUMBERED_VERSION 8.0)
-set(PUBLISHER "Oleander Software")
+set(PUBLISHER "Oleander Software, Ltd.")
 set(PROGRAM_AUTHOR "Blake Madden")
 set(PROGRAM_COMMENTS "Readability analysis software")
 
@@ -45,6 +45,8 @@ message(STATUS "Output program file: ${CMAKE_PROJECT_NAME}")
 message(STATUS "Writing program info to build peripheral files.")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/src/app/version.h")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/citations.bib.in"
+               "${CMAKE_CURRENT_SOURCE_DIR}/src/app/citations.bib")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/resource.h.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/resource.h")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/version_info.txt.in"
