@@ -18,6 +18,7 @@ project(ReadStudio VERSION 2021.2.0.0 DESCRIPTION "Readability Studio" HOMEPAGE_
 set(PROGRAM_NUMBERED_VERSION 8.0)
 set(PUBLISHER "Oleander Software")
 set(PROGRAM_AUTHOR "Blake Madden")
+set(PROGRAM_COMMENTS "Readability analysis software")
 
 # Build a displayable version string that only includes the necessary parts
 set(FULL_DISPLAY_VERSION ${ReadStudio_VERSION_MAJOR})

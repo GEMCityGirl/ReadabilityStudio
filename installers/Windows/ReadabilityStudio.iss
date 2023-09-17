@@ -1,7 +1,6 @@
 ﻿;Installer for Readability Studio
 [Setup]
 #include "setup.isl"
-AppComments=Document readability analysis
 MergeDuplicateFiles=true
 Compression=lzma
 SolidCompression=true

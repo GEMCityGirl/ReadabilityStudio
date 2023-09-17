@@ -2,6 +2,7 @@ AppName=${ReadStudio_DESCRIPTION}
 AppVerName=${ReadStudio_DESCRIPTION} ${ReadStudio_VERSION_MAJOR}.${ReadStudio_VERSION_MINOR}
 AppPublisher=${PUBLISHER}
 AppPublisherURL=${ReadStudio_HOMEPAGE_URL}
+AppComments=${PROGRAM_COMMENTS}
 AppVersion=${ReadStudio_VERSION_MAJOR}.${ReadStudio_VERSION_MINOR}.${ReadStudio_VERSION_PATCH}.${ReadStudio_VERSION_TWEAK}
 VersionInfoVersion=${ReadStudio_VERSION_MAJOR}.${ReadStudio_VERSION_MINOR}.${ReadStudio_VERSION_PATCH}.${ReadStudio_VERSION_TWEAK}
 VersionInfoCopyright=${ReadStudio_VERSION_MAJOR}.${ReadStudio_VERSION_MINOR}.${ReadStudio_VERSION_PATCH}.${ReadStudio_VERSION_TWEAK}
