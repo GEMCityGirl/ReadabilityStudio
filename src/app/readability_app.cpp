@@ -2755,7 +2755,10 @@ void MainFrame::OnStartPageClick(wxCommandEvent& event)
 void MainFrame::OnNewDropdown(wxRibbonButtonBarEvent& event)
     {
     wxMenu menu;
-    menu.Append(wxID_NEW, _(L"New Project...") + _DT(L"\tCtrl+N"));
+    auto menuItem = new wxMenuItem(&menu,
+        wxID_NEW, _(L"New Project...") + _DT(L"\tCtrl+N"));
+    menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/document.svg"));
+    menu.Append(menuItem);
     menu.Append(wxID_PASTE, _(L"New Project from Clipboard...") + _DT(L"\tCtrl+V"));
     event.PopupMenu(&menu);
     }
