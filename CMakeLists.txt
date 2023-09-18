@@ -34,6 +34,7 @@ endif()
 string(TIMESTAMP BUILD_YEAR "%Y")
 
 message(STATUS "${ReadStudio_DESCRIPTION}")
+message(STATUS "${PROGRAM_COMMENTS}")
 message(STATUS "Full version: ${ReadStudio_VERSION_MAJOR}.${ReadStudio_VERSION_MINOR}.${ReadStudio_VERSION_PATCH}.${ReadStudio_VERSION_TWEAK}")
 message(STATUS "Display version: ${FULL_DISPLAY_VERSION}")
 message(STATUS "Numbered Version: ${PROGRAM_NUMBERED_VERSION}")
