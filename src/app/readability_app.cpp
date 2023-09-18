@@ -1299,7 +1299,11 @@ void ReadabilityApp::LoadInterface()
             GetSVG(L"ribbon/app-logo.svg").GetBitmap(GetMainFrame()->FromDIP(wxSize(128, 128))));
     // set up the ribbon (and its submenus)
     GetMainFrame()->InitControls(CreateRibbon(GetMainFrame(),nullptr));
-    GetMainFrameEx()->m_fileOpenMenu.Append(wxID_OPEN, _(L"Open Project...") + _DT(L"\tCtrl+O"));
+
+    auto menuItem = new wxMenuItem(&GetMainFrameEx()->m_fileOpenMenu,
+        wxID_OPEN, _(L"Open Project...") + _DT(L"\tCtrl+O"));
+    menuItem->SetBitmap(GetResourceManager().GetSVG(L"ribbon/file-open.svg"));
+    GetMainFrameEx()->m_fileOpenMenu.Append(menuItem);
     GetDocManager()->FileHistoryUseMenu(&GetMainFrameEx()->m_fileOpenMenu);
     if (GetMainFrameEx()->m_fileOpenMenu.FindItem(wxID_FILE1) == nullptr)
         { GetDocManager()->FileHistoryAddFilesToMenu(&GetMainFrameEx()->m_fileOpenMenu); }
