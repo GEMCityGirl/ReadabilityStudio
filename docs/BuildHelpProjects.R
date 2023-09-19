@@ -1,13 +1,14 @@
 if (!require("pacman")) install.packages("pacman")
 library(pacman)
-pacman::p_load(bookdown, glue, readr, stringr, fs, lubridate, tidyverse, kableExtra, Hmisc, cowplot, beeswarm, tinytex)
+pacman::p_load(bookdown, glue, readr, stringr, fs, lubridate, tidyverse, kableExtra,
+               Hmisc, cowplot, beeswarm, tinytex, this.path)
 
-# Just run this once
-# tinytex::install_tinytex()
-# ...or this to update
-# tinytex::reinstall_tinytex()
+if (nchar(tinytex::tinytex_root()) == 0)
+  {
+  tinytex::install_tinytex()
+  }
 
-docFolder <- dirname(rstudioapi::getSourceEditorContext()$path)
+docFolder <- this.path::this.dir()
 source(glue("{docFolder}/ReadabilityStudioDocs/R/appdown.r"))
 
 # delete previous builds
@@ -23,7 +24,7 @@ clearFolders <- function()
   unlink(glue("{docFolder}/ReadabilityStudioAPI/latex"), recursive=T)
   unlink(glue("{docFolder}/ReadabilityStudioAPI/css"), recursive=T)
   unlink(glue("{docFolder}/ReadabilityStudioAPI/R"), recursive=T)
-  
+
   unlink(glue("{docFolder}/ReadabilityTestsReference/images"), recursive=T)
   unlink(glue("{docFolder}/ReadabilityTestsReference/latex"), recursive=T)
   unlink(glue("{docFolder}/ReadabilityTestsReference/css"), recursive=T)
@@ -34,7 +35,7 @@ clearFolders <- function()
   unlink(glue("{docFolder}/ReadabilityTestsReference/english"), recursive=T)
   unlink(glue("{docFolder}/ReadabilityTestsReference/spanish"), recursive=T)
   unlink(glue("{docFolder}/ReadabilityTestsReference/german"), recursive=T)
-  
+
   unlink(glue("{docFolder}/ReadabilityStudioDocs/_bookdown_files"), recursive=T)
   unlink(glue("{docFolder}/Coding-Bible/docs"), recursive=T)
   }
