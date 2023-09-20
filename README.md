@@ -19,7 +19,7 @@ Readability Studio
 Install the following tools to build *Readability Studio*:
 
 - *Visual Studio*
-- *RStudio*
+- *R* (and optionally *RStudio*)
 - *InnoSetup*
 
 - Place "wxWidgets" at the same folder level as this project, downloading it with this command:
@@ -42,7 +42,7 @@ Install the following tools to build *Readability Studio*:
 - *GCC* (C++ and fortran compilers)
 - *CMake*
 - *git*
-- *RStudio*
+- *R* (and optionally *RStudio*)
 - *POEdit* (if editing the translations)
 
 Install the following libraries (*and* their development files if mentioned):
