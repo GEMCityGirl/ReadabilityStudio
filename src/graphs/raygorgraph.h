@@ -78,8 +78,7 @@ namespace Wisteria::Graphs
             { return m_raygorStyle; }
         /** @brief Sets the style for the graph.
             @param style The appearance to use for the graph.*/
-        void SetRaygorStyle(const RaygorStyle style) noexcept
-            { m_raygorStyle = style; }
+        void SetRaygorStyle(const RaygorStyle style);
     private:
         void RecalcSizes(wxDC& dc) final;
         void CalculateScorePositions(wxDC& dc) final;

@@ -30,6 +30,19 @@ namespace Wisteria::Graphs
         GetCanvas()->SetLabel(_(L"Raygor Estimate"));
         GetCanvas()->SetName(_(L"Raygor Estimate"));
 
+        // build the axes and area labels based on the graph's style
+        SetRaygorStyle(GetRaygorStyle());
+        }
+
+    //----------------------------------------------------------------
+    void RaygorGraph::SetRaygorStyle(const RaygorStyle style)
+        {
+        m_raygorStyle = style;
+
+        GetLeftYAxis().Reset();
+        GetBottomXAxis().Reset();
+        GetLevelLabels().clear();
+
         GetLeftYAxis().GetTitle().SetText((GetRaygorStyle() == RaygorStyle::Modern) ?
             _(L"SENTENCES\n(per 100 words)") : _(L"SENTENCES"));
         GetLeftYAxis().GetTitle().SetTextAlignment(TextAlignment::Centered);
@@ -51,7 +64,7 @@ namespace Wisteria::Graphs
         GetBottomXAxis().SetCustomLabel(6, GraphItems::Label(
             wxNumberFormatter::ToString(6, 0,
                 wxNumberFormatter::Style::Style_NoTrailingZeroes) +
-            ((GetRaygorStyle() == RaygorStyle::Modern) ? L"(-)" : wxString{})) );
+            ((GetRaygorStyle() == RaygorStyle::Modern) ? L"(-)" : wxString{})));
         GetBottomXAxis().SetCustomLabel(44, GraphItems::Label(
             wxNumberFormatter::ToString(44, 0,
                 wxNumberFormatter::Style::Style_NoTrailingZeroes) +
@@ -137,7 +150,6 @@ namespace Wisteria::Graphs
             AddLevelLabel(LevelLabel(30.75, 5, L"10", 10, 10));
             AddLevelLabel(LevelLabel(32.5, 4.825, L"11", 11, 11));
             AddLevelLabel(LevelLabel(34.5, 4.65, L"12", 12, 12));
-
             AddLevelLabel(LevelLabel(37, 4.45, _(L"COL"), 13, 16));
             AddLevelLabel(LevelLabel(42, 4.2, _(L"PROF"), 17, 17));
             }
