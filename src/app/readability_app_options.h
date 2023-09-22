@@ -15,8 +15,9 @@
 #include "../readability/readability.h"
 #include "../readability/readability_test.h"
 #include "../readability/readability_project_test.h"
-#include "optionenums.h"
 #include "../results_format/readability_messages.h"
+#include "../graphs/raygorgraph.h"
+#include "optionenums.h"
 
 /// @brief Class for managing what is included in the statistics section.
 class StatisticsInfo
@@ -1026,6 +1027,12 @@ public:
         { return m_graphInvalidAreaColor; }
     void SetInvalidAreaColor(const wxColour& color)
         { m_graphInvalidAreaColor = color; }
+    // Raygor style
+    [[nodiscard]]
+    Wisteria::Graphs::RaygorStyle GetRaygorStyle() const noexcept
+        { return m_raygorStyle; }
+    void SetRaygorStyle(const Wisteria::Graphs::RaygorStyle style) noexcept
+        { m_raygorStyle = style; }
     // Flesch connection lines
     void ConnectFleschPoints(const bool connect) noexcept
         { m_fleschChartConnectPoints = connect; }
@@ -1448,6 +1455,8 @@ private:
         { FleschNumeralSyllabize::NumeralIsOneSyllable };
     FleschKincaidNumeralSyllabize m_fleschKincaidNumeralSyllabizeMethod
         { FleschKincaidNumeralSyllabize::FleschKincaidNumeralSoundOutEachDigit };
+    Wisteria::Graphs::RaygorStyle m_raygorStyle
+        { Wisteria::Graphs::RaygorStyle::BaldwinKaufman };
     // custom colors
     std::vector<wxColour> m_customColours;
     // images used for blank graphs
@@ -1511,6 +1520,7 @@ public:
     const wxString XML_PROPER_NOUN_COUNTING_METHOD;
     const wxString XML_FLESCH_OPTIONS;
     const wxString XML_FLESCH_KINCAID_OPTIONS;
+    const wxString XML_RAYGOR_STYLE;
     // custom test settings
     const wxString XML_TEST_BUNDLES;
     const wxString XML_TEST_BUNDLE;

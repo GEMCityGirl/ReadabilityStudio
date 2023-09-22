@@ -70,6 +70,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_PROPER_NOUN_COUNTING_METHOD(_DT(L"proper-noun-counting-method")),
     XML_FLESCH_OPTIONS(_DT(L"flesch-options")),
     XML_FLESCH_KINCAID_OPTIONS(_DT(L"flesch-kincaid-options")),
+    XML_RAYGOR_STYLE(_DT(L"raygor-style")),
     // custom test settings
     XML_TEST_BUNDLES(_DT(L"test-bundles")),
     XML_TEST_BUNDLE(_DT(L"test-bundle")),
@@ -704,6 +705,7 @@ void ReadabilityAppOptions::ResetSettings()
     m_fogUseSentenceUnits = true;
     m_fleschNumeralSyllabizeMethod = FleschNumeralSyllabize::NumeralIsOneSyllable;
     m_fleschKincaidNumeralSyllabizeMethod = FleschKincaidNumeralSyllabize::FleschKincaidNumeralSoundOutEachDigit;
+    m_raygorStyle = Wisteria::Graphs::RaygorStyle::BaldwinKaufman;
     // clear the colours
     m_customColours.clear();
     // reset the warning flags
@@ -2371,7 +2373,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                 XML_INCLUDE.mb_str(), bool_to_int(IsUsingEnglishLabelsForGermanLix()))));
                         }
                     }
-                // Fry/Raygor
+                // Fry/Raygor/GPM/Schwartz
                 auto fryRaygorNode = graphDefaultsNode->FirstChildElement(XML_FRY_RAYGOR_SETTINGS.mb_str());
                 if (fryRaygorNode)
                     {
@@ -2389,6 +2391,15 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             colorNodeInvalidArea->ToElement()->IntAttribute(
                                 XmlFormat::GetBlue().mb_str(), GetInvalidAreaColor().Blue());
                         SetInvalidAreaColor(wxColour(red, green, blue));
+                        }
+                    // Raygor appearance
+                    auto raygorStyleNode = fryRaygorNode->FirstChildElement(XML_RAYGOR_STYLE.mb_str());
+                    if (raygorStyleNode != nullptr)
+                        {
+                        const int value =
+                            raygorStyleNode->ToElement()->IntAttribute(
+                                XML_VALUE.mb_str(), static_cast<int>(GetRaygorStyle()));
+                        SetRaygorStyle(static_cast<Wisteria::Graphs::RaygorStyle>(value));
                         }
                     }
                 // axis options
@@ -4125,6 +4136,11 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     invalidAreaColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetInvalidAreaColor().Green() );
     invalidAreaColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetInvalidAreaColor().Blue() );
     fryRaygor->InsertEndChild(invalidAreaColor);
+
+    auto raygorStyle = doc.NewElement(XML_RAYGOR_STYLE.mb_str());
+    raygorStyle->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetRaygorStyle()));
+    fryRaygor->InsertEndChild(raygorStyle);
+
     graphDefaultsSection->InsertEndChild(fryRaygor);
 
     // x axis

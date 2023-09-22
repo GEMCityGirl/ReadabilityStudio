@@ -285,6 +285,9 @@ private:
     wxString GetInvalidRegionsColorLabel() const
         { return _(L"Invalid regions color"); }
     [[nodiscard]]
+    wxString GetRaygorStyleLabel() const
+        { return _(L"Raygor style"); }
+    [[nodiscard]]
     wxString GetFleshChartConnectPointsLabel() const
         { return _(L"Connect points"); }
      [[nodiscard]]

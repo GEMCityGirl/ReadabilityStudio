@@ -4129,6 +4129,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
         UpdateGraphOptions(view->GetRaygorGraph());
 
         raygorGraph->SetInvalidAreaColor(GetInvalidAreaColor());
+        raygorGraph->SetRaygorStyle(GetRaygorStyle());
 
         // add legend if grouping
         if (IsShowingGroupLegends())

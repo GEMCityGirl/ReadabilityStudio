@@ -1142,6 +1142,8 @@ bool ToolsOptionsDlg::HaveGraphOptionsChanged() const
            m_rightTitleFont.has_changed() ||
            (IsPropertyAvailable(m_readabilityGraphPropertyGrid,GetInvalidRegionsColorLabel()) &&
                m_readabilityGraphPropertyGrid->IsPropertyModified(GetInvalidRegionsColorLabel())) ||
+           (IsPropertyAvailable(m_readabilityGraphPropertyGrid, GetRaygorStyleLabel()) &&
+               m_readabilityGraphPropertyGrid->IsPropertyModified(GetRaygorStyleLabel())) ||
            (IsPropertyAvailable(m_readabilityGraphPropertyGrid,GetUseEnglishLabelsForGermanLixLabel()) &&
                m_readabilityGraphPropertyGrid->IsPropertyModified(GetUseEnglishLabelsForGermanLixLabel())) ||
            (IsPropertyAvailable(m_readabilityGraphPropertyGrid,GetFleshChartConnectPointsLabel()) &&
@@ -1370,7 +1372,7 @@ bool ToolsOptionsDlg::ValidateOptions()
         m_histogramPropertyGrid->GetPropertyValueAsInt(GetBinSortingLabel()) == 0 &&
         m_histogramPropertyGrid->GetPropertyValueAsInt(GetIntervalDisplayLabel()) != 1)
         {
-        std::vector<WarningMessage>::iterator warningIter =
+        auto warningIter =
             wxGetApp().GetAppOptions().GetWarning(_DT(L"histogram-unique-values-midpoints-required"));
         if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
             warningIter->ShouldBeShown())
@@ -2243,11 +2245,17 @@ void ToolsOptionsDlg::SaveOptions()
         wxGetApp().GetAppOptions().SetLeftTitleGraphFontColor(m_leftTitleFontColor);
         wxGetApp().GetAppOptions().SetRightTitleGraphFont(m_rightTitleFont);
         wxGetApp().GetAppOptions().SetRightTitleGraphFontColor(m_rightTitleFontColor);
-        if (IsPropertyAvailable(m_readabilityGraphPropertyGrid,GetInvalidRegionsColorLabel()))
+        if (IsPropertyAvailable(m_readabilityGraphPropertyGrid, GetInvalidRegionsColorLabel()))
             {
             wxGetApp().GetAppOptions().SetInvalidAreaColor(
                 wxAny(m_readabilityGraphPropertyGrid->GetProperty(
                     GetInvalidRegionsColorLabel())->GetValue()).As<wxColour>());
+            }
+        if (IsPropertyAvailable(m_readabilityGraphPropertyGrid, GetRaygorStyleLabel()))
+            {
+            wxGetApp().GetAppOptions().SetRaygorStyle(
+                static_cast<Wisteria::Graphs::RaygorStyle>(
+                    m_readabilityGraphPropertyGrid->GetPropertyValueAsInt(GetRaygorStyleLabel())) );
             }
         if (IsPropertyAvailable(m_readabilityGraphPropertyGrid,GetUseEnglishLabelsForGermanLixLabel()))
             {
@@ -2533,11 +2541,17 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
         m_readabilityProjectDoc->SetLeftTitleGraphFontColor(m_leftTitleFontColor);
         m_readabilityProjectDoc->SetRightTitleGraphFont(m_rightTitleFont);
         m_readabilityProjectDoc->SetRightTitleGraphFontColor(m_rightTitleFontColor);
-        if (IsPropertyAvailable(m_readabilityGraphPropertyGrid,GetInvalidRegionsColorLabel()))
+        if (IsPropertyAvailable(m_readabilityGraphPropertyGrid, GetInvalidRegionsColorLabel()))
             {
             m_readabilityProjectDoc->SetInvalidAreaColor(
                 wxAny(m_readabilityGraphPropertyGrid->GetProperty(
                     GetInvalidRegionsColorLabel())->GetValue()).As<wxColour>());
+            }
+        if (IsPropertyAvailable(m_readabilityGraphPropertyGrid, GetRaygorStyleLabel()))
+            {
+            m_readabilityProjectDoc->SetRaygorStyle(
+                static_cast<Wisteria::Graphs::RaygorStyle>(
+                    m_readabilityGraphPropertyGrid->GetPropertyValueAsInt(GetRaygorStyleLabel())) );
             }
         if (IsPropertyAvailable(m_readabilityGraphPropertyGrid,GetUseEnglishLabelsForGermanLixLabel()))
             {
@@ -3590,6 +3604,19 @@ void ToolsOptionsDlg::CreateControls()
             m_readabilityGraphPropertyGrid->SetPropertyHelpString(
                 GetInvalidRegionsColorLabel(),
                 _(L"Selects the color for the invalid sentence/word regions."));
+            
+            wxPGChoices raygorStyles;
+            raygorStyles.Add(_(L"Original"));
+            raygorStyles.Add(_(L"Baldwin-Kaufman"));
+            raygorStyles.Add(_(L"Modern"));
+            m_readabilityGraphPropertyGrid->Append(
+                new wxEnumProperty(GetRaygorStyleLabel(), wxPG_LABEL, raygorStyles,
+                (m_readabilityProjectDoc ?
+                    static_cast<int>(m_readabilityProjectDoc->GetRaygorStyle()) :
+                    static_cast<int>(wxGetApp().GetAppOptions().GetRaygorStyle()))) );
+            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+                GetRaygorStyleLabel(),
+                _(L"Selects the layout style of the Raygor graph."));
             // flesch
             m_readabilityGraphPropertyGrid->Append(
                 new wxPropertyCategory(GetFleschChartLabel()) );

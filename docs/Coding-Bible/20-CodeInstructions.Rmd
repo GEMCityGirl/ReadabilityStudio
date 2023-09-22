@@ -24,6 +24,7 @@ Finally:
   - If a value in a property grid, then add a function that returns the string for the value in the property grid; this will be used also as a look-up key.
 - Add initialization to variable from `ReadabilityAppOptions` or project in `ToolsOptionsDlg`’s constructor.
   - Note that if the option is in a property grid, then there is no direct variable and instead you use a string label to get and set the values from the property grid.
+    Instead, the default value for this field is loaded in `ToolsOptionsDlg::CreateControls()`.
 - Add change watching logic for variable to `ToolsOptionsDlg::HaveXXXOptionsChanged()` (note there are different versions of these functions for each type of feature).
 - Add saving logic to `ToolsOptionsDlg::SaveOptions()` (and related `ToolsOptionsDlg::SaveProjectXXXOptions()` function, if applicable).
 - Attach variable to interface in `ToolsOptionsDlg::CreateControls()`.

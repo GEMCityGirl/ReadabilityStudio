@@ -161,6 +161,12 @@ public:
         { return m_graphInvalidAreaColor; }
     void SetInvalidAreaColor(const wxColour& color)
         { m_graphInvalidAreaColor = color; }
+    // Raygor style
+    [[nodiscard]]
+    Wisteria::Graphs::RaygorStyle GetRaygorStyle() const noexcept
+        { return m_raygorStyle; }
+    void SetRaygorStyle(const Wisteria::Graphs::RaygorStyle style) noexcept
+        { m_raygorStyle = style; }
     // Flesch connection lines
     void ConnectFleschPoints(const bool connect) noexcept
         { m_fleschChartConnectPoints = connect; }
@@ -624,6 +630,8 @@ protected:
     wxColour m_rightTitleFontColor;
     wxFont m_rightTitleFont;
     wxColour m_graphInvalidAreaColor;
+    Wisteria::Graphs::RaygorStyle m_raygorStyle
+        { Wisteria::Graphs::RaygorStyle::BaldwinKaufman };
     bool m_fleschChartConnectPoints{ true };
     bool m_fleschChartSyllableRulerDocGroups{ false };
     bool m_useEnglishLabelsGermanLix{ false };

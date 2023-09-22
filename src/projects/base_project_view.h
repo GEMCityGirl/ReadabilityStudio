@@ -90,6 +90,7 @@ public:
     wxMenu m_boxStyleMenu;
     wxMenu m_graphFontsMenu;
     wxMenu m_graphBackgroundMenu;
+    wxMenu m_raygorStyleMenu;
     wxMenu m_gradeScaleMenu;
     wxMenu m_graphSortMenu;
     wxMenu m_wordListMenu;
@@ -492,6 +493,8 @@ private:
     void OnEditGraphBackgroundButton(wxRibbonButtonBarEvent& event);
     void OnEditGraphBackgroundImage([[maybe_unused]] wxCommandEvent& event);
     void OnGraphColorFade([[maybe_unused]] wxCommandEvent& event);
+    void OnEditGraphRaygorStyleButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
+    void OnRaygorStyleSelected([[maybe_unused]] wxCommandEvent& event);
     void OnEditGraphColor(wxCommandEvent& event);
     void OnEditGraphOpacity(wxCommandEvent& event);
     void OnEditGraphFontsButton(wxRibbonButtonBarEvent& event);

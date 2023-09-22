@@ -53,6 +53,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_rightTitleFontColor(wxGetApp().GetAppOptions().GetRightTitleGraphFontColor()),
     m_rightTitleFont(wxGetApp().GetAppOptions().GetRightTitleGraphFont()),
     m_graphInvalidAreaColor(wxGetApp().GetAppOptions().GetInvalidAreaColor()),
+    m_raygorStyle(wxGetApp().GetAppOptions().GetRaygorStyle()),
     m_fleschChartConnectPoints(wxGetApp().GetAppOptions().IsConnectingFleschPoints()),
     m_fleschChartSyllableRulerDocGroups(wxGetApp().GetAppOptions().IsIncludingFleschRulerDocGroups()),
     m_useEnglishLabelsGermanLix(wxGetApp().GetAppOptions().IsUsingEnglishLabelsForGermanLix()),
@@ -146,6 +147,7 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that)
     m_rightTitleFont = that.m_rightTitleFont;
     // readability graphs
     m_graphInvalidAreaColor = that.m_graphInvalidAreaColor;
+    m_raygorStyle = that.m_raygorStyle;
     m_fleschChartConnectPoints = that.m_fleschChartConnectPoints;
     m_fleschChartSyllableRulerDocGroups = that.m_fleschChartSyllableRulerDocGroups;
     m_useEnglishLabelsGermanLix = that.m_useEnglishLabelsGermanLix;
@@ -1314,6 +1316,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         SetInvalidAreaColor(XmlFormat::GetColor(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_INVALID_AREA_COLOR,
             wxGetApp().GetAppOptions().GetInvalidAreaColor()));
+        SetRaygorStyle(
+            static_cast<Wisteria::Graphs::RaygorStyle>(XmlFormat::GetLong(graphsSection, graphsSectionEnd,
+            wxGetApp().GetAppOptions().XML_RAYGOR_STYLE,
+            static_cast<int>(wxGetApp().GetAppOptions().GetRaygorStyle()))) );
 
         // Lix gauge
         currentStartTag.clear();
@@ -2299,6 +2305,10 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_INVALID_AREA_COLOR);
     fileText += XmlFormat::FormatColorAttributes(GetInvalidAreaColor());
     fileText.append(L"/>\n");
+    // raygor style
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_RAYGOR_STYLE,
+        static_cast<int>(GetRaygorStyle()), 3);
+    fileText += sectionText;
 
     // histogram settings
     fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_HISTOGRAM_SETTINGS).append(L">\n");

@@ -2082,6 +2082,13 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             readRibbonButtonSVG(L"ribbon/invalid-region.svg"),
                             _(L"Change the color of the invalid regions."));
                         }
+                    if (typeid(*graphType) == typeid(RaygorGraph))
+                        {
+                        editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_RAYGOR_STYLE"),
+                            _(L"Raygor Style"),
+                            readRibbonButtonSVG(L"ribbon/raygor-style.svg"),
+                            _(L"Change the layout style of the Raygor graph."));
+                        }
                     // not showing connection lines for a Flesch Chart with only one score doesn't make much sense,
                     // so don't bother adding a button for that on a standard project.
 

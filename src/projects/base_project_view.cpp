@@ -193,6 +193,20 @@ BaseProjectView::BaseProjectView()
                 wxRIBBON_BAR_EXPANDED : wxRIBBON_BAR_MINIMIZED);
             },
         XRCID("ID_TOGGLE_RIBBON"));
+
+    // Raygor style
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED,
+        &BaseProjectView::OnEditGraphRaygorStyleButton, this,
+        XRCID("ID_EDIT_GRAPH_RAYGOR_STYLE"));
+    Bind(wxEVT_MENU,
+        &BaseProjectView::OnRaygorStyleSelected, this,
+        XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"));
+    Bind(wxEVT_MENU,
+        &BaseProjectView::OnRaygorStyleSelected, this,
+        XRCID("ID_EDIT_GRAPH_RAYGOR_BALDWIN_KAUFMAN"));
+    Bind(wxEVT_MENU,
+        &BaseProjectView::OnRaygorStyleSelected, this,
+        XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"));
     }
 
 //---------------------------------------------------
@@ -495,6 +509,37 @@ void BaseProjectView::OnInvalidRegionColor(wxRibbonButtonBarEvent& event)
     }
 
 //---------------------------------------------------
+void BaseProjectView::OnRaygorStyleSelected([[maybe_unused]] wxCommandEvent& event)
+    {
+    if (event.GetId() == XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"))
+        {
+        m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"), true);
+        m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_BALDWIN_KAUFMAN"), false);
+        m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"), false);
+        dynamic_cast<BaseProjectDoc*>(GetDocument())->SetRaygorStyle(
+            Wisteria::Graphs::RaygorStyle::Original);
+        }
+    else if (event.GetId() == XRCID("ID_EDIT_GRAPH_RAYGOR_BALDWIN_KAUFMAN"))
+        {
+        m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"), false);
+        m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_BALDWIN_KAUFMAN"), true);
+        m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"), false);
+        dynamic_cast<BaseProjectDoc*>(GetDocument())->SetRaygorStyle(
+            Wisteria::Graphs::RaygorStyle::BaldwinKaufman);
+        }
+    else if (event.GetId() == XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"))
+        {
+        m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"), false);
+        m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_BALDWIN_KAUFMAN"), false);
+        m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"), true);
+        dynamic_cast<BaseProjectDoc*>(GetDocument())->SetRaygorStyle(
+            Wisteria::Graphs::RaygorStyle::Modern);
+        }
+    dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshRequired(ProjectRefresh::Minimal);
+    dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshGraphs();
+    }
+
+//---------------------------------------------------
 void BaseProjectView::OnGraphColorFade([[maybe_unused]] wxCommandEvent& event)
     {
     dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBackGroundLinearGradient(
@@ -745,6 +790,10 @@ void BaseProjectView::OnEditGraphColor(wxCommandEvent& event)
         doc->RefreshGraphs();
         }
     }
+
+//---------------------------------------------------
+void BaseProjectView::OnEditGraphRaygorStyleButton(wxRibbonButtonBarEvent& event)
+    { event.PopupMenu(&m_raygorStyleMenu); }
 
 //---------------------------------------------------
 void BaseProjectView::OnEditGraphBackgroundButton(wxRibbonButtonBarEvent& event)
@@ -1612,6 +1661,14 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/opacity.svg"));
     m_graphBackgroundMenu.Append(item);
 
+    // Raygor styles
+    m_raygorStyleMenu.Append(
+        XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"), _(L"Original"))->SetCheckable(true);
+    m_raygorStyleMenu.Append(
+        XRCID("ID_EDIT_GRAPH_RAYGOR_BALDWIN_KAUFMAN"), _(L"Baldwin-Kaufman"))->SetCheckable(true);
+    m_raygorStyleMenu.Append(
+        XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"), _(L"Modern"))->SetCheckable(true);
+
     // histogram bar labels
     m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
         XRCID("ID_HISTOBAR_LABELS_COUNT"), _(L"Counts"), wxString{}, wxITEM_CHECK));
@@ -1981,6 +2038,13 @@ void BaseProjectView::Present()
             { wxGetApp().GetMainFrameEx()->AddExamplesToMenu(exampleMenuItem->GetSubMenu()); }
         }
     wxGetApp().GetMainFrameEx()->AddExamplesToMenu(&m_exampleMenu);
+
+    if (doc->GetRaygorStyle() == Wisteria::Graphs::RaygorStyle::Original)
+        { m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"), true); }
+    else if (doc->GetRaygorStyle() == Wisteria::Graphs::RaygorStyle::BaldwinKaufman)
+        { m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_BALDWIN_KAUFMAN"), true); }
+    else if (doc->GetRaygorStyle() == Wisteria::Graphs::RaygorStyle::Modern)
+        { m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"), true); }
 
     // other menu items with checks that need to be checked here
     wxMenuItem* fadeOption = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKCOLOR_FADE"));

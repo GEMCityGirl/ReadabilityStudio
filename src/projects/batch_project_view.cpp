@@ -946,6 +946,10 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                                 }
                             else if (typeid(*graph) == typeid(RaygorGraph))
                                 {
+                                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_RAYGOR_STYLE"),
+                                    _(L"Raygor Style"),
+                                    readRibbonButtonSVG(L"ribbon/raygor-style.svg"),
+                                    _(L"Change the layout style of the Raygor graph."));
                                 exportMenuItem->SetBitmap(
                                     wxGetApp().GetResourceManager().GetSVG(L"tests/raygor-test.svg"));
                                 }

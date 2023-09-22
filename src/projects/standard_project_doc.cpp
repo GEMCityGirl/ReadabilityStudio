@@ -4187,6 +4187,7 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
     auto raygorGraph =
         std::dynamic_pointer_cast<RaygorGraph>(raygorGraphView->GetFixedObject(0, 0));
     raygorGraph->SetInvalidAreaColor(GetInvalidAreaColor());
+    raygorGraph->SetRaygorStyle(GetRaygorStyle());
     raygorGraphView->CalcAllSizes(gdc);
 
     const auto theTest = GetReadabilityTests().find_test(CURRENT_TEST_KEY);

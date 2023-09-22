@@ -98,6 +98,7 @@ ribbon/print-setup.svg
 ribbon/print.svg
 ribbon/project-settings.svg
 ribbon/proofreading-delete.svg
+ribbon/raygor-style.svg
 ribbon/reload.svg
 ribbon/report.svg
 ribbon/right-titles.svg
