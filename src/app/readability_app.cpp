@@ -539,7 +539,7 @@ bool ReadabilityApp::OnInit()
         {
         wxLogDebug("Could not find application's translation catalog.");
         }
-    if (!translations->AddStdCatalog())
+    if (!translations->AddCatalog(L"wxstd"))
         {
         wxLogDebug("Could not find standard translation catalog.");
         }
