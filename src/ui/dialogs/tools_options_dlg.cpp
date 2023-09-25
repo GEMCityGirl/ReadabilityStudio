@@ -3604,7 +3604,7 @@ void ToolsOptionsDlg::CreateControls()
             m_readabilityGraphPropertyGrid->SetPropertyHelpString(
                 GetInvalidRegionsColorLabel(),
                 _(L"Selects the color for the invalid sentence/word regions."));
-            
+
             wxPGChoices raygorStyles;
             raygorStyles.Add(_(L"Original"));
             raygorStyles.Add(_(L"Baldwin-Kaufman"));
