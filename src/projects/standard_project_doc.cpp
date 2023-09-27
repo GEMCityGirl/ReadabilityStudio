@@ -2363,7 +2363,7 @@ void ProjectDoc::DisplayWordCharts()
             wordBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
             std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0, 0))->SetSortable(true);
             std::dynamic_pointer_cast<BarChart>(
-                wordBarChartCanvas->GetFixedObject(0, 0))->SetSortDirection(Wisteria::SortDirection::SortDescending);
+                wordBarChartCanvas->GetFixedObject(0, 0))->SetSortDirection(Wisteria::SortDirection::NoSort);
             view->GetWordsBreakdownView().InsertWindow(0, wordBarChartCanvas);
             }
         UpdateGraphOptions(wordBarChartCanvas);
@@ -2502,6 +2502,9 @@ void ProjectDoc::DisplayWordCharts()
         // update the bar labels
         wordBarChart->SetBinLabelDisplay(IsDisplayingBarLabels() ?
             BinLabelDisplay::BinValue : BinLabelDisplay::NoDisplay);
+
+        // won't sort unless this is a refresh and user sorted it previously
+        wordBarChart->SortBars(BarChart::BarSortComparison::SortByBarLength, wordBarChart->GetSortDirection());
 
         wordBarChartCanvas->CalcAllSizes(gdc);
         }
