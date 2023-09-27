@@ -2586,9 +2586,10 @@ void ProjectDoc::DisplayWordCharts()
 
         auto wordCloud = std::dynamic_pointer_cast<WordCloud>(wordCloudCanvas->GetFixedObject(0, 0));
         assert(wordCloud);
-        // top 100 words, with a min frequency of 2
+        // top 100 words, with a min frequency of 2 (unless less than 100 words, then include everything)
         wordCloud->SetData(m_keyWordsDataset,
-                           GetWordsColumnName(), GetWordsCountsColumnName(), 2,
+                           GetWordsColumnName(), GetWordsCountsColumnName(),
+                           (m_keyWordsDataset->GetRowCount() < 100 ? 1 : 2),
                            std::nullopt, 100);
 
         wordCloudCanvas->CalcAllSizes(gdc);

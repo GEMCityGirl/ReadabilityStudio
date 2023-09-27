@@ -286,6 +286,8 @@ A word cloud shows words from a document in a random layout with randomly assign
 
 This particular word cloud displays the ~100 most frequently occurring key words appearing in the document. Like the **Key Words** list, these will be combined words with uncommon ones (e.g., *the*) removed. In the case of combined words, the most frequent instance of similar words will be shown. For example, if the word *report* appears more times than *reporting* and *reports*, then *report* will appear in the word cloud. Also, the size of the word *report* will be based on the number of times *report*, *reporting*, and *reports* all appear.
 
+To focus on important topics, only words occurring two or more times will be shown (unless there are less than one unique hundred words).
+
 In a batch project, this word cloud will show the key words across all documents.
 :::
 
