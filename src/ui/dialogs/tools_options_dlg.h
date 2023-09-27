@@ -288,10 +288,10 @@ private:
     wxString GetRaygorStyleLabel() const
         { return _(L"Raygor style"); }
     [[nodiscard]]
-    wxString GetFleshChartConnectPointsLabel() const
+    wxString GetFleschChartConnectPointsLabel() const
         { return _(L"Connect points"); }
      [[nodiscard]]
-    wxString GetFleshSyllableRulerDocGroupsLabel() const
+    wxString GetFleschSyllableRulerDocGroupsLabel() const
         { return _(L"Display grouped documents on syllable ruler"); }
     [[nodiscard]]
     wxString GetUseEnglishLabelsForGermanLixLabel() const
