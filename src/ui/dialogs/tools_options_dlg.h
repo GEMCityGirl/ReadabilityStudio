@@ -355,7 +355,10 @@ private:
         { return _(L"Image"); }
     [[nodiscard]]
     wxString GetApplyFadeLabel() const
-        { return _(L"Apply color fade"); }
+        { return _(L"Apply fade"); }
+    [[nodiscard]]
+    wxString GetBackgroundColorFadeLabel() const
+        { return GetBackgroundColorLabel() + L"." + GetApplyFadeLabel(); }
     [[nodiscard]]
     wxString GetBackgroundLabel() const
         { return _(L"Background"); }

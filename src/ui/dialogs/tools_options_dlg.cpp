@@ -1087,8 +1087,8 @@ bool ToolsOptionsDlg::HaveGraphOptionsChanged() const
                m_generalGraphPropertyGrid->IsPropertyModified(GetWatermarkLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid,GetLogoImageLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetLogoImageLabel())) ||
-           (IsPropertyAvailable(m_generalGraphPropertyGrid,GetApplyFadeLabel()) &&
-               m_generalGraphPropertyGrid->IsPropertyModified(GetApplyFadeLabel())) ||
+           (IsPropertyAvailable(m_generalGraphPropertyGrid, GetBackgroundColorFadeLabel()) &&
+               m_generalGraphPropertyGrid->IsPropertyModified(GetBackgroundColorFadeLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid,GetCustomImageBrushLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetCustomImageBrushLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid,GetBackgroundColorLabel()) &&
@@ -2110,10 +2110,10 @@ void ToolsOptionsDlg::SaveOptions()
             wxGetApp().GetAppOptions().SetGraphBackGroundOpacity(
                 static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageOpacityLabel())));
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetApplyFadeLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetBackgroundColorFadeLabel()))
             {
             wxGetApp().GetAppOptions().SetGraphBackGroundLinearGradient(
-                m_generalGraphPropertyGrid->GetPropertyValueAsBool(GetApplyFadeLabel()));
+                m_generalGraphPropertyGrid->GetPropertyValueAsBool(GetBackgroundColorFadeLabel()));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetColorLabel()))
             {
@@ -2406,10 +2406,10 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
             m_readabilityProjectDoc->SetGraphBackGroundOpacity(
                 static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageOpacityLabel())));
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetApplyFadeLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetBackgroundColorFadeLabel()))
             {
             m_readabilityProjectDoc->SetGraphBackGroundLinearGradient(
-                m_generalGraphPropertyGrid->GetPropertyValueAsBool(GetApplyFadeLabel()));
+                m_generalGraphPropertyGrid->GetPropertyValueAsBool(GetBackgroundColorFadeLabel()));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetColorLabel()))
             {
@@ -4527,18 +4527,17 @@ void ToolsOptionsDlg::CreateControls()
                 GetGraphBackgroundLabel(),
                 _(L"The options in this section customize the backgrounds of the graphs."));
             // color
-            m_generalGraphPropertyGrid->Append(
-                new wxColourProperty(GetColorLabel(),GetBackgroundColorLabel(),
+            auto backgroundColorProp = m_generalGraphPropertyGrid->Append(
+                new wxColourProperty(GetColorLabel(), GetBackgroundColorLabel(),
                     (m_readabilityProjectDoc ?
                         m_readabilityProjectDoc->GetBackGroundColor() :
                         wxGetApp().GetAppOptions().GetBackGroundColor())));
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetBackgroundColorLabel(),
+            backgroundColorProp->SetHelpString(
                 _(L"Selects the color for the graphs' background. "
                    "Note that if you are displaying an image, then the image will be shown on top of this color."));
             // color fade
-            auto colorFadeProp = m_generalGraphPropertyGrid->Append(
-                new wxBoolProperty(GetApplyFadeLabel() ,wxPG_LABEL,
+            auto colorFadeProp = backgroundColorProp->AppendChild(
+                new wxBoolProperty(GetApplyFadeLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
                     m_readabilityProjectDoc->GetGraphBackGroundLinearGradient() :
                     wxGetApp().GetAppOptions().GetGraphBackGroundLinearGradient())));
