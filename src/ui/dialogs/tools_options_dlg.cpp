@@ -4557,25 +4557,24 @@ void ToolsOptionsDlg::CreateControls()
             backgroundImage->SetAttribute(wxPG_FILE_WILDCARD,wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER);
             backgroundImage->SetAttribute(wxPG_DIALOG_TITLE,_(L"Select Background Image"));
             backgroundImage->SetAttribute(wxPG_ATTR_HINT,_(L"Select an image"));
+            backgroundImage->SetHelpString(_(L"Selects the image for the graphs' background."));
             m_generalGraphPropertyGrid->Append(backgroundImage);
             // set the default folder to the global image folder if no image provided
             if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()).empty())
                 {
                 backgroundImage->SetAttribute(wxPG_FILE_INITIAL_PATH, wxGetApp().GetAppOptions().GetImagePath());
                 }
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetImageLabel(), _(L"Selects the image for the graphs' background."));
+
             // image opacity
-            m_generalGraphPropertyGrid->Append(
+            auto imgOpacityProp = m_generalGraphPropertyGrid->Append(
                 new wxIntProperty(GetImageOpacityLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
                     m_readabilityProjectDoc->GetGraphBackGroundOpacity() :
                     wxGetApp().GetAppOptions().GetGraphBackGroundOpacity())) );
-            m_generalGraphPropertyGrid->SetPropertyEditor(GetImageOpacityLabel(), wxPGEditor_SpinCtrl);
-            m_generalGraphPropertyGrid->SetPropertyAttribute(GetImageOpacityLabel(), wxPG_ATTR_MIN, 0);
-            m_generalGraphPropertyGrid->SetPropertyAttribute(GetImageOpacityLabel(), wxPG_ATTR_MAX, 255);
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetImageOpacityLabel(),
+            imgOpacityProp->SetEditor(wxPGEditor_SpinCtrl);
+            imgOpacityProp->SetAttribute(wxPG_ATTR_MIN, 0);
+            imgOpacityProp->SetAttribute(wxPG_ATTR_MAX, 255);
+            imgOpacityProp->SetHelpString(
                 _(L"Sets the transparency of the background image. "
                    "A value of 255 will set the background to be fully opaque, whereas 0 will set "
                    "the background to be transparent."));
