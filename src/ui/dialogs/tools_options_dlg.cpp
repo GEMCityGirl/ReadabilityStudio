@@ -4556,6 +4556,7 @@ void ToolsOptionsDlg::CreateControls()
                     wxGetApp().GetAppOptions().GetBackGroundImagePath()));
             backgroundImage->SetAttribute(wxPG_FILE_WILDCARD,wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER);
             backgroundImage->SetAttribute(wxPG_DIALOG_TITLE,_(L"Select Background Image"));
+            backgroundImage->SetAttribute(wxPG_ATTR_HINT,_(L"Select an image"));
             m_generalGraphPropertyGrid->Append(backgroundImage);
             // set the default folder to the global image folder if no image provided
             if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()).empty())
@@ -4614,6 +4615,7 @@ void ToolsOptionsDlg::CreateControls()
                 (m_readabilityProjectDoc ?
                     m_readabilityProjectDoc->GetWatermark() :
                     wxGetApp().GetAppOptions().GetWatermark())));
+            m_generalGraphPropertyGrid->SetPropertyAttribute(GetWatermarkLabel(), wxPG_ATTR_HINT, _(L"Enter text"));
             m_generalGraphPropertyGrid->SetPropertyHelpString(
                 GetWatermarkLabel(),
                 _(L"Enter a label to be stamped across your graphs into this field. "
@@ -4625,6 +4627,7 @@ void ToolsOptionsDlg::CreateControls()
                     wxGetApp().GetAppOptions().GetWatermarkLogo()));
             graphLogo->SetAttribute(wxPG_FILE_WILDCARD,wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER);
             graphLogo->SetAttribute(wxPG_DIALOG_TITLE,_(L"Select Logo Image"));
+            graphLogo->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
             m_generalGraphPropertyGrid->Append(graphLogo);
             // set the default folder to the global image folder if no image provided
             if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetLogoImageLabel()).empty())
@@ -4647,6 +4650,7 @@ void ToolsOptionsDlg::CreateControls()
                     wxGetApp().GetAppOptions().GetGraphStippleImagePath()));
             customBrushProp->SetAttribute(wxPG_FILE_WILDCARD ,wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER);
             customBrushProp->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Custom Brush Image"));
+            customBrushProp->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
             m_generalGraphPropertyGrid->Append(customBrushProp);
             m_generalGraphPropertyGrid->SetPropertyHelpString(
                 GetCustomImageBrushLabel(),
