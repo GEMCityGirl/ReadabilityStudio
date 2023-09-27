@@ -2383,31 +2383,24 @@ void ProjectDoc::DisplayWordCharts()
         wordBarChart->GetRightYAxis().Show(false);
         wordBarChart->GetTopXAxis().Show(false);
         wordBarChart->GetScalingAxis().GetGridlinePen() = wxNullPen;
+        // Do not change the order of these bars, brackets are built based on this order (see below)
         size_t currentBar{ 0 };
-        // go through the custom readability tests
-        for(auto pos = GetCustTestsInUse().cbegin();
-            pos != GetCustTestsInUse().cend();
-            ++pos)
+        // go through the custom (familiar word) tests
+        for(const auto& cText : GetCustTestsInUse())
             {
-            if (!pos->GetIterator()->is_using_familiar_words())
+            if (!cText.GetIterator()->is_using_familiar_words())
                 { continue; }
             wordBarChart->AddBar(BarChart::Bar(++currentBar,
                 {
-                    { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(pos->GetUnfamiliarWordCount())).
+                    { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(cText.GetUnfamiliarWordCount())).
                         Brush(GetBarChartBarColor())) }
                 },
-                wxNumberFormatter::ToString(pos->GetUnfamiliarWordCount(), 0,
+                wxNumberFormatter::ToString(cText.GetUnfamiliarWordCount(), 0,
                     wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label((pos->GetIterator()->get_name().c_str())+_(L" (unfamiliar)")),
+                GraphItems::Label((cText.GetIterator()->get_name().c_str()) + _(L" (unfamiliar)")),
                                                   GetGraphBarEffect(), GetGraphBarOpacity()));
             }
-        wordBarChart->AddBar(BarChart::Bar(++currentBar,
-            { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalMonoSyllabicWords())).
-                Brush(GetBarChartBarColor())) } },
-            wxNumberFormatter::ToString(GetTotalMonoSyllabicWords(), 0,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
-            GraphItems::Label(_(L"Monosyllabic")),
-            GetGraphBarEffect(), GetGraphBarOpacity()) );
+
         if (IsDaleChallLikeTestIncluded())
             {
             wordBarChart->AddBar(BarChart::Bar(++currentBar,
@@ -2452,6 +2445,13 @@ void ProjectDoc::DisplayWordCharts()
                 wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
             GraphItems::Label(_(L"6+ characters")),
             GetGraphBarEffect(), GetGraphBarOpacity()) );
+        wordBarChart->AddBar(BarChart::Bar(++currentBar,
+            { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalMonoSyllabicWords())).
+                Brush(GetBarChartBarColor())) } },
+            wxNumberFormatter::ToString(GetTotalMonoSyllabicWords(), 0,
+                wxNumberFormatter::Style::Style_NoTrailingZeroes | wxNumberFormatter::Style::Style_WithThousandsSep),
+            GraphItems::Label(_(L"Monosyllabic")),
+            GetGraphBarEffect(), GetGraphBarOpacity()));
         if (GetReadabilityTests().is_test_included(ReadabilityMessages::EFLAW()))
             {
             wordBarChart->AddBar(BarChart::Bar(++currentBar,
@@ -2471,11 +2471,37 @@ void ProjectDoc::DisplayWordCharts()
             GraphItems::Label(_(L"Total Words")),
             GetGraphBarEffect(), GetGraphBarOpacity()) );
 
+        // add brackets around the factors of the categories
+        auto threeSyllableBarPos = wordBarChart->GetBarAxis().FindCustomLabelPosition(_(L"3+ syllables"));
+        auto monoSyllableBarPos = wordBarChart->GetBarAxis().FindCustomLabelPosition(_(L"Monosyllabic"));
+        auto eflawBarPos = wordBarChart->GetBarAxis().FindCustomLabelPosition(_(L"EFLAW miniwords"));
+
+        if (threeSyllableBarPos && threeSyllableBarPos.value() > 1)
+            {
+            wordBarChart->GetBarAxis().AddBracket(
+                Axis::AxisBracket(1, threeSyllableBarPos.value(),
+                    ((threeSyllableBarPos.value() - 1) * math_constants::half) + 1,
+                    _("Familiarity")));
+            }
+
+        assert(threeSyllableBarPos && monoSyllableBarPos && L"Can't find bars in word barchart!");
+        if (threeSyllableBarPos && monoSyllableBarPos)
+            {
+            wordBarChart->GetBarAxis().AddBracket(
+                Axis::AxisBracket(threeSyllableBarPos.value(), eflawBarPos.value_or(monoSyllableBarPos.value()),
+                ((eflawBarPos.value_or(monoSyllableBarPos.value()) - threeSyllableBarPos.value()) * math_constants::half) +
+                    threeSyllableBarPos.value(),
+                _("Complexity or\nLength")));
+            }
+
+        for (auto& bracket : wordBarChart->GetBarAxis().GetBrackets())
+            {
+            bracket.SetPerpendicularLabelConnectionLinesAlignment(AxisLabelAlignment::AlignWithBoundary);
+            }
+
         // update the bar labels
         wordBarChart->SetBinLabelDisplay(IsDisplayingBarLabels() ?
             BinLabelDisplay::BinValue : BinLabelDisplay::NoDisplay);
-
-        wordBarChart->SortBars(BarChart::BarSortComparison::SortByBarLength, wordBarChart->GetSortDirection());
 
         wordBarChartCanvas->CalcAllSizes(gdc);
         }
