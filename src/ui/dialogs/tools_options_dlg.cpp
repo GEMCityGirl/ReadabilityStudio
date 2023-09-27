@@ -4557,10 +4557,9 @@ void ToolsOptionsDlg::CreateControls()
             backgroundImage->SetAttribute(wxPG_FILE_WILDCARD,wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER);
             backgroundImage->SetAttribute(wxPG_DIALOG_TITLE,_(L"Select Background Image"));
             m_generalGraphPropertyGrid->Append(backgroundImage);
-            // hide empty image box, and set the default folder to the global image folder
+            // set the default folder to the global image folder if no image provided
             if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()).empty())
                 {
-                m_generalGraphPropertyGrid->SetPropertyValueUnspecified(GetImageLabel());
                 backgroundImage->SetAttribute(wxPG_FILE_INITIAL_PATH, wxGetApp().GetAppOptions().GetImagePath());
                 }
             m_generalGraphPropertyGrid->SetPropertyHelpString(
@@ -4627,10 +4626,9 @@ void ToolsOptionsDlg::CreateControls()
             graphLogo->SetAttribute(wxPG_FILE_WILDCARD,wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER);
             graphLogo->SetAttribute(wxPG_DIALOG_TITLE,_(L"Select Logo Image"));
             m_generalGraphPropertyGrid->Append(graphLogo);
-            // hide empty image box, and set the default folder to the global image folder 
+            // set the default folder to the global image folder if no image provided
             if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetLogoImageLabel()).empty())
                 {
-                m_generalGraphPropertyGrid->SetPropertyValueUnspecified(GetLogoImageLabel());
                 graphLogo->SetAttribute(wxPG_FILE_INITIAL_PATH, wxGetApp().GetAppOptions().GetImagePath());
                 }
             m_generalGraphPropertyGrid->SetPropertyHelpString(
@@ -4654,10 +4652,9 @@ void ToolsOptionsDlg::CreateControls()
                 GetCustomImageBrushLabel(),
                 _(L"Enter into this field the file path to the image used for custom brushing. "
                    "A custom-image brush can be used to draw stacked images across bars and boxes"));
-            // hide empty image box, and set the default folder to the global image folder
+            // set the default folder to the global image folder if no image provided
             if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel()).empty())
                 {
-                m_generalGraphPropertyGrid->SetPropertyValueUnspecified(GetCustomImageBrushLabel());
                 customBrushProp->SetAttribute(wxPG_FILE_INITIAL_PATH, wxGetApp().GetAppOptions().GetImagePath());
                 }
             // drop shadows
