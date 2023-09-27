@@ -4558,16 +4558,10 @@ void ToolsOptionsDlg::CreateControls()
             backgroundImage->SetAttribute(wxPG_DIALOG_TITLE,_(L"Select Background Image"));
             backgroundImage->SetAttribute(wxPG_ATTR_HINT,_(L"Select an image"));
             backgroundImage->SetHelpString(_(L"Selects the image for the graphs' background."));
-            m_generalGraphPropertyGrid->Append(backgroundImage);
-            // set the default folder to the global image folder if no image provided
-            if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()).empty())
-                {
-                backgroundImage->SetAttribute(wxPG_FILE_INITIAL_PATH, wxGetApp().GetAppOptions().GetImagePath());
-                }
 
             // image opacity
-            auto imgOpacityProp = m_generalGraphPropertyGrid->Append(
-                new wxIntProperty(GetImageOpacityLabel(), wxPG_LABEL,
+            auto imgOpacityProp = backgroundImage->AppendChild(
+                new wxIntProperty(GetOpacityLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
                     m_readabilityProjectDoc->GetGraphBackGroundOpacity() :
                     wxGetApp().GetAppOptions().GetGraphBackGroundOpacity())) );
@@ -4578,6 +4572,13 @@ void ToolsOptionsDlg::CreateControls()
                 _(L"Sets the transparency of the background image. "
                    "A value of 255 will set the background to be fully opaque, whereas 0 will set "
                    "the background to be transparent."));
+            m_generalGraphPropertyGrid->Append(backgroundImage);
+            // set the default folder to the global image folder if no image provided
+            if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()).empty())
+                {
+                backgroundImage->SetAttribute(wxPG_FILE_INITIAL_PATH, wxGetApp().GetAppOptions().GetImagePath());
+                }
+
             // plot area
             m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetPlotAreaBackgroundLabel()) );
             m_generalGraphPropertyGrid->SetPropertyHelpString(

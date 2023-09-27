@@ -310,7 +310,7 @@ private:
         { return _(L"Opacity"); }
     [[nodiscard]]
     wxString GetImageOpacityLabel() const
-        { return _(L"Image opacity"); }
+        { return GetImageLabel() + L"." + GetOpacityLabel(); }
     [[nodiscard]]
     wxString GetLabelsOnBarsLabel() const
         { return _(L"Display labels on bars"); }
