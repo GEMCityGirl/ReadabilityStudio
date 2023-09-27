@@ -4537,14 +4537,13 @@ void ToolsOptionsDlg::CreateControls()
                 _(L"Selects the color for the graphs' background. "
                    "Note that if you are displaying an image, then the image will be shown on top of this color."));
             // color fade
-            m_generalGraphPropertyGrid->Append(
+            auto colorFadeProp = m_generalGraphPropertyGrid->Append(
                 new wxBoolProperty(GetApplyFadeLabel() ,wxPG_LABEL,
                 (m_readabilityProjectDoc ?
                     m_readabilityProjectDoc->GetGraphBackGroundLinearGradient() :
                     wxGetApp().GetAppOptions().GetGraphBackGroundLinearGradient())));
-            m_generalGraphPropertyGrid->SetPropertyAttribute(GetApplyFadeLabel(), wxPG_BOOL_USE_CHECKBOX, true);
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetApplyFadeLabel(),
+            colorFadeProp->SetAttribute(wxPG_BOOL_USE_CHECKBOX, true);
+            colorFadeProp->SetHelpString(
                 _(L"Check this to apply a downward fade to the background color of your graphs. "
                    "The background of your graphs will fade (top-to-bottom) starting with the color "
                    "that you have selected into white."));
@@ -4555,8 +4554,8 @@ void ToolsOptionsDlg::CreateControls()
                     m_readabilityProjectDoc->GetBackGroundImagePath() :
                     wxGetApp().GetAppOptions().GetBackGroundImagePath()));
             backgroundImage->SetAttribute(wxPG_FILE_WILDCARD,wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER);
-            backgroundImage->SetAttribute(wxPG_DIALOG_TITLE,_(L"Select Background Image"));
-            backgroundImage->SetAttribute(wxPG_ATTR_HINT,_(L"Select an image"));
+            backgroundImage->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Background Image"));
+            backgroundImage->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
             backgroundImage->SetHelpString(_(L"Selects the image for the graphs' background."));
 
             // image opacity
