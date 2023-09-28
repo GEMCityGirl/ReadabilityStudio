@@ -3110,7 +3110,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                                 selectedFilePaths[fileIter].first, wxDOC_SILENT));
                         if (!newDoc)
                             { return; }
-                        newDoc->CopyDocumentLevelSettings(*doc);
+                        newDoc->CopyDocumentLevelSettings(*doc, false);
                         const BaseProject* subDocument = doc->GetDocument(selectedFilePaths[fileIter].first);
                         if (subDocument)
                             { newDoc->CopySettings(*subDocument); }

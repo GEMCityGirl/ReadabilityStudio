@@ -112,7 +112,7 @@ BaseProjectDoc::BaseProjectDoc() :
     }
 
 //------------------------------------------------
-void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that)
+void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const bool reloadImages)
     {
     CopySettings(that);
 
@@ -124,14 +124,28 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that)
     // graph settings
     m_useGraphBackGroundImageLinearGradient = that.m_useGraphBackGroundImageLinearGradient;
     m_displayDropShadows = that.m_displayDropShadows;
+
+    if (reloadImages)
+        {
     SetBackGroundImagePath(that.m_graphBackGroundImagePath);
     SetStippleImagePath(that.m_stippleImagePath);
+        SetWatermarkLogoPath(that.m_watermarkImagePath);
+        }
+    else
+        {
+        m_graphBackgroundImage = that.m_graphBackgroundImage;
+        m_graphBackGroundImagePath = that.m_graphBackGroundImagePath;
+        m_stippleImagePath = that.m_stippleImagePath;
+        m_graphStippleImage = that.m_graphStippleImage;
+        m_watermarkImagePath = that.m_watermarkImagePath;
+        m_waterMarkImage = that.m_waterMarkImage;
+        }
+
     m_graphBackGroundColor = that.m_graphBackGroundColor;
     m_graphPlotBackGroundColor = that.m_graphPlotBackGroundColor;
     m_graphBackGroundOpacity = that.m_graphBackGroundOpacity;
     m_graphPlotBackGroundOpacity = that.m_graphPlotBackGroundOpacity;
     m_watermark = that.m_watermark;
-    SetWatermarkLogoPath(that.m_watermarkImagePath);
     m_xAxisFontColor = that.m_xAxisFontColor;
     m_xAxisFont = that.m_xAxisFont;
     m_yAxisFontColor = that.m_yAxisFontColor;
@@ -170,14 +184,14 @@ void BaseProjectDoc::SetBackGroundImagePath(const wxString& filePath)
     {
     m_graphBackGroundImagePath = filePath;
     if (filePath.empty())
-        { m_graphBackgroundImage = wxBitmapBundle(); }
+        { m_graphBackgroundImage = wxBitmapBundle{}; }
     if (HasUI())
         {
         if (wxFile::Exists(filePath))
             {
             m_graphBackgroundImage = wxBitmapBundle(
                 wxGetApp().GetResourceManager().GetBitmap(
-                    m_graphBackGroundImagePath,wxBITMAP_TYPE_ANY).ConvertToImage());
+                    m_graphBackGroundImagePath, wxBITMAP_TYPE_ANY).ConvertToImage());
             }
         else
             {
@@ -188,14 +202,14 @@ void BaseProjectDoc::SetBackGroundImagePath(const wxString& filePath)
                 m_graphBackGroundImagePath = fileBySameNameInProjectDirectory;
                 m_graphBackgroundImage = wxBitmapBundle(
                     wxGetApp().GetResourceManager().GetBitmap(
-                        m_graphBackGroundImagePath,wxBITMAP_TYPE_ANY).ConvertToImage());
+                        m_graphBackGroundImagePath, wxBITMAP_TYPE_ANY).ConvertToImage());
                 }
             else
-                { m_graphBackgroundImage = wxBitmapBundle(); }
+                { m_graphBackgroundImage = wxBitmapBundle{}; }
             }
         }
     else
-        { m_graphBackgroundImage = wxBitmapBundle(); }
+        { m_graphBackgroundImage = wxBitmapBundle{}; }
     }
 
 //------------------------------------------------------
@@ -203,7 +217,7 @@ void BaseProjectDoc::SetStippleImagePath(const wxString& filePath)
     {
     m_stippleImagePath = filePath;
     if (filePath.empty())
-        { m_graphStippleImage = wxBitmapBundle(); }
+        { m_graphStippleImage = wxBitmapBundle{}; }
     if (HasUI())
         {
         if (wxFile::Exists(filePath))
@@ -222,11 +236,11 @@ void BaseProjectDoc::SetStippleImagePath(const wxString& filePath)
                     wxGetApp().GetResourceManager().GetBitmap(m_stippleImagePath,wxBITMAP_TYPE_ANY).ConvertToImage());
                 }
             else
-                { m_graphStippleImage = wxBitmapBundle(); }
+                { m_graphStippleImage = wxBitmapBundle{}; }
             }
         }
     else
-        { m_graphStippleImage = wxBitmapBundle(); }
+        { m_graphStippleImage = wxBitmapBundle{}; }
     }
 
 //------------------------------------------------------
@@ -234,7 +248,7 @@ void BaseProjectDoc::SetWatermarkLogoPath(const wxString& filePath)
     {
     m_watermarkImagePath = filePath;
     if (filePath.empty())
-        { m_waterMarkImage = wxBitmapBundle(); }
+        { m_waterMarkImage = wxBitmapBundle{}; }
     if (HasUI())
         {
         if (wxFile::Exists(filePath))
@@ -254,11 +268,11 @@ void BaseProjectDoc::SetWatermarkLogoPath(const wxString& filePath)
                         m_watermarkImagePath,wxBITMAP_TYPE_ANY).ConvertToImage());
                 }
             else
-                { m_waterMarkImage = wxBitmapBundle(); }
+                { m_waterMarkImage = wxBitmapBundle{}; }
             }
         }
     else
-        { m_waterMarkImage = wxBitmapBundle(); }
+        { m_waterMarkImage = wxBitmapBundle{}; }
     }
 
 //------------------------------------------------

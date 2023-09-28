@@ -23,8 +23,10 @@ public:
         and need to copy over all settings from another project. In turn, this would be like
         calling BaseProjectDoc's CTOR after copying over settings from another project.
         @param that The BaseProjectDoc to copy settings from.
+        @param reloadImages `true` to load any images from the parent project's image paths, `false`
+            to copy the images directly from the parent project.
         @note This will call BaseProject::CopySettings() along with copying document-level features.*/
-    void CopyDocumentLevelSettings(const BaseProjectDoc& that);
+    void CopyDocumentLevelSettings(const BaseProjectDoc& that, const bool reloadImages);
 
     static bool AddGlobalCustomReadabilityTest(CustomReadabilityTest& customTest);
     /// When we switched to the Tinyexpr++ formula engine (circa 2020),
