@@ -124,17 +124,14 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that)
     // graph settings
     m_useGraphBackGroundImageLinearGradient = that.m_useGraphBackGroundImageLinearGradient;
     m_displayDropShadows = that.m_displayDropShadows;
-    m_graphBackgroundImage = that.m_graphBackgroundImage;
-    m_graphBackGroundImagePath = that.m_graphBackGroundImagePath;
-    m_stippleImagePath = that.m_stippleImagePath;
-    m_graphStippleImage = that.m_graphStippleImage;
+    SetBackGroundImagePath(that.m_graphBackGroundImagePath);
+    SetStippleImagePath(that.m_stippleImagePath);
     m_graphBackGroundColor = that.m_graphBackGroundColor;
     m_graphPlotBackGroundColor = that.m_graphPlotBackGroundColor;
     m_graphBackGroundOpacity = that.m_graphBackGroundOpacity;
     m_graphPlotBackGroundOpacity = that.m_graphPlotBackGroundOpacity;
     m_watermark = that.m_watermark;
-    m_watermarkImagePath = that.m_watermarkImagePath;
-    m_waterMarkImage = that.m_waterMarkImage;
+    SetWatermarkLogoPath(that.m_watermarkImagePath);
     m_xAxisFontColor = that.m_xAxisFontColor;
     m_xAxisFont = that.m_xAxisFont;
     m_yAxisFontColor = that.m_yAxisFontColor;
