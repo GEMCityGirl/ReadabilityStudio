@@ -738,7 +738,7 @@ The options on this page customize your graphs.
 
 **Image**: Selects the image for the graphs' background.
 
-**Opacity**: Sets the transparency of the background image. A value of 255 will set the background to be fully opaque, whereas 0 will set the background to be transparent.
+**Image opacity**: Sets the transparency of the background image. A value of 255 will set the background to be fully opaque, whereas 0 will set the background to be transparent.
 
 #### Plot Area Background {-}
 
