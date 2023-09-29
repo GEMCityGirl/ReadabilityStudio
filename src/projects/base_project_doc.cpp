@@ -78,6 +78,8 @@ BaseProjectDoc::BaseProjectDoc() :
     m_graphBoxColor(wxGetApp().GetAppOptions().GetGraphBoxColor()),
     m_graphBoxOpacity(wxGetApp().GetAppOptions().GetGraphBoxOpacity()),
     m_graphBoxEffect(wxGetApp().GetAppOptions().GetGraphBoxEffect()),
+    // background image effect
+    m_backgroundImageEffect(wxGetApp().GetAppOptions().GetBackGroundImageEffect()),
     // text highlighting options
     m_textViewHighlightColor(wxGetApp().GetAppOptions().GetTextHighlightColor() ),
     m_excludedTextHighlightColor(wxGetApp().GetAppOptions().GetExcludedTextHighlightColor() ),
@@ -127,14 +129,15 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
 
     if (reloadImages)
         {
-    SetBackGroundImagePath(that.m_graphBackGroundImagePath);
-    SetStippleImagePath(that.m_stippleImagePath);
+        SetBackGroundImagePath(that.m_graphBackGroundImagePath);
+        SetStippleImagePath(that.m_stippleImagePath);
         SetWatermarkLogoPath(that.m_watermarkImagePath);
         }
     else
         {
-        m_graphBackgroundImage = that.m_graphBackgroundImage;
         m_graphBackGroundImagePath = that.m_graphBackGroundImagePath;
+        m_graphBackgroundImage = that.m_graphBackgroundImage;
+        m_graphBackgroundImageWithEffect = that.m_graphBackgroundImageWithEffect;
         m_stippleImagePath = that.m_stippleImagePath;
         m_graphStippleImage = that.m_graphStippleImage;
         m_watermarkImagePath = that.m_watermarkImagePath;
@@ -207,9 +210,29 @@ void BaseProjectDoc::SetBackGroundImagePath(const wxString& filePath)
             else
                 { m_graphBackgroundImage = wxBitmapBundle{}; }
             }
+        m_graphBackgroundImageWithEffect = Wisteria::GraphItems::Image::ApplyEffect(GetBackGroundImageEffect(),
+            m_graphBackgroundImage.GetBitmap(
+                m_graphBackgroundImage.GetDefaultSize()).ConvertToImage());
+        }
+    }
+
+//------------------------------------------------------
+void BaseProjectDoc::SetBackGroundImageEffect(const Wisteria::ImageEffect effect)
+    {
+    if (HasUI())
+        {
+        // only update the altered image if changing the effect
+        if (GetBackGroundImageEffect() != effect)
+            {
+            m_backgroundImageEffect = effect;
+            m_graphBackgroundImageWithEffect =
+                Wisteria::GraphItems::Image::ApplyEffect(GetBackGroundImageEffect(),
+                    m_graphBackgroundImage.GetBitmap(
+                        m_graphBackgroundImage.GetDefaultSize()).ConvertToImage());
+            }
         }
     else
-        { m_graphBackgroundImage = wxBitmapBundle{}; }
+        { m_backgroundImageEffect = effect; }
     }
 
 //------------------------------------------------------
@@ -431,7 +454,7 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
     UpdatePrinterHeaderAndFooters(canvas);
 
     canvas->SetBackgroundColor(GetBackGroundColor(), GetGraphBackGroundLinearGradient());
-    canvas->SetBackgroundImage(m_graphBackgroundImage, GetGraphBackGroundOpacity());
+    canvas->SetBackgroundImage(m_graphBackgroundImageWithEffect, GetGraphBackGroundOpacity());
 
     auto graph = std::dynamic_pointer_cast<Wisteria::Graphs::Graph2D>(canvas->GetFixedObject(0, 0));
     assert(graph && L"No graph on the canvas!");
@@ -1294,6 +1317,11 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         // background color and images
         SetBackGroundImagePath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_PATH));
+
+        SetBackGroundImageEffect(
+            static_cast<ImageEffect>(XmlFormat::GetLong(graphsSection, graphsSectionEnd,
+            wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_EFFECT,
+            static_cast<int>(GetBackGroundImageEffect()))));
 
         SetBackGroundColor(XmlFormat::GetColor(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_COLOR, wxGetApp().GetAppOptions().GetBackGroundColor()));
@@ -2265,6 +2293,10 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_PATH).append(L">");
     fileText += GetBackGroundImagePath();
     fileText.append(L"</").append(wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_PATH).append(L">\n");
+
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_EFFECT,
+        static_cast<int>(GetBackGroundImageEffect()), 3);
+    fileText += sectionText;
     // background color
     fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_COLOR);
     fileText += XmlFormat::FormatColorAttributes(GetBackGroundColor());

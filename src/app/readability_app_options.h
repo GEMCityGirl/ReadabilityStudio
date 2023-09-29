@@ -958,6 +958,12 @@ public:
         { return m_graphBoxEffect; }
     void SetGraphBoxEffect(const Wisteria::BoxEffect effect) noexcept
         { m_graphBoxEffect = effect; }
+    // background image options
+    [[nodiscard]]
+    Wisteria::ImageEffect GetBackGroundImageEffect() const noexcept
+        { return m_backgroundImageEffect; }
+    void SetBackGroundImageEffect(const Wisteria::ImageEffect effect)
+        { m_backgroundImageEffect = effect; }
     // axis font colors
     [[nodiscard]]
     wxColour GetXAxisFontColor() const
@@ -1418,6 +1424,8 @@ private:
     wxColour m_graphBoxColor{ wxColour{ 0,128,64 } };
     uint8_t m_graphBoxOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_graphBoxEffect{ Wisteria::BoxEffect::Glassy };
+    // background image options
+    Wisteria::ImageEffect m_backgroundImageEffect{ Wisteria::ImageEffect::NoEffect };
     // project settings
     VarianceMethod m_varianceMethod{ VarianceMethod::PopulationVariance };
     size_t m_minDocWordCountForBatch{ 50 };
@@ -1549,6 +1557,7 @@ public:
     // graph settings
     const wxString XML_GRAPH_SETTINGS;
     const wxString XML_GRAPH_BACKGROUND_IMAGE_PATH;
+    const wxString XML_GRAPH_BACKGROUND_IMAGE_EFFECT;
     const wxString XML_GRAPH_BACKGROUND_COLOR;
     const wxString XML_GRAPH_PLOT_BACKGROUND_COLOR;
     const wxString XML_GRAPH_BACKGROUND_OPACITY;

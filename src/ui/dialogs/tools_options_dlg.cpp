@@ -1099,8 +1099,10 @@ bool ToolsOptionsDlg::HaveGraphOptionsChanged() const
                m_generalGraphPropertyGrid->IsPropertyModified(GetColorLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid,GetOpacityLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetOpacityLabel())) ||
-           (IsPropertyAvailable(m_generalGraphPropertyGrid,GetImageLabel()) &&
+           (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetImageLabel())) ||
+           (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageEffectLabel()) &&
+               m_generalGraphPropertyGrid->IsPropertyModified(GetImageEffectLabel())) ||
            // barchart options
            (IsPropertyAvailable(m_barChartPropertyGrid,GetOpacityLabel()) &&
                m_barChartPropertyGrid->IsPropertyModified(GetOpacityLabel())) ||
@@ -2090,10 +2092,15 @@ void ToolsOptionsDlg::SaveOptions()
                 wxAny(m_generalGraphPropertyGrid->GetProperty(
                     GetBackgroundColorLabel())->GetValue()).As<wxColour>());
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetImageLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageLabel()))
             {
             wxGetApp().GetAppOptions().SetBackGroundImagePath(
                 m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()));
+            }
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageEffectLabel()))
+            {
+            wxGetApp().GetAppOptions().SetBackGroundImageEffect(
+                static_cast<ImageEffect>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageEffectLabel())));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetWatermarkLabel()))
             {
@@ -2386,10 +2393,15 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
             m_readabilityProjectDoc->SetBackGroundColor(
                 wxAny(m_generalGraphPropertyGrid->GetProperty(GetBackgroundColorLabel())->GetValue()).As<wxColour>());
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetImageLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageLabel()))
             {
             m_readabilityProjectDoc->SetBackGroundImagePath(
                 m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()));
+            }
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageEffectLabel()))
+            {
+            m_readabilityProjectDoc->SetBackGroundImageEffect(
+                static_cast<ImageEffect>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageEffectLabel())));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetWatermarkLabel()))
             {
@@ -4557,6 +4569,23 @@ void ToolsOptionsDlg::CreateControls()
             backgroundImage->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
             backgroundImage->SetHelpString(_(L"Selects the image for the graphs' background."));
 
+            // image effect
+            wxPGChoices imgEffects;
+            imgEffects.Add(_(L"No effect"));
+            imgEffects.Add(_(L"Grayscale"));
+            imgEffects.Add(_(L"Blur horizontally"));
+            imgEffects.Add(_(L"Blur vertically"));
+            imgEffects.Add(_(L"Sepia"));
+            imgEffects.Add(_(L"Frosted glass"));
+            imgEffects.Add(_(L"Oil painting"));
+            auto imgEffectProp = backgroundImage->AppendChild(
+                new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, imgEffects,
+                    (m_readabilityProjectDoc ?
+                        static_cast<int>(m_readabilityProjectDoc->GetBackGroundImageEffect()) :
+                        static_cast<int>(wxGetApp().GetAppOptions().GetBackGroundImageEffect()))));
+            imgEffectProp->SetHelpString(
+                _(L"Applies an effect to the background image."));
+
             // image opacity
             auto imgOpacityProp = backgroundImage->AppendChild(
                 new wxIntProperty(GetOpacityLabel(), wxPG_LABEL,
@@ -4570,6 +4599,7 @@ void ToolsOptionsDlg::CreateControls()
                 _(L"Sets the transparency of the background image. "
                    "A value of 255 will set the background to be fully opaque, whereas 0 will set "
                    "the background to be transparent."));
+
             m_generalGraphPropertyGrid->Append(backgroundImage);
             // set the default folder to the global image folder if no image provided
             if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()).empty())

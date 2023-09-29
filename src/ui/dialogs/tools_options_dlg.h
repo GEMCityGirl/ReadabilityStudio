@@ -311,6 +311,9 @@ private:
     [[nodiscard]]
     wxString GetImageOpacityLabel() const
         { return GetImageLabel() + L"." + GetOpacityLabel(); }
+     [[nodiscard]]
+    wxString GetImageEffectLabel() const
+        { return GetImageLabel() + L"." + GetEffectLabel(); }
     [[nodiscard]]
     wxString GetLabelsOnBarsLabel() const
         { return _(L"Display labels on bars"); }

@@ -23,8 +23,8 @@ public:
         and need to copy over all settings from another project. In turn, this would be like
         calling BaseProjectDoc's CTOR after copying over settings from another project.
         @param that The BaseProjectDoc to copy settings from.
-        @param reloadImages `true` to load any images from the parent project's image paths, `false`
-            to copy the images directly from the parent project.
+        @param reloadImages `true` to load any images from this project's image paths, `false`
+            to copy the images directly from this project.
         @note This will call BaseProject::CopySettings() along with copying document-level features.*/
     void CopyDocumentLevelSettings(const BaseProjectDoc& that, const bool reloadImages);
 
@@ -283,6 +283,11 @@ public:
         { return m_graphBoxEffect; }
     void SetGraphBoxEffect(const Wisteria::BoxEffect effect) noexcept
         { m_graphBoxEffect = effect; }
+    // background image options
+    [[nodiscard]]
+    Wisteria::ImageEffect GetBackGroundImageEffect() const noexcept
+        { return m_backgroundImageEffect; }
+    void SetBackGroundImageEffect(const Wisteria::ImageEffect effect);
     // text highlighting
     [[nodiscard]]
     TextHighlight GetTextHighlightMethod() noexcept
@@ -609,6 +614,7 @@ protected:
     bool m_useGraphBackGroundImageLinearGradient{ false };
     bool m_displayDropShadows{ false };
     wxBitmapBundle m_graphBackgroundImage;
+    wxBitmapBundle m_graphBackgroundImageWithEffect;
     wxBitmapBundle m_graphStippleImage;
     wxString m_graphBackGroundImagePath;
     wxString m_stippleImagePath;
@@ -663,6 +669,8 @@ protected:
     wxColour m_graphBoxColor;
     uint8_t m_graphBoxOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_graphBoxEffect{ Wisteria::BoxEffect::Glassy };
+    // background image options
+    Wisteria::ImageEffect m_backgroundImageEffect{ Wisteria::ImageEffect::NoEffect };
 
     // text highlighting options
     wxColour m_textViewHighlightColor;

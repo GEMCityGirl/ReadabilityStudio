@@ -99,6 +99,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     // graph settings
     XML_GRAPH_SETTINGS(_DT(L"graph-settings")),
     XML_GRAPH_BACKGROUND_IMAGE_PATH(_DT(L"graph-background-image")),
+    XML_GRAPH_BACKGROUND_IMAGE_EFFECT(_DT(L"graph-background-image-effect")),
     XML_GRAPH_BACKGROUND_COLOR(_DT(L"graph-background-color")),
     XML_GRAPH_PLOT_BACKGROUND_COLOR(_DT(L"graph-plot-background-color")),
     XML_GRAPH_BACKGROUND_OPACITY(_DT(L"graph-background-opacity")),
@@ -670,6 +671,7 @@ void ReadabilityAppOptions::ResetSettings()
     m_graphBoxColor = wxColour(0,128,64);
     m_graphBoxOpacity = wxALPHA_OPAQUE;
     m_graphBoxEffect = BoxEffect::Glassy;
+    m_backgroundImageEffect = Wisteria::ImageEffect::NoEffect;
     m_varianceMethod = VarianceMethod::PopulationVariance;
     GetStatisticsReportInfo().Reset();
     GetStatisticsInfo().Reset();
@@ -2056,6 +2058,15 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             GetBackGroundColor().Blue());
                     SetBackGroundColor(wxColour(red, green, blue));
                     }
+                auto backgroundImageEffectNode =
+                    graphDefaultsNode->FirstChildElement(XML_GRAPH_BACKGROUND_IMAGE_EFFECT.mb_str());
+                    if (backgroundImageEffectNode)
+                        {
+                        int value =
+                            backgroundImageEffectNode->ToElement()->IntAttribute(
+                                XML_VALUE.mb_str(), static_cast<int>(GetBackGroundImageEffect()));
+                        SetBackGroundImageEffect(static_cast<ImageEffect>(value));
+                        }
                 colorNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_COLOR.mb_str());
                 if (colorNode)
                     {
@@ -3972,6 +3983,10 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     graphBackgroundImage->SetAttribute(XML_VALUE.mb_str(),
         wxString(encode({ GetBackGroundImagePath().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(graphBackgroundImage);
+
+    auto backgroundImageEffect = doc.NewElement(XML_GRAPH_BACKGROUND_IMAGE_EFFECT.mb_str());
+    backgroundImageEffect->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetBackGroundImageEffect()));
+    graphDefaultsSection->InsertEndChild(backgroundImageEffect);
     // background colors
     if (GetBackGroundColor().IsOk())
         {
