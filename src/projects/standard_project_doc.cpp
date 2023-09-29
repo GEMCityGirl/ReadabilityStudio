@@ -2494,8 +2494,9 @@ void ProjectDoc::DisplayWordCharts()
             {
             wordBarChart->GetBarAxis().AddBracket(
                 Axis::AxisBracket(threeSyllableBarPos.value(), eflawBarPos.value_or(monoSyllableBarPos.value()),
-                ((eflawBarPos.value_or(monoSyllableBarPos.value()) - threeSyllableBarPos.value()) * math_constants::half) +
-                    threeSyllableBarPos.value(),
+                ((eflawBarPos.value_or(monoSyllableBarPos.value()) - threeSyllableBarPos.value())
+                    * math_constants::half) +
+                        threeSyllableBarPos.value(),
                 _("Complexity or\nLength")));
             }
 

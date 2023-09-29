@@ -1742,7 +1742,8 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
         XRCID("ID_EDIT_GRAPH_BKIMAGE_OPACITY"), _(L"Image Opacity...")));
 
     auto graphBackgroundImageEffectSubMenu = new wxMenu{};
-    
+
+
     graphBackgroundImageEffectSubMenu->Append(
         new wxMenuItem(graphBackgroundColorSubMenu,
             XRCID("ID_GRAPH_BKIMAGE_EFFECT_NO_EFFECT"), _(L"No Effect"), wxString{}, wxITEM_CHECK));
