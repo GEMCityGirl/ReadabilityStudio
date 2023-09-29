@@ -109,7 +109,6 @@ wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
     EVT_MENU(XRCID("ID_EDIT_PLOT_BKCOLOR"), BaseProjectView::OnEditGraphColor)
     EVT_MENU(XRCID("ID_EDIT_PLOT_BKCOLOR_OPACITY"), BaseProjectView::OnEditGraphOpacity)
     EVT_MENU(XRCID("ID_EDIT_GRAPH_BKCOLOR"), BaseProjectView::OnEditGraphColor)
-    EVT_MENU(XRCID("ID_GRAPH_BKCOLOR_FADE"), BaseProjectView::OnGraphColorFade)
     EVT_MENU(XRCID("ID_EDIT_GRAPH_BKIMAGE"), BaseProjectView::OnEditGraphBackgroundImage)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_GRAPH_FONTS"), BaseProjectView::OnEditGraphFontsButton)
     EVT_MENU(XRCID("ID_EDIT_Y_AXIS_FONT"), BaseProjectView::OnEditGraphFont)
@@ -193,6 +192,10 @@ BaseProjectView::BaseProjectView()
                 wxRIBBON_BAR_EXPANDED : wxRIBBON_BAR_MINIMIZED);
             },
         XRCID("ID_TOGGLE_RIBBON"));
+
+    // menu events
+    Bind(wxEVT_MENU, &BaseProjectView::OnGraphColorFade, this,
+        XRCID("ID_GRAPH_BKCOLOR_FADE"));
 
     // Raygor style
     Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED,
@@ -1637,9 +1640,9 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
     graphBackgroundColorSubMenu->Append(item);
 
-    item = new wxMenuItem(graphBackgroundColorSubMenu,
-        XRCID("ID_GRAPH_BKCOLOR_FADE"), _(L"Fade"), wxString{}, wxITEM_CHECK);
-    graphBackgroundColorSubMenu->Append(item);
+    graphBackgroundColorSubMenu->Append(
+        new wxMenuItem(graphBackgroundColorSubMenu,
+        XRCID("ID_GRAPH_BKCOLOR_FADE"), _(L"Fade"), wxString{}, wxITEM_CHECK));
 
     m_graphBackgroundMenu.AppendSubMenu(graphBackgroundColorSubMenu, _(L"Color"));
 
