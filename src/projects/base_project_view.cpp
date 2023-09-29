@@ -1630,24 +1630,31 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     m_graphSortMenu.Append(item);
 
     // graph background menu
-    item = new wxMenuItem(&m_graphBackgroundMenu,
+    // color submenu
+    auto graphBackgroundColorSubMenu = new wxMenu{};
+    item = new wxMenuItem(graphBackgroundColorSubMenu,
         XRCID("ID_EDIT_GRAPH_BKCOLOR"), _(L"Color..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
-    m_graphBackgroundMenu.Append(item);
+    graphBackgroundColorSubMenu->Append(item);
 
-    item = new wxMenuItem(&m_graphBackgroundMenu,
-        XRCID("ID_GRAPH_BKCOLOR_FADE"), _(L"Apply Fade"), wxString{}, wxITEM_CHECK);
-    m_graphBackgroundMenu.Append(item);
+    item = new wxMenuItem(graphBackgroundColorSubMenu,
+        XRCID("ID_GRAPH_BKCOLOR_FADE"), _(L"Fade"), wxString{}, wxITEM_CHECK);
+    graphBackgroundColorSubMenu->Append(item);
 
-    item = new wxMenuItem(&m_graphBackgroundMenu,
+    m_graphBackgroundMenu.AppendSubMenu(graphBackgroundColorSubMenu, _(L"Color"));
+
+    // image submenu
+    auto graphBackgroundImageSubMenu = new wxMenu{};
+    item = new wxMenuItem(graphBackgroundImageSubMenu,
         XRCID("ID_EDIT_GRAPH_BKIMAGE"), _(L"Image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-    m_graphBackgroundMenu.Append(item);
+    graphBackgroundImageSubMenu->Append(item);
 
-    item = new wxMenuItem(&m_graphBackgroundMenu,
+    item = new wxMenuItem(graphBackgroundImageSubMenu,
         XRCID("ID_EDIT_GRAPH_BKIMAGE_OPACITY"), _(L"Image Opacity..."));
-    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/opacity.svg"));
-    m_graphBackgroundMenu.Append(item);
+    graphBackgroundImageSubMenu->Append(item);
+
+    m_graphBackgroundMenu.AppendSubMenu(graphBackgroundImageSubMenu, _(L"Image"));
 
     m_graphBackgroundMenu.AppendSeparator();
 
