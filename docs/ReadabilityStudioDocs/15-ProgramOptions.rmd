@@ -734,7 +734,7 @@ The options on this page customize your graphs.
 
 **Color**: Selects the color for the graphs' background. Note that if you are displaying an image, then the image will be shown on top of this color.
 
-**Apply fade**: Check this to apply a downward fade to the background color of your graphs. The background of your graphs will fade (top-to-bottom) starting with the color that you have selected into white.
+**Fade**: Check this to apply a downward fade to the background color of your graphs. The background of your graphs will fade (top-to-bottom) starting with the color that you have selected into white.
 
 **Image**: Selects the image for the graphs' background.
 
