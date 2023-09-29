@@ -738,8 +738,6 @@ The options on this page customize your graphs.
 
 **Image**: Selects the image for the graphs' background.
 
-**Opacity**: Sets the transparency of the background image. A value of 255 will set the background to be fully opaque, whereas 0 will set the background to be transparent.
-
 :::: {.optionssection data-latex=""}
 ::: {.optionssectiontitle data-latex=""}
 Effect
@@ -755,6 +753,8 @@ The following options can be applied to the graph background image:
 **Frosted glass**: Applies a frosted glass window effect. In other words, the image as it may appear when viewed through frosted glass.
 **Oil painting**: Applies an oil painting effect.
 ::::
+
+**Opacity**: Sets the transparency of the background image. A value of 255 will set the background to be fully opaque, whereas 0 will set the background to be transparent.
 
 #### Plot Area Background {-}
 
