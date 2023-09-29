@@ -187,9 +187,12 @@ void BaseProjectDoc::SetBackGroundImagePath(const wxString& filePath)
         {
         if (wxFile::Exists(filePath))
             {
-            m_graphBackgroundImage = wxBitmapBundle(
-                wxGetApp().GetResourceManager().GetBitmap(
-                    m_graphBackGroundImagePath, wxBITMAP_TYPE_ANY).ConvertToImage());
+            const auto bmp = wxGetApp().GetResourceManager().GetBitmap(
+                m_graphBackGroundImagePath, wxBITMAP_TYPE_ANY);
+            if (bmp.IsOk())
+                {
+                m_graphBackgroundImage = wxBitmapBundle(bmp.ConvertToImage());
+                }
             }
         else
             {
@@ -198,16 +201,23 @@ void BaseProjectDoc::SetBackGroundImagePath(const wxString& filePath)
             if (FindMissingFile(filePath, fileBySameNameInProjectDirectory))
                 {
                 m_graphBackGroundImagePath = fileBySameNameInProjectDirectory;
-                m_graphBackgroundImage = wxBitmapBundle(
-                    wxGetApp().GetResourceManager().GetBitmap(
-                        m_graphBackGroundImagePath, wxBITMAP_TYPE_ANY).ConvertToImage());
+                const auto bmp = wxGetApp().GetResourceManager().GetBitmap(
+                    m_graphBackGroundImagePath, wxBITMAP_TYPE_ANY);
+                if (bmp.IsOk())
+                    {
+                    m_graphBackgroundImage = wxBitmapBundle(bmp.ConvertToImage());
+                    }
                 }
             else
                 { m_graphBackgroundImage = wxBitmapBundle{}; }
             }
-        m_graphBackgroundImageWithEffect = Wisteria::GraphItems::Image::ApplyEffect(GetBackGroundImageEffect(),
-            m_graphBackgroundImage.GetBitmap(
-                m_graphBackgroundImage.GetDefaultSize()).ConvertToImage());
+        const auto bmp = m_graphBackgroundImage.GetBitmap(
+            m_graphBackgroundImage.GetDefaultSize());
+        if (bmp.IsOk())
+            {
+            m_graphBackgroundImageWithEffect = Wisteria::GraphItems::Image::ApplyEffect(GetBackGroundImageEffect(),
+                bmp.ConvertToImage());
+            }
         }
     }
 
@@ -220,10 +230,14 @@ void BaseProjectDoc::SetBackGroundImageEffect(const Wisteria::ImageEffect effect
         if (GetBackGroundImageEffect() != effect)
             {
             m_backgroundImageEffect = effect;
-            m_graphBackgroundImageWithEffect =
-                Wisteria::GraphItems::Image::ApplyEffect(GetBackGroundImageEffect(),
-                    m_graphBackgroundImage.GetBitmap(
-                        m_graphBackgroundImage.GetDefaultSize()).ConvertToImage());
+            const auto bmp = m_graphBackgroundImage.GetBitmap(
+                m_graphBackgroundImage.GetDefaultSize());
+            if (bmp.IsOk())
+                {
+                m_graphBackgroundImageWithEffect =
+                    Wisteria::GraphItems::Image::ApplyEffect(GetBackGroundImageEffect(),
+                        bmp.ConvertToImage());
+                }
             }
         }
     else
@@ -240,8 +254,9 @@ void BaseProjectDoc::SetStippleImagePath(const wxString& filePath)
         {
         if (wxFile::Exists(filePath))
             {
-            m_graphStippleImage = wxBitmapBundle(
-                wxGetApp().GetResourceManager().GetBitmap(m_stippleImagePath,wxBITMAP_TYPE_ANY).ConvertToImage());
+            const auto bmp = wxGetApp().GetResourceManager().GetBitmap(m_stippleImagePath, wxBITMAP_TYPE_ANY);
+            if (bmp.IsOk())
+                { m_graphStippleImage = wxBitmapBundle(bmp.ConvertToImage()); }
             }
         else
             {
@@ -250,8 +265,9 @@ void BaseProjectDoc::SetStippleImagePath(const wxString& filePath)
             if (FindMissingFile(filePath, fileBySameNameInProjectDirectory))
                 {
                 m_stippleImagePath = fileBySameNameInProjectDirectory;
-                m_graphStippleImage = wxBitmapBundle(
-                    wxGetApp().GetResourceManager().GetBitmap(m_stippleImagePath,wxBITMAP_TYPE_ANY).ConvertToImage());
+                const auto bmp = wxGetApp().GetResourceManager().GetBitmap(m_stippleImagePath, wxBITMAP_TYPE_ANY);
+                if (bmp.IsOk())
+                    { m_graphStippleImage = wxBitmapBundle(bmp.ConvertToImage()); }
                 }
             else
                 { m_graphStippleImage = wxBitmapBundle{}; }
@@ -271,8 +287,9 @@ void BaseProjectDoc::SetWatermarkLogoPath(const wxString& filePath)
         {
         if (wxFile::Exists(filePath))
             {
-            m_waterMarkImage = wxBitmapBundle(
-                wxGetApp().GetResourceManager().GetBitmap(m_watermarkImagePath,wxBITMAP_TYPE_ANY).ConvertToImage());
+            const auto bmp = wxGetApp().GetResourceManager().GetBitmap(m_watermarkImagePath, wxBITMAP_TYPE_ANY);
+            if (bmp.IsOk())
+                { m_waterMarkImage = wxBitmapBundle(bmp.ConvertToImage()); }
             }
         else
             {
@@ -281,9 +298,9 @@ void BaseProjectDoc::SetWatermarkLogoPath(const wxString& filePath)
             if (FindMissingFile(filePath, fileBySameNameInProjectDirectory))
                 {
                 m_watermarkImagePath = fileBySameNameInProjectDirectory;
-                m_waterMarkImage = wxBitmapBundle(
-                    wxGetApp().GetResourceManager().GetBitmap(
-                        m_watermarkImagePath,wxBITMAP_TYPE_ANY).ConvertToImage());
+                const auto bmp = wxGetApp().GetResourceManager().GetBitmap(m_watermarkImagePath, wxBITMAP_TYPE_ANY);
+                if (bmp.IsOk())
+                    { m_waterMarkImage = wxBitmapBundle(bmp.ConvertToImage()); }
                 }
             else
                 { m_waterMarkImage = wxBitmapBundle{}; }
