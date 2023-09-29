@@ -106,12 +106,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_highlightDolchNouns(wxGetApp().GetAppOptions().IsHighlightingDolchNouns()),
     // batch options
     m_filePathTruncationMode(wxGetApp().GetAppOptions().GetFilePathTruncationMode())
-    {
-    // call this to load the images
-    SetBackGroundImagePath(wxGetApp().GetAppOptions().GetBackGroundImagePath());
-    SetStippleImagePath(wxGetApp().GetAppOptions().GetGraphStippleImagePath());
-    SetWatermarkLogoPath(wxGetApp().GetAppOptions().GetWatermarkLogo());
-    }
+    {}
 
 //------------------------------------------------
 void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const bool reloadImages)

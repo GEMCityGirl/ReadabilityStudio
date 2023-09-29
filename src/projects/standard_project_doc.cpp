@@ -1576,6 +1576,11 @@ bool ProjectDoc::OnNewDocument()
 
     wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Loading project...")));
 
+    // load the images now
+    SetBackGroundImagePath(GetBackGroundImagePath());
+    SetStippleImagePath(GetStippleImagePath());
+    SetWatermarkLogoPath(GetWatermarkLogoPath());
+
     LoadHardWords();
 
     DisplayStatistics();

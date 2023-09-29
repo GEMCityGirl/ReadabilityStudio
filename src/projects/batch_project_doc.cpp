@@ -171,6 +171,11 @@ bool BatchProjectDoc::OnNewDocument()
 
     BaseProjectProcessingLock processingLock(this);
 
+    // load the images now
+    SetBackGroundImagePath(GetBackGroundImagePath());
+    SetStippleImagePath(GetStippleImagePath());
+    SetWatermarkLogoPath(GetWatermarkLogoPath());
+
     LoadExcludePhrases();
 
     // load appended template file (if there is one)
@@ -5201,6 +5206,7 @@ bool BatchProjectDoc::OnSaveDocument(const wxString& filename)
     return true;
     }
 
+//-------------------------------------------------------
 bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
     {
     wxLogMessage(L"Opening project \"%s\"", filename);
@@ -5400,6 +5406,7 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
     return true;
     }
 
+//-------------------------------------------------------
 void BatchProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textLength)
     {
     Wisteria::ZipCatalog cat(projectFileText, textLength);
