@@ -237,7 +237,7 @@ wxString WebHarvester::DownloadFile(wxString& Url,
     if (fileName.empty())
         { return wxString{}; }
     downloadPath = downloadPath + StripIllegalFileCharacters(fileName);
-    /* Check the extension on the file we are downloading.  It might not have one, might be
+    /* Check the extension on the file we are downloading. It might not have one, might be
        junk (because it is a PHP query), or it might be a domain that wouldn't make sense for
        local file types. If so, append the file extension "hint" onto it
        (or determine it from the MIME type).*/

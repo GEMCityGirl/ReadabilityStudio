@@ -4820,7 +4820,7 @@ void ToolsOptionsDlg::CreateControls()
             m_barChartPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX, 255);
             m_barChartPropertyGrid->SetPropertyHelpString(
                 GetOpacityLabel(),
-                _(L"Sets the transparency of the bars.  A value of 255 will set the box to be fully opaque, "
+                _(L"Sets the transparency of the bars. A value of 255 will set the box to be fully opaque, "
                    "whereas 0 will set the bars to be transparent."));
             // orientation
             wxPGChoices orientation;
@@ -5046,7 +5046,7 @@ void ToolsOptionsDlg::CreateControls()
             m_boxPlotsPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX, 255);
             m_boxPlotsPropertyGrid->SetPropertyHelpString(
                 GetOpacityLabel(),
-                _(L"Sets the transparency of the box.  A value of 255 will set the box to be fully opaque, "
+                _(L"Sets the transparency of the box. A value of 255 will set the box to be fully opaque, "
                    "whereas 0 will set the box to be transparent."));
 
             m_boxPlotsPropertyGrid->Append(new wxPropertyCategory(GetBoxOptionsLabel()) );

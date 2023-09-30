@@ -218,7 +218,7 @@ public:
                 (m_words.size() > 1) ? (m_words.size()-2) : (0),
                 sentence_ending_punctuation) );
             m_current_sentence_begin = m_words.size()-1;
-            /*now see if a new paragraph has started.  It only makes sense for a
+            /*now see if a new paragraph has started. It only makes sense for a
             new paragraph to start if we just came to the end of a sentence*/
             if (m_paragraphs.size() != current_paragraph_index)
                 {

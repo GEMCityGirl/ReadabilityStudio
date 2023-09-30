@@ -47,7 +47,7 @@ public:
 
     Description:
     Retrieves a wrapped class from the arguments passed to the func, specified by narg (position).
-    This func will return nullptr if the argument is not of the correct type.  Useful for supporting
+    This func will return nullptr if the argument is not of the correct type. Useful for supporting
     multiple types of arguments passed to the func
     */
     static T* lightcheck(lua_State * L, int narg) {
@@ -64,7 +64,7 @@ public:
     * namespac - Namespace to load into
 
     Description:
-    Registers your class with Lua.  Leave namespac "" if you want to load it into the global space.
+    Registers your class with Lua. Leave namespac "" if you want to load it into the global space.
     */
 
 private:

@@ -798,7 +798,7 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
     wxBusyCursor bc;
 
     /* If the indexed text was found in the project or external file
-       then reanalyze everything.  This should be the normal scenario and
+       then reanalyze everything. This should be the normal scenario and
        would only fail if the text was not embedded and the 
        external file could not be found (if applicable).*/
     if (LoadingOriginalTextSucceeded())

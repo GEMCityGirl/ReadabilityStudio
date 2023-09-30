@@ -2391,7 +2391,7 @@ namespace grammar
                     traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_D) &&
                     !traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_R) )
                     {
-                    // watch out for deify.  "deify" splits, but some other forms don't
+                    // watch out for deify. "deify" splits, but some other forms don't
                     if (traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_F))
                         {
                         if (traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_Y) ||
@@ -3024,7 +3024,7 @@ namespace grammar
                         traits::case_insensitive_ex::eq(word[position-2], common_lang_constants::LOWER_T) &&
                         traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_R) )
                         { return true; }
-                    // "[ltn]ienc[ye]" will be one sound.  "pat-ience", "conv-en-ience", "sent-ience", "e-bull-ience"
+                    // "[ltn]ienc[ye]" will be one sound. "pat-ience", "conv-en-ience", "sent-ience", "e-bull-ience"
                     else if (traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_L) ||
                         traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_T) ||
                         traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_N))
@@ -3045,7 +3045,7 @@ namespace grammar
                     else
                         { return true; }
                     }
-                // "[ltn]ient" will be one sound.  "pat-ient", "conv-en-ient", "sent-ient"
+                // "[ltn]ient" will be one sound. "pat-ient", "conv-en-ient", "sent-ient"
                 else if (position > 0 &&
                     position + 4 <= m_length &&
                     traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_T) &&

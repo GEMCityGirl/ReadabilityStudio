@@ -597,7 +597,7 @@ void BaseProjectDoc::RemoveGlobalCustomReadabilityTest(const wxString& testName)
     if (testPos == m_custom_word_tests.end())
         { return; }
 
-    // see if any open projects are using this test.  If so, they need to have it removed.
+    // see if any open projects are using this test. If so, they need to have it removed.
     wxList docs = wxGetApp().GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
@@ -620,7 +620,7 @@ void BaseProjectDoc::RemoveGlobalCustomReadabilityTest(const wxString& testName)
     MainFrame* mainFrame = dynamic_cast<MainFrame*>(wxGetApp().GetMainFrame());
     if (mainFrame)
         { mainFrame->RemoveCustomTestFromMenus(testName); }
-    /* remove it from all of the open projects.  If a project doesn't have it, then just
+    /* remove it from all of the open projects. If a project doesn't have it, then just
       re-sync its custom tests pointers to the global list of custom tests because one was
       removed from it.*/
     for (size_t i = 0; i < docs.GetCount(); ++i)

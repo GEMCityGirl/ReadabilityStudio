@@ -6477,8 +6477,8 @@ void BatchProjectDoc::RemoveDocument(const wxString& docName)
     // if not found then don't bother looking for it in the file paths list
     if (!position.has_value())
         { return; }
-    // also remove the filepath from the list of file paths.  These should already be synced up, so
-    // we can remove it from the same position.  If they are not synced up, then something is wrong, so
+    // Also remove the filepath from the list of file paths. These should already be synced up, so
+    // we can remove it from the same position. If they are not synced up, then something is wrong, so
     // then we would re-sync everything to fix it.
     // cppcheck-suppress assertWithSideEffect
     assert(position.value() < GetSourceFilesInfo().size());

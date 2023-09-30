@@ -7904,7 +7904,7 @@ void BaseProject::CopySettings(const BaseProject& that)
         else
             { ++pos; }
         }
-    /* add any custom tests that other project has.  If this project already has the test then leave it alone
+    /* add any custom tests that other project has. If this project already has the test then leave it alone
        and have its statistics kept intact.*/
     for (const auto& cTestInUse : that.GetCustTestsInUse())
         {
