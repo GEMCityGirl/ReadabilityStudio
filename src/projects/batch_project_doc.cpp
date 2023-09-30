@@ -2744,7 +2744,7 @@ void BatchProjectDoc::LoadScoresSection()
             SetScoreStatsRow(m_aggregatedGradeScoresData, (*pos)->GetOriginalDocumentFilePath(),
                              // a bit of a hack--need to pass in something to force the use of description column.
                              (*pos)->GetOriginalDocumentDescription().length() ?
-                                (*pos)->GetOriginalDocumentDescription() : L"  ",
+                                (*pos)->GetOriginalDocumentDescription() : wxString{ L"  " },
                              currentRow++,
                              (*pos)->GetAggregatedGradeScores(), 1, GetVarianceMethod(), true);
             }
@@ -2764,7 +2764,7 @@ void BatchProjectDoc::LoadScoresSection()
             {
             SetScoreStatsRow(m_aggregatedClozeScoresData, (*pos)->GetOriginalDocumentFilePath(),
                              (*pos)->GetOriginalDocumentDescription().length() ?
-                                (*pos)->GetOriginalDocumentDescription() : L"  ",
+                                (*pos)->GetOriginalDocumentDescription() : wxString{ L"  " },
                              currentRow++,
                              (*pos)->GetAggregatedClozeScores(), 1, GetVarianceMethod(), false);
             }

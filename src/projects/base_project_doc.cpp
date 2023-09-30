@@ -2219,8 +2219,8 @@ wxString BaseProjectDoc::FormatProjectSettings() const
         fileText += sectionText;
         // goals
         const auto [minGoal,maxGoal] = GetGoalsForTest(pos->GetIterator()->get_name().c_str());
-        const wxString minGoalStr = std::isnan(minGoal) ? L"" : wxString::FromCDouble(minGoal);
-        const wxString maxGoalStr = std::isnan(maxGoal) ? L"" : wxString::FromCDouble(maxGoal);
+        const wxString minGoalStr = std::isnan(minGoal) ? wxString{} : wxString::FromCDouble(minGoal);
+        const wxString maxGoalStr = std::isnan(maxGoal) ? wxString{} : wxString::FromCDouble(maxGoal);
         XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GOAL_MIN_VAL_GOAL, minGoalStr, 3);
         fileText += sectionText;
         XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GOAL_MAX_VAL_GOAL, maxGoalStr, 3);
@@ -2541,8 +2541,8 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     for (const auto& statGoal : GetStatGoalLabels())
         {
         const auto [minGoal, maxGoal] = GetGoalsForStatistic(statGoal.first.first.c_str());
-        const wxString minGoalStr = std::isnan(minGoal) ? L"" : wxString::FromCDouble(minGoal);
-        const wxString maxGoalStr = std::isnan(maxGoal) ? L"" : wxString::FromCDouble(maxGoal);
+        const wxString minGoalStr = std::isnan(minGoal) ? wxString{} : wxString::FromCDouble(minGoal);
+        const wxString maxGoalStr = std::isnan(maxGoal) ? wxString{} : wxString::FromCDouble(maxGoal);
 
         fileText.append(L"\t\t<").append(statGoal.first.first.c_str()).append(L" ").
             append(wxGetApp().GetAppOptions().XML_GOAL_MIN_VAL_GOAL).
@@ -2625,8 +2625,8 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     for (const auto& rTest : GetReadabilityTests().get_tests())
         {
         const auto [minGoal,maxGoal] = GetGoalsForTest(rTest.get_test().get_id().c_str());
-        const wxString minGoalStr = std::isnan(minGoal) ? L"" : wxString::FromCDouble(minGoal);
-        const wxString maxGoalStr = std::isnan(maxGoal) ? L"" : wxString::FromCDouble(maxGoal);
+        const wxString minGoalStr = std::isnan(minGoal) ? wxString{} : wxString::FromCDouble(minGoal);
+        const wxString maxGoalStr = std::isnan(maxGoal) ? wxString{} : wxString::FromCDouble(maxGoal);
 
         fileText.append(L"\t\t<").append(rTest.get_test().get_id().c_str()).append(L" ").
             append(wxGetApp().GetAppOptions().XML_GOAL_MIN_VAL_GOAL).append(L"=\"").append(minGoalStr).append(L"\" ").

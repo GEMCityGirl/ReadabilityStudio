@@ -588,7 +588,7 @@ void ProjectView::OnListDblClick(wxListEvent& event)
         if (foundWindow)
             {
             const auto selectedItem = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetFirstSelected();
-            findText = (selectedItem == wxNOT_FOUND) ? L"" :
+            findText = (selectedItem == wxNOT_FOUND) ? wxString{} :
                 dynamic_cast<const ListCtrlEx*>(foundWindow)->GetItemTextEx(selectedItem,1);
             }
         textId = HARD_WORDS_TEXT_PAGE_ID;

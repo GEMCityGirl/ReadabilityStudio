@@ -539,7 +539,7 @@ bool WebHarvester::CrawlLinks()
     m_hideFileNamesWhileDownloading = wxGetMouseState().ShiftDown();
     wxStringTokenizer tkz(m_url, L"\n\r", wxTOKEN_STRTOK);
     const wxString urlLabel = m_hideFileNamesWhileDownloading ?
-        L"..." : L" \"" + tkz.GetNextToken() + L"\"";
+        wxString{ L"..." } : L" \"" + tkz.GetNextToken() + L"\"";
     m_progressDlg = new wxProgressDialog(_(L"Web Harvester"),
         wxString::Format(_(L"Harvesting %s"), urlLabel), 5, nullptr,
         wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_CAN_ABORT);

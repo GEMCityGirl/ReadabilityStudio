@@ -132,7 +132,7 @@ void ExportAllDlg::OnImageOptionsButtonClick([[maybe_unused]] wxCommandEvent& ev
     {
     assert(m_graphCombo && L"Graph file combobox not initialized!");
 
-    wxString ext{(m_graphCombo ? m_graphCombo->GetValue() : L"png")};
+    wxString ext{ (m_graphCombo ? m_graphCombo->GetValue() : wxString{ L"png"}) };
     Wisteria::UI::ImageExportDlg optDlg(this,
         Image::GetImageFileTypeFromExtension(ext),
         wxNullBitmap,

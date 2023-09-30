@@ -64,11 +64,11 @@ namespace Wisteria::Graphs
         GetBottomXAxis().SetCustomLabel(6, GraphItems::Label(
             wxNumberFormatter::ToString(6, 0,
                 wxNumberFormatter::Style::Style_NoTrailingZeroes) +
-            ((GetRaygorStyle() == RaygorStyle::Modern) ? L"(-)" : wxString{})));
+            ((GetRaygorStyle() == RaygorStyle::Modern) ? wxString{ L"(-)" } : wxString{})));
         GetBottomXAxis().SetCustomLabel(44, GraphItems::Label(
             wxNumberFormatter::ToString(44, 0,
                 wxNumberFormatter::Style::Style_NoTrailingZeroes) +
-            ((GetRaygorStyle() == RaygorStyle::Modern) ? L"(+)" : wxString{})));
+            ((GetRaygorStyle() == RaygorStyle::Modern) ? wxString{ L"(+)" } : wxString{})));
         GetBottomXAxis().SetDisplayInterval(2, 1);
         GetBottomXAxis().ShowOuterLabels(true);
 
@@ -76,7 +76,7 @@ namespace Wisteria::Graphs
         GetLeftYAxis().ReverseScale(true);
         GetLeftYAxis().AddUnevenAxisPoint(3.2,
             wxNumberFormatter::ToString(3.2, 1, wxNumberFormatter::Style::Style_None) +
-            ((GetRaygorStyle() == RaygorStyle::Modern) ? L"(-)" : wxString{}));
+            ((GetRaygorStyle() == RaygorStyle::Modern) ? wxString{ L"(-)" } : wxString{}));
         GetLeftYAxis().AddUnevenAxisPoint(3.4,
             wxNumberFormatter::ToString(3.4, 1, wxNumberFormatter::Style::Style_None));
         GetLeftYAxis().AddUnevenAxisPoint(3.6,
@@ -117,7 +117,7 @@ namespace Wisteria::Graphs
             wxNumberFormatter::ToString(23.0, 1, wxNumberFormatter::Style::Style_None));
         GetLeftYAxis().AddUnevenAxisPoint(28.0,
             wxNumberFormatter::ToString(28.0, 1, wxNumberFormatter::Style::Style_None) +
-            ((GetRaygorStyle() == RaygorStyle::Modern) ? L"(+)" : wxString{}));
+            ((GetRaygorStyle() == RaygorStyle::Modern) ? wxString{ L"(+)" } : wxString{}));
         GetLeftYAxis().AdjustRangeToLabels();
 
         GetLeftYAxis().EnableAutoStacking(false);

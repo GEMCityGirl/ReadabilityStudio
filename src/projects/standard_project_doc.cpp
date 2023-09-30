@@ -4615,51 +4615,51 @@ ProjectDoc::HighlighterTags ProjectDoc::BuildHighlighterTags(
 #ifdef __WXMSW__
     highlighterTags.HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
         wxString::Format(L"{\\highlight2\\cf%d ", highlightedTextColorIndexBGMode) :
-        L"{\\cf2 ";
+        wxString{ L"{\\cf2 " };
     highlighterTags.ERROR_HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
         wxString::Format(L"{\\highlight3\\cf%d ", errorTextColorIndexBGMode) :
-        L"{\\cf3 ";
+        wxString{ L"{\\cf3 " };
     highlighterTags.PHRASE_HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
         wxString::Format(L"{\\highlight4\\cf%d ", styleTextColorIndexBGMode) :
-        L"{\\cf4 ";
+        wxString{ L"{\\cf4 " };
     highlighterTags.IGNORE_HIGHLIGHT_BEGIN = (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
         wxString::Format(L"{\\highlight5\\cf%d ", excludedTextColorIndexBGMode) :
-        L"{\\cf5 ";
+        wxString{ L"{\\cf5 " };
     // Dolch highlighting
     highlighterTags.DOLCH_CONJUNCTION_BEGIN = IsHighlightingDolchConjunctions() ?
         (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
         wxString::Format(L"{\\highlight6\\cf%d ", dolchConjunctionsTextColorIndexBGMode) :
-        L"{\\cf6 " :
+        wxString{ L"{\\cf6 " } :
         wxString{};
     highlighterTags.DOLCH_PREPOSITIONS_BEGIN = IsHighlightingDolchPrepositions() ?
         (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
         wxString::Format(L"{\\highlight7\\cf%d ", dolchPrepositionsTextColorIndexBGMode) :
-        L"{\\cf7 " :
+        wxString{ L"{\\cf7 " } :
         wxString{};
     highlighterTags.DOLCH_PRONOUN_BEGIN = IsHighlightingDolchPronouns() ?
         (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
         wxString::Format(L"{\\highlight8\\cf%d ", dolchPronounsTextColorIndexBGMode) :
-        L"{\\cf8 " :
+        wxString{ L"{\\cf8 " } :
         wxString{};
     highlighterTags.DOLCH_ADVERB_BEGIN = IsHighlightingDolchAdverbs() ?
         (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
         wxString::Format(L"{\\highlight9\\cf%d ", dolchAdverbsTextColorIndexBGMode) :
-        L"{\\cf9 " :
+        wxString{ L"{\\cf9 " } :
         wxString{};
     highlighterTags.DOLCH_ADJECTIVE_BEGIN = IsHighlightingDolchAdjectives() ?
         (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
         wxString::Format(L"{\\highlight10\\cf%d ", dolchAdjectivesTextColorIndexBGMode) :
-        L"{\\cf10 " :
+        wxString{ L"{\\cf10 " } :
         wxString{};
     highlighterTags.DOLCH_VERB_BEGIN = IsHighlightingDolchVerbs() ?
         (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
         wxString::Format(L"{\\highlight11\\cf%d ", dolchVerbsTextColorIndexBGMode) :
-        L"{\\cf11 " :
+        wxString{ L"{\\cf11 " } :
         wxString{};
     highlighterTags.DOLCH_NOUN_BEGIN = IsHighlightingDolchNouns() ?
         (GetTextHighlightMethod() == TextHighlight::HighlightBackground) ?
         wxString::Format(L"{\\highlight12\\cf%d ", dolchNounTextColorIndexBGMode) :
-        L"{\\cf12 " :
+        wxString{ L"{\\cf12 " } :
         wxString{};
     // terminator
     highlighterTags.HIGHLIGHT_END = L"}";

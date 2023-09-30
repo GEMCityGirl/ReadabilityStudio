@@ -268,7 +268,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
             }
         if (promptOnSuccess)
             {
-            const wxString calculatedValueMsg = !isUsingActiveProject ? L"" :
+            const wxString calculatedValueMsg = !isUsingActiveProject ? wxString{} :
                 wxString().FromDouble(project->GetFormulaParser().evaluate(), 1).
                     Prepend(_(L"Calculated value: ")).Prepend(L"\n\n");
             wxMessageBox(_(L"Formula is valid; no syntax errors were detected." + calculatedValueMsg),
