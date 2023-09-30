@@ -750,6 +750,8 @@ Note that watermarks and logos will also appear when you [print](#printing) or [
 
 **Stipple shape**: Select from here which shape to use for a stipple brush. A stipple brush can be used to draw stacked shape across [bars](#options-bar-charts) and [boxes](#options-box-plots).
 
+**Color**: Selects the color used for certain stipple shapes (e.g., *Book*). Note that this color will not be applied to shapes which have their own color scheme (e.g., *Sun*). 
+
 **Display drop shadows**: Check this to include shadows underneath items such as boxes, bars, and labels. Unchecking this option will give your graphs a flat look.
 
 ### Axes {-}

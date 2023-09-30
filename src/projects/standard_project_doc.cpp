@@ -2221,6 +2221,7 @@ void ProjectDoc::DisplaySentenceCharts()
         if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
             convertedIcon)
             { sentenceBoxPlot->SetStippleShape(convertedIcon.value()); }
+        sentenceBoxPlot->SetStippleShapeColor(GetStippleShapeColor());
 
         sentenceBoxPlotCanvas->CalcAllSizes(gdc);
         }
@@ -2266,6 +2267,7 @@ void ProjectDoc::DisplaySentenceCharts()
         if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
             convertedIcon)
             { sentenceHistogram->SetStippleShape(convertedIcon.value()); }
+        sentenceHistogram->SetStippleShapeColor(GetStippleShapeColor());
         sentenceHistogram->SetBarOpacity(GetHistogramBarOpacity());
         sentenceHistogram->SetBrushScheme(
             std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
@@ -2398,6 +2400,7 @@ void ProjectDoc::DisplayWordCharts()
         if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
             convertedIcon)
             { wordBarChart->SetStippleShape(convertedIcon.value()); }
+        wordBarChart->SetStippleShapeColor(GetStippleShapeColor());
         // Do not change the order of these bars, brackets are built based on this order (see below)
         size_t currentBar{ 0 };
         // go through the custom (familiar word) tests
@@ -2570,6 +2573,7 @@ void ProjectDoc::DisplayWordCharts()
         if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
             convertedIcon)
             { syllableHistogram->SetStippleShape(convertedIcon.value()); }
+        syllableHistogram->SetStippleShapeColor(GetStippleShapeColor());
         syllableHistogram->SetBarOpacity(GetHistogramBarOpacity());
         syllableHistogram->SetBrushScheme(
             std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(

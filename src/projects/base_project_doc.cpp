@@ -35,6 +35,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_graphBackGroundImagePath(wxGetApp().GetAppOptions().GetBackGroundImagePath()),
     m_stippleImagePath(wxGetApp().GetAppOptions().GetGraphStippleImagePath()),
     m_stippleShape(wxGetApp().GetAppOptions().GetStippleShape()),
+    m_stippleColor(wxGetApp().GetAppOptions().GetStippleShapeColor()),
     m_graphBackGroundColor(wxGetApp().GetAppOptions().GetBackGroundColor()),
     m_graphPlotBackGroundColor(wxGetApp().GetAppOptions().GetPlotBackGroundColor()),
     m_graphBackGroundOpacity(wxGetApp().GetAppOptions().GetGraphBackGroundOpacity()),
@@ -141,6 +142,7 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
         }
 
     m_stippleShape = that.m_stippleShape;
+    m_stippleColor = that.m_stippleColor;
     m_graphBackGroundColor = that.m_graphBackGroundColor;
     m_graphPlotBackGroundColor = that.m_graphPlotBackGroundColor;
     m_graphBackGroundOpacity = that.m_graphBackGroundOpacity;
@@ -1362,6 +1364,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         SetStippleImagePath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_PATH));
 
+        SetStippleShapeColor(XmlFormat::GetColor(graphsSection, graphsSectionEnd,
+            wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_COLOR,
+            wxGetApp().GetAppOptions().GetStippleShapeColor()));
+
         SetStippleShape(XmlFormat::GetString(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_SHAPE));
 
@@ -2351,6 +2357,10 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_SHAPE,
         GetStippleShape(), 2);
     fileText += sectionText;
+
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_COLOR);
+    fileText += XmlFormat::FormatColorAttributes(GetStippleShapeColor());
+    fileText += L"/>\n";
     // whether drop shadows should be shown
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DISPLAY_DROP_SHADOW,
         IsDisplayingDropShadows(), 2);

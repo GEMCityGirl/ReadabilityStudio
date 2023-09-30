@@ -138,6 +138,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_BAR_DISPLAY_LABELS(_DT(L"bar-display-labels")),
     XML_GRAPH_STIPPLE_PATH(_DT(L"stipple-image-path")),
     XML_GRAPH_STIPPLE_SHAPE(_DT(L"stipple-shape")),
+    XML_GRAPH_STIPPLE_COLOR(_DT(L"stipple-color")),
     XML_BOX_PLOT_SETTINGS(_DT(L"box-plot-settings")),
     XML_BOX_EFFECT(_DT(L"box-effect")),
     XML_BOX_DISPLAY_LABELS(_DT(L"box-display-labels")),
@@ -669,6 +670,7 @@ void ReadabilityAppOptions::ResetSettings()
     m_graphBarOpacity = wxALPHA_OPAQUE;
     m_graphBarEffect = BoxEffect::Glassy;
     m_stippleShape = DONTTRANSLATE(L"book");
+    m_stippleColor = wxColour{ L"#6082B6" };
     m_stippleImagePath.Clear();
     m_graphBoxColor = wxColour(0,128,64);
     m_graphBoxOpacity = wxALPHA_OPAQUE;
@@ -2139,6 +2141,20 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         if (filteredText)
                             { SetStippleShape(wxString(filteredText)); }
                         }
+                    }
+                auto stippleColorNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_STIPPLE_COLOR.mb_str());
+                if (stippleColorNode)
+                    {
+                    int red =
+                        stippleColorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(),
+                            GetStippleShapeColor().Red());
+                    int green =
+                        stippleColorNode->ToElement()->IntAttribute(XmlFormat::GetGreen().mb_str(),
+                            GetStippleShapeColor().Green());
+                    int blue =
+                        stippleColorNode->ToElement()->IntAttribute(XmlFormat::GetBlue().mb_str(),
+                            GetStippleShapeColor().Blue());
+                    SetStippleShapeColor(wxColour(red, green, blue));
                     }
                 // whether drop shadows should be shown
                 auto dropShadowNode = graphDefaultsNode->FirstChildElement(XML_DISPLAY_DROP_SHADOW.mb_str());
@@ -4055,6 +4071,16 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     stippleShape->SetAttribute(XML_VALUE.mb_str(),
         wxString(encode({ GetStippleShape().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(stippleShape);
+
+    if (GetStippleShapeColor().IsOk())
+        {
+        auto stippleShapeColor = doc.NewElement(XML_GRAPH_STIPPLE_COLOR.mb_str());
+        stippleShapeColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetStippleShapeColor().Red());
+        stippleShapeColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetStippleShapeColor().Green());
+        stippleShapeColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetStippleShapeColor().Blue());
+        graphDefaultsSection->InsertEndChild(stippleShapeColor);
+        }
+
     // whether drop shadows should be shown
     auto graphDisplayDropShadow = doc.NewElement(XML_DISPLAY_DROP_SHADOW.mb_str());
     graphDisplayDropShadow->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsDisplayingDropShadows()));

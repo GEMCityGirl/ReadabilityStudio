@@ -1098,6 +1098,8 @@ bool ToolsOptionsDlg::HaveGraphOptionsChanged() const
                m_generalGraphPropertyGrid->IsPropertyModified(GetStippleImageLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleShapeLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetStippleShapeLabel())) ||
+           (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleShapeColorLabel()) &&
+               m_generalGraphPropertyGrid->IsPropertyModified(GetStippleShapeColorLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid,GetBackgroundColorLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetBackgroundColorLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid,GetImageOpacityLabel()) &&
@@ -2151,6 +2153,11 @@ void ToolsOptionsDlg::SaveOptions()
             if (foundShape != m_shapeMap.cend())
                 { wxGetApp().GetAppOptions().SetStippleShape(foundShape->second); }
             }
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleShapeColorLabel()))
+            {
+            wxGetApp().GetAppOptions().SetStippleShapeColor(
+                wxAny(m_generalGraphPropertyGrid->GetProperty(GetStippleShapeColorLabel())->GetValue()).As<wxColour>());
+            }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetDisplayDropShadowsLabel()))
             {
             wxGetApp().GetAppOptions().DisplayDropShadows(
@@ -2459,6 +2466,11 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
                 m_shapeMap.find(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleShapeLabel()));
             if (foundShape != m_shapeMap.cend())
                 { m_readabilityProjectDoc->SetStippleShape(foundShape->second); }
+            }
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleShapeColorLabel()))
+            {
+            m_readabilityProjectDoc->SetStippleShapeColor(
+                wxAny(m_generalGraphPropertyGrid->GetProperty(GetStippleShapeColorLabel())->GetValue()).As<wxColour>());
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetDisplayDropShadowsLabel()))
             {
@@ -4715,6 +4727,14 @@ void ToolsOptionsDlg::CreateGraphSection()
             shapesProp->SetHelpString(
                 _(L"Select from here which shape to use for a stipple brush. "
                    "A stipple brush can be used to draw stacked shape across bars and boxes"));
+
+            auto shapeColorProp = shapesProp->AppendChild(
+                new wxColourProperty(GetColorLabel(), wxPG_LABEL,
+                    (m_readabilityProjectDoc ?
+                        m_readabilityProjectDoc->GetStippleShapeColor() :
+                        wxGetApp().GetAppOptions().GetStippleShapeColor())));
+            shapeColorProp->SetHelpString(_(L"Selects the color used for certain stipple shapes."));
+
             // drop shadows
             m_generalGraphPropertyGrid->Append(
                 new wxBoolProperty(GetDisplayDropShadowsLabel(), wxPG_LABEL,

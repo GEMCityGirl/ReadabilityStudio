@@ -4230,6 +4230,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                 if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
                     convertedIcon)
                     { boxPlot->SetStippleShape(convertedIcon.value()); }
+                boxPlot->SetStippleShapeColor(GetStippleShapeColor());
                 boxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
                 boxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
                 UpdateGraphOptions(boxPlotCanvas);
@@ -4308,6 +4309,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                 if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
                     convertedIcon)
                     { boxPlot->SetStippleShape(convertedIcon.value()); }
+                boxPlot->SetStippleShapeColor(GetStippleShapeColor());
                 UpdateGraphOptions(boxPlotCanvas);
 
                 const auto [rangeStart, rangeEnd] = boxPlot->GetLeftYAxis().GetRange();
@@ -4391,6 +4393,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                 if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
                     convertedIcon)
                     { boxPlot->SetStippleShape(convertedIcon.value()); }
+                boxPlot->SetStippleShapeColor(GetStippleShapeColor());
                 boxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
                 boxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
                 boxPlot->SetLabelPrecision(0);
@@ -4463,6 +4466,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                 if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
                     convertedIcon)
                     { boxPlot->SetStippleShape(convertedIcon.value()); }
+                boxPlot->SetStippleShapeColor(GetStippleShapeColor());
                 boxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
                 boxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
                 UpdateGraphOptions(boxPlotCanvas);
@@ -4533,6 +4537,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                 if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
                     convertedIcon)
                     { boxPlot->SetStippleShape(convertedIcon.value()); }
+                boxPlot->SetStippleShapeColor(GetStippleShapeColor());
                 boxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
                 boxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
                 UpdateGraphOptions(boxPlotCanvas);
@@ -4716,6 +4721,7 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
         if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
             convertedIcon)
             { histogram->SetStippleShape(convertedIcon.value()); }
+        histogram->SetStippleShapeColor(GetStippleShapeColor());
         histogram->SetBarOpacity(GetHistogramBarOpacity());
 
         // if not too many bins, show the long grade labels on the x axis

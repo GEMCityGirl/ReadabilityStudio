@@ -55,6 +55,11 @@ public:
     wxString GetStippleShape() const
         { return m_stippleShape; }
     [[nodiscard]]
+    wxColour GetStippleShapeColor() const noexcept
+        { return m_stippleColor; }
+    void SetStippleShapeColor(const wxColour& color)
+        { m_stippleColor = color; }
+    [[nodiscard]]
     wxString GetBackGroundImagePath() const
         { return m_graphBackGroundImagePath; }
     [[nodiscard]]
@@ -624,6 +629,7 @@ protected:
     wxString m_graphBackGroundImagePath;
     wxString m_stippleImagePath;
     wxString m_stippleShape{ DONTTRANSLATE(L"book") };
+    wxColour m_stippleColor{ wxColour{ L"#6082B6" } };
     wxColour m_graphBackGroundColor;
     wxColour m_graphPlotBackGroundColor;
     uint8_t m_graphBackGroundOpacity{ wxALPHA_OPAQUE };
