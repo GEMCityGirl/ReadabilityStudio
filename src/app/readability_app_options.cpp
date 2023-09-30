@@ -4103,6 +4103,8 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     hbarEffect->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetHistogramBarEffect()));
     histogramSettings->InsertEndChild(hbarEffect);
 
+    graphDefaultsSection->InsertEndChild(histogramSettings);
+
     // bar chart settings
     auto barChartSettings = doc.NewElement(XML_BAR_CHART_SETTINGS.mb_str());
     // bar color
@@ -4127,6 +4129,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto barEffect = doc.NewElement(XML_BAR_EFFECT.mb_str());
     barEffect->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetGraphBarEffect()));
     barChartSettings->InsertEndChild(barEffect);
+
     graphDefaultsSection->InsertEndChild(barChartSettings);
 
     // box plot settings
@@ -4157,6 +4160,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto boxDisplayLabels = doc.NewElement(XML_BOX_DISPLAY_LABELS.mb_str());
     boxDisplayLabels->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(IsDisplayingBoxPlotLabels()));
     boxPlotSettings->InsertEndChild(boxDisplayLabels);
+
     graphDefaultsSection->InsertEndChild(boxPlotSettings);
 
     // Readability graph settings
