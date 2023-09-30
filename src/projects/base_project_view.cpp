@@ -70,10 +70,10 @@ wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_BAR_LABELS"), BaseProjectView::OnBarLabelsButton)
     EVT_MENU(XRCID("ID_EDIT_BAR_COLOR"), BaseProjectView::OnEditGraphColor)
     EVT_MENU(XRCID("ID_EDIT_BAR_OPACITY"), BaseProjectView::OnEditGraphOpacity)
-    EVT_MENU(XRCID("ID_BAR_SYTLE_SOLID"), BaseProjectView::OnBarStyleSelected)
-    EVT_MENU(XRCID("ID_BAR_SYTLE_GLASS"), BaseProjectView::OnBarStyleSelected)
-    EVT_MENU(XRCID("ID_BAR_SYTLE_BTOT"), BaseProjectView::OnBarStyleSelected)
-    EVT_MENU(XRCID("ID_BAR_SYTLE_TTOB"), BaseProjectView::OnBarStyleSelected)
+    EVT_MENU(XRCID("ID_BAR_STYLE_SOLID"), BaseProjectView::OnBarStyleSelected)
+    EVT_MENU(XRCID("ID_BAR_STYLE_GLASS"), BaseProjectView::OnBarStyleSelected)
+    EVT_MENU(XRCID("ID_BAR_STYLE_BTOT"), BaseProjectView::OnBarStyleSelected)
+    EVT_MENU(XRCID("ID_BAR_STYLE_TTOB"), BaseProjectView::OnBarStyleSelected)
     EVT_MENU(XRCID("ID_BAR_SELECT_BRUSH"), BaseProjectView::OnBarSelectStippleBrush)
     EVT_MENU(XRCID("ID_BAR_HORIZONTAL"), BaseProjectView::OnBarOrientationSelected)
     EVT_MENU(XRCID("ID_BAR_VERTICAL"), BaseProjectView::OnBarOrientationSelected)
@@ -85,17 +85,17 @@ wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"), BaseProjectView::OnHistoBarStyleButton)
     EVT_MENU(XRCID("ID_EDIT_HISTOGRAM_BAR_COLOR"), BaseProjectView::OnEditGraphColor)
     EVT_MENU(XRCID("ID_EDIT_HISTOBAR_OPACITY"), BaseProjectView::OnEditGraphOpacity)
-    EVT_MENU(XRCID("ID_HISTOGRAM_BAR_SYTLE_SOLID"), BaseProjectView::OnHistoBarStyleSelected)
-    EVT_MENU(XRCID("ID_HISTOGRAM_BAR_SYTLE_GLASS"), BaseProjectView::OnHistoBarStyleSelected)
-    EVT_MENU(XRCID("ID_HISTOGRAM_BAR_SYTLE_BTOT"), BaseProjectView::OnHistoBarStyleSelected)
-    EVT_MENU(XRCID("ID_HISTOGRAM_BAR_SYTLE_TTOB"), BaseProjectView::OnHistoBarStyleSelected)
+    EVT_MENU(XRCID("ID_HISTOGRAM_BAR_STYLE_SOLID"), BaseProjectView::OnHistoBarStyleSelected)
+    EVT_MENU(XRCID("ID_HISTOGRAM_BAR_STYLE_GLASS"), BaseProjectView::OnHistoBarStyleSelected)
+    EVT_MENU(XRCID("ID_HISTOGRAM_BAR_STYLE_BTOT"), BaseProjectView::OnHistoBarStyleSelected)
+    EVT_MENU(XRCID("ID_HISTOGRAM_BAR_STYLE_TTOB"), BaseProjectView::OnHistoBarStyleSelected)
     EVT_MENU(XRCID("ID_HISTOGRAM_BAR_SELECT_BRUSH"), BaseProjectView::OnHistoBarSelectStippleBrush)
-    EVT_MENU(XRCID("ID_BOX_STYLE_BRUSH"), BaseProjectView::OnBoxStyleSelected)
     EVT_MENU(XRCID("ID_BOX_SELECT_BRUSH"), BaseProjectView::OnBoxSelectStippleBrush)
-    EVT_MENU(XRCID("ID_BOX_SYTLE_SOLID"), BaseProjectView::OnBoxStyleSelected)
-    EVT_MENU(XRCID("ID_BOX_SYTLE_GLASS"), BaseProjectView::OnBoxStyleSelected)
-    EVT_MENU(XRCID("ID_BOX_SYTLE_LTOR"), BaseProjectView::OnBoxStyleSelected)
-    EVT_MENU(XRCID("ID_BOX_SYTLE_RTOL"), BaseProjectView::OnBoxStyleSelected)
+    EVT_MENU(XRCID("ID_BOX_STYLE_SOLID"), BaseProjectView::OnBoxStyleSelected)
+    EVT_MENU(XRCID("ID_BOX_STYLE_GLASS"), BaseProjectView::OnBoxStyleSelected)
+    EVT_MENU(XRCID("ID_BOX_STYLE_LTOR"), BaseProjectView::OnBoxStyleSelected)
+    EVT_MENU(XRCID("ID_BOX_STYLE_RTOL"), BaseProjectView::OnBoxStyleSelected)
+    EVT_MENU(XRCID("ID_BOX_STYLE_BRUSH"), BaseProjectView::OnBoxStyleSelected)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"), BaseProjectView::OnBoxPlotShowAllPointsButton)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_BOX_PLOT_DISPLAY_LABELS"), BaseProjectView::OnBoxPlotShowLabelsButton)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_BOX_STYLE"), BaseProjectView::OnBoxStyleButton)
@@ -193,9 +193,9 @@ BaseProjectView::BaseProjectView()
 
     // menu events
     Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
-        XRCID("ID_BAR_SYTLE_BRUSH_IMAGE"));
+        XRCID("ID_BAR_STYLE_BRUSH_IMAGE"));
     Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
-        XRCID("ID_HISTOGRAM_BAR_SYTLE_BRUSH_IMAGE"));
+        XRCID("ID_HISTOGRAM_BAR_STYLE_BRUSH_IMAGE"));
 
     Bind(wxEVT_MENU, &BaseProjectView::OnGraphColorFade, this,
         XRCID("ID_GRAPH_BKCOLOR_FADE"));
@@ -255,15 +255,15 @@ void BaseProjectView::OnBarOrientationSelected(wxCommandEvent& event)
 //---------------------------------------------------
 void BaseProjectView::OnBarStyleSelected(wxCommandEvent& event)
     {
-    if (event.GetId() == XRCID("ID_BAR_SYTLE_SOLID"))
+    if (event.GetId() == XRCID("ID_BAR_STYLE_SOLID"))
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBarEffect(BoxEffect::Solid); }
-    else if (event.GetId() == XRCID("ID_BAR_SYTLE_GLASS"))
+    else if (event.GetId() == XRCID("ID_BAR_STYLE_GLASS"))
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBarEffect(BoxEffect::Glassy); }
-    else if (event.GetId() == XRCID("ID_BAR_SYTLE_BTOT"))
+    else if (event.GetId() == XRCID("ID_BAR_STYLE_BTOT"))
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBarEffect(BoxEffect::FadeFromBottomToTop); }
-    else if (event.GetId() == XRCID("ID_BAR_SYTLE_TTOB"))
+    else if (event.GetId() == XRCID("ID_BAR_STYLE_TTOB"))
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBarEffect(BoxEffect::FadeFromTopToBottom); }
-    else if (event.GetId() == XRCID("ID_BAR_SYTLE_BRUSH_IMAGE"))
+    else if (event.GetId() == XRCID("ID_BAR_STYLE_BRUSH_IMAGE"))
         {
         if (!wxFile::Exists(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetStippleImagePath()))
             {
@@ -291,15 +291,15 @@ void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
     if (!baseDoc)
         { return; }
 
-    if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_SYTLE_SOLID"))
+    if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_SOLID"))
         { baseDoc->SetHistogramBarEffect(BoxEffect::Solid); }
-    else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_SYTLE_GLASS"))
+    else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_GLASS"))
         { baseDoc->SetHistogramBarEffect(BoxEffect::Glassy); }
-    else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_SYTLE_BTOT"))
+    else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_BTOT"))
         { baseDoc->SetHistogramBarEffect(BoxEffect::FadeFromBottomToTop); }
-    else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_SYTLE_TTOB"))
+    else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_TTOB"))
         { baseDoc->SetHistogramBarEffect(BoxEffect::FadeFromTopToBottom); }
-    else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_SYTLE_BRUSH_IMAGE"))
+    else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_BRUSH_IMAGE"))
         {
         if (!wxFile::Exists(baseDoc->GetStippleImagePath()))
             {
@@ -394,15 +394,15 @@ void BaseProjectView::OnBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& e
 //---------------------------------------------------
 void BaseProjectView::OnBoxStyleSelected(wxCommandEvent& event)
     {
-    if (event.GetId() == XRCID("ID_BOX_SYTLE_SOLID"))
+    if (event.GetId() == XRCID("ID_BOX_STYLE_SOLID"))
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBoxEffect(BoxEffect::Solid); }
-    else if (event.GetId() == XRCID("ID_BOX_SYTLE_GLASS"))
+    else if (event.GetId() == XRCID("ID_BOX_STYLE_GLASS"))
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBoxEffect(BoxEffect::Glassy); }
-    else if (event.GetId() == XRCID("ID_BOX_SYTLE_LTOR"))
+    else if (event.GetId() == XRCID("ID_BOX_STYLE_LTOR"))
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBoxEffect(BoxEffect::FadeFromLeftToRight); }
-    else if (event.GetId() == XRCID("ID_BOX_SYTLE_RTOL"))
+    else if (event.GetId() == XRCID("ID_BOX_STYLE_RTOL"))
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBoxEffect(BoxEffect::FadeFromRightToLeft); }
-    else if (event.GetId() == XRCID("ID_BOX_SYTLE_BRUSH"))
+    else if (event.GetId() == XRCID("ID_BOX_STYLE_BRUSH"))
         {
         if (!wxFile::Exists(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetStippleImagePath()))
             {
@@ -1836,23 +1836,23 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
 
     m_barStyleMenu.AppendSeparator();
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_SOLID"), _(L"Solid"));
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_SOLID"), _(L"Solid"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
     m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_GLASS"), _(L"Glass effect"));
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_GLASS"), _(L"Glass effect"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
     m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_BTOT"), _(L"Color fade, bottom to top"));
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_BTOT"), _(L"Color fade, bottom to top"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
     m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_TTOB"), _(L"Color fade, top to bottom"));
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_TTOB"), _(L"Color fade, top to bottom"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
     m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_BRUSH_IMAGE"), _(L"Stipple image"));
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_BRUSH_IMAGE"), _(L"Stipple image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_barStyleMenu.Append(item);
 
@@ -1878,27 +1878,27 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     m_histoBarStyleMenu.AppendSeparator();
 
     item = new wxMenuItem(&m_histoBarStyleMenu,
-        XRCID("ID_HISTOGRAM_BAR_SYTLE_SOLID"), _(L"Solid"));
+        XRCID("ID_HISTOGRAM_BAR_STYLE_SOLID"), _(L"Solid"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
     m_histoBarStyleMenu.Append(item);
 
     item = new wxMenuItem(&m_histoBarStyleMenu,
-        XRCID("ID_HISTOGRAM_BAR_SYTLE_GLASS"), _(L"Glass effect"));
+        XRCID("ID_HISTOGRAM_BAR_STYLE_GLASS"), _(L"Glass effect"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
     m_histoBarStyleMenu.Append(item);
 
     item = new wxMenuItem(&m_histoBarStyleMenu,
-        XRCID("ID_HISTOGRAM_BAR_SYTLE_BTOT"), _(L"Color fade, bottom to top"));
+        XRCID("ID_HISTOGRAM_BAR_STYLE_BTOT"), _(L"Color fade, bottom to top"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
     m_histoBarStyleMenu.Append(item);
 
     item = new wxMenuItem(&m_histoBarStyleMenu,
-        XRCID("ID_HISTOGRAM_BAR_SYTLE_TTOB"), _(L"Color fade, top to bottom"));
+        XRCID("ID_HISTOGRAM_BAR_STYLE_TTOB"), _(L"Color fade, top to bottom"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
     m_histoBarStyleMenu.Append(item);
 
     item = new wxMenuItem(&m_histoBarStyleMenu,
-        XRCID("ID_HISTOGRAM_BAR_SYTLE_BRUSH_IMAGE"), _(L"Stipple image"));
+        XRCID("ID_HISTOGRAM_BAR_STYLE_BRUSH_IMAGE"), _(L"Stipple image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_histoBarStyleMenu.Append(item);
 
@@ -1920,23 +1920,23 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
 
     m_boxStyleMenu.AppendSeparator();
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_SOLID"), _(L"Solid"));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_SOLID"), _(L"Solid"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
     m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_GLASS"), _(L"Glass effect"));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_GLASS"), _(L"Glass effect"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
     m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_LTOR"), _(L"Color fade, left to right"));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_LTOR"), _(L"Color fade, left to right"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-left-to-right.svg"));
     m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_RTOL"), _(L"Color fade, right to left"));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_RTOL"), _(L"Color fade, right to left"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-right-to-left.svg"));
     m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_BRUSH"), _(L"Stipple image"));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_BRUSH"), _(L"Stipple image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_boxStyleMenu.Append(item);
 
