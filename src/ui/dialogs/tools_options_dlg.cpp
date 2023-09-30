@@ -4933,19 +4933,19 @@ void ToolsOptionsDlg::CreateGraphSection()
             m_barChartPropertyGrid->SetPropertyHelpString(
                 GetColorLabel(), _(L"Selects the color used for the bars."));
             // effects
-            wxPGChoices barEffects;
-            barEffects.Add(_(L"Solid"), wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
-            barEffects.Add(_(L"Glass effect"), wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
-            barEffects.Add(_(L"Color fade, bottom to top"),
+            wxPGChoices boxEffects;
+            boxEffects.Add(_(L"Solid"), wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
+            boxEffects.Add(_(L"Glass effect"), wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
+            boxEffects.Add(_(L"Color fade, bottom to top"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
-            barEffects.Add(_(L"Color fade, top to bottom"),
+            boxEffects.Add(_(L"Color fade, top to bottom"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
-            barEffects.Add(_(L"Stipple image"),
+            boxEffects.Add(_(L"Stipple image"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-            barEffects.Add(_(L"Stipple shape"),
+            boxEffects.Add(_(L"Stipple shape"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
             m_barChartPropertyGrid->Append(
-                new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, barEffects,
+                new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, boxEffects,
                 (m_readabilityProjectDoc ?
                     static_cast<int>(m_readabilityProjectDoc->GetGraphBarEffect()) :
                     static_cast<int>(wxGetApp().GetAppOptions().GetGraphBarEffect()))) );
@@ -5018,24 +5018,24 @@ void ToolsOptionsDlg::CreateGraphSection()
             m_histogramPropertyGrid->SetPropertyHelpString(
                 GetColorLabel(), _(L"Selects the color used for the bars."));
             // effects
-            wxPGChoices histoBarEffects;
-            histoBarEffects.Add(
+            wxPGChoices boxEffects;
+            boxEffects.Add(
                 _(L"Solid"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
-            histoBarEffects.Add(
+            boxEffects.Add(
                 _(L"Glass effect"), wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
-            histoBarEffects.Add(
+            boxEffects.Add(
                 _(L"Color fade, bottom to top"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
-            histoBarEffects.Add(
+            boxEffects.Add(
                 _(L"Color fade, top to bottom"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
-            histoBarEffects.Add(_(L"Stipple image"),
+            boxEffects.Add(_(L"Stipple image"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-            histoBarEffects.Add(_(L"Stipple shape"),
+            boxEffects.Add(_(L"Stipple shape"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
             m_histogramPropertyGrid->Append(
-                new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, histoBarEffects,
+                new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, boxEffects,
                 (m_readabilityProjectDoc ?
                     static_cast<int>(m_readabilityProjectDoc->GetHistogramBarEffect()) :
                     static_cast<int>(wxGetApp().GetAppOptions().GetHistogramBarEffect()))) );
@@ -5161,21 +5161,21 @@ void ToolsOptionsDlg::CreateGraphSection()
             m_boxPlotsPropertyGrid->SetPropertyHelpString(
                 GetColorLabel(), _(L"Selects the color used for the boxes."));
             // effects
-            wxPGChoices barEffects;
-            barEffects.Add(_(L"Solid"),
+            wxPGChoices boxEffects;
+            boxEffects.Add(_(L"Solid"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
-            barEffects.Add(_(L"Glass effect"),
+            boxEffects.Add(_(L"Glass effect"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
-            barEffects.Add(_(L"Color fade, left to right"),
+            boxEffects.Add(_(L"Color fade, left to right"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-left-to-right.svg"));
-            barEffects.Add(_(L"Color fade, right to left"),
+            boxEffects.Add(_(L"Color fade, right to left"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-right-to-left.svg"));
-            barEffects.Add(_(L"Stipple image"),
+            boxEffects.Add(_(L"Stipple image"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-            barEffects.Add(_(L"Stipple shape"),
+            boxEffects.Add(_(L"Stipple shape"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
             m_boxPlotsPropertyGrid->Append(
-                new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, barEffects,
+                new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, boxEffects,
                 (m_readabilityProjectDoc ?
                     static_cast<int>(m_readabilityProjectDoc->GetGraphBoxEffect()) :
                     static_cast<int>(wxGetApp().GetAppOptions().GetGraphBoxEffect()))) );
