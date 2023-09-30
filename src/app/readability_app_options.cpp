@@ -2230,7 +2230,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         int value =
                             barEffectNode->ToElement()->IntAttribute(
                                 XML_VALUE.mb_str(), static_cast<int>(GetHistogramBarEffect()));
-                        if (value >=
+                        if (value < 0 ||
+                            value >=
                             static_cast<decltype(value)>(BoxEffect::EFFECTS_COUNT) )
                             { value = static_cast<decltype(value)>(BoxEffect::Solid); }
                         SetHistogramBarEffect(static_cast<BoxEffect>(value));
@@ -2260,7 +2261,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         int value =
                             orientationNode->ToElement()->IntAttribute(
                                 XML_VALUE.mb_str(), static_cast<int>(GetBarChartOrientation()));
-                        if (value >=
+                        if (value < 0 ||
+                            value >=
                             static_cast<decltype(value)>(Wisteria::Orientation::ORIENTATION_COUNT) )
                             { value = static_cast<decltype(value)>(Wisteria::Orientation::Vertical); }
                         SetBarChartOrientation(static_cast<Wisteria::Orientation>(value));
@@ -2278,7 +2280,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         int value =
                             barEffectNode->ToElement()->IntAttribute(
                                 XML_VALUE.mb_str(), static_cast<int>(GetGraphBarEffect()));
-                        if (value >= static_cast<decltype(value)>(BoxEffect::EFFECTS_COUNT) )
+                        if (value < 0 ||
+                            value >= static_cast<decltype(value)>(BoxEffect::EFFECTS_COUNT) )
                             { value = static_cast<decltype(value)>(BoxEffect::Solid); }
                         SetGraphBarEffect(static_cast<BoxEffect>(value));
                         }
@@ -2321,7 +2324,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         int value =
                             boxEffectNode->ToElement()->IntAttribute(
                                 XML_VALUE.mb_str(), static_cast<int>(GetGraphBoxEffect()));
-                        if (value >= static_cast<decltype(value)>(BoxEffect::EFFECTS_COUNT))
+                        if (value < 0 ||
+                            value >= static_cast<decltype(value)>(BoxEffect::EFFECTS_COUNT))
                             { value = static_cast<decltype(value)>(BoxEffect::Solid); }
                         SetGraphBoxEffect(static_cast<BoxEffect>(value));
                         }

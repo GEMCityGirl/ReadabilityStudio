@@ -1426,7 +1426,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             long boxEffect = XmlFormat::GetLong(boxPlotSection, boxPlotSectionEnd,
                 wxGetApp().GetAppOptions().XML_BOX_EFFECT,
                 static_cast<long>(wxGetApp().GetAppOptions().GetGraphBoxEffect()));
-            if (boxEffect >= static_cast<decltype(boxEffect)>(BoxEffect::EFFECTS_COUNT))
+            if (boxEffect < 0 || boxEffect >= static_cast<decltype(boxEffect)>(BoxEffect::EFFECTS_COUNT))
                 { boxEffect = static_cast<decltype(boxEffect)>(wxGetApp().GetAppOptions().GetGraphBoxEffect()); }
             SetGraphBoxEffect(static_cast<BoxEffect>(boxEffect));
             SetGraphBoxOpacity(XmlFormat::GetLong(boxPlotSection, boxPlotSectionEnd,
@@ -1519,7 +1519,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             long barEffect = XmlFormat::GetLong(barSection, barSectionEnd,
                 wxGetApp().GetAppOptions().XML_BAR_EFFECT,
                 static_cast<long>(wxGetApp().GetAppOptions().GetGraphBarEffect()));
-            if (barEffect >= static_cast<decltype(barEffect)>(BoxEffect::EFFECTS_COUNT) )
+            if (barEffect < 0 || barEffect >= static_cast<decltype(barEffect)>(BoxEffect::EFFECTS_COUNT) )
                 { barEffect = static_cast<decltype(barEffect)>(wxGetApp().GetAppOptions().GetGraphBarEffect()); }
             SetGraphBarEffect(static_cast<BoxEffect>(barEffect));
             long orientation = XmlFormat::GetLong(barSection, barSectionEnd,
