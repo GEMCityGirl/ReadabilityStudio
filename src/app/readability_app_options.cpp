@@ -2065,6 +2065,10 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         int value =
                             backgroundImageEffectNode->ToElement()->IntAttribute(
                                 XML_VALUE.mb_str(), static_cast<int>(GetBackGroundImageEffect()));
+                        if (value < 0 ||
+                            value >=
+                            static_cast<decltype(value)>(ImageEffect::IMAGE_EFFECTS_COUNT) )
+                            { value = static_cast<decltype(value)>(ImageEffect::NoEffect); }
                         SetBackGroundImageEffect(static_cast<ImageEffect>(value));
                         }
                 colorNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_COLOR.mb_str());

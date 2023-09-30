@@ -1330,10 +1330,14 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         SetBackGroundImagePath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_PATH));
 
-        SetBackGroundImageEffect(
-            static_cast<ImageEffect>(XmlFormat::GetLong(graphsSection, graphsSectionEnd,
+        long imageEffect = XmlFormat::GetLong(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_EFFECT,
-            static_cast<int>(GetBackGroundImageEffect()))));
+            static_cast<int>(GetBackGroundImageEffect()));
+        if (imageEffect < 0 ||
+            imageEffect >=
+            static_cast<decltype(imageEffect)>(ImageEffect::IMAGE_EFFECTS_COUNT) )
+            { imageEffect = static_cast<decltype(imageEffect)>(ImageEffect::NoEffect); }
+        SetBackGroundImageEffect(static_cast<ImageEffect>(imageEffect));
 
         SetBackGroundColor(XmlFormat::GetColor(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_COLOR, wxGetApp().GetAppOptions().GetBackGroundColor()));
