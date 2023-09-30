@@ -5495,11 +5495,19 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
              GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings);
 
-        // creates and load text into a formatted text window
+        const auto setFormattedTextAndRestoreInsertionPoint = [](FormattedTextCtrl* textWindow, const wchar_t* formattedText)
+            {
+            const auto cursorPos = textWindow->GetInsertionPoint();
+            textWindow->SetFormattedText(formattedText);
+            textWindow->SetInsertionPoint(cursorPos);
+            textWindow->ShowPosition(cursorPos);
+            };
+
+        // creates and loads text into a formatted text window
         const auto buildTextWindow = [this, view, textBeingExcluded, textBufferLength,
                                       &textHeaderThemed, &textHeaderPaperWhite,
                                       &highlighterTagsThemed, &highlighterTagsPaperWhite,
-                                      &docText]
+                                      &docText, &setFormattedTextAndRestoreInsertionPoint]
                                      (FormattedTextCtrl* textWindow, const int ID, const wxString& label,
                                       auto& highlighter, const wxString& legend)
             {
@@ -5533,7 +5541,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             // not necessary on Linux and causes an assert
             textWindow->SetMaxLength(static_cast<unsigned long>(textLength));
 #endif
-            textWindow->SetFormattedText(docText.get());
+            setFormattedTextAndRestoreInsertionPoint(textWindow, docText.get());
 
 #ifdef DEBUG_EXPERIMENTAL_CODE
             const auto tempFilePath = wxFileName::CreateTempFileName(label);
@@ -5685,7 +5693,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 #ifndef __WXGTK__
             m_dcTextWindow->SetMaxLength(static_cast<unsigned long>(textLength));
 #endif
-            m_dcTextWindow->SetFormattedText(docText.get());
+            setFormattedTextAndRestoreInsertionPoint(m_dcTextWindow, docText.get());
 
             isNotDCWordThemed.Reset();
             isNotDCWordPaperWhite.Reset();
@@ -5828,7 +5836,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 #ifndef __WXGTK__
             m_hjTextWindow->SetMaxLength(static_cast<unsigned long>(textLength));
 #endif
-            m_hjTextWindow->SetFormattedText(docText.get());
+            setFormattedTextAndRestoreInsertionPoint(m_hjTextWindow, docText.get());
 
             isNotHJWordThemed.Reset();
             isNotHJWordPaperWhite.Reset();
@@ -6043,7 +6051,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 #ifndef __WXGTK__
                 textWindow->SetMaxLength(static_cast<unsigned long>(textLength));
 #endif
-                textWindow->SetFormattedText(docText.get());
+                setFormattedTextAndRestoreInsertionPoint(textWindow, docText.get());
 
                 notCustomWordThemed.Reset();
                 notCustomWordExcludeNumberalsThemed.Reset();
@@ -6201,7 +6209,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 #ifndef __WXGTK__
             textWindow->SetMaxLength(static_cast<unsigned long>(textLength));
 #endif
-            textWindow->SetFormattedText(docText.get());
+            setFormattedTextAndRestoreInsertionPoint(textWindow, docText.get());
 
 #ifdef DEBUG_EXPERIMENTAL_CODE
             const auto tempFilePath = wxFileName::CreateTempFileName(_(L"Highlighted Report"));
