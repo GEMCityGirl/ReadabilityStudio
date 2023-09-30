@@ -5059,13 +5059,13 @@ void ToolsOptionsDlg::CreateGraphSection()
                 _(L"Sets the transparency of the bars. A value of 255 will set the box to be fully opaque, "
                    "whereas 0 will set the bars to be transparent."));
 
-            m_histogramPropertyGrid->Append(new wxPropertyCategory(GetBinningOptionsLabel()) );
-            m_histogramPropertyGrid->SetPropertyHelpString(
-                GetBinningOptionsLabel(),
-                _(L"The options in this section control how the data are categorized."));
-
             if (IsBatchProjectSettings() || IsGeneralSettings())
                 {
+                m_histogramPropertyGrid->Append(new wxPropertyCategory(GetBinningOptionsLabel()));
+                m_histogramPropertyGrid->SetPropertyHelpString(
+                    GetBinningOptionsLabel(),
+                    _(L"The options in this section control how the data are categorized."));
+
                 // sorting
                 wxPGChoices sortChoices;
                 wxArrayString categories;
