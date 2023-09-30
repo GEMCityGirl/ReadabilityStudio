@@ -89,7 +89,6 @@ wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
     EVT_MENU(XRCID("ID_HISTOGRAM_BAR_SYTLE_GLASS"), BaseProjectView::OnHistoBarStyleSelected)
     EVT_MENU(XRCID("ID_HISTOGRAM_BAR_SYTLE_BTOT"), BaseProjectView::OnHistoBarStyleSelected)
     EVT_MENU(XRCID("ID_HISTOGRAM_BAR_SYTLE_TTOB"), BaseProjectView::OnHistoBarStyleSelected)
-    EVT_MENU(XRCID("ID_HISTOGRAM_BAR_SYTLE_BRUSH"), BaseProjectView::OnHistoBarStyleSelected)
     EVT_MENU(XRCID("ID_HISTOGRAM_BAR_SELECT_BRUSH"), BaseProjectView::OnHistoBarSelectStippleBrush)
     EVT_MENU(XRCID("ID_BOX_STYLE_BRUSH"), BaseProjectView::OnBoxStyleSelected)
     EVT_MENU(XRCID("ID_BOX_SELECT_BRUSH"), BaseProjectView::OnBoxSelectStippleBrush)
@@ -195,6 +194,8 @@ BaseProjectView::BaseProjectView()
     // menu events
     Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
         XRCID("ID_BAR_SYTLE_BRUSH_IMAGE"));
+    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
+        XRCID("ID_HISTOGRAM_BAR_SYTLE_BRUSH_IMAGE"));
 
     Bind(wxEVT_MENU, &BaseProjectView::OnGraphColorFade, this,
         XRCID("ID_GRAPH_BKCOLOR_FADE"));
@@ -267,7 +268,7 @@ void BaseProjectView::OnBarStyleSelected(wxCommandEvent& event)
         if (!wxFile::Exists(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetStippleImagePath()))
             {
             wxFileDialog fd
-                (GetDocFrame(), _(L"Select Stipple Brush Image"),
+                (GetDocFrame(), _(L"Select Stipple Image"),
                 wxGetApp().GetAppOptions().GetImagePath(),
                 wxString{}, wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -298,12 +299,12 @@ void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
         { baseDoc->SetHistogramBarEffect(BoxEffect::FadeFromBottomToTop); }
     else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_SYTLE_TTOB"))
         { baseDoc->SetHistogramBarEffect(BoxEffect::FadeFromTopToBottom); }
-    else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_SYTLE_BRUSH"))
+    else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_SYTLE_BRUSH_IMAGE"))
         {
         if (!wxFile::Exists(baseDoc->GetStippleImagePath()))
             {
             wxFileDialog fd
-                (GetDocFrame(), _(L"Select Stipple Brush Image"),
+                (GetDocFrame(), _(L"Select Stipple Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxString{},
                 wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -327,7 +328,7 @@ void BaseProjectView::OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEve
         { return; }
 
     wxFileDialog fd
-        (GetDocFrame(), _(L"Select Stipple Brush Image"),
+        (GetDocFrame(), _(L"Select Stipple Image"),
         wxGetApp().GetAppOptions().GetImagePath(), wxString{},
         wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -351,7 +352,7 @@ void BaseProjectView::OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& e
         { return; }
 
     wxFileDialog fd
-        (GetDocFrame(), _(L"Select Stipple Brush Image"),
+        (GetDocFrame(), _(L"Select Stipple Image"),
         wxGetApp().GetAppOptions().GetImagePath(), wxString{},
         wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -375,7 +376,7 @@ void BaseProjectView::OnBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& e
         { return; }
 
     wxFileDialog fd
-        (GetDocFrame(), _(L"Select Stipple Brush Image"),
+        (GetDocFrame(), _(L"Select Stipple Image"),
         wxGetApp().GetAppOptions().GetImagePath(), wxString{},
         wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -406,7 +407,7 @@ void BaseProjectView::OnBoxStyleSelected(wxCommandEvent& event)
         if (!wxFile::Exists(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetStippleImagePath()))
             {
             wxFileDialog fd
-                (GetDocFrame(), _(L"Select Stipple Brush Image"),
+                (GetDocFrame(), _(L"Select Stipple Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxString{},
                 wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -1897,7 +1898,7 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     m_histoBarStyleMenu.Append(item);
 
     item = new wxMenuItem(&m_histoBarStyleMenu,
-        XRCID("ID_HISTOGRAM_BAR_SYTLE_BRUSH"), _(L"Custom image brush"));
+        XRCID("ID_HISTOGRAM_BAR_SYTLE_BRUSH_IMAGE"), _(L"Stipple image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_histoBarStyleMenu.Append(item);
 
