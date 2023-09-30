@@ -3589,93 +3589,6 @@ void ToolsOptionsDlg::CreateControls()
 
             panelSizer->Add(pgMan, 1, wxEXPAND);
             }
-
-        // Readability Graphs tab
-            {
-            wxPanel* Panel = new wxPanel(m_sideBar, GRAPH_READABILITY_GRAPHS_PAGE, wxDefaultPosition,
-                                         wxDefaultSize, wxTAB_TRAVERSAL);
-            wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
-            Panel->SetSizer(panelSizer);
-            m_sideBar->AddSubPage(Panel, GetReadabilityGraphLabel(), GRAPH_READABILITY_GRAPHS_PAGE, false, 9);
-
-            // Fry-like graphs
-            wxPropertyGridManager* pgMan =
-                new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                          wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
-            m_readabilityGraphPropertyGrid = pgMan->AddPage();
-            m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetFryLikeLabel()) );
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetFryLikeLabel(),
-                _(L"The options in this section customize the Fry, Gilliam-Pe\U000000F1a-Mountain, "
-                   "Raygor, and Schwartz graphs."));
-            m_readabilityGraphPropertyGrid->Append(
-                new wxColourProperty(GetInvalidRegionsColorLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetInvalidAreaColor() :
-                    wxGetApp().GetAppOptions().GetInvalidAreaColor())));
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetInvalidRegionsColorLabel(),
-                _(L"Selects the color for the invalid sentence/word regions."));
-
-            wxPGChoices raygorStyles;
-            raygorStyles.Add(_(L"Original"));
-            raygorStyles.Add(_(L"Baldwin-Kaufman"));
-            raygorStyles.Add(_(L"Modern"));
-            m_readabilityGraphPropertyGrid->Append(
-                new wxEnumProperty(GetRaygorStyleLabel(), wxPG_LABEL, raygorStyles,
-                (m_readabilityProjectDoc ?
-                    static_cast<int>(m_readabilityProjectDoc->GetRaygorStyle()) :
-                    static_cast<int>(wxGetApp().GetAppOptions().GetRaygorStyle()))) );
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetRaygorStyleLabel(),
-                _(L"Selects the layout style of the Raygor graph."));
-            // flesch
-            m_readabilityGraphPropertyGrid->Append(
-                new wxPropertyCategory(GetFleschChartLabel()) );
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetFleschChartLabel(),
-                _(L"The options in this section customize the Flesch chart."));
-            m_readabilityGraphPropertyGrid->Append(
-                new wxBoolProperty(GetFleschChartConnectPointsLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->IsConnectingFleschPoints() :
-                    wxGetApp().GetAppOptions().IsConnectingFleschPoints())));
-            m_readabilityGraphPropertyGrid->SetPropertyAttribute(
-                GetFleschChartConnectPointsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetFleschChartConnectPointsLabel(),
-                _(L"Check this to connect the factor and score points."));
-
-            m_readabilityGraphPropertyGrid->Append(
-                new wxBoolProperty(GetFleschSyllableRulerDocGroupsLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->IsIncludingFleschRulerDocGroups() :
-                    wxGetApp().GetAppOptions().IsIncludingFleschRulerDocGroups())));
-            m_readabilityGraphPropertyGrid->SetPropertyAttribute(
-                GetFleschSyllableRulerDocGroupsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetFleschSyllableRulerDocGroupsLabel(),
-                _(L"Check this to display document names grouped along the syllable ruler."));
-
-            // Lix gauge
-            m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetLixGaugeLabel()) );
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetLixGaugeLabel(), _(L"The options in this section customize the Lix Gauge."));
-            m_readabilityGraphPropertyGrid->Append(
-                new wxBoolProperty(GetUseEnglishLabelsForGermanLixLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->IsUsingEnglishLabelsForGermanLix() :
-                    wxGetApp().GetAppOptions().IsUsingEnglishLabelsForGermanLix())));
-            m_readabilityGraphPropertyGrid->SetPropertyAttribute(
-                GetUseEnglishLabelsForGermanLixLabel(), wxPG_BOOL_USE_CHECKBOX, true);
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetUseEnglishLabelsForGermanLixLabel(),
-                _(L"Check this to display the English translated bracket labels on the German Lix gauge."));
-
-            pgMan->SelectProperty(GetFryLikeLabel());
-
-            panelSizer->Add(pgMan, 1, wxEXPAND);
-            }
         }
 
     // Statistics page
@@ -4761,6 +4674,94 @@ void ToolsOptionsDlg::CreateControls()
             optionsSizer->Add(m_graphRightTitleFontButton, 0, wxLEFT|wxEXPAND, wxSizerFlags::GetDefaultBorder()*2);
 
             panelSizer->Add(optionsSizer);
+            }
+
+        // Readability Graphs tab
+        //-----------
+            {
+            wxPanel* Panel = new wxPanel(m_sideBar, GRAPH_READABILITY_GRAPHS_PAGE, wxDefaultPosition,
+                                         wxDefaultSize, wxTAB_TRAVERSAL);
+            wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+            Panel->SetSizer(panelSizer);
+            m_sideBar->AddSubPage(Panel, GetReadabilityGraphLabel(), GRAPH_READABILITY_GRAPHS_PAGE, false, 9);
+
+            // Fry-like graphs
+            wxPropertyGridManager* pgMan =
+                new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                          wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
+            m_readabilityGraphPropertyGrid = pgMan->AddPage();
+            m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetFryLikeLabel()) );
+            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+                GetFryLikeLabel(),
+                _(L"The options in this section customize the Fry, Gilliam-Pe\U000000F1a-Mountain, "
+                   "Raygor, and Schwartz graphs."));
+            m_readabilityGraphPropertyGrid->Append(
+                new wxColourProperty(GetInvalidRegionsColorLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ?
+                    m_readabilityProjectDoc->GetInvalidAreaColor() :
+                    wxGetApp().GetAppOptions().GetInvalidAreaColor())));
+            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+                GetInvalidRegionsColorLabel(),
+                _(L"Selects the color for the invalid sentence/word regions."));
+
+            wxPGChoices raygorStyles;
+            raygorStyles.Add(_(L"Original"));
+            raygorStyles.Add(_(L"Baldwin-Kaufman"));
+            raygorStyles.Add(_(L"Modern"));
+            m_readabilityGraphPropertyGrid->Append(
+                new wxEnumProperty(GetRaygorStyleLabel(), wxPG_LABEL, raygorStyles,
+                (m_readabilityProjectDoc ?
+                    static_cast<int>(m_readabilityProjectDoc->GetRaygorStyle()) :
+                    static_cast<int>(wxGetApp().GetAppOptions().GetRaygorStyle()))) );
+            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+                GetRaygorStyleLabel(),
+                _(L"Selects the layout style of the Raygor graph."));
+            // flesch
+            m_readabilityGraphPropertyGrid->Append(
+                new wxPropertyCategory(GetFleschChartLabel()) );
+            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+                GetFleschChartLabel(),
+                _(L"The options in this section customize the Flesch chart."));
+            m_readabilityGraphPropertyGrid->Append(
+                new wxBoolProperty(GetFleschChartConnectPointsLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ?
+                    m_readabilityProjectDoc->IsConnectingFleschPoints() :
+                    wxGetApp().GetAppOptions().IsConnectingFleschPoints())));
+            m_readabilityGraphPropertyGrid->SetPropertyAttribute(
+                GetFleschChartConnectPointsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+                GetFleschChartConnectPointsLabel(),
+                _(L"Check this to connect the factor and score points."));
+
+            m_readabilityGraphPropertyGrid->Append(
+                new wxBoolProperty(GetFleschSyllableRulerDocGroupsLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ?
+                    m_readabilityProjectDoc->IsIncludingFleschRulerDocGroups() :
+                    wxGetApp().GetAppOptions().IsIncludingFleschRulerDocGroups())));
+            m_readabilityGraphPropertyGrid->SetPropertyAttribute(
+                GetFleschSyllableRulerDocGroupsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+                GetFleschSyllableRulerDocGroupsLabel(),
+                _(L"Check this to display document names grouped along the syllable ruler."));
+
+            // Lix gauge
+            m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetLixGaugeLabel()) );
+            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+                GetLixGaugeLabel(), _(L"The options in this section customize the Lix Gauge."));
+            m_readabilityGraphPropertyGrid->Append(
+                new wxBoolProperty(GetUseEnglishLabelsForGermanLixLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ?
+                    m_readabilityProjectDoc->IsUsingEnglishLabelsForGermanLix() :
+                    wxGetApp().GetAppOptions().IsUsingEnglishLabelsForGermanLix())));
+            m_readabilityGraphPropertyGrid->SetPropertyAttribute(
+                GetUseEnglishLabelsForGermanLixLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+                GetUseEnglishLabelsForGermanLixLabel(),
+                _(L"Check this to display the English translated bracket labels on the German Lix gauge."));
+
+            pgMan->SelectProperty(GetFryLikeLabel());
+
+            panelSizer->Add(pgMan, 1, wxEXPAND);
             }
 
         // Bar Chart tab

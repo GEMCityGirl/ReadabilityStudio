@@ -12,6 +12,7 @@
   - Can now be shown/hidden with the `r keys('F2')` key or from the ribbon.
 - The **User agent** option previously available on the **Web Harvester** dialog has been moved to the **General Settings** page of the **Options** dialog.
   This will allow for changing the user agent when reading single web pages, as well as when harvesting pages.
+- The **Readability Graphs** page on the **Options** dialog has been moved to be under the **Graphs** section.
 
 #### Graph Enhancements {-}
 
