@@ -712,11 +712,17 @@ Effect
 The following options can be applied to the graph background image:
 
 **No effect**: Does not apply any effect.
+
 **Grayscale**: Converts the image to shades of gray (i.e., black & white).
+
 **Blur horizontally**: Applies a horizontal blur across the image.
+
 **Blur vertically**: Applies a vertical blur across the image.
+
 **Sepia**: Applies a sepia tone (i.e., faded photograph).
+
 **Frosted glass**: Applies a frosted glass window effect. In other words, the image as it may appear when viewed through frosted glass.
+
 **Oil painting**: Applies an oil painting effect.
 ::::
 
@@ -793,9 +799,11 @@ Raygor style
 
 Selects the layout style of the Raygor graph. These options include:
 
-- **Original**: As the graph appeared in the original presentation [@{raygor}261]. This will show grade labels being closer together, abbreviated, and with a san-serif font. Also, invalid region polygons are not included.
-- **Baldwin-Kaufman**: As the graph appeared in the Baldwin-Kaufman article [-@{baldwin-kaufman}149]. This is the same as the original, except that it includes invalid region polygons.
-- **Modern**: This is a modernized version of Baldwin-Kaufman, where the labels are serif, not abbreviated, and spread out further. The axis labels and titles are also more descriptive.
+**Original**: As the graph appeared in the original presentation [@{raygor}261]. This will show grade labels being closer together, abbreviated, and with a san-serif font. Also, invalid region polygons are not included.
+
+**Baldwin-Kaufman**: As the graph appeared in the Baldwin-Kaufman article [-@{baldwin-kaufman}149]. This is the same as the original, except that it includes invalid region polygons.
+
+**Modern**: This is a modernized version of Baldwin-Kaufman, where the labels are serif, not abbreviated, and spread out further. The axis labels and titles are also more descriptive.
 ::::
 
 #### Flesch Chart {-#options-flesch-chart}
