@@ -746,7 +746,7 @@ Note that watermarks and logos will also appear when you [print](#printing) or [
 
 #### Effects {-}
 
-**Custom image brush**: Enter into this field the file path to the image used for custom brushing. A custom-image brush can be used to draw stacked images across [bars](#options-bar-charts) and [boxes](#options-box-plots).
+**Stipple image brush**: Enter into this field the file path to the image used for a stipple brush. A stipple image brush can be used to draw stacked images across [bars](#options-bar-charts) and [boxes](#options-box-plots).
 
 **Display drop shadows**: Check this to include shadows underneath items such as boxes, bars, and labels. Unchecking this option will give your graphs a flat look.
 

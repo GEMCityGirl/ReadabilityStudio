@@ -346,7 +346,7 @@ private:
         { return _(L"Display drop shadows"); }
     [[nodiscard]]
     wxString GetCustomImageBrushLabel() const
-        { return _(L"Custom image brush"); }
+        { return _(L"Stipple image brush"); }
     [[nodiscard]]
     wxString GetWatermarkLabel() const
         { return _(L"Watermark"); }

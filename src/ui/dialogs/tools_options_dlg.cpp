@@ -1323,7 +1323,7 @@ bool ToolsOptionsDlg::ValidateOptions()
                 m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel()) ),
             wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
         wxFileDialog fd
-            (this, _(L"Select Custom Brush Image"),
+            (this, _(L"Select Stipple Brush Image"),
             wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString,
             wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
             wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -4583,20 +4583,20 @@ void ToolsOptionsDlg::CreateControls()
             m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetEffectsLabel()) );
             m_generalGraphPropertyGrid->SetPropertyHelpString(
                 GetEffectsLabel(), _(L"The options in this section customize various visual effects of the graphs."));
-            // custom brush
+            // stipple brush
             wxImageFileProperty* customBrushProp =
                 new wxImageFileProperty(GetCustomImageBrushLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
                     m_readabilityProjectDoc->GetStippleImagePath() :
                     wxGetApp().GetAppOptions().GetGraphStippleImagePath()));
             customBrushProp->SetAttribute(wxPG_FILE_WILDCARD ,wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER);
-            customBrushProp->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Custom Brush Image"));
+            customBrushProp->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Stipple Brush Image"));
             customBrushProp->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
             m_generalGraphPropertyGrid->Append(customBrushProp);
             m_generalGraphPropertyGrid->SetPropertyHelpString(
                 GetCustomImageBrushLabel(),
-                _(L"Enter into this field the file path to the image used for custom brushing. "
-                   "A custom-image brush can be used to draw stacked images across bars and boxes"));
+                _(L"Enter into this field the file path to the image used for a stipple brush. "
+                   "A stipple image brush can be used to draw stacked images across bars and boxes"));
             // set the default folder to the global image folder if no image provided
             if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel()).empty())
                 {

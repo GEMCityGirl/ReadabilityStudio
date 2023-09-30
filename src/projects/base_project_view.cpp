@@ -265,7 +265,7 @@ void BaseProjectView::OnBarStyleSelected(wxCommandEvent& event)
         if (!wxFile::Exists(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetStippleImagePath()))
             {
             wxFileDialog fd
-                (GetDocFrame(), _(L"Select Custom Brush Image"),
+                (GetDocFrame(), _(L"Select Stipple Brush Image"),
                 wxGetApp().GetAppOptions().GetImagePath(),
                 wxString{}, wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -301,7 +301,7 @@ void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
         if (!wxFile::Exists(baseDoc->GetStippleImagePath()))
             {
             wxFileDialog fd
-                (GetDocFrame(), _(L"Select Custom Brush Image"),
+                (GetDocFrame(), _(L"Select Stipple Brush Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxString{},
                 wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -325,7 +325,7 @@ void BaseProjectView::OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEve
         { return; }
 
     wxFileDialog fd
-        (GetDocFrame(), _(L"Select Custom Brush Image"),
+        (GetDocFrame(), _(L"Select Stipple Brush Image"),
         wxGetApp().GetAppOptions().GetImagePath(), wxString{},
         wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -349,7 +349,7 @@ void BaseProjectView::OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& e
         { return; }
 
     wxFileDialog fd
-        (GetDocFrame(), _(L"Select Custom Brush Image"),
+        (GetDocFrame(), _(L"Select Stipple Brush Image"),
         wxGetApp().GetAppOptions().GetImagePath(), wxString{},
         wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -373,7 +373,7 @@ void BaseProjectView::OnBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& e
         { return; }
 
     wxFileDialog fd
-        (GetDocFrame(), _(L"Select Custom Brush Image"),
+        (GetDocFrame(), _(L"Select Stipple Brush Image"),
         wxGetApp().GetAppOptions().GetImagePath(), wxString{},
         wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -404,7 +404,7 @@ void BaseProjectView::OnBoxStyleSelected(wxCommandEvent& event)
         if (!wxFile::Exists(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetStippleImagePath()))
             {
             wxFileDialog fd
-                (GetDocFrame(), _(L"Select Custom Brush Image"),
+                (GetDocFrame(), _(L"Select Stipple Brush Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxString{},
                 wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
