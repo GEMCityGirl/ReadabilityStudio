@@ -70,7 +70,7 @@ wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_BAR_LABELS"), BaseProjectView::OnBarLabelsButton)
     EVT_MENU(XRCID("ID_EDIT_BAR_COLOR"), BaseProjectView::OnEditGraphColor)
     EVT_MENU(XRCID("ID_EDIT_BAR_OPACITY"), BaseProjectView::OnEditGraphOpacity)
-    EVT_MENU(XRCID("ID_BAR_SELECT_BRUSH"), BaseProjectView::OnBarSelectStippleBrush)
+    EVT_MENU(XRCID("ID_BAR_SELECT_STIPPLE_IMAGE"), BaseProjectView::OnBarSelectStippleBrush)
     EVT_MENU(XRCID("ID_BAR_HORIZONTAL"), BaseProjectView::OnBarOrientationSelected)
     EVT_MENU(XRCID("ID_BAR_VERTICAL"), BaseProjectView::OnBarOrientationSelected)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_HISTOBAR_LABELS"), BaseProjectView::OnHistoBarsLabelsButton)
@@ -82,7 +82,7 @@ wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
     EVT_MENU(XRCID("ID_EDIT_HISTOGRAM_BAR_COLOR"), BaseProjectView::OnEditGraphColor)
     EVT_MENU(XRCID("ID_EDIT_HISTOBAR_OPACITY"), BaseProjectView::OnEditGraphOpacity)
     EVT_MENU(XRCID("ID_HISTOGRAM_BAR_SELECT_BRUSH"), BaseProjectView::OnHistoBarSelectStippleBrush)
-    EVT_MENU(XRCID("ID_BOX_SELECT_BRUSH"), BaseProjectView::OnBoxSelectStippleBrush)
+    EVT_MENU(XRCID("ID_BOX_SELECT_STIPPLE_IMAGE"), BaseProjectView::OnBoxSelectStippleBrush)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"), BaseProjectView::OnBoxPlotShowAllPointsButton)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_BOX_PLOT_DISPLAY_LABELS"), BaseProjectView::OnBoxPlotShowLabelsButton)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_BOX_STYLE"), BaseProjectView::OnBoxStyleButton)
@@ -1868,15 +1868,15 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     m_barStyleMenu.Append(item);
 
     item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_STIPPLE_IMAGE"), _(L"Stipple image"));
-    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_barStyleMenu.Append(item);
 
     m_barStyleMenu.AppendSeparator();
 
     // way to change the stipple brush if one is already selected
     item = new wxMenuItem(&m_barStyleMenu,
-        XRCID("ID_BAR_SELECT_BRUSH"), _(L"Select stipple image..."));
-    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+        XRCID("ID_BAR_SELECT_STIPPLE_IMAGE"), _(L"Select stipple image..."));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_barStyleMenu.Append(item);
 
     // histogram bar style menu
@@ -1914,14 +1914,14 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
 
     item = new wxMenuItem(&m_histoBarStyleMenu,
         XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_IMAGE"), _(L"Stipple image"));
-    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_histoBarStyleMenu.Append(item);
 
     m_histoBarStyleMenu.AppendSeparator();
 
     item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SELECT_BRUSH"),
                           _(L"Select stipple image..."));
-    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_histoBarStyleMenu.Append(item);
 
     // box style menu
@@ -1952,13 +1952,13 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     m_boxStyleMenu.Append(item);
 
     item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_STIPPLE_IMAGE"), _(L"Stipple image"));
-    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_boxStyleMenu.Append(item);
 
     m_boxStyleMenu.AppendSeparator();
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SELECT_BRUSH"), _(L"Select stipple image..."));
-    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SELECT_STIPPLE_IMAGE"), _(L"Select stipple image..."));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_boxStyleMenu.Append(item);
 
     // graph fonts
