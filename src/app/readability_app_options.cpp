@@ -2415,9 +2415,13 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     auto raygorStyleNode = fryRaygorNode->FirstChildElement(XML_RAYGOR_STYLE.mb_str());
                     if (raygorStyleNode != nullptr)
                         {
-                        const int value =
+                        int value =
                             raygorStyleNode->ToElement()->IntAttribute(
                                 XML_VALUE.mb_str(), static_cast<int>(GetRaygorStyle()));
+                        if (value < 0 ||
+                            value >=
+                            static_cast<decltype(value)>(Wisteria::Graphs::RaygorStyle::RAYGOR_STYLE_COUNT) )
+                            { value = static_cast<decltype(value)>(Wisteria::Graphs::RaygorStyle::BaldwinKaufman); }
                         SetRaygorStyle(static_cast<Wisteria::Graphs::RaygorStyle>(value));
                         }
                     }

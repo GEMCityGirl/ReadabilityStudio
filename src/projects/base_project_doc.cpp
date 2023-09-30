@@ -1373,10 +1373,15 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         SetInvalidAreaColor(XmlFormat::GetColor(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_INVALID_AREA_COLOR,
             wxGetApp().GetAppOptions().GetInvalidAreaColor()));
-        SetRaygorStyle(
-            static_cast<Wisteria::Graphs::RaygorStyle>(XmlFormat::GetLong(graphsSection, graphsSectionEnd,
+
+        long raygorStyle = XmlFormat::GetLong(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_RAYGOR_STYLE,
-            static_cast<int>(wxGetApp().GetAppOptions().GetRaygorStyle()))) );
+            static_cast<int>(wxGetApp().GetAppOptions().GetRaygorStyle()));
+        if (raygorStyle < 0 ||
+            raygorStyle >=
+            static_cast<decltype(raygorStyle)>(Wisteria::Graphs::RaygorStyle::RAYGOR_STYLE_COUNT) )
+            { raygorStyle = static_cast<decltype(raygorStyle)>(Wisteria::Graphs::RaygorStyle::BaldwinKaufman); }
+        SetRaygorStyle(static_cast<Wisteria::Graphs::RaygorStyle>(raygorStyle));
 
         // Lix gauge
         currentStartTag.clear();

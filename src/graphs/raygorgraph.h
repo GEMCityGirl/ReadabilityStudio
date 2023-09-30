@@ -28,7 +28,9 @@ namespace Wisteria::Graphs
         ///     says "College" and "Professor", adds "+" and "-" to the axes,
         ///     and places grade labels further apart. This makes the
         ///     graph look closer to a Fry graph.
-        Modern
+        Modern,
+        /// @private
+        RAYGOR_STYLE_COUNT
         };
 
     /// @brief Raygor readability graph.
