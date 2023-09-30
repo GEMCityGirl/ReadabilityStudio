@@ -21,6 +21,7 @@
 - Images are now saved with 300 DPI resolution.
 - Selected items now remain selected when you resize a graph window.
 - Added effects for graph background images, such as oil painting and sepia tone.
+- Added a stipple shape option, which will draw a selected shape across bar charts and box plots.
 - Sentence heatmaps now show the sentences' word counts.
 - Added multiple layout styles for Raygor to choose from. This includes showing the graph as it appeared in its original version, as well as the Baldwin-Kaufman variation.
 - Added brackets explaining the factors that influence word categories to the **Word Counts** barchart.
