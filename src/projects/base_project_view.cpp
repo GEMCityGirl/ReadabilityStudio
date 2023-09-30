@@ -191,6 +191,8 @@ BaseProjectView::BaseProjectView()
         XRCID("ID_BAR_STYLE_STIPPLE_IMAGE"));
     Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
         XRCID("ID_BAR_STYLE_STIPPLE_SHAPE"));
+    Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
+        XRCID("ID_BAR_STYLE_WATERCOLOR"));
 
     Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
         XRCID("ID_HISTOGRAM_BAR_STYLE_SOLID"));
@@ -204,6 +206,8 @@ BaseProjectView::BaseProjectView()
         XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_IMAGE"));
     Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
         XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_SHAPE"));
+    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
+        XRCID("ID_HISTOGRAM_BAR_STYLE_WATERCOLOR"));
 
     Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
         XRCID("ID_BOX_STYLE_SOLID"));
@@ -217,6 +221,8 @@ BaseProjectView::BaseProjectView()
         XRCID("ID_BOX_STYLE_STIPPLE_IMAGE"));
     Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
         XRCID("ID_BOX_STYLE_STIPPLE_SHAPE"));
+    Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
+        XRCID("ID_BOX_STYLE_WATERCOLOR"));
 
     Bind(wxEVT_MENU, &BaseProjectView::OnGraphColorFade, this,
         XRCID("ID_GRAPH_BKCOLOR_FADE"));
@@ -302,6 +308,8 @@ void BaseProjectView::OnBarStyleSelected(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_BAR_STYLE_STIPPLE_SHAPE"))
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBarEffect(BoxEffect::StippleShape); }
+    else if (event.GetId() == XRCID("ID_BAR_STYLE_WATERCOLOR"))
+        { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBarEffect(BoxEffect::WaterColor); }
     dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshRequired(ProjectRefresh::Minimal);
     dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshGraphs();
     }
@@ -340,6 +348,8 @@ void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_SHAPE"))
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetHistogramBarEffect(BoxEffect::StippleShape); }
+    else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_WATERCOLOR"))
+        { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetHistogramBarEffect(BoxEffect::WaterColor); }
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
     }
@@ -445,6 +455,8 @@ void BaseProjectView::OnBoxStyleSelected(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_BOX_STYLE_STIPPLE_SHAPE"))
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBoxEffect(BoxEffect::StippleShape); }
+    else if (event.GetId() == XRCID("ID_BOX_STYLE_WATERCOLOR"))
+        { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBoxEffect(BoxEffect::WaterColor); }
     dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshRequired(ProjectRefresh::Minimal);
     dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshGraphs();
     }
@@ -1861,6 +1873,12 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
     m_barStyleMenu.Append(item);
 
+    // way to change the stipple brush if one is already selected
+    item = new wxMenuItem(&m_barStyleMenu,
+        XRCID("ID_BAR_SELECT_STIPPLE_IMAGE"), _(L"Select stipple image..."));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+    m_barStyleMenu.Append(item);
+
     m_barStyleMenu.AppendSeparator();
 
     item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_SOLID"), _(L"Solid"));
@@ -1887,12 +1905,8 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
     m_barStyleMenu.Append(item);
 
-    m_barStyleMenu.AppendSeparator();
-
-    // way to change the stipple brush if one is already selected
-    item = new wxMenuItem(&m_barStyleMenu,
-        XRCID("ID_BAR_SELECT_STIPPLE_IMAGE"), _(L"Select stipple image..."));
-    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_WATERCOLOR"), _(L"Watercolor"));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_barStyleMenu.Append(item);
 
     // histogram bar style menu
@@ -1904,6 +1918,11 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item = new wxMenuItem(&m_histoBarStyleMenu,
         XRCID("ID_EDIT_HISTOBAR_OPACITY"), _(L"Opacity..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
+    m_histoBarStyleMenu.Append(item);
+
+    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SELECT_BRUSH"),
+        _(L"Select stipple image..."));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_histoBarStyleMenu.Append(item);
 
     m_histoBarStyleMenu.AppendSeparator();
@@ -1938,11 +1957,9 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
     m_histoBarStyleMenu.Append(item);
 
-    m_histoBarStyleMenu.AppendSeparator();
-
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SELECT_BRUSH"),
-                          _(L"Select stipple image..."));
-    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+    item = new wxMenuItem(&m_histoBarStyleMenu,
+        XRCID("ID_HISTOGRAM_BAR_STYLE_WATERCOLOR"), _(L"Watercolor"));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_histoBarStyleMenu.Append(item);
 
     // box style menu
@@ -1952,6 +1969,10 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
 
     item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_EDIT_BOX_OPACITY"), _(L"Opacity..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
+    m_boxStyleMenu.Append(item);
+
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SELECT_STIPPLE_IMAGE"), _(L"Select stipple image..."));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_boxStyleMenu.Append(item);
 
     m_boxStyleMenu.AppendSeparator();
@@ -1980,10 +2001,8 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
     m_boxStyleMenu.Append(item);
 
-    m_boxStyleMenu.AppendSeparator();
-
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SELECT_STIPPLE_IMAGE"), _(L"Select stipple image..."));
-    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_WATERCOLOR"), _(L"Watercolor"));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_boxStyleMenu.Append(item);
 
     // graph fonts

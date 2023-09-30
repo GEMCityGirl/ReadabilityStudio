@@ -4944,6 +4944,8 @@ void ToolsOptionsDlg::CreateGraphSection()
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
             boxEffects.Add(_(L"Stipple shape"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
+            boxEffects.Add(_(L"Watercolor"),
+                wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
             m_barChartPropertyGrid->Append(
                 new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, boxEffects,
                 (m_readabilityProjectDoc ?
@@ -5034,6 +5036,8 @@ void ToolsOptionsDlg::CreateGraphSection()
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
             boxEffects.Add(_(L"Stipple shape"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
+            boxEffects.Add(_(L"Watercolor"),
+                wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
             m_histogramPropertyGrid->Append(
                 new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, boxEffects,
                 (m_readabilityProjectDoc ?
@@ -5174,6 +5178,8 @@ void ToolsOptionsDlg::CreateGraphSection()
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
             boxEffects.Add(_(L"Stipple shape"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
+            boxEffects.Add(_(L"Watercolor"),
+                wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
             m_boxPlotsPropertyGrid->Append(
                 new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, boxEffects,
                 (m_readabilityProjectDoc ?

@@ -844,6 +844,8 @@ Effect
 **Stipple image**: Select this option to draw a stack of images across your bars. The image for this brush is specified on the [**General**](#options-graphs) page.
 
 **Stipple shape**: Select this option to draw a shape across your bars. The shape for this brush is specified on the [**General**](#options-graphs) page.
+
+**Watercolor**: Select this option to draw a watercolor-like effect across the bars. This will appear as if bars are warped and look like they were filled in with watercolor paint (or a marker).
 ::::
 
 **Opacity**: Sets the transparency of the bars. A value of 255 will set the bars to be fully opaque, whereas 0 will set the bars to be transparent.
@@ -884,6 +886,8 @@ Effect
 **Stipple image**: Select this option to draw a stack of images across your bars. The image for this brush is specified on the [General](#options-graphs) page.
 
 **Stipple shape**: Select this option to draw a shape across your bars. The shape for this brush is specified on the [**General**](#options-graphs) page.
+
+**Watercolor**: Select this option to draw a watercolor-like effect across the bars. This will appear as if bars are warped and look like they were filled in with watercolor paint (or a marker).
 ::::
 
 **Opacity**: Sets the transparency of the bars. A value of 255 will set the bars to be fully opaque, whereas 0 will set the bars to be transparent.
@@ -976,6 +980,8 @@ Effect
 **Stipple image**: Select this option to draw a stack of images across your boxes. The image for this brush is specified on the [**General**](#options-graphs) page.
 
 **Stipple shape**: Select this option to draw a shape across your boxes. The shape for this brush is specified on the [**General**](#options-graphs) page.
+
+**Watercolor**: Select this option to draw a watercolor-like effect across the boxes. This will appear as if boxes are warped and look like they were filled in with watercolor paint (or a marker).
 ::::
 
 **Opacity**: Sets the transparency of the box. A value of 255 will set the box to be fully opaque, whereas 0 will set the box to be transparent.
