@@ -4,6 +4,7 @@ ribbon/add.svg
 ribbon/adult.svg
 ribbon/aggressive-list.svg
 ribbon/app-logo.svg
+ribbon/apple.svg
 ribbon/archive.svg
 ribbon/axis-orientation.svg
 ribbon/bar-bottom-to-top.svg
