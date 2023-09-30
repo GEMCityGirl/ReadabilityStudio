@@ -4425,6 +4425,74 @@ void ToolsOptionsDlg::CreateControls()
         }
 
     // graphs options page
+    CreateGraphSection();
+
+    mainSizer->Add(CreateButtonSizer(wxOK|wxCANCEL|wxHELP), 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+
+    if (IsGeneralSettings())
+        {
+        auto banner = new wxBannerWindow(this, wxTOP);
+        banner->SetText(wxString::Format(_(L"%s Options"), wxGetApp().GetAppDisplayName()),
+            _(L"These options will only affect new projects.\n"
+               "To change an existing project, click \"Properties\" on the Home tab."));
+        banner->SetGradient(ColorBrewer::GetColor(Color::White), ColorBrewer::GetColor(Color::PastelGray));
+
+        mainSizer->Insert(0, banner, wxSizerFlags().Expand());
+        }
+    else
+        {
+        wxString displayableProjectName = m_readabilityProjectDoc ?
+            m_readabilityProjectDoc->GetTitle() : wxString{};
+        if (displayableProjectName.length() >= 50)
+            { displayableProjectName.Truncate(49).Append(static_cast<wchar_t>(8230)); }
+
+        auto banner = new wxBannerWindow(this, wxTOP);
+        banner->SetText(_(L"Project Properties"),
+            wxString::Format(
+                _(L"These options only affect the current project (\"%s\").\n"
+                   "To change options for future projects, click \"Options\" on the Tools tab."),
+                displayableProjectName));
+        banner->SetGradient(ColorBrewer::GetColor(Color::White), ColorBrewer::GetColor(Color::PastelGray));
+
+        mainSizer->Insert(0, banner, wxSizerFlags().Expand());
+        }
+
+    SetSizerAndFit(mainSizer);
+
+    // need to fit these columns after everything else was resized
+    if (IsBatchProjectSettings() && GetFileList())
+        {
+        GetFileList()->SetColumnWidth(0, GetFileList()->GetClientSize().GetWidth()*.75);
+        GetFileList()->SetColumnWidth(1, GetFileList()->GetClientSize().GetWidth()*.25);
+        }
+
+    if (m_readabilityTestsPropertyGrid)
+        { m_readabilityTestsPropertyGrid->FitColumns(); }
+    if (m_gradeLevelPropertyGrid)
+        { m_gradeLevelPropertyGrid->FitColumns(); }
+    if (m_grammarPropertyGrid)
+        { m_grammarPropertyGrid->FitColumns(); }
+    if (m_wordsBreakdownPropertyGrid)
+        { m_wordsBreakdownPropertyGrid->FitColumns(); }
+    if (m_sentencesBreakdownPropertyGrid)
+        { m_sentencesBreakdownPropertyGrid->FitColumns(); }
+    if (m_statisticsPropertyGrid)
+        { m_statisticsPropertyGrid->FitColumns(); }
+    if (m_generalGraphPropertyGrid)
+        { m_generalGraphPropertyGrid->FitColumns(); }
+    if (m_readabilityGraphPropertyGrid)
+        { m_readabilityGraphPropertyGrid->FitColumns(); }
+    if (m_barChartPropertyGrid)
+        { m_barChartPropertyGrid->FitColumns(); }
+    if (m_histogramPropertyGrid)
+        { m_histogramPropertyGrid->FitColumns(); }
+    if (m_boxPlotsPropertyGrid)
+        { m_boxPlotsPropertyGrid->FitColumns(); }
+    }
+
+//-------------------------------------------------------------
+void ToolsOptionsDlg::CreateGraphSection()
+    {
     if (GetSectionsBeingShown() & GraphsSection)
         {
         wxPanel* GraphGeneralPage =
@@ -5091,68 +5159,6 @@ void ToolsOptionsDlg::CreateControls()
             panelSizer->Add(pgMan, 1, wxEXPAND);
             }
         }
-
-    mainSizer->Add(CreateButtonSizer(wxOK|wxCANCEL|wxHELP), 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
-
-    if (IsGeneralSettings())
-        {
-        auto banner = new wxBannerWindow(this, wxTOP);
-        banner->SetText(wxString::Format(_(L"%s Options"), wxGetApp().GetAppDisplayName()),
-            _(L"These options will only affect new projects.\n"
-               "To change an existing project, click \"Properties\" on the Home tab."));
-        banner->SetGradient(ColorBrewer::GetColor(Color::White), ColorBrewer::GetColor(Color::PastelGray));
-
-        mainSizer->Insert(0, banner, wxSizerFlags().Expand());
-        }
-    else
-        {
-        wxString displayableProjectName = m_readabilityProjectDoc ?
-            m_readabilityProjectDoc->GetTitle() : wxString{};
-        if (displayableProjectName.length() >= 50)
-            { displayableProjectName.Truncate(49).Append(static_cast<wchar_t>(8230)); }
-
-        auto banner = new wxBannerWindow(this, wxTOP);
-        banner->SetText(_(L"Project Properties"),
-            wxString::Format(
-                _(L"These options only affect the current project (\"%s\").\n"
-                   "To change options for future projects, click \"Options\" on the Tools tab."),
-                displayableProjectName));
-        banner->SetGradient(ColorBrewer::GetColor(Color::White), ColorBrewer::GetColor(Color::PastelGray));
-
-        mainSizer->Insert(0, banner, wxSizerFlags().Expand());
-        }
-
-    SetSizerAndFit(mainSizer);
-
-    // need to fit these columns after everything else was resized
-    if (IsBatchProjectSettings() && GetFileList())
-        {
-        GetFileList()->SetColumnWidth(0, GetFileList()->GetClientSize().GetWidth()*.75);
-        GetFileList()->SetColumnWidth(1, GetFileList()->GetClientSize().GetWidth()*.25);
-        }
-
-    if (m_readabilityTestsPropertyGrid)
-        { m_readabilityTestsPropertyGrid->FitColumns(); }
-    if (m_gradeLevelPropertyGrid)
-        { m_gradeLevelPropertyGrid->FitColumns(); }
-    if (m_grammarPropertyGrid)
-        { m_grammarPropertyGrid->FitColumns(); }
-    if (m_wordsBreakdownPropertyGrid)
-        { m_wordsBreakdownPropertyGrid->FitColumns(); }
-    if (m_sentencesBreakdownPropertyGrid)
-        { m_sentencesBreakdownPropertyGrid->FitColumns(); }
-    if (m_statisticsPropertyGrid)
-        { m_statisticsPropertyGrid->FitColumns(); }
-    if (m_generalGraphPropertyGrid)
-        { m_generalGraphPropertyGrid->FitColumns(); }
-    if (m_readabilityGraphPropertyGrid)
-        { m_readabilityGraphPropertyGrid->FitColumns(); }
-    if (m_barChartPropertyGrid)
-        { m_barChartPropertyGrid->FitColumns(); }
-    if (m_histogramPropertyGrid)
-        { m_histogramPropertyGrid->FitColumns(); }
-    if (m_boxPlotsPropertyGrid)
-        { m_boxPlotsPropertyGrid->FitColumns(); }
     }
 
 //-------------------------------------------------------------

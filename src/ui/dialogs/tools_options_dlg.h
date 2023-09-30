@@ -236,6 +236,7 @@ private:
         { return m_fileList; }
     /// Creates the controls and sizers
     void CreateControls();
+    void CreateGraphSection();
 
     [[nodiscard]]
     wxString GetCustomTestsLabel() const
