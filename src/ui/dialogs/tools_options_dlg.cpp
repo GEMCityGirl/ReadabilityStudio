@@ -1319,11 +1319,11 @@ bool ToolsOptionsDlg::ValidateOptions()
         !wxFile::Exists(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel())))
         {
         wxMessageBox(wxString::Format(
-            _(L"\"%s\": image brush file not found."),
+            _(L"\"%s\": stipple image file not found."),
                 m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel()) ),
             wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
         wxFileDialog fd
-            (this, _(L"Select Stipple Brush Image"),
+            (this, _(L"Select Stipple Image"),
             wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString,
             wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
             wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -4664,7 +4664,7 @@ void ToolsOptionsDlg::CreateGraphSection()
             m_generalGraphPropertyGrid->SetPropertyHelpString(
                 GetCustomImageBrushLabel(),
                 _(L"Enter into this field the file path to the image used for a stipple brush. "
-                   "A stipple image brush can be used to draw stacked images across bars and boxes"));
+                   "A stipple image can be used to draw stacked images across bars and boxes"));
             // set the default folder to the global image folder if no image provided
             if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel()).empty())
                 {
@@ -4867,7 +4867,7 @@ void ToolsOptionsDlg::CreateGraphSection()
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
             barEffects.Add(_(L"Color fade, top to bottom"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
-            barEffects.Add(_(L"Custom image brush"),
+            barEffects.Add(_(L"Stipple image"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
             m_barChartPropertyGrid->Append(
                 new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, barEffects,
@@ -4956,7 +4956,7 @@ void ToolsOptionsDlg::CreateGraphSection()
                 _(L"Color fade, top to bottom"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
             histoBarEffects.Add(
-                _(L"Custom image brush"),
+                _(L"Stipple image"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
             m_histogramPropertyGrid->Append(
                 new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, histoBarEffects,
@@ -5094,7 +5094,7 @@ void ToolsOptionsDlg::CreateGraphSection()
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-left-to-right.svg"));
             barEffects.Add(_(L"Color fade, right to left"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-right-to-left.svg"));
-            barEffects.Add(_(L"Custom image brush"),
+            barEffects.Add(_(L"Stipple image"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
             m_boxPlotsPropertyGrid->Append(
                 new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, barEffects,

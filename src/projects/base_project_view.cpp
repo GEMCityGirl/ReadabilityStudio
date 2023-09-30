@@ -1851,7 +1851,7 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
     m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_BRUSH_IMAGE"), _(L"Custom image brush"));
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_BRUSH_IMAGE"), _(L"Stipple image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_barStyleMenu.Append(item);
 
@@ -1859,7 +1859,7 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
 
     // way to change the stipple brush if one is already selected
     item = new wxMenuItem(&m_barStyleMenu,
-        XRCID("ID_BAR_SELECT_BRUSH"), _(L"Select custom image brush..."));
+        XRCID("ID_BAR_SELECT_BRUSH"), _(L"Select stipple image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_barStyleMenu.Append(item);
 
@@ -1904,7 +1904,7 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     m_histoBarStyleMenu.AppendSeparator();
 
     item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SELECT_BRUSH"),
-                          _(L"Select custom image brush..."));
+                          _(L"Select stipple image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_histoBarStyleMenu.Append(item);
 
@@ -1935,13 +1935,13 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-right-to-left.svg"));
     m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_BRUSH"), _(L"Custom image brush"));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SYTLE_BRUSH"), _(L"Stipple image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_boxStyleMenu.Append(item);
 
     m_boxStyleMenu.AppendSeparator();
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SELECT_BRUSH"), _(L"Select custom image brush..."));
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SELECT_BRUSH"), _(L"Select stipple image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_boxStyleMenu.Append(item);
 
