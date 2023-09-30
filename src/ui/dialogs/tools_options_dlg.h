@@ -52,145 +52,33 @@ public:
         Statistics = 0x0400,
         WordsBreakdown = 0x0800,
         SentencesBreakdown = 0x1000,
-        Unused1 = 0x2000,
-        Unused2 = 0x4000,
-        AllSections = (ProjectSection|GraphsSection|ScoresSection|TextSection|DocumentIndexing|Grammar|Statistics|WordsBreakdown|SentencesBreakdown)
+        UNUSED1 = 0x2000,
+        UNUSED2 = 0x4000,
+        AllSections = (ProjectSection|GraphsSection|ScoresSection|
+                       TextSection|DocumentIndexing|Grammar|Statistics|
+                       WordsBreakdown|SentencesBreakdown)
         };
-    /// Constructors
+    /// Constructor.
+    /// @param parent The parent of this dialog.
+    /// @param project The project to connect this dialog to. If null, then this is
+    ///     treating as a global settings dialog.
+    /// @param sectionsToInclude The sections of options to include. This useful
+    ///     for only showing a single section (e.g., graphs), thus making this
+    ///     a simplified options editor.
     explicit ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project = nullptr,
                              const ToolSections sectionsToInclude = AllSections);
+    /// @private
     ~ToolsOptionsDlg()
         { wxDELETE(m_fileData); }
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& caption = _(L"Options"),
                const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
                long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER);
-    [[nodiscard]]
-    ListCtrlEx* GetFileList() noexcept
-        { return m_fileList; }
-    /// Creates the controls and sizers
-    void CreateControls();
-    bool ValidateOptions();
-    void SaveOptions();
-    void SaveProjectGraphOptions();
-    void SaveTextWindowOptions();
-    void SaveStatisticsOptions();
-    // button events
-    void OnExportSettings([[maybe_unused]] wxCommandEvent& event);
-    void OnImportSettings([[maybe_unused]] wxCommandEvent& event);
-    void OnResetSettings([[maybe_unused]] wxCommandEvent& event);
-    void OnParagraphParseChange([[maybe_unused]] wxCommandEvent& event);
-    void OnHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
-    void OnExcludedHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
-    void OnDupWordHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
-    void OnWordyPhraseHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
-    void OnFontSelect(wxCommandEvent& event);
-    void OnDocumentStorageRadioButtonClick([[maybe_unused]] wxCommandEvent& event);
-    void OnFileBrowseButtonClick([[maybe_unused]] wxCommandEvent& event);
-    void OnAdditionalDocumentFileBrowseButtonClick([[maybe_unused]] wxCommandEvent& event);
-    void OnIncompleteSentencesChange([[maybe_unused]] wxCommandEvent& event);
-    void OnExcludedPhrasesFileEditButtonClick([[maybe_unused]] wxCommandEvent& event);
-    void OnExcludeNumeralsCheck(wxCommandEvent& event);
-    // dolch color buttons
-    void OnDolchConjunctionsHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
-    void OnDolchPrepositionsHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
-    void OnDolchPronounsHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
-    void OnDolchAdverbsHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
-    void OnDolchHighlightColorSelect(wxCommandEvent& event);
-    void OnDolchNounHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
-    // general events
-    void OnWarningMessagesButtonClick([[maybe_unused]] wxCommandEvent& event);
-    void OnHelp([[maybe_unused]] wxCommandEvent& event);
-    void OnContextHelp([[maybe_unused]] wxHelpEvent& event);
-    void OnOK([[maybe_unused]] wxCommandEvent& event);
-    [[nodiscard]]
-    bool HaveOptionsChanged() const;
-    [[nodiscard]]
-    bool HaveDocumentOptionsChanged() const;
-    [[nodiscard]]
-    bool HaveGraphOptionsChanged() const;
-    [[nodiscard]]
-    bool HaveTextViewOptionsChanged() const noexcept;
-    [[nodiscard]]
-    bool HaveTestDisplayOptionsChanged() const;
-    [[nodiscard]]
-    bool HaveStatisticsOptionsChanged() const;
-    [[nodiscard]]
-    bool HaveWordsBreakdownOptionsChanged() const;
-    [[nodiscard]]
-    bool HaveSentencesBreakdownOptionsChanged() const;
 
+    /// @brief Selects the default page when opening the dialog.
+    /// @param pageId The ID of the page to select.
     void SelectPage(const int pageId);
 
-    [[nodiscard]]
-    bool IsGeneralSettings() const noexcept;
-    [[nodiscard]]
-    bool IsStandardProjectSettings() const;
-    [[nodiscard]]
-    bool IsBatchProjectSettings() const;
-
-    [[nodiscard]]
-    static wxString GetReadabilityScoresLabel()
-        { return _(L"Readability Scores"); }
-    [[nodiscard]]
-    static wxString GetGeneralSettingsLabel()
-        { return _(L"General Settings"); }
-    [[nodiscard]]
-    static wxString GetStatisticsLabel()
-        { return _(L"Statistics"); }
-    [[nodiscard]]
-    static wxString GetAnalysisLabel()
-        { return _(L"Analysis"); }
-    [[nodiscard]]
-    static wxString GetDolchSightWordsLabel()
-        { return _(L"Dolch Sight Words"); }
-    [[nodiscard]]
-    static wxString GetDocumentViewsLabel()
-        { return _(L"Document Views"); }
-    [[nodiscard]]
-    static wxString GetDifficultWordListsLabel()
-        { return _(L"Difficult word lists"); }
-    [[nodiscard]]
-    static wxString GetGraphsLabel()
-        { return ProjectView::GetGraphsLabel(); }
-    [[nodiscard]]
-    static wxString GetGeneralLabel()
-        { return _(L"General"); }
-    [[nodiscard]]
-    static wxString GetAxisSettingsLabel()
-        { return _(L"Axes"); }
-    [[nodiscard]]
-    static wxString GetTitlesLabel()
-        { return _(L"Titles"); }
-    [[nodiscard]]
-    static wxString GetReadabilityGraphLabel()
-        { return _(L"Readability Graphs"); }
-    [[nodiscard]]
-    static wxString GetBarChartLabel()
-        { return _(L"Bar Charts"); }
-    [[nodiscard]]
-    static wxString GetBoxPlotLabel()
-        { return _(L"Box Plots"); }
-    [[nodiscard]]
-    static wxString GetHistogramsLabel()
-        { return _(L"Histograms"); }
-    [[nodiscard]]
-    static wxString GetProjectSettingsLabel()
-        { return _(L"Project Settings"); }
-    [[nodiscard]]
-    static wxString GetSentencesWordsLabel()
-        { return _(L"Sentences && Words"); }
-    [[nodiscard]]
-    static wxString GetTestOptionsLabel()
-        { return _(L"Test Options"); }
-    [[nodiscard]]
-    static wxString GetScoreDisplayLabel()
-        { return _(L"Scores"); }
-
-    void OnAddFilesClick([[maybe_unused]] wxCommandEvent& event);
-    void OnAddFileClick([[maybe_unused]] wxCommandEvent& event);
-    void OnDeleteFileClick([[maybe_unused]] wxCommandEvent& event);
-    void OnNumberSyllabizeChange([[maybe_unused]] wxCommandEvent& event);
-    void OnExclusionBlockTagChange([[maybe_unused]] wxCommandEvent& event);
+    // should be public so that clients can specify which page to select
     static constexpr int GENERAL_SETTINGS_PAGE = wxID_HIGHEST;
     static constexpr int PROJECT_SETTINGS_PAGE = wxID_HIGHEST + 1;
 
@@ -277,6 +165,77 @@ private:
     static constexpr int ID_ADD_FILES_BUTTON = wxID_HIGHEST + 78;
     static constexpr int ID_THEME_COMBO = wxID_HIGHEST + 79;
     static constexpr int ID_ADDITIONAL_FILE_FIELD = wxID_HIGHEST + 80;
+
+    // button events
+    void OnExportSettings([[maybe_unused]] wxCommandEvent& event);
+    void OnImportSettings([[maybe_unused]] wxCommandEvent& event);
+    void OnResetSettings([[maybe_unused]] wxCommandEvent& event);
+    void OnParagraphParseChange([[maybe_unused]] wxCommandEvent& event);
+    void OnHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
+    void OnExcludedHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
+    void OnDupWordHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
+    void OnWordyPhraseHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
+    void OnFontSelect(wxCommandEvent& event);
+    void OnDocumentStorageRadioButtonClick([[maybe_unused]] wxCommandEvent& event);
+    void OnFileBrowseButtonClick([[maybe_unused]] wxCommandEvent& event);
+    void OnAdditionalDocumentFileBrowseButtonClick([[maybe_unused]] wxCommandEvent& event);
+    void OnIncompleteSentencesChange([[maybe_unused]] wxCommandEvent& event);
+    void OnExcludedPhrasesFileEditButtonClick([[maybe_unused]] wxCommandEvent& event);
+    void OnExcludeNumeralsCheck(wxCommandEvent& event);
+    // dolch color buttons
+    void OnDolchConjunctionsHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
+    void OnDolchPrepositionsHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
+    void OnDolchPronounsHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
+    void OnDolchAdverbsHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
+    void OnDolchHighlightColorSelect(wxCommandEvent& event);
+    void OnDolchNounHighlightColorSelect([[maybe_unused]] wxCommandEvent& event);
+    // general events
+    void OnWarningMessagesButtonClick([[maybe_unused]] wxCommandEvent& event);
+    void OnHelp([[maybe_unused]] wxCommandEvent& event);
+    void OnContextHelp([[maybe_unused]] wxHelpEvent& event);
+    void OnOK([[maybe_unused]] wxCommandEvent& event);
+    void OnAddFilesClick([[maybe_unused]] wxCommandEvent& event);
+    void OnAddFileClick([[maybe_unused]] wxCommandEvent& event);
+    void OnDeleteFileClick([[maybe_unused]] wxCommandEvent& event);
+    void OnNumberSyllabizeChange([[maybe_unused]] wxCommandEvent& event);
+    void OnExclusionBlockTagChange([[maybe_unused]] wxCommandEvent& event);
+
+    // state functions
+    [[nodiscard]]
+    bool IsGeneralSettings() const noexcept;
+    [[nodiscard]]
+    bool IsStandardProjectSettings() const;
+    [[nodiscard]]
+    bool IsBatchProjectSettings() const;
+
+    // saving functions
+    bool ValidateOptions();
+    void SaveOptions();
+    void SaveProjectGraphOptions();
+    void SaveTextWindowOptions();
+    void SaveStatisticsOptions();
+    [[nodiscard]]
+    bool HaveOptionsChanged() const;
+    [[nodiscard]]
+    bool HaveDocumentOptionsChanged() const;
+    [[nodiscard]]
+    bool HaveGraphOptionsChanged() const;
+    [[nodiscard]]
+    bool HaveTextViewOptionsChanged() const noexcept;
+    [[nodiscard]]
+    bool HaveTestDisplayOptionsChanged() const;
+    [[nodiscard]]
+    bool HaveStatisticsOptionsChanged() const;
+    [[nodiscard]]
+    bool HaveWordsBreakdownOptionsChanged() const;
+    [[nodiscard]]
+    bool HaveSentencesBreakdownOptionsChanged() const;
+
+    [[nodiscard]]
+    ListCtrlEx* GetFileList() noexcept
+        { return m_fileList; }
+    /// Creates the controls and sizers
+    void CreateControls();
 
     [[nodiscard]]
     wxString GetCustomTestsLabel() const
@@ -515,6 +474,63 @@ private:
     [[nodiscard]]
     wxString GetHJCTextExclusionLabel() const
         { return _DT(L"HJTEXTEXCLUSION"); }
+    [[nodiscard]]
+    static wxString GetReadabilityScoresLabel()
+        { return _(L"Readability Scores"); }
+    [[nodiscard]]
+    static wxString GetGeneralSettingsLabel()
+        { return _(L"General Settings"); }
+    [[nodiscard]]
+    static wxString GetStatisticsLabel()
+        { return _(L"Statistics"); }
+    [[nodiscard]]
+    static wxString GetAnalysisLabel()
+        { return _(L"Analysis"); }
+    [[nodiscard]]
+    static wxString GetDolchSightWordsLabel()
+        { return _(L"Dolch Sight Words"); }
+    [[nodiscard]]
+    static wxString GetDocumentViewsLabel()
+        { return _(L"Document Views"); }
+    [[nodiscard]]
+    static wxString GetDifficultWordListsLabel()
+        { return _(L"Difficult word lists"); }
+    [[nodiscard]]
+    static wxString GetGraphsLabel()
+        { return ProjectView::GetGraphsLabel(); }
+    [[nodiscard]]
+    static wxString GetGeneralLabel()
+        { return _(L"General"); }
+    [[nodiscard]]
+    static wxString GetAxisSettingsLabel()
+        { return _(L"Axes"); }
+    [[nodiscard]]
+    static wxString GetTitlesLabel()
+        { return _(L"Titles"); }
+    [[nodiscard]]
+    static wxString GetReadabilityGraphLabel()
+        { return _(L"Readability Graphs"); }
+    [[nodiscard]]
+    static wxString GetBarChartLabel()
+        { return _(L"Bar Charts"); }
+    [[nodiscard]]
+    static wxString GetBoxPlotLabel()
+        { return _(L"Box Plots"); }
+    [[nodiscard]]
+    static wxString GetHistogramsLabel()
+        { return _(L"Histograms"); }
+    [[nodiscard]]
+    static wxString GetProjectSettingsLabel()
+        { return _(L"Project Settings"); }
+    [[nodiscard]]
+    static wxString GetSentencesWordsLabel()
+        { return _(L"Sentences && Words"); }
+    [[nodiscard]]
+    static wxString GetTestOptionsLabel()
+        { return _(L"Test Options"); }
+    [[nodiscard]]
+    static wxString GetScoreDisplayLabel()
+        { return _(L"Scores"); }
 
     /// Replaces various filepath shortcuts to the full pathway
     [[nodiscard]]
