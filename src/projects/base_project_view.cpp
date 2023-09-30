@@ -74,7 +74,6 @@ wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
     EVT_MENU(XRCID("ID_BAR_SYTLE_GLASS"), BaseProjectView::OnBarStyleSelected)
     EVT_MENU(XRCID("ID_BAR_SYTLE_BTOT"), BaseProjectView::OnBarStyleSelected)
     EVT_MENU(XRCID("ID_BAR_SYTLE_TTOB"), BaseProjectView::OnBarStyleSelected)
-    EVT_MENU(XRCID("ID_BAR_SYTLE_BRUSH"), BaseProjectView::OnBarStyleSelected)
     EVT_MENU(XRCID("ID_BAR_SELECT_BRUSH"), BaseProjectView::OnBarSelectStippleBrush)
     EVT_MENU(XRCID("ID_BAR_HORIZONTAL"), BaseProjectView::OnBarOrientationSelected)
     EVT_MENU(XRCID("ID_BAR_VERTICAL"), BaseProjectView::OnBarOrientationSelected)
@@ -194,6 +193,9 @@ BaseProjectView::BaseProjectView()
         XRCID("ID_TOGGLE_RIBBON"));
 
     // menu events
+    Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
+        XRCID("ID_BAR_SYTLE_BRUSH_IMAGE"));
+
     Bind(wxEVT_MENU, &BaseProjectView::OnGraphColorFade, this,
         XRCID("ID_GRAPH_BKCOLOR_FADE"));
 
@@ -260,7 +262,7 @@ void BaseProjectView::OnBarStyleSelected(wxCommandEvent& event)
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBarEffect(BoxEffect::FadeFromBottomToTop); }
     else if (event.GetId() == XRCID("ID_BAR_SYTLE_TTOB"))
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBarEffect(BoxEffect::FadeFromTopToBottom); }
-    else if (event.GetId() == XRCID("ID_BAR_SYTLE_BRUSH"))
+    else if (event.GetId() == XRCID("ID_BAR_SYTLE_BRUSH_IMAGE"))
         {
         if (!wxFile::Exists(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetStippleImagePath()))
             {
@@ -1849,7 +1851,7 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
     m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_BRUSH"), _(L"Custom image brush"));
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_SYTLE_BRUSH_IMAGE"), _(L"Custom image brush"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_barStyleMenu.Append(item);
 
