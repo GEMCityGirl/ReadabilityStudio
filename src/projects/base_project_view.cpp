@@ -189,6 +189,8 @@ BaseProjectView::BaseProjectView()
         XRCID("ID_BAR_STYLE_TTOB"));
     Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
         XRCID("ID_BAR_STYLE_STIPPLE_IMAGE"));
+    Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
+        XRCID("ID_BAR_STYLE_STIPPLE_SHAPE"));
 
     Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
         XRCID("ID_HISTOGRAM_BAR_STYLE_SOLID"));
@@ -200,6 +202,8 @@ BaseProjectView::BaseProjectView()
         XRCID("ID_HISTOGRAM_BAR_STYLE_TTOB"));
     Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
         XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_IMAGE"));
+    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
+        XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_SHAPE"));
 
     Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
         XRCID("ID_BOX_STYLE_SOLID"));
@@ -211,6 +215,8 @@ BaseProjectView::BaseProjectView()
         XRCID("ID_BOX_STYLE_RTOL"));
     Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
         XRCID("ID_BOX_STYLE_STIPPLE_IMAGE"));
+    Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
+        XRCID("ID_BOX_STYLE_STIPPLE_SHAPE"));
 
     Bind(wxEVT_MENU, &BaseProjectView::OnGraphColorFade, this,
         XRCID("ID_GRAPH_BKCOLOR_FADE"));
@@ -294,6 +300,8 @@ void BaseProjectView::OnBarStyleSelected(wxCommandEvent& event)
             }
         dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBarEffect(BoxEffect::Stipple);
         }
+    else if (event.GetId() == XRCID("ID_BAR_STYLE_STIPPLE_SHAPE"))
+        { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBarEffect(BoxEffect::StippleShape); }
     dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshRequired(ProjectRefresh::Minimal);
     dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshGraphs();
     }
@@ -330,6 +338,8 @@ void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
             }
         baseDoc->SetHistogramBarEffect(BoxEffect::Stipple);
         }
+    else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_SHAPE"))
+        { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetHistogramBarEffect(BoxEffect::StippleShape); }
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
     }
@@ -433,6 +443,8 @@ void BaseProjectView::OnBoxStyleSelected(wxCommandEvent& event)
             }
         dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBoxEffect(BoxEffect::Stipple);
         }
+    else if (event.GetId() == XRCID("ID_BOX_STYLE_STIPPLE_SHAPE"))
+        { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBoxEffect(BoxEffect::StippleShape); }
     dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshRequired(ProjectRefresh::Minimal);
     dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshGraphs();
     }
@@ -1871,6 +1883,10 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_barStyleMenu.Append(item);
 
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_STIPPLE_SHAPE"), _(L"Stipple shape"));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
+    m_barStyleMenu.Append(item);
+
     m_barStyleMenu.AppendSeparator();
 
     // way to change the stipple brush if one is already selected
@@ -1917,6 +1933,11 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_histoBarStyleMenu.Append(item);
 
+    item = new wxMenuItem(&m_histoBarStyleMenu,
+        XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_SHAPE"), _(L"Stipple shape"));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
+    m_histoBarStyleMenu.Append(item);
+
     m_histoBarStyleMenu.AppendSeparator();
 
     item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SELECT_BRUSH"),
@@ -1953,6 +1974,10 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
 
     item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_STIPPLE_IMAGE"), _(L"Stipple image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+    m_boxStyleMenu.Append(item);
+
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_STIPPLE_SHAPE"), _(L"Stipple shape"));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
     m_boxStyleMenu.Append(item);
 
     m_boxStyleMenu.AppendSeparator();
