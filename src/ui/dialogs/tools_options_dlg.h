@@ -305,8 +305,11 @@ private:
     wxString GetDisplayDropShadowsLabel() const
         { return _(L"Display drop shadows"); }
     [[nodiscard]]
-    wxString GetCustomImageBrushLabel() const
+    wxString GetStippleImageLabel() const
         { return _(L"Stipple image"); }
+    [[nodiscard]]
+    wxString GetStippleShapeLabel() const
+        { return _(L"Stipple shape"); }
     [[nodiscard]]
     wxString GetWatermarkLabel() const
         { return _(L"Watermark"); }
@@ -547,6 +550,8 @@ private:
 
     void CreateLabelHeader(wxWindow* parent, wxSizer* parentSizer,
                            const wxString& title, const bool addSidePadding = false) const;
+
+    std::map<wxString, wxString> m_shapeMap;
 
     BaseProjectDoc* m_readabilityProjectDoc { nullptr };
     wxCheckBox* m_ignoreCopyrightsCheckBox{ nullptr };

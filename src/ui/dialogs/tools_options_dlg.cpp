@@ -842,6 +842,11 @@ bool ToolsOptionsDlg::Create(wxWindow* parent, wxWindowID id, const wxString& ca
     {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_VALIDATE_RECURSIVELY);
     wxDialog::Create(parent, id, caption, pos, size, style);
+
+    m_shapeMap.insert(std::make_pair(_(L"Sun"), DONTTRANSLATE(L"sun")));
+    m_shapeMap.insert(std::make_pair(_(L"Book"), DONTTRANSLATE(L"book")));
+    m_shapeMap.insert(std::make_pair(_(L"Fall leaf"), DONTTRANSLATE(L"fall-leaf")));
+
     CreateControls();
 
     // DDX variables bound to controls
@@ -1089,8 +1094,10 @@ bool ToolsOptionsDlg::HaveGraphOptionsChanged() const
                m_generalGraphPropertyGrid->IsPropertyModified(GetLogoImageLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid, GetBackgroundColorFadeLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetBackgroundColorFadeLabel())) ||
-           (IsPropertyAvailable(m_generalGraphPropertyGrid,GetCustomImageBrushLabel()) &&
-               m_generalGraphPropertyGrid->IsPropertyModified(GetCustomImageBrushLabel())) ||
+           (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleImageLabel()) &&
+               m_generalGraphPropertyGrid->IsPropertyModified(GetStippleImageLabel())) ||
+           (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleShapeLabel()) &&
+               m_generalGraphPropertyGrid->IsPropertyModified(GetStippleShapeLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid,GetBackgroundColorLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetBackgroundColorLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid,GetImageOpacityLabel()) &&
@@ -1305,22 +1312,22 @@ bool ToolsOptionsDlg::ValidateOptions()
             return false;
             }
         }
-    if (((IsPropertyAvailable(m_generalGraphPropertyGrid,GetCustomImageBrushLabel()) &&
-        m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel()).length()) ||
-            (IsPropertyAvailable(m_barChartPropertyGrid,GetEffectLabel()) &&
+    if (((IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleImageLabel()) &&
+        m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleImageLabel()).length()) ||
+            (IsPropertyAvailable(m_barChartPropertyGrid, GetEffectLabel()) &&
                 static_cast<BoxEffect>(m_barChartPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())) ==
-                    BoxEffect::Stipple) ||
+                    BoxEffect::StippleImage) ||
             (IsPropertyAvailable(m_histogramPropertyGrid,GetEffectLabel()) &&
                 static_cast<BoxEffect>(m_histogramPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())) ==
-                    BoxEffect::Stipple) ||
+                    BoxEffect::StippleImage) ||
             (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetEffectLabel()) &&
                 static_cast<BoxEffect>(m_boxPlotsPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())) ==
-                    BoxEffect::Stipple)) &&
-        !wxFile::Exists(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel())))
+                    BoxEffect::StippleImage)) &&
+        !wxFile::Exists(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleImageLabel())))
         {
         wxMessageBox(wxString::Format(
             _(L"\"%s\": stipple image file not found."),
-                m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel()) ),
+                m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleImageLabel()) ),
             wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
         wxFileDialog fd
             (this, _(L"Select Stipple Image"),
@@ -1330,7 +1337,7 @@ bool ToolsOptionsDlg::ValidateOptions()
         if (fd.ShowModal() != wxID_OK)
             { return false; }
         wxGetApp().GetAppOptions().SetImagePath(wxFileName(fd.GetPath()).GetPath());
-        m_generalGraphPropertyGrid->SetPropertyValue(GetCustomImageBrushLabel(), fd.GetPath());
+        m_generalGraphPropertyGrid->SetPropertyValue(GetStippleImageLabel(), fd.GetPath());
         }
     if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetImageLabel()) &&
         !m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()).empty() &&
@@ -2132,10 +2139,18 @@ void ToolsOptionsDlg::SaveOptions()
             wxGetApp().GetAppOptions().SetGraphPlotBackGroundOpacity(
                 static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel())));
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetCustomImageBrushLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleImageLabel()))
             {
             wxGetApp().GetAppOptions().SetGraphStippleImagePath(
-                m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel())); }
+                m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleImageLabel()));
+            }
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleShapeLabel()))
+            {
+            const auto foundShape =
+                m_shapeMap.find(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleShapeLabel()));
+            if (foundShape != m_shapeMap.cend())
+                { wxGetApp().GetAppOptions().SetStippleShape(foundShape->second); }
+            }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetDisplayDropShadowsLabel()))
             {
             wxGetApp().GetAppOptions().DisplayDropShadows(
@@ -2158,7 +2173,7 @@ void ToolsOptionsDlg::SaveOptions()
                 static_cast<Wisteria::Orientation>(
                     m_barChartPropertyGrid->GetPropertyValueAsInt(GeOrientationLabel())));
             }
-        if (IsPropertyAvailable(m_barChartPropertyGrid,GetEffectLabel()))
+        if (IsPropertyAvailable(m_barChartPropertyGrid, GetEffectLabel()))
             {
             wxGetApp().GetAppOptions().SetGraphBarEffect(
                 static_cast<BoxEffect>(m_barChartPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())));
@@ -2203,23 +2218,23 @@ void ToolsOptionsDlg::SaveOptions()
             wxGetApp().GetAppOptions().SetHistogramBarOpacity(
                 static_cast<uint8_t>(m_histogramPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel())));
             }
-        if (IsPropertyAvailable(m_histogramPropertyGrid,GetEffectLabel()))
+        if (IsPropertyAvailable(m_histogramPropertyGrid, GetEffectLabel()))
             {
             wxGetApp().GetAppOptions().SetHistogramBarEffect(
                 static_cast<BoxEffect>(m_histogramPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())));
             }
 
-        if (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetColorLabel()))
+        if (IsPropertyAvailable(m_boxPlotsPropertyGrid, GetColorLabel()))
             {
             wxGetApp().GetAppOptions().SetGraphBoxColor(
                 wxAny(m_boxPlotsPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>());
             }
-        if (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetOpacityLabel()))
+        if (IsPropertyAvailable(m_boxPlotsPropertyGrid, GetOpacityLabel()))
             {
             wxGetApp().GetAppOptions().SetGraphBoxOpacity(
                 static_cast<uint8_t>(m_boxPlotsPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel())));
             }
-        if (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetEffectLabel()))
+        if (IsPropertyAvailable(m_boxPlotsPropertyGrid, GetEffectLabel()))
             {
             wxGetApp().GetAppOptions().SetGraphBoxEffect(
                 static_cast<BoxEffect>(m_boxPlotsPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())));
@@ -2388,7 +2403,7 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
     {
     if (m_readabilityProjectDoc && HaveOptionsChanged())
         {
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetBackgroundColorLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetBackgroundColorLabel()))
             {
             m_readabilityProjectDoc->SetBackGroundColor(
                 wxAny(m_generalGraphPropertyGrid->GetProperty(GetBackgroundColorLabel())->GetValue()).As<wxColour>());
@@ -2403,17 +2418,17 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
             m_readabilityProjectDoc->SetBackGroundImageEffect(
                 static_cast<ImageEffect>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageEffectLabel())));
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetWatermarkLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetWatermarkLabel()))
             {
             m_readabilityProjectDoc->SetWatermark(
                 m_generalGraphPropertyGrid->GetPropertyValueAsString(GetWatermarkLabel()));
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetLogoImageLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetLogoImageLabel()))
             {
             m_readabilityProjectDoc->SetWatermarkLogoPath(
                 m_generalGraphPropertyGrid->GetPropertyValueAsString(GetLogoImageLabel()));
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetImageOpacityLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageOpacityLabel()))
             {
             m_readabilityProjectDoc->SetGraphBackGroundOpacity(
                 static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageOpacityLabel())));
@@ -2423,119 +2438,126 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
             m_readabilityProjectDoc->SetGraphBackGroundLinearGradient(
                 m_generalGraphPropertyGrid->GetPropertyValueAsBool(GetBackgroundColorFadeLabel()));
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetColorLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetColorLabel()))
             {
             m_readabilityProjectDoc->SetPlotBackGroundColor(
                 wxAny(m_generalGraphPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>());
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetOpacityLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetOpacityLabel()))
             {
             m_readabilityProjectDoc->SetGraphPlotBackGroundOpacity(
                 static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel())));
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetCustomImageBrushLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleImageLabel()))
             {
             m_readabilityProjectDoc->SetStippleImagePath(
-                m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel()));
+                m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleImageLabel()));
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetDisplayDropShadowsLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleShapeLabel()))
+            {
+            const auto foundShape =
+                m_shapeMap.find(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleShapeLabel()));
+            if (foundShape != m_shapeMap.cend())
+                { m_readabilityProjectDoc->SetStippleShape(foundShape->second); }
+            }
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetDisplayDropShadowsLabel()))
             {
             m_readabilityProjectDoc->DisplayDropShadows(
                 m_generalGraphPropertyGrid->GetPropertyValueAsBool(GetDisplayDropShadowsLabel()));
             }
 
-        if (IsPropertyAvailable(m_barChartPropertyGrid,GetColorLabel()))
+        if (IsPropertyAvailable(m_barChartPropertyGrid, GetColorLabel()))
             {
             m_readabilityProjectDoc->SetBarChartBarColor(
                 wxAny(m_barChartPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>());
             }
-        if (IsPropertyAvailable(m_barChartPropertyGrid,GeOrientationLabel()))
+        if (IsPropertyAvailable(m_barChartPropertyGrid, GeOrientationLabel()))
             {
             m_readabilityProjectDoc->SetBarChartOrientation(
                 static_cast<Wisteria::Orientation>(
                     m_barChartPropertyGrid->GetPropertyValueAsInt(GeOrientationLabel())));
             }
-        if (IsPropertyAvailable(m_barChartPropertyGrid,GetOpacityLabel()))
+        if (IsPropertyAvailable(m_barChartPropertyGrid, GetOpacityLabel()))
             {
             m_readabilityProjectDoc->SetGraphBarOpacity(
                 static_cast<uint8_t>(m_barChartPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel())));
             }
-        if (IsPropertyAvailable(m_barChartPropertyGrid,GetEffectLabel()))
+        if (IsPropertyAvailable(m_barChartPropertyGrid, GetEffectLabel()))
             {
             m_readabilityProjectDoc->SetGraphBarEffect(
                 static_cast<BoxEffect>(m_barChartPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())));
             }
-        if (IsPropertyAvailable(m_barChartPropertyGrid,GetLabelsOnBarsLabel()))
+        if (IsPropertyAvailable(m_barChartPropertyGrid, GetLabelsOnBarsLabel()))
             {
             m_readabilityProjectDoc->DisplayBarLabels(
                 m_barChartPropertyGrid->GetPropertyValueAsBool(GetLabelsOnBarsLabel()));
             }
 
-        if (IsPropertyAvailable(m_histogramPropertyGrid,GetBinSortingLabel()))
+        if (IsPropertyAvailable(m_histogramPropertyGrid, GetBinSortingLabel()))
             {
             m_readabilityProjectDoc->SetHistorgramBinningMethod(
                 static_cast<Histogram::BinningMethod>(
                     m_histogramPropertyGrid->GetPropertyValueAsInt(GetBinSortingLabel())));
             }
-        if (IsPropertyAvailable(m_histogramPropertyGrid,GetGradeLevelRoundingLabel()))
+        if (IsPropertyAvailable(m_histogramPropertyGrid, GetGradeLevelRoundingLabel()))
             {
             m_readabilityProjectDoc->SetHistogramRoundingMethod(
                 static_cast<RoundingMethod>(
                     m_histogramPropertyGrid->GetPropertyValueAsInt(GetGradeLevelRoundingLabel())));
             }
-        if (IsPropertyAvailable(m_histogramPropertyGrid,GetIntervalDisplayLabel()))
+        if (IsPropertyAvailable(m_histogramPropertyGrid, GetIntervalDisplayLabel()))
             {
             m_readabilityProjectDoc->SetHistogramIntervalDisplay(
                 static_cast<Histogram::IntervalDisplay>(
                     m_histogramPropertyGrid->GetPropertyValueAsInt(GetIntervalDisplayLabel())));
             }
-        if (IsPropertyAvailable(m_histogramPropertyGrid,GetBinLabelsLabel()))
+        if (IsPropertyAvailable(m_histogramPropertyGrid, GetBinLabelsLabel()))
             { m_readabilityProjectDoc->SetHistrogramBinLabelDisplay(
                 static_cast<BinLabelDisplay>(
                     m_histogramPropertyGrid->GetPropertyValueAsInt(GetBinLabelsLabel())));
             }
-        if (IsPropertyAvailable(m_histogramPropertyGrid,GetColorLabel()))
+        if (IsPropertyAvailable(m_histogramPropertyGrid, GetColorLabel()))
             {
             m_readabilityProjectDoc->SetHistogramBarColor(
                 wxAny(m_histogramPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>());
             }
-        if (IsPropertyAvailable(m_histogramPropertyGrid,GetOpacityLabel()))
+        if (IsPropertyAvailable(m_histogramPropertyGrid, GetOpacityLabel()))
             {
             m_readabilityProjectDoc->SetHistogramBarOpacity(
                 static_cast<uint8_t>(m_histogramPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel())));
             }
-        if (IsPropertyAvailable(m_histogramPropertyGrid,GetEffectLabel()))
+        if (IsPropertyAvailable(m_histogramPropertyGrid, GetEffectLabel()))
             {
             m_readabilityProjectDoc->SetHistogramBarEffect(
                 static_cast<BoxEffect>(m_histogramPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())));
             }
 
-        if (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetColorLabel()))
+        if (IsPropertyAvailable(m_boxPlotsPropertyGrid, GetColorLabel()))
             {
             m_readabilityProjectDoc->SetGraphBoxColor(
                 wxAny(m_boxPlotsPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>());
             }
-        if (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetOpacityLabel()))
+        if (IsPropertyAvailable(m_boxPlotsPropertyGrid, GetOpacityLabel()))
             {
             m_readabilityProjectDoc->SetGraphBoxOpacity(
                 static_cast<uint8_t>(m_boxPlotsPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel())));
             }
-        if (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetEffectLabel()))
+        if (IsPropertyAvailable(m_boxPlotsPropertyGrid, GetEffectLabel()))
             {
             m_readabilityProjectDoc->SetGraphBoxEffect(
                 static_cast<BoxEffect>(m_boxPlotsPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())));
             }
-        if (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetLabelsOnBoxesLabel()))
+        if (IsPropertyAvailable(m_boxPlotsPropertyGrid, GetLabelsOnBoxesLabel()))
             {
             m_readabilityProjectDoc->DisplayBoxPlotLabels(
                 m_boxPlotsPropertyGrid->GetPropertyValueAsBool(GetLabelsOnBoxesLabel()));
             }
-        if (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetConnectBoxesLabel()))
+        if (IsPropertyAvailable(m_boxPlotsPropertyGrid, GetConnectBoxesLabel()))
             {
             m_readabilityProjectDoc->ConnectBoxPlotMiddlePoints(
                 m_boxPlotsPropertyGrid->GetPropertyValueAsBool(GetConnectBoxesLabel()));
             }
-        if (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetShowAllDataPointsLabel()))
+        if (IsPropertyAvailable(m_boxPlotsPropertyGrid, GetShowAllDataPointsLabel()))
             {
             m_readabilityProjectDoc->ShowAllBoxPlotPoints(
                 m_boxPlotsPropertyGrid->GetPropertyValueAsBool(GetShowAllDataPointsLabel()));
@@ -4653,7 +4675,7 @@ void ToolsOptionsDlg::CreateGraphSection()
                 GetEffectsLabel(), _(L"The options in this section customize various visual effects of the graphs."));
             // stipple brush
             wxImageFileProperty* customBrushProp =
-                new wxImageFileProperty(GetCustomImageBrushLabel(), wxPG_LABEL,
+                new wxImageFileProperty(GetStippleImageLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
                     m_readabilityProjectDoc->GetStippleImagePath() :
                     wxGetApp().GetAppOptions().GetGraphStippleImagePath()));
@@ -4662,14 +4684,37 @@ void ToolsOptionsDlg::CreateGraphSection()
             customBrushProp->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
             m_generalGraphPropertyGrid->Append(customBrushProp);
             m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetCustomImageBrushLabel(),
+                GetStippleImageLabel(),
                 _(L"Enter into this field the file path to the image used for a stipple brush. "
-                   "A stipple image can be used to draw stacked images across bars and boxes"));
-            // set the default folder to the global image folder if no image provided
-            if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCustomImageBrushLabel()).empty())
+                   "A stipple brush can be used to draw stacked images across bars and boxes"));
+            // set the default folder to the global image folder if no image is provided
+            if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleImageLabel()).empty())
                 {
                 customBrushProp->SetAttribute(wxPG_FILE_INITIAL_PATH, wxGetApp().GetAppOptions().GetImagePath());
                 }
+
+            wxPGChoices shapes;
+            for (const auto& sh : m_shapeMap)
+                { shapes.Add(sh.first); }
+            // do a reverse lookup to map internal "fall-leaf" to UI's "Fall leaf"
+            wxString defaultValue{ _("Book") };
+            const wxString systemValue = (m_readabilityProjectDoc ?
+                m_readabilityProjectDoc->GetStippleShape() :
+                wxGetApp().GetAppOptions().GetStippleShape());
+            for (const auto& sh : m_shapeMap)
+                {
+                if (systemValue.CmpNoCase(sh.second) == 0)
+                    {
+                    defaultValue = sh.first;
+                    break;
+                    }
+                }
+            auto shapesProp = m_generalGraphPropertyGrid->Append(
+                new wxEnumProperty(GetStippleShapeLabel(), wxPG_LABEL, shapes));
+            shapesProp->SetValue(defaultValue);
+            shapesProp->SetHelpString(
+                _(L"Select from here which shape to use for a stipple brush. "
+                   "A stipple brush can be used to draw stacked shape across bars and boxes"));
             // drop shadows
             m_generalGraphPropertyGrid->Append(
                 new wxBoolProperty(GetDisplayDropShadowsLabel(), wxPG_LABEL,
@@ -4868,6 +4913,8 @@ void ToolsOptionsDlg::CreateGraphSection()
             barEffects.Add(_(L"Color fade, top to bottom"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
             barEffects.Add(_(L"Stipple image"),
+                wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+            barEffects.Add(_(L"Stipple shape"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
             m_barChartPropertyGrid->Append(
                 new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, barEffects,
@@ -4955,8 +5002,9 @@ void ToolsOptionsDlg::CreateGraphSection()
             histoBarEffects.Add(
                 _(L"Color fade, top to bottom"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
-            histoBarEffects.Add(
-                _(L"Stipple image"),
+            histoBarEffects.Add(_(L"Stipple image"),
+                wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+            histoBarEffects.Add(_(L"Stipple shape"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
             m_histogramPropertyGrid->Append(
                 new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, histoBarEffects,
@@ -5095,6 +5143,8 @@ void ToolsOptionsDlg::CreateGraphSection()
             barEffects.Add(_(L"Color fade, right to left"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-right-to-left.svg"));
             barEffects.Add(_(L"Stipple image"),
+                wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+            barEffects.Add(_(L"Stipple shape"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
             m_boxPlotsPropertyGrid->Append(
                 new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, barEffects,

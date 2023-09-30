@@ -17,6 +17,7 @@
 #include "../Wisteria-Dataviz/src/graphs/heatmap.h"
 #include "../Wisteria-Dataviz/src/graphs/wordcloud.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/listdlg.h"
+#include "../Wisteria-Dataviz/src/base/reportenumconvert.h"
 
 using namespace Wisteria;
 using namespace Wisteria::Graphs;
@@ -2217,6 +2218,9 @@ void ProjectDoc::DisplaySentenceCharts()
         sentenceBoxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
         sentenceBoxPlot->SetOpacity(GetGraphBoxOpacity());
         sentenceBoxPlot->SetBoxEffect(GetGraphBoxEffect());
+        if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
+            convertedIcon)
+            { sentenceBoxPlot->SetStippleShape(convertedIcon.value()); }
 
         sentenceBoxPlotCanvas->CalcAllSizes(gdc);
         }
@@ -2259,6 +2263,9 @@ void ProjectDoc::DisplaySentenceCharts()
         sentenceHistogram->SetShadowType(IsDisplayingDropShadows() ?
             ShadowType::RightSideShadow : ShadowType::NoShadow);
         sentenceHistogram->SetBarEffect(GetHistogramBarEffect());
+        if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
+            convertedIcon)
+            { sentenceHistogram->SetStippleShape(convertedIcon.value()); }
         sentenceHistogram->SetBarOpacity(GetHistogramBarOpacity());
         sentenceHistogram->SetBrushScheme(
             std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
@@ -2388,6 +2395,9 @@ void ProjectDoc::DisplayWordCharts()
         wordBarChart->GetRightYAxis().Show(false);
         wordBarChart->GetTopXAxis().Show(false);
         wordBarChart->GetScalingAxis().GetGridlinePen() = wxNullPen;
+        if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
+            convertedIcon)
+            { wordBarChart->SetStippleShape(convertedIcon.value()); }
         // Do not change the order of these bars, brackets are built based on this order (see below)
         size_t currentBar{ 0 };
         // go through the custom (familiar word) tests
@@ -2557,6 +2567,9 @@ void ProjectDoc::DisplayWordCharts()
         syllableHistogram->SetShadowType(IsDisplayingDropShadows() ?
             ShadowType::RightSideShadow : ShadowType::NoShadow);
         syllableHistogram->SetBarEffect(GetHistogramBarEffect());
+        if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
+            convertedIcon)
+            { syllableHistogram->SetStippleShape(convertedIcon.value()); }
         syllableHistogram->SetBarOpacity(GetHistogramBarOpacity());
         syllableHistogram->SetBrushScheme(
             std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(

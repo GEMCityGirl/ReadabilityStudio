@@ -34,6 +34,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_displayDropShadows(wxGetApp().GetAppOptions().IsDisplayingDropShadows()),
     m_graphBackGroundImagePath(wxGetApp().GetAppOptions().GetBackGroundImagePath()),
     m_stippleImagePath(wxGetApp().GetAppOptions().GetGraphStippleImagePath()),
+    m_stippleShape(wxGetApp().GetAppOptions().GetStippleShape()),
     m_graphBackGroundColor(wxGetApp().GetAppOptions().GetBackGroundColor()),
     m_graphPlotBackGroundColor(wxGetApp().GetAppOptions().GetPlotBackGroundColor()),
     m_graphBackGroundOpacity(wxGetApp().GetAppOptions().GetGraphBackGroundOpacity()),
@@ -139,6 +140,7 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
         m_waterMarkImage = that.m_waterMarkImage;
         }
 
+    m_stippleShape = that.m_stippleShape;
     m_graphBackGroundColor = that.m_graphBackGroundColor;
     m_graphPlotBackGroundColor = that.m_graphPlotBackGroundColor;
     m_graphBackGroundOpacity = that.m_graphBackGroundOpacity;
@@ -1360,6 +1362,9 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         SetStippleImagePath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_PATH));
 
+        SetStippleShape(XmlFormat::GetString(graphsSection, graphsSectionEnd,
+            wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_SHAPE));
+
         DisplayDropShadows(XmlFormat::GetBoolean(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_DISPLAY_DROP_SHADOW,
             wxGetApp().GetAppOptions().IsDisplayingDropShadows()));
@@ -2338,9 +2343,13 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_LINEAR_GRADIENT,
         GetGraphBackGroundLinearGradient(), 2);
     fileText += sectionText;
-    // bar stipple
+    // stipple image
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_PATH,
         GetStippleImagePath(), 2);
+    fileText += sectionText;
+    // stipple shape
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_SHAPE,
+        GetStippleShape(), 2);
     fileText += sectionText;
     // whether drop shadows should be shown
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DISPLAY_DROP_SHADOW,

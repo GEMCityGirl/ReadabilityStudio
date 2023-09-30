@@ -6,6 +6,7 @@
 #include "../ui/dialogs/project_wizard_dlg.h"
 #include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 #include "../Wisteria-Dataviz/src/graphs/wordcloud.h"
+#include "../Wisteria-Dataviz/src/base/reportenumconvert.h"
 #include "../indexing/character_traits.h"
 
 using namespace Wisteria;
@@ -4226,6 +4227,9 @@ void BatchProjectDoc::DisplayBoxPlots()
                     ShadowType::RightSideAndBottomShadow : ShadowType::NoShadow);
                 boxPlot->SetOpacity(GetGraphBoxOpacity());
                 boxPlot->SetBoxEffect(GetGraphBoxEffect());
+                if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
+                    convertedIcon)
+                    { boxPlot->SetStippleShape(convertedIcon.value()); }
                 boxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
                 boxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
                 UpdateGraphOptions(boxPlotCanvas);
@@ -4301,6 +4305,9 @@ void BatchProjectDoc::DisplayBoxPlots()
                 boxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
                 boxPlot->SetOpacity(GetGraphBoxOpacity());
                 boxPlot->SetBoxEffect(GetGraphBoxEffect());
+                if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
+                    convertedIcon)
+                    { boxPlot->SetStippleShape(convertedIcon.value()); }
                 UpdateGraphOptions(boxPlotCanvas);
 
                 const auto [rangeStart, rangeEnd] = boxPlot->GetLeftYAxis().GetRange();
@@ -4381,6 +4388,9 @@ void BatchProjectDoc::DisplayBoxPlots()
                     IsDisplayingDropShadows() ? ShadowType::RightSideAndBottomShadow : ShadowType::NoShadow);
                 boxPlot->SetOpacity(GetGraphBoxOpacity());
                 boxPlot->SetBoxEffect(GetGraphBoxEffect());
+                if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
+                    convertedIcon)
+                    { boxPlot->SetStippleShape(convertedIcon.value()); }
                 boxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
                 boxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
                 boxPlot->SetLabelPrecision(0);
@@ -4450,6 +4460,9 @@ void BatchProjectDoc::DisplayBoxPlots()
                     IsDisplayingDropShadows() ? ShadowType::RightSideAndBottomShadow : ShadowType::NoShadow);
                 boxPlot->SetOpacity(GetGraphBoxOpacity());
                 boxPlot->SetBoxEffect(GetGraphBoxEffect());
+                if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
+                    convertedIcon)
+                    { boxPlot->SetStippleShape(convertedIcon.value()); }
                 boxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
                 boxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
                 UpdateGraphOptions(boxPlotCanvas);
@@ -4517,6 +4530,9 @@ void BatchProjectDoc::DisplayBoxPlots()
                     IsDisplayingDropShadows() ? ShadowType::RightSideAndBottomShadow : ShadowType::NoShadow);
                 boxPlot->SetOpacity(GetGraphBoxOpacity());
                 boxPlot->SetBoxEffect(GetGraphBoxEffect());
+                if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
+                    convertedIcon)
+                    { boxPlot->SetStippleShape(convertedIcon.value()); }
                 boxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
                 boxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
                 UpdateGraphOptions(boxPlotCanvas);
@@ -4697,6 +4713,9 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
                                                               Scaling(canvas->GetScaling()).Pen(wxNullPen));
         histogram->SetShadowType(IsDisplayingDropShadows() ? ShadowType::RightSideShadow : ShadowType::NoShadow);
         histogram->SetBarEffect(GetHistogramBarEffect());
+        if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
+            convertedIcon)
+            { histogram->SetStippleShape(convertedIcon.value()); }
         histogram->SetBarOpacity(GetHistogramBarOpacity());
 
         // if not too many bins, show the long grade labels on the x axis

@@ -942,6 +942,11 @@ public:
     [[nodiscard]]
     wxString GetGraphStippleImagePath() const
         { return m_stippleImagePath; }
+    void SetStippleShape(wxString shape)
+        { m_stippleShape = std::move(shape); }
+    [[nodiscard]]
+    wxString GetStippleShape() const
+        { return m_stippleShape; }
     // Box Plot options
     [[nodiscard]]
     wxColour GetGraphBoxColor() const noexcept
@@ -1421,7 +1426,11 @@ private:
     uint8_t m_graphBarOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_graphBarEffect{ Wisteria::BoxEffect::Glassy };
     wxString m_stippleImagePath;
-    wxColour m_graphBoxColor{ wxColour{ 0,128,64 } };
+    // Note that this is not stored as an icon enum because there are many shapes
+    // that are not relevant for stippling. Instead, we store as a string and convert
+    // that to an enum value.
+    wxString m_stippleShape{ DONTTRANSLATE(L"book") };
+    wxColour m_graphBoxColor{ wxColour{ 0, 128, 64 } };
     uint8_t m_graphBoxOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_graphBoxEffect{ Wisteria::BoxEffect::Glassy };
     // background image options
@@ -1595,6 +1604,7 @@ public:
     const wxString XML_BAR_EFFECT;
     const wxString XML_BAR_DISPLAY_LABELS;
     const wxString XML_GRAPH_STIPPLE_PATH;
+    const wxString XML_GRAPH_STIPPLE_SHAPE;
     const wxString XML_BOX_PLOT_SETTINGS;
     const wxString XML_BOX_EFFECT;
     const wxString XML_BOX_DISPLAY_LABELS;

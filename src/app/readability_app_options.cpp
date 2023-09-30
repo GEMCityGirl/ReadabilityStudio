@@ -137,6 +137,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_BAR_EFFECT(_DT(L"bar-effect")),
     XML_BAR_DISPLAY_LABELS(_DT(L"bar-display-labels")),
     XML_GRAPH_STIPPLE_PATH(_DT(L"stipple-image-path")),
+    XML_GRAPH_STIPPLE_SHAPE(_DT(L"stipple-shape")),
     XML_BOX_PLOT_SETTINGS(_DT(L"box-plot-settings")),
     XML_BOX_EFFECT(_DT(L"box-effect")),
     XML_BOX_DISPLAY_LABELS(_DT(L"box-display-labels")),
@@ -667,6 +668,7 @@ void ReadabilityAppOptions::ResetSettings()
     m_barChartOrientation = Wisteria::Orientation::Horizontal;
     m_graphBarOpacity = wxALPHA_OPAQUE;
     m_graphBarEffect = BoxEffect::Glassy;
+    m_stippleShape = DONTTRANSLATE(L"book");
     m_stippleImagePath.Clear();
     m_graphBoxColor = wxColour(0,128,64);
     m_graphBoxOpacity = wxALPHA_OPAQUE;
@@ -2121,6 +2123,21 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             filter_html(imagePathStr.wc_str(), imagePathStr.length(), true, false);
                         if (filteredText)
                             { SetGraphStippleImagePath(wxString(filteredText)); }
+                        }
+                    }
+                // stipple shape
+                auto stippleShapeNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_STIPPLE_SHAPE.mb_str());
+                if (stippleShapeNode)
+                    {
+                    const char* stippleShape = stippleShapeNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                    if (stippleShape)
+                        {
+                        wxString shapeStr =
+                            Wisteria::TextStream::CharStreamToUnicode(stippleShape, std::strlen(stippleShape));
+                        const wchar_t* filteredText =
+                            filter_html(shapeStr.wc_str(), shapeStr.length(), true, false);
+                        if (filteredText)
+                            { SetStippleShape(wxString(filteredText)); }
                         }
                     }
                 // whether drop shadows should be shown
@@ -4029,10 +4046,15 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     graphBackgroundGradient->SetAttribute(XML_VALUE.mb_str(), bool_to_int(GetGraphBackGroundLinearGradient()));
     graphDefaultsSection->InsertEndChild(graphBackgroundGradient);
     // stipple path
-    auto barStipplePath = doc.NewElement(XML_GRAPH_STIPPLE_PATH.mb_str());
-    barStipplePath->SetAttribute(XML_VALUE.mb_str(),
+    auto stipplePath = doc.NewElement(XML_GRAPH_STIPPLE_PATH.mb_str());
+    stipplePath->SetAttribute(XML_VALUE.mb_str(),
         wxString(encode({ GetGraphStippleImagePath().wc_str() }, false).c_str()).mb_str());
-    graphDefaultsSection->InsertEndChild(barStipplePath);
+    graphDefaultsSection->InsertEndChild(stipplePath);
+    // stipple shape
+    auto stippleShape = doc.NewElement(XML_GRAPH_STIPPLE_SHAPE.mb_str());
+    stippleShape->SetAttribute(XML_VALUE.mb_str(),
+        wxString(encode({ GetStippleShape().wc_str() }, false).c_str()).mb_str());
+    graphDefaultsSection->InsertEndChild(stippleShape);
     // whether drop shadows should be shown
     auto graphDisplayDropShadow = doc.NewElement(XML_DISPLAY_DROP_SHADOW.mb_str());
     graphDisplayDropShadow->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsDisplayingDropShadows()));
