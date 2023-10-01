@@ -2587,7 +2587,23 @@ void ProjectDoc::DisplayWordCharts()
             Histogram::IntervalDisplay::Midpoints,
             IsDisplayingBarLabels() ?
                 GetHistrogramBinLabelDisplay() : BinLabelDisplay::NoDisplay,
+            // show a bar for all syllable counts, starting from 1
             true, 1);
+        if (syllableHistogram->GetBars().size() > 2)
+            {
+            syllableHistogram->AddBarGroup(3, syllableHistogram->GetBars().back().GetAxisPosition(),
+                _(L"Complex Words"), GetHistogramBarColor());
+            const auto firstComplexBar = syllableHistogram->FindBar(3);
+            if (firstComplexBar)
+                {
+                std::vector<double> complexBarPositions;
+                complexBarPositions.reserve(syllableHistogram->GetBars().size() - firstComplexBar.value());
+                for (size_t i = firstComplexBar.value(); i < syllableHistogram->GetBars().size(); ++i)
+                    { complexBarPositions.push_back(syllableHistogram->GetBars()[i].GetAxisPosition()); }
+                syllableHistogram->ShowcaseBars(complexBarPositions);
+                }
+            }
+        
         syllableHistogram->GetLeftYAxis().GetTitle().SetText(_(L"Number of Words"));
         syllableHistogram->GetBottomXAxis().GetTitle().SetText(_(L"Number of Syllables per Word"));
         syllableHistogram->GetRightYAxis().Show(false);
