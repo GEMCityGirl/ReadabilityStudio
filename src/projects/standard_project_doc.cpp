@@ -2386,6 +2386,7 @@ void ProjectDoc::DisplayWordCharts()
         assert(wordBarChart);
 
         wordBarChart->ClearBars();
+        wordBarChart->GetBarAxis().ClearBrackets();
         wordBarChart->SetBarOrientation(static_cast<Wisteria::Orientation>(GetBarChartOrientation()));
         wordBarChart->GetBarAxis().SetLabelDisplay(Wisteria::AxisLabelDisplay::DisplayOnlyCustomLabels);
         wordBarChart->GetScalingAxis().SetLabelDisplay(Wisteria::AxisLabelDisplay::DisplayCustomLabelsOrValues);
@@ -2497,9 +2498,9 @@ void ProjectDoc::DisplayWordCharts()
         if (threeSyllableBarPos && threeSyllableBarPos.value() > 1)
             {
             wordBarChart->GetBarAxis().AddBracket(
-                Axis::AxisBracket(1, threeSyllableBarPos.value(),
-                    ((threeSyllableBarPos.value() - 1) * math_constants::half) + 1,
-                    _("Familiarity")));
+                Axis::AxisBracket(1, threeSyllableBarPos.value() - 1,
+                    (threeSyllableBarPos.value() * math_constants::half),
+                    _("Familiarity\nFactors")));
             }
 
         assert(threeSyllableBarPos && monoSyllableBarPos && L"Can't find bars in word barchart!");
@@ -2510,7 +2511,7 @@ void ProjectDoc::DisplayWordCharts()
                 ((eflawBarPos.value_or(monoSyllableBarPos.value()) - threeSyllableBarPos.value())
                     * math_constants::half) +
                         threeSyllableBarPos.value(),
-                _("Complexity or\nLength")));
+                _("Complexity or\nLength\nFactors")));
             }
 
         for (auto& bracket : wordBarChart->GetBarAxis().GetBrackets())
