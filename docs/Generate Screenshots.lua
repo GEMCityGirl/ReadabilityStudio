@@ -407,7 +407,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "difficultwords2." .. FileExtension, 5
 
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "GraphBarsRectangular." .. FileExtension)
 sp:SetGraphCustomBrushImage(ScreenshotProjectsFolder .. "Book.png")
-sp:SetBarChartBarEffect(BarEffect.CustomBrush)
+sp:SetBarChartBarEffect(BoxEffect.StippleImage)
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "GraphCustomBrush." .. FileExtension)
 
 sp:Close()
@@ -1006,7 +1006,7 @@ sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleBarChartOrientationChanged." .. FileExtension)
 
 -- change bar chart effects
-sp:SetBarChartBarEffect(BarEffect.FadeFromBottomToTop)
+sp:SetBarChartBarEffect(BoxEffect.FadeFromBottomToTop)
 
 sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleBarChartEffectsChanged." .. FileExtension)

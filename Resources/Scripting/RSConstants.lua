@@ -177,13 +177,15 @@ ProductType =
   ProductMac64BitIntel = 3
   }
 
-BarEffect =
+BoxEffect =
   {
   Solid = 0,
   Glass = 1,
   FadeFromBottomToTop = 2,
   FadeFromTopToBottom = 3,
-  CustomBrush = 4
+  StippleImage = 4,
+  StippleShape = 5,
+  Watercolor = 6
   }
 
 Orientation =
