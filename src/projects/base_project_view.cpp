@@ -2055,7 +2055,7 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_WATERCOLOR"), _(L"Watercolor"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_barStyleMenu.Append(item);
-    
+
     item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_COMMON_IMAGE"), _(L"Common image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_barStyleMenu.Append(item);
@@ -2117,7 +2117,7 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
         XRCID("ID_HISTOGRAM_BAR_STYLE_WATERCOLOR"), _(L"Watercolor"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_histoBarStyleMenu.Append(item);
-    
+
     item = new wxMenuItem(&m_histoBarStyleMenu,
         XRCID("ID_HISTOGRAM_BAR_STYLE_COMMON_IMAGE"), _(L"Common image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
@@ -2165,7 +2165,7 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_STIPPLE_SHAPE"), _(L"Stipple shape"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
     m_boxStyleMenu.Append(item);
-    
+
     item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_COMMON_IMAGE"), _(L"Common image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_boxStyleMenu.Append(item);

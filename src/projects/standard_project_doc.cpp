@@ -2604,7 +2604,7 @@ void ProjectDoc::DisplayWordCharts()
                 syllableHistogram->ShowcaseBars(complexBarPositions);
                 }
             }
-        
+
         syllableHistogram->GetLeftYAxis().GetTitle().SetText(_(L"Number of Words"));
         syllableHistogram->GetBottomXAxis().GetTitle().SetText(_(L"Number of Syllables per Word"));
         syllableHistogram->GetRightYAxis().Show(false);
@@ -5530,7 +5530,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
              GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings);
 
-        const auto setFormattedTextAndRestoreInsertionPoint = [](FormattedTextCtrl* textWindow, const wchar_t* formattedText)
+        const auto setFormattedTextAndRestoreInsertionPoint =
+            [](FormattedTextCtrl* textWindow, const wchar_t* formattedText)
             {
             const auto cursorPos = textWindow->GetInsertionPoint();
             textWindow->SetFormattedText(formattedText);
