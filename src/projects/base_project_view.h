@@ -479,14 +479,17 @@ private:
     void OnBarOrientationSelected(wxCommandEvent& event);
     void OnBarStyleSelected(wxCommandEvent& event);
     void OnBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event);
+    void OnBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event);
     void OnBarStyleButton(wxRibbonButtonBarEvent& event);
     void OnHistoBarStyleSelected(wxCommandEvent& event);
     void OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event);
+    void OnHistoBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event);
     void OnHistoBarsLabelsButton(wxRibbonButtonBarEvent& event);
     void OnHistoBarLabelSelected(wxCommandEvent& event);
     void OnHistoBarStyleButton(wxRibbonButtonBarEvent& event);
     void OnBoxStyleSelected(wxCommandEvent& event);
     void OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& event);
+    void OnBoxSelectCommonImage([[maybe_unused]] wxCommandEvent& event);
     void OnBoxStyleButton(wxRibbonButtonBarEvent& event);
     void OnBoxPlotShowAllPointsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnBoxPlotShowLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);

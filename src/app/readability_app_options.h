@@ -942,6 +942,11 @@ public:
     [[nodiscard]]
     wxString GetGraphStippleImagePath() const
         { return m_stippleImagePath; }
+    void SetGraphCommonImagePath(const wxString& path)
+        { m_commonImagePath = path; }
+    [[nodiscard]]
+    wxString GetGraphCommonImagePath() const
+        { return m_commonImagePath; }
     void SetStippleShape(wxString shape)
         { m_stippleShape = std::move(shape); }
     [[nodiscard]]
@@ -1431,6 +1436,7 @@ private:
     uint8_t m_graphBarOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_graphBarEffect{ Wisteria::BoxEffect::Glassy };
     wxString m_stippleImagePath;
+    wxString m_commonImagePath;
     // Note that this is not stored as an icon enum because there are many shapes
     // that are not relevant for stippling. Instead, we store as a string and convert
     // that to an enum value.
@@ -1486,6 +1492,11 @@ private:
     wxBitmapBundle m_graphBackgroundImage;
     wxBitmapBundle m_waterMarkImage;
     wxBitmapBundle m_graphStippleImage;
+    std::shared_ptr<Wisteria::Images::Schemes::ImageScheme> m_graphImageScheme
+        {
+        std::make_shared<Wisteria::Images::Schemes::ImageScheme>(
+            std::vector<wxBitmapBundle>{ wxBitmapBundle{} })
+        };
 public:
     // Project file tags
     const wxString XML_PROJECT_HEADER;
@@ -1580,6 +1591,7 @@ public:
     const wxString XML_GRAPH_BACKGROUND_LINEAR_GRADIENT;
     const wxString XML_GRAPH_WATERMARK;
     const wxString XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH;
+    const wxString XML_GRAPH_COMMON_IMAGE_PATH;
     const wxString XML_DISPLAY_DROP_SHADOW;
     const wxString XML_AXIS_SETTINGS;
     const wxString XML_FRY_RAYGOR_SETTINGS;

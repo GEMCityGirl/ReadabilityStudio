@@ -176,6 +176,7 @@ bool BatchProjectDoc::OnNewDocument()
     SetBackGroundImagePath(GetBackGroundImagePath());
     SetStippleImagePath(GetStippleImagePath());
     SetWatermarkLogoPath(GetWatermarkLogoPath());
+    SetGraphCommonImagePath(GetGraphCommonImagePath());
 
     LoadExcludePhrases();
 
@@ -4213,7 +4214,7 @@ void BatchProjectDoc::DisplayBoxPlots()
 
                 if (boxPlot->GetBoxCount() > 1)
                     {
-                    boxPlotCanvas->SetFixedObjectsGridSize(1,2);
+                    boxPlotCanvas->SetFixedObjectsGridSize(1, 2);
                     boxPlotCanvas->SetFixedObject(0, 1,
                         boxPlot->CreateLegend(LegendOptions().PlacementHint(LegendCanvasPlacementHint::RightOfGraph)));
                     }

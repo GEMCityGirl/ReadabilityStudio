@@ -185,7 +185,8 @@ BoxEffect =
   FadeFromTopToBottom = 3,
   StippleImage = 4,
   StippleShape = 5,
-  Watercolor = 6
+  Watercolor = 6,
+  CommonImage = 7
   }
 
 Orientation =

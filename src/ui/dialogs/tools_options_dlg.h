@@ -314,6 +314,9 @@ private:
     wxString GetStippleShapeColorLabel() const
         { return _(L"Stipple shape") + L"." + GetColorLabel(); }
     [[nodiscard]]
+    wxString GetCommonImageLabel() const
+        { return _(L"Common image"); }
+    [[nodiscard]]
     wxString GetWatermarkLabel() const
         { return _(L"Watermark"); }
     [[nodiscard]]

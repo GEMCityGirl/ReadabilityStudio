@@ -1108,6 +1108,8 @@ bool ToolsOptionsDlg::HaveGraphOptionsChanged() const
                m_generalGraphPropertyGrid->IsPropertyModified(GetStippleShapeLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleShapeColorLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetStippleShapeColorLabel())) ||
+           (IsPropertyAvailable(m_generalGraphPropertyGrid, GetCommonImageLabel()) &&
+               m_generalGraphPropertyGrid->IsPropertyModified(GetCommonImageLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid,GetBackgroundColorLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetBackgroundColorLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid,GetImageOpacityLabel()) &&
@@ -1327,10 +1329,10 @@ bool ToolsOptionsDlg::ValidateOptions()
             (IsPropertyAvailable(m_barChartPropertyGrid, GetEffectLabel()) &&
                 static_cast<BoxEffect>(m_barChartPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())) ==
                     BoxEffect::StippleImage) ||
-            (IsPropertyAvailable(m_histogramPropertyGrid,GetEffectLabel()) &&
+            (IsPropertyAvailable(m_histogramPropertyGrid, GetEffectLabel()) &&
                 static_cast<BoxEffect>(m_histogramPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())) ==
                     BoxEffect::StippleImage) ||
-            (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetEffectLabel()) &&
+            (IsPropertyAvailable(m_boxPlotsPropertyGrid, GetEffectLabel()) &&
                 static_cast<BoxEffect>(m_boxPlotsPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())) ==
                     BoxEffect::StippleImage)) &&
         !wxFile::Exists(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleImageLabel())))
@@ -1348,6 +1350,33 @@ bool ToolsOptionsDlg::ValidateOptions()
             { return false; }
         wxGetApp().GetAppOptions().SetImagePath(wxFileName(fd.GetPath()).GetPath());
         m_generalGraphPropertyGrid->SetPropertyValue(GetStippleImageLabel(), fd.GetPath());
+        }
+    if (((IsPropertyAvailable(m_generalGraphPropertyGrid, GetCommonImageLabel()) &&
+        m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCommonImageLabel()).length()) ||
+            (IsPropertyAvailable(m_barChartPropertyGrid, GetEffectLabel()) &&
+                static_cast<BoxEffect>(m_barChartPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())) ==
+                    BoxEffect::CommonImage) ||
+            (IsPropertyAvailable(m_histogramPropertyGrid, GetEffectLabel()) &&
+                static_cast<BoxEffect>(m_histogramPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())) ==
+                    BoxEffect::CommonImage) ||
+            (IsPropertyAvailable(m_boxPlotsPropertyGrid, GetEffectLabel()) &&
+                static_cast<BoxEffect>(m_boxPlotsPropertyGrid->GetPropertyValueAsInt(GetEffectLabel())) ==
+                    BoxEffect::CommonImage)) &&
+        !wxFile::Exists(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCommonImageLabel())))
+        {
+        wxMessageBox(wxString::Format(
+            _(L"\"%s\": common image file not found."),
+                m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCommonImageLabel()) ),
+            wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
+        wxFileDialog fd
+            (this, _(L"Select Common Image"),
+            wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString,
+            wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
+            wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
+        if (fd.ShowModal() != wxID_OK)
+            { return false; }
+        wxGetApp().GetAppOptions().SetImagePath(wxFileName(fd.GetPath()).GetPath());
+        m_generalGraphPropertyGrid->SetPropertyValue(GetCommonImageLabel(), fd.GetPath());
         }
     if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetImageLabel()) &&
         !m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()).empty() &&
@@ -2166,6 +2195,11 @@ void ToolsOptionsDlg::SaveOptions()
             wxGetApp().GetAppOptions().SetStippleShapeColor(
                 wxAny(m_generalGraphPropertyGrid->GetProperty(GetStippleShapeColorLabel())->GetValue()).As<wxColour>());
             }
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetCommonImageLabel()))
+            {
+            wxGetApp().GetAppOptions().SetGraphCommonImagePath(
+                m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCommonImageLabel()));
+            }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetDisplayDropShadowsLabel()))
             {
             wxGetApp().GetAppOptions().DisplayDropShadows(
@@ -2479,6 +2513,11 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
             {
             m_readabilityProjectDoc->SetStippleShapeColor(
                 wxAny(m_generalGraphPropertyGrid->GetProperty(GetStippleShapeColorLabel())->GetValue()).As<wxColour>());
+            }
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetCommonImageLabel()))
+            {
+            m_readabilityProjectDoc->SetGraphCommonImagePath(
+                m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCommonImageLabel()));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetDisplayDropShadowsLabel()))
             {
@@ -4693,7 +4732,7 @@ void ToolsOptionsDlg::CreateGraphSection()
             m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetEffectsLabel()) );
             m_generalGraphPropertyGrid->SetPropertyHelpString(
                 GetEffectsLabel(), _(L"The options in this section customize various visual effects of the graphs."));
-            // stipple brush
+            // stipple image
             wxImageFileProperty* customBrushProp =
                 new wxImageFileProperty(GetStippleImageLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
@@ -4742,6 +4781,26 @@ void ToolsOptionsDlg::CreateGraphSection()
                         m_readabilityProjectDoc->GetStippleShapeColor() :
                         wxGetApp().GetAppOptions().GetStippleShapeColor())));
             shapeColorProp->SetHelpString(_(L"Selects the color used for certain stipple shapes."));
+
+            // common image
+            wxImageFileProperty* commonImageProp =
+                new wxImageFileProperty(GetCommonImageLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ?
+                    m_readabilityProjectDoc->GetGraphCommonImagePath() :
+                    wxGetApp().GetAppOptions().GetGraphCommonImagePath()));
+            commonImageProp->SetAttribute(wxPG_FILE_WILDCARD ,wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER);
+            commonImageProp->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Common Image"));
+            commonImageProp->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
+            m_generalGraphPropertyGrid->Append(commonImageProp);
+            m_generalGraphPropertyGrid->SetPropertyHelpString(
+                GetCommonImageLabel(),
+                _(L"Enter into this field the file path to the common image "
+                   "used used to draw across all bars/boxes."));
+            // set the default folder to the global image folder if no image is provided
+            if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCommonImageLabel()).empty())
+                {
+                commonImageProp->SetAttribute(wxPG_FILE_INITIAL_PATH, wxGetApp().GetAppOptions().GetImagePath());
+                }
 
             // drop shadows
             m_generalGraphPropertyGrid->Append(
@@ -4946,6 +5005,8 @@ void ToolsOptionsDlg::CreateGraphSection()
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
             boxEffects.Add(_(L"Watercolor"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+            boxEffects.Add(_(L"Common image"),
+                wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
             m_barChartPropertyGrid->Append(
                 new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, boxEffects,
                 (m_readabilityProjectDoc ?
@@ -5038,6 +5099,8 @@ void ToolsOptionsDlg::CreateGraphSection()
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
             boxEffects.Add(_(L"Watercolor"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+            boxEffects.Add(_(L"Common image"),
+                wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
             m_histogramPropertyGrid->Append(
                 new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, boxEffects,
                 (m_readabilityProjectDoc ?
@@ -5180,6 +5243,8 @@ void ToolsOptionsDlg::CreateGraphSection()
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
             boxEffects.Add(_(L"Watercolor"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+            boxEffects.Add(_(L"Common image"),
+                wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
             m_boxPlotsPropertyGrid->Append(
                 new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, boxEffects,
                 (m_readabilityProjectDoc ?

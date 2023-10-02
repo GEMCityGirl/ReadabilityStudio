@@ -107,6 +107,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_GRAPH_BACKGROUND_LINEAR_GRADIENT(_DT(L"graph-background-linear-gradient")),
     XML_GRAPH_WATERMARK(_DT(L"watermark")),
     XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH(_DT(L"watermark-logo")),
+    XML_GRAPH_COMMON_IMAGE_PATH(_DT(L"common-image")),
     XML_DISPLAY_DROP_SHADOW(_DT(L"display-drop-shadow")),
     XML_AXIS_SETTINGS(_DT(L"axis-settings")),
     XML_FRY_RAYGOR_SETTINGS(_DT(L"fry-raygor-settings")),
@@ -671,8 +672,9 @@ void ReadabilityAppOptions::ResetSettings()
     m_graphBarEffect = BoxEffect::Glassy;
     m_stippleShape = DONTTRANSLATE(L"book");
     m_stippleColor = wxColour{ L"#6082B6" };
-    m_stippleImagePath.Clear();
-    m_graphBoxColor = wxColour(0,128,64);
+    m_stippleImagePath.clear();
+    m_commonImagePath.clear();
+    m_graphBoxColor = wxColour(0, 128, 64);
     m_graphBoxOpacity = wxALPHA_OPAQUE;
     m_graphBoxEffect = BoxEffect::Glassy;
     m_backgroundImageEffect = Wisteria::ImageEffect::NoEffect;
@@ -2112,7 +2114,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         int_to_bool(gradientNode->ToElement()->IntAttribute(
                             XML_VALUE.mb_str(), bool_to_int(GetGraphBackGroundLinearGradient()))));
                     }
-                // stipple brush
+                // stipple image
                 auto stipplePathNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_STIPPLE_PATH.mb_str());
                 if (stipplePathNode)
                     {
@@ -2125,6 +2127,21 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             filter_html(imagePathStr.wc_str(), imagePathStr.length(), true, false);
                         if (filteredText)
                             { SetGraphStippleImagePath(wxString(filteredText)); }
+                        }
+                    }
+                // common image
+                auto commonImagePathNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_COMMON_IMAGE_PATH.mb_str());
+                if (commonImagePathNode)
+                    {
+                    const char* commonImagePath = commonImagePathNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                    if (commonImagePath)
+                        {
+                        wxString imagePathStr =
+                            Wisteria::TextStream::CharStreamToUnicode(commonImagePath, std::strlen(commonImagePath));
+                        const wchar_t* filteredText =
+                            filter_html(imagePathStr.wc_str(), imagePathStr.length(), true, false);
+                        if (filteredText)
+                            { SetGraphCommonImagePath(wxString(filteredText)); }
                         }
                     }
                 // stipple shape
@@ -4061,11 +4078,16 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto graphBackgroundGradient = doc.NewElement(XML_GRAPH_BACKGROUND_LINEAR_GRADIENT.mb_str());
     graphBackgroundGradient->SetAttribute(XML_VALUE.mb_str(), bool_to_int(GetGraphBackGroundLinearGradient()));
     graphDefaultsSection->InsertEndChild(graphBackgroundGradient);
-    // stipple path
+    // stipple image path
     auto stipplePath = doc.NewElement(XML_GRAPH_STIPPLE_PATH.mb_str());
     stipplePath->SetAttribute(XML_VALUE.mb_str(),
         wxString(encode({ GetGraphStippleImagePath().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(stipplePath);
+    // common image path
+    auto commonImagePath = doc.NewElement(XML_GRAPH_COMMON_IMAGE_PATH.mb_str());
+    commonImagePath->SetAttribute(XML_VALUE.mb_str(),
+        wxString(encode({ GetGraphCommonImagePath().wc_str() }, false).c_str()).mb_str());
+    graphDefaultsSection->InsertEndChild(commonImagePath);
     // stipple shape
     auto stippleShape = doc.NewElement(XML_GRAPH_STIPPLE_SHAPE.mb_str());
     stippleShape->SetAttribute(XML_VALUE.mb_str(),
@@ -4731,6 +4753,7 @@ void ReadabilityAppOptions::UpdateGraphOptions(Wisteria::Canvas* graphCanvas)
                                              GetGraphPlotBackGroundOpacity()));
 
     plot->SetStippleBrush(m_graphStippleImage);
+    plot->SetImageScheme(m_graphImageScheme);
     graphCanvas->SetWatermarkLogo(m_waterMarkImage, wxSize(100, 100));
     graphCanvas->SetWatermark(GetWatermark());
     plot->GetBottomXAxis().SetFont(GetXAxisFont());

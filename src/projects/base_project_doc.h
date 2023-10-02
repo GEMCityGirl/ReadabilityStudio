@@ -49,6 +49,10 @@ public:
     wxString GetStippleImagePath() const
         { return m_stippleImagePath; }
     void SetBackGroundImagePath(const wxString& filePath);
+    [[nodiscard]]
+    wxString GetGraphCommonImagePath() const
+        { return m_commonImagePath; }
+    void SetGraphCommonImagePath(const wxString& path);
     void SetStippleShape(wxString shape)
         { m_stippleShape = std::move(shape); }
     [[nodiscard]]
@@ -632,8 +636,14 @@ protected:
     wxBitmapBundle m_graphBackgroundImage;
     wxBitmapBundle m_graphBackgroundImageWithEffect;
     wxBitmapBundle m_graphStippleImage;
+    std::shared_ptr<Wisteria::Images::Schemes::ImageScheme> m_graphImageScheme
+        {
+        std::make_shared<Wisteria::Images::Schemes::ImageScheme>(
+            std::vector<wxBitmapBundle>{ wxBitmapBundle{} })
+        };
     wxString m_graphBackGroundImagePath;
     wxString m_stippleImagePath;
+    wxString m_commonImagePath;
     wxString m_stippleShape{ DONTTRANSLATE(L"book") };
     wxColour m_stippleColor{ wxColour{ L"#6082B6" } };
     wxColour m_graphBackGroundColor;

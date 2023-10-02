@@ -34,6 +34,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_displayDropShadows(wxGetApp().GetAppOptions().IsDisplayingDropShadows()),
     m_graphBackGroundImagePath(wxGetApp().GetAppOptions().GetBackGroundImagePath()),
     m_stippleImagePath(wxGetApp().GetAppOptions().GetGraphStippleImagePath()),
+    m_commonImagePath(wxGetApp().GetAppOptions().GetGraphCommonImagePath()),
     m_stippleShape(wxGetApp().GetAppOptions().GetStippleShape()),
     m_stippleColor(wxGetApp().GetAppOptions().GetStippleShapeColor()),
     m_graphBackGroundColor(wxGetApp().GetAppOptions().GetBackGroundColor()),
@@ -129,6 +130,7 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
         SetBackGroundImagePath(that.m_graphBackGroundImagePath);
         SetStippleImagePath(that.m_stippleImagePath);
         SetWatermarkLogoPath(that.m_watermarkImagePath);
+        SetGraphCommonImagePath(that.m_commonImagePath);
         }
     else
         {
@@ -139,6 +141,8 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
         m_graphStippleImage = that.m_graphStippleImage;
         m_watermarkImagePath = that.m_watermarkImagePath;
         m_waterMarkImage = that.m_waterMarkImage;
+        m_commonImagePath = that.m_commonImagePath;
+        m_graphImageScheme = that.m_graphImageScheme;
         }
 
     m_stippleShape = that.m_stippleShape;
@@ -179,6 +183,25 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
     m_graphBarOpacity = that.m_graphBarOpacity;
     m_barChartOrientation = that.m_barChartOrientation;
     m_barChartBarColor = that.m_barChartBarColor;
+    }
+
+//------------------------------------------------------
+void BaseProjectDoc::SetGraphCommonImagePath(const wxString& filePath)
+    {
+    m_commonImagePath = filePath;
+    if (filePath.empty())
+        { m_graphImageScheme->Clear(); }
+    if (HasUI())
+        {
+        wxBitmapBundle bmp;
+        LoadImageAndPath(m_commonImagePath, bmp);
+        if (m_graphImageScheme->GetImages().size())
+            { m_graphImageScheme->GetImages()[0] = bmp; }
+        else
+            { m_graphImageScheme->AddImage(bmp); }
+        }
+    else
+        { m_graphImageScheme->Clear(); }
     }
 
 //------------------------------------------------------
@@ -256,9 +279,9 @@ void BaseProjectDoc::SetStippleImagePath(const wxString& filePath)
         { m_graphStippleImage = wxBitmapBundle{}; }
     if (HasUI())
         { LoadImageAndPath(m_stippleImagePath, m_graphStippleImage); }
-            else
-                { m_graphStippleImage = wxBitmapBundle{}; }
-            }
+    else
+        { m_graphStippleImage = wxBitmapBundle{}; }
+    }
 
 //------------------------------------------------------
 void BaseProjectDoc::SetWatermarkLogoPath(const wxString& filePath)
@@ -274,27 +297,27 @@ void BaseProjectDoc::SetWatermarkLogoPath(const wxString& filePath)
 
 //------------------------------------------------------
 void BaseProjectDoc::LoadImageAndPath(wxString& filePath, wxBitmapBundle& img)
-        {
+    {
     if (filePath.empty())
         { img = wxBitmapBundle{}; }
     else if (wxFile::Exists(filePath))
-            {
+        {
         const auto bmp = wxGetApp().GetResourceManager().GetBitmap(filePath, wxBITMAP_TYPE_ANY);
-            if (bmp.IsOk())
+        if (bmp.IsOk())
             { img = wxBitmapBundle(bmp.ConvertToImage()); }
-            }
-        else
+        }
+    else
+        {
+        // if image file not found, then try to search for it in the subdirectories from where the project is
+        wxString fileBySameNameInProjectDirectory;
+        if (FindMissingFile(filePath, fileBySameNameInProjectDirectory))
             {
-            // if image file not found, then try to search for it in the subdirectories from where the project is
-            wxString fileBySameNameInProjectDirectory;
-            if (FindMissingFile(filePath, fileBySameNameInProjectDirectory))
-                {
             filePath = fileBySameNameInProjectDirectory;
             const auto bmp = wxGetApp().GetResourceManager().GetBitmap(filePath, wxBITMAP_TYPE_ANY);
-                if (bmp.IsOk())
+            if (bmp.IsOk())
                 { img = wxBitmapBundle(bmp.ConvertToImage()); }
-                }
-            else
+            }
+        else
             { img = wxBitmapBundle{}; }
         }
     }
@@ -465,6 +488,7 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
                                              GetGraphPlotBackGroundOpacity()));
 
     graph->SetStippleBrush(m_graphStippleImage);
+    graph->SetImageScheme(m_graphImageScheme);
     canvas->SetWatermarkLogo(m_waterMarkImage, wxSize(100, 100));
     canvas->SetWatermark(GetWatermark());
     graph->GetBottomXAxis().GetFont() = GetXAxisFont();
@@ -1355,6 +1379,9 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
 
         SetStippleShape(XmlFormat::GetString(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_SHAPE));
+
+        SetGraphCommonImagePath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
+            wxGetApp().GetAppOptions().XML_GRAPH_COMMON_IMAGE_PATH));
 
         DisplayDropShadows(XmlFormat::GetBoolean(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_DISPLAY_DROP_SHADOW,
@@ -2346,6 +2373,10 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_COLOR);
     fileText += XmlFormat::FormatColorAttributes(GetStippleShapeColor());
     fileText += L"/>\n";
+    // common image
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_COMMON_IMAGE_PATH,
+        GetGraphCommonImagePath(), 2);
+    fileText += sectionText;
     // whether drop shadows should be shown
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DISPLAY_DROP_SHADOW,
         IsDisplayingDropShadows(), 2);

@@ -1581,6 +1581,7 @@ bool ProjectDoc::OnNewDocument()
     SetBackGroundImagePath(GetBackGroundImagePath());
     SetStippleImagePath(GetStippleImagePath());
     SetWatermarkLogoPath(GetWatermarkLogoPath());
+    SetGraphCommonImagePath(GetGraphCommonImagePath());
 
     LoadHardWords();
 
@@ -6703,6 +6704,8 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
     if (GetDocumentStorageMethod() == TextStorage::EmbedText)
         {
         Wisteria::ZipCatalog::WriteText(zip, ProjectContentFileLabel(), GetDocumentText());
+        /// @todo This seems to be relic code, these images are never used from the zip file.
+        ///     This should probably be removed.
         if (m_graphBackgroundImage.IsOk())
             {
             const wxFileName fn(GetBackGroundImagePath());
