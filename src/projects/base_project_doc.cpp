@@ -255,31 +255,10 @@ void BaseProjectDoc::SetStippleImagePath(const wxString& filePath)
     if (filePath.empty())
         { m_graphStippleImage = wxBitmapBundle{}; }
     if (HasUI())
-        {
-        if (wxFile::Exists(filePath))
-            {
-            const auto bmp = wxGetApp().GetResourceManager().GetBitmap(m_stippleImagePath, wxBITMAP_TYPE_ANY);
-            if (bmp.IsOk())
-                { m_graphStippleImage = wxBitmapBundle(bmp.ConvertToImage()); }
-            }
-        else
-            {
-            // if image file not found, then try to search for it in the subdirectories from where the project is
-            wxString fileBySameNameInProjectDirectory;
-            if (FindMissingFile(filePath, fileBySameNameInProjectDirectory))
-                {
-                m_stippleImagePath = fileBySameNameInProjectDirectory;
-                const auto bmp = wxGetApp().GetResourceManager().GetBitmap(m_stippleImagePath, wxBITMAP_TYPE_ANY);
-                if (bmp.IsOk())
-                    { m_graphStippleImage = wxBitmapBundle(bmp.ConvertToImage()); }
-                }
+        { LoadImageAndPath(m_stippleImagePath, m_graphStippleImage); }
             else
                 { m_graphStippleImage = wxBitmapBundle{}; }
             }
-        }
-    else
-        { m_graphStippleImage = wxBitmapBundle{}; }
-    }
 
 //------------------------------------------------------
 void BaseProjectDoc::SetWatermarkLogoPath(const wxString& filePath)
@@ -288,12 +267,21 @@ void BaseProjectDoc::SetWatermarkLogoPath(const wxString& filePath)
     if (filePath.empty())
         { m_waterMarkImage = wxBitmapBundle{}; }
     if (HasUI())
+        { LoadImageAndPath(m_watermarkImagePath, m_waterMarkImage); }
+    else
+        { m_waterMarkImage = wxBitmapBundle{}; }
+    }
+
+//------------------------------------------------------
+void BaseProjectDoc::LoadImageAndPath(wxString& filePath, wxBitmapBundle& img)
         {
-        if (wxFile::Exists(filePath))
+    if (filePath.empty())
+        { img = wxBitmapBundle{}; }
+    else if (wxFile::Exists(filePath))
             {
-            const auto bmp = wxGetApp().GetResourceManager().GetBitmap(m_watermarkImagePath, wxBITMAP_TYPE_ANY);
+        const auto bmp = wxGetApp().GetResourceManager().GetBitmap(filePath, wxBITMAP_TYPE_ANY);
             if (bmp.IsOk())
-                { m_waterMarkImage = wxBitmapBundle(bmp.ConvertToImage()); }
+            { img = wxBitmapBundle(bmp.ConvertToImage()); }
             }
         else
             {
@@ -301,17 +289,14 @@ void BaseProjectDoc::SetWatermarkLogoPath(const wxString& filePath)
             wxString fileBySameNameInProjectDirectory;
             if (FindMissingFile(filePath, fileBySameNameInProjectDirectory))
                 {
-                m_watermarkImagePath = fileBySameNameInProjectDirectory;
-                const auto bmp = wxGetApp().GetResourceManager().GetBitmap(m_watermarkImagePath, wxBITMAP_TYPE_ANY);
+            filePath = fileBySameNameInProjectDirectory;
+            const auto bmp = wxGetApp().GetResourceManager().GetBitmap(filePath, wxBITMAP_TYPE_ANY);
                 if (bmp.IsOk())
-                    { m_waterMarkImage = wxBitmapBundle(bmp.ConvertToImage()); }
+                { img = wxBitmapBundle(bmp.ConvertToImage()); }
                 }
             else
-                { m_waterMarkImage = wxBitmapBundle{}; }
-            }
+            { img = wxBitmapBundle{}; }
         }
-    else
-        { m_waterMarkImage = wxBitmapBundle{}; }
     }
 
 //------------------------------------------------

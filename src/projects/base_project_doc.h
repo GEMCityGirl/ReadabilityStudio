@@ -594,6 +594,12 @@ protected:
                 std::numeric_limits<double>::quiet_NaN()) :
             std::make_tuple(foundStat->GetMinGoal(), foundStat->GetMaxGoal());
         }
+    /// @param Loads and image from given path, and will also search for the
+    ///     file in the project directory if not found.
+    /// @param[in,out] filePath The image file path. Will be updated if not found
+    ///     but then found in the project folder.
+    /// @param[out] img The loaded image.
+    void LoadImageAndPath(wxString& filePath, wxBitmapBundle& img);
     [[nodiscard]]
     wxBitmap LoadBitmapFromProject(const wxString& fileName) const
         {
