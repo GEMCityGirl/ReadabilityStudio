@@ -52,7 +52,7 @@ public:
     [[nodiscard]]
     wxString GetGraphCommonImagePath() const
         { return m_commonImagePath; }
-    void SetGraphCommonImagePath(const wxString& path);
+    void SetGraphCommonImagePath(const wxString& filePath);
     void SetStippleShape(wxString shape)
         { m_stippleShape = std::move(shape); }
     [[nodiscard]]
