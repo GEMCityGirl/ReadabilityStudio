@@ -1,9 +1,9 @@
-## SetGraphCustomBrushImage {#batch-setgraphcustombrushimage .unnumbered}
+## SetGraphStippleImage {#batch-setgraphstippleimage .unnumbered}
 
 Sets the image to be used for custom brushes.
 
 ```{sql}
-SetGraphCustomBrushImage(ImageFilePath)
+SetGraphStippleImage(ImageFilePath)
 ```
 
 ### Parameters {-}

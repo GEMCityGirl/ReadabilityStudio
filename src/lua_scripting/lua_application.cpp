@@ -1252,6 +1252,7 @@ namespace LuaScripting
             wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
+    //-------------------------------------------------------------
     int SetGraphLogoImage(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -1261,7 +1262,7 @@ namespace LuaScripting
         return 0;
         }
     //-------------------------------------------------------------
-    int SetGraphCustomBrushImage(lua_State *L)
+    int SetGraphStippleImage(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }

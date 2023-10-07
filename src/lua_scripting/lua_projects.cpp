@@ -492,7 +492,7 @@ namespace LuaScripting
         return 0;
         }
 
-    int StandardProject::SetGraphCustomBrushImage(lua_State *L)
+    int StandardProject::SetGraphStippleImage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
@@ -1631,7 +1631,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, SetGraphLogoImage),
       LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundColor),
       LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundOpacity),
-      LUNA_DECLARE_METHOD(StandardProject, SetGraphCustomBrushImage),
+      LUNA_DECLARE_METHOD(StandardProject, SetGraphStippleImage),
       LUNA_DECLARE_METHOD(StandardProject, DisplayGraphDropShadows),
       LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarColor),
       LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarOpacity),
@@ -2029,7 +2029,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int BatchProject::SetGraphCustomBrushImage(lua_State *L)
+    int BatchProject::SetGraphStippleImage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
@@ -2697,7 +2697,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, SetGraphLogoImage),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundColor),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundOpacity),
-      LUNA_DECLARE_METHOD(BatchProject, SetGraphCustomBrushImage),
+      LUNA_DECLARE_METHOD(BatchProject, SetGraphStippleImage),
       LUNA_DECLARE_METHOD(BatchProject, DisplayGraphDropShadows),
       LUNA_DECLARE_METHOD(BatchProject, AddTest),
       LUNA_DECLARE_METHOD(BatchProject, Reload),

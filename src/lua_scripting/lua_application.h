@@ -106,7 +106,7 @@ namespace LuaScripting
     int SetPlotBackgroundOpacity(lua_State *L);
     int SetGraphWatermark(lua_State *L);
     int SetGraphLogoImage(lua_State *L);
-    int SetGraphCustomBrushImage(lua_State *L);
+    int SetGraphStippleImage(lua_State *L);
     int DisplayGraphDropShadows(lua_State *L);
     int SetBarChartBarColor(lua_State *L);
     int SetBarChartBarOpacity(lua_State *L);
@@ -180,7 +180,7 @@ namespace LuaScripting
             { "SetPlotBackgroundOpacity", SetPlotBackgroundOpacity },
             { "SetGraphWatermark", SetGraphWatermark },
             { "SetGraphLogoImage", SetGraphLogoImage },
-            { "SetGraphCustomBrushImage", SetGraphCustomBrushImage },
+            { "SetGraphStippleImage", SetGraphStippleImage },
             { "DisplayGraphDropShadows", DisplayGraphDropShadows },
             { "SetBarChartBarColor", SetBarChartBarColor },
             { "SetBarChartBarOpacity", SetBarChartBarOpacity },
