@@ -23,7 +23,7 @@ Application.RemoveAllCustomTests()
 Application.RemoveAllCustomTestBundles()
 Application.ResetSettings()
 Application.DisableAllWarnings()
-Application.SetWindowSize(2000, 1200)
+Application.SetWindowSize(1600, 1000)
 Application.SetReviewer("Isabelle M.")
 
 Application.SetCenterPrintHeader("@TITLE@")
@@ -690,105 +690,105 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "sortcolumnsdialog." .. FileExtension)
 ScreenshotLib.CloseSortListDlg()
 
 -- Text exclusion example
-a = StandardProject(ScreenshotProjectsFolder .. "Danielson-Bryan.html")
+sp = StandardProject(ScreenshotProjectsFolder .. "Danielson-Bryan.html")
 
-a:ExcludeFileAddress(false)
-a:ExcludeProperNouns(false)
-a:AggressivelyExclude(false)
-a:ExcludeCopyrightNotices(false)
-a:ExcludeTrailingCitations(false)
-a:ExcludeNumerals(false)
+sp:ExcludeFileAddress(false)
+sp:ExcludeProperNouns(false)
+sp:AggressivelyExclude(false)
+sp:ExcludeCopyrightNotices(false)
+sp:ExcludeTrailingCitations(false)
+sp:ExcludeNumerals(false)
 
-a:Reload()
+sp:Reload()
 
-a:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
+sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleHeaderExcluded." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true, 229,252)
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExamplePartialExcluded." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true, 929, 934, 999, 1133)
 
-a:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
 ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleAllExcluded." .. FileExtension, 1051, 1058)
 
-a:CloseProperties()
+sp:CloseProperties()
 
-a:AggressivelyExclude(true)
+sp:AggressivelyExclude(true)
 
-a:Reload()
+sp:Reload()
 
-a:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
 ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleAggressiveList." .. FileExtension, 1051)
 
-a:CloseProperties()
+sp:CloseProperties()
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleWhereExcluded." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true, 929,934)
 
-a:SetIncludeIncompleteTolerance(20)
+sp:SetIncludeIncompleteTolerance(20)
 
-a:Reload()
+sp:Reload()
 
-a:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
 ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleIncompLengthValue." .. FileExtension, 1076, 1077)
 
-a:CloseProperties()
+sp:CloseProperties()
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleLongSentenceExcluded." .. FileExtension,
   HighlightedReportType.GrammarHighlightedIssues, true, 989, 1123)
 
-a:ScrollTextWindow(HighlightedReportType.GrammarHighlightedIssues, 2000)
+sp:ScrollTextWindow(HighlightedReportType.GrammarHighlightedIssues, 2000)
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleCopyrightIncluded." .. FileExtension,
-  HighlightedReportType.GrammarHighlightedIssues, true, 2195,2240)
+  HighlightedReportType.GrammarHighlightedIssues, true, 2195, 2240)
 
-a:ExcludeCopyrightNotices(true)
+sp:ExcludeCopyrightNotices(true)
 
-a:Reload()
+sp:Reload()
 
-a:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
 ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleCopyrightExcluded." .. FileExtension, 1054)
 
-a:CloseProperties()
+sp:CloseProperties()
 
-a:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
+sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleCopyrightExcludedNow." .. FileExtension,
   HighlightedReportType.GrammarHighlightedIssues, true, 2195,2240)
 
-a:ExcludeFileAddress(true)
+sp:ExcludeFileAddress(true)
 
-a:Reload()
+sp:Reload()
 
-a:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
 ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleUrlExcluded." .. FileExtension, 1056)
 
-a:CloseProperties()
+sp:CloseProperties()
 
-a:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
+sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleUrlExcludedNow." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true, 2162,2183)
+    HighlightedReportType.GrammarHighlightedIssues, true, 2162, 2183)
 
-a:ExcludeProperNouns(true)
-a:ExcludeNumerals(true)
+sp:ExcludeProperNouns(true)
+sp:ExcludeNumerals(true)
 
-a:Reload()
+sp:Reload()
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleNumbersExcludedNow." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true, 281,284,539,543)
+    HighlightedReportType.GrammarHighlightedIssues, true, 281,284,539,543)
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleProperExcludedNow." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true, 262,277,532,538)
 
-a:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
 ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleEditListButton." .. FileExtension, 1052)
 
-a:CloseProperties()
+sp:CloseProperties()
 
 -- Exclusion word list
 ScreenshotLib.ShowEditWordListDlg(ScreenshotProjectsFolder .. "Example10ExclusionWords.txt")
@@ -797,26 +797,26 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleCustomWords." .. File
 
 ScreenshotLib.CloseEditWordListDlg()
 
-a:SetPhraseExclusionList(ScreenshotProjectsFolder .. "Example10ExclusionWords.txt")
+sp:SetPhraseExclusionList(ScreenshotProjectsFolder .. "Example10ExclusionWords.txt")
 
-a:Reload()
+sp:Reload()
 
-a:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
+sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleCustomWordsExcludedNow." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true, 371,386, 619, 630)
+    HighlightedReportType.GrammarHighlightedIssues, true, 371,386, 619, 630)
 
-a:ExcludeTrailingCitations(true)
+sp:ExcludeTrailingCitations(true)
 
-a:Reload()
+sp:Reload()
 
-a:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
+sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleCitationExcluded." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true, 1926,2090)
 
-a:SelectWindow(SideBarSection.WordsBreakdown, ListType.ThreePlusSyllableWords)
+sp:SelectWindow(SideBarSection.WordsBreakdown, ListType.ThreePlusSyllableWords)
 ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "RibbonEditListOptionsWithExcludeSelected." .. FileExtension, 0, RibbonButtonBars.Edit)
 
-a:Close()
+sp:Close()
 
 -- exlcuded tags
 sp = StandardProject(ScreenshotProjectsFolder .. "Press Release.rtf")
