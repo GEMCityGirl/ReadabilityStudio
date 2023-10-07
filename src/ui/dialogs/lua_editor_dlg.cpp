@@ -722,7 +722,7 @@ void LuaEditorDlg::CreateControls()
         BestSize(FromDIP(wxSize(800, 100))).
         PinButton(true).CloseButton(false));
 
-    SetSize(FromDIP(wxSize(800, 700)));
+    SetSize(FromDIP(wxSize(1200, 1200)));
 
     m_mgr.Update();
     }
