@@ -402,11 +402,12 @@ sp:SelectWindow(SideBarSection.WordsBreakdown, ListType.ThreePlusSyllableWords)
 sp:SortList(ListType.ThreePlusSyllableWordsList,2,SortOrder.SortDescending,3,SortOrder.SortDescending)
 ScreenshotLib.SnapScreenshot(ImagePath .. "difficultwords." .. FileExtension)
 
-sp:SelectRowsInWordsBreakdownList(ListType.ThreePlusSyllableWords, 1, 3, 4, 5, 7, 8, 9, 10, 12, 13, 15, 16, 18, 19, 22, 23, 25, 26, 27, 30, 31, 32, 33, 34, 35, 36, 37, 40)
+sp:SelectRowsInWordsBreakdownList(ListType.ThreePlusSyllableWords, 1, 3, 4, 5, 7, 8, 9, 10, 12, 13, 15,
+                                  16, 18, 19, 22, 23, 25, 26, 27, 30, 31, 32, 33, 34, 35, 36, 37, 40)
 ScreenshotLib.SnapScreenshot(ImagePath .. "difficultwords2." .. FileExtension, 500)
 
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "GraphBarsRectangular." .. FileExtension)
-sp:SetGraphCustomBrushImage(ScreenshotProjectsFolder .. "Book.png")
+sp:SetGraphStippleImage(ScreenshotProjectsFolder .. "Book.png")
 sp:SetBarChartBarEffect(BoxEffect.StippleImage)
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "GraphCustomBrush." .. FileExtension)
 
