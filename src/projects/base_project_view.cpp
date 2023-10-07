@@ -325,7 +325,7 @@ void BaseProjectView::OnBarStyleSelected(wxCommandEvent& event)
             wxGetApp().GetAppOptions().SetImagePath(wxFileName(fd.GetPath()).GetPath());
             baseDoc->SetStippleImagePath(fd.GetPath());
             }
-        baseDoc->SetGraphBarEffect(BoxEffect::Stipple);
+        baseDoc->SetGraphBarEffect(BoxEffect::StippleImage);
         }
     else if (event.GetId() == XRCID("ID_BAR_STYLE_STIPPLE_SHAPE"))
         { baseDoc->SetGraphBarEffect(BoxEffect::StippleShape); }
@@ -381,7 +381,7 @@ void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
             wxGetApp().GetAppOptions().SetImagePath(wxFileName(fd.GetPath()).GetPath());
             baseDoc->SetStippleImagePath(fd.GetPath());
             }
-        baseDoc->SetHistogramBarEffect(BoxEffect::Stipple);
+        baseDoc->SetHistogramBarEffect(BoxEffect::StippleImage);
         }
     else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_SHAPE"))
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetHistogramBarEffect(BoxEffect::StippleShape); }
@@ -425,6 +425,7 @@ void BaseProjectView::OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEve
     wxGetApp().GetAppOptions().SetImagePath(wxFileName(fd.GetPath()).GetPath());
     baseDoc->SetStippleImagePath(fd.GetPath());
 
+    baseDoc->SetHistogramBarEffect(BoxEffect::StippleImage);
     baseDoc->SetHistogramBarEffect(BoxEffect::Stipple);
 
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
@@ -497,7 +498,7 @@ void BaseProjectView::OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& e
     wxGetApp().GetAppOptions().SetImagePath(wxFileName(fd.GetPath()).GetPath());
     baseDoc->SetStippleImagePath(fd.GetPath());
 
-    baseDoc->SetGraphBoxEffect(BoxEffect::Stipple);
+    baseDoc->SetGraphBoxEffect(BoxEffect::StippleImage);
 
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
@@ -521,7 +522,7 @@ void BaseProjectView::OnBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& e
     wxGetApp().GetAppOptions().SetImagePath(wxFileName(fd.GetPath()).GetPath());
     baseDoc->SetStippleImagePath(fd.GetPath());
 
-    baseDoc->SetGraphBarEffect(BoxEffect::Stipple);
+    baseDoc->SetGraphBarEffect(BoxEffect::StippleImage);
 
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
@@ -578,7 +579,7 @@ void BaseProjectView::OnBoxStyleSelected(wxCommandEvent& event)
             wxGetApp().GetAppOptions().SetImagePath(wxFileName(fd.GetPath()).GetPath());
             baseDoc->SetStippleImagePath(fd.GetPath());
             }
-        baseDoc->SetGraphBoxEffect(BoxEffect::Stipple);
+        baseDoc->SetGraphBoxEffect(BoxEffect::StippleImage);
         }
     else if (event.GetId() == XRCID("ID_BOX_STYLE_STIPPLE_SHAPE"))
         { baseDoc->SetGraphBoxEffect(BoxEffect::StippleShape); }
@@ -1927,7 +1928,6 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
         XRCID("ID_EDIT_GRAPH_BKIMAGE_OPACITY"), _(L"Image Opacity...")));
 
     auto graphBackgroundImageEffectSubMenu = new wxMenu{};
-
 
     graphBackgroundImageEffectSubMenu->Append(
         new wxMenuItem(graphBackgroundColorSubMenu,
