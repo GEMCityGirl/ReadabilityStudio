@@ -571,6 +571,22 @@ bool ReadabilityApp::OnInit()
     GetAppOptions().LoadOptionsFile(AppSettingFolderPath + L"Settings.xml", true);
     wxLogMessage(L"Settings file loaded from: " + AppSettingFolderPath + L"Settings.xml");
 
+    // load map of graph icons to human readable strings
+    m_shapeMap.insert(std::make_pair(_(L"Sun"), DONTTRANSLATE(L"sun")));
+    m_shapeMap.insert(std::make_pair(_(L"Book"), DONTTRANSLATE(L"book")));
+    m_shapeMap.insert(std::make_pair(_(L"Fall leaf"), DONTTRANSLATE(L"fall-leaf")));
+    m_shapeMap.insert(std::make_pair(_(L"Man"), DONTTRANSLATE(L"man")));
+    m_shapeMap.insert(std::make_pair(_(L"Woman"), DONTTRANSLATE(L"woman")));
+    m_shapeMap.insert(std::make_pair(_(L"Business woman"), DONTTRANSLATE(L"business-woman")));
+    m_shapeMap.insert(std::make_pair(_(L"Tire"), DONTTRANSLATE(L"tire")));
+    m_shapeMap.insert(std::make_pair(_(L"Flower"), DONTTRANSLATE(L"flower")));
+    m_shapeMap.insert(std::make_pair(_(L"Warning road sign"), DONTTRANSLATE(L"warning-road-sign")));
+    m_shapeMap.insert(std::make_pair(_(L"Location marker"), DONTTRANSLATE(L"location-marker")));
+    m_shapeMap.insert(std::make_pair(_(L"Graduation cap"), DONTTRANSLATE(L"graduation-cap")));
+    m_shapeMap.insert(std::make_pair(_(L"Car"), DONTTRANSLATE(L"car")));
+    m_shapeMap.insert(std::make_pair(_(L"Newspaper"), DONTTRANSLATE(L"newspaper")));
+    m_shapeMap.insert(std::make_pair(_(L"Snowflake"), DONTTRANSLATE(L"snowflake")));
+
     // this needs to be called before prompting for the
     // serial number because wxGetTextFromUser will need a parent
     LoadInterface();
@@ -854,7 +870,7 @@ bool ReadabilityApp::OnInit()
         // crop the bottom
         GetMainFrameEx()->SetAboutDialogImage(
             wxBitmap(wxImage(scaledBmp.ConvertToImage()).Resize(
-                     GetMainFrame()->FromDIP(wxSize(500,200)), wxPoint(0,0))));
+                     GetMainFrame()->FromDIP(wxSize(500, 200)), wxPoint(0, 0))));
         }
 
     // set the help
@@ -2323,14 +2339,14 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
     if (event.GetId() == XRCID("ID_BLANK_FRASE_GRAPH"))
         {
         GraphDlg graphDlg(this, wxID_ANY, wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"FRASE")));
-        graphDlg.GetCanvas()->SetFixedObject(0,0,std::make_shared<FraseGraph>(graphDlg.GetCanvas()));
+        graphDlg.GetCanvas()->SetFixedObject(0, 0, std::make_shared<FraseGraph>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_CRAWFORD_GRAPH"))
         {
         GraphDlg graphDlg(this, wxID_ANY, wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Crawford")));
-        graphDlg.GetCanvas()->SetFixedObject(0,0,std::make_shared<CrawfordGraph>(graphDlg.GetCanvas()));
+        graphDlg.GetCanvas()->SetFixedObject(0, 0, std::make_shared<CrawfordGraph>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.ShowModal();
         }
@@ -2379,14 +2395,14 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         auto fleschChart = std::make_shared<FleschChart>(graphDlg.GetCanvas());
         fleschChart->ShowConnectionLine(wxGetApp().GetAppOptions().IsConnectingFleschPoints());
 
-        graphDlg.GetCanvas()->SetFixedObject(0,0, fleschChart);
+        graphDlg.GetCanvas()->SetFixedObject(0, 0, fleschChart);
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_DB2_GRAPH"))
         {
         GraphDlg graphDlg(this, wxID_ANY, wxString::Format(_(L"Blank \"%s\" Graph"), BaseProjectView::GetDB2Label()));
-        graphDlg.GetCanvas()->SetFixedObject(0,0,std::make_shared<DanielsonBryan2Plot>(graphDlg.GetCanvas()));
+        graphDlg.GetCanvas()->SetFixedObject(0, 0,std::make_shared<DanielsonBryan2Plot>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.ShowModal();
         }
@@ -2404,7 +2420,7 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
     else if (event.GetId() == XRCID("ID_BLANK_LIX_GRAPH"))
         {
         GraphDlg graphDlg(this, wxID_ANY, _(L"Blank Lix Gauge"));
-        graphDlg.GetCanvas()->SetFixedObject(0,0,std::make_shared<LixGauge>(graphDlg.GetCanvas()));
+        graphDlg.GetCanvas()->SetFixedObject(0, 0, std::make_shared<LixGauge>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.ShowModal();
         }

@@ -557,8 +557,6 @@ private:
     void CreateLabelHeader(wxWindow* parent, wxSizer* parentSizer,
                            const wxString& title, const bool addSidePadding = false) const;
 
-    std::map<wxString, wxString> m_shapeMap;
-
     BaseProjectDoc* m_readabilityProjectDoc { nullptr };
     wxCheckBox* m_ignoreCopyrightsCheckBox{ nullptr };
     wxCheckBox* m_ignoreCitationsCheckBox{ nullptr };

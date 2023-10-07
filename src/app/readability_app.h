@@ -329,7 +329,7 @@ public:
 
         // Only resize if being downscaled. If the original image is smaller than the
         // requested size, then return the original image (i.e., don't upscale it).
-        const auto [width,height] = geometry::downscaled_size(
+        const auto [width, height] = geometry::downscaled_size(
             std::make_pair(bmp.GetWidth(), bmp.GetHeight()),
             std::make_pair(scaledSize.GetWidth(), scaledSize.GetHeight()));
 
@@ -350,6 +350,10 @@ public:
     [[nodiscard]]
     static const std::map<wxWindowID, wxWindowID>& GetDynamicIdMap() noexcept
         { return m_dynamicIdMap; }
+
+    [[nodiscard]]
+    const std::map<wxString, wxString>& GetShapeMap() const noexcept
+        { return m_shapeMap; }
 private:
     void InitializeReadabilityFeatures();
 
@@ -371,6 +375,8 @@ private:
     wxArrayString m_splashscreenImagePaths;
     WebHarvester m_webHarvester;
     std::mt19937_64 m_mersenneTwister;
+
+    std::map<wxString, wxString> m_shapeMap;
     };
 
 #endif //__MAIN_APP_H__

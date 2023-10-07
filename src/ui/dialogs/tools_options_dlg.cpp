@@ -843,21 +843,6 @@ bool ToolsOptionsDlg::Create(wxWindow* parent, wxWindowID id, const wxString& ca
     SetExtraStyle(GetExtraStyle()|wxWS_EX_VALIDATE_RECURSIVELY);
     wxDialog::Create(parent, id, caption, pos, size, style);
 
-    m_shapeMap.insert(std::make_pair(_(L"Sun"), DONTTRANSLATE(L"sun")));
-    m_shapeMap.insert(std::make_pair(_(L"Book"), DONTTRANSLATE(L"book")));
-    m_shapeMap.insert(std::make_pair(_(L"Fall leaf"), DONTTRANSLATE(L"fall-leaf")));
-    m_shapeMap.insert(std::make_pair(_(L"Man"), DONTTRANSLATE(L"man")));
-    m_shapeMap.insert(std::make_pair(_(L"Woman"), DONTTRANSLATE(L"woman")));
-    m_shapeMap.insert(std::make_pair(_(L"Business woman"), DONTTRANSLATE(L"business-woman")));
-    m_shapeMap.insert(std::make_pair(_(L"Tire"), DONTTRANSLATE(L"tire")));
-    m_shapeMap.insert(std::make_pair(_(L"Flower"), DONTTRANSLATE(L"flower")));
-    m_shapeMap.insert(std::make_pair(_(L"Warning road sign"), DONTTRANSLATE(L"warning-road-sign")));
-    m_shapeMap.insert(std::make_pair(_(L"Location marker"), DONTTRANSLATE(L"location-marker")));
-    m_shapeMap.insert(std::make_pair(_(L"Graduation cap"), DONTTRANSLATE(L"graduation-cap")));
-    m_shapeMap.insert(std::make_pair(_(L"Car"), DONTTRANSLATE(L"car")));
-    m_shapeMap.insert(std::make_pair(_(L"Newspaper"), DONTTRANSLATE(L"newspaper")));
-    m_shapeMap.insert(std::make_pair(_(L"Snowflake"), DONTTRANSLATE(L"snowflake")));
-
     CreateControls();
 
     // DDX variables bound to controls
@@ -2189,8 +2174,8 @@ void ToolsOptionsDlg::SaveOptions()
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleShapeLabel()))
             {
             const auto foundShape =
-                m_shapeMap.find(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleShapeLabel()));
-            if (foundShape != m_shapeMap.cend())
+                wxGetApp().GetShapeMap().find(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleShapeLabel()));
+            if (foundShape != wxGetApp().GetShapeMap().cend())
                 { wxGetApp().GetAppOptions().SetStippleShape(foundShape->second); }
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleShapeColorLabel()))
@@ -2508,8 +2493,8 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleShapeLabel()))
             {
             const auto foundShape =
-                m_shapeMap.find(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleShapeLabel()));
-            if (foundShape != m_shapeMap.cend())
+                wxGetApp().GetShapeMap().find(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleShapeLabel()));
+            if (foundShape != wxGetApp().GetShapeMap().cend())
                 { m_readabilityProjectDoc->SetStippleShape(foundShape->second); }
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleShapeColorLabel()))
@@ -4756,14 +4741,14 @@ void ToolsOptionsDlg::CreateGraphSection()
                 }
 
             wxPGChoices shapes;
-            for (const auto& sh : m_shapeMap)
+            for (const auto& sh : wxGetApp().GetShapeMap())
                 { shapes.Add(sh.first); }
             // do a reverse lookup to map internal "fall-leaf" to UI's "Fall leaf"
             wxString defaultValue{ _("Book") };
             const wxString systemValue = (m_readabilityProjectDoc ?
                 m_readabilityProjectDoc->GetStippleShape() :
                 wxGetApp().GetAppOptions().GetStippleShape());
-            for (const auto& sh : m_shapeMap)
+            for (const auto& sh : wxGetApp().GetShapeMap())
                 {
                 if (systemValue.CmpNoCase(sh.second) == 0)
                     {
