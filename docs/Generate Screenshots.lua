@@ -694,7 +694,7 @@ a = StandardProject(ScreenshotProjectsFolder .. "Danielson-Bryan.html")
 
 a:ExcludeFileAddress(false)
 a:ExcludeProperNouns(false)
-a:AggressivelyDeduceLists(false)
+a:AggressivelyExclude(false)
 a:ExcludeCopyrightNotices(false)
 a:ExcludeTrailingCitations(false)
 a:ExcludeNumerals(false)
@@ -714,7 +714,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleAllExcluded." .. File
 
 a:CloseProperties()
 
-a:AggressivelyDeduceLists(true)
+a:AggressivelyExclude(true)
 
 a:Reload()
 
