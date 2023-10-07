@@ -854,6 +854,9 @@ bool ToolsOptionsDlg::Create(wxWindow* parent, wxWindowID id, const wxString& ca
     m_shapeMap.insert(std::make_pair(_(L"Warning road sign"), DONTTRANSLATE(L"warning-road-sign")));
     m_shapeMap.insert(std::make_pair(_(L"Location marker"), DONTTRANSLATE(L"location-marker")));
     m_shapeMap.insert(std::make_pair(_(L"Graduation cap"), DONTTRANSLATE(L"graduation-cap")));
+    m_shapeMap.insert(std::make_pair(_(L"Car"), DONTTRANSLATE(L"car")));
+    m_shapeMap.insert(std::make_pair(_(L"Newspaper"), DONTTRANSLATE(L"newspaper")));
+    m_shapeMap.insert(std::make_pair(_(L"Snowflake"), DONTTRANSLATE(L"snowflake")));
 
     CreateControls();
 
