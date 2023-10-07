@@ -1,5 +1,6 @@
 #include <wx/colordlg.h>
 #include <wx/numdlg.h>
+#include <wx/choicdlg.h>
 #include "base_project_view.h"
 #include "batch_project_doc.h"
 #include "../app/readability_app.h"
@@ -229,16 +230,22 @@ BaseProjectView::BaseProjectView()
 
     Bind(wxEVT_MENU, &BaseProjectView::OnBoxSelectStippleBrush, this,
         XRCID("ID_BOX_SELECT_STIPPLE_IMAGE"));
+    Bind(wxEVT_MENU, &BaseProjectView::OnBoxSelectStippleShape, this,
+        XRCID("ID_BOX_BAR_SELECT_STIPPLE_SHAPE"));
     Bind(wxEVT_MENU, &BaseProjectView::OnBoxSelectCommonImage, this,
         XRCID("ID_BOX_SELECT_COMMON_IMAGE"));
 
     Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarSelectStippleBrush, this,
         XRCID("ID_HISTOGRAM_BAR_SELECT_BRUSH"));
+    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarSelectStippleShape, this,
+        XRCID("ID_HISTOGRAM_BAR_SELECT_STIPPLE_SHAPE"));
     Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarSelectCommonImage, this,
         XRCID("ID_HISTOGRAM_BAR_SELECT_COMMON_IMAGE"));
 
     Bind(wxEVT_MENU, &BaseProjectView::OnBarSelectStippleBrush, this,
         XRCID("ID_BAR_SELECT_STIPPLE_IMAGE"));
+    Bind(wxEVT_MENU, &BaseProjectView::OnBarSelectStippleShape, this,
+        XRCID("ID_BAR_SELECT_STIPPLE_SHAPE"));
     Bind(wxEVT_MENU, &BaseProjectView::OnBarSelectCommonImage, this,
         XRCID("ID_BAR_SELECT_COMMON_IMAGE"));
 
@@ -426,7 +433,93 @@ void BaseProjectView::OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEve
     baseDoc->SetStippleImagePath(fd.GetPath());
 
     baseDoc->SetHistogramBarEffect(BoxEffect::StippleImage);
-    baseDoc->SetHistogramBarEffect(BoxEffect::Stipple);
+
+    baseDoc->RefreshRequired(ProjectRefresh::Minimal);
+    baseDoc->RefreshGraphs();
+    }
+
+//---------------------------------------------------
+void BaseProjectView::OnHistoBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event)
+    {
+    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    assert(baseDoc && L"Failed to get document!");
+    if (!baseDoc)
+        { return; }
+
+    wxArrayString choices;
+    for (const auto& shape : wxGetApp().GetShapeMap())
+        { choices.push_back(shape.first); }
+
+    wxSingleChoiceDialog shapesDlg(GetDocFrame(),
+        _("Select a shape to draw across your bars:"), _("Select Stipple Shape"), choices);
+    shapesDlg.SetSize({ GetDocFrame()->FromDIP(200), GetDocFrame()->FromDIP(400) });
+    shapesDlg.Center();
+    if (shapesDlg.ShowModal() != wxID_OK)
+        { return; }
+
+    const auto foundShape = wxGetApp().GetShapeMap().find(shapesDlg.GetStringSelection());
+    if (foundShape != wxGetApp().GetShapeMap().cend())
+        { baseDoc->SetStippleShape(foundShape->second); }
+
+    baseDoc->SetHistogramBarEffect(BoxEffect::StippleShape);
+
+    baseDoc->RefreshRequired(ProjectRefresh::Minimal);
+    baseDoc->RefreshGraphs();
+    }
+
+//---------------------------------------------------
+void BaseProjectView::OnBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event)
+    {
+    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    assert(baseDoc && L"Failed to get document!");
+    if (!baseDoc)
+        { return; }
+
+    wxArrayString choices;
+    for (const auto& shape : wxGetApp().GetShapeMap())
+        { choices.push_back(shape.first); }
+
+    wxSingleChoiceDialog shapesDlg(GetDocFrame(),
+        _("Select a shape to draw across your bars:"), _("Select Stipple Shape"), choices);
+    shapesDlg.SetSize({ GetDocFrame()->FromDIP(200), GetDocFrame()->FromDIP(400) });
+    shapesDlg.Center();
+    if (shapesDlg.ShowModal() != wxID_OK)
+        { return; }
+
+    const auto foundShape = wxGetApp().GetShapeMap().find(shapesDlg.GetStringSelection());
+    if (foundShape != wxGetApp().GetShapeMap().cend())
+        { baseDoc->SetStippleShape(foundShape->second); }
+
+    baseDoc->SetGraphBarEffect(BoxEffect::StippleShape);
+
+    baseDoc->RefreshRequired(ProjectRefresh::Minimal);
+    baseDoc->RefreshGraphs();
+    }
+
+//---------------------------------------------------
+void BaseProjectView::OnBoxSelectStippleShape([[maybe_unused]] wxCommandEvent& event)
+    {
+    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    assert(baseDoc && L"Failed to get document!");
+    if (!baseDoc)
+        { return; }
+
+    wxArrayString choices;
+    for (const auto& shape : wxGetApp().GetShapeMap())
+        { choices.push_back(shape.first); }
+
+    wxSingleChoiceDialog shapesDlg(GetDocFrame(),
+        _("Select a shape to draw across your boxes:"), _("Select Stipple Shape"), choices);
+    shapesDlg.SetSize({ GetDocFrame()->FromDIP(200), GetDocFrame()->FromDIP(400) });
+    shapesDlg.Center();
+    if (shapesDlg.ShowModal() != wxID_OK)
+        { return; }
+
+    const auto foundShape = wxGetApp().GetShapeMap().find(shapesDlg.GetStringSelection());
+    if (foundShape != wxGetApp().GetShapeMap().cend())
+        { baseDoc->SetStippleShape(foundShape->second); }
+
+    baseDoc->SetGraphBoxEffect(BoxEffect::StippleShape);
 
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
@@ -2022,6 +2115,11 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     m_barStyleMenu.Append(item);
 
     item = new wxMenuItem(&m_barStyleMenu,
+        XRCID("ID_BAR_SELECT_STIPPLE_SHAPE"), _(L"Select stipple shape..."));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
+    m_barStyleMenu.Append(item);
+
+    item = new wxMenuItem(&m_barStyleMenu,
         XRCID("ID_BAR_SELECT_COMMON_IMAGE"), _(L"Select common image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_barStyleMenu.Append(item);
@@ -2074,6 +2172,11 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SELECT_BRUSH"),
         _(L"Select stipple image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+    m_histoBarStyleMenu.Append(item);
+
+    item = new wxMenuItem(&m_histoBarStyleMenu,
+        XRCID("ID_HISTOGRAM_BAR_SELECT_STIPPLE_SHAPE"), _(L"Select stipple shape..."));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
     m_histoBarStyleMenu.Append(item);
 
     item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SELECT_COMMON_IMAGE"),
@@ -2134,6 +2237,11 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
 
     item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SELECT_STIPPLE_IMAGE"), _(L"Select stipple image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+    m_boxStyleMenu.Append(item);
+
+    item = new wxMenuItem(&m_boxStyleMenu,
+        XRCID("ID_BOX_BAR_SELECT_STIPPLE_SHAPE"), _(L"Select stipple shape..."));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
     m_boxStyleMenu.Append(item);
 
     item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SELECT_COMMON_IMAGE"), _(L"Select common image..."));

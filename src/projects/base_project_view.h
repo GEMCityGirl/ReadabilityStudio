@@ -483,6 +483,9 @@ private:
     void OnBarStyleButton(wxRibbonButtonBarEvent& event);
     void OnHistoBarStyleSelected(wxCommandEvent& event);
     void OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event);
+    void OnHistoBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event);
+    void OnBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event);
+    void OnBoxSelectStippleShape([[maybe_unused]] wxCommandEvent& event);
     void OnHistoBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event);
     void OnHistoBarsLabelsButton(wxRibbonButtonBarEvent& event);
     void OnHistoBarLabelSelected(wxCommandEvent& event);
