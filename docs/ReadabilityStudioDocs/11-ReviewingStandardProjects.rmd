@@ -52,7 +52,7 @@ If the data point does not fall inside of a slice then the test will fail. For e
 knitr::include_graphics("images/raygorbadgrade.png")
 ```
 
-The document was almost classified as 11^th^ grade level material, but its long sentences make it too difficult to be assigned to any grade. At this point, you would want to review the document's lengthy sentences (select [**Highlighted Report**](#reviewing-standard-grammar) under the **Grammar** sidebar item) and try to shorten some of them.
+The document was almost classified as 12^th^ grade level material, but its long words make it too difficult to be assigned to any grade. At this point, you would want to review the document's lengthy sentences (select [**Highlighted Report**](#reviewing-standard-grammar) under the **Grammar** sidebar item) and try to shorten some of them.
 
 The Gilliam-Peña-Mountain\index{Gilliam-Peña-Mountain} graph is a variation of Fry designed for Spanish text. It is identical to Fry, except that its X axis begins at 175 (instead of 108). This enables this graph to plot Spanish text, which usually has a much higher syllable count than its English counterpart. Below is an example of a Gilliam-Peña-Mountain graph:
 
