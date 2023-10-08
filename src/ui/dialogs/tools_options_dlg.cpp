@@ -2174,7 +2174,8 @@ void ToolsOptionsDlg::SaveOptions()
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleShapeLabel()))
             {
             const auto foundShape =
-                wxGetApp().GetShapeMap().find(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleShapeLabel()));
+                wxGetApp().GetShapeMap().find(
+                    m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleShapeLabel()));
             if (foundShape != wxGetApp().GetShapeMap().cend())
                 { wxGetApp().GetAppOptions().SetStippleShape(foundShape->second); }
             }
@@ -2493,7 +2494,8 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleShapeLabel()))
             {
             const auto foundShape =
-                wxGetApp().GetShapeMap().find(m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleShapeLabel()));
+                wxGetApp().GetShapeMap().find(
+                    m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleShapeLabel()));
             if (foundShape != wxGetApp().GetShapeMap().cend())
                 { m_readabilityProjectDoc->SetStippleShape(foundShape->second); }
             }

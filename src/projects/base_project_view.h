@@ -405,7 +405,7 @@ public:
     static constexpr int ID_DOLCH_WORDS_LIST_PAGE_ID = wxID_HIGHEST + 42;
     static constexpr int ID_NON_DOLCH_WORDS_LIST_PAGE_ID = wxID_HIGHEST + 43;
     // only window in the warnings section,
-    // so we will re-use this ID for the sidebar section also (below)
+    // so we will reuse this ID for the sidebar section also (below)
     static constexpr int ID_WARNING_LIST_PAGE_ID = wxID_HIGHEST + 44;
     static constexpr int ID_SCORE_STATS_LIST_PAGE_ID = wxID_HIGHEST + 45;
     static constexpr int ID_AGGREGATED_DOC_SCORES_LIST_PAGE_ID = wxID_HIGHEST + 46;
