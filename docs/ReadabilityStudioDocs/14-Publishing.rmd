@@ -210,7 +210,7 @@ These tags are expanded dynamically when printing takes place. These tags are:
 - `@PAGENUM@`: The current page number.
 - `@PAGESCNT@`: The number of printed pages.
 
-For example, when printing:
+For example, printing:
 
 > *\@PAGENUM\@ (of \@PAGESCNT\@ pages)*
 
