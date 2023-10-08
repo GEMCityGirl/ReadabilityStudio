@@ -245,7 +245,8 @@ The different types of text reports that may be shown are:
 
 **Harris-Jacobson (Unfamiliar)**: This text report contains the document with all the [Harris-Jacobson](#harris-jacobson)\index{Harris-Jacobson Wide Range!reviewing unfamiliar words} unfamiliar words highlighted. The Harris-Jacobson word list is a collection of words that are considered to be familiar to most primary-age readers. Words in the document that are not found on this list may be less familiar to younger readers and hence more difficult. This window is only available if the Harris-Jacobson test is included in the project.
 
-You can change both the font and highlighting color by opening the [**Project Properties**](#options-overview) dialog and selecting [**Highlighted Reports**](#options-highlighted-reports). Note that changing these options from the **Project Properties** dialog will only affect the current project. If you want to make changes to any future projects, then go to the **Options** dialog from the **Tools** tab instead.
+You can change both the font and highlighting color by opening the [**Project Properties**](#options-overview) dialog and selecting [**Highlighted Reports**](#options-highlighted-reports).
+Note that changing these options from the **Project Properties** dialog will only affect the current project. If you want to make changes to any future projects, then go to the **Options** dialog from the **Tools** tab instead.
 
 ### Reviewing Word-based Graphs {-}
 
@@ -270,14 +271,16 @@ knitr::include_graphics("images/SyllableCountHistogram.png")
 ```
 
 In the above histogram, we see that most of the words are either 1 or 2 syllables. There are only 25 3-syllable words and 17 4-syllable words in the document.
-Combined, there are 42 complex words, as shown by the cumulative group bar above the **3** and **4** bars.
 (Note that selecting a bar will display the first 25 words within that syllable group.)
+Combined, there are 42 complex words, as shown by the cumulative group bar above the **3** and **4** bars.
 
 ::: {.notesection data-latex=""}
-The total value of a word count reflects the number of words, including repeats of the same word. The unique value of a word count reflects the number of words, excluding repeats. For example, a document contains the word *liquidation* three times. This word will be tallied three times when factored into the total word count, but only once into the unique word count. Most tests use the total word count variable, although there are some that use unique counts (e.g., Spache uses its unique unfamiliar word count).
+The total value of a word count reflects the number of words, including repeats of the same word.
+The unique value of a word count reflects the number of words, excluding repeats.
+For example, a document contains the word *liquidation* three times.
+This word will be tallied three times when factored into the total word count, but only once into the unique word count.
+Most tests use the total word count variable, although there are some that use unique counts (e.g., Spache uses its unique unfamiliar word count).
 :::
-
-See also \@ref(proper-nouns-in-lists) for more information about proper-noun handling.
 ::::
 
 ::: {.minipage data-latex="{\textwidth}"}
@@ -287,11 +290,16 @@ See also \@ref(proper-nouns-in-lists) for more information about proper-noun han
 knitr::include_graphics("images/NonGenerated/key-word-cloud.png")
 ```
 
-A word cloud shows words from a document in a random layout with randomly assigned colors. The size of each word is based on its relative frequency within the document. In other words, the larger the word, the more often it is used compared to other words.
+A word cloud shows words from a document in a random layout with randomly assigned colors. The size of each word is based on its relative frequency within the document.
+In other words, the larger the word, the more often it is used compared to other words. \
 
-This particular word cloud displays the ~100 most frequently occurring key words appearing in the document. Like the **Key Words** list, these will be combined words with uncommon ones (e.g., *the*) removed. In the case of combined words, the most frequent instance of similar words will be shown. For example, if the word *report* appears more times than *reporting* and *reports*, then *report* will appear in the word cloud. Also, the size of the word *report* will be based on the number of times *report*, *reporting*, and *reports* all appear.
+This particular word cloud displays the ~100 most frequently occurring key words appearing in the document.
+Like the **Key Words** list, these will be combined words with uncommon ones (e.g., *the*) removed.
+In the case of combined words, the most frequent instance of similar words will be shown.
+For example, if the word *report* appears more times than *reporting* and *reports*, then *report* will appear in the word cloud.
+Also, the size of the word *report* will be based on the number of times *report*, *reporting*, and *reports* all appear. \
 
-To focus on important topics, only words occurring two or more times will be shown (unless there are less than one unique hundred words).
+To focus on important topics, only words occurring two or more times will be shown (unless there are less than one unique hundred words). \
 
 In a batch project, this word cloud will show the key words across all documents.
 :::
@@ -306,7 +314,9 @@ A list of overly-long sentences:
 
 ![](images/featuressentencelist.png)
 
-Note that if you are ignoring incomplete sentences, then this list will only include the complete sentences. If you need to review all the sentences from the document, then select the option [**Do not exclude any text**](#options-text-exclusion). Refer to \@ref(how-text-is-excluded) to learn more about how *Readability Studio* handles incomplete sentences.
+Note that if you are ignoring incomplete sentences, then this list will only include the complete sentences.
+If you need to review all the sentences from the document, then select the option [**Do not exclude any text**](#options-text-exclusion).
+Refer to \@ref(how-text-is-excluded) to learn more about how *Readability Studio* handles incomplete sentences.
 
 To find the longest sentence, [sort](#column-sorting) the **Word Count** column into descending order. As you can see below, the longest sentence is now shown at the top of the list.
 
