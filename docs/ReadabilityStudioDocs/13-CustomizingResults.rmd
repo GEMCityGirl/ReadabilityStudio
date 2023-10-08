@@ -80,7 +80,7 @@ Options for customizing it are made available on the **Edit** section of the rib
 
 The options made available will be dependent on the graph type. Refer to \@ref(options-graphs) for further discussions of these options.
 
-Refer to \@ref(customizing-a-graph) and \@ref(custom-brush-example) for step-by-step tutorials on editing a graph.
+Refer to \@ref(customizing-a-graph) and \@ref(stipple-brush-example) for step-by-step tutorials on editing a graph.
 
 ## Customizing How Documents are Analyzed
 
