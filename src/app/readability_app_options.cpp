@@ -2126,7 +2126,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         const wchar_t* filteredText =
                             filter_html(imagePathStr.wc_str(), imagePathStr.length(), true, false);
                         if (filteredText)
-                            { SetGraphStippleImagePath(wxString(filteredText)); }
+                            { SetStippleImagePath(wxString(filteredText)); }
                         }
                     }
                 // common image
@@ -4081,7 +4081,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     // stipple image path
     auto stipplePath = doc.NewElement(XML_GRAPH_STIPPLE_PATH.mb_str());
     stipplePath->SetAttribute(XML_VALUE.mb_str(),
-        wxString(encode({ GetGraphStippleImagePath().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetStippleImagePath().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(stipplePath);
     // common image path
     auto commonImagePath = doc.NewElement(XML_GRAPH_COMMON_IMAGE_PATH.mb_str());
@@ -4727,10 +4727,10 @@ void ReadabilityAppOptions::UpdateGraphOptions(Wisteria::Canvas* graphCanvas)
         m_waterMarkImage = wxBitmapBundle(
             wxGetApp().GetResourceManager().GetBitmap(GetWatermarkLogo(),wxBITMAP_TYPE_ANY).ConvertToImage());
         }
-    if (wxFile::Exists(GetGraphStippleImagePath()))
+    if (wxFile::Exists(GetStippleImagePath()))
         {
         m_graphStippleImage = wxBitmapBundle(
-            wxGetApp().GetResourceManager().GetBitmap(GetGraphStippleImagePath(),wxBITMAP_TYPE_ANY).ConvertToImage());
+            wxGetApp().GetResourceManager().GetBitmap(GetStippleImagePath(),wxBITMAP_TYPE_ANY).ConvertToImage());
         }
 
     graphCanvas->SetExportResources(

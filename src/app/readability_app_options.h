@@ -937,10 +937,10 @@ public:
     [[nodiscard]]
     Wisteria::BoxEffect GetGraphBarEffect() const noexcept
         { return m_graphBarEffect; }
-    void SetGraphStippleImagePath(const wxString& path)
+    void SetStippleImagePath(const wxString& path)
         { m_stippleImagePath = path; }
     [[nodiscard]]
-    wxString GetGraphStippleImagePath() const
+    wxString GetStippleImagePath() const
         { return m_stippleImagePath; }
     void SetGraphCommonImagePath(const wxString& path)
         { m_commonImagePath = path; }

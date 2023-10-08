@@ -407,7 +407,7 @@ sp:SelectRowsInWordsBreakdownList(ListType.ThreePlusSyllableWords, 1, 3, 4, 5, 7
 ScreenshotLib.SnapScreenshot(ImagePath .. "difficultwords2." .. FileExtension, 500)
 
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "GraphBarsRectangular." .. FileExtension)
-sp:SetGraphStippleImage(ScreenshotProjectsFolder .. "Book.png")
+sp:SetStippleImage(ScreenshotProjectsFolder .. "Book.png")
 sp:SetBarChartBarEffect(BoxEffect.StippleImage)
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "GraphCustomBrush." .. FileExtension)
 

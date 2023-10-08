@@ -2168,7 +2168,7 @@ void ToolsOptionsDlg::SaveOptions()
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleImageLabel()))
             {
-            wxGetApp().GetAppOptions().SetGraphStippleImagePath(
+            wxGetApp().GetAppOptions().SetStippleImagePath(
                 m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleImageLabel()));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleShapeLabel()))
@@ -4727,7 +4727,7 @@ void ToolsOptionsDlg::CreateGraphSection()
                 new wxImageFileProperty(GetStippleImageLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
                     m_readabilityProjectDoc->GetStippleImagePath() :
-                    wxGetApp().GetAppOptions().GetGraphStippleImagePath()));
+                    wxGetApp().GetAppOptions().GetStippleImagePath()));
             customBrushProp->SetAttribute(wxPG_FILE_WILDCARD ,wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER);
             customBrushProp->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Stipple Image"));
             customBrushProp->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));

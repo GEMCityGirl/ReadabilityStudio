@@ -33,7 +33,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_useGraphBackGroundImageLinearGradient(wxGetApp().GetAppOptions().GetGraphBackGroundLinearGradient()),
     m_displayDropShadows(wxGetApp().GetAppOptions().IsDisplayingDropShadows()),
     m_graphBackGroundImagePath(wxGetApp().GetAppOptions().GetBackGroundImagePath()),
-    m_stippleImagePath(wxGetApp().GetAppOptions().GetGraphStippleImagePath()),
+    m_stippleImagePath(wxGetApp().GetAppOptions().GetStippleImagePath()),
     m_commonImagePath(wxGetApp().GetAppOptions().GetGraphCommonImagePath()),
     m_stippleShape(wxGetApp().GetAppOptions().GetStippleShape()),
     m_stippleColor(wxGetApp().GetAppOptions().GetStippleShapeColor()),

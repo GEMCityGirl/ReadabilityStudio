@@ -1262,11 +1262,11 @@ namespace LuaScripting
         return 0;
         }
     //-------------------------------------------------------------
-    int SetGraphStippleImage(lua_State *L)
+    int SetStippleImage(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetGraphStippleImagePath(
+        wxGetApp().GetAppOptions().SetStippleImagePath(
             wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
