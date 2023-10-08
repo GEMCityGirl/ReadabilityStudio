@@ -504,6 +504,18 @@ namespace LuaScripting
         return 0;
         }
 
+    int StandardProject::SetStippleShape(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->SetStippleShape(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
     int StandardProject::DisplayGraphDropShadows(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1632,6 +1644,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundColor),
       LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundOpacity),
       LUNA_DECLARE_METHOD(StandardProject, SetStippleImage),
+      LUNA_DECLARE_METHOD(StandardProject, SetStippleShape),
       LUNA_DECLARE_METHOD(StandardProject, DisplayGraphDropShadows),
       LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarColor),
       LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarOpacity),
@@ -2037,6 +2050,19 @@ namespace LuaScripting
             { return 0; }
 
         m_project->SetStippleImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetStippleShape(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->SetStippleShape(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2698,6 +2724,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundColor),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundOpacity),
       LUNA_DECLARE_METHOD(BatchProject, SetStippleImage),
+      LUNA_DECLARE_METHOD(BatchProject, SetStippleShape),
       LUNA_DECLARE_METHOD(BatchProject, DisplayGraphDropShadows),
       LUNA_DECLARE_METHOD(BatchProject, AddTest),
       LUNA_DECLARE_METHOD(BatchProject, Reload),

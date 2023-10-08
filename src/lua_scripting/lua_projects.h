@@ -154,6 +154,7 @@ namespace LuaScripting
         int SetGraphWatermark(lua_State *L);
         int SetGraphLogoImage(lua_State *L);
         int SetStippleImage(lua_State *L);
+        int SetStippleShape(lua_State *L);
         int DisplayGraphDropShadows(lua_State *L);
         int SetBarChartBarColor(lua_State *L);
         int SetBarChartBarOpacity(lua_State *L);
@@ -354,6 +355,7 @@ namespace LuaScripting
         int SetGraphWatermark(lua_State *L);
         int SetGraphLogoImage(lua_State *L);
         int SetStippleImage(lua_State *L);
+        int SetStippleShape(lua_State *L);
         int DisplayGraphDropShadows(lua_State *L);
 
         // Adds a test to the project.

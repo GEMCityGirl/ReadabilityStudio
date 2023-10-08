@@ -1271,6 +1271,15 @@ namespace LuaScripting
         return 0;
         }
     //-------------------------------------------------------------
+    int SetStippleShape(lua_State *L)
+        {
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+        wxGetApp().GetAppOptions().SetStippleShape(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        return 0;
+        }
+    //-------------------------------------------------------------
     int DisplayGraphDropShadows(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
