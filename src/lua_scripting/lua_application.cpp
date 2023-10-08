@@ -1359,6 +1359,7 @@ namespace LuaScripting
         {
         if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
             { return 0; }
+        wxGetApp().GetMainFrame()->Maximize(false);
         wxGetApp().GetMainFrame()->SetSize(
             wxGetApp().GetMainFrame()->FromDIP(lua_tonumber(L, 1)),
             wxGetApp().GetMainFrame()->FromDIP(lua_tonumber(L, 2)));
