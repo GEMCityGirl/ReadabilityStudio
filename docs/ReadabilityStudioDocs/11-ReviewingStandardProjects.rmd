@@ -267,6 +267,7 @@ knitr::include_graphics("images/SyllableCountHistogram.png")
 ```
 
 In the above histogram, we see that most of the words are either 1 or 2 syllables. There are only 25 3-syllable words and 17 4-syllable words in the document.
+Combined, there are 42 complex words, as shown by the cumulative group bar above the **3** and **4** bars.
 (Note that selecting a bar will display the first 25 words within that syllable group.)
 
 ::: {.notesection data-latex=""}
