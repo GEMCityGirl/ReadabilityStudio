@@ -411,6 +411,10 @@ sp:SetStippleImage(ScreenshotProjectsFolder .. "Book.png")
 sp:SetBarChartBarEffect(BoxEffect.StippleImage)
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "GraphCustomBrush." .. FileExtension)
 
+sp:SetStippleShape("book")
+sp:SetBarChartBarEffect(BoxEffect.StippleShape)
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "GraphStippleShape." .. FileExtension)
+
 sp:Close()
 Application.RemoveAllCustomTests()
 
@@ -954,12 +958,12 @@ sp:SelectWindow(SideBarSection.Statistics, GraphType.WordBarChart)
 
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphDefault." .. FileExtension)
 
---sort the graph
+-- sort the graph
 sp:SortGraph(GraphType.WordBarChart, SortOrder.SortAscending)
 
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphSorted." .. FileExtension)
 
---change color of background
+-- change color of background
 sp:SetGraphBackgroundColor(255,0,255)
 sp:ApplyGraphBackgroundFade(true)
 
@@ -967,7 +971,7 @@ sp:Reload()
 
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundColorChanged." .. FileExtension)
 
---change the background to an image
+-- change the background to an image
 sp:SetGraphBackgroundImage(ScreenshotProjectsFolder .. "bookstore.png")
 
 sp:SetGraphBackgroundOpacity(255)
@@ -975,12 +979,12 @@ sp:SetGraphBackgroundOpacity(255)
 sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageChangedTooOpaque." .. FileExtension)
 
---lighten the image
+-- lighten the image
 sp:SetGraphBackgroundOpacity(100)
 sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageChanged." .. FileExtension)
 
---change the plot background
+-- change the plot background
 sp:SetPlotBackgroundColor(0,255,255)
 sp:SetPlotBackgroundOpacity(25)
 
@@ -988,13 +992,13 @@ sp:Reload()
 
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExamplePlotBackgroundColorChanged." .. FileExtension)
 
---add watermark
+-- add watermark
 sp:SetGraphWatermark("INTERNAL USE ONLY\nPrinted on @DATE@")
 sp:Reload()
 
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleWatermarkChanged." .. FileExtension)
 
---add logo
+-- add logo
 sp:SetGraphLogoImage(ScreenshotProjectsFolder .. "CoffeeLogo.png")
 
 sp:Reload()
