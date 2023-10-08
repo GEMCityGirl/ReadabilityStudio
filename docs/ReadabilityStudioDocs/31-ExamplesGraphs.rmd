@@ -1,3 +1,5 @@
+# Graph Examples
+
 ## Customizing a Graph {#customizing-a-graph}
 
 In this example, we will discuss the various ways to change the appearance of a graph.
@@ -103,11 +105,11 @@ First, create or open any standard project and select **Words Breakdown** on the
 knitr::include_graphics("images/GraphBarsRectangular.png")
 ```
 
-On the **Home** tab of the ribbon, click the `r keys('Bar Style')` button and select **Select stipple image** from the menu:
+On the **Home** tab of the ribbon, click the `r keys('Bar Style')` button and select **Select stipple image...** from the menu:
 
 ![](images/RibbonEditBarCharts.png)
 
-Select an image file. After the image is loaded, the bars will be drawn with this image, stacking them on top of each other:
+After selecting an image, the bars will be drawn as a repeating pattern of this image:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/GraphCustomBrush.png")
