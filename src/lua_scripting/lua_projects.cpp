@@ -1284,6 +1284,9 @@ namespace LuaScripting
                     view->GetSideBar()->SelectFolder(index.value());
                     }
                 }
+            view->GetActiveProjectWindow()->SetFocus();
+            view->GetActiveProjectWindow()->Refresh();
+            view->GetDocFrame()->Refresh();
             }
         // yield so that the view can be fully refreshed before proceeding
         wxGetApp().Yield();
