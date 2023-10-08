@@ -23,7 +23,7 @@ Application.RemoveAllCustomTests()
 Application.RemoveAllCustomTestBundles()
 Application.ResetSettings()
 Application.DisableAllWarnings()
-Application.SetWindowSize(1600, 1000)
+Application.SetWindowSize(1000, 700)
 Application.SetReviewer("Isabelle M.")
 
 Application.SetCenterPrintHeader("@TITLE@")
