@@ -94,7 +94,7 @@ knitr::include_graphics("images/ExampleBarChartEffectsChanged.png")
 
 \newpage
 
-## Using Stipple Brushes {#stipple-brush-example}
+## Using Stipples {#stipple-brush-example}
 
 In this example, we will use stipples for our bar charts. Basically, a stipple enables us to use stacked images or shapes to draw our bars.
 First, create or open any standard project and select **Words Breakdown** on the sidebar. Next, select the **Word Counts** subitem and note how the bars will be filled rectangles:
@@ -117,6 +117,6 @@ knitr::include_graphics("images/GraphCustomBrush.png")
 Enabling the **Shadows** option on the ribbon will draw a shadow under each image.
 :::
 
-This feature can also be applied to box plots and histograms. With any of these graph types selected, perform the same operation from the ribbon to draw with a custom brush.
-
 Note that images of any size can be used. If the image is larger than the bars' width, then it will be scaled downed to fit. Images that are smaller will remain their original size (rather than being upscaled) to preserve their quality.
+
+This feature can also be applied to box plots and histograms. With any of these graph types selected, perform the same operation from the ribbon to draw with a stipple.
