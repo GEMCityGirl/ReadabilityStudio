@@ -503,7 +503,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
-
+    
     int StandardProject::SetStippleShape(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -2056,7 +2056,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
-
+    
     //-------------------------------------------------------------
     int BatchProject::SetStippleShape(lua_State *L)
         {
