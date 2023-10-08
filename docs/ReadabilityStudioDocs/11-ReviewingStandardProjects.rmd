@@ -251,13 +251,16 @@ You can change both the font and highlighting color by opening the [**Project Pr
 
 The different types of graphs that may be shown are:
 
+::: {.minipage data-latex="{\textwidth}"}
 **Word Counts** [bar chart](#options-bar-charts): This graph shows the total counts of each type of word (e.g., 3+ syllable words) and how each category compares to one another. This bar chart will appear like this:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/barchart.png")
 ```
 
-In the above example, we can see that there are 70 unfamiliar New Dale-Chall words, but only 42 3+ syllable words. From this, we could infer that we should first concentrate on replacing these unfamiliar words. Lists of these words can be found by clicking on the [**Difficult Words**](#reviewing-word-breakdowns) icon on the project sidebar.
+In the above example, we can see that there are 70 unfamiliar New Dale-Chall words, but only 42 3+ syllable words. From this, we could infer that we should first concentrate on replacing these unfamiliar words.
+Lists of these words can be found by clicking on the [**Difficult Words**](#reviewing-word-breakdowns) icon on the project sidebar.
+:::
 
 :::: {.minipage data-latex="{\textwidth}"}
 **Syllable Counts**: This is a histogram of the words, grouped by syllable count\index{syllables!reviewing in the results}.
