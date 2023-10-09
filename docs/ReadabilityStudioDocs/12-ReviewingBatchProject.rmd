@@ -38,6 +38,7 @@ The **Score Summary** subitem will display the aggregated statistics for each te
 
 ![](images/batchscorestats.png)
 
+::: {.minipage data-latex="{\textwidth}"}
 By default, the following statistics for each test are included:
 
 - [Valid N](#stat-terms): the number of valid scores.
@@ -46,7 +47,9 @@ By default, the following statistics for each test are included:
 - [Range](#stat-terms): the distance between the lowest and highest test scores.
 - [Mode(s)](#stat-terms)\index{mode}: the most frequently occurring score. In the case of a tie, all modes will be listed. Note that grade scores are rounded down when searching for the mode.
 - [Means](#stat-terms)\index{mean}: the average test score. This is calculated by adding all the scores and dividing the total by the number of scores.
+:::
 
+::: {.minipage data-latex="{\textwidth}"}
 If [**Extended Information**](#options-summary-report) is enabled, then these additional statistics will be included:
 
 - [Median](#stat-terms)\index{median}: the middle test score. This represents the middle point separating the lower and upper halves of the scores. This is calculated by sorting the scores and taking the score in middle if the number of scores is odd. If the number of scores is even, then the means of the two middle points is taken.
@@ -56,6 +59,7 @@ If [**Extended Information**](#options-summary-report) is enabled, then these ad
 - [Variance](#stat-terms)\index{variance}: another measurement of the scores' variability, which is std. dev. squared.
 - [Lower quartile](#stat-terms): the test score at the 25% percentile. This is the score separating the lower quarter of the scores from the rest of the scores.
 - [Upper quartile](#stat-terms): the test score at the 75% percentile. This is the score separating the upper quarter of the scores from the rest of the scores.
+:::
 
 Note that when calculating these statistics, failed test scores are treated as missing observations and not included. For example, let us say that you analyze 100 documents, but 3 of them cannot calculate [Fry](#fry-test) because their average sentence length is too high. In this case, the valid 97 Fry scores will be added and divided by 97 (not 100) to get the means.
 
@@ -249,7 +253,9 @@ After opening a project, click on the **Grammar** icon on the project sidebar an
 
 If a repeated word occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *the the* occurs two separate times in a given document, then this will be displayed as *the the\*2*:
 
-![](images/batchrepeatedmultiple.png)
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/batchrepeatedmultiple.png")
+```
 
 To view a specific document's repeated words, double-click on its row in this list. A vertical display of that document's repeated words will be shown:
 
@@ -357,7 +363,9 @@ After opening a project, click on the **Grammar** icon on the project sidebar an
 
 If a cliché occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *off the wall* occurs four separate times in a given document, then this will be displayed as *off the wall\*4*:
 
-![](images/batchclichemultiple.png)
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/batchclichemultiple.png")
+```
 
 To view a specific document's clichés, double-click on its row in this list. A vertical display of that document's clichés will be shown:
 
