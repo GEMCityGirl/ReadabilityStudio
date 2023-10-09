@@ -78,6 +78,9 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshot(lua_State *L)
         {
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         int startWindowToHighlight = -1, endWindowToHighlight = -1;
         if (lua_gettop(L) > 1)
@@ -104,6 +107,9 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotOfTextWindow(lua_State *L)
         {
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         std::vector<std::pair<long,long>> highlightPoints;
         if (lua_gettop(L) > 3)
@@ -126,6 +132,9 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotOfRibbon(lua_State *L)
         {
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         int pageToSelect{0}, buttonBarID{-1};
         if (lua_gettop(L) >= 2)
@@ -151,6 +160,9 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotOfListControl(lua_State *L)
         {
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         int startRow{-1}, endRow{-1}, startColumn{-1}, endColumn{-1}, cuttOffRow{-1};
         if (lua_gettop(L) >= 3)
@@ -181,6 +193,9 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotOfPropertGrid(lua_State *L)
         {
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         int startWindowToHighlight = -1;
         wxString propertyStart, propertyEnd;
@@ -204,6 +219,9 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int HighlightScreenshot(lua_State *L)
         {
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         lua_pushboolean(L,
             Screenshot::HighlightItemInScreenshot(path,
@@ -270,7 +288,7 @@ namespace LuaScripting
     int ShowSortListDlg(lua_State* L)
         {
         wxArrayString columns;
-        for (int i = 1; i < lua_gettop(L)+1; ++i)
+        for (int i = 1; i < lua_gettop(L) + 1; ++i)
             { columns.Add(wxGetTranslation(wxString(luaL_checkstring(L, i), wxConvUTF8))); }
         if (LuaListCtrlSortDlg == nullptr)
             {
@@ -370,6 +388,9 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ShowStandardProjectWizardTextFromFilePage(lua_State *L)
         {
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
         if (LuaStandardProjectWizard != nullptr)
             { CloseStandardProjectWizard(nullptr); }
         LuaStandardProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::StandardProject,
@@ -386,6 +407,9 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetStandardProjectWizardTextFromFilePath(lua_State *L)
         {
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
         if (LuaStandardProjectWizard != nullptr)
             { CloseStandardProjectWizard(nullptr); }
         LuaStandardProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::StandardProject,
