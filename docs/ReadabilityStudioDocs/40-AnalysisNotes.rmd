@@ -44,7 +44,7 @@ Jane B. Doe has worked at A.C.M.E., inc. for seven years.
 Another exception is the last sentence inside of a quote. If this sentence is followed by a lowercase word, then it will not end until the next sentence terminating punctuation is encountered. For example, the following is seen as two sentences:
 
 ::: {.fancyquotes data-latex=''}
-Where did it go? I can't find it anywhere!” he said.
+"Where did it go? I can't find it anywhere!" he said.
 :::
 
 Because *he* is lowercase, the *!* will not be considered the end of the sentence and *he said* will be part of the proceeding sentence. However, if *He* is capitalized, then the *!* will be seen as the end of a sentence and the above will be counted as three sentences.
