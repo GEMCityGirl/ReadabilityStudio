@@ -10,6 +10,8 @@
 #include "lua_debug.h"
 #include <wx/msgdlg.h>
 #include "../app/readability_app.h"
+#include "../projects/batch_project_doc.h"
+#include "../projects/base_project.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/listctrlsortdlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/listctrlitemviewdlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
@@ -105,6 +107,74 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int SnapScreenshotOfActiveProject(lua_State *L)
+        {
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
+
+        wxDocument* currentDoc =
+            wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument();
+
+        if (currentDoc &&
+            (currentDoc->IsKindOf(CLASSINFO(ProjectDoc)) || currentDoc->IsKindOf(CLASSINFO(BatchProjectDoc))) )
+            {
+            auto project = dynamic_cast<BaseProjectDoc*>(currentDoc);
+            auto firstView = project->GetFirstView();
+            if (firstView && firstView->IsKindOf(CLASSINFO(BaseProjectView)))
+                {
+                auto docView = dynamic_cast<BaseProjectView*>(firstView);
+                docView->Activate(true);
+                int x{ 0 }, y{ 0 }, mainX{ 0 }, mainY{ 0 };
+                docView->GetQuickToolbar()->GetScreenPosition(&mainX, &mainY);
+                docView->GetSideBar()->GetScreenPosition(&x, &y);
+                y = y - mainY;
+                y += docView->GetSideBar()->CalculateItemRects();
+                if (Screenshot::SaveScreenshot(path))
+                    {
+                    // if requesting to crop the image vertically to the last item in the sidebar
+                    if (lua_gettop(L) >= 2 && lua_toboolean(L, 2))
+                        {
+                        if (Screenshot::CropScreenshot(path, wxDefaultCoord, y))
+                            {
+                            lua_pushboolean(L, true);
+                            return 1;
+                            }
+                        else
+                            {
+                            lua_pushboolean(L, false);
+                            return 1;
+                            }
+                        }
+                    else
+                        {
+                        lua_pushboolean(L, true);
+                        return 1;
+                        }
+                    }
+                else
+                    {
+                    lua_pushboolean(L, false);
+                    return 1;
+                    }
+                }
+            else
+                {
+                lua_pushboolean(L, false);
+                return 1;
+                }
+            }
+        else
+            {
+            lua_pushboolean(L, false);
+            return 1;
+            }
+
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int SnapScreenshotOfTextWindow(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
@@ -136,7 +206,7 @@ namespace LuaScripting
             { return 0; }
 
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
-        int pageToSelect{0}, buttonBarID{-1};
+        int pageToSelect{ 0 }, buttonBarID{ -1 };
         if (lua_gettop(L) >= 2)
             {
             auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));

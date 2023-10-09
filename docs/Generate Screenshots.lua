@@ -214,7 +214,7 @@ ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "batchclichemultiple." ..
     ListType.Cliches, 1, 3, 2, 3, 3)
 
 bp:SelectWindow(SideBarSection.SentencesBreakdown, ListType.LongSentences)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchlongsentences." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchlongsentences." .. FileExtension, true)
 
 bp:SelectWindow(SideBarSection.Grammar, ListType.OverusedWordsBySentence)
 ScreenshotLib.SnapScreenshot(ImagePath .. "batchoverusedwordsbysentence." .. FileExtension)
@@ -235,14 +235,14 @@ bp:SelectWindow(SideBarSection.Grammar, ListType.PassiveVoice)
 ScreenshotLib.SnapScreenshot(ImagePath .. "batchpassivevoice." .. FileExtension)
 
 bp:SelectWindow(SideBarSection.WordsBreakdown)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchdifficultwordsverbose." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchdifficultwordsverbose." .. FileExtension, true)
 
 bp:SelectWindow(SideBarSection.Warnings)
-ScreenshotLib.SnapScreenshot(ImagePath .. "Warnings." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "Warnings." .. FileExtension, true)
 
 bp:SelectWindow(SideBarSection.SentencesBreakdown, ListType.LongSentences)
 bp:SortList(ListType.LongSentences, 3, SortOrder.SortDescending)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchlongestsentence." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchlongestsentence." .. FileExtension, true)
 
 bp:Close()
 Application.DisableAllWarnings()
@@ -267,13 +267,13 @@ bp:SelectWindow(SideBarSection.Grammar, ListType.ConjunctionStartingSentences)
 ScreenshotLib.SnapScreenshot(ImagePath .. "batchconjunctionstart." .. FileExtension)
 
 bp:SelectWindow(SideBarSection.Dolch, DolchResultType.DolchCoverageBatchSummary)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchdolchcoverage." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchdolchcoverage." .. FileExtension, true)
 
 bp:SelectWindow(SideBarSection.Dolch, DolchResultType.DolchWordsBatchSummary)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchdolchwords." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchdolchwords." .. FileExtension, true)
 
 bp:SelectWindow(SideBarSection.Dolch, DolchResultType.NonDolchWordsBatchSummary)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchdolchnonwords." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchdolchnonwords." .. FileExtension, true)
 
 bp:Close()
 Application.RemoveAllCustomTests()
@@ -287,7 +287,7 @@ bp:SelectWindow(SideBarSection.ReadabilityScores, BatchScoreResultType.RawScores
 ScreenshotLib.SnapScreenshot(ImagePath .. "batchrawscores." .. FileExtension)
 
 bp:SelectWindow(SideBarSection.ReadabilityScores, BatchScoreResultType.AggregatedScoreStatistics)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchscorestats." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchscorestats." .. FileExtension, true)
 bp:Close()
 Application.RemoveAllCustomTests()
 
@@ -321,12 +321,12 @@ sp = StandardProject(ScreenshotProjectsFolder .. "Cocoa Desserts.rsp")
 sp:ScrollTextWindow(HighlightedReportType.GrammarHighlightedIssues, 500)
 ScreenshotLib.SnapScreenshot(ImagePath .. "longsentences." .. FileExtension) 
 sp:SelectHighlightedWordReport(HighlightedReportType.ThreePlusSyllableHighlightedWords, 4335, 4347)
-ScreenshotLib.SnapScreenshot(ImagePath .. "difficultwordselected." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "difficultwordselected." .. FileExtension, true)
 sp:SelectWindow(SideBarSection.WordsBreakdown, ListType.ThreePlusSyllableWords)
 sp:SortList(ListType.ThreePlusSyllableWordsList, 2, SortOrder.SortDescending)
-ScreenshotLib.SnapScreenshot(ImagePath .. "exampledifficultwords." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "exampledifficultwords." .. FileExtension, true)
 sp:SelectWindow(SideBarSection.SentencesBreakdown, ListType.LongSentences)
-ScreenshotLib.SnapScreenshot(ImagePath .. "examplelongsentences." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "examplelongsentences." .. FileExtension, true)
 sp:SelectWindow(SideBarSection.Statistics, ReportType.StatisticsSummaryReport)
 ScreenshotLib.SnapScreenshot(ImagePath .. "examplestats." .. FileExtension)
 sp:SelectWindow(SideBarSection.ReadabilityScores, ReportType.ReadabilityScoresTabularReport)
@@ -342,7 +342,7 @@ Application.RemoveAllCustomTests()
 -- Standard project (Frog Prince)
 sp = StandardProject(ScreenshotProjectsFolder .. "The Frog Prince.rsp")
 sp:SelectWindow(SideBarSection.Grammar, ListType.ConjunctionStartingSentences)
-ScreenshotLib.SnapScreenshot(ImagePath .. "conjunctionsent." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "conjunctionsent." .. FileExtension, true)
 
 sp:SelectWindow(SideBarSection.Dolch, DolchResultType.HighlightedNonDolchWordsReport)
 ScreenshotLib.SnapScreenshot(ImagePath .. "dolchhighlightednonwords." .. FileExtension)
@@ -351,16 +351,16 @@ sp:SelectWindow(SideBarSection.Dolch, DolchResultType.HighlightedDolchWordsRepor
 ScreenshotLib.SnapScreenshot(ImagePath .. "dolchhighlightedwords." .. FileExtension)
 
 sp:SelectWindow(SideBarSection.Dolch, DolchResultType.NonDolchWordsList)
-ScreenshotLib.SnapScreenshot(ImagePath .. "dolchnonwordslist." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "dolchnonwordslist." .. FileExtension, true)
 
 sp:SelectWindow(SideBarSection.Dolch, DolchResultType.DolchStatisticsSummary)
 ScreenshotLib.SnapScreenshot(ImagePath .. "dolchsummary." .. FileExtension)
 
 sp:SelectWindow(SideBarSection.Dolch, DolchResultType.UnusedDolchWordsList)
-ScreenshotLib.SnapScreenshot(ImagePath .. "dolchunusedwordslist." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "dolchunusedwordslist." .. FileExtension, true)
 
 sp:SelectWindow(SideBarSection.Dolch, DolchResultType.DolchWordsList)
-ScreenshotLib.SnapScreenshot(ImagePath .. "dolchwordslist." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "dolchwordslist." .. FileExtension, true)
 sp:SortList(DolchResultType.DolchWordsList, 2, SortOrder.SortDescending)
 ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "columnheader." .. FileExtension,
     DolchResultType.DolchWordsList, -1, -1, -1, -1, 4)
@@ -425,13 +425,13 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "featuresscores." .. FileExtension)
 
 sp:SelectWindow(SideBarSection.SentencesBreakdown, ListType.LongSentences)
 sp:SortList(ListType.LongSentences, 2, SortOrder.SortAscending)
-ScreenshotLib.SnapScreenshot(ImagePath .. "featuressentencelist." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "featuressentencelist." .. FileExtension, true)
 
 sp:SelectWindow(SideBarSection.Statistics, ReportType.StatisticsSummaryReport)
 ScreenshotLib.SnapScreenshot(ImagePath .. "featuresstats." .. FileExtension)
 sp:SelectWindow(SideBarSection.SentencesBreakdown, ListType.LongSentences)
 sp:SortList(ListType.LongSentences, 2, SortOrder.SortDescending)
-ScreenshotLib.SnapScreenshot(ImagePath .. "featuressentencelistsorted." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "featuressentencelistsorted." .. FileExtension, true)
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "featuressentoptions." .. FileExtension, 1040, 1041)
@@ -469,28 +469,28 @@ Application.RemoveAllCustomTests()
 -- Standard project (for wording errors)
 sp = StandardProject(ScreenshotProjectsFolder .. "LongSentenceSearching.rsp")
 sp:SelectWindow(SideBarSection.Grammar, ListType.WordingErrors)
-ScreenshotLib.SnapScreenshot(ImagePath .. "wordingerrors." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "wordingerrors." .. FileExtension, true)
 sp:Close()
 Application.RemoveAllCustomTests()
 
 -- Standard project (for misspellings)
 sp = StandardProject(ScreenshotProjectsFolder .. "WebHarvester.rsp")
 sp:SelectWindow(SideBarSection.Grammar, ListType.MisspelledWords)
-ScreenshotLib.SnapScreenshot(ImagePath .. "misspellings." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "misspellings." .. FileExtension, true)
 sp:Close()
 Application.RemoveAllCustomTests()
 
 -- Standard project (License)
 sp = StandardProject(ScreenshotProjectsFolder .. "license.rsp")
 sp:SelectWindow(SideBarSection.Grammar, ListType.RepeatedWords)
-ScreenshotLib.SnapScreenshot(ImagePath .. "repeatedwords." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "repeatedwords." .. FileExtension, true)
 sp:Close()
 Application.RemoveAllCustomTests()
 
 -- Batch project
 bp = BatchProject(ScreenshotProjectsFolder .. "Distribution Documents.rsbp")
 bp:SelectWindow(SideBarSection.Grammar, ListType.RepeatedWords)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchrepeatedwords." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchrepeatedwords." .. FileExtension, true)
 bp:Close()
 Application.RemoveAllCustomTests()
 
@@ -603,13 +603,13 @@ Application.RemoveAllCustomTests()
 -- article mismating
 sp = StandardProject(ScreenshotProjectsFolder .. "Eula.rtf")
 sp:SelectWindow(SideBarSection.Grammar, ListType.ArticleMismatch)
-ScreenshotLib.SnapScreenshot(ImagePath .. "articlemismatches." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "articlemismatches." .. FileExtension, true)
 sp:Close()
 
 Application.RemoveAllCustomTests()
 bp = BatchProject(ScreenshotProjectsFolder .. "Eula.rsbp")
 bp:SelectWindow(SideBarSection.Grammar, ListType.ArticleMismatch)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batcharticlemismatches." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batcharticlemismatches." .. FileExtension, true)
 bp:Close()
 
 Application.RemoveAllCustomTests()
@@ -621,10 +621,10 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2Name." .. FileExten
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("New Dale-Chall (Baking)", "CustomNewDaleChall()")
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2FormulaFinished." .. FileExtension, 7002)
 
-ScreenshotLib.ShowCustomTestDialogFamiliarWords(ScreenshotProjectsFolder .. "CookingWords.txt")
+ScreenshotLib.ShowCustomTestDialogFamiliarWords("/home/dmoon/CookingWords.txt")
 ScreenshotLib.SnapScreenshotOfPropertGrid(ImagePath .. "CustomTestExample2WordLoaded." .. FileExtension, -1, "File containing familiar words")
 
-ScreenshotLib.ShowCustomTestDialogFamiliarWords(ScreenshotProjectsFolder .. "CookingWords.txt", StemmingType.English, true)
+ScreenshotLib.ShowCustomTestDialogFamiliarWords("/home/dmoon/CookingWords.txt", StemmingType.English, true)
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2WordSettingsFinished." .. FileExtension)
 
 ScreenshotLib.CloseCustomTestDialog()
@@ -706,7 +706,7 @@ sp:Reload()
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleHeaderExcluded." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true, 229,252)
+HighlightedReportType.GrammarHighlightedIssues, true, 229, 252)
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExamplePartialExcluded." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true, 929, 934, 999, 1133)
@@ -728,7 +728,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleAggressiveList." .. F
 sp:CloseProperties()
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleWhereExcluded." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true, 929,934)
+HighlightedReportType.GrammarHighlightedIssues, true, 929, 934)
 
 sp:SetIncludeIncompleteTolerance(20)
 
@@ -760,7 +760,7 @@ sp:CloseProperties()
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleCopyrightExcludedNow." .. FileExtension,
-  HighlightedReportType.GrammarHighlightedIssues, true, 2195,2240)
+  HighlightedReportType.GrammarHighlightedIssues, true, 2195, 2240)
 
 sp:ExcludeFileAddress(true)
 
@@ -782,10 +782,10 @@ sp:ExcludeNumerals(true)
 sp:Reload()
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleNumbersExcludedNow." .. FileExtension,
-    HighlightedReportType.GrammarHighlightedIssues, true, 281,284,539,543)
+    HighlightedReportType.GrammarHighlightedIssues, true, 281, 284, 539, 543)
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleProperExcludedNow." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true, 262,277,532,538)
+HighlightedReportType.GrammarHighlightedIssues, true, 262, 277, 532, 538)
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
@@ -806,7 +806,7 @@ sp:Reload()
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleCustomWordsExcludedNow." .. FileExtension,
-    HighlightedReportType.GrammarHighlightedIssues, true, 371,386, 619, 630)
+    HighlightedReportType.GrammarHighlightedIssues, true, 371, 386, 619, 630)
 
 sp:ExcludeTrailingCitations(true)
 
@@ -814,7 +814,7 @@ sp:Reload()
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleCitationExcluded." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true, 1926,2090)
+HighlightedReportType.GrammarHighlightedIssues, true, 1926, 2090)
 
 sp:SelectWindow(SideBarSection.WordsBreakdown, ListType.ThreePlusSyllableWords)
 ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "RibbonEditListOptionsWithExcludeSelected." .. FileExtension, 0, RibbonButtonBars.Edit)
@@ -826,7 +826,7 @@ sp = StandardProject(ScreenshotProjectsFolder .. "Press Release.rtf")
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionTagsExampleListExcluded." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true, 1318,1408)
+HighlightedReportType.GrammarHighlightedIssues, true, 1318, 1408)
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionTagsExampleNotExcluding." .. FileExtension,
@@ -867,7 +867,7 @@ sp = StandardProject(ScreenshotProjectsFolder .. "Job Posting.odt")
 sp:SetParagraphsParsingMethod(ParagraphParse.EachNewLineIsAParagraph)
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "JobPostingHighlightedText." .. FileExtension,
-    HighlightedReportType.GrammarHighlightedIssues, true, 257,399)
+    HighlightedReportType.GrammarHighlightedIssues, true, 257, 399)
 sp:Close(false)
 
 -- Flyer example
@@ -876,11 +876,11 @@ sp:SetTextExclusion(TextExclusionType.DoNotExcludeAnyText)
 sp:AddTest(Tests.Forcast)
 sp:SelectWindow(SideBarSection.WordsBreakdown, HighlightedReportType.ThreePlusSyllableHighlightedWords)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "SummerCodeCampUpperHalf1." .. FileExtension,
-    HighlightedReportType.ThreePlusSyllableHighlightedWords, true, 111,168)
+    HighlightedReportType.ThreePlusSyllableHighlightedWords, true, 111, 168)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "SummerCodeCampUpperHalf2." .. FileExtension,
-    HighlightedReportType.ThreePlusSyllableHighlightedWords, true, 472,525)
+    HighlightedReportType.ThreePlusSyllableHighlightedWords, true, 472, 525)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "SummerCodeCampLowerHalf." .. FileExtension,
-    HighlightedReportType.ThreePlusSyllableHighlightedWords, true, 640,893)
+    HighlightedReportType.ThreePlusSyllableHighlightedWords, true, 640, 893)
 sp:Close(false)
 
 -- addendum example
