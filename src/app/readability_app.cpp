@@ -586,6 +586,8 @@ bool ReadabilityApp::OnInit()
     m_shapeMap.insert(std::make_pair(_(L"Car"), DONTTRANSLATE(L"car")));
     m_shapeMap.insert(std::make_pair(_(L"Newspaper"), DONTTRANSLATE(L"newspaper")));
     m_shapeMap.insert(std::make_pair(_(L"Snowflake"), DONTTRANSLATE(L"snowflake")));
+    m_shapeMap.insert(std::make_pair(_(L"Blackboard"), DONTTRANSLATE(L"blackboard")));
+    m_shapeMap.insert(std::make_pair(_(L"Clock"), DONTTRANSLATE(L"clock")));
 
     // this needs to be called before prompting for the
     // serial number because wxGetTextFromUser will need a parent
