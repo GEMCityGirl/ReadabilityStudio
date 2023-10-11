@@ -36,7 +36,8 @@ enum class TextSource
 enum class TextStorage
     {
     EmbedText,
-    NoEmbedText
+    NoEmbedText,
+    ExternalDocument = NoEmbedText
     };
 
 enum class LongSentence
