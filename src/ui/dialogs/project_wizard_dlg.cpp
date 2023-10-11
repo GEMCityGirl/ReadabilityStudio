@@ -177,6 +177,7 @@ void ProjectWizardDlg::CreateControls()
         if (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
             wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
             {
+            // do not sort, connected to an enumeration
             wxArrayString langs;
             langs.Add(_(L"English"));
             langs.Add(_(L"Spanish"));
