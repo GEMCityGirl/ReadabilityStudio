@@ -806,7 +806,7 @@ sp:CloseProperties()
 -- Exclusion word list
 ----------------------
 ScreenshotLib.ShowEditWordListDlg(ScreenshotProjectsFolder .. "ExclusionWords.txt")
-ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleCustomWords." .. FileExtension, "ExclusionWords.txt", 9000)
+ScreenshotLib.SnapScreenshotWithAnnotation(ImagePath .. "ExclusionExampleCustomWords." .. FileExtension, "ExclusionWords.txt", 9000)
 ScreenshotLib.CloseEditWordListDlg()
 
 sp:SetPhraseExclusionList(ScreenshotProjectsFolder .. "ExclusionWords.txt")
