@@ -160,13 +160,23 @@ namespace LuaScripting
                 docView->GetQuickToolbar()->GetScreenPosition(&mainX, &mainY);
                 docView->GetSideBar()->GetScreenPosition(&x, &y);
                 y = y - mainY;
-                y += docView->GetSideBar()->CalculateItemRects();
                 if (Screenshot::SaveScreenshot(path))
                     {
-                    // if requesting to crop the image vertically to the last item in the sidebar
-                    if (lua_gettop(L) >= 2 && lua_toboolean(L, 2))
+                    // if requesting to crop the image vertically to the last (or selected) item in the sidebar
+                    if (lua_gettop(L) >= 2)
                         {
-                        if (Screenshot::CropScreenshot(path, wxDefaultCoord, y))
+                        auto cropMode{ static_cast<ProjectScreenshotCropMode>(lua_tointeger(L, 2)) };
+                        y += ((cropMode == ProjectScreenshotCropMode::CropToSidebarBottom) ?
+                              docView->GetSideBar()->CalculateItemRects().first :
+                              (cropMode == ProjectScreenshotCropMode::CropToSidebarSelectedItem) ?
+                              docView->GetSideBar()->CalculateItemRects().second:
+                              0);
+                        if (cropMode == ProjectScreenshotCropMode::NoCrop)
+                            {
+                            lua_pushboolean(L, true);
+                            return 1;
+                            }
+                        else if (Screenshot::CropScreenshot(path, wxDefaultCoord, y))
                             {
                             lua_pushboolean(L, true);
                             return 1;

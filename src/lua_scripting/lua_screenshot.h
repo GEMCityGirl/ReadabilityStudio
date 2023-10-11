@@ -16,6 +16,14 @@
 #include <wx/wx.h>
 
 /// @private
+enum class ProjectScreenshotCropMode
+    {
+    NoCrop,
+    CropToSidebarBottom,
+    CropToSidebarSelectedItem
+    };
+
+/// @private
 /// @internal This is documented in the ReadabilityStudioAPI help.
 namespace LuaScripting
     {
