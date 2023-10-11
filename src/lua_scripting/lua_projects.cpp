@@ -388,7 +388,10 @@ namespace LuaScripting
             { return 0; }
 
         m_project->SetAppendedDocumentFilePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
-        m_project->LoadAppendedDocument();
+        ReloadIfNotDelayed();
+        return 0;
+        };
+
         ReloadIfNotDelayed();
         return 0;
         };
@@ -1933,7 +1936,6 @@ namespace LuaScripting
             { return 0; }
 
         m_project->SetAppendedDocumentFilePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
-        m_project->LoadAppendedDocument();
         ReloadIfNotDelayed();
         return 0;
         };
