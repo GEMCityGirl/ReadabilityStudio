@@ -7544,6 +7544,14 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                     }
                 if (pos->GetIterator()->is_including_custom_familiar_word_list())
                     {
+                    // if word list is in the same folder as the project, then just show the file name
+                    wxString customFilePath{ pos->GetIterator()->get_familiar_word_list_file_path().c_str() };
+                    if (GetDocumentStorageMethod() == TextStorage::ExternalDocument)
+                        {
+                        if (wxFileName(customFilePath).GetPath().IsSameAs(
+                            wxFileName(GetOriginalDocumentFilePath()).GetPath(), wxFileName::IsCaseSensitive()))
+                            { customFilePath = wxFileName(customFilePath).GetFullName(); }
+                        }
                     customDescription += wxString(L"<li>");
                     if (pos->GetIterator()->get_stemming_type() == stemming::stemming_type::no_stemming)
                         {
@@ -7551,7 +7559,7 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                             wxString::Format(
                                 L"<br />&nbsp;&nbsp;&nbsp;&nbsp;&ldquo;"
                                  "<span style=\"font-style:italic;\">%s</span>&rdquo;",
-                                pos->GetIterator()->get_familiar_word_list_file_path().c_str());
+                                customFilePath);
                         }
                     else
                         {
@@ -7561,7 +7569,7 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                             wxString::Format(
                                 L"<br />&nbsp;&nbsp;&nbsp;&nbsp;&ldquo;"
                                  "<span style=\"font-style:italic;\">%s</span>&rdquo;",
-                                pos->GetIterator()->get_familiar_word_list_file_path().c_str());
+                                customFilePath);
                         }
                     customDescription += wxString(L"</li>");
                     }
