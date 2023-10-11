@@ -214,7 +214,7 @@ ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "batchclichemultiple." ..
     ListType.Cliches, 1, 3, 2, 3, 3)
 
 bp:SelectWindow(SideBarSection.SentencesBreakdown, ListType.LongSentences)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchlongsentences." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchlongsentences." .. FileExtension, 1)
 
 bp:SelectWindow(SideBarSection.Grammar, ListType.OverusedWordsBySentence)
 ScreenshotLib.SnapScreenshot(ImagePath .. "batchoverusedwordsbysentence." .. FileExtension)
@@ -235,14 +235,14 @@ bp:SelectWindow(SideBarSection.Grammar, ListType.PassiveVoice)
 ScreenshotLib.SnapScreenshot(ImagePath .. "batchpassivevoice." .. FileExtension)
 
 bp:SelectWindow(SideBarSection.WordsBreakdown)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchdifficultwordsverbose." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchdifficultwordsverbose." .. FileExtension, 1)
 
 bp:SelectWindow(SideBarSection.Warnings)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "Warnings." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "Warnings." .. FileExtension, 1)
 
 bp:SelectWindow(SideBarSection.SentencesBreakdown, ListType.LongSentences)
 bp:SortList(ListType.LongSentences, 3, SortOrder.SortDescending)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchlongestsentence." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchlongestsentence." .. FileExtension, 1)
 
 bp:Close()
 Application.DisableAllWarnings()
@@ -259,7 +259,7 @@ Application.DisableAllWarnings()
 -- Batch project (examples)
 bp = BatchProject(ScreenshotProjectsFolder .. "examples.rsbp")
 bp:SelectWindow(SideBarSection.Grammar, ListType.Cliches)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchcliches." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchcliches." .. FileExtension, 2)
 bp:SelectWindow(SideBarSection.Grammar, ListType.LowercasedSentences)
 ScreenshotLib.SnapScreenshot(ImagePath .. "batchlowersentences." .. FileExtension)
 
@@ -267,13 +267,13 @@ bp:SelectWindow(SideBarSection.Grammar, ListType.ConjunctionStartingSentences)
 ScreenshotLib.SnapScreenshot(ImagePath .. "batchconjunctionstart." .. FileExtension)
 
 bp:SelectWindow(SideBarSection.Dolch, DolchResultType.DolchCoverageBatchSummary)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchdolchcoverage." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchdolchcoverage." .. FileExtension, 1)
 
 bp:SelectWindow(SideBarSection.Dolch, DolchResultType.DolchWordsBatchSummary)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchdolchwords." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchdolchwords." .. FileExtension, 1)
 
 bp:SelectWindow(SideBarSection.Dolch, DolchResultType.NonDolchWordsBatchSummary)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchdolchnonwords." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchdolchnonwords." .. FileExtension, 1)
 
 bp:Close()
 Application.RemoveAllCustomTests()
@@ -287,7 +287,7 @@ bp:SelectWindow(SideBarSection.ReadabilityScores, BatchScoreResultType.RawScores
 ScreenshotLib.SnapScreenshot(ImagePath .. "batchrawscores." .. FileExtension)
 
 bp:SelectWindow(SideBarSection.ReadabilityScores, BatchScoreResultType.AggregatedScoreStatistics)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchscorestats." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchscorestats." .. FileExtension, 1)
 bp:Close()
 Application.RemoveAllCustomTests()
 
@@ -322,18 +322,18 @@ sp = StandardProject(ScreenshotProjectsFolder .. "Cocoa Desserts.rsp")
 sp:ScrollTextWindow(HighlightedReportType.GrammarHighlightedIssues, 500)
 ScreenshotLib.SnapScreenshot(ImagePath .. "longsentences." .. FileExtension) 
 sp:SelectHighlightedWordReport(HighlightedReportType.ThreePlusSyllableHighlightedWords, 4335, 4347)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "difficultwordselected." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "difficultwordselected." .. FileExtension, 1)
 sp:SelectWindow(SideBarSection.WordsBreakdown, ListType.ThreePlusSyllableWords)
 sp:SortList(ListType.ThreePlusSyllableWordsList, 2, SortOrder.SortDescending)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "exampledifficultwords." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "exampledifficultwords." .. FileExtension, 1)
 sp:SelectWindow(SideBarSection.SentencesBreakdown, ListType.LongSentences)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "examplelongsentences." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "examplelongsentences." .. FileExtension, 1)
 sp:SelectWindow(SideBarSection.Statistics, ReportType.StatisticsSummaryReport)
 ScreenshotLib.SnapScreenshot(ImagePath .. "examplestats." .. FileExtension)
 sp:SelectWindow(SideBarSection.ReadabilityScores, ReportType.ReadabilityScoresTabularReport)
 ScreenshotLib.SnapScreenshot(ImagePath .. "testscores." .. FileExtension)
 sp:SelectTextGrammarWindow(4228, 4469)
-ScreenshotLib.SnapScreenshot(ImagePath .. "longsentenceselected." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "longsentenceselected." .. FileExtension, 1)
 
 sp:DelayReloading(true)
 sp:SetDocumentFilePath("/home/dmoon/Cocoa Desserts.rtf") -- use generic filepath
@@ -347,7 +347,7 @@ Application.RemoveAllCustomTests()
 ---------------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "The Frog Prince.rsp")
 sp:SelectWindow(SideBarSection.Grammar, ListType.ConjunctionStartingSentences)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "conjunctionsent." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "conjunctionsent." .. FileExtension, 1)
 
 sp:SelectWindow(SideBarSection.Dolch, DolchResultType.HighlightedNonDolchWordsReport)
 ScreenshotLib.SnapScreenshot(ImagePath .. "dolchhighlightednonwords." .. FileExtension)
@@ -356,16 +356,16 @@ sp:SelectWindow(SideBarSection.Dolch, DolchResultType.HighlightedDolchWordsRepor
 ScreenshotLib.SnapScreenshot(ImagePath .. "dolchhighlightedwords." .. FileExtension)
 
 sp:SelectWindow(SideBarSection.Dolch, DolchResultType.NonDolchWordsList)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "dolchnonwordslist." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "dolchnonwordslist." .. FileExtension, 1)
 
 sp:SelectWindow(SideBarSection.Dolch, DolchResultType.DolchStatisticsSummary)
 ScreenshotLib.SnapScreenshot(ImagePath .. "dolchsummary." .. FileExtension)
 
 sp:SelectWindow(SideBarSection.Dolch, DolchResultType.UnusedDolchWordsList)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "dolchunusedwordslist." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "dolchunusedwordslist." .. FileExtension, 1)
 
 sp:SelectWindow(SideBarSection.Dolch, DolchResultType.DolchWordsList)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "dolchwordslist." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "dolchwordslist." .. FileExtension, 1)
 sp:SortList(DolchResultType.DolchWordsList, 2, SortOrder.SortDescending)
 ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "columnheader." .. FileExtension,
     DolchResultType.DolchWordsList, -1, -1, -1, -1, 4)
@@ -388,18 +388,18 @@ sp = StandardProject(ScreenshotProjectsFolder .. "A Christmas Carol.rsp")
 sp:SelectWindow(SideBarSection.Grammar, ListType.LowercasedSentences)
 ScreenshotLib.SnapScreenshot(ImagePath .. "lowercasedsent." .. FileExtension)
 sp:SelectWindow(SideBarSection.Grammar, ListType.OverusedWordsBySentence)
-ScreenshotLib.SnapScreenshot(ImagePath .. "overusedwordsbysentence." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "overusedwordsbysentence." .. FileExtension, 2)
 
 sp:SelectWindow(SideBarSection.Grammar, ListType.Wordiness)
 ScreenshotLib.SnapScreenshot(ImagePath .. "wordylist." .. FileExtension)
 
 sp:SelectWindow(SideBarSection.Grammar, ListType.RedundantPhrases)
-ScreenshotLib.SnapScreenshot(ImagePath .. "redundantphrases." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "redundantphrases." .. FileExtension, 2)
 
 sp:SelectWindow(SideBarSection.Grammar, ListType.Cliches)
-ScreenshotLib.SnapScreenshot(ImagePath .. "clichelist." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "clichelist." .. FileExtension, 2)
 sp:SelectWindow(SideBarSection.Grammar, ListType.PassiveVoice)
-ScreenshotLib.SnapScreenshot(ImagePath .. "passivevoice." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "passivevoice." .. FileExtension, 2)
 
 sp:SelectReadabilityTest(4)
 ScreenshotLib.SnapScreenshot(ImagePath .. "scores." .. FileExtension)
@@ -430,20 +430,20 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "featuresscores." .. FileExtension)
 
 sp:SelectWindow(SideBarSection.SentencesBreakdown, ListType.LongSentences)
 sp:SortList(ListType.LongSentences, 2, SortOrder.SortAscending)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "featuressentencelist." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "featuressentencelist." .. FileExtension, 1)
 
 sp:SelectWindow(SideBarSection.Statistics, ReportType.StatisticsSummaryReport)
 ScreenshotLib.SnapScreenshot(ImagePath .. "featuresstats." .. FileExtension)
 sp:SelectWindow(SideBarSection.SentencesBreakdown, ListType.LongSentences)
 sp:SortList(ListType.LongSentences, 2, SortOrder.SortDescending)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "featuressentencelistsorted." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "featuressentencelistsorted." .. FileExtension, 1)
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "featuressentoptions." .. FileExtension, 1040, 1041)
 sp:CloseProperties()
 
 sp:ScrollTextWindow(HighlightedReportType.GrammarHighlightedIssues, 1300)
-ScreenshotLib.SnapScreenshot(ImagePath .. "featuressentences." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "featuressentences." .. FileExtension, 1)
 sp:Close()
 Application.RemoveAllCustomTests()
 
@@ -474,28 +474,28 @@ Application.RemoveAllCustomTests()
 -- Standard project (for wording errors)
 sp = StandardProject(ScreenshotProjectsFolder .. "LongSentenceSearching.rsp")
 sp:SelectWindow(SideBarSection.Grammar, ListType.WordingErrors)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "wordingerrors." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "wordingerrors." .. FileExtension, 1)
 sp:Close()
 Application.RemoveAllCustomTests()
 
 -- Standard project (for misspellings)
 sp = StandardProject(ScreenshotProjectsFolder .. "WebHarvester.rsp")
 sp:SelectWindow(SideBarSection.Grammar, ListType.MisspelledWords)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "misspellings." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "misspellings." .. FileExtension, 1)
 sp:Close()
 Application.RemoveAllCustomTests()
 
 -- Standard project (License)
 sp = StandardProject(ScreenshotProjectsFolder .. "license.rsp")
 sp:SelectWindow(SideBarSection.Grammar, ListType.RepeatedWords)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "repeatedwords." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "repeatedwords." .. FileExtension, 2)
 sp:Close()
 Application.RemoveAllCustomTests()
 
 -- Batch project
 bp = BatchProject(ScreenshotProjectsFolder .. "Distribution Documents.rsbp")
 bp:SelectWindow(SideBarSection.Grammar, ListType.RepeatedWords)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchrepeatedwords." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchrepeatedwords." .. FileExtension, 1)
 bp:Close()
 Application.RemoveAllCustomTests()
 
@@ -609,13 +609,13 @@ Application.RemoveAllCustomTests()
 -- article mismating
 sp = StandardProject(ScreenshotProjectsFolder .. "Eula.rtf")
 sp:SelectWindow(SideBarSection.Grammar, ListType.ArticleMismatch)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "articlemismatches." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "articlemismatches." .. FileExtension, 1)
 sp:Close()
 
 Application.RemoveAllCustomTests()
 bp = BatchProject(ScreenshotProjectsFolder .. "Eula.rsbp")
 bp:SelectWindow(SideBarSection.Grammar, ListType.ArticleMismatch)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batcharticlemismatches." .. FileExtension, true)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batcharticlemismatches." .. FileExtension, 1)
 bp:Close()
 
 Application.RemoveAllCustomTests()
