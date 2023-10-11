@@ -105,7 +105,7 @@ namespace LuaScripting
             startWindowToHighlight, endWindowToHighlight));
         return 1;
         }
-    
+
     //-------------------------------------------------------------
     int SnapScreenshotWithAnnotation(lua_State *L)
         {
@@ -696,7 +696,8 @@ namespace LuaScripting
             }
         else
             { LuaBatchProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject); }
-        LuaBatchProjectWizard->SetFileListTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
+        LuaBatchProjectWizard->SetFileListTruncationMode(
+            ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         LuaBatchProjectWizard->SelectPage(0);
         LuaBatchProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaBatchProjectWizard->Show();
@@ -710,10 +711,12 @@ namespace LuaScripting
         if (LuaBatchProjectWizard != nullptr)
             { CloseBatchProjectWizard(nullptr); }
         LuaBatchProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject,
-            wxString(luaL_checkstring(L, 1), wxConvUTF8), wxID_ANY, _(L"New Project Wizard"), wxDefaultPosition, wxDefaultSize,
+            wxString(luaL_checkstring(L, 1), wxConvUTF8), wxID_ANY, _(L"New Project Wizard"),
+            wxDefaultPosition, wxDefaultSize,
             wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER,
             ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
-        LuaBatchProjectWizard->SetFileListTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
+        LuaBatchProjectWizard->SetFileListTruncationMode(
+            ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         LuaBatchProjectWizard->SelectPage(0);
         LuaBatchProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaBatchProjectWizard->Show();
@@ -727,7 +730,8 @@ namespace LuaScripting
         if (LuaBatchProjectWizard != nullptr)
             { CloseBatchProjectWizard(nullptr); }
         LuaBatchProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject);
-        LuaBatchProjectWizard->SetFileListTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
+        LuaBatchProjectWizard->SetFileListTruncationMode(
+            ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         if (lua_gettop(L) > 0)
             { LuaBatchProjectWizard->SetTestSelectionMethod(lua_tonumber(L, 1)-1/*make zero-indexed*/); }
         LuaBatchProjectWizard->SelectPage(2);
@@ -744,7 +748,8 @@ namespace LuaScripting
         if (LuaBatchProjectWizard != nullptr)
             { CloseBatchProjectWizard(nullptr); }
         LuaBatchProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject);
-        LuaBatchProjectWizard->SetFileListTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
+        LuaBatchProjectWizard->SetFileListTruncationMode(
+            ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         LuaBatchProjectWizard->SetTestSelectionMethod(1);
         LuaBatchProjectWizard->SelectPage(2);
         if (lua_gettop(L) > 0)
@@ -765,7 +770,8 @@ namespace LuaScripting
         if (LuaBatchProjectWizard != nullptr)
             { CloseBatchProjectWizard(nullptr); }
         LuaBatchProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject);
-        LuaBatchProjectWizard->SetFileListTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
+        LuaBatchProjectWizard->SetFileListTruncationMode(
+            ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         LuaBatchProjectWizard->SetTestSelectionMethod(0);
         LuaBatchProjectWizard->SelectPage(2);
         if (lua_gettop(L) > 0)
@@ -786,7 +792,8 @@ namespace LuaScripting
         if (LuaBatchProjectWizard != nullptr)
             { CloseBatchProjectWizard(nullptr); }
         LuaBatchProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject);
-        LuaBatchProjectWizard->SetFileListTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
+        LuaBatchProjectWizard->SetFileListTruncationMode(
+            ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         if (lua_gettop(L) > 0)
             {
             const int selectedDocType = lua_tonumber(L, 1)-1/*make zero-indexed*/;
@@ -813,7 +820,8 @@ namespace LuaScripting
         if (LuaBatchProjectWizard != nullptr)
             { CloseBatchProjectWizard(nullptr); }
         LuaBatchProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject);
-        LuaBatchProjectWizard->SetFileListTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
+        LuaBatchProjectWizard->SetFileListTruncationMode(
+            ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         LuaBatchProjectWizard->SetTestSelectionMethod(2);
         LuaBatchProjectWizard->SelectPage(2);
         for (int i = 1; i <= lua_gettop(L); ++i)
@@ -834,7 +842,8 @@ namespace LuaScripting
         if (LuaBatchProjectWizard != nullptr)
             { CloseBatchProjectWizard(nullptr); }
         LuaBatchProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject);
-        LuaBatchProjectWizard->SetFileListTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
+        LuaBatchProjectWizard->SetFileListTruncationMode(
+            ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         LuaBatchProjectWizard->GetFileList()->DeleteAllItems();
         if (lua_gettop(L) > 0)
             {
