@@ -392,6 +392,15 @@ namespace LuaScripting
         return 0;
         };
 
+    //-------------------------------------------------
+    int StandardProject::SetDocumentFilePath(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->SetOriginalDocumentFilePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayed();
         return 0;
         };
@@ -1624,6 +1633,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, SetPhraseExclusionList),
       LUNA_DECLARE_METHOD(StandardProject, SetBlockExclusionTags),
       LUNA_DECLARE_METHOD(StandardProject, SetAppendedDocumentFilePath),
+      LUNA_DECLARE_METHOD(StandardProject, SetDocumentFilePath),
       LUNA_DECLARE_METHOD(StandardProject, AggressivelyExclude),
       LUNA_DECLARE_METHOD(StandardProject, SetTextExclusion),
       LUNA_DECLARE_METHOD(StandardProject, SetIncludeIncompleteTolerance),

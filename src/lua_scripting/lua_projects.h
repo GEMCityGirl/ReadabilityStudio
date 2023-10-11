@@ -115,6 +115,7 @@ namespace LuaScripting
         int GetDocumentStorageMethod(lua_State *L);
         int SetDocumentStorageMethod(lua_State *L);
         int SetParagraphsParsingMethod(lua_State *L);
+        int SetDocumentFilePath(lua_State* L);
         // cppcheck-suppress functionConst
         int GetParagraphsParsingMethod(lua_State *L);
         // TEXT EXCLUSION OPTIONS
