@@ -21,6 +21,7 @@ namespace LuaScripting
     {
     int ShowScriptEditor(lua_State *L);
     int SnapScreenshot(lua_State *L);
+    int SnapScreenshotWithAnnotation(lua_State *L);
     int SnapScreenshotOfActiveProject(lua_State *L);
     int SnapScreenshotOfPropertGrid(lua_State *L);
     int SnapScreenshotOfTextWindow(lua_State *L);
@@ -146,6 +147,7 @@ namespace LuaScripting
             { "SetCustomTestDialogIndustries", SetCustomTestDialogIndustries },
             { "CloseCustomTestDialog", CloseCustomTestDialog },
             { "SnapScreenshot", SnapScreenshot },
+            { "SnapScreenshotWithAnnotation", SnapScreenshotWithAnnotation },
             { "SnapScreenshotOfActiveProject", SnapScreenshotOfActiveProject },
             { "SnapScreenshotOfPropertGrid", SnapScreenshotOfPropertGrid },
             { "SnapScreenshotOfTextWindow", SnapScreenshotOfTextWindow },

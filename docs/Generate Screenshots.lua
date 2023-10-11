@@ -51,7 +51,7 @@ ScreenshotLib.ShowSelectProjectTypeDlg(2)
 ScreenshotLib.SnapScreenshot(ImagePath .. "selectprojecttype." .. FileExtension)
 ScreenshotLib.CloseSelectProjectTypeDlg()
 
-ScreenshotLib.ShowGetDirDlg("Z:\\Docs\\ReadabilityStudio\\Topics")
+ScreenshotLib.ShowGetDirDlg("/home/rdoyle/ReadabilityStudio/Topics")
 ScreenshotLib.SnapScreenshot(ImagePath .. "selectdirectory." .. FileExtension)
 ScreenshotLib.CloseGetDirDlg()
 
@@ -317,6 +317,7 @@ bp:ExportGraph(SideBarSection.Histograms, Application.GetTestId("flesch-kincaid-
 bp:Close()
 
 -- Standard project
+-------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Cocoa Desserts.rsp")
 sp:ScrollTextWindow(HighlightedReportType.GrammarHighlightedIssues, 500)
 ScreenshotLib.SnapScreenshot(ImagePath .. "longsentences." .. FileExtension) 
@@ -333,6 +334,9 @@ sp:SelectWindow(SideBarSection.ReadabilityScores, ReportType.ReadabilityScoresTa
 ScreenshotLib.SnapScreenshot(ImagePath .. "testscores." .. FileExtension)
 sp:SelectTextGrammarWindow(4228, 4469)
 ScreenshotLib.SnapScreenshot(ImagePath .. "longsentenceselected." .. FileExtension)
+
+sp:DelayReloading(true)
+sp:SetDocumentFilePath("/home/dmoon/Cocoa Desserts.rtf") -- use generic filepath
 sp:OpenProperties(OptionsPageType.ProjectSettings)
 ScreenshotLib.SnapScreenshot(ImagePath .. "linktofile." .. FileExtension)
 sp:CloseProperties()
@@ -340,6 +344,7 @@ sp:Close()
 Application.RemoveAllCustomTests()
 
 -- Standard project (Frog Prince)
+---------------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "The Frog Prince.rsp")
 sp:SelectWindow(SideBarSection.Grammar, ListType.ConjunctionStartingSentences)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "conjunctionsent." .. FileExtension, true)
@@ -447,11 +452,11 @@ sp = StandardProject(ScreenshotProjectsFolder .. "Features(Outlier).rsp")
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "featuressentencesoutliers." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true,
-    2437,2439,2959,2961)
+    2437, 2439, 2959, 2961)
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "featuressentences25." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true,
-    1627,1629,1788,1790)
+    1627, 1629, 1788, 1790)
 
 sp:SelectWindow(SideBarSection.Statistics, ReportType.StatisticsSummaryReport)
 ScreenshotLib.SnapScreenshot(ImagePath .. "featuressentences43." .. FileExtension)
@@ -497,7 +502,7 @@ Application.RemoveAllCustomTests()
 -- Batch showing multiple items in lists
 bp = BatchProject(ScreenshotProjectsFolder .. "Topics2020ForScreenshots.rsbp")
 bp:SetSpellCheckerOptions(true,true,true,true,true)
-bp:SetWindowSize(1200,700)
+bp:SetWindowSize(1200, 700)
 
 bp:SelectWindow(SideBarSection.Grammar, ListType.Cliches)
 ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "batchclichemultiple." .. FileExtension,
@@ -518,6 +523,7 @@ ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "batchwordyphrasesmultipl
 bp:Close()
 
 -- Standard project (Peter Rabbit)
+----------------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "The Tale of Peter Rabbit.rsp")
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "IgnoreBlankLines." .. FileExtension, 1042, 1043)
@@ -526,7 +532,7 @@ sp:CloseProperties()
 sp:SelectWindow(SideBarSection.WordsBreakdown, HighlightedReportType.ThreePlusSyllableHighlightedWords)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "PeterRabbitChainedSentences." .. FileExtension,
   HighlightedReportType.ThreePlusSyllableHighlightedWords, true,
-  1046,1194)
+  1046, 1194)
 
 sp:Close()
 Application.RemoveAllCustomTests()
@@ -615,6 +621,7 @@ bp:Close()
 Application.RemoveAllCustomTests()
 
 -- Custom test example 2
+------------------------
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("New Dale-Chall (Baking)")
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2Name." .. FileExtension, 7000)
 
@@ -630,6 +637,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2WordSettingsFinishe
 ScreenshotLib.CloseCustomTestDialog()
 
 -- Custom index Test example
+----------------------------
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Buzz Index")
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleName." .. FileExtension, 7000)
 
@@ -655,7 +663,8 @@ sp:SelectReadabilityTest(1)
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleScore." .. FileExtension)
 sp:Close()
 
--- Standard project (Custom word example 2)
+-- Custom word example 2
+------------------------
 a = StandardProject(ScreenshotProjectsFolder .. "Chocolate Eclairs.rsp")
 a:SelectReadabilityTest(2)
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2Score." .. FileExtension)
@@ -693,6 +702,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "sortcolumnsdialog." .. FileExtension)
 ScreenshotLib.CloseSortListDlg()
 
 -- Text exclusion example
+-------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Danielson-Bryan.html")
 
 sp:ExcludeFileAddress(false)
@@ -794,13 +804,12 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleEditListButton." .. F
 sp:CloseProperties()
 
 -- Exclusion word list
-ScreenshotLib.ShowEditWordListDlg(ScreenshotProjectsFolder .. "Example10ExclusionWords.txt")
-
-ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleCustomWords." .. FileExtension)
-
+----------------------
+ScreenshotLib.ShowEditWordListDlg(ScreenshotProjectsFolder .. "ExclusionWords.txt")
+ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleCustomWords." .. FileExtension, "ExclusionWords.txt", 9000)
 ScreenshotLib.CloseEditWordListDlg()
 
-sp:SetPhraseExclusionList(ScreenshotProjectsFolder .. "Example10ExclusionWords.txt")
+sp:SetPhraseExclusionList(ScreenshotProjectsFolder .. "ExclusionWords.txt")
 
 sp:Reload()
 
@@ -821,7 +830,8 @@ ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "RibbonEditListOptionsWithExcl
 
 sp:Close()
 
--- exlcuded tags
+-- exlcuded tags example
+------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Press Release.rtf")
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
@@ -831,14 +841,14 @@ HighlightedReportType.GrammarHighlightedIssues, true, 1318, 1408)
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionTagsExampleNotExcluding." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true,
-    865,874,892,903,1415,1530)
+    865, 874, 892, 903, 1415, 1530)
 
 sp:SetBlockExclusionTags("<>")
 sp:Reload()
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionTagsExampleExcluding." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true,
-    865,872,892,901,1414,1526)
+    865, 872, 892, 901, 1414, 1526)
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionTagsExampleOptions." .. FileExtension, 1078, 1079)
@@ -847,6 +857,7 @@ sp:CloseProperties()
 sp:Close(false)
 
 -- sentence map example
+-----------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Importing and Exporting Fixed-Width Data with R.docx")
 sp:SetParagraphsParsingMethod(ParagraphParse.EachNewLineIsAParagraph)
 sp:ExportGraph(GraphType.SentenceHeatmap, ImagePath .. "FixedWithRSentenceMap." .. FileExtension)
@@ -863,6 +874,7 @@ sp:ExportGraph(GraphType.SentenceHeatmap, ImagePath .. "ChristmasCarolSentenceMa
 sp:Close()
 
 -- hard returns example
+-----------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Job Posting.odt")
 sp:SetParagraphsParsingMethod(ParagraphParse.EachNewLineIsAParagraph)
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
@@ -871,6 +883,7 @@ ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "JobPostingHighlightedText
 sp:Close(false)
 
 -- Flyer example
+----------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Summer Code Camp.odt")
 sp:SetTextExclusion(TextExclusionType.DoNotExcludeAnyText)
 sp:AddTest(Tests.Forcast)
@@ -884,6 +897,7 @@ ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "SummerCodeCampLowerHalf."
 sp:Close(false)
 
 -- addendum example
+-------------------
 ScreenshotLib.ShowStandardProjectWizardManualTestSelectionPage("Flesch Reading Ease")
 ScreenshotLib.SnapScreenshot(ImagePath .. "AddendumWizardManualTests." .. FileExtension)
 ScreenshotLib.CloseStandardProjectWizard()
@@ -894,26 +908,31 @@ sp:AddTest(Tests.Flesch)
 sp:ExportGraph(GraphType.Flesch, ImagePath .. "AddendumFlesch1." .. FileExtension)
 sp:SelectWindow(SideBarSection.WordsBreakdown, HighlightedReportType.ThreePlusSyllableHighlightedWords)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "AddendumHighlightedText1." .. FileExtension,
-    HighlightedReportType.ThreePlusSyllableHighlightedWords, false,350,452)
+    HighlightedReportType.ThreePlusSyllableHighlightedWords, false, 350, 452)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "AddendumHighlightedText2." .. FileExtension,
-    HighlightedReportType.ThreePlusSyllableHighlightedWords, false,790,1122)
+    HighlightedReportType.ThreePlusSyllableHighlightedWords, false, 790, 1122)
 
 sp:SetAppendedDocumentFilePath(ScreenshotProjectsFolder .. "Instructional Disclaimer.odt")
-
-sp:OpenProperties(OptionsPageType.ProjectSettings)
-ScreenshotLib.SnapScreenshot(ImagePath .. "AddendumProperties." .. FileExtension, 1083, 1080)
-sp:CloseProperties()
 
 sp:ExportGraph(GraphType.Flesch, ImagePath .. "AddendumFlesch2." .. FileExtension)
 sp:SelectWindow(SideBarSection.WordsBreakdown, HighlightedReportType.ThreePlusSyllableHighlightedWords)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "AddendumHighlightedText3." .. FileExtension,
-    HighlightedReportType.ThreePlusSyllableHighlightedWords, true,3401,4359)
+    HighlightedReportType.ThreePlusSyllableHighlightedWords, true, 3401, 4359)
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "AddendumHighlightedText4." .. FileExtension,
-    HighlightedReportType.GrammarHighlightedIssues, true,4434,5218)
+    HighlightedReportType.GrammarHighlightedIssues, true, 4434, 5218)
+
+-- show a generic set of file paths in the properties dialog and get a screenshot of that
+sp:DelayReloading(true)
+sp:SetDocumentFilePath("/home/mcrane/YA Enterprise Software Symposium.odt")
+sp:SetAppendedDocumentFilePath("/home/mcrane/Instructional Disclaimer.odt")
+sp:OpenProperties(OptionsPageType.ProjectSettings)
+ScreenshotLib.SnapScreenshot(ImagePath .. "AddendumProperties." .. FileExtension, 1083, 1080)
+sp:CloseProperties()
 sp:Close()
 
 -- batch labeling examples
+--------------------------
 bp = BatchProject(ScreenshotProjectsFolder .. "Statistics Manual Ch. 1.rsbp")
 bp:ShowSidebar(false)
 bp:SelectWindow(SideBarSection.ReadabilityScores, ListType.BatchRawScores)
@@ -951,6 +970,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "GroupLabelNotes." .. FileExtension)
 ScreenshotLib.CloseDocGroupSelectDlg()
 
 -- Graph editing example
+------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Chocolate Eclairs.txt")
 
 sp:SelectWindow(SideBarSection.Statistics, GraphType.WordBarChart)
@@ -963,7 +983,7 @@ sp:SortGraph(GraphType.WordBarChart, SortOrder.SortAscending)
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphSorted." .. FileExtension)
 
 -- change color of background
-sp:SetGraphBackgroundColor(255,0,255)
+sp:SetGraphBackgroundColor(255, 0, 255)
 sp:ApplyGraphBackgroundFade(true)
 
 sp:Reload()
@@ -984,7 +1004,7 @@ sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageChanged." .. FileExtension)
 
 -- change the plot background
-sp:SetPlotBackgroundColor(0,255,255)
+sp:SetPlotBackgroundColor(0, 255, 255)
 sp:SetPlotBackgroundOpacity(25)
 
 sp:Reload()
@@ -1016,7 +1036,8 @@ sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleBarChartEffectsChanged." .. FileExtension)
 sp:Close()
 
--- Standard project (Web site example)
+-- Web site example
+-------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Ubuntu Desktop.rsp")
 sp:ScrollTextWindow(HighlightedReportType.ThreePlusSyllableHighlightedWords, 2500)
 ScreenshotLib.SnapScreenshot(ImagePath .. "incompletesentences." .. FileExtension)

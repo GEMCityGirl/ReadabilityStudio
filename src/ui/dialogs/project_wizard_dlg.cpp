@@ -90,7 +90,9 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
     const wxString& path /*= wxString{}*/, wxWindowID id /*= wxID_ANY*/,
     const wxString& caption /*= _(L"New Project Wizard")*/,
     const wxPoint& pos /*= wxDefaultPosition*/, const wxSize& size /*= wxDefaultSize*/,
-    long style /*= wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER*/) :
+    long style /*= wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER*/,
+    ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode fileTruncMode /*=
+        ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::NoTruncation*/) :
     m_fromFileSelected(wxGetApp().GetAppOptions().GetTextSource() == TextSource::FromFile),
     m_manualSelected(wxGetApp().GetAppOptions().GetTextSource() == TextSource::EnteredText),
     m_testSelectionMethod(static_cast<int>(wxGetApp().GetAppOptions().GetTestRecommendation())),
@@ -99,7 +101,8 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
     m_includeDolchSightWords(wxGetApp().GetAppOptions().IsDolchSelected()),
     m_readabilityTests(wxGetApp().GetAppOptions().GetReadabilityTests()),
     m_projectType(projectType),
-    m_selectedLang(static_cast<int>(wxGetApp().GetAppOptions().GetProjectLanguage()))
+    m_selectedLang(static_cast<int>(wxGetApp().GetAppOptions().GetProjectLanguage())),
+    m_fileListTruncationMode(fileTruncMode)
     {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_VALIDATE_RECURSIVELY|wxWS_EX_CONTEXTHELP);
     wxDialog::Create(parent, id, caption, pos, size, style);
@@ -351,6 +354,7 @@ void ProjectWizardDlg::CreateControls()
         m_fileList->InsertColumn(1, _(L"Labels"));
         m_fileList->SetColumnEditable(0);
         m_fileList->SetColumnEditable(1);
+        m_fileList->SetColumnFilePathTruncationMode(0, m_fileListTruncationMode);
         m_fileList->SetVirtualDataProvider(m_fileData);
         m_fileList->SetVirtualDataSize(m_fileData->GetItemCount());
         optionsSizer->Add(m_fileList, 2, wxALIGN_LEFT|wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());

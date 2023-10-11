@@ -84,7 +84,7 @@ namespace LuaScripting
             { return 0; }
 
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
-        int startWindowToHighlight = -1, endWindowToHighlight = -1;
+        int startWindowToHighlight = wxID_ANY, endWindowToHighlight = wxID_ANY;
         if (lua_gettop(L) > 1)
             {
             auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
@@ -102,6 +102,36 @@ namespace LuaScripting
                 { endWindowToHighlight = lua_tonumber(L, 3); }
             }
         lua_pushboolean(L, Screenshot::SaveScreenshot(path,
+            startWindowToHighlight, endWindowToHighlight));
+        return 1;
+        }
+    
+    //-------------------------------------------------------------
+    int SnapScreenshotWithAnnotation(lua_State *L)
+        {
+        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+            { return 0; }
+
+        const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
+        const wxString annotation(luaL_checkstring(L, 2), wxConvUTF8);
+        int startWindowToHighlight = wxID_ANY, endWindowToHighlight = wxID_ANY;
+
+        auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 3));
+        if (idPos != wxGetApp().GetDynamicIdMap().cend())
+            { startWindowToHighlight = idPos->second; }
+        else
+            { startWindowToHighlight = lua_tonumber(L, 3); }
+
+        if (lua_gettop(L) > 3)
+            {
+            auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 4));
+            if (idPos != wxGetApp().GetDynamicIdMap().cend())
+                { endWindowToHighlight = idPos->second; }
+            else
+                { endWindowToHighlight = lua_tonumber(L, 4); }
+            }
+
+        lua_pushboolean(L, Screenshot::SaveScreenshot(path, annotation,
             startWindowToHighlight, endWindowToHighlight));
         return 1;
         }
@@ -656,6 +686,7 @@ namespace LuaScripting
             }
         else
             { LuaBatchProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject); }
+        LuaBatchProjectWizard->SetFileListTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         LuaBatchProjectWizard->SelectPage(0);
         LuaBatchProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaBatchProjectWizard->Show();
@@ -669,7 +700,10 @@ namespace LuaScripting
         if (LuaBatchProjectWizard != nullptr)
             { CloseBatchProjectWizard(nullptr); }
         LuaBatchProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject,
-            wxString(luaL_checkstring(L, 1), wxConvUTF8));
+            wxString(luaL_checkstring(L, 1), wxConvUTF8), wxID_ANY, _(L"New Project Wizard"), wxDefaultPosition, wxDefaultSize,
+            wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER,
+            ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
+        LuaBatchProjectWizard->SetFileListTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         LuaBatchProjectWizard->SelectPage(0);
         LuaBatchProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaBatchProjectWizard->Show();
@@ -683,6 +717,7 @@ namespace LuaScripting
         if (LuaBatchProjectWizard != nullptr)
             { CloseBatchProjectWizard(nullptr); }
         LuaBatchProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject);
+        LuaBatchProjectWizard->SetFileListTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         if (lua_gettop(L) > 0)
             { LuaBatchProjectWizard->SetTestSelectionMethod(lua_tonumber(L, 1)-1/*make zero-indexed*/); }
         LuaBatchProjectWizard->SelectPage(2);
@@ -699,6 +734,7 @@ namespace LuaScripting
         if (LuaBatchProjectWizard != nullptr)
             { CloseBatchProjectWizard(nullptr); }
         LuaBatchProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject);
+        LuaBatchProjectWizard->SetFileListTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         LuaBatchProjectWizard->SetTestSelectionMethod(1);
         LuaBatchProjectWizard->SelectPage(2);
         if (lua_gettop(L) > 0)
@@ -719,6 +755,7 @@ namespace LuaScripting
         if (LuaBatchProjectWizard != nullptr)
             { CloseBatchProjectWizard(nullptr); }
         LuaBatchProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject);
+        LuaBatchProjectWizard->SetFileListTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         LuaBatchProjectWizard->SetTestSelectionMethod(0);
         LuaBatchProjectWizard->SelectPage(2);
         if (lua_gettop(L) > 0)
@@ -739,6 +776,7 @@ namespace LuaScripting
         if (LuaBatchProjectWizard != nullptr)
             { CloseBatchProjectWizard(nullptr); }
         LuaBatchProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject);
+        LuaBatchProjectWizard->SetFileListTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         if (lua_gettop(L) > 0)
             {
             const int selectedDocType = lua_tonumber(L, 1)-1/*make zero-indexed*/;
@@ -765,6 +803,7 @@ namespace LuaScripting
         if (LuaBatchProjectWizard != nullptr)
             { CloseBatchProjectWizard(nullptr); }
         LuaBatchProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject);
+        LuaBatchProjectWizard->SetFileListTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         LuaBatchProjectWizard->SetTestSelectionMethod(2);
         LuaBatchProjectWizard->SelectPage(2);
         for (int i = 1; i <= lua_gettop(L); ++i)
@@ -785,6 +824,7 @@ namespace LuaScripting
         if (LuaBatchProjectWizard != nullptr)
             { CloseBatchProjectWizard(nullptr); }
         LuaBatchProjectWizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject);
+        LuaBatchProjectWizard->SetFileListTruncationMode(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         LuaBatchProjectWizard->GetFileList()->DeleteAllItems();
         if (lua_gettop(L) > 0)
             {

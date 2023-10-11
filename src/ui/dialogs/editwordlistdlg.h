@@ -77,8 +77,9 @@ public:
     /// @param filePath The filepath to save to.
     /// @returns @c true if successful.
     bool Save(const wxString& filePath);
-private:
+    /// @private
     static constexpr int ID_FILE_PATH_FIELD = wxID_HIGHEST;
+private:
     static constexpr int ID_BROWSE_FOR_FILE = wxID_HIGHEST + 1;
     static constexpr int ID_ADD_ITEM = wxID_HIGHEST + 2;
     static constexpr int ID_EDIT_ITEM = wxID_HIGHEST + 3;

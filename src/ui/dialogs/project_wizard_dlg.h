@@ -42,7 +42,9 @@ public:
                      const wxString& path = wxString{}, wxWindowID id = wxID_ANY,
                      const wxString& caption = _(L"New Project Wizard"),
                      const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
-                     long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER);
+                     long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER,
+                     ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode fileTruncMode =
+                        ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::NoTruncation);
     /// @private
     ProjectWizardDlg(const ProjectWizardDlg&) = delete;
     /// @private
@@ -228,6 +230,8 @@ public:
             { m_selectedTests.push_back(found); }
         TransferDataToWindow();
         }
+    void SetFileListTruncationMode(const ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode mode) noexcept
+        { m_fileListTruncationMode = mode; }
 private:
     [[nodiscard]]
     ProjectType GetProjectType() const noexcept
@@ -339,6 +343,9 @@ private:
     ProjectType m_projectType{ ProjectType::StandardProject };
     Wisteria::UI::SideBarBook* m_sideBarBook{ nullptr };
     int m_selectedLang{ 0 };
+
+    ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_fileListTruncationMode
+        { ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::NoTruncation };
 
     wxDECLARE_EVENT_TABLE();
     };

@@ -796,6 +796,7 @@ bool ReadabilityApp::OnInit()
         { 8072, BaseProjectView::SIDEBAR_HISTOGRAMS_SECTION_ID },
         { 8073, BaseProjectView::SIDEBAR_STATS_SUMMARY_SECTION_ID },
         { 8074, BaseProjectView::SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID },
+        { 9000, EditWordListDlg::ID_FILE_PATH_FIELD },
         { 10001, ProjectWizardDlg::ID_FILE_BROWSE_BUTTON },
         { 10002, ProjectWizardDlg::ID_FROM_FILE_BUTTON },
         { 10003, ProjectWizardDlg::ID_MANUALLY_ENTERED_TEXT_BUTTON },
