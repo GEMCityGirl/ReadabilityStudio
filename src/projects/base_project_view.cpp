@@ -2030,19 +2030,19 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
             XRCID("ID_GRAPH_BKIMAGE_EFFECT_GRAYSCALE"), _(L"Grayscale"), wxString{}, wxITEM_CHECK));
     graphBackgroundImageEffectSubMenu->Append(
         new wxMenuItem(graphBackgroundColorSubMenu,
-            XRCID("ID_GRAPH_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"), _(L"Blur horizontally"), wxString{}, wxITEM_CHECK));
+            XRCID("ID_GRAPH_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"), _(L"Blur Horizontally"), wxString{}, wxITEM_CHECK));
     graphBackgroundImageEffectSubMenu->Append(
         new wxMenuItem(graphBackgroundColorSubMenu,
-            XRCID("ID_GRAPH_BKIMAGE_EFFECT_BLUR_VERTICALLY"), _(L"Blur vertically"), wxString{}, wxITEM_CHECK));
+            XRCID("ID_GRAPH_BKIMAGE_EFFECT_BLUR_VERTICALLY"), _(L"Blur Vertically"), wxString{}, wxITEM_CHECK));
     graphBackgroundImageEffectSubMenu->Append(
         new wxMenuItem(graphBackgroundColorSubMenu,
             XRCID("ID_GRAPH_BKIMAGE_EFFECT_SEPIA"), _(L"Sepia"), wxString{}, wxITEM_CHECK));
     graphBackgroundImageEffectSubMenu->Append(
         new wxMenuItem(graphBackgroundColorSubMenu,
-            XRCID("ID_GRAPH_BKIMAGE_EFFECT_FROSTED_GLASS"), _(L"Frosted glass"), wxString{}, wxITEM_CHECK));
+            XRCID("ID_GRAPH_BKIMAGE_EFFECT_FROSTED_GLASS"), _(L"Frosted Glass"), wxString{}, wxITEM_CHECK));
     graphBackgroundImageEffectSubMenu->Append(
         new wxMenuItem(graphBackgroundColorSubMenu,
-            XRCID("ID_GRAPH_BKIMAGE_EFFECT_OIL_PAINTING"), _(L"Oil painting"), wxString{}, wxITEM_CHECK));
+            XRCID("ID_GRAPH_BKIMAGE_EFFECT_OIL_PAINTING"), _(L"Oil Painting"), wxString{}, wxITEM_CHECK));
 
     graphBackgroundImageSubMenu->AppendSubMenu(graphBackgroundImageEffectSubMenu, _(L"Effects"));
 
