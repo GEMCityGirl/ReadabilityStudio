@@ -84,7 +84,8 @@ namespace LuaScripting
             { return 0; }
 
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
-        int startWindowToHighlight = wxID_ANY, endWindowToHighlight = wxID_ANY;
+        int startWindowToHighlight = wxID_ANY, endWindowToHighlight = wxID_ANY,
+            cutOffWindow = wxID_ANY;
         if (lua_gettop(L) > 1)
             {
             auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
@@ -101,8 +102,16 @@ namespace LuaScripting
             else
                 { endWindowToHighlight = lua_tonumber(L, 3); }
             }
+        if (lua_gettop(L) > 3)
+            {
+            auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 4));
+            if (idPos != wxGetApp().GetDynamicIdMap().cend())
+                { cutOffWindow = idPos->second; }
+            else
+                { cutOffWindow = lua_tonumber(L, 4); }
+            }
         lua_pushboolean(L, Screenshot::SaveScreenshot(path,
-            startWindowToHighlight, endWindowToHighlight));
+            startWindowToHighlight, endWindowToHighlight, cutOffWindow));
         return 1;
         }
 
