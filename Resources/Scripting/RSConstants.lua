@@ -189,6 +189,17 @@ BoxEffect =
   CommonImage = 7
   }
 
+ImageEffect =
+  {
+  NoEffect = 0,
+  Grayscale = 1,
+  BlurHorizontal = 2,
+  BlurVertical = 3,
+  Sepia = 4,
+  FrostedGlass = 5,
+  OilPainting = 6
+  }
+
 Orientation =
   {
   Horizontal = 0,
@@ -310,6 +321,7 @@ OptionsPageType =
 -- make the table into a constant enumeration
 Orientation = protect_enum(Orientation)
 BarEffect = protect_enum(BarEffect)
+ImageEffect = protect_enum(ImageEffect)
 SortOrder = protect_enum(SortOrder)
 ReportType = protect_enum(ReportType)
 SideBarSection = protect_enum(SideBarSection)

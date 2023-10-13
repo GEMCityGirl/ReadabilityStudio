@@ -419,6 +419,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::ApplyGraphBackgroundFade(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -431,6 +432,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetGraphBackgroundImage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -443,6 +445,21 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
+    int StandardProject::SetGraphBackgroundImageEffect(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->SetBackGroundImageEffect(
+            static_cast<Wisteria::ImageEffect>(static_cast<int>(lua_tonumber(L, 2))) );
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetGraphBackgroundOpacity(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -455,6 +472,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetPlotBackgroundColor(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -468,6 +486,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetPlotBackgroundOpacity(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -480,6 +499,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetGraphWatermark(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -492,6 +512,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetGraphLogoImage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -504,6 +525,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetStippleImage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -516,6 +538,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetStippleShape(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -528,6 +551,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::DisplayGraphDropShadows(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -540,6 +564,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetBarChartBarColor(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -553,6 +578,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetBarChartBarOpacity(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -565,6 +591,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetBarChartBarEffect(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -577,6 +604,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetBarChartOrientation(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1654,6 +1682,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundColor),
       LUNA_DECLARE_METHOD(StandardProject, ApplyGraphBackgroundFade),
       LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundImage),
+      LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundImageEffect),
       LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundOpacity),
       LUNA_DECLARE_METHOD(StandardProject, SetGraphWatermark),
       LUNA_DECLARE_METHOD(StandardProject, SetGraphLogoImage),
@@ -1986,6 +2015,20 @@ namespace LuaScripting
             { return 0; }
 
         m_project->SetBackGroundImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+    
+    //-------------------------------------------------------------
+    int BatchProject::SetGraphBackgroundImageEffect(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->SetBackGroundImageEffect(
+            static_cast<Wisteria::ImageEffect>(static_cast<int>(lua_tonumber(L, 2))) );
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2733,6 +2776,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, SetGraphBackgroundColor),
       LUNA_DECLARE_METHOD(BatchProject, ApplyGraphBackgroundFade),
       LUNA_DECLARE_METHOD(BatchProject, SetGraphBackgroundImage),
+      LUNA_DECLARE_METHOD(BatchProject, SetGraphBackgroundImageEffect),
       LUNA_DECLARE_METHOD(BatchProject, SetGraphBackgroundOpacity),
       LUNA_DECLARE_METHOD(BatchProject, SetGraphWatermark),
       LUNA_DECLARE_METHOD(BatchProject, SetGraphLogoImage),
