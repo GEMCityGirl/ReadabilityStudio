@@ -320,7 +320,7 @@ OptionsPageType =
 
 -- make the table into a constant enumeration
 Orientation = protect_enum(Orientation)
-BarEffect = protect_enum(BarEffect)
+BoxEffect = protect_enum(BoxEffect)
 ImageEffect = protect_enum(ImageEffect)
 SortOrder = protect_enum(SortOrder)
 ReportType = protect_enum(ReportType)
