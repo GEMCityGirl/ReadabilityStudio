@@ -74,7 +74,7 @@ When any graph is selected, options for customizing it are made available on the
 
 The options made available will be dependent on the graph type. Refer to \@ref(options-graphs) for further discussions of these options.
 
-Refer to \@ref(customizing-a-graph) and \@ref(stipple-brush-example) for step-by-step tutorials on editing a graph.
+Refer to \@ref(customizing-graphs) for step-by-step tutorials on editing graphs.
 
 ## Customizing How Documents are Analyzed
 

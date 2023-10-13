@@ -1,8 +1,8 @@
 # Customizing Graphs
 
-## Basic Customizing {#customizing-a-graph}
+## Customizing Bars {#customizing-bars}
 
-In this example, we will discuss the various ways to change the appearance of a graph.
+In this example, we will discuss the various ways to change the appearance of bars in a bar chart or histogram.
 
 The first step is to open the example file "Chocolate Eclairs." From the **Help** tab on the ribbon, click the `r keys("Example Documents")` button and then select "Chocolate Eclairs" from the menu.
 (When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
@@ -21,26 +21,59 @@ knitr::include_graphics("images/ExampleGraphSorted.png")
 ```
 
 ::: {.notesection data-latex=""}
-When changing the order of the bars, the axis brackets surrounding them will be removed.
+When changing the order of the bars, any axis brackets surrounding them will be removed.
 :::
 
-Next, let's change the background of the graph. On the **Home** tab, click the `r keys("Background")` button under the **Edit** section. Select **Color...** from the menu. When the color selection dialog appears, select a new color (e.g., purple) and click `r keys("OK")`. After selecting your new color, check the option **Apply Fade** from this menu.
+Next, we can change the direction of the bars. Click the `r keys("Orientation")` button in the **Edit** section. Select **Vertical** from the menu.
 
-Now the graph will have a purple background with a gradient effect:
+Now the bars will be arranged vertically:
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/ExampleBarChartOrientationChanged.png")
+```
+
+Finally, let's change how the bars are drawn. Click the `r keys("Bar Style")` button in the **Edit** section and select **Watercolor**.
+
+The bars will now have a watercolor paint effect, rather than the default glassy look:
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/ExampleBarChartEffectsChanged.png")
+```
+
+Images and shapes can also be used to draw our bars, as demonstrated in a [later example](#stipple-brush-example).
+
+\newpage
+
+## Customizing the Background {#graph-background-example}
+
+Continuing from our previous [graph example](#customizing-bars), let's now change the background of the graph.
+On the **Home** tab, click `r menu(c('Background', 'Color', 'Color...'))`.
+When the color selection dialog appears, select a new color (e.g., antique white) and click `r keys("OK")`.
+After selecting a color, check the option **Apply Fade** from the same menu.
+
+Now, the graph will have an antique white background with a gradient effect:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ExampleGraphBackgroundColorChanged.png")
 ```
 
-Next, click the `r keys("Background")` button again and select **Image** from the menu. When the image selection dialog appears, choose an image and click `r keys("OK")`.
+Next, click the `r keys("Background")` button again and select `r menu(c('Image', 'Image...'))`. When the image selection dialog appears, choose an image and click `r keys("OK")`.
 
-Now this image will be shown as the background for your graphs:
+This image will now be shown as the background for your graphs:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ExampleGraphBackgroundImageChangedTooOpaque.png")
 ```
 
-By default, the image will be shown fully opaque. For lighter images this will look fine, but darker images (like the one shown above) will make it difficult to read the graph. Click the `r keys("Background")` button and select **Image Opacity...** from the menu. On the **Set Opacity** dialog, slide the opacity down to 100. Click `r keys("OK")`.
+To go along with the watercolor bars, we could also apply an oil painting effect to the background image.
+Click the `r keys("Background")` button and select `r menu(c('Image', 'Effects', 'Oil Painting'))`.
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/ExampleGraphBackgroundImageEffectChanged.png")
+```
+
+By default, the image will be shown fully opaque. For lighter images this will look fine, but darker images (like the one shown above) will make it difficult to read the graph.
+Click the `r keys("Background")` button and select **Image Opacity...** from the menu. On the **Set Opacity** dialog, slide the opacity down to 150. Click `r keys("OK")`.
 
 Now this image will be translucent and the graph labels will be much easier to read:
 
@@ -48,13 +81,18 @@ Now this image will be translucent and the graph labels will be much easier to r
 knitr::include_graphics("images/ExampleGraphBackgroundImageChanged.png")
 ```
 
-Next, we will want to apply a light color to the plot area. Click the `r keys("Background")` button and select **Plot Area Color...** from the menu and select a new color. Then, select **Opacity...** from this menu and set it to 40. Click `r keys("OK")`.
+Next, we will want to apply a light color to the plot area. Click the `r keys("Background")` button and select **Plot Area Color...** from the menu and select a new color (e.g., antique white).
+Then, select **Opacity...** from this menu and set it to 25. Click `r keys("OK")`.
 
-Now the plot area of the graph will have a light blue applied to it:
+Now the plot area of the graph will have a light color applied to it:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ExamplePlotBackgroundColorChanged.png")
 ```
+
+\newpage
+
+## Adding Watermarks and Logos {#graph-watermark-example}
 
 Next, let's put a [watermark](#watermark-and-logo) across our graph. Click the `r keys("Watermark")` button in the **Edit** section. Enter the following into the **Watermark** dialog and click `r keys("OK")`:
 
@@ -78,22 +116,6 @@ Now this image will be shown in the bottom right corner of the graph:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ExampleLogoChanged.png")
-```
-
-Next, we can change the direction of the bars. Click the `r keys("Orientation")` button in the **Edit** section. Select **Vertical** from the menu.
-
-Now the bars will be arranged vertically:
-
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleBarChartOrientationChanged.png")
-```
-
-Finally, let's change how the bars are drawn. Click the `r keys("Bar Style")` button in the **Edit** section and select **Color fade, bottom to top**.
-
-The bars will now have a fading color painted across them, rather than the default glassy look:
-
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleBarChartEffectsChanged.png")
 ```
 
 \newpage

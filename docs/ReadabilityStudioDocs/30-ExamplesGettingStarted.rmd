@@ -216,15 +216,18 @@ Aside from non-narrative forms, it is normally recommended to ignore incomplete 
 If you wish to include incomplete sentences in the analysis, click the `r keys("Properties")` button on the **Home** tab to display the **Project Properties** dialog.
 Next, click the **Document Indexing** icon, and select the **Do not exclude any text** option.
 
-```{r echo=F, fig.align='center', out.width='90%'}
+```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/donotexcludeincompletesentences.png")
 ```
 
 Note that this option is also available on the [**Options**](#options-overview) dialog (from the **Tools** tab) if you wish to change this behavior for all future projects.
 
-One last item to discuss about loading a webpage is whether you want to reanalyze it later as it changes. By default, the project will directly link to the webpage, although you can change this to embed a snapshot of the page into the project. To toggle this behavior, click the `r keys("Properties")` button on the **Home** tab to display the **Project Properties** dialog. Then click the **Project Settings** icon. Here, we can see that **Reload the source document when opening project** is selected.
+One last item to discuss about loading a webpage is whether you want to reanalyze it later as it changes.
+By default, the project will directly link to the webpage, although you can change this to embed a snapshot of the page into the project.
+To toggle this behavior, click the `r keys("Properties")` button on the **Home** tab to display the **Project Properties** dialog.
+Then click the **Project Settings** icon. Here, we can see that **Reload the source document when opening project** is selected.
 
-```{r echo=F, fig.align='center', out.width='90%'}
+```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/reloadwebpage.png")
 ```
 

@@ -217,22 +217,22 @@ bp:SelectWindow(SideBarSection.SentencesBreakdown, ListType.LongSentences)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchlongsentences." .. FileExtension, 1)
 
 bp:SelectWindow(SideBarSection.Grammar, ListType.OverusedWordsBySentence)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchoverusedwordsbysentence." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchoverusedwordsbysentence." .. FileExtension, 2)
 
 bp:SelectWindow(SideBarSection.Grammar, ListType.MisspelledWords)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchmisspellings." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchmisspellings." .. FileExtension, 2)
 
 bp:SelectWindow(SideBarSection.Grammar, ListType.WordingErrors)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchwordingerrors." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchwordingerrors." .. FileExtension, 2)
 
 bp:SelectWindow(SideBarSection.Grammar, ListType.RedundantPhrases)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchredundantphrases." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchredundantphrases." .. FileExtension, 2)
 
 bp:SelectWindow(SideBarSection.Grammar, ListType.Wordiness)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchwordyphrases." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchwordyphrases." .. FileExtension, 2)
 
 bp:SelectWindow(SideBarSection.Grammar, ListType.PassiveVoice)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchpassivevoice." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchpassivevoice." .. FileExtension, 2)
 
 bp:SelectWindow(SideBarSection.WordsBreakdown)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchdifficultwordsverbose." .. FileExtension, 1)
@@ -336,7 +336,7 @@ sp:SelectTextGrammarWindow(4228, 4469)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "longsentenceselected." .. FileExtension, 1)
 
 sp:DelayReloading(true)
-sp:SetDocumentFilePath("/home/dmoon/Cocoa Desserts.rtf") -- use generic filepath
+sp:SetDocumentFilePath("/home/mcrane/Cocoa Desserts.rtf") -- use generic filepath
 sp:OpenProperties(OptionsPageType.ProjectSettings)
 ScreenshotLib.SnapScreenshot(ImagePath .. "linktofile." .. FileExtension)
 sp:CloseProperties()
@@ -391,7 +391,7 @@ sp:SelectWindow(SideBarSection.Grammar, ListType.OverusedWordsBySentence)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "overusedwordsbysentence." .. FileExtension, 2)
 
 sp:SelectWindow(SideBarSection.Grammar, ListType.Wordiness)
-ScreenshotLib.SnapScreenshot(ImagePath .. "wordylist." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "wordylist." .. FileExtension, 2)
 
 sp:SelectWindow(SideBarSection.Grammar, ListType.RedundantPhrases)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "redundantphrases." .. FileExtension, 2)
@@ -495,7 +495,7 @@ Application.RemoveAllCustomTests()
 -- Batch project
 bp = BatchProject(ScreenshotProjectsFolder .. "Distribution Documents.rsbp")
 bp:SelectWindow(SideBarSection.Grammar, ListType.RepeatedWords)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchrepeatedwords." .. FileExtension, 1)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchrepeatedwords." .. FileExtension, 2)
 bp:Close()
 Application.RemoveAllCustomTests()
 
@@ -615,7 +615,7 @@ sp:Close()
 Application.RemoveAllCustomTests()
 bp = BatchProject(ScreenshotProjectsFolder .. "Eula.rsbp")
 bp:SelectWindow(SideBarSection.Grammar, ListType.ArticleMismatch)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batcharticlemismatches." .. FileExtension, 1)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batcharticlemismatches." .. FileExtension, 2)
 bp:Close()
 
 Application.RemoveAllCustomTests()
@@ -628,10 +628,10 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2Name." .. FileExten
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("New Dale-Chall (Baking)", "CustomNewDaleChall()")
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2FormulaFinished." .. FileExtension, 7002)
 
-ScreenshotLib.ShowCustomTestDialogFamiliarWords("/home/dmoon/CookingWords.txt")
+ScreenshotLib.ShowCustomTestDialogFamiliarWords("/home/Niles/CookingWords.txt")
 ScreenshotLib.SnapScreenshotOfPropertGrid(ImagePath .. "CustomTestExample2WordLoaded." .. FileExtension, -1, "File containing familiar words")
 
-ScreenshotLib.ShowCustomTestDialogFamiliarWords("/home/dmoon/CookingWords.txt", StemmingType.English, true)
+ScreenshotLib.ShowCustomTestDialogFamiliarWords("/home/Niles/CookingWords.txt", StemmingType.English, true)
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2WordSettingsFinished." .. FileExtension)
 
 ScreenshotLib.CloseCustomTestDialog()
@@ -647,10 +647,10 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleTestType." .. F
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Buzz Index", "IF((FamiliarWordCount()/WordCount())*100 > 15, 3,\n  IF((FamiliarWordCount()/WordCount())*100 > 5, 2, 1) )", TestType.IndexValue)
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleFormula." .. FileExtension, 7002)
 
-ScreenshotLib.ShowCustomTestDialogFamiliarWords("C:\\WordLists\\Buzz Words.txt")
+ScreenshotLib.ShowCustomTestDialogFamiliarWords("C:\\Users\\Roz\\WordLists\\Buzz Words.txt")
 ScreenshotLib.SnapScreenshotOfPropertGrid(ImagePath .. "CustomIndexTestExampleWordsLoaded." .. FileExtension, -1, "File containing familiar words")
 
-ScreenshotLib.ShowCustomTestDialogFamiliarWords("C:\\WordLists\\Buzz Words.txt", StemmingType.English)
+ScreenshotLib.ShowCustomTestDialogFamiliarWords("C:\\Users\\Roz\\WordLists\\Buzz Words.txt", StemmingType.English)
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleWordSettingsFinished." .. FileExtension)
 
 ScreenshotLib.ShowCustomTestDialogProperNounsAndNumbers(0, false)
@@ -924,8 +924,9 @@ ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "AddendumHighlightedText4.
 
 -- show a generic set of file paths in the properties dialog and get a screenshot of that
 sp:DelayReloading(true)
-sp:SetDocumentFilePath("/home/mcrane/YA Enterprise Software Symposium.odt")
-sp:SetAppendedDocumentFilePath("/home/mcrane/Instructional Disclaimer.odt")
+sp:SetReviewer("Daphne")
+sp:SetDocumentFilePath("/home/dmoon/YA Enterprise Software Symposium.odt")
+sp:SetAppendedDocumentFilePath("/home/dmoon/Instructional Disclaimer.odt")
 sp:OpenProperties(OptionsPageType.ProjectSettings)
 ScreenshotLib.SnapScreenshot(ImagePath .. "AddendumProperties." .. FileExtension, 1083, 1080)
 sp:CloseProperties()
@@ -974,73 +975,68 @@ ScreenshotLib.CloseDocGroupSelectDlg()
 sp = StandardProject(ScreenshotProjectsFolder .. "Chocolate Eclairs.txt")
 
 sp:SelectWindow(SideBarSection.Statistics, GraphType.WordBarChart)
-
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphDefault." .. FileExtension)
 
 -- sort the graph
 sp:SortGraph(GraphType.WordBarChart, SortOrder.SortAscending)
-
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphSorted." .. FileExtension)
-
--- change color of background
-sp:SetGraphBackgroundColor(255, 0, 255)
-sp:ApplyGraphBackgroundFade(true)
-
-sp:Reload()
-
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundColorChanged." .. FileExtension)
-
--- change the background to an image
-sp:SetGraphBackgroundImage(ScreenshotProjectsFolder .. "bookstore.png")
-
-sp:SetGraphBackgroundOpacity(255)
-
-sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageChangedTooOpaque." .. FileExtension)
-
--- lighten the image
-sp:SetGraphBackgroundOpacity(100)
-sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageChanged." .. FileExtension)
-
--- change the plot background
-sp:SetPlotBackgroundColor(0, 255, 255)
-sp:SetPlotBackgroundOpacity(25)
-
-sp:Reload()
-
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExamplePlotBackgroundColorChanged." .. FileExtension)
-
--- add watermark
-sp:SetGraphWatermark("INTERNAL USE ONLY\nPrinted on @DATE@")
-sp:Reload()
-
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleWatermarkChanged." .. FileExtension)
-
--- add logo
-sp:SetGraphLogoImage(ScreenshotProjectsFolder .. "CoffeeLogo.png")
-
-sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleLogoChanged." .. FileExtension)
 
 -- change orientation
 sp:SetBarChartOrientation(Orientation.Vertical)
 sp:Reload()
-
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleBarChartOrientationChanged." .. FileExtension)
 
 -- change bar chart effects
-sp:SetBarChartBarEffect(BoxEffect.FadeFromBottomToTop)
-
+sp:SetBarChartBarEffect(BoxEffect.Watercolor)
 sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleBarChartEffectsChanged." .. FileExtension)
+
+-- change color of background
+sp:SetGraphBackgroundColor(250, 235, 215)
+sp:ApplyGraphBackgroundFade(true)
+sp:Reload()
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundColorChanged." .. FileExtension)
+
+-- change the background to an image
+sp:SetGraphBackgroundImage(ScreenshotProjectsFolder .. "bookstore.png")
+sp:SetGraphBackgroundOpacity(255)
+sp:Reload()
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageChangedTooOpaque." .. FileExtension)
+
+-- apply an effect to the background image
+sp:SetGraphBackgroundImageEffect(ImageEffect.OilPainting)
+sp:Reload()
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageEffectChanged." .. FileExtension)
+
+-- lighten the image
+sp:SetGraphBackgroundOpacity(150)
+sp:Reload()
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageChanged." .. FileExtension)
+
+-- change the plot background color
+sp:SetPlotBackgroundColor(250, 235, 215)
+sp:SetPlotBackgroundOpacity(50)
+sp:Reload()
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExamplePlotBackgroundColorChanged." .. FileExtension)
+
+-- add watermark
+sp:SetGraphWatermark("INTERNAL USE ONLY\nProcessed on @DATE@")
+sp:Reload()
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleWatermarkChanged." .. FileExtension)
+
+-- add logo
+sp:SetGraphLogoImage(ScreenshotProjectsFolder .. "CoffeeLogo.png")
+sp:Reload()
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleLogoChanged." .. FileExtension)
+
 sp:Close()
 
 -- Web site example
 -------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "LibreOffice.rsp")
+sp:SetReviewer("Daphne")
 sp:ScrollTextWindow(HighlightedReportType.ThreePlusSyllableHighlightedWords, 1800)
-ScreenshotLib.SnapScreenshot(ImagePath .. "incompletesentences." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "incompletesentences." .. FileExtension, 1)
 
 sp:DelayReloading(true) -- prevent reloading website in case we are offline
 sp:SetDocumentStorageMethod(TextStorage.NoEmbedText)
@@ -1053,7 +1049,7 @@ sp:CloseProperties()
 
 sp:SetTextExclusion(TextExclusionType.DoNotExcludeAnyText)
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
-ScreenshotLib.SnapScreenshot(ImagePath .. "donotexcludeincompletesentences." .. FileExtension, 1036)
+ScreenshotLib.SnapScreenshot(ImagePath .. "donotexcludeincompletesentences." .. FileExtension, 1036, -1, 1084)
 sp:CloseProperties()
 
 sp:Close()
