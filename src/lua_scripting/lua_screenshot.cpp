@@ -124,9 +124,9 @@ namespace LuaScripting
 
         if (lua_gettop(L) > 3)
             {
-            auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 4));
-            if (idPos != wxGetApp().GetDynamicIdMap().cend())
-                { endWindowToHighlight = idPos->second; }
+            auto endIdPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 4));
+            if (endIdPos != wxGetApp().GetDynamicIdMap().cend())
+                { endWindowToHighlight = endIdPos->second; }
             else
                 { endWindowToHighlight = lua_tonumber(L, 4); }
             }
