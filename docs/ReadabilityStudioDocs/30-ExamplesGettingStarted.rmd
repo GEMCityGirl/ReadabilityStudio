@@ -200,7 +200,8 @@ Now, go back to the project wizard and select **Read text from a file or webpage
 
 ![](images/webpath.png)
 
-After specifying the URL, choose to analyze the page by document type and then select **Technical document**. Most webpages would fall under the category of either general or technical document. Because this page discusses the subject of the GNU/Linux operating system, we will select technical.
+After specifying the URL, choose to analyze the page by document type and then select **Technical document**. Most webpages would fall under the category of either general or technical document.
+Because this page discusses office software, we will select technical.
 
 ![](images/wizarddoctypetechselected.png)
 
@@ -208,12 +209,15 @@ Next, accept the rest of the defaults on the **New Project** wizard by clicking 
 
 ![](images/incompletesentences.png)
 
-Note how some text is highlighted gray. These are [incomplete sentences](#how-text-is-excluded), and because *Readability Studio*, by default, ignores incomplete sentences, nothing highlighted gray is factored into the analysis. That is, nothing highlighted gray here counts towards the overall sentence, paragraph, and word totals and are also not included in any readability test calculation. Aside from non-narrative forms, it is normally recommended to ignore incomplete sentences. This is especially true for webpages, because often HTML tables and lists are used on websites to display menus—items that are not normally part of the page's narrative.
+Note how some text is highlighted gray. These are [incomplete sentences](#how-text-is-excluded), and because *Readability Studio*, by default, ignores incomplete sentences, nothing highlighted gray is factored into the analysis.
+That is, nothing highlighted gray here counts towards the overall sentence, paragraph, and word totals and are also not included in any readability test calculation.
+Aside from non-narrative forms, it is normally recommended to ignore incomplete sentences. This is especially true for webpages, because often HTML tables and lists are used on websites to display menus—items that are not normally part of the page's narrative.
 
-If you wish to include incomplete sentences in the analysis, click the `r keys("Properties")` button on the **Home** tab to display the **Project Properties** dialog. Next, click the **Document Indexing** icon, and select the **Do not exclude any text** option.
+If you wish to include incomplete sentences in the analysis, click the `r keys("Properties")` button on the **Home** tab to display the **Project Properties** dialog.
+Next, click the **Document Indexing** icon, and select the **Do not exclude any text** option.
 
 ```{r echo=F, fig.align='center', out.width='90%'}
-knitr::include_graphics("images/excludeincompletesentences.png")
+knitr::include_graphics("images/donotexcludeincompletesentences.png")
 ```
 
 Note that this option is also available on the [**Options**](#options-overview) dialog (from the **Tools** tab) if you wish to change this behavior for all future projects.

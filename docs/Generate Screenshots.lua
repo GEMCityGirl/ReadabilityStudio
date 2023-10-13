@@ -140,7 +140,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "wizard1." .. FileExtension)
 
 ScreenshotLib.SetStandardProjectWizardTextFromFilePath("")
 ScreenshotLib.SnapScreenshot(ImagePath .. "exampleselectfile." .. FileExtension, 10001)
-ScreenshotLib.SetStandardProjectWizardTextFromFilePath("http://www.ubuntu.com/products/desktop")
+ScreenshotLib.SetStandardProjectWizardTextFromFilePath("https://www.libreoffice.org/about-us/who-are-we/")
 ScreenshotLib.SnapScreenshot(ImagePath .. "webpath." .. FileExtension)
 
 ScreenshotLib.ShowStandardProjectWizardTestByDocumentTypePage(4)
@@ -1038,8 +1038,8 @@ sp:Close()
 
 -- Web site example
 -------------------
-sp = StandardProject(ScreenshotProjectsFolder .. "Ubuntu Desktop.rsp")
-sp:ScrollTextWindow(HighlightedReportType.ThreePlusSyllableHighlightedWords, 2500)
+sp = StandardProject(ScreenshotProjectsFolder .. "LibreOffice.rsp")
+sp:ScrollTextWindow(HighlightedReportType.ThreePlusSyllableHighlightedWords, 1800)
 ScreenshotLib.SnapScreenshot(ImagePath .. "incompletesentences." .. FileExtension)
 
 sp:DelayReloading(true) -- prevent reloading website in case we are offline
@@ -1049,7 +1049,11 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "reloadwebpage." .. FileExtension)
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "excludeincompletesentences." .. FileExtension, 1036)
+sp:CloseProperties()
 
+sp:SetTextExclusion(TextExclusionType.DoNotExcludeAnyText)
+sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+ScreenshotLib.SnapScreenshot(ImagePath .. "donotexcludeincompletesentences." .. FileExtension, 1036)
 sp:CloseProperties()
 
 sp:Close()
