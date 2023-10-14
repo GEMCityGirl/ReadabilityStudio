@@ -23,7 +23,7 @@ class ToolsOptionsDlg;
 namespace LuaScripting
     {
     /// @brief Helper function to load font attributes for a project.
-    void LoadFontAttributes(lua_State* L, wxFont& font);
+    void LoadFontAttributes(lua_State* L, wxFont& font, wxColour& fontColor, bool calledFromObject);
 
     /// @brief Standard project interface.
     /// @private

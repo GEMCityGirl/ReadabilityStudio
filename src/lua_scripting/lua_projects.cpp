@@ -26,18 +26,22 @@ wxDECLARE_APP(ReadabilityApp);
 
 namespace LuaScripting
     {
-    void LoadFontAttributes(lua_State* L, wxFont& font)
+    void LoadFontAttributes(lua_State* L, wxFont& font, wxColour& fontColor, bool calledFromObject)
         {
-        // name, point size, weight
-        const wxString fontName{ luaL_checkstring(L, 2), wxConvUTF8 };
+        int paramIndex = (calledFromObject ? 2 : 1);
+        // name, point size, weight, color (as a string)
+        const wxString fontName{ luaL_checkstring(L, paramIndex++), wxConvUTF8 };
         if (fontName.length())
             { font.SetFaceName(fontName); }
-        const double pointSize{ lua_tonumber(L, 3) };
+        const double pointSize{ lua_tonumber(L, paramIndex++) };
         if (pointSize > 0)
             { font.SetFractionalPointSize(pointSize); }
-        const wxFontWeight fontWeight{ static_cast<wxFontWeight>(lua_tonumber(L, 4)) };
+        const wxFontWeight fontWeight{ static_cast<wxFontWeight>(lua_tonumber(L, paramIndex++)) };
         if (fontWeight > 0)
             { font.SetWeight(fontWeight); }
+        const wxColour color{ wxString{ luaL_checkstring(L, paramIndex++), wxConvUTF8 } };
+        if (color.IsOk())
+            { fontColor = color; }
         }
 
     const char StandardProject::className[] = "StandardProject";
@@ -570,13 +574,15 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
             { return 0; }
 
         auto fontInfo = m_project->GetXAxisFont();
-        LoadFontAttributes(L, fontInfo);
+        auto fontColor= m_project->GetXAxisFontColor();
+        LoadFontAttributes(L, fontInfo, fontColor, true);
         
         m_project->SetXAxisFont(fontInfo);
+        m_project->SetXAxisFontColor(fontColor);
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -586,13 +592,15 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
             { return 0; }
 
         auto fontInfo = m_project->GetYAxisFont();
-        LoadFontAttributes(L, fontInfo);
+        auto fontColor = m_project->GetYAxisFontColor();
+        LoadFontAttributes(L, fontInfo, fontColor, true);
         
         m_project->SetYAxisFont(fontInfo);
+        m_project->SetYAxisFontColor(fontColor);
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2178,13 +2186,15 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
             { return 0; }
 
         auto fontInfo = m_project->GetXAxisFont();
-        LoadFontAttributes(L, fontInfo);
+        auto fontColor= m_project->GetXAxisFontColor();
+        LoadFontAttributes(L, fontInfo, fontColor, true);
         
         m_project->SetXAxisFont(fontInfo);
+        m_project->SetXAxisFontColor(fontColor);
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2194,13 +2204,15 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
             { return 0; }
 
         auto fontInfo = m_project->GetYAxisFont();
-        LoadFontAttributes(L, fontInfo);
+        auto fontColor = m_project->GetYAxisFontColor();
+        LoadFontAttributes(L, fontInfo, fontColor, true);
         
         m_project->SetYAxisFont(fontInfo);
+        m_project->SetYAxisFontColor(fontColor);
         ReloadIfNotDelayedSimple();
         return 0;
         }
