@@ -267,6 +267,22 @@ BaseProjectView::BaseProjectView()
     Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
         XRCID("ID_GRAPH_BKIMAGE_EFFECT_OIL_PAINTING"));
 
+    Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
+        XRCID(""));
+    Bind(wxEVT_MENU,
+        [this]([[maybe_unused]] wxCommandEvent&)
+            {
+            BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+            assert(doc && L"Failed to get document!");
+            if (!doc)
+                { return; }
+
+            doc->SetBackGroundImagePath(wxString{});
+            doc->RefreshRequired(ProjectRefresh::Minimal);
+            doc->RefreshGraphs();
+            },
+        XRCID("ID_EDIT_GRAPH_BKIMAGE_REMOVE"));
+
     // Raygor style
     Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED,
         &BaseProjectView::OnEditGraphRaygorStyleButton, this,
@@ -2045,6 +2061,10 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
             XRCID("ID_GRAPH_BKIMAGE_EFFECT_OIL_PAINTING"), _(L"Oil Painting"), wxString{}, wxITEM_CHECK));
 
     graphBackgroundImageSubMenu->AppendSubMenu(graphBackgroundImageEffectSubMenu, _(L"Effects"));
+
+    graphBackgroundImageSubMenu->Append(
+        new wxMenuItem(graphBackgroundImageSubMenu,
+            XRCID("ID_EDIT_GRAPH_BKIMAGE_REMOVE"), _(L"Remove Image")));
 
     m_graphBackgroundMenu.AppendSubMenu(graphBackgroundImageSubMenu, _(L"Image"));
 
