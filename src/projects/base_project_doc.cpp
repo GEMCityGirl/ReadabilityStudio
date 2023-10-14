@@ -209,7 +209,7 @@ void BaseProjectDoc::SetBackGroundImagePath(const wxString& filePath)
     {
     m_graphBackGroundImagePath = filePath;
     if (filePath.empty())
-        { m_graphBackgroundImage = wxBitmapBundle{}; }
+        { m_graphBackgroundImageWithEffect = m_graphBackgroundImage = wxBitmapBundle{}; }
     if (HasUI())
         {
         if (wxFile::Exists(filePath))
@@ -238,8 +238,7 @@ void BaseProjectDoc::SetBackGroundImagePath(const wxString& filePath)
             else
                 { m_graphBackgroundImage = wxBitmapBundle{}; }
             }
-        const auto bmp = m_graphBackgroundImage.GetBitmap(
-            m_graphBackgroundImage.GetDefaultSize());
+        const auto bmp = m_graphBackgroundImage.GetBitmap(m_graphBackgroundImage.GetDefaultSize());
         if (bmp.IsOk())
             {
             m_graphBackgroundImageWithEffect = Wisteria::GraphItems::Image::ApplyEffect(GetBackGroundImageEffect(),
