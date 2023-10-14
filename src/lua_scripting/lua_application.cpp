@@ -268,6 +268,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int GetColor(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+            { return 0; }
+        const wxColour col(lua_tonumber(L, 1), lua_tonumber(L, 2), lua_tonumber(L, 3));
+        lua_pushstring(L, col.GetAsString().utf8_str());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int DownloadFile(lua_State *L)
         {
         if (!VerifyParameterCount(L, 2, __WXFUNCTION__))

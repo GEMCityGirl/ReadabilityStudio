@@ -25,6 +25,7 @@ namespace LuaScripting
         const wxString& currentFile, std::multimap<wxString,wxString>& badLinks,
         std::multimap<wxString, wxString>& badImageSizes, const bool IncludeExternalLinks);
     // Helper functions
+    int GetColor(lua_State* L);
     int MsgBox(lua_State *L);
     int GetLuaConstantsPath(lua_State *L);
     int GetProgramPath(lua_State *L);
@@ -140,6 +141,7 @@ namespace LuaScripting
             { "LogMessage", LogMessage },
             { "LogError", LogError },
             { "MsgBox", MsgBox },
+            { "GetColor", GetColor },
             { "DownloadFile", DownloadFile },
             { "FindFiles", FindFiles },
             { "GetTestId", GetTestId },
