@@ -994,6 +994,11 @@ sp:SetBarChartBarEffect(BoxEffect.Watercolor)
 sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleBarChartEffectsChanged." .. FileExtension)
 
+-- remove the bar labels
+sp:DisplayBarChartLabels(false)
+sp:Reload()
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleBarChartNoLabelsChanged." .. FileExtension)
+
 -- change color of background
 sp:SetGraphBackgroundColor(250, 235, 215)
 sp:ApplyGraphBackgroundFade(true)
@@ -1014,7 +1019,15 @@ sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImage
 -- lighten the image
 sp:SetGraphBackgroundOpacity(150)
 sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageChanged." .. FileExtension)
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageChangedLighter." .. FileExtension)
+
+-- change background back to opaque and set fonts to white
+sp:SetGraphBackgroundOpacity(255)
+sp:SetXAxisFont("", -1, 1000, "white")
+sp:SetYAxisFont("", -1, 1000, "white")
+sp:SetGraphTopTitleFont("", -1, 1000, "white")
+sp:Reload()
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphFontColorChanged." .. FileExtension)
 
 -- change the plot background color
 sp:SetPlotBackgroundColor(250, 235, 215)
