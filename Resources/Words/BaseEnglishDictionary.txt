@@ -26520,6 +26520,7 @@ copying
 copyist
 copyist's
 copyists
+copyleft
 copyright
 copyright's
 copyrightable
