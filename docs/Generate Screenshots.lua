@@ -340,6 +340,7 @@ sp:SetDocumentFilePath("/home/mcrane/Cocoa Desserts.rtf") -- use generic filepat
 sp:SetReviewer("Maris")
 sp:OpenProperties(OptionsPageType.ProjectSettings)
 ScreenshotLib.SnapScreenshot(ImagePath .. "projectproperties." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "linktofile." .. FileExtension, 1085, -1, 1083)
 sp:CloseProperties()
 
 sp:Close()
@@ -1042,10 +1043,10 @@ ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "incompletesentences." 
 sp:DelayReloading(true) -- prevent reloading website in case we are offline
 sp:SetDocumentStorageMethod(TextStorage.NoEmbedText)
 sp:OpenProperties(OptionsPageType.ProjectSettings)
-ScreenshotLib.SnapScreenshot(ImagePath .. "reloadwebpage." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "reloadwebpage." .. FileExtension, 1085, -1, 1083)
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
-ScreenshotLib.SnapScreenshot(ImagePath .. "excludeincompletesentences." .. FileExtension, 1036)
+ScreenshotLib.SnapScreenshot(ImagePath .. "excludeincompletesentences." .. FileExtension, 1036, -1, 1084)
 sp:CloseProperties()
 
 sp:SetTextExclusion(TextExclusionType.DoNotExcludeAnyText)
