@@ -624,6 +624,19 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::DisplayBarChartLabels(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->DisplayBarChartLabels(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::DisplayGraphDropShadows(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1765,6 +1778,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, SetXAxisFont),
       LUNA_DECLARE_METHOD(StandardProject, SetYAxisFont),
       LUNA_DECLARE_METHOD(StandardProject, SetGraphTopTitleFont),
+      LUNA_DECLARE_METHOD(StandardProject, DisplayBarChartLabels),
       LUNA_DECLARE_METHOD(StandardProject, DisplayGraphDropShadows),
       LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarColor),
       LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarOpacity),
@@ -2250,6 +2264,19 @@ namespace LuaScripting
         
         m_project->SetGraphTopTitleFont(fontInfo);
         m_project->SetGraphTopTitleFontColor(fontColor);
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::DisplayBarChartLabels(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->DisplayBarChartLabels(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2916,6 +2943,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, SetXAxisFont),
       LUNA_DECLARE_METHOD(BatchProject, SetYAxisFont),
       LUNA_DECLARE_METHOD(BatchProject, SetGraphTopTitleFont),
+      LUNA_DECLARE_METHOD(BatchProject, DisplayBarChartLabels),
       LUNA_DECLARE_METHOD(BatchProject, DisplayGraphDropShadows),
       LUNA_DECLARE_METHOD(BatchProject, AddTest),
       LUNA_DECLARE_METHOD(BatchProject, Reload),

@@ -163,6 +163,7 @@ namespace LuaScripting
         int SetXAxisFont(lua_State* L);
         int SetYAxisFont(lua_State* L);
         int SetGraphTopTitleFont(lua_State* L);
+        int DisplayBarChartLabels(lua_State* L);
         int DisplayGraphDropShadows(lua_State *L);
         int SetBarChartBarColor(lua_State *L);
         int SetBarChartBarOpacity(lua_State *L);
@@ -368,6 +369,7 @@ namespace LuaScripting
         int SetXAxisFont(lua_State *L);
         int SetYAxisFont(lua_State *L);
         int SetGraphTopTitleFont(lua_State *L);
+        int DisplayBarChartLabels(lua_State *L);
         int DisplayGraphDropShadows(lua_State *L);
 
         // Adds a test to the project.
