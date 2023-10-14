@@ -51,6 +51,13 @@ TEST_CASE("Contractions", "[contractions]")
         CHECK(isContraction(L"T'WAS"));
         }
 
+    SECTION("Whole word")
+        {
+        grammar::is_contraction isContraction;
+        CHECK(isContraction(L"gonna"));
+        CHECK(isContraction(L"wanna"));
+        }
+
     SECTION("No Apos")
         {
         grammar::is_contraction isContraction;

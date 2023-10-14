@@ -28,4 +28,7 @@ std::set<is_contraction::string_type> is_contraction::m_s_contractions_following
 // contractions that would start with an apostrophe (that parser may not be including)
 std::set<is_contraction::string_type> is_contraction::m_contraction_without_apostrophe =
                     { L"tis", L"twas", L"twere",
-                      L"twould", L"twill" };
+                      L"twould", L"twill",
+                      // contractions of two words with an apostrophe (e.g., going to -> gonna)
+                      L"gonna", L"wanna", L"kinda", L"shoulda", L"woulda"
+                      L"coulda" };

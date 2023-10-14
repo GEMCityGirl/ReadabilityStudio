@@ -3545,7 +3545,7 @@ TEST_CASE("Document", "[document]")
         CHECK(doc.get_word(23).is_contraction() == false);
         }
 
-    SECTION("Contractions Leading Apos")
+    SECTION("Contractions leading apos")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
             &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,

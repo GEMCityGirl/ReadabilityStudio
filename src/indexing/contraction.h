@@ -28,7 +28,7 @@ namespace grammar
         /** @returns @c true if text block is a contraction.
             @param text The text block to analyze.
             @param nextWord The word following this one, needed for a deeper analysis if the
-                   contraction ends with "'s" and may be ambiguous. This is optional.*/
+                contraction ends with "'s" and may be ambiguous. This is optional.*/
         [[nodiscard]]
         bool operator()(const std::wstring_view text,
             const std::wstring_view nextWord = std::wstring_view{}) const

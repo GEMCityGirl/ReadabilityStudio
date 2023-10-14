@@ -88,7 +88,8 @@ TEST_CASE("Spell checker", "[spellchecker]")
         CHECK(spellCheck(MYWORD(L"$Value")));
         CHECK(spellCheck(MYWORD(L"pragma")) == false);
         CHECK(spellCheck(MYWORD(L"#pragma")));
-        CHECK(spellCheck(MYWORD(L"&about")));//UI strings should have & removed and then spell checked
+        // UI strings should have & removed and then spell checked
+        CHECK(spellCheck(MYWORD(L"&about")));
         CHECK(spellCheck(MYWORD(L"a&bout")));
         CHECK(spellCheck(MYWORD(L"a&bout-cat")));
         CHECK(spellCheck(MYWORD(L"&&")));
@@ -111,9 +112,20 @@ TEST_CASE("Social Media", "[social-media]")
         is_social_media_tag<MYWORD> isSmTag;
         CHECK(isSmTag(MYWORD(L"#WeAreOne")));
         CHECK_FALSE(isSmTag(MYWORD(L"#We"))); // too short
+        CHECK_FALSE(isSmTag(MYWORD(L"#1254785"))); // number
+        CHECK_FALSE(isSmTag(MYWORD(L"##########"))); // all hashtags is nonsense
         MYWORD longNumber(L"#WeAre1");
         longNumber.set_numeric(characters::is_character::is_numeric(longNumber.c_str(), longNumber.length()));
         CHECK(isSmTag(longNumber));
+        }
+
+    SECTION("Handle")
+        {
+        is_social_media_tag<MYWORD> isSmTag;
+        CHECK(isSmTag(MYWORD(L"@AskLibreOffice")));
+        CHECK_FALSE(isSmTag(MYWORD(L"@Me"))); // too short
+        CHECK_FALSE(isSmTag(MYWORD(L"@1254785"))); // number
+        CHECK_FALSE(isSmTag(MYWORD(L"@@@@@@@@"))); // all @ is nonsense
         }
 
     SECTION("Number")
