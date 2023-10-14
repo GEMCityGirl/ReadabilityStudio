@@ -606,6 +606,24 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::SetGraphTopTitleFont(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
+            { return 0; }
+
+        auto fontInfo = m_project->GetGraphTopTitleFont();
+        auto fontColor = m_project->GetGraphTopTitleFontColor();
+        LoadFontAttributes(L, fontInfo, fontColor, true);
+        
+        m_project->SetGraphTopTitleFont(fontInfo);
+        m_project->SetGraphTopTitleFontColor(fontColor);
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::DisplayGraphDropShadows(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1746,6 +1764,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, SetStippleShape),
       LUNA_DECLARE_METHOD(StandardProject, SetXAxisFont),
       LUNA_DECLARE_METHOD(StandardProject, SetYAxisFont),
+      LUNA_DECLARE_METHOD(StandardProject, SetGraphTopTitleFont),
       LUNA_DECLARE_METHOD(StandardProject, DisplayGraphDropShadows),
       LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarColor),
       LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarOpacity),
@@ -2213,6 +2232,24 @@ namespace LuaScripting
         
         m_project->SetYAxisFont(fontInfo);
         m_project->SetYAxisFontColor(fontColor);
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetGraphTopTitleFont(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
+            { return 0; }
+
+        auto fontInfo = m_project->GetGraphTopTitleFont();
+        auto fontColor = m_project->GetGraphTopTitleFontColor();
+        LoadFontAttributes(L, fontInfo, fontColor, true);
+        
+        m_project->SetGraphTopTitleFont(fontInfo);
+        m_project->SetGraphTopTitleFontColor(fontColor);
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2878,6 +2915,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, SetStippleShape),
       LUNA_DECLARE_METHOD(BatchProject, SetXAxisFont),
       LUNA_DECLARE_METHOD(BatchProject, SetYAxisFont),
+      LUNA_DECLARE_METHOD(BatchProject, SetGraphTopTitleFont),
       LUNA_DECLARE_METHOD(BatchProject, DisplayGraphDropShadows),
       LUNA_DECLARE_METHOD(BatchProject, AddTest),
       LUNA_DECLARE_METHOD(BatchProject, Reload),
