@@ -2477,7 +2477,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                                 readRibbonButtonSVG(L"ribbon/bar-labels.svg"),
                                 _(L"Shows or hides the bars' labels."));
                             editButtonRibbonBar->ToggleButton(XRCID("ID_EDIT_BAR_LABELS"),
-                                dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingBarLabels());
+                                dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingBarChartLabels());
                             editButtonRibbonBar->AddDropdownButton(XRCID("ID_GRAPH_SORT"),
                                 _(L"Sort"),
                                 readRibbonButtonSVG(L"ribbon/bar-sort.svg"),
@@ -2759,7 +2759,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             readRibbonButtonSVG(L"ribbon/bar-labels.svg"),
                             _(L"Shows or hides the bars' labels."));
                         editButtonRibbonBar->ToggleButton(XRCID("ID_EDIT_BAR_LABELS"),
-                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingBarLabels());
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingBarChartLabels());
                         editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_BAR_ORIENTATION"),
                             _(L"Orientation"),
                             readRibbonButtonSVG(L"ribbon/axis-orientation.svg"),

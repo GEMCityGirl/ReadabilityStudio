@@ -826,10 +826,10 @@ public:
     [[nodiscard]]
     bool IsConnectingBoxPlotMiddlePoints() const noexcept
         { return m_boxConnectMiddlePoints; }
-    void DisplayBarLabels(const bool display = true) noexcept
+    void DisplayBarChartLabels(const bool display = true) noexcept
         { m_barDisplayLabels = display; }
     [[nodiscard]]
-    bool IsDisplayingBarLabels() const noexcept
+    bool IsDisplayingBarChartLabels() const noexcept
         { return m_barDisplayLabels; }
     // whether gradient is used for graph backgrounds
     void SetGraphBackGroundLinearGradient(const bool useGradient) noexcept

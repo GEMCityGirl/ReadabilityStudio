@@ -724,7 +724,7 @@ void BaseProjectView::OnBarLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent&
     if (!doc)
         { return; }
 
-    doc->DisplayBarLabels(!doc->IsDisplayingBarLabels());
+    doc->DisplayBarChartLabels(!doc->IsDisplayingBarChartLabels());
     doc->RefreshRequired(ProjectRefresh::Minimal);
     doc->RefreshGraphs();
     }

@@ -261,10 +261,10 @@ public:
         { return m_graphBarEffect; }
     void SetGraphBarEffect(const Wisteria::BoxEffect effect) noexcept
         { m_graphBarEffect = effect; }
-    void DisplayBarLabels(const bool display = true) noexcept
+    void DisplayBarChartLabels(const bool display = true) noexcept
         { m_barDisplayLabels = display; }
     [[nodiscard]]
-    bool IsDisplayingBarLabels() const noexcept
+    bool IsDisplayingBarChartLabels() const noexcept
         { return m_barDisplayLabels; }
     // Box Plot options
     void ShowAllBoxPlotPoints(const bool show) noexcept

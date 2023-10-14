@@ -73,7 +73,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_barChartOrientation(wxGetApp().GetAppOptions().GetBarChartOrientation()),
     m_graphBarOpacity(wxGetApp().GetAppOptions().GetGraphBarOpacity()),
     m_graphBarEffect(wxGetApp().GetAppOptions().GetGraphBarEffect()),
-    m_barDisplayLabels(wxGetApp().GetAppOptions().IsDisplayingBarLabels()),
+    m_barDisplayLabels(wxGetApp().GetAppOptions().IsDisplayingBarChartLabels()),
     // box plot options
     m_boxPlotShowAllPoints(wxGetApp().GetAppOptions().IsShowingAllBoxPlotPoints()),
     m_boxDisplayLabels(wxGetApp().GetAppOptions().IsDisplayingBoxPlotLabels()),
@@ -1561,9 +1561,9 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 {
                 orientation = static_cast<decltype(orientation)>(wxGetApp().GetAppOptions().GetBarChartOrientation());
                 }
-            DisplayBarLabels(XmlFormat::GetBoolean(barSection, barSectionEnd,
+            DisplayBarChartLabels(XmlFormat::GetBoolean(barSection, barSectionEnd,
                 wxGetApp().GetAppOptions().XML_BAR_DISPLAY_LABELS,
-                wxGetApp().GetAppOptions().IsDisplayingBarLabels()));
+                wxGetApp().GetAppOptions().IsDisplayingBarChartLabels()));
             SetBarChartOrientation(static_cast<Wisteria::Orientation>(orientation));
             SetGraphBarOpacity(XmlFormat::GetLong(barSection, barSectionEnd,
                 wxGetApp().GetAppOptions().XML_GRAPH_OPACITY,
@@ -2459,7 +2459,7 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText += sectionText;
     // bar display labels
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BAR_DISPLAY_LABELS,
-        static_cast<int>(IsDisplayingBarLabels()), 3);
+        static_cast<int>(IsDisplayingBarChartLabels()), 3);
     fileText += sectionText;
     // bar effect
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BAR_EFFECT,

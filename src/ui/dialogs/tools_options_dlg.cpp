@@ -2218,7 +2218,7 @@ void ToolsOptionsDlg::SaveOptions()
             }
         if (IsPropertyAvailable(m_barChartPropertyGrid,GetLabelsOnBarsLabel()))
             {
-            wxGetApp().GetAppOptions().DisplayBarLabels(
+            wxGetApp().GetAppOptions().DisplayBarChartLabels(
                 m_barChartPropertyGrid->GetPropertyValueAsBool(GetLabelsOnBarsLabel()));
             }
 
@@ -2538,7 +2538,7 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
             }
         if (IsPropertyAvailable(m_barChartPropertyGrid, GetLabelsOnBarsLabel()))
             {
-            m_readabilityProjectDoc->DisplayBarLabels(
+            m_readabilityProjectDoc->DisplayBarChartLabels(
                 m_barChartPropertyGrid->GetPropertyValueAsBool(GetLabelsOnBarsLabel()));
             }
 
@@ -5035,8 +5035,8 @@ void ToolsOptionsDlg::CreateGraphSection()
             m_barChartPropertyGrid->Append(
                 new wxBoolProperty(GetLabelsOnBarsLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->IsDisplayingBarLabels() :
-                    wxGetApp().GetAppOptions().IsDisplayingBarLabels())));
+                    m_readabilityProjectDoc->IsDisplayingBarChartLabels() :
+                    wxGetApp().GetAppOptions().IsDisplayingBarChartLabels())));
             m_barChartPropertyGrid->SetPropertyAttribute(GetLabelsOnBarsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
             m_barChartPropertyGrid->SetPropertyHelpString(
                 GetLabelsOnBarsLabel(), _(L"Check this to display labels on the bars."));

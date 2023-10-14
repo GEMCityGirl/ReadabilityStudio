@@ -2342,9 +2342,9 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     auto barDisplayLabelNode = barChartNode->FirstChildElement(XML_BAR_DISPLAY_LABELS.mb_str());
                     if (barDisplayLabelNode)
                         {
-                        DisplayBarLabels(
+                        DisplayBarChartLabels(
                             int_to_bool(barDisplayLabelNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), bool_to_int(IsDisplayingBarLabels()))));
+                                XML_VALUE.mb_str(), bool_to_int(IsDisplayingBarChartLabels()))));
                         }
                     }
                 // box plots settings
@@ -4171,7 +4171,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     barChartSettings->InsertEndChild(barOpacity);
     // bar display labels
     auto barDisplayLabels = doc.NewElement(XML_BAR_DISPLAY_LABELS.mb_str());
-    barDisplayLabels->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(IsDisplayingBarLabels()));
+    barDisplayLabels->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(IsDisplayingBarChartLabels()));
     barChartSettings->InsertEndChild(barDisplayLabels);
     // bar effect
     auto barEffect = doc.NewElement(XML_BAR_EFFECT.mb_str());

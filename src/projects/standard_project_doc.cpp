@@ -2279,7 +2279,7 @@ void ProjectDoc::DisplaySentenceCharts()
             Histogram::BinningMethod::BinUniqueValues,
             RoundingMethod::NoRounding,
             Histogram::IntervalDisplay::Midpoints,
-            IsDisplayingBarLabels() ?
+            IsDisplayingBarChartLabels() ?
                 GetHistrogramBinLabelDisplay() : BinLabelDisplay::NoDisplay,
             true, 1, std::make_pair(std::nullopt, 8));
         sentenceHistogram->GetLeftYAxis().GetTitle().SetText(_(L"Number of Sentences"));
@@ -2394,7 +2394,7 @@ void ProjectDoc::DisplayWordCharts()
         wordBarChart->IncludeSpacesBetweenBars(true);
         wordBarChart->SetShadowType(IsDisplayingDropShadows() ?
             ShadowType::RightSideShadow : ShadowType::NoShadow);
-        wordBarChart->SetBinLabelDisplay(IsDisplayingBarLabels() ?
+        wordBarChart->SetBinLabelDisplay(IsDisplayingBarChartLabels() ?
             BinLabelDisplay::BinValue : BinLabelDisplay::NoDisplay);
         wordBarChart->GetRightYAxis().Show(false);
         wordBarChart->GetTopXAxis().Show(false);
@@ -2521,7 +2521,7 @@ void ProjectDoc::DisplayWordCharts()
             }
 
         // update the bar labels
-        wordBarChart->SetBinLabelDisplay(IsDisplayingBarLabels() ?
+        wordBarChart->SetBinLabelDisplay(IsDisplayingBarChartLabels() ?
             BinLabelDisplay::BinValue : BinLabelDisplay::NoDisplay);
 
         // won't sort unless this is a refresh and user sorted it previously
@@ -2586,7 +2586,7 @@ void ProjectDoc::DisplayWordCharts()
             Histogram::BinningMethod::BinUniqueValues,
             RoundingMethod::NoRounding,
             Histogram::IntervalDisplay::Midpoints,
-            IsDisplayingBarLabels() ?
+            IsDisplayingBarChartLabels() ?
                 GetHistrogramBinLabelDisplay() : BinLabelDisplay::NoDisplay,
             // show a bar for all syllable counts, starting from 1
             true, 1);
@@ -3501,7 +3501,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 GetGraphBarEffect(), GetGraphBarOpacity()), false);
 
             // update the bar labels
-            coverageBarChart->SetBinLabelDisplay(IsDisplayingBarLabels() ?
+            coverageBarChart->SetBinLabelDisplay(IsDisplayingBarChartLabels() ?
                 BinLabelDisplay::BinValue : BinLabelDisplay::NoDisplay);
 
             coverageBarChart->SortBars(
@@ -3547,7 +3547,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
             dolchBarChart->SetShadowType(IsDisplayingDropShadows() ?
                 ShadowType::RightSideShadow : ShadowType::NoShadow);
             dolchBarChart->IncludeSpacesBetweenBars(true);
-            dolchBarChart->SetBinLabelDisplay(IsDisplayingBarLabels() ?
+            dolchBarChart->SetBinLabelDisplay(IsDisplayingBarChartLabels() ?
                 BinLabelDisplay::BinValue : BinLabelDisplay::NoDisplay);
             dolchBarChart->GetRightYAxis().Show(false);
             dolchBarChart->GetTopXAxis().Show(false);
@@ -3667,7 +3667,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 GetGraphBarEffect(), GetGraphBarOpacity()) );
 
             // update the bar labels
-            dolchBarChart->SetBinLabelDisplay(IsDisplayingBarLabels() ?
+            dolchBarChart->SetBinLabelDisplay(IsDisplayingBarChartLabels() ?
                 BinLabelDisplay::BinValue : BinLabelDisplay::NoDisplay);
 
             dolchBarChart->SortBars(BarChart::BarSortComparison::SortByBarLength, dolchBarChart->GetSortDirection());
