@@ -273,7 +273,7 @@ knitr::include_graphics("images/AddendumHighlightedText2.png")
 
 As we can see, this document could use some improving. Before we can do that, though, the new owners of our software company have also requested that a disclaimer be appended to all sign-up forms such as this. Rather than running a separate analysis on this disclaimer, we would like to append this document to our flyer and analyze them together. To do this, go to the **Home** tab of the ribbon and select **Properties**. On the **Properties** dialog, select **Project Settings** on the sidebar. Next, under the **Append Additional Document** section, click the folder button and navigate to the *examples* folder from where *Readability Studio* is installed. Select the file “Instructional Disclaimer.odt”:
 
-```{r echo=F, fig.align='center', out.width='90%'}
+```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/AddendumProperties.png")
 ```
 

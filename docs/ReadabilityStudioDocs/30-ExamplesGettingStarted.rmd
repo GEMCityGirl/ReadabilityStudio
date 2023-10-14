@@ -160,7 +160,7 @@ knitr::include_graphics("images/NonGenerated/improvedwords.png")
 
 After we finish reworking the original document, we will want to analyze it again to see if it now meets our target audience. Rather than starting all over by making a new project, we will link this project directly to the recipe document. Whenever we open the project again, it will reanalyze the recipe document. To do this, click the `r keys("Properties")` button on the **Home** tab to open the **Project Properties** dialog. Select the **Project Settings** icon and then select the option **Reload the source document when opening project**. Click the `r keys("OK")` button to accept.
 
-```{r echo=F, fig.align='center', out.width='90%'}
+```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/linktofile.png")
 ```
 

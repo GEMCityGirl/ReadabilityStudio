@@ -10,14 +10,14 @@ These options can be configured both globally and for individual projects. Note 
 
 To set these options globally, click the `r keys("Options")` button on the **Tools** tab to open the **Options** dialog:
 
-```{r echo=F, fig.align='center', out.width='90%'}
+```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/OptionsDlg.png")
 ```
 
 If you wish to change options for an individual project, then click the `r keys("Properties")` button on the **Home** tab to open the **Project Properties** dialog:
 
-```{r echo=F, fig.align='center', out.width='90%'}
-knitr::include_graphics("images/linktofile.png")
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/projectproperties.png")
 ```
 
 ## General Settings {#options-general-settings}
@@ -636,7 +636,7 @@ He's been takin' that test for five hours. He ain't never goin' to finish.
 
 Checking this option will instruct the program to not consider words such as *takin’* and *goin’* as misspellings.
 
-**Ignore social media hashtags**: Check this to ignore hashtags, such as *#ReadabilityFormulasRock* or *@AskLibreOffice*.
+**Ignore social media hashtags**: Check this to ignore hashtags, such as *#ReadabilityFormulasRock* or *\@AskLibreOffice*.
 
 \newpage
 

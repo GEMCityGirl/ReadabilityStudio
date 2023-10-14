@@ -10,7 +10,7 @@ These items, by default, are ignored for all newly created projects. That is, an
 
 To toggle this behavior for an existing project, click the `r keys("Properties")` button the **Home** tab to display the **Project Properties** dialog. Next, click the **Document Indexing** icon. Here you can select either **Do not exclude any text**, **Exclude all incomplete sentences**, or **Exclude all incomplete sentences, except headings**, as illustrated below.
 
-```{r echo=F, fig.align='center', out.width='90%'}
+```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/excludeincompletesentences.png")
 ```
 
