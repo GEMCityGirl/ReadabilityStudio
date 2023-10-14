@@ -22,6 +22,9 @@ class ToolsOptionsDlg;
 
 namespace LuaScripting
     {
+    /// @brief Helper function to load font attributes for a project.
+    void LoadFontAttributes(lua_State* L, wxFont& font);
+
     /// @brief Standard project interface.
     /// @private
     /// @internal This is documented in the ReadabilityStudioAPI help.
@@ -157,6 +160,8 @@ namespace LuaScripting
         int SetGraphLogoImage(lua_State *L);
         int SetStippleImage(lua_State *L);
         int SetStippleShape(lua_State *L);
+        int SetXAxisFont(lua_State* L);
+        int SetYAxisFont(lua_State* L);
         int DisplayGraphDropShadows(lua_State *L);
         int SetBarChartBarColor(lua_State *L);
         int SetBarChartBarOpacity(lua_State *L);
@@ -359,6 +364,8 @@ namespace LuaScripting
         int SetGraphLogoImage(lua_State *L);
         int SetStippleImage(lua_State *L);
         int SetStippleShape(lua_State *L);
+        int SetXAxisFont(lua_State *L);
+        int SetYAxisFont(lua_State *L);
         int DisplayGraphDropShadows(lua_State *L);
 
         // Adds a test to the project.

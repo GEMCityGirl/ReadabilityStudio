@@ -26,6 +26,20 @@ wxDECLARE_APP(ReadabilityApp);
 
 namespace LuaScripting
     {
+    void LoadFontAttributes(lua_State* L, wxFont& font)
+        {
+        // name, point size, weight
+        const wxString fontName{ luaL_checkstring(L, 2), wxConvUTF8 };
+        if (fontName.length())
+            { font.SetFaceName(fontName); }
+        const double pointSize{ lua_tonumber(L, 3) };
+        if (pointSize > 0)
+            { font.SetFractionalPointSize(pointSize); }
+        const wxFontWeight fontWeight{ static_cast<wxFontWeight>(lua_tonumber(L, 4)) };
+        if (fontWeight > 0)
+            { font.SetWeight(fontWeight); }
+        }
+
     const char StandardProject::className[] = "StandardProject";
 
     StandardProject::StandardProject(lua_State *L)
@@ -547,6 +561,38 @@ namespace LuaScripting
             { return 0; }
 
         m_project->SetStippleShape(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetXAxisFont(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+            { return 0; }
+
+        auto fontInfo = m_project->GetXAxisFont();
+        LoadFontAttributes(L, fontInfo);
+        
+        m_project->SetXAxisFont(fontInfo);
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetYAxisFont(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+            { return 0; }
+
+        auto fontInfo = m_project->GetYAxisFont();
+        LoadFontAttributes(L, fontInfo);
+        
+        m_project->SetYAxisFont(fontInfo);
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -1690,6 +1736,8 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundOpacity),
       LUNA_DECLARE_METHOD(StandardProject, SetStippleImage),
       LUNA_DECLARE_METHOD(StandardProject, SetStippleShape),
+      LUNA_DECLARE_METHOD(StandardProject, SetXAxisFont),
+      LUNA_DECLARE_METHOD(StandardProject, SetYAxisFont),
       LUNA_DECLARE_METHOD(StandardProject, DisplayGraphDropShadows),
       LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarColor),
       LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarOpacity),
@@ -2121,6 +2169,38 @@ namespace LuaScripting
             { return 0; }
 
         m_project->SetStippleShape(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetXAxisFont(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+            { return 0; }
+
+        auto fontInfo = m_project->GetXAxisFont();
+        LoadFontAttributes(L, fontInfo);
+        
+        m_project->SetXAxisFont(fontInfo);
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetYAxisFont(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+            { return 0; }
+
+        auto fontInfo = m_project->GetYAxisFont();
+        LoadFontAttributes(L, fontInfo);
+        
+        m_project->SetYAxisFont(fontInfo);
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2784,6 +2864,8 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundOpacity),
       LUNA_DECLARE_METHOD(BatchProject, SetStippleImage),
       LUNA_DECLARE_METHOD(BatchProject, SetStippleShape),
+      LUNA_DECLARE_METHOD(BatchProject, SetXAxisFont),
+      LUNA_DECLARE_METHOD(BatchProject, SetYAxisFont),
       LUNA_DECLARE_METHOD(BatchProject, DisplayGraphDropShadows),
       LUNA_DECLARE_METHOD(BatchProject, AddTest),
       LUNA_DECLARE_METHOD(BatchProject, Reload),
