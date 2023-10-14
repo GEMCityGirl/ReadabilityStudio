@@ -394,7 +394,22 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
                     { errorMessage.replace(0, foundPos, _("Error")); }
                 editor->GotoLine(lineNumber);
                 editor->AnnotationSetText(lineNumber, errorMessage);
-                editor->AnnotationSetVisible(2 /* ANNOTATION_BOXED */);
+                editor->AnnotationSetStyle(lineNumber, editor->ERROR_ANNOTATION_STYLE);
+
+                // Scintilla doesn't update the scroll width for annotations, even with
+                // scroll width tracking on, so do it manually.
+                const int width = editor->GetScrollWidth();
+
+                // Take into account the fact that the annotation is shown indented, with
+                // the same indent as the line it's attached to.
+                // Also, add 3; this is just a hack to account for the width of the box, there doesn't
+                // seem to be any way to get it directly from Scintilla.
+                int indent = editor->GetLineIndentation(lineNumber) + FromDIP(3);
+
+                const int widthAnn = editor->TextWidth(editor->ERROR_ANNOTATION_STYLE, errorMessage + wxString(indent, ' '));
+
+                if (widthAnn > width)
+                    { editor->SetScrollWidth(widthAnn); }
                 }
             }
         },
