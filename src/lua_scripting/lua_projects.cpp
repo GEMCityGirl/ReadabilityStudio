@@ -31,7 +31,7 @@ namespace LuaScripting
         int paramIndex = (calledFromObject ? 2 : 1);
         // name, point size, weight, color (as a string)
         const wxString fontName{ luaL_checkstring(L, paramIndex++), wxConvUTF8 };
-        if (fontName.length())
+        if (!fontName.empty())
             { font.SetFaceName(fontName); }
         const double pointSize{ lua_tonumber(L, paramIndex++) };
         if (pointSize > 0)
