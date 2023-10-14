@@ -132,14 +132,14 @@ public:
         { m_yAxisFont = font; }
     /// title fonts
     [[nodiscard]]
-    wxColour GetTopTitleGraphFontColor() const
+    wxColour GetGraphTopTitleFontColor() const
         { return m_topTitleFontColor; }
-    void SetTopTitleGraphFontColor(const wxColour& color)
+    void SetGraphTopTitleFontColor(const wxColour& color)
         { m_topTitleFontColor = color; }
     [[nodiscard]]
-    wxFont GetTopTitleGraphFont() const
+    wxFont GetGraphTopTitleFont() const
         { return m_topTitleFont; }
-    void SetTopTitleGraphFont(const wxFont& font)
+    void SetGraphTopTitleFont(const wxFont& font)
         { m_topTitleFont = font; }
     [[nodiscard]]
     wxColour GetBottomTitleGraphFontColor() const

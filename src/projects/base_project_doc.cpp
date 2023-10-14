@@ -47,8 +47,8 @@ BaseProjectDoc::BaseProjectDoc() :
     m_xAxisFont(wxGetApp().GetAppOptions().GetXAxisFont()),
     m_yAxisFontColor(wxGetApp().GetAppOptions().GetYAxisFontColor()),
     m_yAxisFont(wxGetApp().GetAppOptions().GetYAxisFont()),
-    m_topTitleFontColor(wxGetApp().GetAppOptions().GetTopTitleGraphFontColor()),
-    m_topTitleFont(wxGetApp().GetAppOptions().GetTopTitleGraphFont()),
+    m_topTitleFontColor(wxGetApp().GetAppOptions().GetGraphTopTitleFontColor()),
+    m_topTitleFont(wxGetApp().GetAppOptions().GetGraphTopTitleFont()),
     m_bottomTitleFontColor(wxGetApp().GetAppOptions().GetBottomTitleGraphFontColor()),
     m_bottomTitleFont(wxGetApp().GetAppOptions().GetBottomTitleGraphFont()),
     m_leftTitleFontColor(wxGetApp().GetAppOptions().GetLeftTitleGraphFontColor()),
@@ -518,13 +518,13 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
         }
 
     // update the plot title's font also
-    graph->GetTitle().GetFont() = GetTopTitleGraphFont();
-    graph->GetTitle().SetFontColor(GetTopTitleGraphFontColor());
+    graph->GetTitle().GetFont() = GetGraphTopTitleFont();
+    graph->GetTitle().SetFontColor(GetGraphTopTitleFontColor());
     // canvas title fonts
     for (size_t i = 0; i < canvas->GetTopTitles().size(); ++i)
         {
-        canvas->GetTopTitles().at(i).GetFont() = GetTopTitleGraphFont();
-        canvas->GetTopTitles().at(i).SetFontColor(GetTopTitleGraphFontColor());
+        canvas->GetTopTitles().at(i).GetFont() = GetGraphTopTitleFont();
+        canvas->GetTopTitles().at(i).SetFontColor(GetGraphTopTitleFontColor());
         }
     for (size_t i = 0; i < canvas->GetBottomTitles().size(); ++i)
         {
@@ -1640,14 +1640,14 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             if (topTitleSection && topTitleSectionEnd &&
                 (topTitleSection < topTitleSectionEnd) )
                 {
-                SetTopTitleGraphFontColor(
+                SetGraphTopTitleFontColor(
                     XmlFormat::GetColor(topTitleSection, topTitleSectionEnd,
                         wxGetApp().GetAppOptions().XML_FONT_COLOR,
-                        wxGetApp().GetAppOptions().GetTopTitleGraphFontColor()));
-                SetTopTitleGraphFont(
+                        wxGetApp().GetAppOptions().GetGraphTopTitleFontColor()));
+                SetGraphTopTitleFont(
                     XmlFormat::GetFont(topTitleSection, topTitleSectionEnd,
                         wxGetApp().GetAppOptions().XML_FONT,
-                        wxGetApp().GetAppOptions().GetTopTitleGraphFont()));
+                        wxGetApp().GetAppOptions().GetGraphTopTitleFont()));
                 }
 
             // bottom title
@@ -2527,11 +2527,11 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_TOP_TITLE).append(L">\n");
     // font color
     fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT_COLOR);
-    fileText += XmlFormat::FormatColorAttributes(GetTopTitleGraphFontColor());
+    fileText += XmlFormat::FormatColorAttributes(GetGraphTopTitleFontColor());
     fileText.append(L"/>\n");
     // font information
     fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT);
-    fileText += XmlFormat::FormatFontAttributes(GetTopTitleGraphFont());
+    fileText += XmlFormat::FormatFontAttributes(GetGraphTopTitleFont());
     fileText.append(L"/>\n");
     fileText.append(L"\t\t\t</").append(wxGetApp().GetAppOptions().XML_TOP_TITLE).append(L">\n");
     // bottom title

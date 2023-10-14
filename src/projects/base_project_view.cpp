@@ -958,8 +958,8 @@ void BaseProjectView::OnEditGraphFont(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_EDIT_TOP_TITLES_FONT"))
         {
-        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetTopTitleGraphFont());
-        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetTopTitleGraphFontColor());
+        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphTopTitleFont());
+        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphTopTitleFontColor());
         }
     else if (event.GetId() == XRCID("ID_EDIT_BOTTOM_TITLES_FONT"))
         {
@@ -996,9 +996,9 @@ void BaseProjectView::OnEditGraphFont(wxCommandEvent& event)
             }
         else if (event.GetId() == XRCID("ID_EDIT_TOP_TITLES_FONT"))
             {
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetTopTitleGraphFont(
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphTopTitleFont(
                 dialog.GetFontData().GetChosenFont());
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetTopTitleGraphFontColor(
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphTopTitleFontColor(
                 dialog.GetFontData().GetColour());
             }
         else if (event.GetId() == XRCID("ID_EDIT_BOTTOM_TITLES_FONT"))

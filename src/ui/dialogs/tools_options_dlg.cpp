@@ -800,11 +800,11 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
     m_yAxisFont(project ? project->GetYAxisFont() :
         wxGetApp().GetAppOptions().GetYAxisFont()),
     m_topTitleFontColor(project ?
-        project->GetTopTitleGraphFontColor() :
-        wxGetApp().GetAppOptions().GetTopTitleGraphFontColor()),
+        project->GetGraphTopTitleFontColor() :
+        wxGetApp().GetAppOptions().GetGraphTopTitleFontColor()),
     m_topTitleFont(project ?
-        project->GetTopTitleGraphFont() :
-        wxGetApp().GetAppOptions().GetTopTitleGraphFont()),
+        project->GetGraphTopTitleFont() :
+        wxGetApp().GetAppOptions().GetGraphTopTitleFont()),
     m_bottomTitleFontColor(project ?
         project->GetBottomTitleGraphFontColor() :
         wxGetApp().GetAppOptions().GetBottomTitleGraphFontColor()),
@@ -2297,8 +2297,8 @@ void ToolsOptionsDlg::SaveOptions()
         wxGetApp().GetAppOptions().SetXAxisFontColor(m_xAxisFontColor);
         wxGetApp().GetAppOptions().SetYAxisFont(m_yAxisFont);
         wxGetApp().GetAppOptions().SetYAxisFontColor(m_yAxisFontColor);
-        wxGetApp().GetAppOptions().SetTopTitleGraphFont(m_topTitleFont);
-        wxGetApp().GetAppOptions().SetTopTitleGraphFontColor(m_topTitleFontColor);
+        wxGetApp().GetAppOptions().SetGraphTopTitleFont(m_topTitleFont);
+        wxGetApp().GetAppOptions().SetGraphTopTitleFontColor(m_topTitleFontColor);
         wxGetApp().GetAppOptions().SetBottomTitleGraphFont(m_bottomTitleFont);
         wxGetApp().GetAppOptions().SetBottomTitleGraphFontColor(m_bottomTitleFontColor);
         wxGetApp().GetAppOptions().SetLeftTitleGraphFont(m_leftTitleFont);
@@ -2616,8 +2616,8 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
         m_readabilityProjectDoc->SetXAxisFontColor(m_xAxisFontColor);
         m_readabilityProjectDoc->SetYAxisFont(m_yAxisFont);
         m_readabilityProjectDoc->SetYAxisFontColor(m_yAxisFontColor);
-        m_readabilityProjectDoc->SetTopTitleGraphFont(m_topTitleFont);
-        m_readabilityProjectDoc->SetTopTitleGraphFontColor(m_topTitleFontColor);
+        m_readabilityProjectDoc->SetGraphTopTitleFont(m_topTitleFont);
+        m_readabilityProjectDoc->SetGraphTopTitleFontColor(m_topTitleFontColor);
         m_readabilityProjectDoc->SetBottomTitleGraphFont(m_bottomTitleFont);
         m_readabilityProjectDoc->SetBottomTitleGraphFontColor(m_bottomTitleFontColor);
         m_readabilityProjectDoc->SetLeftTitleGraphFont(m_leftTitleFont);
