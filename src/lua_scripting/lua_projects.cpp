@@ -718,7 +718,7 @@ namespace LuaScripting
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        wxGetApp().GetAppOptions().SetReviewer(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        m_project->SetReviewer(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -728,7 +728,7 @@ namespace LuaScripting
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
 
-        lua_pushstring(L, wxGetApp().GetAppOptions().GetReviewer().utf8_str());
+        lua_pushstring(L, m_project->GetReviewer().utf8_str());
         return 1;
         }
 
@@ -2299,7 +2299,7 @@ namespace LuaScripting
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        wxGetApp().GetAppOptions().SetReviewer(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        m_project->SetReviewer(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -2310,7 +2310,7 @@ namespace LuaScripting
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
 
-        lua_pushstring(L, wxGetApp().GetAppOptions().GetReviewer().utf8_str());
+        lua_pushstring(L, m_project->GetReviewer().utf8_str());
         return 1;
         }
 
