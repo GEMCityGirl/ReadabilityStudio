@@ -14,11 +14,13 @@ Note that these tests only determine the reading level of material based on how 
 
 All readability formulas rely on factors such as sentence length, syllable counts, character counts, or word familiarity. Which factors are used vary from test to test, but most tests use between one to three of these factors to gauge a document's difficulty.
 
+::: {.minipage data-latex="{\textwidth}"}
 Where readability tests may differ is how they are calculated. Most tests are performed using the following methods:
 
 - linear regression equations
 - lookup tables
 - graphs
+:::
 
 The vast majority of tests use multiple linear regressions. Basically, multiple linear regression is a statistical method for modelling the relationship between a dependent variable and two or more independent variables (i.e., predictors). In the case of readability tests, the dependent is human-judged grade levels for a set of samples, while the independents are factors such as the samples' sentence lengths and syllable counts. A multiple regression is performed to determine the strongest predictors (usually the top two), and the prediction equation created by the analysis will be the new readability formula.
 

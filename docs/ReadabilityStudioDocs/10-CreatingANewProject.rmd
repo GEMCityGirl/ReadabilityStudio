@@ -76,7 +76,7 @@ From here, you can review the [readability scores](#reviewing-test-scores) and [
 
 To determine the readability of a document collection, you will need to create a new batch project. First, click the `r keys("New")` button on the **Home** tab to open the **Select Project Type** dialog, as shown below:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='50%'}
 knitr::include_graphics("images/selectprojecttype.png")
 ```
 

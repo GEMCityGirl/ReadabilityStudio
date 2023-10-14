@@ -158,15 +158,17 @@ These issues are shown highlighted in your document for easy review. They are al
 
 You do not need the native application for these file formats. *Readability Studio* is capable of importing these files without any additional programs.
 
-#### Advanced exporting capabilities {-}
+#### Exporting capabilities {-}
 
 *Readability Studio* provides printing and [exporting](#exporting) capabilities for all test scores, word lists, statistics, graphs, etc. This enables you to easily share and publish your results.
 
-- Test results, statistics, and difficult word lists can all be exported as HTML or text.
+- Test results, statistics, and difficult word lists can all be exported as HTML, text, or `r latex_logo(FALSE)`.
 - Statistics summary report can be exported as HTML.
 - Highlighted document views can be exported as RTF or HTML.
 - Graphs can be exported as TIFF, JPG, BMP, PNG, SVG, GIF, or TARGA.
 
 #### Flexibility {-}
 
-Finally, *Readability Studio* is highly configurable. Many options, such as how documents are analyzed and how the results are displayed, are customizable. For example, you can specify how numeric words (e.g., *10/31/1974*) are [syllabized](#document-analysis). Other programs either sound out each digit or treat the entire word as one syllable and you cannot change this. With *Readability Studio*, you can toggle this behavior at anytime.
+Finally, *Readability Studio* is highly configurable. Many options, such as how documents are analyzed and how the results are displayed, are customizable.
+For example, you can specify how numeric words (e.g., *10/31/1974*) are [syllabized](#document-analysis).
+Other programs either sound out each digit or treat the entire word as one syllable and you cannot change this. With *Readability Studio*, you can toggle this behavior at anytime.
