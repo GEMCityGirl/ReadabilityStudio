@@ -636,7 +636,7 @@ He's been takin' that test for five hours. He ain't never goin' to finish.
 
 Checking this option will instruct the program to not consider words such as *takin’* and *goin’* as misspellings.
 
-**Ignore social media hashtags**: Check this to ignore hashtags, such as *#ReadabilityFormulasRock*.
+**Ignore social media hashtags**: Check this to ignore hashtags, such as *#ReadabilityFormulasRock* or *@AskLibreOffice*.
 
 \newpage
 

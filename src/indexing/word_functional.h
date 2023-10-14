@@ -76,7 +76,7 @@ template<typename word_typeT>
 class valid_syllable_count_equals
     {
 public:
-    /** Constructor that takes the required syllable count and how to treat numerals.
+    /** @brief Constructor that takes the required syllable count and how to treat numerals.
         @param count The expected number of syllables that a passing word should have.
         @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one syllable.
             Default is @c false.*/
@@ -111,7 +111,7 @@ template<typename word_typeT>
 class syllable_count_greater_equal
     {
 public:
-    /** Constructor that takes the required syllable count and how to treat numerals.
+    /** @brief Constructor that takes the required syllable count and how to treat numerals.
         @param count The expected number of syllables that a passing word should have.
         @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one syllable.\n
             Default is @c false.*/
@@ -237,7 +237,7 @@ private:
     size_t m_count{ 0 };
     };
 
-/// Use this when ignoring words from bullet points and headers.
+/// @brief Use this when ignoring words from bullet points and headers.
 template<typename word_typeT>
 class valid_syllable_count_greater_equal_ignore_numerals_and_proper_nouns
     {
@@ -281,7 +281,7 @@ private:
     bool m_treat_numerals_as_monosyllabic{ false };
     };
 
-/// Use this when ignoring words from bullet points and headers.
+/// @brief Use this when ignoring words from bullet points and headers.
 template<typename word_typeT>
 class valid_syllable_count_greater
     {
@@ -363,7 +363,7 @@ public:
         }
     };
 
-/// use this when ignoring words from bullet points and headers
+/// @brief Use this when ignoring words from bullet points and headers.
 template<typename word_typeT>
 class add_valid_syllable_size_ignore_numerals
     {
@@ -393,7 +393,7 @@ public:
         }
     };
 
-/// use this when ignoring words from bullet points and headers
+/// @brief Use this when ignoring words from bullet points and headers.
 template<typename word_typeT>
 class add_valid_syllable_size_ignore_numerals_and_proper_nouns
     {
@@ -410,7 +410,7 @@ public:
         }
     };
 
-/** Proper nouns functor used for std::count_if.
+/** Proper nouns functor used for `std::count_if`.
     Use this when ignoring words from bullet points and headers.*/
 template<typename word_typeT>
 class is_proper_noun
@@ -427,7 +427,7 @@ public:
         }
     };
 
-/** Proper nouns functor used for std::count_if.
+/** Proper nouns functor used for `std::count_if`.
     Use this when ignoring words from bullet points and headers.*/
 template<typename word_typeT>
 class is_valid_proper_noun
@@ -446,7 +446,7 @@ public:
         }
     };
 
-/** Numerals functors used for std::count_if.*/
+/** @brief Numerals functors used for `std::count_if`.*/
 template<typename word_typeT>
 class is_numeric
     {
@@ -459,8 +459,8 @@ public:
         { return the_word.is_numeric(); }
     };
 
-/** Numeric word functor used for std::count_if.
-    Use this when ignoring words from bullet points and headers.*/
+/** @brief Numeric word functor used for `std::count_if`.
+    @details Use this when ignoring words from bullet points and headers.*/
 template<typename word_typeT>
 class is_valid_numeric
     {
@@ -478,8 +478,8 @@ public:
         }
     };
 
-/** Word length comparison functor, which includes internal punctuation marks.
-    Used for std::count_if.*/
+/** @brief Word length comparison functor, which includes internal punctuation marks.
+    @details Used for `std::count_if`.*/
 template<typename word_typeT>
 class word_length_equals
     {
@@ -501,8 +501,8 @@ private:
     size_t m_count{ 0 };
     };
 
-/** Word length comparison functor for valid words, which includes internal punctuation marks.
-    Used for std::count_if.*/
+/** @brief Word length comparison functor for valid words, which includes internal punctuation marks.
+    @details Used for `std::count_if`.*/
 template<typename word_typeT>
 class valid_word_length_equals
     {
@@ -527,13 +527,13 @@ private:
     size_t m_count{ 0 };
     };
 
-/** >= comparison of word lengths from valid words, including their internal punctuation marks.
-    Used for std::count_if.*/
+/** @brief >= comparison of word lengths from valid words, including their internal punctuation marks.
+    @details Used for `std::count_if`.*/
 template<typename word_typeT>
 class word_length_greater_equals
     {
 public:
-    /** @brief Constructor
+    /** @brief Constructor.
         @param count The word size to compare against.*/
     explicit word_length_greater_equals(const size_t count) noexcept :
         m_count(count)
@@ -549,8 +549,8 @@ private:
     size_t m_count{ 0 };
     };
 
-/** >= comparison of word lengths from  words, excluding their internal punctuation marks.
-    Used for std::count_if.*/
+/** @brief >= comparison of word lengths from  words, excluding their internal punctuation marks.
+    @details Used for `std::count_if`.*/
 template<typename word_typeT>
 class word_length_excluding_punctuation_greater_equals
     {
@@ -561,7 +561,7 @@ public:
         m_count(count)
         {}
     word_length_excluding_punctuation_greater_equals() = delete;
-    /** Comparison operator.
+    /** @brief Comparison operator.
         @param the_word The word to review.
         @returns @c true if current word's length is greater than or equal to the
             seeded length (ignoring punctuation in the word)*/
@@ -574,19 +574,19 @@ private:
     size_t m_count{ 0 };
     };
 
-/** >= comparison of word lengths from valid words, including their internal punctuation marks.
-    Used for std::count_if. Use this when ignoring words from bullet points and headers.*/
+/** @brief >= comparison of word lengths from valid words, including their internal punctuation marks.
+    @details Used for std::count_if. Use this when ignoring words from bullet points and headers.*/
 template<typename word_typeT>
 class valid_word_length_greater_equals
     {
 public:
-    /** Constructor
+    /** @brief Constructor.
         @param count The word size to compare against.*/
     explicit valid_word_length_greater_equals(const size_t count) noexcept :
         m_count(count)
         {}
     valid_word_length_greater_equals() = delete;
-    /** Comparison operator.
+    /** @brief Comparison operator.
         @param the_word The word to review.
         @returns @c true if current word's length is greater than or equal to the
             seeded length (if word is valid).*/
@@ -602,19 +602,19 @@ private:
     size_t m_count{ 0 };
     };
 
-/** >= comparison of word lengths from valid words, excluding their internal punctuation marks.
-    Used for std::count_if. Use this when ignoring words from bullet points and headers.*/
+/** @brief >= comparison of word lengths from valid words, excluding their internal punctuation marks.
+    @details Used for std::count_if. Use this when ignoring words from bullet points and headers.*/
 template<typename word_typeT>
 class valid_word_length_excluding_punctuation_greater_equals
     {
 public:
-    /** Constructor
+    /** @brief Constructor.
         @param count The word size to compare against.*/
     explicit valid_word_length_excluding_punctuation_greater_equals(const size_t count) noexcept :
         m_count(count)
         {}
     valid_word_length_excluding_punctuation_greater_equals() = delete;
-    /** Comparison operator.
+    /** @brief Comparison operator.
         @param the_word The word to review.
         @returns @c true if current word's length is greater than or equal to
             the seeded length (ignoring punctuation in the word, and if word is valid).*/
@@ -630,13 +630,13 @@ private:
     size_t m_count{ 0 };
     };
 
-/** Accumulates word lengths from words, including their internal punctuation marks.
-    Used for std::accumulate.*/
+/** @brief Accumulates word lengths from words, including their internal punctuation marks.
+    @details Used for `std::accumulate`.*/
 template<typename word_typeT>
 class add_word_size
     {
 public:
-    /** Accumulation interface.
+    /** @brief Accumulation interface.
         @param result The previous result to add to.
         @param the_word The word whose length will be added to the result.
         @returns The seeded result plus the current word's length.*/
@@ -647,12 +647,12 @@ public:
         }
     };
 
-/** Accumulates word lengths from words, excluding their internal punctuation marks.*/
+/** @brief Accumulates word lengths from words, excluding their internal punctuation marks.*/
 template<typename word_typeT>
 class add_word_size_excluding_punctuation
     {
 public:
-    /** Accumulation interface.
+    /** @brief Accumulation interface.
         @param result The previous result to add to.
         @param the_word The word whose length will be added to the result.
         @returns The seeded result plus the current word's length (excluding any punctuation in the word).*/
@@ -663,12 +663,12 @@ public:
         }
     };
 
-/** Accumulates word lengths from valid words, including their internal punctuation marks.*/
+/** @brief Accumulates word lengths from valid words, including their internal punctuation marks.*/
 template<typename word_typeT>
 class add_valid_word_size
     {
 public:
-    /** Accumulation interface.
+    /** @brief Accumulation interface.
         @param result The previous result to add to.
         @param the_word The word whose length will be added to the result.
         @returns The seeded result plus the current word's length (if valid).*/
@@ -688,7 +688,7 @@ template<typename word_typeT>
 class add_valid_word_size_excluding_punctuation
     {
 public:
-    /** Accumulation interface.
+    /** @brief Accumulation interface.
         @param result The previous result to add to.
         @param the_word The word whose length will be added to the result.
         @returns The seeded result plus the current word's length
@@ -703,7 +703,7 @@ public:
         }
     };
 
-/** Determines if a word is a social media tag (i.e., a "hashtag").*/
+/** Determines if a word is a social media tag (i.e., a "hashtag" or "at" handle).*/
 template<typename word_typeT>
 class is_social_media_tag
     {
@@ -714,21 +714,23 @@ public:
     [[nodiscard]]
     bool operator()(const word_typeT& the_word) const
         {
-        // start with '#', but not a number like "#12".
+        // start with '#' or '@', but not a number like "#12".
         return (!the_word.is_numeric() &&
             the_word.get_length_excluding_punctuation() > 4 &&
-            the_word[0] == L'#');
+            (the_word[0] == L'#' || the_word[0] == L'@') &&
+            characters::is_character::is_alpha(the_word[1]));
         }
     };
 
-/** Used for spell checking.
-    Performs a binary search through a list of known words to see if the provided
-    value is in there. Also takes into account whether the word is proper, numeric, or uppercased.*/
+/** @brief Used for spell checking.
+    @details Performs a binary search through a list of known words to see if the provided
+        value is in there. Also takes into account whether the word is
+        proper, numeric, or uppercased.*/
 template<typename word_typeT, typename wordlistT>
 class is_correctly_spelled_word
     {
 public:
-    /** Constructor.
+    /** @brief Constructor.
         @param wlist The list of known words.
         @param secondary_wlist A user-defined list of known words.
         @param programmer_wlist A programming word list (only used by is_programmer_code())
@@ -761,7 +763,7 @@ public:
       m_ignore_social_media_tags(should_ignore_social_media_tags)
         {}
     is_correctly_spelled_word() = default;
-    /** Sets the list of known (spelled correctly) words.
+    /** @brief Sets the list of known (spelled correctly) words.
         @param wlist The list of known words.*/
     void set_word_list(const wordlistT* wlist) noexcept
         { m_wordlist = wlist; }
@@ -769,7 +771,7 @@ public:
     [[nodiscard]]
     const wordlistT* get_word_list() const noexcept
         { return m_wordlist; }
-    /** Sets the user-defined list of known words.
+    /** @brief Sets the user-defined list of known words.
         @param wlist The list of user-defined known words.*/
     void set_secondary_word_list(const wordlistT* wlist) noexcept
         { m_secondary_wordlist = wlist; }
@@ -777,7 +779,7 @@ public:
     [[nodiscard]]
     const wordlistT* get_secondary_word_list() const noexcept
         { return m_secondary_wordlist; }
-    /** Sets the list of known programming words.
+    /** @brief Sets the list of known programming words.
         @param wlist The list of programming known words.*/
     void set_programmer_word_list(const wordlistT* wlist) noexcept
         { m_programmer_wordlist = wlist; }
@@ -786,62 +788,62 @@ public:
     const wordlistT* get_programmer_word_list() const noexcept
         { return m_programmer_wordlist; }
     /** @returns Whether proper nouns are checked or not. If not, then
-        proper nouns will always be considered spelled correctly.*/
+            proper nouns will always be considered spelled correctly.*/
     [[nodiscard]]
     bool is_ignoring_proper_nouns() const noexcept
         { return m_ignore_proper_nouns; }
-    /** Set whether proper nouns are checked or not. If not, then
-        proper nouns will always be considered spelled correctly.
+    /** @brief Set whether proper nouns are checked or not. If not, then
+            proper nouns will always be considered spelled correctly.
         @param ignore Whether proper nouns should be checked.*/
     void ignore_proper_nouns(const bool ignore) noexcept
         { m_ignore_proper_nouns = ignore; }
     /** @returns Whether all uppercased words are checked or not. If not, then
-        uppercased words will always be considered spelled correctly.*/
+            uppercased words will always be considered spelled correctly.*/
     [[nodiscard]]
     bool is_ignoring_uppercased() const noexcept
         { return m_ignore_uppercased; }
-    /** Set whether all uppercased words are checked or not. If not, then
-        uppercased words will always be considered spelled correctly.
+    /** @brief Set whether all uppercased words are checked or not. If not, then
+            uppercased words will always be considered spelled correctly.
         @param ignore Whether uppercased words should be checked.*/
     void ignore_uppercased(const bool ignore) noexcept
         { m_ignore_uppercased = ignore; }
     /** @returns Whether numerals are checked or not. If not, then
-        numerals will always be considered spelled correctly.*/
+            numerals will always be considered spelled correctly.*/
     [[nodiscard]]
     bool is_ignoring_numerals() const noexcept
         { return m_ignore_numerals; }
-    /** Set whether numerals are checked or not. If not, then
-        numerals will always be considered spelled correctly.
+    /** @brief Set whether numerals are checked or not. If not, then
+            numerals will always be considered spelled correctly.
         @param ignore Whether numerals should be checked.*/
     void ignore_numerals(const bool ignore) noexcept
         { m_ignore_numerals = ignore; }
     /** @returns Whether file addresses are checked or not. If not, then
-        file addresses will always be considered spelled correctly.*/
+            file addresses will always be considered spelled correctly.*/
     [[nodiscard]]
     bool is_ignoring_file_addresses() const noexcept
         { return m_ignore_file_addresses; }
-    /** Set whether file addresses are checked or not. If not, then
-        file addresses will always be considered spelled correctly.
+    /** @brief Set whether file addresses are checked or not. If not, then
+            file addresses will always be considered spelled correctly.
         @param ignore Whether file addresses should be checked.*/
     void ignore_file_addresses(const bool ignore) noexcept
         { m_ignore_file_addresses = ignore; }
     /** @returns Whether programmer code are checked or not. If not, then
-        programmer code will always be considered spelled correctly.*/
+            programmer code will always be considered spelled correctly.*/
     [[nodiscard]]
     bool is_ignoring_programmer_code() const noexcept
         { return m_ignore_programmer_code; }
-    /** Set whether programmer code are checked or not. If not, then
-        programmer code will always be considered spelled correctly.
+    /** @brief Set whether programmer code are checked or not. If not, then
+            programmer code will always be considered spelled correctly.
         @param ignore Whether programmer code should be checked.*/
     void ignore_programmer_code(const bool ignore) noexcept
         { m_ignore_programmer_code = ignore; }
     /** @returns Whether colloquialisms are acceptable. If so, then things like
-        "tryin'" would be considered spelled correctly.*/
+            "tryin'" would be considered spelled correctly.*/
     [[nodiscard]]
     bool is_allowing_colloquialisms() const noexcept
         { return m_allow_colloquialisms; }
     /** Set whether colloquialisms are checked or not. If so, then things like
-        "tryin'" will always be considered spelled correctly.
+            "tryin'" will always be considered spelled correctly.
         @param allow Whether colloquialisms should be considered acceptable spelling.*/
     void allow_colloquialisms(const bool allow) noexcept
         { m_allow_colloquialisms = allow; }
@@ -850,7 +852,7 @@ public:
     [[nodiscard]]
     bool is_ignoring_social_media_tags() const noexcept
         { return m_ignore_social_media_tags; }
-    /** Set whether hashtagged words should be ignored.
+    /** @brief Set whether hashtagged words should be ignored.
         @param ignore Whether to ignore hashtagged words.*/
     void ignore_social_media_tags(const bool ignore) noexcept
         { m_ignore_social_media_tags = ignore; }
@@ -1112,8 +1114,8 @@ private:
     grammar::is_acronym isAcronym;
     };
 
-/** Calls a member function of elements in a container for each
-    element in another container.*/
+/** @brief Calls a member function of elements in a container for each
+        element in another container.*/
 template<typename inT, typename outT, typename member_extract_functorT>
 inline outT copy_member(inT begin, inT end, outT dest, member_extract_functorT get_value)
     {
@@ -1122,7 +1124,7 @@ inline outT copy_member(inT begin, inT end, outT dest, member_extract_functorT g
     return (dest);
     }
 
-/// Copies a member value between objects based on specified criteria.
+/// @brief Copies a member value between objects based on specified criteria.
 template<typename inT, typename outT,
          typename _Pr,
          typename member_extract_functorT>
