@@ -321,9 +321,9 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
             if (GetLicenseAdmin().IsFeatureEnabled(FeatureProfessionalCode()) &&
                 cmdParser.Found(_DT(L"lua"), &luaScriptPath))
                 {
-                wxString luaScript;
+                wxString luaScript, errorMessage;
                 if (Wisteria::TextStream::ReadFile(luaScriptPath, luaScript))
-                    { GetLuaRunner().RunLuaCode(luaScript, luaScriptPath); }
+                    { GetLuaRunner().RunLuaCode(luaScript, luaScriptPath, errorMessage); }
                 }
 
             // see if they want to display the help
