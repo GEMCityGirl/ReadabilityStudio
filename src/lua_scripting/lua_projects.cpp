@@ -31,14 +31,15 @@ namespace LuaScripting
         int paramIndex = (calledFromObject ? 2 : 1);
         // name, point size, weight, color (as a string)
         const wxString fontName{ luaL_checkstring(L, paramIndex++), wxConvUTF8 };
+        // cppcheck-suppress knownConditionTrueFalse
         if (!fontName.empty())
             { font.SetFaceName(fontName); }
         const double pointSize{ lua_tonumber(L, paramIndex++) };
         if (pointSize > 0)
             { font.SetFractionalPointSize(pointSize); }
-        const wxFontWeight fontWeight{ static_cast<wxFontWeight>(lua_tonumber(L, paramIndex++)) };
+        const int fontWeight{ static_cast<int>(lua_tonumber(L, paramIndex++)) };
         if (fontWeight > 0)
-            { font.SetWeight(fontWeight); }
+            { font.SetWeight(static_cast<wxFontWeight>(fontWeight)); }
         const wxColour color{ wxString{ luaL_checkstring(L, paramIndex++), wxConvUTF8 } };
         if (color.IsOk())
             { fontColor = color; }
