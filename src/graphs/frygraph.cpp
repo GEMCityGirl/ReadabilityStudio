@@ -355,14 +355,14 @@ namespace Wisteria::Graphs
             // overriding scaling with a hard-coded font size returned from CalcDiagonalFontSize()
             Scaling(1).DPIScaling(1).
             AnchorPoint(pt1).Anchoring(Anchoring::TopLeftCorner));
-        gradeLevelLabel->Tilt(-30);
+        gradeLevelLabel->Tilt(-45);
         // make it fit inside of the graph
         wxRect plotArea = GetPlotAreaBoundingBox();
         plotArea.SetHeight(plotArea.GetHeight() - (pt1.y - plotArea.GetTop()));
         plotArea.SetWidth(plotArea.GetWidth() * math_constants::third);
         wxFont labelFont(wxFontInfo().FaceName(GetFancyFontFaceName()));
         labelFont.SetPointSize(Label::CalcDiagonalFontSize(dc, labelFont, plotArea,
-            30, gradeLevelLabel->GetText()));
+            45, gradeLevelLabel->GetText()));
         gradeLevelLabel->SetFont(labelFont);
         if constexpr(Settings::IsDebugFlagEnabled(DebugSettings::DrawExtraInformation))
             {
