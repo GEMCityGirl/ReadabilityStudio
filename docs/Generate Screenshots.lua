@@ -337,9 +337,11 @@ ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "longsentenceselected."
 
 sp:DelayReloading(true)
 sp:SetDocumentFilePath("/home/mcrane/Cocoa Desserts.rtf") -- use generic filepath
+sp:SetReviewer("Maris")
 sp:OpenProperties(OptionsPageType.ProjectSettings)
-ScreenshotLib.SnapScreenshot(ImagePath .. "linktofile." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "projectproperties." .. FileExtension)
 sp:CloseProperties()
+
 sp:Close()
 Application.RemoveAllCustomTests()
 
@@ -1034,7 +1036,6 @@ sp:Close()
 -- Web site example
 -------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "LibreOffice.rsp")
-sp:SetReviewer("Daphne")
 sp:ScrollTextWindow(HighlightedReportType.ThreePlusSyllableHighlightedWords, 1800)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "incompletesentences." .. FileExtension, 1)
 
