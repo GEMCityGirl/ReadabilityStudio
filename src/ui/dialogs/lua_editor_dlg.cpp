@@ -368,26 +368,34 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
     Bind(wxEVT_TOOL,
         [this]([[maybe_unused]] wxCommandEvent&)
         {
-        // hold down the SHIFT key to run "silently" (closes the window and runs it)
-        if (wxGetMouseState().ShiftDown())
-            {
-            Show(false);
-            wxGetApp().GetLuaRunner().RunLuaCode(
-                dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage())->GetValue(),
-                dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage())->GetScriptFilePath());
-            Show();
-            }
-        else
-            {
-            // disable (and later re-enable) the Run button while the script runs
-            m_toolbar->EnableTool(XRCID("ID_RUN"), false);
+        auto editor = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
+        editor->AnnotationClearAll();
+        wxString errorMessage;
 
-            // run the script
-            wxGetApp().GetLuaRunner().RunLuaCode(
-                dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage())->GetValue(),
-                dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage())->GetScriptFilePath());
+        // disable (and later re-enable) the Run button while the script runs
+        m_toolbar->EnableTool(XRCID("ID_RUN"), false);
 
-            m_toolbar->EnableTool(XRCID("ID_RUN"), true);
+        // run the script
+        wxGetApp().GetLuaRunner().RunLuaCode(
+            editor->GetValue(), editor->GetScriptFilePath(), errorMessage);
+
+        m_toolbar->EnableTool(XRCID("ID_RUN"), true);
+
+        if (errorMessage.length())
+            {
+            wxMessageBox(_(L"Line ") + errorMessage,
+                _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
+
+            long lineNumber{ string_util::atoi(errorMessage.wc_str()) - 1 };
+            if (lineNumber >= 0)
+                {
+                if (const auto foundPos = errorMessage.find(L':');
+                    foundPos != wxString::npos)
+                    { errorMessage.replace(0, foundPos, _("Error")); }
+                editor->GotoLine(lineNumber);
+                editor->AnnotationSetText(lineNumber, errorMessage);
+                editor->AnnotationSetVisible(2 /* ANNOTATION_BOXED */);
+                }
             }
         },
         XRCID("ID_RUN"));

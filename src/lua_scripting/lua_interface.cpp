@@ -82,7 +82,7 @@ void LuaInterpreter::RunLuaFile(const wxString& filePath)
     }
 
 //------------------------------------------------------
-void LuaInterpreter::RunLuaCode(const wxString& code, const wxString& filePath)
+void LuaInterpreter::RunLuaCode(const wxString& code, const wxString& filePath, wxString& errorMessage)
     {
     if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
         {
@@ -97,6 +97,7 @@ void LuaInterpreter::RunLuaCode(const wxString& code, const wxString& filePath)
                      _(L"Lua Script"), wxOK|wxICON_INFORMATION);
         return;
         }
+    errorMessage.clear();
     m_isRunning = true;
     SetScriptFilePath(filePath);
 
@@ -106,12 +107,10 @@ void LuaInterpreter::RunLuaCode(const wxString& code, const wxString& filePath)
         // error message from Lua has cryptic section in front of it showing the first line of the
         // script and also just shows the line number without saying "line" in front of it,
         // so reformat this message to make it more readable.
-        wxString errorMessage(luaL_checkstring(m_L, -1), wxConvUTF8);
+        errorMessage = wxString{ luaL_checkstring(m_L, -1), wxConvUTF8 };
         const auto EndOfErrorHeader = errorMessage.find(L"]:");
         if (EndOfErrorHeader != wxString::npos)
-            { errorMessage.erase(0,EndOfErrorHeader+2); }
-        wxMessageBox(_(L"Line ") + errorMessage,
-                     _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+            { errorMessage.erase(0, EndOfErrorHeader + 2); }
         LuaScripting::DebugPrint(
             _(L"<span style='color:red; font-weight:bold;'>Error</span>: Line ") + errorMessage);
         }

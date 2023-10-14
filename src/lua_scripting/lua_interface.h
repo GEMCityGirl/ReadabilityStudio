@@ -37,8 +37,9 @@ public:
         @param code The code to run.
         @param filePath The script's file path. This is only used for any calls to GetScriptPath()
                         from the script, it will not affect the code being ran. It can be left empty,
-                        that will just cause any calls to GetScriptPath() to return empty as well.*/
-    void RunLuaCode(const wxString& code, const wxString& filePath = wxEmptyString);
+                        that will just cause any calls to GetScriptPath() to return empty as well.
+        @param[out] errorMessage If an error is encountered, the message reported by the interpreter.*/
+    void RunLuaCode(const wxString& code, const wxString& filePath, wxString& errorMessage);
     /// @returns @c true if another block of Lua code is already running.
     [[nodiscard]]
     static bool IsRunning() noexcept
