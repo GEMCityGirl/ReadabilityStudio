@@ -406,7 +406,8 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
                 // seem to be any way to get it directly from Scintilla.
                 int indent = editor->GetLineIndentation(lineNumber) + FromDIP(3);
 
-                const int widthAnn = editor->TextWidth(editor->ERROR_ANNOTATION_STYLE, errorMessage + wxString(indent, ' '));
+                const int widthAnn =
+                    editor->TextWidth(editor->ERROR_ANNOTATION_STYLE, errorMessage + wxString(indent, L' '));
 
                 if (widthAnn > width)
                     { editor->SetScrollWidth(widthAnn); }

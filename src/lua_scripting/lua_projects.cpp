@@ -580,7 +580,7 @@ namespace LuaScripting
         auto fontInfo = m_project->GetXAxisFont();
         auto fontColor= m_project->GetXAxisFontColor();
         LoadFontAttributes(L, fontInfo, fontColor, true);
-        
+
         m_project->SetXAxisFont(fontInfo);
         m_project->SetXAxisFontColor(fontColor);
         ReloadIfNotDelayedSimple();
@@ -598,7 +598,7 @@ namespace LuaScripting
         auto fontInfo = m_project->GetYAxisFont();
         auto fontColor = m_project->GetYAxisFontColor();
         LoadFontAttributes(L, fontInfo, fontColor, true);
-        
+
         m_project->SetYAxisFont(fontInfo);
         m_project->SetYAxisFontColor(fontColor);
         ReloadIfNotDelayedSimple();
@@ -616,7 +616,7 @@ namespace LuaScripting
         auto fontInfo = m_project->GetGraphTopTitleFont();
         auto fontColor = m_project->GetGraphTopTitleFontColor();
         LoadFontAttributes(L, fontInfo, fontColor, true);
-        
+
         m_project->SetGraphTopTitleFont(fontInfo);
         m_project->SetGraphTopTitleFontColor(fontColor);
         ReloadIfNotDelayedSimple();
@@ -2107,7 +2107,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
-    
+
     //-------------------------------------------------------------
     int BatchProject::SetGraphBackgroundImageEffect(lua_State *L)
         {
@@ -2225,7 +2225,7 @@ namespace LuaScripting
         auto fontInfo = m_project->GetXAxisFont();
         auto fontColor= m_project->GetXAxisFontColor();
         LoadFontAttributes(L, fontInfo, fontColor, true);
-        
+
         m_project->SetXAxisFont(fontInfo);
         m_project->SetXAxisFontColor(fontColor);
         ReloadIfNotDelayedSimple();
@@ -2243,7 +2243,7 @@ namespace LuaScripting
         auto fontInfo = m_project->GetYAxisFont();
         auto fontColor = m_project->GetYAxisFontColor();
         LoadFontAttributes(L, fontInfo, fontColor, true);
-        
+
         m_project->SetYAxisFont(fontInfo);
         m_project->SetYAxisFontColor(fontColor);
         ReloadIfNotDelayedSimple();
@@ -2261,7 +2261,7 @@ namespace LuaScripting
         auto fontInfo = m_project->GetGraphTopTitleFont();
         auto fontColor = m_project->GetGraphTopTitleFontColor();
         LoadFontAttributes(L, fontInfo, fontColor, true);
-        
+
         m_project->SetGraphTopTitleFont(fontInfo);
         m_project->SetGraphTopTitleFontColor(fontColor);
         ReloadIfNotDelayedSimple();
