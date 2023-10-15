@@ -346,8 +346,9 @@ namespace Wisteria::Graphs
             Brush(wxNullBrush).SelectionBrush(selectionBrush),
             &m_gradeLinePoints[33], 4));
 
-        wxPoint pt1;
+        wxPoint pt1, pt2;
         GetPhysicalCoordinates(112 + GetSyllableAxisOffset(), 5.0, pt1);
+        GetPhysicalCoordinates(128 + GetSyllableAxisOffset(), 3.3, pt2);
         auto gradeLevelLabel =
             std::make_shared<GraphItems::Label>(
             GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL")).
@@ -357,24 +358,19 @@ namespace Wisteria::Graphs
             AnchorPoint(pt1).Anchoring(Anchoring::TopLeftCorner));
         gradeLevelLabel->Tilt(-45);
         // make it fit inside of the graph
-        wxRect plotArea = GetPlotAreaBoundingBox();
-        plotArea.SetHeight(plotArea.GetHeight() - (pt1.y - plotArea.GetTop()));
-        plotArea.SetWidth(plotArea.GetWidth() * math_constants::third);
+        wxRect gradeLabelArea{ pt1, pt2 };
         wxFont labelFont(wxFontInfo().FaceName(GetFancyFontFaceName()));
-        labelFont.SetPointSize(Label::CalcDiagonalFontSize(dc, labelFont, plotArea,
+        labelFont.SetPointSize(Label::CalcDiagonalFontSize(dc, labelFont, gradeLabelArea,
             45, gradeLevelLabel->GetText()));
         gradeLevelLabel->SetFont(labelFont);
         if constexpr(Settings::IsDebugFlagEnabled(DebugSettings::DrawExtraInformation))
             {
-            dc.SetPen(*wxRED);
-            dc.SetBrush(*wxRED);
-            dc.DrawRectangle(plotArea);
-            plotArea.SetTop(pt1.y);
-            plotArea.SetLeft(pt1.x);
             AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo().
                 Pen(*wxRED).Brush(wxNullBrush),
-                std::vector<wxPoint>{ plotArea.GetTopLeft(), plotArea.GetTopRight(),
-                                      plotArea.GetBottomRight(), plotArea.GetBottomLeft() }));
+                std::vector<wxPoint>{ gradeLabelArea.GetTopLeft(),
+                                      gradeLabelArea.GetTopRight(),
+                                      gradeLabelArea.GetBottomRight(),
+                                      gradeLabelArea.GetBottomLeft() }));
             }
 
         AddObject(gradeLevelLabel);
