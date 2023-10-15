@@ -2941,6 +2941,7 @@ void MainFrame::OnScriptEditor([[maybe_unused]] wxCommandEvent& event)
         {
         m_luaEditor->Center();
         m_luaEditor->Show();
+        m_luaEditor->SetFocus();
         }
     }
 
