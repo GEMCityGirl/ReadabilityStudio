@@ -160,7 +160,8 @@ namespace readability
             { copy_classifications(that); }
         void operator=(const test_with_classification& that) noexcept
             { copy_classifications(that); }
-        /// Manual assignment. Derived classed are advised to directly call this in its own assignment operations.
+        /// Manual assignment. Derived classed are advised to directly call this
+        /// in its own assignment operations.
         void copy_classifications(const test_with_classification& that) noexcept
             {
             // industry
@@ -205,7 +206,7 @@ namespace readability
         void reset_factors() noexcept
             { m_test_factors.reset(); }
 
-        ///Teaching level for test
+        /// Teaching level for test
         void add_teaching_level(const test_teaching_level level)
             { m_teaching_level.set(static_cast<size_t>(level), true); }
         [[nodiscard]]
@@ -324,7 +325,7 @@ namespace readability
         [[nodiscard]]
         bool is_integral() const noexcept
             { return m_is_integral; }
-        ///value functions
+        /// value functions
         [[nodiscard]]
         const string_type& get_id() const noexcept
             { return m_id; }
@@ -371,19 +372,18 @@ namespace readability
             auto pos = std::lower_bound(m_tests.begin(), m_tests.end(), test);
             m_tests.insert(pos, test_typeT(test));
             }
-        /// Adds a collection of readability_test objects all at once. Duplicates will be removed in here, and
-        /// the collection passed in here does not need to be sorted.
+        /// Adds a collection of readability_test objects all at once.
+        ///     Duplicates will be removed in here, and
+        ///     the collection passed in here does not need to be sorted.
         /// @param tests The collection of tests to add.
         template<typename T>
         void add_tests(const T& tests)
             {
-            for (typename T::const_iterator testPos = tests.begin();
-                testPos != tests.end();
-                ++testPos)
-                { m_tests.push_back(test_typeT(*testPos)); }
+            for (const auto& test : tests)
+                { m_tests.push_back(test_typeT(test)); }
             // sort and remove any duplicates
             std::sort(m_tests.begin(), m_tests.end());
-            typename std::vector<test_typeT>::iterator endOfUniquePos =
+            auto endOfUniquePos =
                 std::unique(m_tests.begin(), m_tests.end());
             if (endOfUniquePos != m_tests.end())
                 { m_tests.erase(endOfUniquePos, m_tests.end()); }
@@ -475,7 +475,7 @@ namespace readability
             else
                 { return iterator->get_test().get_description(); }
             }
-        /// Searches for a test.
+        /// @brief Searches for a test.
         /// @param test The test to find (this key can be an ID
         ///     (the integer or string one), short name, or long name).
         /// @returns A pair: the iterator to the test and a boolean
@@ -484,18 +484,20 @@ namespace readability
         [[nodiscard]]
         std::pair<typename std::vector<test_typeT>::iterator, bool> find_test(const T& test)
             {
+            const readability_test testSearchKey(test);
             // first, do a binary search (by ID) as this is a fast and most common way to find a test
-            auto pos = std::lower_bound(m_tests.begin(), m_tests.end(), readability_test(test));
-            if (pos != m_tests.end() && *pos == readability_test(test))
+            auto pos = std::lower_bound(m_tests.begin(), m_tests.end(), testSearchKey);
+            if (pos != m_tests.end() && *pos == testSearchKey)
                 { return std::pair<typename std::vector<test_typeT>::iterator, bool>(pos, true); }
             // if that fails, then search items one-by-one
             // (in case caller is searching by long name or short name)
-            pos = std::find(m_tests.begin(), m_tests.end(), readability_test(test));
+            pos = std::find(m_tests.begin(), m_tests.end(), testSearchKey);
 
             // whether it was found or not
-            return std::pair<typename std::vector<test_typeT>::iterator, bool>(pos, (pos != m_tests.end()));
+            return std::pair<typename std::vector<test_typeT>::iterator, bool>
+                (pos, (pos != m_tests.end()));
             }
-        /// Searches for a test.
+        /// @brief Searches for a test.
         /// @param test The test to find (this key can be an ID
         ///     (the integer or string one), short name, or long name).
         /// @returns A pair: the iterator to the test and a boolean
@@ -504,15 +506,20 @@ namespace readability
         [[nodiscard]]
         std::pair<typename std::vector<test_typeT>::const_iterator, bool> find_test(const T& test) const
             {
+            const readability_test testSearchKey(test);
             // first, do a binary search (by ID) as this is a fast and most common way to find a test
-            auto pos = std::lower_bound(m_tests.cbegin(), m_tests.cend(), readability_test(test));
-            if (pos != m_tests.cend() && *pos == readability_test(test))
-                { return std::pair<typename std::vector<test_typeT>::const_iterator, bool>(pos, true); }
-            // if that fails, then search items one-by-one (in case caller is searching by long name or short name)
-            pos = std::find(m_tests.cbegin(), m_tests.cend(), readability_test(test));
+            auto pos = std::lower_bound(m_tests.cbegin(), m_tests.cend(), testSearchKey);
+            if (pos != m_tests.cend() && *pos == testSearchKey)
+                {
+                return std::pair<typename std::vector<test_typeT>::const_iterator, bool>(pos, true);
+                }
+            // if that fails, then search items one-by-one
+            // (in case caller is searching by long name or short name)
+            pos = std::find(m_tests.cbegin(), m_tests.cend(), testSearchKey);
 
             // whether it was found or not
-            return std::pair<typename std::vector<test_typeT>::const_iterator, bool>(pos, (pos != m_tests.cend()));
+            return std::pair<typename std::vector<test_typeT>::const_iterator, bool>
+                (pos, (pos != m_tests.cend()));
             }
         [[nodiscard]]
         std::vector<test_typeT>& get_tests() noexcept
@@ -531,7 +538,8 @@ namespace readability
             }
     private:
         // Although this is a vector, the container keeps this sorted via the add_test* functions.
-        // This is a vector so that can use the more liberal == operators for the tests, rather than the < operator.
+        // This is a vector so that can use the more liberal == operators for the tests,
+        // rather than the < operator.
         std::vector<test_typeT> m_tests;
         };
     }
