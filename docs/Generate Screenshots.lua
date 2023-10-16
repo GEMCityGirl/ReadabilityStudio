@@ -214,7 +214,7 @@ ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "batchclichemultiple." ..
     ListType.Cliches, 1, 3, 2, 3, 3)
 
 bp:SelectWindow(SideBarSection.SentencesBreakdown, ListType.LongSentences)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchlongsentences." .. FileExtension, 1)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchlongsentences." .. FileExtension, 2)
 
 bp:SelectWindow(SideBarSection.Grammar, ListType.OverusedWordsBySentence)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchoverusedwordsbysentence." .. FileExtension, 2)
@@ -261,10 +261,10 @@ bp = BatchProject(ScreenshotProjectsFolder .. "examples.rsbp")
 bp:SelectWindow(SideBarSection.Grammar, ListType.Cliches)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchcliches." .. FileExtension, 2)
 bp:SelectWindow(SideBarSection.Grammar, ListType.LowercasedSentences)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchlowersentences." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchlowersentences." .. FileExtension, 2)
 
 bp:SelectWindow(SideBarSection.Grammar, ListType.ConjunctionStartingSentences)
-ScreenshotLib.SnapScreenshot(ImagePath .. "batchconjunctionstart." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchconjunctionstart." .. FileExtension, 2)
 
 bp:SelectWindow(SideBarSection.Dolch, DolchResultType.DolchCoverageBatchSummary)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchdolchcoverage." .. FileExtension, 1)
