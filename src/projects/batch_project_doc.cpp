@@ -4700,7 +4700,7 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
             GetHistorgramBinningMethod(),
             GetHistogramRoundingMethod(),
             GetHistogramIntervalDisplay(), GetHistrogramBinLabelDisplay(),
-            true, (startAtOne ? 1 : std::numeric_limits<double>::quiet_NaN()));
+            true, (isTestGradeLevel ? 0 : startAtOne ? 1 : std::numeric_limits<double>::quiet_NaN()));
 
         if (IsShowingGroupLegends())
             {
