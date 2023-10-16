@@ -91,19 +91,24 @@ Both of these tabs will include the same statistics as the **Score Summary** pag
 
 After opening a project, click on the **Histograms** icon on the project sidebar to view your documents' test scores graphically plotted as histograms.
 
-A histogram will be created for each test. For grade level tests, the bins (i.e., bars) will represent either a grade or range of grades. The height of each bar will reflect the number of documents that scored within the bar's range. In the histogram below, we can see that 16 documents scored within the 10^th^ grade range for the [Flesch-Kincaid](#flesch-kincaid-test) test:
+A histogram will be created for each test. For grade level tests, the bins (i.e., bars) will represent either a grade or range of grades.
+The height of each bar will reflect the number of documents that scored within the bar's range.
+In the histogram below, we can see that 15 documents scored within the 10^th^ grade range for the [Flesch-Kincaid](#flesch-kincaid-test) test:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/histogrades.png")
 ```
 
-We interpret this first by looking at the highest bar. The label above it displays *16*, which is the number of documents in that category. Now, to see the category, we look at the x-axis labels below the bar. Because we are using [midpoints](#options-histograms) here, there will be one label to review. The *10* on the middle of the bar indicates the bar's range (in this case, the 10^th^ grade). Because we are [rounding](#options-histograms) our scores down (the default), scores such as 9.7 will be rounded down and fall into the previous bin (i.e., bar). Scores between 10.0 and 10.9 will fall into this bin; therefore, this bar will represent the 10^th^ grade.
+We interpret this first by looking at the highest bar. The label above it displays *15*, which is the number of documents in that category. Now, to see the category, we look at the x-axis labels below the bar.
+The *10* on the middle of the bar indicates the bar's range (in this case, the 10^th^ grade).
+Because we are [rounding](#options-histograms) our scores down (the default), scores such as 9.7 will be rounded down and fall into the previous bin (i.e., bar).
+Scores between 10.0 and 10.9 will fall into this bin; therefore, this bar will represent the 10^th^ grade.
 
 ::: {.tipsection data-latex=""}
 If [binning](#options-histograms) is set to **unique values**, then selecting a bar will display the first 25 documents within that grade-level group.
 :::
 
-Continuing on, this batch has quite a few difficult documents. There are 16 documents in the 10^th^ grade range, 10 documents in the 9^th^ grade range, etc. In contrast, there are few easy documents, with only 2 in the 6^th^–7^th^ grade ranges. From this, we can surmise that the readability of this batch needs improving.
+Continuing on, this batch has quite a few difficult documents. There are 15 documents in the 10^th^ grade range, 10 documents in the 9^th^ grade range, etc. In contrast, there are few easy documents, with only 2 in the 6^th^–7^th^ grade ranges. From this, we can surmise that the readability of this batch needs improving.
 
 Index tests (such as [Flesch](#flesch-test)) will also have histograms, where the bins are ranges in the index. For example, in the histogram below we can see how most of the documents are in the lower range of the Flesch scale:
 
