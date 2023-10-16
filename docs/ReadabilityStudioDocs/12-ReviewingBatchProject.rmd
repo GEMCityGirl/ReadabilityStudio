@@ -105,7 +105,7 @@ Because we are [rounding](#options-histograms) our scores down (the default), sc
 Scores between 10.0 and 10.9 will fall into this bin; therefore, this bar will represent the 10^th^ grade.
 
 ::: {.tipsection data-latex=""}
-If [binning](#options-histograms) is set to **unique values**, then selecting a bar will display the first 25 documents within that grade-level group.
+Selecting a bar will display the first 25 documents within that bin as a tooltip.
 :::
 
 Continuing on, this batch has quite a few difficult documents. There are 15 documents in the 10^th^ grade range, 10 documents in the 9^th^ grade range, etc. In contrast, there are few easy documents, with only 2 in the 6^th^–7^th^ grade ranges. From this, we can surmise that the readability of this batch needs improving.
@@ -118,7 +118,7 @@ knitr::include_graphics("images/histoindex.png")
 
 From this histogram we can also conclude that this batch has too many difficult documents.
 
-If we begin to revise these documents and reload the project (`r keys("F5")` on your keyboard), then the test scores will show improvement in these graphs:
+If we revise these documents and reload the project (`r keys("F5")`), then these graphs will show improvement:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/histoimproved.png")
