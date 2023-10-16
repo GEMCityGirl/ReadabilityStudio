@@ -124,7 +124,12 @@ If we revise these documents and reload the project (`r keys("F5")`), then these
 knitr::include_graphics("images/histoimproved.png")
 ```
 
-The binning method, label display, and general appearance of these histograms can be customized from the [**Histogram**](#options-histograms) page of either the [**Options**](#options-overview) or [**Project Properties**](#options-overview) dialog.
+The appearance of these histograms can be customized from the [**Histogram**](#options-histograms) page of either the [**Options**](#options-overview) or [**Project Properties**](#options-overview) dialog.
+
+::: {.notesection data-latex=""}
+The [binning](#options-histograms) method for a project is only applied to index and predicted-cloze score histograms.
+Grade-level histograms will always show one bar for each grade level, and the bar axis will start at **0** (i.e., Kindergarten).
+:::
 
 \newpage
 

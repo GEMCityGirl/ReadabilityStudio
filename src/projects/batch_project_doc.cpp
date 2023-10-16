@@ -4711,6 +4711,7 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
             }
 
         histogram->ClearProperties();
+        histogram->GetBarAxis().ClearBrackets();
         histogram->GetTitle() = GraphItems::Label(GraphItemInfo(topLabel).DPIScaling(canvas->GetDPIScaleFactor()).
                                                  Scaling(canvas->GetScaling()).Pen(wxNullPen));
         histogram->GetScalingAxis().GetTitle().SetText(_(L"Number of Documents"));
@@ -4725,17 +4726,57 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
         histogram->SetStippleShapeColor(GetStippleShapeColor());
         histogram->SetBarOpacity(GetHistogramBarOpacity());
 
-        // if not too many bins, show the long grade labels on the x axis
         histogram->GetBarAxis().SetLabelLineLength(10);
-        if (isTestGradeLevel && histogram->GetBinsWithValuesCount() <= 10)
+        if (isTestGradeLevel)
             {
             histogram->AddProperty(_DT(L"ISGRADEPLOT"), true);
-            for (int i = 0; i < 20; ++i)
+            if (histogram->GetBars().size())
                 {
-                histogram->GetBarAxis().SetCustomLabel(i,
-                    GraphItems::Label(GetReadabilityMessageCatalog().GetGradeScaleLongLabel(i)));
+                for (int i = 0; i < 20; ++i)
+                    {
+                    const auto foundValidBar =
+                        std::find_if(histogram->GetBars().cbegin(), histogram->GetBars().cend(),
+                        [i](const auto& bar) noexcept
+                        { return bar.GetAxisPosition() == i && bar.GetLength() > 0; });
+                    histogram->GetBarAxis().SetCustomLabel(i,
+                        // include the Kindergarten bin label just to show where everything starts,
+                        // then then hide any labels where the bins are empty
+                        (foundValidBar == histogram->GetBars().cend() && i > 0) ?
+                        GraphItems::Label{} :
+                        GraphItems::Label(GetReadabilityMessageCatalog().GetGradeScaleLongLabel(i)));
+                    }
+                // if not too many bins, show the long grade labels on the X axis
+                histogram->GetBarAxis().SetLabelDisplay(
+                        (histogram->GetBinsWithValuesCount() <= 5) ?
+                        AxisLabelDisplay::DisplayOnlyCustomLabels :
+                        AxisLabelDisplay::DisplayValues);
+                if (GetReadabilityMessageCatalog().GetGradeScale() ==
+                        readability::grade_scale::k12_plus_united_states)
+                    {
+                    const auto lastGradeBar = histogram->GetBars().back().GetAxisPosition();
+                    const auto addGradesBracket =
+                        [&histogram, &lastGradeBar, this]
+                        (const double startGrade, const double endGrade, const wxString& label)
+                        {
+                        if (startGrade > lastGradeBar)
+                            { return; }
+                        histogram->GetBarAxis().AddBracket(
+                            Axis::AxisBracket(startGrade, std::min(endGrade, lastGradeBar),
+                                startGrade + ((std::min(endGrade, lastGradeBar) - startGrade) / 2), label));
+                        histogram->GetBarAxis().SetCustomLabel(startGrade,
+                            GraphItems::Label(GetReadabilityMessageCatalog().GetGradeScaleLongLabel(startGrade)));
+                        histogram->GetBarAxis().SetCustomLabel(endGrade,
+                            GraphItems::Label(GetReadabilityMessageCatalog().GetGradeScaleLongLabel(endGrade)));
+                        };
+
+                    addGradesBracket(0.0, 4.0, _("Elementary School"));
+                    addGradesBracket(5.0, 8.0, _("Middle School"));
+                    addGradesBracket(9.0, 12.0, _("High School"));
+                    addGradesBracket(13.0, 16.0, _("College"));
+                    addGradesBracket(17.0, 18.0, _("Graduate School"));
+                    addGradesBracket(19.0, 20.0, _("PhD"));
+                    }
                 }
-            histogram->GetBarAxis().SetLabelDisplay(AxisLabelDisplay::DisplayOnlyCustomLabels);
             }
         wxGCDC gdc(view->GetDocFrame());
         canvas->CalcAllSizes(gdc);
