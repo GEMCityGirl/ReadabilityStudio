@@ -44,8 +44,8 @@ Options for customizing its display are made available on the **Edit** section o
 
 ## Column Sorting {#column-sorting}
 
-::: {.wrapfigure data-latex="{r}{0.5\\textwidth}" style="width: 48%;"}
-![](images/columnheader.png){width=48%}
+::: {.wrapfigure data-latex="{r}{0.5\\textwidth}" style="width: 40%;"}
+![](images/columnheader.png){width=40%}
 :::
 
 You can sort any list column by clicking on the column header.
