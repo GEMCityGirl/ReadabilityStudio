@@ -674,19 +674,19 @@ protected:
 
     // Histogram options
     Wisteria::Graphs::Histogram::BinningMethod m_histogramBinningMethod
-        { Wisteria::Graphs::Histogram::BinningMethod::BinUniqueValues };
+        { Wisteria::Graphs::Histogram::BinningMethod::BinByIntegerRange };
     Wisteria::BinLabelDisplay m_histrogramBinLabelDisplayMethod
-        { Wisteria::BinLabelDisplay::NoDisplay };
+        { Wisteria::BinLabelDisplay::BinValue };
     Wisteria::RoundingMethod m_histrogramRoundingMethod
-        { Wisteria::RoundingMethod::Round };
+        { Wisteria::RoundingMethod::RoundDown };
     Wisteria::Graphs::Histogram::IntervalDisplay m_histrogramIntervalDisplay
         { Wisteria::Graphs::Histogram::IntervalDisplay::Cutpoints };
-    wxColour m_histogramBarColor;
+    wxColour m_histogramBarColor{ wxColour{ 182, 164, 204 } }; // lavender
     uint8_t m_histogramBarOpacity{ wxALPHA_OPAQUE };
-    Wisteria::BoxEffect m_histogramBarEffect{ Wisteria::BoxEffect::Solid };
+    Wisteria::BoxEffect m_histogramBarEffect{ Wisteria::BoxEffect::Glassy };
     // Bar chart options
     wxColour m_barChartBarColor;
-    Wisteria::Orientation m_barChartOrientation{ Wisteria::Orientation::Vertical };
+    Wisteria::Orientation m_barChartOrientation{ Wisteria::Orientation::Horizontal };
     uint8_t m_graphBarOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_graphBarEffect{ Wisteria::BoxEffect::Glassy };
     bool m_barDisplayLabels{ true };
