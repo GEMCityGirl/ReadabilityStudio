@@ -7589,7 +7589,8 @@ void ProjectDoc::CalculateGraphData()
     // syllable histogram
     m_syllableCounts->Clear();
     m_syllableCounts->AddContinuousColumn(GetSyllableCountsColumnName());
-    m_syllableCounts->AddCategoricalColumn(GetGroupColumnName());
+    // whether word is simple (1-2 syllables) or complex (3+)
+    m_syllableCounts->AddCategoricalColumn(GetWordTypeGroupColumnName());
     m_syllableCounts->Reserve(GetTotalWords());
     for (auto wordPos = GetWords()->get_words().cbegin();
         wordPos != GetWords()->get_words().cend();
@@ -7604,13 +7605,17 @@ void ProjectDoc::CalculateGraphData()
                     GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable)
                     {
                     m_syllableCounts->AddRow(Data::RowInfo().
-                        Continuous({ 1 }).Categoricals({ 0 }));
+                        Continuous({ 1 }).
+                        Categoricals({ 0 }));
                     }
                 else
                     {
                     m_syllableCounts->AddRow(Data::RowInfo().
                         Continuous({ static_cast<double>(wordPos->get_syllable_count()) }).
-                        Categoricals({ 0 }).Id(wordPos->c_str()));
+                        // simple or complex?
+                        Categoricals({ (wordPos->get_syllable_count() < 3 ? 0 : 1) }).
+                        // add the word as a row ID so that it appears as a tooltip on the bin
+                        Id(wordPos->c_str()));
                     }
                 }
             }
@@ -7627,7 +7632,8 @@ void ProjectDoc::CalculateGraphData()
                 {
                 m_syllableCounts->AddRow(Data::RowInfo().
                     Continuous({ static_cast<double>(wordPos->get_syllable_count()) } ).
-                    Categoricals({ 0 }).Id(wordPos->c_str()));
+                    Categoricals({ (wordPos->get_syllable_count() < 3 ? 0 : 1) }).
+                    Id(wordPos->c_str()));
                 }
             }
         }
