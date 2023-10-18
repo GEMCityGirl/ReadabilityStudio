@@ -265,13 +265,15 @@ private:
     FormattedTextCtrl* m_hjTextWindow{ nullptr };
 
     wxString GetSentenceWordCountsColumnName() const
-        { return L"SENTENCE_WORD_COUNTS"; }
+        { return _DT(L"SENTENCE_WORD_COUNTS"); }
     wxString GetSentenceIndicesColumnName() const
-        { return L"SENTENCE_INDICES"; }
+        { return _DT(L"SENTENCE_INDICES"); }
     wxString GetSyllableCountsColumnName() const
-        { return L"SYLLABLE_COUNTS"; }
+        { return _DT(L"SYLLABLE_COUNTS"); }
+    wxString GetWordTypeGroupColumnName() const
+        { return _DT(L"WORD_TYPE"); }
     wxString GetGroupColumnName() const
-        { return L"GROUP"; }
+        { return _DT(L"GROUP"); }
 
     std::shared_ptr<Wisteria::Data::Dataset> m_sentenceWordLengths
         { std::make_shared<Wisteria::Data::Dataset>() };
