@@ -47,6 +47,7 @@
 - Renamed All Words (Condensed) to Key Words.
 - Overused Words (x Sentence) now only looks at words containing more than three characters.
 - Overused Words (x Sentence) now ignores words that are part of a common phrase (e.g., "*again* and *again*").
+- Updated Spanish, Russian, Italian, French, Swedish, and German stemmers to the latest Snowball 2.3 standard.
 
 #### Importing/Exporting Enhancements {-}
 
