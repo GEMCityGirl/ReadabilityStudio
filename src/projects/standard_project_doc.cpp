@@ -16,6 +16,7 @@
 #include "../Wisteria-Dataviz/src/import/html_encode.h"
 #include "../Wisteria-Dataviz/src/graphs/heatmap.h"
 #include "../Wisteria-Dataviz/src/graphs/wordcloud.h"
+#include "../Wisteria-Dataviz/src/graphs/piechart.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/listdlg.h"
 #include "../Wisteria-Dataviz/src/base/reportenumconvert.h"
 
@@ -2616,6 +2617,52 @@ void ProjectDoc::DisplayWordCharts()
         {
         // we are getting rid of this window (if nothing in it)
         view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::SYLLABLE_HISTOGRAM_PAGE_ID);
+        }
+
+    // syllable donut chart
+    Wisteria::Canvas* syllablePieCanvas =
+        dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().
+            FindWindowById(BaseProjectView::SYLLABLE_PIECHART_PAGE_ID));
+    if (GetWordsBreakdownInfo().IsSyllableHistogramEnabled())
+        {
+        if (!syllablePieCanvas)
+            {
+            syllablePieCanvas = new Wisteria::Canvas(view->GetSplitter(),
+                                               BaseProjectView::SYLLABLE_PIECHART_PAGE_ID);
+            syllablePieCanvas->SetFixedObjectsGridSize(1, 1);
+            syllablePieCanvas->SetFixedObject(0, 0,
+                std::make_shared<PieChart>(syllablePieCanvas) );
+            syllablePieCanvas->Hide();
+            syllablePieCanvas->SetLabel(BaseProjectView::GetSyllableCountsLabel());
+            syllablePieCanvas->SetName(BaseProjectView::GetSyllableCountsLabel());
+            syllablePieCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
+            syllablePieCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
+            const auto wordChartPosition =
+                view->GetWordsBreakdownView().FindWindowPositionById(BaseProjectView::WORD_BREAKDOWN_PAGE_ID);
+            view->GetWordsBreakdownView().InsertWindow((wordChartPosition != wxNOT_FOUND) ?
+                wordChartPosition + 1 : 0, syllablePieCanvas);
+            }
+        UpdateGraphOptions(syllablePieCanvas);
+
+        auto syllablePieChart = std::dynamic_pointer_cast<PieChart>(syllablePieCanvas->GetFixedObject(0, 0));
+        assert(syllablePieChart);
+
+        // add a donut hole
+        syllablePieChart->IncludeDonutHole(true);
+        syllablePieChart->GetDonutHoleLabel().SetText(L"Number of\nSyllables\nper Word");
+        syllablePieChart->GetDonutHoleLabel().SetTextAlignment(TextAlignment::JustifiedAtCharacter);
+        syllablePieChart->SetInnerPieMidPointLabelDisplay(BinLabelDisplay::BinNameAndPercentage);
+        syllablePieChart->SetOuterPieMidPointLabelDisplay(BinLabelDisplay::BinPercentage);
+        syllablePieChart->SetData(m_syllableCounts, std::nullopt,
+            GetWordTypeGroupColumnName(),
+            GetSyllableCountsColumnName());
+
+        syllablePieCanvas->CalcAllSizes(gdc);
+        }
+    else
+        {
+        // we are getting rid of this window (if nothing in it)
+        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::SYLLABLE_PIECHART_PAGE_ID);
         }
 
     // word cloud
@@ -7590,7 +7637,11 @@ void ProjectDoc::CalculateGraphData()
     m_syllableCounts->Clear();
     m_syllableCounts->AddContinuousColumn(GetSyllableCountsColumnName());
     // whether word is simple (1-2 syllables) or complex (3+)
-    m_syllableCounts->AddCategoricalColumn(GetWordTypeGroupColumnName());
+    m_syllableCounts->AddCategoricalColumn(GetWordTypeGroupColumnName(),
+        {
+        { 0, _(L"Simple Words\n(1-2 syllables)") },
+        { 1, _(L"Complex Words\n(3+ syllables)") }
+        });
     m_syllableCounts->Reserve(GetTotalWords());
     for (auto wordPos = GetWords()->get_words().cbegin();
         wordPos != GetWords()->get_words().cend();
@@ -7613,7 +7664,8 @@ void ProjectDoc::CalculateGraphData()
                     m_syllableCounts->AddRow(Data::RowInfo().
                         Continuous({ static_cast<double>(wordPos->get_syllable_count()) }).
                         // simple or complex?
-                        Categoricals({ (wordPos->get_syllable_count() < 3 ? 0 : 1) }).
+                        Categoricals(
+                            { static_cast<Data::GroupIdType>((wordPos->get_syllable_count()) < 3 ? 0 : 1) }).
                         // add the word as a row ID so that it appears as a tooltip on the bin
                         Id(wordPos->c_str()));
                     }
@@ -7632,7 +7684,8 @@ void ProjectDoc::CalculateGraphData()
                 {
                 m_syllableCounts->AddRow(Data::RowInfo().
                     Continuous({ static_cast<double>(wordPos->get_syllable_count()) } ).
-                    Categoricals({ (wordPos->get_syllable_count() < 3 ? 0 : 1) }).
+                    Categoricals(
+                        { static_cast<Data::GroupIdType>((wordPos->get_syllable_count()) < 3 ? 0 : 1) }).
                     Id(wordPos->c_str()));
                 }
             }

@@ -395,8 +395,9 @@ public:
     static constexpr int SENTENCE_BOX_PLOT_PAGE_ID = wxID_HIGHEST + 43;
     static constexpr int SENTENCE_HISTOGRAM_PAGE_ID = wxID_HIGHEST + 44;
     static constexpr int SYLLABLE_HISTOGRAM_PAGE_ID = wxID_HIGHEST + 45;
-    static constexpr int SENTENCE_HEATMAP_PAGE_ID = wxID_HIGHEST + 46;
-    static constexpr int WORD_CLOUD_PAGE_ID = wxID_HIGHEST + 47;
+    static constexpr int SYLLABLE_PIECHART_PAGE_ID = wxID_HIGHEST + 46;
+    static constexpr int SENTENCE_HEATMAP_PAGE_ID = wxID_HIGHEST + 47;
+    static constexpr int WORD_CLOUD_PAGE_ID = wxID_HIGHEST + 48;
     // batch IDs
     //----------
     static constexpr int ID_SCORE_LIST_PAGE_ID = wxID_HIGHEST + 60;

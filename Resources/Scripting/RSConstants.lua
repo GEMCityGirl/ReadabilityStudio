@@ -53,6 +53,7 @@ GraphType =
   Flesch = 8030,
   Crawford = 8031,
   SyllableHistogram = 8037,
+  SyllablePieChart = 8075,
   GermanLix = 8028,
   DanielsonBryan2 = 8029,
   WordCloud = 8039

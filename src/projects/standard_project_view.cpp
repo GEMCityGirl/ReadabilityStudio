@@ -11,6 +11,7 @@
 #include "../Wisteria-Dataviz/src/ui/dialogs/gridexportdlg.h"
 #include "../Wisteria-Dataviz/src/graphs/heatmap.h"
 #include "../Wisteria-Dataviz/src/graphs/wordcloud.h"
+#include "../Wisteria-Dataviz/src/graphs/piechart.h"
 #include "../Wisteria-Dataviz/src/import/html_encode.h"
 
 using namespace lily_of_the_valley;
@@ -759,6 +760,7 @@ void ProjectView::UpdateSideBarIcons()
 
     // readability tests
     //-----------------
+    // Note: refer to ReadabilityApp::InitProjectSidebar() for the icon indices,
     if (GetReadabilityResultsView().GetWindowCount() > 0)
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetReadabilityScoresLabel(),
@@ -857,6 +859,10 @@ void ProjectView::UpdateSideBarIcons()
                         typeid(*dynamic_cast<Wisteria::Canvas*>(
                             GetWordsBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) ==
                         typeid(Wisteria::Graphs::WordCloud)) ? 29 :
+                    (isGraph &&
+                        typeid(*dynamic_cast<Wisteria::Canvas*>(
+                            GetWordsBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                        typeid(Wisteria::Graphs::PieChart)) ? 30 :
                     9);
             }
         }
@@ -1821,6 +1827,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     const auto boxPlotIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/boxplot.svg");
     const auto heatmapIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/heatmap.svg");
     const auto wordCloudIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/word-cloud.svg");
+    const auto pieChartIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/donut-subgrouped.svg");
     const auto reportIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/report.svg");
     const auto textIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/document.svg");
 
@@ -2489,6 +2496,13 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             typeid(Wisteria::Graphs::WordCloud))
                             {
                             exportMenuItem->SetBitmap(wordCloudIcon);
+                            }
+                        else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
+                            typeid(*dynamic_cast<Wisteria::Canvas*>(
+                                GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+                            typeid(Wisteria::Graphs::PieChart))
+                            {
+                            exportMenuItem->SetBitmap(pieChartIcon);
                             }
                         editButtonRibbonBar->AddButton(wxID_COPY,
                             _(L"Copy"),

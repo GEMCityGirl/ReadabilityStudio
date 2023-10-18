@@ -798,6 +798,7 @@ bool ReadabilityApp::OnInit()
         { 8072, BaseProjectView::SIDEBAR_HISTOGRAMS_SECTION_ID },
         { 8073, BaseProjectView::SIDEBAR_STATS_SUMMARY_SECTION_ID },
         { 8074, BaseProjectView::SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID },
+        { 8075, BaseProjectView::SYLLABLE_PIECHART_PAGE_ID },
         { 9000, EditWordListDlg::ID_FILE_PATH_FIELD },
         { 10001, ProjectWizardDlg::ID_FILE_BROWSE_BUTTON },
         { 10002, ProjectWizardDlg::ID_FROM_FILE_BUTTON },
@@ -2661,6 +2662,7 @@ void ReadabilityApp::InitProjectSidebar()
     imgList.emplace_back(GetResourceManager().GetSVG(L"tests/danielson-bryan-2.svg"));
     imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/checklist.svg"));
     imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/word-cloud.svg"));
+    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/donut-subgrouped.svg"));
     }
 
 //---------------------------------------------------
@@ -3990,6 +3992,8 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
         case BaseProjectView::WORD_BREAKDOWN_PAGE_ID:
             [[fallthrough]];
         case BaseProjectView::SYLLABLE_HISTOGRAM_PAGE_ID:
+            [[fallthrough]];
+        case BaseProjectView::SYLLABLE_PIECHART_PAGE_ID:
             [[fallthrough]];
         case BaseProjectView::HARD_WORDS_TEXT_PAGE_ID:
             [[fallthrough]];
