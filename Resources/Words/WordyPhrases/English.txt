@@ -2885,7 +2885,7 @@ follow after	follow	1
 follow along the lines of	imitate, resemble	0		
 followed after	followed	1		
 followed along the lines of	imitated, resembled	0		
-following after	following	1		
+following after	following	1	the	
 following along the lines of	imitating, resembling	0		
 follows after	follows	1		
 follows along the lines of	imitates, resembles	0		
