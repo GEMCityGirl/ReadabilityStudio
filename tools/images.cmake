@@ -42,6 +42,7 @@ ribbon/difficult.svg
 ribbon/document-structure.svg
 ribbon/document.svg
 ribbon/documents.svg
+ribbon/donut-subgrouped.svg
 ribbon/down-arrow.svg
 ribbon/duplicate-files.svg
 ribbon/edit-document.svg
