@@ -4748,7 +4748,7 @@ void ReadabilityAppOptions::UpdateGraphOptions(Wisteria::Canvas* graphCanvas)
     graphCanvas->SetBackgroundImage(m_graphBackgroundImage, GetGraphBackGroundOpacity());
 
     auto plot = std::dynamic_pointer_cast<Graph2D>(graphCanvas->GetFixedObject(0,0));
-    plot->SetBackgroundColor(
+    plot->SetPlotBackgroundColor(
         Colors::ColorContrast::ChangeOpacity(GetPlotBackGroundColor(),
                                              GetGraphPlotBackGroundOpacity()));
 

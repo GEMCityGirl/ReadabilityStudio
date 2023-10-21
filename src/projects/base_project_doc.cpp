@@ -482,7 +482,7 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
     auto graph = std::dynamic_pointer_cast<Wisteria::Graphs::Graph2D>(canvas->GetFixedObject(0, 0));
     assert(graph && L"No graph on the canvas!");
 
-    graph->SetBackgroundColor(
+    graph->SetPlotBackgroundColor(
         Colors::ColorContrast::ChangeOpacity(GetPlotBackGroundColor(),
                                              GetGraphPlotBackGroundOpacity()));
 
