@@ -12,6 +12,7 @@ docFolder <- this.path::this.dir()
 source(glue("{docFolder}/ReadabilityStudioDocs/R/appdown.r"))
 
 # delete previous builds
+unlink(glue("{docFolder}/Coding-Bible/docs"), recursive=T)
 unlink(glue("{docFolder}/ShortcutsCheatsheet/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioDocs/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityTestsReference/docs"), recursive=T)
@@ -37,7 +38,6 @@ clearFolders <- function()
   unlink(glue("{docFolder}/ReadabilityTestsReference/german"), recursive=T)
 
   unlink(glue("{docFolder}/ReadabilityStudioDocs/_bookdown_files"), recursive=T)
-  unlink(glue("{docFolder}/Coding-Bible/docs"), recursive=T)
   }
 
 clearFolders()
@@ -239,11 +239,13 @@ combine_files("90-Acknowledgements.Rmd", "acknowledgements",
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::pdf_book",
                       output_dir="docs")
+unlink(glue("{docFolder}/ReadabilityTestsReference/01-intro.Rmd"))
 unlink(glue("{docFolder}/ReadabilityTestsReference/20-ReadabilityTestsEnglish.rmd"))
 unlink(glue("{docFolder}/ReadabilityTestsReference/21-ReadabilityTestsSpanish.rmd"))
 unlink(glue("{docFolder}/ReadabilityTestsReference/22-ReadabilityTestsGerman.rmd"))
 unlink(glue("{docFolder}/ReadabilityTestsReference/41-ScoringNotes.rmd"))
 unlink(glue("{docFolder}/ReadabilityTestsReference/90-Acknowledgements.Rmd"))
+unlink(glue("{docFolder}/ReadabilityTestsReference/93-Author.Rmd"))
 unlink(glue("{docFolder}/ReadabilityTestsReference/cites.bib"))
 unlink(glue("{docFolder}/ReadabilityTestsReference/modern-language-association.csl"))
 
