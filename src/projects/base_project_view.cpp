@@ -92,7 +92,7 @@ wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
     EVT_MENU(XRCID("ID_EDIT_PLOT_BKCOLOR"), BaseProjectView::OnEditGraphColor)
     EVT_MENU(XRCID("ID_EDIT_PLOT_BKCOLOR_OPACITY"), BaseProjectView::OnEditGraphOpacity)
     EVT_MENU(XRCID("ID_EDIT_GRAPH_BKCOLOR"), BaseProjectView::OnEditGraphColor)
-    EVT_MENU(XRCID("ID_EDIT_GRAPH_BKIMAGE"), BaseProjectView::OnEditGraphBackgroundImage)
+    EVT_MENU(XRCID("ID_EDIT_PLOT_BKIMAGE"), BaseProjectView::OnEditPlotBackgroundImage)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_GRAPH_FONTS"), BaseProjectView::OnEditGraphFontsButton)
     EVT_MENU(XRCID("ID_EDIT_Y_AXIS_FONT"), BaseProjectView::OnEditGraphFont)
     EVT_MENU(XRCID("ID_EDIT_X_AXIS_FONT"), BaseProjectView::OnEditGraphFont)
@@ -252,22 +252,22 @@ BaseProjectView::BaseProjectView()
     Bind(wxEVT_MENU, &BaseProjectView::OnGraphColorFade, this,
         XRCID("ID_GRAPH_BKCOLOR_FADE"));
 
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
+    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
         XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
+    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
         XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
+    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
         XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
+    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
         XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
+    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
         XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
+    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
         XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
+    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
         XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
 
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
+    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
         XRCID(""));
     Bind(wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
@@ -281,7 +281,7 @@ BaseProjectView::BaseProjectView()
             doc->RefreshRequired(ProjectRefresh::Minimal);
             doc->RefreshGraphs();
             },
-        XRCID("ID_EDIT_GRAPH_BKIMAGE_REMOVE"));
+        XRCID("ID_EDIT_PLOT_BKIMAGE_REMOVE"));
 
     // Raygor style
     Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED,
@@ -865,7 +865,7 @@ void BaseProjectView::OnGraphColorFade([[maybe_unused]] wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnEditGraphBackgroundImageEffect(wxCommandEvent& event)
+void BaseProjectView::OnEditPlotBackgroundImageEffect(wxCommandEvent& event)
     {
     auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     // uncheck all the options
@@ -934,14 +934,14 @@ void BaseProjectView::OnEditGraphBackgroundImageEffect(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnEditGraphBackgroundImage([[maybe_unused]] wxCommandEvent& event)
+void BaseProjectView::OnEditPlotBackgroundImage([[maybe_unused]] wxCommandEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Failed to get document!");
     if (!doc)
         { return; }
 
-    wxFileDialog fd(GetDocFrame(), _(L"Select Background Image"),
+    wxFileDialog fd(GetDocFrame(), _(L"Select Plot Background Image"),
             doc->GetPlotBackGroundImagePath().length() ? wxString{} : wxGetApp().GetAppOptions().GetImagePath(),
             doc->GetPlotBackGroundImagePath(),
             wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
@@ -2028,7 +2028,7 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     // image submenu
     auto graphBackgroundImageSubMenu = new wxMenu{};
     item = new wxMenuItem(graphBackgroundImageSubMenu,
-        XRCID("ID_EDIT_GRAPH_BKIMAGE"), _(L"Image..."));
+        XRCID("ID_EDIT_PLOT_BKIMAGE"), _(L"Image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     graphBackgroundImageSubMenu->Append(item);
 
@@ -2064,7 +2064,7 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
 
     graphBackgroundImageSubMenu->Append(
         new wxMenuItem(graphBackgroundImageSubMenu,
-            XRCID("ID_EDIT_GRAPH_BKIMAGE_REMOVE"), _(L"Remove Image")));
+            XRCID("ID_EDIT_PLOT_BKIMAGE_REMOVE"), _(L"Remove Image")));
 
     m_graphBackgroundMenu.AppendSubMenu(graphBackgroundImageSubMenu, _(L"Image"));
 

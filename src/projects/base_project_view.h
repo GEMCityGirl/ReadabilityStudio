@@ -498,8 +498,8 @@ private:
     void OnBoxPlotShowAllPointsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnBoxPlotShowLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnEditGraphBackgroundButton(wxRibbonButtonBarEvent& event);
-    void OnEditGraphBackgroundImage([[maybe_unused]] wxCommandEvent& event);
-    void OnEditGraphBackgroundImageEffect(wxCommandEvent& event);
+    void OnEditPlotBackgroundImage([[maybe_unused]] wxCommandEvent& event);
+    void OnEditPlotBackgroundImageEffect(wxCommandEvent& event);
     void OnGraphColorFade([[maybe_unused]] wxCommandEvent& event);
     void OnEditGraphRaygorStyleButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnRaygorStyleSelected([[maybe_unused]] wxCommandEvent& event);
