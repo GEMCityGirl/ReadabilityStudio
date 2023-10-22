@@ -88,7 +88,7 @@ wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
     EVT_MENU(XRCID("ID_EDIT_BOX_OPACITY"), BaseProjectView::OnEditGraphOpacity)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(
         XRCID("ID_EDIT_GRAPH_BACKGROUND"), BaseProjectView::OnEditGraphBackgroundButton)
-    EVT_MENU(XRCID("ID_EDIT_GRAPH_BKIMAGE_OPACITY"), BaseProjectView::OnEditGraphOpacity)
+    EVT_MENU(XRCID("ID_EDIT_PLOT_BKIMAGE_OPACITY"), BaseProjectView::OnEditGraphOpacity)
     EVT_MENU(XRCID("ID_EDIT_PLOT_BKCOLOR"), BaseProjectView::OnEditGraphColor)
     EVT_MENU(XRCID("ID_EDIT_PLOT_BKCOLOR_OPACITY"), BaseProjectView::OnEditGraphOpacity)
     EVT_MENU(XRCID("ID_EDIT_GRAPH_BKCOLOR"), BaseProjectView::OnEditGraphColor)
@@ -253,19 +253,19 @@ BaseProjectView::BaseProjectView()
         XRCID("ID_GRAPH_BKCOLOR_FADE"));
 
     Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
-        XRCID("ID_GRAPH_BKIMAGE_EFFECT_NO_EFFECT"));
+        XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
     Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
-        XRCID("ID_GRAPH_BKIMAGE_EFFECT_GRAYSCALE"));
+        XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
     Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
-        XRCID("ID_GRAPH_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
+        XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
     Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
-        XRCID("ID_GRAPH_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
+        XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
     Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
-        XRCID("ID_GRAPH_BKIMAGE_EFFECT_SEPIA"));
+        XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
     Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
-        XRCID("ID_GRAPH_BKIMAGE_EFFECT_FROSTED_GLASS"));
+        XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
     Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
-        XRCID("ID_GRAPH_BKIMAGE_EFFECT_OIL_PAINTING"));
+        XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
 
     Bind(wxEVT_MENU, &BaseProjectView::OnEditGraphBackgroundImageEffect, this,
         XRCID(""));
@@ -869,62 +869,62 @@ void BaseProjectView::OnEditGraphBackgroundImageEffect(wxCommandEvent& event)
     {
     auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     // uncheck all the options
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_NO_EFFECT"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_GRAYSCALE"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_SEPIA"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_FROSTED_GLASS"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_OIL_PAINTING"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
     wxMenuItem* menuItem{ nullptr };
-    if (event.GetId() == XRCID("ID_GRAPH_BKIMAGE_EFFECT_NO_EFFECT"))
+    if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::NoEffect);
-        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_NO_EFFECT"));
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
         }
-    else if (event.GetId() == XRCID("ID_GRAPH_BKIMAGE_EFFECT_GRAYSCALE"))
+    else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::Grayscale);
-        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_GRAYSCALE"));
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
         }
-    else if (event.GetId() == XRCID("ID_GRAPH_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"))
+    else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::BlurHorizontal);
-        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
         }
-    else if (event.GetId() == XRCID("ID_GRAPH_BKIMAGE_EFFECT_BLUR_VERTICALLY"))
+    else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::BlurVertical);
-        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
         }
-    else if (event.GetId() == XRCID("ID_GRAPH_BKIMAGE_EFFECT_SEPIA"))
+    else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::Sepia);
-        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_SEPIA"));
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
         }
-    else if (event.GetId() == XRCID("ID_GRAPH_BKIMAGE_EFFECT_FROSTED_GLASS"))
+    else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::FrostedGlass);
-        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_FROSTED_GLASS"));
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
         }
-    else if (event.GetId() == XRCID("ID_GRAPH_BKIMAGE_EFFECT_OIL_PAINTING"))
+    else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::OilPainting);
-        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_OIL_PAINTING"));
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
         }
 
     if (menuItem)
@@ -1064,7 +1064,7 @@ void BaseProjectView::OnEditGraphOpacity(wxCommandEvent& event)
     if (!doc)
         { return; }
 
-    if (event.GetId() == XRCID("ID_EDIT_GRAPH_BKIMAGE_OPACITY"))
+    if (event.GetId() == XRCID("ID_EDIT_PLOT_BKIMAGE_OPACITY"))
         {
         auto img = Wisteria::GraphItems::Image::LoadFile(doc->GetPlotBackGroundImagePath());
         if (!img.IsOk())
@@ -1114,7 +1114,7 @@ void BaseProjectView::OnEditGraphOpacity(wxCommandEvent& event)
     Wisteria::UI::OpacityDlg dlg(GetDocFrame(), opacity, bmp);
     if (dlg.ShowModal())
         {
-        if (event.GetId() == XRCID("ID_EDIT_GRAPH_BKIMAGE_OPACITY"))
+        if (event.GetId() == XRCID("ID_EDIT_PLOT_BKIMAGE_OPACITY"))
             { doc->SetPlotBackGroundImageOpacity(dlg.GetOpacity()); }
         else if (event.GetId() == XRCID("ID_EDIT_BOX_OPACITY"))
             { doc->SetGraphBoxOpacity(dlg.GetOpacity()); }
@@ -2034,31 +2034,31 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
 
     graphBackgroundImageSubMenu->Append(
         new wxMenuItem(graphBackgroundImageSubMenu,
-        XRCID("ID_EDIT_GRAPH_BKIMAGE_OPACITY"), _(L"Image Opacity...")));
+        XRCID("ID_EDIT_PLOT_BKIMAGE_OPACITY"), _(L"Image Opacity...")));
 
     auto graphBackgroundImageEffectSubMenu = new wxMenu{};
 
     graphBackgroundImageEffectSubMenu->Append(
         new wxMenuItem(graphBackgroundColorSubMenu,
-            XRCID("ID_GRAPH_BKIMAGE_EFFECT_NO_EFFECT"), _(L"No Effect"), wxString{}, wxITEM_CHECK));
+            XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"), _(L"No Effect"), wxString{}, wxITEM_CHECK));
     graphBackgroundImageEffectSubMenu->Append(
         new wxMenuItem(graphBackgroundColorSubMenu,
-            XRCID("ID_GRAPH_BKIMAGE_EFFECT_GRAYSCALE"), _(L"Grayscale"), wxString{}, wxITEM_CHECK));
+            XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"), _(L"Grayscale"), wxString{}, wxITEM_CHECK));
     graphBackgroundImageEffectSubMenu->Append(
         new wxMenuItem(graphBackgroundColorSubMenu,
-            XRCID("ID_GRAPH_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"), _(L"Blur Horizontally"), wxString{}, wxITEM_CHECK));
+            XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"), _(L"Blur Horizontally"), wxString{}, wxITEM_CHECK));
     graphBackgroundImageEffectSubMenu->Append(
         new wxMenuItem(graphBackgroundColorSubMenu,
-            XRCID("ID_GRAPH_BKIMAGE_EFFECT_BLUR_VERTICALLY"), _(L"Blur Vertically"), wxString{}, wxITEM_CHECK));
+            XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"), _(L"Blur Vertically"), wxString{}, wxITEM_CHECK));
     graphBackgroundImageEffectSubMenu->Append(
         new wxMenuItem(graphBackgroundColorSubMenu,
-            XRCID("ID_GRAPH_BKIMAGE_EFFECT_SEPIA"), _(L"Sepia"), wxString{}, wxITEM_CHECK));
+            XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"), _(L"Sepia"), wxString{}, wxITEM_CHECK));
     graphBackgroundImageEffectSubMenu->Append(
         new wxMenuItem(graphBackgroundColorSubMenu,
-            XRCID("ID_GRAPH_BKIMAGE_EFFECT_FROSTED_GLASS"), _(L"Frosted Glass"), wxString{}, wxITEM_CHECK));
+            XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"), _(L"Frosted Glass"), wxString{}, wxITEM_CHECK));
     graphBackgroundImageEffectSubMenu->Append(
         new wxMenuItem(graphBackgroundColorSubMenu,
-            XRCID("ID_GRAPH_BKIMAGE_EFFECT_OIL_PAINTING"), _(L"Oil Painting"), wxString{}, wxITEM_CHECK));
+            XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"), _(L"Oil Painting"), wxString{}, wxITEM_CHECK));
 
     graphBackgroundImageSubMenu->AppendSubMenu(graphBackgroundImageEffectSubMenu, _(L"Effects"));
 
@@ -2531,25 +2531,25 @@ void BaseProjectView::Present()
     if (fadeOption)
         { fadeOption->Check(doc->GetGraphBackGroundLinearGradient()); }
 
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_NO_EFFECT"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::NoEffect); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_GRAYSCALE"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::Grayscale); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::BlurHorizontal); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::BlurVertical); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_SEPIA"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::Sepia); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_FROSTED_GLASS"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::FrostedGlass); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKIMAGE_EFFECT_OIL_PAINTING"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::OilPainting); }
 
