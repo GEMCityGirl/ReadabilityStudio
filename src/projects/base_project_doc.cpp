@@ -38,7 +38,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_stippleShape(wxGetApp().GetAppOptions().GetStippleShape()),
     m_stippleColor(wxGetApp().GetAppOptions().GetStippleShapeColor()),
     m_graphBackGroundColor(wxGetApp().GetAppOptions().GetBackGroundColor()),
-    m_graphPlotBackGroundColor(wxGetApp().GetAppOptions().GetPlotBackGroundColor()),
+    m_plotBackGroundColor(wxGetApp().GetAppOptions().GetPlotBackGroundColor()),
     m_graphBackGroundOpacity(wxGetApp().GetAppOptions().GetGraphBackGroundOpacity()),
     m_plotBackGroundColorOpacity(wxGetApp().GetAppOptions().GetPlotBackGroundColorOpacity()),
     m_watermark(wxGetApp().GetAppOptions().GetWatermark()),
@@ -148,7 +148,7 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
     m_stippleShape = that.m_stippleShape;
     m_stippleColor = that.m_stippleColor;
     m_graphBackGroundColor = that.m_graphBackGroundColor;
-    m_graphPlotBackGroundColor = that.m_graphPlotBackGroundColor;
+    m_plotBackGroundColor = that.m_plotBackGroundColor;
     m_graphBackGroundOpacity = that.m_graphBackGroundOpacity;
     m_plotBackGroundColorOpacity = that.m_plotBackGroundColorOpacity;
     m_watermark = that.m_watermark;

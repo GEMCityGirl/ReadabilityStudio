@@ -73,9 +73,9 @@ public:
         { m_graphBackGroundColor = color; }
     [[nodiscard]]
     wxColour GetPlotBackGroundColor() const
-        { return m_graphPlotBackGroundColor; }
+        { return m_plotBackGroundColor; }
     void SetPlotBackGroundColor(const wxColour& color)
-        { m_graphPlotBackGroundColor = color; }
+        { m_plotBackGroundColor = color; }
     [[nodiscard]]
     uint8_t GetGraphBackGroundOpacity() const noexcept
         { return m_graphBackGroundOpacity; }
@@ -647,7 +647,7 @@ protected:
     wxString m_stippleShape{ DONTTRANSLATE(L"book") };
     wxColour m_stippleColor{ wxColour{ L"#6082B6" } };
     wxColour m_graphBackGroundColor;
-    wxColour m_graphPlotBackGroundColor;
+    wxColour m_plotBackGroundColor;
     uint8_t m_graphBackGroundOpacity{ wxALPHA_OPAQUE };
     uint8_t m_plotBackGroundColorOpacity{ wxALPHA_OPAQUE };
     wxString m_watermark;

@@ -643,7 +643,7 @@ void ReadabilityAppOptions::ResetSettings()
     m_watermark.clear();
     m_watermarkImg.clear();
     m_graphBackGroundColor = wxColour(255, 255, 255);
-    m_graphPlotBackGroundColor = wxColour(255, 255, 255);
+    m_plotBackGroundColor = wxColour(255, 255, 255);
     m_graphBackGroundOpacity = wxALPHA_OPAQUE;
     m_plotBackGroundColorOpacity = wxALPHA_TRANSPARENT;
     m_xAxisFontColor = wxColour(0, 0, 0);
