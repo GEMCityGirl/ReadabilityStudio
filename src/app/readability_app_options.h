@@ -866,9 +866,9 @@ public:
         { m_graphBackGroundOpacity = opacity; }
     [[nodiscard]]
     uint8_t GetPlotBackGroundColorOpacity() const noexcept
-        { return m_graphPlotBackGroundOpacity; }
+        { return m_plotBackGroundColorOpacity; }
     void SetPlotBackGroundColorOpacity(const uint8_t opacity) noexcept
-        { m_graphPlotBackGroundOpacity = opacity; }
+        { m_plotBackGroundColorOpacity = opacity; }
     /// water mark functions
     void SetWatermark(const wxString& watermark)
         { m_watermark = watermark; }
@@ -1399,7 +1399,7 @@ private:
     wxColour m_graphBackGroundColor{ *wxWHITE };
     wxColour m_graphPlotBackGroundColor{ *wxWHITE };
     uint8_t m_graphBackGroundOpacity{ wxALPHA_OPAQUE };
-    uint8_t m_graphPlotBackGroundOpacity{ wxALPHA_TRANSPARENT };
+    uint8_t m_plotBackGroundColorOpacity{ wxALPHA_TRANSPARENT };
     wxColour m_xAxisFontColor{ *wxBLACK };
     wxFont m_xAxisFont;
     wxColour m_yAxisFontColor{ *wxBLACK };

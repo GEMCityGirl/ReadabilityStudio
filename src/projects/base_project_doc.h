@@ -83,9 +83,9 @@ public:
         { m_graphBackGroundOpacity = opacity; }
     [[nodiscard]]
     uint8_t GetPlotBackGroundColorOpacity() const noexcept
-        { return m_graphPlotBackGroundOpacity; }
+        { return m_plotBackGroundColorOpacity; }
     void SetPlotBackGroundColorOpacity(const uint8_t opacity) noexcept
-        { m_graphPlotBackGroundOpacity = opacity; }
+        { m_plotBackGroundColorOpacity = opacity; }
     /// water mark functions
     void SetWatermark(const wxString& watermark)
         { m_watermark = watermark; }
@@ -649,7 +649,7 @@ protected:
     wxColour m_graphBackGroundColor;
     wxColour m_graphPlotBackGroundColor;
     uint8_t m_graphBackGroundOpacity{ wxALPHA_OPAQUE };
-    uint8_t m_graphPlotBackGroundOpacity{ wxALPHA_OPAQUE };
+    uint8_t m_plotBackGroundColorOpacity{ wxALPHA_OPAQUE };
     wxString m_watermark;
     wxString m_watermarkImagePath;
     wxBitmapBundle m_waterMarkImage;

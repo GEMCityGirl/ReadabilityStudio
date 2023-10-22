@@ -40,7 +40,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_graphBackGroundColor(wxGetApp().GetAppOptions().GetBackGroundColor()),
     m_graphPlotBackGroundColor(wxGetApp().GetAppOptions().GetPlotBackGroundColor()),
     m_graphBackGroundOpacity(wxGetApp().GetAppOptions().GetGraphBackGroundOpacity()),
-    m_graphPlotBackGroundOpacity(wxGetApp().GetAppOptions().GetPlotBackGroundColorOpacity()),
+    m_plotBackGroundColorOpacity(wxGetApp().GetAppOptions().GetPlotBackGroundColorOpacity()),
     m_watermark(wxGetApp().GetAppOptions().GetWatermark()),
     m_watermarkImagePath(wxGetApp().GetAppOptions().GetWatermarkLogo()),
     m_xAxisFontColor(wxGetApp().GetAppOptions().GetXAxisFontColor()),
@@ -150,7 +150,7 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
     m_graphBackGroundColor = that.m_graphBackGroundColor;
     m_graphPlotBackGroundColor = that.m_graphPlotBackGroundColor;
     m_graphBackGroundOpacity = that.m_graphBackGroundOpacity;
-    m_graphPlotBackGroundOpacity = that.m_graphPlotBackGroundOpacity;
+    m_plotBackGroundColorOpacity = that.m_plotBackGroundColorOpacity;
     m_watermark = that.m_watermark;
     m_xAxisFontColor = that.m_xAxisFontColor;
     m_xAxisFont = that.m_xAxisFont;
