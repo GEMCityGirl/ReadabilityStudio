@@ -2094,9 +2094,9 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 auto opacityNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_BACKGROUND_OPACITY.mb_str());
                 if (opacityNode)
                     {
-                    SetGraphBackGroundOpacity(
+                    SetPlotBackGroundImageOpacity(
                         static_cast<uint8_t>(opacityNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), GetGraphBackGroundOpacity())));
+                            XML_VALUE.mb_str(), GetPlotBackGroundImageOpacity())));
                     }
                 opacityNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_OPACITY.mb_str());
                 if (opacityNode)
@@ -4066,9 +4066,9 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         plotBackgroundColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetPlotBackGroundColor().Blue() );
         graphDefaultsSection->InsertEndChild(plotBackgroundColor);
         }
-    // background opacity
+    // plot background image opacity
     auto graphBackgroundOpacity = doc.NewElement(XML_GRAPH_BACKGROUND_OPACITY.mb_str());
-    graphBackgroundOpacity->SetAttribute(XML_VALUE.mb_str(), GetGraphBackGroundOpacity());
+    graphBackgroundOpacity->SetAttribute(XML_VALUE.mb_str(), GetPlotBackGroundImageOpacity());
     graphDefaultsSection->InsertEndChild(graphBackgroundOpacity);
     // plot background color opacity
     auto graphPlotBackgroundOpacity = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_OPACITY.mb_str());
@@ -4746,7 +4746,7 @@ void ReadabilityAppOptions::UpdateGraphOptions(Wisteria::Canvas* graphCanvas)
     graphCanvas->SetRightPrinterFooter(ReadabilityAppOptions::GetRightPrinterFooter());
 
     graphCanvas->SetBackgroundColor(GetBackGroundColor(), GetGraphBackGroundLinearGradient());
-    graphCanvas->SetBackgroundImage(m_graphBackgroundImage, GetGraphBackGroundOpacity());
+    graphCanvas->SetBackgroundImage(m_graphBackgroundImage, GetPlotBackGroundImageOpacity());
 
     auto plot = std::dynamic_pointer_cast<Graph2D>(graphCanvas->GetFixedObject(0,0));
     plot->SetPlotBackgroundColor(

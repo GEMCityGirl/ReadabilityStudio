@@ -1233,7 +1233,7 @@ namespace LuaScripting
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetGraphBackGroundOpacity(lua_tonumber(L, 1));
+        wxGetApp().GetAppOptions().SetPlotBackGroundImageOpacity(lua_tonumber(L, 1));
         return 0;
         }
     //-------------------------------------------------------------

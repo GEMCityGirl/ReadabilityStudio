@@ -860,9 +860,9 @@ public:
     void SetPlotBackGroundColor(const wxColour& color)
         { m_plotBackGroundColor = color; }
     [[nodiscard]]
-    uint8_t GetGraphBackGroundOpacity() const noexcept
+    uint8_t GetPlotBackGroundImageOpacity() const noexcept
         { return m_plotBackGroundImageOpacity; }
-    void SetGraphBackGroundOpacity(const uint8_t opacity) noexcept
+    void SetPlotBackGroundImageOpacity(const uint8_t opacity) noexcept
         { m_plotBackGroundImageOpacity = opacity; }
     [[nodiscard]]
     uint8_t GetPlotBackGroundColorOpacity() const noexcept

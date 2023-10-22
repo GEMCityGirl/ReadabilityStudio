@@ -39,7 +39,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_stippleColor(wxGetApp().GetAppOptions().GetStippleShapeColor()),
     m_graphBackGroundColor(wxGetApp().GetAppOptions().GetBackGroundColor()),
     m_plotBackGroundColor(wxGetApp().GetAppOptions().GetPlotBackGroundColor()),
-    m_plotBackGroundImageOpacity(wxGetApp().GetAppOptions().GetGraphBackGroundOpacity()),
+    m_plotBackGroundImageOpacity(wxGetApp().GetAppOptions().GetPlotBackGroundImageOpacity()),
     m_plotBackGroundColorOpacity(wxGetApp().GetAppOptions().GetPlotBackGroundColorOpacity()),
     m_watermark(wxGetApp().GetAppOptions().GetWatermark()),
     m_watermarkImagePath(wxGetApp().GetAppOptions().GetWatermarkLogo()),
@@ -484,7 +484,7 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
     graph->SetPlotBackgroundColor(
         Colors::ColorContrast::ChangeOpacity(GetPlotBackGroundColor(),
                                              GetPlotBackGroundColorOpacity()));
-    graph->SetPlotBackgroundImage(m_plotBackgroundImageWithEffect, GetGraphBackGroundOpacity());
+    graph->SetPlotBackgroundImage(m_plotBackgroundImageWithEffect, GetPlotBackGroundImageOpacity());
 
     graph->SetStippleBrush(m_graphStippleImage);
     graph->SetImageScheme(m_graphImageScheme);
@@ -1358,9 +1358,9 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_COLOR,
             wxGetApp().GetAppOptions().GetPlotBackGroundColor()));
 
-        SetGraphBackGroundOpacity(XmlFormat::GetLong(graphsSection, graphsSectionEnd,
+        SetPlotBackGroundImageOpacity(XmlFormat::GetLong(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_OPACITY,
-            wxGetApp().GetAppOptions().GetGraphBackGroundOpacity()));
+            wxGetApp().GetAppOptions().GetPlotBackGroundImageOpacity()));
         SetPlotBackGroundColorOpacity(XmlFormat::GetLong(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_OPACITY,
             wxGetApp().GetAppOptions().GetPlotBackGroundColorOpacity()));
@@ -2348,9 +2348,9 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_COLOR);
     fileText += XmlFormat::FormatColorAttributes(GetPlotBackGroundColor());
     fileText.append(L"/>\n");
-    // background opacity
+    // plot background image opacity
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_OPACITY,
-        static_cast<int>(GetGraphBackGroundOpacity()), 2);
+        static_cast<int>(GetPlotBackGroundImageOpacity()), 2);
     fileText += sectionText;
     // plot background color opacity
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_OPACITY,

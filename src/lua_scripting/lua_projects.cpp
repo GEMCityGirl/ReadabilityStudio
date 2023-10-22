@@ -486,7 +486,7 @@ namespace LuaScripting
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        m_project->SetGraphBackGroundOpacity(lua_tonumber(L, 2));
+        m_project->SetPlotBackGroundImageOpacity(lua_tonumber(L, 2));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2131,7 +2131,7 @@ namespace LuaScripting
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        m_project->SetGraphBackGroundOpacity(lua_tonumber(L, 2));
+        m_project->SetPlotBackGroundImageOpacity(lua_tonumber(L, 2));
         ReloadIfNotDelayedSimple();
         return 0;
         }

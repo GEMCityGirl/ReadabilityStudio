@@ -1088,7 +1088,7 @@ void BaseProjectView::OnEditGraphOpacity(wxCommandEvent& event)
             }
         else
             { bmp = img; }
-        opacity = doc->GetGraphBackGroundOpacity();
+        opacity = doc->GetPlotBackGroundImageOpacity();
         }
     else if (event.GetId() == XRCID("ID_EDIT_BOX_OPACITY"))
         {
@@ -1115,7 +1115,7 @@ void BaseProjectView::OnEditGraphOpacity(wxCommandEvent& event)
     if (dlg.ShowModal())
         {
         if (event.GetId() == XRCID("ID_EDIT_GRAPH_BKIMAGE_OPACITY"))
-            { doc->SetGraphBackGroundOpacity(dlg.GetOpacity()); }
+            { doc->SetPlotBackGroundImageOpacity(dlg.GetOpacity()); }
         else if (event.GetId() == XRCID("ID_EDIT_BOX_OPACITY"))
             { doc->SetGraphBoxOpacity(dlg.GetOpacity()); }
         else if (event.GetId() == XRCID("ID_EDIT_BAR_OPACITY"))

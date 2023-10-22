@@ -2138,7 +2138,7 @@ void ToolsOptionsDlg::SaveOptions()
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageOpacityLabel()))
             {
-            wxGetApp().GetAppOptions().SetGraphBackGroundOpacity(
+            wxGetApp().GetAppOptions().SetPlotBackGroundImageOpacity(
                 static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageOpacityLabel())));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetWatermarkLabel()))
@@ -2458,7 +2458,7 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageOpacityLabel()))
             {
-            m_readabilityProjectDoc->SetGraphBackGroundOpacity(
+            m_readabilityProjectDoc->SetPlotBackGroundImageOpacity(
                 static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageOpacityLabel())));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetWatermarkLabel()))
@@ -4671,8 +4671,8 @@ void ToolsOptionsDlg::CreateGraphSection()
             auto imgOpacityProp = backgroundImage->AppendChild(
                 new wxIntProperty(GetOpacityLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetGraphBackGroundOpacity() :
-                    wxGetApp().GetAppOptions().GetGraphBackGroundOpacity())) );
+                    m_readabilityProjectDoc->GetPlotBackGroundImageOpacity() :
+                    wxGetApp().GetAppOptions().GetPlotBackGroundImageOpacity())) );
             imgOpacityProp->SetEditor(wxPGEditor_SpinCtrl);
             imgOpacityProp->SetAttribute(wxPG_ATTR_MIN, 0);
             imgOpacityProp->SetAttribute(wxPG_ATTR_MAX, 255);
