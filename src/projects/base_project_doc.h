@@ -78,9 +78,9 @@ public:
         { m_plotBackGroundColor = color; }
     [[nodiscard]]
     uint8_t GetGraphBackGroundOpacity() const noexcept
-        { return m_graphBackGroundOpacity; }
+        { return m_plotBackGroundImageOpacity; }
     void SetGraphBackGroundOpacity(const uint8_t opacity) noexcept
-        { m_graphBackGroundOpacity = opacity; }
+        { m_plotBackGroundImageOpacity = opacity; }
     [[nodiscard]]
     uint8_t GetPlotBackGroundColorOpacity() const noexcept
         { return m_plotBackGroundColorOpacity; }
@@ -648,7 +648,7 @@ protected:
     wxColour m_stippleColor{ wxColour{ L"#6082B6" } };
     wxColour m_graphBackGroundColor;
     wxColour m_plotBackGroundColor;
-    uint8_t m_graphBackGroundOpacity{ wxALPHA_OPAQUE };
+    uint8_t m_plotBackGroundImageOpacity{ wxALPHA_OPAQUE };
     uint8_t m_plotBackGroundColorOpacity{ wxALPHA_OPAQUE };
     wxString m_watermark;
     wxString m_watermarkImagePath;
