@@ -2023,7 +2023,23 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
         new wxMenuItem(graphBackgroundColorSubMenu,
         XRCID("ID_GRAPH_BKCOLOR_FADE"), _(L"Fade"), wxString{}, wxITEM_CHECK));
 
-    m_graphBackgroundMenu.AppendSubMenu(graphBackgroundColorSubMenu, _(L"Color"));
+    m_graphBackgroundMenu.AppendSubMenu(graphBackgroundColorSubMenu, _(L"Background Color"));
+
+    m_graphBackgroundMenu.AppendSeparator();
+
+    // plot color submenu
+    auto plotColorSubMenu = new wxMenu{};
+    item = new wxMenuItem(plotColorSubMenu,
+        XRCID("ID_EDIT_PLOT_BKCOLOR"), _(L"Color..."));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
+    plotColorSubMenu->Append(item);
+
+    item = new wxMenuItem(plotColorSubMenu,
+        XRCID("ID_EDIT_PLOT_BKCOLOR_OPACITY"), _(L"Opacity..."));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/opacity.svg"));
+    plotColorSubMenu->Append(item);
+
+    m_graphBackgroundMenu.AppendSubMenu(plotColorSubMenu, _(L"Plot Color"));
 
     // image submenu
     auto graphBackgroundImageSubMenu = new wxMenu{};
@@ -2034,7 +2050,7 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
 
     graphBackgroundImageSubMenu->Append(
         new wxMenuItem(graphBackgroundImageSubMenu,
-        XRCID("ID_EDIT_PLOT_BKIMAGE_OPACITY"), _(L"Image Opacity...")));
+        XRCID("ID_EDIT_PLOT_BKIMAGE_OPACITY"), _(L"Opacity...")));
 
     auto graphBackgroundImageEffectSubMenu = new wxMenu{};
 
@@ -2062,29 +2078,18 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
 
     graphBackgroundImageSubMenu->AppendSubMenu(graphBackgroundImageEffectSubMenu, _(L"Effects"));
 
-    graphBackgroundImageSubMenu->Append(
-        new wxMenuItem(graphBackgroundImageSubMenu,
-            XRCID("ID_EDIT_PLOT_BKIMAGE_REMOVE"), _(L"Remove Image")));
+    item = new wxMenuItem(graphBackgroundImageSubMenu,
+        XRCID("ID_EDIT_PLOT_BKIMAGE_REMOVE"), _(L"Remove Image"));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/delete.svg"));
+    graphBackgroundImageSubMenu->Append(item);
 
-    m_graphBackgroundMenu.AppendSubMenu(graphBackgroundImageSubMenu, _(L"Image"));
-
-    m_graphBackgroundMenu.AppendSeparator();
-
-    item = new wxMenuItem(&m_graphBackgroundMenu,
-        XRCID("ID_EDIT_PLOT_BKCOLOR"), _(L"Plot Area Color..."));
-    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
-    m_graphBackgroundMenu.Append(item);
-
-    item = new wxMenuItem(&m_graphBackgroundMenu,
-        XRCID("ID_EDIT_PLOT_BKCOLOR_OPACITY"), _(L"Plot Area Opacity..."));
-    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/opacity.svg"));
-    m_graphBackgroundMenu.Append(item);
+    m_graphBackgroundMenu.AppendSubMenu(graphBackgroundImageSubMenu, _(L"Plot Image"));
 
     // Raygor styles
     m_raygorStyleMenu.Append(
         XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"), _(L"Original"))->SetCheckable(true);
     m_raygorStyleMenu.Append(
-        XRCID("ID_EDIT_GRAPH_RAYGOR_BALDWIN_KAUFMAN"), _(L"Baldwin-Kaufman"))->SetCheckable(true);
+        XRCID("ID_EDIT_GRAPH_RAYGOR_BALDWIN_KAUFMAN"), _DT(L"Baldwin-Kaufman"))->SetCheckable(true);
     m_raygorStyleMenu.Append(
         XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"), _(L"Modern"))->SetCheckable(true);
 

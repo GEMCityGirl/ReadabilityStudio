@@ -56,9 +56,9 @@ knitr::include_graphics("images/ExampleBarChartNoLabelsChanged.png")
 ## Customizing the Background {#graph-background-example}
 
 Continuing from our previous [graph example](#customizing-bars), let's now change the background of the graph.
-On the **Home** tab, click `r menu(c('Background', 'Color', 'Color...'))`.
+On the **Home** tab, click `r menu(c('Background', 'Background Color', 'Color...'))`.
 When the color selection dialog appears, select a new color (e.g., antique white) and click `r keys("OK")`.
-After selecting a color, check the option **Apply Fade** from the same menu.
+After selecting a color, check the option **Fade** from the same menu.
 
 Now, the graph will have an antique white background with a gradient effect:
 
@@ -66,7 +66,7 @@ Now, the graph will have an antique white background with a gradient effect:
 knitr::include_graphics("images/ExampleGraphBackgroundColorChanged.png")
 ```
 
-Next, click the `r keys("Background")` button again and select `r menu(c('Image', 'Image...'))`. When the image selection dialog appears, choose an image and click `r keys("OK")`.
+Next, click the `r keys("Background")` button again and select `r menu(c('Plot Image', 'Image...'))`. When the image selection dialog appears, choose an image and click `r keys("OK")`.
 
 ::: {.minipage data-latex="{\textwidth}"}
 This image will now be shown as the background for your graphs:
@@ -77,43 +77,25 @@ knitr::include_graphics("images/ExampleGraphBackgroundImageChangedTooOpaque.png"
 :::
 
 To go along with the watercolor bars, we could also apply an oil painting effect to the image.
-Click the `r keys("Background")` button and select `r menu(c('Image', 'Effects', 'Oil Painting'))`.
+Click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Effects', 'Oil Painting'))`.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ExampleGraphBackgroundImageEffectChanged.png")
 ```
 
-By default, the image will be shown fully opaque. For lighter images this will look fine, but darker images (like the one shown above) will make it difficult to read the graph.
+By default, the image will be shown fully opaque. For lighter images this will look fine, but darker images (like the one shown above) will make it difficult to read the bars.
 
-One option is to make the image lighter.
-Click the `r keys("Background")` button and select **Image Opacity...** from the menu.
+An option we have is to make the image lighter.
+Click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Opacity'))`.
 On the **Set Opacity** dialog, slide the opacity down to 150 and click `r keys("OK")`.
 
 ::: {.minipage data-latex="{\textwidth}"}
-Now this image will be translucent and the graph labels will be much easier to read:
+Now this image will be translucent and the graph labels will be easier to see:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ExampleGraphBackgroundImageChangedLighter.png")
 ```
 :::
-
-Another option is to change the graph's text to be white and bold so that it contrasts the background image.
-On the ribbon, click the `r keys("Font")` button and select **X Axis...**.
-From the font dialog, select bold and white for the color and click `r keys("OK")`.
-Do the same for the Y axis and top titles. The graph will now appear as such:
-
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleGraphFontColorChanged.png")
-```
-
-Next, we will apply a light color to the plot area. Click the `r keys("Background")` button, select **Plot Area Color...** from the menu, and select a new color (e.g., antique white).
-Then, select **Opacity...** from this menu and set it to 25 and click `r keys("OK")`.
-
-Now the plot area will have a light color applied to it:
-
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExamplePlotBackgroundColorChanged.png")
-```
 
 \newpage
 

@@ -1006,34 +1006,19 @@ sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundColorChanged." .. FileExtension)
 
 -- change the background to an image
-sp:SetGraphBackgroundImage(ScreenshotProjectsFolder .. "bookstore.png")
-sp:SetGraphBackgroundOpacity(255)
+sp:SetPlotBackgroundImage(ScreenshotProjectsFolder .. "bookstore.png")
 sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageChangedTooOpaque." .. FileExtension)
 
 -- apply an effect to the background image
-sp:SetGraphBackgroundImageEffect(ImageEffect.OilPainting)
+sp:SetPlotBackgroundImageEffect(ImageEffect.OilPainting)
 sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageEffectChanged." .. FileExtension)
 
 -- lighten the image
-sp:SetGraphBackgroundOpacity(150)
+sp:SetPlotBackgroundImageOpacity(150)
 sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageChangedLighter." .. FileExtension)
-
--- change background back to opaque and set fonts to white
-sp:SetGraphBackgroundOpacity(255)
-sp:SetXAxisFont("", -1, 1000, "white")
-sp:SetYAxisFont("", -1, 1000, "white")
-sp:SetGraphTopTitleFont("", -1, 1000, "white")
-sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphFontColorChanged." .. FileExtension)
-
--- change the plot background color
-sp:SetPlotBackgroundColor(250, 235, 215)
-sp:SetPlotBackgroundOpacity(50)
-sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExamplePlotBackgroundColorChanged." .. FileExtension)
 
 -- add watermark
 sp:SetGraphWatermark("INTERNAL USE ONLY\nProcessed on @DATE@")
