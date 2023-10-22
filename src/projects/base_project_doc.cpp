@@ -1362,7 +1362,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_OPACITY,
             wxGetApp().GetAppOptions().GetPlotBackGroundImageOpacity()));
         SetPlotBackGroundColorOpacity(XmlFormat::GetLong(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_OPACITY,
+            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY,
             wxGetApp().GetAppOptions().GetPlotBackGroundColorOpacity()));
 
         SetGraphBackGroundLinearGradient(XmlFormat::GetBoolean(graphsSection, graphsSectionEnd,
@@ -2353,7 +2353,7 @@ wxString BaseProjectDoc::FormatProjectSettings() const
         static_cast<int>(GetPlotBackGroundImageOpacity()), 2);
     fileText += sectionText;
     // plot background color opacity
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_OPACITY,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY,
         static_cast<int>(GetPlotBackGroundColorOpacity()), 2);
     fileText += sectionText;
     // background linear gradient
