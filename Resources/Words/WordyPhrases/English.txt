@@ -2885,7 +2885,7 @@ follow after	follow	1
 follow along the lines of	imitate, resemble	0		
 followed after	followed	1		
 followed along the lines of	imitated, resembled	0		
-following after	following	1	the	
+following after	following	1	a;the	
 following along the lines of	imitating, resembling	0		
 follows after	follows	1		
 follows along the lines of	imitates, resembles	0		
@@ -3212,6 +3212,7 @@ had a tendency	tended to	0
 had an effect	affected, influenced	0		
 had an impact on	affected, influenced	0		
 had an influence on	affected, influenced	0		
+had heart that	had heard that	3		
 had know	had known	3		
 had no bearing on	did not affect, did not influence	0		
 had the ability to	could	0		
@@ -3269,6 +3270,7 @@ have an impact on	affect, influence	0
 have an influence on	affect, influence	0		
 have and have-nots	haves and have-nots	3		
 have confidence in	trust	0		
+have heart that	have heard that	3		
 have much confidence in	trust	0		
 have no	lacks	0		
 have no bearing on	do not affect, do not influence	0		
@@ -3299,6 +3301,7 @@ he herd	he heard	3
 he is a man who	he	0		
 he new	he knew	3		
 he would appreciate it if	please	0		
+he'd heart that	he'd heard that	3		
 head and shoulders above	far exceeding	2		
 head honcho	the boss	2		
 head in the clouds	distracted, absent-minded	2		
@@ -3429,6 +3432,7 @@ I personally	I	0
 I thing	I think	3		
 I would appreciate it if	please	0		
 I'm curious why	why	0		
+I've heart that	I've heard that	3		
 identical	same	0		
 identical to	the same as	0		
 identicalness	sameness	0		
@@ -6257,6 +6261,7 @@ she herd	she heard	3
 she is a woman who	she	0		
 she new	she knew	3		
 she would appreciate it if	please	0		
+she'd heart that	she'd heard that	3		
 shell he	shall he	3		
 shell I	shall I	3		
 shell she	shall she	3		
@@ -6868,6 +6873,7 @@ they themselves	they	1
 they thing	they think	3		
 they was	they were	3		
 they would appreciate it if	please	0		
+they'd heart that	they'd heard that	3		
 they're one in the same	they're one and the same	3		
 thick as thieves	intimate, close	2		
 think off	think of	3		
@@ -7443,6 +7449,7 @@ we ourselves	we	1
 we thing	we think	3		
 we was	we were	3		
 we would appreciate it if	please	0		
+we'd heart that	we'd heard that	3		
 weather conditions	weather, climate	0		
 weather or not	whether or not	3		
 weather you are	whether you are	3		
