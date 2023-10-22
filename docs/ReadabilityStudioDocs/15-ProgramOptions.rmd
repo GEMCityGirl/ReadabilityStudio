@@ -706,14 +706,20 @@ The options on this page customize your graphs.
 
 **Fade**: Check this to apply a downward fade to the background color of your graphs. The background of your graphs will fade (top-to-bottom) starting with the color that you have selected into white.
 
-**Image**: Selects the image for the graphs' background.
+#### Plot Background {-}
+
+**Color**: Selects the color for the plot area background of the graphs.
+
+**Opacity**: Sets the transparency of the plot background. A value of 255 will set the background to be fully opaque, whereas 0 will set the background to be transparent.
+
+**Image**: Selects the image for the graphs' plot background. This image will be drawn within the area between X and Y axes of the graphs.
 
 :::: {.optionssection data-latex=""}
 ::: {.optionssectiontitle data-latex=""}
 Effect
 :::
 
-The following options can be applied to the graph background image:
+The following options can be applied to the background image:
 
 **No effect**: Does not apply any effect.
 
@@ -731,12 +737,6 @@ The following options can be applied to the graph background image:
 ::::
 
 **Opacity**: Sets the transparency of the background image. A value of 255 will set the background to be fully opaque, whereas 0 will set the background to be transparent.
-
-#### Plot Area Background {-}
-
-**Color**: Selects the color for the plot area background of the graphs.
-
-**Opacity**: Sets the transparency of the plot background. A value of 255 will set the background to be fully opaque, whereas 0 will set the background to be transparent.
 
 #### Watermarks & Logos {-#watermark-and-logo}
 
