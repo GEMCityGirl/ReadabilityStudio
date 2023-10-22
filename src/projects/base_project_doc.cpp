@@ -1359,7 +1359,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             wxGetApp().GetAppOptions().GetPlotBackGroundColor()));
 
         SetPlotBackGroundImageOpacity(XmlFormat::GetLong(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_OPACITY,
+            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY,
             wxGetApp().GetAppOptions().GetPlotBackGroundImageOpacity()));
         SetPlotBackGroundColorOpacity(XmlFormat::GetLong(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY,
@@ -2349,7 +2349,7 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText += XmlFormat::FormatColorAttributes(GetPlotBackGroundColor());
     fileText.append(L"/>\n");
     // plot background image opacity
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_OPACITY,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY,
         static_cast<int>(GetPlotBackGroundImageOpacity()), 2);
     fileText += sectionText;
     // plot background color opacity

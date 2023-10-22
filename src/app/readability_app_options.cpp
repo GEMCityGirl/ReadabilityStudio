@@ -102,7 +102,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_GRAPH_BACKGROUND_IMAGE_EFFECT(_DT(L"graph-background-image-effect")),
     XML_GRAPH_BACKGROUND_COLOR(_DT(L"graph-background-color")),
     XML_GRAPH_PLOT_BACKGROUND_COLOR(_DT(L"graph-plot-background-color")),
-    XML_GRAPH_BACKGROUND_OPACITY(_DT(L"graph-background-opacity")),
+    XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY(_DT(L"graph-background-opacity")),
     XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY(_DT(L"graph-plot-background-color-opacity")),
     XML_GRAPH_BACKGROUND_LINEAR_GRADIENT(_DT(L"graph-background-linear-gradient")),
     XML_GRAPH_WATERMARK(_DT(L"watermark")),
@@ -2091,7 +2091,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             GetPlotBackGroundColor().Blue());
                     SetPlotBackGroundColor(wxColour(red, green, blue));
                     }
-                auto opacityNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_BACKGROUND_OPACITY.mb_str());
+                auto opacityNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY.mb_str());
                 if (opacityNode)
                     {
                     SetPlotBackGroundImageOpacity(
@@ -4067,7 +4067,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         graphDefaultsSection->InsertEndChild(plotBackgroundColor);
         }
     // plot background image opacity
-    auto graphBackgroundOpacity = doc.NewElement(XML_GRAPH_BACKGROUND_OPACITY.mb_str());
+    auto graphBackgroundOpacity = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY.mb_str());
     graphBackgroundOpacity->SetAttribute(XML_VALUE.mb_str(), GetPlotBackGroundImageOpacity());
     graphDefaultsSection->InsertEndChild(graphBackgroundOpacity);
     // plot background color opacity
