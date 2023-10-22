@@ -151,11 +151,11 @@ namespace LuaScripting
         // GRAPH OPTIONS
         int SetGraphBackgroundColor(lua_State *L);
         int ApplyGraphBackgroundFade(lua_State *L);
-        int SetGraphBackgroundImage(lua_State *L);
-        int SetGraphBackgroundImageEffect(lua_State *L);
-        int SetGraphBackgroundOpacity(lua_State *L);
+        int SetPlotBackgroundImage(lua_State *L);
+        int SetPlotBackgroundImageEffect(lua_State *L);
+        int SetPlotBackgroundImageOpacity(lua_State *L);
         int SetPlotBackgroundColor(lua_State *L);
-        int SetPlotBackgroundOpacity(lua_State *L);
+        int SetPlotBackgroundColorOpacity(lua_State *L);
         int SetGraphWatermark(lua_State *L);
         int SetGraphLogoImage(lua_State *L);
         int SetStippleImage(lua_State *L);
@@ -357,11 +357,11 @@ namespace LuaScripting
         // GRAPH OPTIONS
         int SetGraphBackgroundColor(lua_State *L);
         int ApplyGraphBackgroundFade(lua_State *L);
-        int SetGraphBackgroundImage(lua_State *L);
-        int SetGraphBackgroundImageEffect(lua_State *L);
-        int SetGraphBackgroundOpacity(lua_State *L);
+        int SetPlotBackgroundImage(lua_State *L);
+        int SetPlotBackgroundImageEffect(lua_State *L);
+        int SetPlotBackgroundImageOpacity(lua_State *L);
         int SetPlotBackgroundColor(lua_State *L);
-        int SetPlotBackgroundOpacity(lua_State *L);
+        int SetPlotBackgroundColorOpacity(lua_State *L);
         int SetGraphWatermark(lua_State *L);
         int SetGraphLogoImage(lua_State *L);
         int SetStippleImage(lua_State *L);

@@ -1579,7 +1579,7 @@ bool ProjectDoc::OnNewDocument()
     wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Loading project...")));
 
     // load the images now
-    SetBackGroundImagePath(GetBackGroundImagePath());
+    SetPlotBackGroundImagePath(GetPlotBackGroundImagePath());
     SetStippleImagePath(GetStippleImagePath());
     SetWatermarkLogoPath(GetWatermarkLogoPath());
     SetGraphCommonImagePath(GetGraphCommonImagePath());
@@ -6754,12 +6754,12 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
         Wisteria::ZipCatalog::WriteText(zip, ProjectContentFileLabel(), GetDocumentText());
         /// @todo This seems to be relic code, these images are never used from the zip file.
         ///     This should probably be removed.
-        if (m_graphBackgroundImage.IsOk())
+        if (m_plotBackgroundImage.IsOk())
             {
-            const wxFileName fn(GetBackGroundImagePath());
+            const wxFileName fn(GetPlotBackGroundImagePath());
             wxString ext{ fn.GetExt() };
             zip.PutNextEntry(fn.GetFullName());
-            m_graphBackgroundImage.GetBitmap(m_graphBackgroundImage.GetDefaultSize()).ConvertToImage().
+            m_plotBackgroundImage.GetBitmap(m_plotBackgroundImage.GetDefaultSize()).ConvertToImage().
                 SaveFile(zip, Image::GetImageFileTypeFromExtension(ext));
             }
         if (m_graphStippleImage.IsOk())

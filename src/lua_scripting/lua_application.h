@@ -101,8 +101,8 @@ namespace LuaScripting
     // GRAPH OPTIONS
     int SetGraphBackgroundColor(lua_State *L);
     int ApplyGraphBackgroundFade(lua_State *L);
-    int SetGraphBackgroundImage(lua_State *L);
-    int SetGraphBackgroundOpacity(lua_State *L);
+    int SetPlotBackgroundImage(lua_State *L);
+    int SetPlotBackgroundImageOpacity(lua_State *L);
     int SetPlotBackgroundColor(lua_State *L);
     int SetPlotBackgroundOpacity(lua_State *L);
     int SetGraphWatermark(lua_State *L);
@@ -177,8 +177,8 @@ namespace LuaScripting
             { "SetBlockExclusionTags", SetBlockExclusionTags },
             { "SetGraphBackgroundColor", SetGraphBackgroundColor },
             { "ApplyGraphBackgroundFade", ApplyGraphBackgroundFade },
-            { "SetGraphBackgroundImage", SetGraphBackgroundImage },
-            { "SetGraphBackgroundOpacity", SetGraphBackgroundOpacity },
+            { "SetPlotBackgroundImage", SetPlotBackgroundImage },
+            { "SetPlotBackgroundImageOpacity", SetPlotBackgroundImageOpacity },
             { "SetPlotBackgroundColor", SetPlotBackgroundColor },
             { "SetPlotBackgroundOpacity", SetPlotBackgroundOpacity },
             { "SetGraphWatermark", SetGraphWatermark },

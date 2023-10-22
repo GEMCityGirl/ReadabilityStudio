@@ -32,7 +32,7 @@ BaseProjectDoc::BaseProjectDoc() :
     // graph options
     m_useGraphBackGroundImageLinearGradient(wxGetApp().GetAppOptions().GetGraphBackGroundLinearGradient()),
     m_displayDropShadows(wxGetApp().GetAppOptions().IsDisplayingDropShadows()),
-    m_graphBackGroundImagePath(wxGetApp().GetAppOptions().GetBackGroundImagePath()),
+    m_plotBackGroundImagePath(wxGetApp().GetAppOptions().GetPlotBackGroundImagePath()),
     m_stippleImagePath(wxGetApp().GetAppOptions().GetStippleImagePath()),
     m_commonImagePath(wxGetApp().GetAppOptions().GetGraphCommonImagePath()),
     m_stippleShape(wxGetApp().GetAppOptions().GetStippleShape()),
@@ -40,7 +40,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_graphBackGroundColor(wxGetApp().GetAppOptions().GetBackGroundColor()),
     m_graphPlotBackGroundColor(wxGetApp().GetAppOptions().GetPlotBackGroundColor()),
     m_graphBackGroundOpacity(wxGetApp().GetAppOptions().GetGraphBackGroundOpacity()),
-    m_graphPlotBackGroundOpacity(wxGetApp().GetAppOptions().GetGraphPlotBackGroundOpacity()),
+    m_graphPlotBackGroundOpacity(wxGetApp().GetAppOptions().GetPlotBackGroundColorOpacity()),
     m_watermark(wxGetApp().GetAppOptions().GetWatermark()),
     m_watermarkImagePath(wxGetApp().GetAppOptions().GetWatermarkLogo()),
     m_xAxisFontColor(wxGetApp().GetAppOptions().GetXAxisFontColor()),
@@ -82,7 +82,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_graphBoxOpacity(wxGetApp().GetAppOptions().GetGraphBoxOpacity()),
     m_graphBoxEffect(wxGetApp().GetAppOptions().GetGraphBoxEffect()),
     // background image effect
-    m_backgroundImageEffect(wxGetApp().GetAppOptions().GetBackGroundImageEffect()),
+    m_plotBackgroundImageEffect(wxGetApp().GetAppOptions().GetPlotBackGroundImageEffect()),
     // text highlighting options
     m_textViewHighlightColor(wxGetApp().GetAppOptions().GetTextHighlightColor() ),
     m_excludedTextHighlightColor(wxGetApp().GetAppOptions().GetExcludedTextHighlightColor() ),
@@ -127,16 +127,16 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
 
     if (reloadImages)
         {
-        SetBackGroundImagePath(that.m_graphBackGroundImagePath);
+        SetPlotBackGroundImagePath(that.m_plotBackGroundImagePath);
         SetStippleImagePath(that.m_stippleImagePath);
         SetWatermarkLogoPath(that.m_watermarkImagePath);
         SetGraphCommonImagePath(that.m_commonImagePath);
         }
     else
         {
-        m_graphBackGroundImagePath = that.m_graphBackGroundImagePath;
-        m_graphBackgroundImage = that.m_graphBackgroundImage;
-        m_graphBackgroundImageWithEffect = that.m_graphBackgroundImageWithEffect;
+        m_plotBackGroundImagePath = that.m_plotBackGroundImagePath;
+        m_plotBackgroundImage = that.m_plotBackgroundImage;
+        m_plotBackgroundImageWithEffect = that.m_plotBackgroundImageWithEffect;
         m_stippleImagePath = that.m_stippleImagePath;
         m_graphStippleImage = that.m_graphStippleImage;
         m_watermarkImagePath = that.m_watermarkImagePath;
@@ -205,20 +205,20 @@ void BaseProjectDoc::SetGraphCommonImagePath(const wxString& filePath)
     }
 
 //------------------------------------------------------
-void BaseProjectDoc::SetBackGroundImagePath(const wxString& filePath)
+void BaseProjectDoc::SetPlotBackGroundImagePath(const wxString& filePath)
     {
-    m_graphBackGroundImagePath = filePath;
+    m_plotBackGroundImagePath = filePath;
     if (filePath.empty())
-        { m_graphBackgroundImageWithEffect = m_graphBackgroundImage = wxBitmapBundle{}; }
+        { m_plotBackgroundImageWithEffect = m_plotBackgroundImage = wxBitmapBundle{}; }
     if (HasUI())
         {
         if (wxFile::Exists(filePath))
             {
             const auto bmp = wxGetApp().GetResourceManager().GetBitmap(
-                m_graphBackGroundImagePath, wxBITMAP_TYPE_ANY);
+                m_plotBackGroundImagePath, wxBITMAP_TYPE_ANY);
             if (bmp.IsOk())
                 {
-                m_graphBackgroundImage = wxBitmapBundle(bmp.ConvertToImage());
+                m_plotBackgroundImage = wxBitmapBundle(bmp.ConvertToImage());
                 }
             }
         else
@@ -227,47 +227,47 @@ void BaseProjectDoc::SetBackGroundImagePath(const wxString& filePath)
             wxString fileBySameNameInProjectDirectory;
             if (FindMissingFile(filePath, fileBySameNameInProjectDirectory))
                 {
-                m_graphBackGroundImagePath = fileBySameNameInProjectDirectory;
+                m_plotBackGroundImagePath = fileBySameNameInProjectDirectory;
                 const auto bmp = wxGetApp().GetResourceManager().GetBitmap(
-                    m_graphBackGroundImagePath, wxBITMAP_TYPE_ANY);
+                    m_plotBackGroundImagePath, wxBITMAP_TYPE_ANY);
                 if (bmp.IsOk())
                     {
-                    m_graphBackgroundImage = wxBitmapBundle(bmp.ConvertToImage());
+                    m_plotBackgroundImage = wxBitmapBundle(bmp.ConvertToImage());
                     }
                 }
             else
-                { m_graphBackgroundImage = wxBitmapBundle{}; }
+                { m_plotBackgroundImage = wxBitmapBundle{}; }
             }
-        const auto bmp = m_graphBackgroundImage.GetBitmap(m_graphBackgroundImage.GetDefaultSize());
+        const auto bmp = m_plotBackgroundImage.GetBitmap(m_plotBackgroundImage.GetDefaultSize());
         if (bmp.IsOk())
             {
-            m_graphBackgroundImageWithEffect = Wisteria::GraphItems::Image::ApplyEffect(GetBackGroundImageEffect(),
+            m_plotBackgroundImageWithEffect = Wisteria::GraphItems::Image::ApplyEffect(GetPlotBackGroundImageEffect(),
                 bmp.ConvertToImage());
             }
         }
     }
 
 //------------------------------------------------------
-void BaseProjectDoc::SetBackGroundImageEffect(const Wisteria::ImageEffect effect)
+void BaseProjectDoc::SetPlotBackGroundImageEffect(const Wisteria::ImageEffect effect)
     {
     if (HasUI())
         {
         // only update the altered image if changing the effect
-        if (GetBackGroundImageEffect() != effect)
+        if (GetPlotBackGroundImageEffect() != effect)
             {
-            m_backgroundImageEffect = effect;
-            const auto bmp = m_graphBackgroundImage.GetBitmap(
-                m_graphBackgroundImage.GetDefaultSize());
+            m_plotBackgroundImageEffect = effect;
+            const auto bmp = m_plotBackgroundImage.GetBitmap(
+                m_plotBackgroundImage.GetDefaultSize());
             if (bmp.IsOk())
                 {
-                m_graphBackgroundImageWithEffect =
-                    Wisteria::GraphItems::Image::ApplyEffect(GetBackGroundImageEffect(),
+                m_plotBackgroundImageWithEffect =
+                    Wisteria::GraphItems::Image::ApplyEffect(GetPlotBackGroundImageEffect(),
                         bmp.ConvertToImage());
                 }
             }
         }
     else
-        { m_backgroundImageEffect = effect; }
+        { m_plotBackgroundImageEffect = effect; }
     }
 
 //------------------------------------------------------
@@ -477,14 +477,14 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
     UpdatePrinterHeaderAndFooters(canvas);
 
     canvas->SetBackgroundColor(GetBackGroundColor(), GetGraphBackGroundLinearGradient());
-    canvas->SetBackgroundImage(m_graphBackgroundImageWithEffect, GetGraphBackGroundOpacity());
 
     auto graph = std::dynamic_pointer_cast<Wisteria::Graphs::Graph2D>(canvas->GetFixedObject(0, 0));
     assert(graph && L"No graph on the canvas!");
 
     graph->SetPlotBackgroundColor(
         Colors::ColorContrast::ChangeOpacity(GetPlotBackGroundColor(),
-                                             GetGraphPlotBackGroundOpacity()));
+                                             GetPlotBackGroundColorOpacity()));
+    graph->SetPlotBackgroundImage(m_plotBackgroundImageWithEffect, GetGraphBackGroundOpacity());
 
     graph->SetStippleBrush(m_graphStippleImage);
     graph->SetImageScheme(m_graphImageScheme);
@@ -1339,17 +1339,17 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         (graphsSection < graphsSectionEnd) )
         {
         // background color and images
-        SetBackGroundImagePath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
+        SetPlotBackGroundImagePath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_PATH));
 
         long imageEffect = XmlFormat::GetLong(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_EFFECT,
-            static_cast<int>(GetBackGroundImageEffect()));
+            static_cast<int>(GetPlotBackGroundImageEffect()));
         if (imageEffect < 0 ||
             imageEffect >=
             static_cast<decltype(imageEffect)>(ImageEffect::IMAGE_EFFECTS_COUNT) )
             { imageEffect = static_cast<decltype(imageEffect)>(ImageEffect::NoEffect); }
-        SetBackGroundImageEffect(static_cast<ImageEffect>(imageEffect));
+        SetPlotBackGroundImageEffect(static_cast<ImageEffect>(imageEffect));
 
         SetBackGroundColor(XmlFormat::GetColor(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_COLOR, wxGetApp().GetAppOptions().GetBackGroundColor()));
@@ -1361,9 +1361,9 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         SetGraphBackGroundOpacity(XmlFormat::GetLong(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_OPACITY,
             wxGetApp().GetAppOptions().GetGraphBackGroundOpacity()));
-        SetGraphPlotBackGroundOpacity(XmlFormat::GetLong(graphsSection, graphsSectionEnd,
+        SetPlotBackGroundColorOpacity(XmlFormat::GetLong(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_OPACITY,
-            wxGetApp().GetAppOptions().GetGraphPlotBackGroundOpacity()));
+            wxGetApp().GetAppOptions().GetPlotBackGroundColorOpacity()));
 
         SetGraphBackGroundLinearGradient(XmlFormat::GetBoolean(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_LINEAR_GRADIENT,
@@ -2334,11 +2334,11 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_SETTINGS).append(L">\n");
     // background image
     fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_PATH).append(L">");
-    fileText += GetBackGroundImagePath();
+    fileText += GetPlotBackGroundImagePath();
     fileText.append(L"</").append(wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_PATH).append(L">\n");
 
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_EFFECT,
-        static_cast<int>(GetBackGroundImageEffect()), 3);
+        static_cast<int>(GetPlotBackGroundImageEffect()), 3);
     fileText += sectionText;
     // background color
     fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_COLOR);
@@ -2352,9 +2352,9 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_OPACITY,
         static_cast<int>(GetGraphBackGroundOpacity()), 2);
     fileText += sectionText;
-    // plot background opacity
+    // plot background color opacity
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_OPACITY,
-        static_cast<int>(GetGraphPlotBackGroundOpacity()), 2);
+        static_cast<int>(GetPlotBackGroundColorOpacity()), 2);
     fileText += sectionText;
     // background linear gradient
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_LINEAR_GRADIENT,

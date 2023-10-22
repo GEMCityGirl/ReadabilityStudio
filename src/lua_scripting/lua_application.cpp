@@ -1220,16 +1220,16 @@ namespace LuaScripting
         return 0;
         }
     //-------------------------------------------------------------
-    int SetGraphBackgroundImage(lua_State *L)
+    int SetPlotBackgroundImage(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetBackGroundImagePath(
+        wxGetApp().GetAppOptions().SetPlotBackGroundImagePath(
             wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
     //-------------------------------------------------------------
-    int SetGraphBackgroundOpacity(lua_State *L)
+    int SetPlotBackgroundImageOpacity(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
@@ -1250,7 +1250,7 @@ namespace LuaScripting
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().SetGraphPlotBackGroundOpacity(lua_tonumber(L, 1));
+        wxGetApp().GetAppOptions().SetPlotBackGroundColorOpacity(lua_tonumber(L, 1));
         return 0;
         }
     //-------------------------------------------------------------

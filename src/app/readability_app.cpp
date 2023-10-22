@@ -370,7 +370,7 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
                                 wxString graphBackgroundPath;
                                 if (cmdParser.Found(_DT(L"bg"), &graphBackgroundPath))
                                     {
-                                    newDoc->SetBackGroundImagePath(graphBackgroundPath);
+                                    newDoc->SetPlotBackGroundImagePath(graphBackgroundPath);
                                     newDoc->RefreshRequired(ProjectRefresh::Minimal);
                                     newDoc->RefreshProject();
                                     }

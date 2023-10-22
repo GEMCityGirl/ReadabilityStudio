@@ -429,7 +429,7 @@ private:
         { return _(L"Background"); }
     [[nodiscard]]
     wxString GetPlotAreaBackgroundLabel() const
-        { return _(L"Plot Area Background"); }
+        { return _(L"Plot Background"); }
     [[nodiscard]]
     wxString GetWatermarksLogosLabel() const
         { return _(L"Watermarks & Logos"); }

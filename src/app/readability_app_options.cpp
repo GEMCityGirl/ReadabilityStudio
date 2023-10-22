@@ -639,7 +639,7 @@ void ReadabilityAppOptions::ResetSettings()
     m_barDisplayLabels = true;
     m_useGraphBackGroundImageLinearGradient = false;
     m_displayDropShadows = false;
-    m_graphBackGroundImagePath.clear();
+    m_plotBackGroundImagePath.clear();
     m_watermark.clear();
     m_watermarkImg.clear();
     m_graphBackGroundColor = wxColour(255,255,255);
@@ -677,7 +677,7 @@ void ReadabilityAppOptions::ResetSettings()
     m_graphBoxColor = wxColour(0, 128, 64);
     m_graphBoxOpacity = wxALPHA_OPAQUE;
     m_graphBoxEffect = BoxEffect::Glassy;
-    m_backgroundImageEffect = Wisteria::ImageEffect::NoEffect;
+    m_plotBackgroundImageEffect = Wisteria::ImageEffect::NoEffect;
     m_varianceMethod = VarianceMethod::PopulationVariance;
     GetStatisticsReportInfo().Reset();
     GetStatisticsInfo().Reset();
@@ -2046,7 +2046,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         const wchar_t* filteredText =
                             filter_html(imagePathStr.wc_str(), imagePathStr.length(), true, false);
                         if (filteredText)
-                            { SetBackGroundImagePath(wxString(filteredText)); }
+                            { SetPlotBackGroundImagePath(wxString(filteredText)); }
                         }
                     }
                 // graph background colors
@@ -2070,12 +2070,12 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         int value =
                             backgroundImageEffectNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), static_cast<int>(GetBackGroundImageEffect()));
+                                XML_VALUE.mb_str(), static_cast<int>(GetPlotBackGroundImageEffect()));
                         if (value < 0 ||
                             value >=
                             static_cast<decltype(value)>(ImageEffect::IMAGE_EFFECTS_COUNT) )
                             { value = static_cast<decltype(value)>(ImageEffect::NoEffect); }
-                        SetBackGroundImageEffect(static_cast<ImageEffect>(value));
+                        SetPlotBackGroundImageEffect(static_cast<ImageEffect>(value));
                         }
                 colorNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_COLOR.mb_str());
                 if (colorNode)
@@ -2101,9 +2101,9 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 opacityNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_OPACITY.mb_str());
                 if (opacityNode)
                     {
-                    SetGraphPlotBackGroundOpacity(
+                    SetPlotBackGroundColorOpacity(
                         static_cast<uint8_t>(opacityNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), GetGraphPlotBackGroundOpacity())));
+                            XML_VALUE.mb_str(), GetPlotBackGroundColorOpacity())));
                     }
                 // linear gradient of backgrounds
                 auto gradientNode = graphDefaultsNode->FirstChildElement(
@@ -4043,11 +4043,11 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     // background image
     auto graphBackgroundImage = doc.NewElement(XML_GRAPH_BACKGROUND_IMAGE_PATH.mb_str());
     graphBackgroundImage->SetAttribute(XML_VALUE.mb_str(),
-        wxString(encode({ GetBackGroundImagePath().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetPlotBackGroundImagePath().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(graphBackgroundImage);
 
     auto backgroundImageEffect = doc.NewElement(XML_GRAPH_BACKGROUND_IMAGE_EFFECT.mb_str());
-    backgroundImageEffect->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetBackGroundImageEffect()));
+    backgroundImageEffect->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetPlotBackGroundImageEffect()));
     graphDefaultsSection->InsertEndChild(backgroundImageEffect);
     // background colors
     if (GetBackGroundColor().IsOk())
@@ -4070,9 +4070,9 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto graphBackgroundOpacity = doc.NewElement(XML_GRAPH_BACKGROUND_OPACITY.mb_str());
     graphBackgroundOpacity->SetAttribute(XML_VALUE.mb_str(), GetGraphBackGroundOpacity());
     graphDefaultsSection->InsertEndChild(graphBackgroundOpacity);
-    // plot background opacity
+    // plot background color opacity
     auto graphPlotBackgroundOpacity = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_OPACITY.mb_str());
-    graphPlotBackgroundOpacity->SetAttribute(XML_VALUE.mb_str(), GetGraphPlotBackGroundOpacity());
+    graphPlotBackgroundOpacity->SetAttribute(XML_VALUE.mb_str(), GetPlotBackGroundColorOpacity());
     graphDefaultsSection->InsertEndChild(graphPlotBackgroundOpacity);
     // background linear gradient
     auto graphBackgroundGradient = doc.NewElement(XML_GRAPH_BACKGROUND_LINEAR_GRADIENT.mb_str());
@@ -4717,10 +4717,11 @@ void ReadabilityAppOptions::UpdateGraphOptions(Wisteria::Canvas* graphCanvas)
     if (graphCanvas == nullptr)
         { return; }
     // load the graph images
-    if (wxFile::Exists(GetBackGroundImagePath()))
+    if (wxFile::Exists(GetPlotBackGroundImagePath()))
         {
         m_graphBackgroundImage = wxBitmapBundle(
-            wxGetApp().GetResourceManager().GetBitmap(GetBackGroundImagePath(),wxBITMAP_TYPE_ANY).ConvertToImage());
+            wxGetApp().GetResourceManager().GetBitmap(GetPlotBackGroundImagePath(),wxBITMAP_TYPE_ANY).
+                ConvertToImage());
         }
     if (wxFile::Exists(GetWatermarkLogo()))
         {
@@ -4750,7 +4751,7 @@ void ReadabilityAppOptions::UpdateGraphOptions(Wisteria::Canvas* graphCanvas)
     auto plot = std::dynamic_pointer_cast<Graph2D>(graphCanvas->GetFixedObject(0,0));
     plot->SetPlotBackgroundColor(
         Colors::ColorContrast::ChangeOpacity(GetPlotBackGroundColor(),
-                                             GetGraphPlotBackGroundOpacity()));
+                                             GetPlotBackGroundColorOpacity()));
 
     plot->SetStippleBrush(m_graphStippleImage);
     plot->SetImageScheme(m_graphImageScheme);

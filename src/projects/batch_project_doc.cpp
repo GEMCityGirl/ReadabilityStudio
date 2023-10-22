@@ -173,7 +173,7 @@ bool BatchProjectDoc::OnNewDocument()
     BaseProjectProcessingLock processingLock(this);
 
     // load the images now
-    SetBackGroundImagePath(GetBackGroundImagePath());
+    SetPlotBackGroundImagePath(GetPlotBackGroundImagePath());
     SetStippleImagePath(GetStippleImagePath());
     SetWatermarkLogoPath(GetWatermarkLogoPath());
     SetGraphCommonImagePath(GetGraphCommonImagePath());

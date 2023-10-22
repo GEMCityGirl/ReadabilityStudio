@@ -2128,13 +2128,18 @@ void ToolsOptionsDlg::SaveOptions()
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageLabel()))
             {
-            wxGetApp().GetAppOptions().SetBackGroundImagePath(
+            wxGetApp().GetAppOptions().SetPlotBackGroundImagePath(
                 m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageEffectLabel()))
             {
-            wxGetApp().GetAppOptions().SetBackGroundImageEffect(
+            wxGetApp().GetAppOptions().SetPlotBackGroundImageEffect(
                 static_cast<ImageEffect>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageEffectLabel())));
+            }
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageOpacityLabel()))
+            {
+            wxGetApp().GetAppOptions().SetGraphBackGroundOpacity(
+                static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageOpacityLabel())));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetWatermarkLabel()))
             {
@@ -2146,11 +2151,6 @@ void ToolsOptionsDlg::SaveOptions()
             wxGetApp().GetAppOptions().SetWatermarkLogo(
                 m_generalGraphPropertyGrid->GetPropertyValueAsString(GetLogoImageLabel()));
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetImageOpacityLabel()))
-            {
-            wxGetApp().GetAppOptions().SetGraphBackGroundOpacity(
-                static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageOpacityLabel())));
-            }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetBackgroundColorFadeLabel()))
             {
             wxGetApp().GetAppOptions().SetGraphBackGroundLinearGradient(
@@ -2161,9 +2161,9 @@ void ToolsOptionsDlg::SaveOptions()
             wxGetApp().GetAppOptions().SetPlotBackGroundColor(
                 wxAny(m_generalGraphPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>());
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetOpacityLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetOpacityLabel()))
             {
-            wxGetApp().GetAppOptions().SetGraphPlotBackGroundOpacity(
+            wxGetApp().GetAppOptions().SetPlotBackGroundColorOpacity(
                 static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel())));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleImageLabel()))
@@ -2448,13 +2448,18 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageLabel()))
             {
-            m_readabilityProjectDoc->SetBackGroundImagePath(
+            m_readabilityProjectDoc->SetPlotBackGroundImagePath(
                 m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageEffectLabel()))
             {
-            m_readabilityProjectDoc->SetBackGroundImageEffect(
+            m_readabilityProjectDoc->SetPlotBackGroundImageEffect(
                 static_cast<ImageEffect>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageEffectLabel())));
+            }
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageOpacityLabel()))
+            {
+            m_readabilityProjectDoc->SetGraphBackGroundOpacity(
+                static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageOpacityLabel())));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetWatermarkLabel()))
             {
@@ -2465,11 +2470,6 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
             {
             m_readabilityProjectDoc->SetWatermarkLogoPath(
                 m_generalGraphPropertyGrid->GetPropertyValueAsString(GetLogoImageLabel()));
-            }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageOpacityLabel()))
-            {
-            m_readabilityProjectDoc->SetGraphBackGroundOpacity(
-                static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageOpacityLabel())));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetBackgroundColorFadeLabel()))
             {
@@ -2483,7 +2483,7 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetOpacityLabel()))
             {
-            m_readabilityProjectDoc->SetGraphPlotBackGroundOpacity(
+            m_readabilityProjectDoc->SetPlotBackGroundColorOpacity(
                 static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel())));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleImageLabel()))
@@ -4610,14 +4610,43 @@ void ToolsOptionsDlg::CreateGraphSection()
                 _(L"Check this to apply a downward fade to the background color of your graphs. "
                    "The background of your graphs will fade (top-to-bottom) starting with the color "
                    "that you have selected into white."));
+
+            // plot area
+            m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetPlotAreaBackgroundLabel()) );
+            m_generalGraphPropertyGrid->SetPropertyHelpString(
+                GetPlotAreaBackgroundLabel(),
+                _(L"The options in this section customize the plot area backgrounds of the graphs."));
+
+            // color
+            m_generalGraphPropertyGrid->Append(
+                new wxColourProperty(GetColorLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ?
+                    m_readabilityProjectDoc->GetPlotBackGroundColor() :
+                    wxGetApp().GetAppOptions().GetPlotBackGroundColor())));
+            m_generalGraphPropertyGrid->SetPropertyHelpString(
+                GetColorLabel(), _(L"Selects the color for the plot area background of the graphs."));
+            // opacity
+            m_generalGraphPropertyGrid->Append(new wxIntProperty(GetOpacityLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ?
+                    m_readabilityProjectDoc->GetPlotBackGroundColorOpacity() :
+                    wxGetApp().GetAppOptions().GetPlotBackGroundColorOpacity())) );
+            m_generalGraphPropertyGrid->SetPropertyEditor(GetOpacityLabel(), wxPGEditor_SpinCtrl);
+            m_generalGraphPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN, 0);
+            m_generalGraphPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX, 255);
+            m_generalGraphPropertyGrid->SetPropertyHelpString(
+                GetOpacityLabel(),
+                _(L"Sets the transparency of the plot background. "
+                   "A value of 255 will set the background to be fully opaque, whereas 0 will set the background "
+                   "to be transparent."));
+
             // image
             wxImageFileProperty* backgroundImage =
                 new wxImageFileProperty(GetImageLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetBackGroundImagePath() :
-                    wxGetApp().GetAppOptions().GetBackGroundImagePath()));
+                    m_readabilityProjectDoc->GetPlotBackGroundImagePath() :
+                    wxGetApp().GetAppOptions().GetPlotBackGroundImagePath()));
             backgroundImage->SetAttribute(wxPG_FILE_WILDCARD,wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER);
-            backgroundImage->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Background Image"));
+            backgroundImage->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Plot Background Image"));
             backgroundImage->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
             backgroundImage->SetHelpString(_(L"Selects the image for the graphs' background."));
 
@@ -4633,10 +4662,10 @@ void ToolsOptionsDlg::CreateGraphSection()
             auto imgEffectProp = backgroundImage->AppendChild(
                 new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, imgEffects,
                     (m_readabilityProjectDoc ?
-                        static_cast<int>(m_readabilityProjectDoc->GetBackGroundImageEffect()) :
-                        static_cast<int>(wxGetApp().GetAppOptions().GetBackGroundImageEffect()))));
+                        static_cast<int>(m_readabilityProjectDoc->GetPlotBackGroundImageEffect()) :
+                        static_cast<int>(wxGetApp().GetAppOptions().GetPlotBackGroundImageEffect()))));
             imgEffectProp->SetHelpString(
-                _(L"Applies an effect to the background image."));
+                _(L"Applies an effect to the plot background image."));
 
             // image opacity
             auto imgOpacityProp = backgroundImage->AppendChild(
@@ -4648,9 +4677,9 @@ void ToolsOptionsDlg::CreateGraphSection()
             imgOpacityProp->SetAttribute(wxPG_ATTR_MIN, 0);
             imgOpacityProp->SetAttribute(wxPG_ATTR_MAX, 255);
             imgOpacityProp->SetHelpString(
-                _(L"Sets the transparency of the background image. "
-                   "A value of 255 will set the background to be fully opaque, whereas 0 will set "
-                   "the background to be transparent."));
+                _(L"Sets the transparency of the plot background image. "
+                   "A value of 255 will set the image to be fully opaque, whereas 0 will set "
+                   "the image to be transparent."));
 
             m_generalGraphPropertyGrid->Append(backgroundImage);
             // set the default folder to the global image folder if no image provided
@@ -4658,33 +4687,6 @@ void ToolsOptionsDlg::CreateGraphSection()
                 {
                 backgroundImage->SetAttribute(wxPG_FILE_INITIAL_PATH, wxGetApp().GetAppOptions().GetImagePath());
                 }
-
-            // plot area
-            m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetPlotAreaBackgroundLabel()) );
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetPlotAreaBackgroundLabel(),
-                _(L"The options in this section customize the plot area backgrounds of the graphs."));
-            // color
-            m_generalGraphPropertyGrid->Append(
-                new wxColourProperty(GetColorLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetPlotBackGroundColor() :
-                    wxGetApp().GetAppOptions().GetPlotBackGroundColor())));
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetColorLabel(), _(L"Selects the color for the plot area background of the graphs."));
-            // opacity
-            m_generalGraphPropertyGrid->Append(new wxIntProperty(GetOpacityLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetGraphPlotBackGroundOpacity() :
-                    wxGetApp().GetAppOptions().GetGraphPlotBackGroundOpacity())) );
-            m_generalGraphPropertyGrid->SetPropertyEditor(GetOpacityLabel(), wxPGEditor_SpinCtrl);
-            m_generalGraphPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN, 0);
-            m_generalGraphPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX, 255);
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetOpacityLabel(),
-                _(L"Sets the transparency of the plot background. "
-                   "A value of 255 will set the background to be fully opaque, whereas 0 will set the background "
-                   "to be transparent."));
 
             m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetWatermarksLogosLabel()) );
             m_generalGraphPropertyGrid->SetPropertyHelpString(

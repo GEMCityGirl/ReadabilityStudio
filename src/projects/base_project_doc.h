@@ -48,7 +48,7 @@ public:
     [[nodiscard]]
     wxString GetStippleImagePath() const
         { return m_stippleImagePath; }
-    void SetBackGroundImagePath(const wxString& filePath);
+    void SetPlotBackGroundImagePath(const wxString& filePath);
     [[nodiscard]]
     wxString GetGraphCommonImagePath() const
         { return m_commonImagePath; }
@@ -64,8 +64,8 @@ public:
     void SetStippleShapeColor(const wxColour& color)
         { m_stippleColor = color; }
     [[nodiscard]]
-    wxString GetBackGroundImagePath() const
-        { return m_graphBackGroundImagePath; }
+    wxString GetPlotBackGroundImagePath() const
+        { return m_plotBackGroundImagePath; }
     [[nodiscard]]
     wxColour GetBackGroundColor() const
         { return m_graphBackGroundColor; }
@@ -82,9 +82,9 @@ public:
     void SetGraphBackGroundOpacity(const uint8_t opacity) noexcept
         { m_graphBackGroundOpacity = opacity; }
     [[nodiscard]]
-    uint8_t GetGraphPlotBackGroundOpacity() const noexcept
+    uint8_t GetPlotBackGroundColorOpacity() const noexcept
         { return m_graphPlotBackGroundOpacity; }
-    void SetGraphPlotBackGroundOpacity(const uint8_t opacity) noexcept
+    void SetPlotBackGroundColorOpacity(const uint8_t opacity) noexcept
         { m_graphPlotBackGroundOpacity = opacity; }
     /// water mark functions
     void SetWatermark(const wxString& watermark)
@@ -299,9 +299,9 @@ public:
         { m_graphBoxEffect = effect; }
     // background image options
     [[nodiscard]]
-    Wisteria::ImageEffect GetBackGroundImageEffect() const noexcept
-        { return m_backgroundImageEffect; }
-    void SetBackGroundImageEffect(const Wisteria::ImageEffect effect);
+    Wisteria::ImageEffect GetPlotBackGroundImageEffect() const noexcept
+        { return m_plotBackgroundImageEffect; }
+    void SetPlotBackGroundImageEffect(const Wisteria::ImageEffect effect);
     // text highlighting
     [[nodiscard]]
     TextHighlight GetTextHighlightMethod() noexcept
@@ -633,15 +633,15 @@ protected:
     // general graph information (that can apply to both standard and batch projects)
     bool m_useGraphBackGroundImageLinearGradient{ false };
     bool m_displayDropShadows{ false };
-    wxBitmapBundle m_graphBackgroundImage;
-    wxBitmapBundle m_graphBackgroundImageWithEffect;
+    wxBitmapBundle m_plotBackgroundImage;
+    wxBitmapBundle m_plotBackgroundImageWithEffect;
     wxBitmapBundle m_graphStippleImage;
     std::shared_ptr<Wisteria::Images::Schemes::ImageScheme> m_graphImageScheme
         {
         std::make_shared<Wisteria::Images::Schemes::ImageScheme>(
             std::vector<wxBitmapBundle>{ wxBitmapBundle{} })
         };
-    wxString m_graphBackGroundImagePath;
+    wxString m_plotBackGroundImagePath;
     wxString m_stippleImagePath;
     wxString m_commonImagePath;
     wxString m_stippleShape{ DONTTRANSLATE(L"book") };
@@ -698,7 +698,7 @@ protected:
     uint8_t m_graphBoxOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_graphBoxEffect{ Wisteria::BoxEffect::Glassy };
     // background image options
-    Wisteria::ImageEffect m_backgroundImageEffect{ Wisteria::ImageEffect::NoEffect };
+    Wisteria::ImageEffect m_plotBackgroundImageEffect{ Wisteria::ImageEffect::NoEffect };
 
     // text highlighting options
     wxColour m_textViewHighlightColor;

@@ -452,34 +452,34 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetGraphBackgroundImage(lua_State *L)
+    int StandardProject::SetPlotBackgroundImage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        m_project->SetBackGroundImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        m_project->SetPlotBackGroundImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
         return 0;
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetGraphBackgroundImageEffect(lua_State *L)
+    int StandardProject::SetPlotBackgroundImageEffect(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        m_project->SetBackGroundImageEffect(
+        m_project->SetPlotBackGroundImageEffect(
             static_cast<Wisteria::ImageEffect>(static_cast<int>(lua_tonumber(L, 2))) );
         ReloadIfNotDelayedSimple();
         return 0;
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetGraphBackgroundOpacity(lua_State *L)
+    int StandardProject::SetPlotBackgroundImageOpacity(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
@@ -506,14 +506,14 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetPlotBackgroundOpacity(lua_State *L)
+    int StandardProject::SetPlotBackgroundColorOpacity(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        m_project->SetGraphPlotBackGroundOpacity(lua_tonumber(L, 2));
+        m_project->SetPlotBackGroundColorOpacity(lua_tonumber(L, 2));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -1767,13 +1767,13 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, SetSpellCheckerOptions),
       LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundColor),
       LUNA_DECLARE_METHOD(StandardProject, ApplyGraphBackgroundFade),
-      LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundImage),
-      LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundImageEffect),
-      LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundOpacity),
+      LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImage),
+      LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageEffect),
+      LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageOpacity),
       LUNA_DECLARE_METHOD(StandardProject, SetGraphWatermark),
       LUNA_DECLARE_METHOD(StandardProject, SetGraphLogoImage),
       LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundColor),
-      LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundOpacity),
+      LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundColorOpacity),
       LUNA_DECLARE_METHOD(StandardProject, SetStippleImage),
       LUNA_DECLARE_METHOD(StandardProject, SetStippleShape),
       LUNA_DECLARE_METHOD(StandardProject, SetXAxisFont),
@@ -2097,34 +2097,34 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int BatchProject::SetGraphBackgroundImage(lua_State *L)
+    int BatchProject::SetPlotBackgroundImage(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        m_project->SetBackGroundImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        m_project->SetPlotBackGroundImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
         return 0;
         }
 
     //-------------------------------------------------------------
-    int BatchProject::SetGraphBackgroundImageEffect(lua_State *L)
+    int BatchProject::SetPlotBackgroundImageEffect(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        m_project->SetBackGroundImageEffect(
+        m_project->SetPlotBackGroundImageEffect(
             static_cast<Wisteria::ImageEffect>(static_cast<int>(lua_tonumber(L, 2))) );
         ReloadIfNotDelayedSimple();
         return 0;
         }
 
     //-------------------------------------------------------------
-    int BatchProject::SetGraphBackgroundOpacity(lua_State *L)
+    int BatchProject::SetPlotBackgroundImageOpacity(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
@@ -2151,14 +2151,14 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int BatchProject::SetPlotBackgroundOpacity(lua_State *L)
+    int BatchProject::SetPlotBackgroundColorOpacity(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        m_project->SetGraphPlotBackGroundOpacity(lua_tonumber(L, 2));
+        m_project->SetPlotBackGroundColorOpacity(lua_tonumber(L, 2));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2932,13 +2932,13 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, ExcludeProperNouns),
       LUNA_DECLARE_METHOD(BatchProject, SetGraphBackgroundColor),
       LUNA_DECLARE_METHOD(BatchProject, ApplyGraphBackgroundFade),
-      LUNA_DECLARE_METHOD(BatchProject, SetGraphBackgroundImage),
-      LUNA_DECLARE_METHOD(BatchProject, SetGraphBackgroundImageEffect),
-      LUNA_DECLARE_METHOD(BatchProject, SetGraphBackgroundOpacity),
+      LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImage),
+      LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImageEffect),
+      LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImageOpacity),
       LUNA_DECLARE_METHOD(BatchProject, SetGraphWatermark),
       LUNA_DECLARE_METHOD(BatchProject, SetGraphLogoImage),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundColor),
-      LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundOpacity),
+      LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundColorOpacity),
       LUNA_DECLARE_METHOD(BatchProject, SetStippleImage),
       LUNA_DECLARE_METHOD(BatchProject, SetStippleShape),
       LUNA_DECLARE_METHOD(BatchProject, SetXAxisFont),

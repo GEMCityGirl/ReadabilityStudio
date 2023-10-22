@@ -844,11 +844,11 @@ public:
     bool IsDisplayingDropShadows() const noexcept
         { return m_displayDropShadows; }
     // graph background image
-    void SetBackGroundImagePath(const wxString& filePath)
-        { m_graphBackGroundImagePath = filePath; }
+    void SetPlotBackGroundImagePath(const wxString& filePath)
+        { m_plotBackGroundImagePath = filePath; }
     [[nodiscard]]
-    wxString GetBackGroundImagePath() const
-        { return m_graphBackGroundImagePath; }
+    wxString GetPlotBackGroundImagePath() const
+        { return m_plotBackGroundImagePath; }
     [[nodiscard]]
     wxColour GetBackGroundColor() const
         { return m_graphBackGroundColor; }
@@ -865,9 +865,9 @@ public:
     void SetGraphBackGroundOpacity(const uint8_t opacity) noexcept
         { m_graphBackGroundOpacity = opacity; }
     [[nodiscard]]
-    uint8_t GetGraphPlotBackGroundOpacity() const noexcept
+    uint8_t GetPlotBackGroundColorOpacity() const noexcept
         { return m_graphPlotBackGroundOpacity; }
-    void SetGraphPlotBackGroundOpacity(const uint8_t opacity) noexcept
+    void SetPlotBackGroundColorOpacity(const uint8_t opacity) noexcept
         { m_graphPlotBackGroundOpacity = opacity; }
     /// water mark functions
     void SetWatermark(const wxString& watermark)
@@ -975,10 +975,10 @@ public:
         { m_graphBoxEffect = effect; }
     // background image options
     [[nodiscard]]
-    Wisteria::ImageEffect GetBackGroundImageEffect() const noexcept
-        { return m_backgroundImageEffect; }
-    void SetBackGroundImageEffect(const Wisteria::ImageEffect effect)
-        { m_backgroundImageEffect = effect; }
+    Wisteria::ImageEffect GetPlotBackGroundImageEffect() const noexcept
+        { return m_plotBackgroundImageEffect; }
+    void SetPlotBackGroundImageEffect(const Wisteria::ImageEffect effect)
+        { m_plotBackgroundImageEffect = effect; }
     // axis font colors
     [[nodiscard]]
     wxColour GetXAxisFontColor() const
@@ -1393,7 +1393,7 @@ private:
     bool m_boxConnectMiddlePoints{ true };
     bool m_useGraphBackGroundImageLinearGradient{ false };
     bool m_displayDropShadows{ false };
-    wxString m_graphBackGroundImagePath;
+    wxString m_plotBackGroundImagePath;
     wxString m_watermark;
     wxString m_watermarkImg;
     wxColour m_graphBackGroundColor{ *wxWHITE };
@@ -1446,7 +1446,7 @@ private:
     uint8_t m_graphBoxOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_graphBoxEffect{ Wisteria::BoxEffect::Glassy };
     // background image options
-    Wisteria::ImageEffect m_backgroundImageEffect{ Wisteria::ImageEffect::NoEffect };
+    Wisteria::ImageEffect m_plotBackgroundImageEffect{ Wisteria::ImageEffect::NoEffect };
     // project settings
     VarianceMethod m_varianceMethod{ VarianceMethod::PopulationVariance };
     size_t m_minDocWordCountForBatch{ 50 };
