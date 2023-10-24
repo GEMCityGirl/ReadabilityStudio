@@ -479,6 +479,20 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::SetPlotBackgroundImageFit(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->SetPlotBackGroundImageFit(
+            static_cast<Wisteria::ImageFit>(static_cast<int>(lua_tonumber(L, 2))) );
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetPlotBackgroundImageOpacity(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1769,6 +1783,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, ApplyGraphBackgroundFade),
       LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImage),
       LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageEffect),
+      LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageFit),
       LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageOpacity),
       LUNA_DECLARE_METHOD(StandardProject, SetGraphWatermark),
       LUNA_DECLARE_METHOD(StandardProject, SetGraphLogoImage),
@@ -2119,6 +2134,20 @@ namespace LuaScripting
 
         m_project->SetPlotBackGroundImageEffect(
             static_cast<Wisteria::ImageEffect>(static_cast<int>(lua_tonumber(L, 2))) );
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetPlotBackgroundImageFit(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->SetPlotBackGroundImageFit(
+            static_cast<Wisteria::ImageFit>(static_cast<int>(lua_tonumber(L, 2))) );
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2934,6 +2963,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, ApplyGraphBackgroundFade),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImage),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImageEffect),
+      LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImageFit),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImageOpacity),
       LUNA_DECLARE_METHOD(BatchProject, SetGraphWatermark),
       LUNA_DECLARE_METHOD(BatchProject, SetGraphLogoImage),

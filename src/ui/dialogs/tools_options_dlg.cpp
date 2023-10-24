@@ -1110,6 +1110,8 @@ bool ToolsOptionsDlg::HaveGraphOptionsChanged() const
                m_generalGraphPropertyGrid->IsPropertyModified(GetImageLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageEffectLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetImageEffectLabel())) ||
+           (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageFitLabel()) &&
+               m_generalGraphPropertyGrid->IsPropertyModified(GetImageFitLabel())) ||
            // barchart options
            (IsPropertyAvailable(m_barChartPropertyGrid,GetOpacityLabel()) &&
                m_barChartPropertyGrid->IsPropertyModified(GetOpacityLabel())) ||
@@ -2136,6 +2138,11 @@ void ToolsOptionsDlg::SaveOptions()
             wxGetApp().GetAppOptions().SetPlotBackGroundImageEffect(
                 static_cast<ImageEffect>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageEffectLabel())));
             }
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageFitLabel()))
+            {
+            wxGetApp().GetAppOptions().SetPlotBackGroundImageFit(
+                static_cast<ImageFit>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageFitLabel())));
+            }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageOpacityLabel()))
             {
             wxGetApp().GetAppOptions().SetPlotBackGroundImageOpacity(
@@ -2455,6 +2462,11 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
             {
             m_readabilityProjectDoc->SetPlotBackGroundImageEffect(
                 static_cast<ImageEffect>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageEffectLabel())));
+            }
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageFitLabel()))
+            {
+            m_readabilityProjectDoc->SetPlotBackGroundImageFit(
+                static_cast<ImageFit>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetImageFitLabel())));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageOpacityLabel()))
             {
@@ -4679,6 +4691,18 @@ void ToolsOptionsDlg::CreateGraphSection()
                 _(L"Sets the transparency of the plot background image. "
                    "A value of 255 will set the image to be fully opaque, whereas 0 will set "
                    "the image to be transparent."));
+
+            // image fit
+            wxPGChoices imgFits;
+            imgFits.Add(_(L"Crop & center"));
+            imgFits.Add(_(L"Shrink to fit"));
+            auto imgFitProp = backgroundImage->AppendChild(
+                new wxEnumProperty(GetFitLabel(), wxPG_LABEL, imgFits,
+                    (m_readabilityProjectDoc ?
+                        static_cast<int>(m_readabilityProjectDoc->GetPlotBackGroundImageFit()) :
+                        static_cast<int>(wxGetApp().GetAppOptions().GetPlotBackGroundImageFit()))));
+            imgFitProp->SetHelpString(
+                _(L"How to fit the image within the plot background."));
 
             m_generalGraphPropertyGrid->Append(backgroundImage);
             // set the default folder to the global image folder if no image provided

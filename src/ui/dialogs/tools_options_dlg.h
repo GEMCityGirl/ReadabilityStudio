@@ -266,8 +266,14 @@ private:
     wxString GetEffectLabel() const
         { return _(L"Effect"); }
     [[nodiscard]]
+    wxString GetFitLabel() const
+        { return _(L"Fit"); }
+    [[nodiscard]]
     wxString GetOpacityLabel() const
         { return _(L"Opacity"); }
+    [[nodiscard]]
+    wxString GetImageFitLabel() const
+        { return GetImageLabel() + L"." + GetFitLabel(); }
     [[nodiscard]]
     wxString GetColorOpacityLabel() const
         { return GetColorLabel() + L"." + GetOpacityLabel(); }

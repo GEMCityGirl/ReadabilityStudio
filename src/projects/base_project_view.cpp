@@ -273,8 +273,11 @@ BaseProjectView::BaseProjectView()
     Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
         XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
 
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
-        XRCID(""));
+    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageFit, this,
+        XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
+    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageFit, this,
+        XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
+
     Bind(wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
             {
@@ -874,6 +877,35 @@ void BaseProjectView::OnGraphColorFade([[maybe_unused]] wxCommandEvent& event)
         { fadeOption->Check(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphBackGroundLinearGradient()); }
     dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshRequired(ProjectRefresh::Minimal);
     dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshGraphs();
+    }
+
+//---------------------------------------------------
+void BaseProjectView::OnEditPlotBackgroundImageFit(wxCommandEvent& event)
+    {
+    auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    // uncheck all the options
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
+        tempMenuItem != nullptr)
+        { tempMenuItem->Check(false); }
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
+        tempMenuItem != nullptr)
+        { tempMenuItem->Check(false); }
+    wxMenuItem* menuItem{ nullptr };
+    if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"))
+        {
+        doc->SetPlotBackGroundImageFit(ImageFit::CropAndCenter);
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
+        }
+    else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"))
+        {
+        doc->SetPlotBackGroundImageFit(ImageFit::Shrink);
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
+        }
+
+    if (menuItem)
+        { menuItem->Check(true); }
+    doc->RefreshRequired(ProjectRefresh::Minimal);
+    doc->RefreshGraphs();
     }
 
 //---------------------------------------------------
@@ -2090,6 +2122,17 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
 
     graphBackgroundImageSubMenu->AppendSubMenu(graphBackgroundImageEffectSubMenu, _(L"Effects"));
 
+    auto graphBackgroundImageFitSubMenu = new wxMenu{};
+
+    graphBackgroundImageFitSubMenu->Append(
+        new wxMenuItem(graphBackgroundImageFitSubMenu,
+            XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"), _(L"Crop & center"), wxString{}, wxITEM_CHECK));
+    graphBackgroundImageFitSubMenu->Append(
+        new wxMenuItem(graphBackgroundImageFitSubMenu,
+            XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"), _(L"Shrink to fit"), wxString{}, wxITEM_CHECK));
+
+    graphBackgroundImageSubMenu->AppendSubMenu(graphBackgroundImageFitSubMenu, _(L"Fit"));
+
     item = new wxMenuItem(graphBackgroundImageSubMenu,
         XRCID("ID_EDIT_PLOT_BKIMAGE_REMOVE"), _(L"Remove Image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/delete.svg"));
@@ -2582,6 +2625,13 @@ void BaseProjectView::Present()
     if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::OilPainting); }
+
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
+        tempMenuItem != nullptr)
+        { tempMenuItem->Check(doc->GetPlotBackGroundImageFit() == ImageFit::CropAndCenter); }
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
+        tempMenuItem != nullptr)
+        { tempMenuItem->Check(doc->GetPlotBackGroundImageFit() == ImageFit::Shrink); }
 
     // histogram bin labels
         {

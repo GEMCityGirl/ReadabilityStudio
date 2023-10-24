@@ -500,6 +500,7 @@ private:
     void OnEditGraphBackgroundButton(wxRibbonButtonBarEvent& event);
     void OnEditPlotBackgroundImage([[maybe_unused]] wxCommandEvent& event);
     void OnEditPlotBackgroundImageEffect(wxCommandEvent& event);
+    void OnEditPlotBackgroundImageFit(wxCommandEvent& event);
     void OnGraphColorFade([[maybe_unused]] wxCommandEvent& event);
     void OnEditGraphRaygorStyleButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnRaygorStyleSelected([[maybe_unused]] wxCommandEvent& event);

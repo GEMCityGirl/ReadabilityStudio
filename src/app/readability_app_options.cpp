@@ -100,6 +100,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_GRAPH_SETTINGS(_DT(L"graph-settings")),
     XML_GRAPH_BACKGROUND_IMAGE_PATH(_DT(L"graph-background-image")),
     XML_GRAPH_BACKGROUND_IMAGE_EFFECT(_DT(L"graph-background-image-effect")),
+    XML_GRAPH_BACKGROUND_IMAGE_FIT(_DT(L"graph-background-image-fit")),
     XML_GRAPH_BACKGROUND_COLOR(_DT(L"graph-background-color")),
     XML_GRAPH_PLOT_BACKGROUND_COLOR(_DT(L"graph-plot-background-color")),
     XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY(_DT(L"graph-background-opacity")),
@@ -678,6 +679,7 @@ void ReadabilityAppOptions::ResetSettings()
     m_graphBoxOpacity = wxALPHA_OPAQUE;
     m_graphBoxEffect = BoxEffect::Glassy;
     m_plotBackgroundImageEffect = Wisteria::ImageEffect::NoEffect;
+    m_plotBackgroundImageFit = Wisteria::ImageFit::Shrink;
     m_varianceMethod = VarianceMethod::PopulationVariance;
     GetStatisticsReportInfo().Reset();
     GetStatisticsInfo().Reset();
@@ -2076,6 +2078,19 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             static_cast<decltype(value)>(ImageEffect::IMAGE_EFFECTS_COUNT) )
                             { value = static_cast<decltype(value)>(ImageEffect::NoEffect); }
                         SetPlotBackGroundImageEffect(static_cast<ImageEffect>(value));
+                        }
+                auto backgroundImageFitNode =
+                    graphDefaultsNode->FirstChildElement(XML_GRAPH_BACKGROUND_IMAGE_FIT.mb_str());
+                    if (backgroundImageFitNode)
+                        {
+                        int value =
+                            backgroundImageFitNode->ToElement()->IntAttribute(
+                                XML_VALUE.mb_str(), static_cast<int>(GetPlotBackGroundImageFit()));
+                        if (value < 0 ||
+                            value >=
+                            static_cast<decltype(value)>(ImageFit::IMAGE_FIT_COUNT) )
+                            { value = static_cast<decltype(value)>(ImageFit::Shrink); }
+                        SetPlotBackGroundImageFit(static_cast<ImageFit>(value));
                         }
                 colorNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_COLOR.mb_str());
                 if (colorNode)
@@ -4050,6 +4065,10 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto backgroundImageEffect = doc.NewElement(XML_GRAPH_BACKGROUND_IMAGE_EFFECT.mb_str());
     backgroundImageEffect->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetPlotBackGroundImageEffect()));
     graphDefaultsSection->InsertEndChild(backgroundImageEffect);
+    
+    auto backgroundImageFit = doc.NewElement(XML_GRAPH_BACKGROUND_IMAGE_FIT.mb_str());
+    backgroundImageFit->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetPlotBackGroundImageFit()));
+    graphDefaultsSection->InsertEndChild(backgroundImageFit);
     // background colors
     if (GetBackGroundColor().IsOk())
         {

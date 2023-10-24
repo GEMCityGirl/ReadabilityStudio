@@ -202,6 +202,12 @@ ImageEffect =
   OilPainting = 6
   }
 
+ImageFit =
+  {
+  CropAndCenter = 0,
+  Shrink = 1
+  }
+
 Orientation =
   {
   Horizontal = 0,
@@ -338,6 +344,7 @@ OptionsPageType =
 Orientation = protect_enum(Orientation)
 BoxEffect = protect_enum(BoxEffect)
 ImageEffect = protect_enum(ImageEffect)
+ImageFit = protect_enum(ImageFit)
 SortOrder = protect_enum(SortOrder)
 ReportType = protect_enum(ReportType)
 SideBarSection = protect_enum(SideBarSection)

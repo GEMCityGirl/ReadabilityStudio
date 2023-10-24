@@ -302,6 +302,11 @@ public:
     Wisteria::ImageEffect GetPlotBackGroundImageEffect() const noexcept
         { return m_plotBackgroundImageEffect; }
     void SetPlotBackGroundImageEffect(const Wisteria::ImageEffect effect);
+    [[nodiscard]]
+    Wisteria::ImageFit GetPlotBackGroundImageFit() const noexcept
+        { return m_plotBackgroundImageFit; }
+    void SetPlotBackGroundImageFit(const Wisteria::ImageFit fit) noexcept
+        { m_plotBackgroundImageFit = fit; }
     // text highlighting
     [[nodiscard]]
     TextHighlight GetTextHighlightMethod() noexcept
@@ -699,6 +704,7 @@ protected:
     Wisteria::BoxEffect m_graphBoxEffect{ Wisteria::BoxEffect::Glassy };
     // background image options
     Wisteria::ImageEffect m_plotBackgroundImageEffect{ Wisteria::ImageEffect::NoEffect };
+    Wisteria::ImageFit m_plotBackgroundImageFit{ Wisteria::ImageFit::Shrink };
 
     // text highlighting options
     wxColour m_textViewHighlightColor;

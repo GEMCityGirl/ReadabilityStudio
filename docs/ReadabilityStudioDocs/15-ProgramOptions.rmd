@@ -738,6 +738,18 @@ The following options can be applied to the background image:
 
 **Opacity**: Sets the transparency of the background image. A value of 255 will set the background to be fully opaque, whereas 0 will set the background to be transparent.
 
+:::: {.optionssection data-latex=""}
+::: {.optionssectiontitle data-latex=""}
+Fit
+:::
+
+The following options can be used to fit the image to the plot background:
+
+**Crop & center**: Crop the image to the dimensions of the plot area, with the center of the image as the origin.
+
+**Shrink to fit**: Shrink the image to the plot area, maintaining its aspect ratio.
+::::
+
 #### Watermarks & Logos {-#watermark-and-logo}
 
 **Watermark**: Enter a label to be stamped across your graphs into this field. This label will be stamped diagonally across each graph, top left-hand corner to bottom right-hand corner.

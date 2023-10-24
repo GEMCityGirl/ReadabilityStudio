@@ -83,6 +83,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_graphBoxEffect(wxGetApp().GetAppOptions().GetGraphBoxEffect()),
     // background image effect
     m_plotBackgroundImageEffect(wxGetApp().GetAppOptions().GetPlotBackGroundImageEffect()),
+    m_plotBackgroundImageFit(wxGetApp().GetAppOptions().GetPlotBackGroundImageFit()),
     // text highlighting options
     m_textViewHighlightColor(wxGetApp().GetAppOptions().GetTextHighlightColor() ),
     m_excludedTextHighlightColor(wxGetApp().GetAppOptions().GetExcludedTextHighlightColor() ),
@@ -150,6 +151,7 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
     m_graphBackGroundColor = that.m_graphBackGroundColor;
     m_plotBackGroundColor = that.m_plotBackGroundColor;
     m_plotBackGroundImageOpacity = that.m_plotBackGroundImageOpacity;
+    m_plotBackgroundImageFit = that.m_plotBackgroundImageFit;
     m_plotBackGroundColorOpacity = that.m_plotBackGroundColorOpacity;
     m_watermark = that.m_watermark;
     m_xAxisFontColor = that.m_xAxisFontColor;
@@ -485,6 +487,7 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
         Colors::ColorContrast::ChangeOpacity(GetPlotBackGroundColor(),
                                              GetPlotBackGroundColorOpacity()));
     graph->SetPlotBackgroundImage(m_plotBackgroundImageWithEffect, GetPlotBackGroundImageOpacity());
+    graph->SetPlotBackgroundImageFit(GetPlotBackGroundImageFit());
 
     graph->SetStippleBrush(m_graphStippleImage);
     graph->SetImageScheme(m_graphImageScheme);
@@ -1350,6 +1353,15 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             static_cast<decltype(imageEffect)>(ImageEffect::IMAGE_EFFECTS_COUNT) )
             { imageEffect = static_cast<decltype(imageEffect)>(ImageEffect::NoEffect); }
         SetPlotBackGroundImageEffect(static_cast<ImageEffect>(imageEffect));
+
+        long imageFit = XmlFormat::GetLong(graphsSection, graphsSectionEnd,
+            wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_FIT,
+            static_cast<int>(GetPlotBackGroundImageFit()));
+        if (imageFit < 0 ||
+            imageFit >=
+            static_cast<decltype(imageFit)>(ImageFit::IMAGE_FIT_COUNT) )
+            { imageFit = static_cast<decltype(imageFit)>(ImageFit::Shrink); }
+        SetPlotBackGroundImageFit(static_cast<ImageFit>(imageFit));
 
         SetBackGroundColor(XmlFormat::GetColor(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_COLOR, wxGetApp().GetAppOptions().GetBackGroundColor()));
@@ -2339,6 +2351,10 @@ wxString BaseProjectDoc::FormatProjectSettings() const
 
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_EFFECT,
         static_cast<int>(GetPlotBackGroundImageEffect()), 3);
+    fileText += sectionText;
+
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_FIT,
+        static_cast<int>(GetPlotBackGroundImageFit()), 3);
     fileText += sectionText;
     // background color
     fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_COLOR);

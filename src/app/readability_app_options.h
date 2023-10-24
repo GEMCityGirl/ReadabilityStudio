@@ -977,8 +977,13 @@ public:
     [[nodiscard]]
     Wisteria::ImageEffect GetPlotBackGroundImageEffect() const noexcept
         { return m_plotBackgroundImageEffect; }
-    void SetPlotBackGroundImageEffect(const Wisteria::ImageEffect effect)
+    void SetPlotBackGroundImageEffect(const Wisteria::ImageEffect effect) noexcept
         { m_plotBackgroundImageEffect = effect; }
+    [[nodiscard]]
+    Wisteria::ImageFit GetPlotBackGroundImageFit() const noexcept
+        { return m_plotBackgroundImageFit; }
+    void SetPlotBackGroundImageFit(const Wisteria::ImageFit fit) noexcept
+        { m_plotBackgroundImageFit = fit; }
     // axis font colors
     [[nodiscard]]
     wxColour GetXAxisFontColor() const
@@ -1447,6 +1452,7 @@ private:
     Wisteria::BoxEffect m_graphBoxEffect{ Wisteria::BoxEffect::Glassy };
     // background image options
     Wisteria::ImageEffect m_plotBackgroundImageEffect{ Wisteria::ImageEffect::NoEffect };
+    Wisteria::ImageFit m_plotBackgroundImageFit{ Wisteria::ImageFit::Shrink };
     // project settings
     VarianceMethod m_varianceMethod{ VarianceMethod::PopulationVariance };
     size_t m_minDocWordCountForBatch{ 50 };
@@ -1584,6 +1590,7 @@ public:
     const wxString XML_GRAPH_SETTINGS;
     const wxString XML_GRAPH_BACKGROUND_IMAGE_PATH;
     const wxString XML_GRAPH_BACKGROUND_IMAGE_EFFECT;
+    const wxString XML_GRAPH_BACKGROUND_IMAGE_FIT;
     const wxString XML_GRAPH_BACKGROUND_COLOR;
     const wxString XML_GRAPH_PLOT_BACKGROUND_COLOR;
     const wxString XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY;
