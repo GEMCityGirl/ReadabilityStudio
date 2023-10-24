@@ -4921,7 +4921,7 @@ void ToolsOptionsDlg::CreateGraphSection()
 
             wxPGChoices raygorStyles;
             raygorStyles.Add(_(L"Original"));
-            raygorStyles.Add(_(L"Baldwin-Kaufman"));
+            raygorStyles.Add(_DT(L"Baldwin-Kaufman"));
             raygorStyles.Add(_(L"Modern"));
             m_readabilityGraphPropertyGrid->Append(
                 new wxEnumProperty(GetRaygorStyleLabel(), wxPG_LABEL, raygorStyles,
