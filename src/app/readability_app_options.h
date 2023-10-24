@@ -833,10 +833,10 @@ public:
         { return m_barDisplayLabels; }
     // whether gradient is used for graph backgrounds
     void SetGraphBackGroundLinearGradient(const bool useGradient) noexcept
-        { m_useGraphBackGroundImageLinearGradient = useGradient; }
+        { m_useGraphBackGroundColorLinearGradient = useGradient; }
     [[nodiscard]]
     bool GetGraphBackGroundLinearGradient() const noexcept
-        { return m_useGraphBackGroundImageLinearGradient; }
+        { return m_useGraphBackGroundColorLinearGradient; }
     // whether drop shadows should be shown
     void DisplayDropShadows(const bool display) noexcept
         { m_displayDropShadows = display; }
@@ -1391,7 +1391,7 @@ private:
     bool m_boxPlotShowAllPoints{ false };
     bool m_boxDisplayLabels{ false };
     bool m_boxConnectMiddlePoints{ true };
-    bool m_useGraphBackGroundImageLinearGradient{ false };
+    bool m_useGraphBackGroundColorLinearGradient{ false };
     bool m_displayDropShadows{ false };
     wxString m_plotBackGroundImagePath;
     wxString m_watermark;

@@ -637,7 +637,7 @@ void ReadabilityAppOptions::ResetSettings()
     m_boxDisplayLabels = false;
     m_boxConnectMiddlePoints = true;
     m_barDisplayLabels = true;
-    m_useGraphBackGroundImageLinearGradient = false;
+    m_useGraphBackGroundColorLinearGradient = false;
     m_displayDropShadows = false;
     m_plotBackGroundImagePath.clear();
     m_watermark.clear();
