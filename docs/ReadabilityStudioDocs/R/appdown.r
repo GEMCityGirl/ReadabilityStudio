@@ -64,12 +64,14 @@ menu <- function(menuKeys)
   {
   if (knitr::is_latex_output())
     {
+    menuKeys = stringr::str_replace_all(menuKeys, "[&]", "\\\\&")
     knitr::asis_output(glue('\\menu[,]{',
                               glue_collapse(glue("{<menuKeys>}", .open='<', .close='>'), sep=','),
                               '}', .open='<', .close='>'))
     }
   else if (knitr::is_html_output())
     {
+    menuKeys = stringr::str_replace_all(menuKeys, "[&]", "&amp;")
     knitr::asis_output(
       glue("<div class='menu'>",
       glue_collapse(glue("<div class='keys'>{menuKeys[1:length(menuKeys)-1]}
