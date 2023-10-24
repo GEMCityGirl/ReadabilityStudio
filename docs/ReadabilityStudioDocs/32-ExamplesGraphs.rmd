@@ -32,7 +32,7 @@ Now the bars will be arranged vertically:
 knitr::include_graphics("images/ExampleBarChartOrientationChanged.png")
 ```
 
-Finally, let's change how the bars are drawn. Click the `r keys("Bar Style")` button in the **Edit** section and select **Watercolor**.
+Finally, let's change how the bars are drawn. Click the `r keys("Bar Style")` button in the **Edit** section and select **Thick Watercolor**.
 
 The bars will now have a watercolor paint effect, rather than the default glassy look:
 
@@ -43,7 +43,7 @@ knitr::include_graphics("images/ExampleBarChartEffectsChanged.png")
 Images and shapes can also be used to draw our bars, as demonstrated in a [later example](#stipple-brush-example).
 
 ::: {.minipage data-latex="{\textwidth}"}
-Finally, let's remove some labels to simplify the graph. Click the `r keys("Labels")` button on the ribbon so that is it depressed.
+Finally, let's remove the labels to simplify the graph. Click the `r keys("Labels")` button on the ribbon so that is it unpressed.
 Now the bars will be drawn without labels above them:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
@@ -53,7 +53,7 @@ knitr::include_graphics("images/ExampleBarChartNoLabelsChanged.png")
 
 \newpage
 
-## Customizing the Background {#graph-background-example}
+## Customizing Backgrounds {#graph-background-example}
 
 Continuing from our previous [graph example](#customizing-bars), let's now change the background of the graph.
 On the **Home** tab, click `r menu(c('Background', 'Background Color', 'Color...'))`.
@@ -72,7 +72,7 @@ Next, click the `r keys("Background")` button again and select `r menu(c('Plot I
 This image will now be shown as the background for your graphs:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleGraphBackgroundImageChangedTooOpaque.png")
+knitr::include_graphics("images/ExampleGraphBackgroundImageChanged.png")
 ```
 :::
 
@@ -82,20 +82,6 @@ Click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Effe
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ExampleGraphBackgroundImageEffectChanged.png")
 ```
-
-By default, the image will be shown fully opaque. For lighter images this will look fine, but darker images (like the one shown above) will make it difficult to read the bars.
-
-An option we have is to make the image lighter.
-Click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Opacity'))`.
-On the **Set Opacity** dialog, slide the opacity down to 150 and click `r keys("OK")`.
-
-::: {.minipage data-latex="{\textwidth}"}
-Now this image will be translucent and the graph labels will be easier to see:
-
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleGraphBackgroundImageChangedLighter.png")
-```
-:::
 
 \newpage
 

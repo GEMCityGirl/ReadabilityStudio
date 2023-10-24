@@ -977,7 +977,7 @@ ScreenshotLib.CloseDocGroupSelectDlg()
 ------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Chocolate Eclairs.txt")
 
-sp:SelectWindow(SideBarSection.Statistics, GraphType.WordBarChart)
+sp:SelectWindow(SideBarSection.WordsBreakdown, GraphType.WordBarChart)
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphDefault." .. FileExtension)
 
 -- sort the graph
@@ -990,7 +990,7 @@ sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleBarChartOrientationChanged." .. FileExtension)
 
 -- change bar chart effects
-sp:SetBarChartBarEffect(BoxEffect.Watercolor)
+sp:SetBarChartBarEffect(BoxEffect.ThickWatercolor)
 sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleBarChartEffectsChanged." .. FileExtension)
 
@@ -1008,17 +1008,12 @@ sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundColor
 -- change the background to an image
 sp:SetPlotBackgroundImage(ScreenshotProjectsFolder .. "bookstore.png")
 sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageChangedTooOpaque." .. FileExtension)
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageChanged." .. FileExtension)
 
 -- apply an effect to the background image
 sp:SetPlotBackgroundImageEffect(ImageEffect.OilPainting)
 sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageEffectChanged." .. FileExtension)
-
--- lighten the image
-sp:SetPlotBackgroundImageOpacity(150)
-sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageChangedLighter." .. FileExtension)
 
 -- add watermark
 sp:SetGraphWatermark("INTERNAL USE ONLY\nProcessed on @DATE@")
@@ -1032,7 +1027,7 @@ sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleLogoChanged." .. Fil
 
 sp:Close()
 
--- Web site example
+-- Website example
 -------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "LibreOffice.rsp")
 sp:ScrollTextWindow(HighlightedReportType.ThreePlusSyllableHighlightedWords, 1800)
