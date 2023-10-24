@@ -192,6 +192,8 @@ BaseProjectView::BaseProjectView()
     Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
         XRCID("ID_BAR_STYLE_WATERCOLOR"));
     Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
+        XRCID("ID_BAR_STYLE_THICK_WATERCOLOR"));
+    Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
         XRCID("ID_BAR_STYLE_COMMON_IMAGE"));
 
     Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
@@ -209,6 +211,8 @@ BaseProjectView::BaseProjectView()
     Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
         XRCID("ID_HISTOGRAM_BAR_STYLE_WATERCOLOR"));
     Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
+        XRCID("ID_HISTOGRAM_BAR_STYLE_THICK_WATERCOLOR"));
+    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
         XRCID("ID_HISTOGRAM_BAR_STYLE_COMMON_IMAGE"));
 
     Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
@@ -225,6 +229,8 @@ BaseProjectView::BaseProjectView()
         XRCID("ID_BOX_STYLE_STIPPLE_SHAPE"));
     Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
         XRCID("ID_BOX_STYLE_WATERCOLOR"));
+    Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
+        XRCID("ID_BOX_STYLE_THICK_WATERCOLOR"));
     Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
         XRCID("ID_BOX_STYLE_COMMON_IMAGE"));
 
@@ -354,6 +360,8 @@ void BaseProjectView::OnBarStyleSelected(wxCommandEvent& event)
         { baseDoc->SetGraphBarEffect(BoxEffect::StippleShape); }
     else if (event.GetId() == XRCID("ID_BAR_STYLE_WATERCOLOR"))
         { baseDoc->SetGraphBarEffect(BoxEffect::WaterColor); }
+    else if (event.GetId() == XRCID("ID_BAR_STYLE_THICK_WATERCOLOR"))
+        { baseDoc->SetGraphBarEffect(BoxEffect::ThickWaterColor); }
     else if (event.GetId() == XRCID("ID_BAR_STYLE_COMMON_IMAGE"))
         {
         if (!wxFile::Exists(baseDoc->GetGraphCommonImagePath()))
@@ -410,6 +418,8 @@ void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetHistogramBarEffect(BoxEffect::StippleShape); }
     else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_WATERCOLOR"))
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetHistogramBarEffect(BoxEffect::WaterColor); }
+    else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_THICK_WATERCOLOR"))
+        { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetHistogramBarEffect(BoxEffect::ThickWaterColor); }
     else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_COMMON_IMAGE"))
         {
         if (!wxFile::Exists(baseDoc->GetGraphCommonImagePath()))
@@ -694,6 +704,8 @@ void BaseProjectView::OnBoxStyleSelected(wxCommandEvent& event)
         { baseDoc->SetGraphBoxEffect(BoxEffect::StippleShape); }
     else if (event.GetId() == XRCID("ID_BOX_STYLE_WATERCOLOR"))
         { baseDoc->SetGraphBoxEffect(BoxEffect::WaterColor); }
+    else if (event.GetId() == XRCID("ID_BOX_STYLE_THICK_WATERCOLOR"))
+        { baseDoc->SetGraphBoxEffect(BoxEffect::ThickWaterColor); }
     else if (event.GetId() == XRCID("ID_BOX_STYLE_COMMON_IMAGE"))
         {
         if (!wxFile::Exists(baseDoc->GetGraphCommonImagePath()))
@@ -2179,6 +2191,10 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
     m_barStyleMenu.Append(item);
 
+    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_THICK_WATERCOLOR"), _(L"Thick watercolor"));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+    m_barStyleMenu.Append(item);
+
     item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_COMMON_IMAGE"), _(L"Common image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_barStyleMenu.Append(item);
@@ -2247,6 +2263,11 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     m_histoBarStyleMenu.Append(item);
 
     item = new wxMenuItem(&m_histoBarStyleMenu,
+        XRCID("ID_HISTOGRAM_BAR_STYLE_THICK_WATERCOLOR"), _(L"Thick watercolor"));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+    m_histoBarStyleMenu.Append(item);
+
+    item = new wxMenuItem(&m_histoBarStyleMenu,
         XRCID("ID_HISTOGRAM_BAR_STYLE_COMMON_IMAGE"), _(L"Common image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_histoBarStyleMenu.Append(item);
@@ -2299,12 +2320,16 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
     m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_COMMON_IMAGE"), _(L"Common image"));
-    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-    m_boxStyleMenu.Append(item);
-
     item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_WATERCOLOR"), _(L"Watercolor"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+    m_boxStyleMenu.Append(item);
+
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_THICK_WATERCOLOR"), _(L"Thick watercolor"));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+    m_boxStyleMenu.Append(item);
+
+    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_COMMON_IMAGE"), _(L"Common image"));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     m_boxStyleMenu.Append(item);
 
     // graph fonts

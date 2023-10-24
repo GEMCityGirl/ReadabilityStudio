@@ -853,6 +853,8 @@ Effect
 
 **Watercolor**: Select this option to draw a watercolor-like effect across the bars. This will appear as if bars are warped and look like they were filled in with watercolor paint (or a marker).
 
+**Thick watercolor**: This is the same as **Watercolor**, but will use a more opaque brush and apply a second coat of paint.
+
 **Common image**: Select this option to draw an image under the graph, with it only showing through were the bars are at.
 ::::
 

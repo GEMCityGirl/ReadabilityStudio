@@ -187,7 +187,8 @@ BoxEffect =
   StippleImage = 4,
   StippleShape = 5,
   Watercolor = 6,
-  CommonImage = 7
+  ThickWatercolor = 7,
+  CommonImage = 8
   }
 
 ImageEffect =

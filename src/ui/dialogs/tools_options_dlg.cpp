@@ -4997,6 +4997,8 @@ void ToolsOptionsDlg::CreateGraphSection()
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
             boxEffects.Add(_(L"Watercolor"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+            boxEffects.Add(_(L"Thick watercolor"),
+                wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
             boxEffects.Add(_(L"Common image"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
             m_barChartPropertyGrid->Append(
@@ -5090,6 +5092,8 @@ void ToolsOptionsDlg::CreateGraphSection()
             boxEffects.Add(_(L"Stipple shape"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
             boxEffects.Add(_(L"Watercolor"),
+                wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+            boxEffects.Add(_(L"Thick watercolor"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
             boxEffects.Add(_(L"Common image"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
@@ -5234,6 +5238,8 @@ void ToolsOptionsDlg::CreateGraphSection()
             boxEffects.Add(_(L"Stipple shape"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
             boxEffects.Add(_(L"Watercolor"),
+                wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+            boxEffects.Add(_(L"Thick watercolor"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
             boxEffects.Add(_(L"Common image"),
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
