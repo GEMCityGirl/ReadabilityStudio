@@ -457,8 +457,8 @@ protected:
     Wisteria::UI::InfoBarEx* m_infoBar{ nullptr };
     wxMenuBar* m_menuBar{ nullptr };
 
-    static constexpr int LEFT_PANE = wxID_HIGHEST + 73;
-    static constexpr int SPLITTER_ID = wxID_HIGHEST + 74;
+    static constexpr int LEFT_PANE = wxID_HIGHEST + 78;
+    static constexpr int SPLITTER_ID = wxID_HIGHEST + 79;
 private:
     void OnActivateView(bool activate, wxView*, wxView*) override;
 

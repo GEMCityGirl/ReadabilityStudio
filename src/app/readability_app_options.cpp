@@ -2091,7 +2091,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             GetPlotBackGroundColor().Blue());
                     SetPlotBackGroundColor(wxColour(red, green, blue));
                     }
-                auto opacityNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY.mb_str());
+                auto opacityNode = graphDefaultsNode->FirstChildElement(
+                    XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY.mb_str());
                 if (opacityNode)
                     {
                     SetPlotBackGroundImageOpacity(

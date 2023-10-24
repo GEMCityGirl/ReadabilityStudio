@@ -2649,7 +2649,7 @@ void ProjectDoc::DisplayWordCharts()
 
         // add a donut hole
         syllablePieChart->IncludeDonutHole(true);
-        syllablePieChart->GetDonutHoleLabel().SetText(L"Number of\nSyllables\nper Word");
+        syllablePieChart->GetDonutHoleLabel().SetText(_(L"Number of\nSyllables\nper Word"));
         syllablePieChart->GetDonutHoleLabel().SetTextAlignment(TextAlignment::JustifiedAtCharacter);
         syllablePieChart->SetInnerPieMidPointLabelDisplay(BinLabelDisplay::BinNameAndPercentage);
         syllablePieChart->SetOuterPieMidPointLabelDisplay(BinLabelDisplay::BinPercentage);
