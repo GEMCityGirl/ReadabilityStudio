@@ -973,6 +973,35 @@ ScreenshotLib.ShowDocGroupSelectDlg(2, "Notes")
 ScreenshotLib.SnapScreenshot(ImagePath .. "GroupLabelNotes." .. FileExtension)
 ScreenshotLib.CloseDocGroupSelectDlg()
 
+-- Graph editing example (selective colorization)
+-------------------------------------------------
+sp = StandardProject(ScreenshotProjectsFolder .. "Chocolate Eclairs.txt")
+
+sp:SelectWindow(SideBarSection.WordsBreakdown, GraphType.WordBarChart)
+
+-- remove the bar labels
+sp:DisplayBarChartLabels(false)
+
+-- change bar chart effects
+sp:SetGraphCommonImage(ScreenshotProjectsFolder .. "bookstore.png")
+sp:SetBarChartBarEffect(BoxEffect.CommonImage)
+sp:Reload()
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleBarChartCommonImage." .. FileExtension)
+
+-- change the background to an image
+sp:SetPlotBackgroundImage(ScreenshotProjectsFolder .. "bookstore.png")
+sp:SetPlotBackgroundImageFit(ImageFit.CropAndCenter)
+sp:Reload()
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageForCommonImage." .. FileExtension)
+
+-- apply an effect to the background image
+sp:SetPlotBackgroundImageEffect(ImageEffect.Grayscale)
+sp:SetPlotBackgroundImageOpacity(100)
+sp:Reload()
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageEffectGrayscaled." .. FileExtension)
+
+sp:Close()
+
 -- Graph editing example
 ------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Chocolate Eclairs.txt")

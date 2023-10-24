@@ -149,3 +149,47 @@ knitr::include_graphics("images/GraphStippleShape.png")
 ```
 
 These features can also be applied to box plots and histograms. With any of these graph types selected, perform the same operation from the ribbon to draw with a stipple.
+
+\newpage
+
+## Selective Colorization {#graph-selective-color-example}
+
+In this example, we will create a bar chart with a selective colorization effect. This technique is where the background is black & white and various focal points (i.e., the bars) are in color.
+
+From the **Help** tab on the ribbon, click the `r keys("Example Documents")` button and then select "Chocolate Eclairs" from the menu.
+(When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
+
+Once the project has finished loading, select **Words Breakdown** on the sidebar, then click **Word Counts** beneath that. A bar chart showing a breakdown of word categories will be displayed.
+First, let's remove the labels to simplify the graph. On the **Home** tab of the ribbon, click the `r keys("Labels")` button so that is it unpressed.
+
+Next, we will use an image to be displayed across all the bars. On the **Home** tab, click `r menu(c('Bar Style', 'Common Image'))`.
+When the image selection dialog appears, select an image and click `r keys("OK")`.
+Now, the bars will be filled with the image:
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/ExampleBarChartCommonImage.png")
+```
+
+Next, click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Image...'))`. When the image selection dialog appears, choose the same image and click `r keys("OK")`.
+We will also need to adjust how this image fits into the plot area. Our goal is to have the background image line up with the same image drawn across the bars.
+Click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Fit', 'Crop & Center'))`.
+
+::: {.minipage data-latex="{\textwidth}"}
+This image will now be shown as the background for the graph and bars:
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/ExampleGraphBackgroundImageForCommonImage.png")
+```
+:::
+
+As it is now, you can only see the bars' outlines. To make the bars pop, we will change the background to be black & white and faded.
+First, click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Opacity...'))`. On the **Set Opacity** dialog, select 100 and click `r keys("OK")`.
+Next, click the `r keys("Background")` button again and select `r menu(c('Plot Image', 'Effect', 'Grayscale'))`.
+
+::: {.minipage data-latex="{\textwidth}"}
+Now, we should see a selective colorization effect on our bar chart:
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/ExampleGraphBackgroundImageEffectGrayscaled.png")
+```
+:::
