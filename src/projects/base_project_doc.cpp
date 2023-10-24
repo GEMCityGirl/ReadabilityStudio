@@ -126,6 +126,10 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
     m_useGraphBackGroundImageLinearGradient = that.m_useGraphBackGroundImageLinearGradient;
     m_displayDropShadows = that.m_displayDropShadows;
 
+    // image effect must be set before a possible call to SetPlotBackGroundImagePath(),
+    // which will apply the effect
+    m_plotBackgroundImageEffect = that.m_plotBackgroundImageEffect;
+
     if (reloadImages)
         {
         SetPlotBackGroundImagePath(that.m_plotBackGroundImagePath);
