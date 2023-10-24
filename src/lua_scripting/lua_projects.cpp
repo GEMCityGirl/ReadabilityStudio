@@ -465,6 +465,19 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::SetGraphCommonImage(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->SetGraphCommonImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetPlotBackgroundImageEffect(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1781,6 +1794,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, SetSpellCheckerOptions),
       LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundColor),
       LUNA_DECLARE_METHOD(StandardProject, ApplyGraphBackgroundFade),
+      LUNA_DECLARE_METHOD(StandardProject, SetGraphCommonImage),
       LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImage),
       LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageEffect),
       LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageFit),
@@ -2107,6 +2121,19 @@ namespace LuaScripting
             { return 0; }
 
         m_project->SetGraphBackGroundLinearGradient(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+    
+    //-------------------------------------------------------------
+    int BatchProject::SetGraphCommonImage(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->SetGraphCommonImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2961,6 +2988,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, ExcludeProperNouns),
       LUNA_DECLARE_METHOD(BatchProject, SetGraphBackgroundColor),
       LUNA_DECLARE_METHOD(BatchProject, ApplyGraphBackgroundFade),
+      LUNA_DECLARE_METHOD(BatchProject, SetGraphCommonImage),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImage),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImageEffect),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImageFit),

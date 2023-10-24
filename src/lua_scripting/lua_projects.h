@@ -151,6 +151,7 @@ namespace LuaScripting
         // GRAPH OPTIONS
         int SetGraphBackgroundColor(lua_State *L);
         int ApplyGraphBackgroundFade(lua_State *L);
+        int SetGraphCommonImage(lua_State *L);
         int SetPlotBackgroundImage(lua_State *L);
         int SetPlotBackgroundImageEffect(lua_State *L);
         int SetPlotBackgroundImageFit(lua_State *L);
@@ -358,6 +359,7 @@ namespace LuaScripting
         // GRAPH OPTIONS
         int SetGraphBackgroundColor(lua_State *L);
         int ApplyGraphBackgroundFade(lua_State *L);
+        int SetGraphCommonImage(lua_State *L);
         int SetPlotBackgroundImage(lua_State *L);
         int SetPlotBackgroundImageEffect(lua_State *L);
         int SetPlotBackgroundImageFit(lua_State *L);
