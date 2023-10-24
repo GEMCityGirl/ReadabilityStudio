@@ -1104,8 +1104,8 @@ bool ToolsOptionsDlg::HaveGraphOptionsChanged() const
                m_generalGraphPropertyGrid->IsPropertyModified(GetImageOpacityLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid,GetColorLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetColorLabel())) ||
-           (IsPropertyAvailable(m_generalGraphPropertyGrid,GetOpacityLabel()) &&
-               m_generalGraphPropertyGrid->IsPropertyModified(GetOpacityLabel())) ||
+           (IsPropertyAvailable(m_generalGraphPropertyGrid, GetColorOpacityLabel()) &&
+               m_generalGraphPropertyGrid->IsPropertyModified(GetColorOpacityLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetImageLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageEffectLabel()) &&
@@ -2161,10 +2161,10 @@ void ToolsOptionsDlg::SaveOptions()
             wxGetApp().GetAppOptions().SetPlotBackGroundColor(
                 wxAny(m_generalGraphPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>());
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetOpacityLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetColorOpacityLabel()))
             {
             wxGetApp().GetAppOptions().SetPlotBackGroundColorOpacity(
-                static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel())));
+                static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetColorOpacityLabel())));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleImageLabel()))
             {
@@ -2481,10 +2481,10 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
             m_readabilityProjectDoc->SetPlotBackGroundColor(
                 wxAny(m_generalGraphPropertyGrid->GetProperty(GetColorLabel())->GetValue()).As<wxColour>());
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetOpacityLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetColorOpacityLabel()))
             {
             m_readabilityProjectDoc->SetPlotBackGroundColorOpacity(
-                static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetOpacityLabel())));
+                static_cast<uint8_t>(m_generalGraphPropertyGrid->GetPropertyValueAsInt(GetColorOpacityLabel())));
             }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetStippleImageLabel()))
             {
@@ -4618,26 +4618,25 @@ void ToolsOptionsDlg::CreateGraphSection()
                 _(L"The options in this section customize the plot area backgrounds of the graphs."));
 
             // color
-            m_generalGraphPropertyGrid->Append(
-                new wxColourProperty(GetColorLabel(), wxPG_LABEL,
+            auto plotColor = new wxColourProperty(GetColorLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
                     m_readabilityProjectDoc->GetPlotBackGroundColor() :
-                    wxGetApp().GetAppOptions().GetPlotBackGroundColor())));
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetColorLabel(), _(L"Selects the color for the plot area background of the graphs."));
+                    wxGetApp().GetAppOptions().GetPlotBackGroundColor()));
+            plotColor->SetHelpString(_(L"Selects the color for the plot area background of the graphs."));
             // opacity
-            m_generalGraphPropertyGrid->Append(new wxIntProperty(GetOpacityLabel(), wxPG_LABEL,
+            auto plotColorOpacity = plotColor->AppendChild(new wxIntProperty(GetOpacityLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
                     m_readabilityProjectDoc->GetPlotBackGroundColorOpacity() :
                     wxGetApp().GetAppOptions().GetPlotBackGroundColorOpacity())) );
-            m_generalGraphPropertyGrid->SetPropertyEditor(GetOpacityLabel(), wxPGEditor_SpinCtrl);
-            m_generalGraphPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN, 0);
-            m_generalGraphPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX, 255);
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetOpacityLabel(),
-                _(L"Sets the transparency of the plot background. "
+            plotColorOpacity->SetEditor(wxPGEditor_SpinCtrl);
+            plotColorOpacity->SetAttribute(wxPG_ATTR_MIN, wxALPHA_TRANSPARENT);
+            plotColorOpacity->SetAttribute(wxPG_ATTR_MAX, wxALPHA_OPAQUE);
+            plotColorOpacity->SetHelpString(
+                _(L"Sets the transparency of the plot background color. "
                    "A value of 255 will set the background to be fully opaque, whereas 0 will set the background "
                    "to be transparent."));
+
+            m_generalGraphPropertyGrid->Append(plotColor);
 
             // image
             wxImageFileProperty* backgroundImage =
@@ -4674,8 +4673,8 @@ void ToolsOptionsDlg::CreateGraphSection()
                     m_readabilityProjectDoc->GetPlotBackGroundImageOpacity() :
                     wxGetApp().GetAppOptions().GetPlotBackGroundImageOpacity())) );
             imgOpacityProp->SetEditor(wxPGEditor_SpinCtrl);
-            imgOpacityProp->SetAttribute(wxPG_ATTR_MIN, 0);
-            imgOpacityProp->SetAttribute(wxPG_ATTR_MAX, 255);
+            imgOpacityProp->SetAttribute(wxPG_ATTR_MIN, wxALPHA_TRANSPARENT);
+            imgOpacityProp->SetAttribute(wxPG_ATTR_MAX, wxALPHA_OPAQUE);
             imgOpacityProp->SetHelpString(
                 _(L"Sets the transparency of the plot background image. "
                    "A value of 255 will set the image to be fully opaque, whereas 0 will set "
@@ -5016,8 +5015,8 @@ void ToolsOptionsDlg::CreateGraphSection()
                     static_cast<int>(m_readabilityProjectDoc->GetGraphBarOpacity()) :
                     static_cast<int>(wxGetApp().GetAppOptions().GetGraphBarOpacity()))) );
             m_barChartPropertyGrid->SetPropertyEditor(GetOpacityLabel(), wxPGEditor_SpinCtrl);
-            m_barChartPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN, 0);
-            m_barChartPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX, 255);
+            m_barChartPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN, wxALPHA_TRANSPARENT);
+            m_barChartPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX, wxALPHA_OPAQUE);
             m_barChartPropertyGrid->SetPropertyHelpString(
                 GetOpacityLabel(),
                 _(L"Sets the transparency of the bars. A value of 255 will set the box to be fully opaque, "
@@ -5111,8 +5110,8 @@ void ToolsOptionsDlg::CreateGraphSection()
                     m_readabilityProjectDoc->GetHistogramBarOpacity() :
                     wxGetApp().GetAppOptions().GetHistogramBarOpacity())) );
             m_histogramPropertyGrid->SetPropertyEditor(GetOpacityLabel(), wxPGEditor_SpinCtrl);
-            m_histogramPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN, 0);
-            m_histogramPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX, 255);
+            m_histogramPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN, wxALPHA_TRANSPARENT);
+            m_histogramPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX, wxALPHA_OPAQUE);
             m_histogramPropertyGrid->SetPropertyHelpString(
                 GetOpacityLabel(),
                 _(L"Sets the transparency of the bars. A value of 255 will set the box to be fully opaque, "
@@ -5257,8 +5256,8 @@ void ToolsOptionsDlg::CreateGraphSection()
                     m_readabilityProjectDoc->GetGraphBoxOpacity() :
                     wxGetApp().GetAppOptions().GetGraphBoxOpacity())) );
             m_boxPlotsPropertyGrid->SetPropertyEditor(GetOpacityLabel(), wxPGEditor_SpinCtrl);
-            m_boxPlotsPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN, 0);
-            m_boxPlotsPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX, 255);
+            m_boxPlotsPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN, wxALPHA_TRANSPARENT);
+            m_boxPlotsPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX, wxALPHA_OPAQUE);
             m_boxPlotsPropertyGrid->SetPropertyHelpString(
                 GetOpacityLabel(),
                 _(L"Sets the transparency of the box. A value of 255 will set the box to be fully opaque, "

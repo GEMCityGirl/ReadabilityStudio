@@ -269,9 +269,12 @@ private:
     wxString GetOpacityLabel() const
         { return _(L"Opacity"); }
     [[nodiscard]]
+    wxString GetColorOpacityLabel() const
+        { return GetColorLabel() + L"." + GetOpacityLabel(); }
+    [[nodiscard]]
     wxString GetImageOpacityLabel() const
         { return GetImageLabel() + L"." + GetOpacityLabel(); }
-     [[nodiscard]]
+    [[nodiscard]]
     wxString GetImageEffectLabel() const
         { return GetImageLabel() + L"." + GetEffectLabel(); }
     [[nodiscard]]

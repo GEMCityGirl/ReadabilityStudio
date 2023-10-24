@@ -710,7 +710,7 @@ The options on this page customize your graphs.
 
 **Color**: Selects the color for the plot area background of the graphs.
 
-**Opacity**: Sets the transparency of the plot background. A value of 255 will set the background to be fully opaque, whereas 0 will set the background to be transparent.
+**Opacity**: Sets the transparency of the plot background color. A value of 255 will set the background to be fully opaque, whereas 0 will set the background to be transparent.
 
 **Image**: Selects the image for the graphs' plot background. This image will be drawn within the area between X and Y axes of the graphs.
 
