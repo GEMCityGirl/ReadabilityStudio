@@ -12,6 +12,7 @@
 #include "../projects/batch_project_doc.h"
 #include "../projects/batch_project_view.h"
 #include "../ui/dialogs/tools_options_dlg.h"
+#include "../Wisteria-Dataviz/src/base/label.h"
 
 using namespace Wisteria;
 using namespace Wisteria::Graphs;
@@ -30,7 +31,11 @@ namespace LuaScripting
         {
         int paramIndex = (calledFromObject ? 2 : 1);
         // name, point size, weight, color (as a string)
-        const wxString fontName{ luaL_checkstring(L, paramIndex++), wxConvUTF8 };
+        wxString fontName{ luaL_checkstring(L, paramIndex++), wxConvUTF8 };
+        if (fontName.CmpNoCase(_DT(L"MONOSPACE")) == 0)
+            { fontName = Wisteria::GraphItems::Label::GetFirstAvailableMonospaceFont(); }
+        else if (fontName.CmpNoCase(_DT(L"CURSIVE")) == 0)
+            { fontName = Wisteria::GraphItems::Label::GetFirstAvailableCursiveFont(); }
         // cppcheck-suppress knownConditionTrueFalse
         if (!fontName.empty())
             { font.SetFaceName(fontName); }
