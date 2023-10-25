@@ -31,6 +31,15 @@ Finally:
 - Use the variable in the program where applicable.
 - Add it to the documentation.
 
+If wanting to edit this option from the ribbon:
+
+- If a menu item, add it to a menu in `BaseProjectView::CreateChildFrame()` in **src/projects/base_project_view.cpp**.
+  - If it is a checkable menu, add logic for setting the proper check state in `BaseProjectView::Present()`.
+- If a ribbon button, add logic for that in `BatchProjectView::OnItemSelected()` in **src/projects/batch_project_view.cpp** and
+  `ProjectView::OnItemSelected()` in **src/projects/standard_project_view.cpp**.
+- Add a `wxEVT_MENU` event handler for the menu/ribbon button option in **src/projects/base_project_view.h** and **src/projects/base_project_view.cpp**.
+- Map that event handler in `BaseProjectView::BaseProjectView()`.
+
 ## Adding a New Test {#add-a-new-test}
 
 - Add the actual function to **src/readability/english_readability.h** (or other file if a different language). (This only applies to linear regression based tests with a formula, not tests that calculate their values graphically [e.g., **Fry**].)
