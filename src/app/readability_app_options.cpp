@@ -98,12 +98,12 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_INCLUDE_NUMERIC(_DT(L"include-numeric")),
     // graph settings
     XML_GRAPH_SETTINGS(_DT(L"graph-settings")),
-    XML_GRAPH_BACKGROUND_IMAGE_PATH(_DT(L"graph-background-image")),
-    XML_GRAPH_BACKGROUND_IMAGE_EFFECT(_DT(L"graph-background-image-effect")),
-    XML_GRAPH_BACKGROUND_IMAGE_FIT(_DT(L"graph-background-image-fit")),
     XML_GRAPH_BACKGROUND_COLOR(_DT(L"graph-background-color")),
     XML_GRAPH_PLOT_BACKGROUND_COLOR(_DT(L"graph-plot-background-color")),
+    XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH(_DT(L"graph-background-image")),
     XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY(_DT(L"graph-background-opacity")),
+    XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT(_DT(L"graph-background-image-effect")),
+    XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT(_DT(L"graph-background-image-fit")),
     XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY(_DT(L"graph-plot-background-color-opacity")),
     XML_GRAPH_BACKGROUND_LINEAR_GRADIENT(_DT(L"graph-background-linear-gradient")),
     XML_GRAPH_WATERMARK(_DT(L"watermark")),
@@ -2037,7 +2037,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             if (graphDefaultsNode)
                 {
                 // graph backgrounds
-                auto imagePathNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_BACKGROUND_IMAGE_PATH.mb_str());
+                auto imagePathNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH.mb_str());
                 if (imagePathNode)
                     {
                     const char* imagePath = imagePathNode->ToElement()->Attribute(XML_VALUE.mb_str());
@@ -2067,7 +2067,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     SetBackGroundColor(wxColour(red, green, blue));
                     }
                 auto backgroundImageEffectNode =
-                    graphDefaultsNode->FirstChildElement(XML_GRAPH_BACKGROUND_IMAGE_EFFECT.mb_str());
+                    graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT.mb_str());
                     if (backgroundImageEffectNode)
                         {
                         int value =
@@ -2080,7 +2080,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         SetPlotBackGroundImageEffect(static_cast<ImageEffect>(value));
                         }
                 auto backgroundImageFitNode =
-                    graphDefaultsNode->FirstChildElement(XML_GRAPH_BACKGROUND_IMAGE_FIT.mb_str());
+                    graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT.mb_str());
                     if (backgroundImageFitNode)
                         {
                         int value =
@@ -4057,16 +4057,16 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     // graph defaults
     auto graphDefaultsSection = doc.NewElement(XML_GRAPH_SETTINGS.mb_str());
     // background image
-    auto graphBackgroundImage = doc.NewElement(XML_GRAPH_BACKGROUND_IMAGE_PATH.mb_str());
+    auto graphBackgroundImage = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH.mb_str());
     graphBackgroundImage->SetAttribute(XML_VALUE.mb_str(),
         wxString(encode({ GetPlotBackGroundImagePath().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(graphBackgroundImage);
 
-    auto backgroundImageEffect = doc.NewElement(XML_GRAPH_BACKGROUND_IMAGE_EFFECT.mb_str());
+    auto backgroundImageEffect = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT.mb_str());
     backgroundImageEffect->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetPlotBackGroundImageEffect()));
     graphDefaultsSection->InsertEndChild(backgroundImageEffect);
     
-    auto backgroundImageFit = doc.NewElement(XML_GRAPH_BACKGROUND_IMAGE_FIT.mb_str());
+    auto backgroundImageFit = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT.mb_str());
     backgroundImageFit->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetPlotBackGroundImageFit()));
     graphDefaultsSection->InsertEndChild(backgroundImageFit);
     // background colors

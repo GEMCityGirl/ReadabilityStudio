@@ -1347,10 +1347,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         {
         // background color and images
         SetPlotBackGroundImagePath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_PATH));
+            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH));
 
         long imageEffect = XmlFormat::GetLong(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_EFFECT,
+            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT,
             static_cast<int>(GetPlotBackGroundImageEffect()));
         if (imageEffect < 0 ||
             imageEffect >=
@@ -1359,7 +1359,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         SetPlotBackGroundImageEffect(static_cast<ImageEffect>(imageEffect));
 
         long imageFit = XmlFormat::GetLong(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_FIT,
+            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT,
             static_cast<int>(GetPlotBackGroundImageFit()));
         if (imageFit < 0 ||
             imageFit >=
@@ -2349,15 +2349,15 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     //----------------------------------
     fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_SETTINGS).append(L">\n");
     // background image
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_PATH).append(L">");
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH).append(L">");
     fileText += GetPlotBackGroundImagePath();
-    fileText.append(L"</").append(wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_PATH).append(L">\n");
+    fileText.append(L"</").append(wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH).append(L">\n");
 
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_EFFECT,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT,
         static_cast<int>(GetPlotBackGroundImageEffect()), 3);
     fileText += sectionText;
 
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_IMAGE_FIT,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT,
         static_cast<int>(GetPlotBackGroundImageFit()), 3);
     fileText += sectionText;
     // background color
