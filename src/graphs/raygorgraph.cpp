@@ -50,14 +50,13 @@ namespace Wisteria::Graphs
             _(L"LONG WORDS\n(per 100 words)") : _(L"LONG WORDS"));
         GetBottomXAxis().GetTitle().SetTextAlignment(TextAlignment::Centered);
 
-        GetTitle() = GraphItems::Label(
-            GraphItemInfo(
-                _(L"THE RAYGOR READABILITY ESTIMATE\nALTON L. RAYGOR"
-                   "\U00002014UNIVERSITY OF MINNESOTA")).
-            Scaling(GetScaling()).Pen(wxNullPen).
-            LabelAlignment(TextAlignment::Centered));
+        GetTitle().SetText(
+            _(L"THE RAYGOR READABILITY ESTIMATE\nALTON L. RAYGOR"
+                "\U00002014UNIVERSITY OF MINNESOTA"));
+        GetTitle().GetGraphItemInfo().Scaling(GetScaling()).Pen(wxNullPen).
+            LabelAlignment(TextAlignment::Centered).ChildAlignment(RelativeAlignment::Centered);
         GetTitle().GetHeaderInfo().Enable(true).
-            LabelAlignment(Wisteria::TextAlignment::Centered).
+            LabelAlignment(Wisteria::TextAlignment::Centered).Font(GetTitle().GetFont()).
             GetFont().MakeBold();
 
         GetBottomXAxis().SetRange(6, 44, 0, 2, 1);
