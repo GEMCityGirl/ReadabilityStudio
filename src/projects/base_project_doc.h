@@ -67,6 +67,11 @@ public:
     wxString GetPlotBackGroundImagePath() const
         { return m_plotBackGroundImagePath; }
     [[nodiscard]]
+    wxString GetGraphColorScheme() const
+        { return m_graphColorSchemeName; }
+    // @note Must be the internal key (e.g., "coffeeshot"), not "Coffee Shop."
+    void SetGraphColorScheme(wxString colorScheme);
+    [[nodiscard]]
     wxColour GetBackGroundColor() const
         { return m_graphBackGroundColor; }
     void SetBackGroundColor(const wxColour& color)
@@ -646,6 +651,11 @@ protected:
         std::make_shared<Wisteria::Images::Schemes::ImageScheme>(
             std::vector<wxBitmapBundle>{ wxBitmapBundle{} })
         };
+    std::shared_ptr<Wisteria::Brushes::Schemes::BrushScheme> m_graphBrushScheme
+        {
+        std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(Wisteria::Colors::Schemes::Campfire{})
+        };
+    wxString m_graphColorSchemeName{ _DT(L"campfire") };
     wxString m_plotBackGroundImagePath;
     wxString m_stippleImagePath;
     wxString m_commonImagePath;

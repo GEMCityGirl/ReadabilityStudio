@@ -176,7 +176,10 @@ BaseProjectView::BaseProjectView()
             },
         XRCID("ID_TOGGLE_RIBBON"));
 
-    // menu events
+    // menu & ribbon button events
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &BaseProjectView::OnEditGraphColorScheme, this,
+        XRCID("ID_EDIT_GRAPH_COLOR_SCHEME"));
+
     Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
         XRCID("ID_BAR_STYLE_SOLID"));
     Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
@@ -1171,6 +1174,33 @@ void BaseProjectView::OnEditGraphOpacity(wxCommandEvent& event)
         doc->RefreshRequired(ProjectRefresh::Minimal);
         doc->RefreshGraphs();
         }
+    }
+
+//---------------------------------------------------
+void BaseProjectView::OnEditGraphColorScheme(wxRibbonButtonBarEvent& event)
+    {
+    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    assert(baseDoc && L"Failed to get document!");
+    if (!baseDoc)
+        { return; }
+
+    wxArrayString choices;
+    for (const auto& colorScheme : wxGetApp().GetGraphColorSchemeMap())
+        { choices.push_back(colorScheme.first); }
+
+    wxSingleChoiceDialog colorSchemeDlg(GetDocFrame(),
+        _("Select a color scheme:"), _("Select Color Scheme"), choices);
+    colorSchemeDlg.SetSize({ GetDocFrame()->FromDIP(200), GetDocFrame()->FromDIP(400) });
+    colorSchemeDlg.Center();
+    if (colorSchemeDlg.ShowModal() != wxID_OK)
+        { return; }
+
+    const auto foundColorScheme = wxGetApp().GetGraphColorSchemeMap().find(colorSchemeDlg.GetStringSelection());
+    if (foundColorScheme != wxGetApp().GetGraphColorSchemeMap().cend())
+        { baseDoc->SetGraphColorScheme(foundColorScheme->second); }
+
+    baseDoc->RefreshRequired(ProjectRefresh::Minimal);
+    baseDoc->RefreshGraphs();
     }
 
 //---------------------------------------------------

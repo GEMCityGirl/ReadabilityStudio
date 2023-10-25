@@ -4690,9 +4690,6 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
 
         auto histogram = std::dynamic_pointer_cast<Histogram>(canvas->GetFixedObject(0, 0));
         assert(histogram && "Invalid histogram cast!");
-        histogram->SetBrushScheme(
-            std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
-                *std::make_shared<Wisteria::Colors::Schemes::EarthTones>()));
 
         histogram->SetData(data,
             GetScoreColumnName(),

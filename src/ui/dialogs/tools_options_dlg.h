@@ -434,6 +434,9 @@ private:
     wxString GetBoxOptionsLabel() const
         { return _(L"Box Options"); }
     [[nodiscard]]
+    wxString GetGraphColorSchemeLabel() const
+        { return _(L"Color Scheme"); }
+    [[nodiscard]]
     wxString GetGraphBackgroundLabel() const
         { return _(L"Background"); }
     [[nodiscard]]

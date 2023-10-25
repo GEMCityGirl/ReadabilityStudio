@@ -850,6 +850,11 @@ public:
     wxString GetPlotBackGroundImagePath() const
         { return m_plotBackGroundImagePath; }
     [[nodiscard]]
+    wxString GetGraphColorScheme() const
+        { return m_graphColorSchemeName; }
+    void SetGraphColorScheme(wxString colorScheme)
+        { m_graphColorSchemeName = std::move(colorScheme); }
+    [[nodiscard]]
     wxColour GetBackGroundColor() const
         { return m_graphBackGroundColor; }
     void SetBackGroundColor(const wxColour& color)
@@ -1398,6 +1403,7 @@ private:
     bool m_boxConnectMiddlePoints{ true };
     bool m_useGraphBackGroundColorLinearGradient{ false };
     bool m_displayDropShadows{ false };
+    wxString m_graphColorSchemeName{ _DT(L"campfire") };
     wxString m_plotBackGroundImagePath;
     wxString m_watermark;
     wxString m_watermarkImg;
@@ -1588,6 +1594,7 @@ public:
     const wxString XML_INCLUDE_NUMERIC;
     // graph settings
     const wxString XML_GRAPH_SETTINGS;
+    const wxString XML_GRAPH_COLOR_SCHEME;
     const wxString XML_GRAPH_BACKGROUND_COLOR;
     const wxString XML_GRAPH_PLOT_BACKGROUND_COLOR;
     const wxString XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH;

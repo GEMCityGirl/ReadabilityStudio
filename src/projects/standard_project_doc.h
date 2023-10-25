@@ -111,14 +111,14 @@ private:
     void DisplayOverlyLongSentences();
     void DisplaySightWords();
     void SetReadabilityTestResult(const wxString& testId,
-                                    const wxString& testName,
-                                    const wxString& description,
-                                    // score and display label
-                                    const std::pair<double, wxString>& USGradeLevel,
-                                    const wxString& readerAge,
-                                    const double indexScore,
-                                    const double clozeScore,
-                                    const bool setFocus) final;
+                                  const wxString& testName,
+                                  const wxString& description,
+                                  // score and display label
+                                  const std::pair<double, wxString>& USGradeLevel,
+                                  const wxString& readerAge,
+                                  const double indexScore,
+                                  const double clozeScore,
+                                  const bool setFocus) final;
     // Text window formatting helpers
     //-------------------------------
     struct HighlighterColors

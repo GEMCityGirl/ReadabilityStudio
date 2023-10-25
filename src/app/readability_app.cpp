@@ -589,6 +589,40 @@ bool ReadabilityApp::OnInit()
     m_shapeMap.insert(std::make_pair(_(L"Blackboard"), DONTTRANSLATE(L"blackboard")));
     m_shapeMap.insert(std::make_pair(_(L"Clock"), DONTTRANSLATE(L"clock")));
 
+    // do the same for the color schemes (for the graphs)
+    m_colorSchemeMap.insert(std::make_pair(_(L"Dusk"), DONTTRANSLATE(L"dusk")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Earth Tones"), DONTTRANSLATE(L"earthtones")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"1920s"), DONTTRANSLATE(L"decade1920s")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"1940s"), DONTTRANSLATE(L"decade1940s")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"1950s"), DONTTRANSLATE(L"decade1950s")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"1960s"), DONTTRANSLATE(L"decade1960s")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"1970s"), DONTTRANSLATE(L"decade1970s")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"1980s"), DONTTRANSLATE(L"decade1980s")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"1990s"), DONTTRANSLATE(L"decade1990s")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"2000s"), DONTTRANSLATE(L"decade2000s")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"October"), DONTTRANSLATE(L"october")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Slytherin"), DONTTRANSLATE(L"slytherin")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Campfire"), DONTTRANSLATE(L"campfire")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Coffee Shop"), DONTTRANSLATE(L"coffeeshop")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Arctic Chill"), DONTTRANSLATE(L"arcticchill")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Back to School"), DONTTRANSLATE(L"backtoschool")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Box of Chocolates"), DONTTRANSLATE(L"boxofchocolates")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Cosmopolitan"), DONTTRANSLATE(L"cosmopolitan")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Day and Night"), DONTTRANSLATE(L"dayandnight")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Fresh Flowers"), DONTTRANSLATE(L"freshflowers")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Icecream"), DONTTRANSLATE(L"icecream")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Urban Oasis"), DONTTRANSLATE(L"urbanoasis")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Typewriter"), DONTTRANSLATE(L"typewriter")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Tasty Waves"), DONTTRANSLATE(L"tastywaves")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Spring"), DONTTRANSLATE(L"spring")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Shabby Chic"), DONTTRANSLATE(L"shabbychic")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Rolling Thunder"), DONTTRANSLATE(L"rollingthunder")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Produce Section"), DONTTRANSLATE(L"producesection")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Nautical"), DONTTRANSLATE(L"nautical")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Semesters"), DONTTRANSLATE(L"semesters")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Seasons"), DONTTRANSLATE(L"seasons")));
+    m_colorSchemeMap.insert(std::make_pair(_(L"Meadow Sunset"), DONTTRANSLATE(L"meadowsunset")));
+
     // this needs to be called before prompting for the
     // serial number because wxGetTextFromUser will need a parent
     LoadInterface();

@@ -38,6 +38,7 @@
 - Sorting horizontal bars now works more intuitively.
 - Graph background images are now drawn in the plot area, instead of the entire background. This makes reading the axes and titles easier.
   - Added an option to control how this image is sized to fit within the plot area.
+- Added numerous color schemes to choose from for grouped histograms (in batch projects).
 
 #### Analysis/Test Enhancements {-}
 

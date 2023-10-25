@@ -504,6 +504,7 @@ private:
     void OnGraphColorFade([[maybe_unused]] wxCommandEvent& event);
     void OnEditGraphRaygorStyleButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnRaygorStyleSelected([[maybe_unused]] wxCommandEvent& event);
+    void OnEditGraphColorScheme(wxRibbonButtonBarEvent& event);
     void OnEditGraphColor(wxCommandEvent& event);
     void OnEditGraphOpacity(wxCommandEvent& event);
     void OnEditGraphFontsButton(wxRibbonButtonBarEvent& event);

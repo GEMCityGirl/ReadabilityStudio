@@ -700,6 +700,8 @@ The options on this page select which categories of [Dolch](#reviewing-dolch) wo
 
 The options on this page customize your graphs.
 
+**Color Scheme**: Select from here the color scheme to apply to pie charts and grouped histograms (in batch projects).
+
 #### Background {-}
 
 **Color**: Selects the color for the graphs' background. Note that if you are displaying an image, then the image will be shown on top of this color.

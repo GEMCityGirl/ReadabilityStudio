@@ -1,6 +1,7 @@
 #include "base_project_doc.h"
 #include "../app/readability_app.h"
 #include "../Wisteria-Dataviz/src/import/html_encode.h"
+#include "../Wisteria-Dataviz/src/base/reportenumconvert.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(BaseProjectDoc, wxDocument)
 
@@ -32,6 +33,7 @@ BaseProjectDoc::BaseProjectDoc() :
     // graph options
     m_useGraphBackGroundImageLinearGradient(wxGetApp().GetAppOptions().GetGraphBackGroundLinearGradient()),
     m_displayDropShadows(wxGetApp().GetAppOptions().IsDisplayingDropShadows()),
+    m_graphColorSchemeName(wxGetApp().GetAppOptions().GetGraphColorScheme()),
     m_plotBackGroundImagePath(wxGetApp().GetAppOptions().GetPlotBackGroundImagePath()),
     m_stippleImagePath(wxGetApp().GetAppOptions().GetStippleImagePath()),
     m_commonImagePath(wxGetApp().GetAppOptions().GetGraphCommonImagePath()),
@@ -150,6 +152,7 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
         m_graphImageScheme = that.m_graphImageScheme;
         }
 
+    SetGraphColorScheme(that.m_graphColorSchemeName); // needs to load a color scheme from a string
     m_stippleShape = that.m_stippleShape;
     m_stippleColor = that.m_stippleColor;
     m_graphBackGroundColor = that.m_graphBackGroundColor;
@@ -208,6 +211,16 @@ void BaseProjectDoc::SetGraphCommonImagePath(const wxString& filePath)
         }
     else
         { m_graphImageScheme->Clear(); }
+    }
+
+//------------------------------------------------------
+void BaseProjectDoc::SetGraphColorScheme(wxString colorScheme)
+    {
+    m_graphColorSchemeName = std::move(colorScheme);
+
+    auto foundScheme = Wisteria::ReportEnumConvert::ConvertColorScheme(m_graphColorSchemeName);
+    if (foundScheme != nullptr)
+        { m_graphBrushScheme = std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(*foundScheme); }
     }
 
 //------------------------------------------------------
@@ -487,6 +500,8 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
     auto graph = std::dynamic_pointer_cast<Wisteria::Graphs::Graph2D>(canvas->GetFixedObject(0, 0));
     assert(graph && L"No graph on the canvas!");
 
+    if (m_graphBrushScheme != nullptr)
+        { graph->SetBrushScheme(m_graphBrushScheme); }
     graph->SetPlotBackgroundColor(
         Colors::ColorContrast::ChangeOpacity(GetPlotBackGroundColor(),
                                              GetPlotBackGroundColorOpacity()));
@@ -1345,6 +1360,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
     if (graphsSection && graphsSectionEnd &&
         (graphsSection < graphsSectionEnd) )
         {
+        // color scheme
+        SetGraphColorScheme(XmlFormat::GetString(graphsSection, graphsSectionEnd,
+            wxGetApp().GetAppOptions().XML_GRAPH_COLOR_SCHEME));
+
         // background color and images
         SetPlotBackGroundImagePath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH));
@@ -2348,6 +2367,10 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     // save the graph settings
     //----------------------------------
     fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_SETTINGS).append(L">\n");
+    // color scheme
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_COLOR_SCHEME).append(L">");
+    fileText += GetGraphColorScheme();
+    fileText.append(L"</").append(wxGetApp().GetAppOptions().XML_GRAPH_COLOR_SCHEME).append(L">\n");
     // background image
     fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH).append(L">");
     fileText += GetPlotBackGroundImagePath();

@@ -2428,6 +2428,15 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
 
                     if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
                         {
+                        if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
+                            typeid(*dynamic_cast<Wisteria::Canvas*>(
+                                GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+                            typeid(Wisteria::Graphs::PieChart))
+                            {
+                            editButtonRibbonBar->AddButton(XRCID("ID_EDIT_GRAPH_COLOR_SCHEME"), _(L"Colors"),
+                                readRibbonButtonSVG(L"ribbon/color-wheel.svg"),
+                                _(L"Select the color scheme for the pie chart."));
+                            }
                         editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
                             _(L"Background"),
                             readRibbonButtonSVG(L"ribbon/photos.svg"),

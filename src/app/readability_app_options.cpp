@@ -98,6 +98,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_INCLUDE_NUMERIC(_DT(L"include-numeric")),
     // graph settings
     XML_GRAPH_SETTINGS(_DT(L"graph-settings")),
+    XML_GRAPH_COLOR_SCHEME(_DT(L"graph-color-scheme")),
     XML_GRAPH_BACKGROUND_COLOR(_DT(L"graph-background-color")),
     XML_GRAPH_PLOT_BACKGROUND_COLOR(_DT(L"graph-plot-background-color")),
     XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH(_DT(L"graph-background-image")),
@@ -641,6 +642,7 @@ void ReadabilityAppOptions::ResetSettings()
     m_useGraphBackGroundColorLinearGradient = false;
     m_displayDropShadows = false;
     m_plotBackGroundImagePath.clear();
+    m_graphColorSchemeName = _DT(L"campfire");
     m_watermark.clear();
     m_watermarkImg.clear();
     m_graphBackGroundColor = wxColour(255, 255, 255);
@@ -2049,6 +2051,21 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             filter_html(imagePathStr.wc_str(), imagePathStr.length(), true, false);
                         if (filteredText)
                             { SetPlotBackGroundImagePath(wxString(filteredText)); }
+                        }
+                    }
+                // color scheme
+                auto colorSchemNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_COLOR_SCHEME.mb_str());
+                if (colorSchemNode)
+                    {
+                    const char* colorScheme = colorSchemNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                    if (colorScheme)
+                        {
+                        wxString colorSchemeStr =
+                            Wisteria::TextStream::CharStreamToUnicode(colorScheme, std::strlen(colorScheme));
+                        const wchar_t* filteredText =
+                            filter_html(colorSchemeStr.wc_str(), colorSchemeStr.length(), true, false);
+                        if (filteredText)
+                            { SetGraphColorScheme(wxString(filteredText)); }
                         }
                     }
                 // graph background colors
@@ -4056,6 +4073,11 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     // graph defaults
     auto graphDefaultsSection = doc.NewElement(XML_GRAPH_SETTINGS.mb_str());
+    // color scheme
+    auto graphColorScheme = doc.NewElement(XML_GRAPH_COLOR_SCHEME.mb_str());
+    graphColorScheme->SetAttribute(XML_VALUE.mb_str(),
+        wxString(encode({ GetGraphColorScheme().wc_str() }, false).c_str()).mb_str());
+    graphDefaultsSection->InsertEndChild(graphColorScheme);
     // background image
     auto graphBackgroundImage = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH.mb_str());
     graphBackgroundImage->SetAttribute(XML_VALUE.mb_str(),

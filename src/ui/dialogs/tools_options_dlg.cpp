@@ -1084,6 +1084,8 @@ bool ToolsOptionsDlg::HaveGraphOptionsChanged() const
            (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetEffectLabel()) &&
                m_boxPlotsPropertyGrid->IsPropertyModified(GetEffectLabel())) ||
            // general
+           (IsPropertyAvailable(m_generalGraphPropertyGrid, GetGraphColorSchemeLabel()) &&
+               m_generalGraphPropertyGrid->IsPropertyModified(GetGraphColorSchemeLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid,GetWatermarkLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetWatermarkLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid,GetLogoImageLabel()) &&
@@ -1098,11 +1100,11 @@ bool ToolsOptionsDlg::HaveGraphOptionsChanged() const
                m_generalGraphPropertyGrid->IsPropertyModified(GetStippleShapeColorLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid, GetCommonImageLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetCommonImageLabel())) ||
-           (IsPropertyAvailable(m_generalGraphPropertyGrid,GetBackgroundColorLabel()) &&
+           (IsPropertyAvailable(m_generalGraphPropertyGrid, GetBackgroundColorLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetBackgroundColorLabel())) ||
-           (IsPropertyAvailable(m_generalGraphPropertyGrid,GetImageOpacityLabel()) &&
+           (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageOpacityLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetImageOpacityLabel())) ||
-           (IsPropertyAvailable(m_generalGraphPropertyGrid,GetColorLabel()) &&
+           (IsPropertyAvailable(m_generalGraphPropertyGrid, GetColorLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetColorLabel())) ||
            (IsPropertyAvailable(m_generalGraphPropertyGrid, GetColorOpacityLabel()) &&
                m_generalGraphPropertyGrid->IsPropertyModified(GetColorOpacityLabel())) ||
@@ -2121,7 +2123,14 @@ void ToolsOptionsDlg::SaveOptions()
                     m_readabilityTestsPropertyGrid->GetPropertyValueAsInt(
                         GetFleschKincaidNumeralSyllabicationLabel())));
             }
-
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetGraphColorSchemeLabel()))
+            {
+            const auto foundColorScheme =
+                wxGetApp().GetGraphColorSchemeMap().find(
+                    m_generalGraphPropertyGrid->GetPropertyValueAsString(GetGraphColorSchemeLabel()));
+            if (foundColorScheme != wxGetApp().GetGraphColorSchemeMap().cend())
+                { wxGetApp().GetAppOptions().SetGraphColorScheme(foundColorScheme->second); }
+            }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetBackgroundColorLabel()))
             {
             wxGetApp().GetAppOptions().SetBackGroundColor(
@@ -2448,6 +2457,14 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
     {
     if (m_readabilityProjectDoc && HaveOptionsChanged())
         {
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetGraphColorSchemeLabel()))
+            {
+            const auto foundColorScheme =
+                wxGetApp().GetGraphColorSchemeMap().find(
+                    m_generalGraphPropertyGrid->GetPropertyValueAsString(GetGraphColorSchemeLabel()));
+            if (foundColorScheme != wxGetApp().GetGraphColorSchemeMap().cend())
+                { m_readabilityProjectDoc->SetGraphColorScheme(foundColorScheme->second); }
+            }
         if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetBackgroundColorLabel()))
             {
             m_readabilityProjectDoc->SetBackGroundColor(
@@ -4597,6 +4614,28 @@ void ToolsOptionsDlg::CreateGraphSection()
                                           wxDefaultPosition, wxDefaultSize,
                                           wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
             m_generalGraphPropertyGrid = pgMan->AddPage();
+
+            wxPGChoices graphColorSchemes;
+            for (const auto& colorScheme : wxGetApp().GetGraphColorSchemeMap())
+                { graphColorSchemes.Add(colorScheme.first); }
+            // do a reverse lookup to map internal "coffeeshop" to UI's "Coffee Shop"
+            wxString defaultColorSchemeValue{ _("Campfire") };
+            const wxString systemColorSchemeValue = (m_readabilityProjectDoc ?
+                m_readabilityProjectDoc->GetGraphColorScheme() :
+                wxGetApp().GetAppOptions().GetGraphColorScheme());
+            for (const auto& theme : wxGetApp().GetGraphColorSchemeMap())
+                {
+                if (systemColorSchemeValue.CmpNoCase(theme.second) == 0)
+                    {
+                    defaultColorSchemeValue = theme.first;
+                    break;
+                    }
+                }
+            auto colorSchemeProp = m_generalGraphPropertyGrid->Append(
+                new wxEnumProperty(GetGraphColorSchemeLabel(), wxPG_LABEL, graphColorSchemes));
+            colorSchemeProp->SetValue(defaultColorSchemeValue);
+            colorSchemeProp->SetHelpString(
+                _(L"Select from here the color scheme to apply to pie charts and grouped histograms."));
 
             m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetGraphBackgroundLabel()) );
             m_generalGraphPropertyGrid->SetPropertyHelpString(

@@ -899,6 +899,9 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         exportBatchFilteredMenuItem->SetBitmap(filterIcon);
                         m_exportMenu.Append(exportBatchFilteredMenuItem);
 
+                        auto graph = dynamic_cast<Wisteria::Canvas*>(
+                            GetActiveProjectWindow())->GetFixedObject(0, 0);
+
                         editButtonBar->ClearButtons();
                         editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
                                                          readRibbonButtonSVG(L"ribbon/photos.svg"),
@@ -919,8 +922,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         editButtonBar->ToggleButton(
                             XRCID("ID_DROP_SHADOW"),
                             dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
-                        auto graph = dynamic_cast<Wisteria::Canvas*>(
-                            GetActiveProjectWindow())->GetFixedObject(0, 0);
+                        
                         if (typeid(*graph) == typeid(FleschChart))
                             {
                             exportMenuItem->SetBitmap(
@@ -1204,7 +1206,18 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
 
                 auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                 assert(editButtonRibbonBar);
+
+                auto graph = dynamic_cast<Wisteria::Canvas*>(
+                    GetActiveProjectWindow())->GetFixedObject(0, 0);
+
                 editButtonRibbonBar->ClearButtons();
+                if (typeid(*graph) == typeid(Wisteria::Graphs::Histogram) &&
+                    dynamic_cast<Wisteria::Graphs::Histogram*>(graph.get())->IsUsingGrouping())
+                    {
+                    editButtonRibbonBar->AddButton(XRCID("ID_EDIT_GRAPH_COLOR_SCHEME"), _(L"Colors"),
+                        readRibbonButtonSVG(L"ribbon/color-wheel.svg"),
+                        _(L"Select the color scheme for the grouped histogram."));
+                    }
                 editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
                     _(L"Background"),
                     readRibbonButtonSVG(L"ribbon/photos.svg"),

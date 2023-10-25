@@ -354,6 +354,9 @@ public:
     [[nodiscard]]
     const std::map<wxString, wxString>& GetShapeMap() const noexcept
         { return m_shapeMap; }
+    [[nodiscard]]
+    const std::map<wxString, wxString>& GetGraphColorSchemeMap() const noexcept
+        { return m_colorSchemeMap; }
 private:
     void InitializeReadabilityFeatures();
 
@@ -377,6 +380,7 @@ private:
     std::mt19937_64 m_mersenneTwister;
 
     std::map<wxString, wxString> m_shapeMap;
+    std::map<wxString, wxString> m_colorSchemeMap;
     };
 
 #endif //__MAIN_APP_H__
