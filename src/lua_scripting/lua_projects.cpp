@@ -457,11 +457,10 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        m_project->SetBackGroundColor(
-            wxColour(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4)));
+        m_project->SetBackGroundColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -551,11 +550,10 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        m_project->SetPlotBackGroundColor(
-            wxColour(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4)));
+        m_project->SetPlotBackGroundColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -568,7 +566,7 @@ namespace LuaScripting
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        m_project->SetInvalidAreaColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
+        m_project->SetInvalidAreaColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -723,11 +721,10 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        m_project->SetBarChartBarColor(
-            wxColour(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4)));
+        m_project->SetBarChartBarColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2145,11 +2142,10 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        m_project->SetBackGroundColor(
-            wxColour(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4)));
+        m_project->SetBackGroundColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2239,11 +2235,10 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        m_project->SetPlotBackGroundColor(
-            wxColour(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4)));
+        m_project->SetPlotBackGroundColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2253,10 +2248,10 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
-        m_project->SetInvalidAreaColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
+        m_project->SetInvalidAreaColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
         ReloadIfNotDelayedSimple();
         return 0;
         }
