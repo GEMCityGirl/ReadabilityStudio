@@ -28,6 +28,19 @@ wxDECLARE_APP(ReadabilityApp);
 
 namespace LuaScripting
     {
+    wxColour LoadColor(wxString colorStr)
+        {
+        wxColour color{ colorStr };
+        if (!color.IsOk())
+            {
+            colorStr.MakeLower();
+            auto foundColor = Wisteria::ReportBuilder::GetColorMap().find(colorStr.wc_str());
+            if (foundColor != Wisteria::ReportBuilder::GetColorMap().cend())
+                { color = Wisteria::Colors::ColorBrewer::GetColor(foundColor->second); }
+            }
+        return color;
+        }
+
     void LoadFontAttributes(lua_State* L, wxFont& font, wxColour& fontColor, bool calledFromObject)
         {
         int paramIndex = (calledFromObject ? 2 : 1);
@@ -56,17 +69,7 @@ namespace LuaScripting
 
         if (lua_gettop(L) >= paramIndex)
             {
-            wxString colorStr{ wxString{ luaL_checkstring(L, paramIndex++), wxConvUTF8 } };
-            wxColour color{ colorStr };
-            if (color.IsOk())
-                { fontColor = color; }
-            else
-                {
-                colorStr.MakeLower();
-                auto foundColor = Wisteria::ReportBuilder::GetColorMap().find(colorStr.wc_str());
-                if (foundColor != Wisteria::ReportBuilder::GetColorMap().cend())
-                    { fontColor = Wisteria::Colors::ColorBrewer::GetColor(foundColor->second); }
-                }
+            fontColor = LoadColor(wxString{ luaL_checkstring(L, paramIndex++), wxConvUTF8 });
             }
         }
 

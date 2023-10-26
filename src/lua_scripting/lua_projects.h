@@ -24,6 +24,7 @@ namespace LuaScripting
     {
     /// @brief Helper function to load font attributes for a project.
     void LoadFontAttributes(lua_State* L, wxFont& font, wxColour& fontColor, bool calledFromObject);
+    wxColour LoadColor(wxString colorStr);
 
     /// @brief Standard project interface.
     /// @private
