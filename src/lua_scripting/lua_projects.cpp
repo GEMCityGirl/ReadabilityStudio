@@ -561,6 +561,19 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::SetGraphInvalidRegionColor(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->SetInvalidAreaColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetPlotBackgroundColorOpacity(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1830,6 +1843,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, SetGraphWatermark),
       LUNA_DECLARE_METHOD(StandardProject, SetGraphLogoImage),
       LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundColor),
+      LUNA_DECLARE_METHOD(StandardProject, SetGraphInvalidRegionColor),
       LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundColorOpacity),
       LUNA_DECLARE_METHOD(StandardProject, SetStippleImage),
       LUNA_DECLARE_METHOD(StandardProject, SetStippleShape),
@@ -2230,6 +2244,19 @@ namespace LuaScripting
 
         m_project->SetPlotBackGroundColor(
             wxColour(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetGraphInvalidRegionColor(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->SetInvalidAreaColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -3024,6 +3051,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, SetGraphWatermark),
       LUNA_DECLARE_METHOD(BatchProject, SetGraphLogoImage),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundColor),
+      LUNA_DECLARE_METHOD(BatchProject, SetGraphInvalidRegionColor),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundColorOpacity),
       LUNA_DECLARE_METHOD(BatchProject, SetStippleImage),
       LUNA_DECLARE_METHOD(BatchProject, SetStippleShape),

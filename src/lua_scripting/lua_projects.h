@@ -172,6 +172,7 @@ namespace LuaScripting
         int SetBarChartBarOpacity(lua_State* L);
         int SetBarChartBarEffect(lua_State* L);
         int SetBarChartOrientation(lua_State* L);
+        int SetGraphInvalidRegionColor(lua_State* L);
 
         // TEST OPTIONS
         // Adds a test to the project.
@@ -376,6 +377,7 @@ namespace LuaScripting
         int SetGraphTopTitleFont(lua_State* L);
         int DisplayBarChartLabels(lua_State* L);
         int DisplayGraphDropShadows(lua_State* L);
+        int SetGraphInvalidRegionColor(lua_State* L);
 
         // Adds a test to the project.
         // TestName The name of the test to add to the project.
