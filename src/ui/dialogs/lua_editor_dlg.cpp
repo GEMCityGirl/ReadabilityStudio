@@ -26,7 +26,7 @@ using namespace lily_of_the_valley;
 ///     it is the user's responsibility to set this provider's color to the system
 ///     (or custom) color.
 class FlatTabArt : public wxAuiGenericTabArt
-{
+    {
 public:
     /// @private
     FlatTabArt() : wxAuiGenericTabArt(){}
@@ -641,7 +641,7 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
                     {
                     if (lib.size())
                         {
-                        const auto libName = lib.front();
+                        const std::wstring libName = lib.front();
                         lib.erase(lib.begin(), lib.begin() + 1);
                         CodeEditor::NameList nl;
                         for (const auto& className : lib)
@@ -668,7 +668,7 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
                     {
                     if (lib.size())
                         {
-                        const auto libName = lib.front();
+                        const std::wstring libName = lib.front();
                         lib.erase(lib.begin(), lib.begin() + 1);
                         CodeEditor::NameList nl;
                         for (const auto& lName : lib)
