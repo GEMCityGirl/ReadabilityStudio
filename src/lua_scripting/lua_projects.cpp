@@ -37,7 +37,6 @@ namespace LuaScripting
             { fontName = Wisteria::GraphItems::Label::GetFirstAvailableMonospaceFont(); }
         else if (fontName.CmpNoCase(_DT(L"CURSIVE")) == 0)
             { fontName = Wisteria::GraphItems::Label::GetFirstAvailableCursiveFont(); }
-        // cppcheck-suppress knownConditionTrueFalse
         if (!fontName.empty())
             { font.SetFaceName(fontName); }
 
