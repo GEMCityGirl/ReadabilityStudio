@@ -13,6 +13,7 @@
 #include "../projects/batch_project_view.h"
 #include "../ui/dialogs/tools_options_dlg.h"
 #include "../Wisteria-Dataviz/src/base/label.h"
+#include "../Wisteria-Dataviz/src/base/reportbuilder.h"
 
 using namespace Wisteria;
 using namespace Wisteria::Graphs;
@@ -56,9 +57,17 @@ namespace LuaScripting
 
         if (lua_gettop(L) >= paramIndex)
             {
-            const wxColour color{ wxString{ luaL_checkstring(L, paramIndex++), wxConvUTF8 } };
+            wxString colorStr{ wxString{ luaL_checkstring(L, paramIndex++), wxConvUTF8 } };
+            wxColour color{ colorStr };
             if (color.IsOk())
                 { fontColor = color; }
+            else
+                {
+                colorStr.MakeLower();
+                auto foundColor = Wisteria::ReportBuilder::GetColorMap().find(colorStr.wc_str());
+                if (foundColor != Wisteria::ReportBuilder::GetColorMap().cend())
+                    { fontColor = Wisteria::Colors::ColorBrewer::GetColor(foundColor->second); }
+                }
             }
         }
 
