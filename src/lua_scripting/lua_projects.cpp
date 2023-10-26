@@ -39,22 +39,34 @@ namespace LuaScripting
         // cppcheck-suppress knownConditionTrueFalse
         if (!fontName.empty())
             { font.SetFaceName(fontName); }
-        const double pointSize{ lua_tonumber(L, paramIndex++) };
-        if (pointSize > 0)
-            { font.SetFractionalPointSize(pointSize); }
-        const int fontWeight{ static_cast<int>(lua_tonumber(L, paramIndex++)) };
-        if (fontWeight > 0)
-            { font.SetWeight(static_cast<wxFontWeight>(fontWeight)); }
-        const wxColour color{ wxString{ luaL_checkstring(L, paramIndex++), wxConvUTF8 } };
-        if (color.IsOk())
-            { fontColor = color; }
+
+        if (lua_gettop(L) >= paramIndex)
+            {
+            const double pointSize{ lua_tonumber(L, paramIndex++) };
+            if (pointSize > 0)
+                { font.SetFractionalPointSize(pointSize); }
+            }
+
+        if (lua_gettop(L) >= paramIndex)
+            {
+            const int fontWeight{ static_cast<int>(lua_tonumber(L, paramIndex++)) };
+            if (fontWeight > 0)
+                { font.SetWeight(static_cast<wxFontWeight>(fontWeight)); }
+            }
+
+        if (lua_gettop(L) >= paramIndex)
+            {
+            const wxColour color{ wxString{ luaL_checkstring(L, paramIndex++), wxConvUTF8 } };
+            if (color.IsOk())
+                { fontColor = color; }
+            }
         }
 
     const char StandardProject::className[] = "StandardProject";
 
     StandardProject::StandardProject(lua_State *L)
         {
-        if (lua_gettop(L) > 1)// see if a path was passed in
+        if (lua_gettop(L) > 1) // see if a path was passed in
             {
             wxString path(luaL_checkstring(L, 2), wxConvUTF8);
             wxFileName fn(path);
@@ -607,7 +619,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
         auto fontInfo = m_project->GetXAxisFont();
@@ -625,7 +637,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
         auto fontInfo = m_project->GetYAxisFont();
@@ -643,7 +655,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
         auto fontInfo = m_project->GetGraphTopTitleFont();
@@ -2281,7 +2293,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
         auto fontInfo = m_project->GetXAxisFont();
@@ -2299,7 +2311,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
         auto fontInfo = m_project->GetYAxisFont();
@@ -2317,7 +2329,7 @@ namespace LuaScripting
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
             { return 0; }
-        if (!VerifyParameterCount(L, 4, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
 
         auto fontInfo = m_project->GetGraphTopTitleFont();
