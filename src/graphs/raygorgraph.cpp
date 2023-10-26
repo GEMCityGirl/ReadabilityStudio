@@ -57,6 +57,7 @@ namespace Wisteria::Graphs
             LabelAlignment(TextAlignment::Centered).ChildAlignment(RelativeAlignment::Centered);
         GetTitle().GetHeaderInfo().Enable(true).
             LabelAlignment(Wisteria::TextAlignment::Centered).Font(GetTitle().GetFont()).
+            FontColor(GetTitle().GetFontColor()).
             GetFont().MakeBold();
 
         GetBottomXAxis().SetRange(6, 44, 0, 2, 1);
