@@ -419,7 +419,8 @@ sp:SetStippleImage(ScreenshotProjectsFolder .. "Book.png")
 sp:SetBarChartBarEffect(BoxEffect.StippleImage)
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "GraphCustomBrush." .. FileExtension)
 
-sp:SetStippleShape("newspaper")
+sp:SetStippleShapeColor("SmokyBlack")
+sp:SetStippleShape("car")
 sp:SetBarChartBarEffect(BoxEffect.StippleShape)
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "GraphStippleShape." .. FileExtension)
 
