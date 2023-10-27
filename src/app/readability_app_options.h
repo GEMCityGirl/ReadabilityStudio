@@ -239,7 +239,7 @@ public:
     void EnableSyllableHistogram(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(1,enable); }
     [[nodiscard]]
-    bool IsSyllableHistogramEnabled() const
+    bool IsSyllableGraphsEnabled() const
         { return m_wordsBreakdownItemsToInclude[1]; }
     void Enable3PlusSyllables(const bool enable)
         { m_wordsBreakdownItemsToInclude.set(2,enable); }

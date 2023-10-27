@@ -534,7 +534,7 @@ The options on this page customize which results are included in the [**Words Br
 
 **Word Counts**: Check this to include the word barchart in the results.
 
-**Syllable Counts**: Check this to include the syllable histogram in the results.
+**Syllable Counts**: Check this to include the syllable histogram and pie chart in the results.
 
 **3+ Syllables**: Check this to include the 3+ syllable words list in the results.
 

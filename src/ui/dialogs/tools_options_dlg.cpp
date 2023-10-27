@@ -3879,12 +3879,12 @@ void ToolsOptionsDlg::CreateControls()
         m_wordsBreakdownPropertyGrid->Append(
             new wxBoolProperty(BaseProjectView::GetSyllableCountsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetWordsBreakdownInfo().IsSyllableHistogramEnabled() :
-                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsSyllableHistogramEnabled())) );
+                m_readabilityProjectDoc->GetWordsBreakdownInfo().IsSyllableGraphsEnabled() :
+                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsSyllableGraphsEnabled())) );
         m_wordsBreakdownPropertyGrid->SetPropertyAttribute(BaseProjectView::GetSyllableCountsLabel(),
                                                            wxPG_BOOL_USE_CHECKBOX, true);
         m_wordsBreakdownPropertyGrid->SetPropertyHelpString(BaseProjectView::GetSyllableCountsLabel(),
-            _(L"Check this to include the syllable histogram in the results."));
+            _(L"Check this to include the syllable histogram and pie chart in the results."));
 
         m_wordsBreakdownPropertyGrid->Append(
             new wxBoolProperty(BaseProjectView::GetThreeSyllableWordsLabel(), wxPG_LABEL,

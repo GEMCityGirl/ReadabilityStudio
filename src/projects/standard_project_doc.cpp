@@ -2540,7 +2540,7 @@ void ProjectDoc::DisplayWordCharts()
     Wisteria::Canvas* histoCanvas =
         dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().
             FindWindowById(BaseProjectView::SYLLABLE_HISTOGRAM_PAGE_ID));
-    if (GetWordsBreakdownInfo().IsSyllableHistogramEnabled())
+    if (GetWordsBreakdownInfo().IsSyllableGraphsEnabled())
         {
         if (!histoCanvas)
             {
@@ -2623,7 +2623,7 @@ void ProjectDoc::DisplayWordCharts()
     Wisteria::Canvas* syllablePieCanvas =
         dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().
             FindWindowById(BaseProjectView::SYLLABLE_PIECHART_PAGE_ID));
-    if (GetWordsBreakdownInfo().IsSyllableHistogramEnabled())
+    if (GetWordsBreakdownInfo().IsSyllableGraphsEnabled())
         {
         if (!syllablePieCanvas)
             {
