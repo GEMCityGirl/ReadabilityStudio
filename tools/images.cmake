@@ -113,6 +113,7 @@ ribbon/sentences.svg
 ribbon/shadow.svg
 ribbon/show-all-labels.svg
 ribbon/show-all-points.svg
+ribbon/showcase.svg
 ribbon/sort.svg
 ribbon/spreadsheet.svg
 ribbon/stats.svg
