@@ -2596,7 +2596,7 @@ void ProjectDoc::DisplayWordCharts()
             syllableHistogram->AddBarGroup(3, syllableHistogram->GetBars().back().GetAxisPosition(),
                 _(L"Complex Words"), GetHistogramBarColor());
             const auto firstComplexBar = syllableHistogram->FindBar(3);
-            if (firstComplexBar)
+            if (IsShowcasingComplexWords() && firstComplexBar)
                 {
                 std::vector<double> complexBarPositions;
                 complexBarPositions.reserve(syllableHistogram->GetBars().size() - firstComplexBar.value());
@@ -2656,6 +2656,16 @@ void ProjectDoc::DisplayWordCharts()
         syllablePieChart->SetData(m_syllableCounts, std::nullopt,
             GetWordTypeGroupColumnName(),
             GetSyllableCountsColumnName());
+
+        if (IsShowcasingComplexWords())
+            {
+            auto groupCol = m_syllableCounts->GetCategoricalColumn(GetWordTypeGroupColumnName());
+            assert(groupCol != m_syllableCounts->GetCategoricalColumns().cend() &&
+                   L"Unable to get group column for syllable dataset!");
+            // get the complex words label from the string table
+            if (groupCol != m_syllableCounts->GetCategoricalColumns().cend())
+                { syllablePieChart->ShowcaseOuterPieSlices({ groupCol->GetStringTable()[1] }); }
+            }
 
         syllablePieCanvas->CalcAllSizes(gdc);
         }

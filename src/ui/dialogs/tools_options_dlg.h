@@ -314,6 +314,9 @@ private:
     wxString GetDisplayDropShadowsLabel() const
         { return _(L"Display drop shadows"); }
     [[nodiscard]]
+    wxString GetShowcaseComplexWordsLabel() const
+        { return _(L"Showcase complex words"); }
+    [[nodiscard]]
     wxString GetStippleImageLabel() const
         { return _(L"Stipple image"); }
     [[nodiscard]]

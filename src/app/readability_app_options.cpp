@@ -111,6 +111,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH(_DT(L"watermark-logo")),
     XML_GRAPH_COMMON_IMAGE_PATH(_DT(L"common-image")),
     XML_DISPLAY_DROP_SHADOW(_DT(L"display-drop-shadow")),
+    XML_SHOWCASE_COMPLEX_WORDS(_DT(L"showcase-complex-words")),
     XML_AXIS_SETTINGS(_DT(L"axis-settings")),
     XML_FRY_RAYGOR_SETTINGS(_DT(L"fry-raygor-settings")),
     XML_INVALID_AREA_COLOR(_DT(L"invalid-area-color-1")),
@@ -641,6 +642,7 @@ void ReadabilityAppOptions::ResetSettings()
     m_barDisplayLabels = true;
     m_useGraphBackGroundColorLinearGradient = false;
     m_displayDropShadows = false;
+    m_showcaseComplexWords = false;
     m_plotBackGroundImagePath.clear();
     m_graphColorSchemeName = _DT(L"campfire");
     m_watermark.clear();
@@ -2213,6 +2215,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     DisplayDropShadows(
                         int_to_bool(dropShadowNode->ToElement()->IntAttribute(
                             XML_VALUE.mb_str(), bool_to_int(IsDisplayingDropShadows()))));
+                    }
+                // whether to draw attention to the complex word groups in syllable graphs
+                auto showcaseComplexWordsNode = graphDefaultsNode->FirstChildElement(XML_SHOWCASE_COMPLEX_WORDS.mb_str());
+                if (showcaseComplexWordsNode)
+                    {
+                    ShowcaseComplexWords(
+                        int_to_bool(showcaseComplexWordsNode->ToElement()->IntAttribute(
+                            XML_VALUE.mb_str(), bool_to_int(IsShowcasingComplexWords()))));
                     }
                 // watermark
                 auto watermarkNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_WATERMARK.mb_str());
@@ -4149,6 +4159,10 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto graphDisplayDropShadow = doc.NewElement(XML_DISPLAY_DROP_SHADOW.mb_str());
     graphDisplayDropShadow->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsDisplayingDropShadows()));
     graphDefaultsSection->InsertEndChild(graphDisplayDropShadow);
+    // whether to draw attention to the complex word groups in syllable graphs
+    auto showcaseComplexWords = doc.NewElement(XML_SHOWCASE_COMPLEX_WORDS.mb_str());
+    showcaseComplexWords->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsShowcasingComplexWords()));
+    graphDefaultsSection->InsertEndChild(showcaseComplexWords);
     // watermark
     auto graphWatermarkLogo = doc.NewElement(XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH.mb_str());
     graphWatermarkLogo->SetAttribute(XML_VALUE.mb_str(),

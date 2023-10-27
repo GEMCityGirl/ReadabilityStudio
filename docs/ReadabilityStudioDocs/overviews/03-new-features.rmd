@@ -28,6 +28,8 @@
 - Sentence heatmaps now show the sentences' word counts.
 - Added multiple layout styles for Raygor to choose from. This includes showing the graph as it appeared in its original version, as well as the Baldwin-Kaufman variation.
 - Added brackets explaining the factors that influence word categories to the **Word Counts** barchart.
+- Added a bracket to the **Syllable Counts** histogram to group the complex-word bars.
+- Added an option to the **Syllable Counts** histogram to draw attention to the complex-word bars. This is done by lowering the opacity of the 1- and 2-syllable word bars.
 - Grade-level histograms in batch projects:
   - Now always show one bar for each grade level, regardless of the binning method selected.
   - Start their bar axis at **0** (i.e., Kindergarten).

@@ -930,6 +930,12 @@ public:
     [[nodiscard]]
     bool IsDisplayingDropShadows() const noexcept
         { return m_displayDropShadows; }
+    // whether to draw attention to the complex word groups in syllable graphs
+    void ShowcaseComplexWords(const bool display) noexcept
+        { m_showcaseComplexWords = display; }
+    [[nodiscard]]
+    bool IsShowcasingComplexWords() const noexcept
+        { return m_showcaseComplexWords; }
     // graph background image
     void SetPlotBackGroundImagePath(const wxString& filePath)
         { m_plotBackGroundImagePath = filePath; }
@@ -1547,6 +1553,7 @@ private:
     bool m_boxConnectMiddlePoints{ true };
     bool m_useGraphBackGroundColorLinearGradient{ false };
     bool m_displayDropShadows{ false };
+    bool m_showcaseComplexWords{ false };
     wxString m_graphColorSchemeName{ _DT(L"campfire") };
     wxString m_plotBackGroundImagePath;
     wxString m_watermark;
@@ -1751,6 +1758,7 @@ public:
     const wxString XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH;
     const wxString XML_GRAPH_COMMON_IMAGE_PATH;
     const wxString XML_DISPLAY_DROP_SHADOW;
+    const wxString XML_SHOWCASE_COMPLEX_WORDS;
     const wxString XML_AXIS_SETTINGS;
     const wxString XML_FRY_RAYGOR_SETTINGS;
     const wxString XML_INVALID_AREA_COLOR;

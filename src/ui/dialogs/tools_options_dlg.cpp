@@ -1069,7 +1069,9 @@ bool ToolsOptionsDlg::HaveStatisticsOptionsChanged() const
 bool ToolsOptionsDlg::HaveGraphOptionsChanged() const
     {
     return (IsPropertyAvailable(m_generalGraphPropertyGrid,GetDisplayDropShadowsLabel()) &&
-        m_generalGraphPropertyGrid->IsPropertyModified(GetDisplayDropShadowsLabel())) ||
+               m_generalGraphPropertyGrid->IsPropertyModified(GetDisplayDropShadowsLabel())) ||
+           (IsPropertyAvailable(m_generalGraphPropertyGrid, GetShowcaseComplexWordsLabel()) &&
+               m_generalGraphPropertyGrid->IsPropertyModified(GetShowcaseComplexWordsLabel())) ||
            // box plot options
            (IsPropertyAvailable(m_boxPlotsPropertyGrid,GetOpacityLabel()) &&
                m_boxPlotsPropertyGrid->IsPropertyModified(GetOpacityLabel())) ||
@@ -2205,10 +2207,15 @@ void ToolsOptionsDlg::SaveOptions()
             wxGetApp().GetAppOptions().SetGraphCommonImagePath(
                 m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCommonImageLabel()));
             }
-        if (IsPropertyAvailable(m_generalGraphPropertyGrid,GetDisplayDropShadowsLabel()))
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetDisplayDropShadowsLabel()))
             {
             wxGetApp().GetAppOptions().DisplayDropShadows(
                 m_generalGraphPropertyGrid->GetPropertyValueAsBool(GetDisplayDropShadowsLabel()));
+            }
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetShowcaseComplexWordsLabel()))
+            {
+            wxGetApp().GetAppOptions().ShowcaseComplexWords(
+                m_generalGraphPropertyGrid->GetPropertyValueAsBool(GetShowcaseComplexWordsLabel()));
             }
 
         if (IsPropertyAvailable(m_barChartPropertyGrid,GetColorLabel()))
@@ -2542,6 +2549,11 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
             {
             m_readabilityProjectDoc->DisplayDropShadows(
                 m_generalGraphPropertyGrid->GetPropertyValueAsBool(GetDisplayDropShadowsLabel()));
+            }
+        if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetShowcaseComplexWordsLabel()))
+            {
+            m_readabilityProjectDoc->ShowcaseComplexWords(
+                m_generalGraphPropertyGrid->GetPropertyValueAsBool(GetShowcaseComplexWordsLabel()));
             }
 
         if (IsPropertyAvailable(m_barChartPropertyGrid, GetColorLabel()))
@@ -4868,6 +4880,15 @@ void ToolsOptionsDlg::CreateGraphSection()
                 GetDisplayDropShadowsLabel(),
                 _(L"Check this to include shadows underneath items such as boxes, bars, and labels. "
                    "Unchecking this option will give your graphs a more \"flat\" look."));
+
+            auto showcaseOption = m_generalGraphPropertyGrid->Append(
+                new wxBoolProperty(GetShowcaseComplexWordsLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ?
+                    m_readabilityProjectDoc->IsShowcasingComplexWords() :
+                    wxGetApp().GetAppOptions().IsShowcasingComplexWords())));
+            showcaseOption->SetAttribute(wxPG_BOOL_USE_CHECKBOX, true);
+            showcaseOption->SetHelpString(
+                _(L"Check this to draw attention to the complex (i.e., 3+ syllable) word groups on syllable histograms and pie charts (standard projects)."));
 
             pgMan->SelectProperty(GetGraphBackgroundLabel());
 

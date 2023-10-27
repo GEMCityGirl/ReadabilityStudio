@@ -469,6 +469,7 @@ private:
 
     void OnEditStatsReportButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnDropShadow([[maybe_unused]] wxRibbonButtonBarEvent& event);
+    void OnShowcaseComplexWords([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnGraphWatermark([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnGraphLogo([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnInvalidRegionColor(wxRibbonButtonBarEvent& event);

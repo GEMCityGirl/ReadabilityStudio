@@ -180,6 +180,9 @@ BaseProjectView::BaseProjectView()
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &BaseProjectView::OnEditGraphColorScheme, this,
         XRCID("ID_EDIT_GRAPH_COLOR_SCHEME"));
 
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &BaseProjectView::OnShowcaseComplexWords, this,
+        XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"));
+
     Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
         XRCID("ID_BAR_STYLE_SOLID"));
     Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
@@ -830,6 +833,19 @@ void BaseProjectView::OnDropShadow([[maybe_unused]] wxRibbonButtonBarEvent& even
         !dynamic_cast<BaseProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
     dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshRequired(ProjectRefresh::Minimal);
     dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshGraphs();
+    }
+
+//---------------------------------------------------
+void BaseProjectView::OnShowcaseComplexWords([[maybe_unused]] wxRibbonButtonBarEvent& event)
+    {
+    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    assert(doc && L"Failed to get document!");
+    if (!doc)
+        { return; }
+
+    doc->ShowcaseComplexWords(!doc->IsShowcasingComplexWords());
+    doc->RefreshRequired(ProjectRefresh::Minimal);
+    doc->RefreshGraphs();
     }
 
 //---------------------------------------------------

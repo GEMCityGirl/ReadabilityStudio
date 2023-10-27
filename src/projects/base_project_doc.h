@@ -122,6 +122,12 @@ public:
     [[nodiscard]]
     bool IsDisplayingDropShadows() const noexcept
         { return m_displayDropShadows; }
+    // whether to draw attention to the complex word groups in syllable graphs
+    void ShowcaseComplexWords(const bool display) noexcept
+        { m_showcaseComplexWords = display; }
+    [[nodiscard]]
+    bool IsShowcasingComplexWords() const noexcept
+        { return m_showcaseComplexWords; }
     /// axis font colors
     [[nodiscard]]
     wxColour GetXAxisFontColor() const
@@ -739,6 +745,7 @@ protected:
     // general graph information (that can apply to both standard and batch projects)
     bool m_useGraphBackGroundImageLinearGradient{ false };
     bool m_displayDropShadows{ false };
+    bool m_showcaseComplexWords{ false };
     wxBitmapBundle m_plotBackgroundImage;
     wxBitmapBundle m_plotBackgroundImageWithEffect;
     wxBitmapBundle m_graphStippleImage;

@@ -33,6 +33,7 @@ BaseProjectDoc::BaseProjectDoc() :
     // graph options
     m_useGraphBackGroundImageLinearGradient(wxGetApp().GetAppOptions().GetGraphBackGroundLinearGradient()),
     m_displayDropShadows(wxGetApp().GetAppOptions().IsDisplayingDropShadows()),
+    m_showcaseComplexWords(wxGetApp().GetAppOptions().IsShowcasingComplexWords()),
     m_graphColorSchemeName(wxGetApp().GetAppOptions().GetGraphColorScheme()),
     m_plotBackGroundImagePath(wxGetApp().GetAppOptions().GetPlotBackGroundImagePath()),
     m_stippleImagePath(wxGetApp().GetAppOptions().GetStippleImagePath()),
@@ -127,6 +128,7 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
     // graph settings
     m_useGraphBackGroundImageLinearGradient = that.m_useGraphBackGroundImageLinearGradient;
     m_displayDropShadows = that.m_displayDropShadows;
+    m_showcaseComplexWords = that.m_showcaseComplexWords;
 
     // image effect must be set before a possible call to SetPlotBackGroundImagePath(),
     // which will apply the effect
@@ -1420,6 +1422,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         DisplayDropShadows(XmlFormat::GetBoolean(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_DISPLAY_DROP_SHADOW,
             wxGetApp().GetAppOptions().IsDisplayingDropShadows()));
+        
+        ShowcaseComplexWords(XmlFormat::GetBoolean(graphsSection, graphsSectionEnd,
+            wxGetApp().GetAppOptions().XML_SHOWCASE_COMPLEX_WORDS,
+            wxGetApp().GetAppOptions().IsShowcasingComplexWords()));
 
         SetWatermark(XmlFormat::GetString(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_WATERMARK));
@@ -2422,6 +2428,10 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     // whether drop shadows should be shown
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DISPLAY_DROP_SHADOW,
         IsDisplayingDropShadows(), 2);
+    fileText += sectionText;
+    // whether to draw attention to the complex word groups in syllable graphs
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SHOWCASE_COMPLEX_WORDS,
+        IsShowcasingComplexWords(), 2);
     fileText += sectionText;
     // watermarks
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_WATERMARK, GetWatermark(), 2);

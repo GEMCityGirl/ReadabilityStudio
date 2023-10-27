@@ -780,6 +780,10 @@ Note that watermarks and logos will also appear when you [print](#printing) or [
 
 **Display drop shadows**: Check this to include shadows underneath items such as boxes, bars, and labels. Unchecking this option will give your graphs a flat look.
 
+**Showcase complex words**: Check this to draw attention to the complex (i.e., 3+ syllable) word groups on syllable histograms and pie charts (standard projects).
+This is done by lowering the opacity of the bars and slices for 1- and 2-syllable word groups. Also, the labels for these simple-word slices will be hidden on the pie chart.
+Note that if using a stipple shape on the syllable histogram, then this option will have no effect.
+
 ### Axes {-}
 
 The options on this page customize the axis settings of your graphs.
