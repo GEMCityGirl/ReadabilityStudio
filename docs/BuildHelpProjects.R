@@ -1,7 +1,7 @@
 if (!require("pacman")) install.packages("pacman")
 library(pacman)
 pacman::p_load(bookdown, glue, readr, stringr, fs, lubridate, tidyverse, kableExtra,
-               Hmisc, cowplot, beeswarm, tinytex, this.path)
+               Hmisc, cowplot, beeswarm, tinytex, stringi, this.path, janitor)
 
 if (nchar(tinytex::tinytex_root()) == 0)
   {
@@ -9,6 +9,7 @@ if (nchar(tinytex::tinytex_root()) == 0)
   }
 
 docFolder <- this.path::this.dir()
+source(glue("{docFolder}/BuildEnumFiles.R"))
 source(glue("{docFolder}/ReadabilityStudioDocs/R/appdown.r"))
 
 # delete previous builds
@@ -108,6 +109,15 @@ write(c(" "), file=glue("{docFolder}/ReadabilityStudioDocs/docs/.nojekyll"))
 
 # Programming Manual
 ####################
+
+# build the API help topics and intellisense file
+unlink(glue("{docFolder}/ReadabilityStudioAPI/enums"), recursive=T) # rebuild this folder and keep the latest content
+dir_create(glue("{docFolder}/ReadabilityStudioAPI/enums"))
+write(c("# (PART) Enumerations{-}\n\n# Enumerations\n"), file=glue("{docFolder}/ReadabilityStudioAPI/enums/01.md"))
+
+enums <- loadEnums(normalizePath(glue("{docFolder}/../Resources/Scripting/RSConstants.lua")))
+writeEnumEditorFile(enums, glue("{docFolder}/../Resources/Scripting/RSEnums.api"))
+writeEnumTopics(enums, glue("{docFolder}/ReadabilityStudioAPI/enums/"))
 
 setwd(glue("{docFolder}/ReadabilityStudioAPI/"))
 dir_create(glue("{docFolder}/ReadabilityStudioAPI/images"))
