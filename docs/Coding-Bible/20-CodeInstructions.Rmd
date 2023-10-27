@@ -37,7 +37,7 @@ If wanting to edit this option from the ribbon:
   - If it is a checkable menu, add logic for setting the proper check state in `BaseProjectView::Present()`.
 - If a ribbon button, add logic for that in `BatchProjectView::OnItemSelected()` in **src/projects/batch_project_view.cpp** and
   `ProjectView::OnItemSelected()` in **src/projects/standard_project_view.cpp**.
-- Add a `wxEVT_MENU` event handler for the menu/ribbon button option in **src/projects/base_project_view.h** and **src/projects/base_project_view.cpp**.
+- Add a `wxEVT_MENU`/`wxEVT_RIBBONBUTTONBAR_CLICKED` event handler for the menu/ribbon button option in **src/projects/base_project_view.h** and **src/projects/base_project_view.cpp**.
 - Map that event handler in `BaseProjectView::BaseProjectView()`.
 
 ## Adding a New Test {#add-a-new-test}
