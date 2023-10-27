@@ -613,17 +613,18 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
         lily_of_the_valley::standard_delimited_character_column
             tabbedColumn(lily_of_the_valley::text_column_delimited_character_parser{ L'\t' }, 1);
         lily_of_the_valley::standard_delimited_character_column
-            commaColumn(lily_of_the_valley::text_column_delimited_character_parser{ L',' },
+            semiColonColumn(lily_of_the_valley::text_column_delimited_character_parser{ L';' },
                         std::nullopt);
         lily_of_the_valley::text_row<std::wstring> row(std::nullopt);
-        row.treat_consecutive_delimitors_as_one(true); // skip consecutive commas
+        row.treat_consecutive_delimitors_as_one(true); // skip consecutive semicolons
         row.add_column(tabbedColumn);
-        row.add_column(commaColumn);
+        row.add_column(semiColonColumn);
         row.allow_column_resizing(true);
 
         lily_of_the_valley::text_matrix<std::wstring> importer(&apiStrings);
-            importer.add_row_definition(row);
-
+        importer.add_row_definition(lily_of_the_valley::text_row<std::wstring>(1)); // skip warning in first line
+        importer.add_row_definition(row);
+ 
         lily_of_the_valley::text_preview preview;
 
         // library/enum file
@@ -638,7 +639,7 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
             if (rowCount > 0)
                 {
                 apiStrings.resize(rowCount);
-                importer.read(libraryText, rowCount, 3, true);
+                importer.read(libraryText, rowCount, 2, true);
 
                 for (auto& lib : apiStrings)
                     {
@@ -655,17 +656,42 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
                 }
             }
 
+        apiStrings.clear();
         libFilePath = wxGetApp().FindResourceFile(L"RSLibraries.api");
         if (Wisteria::TextStream::ReadFile(libFilePath, libraryText))
             {
-            apiStrings.clear();
-
             // see how many lines are in the file and resize the container
             const size_t rowCount = preview(libraryText, L'\t', true, false);
             if (rowCount > 0)
                 {
                 apiStrings.resize(rowCount);
-                importer.read(libraryText, rowCount, 3, true);
+                importer.read(libraryText, rowCount, 2, true);
+
+                for (auto& lib : apiStrings)
+                    {
+                    if (lib.size())
+                        {
+                        const std::wstring libName = lib.front();
+                        lib.erase(lib.begin(), lib.begin() + 1);
+                        CodeEditor::NameList nl;
+                        for (const auto& lName : lib)
+                            { nl.insert(lName); }
+                        codeEditor->AddLibrary(libName, nl);
+                        }
+                    }
+                }
+            }
+
+        apiStrings.clear();
+        libFilePath = wxGetApp().FindResourceFile(L"RSEnums.api");
+        if (Wisteria::TextStream::ReadFile(libFilePath, libraryText))
+            {
+            // see how many lines are in the file and resize the container
+            const size_t rowCount = preview(libraryText, L'\t', true, false);
+            if (rowCount > 0)
+                {
+                apiStrings.resize(rowCount);
+                importer.read(libraryText, rowCount, 2, true);
 
                 for (auto& lib : apiStrings)
                     {
