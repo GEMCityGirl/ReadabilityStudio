@@ -1029,7 +1029,7 @@ sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleBarChartNoLabelsChanged." .. FileExtension)
 
 -- change color of background
-sp:SetGraphBackgroundColor(250, 235, 215)
+sp:SetGraphBackgroundColor("AntiqueWhite")
 sp:ApplyGraphBackgroundFade(true)
 sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundColorChanged." .. FileExtension)
