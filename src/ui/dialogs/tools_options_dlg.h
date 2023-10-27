@@ -435,7 +435,7 @@ private:
         { return _(L"Box Options"); }
     [[nodiscard]]
     wxString GetGraphColorSchemeLabel() const
-        { return _(L"Color Scheme"); }
+        { return _(L"Grouping Color Scheme"); }
     [[nodiscard]]
     wxString GetGraphBackgroundLabel() const
         { return _(L"Background"); }
