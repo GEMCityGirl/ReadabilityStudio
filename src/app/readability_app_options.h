@@ -370,25 +370,37 @@ public:
     wxColour GetTextHighlightColor() const
         { return m_textHighlightColor; }
     void SetTextHighlightColor(const wxColour& color)
-        { m_textHighlightColor = color; }
+        {
+        if (color.IsOk())
+            { m_textHighlightColor = color; }
+        }
     // color to highlight ignored sentences
     [[nodiscard]]
     wxColour GetExcludedTextHighlightColor() const
         { return m_excludedTextHighlightColor; }
     void SetExcludedTextHighlightColor(const wxColour& color)
-        { m_excludedTextHighlightColor = color; }
+        {
+        if (color.IsOk())
+            { m_excludedTextHighlightColor = color; }
+        }
     // color to highlight repeated words
     [[nodiscard]]
     wxColour GetDuplicateWordHighlightColor() const
         { return m_duplicateWordHighlightColor; }
     void SetDuplicateWordHighlightColor(const wxColour& color)
-        { m_duplicateWordHighlightColor = color; }
+        {
+        if (color.IsOk())
+            { m_duplicateWordHighlightColor = color; }
+        }
     // color for wordy items
     [[nodiscard]]
     wxColour GetWordyPhraseHighlightColor() const
         { return m_wordyPhraseHighlightColor; }
     void SetWordyPhraseHighlightColor(const wxColour& color)
-        { m_wordyPhraseHighlightColor = color; }
+        {
+        if (color.IsOk())
+            { m_wordyPhraseHighlightColor = color; }
+        }
     // font functions for the text windows
     [[nodiscard]]
     wxFont GetTextViewFont() const
@@ -402,43 +414,67 @@ public:
     wxColour GetTextFontColor() const
         { return m_fontColor; }
     void SetTextFontColor(const wxColour& color)
-        { m_fontColor = color; }
+        {
+        if (color.IsOk())
+            { m_fontColor = color; }
+        }
     // dolch colors
     [[nodiscard]]
     wxColour GetDolchConjunctionsColor() const
         { return m_dolchConjunctionsColor; }
     void SetDolchConjunctionsColor(const wxColour& color)
-        { m_dolchConjunctionsColor = color; }
+        {
+        if (color.IsOk())
+            { m_dolchConjunctionsColor = color; }
+        }
     [[nodiscard]]
     wxColour GetDolchPrepositionsColor() const
         { return m_dolchPrepositionsColor; }
     void SetDolchPrepositionsColor(const wxColour& color)
-        { m_dolchPrepositionsColor = color; }
+        {
+        if (color.IsOk())
+            { m_dolchPrepositionsColor = color; }
+        }
     [[nodiscard]]
     wxColour GetDolchPronounsColor() const
         { return m_dolchPronounsColor; }
     void SetDolchPronounsColor(const wxColour& color)
-        { m_dolchPronounsColor = color; }
+        {
+        if (color.IsOk())
+            { m_dolchPronounsColor = color; }
+        }
     [[nodiscard]]
     wxColour GetDolchAdverbsColor() const
         { return m_dolchAdverbsColor; }
     void SetDolchAdverbsColor(const wxColour& color)
-        { m_dolchAdverbsColor = color; }
+        {
+        if (color.IsOk())
+            { m_dolchAdverbsColor = color; }
+        }
     [[nodiscard]]
     wxColour GetDolchAdjectivesColor() const
         { return m_dolchAdjectivesColor; }
     void SetDolchAdjectivesColor(const wxColour& color)
-        { m_dolchAdjectivesColor = color; }
+        {
+        if (color.IsOk())
+            { m_dolchAdjectivesColor = color; }
+        }
     [[nodiscard]]
     wxColour GetDolchVerbsColor() const
         { return m_dolchVerbColor; }
     void SetDolchVerbsColor(const wxColour& color)
-        { m_dolchVerbColor = color; }
+        {
+        if (color.IsOk())
+            { m_dolchVerbColor = color; }
+        }
     [[nodiscard]]
     wxColour GetDolchNounColor() const
         { return m_dolchNounColor; }
     void SetDolchNounColor(const wxColour& color)
-        { m_dolchNounColor = color; }
+        {
+        if (color.IsOk())
+            { m_dolchNounColor = color; }
+        }
 
     [[nodiscard]]
     bool IsHighlightingDolchConjunctions() const noexcept
@@ -470,8 +506,8 @@ public:
     void HighlightDolchAdjectives(const bool highlight = true) noexcept
         { m_highlightDolchAdjectives = highlight; }
 
-   [[nodiscard]]
-   bool IsHighlightingDolchVerbs() const noexcept
+    [[nodiscard]]
+    bool IsHighlightingDolchVerbs() const noexcept
         { return m_highlightDolchVerbs; }
     void HighlightDolchVerbs(const bool highlight = true) noexcept
         { m_highlightDolchVerbs = highlight; }
@@ -703,86 +739,134 @@ public:
     wxColour GetControlBackgroundColor() const
         { return m_controlBackgroundColor; }
     void SetControlBackgroundColor(const wxColour& color)
-        { m_controlBackgroundColor = color; }
+        {
+        if (color.IsOk())
+            { m_controlBackgroundColor = color; }
+        }
     // ribbon theming
     [[nodiscard]]
     wxColour GetRibbonActiveTabColor() const
         { return m_ribbonActiveTabColor; }
     void SetRibbonActiveTabColor(const wxColour& color)
-        { m_ribbonActiveTabColor = color; }
+        {
+        if (color.IsOk())
+            { m_ribbonActiveTabColor = color; }
+        }
     [[nodiscard]]
     wxColour GetRibbonInactiveTabColor() const
         { return m_ribbonInactiveTabColor; }
     void SetRibbonInactiveTabColor(const wxColour& color)
-        { m_ribbonInactiveTabColor = color; }
+        {
+        if (color.IsOk())
+            { m_ribbonInactiveTabColor = color; }
+        }
     [[nodiscard]]
     wxColour GetRibbonActiveFontColor() const
         { return m_ribbonActiveFontColor; }
     void SetRibbonActiveFontColor(const wxColour& color)
-        { m_ribbonActiveFontColor = color; }
+        {
+        if (color.IsOk())
+            { m_ribbonActiveFontColor = color; }
+        }
     [[nodiscard]]
     wxColour GetRibbonInactiveFontColor() const
         { return m_ribbonInactiveFontColor; }
     void SetRibbonInactiveFontColor(const wxColour& color)
-        { m_ribbonInactiveFontColor = color; }
+        {
+        if (color.IsOk())
+            { m_ribbonInactiveFontColor = color; }
+        }
     [[nodiscard]]
     wxColour GetRibbonHoverColor() const
         { return m_ribbonHoverColor; }
     void SetRibbonHoverColor(const wxColour& color)
-        { m_ribbonHoverColor = color; }
+        {
+        if (color.IsOk())
+            { m_ribbonHoverColor = color; }
+        }
     [[nodiscard]]
     wxColour GetRibbonHoverFontColor() const
         { return m_ribbonHoverFontColor; }
     void SetRibbonHoverFontColor(const wxColour& color)
-        { m_ribbonHoverFontColor = color; }
+        {
+        if (color.IsOk())
+            { m_ribbonHoverFontColor = color; }
+        }
     // sidebar
     [[nodiscard]]
     wxColour GetSideBarBackgroundColor() const
         { return m_sideBarBackgroundColor; }
     void SetSideBarBackgroundColor(const wxColour& color)
-        { m_sideBarBackgroundColor = color; }
+        {
+        if (color.IsOk())
+            { m_sideBarBackgroundColor = color; }
+        }
     [[nodiscard]]
     wxColour GetSideBarActiveColor() const
         { return m_sideBarActiveColor; }
     void SetSideBarActiveColor(const wxColour& color)
-        { m_sideBarActiveColor = color; }
+        {
+        if (color.IsOk())
+            { m_sideBarActiveColor = color; }
+        }
     [[nodiscard]]
     wxColour GetSideBarActiveFontColor() const
         { return m_sideBarActiveFontColor; }
     void SetSideBarActiveFontColor(const wxColour& color)
-        { m_sideBarActiveFontColor = color; }
+        {
+        if (color.IsOk())
+            { m_sideBarActiveFontColor = color; }
+        }
     [[nodiscard]]
     wxColour GetSideBarFontColor() const
         { return m_sideBarFontColor; }
     void SetSideBarFontColor(const wxColour& color)
-        { m_sideBarFontColor = color; }
+        {
+        if (color.IsOk())
+            { m_sideBarFontColor = color; }
+        }
     [[nodiscard]]
     wxColour GetSideBarParentColor() const
         { return m_sideBarParentColor; }
     void SetSideBarParentColor(const wxColour& color)
-        { m_sideBarParentColor = color; }
+        {
+        if (color.IsOk())
+            { m_sideBarParentColor = color; }
+        }
     [[nodiscard]]
     wxColour GetSideBarHoverColor() const
         { return m_sideBarHoverColor; }
     void SetSideBarHoverColor(const wxColour& color)
-        { m_sideBarHoverColor = color; }
+        {
+        if (color.IsOk())
+            { m_sideBarHoverColor = color; }
+        }
     [[nodiscard]]
     wxColour GetSideBarHoverFontColor() const
         { return m_sideBarHoverFontColor; }
     void SetSideBarHoverFontColor(const wxColour& color)
-        { m_sideBarHoverFontColor = color; }
+        {
+        if (color.IsOk())
+            { m_sideBarHoverFontColor = color; }
+        }
 
     // start page
     [[nodiscard]]
     wxColour GetStartPageBackstageBackgroundColor() const
         { return m_startPageBackstageBackgroundColor; }
     void SetStartPageBackstageBackgroundColor(const wxColour& color)
-        { m_startPageBackstageBackgroundColor = color; }
+        {
+        if (color.IsOk())
+            { m_startPageBackstageBackgroundColor = color; }
+        }
     [[nodiscard]]
     wxColour GetStartPageDetailBackgroundColor() const
         { return m_startPageDetailBackgroundColor; }
     void SetStartPageDetailBackgroundColor(const wxColour& color)
-        { m_startPageDetailBackgroundColor = color; }
+        {
+        if (color.IsOk())
+            { m_startPageDetailBackgroundColor = color; }
+        }
 
     // license and other startup pages
     [[nodiscard]]
@@ -861,12 +945,18 @@ public:
     wxColour GetBackGroundColor() const
         { return m_graphBackGroundColor; }
     void SetBackGroundColor(const wxColour& color)
-        { m_graphBackGroundColor = color; }
+        {
+        if (color.IsOk())
+            { m_graphBackGroundColor = color; }
+        }
     [[nodiscard]]
     wxColour GetPlotBackGroundColor() const
         { return m_plotBackGroundColor; }
     void SetPlotBackGroundColor(const wxColour& color)
-        { m_plotBackGroundColor = color; }
+        {
+        if (color.IsOk())
+            { m_plotBackGroundColor = color; }
+        }
     [[nodiscard]]
     uint8_t GetPlotBackGroundImageOpacity() const noexcept
         { return m_plotBackGroundImageOpacity; }
@@ -913,7 +1003,10 @@ public:
     wxColour GetHistogramBarColor() const noexcept
         { return m_histogramBarColor; }
     void SetHistogramBarColor(const wxColour color)
-        { m_histogramBarColor = color; }
+        {
+        if (color.IsOk())
+            { m_histogramBarColor = color; }
+        }
     [[nodiscard]]
     uint8_t GetHistogramBarOpacity() const noexcept
         { return m_histogramBarOpacity; }
@@ -929,7 +1022,10 @@ public:
     wxColour GetBarChartBarColor() const noexcept
         { return m_barChartBarColor; }
     void SetBarChartBarColor(const wxColour color)
-        { m_barChartBarColor = color; }
+        {
+        if (color.IsOk())
+            { m_barChartBarColor = color; }
+        }
     [[nodiscard]]
     Wisteria::Orientation GetBarChartOrientation() const noexcept
         { return m_barChartOrientation; }
@@ -964,13 +1060,19 @@ public:
     wxColour GetStippleShapeColor() const noexcept
         { return m_stippleColor; }
     void SetStippleShapeColor(const wxColour& color)
-        { m_stippleColor = color; }
+        {
+        if (color.IsOk())
+            { m_stippleColor = color; }
+        }
     // Box Plot options
     [[nodiscard]]
     wxColour GetGraphBoxColor() const noexcept
         { return m_graphBoxColor; }
     void SetGraphBoxColor(const wxColour& color)
-        { m_graphBoxColor = color; }
+        {
+        if (color.IsOk())
+            { m_graphBoxColor = color; }
+        }
     [[nodiscard]]
     uint8_t GetGraphBoxOpacity() const noexcept
         { return m_graphBoxOpacity; }
@@ -997,12 +1099,18 @@ public:
     wxColour GetXAxisFontColor() const
         { return m_xAxisFontColor; }
     void SetXAxisFontColor(const wxColour& color)
-        { m_xAxisFontColor = color; }
+        {
+        if (color.IsOk())
+            { m_xAxisFontColor = color; }
+        }
     [[nodiscard]]
     wxColour GetYAxisFontColor() const
         { return m_yAxisFontColor; }
     void SetYAxisFontColor(const wxColour& color)
-        { m_yAxisFontColor = color; }
+        {
+        if (color.IsOk())
+            { m_yAxisFontColor = color; }
+        }
     // axis fonts
     [[nodiscard]]
     wxFont GetXAxisFont() const
@@ -1025,7 +1133,10 @@ public:
     wxColour GetGraphTopTitleFontColor() const
         { return m_topTitleFontColor; }
     void SetGraphTopTitleFontColor(const wxColour& color)
-        { m_topTitleFontColor = color; }
+        {
+        if (color.IsOk())
+            { m_topTitleFontColor = color; }
+        }
     [[nodiscard]]
     wxFont GetGraphTopTitleFont() const
         { return m_topTitleFont; }
@@ -1038,7 +1149,10 @@ public:
     wxColour GetBottomTitleGraphFontColor() const
         { return m_bottomTitleFontColor; }
     void SetBottomTitleGraphFontColor(const wxColour& color)
-        { m_bottomTitleFontColor = color; }
+        {
+        if (color.IsOk())
+            { m_bottomTitleFontColor = color; }
+        }
     [[nodiscard]]
     wxFont GetBottomTitleGraphFont() const
         { return m_bottomTitleFont; }
@@ -1051,7 +1165,10 @@ public:
     wxColour GetLeftTitleGraphFontColor() const
         { return m_leftTitleFontColor; }
     void SetLeftTitleGraphFontColor(const wxColour& color)
-        { m_leftTitleFontColor = color; }
+        {
+        if (color.IsOk())
+            { m_leftTitleFontColor = color; }
+        }
     [[nodiscard]]
     wxFont GetLeftTitleGraphFont() const
         { return m_leftTitleFont; }
@@ -1064,7 +1181,10 @@ public:
     wxColour GetRightTitleGraphFontColor() const
         { return m_rightTitleFontColor; }
     void SetRightTitleGraphFontColor(const wxColour& color)
-        { m_rightTitleFontColor = color; }
+        {
+        if (color.IsOk())
+            { m_rightTitleFontColor = color; }
+        }
     [[nodiscard]]
     wxFont GetRightTitleGraphFont() const
         { return m_rightTitleFont; }
@@ -1078,7 +1198,10 @@ public:
     wxColour GetInvalidAreaColor() const
         { return m_graphInvalidAreaColor; }
     void SetInvalidAreaColor(const wxColour& color)
-        { m_graphInvalidAreaColor = color; }
+        {
+        if (color.IsOk())
+            { m_graphInvalidAreaColor = color; }
+        }
     // Raygor style
     [[nodiscard]]
     Wisteria::Graphs::RaygorStyle GetRaygorStyle() const noexcept

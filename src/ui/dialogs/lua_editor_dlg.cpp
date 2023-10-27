@@ -521,6 +521,9 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
 //-------------------------------------------------------
 void LuaEditorDlg::SetThemeColor(const wxColour& color)
     {
+    if (!color.IsOk())
+        { return; }
+
     m_mgr.GetArtProvider()->SetColour(wxAUI_DOCKART_BACKGROUND_COLOUR, color);
 
     ThemedAuiToolbarArt* toolbarArt = new ThemedAuiToolbarArt();

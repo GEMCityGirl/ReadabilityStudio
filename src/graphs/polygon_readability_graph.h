@@ -87,7 +87,10 @@ namespace Wisteria::Graphs
         /** @brief Sets the color used for invalid areas.
             @param color The color to use.*/
         void SetInvalidAreaColor(const wxColour& color)
-            { m_graphInvalidAreaColor = color; }
+            {
+            if (color.IsOk())
+                { m_graphInvalidAreaColor = color; }
+            }
 
         /// @brief Sets the extended label information usually shown when a region is selected.
         /// @param cat The message catalog to use.
