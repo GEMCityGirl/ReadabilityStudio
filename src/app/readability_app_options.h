@@ -394,7 +394,10 @@ public:
     wxFont GetTextViewFont() const
         { return m_textViewFont; }
     void SetTextViewFont(const wxFont& font)
-        { m_textViewFont = font; }
+        {
+        if (font.IsOk())
+            { m_textViewFont = font; }
+        }
     [[nodiscard]]
     wxColour GetTextFontColor() const
         { return m_fontColor; }
@@ -1005,12 +1008,18 @@ public:
     wxFont GetXAxisFont() const
         { return m_xAxisFont; }
     void SetXAxisFont(const wxFont& font)
-        { m_xAxisFont = font; }
+        {
+        if (font.IsOk())
+            { m_xAxisFont = font; }
+        }
     [[nodiscard]]
     wxFont GetYAxisFont() const
         { return m_yAxisFont; }
     void SetYAxisFont(const wxFont& font)
-        { m_yAxisFont = font; }
+        {
+        if (font.IsOk())
+            { m_yAxisFont = font; }
+        }
     // title fonts
     [[nodiscard]]
     wxColour GetGraphTopTitleFontColor() const
@@ -1021,7 +1030,10 @@ public:
     wxFont GetGraphTopTitleFont() const
         { return m_topTitleFont; }
     void SetGraphTopTitleFont(const wxFont& font)
-        { m_topTitleFont = font; }
+        {
+        if (font.IsOk())
+            { m_topTitleFont = font; }
+        }
     [[nodiscard]]
     wxColour GetBottomTitleGraphFontColor() const
         { return m_bottomTitleFontColor; }
@@ -1031,7 +1043,10 @@ public:
     wxFont GetBottomTitleGraphFont() const
         { return m_bottomTitleFont; }
     void SetBottomTitleGraphFont(const wxFont& font)
-        { m_bottomTitleFont = font; }
+        {
+        if (font.IsOk())
+            { m_bottomTitleFont = font; }
+        }
     [[nodiscard]]
     wxColour GetLeftTitleGraphFontColor() const
         { return m_leftTitleFontColor; }
@@ -1041,7 +1056,10 @@ public:
     wxFont GetLeftTitleGraphFont() const
         { return m_leftTitleFont; }
     void SetLeftTitleGraphFont(const wxFont& font)
-        { m_leftTitleFont = font; }
+        {
+        if (font.IsOk())
+            { m_leftTitleFont = font; }
+        }
     [[nodiscard]]
     wxColour GetRightTitleGraphFontColor() const
         { return m_rightTitleFontColor; }
@@ -1051,7 +1069,10 @@ public:
     wxFont GetRightTitleGraphFont() const
         { return m_rightTitleFont; }
     void SetRightTitleGraphFont(const wxFont& font)
-        { m_rightTitleFont = font; }
+        {
+        if (font.IsOk())
+            { m_rightTitleFont = font; }
+        }
     // invalid area color
     [[nodiscard]]
     wxColour GetInvalidAreaColor() const
