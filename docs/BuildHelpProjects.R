@@ -147,12 +147,8 @@ combine_files("10-Classes.Rmd", "classes")
 combine_files("20-Libraries.Rmd", "libraries")
 combine_files("30-Enums.Rmd", "enums")
 bookdown::render_book(input="index.Rmd",
-                      output_format="bookdown::gitbook",
-                      output_dir="docs")
-bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::pdf_book",
                       output_dir="docs")
-write(c(" "), file=glue("{docFolder}/ReadabilityStudioAPI/docs/.nojekyll"))
 unlink(glue("{docFolder}/ReadabilityStudioAPI/10-Classes.Rmd"))
 unlink(glue("{docFolder}/ReadabilityStudioAPI/20-Libraries.Rmd"))
 unlink(glue("{docFolder}/ReadabilityStudioAPI/30-Enums.Rmd"))
