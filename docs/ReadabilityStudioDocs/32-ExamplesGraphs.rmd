@@ -55,7 +55,7 @@ knitr::include_graphics("images/ExampleBarChartNoLabelsChanged.png")
 
 ## Customizing Backgrounds {#graph-background-example}
 
-Continuing from our previous [graph example](#customizing-bars), let's now change the background of the graph.
+Continuing from our previous [example](#customizing-bars), let's now change the background of the graph.
 On the **Home** tab, click `r menu(c('Background', 'Background Color', 'Color...'))`.
 When the color selection dialog appears, select a new color (e.g., antique white) and click `r keys("OK")`.
 After selecting a color, check the option **Fade** from the same menu.
@@ -76,7 +76,7 @@ knitr::include_graphics("images/ExampleGraphBackgroundImageChanged.png")
 ```
 :::
 
-To go along with the watercolor bars, we could also apply an oil painting effect to the image.
+To go along with the watercolor bars, we can apply an oil painting effect to the image.
 Click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Effects', 'Oil Painting'))`.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
