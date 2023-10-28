@@ -287,7 +287,7 @@ This list can be sorted alphabetically, by word count, or by location. To view a
 
 By default, the program considers sentences overly long if they contain more than 22 words. As we can see, there are a few sentences that are barely over 22 words that are not problematic. However, there are a few clustered sentences which exceed 40 words. At this point, we will want to temporarily filter out the smaller of these long sentences and search for the “worst offenders.” From the **Home** tab, click the `r keys("Properties")` button and then select **Analysis**. As shown below, we have a couple of different ways to determine if a sentence is overly long:
 
-```{r echo=F, fig.align='center', out.width='90%'}
+```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/featuressentoptions.png")
 ```
 
@@ -364,7 +364,7 @@ In this example, we will analyze a flyer for a summer program being offered by a
 
 Almost all readability formulas use sentence length as a factor. Because of this, short text blocks like these are traditionally excluded and only the full sentences are analyzed. For this document, however, we prefer to analyze everything since so much of its content are disjointed text boxes.
 
-First, let's view the document. From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "Summer Code Camp." Next, you will be prompted to either create a new project or view the document; select **View document**. Once the document is opened, note how the flyer mostly contains simple text boxes:
+First, let's view the document. From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "Summer Code Camp." Next, you will be prompted to either create a new project or view the document; select **View document**. Once the flyer is opened, note how it mostly contains simple text boxes:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/NonGenerated/summer-code-camp-flyer.png")

@@ -48,9 +48,11 @@ When the project appears, click on the **Words Breakdown** icon on the project s
 
 ![](images/PeterRabbitSplitSentences.png)
 
-To correct this, we will change how sentences are deduced for this project. Click the `r keys("Properties")` button on the **Home** tab and then select **Document Indexing**. First, ensure that **Line ends** is set to **only begin a new paragraph if following a valid sentence** (this should be the default). Then check the options **Ignore blank lines** and **Ignore indenting** and click `r keys("OK")` to accept. (Note that we also selected **Ignore indenting** because this file contains some indented text.)
+To correct this, we will change how sentences are deduced for this project. Click the `r keys("Properties")` button on the **Home** tab and then select **Document Indexing**.
+First, ensure that **Line ends** is set to **only begin a new paragraph if following a valid sentence** (this should be the default).
+Then check the options **Ignore blank lines** and **Ignore indenting** and click `r keys("OK")` to accept. (Note that we also selected **Ignore indenting** because this file contains some indented text.)
 
-```{r echo=F, fig.align='center', out.width='90%'}
+```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/IgnoreBlankLines.png")
 ```
 
@@ -76,7 +78,7 @@ For now click `r keys("Close")`, we will review this sentence later in this exam
 
 Once the project is loaded, on the **Home** tab click the `r keys("Properties")` button under the **Project** section. On the **Properties** dialog, click **Analysis** on the sidebar and select **Document Indexing**. Uncheck all the options shown below and click `r keys("OK")`:
 
-```{r echo=F, fig.align='center', out.width='90%'}
+```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ExclusionExampleAllExcluded.png")
 ```
 
@@ -94,7 +96,7 @@ knitr::include_graphics("images/ExclusionExamplePartialExcluded.png")
 
 The first is the sentence *Where:.* Sentences that end with a semicolon and are followed by a list will normally be considered valid. In this case though, we will want to exclude this sentence too. Open the **Properties** dialog again, click **Analysis** and select **Document Indexing**. Check the option **Aggressively deduce lists**, as shown below:
 
-```{r echo=F, fig.align='center', out.width='90%'}
+```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ExclusionExampleAggressiveList.png")
 ```
 
@@ -106,7 +108,7 @@ knitr::include_graphics("images/ExclusionExampleWhereExcluded.png")
 
 The next item to note is the sentence *Number of characters\.\.\.*. This is really an item in a table that is missing a period, so we should be excluding it. However, currently it is being included because it contains more than 15 words. To adjust this, go back to the **Document Indexing** options for this project. Change the value for **Include incomplete sentences containing more than [15] words** to a higher value (e.g., 20) and click `r keys("OK")`:
 
-```{r echo=F, fig.align='center', out.width='90%'}
+```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ExclusionExampleIncompLengthValue.png")
 ```
 
@@ -124,7 +126,7 @@ knitr::include_graphics("images/ExclusionExampleCopyrightIncluded.png")
 
 Go to the **Document Indexing** options, check **Also exclude copyright notices**, and click `r keys("OK")`:
 
-```{r echo=F, fig.align='center', out.width='90%'}
+```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ExclusionExampleCopyrightExcluded.png")
 ```
 
@@ -136,13 +138,13 @@ knitr::include_graphics("images/ExclusionExampleCopyrightExcludedNow.png")
 
 Along with incomplete sentences, specific types of words can also be excluded. For example, at the bottom of this window note the hyperlink *http://www.jstor.org/*. To exclude this, go to the **Document Indexing** options, check **Also exclude Internet and file addresses**, and click `r keys("OK")`:
 
-```{r echo=F, fig.align='center', out.width='90%'}
+```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ExclusionExampleUrlExcluded.png")
 ```
 
 Note how *http://www.jstor.org/* is now excluded:
 
-```{r echo=F, fig.align='center', out.width='90%'}
+```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ExclusionExampleUrlExcludedNow.png")
 ```
 
@@ -160,7 +162,7 @@ knitr::include_graphics("images/ExclusionExampleProperExcludedNow.png")
 
 You can also exclude specific words and phrases. From the **Document Indexing** options, click the edit button in the **Words & phrases to exclude** section:
 
-```{r echo=F, fig.align='center', out.width='90%'}
+```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ExclusionExampleEditListButton.png")
 ```
 
