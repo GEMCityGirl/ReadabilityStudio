@@ -455,6 +455,7 @@ private:
     static constexpr int ID_TEST_NAME_FIELD = wxID_HIGHEST + 7;
     static constexpr int ID_TEST_TYPE_COMBO = wxID_HIGHEST + 8;
     static constexpr int ID_FORMULA_FIELD = wxID_HIGHEST + 9;
+    static constexpr int ID_PROPER_NOUN_PROPERTY_GRID = wxID_HIGHEST + 10;
 
     void OnOK([[maybe_unused]] wxCommandEvent& event);
     void OnHelp([[maybe_unused]] wxCommandEvent& event);

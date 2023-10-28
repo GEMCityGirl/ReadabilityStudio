@@ -787,7 +787,7 @@ void CustomTestDlg::CreateControls()
             m_sideBarBook->AddSubPage(Panel, _(L"Proper Nouns & Numerals"), ID_PROPER_NUMERALS_PAGE, false, 0);
 
             wxPropertyGridManager* pgMan =
-                new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                new wxPropertyGridManager(Panel, ID_PROPER_NOUN_PROPERTY_GRID, wxDefaultPosition, wxDefaultSize,
                     wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
             m_properNounsNumbersPropertyGrid = pgMan->AddPage();
             // proper nouns
