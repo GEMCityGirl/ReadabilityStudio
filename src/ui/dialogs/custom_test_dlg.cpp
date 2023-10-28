@@ -822,7 +822,7 @@ void CustomTestDlg::CreateControls()
         wizardPage->SetSizer(wizardPageSizer);
         m_sideBarBook->AddPage(wizardPage, _(L"Classification"), ID_CLASSIFICATION_PAGE, false);
 
-        m_associationPropertyGrid = new wxPropertyGrid(wizardPage);
+        m_associationPropertyGrid = new wxPropertyGrid(wizardPage, ID_CLASSIFICATION_PROPERTY_GRID);
         m_associationPropertyGrid->Append(
             new wxPropertyCategory(_(L"Associate with industry")) );
         for (size_t i = 0; i < m_professionNames.GetCount(); ++i)
