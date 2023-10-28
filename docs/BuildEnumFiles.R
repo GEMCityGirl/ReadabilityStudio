@@ -69,7 +69,7 @@ enumToTopic <- function(enum)
      }
     }
 
-  df <- as.tibble(t(data.frame(matrix(unlist(enum$values[[1]]), nrow=length(enum$values[[1]]), byrow= T))))
+  df <- as_tibble(t(data.frame(matrix(unlist(enum$values[[1]]), nrow=length(enum$values[[1]]), byrow= T))))
   # sort most of the enums by values' names, except for a few where their order shows a rank of some sort
   if (!(enum$name %in% c("FontWeight")))
     { df %<>% dplyr::arrange(V1) }
