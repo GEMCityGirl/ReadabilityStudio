@@ -143,7 +143,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "wizard1." .. FileExtension)
 ScreenshotLib.SetStandardProjectWizardTextFromFilePath("")
 ScreenshotLib.SnapScreenshot(ImagePath .. "exampleselectfile." .. FileExtension, 10001)
 ScreenshotLib.SetStandardProjectWizardTextFromFilePath("https://www.libreoffice.org/about-us/who-are-we/")
-ScreenshotLib.SnapScreenshot(ImagePath .. "webpath." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "webpath." .. FileExtension, 10002, 10001, 10001)
 
 ScreenshotLib.ShowStandardProjectWizardTestByDocumentTypePage(4)
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddoctypelitselected." .. FileExtension)
