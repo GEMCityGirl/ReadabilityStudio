@@ -131,7 +131,8 @@ ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomTestTre
 ScreenshotLib.SetCustomTestDialogDocumentTypes(false,false,false,false,true)
 ScreenshotLib.SetCustomTestDialogIndustries(false,false,true,false,false,false,false)
 ScreenshotLib.ShowCustomTestDialogClassification()
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestWizardSettings." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomTestWizardSettings." .. FileExtension,
+    7005, "", "", true)
 
 ScreenshotLib.CloseCustomTestDialog()
 
