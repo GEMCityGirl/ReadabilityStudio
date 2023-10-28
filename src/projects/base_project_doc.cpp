@@ -1414,7 +1414,9 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             wxGetApp().GetAppOptions().GetStippleShapeColor()));
 
         SetStippleShape(XmlFormat::GetString(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_SHAPE));
+            wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_SHAPE,
+            // don't want empty string here, it should always be something
+            wxGetApp().GetAppOptions().GetStippleShape()));
 
         SetGraphCommonImagePath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_COMMON_IMAGE_PATH));
