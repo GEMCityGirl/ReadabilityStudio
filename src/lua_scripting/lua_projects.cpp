@@ -1429,21 +1429,8 @@ namespace LuaScripting
 
         auto view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
-            {
-            wxWindowUpdateLocker noUpdates(view->GetDocFrame());
-            if (lua_toboolean(L, 2))
-                {
-                view->GetSideBar()->AdjustWidthToFitItems();
-                view->GetSplitter()->SetMinimumPaneSize(view->GetSideBar()->GetMinSize().GetWidth());
-                view->GetSplitter()->SetSashPosition(view->GetSideBar()->GetMinSize().GetWidth());
-                }
-            else
-                {
-                view->GetSideBar()->SetMinSize({1, 1});
-                view->GetSplitter()->SetMinimumPaneSize(1);
-                view->GetSplitter()->SetSashPosition(1);
-                }
-            }
+            { view->ShowSideBar(lua_toboolean(L, 2)); }
+
         return 0;
         }
 
@@ -2894,21 +2881,8 @@ namespace LuaScripting
 
         auto view = dynamic_cast<BatchProjectView*>(m_project->GetFirstView());
         if (view)
-            {
-            wxWindowUpdateLocker noUpdates(view->GetDocFrame());
-            if (lua_toboolean(L, 2))
-                {
-                view->GetSideBar()->AdjustWidthToFitItems();
-                view->GetSplitter()->SetMinimumPaneSize(view->GetSideBar()->GetMinSize().GetWidth());
-                view->GetSplitter()->SetSashPosition(view->GetSideBar()->GetMinSize().GetWidth());
-                }
-            else
-                {
-                view->GetSideBar()->SetMinSize({1, 1});
-                view->GetSplitter()->SetMinimumPaneSize(1);
-                view->GetSplitter()->SetSashPosition(1);
-                }
-            }
+            { view->ShowSideBar(lua_toboolean(L, 2)); }
+
         return 0;
         }
 

@@ -156,14 +156,6 @@ BaseProjectView::BaseProjectView()
             {
             m_sidebarShown = !m_sidebarShown;
             ShowSideBar(m_sidebarShown);
-            wxWindow* projectButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_PROJECT_RIBBON_BUTTON_BAR);
-            if (projectButtonBarWindow && projectButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
-                {
-                const auto projectButtonBar = dynamic_cast<wxRibbonButtonBar*>(projectButtonBarWindow);
-                assert(projectButtonBar && L"Error casting project ribbon bar!");
-                if (projectButtonBar)
-                    { projectButtonBar->ToggleButton(XRCID("ID_SHOW_SIDEBAR"), m_sidebarShown); }
-                }
             },
         XRCID("ID_SHOW_SIDEBAR"));
 
@@ -172,14 +164,6 @@ BaseProjectView::BaseProjectView()
             {
             m_sidebarShown = !m_sidebarShown;
             ShowSideBar(m_sidebarShown);
-            wxWindow* projectButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_PROJECT_RIBBON_BUTTON_BAR);
-            if (projectButtonBarWindow && projectButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
-                {
-                const auto projectButtonBar = dynamic_cast<wxRibbonButtonBar*>(projectButtonBarWindow);
-                assert(projectButtonBar && L"Error casting project ribbon bar!");
-                if (projectButtonBar)
-                    { projectButtonBar->ToggleButton(XRCID("ID_SHOW_SIDEBAR"), m_sidebarShown); }
-                }
             },
         XRCID("ID_SHOW_SIDEBAR"));
 
@@ -2926,6 +2910,15 @@ void BaseProjectView::ShowSideBar(const bool show /*= true*/)
         GetSideBar()->SetMinSize({1, 1});
         GetSplitter()->SetMinimumPaneSize(1);
         GetSplitter()->SetSashPosition(1);
+        }
+    // update the ribbon bar
+    wxWindow* projectButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_PROJECT_RIBBON_BUTTON_BAR);
+    if (projectButtonBarWindow && projectButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+        {
+        const auto projectButtonBar = dynamic_cast<wxRibbonButtonBar*>(projectButtonBarWindow);
+        assert(projectButtonBar && L"Error casting project ribbon bar!");
+        if (projectButtonBar)
+            { projectButtonBar->ToggleButton(XRCID("ID_SHOW_SIDEBAR"), m_sidebarShown); }
         }
     }
 
