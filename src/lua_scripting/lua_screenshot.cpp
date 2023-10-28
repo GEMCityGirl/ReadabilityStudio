@@ -332,7 +332,9 @@ namespace LuaScripting
             { propertyEnd = wxString(luaL_checkstring(L, 4), wxConvUTF8); }
         lua_pushboolean(L, Screenshot::SaveScreenshotOfDialogWithPropertyGrid(path,
             startWindowToHighlight, propertyStart, propertyEnd,
-            ((lua_gettop(L) > 4) ? int_to_bool(lua_toboolean(L, 4)) : false) ));
+            std::make_pair(
+            ((lua_gettop(L) > 4) ? int_to_bool(lua_toboolean(L, 5)) : false),
+            ((lua_gettop(L) > 5) ? lua_tonumber(L, 6) : wxDefaultCoord))) );
         return 1;
         }
 
