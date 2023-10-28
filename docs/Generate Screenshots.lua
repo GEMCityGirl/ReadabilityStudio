@@ -966,7 +966,7 @@ ScreenshotLib.ShowBatchProjectWizardTextSourcePage(
             Application.GetAbsoluteFilePath(
             Debug.GetScriptFolderPath(),
             ScreenshotProjectsFolder .. "Statistics Manual Ch. 1"))
-ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchselectfilessamenames." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchselectfilessamenames." .. FileExtension, 10009)
 ScreenshotLib.CloseBatchProjectWizard()
 
 ScreenshotLib.ShowDocGroupSelectDlg(1)
