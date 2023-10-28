@@ -1429,7 +1429,7 @@ namespace LuaScripting
 
         auto view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
-            { view->ShowSideBar(lua_toboolean(L, 2)); }
+            { view->ShowSideBar(int_to_bool(lua_toboolean(L, 2))); }
 
         return 0;
         }
@@ -2881,7 +2881,7 @@ namespace LuaScripting
 
         auto view = dynamic_cast<BatchProjectView*>(m_project->GetFirstView());
         if (view)
-            { view->ShowSideBar(lua_toboolean(L, 2)); }
+            { view->ShowSideBar(int_to_bool(lua_toboolean(L, 2))); }
 
         return 0;
         }
