@@ -633,10 +633,12 @@ ScreenshotLib.ShowCustomTestDialogGeneralSettings("New Dale-Chall (Baking)", "Cu
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2FormulaFinished." .. FileExtension, 7002)
 
 ScreenshotLib.ShowCustomTestDialogFamiliarWords("/home/Niles/CookingWords.txt")
-ScreenshotLib.SnapScreenshotOfPropertGrid(ImagePath .. "CustomTestExample2WordLoaded." .. FileExtension, -1, "File containing familiar words")
+ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomTestExample2WordLoaded." .. FileExtension,
+    7003, "File containing familiar words", "", true)
 
 ScreenshotLib.ShowCustomTestDialogFamiliarWords("/home/Niles/CookingWords.txt", StemmingType.English, true)
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2WordSettingsFinished." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomTestExample2WordSettingsFinished." .. FileExtension,
+    7003, "Include New Dale-Chall word list", "", true)
 
 ScreenshotLib.CloseCustomTestDialog()
 
@@ -652,13 +654,16 @@ ScreenshotLib.ShowCustomTestDialogGeneralSettings("Buzz Index", "IF((FamiliarWor
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleFormula." .. FileExtension, 7002)
 
 ScreenshotLib.ShowCustomTestDialogFamiliarWords("C:\\Users\\Roz\\WordLists\\Buzz Words.txt")
-ScreenshotLib.SnapScreenshotOfPropertGrid(ImagePath .. "CustomIndexTestExampleWordsLoaded." .. FileExtension, -1, "File containing familiar words")
+ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomIndexTestExampleWordsLoaded." .. FileExtension,
+    7003, "File containing familiar words", "", true)
 
 ScreenshotLib.ShowCustomTestDialogFamiliarWords("C:\\Users\\Roz\\WordLists\\Buzz Words.txt", StemmingType.English)
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleWordSettingsFinished." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomIndexTestExampleWordSettingsFinished." .. FileExtension,
+    7003, "", "", true)
 
 ScreenshotLib.ShowCustomTestDialogProperNounsAndNumbers(0, false)
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleProperAndNumeralsFinished." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomIndexTestExampleProperAndNumeralsFinished." .. FileExtension,
+    7003, "Treat numerals as familiar", "", false)
 
 ScreenshotLib.CloseCustomTestDialog()
 

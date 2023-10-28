@@ -14,7 +14,7 @@ The first step to creating a new test is to click the `r keys("Custom Tests")` b
 
 Because this test will use independent clauses, change the name to “Flesch (IC)”:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomTestExample1TestName.png")
 ```
 
@@ -68,11 +68,11 @@ ROUND(206.835 - (84.6*(SyllableCount()/WordCount())) -
     (1.015*(WordCount()/IndependentClauseCount())), 0)
 ```
 
-The final step is to specify the type of test that this is. Flesch Reading Ease is an index test, so verify that the test type is set to **Index**. This will instruct the program to place the result into the **Scale Value** column (see below).
+The final step is to specify the type of test that this is. Flesch Reading Ease is an index test, so verify that the test type is set to **Index value**. This will instruct the program to place the result into the **Scale Value** column (see below).
 
 Once finished, the dialog will look like this:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomTestExample1Finished.png")
 ```
 
@@ -122,13 +122,13 @@ The next step is to create a custom test and connect our word list to it. For a 
 
 Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu. This will present the [**Add Custom Test**](#custom-test-general-settings) dialog, as shown below:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/AddCustomTest.png")
 ```
 
 Because this will be a New Dale-Chall test meant for baking, we will enter the name “New Dale-Chall (Baking)”:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomTestExample2Name.png")
 ```
 
@@ -144,13 +144,13 @@ The next step is to specify the type of test that this is into the **Test type**
 
 Once finished, the dialog will look like this:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomTestExample2FormulaFinished.png")
 ```
 
 Now we will need to define what a familiar word is, so click the **Familiar Words** icon. Because we will be appending our own words to the test, check the option **Include custom familiar word list**. Next, enter the file path to the custom-word file in the **File containing familiar words** field. You can also click the button next to this field to select and edit your word list file:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomTestExample2WordLoaded.png")
 ```
 
@@ -162,15 +162,15 @@ The other option is to use stemming. Stemming will compare the roots of the word
 
 To keep our word list simple, we will use English stemming. Select **English** as the stemmer.
 
-Next, we will define which other word lists will be included in our test. Because this is a New Dale-Chall test, check the option **Include New Dale-Chall familiar word list**. The dialog will now appear like this:
+Next, we will define which other word lists will be included in our test. Because this is a New Dale-Chall test, check the option **Include New Dale-Chall word list**:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomTestExample2WordSettingsFinished.png")
 ```
 
 The remaining logic that we must define is how to count proper\index{proper nouns!custom tests} nouns and numerals\index{numerals!custom tests}. Select the **Proper Nouns & Numerals** page:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomTestTreat.png")
 ```
 
@@ -226,19 +226,19 @@ The first step is to create a list of “buzzwords.” This can be any text file
 
 The next step is to create a custom test and connect our word list to it. Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu. This will present the [**Add Custom Test**](#custom-test-general-settings) dialog, as shown below:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/AddCustomTest.png")
 ```
 
 Enter “Buzz Index” as the test name:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomIndexTestExampleName.png")
 ```
 
 Because this test will use our own special type of scoring, set **Test type** to **Index value**:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomIndexTestExampleTestType.png")
 ```
 
@@ -249,7 +249,7 @@ IF((FamiliarWordCount()/WordCount())*100 > 15, 3,
    IF((FamiliarWordCount()/WordCount())*100 > 5, 2, 1) )
 ```
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomIndexTestExampleFormula.png")
 ```
 
@@ -271,9 +271,12 @@ If the percentage is less than 15, then the third parameter (i.e., the second `I
 This second `IF` statement verifies whether the buzzword percentage is more than 5%—if it is, then it returns level 2.
 If the percentage is less than 5, then the formula finally returns level 1.
 
-Now we will need to define the words to search for in our document, so click the **Familiar Words** icon. Because we will be using our own words, check the option **Include custom familiar word list**. Next, enter the file path to the custom-word file in the **File containing familiar words** field. You can also click the button next to this field to select and edit your word list file:
+Now we will need to define the words to search for in our document, so click the **Familiar Words** icon.
+Because we will be using our own words, check the option **Include custom familiar word list**.
+Next, enter the file path to the custom-word file in the **File containing familiar words** field.
+You can also click the button next to this field to select and edit your word list file:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomIndexTestExampleWordsLoaded.png")
 ```
 
@@ -287,7 +290,7 @@ To keep our word list simple, we will use English stemming. Select **English** a
 
 We will not be using any other words for our test, so leave the other word lists unchecked. The dialog will now appear like this:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomIndexTestExampleWordSettingsFinished.png")
 ```
 
@@ -299,7 +302,7 @@ knitr::include_graphics("images/CustomTestTreat.png")
 
 For this test, we are only looking for words explicitly from our list. This means that we will need to ignore proper nouns and numbers. Set **Proper Nouns/Familiarity** to **Count as unfamiliar** and uncheck **Treat numerals as familiar**:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomIndexTestExampleProperAndNumeralsFinished.png")
 ```
 
@@ -307,9 +310,15 @@ Click the `r keys("OK")` button and our new test will be added to the system.
 
 To add this test to any project, first select the **Readability** tab. Next, click the `r keys("Custom Tests")` button and then select **Buzz Index**. Select the **Readability Scores** icon on the project pane and note that Buzz Index has been added to the project's results:
 
-To demonstrate this, click the **Help** tab of the ribbon. Then, click the `r keys("Examples")` button and select **Press Release** from the menu. Choose the defaults in the standard [**New Project**](#creating-standard-project) wizard to create a new project from this document. Once the file is processed, click the **Highlighted Reports** icon on the sidebar to view the document. After doing a quick reading of this press release, there may be some concern about the author's enthusiasm for marketing speak. To confirm this, select the **Readability** tab on the ribbon, click **Custom Tests** and select **Buzz Index**. Next, click the **Readability Scores** icon on the sidebar and select **Scores** underneath that. As we had feared, the document is scoring at the unacceptable level 3:
+To demonstrate this, click the **Help** tab of the ribbon. Then, click the `r keys("Examples")` button and select **Press Release** from the menu.
+Choose the defaults in the standard [**New Project**](#creating-standard-project) wizard to create a new project from this document.
 
-```{r echo=F, fig.align='center', out.width='75%'}
+Once the file is processed, click the **Highlighted Reports** icon on the sidebar to view the document.
+After doing a quick reading of this press release, there may be some concern about the author's enthusiasm for marketing speak.
+To confirm this, select the **Readability** tab on the ribbon, click **Custom Tests** and select **Buzz Index**.
+Next, click the **Readability Scores** icon on the sidebar and select **Scores** underneath that. As we had feared, the document is scoring at the unacceptable level of 3:
+
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomIndexTestExampleScore.png")
 ```
 
