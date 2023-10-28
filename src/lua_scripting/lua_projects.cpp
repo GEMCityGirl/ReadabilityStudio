@@ -585,6 +585,19 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::ShowcaseComplexWords(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->ShowcaseComplexWords(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetPlotBackgroundColorOpacity(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1855,6 +1868,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundColor),
       LUNA_DECLARE_METHOD(StandardProject, SetGraphInvalidRegionColor),
       LUNA_DECLARE_METHOD(StandardProject, SetStippleShapeColor),
+      LUNA_DECLARE_METHOD(StandardProject, ShowcaseComplexWords),
       LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundColorOpacity),
       LUNA_DECLARE_METHOD(StandardProject, SetStippleImage),
       LUNA_DECLARE_METHOD(StandardProject, SetStippleShape),
@@ -2279,6 +2293,19 @@ namespace LuaScripting
             { return 0; }
 
         m_project->SetStippleShapeColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::ShowcaseComplexWords(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->ShowcaseComplexWords(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -3075,6 +3102,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundColor),
       LUNA_DECLARE_METHOD(BatchProject, SetGraphInvalidRegionColor),
       LUNA_DECLARE_METHOD(BatchProject, SetStippleShapeColor),
+      LUNA_DECLARE_METHOD(BatchProject, ShowcaseComplexWords),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundColorOpacity),
       LUNA_DECLARE_METHOD(BatchProject, SetStippleImage),
       LUNA_DECLARE_METHOD(BatchProject, SetStippleShape),
