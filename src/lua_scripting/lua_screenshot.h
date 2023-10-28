@@ -31,7 +31,7 @@ namespace LuaScripting
     int SnapScreenshot(lua_State *L);
     int SnapScreenshotWithAnnotation(lua_State *L);
     int SnapScreenshotOfActiveProject(lua_State *L);
-    int SnapScreenshotOfPropertGrid(lua_State *L);
+    int SnapScreenshotOfDialogWithPropertyGrid(lua_State *L);
     int SnapScreenshotOfTextWindow(lua_State *L);
     int SnapScreenshotOfListControl(lua_State *L);
     int SnapScreenshotOfRibbon(lua_State *L);
@@ -157,7 +157,7 @@ namespace LuaScripting
             { "SnapScreenshot", SnapScreenshot },
             { "SnapScreenshotWithAnnotation", SnapScreenshotWithAnnotation },
             { "SnapScreenshotOfActiveProject", SnapScreenshotOfActiveProject },
-            { "SnapScreenshotOfPropertGrid", SnapScreenshotOfPropertGrid },
+            { "SnapScreenshotOfDialogWithPropertyGrid", SnapScreenshotOfDialogWithPropertyGrid },
             { "SnapScreenshotOfTextWindow", SnapScreenshotOfTextWindow },
             { "SnapScreenshotOfListControl", SnapScreenshotOfListControl },
             { "SnapScreenshotOfRibbon", SnapScreenshotOfRibbon },

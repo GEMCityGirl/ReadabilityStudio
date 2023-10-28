@@ -759,6 +759,7 @@ bool ReadabilityApp::OnInit()
         { 7000, CustomTestDlg::ID_TEST_NAME_FIELD },
         { 7001, CustomTestDlg::ID_TEST_TYPE_COMBO },
         { 7002, CustomTestDlg::ID_FORMULA_FIELD },
+        { 7003, CustomTestDlg::ID_WORD_LIST_PROPERTY_GRID },
         { 8001, BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID },
         { 8002, BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID },
         { 8003, BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID },

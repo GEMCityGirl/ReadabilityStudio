@@ -449,7 +449,7 @@ public:
     static constexpr int ID_CLASSIFICATION_PAGE = wxID_HIGHEST + 3;
 private:
     // control IDs
-    static constexpr int ID_WORD_LIST_PG = wxID_HIGHEST + 4;
+    static constexpr int ID_WORD_LIST_PROPERTY_GRID = wxID_HIGHEST + 4;
     static constexpr int ID_VALIDATE_FORMULA_BUTTON = wxID_HIGHEST + 5;
     static constexpr int ID_INSERT_FUNCTION_BUTTON = wxID_HIGHEST + 6;
     static constexpr int ID_TEST_NAME_FIELD = wxID_HIGHEST + 7;

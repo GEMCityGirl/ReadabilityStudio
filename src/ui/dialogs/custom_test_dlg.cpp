@@ -699,7 +699,7 @@ void CustomTestDlg::CreateControls()
             m_sideBarBook->AddSubPage(WordListPanel, _(L"Word Lists"), ID_WORD_LIST_PAGE, false, 0);
 
             wxPropertyGridManager* pgMan =
-                new wxPropertyGridManager(WordListPanel, ID_WORD_LIST_PG, wxDefaultPosition,
+                new wxPropertyGridManager(WordListPanel, ID_WORD_LIST_PROPERTY_GRID, wxDefaultPosition,
                     wxDefaultSize, wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
             m_wordListsPropertyGrid = pgMan->AddPage();
             // custom word list

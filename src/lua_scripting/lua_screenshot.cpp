@@ -310,7 +310,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int SnapScreenshotOfPropertGrid(lua_State *L)
+    int SnapScreenshotOfDialogWithPropertyGrid(lua_State *L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
