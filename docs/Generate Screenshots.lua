@@ -803,7 +803,7 @@ HighlightedReportType.GrammarHighlightedIssues, true, 262, 277, 532, 538)
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
-ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleEditListButton." .. FileExtension, 1052)
+ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleEditListButton." .. FileExtension, 1052, 1052, 1052)
 
 sp:CloseProperties()
 
