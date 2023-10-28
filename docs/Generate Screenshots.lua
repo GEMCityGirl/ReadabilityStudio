@@ -125,7 +125,8 @@ ScreenshotLib.SetCustomTestDialogIncludedLists(false,true,false,true)
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestIncludeLists." .. FileExtension, 1003, 1005)
 
 ScreenshotLib.ShowCustomTestDialogProperNounsAndNumbers()
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestTreat." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomTestTreat." .. FileExtension,
+    7004, "", "", true, 200)
 
 ScreenshotLib.SetCustomTestDialogDocumentTypes(false,false,false,false,true)
 ScreenshotLib.SetCustomTestDialogIndustries(false,false,true,false,false,false,false)
@@ -594,10 +595,10 @@ Application.RemoveAllCustomTests()
 
 -- Custom test example images
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Flesch-Kincaid (unclamped)", "(11.8*(B/W)) + (.39*(W/S)) - 15.59", TestType.GradeLevel)
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestFKUnclamped." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestFKUnclamped." .. FileExtension, 7000, 7000)
 
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Flesch (IC)", "ROUND(206.835 - (84.6*(B/W)) - (1.015*(W/S)))", TestType.IndexValue)
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample1TestName." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample1TestName." .. FileExtension, 7000, 7000)
 
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Flesch (IC)", "ROUND(206.835 -\n(84.6*(SyllableCount()/WordCount())) -\n(1.015*(WordCount()/IndependentClauseCount())))", TestType.IndexValue)
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample1Finished." .. FileExtension)
@@ -659,11 +660,11 @@ ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomIndexTe
 
 ScreenshotLib.ShowCustomTestDialogFamiliarWords("C:\\Users\\Roz\\WordLists\\Buzz Words.txt", StemmingType.English)
 ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomIndexTestExampleWordSettingsFinished." .. FileExtension,
-    7003, "", "", true)
+    7003, "Use stemming to search for similar words", "", true)
 
 ScreenshotLib.ShowCustomTestDialogProperNounsAndNumbers(0, false)
 ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomIndexTestExampleProperAndNumeralsFinished." .. FileExtension,
-    7003, "Treat numerals as familiar", "", false)
+    7004, "Treat numerals as familiar", "", true, 200)
 
 ScreenshotLib.CloseCustomTestDialog()
 
@@ -860,7 +861,7 @@ HighlightedReportType.GrammarHighlightedIssues, true,
     865, 872, 892, 901, 1414, 1526)
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
-ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionTagsExampleOptions." .. FileExtension, 1078, 1079)
+ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionTagsExampleOptions." .. FileExtension, 1078, 1079, 1078)
 sp:CloseProperties()
 
 sp:Close(false)

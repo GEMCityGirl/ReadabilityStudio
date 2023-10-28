@@ -92,9 +92,10 @@ As described in \@ref(grade-level-clamping), regression-based tests are clamped 
 
 In this example, we will create a custom Flesch-Kincaid test and leave its formula unrestricted, allowing for scores such as 27 (i.e., 27^th^ grade).
 
-First, select the **Readability** tab of the ribbon. Next, click the `r keys('Custom')` button and select **Add Custom Test Based on...**. Select **Flesch-Kincaid** from the list, which will create a custom test based on Flesch-Kincaid. When the **Edit Custom Test** dialog appears, enter the name “Flesch-Kincaid (unclamped)”:
+First, select the **Readability** tab of the ribbon. Next, click the `r keys('Custom')` button and select **Add Custom Test Based on...**.
+Select **Flesch-Kincaid** from the list, which will create a custom test based on Flesch-Kincaid. When the **Edit Custom Test** dialog appears, enter the name "Flesch-Kincaid (unclamped)":
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomTestFKUnclamped.png")
 ```
 
@@ -286,17 +287,17 @@ There are two ways that our custom words can be compared to words in the press r
 
 The other option is to use stemming. Stemming will compare the roots of the words between our list and our recipe, rather than the words themselves. For example, say that we have **English** stemming selected and the word *innovate* is on our list. In this case, *innovate* will be stemmed to *innovate*. As our file is analyzed, words such as *innovates*, *innovated*, and *innovating* will also be stemmed to *innovate*. Because these words all share the same root as a word from our list, they will all be counted as familiar. The advantage of this approach is that we do not need to add every possible variation of every word on our list. The disadvantage is that we will lose precise control over which word variations should be familiar or not.
 
-To keep our word list simple, we will use English stemming. Select **English** as the stemmer.
-
-We will not be using any other words for our test, so leave the other word lists unchecked. The dialog will now appear like this:
+To keep our word list simple, we will use English stemming. Select **English** as the stemmer:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomIndexTestExampleWordSettingsFinished.png")
 ```
 
+We will not be using any other words for our test, so leave the other word lists unchecked.
+
 The remaining logic that we must define is how to handle proper nouns\index{proper nouns!custom tests} and numerals. Select the **Proper Nouns & Numerals** page:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomTestTreat.png")
 ```
 
