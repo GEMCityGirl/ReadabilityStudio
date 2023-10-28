@@ -330,8 +330,9 @@ namespace LuaScripting
             { propertyStart = wxString(luaL_checkstring(L, 3), wxConvUTF8); }
         if (lua_gettop(L) > 3)
             { propertyEnd = wxString(luaL_checkstring(L, 4), wxConvUTF8); }
-        lua_pushboolean(L, Screenshot::SaveScreenshotOfPropertyGrid(path,
-            startWindowToHighlight, propertyStart, propertyEnd));
+        lua_pushboolean(L, Screenshot::SaveScreenshotOfDialogWithPropertyGrid(path,
+            startWindowToHighlight, propertyStart, propertyEnd,
+            ((lua_gettop(L) > 4) ? int_to_bool(lua_toboolean(L, 4)) : false) ));
         return 1;
         }
 
