@@ -112,7 +112,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "printerheadersfooters." .. FileExtens
 ScreenshotLib.ClosePrinterHeaderFooterOptions()
 
 -- List export
-ScreenshotLib.ShowListExpordDlg(1031,1,false,true)
+ScreenshotLib.ShowListExpordDlg(1031, 1, false, true)
 ScreenshotLib.SnapScreenshot(ImagePath .. "exportoptions." .. FileExtension)
 ScreenshotLib.CloseListExpordDlg()
 
@@ -443,7 +443,7 @@ sp:SortList(ListType.LongSentences, 2, SortOrder.SortDescending)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "featuressentencelistsorted." .. FileExtension, 1)
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
-ScreenshotLib.SnapScreenshot(ImagePath .. "featuressentoptions." .. FileExtension, 1040, 1041)
+ScreenshotLib.SnapScreenshot(ImagePath .. "featuressentoptions." .. FileExtension, 1040, 1041, 1086)
 sp:CloseProperties()
 
 sp:ScrollTextWindow(HighlightedReportType.GrammarHighlightedIssues, 1300)
@@ -520,9 +520,9 @@ bp:SelectWindow(SideBarSection.Grammar, ListType.RepeatedWords)
 ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "batchrepeatedmultiple." .. FileExtension,
     ListType.RepeatedWords, 2, 4, 2, 4)
 
-bp:SelectWindow(SideBarSection.Grammar, ListType.WordyItems)
+bp:SelectWindow(SideBarSection.Grammar, ListType.Wordiness)
 ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "batchwordyphrasesmultiple." .. FileExtension,
-    ListType.WordyItems, 2, 4, 6, 4, 10)
+    ListType.Wordiness, 2, 4, 6, 4, 10)
 
 bp:Close()
 
@@ -530,7 +530,7 @@ bp:Close()
 ----------------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "The Tale of Peter Rabbit.rsp")
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
-ScreenshotLib.SnapScreenshot(ImagePath .. "IgnoreBlankLines." .. FileExtension, 1042, 1043)
+ScreenshotLib.SnapScreenshot(ImagePath .. "IgnoreBlankLines." .. FileExtension, 1042, 1043, 1086)
 sp:CloseProperties()
 
 sp:SelectWindow(SideBarSection.WordsBreakdown, HighlightedReportType.ThreePlusSyllableHighlightedWords)
@@ -627,7 +627,7 @@ Application.RemoveAllCustomTests()
 -- Custom test example 2
 ------------------------
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("New Dale-Chall (Baking)")
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2Name." .. FileExtension, 7000)
+ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2Name." .. FileExtension, 7000, 7000, 7001)
 
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("New Dale-Chall (Baking)", "CustomNewDaleChall()")
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2FormulaFinished." .. FileExtension, 7002)
@@ -643,10 +643,10 @@ ScreenshotLib.CloseCustomTestDialog()
 -- Custom index Test example
 ----------------------------
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Buzz Index")
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleName." .. FileExtension, 7000)
+ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleName." .. FileExtension, 7000, 7000, 7001)
 
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Buzz Index", "", TestType.IndexValue)
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleTestType." .. FileExtension, 7001)
+ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleTestType." .. FileExtension, 7001, 7001, 7001)
 
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Buzz Index", "IF((FamiliarWordCount()/WordCount())*100 > 15, 3,\n  IF((FamiliarWordCount()/WordCount())*100 > 5, 2, 1) )", TestType.IndexValue)
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleFormula." .. FileExtension, 7002)
@@ -727,7 +727,7 @@ HighlightedReportType.GrammarHighlightedIssues, true, 929, 934, 999, 1133)
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
-ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleAllExcluded." .. FileExtension, 1051, 1058)
+ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleAllExcluded." .. FileExtension, 1051, 1058, 1058)
 
 sp:CloseProperties()
 
@@ -737,7 +737,7 @@ sp:Reload()
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
-ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleAggressiveList." .. FileExtension, 1051)
+ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleAggressiveList." .. FileExtension, 1051, 1051, 1058)
 
 sp:CloseProperties()
 
@@ -750,7 +750,7 @@ sp:Reload()
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
-ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleIncompLengthValue." .. FileExtension, 1076, 1077)
+ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleIncompLengthValue." .. FileExtension, 1076, 1077, 1077)
 
 sp:CloseProperties()
 
@@ -768,7 +768,7 @@ sp:Reload()
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
-ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleCopyrightExcluded." .. FileExtension, 1054)
+ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleCopyrightExcluded." .. FileExtension, 1054, 1054, 1058)
 
 sp:CloseProperties()
 
@@ -782,7 +782,7 @@ sp:Reload()
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
-ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleUrlExcluded." .. FileExtension, 1056)
+ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleUrlExcluded." .. FileExtension, 1056, 1056, 1058)
 
 sp:CloseProperties()
 
@@ -932,7 +932,7 @@ sp:SetReviewer("Daphne")
 sp:SetDocumentFilePath("/home/dmoon/YA Enterprise Software Symposium.odt")
 sp:SetAppendedDocumentFilePath("/home/dmoon/Instructional Disclaimer.odt")
 sp:OpenProperties(OptionsPageType.ProjectSettings)
-ScreenshotLib.SnapScreenshot(ImagePath .. "AddendumProperties." .. FileExtension, 1083, 1080)
+ScreenshotLib.SnapScreenshot(ImagePath .. "AddendumProperties." .. FileExtension, 1083, 1080, 1080)
 sp:CloseProperties()
 sp:Close()
 

@@ -165,6 +165,7 @@ private:
     static constexpr int ID_ADD_FILES_BUTTON = wxID_HIGHEST + 78;
     static constexpr int ID_THEME_COMBO = wxID_HIGHEST + 79;
     static constexpr int ID_ADDITIONAL_FILE_FIELD = wxID_HIGHEST + 80;
+    static constexpr int ID_SENTENCES_MUST_BE_CAP_BUTTON = wxID_HIGHEST + 81;
 
     // button events
     void OnExportSettings([[maybe_unused]] wxCommandEvent& event);

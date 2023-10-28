@@ -3213,7 +3213,7 @@ void ToolsOptionsDlg::CreateControls()
         optionsIndentSizer->Add(m_ignoreIndentingCheckBox, 0, wxEXPAND|wxBOTTOM, wxSizerFlags::GetDefaultBorder());
 
         wxCheckBox* sentenceStartMustBeUppercasedCheckBox =
-            new wxCheckBox(AnalysisIndexingPage, wxID_ANY, _(L"Sentences must begin with capitalized words"),
+            new wxCheckBox(AnalysisIndexingPage, ID_SENTENCES_MUST_BE_CAP_BUTTON, _(L"Sentences must begin with capitalized words"),
                            wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_sentenceStartMustBeUppercased) );
         optionsIndentSizer->Add(sentenceStartMustBeUppercasedCheckBox, 0, wxEXPAND, wxSizerFlags::GetDefaultBorder());
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
