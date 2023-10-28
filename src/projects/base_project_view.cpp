@@ -156,16 +156,32 @@ BaseProjectView::BaseProjectView()
             {
             m_sidebarShown = !m_sidebarShown;
             ShowSideBar(m_sidebarShown);
+            wxWindow* projectButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_PROJECT_RIBBON_BUTTON_BAR);
+            if (projectButtonBarWindow && projectButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+                {
+                const auto projectButtonBar = dynamic_cast<wxRibbonButtonBar*>(projectButtonBarWindow);
+                assert(projectButtonBar && L"Error casting project ribbon bar!");
+                if (projectButtonBar)
+                    { projectButtonBar->ToggleButton(XRCID("ID_SHOW_SIDEBAR"), m_sidebarShown); }
+                }
             },
-        XRCID("ID_TOGGLE_SIDEBAR"));
+        XRCID("ID_SHOW_SIDEBAR"));
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED,
         [this]([[maybe_unused]] wxCommandEvent&)
             {
             m_sidebarShown = !m_sidebarShown;
             ShowSideBar(m_sidebarShown);
+            wxWindow* projectButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_PROJECT_RIBBON_BUTTON_BAR);
+            if (projectButtonBarWindow && projectButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+                {
+                const auto projectButtonBar = dynamic_cast<wxRibbonButtonBar*>(projectButtonBarWindow);
+                assert(projectButtonBar && L"Error casting project ribbon bar!");
+                if (projectButtonBar)
+                    { projectButtonBar->ToggleButton(XRCID("ID_SHOW_SIDEBAR"), m_sidebarShown); }
+                }
             },
-        XRCID("ID_TOGGLE_SIDEBAR"));
+        XRCID("ID_SHOW_SIDEBAR"));
 
     Bind(wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
@@ -2994,7 +3010,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     accelEntries[10].Set(wxACCEL_CMD, WXK_BACK, XRCID("ID_REMOVE_TEST"));
     accelEntries[11].Set(wxACCEL_CMD, WXK_NUMPAD_DELETE, XRCID("ID_REMOVE_TEST"));
     accelEntries[12].Set(wxACCEL_CMD, WXK_DELETE, XRCID("ID_REMOVE_TEST"));
-    accelEntries[13].Set(wxACCEL_NORMAL, WXK_F2, XRCID("ID_TOGGLE_SIDEBAR"));
+    accelEntries[13].Set(wxACCEL_NORMAL, WXK_F2, XRCID("ID_SHOW_SIDEBAR"));
     accelEntries[14].Set(wxACCEL_NORMAL, WXK_F3, XRCID("ID_FIND_NEXT"));
     accelEntries[15].Set(wxACCEL_NORMAL, WXK_F4, XRCID("ID_TOGGLE_RIBBON"));
     wxAcceleratorTable accelTable(std::size(accelEntries), accelEntries);

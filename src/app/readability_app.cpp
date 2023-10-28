@@ -1645,7 +1645,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         wxRibbonPanel* projectPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Project"), wxNullBitmap,
                                                         wxDefaultPosition, wxDefaultSize,
                                                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-        wxRibbonButtonBar* projectButtonBar = new wxRibbonButtonBar(projectPanel);
+        wxRibbonButtonBar* projectButtonBar = new wxRibbonButtonBar(projectPanel, MainFrame::ID_PROJECT_RIBBON_BUTTON_BAR);
         projectButtonBar->AddHybridButton(wxID_NEW, _(L"New"),
             readRibbonButtonSVG(L"ribbon/document.svg"),
             _(L"Create a new project."));
@@ -1689,10 +1689,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 _(L"Properties"),
                 readRibbonButtonSVG(L"ribbon/project-settings.svg"),
                 _(L"Change the settings for this project."));
-            projectButtonBar->AddButton(XRCID("ID_TOGGLE_SIDEBAR"),
-                _(L"Toggle Sidebar"),
+            projectButtonBar->AddToggleButton(XRCID("ID_SHOW_SIDEBAR"),
+                _(L"Sidebar"),
                 readRibbonButtonSVG(L"ribbon/toggle-sidebar.svg"),
                 _(L"Shows or hides the sidebar."));
+            projectButtonBar->ToggleButton(XRCID("ID_SHOW_SIDEBAR"), true);
 
             // edit section
             wxRibbonPanel* editPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Edit"), wxNullBitmap,

@@ -172,6 +172,7 @@ public:
     static constexpr int ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR = wxID_HIGHEST + 2;
     static constexpr int ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR = wxID_HIGHEST + 3;
     static constexpr int ID_NUMERALS_RIBBON_BUTTON_BAR = wxID_HIGHEST + 4;
+    static constexpr int ID_PROJECT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 5;
 
     IdRangeLock CUSTOM_TEST_RANGE;
     IdRangeLock EXAMPLE_RANGE;
