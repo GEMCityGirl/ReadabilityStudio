@@ -449,10 +449,10 @@ Gabi gave her report *to to* the manager.
 
 In this case, the word *to* was accidentally typed twice. *Readability Studio* will consider this a repeated word and include it in this list.
 
-Repeated words are bound to the sentence level. If the same word ends one sentence and begins the next, then it will not be considered a repeated word. For example, *Nancy* would not be considered a repeated word here:
+Repeated words are bound to the sentence level. If the same word ends one sentence and begins the next, then it will not be considered a repeated word. For example, *Blake* would not be considered a repeated word here:
 
 ::: {.fancyquotes data-latex=''}
-Gabi gave her sales report to *Nancy. Nancy* really appreciated Gabi's promptness.
+Gabi gave her sales report to *Blake. Blake* really appreciated Gabi's promptness.
 :::
 
 Repeated word searching is applied to all sentences. [Incomplete sentences](#how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
@@ -533,7 +533,7 @@ After opening a project, click on the **Grammar** icon on the project sidebar an
 A redundant phrase is when a modifier expresses something that is already implied by the noun it is modifying. For example:
 
 ::: {.fancyquotes data-latex=''}
-Gabi and Nancy *collaborated together* on the report. They should have a *brief summary* ready later today.
+Gabi and Blake *collaborated together* on the report. They should have a *brief summary* ready later today.
 :::
 
 In this case, *collaborated together* and *brief summary* are redundant. Collaboration already implies two or more people working together. The *together* in this phrase adds nothing and just makes this sentence wordy. As for *brief summary*, summaries are always brief; hence, the redundancy in that phrase. *Readability Studio* will consider these as redundant phrases and include them in this list.
@@ -541,7 +541,7 @@ In this case, *collaborated together* and *brief summary* are redundant. Collabo
 Redundant phrases are bound to the sentence level. If part of a phrase ends one sentence and begins the next, then it will not be considered a redundant phrase. For example, *brief. Summaries* would not be considered a redundant phrase here because the words are in different sentences:
 
 ::: {.fancyquotes data-latex=''}
-Gabi and Nancy need to be **brief. Summaries** are very important before presenting a report.
+Gabi and Blake need to be **brief. Summaries** are very important before presenting a report.
 :::
 
 Redundant phrase searching is applied to all sentences. [Incomplete sentences](#how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
@@ -559,7 +559,7 @@ After opening a project, click on the **Grammar** icon on the project sidebar an
 A phrase is wordy if it contains too many words or contains complex words that could be replaced by simpler ones. For example:
 
 ::: {.fancyquotes data-latex=''}
-*Over the course of* the season, Nancy's batting average improved.
+*Over the course of* the presentation, Blake amazed the Provost with his data vizualizations.
 :::
 
 In this case, *Over the course of* is wordy. *Readability Studio* will consider this a wordy phrase and offer *during* or *throughout* as replacements.
