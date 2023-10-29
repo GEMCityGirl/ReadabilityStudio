@@ -2593,6 +2593,11 @@ void ProjectDoc::DisplayWordCharts()
             true, 1);
         if (syllableHistogram->GetBars().size() > 2)
             {
+            if (!IsShowcasingComplexWords())
+                {
+                syllableHistogram->AddBarGroup(1, 2,
+                    _(L"Simple Words"), GetHistogramBarColor());
+                }
             syllableHistogram->AddBarGroup(3, syllableHistogram->GetBars().back().GetAxisPosition(),
                 _(L"Complex Words"), GetHistogramBarColor());
             const auto firstComplexBar = syllableHistogram->FindBar(3);
