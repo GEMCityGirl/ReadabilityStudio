@@ -29,6 +29,7 @@
 - Sentence heatmaps now show the sentences' word counts.
 - Added multiple layout styles for Raygor to choose from. This includes showing the graph as it appeared in its original version, as well as the Baldwin-Kaufman variation.
 - Added brackets explaining the factors that influence word categories to the **Word Counts** barchart.
+- Improved binning in the **Lengths (Distribution)** histogram (**Sentences Breakdown** section). Sentence-length bin sizes will now usually be 5, 10, or 20.
 - Added a bracket to the **Syllable Counts** histogram to group the complex-word bars.
 - Added an option to the **Syllable Counts** histogram to draw attention to the complex-word bars. This is done by lowering the opacity of the 1- and 2-syllable word bars.
 - Grade-level histograms in batch projects:
@@ -38,10 +39,10 @@
 - Box plots now use Tukey hinges method for calculating quartiles. (This matches what *R* does.)
 - Removed box plot IQR coefficient option; blox plot now just use quartiles.
 - Added grouping support to box plots in batch projects.
-- Sorting horizontal bars now works more intuitively.
 - Graph background images are now drawn in the plot area, instead of the entire background. This makes reading the axes and titles easier.
   - Added an option to control how this image is sized to fit within the plot area.
 - Added numerous color schemes to choose from for grouped histograms (in batch projects).
+- Sorting horizontal bars now works more intuitively.
 
 #### Analysis/Test Enhancements {-}
 

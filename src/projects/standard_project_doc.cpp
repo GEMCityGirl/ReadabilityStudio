@@ -2277,12 +2277,12 @@ void ProjectDoc::DisplaySentenceCharts()
                     Wisteria::Colors::Schemes::ColorScheme({ GetHistogramBarColor() }))));
         sentenceHistogram->SetData(m_sentenceWordLengths, GetSentenceWordCountsColumnName(),
             std::nullopt,
-            Histogram::BinningMethod::BinUniqueValues,
+            Histogram::BinningMethod::BinByIntegerRange,
             RoundingMethod::NoRounding,
             Histogram::IntervalDisplay::Midpoints,
             IsDisplayingBarChartLabels() ?
                 GetHistrogramBinLabelDisplay() : BinLabelDisplay::NoDisplay,
-            true, 1, std::make_pair(std::nullopt, 8));
+            true, 0, std::make_pair(std::nullopt, 5), true);
         sentenceHistogram->GetLeftYAxis().GetTitle().SetText(_(L"Number of Sentences"));
         sentenceHistogram->GetBottomXAxis().GetTitle().SetText(_(L"Number of Words per Sentence"));
         sentenceHistogramCanvas->CalcAllSizes(gdc);
