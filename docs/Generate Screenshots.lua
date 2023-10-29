@@ -566,6 +566,7 @@ a:SelectWindow(SideBarSection.WordsBreakdown, GraphType.WordBarChart)
 ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "RibbonEditBarCharts." .. FileExtension, 0, RibbonButtonBars.Edit)
 
 a:ExportGraph(GraphType.SyllableHistogram, ImagePath .. "SyllableCountHistogram." .. FileExtension)
+a:ExportGraph(GraphType.SyllablePieChart, ImagePath .. "SyllablesPieChart." .. FileExtension)
 a:AddTest(Tests.DanielsonBryan2)
 a:ExportGraph(GraphType.DanielsonBryan2, ImagePath .. "DB2Plot." .. FileExtension)
 a:ExportGraph(GraphType.Fry, ImagePath .. "frygraph." .. FileExtension)

@@ -259,7 +259,7 @@ The different types of graphs that may be shown are:
 knitr::include_graphics("images/barchart.png")
 ```
 
-In the above example, we can see that there are 70 unfamiliar New Dale-Chall words, but only 42 3+ syllable words. From this, we could infer that we should first concentrate on replacing these unfamiliar words.
+In the above example, we can see that there are 70 unfamiliar New Dale-Chall words, but only 42 three+ syllable words. From this, we could infer that we should first concentrate on replacing these unfamiliar words.
 Lists of these words can be found by clicking on the [**Difficult Words**](#reviewing-word-breakdowns) icon on the project sidebar.
 :::
 
@@ -270,7 +270,7 @@ Lists of these words can be found by clicking on the [**Difficult Words**](#revi
 knitr::include_graphics("images/SyllableCountHistogram.png")
 ```
 
-In the above histogram, we see that most of the words are either 1 or 2 syllables. There are only 25 3-syllable words and 17 4-syllable words in the document.
+In the above histogram, we see that most of the words are either 1 or 2 syllables. There are only 25 three-syllable words and 17 four-syllable words in the document.
 (Note that selecting a bar will display the first 25 words within that syllable group.)
 Combined, there are 42 complex words, as shown by the cumulative group bar above the **3** and **4** bars.
 
@@ -282,6 +282,18 @@ This word will be tallied three times when factored into the total word count, b
 Most tests use the total word count variable, although there are some that use unique counts (e.g., Spache uses its unique unfamiliar word count).
 :::
 ::::
+
+::: {.minipage data-latex="{\textwidth}"}
+**Syllable Counts**: This is a donut chart of the words, grouped by syllable count (along the inner ring).
+Additionally, an outer ring categorizes these subgroups into simple and complex words. (One- and two-syllable words are considered simple, while three [and higher] syllable words are complex.)
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/SyllablesPieChart.png")
+```
+
+The above donut chart shows similar results to the previous histogram. With this visualization, however, it is easier to compare the overall complex- and simple-word groups.
+In this case, less than 10% of the document consists of complex words. Also, looking at the inner ring, we can see that ~two-thirds of the words are one-syllable.
+:::
 
 ::: {.minipage data-latex="{\textwidth}"}
 **Key Word Cloud**: In conjunction with the **Key Words** list, a key word cloud is also included to visualize the main concepts of the document(s).
