@@ -982,6 +982,21 @@ ScreenshotLib.ShowDocGroupSelectDlg(2, "Notes")
 ScreenshotLib.SnapScreenshot(ImagePath .. "GroupLabelNotes." .. FileExtension)
 ScreenshotLib.CloseDocGroupSelectDlg()
 
+-- "Retro" looking graph example
+--------------------------------
+sp = StandardProject(ScreenshotProjectsFolder .. "Chocolate Eclairs.txt")
+sp:SelectWindow(SideBarSection.WordsBreakdown, GraphType.WordBarChart)
+sp:DelayReloading(true)
+sp:DisplayBarChartLabels(false)
+sp:SetGraphTopTitleFont("MONOSPACE")
+sp:SetXAxisFont("MONOSPACE")
+sp:SetYAxisFont("MONOSPACE")
+sp:SetBarChartBarColor("Timberwolf")
+sp:SetBarChartBarEffect(BoxEffect.Solid)
+sp:Reload()
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphRetro." .. FileExtension)
+sp:Close()
+
 -- Graph editing example (selective colorization)
 -------------------------------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Chocolate Eclairs.txt")

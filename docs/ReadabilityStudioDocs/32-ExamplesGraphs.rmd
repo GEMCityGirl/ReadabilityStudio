@@ -193,3 +193,27 @@ Now, we should see a selective colorization effect on our bar chart:
 knitr::include_graphics("images/ExampleGraphBackgroundImageEffectGrayscaled.png")
 ```
 :::
+
+## A Retro Appearance {#graph-retro-example}
+
+In this example, we will create a basic-looking graph, with a more "retro" appearance. We will do this by removing all adornments and effects, and by applying washed-out colors and monospace fonts.
+
+From the **Help** tab on the ribbon, click the `r keys("Example Documents")` button and then select "Chocolate Eclairs" from the menu.
+(When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
+
+Once the project has finished loading, select **Words Breakdown** on the sidebar, then click **Word Counts** beneath that.
+First, let's remove the labels to simplify the graph. On the **Home** tab of the ribbon, click the `r keys("Labels")` button so that is it unpressed.
+
+Next, we will remove any visual effect from the bars. On the **Home** tab, click `r menu(c('Bar Style', 'Solid'))`. Then, click `r menu(c('Bar Style', 'Color...'))` and select a light gray.
+
+Next, click the `r keys("Font")` button and select `r menu(c('X Axis...'))`. When the font selection dialog appears, choose a monospace font (e.g., Consolas or Courier New) and click `r keys("OK")`.
+Do the same for  `r menu(c('Font', 'Y Axis...'))` and `r menu(c('Font', 'Top Titles...'))`. Doing this will give a typewriter look to the graph's text.
+
+
+::: {.minipage data-latex="{\textwidth}"}
+Once we are done, our bar chart have a simpler, "retro" look:
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/ExampleGraphRetro.png")
+```
+:::
