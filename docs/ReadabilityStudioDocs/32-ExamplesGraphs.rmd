@@ -209,11 +209,8 @@ Next, we will remove any visual effect from the bars. On the **Home** tab, click
 Next, click the `r keys("Font")` button and select `r menu(c('X Axis...'))`. When the font selection dialog appears, choose a monospace font (e.g., Consolas or Courier New) and click `r keys("OK")`.
 Do the same for  `r menu(c('Font', 'Y Axis...'))` and `r menu(c('Font', 'Top Titles...'))`. Doing this will give a typewriter look to the graph's text.
 
-
-::: {.minipage data-latex="{\textwidth}"}
-Once we are done, our bar chart have a simpler, "retro" look:
+Once we are done, our bar chart will have a simpler, "retro" look:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ExampleGraphRetro.png")
 ```
-:::

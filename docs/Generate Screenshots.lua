@@ -982,6 +982,17 @@ ScreenshotLib.ShowDocGroupSelectDlg(2, "Notes")
 ScreenshotLib.SnapScreenshot(ImagePath .. "GroupLabelNotes." .. FileExtension)
 ScreenshotLib.CloseDocGroupSelectDlg()
 
+-- Difficult words example
+--------------------------
+sp = StandardProject(ScreenshotProjectsFolder .. "Instructional Disclaimer.odt")
+sp:ExportGraph(GraphType.WordCloud, ImagePath .. "ExampleDifficultWordsWordCloud." .. FileExtension)
+sp:ExportGraph(GraphType.SyllableHistogram, ImagePath .. "ExampleDifficultSyllablesHistogram." .. FileExtension)
+sp:ShowcaseComplexWords(true)
+sp:ExportGraph(GraphType.SyllableHistogram, ImagePath .. "ExampleDifficultSyllablesHistogramShowcased." .. FileExtension)
+sp:ExportGraph(GraphType.SyllablePieChart, ImagePath .. "ExampleDifficultSyllablesPieChart." .. FileExtension)
+sp:ExportGraph(GraphType.SentenceHeatmap, ImagePath .. "ExampleDifficultSentencesHeatmap." .. FileExtension)
+sp:Close()
+
 -- "Retro" looking graph example
 --------------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Chocolate Eclairs.txt")

@@ -285,7 +285,7 @@ This list can be sorted alphabetically, by word count, or by location. To view a
 
 ![](images/featuressentences.png)
 
-By default, the program considers sentences overly long if they contain more than 22 words. As we can see, there are a few sentences that are barely over 22 words that are not problematic. However, there are a few clustered sentences which exceed 40 words. At this point, we will want to temporarily filter out the smaller of these long sentences and search for the “worst offenders.” From the **Home** tab, click the `r keys("Properties")` button and then select **Analysis**. As shown below, we have a couple of different ways to determine if a sentence is overly long:
+By default, the program considers sentences overly long if they contain more than 22 words. As we can see, there are a few sentences that are barely over 22 words that are not problematic. However, there are a few clustered sentences which exceed 40 words. At this point, we will want to temporarily filter out the smaller of these long sentences and search for the "worst offenders." From the **Home** tab, click the `r keys("Properties")` button and then select **Analysis**. As shown below, we have a couple of different ways to determine if a sentence is overly long:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/featuressentoptions.png")
@@ -297,7 +297,7 @@ The first option is to define a specific word count as the long sentence boundar
 knitr::include_graphics("images/featuressentences25.png")
 ```
 
-The second option is to consider sentences overly long if they are comparatively longer than the other sentences in the document. From the **Home** tab, click the `r keys("Properties")` button and then select **Analysis**. Select the option **Outside sentence-length outlier range** and click the `r keys("OK")` button. At this point, the boundary for overly-long sentences will be calculated based on the outlier range of the sentence lengths. After reanalyzing the file, note how there are only two highlighted sentences. One sentence contains 45 words and the other 48 words. These are the two “worst offenders” and should be either reworded or split into small sentences.
+The second option is to consider sentences overly long if they are comparatively longer than the other sentences in the document. From the **Home** tab, click the `r keys("Properties")` button and then select **Analysis**. Select the option **Outside sentence-length outlier range** and click the `r keys("OK")` button. At this point, the boundary for overly-long sentences will be calculated based on the outlier range of the sentence lengths. After reanalyzing the file, note how there are only two highlighted sentences. One sentence contains 45 words and the other 48 words. These are the two "worst offenders" and should be either reworded or split into small sentences.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/featuressentencesoutliers.png")
@@ -313,11 +313,11 @@ This option is only recommended for situations where most of the sentences are a
 
 ## Finding Difficult Sections {#finding-difficult-sections}
 
-Along with searching for overly-long sentences, we should also review the distribution of longer sentences. If there are sections of a document where longer sentences seem to clump together, then these areas may be more difficult to read. These sections may need to be rewritten or restructured so that we don’t have entire paragraphs that readers will struggle with.
+Along with searching for overly-long sentences, we should also review the distribution of longer sentences. If there are sections of a document where longer sentences seem to clump together, then these areas may be more difficult to read. These sections may need to be rewritten or restructured so that we don't have entire paragraphs that readers will struggle with.
 
-In a previous example (\@ref(searching-long-sentences-example)), we used a box plot to review the dispersion of sentence lengths (and to find outliers). Although this is useful, these graphs aggregate their data and do not preserve their order. In other words, they lump sentence lengths together and don’t show them in the order that they appear in the document. To compare the sentences’ lengths in relation to where they are in the document, we will need to use a heatmap.
+In a previous example (\@ref(searching-long-sentences-example)), we used a box plot to review the dispersion of sentence lengths (and to find outliers). Although this is useful, these graphs aggregate their data and do not preserve their order. In other words, they lump sentence lengths together and don't show them in the order that they appear in the document. To compare the sentences' lengths in relation to where they are in the document, we will need to use a heatmap.
 
-A heatmap is a graph which displays items as color-filled squares, where the color represents an item’s value in relation to other items. To construct a heatmap, the following is performed:
+A heatmap is a graph which displays items as color-filled squares, where the color represents an item's value in relation to other items. To construct a heatmap, the following is performed:
 
 - The highest and lowest values from a range of data are found.
 - Two colors are selected to represent the high and low values from the data.
@@ -328,7 +328,7 @@ A heatmap is a graph which displays items as color-filled squares, where the col
 
 For our purpose, sentences will be shown in the order that they appear in the document. This will enable us to not only find longer sentences, but also see where numerous difficult sentences clump together.
 
-Let’s begin by opening a mid-sized technical document. Select the **Help** tab of the ribbon, click the `r keys('Example Documents')` button, and select "Importing and Exporting Fixed-Width Data with R" from the menu. On the following prompt, tell the program to create a new project. When the **New Project Wizard** appears, select the **Document Structure** page. This example document contains lines of programming of code separated by hard returns. Because of this, we will want to force each of these lines to be a new paragraph. (Doing so will help with excluding them.) Check the option **Line ends** and click `r keys('Finish')`:
+Let's begin by opening a mid-sized technical document. Select the **Help** tab of the ribbon, click the `r keys('Example Documents')` button, and select "Importing and Exporting Fixed-Width Data with R" from the menu. On the following prompt, tell the program to create a new project. When the **New Project Wizard** appears, select the **Document Structure** page. This example document contains lines of programming of code separated by hard returns. Because of this, we will want to force each of these lines to be a new paragraph. (Doing so will help with excluding them.) Check the option **Line ends** and click `r keys('Finish')`:
 
 ![](images/wizarddocstructurehardreturns.png)
 
@@ -348,13 +348,13 @@ knitr::include_graphics("images/DisclaimerSentenceMap.png")
 
 In the above graph, we can see that most paragraphs begin with a short intro sentence, but are then followed by rather long sentences. (Some sentences being as high as 40 words.)  Also of interest is a paragraph containing ten sentences—which will be difficult to read through.
 
-Finally, let’s view a novel. Close this project and return to the **Help** tab of the ribbon. Click the `r keys('Example Documents')` button again and select *A Christmas Carol*. Create a new project with the defaults and select the heatmap when the project opens.
+Finally, let's view a novel. Close this project and return to the **Help** tab of the ribbon. Click the `r keys('Example Documents')` button again and select *A Christmas Carol*. Create a new project with the defaults and select the heatmap when the project opens.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ChristmasCarolSentenceMap.png")
 ```
 
-Because this document contains more than 500 paragraphs, grouping will not be used. Instead, the sentences will appear in a single heatmap, where the all sentences are displayed left-to-right, top-to-bottom. In the above graph, we can see that the novel’s sentences range from 1-19 words in length. Also, the sentence lengths are rather evenly distributed. In other words, the longer sentences are not clumping together within any particular section.
+Because this document contains more than 500 paragraphs, grouping will not be used. Instead, the sentences will appear in a single heatmap, where the all sentences are displayed left-to-right, top-to-bottom. In the above graph, we can see that the novel's sentences range from 1-19 words in length. Also, the sentence lengths are rather evenly distributed. In other words, the longer sentences are not clumping together within any particular section.
 
 \newpage
 
@@ -408,4 +408,66 @@ knitr::include_graphics("images/SummerCodeCampLowerHalf.png")
 
 Although there are some longer words here, the responsible adult intended to sign this should be able to understand the content.
 
-Refer to \@ref(addendum-example) for a continuation of this example where the flyer is revised and has an addendum added to it.
+Refer to \@ref(high-level-review-of-disclaimer) and \@ref(addendum-example) for a continuation of this example where the flyer is revised and has an addendum added to it.
+
+\newpage
+
+## High-level Review of a Disclaimer {#high-level-review-of-disclaimer}
+
+In this example, we will perform a quick review of the concepts, word complexity, and paragraph complexity of a disclaimer.
+
+Continuing from the "Reviewing a Flyer" example (refer to \@ref(reviewing-a-flyer)), our fictitious software company has been purchased by a private equity firm.
+After the purchase, this firm has decided to make some changes to the Summer Code Camp program.
+In particular, they have created a disclaimer that parents must agree to before their children can participate.
+In a later example, we will explore in more detail the difficult aspects of this disclaimer.
+For now, however, we will first create summary graphs to give us an idea of what we are dealing with.
+
+From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "Instructional Disclaimer."
+Next, select **Create a new project**. When the **New Project Wizard** appears, leave the defaults and click `r keys('Finish')`.
+
+First, let's review the concepts of this document to get a broad idea of what it is about. Click **Words Breakdown** on the sidebar and then select **Key Word Cloud**.
+This word cloud shows the document's words, after they have been combined (via stemming) and common words (e.g., articles) have been removed.
+The size of the words are relative to their frequencies. As an example, the words "Company" and "Customer" appear much more frequently than any other word:
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/ExampleDifficultWordsWordCloud.png")
+```
+
+From this, we can glean that this document is about a customer and company relationship. Looking further, we may notice other words such as "claims," "responsibilities," "legal," and "liable."
+From here, we could deduce that this may be a legally-binding agreement (and a bit adversarial).
+
+Next, click **Syllable Counts** on the sidebar (the one with the histogram icon). In these histograms, we want to see a right-tailed distribution, where the bin sizes go down as you go from one-syllable words to more complex ones.
+Although that is the pattern we see here, it has an alarming number of complex words — approximately a third of the document.
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/ExampleDifficultSyllablesHistogram.png")
+```
+
+To draw attention to these groups of words, press the `r keys('Showcase Complexity')` on the ribbon. Now the cumulative bar group and labels will only be shown for these bars:
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/ExampleDifficultSyllablesHistogramShowcased.png")
+```
+
+To better visualize how much of this document is complex, click the **Syllable Counts** on the sidebar (the one with the pie icon).
+Here we can see how much of the document consists of complex words by looking at the outer ring.
+We can further see a breakdown of these complex words in the inner ring, where almost a quarter of the document is three-syllable words:
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/ExampleDifficultSyllablesPieChart.png")
+```
+
+Note that because we previously pressed `r keys('Showcase Complexity')`, the simple-word slices are translucent and their labels are hidden.
+
+Finally, let's review a visual layout of the sentence lengths. Click **Sentences Breakdown** on the sidebar and then select **Lengths (Density)**.
+Going from top-to-bottom, this graphic displays a row for each paragraph. Across each row is a box for each sentence in the respective paragraph.
+For each box, its length is shown as number at its center. Also, the darker the box, the longer its length is compared to the rest of the sentences in the document.
+In this example, we can see that the sixth paragraph has ten sentences in it:
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/ExampleDifficultSentencesHeatmap.png")
+```
+
+There are also a few lengthy sentences in this paragraph, judging from the numbers and dark colors across the row.
+
+Refer to \@ref(addendum-example) for a continuation of this example. There, this document will be explored in further detail and used as an addendum to the original flyer from \@ref(reviewing-a-flyer).

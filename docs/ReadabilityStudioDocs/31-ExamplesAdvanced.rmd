@@ -242,9 +242,10 @@ All the options discussed here are also offered on the **Document** tab of the r
 
 ## Including an Addendum {#addendum-example}
 
-In this example, we will analyze an updated flyer from a previous example (refer to \@ref(reviewing-a-flyer)), as well append another document to it. Continuing from the “Reviewing a Flyer” example, our fictitious software company has been purchased by a private equity firm who wishes to make some changes to the Summer Code Camp program.
+Continuing from the "Reviewing a Flyer" (\@ref(reviewing-a-flyer)) and "High-level Review of an Disclaimer" (\@ref(high-level-review-of-disclaimer)) examples, our fictitious private equity firm now plans to append a disclaimer to the flyer.
 
-Along with policy changes to the program, they have redesigned the program’s flyer to appear more professional. Let’s first take a look at the updated flyer. From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "YA Enterprise Software Symposium." Next, you will be prompted to either create a new project or view the document; select **View document**. Once the document is opened, note how the flyer’s short text boxes have been replaced by full sentences:
+Along with policy changes to the program, they have redesigned the program's flyer to appear more professional. Let's first take a look at the updated flyer.
+From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "YA Enterprise Software Symposium." Next, you will be prompted to either create a new project or view the document; select **View document**. Once the document is opened, note how the flyer’s short text boxes have been replaced by full sentences:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/NonGenerated/YAEnterpriseSoftwareSymposium.png")
@@ -252,7 +253,8 @@ knitr::include_graphics("images/NonGenerated/YAEnterpriseSoftwareSymposium.png")
 
 This means that when we import this document, we will specify that it is a narrative document and apply text exclusion. (This is in contrast to the earlier flyer, where we specified it as non-narrative, fragmented text.)
 
-Close this document and return to **Readability Studio**. Click the `r keys('Example Documents')` button and again select "YA Enterprise Software Symposium." Next, select **Create a new project**. When the **New Project Wizard** appears, select the **Document Structure** page and select **Narrative text**:
+Close this document and return to **Readability Studio**. Click the `r keys('Example Documents')` button and again select "YA Enterprise Software Symposium."
+Next, select **Create a new project**. When the **New Project Wizard** appears, select the **Document Structure** page and select **Narrative text**:
 
 ![](images/wizarddocstructurenarrativeselected.png)
 
@@ -273,7 +275,10 @@ knitr::include_graphics("images/AddendumHighlightedText1.png")
 knitr::include_graphics("images/AddendumHighlightedText2.png")
 ```
 
-As we can see, this document could use some improving. Before we can do that, though, the new owners of our software company have also requested that a disclaimer be appended to all sign-up forms such as this. Rather than running a separate analysis on this disclaimer, we would like to append this document to our flyer and analyze them together. To do this, go to the **Home** tab of the ribbon and select **Properties**. On the **Properties** dialog, select **Project Settings** on the sidebar. Next, under the **Append Additional Document** section, click the folder button and navigate to the *examples* folder from where *Readability Studio* is installed. Select the file “Instructional Disclaimer.odt”:
+As we can see, this document could use some improving. Before we can do that, though, the new owners of our software company have also requested that a disclaimer be appended to all sign-up forms such as this.
+Rather than running a separate analysis on this disclaimer, we would like to append this document to our flyer and analyze them together.
+To do this, go to the **Home** tab of the ribbon and select **Properties**. On the **Properties** dialog, select **Project Settings** on the sidebar.
+Next, under the **Append Additional Document** section, click the folder button and navigate to the *examples* folder from where *Readability Studio* is installed. Select the file "Instructional Disclaimer.odt":
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/AddendumProperties.png")
