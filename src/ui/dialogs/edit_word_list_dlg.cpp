@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "editwordlistdlg.h"
+#include "edit_word_list_dlg.h"
 #include <wx/file.h>
 #include <wx/tokenzr.h>
 #include "../../Wisteria-Dataviz/src/utfcpp/source/utf8.h"

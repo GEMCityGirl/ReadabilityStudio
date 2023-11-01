@@ -12,13 +12,13 @@
 #include <wx/bannerwindow.h>
 #include "../../Wisteria-Dataviz/src/ui/dialogs/warningmessagesdlg.h"
 #include "tools_options_dlg.h"
-#include "editwordlistdlg.h"
+#include "edit_word_list_dlg.h"
 #include "doc_group_select_dlg.h"
 #include "../../app/readability_app_options.h"
 #include "../../app/readability_app.h"
 #include "../../projects/standard_project_doc.h"
 #include "../../projects/batch_project_doc.h"
-#include "../controls/wordlistproperty.h"
+#include "../controls/word_list_property.h"
 
 using namespace Wisteria;
 using namespace Wisteria::Colors;

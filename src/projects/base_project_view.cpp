@@ -6,7 +6,7 @@
 #include "../app/readability_app.h"
 #include "../ui/dialogs/test_bundle_dlg.h"
 #include "../ui/dialogs/tools_options_dlg.h"
-#include "../ui/dialogs/editwordlistdlg.h"
+#include "../ui/dialogs/edit_word_list_dlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/opacitydlg.h"
 #include "../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
 

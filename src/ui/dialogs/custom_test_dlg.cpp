@@ -7,8 +7,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include <wx/richmsgdlg.h>
-#include "../controls/wordlistproperty.h"
-#include "editwordlistdlg.h"
+#include "../controls/word_list_property.h"
+#include "edit_word_list_dlg.h"
 #include "custom_test_dlg.h"
 #include "../../Wisteria-Dataviz/src/util/fileutil.h"
 #include "../../projects/base_project.h"

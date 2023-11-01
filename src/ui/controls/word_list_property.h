@@ -8,7 +8,7 @@
 #include <wx/propgrid/propgriddefs.h>
 #include <wx/propgrid/manager.h>
 #include <wx/propgrid/advprops.h>
-#include "../dialogs/editwordlistdlg.h"
+#include "../dialogs/edit_word_list_dlg.h"
 
 #define wxPG_HELP_PATH L"wxPG_HELP_PATH"
 #define wxPG_TOPIC_PATH L"wxPG_TOPIC_PATH"

@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "webharvesterdlg.h"
+#include "web_harvester_dlg.h"
 #include "../../app/readability_app.h"
 
 wxDECLARE_APP(ReadabilityApp);

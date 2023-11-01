@@ -1,4 +1,4 @@
-#include "wordlistproperty.h"
+#include "word_list_property.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(WordListProperty, wxLongStringProperty);
 

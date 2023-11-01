@@ -6,7 +6,7 @@
 #include "../ui/dialogs/new_custom_test_simple_dlg.h"
 #include "../ui/dialogs/custom_test_dlg.h"
 #include "../ui/dialogs/tools_options_dlg.h"
-#include "../ui/dialogs/editwordlistdlg.h"
+#include "../ui/dialogs/edit_word_list_dlg.h"
 #include "../ui/dialogs/project_wizard_dlg.h"
 #include "../document_helpers/chapter_split.h"
 #include "../../../Licensing/LicenseDlg.h"

@@ -23,7 +23,7 @@
 #include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
 #include "../../../../Licensing/LicenseAdmin.h"
 #include "doc_group_select_dlg.h"
-#include "webharvesterdlg.h"
+#include "web_harvester_dlg.h"
 
 class ReadabilityApp;
 

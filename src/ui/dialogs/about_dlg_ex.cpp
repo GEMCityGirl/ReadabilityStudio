@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "aboutdlgex.h"
+#include "about_dlg_ex.h"
 #include <wx/generic/statbmpg.h>
 
 //------------------------------------------------------

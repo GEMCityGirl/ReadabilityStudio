@@ -38,12 +38,12 @@ SET(APP_SRC_FILES
     src/test_helpers/readability_formula_parser.cpp
     src/tinyexpr-plusplus/tinyexpr.cpp
     src/tinyxml2/tinyxml2.cpp
-    src/ui/controls/explanationlistctrl.cpp
-    src/ui/controls/wordlistproperty.cpp
-    src/ui/dialogs/aboutdlgex.cpp
+    src/ui/controls/explanation_listctrl.cpp
+    src/ui/controls/word_list_property.cpp
+    src/ui/dialogs/about_dlg_ex.cpp
     src/ui/dialogs/custom_test_dlg.cpp
     src/ui/dialogs/doc_group_select_dlg.cpp
-    src/ui/dialogs/editwordlistdlg.cpp
+    src/ui/dialogs/edit_word_list_dlg.cpp
     src/ui/dialogs/export_all_dlg.cpp
     src/ui/dialogs/filtered_text_export_options_dlg.cpp
     src/ui/dialogs/filtered_text_preview_dlg.cpp
@@ -52,7 +52,7 @@ SET(APP_SRC_FILES
     src/ui/dialogs/project_wizard_dlg.cpp
     src/ui/dialogs/test_bundle_dlg.cpp
     src/ui/dialogs/tools_options_dlg.cpp
-    src/ui/dialogs/webharvesterdlg.cpp
+    src/ui/dialogs/web_harvester_dlg.cpp
     src/ui/dialogs/word_list_dlg.cpp
     src/webharvester/filepathresolver.cpp
     src/webharvester/webharvester.cpp
