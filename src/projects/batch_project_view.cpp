@@ -6,7 +6,7 @@
 #include "../ui/dialogs/filtered_text_export_options_dlg.h"
 #include "../ui/dialogs/export_all_dlg.h"
 #include "../ui/dialogs/tools_options_dlg.h"
-#include "../Wisteria-Dataviz/src/ui/dialogs/edittextdlg.h"
+#include "../ui/dialogs/edit_text_dlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
 #include "../Wisteria-Dataviz/src/import/html_encode.h"
 #include "../Wisteria-Dataviz/src/import/html_extract_text.h"

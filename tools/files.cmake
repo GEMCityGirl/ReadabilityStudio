@@ -43,6 +43,7 @@ SET(APP_SRC_FILES
     src/ui/dialogs/about_dlg_ex.cpp
     src/ui/dialogs/custom_test_dlg.cpp
     src/ui/dialogs/doc_group_select_dlg.cpp
+    src/ui/dialogs/edit_text_dlg.cpp
     src/ui/dialogs/edit_word_list_dlg.cpp
     src/ui/dialogs/export_all_dlg.cpp
     src/ui/dialogs/filtered_text_export_options_dlg.cpp
@@ -130,7 +131,6 @@ SET(APP_SRC_FILES
     src/Wisteria-Dataviz/src/ui/controls/sidebarbook.cpp
     src/Wisteria-Dataviz/src/ui/controls/thumbnail.cpp
     src/Wisteria-Dataviz/src/ui/dialogs/archivedlg.cpp
-    src/Wisteria-Dataviz/src/ui/dialogs/edittextdlg.cpp
     src/Wisteria-Dataviz/src/ui/dialogs/excelpreviewdlg.cpp
     src/Wisteria-Dataviz/src/ui/dialogs/filelistdlg.cpp
     src/Wisteria-Dataviz/src/ui/dialogs/functionbrowserdlg.cpp
