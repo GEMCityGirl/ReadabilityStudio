@@ -1639,7 +1639,7 @@ protected:
 
     [[nodiscard]]
     static wxString GetWordsColumnName()
-        { return L"WORDS"; }
+        { return _DT(L"WORDS"); }
     [[nodiscard]]
     static wxString GetWordsCountsColumnName()
         { return L"WORD_COUNTS"; }
