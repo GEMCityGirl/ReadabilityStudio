@@ -301,6 +301,10 @@ void ToolsOptionsDlg::OnDocumentStorageRadioButtonClick([[maybe_unused]] wxComma
         m_deleteFileButton->Enable(m_documentStorageMethod == static_cast<int>(TextStorage::NoEmbedText));
         m_addFilesButton->Enable(m_documentStorageMethod == static_cast<int>(TextStorage::NoEmbedText));
         }
+    if (m_realTimeUpdateCheckBox)
+        {
+        m_realTimeUpdateCheckBox->Enable(m_documentStorageMethod == static_cast<int>(TextStorage::NoEmbedText));
+        }
     }
 
 //-------------------------------------------------------------
@@ -646,6 +650,8 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
         project->GetSourceFilesInfo().at(0).second : wxString()),
     m_appendedDocumentFilePath(project ?
         project->GetAppendedDocumentFilePath() : wxGetApp().GetAppOptions().GetAppendedDocumentFilePath()),
+    m_realTimeUpdate(project ?
+        project->IsRealTimeUpdating() : wxGetApp().GetAppOptions().IsRealTimeUpdating()),
     // general program options needs to show everything
     m_sectionsBeingShown(project ? sectionsToInclude : AllSections),
     // document storage/linking information
@@ -949,7 +955,8 @@ bool ToolsOptionsDlg::Create(wxWindow* parent, wxWindowID id, const wxString& ca
 //-------------------------------------------------------------
 bool ToolsOptionsDlg::HaveDocumentOptionsChanged() const
     {
-    return m_longSentencesNumberOfWords.has_changed() ||
+    return m_realTimeUpdate.has_changed() ||
+           m_longSentencesNumberOfWords.has_changed() ||
            m_longSentencesOutliers.has_changed() ||
            m_sentenceLength.has_changed() ||
            m_minDocWordCountForBatch.has_changed() ||
@@ -1709,6 +1716,7 @@ void ToolsOptionsDlg::SaveOptions()
             static_cast<readability::test_language>(m_projectLanguage.get_value()));
         m_readabilityProjectDoc->SetReviewer(m_reviewer.get_value());
         m_readabilityProjectDoc->SetStatus(m_status.get_value());
+        m_readabilityProjectDoc->UseRealTimeUpdate(m_realTimeUpdate.get_value());
         m_readabilityProjectDoc->SetAppendedDocumentFilePath(m_appendedDocumentFilePath.get_value());
         m_readabilityProjectDoc->SetDocumentStorageMethod(
             static_cast<TextStorage>(m_documentStorageMethod.get_value()));
@@ -2081,6 +2089,7 @@ void ToolsOptionsDlg::SaveOptions()
             static_cast<readability::test_language>(m_projectLanguage.get_value()));
         wxGetApp().GetAppOptions().SetReviewer(m_reviewer.get_value());
         wxGetApp().GetAppOptions().SetStatus(m_status.get_value());
+        wxGetApp().GetAppOptions().UseRealTimeUpdate(m_realTimeUpdate.get_value());
         wxGetApp().GetAppOptions().SetAppendedDocumentFilePath(m_appendedDocumentFilePath.get_value());
         wxGetApp().GetAppOptions().SetDocumentStorageMethod(
             static_cast<TextStorage>(m_documentStorageMethod.get_value()));
@@ -3024,6 +3033,23 @@ void ToolsOptionsDlg::CreateControls()
                                wxDefaultPosition, wxDefaultSize, docLinking, 0, wxRA_SPECIFY_ROWS,
                                wxGenericValidator(&m_documentStorageMethod) );
             panelSizer->Add(docStorageRadioBox, 0, wxLEFT, OPTION_INDENT_SIZE);
+
+            // not relevant with batch projects
+            if (IsGeneralSettings() ||
+                (m_readabilityProjectDoc->GetTextSource() == TextSource::FromFile))
+                {
+                panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+
+                m_realTimeUpdateCheckBox =
+                    new wxCheckBox(projectSettingsPage, ID_REALTIME_UPDATE_BUTTON, _(L"Real-time update"),
+                        wxDefaultPosition, wxDefaultSize, 0,
+                        wxGenericValidator(&m_realTimeUpdate));
+                m_realTimeUpdateCheckBox->Enable(
+                    static_cast<TextStorage>(m_documentStorageMethod.get_value()) ==
+                    TextStorage::NoEmbedText);
+                panelSizer->Add(m_realTimeUpdateCheckBox, 0, wxLEFT, OPTION_INDENT_SIZE);
+                }
+            
             panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             }
 

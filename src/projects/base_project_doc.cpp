@@ -30,6 +30,7 @@ Wisteria::UI::ImageExportOptions BaseProjectDoc::m_imageExportOptions;
 
 BaseProjectDoc::BaseProjectDoc() :
     m_FileReadOnly(false),
+    m_realTimeUpdate(wxGetApp().GetAppOptions().IsRealTimeUpdating()),
     // graph options
     m_useGraphBackGroundImageLinearGradient(wxGetApp().GetAppOptions().GetGraphBackGroundLinearGradient()),
     m_displayDropShadows(wxGetApp().GetAppOptions().IsDisplayingDropShadows()),
@@ -125,6 +126,9 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
 
     // load the excluded phrases.
     LoadExcludePhrases();
+
+    // not really transferred from batch to standard, but include for completness
+    m_realTimeUpdate = that.m_realTimeUpdate;
     // graph settings
     m_useGraphBackGroundImageLinearGradient = that.m_useGraphBackGroundImageLinearGradient;
     m_displayDropShadows = that.m_displayDropShadows;
@@ -891,6 +895,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                                            wxGetApp().GetAppOptions().XML_DOCUMENT_PATH,
                                            wxGetApp().GetAppOptions().XML_DESCRIPTION,
                                            GetSourceFilesInfo());
+
+        UseRealTimeUpdate(XmlFormat::GetBoolean(docParsingSection, docParsingSectionEnd,
+            wxGetApp().GetAppOptions().XML_REALTIME_UPDATE,
+            wxGetApp().GetAppOptions().IsRealTimeUpdating()));
         // reviewer and status
         SetReviewer(XmlFormat::GetString(docParsingSection, docParsingSectionEnd,
                                          wxGetApp().GetAppOptions().XML_REVIEWER));
@@ -2081,6 +2089,9 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_FILE_PATH_TRUNC_MODE,
         static_cast<int>(GetFilePathTruncationMode()), 2);
     fileText += sectionText;
+
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_REALTIME_UPDATE, IsRealTimeUpdating(), 2);
+        fileText += sectionText;
 
     // reviewer and status
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_REVIEWER, GetReviewer(), 2);

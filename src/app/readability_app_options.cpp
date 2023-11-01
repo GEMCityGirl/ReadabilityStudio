@@ -218,6 +218,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     // project options
     XML_REVIEWER(_DT(L"project-reviewer")),
     XML_STATUS(_DT(L"project-status")),
+    XML_REALTIME_UPDATE(_DT(L"realtime-refresh")),
     XML_APPENDED_DOC_PATH(_DT(L"appended-doc-path")),
     // document linking information
     XML_DOCUMENT_STORAGE_METHOD(_DT(L"document-storage-method")),
@@ -696,6 +697,7 @@ void ReadabilityAppOptions::ResetSettings()
     m_language = readability::test_language::english_test;
     m_reviewer = wxGetUserName();
     m_status.clear();
+    m_realTimeUpdate = false;
     m_appendedDocumentFilePath.clear();
     // page setup
     m_paperId = wxPAPER_LETTER;
@@ -1309,6 +1311,20 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         filter_html(statusStr, statusStr.length(), true, false);
                     if (convertedStr)
                         { SetStatus(convertedStr); }
+                    }
+                }
+            auto realTimeRefresh = projectSettings->FirstChildElement(XML_REALTIME_UPDATE.mb_str());
+            if (realTimeRefresh)
+                {
+                const char* realTimeChars = realTimeRefresh->ToElement()->Attribute(XML_VALUE.mb_str());
+                if (realTimeChars)
+                    {
+                    const wxString realTimeStr =
+                        Wisteria::TextStream::CharStreamToUnicode(realTimeChars, std::strlen(realTimeChars));
+                    const wchar_t* convertedStr =
+                        filter_html(realTimeStr, realTimeStr.length(), true, false);
+                    if (convertedStr)
+                        { UseRealTimeUpdate(convertedStr); }
                     }
                 }
             auto appendedDocPath =
@@ -3671,7 +3687,11 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto docStatus = doc.NewElement(XML_STATUS.mb_str());
     docStatus->SetAttribute(XML_VALUE.mb_str(),
         wxString(encode({ GetStatus().wc_str() }, false).c_str()).mb_str());
-    projectSettings->InsertEndChild(docStatus);
+
+    auto realTimeRefresh = doc.NewElement(XML_REALTIME_UPDATE.mb_str());
+    realTimeRefresh->SetAttribute(XML_VALUE.mb_str(),
+        bool_to_int(IsRealTimeUpdating()));
+    projectSettings->InsertEndChild(realTimeRefresh);
 
     // appended file
     auto appendedDocPath = doc.NewElement(XML_APPENDED_DOC_PATH.mb_str());

@@ -7546,7 +7546,7 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
                     {
                     // if word list is in the same folder as the project, then just show the file name
                     wxString customFilePath{ pos->GetIterator()->get_familiar_word_list_file_path().c_str() };
-                    if (GetDocumentStorageMethod() == TextStorage::ExternalDocument)
+                    if (GetDocumentStorageMethod() == TextStorage::LoadFromExternalDocument)
                         {
                         if (wxFileName(customFilePath).GetPath().IsSameAs(
                             wxFileName(GetOriginalDocumentFilePath()).GetPath(), wxFileName::IsCaseSensitive()))

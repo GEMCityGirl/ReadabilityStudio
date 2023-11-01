@@ -121,6 +121,37 @@ wxBEGIN_EVENT_TABLE(ProjectView, BaseProjectView)
 wxEND_EVENT_TABLE()
 
 //------------------------------------------------------
+ProjectView::ProjectView() :
+        m_statsListData(new ListCtrlExDataProvider)
+        {
+        Bind(wxEVT_COMMAND_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this,
+             SIDEBAR_CUSTOM_TESTS_START_ID, SIDEBAR_CUSTOM_TESTS_START_ID + 1000);
+
+        Bind(wxEVT_RIBBONBUTTONBAR_CLICKED,
+            &ProjectView::OnRealTimeUpdate, this,
+            XRCID("ID_REALTIME_UPDATE"));
+        }
+
+//------------------------------------------------------
+void ProjectView::OnRealTimeUpdate([[maybe_unused]] wxRibbonButtonBarEvent& event)
+    {
+    ProjectDoc* projDoc = dynamic_cast<ProjectDoc*>(GetDocument());
+    if (projDoc)
+        {
+        if (projDoc->IsRealTimeUpdating())
+            {
+            projDoc->UseRealTimeUpdate(false);
+            projDoc->StopRealtimeUpdate();
+            }
+        else
+            {
+            projDoc->UseRealTimeUpdate(true);
+            projDoc->RestartRealtimeUpdate();
+            }
+        }
+    }
+
+//------------------------------------------------------
 void ProjectView::OnSummation([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     const ProjectDoc* doc = dynamic_cast<const ProjectDoc*>(GetDocument());
@@ -1323,10 +1354,29 @@ void ProjectView::OnFind(wxFindDialogEvent &event)
     }
 
 //-------------------------------------------------------
+void ProjectView::UpdateRibbonState()
+    {
+    ProjectDoc* projDoc = dynamic_cast<ProjectDoc*>(GetDocument());
+    wxWindow* projectButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_PROJECT_RIBBON_BUTTON_BAR);
+    if (projDoc && projectButtonBarWindow && projectButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+        {
+        auto projBar = dynamic_cast<wxRibbonButtonBar*>(projectButtonBarWindow);
+        assert(projBar);
+        if (projBar)
+            {
+            projBar->ToggleButton(XRCID("ID_REALTIME_UPDATE"),
+                projDoc->IsRealTimeUpdating());
+            }
+        }
+    }
+
+//-------------------------------------------------------
 bool ProjectView::OnCreate(wxDocument* doc, long flags)
     {
     if (!BaseProjectView::OnCreate(doc, flags))
         { return false; }
+
+    UpdateRibbonState();
 
     // Results view
     ExplanationListCtrl* readabilityScoresView = new ExplanationListCtrl(GetSplitter(), READABILITY_SCORES_PAGE_ID,

@@ -6,7 +6,7 @@
 #include "../graphs/frygraph.h"
 #include "../graphs/raygorgraph.h"
 #include "../graphs/schwartzgraph.h"
-#include "../ui/controls/explanationlistctrl.h"
+#include "../ui/controls/explanation_listctrl.h"
 #include "../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
 
 /// Base document layer of a project, storing features common to standard and batch projects.
@@ -41,6 +41,12 @@ public:
     /// @param bundleName The test bundle to apply.
     /// @returns @c true if bundle was successfully applied.
     bool ApplyTestBundle(const wxString& bundleName);
+
+    void UseRealTimeUpdate(const bool realTime)
+        { m_realTimeUpdate = realTime; }
+    [[nodiscard]]
+    bool IsRealTimeUpdating() const noexcept
+        { return m_realTimeUpdate; }
 
     // graph information
     //------------------------------    
@@ -741,6 +747,8 @@ protected:
 
     bool m_FileReadOnly{ false };
     wxFile m_File;
+
+    bool m_realTimeUpdate{ false };
 
     // general graph information (that can apply to both standard and batch projects)
     bool m_useGraphBackGroundImageLinearGradient{ false };

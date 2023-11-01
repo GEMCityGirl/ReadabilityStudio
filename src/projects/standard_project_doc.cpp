@@ -163,6 +163,8 @@ void ProjectDoc::RefreshProject()
     if (IsRefreshRequired() == false)
         { return; }
 
+    StopRealtimeUpdate();
+
     wxBusyCursor bc;
 
     // reload the excluded phrases
@@ -207,7 +209,7 @@ void ProjectDoc::RefreshProject()
     wxWindowUpdateLocker noUpdates(GetDocumentWindow());
 
     // reload the document
-    if (GetDocumentStorageMethod() == TextStorage::NoEmbedText)
+    if (GetDocumentStorageMethod() == TextStorage::LoadFromExternalDocument)
         {
         if (!LoadExternalDocument() )
             {
@@ -215,6 +217,8 @@ void ProjectDoc::RefreshProject()
             ResetRefreshRequired();
             return;
             }
+        UpdateSourceFileModifiedTime();
+        RestartRealtimeUpdate();
         }
     // if embedded, then reload our embedded content
     else
@@ -369,6 +373,7 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                 {
                 if (LoadExternalDocument())
                     {
+                    UpdateSourceFileModifiedTime();
                     LogMessage(
                         _(L"The document's content could not be found in the project file. "
                            "Original document will be reloaded."),
@@ -395,7 +400,10 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
         if (GetTextSource() == TextSource::FromFile)
             {
             if (LoadExternalDocument() )
-                { return true; }
+                {
+                UpdateSourceFileModifiedTime();
+                return true;
+                }
             else
                 {
                 LogMessage(
@@ -885,6 +893,9 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
 
     if (WarningManager::HasWarning(_DT(L"note-project-properties")))
         { view->ShowInfoMessage(*WarningManager::GetWarning(_DT(L"note-project-properties"))); }
+
+    if (GetDocumentStorageMethod() ==TextStorage::LoadFromExternalDocument)
+        { RestartRealtimeUpdate(); }
 
     return true;
     }
@@ -1493,6 +1504,9 @@ bool ProjectDoc::OnNewDocument()
             { LoadDocument(); }
         else if (!LoadExternalDocument() )
             { return false; }
+
+        if (GetDocumentStorageMethod() == TextStorage::LoadFromExternalDocument)
+            { UpdateSourceFileModifiedTime(); }
         SetTitle(ParseTitleFromFileName(GetOriginalDocumentFilePath()));
         SetFilename(ParseTitleFromFileName(GetOriginalDocumentFilePath()), true);
         }
@@ -1698,7 +1712,39 @@ bool ProjectDoc::OnNewDocument()
 
     ShowQueuedMessages();
 
+    if (GetDocumentStorageMethod() ==TextStorage::LoadFromExternalDocument)
+        { RestartRealtimeUpdate(); }
+
     return true;
+    }
+
+//-------------------------------------------------------
+void ProjectDoc::UpdateSourceFileModifiedTime()
+    {
+    FilePathResolver resolvePath;
+    resolvePath.ResolvePath(GetOriginalDocumentFilePath(), false);
+    if ((resolvePath.IsLocalOrNetworkFile() ||
+         resolvePath.IsArchivedFile() ||
+         resolvePath.IsExcelCell()) &&
+        wxFileName::FileExists(resolvePath.GetResolvedPath()))
+        { m_sourceFileLastModified = wxFileName(resolvePath.GetResolvedPath()).GetModificationTime(); }
+    }
+
+//-------------------------------------------------------
+void ProjectDoc::OnRealTimeTimer(wxTimerEvent& event)
+    {
+    if (GetDocumentStorageMethod() == TextStorage::LoadFromExternalDocument)
+        {
+        StopRealtimeUpdate();
+        const auto previousModTime{ m_sourceFileLastModified };
+        UpdateSourceFileModifiedTime();
+        if (previousModTime < m_sourceFileLastModified)
+            {
+            RefreshRequired(RefreshRequirement::FullReindexing);
+            RefreshProject();
+            }
+        RestartRealtimeUpdate();
+        }
     }
 
 //-------------------------------------------------------

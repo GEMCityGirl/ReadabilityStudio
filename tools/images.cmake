@@ -101,6 +101,7 @@ ribbon/print.svg
 ribbon/project-settings.svg
 ribbon/proofreading-delete.svg
 ribbon/raygor-style.svg
+ribbon/realtime.svg
 ribbon/reload.svg
 ribbon/report.svg
 ribbon/right-titles.svg

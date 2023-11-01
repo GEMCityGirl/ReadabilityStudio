@@ -1282,6 +1282,11 @@ public:
     [[nodiscard]]
     wxString GetStatus() const
         { return m_status; }
+    void UseRealTimeUpdate(const bool realTime)
+        { m_realTimeUpdate = realTime; }
+    [[nodiscard]]
+    bool IsRealTimeUpdating() const noexcept
+        { return m_realTimeUpdate; }
     // printer settings
     // page setup
     void SetPaperId(const int Id) noexcept
@@ -1620,6 +1625,7 @@ private:
     wxString m_status;
     wxString m_appendedDocumentFilePath;
     readability::test_language m_language{ readability::test_language::english_test };
+    bool m_realTimeUpdate{ false };
     // printing settings
     // page setup
     int m_paperId{ wxPAPER_LETTER };
@@ -1865,6 +1871,7 @@ public:
     // general project options
     const wxString XML_REVIEWER;
     const wxString XML_STATUS;
+    const wxString XML_REALTIME_UPDATE;
     const wxString XML_APPENDED_DOC_PATH;
     // document linking information
     const wxString XML_DOCUMENT_STORAGE_METHOD;

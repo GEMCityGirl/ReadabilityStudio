@@ -19,7 +19,7 @@
 #include <wx/richmsgdlg.h>
 #include "wx/taskbarbutton.h"
 #include "../results_format/readability_messages.h"
-#include "../ui/controls/explanationlistctrl.h"
+#include "../ui/controls/explanation_listctrl.h"
 #include "../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
 #include "../Wisteria-Dataviz/src/util/formulaformat.h"
 #include "../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
@@ -570,6 +570,11 @@ private:
     void OnDClickRibbonBar([[maybe_unused]] wxRibbonBarEvent& event);
     void OnClickRibbonBar([[maybe_unused]] wxRibbonBarEvent& event);
     void OnCloseInfoBar(wxCommandEvent& event);
+
+    // update toggle states of ribbon buttons after ribbon is created or
+    // project was changed from properties dialog
+    virtual void UpdateRibbonState()
+        {}
 
     wxDocChildFrame* m_frame{ nullptr };
     wxRibbonBar* m_ribbon{ nullptr };

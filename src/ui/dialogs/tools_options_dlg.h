@@ -166,6 +166,7 @@ private:
     static constexpr int ID_THEME_COMBO = wxID_HIGHEST + 79;
     static constexpr int ID_ADDITIONAL_FILE_FIELD = wxID_HIGHEST + 80;
     static constexpr int ID_SENTENCES_MUST_BE_CAP_BUTTON = wxID_HIGHEST + 81;
+    static constexpr int ID_REALTIME_UPDATE_BUTTON = wxID_HIGHEST + 82;
 
     // button events
     void OnExportSettings([[maybe_unused]] wxCommandEvent& event);
@@ -574,6 +575,7 @@ private:
                            const wxString& title, const bool addSidePadding = false) const;
 
     BaseProjectDoc* m_readabilityProjectDoc { nullptr };
+    wxCheckBox* m_realTimeUpdateCheckBox{ nullptr };
     wxCheckBox* m_ignoreCopyrightsCheckBox{ nullptr };
     wxCheckBox* m_ignoreCitationsCheckBox{ nullptr };
     wxCheckBox* m_ignoreFileAddressesCheckBox{ nullptr };
@@ -645,6 +647,7 @@ private:
     BackupVariable<wxString> m_status;
     BackupVariable<wxString> m_description;
     BackupVariable<wxString> m_appendedDocumentFilePath;
+    BackupVariable<bool> m_realTimeUpdate;
 
     // which options are we showing
     ToolSections m_sectionsBeingShown;

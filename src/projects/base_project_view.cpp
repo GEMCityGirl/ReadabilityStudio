@@ -3063,7 +3063,10 @@ void BaseProjectView::OnProjectSettings([[maybe_unused]] wxRibbonButtonBarEvent&
         { return; }
     ToolsOptionsDlg optionsDlg(GetDocFrame(), doc);
     if (optionsDlg.ShowModal() == wxID_OK)
-        { doc->RefreshProject(); }
+        {
+        doc->RefreshProject();
+        UpdateRibbonState();
+        }
     }
 
 //-------------------------------------------------------

@@ -16,12 +16,7 @@ public:
     /// ProjectDoc has friend access to this class.
     friend class ProjectDoc;
     /// @brief Constructor.
-    ProjectView() :
-        m_statsListData(new ListCtrlExDataProvider)
-        {
-        Bind(wxEVT_COMMAND_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this,
-             SIDEBAR_CUSTOM_TESTS_START_ID, SIDEBAR_CUSTOM_TESTS_START_ID+1000);
-        }
+    ProjectView();
     ProjectView(const ProjectView&) = delete;
     ProjectView& operator=(const ProjectView&) = delete;
     /// @brief Destructor.
@@ -132,7 +127,7 @@ public:
 
     void OnAddTest(wxCommandEvent& event);
 private:
-    // menu commands
+    // menu and ribbon commands
     void OnTextWindowColorsChange([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnTextWindowFontChange([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnGradeScale(wxCommandEvent& event);
@@ -143,6 +138,7 @@ private:
     void OnTestDeleteMenu([[maybe_unused]] wxCommandEvent& event);
     void OnAddToDictionary([[maybe_unused]] wxCommandEvent& event);
     void OnLaunchSourceFile([[maybe_unused]] wxRibbonButtonBarEvent& event);
+    void OnRealTimeUpdate([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnEditGraphOptions(wxCommandEvent& event);
     // handles more generic events that may need to be handled by the window itself (e.g., a graph printing)
     void OnMenuCommand(wxCommandEvent& event);
@@ -157,6 +153,7 @@ private:
 
     void UpdateSideBarIcons();
     void UpdateStatistics();
+    void UpdateRibbonState() final;
     // view classes
     WindowContainer m_readabilityResultsView;
     WindowContainer m_summaryView;

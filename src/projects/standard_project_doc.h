@@ -14,13 +14,17 @@
 
 #include "base_project_doc.h"
 #include "../app/readability_app.h"
+#include <wx/timer.h>
 
 /// @brief Standard project document.
 class ProjectDoc final : public BaseProjectDoc
     {
 public:
     /// @brief Constructor.
-    ProjectDoc() = default;
+    ProjectDoc() : m_realTimeTimer(this)
+        {
+        Bind(wxEVT_TIMER, &ProjectDoc::OnRealTimeTimer, this);
+        }
     /// @private
     ProjectDoc(const ProjectDoc&) = delete;
     /// @private
@@ -84,6 +88,14 @@ public:
     [[nodiscard]]
     const ListCtrlExNumericDataProvider* GetPassiveVoiceData() const noexcept
         { return m_passiveVoiceData; }
+
+    void StopRealtimeUpdate()
+        { m_realTimeTimer.Stop(); }
+    void RestartRealtimeUpdate()
+        {
+        if (IsRealTimeUpdating())
+            { m_realTimeTimer.Start(REALTIME_UPDATE_INTERVAL); }
+        }
 private:
     [[nodiscard]]
     ListCtrlExNumericDataProvider* GetOverusedWordsBySentenceData() noexcept
@@ -248,6 +260,9 @@ private:
 
     bool OnCreate(const wxString& path, long flags) final;
 
+    void UpdateSourceFileModifiedTime();
+    void OnRealTimeTimer(wxTimerEvent& event);
+ 
     ListCtrlExNumericDataProvider* m_dupWordData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_misspelledWordData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_incorrectArticleData{ new ListCtrlExNumericDataProvider };
@@ -263,6 +278,10 @@ private:
     FormattedTextCtrl* m_dcTextWindow{ nullptr };
     FormattedTextCtrl* m_spacheTextWindow{ nullptr };
     FormattedTextCtrl* m_hjTextWindow{ nullptr };
+
+    wxDateTime m_sourceFileLastModified;
+    static constexpr int REALTIME_UPDATE_INTERVAL{ 5000 }; // in milliseconds
+    wxTimer m_realTimeTimer;
 
     wxString GetSentenceWordCountsColumnName() const
         { return _DT(L"SENTENCE_WORD_COUNTS"); }
