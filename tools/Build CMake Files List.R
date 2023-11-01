@@ -1,15 +1,15 @@
-library(tidyverse)
-library(magrittr)
-library(stringr)
+if (!require("pacman")) install.packages("pacman")
+library(pacman)
+pacman::p_load(tidyverse, magrittr, stringr, this.path)
 
-srcFolder <- str_glue('{dirname(rstudioapi::getSourceEditorContext()$path)}/../src')
-sourcesFile <- str_glue('{dirname(rstudioapi::getSourceEditorContext()$path)}/files.cmake')
+srcFolder <- str_glue('{this.path::this.dir()}/../src')
+sourcesFile <- str_glue('{this.path::this.dir()}/files.cmake')
 
-imagesFolder <- str_glue('{dirname(rstudioapi::getSourceEditorContext()$path)}/../Resources/Images')
-imagesFile <- str_glue('{dirname(rstudioapi::getSourceEditorContext()$path)}/images.cmake')
+imagesFolder <- str_glue('{this.path::this.dir()}/../Resources/Images')
+imagesFile <- str_glue('{this.path::this.dir()}/images.cmake')
 
-wordsFolder <- str_glue('{dirname(rstudioapi::getSourceEditorContext()$path)}/../Resources/Words')
-wordsFile <- str_glue('{dirname(rstudioapi::getSourceEditorContext()$path)}/words.cmake')
+wordsFolder <- str_glue('{this.path::this.dir()}/../Resources/Words')
+wordsFile <- str_glue('{this.path::this.dir()}/words.cmake')
 
 # Source files for application
 ################################################
