@@ -379,7 +379,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"document-less-than-20-words"),
         _(L"The text that you are analyzing is less than 20 words. "
            "Most test results will not be meaningful with such a small sample."), _(L"Warning"),
-        _(L"Prompt about documents containing less than 20 words."), wxOK|wxICON_EXCLAMATION, false) );
+        _(L"Warn about documents containing less than 20 words."), wxOK|wxICON_EXCLAMATION, false) );
     ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"document-less-than-100-words"),
         _(L"The text that you are analyzing is less than 100 words. "
            "Factors, such as word and syllable counts, will be standardized for some tests."),
