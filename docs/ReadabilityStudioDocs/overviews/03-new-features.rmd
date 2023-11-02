@@ -5,6 +5,7 @@
 
 #### General Enhancements {-}
 
+- Added real-time updating to standard projects. This enables the project to update itself while you edit the original document in another program.
 - Added a [Summary Statistics](#reviewing-batch-summary-stats) list to batch projects.
 - Printer [headers and footers](#printing) are now more customizable.
 - Sidebar improvements:
