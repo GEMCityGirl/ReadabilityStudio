@@ -596,14 +596,14 @@ bool ReadabilityApp::OnInit()
     // do the same for the color schemes (for the graphs)
     m_colorSchemeMap.insert(std::make_pair(_(L"Dusk"), DONTTRANSLATE(L"dusk")));
     m_colorSchemeMap.insert(std::make_pair(_(L"Earth Tones"), DONTTRANSLATE(L"earthtones")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"1920s"), DONTTRANSLATE(L"decade1920s")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"1940s"), DONTTRANSLATE(L"decade1940s")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"1950s"), DONTTRANSLATE(L"decade1950s")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"1960s"), DONTTRANSLATE(L"decade1960s")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"1970s"), DONTTRANSLATE(L"decade1970s")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"1980s"), DONTTRANSLATE(L"decade1980s")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"1990s"), DONTTRANSLATE(L"decade1990s")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"2000s"), DONTTRANSLATE(L"decade2000s")));
+    m_colorSchemeMap.insert(std::make_pair(_DT(L"1920s"), DONTTRANSLATE(L"decade1920s")));
+    m_colorSchemeMap.insert(std::make_pair(_DT(L"1940s"), DONTTRANSLATE(L"decade1940s")));
+    m_colorSchemeMap.insert(std::make_pair(_DT(L"1950s"), DONTTRANSLATE(L"decade1950s")));
+    m_colorSchemeMap.insert(std::make_pair(_DT(L"1960s"), DONTTRANSLATE(L"decade1960s")));
+    m_colorSchemeMap.insert(std::make_pair(_DT(L"1970s"), DONTTRANSLATE(L"decade1970s")));
+    m_colorSchemeMap.insert(std::make_pair(_DT(L"1980s"), DONTTRANSLATE(L"decade1980s")));
+    m_colorSchemeMap.insert(std::make_pair(_DT(L"1990s"), DONTTRANSLATE(L"decade1990s")));
+    m_colorSchemeMap.insert(std::make_pair(_DT(L"2000s"), DONTTRANSLATE(L"decade2000s")));
     m_colorSchemeMap.insert(std::make_pair(_(L"October"), DONTTRANSLATE(L"october")));
     m_colorSchemeMap.insert(std::make_pair(_(L"Slytherin"), DONTTRANSLATE(L"slytherin")));
     m_colorSchemeMap.insert(std::make_pair(_(L"Campfire"), DONTTRANSLATE(L"campfire")));
@@ -1650,6 +1650,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                                                         wxDefaultPosition, wxDefaultSize,
                                                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
         wxRibbonButtonBar* projectButtonBar =
+            new wxRibbonButtonBar(projectPanel, MainFrame::ID_PROJECT_RIBBON_BUTTON_BAR);
         projectButtonBar->AddHybridButton(wxID_NEW, _(L"New"),
             readRibbonButtonSVG(L"ribbon/document.svg"),
             _(L"Create a new project."));
