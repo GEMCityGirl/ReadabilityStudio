@@ -15,6 +15,13 @@
 #include <wx/wx.h>
 #include <wx/dialog.h>
 #include <wx/valgen.h>
+#include <wx/ribbon/bar.h>
+#include <wx/ribbon/buttonbar.h>
+#include <wx/ribbon/gallery.h>
+#include <wx/ribbon/toolbar.h>
+#include <wx/ribbon/art.h>
+#include "../../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
+#include "../../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
 
 class BaseProjectDoc;
 
@@ -31,14 +38,13 @@ public:
         @param size The dialog's size.
         @param style The dialog's style.*/
     explicit EditTextDlg(wxWindow* parent,
-             BaseProjectDoc* parentDoc,
-             wxWindowID id = wxID_ANY,
-             const wxString& caption = _(L"Edit Text"),
-             const wxString& description = wxEmptyString,
-             const wxPoint& pos = wxDefaultPosition,
-             const wxSize& size = wxSize(600, 600),
-             long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER) : m_parentDoc(parentDoc)
-        { Create(parent, id, caption, description, pos, size, style); }
+        BaseProjectDoc* parentDoc,
+        wxWindowID id = wxID_ANY,
+        const wxString& caption = _(L"Edit Text"),
+        const wxString& description = wxString{},
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxSize(600, 600),
+        long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
     /// @private
     EditTextDlg(const EditTextDlg& that) = delete;
     /// @private
@@ -58,8 +64,8 @@ public:
 private:
     /// Creation.
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
-        const wxString& caption = wxEmptyString,
-        const wxString& description = wxEmptyString,
+        const wxString& caption = wxString{},
+        const wxString& description = wxString{},
         const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
         long style = wxDEFAULT_DIALOG_STYLE)
         {
@@ -77,11 +83,22 @@ private:
 
     /// Creates the controls and sizers.
     void CreateControls();
+    void OnEditButtons(wxRibbonButtonBarEvent& event);
+    void OnSaveButton(wxRibbonButtonBarEvent& event);
+    void OnClose(wxCloseEvent& event);
+
+    void Save();
+
+    static constexpr auto ID_DOCUMENT_RIBBON_BUTTON_BAR = wxID_HIGHEST;
+    static constexpr auto ID_CLIPBOARD_RIBBON_BUTTON_BAR = wxID_HIGHEST + 1;
+    static constexpr auto ID_EDIT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 2;
 
     wxString m_value;
     wxString m_description;
 
     BaseProjectDoc* m_parentDoc{ nullptr };
+    FormattedTextCtrl* m_textEntry{ nullptr };
+    wxRibbonBar* m_ribbon{ nullptr };
     };
 
 /** @}*/
