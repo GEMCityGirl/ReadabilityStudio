@@ -154,7 +154,11 @@ void EditTextDlg::OnClose(wxCloseEvent& event)
                 _(L"Save Changes"), wxYES_NO | wxICON_QUESTION) == wxYES)
             { Save(); }
         }
-    event.Skip();
+
+    if (IsModal())
+        { EndModal(wxID_CLOSE); }
+    else
+        { Show(false); }
     }
 
 //------------------------------------------------------
@@ -189,6 +193,7 @@ void EditTextDlg::OnEditButtons(wxRibbonButtonBarEvent& event)
         }
     }
 
+//------------------------------------------------------
 void EditTextDlg::OnTextChanged(wxCommandEvent& event)
     {
     if (m_textEntry)
