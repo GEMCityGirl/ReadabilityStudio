@@ -36,6 +36,7 @@ ribbon/clock.svg
 ribbon/color-wheel.svg
 ribbon/configure.svg
 ribbon/copy.svg
+ribbon/cut.svg
 ribbon/delete-document.svg
 ribbon/delete.svg
 ribbon/difficult.svg
@@ -91,6 +92,7 @@ ribbon/misspellings.svg
 ribbon/number-syllabize.svg
 ribbon/opacity.svg
 ribbon/paragraph.svg
+ribbon/paste.svg
 ribbon/period-needed.svg
 ribbon/person.svg
 ribbon/photos.svg
@@ -102,6 +104,7 @@ ribbon/project-settings.svg
 ribbon/proofreading-delete.svg
 ribbon/raygor-style.svg
 ribbon/realtime.svg
+ribbon/redo.svg
 ribbon/reload.svg
 ribbon/report.svg
 ribbon/right-titles.svg
@@ -122,6 +125,7 @@ ribbon/sum.svg
 ribbon/tests-overview.svg
 ribbon/toggle-sidebar.svg
 ribbon/top-titles.svg
+ribbon/undo.svg
 ribbon/up-arrow.svg
 ribbon/updates.svg
 ribbon/view-spreadsheet-item.svg
