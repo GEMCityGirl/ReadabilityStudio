@@ -3233,7 +3233,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                             }
                         }
 
-                    EditTextDlg dlg(GetDocFrame(), wxID_ANY, _(L"Edit Embedded Document"),
+                    EditTextDlg dlg(GetDocFrame(), doc, wxID_ANY, _(L"Edit Embedded Document"),
                         doc->GetAppendedDocumentText().length() ?
                         _(L"Note: The appended template document is not included here.\n"
                           "Only the embedded text is editable from this dialog."): wxString{});

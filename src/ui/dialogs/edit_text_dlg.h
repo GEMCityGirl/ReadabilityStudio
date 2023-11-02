@@ -16,6 +16,8 @@
 #include <wx/dialog.h>
 #include <wx/valgen.h>
 
+class BaseProjectDoc;
+
 /// @brief Dialog for editing text from a project.
 class EditTextDlg final : public wxDialog
     {
@@ -29,12 +31,13 @@ public:
         @param size The dialog's size.
         @param style The dialog's style.*/
     explicit EditTextDlg(wxWindow* parent,
+             BaseProjectDoc* parentDoc,
              wxWindowID id = wxID_ANY,
              const wxString& caption = _(L"Edit Text"),
              const wxString& description = wxEmptyString,
              const wxPoint& pos = wxDefaultPosition,
              const wxSize& size = wxSize(600, 600),
-             long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER)
+             long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER) : m_parentDoc(parentDoc)
         { Create(parent, id, caption, description, pos, size, style); }
     /// @private
     EditTextDlg(const EditTextDlg& that) = delete;
@@ -77,6 +80,8 @@ private:
 
     wxString m_value;
     wxString m_description;
+
+    BaseProjectDoc* m_parentDoc{ nullptr };
     };
 
 /** @}*/

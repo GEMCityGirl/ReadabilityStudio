@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "edit_text_dlg.h"
+#include "../../projects/base_project_doc.h"
 
 void EditTextDlg::CreateControls()
     {
@@ -15,6 +16,13 @@ void EditTextDlg::CreateControls()
     wxTextCtrl* textEntry = new wxTextCtrl(this, wxID_ANY, wxEmptyString,
                                            wxDefaultPosition, wxDefaultSize,
                                            wxTE_MULTILINE|wxTE_RICH2, wxGenericValidator(&m_value) );
+    textEntry->EnableProofCheck(wxTextProofOptions::Default().
+        Language((m_parentDoc->GetProjectLanguage() == readability::test_language::spanish_test) ?
+                _DT("es") :
+                (m_parentDoc->GetProjectLanguage() == readability::test_language::german_test) ?
+                _DT("de") :
+                _DT("en")).
+            SpellCheck(true).GrammarCheck(true));
     mainSizer->Add(textEntry, 1, wxEXPAND);
 
     if (m_description.length())
