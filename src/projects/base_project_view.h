@@ -567,12 +567,12 @@ private:
     wxMenu m_graphFontsMenu;
     wxMenu m_graphBackgroundMenu;
     wxMenu m_raygorStyleMenu;
-    
+
     wxMenu m_graphSortMenu;
     wxMenu m_wordListMenu;
     wxMenu m_blankGraphMenu;
     wxMenu m_fileOpenMenu;
-    
+
     wxMenu m_printMenu;
     wxMenu m_exampleMenu;
     wxMenu m_primaryAgeTestsMenu;

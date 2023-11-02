@@ -262,7 +262,7 @@ private:
 
     void UpdateSourceFileModifiedTime();
     void OnRealTimeTimer(wxTimerEvent& event);
- 
+
     ListCtrlExNumericDataProvider* m_dupWordData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_misspelledWordData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_incorrectArticleData{ new ListCtrlExNumericDataProvider };

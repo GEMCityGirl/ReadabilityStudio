@@ -1649,7 +1649,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         wxRibbonPanel* projectPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Project"), wxNullBitmap,
                                                         wxDefaultPosition, wxDefaultSize,
                                                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-        wxRibbonButtonBar* projectButtonBar = new wxRibbonButtonBar(projectPanel, MainFrame::ID_PROJECT_RIBBON_BUTTON_BAR);
+        wxRibbonButtonBar* projectButtonBar =
         projectButtonBar->AddHybridButton(wxID_NEW, _(L"New"),
             readRibbonButtonSVG(L"ribbon/document.svg"),
             _(L"Create a new project."));

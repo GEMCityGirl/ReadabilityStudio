@@ -2177,7 +2177,7 @@ namespace LuaScripting
         ReloadIfNotDelayedSimple();
         return 0;
         }
-    
+
     //-------------------------------------------------------------
     int BatchProject::SetGraphCommonImage(lua_State *L)
         {

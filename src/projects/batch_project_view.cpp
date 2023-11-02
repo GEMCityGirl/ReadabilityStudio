@@ -922,7 +922,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         editButtonBar->ToggleButton(
                             XRCID("ID_DROP_SHADOW"),
                             dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
-                        
+
                         if (typeid(*graph) == typeid(FleschChart))
                             {
                             exportMenuItem->SetBitmap(

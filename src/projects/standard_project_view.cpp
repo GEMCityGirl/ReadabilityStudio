@@ -2486,7 +2486,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             editButtonRibbonBar->AddButton(XRCID("ID_EDIT_GRAPH_COLOR_SCHEME"), _(L"Colors"),
                                 readRibbonButtonSVG(L"ribbon/color-wheel.svg"),
                                 _(L"Select the color scheme for the pie chart."));
-                            editButtonRibbonBar->AddToggleButton(XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"), _(L"Showcase Complexity"),
+                            editButtonRibbonBar->AddToggleButton(
+                                XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"), _(L"Showcase Complexity"),
                                 readRibbonButtonSVG(L"ribbon/showcase.svg"),
                                 _(L"Toggle whether complex word slices are being showcased."));
                             editButtonRibbonBar->ToggleButton(XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"),
@@ -2497,7 +2498,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                                 GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
                             typeid(Wisteria::Graphs::Histogram))
                             {
-                            editButtonRibbonBar->AddToggleButton(XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"), _(L"Showcase Complexity"),
+                            editButtonRibbonBar->AddToggleButton(
+                                XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"), _(L"Showcase Complexity"),
                                 readRibbonButtonSVG(L"ribbon/showcase.svg"),
                                 _(L"Toggle whether complex word bars are being showcased."));
                             editButtonRibbonBar->ToggleButton(XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"),

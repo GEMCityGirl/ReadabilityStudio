@@ -624,7 +624,7 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
         lily_of_the_valley::text_matrix<std::wstring> importer(&apiStrings);
         importer.add_row_definition(lily_of_the_valley::text_row<std::wstring>(1)); // skip warning in first line
         importer.add_row_definition(row);
- 
+
         lily_of_the_valley::text_preview preview;
 
         // library/enum file

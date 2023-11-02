@@ -2057,7 +2057,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             if (graphDefaultsNode)
                 {
                 // graph backgrounds
-                auto imagePathNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH.mb_str());
+                auto imagePathNode = graphDefaultsNode->FirstChildElement(
+                                                        XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH.mb_str());
                 if (imagePathNode)
                     {
                     const char* imagePath = imagePathNode->ToElement()->Attribute(XML_VALUE.mb_str());
@@ -2233,7 +2234,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             XML_VALUE.mb_str(), bool_to_int(IsDisplayingDropShadows()))));
                     }
                 // whether to draw attention to the complex word groups in syllable graphs
-                auto showcaseComplexWordsNode = graphDefaultsNode->FirstChildElement(XML_SHOWCASE_COMPLEX_WORDS.mb_str());
+                auto showcaseComplexWordsNode =
+                    graphDefaultsNode->FirstChildElement(XML_SHOWCASE_COMPLEX_WORDS.mb_str());
                 if (showcaseComplexWordsNode)
                     {
                     ShowcaseComplexWords(
@@ -4117,7 +4119,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto backgroundImageEffect = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT.mb_str());
     backgroundImageEffect->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetPlotBackGroundImageEffect()));
     graphDefaultsSection->InsertEndChild(backgroundImageEffect);
-    
+
     auto backgroundImageFit = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT.mb_str());
     backgroundImageFit->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetPlotBackGroundImageFit()));
     graphDefaultsSection->InsertEndChild(backgroundImageFit);

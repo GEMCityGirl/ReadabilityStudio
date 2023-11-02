@@ -3049,7 +3049,7 @@ void ToolsOptionsDlg::CreateControls()
                     TextStorage::NoEmbedText);
                 panelSizer->Add(m_realTimeUpdateCheckBox, 0, wxLEFT, OPTION_INDENT_SIZE);
                 }
-            
+
             panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             }
 
@@ -3239,7 +3239,8 @@ void ToolsOptionsDlg::CreateControls()
         optionsIndentSizer->Add(m_ignoreIndentingCheckBox, 0, wxEXPAND|wxBOTTOM, wxSizerFlags::GetDefaultBorder());
 
         wxCheckBox* sentenceStartMustBeUppercasedCheckBox =
-            new wxCheckBox(AnalysisIndexingPage, ID_SENTENCES_MUST_BE_CAP_BUTTON, _(L"Sentences must begin with capitalized words"),
+            new wxCheckBox(AnalysisIndexingPage, ID_SENTENCES_MUST_BE_CAP_BUTTON,
+                           _(L"Sentences must begin with capitalized words"),
                            wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_sentenceStartMustBeUppercased) );
         optionsIndentSizer->Add(sentenceStartMustBeUppercasedCheckBox, 0, wxEXPAND, wxSizerFlags::GetDefaultBorder());
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
@@ -4914,7 +4915,8 @@ void ToolsOptionsDlg::CreateGraphSection()
                     wxGetApp().GetAppOptions().IsShowcasingComplexWords())));
             showcaseOption->SetAttribute(wxPG_BOOL_USE_CHECKBOX, true);
             showcaseOption->SetHelpString(
-                _(L"Check this to draw attention to the complex (i.e., 3+ syllable) word groups on syllable histograms and pie charts (standard projects)."));
+                _(L"Check this to draw attention to the complex (i.e., 3+ syllable) word groups "
+                   "on syllable histograms and pie charts (standard projects)."));
 
             pgMan->SelectProperty(GetGraphBackgroundLabel());
 

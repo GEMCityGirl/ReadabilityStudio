@@ -1432,7 +1432,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         DisplayDropShadows(XmlFormat::GetBoolean(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_DISPLAY_DROP_SHADOW,
             wxGetApp().GetAppOptions().IsDisplayingDropShadows()));
-        
+
         ShowcaseComplexWords(XmlFormat::GetBoolean(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_SHOWCASE_COMPLEX_WORDS,
             wxGetApp().GetAppOptions().IsShowcasingComplexWords()));
