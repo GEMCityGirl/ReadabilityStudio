@@ -15,6 +15,7 @@
   This will allow for changing the user agent when reading single web pages, as well as when harvesting pages.
 - The **Readability Graphs** page on the **Options** dialog has been moved to be under the **Graphs** section.
 - **Ignore social media hashtags** feature of spell checker now recognizes handles, such as *\@AskLibreOffice*.
+- Added margins to all text windows.
 
 #### Graph Enhancements {-}
 
