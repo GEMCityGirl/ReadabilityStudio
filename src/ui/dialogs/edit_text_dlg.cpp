@@ -71,7 +71,7 @@ void EditTextDlg::CreateControls()
             }
         // clipboard
             {
-            wxRibbonPanel* clipboardPage = new wxRibbonPanel(homePage, ID_CLIPBOARD_RIBBON_BUTTON_BAR, _(L"Clipboard"),
+            wxRibbonPanel* clipboardPage = new wxRibbonPanel(homePage, wxID_ANY, _(L"Clipboard"),
                 wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
             wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(clipboardPage, ID_CLIPBOARD_RIBBON_BUTTON_BAR);
             buttonBar->AddButton(wxID_PASTE, _(L"Paste"),
@@ -191,40 +191,23 @@ void EditTextDlg::OnEditButtons(wxRibbonButtonBarEvent& event)
 
 void EditTextDlg::OnTextChanged(wxCommandEvent& event)
     {
-    EnableSaveButton(m_textEntry ? m_textEntry->IsModified() : true);
-    }
+    if (m_textEntry)
+        {
+        EnableSaveButton(m_textEntry->IsModified());
 
-//------------------------------------------------------
-//void EditTextDlg::OnTextChanged(wxCommandEvent& event)
-//    {
-//    if (m_textEntry)
-//        {
-//        wxWindow* clipboardButtonBarWindow = m_ribbon->FindWindow(EditTextDlg::ID_CLIPBOARD_RIBBON_BUTTON_BAR);
-//        if (clipboardButtonBarWindow && clipboardButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
-//            {
-//            auto clipboardButtonBar = dynamic_cast<wxRibbonButtonBar*>(clipboardButtonBarWindow);
-//            assert(clipboardButtonBar && L"Error casting ribbon bar!");
-//            if (clipboardButtonBar)
-//                {
-//                clipboardButtonBar->ToggleButton(wxID_COPY, m_textEntry->CanCopy());
-//                clipboardButtonBar->ToggleButton(wxID_CUT, m_textEntry->CanCut());
-//                clipboardButtonBar->ToggleButton(wxID_PASTE, m_textEntry->CanPaste());
-//                }
-//            }
-//        wxWindow* editButtonBarWindow = m_ribbon->FindWindow(EditTextDlg::ID_EDIT_RIBBON_BUTTON_BAR);
-//        if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
-//            {
-//            auto editButtonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-//            assert(editButtonBar && L"Error casting ribbon bar!");
-//            if (editButtonBar)
-//                {
-//                editButtonBar->ToggleButton(wxID_UNDO, m_textEntry->CanUndo());
-//                editButtonBar->ToggleButton(wxID_REDO, m_textEntry->CanRedo());
-//                }
-//            }
-//        
-//        }
-//    }
+        wxWindow* editButtonBarWindow = m_ribbon->FindWindow(EditTextDlg::ID_EDIT_RIBBON_BUTTON_BAR);
+        if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+            {
+            auto editButtonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
+            assert(editButtonBar && L"Error casting ribbon bar!");
+            if (editButtonBar)
+                {
+                editButtonBar->EnableButton(wxID_UNDO, m_textEntry->CanUndo());
+                editButtonBar->EnableButton(wxID_REDO, m_textEntry->CanRedo());
+                }
+            }
+        }
+    }
 
 //------------------------------------------------------
 void EditTextDlg::Save()
