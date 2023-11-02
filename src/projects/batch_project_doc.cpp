@@ -257,6 +257,7 @@ bool BatchProjectDoc::OnNewDocument()
 
     BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     view->UpdateSideBarIcons();
+    view->UpdateRibbonState();
     view->Present();
     UpdateAllViews();
 
@@ -434,6 +435,7 @@ void BatchProjectDoc::RefreshStatisticsReports()
     DisplaySummaryStats();
 
     view->UpdateSideBarIcons();
+    view->UpdateRibbonState();
     view->Present();
     UpdateAllViews();
 
@@ -571,6 +573,7 @@ void BatchProjectDoc::RefreshProject()
 
     const auto selectedItem = view->GetSideBar()->GetSelectedSubItemId();
     view->UpdateSideBarIcons();
+    view->UpdateRibbonState();
     view->Present();
     UpdateAllViews();
 
@@ -5460,6 +5463,7 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
 
     BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     view->UpdateSideBarIcons();
+    view->UpdateRibbonState();
     view->Present();
     UpdateAllViews();
 

@@ -1366,6 +1366,8 @@ void ProjectView::UpdateRibbonState()
             {
             projBar->ToggleButton(XRCID("ID_REALTIME_UPDATE"),
                 projDoc->IsRealTimeUpdating());
+            projBar->EnableButton(XRCID("ID_REALTIME_UPDATE"),
+                projDoc->GetDocumentStorageMethod() == TextStorage::LoadFromExternalDocument);
             }
         }
     }
@@ -1375,8 +1377,6 @@ bool ProjectView::OnCreate(wxDocument* doc, long flags)
     {
     if (!BaseProjectView::OnCreate(doc, flags))
         { return false; }
-
-    UpdateRibbonState();
 
     // Results view
     ExplanationListCtrl* readabilityScoresView = new ExplanationListCtrl(GetSplitter(), READABILITY_SCORES_PAGE_ID,

@@ -72,42 +72,24 @@ public:
     /// Also autofits the sidebar and makes the project the active document/window.
     void Present();
 
+    // update toggle states of ribbon buttons after ribbon is created or
+    // project was changed from properties dialog
+    virtual void UpdateRibbonState()
+        {}
+
     void ShowInfoMessage(const WarningMessage& message);
 
     bool OnCreate(wxDocument* doc, [[maybe_unused]] long flags) override;
     void OnCustomTest(wxCommandEvent& event);
 
-    wxMenu m_numeralSyllabicationMenu;
-    wxMenu m_longSentencesMenu;
-    wxMenu m_textExclusionMenu;
-    wxMenu m_exclusionTagsMenu;
-    wxMenu m_lineEndsMenu;
-    wxMenu m_histobarLabelsMenu;
-    wxMenu m_zoomMenu;
-    wxMenu m_barOrientationMenu;
-    wxMenu m_barStyleMenu;
-    wxMenu m_histoBarStyleMenu;
-    wxMenu m_boxStyleMenu;
-    wxMenu m_graphFontsMenu;
-    wxMenu m_graphBackgroundMenu;
-    wxMenu m_raygorStyleMenu;
-    wxMenu m_gradeScaleMenu;
-    wxMenu m_graphSortMenu;
-    wxMenu m_wordListMenu;
-    wxMenu m_blankGraphMenu;
-    wxMenu m_fileOpenMenu;
     wxMenu m_exportMenu;
     wxMenu m_copyMenu;
-    wxMenu m_printMenu;
-    wxMenu m_exampleMenu;
-    wxMenu m_primaryAgeTestsMenu;
-    wxMenu m_secondaryAgeTestsMenu;
-    wxMenu m_adultTestsMenu;
-    wxMenu m_secondLanguageTestsMenu;
+    wxMenu m_gradeScaleMenu;
     wxMenu m_customTestsMenu;
-    wxMenu* m_customTestsRegularMenu{ nullptr };
     wxMenu m_testsBundleMenu;
     wxMenu* m_testsBundleRegularMenu{ nullptr };
+    wxMenu* m_customTestsRegularMenu{ nullptr };
+
     [[nodiscard]]
     wxDocChildFrame* CreateChildFrame(wxDocument* doc, wxView* view);
     [[nodiscard]]
@@ -571,10 +553,32 @@ private:
     void OnClickRibbonBar([[maybe_unused]] wxRibbonBarEvent& event);
     void OnCloseInfoBar(wxCommandEvent& event);
 
-    // update toggle states of ribbon buttons after ribbon is created or
-    // project was changed from properties dialog
-    virtual void UpdateRibbonState()
-        {}
+    wxMenu m_numeralSyllabicationMenu;
+    wxMenu m_longSentencesMenu;
+    wxMenu m_textExclusionMenu;
+    wxMenu m_exclusionTagsMenu;
+    wxMenu m_lineEndsMenu;
+    wxMenu m_histobarLabelsMenu;
+    wxMenu m_zoomMenu;
+    wxMenu m_barOrientationMenu;
+    wxMenu m_barStyleMenu;
+    wxMenu m_histoBarStyleMenu;
+    wxMenu m_boxStyleMenu;
+    wxMenu m_graphFontsMenu;
+    wxMenu m_graphBackgroundMenu;
+    wxMenu m_raygorStyleMenu;
+    
+    wxMenu m_graphSortMenu;
+    wxMenu m_wordListMenu;
+    wxMenu m_blankGraphMenu;
+    wxMenu m_fileOpenMenu;
+    
+    wxMenu m_printMenu;
+    wxMenu m_exampleMenu;
+    wxMenu m_primaryAgeTestsMenu;
+    wxMenu m_secondaryAgeTestsMenu;
+    wxMenu m_adultTestsMenu;
+    wxMenu m_secondLanguageTestsMenu;
 
     wxDocChildFrame* m_frame{ nullptr };
     wxRibbonBar* m_ribbon{ nullptr };

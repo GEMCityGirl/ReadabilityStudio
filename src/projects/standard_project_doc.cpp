@@ -118,6 +118,7 @@ void ProjectDoc::RefreshStatisticsReports()
     DisplayStatistics();
 
     view->UpdateSideBarIcons();
+    view->UpdateRibbonState();
     view->Present();
     UpdateAllViews();
 
@@ -194,6 +195,7 @@ void ProjectDoc::RefreshProject()
             { UpdateHighlightedTextWindows(); }
 
         view->UpdateSideBarIcons();
+        view->UpdateRibbonState();
         view->Present();
         UpdateAllViews();
 
@@ -294,6 +296,7 @@ void ProjectDoc::RefreshProject()
     Modify(true);
 
     view->UpdateSideBarIcons();
+    view->UpdateRibbonState();
     view->Present();
     UpdateAllViews();
 
@@ -883,6 +886,7 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
 
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
     view->UpdateSideBarIcons();
+    view->UpdateRibbonState();
     view->Present();
     UpdateAllViews();
 
@@ -1615,6 +1619,7 @@ bool ProjectDoc::OnNewDocument()
 
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
     view->UpdateSideBarIcons();
+    view->UpdateRibbonState();
     view->Present();
     UpdateAllViews();
 
