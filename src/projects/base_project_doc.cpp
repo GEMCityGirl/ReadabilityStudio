@@ -127,7 +127,7 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
     // load the excluded phrases.
     LoadExcludePhrases();
 
-    // not really transferred from batch to standard, but include for completness
+    // not really transferred from batch to standard, but include for completeness
     m_realTimeUpdate = that.m_realTimeUpdate;
     // graph settings
     m_useGraphBackGroundImageLinearGradient = that.m_useGraphBackGroundImageLinearGradient;
