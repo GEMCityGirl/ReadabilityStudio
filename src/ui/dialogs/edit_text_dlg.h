@@ -85,9 +85,12 @@ private:
     void CreateControls();
     void OnEditButtons(wxRibbonButtonBarEvent& event);
     void OnSaveButton(wxRibbonButtonBarEvent& event);
+    void OnTextChanged(wxCommandEvent& event);
     void OnClose(wxCloseEvent& event);
 
     void Save();
+
+    void EnableSaveButton(const bool enable = true);
 
     static constexpr auto ID_DOCUMENT_RIBBON_BUTTON_BAR = wxID_HIGHEST;
     static constexpr auto ID_CLIPBOARD_RIBBON_BUTTON_BAR = wxID_HIGHEST + 1;

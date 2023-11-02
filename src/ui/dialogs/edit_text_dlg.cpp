@@ -30,6 +30,7 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
     Centre(wxCENTER_ON_SCREEN);
 
     Bind(wxEVT_CLOSE_WINDOW, &EditTextDlg::OnClose, this);
+    Bind(wxEVT_TEXT, &EditTextDlg::OnTextChanged, this);
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnSaveButton, this, wxID_SAVE);
 
@@ -165,6 +166,7 @@ void EditTextDlg::OnSaveButton(wxRibbonButtonBarEvent& event)
     // it won't need to ask about wanting to save
     if (m_textEntry)
         { m_textEntry->DiscardEdits(); }
+    EnableSaveButton(false);
     }
 
 //------------------------------------------------------
@@ -187,6 +189,11 @@ void EditTextDlg::OnEditButtons(wxRibbonButtonBarEvent& event)
         }
     }
 
+void EditTextDlg::OnTextChanged(wxCommandEvent& event)
+    {
+    EnableSaveButton(true);
+    }
+
 //------------------------------------------------------
 void EditTextDlg::Save()
     {
@@ -205,5 +212,18 @@ void EditTextDlg::Save()
             projectDoc->RefreshProject();
             projectDoc->Save();
             }
+        }
+    }
+
+//------------------------------------------------------
+void EditTextDlg::EnableSaveButton(const bool enable /*= true*/)
+    {
+    wxWindow* saveButtonBarWindow = m_ribbon->FindWindow(EditTextDlg::ID_DOCUMENT_RIBBON_BUTTON_BAR);
+    if (saveButtonBarWindow && saveButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+        {
+        auto saveButtonBar = dynamic_cast<wxRibbonButtonBar*>(saveButtonBarWindow);
+        assert(saveButtonBar && L"Error casting ribbon bar!");
+        if (saveButtonBar)
+            { saveButtonBar->EnableButton(wxID_SAVE, enable); }
         }
     }
