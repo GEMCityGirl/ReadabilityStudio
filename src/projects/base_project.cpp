@@ -4165,7 +4165,7 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
         }
 
     /** See if there is an inordinate amount of titles/headers/bullets, and if they
-        are asking to these then make sure they understand that a large part of the
+        are asking to exclude these then make sure they understand that a large part of the
         document will be ignored.
         Note that we don't bother with this check with webpages because they normally
         contain lists for things like menus that we would indeed want to ignore.*/
@@ -4190,7 +4190,8 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
                 {
                 if (WarningManager::HasWarning(_DT(L"high-count-sentences-being-ignored")))
                     {
-                    auto warningMsg = *WarningManager::GetWarning(_DT(L"high-count-sentences-being-ignored"));
+                    WarningMessage warningMsg =
+                        *WarningManager::GetWarning(_DT(L"high-count-sentences-being-ignored"));
                     warningMsg.SetMessage(
                         _(L"This document contains a large percentage of incomplete sentences "
                            "that you have requested to ignore."));
@@ -4248,7 +4249,7 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
         {
         if (WarningManager::HasWarning(_DT(L"sentences-split-by-paragraph-breaks")))
             {
-            auto warningMsg = *WarningManager::GetWarning(_DT(L"sentences-split-by-paragraph-breaks"));
+            WarningMessage warningMsg = *WarningManager::GetWarning(_DT(L"sentences-split-by-paragraph-breaks"));
             warningMsg.SetMessage(wxString::Format(
                 _(L"This document contains at least %zu sentences that appear to be split by paragraph breaks. "
                   "This may lead to incorrect results.\n"
@@ -4273,7 +4274,7 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
         {
         if (WarningManager::HasWarning(_DT(L"incomplete-sentences-valid-from-length")))
             {
-            auto warningMsg = *WarningManager::GetWarning(_DT(L"incomplete-sentences-valid-from-length"));
+            WarningMessage warningMsg = *WarningManager::GetWarning(_DT(L"incomplete-sentences-valid-from-length"));
             warningMsg.SetMessage(wxString::Format(
                 _(L"This document contains %zu incomplete sentences longer than %zu words which will be "
                    "included in the analysis.\n\nTo change this, increase the "
