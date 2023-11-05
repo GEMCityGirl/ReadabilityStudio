@@ -472,11 +472,11 @@ namespace Wisteria::Graphs
         CalculateScorePositions(dc);
 
         // Add the grade labels to the regions
-        // (and highlight in red the one where the score lies)
+        // (and highlight in heavy bold and a differenct color the one where the score lies)
         const wxFont labelFont = (GetRaygorStyle() == RaygorStyle::Modern) ?
             wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).
                 GetPointSize() * 1.25f, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC,
-                wxFONTWEIGHT_BOLD, false, GetFancyFontFaceName()) :
+                wxFONTWEIGHT_NORMAL, false, GetFancyFontFaceName()) :
             wxFont(wxFontInfo().Family(wxFONTFAMILY_SWISS)).MakeLarger();
         for (const auto& level : GetLevelLabels())
             {
@@ -494,10 +494,12 @@ namespace Wisteria::Graphs
                         labelFont).
                 AnchorPoint(pt));
             levelLabel->SetTextAlignment(TextAlignment::Centered);
-            levelLabel->SetFontColor(
-                (GetScores().size() == 1 &&
-                 level == GetScores().front().GetScore()) ?
-                *wxRED : *wxBLACK);
+            if (GetScores().size() == 1 &&
+                level == GetScores().front().GetScore())
+                {
+                levelLabel->GetFont().SetWeight(wxFontWeight::wxFONTWEIGHT_EXTRAHEAVY);
+                levelLabel->SetFontColor(GetColorScheme()->GetColor(0));
+                }
             AddObject(levelLabel);
             }
         }

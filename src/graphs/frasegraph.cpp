@@ -206,10 +206,11 @@ namespace Wisteria::Graphs
         CalculateScorePositions(dc);
 
         // draw the quadrant labels
+        // (and highlight in heavy bold and a differenct color the one where the score lies)
         wxPoint pt1;
         const wxFont quadLabelFont(
             wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize()*1.25f,
-                wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD,
+                wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL,
                 false, L"Times New Roman"));
         for (const auto& level : GetLevelLabels())
             {
@@ -219,10 +220,12 @@ namespace Wisteria::Graphs
                 Scaling(GetScaling()).
                 Pen(wxNullPen).Font(quadLabelFont).AnchorPoint(pt1));
             levelLabel->SetTextAlignment(TextAlignment::Centered);
-            levelLabel->SetFontColor(
-                (GetScores().size() == 1 &&
-                 level == GetScores().front().GetScore()) ?
-                *wxRED : *wxBLACK);
+            if (GetScores().size() == 1 &&
+                level == GetScores().front().GetScore())
+                {
+                levelLabel->GetFont().SetWeight(wxFontWeight::wxFONTWEIGHT_EXTRAHEAVY);
+                levelLabel->SetFontColor(GetColorScheme()->GetColor(0));
+                }
             AddObject(levelLabel);
             }
         }
