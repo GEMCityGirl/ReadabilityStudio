@@ -5,6 +5,7 @@
 #include <map>
 #include <wx/utils.h> 
 #include "../results_format/readability_messages.h"
+#include "../ui/dialogs/edit_text_dlg.h"
 #include "../graphs/frygraph.h"
 #include "../Wisteria-Dataviz/src/math/statistics.h"
 #include "base_project_view.h"
@@ -163,6 +164,8 @@ private:
     WindowContainer m_grammarView;
 
     ListCtrlExDataProvider* m_statsListData{ nullptr };
+
+    EditTextDlg* m_embeddedTextEditor{ nullptr };
 
     wxDECLARE_DYNAMIC_CLASS(ProjectView);
     wxDECLARE_EVENT_TABLE();

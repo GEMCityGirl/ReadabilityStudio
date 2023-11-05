@@ -5,7 +5,6 @@
 #include "../ui/dialogs/tools_options_dlg.h"
 #include "../ui/dialogs/filtered_text_preview_dlg.h"
 #include "../ui/dialogs/filtered_text_export_options_dlg.h"
-#include "../ui/dialogs/edit_text_dlg.h"
 #include "../results_format/project_report_format.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/gridexportdlg.h"
@@ -749,18 +748,16 @@ void ProjectView::OnLaunchSourceFile([[maybe_unused]] wxRibbonButtonBarEvent& ev
                     return;
                     }
                 }
-            EditTextDlg dlg(GetDocFrame(), doc, wxID_ANY, _(L"Edit Embedded Document"),
-                doc->GetAppendedDocumentText().length() ?
-                _(L"Note: The appended template document is not included here.\n"
-                   "Only the embedded text is editable from this dialog."): wxString{});
-            dlg.SetValue(doc->GetDocumentText());
-            if (dlg.ShowModal() == wxID_OK)
+            if (m_embeddedTextEditor == nullptr)
                 {
-                doc->SetDocumentText(dlg.GetValue());
-                doc->Modify(true);
-                doc->RefreshRequired(ProjectRefresh::FullReindexing);
-                doc->RefreshProject();
+                m_embeddedTextEditor = new EditTextDlg(GetDocFrame(), doc, wxID_ANY, _(L"Edit Embedded Document"),
+                    doc->GetAppendedDocumentText().length() ?
+                    _(L"Note: The appended template document is not included here.\n"
+                        "Only the embedded text is editable from this dialog.") : wxString{});
                 }
+            
+            m_embeddedTextEditor->SetValue(doc->GetDocumentText());
+            m_embeddedTextEditor->Show();
             }
         else
             {

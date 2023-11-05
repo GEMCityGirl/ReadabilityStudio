@@ -87,6 +87,7 @@ void EditTextDlg::CreateControls()
                             wxRIBBON_BAR_FLOW_HORIZONTAL);
         wxRibbonPage* homePage = new wxRibbonPage(m_ribbon, wxID_ANY, wxString{});
         // export
+        if (m_parentDoc && m_parentDoc->IsKindOf(CLASSINFO(ProjectDoc)))
             {
             wxRibbonPanel* exportPage =
                 new wxRibbonPanel(homePage, wxID_ANY, _DT(L" "),
@@ -300,11 +301,25 @@ void EditTextDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent & event)
 //------------------------------------------------------
 void EditTextDlg::OnClose(wxCloseEvent& event)
     {
-    if (m_textEntry && m_textEntry->IsModified())
+    if (m_textEntry && m_textEntry->IsModified() )
         {
-        if (wxMessageBox(_(L"Do you wish to save your unsaved changes?"),
-                _(L"Save Changes"), wxYES_NO | wxICON_QUESTION) == wxYES)
-            { Save(); }
+        if (m_parentDoc && m_parentDoc->IsKindOf(CLASSINFO(ProjectDoc)) )
+            {
+            if (wxMessageBox(_(L"Do you wish to save your unsaved changes?"),
+                    _(L"Save Changes"), wxYES_NO | wxICON_QUESTION) == wxYES)
+                { Save(); }
+            }
+        else if (m_parentDoc && m_parentDoc->IsKindOf(CLASSINFO(BatchProjectDoc)))
+            {
+            assert(IsModal() && L"Text editor should be modal when called from a batch project!");
+            if (wxMessageBox(_(L"Do you wish to save your unsaved changes?"),
+                    _(L"Save Changes"), wxYES_NO | wxICON_QUESTION) == wxYES)
+                {
+                TransferDataFromWindow();
+                EndModal(wxID_OK);
+                return;
+                }
+            }
         }
 
     if (IsModal())
@@ -372,6 +387,9 @@ void EditTextDlg::Save()
     if (!TransferDataFromWindow())
         { return; }
 
+    // Only link the editor directly to a standard project.
+    // Subprojects within batches will only get updated when this dialog
+    // (which will be modal for batch projects) closes.
     if (m_parentDoc && m_parentDoc->IsKindOf(CLASSINFO(ProjectDoc)))
         {
         auto projectDoc = dynamic_cast<ProjectDoc*>(m_parentDoc);
