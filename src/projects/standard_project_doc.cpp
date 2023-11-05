@@ -1770,240 +1770,263 @@ void ProjectDoc::DisplayWordsBreakdown()
             view->GetWordsBreakdownView().FindWindowPositionById(lastGraphWindow->GetId());
         }
 
-    // complex words (3+ syllable)
-    ListCtrlEx* listView =
-        dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
-            BaseProjectView::HARD_WORDS_LIST_PAGE_ID));
-    // data will be null if call to LoadHardWords() failed
-    // (will happen if document was missing or other project failure).
-    if (GetWordsBreakdownInfo().Is3PlusSyllablesEnabled() &&
-        GetTotalUnique3PlusSyllableWords() > 0 && Get3SyllablePlusData())
+    const auto resetListView = [this](ListCtrlEx* listView)
         {
-        if (listView)
+        if (listView != nullptr &&
+            listView->GetVirtualDataProvider() != nullptr &&
+            listView->GetVirtualDataProvider()->GetItemCount() == 0)
+            { listView->SetItemCount(0); }
+        };
+
+    // complex words (3+ syllable)
+        {
+        ListCtrlEx* listView =
+            dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+                BaseProjectView::HARD_WORDS_LIST_PAGE_ID));
+        // data will be null if call to LoadHardWords() failed
+        // (will happen if document was missing or other project failure).
+        if (GetWordsBreakdownInfo().Is3PlusSyllablesEnabled() &&
+            GetTotalUnique3PlusSyllableWords() > 0 && Get3SyllablePlusData())
             {
-            listView->SetVirtualDataSize(GetTotalUnique3PlusSyllableWords());
-            listView->Resort();
-            listView->DistributeColumns();
+            if (listView)
+                {
+                listView->SetVirtualDataSize(GetTotalUnique3PlusSyllableWords());
+                listView->Resort();
+                listView->DistributeColumns();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(),
+                    BaseProjectView::HARD_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
+                    wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetThreeSyllableListWordsLabel());
+                listView->SetName(BaseProjectView::GetThreeSyllableListWordsLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, _(L"Word"));
+                listView->InsertColumn(1, _(L"Syllable Count"));
+                listView->InsertColumn(2, _(L"Frequency"));
+                listView->InsertColumn(3, _(L"Suggestion"));
+                listView->SetVirtualDataProvider(Get3SyllablePlusData());
+                listView->SetVirtualDataSize(GetTotalUnique3PlusSyllableWords());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                // sort by syllable count, then frequency, then words (highest to lowest)
+                std::vector<std::pair<size_t,Wisteria::SortDirection>> columnsToSort;
+                columnsToSort.push_back(
+                    std::pair<size_t,Wisteria::SortDirection>(1, Wisteria::SortDirection::SortDescending));
+                columnsToSort.push_back(
+                    std::pair<size_t,Wisteria::SortDirection>(2, Wisteria::SortDirection::SortDescending));
+                columnsToSort.push_back(
+                    std::pair<size_t,Wisteria::SortDirection>(0, Wisteria::SortDirection::SortAscending));
+                listView->SortColumns(columnsToSort);
+
+                if (view->GetWordsBreakdownView().GetWindowCount() == 0)
+                    { view->GetWordsBreakdownView().AddWindow(listView); }
+                else
+                    { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(),
-                BaseProjectView::HARD_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
-                wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetThreeSyllableListWordsLabel());
-            listView->SetName(BaseProjectView::GetThreeSyllableListWordsLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, _(L"Word"));
-            listView->InsertColumn(1, _(L"Syllable Count"));
-            listView->InsertColumn(2, _(L"Frequency"));
-            listView->InsertColumn(3, _(L"Suggestion"));
-            listView->SetVirtualDataProvider(Get3SyllablePlusData());
-            listView->SetVirtualDataSize(GetTotalUnique3PlusSyllableWords());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            // sort by syllable count, then frequency, then words (highest to lowest)
-            std::vector<std::pair<size_t,Wisteria::SortDirection>> columnsToSort;
-            columnsToSort.push_back(
-                std::pair<size_t,Wisteria::SortDirection>(1, Wisteria::SortDirection::SortDescending));
-            columnsToSort.push_back(
-                std::pair<size_t,Wisteria::SortDirection>(2, Wisteria::SortDirection::SortDescending));
-            columnsToSort.push_back(
-                std::pair<size_t,Wisteria::SortDirection>(0, Wisteria::SortDirection::SortAscending));
-            listView->SortColumns(columnsToSort);
-
-            if (view->GetWordsBreakdownView().GetWindowCount() == 0)
-                { view->GetWordsBreakdownView().AddWindow(listView); }
-            else
-                { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+            resetListView(listView);
+            // we are getting rid of this window (if it was included before)
+            view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::HARD_WORDS_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        // we are getting rid of this window (if it was included before)
-        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::HARD_WORDS_LIST_PAGE_ID);
         }
 
     // long words (6+ characters)
-    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
-        BaseProjectView::LONG_WORDS_LIST_PAGE_ID));
-    if (GetWordsBreakdownInfo().Is6PlusCharacterEnabled() &&
-        GetTotalUnique6CharsPlusWords() > 0 && Get6CharacterPlusData())
         {
-        if (listView)
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+            BaseProjectView::LONG_WORDS_LIST_PAGE_ID));
+        if (GetWordsBreakdownInfo().Is6PlusCharacterEnabled() &&
+            GetTotalUnique6CharsPlusWords() > 0 && Get6CharacterPlusData())
             {
-            listView->SetVirtualDataSize(GetTotalUnique6CharsPlusWords());
-            listView->Resort();
-            listView->DistributeColumns();
+            if (listView)
+                {
+                listView->SetVirtualDataSize(GetTotalUnique6CharsPlusWords());
+                listView->Resort();
+                listView->DistributeColumns();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(),
+                    BaseProjectView::LONG_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
+                    wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetSixCharWordsListLabel());
+                listView->SetName(BaseProjectView::GetSixCharWordsListLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, _(L"Word"));
+                listView->InsertColumn(1, _(L"Character Count"));
+                listView->InsertColumn(2, _(L"Frequency"));
+                listView->InsertColumn(3, _(L"Suggestion"));
+                listView->SetVirtualDataProvider(Get6CharacterPlusData());
+                listView->SetVirtualDataSize(GetTotalUnique6CharsPlusWords());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                // sort by character count, then frequency, then word (highest to lowest)
+                std::vector<std::pair<size_t,Wisteria::SortDirection>> columnsToSort;
+                columnsToSort.push_back(
+                    std::pair<size_t,Wisteria::SortDirection>(1, Wisteria::SortDirection::SortDescending));
+                columnsToSort.push_back(
+                    std::pair<size_t,Wisteria::SortDirection>(2, Wisteria::SortDirection::SortDescending));
+                columnsToSort.push_back(
+                    std::pair<size_t,Wisteria::SortDirection>(0, Wisteria::SortDirection::SortAscending));
+                listView->SortColumns(columnsToSort);
+
+                if (view->GetWordsBreakdownView().GetWindowCount() == 0)
+                    { view->GetWordsBreakdownView().AddWindow(listView); }
+                else
+                    { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(),
-                BaseProjectView::LONG_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
-                wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetSixCharWordsListLabel());
-            listView->SetName(BaseProjectView::GetSixCharWordsListLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, _(L"Word"));
-            listView->InsertColumn(1, _(L"Character Count"));
-            listView->InsertColumn(2, _(L"Frequency"));
-            listView->InsertColumn(3, _(L"Suggestion"));
-            listView->SetVirtualDataProvider(Get6CharacterPlusData());
-            listView->SetVirtualDataSize(GetTotalUnique6CharsPlusWords());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            // sort by character count, then frequency, then word (highest to lowest)
-            std::vector<std::pair<size_t,Wisteria::SortDirection>> columnsToSort;
-            columnsToSort.push_back(
-                std::pair<size_t,Wisteria::SortDirection>(1, Wisteria::SortDirection::SortDescending));
-            columnsToSort.push_back(
-                std::pair<size_t,Wisteria::SortDirection>(2, Wisteria::SortDirection::SortDescending));
-            columnsToSort.push_back(
-                std::pair<size_t,Wisteria::SortDirection>(0, Wisteria::SortDirection::SortAscending));
-            listView->SortColumns(columnsToSort);
-
-            if (view->GetWordsBreakdownView().GetWindowCount() == 0)
-                { view->GetWordsBreakdownView().AddWindow(listView); }
-            else
-                { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+            resetListView(listView);
+            // we are getting rid of this window (if it was included before)
+            view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::LONG_WORDS_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        // we are getting rid of this window (if it was included before)
-        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::LONG_WORDS_LIST_PAGE_ID);
         }
 
     // hard words (DC)
-    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
-        BaseProjectView::DC_WORDS_LIST_PAGE_ID));
-    if (GetWordsBreakdownInfo().IsDCUnfamiliarEnabled() &&
-        IsDaleChallLikeTestIncluded() && GetTotalUniqueDCHardWords() > 0 && GetDaleChallHardWordData())
         {
-        if (listView)
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+            BaseProjectView::DC_WORDS_LIST_PAGE_ID));
+        if (GetWordsBreakdownInfo().IsDCUnfamiliarEnabled() &&
+            IsDaleChallLikeTestIncluded() && GetTotalUniqueDCHardWords() > 0 && GetDaleChallHardWordData())
             {
-            listView->SetVirtualDataSize(GetTotalUniqueDCHardWords());
-            listView->Resort();
-            listView->DistributeColumns();
+            if (listView)
+                {
+                listView->SetVirtualDataSize(GetTotalUniqueDCHardWords());
+                listView->Resort();
+                listView->DistributeColumns();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(),
+                    BaseProjectView::DC_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
+                    wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetDaleChallLabel());
+                listView->SetName(wxString::Format(_(L"%s (Unfamiliar) List"), BaseProjectView::GetDaleChallLabel()) );
+                listView->EnableGridLines();
+                listView->InsertColumn(0, _(L"Unfamiliar Word"));
+                listView->InsertColumn(1, _(L"Frequency"));
+                listView->InsertColumn(2, _(L"Suggestion"));
+                listView->SetVirtualDataProvider(GetDaleChallHardWordData());
+                listView->SetVirtualDataSize(GetTotalUniqueDCHardWords());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+
+                if (view->GetWordsBreakdownView().GetWindowCount() == 0)
+                    { view->GetWordsBreakdownView().AddWindow(listView); }
+                else
+                    { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(),
-                BaseProjectView::DC_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
-                wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetDaleChallLabel());
-            listView->SetName(wxString::Format(_(L"%s (Unfamiliar) List"), BaseProjectView::GetDaleChallLabel()) );
-            listView->EnableGridLines();
-            listView->InsertColumn(0, _(L"Unfamiliar Word"));
-            listView->InsertColumn(1, _(L"Frequency"));
-            listView->InsertColumn(2, _(L"Suggestion"));
-            listView->SetVirtualDataProvider(GetDaleChallHardWordData());
-            listView->SetVirtualDataSize(GetTotalUniqueDCHardWords());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-
-            if (view->GetWordsBreakdownView().GetWindowCount() == 0)
-                { view->GetWordsBreakdownView().AddWindow(listView); }
-            else
-                { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+            resetListView(listView);
+            // we are getting rid of this window (if nothing in it)
+            view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::DC_WORDS_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        // we are getting rid of this window (if nothing in it)
-        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::DC_WORDS_LIST_PAGE_ID);
         }
 
     // hard words (Spache)
-    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
-        BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID));
-    if (GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled() &&
-        GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()) &&
-        GetTotalUniqueHardWordsSpache() > 0 && GetSpacheHardWordData())
         {
-        if (listView)
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+            BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID));
+        if (GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled() &&
+            GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()) &&
+            GetTotalUniqueHardWordsSpache() > 0 && GetSpacheHardWordData())
             {
-            listView->SetVirtualDataSize(GetTotalUniqueHardWordsSpache());
-            listView->Resort();
-            listView->DistributeColumns();
+            if (listView)
+                {
+                listView->SetVirtualDataSize(GetTotalUniqueHardWordsSpache());
+                listView->Resort();
+                listView->DistributeColumns();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(),
+                    BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
+                    wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetSpacheLabel());
+                listView->SetName(wxString::Format(_(L"%s (Unfamiliar) List"), BaseProjectView::GetSpacheLabel()) );
+                listView->EnableGridLines();
+                listView->InsertColumn(0, _(L"Unfamiliar Word"));
+                listView->InsertColumn(1, _(L"Frequency"));
+                listView->InsertColumn(2, _(L"Suggestion"));
+                listView->SetVirtualDataProvider(GetSpacheHardWordData());
+                listView->SetVirtualDataSize(GetTotalUniqueHardWordsSpache());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+
+                if (view->GetWordsBreakdownView().GetWindowCount() == 0)
+                    { view->GetWordsBreakdownView().AddWindow(listView); }
+                else
+                    { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(),
-                BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
-                wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetSpacheLabel());
-            listView->SetName(wxString::Format(_(L"%s (Unfamiliar) List"), BaseProjectView::GetSpacheLabel()) );
-            listView->EnableGridLines();
-            listView->InsertColumn(0, _(L"Unfamiliar Word"));
-            listView->InsertColumn(1, _(L"Frequency"));
-            listView->InsertColumn(2, _(L"Suggestion"));
-            listView->SetVirtualDataProvider(GetSpacheHardWordData());
-            listView->SetVirtualDataSize(GetTotalUniqueHardWordsSpache());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-
-            if (view->GetWordsBreakdownView().GetWindowCount() == 0)
-                { view->GetWordsBreakdownView().AddWindow(listView); }
-            else
-                { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+            resetListView(listView);
+            // we are getting rid of this window (if nothing in it)
+            view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        // we are getting rid of this window (if nothing in it)
-        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID);
         }
 
     // hard words (Harris-Jacobson)
-    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
-        BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID));
-    if (GetWordsBreakdownInfo().IsHarrisJacobsonUnfamiliarEnabled() &&
-        GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()) &&
-        GetTotalUniqueHarrisJacobsonHardWords() > 0 && GetHarrisJacobsonHardWordDataData())
         {
-        if (listView)
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+            BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID));
+        if (GetWordsBreakdownInfo().IsHarrisJacobsonUnfamiliarEnabled() &&
+            GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()) &&
+            GetTotalUniqueHarrisJacobsonHardWords() > 0 && GetHarrisJacobsonHardWordDataData())
             {
-            listView->SetVirtualDataSize(GetTotalUniqueHarrisJacobsonHardWords());
-            listView->Resort();
-            listView->DistributeColumns();
+            if (listView)
+                {
+                listView->SetVirtualDataSize(GetTotalUniqueHarrisJacobsonHardWords());
+                listView->Resort();
+                listView->DistributeColumns();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(),
+                    BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
+                    wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetHarrisJacobsonLabel());
+                listView->SetName(wxString::Format(_(L"%s (Unfamiliar) List"),
+                    BaseProjectView::GetHarrisJacobsonLabel()) );
+                listView->EnableGridLines();
+                listView->InsertColumn(0, _(L"Unfamiliar Word"));
+                listView->InsertColumn(1, _(L"Frequency"));
+                listView->InsertColumn(2, _(L"Suggestion"));
+                listView->SetVirtualDataProvider(GetHarrisJacobsonHardWordDataData());
+                listView->SetVirtualDataSize(GetTotalUniqueHarrisJacobsonHardWords());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+
+                if (view->GetWordsBreakdownView().GetWindowCount() == 0)
+                    { view->GetWordsBreakdownView().AddWindow(listView); }
+                else
+                    { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(),
-                BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
-                wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetHarrisJacobsonLabel());
-            listView->SetName(wxString::Format(_(L"%s (Unfamiliar) List"),
-                BaseProjectView::GetHarrisJacobsonLabel()) );
-            listView->EnableGridLines();
-            listView->InsertColumn(0, _(L"Unfamiliar Word"));
-            listView->InsertColumn(1, _(L"Frequency"));
-            listView->InsertColumn(2, _(L"Suggestion"));
-            listView->SetVirtualDataProvider(GetHarrisJacobsonHardWordDataData());
-            listView->SetVirtualDataSize(GetTotalUniqueHarrisJacobsonHardWords());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-
-            if (view->GetWordsBreakdownView().GetWindowCount() == 0)
-                { view->GetWordsBreakdownView().AddWindow(listView); }
-            else
-                { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+            resetListView(listView);
+            // we are getting rid of this window (if nothing in it)
+            view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        // we are getting rid of this window (if nothing in it)
-        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID);
         }
 
     // custom hard words
@@ -2011,7 +2034,7 @@ void ProjectDoc::DisplayWordsBreakdown()
         pos != GetCustTestsInUse().end();
         ++pos)
         {
-        listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
             pos->GetIterator()->get_interface_id(), CLASSINFO(ListCtrlEx)));
         if (GetWordsBreakdownInfo().IsCustomTestsUnfamiliarEnabled() &&
             pos->GetIterator()->is_using_familiar_words() &&
@@ -2049,178 +2072,191 @@ void ProjectDoc::DisplayWordsBreakdown()
             }
         else
             {
+            resetListView(listView);
             // we are getting rid of this window (if it was included before)
             view->GetWordsBreakdownView().RemoveWindowById(pos->GetIterator()->get_interface_id());
             }
         }
 
     // all words
-    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
-        BaseProjectView::ALL_WORDS_LIST_PAGE_ID));
-    if (GetWordsBreakdownInfo().IsAllWordsEnabled() &&
-        GetTotalWords() > 0 && GetAllWordsBaseData())
         {
-        if (listView)
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+            BaseProjectView::ALL_WORDS_LIST_PAGE_ID));
+        if (GetWordsBreakdownInfo().IsAllWordsEnabled() &&
+            GetTotalWords() > 0 && GetAllWordsBaseData())
             {
-            listView->SetVirtualDataSize(GetAllWordsBaseData()->GetItemCount());
-            listView->Resort();
-            listView->DistributeColumns();
+            if (listView)
+                {
+                listView->SetVirtualDataSize(GetAllWordsBaseData()->GetItemCount());
+                listView->Resort();
+                listView->DistributeColumns();
 
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::ALL_WORDS_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetAllWordsLabel());
+                listView->SetName(BaseProjectView::GetAllWordsLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, _(L"Word"));
+                listView->InsertColumn(1, _(L"Frequency"));
+                listView->InsertColumn(2, _(L"Syllable Count"));
+                listView->InsertColumn(3, _(L"Character Count"));
+                listView->SetVirtualDataProvider(GetAllWordsBaseData());
+                listView->SetVirtualDataSize(GetAllWordsBaseData()->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+
+                if (view->GetWordsBreakdownView().GetWindowCount() == 0)
+                    { view->GetWordsBreakdownView().AddWindow(listView); }
+                else
+                    { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::ALL_WORDS_LIST_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetAllWordsLabel());
-            listView->SetName(BaseProjectView::GetAllWordsLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, _(L"Word"));
-            listView->InsertColumn(1, _(L"Frequency"));
-            listView->InsertColumn(2, _(L"Syllable Count"));
-            listView->InsertColumn(3, _(L"Character Count"));
-            listView->SetVirtualDataProvider(GetAllWordsBaseData());
-            listView->SetVirtualDataSize(GetAllWordsBaseData()->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-
-            if (view->GetWordsBreakdownView().GetWindowCount() == 0)
-                { view->GetWordsBreakdownView().AddWindow(listView); }
-            else
-                { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+            resetListView(listView);
+            // we are getting rid of this window (if nothing in it)
+            view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::ALL_WORDS_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        // we are getting rid of this window (if nothing in it)
-        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::ALL_WORDS_LIST_PAGE_ID);
         }
 
     // key words list
-    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
-        BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID));
-    if (GetWordsBreakdownInfo().IsKeyWordsEnabled() &&
-        GetTotalWords() > 0 && GetKeyWordsBaseData() &&
-        // don't bother with condensed list if it has the same item count as the all words list
-        // (that would mean that there was no condensing [stemming] that took place and that these lists are the same).
-        (GetKeyWordsBaseData()->GetItemCount() != GetAllWordsBaseData()->GetItemCount()))
         {
-        if (listView)
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+            BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID));
+        if (GetWordsBreakdownInfo().IsKeyWordsEnabled() &&
+            GetTotalWords() > 0 && GetKeyWordsBaseData() &&
+            // don't bother with condensed list if it has the same item count as the all words list
+            // (that would mean that there was no condensing [stemming] that took place and that these lists are the same).
+            (GetKeyWordsBaseData()->GetItemCount() != GetAllWordsBaseData()->GetItemCount()))
             {
-            listView->SetVirtualDataSize(GetKeyWordsBaseData()->GetItemCount());
-            listView->Resort();
-            listView->DistributeColumns();
+            if (listView)
+                {
+                listView->SetVirtualDataSize(GetKeyWordsBaseData()->GetItemCount());
+                listView->Resort();
+                listView->DistributeColumns();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(),
+                    BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
+                    wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetKeyWordsLabel());
+                listView->SetName(BaseProjectView::GetKeyWordsLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, _(L"Word"));
+                listView->InsertColumn(1, _(L"Frequency"));
+                listView->SetVirtualDataProvider(GetKeyWordsBaseData());
+                listView->SetVirtualDataSize(GetKeyWordsBaseData()->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                if (view->GetWordsBreakdownView().GetWindowCount() == 0)
+                    { view->GetWordsBreakdownView().AddWindow(listView); }
+                else
+                    { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(),
-                BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
-                wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetKeyWordsLabel());
-            listView->SetName(BaseProjectView::GetKeyWordsLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, _(L"Word"));
-            listView->InsertColumn(1, _(L"Frequency"));
-            listView->SetVirtualDataProvider(GetKeyWordsBaseData());
-            listView->SetVirtualDataSize(GetKeyWordsBaseData()->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            if (view->GetWordsBreakdownView().GetWindowCount() == 0)
-                { view->GetWordsBreakdownView().AddWindow(listView); }
-            else
-                { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+            resetListView(listView);
+            // we are getting rid of this window (if nothing in it)
+            view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        // we are getting rid of this window (if nothing in it)
-        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID);
         }
 
 #ifndef NDEBUG
-    // display it
-    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
-        BaseProjectView::PROPER_NOUNS_LIST_PAGE_ID));
-    if (GetWordsBreakdownInfo().IsProperNounsEnabled() &&
-        GetProperNounsData() && GetProperNounsData()->GetItemCount())
+    // proper nouns
         {
-        if (listView)
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+            BaseProjectView::PROPER_NOUNS_LIST_PAGE_ID));
+        if (GetWordsBreakdownInfo().IsProperNounsEnabled() &&
+            GetProperNounsData() && GetProperNounsData()->GetItemCount())
             {
-            listView->SetVirtualDataSize(GetProperNounsData()->GetItemCount());
-            listView->Resort();
-            listView->DistributeColumns();
+            if (listView)
+                {
+                listView->SetVirtualDataSize(GetProperNounsData()->GetItemCount());
+                listView->Resort();
+                listView->DistributeColumns();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(),
+                    BaseProjectView::PROPER_NOUNS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
+                    wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetProperNounsLabel());
+                listView->SetName(BaseProjectView::GetProperNounsLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, _(L"Proper Noun"));
+                listView->InsertColumn(1, _(L"Frequency"));
+                listView->InsertColumn(2, _(L"Personal"));
+                listView->SetVirtualDataProvider(GetProperNounsData());
+                listView->SetVirtualDataSize(GetProperNounsData()->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+
+                if (view->GetWordsBreakdownView().GetWindowCount() == 0)
+                    { view->GetWordsBreakdownView().AddWindow(listView); }
+                else
+                    { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(),
-                BaseProjectView::PROPER_NOUNS_LIST_PAGE_ID, wxDefaultPosition, wxDefaultSize,
-                wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetProperNounsLabel());
-            listView->SetName(BaseProjectView::GetProperNounsLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, _(L"Proper Noun"));
-            listView->InsertColumn(1, _(L"Frequency"));
-            listView->InsertColumn(2, _(L"Personal"));
-            listView->SetVirtualDataProvider(GetProperNounsData());
-            listView->SetVirtualDataSize(GetProperNounsData()->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-
-            if (view->GetWordsBreakdownView().GetWindowCount() == 0)
-                { view->GetWordsBreakdownView().AddWindow(listView); }
-            else
-                { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+            resetListView(listView);
+            // we are getting rid of this window (if nothing in it)
+            view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::PROPER_NOUNS_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        // we are getting rid of this window (if nothing in it)
-        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::PROPER_NOUNS_LIST_PAGE_ID);
         }
 
     // contractions
-    listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
-        BaseProjectView::CONTRACTIONS_LIST_PAGE_ID));
-    if (GetWordsBreakdownInfo().IsContractionsEnabled() &&
-        GetContractionsData() && GetContractionsData()->GetItemCount())
         {
-        if (listView)
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+            BaseProjectView::CONTRACTIONS_LIST_PAGE_ID));
+        if (GetWordsBreakdownInfo().IsContractionsEnabled() &&
+            GetContractionsData() && GetContractionsData()->GetItemCount())
             {
-            listView->SetVirtualDataSize(GetContractionsData()->GetItemCount());
-            listView->Resort();
-            listView->DistributeColumns();
+            if (listView)
+                {
+                listView->SetVirtualDataSize(GetContractionsData()->GetItemCount());
+                listView->Resort();
+                listView->DistributeColumns();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::CONTRACTIONS_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetContractionsLabel());
+                listView->SetName(BaseProjectView::GetContractionsLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, _(L"Contraction"));
+                listView->InsertColumn(1, _(L"Frequency"));
+                listView->SetVirtualDataProvider(GetContractionsData());
+                listView->SetVirtualDataSize(GetContractionsData()->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+            
+                if (view->GetWordsBreakdownView().GetWindowCount() == 0)
+                    { view->GetWordsBreakdownView().AddWindow(listView); }
+                else
+                    { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::CONTRACTIONS_LIST_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetContractionsLabel());
-            listView->SetName(BaseProjectView::GetContractionsLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, _(L"Contraction"));
-            listView->InsertColumn(1, _(L"Frequency"));
-            listView->SetVirtualDataProvider(GetContractionsData());
-            listView->SetVirtualDataSize(GetContractionsData()->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            
-            if (view->GetWordsBreakdownView().GetWindowCount() == 0)
-                { view->GetWordsBreakdownView().AddWindow(listView); }
-            else
-                { view->GetWordsBreakdownView().InsertWindow(++lastGraphPosition, listView); }
+            resetListView(listView);
+            // we are getting rid of this window (if nothing in it)
+            view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::CONTRACTIONS_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        // we are getting rid of this window (if nothing in it)
-        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::CONTRACTIONS_LIST_PAGE_ID);
         }
 #endif
     }
@@ -6969,6 +7005,14 @@ void ProjectDoc::DisplayGrammar()
     PROFILE();
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
 
+    const auto resetListView = [this](ListCtrlEx* listView)
+        {
+        if (listView != nullptr &&
+            listView->GetVirtualDataProvider() != nullptr &&
+            listView->GetVirtualDataProvider()->GetItemCount() == 0)
+            { listView->SetItemCount(0); }
+        };
+
     // misspelled words
     frequency_set<traits::case_insensitive_wstring_ex> misspelledWords;
     const auto& misspelledWordIndices = GetWords()->get_misspelled_words();
@@ -6985,152 +7029,149 @@ void ProjectDoc::DisplayGrammar()
         m_misspelledWordData->SetItemValue(uniqueMisspellingCount++, 1, mIter->second);
         }
     // totally redundant, but fixes mysterious painting issue when project is refreshed
-    m_misspelledWordData->SetSize(misspelledWords.get_data().size());
-    ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
-        BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID));
-    if (GetGrammarInfo().IsMisspellingsEnabled() && m_misspelledWordData->GetItemCount())
         {
-        if (listView)
+        m_misspelledWordData->SetSize(misspelledWords.get_data().size());
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+            BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID));
+        if (GetGrammarInfo().IsMisspellingsEnabled() && m_misspelledWordData->GetItemCount())
             {
-            listView->SetVirtualDataProvider(m_misspelledWordData);
-            listView->SetVirtualDataSize(m_misspelledWordData->GetItemCount());
-            listView->DistributeColumns();
-            listView->Resort();
+            if (listView)
+                {
+                listView->SetVirtualDataProvider(m_misspelledWordData);
+                listView->SetVirtualDataSize(m_misspelledWordData->GetItemCount());
+                listView->DistributeColumns();
+                listView->Resort();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetMisspellingsLabel());
+                listView->SetName(BaseProjectView::GetMisspellingsLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, _(L"Misspelling"));
+                listView->InsertColumn(1, _(L"Frequency"));
+                listView->SetVirtualDataProvider(m_misspelledWordData);
+                listView->SetVirtualDataSize(m_misspelledWordData->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                listView->SortColumn(0, Wisteria::SortDirection::SortAscending);
+                view->GetGrammarView().AddWindow(listView);
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetMisspellingsLabel());
-            listView->SetName(BaseProjectView::GetMisspellingsLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, _(L"Misspelling"));
-            listView->InsertColumn(1, _(L"Frequency"));
-            listView->SetVirtualDataProvider(m_misspelledWordData);
-            listView->SetVirtualDataSize(m_misspelledWordData->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            listView->SortColumn(0, Wisteria::SortDirection::SortAscending);
-            view->GetGrammarView().AddWindow(listView);
+            resetListView(listView);
+            // we are getting rid of this window (if it was included before)
+            view->GetGrammarView().RemoveWindowById(BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        if (m_misspelledWordData != nullptr &&
-            m_misspelledWordData->GetItemCount() == 0 &&
-            listView != nullptr)
-            { listView->SetItemCount(0); }
-        // we are getting rid of this window (if it was included before)
-        view->GetGrammarView().RemoveWindowById(BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID);
         }
 
     // repeated words
-    const auto& dupWordIndices = GetWords()->get_duplicate_word_indices();
-    m_dupWordData->DeleteAllItems();
-    m_dupWordData->SetSize(dupWordIndices.size(), 2);
-    for (size_t i = 0; i < dupWordIndices.size(); ++i)
         {
-        const word_case_insensitive_no_stem& dupWord = GetWords()->get_word(dupWordIndices[i]);
-        m_dupWordData->SetItemText(i, 0, wxString::Format(L"%s %s", dupWord.c_str(), dupWord.c_str()));
-        m_dupWordData->SetItemValue(i, 1, dupWord.get_sentence_index() + 1,
-            // make it one-indexed
-            NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
-        }
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
-        BaseProjectView::DUPLICATES_LIST_PAGE_ID));
-    if (GetGrammarInfo().IsRepeatedWordsEnabled() && m_dupWordData->GetItemCount())
-        {
-        if (listView)
+        const auto& dupWordIndices = GetWords()->get_duplicate_word_indices();
+        m_dupWordData->DeleteAllItems();
+        m_dupWordData->SetSize(dupWordIndices.size(), 2);
+        for (size_t i = 0; i < dupWordIndices.size(); ++i)
             {
-            listView->SetVirtualDataProvider(m_dupWordData);
-            listView->SetVirtualDataSize(m_dupWordData->GetItemCount());
-            listView->DistributeColumns();
-            listView->Resort();
+            const word_case_insensitive_no_stem& dupWord = GetWords()->get_word(dupWordIndices[i]);
+            m_dupWordData->SetItemText(i, 0, wxString::Format(L"%s %s", dupWord.c_str(), dupWord.c_str()));
+            m_dupWordData->SetItemValue(i, 1, dupWord.get_sentence_index() + 1,
+                // make it one-indexed
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+            }
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+            BaseProjectView::DUPLICATES_LIST_PAGE_ID));
+        if (GetGrammarInfo().IsRepeatedWordsEnabled() && m_dupWordData->GetItemCount())
+            {
+            if (listView)
+                {
+                listView->SetVirtualDataProvider(m_dupWordData);
+                listView->SetVirtualDataSize(m_dupWordData->GetItemCount());
+                listView->DistributeColumns();
+                listView->Resort();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::DUPLICATES_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetRepeatedWordsLabel());
+                listView->SetName(BaseProjectView::GetRepeatedWordsLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, _(L"Words that Appear Twice Adjacently"));
+                listView->InsertColumn(1, _(L"Sentence #"));
+                listView->SetVirtualDataProvider(m_dupWordData);
+                listView->SetVirtualDataSize(m_dupWordData->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                view->GetGrammarView().AddWindow(listView);
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::DUPLICATES_LIST_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetRepeatedWordsLabel());
-            listView->SetName(BaseProjectView::GetRepeatedWordsLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, _(L"Words that Appear Twice Adjacently"));
-            listView->InsertColumn(1, _(L"Sentence #"));
-            listView->SetVirtualDataProvider(m_dupWordData);
-            listView->SetVirtualDataSize(m_dupWordData->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            view->GetGrammarView().AddWindow(listView);
+            resetListView(listView);
+            // we are getting rid of this window (if it was included before)
+            view->GetGrammarView().RemoveWindowById(BaseProjectView::DUPLICATES_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        if (m_dupWordData != nullptr &&
-            m_dupWordData->GetItemCount() == 0 &&
-            listView != nullptr)
-            { listView->SetItemCount(0); }
-        // we are getting rid of this window (if it was included before)
-        view->GetGrammarView().RemoveWindowById(BaseProjectView::DUPLICATES_LIST_PAGE_ID);
         }
 
     // Mismatched articles
-    frequency_set<traits::case_insensitive_wstring_ex> articleMismatchesWords;
-    const auto& incorectArticleIndices = GetWords()->get_incorrect_article_indices();
-    for (size_t i = 0; i < incorectArticleIndices.size(); ++i)
-        { articleMismatchesWords.insert(GetWords()->get_word(incorectArticleIndices[i]).c_str() +
-            traits::case_insensitive_wstring_ex(L" ") + GetWords()->get_word(incorectArticleIndices[i]+1).c_str()); }
-    m_incorrectArticleData->DeleteAllItems();
-    m_incorrectArticleData->SetSize(articleMismatchesWords.get_data().size(), 2);
-    size_t uniqueIncorrectArticleCount = 0;
-    for (auto mIter = articleMismatchesWords.get_data().cbegin();
-        mIter != articleMismatchesWords.get_data().cend();
-        ++mIter)
         {
-        m_incorrectArticleData->SetItemText(uniqueIncorrectArticleCount, 0, mIter->first.c_str());
-        m_incorrectArticleData->SetItemValue(uniqueIncorrectArticleCount++, 1, mIter->second);
-        }
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
-        BaseProjectView::INCORRECT_ARTICLE_PAGE_ID));
-    if (GetGrammarInfo().IsArticleMismatchesEnabled() && m_incorrectArticleData->GetItemCount())
-        {
-        if (listView)
+        frequency_set<traits::case_insensitive_wstring_ex> articleMismatchesWords;
+        const auto& incorectArticleIndices = GetWords()->get_incorrect_article_indices();
+        for (size_t i = 0; i < incorectArticleIndices.size(); ++i)
+            { articleMismatchesWords.insert(GetWords()->get_word(incorectArticleIndices[i]).c_str() +
+                traits::case_insensitive_wstring_ex(L" ") + GetWords()->get_word(incorectArticleIndices[i]+1).c_str()); }
+        m_incorrectArticleData->DeleteAllItems();
+        m_incorrectArticleData->SetSize(articleMismatchesWords.get_data().size(), 2);
+        size_t uniqueIncorrectArticleCount = 0;
+        for (auto mIter = articleMismatchesWords.get_data().cbegin();
+            mIter != articleMismatchesWords.get_data().cend();
+            ++mIter)
             {
-            listView->SetVirtualDataProvider(m_incorrectArticleData);
-            listView->SetVirtualDataSize(m_incorrectArticleData->GetItemCount());
-            listView->DistributeColumns();
-            listView->Resort();
+            m_incorrectArticleData->SetItemText(uniqueIncorrectArticleCount, 0, mIter->first.c_str());
+            m_incorrectArticleData->SetItemValue(uniqueIncorrectArticleCount++, 1, mIter->second);
+            }
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+            BaseProjectView::INCORRECT_ARTICLE_PAGE_ID));
+        if (GetGrammarInfo().IsArticleMismatchesEnabled() && m_incorrectArticleData->GetItemCount())
+            {
+            if (listView)
+                {
+                listView->SetVirtualDataProvider(m_incorrectArticleData);
+                listView->SetVirtualDataSize(m_incorrectArticleData->GetItemCount());
+                listView->DistributeColumns();
+                listView->Resort();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::INCORRECT_ARTICLE_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetArticleMismatchesLabel());
+                listView->SetName(BaseProjectView::GetArticleMismatchesLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, _(L"Article Mismatch"));
+                listView->InsertColumn(1, _(L"Frequency"));
+                listView->SetVirtualDataProvider(m_incorrectArticleData);
+                listView->SetVirtualDataSize(m_incorrectArticleData->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                listView->SortColumn(0, Wisteria::SortDirection::SortAscending);
+                view->GetGrammarView().AddWindow(listView);
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::INCORRECT_ARTICLE_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetArticleMismatchesLabel());
-            listView->SetName(BaseProjectView::GetArticleMismatchesLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, _(L"Article Mismatch"));
-            listView->InsertColumn(1, _(L"Frequency"));
-            listView->SetVirtualDataProvider(m_incorrectArticleData);
-            listView->SetVirtualDataSize(m_incorrectArticleData->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            listView->SortColumn(0, Wisteria::SortDirection::SortAscending);
-            view->GetGrammarView().AddWindow(listView);
+            resetListView(listView);
+            // we are getting rid of this window (if it was included before)
+            view->GetGrammarView().RemoveWindowById(BaseProjectView::INCORRECT_ARTICLE_PAGE_ID);
             }
-        }
-    else
-        {
-        if (m_incorrectArticleData != nullptr &&
-            m_incorrectArticleData->GetItemCount() == 0 &&
-            listView != nullptr)
-            { listView->SetItemCount(0); }
-        // we are getting rid of this window (if it was included before)
-        view->GetGrammarView().RemoveWindowById(BaseProjectView::INCORRECT_ARTICLE_PAGE_ID);
         }
 
     // wordy items and cliches
@@ -7199,85 +7240,83 @@ void ProjectDoc::DisplayGrammar()
     m_clichePhraseData->SetSize(clicheCount);
 
     // Wording errors
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
-        BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID));
-    if (GetGrammarInfo().IsWordingErrorsEnabled() && m_wordingErrorData->GetItemCount())
         {
-        if (listView)
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+            BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID));
+        if (GetGrammarInfo().IsWordingErrorsEnabled() && m_wordingErrorData->GetItemCount())
             {
-            listView->SetVirtualDataProvider(m_wordingErrorData);
-            listView->SetVirtualDataSize(m_wordingErrorData->GetItemCount());
-            listView->DistributeColumns();
-            listView->Resort();
+            if (listView)
+                {
+                listView->SetVirtualDataProvider(m_wordingErrorData);
+                listView->SetVirtualDataSize(m_wordingErrorData->GetItemCount());
+                listView->DistributeColumns();
+                listView->Resort();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetPhrasingErrorsTabLabel());
+                listView->SetName(BaseProjectView::GetPhrasingErrorsTabLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, BaseProjectView::GetPhrasingErrorsTabLabel());
+                listView->InsertColumn(1, _(L"Suggestion"));
+                listView->InsertColumn(2, _(L"Sentence #"));
+                listView->SetVirtualDataProvider(m_wordingErrorData);
+                listView->SetVirtualDataSize(m_wordingErrorData->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                view->GetGrammarView().AddWindow(listView);
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetPhrasingErrorsTabLabel());
-            listView->SetName(BaseProjectView::GetPhrasingErrorsTabLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, BaseProjectView::GetPhrasingErrorsTabLabel());
-            listView->InsertColumn(1, _(L"Suggestion"));
-            listView->InsertColumn(2, _(L"Sentence #"));
-            listView->SetVirtualDataProvider(m_wordingErrorData);
-            listView->SetVirtualDataSize(m_wordingErrorData->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            view->GetGrammarView().AddWindow(listView);
+            resetListView(listView);
+            // we are getting rid of this window (if it was included before)
+            view->GetGrammarView().RemoveWindowById(BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        if (m_wordingErrorData != nullptr &&
-            m_wordingErrorData->GetItemCount() == 0 &&
-            listView != nullptr)
-            { listView->SetItemCount(0); }
-        // we are getting rid of this window (if it was included before)
-        view->GetGrammarView().RemoveWindowById(BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID);
         }
 
     // redundant phrases
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
-        BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID));
-    if (GetGrammarInfo().IsRedundantPhrasesEnabled() && m_redundantPhraseData->GetItemCount())
         {
-        if (listView)
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+            BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID));
+        if (GetGrammarInfo().IsRedundantPhrasesEnabled() && m_redundantPhraseData->GetItemCount())
             {
-            listView->SetVirtualDataProvider(m_redundantPhraseData);
-            listView->SetVirtualDataSize(m_redundantPhraseData->GetItemCount());
-            listView->DistributeColumns();
-            listView->Resort();
+            if (listView)
+                {
+                listView->SetVirtualDataProvider(m_redundantPhraseData);
+                listView->SetVirtualDataSize(m_redundantPhraseData->GetItemCount());
+                listView->DistributeColumns();
+                listView->Resort();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetRedundantPhrasesTabLabel());
+                listView->SetName(BaseProjectView::GetRedundantPhrasesTabLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, BaseProjectView::GetRedundantPhrasesTabLabel());
+                listView->InsertColumn(1, _(L"Suggestion"));
+                listView->InsertColumn(2, _(L"Sentence #"));
+                listView->SetVirtualDataProvider(m_redundantPhraseData);
+                listView->SetVirtualDataSize(m_redundantPhraseData->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                view->GetGrammarView().AddWindow(listView);
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetRedundantPhrasesTabLabel());
-            listView->SetName(BaseProjectView::GetRedundantPhrasesTabLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, BaseProjectView::GetRedundantPhrasesTabLabel());
-            listView->InsertColumn(1, _(L"Suggestion"));
-            listView->InsertColumn(2, _(L"Sentence #"));
-            listView->SetVirtualDataProvider(m_redundantPhraseData);
-            listView->SetVirtualDataSize(m_redundantPhraseData->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            view->GetGrammarView().AddWindow(listView);
+            resetListView(listView);
+            // we are getting rid of this window (if it was included before)
+            view->GetGrammarView().RemoveWindowById(BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        if (m_redundantPhraseData != nullptr &&
-            m_redundantPhraseData->GetItemCount() == 0 &&
-            listView != nullptr)
-            { listView->SetItemCount(0); }
-        // we are getting rid of this window (if it was included before)
-        view->GetGrammarView().RemoveWindowById(BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID);
         }
 
     // overused words (by sentence)
@@ -7324,321 +7363,317 @@ void ProjectDoc::DisplayGrammar()
             (overUsedWordsListsIter->first) + 1,
             NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
         }
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
-        BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID));
-    if (GetGrammarInfo().IsOverUsedWordsBySentenceEnabled() &&
-        GetOverusedWordsBySentenceData() && GetOverusedWordsBySentenceData()->GetItemCount())
+    // overused
         {
-        if (listView)
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+            BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID));
+        if (GetGrammarInfo().IsOverUsedWordsBySentenceEnabled() &&
+            GetOverusedWordsBySentenceData() && GetOverusedWordsBySentenceData()->GetItemCount())
             {
-            listView->SetVirtualDataSize(GetOverusedWordsBySentenceData()->GetItemCount());
-            listView->Resort();
-            listView->DistributeColumns();
+            if (listView)
+                {
+                listView->SetVirtualDataSize(GetOverusedWordsBySentenceData()->GetItemCount());
+                listView->Resort();
+                listView->DistributeColumns();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID,
+                                          wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetOverusedWordsBySentenceLabel());
+                listView->SetName(BaseProjectView::GetOverusedWordsBySentenceLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, _(L"Repeated Word"));
+                listView->InsertColumn(1, _(L"Sentence"));
+                listView->InsertColumn(2, _(L"Sentence Length"));
+                listView->InsertColumn(3, _(L"Sentence #"));
+                listView->SetVirtualDataProvider(GetOverusedWordsBySentenceData());
+                listView->SetVirtualDataSize(GetOverusedWordsBySentenceData()->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                // sort by sentence length, then words (lowest to highest)
+                std::vector<std::pair<size_t,Wisteria::SortDirection>> columnsToSort;
+                columnsToSort.push_back(std::pair<size_t, Wisteria::SortDirection>(2,
+                    Wisteria::SortDirection::SortAscending));
+                columnsToSort.push_back(std::pair<size_t, Wisteria::SortDirection>(0,
+                    Wisteria::SortDirection::SortAscending));
+                listView->SortColumns(columnsToSort);
+
+                view->GetGrammarView().AddWindow(listView);
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID,
-                                      wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetOverusedWordsBySentenceLabel());
-            listView->SetName(BaseProjectView::GetOverusedWordsBySentenceLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, _(L"Repeated Word"));
-            listView->InsertColumn(1, _(L"Sentence"));
-            listView->InsertColumn(2, _(L"Sentence Length"));
-            listView->InsertColumn(3, _(L"Sentence #"));
-            listView->SetVirtualDataProvider(GetOverusedWordsBySentenceData());
-            listView->SetVirtualDataSize(GetOverusedWordsBySentenceData()->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            // sort by sentence length, then words (lowest to highest)
-            std::vector<std::pair<size_t,Wisteria::SortDirection>> columnsToSort;
-            columnsToSort.push_back(std::pair<size_t, Wisteria::SortDirection>(2,
-                Wisteria::SortDirection::SortAscending));
-            columnsToSort.push_back(std::pair<size_t, Wisteria::SortDirection>(0,
-                Wisteria::SortDirection::SortAscending));
-            listView->SortColumns(columnsToSort);
-
-            view->GetGrammarView().AddWindow(listView);
+            resetListView(listView);
+            // we are getting rid of this window (if nothing in it)
+            view->GetGrammarView().RemoveWindowById(BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        if (GetOverusedWordsBySentenceData() != nullptr &&
-            GetOverusedWordsBySentenceData()->GetItemCount() == 0 &&
-            listView != nullptr)
-            { listView->SetItemCount(0); }
-        // we are getting rid of this window (if nothing in it)
-        view->GetGrammarView().RemoveWindowById(BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID);
         }
 
     // Wordy items
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
-        BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID));
-    if (GetGrammarInfo().IsWordyPhrasesEnabled() && m_wordyPhraseData->GetItemCount())
         {
-        if (listView)
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+            BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID));
+        if (GetGrammarInfo().IsWordyPhrasesEnabled() && m_wordyPhraseData->GetItemCount())
             {
-            listView->SetVirtualDataProvider(m_wordyPhraseData);
-            listView->SetVirtualDataSize(m_wordyPhraseData->GetItemCount());
-            listView->DistributeColumns();
-            listView->Resort();
+            if (listView)
+                {
+                listView->SetVirtualDataProvider(m_wordyPhraseData);
+                listView->SetVirtualDataSize(m_wordyPhraseData->GetItemCount());
+                listView->DistributeColumns();
+                listView->Resort();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetWordyPhrasesTabLabel());
+                listView->SetName(BaseProjectView::GetWordyPhrasesTabLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, BaseProjectView::GetWordyPhrasesTabLabel());
+                listView->InsertColumn(1, _(L"Suggestion"));
+                listView->InsertColumn(2, _(L"Sentence #"));
+                listView->SetVirtualDataProvider(m_wordyPhraseData);
+                listView->SetVirtualDataSize(m_wordyPhraseData->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                view->GetGrammarView().AddWindow(listView);
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetWordyPhrasesTabLabel());
-            listView->SetName(BaseProjectView::GetWordyPhrasesTabLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, BaseProjectView::GetWordyPhrasesTabLabel());
-            listView->InsertColumn(1, _(L"Suggestion"));
-            listView->InsertColumn(2, _(L"Sentence #"));
-            listView->SetVirtualDataProvider(m_wordyPhraseData);
-            listView->SetVirtualDataSize(m_wordyPhraseData->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            view->GetGrammarView().AddWindow(listView);
+            resetListView(listView);
+            // we are getting rid of this window (if it was included before)
+            view->GetGrammarView().RemoveWindowById(BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        if (m_wordyPhraseData != nullptr &&
-            m_wordyPhraseData->GetItemCount() == 0 &&
-            listView != nullptr)
-            { listView->SetItemCount(0); }
-        // we are getting rid of this window (if it was included before)
-        view->GetGrammarView().RemoveWindowById(BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID);
         }
 
     // Cliches
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
-        BaseProjectView::CLICHES_LIST_PAGE_ID));
-    if (GetGrammarInfo().IsClichesEnabled() && m_clichePhraseData->GetItemCount())
         {
-        if (listView)
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+            BaseProjectView::CLICHES_LIST_PAGE_ID));
+        if (GetGrammarInfo().IsClichesEnabled() && m_clichePhraseData->GetItemCount())
             {
-            listView->SetVirtualDataProvider(m_clichePhraseData);
-            listView->SetVirtualDataSize(m_clichePhraseData->GetItemCount());
-            listView->DistributeColumns();
-            listView->Resort();
+            if (listView)
+                {
+                listView->SetVirtualDataProvider(m_clichePhraseData);
+                listView->SetVirtualDataSize(m_clichePhraseData->GetItemCount());
+                listView->DistributeColumns();
+                listView->Resort();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::CLICHES_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetClichesTabLabel());
+                listView->SetName(BaseProjectView::GetClichesTabLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, BaseProjectView::GetClichesTabLabel());
+                listView->InsertColumn(1, _(L"Explanation/Suggestion"));
+                listView->InsertColumn(2, _(L"Sentence #"));
+                listView->SetVirtualDataProvider(m_clichePhraseData);
+                listView->SetVirtualDataSize(m_clichePhraseData->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                view->GetGrammarView().AddWindow(listView);
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::CLICHES_LIST_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetClichesTabLabel());
-            listView->SetName(BaseProjectView::GetClichesTabLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, BaseProjectView::GetClichesTabLabel());
-            listView->InsertColumn(1, _(L"Explanation/Suggestion"));
-            listView->InsertColumn(2, _(L"Sentence #"));
-            listView->SetVirtualDataProvider(m_clichePhraseData);
-            listView->SetVirtualDataSize(m_clichePhraseData->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            view->GetGrammarView().AddWindow(listView);
+            resetListView(listView);
+            // we are getting rid of this window (if it was included before)
+            view->GetGrammarView().RemoveWindowById(BaseProjectView::CLICHES_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        if (m_clichePhraseData != nullptr &&
-            m_clichePhraseData->GetItemCount() == 0 &&
-            listView != nullptr)
-            { listView->SetItemCount(0); }
-        // we are getting rid of this window (if it was included before)
-        view->GetGrammarView().RemoveWindowById(BaseProjectView::CLICHES_LIST_PAGE_ID);
         }
 
     // Passive voice
-    frequency_set<traits::case_insensitive_wstring_ex> passiveVoicePhrases;
-    const auto& passiveVoiceIndices = GetWords()->get_passive_voice_indices();
-    for (size_t i = 0; i < passiveVoiceIndices.size(); ++i)
         {
-        traits::case_insensitive_wstring_ex currentPassivePhrase;
-        for (size_t wordCounter = 0; wordCounter < passiveVoiceIndices[i].second; ++wordCounter)
+        frequency_set<traits::case_insensitive_wstring_ex> passiveVoicePhrases;
+        const auto& passiveVoiceIndices = GetWords()->get_passive_voice_indices();
+        for (size_t i = 0; i < passiveVoiceIndices.size(); ++i)
             {
-            currentPassivePhrase += (wordCounter == passiveVoiceIndices[i].second-1) ?
-                traits::case_insensitive_wstring_ex(
-                    GetWords()->get_word(passiveVoiceIndices[i].first + wordCounter)) :
-                traits::case_insensitive_wstring_ex(
-                    GetWords()->get_word(passiveVoiceIndices[i].first + wordCounter) + L' ');
+            traits::case_insensitive_wstring_ex currentPassivePhrase;
+            for (size_t wordCounter = 0; wordCounter < passiveVoiceIndices[i].second; ++wordCounter)
+                {
+                currentPassivePhrase += (wordCounter == passiveVoiceIndices[i].second-1) ?
+                    traits::case_insensitive_wstring_ex(
+                        GetWords()->get_word(passiveVoiceIndices[i].first + wordCounter)) :
+                    traits::case_insensitive_wstring_ex(
+                        GetWords()->get_word(passiveVoiceIndices[i].first + wordCounter) + L' ');
+                }
+            passiveVoicePhrases.insert(currentPassivePhrase);
             }
-        passiveVoicePhrases.insert(currentPassivePhrase);
-        }
-    m_passiveVoiceData->DeleteAllItems();
-    m_passiveVoiceData->SetSize(passiveVoicePhrases.get_data().size(), 2);
-    size_t uniquePassiveVoiceCount = 0;
-    for (auto mIter = passiveVoicePhrases.get_data().cbegin();
-        mIter != passiveVoicePhrases.get_data().cend();
-        ++mIter)
-        {
-        m_passiveVoiceData->SetItemText(uniquePassiveVoiceCount, 0, mIter->first.c_str());
-        m_passiveVoiceData->SetItemValue(uniquePassiveVoiceCount++, 1, mIter->second);
-        }
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
-        BaseProjectView::PASSIVE_VOICE_PAGE_ID));
-    if (GetGrammarInfo().IsPassiveVoiceEnabled() && m_passiveVoiceData->GetItemCount())
-        {
-        if (listView)
+        m_passiveVoiceData->DeleteAllItems();
+        m_passiveVoiceData->SetSize(passiveVoicePhrases.get_data().size(), 2);
+        size_t uniquePassiveVoiceCount = 0;
+        for (auto mIter = passiveVoicePhrases.get_data().cbegin();
+            mIter != passiveVoicePhrases.get_data().cend();
+            ++mIter)
             {
-            listView->SetVirtualDataProvider(m_passiveVoiceData);
-            listView->SetVirtualDataSize(m_passiveVoiceData->GetItemCount());
-            listView->DistributeColumns();
-            listView->Resort();
+            m_passiveVoiceData->SetItemText(uniquePassiveVoiceCount, 0, mIter->first.c_str());
+            m_passiveVoiceData->SetItemValue(uniquePassiveVoiceCount++, 1, mIter->second);
+            }
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+            BaseProjectView::PASSIVE_VOICE_PAGE_ID));
+        if (GetGrammarInfo().IsPassiveVoiceEnabled() && m_passiveVoiceData->GetItemCount())
+            {
+            if (listView)
+                {
+                listView->SetVirtualDataProvider(m_passiveVoiceData);
+                listView->SetVirtualDataSize(m_passiveVoiceData->GetItemCount());
+                listView->DistributeColumns();
+                listView->Resort();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::PASSIVE_VOICE_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetPassiveLabel());
+                listView->SetName(BaseProjectView::GetPassiveLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, BaseProjectView::GetPassiveLabel());
+                listView->InsertColumn(1, _(L"Frequency"));
+                listView->SetVirtualDataProvider(m_passiveVoiceData);
+                listView->SetVirtualDataSize(m_passiveVoiceData->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                listView->SortColumn(0, Wisteria::SortDirection::SortAscending);
+                view->GetGrammarView().AddWindow(listView);
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::PASSIVE_VOICE_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetPassiveLabel());
-            listView->SetName(BaseProjectView::GetPassiveLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, BaseProjectView::GetPassiveLabel());
-            listView->InsertColumn(1, _(L"Frequency"));
-            listView->SetVirtualDataProvider(m_passiveVoiceData);
-            listView->SetVirtualDataSize(m_passiveVoiceData->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            listView->SortColumn(0, Wisteria::SortDirection::SortAscending);
-            view->GetGrammarView().AddWindow(listView);
+            resetListView(listView);
+            // we are getting rid of this window (if it was included before)
+            view->GetGrammarView().RemoveWindowById(BaseProjectView::PASSIVE_VOICE_PAGE_ID);
             }
-        }
-    else
-        {
-        if (m_passiveVoiceData != nullptr &&
-            m_passiveVoiceData->GetItemCount() == 0 &&
-            listView != nullptr)
-            { listView->SetItemCount(0); }
-        // we are getting rid of this window (if it was included before)
-        view->GetGrammarView().RemoveWindowById(BaseProjectView::PASSIVE_VOICE_PAGE_ID);
         }
 
     // sentences that begin with conjunctions
-    m_sentenceStartingWithConjunctionsData->DeleteAllItems();
-    m_sentenceStartingWithConjunctionsData->SetSize(GetWords()->get_sentence_count(), 2);
-    size_t sentenceStartingWithConjunctionsCount = 0;
-    // reset punctuation marker
-    punctPos = GetWords()->get_punctuation().begin();
-    wxString currentSentence;
-    for (std::vector<size_t>::const_iterator pos = GetWords()->get_conjunction_beginning_sentences().begin();
-        pos != GetWords()->get_conjunction_beginning_sentences().end();
-        ++pos)
         {
-        currentSentence = ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[*pos],
-            punctPos, GetWords()->get_punctuation().end());
-
-        m_sentenceStartingWithConjunctionsData->SetItemText(sentenceStartingWithConjunctionsCount, 0, currentSentence);
-        m_sentenceStartingWithConjunctionsData->SetItemValue(sentenceStartingWithConjunctionsCount++, 1,
-            // add 1 to make it one-indexed
-            (*pos)+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
-        }
-    m_sentenceStartingWithConjunctionsData->SetSize(sentenceStartingWithConjunctionsCount);
-    // display it
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
-        BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID));
-    if (GetGrammarInfo().IsConjunctionStartingSentencesEnabled() &&
-        m_sentenceStartingWithConjunctionsData->GetItemCount())
-        {
-        if (listView)
+        m_sentenceStartingWithConjunctionsData->DeleteAllItems();
+        m_sentenceStartingWithConjunctionsData->SetSize(GetWords()->get_sentence_count(), 2);
+        size_t sentenceStartingWithConjunctionsCount = 0;
+        // reset punctuation marker
+        punctPos = GetWords()->get_punctuation().begin();
+        wxString currentSentence;
+        for (std::vector<size_t>::const_iterator pos = GetWords()->get_conjunction_beginning_sentences().begin();
+            pos != GetWords()->get_conjunction_beginning_sentences().end();
+            ++pos)
             {
-            listView->SetVirtualDataProvider(m_sentenceStartingWithConjunctionsData);
-            listView->SetVirtualDataSize(m_sentenceStartingWithConjunctionsData->GetItemCount());
-            listView->DistributeColumns();
-            listView->Resort();
+            currentSentence = ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[*pos],
+                punctPos, GetWords()->get_punctuation().end());
+
+            m_sentenceStartingWithConjunctionsData->SetItemText(sentenceStartingWithConjunctionsCount, 0, currentSentence);
+            m_sentenceStartingWithConjunctionsData->SetItemValue(sentenceStartingWithConjunctionsCount++, 1,
+                // add 1 to make it one-indexed
+                (*pos)+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+            }
+        m_sentenceStartingWithConjunctionsData->SetSize(sentenceStartingWithConjunctionsCount);
+        // display it
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+            BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID));
+        if (GetGrammarInfo().IsConjunctionStartingSentencesEnabled() &&
+            m_sentenceStartingWithConjunctionsData->GetItemCount())
+            {
+            if (listView)
+                {
+                listView->SetVirtualDataProvider(m_sentenceStartingWithConjunctionsData);
+                listView->SetVirtualDataSize(m_sentenceStartingWithConjunctionsData->GetItemCount());
+                listView->DistributeColumns();
+                listView->Resort();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel());
+                listView->SetName(BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, _(L"Sentence"));
+                listView->InsertColumn(1, _(L"Sentence #"));
+                listView->SetVirtualDataProvider(m_sentenceStartingWithConjunctionsData);
+                listView->SetVirtualDataSize(m_sentenceStartingWithConjunctionsData->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                view->GetGrammarView().AddWindow(listView);
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel());
-            listView->SetName(BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, _(L"Sentence"));
-            listView->InsertColumn(1, _(L"Sentence #"));
-            listView->SetVirtualDataProvider(m_sentenceStartingWithConjunctionsData);
-            listView->SetVirtualDataSize(m_sentenceStartingWithConjunctionsData->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            view->GetGrammarView().AddWindow(listView);
+            resetListView(listView);
+            // we are getting rid of this window (if it was included before)
+            view->GetGrammarView().RemoveWindowById(BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        if (m_sentenceStartingWithConjunctionsData != nullptr &&
-            m_sentenceStartingWithConjunctionsData->GetItemCount() == 0 &&
-            listView != nullptr)
-            { listView->SetItemCount(0); }
-        // we are getting rid of this window (if it was included before)
-        view->GetGrammarView().RemoveWindowById(BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID);
         }
 
     // sentences that begin with lowercased words
-    m_sentenceStartingWithLowercaseData->DeleteAllItems();
-    m_sentenceStartingWithLowercaseData->SetSize(GetWords()->get_sentence_count(), 2);
-    size_t sentenceStartingWithLowercaseCount = 0;
-    // reset punctuation marker
-    punctPos = GetWords()->get_punctuation().begin();
-    for (std::vector<size_t>::const_iterator pos = GetWords()->get_lowercase_beginning_sentences().begin();
-        pos != GetWords()->get_lowercase_beginning_sentences().end();
-        ++pos)
         {
-        currentSentence = ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[*pos],
-            punctPos, GetWords()->get_punctuation().end());
-
-        m_sentenceStartingWithLowercaseData->SetItemText(sentenceStartingWithLowercaseCount, 0, currentSentence);
-        m_sentenceStartingWithLowercaseData->SetItemValue(sentenceStartingWithLowercaseCount++, 1,
-           // add 1 to make it one-indexed
-           (*pos)+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
-        }
-    m_sentenceStartingWithLowercaseData->SetSize(sentenceStartingWithLowercaseCount);
-    // display it
-    listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
-        BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID));
-    if (GetGrammarInfo().IsLowercaseSentencesEnabled() && m_sentenceStartingWithLowercaseData->GetItemCount())
-        {
-        if (listView)
+        m_sentenceStartingWithLowercaseData->DeleteAllItems();
+        m_sentenceStartingWithLowercaseData->SetSize(GetWords()->get_sentence_count(), 2);
+        size_t sentenceStartingWithLowercaseCount = 0;
+        // reset punctuation marker
+        punctPos = GetWords()->get_punctuation().begin();
+        wxString currentSentence;
+        for (std::vector<size_t>::const_iterator pos = GetWords()->get_lowercase_beginning_sentences().begin();
+            pos != GetWords()->get_lowercase_beginning_sentences().end();
+            ++pos)
             {
-            listView->SetVirtualDataProvider(m_sentenceStartingWithLowercaseData);
-            listView->SetVirtualDataSize(m_sentenceStartingWithLowercaseData->GetItemCount());
-            listView->DistributeColumns();
-            listView->Resort();
+            currentSentence = ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[*pos],
+                punctPos, GetWords()->get_punctuation().end());
+
+            m_sentenceStartingWithLowercaseData->SetItemText(sentenceStartingWithLowercaseCount, 0, currentSentence);
+            m_sentenceStartingWithLowercaseData->SetItemValue(sentenceStartingWithLowercaseCount++, 1,
+               // add 1 to make it one-indexed
+               (*pos)+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
+            }
+        m_sentenceStartingWithLowercaseData->SetSize(sentenceStartingWithLowercaseCount);
+        // display it
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+            BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID));
+        if (GetGrammarInfo().IsLowercaseSentencesEnabled() && m_sentenceStartingWithLowercaseData->GetItemCount())
+            {
+            if (listView)
+                {
+                listView->SetVirtualDataProvider(m_sentenceStartingWithLowercaseData);
+                listView->SetVirtualDataSize(m_sentenceStartingWithLowercaseData->GetItemCount());
+                listView->DistributeColumns();
+                listView->Resort();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetSentenceStartingWithLowercaseTabLabel());
+                listView->SetName(BaseProjectView::GetSentenceStartingWithLowercaseTabLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, _(L"Sentence"));
+                listView->InsertColumn(1, _(L"Sentence #"));
+                listView->SetVirtualDataProvider(m_sentenceStartingWithLowercaseData);
+                listView->SetVirtualDataSize(m_sentenceStartingWithLowercaseData->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                view->GetGrammarView().AddWindow(listView);
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetSentenceStartingWithLowercaseTabLabel());
-            listView->SetName(BaseProjectView::GetSentenceStartingWithLowercaseTabLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, _(L"Sentence"));
-            listView->InsertColumn(1, _(L"Sentence #"));
-            listView->SetVirtualDataProvider(m_sentenceStartingWithLowercaseData);
-            listView->SetVirtualDataSize(m_sentenceStartingWithLowercaseData->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            view->GetGrammarView().AddWindow(listView);
+            resetListView(listView);
+            // we are getting rid of this window (if it was included before)
+            view->GetGrammarView().RemoveWindowById(BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        if (m_sentenceStartingWithLowercaseData != nullptr &&
-            m_sentenceStartingWithLowercaseData->GetItemCount() == 0 &&
-            listView != nullptr)
-            { listView->SetItemCount(0); }
-        // we are getting rid of this window (if it was included before)
-        view->GetGrammarView().RemoveWindowById(BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID);
         }
     }
 
@@ -7651,119 +7686,124 @@ void ProjectDoc::DisplaySightWords()
     if (!view)
         { return; }
 
-    // Dolch words
-    ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
-        BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID));
-    if (IsIncludingDolchSightWords() && GetDolchWordData()->GetItemCount())
+    const auto resetListView = [this](ListCtrlEx* listView)
         {
-        if (listView)
+        if (listView != nullptr &&
+            listView->GetVirtualDataProvider() != nullptr &&
+            listView->GetVirtualDataProvider()->GetItemCount() == 0)
+            { listView->SetItemCount(0); }
+        };
+
+    // Dolch words
+        {
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
+            BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID));
+        if (IsIncludingDolchSightWords() && GetDolchWordData()->GetItemCount())
             {
-            listView->SetVirtualDataSize(GetDolchWordData()->GetItemCount());
-            listView->DistributeColumns();
-            listView->Resort();
+            if (listView)
+                {
+                listView->SetVirtualDataSize(GetDolchWordData()->GetItemCount());
+                listView->DistributeColumns();
+                listView->Resort();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetDolchWordTabLabel());
+                listView->SetName(BaseProjectView::GetDolchWordTabLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, BaseProjectView::GetDolchWordTabLabel());
+                listView->InsertColumn(1, _(L"Frequency"));
+                listView->InsertColumn(2, _(L"Category"));
+                listView->SetVirtualDataProvider(GetDolchWordData());
+                listView->SetVirtualDataSize(GetDolchWordData()->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                view->GetDolchSightWordsView().AddWindow(listView);
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetDolchWordTabLabel());
-            listView->SetName(BaseProjectView::GetDolchWordTabLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, BaseProjectView::GetDolchWordTabLabel());
-            listView->InsertColumn(1, _(L"Frequency"));
-            listView->InsertColumn(2, _(L"Category"));
-            listView->SetVirtualDataProvider(GetDolchWordData());
-            listView->SetVirtualDataSize(GetDolchWordData()->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            view->GetDolchSightWordsView().AddWindow(listView);
+            resetListView(listView);
+            view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        if (GetDolchWordData() != nullptr &&
-            GetDolchWordData()->GetItemCount() == 0 &&
-            listView != nullptr)
-            { listView->SetItemCount(0); }
-        view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID);
         }
 
     // non-Dolch words
-    listView = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
-        BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID));
-    if (IsIncludingDolchSightWords() && GetNonDolchWordData()->GetItemCount())
         {
-        if (listView)
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
+            BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID));
+        if (IsIncludingDolchSightWords() && GetNonDolchWordData()->GetItemCount())
             {
-            listView->SetVirtualDataSize(GetNonDolchWordData()->GetItemCount());
-            listView->DistributeColumns();
-            listView->Resort();
+            if (listView)
+                {
+                listView->SetVirtualDataSize(GetNonDolchWordData()->GetItemCount());
+                listView->DistributeColumns();
+                listView->Resort();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetNonDolchWordTabLabel());
+                listView->SetName(BaseProjectView::GetNonDolchWordTabLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, BaseProjectView::GetNonDolchWordTabLabel());
+                listView->InsertColumn(1, _(L"Frequency"));
+                listView->SetVirtualDataProvider(GetNonDolchWordData());
+                listView->SetVirtualDataSize(GetNonDolchWordData()->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                view->GetDolchSightWordsView().AddWindow(listView);
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetNonDolchWordTabLabel());
-            listView->SetName(BaseProjectView::GetNonDolchWordTabLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, BaseProjectView::GetNonDolchWordTabLabel());
-            listView->InsertColumn(1, _(L"Frequency"));
-            listView->SetVirtualDataProvider(GetNonDolchWordData());
-            listView->SetVirtualDataSize(GetNonDolchWordData()->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            view->GetDolchSightWordsView().AddWindow(listView);
+            resetListView(listView);
+            view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        if (GetNonDolchWordData() != nullptr &&
-            GetNonDolchWordData()->GetItemCount() == 0 &&
-            listView != nullptr)
-            { listView->SetItemCount(0); }
-        view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID);
         }
 
     // unused Dolch words
-    listView = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
-        BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID));
-    if (IsIncludingDolchSightWords() && GetUnusedDolchWordData()->GetItemCount())
         {
-        if (listView)
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
+            BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID));
+        if (IsIncludingDolchSightWords() && GetUnusedDolchWordData()->GetItemCount())
             {
-            listView->SetVirtualDataSize(GetUnusedDolchWordData()->GetItemCount());
-            listView->DistributeColumns();
-            listView->Resort();
+            if (listView)
+                {
+                listView->SetVirtualDataSize(GetUnusedDolchWordData()->GetItemCount());
+                listView->DistributeColumns();
+                listView->Resort();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetUnusedDolchWordTabLabel());
+                listView->SetName(BaseProjectView::GetUnusedDolchWordTabLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, BaseProjectView::GetUnusedDolchWordTabLabel());
+                listView->InsertColumn(1, _(L"Category"));
+                listView->SetVirtualDataProvider(GetUnusedDolchWordData());
+                listView->SetVirtualDataSize(GetUnusedDolchWordData()->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                view->GetDolchSightWordsView().AddWindow(listView);
+                }
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetUnusedDolchWordTabLabel());
-            listView->SetName(BaseProjectView::GetUnusedDolchWordTabLabel());
-            listView->EnableGridLines();
-            listView->InsertColumn(0, BaseProjectView::GetUnusedDolchWordTabLabel());
-            listView->InsertColumn(1, _(L"Category"));
-            listView->SetVirtualDataProvider(GetUnusedDolchWordData());
-            listView->SetVirtualDataSize(GetUnusedDolchWordData()->GetItemCount());
-            listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            UpdateListOptions(listView);
-            view->GetDolchSightWordsView().AddWindow(listView);
+            resetListView(listView);
+            view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID);
             }
-        }
-    else
-        {
-        if (GetUnusedDolchWordData() != nullptr &&
-            GetUnusedDolchWordData()->GetItemCount() == 0 &&
-            listView != nullptr)
-            { listView->SetItemCount(0); }
-        view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID);
         }
     }
 
