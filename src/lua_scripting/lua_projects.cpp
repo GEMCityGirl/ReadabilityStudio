@@ -30,10 +30,9 @@ namespace LuaScripting
     {
     wxColour LoadColor(wxString colorStr)
         {
-        wxColour color{ colorStr };
+        wxColour color{ colorStr.MakeLower() };
         if (!color.IsOk())
             {
-            colorStr.MakeLower();
             auto foundColor = Wisteria::ReportBuilder::GetColorMap().find(colorStr.wc_str());
             if (foundColor != Wisteria::ReportBuilder::GetColorMap().cend())
                 { color = Wisteria::Colors::ColorBrewer::GetColor(foundColor->second); }
