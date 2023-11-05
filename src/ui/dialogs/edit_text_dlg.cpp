@@ -32,6 +32,20 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
     Bind(wxEVT_CLOSE_WINDOW, &EditTextDlg::OnClose, this);
     Bind(wxEVT_TEXT, &EditTextDlg::OnTextChanged, this);
 
+    Bind(wxEVT_CHAR_HOOK,
+        [this](wxKeyEvent& event)
+            {
+            if (event.ControlDown() && event.GetKeyCode() == L'S')
+                {
+                Save();
+
+                if (m_textEntry)
+                    { m_textEntry->DiscardEdits(); }
+                EnableSaveButton(false);
+                }
+            event.Skip(true);
+            }, EditTextDlg::ID_TEXT_CTRL);
+
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnSaveButton, this, wxID_SAVE);
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_PASTE);
@@ -113,7 +127,7 @@ void EditTextDlg::CreateControls()
         m_ribbon->Realise();
         }
 
-    m_textEntry = new FormattedTextCtrl(this, wxID_ANY,
+    m_textEntry = new FormattedTextCtrl(this, EditTextDlg::ID_TEXT_CTRL,
                                  wxDefaultPosition, wxDefaultSize,
                                  wxTE_AUTO_URL|wxTE_PROCESS_TAB,
                                  wxGenericValidator(&m_value) );
