@@ -20,6 +20,7 @@
 #include <wx/ribbon/gallery.h>
 #include <wx/ribbon/toolbar.h>
 #include <wx/ribbon/art.h>
+#include <wx/fdrepdlg.h>
 #include "../../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
 #include "../../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
 
@@ -87,6 +88,9 @@ private:
     void OnSaveButton(wxRibbonButtonBarEvent& event);
     void OnTextChanged(wxCommandEvent& event);
     void OnClose(wxCloseEvent& event);
+    void OnShowFindDialog([[maybe_unused]] wxCommandEvent& event);
+    void OnShowReplaceDialog([[maybe_unused]] wxCommandEvent& event);
+    void OnFindDialog(wxFindDialogEvent& event);
 
     void Save();
 
@@ -95,7 +99,6 @@ private:
     static constexpr auto ID_DOCUMENT_RIBBON_BUTTON_BAR = wxID_HIGHEST;
     static constexpr auto ID_CLIPBOARD_RIBBON_BUTTON_BAR = wxID_HIGHEST + 1;
     static constexpr auto ID_EDIT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 2;
-    static constexpr auto ID_TEXT_CTRL = wxID_HIGHEST + 3;
 
     wxString m_value;
     wxString m_description;
@@ -103,6 +106,11 @@ private:
     BaseProjectDoc* m_parentDoc{ nullptr };
     FormattedTextCtrl* m_textEntry{ nullptr };
     wxRibbonBar* m_ribbon{ nullptr };
+
+    wxFindReplaceData m_findData{ wxFR_DOWN };
+
+    wxFindReplaceDialog* m_dlgFind{ nullptr };
+    wxFindReplaceDialog* m_dlgReplace{ nullptr };
     };
 
 /** @}*/

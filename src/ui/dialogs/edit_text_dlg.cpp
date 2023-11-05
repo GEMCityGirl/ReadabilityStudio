@@ -34,17 +34,30 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
 
     Bind(wxEVT_CHAR_HOOK,
         [this](wxKeyEvent& event)
-            {
+        {
             if (event.ControlDown() && event.GetKeyCode() == L'S')
-                {
-                Save();
-
-                if (m_textEntry)
-                    { m_textEntry->DiscardEdits(); }
-                EnableSaveButton(false);
-                }
+            {
+                wxRibbonButtonBarEvent dummyEvt;
+                EditTextDlg::OnSaveButton(dummyEvt);
+            }
+            else if (event.ControlDown() && event.GetKeyCode() == L'F')
+            {
+                wxFindDialogEvent dummyEvt;
+                EditTextDlg::OnShowFindDialog(dummyEvt);
+            }
+            else if (event.ControlDown() && event.GetKeyCode() == L'H')
+            {
+                wxFindDialogEvent dummyEvt;
+                EditTextDlg::OnShowReplaceDialog(dummyEvt);
+            }
             event.Skip(true);
-            }, EditTextDlg::ID_TEXT_CTRL);
+        }, wxID_ANY);
+
+    Bind(wxEVT_FIND, &EditTextDlg::OnFindDialog, this);
+    Bind(wxEVT_FIND_NEXT, &EditTextDlg::OnFindDialog, this);
+    Bind(wxEVT_FIND_REPLACE, &EditTextDlg::OnFindDialog, this);
+    Bind(wxEVT_FIND_REPLACE_ALL, &EditTextDlg::OnFindDialog, this);
+    Bind(wxEVT_FIND_CLOSE, &EditTextDlg::OnFindDialog, this);
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnSaveButton, this, wxID_SAVE);
 
@@ -54,6 +67,8 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_UNDO);
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_REDO);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnShowFindDialog, this, wxID_FIND);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnShowReplaceDialog, this, wxID_REPLACE);
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_SELECTALL);
     }
 
@@ -114,6 +129,16 @@ void EditTextDlg::CreateControls()
                 wxArtProvider::GetBitmap(wxART_REDO, wxART_BUTTON,
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
                 _(L"Repeats the last operation."));
+
+            buttonBar->AddButton(wxID_FIND, _(L"Find"),
+                wxArtProvider::GetBitmap(wxART_FIND, wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+                _(L"Search for text."));
+            buttonBar->AddButton(wxID_REPLACE, _(L"Replace"),
+                wxArtProvider::GetBitmap(wxART_FIND_AND_REPLACE, wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+                _(L"Replace text."));
+
             buttonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
                 wxArtProvider::GetBitmap(L"ID_SELECT_ALL", wxART_BUTTON,
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
@@ -127,7 +152,7 @@ void EditTextDlg::CreateControls()
         m_ribbon->Realise();
         }
 
-    m_textEntry = new FormattedTextCtrl(this, EditTextDlg::ID_TEXT_CTRL,
+    m_textEntry = new FormattedTextCtrl(this, wxID_ANY,
                                  wxDefaultPosition, wxDefaultSize,
                                  wxTE_AUTO_URL|wxTE_PROCESS_TAB,
                                  wxGenericValidator(&m_value) );
@@ -157,6 +182,119 @@ void EditTextDlg::CreateControls()
         }
 
     SetSizer(mainSizer);
+    }
+
+//------------------------------------------------------
+void EditTextDlg::OnFindDialog(wxFindDialogEvent& event)
+    {
+    if (event.GetEventType() == wxEVT_FIND || event.GetEventType() == wxEVT_FIND_NEXT)
+        {
+        auto foundPos = m_textEntry->FindText(event.GetFindString(),
+            (event.GetFlags() & wxFR_DOWN), (event.GetFlags() & wxFR_WHOLEWORD), (event.GetFlags() & wxFR_MATCHCASE));
+        if (foundPos != wxNOT_FOUND)
+            {
+            m_textEntry->SetSelection(foundPos, foundPos + event.GetFindString().length());
+            }
+        }
+    else if (event.GetEventType() == wxEVT_FIND_REPLACE)
+        {
+        long from{ 0 }, to{ 0 };
+        m_textEntry->GetSelection(&from, &to);
+        // force search to start from beginning of selection
+        m_textEntry->SetSelection(from, from);
+
+        auto foundPos = m_textEntry->FindText(event.GetFindString(),
+            (event.GetFlags() & wxFR_DOWN), (event.GetFlags() & wxFR_WHOLEWORD), (event.GetFlags() & wxFR_MATCHCASE));
+        if (foundPos != wxNOT_FOUND)
+            {
+            // if what is being replaced matches what was already selected, then replace it
+            if (from == foundPos && to == (foundPos + event.GetFindString().length()) )
+                {
+                m_textEntry->Replace(foundPos, foundPos + event.GetFindString().length(), event.GetReplaceString());
+                m_textEntry->SetSelection(foundPos, foundPos + event.GetReplaceString().length());
+                // ...then, find the next occurrance of string being replaced for the next replace button click
+                foundPos = m_textEntry->FindText(event.GetFindString(),
+                    (event.GetFlags() & wxFR_DOWN), (event.GetFlags() & wxFR_WHOLEWORD),
+                    (event.GetFlags() & wxFR_MATCHCASE));
+                if (foundPos != wxNOT_FOUND)
+                    {
+                    m_textEntry->SetSelection(foundPos, foundPos + event.GetFindString().length());
+                    }
+                }
+            // ...otherwise, just select the next string being replaced so that user can see it in its
+            // context and then decide on the next replace button click if they want to replace it
+            else
+                {
+                m_textEntry->SetSelection(foundPos, foundPos + event.GetFindString().length());
+                }
+            }
+        else
+            { m_textEntry->SetSelection(from, to); }
+        }
+    else if (event.GetEventType() == wxEVT_FIND_REPLACE_ALL)
+        {
+        m_textEntry->SetSelection(0, 0);
+        auto foundPos = m_textEntry->FindText(event.GetFindString(),
+            (event.GetFlags() & wxFR_DOWN), (event.GetFlags() & wxFR_WHOLEWORD), (event.GetFlags() & wxFR_MATCHCASE));
+        while (foundPos != wxNOT_FOUND)
+            {
+            m_textEntry->Replace(foundPos, foundPos + event.GetFindString().length(), event.GetReplaceString());
+            m_textEntry->SetSelection(foundPos + event.GetReplaceString().length(),
+                                      foundPos + event.GetReplaceString().length());
+            // ...then, find the next occurrance of string being replaced for the next loop
+            foundPos = m_textEntry->FindText(event.GetFindString(),
+                (event.GetFlags() & wxFR_DOWN), (event.GetFlags() & wxFR_WHOLEWORD),
+                (event.GetFlags() & wxFR_MATCHCASE));
+            }
+        }
+    else if (event.GetEventType() == wxEVT_FIND_CLOSE)
+        {
+        if (m_dlgReplace)
+            {
+            m_dlgReplace->Destroy();
+            m_dlgReplace = nullptr;
+            }
+
+        if (m_dlgFind)
+            {
+            m_dlgFind->Destroy();
+            m_dlgFind = nullptr;
+            }
+        }
+    }
+
+//------------------------------------------------------
+void EditTextDlg::OnShowReplaceDialog([[maybe_unused]] wxCommandEvent& event)
+    {
+    // get rid of Find dialog (if it was opened)
+    if (m_dlgFind)
+        {
+        m_dlgFind->Destroy();
+        m_dlgFind = nullptr;
+        }
+    if (m_dlgReplace == nullptr)
+        {
+        m_dlgReplace = new wxFindReplaceDialog(this, &m_findData, _(L"Replace"), wxFR_REPLACEDIALOG);
+        }
+    m_dlgReplace->Show(true);
+    m_dlgReplace->SetFocus();
+    }
+
+//------------------------------------------------------
+void EditTextDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent & event)
+    {
+    // get rid of Replace dialog (if it was opened)
+    if (m_dlgReplace)
+        {
+        m_dlgReplace->Destroy();
+        m_dlgReplace = nullptr;
+        }
+    if (m_dlgFind == nullptr)
+        {
+        m_dlgFind = new wxFindReplaceDialog(this, &m_findData, _(L"Find"));
+        }
+    m_dlgFind->Show(true);
+    m_dlgFind->SetFocus();
     }
 
 //------------------------------------------------------
