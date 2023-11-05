@@ -50,6 +50,7 @@ This option is only available in the Windows edition. Under macOS, the system's 
 
 - **Warn about projects being opened as read-only.** This warning is shown when a project will be opened as read-only. If a project is read-only, then you cannot save any changes to it.
 - **Prompt when removing a test from a project.** When removing a readability test from a project, a prompt will be shown to confirm this action.
+- **Warn about documents that do not contain any words.** If you attempt to analyze a document containing no valid words, then you will be warned that no calculations will be performed.
 - **Warn about documents containing less than 20 words.** If you attempt to analyze a document containing less than 20 valid words, then you will be prompted whether you wish to continue. If a document contains such a low amount of text, then most tests will produce questionable results.
 - **Warn about documents containing less than 100 words.** This warning is shown when a document being analyzed contains less than 100 valid words. If a document contains a low amount of text, then some factors (e.g., word and syllable counts) will be standardized for some tests.
 - **Warn about documents that contain sentences split by paragraph breaks.** This warning is shown when a document being analyzed contains what appears to be sentences with paragraph breaks in them. In this situation, the sentences will not be indexed properly, and it is recommended to fix to the document.

@@ -376,6 +376,10 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
         _(L"Prompt when removing a test from a project."), wxICON_INFORMATION, false) );
     ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"delete-document-from-batch"), wxEmptyString, wxEmptyString,
         _(L"Prompt when removing a document from a batch project."), wxICON_INFORMATION, false) );
+    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"document-no-words"),
+        _(L"The text that you are analyzing does not contain any valid words. "
+            "No calculations will be performed."), _(L"Warning"),
+        _(L"Warn about documents that do not contain any words."), wxOK | wxICON_EXCLAMATION, false));
     ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"document-less-than-20-words"),
         _(L"The text that you are analyzing is less than 20 words. "
            "Most test results will not be meaningful with such a small sample."), _(L"Warning"),

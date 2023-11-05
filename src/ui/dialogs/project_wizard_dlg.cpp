@@ -1189,16 +1189,6 @@ void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
                     }
                 }
             }
-        else
-            {
-            if (GetEnteredText().empty())
-                {
-                m_sideBarBook->SetSelection(0);
-                wxMessageBox(_(L"Please enter text to be analyzed before continuing."), _(L"Invalid Input"),
-                        wxICON_EXCLAMATION|wxOK, this);
-                return;
-                }
-            }
         }
     else
         {

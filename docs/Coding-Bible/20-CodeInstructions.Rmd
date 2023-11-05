@@ -187,7 +187,6 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 - Create the list by calling `AddSingleColumnPage()` in `WordListDlg::CreateControls()`.
 
 ::: {.note}
-
 If it is a more complex word list (with categories, like **Dolch**), then that will need its own logic.
 :::
 

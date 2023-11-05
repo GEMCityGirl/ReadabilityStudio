@@ -1584,15 +1584,6 @@ bool ProjectDoc::OnNewDocument()
     else if (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences)
         { CalculateStatistics(); }
     CalculateGraphData();
-    if (GetTotalWords() == 0)
-        {
-        LogMessage(
-            (GetTextSource() == TextSource::FromFile) ?
-                _(L"No words were found in this file.") :
-                _(L"No valid words were entered."),
-            _(L"Import Error"), wxOK|wxICON_INFORMATION);
-        return false;
-        }
 
     wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Loading project...")));
 
@@ -1626,7 +1617,12 @@ bool ProjectDoc::OnNewDocument()
     const auto selectedIndex = view->GetSideBar()->FindFolder(BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID);
     view->GetSideBar()->SelectFolder(selectedIndex.value_or(0), true);
 
-    if (GetTotalWords() < 20)
+    if (GetTotalWords() == 0)
+        {
+        if (WarningManager::HasWarning(_DT(L"document-no-words")))
+            { LogMessage(*WarningManager::GetWarning(_DT(L"document-no-words")), true); }
+        }
+    else if (GetTotalWords() < 20)
         {
         if (WarningManager::HasWarning(_DT(L"document-less-than-20-words")))
             { LogMessage(*WarningManager::GetWarning(_DT(L"document-less-than-20-words")), true); }
