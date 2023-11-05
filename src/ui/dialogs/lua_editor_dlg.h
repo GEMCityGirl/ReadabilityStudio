@@ -23,6 +23,7 @@
 #include <wx/aui/aui.h>
 #include <wx/srchctrl.h>
 #include <wx/renderer.h>
+#include <wx/fdrepdlg.h>
 #include "../../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
 
 /// @brief Lua editor and runner dialog.
@@ -37,7 +38,7 @@ public:
         @param size The dialog's size.
         @param style The dialog's style.*/
     explicit LuaEditorDlg(wxWindow* parent, wxWindowID id = wxID_ANY,
-                 const wxString& caption = _("Lua Script"), const wxPoint& pos = wxDefaultPosition,
+                 const wxString& caption = _(L"Lua Script"), const wxPoint& pos = wxDefaultPosition,
                  const wxSize& size = wxDefaultSize,
                  long style = wxCAPTION|wxCLOSE_BOX|wxMINIMIZE_BOX|wxMAXIMIZE_BOX|wxRESIZE_BORDER);
     /// @private
@@ -56,6 +57,11 @@ public:
 private:
     void CreateControls();
     void OnClose([[maybe_unused]] wxCloseEvent& event);
+    void OnSave([[maybe_unused]] wxCommandEvent& event);
+    void OnShowFindDialog([[maybe_unused]] wxCommandEvent& event);
+    void OnShowReplaceDialog([[maybe_unused]] wxCommandEvent& event);
+    void OnFindDialog(wxFindDialogEvent& event);
+
     [[nodiscard]]
     Wisteria::UI::CodeEditor* CreateLuaScript(wxWindow* parent);
 
@@ -63,6 +69,11 @@ private:
     wxAuiToolBar* m_toolbar{ nullptr };
     wxHtmlWindow* m_debugMessageWindow{ nullptr };
     wxAuiManager m_mgr;
+
+    wxFindReplaceData m_findData{ wxFR_DOWN };
+
+    wxFindReplaceDialog* m_dlgFind{ nullptr };
+    wxFindReplaceDialog* m_dlgReplace{ nullptr };
     };
 
 /** @}*/

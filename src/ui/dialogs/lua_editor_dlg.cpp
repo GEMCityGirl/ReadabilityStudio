@@ -470,18 +470,7 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
             },
         XRCID("ID_OPEN"));
 
-    Bind(wxEVT_TOOL,
-        [this]([[maybe_unused]] wxCommandEvent&)
-            {
-            if (dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage())->Save())
-                {
-                m_notebook->SetPageText(m_notebook->GetSelection(),
-                    wxFileName(
-                        dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage())->
-                            GetScriptFilePath()).GetName());
-                }
-            },
-        XRCID("ID_SAVE"));
+    Bind(wxEVT_TOOL, &LuaEditorDlg::OnSave, this, XRCID("ID_SAVE"));
 
     Bind(wxEVT_TOOL,
         [this]([[maybe_unused]] wxCommandEvent&)
@@ -516,6 +505,163 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
             if (codeEditor)
                 { codeEditor->FindNext(evt.GetString()); }
             });
+
+    Bind(wxEVT_TOOL, &LuaEditorDlg::OnShowFindDialog, this, wxID_FIND);
+    Bind(wxEVT_TOOL, &LuaEditorDlg::OnShowReplaceDialog, this, wxID_REPLACE);
+    Bind(wxEVT_FIND, &LuaEditorDlg::OnFindDialog, this);
+    Bind(wxEVT_FIND_NEXT, &LuaEditorDlg::OnFindDialog, this);
+    Bind(wxEVT_FIND_REPLACE, &LuaEditorDlg::OnFindDialog, this);
+    Bind(wxEVT_FIND_REPLACE_ALL, &LuaEditorDlg::OnFindDialog, this);
+    Bind(wxEVT_FIND_CLOSE, &LuaEditorDlg::OnFindDialog, this);
+
+    Bind(wxEVT_CHAR_HOOK,
+        [this](wxKeyEvent& event)
+            {
+            if (event.ControlDown() && event.GetKeyCode() == L'S')
+                {
+                wxCommandEvent dummyEvt;
+                OnSave(dummyEvt);
+                }
+            else if (event.ControlDown() && event.GetKeyCode() == L'F')
+                {
+                wxFindDialogEvent dummyEvt;
+                LuaEditorDlg::OnShowFindDialog(dummyEvt);
+                }
+            else if (event.ControlDown() && event.GetKeyCode() == L'H')
+                {
+                wxFindDialogEvent dummyEvt;
+                LuaEditorDlg::OnShowReplaceDialog(dummyEvt);
+                }
+            event.Skip(true);
+            }, wxID_ANY);
+    }
+
+//------------------------------------------------------
+void LuaEditorDlg::OnSave([[maybe_unused]] wxCommandEvent& event)
+    {
+    if (dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage())->Save())
+        {
+        m_notebook->SetPageText(m_notebook->GetSelection(),
+            wxFileName(
+                dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage())->
+                    GetScriptFilePath()).GetName());
+        }
+    }
+
+//------------------------------------------------------
+void LuaEditorDlg::OnShowReplaceDialog([[maybe_unused]] wxCommandEvent& event)
+    {
+    // get rid of Find dialog (if it was opened)
+    if (m_dlgFind)
+        {
+        m_dlgFind->Destroy();
+        m_dlgFind = nullptr;
+        }
+    if (m_dlgReplace == nullptr)
+        {
+        m_dlgReplace = new wxFindReplaceDialog(this, &m_findData, _(L"Replace"), wxFR_REPLACEDIALOG);
+        }
+    m_dlgReplace->Show(true);
+    m_dlgReplace->SetFocus();
+    }
+
+//------------------------------------------------------
+void LuaEditorDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent & event)
+    {
+    // get rid of Replace dialog (if it was opened)
+    if (m_dlgReplace)
+        {
+        m_dlgReplace->Destroy();
+        m_dlgReplace = nullptr;
+        }
+    if (m_dlgFind == nullptr)
+        {
+        m_dlgFind = new wxFindReplaceDialog(this, &m_findData, _(L"Find"));
+        }
+    m_dlgFind->Show(true);
+    m_dlgFind->SetFocus();
+    }
+
+//------------------------------------------------------
+void LuaEditorDlg::OnFindDialog(wxFindDialogEvent& event)
+    {
+    auto currentScript = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
+    if (currentScript == nullptr)
+        { return; }
+
+    if (event.GetEventType() == wxEVT_FIND || event.GetEventType() == wxEVT_FIND_NEXT)
+        {
+        currentScript->OnFind(event);
+        }
+    else if (event.GetEventType() == wxEVT_FIND_REPLACE)
+        {
+        long from{ 0 }, to{ 0 };
+        currentScript->GetSelection(&from, &to);
+        // force search to start from beginning of selection
+        currentScript->SetSelection(from, from);
+        currentScript->SearchAnchor();
+
+        auto foundPos = currentScript->FindNext(event.GetFindString(), event.GetFlags());
+        if (foundPos != wxSTC_INVALID_POSITION)
+            {
+            // if what is being replaced matches what was already selected, then replace it
+            if (from == foundPos && to == (foundPos + event.GetFindString().length()) )
+                {
+                currentScript->Replace(foundPos, foundPos + event.GetFindString().length(), event.GetReplaceString());
+                currentScript->SetSelection(foundPos, foundPos + event.GetReplaceString().length());
+                currentScript->SearchAnchor();
+                // ...then, find the next occurrance of string being replaced for the next replace button click
+                foundPos = currentScript->FindNext(event.GetFindString(), event.GetFlags());
+                if (foundPos != wxSTC_INVALID_POSITION)
+                    {
+                    currentScript->SetSelection(foundPos, foundPos + event.GetFindString().length());
+                    }
+                }
+            // ...otherwise, just select the next string being replaced so that user can see it in its
+            // context and then decide on the next replace button click if they want to replace it
+            else
+                {
+                currentScript->SetSelection(foundPos, foundPos + event.GetFindString().length());
+                currentScript->SearchAnchor();
+                }
+            }
+        else
+            {
+            currentScript->SetSelection(from, to);
+            currentScript->SearchAnchor();
+            wxMessageBox(_(L"No further occurrences found."),
+                _(L"Item Not Found"), wxOK | wxICON_INFORMATION, this);
+            }
+        }
+    else if (event.GetEventType() == wxEVT_FIND_REPLACE_ALL)
+        {
+        currentScript->SetSelection(0, 0);
+        currentScript->SearchAnchor();
+        auto foundPos = currentScript->FindNext(event.GetFindString(), event.GetFlags(), false);
+        while (foundPos != wxSTC_INVALID_POSITION)
+            {
+            currentScript->Replace(foundPos, foundPos + event.GetFindString().length(), event.GetReplaceString());
+            currentScript->SetSelection(foundPos + event.GetReplaceString().length(),
+                                      foundPos + event.GetReplaceString().length());
+            currentScript->SearchAnchor();
+            // ...then, find the next occurrance of string being replaced for the next loop
+            foundPos = currentScript->FindNext(event.GetFindString(), event.GetFlags(), false);
+            }
+        }
+    else if (event.GetEventType() == wxEVT_FIND_CLOSE)
+        {
+        if (m_dlgReplace)
+            {
+            m_dlgReplace->Destroy();
+            m_dlgReplace = nullptr;
+            }
+
+        if (m_dlgFind)
+            {
+            m_dlgFind->Destroy();
+            m_dlgFind = nullptr;
+            }
+        }
     }
 
 //-------------------------------------------------------
@@ -734,6 +880,13 @@ void LuaEditorDlg::CreateControls()
         wxArtProvider::GetBitmapBundle(L"ID_RUN", wxART_BUTTON),
         _(L"Execute the script."));
     m_toolbar->AddSeparator();
+    m_toolbar->AddTool(wxID_FIND, _(L"Find"),
+        wxArtProvider::GetBitmapBundle(wxART_FIND, wxART_BUTTON),
+        _(L"Find text."));
+    m_toolbar->AddTool(wxID_REPLACE, _(L"Replace"),
+        wxArtProvider::GetBitmapBundle(wxART_FIND_AND_REPLACE, wxART_BUTTON),
+        _(L"Replace text."));
+    m_toolbar->AddSeparator();
     m_toolbar->AddTool(XRCID("ID_CLEAR"), _(L"Clear"),
         wxArtProvider::GetBitmapBundle(L"ID_CLEAR", wxART_BUTTON),
         _(L"Clear the log window."));
@@ -744,9 +897,6 @@ void LuaEditorDlg::CreateControls()
     m_toolbar->AddTool(XRCID("LUA_REFERENCE"), _(L"Lua Reference"),
         wxArtProvider::GetBitmapBundle(wxART_HELP_BOOK, wxART_BUTTON),
         _(L"View the Lua Reference Manual."));
-    m_toolbar->AddSeparator();
-    m_toolbar->AddControl(new wxSearchCtrl(m_toolbar, wxID_ANY, wxString{},
-        wxDefaultPosition, FromDIP(wxSize(200, -1)), 0));
 
     m_toolbar->Realize();
     m_mgr.AddPane(m_toolbar, wxAuiPaneInfo().
