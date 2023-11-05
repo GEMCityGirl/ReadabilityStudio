@@ -6914,11 +6914,11 @@ void ProjectDoc::DisplayOverlyLongSentences()
     m_overlyLongSentenceData->SetSize(longSenteceCount);
 
     // long sentences
+    ListCtrlEx* listView =
+        dynamic_cast<ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(
+            BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID));
     if (GetSentencesBreakdownInfo().IsLongSentencesEnabled() && m_overlyLongSentenceData->GetItemCount())
         {
-        ListCtrlEx* listView =
-            dynamic_cast<ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(
-                BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID));
         if (listView)
             {
             listView->SetVirtualDataProvider(m_overlyLongSentenceData);
@@ -6954,6 +6954,10 @@ void ProjectDoc::DisplayOverlyLongSentences()
         }
     else
         {
+        if (m_overlyLongSentenceData != nullptr &&
+            m_overlyLongSentenceData->GetItemCount() == 0 &&
+            listView != nullptr)
+            { listView->SetItemCount(0); }
         // we are getting rid of this window (if it was included before)
         view->GetSentencesBreakdownView().RemoveWindowById(BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID);
         }
@@ -7014,6 +7018,10 @@ void ProjectDoc::DisplayGrammar()
         }
     else
         {
+        if (m_misspelledWordData != nullptr &&
+            m_misspelledWordData->GetItemCount() == 0 &&
+            listView != nullptr)
+            { listView->SetItemCount(0); }
         // we are getting rid of this window (if it was included before)
         view->GetGrammarView().RemoveWindowById(BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID);
         }
@@ -7061,6 +7069,10 @@ void ProjectDoc::DisplayGrammar()
         }
     else
         {
+        if (m_dupWordData != nullptr &&
+            m_dupWordData->GetItemCount() == 0 &&
+            listView != nullptr)
+            { listView->SetItemCount(0); }
         // we are getting rid of this window (if it was included before)
         view->GetGrammarView().RemoveWindowById(BaseProjectView::DUPLICATES_LIST_PAGE_ID);
         }
@@ -7113,6 +7125,10 @@ void ProjectDoc::DisplayGrammar()
         }
     else
         {
+        if (m_incorrectArticleData != nullptr &&
+            m_incorrectArticleData->GetItemCount() == 0 &&
+            listView != nullptr)
+            { listView->SetItemCount(0); }
         // we are getting rid of this window (if it was included before)
         view->GetGrammarView().RemoveWindowById(BaseProjectView::INCORRECT_ARTICLE_PAGE_ID);
         }
@@ -7215,6 +7231,10 @@ void ProjectDoc::DisplayGrammar()
         }
     else
         {
+        if (m_wordingErrorData != nullptr &&
+            m_wordingErrorData->GetItemCount() == 0 &&
+            listView != nullptr)
+            { listView->SetItemCount(0); }
         // we are getting rid of this window (if it was included before)
         view->GetGrammarView().RemoveWindowById(BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID);
         }
@@ -7252,6 +7272,10 @@ void ProjectDoc::DisplayGrammar()
         }
     else
         {
+        if (m_redundantPhraseData != nullptr &&
+            m_redundantPhraseData->GetItemCount() == 0 &&
+            listView != nullptr)
+            { listView->SetItemCount(0); }
         // we are getting rid of this window (if it was included before)
         view->GetGrammarView().RemoveWindowById(BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID);
         }
@@ -7341,6 +7365,10 @@ void ProjectDoc::DisplayGrammar()
         }
     else
         {
+        if (GetOverusedWordsBySentenceData() != nullptr &&
+            GetOverusedWordsBySentenceData()->GetItemCount() == 0 &&
+            listView != nullptr)
+            { listView->SetItemCount(0); }
         // we are getting rid of this window (if nothing in it)
         view->GetGrammarView().RemoveWindowById(BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID);
         }
@@ -7378,6 +7406,10 @@ void ProjectDoc::DisplayGrammar()
         }
     else
         {
+        if (m_wordyPhraseData != nullptr &&
+            m_wordyPhraseData->GetItemCount() == 0 &&
+            listView != nullptr)
+            { listView->SetItemCount(0); }
         // we are getting rid of this window (if it was included before)
         view->GetGrammarView().RemoveWindowById(BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID);
         }
@@ -7415,6 +7447,10 @@ void ProjectDoc::DisplayGrammar()
         }
     else
         {
+        if (m_clichePhraseData != nullptr &&
+            m_clichePhraseData->GetItemCount() == 0 &&
+            listView != nullptr)
+            { listView->SetItemCount(0); }
         // we are getting rid of this window (if it was included before)
         view->GetGrammarView().RemoveWindowById(BaseProjectView::CLICHES_LIST_PAGE_ID);
         }
@@ -7477,6 +7513,10 @@ void ProjectDoc::DisplayGrammar()
         }
     else
         {
+        if (m_passiveVoiceData != nullptr &&
+            m_passiveVoiceData->GetItemCount() == 0 &&
+            listView != nullptr)
+            { listView->SetItemCount(0); }
         // we are getting rid of this window (if it was included before)
         view->GetGrammarView().RemoveWindowById(BaseProjectView::PASSIVE_VOICE_PAGE_ID);
         }
@@ -7534,6 +7574,10 @@ void ProjectDoc::DisplayGrammar()
         }
     else
         {
+        if (m_sentenceStartingWithConjunctionsData != nullptr &&
+            m_sentenceStartingWithConjunctionsData->GetItemCount() == 0 &&
+            listView != nullptr)
+            { listView->SetItemCount(0); }
         // we are getting rid of this window (if it was included before)
         view->GetGrammarView().RemoveWindowById(BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID);
         }
@@ -7589,6 +7633,10 @@ void ProjectDoc::DisplayGrammar()
         }
     else
         {
+        if (m_sentenceStartingWithLowercaseData != nullptr &&
+            m_sentenceStartingWithLowercaseData->GetItemCount() == 0 &&
+            listView != nullptr)
+            { listView->SetItemCount(0); }
         // we are getting rid of this window (if it was included before)
         view->GetGrammarView().RemoveWindowById(BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID);
         }
@@ -7634,7 +7682,13 @@ void ProjectDoc::DisplaySightWords()
             }
         }
     else
-        { view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID); }
+        {
+        if (GetDolchWordData() != nullptr &&
+            GetDolchWordData()->GetItemCount() == 0 &&
+            listView != nullptr)
+            { listView->SetItemCount(0); }
+        view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID);
+        }
 
     // non-Dolch words
     listView = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
@@ -7666,7 +7720,13 @@ void ProjectDoc::DisplaySightWords()
             }
         }
     else
-        { view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID); }
+        {
+        if (GetNonDolchWordData() != nullptr &&
+            GetNonDolchWordData()->GetItemCount() == 0 &&
+            listView != nullptr)
+            { listView->SetItemCount(0); }
+        view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID);
+        }
 
     // unused Dolch words
     listView = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
@@ -7698,7 +7758,13 @@ void ProjectDoc::DisplaySightWords()
             }
         }
     else
-        { view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID); }
+        {
+        if (GetUnusedDolchWordData() != nullptr &&
+            GetUnusedDolchWordData()->GetItemCount() == 0 &&
+            listView != nullptr)
+            { listView->SetItemCount(0); }
+        view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID);
+        }
     }
 
 //-------------------------------------------------------
