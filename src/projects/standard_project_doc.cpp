@@ -302,8 +302,8 @@ void ProjectDoc::RefreshProject()
 
     // See if the view that was originally selected is gone.
     // If so then select the scores section.
-    if (!view->GetSideBar()->SelectSubItemById(selectedItem, true, false))
-        { view->GetSideBar()->SelectFolder(0, true, false); }
+    if (!view->GetSideBar()->SelectSubItemById(selectedItem, true, true))
+        { view->GetSideBar()->SelectFolder(0, true, true); }
 
     GetDocumentWindow()->Refresh();
 
@@ -898,7 +898,7 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
     if (WarningManager::HasWarning(_DT(L"note-project-properties")))
         { view->ShowInfoMessage(*WarningManager::GetWarning(_DT(L"note-project-properties"))); }
 
-    if (GetDocumentStorageMethod() ==TextStorage::LoadFromExternalDocument)
+    if (GetDocumentStorageMethod() == TextStorage::LoadFromExternalDocument)
         { RestartRealtimeUpdate(); }
 
     return true;

@@ -577,8 +577,8 @@ void BatchProjectDoc::RefreshProject()
     view->Present();
     UpdateAllViews();
 
-    if (!view->GetSideBar()->SelectSubItemById(selectedItem, true, false))
-        { view->GetSideBar()->SelectFolder(0, true, false); }
+    if (!view->GetSideBar()->SelectSubItemById(selectedItem, true, true))
+        { view->GetSideBar()->SelectFolder(0, true, true); }
     dynamic_cast<ListCtrlEx*>(view->GetScoresView().FindWindowById(BaseProjectView::ID_SCORE_LIST_PAGE_ID))->Select(0);
 
     view->UpdateStatAndTestPanes(currentlySelectedFile);
