@@ -2444,7 +2444,7 @@ void ProjectDoc::DisplayWordCharts()
     Wisteria::Canvas* wordBarChartCanvas =
         dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().FindWindowById(
             BaseProjectView::WORD_BREAKDOWN_PAGE_ID));
-    if (GetWordsBreakdownInfo().IsWordBarchartEnabled())
+    if (GetWordsBreakdownInfo().IsWordBarchartEnabled() && GetTotalWords() > 0)
         {
         if (!wordBarChartCanvas)
             {
@@ -2623,7 +2623,7 @@ void ProjectDoc::DisplayWordCharts()
     Wisteria::Canvas* histoCanvas =
         dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().
             FindWindowById(BaseProjectView::SYLLABLE_HISTOGRAM_PAGE_ID));
-    if (GetWordsBreakdownInfo().IsSyllableGraphsEnabled())
+    if (GetWordsBreakdownInfo().IsSyllableGraphsEnabled() && GetTotalWords() > 0)
         {
         if (!histoCanvas)
             {
@@ -2711,7 +2711,7 @@ void ProjectDoc::DisplayWordCharts()
     Wisteria::Canvas* syllablePieCanvas =
         dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().
             FindWindowById(BaseProjectView::SYLLABLE_PIECHART_PAGE_ID));
-    if (GetWordsBreakdownInfo().IsSyllableGraphsEnabled())
+    if (GetWordsBreakdownInfo().IsSyllableGraphsEnabled() && GetTotalWords() > 0)
         {
         if (!syllablePieCanvas)
             {
@@ -6350,7 +6350,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             }
 
         // grammar issues highlighted
-        if (GetGrammarInfo().IsHighlightedReportEnabled())
+        if (GetGrammarInfo().IsHighlightedReportEnabled() && GetTotalWords() > 0)
             {
             // display this in the Grammar section
             FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(view->GetGrammarView().FindWindowById(
