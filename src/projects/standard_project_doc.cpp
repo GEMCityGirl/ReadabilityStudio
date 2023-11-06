@@ -381,6 +381,7 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                         _(L"The document's content could not be found in the project file. "
                            "Original document will be reloaded."),
                         _(L"Warning"), wxOK|wxICON_INFORMATION);
+                    Modify(true);
                     return true;
                     }
                 // Should not happen. File was supposed to be embedded, but wasn't in the project file
