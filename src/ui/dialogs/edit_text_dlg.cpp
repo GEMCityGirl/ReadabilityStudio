@@ -157,15 +157,19 @@ void EditTextDlg::CreateControls()
                                  wxDefaultPosition, wxDefaultSize,
                                  wxTE_AUTO_URL|wxTE_PROCESS_TAB,
                                  wxGenericValidator(&m_value) );
-    m_textEntry->SetFont(m_parentDoc->GetTextViewFont());
     m_textEntry->SetMargins(10, 10);
-    m_textEntry->EnableProofCheck(wxTextProofOptions::Default().
-        Language((m_parentDoc->GetProjectLanguage() == readability::test_language::spanish_test) ?
+    if (m_parentDoc != nullptr)
+        {
+        m_textEntry->SetFont(m_parentDoc->GetTextViewFont());
+        m_textEntry->EnableProofCheck(wxTextProofOptions::Default().
+            Language((m_parentDoc->GetProjectLanguage() == readability::test_language::spanish_test) ?
                 _DT("es") :
                 (m_parentDoc->GetProjectLanguage() == readability::test_language::german_test) ?
                 _DT("de") :
                 _DT("en")).
             SpellCheck(true).GrammarCheck(true));
+        }
+
     mainSizer->Add(m_textEntry, 1, wxEXPAND);
 
     if (m_description.length())
@@ -183,6 +187,8 @@ void EditTextDlg::CreateControls()
         }
 
     SetSizer(mainSizer);
+
+    m_textEntry->SetFocus();
     }
 
 //------------------------------------------------------
