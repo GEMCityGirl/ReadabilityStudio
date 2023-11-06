@@ -30,11 +30,11 @@
         </object>
     </object>
     <object class="wxMenu" name="IDM_TEXT_EDITOR_MENU">
-        <object class="wxMenuItem" name="wxID_PASTE">
-        </object>
         <object class="wxMenuItem" name="wxID_CUT">
         </object>
         <object class="wxMenuItem" name="wxID_COPY">
+        </object>
+        <object class="wxMenuItem" name="wxID_PASTE">
         </object>
         <object class="separator">
         </object>
