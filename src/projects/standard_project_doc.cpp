@@ -837,13 +837,6 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
             { CalculateStatistics(); }
         CalculateGraphData();
 
-        if (GetTotalWords() == 0)
-            {
-            LogMessage(_(L"No words were found in this file."),
-                _(L"Error"), wxOK|wxICON_ERROR);
-            return false;
-            }
-
         wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Loading project...")));
 
         LoadHardWords();
@@ -863,12 +856,6 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
         {
         /* Don't bother calling CalculateStatistics(), just use the values
            loaded from the settings file in the project*/
-        if (GetTotalWords() == 0)
-            {
-            LogMessage(_(L"No words were found in this file."),
-                _(L"Error"), wxOK|wxICON_ERROR);
-            return false;
-            }
 
         wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Loading project...")));
 

@@ -35,22 +35,22 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
     Bind(wxEVT_CHAR_HOOK,
         [this](wxKeyEvent& event)
         {
-            if (event.ControlDown() && event.GetKeyCode() == L'S')
+        if (event.ControlDown() && event.GetKeyCode() == L'S')
             {
-                wxRibbonButtonBarEvent dummyEvt;
-                EditTextDlg::OnSaveButton(dummyEvt);
+            wxRibbonButtonBarEvent dummyEvt;
+            EditTextDlg::OnSaveButton(dummyEvt);
             }
-            else if (event.ControlDown() && event.GetKeyCode() == L'F')
+        else if (event.ControlDown() && event.GetKeyCode() == L'F')
             {
-                wxFindDialogEvent dummyEvt;
-                EditTextDlg::OnShowFindDialog(dummyEvt);
+            wxFindDialogEvent dummyEvt;
+            EditTextDlg::OnShowFindDialog(dummyEvt);
             }
-            else if (event.ControlDown() && event.GetKeyCode() == L'H')
+        else if (event.ControlDown() && event.GetKeyCode() == L'H')
             {
-                wxFindDialogEvent dummyEvt;
-                EditTextDlg::OnShowReplaceDialog(dummyEvt);
+            wxFindDialogEvent dummyEvt;
+            EditTextDlg::OnShowReplaceDialog(dummyEvt);
             }
-            event.Skip(true);
+        event.Skip(true);
         }, wxID_ANY);
 
     Bind(wxEVT_FIND, &EditTextDlg::OnFindDialog, this);
