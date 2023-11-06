@@ -357,6 +357,16 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                            "Only empty statistics will be displayed."));
                     LogMessage(warningMsg);
                     }
+                // force loading empty text just so that we have an empty word collection to build statistics from
+                SetDocumentText(contentFile);
+                try
+                    { LoadDocument(); }
+                catch (...)
+                    {
+                    wxMessageBox(_(L"An unknown error occurred while analyzing the document. Unable to create project."),
+                        _(L"Error"), wxOK|wxICON_EXCLAMATION);
+                    return false;
+                    }
                 return true;
                 }
             // ...otherwise, external file was supposed to be embedded, but internal copy of the text couldn't be found.
