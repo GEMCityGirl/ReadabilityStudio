@@ -3190,7 +3190,7 @@ bool ProjectDoc::AddSchwartzTest(const bool setFocus)
             wxString::Format(_(L"Unable to calculate %s: at least one word "
                                "must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -3200,7 +3200,7 @@ bool ProjectDoc::AddSchwartzTest(const bool setFocus)
             wxString::Format(_(L"Unable to calculate %s: at least one sentence "
                                "must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -3357,7 +3357,7 @@ bool ProjectDoc::AddFraseTest(const bool setFocus)
             wxString::Format(_(L"Unable to calculate %s: at least one word must "
                                "be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -3367,7 +3367,7 @@ bool ProjectDoc::AddFraseTest(const bool setFocus)
             wxString::Format(_(L"Unable to calculate %s: at least one sentence must "
                                "be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -3998,7 +3998,7 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4007,7 +4007,7 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4171,7 +4171,7 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4180,7 +4180,7 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4344,7 +4344,7 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one word must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4353,7 +4353,7 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
         LogMessage(wxString::Format(
             _(L"Unable to calculate %s: at least one sentence must be present in document."),
             GetReadabilityTests().get_test_short_name(CURRENT_TEST_KEY).c_str()),
-            _(L"Error"), wxOK|wxICON_ERROR);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
@@ -4486,14 +4486,14 @@ bool ProjectDoc::AddDolchSightWords()
     if (!GetTotalWords())
         {
         LogMessage(_(L"Unable to calculate Dolch words: at least one word must be present in document."),
-            _(L"Error"), wxOK|wxICON_ERROR);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         IncludeDolchSightWords(false);
         return false;
         }
     if (!GetTotalSentences() )
         {
         LogMessage(_(L"Unable to calculate Dolch words: at least one valid sentence must be present in document."),
-            _(L"Error"), wxOK|wxICON_ERROR);
+            _(L"Error"), wxOK|wxICON_ERROR, wxString{}, true);
         IncludeDolchSightWords(false);
         return false;
         }

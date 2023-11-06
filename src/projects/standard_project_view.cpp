@@ -788,7 +788,7 @@ void ProjectView::UpdateSideBarIcons()
 
     // readability tests
     //-----------------
-    // Note: refer to ReadabilityApp::InitProjectSidebar() for the icon indices,
+    // Note: refer to ReadabilityApp::InitProjectSidebar() for the icon indices.
     if (GetReadabilityResultsView().GetWindowCount() > 0)
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetReadabilityScoresLabel(),
