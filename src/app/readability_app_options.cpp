@@ -612,7 +612,9 @@ void ReadabilityAppOptions::ResetSettings()
     m_randomSampleSizeForBatch = 15;
     m_filePathTruncationMode = ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames;
     m_language = readability::test_language::english_test;
-    m_reviewer = wxGetUserName();
+    // Keep reviewer to whatever it was before, don't reset that.
+    // This isn't so much as setting, as an identifier for the user that they may be customized,
+    // so leave it alone.
     m_status.clear();
     m_realTimeUpdate = false;
     m_appendedDocumentFilePath.clear();

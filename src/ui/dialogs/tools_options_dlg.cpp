@@ -2762,7 +2762,9 @@ void ToolsOptionsDlg::OnImportSettings([[maybe_unused]] wxCommandEvent& event)
 
     wxMessageBox(_(L"Settings from the selected file will now be applied."),
                 _(L"Loading Settings"), wxOK|wxICON_INFORMATION);
+    const auto reviewer = wxGetApp().GetAppOptions().GetReviewer();
     wxGetApp().GetAppOptions().LoadOptionsFile(dialog.GetPath(), false, false);
+    wxGetApp().GetAppOptions().SetReviewer(reviewer);
     Close();
     }
 

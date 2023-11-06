@@ -1046,8 +1046,10 @@ namespace LuaScripting
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
         wxString filePath(luaL_checkstring(L, 1), wxConvUTF8);
+        const auto reviewer = wxGetApp().GetAppOptions().GetReviewer();
         lua_pushboolean(L,
             wxGetApp().GetAppOptions().LoadOptionsFile(filePath, false, false));
+        wxGetApp().GetAppOptions().SetReviewer(reviewer);
         wxGetApp().Yield();
         return 1;
         }
