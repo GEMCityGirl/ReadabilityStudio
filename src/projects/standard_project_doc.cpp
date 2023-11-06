@@ -339,15 +339,14 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                 { LoadDocument(); }
             catch (...)
                 {
-                LogMessage(_(L"An unknown error occurred while analyzing the document. Unable to create project."),
+                wxMessageBox(_(L"An unknown error occurred while analyzing the document. Unable to create project."),
                     _(L"Error"), wxOK|wxICON_EXCLAMATION);
                 return false;
                 }
             }
         else
             {
-            /* If text was manually entered before but not embedded for some reason, then it's lost.
-               This should not happen unless you manually tamper with the project file. */
+            // If text was manually entered before but empty, then it's either lost or was left empty by the user.
             if (GetTextSource() == TextSource::EnteredText)
                 {
                 if (WarningManager::HasWarning(_DT(L"no-embedded-text")))
@@ -355,12 +354,12 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                     WarningMessage warningMsg = *WarningManager::GetWarning(_DT(L"no-embedded-text"));
                     warningMsg.SetMessage(
                         _(L"Manually entered text could not be found in the project file.\n"
-                           "Only previously calculated scores and statistics will be displayed."));
+                           "Only empty statistics will be displayed."));
                     LogMessage(warningMsg);
                     }
-                return false;
+                return true;
                 }
-            // ...otherwise, external file was supposed to be embedded but internal copy of the text couldn't be found.
+            // ...otherwise, external file was supposed to be embedded, but internal copy of the text couldn't be found.
             // Try to reload it.
             else
                 {
@@ -378,11 +377,10 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                 // and external file can't be found either.
                 else
                     {
-                    LogMessage(
+                    wxMessageBox(
                         _(L"Document content could not be found in the project file and external document "
-                           "could not be located.\nOnly previously calculated scores and "
-                           "statistics will be displayed."),
-                        _(L"Warning"), wxOK|wxICON_EXCLAMATION);
+                           "could not be located.\nUnable to create project."),
+                        _(L"Error"), wxOK|wxICON_EXCLAMATION);
                     return false;
                     }
                 }
@@ -400,21 +398,21 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                 }
             else
                 {
-                LogMessage(
+                wxMessageBox(
                     _(L"External document could not be located.\n"
-                       "Only previously calculated scores and statistics will be displayed."),
-                    _(L"Warning"), wxOK|wxICON_EXCLAMATION);
+                       "Unable to create project."),
+                    _(L"Error"), wxOK|wxICON_EXCLAMATION);
                 return false;
                 }
             }
         /* This should not happen because the entered text flag overrides the storage flag to force it to embed,
-           but just for the sake of being verbose...*/
+           but just for the sake of being verbose... */
         if (GetTextSource() == TextSource::EnteredText)
             {
-            LogMessage(
+            wxMessageBox(
                 _(L"Manually entered text was not embedded previously.\n"
-                   "Only previously calculated scores and statistics will be displayed."),
-                _(L"Warning"), wxOK|wxICON_EXCLAMATION);
+                   "Unable to create project."),
+                _(L"Error"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
         }
@@ -568,20 +566,7 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
         DeleteUniqueWordMap();
         }
     else
-        {
-        /* Don't bother calling CalculateStatistics(), just use the values
-           loaded from the settings file in the project*/
-
-        wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Loading project...")));
-
-        /* Don't bother calling LoadHardWords() if the original text was lost*/
-        /* Don't bother calling DisplayHighlightedText() if the original text was lost*/
-        /* Don't bother deleting m_word_frequency_map if the original text was lost*/
-        DisplayReadabilityScores(false);
-        DisplayStatistics();
-        DisplayReadabilityGraphs();
-        /* Don't bother calling DisplayWordsBreakdown() if the original text was lost*/
-        }
+        { return false; }
 
     /* Don't call "Modify(false)" because if the external document could not be found when
        loading the project and user searched for the document then the modified flag is set*/
