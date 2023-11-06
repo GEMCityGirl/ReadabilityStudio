@@ -694,9 +694,6 @@ public:
     [[nodiscard]]
     static const wxString ProjectContentFileLabel()
         { return L"content0.txt"; }
-    [[nodiscard]]
-    static const wxString ProjectMetaFileLabel()
-        { return L"meta.xml"; }
 protected:
     /// @returns The goal values of a test goal (if specified in the project).
     std::tuple<double,double> GetGoalsForTest(const wxString& testName) const
