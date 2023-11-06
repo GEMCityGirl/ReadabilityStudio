@@ -1266,6 +1266,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
 //-------------------------------------------------------
 void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
     {
+    // this area can be included for an empty project, just won't show anything
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
     if (view)
         { view->GetReadabilityScoresList()->Clear(); }
@@ -1740,6 +1741,10 @@ void ProjectDoc::OnRealTimeTimer(wxTimerEvent& event)
 void ProjectDoc::DisplayWordsBreakdown()
     {
     PROFILE();
+    // if working with an empty project
+    if (GetWords() == nullptr)
+        { return; }
+
     DisplayWordCharts();
 
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
@@ -2249,6 +2254,10 @@ void ProjectDoc::DisplayWordsBreakdown()
 void ProjectDoc::DisplaySentenceCharts()
     {
     PROFILE();
+    // if working with an empty project
+    if (GetWords() == nullptr)
+        { return; }
+
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
     wxGCDC gdc(view->GetDocFrame());
 
@@ -2425,6 +2434,10 @@ void ProjectDoc::DisplaySentenceCharts()
 void ProjectDoc::DisplayWordCharts()
     {
     PROFILE();
+    // if working with an empty project
+    if (GetWords() == nullptr)
+        { return; }
+
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
     wxGCDC gdc(view->GetDocFrame());
 
@@ -2755,8 +2768,8 @@ void ProjectDoc::DisplayWordCharts()
     Wisteria::Canvas* wordCloudCanvas =
         dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().FindWindowById(
             BaseProjectView::WORD_CLOUD_PAGE_ID));
-    if (GetWordsBreakdownInfo().IsWordCloudEnabled() &&
-        m_keyWordsDataset->GetRowCount())
+    if (GetWordsBreakdownInfo().IsWordCloudEnabled() && GetTotalWords() > 0 &&
+        m_keyWordsDataset != nullptr && m_keyWordsDataset->GetRowCount())
         {
         if (!wordCloudCanvas)
             {
@@ -3456,6 +3469,10 @@ bool ProjectDoc::AddFraseTest(const bool setFocus)
 //-------------------------------------------------------
 void ProjectDoc::DisplayReadabilityGraphs()
     {
+    // if working with an empty project
+    if (GetWords() == nullptr)
+        { return; }
+
     try
         {
         ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
@@ -3831,6 +3848,7 @@ void ProjectDoc::DisplaySentencesBreakdown()
 //-------------------------------------------------------
 void ProjectDoc::DisplayStatistics()
     {
+    // this area can be included for an empty project, just won't show anything
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
     assert(view);
 
@@ -6892,6 +6910,10 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
 void ProjectDoc::DisplayOverlyLongSentences()
     {
     PROFILE();
+    // if working with an empty project
+    if (GetWords() == nullptr)
+        { return; }
+
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
 
     if (!GetWords())
@@ -6987,6 +7009,10 @@ void ProjectDoc::DisplayOverlyLongSentences()
 void ProjectDoc::DisplayGrammar()
     {
     PROFILE();
+    // if working with an empty project
+    if (GetWords() == nullptr)
+        { return; }
+
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
 
     const auto resetListView = [this](ListCtrlEx* listView)
