@@ -158,6 +158,7 @@ void EditTextDlg::CreateControls()
                                  wxTE_AUTO_URL|wxTE_PROCESS_TAB,
                                  wxGenericValidator(&m_value) );
     m_textEntry->SetMargins(10, 10);
+    m_textEntry->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_EDITOR_MENU"));
     if (m_parentDoc != nullptr)
         {
         m_textEntry->SetFont(m_parentDoc->GetTextViewFont());

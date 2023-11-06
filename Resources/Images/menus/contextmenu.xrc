@@ -2,35 +2,44 @@
 <resource version="2.3.0.1" xmlns="http://www.wxwindows.org/wxxrc">
     <object class="wxMenu" name="IDM_GRAPH_MENU">
         <object class="wxMenuItem" name="wxID_COPY">
-         </object>
+        </object>
         <object class="separator">
         </object>
         <object class="wxMenuItem" name="wxID_PRINT">
-            <label>&amp;Print...</label>
-         </object>
+        </object>
         <object class="wxMenuItem" name="ID_SAVE_ITEM">
-            <label>&amp;Save...</label>
+            <label>Save...</label>
          </object>
     </object>
     <object class="wxMenu" name="IDM_TEXT_MENU">
         <object class="wxMenuItem" name="wxID_COPY">
-           </object>
+        </object>
         <object class="wxMenuItem" name="ID_COPY_ALL">
             <label>Copy All</label>
          </object>
         <object class="separator">
         </object>
         <object class="wxMenuItem" name="wxID_SELECTALL">
-            <label>&amp;Select All</label>
         </object>
         <object class="separator">
         </object>
         <object class="wxMenuItem" name="wxID_PRINT">
-            <label>&amp;Print...</label>
-         </object>
+        </object>
         <object class="wxMenuItem" name="ID_SAVE_ITEM">
-            <label>&amp;Save...</label>
-         </object>
+            <label>Save...</label>
+        </object>
+    </object>
+    <object class="wxMenu" name="IDM_TEXT_EDITOR_MENU">
+        <object class="wxMenuItem" name="wxID_PASTE">
+        </object>
+        <object class="wxMenuItem" name="wxID_CUT">
+        </object>
+        <object class="wxMenuItem" name="wxID_COPY">
+        </object>
+        <object class="separator">
+        </object>
+        <object class="wxMenuItem" name="wxID_SELECTALL">
+        </object>
     </object>
     <object class="wxMenu" name="IDM_READABILITY_SCORE_LIST">
         <object class="wxMenuItem" name="wxID_COPY">
@@ -48,17 +57,15 @@
         <object class="wxMenuItem" name="wxID_COPY">
         </object>
         <object class="wxMenuItem" name="ID_COPY_ALL">
-            <label>C&amp;opy All</label>
+            <label>Copy All</label>
         </object>
         <object class="separator">
         </object>
         <object class="wxMenuItem" name="wxID_DELETE">
-            <label>&amp;Delete</label>
         </object>
     </object>
     <object class="wxMenu" name="IDM_LIST_MENU">
         <object class="wxMenuItem" name="wxID_COPY">
-            <label>&amp;Copy</label>
         </object>
         <object class="wxMenuItem" name="ID_COPY_WITH_COLUMN_HEADERS">
             <label>Copy with Column Headers</label>
@@ -67,23 +74,21 @@
             <label>Copy (First Column Only)</label>
         </object>
         <object class="wxMenuItem" name="ID_COPY_ALL">
-            <label>C&amp;opy All</label>
+            <label>Copy All</label>
         </object>
         <object class="separator">
         </object>
         <object class="wxMenuItem" name="ID_VIEW_ITEM">
-            <label>&amp;View Item</label>
+            <label>View Item</label>
         </object>
         <object class="separator">
         </object>
         <object class="wxMenuItem" name="wxID_SELECTALL">
-            <label>&amp;Select All</label>
         </object>
         <object class="separator">
         </object>
         <object class="wxMenuItem" name="wxID_PRINT">
-            <label>&amp;Print...</label>
-         </object>
+        </object>
         <object class="wxMenuItem" name="ID_SAVE_ITEM">
             <label>&amp;Save...</label>
         </object>
@@ -94,7 +99,6 @@
         <object class="separator">
         </object>
         <object class="wxMenuItem" name="wxID_SELECTALL">
-            <label>&amp;Select All</label>
         </object>
     </object>
     <object class="wxMenu" name="IDM_HTML_MENU">
@@ -106,10 +110,9 @@
         <object class="separator">
         </object>
         <object class="wxMenuItem" name="wxID_PRINT">
-            <label>&amp;Print...</label>
-         </object>
+        </object>
         <object class="wxMenuItem" name="ID_SAVE_ITEM">
-            <label>&amp;Save...</label>
+            <label>Save...</label>
         </object>
     </object>
     <object class="wxMenu" name="IDM_HTML_MENU_NO_SAVE">
@@ -128,10 +131,9 @@
         <object class="separator">
         </object>
         <object class="wxMenuItem" name="wxID_PRINT">
-            <label>&amp;Print...</label>
-         </object>
+        </object>
         <object class="wxMenuItem" name="wxID_SAVE">
-            <label>&amp;Save...</label>
+            <label>Save...</label>
         </object>
     </object>
 </resource>
