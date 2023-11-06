@@ -417,7 +417,7 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
             }
         /* This should not happen because the entered text flag overrides the storage flag to force it to embed,
            but just for the sake of being verbose... */
-        else if (GetTextSource() == TextSource::EnteredText)
+        else // TextSource::EnteredText
             {
             wxMessageBox(
                 _(L"Manually entered text was not embedded previously.\n"
