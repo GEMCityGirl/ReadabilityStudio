@@ -675,29 +675,38 @@ void ProjectView::OnListDblClick(wxListEvent& event)
         textId = event.GetId();
         }
 
-    // Find the first occurrence of the selected word.
-    // First, look in the word breakdown section for the respective test window,
-    // then the grammar section and finally the Dolch section.
-    wxWindow* theWindow = GetWordsBreakdownView().FindWindowById(textId, CLASSINFO(FormattedTextCtrl));
-    if (!theWindow)
-        { theWindow = GetGrammarView().FindWindowById(textId, CLASSINFO(FormattedTextCtrl)); }
-    if (!theWindow)
-        { theWindow = GetDolchSightWordsView().FindWindowById(textId, CLASSINFO(FormattedTextCtrl)); }
-    if (theWindow && theWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
+    // if the embedded editor is open, then select the text in there
+    if (m_embeddedTextEditor != nullptr &&
+        m_embeddedTextEditor->IsShown())
         {
-        FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(theWindow);
-        textWindow->SetSelection(0, 0);
-        textWindow->FindText(findText, true, true, false);
-        // Search by label for custom word-list tests (the list and report have the same ID);
-        // otherwise, search by ID.
-        GetSideBar()->SelectSubItem(
-            (event.GetId() == textId) ?
-            GetSideBar()->FindSubItem(textWindow->GetLabel()) :
-            GetSideBar()->FindSubItem(textId));
+        m_embeddedTextEditor->SelectString(findText);
         }
+    else
+        {
+        // Find the first occurrence of the selected word.
+        // First, look in the word breakdown section for the respective test window,
+        // then the grammar section and finally the Dolch section.
+        wxWindow* theWindow = GetWordsBreakdownView().FindWindowById(textId, CLASSINFO(FormattedTextCtrl));
+        if (!theWindow)
+            { theWindow = GetGrammarView().FindWindowById(textId, CLASSINFO(FormattedTextCtrl)); }
+        if (!theWindow)
+            { theWindow = GetDolchSightWordsView().FindWindowById(textId, CLASSINFO(FormattedTextCtrl)); }
+        if (theWindow && theWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
+            {
+            FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(theWindow);
+            textWindow->SetSelection(0, 0);
+            textWindow->FindText(findText, true, true, false);
+            // Search by label for custom word-list tests (the list and report have the same ID);
+            // otherwise, search by ID.
+            GetSideBar()->SelectSubItem(
+                (event.GetId() == textId) ?
+                GetSideBar()->FindSubItem(textWindow->GetLabel()) :
+                GetSideBar()->FindSubItem(textId));
+            }
 
-    // update the search panel to remember the string we searched for
-    m_searchCtrl->SetFindString(findText);
+        // update the search panel to remember the string we searched for
+        m_searchCtrl->SetFindString(findText);
+        }
     }
 
 //-------------------------------------------------------
@@ -750,13 +759,14 @@ void ProjectView::OnLaunchSourceFile([[maybe_unused]] wxRibbonButtonBarEvent& ev
                 }
             if (m_embeddedTextEditor == nullptr)
                 {
-                m_embeddedTextEditor = new EditTextDlg(GetDocFrame(), doc, wxID_ANY, _(L"Edit Embedded Document"),
+                m_embeddedTextEditor = new EditTextDlg(GetDocFrame(), doc,
+                    doc->GetDocumentText(),
+                    wxID_ANY, _(L"Edit Embedded Document"),
                     doc->GetAppendedDocumentText().length() ?
                     _(L"Note: The appended template document is not included here.\n"
-                        "Only the embedded text is editable from this dialog.") : wxString{});
+                       "Only the embedded text is editable from this dialog.") : wxString{});
                 }
-            
-            m_embeddedTextEditor->SetValue(doc->GetDocumentText());
+
             m_embeddedTextEditor->Show();
             }
         else

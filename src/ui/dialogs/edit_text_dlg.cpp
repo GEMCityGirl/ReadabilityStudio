@@ -17,18 +17,22 @@ wxDECLARE_APP(ReadabilityApp);
 //------------------------------------------------------
 EditTextDlg::EditTextDlg(wxWindow* parent,
              BaseProjectDoc* parentDoc,
+             wxString value,
              wxWindowID id /*= wxID_ANY*/,
              const wxString& caption /*= _(L"Edit Text")*/,
              const wxString& description /*= wxString{}*/,
              const wxPoint& pos /*= wxDefaultPosition*/,
              const wxSize& size /*= wxSize(600, 600)*/,
-             long style /*= wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER*/) : m_parentDoc(parentDoc)
+             long style /*= wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER*/) :
+            m_value(std::move(value)),
+            m_parentDoc(parentDoc)
     {
     SetBackgroundColour(wxGetApp().GetAppOptions().GetControlBackgroundColor());
     Create(parent, id, caption, description, pos, size, style);
     SetSize(m_parentDoc->GetFirstView()->GetFrame()->GetSize());
     Centre(wxCENTER_ON_SCREEN);
 
+    Bind(wxEVT_BUTTON, &EditTextDlg::OnOK, this, wxID_OK);
     Bind(wxEVT_CLOSE_WINDOW, &EditTextDlg::OnClose, this);
     Bind(wxEVT_TEXT, &EditTextDlg::OnTextChanged, this);
 
@@ -153,6 +157,11 @@ void EditTextDlg::CreateControls()
         m_ribbon->Realise();
         }
 
+    // Note: you cannot use DDX (e.g., validators) with a text control if you want to use
+    // wxTextAttr with it. Validators call either ChangeValue() or SetValue() and that
+    // resets the control's wxTextAttr information. It seems that you can only use
+    // AppendText() to preserve the default style information, so we need to manually
+    // handle connecting the text control to m_value via Save() and our on OnOK().
     m_textEntry = new FormattedTextCtrl(this, wxID_ANY,
                                  wxDefaultPosition, wxDefaultSize,
                                  wxTE_AUTO_URL|wxTE_PROCESS_TAB,
@@ -161,7 +170,9 @@ void EditTextDlg::CreateControls()
     m_textEntry->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_EDITOR_MENU"));
     if (m_parentDoc != nullptr)
         {
-        m_textEntry->SetFont(m_parentDoc->GetTextViewFont());
+        m_style = wxTextAttr{ m_parentDoc->GetTextFontColor(), wxNullColour, m_parentDoc->GetTextViewFont() };
+        m_style.SetLeftIndent(50, -40);
+        m_textEntry->SetDefaultStyle(m_style);
         m_textEntry->EnableProofCheck(wxTextProofOptions::Default().
             Language((m_parentDoc->GetProjectLanguage() == readability::test_language::spanish_test) ?
                 _DT("es") :
@@ -170,6 +181,8 @@ void EditTextDlg::CreateControls()
                 _DT("en")).
             SpellCheck(true).GrammarCheck(true));
         }
+    // must use AppendText to prevent text control's style from being wiped out
+    m_textEntry->AppendText(m_value);
 
     mainSizer->Add(m_textEntry, 1, wxEXPAND);
 
@@ -306,6 +319,22 @@ void EditTextDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent & event)
     }
 
 //------------------------------------------------------
+void EditTextDlg::OnOK(wxCommandEvent& event)
+    {
+    if (Validate() && TransferDataFromWindow() )
+        {
+        m_value = m_textEntry->GetValue();
+        if (IsModal() )
+            { EndModal(wxID_OK); }
+        else
+            {
+            SetReturnCode(wxID_OK);
+            Show(false);
+            }
+        }
+    }
+
+//------------------------------------------------------
 void EditTextDlg::OnClose(wxCloseEvent& event)
     {
     if (m_textEntry && m_textEntry->IsModified() )
@@ -323,6 +352,7 @@ void EditTextDlg::OnClose(wxCloseEvent& event)
                     _(L"Save Changes"), wxYES_NO | wxICON_QUESTION) == wxYES)
                 {
                 TransferDataFromWindow();
+                m_value = m_textEntry->GetValue();
                 EndModal(wxID_OK);
                 return;
                 }
@@ -332,7 +362,10 @@ void EditTextDlg::OnClose(wxCloseEvent& event)
     if (IsModal())
         { EndModal(wxID_CLOSE); }
     else
-        { Show(false); }
+        {
+        SetReturnCode(wxID_CLOSE);
+        Show(false);
+        }
     }
 
 //------------------------------------------------------
@@ -393,6 +426,8 @@ void EditTextDlg::Save()
     {
     if (!TransferDataFromWindow())
         { return; }
+
+    m_value = m_textEntry->GetValue();
 
     // Only link the editor directly to a standard project.
     // Subprojects within batches will only get updated when this dialog

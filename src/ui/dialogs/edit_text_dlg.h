@@ -32,14 +32,16 @@ class EditTextDlg final : public wxDialog
 public:
     /** @brief Constructor.
         @param parent The parent window.
+        @param value The text to edit.
         @param id The dialog's ID.
         @param caption The dialog's caption.
         @param description A description label to show beneath the text.
         @param pos The dialog's window position.
         @param size The dialog's size.
         @param style The dialog's style.*/
-    explicit EditTextDlg(wxWindow* parent,
+    EditTextDlg(wxWindow* parent,
         BaseProjectDoc* parentDoc,
+        wxString value,
         wxWindowID id = wxID_ANY,
         const wxString& caption = _(L"Edit Text"),
         const wxString& description = wxString{},
@@ -50,18 +52,23 @@ public:
     EditTextDlg(const EditTextDlg& that) = delete;
     /// @private
     EditTextDlg& operator=(const EditTextDlg& that) = delete;
-    /// @brief Sets the text to display for editing.
-    /// @param text The text to display.
-    /// @todo Use move semantics.
-    void SetValue(const wxString& text)
-        {
-        m_value = text;
-        TransferDataToWindow();
-        }
      /// @returns The edited text.
      [[nodiscard]]
      const wxString& GetValue() const noexcept
         { return m_value; }
+    /// @brief Searches for and selects a string in the text control.
+    /// @details Will search downward, case insensitively, and whole word.
+    /// @param str The string to look for.
+    void SelectString(const wxString& str)
+        {
+        if (m_textEntry != nullptr)
+            {
+            m_textEntry->SetSelection(0, 0);
+            m_textEntry->FindText(str, true, true, false);
+            m_findData.SetFlags(wxFR_DOWN|wxFR_WHOLEWORD|wxFR_MATCHCASE);
+            m_findData.SetFindString(str);
+            }
+        }
 private:
     /// Creation.
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
@@ -91,6 +98,7 @@ private:
     void OnShowFindDialog([[maybe_unused]] wxCommandEvent& event);
     void OnShowReplaceDialog([[maybe_unused]] wxCommandEvent& event);
     void OnFindDialog(wxFindDialogEvent& event);
+    void OnOK(wxCommandEvent& event);
 
     void Save();
 
@@ -111,6 +119,8 @@ private:
 
     wxFindReplaceDialog* m_dlgFind{ nullptr };
     wxFindReplaceDialog* m_dlgReplace{ nullptr };
+
+    wxTextAttr m_style;
     };
 
 /** @}*/
