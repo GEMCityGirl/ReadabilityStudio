@@ -52,9 +52,9 @@ public:
     EditTextDlg(const EditTextDlg& that) = delete;
     /// @private
     EditTextDlg& operator=(const EditTextDlg& that) = delete;
-     /// @returns The edited text.
-     [[nodiscard]]
-     const wxString& GetValue() const noexcept
+    /// @returns The edited text.
+    [[nodiscard]]
+    const wxString& GetValue() const noexcept
         { return m_value; }
     /// @brief Searches for and selects a string in the text control.
     /// @details Will search downward, case insensitively, and whole word.
@@ -78,7 +78,7 @@ private:
         long style = wxDEFAULT_DIALOG_STYLE)
         {
         SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-        wxDialog::Create(parent, id, caption, pos, size, style );
+        wxDialog::Create(parent, id, caption, pos, size, style);
         SetMinSize(FromDIP(size));
 
         m_description = description;
@@ -92,6 +92,7 @@ private:
     /// Creates the controls and sizers.
     void CreateControls();
     void OnEditButtons(wxRibbonButtonBarEvent& event);
+    void OnLineSpaceSelected(wxCommandEvent& event);
     void OnSaveButton(wxRibbonButtonBarEvent& event);
     void OnTextChanged(wxCommandEvent& event);
     void OnClose(wxCloseEvent& event);
@@ -103,13 +104,17 @@ private:
     void Save();
 
     void EnableSaveButton(const bool enable = true);
+    void ToggleIndentButtons(const wxWindowID buttonToEnable);
+    void UpdateUndoButtons();
 
     static constexpr auto ID_DOCUMENT_RIBBON_BUTTON_BAR = wxID_HIGHEST;
     static constexpr auto ID_CLIPBOARD_RIBBON_BUTTON_BAR = wxID_HIGHEST + 1;
     static constexpr auto ID_EDIT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 2;
+    static constexpr auto ID_PARAGRAPH_RIBBON_BUTTON_BAR = wxID_HIGHEST + 3;
 
     wxString m_value;
     wxString m_description;
+    wxMenu m_lineSpacingMenu;
 
     BaseProjectDoc* m_parentDoc{ nullptr };
     FormattedTextCtrl* m_textEntry{ nullptr };

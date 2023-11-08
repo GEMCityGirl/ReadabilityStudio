@@ -72,9 +72,44 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnSaveButton, this, wxID_SAVE);
 
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED,
+        [this](wxRibbonButtonBarEvent& event)
+        {
+        wxFontData data;
+        data.SetInitialFont(m_style.GetFont());
+        data.SetColour(m_style.GetTextColour());
+        wxFontDialog dialog(this, data);
+        if (dialog.ShowModal() == wxID_OK)
+            {
+            const bool wasModified = m_textEntry->IsModified();
+            const bool isUndoEnabled = m_textEntry->CanUndo();
+            m_style.SetFont(dialog.GetFontData().GetChosenFont());
+            m_style.SetTextColour(dialog.GetFontData().GetColour());
+            m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
+            // don't mark as modified when just changing the view's font
+            m_textEntry->SetModified(wasModified);
+            if (!isUndoEnabled)
+                { m_textEntry->EmptyUndoBuffer(); }
+            UpdateUndoButtons();
+            }
+        }, wxID_SELECT_FONT);
+
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_PASTE);
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_CUT);
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_COPY);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_INDENT);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_JUSTIFY_LEFT);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_JUSTIFY_CENTER);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_JUSTIFY_RIGHT);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_JUSTIFY_FILL);
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED,
+        [this](wxRibbonButtonBarEvent& event)
+        {
+        event.PopupMenu(&m_lineSpacingMenu);
+        }, XRCID("ID_LINE_SPACING"));
+    Bind(wxEVT_MENU, &EditTextDlg::OnLineSpaceSelected, this, XRCID("ID_LINE_SINGLE"));
+    Bind(wxEVT_MENU, &EditTextDlg::OnLineSpaceSelected, this, XRCID("ID_LINE_ONE_AND_HALF"));
+    Bind(wxEVT_MENU, &EditTextDlg::OnLineSpaceSelected, this, XRCID("ID_LINE_DOUBLE"));
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_UNDO);
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_REDO);
@@ -127,6 +162,55 @@ void EditTextDlg::CreateControls()
                 wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON,
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
                 _(L"Copy the selection."));
+            }
+        // paragraph
+            {
+            wxRibbonPanel* paragraphPage = new wxRibbonPanel(homePage, wxID_ANY, _(L"Paragraph"),
+                wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(paragraphPage, ID_PARAGRAPH_RIBBON_BUTTON_BAR);
+
+            buttonBar->AddButton(wxID_SELECT_FONT, _(L"Font"),
+                wxArtProvider::GetBitmap(L"ID_FONT", wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+                _(L"Changes the font showing the document."));
+
+            buttonBar->AddToggleButton(wxID_INDENT, _(L"Indent"),
+                wxArtProvider::GetBitmap(L"ID_PARAGRAPH_INDENT", wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+                _(L"Indents the first line of each paragraph."));
+            buttonBar->ToggleButton(wxID_INDENT, true);
+            
+            buttonBar->AddToggleButton(wxID_JUSTIFY_LEFT, _(L"Left"),
+                wxArtProvider::GetBitmap(L"ID_ALIGN_LEFT", wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+                _(L"Left aligns the text."));
+            buttonBar->ToggleButton(wxID_JUSTIFY_LEFT, true);
+            buttonBar->AddToggleButton(wxID_JUSTIFY_CENTER, _(L"Center"),
+                wxArtProvider::GetBitmap(L"ID_ALIGN_CENTER", wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+                _(L"Centers the text."));
+            buttonBar->AddToggleButton(wxID_JUSTIFY_RIGHT, _(L"Right"),
+                wxArtProvider::GetBitmap(L"ID_ALIGN_RIGHT", wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+                _(L"Right aligns the text."));
+            buttonBar->AddToggleButton(wxID_JUSTIFY_FILL, _(L"Justified"),
+                wxArtProvider::GetBitmap(L"ID_ALIGN_JUSTIFIED", wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+                _(L"Justifies the text."));
+
+            buttonBar->AddDropdownButton(XRCID("ID_LINE_SPACING"), _(L"Line Spacing"),
+                wxArtProvider::GetBitmap(L"ID_ALIGN_JUSTIFIED", wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+                _(L"Adjusts the spacing between lines."));
+
+            m_lineSpacingMenu.Append(new wxMenuItem(&m_lineSpacingMenu, XRCID("ID_LINE_SINGLE"),
+                _DT(L"1.0"), wxString{}, wxITEM_CHECK));
+            m_lineSpacingMenu.Append(new wxMenuItem(&m_lineSpacingMenu, XRCID("ID_LINE_ONE_AND_HALF"),
+                _DT(L"1.5"), wxString{}, wxITEM_CHECK));
+            m_lineSpacingMenu.Append(new wxMenuItem(&m_lineSpacingMenu, XRCID("ID_LINE_DOUBLE"),
+                _DT(L"2.0"), wxString{}, wxITEM_CHECK));
+            m_lineSpacingMenu.Check(XRCID("ID_LINE_SINGLE"), true);
+            m_lineSpacingMenu.AppendSeparator();
             }
         // edit
             {
@@ -392,10 +476,40 @@ void EditTextDlg::OnSaveButton(wxRibbonButtonBarEvent& event)
     }
 
 //------------------------------------------------------
+void EditTextDlg::OnLineSpaceSelected(wxCommandEvent& event)
+    {
+    if (m_textEntry)
+        {
+        const bool wasModified = m_textEntry->IsModified();
+        const bool isUndoEnabled = m_textEntry->CanUndo();
+
+        // update menu
+        m_lineSpacingMenu.Check(XRCID("ID_LINE_SINGLE"), event.GetId() == XRCID("ID_LINE_SINGLE"));
+        m_lineSpacingMenu.Check(XRCID("ID_LINE_ONE_AND_HALF"), event.GetId() == XRCID("ID_LINE_ONE_AND_HALF"));
+        m_lineSpacingMenu.Check(XRCID("ID_LINE_DOUBLE"), event.GetId() == XRCID("ID_LINE_DOUBLE"));
+
+        m_style.SetLineSpacing(event.GetId() == XRCID("ID_LINE_SINGLE") ?
+            wxTEXT_ATTR_LINE_SPACING_NORMAL :
+            event.GetId() == XRCID("ID_LINE_ONE_AND_HALF") ?
+            wxTEXT_ATTR_LINE_SPACING_HALF :
+            wxTEXT_ATTR_LINE_SPACING_TWICE);
+        m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
+        // don't mark as modified when just changing the view's font
+        m_textEntry->SetModified(wasModified);
+        if (!isUndoEnabled)
+            { m_textEntry->EmptyUndoBuffer(); }
+        UpdateUndoButtons();
+        }
+    }
+
+//------------------------------------------------------
 void EditTextDlg::OnEditButtons(wxRibbonButtonBarEvent& event)
     {
     if (m_textEntry)
         {
+        const bool wasModified = m_textEntry->IsModified();
+        const bool isUndoEnabled = m_textEntry->CanUndo();
+
         if (event.GetId() == wxID_SELECTALL)
             { m_textEntry->SelectAll(); }
         else if (event.GetId() == wxID_UNDO)
@@ -408,6 +522,39 @@ void EditTextDlg::OnEditButtons(wxRibbonButtonBarEvent& event)
             { m_textEntry->Cut(); }
         else if (event.GetId() == wxID_PASTE)
             { m_textEntry->Paste(); }
+        else if (event.GetId() == wxID_INDENT)
+            {
+            if (m_style.GetLeftIndent() == 0)
+                { m_style.SetLeftIndent(50, -40); }
+            else
+                { m_style.SetLeftIndent(0, 0); }
+            m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
+            // don't mark as modified when just changing the view's font
+            m_textEntry->SetModified(wasModified);
+            if (!isUndoEnabled)
+                { m_textEntry->EmptyUndoBuffer(); }
+            UpdateUndoButtons();
+            }
+        else if (event.GetId() == wxID_JUSTIFY_LEFT ||
+            event.GetId() == wxID_JUSTIFY_CENTER ||
+            event.GetId() == wxID_JUSTIFY_RIGHT ||
+            event.GetId() == wxID_JUSTIFY_FILL)
+            {
+            m_style.SetAlignment(
+                event.GetId() == wxID_JUSTIFY_LEFT ?
+                wxTextAttrAlignment::wxTEXT_ALIGNMENT_LEFT :
+                event.GetId() == wxID_JUSTIFY_CENTER ?
+                wxTextAttrAlignment::wxTEXT_ALIGNMENT_CENTER :
+                event.GetId() == wxID_JUSTIFY_RIGHT ?
+                wxTextAttrAlignment::wxTEXT_ALIGNMENT_RIGHT :
+                wxTextAttrAlignment::wxTEXT_ALIGNMENT_JUSTIFIED);
+            m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
+            ToggleIndentButtons(event.GetId());
+            m_textEntry->SetModified(wasModified);
+            if (!isUndoEnabled)
+                { m_textEntry->EmptyUndoBuffer(); }
+            UpdateUndoButtons();
+            }
         }
     }
 
@@ -417,18 +564,7 @@ void EditTextDlg::OnTextChanged(wxCommandEvent& event)
     if (m_textEntry)
         {
         EnableSaveButton(m_textEntry->IsModified());
-
-        wxWindow* editButtonBarWindow = m_ribbon->FindWindow(EditTextDlg::ID_EDIT_RIBBON_BUTTON_BAR);
-        if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
-            {
-            auto editButtonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-            assert(editButtonBar && L"Error casting ribbon bar!");
-            if (editButtonBar)
-                {
-                editButtonBar->EnableButton(wxID_UNDO, m_textEntry->CanUndo());
-                editButtonBar->EnableButton(wxID_REDO, m_textEntry->CanRedo());
-                }
-            }
+        UpdateUndoButtons();
         }
     }
 
@@ -468,5 +604,40 @@ void EditTextDlg::EnableSaveButton(const bool enable /*= true*/)
         assert(saveButtonBar && L"Error casting ribbon bar!");
         if (saveButtonBar)
             { saveButtonBar->EnableButton(wxID_SAVE, enable); }
+        }
+    }
+
+//------------------------------------------------------
+void EditTextDlg::ToggleIndentButtons(const wxWindowID buttonToEnable)
+    {
+    wxWindow* paragraphButtonBarWindow = m_ribbon->FindWindow(EditTextDlg::ID_PARAGRAPH_RIBBON_BUTTON_BAR);
+    if (paragraphButtonBarWindow && paragraphButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+        {
+        auto paragraphButtonBar = dynamic_cast<wxRibbonButtonBar*>(paragraphButtonBarWindow);
+        assert(paragraphButtonBar && L"Error casting ribbon bar!");
+        if (paragraphButtonBar)
+            {
+            paragraphButtonBar->ToggleButton(wxID_JUSTIFY_LEFT, false);
+            paragraphButtonBar->ToggleButton(wxID_JUSTIFY_CENTER, false);
+            paragraphButtonBar->ToggleButton(wxID_JUSTIFY_RIGHT, false);
+            paragraphButtonBar->ToggleButton(wxID_JUSTIFY_FILL, false);
+            paragraphButtonBar->ToggleButton(buttonToEnable, true);
+            }
+        }
+    }
+
+//------------------------------------------------------
+void EditTextDlg::UpdateUndoButtons()
+    {
+    wxWindow* editButtonBarWindow = m_ribbon->FindWindow(EditTextDlg::ID_EDIT_RIBBON_BUTTON_BAR);
+    if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+        {
+        auto editButtonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
+        assert(editButtonBar && L"Error casting ribbon bar!");
+        if (editButtonBar)
+            {
+            editButtonBar->EnableButton(wxID_UNDO, m_textEntry->CanUndo());
+            editButtonBar->EnableButton(wxID_REDO, m_textEntry->CanRedo());
+            }
         }
     }

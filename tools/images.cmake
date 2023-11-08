@@ -3,6 +3,9 @@ menus/menu.xrc
 ribbon/add.svg
 ribbon/adult.svg
 ribbon/aggressive-list.svg
+ribbon/align-center.svg
+ribbon/align-left.svg
+ribbon/align-right.svg
 ribbon/app-logo.svg
 ribbon/apple.svg
 ribbon/archive.svg
@@ -81,6 +84,7 @@ ribbon/image.svg
 ribbon/indenting.svg
 ribbon/internet.svg
 ribbon/invalid-region.svg
+ribbon/justified.svg
 ribbon/keyboard-shortcuts.svg
 ribbon/left-titles.svg
 ribbon/list.svg
@@ -91,6 +95,7 @@ ribbon/lua.svg
 ribbon/misspellings.svg
 ribbon/number-syllabize.svg
 ribbon/opacity.svg
+ribbon/paragraph-indent.svg
 ribbon/paragraph.svg
 ribbon/paste.svg
 ribbon/period-needed.svg
