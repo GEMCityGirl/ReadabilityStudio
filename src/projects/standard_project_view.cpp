@@ -675,6 +675,8 @@ void ProjectView::OnListDblClick(wxListEvent& event)
         textId = event.GetId();
         }
 
+    findText.Trim(true);
+
     // if the embedded editor is open, then select the text in there
     if (m_embeddedTextEditor != nullptr &&
         m_embeddedTextEditor->IsShown())

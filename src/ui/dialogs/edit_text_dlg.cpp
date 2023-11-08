@@ -54,6 +54,13 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
             wxFindDialogEvent dummyEvt;
             EditTextDlg::OnShowReplaceDialog(dummyEvt);
             }
+        else if (event.GetKeyCode() == WXK_F3)
+            {
+            wxFindDialogEvent evt{ wxEVT_FIND_NEXT };
+            evt.SetFindString(m_findData.GetFindString());
+            evt.SetFlags(m_findData.GetFlags());
+            EditTextDlg::OnFindDialog(evt);
+            }
         event.Skip(true);
         }, wxID_ANY);
 
@@ -164,8 +171,7 @@ void EditTextDlg::CreateControls()
     // handle connecting the text control to m_value via Save() and our on OnOK().
     m_textEntry = new FormattedTextCtrl(this, wxID_ANY,
                                  wxDefaultPosition, wxDefaultSize,
-                                 wxTE_AUTO_URL|wxTE_PROCESS_TAB,
-                                 wxGenericValidator(&m_value) );
+                                 wxTE_AUTO_URL|wxTE_PROCESS_TAB);
     m_textEntry->SetMargins(10, 10);
     m_textEntry->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_EDITOR_MENU"));
     if (m_parentDoc != nullptr)
