@@ -155,6 +155,9 @@ void EditTextDlg::CreateControls()
                 wxArtProvider::GetBitmap(L"ID_SELECT_ALL", wxART_BUTTON,
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
                 _(L"Select all text."));
+
+            buttonBar->EnableButton(wxID_UNDO, false);
+            buttonBar->EnableButton(wxID_REDO, false);
             }
 
         m_ribbon->SetArtProvider(new Wisteria::UI::RibbonMetroArtProvider);
@@ -189,6 +192,8 @@ void EditTextDlg::CreateControls()
         }
     // must use AppendText to prevent text control's style from being wiped out
     m_textEntry->AppendText(m_value);
+    m_textEntry->SetModified(false);
+    m_textEntry->EmptyUndoBuffer();
 
     mainSizer->Add(m_textEntry, 1, wxEXPAND);
 
