@@ -104,7 +104,7 @@ private:
     void Save();
 
     void EnableSaveButton(const bool enable = true);
-    void ToggleIndentButtons(const wxWindowID buttonToEnable);
+    void UpdateIndentButtons();
     void UpdateUndoButtons();
 
     static constexpr auto ID_DOCUMENT_RIBBON_BUTTON_BAR = wxID_HIGHEST;

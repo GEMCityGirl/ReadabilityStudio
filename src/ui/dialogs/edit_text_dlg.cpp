@@ -549,7 +549,7 @@ void EditTextDlg::OnEditButtons(wxRibbonButtonBarEvent& event)
                 wxTextAttrAlignment::wxTEXT_ALIGNMENT_RIGHT :
                 wxTextAttrAlignment::wxTEXT_ALIGNMENT_JUSTIFIED);
             m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
-            ToggleIndentButtons(event.GetId());
+            UpdateIndentButtons();
             m_textEntry->SetModified(wasModified);
             if (!isUndoEnabled)
                 { m_textEntry->EmptyUndoBuffer(); }
@@ -608,8 +608,16 @@ void EditTextDlg::EnableSaveButton(const bool enable /*= true*/)
     }
 
 //------------------------------------------------------
-void EditTextDlg::ToggleIndentButtons(const wxWindowID buttonToEnable)
+void EditTextDlg::UpdateIndentButtons()
     {
+    const wxWindowID buttonToEnable = (m_style.GetAlignment() == wxTEXT_ALIGNMENT_LEFT) ?
+        wxID_JUSTIFY_LEFT :
+        (m_style.GetAlignment() == wxTEXT_ALIGNMENT_CENTER) ?
+        wxID_JUSTIFY_CENTER :
+        (m_style.GetAlignment() == wxTEXT_ALIGNMENT_RIGHT) ?
+        wxID_JUSTIFY_RIGHT : wxID_JUSTIFY_FILL;
+
+    m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
     wxWindow* paragraphButtonBarWindow = m_ribbon->FindWindow(EditTextDlg::ID_PARAGRAPH_RIBBON_BUTTON_BAR);
     if (paragraphButtonBarWindow && paragraphButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
         {
