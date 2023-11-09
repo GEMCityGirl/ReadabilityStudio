@@ -53,6 +53,7 @@ RSArtProvider::RSArtProvider()
             { L"ID_ALIGN_RIGHT", L"ribbon/align-right.svg" },
             { L"ID_ALIGN_JUSTIFIED", L"ribbon/justified.svg" },
             { L"ID_PARAGRAPH_INDENT", L"ribbon/paragraph-indent.svg" },
+            { L"ID_LINE_SPACING", L"ribbon/line-spacing.svg" },
             { L"ID_LIST_SORT", L"ribbon/sort.svg" },
             { L"ID_ADD", L"ribbon/add.svg" },
             { L"ID_RUN", L"ribbon/run.svg" },

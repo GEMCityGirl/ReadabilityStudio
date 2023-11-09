@@ -110,6 +110,7 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
     Bind(wxEVT_MENU, &EditTextDlg::OnLineSpaceSelected, this, XRCID("ID_LINE_SINGLE"));
     Bind(wxEVT_MENU, &EditTextDlg::OnLineSpaceSelected, this, XRCID("ID_LINE_ONE_AND_HALF"));
     Bind(wxEVT_MENU, &EditTextDlg::OnLineSpaceSelected, this, XRCID("ID_LINE_DOUBLE"));
+    Bind(wxEVT_MENU, &EditTextDlg::OnParagraphSpaceSelected, this, XRCID("ID_ADD_PARAGRAPH_SPACE"));
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_UNDO);
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_REDO);
@@ -184,7 +185,6 @@ void EditTextDlg::CreateControls()
                 wxArtProvider::GetBitmap(L"ID_ALIGN_LEFT", wxART_BUTTON,
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
                 _(L"Left aligns the text."));
-            buttonBar->ToggleButton(wxID_JUSTIFY_LEFT, true);
             buttonBar->AddToggleButton(wxID_JUSTIFY_CENTER, _(L"Center"),
                 wxArtProvider::GetBitmap(L"ID_ALIGN_CENTER", wxART_BUTTON,
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
@@ -197,12 +197,14 @@ void EditTextDlg::CreateControls()
                 wxArtProvider::GetBitmap(L"ID_ALIGN_JUSTIFIED", wxART_BUTTON,
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
                 _(L"Justifies the text."));
+            buttonBar->ToggleButton(wxID_JUSTIFY_FILL, true);
 
             buttonBar->AddDropdownButton(XRCID("ID_LINE_SPACING"), _(L"Line Spacing"),
-                wxArtProvider::GetBitmap(L"ID_ALIGN_JUSTIFIED", wxART_BUTTON,
+                wxArtProvider::GetBitmap(L"ID_LINE_SPACING", wxART_BUTTON,
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
                 _(L"Adjusts the spacing between lines."));
 
+        #ifdef __WXMSW__
             m_lineSpacingMenu.Append(new wxMenuItem(&m_lineSpacingMenu, XRCID("ID_LINE_SINGLE"),
                 _DT(L"1.0"), wxString{}, wxITEM_CHECK));
             m_lineSpacingMenu.Append(new wxMenuItem(&m_lineSpacingMenu, XRCID("ID_LINE_ONE_AND_HALF"),
@@ -211,6 +213,10 @@ void EditTextDlg::CreateControls()
                 _DT(L"2.0"), wxString{}, wxITEM_CHECK));
             m_lineSpacingMenu.Check(XRCID("ID_LINE_SINGLE"), true);
             m_lineSpacingMenu.AppendSeparator();
+        #endif
+            m_lineSpacingMenu.Append(new wxMenuItem(&m_lineSpacingMenu, XRCID("ID_ADD_PARAGRAPH_SPACE"),
+                _(L"Add space after paragraphs"), wxString{}, wxITEM_CHECK));
+            m_lineSpacingMenu.Check(XRCID("ID_ADD_PARAGRAPH_SPACE"), true);
             }
         // edit
             {
@@ -265,6 +271,8 @@ void EditTextDlg::CreateControls()
         {
         m_style = wxTextAttr{ m_parentDoc->GetTextFontColor(), wxNullColour, m_parentDoc->GetTextViewFont() };
         m_style.SetLeftIndent(50, -40);
+        m_style.SetParagraphSpacingAfter(40);
+        m_style.SetAlignment(wxTextAttrAlignment::wxTEXT_ALIGNMENT_JUSTIFIED);
         m_textEntry->SetDefaultStyle(m_style);
         m_textEntry->EnableProofCheck(wxTextProofOptions::Default().
             Language((m_parentDoc->GetProjectLanguage() == readability::test_language::spanish_test) ?
@@ -276,8 +284,10 @@ void EditTextDlg::CreateControls()
         }
     // must use AppendText to prevent text control's style from being wiped out
     m_textEntry->AppendText(m_value);
+    m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
     m_textEntry->SetModified(false);
     m_textEntry->EmptyUndoBuffer();
+    EnableSaveButton(false);
 
     mainSizer->Add(m_textEntry, 1, wxEXPAND);
 
@@ -476,6 +486,29 @@ void EditTextDlg::OnSaveButton(wxRibbonButtonBarEvent& event)
     }
 
 //------------------------------------------------------
+void EditTextDlg::OnParagraphSpaceSelected(wxCommandEvent& event)
+    {
+    if (m_textEntry)
+        {
+        const bool wasModified = m_textEntry->IsModified();
+        const bool isUndoEnabled = m_textEntry->CanUndo();
+
+        // update menu
+        const bool usingParaSpace = (m_style.GetParagraphSpacingAfter() > 0);
+        m_lineSpacingMenu.Check(XRCID("ID_ADD_PARAGRAPH_SPACE"), !usingParaSpace);
+        m_style.SetParagraphSpacingAfter(!usingParaSpace ? 40 : 0);
+
+        m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
+        // don't mark as modified when just changing the view's font
+        m_textEntry->SetModified(wasModified);
+        if (!isUndoEnabled)
+            { m_textEntry->EmptyUndoBuffer(); }
+        UpdateUndoButtons();
+        EnableSaveButton(wasModified);
+        }
+    }
+
+//------------------------------------------------------
 void EditTextDlg::OnLineSpaceSelected(wxCommandEvent& event)
     {
     if (m_textEntry)
@@ -493,12 +526,14 @@ void EditTextDlg::OnLineSpaceSelected(wxCommandEvent& event)
             event.GetId() == XRCID("ID_LINE_ONE_AND_HALF") ?
             wxTEXT_ATTR_LINE_SPACING_HALF :
             wxTEXT_ATTR_LINE_SPACING_TWICE);
+
         m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
         // don't mark as modified when just changing the view's font
         m_textEntry->SetModified(wasModified);
         if (!isUndoEnabled)
             { m_textEntry->EmptyUndoBuffer(); }
         UpdateUndoButtons();
+        EnableSaveButton(wasModified);
         }
     }
 
@@ -554,6 +589,7 @@ void EditTextDlg::OnEditButtons(wxRibbonButtonBarEvent& event)
             if (!isUndoEnabled)
                 { m_textEntry->EmptyUndoBuffer(); }
             UpdateUndoButtons();
+            EnableSaveButton(wasModified);
             }
         }
     }

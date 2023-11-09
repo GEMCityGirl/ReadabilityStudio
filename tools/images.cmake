@@ -87,6 +87,7 @@ ribbon/invalid-region.svg
 ribbon/justified.svg
 ribbon/keyboard-shortcuts.svg
 ribbon/left-titles.svg
+ribbon/line-spacing.svg
 ribbon/list.svg
 ribbon/log-book.svg
 ribbon/logo.svg

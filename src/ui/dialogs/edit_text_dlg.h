@@ -93,6 +93,7 @@ private:
     void CreateControls();
     void OnEditButtons(wxRibbonButtonBarEvent& event);
     void OnLineSpaceSelected(wxCommandEvent& event);
+    void OnParagraphSpaceSelected(wxCommandEvent& event);
     void OnSaveButton(wxRibbonButtonBarEvent& event);
     void OnTextChanged(wxCommandEvent& event);
     void OnClose(wxCloseEvent& event);
