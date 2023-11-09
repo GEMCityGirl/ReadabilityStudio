@@ -610,7 +610,7 @@ void LuaEditorDlg::OnFindDialog(wxFindDialogEvent& event)
                 currentScript->Replace(foundPos, foundPos + event.GetFindString().length(), event.GetReplaceString());
                 currentScript->SetSelection(foundPos, foundPos + event.GetReplaceString().length());
                 currentScript->SearchAnchor();
-                // ...then, find the next occurrance of string being replaced for the next replace button click
+                // ...then, find the next occurrence of string being replaced for the next replace button click
                 foundPos = currentScript->FindNext(event.GetFindString(), event.GetFlags());
                 if (foundPos != wxSTC_INVALID_POSITION)
                     {
@@ -644,7 +644,7 @@ void LuaEditorDlg::OnFindDialog(wxFindDialogEvent& event)
             currentScript->SetSelection(foundPos + event.GetReplaceString().length(),
                                       foundPos + event.GetReplaceString().length());
             currentScript->SearchAnchor();
-            // ...then, find the next occurrance of string being replaced for the next loop
+            // ...then, find the next occurrence of string being replaced for the next loop
             foundPos = currentScript->FindNext(event.GetFindString(), event.GetFlags(), false);
             }
         }

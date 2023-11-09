@@ -472,7 +472,7 @@ namespace Wisteria::Graphs
         CalculateScorePositions(dc);
 
         // Add the grade labels to the regions
-        // (and highlight in heavy bold and a differenct color the one where the score lies)
+        // (and highlight in heavy bold and a different color the one where the score lies)
         const wxFont labelFont = (GetRaygorStyle() == RaygorStyle::Modern) ?
             wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).
                 GetPointSize() * 1.25f, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC,

@@ -180,7 +180,7 @@ void EditTextDlg::CreateControls()
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
                 _(L"Indents the first line of each paragraph."));
             buttonBar->ToggleButton(wxID_INDENT, true);
-            
+
             buttonBar->AddToggleButton(wxID_JUSTIFY_LEFT, _(L"Left"),
                 wxArtProvider::GetBitmap(L"ID_ALIGN_LEFT", wxART_BUTTON,
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
@@ -338,7 +338,7 @@ void EditTextDlg::OnFindDialog(wxFindDialogEvent& event)
                 {
                 m_textEntry->Replace(foundPos, foundPos + event.GetFindString().length(), event.GetReplaceString());
                 m_textEntry->SetSelection(foundPos, foundPos + event.GetReplaceString().length());
-                // ...then, find the next occurrance of string being replaced for the next replace button click
+                // ...then, find the next occurrence of string being replaced for the next replace button click
                 foundPos = m_textEntry->FindText(event.GetFindString(),
                     (event.GetFlags() & wxFR_DOWN), (event.GetFlags() & wxFR_WHOLEWORD),
                     (event.GetFlags() & wxFR_MATCHCASE));
@@ -367,7 +367,7 @@ void EditTextDlg::OnFindDialog(wxFindDialogEvent& event)
             m_textEntry->Replace(foundPos, foundPos + event.GetFindString().length(), event.GetReplaceString());
             m_textEntry->SetSelection(foundPos + event.GetReplaceString().length(),
                                       foundPos + event.GetReplaceString().length());
-            // ...then, find the next occurrance of string being replaced for the next loop
+            // ...then, find the next occurrence of string being replaced for the next loop
             foundPos = m_textEntry->FindText(event.GetFindString(),
                 (event.GetFlags() & wxFR_DOWN), (event.GetFlags() & wxFR_WHOLEWORD),
                 (event.GetFlags() & wxFR_MATCHCASE));

@@ -363,13 +363,15 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                     { LoadDocument(); }
                 catch (...)
                     {
-                    wxMessageBox(_(L"An unknown error occurred while analyzing the document. Unable to create project."),
+                    wxMessageBox(_(L"An unknown error occurred while analyzing the document. "
+                                    "Unable to create project."),
                         _(L"Error"), wxOK|wxICON_EXCLAMATION);
                     return false;
                     }
                 return true;
                 }
-            // ...otherwise, external file was supposed to be embedded, but internal copy of the text couldn't be found.
+            // ...otherwise, external file was supposed to be embedded,
+            // but internal copy of the text couldn't be found.
             // Try to reload it.
             else
                 {
@@ -1830,7 +1832,8 @@ void ProjectDoc::DisplayWordsBreakdown()
         if (GetWordsBreakdownInfo().IsKeyWordsEnabled() &&
             GetTotalWords() > 0 && GetKeyWordsBaseData() &&
             // don't bother with condensed list if it has the same item count as the all words list
-            // (that would mean that there was no condensing [stemming] that took place and that these lists are the same).
+            // (that would mean that there was no condensing [stemming]
+            // that took place and that these lists are the same).
             (GetKeyWordsBaseData()->GetItemCount() != GetAllWordsBaseData()->GetItemCount()))
             {
             if (listView)
@@ -6528,7 +6531,8 @@ void ProjectDoc::DisplayGrammar()
         const auto& incorectArticleIndices = GetWords()->get_incorrect_article_indices();
         for (size_t i = 0; i < incorectArticleIndices.size(); ++i)
             { articleMismatchesWords.insert(GetWords()->get_word(incorectArticleIndices[i]).c_str() +
-                traits::case_insensitive_wstring_ex(L" ") + GetWords()->get_word(incorectArticleIndices[i]+1).c_str()); }
+                traits::case_insensitive_wstring_ex(L" ") +
+                GetWords()->get_word(incorectArticleIndices[i]+1).c_str()); }
         m_incorrectArticleData->DeleteAllItems();
         m_incorrectArticleData->SetSize(articleMismatchesWords.get_data().size(), 2);
         size_t uniqueIncorrectArticleCount = 0;
@@ -6975,7 +6979,8 @@ void ProjectDoc::DisplayGrammar()
             currentSentence = ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[*pos],
                 punctPos, GetWords()->get_punctuation().end());
 
-            m_sentenceStartingWithConjunctionsData->SetItemText(sentenceStartingWithConjunctionsCount, 0, currentSentence);
+            m_sentenceStartingWithConjunctionsData->SetItemText(
+                sentenceStartingWithConjunctionsCount, 0, currentSentence);
             m_sentenceStartingWithConjunctionsData->SetItemValue(sentenceStartingWithConjunctionsCount++, 1,
                 // add 1 to make it one-indexed
                 (*pos)+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
@@ -6996,7 +7001,8 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID,
+                listView = new ListCtrlEx(view->GetSplitter(),
+                    BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
                 listView->Hide();
                 listView->SetLabel(BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel());

@@ -206,7 +206,7 @@ namespace Wisteria::Graphs
         CalculateScorePositions(dc);
 
         // draw the quadrant labels
-        // (and highlight in heavy bold and a differenct color the one where the score lies)
+        // (and highlight in heavy bold and a different color the one where the score lies)
         wxPoint pt1;
         const wxFont quadLabelFont(
             wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize()*1.25f,
