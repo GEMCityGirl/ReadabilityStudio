@@ -1091,8 +1091,17 @@ sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleLogoChanged." .. Fil
 
 sp:Close()
 
+-- Editor example
+-----------------
+ScreenshotLib.ShowEditorTextDlg(
+  "In this example, we will write and edit a document from within Readability Studio itself. Click the New button on the Home tab to open the New Project wizard. Next, select the Manually enter text option.\nYou can either type or paste text into this text box. For this example, we will leave it blank and edit it later. We will also use the defaults for document structure and test selections for brevity. (These can always be changed later from the Document and Readability tabs on the ribbon.) Finally, click the Finish button to create the project.\nBecause the project does not have any content yet, only empty scores and statistics will be shown in the results. To add content to the project, select the Document tab on the ribbon and click the Edit Document button. This will show the Edit Embedded Document dialog, where we will write our document.\nAlong the ribbon of this dialog are various editing features, such as find & replace, clipboard operations, and undo/redo. In the View section of the ribbon are options for changing the appearance of the editor.",
+  1000, 300)
+ScreenshotLib.SnapScreenshot(ImagePath .. "editorwithcontent." .. FileExtension)
+ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "editorviewribbon." .. FileExtension, 0, RibbonButtonBars.View)
+ScreenshotLib.CloseEditorTextDlg()
+
 -- Website example
--------------------
+------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "LibreOffice.rsp")
 sp:ScrollTextWindow(HighlightedReportType.ThreePlusSyllableHighlightedWords, 1800)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "incompletesentences." .. FileExtension, 1)
