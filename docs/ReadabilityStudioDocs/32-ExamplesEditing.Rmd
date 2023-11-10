@@ -14,9 +14,9 @@ Along the ribbon of this dialog are various editing features, such as find &amp;
 
 ![](images/editorviewribbon.png)
 
-For example, we can toggle line spacing between new lines by selecting `r menu("Line Spacing", "Add space after paragraphs")`.
+For example, we can toggle line spacing between new lines by selecting `r menu(c("Line Spacing", "Add space after paragraphs"))`.
 
-As you edit the document, you can click the **Save** button at any time to send your edits back to the project. The project will then analyze your changes and refresh its results. As we edit, we can also change our parsing options or add tests to the project. With the project window selected, select the **Readability** tab on the ribbon and click `r menu("Secondary", "Flesch Reading Ease")`. The Flesch test will now be added to the project and can be viewed by selecting **Readability Scores** on the project's sidebar. Likewise, various parsing features (e.g., line-end handling, text exclusion) can be changed on the **Document** tab on the ribbon.
+As you edit the document, you can click the **Save** button at any time to send your edits back to the project. The project will then analyze your changes and refresh its results. As we edit, we can also change our parsing options or add tests to the project. With the project window selected, select the **Readability** tab on the ribbon and click `r menu(c("Secondary", "Flesch Reading Ease"))`. The Flesch test will now be added to the project and can be viewed by selecting **Readability Scores** on the project's sidebar. Likewise, various parsing features (e.g., line-end handling, text exclusion) can be changed on the **Document** tab on the ribbon.
 
 You can also search for the project's findings by double clicking on items in the project's lists. Click **Words Breakdown** on the sidebar and select any list in this section (e.g., **3+ Syllable List**). Double click any word in this list and it will become selected in the editor. (Clicking `r keys("F3")` on the keyboard will search for the next instance.)
 
