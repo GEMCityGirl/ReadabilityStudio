@@ -22,7 +22,7 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
              const wxString& caption /*= _(L"Edit Text")*/,
              const wxString& description /*= wxString{}*/,
              const wxPoint& pos /*= wxDefaultPosition*/,
-             const wxSize& size /*= wxSize(600, 600)*/,
+             const wxSize& size /*= wxSize(1200, 900)*/,
              long style /*= wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER*/) :
             m_value(std::move(value)),
             m_parentDoc(parentDoc)
