@@ -6,6 +6,7 @@ In this example, we will write and edit a document from within *Readability Stud
 ![](images/wizardentertext.png)
 
 You can either type or paste text into this text box. For this example, we will leave it blank and edit it later. We will also use the defaults for document structure and test selections for brevity. (These can always be changed later from the **Document** and **Readability** tabs on the ribbon.) Finally, click the `r keys("Finish")` button to create the project.
+
 Because the project does not have any content yet, only empty scores and statistics will be shown in the results. To add content to the project, select the **Document** tab on the ribbon and click the `r keys("Edit Document")` button. This will show the **Edit Embedded Document** dialog, where we will write our document.
 
 ![](images/editorwithcontent.png)
@@ -24,4 +25,4 @@ You can also search for the project's findings by double clicking on items in th
 If the editor is not open, then double clicking a list item will search for it in the respective text window within the project.
 :::
 
-Once you are finished editing your document, copy it from this editor and paste it into your publication program. For example, click `r keys("Select All")` and `r keys("Copy")`, then paste into *Word* and save as a *Word* file.
+Once you are finished editing your document, copy it from this editor and paste it into your publication program. For example, click `r keys("Select All")` and `r keys("Copy")`, then paste into *Microsoft Word* and save as a *Word* file.
