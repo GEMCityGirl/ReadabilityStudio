@@ -331,7 +331,8 @@ RibbonButtonBars =
   Proofing = 30002,
   ParagraphDeduction = 30003,
   TextExclusion = 30004,
-  Numerals = 30005
+  Numerals = 30005,
+  View = 30006
   }
 
 OptionsPageType =

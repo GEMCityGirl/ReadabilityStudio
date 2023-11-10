@@ -173,7 +173,7 @@ void EditTextDlg::CreateControls()
             {
             wxRibbonPanel* viewPage = new wxRibbonPanel(homePage, wxID_ANY, _(L"View"),
                 wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(viewPage, ID_VIEW_RIBBON_BUTTON_BAR);
+            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(viewPage, MainFrame::ID_VIEW_RIBBON_BUTTON_BAR);
 
             buttonBar->AddButton(wxID_SELECT_FONT, _(L"Font"),
                 wxArtProvider::GetBitmap(L"ID_FONT", wxART_BUTTON,
@@ -227,7 +227,7 @@ void EditTextDlg::CreateControls()
             {
             wxRibbonPanel* editPage = new wxRibbonPanel(homePage, wxID_ANY, _(L"Edit"),
                 wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(editPage, ID_EDIT_RIBBON_BUTTON_BAR);
+            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(editPage, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
             buttonBar->AddButton(wxID_UNDO, _(L"Undo"),
                 wxArtProvider::GetBitmap(wxART_UNDO, wxART_BUTTON,
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
@@ -660,7 +660,7 @@ void EditTextDlg::UpdateIndentButtons()
         wxID_JUSTIFY_RIGHT : wxID_JUSTIFY_FILL;
 
     m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
-    wxWindow* paragraphButtonBarWindow = m_ribbon->FindWindow(EditTextDlg::ID_VIEW_RIBBON_BUTTON_BAR);
+    wxWindow* paragraphButtonBarWindow = m_ribbon->FindWindow(MainFrame::ID_VIEW_RIBBON_BUTTON_BAR);
     if (paragraphButtonBarWindow && paragraphButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
         {
         auto paragraphButtonBar = dynamic_cast<wxRibbonButtonBar*>(paragraphButtonBarWindow);
@@ -679,7 +679,7 @@ void EditTextDlg::UpdateIndentButtons()
 //------------------------------------------------------
 void EditTextDlg::UpdateUndoButtons()
     {
-    wxWindow* editButtonBarWindow = m_ribbon->FindWindow(EditTextDlg::ID_EDIT_RIBBON_BUTTON_BAR);
+    wxWindow* editButtonBarWindow = m_ribbon->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
     if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
         {
         auto editButtonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
