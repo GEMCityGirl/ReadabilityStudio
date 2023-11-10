@@ -290,6 +290,7 @@ void EditTextDlg::CreateControls()
     // must use AppendText to prevent text control's style from being wiped out
     m_textEntry->AppendText(m_value);
     m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
+    m_textEntry->SetSelection(0, 0);
     m_textEntry->SetModified(false);
     m_textEntry->EmptyUndoBuffer();
     EnableSaveButton(false);
