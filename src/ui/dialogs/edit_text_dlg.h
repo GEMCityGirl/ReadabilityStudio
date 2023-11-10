@@ -111,7 +111,7 @@ private:
     static constexpr auto ID_DOCUMENT_RIBBON_BUTTON_BAR = wxID_HIGHEST;
     static constexpr auto ID_CLIPBOARD_RIBBON_BUTTON_BAR = wxID_HIGHEST + 1;
     static constexpr auto ID_EDIT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 2;
-    static constexpr auto ID_PARAGRAPH_RIBBON_BUTTON_BAR = wxID_HIGHEST + 3;
+    static constexpr auto ID_VIEW_RIBBON_BUTTON_BAR = wxID_HIGHEST + 3;
 
     wxString m_value;
     wxString m_description;

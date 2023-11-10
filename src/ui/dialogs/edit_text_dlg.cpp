@@ -164,11 +164,11 @@ void EditTextDlg::CreateControls()
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
                 _(L"Copy the selection."));
             }
-        // paragraph
+        // View
             {
-            wxRibbonPanel* paragraphPage = new wxRibbonPanel(homePage, wxID_ANY, _(L"Paragraph"),
+            wxRibbonPanel* viewPage = new wxRibbonPanel(homePage, wxID_ANY, _(L"View"),
                 wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(paragraphPage, ID_PARAGRAPH_RIBBON_BUTTON_BAR);
+            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(viewPage, ID_VIEW_RIBBON_BUTTON_BAR);
 
             buttonBar->AddButton(wxID_SELECT_FONT, _(L"Font"),
                 wxArtProvider::GetBitmap(L"ID_FONT", wxART_BUTTON,
@@ -654,7 +654,7 @@ void EditTextDlg::UpdateIndentButtons()
         wxID_JUSTIFY_RIGHT : wxID_JUSTIFY_FILL;
 
     m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
-    wxWindow* paragraphButtonBarWindow = m_ribbon->FindWindow(EditTextDlg::ID_PARAGRAPH_RIBBON_BUTTON_BAR);
+    wxWindow* paragraphButtonBarWindow = m_ribbon->FindWindow(EditTextDlg::ID_VIEW_RIBBON_BUTTON_BAR);
     if (paragraphButtonBarWindow && paragraphButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
         {
         auto paragraphButtonBar = dynamic_cast<wxRibbonButtonBar*>(paragraphButtonBarWindow);
