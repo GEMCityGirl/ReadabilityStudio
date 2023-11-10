@@ -389,6 +389,10 @@ namespace LuaScripting
             LuaEditTextDlg = new EditTextDlg(wxGetApp().GetMainFrame(), nullptr,
                 (lua_gettop(L) > 0) ?
                  wxString(luaL_checkstring(L, 1), wxConvUTF8) : wxString{});
+            if (lua_gettop(L) > 2)
+                {
+                LuaEditTextDlg->SetSize(LuaEditTextDlg->FromDIP(wxSize(lua_tonumber(L, 2), lua_tonumber(L, 3))) );
+                }
             }
         LuaEditTextDlg->Show();
         wxGetApp().Yield();
