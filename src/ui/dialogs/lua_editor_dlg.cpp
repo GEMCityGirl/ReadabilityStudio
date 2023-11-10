@@ -361,7 +361,11 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
     SetIcon(ico);
 
     CreateControls();
-    Centre();
+    // move over to the right side of the screen
+    const auto screenWidth{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) };
+    int xPos{ 0 }, yPos{ 0 };
+    GetScreenPosition(&xPos, &yPos);
+    Move(wxPoint(xPos + (screenWidth - (xPos + GetSize().GetWidth())), yPos));
 
     Bind(wxEVT_CLOSE_WINDOW, &LuaEditorDlg::OnClose, this);
 

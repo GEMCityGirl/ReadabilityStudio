@@ -60,9 +60,9 @@ namespace LuaScripting
         if (wxGetApp().GetMainFrameEx()->GetLuaEditor())
             {
             wxGetApp().GetMainFrameEx()->GetLuaEditor()->Show(
-            lua_gettop(L) > 0 ?
-            lua_toboolean(L, 1) :
-            true);
+                lua_gettop(L) > 0 ?
+                lua_toboolean(L, 1) :
+                true);
             }
         return 1;
         }

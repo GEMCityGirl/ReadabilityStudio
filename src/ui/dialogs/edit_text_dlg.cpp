@@ -29,10 +29,12 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
     {
     SetBackgroundColour(wxGetApp().GetAppOptions().GetControlBackgroundColor());
     Create(parent, id, caption, description, pos, size, style);
-    SetSize((m_parentDoc != nullptr) ?
-        m_parentDoc->GetFirstView()->GetFrame()->GetSize() :
-        FromDIP(wxSize(600, 600)));
-    Centre(wxCENTER_ON_SCREEN);
+    SetSize(FromDIP(wxSize(1200, 900)));
+    // move over to the right side of the screen
+    const auto screenWidth{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) };
+    int xPos{ 0 }, yPos{ 0 };
+    GetScreenPosition(&xPos, &yPos);
+    Move(wxPoint(xPos + (screenWidth - (xPos + GetSize().GetWidth())), yPos));
 
     Bind(wxEVT_BUTTON, &EditTextDlg::OnOK, this, wxID_OK);
     Bind(wxEVT_CLOSE_WINDOW, &EditTextDlg::OnClose, this);
