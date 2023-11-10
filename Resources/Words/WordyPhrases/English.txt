@@ -4852,8 +4852,8 @@ obviate	wipe out	0
 obviated	wiped out	0		
 obviates	wipes out	0		
 obviating	wiping out	0		
-occurrence	event	0		
-occurrences	events	0		
+occurrence	event, instance	0		
+occurrences	events, instances	0		
 odd man out	excluded person	2		
 odds and ends	miscellaneous items	2		
 odious	hateful	0		
