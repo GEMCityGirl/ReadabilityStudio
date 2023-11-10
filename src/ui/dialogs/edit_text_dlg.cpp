@@ -272,21 +272,28 @@ void EditTextDlg::CreateControls()
                                  wxTE_AUTO_URL|wxTE_PROCESS_TAB);
     m_textEntry->SetMargins(10, 10);
     m_textEntry->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_EDITOR_MENU"));
-    if (m_parentDoc != nullptr)
+
+    m_style = wxTextAttr
         {
-        m_style = wxTextAttr{ m_parentDoc->GetTextFontColor(), wxNullColour, m_parentDoc->GetTextViewFont() };
-        m_style.SetLeftIndent(50, -40);
-        m_style.SetParagraphSpacingAfter(40);
-        m_style.SetAlignment(wxTextAttrAlignment::wxTEXT_ALIGNMENT_JUSTIFIED);
-        m_textEntry->SetDefaultStyle(m_style);
-        m_textEntry->EnableProofCheck(wxTextProofOptions::Default().
-            Language((m_parentDoc->GetProjectLanguage() == readability::test_language::spanish_test) ?
-                _DT("es") :
-                (m_parentDoc->GetProjectLanguage() == readability::test_language::german_test) ?
-                _DT("de") :
-                _DT("en")).
-            SpellCheck(true).GrammarCheck(true));
-        }
+        (m_parentDoc != nullptr) ? m_parentDoc->GetTextFontColor() : wxGetApp().GetAppOptions().GetTextFontColor(),
+        wxNullColour,
+        (m_parentDoc != nullptr) ? m_parentDoc->GetTextViewFont() : wxGetApp().GetAppOptions().GetTextViewFont()
+        };
+    m_style.SetLeftIndent(50, -40);
+    m_style.SetParagraphSpacingAfter(40);
+    m_style.SetAlignment(wxTextAttrAlignment::wxTEXT_ALIGNMENT_JUSTIFIED);
+    m_textEntry->SetDefaultStyle(m_style);
+    const auto lang = (m_parentDoc != nullptr) ?
+        m_parentDoc->GetProjectLanguage() : wxGetApp().GetAppOptions().GetProjectLanguage();
+    m_textEntry->EnableProofCheck(wxTextProofOptions::Default().
+        Language(
+            (lang == readability::test_language::spanish_test) ?
+            _DT("es") :
+            (lang == readability::test_language::german_test) ?
+            _DT("de") :
+            _DT("en")).
+        SpellCheck(true).GrammarCheck(true));
+
     // must use AppendText to prevent text control's style from being wiped out
     m_textEntry->AppendText(m_value);
     m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
