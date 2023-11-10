@@ -29,7 +29,9 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
     {
     SetBackgroundColour(wxGetApp().GetAppOptions().GetControlBackgroundColor());
     Create(parent, id, caption, description, pos, size, style);
-    SetSize(m_parentDoc->GetFirstView()->GetFrame()->GetSize());
+    SetSize((m_parentDoc != nullptr) ?
+        m_parentDoc->GetFirstView()->GetFrame()->GetSize() :
+        FromDIP(wxSize(600, 600)));
     Centre(wxCENTER_ON_SCREEN);
 
     Bind(wxEVT_BUTTON, &EditTextDlg::OnOK, this, wxID_OK);

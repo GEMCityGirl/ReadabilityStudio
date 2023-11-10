@@ -27,6 +27,7 @@
 #include "../ui/dialogs/test_bundle_dlg.h"
 #include "../ui/dialogs/tools_options_dlg.h"
 #include "../ui/dialogs/project_wizard_dlg.h"
+#include "../ui/dialogs/edit_text_dlg.h"
 
 wxDECLARE_APP(ReadabilityApp);
 
@@ -35,22 +36,23 @@ using namespace Wisteria::UI;
 
 namespace LuaScripting
     {
-    ToolsOptionsDlg* LuaOptionsDlg = nullptr;
-    TestBundleDlg* LuaTestBundleDlg = nullptr;
-    CustomTestDlg* LuaCustomTestDlg = nullptr;
-    ProjectWizardDlg* LuaStandardProjectWizard = nullptr;
-    ProjectWizardDlg* LuaBatchProjectWizard = nullptr;
-    PrinterHeaderFooterDlg* LuaPrinterOptions = nullptr;
-    GridExportDlg* LuaListExportDlg = nullptr;
-    ListCtrlItemViewDlg* LuaListViewItemDlg = nullptr;
-    GetDirFilterDialog* LuaGetDirDlg = nullptr;
-    ArchiveDlg* LuaGetArchiveDlg = nullptr;
-    RadioBoxDlg* LuaSelectProjectType = nullptr;
-    WebHarvesterDlg* LuaWebHarvesterDlg = nullptr;
-    FilteredTextPreviewDlg* LuaFilteredTextPreviewDlg = nullptr;
-    ListCtrlSortDlg* LuaListCtrlSortDlg = nullptr;
-    EditWordListDlg* LuaEditWordListDlg = nullptr;
-    DocGroupSelectDlg* LuaDocGroupSelectDlg = nullptr;
+    ToolsOptionsDlg* LuaOptionsDlg{ nullptr };
+    TestBundleDlg* LuaTestBundleDlg{ nullptr };
+    CustomTestDlg* LuaCustomTestDlg{ nullptr };
+    ProjectWizardDlg* LuaStandardProjectWizard{ nullptr };
+    ProjectWizardDlg* LuaBatchProjectWizard{ nullptr };
+    PrinterHeaderFooterDlg* LuaPrinterOptions{ nullptr };
+    GridExportDlg* LuaListExportDlg{ nullptr };
+    ListCtrlItemViewDlg* LuaListViewItemDlg{ nullptr };
+    GetDirFilterDialog* LuaGetDirDlg{ nullptr };
+    ArchiveDlg* LuaGetArchiveDlg{ nullptr };
+    RadioBoxDlg* LuaSelectProjectType{ nullptr };
+    WebHarvesterDlg* LuaWebHarvesterDlg{ nullptr };
+    FilteredTextPreviewDlg* LuaFilteredTextPreviewDlg{ nullptr };
+    ListCtrlSortDlg* LuaListCtrlSortDlg{ nullptr };
+    EditWordListDlg* LuaEditWordListDlg{ nullptr };
+    DocGroupSelectDlg* LuaDocGroupSelectDlg{ nullptr };
+    EditTextDlg* LuaEditTextDlg{ nullptr };
 
     //-------------------------------------------------------------
     int ShowScriptEditor(lua_State *L)
@@ -380,8 +382,39 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int ShowEditTextDlg(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        if (LuaEditTextDlg == nullptr)
+            {
+            LuaEditTextDlg = new EditTextDlg(wxGetApp().GetMainFrame(), nullptr,
+                wxString(luaL_checkstring(L, 1), wxConvUTF8));
+            }
+        LuaEditTextDlg->Show();
+        wxGetApp().Yield();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int CloseEditTextDlg(lua_State*)
+        {
+        if (LuaEditTextDlg)
+            {
+            LuaEditTextDlg->Destroy();
+            LuaEditTextDlg = nullptr;
+            }
+        wxGetApp().Yield();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
     int ShowEditWordListDlg(lua_State* L)
         {
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
         if (LuaEditWordListDlg == nullptr)
             {
             LuaEditWordListDlg = new EditWordListDlg(wxGetApp().GetMainFrame(),
