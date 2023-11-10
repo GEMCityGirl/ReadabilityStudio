@@ -387,15 +387,15 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
 //------------------------------------------------
 void ReadabilityAppOptions::SetFonts()
     {
-    m_xAxisFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
-    m_yAxisFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
-    m_topTitleFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
-    m_bottomTitleFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
-    m_leftTitleFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
-    m_rightTitleFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
-    m_textViewFont = wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize()*1.5f,
-                            wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false,
-                            wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetFaceName());
+    auto systemFont{ wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT) };
+    systemFont.SetFaceName(Wisteria::GraphItems::Label::GetFirstAvailableWordProcessorFont());
+    m_xAxisFont = systemFont;
+    m_yAxisFont = systemFont;
+    m_topTitleFont = systemFont;
+    m_bottomTitleFont = systemFont;
+    m_leftTitleFont = systemFont;
+    m_rightTitleFont = systemFont;
+    m_textViewFont = systemFont.Larger().Larger();
     // fix font issues in case the system is using a hidden font for its default (happens on macOS)
     Wisteria::GraphItems::Label::FixFont(m_xAxisFont);
     Wisteria::GraphItems::Label::FixFont(m_yAxisFont);
