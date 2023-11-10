@@ -94,13 +94,13 @@ namespace LuaScripting
     int CloseEditWordListDlg(lua_State*);
     int ShowDocGroupSelectDlg(lua_State* L);
     int CloseDocGroupSelectDlg(lua_State*);
-    int ShowEditTextDlg(lua_State* L);
-    int CloseEditTextDlg(lua_State*);
+    int ShowEditorTextDlg(lua_State* L);
+    int CloseEditorTextDlg(lua_State*);
 
     static const luaL_Reg ScreenshotLib[] =
         {
-            { "ShowEditTextDlg", ShowEditTextDlg },
-            { "CloseEditTextDlg", CloseEditTextDlg },
+            { "ShowEditorTextDlg", ShowEditorTextDlg },
+            { "CloseEditorTextDlg", CloseEditorTextDlg },
             { "ShowEditWordListDlg", ShowEditWordListDlg },
             { "CloseEditWordListDlg", CloseEditWordListDlg },
             { "ShowDocGroupSelectDlg", ShowDocGroupSelectDlg },

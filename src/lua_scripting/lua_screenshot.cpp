@@ -382,15 +382,13 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int ShowEditTextDlg(lua_State* L)
+    int ShowEditorTextDlg(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
-            { return 0; }
-
         if (LuaEditTextDlg == nullptr)
             {
             LuaEditTextDlg = new EditTextDlg(wxGetApp().GetMainFrame(), nullptr,
-                wxString(luaL_checkstring(L, 1), wxConvUTF8));
+                (lua_gettop(L) > 0) ?
+                 wxString(luaL_checkstring(L, 1), wxConvUTF8) : wxString{});
             }
         LuaEditTextDlg->Show();
         wxGetApp().Yield();
@@ -398,7 +396,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int CloseEditTextDlg(lua_State*)
+    int CloseEditorTextDlg(lua_State*)
         {
         if (LuaEditTextDlg)
             {
