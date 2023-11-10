@@ -86,11 +86,12 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
             m_style.SetFont(dialog.GetFontData().GetChosenFont());
             m_style.SetTextColour(dialog.GetFontData().GetColour());
             m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
-            // don't mark as modified when just changing the view's font
+            // don't mark as modified when just changing the view's appearance
             m_textEntry->SetModified(wasModified);
             if (!isUndoEnabled)
                 { m_textEntry->EmptyUndoBuffer(); }
             UpdateUndoButtons();
+            EnableSaveButton(wasModified);
             }
         }, wxID_SELECT_FONT);
 
@@ -499,7 +500,7 @@ void EditTextDlg::OnParagraphSpaceSelected(wxCommandEvent& event)
         m_style.SetParagraphSpacingAfter(!usingParaSpace ? 40 : 0);
 
         m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
-        // don't mark as modified when just changing the view's font
+        // don't mark as modified when just changing the view's appearance
         m_textEntry->SetModified(wasModified);
         if (!isUndoEnabled)
             { m_textEntry->EmptyUndoBuffer(); }
@@ -528,7 +529,7 @@ void EditTextDlg::OnLineSpaceSelected(wxCommandEvent& event)
             wxTEXT_ATTR_LINE_SPACING_TWICE);
 
         m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
-        // don't mark as modified when just changing the view's font
+        // don't mark as modified when just changing the view's appearance
         m_textEntry->SetModified(wasModified);
         if (!isUndoEnabled)
             { m_textEntry->EmptyUndoBuffer(); }
@@ -564,11 +565,12 @@ void EditTextDlg::OnEditButtons(wxRibbonButtonBarEvent& event)
             else
                 { m_style.SetLeftIndent(0, 0); }
             m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
-            // don't mark as modified when just changing the view's font
+            // don't mark as modified when just changing the view's appearance
             m_textEntry->SetModified(wasModified);
             if (!isUndoEnabled)
                 { m_textEntry->EmptyUndoBuffer(); }
             UpdateUndoButtons();
+            EnableSaveButton(wasModified);
             }
         else if (event.GetId() == wxID_JUSTIFY_LEFT ||
             event.GetId() == wxID_JUSTIFY_CENTER ||
