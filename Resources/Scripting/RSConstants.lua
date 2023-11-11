@@ -333,7 +333,8 @@ RibbonButtonBars =
   TextExclusion = 30004,
   Numerals = 30005,
   View = 30006,
-  Clipboard = 30007
+  Clipboard = 30007,
+  Document = 30008
   }
 
 OptionsPageType =
