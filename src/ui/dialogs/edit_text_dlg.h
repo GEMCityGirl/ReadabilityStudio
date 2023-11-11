@@ -108,9 +108,6 @@ private:
     void UpdateIndentButtons();
     void UpdateUndoButtons();
 
-    static constexpr auto ID_DOCUMENT_RIBBON_BUTTON_BAR = wxID_HIGHEST;
-    static constexpr auto ID_CLIPBOARD_RIBBON_BUTTON_BAR = wxID_HIGHEST + 1;
-
     wxString m_value;
     wxString m_description;
     wxMenu m_lineSpacingMenu;

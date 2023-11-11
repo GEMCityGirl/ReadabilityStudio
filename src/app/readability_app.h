@@ -167,6 +167,9 @@ public:
     const wxBitmap& GetAboutDialogImage() const noexcept
         { return m_aboutBmp; }
 
+    // Note that some of these ribbon button bar IDs are used by
+    // ribbons other than the project one. This is the communal collection
+    // of all bar IDs for the program's ribbons.
     static constexpr int ID_EDIT_RIBBON_BUTTON_BAR = wxID_HIGHEST;
     static constexpr int ID_PROOFING_RIBBON_BUTTON_BAR = wxID_HIGHEST + 1;
     static constexpr int ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR = wxID_HIGHEST + 2;
@@ -174,6 +177,8 @@ public:
     static constexpr int ID_NUMERALS_RIBBON_BUTTON_BAR = wxID_HIGHEST + 4;
     static constexpr int ID_PROJECT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 5;
     static constexpr int ID_VIEW_RIBBON_BUTTON_BAR = wxID_HIGHEST + 6;
+    static constexpr auto ID_DOCUMENT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 7;
+    static constexpr auto ID_CLIPBOARD_RIBBON_BUTTON_BAR = wxID_HIGHEST + 8;
 
     IdRangeLock CUSTOM_TEST_RANGE;
     IdRangeLock EXAMPLE_RANGE;

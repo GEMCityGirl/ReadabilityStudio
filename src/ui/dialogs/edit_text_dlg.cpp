@@ -147,7 +147,7 @@ void EditTextDlg::CreateControls()
                 new wxRibbonPanel(homePage, wxID_ANY, _DT(L" "),
                     wxNullBitmap, wxDefaultPosition, wxDefaultSize,
                     wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(exportPage, ID_DOCUMENT_RIBBON_BUTTON_BAR);
+            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(exportPage, MainFrame::ID_DOCUMENT_RIBBON_BUTTON_BAR);
             buttonBar->AddButton(wxID_SAVE, _(L"Save"),
                 wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_BUTTON,
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
@@ -157,7 +157,7 @@ void EditTextDlg::CreateControls()
             {
             wxRibbonPanel* clipboardPage = new wxRibbonPanel(homePage, wxID_ANY, _(L"Clipboard"),
                 wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(clipboardPage, ID_CLIPBOARD_RIBBON_BUTTON_BAR);
+            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(clipboardPage, MainFrame::ID_CLIPBOARD_RIBBON_BUTTON_BAR);
             buttonBar->AddButton(wxID_PASTE, _(L"Paste"),
                 wxArtProvider::GetBitmap(wxART_PASTE, wxART_BUTTON,
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
@@ -222,8 +222,7 @@ void EditTextDlg::CreateControls()
             m_lineSpacingMenu.AppendSeparator();
         #endif
             m_lineSpacingMenu.Append(new wxMenuItem(&m_lineSpacingMenu, XRCID("ID_ADD_PARAGRAPH_SPACE"),
-                _(L"Add space after paragraphs"), wxString{}, wxITEM_CHECK));
-            m_lineSpacingMenu.Check(XRCID("ID_ADD_PARAGRAPH_SPACE"), true);
+                _(L"Display space after hard returns"), wxString{}, wxITEM_CHECK));
             }
         // edit
             {
@@ -282,7 +281,6 @@ void EditTextDlg::CreateControls()
         (m_parentDoc != nullptr) ? m_parentDoc->GetTextViewFont() : wxGetApp().GetAppOptions().GetTextViewFont()
         };
     m_style.SetLeftIndent(50, -40);
-    m_style.SetParagraphSpacingAfter(40);
     m_style.SetAlignment(wxTextAttrAlignment::wxTEXT_ALIGNMENT_JUSTIFIED);
     m_textEntry->SetDefaultStyle(m_style);
     const auto lang = (m_parentDoc != nullptr) ?
@@ -649,7 +647,7 @@ void EditTextDlg::Save()
 //------------------------------------------------------
 void EditTextDlg::EnableSaveButton(const bool enable /*= true*/)
     {
-    wxWindow* saveButtonBarWindow = m_ribbon->FindWindow(EditTextDlg::ID_DOCUMENT_RIBBON_BUTTON_BAR);
+    wxWindow* saveButtonBarWindow = m_ribbon->FindWindow(MainFrame::ID_DOCUMENT_RIBBON_BUTTON_BAR);
     if (saveButtonBarWindow && saveButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
         {
         auto saveButtonBar = dynamic_cast<wxRibbonButtonBar*>(saveButtonBarWindow);
