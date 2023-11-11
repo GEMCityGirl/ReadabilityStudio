@@ -2,7 +2,7 @@
 
 In this chapter, we will discuss import options, text exclusion, and including addendums. After that, we will continue with examples showing how to customize graphs and create test bundles.
 
-## Preserving Hard Returns in a Document
+## Preserving Hard Returns
 
 In this example, we will import a document which contains short lines of text that are separated by hard returns. These lines of text are not separated by blank lines, and are neither indented nor start with bullet points (the way list items often appear). The default for the program is to chain text lines such as this into a single sentence. In the case of this document, however, we will want to treat each line as a separate paragraph.
 
@@ -64,11 +64,11 @@ knitr::include_graphics("images/PeterRabbitChainedSentences.png")
 
 \newpage
 
-## Excluding Text\index{text exclusion!example} from an Analysis {#excluding-text-from-analysis}
+## Excluding Text\index{text exclusion!example} {#excluding-text-from-analysis}
 
 When reviewing a document, it is usually preferable to ignore certain items, such as headers and citations (refer to \@ref(how-text-is-excluded) for more information). In this example, we will discuss the various methods for excluding these items.
 
-The first step is to open the example file “Danielson-Bryan.” From the **Help** tab, click the `r keys("Example Documents")` button and then select "Danielson-Bryan" from the menu. (When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`. A warning about an incomplete sentence being included because of its length will appear:
+The first step is to open the example file "Danielson-Bryan." From the **Help** tab, click the `r keys("Example Documents")` button and then select "Danielson-Bryan" from the menu. (When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`. A warning about an incomplete sentence being included because of its length will appear:
 
 ```{r echo=F, fig.align='center', out.width='50%'}
 knitr::include_graphics("images/NonGenerated/ExclusionExampleIncompleteSentWarning.png")
@@ -194,7 +194,7 @@ Another section of text that could be excluded is the citation at the bottom. Go
 knitr::include_graphics("images/ExclusionExampleCitationExcluded.png")
 ```
 
-At this point, all that remains in the analysis is the actual prose—all “noise” from the document has been filtered out.
+At this point, all that remains in the analysis is the actual prose—all "noise" from the document has been filtered out.
 
 ::: {.tipsection data-latex=""}
 All the options discussed here are also available on the **Document** tab of the ribbon.
@@ -206,7 +206,7 @@ All the options discussed here are also available on the **Document** tab of the
 
 Continuing from the [previous example](#excluding-text-from-analysis), we will now discuss how to exclude specific blocks of text.
 
-The first step is to open the example file “Press Release.” From the **Help** tab, click the `r keys("Example Documents")` button and then select "Press Release" from the menu. (When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
+The first step is to open the example file "Press Release." From the **Help** tab, click the `r keys("Example Documents")` button and then select "Press Release" from the menu. (When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
 
 Once the project is loaded, click **Grammar** on the project's sidebar and then click **Highlighted Report**. In this window, any text that is being excluded will be highlighted gray. For example, an indented list is being excluded, as shown below:
 
@@ -312,14 +312,14 @@ At this point, we will have quite of a bit of improvements to make to both the f
 
 ## Creating a Test Bundle
 
-[Test bundles](#test-bundles) are a convenient way to add multiple tests to a project at once. In this example, we will create a test bundle named “4F” which includes the [Fry](#fry-test), [FORCAST](#forcast-test), [Fog](#gunning-fog-test), and [Flesch-Kincaid](#flesch-kincaid-test) tests. The first step is to select the **Readability** tab, click the `r keys("Bundles")` button, and select **Add...** from the menu. This will open the **Add Test Bundle** dialog:
+[Test bundles](#test-bundles) are a convenient way to add multiple tests to a project at once. In this example, we will create a test bundle named "4F" which includes the [Fry](#fry-test), [FORCAST](#forcast-test), [Fog](#gunning-fog-test), and [Flesch-Kincaid](#flesch-kincaid-test) tests. The first step is to select the **Readability** tab, click the `r keys("Bundles")` button, and select **Add...** from the menu. This will open the **Add Test Bundle** dialog:
 
 ![](images/TestBundle.png)
 
-Enter the name “4F” into the **Bundle Name** text field. Next, select the **Standard Tests** page and check the Fry, FORCAST, Fog, and Flesch-Kincaid tests, as shown below:
+Enter the name "4F" into the **Bundle Name** text field. Next, select the **Standard Tests** page and check the Fry, FORCAST, Fog, and Flesch-Kincaid tests, as shown below:
 
 ![](images/TestBundle4F.png)
 
 Click the `r keys("OK")` button to accept.
 
-To use the bundle, first open any project. Next, select the **Readability** tab, click the `r keys("Bundles")` button, and select **4F** from the menu. Now the program will replace all tests within the project with the tests from the “4F” bundle.
+To use the bundle, first open any project. Next, select the **Readability** tab, click the `r keys("Bundles")` button, and select **4F** from the menu. Now the program will replace all tests within the project with the tests from the "4F" bundle.

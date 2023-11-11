@@ -67,6 +67,11 @@
 - In-text citations are now linked to the bibliography.
 - Keyboard shortcuts cheat sheet is now available from the **Documentation** tab of the ribbon.
 - Test reference is now available from the **Documentation** tab of the ribbon.
+- Added new examples:
+  - "High-level Review of a Disclaimer"
+  - "Editing within Readability Studio"
+  - "Selective Colorization"
+  - "A Retro Appearance"
 
 #### Bug Fixes {-}
 
@@ -212,7 +217,7 @@
   - "Finding Difficult Sections"
   - "Reviewing a Flyer"
   - "Using a Custom Brush"
-  - "Preserving Hard Returns in a Document"
+  - "Preserving Hard Returns"
   - "Sentences Broken by Blank Lines"
   - "Including an Addendum"
   - "Creating an Unclamped Flesch-Kincaid"
