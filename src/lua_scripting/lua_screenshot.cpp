@@ -257,7 +257,7 @@ namespace LuaScripting
             { return 0; }
 
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
-        int pageToSelect{ 0 }, buttonBarID{ -1 };
+        int pageToSelect{ 0 }, firstButtonBarID{ -1 }, lastButtonBarID{ -1 };
         if (lua_gettop(L) >= 2)
             {
             auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
@@ -270,11 +270,19 @@ namespace LuaScripting
             {
             auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 3));
             if (idPos != wxGetApp().GetDynamicIdMap().cend())
-                { buttonBarID = idPos->second; }
+                { firstButtonBarID = idPos->second; }
             else
-                { buttonBarID = lua_tonumber(L, 3); }
+                { firstButtonBarID = lua_tonumber(L, 3); }
             }
-        lua_pushboolean(L, Screenshot::SaveScreenshotOfRibbon(path, pageToSelect, buttonBarID));
+        if (lua_gettop(L) >= 4)
+            {
+            auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 4));
+            if (idPos != wxGetApp().GetDynamicIdMap().cend())
+                { lastButtonBarID = idPos->second; }
+            else
+                { lastButtonBarID = lua_tonumber(L, 3); }
+            }
+        lua_pushboolean(L, Screenshot::SaveScreenshotOfRibbon(path, pageToSelect, firstButtonBarID, lastButtonBarID));
         return 1;
         }
 
