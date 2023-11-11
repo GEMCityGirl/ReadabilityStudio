@@ -332,7 +332,8 @@ RibbonButtonBars =
   ParagraphDeduction = 30003,
   TextExclusion = 30004,
   Numerals = 30005,
-  View = 30006
+  View = 30006,
+  Clipboard = 30007
   }
 
 OptionsPageType =
