@@ -153,7 +153,7 @@ void EditTextDlg::CreateControls()
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
                 _(L"Save the document."));
             }
-        // clipboard
+        // Clipboard
             {
             wxRibbonPanel* clipboardPage = new wxRibbonPanel(homePage, wxID_ANY, _(L"Clipboard"),
                 wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -170,6 +170,37 @@ void EditTextDlg::CreateControls()
                 wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON,
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
                 _(L"Copy the selection."));
+            }
+        // Edit
+            {
+            wxRibbonPanel* editPage = new wxRibbonPanel(homePage, wxID_ANY, _(L"Edit"),
+                wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(editPage, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+            buttonBar->AddButton(wxID_UNDO, _(L"Undo"),
+                wxArtProvider::GetBitmap(wxART_UNDO, wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+                _(L"Undoes the last operation."));
+            buttonBar->AddButton(wxID_REDO, _(L"Redo"),
+                wxArtProvider::GetBitmap(wxART_REDO, wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+                _(L"Repeats the last operation."));
+
+            buttonBar->AddButton(wxID_FIND, _(L"Find"),
+                wxArtProvider::GetBitmap(wxART_FIND, wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+                _(L"Search for text."));
+            buttonBar->AddButton(wxID_REPLACE, _(L"Replace"),
+                wxArtProvider::GetBitmap(wxART_FIND_AND_REPLACE, wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+                _(L"Replace text."));
+
+            buttonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
+                wxArtProvider::GetBitmap(L"ID_SELECT_ALL", wxART_BUTTON,
+                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+                _(L"Select all text."));
+
+            buttonBar->EnableButton(wxID_UNDO, false);
+            buttonBar->EnableButton(wxID_REDO, false);
             }
         // View
             {
@@ -223,37 +254,6 @@ void EditTextDlg::CreateControls()
         #endif
             m_lineSpacingMenu.Append(new wxMenuItem(&m_lineSpacingMenu, XRCID("ID_ADD_PARAGRAPH_SPACE"),
                 _(L"Display space after hard returns"), wxString{}, wxITEM_CHECK));
-            }
-        // edit
-            {
-            wxRibbonPanel* editPage = new wxRibbonPanel(homePage, wxID_ANY, _(L"Edit"),
-                wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(editPage, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
-            buttonBar->AddButton(wxID_UNDO, _(L"Undo"),
-                wxArtProvider::GetBitmap(wxART_UNDO, wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
-                _(L"Undoes the last operation."));
-            buttonBar->AddButton(wxID_REDO, _(L"Redo"),
-                wxArtProvider::GetBitmap(wxART_REDO, wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
-                _(L"Repeats the last operation."));
-
-            buttonBar->AddButton(wxID_FIND, _(L"Find"),
-                wxArtProvider::GetBitmap(wxART_FIND, wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
-                _(L"Search for text."));
-            buttonBar->AddButton(wxID_REPLACE, _(L"Replace"),
-                wxArtProvider::GetBitmap(wxART_FIND_AND_REPLACE, wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
-                _(L"Replace text."));
-
-            buttonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
-                wxArtProvider::GetBitmap(L"ID_SELECT_ALL", wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
-                _(L"Select all text."));
-
-            buttonBar->EnableButton(wxID_UNDO, false);
-            buttonBar->EnableButton(wxID_REDO, false);
             }
 
         m_ribbon->SetArtProvider(new Wisteria::UI::RibbonMetroArtProvider);
