@@ -69,12 +69,14 @@ enumToTopic <- function(enum)
      }
     }
 
-  df <- as_tibble(t(data.frame(matrix(unlist(enum$values[[1]]), nrow=length(enum$values[[1]]), byrow= T))))
+  mat <- t(data.frame(matrix(unlist(enum$values[[1]]), nrow=length(enum$values[[1]]), byrow= T)))
+  colnames(mat) <- c("VALUES", "DETAILS")
+  df <- as_tibble(mat, .name_repair = "unique")
   # sort most of the enums by values' names, except for a few where their order shows a rank of some sort
   if (!(enum$name %in% c("FontWeight")))
-    { df %<>% dplyr::arrange(V1) }
+    { df %<>% dplyr::arrange(VALUES) }
 
-  dupes <- df %>% janitor::get_dupes(V1)
+  dupes <- df %>% janitor::get_dupes(VALUES)
   if (nrow(dupes))
     {
     View(dupes)
@@ -87,7 +89,7 @@ enumToTopic <- function(enum)
   for (i in 1 : nrow(df))
     {
     topicContent <- str_glue(
-      "<topicContent>\n| <df$V1[i]> | <df$V2[i]> |",
+      "<topicContent>\n| <df$VALUES[i]> | <df$DETAILS[i]> |",
       .open="<", .close=">")
     }
 
