@@ -211,7 +211,7 @@ void EditTextDlg::CreateControls()
             buttonBar->AddButton(wxID_SELECT_FONT, _(L"Font"),
                 wxArtProvider::GetBitmap(L"ID_FONT", wxART_BUTTON,
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
-                _(L"Changes the font showing the document."));
+                _(L"Changes the document's font."));
 
             buttonBar->AddToggleButton(wxID_INDENT, _(L"Indent"),
                 wxArtProvider::GetBitmap(L"ID_PARAGRAPH_INDENT", wxART_BUTTON,
