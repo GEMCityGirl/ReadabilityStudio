@@ -6,6 +6,11 @@
 #### General Enhancements {-}
 
 - Added real-time updating to standard projects. This enables the project to update itself while you edit the original document in another program.
+- Greatly enhanced editing documents that are embedded within standard projects. (Refer to \@ref(#rs-as-an-editor) for an example.)
+  - Added a save button to the editor that will cause the project to analyze your changes immediately.
+  - The project window can now be selected while the editor is open. This allows for changing options and adding tests while the editor is active.
+  - Added editing features, such as undo/redo and clipboard operations.
+  - Added the ability to change the font, indenting, and text alignment in the editor.
 - Added a [Summary Statistics](#reviewing-batch-summary-stats) list to batch projects.
 - Printer [headers and footers](#printing) are now more customizable.
 - Sidebar improvements:
