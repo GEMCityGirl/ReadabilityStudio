@@ -28,7 +28,9 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
             m_parentDoc(parentDoc)
     {
     SetBackgroundColour(wxGetApp().GetAppOptions().GetControlBackgroundColor());
-    Create(parent, id, caption, description, pos, size, style);
+    Create(parent, id,
+           (m_parentDoc != nullptr) ? wxString::Format(L"%s (\"%s\")", caption, m_parentDoc->GetTitle()) : caption,
+           description, pos, size, style);
     SetSize(FromDIP(wxSize(1200, 900)));
     // move over to the right side of the screen
     const auto screenWidth{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) };
