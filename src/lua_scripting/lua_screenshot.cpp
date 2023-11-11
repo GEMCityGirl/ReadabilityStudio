@@ -394,12 +394,16 @@ namespace LuaScripting
         {
         if (LuaEditTextDlg == nullptr)
             {
-            LuaEditTextDlg = new EditTextDlg(wxGetApp().GetMainFrame(), nullptr,
-                (lua_gettop(L) > 0) ?
-                 wxString(luaL_checkstring(L, 1), wxConvUTF8) : wxString{});
-            if (lua_gettop(L) > 2)
+            wxDocument* currentDoc =
+                wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument();
+            LuaEditTextDlg = new EditTextDlg(wxGetApp().GetMainFrame(),
+                (currentDoc && currentDoc->IsKindOf(CLASSINFO(ProjectDoc))) ?
+                    dynamic_cast<ProjectDoc*>(currentDoc) : nullptr,
+                (currentDoc && currentDoc->IsKindOf(CLASSINFO(ProjectDoc))) ?
+                    dynamic_cast<ProjectDoc*>(currentDoc)->GetDocumentText() : wxString{});
+            if (lua_gettop(L) > 1)
                 {
-                LuaEditTextDlg->SetSize(LuaEditTextDlg->FromDIP(wxSize(lua_tonumber(L, 2), lua_tonumber(L, 3))) );
+                LuaEditTextDlg->SetSize(LuaEditTextDlg->FromDIP(wxSize(lua_tonumber(L, 1), lua_tonumber(L, 2))) );
                 }
             }
         LuaEditTextDlg->Show();
