@@ -32,7 +32,7 @@ When [exporting](#exporting)\index{exporting!scores} readability scores\index{sc
 
 ## Text Window Export Options {#text-window-export}
 
-When [exporting](#exporting)\index{exporting!text reports} a text report\index{text reports!exporting}, the following export formats are available:
+When [exporting](#exporting)\index{exporting!text reports} a text report\index{text reports!exporting}, the following export formats\index{text reports!exporting!formats} are available:
 
 ::: {.optionssection data-latex=""}
 **HTML**: A format that can be displayed in Internet browsers and most word-processing programs.
@@ -50,7 +50,7 @@ If you plan to edit this output, then **RTF** is recommended. (Most word process
 
 ## Image Export Options {#image-export}
 
-When [exporting](#exporting)\index{exporting!graphs} a graph\index{graphs!exporting|(}, you will first be prompted for an image format to export as. The following formats\index{graphs!export formats} are available to choose from:
+When [exporting](#exporting)\index{exporting!graphs} a graph\index{graphs!exporting|(}, you will first be prompted for an image format to export as. The following formats\index{graphs!exporting!formats} are available to choose from:
 
 ::: {.optionssection data-latex=""}
 **PNG**: A lossless-compressed image format. The image can be compressed to a smaller size without any loss of quality.
@@ -110,7 +110,7 @@ This option specifies the compression level of the TIFF file and includes the fo
 
 ## List Export Options {#export-list}
 
-When [exporting](#exporting)\index{exporting!lists} a list\index{lists!exporting}, you will be provided with the following formats to export as:
+When [exporting](#exporting)\index{exporting!lists} a list\index{lists!exporting}, you will be provided with the following formats\index{lists!exporting!formats} to export as:
 
 ::: {.optionssection data-latex=""}
 **HTML**: A format that includes formatting and can be opened in browsers and spreadsheet programs.
