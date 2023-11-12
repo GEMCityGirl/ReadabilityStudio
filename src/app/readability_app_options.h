@@ -360,6 +360,44 @@ public:
     void SetColorsFromSystem();
     void SetFonts();
 
+    // editor
+    [[nodiscard]]
+    wxFont GetEditorFont() const
+        { return m_editorFont; }
+    void SetEditorFont(const wxFont& font)
+        {
+        if (font.IsOk())
+            { m_editorFont = font; }
+        }
+    [[nodiscard]]
+    wxColour GetEditorFontColor() const
+        { return m_editorFontColor; }
+    void SetEditorFontColor(const wxColour& color)
+        {
+        if (color.IsOk())
+            { m_editorFontColor = color; }
+        }
+    [[nodiscard]]
+    bool IsEditorIndenting() const noexcept
+        { return m_editorIndent; }
+    void IndentEditor(const bool indent = true) noexcept
+        { m_editorIndent = indent; }
+    [[nodiscard]]
+    bool IsEditorShowSpaceAfterParagraph() const noexcept
+        { return m_editorSpaceAfterNewlines; }
+    void AddParagraphSpaceInEditor(const bool spaces = true) noexcept
+        { m_editorSpaceAfterNewlines = spaces; }
+    [[nodiscard]]
+    wxTextAttrAlignment GetEditorTextAlignment() const noexcept
+        { return m_editorTextAlignment; }
+    void SetEditorTextAlignment(wxTextAttrAlignment align)
+        { m_editorTextAlignment = align; }
+    [[nodiscard]]
+    wxTextAttrLineSpacing GetEditorLineSpacing() const noexcept
+        { return m_editorLineSpacing; }
+    void SetEditorLineSpacing(wxTextAttrLineSpacing spacing)
+        { m_editorLineSpacing = spacing; }
+
     [[nodiscard]]
     TextHighlight GetTextHighlightMethod() const noexcept
         { return m_textHighlight; }
@@ -1440,6 +1478,15 @@ private:
     /// @note This assumes the double is written in US format (and no thousands separator).
     [[nodiscard]]
     double TiXmlNodeToDouble(const tinyxml2::XMLNode* node, const wxString& tagToRead);
+
+    // embedded text editor
+    wxFont m_editorFont;
+    wxColour m_editorFontColor;
+    bool m_editorIndent{ true };
+    bool m_editorSpaceAfterNewlines{ false };
+    wxTextAttrAlignment m_editorTextAlignment{ wxTextAttrAlignment::wxTEXT_ALIGNMENT_JUSTIFIED };
+    wxTextAttrLineSpacing m_editorLineSpacing{ wxTextAttrLineSpacing::wxTEXT_ATTR_LINE_SPACING_NORMAL };
+
     wxColour m_dolchConjunctionsColor{ wxColour{ 255, 255, 0 } };
     wxColour m_dolchPrepositionsColor{ wxColour{ 0, 245, 255 } };
     wxColour m_dolchPronounsColor{ wxColour{ 198, 226, 255 } };
@@ -1667,6 +1714,13 @@ private:
             std::vector<wxBitmapBundle>{ wxBitmapBundle{} })
         };
 public:
+    const wxString XML_EDITOR;
+    const wxString XML_EDITOR_FONT;
+    const wxString XML_EDITOR_FONTCOLOR;
+    const wxString XML_EDITOR_INDENT;
+    const wxString XML_EDITOR_SPACE_AFTER_PARAGRAPH;
+    const wxString XML_EDITOR_TEXT_ALIGNMENT;
+    const wxString XML_EDITOR_LINE_SPACING;
     // Project file tags
     const wxString XML_PROJECT_HEADER;
     const wxString XML_DOCUMENT;

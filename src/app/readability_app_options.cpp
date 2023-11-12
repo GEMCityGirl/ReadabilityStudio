@@ -14,6 +14,14 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     m_textHighlight(TextHighlight::HighlightBackground),
     m_fontColor(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT)),
     // XML file constants
+    // editor
+    XML_EDITOR(_DT(L"editor")),
+    XML_EDITOR_FONT(_DT(L"editor-font")),
+    XML_EDITOR_FONTCOLOR(_DT(L"editor-font-color")),
+    XML_EDITOR_INDENT(_DT(L"editor-indent")),
+    XML_EDITOR_SPACE_AFTER_PARAGRAPH(_DT(L"editor-space-after-paragraph")),
+    XML_EDITOR_TEXT_ALIGNMENT(_DT(L"editor-text-alignment")),
+    XML_EDITOR_LINE_SPACING(_DT(L"editor-line-spacing")),
     // project file tags
     XML_PROJECT_HEADER(_DT(L"oleander-readability-studio-project")),
     XML_DOCUMENT(_DT(L"document")),
@@ -389,6 +397,7 @@ void ReadabilityAppOptions::SetFonts()
     {
     auto systemFont{ wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT) };
     systemFont.SetFaceName(Wisteria::GraphItems::Label::GetFirstAvailableWordProcessorFont());
+    m_editorFont = systemFont;
     m_xAxisFont = systemFont;
     m_yAxisFont = systemFont;
     m_topTitleFont = systemFont;
@@ -397,6 +406,7 @@ void ReadabilityAppOptions::SetFonts()
     m_rightTitleFont = systemFont;
     m_textViewFont = systemFont.Larger().Larger();
     // fix font issues in case the system is using a hidden font for its default (happens on macOS)
+    Wisteria::GraphItems::Label::FixFont(m_editorFont);
     Wisteria::GraphItems::Label::FixFont(m_xAxisFont);
     Wisteria::GraphItems::Label::FixFont(m_yAxisFont);
     Wisteria::GraphItems::Label::FixFont(m_topTitleFont);
@@ -489,6 +499,12 @@ void ReadabilityAppOptions::ResetSettings()
     m_appWindowMaximized = true;
     // theme settings
     SetColorsFromSystem();
+
+    m_editorFontColor = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT);
+    m_editorIndent = true;
+    m_editorSpaceAfterNewlines = false;
+    m_editorTextAlignment = wxTextAttrAlignment::wxTEXT_ALIGNMENT_JUSTIFIED;
+    m_editorLineSpacing = wxTextAttrLineSpacing::wxTEXT_ATTR_LINE_SPACING_NORMAL;
 
     m_textHighlight = TextHighlight::HighlightBackground;
     m_dolchConjunctionsColor = wxColour(255, 255, 0);
@@ -1066,6 +1082,82 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (convertedStr)
                         { SetRightPrinterFooter(convertedStr); }
                     }
+                }
+            }
+        // editor settings
+        auto editorSettingsNode = configRootNode->FirstChildElement(XML_EDITOR.mb_str());
+        if (editorSettingsNode)
+            {
+            auto fontColorNode = editorSettingsNode->FirstChildElement(XML_EDITOR_FONTCOLOR.mb_str());
+            if (fontColorNode)
+                {
+                int red =
+                    fontColorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(), m_editorFontColor.Red());
+                int green =
+                    fontColorNode->ToElement()->IntAttribute(XmlFormat::GetGreen().mb_str(), m_editorFontColor.Green());
+                int blue =
+                    fontColorNode->ToElement()->IntAttribute(XmlFormat::GetBlue().mb_str(), m_editorFontColor.Blue());
+                m_editorFontColor.Set(red, green, blue);
+                }
+            // font
+            auto fontNode = editorSettingsNode->FirstChildElement(XML_EDITOR_FONT.mb_str());
+            if (fontNode)
+                {
+                int pointSize =
+                    fontNode->ToElement()->IntAttribute(XmlFormat::GetFontPointSize().mb_str(),
+                        wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize());
+                int style =
+                    fontNode->ToElement()->IntAttribute(XmlFormat::GetFontStyle().mb_str(), wxFONTSTYLE_NORMAL);
+                int weight =
+                    fontNode->ToElement()->IntAttribute(XmlFormat::GetFontWeight().mb_str(), wxFONTWEIGHT_NORMAL);
+                int underlined =
+                    fontNode->ToElement()->IntAttribute(XmlFormat::GetFontUnderline().mb_str(), 0);
+                // get the font point size
+                m_editorFont.SetPointSize((pointSize>0) ?
+                    pointSize : wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize());
+                // get the font style
+                m_editorFont.SetStyle(static_cast<wxFontStyle>(style));
+                // get the font weight
+                m_editorFont.SetWeight(static_cast<wxFontWeight>(weight));
+                // get the font underlining
+                m_editorFont.SetUnderlined(int_to_bool(underlined));
+                // get the font facename
+                const char* faceName = fontNode->ToElement()->Attribute(XmlFormat::GetFontFaceName().mb_str());
+                if (faceName)
+                    {
+                    const wxString faceNameStr =
+                        Wisteria::TextStream::CharStreamToUnicode(faceName, std::strlen(faceName));
+                    const wchar_t* filteredText = filter_html(faceNameStr, faceNameStr.length(), true, false);
+                    if (filteredText && wxFontEnumerator::IsValidFacename(filteredText))
+                        { m_editorFont.SetFaceName(wxString(filteredText)); }
+                    }
+                }
+            auto indentNode = editorSettingsNode->FirstChildElement(XML_EDITOR_INDENT.mb_str());
+            if (indentNode)
+                {
+                IndentEditor(
+                    int_to_bool(indentNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
+                }
+            auto spaceAfterParagraphNode =
+                editorSettingsNode->FirstChildElement(XML_EDITOR_SPACE_AFTER_PARAGRAPH.mb_str());
+            if (spaceAfterParagraphNode)
+                {
+                AddParagraphSpaceInEditor(
+                    int_to_bool(spaceAfterParagraphNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
+                }
+            auto textAlignNode =
+                editorSettingsNode->FirstChildElement(XML_EDITOR_TEXT_ALIGNMENT.mb_str());
+            if (textAlignNode)
+                {
+                SetEditorTextAlignment(
+                    static_cast<wxTextAttrAlignment>(textAlignNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
+                }
+            auto lineSpacingnNode =
+                editorSettingsNode->FirstChildElement(XML_EDITOR_LINE_SPACING.mb_str());
+            if (lineSpacingnNode)
+                {
+                SetEditorLineSpacing(
+                    static_cast<wxTextAttrLineSpacing>(lineSpacingnNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
                 }
             }
         // just get the reviewer from project settings to be used for the start page
@@ -3365,6 +3457,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
         }
 
     // fix any issues with items loaded from this file
+    Wisteria::GraphItems::Label::FixFont(m_editorFont);
     Wisteria::GraphItems::Label::FixFont(m_xAxisFont);
     Wisteria::GraphItems::Label::FixFont(m_yAxisFont);
     Wisteria::GraphItems::Label::FixFont(m_topTitleFont);
@@ -3595,6 +3688,46 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         wxString(encode({ GetRightPrinterFooter().wc_str() }, false).c_str()).mb_str());
     printerSection->InsertEndChild(printerRightFooter);
     configSection->InsertEndChild(printerSection);
+
+    // editor section
+        {
+        auto editorSection = doc.NewElement(XML_EDITOR.mb_str());
+        auto fontcolor = doc.NewElement(XML_EDITOR_FONTCOLOR.mb_str());
+        fontcolor->SetAttribute(XmlFormat::GetRed().mb_str(), m_editorFontColor.Red());
+        fontcolor->SetAttribute(XmlFormat::GetGreen().mb_str(), m_editorFontColor.Green());
+        fontcolor->SetAttribute(XmlFormat::GetBlue().mb_str(), m_editorFontColor.Blue());
+        editorSection->InsertEndChild(fontcolor);
+
+        auto font = doc.NewElement(XML_EDITOR_FONT.mb_str());
+        font->SetAttribute(XmlFormat::GetFontPointSize().mb_str(), m_editorFont.GetPointSize());
+        font->SetAttribute(XmlFormat::GetFontStyle().mb_str(), static_cast<int>(m_editorFont.GetStyle()));
+        font->SetAttribute(XmlFormat::GetFontWeight().mb_str(), static_cast<int>(m_editorFont.GetWeight()));
+        font->SetAttribute(XmlFormat::GetFontUnderline().mb_str(), bool_to_int(m_editorFont.GetUnderlined()));
+        font->SetAttribute(XmlFormat::GetFontFaceName().mb_str(),
+            wxString(encode({ m_editorFont.GetFaceName().wc_str() }, false).c_str()).mb_str());
+        editorSection->InsertEndChild(font);
+
+        auto indent = doc.NewElement(XML_EDITOR_INDENT.mb_str());
+        indent->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsEditorIndenting()));
+        editorSection->InsertEndChild(indent);
+
+        auto spaceAfterParagraph = doc.NewElement(XML_EDITOR_SPACE_AFTER_PARAGRAPH.mb_str());
+        spaceAfterParagraph->SetAttribute(XML_VALUE.mb_str(),
+            bool_to_int(IsEditorShowSpaceAfterParagraph()));
+        editorSection->InsertEndChild(spaceAfterParagraph);
+
+        auto textAlignment = doc.NewElement(XML_EDITOR_TEXT_ALIGNMENT.mb_str());
+        textAlignment->SetAttribute(XML_VALUE.mb_str(),
+            static_cast<int>(GetEditorTextAlignment()));
+        editorSection->InsertEndChild(textAlignment);
+
+        auto lineSpacing = doc.NewElement(XML_EDITOR_LINE_SPACING.mb_str());
+        lineSpacing->SetAttribute(XML_VALUE.mb_str(),
+            static_cast<int>(GetEditorLineSpacing()));
+        editorSection->InsertEndChild(lineSpacing);
+
+        configSection->InsertEndChild(editorSection);
+        }
 
     // New Project Settings
     auto projectSettings = doc.NewElement(XML_PROJECT_SETTINGS.mb_str());

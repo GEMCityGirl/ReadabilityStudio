@@ -105,12 +105,13 @@ private:
     void Save();
 
     void EnableSaveButton(const bool enable = true);
-    void UpdateIndentButtons();
-    void UpdateUndoButtons();
+    void UpdateButtons();
 
     wxString m_value;
     wxString m_description;
     wxMenu m_lineSpacingMenu;
+    bool m_usingParaSpace{ false };
+    wxTextAttrLineSpacing m_lineSpacing{ wxTEXT_ATTR_LINE_SPACING_NORMAL };
 
     BaseProjectDoc* m_parentDoc{ nullptr };
     FormattedTextCtrl* m_textEntry{ nullptr };
