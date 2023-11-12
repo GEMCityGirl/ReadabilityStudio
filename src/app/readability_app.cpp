@@ -769,6 +769,7 @@ bool ReadabilityApp::OnInit()
         { 1084, ToolsOptionsDlg::ID_INCOMPLETE_SENTENCE_VALID_VALUE_BOX },
         { 1085, ToolsOptionsDlg::ID_DOCUMENT_STORAGE_RADIO_BOX },
         { 1086, ToolsOptionsDlg::ID_SENTENCES_MUST_BE_CAP_BUTTON },
+        { 1087, ToolsOptionsDlg::ID_FILE_BROWSE_BUTTON },
         { 20002, TestBundleDlg::ID_STANDARD_TEST_PAGE },
         { 7000, CustomTestDlg::ID_TEST_NAME_FIELD },
         { 7001, CustomTestDlg::ID_TEST_TYPE_COMBO },
