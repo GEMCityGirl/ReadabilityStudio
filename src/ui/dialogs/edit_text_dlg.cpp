@@ -145,7 +145,7 @@ void EditTextDlg::CreateControls()
             new wxRibbonBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
                             wxRIBBON_BAR_FLOW_HORIZONTAL);
         wxRibbonPage* homePage = new wxRibbonPage(m_ribbon, wxID_ANY, wxString{});
-        // export
+        // Save (back to project)
         if (m_parentDoc && m_parentDoc->IsKindOf(CLASSINFO(ProjectDoc)))
             {
             wxRibbonPanel* exportPage =
