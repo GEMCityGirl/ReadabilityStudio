@@ -2063,17 +2063,14 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_TEXT_SOURCE,
         static_cast<int>(GetTextSource()), 2);
     fileText += sectionText;
-    // path to original document and optional short description (not used if text was entered manually)
-    if (GetTextSource() == TextSource::FromFile)
+    // path to original document and optional short description
+    for (size_t i = 0; i < GetSourceFilesInfo().size(); ++i)
         {
-        for (size_t i = 0; i < GetSourceFilesInfo().size(); ++i)
-            {
-            fileText += XmlFormat::FormatSectionWithAttribute(
-                                                            wxGetApp().GetAppOptions().XML_DOCUMENT_PATH,
-                                                            GetSourceFilesInfo().at(i).first,
-                                                            wxGetApp().GetAppOptions().XML_DESCRIPTION,
-                                                            GetSourceFilesInfo().at(i).second, 2);
-            }
+        fileText += XmlFormat::FormatSectionWithAttribute(
+                                                        wxGetApp().GetAppOptions().XML_DOCUMENT_PATH,
+                                                        GetSourceFilesInfo().at(i).first,
+                                                        wxGetApp().GetAppOptions().XML_DESCRIPTION,
+                                                        GetSourceFilesInfo().at(i).second, 2);
         }
     // storage/linking
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_STORAGE_METHOD,
