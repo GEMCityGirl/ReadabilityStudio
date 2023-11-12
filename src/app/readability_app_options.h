@@ -1482,7 +1482,7 @@ private:
     // embedded text editor
     wxFont m_editorFont;
     wxColour m_editorFontColor;
-    bool m_editorIndent{ true };
+    bool m_editorIndent{ false };
     bool m_editorSpaceAfterNewlines{ false };
     wxTextAttrAlignment m_editorTextAlignment{ wxTextAttrAlignment::wxTEXT_ALIGNMENT_JUSTIFIED };
     wxTextAttrLineSpacing m_editorLineSpacing{ wxTextAttrLineSpacing::wxTEXT_ATTR_LINE_SPACING_NORMAL };

@@ -397,7 +397,7 @@ void ReadabilityAppOptions::SetFonts()
     {
     auto systemFont{ wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT) };
     systemFont.SetFaceName(Wisteria::GraphItems::Label::GetFirstAvailableWordProcessorFont());
-    m_editorFont = systemFont;
+    m_editorFont = systemFont.Larger().Larger();
     m_xAxisFont = systemFont;
     m_yAxisFont = systemFont;
     m_topTitleFont = systemFont;
