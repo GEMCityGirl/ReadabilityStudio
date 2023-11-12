@@ -2,7 +2,7 @@
 
 ## Customizing Bars {#customizing-bars}
 
-In this example, we will discuss the various ways to change the appearance of bars in a bar chart or histogram.
+In this example\index{graphs!customizing!bars|(}, we will discuss the various ways to change the appearance of bars in a bar chart or histogram.
 
 The first step is to open the example file "Chocolate Eclairs." From the **Help** tab on the ribbon, click the `r keys("Example Documents")` button and then select "Chocolate Eclairs" from the menu.
 (When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
@@ -50,12 +50,13 @@ Now the bars will be drawn without labels above them:
 knitr::include_graphics("images/ExampleBarChartNoLabelsChanged.png")
 ```
 :::
+\index{graphs!customizing!bars|)}
 
 \newpage
 
 ## Customizing Backgrounds {#graph-background-example}
 
-Continuing from our previous [example](#customizing-bars), let's now change the background of the graph.
+Continuing from our previous [example](#customizing-bars), let's now change the background\index{graphs!customizing!backgrounds|(} of the graph.
 On the **Home** tab, click `r menu(c('Background', 'Background Color', 'Color...'))`.
 When the color selection dialog appears, select a new color (e.g., antique white) and click `r keys("OK")`.
 After selecting a color, check the option **Fade** from the same menu.
@@ -82,6 +83,7 @@ Click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Effe
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/ExampleGraphBackgroundImageEffectChanged.png")
 ```
+\index{graphs!customizing!backgrounds|)}
 
 \newpage
 
@@ -118,7 +120,7 @@ knitr::include_graphics("images/ExampleLogoChanged.png")
 
 ## Using Stipples {#stipple-brush-example}
 
-In this example, we will use stipples for our bar charts. Basically, a stipple enables us to use stacked images or shapes to draw our bars.
+In this example, we will use stipples\index{graphs!customizing!stipples|(} for our bar charts. Basically, a stipple enables us to use stacked images or shapes to draw our bars.
 First, create or open any standard project and select **Words Breakdown** on the sidebar. Next, select the **Word Counts** subitem and note how the bars will be filled rectangles:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
@@ -149,12 +151,13 @@ knitr::include_graphics("images/GraphStippleShape.png")
 ```
 
 These features can also be applied to box plots and histograms. With any of these graph types selected, perform the same operation from the ribbon to draw with a stipple.
+\index{graphs!customizing!stipples|)}
 
 \newpage
 
 ## Selective Colorization {#graph-selective-color-example}
 
-In this example, we will create a bar chart with a selective colorization effect. This technique is where the background is black & white and various focal points (i.e., the bars) are in color.
+In this example\index{graphs!customizing!backgrounds|(}, we will create a bar chart with a selective colorization effect. This technique is where the background is black & white and various focal points (i.e., the bars) are in color.
 
 From the **Help** tab on the ribbon, click the `r keys("Example Documents")` button and then select "Chocolate Eclairs" from the menu.
 (When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
@@ -193,6 +196,7 @@ Now, we should see a selective colorization effect on our bar chart:
 knitr::include_graphics("images/ExampleGraphBackgroundImageEffectGrayscaled.png")
 ```
 :::
+\index{graphs!customizing!backgrounds|)}
 
 ## A Retro Appearance {#graph-retro-example}
 
