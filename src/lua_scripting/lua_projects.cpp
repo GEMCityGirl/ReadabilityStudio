@@ -836,6 +836,18 @@ namespace LuaScripting
         return 1;
         }
 
+    int StandardProject::SetStatus(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->SetStatus(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
     int StandardProject::SetDocumentStorageMethod(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -1837,6 +1849,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, GetProjectLanguage),
       LUNA_DECLARE_METHOD(StandardProject, SetReviewer),
       LUNA_DECLARE_METHOD(StandardProject, GetReviewer),
+      LUNA_DECLARE_METHOD(StandardProject, SetStatus),
       LUNA_DECLARE_METHOD(StandardProject, SetDocumentStorageMethod),
       LUNA_DECLARE_METHOD(StandardProject, SetParagraphsParsingMethod),
       LUNA_DECLARE_METHOD(StandardProject, GetParagraphsParsingMethod),
@@ -2489,6 +2502,19 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int BatchProject::SetStatus(lua_State *L)
+        {
+        if (!VerifyProjectIsOpen(__WXFUNCTION__))
+            { return 0; }
+        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+            { return 0; }
+
+        m_project->SetStatus(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
     int BatchProject::SetDocumentStorageMethod(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__WXFUNCTION__))
@@ -3044,6 +3070,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, GetProjectLanguage),
       LUNA_DECLARE_METHOD(BatchProject, SetReviewer),
       LUNA_DECLARE_METHOD(BatchProject, GetReviewer),
+      LUNA_DECLARE_METHOD(BatchProject, SetStatus),
       LUNA_DECLARE_METHOD(BatchProject, SetDocumentStorageMethod),
       LUNA_DECLARE_METHOD(BatchProject, SetParagraphsParsingMethod),
       LUNA_DECLARE_METHOD(BatchProject, GetParagraphsParsingMethod),

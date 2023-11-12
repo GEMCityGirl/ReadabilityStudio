@@ -116,6 +116,8 @@ namespace LuaScripting
         // cppcheck-suppress functionConst
         int GetReviewer(lua_State* L);
         // cppcheck-suppress functionConst
+        int SetStatus(lua_State* L);
+        // cppcheck-suppress functionConst
         int GetDocumentStorageMethod(lua_State* L);
         int SetDocumentStorageMethod(lua_State* L);
         int SetParagraphsParsingMethod(lua_State* L);
@@ -319,8 +321,9 @@ namespace LuaScripting
         // cppcheck-suppress functionConst
         int GetProjectLanguage(lua_State* L);
         int SetReviewer(lua_State* L);
-        // cppcheck-suppress functionConst
         int GetReviewer(lua_State* L);
+        // cppcheck-suppress functionConst
+        int SetStatus(lua_State* L);
         // cppcheck-suppress functionConst
         int GetDocumentStorageMethod(lua_State* L);
         int SetDocumentStorageMethod(lua_State* L);
