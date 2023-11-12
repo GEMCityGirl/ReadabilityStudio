@@ -162,7 +162,8 @@ void EditTextDlg::CreateControls()
             {
             wxRibbonPanel* clipboardPage = new wxRibbonPanel(homePage, wxID_ANY, _(L"Clipboard"),
                 wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(clipboardPage, MainFrame::ID_CLIPBOARD_RIBBON_BUTTON_BAR);
+            wxRibbonButtonBar* buttonBar =
+                new wxRibbonButtonBar(clipboardPage, MainFrame::ID_CLIPBOARD_RIBBON_BUTTON_BAR);
             buttonBar->AddButton(wxID_PASTE, _(L"Paste"),
                 wxArtProvider::GetBitmap(wxART_PASTE, wxART_BUTTON,
                     FromDIP(wxSize(32, 32))).ConvertToImage(),
