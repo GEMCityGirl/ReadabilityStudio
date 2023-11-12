@@ -105,7 +105,7 @@ The messages in this report are displayed such that:
 
 This information can be useful if you are experiencing issues with loading a document.
 
-## Batch Project Import Features {#batch-project-import-features}
+## Batch Importing {#batch-project-import-features}
 
 ### Select Labeling
 
