@@ -14,7 +14,7 @@ Regarding the index score, the following variation of the Lix gauge is used clas
 knitr::include_graphics("images/GermanLixGauge.png")
 ```
 
-This version adjusts the scaling of the score, assuming that German text is inherently more difficult than other languages. It also includes additional levels of difficulty (e.g., “children and young adult”).
+This version adjusts the scaling of the score, assuming that German text is inherently more difficult than other languages. It also includes additional levels of difficulty (e.g., "children and young adult").
 
 ::: {.minipage data-latex="{\textwidth}"}
 To convert the Lix index score to a grade, this test uses the following table:
