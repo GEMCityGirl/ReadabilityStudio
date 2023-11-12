@@ -3021,10 +3021,7 @@ void ToolsOptionsDlg::CreateControls()
             panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             }
 
-        // if Tools/Options dialog, batch project, or standard project that got its text from a file-based document
-        if (IsGeneralSettings() ||
-            IsBatchProjectSettings() ||
-            (m_readabilityProjectDoc->GetTextSource() == TextSource::FromFile))
+        // Document origin settings
             {
             // document storage/linking section
             wxArrayString docLinking;
@@ -3038,7 +3035,7 @@ void ToolsOptionsDlg::CreateControls()
 
             // not relevant with batch projects
             if (IsGeneralSettings() ||
-                (m_readabilityProjectDoc->GetTextSource() == TextSource::FromFile))
+                IsStandardProjectSettings())
                 {
                 panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
@@ -3055,8 +3052,7 @@ void ToolsOptionsDlg::CreateControls()
             panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             }
 
-        if (IsStandardProjectSettings() &&
-            (m_readabilityProjectDoc->GetTextSource() == TextSource::FromFile))
+        if (IsStandardProjectSettings())
             {
             wxBoxSizer* fileBrowseBoxSizer = new wxBoxSizer(wxHORIZONTAL);
             panelSizer->Add(fileBrowseBoxSizer, 0, wxEXPAND|wxLEFT, OPTION_INDENT_SIZE);
