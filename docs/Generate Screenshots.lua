@@ -1091,8 +1091,8 @@ sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleLogoChanged." .. Fil
 
 sp:Close()
 
--- Editor example
------------------
+-- Editor and realtime examples
+-------------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Termination Checklist.rsp")
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "termchecklistgrammar." .. FileExtension)
@@ -1102,6 +1102,16 @@ ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "editorsaveribbon." .. FileExt
 ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "editorviewribbon." .. FileExtension, 0, RibbonButtonBars.View)
 ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "editorclipboardandeditribbon." .. FileExtension, 0, RibbonButtonBars.Clipboard, RibbonButtonBars.Edit)
 ScreenshotLib.CloseEditorTextDlg()
+
+sp:SetDocumentStorageMethod(TextStorage.NoEmbedText)
+ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "termchecklist-realtime." .. FileExtension, 0, RibbonButtonBars.Project)
+
+sp:DelayReloading(true)
+sp:SetDocumentFilePath("/home/LSternin/Termination Checklist.odt") -- use generic filepath
+sp:SetReviewer("Lilith")
+sp:SetStatus("Draft")
+sp:OpenProperties(OptionsPageType.ProjectSettings)
+ScreenshotLib.SnapScreenshot(ImagePath .. "realtime-options." .. FileExtension, 1085, 1087, 1083)
 
 sp.Close()
 

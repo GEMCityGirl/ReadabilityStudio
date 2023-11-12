@@ -31,7 +31,7 @@ As you edit the document, you can click the **Save** button on the editor:
 ![](images/editorsaveribbon.png)
 
 at any time to send your edits back to the project.
-The project will then analyze your changes and refresh its results.
+The project will then analyze your changes and reload its results.
 
 ::: {.minipage data-latex="{\textwidth}"}
 By placing the project window and editor side-by-side, you can review any issues while you edit.
@@ -56,4 +56,56 @@ If the editor is not open, then double clicking a list item will search for it i
 :::
 
 Once you are finished editing and ready to export your document, copy it and paste it into another program.
-For example, click `r keys("Select All")` and `r keys("Copy")`, then paste into a program such as *Microsoft Word*, *Outlook*, *Pages*, etc.
+For example, click `r keys("Select All")` and `r keys("Copy")`, then paste into a program such as *Microsoft Word*, *Outlook*, *Pages*, *LibreOffice*, etc.
+
+In the next example (see \@ref(external-editing)), we will edit our document from another program and view the changes in *Readability Studio* in real-time.
+
+\newpage
+
+## Editing from Other Programs {#external-editing}
+
+Continuing from the previous example (see \@ref(rs-as-an-editor)), we have copied the text from the editor into another program.
+(In this example, *LibreOffice* was used, but another other editor will work as well.)
+
+![](images/Nongenerated/term-checklist-in-external-editor.png)
+
+From *LibreOffice*, save the document and move the program over to the side of the screen. Next, go back to the project in *Readability Studio*.
+From the *Home* tab on the ribbon, click the `r keys('Properties')` button. On the *Project Properties* dialog, select *Project Settings* on the sidebar.
+Then, under *Linking and embedding*, select *Reload the document when opening project*.
+
+Because this project was created from entered text, it is not currently linked to a document.
+Under *Real-time update* is a text box where you can enter the path to a document. Click the button next to this text box and select the file that you just saved from *LibreOffice*.
+Also, check the option *Real-time update*, which will be discussed later.
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/realtime-options.png")
+```
+
+Click `r keys('OK')` to accept these changes.
+
+The project will link to the external document and analyze that, rather than the embedded text that we were editing before.
+Also, because we selected *Real-time update*, the project will reanalyze the document as we edit it in *LibreOffice*.
+The program will check every few seconds to see if the document's modified time has changed; if it has, then the project will reload.
+
+::: {.notesection data-latex=""}
+You will need to save from your external editor before *Readability Studio* can detect any changes.
+:::
+
+By placing the two programs side-by-side, you can review any issues while you edit.
+
+```{r echo=F, fig.show = 'hold', out.width='50%'}
+knitr::include_graphics("images/termchecklistgrammar.png")
+knitr::include_graphics("images/Nongenerated/term-checklist-in-external-editor.png")
+```
+
+The real-time update option is also available on the ribbon and can be toggled at any time:
+
+![](images/termchecklist-realtime.png)
+
+If this option is unpressed, then the project will only update when you explicitly click the `r keys('Reload')` button.
+
+Once you are finished editing, you can close the external editor and continue reviewing the results in *Readability Studio*.
+
+::: {.tipsection data-latex=""}
+To reopen the document in your default editor, click `r keys('Edit Document')` from the **Document** tab on the ribbon.
+:::
