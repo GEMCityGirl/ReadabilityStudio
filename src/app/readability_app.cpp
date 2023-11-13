@@ -1696,7 +1696,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 _(L"Reanalyze the document."));
             if (rtype == RibbonType::StandardProjectRibbon)
                 {
-                auto realtimeButton = projectButtonBar->AddToggleButton(XRCID("ID_REALTIME_UPDATE"),
+                projectButtonBar->AddToggleButton(XRCID("ID_REALTIME_UPDATE"),
                     _(L"Real-time Update"),
                     readRibbonButtonSVG(L"ribbon/realtime.svg"),
                     _(L"Automatically reload the project as the source document is edited externally."));

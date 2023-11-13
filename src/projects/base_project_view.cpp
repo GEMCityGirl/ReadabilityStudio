@@ -1193,7 +1193,7 @@ void BaseProjectView::OnEditGraphOpacity(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnEditGraphColorScheme(wxRibbonButtonBarEvent& event)
+void BaseProjectView::OnEditGraphColorScheme([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");

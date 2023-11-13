@@ -81,7 +81,7 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnSaveButton, this, wxID_SAVE);
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED,
-        [this](wxRibbonButtonBarEvent& event)
+        [this]([[maybe_unused]] wxRibbonButtonBarEvent& event)
         {
         wxFontData data;
         data.SetInitialFont(m_style.GetFont());
@@ -447,7 +447,7 @@ void EditTextDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent & event)
     }
 
 //------------------------------------------------------
-void EditTextDlg::OnOK(wxCommandEvent& event)
+void EditTextDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     {
     if (Validate() && TransferDataFromWindow() )
         {
@@ -463,7 +463,7 @@ void EditTextDlg::OnOK(wxCommandEvent& event)
     }
 
 //------------------------------------------------------
-void EditTextDlg::OnClose(wxCloseEvent& event)
+void EditTextDlg::OnClose([[maybe_unused]] wxCloseEvent& event)
     {
     if (m_textEntry && m_textEntry->IsModified() )
         {
@@ -497,7 +497,7 @@ void EditTextDlg::OnClose(wxCloseEvent& event)
     }
 
 //------------------------------------------------------
-void EditTextDlg::OnSaveButton(wxRibbonButtonBarEvent& event)
+void EditTextDlg::OnSaveButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     Save();
 
@@ -509,7 +509,7 @@ void EditTextDlg::OnSaveButton(wxRibbonButtonBarEvent& event)
     }
 
 //------------------------------------------------------
-void EditTextDlg::OnParagraphSpaceSelected(wxCommandEvent& event)
+void EditTextDlg::OnParagraphSpaceSelected([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_textEntry)
         {
@@ -625,7 +625,7 @@ void EditTextDlg::OnEditButtons(wxRibbonButtonBarEvent& event)
     }
 
 //------------------------------------------------------
-void EditTextDlg::OnTextChanged(wxCommandEvent& event)
+void EditTextDlg::OnTextChanged([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_textEntry)
         {

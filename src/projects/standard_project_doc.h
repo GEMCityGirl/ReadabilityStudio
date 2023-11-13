@@ -260,7 +260,7 @@ private:
     bool OnCreate(const wxString& path, long flags) final;
 
     void UpdateSourceFileModifiedTime();
-    void OnRealTimeTimer(wxTimerEvent& event);
+    void OnRealTimeTimer([[maybe_unused]] wxTimerEvent& event);
 
     ListCtrlExNumericDataProvider* m_dupWordData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_misspelledWordData{ new ListCtrlExNumericDataProvider };

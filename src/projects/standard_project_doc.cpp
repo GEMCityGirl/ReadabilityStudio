@@ -1433,7 +1433,7 @@ void ProjectDoc::UpdateSourceFileModifiedTime()
     }
 
 //-------------------------------------------------------
-void ProjectDoc::OnRealTimeTimer(wxTimerEvent& event)
+void ProjectDoc::OnRealTimeTimer([[maybe_unused]] wxTimerEvent& event)
     {
     if (GetDocumentStorageMethod() == TextStorage::LoadFromExternalDocument)
         {

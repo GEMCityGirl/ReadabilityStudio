@@ -93,14 +93,14 @@ private:
     void CreateControls();
     void OnEditButtons(wxRibbonButtonBarEvent& event);
     void OnLineSpaceSelected(wxCommandEvent& event);
-    void OnParagraphSpaceSelected(wxCommandEvent& event);
-    void OnSaveButton(wxRibbonButtonBarEvent& event);
-    void OnTextChanged(wxCommandEvent& event);
-    void OnClose(wxCloseEvent& event);
+    void OnParagraphSpaceSelected([[maybe_unused]] wxCommandEvent& event);
+    void OnSaveButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
+    void OnTextChanged([[maybe_unused]] wxCommandEvent& event);
+    void OnClose([[maybe_unused]] wxCloseEvent& event);
     void OnShowFindDialog([[maybe_unused]] wxCommandEvent& event);
     void OnShowReplaceDialog([[maybe_unused]] wxCommandEvent& event);
     void OnFindDialog(wxFindDialogEvent& event);
-    void OnOK(wxCommandEvent& event);
+    void OnOK([[maybe_unused]] wxCommandEvent& event);
 
     void Save();
 
