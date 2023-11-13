@@ -2,11 +2,16 @@
 
 # Getting Started
 
-In this chapter, we will step through some simple examples demonstrating how to analyze, review, and improve a document. After that, we will continue with examples showing how to analyze a webpage and how to review difficult sentences.
+`r drop_cap('Within')` this chapter, we will step through some examples demonstrating how to analyze, review, and improve a document.
+After that, we will continue with examples showing how to analyze a webpage and how to review difficult sentences.
+
+\newpage
 
 ## Analyzing a Book {#book-example}
 
-In this example, we will analyze a literary novel to help determine which age group it is most appropriate for (in terms of readability, not content). The first step is to open the **New Project** wizard and choose the book. Click the `r keys("New")` button on the **Home** tab to open the **New Project** wizard. First, select **English** as the document language (if this option is available). Then, select the option **Read text from a file or webpage**. Click the button next to the file path field to browse for it:
+In this example, we will analyze a literary novel to help determine which age group it is most appropriate for (in terms of readability, not content).
+The first step is to open the **New Project** wizard and choose the book. Click the `r keys("New")` button on the **Home** tab to open the **New Project** wizard.
+First, select **English** as the document language (if this option is available). Then, select the option **Read text from a file or webpage**. Click the button next to the file path field to browse for it:
 
 ![](images/exampleselectfile.png)
 
@@ -24,13 +29,19 @@ Because this is a literary work, select the **Recommend tests based on document 
 
 Finally, click the `r keys("Finish")` button to begin analyzing the project.
 
-At this point we can review the test scores of the book to help determine its reading level. Click the **Readability Scores** icon on the project sidebar. As we can see below, this book (Charles Dickens's *A Christmas Carol*) appears to be readable for at least readers in the 10–13 age (or above) range. This implies that it may be too difficult for younger readers due to longer sentences and/or difficult words.
+At this point we can review the test scores of the book to help determine its reading level. Click the **Readability Scores** icon on the project sidebar.
+As we can see below, this book (Charles Dickens's *A Christmas Carol*) appears to be readable for at least readers in the 10–13 age (or above) range.
+This implies that it may be too difficult for younger readers due to longer sentences and/or difficult words.
 
 ![](images/scores.png)
 
-To help understand why this book may be difficult for younger readers, click on the **Words Breakdown** icon on the project sidebar to display various lists of difficult words. Select the **3+ syllable words** subitem to view the list of complex words.
+To help understand why this book may be difficult for younger readers, click on the **Words Breakdown** icon on the project sidebar to display various lists of difficult words.
+Select the **3+ syllable words** subitem to view the list of complex words.
 
-Next, we will sort this list, going from highest to lowest syllable count. Click the `r keys("Sort")` button on the ribbon and select **Sort Descending** from the button's menu. On the **Sort Columns Descending** dialog, double click on the first row in the grid and select the column **Syllable Count**. Then double click on the row below that and select **Frequency**. These options will tell the program to sort the words from highest to lowest syllable count, and in the case of any ties to sort by frequency. Click `r keys("OK")` to sort the list.
+Next, we will sort this list, going from highest to lowest syllable count. Click the `r keys("Sort")` button on the ribbon and select **Sort Descending** from the button's menu.
+On the **Sort Columns Descending** dialog, double click on the first row in the grid and select the column **Syllable Count**.
+Then double click on the row below that and select **Frequency**. These options will tell the program to sort the words from highest to lowest syllable count, and in the case of any ties to sort by frequency.
+Click `r keys("OK")` to sort the list.
 
 Now the words will be sorted by syllable count and then by frequency. As illustrated below, there are many words containing five or more syllables, which can be very difficult for most readers of any age.
 

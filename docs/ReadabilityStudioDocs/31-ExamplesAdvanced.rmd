@@ -1,6 +1,9 @@
 # Advanced Examples
 
-In this chapter, we will discuss import options, text exclusion, and including addendums. After that, we will continue with examples showing how to customize graphs and create test bundles.
+`r drop_cap('Now')` that we have covered the basics of the program, we will discuss import options, text exclusion, and including addendums.
+After that, we will continue with showing how to create test bundles.
+
+\newpage
 
 ## Preserving Hard Returns
 
