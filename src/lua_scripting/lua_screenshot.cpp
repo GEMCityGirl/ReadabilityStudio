@@ -344,7 +344,7 @@ namespace LuaScripting
             startWindowToHighlight, propertyStart, propertyEnd,
             std::make_pair(
             ((lua_gettop(L) > 4) ? int_to_bool(lua_toboolean(L, 5)) : false),
-            ((lua_gettop(L) > 5) ? lua_tonumber(L, 6) : wxDefaultCoord))) );
+            ((lua_gettop(L) > 5) ? lua_tonumber(L, 6) : -1))) );
         return 1;
         }
 

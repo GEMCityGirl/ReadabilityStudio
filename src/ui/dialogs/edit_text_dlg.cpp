@@ -25,9 +25,9 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
              const wxSize& size /*= wxSize(600, 500)*/,
              long style /*= wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER*/) :
             m_value(std::move(value)),
-            m_parentDoc(parentDoc),
             m_usingParaSpace(wxGetApp().GetAppOptions().IsEditorShowSpaceAfterParagraph()),
-            m_lineSpacing(wxGetApp().GetAppOptions().GetEditorLineSpacing())
+            m_lineSpacing(wxGetApp().GetAppOptions().GetEditorLineSpacing()),
+            m_parentDoc(parentDoc)
     {
     SetBackgroundColour(wxGetApp().GetAppOptions().GetControlBackgroundColor());
     Create(parent, id,
@@ -357,7 +357,7 @@ void EditTextDlg::OnFindDialog(wxFindDialogEvent& event)
         if (foundPos != wxNOT_FOUND)
             {
             // if what is being replaced matches what was already selected, then replace it
-            if (from == foundPos && to == (foundPos + event.GetFindString().length()) )
+            if (from == foundPos && to == static_cast<decltype(to)>(foundPos + event.GetFindString().length()) )
                 {
                 m_textEntry->Replace(foundPos, foundPos + event.GetFindString().length(), event.GetReplaceString());
                 m_textEntry->SetSelection(foundPos, foundPos + event.GetReplaceString().length());
