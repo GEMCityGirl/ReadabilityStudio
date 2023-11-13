@@ -661,6 +661,7 @@ void EditTextDlg::Save()
             projectDoc->Save();
             }
         }
+    SetFocus();
     }
 
 //------------------------------------------------------
