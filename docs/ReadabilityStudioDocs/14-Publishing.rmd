@@ -1,8 +1,11 @@
 # Publishing the Results
 
-## Exporting {#exporting}
+`r drop_cap('All')` graphs\index{graphs!exporting}, lists\index{lists!exporting}, statistical summaries\index{summaries!exporting}, and highlighted text reports\index{text reports!exporting} can be exported and printed from *Readability Studio*.
+This is useful for reviewing the results outside the program, as well as publishing and sharing them with colleagues.
 
-All graphs\index{graphs!exporting}, lists\index{lists!exporting}, statistical summaries\index{summaries!exporting}, and highlighted text reports\index{text reports!exporting} can be exported from *Readability Studio*. This is useful for reviewing the results outside the program, as well as publishing and sharing them with colleagues.
+\newpage
+
+## Exporting {-#exporting}
 
 To export any window, go to the **Home** tab and click the `r keys("Save")` button, or right click on the window and select **Save**.
 
@@ -32,7 +35,7 @@ When [exporting](#exporting)\index{exporting!scores} readability scores\index{sc
 
 ## Text Window Export Options {#text-window-export}
 
-When [exporting](#exporting)\index{exporting!text reports} a text report\index{text reports!exporting}, the following export formats\index{text reports!exporting!formats} are available:
+When exporting\index{exporting!text reports} a text report\index{text reports!exporting}, the following export formats\index{text reports!exporting!formats} are available:
 
 ::: {.optionssection data-latex=""}
 **HTML**: A format that can be displayed in Internet browsers and most word-processing programs.
@@ -187,49 +190,6 @@ This dialog provides options for [exporting](#exporting) an entire project into 
 
 **Include text reports**: Select this option to include highlighted text reports in the output. It is recommended to unselect this option for larger documents. This option only applies to standard projects.
 
-## Printing {#printing}
-
-All graphs\index{graphs!printing}, lists\index{lists!printing}, statistical summaries\index{summaries!printing}, and highlighted text reports\index{text reports!printing} can be printed from *Readability Studio*. This is useful for reviewing the results outside the program, and for publishing and sharing them with colleagues.
-
-To print\index{printing} any window, go to the **Home** tab and click the `r keys("Print")` button, or right click on the window and select **Print**.
-
-:::  {.wrapfigure data-latex="{r}{0.5\\textwidth}" style="width: 48%;"}
-![](images/printerheadersfooters.png){width=48%}
-:::
-
-Clicking the arrow beneath the `r keys("Print")` button will open a menu containing additional printing options. For example, to change the paper size or orientation of your printouts, select **Page Setup** from this menu.
-
-To add headers or footers to your printouts, select **Headers & Footers** from this menu.
-
-Headers and footers support placeholder tags for items such as page, date, and time information.
-These tags are expanded dynamically when printing takes place. These tags are:
-
-- `@TITLE@`: The title of the printed document.
-- `@DATE@`: The date when it was printed.
-- `@TIME@`: The time when it was printed.
-- `@PAGENUM@`: The current page number.
-- `@PAGESCNT@`: The number of printed pages.
-
-For example, printing:
-
-> *\@PAGENUM\@ (of \@PAGESCNT\@ pages)*
-
-may expand to:
-
-> *1 (of 7 pages)*
-
-Custom values can also be entered here (e.g., the editor's name).
-
-To preview a window before printing it, select **Print Preview** from this menu.
-
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/NonGenerated/printpreview.png")
-```
-
-::: {.notesection data-latex=""}
-The preview option is only available on Windows. On macOS, the system print dialog has its own native preview option.
-:::
-
 ## Exporting Filtered Documents {#filtering-export}
 
 Document filtering (or “cleaning”) is the removal or conversion of items from a document to assist a textual analysis. This includes items that are not meant to be analyzed, such as:
@@ -348,3 +308,46 @@ This option is recommended for other programs that may have difficulty deducing 
 will be exported as:
 
 > *Hello*
+
+\newpage
+
+## Printing {-#printing}
+
+To print\index{printing} any window, go to the **Home** tab and click the `r keys("Print")` button, or right click on the window and select **Print**.
+
+:::  {.wrapfigure data-latex="{r}{0.5\\textwidth}" style="width: 48%;"}
+![](images/printerheadersfooters.png){width=48%}
+:::
+
+Clicking the arrow beneath the `r keys("Print")` button will open a menu containing additional printing options. For example, to change the paper size or orientation of your printouts, select **Page Setup** from this menu.
+
+To add headers or footers to your printouts, select **Headers & Footers** from this menu.
+
+Headers and footers support placeholder tags for items such as page, date, and time information.
+These tags are expanded dynamically when printing takes place. These tags are:
+
+- `@TITLE@`: The title of the printed document.
+- `@DATE@`: The date when it was printed.
+- `@TIME@`: The time when it was printed.
+- `@PAGENUM@`: The current page number.
+- `@PAGESCNT@`: The number of printed pages.
+
+For example, printing:
+
+> *\@PAGENUM\@ (of \@PAGESCNT\@ pages)*
+
+may expand to:
+
+> *1 (of 7 pages)*
+
+Custom values can also be entered here (e.g., the editor's name).
+
+To preview a window before printing it, select **Print Preview** from this menu.
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/NonGenerated/printpreview.png")
+```
+
+::: {.notesection data-latex=""}
+The preview option is only available on Windows. On macOS, the system print dialog has its own native preview option.
+:::
