@@ -70,6 +70,7 @@ wxBEGIN_EVENT_TABLE(ToolsOptionsDlg, wxDialog)
     EVT_CHECKBOX(ID_EXCLUDE_NUMERALS_CHECKBOX, ToolsOptionsDlg::OnExcludeNumeralsCheck)
 wxEND_EVENT_TABLE()
 
+//-------------------------------------------------------------
 void ToolsOptionsDlg::OnExcludeNumeralsCheck(wxCommandEvent& event)
     {
     if (m_syllableLabel)
@@ -87,6 +88,7 @@ void ToolsOptionsDlg::OnExcludeNumeralsCheck(wxCommandEvent& event)
         }
     }
 
+//-------------------------------------------------------------
 void ToolsOptionsDlg::OnExclusionBlockTagChange([[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
@@ -103,6 +105,7 @@ void ToolsOptionsDlg::OnExclusionBlockTagChange([[maybe_unused]] wxCommandEvent&
         { m_exclusionBlockTags.get_value().push_back(std::make_pair(L'(',L')')); }
     }
 
+//-------------------------------------------------------------
 void ToolsOptionsDlg::OnNumberSyllabizeChange([[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
@@ -115,18 +118,21 @@ void ToolsOptionsDlg::OnNumberSyllabizeChange([[maybe_unused]] wxCommandEvent& e
         }
     }
 
+//-------------------------------------------------------------
 void ToolsOptionsDlg::OnDeleteFileClick([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_fileList)
         { m_fileList->DeleteSelectedItems(); }
     }
 
+//-------------------------------------------------------------
 void ToolsOptionsDlg::OnAddFileClick([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_fileList)
         { m_fileList->EditItem(m_fileList->AddRow(), 0); }
     }
 
+//-------------------------------------------------------------
 void ToolsOptionsDlg::OnAddFilesClick([[maybe_unused]] wxCommandEvent& event)
     {
     wxFileDialog dialog
@@ -164,6 +170,8 @@ void ToolsOptionsDlg::OnAddFilesClick([[maybe_unused]] wxCommandEvent& event)
     m_fileList->SetColumnWidth(0, m_fileList->GetClientSize().GetWidth()*.75);
     m_fileList->SetColumnWidth(1, m_fileList->GetClientSize().GetWidth()*.25);
     m_fileList->SetItemBeenEditedByUser(true);
+    if (m_docStorageRadioBox)
+        { m_docStorageRadioBox->Enable(false); }
     }
 
 //-------------------------------------------------------------
@@ -840,6 +848,23 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
     else
         { title = wxString::Format(_(L"\"%s\" Properties"), displayableProjectName); }
     Create(parent, wxID_ANY, title, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER);
+
+    // Changing the list of files for a batch will need to disable the linking & embedded options until this dialog
+    // is closed and those new documents can be reloaded.
+    Bind(wxEVT_LISTCTRLEX_EDITED, [this]([[maybe_unused]] wxCommandEvent& event)
+        {
+        if (m_docStorageRadioBox && m_fileList && m_fileList->HasItemBeenEditedByUser())
+            { m_docStorageRadioBox->Enable(false); }
+        }, ID_FILE_LIST);
+    // Same for standard project with a single file path. Changing the file path will need to
+    // load the new file before the user can try to embed it. They will need to accept the
+    // changes in this dialog and then re-open it to embed the new document.
+    Bind(wxEVT_TEXT, [this]([[maybe_unused]] wxCommandEvent& event)
+        {
+        TransferDataFromWindow();
+        if (m_filePath.has_changed() && m_docStorageRadioBox)
+            { m_docStorageRadioBox->Enable(false); }
+        }, ID_DOCUMENT_PATH_FIELD);
     }
 
 //-------------------------------------------------------------
@@ -3027,11 +3052,11 @@ void ToolsOptionsDlg::CreateControls()
             wxArrayString docLinking;
             docLinking.Add(_(L"&Embed the document's text into the project"));
             docLinking.Add(_(L"&Reload the document when opening project"));
-            wxRadioBox* docStorageRadioBox =
+            m_docStorageRadioBox =
                 new wxRadioBox(projectSettingsPage, ID_DOCUMENT_STORAGE_RADIO_BOX, _(L"Linking and embedding"),
                                wxDefaultPosition, wxDefaultSize, docLinking, 0, wxRA_SPECIFY_ROWS,
                                wxGenericValidator(&m_documentStorageMethod) );
-            panelSizer->Add(docStorageRadioBox, 0, wxLEFT, OPTION_INDENT_SIZE);
+            panelSizer->Add(m_docStorageRadioBox, 0, wxLEFT, OPTION_INDENT_SIZE);
 
             // not relevant with batch projects
             if (IsGeneralSettings() ||
@@ -3057,7 +3082,7 @@ void ToolsOptionsDlg::CreateControls()
             wxBoxSizer* fileBrowseBoxSizer = new wxBoxSizer(wxHORIZONTAL);
             panelSizer->Add(fileBrowseBoxSizer, 0, wxEXPAND|wxLEFT, OPTION_INDENT_SIZE);
 
-            m_filePathEdit = new wxTextCtrl(projectSettingsPage, wxID_ANY, wxEmptyString,
+            m_filePathEdit = new wxTextCtrl(projectSettingsPage, ID_DOCUMENT_PATH_FIELD, wxEmptyString,
                                             wxDefaultPosition, wxDefaultSize, wxBORDER_THEME,
                                             wxGenericValidator(&m_filePath) );
             m_filePathEdit->AutoCompleteFileNames();
@@ -3115,7 +3140,7 @@ void ToolsOptionsDlg::CreateControls()
                 m_fileData->SetItemText(i, 0, m_readabilityProjectDoc->GetSourceFilesInfo()[i].first);
                 m_fileData->SetItemText(i, 1, m_readabilityProjectDoc->GetSourceFilesInfo()[i].second);
                 }
-            m_fileList = new ListCtrlEx(projectSettingsPage, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+            m_fileList = new ListCtrlEx(projectSettingsPage, ID_FILE_LIST, wxDefaultPosition, wxDefaultSize,
                                         wxLC_VIRTUAL|wxLC_EDIT_LABELS|wxLC_REPORT|wxLC_ALIGN_LEFT);
             m_fileList->EnableGridLines();
             m_fileList->EnableItemDeletion();
