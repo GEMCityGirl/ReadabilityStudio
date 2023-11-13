@@ -701,10 +701,12 @@ void EditTextDlg::UpdateButtons()
         }
 
     // update menu
+#ifdef __WXMSW__
     m_lineSpacingMenu.Check(XRCID("ID_LINE_SINGLE"), m_lineSpacing == wxTEXT_ATTR_LINE_SPACING_NORMAL);
     m_lineSpacingMenu.Check(XRCID("ID_LINE_ONE_AND_HALF"), m_lineSpacing == wxTEXT_ATTR_LINE_SPACING_HALF);
     m_lineSpacingMenu.Check(XRCID("ID_LINE_DOUBLE"), m_lineSpacing == wxTEXT_ATTR_LINE_SPACING_TWICE);
     m_lineSpacingMenu.Check(XRCID("ID_ADD_PARAGRAPH_SPACE"), m_usingParaSpace);
+#endif
 
     // undo/redo button
     wxWindow* editButtonBarWindow = m_ribbon->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
