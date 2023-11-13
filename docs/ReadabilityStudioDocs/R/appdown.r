@@ -10,6 +10,17 @@ knitr::opts_chunk$set(message=F, warning=F)
 knitr::opts_chunk$set(fig.pos = 'H', out.extra = '')
 options(knitr.kable.NA = '')
 
+# @brief Displays a word in drop caps.
+# @param word The word to put in drop caps.
+# @param options Options to pass to letterine (LaTeX only).
+drop_cap <- function(word, options = "")
+  {
+  if (knitr::is_latex_output())
+    { knitr::asis_output(glue("\\lettrine[<options>]{<str_sub(word, 1, 1)>}{<str_sub(word, 2)>}", .open='<', .close='>')) }
+  else if (knitr::is_html_output())
+    { knitr::asis_output(glue("<span class='drop-caps'>{str_sub(word, 1, 1)}</span>{str_sub(word, 2)}")) }
+  }
+
 # @brief Displays a logo for a given OS.
 # @param os The OS logo to show. "apple," "windows," and "linux," and "freebsd" are supported.
 os_logo <- function(os)

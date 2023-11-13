@@ -23,6 +23,14 @@
   padding-left: 20pt;
 }
 
+/* Class for small capping text in a paragraph, such as a lead line */
+.drop-caps {
+  float: left;
+  width: 0.7em;
+  font-size: 200%;
+  line-height: 80%;
+}
+
 /* adapted from https://www.kirstencassidy.com/css-fancy-quotes/*/
 .fancyquotes {
   quotes: "\201C""\201D""\2018""\2019";
