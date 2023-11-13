@@ -18,7 +18,7 @@ drop_cap <- function(word, options = "")
   if (knitr::is_latex_output())
     { knitr::asis_output(glue("\\lettrine[<options>]{<str_sub(word, 1, 1)>}{<str_sub(word, 2)>}", .open='<', .close='>')) }
   else if (knitr::is_html_output())
-    { knitr::asis_output(glue("<span class='drop-caps'>{str_sub(word, 1, 1)}</span>{str_sub(word, 2)}")) }
+    { knitr::asis_output(glue("<span class='drop-caps'>{str_sub(word, 1, 1)}</span>{str_to_upper(str_sub(word, 2))}")) }
   }
 
 # @brief Displays a logo for a given OS.
