@@ -3078,7 +3078,7 @@ void ToolsOptionsDlg::CreateControls()
                 new wxStaticText(projectSettingsPage, wxID_STATIC, _(L"Document description:")),
                                  0, wxALIGN_CENTER_VERTICAL);
             wxTextCtrl* descriptionEdit =
-                new wxTextCtrl(projectSettingsPage, wxID_ANY, wxEmptyString, wxDefaultPosition,
+                new wxTextCtrl(projectSettingsPage, ID_DOCUMENT_DESCRIPTION_FIELD, wxEmptyString, wxDefaultPosition,
                                wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_description) );
             docDescriptionSizer->Add(descriptionEdit,
                                      wxSizerFlags(1).Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));

@@ -1111,7 +1111,7 @@ sp:SetDocumentFilePath("/home/LSternin/Termination Checklist.odt") -- use generi
 sp:SetReviewer("Lilith")
 sp:SetStatus("Draft")
 sp:OpenProperties(OptionsPageType.ProjectSettings)
-ScreenshotLib.SnapScreenshot(ImagePath .. "realtime-options." .. FileExtension, 1085, 1087, 1083)
+ScreenshotLib.SnapScreenshot(ImagePath .. "realtime-options." .. FileExtension, 1085, 1087, 1088)
 
 sp.Close()
 

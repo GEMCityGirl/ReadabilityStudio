@@ -65,7 +65,7 @@ In the next example (see \@ref(external-editing)), we will edit our document fro
 ## Editing from Other Programs {#external-editing}
 
 Continuing\index{editing!from other programs|(} from the previous example (see \@ref(rs-as-an-editor)), we have copied the text from the editor into another program.
-(In this example, *LibreOffice* was used, but another other editor will work as well.)
+(*LibreOffice* was used in this example, but any other editor will work as well.)
 
 ![](images/Nongenerated/term-checklist-in-external-editor.png)
 
@@ -73,9 +73,9 @@ From *LibreOffice*, save the document and move the program over to the side of t
 From the *Home* tab on the ribbon, click the `r keys('Properties')` button. On the *Project Properties* dialog, select *Project Settings* on the sidebar.
 Then, under *Linking and embedding*, select *Reload the document when opening project*.
 
-Because this project was created from entered text, it is not currently linked to a document.
-Under *Real-time update* is a text box where you can enter the path to a document. Click the button next to this text box and select the file that you just saved from *LibreOffice*.
-Also, check the option *Real-time update*, which will be discussed later.
+Because we created this project with entered text, it is not linked to a document.
+Under *Linking and embedding* is a text box where you enter a document path. Click the button next to this box and select the file that you just saved from *LibreOffice*.
+Also, check *Real-time update*, which will be discussed later.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/realtime-options.png")
@@ -104,8 +104,8 @@ The real-time update option is also available on the ribbon and can be toggled a
 
 If this option is unpressed, then the project will only update when you explicitly click the `r keys('Reload')` button.
 
-Once you are finished editing, you can close the external editor and continue reviewing the results in *Readability Studio*.
+Once you are finished editing, you can close the other program and continue reviewing the results in *Readability Studio*.
 
 ::: {.tipsection data-latex=""}
-To reopen the document in your default editor, click `r keys('Edit Document')` from the **Document** tab on the ribbon.\index{editing!from other programs|)}
+To reopen the document in your default editor, click `r keys('Edit Document')` from the ribbon's **Document** tab.\index{editing!from other programs|)}
 :::

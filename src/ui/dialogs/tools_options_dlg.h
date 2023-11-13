@@ -167,6 +167,7 @@ private:
     static constexpr int ID_ADDITIONAL_FILE_FIELD = wxID_HIGHEST + 80;
     static constexpr int ID_SENTENCES_MUST_BE_CAP_BUTTON = wxID_HIGHEST + 81;
     static constexpr int ID_REALTIME_UPDATE_BUTTON = wxID_HIGHEST + 82;
+    static constexpr int ID_DOCUMENT_DESCRIPTION_FIELD = wxID_HIGHEST + 83;
 
     // button events
     void OnExportSettings([[maybe_unused]] wxCommandEvent& event);
