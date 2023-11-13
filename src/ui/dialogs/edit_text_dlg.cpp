@@ -291,6 +291,8 @@ void EditTextDlg::CreateControls()
     m_style.SetParagraphSpacingAfter(wxGetApp().GetAppOptions().IsEditorShowSpaceAfterParagraph() ? 40 : 0);
     m_style.SetLineSpacing(wxGetApp().GetAppOptions().GetEditorLineSpacing());
     m_textEntry->SetDefaultStyle(m_style);
+
+#if wxUSE_SPELLCHECK
     const auto lang = (m_parentDoc != nullptr) ?
         m_parentDoc->GetProjectLanguage() : wxGetApp().GetAppOptions().GetProjectLanguage();
     m_textEntry->EnableProofCheck(wxTextProofOptions::Default().
@@ -301,6 +303,7 @@ void EditTextDlg::CreateControls()
             _DT("de") :
             _DT("en")).
         SpellCheck(true).GrammarCheck(true));
+#endif
 
     // must use AppendText to prevent text control's style from being wiped out
     m_textEntry->AppendText(m_value);
