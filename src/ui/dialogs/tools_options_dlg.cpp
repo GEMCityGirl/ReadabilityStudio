@@ -170,6 +170,8 @@ void ToolsOptionsDlg::OnAddFilesClick([[maybe_unused]] wxCommandEvent& event)
     m_fileList->SetColumnWidth(0, m_fileList->GetClientSize().GetWidth()*.75);
     m_fileList->SetColumnWidth(1, m_fileList->GetClientSize().GetWidth()*.25);
     m_fileList->SetItemBeenEditedByUser(true);
+    if (m_fileList->GetItemCount() > 0)
+        { m_fileList->EnsureVisible(m_fileList->GetItemCount() - 1); }
     if (m_docStorageRadioBox)
         { m_docStorageRadioBox->Enable(false); }
     }
