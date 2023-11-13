@@ -361,6 +361,7 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
     SetIcon(ico);
 
     CreateControls();
+    Center();
     // move over to the right side of the screen
     const auto screenWidth{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) };
     int xPos{ 0 }, yPos{ 0 };

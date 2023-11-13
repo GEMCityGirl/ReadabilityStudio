@@ -34,6 +34,7 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
            (m_parentDoc != nullptr) ? wxString::Format(L"%s (\"%s\")", caption, m_parentDoc->GetTitle()) : caption,
            description, pos, size, style);
     SetSize(FromDIP(wxSize(1200, 900)));
+    Center();
     // move over to the right side of the screen
     const auto screenWidth{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) };
     int xPos{ 0 }, yPos{ 0 };
@@ -270,7 +271,7 @@ void EditTextDlg::CreateControls()
     // wxTextAttr with it. Validators call either ChangeValue() or SetValue() and that
     // resets the control's wxTextAttr information. It seems that you can only use
     // AppendText() to preserve the default style information, so we need to manually
-    // handle connecting the text control to m_value via Save() and our on OnOK().
+    // handle connecting the text control to m_value via Save() and OnOK().
     m_textEntry = new FormattedTextCtrl(this, wxID_ANY,
                                  wxDefaultPosition, wxDefaultSize,
                                  wxTE_AUTO_URL|wxTE_PROCESS_TAB);
@@ -315,7 +316,7 @@ void EditTextDlg::CreateControls()
     EnableSaveButton(false);
     UpdateButtons();
 
-    mainSizer->Add(m_textEntry, 1, wxEXPAND);
+    mainSizer->Add(m_textEntry, wxSizerFlags(1).Expand());
 
     if (m_description.length())
         {
@@ -331,7 +332,7 @@ void EditTextDlg::CreateControls()
                        wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
         }
 
-    SetSizer(mainSizer);
+    SetSizerAndFit(mainSizer);
 
     m_textEntry->SetFocus();
     }
