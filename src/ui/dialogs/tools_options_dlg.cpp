@@ -1492,6 +1492,15 @@ void ToolsOptionsDlg::SaveOptions()
         }
     if (m_readabilityProjectDoc && HaveOptionsChanged())
         {
+        // change the origin of the document if switching to external document
+        if (m_documentStorageMethod == static_cast<int>(TextStorage::LoadFromExternalDocument) &&
+            m_readabilityProjectDoc->GetTextSource() == TextSource::EnteredText)
+            {
+            wxLogMessage(L"'%s': manually entered text converted to linked document in project.",
+                         m_readabilityProjectDoc->GetTitle());
+            m_readabilityProjectDoc->SetTextSource(TextSource::FromFile);
+            }
+
         if (IsBatchProjectSettings() && HaveDocumentOptionsChanged())
             {
             // batch projects may need to do a full re-indexing, so just set this flag as a shortcut
