@@ -6,11 +6,12 @@
 // SPDX-License-Identifier: BSD-3-Clause
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "edit_text_dlg.h"
-#include "../../projects/base_project_doc.h"
-#include "../../projects/standard_project_doc.h"
-#include "../../projects/batch_project_doc.h"
 #include "../../app/readability_app.h"
+#include "../../projects/base_project_doc.h"
+#include "../../projects/batch_project_doc.h"
+#include "../../projects/standard_project_doc.h"
+#include "../../Wisteria-Dataviz/src/base/colorbrewer.h"
+#include "edit_text_dlg.h"
 
 wxDECLARE_APP(ReadabilityApp);
 
@@ -273,7 +274,7 @@ void EditTextDlg::CreateControls()
     // AppendText() to preserve the default style information, so we need to manually
     // handle connecting the text control to m_value via Save() and OnOK().
     m_textEntry = new FormattedTextCtrl(this, wxID_ANY,
-                                 wxDefaultPosition, wxDefaultSize,
+                                 wxDefaultPosition, wxSize(-1, FromDIP(500)),
                                  wxTE_AUTO_URL|wxTE_PROCESS_TAB);
     m_textEntry->SetMargins(10, 10);
     m_textEntry->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_EDITOR_MENU"));
