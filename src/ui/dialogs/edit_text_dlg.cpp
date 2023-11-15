@@ -469,6 +469,9 @@ void EditTextDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent & event)
         {
         m_dlgFind = new wxFindReplaceDialog(this, &m_findData, _(L"Find"));
         }
+    const auto selectedStr{ m_textEntry->GetStringSelection() };
+    if (selectedStr.length())
+        { m_findData.SetFindString(selectedStr); }
     m_dlgFind->Show(true);
     m_dlgFind->SetFocus();
     }
