@@ -1,14 +1,14 @@
-#include "base_project.h"
-#include "base_project_view.h"
 #include "../app/readability_app.h"
+#include "../indexing/romanize.h"
 #include "../results_format/project_report_format.h"
 #include "../results_format/word_collectiont_text_formatting.h"
 #include "../ui/dialogs/filtered_text_preview_dlg.h"
-#include "../indexing/romanize.h"
+#include "../Wisteria-Dataviz/src/import/cpp_extract_text.h"
 #include "../Wisteria-Dataviz/src/import/html_encode.h"
 #include "../Wisteria-Dataviz/src/import/idl_extract_text.h"
 #include "../Wisteria-Dataviz/src/import/pptx_extract_text.h"
-#include "../Wisteria-Dataviz/src/import/cpp_extract_text.h"
+#include "base_project.h"
+#include "base_project_view.h"
 
 /***************************************************************************
                           BaseProject.h  -  description
@@ -4169,7 +4169,7 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
         document will be ignored.
         Note that we don't bother with this check with webpages because they normally
         contain lists for things like menus that we would indeed want to ignore.*/
-    FilePathResolver resolvePath(GetOriginalDocumentFilePath(), true);
+    FilePathResolver resolvePath(GetOriginalDocumentFilePath(), false);
     if (GetWords()->get_sentence_count() > 0 &&
         !resolvePath.IsWebFile())
         {
