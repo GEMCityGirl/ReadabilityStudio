@@ -2,7 +2,7 @@
 
 # Creating a New Project
 
-`r drop_cap('The')` first step to analyzing a document is to create new project.
+`r drop_cap('The')` first step to analyzing a document is to create a new project.
 A project is where you select your document, define how to parse it, and choose which tests to perform.
 Projects organize results (e.g., readability test, graphs, etc.) and settings into a single file that can be opened later.
 
@@ -10,7 +10,7 @@ In this chapter, we will step through the process of creating a project, explain
 
 \newpage
 
-## Project Types {.unnumbered}
+## Project Types {-}
 
 To begin, click the `r keys("New")` button on the **Home** tab to display the **New Project** dialog.
 This dialog enables you to create either a [standard](#creating-standard-project) or [batch](#creating-batch-project) project.

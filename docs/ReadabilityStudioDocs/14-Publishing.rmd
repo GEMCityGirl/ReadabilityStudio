@@ -341,13 +341,3 @@ may expand to:
 > *1 (of 7 pages)*
 
 Custom values can also be entered here (e.g., the editor's name).
-
-To preview a window before printing it, select **Print Preview** from this menu.
-
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/NonGenerated/printpreview.png")
-```
-
-::: {.notesection data-latex=""}
-The preview option is only available on Windows. On macOS, the system print dialog has its own native preview option.
-:::

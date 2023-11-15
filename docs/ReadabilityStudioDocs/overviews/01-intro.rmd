@@ -19,6 +19,8 @@ They do not consider the content or themes of a given work. The age level report
 It does not reflect whether the topics covered in the material are meant for that age group. If you are classifying books into age groups, you should first review them for any mature topics.
 Then you should use readability tests to determine their comprehension levels.
 
+\newpage
+
 ## How Tests are Calculated
 
 All readability formulas rely on factors such as sentence length, syllable counts, character counts, or word familiarity.

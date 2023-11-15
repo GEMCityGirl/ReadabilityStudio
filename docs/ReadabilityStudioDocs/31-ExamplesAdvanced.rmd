@@ -71,13 +71,11 @@ knitr::include_graphics("images/PeterRabbitChainedSentences.png")
 
 When reviewing a document, it is usually preferable to ignore certain items, such as headers and citations (refer to \@ref(how-text-is-excluded) for more information). In this example, we will discuss the various methods for excluding these items.
 
-The first step is to open the example file "Danielson-Bryan." From the **Help** tab, click the `r keys("Example Documents")` button and then select "Danielson-Bryan" from the menu. (When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`. A warning about an incomplete sentence being included because of its length will appear:
+The first step is to open the example file "Danielson-Bryan." From the **Help** tab, click the `r keys("Example Documents")` button and then select "Danielson-Bryan" from the menu.
+(When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
+A warning about an incomplete sentence being included because of its length will appear.
 
-```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("images/NonGenerated/ExclusionExampleIncompleteSentWarning.png")
-```
-
-For now click `r keys("Close")`, we will review this sentence later in this example.
+For now click `r keys("Close")`; we will review this sentence later in this example.
 
 Once the project is loaded, on the **Home** tab click the `r keys("Properties")` button under the **Project** section. On the **Properties** dialog, click **Analysis** on the sidebar and select **Document Indexing**. Uncheck all the options shown below and click `r keys("OK")`:
 
