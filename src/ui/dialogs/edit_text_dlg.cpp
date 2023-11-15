@@ -278,13 +278,34 @@ void EditTextDlg::CreateControls()
                                  wxTE_AUTO_URL|wxTE_PROCESS_TAB);
     m_textEntry->SetMargins(10, 10);
     m_textEntry->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_EDITOR_MENU"));
+    if (m_parentDoc != nullptr)
+        { m_textEntry->SetBackgroundColour(m_parentDoc->GetTextReportBackgroundColor()); }
+    const wxColour fontColor = [&]()
+        {
+        if (m_parentDoc != nullptr &&
+            // Default white? Just keep their selected font color.
+            m_parentDoc->GetTextReportBackgroundColor() != *wxWHITE)
+            {
+            // if they are theming and it's dark, then explicitly use white
+            return (Wisteria::Colors::ColorContrast::IsDark(m_parentDoc->GetTextReportBackgroundColor()) ?
+                *wxWHITE :
+                // ...otherwise, shade or tint to go with the theme
+                Wisteria::Colors::ColorContrast::ShadeOrTintIfClose(
+                    wxGetApp().GetAppOptions().GetEditorFontColor(), m_parentDoc->GetTextReportBackgroundColor()) );
+            }
+        else
+            {
+            return wxGetApp().GetAppOptions().GetEditorFontColor();
+            }
+        }();
 
     m_style = wxTextAttr
         {
-        wxGetApp().GetAppOptions().GetEditorFontColor(),
+        fontColor,
         wxNullColour,
         wxGetApp().GetAppOptions().GetEditorFont()
         };
+
     if (wxGetApp().GetAppOptions().IsEditorIndenting())
         { m_style.SetLeftIndent(50, -40); }
     else
@@ -352,17 +373,18 @@ void EditTextDlg::OnFindDialog(wxFindDialogEvent& event)
         }
     else if (event.GetEventType() == wxEVT_FIND_REPLACE)
         {
-        long from{ 0 }, to{ 0 };
-        m_textEntry->GetSelection(&from, &to);
+        long fromSelection{ 0 }, toSelection{ 0 };
+        m_textEntry->GetSelection(&fromSelection, &toSelection);
         // force search to start from beginning of selection
-        m_textEntry->SetSelection(from, from);
+        m_textEntry->SetSelection(fromSelection, fromSelection);
 
         auto foundPos = m_textEntry->FindText(event.GetFindString(),
             (event.GetFlags() & wxFR_DOWN), (event.GetFlags() & wxFR_WHOLEWORD), (event.GetFlags() & wxFR_MATCHCASE));
         if (foundPos != wxNOT_FOUND)
             {
             // if what is being replaced matches what was already selected, then replace it
-            if (from == foundPos && to == static_cast<decltype(to)>(foundPos + event.GetFindString().length()) )
+            if (fromSelection == foundPos &&
+                toSelection == static_cast<decltype(toSelection)>(foundPos + event.GetFindString().length()) )
                 {
                 m_textEntry->Replace(foundPos, foundPos + event.GetFindString().length(), event.GetReplaceString());
                 m_textEntry->SetSelection(foundPos, foundPos + event.GetReplaceString().length());
@@ -383,7 +405,7 @@ void EditTextDlg::OnFindDialog(wxFindDialogEvent& event)
                 }
             }
         else
-            { m_textEntry->SetSelection(from, to); }
+            { m_textEntry->SetSelection(fromSelection, toSelection); }
         }
     else if (event.GetEventType() == wxEVT_FIND_REPLACE_ALL)
         {
