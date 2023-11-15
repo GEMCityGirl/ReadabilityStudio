@@ -62,6 +62,8 @@ ribbon/export-all.svg
 ribbon/file-open.svg
 ribbon/file-save.svg
 ribbon/filter.svg
+ribbon/find-replace.svg
+ribbon/find.svg
 ribbon/flesch-line.svg
 ribbon/font.svg
 ribbon/formula.svg

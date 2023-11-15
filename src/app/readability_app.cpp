@@ -1,21 +1,21 @@
-#include "readability_app.h"
-#include "../projects/standard_project_view.h"
+#include "../../../Licensing/LicenseDlg.h"
+#include "../document_helpers/chapter_split.h"
 #include "../projects/batch_project_doc.h"
 #include "../projects/batch_project_view.h"
-#include "../ui/dialogs/test_bundle_dlg.h"
-#include "../ui/dialogs/new_custom_test_simple_dlg.h"
+#include "../projects/standard_project_view.h"
 #include "../ui/dialogs/custom_test_dlg.h"
-#include "../ui/dialogs/tools_options_dlg.h"
 #include "../ui/dialogs/edit_word_list_dlg.h"
+#include "../ui/dialogs/new_custom_test_simple_dlg.h"
 #include "../ui/dialogs/project_wizard_dlg.h"
-#include "../document_helpers/chapter_split.h"
-#include "../../../Licensing/LicenseDlg.h"
+#include "../ui/dialogs/test_bundle_dlg.h"
+#include "../ui/dialogs/tools_options_dlg.h"
+#include "../Wisteria-Dataviz/src/CRCpp/inc/CRC.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/filelistdlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/getdirdlg.h"
-#include "../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
-#include "../Wisteria-Dataviz/src/CRCpp/inc/CRC.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/graphdlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
+#include "../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
+#include "readability_app.h"
 
 using namespace Wisteria;
 using namespace Wisteria::GraphItems;
@@ -48,6 +48,8 @@ RSArtProvider::RSArtProvider()
             { wxART_HELP_BOOK, L"ribbon/help.svg" },
             { wxART_GO_DOWN, L"ribbon/down-arrow.svg" },
             { wxART_GO_UP, L"ribbon/up-arrow.svg" },
+            { wxART_FIND, L"ribbon/find.svg" },
+            { wxART_FIND_AND_REPLACE, L"ribbon/find-replace.svg" },
             { L"ID_ALIGN_LEFT", L"ribbon/align-left.svg" },
             { L"ID_ALIGN_CENTER", L"ribbon/align-center.svg" },
             { L"ID_ALIGN_RIGHT", L"ribbon/align-right.svg" },
