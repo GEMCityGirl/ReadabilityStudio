@@ -1,9 +1,9 @@
-#include "readability_app_options.h"
-#include "readability_app.h"
 #include "../ui/dialogs/custom_test_dlg.h"
+#include "../Wisteria-Dataviz/src/base/colorbrewer.h"
 #include "../Wisteria-Dataviz/src/import/html_encode.h"
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
-#include "../Wisteria-Dataviz/src/base/colorbrewer.h"
+#include "readability_app.h"
+#include "readability_app_options.h"
 
 using namespace Wisteria;
 using namespace Wisteria::Graphs;
@@ -1157,7 +1157,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             if (lineSpacingnNode)
                 {
                 SetEditorLineSpacing(
-                    static_cast<wxTextAttrLineSpacing>(lineSpacingnNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
+                    static_cast<wxTextAttrLineSpacing>(
+                        lineSpacingnNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
                 }
             }
         // just get the reviewer from project settings to be used for the start page
