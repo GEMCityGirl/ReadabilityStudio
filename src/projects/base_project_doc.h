@@ -1,13 +1,13 @@
 #ifndef __BASE_PROJECT_DOC_H__
 #define __BASE_PROJECT_DOC_H__
 
-#include "base_project.h"
-#include "../results_format/readability_messages.h"
 #include "../graphs/frygraph.h"
 #include "../graphs/raygorgraph.h"
 #include "../graphs/schwartzgraph.h"
+#include "../results_format/readability_messages.h"
 #include "../ui/controls/explanation_listctrl.h"
 #include "../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
+#include "base_project.h"
 
 /// Base document layer of a project, storing features common to standard and batch projects.
 class BaseProjectDoc : public BaseProject, public wxDocument
@@ -641,7 +641,7 @@ public:
 
     void UpdateGraphOptions(Wisteria::Canvas* canvas);
     static void UpdateListOptions(ListCtrlEx* list);
-    void UpdateTextWindowOptions(FormattedTextCtrl* textW);
+    void UpdateTextWindowOptions(FormattedTextCtrl* textW) const;
     static void UpdateExplanationListOptions(ExplanationListCtrl* eList);
     static void UpdatePrinterHeaderAndFooters(Wisteria::Canvas* window);
     static void UpdatePrinterHeaderAndFooters(ListCtrlEx* window);

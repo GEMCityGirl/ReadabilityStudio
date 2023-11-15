@@ -1,7 +1,7 @@
-#include "base_project_doc.h"
 #include "../app/readability_app.h"
-#include "../Wisteria-Dataviz/src/import/html_encode.h"
 #include "../Wisteria-Dataviz/src/base/reportenumconvert.h"
+#include "../Wisteria-Dataviz/src/import/html_encode.h"
+#include "base_project_doc.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(BaseProjectDoc, wxDocument)
 
@@ -366,7 +366,7 @@ wxColour BaseProjectDoc::GetTextReportBackgroundColor() const
     }
 
 //------------------------------------------------
-void BaseProjectDoc::UpdateTextWindowOptions(FormattedTextCtrl* textW)
+void BaseProjectDoc::UpdateTextWindowOptions(FormattedTextCtrl* textW) const
     {
     if (textW == nullptr)
         { return; }
