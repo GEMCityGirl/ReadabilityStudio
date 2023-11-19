@@ -237,19 +237,14 @@ void ProjectDoc::RefreshProject()
             }
         }
 
-    /* if they set this to exclude headers and such make sure we actually have some
-       valid sentences to work with*/
-    bool invalidSentenceMethodSwitched = false;
     if ((GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
          GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings) &&
         GetWords()->get_complete_sentence_count() == 0)
         {
         LogMessage(
             _(L"You have requested to ignore incomplete sentences, but there are no other valid "
-               "sentences in the text. Incomplete sentences will need to be included in the analysis."),
-            _(L"Warning"), wxOK|wxICON_EXCLAMATION);
-        SetInvalidSentenceMethod(InvalidSentence::IncludeAsFullSentences);
-        invalidSentenceMethodSwitched = true;
+               "sentences in the text. No text will be included in the analysis."),
+            _(L"Error"), wxOK|wxICON_EXCLAMATION);
         }
 
     if (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
@@ -268,8 +263,6 @@ void ProjectDoc::RefreshProject()
             _(L"Import Error"), wxOK|wxICON_INFORMATION);
         GetDocumentWindow()->Refresh();
 
-        if (invalidSentenceMethodSwitched)
-            { SetInvalidSentenceMethod(InvalidSentence::ExcludeFromAnalysis); }
         ResetRefreshRequired();
         return;
         }
