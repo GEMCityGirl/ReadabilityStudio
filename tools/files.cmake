@@ -113,6 +113,7 @@ SET(APP_SRC_FILES
     src/Wisteria-Dataviz/src/import/doc_extract_text.cpp
     src/Wisteria-Dataviz/src/import/docx_extract_text.cpp
     src/Wisteria-Dataviz/src/import/html_extract_text.cpp
+    src/Wisteria-Dataviz/src/import/markdown_extract_text.cpp
     src/Wisteria-Dataviz/src/import/odt_odp_extract_text.cpp
     src/Wisteria-Dataviz/src/import/postscript_extract_text.cpp
     src/Wisteria-Dataviz/src/import/rtf_extract_text.cpp
