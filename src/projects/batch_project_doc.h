@@ -1,14 +1,14 @@
 #ifndef __BATCH_PROJECT_DOC_H__
 #define __BATCH_PROJECT_DOC_H__
 
-#include <wx/wx.h>
-#include <wx/docview.h>
-#include <vector>
+#include "base_project_doc.h"
+#include "base_project_view.h"
+#include "../Wisteria-Dataviz/src/data/dataset.h"
 #include "../Wisteria-Dataviz/src/graphs/boxplot.h"
 #include "../Wisteria-Dataviz/src/graphs/histogram.h"
-#include "../Wisteria-Dataviz/src/data/dataset.h"
-#include "base_project_view.h"
-#include "base_project_doc.h"
+#include <wx/docview.h>
+#include <wx/wx.h>
+#include <vector>
 
 class BatchProjectDoc final : public BaseProjectDoc
     {
@@ -159,7 +159,7 @@ private:
     void DisplayCrawfordGraph();
     void DisplayLixGauge();
     void DisplayGermanLixGauge();
-    static constexpr int CUMULATIVE_STATS_COUNT = 13;
+    static constexpr size_t CUMULATIVE_STATS_COUNT = 13;
     void LoadProjectFile(const char* projectFileText, const size_t textLength);
     bool RunProjectWizard(const wxString& path);
     bool LoadDocuments(wxProgressDialog& progressDlg);
