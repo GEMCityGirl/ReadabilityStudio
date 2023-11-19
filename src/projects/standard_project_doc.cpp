@@ -2383,21 +2383,30 @@ void ProjectDoc::DisplayWordCharts()
             true, 1);
         if (syllableHistogram->GetBars().size() > 2)
             {
-            if (!IsShowcasingComplexWords())
+            const auto bar1Pos = syllableHistogram->GetBars()[0].GetAxisPosition();
+            const auto bar2Pos = syllableHistogram->GetBars()[1].GetAxisPosition();
+            const auto firstComplexBar =
+                std::find_if(syllableHistogram->GetBars().cbegin(), syllableHistogram->GetBars().cend(),
+                    [](const auto& bar) { return bar.GetAxisPosition() >= 3; });
+            if (!IsShowcasingComplexWords() && bar1Pos == 1 && bar2Pos == 2)
                 {
                 syllableHistogram->AddBarGroup(1, 2,
                     _(L"Simple Words"), GetHistogramBarColor());
                 }
-            syllableHistogram->AddBarGroup(3, syllableHistogram->GetBars().back().GetAxisPosition(),
-                _(L"Complex Words"), GetHistogramBarColor());
-            const auto firstComplexBar = syllableHistogram->FindBar(3);
-            if (IsShowcasingComplexWords() && firstComplexBar)
+            if (firstComplexBar != syllableHistogram->GetBars().cend())
                 {
-                std::vector<double> complexBarPositions;
-                complexBarPositions.reserve(syllableHistogram->GetBars().size() - firstComplexBar.value());
-                for (size_t i = firstComplexBar.value(); i < syllableHistogram->GetBars().size(); ++i)
-                    { complexBarPositions.push_back(syllableHistogram->GetBars()[i].GetAxisPosition()); }
-                syllableHistogram->ShowcaseBars(complexBarPositions);
+                syllableHistogram->AddBarGroup(firstComplexBar->GetAxisPosition(),
+                    syllableHistogram->GetBars().back().GetAxisPosition(),
+                    _(L"Complex Words"), GetHistogramBarColor());
+                if (IsShowcasingComplexWords())
+                    {
+                    std::vector<double> complexBarPositions;
+                    complexBarPositions.reserve(
+                        syllableHistogram->GetBars().size() - firstComplexBar->GetAxisPosition());
+                    for (size_t i = firstComplexBar->GetAxisPosition(); i < syllableHistogram->GetBars().size(); ++i)
+                        { complexBarPositions.push_back(syllableHistogram->GetBars()[i].GetAxisPosition()); }
+                    syllableHistogram->ShowcaseBars(complexBarPositions);
+                    }
                 }
             }
 
