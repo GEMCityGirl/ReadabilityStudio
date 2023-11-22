@@ -52278,6 +52278,9 @@ gizzards
 Gk
 Gk's
 glabrous
+glace
+glaced
+glaces
 glacial
 glacially
 glaciate
@@ -52290,6 +52293,7 @@ glaciations
 glacier
 glacier's
 glaciers
+glacing
 glaciological
 glaciologist
 glaciologist's
