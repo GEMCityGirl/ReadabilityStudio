@@ -71201,6 +71201,9 @@ linearly
 linebacker
 linebacker's
 linebackers
+linebreak
+linebreak's
+linebreaks
 lined
 linefeed
 lineman
@@ -133487,6 +133490,10 @@ unclamorous
 unclamorously
 unclamorousness
 unclamorousness's
+unclamp
+unclamped
+unclamping
+unclamps
 unclarity
 unclarity's
 unclasp

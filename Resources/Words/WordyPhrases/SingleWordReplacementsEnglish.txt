@@ -1900,8 +1900,8 @@ obviate	wipe out
 obviated	wiped out
 obviates	wipes out
 obviating	wiping out
-occurrence	event
-occurrences	events
+occurrence	event, instance
+occurrences	events, instances
 odious	hateful
 odiously	hatefully
 odium	hatred, blame
