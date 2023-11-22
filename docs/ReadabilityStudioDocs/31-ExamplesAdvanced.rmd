@@ -243,7 +243,7 @@ All the options discussed here are also offered on the **Document** tab of the r
 
 ## Including an Addendum {#addendum-example}
 
-Continuing from the "Reviewing a Flyer" (\@ref(reviewing-a-flyer)) and "High-level Review of an Disclaimer" (\@ref(high-level-review-of-disclaimer)) examples, our fictitious private equity firm now plans to append a disclaimer to the flyer.
+Continuing from the "Reviewing a Flyer" (\@ref(reviewing-a-flyer)) and "High-level Review of a Disclaimer" (\@ref(high-level-review-of-disclaimer)) examples, our fictitious private equity firm now plans to append a disclaimer to the flyer.
 
 Along with policy changes to the program, they have redesigned the program's flyer to appear more professional. Let's first take a look at the updated flyer.
 From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "YA Enterprise Software Symposium." Next, you will be prompted to either create a new project or view the document; select **View document**. Once the document is opened, note how the flyer’s short text boxes have been replaced by full sentences:

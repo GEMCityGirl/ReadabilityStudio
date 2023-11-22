@@ -95,7 +95,7 @@ menu <- function(menuKeys)
   }
 
 # @brief Displays a label as a keyboard button.
-# @param buttonKeys The  button (or button combination).
+# @param buttonKeys The button (or button combination).
 #        This can be an array of strings that will be separated by '+'.
 #        This string can be the button labels or a command to menukeys (e.g., '\cmd' yields the Clover symbol)
 #        All menukeys command will work in LaTeX and "\cmd", "\backdel", "\enter", and "\shift" are supported in HTML.
