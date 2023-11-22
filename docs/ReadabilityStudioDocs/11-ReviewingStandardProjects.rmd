@@ -559,7 +559,7 @@ After opening a project, click on the **Grammar** icon on the project sidebar an
 A phrase is wordy if it contains too many words or contains complex words that could be replaced by simpler ones. For example:
 
 ::: {.fancyquotes data-latex=''}
-*Over the course of* the presentation, Blake amazed the Provost with his data vizualizations.
+*Over the course of* the presentation, Blake amazed the Provost with his data visualizations.
 :::
 
 In this case, *Over the course of* is wordy. *Readability Studio* will consider this a wordy phrase and offer *during* or *throughout* as replacements.

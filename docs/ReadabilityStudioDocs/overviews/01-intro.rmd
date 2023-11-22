@@ -1,6 +1,6 @@
 # (PART) Overviews {-}
 
-# Techinical Overviews
+# Technical Overviews
 
 ## Introduction {-#intro}
 
