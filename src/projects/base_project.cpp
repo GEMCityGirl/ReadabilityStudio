@@ -3776,7 +3776,9 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                              ));
         return std::make_pair(true, filter_cpp(unicodeStr, unicodeStr.length()));
         }
-    else if (fileExtension.CmpNoCase(L"md") == 0)
+    else if (fileExtension.CmpNoCase(L"md") == 0 ||
+        fileExtension.CmpNoCase(L"rmd") == 0 ||
+        fileExtension.CmpNoCase(L"qmd") == 0)
         {
         lily_of_the_valley::markdown_extract_text filter_md;
         const wxString unicodeStr = Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize);
@@ -3785,7 +3787,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                      GetOriginalDocumentDescription(),
                      wxFileName(GetOriginalDocumentFilePath()).GetName()
                      }));
-        return std::make_pair(true, filter_md(unicodeStr, unicodeStr.length()));
+        return std::make_pair(true, filter_md({ unicodeStr.wc_str(), unicodeStr.length() }));
         }
     else if (fileExtension.CmpNoCase(L"txt") == 0)
         {

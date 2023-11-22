@@ -256,7 +256,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_PREVIOUS_RESPONSE(_DT(L"previous-response")),
     // general strings
     ALL_DOCUMENTS_WILDCARD(
-        _DT(LR"(*.txt;*.htm;*.html;*.xhtml;*.sgml;*.php;*.php3;*.php4;*.aspx;*.asp;*.rtf;*.doc;*.docx;*.docm;*.pptx;*.pptm;*.dot;*.wri;*.odt;*.ott;*.odp;*.otp;*.ps;*.idl;*.cpp;*.c;*.h)")),
+        _DT(LR"(*.txt;*.htm;*.html;*.xhtml;*.sgml;*.php;*.php3;*.php4;*.aspx;*.asp;*.rtf;*.doc;*.docx;*.docm;*.pptx;*.pptm;*.dot;*.wri;*.odt;*.ott;*.odp;*.otp;*.ps;*.idl;*.cpp;*.c;*.h;*.md;*.qmd;*.rmd)")),
     ALL_IMAGES_WILDCARD(
         _DT(LR"(*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)")),
     IMAGE_LOAD_FILE_FILTER(
@@ -4823,23 +4823,25 @@ wxString ReadabilityAppOptions::GetDocumentFilter() const
     const wxString OpenDocPrezFilter = _DT(L"*.odp;*.otp");
     const wxString OpenDocFilter = _DT(L"*.odt;*.ott");
     const wxString RtfFilter = _DT(L"*.rtf");
+    const wxString MarkdownFilter = _DT(L"*.md;*.qmd;*.rmd");
     const wxString PsFilter = _DT(L"*.ps");
     const wxString IdlFilter = _DT(L"*.idl");
     const wxString CppFilter = _DT(L"*.cpp;*.c;*.h");
     const wxString AllDocumentsFilter =  wxString::Format(
-        _(L"Documents (%s;%s;%s;%s;%s;%s;%s;%s;%s;%s)|%s;%s;%s;%s;%s;%s;%s;%s;%s;%s"),
+        _(L"Documents (%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s)|%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s"),
         TextFilter, HtmlFiles, WordFilter, PowerPointFilter, OpenDocPrezFilter, OpenDocFilter,
-        RtfFilter, PsFilter, IdlFilter, CppFilter,
+        RtfFilter, MarkdownFilter, PsFilter, IdlFilter, CppFilter,
         TextFilter, HtmlFiles, WordFilter, PowerPointFilter, OpenDocPrezFilter, OpenDocFilter,
-        RtfFilter, PsFilter, IdlFilter, CppFilter);
+        RtfFilter, MarkdownFilter, PsFilter, IdlFilter, CppFilter);
     return wxString::Format(
         _(L"%s|Text files (%s)|%s|HTML files (%s)|%s|Word files (%s)|%s|"
            "PowerPoint files (%s)|%s|OpenDocument Presentation files (%s)|%s|"
-           "OpenDocument files (%s)|%s|Rich Text files (%s)|%s|Postscript files (%s)|%s|"
+           "OpenDocument files (%s)|%s|Rich Text files (%s)|%s|Markdown files (%s)|%s|Postscript files (%s)|%s|"
            "Interface Definition Language files (%s)|%s|C++ source files (%s)|%s"),
         AllDocumentsFilter, TextFilter, TextFilter, HtmlFiles, HtmlFiles, WordFilter, WordFilter,
         PowerPointFilter, PowerPointFilter, OpenDocPrezFilter, OpenDocPrezFilter, OpenDocFilter,
-        OpenDocFilter, RtfFilter, RtfFilter, PsFilter, PsFilter, IdlFilter, IdlFilter, CppFilter, CppFilter);
+        OpenDocFilter, RtfFilter, RtfFilter, MarkdownFilter, MarkdownFilter, PsFilter, PsFilter,
+        IdlFilter, IdlFilter, CppFilter, CppFilter);
     }
 
 //------------------------------------------------
