@@ -329,7 +329,7 @@ void ProjectWizardDlg::CreateControls()
                 wxBusyCursor wait;
                 wxArrayString files;
                 wxDir::GetAllFiles(GetFilePath(), &files, wxString{}, wxDIR_FILES|wxDIR_DIRS);
-                FilterFiles(files, wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD);
+                files = FilterFiles(files, wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD);
 
                 m_fileData->SetSize(files.GetCount(), 2);
                 m_fileData->SetValues(files);
@@ -879,8 +879,8 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
     wxGetApp().SetLastSelectedDocFilter(dlg.GetSelectedFileFilter());
 
     Wisteria::ZipCatalog archive(dlg.GetPath());
-    wxArrayString files = archive.GetPaths();
-    FilterFiles(files, ExtractExtensionsFromFileFilter(dlg.GetSelectedFileFilter()));
+    const wxArrayString files =
+        FilterFiles(archive.GetPaths(), ExtractExtensionsFromFileFilter(dlg.GetSelectedFileFilter()));
 
     const size_t currentFileCount = m_fileData->GetItemCount();
     m_fileData->SetSize(currentFileCount+files.GetCount(), 2);
@@ -1510,7 +1510,7 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& e
         wxGetApp().SetLastSelectedDocFilter(dirDlg.GetSelectedFileFilter());
         wxDir::GetAllFiles(dirDlg.GetPath(), &files, wxString{},
             dirDlg.IsRecursive() ? wxDIR_FILES | wxDIR_DIRS : wxDIR_FILES);
-        FilterFiles(files, ExtractExtensionsFromFileFilter(dirDlg.GetSelectedFileFilter()));
+        files = FilterFiles(files, ExtractExtensionsFromFileFilter(dirDlg.GetSelectedFileFilter()));
         }
 
     // see what sort of labeling should be used

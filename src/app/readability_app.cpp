@@ -4305,7 +4305,7 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
         wxBusyInfo wait(_(L"Retrieving files..."));
         wxDir::GetAllFiles(dirDlg.GetPath(), &files, wxEmptyString,
             dirDlg.IsRecursive() ? wxDIR_FILES | wxDIR_DIRS : wxDIR_FILES);
-        FilterFiles(files, ExtractExtensionsFromFileFilter(dirDlg.GetSelectedFileFilter()));
+        files = FilterFiles(files, ExtractExtensionsFromFileFilter(dirDlg.GetSelectedFileFilter()));
         }
 
     // get the checksums
