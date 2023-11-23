@@ -947,7 +947,9 @@ vehement	eager
 verbatim	exact
 via	in
 visualize	picture
+visualized	saw
 visualizes	pictures
+visualizing	seeing
 voluminous	large
 whenever	when
 whereas	since

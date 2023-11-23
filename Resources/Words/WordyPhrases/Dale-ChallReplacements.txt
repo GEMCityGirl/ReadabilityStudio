@@ -132,6 +132,10 @@ amendment	change
 amendments	changes
 amusement	fun
 analysis	review
+analyze	review
+analyzed	reviewed
+analyzes	reviews
+analyzing	reviewing
 animadversion	blame
 annihilate	kill
 annihilated	killed

@@ -30421,6 +30421,9 @@ dataset
 datasets
 datasource
 datasources
+dataviz
+dataviz's
+datavizes
 date
 date's
 dated
@@ -122244,6 +122247,7 @@ stylers
 styles
 styli
 styling
+stylings
 stylisation
 stylisations
 stylise

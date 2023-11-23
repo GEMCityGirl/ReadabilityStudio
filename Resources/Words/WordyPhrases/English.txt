@@ -485,6 +485,10 @@ an integral part of	integral to	0
 an other	another	3		
 an the	strike one of these	3		
 analysis	review, breakdown, exam, study	0		
+analyze	review, study	0		
+analyzed	reviewed, studied	0		
+analyzes	reviews, studies	0		
+analyzing	reviewing, studying	0		
 anathema	curse, accursed	0		
 ancient relic	relic	1		
 ancient relics	relics	1		
@@ -4519,6 +4523,8 @@ masticated	chewed	0
 masticates	chews	0		
 masticating	chewing	0		
 match perfectly	match	0		
+material	content	0		
+materials	content	0		
 maximum	most, greatest	0		
 maximum amount of	most, highest, maximum	0		
 maximum number of	most, highest, maximum	0		
@@ -7270,10 +7276,10 @@ vindicating	defending, upholding	0
 violent explosion	explosion	0		
 violent explosions	explosions	0		
 visible to the eye	visible	1		
-visualize	picture	0		
-visualized	pictured	0		
-visualizes	pictures	0		
-visualizing	picturing	0		
+visualize	picture, see	0		
+visualized	pictured, saw	0		
+visualizes	pictures, sees	0		
+visualizing	picturing, seeing	0		
 visually saw	visualized, saw	1		
 visually see	visualize, see	1		
 visually seeing	visualizing, seeing	1		

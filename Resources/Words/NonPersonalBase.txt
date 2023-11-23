@@ -1039,6 +1039,7 @@ Clonazepam
 Clorox
 Cloze
 Clytemnestra
+CMake
 CNN
 CNS
 Coahuila
@@ -1121,6 +1122,7 @@ Coverity
 Covid
 Cowen
 Cozumel
+cppcheck
 CppUnit
 Craigavon
 Craigslist

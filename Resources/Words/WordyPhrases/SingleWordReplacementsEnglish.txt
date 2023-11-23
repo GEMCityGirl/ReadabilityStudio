@@ -252,6 +252,10 @@ amputates	cuts off
 amputating	cutting off
 amusement	fun
 analysis	review, breakdown, exam, study
+analyze	review, study
+analyzed	reviewed, studied
+analyzes	reviews, studies
+analyzing	reviewing, studying
 anathema	curse, accursed
 animadversion	blame
 animosity	hatred
@@ -1755,6 +1759,8 @@ masticate	chew
 masticated	chewed
 masticates	chews
 masticating	chewing
+material	content
+materials	content
 maximum	most, greatest
 melancholies	depressions
 melancholy	sadness, depression, sad (adj.)
@@ -2604,10 +2610,10 @@ vindicate	defend, uphold
 vindicated	defended, upheld
 vindicates	defends, upholds
 vindicating	defending, upholding
-visualize	picture
-visualized	pictured
-visualizes	pictures
-visualizing	picturing
+visualize	picture, see
+visualized	pictured, saw
+visualizes	pictures, sees
+visualizing	picturing, seeing
 vitreous	glassy
 vociferate	shout
 vociferated	shouted
