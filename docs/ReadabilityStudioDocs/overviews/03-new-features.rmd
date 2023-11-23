@@ -87,6 +87,7 @@
 - Fixed "APPROXIMATE GRADE LEVEL" label and left axis title from occasionally going outside of the Fry graph.
 - Fixed sporadic message about a resource file needing to be buffered when opening the program.
 - Reviewer field is now preserved when resetting your settings or importing a settings file.
+- File search on the batch project wizard is exponentially faster now.
 
 ### Readability Studio 2020/2021 {-}
 ***

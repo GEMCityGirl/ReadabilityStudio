@@ -41,7 +41,7 @@ From the **Help** tab, click the `r keys("Example Documents")` button and then s
 knitr::include_graphics("images/NonGenerated/PeterRabbitBrowser.png")
 ```
 
-Close this document and return the **Help** tab. Click the `r keys("Example Documents")` button and again select *The Tale of Peter Rabbit*. This time, select **Create a new project**. From the [project wizard](#creating-standard-project), select the **Document Structure** page and note the option **Sentences are split**; selecting this will instruct the program to ignore hard returns and blank lines and combine these fragments into full sentences:
+Close this document and return the **Help** tab. Click the `r keys("Example Documents")` button and again select *The Tale of Peter Rabbit*. This time, select **Create a new project**. From the [project wizard](#creating-standard-project), select the **Document Structure** page and note the option **Sentences are split**. Selecting this will instruct the program to ignore hard returns and blank lines and combine these fragments into full sentences:
 
 ![](images/wizarddocstructuresentencessplit.png)
 

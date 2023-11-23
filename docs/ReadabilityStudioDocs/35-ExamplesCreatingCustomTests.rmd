@@ -15,7 +15,7 @@ For this example, we will use the [Flesch](#flesch-test) formula for our basis. 
 
 The first step to creating a new test is to click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add Test Based on...** from the menu. This will present a dialog containing formula-based tests; select **Flesch Reading Ease** and click `r keys("OK")`.
 
-Because this test will use independent clauses, change the name to “Flesch (IC)”:
+Because this test will use independent clauses, change the name to "Flesch (IC)":
 
 ```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomTestExample1TestName.png")
@@ -122,7 +122,7 @@ The first step is to create a list of baking-specific words that our readers are
 
 `beaten, custard, eclair, éclair, flaky, glaze, glace, glossy, grate, meringue, pastry, pinch, platter, prepare, recipe, saucepan, sift, skewer, teaspoon, teaspoonful, thicken, tumbler, unbeaten, vanilla, whisk, scrape, tablespoon, tablespoonful`
 
-The next step is to create a custom test and connect our word list to it. For a custom New Dale-Chall, the simplest way is to click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add Custom “New Dale-Chall”...** from the menu. This will present the [Add Custom Word Test](#add-custom-word-test) dialog. From this dialog, we would enter the name of the new test (e.g., “New Dale-Chall (Baking)”) and file path to our word list, and then this test would be added to the program. However, for this example we will use the more advanced **Add Custom Test** dialog.
+The next step is to create a custom test and connect our word list to it. For a custom New Dale-Chall, the simplest way is to click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add Custom "New Dale-Chall"...** from the menu. This will present the [Add Custom Word Test](#add-custom-word-test) dialog. From this dialog, we would enter the name of the new test (e.g., "New Dale-Chall (Baking)") and file path to our word list, and then the program would add this test. However, for this example we will use the more advanced **Add Custom Test** dialog.
 
 Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu. This will present the [**Add Custom Test**](#custom-test-general-settings) dialog, as shown below:
 
@@ -130,7 +130,7 @@ Click the `r keys("Custom Tests")` button on the **Readability** tab and select 
 knitr::include_graphics("images/AddCustomTest.png")
 ```
 
-Because this will be a New Dale-Chall test meant for baking, we will enter the name “New Dale-Chall (Baking)”:
+Because this will be a New Dale-Chall test meant for baking, we will enter the name "New Dale-Chall (Baking)":
 
 ```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomTestExample2Name.png")
@@ -220,9 +220,9 @@ The recipe used in this example is available from the **Example Documents** menu
 
 ## Creating a Custom Index Test
 
-In this example, we will create a test designed for classifying a document within a custom scale. We will make a list of “buzzwords” that are commonly overused in marketing documents, then create a test to see how much a given document uses them. Also, rather than calculating the conventional grade-level or predicted [cloze](#cloze) score, our test will return a value using our own scale.
+In this example, we will create a test designed for classifying a document within a custom scale. We will make a list of "buzzwords" that are commonly overused in marketing documents, then create a test to see how much a given document uses them. Also, rather than calculating the conventional grade-level or predicted [cloze](#cloze) score, our test will return a value using our own scale.
 
-The first step is to create a list of “buzzwords.” This can be any text file where the words are separated by spaces, tabs, commas, or semicolons. For this example, we will use this list:
+The first step is to create a list of "buzzwords." This can be any text file where the words are separated by spaces, tabs, commas, or semicolons. For this example, we will use this list:
 
 `agile, collaborate, cross-platform, disrupt, empower, enterprise, framework, game-change, groundbreaking, holistic, impact, infrastructure, innovate, integrate, lean, leverage, marketplace, next-generation, nimble, paradigm, platform, powerful, proactive, revolution, ROI, seamless, solution, startup, strategy, streamline, suite, sustainable, synergy, technology, utilize, value-add, visibility, workflow`
 
@@ -232,7 +232,7 @@ The next step is to create a custom test and connect our word list to it. Click 
 knitr::include_graphics("images/AddCustomTest.png")
 ```
 
-Enter “Buzz Index” as the test name:
+Enter "Buzz Index" as the test name:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/CustomIndexTestExampleName.png")

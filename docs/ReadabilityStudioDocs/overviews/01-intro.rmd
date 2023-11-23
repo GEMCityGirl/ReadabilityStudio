@@ -68,7 +68,7 @@ In contract, tests which use regression equations do not have upper limits. In t
 
 First, scores such as 27^th^ grade do not reflect reality. To describe a document as only being understandable by a PhD is relatable. To say that a document can only be processed by someone in the 27^th^ grade, however, makes little sense. Another way to view this is that 19+ implies a document's failure to be readable—similar to an *F* on a test.
 
-Second, because graph and table-based tests are bound to sensical grade scales, it is reasonable to treat regression-based tests the same way. For example, a document scoring 16+ for New Dale-Chall should clamp tests such as Flesch-Kincaid to 19+, thus keeping their scores on a similar scale. In other words, grade and table-based tests were designed for grade scales from 0–19 (sometimes even lower); likewise, it is reasonable to assume that was the intention of regression-based tests as well.
+Second, because graph and table-based tests are bound to sensical grade scales, it is reasonable to treat regression-based tests the same way. For example, a document scoring 16+ for New Dale-Chall should clamp tests such as Flesch-Kincaid to 19+, thus keeping their scores on a similar scale. In other words, grade and table-based tests were designed for grade scales from 0–19 (sometimes even lower). Likewise, it is reasonable to assume that was the intention of regression-based tests as well.
 
 Finally, the source materials for these formulas cite example scores within 0–19. Again, it can be inferred that the authors' intention was for documents to be bound to a reasonable grade scale.
 

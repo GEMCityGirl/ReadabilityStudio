@@ -8,9 +8,9 @@
 
 #### Numerous insightful tests {-}
 
-*Readability Studio* offers many popular readability tests, along with in-depth explanations. Each test result includes an interpretation of the score and the factors that affect it.
+*Readability Studio* offers many popular readability tests, along with in-depth explanations. Each test result includes an explanation of the score and the factors that affect it.
 
-The program also provides many useful features to help review the difficult aspects of your document. This includes lists of various difficult words and views of the document with difficult words and sentences highlighted. These tools can assist you in improving your documents so that they meet their target audiences.
+The program also provides many useful features to help review the difficult aspects of your document. This includes lists of various difficult words and views of the document with difficult words and sentences highlighted. These tools can assist you in improving your documents so that they meet their target readers.
 
 Another important feature is that the program analyzes the entire content of your document (rather than samples). This will give you the most accurate results possible.
 
@@ -136,7 +136,7 @@ These issues are shown highlighted in your document for easy review. They are al
 
 #### Dolch Sight Words {-}
 
-*Readability Studio* also includes a [Dolch](#reviewing-dolch) suite of statistics and graphs, which is useful for educators and writers who work with young readers. The program provides a complete breakdown of Dolch words that you are using (and not using) in your materials. This enables writers to see how they can improve their Dolch practice materials. This also enables educators to determine which materials are appropriate for Dolch practice.
+*Readability Studio* also includes a [Dolch](#reviewing-dolch) suite of statistics and graphs, which is useful for educators and writers who work with young readers. The program provides a complete breakdown of Dolch words that you are using (and not using) in your content. This enables writers to see how they can improve their Dolch practice materials. This also enables educators to determine which materials are appropriate for Dolch practice.
 
 #### Numerous file formats supported {-}
 
