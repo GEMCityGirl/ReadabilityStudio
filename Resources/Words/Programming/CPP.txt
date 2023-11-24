@@ -22,6 +22,7 @@ atomic_cancel
 atomic_commit
 atomic_noexcept
 auto
+autoconf
 bitand
 bitor
 bitset
@@ -49,6 +50,7 @@ continue
 cplusplus
 cpp
 Cygwin
+declspec
 decltype
 default
 define
@@ -90,6 +92,7 @@ iscntrl
 isdigit
 isgraph
 islower
+isnan
 isprint
 ispunct
 isspace
@@ -114,6 +117,7 @@ new
 noexcept
 not
 not_eq
+nothrow
 nullptr
 openmp
 operator
@@ -142,6 +146,8 @@ stackframe
 static
 static_assert
 static_cast
+std::cin
+std::cout
 stdcall
 stderr
 stdin
@@ -186,6 +192,7 @@ Valgrind
 virtual
 void
 volatile
+vtbl
 wchar_t
 wcstod
 wctomb

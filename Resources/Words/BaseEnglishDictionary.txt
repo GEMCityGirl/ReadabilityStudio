@@ -8936,6 +8936,9 @@ baizing
 baja
 bake
 baked
+bakefile
+bakefile's
+bakefiles
 bakehouse
 bakehouse's
 baker
@@ -15371,6 +15374,7 @@ bugles
 bugling
 bugs
 build
+buildable
 buildbot
 buildbot's
 buildbots
@@ -15385,6 +15389,7 @@ buildup
 buildup's
 buildups
 built
+builtin
 bulb
 bulb's
 bulba
@@ -24192,6 +24197,7 @@ comportment
 comportment's
 comportments
 comports
+composable
 compose
 composed
 composedly
@@ -31670,6 +31676,10 @@ deforms
 defrag
 defragged
 defragging
+defragment
+defragmented
+defragmenting
+defragments
 defrags
 defraud
 defrauded
@@ -49912,6 +49922,9 @@ frontalis
 frontally
 frontals
 fronted
+frontend
+frontend's
+frontends
 fronter
 frontier
 frontier's
@@ -52576,6 +52589,8 @@ globalizes
 globalizing
 globally
 globals
+globbed
+globbing
 globe
 globe's
 globed
@@ -53990,6 +54005,10 @@ grenadine
 grenadine's
 grenadines
 grenading
+grep
+grepped
+grepping
+greps
 grew
 grey
 grey's
@@ -56146,6 +56165,9 @@ hashing's
 hashish
 hashish's
 hashishes
+hashmap
+hashmap's
+hashmaps
 hashtag
 hashtag's
 hashtags
@@ -58260,6 +58282,10 @@ homebody's
 homebound
 homeboy
 homeboys
+homebrew
+homebrewed
+homebrewing
+homebrews
 homebuilder
 homebuilders
 homebuilding
@@ -76461,6 +76487,8 @@ metaphysically
 metaphysics
 metaphysis
 metapneumovirus
+metaprogramming
+metaprogramming's
 metarteriole
 metarteriole's
 metarterioles
@@ -81448,6 +81476,7 @@ namesake's
 namesakes
 namespace
 namespace's
+namespaced
 namespaces
 naming
 naming's
@@ -95298,6 +95327,10 @@ polyethers
 polyethylene
 polyethylene's
 polyethylenes
+polyfill
+polyfill's
+polyfilled
+polyfilling
 polygamies
 polygamist
 polygamist's
@@ -102041,6 +102074,14 @@ rasps
 raspy
 raster
 raster's
+rasterise
+rasterised
+rasterises
+rasterising
+rasterize
+rasterized
+rasterizes
+rasterizing
 rasters
 Rastus
 rat
@@ -102736,6 +102777,10 @@ reawakened
 reawakening
 reawakening's
 reawakens
+rebake
+rebaked
+rebakes
+rebaking
 rebalance
 rebalanced
 rebate
@@ -111794,6 +111839,7 @@ scything
 Sc³⁺
 SD
 SDI
+SDK
 Se
 sea
 sea's
@@ -112300,6 +112346,9 @@ seethed
 seethes
 seething
 seethings
+segfault
+segfault's
+segfaults
 segment
 segment's
 segmental
@@ -113102,6 +113151,9 @@ serialization's
 serializations
 serialize
 serialized
+serializer
+serializer's
+serializers
 serializes
 serializing
 serially
@@ -113655,6 +113707,7 @@ sharable
 Sharai
 shard
 shard's
+sharding
 shards
 share
 share's
@@ -120182,6 +120235,7 @@ standalones
 standalones'
 standard
 standard's
+standardese
 standardisation
 standardisations
 standardise
@@ -121724,6 +121778,7 @@ streaks
 streaky
 stream
 stream's
+streamable
 streamed
 streamer
 streamer's
@@ -121892,11 +121947,25 @@ stringer's
 stringers
 stringier
 stringiest
+stringification
+stringification's
+stringifications
+stringified
+stringifier
+stringifier's
+stringifiers
+stringifies
+stringify
+stringifying
 stringiness
 stringiness's
 stringinesses
 stringing
 stringing's
+stringize
+stringized
+stringizes
+stringizing
 strings
 stringy
 striopallidodentate
@@ -126482,6 +126551,9 @@ teapots
 tear
 tear's
 tearaway
+teardown
+teardown's
+teardowns
 teardrop
 teardrop's
 teardrops
@@ -126942,6 +127014,7 @@ tempi
 temping
 template
 template's
+templated
 templates
 temple
 temple's
@@ -135873,6 +135946,7 @@ unscheduled
 unschooled
 unscientific
 unscientifically
+unscoped
 unscramble
 unscrambled
 unscrambler
@@ -141412,6 +141486,7 @@ wiki's
 wikis
 wild
 wildcard
+wildcarded
 wildcards
 wildcat
 wildcat's

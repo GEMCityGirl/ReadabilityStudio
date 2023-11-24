@@ -1,6 +1,7 @@
 23andMe
 3M
 4chan
+7Zip
 A&M
 A.C.M.E.
 Ababa
@@ -405,7 +406,9 @@ Austrian
 Austro
 Austronesian
 AutoCAD
+Autoconf
 Autodesk
+Automake
 Auvergne
 Avarua
 Aventine
@@ -735,6 +738,7 @@ Budapest
 Buddha
 Buddhism
 Buddhist
+Bugzilla
 Buiron
 Bujumbura
 Bukhara
@@ -1037,6 +1041,7 @@ Cleveland
 Clinique
 Clonazepam
 Clorox
+Cloudflare
 Cloze
 Clytemnestra
 CMake
@@ -1539,6 +1544,7 @@ Excedrin
 Excel
 Exeter
 Exmoor
+Expat
 Experian
 Exxon
 ExxonMobil
@@ -1766,7 +1772,9 @@ Gaussian
 Gaza
 Gaziantep
 Gazza
+GCC
 Gdansk
+GDB
 GeekWire
 Gehenna
 Geico
@@ -1811,6 +1819,7 @@ Gillingham
 Ginsberg
 Ginsburg
 Github
+GitLab
 Giza
 Glaceau
 Glasgow
@@ -1818,6 +1827,7 @@ Glassdoor
 Glastonbury
 Glaswegian
 GlaxoSmithKline
+Glibc
 Gloucester
 Gloucestershire
 glucagon
@@ -3500,6 +3510,7 @@ Pneumoconiosis
 Pocono
 Pocumtuck
 Podgorica
+Poedit
 Poincaré
 Poisson
 Poitou
@@ -3697,6 +3708,7 @@ Reconquista
 Recplex
 Reddit
 Redgate
+Redhat
 Redhill
 Redhook
 Redlands
@@ -3705,6 +3717,7 @@ Redondo
 Reebok
 Reedville
 Refugio
+Regedit
 Regor
 Regulus
 Reichenberg
