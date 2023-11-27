@@ -2308,6 +2308,7 @@ Jersey
 Jerusalem
 Jesuit
 JetBlue
+JetBrains
 JFK
 Jima
 Jivaro

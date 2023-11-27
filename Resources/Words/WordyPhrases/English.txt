@@ -2083,7 +2083,7 @@ didn't pay attention to	ignored	0
 didn't remember	forgot	0		
 differ form	differ from	3		
 differed form	differed from	3		
-different form	different from	3	a	of
+different form	different from	3	a;slightly	of
 different than	different from	3		
 different then	different from	3		than
 differing form	differing from	3		
@@ -6842,7 +6842,7 @@ the topic of	Consider removing this	0
 the total of	all	0		each
 the truth is	actually	0		
 the truth of the matter is	actually, in fact	0		
-the when	then when	3		
+the when	then when	3		clause;clauses
 the whether	the weather	3		
 the whole 9 yards	everything	2		
 the whole ball of wax	everything	2		

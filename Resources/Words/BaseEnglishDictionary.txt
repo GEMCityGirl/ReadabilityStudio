@@ -6301,6 +6301,7 @@ arithmetize
 arithmetized
 arithmetizes
 arithmetizing
+arities
 arjuna
 arjuna's
 ark
@@ -76760,6 +76761,10 @@ microarray
 microarrays
 microbe
 microbe's
+microbenchmark
+microbenchmarked
+microbenchmarking
+microbenchmarks
 microbes
 microbial
 microbially
