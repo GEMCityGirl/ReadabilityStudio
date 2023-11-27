@@ -600,6 +600,7 @@ bool ReadabilityApp::OnInit()
     m_shapeMap.insert(std::make_pair(_(L"Snowflake"), DONTTRANSLATE(L"snowflake")));
     m_shapeMap.insert(std::make_pair(_(L"Blackboard"), DONTTRANSLATE(L"blackboard")));
     m_shapeMap.insert(std::make_pair(_(L"Clock"), DONTTRANSLATE(L"clock")));
+    m_shapeMap.insert(std::make_pair(_(L"Ruler"), DONTTRANSLATE(L"ruler")));
 
     // do the same for the color schemes (for the graphs)
     m_colorSchemeMap.insert(std::make_pair(_(L"Dusk"), DONTTRANSLATE(L"dusk")));
