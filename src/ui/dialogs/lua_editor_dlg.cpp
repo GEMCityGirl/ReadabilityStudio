@@ -610,7 +610,7 @@ void LuaEditorDlg::OnFindDialog(wxFindDialogEvent& event)
         if (foundPos != wxSTC_INVALID_POSITION)
             {
             // if what is being replaced matches what was already selected, then replace it
-            if (from == foundPos && to == (foundPos + event.GetFindString().length()) )
+            if (from == foundPos && to == static_cast<long>(foundPos + event.GetFindString().length()) )
                 {
                 currentScript->Replace(foundPos, foundPos + event.GetFindString().length(), event.GetReplaceString());
                 currentScript->SetSelection(foundPos, foundPos + event.GetReplaceString().length());
