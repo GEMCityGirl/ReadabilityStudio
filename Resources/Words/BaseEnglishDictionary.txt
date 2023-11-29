@@ -7934,6 +7934,10 @@ autocrats
 autocrine
 autocross
 autocue
+autodetect
+autodetected
+autodetecting
+autodetects
 autodial
 autodialer
 autodialler
@@ -9470,6 +9474,7 @@ bards
 bare
 bareback
 barebacked
+barebones
 bared
 barefaced
 barefacedly
@@ -13259,6 +13264,7 @@ bola
 bola's
 bolas
 bold
+bolded
 bolder
 boldest
 boldface
@@ -13266,6 +13272,7 @@ boldface's
 boldfaced
 boldfaces
 boldfacing
+bolding
 boldly
 boldness
 boldness's
@@ -19421,6 +19428,9 @@ changed
 changeless
 changeling
 changeling's
+changelog
+changelog's
+changelogs
 changeover
 changeover's
 changeovers
@@ -76814,6 +76824,9 @@ microcoding
 microcomputer
 microcomputer's
 microcomputers
+microcontroller
+microcontroller's
+microcontrollers
 microcosm
 microcosm's
 microcosmic
@@ -102085,6 +102098,9 @@ rasterises
 rasterising
 rasterize
 rasterized
+rasterizer
+rasterizer's
+rasterizers
 rasterizes
 rasterizing
 rasters
@@ -111463,6 +111479,9 @@ scratchiness
 scratchinesses
 scratching
 scratchings
+scratchpad
+scratchpad's
+scratchpads
 scratchy
 scrawl
 scrawled
