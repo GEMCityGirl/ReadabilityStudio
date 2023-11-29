@@ -27,7 +27,7 @@ a host of	numerous, many	0
 a know	a known	3		
 a large number of	numerous, many	0		
 a leg up	a promising start	2		
-a like	alike	3	in	
+a like	alike	3	in	statement
 a little bit	a little, a bit	1		
 a majority of	most	0		
 a number of	a few	0		
@@ -525,7 +525,7 @@ antiquated	out-of-date	0
 antithesis	opposite	0		
 anxieties	fears	0		
 anxiety	fear	0		
-any body	anybody	3	of	
+any body	anybody	3		of
 any flack	any flak	3		
 any give	any given	3		
 any how	anyhow	3		
@@ -730,7 +730,7 @@ as a means to	to	0
 as a result	so, then, thus	0		
 as a result of	because of, due to, following	0		
 as a way to	to	0		
-as best as	as best	3		
+as best as	as best	3		possible
 as long as	if, since	0		
 as luck would have it	luckily, unluckily, by chance	0		
 as of now	about	0		
@@ -816,7 +816,7 @@ at about	about	0
 at all times	always	0		
 at death's door	near death	2		
 at frequent intervals	frequently, periodically	0		
-at lease	at least	3		
+at lease	at least	3		signing
 at long last	finally	0		
 at no charge	free	0		
 at no time	never	0		
@@ -1430,7 +1430,7 @@ cessations	stops, pauses	0
 chalk full	chock-full	3		
 chalk-full	chock-full	3		
 chalkfull	chock-full	3		
-chance the	change the, chance that the	3		Rapper;Rapper's
+chance the	change the, chance that the	3	a	Rapper;Rapper's
 change of heart	change one's opinion/position	2		
 characteristic	trait	0		
 characteristics	traits	0		
@@ -3695,7 +3695,7 @@ in the neighbourhood of	close to, nearby, about, roughly	0
 in the nick of time	just in time	2		
 in the not too distant future	soon	0		
 in the opposite direction	against	0		
-in the passed	in the past	3		
+in the passed	in the past	3		group;groups;value;values
 in the presence of	with, before	0		
 in the process of	while	0		
 in the realm of	about, concerning	0		
@@ -4033,7 +4033,7 @@ is representative of	represents, symbolizes	0
 is resentful of	resents	0		
 is resistant to	resists	0		
 is respectful toward	respects	0		
-is several	are several (please review noun/verb agreement)	3		
+is several	are several (please review noun/verb agreement)	3	difference	
 is should	it should	3		
 is skeptical about	doubts, questions	0		
 is supportive of	supports	0		
@@ -4643,7 +4643,7 @@ more than excepted	impressive	0
 more than one way to skin a cat	there are other ways to do this	2		
 more than surpassed	surpassed	0		
 more then	more than, or a comma is needed	3		
-most be	must be, most are	3		
+most be	must be, most are	3	at	
 most of there	most of their	3		
 motionless	still, inert	0		
 mountainous	large, bulky	0		
@@ -6273,7 +6273,7 @@ shell I	shall I	3
 shell she	shall she	3		
 shell they	shall they	3		
 shell we	shall we	3		
-shell you	shall you	3		
+shell you	shall you	3	a;the	
 ship has come in	success has been achieved	2		
 shoot from the hip	speak directly	2		
 shooting from the hip	speaking directly	2		
@@ -6759,7 +6759,7 @@ tests out	tests	0
 thank your for	thank you for	3		
 that being the case	consequently, therefore, hence	0		
 that is to say	that is	0		
-that where	that were	3		that
+that where	that were	3	such	a;her;his;its;that;the
 that's the way the cookie crumbles	that's the way things are	2		
 the a	strike one of these	3		priori;z
 the acorn doesn't fall far from the tree	he exhibits the same behavior as his parent/boss/etc.	2		
@@ -6788,7 +6788,7 @@ the extent to which	how far, how much	0
 the fact of the matter is	in fact	0		
 the fact that	that	0		
 the flew	the flue	3		
-the from	the form	3		
+the from	the form	3		clause;statement
 the have	they have, then have	3		
 the heart of the matter	crux, center	0		
 the hers	strike one of these	3		
@@ -6806,7 +6806,7 @@ the manner by which	how	0
 the means by which	how	0		
 the month of	Consider removing this	0		
 the only on	the only one	3		
-the or	or, the ore	3		
+the or	or, the ore	3		operator
 the other way around	the opposite	0		
 the passage of time	time	0		
 the possibility exists for	may, might, can, could	0		
@@ -6836,14 +6836,14 @@ the them	strike one of these	3
 the these	strike one of these	3		
 the they	strike one of these	3		
 the third degree	rough interrogation	2		
-the this	strike one of these, or a comma may be needed between them	3		
+the this	strike one of these, or a comma may be needed between them	3		pointer
 the time will come when	in due time, in time	0		
 the topic of	Consider removing this	0		
 the total of	all	0		each
 the truth is	actually	0		
 the truth of the matter is	actually, in fact	0		
 the when	then when	3		clause;clauses
-the whether	the weather	3		
+the whether	the weather, whether the	3		
 the whole 9 yards	everything	2		
 the whole ball of wax	everything	2		
 the whole enchilada	everything	2		
@@ -6966,7 +6966,7 @@ to a lesser degree	lesser	0
 to all intents and purposes	in effect, essentially	0		
 to begin with	first	0		
 to being with	to begin with	3		
-to generated	to generate, to be generated	3		
+to generated	to generate, to be generated	3		identifiers;IDs;invalid;strings;valid;values
 to hell in a hand basket	going very badly	2		
 to late	too late	3	mid	
 to make matters worse	worse yet	0		

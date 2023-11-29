@@ -1632,6 +1632,7 @@ Bangui
 Baniak
 Banjarmasin
 Banjul
+Bankert
 Bankston
 Banky
 Bannayan
@@ -16921,6 +16922,7 @@ Russel
 Russell
 Russett
 Russhell
+Russinovich
 Russo
 Rusti
 Rustie

@@ -2373,6 +2373,7 @@ aggravatingly
 aggravation
 aggravation's
 aggravations
+aggregatable
 aggregate
 aggregated
 aggregately
@@ -2838,6 +2839,7 @@ alembics
 aleph
 aleph's
 alert
+alertable
 alerted
 alertedly
 alerter
@@ -7988,6 +7990,7 @@ autoloaded
 autoloader
 autoloading
 autoloads
+autologger
 autologous
 autolysis
 automaker
@@ -8044,6 +8047,7 @@ autophosphorylation
 autopilot
 autopilot's
 autopilots
+autoplay
 autopolyploid
 autopolyploidy
 autoprotolysis
@@ -12119,9 +12123,15 @@ bitmasks'
 bitness
 BITNET
 BITNET's
+bitrate
+bitrate's
+bitrates
 bits
 bitser
 bitser's
+bitstream
+bitstream's
+bitstreams
 bitted
 bitten
 bitter
@@ -16188,6 +16198,9 @@ bystanders
 byte
 byte's
 bytes
+bytestream
+bytestream's
+bytestreams
 byway
 byway's
 byways
@@ -16662,6 +16675,9 @@ callousing
 callously
 callousness
 callousness's
+callout
+callout's
+callouts
 callow
 callower
 callowest
@@ -18936,6 +18952,9 @@ centimorgans
 centipede
 centipede's
 centipedes
+centisecond
+centisecond's
+centiseconds
 central
 centraler
 centralest
@@ -22303,6 +22322,9 @@ Cl₂CCBr
 Cl₂SeO
 cm
 cm's
+cmdlet
+cmdlet's
+cmdlets
 cmdr.'s
 CMG
 CMOS
@@ -24948,6 +24970,7 @@ conformal
 conformance
 conformance's
 conformances
+conformant
 conformation
 conformation's
 conformational
@@ -30639,6 +30662,9 @@ deadweights
 deadwood
 deadwood's
 deadwoods
+deadzone
+deadzone's
+deadzones
 deaf
 deafen
 deafened
@@ -30799,6 +30825,10 @@ debit's
 debited
 debiting
 debits
+deblock
+deblocked
+deblocking
+deblocks
 debonair
 debonairly
 debonairness
@@ -31313,6 +31343,9 @@ decrying
 decryings
 decrypt
 decrypted
+decrypter
+decrypter's
+decrypters
 decrypting
 decryption
 decrypts
@@ -31869,6 +31902,13 @@ deinstitutionalize
 deinstitutionalized
 deinstitutionalizes
 deinstitutionalizing
+deinterlace
+deinterlaced
+deinterlacer
+deinterlacer's
+deinterlacers
+deinterlaces
+deinterlacing
 deionized
 deism
 deism's
@@ -32348,6 +32388,9 @@ demounting
 demulcent
 demulcents
 demultiplex
+demultiplexed
+demultiplexes
+demultiplexing
 demur
 demure
 demurely
@@ -33217,6 +33260,9 @@ desisting
 desists
 desk
 desk's
+deskband
+deskband's
+deskbands
 deskill
 deskilled
 deskilling
@@ -33905,6 +33951,7 @@ diagramming
 diagrams
 dial
 dial's
+dialable
 dialect
 dialect's
 dialectal
@@ -35090,6 +35137,7 @@ disbursing
 disc
 disc's
 discard
+discardable
 discarded
 discarder
 discarder's
@@ -35311,6 +35359,7 @@ discourtesies
 discourtesy
 discourtesy's
 discover
+discoverability
 discoverable
 discovered
 discoverer
@@ -37378,8 +37427,15 @@ download
 downloadability
 downloadable
 downloaded
+downloader
+downloader's
+downloaders
 downloading
 downloads
+downmix
+downmixed
+downmixes
+downmixing
 downpipe
 downpipes
 downplay
@@ -39917,6 +39973,7 @@ electrostatically
 electrostatics
 electrostatics's
 electrosurgery
+electrotechnical
 electrotherapist
 electrotherapist's
 electrotherapists
@@ -40959,9 +41016,12 @@ endocytosed
 endocytoses
 endocytosing
 endocytosis
+endoder
+endoder's
 endoderm
 endodermal
 endodermis
+endoders
 endogamous
 endogamy
 endogamy's
@@ -44911,6 +44971,9 @@ failings
 faille
 faille's
 failles
+failover
+failover's
+failovers
 fails
 failsafe
 failure
@@ -48116,6 +48179,9 @@ flyings
 flyleaf
 flyleaf's
 flyleaves
+flyout
+flyout's
+flyouts
 flyover
 flyover's
 flyovers
@@ -50859,6 +50925,9 @@ gamekeepers
 gamely
 gameness
 gameness's
+gamepad
+gamepad's
+gamepads
 gameplay
 gameplay's
 gamer
@@ -52553,7 +52622,9 @@ glistering
 glisters
 glitch
 glitch's
+glitched
 glitches
+glitching
 glitter
 glittered
 glittering
@@ -57753,6 +57824,10 @@ hilariousness's
 hilarities
 hilarity
 hilarity's
+hilite
+hilited
+hilites
+hiliting
 hill
 hill's
 hillbillies
@@ -58718,6 +58793,9 @@ hookies
 hookiest
 hooking
 hooks
+hookswitch
+hookswitch's
+hookswitches
 hookup
 hookup's
 hookups
@@ -68027,6 +68105,9 @@ keyclick
 keyclick's
 keyclicks
 keyed
+keyframe
+keyframe's
+keyframes
 keyhole
 keyhole's
 keyholes
@@ -72260,6 +72341,7 @@ loons
 loony
 loop
 loop's
+loopback
 looped
 looper
 looper's
@@ -73195,6 +73277,9 @@ macrobiota
 macrobiotic
 macrobiotics
 macrobiotics's
+macroblock
+macroblock's
+macroblocks
 macrocephaly
 macrocosm
 macrocosm's
@@ -73578,6 +73663,9 @@ mailroom's
 mailrooms
 mails
 mailshot
+mailslot
+mailslot's
+mailslots
 maim
 Maiman
 maimed
@@ -76355,6 +76443,7 @@ mestizos
 met
 meta
 meta's
+metabase
 metabolic
 metabolically
 metabolise
@@ -77921,6 +78010,11 @@ minxes
 miocene
 miosis
 miosis's
+mipmap
+mipmap's
+mipmapped
+mipmapping
+mipmaps
 MIPS
 Miquela
 Miquelon
@@ -79288,6 +79382,7 @@ monoamine's
 monoamines
 monoarthritis
 monoarticular
+monoaural
 monocarpic
 monocercomonoide
 monocercomonoide's
@@ -80726,6 +80821,8 @@ multistep
 multisteps
 multistories
 multistory
+multistroke
+multistrokes
 multisyllabic
 multitasking
 multitaskings
@@ -80737,6 +80834,9 @@ multithread
 multithreaded
 multithreading
 multithreads
+multitrack
+multitrack's
+multitracks
 multitrillion
 multitude
 multitude's
@@ -80756,6 +80856,9 @@ multiverse's
 multiverses
 multiversity
 multiversity's
+multiview
+multiview's
+multiviews
 multivitamin
 multivitamins
 multiwavelength
@@ -83372,6 +83475,7 @@ nonce's
 noncellular
 noncentral
 noncentrality
+noncentralized
 nonces
 nonchalance
 nonchalance's
@@ -83424,6 +83528,7 @@ nonconductive
 nonconductor
 nonconductor's
 nonconductors
+nonconformant
 nonconforming
 nonconformist
 nonconformist's
@@ -84608,6 +84713,7 @@ nuking
 Nuku'alofa
 Nukualofa
 null
+nullable
 nulled
 nullification
 nullification's
@@ -86428,6 +86534,9 @@ orbitron's
 orbitrons
 orbits
 orbs
+orca
+orca's
+orcas
 orchard
 orchard's
 orchards
@@ -88611,6 +88720,13 @@ packet
 packet's
 packeted
 packeting
+packetization
+packetization's
+packetizations
+packetize
+packetized
+packetizes
+packetizing
 packets
 packhorse
 packhorse's
@@ -96991,6 +97107,10 @@ preferments
 preferred
 preferring
 prefers
+prefetch
+prefetched
+prefetches
+prefetching
 prefiguration
 prefiguration's
 prefigure
@@ -97045,6 +97165,10 @@ preinitialized
 preinitializes
 preinitializing
 preinitiation
+preinstall
+preinstalled
+preinstalling
+preinstalls
 preinterview
 preinterview's
 preisolated
@@ -99842,6 +99966,9 @@ puling
 pull
 pullback
 pullbacks
+pulldown
+pulldown's
+pulldowns
 pulled
 puller
 puller's
@@ -102118,6 +102245,7 @@ rate
 rate's
 rateable
 rated
+rateless
 ratepayer
 ratepayer's
 ratepayers
@@ -103291,6 +103419,10 @@ recomposes
 recomposing
 recomposition
 recomposition's
+recompress
+recompressed
+recompresses
+recompressing
 recompression
 recomputable
 recomputation
@@ -103736,6 +103868,7 @@ redesignating
 redesigned
 redesigning
 redesigns
+redetection
 redetermination
 redetermine
 redetermined
@@ -103768,6 +103901,7 @@ redimensioned
 redimensioning
 redimensions
 redirect
+redirectable
 redirected
 redirecting
 redirection
@@ -104244,6 +104378,10 @@ reflexivity's
 reflexly
 reflexology
 reflooring
+reflow
+reflowed
+reflowing
+reflows
 refluence
 refluent
 reflux
@@ -105345,6 +105483,7 @@ remorselessness
 remorselessness's
 remorselessnesses
 remorses
+remotable
 remote
 remotely
 remoteness
@@ -105414,6 +105553,7 @@ renderers
 rendering
 rendering's
 renderings
+renderless
 renders
 rendezvous
 rendezvous's
@@ -105451,6 +105591,7 @@ renegotiations
 renegue
 renette
 renew
+renewability
 renewable
 renewable's
 renewables
@@ -106158,6 +106299,9 @@ resale's
 resales
 resample
 resampled
+resampler
+resampler's
+resamplers
 resamples
 resampling
 resat
@@ -107277,6 +107421,7 @@ revenuer
 revenuer's
 revenuers
 revenues
+reverb
 reverberant
 reverberate
 reverberated
@@ -112211,6 +112356,7 @@ secularizes
 secularizing
 secularly
 seculars
+securable
 secure
 secured
 securely
@@ -112326,6 +112472,7 @@ seeing
 seeing's
 seeings
 seek
+seekability
 seekable
 seeker
 seeker's
@@ -113271,6 +113418,7 @@ serve
 served
 server
 server's
+serverless
 servers
 serves
 service
@@ -122599,6 +122747,9 @@ subheadings
 subheads
 subhuman
 subhumans
+subidentifier
+subidentifier's
+subidentifiers
 subindex
 subindex's
 subinterval
@@ -122748,6 +122899,7 @@ submitted
 submitter
 submitters
 submitting
+submix
 submodalities
 submodality
 submode
@@ -122769,6 +122921,9 @@ subnets
 subnetwork
 subnetwork's
 subnetworks
+subnode
+subnode's
+subnodes
 subnormal
 subnormally
 subnormals
@@ -122858,6 +123013,9 @@ subranges
 subrecipient
 subrecipient's
 subrecipients
+subrectangle
+subrectangle's
+subrectangles
 subregion
 subregion's
 subregional
@@ -123035,12 +123193,18 @@ substitutionary
 substitutions
 substitutive
 substitutively
+substorage
+substorage's
+substorages
 substrata
 substrate
 substrate's
 substrates
 substratum
 substratum's
+substream
+substream's
+substreams
 substring
 substrings
 substropical
@@ -123199,6 +123363,9 @@ subwindow
 subwindow's
 subwindows
 subwindows'
+subwoofer
+subwoofer's
+subwoofers
 subzero
 succeed
 succeeded
@@ -126288,6 +126455,9 @@ taskmasters
 taskmistress
 taskmistress's
 taskmistresses
+taskpad
+taskpad's
+taskpads
 tasks
 taskset
 taskset's
@@ -128342,6 +128512,9 @@ threadier
 threadiest
 threading
 threadlike
+threadpool
+threadpool's
+threadpools
 threads
 thready
 threat
@@ -128566,6 +128739,9 @@ thumbs
 thumbscrew
 thumbscrew's
 thumbscrews
+thumbstick
+thumbstick's
+thumbsticks
 thumbtack
 thumbtack's
 thumbtacked
@@ -130571,6 +130747,7 @@ transactional
 transactionalities
 transactionality
 transactionally
+transactioning
 transactions
 transactor
 transactor's
@@ -130939,6 +131116,9 @@ transposons
 transpulmonary
 transputer
 transputer's
+transrate
+transrated
+transrating
 transsexual
 transsexual's
 transsexualism
@@ -134589,6 +134769,7 @@ unexplained
 unexploded
 unexploited
 unexplored
+unexported
 unexposed
 unexpressed
 unexpurgated
@@ -134883,7 +135064,11 @@ unheroic
 unhesitant
 unhesitating
 unhesitatingly
+unhid
 unhidden
+unhide
+unhides
+unhiding
 unhighlight
 unhighlighted
 unhighlighting
@@ -135466,6 +135651,10 @@ unmuffled
 unmurmuring
 unmusical
 unmusically
+unmute
+unmuted
+unmutes
+unmuting
 unmuzzled
 unmyelinated
 unnamable
@@ -139665,6 +139854,7 @@ waistlines
 waists
 wait
 wait's
+waitable
 waited
 waiter
 waiter's
@@ -139695,6 +139885,7 @@ waives
 waiving
 wake
 wake's
+wakeable
 waked
 wakeful
 wakefully
@@ -140535,6 +140726,9 @@ webbed
 webbing
 webbing's
 webbings
+webcam
+webcam's
+webcams
 webcast
 webcast's
 webcasted
@@ -142473,6 +142667,9 @@ workpieces
 workplace
 workplace's
 workplaces
+workqueue
+workqueue's
+workqueues
 workroom
 workroom's
 workrooms

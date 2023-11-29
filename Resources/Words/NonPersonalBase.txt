@@ -1167,6 +1167,7 @@ Currarino
 Cusco
 Cuyahoga
 Cygnus
+Cygwin
 Cymbalta
 Cynon
 CyoEncode
@@ -1550,6 +1551,7 @@ Exxon
 ExxonMobil
 Eyde
 Ezri
+Fabrikam
 Facebooked
 Facebooking
 Facebooks
@@ -1718,6 +1720,7 @@ Fukushima
 Fulani
 Funafuti
 Fundy
+Furigana
 Fushun
 Futuna
 Fuzhou
@@ -3425,6 +3428,7 @@ Pepperland
 Pepsi
 PepsiCo
 Pereira
+Perfmon
 Periclean
 Permian
 Perrier
@@ -3553,6 +3557,7 @@ Pottawatomie
 Powerade
 Powerball
 PowerPoint
+Powershell
 Powhatan
 Powys
 Poznan
@@ -4270,6 +4275,7 @@ Syntech
 Syracuse
 Syria
 Syrian
+Sysinternals
 Szechuan
 São
 Tabasco
@@ -4967,8 +4973,10 @@ Wyo
 Wyoming
 Wyomingite
 Württemberg
+Xamarin
 Xanadu
 Xanax
+Xbox
 XCode
 Xe
 Xebec
