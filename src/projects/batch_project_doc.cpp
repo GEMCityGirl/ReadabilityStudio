@@ -4204,6 +4204,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
+                UpdateGraphOptions(boxPlotCanvas);
 
                 auto boxPlot = std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
                 assert(boxPlot && "Invalid dynamic cast to box plot!");
@@ -4238,7 +4239,6 @@ void BatchProjectDoc::DisplayBoxPlots()
                 boxPlot->SetStippleShapeColor(GetStippleShapeColor());
                 boxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
                 boxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
-                UpdateGraphOptions(boxPlotCanvas);
 
                 // Adjust the axis range and load its labels,
                 // and force the grade (Y) axis to show the full range of Kindergarten through Doctorate.
@@ -4281,6 +4281,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
+                UpdateGraphOptions(boxPlotCanvas);
 
                 auto boxPlot = std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
                 assert(boxPlot && "Invalid dynamic cast to box plot!");
@@ -4291,7 +4292,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                     GetScoreColumnName(),
                     // if more documents than groups, then use grouping
                     (GetDocumentLabels().size() > 1 && GetDocuments().size() > GetDocumentLabels().size()) ?
-                    std::optional<wxString>(GetGroupColumnName()) : std::nullopt);
+                     std::optional<wxString>(GetGroupColumnName()) : std::nullopt);
 
                 if (boxPlot->GetBoxCount() > 1)
                     {
@@ -4315,7 +4316,6 @@ void BatchProjectDoc::DisplayBoxPlots()
                     convertedIcon)
                     { boxPlot->SetStippleShape(convertedIcon.value()); }
                 boxPlot->SetStippleShapeColor(GetStippleShapeColor());
-                UpdateGraphOptions(boxPlotCanvas);
 
                 const auto [rangeStart, rangeEnd] = boxPlot->GetLeftYAxis().GetRange();
                 // Set the ranges to fit the index range. Note that the calculated outlier ranges may
@@ -4369,8 +4369,10 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
+                UpdateGraphOptions(boxPlotCanvas);
+
                 auto boxPlot = std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
-                wxASSERT_LEVEL_2_MSG(boxPlot, "Invalid dynamic cast to box plot!");
+                assert(boxPlot && "Invalid dynamic cast to box plot!");
                 boxPlot->SetBrushScheme(
                     std::make_shared<Brushes::Schemes::BrushScheme>(
                         Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
@@ -4378,7 +4380,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                     GetScoreColumnName(),
                     // if more documents than groups, then use grouping
                     (GetDocumentLabels().size() > 1 && GetDocuments().size() > GetDocumentLabels().size()) ?
-                    std::optional<wxString>(GetGroupColumnName()) : std::nullopt);
+                     std::optional<wxString>(GetGroupColumnName()) : std::nullopt);
 
                 if (boxPlot->GetBoxCount() > 1)
                     {
@@ -4402,7 +4404,6 @@ void BatchProjectDoc::DisplayBoxPlots()
                 boxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
                 boxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
                 boxPlot->SetLabelPrecision(0);
-                UpdateGraphOptions(boxPlotCanvas);
 
                 // adjust the range
                 const auto [rangeStart, rangeEnd] = boxPlot->GetLeftYAxis().GetRange();
@@ -4441,6 +4442,8 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
+                UpdateGraphOptions(boxPlotCanvas);
+
                 auto boxPlot = std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
                 assert(boxPlot && "Invalid dynamic cast to box plot!");
                 boxPlot->SetBrushScheme(
@@ -4450,7 +4453,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                     GetScoreColumnName(),
                     // if more documents than groups, then use grouping
                     (GetDocumentLabels().size() > 1 && GetDocuments().size() > GetDocumentLabels().size()) ?
-                    std::optional<wxString>(GetGroupColumnName()) : std::nullopt);
+                     std::optional<wxString>(GetGroupColumnName()) : std::nullopt);
 
                 if (boxPlot->GetBoxCount() > 1)
                     {
@@ -4474,7 +4477,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                 boxPlot->SetStippleShapeColor(GetStippleShapeColor());
                 boxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
                 boxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
-                UpdateGraphOptions(boxPlotCanvas);
+
                 // Adjust the axis range and load its labels,
                 // and force the grade (Y) axis to show the full range of Kindergarten through Doctorate.
                 boxPlot->GetLeftYAxis().SetRange(0, 19, 0, 1, 1);
@@ -4511,6 +4514,8 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
+                UpdateGraphOptions(boxPlotCanvas);
+
                 auto boxPlot = std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
                 assert(boxPlot && "Invalid dynamic cast to box plot!");
                 boxPlot->SetData(scoreDataset,
@@ -4545,7 +4550,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                 boxPlot->SetStippleShapeColor(GetStippleShapeColor());
                 boxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
                 boxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
-                UpdateGraphOptions(boxPlotCanvas);
+
                 // adjust the axis range
                 const auto [rangeStart, rangeEnd] = boxPlot->GetLeftYAxis().GetRange();
                 if (testPos->GetIterator()->get_test_type() ==
@@ -4694,6 +4699,14 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
 
         auto histogram = std::dynamic_pointer_cast<Histogram>(canvas->GetFixedObject(0, 0));
         assert(histogram && "Invalid histogram cast!");
+
+        if (!IsShowingGroupLegends())
+            {
+            histogram->SetBrushScheme(
+                std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
+                    *std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                        Wisteria::Colors::Schemes::ColorScheme({ GetHistogramBarColor() }))));
+            }
 
         histogram->SetData(data,
             GetScoreColumnName(),

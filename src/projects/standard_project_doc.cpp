@@ -1990,6 +1990,8 @@ void ProjectDoc::DisplaySentenceCharts()
             sentenceBoxPlotCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
             view->GetSentencesBreakdownView().AddWindow(sentenceBoxPlotCanvas);
             }
+        UpdateGraphOptions(sentenceBoxPlotCanvas);
+
         auto sentenceBoxPlot =
             std::dynamic_pointer_cast<BoxPlot>(sentenceBoxPlotCanvas->GetFixedObject(0, 0));
         sentenceBoxPlot->SetBrushScheme(
@@ -1997,8 +1999,6 @@ void ProjectDoc::DisplaySentenceCharts()
                         Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
         sentenceBoxPlot->SetData(m_sentenceWordLengths, GetSentenceWordCountsColumnName(),
             std::nullopt);
-
-        UpdateGraphOptions(sentenceBoxPlotCanvas);
 
         sentenceBoxPlot->SetShadowType(IsDisplayingDropShadows() ?
             ShadowType::RightSideAndBottomShadow : ShadowType::NoShadow);
