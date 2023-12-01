@@ -331,7 +331,6 @@ BaseProject::BaseProject() :
     // language options
     m_language(wxGetApp().GetAppOptions().GetProjectLanguage()),
     m_reviewer(wxGetApp().GetAppOptions().GetReviewer()),
-    m_status(wxGetApp().GetAppOptions().GetStatus()),
 
     // grammar
     m_spellcheck_ignore_proper_nouns(wxGetApp().GetAppOptions().SpellCheckIsIgnoringProperNouns()),

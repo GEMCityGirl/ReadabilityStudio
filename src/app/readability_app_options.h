@@ -1315,11 +1315,6 @@ public:
     [[nodiscard]]
     wxString GetReviewer() const
         { return m_reviewer; }
-    void SetStatus(const wxString& status)
-        { m_status = status; }
-    [[nodiscard]]
-    wxString GetStatus() const
-        { return m_status; }
     void UseRealTimeUpdate(const bool realTime)
         { m_realTimeUpdate = realTime; }
     [[nodiscard]]
@@ -1669,7 +1664,6 @@ private:
     ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_filePathTruncationMode
         { ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames };
     wxString m_reviewer;
-    wxString m_status;
     wxString m_appendedDocumentFilePath;
     readability::test_language m_language{ readability::test_language::english_test };
     bool m_realTimeUpdate{ false };

@@ -631,7 +631,6 @@ void ReadabilityAppOptions::ResetSettings()
     // Keep reviewer to whatever it was before, don't reset that.
     // This isn't so much as setting, as an identifier for the user that they may be customized,
     // so leave it alone.
-    m_status.clear();
     m_realTimeUpdate = false;
     m_appendedDocumentFilePath.clear();
     // page setup
@@ -1309,20 +1308,6 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         filter_html(reviewerStr, reviewerStr.length(), true, false);
                     if (convertedStr)
                         { SetReviewer(convertedStr); }
-                    }
-                }
-            auto projectStatus = projectSettings->FirstChildElement(XML_STATUS.mb_str());
-            if (projectStatus)
-                {
-                const char* statusChars = projectStatus->ToElement()->Attribute(XML_VALUE.mb_str());
-                if (statusChars)
-                    {
-                    const wxString statusStr =
-                        Wisteria::TextStream::CharStreamToUnicode(statusChars, std::strlen(statusChars));
-                    const wchar_t* convertedStr =
-                        filter_html(statusStr, statusStr.length(), true, false);
-                    if (convertedStr)
-                        { SetStatus(convertedStr); }
                     }
                 }
             auto realTimeRefresh = projectSettings->FirstChildElement(XML_REALTIME_UPDATE.mb_str());
@@ -3738,10 +3723,6 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     docReviewer->SetAttribute(XML_VALUE.mb_str(),
         wxString(encode({ GetReviewer().wc_str() }, false).c_str()).mb_str());
     projectSettings->InsertEndChild(docReviewer);
-
-    auto docStatus = doc.NewElement(XML_STATUS.mb_str());
-    docStatus->SetAttribute(XML_VALUE.mb_str(),
-        wxString(encode({ GetStatus().wc_str() }, false).c_str()).mb_str());
 
     auto realTimeRefresh = doc.NewElement(XML_REALTIME_UPDATE.mb_str());
     realTimeRefresh->SetAttribute(XML_VALUE.mb_str(),

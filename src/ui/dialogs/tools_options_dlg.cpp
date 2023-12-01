@@ -655,7 +655,7 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
     m_projectLanguage(static_cast<int>(project ?
         project->GetProjectLanguage() : wxGetApp().GetAppOptions().GetProjectLanguage())),
     m_reviewer(project ? project->GetReviewer() : wxGetApp().GetAppOptions().GetReviewer()),
-    m_status(project ? project->GetStatus() : wxGetApp().GetAppOptions().GetStatus()),
+    m_status(project ? project->GetStatus() : wxString{}),
     m_description((project && project->GetSourceFilesInfo().size()) ?
         project->GetSourceFilesInfo().at(0).second : wxString()),
     m_appendedDocumentFilePath(project ?
@@ -2124,7 +2124,6 @@ void ToolsOptionsDlg::SaveOptions()
         wxGetApp().GetAppOptions().SetProjectLanguage(
             static_cast<readability::test_language>(m_projectLanguage.get_value()));
         wxGetApp().GetAppOptions().SetReviewer(m_reviewer.get_value());
-        wxGetApp().GetAppOptions().SetStatus(m_status.get_value());
         wxGetApp().GetAppOptions().UseRealTimeUpdate(m_realTimeUpdate.get_value());
         wxGetApp().GetAppOptions().SetAppendedDocumentFilePath(m_appendedDocumentFilePath.get_value());
         wxGetApp().GetAppOptions().SetDocumentStorageMethod(
