@@ -24,28 +24,22 @@ namespace grammar
     class base_syllabize
         {
     public:
-        base_syllabize() noexcept : m_syllable_count(0),
-            m_length(0),
-            m_previous_vowel(0),
-            m_previous_block_vowel(0)
-            {}
+        base_syllabize() noexcept {}
         base_syllabize(const base_syllabize& that) = delete;
-        base_syllabize(base_syllabize&& that) = delete;
         base_syllabize& operator=(const base_syllabize& that) = delete;
-        base_syllabize& operator=(base_syllabize&& that) = delete;
         virtual ~base_syllabize()
             {}
         virtual size_t operator()(const wchar_t* start, const size_t length) = 0;
     protected:
         void reset() noexcept
             { m_syllable_count = m_length = m_previous_vowel = m_previous_block_vowel = 0; }
-        /** Special case mathematical terms that need to be counted differently.
+        /** @brief Special case mathematical terms that need to be counted differently.
             @param start The word to analyze.
             @param length The length of the word.
             @returns A pair indicating whether or not this is a special case, and if so the syllable count.*/
         [[nodiscard]]
         static std::pair<bool,size_t> is_special_math_word(const wchar_t* start, const size_t length) noexcept;
-        /** Determines the number of syllables for a numeric string.
+        /** @brief Determines the number of syllables for a numeric string.
             @param numeral_string The string to analyze.
             @param end_of_string The sentinel of the main string (can't read beyond that point).
             @param[out] characters_counted The number of characters in the string that were a numeric value
@@ -65,7 +59,7 @@ namespace grammar
             characters_counted = 0;
             if (numeral_string == nullptr || end_of_string == nullptr)
                 { return 0; }
-            Tsyllabize_number syllabify_number;
+            Tsyllabize_number syllabify_number{};
             const wchar_t* const start = numeral_string;
             size_t syllableCount = 0;
             while (numeral_string[0] && numeral_string < end_of_string)
@@ -106,7 +100,7 @@ namespace grammar
                 it does not change the text buffer.
             @param start The text being reviewed.*/
         void adjust_length_if_possesive(const wchar_t* start);
-        /** If there are any periods in this word, then break it up into smaller words.
+        /** @brief If there are any periods in this word, then break it up into smaller words.
             @returns @c true if word was split and syllabized.
             @param start The start of the word.
             @param end The end of the word.*/
@@ -117,7 +111,7 @@ namespace grammar
             const wchar_t* period = (periodPos == m_length) ? nullptr : start+periodPos;
             if (period)
                 {
-                Tsyllabizer dotSyllabize;
+                Tsyllabizer dotSyllabize{};
                 size_t periodCount = 0;
                 size_t separateSectionsSyllableCount = 0;
                 const wchar_t* currentSection = start;
@@ -159,7 +153,7 @@ namespace grammar
             const wchar_t* dash = (dashPos == m_length) ? nullptr : start+dashPos;
             if (dash)
                 {
-                Tsyllabizer dashSyllabize;
+                Tsyllabizer dashSyllabize{};
                 size_t separateSectionsSyllableCount = 0;
                 const wchar_t* currentSection = start;
                 while (dash)
@@ -216,9 +210,7 @@ namespace grammar
         {
     public:
         /// Constructor.
-        english_syllabize() noexcept :
-                    m_was_last_vowel_block_separable_vowels(false),
-                    m_ends_with_nt_contraction(false) {}
+        english_syllabize() noexcept {}
         /** @brief Counts the syllables in a block of text.
             @param start The start of the block of text.
             @param length The length of the text.
