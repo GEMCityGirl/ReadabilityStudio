@@ -12,22 +12,22 @@
 #ifndef __ABOUT_DIALOG_EX_H__
 #define __ABOUT_DIALOG_EX_H__
 
-#include <wx/wx.h>
-#include <wx/notebook.h>
-#include <wx/dialog.h>
-#include <wx/bitmap.h>
-#include <wx/image.h>
-#include <wx/statline.h>
-#include <wx/hyperlink.h>
-#include <wx/utils.h>
+#include "../../../../Licensing/LicenseAdmin.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
-#include "../../../../Licensing/LicenseAdmin.h"
+#include <wx/bitmap.h>
+#include <wx/dialog.h>
+#include <wx/hyperlink.h>
+#include <wx/image.h>
+#include <wx/notebook.h>
+#include <wx/statline.h>
+#include <wx/utils.h>
+#include <wx/wx.h>
 
 /// @brief Enhanced About dialog for an application.
 class AboutDialogEx final : public wxDialog
     {
-public:
+  public:
     /** @brief Constructor.
         @param parent The dialog's parent.
         @param logo The application's logo.
@@ -38,31 +38,32 @@ public:
         @param pos The dialog's position.
         @param size The dialog's size.
         @param style The dialog's style.*/
-    AboutDialogEx(wxWindow* parent, const wxBitmap& logo,
-                  const wxString& AppVersion,
-                  const wxString& copyright,
-                  LicenseAdmin* licenseAdmin,
-                  wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition,
-                  const wxSize& size = wxDefaultSize,
-                  long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER);
+    AboutDialogEx(wxWindow* parent, const wxBitmap& logo, const wxString& AppVersion,
+                  const wxString& copyright, LicenseAdmin* licenseAdmin, wxWindowID id = wxID_ANY,
+                  const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
+                  long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
     /// @private
     AboutDialogEx(const AboutDialogEx& that) = delete;
     /// @private
     AboutDialogEx& operator=(const AboutDialogEx& that) = delete;
+
     /// @returns The sidebar.
     [[nodiscard]]
     Wisteria::UI::SideBar* GetSideBar() noexcept
-        { return m_sideBarBook->GetSideBar(); }
-private:
+        {
+        return m_sideBarBook->GetSideBar();
+        }
+
+  private:
     // page and button IDs
     static constexpr int ID_VERSION_PAGE = wxID_HIGHEST;
     static constexpr int ID_LICENSING_PAGE = wxID_HIGHEST + 1;
     static constexpr int ID_UPDATE_LICENSE = wxID_HIGHEST + 2;
 
     /// Creation.
-    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
-        const wxPoint& pos = wxDefaultPosition,
-        const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER);
+    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition,
+                const wxSize& size = wxDefaultSize,
+                long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
 
     /// Creates the controls and sizers.
     void CreateControls();
@@ -80,6 +81,6 @@ private:
     wxString m_copyright;
     };
 
-/** @}*/
+    /** @}*/
 
 #endif //__ABOUT_DIALOG_EX_H__
