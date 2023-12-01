@@ -1433,7 +1433,9 @@ void ProjectDoc::OnRealTimeTimer([[maybe_unused]] wxTimerEvent& event)
         StopRealtimeUpdate();
         const auto previousModTime{ m_sourceFileLastModified };
         UpdateSourceFileModifiedTime();
-        if (previousModTime < m_sourceFileLastModified)
+        if (m_sourceFileLastModified.IsValid() &&
+            previousModTime.IsValid() &&
+            previousModTime < m_sourceFileLastModified)
             {
             RefreshRequired(RefreshRequirement::FullReindexing);
             RefreshProject();
