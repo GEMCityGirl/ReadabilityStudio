@@ -57,6 +57,7 @@ Agerholm
 Agnosia
 Agricola
 Aguascalientes
+Ahlstrom
 Airbnb
 Airbus
 Airedale
@@ -1273,8 +1274,9 @@ Dettingen
 Deusenberg
 Deutsche
 Devonshire
+Dexamethasone
 Dexedrine
-dextroamphetamine
+Dextroamphetamine
 Dhabi
 Dhaka
 Dhaulagiri
@@ -3751,6 +3753,7 @@ RETA
 Retin
 Reuss
 Reuters
+Revlimid
 Revlon
 Reykjanes
 Reykjavik
@@ -4710,6 +4713,7 @@ Vedanta
 Vedas
 Vega
 Vegas
+Velcade
 Velcro
 Velpeau
 Velveeta
@@ -4999,6 +5003,7 @@ Xerox
 Xeroxed
 Xeroxes
 Xeroxing
+Xgeva
 Xhosa
 Xi'an
 Xian
@@ -5007,6 +5012,7 @@ Xingu
 Xmas
 XML
 Xochimilco
+Xpress
 XRC
 XRCID
 Xuelian

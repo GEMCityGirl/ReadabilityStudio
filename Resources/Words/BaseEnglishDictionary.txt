@@ -3091,6 +3091,7 @@ alliteration's
 alliterations
 alliterative
 alliteratively
+allo
 allocable
 allocatable
 allocate
@@ -13765,6 +13766,7 @@ borstal
 borstal's
 borstals
 bortescristian
+bortezomib
 borzoi
 borzoi's
 borzois
@@ -33858,6 +33860,7 @@ dewpoint's
 dewpoints
 dews
 dewy
+dexamethasone
 dexes
 dexterities
 dexterity
@@ -51013,6 +51016,9 @@ gammon's
 gammoned
 gammoning
 gammons
+gammopathies
+gammopathy
+gammopathy's
 gamut
 gamut's
 gamuts
@@ -60233,6 +60239,11 @@ hypercritically
 hypercube
 hypercube's
 hypercubes
+hyperdiploid
+hyperdiploid's
+hyperdiploids
+hyperdiploidy
+hyperdiploidy's
 hyperdontia
 hyperekplexia
 hyperemesis
@@ -60383,6 +60394,9 @@ hyperventilation's
 hyperventilations
 hypervigilance
 hypervigilance's
+hyperviscosities
+hyperviscosity
+hyperviscosity's
 hypervisor
 hypervisor's
 hypervisors
@@ -60485,6 +60499,11 @@ hypocritically
 hypodermic
 hypodermics
 hypodermis
+hypodiploid
+hypodiploid's
+hypodiploids
+hypodiploidy
+hypodiploidy's
 hypodontia
 hypoed
 hypofluorite
@@ -61367,6 +61386,10 @@ immunodeficient
 immunodepression
 immunodiffusion
 immunodiffusion's
+immunoelectrophoresis
+immunoelectrophoresis's
+immunofixation
+immunofixation's
 immunofluorescence
 immunogen
 immunogen's
@@ -61390,6 +61413,11 @@ immunologists
 immunology
 immunology's
 immunomodulant
+immunophenotype
+immunophenotyped
+immunophenotypes
+immunophenotyping
+immunophenotyping's
 immunopig
 immunosenescence
 immunosorbent
@@ -70473,6 +70501,7 @@ lemony
 lemur
 lemur's
 lemurs
+lenalidomide
 lend
 lender
 lender's
@@ -77001,6 +77030,8 @@ microelectronics
 microelectronics's
 microenvironment
 microenvironment's
+microenvironmental
+microenvironmentally
 microenvironments
 microevolution
 microevolution's
@@ -77041,6 +77072,9 @@ microgametophyte's
 microgametophytes
 microglia
 microglial
+microglobulin
+microglobulin's
+microglobulins
 microgram
 microgramme
 microgrammes
@@ -83790,6 +83824,7 @@ nonhomophobic
 nonhomophobic's
 nonhomophobics
 nonhuman
+nonhyperdiploid
 nonidentical
 nonimmigrant
 nonimmigrant's
@@ -89813,6 +89848,9 @@ parapodium
 paraprofessional
 paraprofessional's
 paraprofessionals
+paraprotein
+paraprotein's
+paraproteins
 parapsychologies
 parapsychologist
 parapsychologists
@@ -94398,6 +94436,7 @@ plasm's
 plasma
 plasma's
 plasmacytoma
+plasmacytoma's
 plasmapheresis
 plasmas
 plasmid

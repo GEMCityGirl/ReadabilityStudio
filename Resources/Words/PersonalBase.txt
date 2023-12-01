@@ -820,6 +820,7 @@ Anabella
 Anabelle
 Anaclara
 Anai
+Anaissie
 Anakaren
 Analaura
 Analects
@@ -2007,6 +2008,7 @@ Berget
 Berglund
 Bergman
 Bergmann
+Bergsagel
 Bergson
 Bergsten
 Bergstrom
@@ -2126,6 +2128,7 @@ Bethany
 Bethe
 Bethena
 Bethina
+Bethke
 Betsey
 Betsy
 Betta
@@ -7590,6 +7593,7 @@ Gertrude
 Gertrudes
 Gertrudis
 Gerty
+Gertz
 Gervais
 Gervaise
 Gervasi
@@ -11334,6 +11338,7 @@ Kleinsmith
 Klemens
 Klement
 Kleng
+Kleutghen
 Kliment
 Kline
 Klinefelter
@@ -11614,6 +11619,7 @@ Kubrick
 Kuczera
 Kuczmarski
 Kuder
+Kuehl
 Kuenning
 Kuhfeld
 Kuhn
@@ -12179,6 +12185,7 @@ Lenore
 Lenton
 Lents
 Lentz
+Lentzsch
 Lenz
 Leo
 Leobardo
@@ -14179,6 +14186,7 @@ Minshall
 Minshew
 Minsk
 Mintzberg
+Minvielle
 Mio
 Miotke
 Mique
@@ -14492,6 +14500,7 @@ Mussorgsky
 Mustafa
 Mustanski
 Mutsuhito
+Muzaffar
 Muzny
 Muñoz
 Mya
@@ -16463,6 +16472,7 @@ Rio
 Riobard
 Riona
 Riordan
+Riotto
 Ripley
 Riqui
 Rishabh
@@ -19723,6 +19733,7 @@ Vonni
 Vonnie
 Vonny
 Vontricia
+Voorhees
 Voronoi
 Vova
 Vrasayana
@@ -20367,6 +20378,7 @@ Xuxa
 Xylina
 Xymenes
 Yabarak
+Yaccoby
 Yadra
 Yaganti
 Yago
@@ -20539,6 +20551,7 @@ Zandra
 Zane
 Zaneta
 Zangara
+Zangari
 Zangini
 Zanna
 Zantina

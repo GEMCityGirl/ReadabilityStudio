@@ -864,6 +864,7 @@ authorize	give power	0
 authorized	gave power	0		
 authorizes	gives power	0		
 authorizing	giving power	0		
+autologus	autologous	3		
 automaton	machine	0		
 automaton's	machine's	0		
 automatons	machines	0		
@@ -4656,7 +4657,7 @@ muddied the water	confused the matter	2
 muddies the water	confuses the matter	2		
 muddy the water	confuse the matter	2		
 muddying the water	confusing the matter	2		
-multiple	many	0		
+multiple	many	0		Myeloma
 municipality	city	0		
 murphy's law	what can go wrong will go wrong	2		
 must decided	must have decided	3		
@@ -5075,6 +5076,7 @@ paint yourself into a corner	leave yourself with no options	2
 pair of twins	twins	1		
 palatable	pleasing	0		
 panacea	cure-all	0		
+Panagopoulous	Panagopoulos	3		
 pandemonium	uproar	0		
 paper tiger	something that appears tougher/stronger than it really is	2		
 par for the course	typical, normal, expected, customary, standard	2		
