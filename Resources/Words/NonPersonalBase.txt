@@ -619,6 +619,7 @@ Bizrate
 BizStats
 BizTalk
 Blackwater
+Blazor
 Bloemfontein
 BlogPulse
 Blogspot
@@ -1298,6 +1299,7 @@ Dixieland
 Djibouti
 DMZ
 Dobro
+Dockerfile
 DoCoMo
 Dodoma
 Dogpatch
@@ -1317,6 +1319,7 @@ Dorchester
 Doritos
 Dorsa
 Dotdash
+Dotnet
 Dover
 Doxygen
 Drakensberg
@@ -1449,6 +1452,7 @@ Eniwetok
 Enola
 Enoxaparin
 Enron
+Entra
 Envermeu
 Eocene
 EPA
@@ -1873,6 +1877,7 @@ GoToMeeting
 Goulston
 Govwin
 Graceland
+Gradle
 Graffias
 Grainger
 Grammy
@@ -2101,6 +2106,7 @@ Hooverville
 Hopi
 Hopkinsian
 Hormuz
+Hotmail
 Hottentot
 Houdaille
 Houndsditch
@@ -2361,6 +2367,7 @@ Kalgoorlie
 Kampala
 Kampuchea
 Kana
+Kanban
 Kanchenjunga
 Kandahar
 Kanji
@@ -2479,6 +2486,7 @@ Kroc
 Kropotkin
 Krugerrand
 Kuala
+Kubernetes
 Kuiper
 Kurd
 Kurdish
@@ -2999,6 +3007,7 @@ Mozambican
 Mozambique
 Mozelle
 Mozilla
+MSBuild
 MTV
 Muhammadan
 Muhammadanism
@@ -3385,6 +3394,7 @@ Paraguay
 Paraguayan
 Paramaguru
 Paramaribo
+Parasoft
 Parasomnia
 Paris
 Parisian
@@ -3509,6 +3519,7 @@ Plattsburgh
 Plauen
 PlayStation
 Playtex
+Pluralsight
 Pluto
 Plymouth
 Pneumoconiosis
@@ -4153,6 +4164,7 @@ Springfield
 SpringHill
 SPSS
 Sputnik
+SQLite
 Squaresville
 Squibb
 Squintum

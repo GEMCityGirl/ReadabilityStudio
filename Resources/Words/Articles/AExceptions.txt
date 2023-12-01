@@ -6,9 +6,13 @@ of
 once
 one
 onetime
+SQLite
 UAW
+Ubuntu
 UCSF
+UDP
 UFO
 UMN
 USB
 USPTO
+UWP

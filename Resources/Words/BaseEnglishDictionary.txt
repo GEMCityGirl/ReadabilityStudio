@@ -4685,7 +4685,11 @@ anons
 anonymities
 anonymity
 anonymity's
+anonymization
 anonymize
+anonymized
+anonymizes
+anonymizing
 anonymous
 anonymously
 anonymousness
@@ -6124,6 +6128,8 @@ archipelago's
 archipelagos
 architect
 architect's
+architected
+architecting
 architectonic
 architectonics
 architectonics's
@@ -7276,6 +7282,7 @@ asymptotes
 asymptotic
 asymptotically
 asymptoticly
+async
 asynchable
 asynchronism
 asynchronism's
@@ -8656,6 +8663,10 @@ backpopulate
 backpopulated
 backpopulates
 backpopulating
+backport
+backported
+backporting
+backports
 backrest
 backrest's
 backrests
@@ -13658,6 +13669,9 @@ boots
 bootstrap
 bootstrap's
 bootstrapped
+bootstrapper
+bootstrapper's
+bootstrappers
 bootstrapping
 bootstraps
 booty
@@ -16197,6 +16211,9 @@ bystander's
 bystanders
 byte
 byte's
+bytecode
+bytecode's
+bytecodes
 bytes
 bytestream
 bytestream's
@@ -16685,6 +16702,9 @@ callowness
 callowness's
 callows
 calls
+callstack
+callstack's
+callstacks
 callus
 callus's
 callused
@@ -22322,6 +22342,7 @@ Cl₂CCBr
 Cl₂SeO
 cm
 cm's
+cmd
 cmdlet
 cmdlet's
 cmdlets
@@ -22656,6 +22677,9 @@ coder
 coder's
 coders
 codes
+codespace
+codespace's
+codespaces
 codetermination
 codetermine
 codetermines
@@ -24388,6 +24412,7 @@ con
 con's
 conant
 conant's
+concat
 concatemer
 concatenate
 concatenated
@@ -30861,6 +30886,7 @@ debtors
 debts
 debug
 debugged
+debuggee
 debugger
 debugger's
 debuggers
@@ -36707,6 +36733,10 @@ dockable
 docked
 docker
 docker's
+dockerize
+dockerized
+dockerizes
+dockerizing
 dockers
 docket
 docket's
@@ -44749,6 +44779,7 @@ eyewitnesses
 eying
 eyrie's
 f
+F#
 f's
 f.
 fa
@@ -52348,6 +52379,7 @@ gist's
 gists
 git
 git's
+gitignore
 give
 giveable
 giveaway
@@ -56250,6 +56282,12 @@ hashishes
 hashmap
 hashmap's
 hashmaps
+hashmark
+hashmark's
+hashmarks
+hashtable
+hashtable's
+hashtables
 hashtag
 hashtag's
 hashtags
@@ -67529,6 +67567,7 @@ jpeg
 jpg
 jr
 jr's
+json
 ju
 ju's
 jubilant
@@ -68091,6 +68130,9 @@ kettleful
 kettles
 key
 key's
+keybinding
+keybinding's
+keybindings
 keyboard
 keyboard's
 keyboarded
@@ -71070,6 +71112,9 @@ ligatures
 ligaturing
 light
 light's
+lightbox
+lightbox's
+lightboxes
 lightbulb
 lightbulb's
 lightbulbs
@@ -77142,6 +77187,9 @@ microsecond
 microsecond's
 microseconds
 microseismic
+microservice
+microservice's
+microservices
 microshock
 microshock's
 microshocks
@@ -80744,6 +80792,7 @@ multiplace
 multiplanet
 multiplanet's
 multiplanets
+multiplatform
 multiplayer
 multiple
 multiple's
@@ -83431,6 +83480,7 @@ nonattendance
 nonattendance's
 nonattendances
 nonaudit
+nonauthenticated
 nonauthoritarian
 nonauthoritarian's
 nonauthoritarians
@@ -83601,6 +83651,9 @@ nondeterminately
 nondeterminism
 nondeterministic
 nondeterministically
+nondeveloper
+nondeveloper's
+nondevelopers
 nondigestible
 nondimensional
 nondipper
@@ -87622,6 +87675,8 @@ overallocated
 overallocates
 overallocating
 overallocation
+overallocation's
+overallocations
 overalls
 overambition
 overambition's
@@ -91729,6 +91784,7 @@ performable
 performance
 performance's
 performances
+performant
 performed
 performer
 performer's
@@ -97458,6 +97514,8 @@ preregisters
 preregistration
 preregistration's
 preregistrations
+prerelease
+prereleases
 prerequisite
 prerequisite's
 prerequisites
@@ -101119,6 +101177,9 @@ quickening
 quickens
 quicker
 quickest
+quickfix
+quickfix's
+quickfixes
 quickie
 quickie's
 quickies
@@ -101137,6 +101198,9 @@ quicksilver's
 quicksilvered
 quicksilvering
 quicksilvers
+quickstart
+quickstart's
+quickstarts
 quickstep
 quickstep's
 quicksteps
@@ -102461,6 +102525,10 @@ rayon
 rayon's
 rayons
 rays
+raytrace
+raytraced
+raytraces
+raytracing
 raze
 razed
 razer
@@ -102932,6 +103000,10 @@ rebakes
 rebaking
 rebalance
 rebalanced
+rebase
+rebased
+rebases
+rebasing
 rebate
 rebate's
 rebated
@@ -104053,6 +104125,7 @@ reduplications
 reduviid
 reduviid's
 reduviids
+redux
 redwood
 redwood's
 redwoods
@@ -104153,6 +104226,10 @@ reemployment
 reemployment's
 reemployments
 reemploys
+reenable
+reenabled
+reenables
+reenabling
 reenact
 reenacted
 reenacting
@@ -105940,6 +106017,7 @@ replugging
 reply
 replying
 repo
+repo's
 repolarisation
 repolarisation's
 repolarisations
@@ -109067,6 +109145,7 @@ rounds
 roundtable
 roundtable's
 roundtables
+roundtrip
 roundup
 roundup's
 roundups
@@ -113697,6 +113776,8 @@ shade's
 shaded
 shadeless
 shader
+shader's
+shaders
 shades
 shadier
 shadiest
@@ -120193,6 +120274,9 @@ stacker
 stacker's
 stacking
 stacks
+stacktrace
+stacktrace's
+stacktraces
 stadia
 stadia's
 stadias
@@ -129543,6 +129627,7 @@ toddling
 toddy
 toddy's
 todo
+todos
 toe
 toe's
 toecap
@@ -130500,6 +130585,9 @@ tracker's
 trackers
 tracking
 trackless
+trackpad
+trackpad's
+trackpads
 tracks
 tracksuit
 tracksuit's
@@ -131362,6 +131450,9 @@ trees
 treetop
 treetop's
 treetops
+treeview
+treeview's
+treeviews
 trefoil
 trefoil's
 trefoils
@@ -133586,6 +133677,7 @@ unbid
 unbidden
 unbilled
 unbind
+unbindable
 unbinding
 unbinds
 unblanched
@@ -136369,6 +136461,10 @@ unstack
 unstacked
 unstacking
 unstacks
+unstage
+unstaged
+unstages
+unstaging
 unstained
 unstamped
 unstandardized
@@ -137018,6 +137114,10 @@ upturn
 upturned
 upturning
 upturns
+upvote
+upvoted
+upvotes
+upvoting
 upward
 upwardly
 upwardness
@@ -140742,6 +140842,9 @@ weber's
 webfeet
 webfoot
 webfoot's
+webhook
+webhook's
+webhooks
 webinar
 webinar's
 webinars
