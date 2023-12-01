@@ -1549,7 +1549,7 @@ private:
     void UpdateDocumentSettings();
 protected:
     [[nodiscard]]
-    std::shared_ptr<stemming::stem<traits::case_insensitive_wstring_ex>> CreateStemmer()
+    std::shared_ptr<stemming::stem<traits::case_insensitive_wstring_ex>> CreateStemmer() const
         {
         if (GetProjectLanguage() == readability::test_language::english_test)
             { return std::make_shared<stemming::english_stem<traits::case_insensitive_wstring_ex>>(); }
@@ -1837,7 +1837,7 @@ private:
 
     // phrases and word to exclude entirely from the document
     wxString m_excludedPhrasesPath;
-    std::vector<std::pair<wchar_t,wchar_t>> m_exclusionBlockTags;
+    std::vector<std::pair<wchar_t, wchar_t>> m_exclusionBlockTags;
 
     wxString m_projectDirectory;
     wxString m_currentCustTest;

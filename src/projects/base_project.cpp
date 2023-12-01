@@ -7764,6 +7764,7 @@ bool BaseProject::RemoveTest(const wxString& name)
         { return false; }
     }
 
+//------------------------------------------------------
 bool BaseProject::FindMissingFile(const wxString& filePath, wxString& fileBySameNameInProjectDirectory)
     {
     // if file not found, then try to search for it in the subdirectories from where the project is
