@@ -19,6 +19,7 @@
 #include "characters.h"
 #include "../OleanderStemmingLibrary/src/stemming.h"
 #include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
+#include "../Wisteria-Dataviz/src/i18n-check/src/i18n_review.h"
 
 /** @brief Counting/Searching functor for `std::count_if` or `std::find`
         that counts punctuation marks, based on where punctuation mark is in the word.*/
@@ -867,7 +868,8 @@ public:
             // uppercased words
             (is_ignoring_uppercased() && (the_word.is_acronym() || the_word.is_exclamatory())) ||
             // file address
-            (is_ignoring_file_addresses() && the_word.is_file_address()) ||
+            (is_ignoring_file_addresses() &&
+                (the_word.is_file_address() || i18n_check::i18n_review::is_file_extension(the_word.c_str()))) ||
             // hashtags
             (is_ignoring_social_media_tags() && the_word.is_social_media_tag()) ||
             // proper noun
