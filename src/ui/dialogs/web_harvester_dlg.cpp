@@ -26,7 +26,6 @@ void WebHarvesterDlg::OnDownloadCheck([[maybe_unused]] wxCommandEvent& event)
 
     m_localFolderLabel->Enable(m_downloadFilesLocally);
     m_localFolderEdit->Enable(m_downloadFilesLocally);
-    m_minFileSizeLabel->Enable(m_downloadFilesLocally);
     m_retainWebsiteFolderStuctureCheckBox->Enable(m_downloadFilesLocally);
     }
 

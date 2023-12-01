@@ -138,7 +138,6 @@ private:
     ListCtrlExDataProvider* m_domainData{ new ListCtrlExDataProvider };
     wxTextCtrl* m_localFolderEdit{ nullptr };
     wxStaticText* m_localFolderLabel{ nullptr };
-    wxStaticText* m_minFileSizeLabel{ nullptr };
     wxCheckBox* m_retainWebsiteFolderStuctureCheckBox{ nullptr };
     ListCtrlEx* m_urlList{ nullptr };
     wxBitmapButton* m_addDomainButton{ nullptr };
