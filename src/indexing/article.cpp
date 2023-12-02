@@ -248,6 +248,7 @@ bool is_incorrect_english_article::is_an_exception(const wchar_t* word, const si
     else if (traits::case_insensitive_ex::compare(word, L"hono", 4) == 0 ||
         traits::case_insensitive_ex::compare(word, L"hour", 4) == 0 ||
         traits::case_insensitive_ex::compare(word, L"heir", 4) == 0 ||
+        traits::case_insensitive_ex::compare(word, L"html", 4) == 0 ||
         traits::case_insensitive_ex::compare(word, L"honest", 6) == 0 ||
         // treat SAT and sat differently
         (word_length == 3 &&
@@ -264,10 +265,15 @@ bool is_incorrect_english_article::is_a_exception(const wchar_t* word, const siz
     if (word == nullptr || word_length == 0)
         { return false; }
 
-    static const std::set<traits::case_insensitive_wstring_ex> case_i_u_3_prefixes =
-        { L"ubi", L"ukr", L"ure", L"uri", L"uro",
-            L"usa", L"use", L"usi", L"usu", L"utf",
-            L"uti", L"uto" };
+    static const std::set<traits::case_insensitive_wstring_ex> case_i_u_3_prefixes = {
+        L"ubi", L"uin" /*a unint_32*/,
+        L"ukr", L"ure",
+        L"uri", L"uro",
+        L"usa", L"use",
+        L"usi", L"usu",
+        L"utf", L"uti",
+        L"uto"
+    };
 
     // if a known (full-word, case-insensitive) exception
     if (get_a_exceptions().contains(word, word_length))
