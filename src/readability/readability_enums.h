@@ -29,7 +29,7 @@ namespace readability
         /// @private
         PROPERNOUNCOUNTINGMETHOD_COUNT
         };
-    }
+    } // namespace readability
 
 /** @} */
 

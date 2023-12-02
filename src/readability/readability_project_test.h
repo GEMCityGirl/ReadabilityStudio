@@ -12,10 +12,10 @@
 #ifndef __READABILITY_PROJECT_TEST_H__
 #define __READABILITY_PROJECT_TEST_H__
 
-#include <vector>
+#include "readability_test.h"
 #include <bitset>
 #include <utility>
-#include "readability_test.h"
+#include <vector>
 
 namespace readability
     {
@@ -25,45 +25,64 @@ namespace readability
     ///     so that numerous copies of a test can point to a constant readability_test;
     ///     this way the same strings inside of readability_test objects don't get
     ///     copied thousand of times.
-    template<typename datasetT>
-    class readability_project_test
+    template <typename datasetT> class readability_project_test
         {
-    public:
+      public:
         /// @private
-        readability_project_test(const readability_project_test& that) noexcept :
-            m_test(that.m_test), m_included(that.m_included)
-            {}
+        readability_project_test(const readability_project_test& that) noexcept
+            : m_test(that.m_test), m_included(that.m_included)
+            {
+            }
+
         /// @brief CTOR from regular test definition.
-        explicit readability_project_test(const readability_test& test) noexcept :
-            m_test(&test)
-            {}
+        explicit readability_project_test(const readability_test& test) noexcept : m_test(&test) {}
+
         /// @private
         readability_project_test() = delete;
+
         /// @private
         virtual ~readability_project_test() {}
+
         /// @private
         void operator=(const readability_project_test& that) noexcept
             {
             m_test = that.m_test;
             m_included = that.m_included;
             }
+
         /// @private
         [[nodiscard]]
-        bool operator<(const readability_test& that) const noexcept
-            { return (get_test() < that); }
+        bool
+        operator<(const readability_test& that) const noexcept
+            {
+            return (get_test() < that);
+            }
+
         /// @private
         [[nodiscard]]
-        bool operator<(const readability_project_test& that) const noexcept
-            { return (get_test() < that.get_test()); }
+        bool
+        operator<(const readability_project_test& that) const noexcept
+            {
+            return (get_test() < that.get_test());
+            }
+
         /// @brief Compares (case insensitively) a string value to the test's ID,
         ///     short name, and long name.
         [[nodiscard]]
-        bool operator==(const readability_test& that) const noexcept
-            { return (get_test() == that); }
+        bool
+        operator==(const readability_test& that) const noexcept
+            {
+            return (get_test() == that);
+            }
+
         /// @private
         [[nodiscard]]
-        bool operator==(const readability_project_test& that) const noexcept
-            { return (get_test() == that.get_test()); }
+        bool
+        operator==(const readability_project_test& that) const noexcept
+            {
+            return (get_test() == that.get_test());
+            }
+
         /// @returns The underlying test description.
         [[nodiscard]]
         const readability_test& get_test() const noexcept
@@ -71,6 +90,7 @@ namespace readability
             assert(m_test && "test reference not initialized in project test.");
             return *m_test;
             }
+
         /// @returns grade score points (for multi-document tests).
         [[nodiscard]]
         std::shared_ptr<datasetT> get_grade_point_collection()
@@ -81,6 +101,7 @@ namespace readability
                 }
             return m_grade_values;
             }
+
         /// @returns index score points (for multi-document tests).
         [[nodiscard]]
         std::shared_ptr<datasetT> get_index_point_collection()
@@ -91,6 +112,7 @@ namespace readability
                 }
             return m_index_values;
             }
+
         /// @returns cloze score points (for multi-document tests).
         [[nodiscard]]
         std::shared_ptr<datasetT> get_cloze_point_collection()
@@ -101,21 +123,28 @@ namespace readability
                 }
             return m_cloze_scores;
             }
+
         /// @returns Whether the test is included in the project.
         [[nodiscard]]
         bool is_included() const noexcept
-            { return m_included; }
+            {
+            return m_included;
+            }
+
         /// Whether to include the test in the project.
         /// @param inc True to include the test, false to remove.
-        void include(const bool inc) noexcept
-            { m_included = inc; }
+        void include(const bool inc) noexcept { m_included = inc; }
+
         /// @brief Gives direct access to the inclusion flag.
         /// @details Used when an external source needs to edit the
         ///     inclusion status, but can't call include().
         [[nodiscard]]
         bool& get_include_flag() noexcept
-            { return m_included; }
-    private:
+            {
+            return m_included;
+            }
+
+      private:
         const readability_test* m_test{ nullptr };
         // whether the test is included in the project
         bool m_included{ false };
@@ -124,7 +153,7 @@ namespace readability
         std::shared_ptr<datasetT> m_index_values{ nullptr };
         std::shared_ptr<datasetT> m_cloze_scores{ nullptr };
         };
-    }
+    } // namespace readability
 
 /** @} */
 

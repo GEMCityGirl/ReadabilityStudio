@@ -12,14 +12,14 @@
 #ifndef __SPANISH_READABILITY_H__
 #define __SPANISH_READABILITY_H__
 
-#include <cmath>
-#include <stdexcept>
-#include <functional>
-#include <algorithm>
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
-#include "readability_enums.h"
 #include "english_readability.h"
 #include "grade_scales.h"
+#include "readability_enums.h"
+#include <algorithm>
+#include <cmath>
+#include <functional>
+#include <stdexcept>
 
 namespace readability
     {
@@ -34,16 +34,17 @@ namespace readability
         @throws std::domain_error If @c number_of_words is @c 0,
                 throws an exception.*/
     [[nodiscard]]
-    inline double crawford(const uint32_t number_of_words,
-                           const uint32_t number_of_syllables,
+    inline double crawford(const uint32_t number_of_words, const uint32_t number_of_syllables,
                            const uint32_t number_of_sentences)
         {
         if (number_of_words == 0)
-            { throw std::domain_error("invalid word count"); }
+            {
+            throw std::domain_error("invalid word count");
+            }
         const double normalizationFactor = safe_divide<double>(100, number_of_words);
 
-        const double result = (-.205 * (number_of_sentences*normalizationFactor)) +
-            (.049 * (number_of_syllables*normalizationFactor)) - 3.407;
+        const double result = (-.205 * (number_of_sentences * normalizationFactor)) +
+                              (.049 * (number_of_syllables * normalizationFactor)) - 3.407;
         return truncate_k12_plus_grade(result);
         }
 
@@ -67,14 +68,16 @@ namespace readability
                               const uint32_t number_of_sentences)
         {
         if (number_of_sentences == 0)
-            { throw std::domain_error("invalid sentence count."); }
+            {
+            throw std::domain_error("invalid sentence count.");
+            }
         // get the raw SMOG grade score (which can be high [e.g., 25]) then plug into the
         // Spanish -> English grade level formula (below)...
         const double solScore = -2.51 + .74 * smog(number_of_big_words, number_of_sentences, false);
         // ...then clip to the regular 0-19 grade level range
         return truncate_k12_plus_grade(solScore);
         }
-    }
+    } // namespace readability
 
 /** @} */
 
