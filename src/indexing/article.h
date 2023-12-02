@@ -12,22 +12,23 @@
 #ifndef __ARTICLE_H__
 #define __ARTICLE_H__
 
+#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
+#include "abbreviation.h"
+#include "character_traits.h"
+#include "word_list.h"
 #include <algorithm>
 #include <functional>
 #include <set>
-#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
-#include "character_traits.h"
-#include "abbreviation.h"
-#include "word_list.h"
 
 namespace grammar
     {
     /** @brief Base (abstract) class for determining an invalid article/proceeding word pair.*/
     class is_incorrect_article
         {
-    public:
+      public:
         /// @private
         virtual ~is_incorrect_article() {}
+
         /** @brief Determines if an article/proceeding word pair is a mismatch.
             @param article The article.
             @param article_length The length of the article.
@@ -35,14 +36,15 @@ namespace grammar
             @param word_length The length of the word.
             @returns Whether an article/following word pair is a mismatch.*/
         [[nodiscard]]
-        virtual bool operator()(const wchar_t* article, const size_t article_length,
-                                const wchar_t* word, size_t word_length) const = 0;
+        virtual bool
+        operator()(const wchar_t* article, const size_t article_length, const wchar_t* word,
+                   size_t word_length) const = 0;
         };
 
     /** @brief Predicate for determining an mismatching article/proceeding word pair.*/
     class is_incorrect_english_article final : public is_incorrect_article
         {
-    public:
+      public:
         /** @brief Determines if an article/proceeding word pair is a mismatch.
             @param article The article.
             @param article_length The length of the article.
@@ -50,21 +52,27 @@ namespace grammar
             @param word_length The length of the word.
             @returns Whether an article/following word pair is a mismatch.*/
         [[nodiscard]]
-        bool operator()(const wchar_t* article, const size_t article_length,
-                        const wchar_t* word, size_t word_length) const noexcept final;
+        bool
+        operator()(const wchar_t* article, const size_t article_length, const wchar_t* word,
+                   size_t word_length) const noexcept final;
 
         /** @returns The list of words following an 'a' that would be correct
                 (that the analyzer might get wrong).*/
         [[nodiscard]]
         static word_list& get_a_exceptions() noexcept
-            { return m_a_exceptions; }
+            {
+            return m_a_exceptions;
+            }
 
         /** @returns The list of words following an 'an' that would be correct
                 (that the analyzer might get wrong).*/
         [[nodiscard]]
         static word_list& get_an_exceptions() noexcept
-            { return m_an_exceptions; }
-    private:
+            {
+            return m_an_exceptions;
+            }
+
+      private:
         /** @returns @c true if a consonant-starting @c word is actually correct to
                 appear after an "an".
             @param word The word to review.\n
@@ -83,7 +91,7 @@ namespace grammar
         static word_list m_a_exceptions;
         static word_list m_an_exceptions;
         };
-    }
+    } // namespace grammar
 
 /** @}*/
 
