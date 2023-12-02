@@ -10,25 +10,26 @@
 
 using namespace grammar;
 
-std::set<is_double_word_exception::string_type> is_double_word_exception::m_double_word_exceptions =
-    {
-    L"bison",               // Bison bison is American bison
-    L"bye",                 // "Say bye bye to grandma."
-    L"das", L"der", L"die", // German articles, which can appear repeated
-    L"ha",                  // "ha ha ha," she laughed at Blake's hilarious joke
-    L"had",
-    L"ho",                  // "Ho ho ho," said Santa
-    L"Sapiens",             // Homo Sapiens Sapiens is modern humans (subspecies of Homo Sapiens)
-    L"Hool",                // from a Chief Joseph speech
-    L"Leng",                // common name to appear doubled
-    L"log",                 // log-log function in math
-    L"mephitis",            // Mephitis mephitis is the white skunk
-    L"no",                  // "Using C macros in new code is a no no!"
-    L"now",                 // "now now, take it easy"
-    L"Pago",                // capital of American Samoa
-    L"sie",                 // German word that can be repeated
-    L"Sirhan",              // "Sirhan Sirhan" was RFJ's assassin
-    L"ta",                  // "ta ta" means "goodbye"
-    L"that",
-    L"Walla"                // Walla Walla, Washington
+std::set<is_double_word_exception::string_type>
+    is_double_word_exception::m_double_word_exceptions = {
+        L"bison",                    // Bison bison is American bison
+        L"choo",                     // The train goes "choo choo"
+        L"bye",                      // "Say bye bye to grandma."
+        L"das",      L"der", L"die", // German articles, which can appear repeated
+        L"ha",                       // "ha ha ha," she laughed at Blake's hilarious joke
+        L"had",
+        L"ho",       // "Ho ho ho," said Santa
+        L"Sapiens",  // Homo Sapiens Sapiens is modern humans (subspecies of Homo Sapiens)
+        L"Hool",     // from a Chief Joseph speech
+        L"Leng",     // common name to appear doubled
+        L"log",      // log-log function in math
+        L"mephitis", // Mephitis mephitis is the white skunk
+        L"no",       // "Using C macros in new code is a no no!"
+        L"now",      // "now now, take it easy"
+        L"Pago",     // capital of American Samoa
+        L"sie",      // German word that can be repeated
+        L"Sirhan",   // "Sirhan Sirhan" was RFJ's assassin
+        L"ta",       // "ta ta" means "goodbye"
+        L"that",
+        L"Walla" // Walla Walla, Washington
     };
