@@ -12,24 +12,24 @@
 #ifndef __EDIT_TEXT_DIALOG_H__
 #define __EDIT_TEXT_DIALOG_H__
 
-#include <wx/wx.h>
+#include "../../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
+#include "../../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
 #include <wx/dialog.h>
-#include <wx/valgen.h>
+#include <wx/fdrepdlg.h>
+#include <wx/ribbon/art.h>
 #include <wx/ribbon/bar.h>
 #include <wx/ribbon/buttonbar.h>
 #include <wx/ribbon/gallery.h>
 #include <wx/ribbon/toolbar.h>
-#include <wx/ribbon/art.h>
-#include <wx/fdrepdlg.h>
-#include "../../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
-#include "../../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
+#include <wx/valgen.h>
+#include <wx/wx.h>
 
 class BaseProjectDoc;
 
 /// @brief Dialog for editing text from a project.
 class EditTextDlg final : public wxDialog
     {
-public:
+  public:
     /** @brief Constructor.
         @param parent The parent window.
         @param value The text to edit.
@@ -39,45 +39,62 @@ public:
         @param pos The dialog's window position.
         @param size The dialog's size.
         @param style The dialog's style.*/
-    EditTextDlg(wxWindow* parent,
-        BaseProjectDoc* parentDoc,
-        wxString value,
-        wxWindowID id = wxID_ANY,
-        const wxString& caption = _(L"Edit Text"),
-        const wxString& description = wxString{},
-        const wxPoint& pos = wxDefaultPosition,
-        const wxSize& size = wxSize(600, 500),
-        long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
+    EditTextDlg(wxWindow* parent, BaseProjectDoc* parentDoc, wxString value,
+                wxWindowID id = wxID_ANY, const wxString& caption = _(L"Edit Text"),
+                const wxString& description = wxString{}, const wxPoint& pos = wxDefaultPosition,
+                const wxSize& size = wxSize(600, 500),
+                long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
     /// @private
     EditTextDlg(const EditTextDlg& that) = delete;
     /// @private
     EditTextDlg& operator=(const EditTextDlg& that) = delete;
+
     /// @returns The edited text.
     [[nodiscard]]
     const wxString& GetValue() const noexcept
-        { return m_value; }
+        {
+        return m_value;
+        }
+
     /// @brief Searches for and selects a string in the text control.
     /// @details Will search downward, case insensitively, and whole word.
     /// @param str The string to look for.
-    void SelectString(const wxString& str)
+    /// @param replaceStr An optional replacement string.
+    void SelectString(const wxString& str, const wxString& replaceStr = wxString{})
         {
         if (m_textEntry != nullptr)
             {
             m_textEntry->SetSelection(0, 0);
             m_textEntry->FindText(str, true, true, false);
-            m_findData.SetFlags(wxFR_DOWN|wxFR_WHOLEWORD|wxFR_MATCHCASE);
+            m_findData.SetFlags(wxFR_DOWN | wxFR_WHOLEWORD | wxFR_MATCHCASE);
             m_findData.SetFindString(str);
+            m_findData.SetReplaceString(replaceStr);
+            // if Replace dialog is opened, then recreate and reopen it with new content
+            if (m_dlgReplace != nullptr)
+                {
+                m_dlgReplace->Destroy();
+                m_dlgReplace = nullptr;
+                wxCommandEvent dummyCmd;
+                OnShowReplaceDialog(dummyCmd);
+                }
+            // ...or the same with the Find dialog
+            else if (m_dlgFind != nullptr)
+                {
+                m_dlgFind->Destroy();
+                m_dlgFind = nullptr;
+                wxCommandEvent dummyCmd;
+                OnShowFindDialog(dummyCmd);
+                }
             }
         }
-private:
+
+  private:
     /// Creation.
-    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
-        const wxString& caption = wxString{},
-        const wxString& description = wxString{},
-        const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
-        long style = wxDEFAULT_DIALOG_STYLE)
+    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& caption = wxString{},
+                const wxString& description = wxString{}, const wxPoint& pos = wxDefaultPosition,
+                const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE)
         {
-        SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
+        SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
         wxDialog::Create(parent, id, caption, pos, size, style);
         SetMinSize(FromDIP(size));
 
@@ -125,6 +142,6 @@ private:
     wxTextAttr m_style;
     };
 
-/** @}*/
+    /** @}*/
 
 #endif //__EDIT_TEXT_DIALOG_H__

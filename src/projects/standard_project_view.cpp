@@ -568,40 +568,76 @@ void ProjectView::OnTestListDblClick([[maybe_unused]] wxListEvent& event)
 //------------------------------------------------------
 void ProjectView::OnListDblClick(wxListEvent& event)
     {
-    wxString findText;
-    wxWindow* foundWindow = nullptr;
-    wxWindowID textId = wxNOT_FOUND;
+    wxString searchText;
+    wxString replacementText;
+    wxWindow* foundWindow{ nullptr };
+    wxWindowID textId{ wxNOT_FOUND };
+
+    const auto readSuggestionColumn = [&replacementText](const auto listCtrl)
+    {
+        replacementText.clear();
+        const long selected = listCtrl->GetFirstSelected();
+        if (selected != wxNOT_FOUND)
+            {
+            replacementText = listCtrl->GetItemText(selected, listCtrl->GetColumnCount() - 1);
+            const auto tokens = wxStringTokenize(replacementText, L";,");
+            if (tokens.size())
+                {
+                replacementText = tokens[0];
+                }
+            }
+    };
 
     switch (event.GetId())
         {
     case HARD_WORDS_LIST_PAGE_ID:
         foundWindow = GetWordsBreakdownView().FindWindowById(event.GetId());
         if (foundWindow)
-            { findText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
+            {
+            auto listCtrl{ dynamic_cast<const ListCtrlEx*>(foundWindow) };
+            searchText = listCtrl->GetSelectedText();
+            readSuggestionColumn(listCtrl);
+            }
         textId = HARD_WORDS_TEXT_PAGE_ID;
         break;
     case LONG_WORDS_LIST_PAGE_ID:
         foundWindow = GetWordsBreakdownView().FindWindowById(event.GetId());
         if (foundWindow)
-            { findText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
+            {
+            auto listCtrl{ dynamic_cast<const ListCtrlEx*>(foundWindow) };
+            searchText = listCtrl->GetSelectedText();
+            readSuggestionColumn(listCtrl);
+            }
         textId = LONG_WORDS_TEXT_PAGE_ID;
         break;
     case DC_WORDS_LIST_PAGE_ID:
         foundWindow = GetWordsBreakdownView().FindWindowById(event.GetId());
         if (foundWindow)
-            { findText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
+            {
+            auto listCtrl{ dynamic_cast<const ListCtrlEx*>(foundWindow) };
+            searchText = listCtrl->GetSelectedText();
+            readSuggestionColumn(listCtrl);
+            }
         textId = DC_WORDS_TEXT_PAGE_ID;
         break;
     case HARRIS_JACOBSON_WORDS_LIST_PAGE_ID:
         foundWindow = GetWordsBreakdownView().FindWindowById(event.GetId());
         if (foundWindow)
-            { findText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
+            {
+            auto listCtrl{ dynamic_cast<const ListCtrlEx*>(foundWindow) };
+            searchText = listCtrl->GetSelectedText();
+            readSuggestionColumn(listCtrl);
+            }
         textId = HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID;
         break;
     case SPACHE_WORDS_LIST_PAGE_ID:
         foundWindow = GetWordsBreakdownView().FindWindowById(event.GetId());
         if (foundWindow)
-            { findText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
+            {
+            auto listCtrl{ dynamic_cast<const ListCtrlEx*>(foundWindow) };
+            searchText = listCtrl->GetSelectedText();
+            readSuggestionColumn(listCtrl);
+            }
         textId = SPACHE_WORDS_TEXT_PAGE_ID;
         break;
     case ALL_WORDS_CONDENSED_LIST_PAGE_ID:
@@ -611,7 +647,7 @@ void ProjectView::OnListDblClick(wxListEvent& event)
     case PROPER_NOUNS_LIST_PAGE_ID:
         foundWindow = GetWordsBreakdownView().FindWindowById(event.GetId());
         if (foundWindow)
-            { findText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
+            { searchText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
         textId = HARD_WORDS_TEXT_PAGE_ID;
         break;
     case OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID:
@@ -619,7 +655,7 @@ void ProjectView::OnListDblClick(wxListEvent& event)
         if (foundWindow)
             {
             const auto selectedItem = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetFirstSelected();
-            findText = (selectedItem == wxNOT_FOUND) ? wxString{} :
+            searchText = (selectedItem == wxNOT_FOUND) ? wxString{} :
                 dynamic_cast<const ListCtrlEx*>(foundWindow)->GetItemTextEx(selectedItem,1);
             }
         textId = HARD_WORDS_TEXT_PAGE_ID;
@@ -627,7 +663,7 @@ void ProjectView::OnListDblClick(wxListEvent& event)
     case LONG_SENTENCES_LIST_PAGE_ID:
         foundWindow = GetSentencesBreakdownView().FindWindowById(event.GetId());
         if (foundWindow)
-            { findText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
+            { searchText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
         textId = LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID;
         break;
     // grammar lists will just use the same text window
@@ -652,36 +688,36 @@ void ProjectView::OnListDblClick(wxListEvent& event)
     case CLICHES_LIST_PAGE_ID:
         foundWindow = GetGrammarView().FindWindowById(event.GetId());
         if (foundWindow)
-            { findText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
+            { searchText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
         textId = LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID;
         break;
     case DOLCH_WORDS_LIST_PAGE_ID:
         foundWindow = GetDolchSightWordsView().FindWindowById(event.GetId());
         if (foundWindow)
-            { findText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
+            { searchText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
         textId = DOLCH_WORDS_TEXT_PAGE_ID;
         break;
     case NON_DOLCH_WORDS_LIST_PAGE_ID:
         foundWindow = GetDolchSightWordsView().FindWindowById(event.GetId());
         if (foundWindow)
-            { findText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
+            { searchText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
         textId = NON_DOLCH_WORDS_TEXT_PAGE_ID;
         break;
     default:
         // custom test
         foundWindow = GetWordsBreakdownView().FindWindowById(event.GetId());
         if (foundWindow)
-            { findText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
+            { searchText = dynamic_cast<const ListCtrlEx*>(foundWindow)->GetSelectedText(); }
         textId = event.GetId();
         }
 
-    findText.Trim(true);
+    searchText.Trim(true);
 
     // if the embedded editor is open, then select the text in there
     if (m_embeddedTextEditor != nullptr &&
         m_embeddedTextEditor->IsShown())
         {
-        m_embeddedTextEditor->SelectString(findText);
+        m_embeddedTextEditor->SelectString(searchText, replacementText);
         }
     else
         {
@@ -697,7 +733,7 @@ void ProjectView::OnListDblClick(wxListEvent& event)
             {
             FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(theWindow);
             textWindow->SetSelection(0, 0);
-            textWindow->FindText(findText, true, true, false);
+            textWindow->FindText(searchText, true, true, false);
             // Search by label for custom word-list tests (the list and report have the same ID);
             // otherwise, search by ID.
             GetSideBar()->SelectSubItem(
@@ -707,7 +743,7 @@ void ProjectView::OnListDblClick(wxListEvent& event)
             }
 
         // update the search panel to remember the string we searched for
-        m_searchCtrl->SetFindString(findText);
+        m_searchCtrl->SetFindString(searchText);
         }
     }
 
