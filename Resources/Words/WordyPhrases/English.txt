@@ -3431,7 +3431,7 @@ I an	I am	3
 I are	I am	3	and	
 I has	I have	3		
 I herd	I heard	3		
-I is	I am	3	War	
+I is	I am	3	integer;variable;War	
 I new	I knew	3		
 I personally	I	0		
 I thing	I think	3		
@@ -3612,6 +3612,7 @@ in opposition to	opposed to	0
 in order for	for	0		
 in order that	for	0		
 in order to	to, for	0		
+In order to for	strike the 'to' or 'for'	3		
 in other words	that is	0		
 in our assessment	we assess, we judge	0		
 in our presents	in our presence	3		
@@ -6761,9 +6762,9 @@ tests out	tests	0
 thank your for	thank you for	3		
 that being the case	consequently, therefore, hence	0		
 that is to say	that is	0		
-that where	that were	3	such	a;her;his;its;that;the
+that where	that were, strike 'that'	3	such	a;clause;her;his;its;statement;that;the
 that's the way the cookie crumbles	that's the way things are	2		
-the a	strike one of these	3		priori;z
+the a	strike one of these	3		and;priori;z
 the acorn doesn't fall far from the tree	he exhibits the same behavior as his parent/boss/etc.	2		
 the affect	the effect	3		
 the alter	the altar	3		
@@ -6790,7 +6791,7 @@ the extent to which	how far, how much	0
 the fact of the matter is	in fact	0		
 the fact that	that	0		
 the flew	the flue	3		
-the from	the form	3		clause;statement
+the from	the form	3		button;clause;file;statement
 the have	they have, then have	3		
 the heart of the matter	crux, center	0		
 the hers	strike one of these	3		

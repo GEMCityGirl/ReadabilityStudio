@@ -8,9 +8,9 @@
 #include
 #pragma
 #undef
-0xffffffff
 __asm
 _Pragma
+afxmsg
 alignas
 alignof
 and
@@ -36,6 +36,7 @@ case
 catch
 cdebug
 cdecl
+cfile
 cflags
 char
 char16_t
@@ -89,8 +90,10 @@ fastcall
 fflush
 final
 float
+fopen
 for
 friend
+fseek
 fstream
 GCC
 gethostname
@@ -129,11 +132,13 @@ isxdigit
 keepalive
 LCID
 ldiv
+libc
 libstdc
 line
 localtime
 long
 longjmp
+lpsz
 lpvalue
 lstrcat
 lstrcmp
@@ -151,6 +156,7 @@ MOF
 mutable
 namespace
 new
+nodiscard
 noexcept
 not
 not_eq
@@ -186,6 +192,9 @@ signed
 size_t
 sizeof
 sprintf
+sprintfl
+sprintfs
+sprintfsl
 stackframe
 static
 static_assert
@@ -217,6 +226,10 @@ strtol
 strtoul
 struct
 switch
+swprintf
+swprintfl
+swprintfs
+swprintfsl
 synchronized
 template
 this

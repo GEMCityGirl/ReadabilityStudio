@@ -13,7 +13,8 @@ UCSF
 UDP
 UFO
 UMN
+unary
 USB
 USPTO
+usr
 UWP
-unary

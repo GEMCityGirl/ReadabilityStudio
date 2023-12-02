@@ -369,6 +369,7 @@ Athenian
 Athens
 Atherton
 Athletica
+ATL
 Atlanta
 Atlante
 Atlantian
@@ -1103,6 +1104,7 @@ Copet
 Copland
 Coppertone
 Corba
+Cordova
 Corinthian
 Cornhill
 Corningware
@@ -2886,6 +2888,7 @@ Mex
 Mexicali
 Mexican
 Mexico
+MFC
 Miami
 Michelob
 Michigan
@@ -4728,6 +4731,7 @@ Venus
 Venusian
 Veracruz
 Veradis
+Verisign
 Verizon
 Vermont
 Vermonter

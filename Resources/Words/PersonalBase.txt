@@ -11030,6 +11030,7 @@ Kermit
 Kermy
 Kern
 Kernig
+Kernighan
 Kerouac
 Kerr
 Kerri

@@ -8739,6 +8739,9 @@ backstrokes
 backstroking
 backtalk
 backtalks
+backtick
+backtick's
+backticks
 backtrace
 backtrace's
 backtraced
@@ -11280,6 +11283,8 @@ bezel
 bezel's
 bezels
 bezier
+bezier's
+beziers
 bezique
 bezoar
 Be²⁺
@@ -12715,6 +12720,9 @@ blockhouse's
 blockhouses
 blockier
 blocking
+blockquote
+blockquote's
+blockquotes
 blocks
 blocky
 blocs
@@ -22679,6 +22687,10 @@ coder
 coder's
 coders
 codes
+codesign
+codesigned
+codesigning
+codesigns
 codespace
 codespace's
 codespaces
@@ -31908,6 +31920,12 @@ deindustrialisations
 deindustrialization
 deindustrialization's
 deindustrializations
+deinitialization
+deinitialization's
+deinitializations
+deinitializer
+deinitializer's
+deinitializers
 deinococcus
 deinstall
 deinstallation
@@ -33193,6 +33211,7 @@ deserialise
 deserialised
 deserialises
 deserialising
+deserialization
 deserialize
 deserialized
 deserializes
@@ -33777,6 +33796,10 @@ devious
 deviously
 deviousness
 deviousness's
+devirtualize
+devirtualized
+devirtualizes
+devirtualizing
 devise
 devised
 deviser
@@ -35041,6 +35064,8 @@ disambiguates
 disambiguating
 disambiguation
 disambiguations
+disambiguities
+disambiguity
 disant
 disappear
 disappearance
@@ -37422,6 +37447,8 @@ downbeat
 downbeat's
 downbeats
 downcast
+downcasted
+downcasting
 downcasts
 downdraft
 downdraft's
@@ -38700,6 +38727,9 @@ dynamized
 dynamo
 dynamo's
 dynamos
+dynaset
+dynaset's
+dynasets
 dynastic
 dynasties
 dynasty
@@ -44997,6 +45027,7 @@ fagots
 fags
 fahrenheit
 fail
+failable
 failed
 failing
 failing's
@@ -45141,6 +45172,7 @@ fallowness
 fallowness's
 fallows
 falls
+fallthrough
 false
 falsehood
 falsehood's
@@ -63929,6 +63961,7 @@ initialiser's
 initialisers
 initialises
 initialising
+initializable
 initialization
 initialization's
 initializations
@@ -65345,6 +65378,9 @@ interpolation
 interpolation's
 interpolations
 interpolative
+interpolator
+interpolator's
+interpolators
 interpose
 interposed
 interposer
@@ -68171,6 +68207,9 @@ keyboarding
 keyboardist
 keyboardists
 keyboards
+keychain
+keychain's
+keychains
 keyclick
 keyclick's
 keyclicks
@@ -72111,6 +72150,9 @@ lockers
 locket
 locket's
 lockets
+lockguard
+lockguard's
+lockguards
 locking
 lockings
 lockjaw
@@ -72210,6 +72252,7 @@ logbooks
 loge
 loge's
 loges
+loggable
 logged
 logger
 logger's
@@ -76929,6 +76972,9 @@ microanalytic
 microanalytical
 microanatomy
 microangiopathy
+microarchitecture
+microarchitecture's
+microarchitectures
 microarcsec
 microarray
 microarrays
@@ -80809,6 +80855,7 @@ multinomial
 multinomial's
 multinucleate
 multinucleated
+multipage
 multipara
 multiparous
 multipart
@@ -83291,6 +83338,7 @@ nitrosoureas
 nitrosyl
 nitrous
 nits
+nitty
 nitwit
 nitwit's
 nitwits
@@ -84085,9 +84133,11 @@ nonrecognition
 nonrecognition's
 nonrecognitions
 nonrecoverable
+nonrectangular
 nonrecurring
 nonredeemable
 nonreducing
+nonredundant
 nonrefillable
 nonrefundable
 nonregular
@@ -84205,6 +84255,7 @@ nonstrategic
 nonstriated
 nonstriking
 nonstructural
+nonstructured
 nonstudent
 nonstudent's
 nonstudents
@@ -84293,6 +84344,7 @@ nonviolence's
 nonviolences
 nonviolent
 nonviolently
+nonvirtual
 nonvirulent
 nonvisible
 nonvisual
@@ -85160,6 +85212,7 @@ obituaries
 obituary
 obituary's
 obj
+objc
 object
 object's
 objected
@@ -85823,6 +85876,7 @@ offprinting
 offprints
 offramp
 offs
+offscreen
 offset
 offset's
 offsets
@@ -97478,6 +97532,7 @@ preponderately
 preponderates
 preponderating
 preponderation
+prepopulated
 preportion
 preportioned
 preportioning
@@ -102714,6 +102769,8 @@ readjustment
 readjustment's
 readjustments
 readjusts
+readme
+readmes
 readmission
 readmission's
 readmissions
@@ -106337,6 +106394,10 @@ reputedly
 reputes
 reputing
 repêchage
+requeried
+requeries
+requery
+requerying
 request
 request's
 requested
@@ -107804,6 +107865,10 @@ reworks
 rewound
 rewove
 rewoven
+rewrap
+rewrapped
+rewrapping
+rewraps
 rewritable
 rewrite
 rewriter
@@ -111063,6 +111128,9 @@ scandals
 scandium
 scandium's
 scandiums
+scanline
+scanline's
+scanlines
 scanned
 scanner
 scanner's
@@ -113435,6 +113503,7 @@ serialise
 serialised
 serialises
 serialising
+serializable
 serialization
 serialization's
 serializations
@@ -115152,6 +115221,10 @@ sidelined
 sideliner
 sidelines
 sidelining
+sideload
+sideloaded
+sideloading
+sideloads
 sidelong
 sideman
 sideman's
@@ -123087,12 +123160,18 @@ subparagraph's
 subpart
 subpart's
 subparts
+subpattern
+subpattern's
+subpatterns
 subphase
 subphase's
 subphases
 subphyla
 subphylum
 subpial
+subpixel
+subpixel's
+subpixels
 subplot
 subplot's
 subplots
@@ -127333,6 +127412,10 @@ template
 template's
 templated
 templates
+templatize
+templatized
+templatizes
+templatizing
 temple
 temple's
 templed
@@ -130617,6 +130700,9 @@ trackable
 trackage
 trackball
 trackballs
+trackbar
+trackbar's
+trackbars
 trackbed
 tracked
 tracker
@@ -135823,6 +135909,8 @@ unnoticeable
 unnoticed
 unnourished
 unnumbered
+uno
+uno's
 unobjectionable
 unobliging
 unobservable
@@ -136040,6 +136128,7 @@ unpunctual
 unpunctuality
 unpunctuality's
 unpunished
+unpurchased
 unqualified
 unqualifiedly
 unquantifiable
@@ -136205,6 +136294,7 @@ unrestricted
 unrestrictedly
 unrestrictive
 unrests
+unretrievable
 unreturned
 unrevealed
 unrevealing
@@ -136922,6 +137012,10 @@ upbringing
 upbringing's
 upbringings
 UPC
+upcast
+upcasted
+upcasting
+upcasts
 upchuck
 upchucked
 upchucking
@@ -136937,6 +137031,7 @@ upcycling
 updatability
 updatable
 update
+updateable
 updated
 updater
 updater's
@@ -138519,6 +138614,7 @@ versifying
 versing
 version
 version's
+versionable
 versioned
 versioning
 versions
@@ -138893,6 +138989,9 @@ viewlessly
 viewpoint
 viewpoint's
 viewpoints
+viewport
+viewport's
+viewports
 views
 vigesimal
 vigil
@@ -139153,6 +139252,7 @@ virtualise
 virtualised
 virtualises
 virtualising
+virtuality
 virtualization
 virtualization's
 virtualizations
@@ -143872,6 +143972,7 @@ zoologists
 zoology
 zoology's
 zoom
+zoomable
 zoomed
 zooming
 zooms
