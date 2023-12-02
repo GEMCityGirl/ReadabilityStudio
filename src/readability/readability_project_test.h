@@ -74,15 +74,33 @@ namespace readability
         /// @returns grade score points (for multi-document tests).
         [[nodiscard]]
         std::shared_ptr<datasetT> get_grade_point_collection()
-            { return m_grade_values; }
+            {
+            if (m_grade_values == nullptr)
+                {
+                m_grade_values = std::make_shared<datasetT>();
+                }
+            return m_grade_values;
+            }
         /// @returns index score points (for multi-document tests).
         [[nodiscard]]
         std::shared_ptr<datasetT> get_index_point_collection()
-            { return m_index_values; }
+            {
+            if (m_index_values == nullptr)
+                {
+                m_index_values = std::make_shared<datasetT>();
+                }
+            return m_index_values;
+            }
         /// @returns cloze score points (for multi-document tests).
         [[nodiscard]]
         std::shared_ptr<datasetT> get_cloze_point_collection()
-            { return m_cloze_scores; }
+            {
+            if (m_cloze_scores == nullptr)
+                {
+                m_cloze_scores = std::make_shared<datasetT>();
+                }
+            return m_cloze_scores;
+            }
         /// @returns Whether the test is included in the project.
         [[nodiscard]]
         bool is_included() const noexcept
@@ -102,9 +120,9 @@ namespace readability
         // whether the test is included in the project
         bool m_included{ false };
         // batch projects use these for its multi-doc graphs
-        std::shared_ptr<datasetT> m_grade_values{ std::make_shared<datasetT>() };
-        std::shared_ptr<datasetT> m_index_values{ std::make_shared<datasetT>() };
-        std::shared_ptr<datasetT> m_cloze_scores{ std::make_shared<datasetT>() };
+        std::shared_ptr<datasetT> m_grade_values{ nullptr };
+        std::shared_ptr<datasetT> m_index_values{ nullptr };
+        std::shared_ptr<datasetT> m_cloze_scores{ nullptr };
         };
     }
 
