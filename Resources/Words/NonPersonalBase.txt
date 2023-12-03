@@ -36,6 +36,7 @@ Adidas
 Adnexa
 Adriaen
 Adriatic
+Adventus
 Advil
 Aegean
 Aetna
@@ -226,6 +227,7 @@ AOL
 APA
 Apache
 Apalachicola
+Aparecida
 Apatosaurus
 Aphthous
 Apia
@@ -904,6 +906,7 @@ Celtic
 Cengage
 Cenis
 Centauri
+Centerville
 Centralia
 Centralian
 Centre-Val
@@ -923,6 +926,7 @@ Chandigarh
 Chandipura
 Chanukah
 Chappaquiddick
+Chapstick
 Chardonnay
 Charentes
 Charin
@@ -1035,6 +1039,7 @@ Citicorp
 Citrix
 CityLinks
 Clackmannanshire
+Clairvaux
 Clapeyron
 Claudian
 ClearType
@@ -1297,6 +1302,7 @@ DirectTV
 DirectX
 Disneyland
 District
+Divina
 Dixie
 Dixiecrat
 Dixieland
@@ -1381,6 +1387,7 @@ Easter
 Easthampton
 Eastland
 Eastleigh
+Eastside
 Eastward
 Eastwick
 Eaton
@@ -1777,6 +1784,7 @@ Gateshead
 Gatlinburg
 Gatling
 Gatorade
+Gaudete
 Gaul
 Gaulish
 Gaussian
@@ -1911,6 +1919,7 @@ Gruetzner
 Guadalajara
 Guadalcanal
 Guadalquivir
+Guadalupanas
 Guadalupe
 Guadeloupe
 Guallatiri
@@ -2127,6 +2136,7 @@ Huddersfield
 Huggies
 Huguenot
 Humana
+Humanae
 Humber
 Humberside
 Humboldt
@@ -2341,6 +2351,9 @@ JPMorgan
 Jpn
 JScript
 Juba
+Jubilarian
+Jubilarian's
+Jubilarians
 Judaic
 Judaical
 Judaism
@@ -2512,9 +2525,11 @@ Kyoto
 Kyrgyzstan
 Königsberg
 L'Oréal
+L'Osservatore
 Labrador
 Lackawanna
 Laesbarhedsindex
+Laetare
 Lagrangian
 Lakeland
 Lakers
@@ -2596,6 +2611,7 @@ Lichtenstein
 Liechtenstein
 Liechtensteiner
 Lifewire
+Liguori
 Lilliput
 Lilliputian
 Lilongwe
@@ -2607,9 +2623,11 @@ Lincolnshire
 Lindane
 Lindberg
 Lindbergh
+Linneman
 Linux
 Lisbon
 Lisburn
+Liscum
 Listerine
 Lithuania
 Lithuanian
@@ -2722,6 +2740,7 @@ MailChimp
 Maine
 Mainer
 Mainz
+Majella
 Majuro
 Makemake
 Mako
@@ -2782,6 +2801,7 @@ Markism
 Markkula
 Markovian
 MarkTen
+Maronite
 Marquette
 Marriott
 Mars
@@ -2890,6 +2910,7 @@ Mexican
 Mexico
 MFC
 Miami
+Miamisburg
 Michelob
 Michigan
 Michigander
@@ -3059,6 +3080,7 @@ Naltrexone
 Nam
 Namibia
 Namibian
+Namur
 Nanchang
 Nanism
 Nanjing
@@ -3090,6 +3112,7 @@ NatWest
 Nauru
 Navaho
 Navajo
+Navidad
 Nayarit
 Naypyidaw
 Nazarene
@@ -3182,6 +3205,7 @@ Nike
 Nikkei
 Nikon
 Nile
+Nilles
 NIMBY
 Nineveh
 Nintendo
@@ -3214,8 +3238,10 @@ Norsemen
 Nortel
 Northampton
 Northamptonshire
+Northcrest
 Northfield
 Northridge
+Northside
 Northumberland
 Northumbria
 Northwoods
@@ -3418,6 +3444,7 @@ Pavlovian
 Pawnee
 Pawtucket
 Paxil
+Paycor
 Payless
 PayPal
 PBS
@@ -3463,6 +3490,7 @@ Petronilla
 Petronille
 Peugeot
 Pewaukee
+Pez
 Pfalz
 Pfizer
 Phanerozoic
@@ -3799,6 +3827,7 @@ Rockaway
 Rockies
 Rockland
 Rockville
+Roettele
 Rogaine
 Rogerian
 Roku
@@ -3809,6 +3838,7 @@ Roman
 Romania
 Romanian
 Romanist
+Romano
 Romanticism
 Rome
 Romero
@@ -3966,6 +3996,7 @@ Scotty's
 Scrabble
 Scranton
 Scribner
+Scroggins
 Scutellaria
 Scythia
 Seabrook
@@ -4138,6 +4169,7 @@ Southampton
 Southcentral
 Southfield
 Southport
+Southside
 Southwark
 Soviet
 Spaceguard
@@ -4166,6 +4198,7 @@ Spotify
 Spotsylvania
 Spraggins
 Springboro
+Springdale
 Springfield
 SpringHill
 SPSS
@@ -4344,6 +4377,7 @@ TaskRabbit
 Tasman
 Tasmania
 Tasmanian
+Tatar
 Tatiana
 Tatiania
 Tatooine
@@ -4831,6 +4865,7 @@ Walsingham
 Wampanoag
 Wansbeck
 Wansee
+Wapakoneta
 Warby
 Warcraft
 Wareham
@@ -4901,6 +4936,7 @@ Westmoreland
 Westmorland
 Westphalia
 Westport
+Westside
 Westview
 Westwood
 WetJet

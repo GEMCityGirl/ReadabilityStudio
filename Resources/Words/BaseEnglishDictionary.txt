@@ -3761,6 +3761,7 @@ amontillados
 amonton
 amonton's
 amontons
+amor
 amoral
 amoralities
 amorality
@@ -7325,6 +7326,9 @@ atheistically
 atheists
 athelia
 athelia's
+athenaeum
+athenaeum's
+athenaeums
 atherectomy
 atherectomy's
 athero
@@ -8138,6 +8142,7 @@ avalanched
 avalanches
 avalanching
 avant
+avanza
 avarice
 avarice's
 avarices
@@ -10379,6 +10384,7 @@ bedfast
 bedfellow
 bedfellow's
 bedfellows
+bedhead
 bedim
 bedimmed
 bedimming
@@ -34813,6 +34819,8 @@ dioptres
 diorama
 diorama's
 dioramas
+dios
+diosa
 dioscorides
 dioxalate
 dioxane
@@ -43190,6 +43198,12 @@ evangelist
 evangelist's
 evangelistic
 evangelists
+evangelium
+evangelium's
+evangeliums
+evangelization
+evangelization's
+evangelizations
 evangelize
 evangelized
 evangelizes
@@ -50232,6 +50246,7 @@ fryer
 fryer's
 fryers
 frying
+frys
 FSA
 FSLIC
 ft
@@ -52178,6 +52193,7 @@ giantkiller
 giants
 giardia
 giardiasis
+giardino
 gibber
 gibbered
 gibberellic
@@ -53308,6 +53324,7 @@ goodbyes
 gooder
 gooders
 goodhearted
+goodie
 goodie's
 goodies
 goodish
@@ -64988,6 +65005,7 @@ interchanger's
 interchanges
 interchanging
 interchangings
+interchurch
 intercity
 interclass
 interclavicle
@@ -70945,6 +70963,8 @@ liberator
 liberator's
 liberators
 libero
+libertad
+libertad's
 libertarian
 libertarian's
 libertarianism
@@ -80162,6 +80182,9 @@ motherers
 motherhood
 motherhood's
 motherhoods
+motherhouse
+motherhouse's
+motherhouses
 mothering
 mothering's
 motherland
@@ -88976,6 +88999,9 @@ pager
 pager's
 pagers
 pages
+pageview
+pageview's
+pageviews
 paginate
 paginated
 paginates
@@ -97446,6 +97472,7 @@ prenatally
 prenotification
 prenotification's
 prenotifications
+prensa
 Prent
 Prent's
 prentice
@@ -125721,6 +125748,9 @@ syngenesis
 synod
 synod's
 synodal
+synodalities
+synodality
+synodality's
 synodic
 synodical
 synods
@@ -134384,6 +134414,9 @@ undercooked
 undercount
 undercounts
 undercover
+undercroft
+undercroft's
+undercrofts
 undercurrent
 undercurrent's
 undercurrents
@@ -135182,6 +135215,8 @@ ungenerous
 ungenerously
 ungentle
 ungentlemanly
+ungenuine
+ungenuinely
 ungerminated
 ungirded
 unglamorous
