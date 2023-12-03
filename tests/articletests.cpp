@@ -418,6 +418,7 @@ TEST_CASE("English Article", "[articles]")
         {
         grammar::is_incorrect_english_article artc;
 
+        CHECK(artc(L"an", 2, L"HRESULT", 7) == false);
         CHECK(artc(L"an", 2, L"HMS", 3) == false);
         CHECK(artc(L"an", 2, L"LLC", 3) == false);
         CHECK(artc(L"an", 2, L"MST", 3) == false);

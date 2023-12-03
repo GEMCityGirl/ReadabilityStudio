@@ -270,6 +270,9 @@ bool is_incorrect_english_article::is_an_exception(const wchar_t* word, const si
              traits::case_insensitive_ex::compare(word, L"heir", 4) == 0 ||
              traits::case_insensitive_ex::compare(word, L"html", 4) == 0 ||
              traits::case_insensitive_ex::compare(word, L"honest", 6) == 0 ||
+             // an HRESULT
+             (word_length >= 2 && traits::case_insensitive_ex::eq(word[0], L'H') &&
+              characters::is_character::is_consonant(word[1])) ||
              // treat SAT and sat differently
              (word_length == 3 &&
               traits::case_insensitive_ex::compare_case_sensitive(word, L"SAT", 3) == 0))
