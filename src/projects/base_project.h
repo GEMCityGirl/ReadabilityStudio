@@ -1869,6 +1869,7 @@ private:
 
     static readability::readability_test_collection<readability::readability_test>
         m_defaultReadabilityTestsTemplate;
+    static std::map<wxString, int> m_testIdMap;
     };
 
 /// Used to mark a project as being loaded or refreshed.

@@ -47,6 +47,7 @@ word_list_with_replacements BaseProject::difficult_word_replacement_list;
 readability::dolch_word_list BaseProject::m_dolch_word_list;
 CustomReadabilityTestCollection BaseProject::m_custom_word_tests;
 readability::readability_test_collection<readability::readability_test> BaseProject::m_defaultReadabilityTestsTemplate;
+std::map<wxString, int> BaseProject::m_testIdMap;
 std::set<TestBundle> BaseProject::m_testBundles;
 // defines the stat goals' internal labels, display labels, and lambdas to calculate them
 std::map<comparable_first_pair<Goal::string_type, Goal::string_type>, std::function<double(const BaseProject*)>>
@@ -369,412 +370,411 @@ BaseProject::BaseProject() :
     // bind the standard test functions with their respective IDs
     m_standardTestFunctions.reserve(GetDefaultReadabilityTestsTemplate().get_test_count());
     // DEGREES_OF_READING_POWER
-    std::pair<std::vector<readability::readability_test>::const_iterator, bool> testPos =
-        GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::DEGREES_OF_READING_POWER());
-    if (testPos.second)
+    auto testPos = m_testIdMap.find(ReadabilityMessages::DEGREES_OF_READING_POWER());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddDegreesOfReadingPowerTest));
         }
     // DEGREES_OF_READING_POWER_GE
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::DEGREES_OF_READING_POWER_GE());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::DEGREES_OF_READING_POWER_GE());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddDegreesOfReadingPowerGeTest));
         }
     // SOL_SPANISH
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::SOL_SPANISH());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::SOL_SPANISH());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddSolSpanishTest));
         }
     // CRAWFORD
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::CRAWFORD());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::CRAWFORD());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddCrawfordTest));
         }
     // FRASE
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::FRASE());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::FRASE());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddFraseTest));
         }
     // GPM_FRY
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::GPM_FRY());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::GPM_FRY());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddGilliamPenaMountainFryTest));
         }
     // PSK_FARR_JENKINS_PATERSON
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::PSK_FARR_JENKINS_PATERSON());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::PSK_FARR_JENKINS_PATERSON());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddPskFarrJenkinsPatersonTest));
         }
     // SPACHE
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::SPACHE());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::SPACHE());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddSpacheTest));
         }
     // HARRIS_JACOBSON
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::HARRIS_JACOBSON());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::HARRIS_JACOBSON());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddHarrisJacobsonTest));
         }
     // ARI
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::ARI());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::ARI());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddAriTest));
         }
     // GUNNING_FOG
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::GUNNING_FOG());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::GUNNING_FOG());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddFogTest));
         }
     // LIX
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::LIX());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::LIX());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddLixTest));
         }
     // RIX
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::RIX());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::RIX());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddRixTest));
         }
     // DALE_CHALL
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::DALE_CHALL());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::DALE_CHALL());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddNewDaleChallTest));
         }
     // COLEMAN_LIAU
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::COLEMAN_LIAU());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::COLEMAN_LIAU());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddColemanLiauTest));
         }
     // FORCAST
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::FORCAST());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::FORCAST());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddForcastTest));
         }
     // FLESCH
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::FLESCH());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::FLESCH());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddFleschTest));
         }
     // NEW_FOG
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::NEW_FOG());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::NEW_FOG());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddNewFogCountTest));
         }
     // FLESCH_KINCAID_SIMPLIFIED
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::FLESCH_KINCAID_SIMPLIFIED());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::FLESCH_KINCAID_SIMPLIFIED());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddFleschKincaidSimplifiedTest));
         }
     // FLESCH_KINCAID
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::FLESCH_KINCAID());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::FLESCH_KINCAID());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddFleschKincaidTest));
         }
     // EFLAW
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::EFLAW());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::EFLAW());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddEflawTest));
         }
     // SMOG
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::SMOG());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::SMOG());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddSmogTest));
         }
     // SMOG_BAMBERGER_VANECEK
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::SMOG_BAMBERGER_VANECEK());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::SMOG_BAMBERGER_VANECEK());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddSmogBambergerVanecekTest));
         }
     // SCHWARTZ
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::SCHWARTZ());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::SCHWARTZ());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddSchwartzTest));
         }
     // QU
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::QU());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::QU());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddQuBambergerVanecekTest));
         }
     // MODIFIED_SMOG
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::MODIFIED_SMOG());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::MODIFIED_SMOG());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddModifiedSmogTest));
         }
     // SMOG_SIMPLIFIED
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::SMOG_SIMPLIFIED());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::SMOG_SIMPLIFIED());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddSmogSimplifiedTest));
         }
     // SIMPLE_ARI
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::SIMPLE_ARI());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::SIMPLE_ARI());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddSimplifiedAriTest));
         }
     // NEW_ARI
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::NEW_ARI());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::NEW_ARI());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddNewAriTest));
         }
     // PSK_FLESCH
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::PSK_FLESCH());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::PSK_FLESCH());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddPskFleschTest));
         }
     // FRY
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::FRY());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::FRY());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddFryTest));
         }
     // RAYGOR
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::RAYGOR());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::RAYGOR());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddRaygorTest));
         }
     // PSK_DALE_CHALL
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::PSK_DALE_CHALL());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::PSK_DALE_CHALL());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddPskDaleChallTest));
         }
     // BORMUTH_CLOZE_MEAN
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::BORMUTH_CLOZE_MEAN());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::BORMUTH_CLOZE_MEAN());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddBormuthClozeMeanTest));
         }
     // BORMUTH_GRADE_PLACEMENT_35
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::BORMUTH_GRADE_PLACEMENT_35());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::BORMUTH_GRADE_PLACEMENT_35());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddBormuthGradePlacement35Test));
         }
     // FARR_JENKINS_PATERSON
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::FARR_JENKINS_PATERSON());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::FARR_JENKINS_PATERSON());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddFarrJenkinsPatersonTest));
         }
     // PSK_GUNNING_FOG
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::PSK_GUNNING_FOG());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::PSK_GUNNING_FOG());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddPskFogTest));
         }
     // NEW_FARR_JENKINS_PATERSON
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::NEW_FARR_JENKINS_PATERSON());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::NEW_FARR_JENKINS_PATERSON());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddNewFarrJenkinsPatersonTest));
         }
     // WHEELER_SMITH
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::WHEELER_SMITH());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::WHEELER_SMITH());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddWheelerSmithTest));
         }
     // AMSTAD
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::AMSTAD());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::AMSTAD());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddAmstadTest));
         }
     // WHEELER_SMITH_BAMBERGER_VANECEK
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::WHEELER_SMITH_BAMBERGER_VANECEK());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::WHEELER_SMITH_BAMBERGER_VANECEK());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddWheelerSmithBambergerVanecekTest));
         }
     // NEUE_WIENER_SACHTEXTFORMEL1
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL1());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL1());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddNeueWienerSachtextformel1));
         }
     // NEUE_WIENER_SACHTEXTFORMEL2
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL2());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL2());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddNeueWienerSachtextformel2));
         }
     // NEUE_WIENER_SACHTEXTFORMEL3
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL3());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL3());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddNeueWienerSachtextformel3));
         }
     // LIX_GERMAN_CHILDRENS_LITERATURE
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::LIX_GERMAN_CHILDRENS_LITERATURE());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::LIX_GERMAN_CHILDRENS_LITERATURE());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddLixGermanChildrensLiterature));
         }
     // LIX_GERMAN_TECHNICAL
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::LIX_GERMAN_TECHNICAL());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::LIX_GERMAN_TECHNICAL());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddLixGermanTechnical));
         }
     // RIX_GERMAN_FICTION
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::RIX_GERMAN_FICTION());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::RIX_GERMAN_FICTION());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddRixGermanFiction));
         }
     // RIX_GERMAN_NONFICTION
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::RIX_GERMAN_NONFICTION());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::RIX_GERMAN_NONFICTION());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddRixGermanNonFiction));
         }
     // ELF
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::ELF());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::ELF());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddElfTest));
         }
     // DANIELSON_BRYAN_1
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::DANIELSON_BRYAN_1());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::DANIELSON_BRYAN_1());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddDanielsonBryan1Test));
         }
     // DANIELSON_BRYAN_2
-    testPos = GetDefaultReadabilityTestsTemplate().find_test(ReadabilityMessages::DANIELSON_BRYAN_2());
-    if (testPos.second)
+    testPos = m_testIdMap.find(ReadabilityMessages::DANIELSON_BRYAN_2());
+    if (testPos != m_testIdMap.cend())
         {
         m_standardTestFunctions.insert(
-            std::make_pair(testPos.first->get_interface_id(),
+            std::make_pair(testPos->second,
             &BaseProject::AddDanielsonBryan2Test));
         }
 
@@ -800,6 +800,7 @@ void BaseProject::InitializeStandardReadabilityTests()
     assert(m_defaultReadabilityTestsTemplate.get_test_count() == 0 &&
            "InitializeStandardReadabilityTests called twice?");
     m_defaultReadabilityTestsTemplate.clear();
+    m_testIdMap.clear();
     // degrees of reading power
         {
         readability::readability_test test(ReadabilityMessages::DEGREES_OF_READING_POWER(),
@@ -819,6 +820,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()) );
         }
 
     // degrees of reading power (grade equivalent)
@@ -839,6 +841,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // SOL (Spanish SMOG)
@@ -862,6 +865,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // GPM (Spanish) fry graph
@@ -886,6 +890,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // Frase (Spanish graph)
@@ -907,6 +912,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // Crawford
@@ -926,6 +932,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // Bormuth grade placement 35
@@ -944,6 +951,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // Bormuth cloze mean
@@ -963,6 +971,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // Schwartz (German graph)
@@ -982,6 +991,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // Neue wiener sachtextformel 1
@@ -1000,6 +1010,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length_7_plus);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // neue wiener sachtextformel 2
@@ -1018,6 +1029,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length_7_plus);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // neue wiener sachtextformel 3
@@ -1035,6 +1047,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // wheeler-smith (BV)
@@ -1053,6 +1066,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // wheeler-smith
@@ -1071,6 +1085,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity_2_plus_syllables);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // Harris-Jacobson
@@ -1092,6 +1107,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_familiarity_harris_jacobson);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // spache
@@ -1110,6 +1126,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_familiarity_spache);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // ari
@@ -1130,6 +1147,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // ELF
@@ -1145,6 +1163,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_language(readability::test_language::english_test);
         test.add_factor(readability::test_factor::word_complexity_density);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // fog
@@ -1168,6 +1187,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // psk fog
@@ -1184,6 +1204,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // lix
@@ -1207,6 +1228,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length_7_plus);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // rix (German fiction)
@@ -1228,6 +1250,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length_7_plus);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // rix (German non-fiction)
@@ -1247,6 +1270,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length_7_plus);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // lix (German children's literature)
@@ -1266,6 +1290,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length_7_plus);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // lix (German technical books)
@@ -1286,6 +1311,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length_7_plus);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // rix
@@ -1309,6 +1335,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length_7_plus);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // coleman-liau
@@ -1330,6 +1357,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // new dale-chall
@@ -1350,6 +1378,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_familiarity_dale_chall);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // danielson-bryan 1
@@ -1365,6 +1394,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // danielson-bryan 2
@@ -1382,6 +1412,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // PSK (new dale-chall)
@@ -1400,6 +1431,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_familiarity_dale_chall);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // FORCAST
@@ -1421,6 +1453,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_language(readability::test_language::english_test);
         test.add_factor(readability::test_factor::word_complexity_2_plus_syllables);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // Farr-Jenkins-Paterson
@@ -1439,6 +1472,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity_2_plus_syllables);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // New Farr-Jenkins-Paterson (Kincaid)
@@ -1454,6 +1488,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity_2_plus_syllables);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // Farr-Jenkins-Paterson (PSK)
@@ -1470,6 +1505,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity_2_plus_syllables);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // Flesch Reading Ease
@@ -1499,6 +1535,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // Amstad
@@ -1526,6 +1563,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // flesch-kincaid
@@ -1548,6 +1586,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // flesch-kincaid (simplified)
@@ -1566,6 +1605,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // new fog count
@@ -1586,6 +1626,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // eflaw
@@ -1605,6 +1646,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length_3_less);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // Qu (german)
@@ -1620,6 +1662,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // smog (german)
@@ -1644,6 +1687,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // smog
@@ -1668,6 +1712,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // smog (simplified)
@@ -1686,6 +1731,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // smog (modified for primary readers)
@@ -1701,6 +1747,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // New ARI (simplified)
@@ -1718,6 +1765,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // new ARI
@@ -1737,6 +1785,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // psk flesch
@@ -1755,6 +1804,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // fry
@@ -1779,6 +1829,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_complexity);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
     // raygor
@@ -1802,6 +1853,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_factor(readability::test_factor::word_length_6_plus);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
     }
 
