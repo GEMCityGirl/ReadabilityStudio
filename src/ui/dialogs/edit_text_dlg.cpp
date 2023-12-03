@@ -6,33 +6,32 @@
 // SPDX-License-Identifier: BSD-3-Clause
 ///////////////////////////////////////////////////////////////////////////////
 
+#include "edit_text_dlg.h"
+#include "../../Wisteria-Dataviz/src/base/colorbrewer.h"
 #include "../../app/readability_app.h"
 #include "../../projects/base_project_doc.h"
 #include "../../projects/batch_project_doc.h"
 #include "../../projects/standard_project_doc.h"
-#include "../../Wisteria-Dataviz/src/base/colorbrewer.h"
-#include "edit_text_dlg.h"
 
 wxDECLARE_APP(ReadabilityApp);
 
 //------------------------------------------------------
-EditTextDlg::EditTextDlg(wxWindow* parent,
-             BaseProjectDoc* parentDoc,
-             wxString value,
-             wxWindowID id /*= wxID_ANY*/,
-             const wxString& caption /*= _(L"Edit Text")*/,
-             const wxString& description /*= wxString{}*/,
-             const wxPoint& pos /*= wxDefaultPosition*/,
-             const wxSize& size /*= wxSize(600, 500)*/,
-             long style /*= wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER*/) :
-            m_value(std::move(value)),
-            m_usingParaSpace(wxGetApp().GetAppOptions().IsEditorShowSpaceAfterParagraph()),
-            m_lineSpacing(wxGetApp().GetAppOptions().GetEditorLineSpacing()),
-            m_parentDoc(parentDoc)
+EditTextDlg::EditTextDlg(wxWindow* parent, BaseProjectDoc* parentDoc, wxString value,
+                         wxWindowID id /*= wxID_ANY*/,
+                         const wxString& caption /*= _(L"Edit Text")*/,
+                         const wxString& description /*= wxString{}*/,
+                         const wxPoint& pos /*= wxDefaultPosition*/,
+                         const wxSize& size /*= wxSize(600, 500)*/,
+                         long style /*= wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER*/)
+    : m_value(std::move(value)),
+      m_usingParaSpace(wxGetApp().GetAppOptions().IsEditorShowSpaceAfterParagraph()),
+      m_lineSpacing(wxGetApp().GetAppOptions().GetEditorLineSpacing()), m_parentDoc(parentDoc)
     {
     SetBackgroundColour(wxGetApp().GetAppOptions().GetControlBackgroundColor());
     Create(parent, id,
-           (m_parentDoc != nullptr) ? wxString::Format(L"%s (\"%s\")", caption, m_parentDoc->GetTitle()) : caption,
+           (m_parentDoc != nullptr) ?
+               wxString::Format(L"%s (\"%s\")", caption, m_parentDoc->GetTitle()) :
+               caption,
            description, pos, size, style);
     SetSize(FromDIP(wxSize(1200, 900)));
     Center();
@@ -46,33 +45,35 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
     Bind(wxEVT_CLOSE_WINDOW, &EditTextDlg::OnClose, this);
     Bind(wxEVT_TEXT, &EditTextDlg::OnTextChanged, this);
 
-    Bind(wxEVT_CHAR_HOOK,
+    Bind(
+        wxEVT_CHAR_HOOK,
         [this](wxKeyEvent& event)
         {
-        if (event.ControlDown() && event.GetKeyCode() == L'S')
-            {
-            wxRibbonButtonBarEvent dummyEvt;
-            EditTextDlg::OnSaveButton(dummyEvt);
-            }
-        else if (event.ControlDown() && event.GetKeyCode() == L'F')
-            {
-            wxFindDialogEvent dummyEvt;
-            EditTextDlg::OnShowFindDialog(dummyEvt);
-            }
-        else if (event.ControlDown() && event.GetKeyCode() == L'H')
-            {
-            wxFindDialogEvent dummyEvt;
-            EditTextDlg::OnShowReplaceDialog(dummyEvt);
-            }
-        else if (event.GetKeyCode() == WXK_F3)
-            {
-            wxFindDialogEvent evt{ wxEVT_FIND_NEXT };
-            evt.SetFindString(m_findData.GetFindString());
-            evt.SetFlags(m_findData.GetFlags());
-            EditTextDlg::OnFindDialog(evt);
-            }
-        event.Skip(true);
-        }, wxID_ANY);
+            if (event.ControlDown() && event.GetKeyCode() == L'S')
+                {
+                wxRibbonButtonBarEvent dummyEvt;
+                EditTextDlg::OnSaveButton(dummyEvt);
+                }
+            else if (event.ControlDown() && event.GetKeyCode() == L'F')
+                {
+                wxFindDialogEvent dummyEvt;
+                EditTextDlg::OnShowFindDialog(dummyEvt);
+                }
+            else if (event.ControlDown() && event.GetKeyCode() == L'H')
+                {
+                wxFindDialogEvent dummyEvt;
+                EditTextDlg::OnShowReplaceDialog(dummyEvt);
+                }
+            else if (event.GetKeyCode() == WXK_F3)
+                {
+                wxFindDialogEvent evt{ wxEVT_FIND_NEXT };
+                evt.SetFindString(m_findData.GetFindString());
+                evt.SetFlags(m_findData.GetFlags());
+                EditTextDlg::OnFindDialog(evt);
+                }
+            event.Skip(true);
+        },
+        wxID_ANY);
 
     Bind(wxEVT_FIND, &EditTextDlg::OnFindDialog, this);
     Bind(wxEVT_FIND_NEXT, &EditTextDlg::OnFindDialog, this);
@@ -82,31 +83,35 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnSaveButton, this, wxID_SAVE);
 
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED,
+    Bind(
+        wxEVT_RIBBONBUTTONBAR_CLICKED,
         [this]([[maybe_unused]] wxRibbonButtonBarEvent& event)
         {
-        wxFontData data;
-        data.SetInitialFont(m_style.GetFont());
-        data.SetColour(m_style.GetTextColour());
-        wxFontDialog dialog(this, data);
-        if (dialog.ShowModal() == wxID_OK)
-            {
-            const bool wasModified = m_textEntry->IsModified();
-            const bool isUndoEnabled = m_textEntry->CanUndo();
-            m_style.SetFont(dialog.GetFontData().GetChosenFont());
-            m_style.SetTextColour(dialog.GetFontData().GetColour());
-            m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
-            // don't mark as modified when just changing the view's appearance
-            m_textEntry->SetModified(wasModified);
-            if (!isUndoEnabled)
-                { m_textEntry->EmptyUndoBuffer(); }
-            UpdateButtons();
-            EnableSaveButton(wasModified);
+            wxFontData data;
+            data.SetInitialFont(m_style.GetFont());
+            data.SetColour(m_style.GetTextColour());
+            wxFontDialog dialog(this, data);
+            if (dialog.ShowModal() == wxID_OK)
+                {
+                const bool wasModified = m_textEntry->IsModified();
+                const bool isUndoEnabled = m_textEntry->CanUndo();
+                m_style.SetFont(dialog.GetFontData().GetChosenFont());
+                m_style.SetTextColour(dialog.GetFontData().GetColour());
+                m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
+                // don't mark as modified when just changing the view's appearance
+                m_textEntry->SetModified(wasModified);
+                if (!isUndoEnabled)
+                    {
+                    m_textEntry->EmptyUndoBuffer();
+                    }
+                UpdateButtons();
+                EnableSaveButton(wasModified);
 
-            wxGetApp().GetAppOptions().SetEditorFont(dialog.GetFontData().GetChosenFont());
-            wxGetApp().GetAppOptions().SetEditorFontColor(dialog.GetFontData().GetColour());
-            }
-        }, wxID_SELECT_FONT);
+                wxGetApp().GetAppOptions().SetEditorFont(dialog.GetFontData().GetChosenFont());
+                wxGetApp().GetAppOptions().SetEditorFontColor(dialog.GetFontData().GetColour());
+                }
+        },
+        wxID_SELECT_FONT);
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_PASTE);
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_CUT);
@@ -116,11 +121,10 @@ EditTextDlg::EditTextDlg(wxWindow* parent,
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_JUSTIFY_CENTER);
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_JUSTIFY_RIGHT);
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_JUSTIFY_FILL);
-    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED,
-        [this](wxRibbonButtonBarEvent& event)
-        {
-        event.PopupMenu(&m_lineSpacingMenu);
-        }, XRCID("ID_LINE_SPACING"));
+    Bind(
+        wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED,
+        [this](wxRibbonButtonBarEvent& event) { event.PopupMenu(&m_lineSpacingMenu); },
+        XRCID("ID_LINE_SPACING"));
     Bind(wxEVT_MENU, &EditTextDlg::OnLineSpaceSelected, this, XRCID("ID_LINE_SINGLE"));
     Bind(wxEVT_MENU, &EditTextDlg::OnLineSpaceSelected, this, XRCID("ID_LINE_ONE_AND_HALF"));
     Bind(wxEVT_MENU, &EditTextDlg::OnLineSpaceSelected, this, XRCID("ID_LINE_DOUBLE"));
@@ -143,128 +147,151 @@ void EditTextDlg::CreateControls()
     mainSizer->Add(searchSizer, 0, wxEXPAND);
 
         {
-        m_ribbon =
-            new wxRibbonBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                            wxRIBBON_BAR_FLOW_HORIZONTAL);
+        m_ribbon = new wxRibbonBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                   wxRIBBON_BAR_FLOW_HORIZONTAL);
         wxRibbonPage* homePage = new wxRibbonPage(m_ribbon, wxID_ANY, wxString{});
         // Save (back to project)
         if (m_parentDoc && m_parentDoc->IsKindOf(CLASSINFO(ProjectDoc)))
             {
             wxRibbonPanel* exportPage =
-                new wxRibbonPanel(homePage, wxID_ANY, _DT(L" "),
-                    wxNullBitmap, wxDefaultPosition, wxDefaultSize,
-                    wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(exportPage, MainFrame::ID_DOCUMENT_RIBBON_BUTTON_BAR);
-            buttonBar->AddButton(wxID_SAVE, _(L"Save"),
-                wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+                new wxRibbonPanel(homePage, wxID_ANY, _DT(L" "), wxNullBitmap, wxDefaultPosition,
+                                  wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            wxRibbonButtonBar* buttonBar =
+                new wxRibbonButtonBar(exportPage, MainFrame::ID_DOCUMENT_RIBBON_BUTTON_BAR);
+            buttonBar->AddButton(
+                wxID_SAVE, _(L"Save"),
+                wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                    .ConvertToImage(),
                 _(L"Save the document."));
             }
-        // Clipboard
+            // Clipboard
             {
-            wxRibbonPanel* clipboardPage = new wxRibbonPanel(homePage, wxID_ANY, _(L"Clipboard"),
-                wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            wxRibbonPanel* clipboardPage = new wxRibbonPanel(
+                homePage, wxID_ANY, _(L"Clipboard"), wxNullBitmap, wxDefaultPosition, wxDefaultSize,
+                wxRIBBON_PANEL_NO_AUTO_MINIMISE);
             wxRibbonButtonBar* buttonBar =
                 new wxRibbonButtonBar(clipboardPage, MainFrame::ID_CLIPBOARD_RIBBON_BUTTON_BAR);
-            buttonBar->AddButton(wxID_PASTE, _(L"Paste"),
-                wxArtProvider::GetBitmap(wxART_PASTE, wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+            buttonBar->AddButton(
+                wxID_PASTE, _(L"Paste"),
+                wxArtProvider::GetBitmap(wxART_PASTE, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                    .ConvertToImage(),
                 _(L"Pastes the clipboard's content into the document."));
-            buttonBar->AddButton(wxID_CUT, _(L"Cut"),
-                wxArtProvider::GetBitmap(wxART_CUT, wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+            buttonBar->AddButton(
+                wxID_CUT, _(L"Cut"),
+                wxArtProvider::GetBitmap(wxART_CUT, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                    .ConvertToImage(),
                 _(L"Cuts the selection."));
-            buttonBar->AddButton(wxID_COPY, _(L"Copy"),
-                wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+            buttonBar->AddButton(
+                wxID_COPY, _(L"Copy"),
+                wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                    .ConvertToImage(),
                 _(L"Copy the selection."));
             }
-        // Edit
+            // Edit
             {
-            wxRibbonPanel* editPage = new wxRibbonPanel(homePage, wxID_ANY, _(L"Edit"),
-                wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(editPage, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
-            buttonBar->AddButton(wxID_UNDO, _(L"Undo"),
-                wxArtProvider::GetBitmap(wxART_UNDO, wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+            wxRibbonPanel* editPage =
+                new wxRibbonPanel(homePage, wxID_ANY, _(L"Edit"), wxNullBitmap, wxDefaultPosition,
+                                  wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            wxRibbonButtonBar* buttonBar =
+                new wxRibbonButtonBar(editPage, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+            buttonBar->AddButton(
+                wxID_UNDO, _(L"Undo"),
+                wxArtProvider::GetBitmap(wxART_UNDO, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                    .ConvertToImage(),
                 _(L"Undoes the last operation."));
-            buttonBar->AddButton(wxID_REDO, _(L"Redo"),
-                wxArtProvider::GetBitmap(wxART_REDO, wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+            buttonBar->AddButton(
+                wxID_REDO, _(L"Redo"),
+                wxArtProvider::GetBitmap(wxART_REDO, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                    .ConvertToImage(),
                 _(L"Repeats the last operation."));
 
-            buttonBar->AddButton(wxID_FIND, _(L"Find"),
-                wxArtProvider::GetBitmap(wxART_FIND, wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+            buttonBar->AddButton(
+                wxID_FIND, _(L"Find"),
+                wxArtProvider::GetBitmap(wxART_FIND, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                    .ConvertToImage(),
                 _(L"Search for text."));
             buttonBar->AddButton(wxID_REPLACE, _(L"Replace"),
-                wxArtProvider::GetBitmap(wxART_FIND_AND_REPLACE, wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
-                _(L"Replace text."));
+                                 wxArtProvider::GetBitmap(wxART_FIND_AND_REPLACE, wxART_BUTTON,
+                                                          FromDIP(wxSize(32, 32)))
+                                     .ConvertToImage(),
+                                 _(L"Replace text."));
 
-            buttonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
-                wxArtProvider::GetBitmap(L"ID_SELECT_ALL", wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+            buttonBar->AddButton(
+                wxID_SELECTALL, _(L"Select All"),
+                wxArtProvider::GetBitmap(L"ID_SELECT_ALL", wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                    .ConvertToImage(),
                 _(L"Select all text."));
 
             buttonBar->EnableButton(wxID_UNDO, false);
             buttonBar->EnableButton(wxID_REDO, false);
             }
-        // View
+            // View
             {
-            wxRibbonPanel* viewPage = new wxRibbonPanel(homePage, wxID_ANY, _(L"View"),
-                wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(viewPage, MainFrame::ID_VIEW_RIBBON_BUTTON_BAR);
+            wxRibbonPanel* viewPage =
+                new wxRibbonPanel(homePage, wxID_ANY, _(L"View"), wxNullBitmap, wxDefaultPosition,
+                                  wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            wxRibbonButtonBar* buttonBar =
+                new wxRibbonButtonBar(viewPage, MainFrame::ID_VIEW_RIBBON_BUTTON_BAR);
 
-            buttonBar->AddButton(wxID_SELECT_FONT, _(L"Font"),
-                wxArtProvider::GetBitmap(L"ID_FONT", wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+            buttonBar->AddButton(
+                wxID_SELECT_FONT, _(L"Font"),
+                wxArtProvider::GetBitmap(L"ID_FONT", wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                    .ConvertToImage(),
                 _(L"Changes the document's font."));
 
             buttonBar->AddToggleButton(wxID_INDENT, _(L"Indent"),
-                wxArtProvider::GetBitmap(L"ID_PARAGRAPH_INDENT", wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
-                _(L"Indents the first line of each paragraph."));
+                                       wxArtProvider::GetBitmap(L"ID_PARAGRAPH_INDENT",
+                                                                wxART_BUTTON,
+                                                                FromDIP(wxSize(32, 32)))
+                                           .ConvertToImage(),
+                                       _(L"Indents the first line of each paragraph."));
 
-            buttonBar->AddToggleButton(wxID_JUSTIFY_LEFT, _(L"Left"),
-                wxArtProvider::GetBitmap(L"ID_ALIGN_LEFT", wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+            buttonBar->AddToggleButton(
+                wxID_JUSTIFY_LEFT, _(L"Left"),
+                wxArtProvider::GetBitmap(L"ID_ALIGN_LEFT", wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                    .ConvertToImage(),
                 _(L"Left aligns the text."));
-            buttonBar->AddToggleButton(wxID_JUSTIFY_CENTER, _(L"Center"),
-                wxArtProvider::GetBitmap(L"ID_ALIGN_CENTER", wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+            buttonBar->AddToggleButton(
+                wxID_JUSTIFY_CENTER, _(L"Center"),
+                wxArtProvider::GetBitmap(L"ID_ALIGN_CENTER", wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                    .ConvertToImage(),
                 _(L"Centers the text."));
-            buttonBar->AddToggleButton(wxID_JUSTIFY_RIGHT, _(L"Right"),
-                wxArtProvider::GetBitmap(L"ID_ALIGN_RIGHT", wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+            buttonBar->AddToggleButton(
+                wxID_JUSTIFY_RIGHT, _(L"Right"),
+                wxArtProvider::GetBitmap(L"ID_ALIGN_RIGHT", wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                    .ConvertToImage(),
                 _(L"Right aligns the text."));
             buttonBar->AddToggleButton(wxID_JUSTIFY_FILL, _(L"Justified"),
-                wxArtProvider::GetBitmap(L"ID_ALIGN_JUSTIFIED", wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
-                _(L"Justifies the text."));
+                                       wxArtProvider::GetBitmap(L"ID_ALIGN_JUSTIFIED", wxART_BUTTON,
+                                                                FromDIP(wxSize(32, 32)))
+                                           .ConvertToImage(),
+                                       _(L"Justifies the text."));
 
-            buttonBar->AddDropdownButton(XRCID("ID_LINE_SPACING"), _(L"Line Spacing"),
-                wxArtProvider::GetBitmap(L"ID_LINE_SPACING", wxART_BUTTON,
-                    FromDIP(wxSize(32, 32))).ConvertToImage(),
+            buttonBar->AddDropdownButton(
+                XRCID("ID_LINE_SPACING"), _(L"Line Spacing"),
+                wxArtProvider::GetBitmap(L"ID_LINE_SPACING", wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                    .ConvertToImage(),
                 _(L"Adjusts the spacing between lines."));
 
-        #ifdef __WXMSW__
+#ifdef __WXMSW__
             m_lineSpacingMenu.Append(new wxMenuItem(&m_lineSpacingMenu, XRCID("ID_LINE_SINGLE"),
-                _DT(L"1.0"), wxString{}, wxITEM_CHECK));
-            m_lineSpacingMenu.Append(new wxMenuItem(&m_lineSpacingMenu, XRCID("ID_LINE_ONE_AND_HALF"),
-                _DT(L"1.5"), wxString{}, wxITEM_CHECK));
+                                                    _DT(L"1.0"), wxString{}, wxITEM_CHECK));
+            m_lineSpacingMenu.Append(new wxMenuItem(&m_lineSpacingMenu,
+                                                    XRCID("ID_LINE_ONE_AND_HALF"), _DT(L"1.5"),
+                                                    wxString{}, wxITEM_CHECK));
             m_lineSpacingMenu.Append(new wxMenuItem(&m_lineSpacingMenu, XRCID("ID_LINE_DOUBLE"),
-                _DT(L"2.0"), wxString{}, wxITEM_CHECK));
+                                                    _DT(L"2.0"), wxString{}, wxITEM_CHECK));
             m_lineSpacingMenu.AppendSeparator();
-        #endif
-            m_lineSpacingMenu.Append(new wxMenuItem(&m_lineSpacingMenu, XRCID("ID_ADD_PARAGRAPH_SPACE"),
-                _(L"Display space after hard returns"), wxString{}, wxITEM_CHECK));
+#endif
+            m_lineSpacingMenu.Append(
+                new wxMenuItem(&m_lineSpacingMenu, XRCID("ID_ADD_PARAGRAPH_SPACE"),
+                               _(L"Display space after hard returns"), wxString{}, wxITEM_CHECK));
             }
 
         m_ribbon->SetArtProvider(new Wisteria::UI::RibbonMetroArtProvider);
         wxGetApp().UpdateRibbonTheme(m_ribbon);
 
-        mainSizer->Add(m_ribbon, 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+        mainSizer->Add(m_ribbon, 0, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
         m_ribbon->Realise();
         }
 
@@ -273,59 +300,61 @@ void EditTextDlg::CreateControls()
     // resets the control's wxTextAttr information. It seems that you can only use
     // AppendText() to preserve the default style information, so we need to manually
     // handle connecting the text control to m_value via Save() and OnOK().
-    m_textEntry = new FormattedTextCtrl(this, wxID_ANY,
-                                 wxDefaultPosition, wxSize(-1, FromDIP(500)),
-                                 wxTE_AUTO_URL|wxTE_PROCESS_TAB);
+    m_textEntry = new FormattedTextCtrl(this, wxID_ANY, wxDefaultPosition, wxSize(-1, FromDIP(500)),
+                                        wxTE_AUTO_URL | wxTE_PROCESS_TAB);
     m_textEntry->SetMargins(10, 10);
     m_textEntry->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_EDITOR_MENU"));
     if (m_parentDoc != nullptr)
-        { m_textEntry->SetBackgroundColour(m_parentDoc->GetTextReportBackgroundColor()); }
-    const wxColour fontColor = [&]()
         {
+        m_textEntry->SetBackgroundColour(m_parentDoc->GetTextReportBackgroundColor());
+        }
+    const wxColour fontColor = [&]()
+    {
         if (m_parentDoc != nullptr &&
             // Default white? Just keep their selected font color.
             m_parentDoc->GetTextReportBackgroundColor() != *wxWHITE)
             {
             // if they are theming and it's dark, then explicitly use white
-            return (Wisteria::Colors::ColorContrast::IsDark(m_parentDoc->GetTextReportBackgroundColor()) ?
-                *wxWHITE :
-                // ...otherwise, shade or tint to go with the theme
-                Wisteria::Colors::ColorContrast::ShadeOrTintIfClose(
-                    wxGetApp().GetAppOptions().GetEditorFontColor(), m_parentDoc->GetTextReportBackgroundColor()) );
+            return (Wisteria::Colors::ColorContrast::IsDark(
+                        m_parentDoc->GetTextReportBackgroundColor()) ?
+                        *wxWHITE :
+                        // ...otherwise, shade or tint to go with the theme
+                        Wisteria::Colors::ColorContrast::ShadeOrTintIfClose(
+                            wxGetApp().GetAppOptions().GetEditorFontColor(),
+                            m_parentDoc->GetTextReportBackgroundColor()));
             }
         else
             {
             return wxGetApp().GetAppOptions().GetEditorFontColor();
             }
-        }();
+    }();
 
-    m_style = wxTextAttr
-        {
-        fontColor,
-        wxNullColour,
-        wxGetApp().GetAppOptions().GetEditorFont()
-        };
+    m_style = wxTextAttr{ fontColor, wxNullColour, wxGetApp().GetAppOptions().GetEditorFont() };
 
     if (wxGetApp().GetAppOptions().IsEditorIndenting())
-        { m_style.SetLeftIndent(50, -40); }
+        {
+        m_style.SetLeftIndent(50, -40);
+        }
     else
-        { m_style.SetLeftIndent(0); }
+        {
+        m_style.SetLeftIndent(0);
+        }
     m_style.SetAlignment(wxGetApp().GetAppOptions().GetEditorTextAlignment());
-    m_style.SetParagraphSpacingAfter(wxGetApp().GetAppOptions().IsEditorShowSpaceAfterParagraph() ? 40 : 0);
+    m_style.SetParagraphSpacingAfter(
+        wxGetApp().GetAppOptions().IsEditorShowSpaceAfterParagraph() ? 40 : 0);
     m_style.SetLineSpacing(wxGetApp().GetAppOptions().GetEditorLineSpacing());
     m_textEntry->SetDefaultStyle(m_style);
 
 #if wxUSE_SPELLCHECK
-    const auto lang = (m_parentDoc != nullptr) ?
-        m_parentDoc->GetProjectLanguage() : wxGetApp().GetAppOptions().GetProjectLanguage();
-    m_textEntry->EnableProofCheck(wxTextProofOptions::Default().
-        Language(
-            (lang == readability::test_language::spanish_test) ?
-            _DT("es") :
-            (lang == readability::test_language::german_test) ?
-            _DT("de") :
-            _DT("en")).
-        SpellCheck(true).GrammarCheck(true));
+    const auto lang = (m_parentDoc != nullptr) ? m_parentDoc->GetProjectLanguage() :
+                                                 wxGetApp().GetAppOptions().GetProjectLanguage();
+    m_textEntry->EnableProofCheck(
+        wxTextProofOptions::Default()
+            .Language((lang == readability::test_language::spanish_test) ? _DT("es") :
+                      (lang == readability::test_language::german_test)  ? _DT("de") :
+                                                                           _DT("en"))
+            .SpellCheck(true)
+            .GrammarCheck(true));
 #endif
 
     // must use AppendText to prevent text control's style from being wiped out
@@ -343,15 +372,15 @@ void EditTextDlg::CreateControls()
     if (m_description.length())
         {
         mainSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-        wxStaticText* label = new wxStaticText(this,wxID_ANY, m_description);
+        wxStaticText* label = new wxStaticText(this, wxID_ANY, m_description);
         mainSizer->Add(label, wxSizerFlags().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
         }
 
     // batch uses this in modal mode
     if (m_parentDoc && m_parentDoc->IsKindOf(CLASSINFO(BatchProjectDoc)))
         {
-        mainSizer->Add(CreateSeparatedButtonSizer(wxOK|wxCANCEL), 0,
-                       wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+        mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL), 0, wxEXPAND | wxALL,
+                       wxSizerFlags::GetDefaultBorder());
         }
 
     SetSizerAndFit(mainSizer);
@@ -364,8 +393,9 @@ void EditTextDlg::OnFindDialog(wxFindDialogEvent& event)
     {
     if (event.GetEventType() == wxEVT_FIND || event.GetEventType() == wxEVT_FIND_NEXT)
         {
-        auto foundPos = m_textEntry->FindText(event.GetFindString(),
-            (event.GetFlags() & wxFR_DOWN), (event.GetFlags() & wxFR_WHOLEWORD), (event.GetFlags() & wxFR_MATCHCASE));
+        auto foundPos = m_textEntry->FindText(event.GetFindString(), (event.GetFlags() & wxFR_DOWN),
+                                              (event.GetFlags() & wxFR_WHOLEWORD),
+                                              (event.GetFlags() & wxFR_MATCHCASE));
         if (foundPos != wxNOT_FOUND)
             {
             m_textEntry->SetSelection(foundPos, foundPos + event.GetFindString().length());
@@ -378,49 +408,58 @@ void EditTextDlg::OnFindDialog(wxFindDialogEvent& event)
         // force search to start from beginning of selection
         m_textEntry->SetSelection(fromSelection, fromSelection);
 
-        auto foundPos = m_textEntry->FindText(event.GetFindString(),
-            (event.GetFlags() & wxFR_DOWN), (event.GetFlags() & wxFR_WHOLEWORD), (event.GetFlags() & wxFR_MATCHCASE));
+        auto foundPos = m_textEntry->FindText(event.GetFindString(), (event.GetFlags() & wxFR_DOWN),
+                                              (event.GetFlags() & wxFR_WHOLEWORD),
+                                              (event.GetFlags() & wxFR_MATCHCASE));
         if (foundPos != wxNOT_FOUND)
             {
             // if what is being replaced matches what was already selected, then replace it
             if (fromSelection == foundPos &&
-                toSelection == static_cast<decltype(toSelection)>(foundPos + event.GetFindString().length()) )
+                toSelection ==
+                    static_cast<decltype(toSelection)>(foundPos + event.GetFindString().length()))
                 {
-                m_textEntry->Replace(foundPos, foundPos + event.GetFindString().length(), event.GetReplaceString());
+                m_textEntry->Replace(foundPos, foundPos + event.GetFindString().length(),
+                                     event.GetReplaceString());
                 m_textEntry->SetSelection(foundPos, foundPos + event.GetReplaceString().length());
-                // ...then, find the next occurrence of string being replaced for the next replace button click
-                foundPos = m_textEntry->FindText(event.GetFindString(),
-                    (event.GetFlags() & wxFR_DOWN), (event.GetFlags() & wxFR_WHOLEWORD),
-                    (event.GetFlags() & wxFR_MATCHCASE));
+                // ...then, find the next occurrence of string being replaced for the next replace
+                // button click
+                foundPos = m_textEntry->FindText(
+                    event.GetFindString(), (event.GetFlags() & wxFR_DOWN),
+                    (event.GetFlags() & wxFR_WHOLEWORD), (event.GetFlags() & wxFR_MATCHCASE));
                 if (foundPos != wxNOT_FOUND)
                     {
                     m_textEntry->SetSelection(foundPos, foundPos + event.GetFindString().length());
                     }
                 }
-            // ...otherwise, just select the next string being replaced so that user can see it in its
-            // context and then decide on the next replace button click if they want to replace it
+            // ...otherwise, just select the next string being replaced so that user can see it in
+            // its context and then decide on the next replace button click if they want to replace
+            // it
             else
                 {
                 m_textEntry->SetSelection(foundPos, foundPos + event.GetFindString().length());
                 }
             }
         else
-            { m_textEntry->SetSelection(fromSelection, toSelection); }
+            {
+            m_textEntry->SetSelection(fromSelection, toSelection);
+            }
         }
     else if (event.GetEventType() == wxEVT_FIND_REPLACE_ALL)
         {
         m_textEntry->SetSelection(0, 0);
-        auto foundPos = m_textEntry->FindText(event.GetFindString(),
-            (event.GetFlags() & wxFR_DOWN), (event.GetFlags() & wxFR_WHOLEWORD), (event.GetFlags() & wxFR_MATCHCASE));
+        auto foundPos = m_textEntry->FindText(event.GetFindString(), (event.GetFlags() & wxFR_DOWN),
+                                              (event.GetFlags() & wxFR_WHOLEWORD),
+                                              (event.GetFlags() & wxFR_MATCHCASE));
         while (foundPos != wxNOT_FOUND)
             {
-            m_textEntry->Replace(foundPos, foundPos + event.GetFindString().length(), event.GetReplaceString());
+            m_textEntry->Replace(foundPos, foundPos + event.GetFindString().length(),
+                                 event.GetReplaceString());
             m_textEntry->SetSelection(foundPos + event.GetReplaceString().length(),
                                       foundPos + event.GetReplaceString().length());
             // ...then, find the next occurrence of string being replaced for the next loop
-            foundPos = m_textEntry->FindText(event.GetFindString(),
-                (event.GetFlags() & wxFR_DOWN), (event.GetFlags() & wxFR_WHOLEWORD),
-                (event.GetFlags() & wxFR_MATCHCASE));
+            foundPos = m_textEntry->FindText(event.GetFindString(), (event.GetFlags() & wxFR_DOWN),
+                                             (event.GetFlags() & wxFR_WHOLEWORD),
+                                             (event.GetFlags() & wxFR_MATCHCASE));
             }
         }
     else if (event.GetEventType() == wxEVT_FIND_CLOSE)
@@ -450,14 +489,15 @@ void EditTextDlg::OnShowReplaceDialog([[maybe_unused]] wxCommandEvent& event)
         }
     if (m_dlgReplace == nullptr)
         {
-        m_dlgReplace = new wxFindReplaceDialog(this, &m_findData, _(L"Replace"), wxFR_REPLACEDIALOG);
+        m_dlgReplace =
+            new wxFindReplaceDialog(this, &m_findData, _(L"Replace"), wxFR_REPLACEDIALOG);
         }
     m_dlgReplace->Show(true);
     m_dlgReplace->SetFocus();
     }
 
 //------------------------------------------------------
-void EditTextDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent & event)
+void EditTextDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent& event)
     {
     // get rid of Replace dialog (if it was opened)
     if (m_dlgReplace)
@@ -471,7 +511,9 @@ void EditTextDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent & event)
         }
     const auto selectedStr{ m_textEntry->GetStringSelection() };
     if (selectedStr.length())
-        { m_findData.SetFindString(selectedStr); }
+        {
+        m_findData.SetFindString(selectedStr);
+        }
     m_dlgFind->Show(true);
     m_dlgFind->SetFocus();
     }
@@ -479,11 +521,13 @@ void EditTextDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent & event)
 //------------------------------------------------------
 void EditTextDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     {
-    if (Validate() && TransferDataFromWindow() )
+    if (Validate() && TransferDataFromWindow())
         {
         m_value = m_textEntry->GetValue();
-        if (IsModal() )
-            { EndModal(wxID_OK); }
+        if (IsModal())
+            {
+            EndModal(wxID_OK);
+            }
         else
             {
             SetReturnCode(wxID_OK);
@@ -495,19 +539,21 @@ void EditTextDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
 //------------------------------------------------------
 void EditTextDlg::OnClose([[maybe_unused]] wxCloseEvent& event)
     {
-    if (m_textEntry && m_textEntry->IsModified() )
+    if (m_textEntry && m_textEntry->IsModified())
         {
-        if (m_parentDoc && m_parentDoc->IsKindOf(CLASSINFO(ProjectDoc)) )
+        if (m_parentDoc && m_parentDoc->IsKindOf(CLASSINFO(ProjectDoc)))
             {
-            if (wxMessageBox(_(L"Do you wish to save your unsaved changes?"),
-                    _(L"Save Changes"), wxYES_NO | wxICON_QUESTION) == wxYES)
-                { Save(); }
+            if (wxMessageBox(_(L"Do you wish to save your unsaved changes?"), _(L"Save Changes"),
+                             wxYES_NO | wxICON_QUESTION) == wxYES)
+                {
+                Save();
+                }
             }
         else if (m_parentDoc && m_parentDoc->IsKindOf(CLASSINFO(BatchProjectDoc)))
             {
             assert(IsModal() && L"Text editor should be modal when called from a batch project!");
-            if (wxMessageBox(_(L"Do you wish to save your unsaved changes?"),
-                    _(L"Save Changes"), wxYES_NO | wxICON_QUESTION) == wxYES)
+            if (wxMessageBox(_(L"Do you wish to save your unsaved changes?"), _(L"Save Changes"),
+                             wxYES_NO | wxICON_QUESTION) == wxYES)
                 {
                 TransferDataFromWindow();
                 m_value = m_textEntry->GetValue();
@@ -518,7 +564,9 @@ void EditTextDlg::OnClose([[maybe_unused]] wxCloseEvent& event)
         }
 
     if (IsModal())
-        { EndModal(wxID_CLOSE); }
+        {
+        EndModal(wxID_CLOSE);
+        }
     else
         {
         SetReturnCode(wxID_CLOSE);
@@ -534,7 +582,9 @@ void EditTextDlg::OnSaveButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
     // mark the text control as not being dirty, so that if we close now
     // it won't need to ask about wanting to save
     if (m_textEntry)
-        { m_textEntry->DiscardEdits(); }
+        {
+        m_textEntry->DiscardEdits();
+        }
     EnableSaveButton(false);
     }
 
@@ -555,7 +605,9 @@ void EditTextDlg::OnParagraphSpaceSelected([[maybe_unused]] wxCommandEvent& even
         // don't mark as modified when just changing the view's appearance
         m_textEntry->SetModified(wasModified);
         if (!isUndoEnabled)
-            { m_textEntry->EmptyUndoBuffer(); }
+            {
+            m_textEntry->EmptyUndoBuffer();
+            }
         UpdateButtons();
         EnableSaveButton(wasModified);
         }
@@ -569,21 +621,23 @@ void EditTextDlg::OnLineSpaceSelected(wxCommandEvent& event)
         const bool wasModified = m_textEntry->IsModified();
         const bool isUndoEnabled = m_textEntry->CanUndo();
 
-        m_lineSpacing = ((event.GetId() == XRCID("ID_LINE_SINGLE")) ?
-            wxTEXT_ATTR_LINE_SPACING_NORMAL :
-            (event.GetId() == XRCID("ID_LINE_ONE_AND_HALF")) ?
-            wxTEXT_ATTR_LINE_SPACING_HALF :
-            wxTEXT_ATTR_LINE_SPACING_TWICE);
+        m_lineSpacing =
+            ((event.GetId() == XRCID("ID_LINE_SINGLE"))       ? wxTEXT_ATTR_LINE_SPACING_NORMAL :
+             (event.GetId() == XRCID("ID_LINE_ONE_AND_HALF")) ? wxTEXT_ATTR_LINE_SPACING_HALF :
+                                                                wxTEXT_ATTR_LINE_SPACING_TWICE);
 
         m_style.SetLineSpacing(m_lineSpacing);
 
-        wxGetApp().GetAppOptions().SetEditorLineSpacing(static_cast<wxTextAttrLineSpacing>(m_style.GetLineSpacing()));
+        wxGetApp().GetAppOptions().SetEditorLineSpacing(
+            static_cast<wxTextAttrLineSpacing>(m_style.GetLineSpacing()));
 
         m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
         // don't mark as modified when just changing the view's appearance
         m_textEntry->SetModified(wasModified);
         if (!isUndoEnabled)
-            { m_textEntry->EmptyUndoBuffer(); }
+            {
+            m_textEntry->EmptyUndoBuffer();
+            }
         UpdateButtons();
         EnableSaveButton(wasModified);
         }
@@ -598,17 +652,29 @@ void EditTextDlg::OnEditButtons(wxRibbonButtonBarEvent& event)
         const bool isUndoEnabled = m_textEntry->CanUndo();
 
         if (event.GetId() == wxID_SELECTALL)
-            { m_textEntry->SelectAll(); }
+            {
+            m_textEntry->SelectAll();
+            }
         else if (event.GetId() == wxID_UNDO)
-            { m_textEntry->Undo(); }
+            {
+            m_textEntry->Undo();
+            }
         else if (event.GetId() == wxID_REDO)
-            { m_textEntry->Redo(); }
+            {
+            m_textEntry->Redo();
+            }
         else if (event.GetId() == wxID_COPY)
-            { m_textEntry->Copy(); }
+            {
+            m_textEntry->Copy();
+            }
         else if (event.GetId() == wxID_CUT)
-            { m_textEntry->Cut(); }
+            {
+            m_textEntry->Cut();
+            }
         else if (event.GetId() == wxID_PASTE)
-            { m_textEntry->Paste(); }
+            {
+            m_textEntry->Paste();
+            }
         else if (event.GetId() == wxID_INDENT)
             {
             if (m_style.GetLeftIndent() == 0)
@@ -625,27 +691,28 @@ void EditTextDlg::OnEditButtons(wxRibbonButtonBarEvent& event)
             // don't mark as modified when just changing the view's appearance
             m_textEntry->SetModified(wasModified);
             if (!isUndoEnabled)
-                { m_textEntry->EmptyUndoBuffer(); }
+                {
+                m_textEntry->EmptyUndoBuffer();
+                }
             UpdateButtons();
             EnableSaveButton(wasModified);
             }
-        else if (event.GetId() == wxID_JUSTIFY_LEFT ||
-            event.GetId() == wxID_JUSTIFY_CENTER ||
-            event.GetId() == wxID_JUSTIFY_RIGHT ||
-            event.GetId() == wxID_JUSTIFY_FILL)
+        else if (event.GetId() == wxID_JUSTIFY_LEFT || event.GetId() == wxID_JUSTIFY_CENTER ||
+                 event.GetId() == wxID_JUSTIFY_RIGHT || event.GetId() == wxID_JUSTIFY_FILL)
             {
-            m_style.SetAlignment(
-                event.GetId() == wxID_JUSTIFY_LEFT ?
-                wxTextAttrAlignment::wxTEXT_ALIGNMENT_LEFT :
-                event.GetId() == wxID_JUSTIFY_CENTER ?
-                wxTextAttrAlignment::wxTEXT_ALIGNMENT_CENTER :
-                event.GetId() == wxID_JUSTIFY_RIGHT ?
-                wxTextAttrAlignment::wxTEXT_ALIGNMENT_RIGHT :
-                wxTextAttrAlignment::wxTEXT_ALIGNMENT_JUSTIFIED);
+            m_style.SetAlignment(event.GetId() == wxID_JUSTIFY_LEFT ?
+                                     wxTextAttrAlignment::wxTEXT_ALIGNMENT_LEFT :
+                                 event.GetId() == wxID_JUSTIFY_CENTER ?
+                                     wxTextAttrAlignment::wxTEXT_ALIGNMENT_CENTER :
+                                 event.GetId() == wxID_JUSTIFY_RIGHT ?
+                                     wxTextAttrAlignment::wxTEXT_ALIGNMENT_RIGHT :
+                                     wxTextAttrAlignment::wxTEXT_ALIGNMENT_JUSTIFIED);
             m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
             m_textEntry->SetModified(wasModified);
             if (!isUndoEnabled)
-                { m_textEntry->EmptyUndoBuffer(); }
+                {
+                m_textEntry->EmptyUndoBuffer();
+                }
             UpdateButtons();
             EnableSaveButton(wasModified);
 
@@ -668,7 +735,9 @@ void EditTextDlg::OnTextChanged([[maybe_unused]] wxCommandEvent& event)
 void EditTextDlg::Save()
     {
     if (!TransferDataFromWindow())
-        { return; }
+        {
+        return;
+        }
 
     m_value = m_textEntry->GetValue();
 
@@ -700,22 +769,24 @@ void EditTextDlg::EnableSaveButton(const bool enable /*= true*/)
         auto saveButtonBar = dynamic_cast<wxRibbonButtonBar*>(saveButtonBarWindow);
         assert(saveButtonBar && L"Error casting ribbon bar!");
         if (saveButtonBar)
-            { saveButtonBar->EnableButton(wxID_SAVE, enable); }
+            {
+            saveButtonBar->EnableButton(wxID_SAVE, enable);
+            }
         }
     }
 
 //------------------------------------------------------
 void EditTextDlg::UpdateButtons()
     {
-    const wxWindowID buttonToEnable = (m_style.GetAlignment() == wxTEXT_ALIGNMENT_LEFT) ?
-        wxID_JUSTIFY_LEFT :
-        (m_style.GetAlignment() == wxTEXT_ALIGNMENT_CENTER) ?
-        wxID_JUSTIFY_CENTER :
-        (m_style.GetAlignment() == wxTEXT_ALIGNMENT_RIGHT) ?
-        wxID_JUSTIFY_RIGHT : wxID_JUSTIFY_FILL;
+    const wxWindowID buttonToEnable =
+        (m_style.GetAlignment() == wxTEXT_ALIGNMENT_LEFT)   ? wxID_JUSTIFY_LEFT :
+        (m_style.GetAlignment() == wxTEXT_ALIGNMENT_CENTER) ? wxID_JUSTIFY_CENTER :
+        (m_style.GetAlignment() == wxTEXT_ALIGNMENT_RIGHT)  ? wxID_JUSTIFY_RIGHT :
+                                                              wxID_JUSTIFY_FILL;
 
     wxWindow* paragraphButtonBarWindow = m_ribbon->FindWindow(MainFrame::ID_VIEW_RIBBON_BUTTON_BAR);
-    if (paragraphButtonBarWindow && paragraphButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+    if (paragraphButtonBarWindow &&
+        paragraphButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
         {
         auto paragraphButtonBar = dynamic_cast<wxRibbonButtonBar*>(paragraphButtonBarWindow);
         assert(paragraphButtonBar && L"Error casting ribbon bar!");
@@ -727,15 +798,19 @@ void EditTextDlg::UpdateButtons()
             paragraphButtonBar->ToggleButton(wxID_JUSTIFY_FILL, false);
             paragraphButtonBar->ToggleButton(buttonToEnable, true);
 
-            paragraphButtonBar->ToggleButton(wxID_INDENT, wxGetApp().GetAppOptions().IsEditorIndenting());
+            paragraphButtonBar->ToggleButton(wxID_INDENT,
+                                             wxGetApp().GetAppOptions().IsEditorIndenting());
             }
         }
 
     // update menu
 #ifdef __WXMSW__
-    m_lineSpacingMenu.Check(XRCID("ID_LINE_SINGLE"), m_lineSpacing == wxTEXT_ATTR_LINE_SPACING_NORMAL);
-    m_lineSpacingMenu.Check(XRCID("ID_LINE_ONE_AND_HALF"), m_lineSpacing == wxTEXT_ATTR_LINE_SPACING_HALF);
-    m_lineSpacingMenu.Check(XRCID("ID_LINE_DOUBLE"), m_lineSpacing == wxTEXT_ATTR_LINE_SPACING_TWICE);
+    m_lineSpacingMenu.Check(XRCID("ID_LINE_SINGLE"),
+                            m_lineSpacing == wxTEXT_ATTR_LINE_SPACING_NORMAL);
+    m_lineSpacingMenu.Check(XRCID("ID_LINE_ONE_AND_HALF"),
+                            m_lineSpacing == wxTEXT_ATTR_LINE_SPACING_HALF);
+    m_lineSpacingMenu.Check(XRCID("ID_LINE_DOUBLE"),
+                            m_lineSpacing == wxTEXT_ATTR_LINE_SPACING_TWICE);
     m_lineSpacingMenu.Check(XRCID("ID_ADD_PARAGRAPH_SPACE"), m_usingParaSpace);
 #endif
 

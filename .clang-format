@@ -26,3 +26,7 @@ SpaceBeforeSquareBrackets: false
 SpaceInEmptyBlock: false
 SpaceInEmptyParentheses: false
 UseTab: Never
+AlwaysBreakTemplateDeclarations: Yes
+SpaceAfterTemplateKeyword: false
+AlignAfterOpenBracket: Align
+InsertBraces: true
