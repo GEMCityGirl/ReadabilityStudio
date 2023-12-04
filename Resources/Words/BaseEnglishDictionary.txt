@@ -8088,6 +8088,10 @@ autoscale
 autoscaled
 autoscales
 autoscaling
+autoscroll
+autoscrolled
+autoscrolling
+autoscrolls
 autosomal
 autosome
 autosome's
@@ -32560,6 +32564,13 @@ denominative
 denominator
 denominator's
 denominators
+denormalization
+denormalization's
+denormalizations
+denormalize
+denormalized
+denormalizes
+denormalizing
 denotable
 denotation
 denotation's
@@ -32973,6 +32984,9 @@ deputizes
 deputizing
 deputy
 deputy's
+deque
+deque's
+deques
 dequeue
 dequeued
 dequeues
@@ -36496,6 +36510,9 @@ district's
 districted
 districting
 districts
+distro
+distro's
+distros
 distrust
 distrusted
 distrustful
@@ -66732,6 +66749,7 @@ items
 itemset
 itemset's
 itemsets
+iterable
 iterate
 iterated
 iterates
@@ -79710,6 +79728,7 @@ monospaced
 monospaces
 monospacing
 monostable
+monostate
 monostotic
 monosulcate
 monosyllabic
@@ -80857,6 +80876,9 @@ multiline
 multilingual
 multilingualism
 multilingualisms
+multimap
+multimap's
+multimaps
 multimarkdown
 multimedia
 multimedias
@@ -80964,6 +80986,9 @@ multiselected
 multiselecting
 multiselects
 multisensory
+multiset
+multiset's
+multisets
 multisided
 multislice
 multistage
@@ -90460,6 +90485,9 @@ passmark
 passover
 passover's
 passovers
+passphrase
+passphrase's
+passphrases
 passport
 passport's
 passports
@@ -107232,6 +107260,10 @@ retarder's
 retarders
 retarding
 retards
+retarget
+retargeted
+retargeting
+retargets
 retaught
 retch
 retched
@@ -134309,9 +134341,12 @@ undefended
 undefenses
 undefinability
 undefinable
+undefine
 undefined
 undefinedness
 undefinedness's
+undefines
+undefining
 undeflected
 undeformed
 undelete
@@ -135167,6 +135202,7 @@ unframed
 unfraternizing
 unfraternizing's
 unfraternizings
+unfreed
 unfreeze
 unfreezes
 unfreezing

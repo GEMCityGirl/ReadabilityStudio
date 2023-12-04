@@ -23,6 +23,7 @@ std::set<is_double_word_exception::string_type>
         L"Hool",     // from a Chief Joseph speech
         L"Leng",     // common name to appear doubled
         L"log",      // log-log function in math
+        L"long",      // long long integers
         L"mephitis", // Mephitis mephitis is the white skunk
         L"no",       // "Using C macros in new code is a no no!"
         L"now",      // "now now, take it easy"

@@ -1360,7 +1360,7 @@ campaign mangers	campaign managers	3
 can effect	can affect	3		
 can goods	canned goods	3		
 can here	can hear	3		
-can not	cannot	3		only
+can not	cannot,can't	3		only
 can't hit the broadside of a barn	has poor aim/marksmanship	2		
 can't hold a candle to	can't compare to	2		
 can't not	can't	3		
@@ -1627,6 +1627,9 @@ commuting back and forth	commuting	0
 companion	friend, mate	0		
 companion's	friend's, mate's	0		
 companions	friends, mates	0		
+comparsion	comparison	3		
+comparsion's	comparison's	3		
+comparsions	comparisons	3		
 compassion	pity	0		
 compensate	pay	0		
 compensated	paid	0		
@@ -1984,6 +1987,8 @@ debilitate	weaken	0
 debilitated	weakened	0		
 debilitates	weakens	0		
 debilitating	weakening	0		
+decalared	declared	3		
+decalaring	declaring	3		
 decapitate	behead	0		
 decapitated	beheaded	0		
 decapitates	beheads	0		
@@ -3400,6 +3405,7 @@ hesitates	pauses	0
 hesitating	pausing	0		
 heterogeneous	varied	0		
 heterogeneously	variably	0		
+heterogenous	heterogeneous	3		
 high and dry	stranded, alone, helpless	2		
 high and low	everywhere	0		
 high and mighty	arrogant, overly proud, dogmatic	2		
@@ -6913,7 +6919,7 @@ the manner by which	how	0
 the means by which	how	0		
 the month of	Consider removing this	0		
 the only on	the only one	3		
-the or	or, the ore	3		operator
+the or	or, the ore	3		operation;operator
 the other way around	the opposite	0		
 the passage of time	time	0		
 the possibility exists for	may, might, can, could	0		
@@ -6943,7 +6949,7 @@ the them	strike one of these	3
 the these	strike one of these	3		
 the they	strike one of these	3		
 the third degree	rough interrogation	2		
-the this	strike one of these, or a comma may be needed between them	3		pointer
+the this	strike one of these, or a comma may be needed between them	3		object;pointer
 the time will come when	in due time, in time	0		
 the topic of	Consider removing this	0		
 the total of	all	0		each
@@ -7317,6 +7323,9 @@ uses up	uses	0
 using up	using	0		
 usual custom	custom	1		
 usually	often	0		
+utililties	utilities	3		
+utililty	utility	3		
+utililty's	utility's	3		
 utilisabilities	uses	0		
 utilisability	usability, usefulness	0		
 utilisable	usable	0		
@@ -7376,6 +7385,8 @@ ventilates	airs out	0
 ventilating	airing out	0		
 venturous	bold	0		
 verbatim	exact	0		
+verbatium	verbatim	3		
+verbatum	verbatim	3		
 vertically	upward	0		
 very beginning	beginning	0		
 very end	end	0		

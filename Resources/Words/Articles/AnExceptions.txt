@@ -1,4 +1,6 @@
 FAQ
+fenv_t
+fexcept_t
 fMRI
 FOB
 FYI
@@ -6,7 +8,9 @@ HBO
 HICON
 HIV
 HVAC
+LED
 lvalue
+mbstate_t
 MIT
 MRI
 mRNA
@@ -27,5 +31,6 @@ ssRNA
 SUV
 XBox
 XCode
+XInput
 xml
 xpm

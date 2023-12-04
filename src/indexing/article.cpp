@@ -295,13 +295,13 @@ bool is_incorrect_english_article::is_a_exception(const wchar_t* word, const siz
         }
 
     static const std::set<traits::case_insensitive_wstring_ex> case_i_u_3_prefixes = {
-        L"ubi", L"uin" /*a unint_32*/,
+        L"ubi", L"uin" /*a unint_32 is correct*/,
         L"ukr", L"ure",
         L"uri", L"uro",
         L"usa", L"use",
         L"usi", L"usu",
-        L"utf", L"uti",
-        L"uto"
+        L"utc", L"utf",
+        L"uti", L"uto"
     };
 
     // if a known (full-word, case-insensitive) exception

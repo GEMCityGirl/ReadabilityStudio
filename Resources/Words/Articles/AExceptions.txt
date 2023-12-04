@@ -6,14 +6,17 @@ of
 once
 one
 onetime
+SFINAE
 SQLite
 UAW
 Ubuntu
 UCSF
+UDC
 UDP
 UFO
 UMN
 unary
+unary_negate
 USB
 USPTO
 usr

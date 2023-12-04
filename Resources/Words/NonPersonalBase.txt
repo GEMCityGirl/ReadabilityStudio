@@ -4745,6 +4745,7 @@ Vatican
 Vaud
 Vaudois
 VBScript
+vcpkg
 Vectrin
 Vedanta
 Vedas
