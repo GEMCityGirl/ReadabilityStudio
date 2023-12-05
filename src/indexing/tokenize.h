@@ -605,23 +605,25 @@ namespace tokenize
                         { break; }
                     }
                 // might be part of an URL (a PHP request would the '=' here)
-                else if (m_current_char[0] == L'=' ||
-                         m_current_char[0] == L'+' ||
+                else if (m_current_char[0] == L'=' || m_current_char[0] == L'+' ||
                          m_current_char[0] == L';')
                     {
-                    if (isUrl &&
-                        m_current_char+1 < m_text_block_end &&
-                        !characters::is_character::is_space(m_current_char[0]))
-                        { ++m_current_char; }
-                    else if (i18n_string_util::is_url(word_start, m_current_char-word_start) &&
-                        m_current_char+1 < m_text_block_end &&
-                        !characters::is_character::is_space(m_current_char[0]))
+                    if (isUrl && m_current_char + 1 < m_text_block_end &&
+                        !characters::is_character::is_space(m_current_char[1]))
+                        {
+                        ++m_current_char;
+                        }
+                    else if (i18n_string_util::is_url(word_start, m_current_char - word_start) &&
+                             m_current_char + 1 < m_text_block_end &&
+                             !characters::is_character::is_space(m_current_char[1]))
                         {
                         isUrl = true;
                         ++m_current_char;
                         }
                     else
-                        { break; }
+                        {
+                        break;
+                        }
                     }
                 // otherwise consider this the end of the word
                 else
