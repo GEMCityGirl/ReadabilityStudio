@@ -3,6 +3,16 @@
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include "../src/indexing/tokenize.h"
 
+TEST_CASE("C++ tokenize", "[document]")
+    {
+    std::wstring text{ L"C++. We also." };
+    tokenize::document_tokenize<> tokenize(text.data(), text.length(), false, false, false,
+                                           false);
+    auto pos = tokenize();
+    std::wstring firstWord(pos, tokenize.get_current_word_length());
+    CHECK(firstWord == L"C++");
+    }
+
 TEST_CASE("Document tokenize", "[document]")
     {
     SECTION("NULL")

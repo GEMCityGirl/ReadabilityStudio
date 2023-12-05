@@ -88,6 +88,7 @@ namespace tokenize
             m_is_previous_word_numeric = m_is_numeric;
             m_is_numeric = m_is_split_word = m_is_tabbed = false;
             m_current_leading_end_of_line_count = 0;
+            bool isWordCPP{ false };
 
             // move past any leading trash characters
             bool whiteSpaceEncountered = false;
@@ -620,6 +621,19 @@ namespace tokenize
                         isUrl = true;
                         ++m_current_char;
                         }
+                    // '+' is only part of a word if an URL, except for the word "C++".
+                    // Even trailing + (e.g., a charge on an element) will be picked up as
+                    // punctation, but "C++" should be seen as a word. The irony of not indexing
+                    // that correctly as a word is just too much.
+                    else if (std::distance(word_start, m_current_char) == 1 &&
+                             *word_start == L'C' &&
+                             m_current_char + 1 < m_text_block_end && m_current_char[0] == L'+' &&
+                             m_current_char[1] == L'+')
+                        {
+                        m_current_char += 2;
+                        isWordCPP = true;
+                        break;
+                        }
                     else
                         {
                         break;
@@ -633,11 +647,16 @@ namespace tokenize
             // return the current word
             if (m_current_char > word_start)
                 {
-                const wchar_t* wordEnd = word_start+((m_current_char-word_start)-1);
-                // step back if the last character cannot syntactically end a word
-                while (wordEnd > word_start &&
-                    !is_character.can_character_end_word(*wordEnd))
-                    { --wordEnd; }
+                const wchar_t* wordEnd = word_start + ((m_current_char - word_start) - 1);
+                if (!isWordCPP)
+                    {
+                    // step back if the last character cannot syntactically end a word
+                    while (wordEnd > word_start && !is_character.can_character_end_word(*wordEnd))
+                        {
+                        --wordEnd;
+                        }
+                    }
+                
                 /* Next, see if the word ends with an apostrophe (plural possessive).
                    If so, then set this trailing quote as a quote punctuation, rather
                    than an apostrophe that is part of the word. It will appear the same

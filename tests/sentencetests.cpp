@@ -12,6 +12,44 @@ using MYWORD = word<traits::case_insensitive_ex,
 
 extern word_list Stop_list;
 
+TEST_CASE("Ending With Dash Ending Sentence", "[sentence]")
+    {
+    grammar::is_end_of_sentence sent(false);
+
+    // should break into two sentences
+    const wchar_t* text = L"how about–\"\nThe man interrupted him.";
+    CHECK(sent(text, wcslen(text), 9, 1, 0));
+
+    text = L"how about—\"\nThe man interrupted him";
+    CHECK(sent(text, wcslen(text), 9, 1, 0));
+
+    text = L"how about–”\nThe man interrupted him";
+    CHECK(sent(text, wcslen(text), 9, 1, 0));
+
+    text = L"how about—”\nThe man interrupted him";
+    CHECK(sent(text, wcslen(text), 9, 1, 0));
+
+    // regular dash shouldn't be seen as end thought
+    text = L"how about-”\nThe man interrupted him";
+    CHECK_FALSE(sent(text, wcslen(text), 9, 1, 0));
+
+    // quote after dash is required to force a new sentence
+    text = L"how about—\nThe man interrupted him";
+    CHECK_FALSE(sent(text, wcslen(text), 9, 1, 0));
+    }
+
+TEST_CASE("Ending with Plus", "[sentence]")
+    {
+    grammar::is_end_of_sentence sent(false);
+
+    // should break into two sentences
+    const wchar_t* text = L"I have 5+. That is my score.";
+    CHECK(sent(text, wcslen(text), 9, 7, 2));
+
+    text = L"I use C++. That is my language.";
+    CHECK(sent(text, wcslen(text), 9, 6, 2));
+    }
+
 TEST_CASE("Sentences", "[sentence]")
     {
     grammar::english_syllabize ENsyllabizer;
@@ -57,32 +95,6 @@ TEST_CASE("Sentences", "[sentence]")
                     doc.get_sentences().end(),
                     grammar::complete_sentence_length_greater_than(3) );
         CHECK(total == 2);
-        }
-
-    SECTION("EndingWithDashEndingSentence")
-        {
-        grammar::is_end_of_sentence sent(false);
-
-        // should break into two sentences
-        const wchar_t* text = L"how about–\"\nThe man interrupted him.";
-        CHECK(sent(text, wcslen(text), 9, 1, 0));
-
-        text = L"how about—\"\nThe man interrupted him";
-        CHECK(sent(text, wcslen(text), 9, 1, 0));
-
-        text = L"how about–”\nThe man interrupted him";
-        CHECK(sent(text, wcslen(text), 9, 1, 0));
-
-        text = L"how about—”\nThe man interrupted him";
-        CHECK(sent(text, wcslen(text), 9, 1, 0));
-
-        // regular dash shouldn't be seen as end thought
-        text = L"how about-”\nThe man interrupted him";
-        CHECK_FALSE(sent(text, wcslen(text), 9, 1, 0));
-
-        // quote after dash is required to force a new sentence
-        text = L"how about—\nThe man interrupted him";
-        CHECK_FALSE(sent(text, wcslen(text), 9, 1, 0));
         }
 
     SECTION("EndingWithDashPartOfSentence")
