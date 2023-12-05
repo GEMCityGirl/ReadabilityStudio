@@ -11,15 +11,15 @@
 #ifndef __TOKENIZE_H__
 #define __TOKENIZE_H__
 
-#include <vector>
-#include "word.h"
-#include "abbreviation.h"
-#include "sentence.h"
-#include "punctuation.h"
-#include "characters.h"
 #include "../OleanderStemmingLibrary/src/common_lang_constants.h"
 #include "../Wisteria-Dataviz/src/debug/debug_profile.h"
 #include "../Wisteria-Dataviz/src/i18n-check/src/i18n_string_util.h"
+#include "abbreviation.h"
+#include "characters.h"
+#include "punctuation.h"
+#include "sentence.h"
+#include "word.h"
+#include <vector>
 
 namespace tokenize
     {
@@ -28,12 +28,13 @@ namespace tokenize
              typename is_punctuationT = punctuation::is_punctuation>
     class document_tokenize
         {
-    public:
+      public:
         /** @brief Constructor.
             @param text The text block to analyze.
             @param length The length of the text block.
-            @param always_treat_linefeeds_as_end_of_paragraph Whether to consider newlines as the end of a paragraph.
-                If @c false, then parser will intelligently deduce when a paragraph starts.
+            @param always_treat_linefeeds_as_end_of_paragraph Whether to consider newlines as
+                the end of a paragraph. If @c false, then parser will intelligently deduce
+                when a paragraph starts.
                 This is recommended for text split by newlines to fit a page.
             @param ignore_blank_lines_when_determing_paragraph_split Whether to ignore blank lines
                 between lines when deducing if two lines are part of the same paragraph.
@@ -45,36 +46,33 @@ namespace tokenize
                           const bool always_treat_linefeeds_as_end_of_paragraph,
                           const bool ignore_blank_lines_when_determing_paragraph_split,
                           const bool ignore_indenting_when_determing_paragraph_split,
-                          const bool sentence_start_must_be_uppercased) :
-                            m_sentence_position(0),
-                            m_current_sentence_index(0), m_current_paragraph_index(0),
-                            m_current_char(text), m_text_block_beginning(text),
-                            m_text_block_end(text + length)/* null terminator included*/,
-                            m_text_block_length(length),
-                            m_current_word_length(0),
-                            m_word_count(0),
-                            m_at_eol(false),
-                            m_is_at_end_of_sentence(false),
-                            m_is_tabbed(false),
-                            m_is_previous_word_numeric(false),
-                            m_is_numeric(false),
-                            m_is_split_word(false),
-                            m_current_sentence_ending_punctuation(L' '),
-                            m_pending_sentence_ending_punctuation_pos(nullptr),
-                            m_current_leading_end_of_line_count(0),
-                            m_moved_past_beginning_nontext(false),
-                            // enables "smart" paragraph separation if false
-                            m_treat_eol_as_eop(always_treat_linefeeds_as_end_of_paragraph),
-                            m_ignore_blank_lines(ignore_blank_lines_when_determing_paragraph_split),
-                            m_ignore_indenting(ignore_indenting_when_determing_paragraph_split),
-                            isEndOfSentence(sentence_start_must_be_uppercased)
-                            {
-                            // skip anything like "***" at the start of the file.
-                            const std::pair<bool,size_t> lineSepResult = is_formatted_line_separator(m_current_char);
-                            if (lineSepResult.first)
-                                { m_current_char += lineSepResult.second; }
-                            }
+                          const bool sentence_start_must_be_uppercased)
+            : m_sentence_position(0), m_current_sentence_index(0), m_current_paragraph_index(0),
+              m_current_char(text), m_text_block_beginning(text),
+              m_text_block_end(text + length) /* null terminator included*/,
+              m_text_block_length(length), m_current_word_length(0), m_word_count(0),
+              m_at_eol(false), m_is_at_end_of_sentence(false), m_is_tabbed(false),
+              m_is_previous_word_numeric(false), m_is_numeric(false), m_is_split_word(false),
+              m_current_sentence_ending_punctuation(L' '),
+              m_pending_sentence_ending_punctuation_pos(nullptr),
+              m_current_leading_end_of_line_count(0), m_moved_past_beginning_nontext(false),
+              // enables "smart" paragraph separation if false
+              m_treat_eol_as_eop(always_treat_linefeeds_as_end_of_paragraph),
+              m_ignore_blank_lines(ignore_blank_lines_when_determing_paragraph_split),
+              m_ignore_indenting(ignore_indenting_when_determing_paragraph_split),
+              isEndOfSentence(sentence_start_must_be_uppercased)
+            {
+            // skip anything like "***" at the start of the file.
+            const std::pair<bool, size_t> lineSepResult =
+                is_formatted_line_separator(m_current_char);
+            if (lineSepResult.first)
+                {
+                m_current_char += lineSepResult.second;
+                }
+            }
+
         document_tokenize() = delete;
+
         /** @brief Read to the next word in the text.
             @returns The start of the next word, or null if at the end of the document.*/
         [[nodiscard]]
