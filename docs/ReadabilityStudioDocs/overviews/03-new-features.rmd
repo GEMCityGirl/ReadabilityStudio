@@ -55,7 +55,8 @@
 #### Analysis/Test Enhancements {-}
 
 - Added **Display grouped documents on syllable ruler** feature to the Flesch chart.
-- Aggressive exclusion will now make copyright notice exclusion more aggressive also.
+- Made copyright notice exclusion more aggressive.
+- Aggressive exclusion will now cause semicolons at the end of a line to never be marked as the end of a sentence.
 - Custom-test formulas can now contain C/C++ style comments.
   This includes multi-line (text inside of `/*` and `*/`) and single-line (`//`) comments.
 - All Words (Condensed) will now exclude more variations of common words.

@@ -399,39 +399,50 @@ public:
         // Go through the sentences and mark as valid if ending with a semicolon. This is a special case
         // where we will treat list items ending with a semicolon as a regular sentence (same as we would
         // with a list item ending with a period).
-        auto punctPosNonConst =
-                m_punctuation.size() ? m_punctuation.begin() : m_punctuation.end();
-        for (auto sentPos = m_sentences.begin();
-            sentPos != m_sentences.end();
-            ++sentPos)
+        if (!is_exclusion_aggressive())
             {
-            if (!sentPos->is_valid())
+            auto punctPosNonConst =
+                m_punctuation.size() ? m_punctuation.begin() : m_punctuation.end();
+            for (auto sentPos = m_sentences.begin(); sentPos != m_sentences.end(); ++sentPos)
                 {
-                while (punctPosNonConst != m_punctuation.end() &&
-                       (punctPosNonConst->get_word_position() <= sentPos->get_last_word_index()))
-                    { ++punctPosNonConst; }
-                if (punctPosNonConst == m_punctuation.end())
-                    { break; }
-                // we will be on the first word of the NEXT sentence. Review the punctuation
-                // connected to the last word of our current sentence...
-                while (punctPosNonConst != m_punctuation.end() &&
-                       punctPosNonConst->is_connected_to_previous_word() &&
-                       punctPosNonConst->get_word_position() == sentPos->get_last_word_index()+1)
+                if (!sentPos->is_valid())
                     {
-                    // Semicolon at the end of an invalid sentence will now be valid
-                    // (it will be a list item that should be like a regular sentence).
-                    // It can still be seen as a list item or header, just mark it as valid.
-                    // The semicolon will also be moved from the punctuation data onto the sentence.
-                    if (traits::case_insensitive_ex::eq(punctPosNonConst->get_punctuation_mark(),
-                                                        common_lang_constants::SEMICOLON))
+                    while (
+                        punctPosNonConst != m_punctuation.end() &&
+                        (punctPosNonConst->get_word_position() <= sentPos->get_last_word_index()))
                         {
-                        sentPos->set_valid(true);
-                        sentPos->set_ending_punctuation(common_lang_constants::SEMICOLON);
-                        punctPosNonConst = m_punctuation.erase(punctPosNonConst);
+                        ++punctPosNonConst;
+                        }
+                    if (punctPosNonConst == m_punctuation.end())
+                        {
                         break;
                         }
-                    else
-                        { ++punctPosNonConst; }
+                    // we will be on the first word of the NEXT sentence. Review the punctuation
+                    // connected to the last word of our current sentence...
+                    while (punctPosNonConst != m_punctuation.end() &&
+                           punctPosNonConst->is_connected_to_previous_word() &&
+                           punctPosNonConst->get_word_position() ==
+                               sentPos->get_last_word_index() + 1)
+                        {
+                        // Semicolon at the end of an invalid sentence will now be valid
+                        // (it will be a list item that should be like a regular sentence).
+                        // It can still be seen as a list item or header, just mark it as valid.
+                        // The semicolon will also be moved from the punctuation data onto the
+                        // sentence.
+                        if (traits::case_insensitive_ex::eq(
+                                punctPosNonConst->get_punctuation_mark(),
+                                common_lang_constants::SEMICOLON))
+                            {
+                            sentPos->set_valid(true);
+                            sentPos->set_ending_punctuation(common_lang_constants::SEMICOLON);
+                            punctPosNonConst = m_punctuation.erase(punctPosNonConst);
+                            break;
+                            }
+                        else
+                            {
+                            ++punctPosNonConst;
+                            }
+                        }
                     }
                 }
             }
@@ -646,7 +657,7 @@ public:
                     ignore_paragraph_if_copyright_notice_aggressive(m_paragraphs[para_iter-1]);
                     ignore_paragraph_if_copyright_notice_aggressive(m_paragraphs[para_iter]);
                     }
-                // ..unless the last valid one is at second paragraph, then just look at the last valid
+                // ...unless the last valid one is at second paragraph, then just look at the last valid
                 // one so that we will at least have one valid paragraph after removing copyrights
                 else if (para_iter == 1)
                     { ignore_paragraph_if_copyright_notice_aggressive(m_paragraphs[para_iter]); }
