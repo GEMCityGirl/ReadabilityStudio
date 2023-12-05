@@ -647,7 +647,7 @@ namespace grammar
             }
         /** @returns @c true if a character can be valid sentence-ending punctuation.
             @param character The character to review.
-            @note This variation only returns true if character is a standard stop character (e.g., '?' or '.')
+            @note This variation only returns @c true if character is a standard stop character (e.g., '?' or '.')
                   or something like ':' or ellipse followed by a hard return.*/
         [[nodiscard]]
         inline static bool can_character_end_sentence_strict(const wchar_t character) noexcept
@@ -831,7 +831,8 @@ namespace grammar
         wchar_t m_ending_punctuation{ L'.' };
         bool m_is_valid{ true };
         sentence_paragraph_type m_sentence_type{ sentence_paragraph_type::complete };
-        size_t m_unit_count{ 0 };
+        // sentence will have at least one unit
+        size_t m_unit_count{ 1 };
         };
 
     class sentence_word_position_less_than
