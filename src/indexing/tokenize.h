@@ -628,11 +628,13 @@ namespace tokenize
                     else if (std::distance(word_start, m_current_char) == 1 &&
                              *word_start == L'C' &&
                              m_current_char + 1 < m_text_block_end && m_current_char[0] == L'+' &&
-                             m_current_char[1] == L'+')
+                             m_current_char[1] == L'+' &&
+                             (m_current_char + 2 == m_text_block_end ||
+                              (!characters::is_character::is_alpha(m_current_char[2]) &&
+                               !characters::is_character::is_numeric(m_current_char[2])) ) )
                         {
                         m_current_char += 2;
                         isWordCPP = true;
-                        break;
                         }
                     else
                         {

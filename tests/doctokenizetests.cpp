@@ -5,12 +5,43 @@
 
 TEST_CASE("C++ tokenize", "[document]")
     {
-    std::wstring text{ L"C++. We also." };
-    tokenize::document_tokenize<> tokenize(text.data(), text.length(), false, false, false,
-                                           false);
-    auto pos = tokenize();
-    std::wstring firstWord(pos, tokenize.get_current_word_length());
-    CHECK(firstWord == L"C++");
+    SECTION("Regular")
+        {
+        std::wstring text{ L"C++. We also." };
+        tokenize::document_tokenize<> tokenize(text.data(), text.length(), false, false, false,
+                                               false);
+        auto pos = tokenize();
+        std::wstring firstWord(pos, tokenize.get_current_word_length());
+        CHECK(firstWord == L"C++");
+        CHECK(tokenize.get_current_sentence_index() == 0);
+        pos = tokenize();
+        CHECK(tokenize.get_current_sentence_index() == 1);
+        }
+    SECTION("Not word")
+        {
+        std::wstring text{ L"C++Plz. We also." };
+        tokenize::document_tokenize<> tokenize(text.data(), text.length(), false, false, false,
+                                               false);
+        auto pos = tokenize();
+        CHECK(std::wstring{ pos, tokenize.get_current_word_length() } == L"C");
+        CHECK(tokenize.get_current_sentence_index() == 0);
+        pos = tokenize();
+        CHECK(std::wstring{ pos, tokenize.get_current_word_length() } == L"Plz");
+        CHECK(tokenize.get_current_sentence_index() == 0);
+        pos = tokenize();
+        CHECK(std::wstring{ pos, tokenize.get_current_word_length() } == L"We");
+        CHECK(tokenize.get_current_sentence_index() == 1);
+        }
+    SECTION("At end")
+        {
+        std::wstring text{ L"C++" };
+        tokenize::document_tokenize<> tokenize(text.data(), text.length(), false, false, false,
+                                               false);
+        auto pos = tokenize();
+        std::wstring firstWord(pos, tokenize.get_current_word_length());
+        CHECK(firstWord == L"C++");
+        CHECK(tokenize.get_current_sentence_index() == 0);
+        }
     }
 
 TEST_CASE("Document tokenize", "[document]")
