@@ -6,6 +6,7 @@ FOB
 FYI
 HBO
 HICON
+HINSTANCE
 HIV
 HVAC
 LED
@@ -30,6 +31,7 @@ ssDNA
 ssRNA
 SUV
 XBox
+XCHAR
 XCode
 XInput
 xml

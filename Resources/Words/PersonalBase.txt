@@ -9036,6 +9036,7 @@ Horne
 Horney
 Horowitz
 Horsham
+Horspool
 Horst
 Horstman
 Hort
@@ -18341,6 +18342,7 @@ Stenger
 Stensland
 Stepan
 Stepania
+Stepanov
 Steph
 Stephane
 Stephani
@@ -18427,6 +18429,7 @@ Strongheart
 Stroub
 Stroud
 Stroup
+Stroustrup
 Strugala
 Strunks
 Struthers

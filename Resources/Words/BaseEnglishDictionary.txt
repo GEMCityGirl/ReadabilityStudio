@@ -121,6 +121,7 @@ abbé
 abbés
 ABC
 ABC's
+abcdef
 abdicate
 abdicated
 abdicates
@@ -1229,6 +1230,7 @@ actionable
 actioned
 actioning
 actions
+activatable
 activate
 activated
 activates
@@ -8078,6 +8080,9 @@ autorepeats
 autorhythmic
 autorhythmically
 autorhythmicity
+autorotation
+autorotation's
+autorotations
 autorun
 autos
 autosave
@@ -8582,6 +8587,9 @@ backdate
 backdated
 backdates
 backdating
+backdoor
+backdoor's
+backdoors
 backdraft
 backdraft's
 backdrafts
@@ -11644,6 +11652,7 @@ binary
 binaural
 binaurally
 bind
+bindable
 binded
 binder
 binder's
@@ -16341,6 +16350,7 @@ cacaos
 cacciatore
 cache
 cache's
+cacheable
 cachectic
 cached
 cachepot
@@ -16618,6 +16628,8 @@ calender's
 calendered
 calendering
 calenders
+calendrical
+calendrically
 calf
 calf's
 calfskin
@@ -17639,6 +17651,9 @@ cardenas
 carder
 carder's
 carders
+cardgame
+cardgame's
+cardgames
 cardholder
 cardholder's
 cardholders
@@ -19084,6 +19099,7 @@ centromeric
 centrosome
 centrosomes
 cents
+centurial
 centuried
 centuries
 centurion
@@ -19915,7 +19931,10 @@ checkerboards
 checkered
 checkering
 checkers
+checkin
+checkin's
 checking
+checkins
 checkless
 checklist
 checklists
@@ -24027,6 +24046,9 @@ comparable
 comparableness
 comparableness's
 comparably
+comparand
+comparand's
+comparands
 comparative
 comparatively
 comparativeness
@@ -25301,6 +25323,7 @@ conmen's
 conn
 conn's
 connect
+connectable
 connected
 connectedly
 connectedness
@@ -30909,6 +30932,7 @@ debtor's
 debtors
 debts
 debug
+debuggable
 debugged
 debuggee
 debugger
@@ -31251,6 +31275,10 @@ decommission
 decommissioned
 decommissioning
 decommissions
+decommit
+decommits
+decommitted
+decommitting
 decompensate
 decompensated
 decompensates
@@ -31933,9 +31961,13 @@ deindustrializations
 deinitialization
 deinitialization's
 deinitializations
+deinitialize
+deinitialized
 deinitializer
 deinitializer's
 deinitializers
+deinitializes
+deinitializing
 deinococcus
 deinstall
 deinstallation
@@ -32026,6 +32058,7 @@ deleteriously
 deleteriousness
 deleteriousness's
 deletes
+deletetable
 deleting
 deletion
 deletion's
@@ -34348,6 +34381,8 @@ dietitian
 dietitian's
 dietitians
 diets
+diff
+diff's
 differ
 differed
 difference
@@ -34399,6 +34434,7 @@ diffractometer
 diffractometer's
 diffractometers
 diffracts
+diffs
 diffuse
 diffused
 diffusely
@@ -46836,6 +46872,9 @@ finalization's
 finalizations
 finalize
 finalized
+finalizer
+finalizer's
+finalizers
 finalizes
 finalizing
 finally
@@ -64104,8 +64143,11 @@ inlets
 inletting
 inlier
 inlier's
+inlinable
 inline
 inlined
+inlines
+inlining
 inly
 inlying
 inmate
@@ -64494,6 +64536,7 @@ insouciances
 insouciant
 insouciantly
 inspect
+inspectable
 inspected
 inspecting
 inspection
@@ -65444,6 +65487,7 @@ interpretively
 interpretor
 interpretors
 interprets
+interprocedural
 interprocess
 interprocessor
 interpulmonary
@@ -74569,6 +74613,9 @@ manèges
 manèging
 map
 map's
+mapfile
+mapfile's
+mapfiles
 maple
 maple's
 maples
@@ -83740,6 +83787,7 @@ nonconvertible
 noncooperation
 noncooperation's
 noncooperations
+noncopyable
 noncorroding
 noncorrodings
 noncorrosive
@@ -83829,6 +83877,7 @@ nonemployee
 nonemployee's
 nonemployees
 nonempty
+nonencapsulated
 nonenforceable
 nonentities
 nonentity
@@ -84036,9 +84085,11 @@ nonminorities
 nonminority
 nonminority's
 nonmissing
+nonmodifiable
 nonmonetary
 nonmotile
 nonmotorized
+nonmovable
 nonmovant
 nonmovant's
 nonmovants
@@ -84132,6 +84183,7 @@ nonpoisonous
 nonpolar
 nonpolitical
 nonpolluting
+nonpolymorphic
 nonpolyposis
 nonporous
 nonpracticing
@@ -84290,6 +84342,7 @@ nonstandardized
 nonstarter
 nonstarter's
 nonstarters
+nonstatic
 nonsterile
 nonsteroidal
 nonstick
@@ -84901,6 +84954,7 @@ nuking
 Nuku'alofa
 Nukualofa
 null
+nullability
 nullable
 nulled
 nullification
@@ -84919,6 +84973,7 @@ nulliparous
 nullities
 nullity
 nullity's
+nullness
 nulls
 nultitech
 numb
@@ -89009,6 +89064,7 @@ paganisms
 pagans
 page
 page's
+pageable
 pageant
 pageant's
 pageantries
@@ -97079,7 +97135,10 @@ precompile
 precompiled
 precompiles
 precompiling
+precompute
 precomputed
+precomputes
+precomputing
 preconceive
 preconceived
 preconceives
@@ -99791,6 +99850,9 @@ pseudoelaters
 pseudoexfoliation
 pseudogout
 pseudohemophilia
+pseudoinstruction
+pseudoinstruction's
+pseudoinstructions
 pseudomallei
 pseudomelanosis
 pseudomembranous
@@ -104151,6 +104213,8 @@ redissolves
 redissolving
 redistillation
 redistributable
+redistributable's
+redistributables
 redistribute
 redistributed
 redistributes
@@ -109620,6 +109684,9 @@ rulered
 rulering
 rulers
 rules
+ruleset
+ruleset's
+rulesets
 ruling
 ruling's
 rulings
@@ -112254,6 +112321,7 @@ Sc³⁺
 SD
 SDI
 SDK
+sdlc
 Se
 sea
 sea's
@@ -131980,6 +132048,9 @@ trigonometry
 trigonometry's
 trigram
 trigrams
+trigraph
+trigraph's
+trigraphs
 trigs
 trihalides
 trihedral
@@ -133904,6 +133975,9 @@ unbounded
 unboundedness
 unboundedness's
 unbowed
+unbox
+unboxed
+unboxes
 unboxing
 unboxing's
 unbraced
@@ -138239,6 +138313,9 @@ vectorization
 vectorizations
 vectorize
 vectorized
+vectorizer
+vectorizer's
+vectorizers
 vectorizes
 vectorizing
 vectors

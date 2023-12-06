@@ -112,6 +112,7 @@ accelerated	hastened, quickened	0
 accelerates	hastens, quickens	0		
 accelerating	hastening, quickening	0		
 acceptable	welcome	0		
+accesibility	accessibility	3		
 accessible	easy to reach	0		
 accommodate	adjust, adapt, fit	0		
 accommodated	adjusted, adapted, fitted	0		
@@ -517,6 +518,8 @@ another words	in other words	3
 antagonist	enemy	0		
 antagonist's	enemy's	0		
 antagonists	enemies	0		
+Antartica	Antarctica	3		
+Antartica's	Antarctica's	3		
 anterior	front	0		
 anticipatable	expectable	0		
 anticipate	expect, await	0		
@@ -890,6 +893,7 @@ automobiles	cars	0
 autonomous	independent	0		
 autonomously	independently	0		
 autumn season	autumn	1		
+availabe	available	3		
 available	offered, ready	0		
 avarice	greed	0		
 avaricious	greedy	0		
@@ -1570,6 +1574,9 @@ collaborates	works together	0
 collaborates together	collaborates	1		
 collaborating	working together	0		
 collaborating together	collaborating	1		
+collecion	collection	3		
+collecion's	collection's	3		
+collecions	collections	3		
 collection	mass, heap	0		
 collections	masses, heaps	0		
 colossal	large	0		
@@ -1630,6 +1637,9 @@ companions	friends, mates	0
 comparsion	comparison	3		
 comparsion's	comparison's	3		
 comparsions	comparisons	3		
+comparson	comparison	3		
+comparson's	comparison's	3		
+comparsons	comparisons	3		
 compassion	pity	0		
 compensate	pay	0		
 compensated	paid	0		
@@ -2717,6 +2727,9 @@ expresses sorrow	laments, mourns, regrets	0
 expressing concern	worrying, fretting, brooding	0		
 expressing skepticism	doubting, mistrusting, questioning	0		
 expressing sorrow	lamenting, mourning, regretting	0		
+expresssion	expression	3		
+expresssion's	expression's	3		
+expresssions	expressions	3		
 expunge	wipe out, clear	0		
 expunged	wiped out, cleared	0		
 expunges	wipes out, clears	0		
@@ -3286,6 +3299,7 @@ hand-to-mouth	living in poverty	2
 hang in the balance	has an uncertain outcome	2		
 hanging in the balance	having an uncertain outcome	2		
 hangs in the balance	has an uncertain outcome	2		
+Hanguel	Hangul	3		
 happy as a clam	very satisfied	2		
 happy camper	happy person	2		
 happy-go-lucky	carefree, unconcerned	2		
@@ -3357,6 +3371,8 @@ hazardously	unsafely	0
 he am	he is	3		
 he are	he is	3	or	
 he be	he is	3	can;could;couldn't;might;mightn't;or;should;shouldn't;that;will;would;wouldn't	
+he be	he is	3		
+he do	he does	3		
 he herd	he heard	3		
 he is a man who	he	0		
 he new	he knew	3		
@@ -3982,6 +3998,10 @@ interrogated	questioned	0
 interrogates	questions	0		
 interrogating	questioning	0		
 interrogation	questioning	0		
+intialize	initialize	3		
+intialized	initialized	3		
+intializes	initializes	3		
+intializing	initializing	3		
 intimate	hint, suggest	0		
 intimated	hinted, suggested	0		
 intimates	hints, suggests	0		
@@ -3990,6 +4010,8 @@ intractable	stubborn	0
 intractably	stubbornly	0		
 intrepid	fearless	0		
 intrepidly	fearlessly	0		
+intrinisic	intrinsic	3		
+intrinisics	intrinsics	3		
 inundate	flood	0		
 inundated	flooded	0		
 inundates	floods	0		
@@ -4883,6 +4905,7 @@ numerating	counting	0
 numerous	many	0		
 nutriment	food	0		
 obdurate	stubborn	0		
+obejct	object	3		
 objective	aim, goal	0		
 objective's	aim's, goal's	0		
 objectives	aims, goals	0		
@@ -6160,6 +6183,10 @@ retaining	keeping, holding	0
 retains	keeps, , holds	0		
 retention	keeping, holding	0		
 reticent	silent	0		
+retreive	retrieve	3		
+retreived	retrieved	3		
+retreives	retrieves	3		
+retreiving	retrieving	3		
 retrogress	get worse, move backward	0		
 retrogressed	got worse, moved backward	0		
 retrogresses	gets worse, moves backward	0		
@@ -6365,6 +6392,8 @@ sharing together	sharing	1
 she am	she is	3		
 she are	she is	3	or	
 she be	she is	3	can;could;couldn't;might;mightn't;or;should;shouldn't;that;will;would;wouldn't	
+she be	she is	3		
+she do	she does	3		
 she herd	she heard	3		
 she is a woman who	she	0		
 she new	she knew	3		
@@ -6402,6 +6431,7 @@ silver spoon	born of wealth, spoiled	2
 similar	like	0		
 similarities	likenesses	0		
 similarity	likeness	0		
+simnple	simple	3		
 simplified	eased	0		
 simplifies	eases	0		
 simplify	ease	0		
@@ -6667,6 +6697,10 @@ submitter's	giver's, sender's	0
 submitters	givers, senders	0		
 submitting	sending, giving	0		
 submitting an application for	applying for	0		
+subract	subtract	3		
+subracted	subtracted	3		
+subracting	subtracting	3		
+subracts	subtracts	3		
 subsequent	later, next	0		
 subsequent to	after, afterward, later, next, since, then, following	0		
 subsequently	later, after	0		
@@ -6949,7 +6983,7 @@ the them	strike one of these	3
 the these	strike one of these	3		
 the they	strike one of these	3		
 the third degree	rough interrogation	2		
-the this	strike one of these, or a comma may be needed between them	3		object;pointer
+the this	strike one of these, or a comma may be needed between them	3		object;object's;pointer;pointer's
 the time will come when	in due time, in time	0		
 the topic of	Consider removing this	0		
 the total of	all	0		each

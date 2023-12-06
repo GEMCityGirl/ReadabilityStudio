@@ -1102,6 +1102,7 @@ Conoco
 Conrail
 Consolas
 Constancia
+Contoso
 Cookstown
 Copenhagen
 Copernican
@@ -1982,6 +1983,7 @@ Hampton
 Hanbury
 Haney
 Hangzhou
+Hanja
 Hannover
 Hanoi
 Hanover
@@ -2366,6 +2368,7 @@ Juneau
 Juneteenth
 Jungian
 JUnit
+Junja
 Juno
 Jupiter
 Jura
@@ -3938,6 +3941,7 @@ Sarasota
 Saratoga
 Sardinia
 Sargasso
+Sarif
 SAS
 Saskatchewan
 Saskatoon

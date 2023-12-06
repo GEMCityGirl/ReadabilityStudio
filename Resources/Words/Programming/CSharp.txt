@@ -25,6 +25,7 @@ do
 double
 dynamic
 else
+endregion
 enum
 equals
 event
@@ -67,6 +68,9 @@ param
 params
 partial
 private
+propget
+propput
+propputref
 protected
 public
 readonly
@@ -75,6 +79,7 @@ remove
 return
 sbyte
 sealed
+sealedness
 select
 set
 short

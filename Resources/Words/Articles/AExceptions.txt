@@ -1,5 +1,6 @@
 and
 are
+hdrstop
 is
 nor
 of
@@ -19,5 +20,4 @@ unary
 unary_negate
 USB
 USPTO
-usr
 UWP
