@@ -621,7 +621,7 @@ namespace tokenize
                         }
                     // '+' is only part of a word if an URL, except for the word "C++".
                     // Even trailing + (e.g., a charge on an element) will be picked up as
-                    // punctation, but "C++" should be seen as a word. The irony of not indexing
+                    // punctuation, but "C++" should be seen as a word. The irony of not indexing
                     // that correctly as a word is just too much.
                     else if (std::distance(word_start, m_current_char) == 1 &&
                              *word_start == L'C' &&
