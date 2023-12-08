@@ -58,6 +58,7 @@ RSArtProvider::RSArtProvider()
             { L"ID_LINE_SPACING", L"ribbon/line-spacing.svg" },
             { L"ID_LIST_SORT", L"ribbon/sort.svg" },
             { L"ID_ADD", L"ribbon/add.svg" },
+            { L"ID_GROUP", L"ribbon/group.svg" },
             { L"ID_RUN", L"ribbon/run.svg" },
             { L"ID_CLEAR", L"ribbon/clear.svg" },
             { L"ID_DOCUMENT", L"ribbon/document.svg" },

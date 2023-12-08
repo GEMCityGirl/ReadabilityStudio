@@ -138,6 +138,8 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
         wxGetApp().GetAppOptions().GetIgnoreIndentingForParagraphsParser());
     SetNewLinesAlwaysNewParagraphsSelected(
         wxGetApp().GetAppOptions().GetParagraphsParsingMethod() == ParagraphParse::EachNewLineIsAParagraph);
+
+     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnGroupClick, this, ProjectWizardDlg::ID_GROUP_BUTTON);
     }
 
 //-------------------------------------------------------------
@@ -317,6 +319,12 @@ void ProjectWizardDlg::CreateControls()
             wxArtProvider::GetBitmapBundle(wxART_DELETE, wxART_BUTTON));
         deleteFileButton->SetToolTip(_(L"Remove selected document"));
         filesButtonsSizer->Add(deleteFileButton);
+
+        auto groupButton = new wxBitmapButton(
+            page, ID_GROUP_BUTTON, wxArtProvider::GetBitmapBundle(L"ID_GROUP", wxART_BUTTON));
+        groupButton->SetToolTip(_(L"Group selected documents"));
+        filesButtonsSizer->Add(groupButton);
+
         optionsSizer->Add(filesButtonsSizer, 0, wxALIGN_RIGHT);
 
         m_fileData = new ListCtrlExDataProvider;
@@ -822,6 +830,30 @@ void ProjectWizardDlg::OnAddToListClick([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_fileList)
         { m_fileList->EditItem(m_fileList->AddRow(), 0); }
+    }
+
+//-------------------------------------------------------------
+void ProjectWizardDlg::OnGroupClick([[maybe_unused]] wxCommandEvent& event)
+    {
+    if (m_fileList)
+        {
+        auto firstSelected = m_fileList->GetFirstSelected();
+        if (firstSelected != wxNOT_FOUND)
+            {
+            wxTextEntryDialog dlg(this, _(L"Enter a group label for the selected documents"),
+                                  _(L"Group Label"),
+                                  m_fileList->GetItemTextFormatted(firstSelected, 1));
+            if (dlg.ShowModal() == wxID_OK)
+                {
+                wxWindowUpdateLocker noUpdates(m_fileList);
+                while (firstSelected != wxNOT_FOUND)
+                    {
+                    m_fileList->SetItemText(firstSelected, 1, dlg.GetValue());
+                    firstSelected = m_fileList->GetNextSelected(firstSelected);
+                    }
+                }
+            }
+        }
     }
 
 //-------------------------------------------------------------

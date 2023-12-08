@@ -84,13 +84,16 @@ knitr::include_graphics("images/histoimproved.png")
 
 ## Adding Descriptive Labels to Documents {#adding-labels-to-batch}
 
-Sometimes documents that we receive do not have descriptive names that are easily recognizable. An example of this are downloaded webpages that may have names such as "index.html" or "2A67B2H.html." In this example, we will show how to include descriptive labels next to our documents in a batch so that we can distinguish between them.
+Sometimes documents that we receive do not have descriptive names that are easily recognizable. An example of this are downloaded webpages that may have names such as "index.html" or "2A67B2H.html."
+In this example, we will show how to include descriptive labels next to our documents in a batch so that we can distinguish between them.
 
 :::{.wrapfigure data-latex="{r}{0.5\\textwidth}" style="width: 48%;"}
 ![](images/GroupLabelDescSelected.png){width=48%}
 :::
 
-On the **Home** tab of the ribbon, click the `r keys('New')` button. When prompted for which type of project to create, select **Batch Project**. Once the **New Project Wizard** appears, click the `r keys('Add folder...')` button. On the **Select Directory** dialog, enter the folder path containing your documents and then click `r keys('OK')`. Now we will be shown the **Select Labeling** dialog.
+On the **Home** tab of the ribbon, click the `r keys('New')` button. When prompted for which type of project to create, select **Batch Project**.
+Once the **New Project Wizard** appears, click the `r keys('Add folder...')` button.
+On the **Select Directory** dialog, enter the folder path containing your documents and then click `r keys('OK')`. Now we will be shown the **Select Labeling** dialog.
 
 On this dialog, we can either specify a single label for all documents or use the documents’ metadata to create unique descriptions for each one. For this example, we are wanting to include unique, descriptive labels for each document, so leave **Use documents’ descriptions** selected and click `r keys('OK')`.
 
@@ -98,7 +101,8 @@ Now, the program will load the files from the folder that we had selected. For e
 
 ![](images/wizardbatchselectfilessamenames.png)
 
-Because we had selected **Use documents’ descriptions** for our labeling, then the titles from the documents will be extracted when the analysis begins. From there, these titles will be shown as descriptive labels next to each document in the results. Click `r keys('Finish')` to begin the analysis, and once the project appears, select **Raw Scores** under **Readability Scores**:
+Because we had selected **Use documents' descriptions** for our labeling, then the titles from the documents will be extracted when the analysis begins.
+From there, these titles will be shown as descriptive labels next to each document in the results. Click `r keys('Finish')` to begin the analysis, and once the project appears, select **Raw Scores** under **Readability Scores**:
 
 ```{r echo=F, fig.align='center', out.width='50%'}
 knitr::include_graphics("images/BatchDescLabelsScores.png")
@@ -110,11 +114,15 @@ Note how there is a **Label** column next to the **Document** column. Despite th
 
 ## Grouping Documents in a Batch {#grouping-docs-in-batch}
 
-Sometimes when creating a batch, we may want to group the documents within it. For example, clusters of documents within the batch may be from different websites, authors, or studies. By adding group labels to these clusters, we can compare them in the results. In this example, we will show how to add group labels to a batch of documents and how to view them in the results.
+Sometimes when creating a batch, we may want to group the documents within it. For example, clusters of documents within the batch may be from different websites, authors, or studies.
+By adding group labels to these clusters, we can compare them in the results. In this example, we will show how to add group labels to a batch of documents and how to view them in the results.
 
-On the **Home** tab of the ribbon, click the `r keys('New')` button. When prompted for which type of project to create, select **Batch Project**. When the **New Project Wizard** appears, click the `r keys('Add folder...')` button. On the **Select Directory** dialog, enter the folder path containing your documents and then click `r keys('OK')`. Now we will be shown the **Select Labeling** dialog.
+On the **Home** tab of the ribbon, click the `r keys('New')` button. When prompted for which type of project to create, select **Batch Project**.
+When the **New Project Wizard** appears, click the `r keys('Add folder...')` button.
+On the **Select Directory** dialog, enter the folder path containing your documents and then click `r keys('OK')`. Now we will be shown the **Select Labeling** dialog.
 
-On this dialog, we can either specify a single label for all documents or use the documents’ metadata to create unique descriptions for each one. For this example, we are wanting to group this folders’ documents together, so select **Use a grouping label**, enter a label (e.g., *Notes*) and click `r keys('OK')`.
+On this dialog, we can either specify a single label for all documents or use the documents’ metadata to create unique descriptions for each one.
+For this example, we are wanting to group this folders’ documents together, so select **Use a grouping label**, enter a label (e.g., *Notes*) and click `r keys('OK')`.
 
 ```{r echo=F, fig.align='center', out.width='50%'}
 knitr::include_graphics("images/GroupLabelNotes.png")
@@ -126,7 +134,12 @@ Repeat this process with another folder, but enter a different grouping label. F
 knitr::include_graphics("images/GroupLabelExamples.png")
 ```
 
-After adding your documents, click `r keys('Finish')`. When the project appears, select **Raw Scores** under **Readability Scores**. Here we can see a list of documents, along with their group labels next to them:
+::: {.notesection data-latex=""}
+You can apply a group label to all selected documents by clicking the group button above the list.
+:::
+
+After adding your documents, click `r keys('Finish')`.
+When the project appears, select **Raw Scores** under **Readability Scores**. Here we can see a list of documents, along with their group labels next to them:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/BatchGroupLabelsScores.png")

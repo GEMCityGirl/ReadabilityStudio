@@ -21,6 +21,8 @@
 - The **Readability Graphs** page on the **Options** dialog has been moved to be under the **Graphs** section.
 - **Ignore social media hashtags** feature of spell checker now recognizes handles, such as *\@AskLibreOffice*.
 - Projects that were created from manually entered text can now be changed to link to external documents.
+- Improved the view item dialog for list controls. It is now easier to select and copy individual cells.
+- Added button to the batch project wizard that applies a group label to the selected documents.
 - Added margins to all text windows.
 
 #### Graph Enhancements {-}

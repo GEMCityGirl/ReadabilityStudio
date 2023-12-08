@@ -268,6 +268,7 @@ private:
     static constexpr int ID_NARRATIVE_LABEL = wxID_HIGHEST + 24;
     static constexpr int ID_SENTENCES_SPLIT_RADIO_BUTTON = wxID_HIGHEST + 25;
     static constexpr int ID_SENTENCES_SPLIT_LABEL = wxID_HIGHEST + 26;
+    static constexpr int ID_GROUP_BUTTON = wxID_HIGHEST + 27;
 
     void OnHelp([[maybe_unused]] wxCommandEvent& event);
     void OnContextHelp([[maybe_unused]] wxHelpEvent& event);
@@ -287,6 +288,7 @@ private:
     void OnAddSpreadsheetFileButtonClick([[maybe_unused]] wxCommandEvent& event);
     void OnRandomSampleCheck([[maybe_unused]] wxCommandEvent& event);
     void OnAddToListClick([[maybe_unused]] wxCommandEvent& event);
+    void OnGroupClick([[maybe_unused]] wxCommandEvent& event);
     void OnDeleteFromListClick([[maybe_unused]] wxCommandEvent& event);
 
     // batch document entry

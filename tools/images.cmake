@@ -72,6 +72,7 @@ ribbon/gears.svg
 ribbon/german2english.svg
 ribbon/grade-display.svg
 ribbon/grammar.svg
+ribbon/group.svg
 ribbon/heatmap.svg
 ribbon/help-button.svg
 ribbon/help-manual.svg
