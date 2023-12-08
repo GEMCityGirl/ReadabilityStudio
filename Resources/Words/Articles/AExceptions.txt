@@ -1,4 +1,3 @@
-and
 are
 hdrstop
 is
@@ -8,6 +7,8 @@ once
 one
 onetime
 SFINAE
+SHA-1
+SHA-256
 SQLite
 UAW
 Ubuntu

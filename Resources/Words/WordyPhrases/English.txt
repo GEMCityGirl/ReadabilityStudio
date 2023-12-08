@@ -19,7 +19,7 @@ a considerable amount of	many, numerous	0
 a countless number of	countless, endless	0		
 a decreased amount of	less	0		
 a decreased number of	fewer	0		
-a from	a form	3	vitamin	
+a from	a form	3	vitamin	address;email
 a good deal of	much, vast	0		
 a great deal of	much, vast	0		
 a high number of	numerous, many	0		
@@ -1267,6 +1267,7 @@ brought to a standstill	ceased, ended, halted, stopped	0
 brought to an end	closed, ended, finished, concluded	0		
 brought to light	disclosed, broadcasted, divulged, exposed, pointed out, promoted, revealed	0		
 brought to mind	recalled, recollected, remembered	0		
+bsaed	based	3		
 buccaneer	pirate	0		
 buccaneer's	pirate's	0		
 buccaneers	pirates	0		
@@ -1750,6 +1751,9 @@ connect together	connect	1
 connected together	connected	1		
 connecting together	connecting	1		
 connects together	connects	1		
+connnector	connector	3		
+connnector's	connector's	3		
+connnectors	connectors	3		
 connoisseur	expert	0		
 connoisseurs	experts	0		
 conscious	aware	0		
@@ -2588,6 +2592,9 @@ enumerations	counts	0
 enumerator	counter	0		
 enumerator's	counter's	0		
 enumerators	counters	0		
+enviroment	environment	3		
+enviroment's	environment's	3		
+enviroments	environments	3		
 epistle	letter	0		
 epistles	letters	0		
 equable	even	0		
@@ -2600,6 +2607,7 @@ equitable	fair	0
 equitably	fairly	0		
 equivalent	equal	0		
 equivalently	equally	0		
+equivelant	equivalent	3		
 erratic	uncertain	0		
 erratically	uncertainly	0		
 erroneous	wrong	0		
@@ -2709,6 +2717,7 @@ explain	show, tell	0
 explained	showed, told	0		
 explaining	showing, telling	0		
 explains	shows, tells	0		
+explicily	explicitly	3		
 explicit	clear	0		
 explicitly	clearly	0		
 expound	make clear	0		
@@ -2823,6 +2832,10 @@ families overtime	families over time	3
 family overtime	family over time	3		
 family planing	family planning	3		
 famished	hungry	0		
+famliliarize	familiarize	3		
+famliliarized	familiarized	3		
+famliliarizes	familiarizes	3		
+famliliarizing	familiarizing	3		
 fan fair	fanfare	3		
 far and away	a large margin	2		
 far away from	far from	0		
@@ -3371,7 +3384,6 @@ hazardously	unsafely	0
 he am	he is	3		
 he are	he is	3	or	
 he be	he is	3	can;could;couldn't;might;mightn't;or;should;shouldn't;that;will;would;wouldn't	
-he be	he is	3		
 he do	he does	3		
 he herd	he heard	3		
 he is a man who	he	0		
@@ -3385,7 +3397,7 @@ head over heels	won over	2
 heads are going to roll	drastic changes will be made	2		
 heads will roll	drastic changes will be made	2		
 hear are	here are	3		
-hear is	here is	3	can;cannot;could;couldn't;should;shouldn't;they;we;would;wouldn't	
+hear is	here is	3	can;cannot;could;couldn't;I;should;shouldn't;they;we;would;wouldn't	
 heart of gold	generous	2		
 heart on her sleeve	openly shows emotion	2		
 heart on his sleeve	openly shows emotion	2		
@@ -3857,6 +3869,10 @@ incorporated	blended, joined, mixed	0
 incorporates	blends, joins, mixes	0		
 incorporating	blending, joining, mixing	0		
 incredulity	doubt	0		
+inculde	include	3		
+inculded	included	3		
+inculdes	includes	3		
+inculding	including	3		
 indefatigable	tireless	0		
 indelicate	coarse, rough	0		
 indemnified	repaid, paid back	0		
@@ -4955,6 +4971,7 @@ obviate	wipe out	0
 obviated	wiped out	0		
 obviates	wipes out	0		
 obviating	wiping out	0		
+occoured	occurred	3		
 occures	occurs	3		
 occurrence	event, instance	0		
 occurrences	events, instances	0		
@@ -5408,6 +5425,9 @@ pipe down	be quiet	2
 piped down	was quiet	2		
 pipes down	is quiet	2		
 piping down	being quiet	2		
+piroities	priorities	3		
+piroity	priority	3		
+piroity's	priority's	3		
 placate	soothe	0		
 placated	soothed	0		
 placates	soothes	0		
@@ -5758,6 +5778,9 @@ pulls my leg	fools/teases me	2
 pulls out all the stops	uses all resources available (towards an effort)	2		
 pulls the rug out from out	sabotages	2		
 pulls the rug out from under	sabotages	2		
+punctation	punctuation	3		
+punctation's	punctuation's	3		
+punctations	punctuations	3		
 punctilious	exact	0		
 punctiliously	exactly	0		
 pungent	bitter, acrid, sharp, poignant	0		
@@ -5936,6 +5959,7 @@ raze to the ground	raze	0
 razed to the ground	razed	0		
 razes to the ground	razes	0		
 razing to the ground	razing	0		
+reability	reliability	3		
 reach a conclusion	conclude	0		
 reach a decision	decide	0		
 reach a settlement	settle, agree	0		
@@ -6392,7 +6416,6 @@ sharing together	sharing	1
 she am	she is	3		
 she are	she is	3	or	
 she be	she is	3	can;could;couldn't;might;mightn't;or;should;shouldn't;that;will;would;wouldn't	
-she be	she is	3		
 she do	she does	3		
 she herd	she heard	3		
 she is a woman who	she	0		
@@ -6436,6 +6459,9 @@ simplified	eased	0
 simplifies	eases	0		
 simplify	ease	0		
 simplifying	easing	0		
+simuation	simulation	3		
+simuation's	simulation's	3		
+simuations	simulations	3		
 simultaneously	at the same time	0		
 sinecure	easy job	0		
 sinecures	easy jobs	0		
@@ -6716,6 +6742,7 @@ substracted	subtracted	3
 substracting	subtracting	3		
 substracts	subtracts	3		
 subterfuge	trick, ploy	0		
+succesfully	successfully	3		
 suddenly and without warning	suddenly, without warning	0		
 sufferance	consent	0		
 sufficient	enough, ample	0		
@@ -6931,11 +6958,12 @@ the country of	Consider removing this	0
 the cream of the crop	the best choice	2		
 the date of	Consider removing this	0		
 the degree to which	how far, how much	0		
+the enable	that enable	3		
 the extent to which	how far, how much	0		
 the fact of the matter is	in fact	0		
 the fact that	that	0		
 the flew	the flue	3		
-the from	the form	3		button;clause;file;statement
+the from	the form	3		address;button;clause;email;field;file;statement
 the have	they have, then have	3		
 the heart of the matter	crux, center	0		
 the hers	strike one of these	3		
@@ -7321,6 +7349,7 @@ unintentional mistake	mistake	1
 unintentional mistakes	mistakes	1		
 unit manger	unit manager	3		
 unit mangers	unit managers	3		
+unmanged	unmanaged	3		
 unsolved mysteries	mysteries	1		
 unsolved mystery	mystery	1		
 until has	until his	3		
@@ -7421,6 +7450,9 @@ venturous	bold	0
 verbatim	exact	0		
 verbatium	verbatim	3		
 verbatum	verbatim	3		
+verision	version	3		
+verision's	version's	3		
+verisions	versions	3		
 vertically	upward	0		
 very beginning	beginning	0		
 very end	end	0		
@@ -7486,6 +7518,9 @@ voicing disapproval of	disapproving	0
 voicing opposition to	opposing	0		
 voicing support for	supporting	0		
 voluminous	large, bulky	0		
+vulnerablities	vulnerabilities	3		
+vulnerablity	vulnerability	3		
+vulnerablity's	vulnerability's	3		
 waist of time	waste of time	3		
 wait around	wait	0		
 waited around	waited	0		
@@ -7695,7 +7730,7 @@ with flying colors	triumphantly	2
 with flying colours	triumphantly	2		
 with increasing frequency	increasingly	0		
 with kid cloves	gently	2		
-with out	without	3		
+with out	without	3		of
 with reference to	about, referring to	0		
 with regard to	about, regarding	0		
 with respect to	about, regarding	0		

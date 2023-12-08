@@ -10700,6 +10700,7 @@ Kasmirski
 Kaspar
 Kasparov
 Kasper
+Kaspersky
 Kasprowicz
 Kass
 Kassandra
@@ -11567,6 +11568,7 @@ Kowalsky
 Kowloon
 Kozak
 Kozar
+Kozeta
 Kozicki
 Kraas
 Kraft
@@ -17923,6 +17925,7 @@ Shostakovitch
 Showalter
 Shreck
 Shroyer
+Shteynberg
 Shtilman
 Shu
 Shug

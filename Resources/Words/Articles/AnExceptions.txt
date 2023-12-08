@@ -25,8 +25,8 @@ RNA
 ROI
 rvalue
 SaaS
-SEC
 SEH
+SMB
 ssDNA
 ssRNA
 SUV

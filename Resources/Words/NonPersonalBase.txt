@@ -208,6 +208,7 @@ Annapolis
 Anomalocaris
 Anotia
 ANSI
+Ansible
 Antananarivo
 Antarctic
 Antarctica
@@ -378,6 +379,7 @@ Atlantian
 Atlantic
 Atlantis
 Atlantogenata
+Atlassian
 Atlee
 Atreus
 Atria
@@ -618,6 +620,7 @@ Bismarck
 Bismark
 Bissau
 Bitcoin
+Bitdefender
 BitGiving
 Bizrate
 BizStats
@@ -1159,6 +1162,7 @@ Croatian
 Croatoan
 Cromwellian
 Crouzon
+Crowdstrike
 Crowdtoolz
 Cryptozoic
 Cuba
@@ -1312,6 +1316,7 @@ DMZ
 Dobro
 Dockerfile
 DoCoMo
+Docusign
 Dodoma
 Dogpatch
 Dogtown
@@ -2242,6 +2247,7 @@ Insureon
 IntelliSense
 Intelsat
 Intermont
+Intune
 Inuit
 Investopedia
 Iona
@@ -2371,6 +2377,7 @@ JUnit
 Junja
 Juno
 Jupiter
+Jupyter
 Jura
 Jurassic
 Jurua
@@ -2643,7 +2650,9 @@ Ljubljana
 Llanelli
 Lockean
 Lockian
+Logitech
 Loire
+Lokibot
 Lomé
 London
 Londonderry
@@ -2695,6 +2704,7 @@ Lyallpur
 Lycra
 Lydian
 Lyft
+Lync
 Lynchburg
 Lyon
 Lyonization
@@ -3631,6 +3641,7 @@ Principia
 Pringle
 Pristina
 Prius
+Priva
 Prix
 Procellarum
 Progeria
@@ -4429,6 +4440,7 @@ Tennessee
 Tenochtitlan
 Tenochtitlán
 Teotihuacan
+Teredo
 Terranova
 Testarossa
 Tet
@@ -4868,6 +4880,7 @@ Walpurgisnacht
 Walsall
 Walsingham
 Wampanoag
+Wannacry
 Wansbeck
 Wansee
 Wapakoneta
