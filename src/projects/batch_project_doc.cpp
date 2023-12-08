@@ -1611,17 +1611,21 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                     (*pos)->GetWords()->get_word(misspelledWordIndices[i]).c_str());
                 }
             GetMisspelledWordData()->SetItemValue(misspelledWordCount, 3, misspelledWords.get_data().size());
-            for (auto dwIter = misspelledWords.get_data().cbegin();
-                dwIter != misspelledWords.get_data().cend();
-                ++dwIter)
+            // these must all be quoted for the Add to Dictionary dialog to pick them up correctly
+            for (const auto& misspelled : misspelledWords.get_data())
                 {
-                if (dwIter->second > 1)
+                if (misspelled.second > 1)
                     {
-                    misspelledWordsStr.Append(L'\"').Append(dwIter->first.c_str()).
-                        Append(wxString::Format(L"\" * %zu, ", dwIter->second));
+                    misspelledWordsStr.Append(L'\"')
+                        .Append(misspelled.first.c_str())
+                        .Append(wxString::Format(L"\" * %zu, ", misspelled.second));
                     }
                 else
-                    { misspelledWordsStr.Append(L'\"').Append(dwIter->first.c_str()).Append(L"\", "); }
+                    {
+                    misspelledWordsStr.Append(L'\"')
+                        .Append(misspelled.first.c_str())
+                        .Append(L"\", ");
+                    }
                 }
             // chop off the last ", "
             if (misspelledWordsStr.length() > 2)
@@ -1644,16 +1648,36 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 doubleWords.insert(
                     (*pos)->GetWords()->get_word(dupWordIndices[i]).c_str());
                 }
-            for (auto dwIter = doubleWords.get_data().cbegin();
-                dwIter != doubleWords.get_data().cend();
-                ++dwIter)
+            const bool useQuotes{ doubleWords.get_data().size() > 1 };
+            for (const auto& doubleWords : doubleWords.get_data())
                 {
-                if (dwIter->second > 1)
-                    { doubleWordsStr.Append(L'\"').Append(dwIter->first.c_str()).Append(
-                        L' ').Append(dwIter->first.c_str()).Append(wxString::Format(L"\" * %zu, ", dwIter->second)); }
+                if (doubleWords.second > 1)
+                    {
+                    doubleWordsStr.Append(L'\"')
+                        .Append(doubleWords.first.c_str())
+                        .Append(L' ')
+                        .Append(doubleWords.first.c_str())
+                        .Append(wxString::Format(L"\" * %zu, ", doubleWords.second));
+                    }
                 else
-                    { doubleWordsStr.Append(L'\"').Append(dwIter->first.c_str()).Append(
-                        L' ').Append(dwIter->first.c_str()).Append(L"\", "); }
+                {
+                    if (useQuotes)
+                        {
+                        doubleWordsStr.Append(L'\"')
+                            .Append(doubleWords.first.c_str())
+                            .Append(L' ')
+                            .Append(doubleWords.first.c_str())
+                            .Append(L"\", ");
+                        }
+                else
+                        {
+                        doubleWordsStr
+                            .Append(doubleWords.first.c_str())
+                            .Append(L' ')
+                            .Append(doubleWords.first.c_str())
+                            .Append(L", ");
+                        }
+                    }
                 }
             // chop off the last ", "
             if (doubleWordsStr.length() > 2)
@@ -1671,23 +1695,37 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             wxString incorrectArticleStr;
             frequency_set<traits::case_insensitive_wstring_ex> incorrectArticle;
             const auto& incorrectArticleIndices = (*pos)->GetWords()->get_incorrect_article_indices();
+            
             for (size_t i = 0; i < incorrectArticleIndices.size(); ++i)
                 {
                 incorrectArticle.insert(
                     (*pos)->GetWords()->get_word(incorrectArticleIndices[i]) + L' ' +
                     (*pos)->GetWords()->get_word(incorrectArticleIndices[i]+1));
                 }
-            for (auto dwIter = incorrectArticle.get_data().cbegin();
-                dwIter != incorrectArticle.get_data().cend();
-                ++dwIter)
+            const bool useQuotes{ incorrectArticle.get_data().size() > 1 };
+            for (const auto& incorrectArticle : incorrectArticle.get_data())
                 {
-                if (dwIter->second > 1)
+                if (incorrectArticle.second > 1)
                     {
-                    incorrectArticleStr.Append(L'\"').Append(dwIter->first.c_str()).
-                        Append(wxString::Format(L"\" * %zu, ", dwIter->second));
+                    incorrectArticleStr.Append(L'\"')
+                        .Append(incorrectArticle.first.c_str())
+                        .Append(wxString::Format(L"\" * %zu, ", incorrectArticle.second));
                     }
                 else
-                    { incorrectArticleStr.Append(L'\"').Append(dwIter->first.c_str()).Append(L"\", "); }
+                    {
+                    if (useQuotes)
+                        {
+                        incorrectArticleStr.Append(L'\"')
+                            .Append(incorrectArticle.first.c_str())
+                            .Append(L"\", ");
+                    }
+                else
+                        {
+                        incorrectArticleStr
+                            .Append(incorrectArticle.first.c_str())
+                            .Append(L", ");
+                        }
+                    }
                 }
             // chop off the last ", "
             if (incorrectArticleStr.length() > 2)
@@ -1723,7 +1761,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 { theWords.RemoveLast(2); }
             m_overusedWordBySentenceData->SetItemText(overusedWordBySentenceCount++, 3, theWords);
             }
-        // Passive Voice
+        // passive Voice
         if ((*pos)->LoadingOriginalTextSucceeded() &&
             (*pos)->GetWords()->get_passive_voice_indices().size())
             {
@@ -1747,17 +1785,30 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                     }
                 passiveVoices.insert(currentPassivePhrase);
                 }
-            for (auto dwIter = passiveVoices.get_data().cbegin();
-                dwIter != passiveVoices.get_data().cend();
-                ++dwIter)
+            const bool useQuotes{ passiveVoices.get_data().size() > 1 };
+            for (const auto& passiveVoice : passiveVoices.get_data())
                 {
-                if (dwIter->second > 1)
+                if (passiveVoice.second > 1)
                     {
-                    passiveVoiceStr.Append(L'\"').Append(dwIter->first.c_str()).
-                        Append(wxString::Format(L"\" * %zu, ", dwIter->second));
+                    passiveVoiceStr.Append(L'\"')
+                        .Append(passiveVoice.first.c_str())
+                        .Append(wxString::Format(L"\" * %zu, ", passiveVoice.second));
                     }
                 else
-                    { passiveVoiceStr.Append(L'\"').Append(dwIter->first.c_str()).Append(L"\", "); }
+                    {
+                    if (useQuotes)
+                        {
+                        passiveVoiceStr.Append(L'\"')
+                            .Append(passiveVoice.first.c_str())
+                            .Append(L"\", ");
+                        }
+                    else
+                        {
+                        passiveVoiceStr
+                            .Append(passiveVoice.first.c_str())
+                            .Append(L", ");
+                        }
+                    }
                 }
             // chop off the last ", "
             if (passiveVoiceStr.length() > 2)
@@ -1896,21 +1947,48 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 {
                 wxString values;
                 wxString suggestions;
-                size_t totalCount = 0;
-                for (auto phraseIter = errorsAndSuggestions.get_data().cbegin();
-                    phraseIter != errorsAndSuggestions.get_data().cend();
-                    ++phraseIter)
+                size_t totalCount{ 0 };
+                const bool useQuotes{ errorsAndSuggestions.get_data().size() > 1 };
+                for (const auto& errorAndSuggestion : errorsAndSuggestions.get_data())
                     {
-                    if (phraseIter->second.second > 1)
+                    if (errorAndSuggestion.second.second > 1)
                         {
-                        values.Append(L'\"').Append(phraseIter->first.c_str()).
-                            Append(wxString::Format(L"\" * %zu, ", phraseIter->second.second));
+                        // quotes will be needed if a multiplier is being added
+                        values.Append(L'\"')
+                            .Append(errorAndSuggestion.first.c_str())
+                            .Append(
+                                wxString::Format(L"\" * %zu, ", errorAndSuggestion.second.second));
                         }
                     else
-                        { values.Append(L'\"').Append(phraseIter->first.c_str()).Append(L"\", "); }
-                    suggestions.Append(L'\"').Append(phraseIter->second.first).Append(L"\", ");
-                    totalCount += phraseIter->second.second;
+                        {
+                        // if there are multiple issues and suggestions, then wrap each
+                        // one in quotes
+                        if (useQuotes)
+                            {
+                            values.Append(L'\"')
+                                .Append(errorAndSuggestion.first.c_str())
+                                .Append(L"\", ");
+                            }
+                        else
+                            {
+                            values.Append(errorAndSuggestion.first.c_str())
+                                .Append(L", ");
+                            }
+                        }
+                    if (useQuotes)
+                        {
+                        suggestions.Append(L'\"')
+                            .Append(errorAndSuggestion.second.first)
+                            .Append(L"\", ");
+                        }
+                    else
+                        {
+                        suggestions.Append(errorAndSuggestion.second.first)
+                            .Append(L", ");
+                        }
+                    totalCount += errorAndSuggestion.second.second;
                     }
+                // trim off trailing comma and space
                 if (values.length() > 2)
                     { values.RemoveLast(2); }
                 if (suggestions.length() > 2)
@@ -1925,20 +2003,36 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 {
                 wxString values;
                 wxString suggestions;
-                size_t totalCount = 0;
-                for (auto phraseIter = wordyPhrasesAndSuggestions.get_data().cbegin();
-                    phraseIter != wordyPhrasesAndSuggestions.get_data().cend();
-                    ++phraseIter)
+                size_t totalCount{ 0 };
+                const bool useQuotes{ wordyPhrasesAndSuggestions.get_data().size() > 1 };
+                for (const auto& wordyPhrase : wordyPhrasesAndSuggestions.get_data())
                     {
-                    if (phraseIter->second.second > 1)
+                    if (wordyPhrase.second.second > 1)
                         {
-                        values.Append(L'\"').Append(phraseIter->first.c_str()).
-                            Append(wxString::Format(L"\" * %zu, ", phraseIter->second.second));
+                        values.Append(L'\"')
+                            .Append(wordyPhrase.first.c_str())
+                            .Append(wxString::Format(L"\" * %zu, ", wordyPhrase.second.second));
                         }
                     else
-                        { values.Append(L'\"').Append(phraseIter->first.c_str()).Append(L"\", "); }
-                    suggestions.Append(L'\"').Append(phraseIter->second.first).Append(L"\", ");
-                    totalCount += phraseIter->second.second;
+                        {
+                        if (useQuotes)
+                            {
+                            values.Append(L'\"').Append(wordyPhrase.first.c_str()).Append(L"\", ");
+                            }
+                        else
+                            {
+                            values.Append(wordyPhrase.first.c_str()).Append(L", ");
+                            }
+                        }
+                    if (useQuotes)
+                        {
+                        suggestions.Append(L'\"').Append(wordyPhrase.second.first).Append(L"\", ");
+                        }
+                    else
+                        {
+                        suggestions.Append(wordyPhrase.second.first).Append(L", ");
+                        }
+                    totalCount += wordyPhrase.second.second;
                     }
                 if (values.length() > 2)
                     { values.RemoveLast(2); }
@@ -1954,20 +2048,36 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 {
                 wxString values;
                 wxString suggestions;
-                size_t totalCount = 0;
-                for (auto phraseIter = redundantPhrasesAndSuggestions.get_data().cbegin();
-                    phraseIter != redundantPhrasesAndSuggestions.get_data().cend();
-                    ++phraseIter)
+                size_t totalCount{ 0 };
+                const bool useQuotes{ redundantPhrasesAndSuggestions.get_data().size() > 1 };
+                for (const auto& redundant : redundantPhrasesAndSuggestions.get_data())
                     {
-                    if (phraseIter->second.second > 1)
+                    if (redundant.second.second > 1)
                         {
-                        values.Append(L'\"').Append(phraseIter->first.c_str()).
-                            Append(wxString::Format(L"\" * %zu, ", phraseIter->second.second));
+                        values.Append(L'\"')
+                            .Append(redundant.first.c_str())
+                            .Append(wxString::Format(L"\" * %zu, ", redundant.second.second));
                         }
                     else
-                        { values.Append(L'\"').Append(phraseIter->first.c_str()).Append(L"\", "); }
-                    suggestions.Append(L'\"').Append(phraseIter->second.first).Append(L"\", ");
-                    totalCount += phraseIter->second.second;
+                        {
+                        if (useQuotes)
+                            {
+                            values.Append(L'\"').Append(redundant.first.c_str()).Append(L"\", ");
+                            }
+                        else
+                            {
+                            values.Append(redundant.first.c_str()).Append(L", ");
+                            }
+                        }
+                    if (useQuotes)
+                        {
+                        suggestions.Append(L'\"').Append(redundant.second.first).Append(L"\", ");
+                        }
+                    else
+                        {
+                        suggestions.Append(redundant.second.first).Append(L", ");
+                        }
+                    totalCount += redundant.second.second;
                     }
                 if (values.length() > 2)
                     { values.RemoveLast(2); }
@@ -1983,20 +2093,36 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 {
                 wxString values;
                 wxString suggestions;
-                size_t totalCount = 0;
-                for (auto phraseIter = clichesAndSuggestions.get_data().cbegin();
-                    phraseIter != clichesAndSuggestions.get_data().cend();
-                    ++phraseIter)
+                size_t totalCount{ 0 };
+                const bool useQuotes{ clichesAndSuggestions.get_data().size() > 1 };
+                for (const auto& cliche : clichesAndSuggestions.get_data())
                     {
-                    if (phraseIter->second.second > 1)
+                    if (cliche.second.second > 1)
                         {
-                        values.Append(L'\"').Append(phraseIter->first.c_str()).
-                            Append(wxString::Format(L"\" * %zu, ", phraseIter->second.second));
+                        values.Append(L'\"')
+                            .Append(cliche.first.c_str())
+                            .Append(wxString::Format(L"\" * %zu, ", cliche.second.second));
                         }
                     else
-                        { values.Append(L'\"').Append(phraseIter->first.c_str()).Append(L"\", "); }
-                    suggestions.Append(L'\"').Append(phraseIter->second.first).Append(L"\", ");
-                    totalCount += phraseIter->second.second;
+                        {
+                        if (useQuotes)
+                            {
+                            values.Append(L'\"').Append(cliche.first.c_str()).Append(L"\", ");
+                            }
+                        else
+                            {
+                            values.Append(cliche.first.c_str()).Append(L", ");
+                            }
+                        }
+                    if (useQuotes)
+                        {
+                        suggestions.Append(L'\"').Append(cliche.second.first).Append(L"\", ");
+                        }
+                    else
+                        {
+                        suggestions.Append(cliche.second.first).Append(L", ");
+                        }
+                    totalCount += cliche.second.second;
                     }
                 if (values.length() > 2)
                     { values.RemoveLast(2); }
