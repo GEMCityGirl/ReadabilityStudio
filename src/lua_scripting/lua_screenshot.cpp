@@ -1253,12 +1253,9 @@ namespace LuaScripting
         FilePathResolver fileResolve;
         for (int i = 1; i < lua_gettop(L); i += 2)
             {
-            fileResolve.ResolvePath(
-                wxString(luaL_checklstring(L, i + 1, nullptr), wxConvUTF8), false);
             LuaListViewItemDlg->AddValue(
                 wxGetTranslation(wxString(luaL_checklstring(L, i, nullptr), wxConvUTF8)),
-                wxGetTranslation(wxString(luaL_checklstring(L, i + 1, nullptr), wxConvUTF8)),
-                !fileResolve.IsInvalidFile());
+                wxGetTranslation(wxString(luaL_checklstring(L, i + 1, nullptr), wxConvUTF8)));
             }
         LuaListViewItemDlg->Create(wxGetApp().GetMainFrame());
         LuaListViewItemDlg->Show();
