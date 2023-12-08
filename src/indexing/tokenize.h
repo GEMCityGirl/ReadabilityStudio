@@ -656,46 +656,51 @@ namespace tokenize
                         --wordEnd;
                         }
                     }
-                
+
                 /* Next, see if the word ends with an apostrophe (plural possessive).
                    If so, then set this trailing quote as a quote punctuation, rather
                    than an apostrophe that is part of the word. It will appear the same
                    in the end, but will prevent trailing apostrophes from breaking word comparisons.
-                   We do this by simply moving the current position back one so that the next tokenize call
-                   will pick up the punctuation.
+                   We do this by simply moving the current position back one so that the next
+                   tokenize call will pick up the punctuation.
 
                    Note that we need to loop over multiple single quotes as some text uses two
                    single quotes as a double quote.*/
-                while (wordEnd > word_start &&
-                       is_character.is_single_quote(*wordEnd))
+                while (wordEnd > word_start && is_character.is_single_quote(*wordEnd))
                     {
-                    // ...allow things like "[be]in'" (colloquial "[be]ing") to be a full word though
-                    if ((wordEnd-word_start) >= 4 &&
-                        traits::case_insensitive_ex::eq(wordEnd[-1],L'n') &&
-                        traits::case_insensitive_ex::eq(wordEnd[-2],L'i') &&
+                    // ...allow things like "[be]in'" (colloquial "[be]ing") to be a full word
+                    // though
+                    if ((wordEnd - word_start) >= 4 &&
+                        traits::case_insensitive_ex::eq(wordEnd[-1], L'n') &&
+                        traits::case_insensitive_ex::eq(wordEnd[-2], L'i') &&
                         // but watch out for legit words like "domain"
                         (m_known_spellings == nullptr ||
-                         !m_known_spellings->contains(std::wstring_view(word_start, wordEnd-word_start).data())))
-                        { break; }
+                         !m_known_spellings->contains(
+                             std::wstring_view(word_start, wordEnd - word_start).data())))
+                        {
+                        break;
+                        }
                     else
                         {
                         --m_current_char;
                         --wordEnd;
                         }
                     }
-                m_current_word_length = (wordEnd-word_start)+1;
-                /* If truly at the end of a sentence, then see if the last word is an acronym or abbreviation.
-                   If so, then include the trailing period as part of the word.
-                   Note that at this point, abbreviations that are mid-sentence
-                   will have already been returned from here.
-                   So now we are just seeing if the last word of a sentence is an abbreviation
-                   (that is rare, but possible) and adding the period to the word if that's the case.*/
+                m_current_word_length = (wordEnd - word_start) + 1;
+                /* If truly at the end of a sentence, then see if the last word is an acronym or
+                   abbreviation. If so, then include the trailing period as part of the word. Note
+                   that at this point, abbreviations that are mid-sentence will have already been
+                   returned from here. So now we are just seeing if the last word of a sentence is
+                   an abbreviation (that is rare, but possible) and adding the period to the word if
+                   that's the case.*/
                 if (m_is_at_end_of_sentence &&
                     characters::is_character::is_period(m_current_char[0]))
                     {
                     if (isAbbreviation({ word_start, m_current_word_length + 1 }) ||
                         isAcronym.is_dotted_acronym({ word_start, m_current_word_length + 1 }))
-                        { ++m_current_word_length; }
+                        {
+                        ++m_current_word_length;
+                        }
                     }
 
                 // See if the word is a numeral
@@ -707,109 +712,162 @@ namespace tokenize
                 return word_start;
                 }
             else
-                { return nullptr; }
+                {
+                return nullptr;
+                }
             }
-        /** @returns The index (into the document) of the last parsed paragraph. This is zero-based.*/
+
+        /** @returns The index (into the document) of the last parsed paragraph.
+                This is zero-based.*/
         [[nodiscard]]
         inline size_t get_current_sentence_index() const noexcept
-            { return m_current_sentence_index; }
-        /** @returns The index (into the document) of the last parsed sentence. This is zero-based.*/
+            {
+            return m_current_sentence_index;
+            }
+
+        /** @returns The index (into the document) of the last parsed sentence.
+                This is zero-based.*/
         [[nodiscard]]
         inline size_t get_current_paragraph_index() const noexcept
-            { return m_current_paragraph_index; }
+            {
+            return m_current_paragraph_index;
+            }
+
         /** @returns The position in the current sentence that the last parsed word is in.
             @note This internally is 1-based index because the counter is incremented before the
-                  current word is returned instead of the next time operator() is called. This is just
-                  easier because then you don't have to mess with a state flag just for this one variable.*/
+                  current word is returned instead of the next time operator() is called. This is
+                  just easier because then you don't have to mess with a state flag just
+                  for this one variable.*/
         [[nodiscard]]
         inline size_t get_sentence_position() const noexcept
-            { return (m_sentence_position == 0) ? 0 : m_sentence_position-1; }
+            {
+            return (m_sentence_position == 0) ? 0 : m_sentence_position - 1;
+            }
+
         /** @returns The length of the last word parsed.
             @note This will not include punctuation surrounding the word.*/
         [[nodiscard]]
         inline size_t get_current_word_length() const noexcept
-            { return m_current_word_length; }
+            {
+            return m_current_word_length;
+            }
+
         /** @returns @c true if the last parsed word is at the end of a line.
             @note If the word as at the end of a sentence, then the newline won't be seen until
-                  the next tokenize. In this situation, call get_current_leading_end_of_line_count to see
-                  how many newlines are proceeding the next word.*/
+                  the next tokenize. In this situation, call
+                  get_current_leading_end_of_line_count to see how many newlines are proceeding
+                  the next word.*/
         [[nodiscard]]
         inline bool is_at_eol() const noexcept
-            { return m_at_eol; }
+            {
+            return m_at_eol;
+            }
         /// @returns @c true if the last read word has a tab in front of it.
         [[nodiscard]]
         bool is_tabbed() const noexcept
-            { return m_is_tabbed; }
+            {
+            return m_is_tabbed;
+            }
+
         /** @returns @c true if the last word parsed was numeric.*/
         [[nodiscard]]
         inline bool is_numeric() const noexcept
-            { return m_is_numeric; }
-        /** @returns @c true if the last word is split (e.g., a hyphenated word, split by a newline). In this case
-                     the call will need to strip the newline(s)/space(s) out.*/
+            {
+            return m_is_numeric;
+            }
+
+        /** @returns @c true if the last word is split
+                (e.g., a hyphenated word, split by a newline).
+                In this case the call will need to strip the newline(s)/space(s) out.*/
         [[nodiscard]]
         inline bool is_split_word() const noexcept
-            { return m_is_split_word; }
-        /** @returns The sentence ending punctuation from the last word parse (assuming that the last
-            word was the last word in a sentence). If not at the end of a sentence, then a space is returned.
+            {
+            return m_is_split_word;
+            }
+
+        /** @returns The sentence ending punctuation from the last word parse
+                (assuming that the last word was the last word in a sentence).
+                If not at the end of a sentence, then a space is returned.
             @note This won't get read until you tokenize the first word in the next sentence.*/
         [[nodiscard]]
         inline wchar_t get_current_sentence_ending_punctuation() const noexcept
-            { return m_current_sentence_ending_punctuation; }
+            {
+            return m_current_sentence_ending_punctuation;
+            }
+
         /** @returns The number of proceeding newlines in front of the last word parsed.*/
         [[nodiscard]]
         inline size_t get_current_leading_end_of_line_count() const noexcept
-            { return m_current_leading_end_of_line_count; }
+            {
+            return m_current_leading_end_of_line_count;
+            }
+
         /** @returns The punctuation indexed so far.
             @note This accumulates with every tokenizing.*/
         [[nodiscard]]
         inline const std::vector<punctuation::punctuation_mark>& get_punctuation() const noexcept
-            { return m_punctuation; }
-        /** Determines if text is a formatted line break (e.g., "----------") at the start of a new line.
-            Three or more consecutive line break characters will trigger this.
-            @param next_line The line of text to review.
-            @returns A pair indicating whether it is a line break or not and the length of the
-                     line break if true.*/
-        [[nodiscard]]
-        std::pair<bool,size_t> is_formatted_line_separator(const wchar_t* next_line) const noexcept
             {
-            if (next_line == nullptr)
-                { return std::pair<bool,size_t>(false,0); }
-            const wchar_t* const start = next_line;
-            size_t charCounts = 0;
-            while (next_line < m_text_block_end && next_line[0] != 0 &&
-                characters::is_character::is_space(next_line[0]))
-                { ++next_line; }
-            while (next_line < m_text_block_end && next_line[0] != 0 &&
-                is_formatted_line_separator_char(next_line[0]))
-                {
-                ++charCounts;
-                ++next_line;
-                }
-            return std::pair<bool,size_t>((charCounts >= 3), (charCounts >= 3) ? (next_line-start) : 0);
+            return m_punctuation;
             }
-        /** @brief Determines if text is a formatted line break (e.g., "Note***\n") at the end of a line.
-            @details Three or more consecutive line break characters (followed by a newline) will trigger this.
-            @details Three or more consecutive line break characters (followed by a newline) will trigger this.
+
+        /** Determines if text is a formatted line break (e.g., "----------") at the start of a new
+                line. Three or more consecutive line break characters will trigger this.
             @param next_line The line of text to review.
             @returns A pair indicating whether it is a line break or not and the length of the
-                     line break if true.*/
+                line break if @c true.*/
         [[nodiscard]]
-        std::pair<bool,size_t> is_trailing_formatted_line_separator(const wchar_t* next_line) const noexcept
+        std::pair<bool, size_t> is_formatted_line_separator(const wchar_t* next_line) const noexcept
             {
             if (next_line == nullptr)
-                { return std::pair<bool,size_t>(false,0); }
+                {
+                return std::pair<bool, size_t>(false, 0);
+                }
             const wchar_t* const start = next_line;
             size_t charCounts = 0;
             while (next_line < m_text_block_end && next_line[0] != 0 &&
-                is_formatted_line_separator_char(next_line[0]))
+                   characters::is_character::is_space(next_line[0]))
+                {
+                ++next_line;
+                }
+            while (next_line < m_text_block_end && next_line[0] != 0 &&
+                   is_formatted_line_separator_char(next_line[0]))
                 {
                 ++charCounts;
                 ++next_line;
                 }
-            const bool at_eol =
-                (next_line >= m_text_block_end) || characters::is_character::is_space_vertical(next_line[0]);
-            return std::pair<bool,size_t>(
-                (charCounts >= 3 && at_eol), (charCounts >= 3 && at_eol) ? (next_line-start) : 0);
+            return std::pair<bool, size_t>((charCounts >= 3),
+                                           (charCounts >= 3) ? (next_line - start) : 0);
+            }
+
+        /** @brief Determines if text is a formatted line break (e.g., "Note***\n")
+                at the end of a line.
+            @details Three or more consecutive line break characters (followed by a newline)
+                will trigger this.
+            @details Three or more consecutive line break characters (followed by a newline)
+                will trigger this.
+            @param next_line The line of text to review.
+            @returns A pair indicating whether it is a line break or not and the length of the
+                 line break if @c true.*/
+        [[nodiscard]]
+        std::pair<bool, size_t>
+        is_trailing_formatted_line_separator(const wchar_t* next_line) const noexcept
+            {
+            if (next_line == nullptr)
+                {
+                return std::pair<bool, size_t>(false, 0);
+                }
+            const wchar_t* const start = next_line;
+            size_t charCounts = 0;
+            while (next_line < m_text_block_end && next_line[0] != 0 &&
+                   is_formatted_line_separator_char(next_line[0]))
+                {
+                ++charCounts;
+                ++next_line;
+                }
+            const bool at_eol = (next_line >= m_text_block_end) ||
+                                characters::is_character::is_space_vertical(next_line[0]);
+            return std::pair<bool, size_t>((charCounts >= 3 && at_eol),
+                                           (charCounts >= 3 && at_eol) ? (next_line - start) : 0);
             }
 
         /** @brief Sets a list of known (spelled correctly) words.
