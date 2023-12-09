@@ -256,8 +256,8 @@ public:
             // draw bitmap
             dc.DrawBitmap(page.bitmap.GetBitmapFor(wnd),
                 bitmap_offset,
-                drawn_tab_yoff + (drawn_tab_height / 2) -
-                (page.bitmap.GetBitmapFor(wnd).GetScaledHeight() / 2),
+                drawn_tab_yoff + (drawn_tab_height / 2.0) -
+                (page.bitmap.GetBitmapFor(wnd).GetScaledHeight() / 2.0),
                 true);
 
             text_offset = bitmap_offset + page.bitmap.GetBitmapFor(wnd).GetScaledWidth();
@@ -364,9 +364,11 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
     Center();
     // move over to the right side of the screen
     const auto screenWidth{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) };
+    const auto screenHeight{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) };
     int xPos{ 0 }, yPos{ 0 };
     GetScreenPosition(&xPos, &yPos);
-    Move(wxPoint(xPos + (screenWidth - (xPos + GetSize().GetWidth())), yPos));
+    Move(wxPoint(xPos + (screenWidth - (xPos + GetSize().GetWidth())),
+                 yPos + ((screenHeight - GetSize().GetWidth()) / 2.0)));
 
     Bind(wxEVT_CLOSE_WINDOW, &LuaEditorDlg::OnClose, this);
 
@@ -422,37 +424,41 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
         XRCID("ID_RUN"));
 
     Bind(wxEVT_AUINOTEBOOK_PAGE_CLOSE,
-        [this]([[maybe_unused]] wxCommandEvent&)
-            {
-            auto codeEditor = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
-            if (codeEditor && codeEditor->GetModify())
-                {
-                if (wxMessageBox(_(L"Do you wish to save your unsaved changes?"),
-                    _(L"Save Script"), wxYES_NO|wxICON_QUESTION) == wxYES)
-                    { codeEditor->Save(); }
-                }
-            });
+         [this]([[maybe_unused]] wxCommandEvent&)
+         {
+             auto codeEditor = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
+             if (codeEditor && codeEditor->GetModify())
+                 {
+                 if (wxMessageBox(_(L"Do you wish to save your unsaved changes?"),
+                                  _(L"Save Script"), wxYES_NO | wxICON_QUESTION) == wxYES)
+                     {
+                     codeEditor->Save();
+                     }
+                 }
+         });
 
-    Bind(wxEVT_TOOL,
+    Bind(
+        wxEVT_TOOL,
         [this]([[maybe_unused]] wxCommandEvent&)
-            {
+        {
             m_notebook->Freeze();
             m_notebook->AddPage(CreateLuaScript(m_notebook), _(L"(unnamed)"), true,
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/lua.svg"));
+                                wxGetApp().GetResourceManager().GetSVG(L"ribbon/lua.svg"));
             m_notebook->Thaw();
-            },
+        },
         XRCID("ID_NEW"));
 
-    Bind(wxEVT_TOOL,
+    Bind(
+        wxEVT_TOOL,
         [this]([[maybe_unused]] wxCommandEvent&)
-            {
-            wxFileDialog dialogOpen
-                    (this, _(L"Select Script to Open"),
-                    wxEmptyString, wxEmptyString,
-                    _(L"Lua Script (*.lua)|*.lua"),
-                    wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
+        {
+            wxFileDialog dialogOpen(this, _(L"Select Script to Open"), wxEmptyString, wxEmptyString,
+                                    _(L"Lua Script (*.lua)|*.lua"),
+                                    wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
             if (dialogOpen.ShowModal() != wxID_OK)
-                { return; }
+                {
+                return;
+                }
             const wxString filePath = dialogOpen.GetPath();
 
             auto scriptCtrl = CreateLuaScript(m_notebook);
@@ -463,53 +469,60 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
                 if (m_notebook->GetPageCount() == 1)
                     {
                     auto codeEditor = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
-                    if (codeEditor && !codeEditor->GetModify() && codeEditor->GetScriptFilePath().empty())
-                        { m_notebook->DeletePage(0); }
+                    if (codeEditor && !codeEditor->GetModify() &&
+                        codeEditor->GetScriptFilePath().empty())
+                        {
+                        m_notebook->DeletePage(0);
+                        }
                     }
                 scriptCtrl->LoadFile(filePath);
                 scriptCtrl->SetScriptFilePath(filePath);
 
-                m_notebook->AddPage(scriptCtrl, wxFileName(filePath).GetName(),
-                    true, wxGetApp().GetResourceManager().GetSVG(L"ribbon/lua.svg"));
+                m_notebook->AddPage(scriptCtrl, wxFileName(filePath).GetName(), true,
+                                    wxGetApp().GetResourceManager().GetSVG(L"ribbon/lua.svg"));
                 }
-            },
+        },
         XRCID("ID_OPEN"));
 
     Bind(wxEVT_TOOL, &LuaEditorDlg::OnSave, this, XRCID("ID_SAVE"));
 
-    Bind(wxEVT_TOOL,
-        [this]([[maybe_unused]] wxCommandEvent&)
-            {
-            DebugClear();
-            },
-        XRCID("ID_CLEAR"));
+    Bind(
+        wxEVT_TOOL, [this]([[maybe_unused]] wxCommandEvent&) { DebugClear(); }, XRCID("ID_CLEAR"));
 
-    Bind(wxEVT_TOOL,
+    Bind(
+        wxEVT_TOOL,
         []([[maybe_unused]] wxCommandEvent&)
-            {
+        {
             const wxString helpPath =
                 wxGetApp().FindResourceFile(L"ReadabilityStudioAPI/index.html");
             if (wxFile::Exists(helpPath))
-                { wxLaunchDefaultBrowser(wxFileName::FileNameToURL(helpPath)); }
-            },
+                {
+                wxLaunchDefaultBrowser(wxFileName::FileNameToURL(helpPath));
+                }
+        },
         wxID_HELP);
 
-    Bind(wxEVT_TOOL,
+    Bind(
+        wxEVT_TOOL,
         []([[maybe_unused]] wxCommandEvent&)
-            {
+        {
             const wxString helpPath = wxGetApp().FindResourceFile(L"LuaManual/contents.html");
             if (wxFile::Exists(helpPath))
-                { wxLaunchDefaultBrowser(wxFileName::FileNameToURL(helpPath)); }
-            },
+                {
+                wxLaunchDefaultBrowser(wxFileName::FileNameToURL(helpPath));
+                }
+        },
         XRCID("LUA_REFERENCE"));
 
     Bind(wxEVT_SEARCH,
-        [this](wxCommandEvent& evt)
-            {
-            auto codeEditor = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
-            if (codeEditor)
-                { codeEditor->FindNext(evt.GetString()); }
-            });
+         [this](wxCommandEvent& evt)
+         {
+             auto codeEditor = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
+             if (codeEditor)
+                 {
+                 codeEditor->FindNext(evt.GetString());
+                 }
+         });
 
     Bind(wxEVT_TOOL, &LuaEditorDlg::OnShowFindDialog, this, wxID_FIND);
     Bind(wxEVT_TOOL, &LuaEditorDlg::OnShowReplaceDialog, this, wxID_REPLACE);
@@ -519,9 +532,10 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
     Bind(wxEVT_FIND_REPLACE_ALL, &LuaEditorDlg::OnFindDialog, this);
     Bind(wxEVT_FIND_CLOSE, &LuaEditorDlg::OnFindDialog, this);
 
-    Bind(wxEVT_CHAR_HOOK,
+    Bind(
+        wxEVT_CHAR_HOOK,
         [this](wxKeyEvent& event)
-            {
+        {
             if (event.ControlDown() && event.GetKeyCode() == L'S')
                 {
                 wxCommandEvent dummyEvt;
@@ -538,7 +552,8 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
                 LuaEditorDlg::OnShowReplaceDialog(dummyEvt);
                 }
             event.Skip(true);
-            }, wxID_ANY);
+        },
+        wxID_ANY);
     }
 
 //------------------------------------------------------
