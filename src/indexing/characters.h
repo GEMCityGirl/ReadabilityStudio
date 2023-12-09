@@ -284,11 +284,12 @@ namespace characters
             return is_either<wchar_t>(ch, 35, 0xFF03) ? // #
                 true : is_either<wchar_t>(ch, 36, 0xFF04) ? // $
                 true : is_either<wchar_t>(ch, L'&', 0xFF06) ?
-                // don't allow words to start with super/subscripts or fractions
                 true : is_numeric_simple(ch) ?
+                // don't allow words to start with super/subscripts or fractions
                 true : (is_alpha(ch) && !string_util::is_superscript(ch) && !string_util::is_subscript(ch)) ?
                 // Doxygen tags (e.g., @note) or used as a whole word (e.g., "meet @ 5:00")
                 true : is_either<wchar_t>(ch, L'@', 0xFF20) ?
+                true : (ch == L'_') ? // programmer code, such as "_mbscmp"
                 true : (ch == 0x9F) ? // Y with diaeresis
                 true : is_either<wchar_t>(ch, 163, 0xFFE1) ?  // Pound Sterling
                 true : is_either<wchar_t>(ch, 0x80, 0x20AC) ? // Euro
