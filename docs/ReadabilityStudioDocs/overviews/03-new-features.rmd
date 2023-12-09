@@ -46,7 +46,7 @@
   - Now always show one bar for each grade level, regardless of the binning method selected.
   - Start their bar axis at **0** (i.e., Kindergarten).
   - Include brackets to organize the grade levels into groups such as "Elementary School."
-- Box plots now use Tukey hinges method for calculating quartiles. (This matches what *R* does.)
+- Box plots now use the Tukey hinges method for calculating quartiles. (This matches what *R* does.)
 - Removed box plot IQR coefficient option; blox plot now just use quartiles.
 - Added grouping support to box plots in batch projects.
 - Graph background images are now drawn in the plot area, instead of the entire background. This makes reading the axes and titles easier.
@@ -69,6 +69,7 @@
 
 #### Importing/Exporting Enhancements {-}
 
+- Added Markdown importer. Standard Markdown and basic RMarkdown and Quarto documents are supported.
 - Lists can now be exported as `r latex_logo(TRUE)`(in `longtable{}` environments).
 
 #### Documentation Enhancements {-}

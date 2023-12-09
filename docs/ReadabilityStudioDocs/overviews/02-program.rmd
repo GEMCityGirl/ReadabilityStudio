@@ -150,6 +150,7 @@ These issues are shown highlighted in your document for easy review. They are al
 - OpenDocument Text (\*.odt)
 - OpenDocument Presentation (\*.odp)
 - HTML (\*.htm)
+- Markdown (\*.md, \*.Rmd, \*.qmd)
 - Rich text (\*.rtf)
 - Postscript (\*.ps)
 - ZIP (documents within can be batch analyzed)
