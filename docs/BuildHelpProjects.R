@@ -3,6 +3,13 @@ library(pacman)
 pacman::p_load(bookdown, glue, readr, stringr, fs, lubridate, tidyverse, kableExtra,
                Hmisc, cowplot, beeswarm, tinytex, stringi, this.path, janitor)
 
+# If called from RScript, pass in the path to pandoc
+if (nchar(Sys.getenv("RSTUDIO_PANDOC")) == 0)
+  {
+  args = commandArgs(trailingOnly = TRUE)
+  Sys.setenv(RSTUDIO_PANDOC=args[1L])
+  }
+
 if (nchar(tinytex::tinytex_root()) == 0)
   {
   tinytex::install_tinytex()
