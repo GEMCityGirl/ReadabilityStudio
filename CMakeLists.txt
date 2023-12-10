@@ -147,6 +147,18 @@ if(BUILD_TESTING)
     run_rs_test_suite(tests/gui-tests RSGuiTestRunner)
 endif()
 
+# Build the help always for release build or if BUILD_HELP is defined.
+# TODO: Path to Pandoc is currently hard coded to Windows path here.
+#       Need a FindPandoc cmake script.
+include(cmake/modules/FindR.cmake)
+if(R_FOUND AND (BUILD_HELP OR ${CMAKE_BUILD_TYPE} STREQUAL "Release"))
+    execute_process(COMMAND "${R_SCRIPT}"
+                        "${CMAKE_CURRENT_SOURCE_DIR}/docs/BuildHelpProjects.R"
+                        "C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools"
+                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/docs/"
+                    COMMAND_ERROR_IS_FATAL ANY)
+endif()
+
 if(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
     # If no deployment target has been set default to the minimum supported
     # OS version (this has to be set before the first project() call)
