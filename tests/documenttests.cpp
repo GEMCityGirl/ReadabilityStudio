@@ -313,17 +313,28 @@ TEST_CASE("Document", "[document]")
         CHECK(doc.get_sentence_count() == 3);
         CHECK(doc.get_complete_sentence_count() == 2);
         }
-    SECTION("Overly Used Words By Sentence")
+    SECTION("Overly Used Words By Sentence Sentence Too Long")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"Hello. The robot entered the room, as the other robots looked on.";
         doc.load_document(text, wcslen(text), false, false, false, false);
 
+        CHECK(0 == doc.get_overused_words_by_sentence().size());
+        }
+    SECTION("Overly Used Words By Sentence")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Hello. The robot entered the room, as other robots looked on.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
         CHECK(1 == doc.get_overused_words_by_sentence().size());
         CHECK(1 == doc.get_overused_words_by_sentence()[0].first); // second sentence
         auto firstWord = doc.get_overused_words_by_sentence()[0].second.cbegin();
-        CHECK(2 ==*firstWord); // third word in collection
-        CHECK(9 ==*(++firstWord)); // ninth word in collection
+        CHECK(2 == *firstWord);     // third word in collection
+        CHECK(8 == *(++firstWord)); // eighth word in collection
         }
     SECTION("Overly Used Words By Sentence Double Word")
         {
