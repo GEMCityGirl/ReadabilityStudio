@@ -1695,7 +1695,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             wxString incorrectArticleStr;
             frequency_set<traits::case_insensitive_wstring_ex> incorrectArticle;
             const auto& incorrectArticleIndices = (*pos)->GetWords()->get_incorrect_article_indices();
-            
+
             for (size_t i = 0; i < incorrectArticleIndices.size(); ++i)
                 {
                 incorrectArticle.insert(

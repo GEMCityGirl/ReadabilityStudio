@@ -2045,7 +2045,7 @@ private:
                             ((*firstWord) + 2) == *secondtWord)
                             { continue; }
                         }
-                    // word appears in the sentence with a 1:5 ratio (i.e., once every fith word)
+                    // word appears in the sentence with a 1:5 ratio (i.e., once every fifth word)
                     if (std::ceil(safe_divide<double>(
                             static_cast<double>(sent_iter->get_valid_word_count()),
                             static_cast<double>(uncommonWord.second.first.size()))) <= 5)
