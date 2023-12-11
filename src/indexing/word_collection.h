@@ -2046,8 +2046,9 @@ private:
                             { continue; }
                         }
                     // word appears in the sentence with a 1:5 ratio (i.e., once every fith word)
-                    if (std::ceil(safe_divide<double>(sent_iter->get_valid_word_count(),
-                                                      uncommonWord.second.first.size())) <= 5)
+                    if (std::ceil(safe_divide<double>(
+                            static_cast<double>(sent_iter->get_valid_word_count()),
+                            static_cast<double>(uncommonWord.second.first.size()))) <= 5)
                         {
                         m_overused_words_by_sentence.push_back(
                             // Insert the sentence and word indices of the
