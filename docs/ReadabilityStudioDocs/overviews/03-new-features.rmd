@@ -63,8 +63,10 @@
   This includes multi-line (text inside of `/*` and `*/`) and single-line (`//`) comments.
 - All Words (Condensed) will now exclude more variations of common words.
 - Renamed All Words (Condensed) to Key Words.
-- Overused Words (x Sentence) now only looks at words containing more than three characters.
-- Overused Words (x Sentence) now ignores words that are part of a common phrase (e.g., "*again* and *again*").
+- Overused Words (x Sentence) now:
+  - only looks at words containing more than three characters.
+  - ignores words that are part of a common phrase (e.g., "*again* and *again*").
+  - counts if the word appears at least once every fifth word.
 - Updated Spanish, Russian, Italian, French, Swedish, and German stemmers to the latest Snowball 2.3 standard.
 
 #### Importing/Exporting Enhancements {-}

@@ -1940,7 +1940,7 @@ private:
                 { ++m_valid_paragraph_count; }
             }
         }
-    /// Counts the number of units (sections separated by dash, colon, or semicolon) in each sentence
+    /// @brief Counts the number of units (sections separated by dash, colon, or semicolon) in each sentence.
     void calculate_sentence_units_and_punctuation()
         {
         PROFILE();
@@ -2045,10 +2045,16 @@ private:
                             ((*firstWord) + 2) == *secondtWord)
                             { continue; }
                         }
-                    m_overused_words_by_sentence.push_back(
-                        // Insert the sentence and word indices of the overly-used uncommon word.
-                        std::make_pair(sent_iter - m_sentences.cbegin(),
-                                       uncommonWord.second.first));
+                    // word appears in the sentence with a 1:5 ratio (i.e., once every fith word)
+                    if (std::ceil(safe_divide<double>(sent_iter->get_valid_word_count(),
+                                                      uncommonWord.second.first.size())) <= 5)
+                        {
+                        m_overused_words_by_sentence.push_back(
+                            // Insert the sentence and word indices of the
+                            // overly-used uncommon word.
+                            std::make_pair(sent_iter - m_sentences.cbegin(),
+                                           uncommonWord.second.first));
+                        }
                     }
                 }
             }
@@ -2158,7 +2164,7 @@ private:
                 }
             }
         }
-    /** Sets a paragraph, its sentences, and words to be excluded.
+    /** @brief Sets a paragraph, its sentences, and words to be excluded.
         @param theParagraph The paragraph to exclude.*/
     void ignore_paragraph(grammar::paragraph_info& theParagraph)
         {
@@ -2312,7 +2318,7 @@ private:
             }
         }
 
-    /// Looks for a trailing References section in the document and excludes it.
+    /// @brief Looks for a trailing References section in the document and excludes it.
     void update_citation_info()
         {
         PROFILE();

@@ -624,7 +624,9 @@ Note that if there are no clichés in your document, then this window will not b
 
 ### Reviewing Overused Words (x Sentence) {-#reviewing-overused-by-sentence}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Overused Words (x Sentence)** subitem. This window will display a list of all sentences that use the same word multiple times. (These are more of style suggestions, rather than grammar issues.) When reviewing these, it is recommended to change some of the repeated words to add more variety to your content.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Overused Words (x Sentence)** subitem.
+This window will display a list of all sentences that use the same word multiple times. (These are more of style suggestions, rather than grammar issues.)
+When reviewing these, it is recommended to change some of the repeated words to add more variety to your content.
 
 ![](images/overusedwordsbysentence.png)
 
@@ -638,6 +640,10 @@ may be part of the same phrase are ignored. For example:
 ::: {.fancyquotes data-latex=''}
 When they asked Blake if he would be willing to work over the weekend, he just *laughed* and *laughed*.
 :::
+
+Finally, a word must appear on average once every fifth word in the sentence.
+For example, a word appearing twice in an eleven-word sentence will not be counted.
+If the sentence is 10 words, however, it will be counted.
 
 Note that if there are no sentences with overused words in your document, then this window will not be included.
 
