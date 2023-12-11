@@ -859,10 +859,10 @@ nostro
 not
 nous
 now
-nuestra
 nuestras
 nuestro
 nuestros
+null
 num
 nun
 nur

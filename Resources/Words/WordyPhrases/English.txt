@@ -2136,8 +2136,7 @@ didn't remember	forgot	0
 differ form	differ from	3		
 differed form	differed from	3		
 different form	different from	3	a;slightly	of
-different than	different from	3		
-different then	different from	3		than
+different then	different than, missing comma between 'different' and 'then'	3		
 differing form	differing from	3		
 differs form	differs from	3		
 difficult	hard	0		
@@ -6981,7 +6980,7 @@ the manner by which	how	0
 the means by which	how	0		
 the month of	Consider removing this	0		
 the only on	the only one	3		
-the or	or, the ore	3		operation;operator
+the or	or, the ore	3		button;buttons;operation;operator
 the other way around	the opposite	0		
 the passage of time	time	0		
 the possibility exists for	may, might, can, could	0		
@@ -7350,6 +7349,7 @@ unintentional mistakes	mistakes	1
 unit manger	unit manager	3		
 unit mangers	unit managers	3		
 unmanged	unmanaged	3		
+unsing	using, unsung	3		
 unsolved mysteries	mysteries	1		
 unsolved mystery	mystery	1		
 until has	until his	3		
