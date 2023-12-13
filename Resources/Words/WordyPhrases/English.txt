@@ -1,4 +1,8 @@
+10nd	10th	3		
+10st	10th	3		
 11th hour	almost late, right before the anticipated deadline	2		
+1nd	1st	3		
+1th	1st	3		
 24 caret	24 carat	3		
 24 carets	24 carats	3		
 24 carrot	24 carat	3		
@@ -7,10 +11,27 @@
 24-carets	24-carats	3		
 24-carrot	24-carat	3		
 24-carrots	24-carats	3		
+2rd	2nd	3		
+2st	2nd	3		
+3nd	3rd	3		
+3rt	3rd	3		
+3st	3rd	3		
+4nd	4th	3		
+4rd	4th	3		
+5nd	5th	3		
+5st	5th	3		
+6nd	6th	3		
+6st	6th	3		
+7nd	7th	3		
+7st	7th	3		
 7th heaven	elated, very happy	2		
 800 lb gorilla	dominating company	2		
 800-lb gorilla	dominating company	2		
 800lb gorilla	dominating company	2		
+8nd	8th	3		
+8st	8th	3		
+9nd	9th	3		
+9st	9th	3		
 a an	strike one of these	3		
 a broad array of	assorted, extensive, numerous	0		
 a case in point	for example	0		
@@ -594,6 +615,7 @@ aperture	gap, hole	0
 apertures	gaps, holes	0		
 apex	tip	0		
 apexes	tips	0		
+apon	apron, upon	3		
 apparant	apparent	3		
 apparantly	apparently	3		
 apparent	clear, plain	0		
@@ -1483,6 +1505,8 @@ can't see the forest for the trees	unable to understand the full meaning of some
 cannot be avoided	must, should	0		
 cannot see the forest for the trees	unable to understand the full meaning of something because of a fixation on minor details	2		
 canon ball	cannonball	3		
+canot	cannot	3		
+cant't	can't	3		
 capabilities	abilities	0		
 capability	ability	0		
 capability's	ability's	0		
@@ -2077,6 +2101,11 @@ could care less	couldn't care less	3
 could of	could have	3		course
 could possibly	could	1		
 couldn't not	couldn't	3		
+couldnt	couldn't	3		
+coulm's	column's	3		
+coulmn	column	3		
+coulmns	columns	3		
+couln't	couldn't	3		
 counteract	hinder	0		
 counteracted	hindered	0		
 counteracting	hindering	0		
@@ -2146,6 +2175,10 @@ cutting corners	(irresponsibly) taking shortcuts to finish a task	2
 cutting mustard	passing, doing well	2		
 cutting the mustard	passing, doing well	2		
 Cyberbulling	Cyberbullying	3		
+CYMK	CMYK	3		
+dackeries	daiquiris	3		
+dackery	daiquiri	3		
+dackery's	daiquiri's	3		
 dacquiri	daiquiri	3		
 dacquiri's	daiquiri's	3		
 dacquiris	daiquiris	3		
@@ -2159,6 +2192,7 @@ dark horse	contestant/candidate that people know little about that has a good ch
 dark horses	contestants/candidates that people know little about that have a good chance of winning	2		
 database manger	database manager	3		
 database mangers	database managers	3		
+datas	data ('data' is the plural form of 'datum')	3		
 day late and a dollar short	not enough, just came up short	2		
 de facto	real	0		
 dead presidents	money (U.S. currency)	2		
@@ -2299,6 +2333,7 @@ deviates	strays, turns away	0
 deviating	straying, turning away	0		
 deviation	change	0		
 deviations	changes	0		
+diaerers	diaereses	3		
 diamond in the rough	inexperienced/unpolished person or thing that shows promise	2		
 dichotomies	groups, branches, divisions	0		
 dichotomy	group, branch, division	0		
@@ -2307,10 +2342,14 @@ did away with	removed, canceled, ended	0
 did not pay any attention to	ignored	0		
 did not pay attention to	ignored	0		
 did not remember	forgot	0		
+did'nt	didn't	3		
 didn't not	didn't	3		
 didn't pay any attention to	ignored	0		
 didn't pay attention to	ignored	0		
 didn't remember	forgot	0		
+didnt	didn't	3		
+didnt'	didn't	3		
+didnt't	didn't	3		
 differ form	differ from	3		
 differed form	differed from	3		
 different form	different from	3	a;slightly	of
@@ -6903,7 +6942,11 @@ shot from the hip	spoke directly	2
 shot in the dark	guess	2		
 shotgun wedding	forced wedding/partnership	2		
 should of	should have	3		course
+should'nt	shouldn't	3		
+should't	shouldn't	3		
 shouldn't not	shouldn't	3		
+shouldnt	shouldn't	3		
+shouln't	shouldn't	3		
 sick and tired	annoyed, tired	0		
 sick as a dog	miserable, felling very low	2		
 side affect	side effect	3		
@@ -7549,6 +7592,13 @@ thinks outside the box	thinks creatively, thinks unconventionally	2
 this being the case	consequently, therefore, hence	0		
 this is to say	that is	0		
 this neck of the woods	this region, here	2		
+thiss	this	3		
+thme	them	3		
+thn	then	3		
+thna	than	3		
+thnak	thank	3		
+thnaks	thanks	3		
+thorasic	thoracic	3		
 thorn in her side	annoyance	2		
 thorn in his side	annoyance	2		
 thorn in my side	annoyance	2		
@@ -7559,9 +7609,14 @@ thoroughfare	road	0
 thoroughfare's	road's	0		
 thoroughfares	roads	0		
 those ones	those	3		
+thoughout	throughout	3		
+thoughput	throughput	3		
 thought off	thought of	3		
 thought outside the box	thought creatively, thought unconventionally	2		
 thought to myself	thought	0		
+thourghly	thoroughly	3		
+thourough	thorough	3		
+thouroughly	thoroughly	3		
 threshhold	threshold	3		
 threshhold's	threshold's	3		
 threshholds	thresholds	3		
@@ -7595,6 +7650,8 @@ throws caution to the wind	decides on a bold course of action	2
 throws in the towel	surrenders, admits defeat	2		
 throws the baby out with the bathwater	disregards the important part	2		
 throws the book at	gives the maximum penalty	2		
+thta	that	3		
+thtat	that	3		
 tie the knot	get married	2		
 tied the knot	got married	2		
 ties the knot	gets married	2		
@@ -7610,7 +7667,12 @@ time clock	clock	1
 time clocks	clocks	1		
 time of day	time	0		
 time period	period	1		
+timeot	timeout	3		
+timeots	timeouts	3		
 tip of the iceberg	small part of the problem, just the beginning	2		
+tipe	type, tip	3		
+tipical	typical	3		
+tipically	typically	3		
 tit for tat	blow for blow	2		
 titillate	tickle	0		
 titillated	tickled	0		
@@ -7645,10 +7707,13 @@ to what extent	how much, how far	0
 to what length	how much, how far	0		
 to whatever extent	however	0		
 to who are	to those who are	3		
+tobbaco	tobacco	3		
+tobbaco's	tobacco's	3		
 toe the line	meet the group's standard	2		
 toed the line	meet the group's standard	2		
 toeing the line	meeting the group's standard	2		
 toes the line	meets the group's standard	2		
+togeter	together	3		
 toggle back and forth	toggle	0		
 toggled back and forth	toggled	0		
 toggles back and forth	toggles	0		
@@ -7689,9 +7754,20 @@ took satisfaction in	enjoyed	0
 took the cake	won the contest	2		
 took under advisement	considered, contemplated	0		
 took under consideration	considered, contemplated	0		
+Toosday	Tuesday	3		
+toplogical	topological	3		
+toplogically	topologically	3		
 toplogies	topologies	3		
 toplogy	topology	3		
 toplogy's	topology's	3		
+topoligical	topological	3		
+topoligically	topologically	3		
+topoligies	topologies	3		
+topoligy	topology	3		
+topologie	topology	3		
+topoplogical	topological	3		
+topoplogies	topologies	3		
+topoplogy	topology	3		
 tot he	to the	3		
 total number	total, number	0		
 total number of	total	0		
@@ -7720,11 +7796,20 @@ trace back	trace	0
 traced back	traced	0		
 traces back	traces	0		
 tracing back	tracing	0		
+tragectories	trajectories	3		
+tragectory	trajectory	3		
+tragectory's	trajectory's	3		
 train of thought	thought process	2		
 trained expert	expert	0		
 trained experts	experts	0		
 training manger	training manager	3		
 training mangers	training managers	3		
+tranfer	transfer	3		
+tranfered	transferred	3		
+tranfering	transferring	3		
+tranferred	transferred	3		
+tranferring	transferring	3		
+tranfers	transfers	3		
 tranquility	quietness	0		
 transcendent	superior	0		
 transcendently	superiorly	0		
@@ -7746,6 +7831,10 @@ transpire	take place, happen	0
 transpired	took place, happened	0		
 transpires	takes place, happens	0		
 transpiring	happening, occurring	0		
+trasfer	transfer	3		
+trasferred	transferred	3		
+trasferring	transferring	3		
+trasfers	transfers	3		
 trenchant	sharp, keen	0		
 trepidation	fear	0		
 trepidations	fears	0		
@@ -7849,6 +7938,11 @@ unintentional mistakes	mistakes	1
 unit manger	unit manager	3		
 unit mangers	unit managers	3		
 unmanged	unmanaged	3		
+unnused	unused	3		
+unoffical	unofficial	3		
+unpluged	unplugged	3		
+unpluging	unplugging	3		
+unsed	unused	3		
 unsing	using, unsung	3		
 unsolved mysteries	mysteries	1		
 unsolved mystery	mystery	1		
@@ -7918,8 +8012,12 @@ utilizers	users	0
 utilizes	uses	0		
 utilizing	using	0		
 vaccum	vacuum	3		
-vaccums	vacuums	3		
+vaccume	vacuum	3		
+vaccumed	vacuumed	3		
+vaccuming	vacuuming	3		
 vaccuum	vacuum	3		
+vaccuumed	vacuumed	3		
+vaccuuming	vacuuming	3		
 vaccuums	vacuums	3		
 vacillate	waver	0		
 vacillated	wavered	0		
@@ -7992,6 +8090,14 @@ visually see	visualize, see	1
 visually seeing	visualizing, seeing	1		
 visually sees	visualizes, sees	1		
 vitreous	glassy	0		
+vizual	visual	3		
+vizualizations	visualizations	3		
+vizualize	visualize	3		
+vizualized	visualized	3		
+vizualizes	visualizes	3		
+vizualizing	visualizing	3		
+vizually	visually	3		
+vizuals	visuals	3		
 vociferate	shout	0		
 vociferated	shouted	0		
 vociferates	shouts	0		
@@ -8033,6 +8139,8 @@ voicing disapproval of	disapproving	0
 voicing opposition to	opposing	0		
 voicing support for	supporting	0		
 voluminous	large, bulky	0		
+volumn	volume	3		
+volumne	volume	3		
 vulnerablities	vulnerabilities	3		
 vulnerablity	vulnerability	3		
 vulnerablity's	vulnerability's	3		
@@ -8046,6 +8154,7 @@ walk on eggshells	proceed cautiously	2
 walked on eggshells	proceeded cautiously	2		
 walking on eggshells	proceeding cautiously	2		
 walks on eggshells	proceeds cautiously	2		
+wan't	want	3		
 warn in advance	warn	0		
 warned in advance	warned	0		
 warning in advance	warning	0		
@@ -8271,14 +8380,23 @@ without exception	all, everybody, everything, ever time, ever	0
 without foundation	baseless, unfounded	0		
 wolf in sheep's clothing	someone pretending to be something they are not for malicious intent	2		
 wolves in sheep's clothing	those pretending to be something they are not for malicious intent	2		
+womens	women's	3		
 won hands down	won easily	2		
 won't not	wouldn't	3		
+wont't	won't	3		
 word of mouth	spreading information informally	2		
+workboos	workbooks	3		
 worthy of attention	notable	0		
 worthy of blame	blamable	0		
 worthy of gratitude	thankworthy	0		
 worthy of note	notable, noteworthy	0		
+woud	would	3		
+woudl	would	3		
+woudn't	wouldn't	3		
 would of	would have	3		course
+wouldnt	wouldn't	3		
+wouln't	wouldn't	3		
+woulnd't	wouldn't	3		
 wreckless driver	reckless driver	3		
 wreckless drivers	reckless drivers	3		
 wreckless driving	reckless driving	3		
@@ -8290,6 +8408,13 @@ written down	written	0
 writting	writing	3		
 wrong side of the tracks	rough part of town	2		
 wrote down	wrote	0		
+wth	with	3		
+wthin	within	3		
+wthout	without	3		
+wtih	with	3		
+wtihin	within	3		
+wtihout	without	3		
+wuold	would	3		
 year in and year out	yearly, annually, every year	0		
 year in year out	yearly, annually, every year	0		
 yell and scream	yell, scream	0		
@@ -8319,5 +8444,16 @@ young lass	lass	1
 young lasses	lasses	1		
 your can	you can	3		
 your's	yours	3		
+yuo	you	3		
+yuor	your	3		
+zar	czar	3		
+zar's	czar's	3		
+zars	czars	3		
+zellot	zealot	3		
+zellot's	zealot's	3		
+zellots	zealots	3		
 zero-sum gain	zero-sum game	3		
 zero-sum gains	zero-sum games	3		
+zink	zinc	3		
+zylophone	xylophone	3		
+zylophones	xylophones	3		
