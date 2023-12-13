@@ -1649,32 +1649,32 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                     (*pos)->GetWords()->get_word(dupWordIndices[i]).c_str());
                 }
             const bool useQuotes{ doubleWords.get_data().size() > 1 };
-            for (const auto& doubleWords : doubleWords.get_data())
+            for (const auto& doubleWord : doubleWords.get_data())
                 {
-                if (doubleWords.second > 1)
+                if (doubleWord.second > 1)
                     {
                     doubleWordsStr.Append(L'\"')
-                        .Append(doubleWords.first.c_str())
+                        .Append(doubleWord.first.c_str())
                         .Append(L' ')
-                        .Append(doubleWords.first.c_str())
-                        .Append(wxString::Format(L"\" * %zu, ", doubleWords.second));
+                        .Append(doubleWord.first.c_str())
+                        .Append(wxString::Format(L"\" * %zu, ", doubleWord.second));
                     }
                 else
                 {
                     if (useQuotes)
                         {
                         doubleWordsStr.Append(L'\"')
-                            .Append(doubleWords.first.c_str())
+                            .Append(doubleWord.first.c_str())
                             .Append(L' ')
-                            .Append(doubleWords.first.c_str())
+                            .Append(doubleWord.first.c_str())
                             .Append(L"\", ");
                         }
                 else
                         {
                         doubleWordsStr
-                            .Append(doubleWords.first.c_str())
+                            .Append(doubleWord.first.c_str())
                             .Append(L' ')
-                            .Append(doubleWords.first.c_str())
+                            .Append(doubleWord.first.c_str())
                             .Append(L", ");
                         }
                     }
@@ -1693,17 +1693,17 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             m_incorrectArticleData->SetItemValue(incorrectArticleCount, 2,
                 (*pos)->GetWords()->get_incorrect_article_indices().size());
             wxString incorrectArticleStr;
-            frequency_set<traits::case_insensitive_wstring_ex> incorrectArticle;
+            frequency_set<traits::case_insensitive_wstring_ex> incorrectArticles;
             const auto& incorrectArticleIndices = (*pos)->GetWords()->get_incorrect_article_indices();
 
             for (size_t i = 0; i < incorrectArticleIndices.size(); ++i)
                 {
-                incorrectArticle.insert(
+                incorrectArticles.insert(
                     (*pos)->GetWords()->get_word(incorrectArticleIndices[i]) + L' ' +
                     (*pos)->GetWords()->get_word(incorrectArticleIndices[i]+1));
                 }
-            const bool useQuotes{ incorrectArticle.get_data().size() > 1 };
-            for (const auto& incorrectArticle : incorrectArticle.get_data())
+            const bool useQuotes{ incorrectArticles.get_data().size() > 1 };
+            for (const auto& incorrectArticle : incorrectArticles.get_data())
                 {
                 if (incorrectArticle.second > 1)
                     {
