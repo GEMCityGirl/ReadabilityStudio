@@ -1226,6 +1226,7 @@ actinopterygii
 actinorhizal
 action
 action's
+actionability
 actionable
 actioned
 actioning
@@ -7940,6 +7941,7 @@ autocompleted
 autocompletes
 autocompleting
 autocompletion
+autoconfig
 autocorrelate
 autocorrelated
 autocorrelates
@@ -7973,6 +7975,11 @@ autodidact
 autodidact's
 autodidactic
 autodidacts
+autodiscover
+autodiscovered
+autodiscovering
+autodiscovers
+autodiscovery
 autoecology
 autoecology's
 autoed
@@ -8086,6 +8093,10 @@ autopsies
 autopsy
 autopsy's
 autopsying
+autopurge
+autopurged
+autopurges
+autopurging
 autoradiography
 autoregressive
 autoregulation
@@ -10144,6 +10155,8 @@ bbl
 BBQ
 BBS
 BC
+bcc
+bcc'ed
 BCD
 bdelloid
 bdelloid's
@@ -18778,6 +18791,7 @@ Cb
 Cb's
 CBC
 cc
+cc'ed
 CCTV
 CCU
 CD
@@ -28647,6 +28661,9 @@ crone
 crone's
 crones
 cronies
+crontab
+crontab's
+crontabs
 crony
 crony's
 cronyism
@@ -29136,6 +29153,11 @@ cryptologist's
 cryptologists
 cryptology
 cryptology's
+cryptomine
+cryptomined
+cryptomines
+cryptomining
+cryptomining's
 cryptorchidism
 cryptosporidiosis
 cryptosporidium
@@ -29811,6 +29833,9 @@ cutoffs
 cutout
 cutout's
 cutouts
+cutover
+cutover's
+cutovers
 cutpoint
 cutpoint's
 cutpoints
@@ -29874,6 +29899,9 @@ cyans
 cyber
 cyberattack
 cyberattack's
+cyberattacker
+cyberattacker's
+cyberattackers
 cyberattacks
 cyberbullied
 cyberbullies
@@ -29934,6 +29962,9 @@ cyberthreats
 cybertour
 cybertour's
 cybertours
+cyberweapon
+cyberweapon's
+cyberweapons
 cyberworkforce
 cyberworkforce's
 cyberworkforces
@@ -46806,6 +46837,9 @@ filesystems
 filet
 filet's
 filets
+filetype
+filetype's
+filetypes
 filgrastim
 filia
 filial
@@ -49834,6 +49868,7 @@ freedom
 freedom's
 freedoms
 freefall
+freeform
 freehand
 freehanded
 freehandedly
@@ -56458,6 +56493,9 @@ hashed
 hasher
 hasher's
 hashes
+hashfile
+hashfile's
+hashfiles
 hashing
 hashing's
 hashish
@@ -69119,6 +69157,8 @@ kronor
 kronur
 krypton
 krypton's
+kryptonite
+kryptonite's
 kryptons
 króna
 króna's
@@ -74288,6 +74328,8 @@ malts
 malty
 Malva
 Malvern
+malvertising
+malvertising's
 Malvin
 Malvina
 malware
@@ -78143,6 +78185,9 @@ minidump
 minidump's
 minidumps
 minidumps'
+minification
+minification's
+minifications
 minified
 minifies
 minify
@@ -84375,6 +84420,7 @@ nonrotating
 nonroutine
 nonsalaried
 nonsampling
+nonscalable
 nonscheduled
 nonscholarly
 nonscience
@@ -85390,6 +85436,9 @@ obfuscating
 obfuscation
 obfuscation's
 obfuscations
+obfuscator
+obfuscator's
+obfuscators
 obfuscatory
 obi
 obi's
@@ -88862,6 +88911,7 @@ own
 owned
 owner
 owner's
+ownerless
 owners
 ownership
 ownership's
@@ -97268,6 +97318,11 @@ precook
 precooked
 precooking
 precooks
+precreate
+precreated
+precreates
+precreating
+precreation
 precursor
 precursor's
 precursors
@@ -97482,6 +97537,7 @@ prefigure
 prefigured
 prefigures
 prefiguring
+prefilled
 prefix
 prefix's
 prefixed
@@ -97958,6 +98014,7 @@ preshrinks
 preshrunk
 preside
 presided
+presidence
 presidencies
 presidency
 presidency's
@@ -104390,6 +104447,10 @@ redound
 redounded
 redounding
 redounds
+redownload
+redownloaded
+redownloading
+redownloads
 redox
 redraft
 redraft's
@@ -107394,6 +107455,8 @@ resymbolization
 resymbolization's
 resymbolizations
 resymbolizes
+resync
+resynced
 resynchronisation
 resynchronisations
 resynchronise
@@ -107403,6 +107466,8 @@ resynchronize
 resynchronized
 resynchronizes
 resynchronizing
+resyncing
+resyncs
 resynthesized
 resynthesizes
 retail
@@ -110266,6 +110331,9 @@ safeguards
 safekeeping
 safekeeping's
 safekeepings
+safelist
+safelist's
+safelists
 safely
 safeness
 safeness's
@@ -110751,6 +110819,9 @@ sandwich's
 sandwiched
 sandwiches
 sandwiching
+sandworm
+sandworm's
+sandworms
 sandy
 sandy's
 Sandye
@@ -111390,6 +111461,7 @@ scandiums
 scanline
 scanline's
 scanlines
+scannable
 scanned
 scanner
 scanner's
@@ -118998,6 +119070,9 @@ spaghettis
 spake
 spam
 spam's
+spambot
+spambot's
+spambots
 spammed
 spammer
 spammer's
@@ -129599,6 +129674,9 @@ timeshare
 timeshared
 timeshares
 timesharing
+timesheet
+timesheet's
+timesheets
 timeslot
 timeslot's
 timeslots
@@ -134402,6 +134480,7 @@ unconcerns
 unconditional
 unconditionally
 unconditioned
+unconfigurable
 unconfined
 unconfirmed
 unconformable
@@ -134666,6 +134745,7 @@ underconsumption
 underconsumption's
 undercooked
 undercount
+undercounted
 undercounts
 undercover
 undercroft
@@ -135063,6 +135143,7 @@ undisciplined
 undisclosed
 undiscoloreds
 undiscounted
+undiscoverable
 undiscovered
 undiscriminated
 undiscriminating
@@ -138073,6 +138154,7 @@ vallecula
 valley
 valley's
 valleys
+vallhund
 Valli
 Vallie
 Vally

@@ -4326,6 +4326,7 @@ Corrine
 Corrinne
 Corry
 Cort
+Cortana
 Cortelli
 Cortelyou
 Cortes
@@ -7400,6 +7401,7 @@ Garrick
 Garrik
 Garrin
 Garroway
+Garruba
 Garry
 Garson
 Garth
@@ -7783,6 +7785,7 @@ Gitta
 Giuditta
 Giulana
 Giulia
+Giulian
 Giuliano
 Giulietta
 Giulio
@@ -11635,6 +11638,7 @@ Kristy
 Kristyn
 Kroger
 Kronecker
+Kronos
 Krueger
 Kruesi
 Kruger
@@ -12025,6 +12029,7 @@ Lauran
 Laurasia
 Laure
 Laureanne
+Laureano
 Lauree
 Laureen
 laurel

@@ -27,6 +27,7 @@ rvalue
 SaaS
 SEH
 SMB
+SME
 ssDNA
 ssRNA
 SUV

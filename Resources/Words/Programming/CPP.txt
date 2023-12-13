@@ -409,6 +409,7 @@ typedef
 typeid
 typeindex
 typeinfo
+typelib
 typename
 undecorator
 undecorator's

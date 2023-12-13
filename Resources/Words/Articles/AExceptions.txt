@@ -5,10 +5,13 @@ nor
 of
 once
 one
+OneNote
 onetime
+SaaS
 SFINAE
 SHA-1
 SHA-256
+SKOS
 SQLite
 UAW
 Ubuntu
@@ -16,6 +19,7 @@ UCSF
 UDC
 UDP
 UFO
+UKG
 UMN
 unary
 unary_negate

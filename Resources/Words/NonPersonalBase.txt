@@ -649,6 +649,7 @@ Boheme
 Bohemia
 Bohemian
 Boise
+Bokmål
 Bolivia
 Bolivian
 Bologna
@@ -701,6 +702,7 @@ Bridgeport
 Bridgetown
 Bridgnorth
 Brigadoon
+Brightspace
 Brillo
 Brillouin
 Brisbane
@@ -1234,6 +1236,7 @@ Darwinist
 Databook
 Datamedia
 DataPilot
+Dataverse
 Datha
 Dauphine
 Davao
@@ -1776,6 +1779,7 @@ Gallup
 Galveston
 Galápagos
 GAMA
+Gamaredon
 Gambia
 Gambian
 Gandhian
@@ -2519,6 +2523,7 @@ Kurd
 Kurdish
 Kurdistan
 Kusch
+Kusto
 Kuwait
 Kuwaiti
 Kuznet
@@ -2750,6 +2755,7 @@ Maharashtra
 Mahican
 MaidPro
 MailChimp
+Mailflow
 Maine
 Mainer
 Mainz
@@ -2948,6 +2954,7 @@ Millersville
 Miltown
 Milwaukee
 Mimas
+Minecraft
 Mineola
 Minnaminnie
 Minneapolis
@@ -3020,6 +3027,7 @@ Montrachet
 Montreal
 Montrose
 Montserrat
+Moodle
 Moor
 Moorish
 MooseJaw
@@ -3981,6 +3989,7 @@ Schedar
 Schleswig
 Schlumberger
 Schoolfirst
+Schoology
 Schwerin
 Scientologies
 Scientologist
@@ -3994,6 +4003,7 @@ Scotchmen
 Scotchwoman
 Scotchwomen
 Scotia
+Scotiabank
 Scotian
 Scotland
 Scots
@@ -4338,6 +4348,7 @@ Sylvania
 Sylvatic
 Symantec
 Syntech
+Syntex
 Syracuse
 Syria
 Syrian
@@ -4442,6 +4453,7 @@ Tenochtitlán
 Teotihuacan
 Teredo
 Terranova
+Tesco
 Testarossa
 Tet
 Tettenhall
@@ -4459,6 +4471,7 @@ Thales
 Thalia
 Thames
 Thanksgiving
+Thawte
 Thebes
 Theiss
 Theodosia
@@ -4857,6 +4870,7 @@ Vuelta
 Vulcan
 Wachovia
 Waco
+Wadhrama
 Wagnerian
 Wahhabi
 Waikato
@@ -5017,6 +5031,7 @@ WO
 Wokingham
 Wolverhampton
 Wonderlane
+Woodgrove
 Woodlawn
 Woodstock
 Woolongong
