@@ -249,29 +249,27 @@ namespace characters
                            is_either<wchar_t>(ch, L'&', 0xFF06) ?
                            true :
                            is_numeric_simple(ch) ?
-                               true :
-                               // don't allow words to start with super/subscripts or fractions
+                           true :
+                           // don't allow words to start with super/subscripts or fractions
                                (is_alpha(ch) && !string_util::is_superscript(ch) &&
                                 !string_util::is_subscript(ch)) ?
+                           true :
+                           // Doxygen tags (e.g., @note) or used as a whole word
+                           // (e.g., "meet @ 5:00")
+                               is_either<wchar_t>(ch, L'@', 0xFF20) ? true :
+                           (ch == 0x9F) ? // Y with diaeresis
+                               true :
+                               is_either<wchar_t>(ch, 163, 0xFFE1) ? // Pound Sterling
                                    true :
-                                   // Doxygen tags (e.g., @note) or used as a whole word
-                                   // (e.g., "meet @ 5:00")
-                                   is_either<wchar_t>(ch, L'@', 0xFF20) ? true :
-                                   (ch == L'_') ? // programmer code, such as "_mbscmp"
+                                   is_either<wchar_t>(ch, 0x80, 0x20AC) ? // Euro
                                        true :
-                                       (ch == 0x9F) ? // Y with diaeresis
+                                       (ch == 0x20B1) ? // Cuban peso
                                            true :
-                                           is_either<wchar_t>(ch, 163, 0xFFE1) ? // Pound Sterling
+                                           (ch == 0x20A9) ? // Korean Won (currency)
                                                true :
-                                               is_either<wchar_t>(ch, 0x80, 0x20AC) ? // Euro
+                                               (ch == 177) ? // plus/minus±
                                                    true :
-                                                   (ch == 0x20B1) ? // Cuban peso
-                                                       true :
-                                                       (ch == 0x20A9) ? // Korean Won (currency)
-                                                           true :
-                                                           (ch == 177) ? // plus/minus±
-                                                               true :
-                                                               false;
+                                                   false;
             }
 
         /** @returns @c true if a character is an uppercased letter that normally can start a
@@ -699,8 +697,8 @@ namespace characters
                            (ch == 0xA0) ? // no-break space
                                true :
                                (ch == 0x3000) ? // Japanese Ideographic Space
-                                   // En quad, thin space, hair space, em space, zero-width
-                                   // non-joiner (word separator), etc.
+                                                // En quad, thin space, hair space, em space,
+                                                // zero-width non-joiner (word separator), etc.
                                    true :
                                    (ch >= 0x2000 && ch <= 0x200C) ? true : false;
             }
