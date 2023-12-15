@@ -47,8 +47,18 @@ namespace grammar
             return m_abbreviations;
             }
 
+        /** @returns The list of words they may be seen as abbreviations but are not.
+                This is where you can override the classifier.
+            @warning The non-abbreviations you add must include the trailing period.*/
+        [[nodiscard]]
+        static word_list& get_non_abbreviations() noexcept
+            {
+            return m_nonAabbreviations;
+            }
+
       private:
         static word_list m_abbreviations;
+        static word_list m_nonAabbreviations;
         };
 
     /// @brief Predicate for determining if a word is an acronym.

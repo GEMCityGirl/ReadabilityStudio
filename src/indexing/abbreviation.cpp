@@ -11,6 +11,7 @@
 using namespace grammar;
 
 word_list is_abbreviation::m_abbreviations;
+word_list is_abbreviation::m_nonAabbreviations;
 
 bool is_abbreviation::operator()(const std::wstring_view text) const
     {
@@ -18,6 +19,16 @@ bool is_abbreviation::operator()(const std::wstring_view text) const
         {
         return false;
         }
+
+    word_list::word_type cmpKey(text.data(), text.length());
+    // should this word never be an abbreviation
+    bool result = std::binary_search(get_non_abbreviations().get_words().begin(),
+                                     get_non_abbreviations().get_words().end(), cmpKey);
+    if (result)
+        {
+        return false;
+        }
+
     if (characters::is_character::is_consonant(text[0]))
         {
         size_t i = 1;
@@ -48,9 +59,9 @@ bool is_abbreviation::operator()(const std::wstring_view text) const
             return true;
             }
         }
-    word_list::word_type cmpKey(text.data(), text.length());
-    bool result = std::binary_search(m_abbreviations.get_words().begin(),
-                                     m_abbreviations.get_words().end(), cmpKey);
+
+    result = std::binary_search(get_abbreviations().get_words().begin(),
+                                get_abbreviations().get_words().end(), cmpKey);
     // if not found, then try to see if this is more than one word combined by '/',
     // followed by an abbreviation.
     if (!result)
@@ -59,8 +70,8 @@ bool is_abbreviation::operator()(const std::wstring_view text) const
         if (lastSlash != std::wstring_view::npos && lastSlash != text.length() - 1)
             {
             cmpKey.assign(text.data() + (lastSlash + 1), text.length() - (lastSlash + 1));
-            result = std::binary_search(m_abbreviations.get_words().begin(),
-                                        m_abbreviations.get_words().end(), cmpKey);
+            result = std::binary_search(get_abbreviations().get_words().begin(),
+                                        get_abbreviations().get_words().end(), cmpKey);
             }
         }
     return result;

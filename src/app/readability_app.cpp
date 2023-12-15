@@ -1089,6 +1089,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     wxString anExceptionsFileText = cat.ReadTextFile(_DT(L"Articles/AnExceptions.txt"));
     // read in the abbreviations
     wxString abbreviationsFileText = cat.ReadTextFile(_DT(L"Abbreviations/List.txt"));
+    wxString nonAbbreviationsFileText = cat.ReadTextFile(_DT(L"Abbreviations/non-abbreviations.txt"));
     // read in the past-participle exceptions
     wxString pastParticipleExceptionsFileText = cat.ReadTextFile(_DT(L"PastParticiples/Exceptions.txt"));
     // read in the DC words
@@ -1172,6 +1173,8 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
         properNounStopList, true, false);
     grammar::is_abbreviation::get_abbreviations().load_words(
         abbreviationsFileText, true, false);
+    grammar::is_abbreviation::get_non_abbreviations().load_words(
+        nonAbbreviationsFileText, true, false);
     grammar::is_english_passive_voice::get_past_participle_exeptions().load_words(
         pastParticipleExceptionsFileText, true, false);
     grammar::is_incorrect_english_article::get_a_exceptions().load_words(

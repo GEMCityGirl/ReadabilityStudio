@@ -1,0 +1,8 @@
+mbscmp.
+strrchr.
+strstr.
+tcscmp.
+wcscmp.
+wcscpy.
+wcsncmp.
+wcsncpy.
