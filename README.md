@@ -28,7 +28,7 @@ git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
 ```
 - Open wxWidgets's CMake file in *Visual Studio*
   - Open **Project** > **CMake Project Settings**
-    - Uncheck **wxBUILD_SHARED** and change **MAKE_INSTALL_PREFIX** to *[path to wxWidgets]/wxlib* (*[path to wxWidgets]* will be a hard-coded path on your computer)
+    - Uncheck **wxBUILD_SHARED** and save
   - Select **Build** > **Build All**
   - Select **Build** > **Install wxWidgets** (really just copies the header, lib, and cmake files to the prefix folder)
 - Open this project's CMake file in *Visual Studio* and save it (this is equivalent to configuring CMake and will generate some necessary configuration files)
