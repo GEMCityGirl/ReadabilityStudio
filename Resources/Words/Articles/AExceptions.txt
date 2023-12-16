@@ -5,12 +5,15 @@ nor
 of
 once
 one
+OneDrive
 OneNote
 onetime
 SaaS
 SFINAE
 SHA-1
 SHA-256
+SHA1
+SHA256
 SKOS
 SQLite
 UAW

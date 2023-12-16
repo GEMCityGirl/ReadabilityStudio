@@ -36,4 +36,8 @@ XCHAR
 XCode
 XInput
 xml
+XmlDocument
+XmlElement
+XmlReader
+XPath
 xpm

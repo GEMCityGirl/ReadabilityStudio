@@ -411,6 +411,7 @@ Austria
 Austrian
 Austro
 Austronesian
+Authenticode
 AutoCAD
 Autoconf
 Autodesk
@@ -1052,6 +1053,7 @@ Clearwater
 Cleavland
 Cleveland
 Clinique
+Clipchamp
 Clonazepam
 Clorox
 Cloudflare
@@ -1167,6 +1169,7 @@ Crouzon
 Crowdstrike
 Crowdtoolz
 Cryptozoic
+CSharp
 Cuba
 Cuban
 Cuchulain
@@ -1961,6 +1964,7 @@ Guyana
 Guyanese
 Gymnogyps
 Haas
+Hacktoberfest
 Hadar
 Hagstrom
 Hague
@@ -2346,6 +2350,7 @@ JetBlue
 JetBrains
 JFK
 Jima
+Jira
 Jivaro
 Jivaroan
 Jo'burg
@@ -3195,6 +3200,7 @@ NewsHour
 Newsweek
 Newsweekly
 Newtonian
+Newtonsoft
 Newtownabbey
 Nexis
 NexTag
@@ -3635,6 +3641,7 @@ Praxilla
 PRC
 Preble
 Precambrian
+Presario
 Presbyterian
 Presbyterianism
 Pretoria
@@ -4399,6 +4406,7 @@ Tarrytown
 Tartary
 Tartuffe
 Tashkent
+Taskmgr
 TaskRabbit
 Tasman
 Tasmania

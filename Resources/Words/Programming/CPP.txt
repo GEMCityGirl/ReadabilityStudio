@@ -369,7 +369,7 @@ strncat
 strncmp
 strncpy
 strptime
-strrchr.
+strrchr
 Strsafe
 strstr
 strstream

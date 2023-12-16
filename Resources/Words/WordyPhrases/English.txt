@@ -1328,6 +1328,7 @@ brain trust	policy makers of a group or company	2
 branch manger	branch manager	3		
 branch mangers	branch managers	3		
 brand new	new	0		
+Brazillian	Brazilian	3		
 bread and butter	most lucrative product(s)	2		
 break the ice	start a conversation	2		
 breaking the ice	starting a conversation	2		
@@ -1335,6 +1336,8 @@ breaks the ice	starts a conversation	2
 breech of contract	breach of contract	3		
 breech of contracts	breach of contracts	3		
 breeches of contracts	breach of contracts	3		
+brethen	brethren	3		
+bretheren	brethren	3		
 brief cameo	cameo	1		
 brief cameos	cameos	1		
 brief summary	summary	1		
@@ -1663,6 +1666,8 @@ circumventing	getting around, avoiding	0
 circumvents	gets around, avoids	0		
 city manger	city manager	3		
 city mangers	city managers	3		
+clared	cleared	3		
+clarety	clarity	3		
 clarified	made clear	0		
 clarifies	makes clear	0		
 clarify	make clear	0		
@@ -1670,6 +1675,7 @@ clarifying	making clear	0
 clean as a whistle	very clean	2		
 clean bill of health	healthy	2		
 clean slate	a new start	2		
+cleaness	cleanness	3		
 clear as a bell	very clear	2		
 clear the air	remove complications from a discussion	2		
 clear the deck	get ready for action	2		
@@ -1695,6 +1701,7 @@ cluster together	cluster	1
 clustered together	clustered	1		
 clustering together	clustering	1		
 clusters together	clusters	1		
+cna	can	3		
 coagulate	thicken	0		
 coagulated	thickened	0		
 coagulates	thickens	0		
@@ -1705,6 +1712,11 @@ coalesces	grows together	0
 coalescing	growing together	0		
 coalition	union	0		
 coalitions	unions	0		
+coallese	coalesce	3		
+coallesed	coalesced	3		
+coallesence	coalescence	3		
+coalleses	coalesces	3		
+coallesing	coalescing	3		
 cogitate	ponder	0		
 cogitated	pondered	0		
 cogitates	ponders	0		
@@ -2524,6 +2536,7 @@ doberman pincher's	doberman pinscher's	3
 doberman pinchers	doberman pinschers	3		
 doctorate degree	doctorate	0		
 doctorate degrees	doctorates	0		
+docuemntation	documentation	3		
 documention	documentation	3		
 documention's	documentation's	3		
 does away with	removes, cancels, ends	0		
@@ -2628,6 +2641,8 @@ dwindle down	dwindle	1
 dwindled down	dwindled	1		
 dwindles down	dwindles	1		
 dwindling down	dwindling	1		
+dyanamic	dynamic	3		
+dyanamics	dynamics	3		
 each and every	all, each, every	1		
 each of this	each of these	3		
 eager beaver	one who is eager	2		
@@ -2759,6 +2774,9 @@ employment	work, job, use	0
 employment opportunities	jobs	0		
 employment opportunity	job	0		
 employments	uses	0		
+enalbe	enable	3		
+enalbed	enabled	3		
+enalbes	enables	3		
 encounter	meet	0		
 encountered	met	0		
 encountering	meeting	0		
@@ -2797,6 +2815,7 @@ engender	procreate, breed	0
 engendered	procreated, bred	0		
 engendering	procreating, breeding	0		
 engenders	procreates, breeds	0		
+engery	energy	3		
 enigma	riddle	0		
 enigmas	riddles	0		
 enigmatic	puzzling	0		
@@ -2808,6 +2827,7 @@ enjoins	orders	0
 enjoyable	fun	0		
 enmity	hate	0		
 enormous	large, huge	0		
+enouth	enough	3		
 ensure	make sure	0		
 ensured	made sure	0		
 ensures	makes sure	0		
@@ -2825,8 +2845,19 @@ entreated	begged	0
 entreating	begging	0		
 entreats	begs	0		
 entrepeneur	entrepreneur	3		
+entrepeneur	entrepreneur	3		
+entrepeneurs	entrepreneurs	3		
 entreperneur	entrepreneur	3		
 entreprenur	entrepreneur	3		
+enuf	enough	3		
+enumarate	enumerate	3		
+enumarated	enumerated	3		
+enumarates	enumerates	3		
+enumarating	enumerating	3		
+enumaration	enumeration	3		
+enumarations	enumerations	3		
+enumarator	enumerator	3		
+enumarators	enumerators	3		
 enumerate	count	0		
 enumerated	counted	0		
 enumerates	counts	0		
@@ -2939,6 +2970,8 @@ exend	extend	3
 exended	extended	3		
 exending	extending	3		
 exends	extends	3		
+exercise in fertility	exercise in futility	3		
+exercises in fertility	exercises in futility	3		
 exhibit	show	0		
 exhibited	showed/shown	0		
 exhibiting	showing	0		
@@ -3198,6 +3231,7 @@ fish out of water	out of his element	2
 fit as a fiddle	in good shape, healthy	2		
 flash in the pan	temporary success	2		
 flashes in the pan	temporary successes	2		
+Flemmish	Flemish	3		
 Flesch Kincaide	Flesch Kincaid	3		
 Flesch-Kincaide	Flesch-Kincaid	3		
 flesh and blood	relative	2		
@@ -3218,7 +3252,10 @@ flips his lid	become upset	2
 floor manger	floor manager	3		
 floor mangers	floor managers	3		
 florescent	fluorescent	3		
+floride	fluoride	3		
 flourescent	fluorescent	3		
+flouride	fluoride	3		
+flourine	fluorine	3		
 fluctuate	rise and fall	0		
 fluctuated	rose and fell	0		
 fluctuates	rises and falls	0		
@@ -3283,6 +3320,10 @@ formulate	draw up, plan	0
 formulated	drew up, planned	0		
 formulates	draws up, plans	0		
 formulating	drawing up, planning	0		
+fortunatly	fortunately	3		
+fortunetly	fortunately	3		
+forumla	formula	3		
+forumlas	formulas	3		
 forward planning	planning	1		
 fought tooth and nail	fought fiercely	2		
 fourth estate	the media	2		
@@ -3303,10 +3344,16 @@ freindly	friendly	3
 freinds	friends	3		
 French benefit	fringe benefit	3		
 French benefits	fringe benefits	3		
+frequancies	frequencies	3		
+frequancy	frequency	3		
+frequant	frequent	3		
+frequantly	frequently	3		
+frequecies	frequencies	3		
 frequently	often	0		
 fresh as a daisy	well rested	2		
 fring	firing	3		
 frivolous	silly, absurd	0		
+frmo	from	3		
 from a to z	from beginning to end	2		
 from beginning to end	completely, thoroughly	0		
 from start to finish	completely, thoroughly	0		
@@ -3315,6 +3362,9 @@ from the fact that	because, considering	0
 from the horse's mouth	information from the authoritative source	2		
 from the point of view of	from, for	0		
 frugality	thrift	0		
+fucntions	functions	3		
+fuction	function	3		
+fule	file, fuel	3		
 fulfil	fulfill	3		
 full capacity	capacity	1		
 full of herself	conceited	2		
@@ -3325,6 +3375,7 @@ full of themselves	conceited	2
 full of yourself	conceited	2		
 full of yourselves	conceited	2		
 full potential	potential	1		
+fuly	fully	3		
 function	act, role	0		
 functions	acts, roles	0		
 fund manger	fund manager	3		
@@ -3352,7 +3403,16 @@ future plans	plans	1
 future projections	projections	1		
 future prospects	prospects	1		
 garantee	guarantee	3		
+garantee	guarantee	3		
+garanteed	guaranteed	3		
+garanteeed	guaranteed	3		
+garantees	guarantees	3		
+garantie	guarantee	3		
+garantied	guaranteed	3		
+garanties	guarantees	3		
 garanty	guarantee	3		
+garanty	guarantee	3		
+garentee	guarantee	3		
 garentee	guarantee	3		
 gargantuan	giant	0		
 gather together	gather	1		
@@ -3369,6 +3429,7 @@ gaurd's	guard's	3
 gaurded	guarded	3		
 gaurding	guarding	3		
 gaurds	guards	3		
+gausian	gaussian	3		
 gave an indication of	showed	0		
 gave birth to	bore	0		
 gave consideration to	considered	0		
@@ -3383,6 +3444,10 @@ generate	create, make	0
 generated	created, made	0		
 generates	creates, makes	0		
 generating	creating, making	0		
+geniune	genuine	3		
+genral	general	3		
+genral's	general's	3		
+genrals	generals	3		
 genuine	real, true	0		
 genuinely	really, truly	0		
 germinate	sprout	0		
@@ -3746,6 +3811,36 @@ hesitating	pausing	0
 heterogeneous	varied	0		
 heterogeneously	variably	0		
 heterogenous	heterogeneous	3		
+hieght	height	3		
+hieghts	heights	3		
+hiena	hyena	3		
+hienas	hyenas	3		
+hierachical	hierarchical	3		
+hierachically	hierarchically	3		
+hierachies	hierarchies	3		
+hierachrical	hierarchical	3		
+hierachrically	hierarchically	3		
+hierachries	hierarchies	3		
+hierachry	hierarchy	3		
+hierachy	hierarchy	3		
+hierachycal	hierarchical	3		
+hierarachical	hierarchical	3		
+hierarachically	hierarchically	3		
+hierarachies	hierarchies	3		
+hierarachy	hierarchy	3		
+hierarchichal	hierarchical	3		
+hierarchichally	hierarchically	3		
+hierarchie	hierarchy	3		
+hierarcical	hierarchical	3		
+hierarcically	hierarchically	3		
+hierarcies	hierarchies	3		
+hierarcy	hierarchy	3		
+hierarhcical	hierarchical	3		
+hierarhcically	hierarchically	3		
+hierarhcies	hierarchies	3		
+hierarhcy	hierarchy	3		
+hierchical	hierarchical	3		
+hierchically	hierarchically	3		
 higeine	hygiene	3		
 high and dry	stranded, alone, helpless	2		
 high and low	everywhere	0		
@@ -5890,6 +5985,9 @@ plans in advance	plans	1
 plans of action	plans, strategies	0		
 plant manger	plant manager	3		
 plant mangers	plant managers	3		
+platorm	platform	3		
+platorm's	platform's	3		
+platorms	platforms	3		
 play fast and loose	fail to keep promises or meet obligations	2		
 play it by ear	improvise	2		
 play it by year	play it by ear	3		
@@ -8446,9 +8544,6 @@ your can	you can	3
 your's	yours	3		
 yuo	you	3		
 yuor	your	3		
-zar	czar	3		
-zar's	czar's	3		
-zars	czars	3		
 zellot	zealot	3		
 zellot's	zealot's	3		
 zellots	zealots	3		
