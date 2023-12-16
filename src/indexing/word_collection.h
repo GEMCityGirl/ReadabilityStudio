@@ -498,7 +498,8 @@ public:
 
         /** Now, do the opposite with terminated sentences. If they contain nothing but
             numeric words (yet is terminated), it is some sort of equation or list of numbers followed
-            by a period. This is not a real sentence and should be made invalid.*/
+            by a period. This is not a real sentence and should be made invalid.
+            Also, if using aggressive exclusion, exclude single-word sentences that end with a colon.*/
         for (auto para_iter = m_paragraphs.begin();
              para_iter != m_paragraphs.end();
              ++para_iter)
@@ -522,7 +523,13 @@ public:
                             m_words[wordCounter].get_length_excluding_punctuation() > 1)
                             { ++regularWordCount; }
                         }
-                    if (regularWordCount == 0)
+                    if (regularWordCount == 0 ||
+                        // a sentence like "Page:" will be excluded if being aggressive
+                        (regularWordCount == 1 &&
+                         is_exclusion_aggressive() &&
+                         traits::case_insensitive_ex::eq(
+                             m_sentences[sentenceCounter].get_ending_punctuation(),
+                             common_lang_constants::COLON)))
                         {
                         para_iter->set_valid(false);
                         m_sentences[sentenceCounter].set_valid(false);

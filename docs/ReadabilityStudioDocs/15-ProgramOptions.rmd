@@ -213,7 +213,8 @@ Lines of text that resemble equations will continue to be marked as incomplete. 
 
 Note that if you are not excluding any text, this option will still take effect for tests which explicitly exclude headers (e.g., Harris-Jacobson\index{Harris-Jacobson Wide Range!customizing!header exclusion}).
 
-**Aggressively exclude**: Select this option to mark any valid sentence as incomplete if a). it is between at least two incomplete sentences and b). is less than 10 words. For example:
+**Aggressively exclude**: Select this option to mark any valid sentence as incomplete if a). it is between at least two incomplete sentences and b). is less than 10 words.
+For example:
 
 ::: {.fancyquotes data-latex=''}
 - Products by Industry
@@ -223,7 +224,10 @@ Note that if you are not excluding any text, this option will still take effect 
 
 By default, the question mark would cause the second sentence to be included in an analysis.
 Checking this checkbox will instruct the program to consider this sentence as part of the surrounding list items and exclude it.
-Checking this will also cause semicolons at the end of a line to never be marked as the end of a sentence.
+
+Finally, checking this will also affect sentences that end with colons or semicolons at the end of a line.
+Ones that end with semicolons will be excluded.
+Ones that end with colons that only contain one word will be excluded.
 
 If **Also exclude trailing citations** is enabled, then checking this option will also cause citation deduction to be more aggressive. By default, only citation blocks in the lower half of the document are excluded. Enabling this option will tell the program to search for citations in the lower three-fourth of the document.
 

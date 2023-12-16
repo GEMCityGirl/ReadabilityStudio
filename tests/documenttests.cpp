@@ -1418,6 +1418,25 @@ TEST_CASE("Document", "[document]")
         CHECK(doc.get_words()[15].is_valid());
         CHECK(doc.get_words()[16].is_valid());
         }
+    SECTION("Exclude colon sentence")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t text[] = L"Page:\n\nAnother sentence.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        // count it
+        CHECK(doc.get_complete_sentence_count() == 2);
+        CHECK(doc.get_valid_word_count() == 3);
+        CHECK(doc.get_valid_paragraph_count() == 2);
+        // exclude it
+        doc.set_aggressive_exclusion(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_word_count() == 2);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        }
     SECTION("Tagged Block Exclude Same Tags")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);

@@ -53,7 +53,8 @@ Because *he* is lowercase, the *!* will not be considered the end of the sentenc
 
 There is also a special rule for ellipses. If ellipses are followed by a capitalized word, then it will be considered the end of the sentence. Otherwise, it is simply seen as punctuation and does not terminate the sentence. The ellipses symbol (*…*) and dot sequences (*\.\.\.*) are both recognized.
 
-One last special case is when a colon or semicolon is found at the end of a line. In the case of a colon, it will be seen as the end of a sentence because it is assumed that this sentence is leading into a list.
+One last special case is when a colon or semicolon is found at the end of a line.
+In the case of a colon, it will be seen as the end of a sentence because it is assumed that this sentence is leading into a list.
 For a semicolon, it will be seen as the end of a lengthy list item that should be considered a valid sentence.
 If a colon or semicolon is found in the middle of a sentence, then it will not end that sentence.
 
@@ -62,7 +63,9 @@ If [Aggressively exclude](#options-text-exclusion) is enabled, then semicolons w
 This is useful for when your document contains programmer code that you wish to exclude.
 :::
 
-By default, lowercase words can be considered the start of a new sentence (with the exception mentioned above). Although it is poor grammar to not capitalize the first word of a sentence, this writing style is often found in some literature. This behavior can be toggled using the option [**Sentences must begin with capitalized words**](#options-sentence-deduction).
+By default, lowercase words can be considered the start of a new sentence (with the exception mentioned above).
+Although it is poor grammar to not capitalize the first word of a sentence, this writing style is often found in some literature.
+This behavior can be toggled using the option [**Sentences must begin with capitalized words**](#options-sentence-deduction).
 
 ## Line (Sentence) Chaining\index{sentences!chaining} {#line-chaining}
 
