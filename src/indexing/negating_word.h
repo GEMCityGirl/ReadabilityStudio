@@ -12,33 +12,37 @@
 #ifndef __NEGATING_WORD_H__
 #define __NEGATING_WORD_H__
 
+#include "character_traits.h"
 #include <algorithm>
 #include <functional>
 #include <set>
 #include <string_view>
-#include "character_traits.h"
 
 namespace grammar
     {
     /// @brief Functor for determining if a word is negative (e.g., "not", "doesn't").
     class is_negating
         {
-    public:
+      public:
         /** @returns @c true if text block is negative.
             @param text The text block to analyze.
             @todo add Spanish and German words too.*/
         [[nodiscard]]
-        bool operator()(std::wstring_view text) const
+        bool
+        operator()(std::wstring_view text) const
             {
             if (text.empty())
-                { return false; }
+                {
+                return false;
+                }
             return m_words.find(string_type{ text.data(), text.length() }) != m_words.cend();
             }
-    private:
+
+      private:
         using string_type = std::basic_string_view<wchar_t, traits::case_insensitive_ex>;
         static std::set<string_type> m_words;
         };
-    }
+    } // namespace grammar
 
 /** @}*/
 

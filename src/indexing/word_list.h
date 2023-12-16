@@ -12,17 +12,17 @@
 #ifndef __WORD_LIST_H__
 #define __WORD_LIST_H__
 
-#include <map>
-#include <algorithm>
-#include "character_traits.h"
+#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 #include "../Wisteria-Dataviz/src/import/text_matrix.h"
 #include "../Wisteria-Dataviz/src/import/text_preview.h"
-#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
+#include "character_traits.h"
+#include <algorithm>
+#include <map>
 
 /** @brief Container class for encapsulating a list of words.*/
 class word_list
     {
-public:
+  public:
     /// @private
     word_list() = default;
     /// @private
@@ -43,28 +43,42 @@ public:
     void load_words(const wchar_t* text, const bool sort_list, const bool preserve_words)
         {
         if (!preserve_words)
-            { m_words.clear(); }
+            {
+            m_words.clear();
+            }
 
         if (text == nullptr)
-            { return; }
+            {
+            return;
+            }
 
         string_util::string_tokenize<word_type> tkzr(text, L" \t\n\r", true);
         m_words.reserve(tkzr.count_tokens(text));
         while (tkzr.has_more_tokens())
-            { m_words.emplace_back(tkzr.get_next_token()); }
+            {
+            m_words.emplace_back(tkzr.get_next_token());
+            }
 
         if (sort_list)
-            { sort(); }
+            {
+            sort();
+            }
         }
 
     /** @returns The internal word list as a vector.*/
     [[nodiscard]]
     const std::vector<word_type>& get_words() const noexcept
-        { return m_words; }
+        {
+        return m_words;
+        }
+
     /** @returns The number of words in the list.*/
     [[nodiscard]]
     size_t get_list_size() const noexcept
-        { return m_words.size(); }
+        {
+        return m_words.size();
+        }
+
     /** @brief Determines if a given string is in the list.
         @param search_word The word to search for.
         @returns @c true if the word is found.
@@ -72,9 +86,9 @@ public:
     [[nodiscard]]
     bool contains(const wchar_t* search_word) const
         {
-        return std::binary_search(get_words().cbegin(), get_words().cend(),
-                                  word_type(search_word));
+        return std::binary_search(get_words().cbegin(), get_words().cend(), word_type(search_word));
         }
+
     /** @brief Determines if a given string is in the list.
         @param search_word The word to search for.
         @param length The length of the @c word.
@@ -86,6 +100,7 @@ public:
         return std::binary_search(get_words().cbegin(), get_words().cend(),
                                   word_type(search_word, length));
         }
+
     /** @brief Adds a word to the list, inserted at the proper sorted position.
         @details This assumes that the word list has already been sorted.
         @param theWord The word to be added.*/
@@ -95,19 +110,20 @@ public:
             std::lower_bound(m_words.begin(), m_words.end(), theWord);
         m_words.insert(insertionPoint, theWord);
         }
+
     /** @brief Adds a vector of words and sorts them in.
         @param theWords A list of words to add.*/
     void add_words(const std::vector<word_type>& theWords)
         {
         const size_t previousSize = get_list_size();
         m_words.resize(m_words.size() + theWords.size());
-        std::copy(theWords.cbegin(), theWords.cend(),
-                  m_words.begin() + previousSize);
+        std::copy(theWords.cbegin(), theWords.cend(), m_words.begin() + previousSize);
         sort();
         }
+
     /** @brief Sorts the word list (in A-Z [ascending] order).*/
-    void sort() noexcept
-        { std::sort(m_words.begin(), m_words.end()); }
+    void sort() noexcept { std::sort(m_words.begin(), m_words.end()); }
+
     /** @brief Sorts and removes any duplicate words in the list.*/
     void remove_duplicates()
         {
@@ -115,32 +131,40 @@ public:
         std::vector<word_type>::iterator endOfUniquePos =
             std::unique(m_words.begin(), m_words.end());
         if (endOfUniquePos != m_words.end())
-            { m_words.erase(endOfUniquePos, m_words.end()); }
+            {
+            m_words.erase(endOfUniquePos, m_words.end());
+            }
         }
+
     /** @brief Clears the word list.*/
-    void clear() noexcept
-        { m_words.clear(); }
+    void clear() noexcept { m_words.clear(); }
+
     /** @returns Whether the list is sorted (in ascending order).*/
     [[nodiscard]]
     bool is_sorted() const
         {
         if (m_words.size() <= 1)
-            { return true; }
-        for (size_t i = 0; i < m_words.size()-1; ++i)
             {
-            if (m_words[i] > m_words[i+1])
-                { return false; }
+            return true;
+            }
+        for (size_t i = 0; i < m_words.size() - 1; ++i)
+            {
+            if (m_words[i] > m_words[i + 1])
+                {
+                return false;
+                }
             }
         return true;
         }
-private:
+
+  private:
     std::vector<word_type> m_words;
     };
 
 /** @brief Container class for encapsulating a list of words, with suggested replacements.*/
 class word_list_with_replacements
     {
-public:
+  public:
     /// @private
     word_list_with_replacements() = default;
     /// @private
@@ -161,15 +185,19 @@ public:
     void load_words(const wchar_t* text, const bool preserve_words)
         {
         if (!preserve_words)
-            { clear(); }
+            {
+            clear();
+            }
 
         if (!text)
-            { return; }
+            {
+            return;
+            }
         std::vector<std::vector<word_type>> words;
 
         // import two columns of text (tab delimited)
-        lily_of_the_valley::standard_delimited_character_column
-            tabbedColumn(lily_of_the_valley::text_column_delimited_character_parser{ L'\t' }, 2);
+        lily_of_the_valley::standard_delimited_character_column tabbedColumn(
+            lily_of_the_valley::text_column_delimited_character_parser{ L'\t' }, 2);
         lily_of_the_valley::text_row<word_type> row(std::nullopt);
         row.add_column(tabbedColumn);
         // just reading in a single list of words, so ignore extra tabs and spaces and whatnot
@@ -188,6 +216,7 @@ public:
             m_word_map.insert(std::make_pair(words[i].at(0), words[i].at(1)));
             }
         }
+
     /** @brief Searches for a word in the list.
         @returns @c true (with its respective replacement) if found,
             @c false and blank string otherwise.*/
@@ -196,25 +225,36 @@ public:
         {
         const auto pos = m_word_map.find(word_to_find);
         if (pos == m_word_map.cend())
-            { return std::make_pair(false, word_type(L"")); }
+            {
+            return std::make_pair(false, word_type(L""));
+            }
         else
-            { return std::make_pair(true, pos->second); }
+            {
+            return std::make_pair(true, pos->second);
+            }
         }
+
     /** @returns The internal word list as a map.*/
     [[nodiscard]]
-    const std::map<word_type,word_type>& get_words() const noexcept
-        { return m_word_map; }
+    const std::map<word_type, word_type>& get_words() const noexcept
+        {
+        return m_word_map;
+        }
+
     /** @returns The number of words in the map.*/
     [[nodiscard]]
     size_t get_list_size() const noexcept
-        { return m_word_map.size(); }
+        {
+        return m_word_map.size();
+        }
+
     /** @brief Clears the word map.*/
-    void clear() noexcept
-        { m_word_map.clear(); }
-private:
-    std::map<word_type,word_type> m_word_map;
+    void clear() noexcept { m_word_map.clear(); }
+
+  private:
+    std::map<word_type, word_type> m_word_map;
     };
 
-/** @}*/
+    /** @}*/
 
 #endif //__WORD_LIST_H__

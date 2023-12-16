@@ -9,16 +9,15 @@
      SPDX-License-Identifier: BSD-3-Clause
 * @{*/
 
-
 #ifndef __DOUBLE_WORDS_H__
 #define __DOUBLE_WORDS_H__
 
+#include "character_traits.h"
 #include <algorithm>
+#include <cwctype>
 #include <functional>
 #include <set>
-#include <cwctype>
 #include <string_view>
-#include "character_traits.h"
 
 namespace grammar
     {
@@ -26,24 +25,28 @@ namespace grammar
         @details Works for English and German text.*/
     class is_double_word_exception
         {
-    public:
+      public:
         /// @brief Determines if a word is grammatically correct if repeated.
         /// @param text The word to review.
         /// @returns @c true if this word is allowed to be repeated.
         [[nodiscard]]
-        bool operator()(const std::wstring_view text) const
+        bool
+        operator()(const std::wstring_view text) const
             {
             if (text.empty() || // if empty, then I suppose it should be an exception
                 (text.length() == 1 && characters::is_character::is_punctuation(text[0])))
-                { return true; }
+                {
+                return true;
+                }
             return m_double_word_exceptions.find(string_type{ text.data(), text.length() }) !=
-                m_double_word_exceptions.cend();
+                   m_double_word_exceptions.cend();
             }
-    private:
+
+      private:
         using string_type = std::basic_string_view<wchar_t, traits::case_insensitive_ex>;
         static std::set<string_type> m_double_word_exceptions;
         };
-    }
+    } // namespace grammar
 
 /** @}*/
 
