@@ -1766,7 +1766,7 @@ private:
                 }
             }
         }
-    /// Searches for grammar issues
+    /// @brief Searches for grammar issues
     void analyze_grammar()
         {
         PROFILE();
@@ -1855,26 +1855,36 @@ private:
                             }
                         }
                     }
-                // phrasing issues
+                // wording issues
                     {
+                    auto currentWordPos{ m_words.cbegin() };
+                    std::advance(currentWordPos, wordCounter);
                     // don't bother with file paths, these wouldn't be in a phrase file
-                    if ((m_words.begin()+wordCounter)->is_file_address())
-                        { continue; }
-                    // If there is punctuation between the current word and the next one then it can't start a phrase.
-                    // In this case, tell it to only look for single-word entries in the phrase collection.
+                    if (currentWordPos->is_file_address())
+                        {
+                        continue;
+                        }
+                    // If there is punctuation between the current word and the next one then it
+                    // can't start a phrase. In this case, tell it to only look for single-word
+                    // entries in the phrase collection.
                     const bool searchForSingleWordOnly =
-                        (punctPos != m_punctuation.end() && punctPos->get_word_position() == wordCounter+1);
-                    const size_t phraseResult =
-                        isKnownPhrase(m_words.begin()+wordCounter,
-                            (wordCounter-m_sentences[sentenceCounter].get_first_word_index()),
-                            searchForSingleWordOnly ?
-                                1 : (m_sentences[sentenceCounter].get_last_word_index()-wordCounter)+1, true);
+                        (punctPos != m_punctuation.end() &&
+                         punctPos->get_word_position() == wordCounter + 1);
+                    const size_t phraseResult = isKnownPhrase(
+                        currentWordPos,
+                        (wordCounter - m_sentences[sentenceCounter].get_first_word_index()),
+                        searchForSingleWordOnly ?
+                            1 :
+                            (m_sentences[sentenceCounter].get_last_word_index() - wordCounter) + 1,
+                        true);
                     if (phraseResult != grammar::phrase_collection::npos)
                         {
                         m_known_phrase_indices.push_back(
-                            comparable_first_pair<size_t,size_t>(wordCounter,phraseResult));
-                        // just skip the rest of the words in this phrase (-1 to take the loop increment into account)
-                        wordCounter += (isKnownPhrase.get_phrases()[phraseResult].first.get_word_count())-1;
+                            comparable_first_pair<size_t, size_t>(wordCounter, phraseResult));
+                        // just skip the rest of the words in this phrase (-1 to take the loop
+                        // increment into account)
+                        wordCounter +=
+                            (isKnownPhrase.get_phrases()[phraseResult].first.get_word_count()) - 1;
                         // no reason to spell check below if a known phrase
                         continue;
                         }
@@ -1885,18 +1895,17 @@ private:
                 }
             }
         }
-    /// Total up the number of valid words.
+    /// @brief Total up the number of valid words.
     void update_valid_words_count()
         {
         m_valid_word_count = 0;
-        for (auto wordPos = m_words.cbegin();
-             wordPos != m_words.cend();
-             ++wordPos)
+        for (const auto& word : m_words)
             {
-            if (wordPos->is_valid())
+            if (word.is_valid())
                 { ++m_valid_word_count; }
             }
         }
+
     /// Sets the number of valid words in each sentence (some sentences may contain excluded words
     /// that an analyse would ignore). Also sets them to invalid if they have no valid words.
     void update_sentence_valid_words_count()
