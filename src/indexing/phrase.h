@@ -261,9 +261,9 @@ namespace grammar
             comparable_first_pair<phrase<traits::case_insensitive_wstring_ex>,
                                   traits::case_insensitive_wstring_ex>;
         static const size_t npos = static_cast<size_t>(-1);
-        /** Compares a range of words to see if it matches any phrases in this collection.
-            The word range can be bigger than the phrases, we just want to compare the phrases
-            against the first few words.
+        /** @brief Compares a range of words to see if it matches any phrases in this collection.
+            @details The word range can be bigger than the phrases, we just want to compare the phrases
+                against the first few words.
             @param words An iterator to a container of words (should have the same interface as std::basic_string).
             @param position The position in the sentence of word sequence. If this is zero (meaning the passed in
                    sequence is the start of the sentence), then the proceeding exception logic will not be used.
@@ -418,7 +418,7 @@ namespace grammar
                     std::set<traits::case_insensitive_wstring_ex> expts;
                     while (tkzr.has_more_tokens())
                         {
-                        const auto nTok = tkzr.get_next_token();
+                        auto nTok = tkzr.get_next_token();
                         if (nTok.length())
                             { expts.emplace(std::move(nTok)); }
                         }
@@ -436,7 +436,7 @@ namespace grammar
                     std::set<traits::case_insensitive_wstring_ex> expts;
                     while (tkzr.has_more_tokens())
                         {
-                        const auto nTok = tkzr.get_next_token();
+                        auto nTok = tkzr.get_next_token();
                         if (nTok.length())
                             { expts.emplace(std::move(nTok)); }
                         }
