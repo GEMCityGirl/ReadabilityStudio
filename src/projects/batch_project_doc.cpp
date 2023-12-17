@@ -572,13 +572,18 @@ void BatchProjectDoc::RefreshProject()
     DisplayWarnings();
 
     const auto selectedItem = view->GetSideBar()->GetSelectedSubItemId();
+    const auto selectedFolder = view->GetSideBar()->GetSelectedFolderId();
     view->UpdateSideBarIcons();
     view->UpdateRibbonState();
     view->Present();
     UpdateAllViews();
 
     if (!view->GetSideBar()->SelectSubItemById(selectedItem, true, true))
-        { view->GetSideBar()->SelectFolder(0, true, true); }
+        {
+        // fall back to folder that may not have subitems (e.g., the Warning section),
+        // and then the score section if the folder isn't there anymore.
+        view->GetSideBar()->SelectFolder(selectedFolder.value_or(0), true, true);
+        }
     dynamic_cast<ListCtrlEx*>(view->GetScoresView().FindWindowById(
         BaseProjectView::ID_SCORE_LIST_PAGE_ID))->Select(0);
 
