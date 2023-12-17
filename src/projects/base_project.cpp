@@ -108,7 +108,7 @@ void BaseProject::UpdateDocumentSettings()
     GetWords()->ignore_trailing_copyright_notice_paragraphs(IsIgnoringTrailingCopyrightNoticeParagraphs());
     GetWords()->ignore_citation_sections(IsIgnoringTrailingCitations());
     GetWords()->treat_header_words_as_valid(GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings);
-    GetWords()->treat_eol_as_eos((m_paragraphsParsingMethod == ParagraphParse::EachNewLineIsAParagraph));
+    GetWords()->treat_eol_as_eos(m_paragraphsParsingMethod == ParagraphParse::EachNewLineIsAParagraph);
     GetWords()->ignore_blank_lines_when_determing_paragraph_split(GetIgnoreBlankLinesForParagraphsParser());
     GetWords()->ignore_indenting_when_determing_paragraph_split(GetIgnoreIndentingForParagraphsParser());
     GetWords()->sentence_start_must_be_uppercased(GetSentenceStartMustBeUppercased());

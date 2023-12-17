@@ -1118,8 +1118,9 @@ public:
                 grammar::phrase<Tword_type> currentPhrase;
                 const size_t phraseWordCount =
                     is_known_phrase->get_phrases()[knownPhrases->second].first.get_word_count();
-                currentPhrase.copy_words(get_words().begin()+knownPhrases->first, phraseWordCount);
-                m_aggregated_tokens.insert(currentPhrase,currentWordIndex);
+                currentPhrase.copy_words(get_words().begin() + knownPhrases->first,
+                                         phraseWordCount);
+                m_aggregated_tokens.insert(currentPhrase, currentWordIndex);
                 wordPos += phraseWordCount;
                 }
             // or a word not on the stop list

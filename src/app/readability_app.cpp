@@ -550,11 +550,11 @@ bool ReadabilityApp::OnInit()
     wxTranslations::Set(translations);
     if (!translations->AddCatalog(_READSTUDIO_BINARY_NAME))
         {
-        wxLogDebug("Could not find application's translation catalog.");
+        wxLogDebug(L"Could not find application's translation catalog.");
         }
     if (!translations->AddCatalog(L"wxstd"))
         {
-        wxLogDebug("Could not find standard translation catalog.");
+        wxLogDebug(L"Could not find standard translation catalog.");
         }
 
     GetResourceManager().LoadArchive(FindResourceFile(L"res.wad"));
@@ -944,6 +944,7 @@ bool ReadabilityApp::OnInit()
     // load the full set of user settings
     GetAppOptions().LoadOptionsFile(AppSettingFolderPath + L"Settings.xml", false);
 
+    // clang-format off
     // add some standard test bundles
     // PSK
     TestBundle PskBundle(ReadabilityMessages::GetPskBundleName().wc_str());
@@ -1001,6 +1002,7 @@ bool ReadabilityApp::OnInit()
     ConsentFormsBundle.Lock();
     BaseProject::m_testBundles.insert(ConsentFormsBundle);
     dynamic_cast<MainFrame*>(GetMainFrame())->AddTestBundleToMenus(ConsentFormsBundle.GetName().c_str());
+    // clang-format on
 
     // See if ClearType is turned on. If not, then graphs will look awful, so ask user about turning it on.
 #ifdef __WXMSW__
@@ -1049,13 +1051,13 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     {
     // load the Word & phrase files--note that these should be pre-sorted
     wxFile theFile;
-    if (!theFile.Open(FindResourceFile(L"Words.wad"), wxFile::read) )
+    if (!theFile.Open(FindResourceFile(L"Words.wad"), wxFile::read))
         {
-        wxMessageBox(_(L"Word & phrase file missing or corrupt. Please reinstall."),
-            _(L"Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"Word & phrase file missing or corrupt. Please reinstall."), _(L"Error"),
+                     wxOK | wxICON_EXCLAMATION);
         return false;
         }
-    auto wordyZipFileText = std::make_unique<char[]>(theFile.Length()+1);
+    auto wordyZipFileText = std::make_unique<char[]>(theFile.Length() + 1);
     const size_t readSize = theFile.Read(wordyZipFileText.get(), theFile.Length());
     Wisteria::ZipCatalog cat(wordyZipFileText.get(), readSize);
     // read in the wordy items
@@ -1064,8 +1066,10 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     wxString germanWordyPhraseFileText = cat.ReadTextFile(L"WordyPhrases/German.txt");
     wxString DCReplacementFileText = cat.ReadTextFile(L"WordyPhrases/Dale-ChallReplacements.txt");
     wxString SpacheReplacementFileText = cat.ReadTextFile(L"WordyPhrases/SpacheReplacements.txt");
-    wxString HarrisJacobsonReplacementFileText = cat.ReadTextFile(L"WordyPhrases/Harris-JacobsonReplacements.txt");
-    wxString DifficultWordReplacementFileText = cat.ReadTextFile(L"WordyPhrases/SingleWordReplacementsEnglish.txt");
+    wxString HarrisJacobsonReplacementFileText =
+        cat.ReadTextFile(L"WordyPhrases/Harris-JacobsonReplacements.txt");
+    wxString DifficultWordReplacementFileText =
+        cat.ReadTextFile(L"WordyPhrases/SingleWordReplacementsEnglish.txt");
     // proper noun stop word list
     wxString properNounStopList = cat.ReadTextFile(L"StopWords/ProperNounsStopList.txt");
     // copyright notices
@@ -1089,13 +1093,16 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     wxString anExceptionsFileText = cat.ReadTextFile(_DT(L"Articles/AnExceptions.txt"));
     // read in the abbreviations
     wxString abbreviationsFileText = cat.ReadTextFile(_DT(L"Abbreviations/List.txt"));
-    wxString nonAbbreviationsFileText = cat.ReadTextFile(_DT(L"Abbreviations/non-abbreviations.txt"));
+    wxString nonAbbreviationsFileText =
+        cat.ReadTextFile(_DT(L"Abbreviations/non-abbreviations.txt"));
     // read in the past-participle exceptions
-    wxString pastParticipleExceptionsFileText = cat.ReadTextFile(_DT(L"PastParticiples/Exceptions.txt"));
+    wxString pastParticipleExceptionsFileText =
+        cat.ReadTextFile(_DT(L"PastParticiples/Exceptions.txt"));
     // read in the DC words
     wxString dcFileText = cat.ReadTextFile(_DT(L"WordLists/New Dale-Chall.txt"));
     // read in the DC Catholic supplementary words
-    wxString stockerCatholicFileText = cat.ReadTextFile(_DT(L"WordLists/Stocker Catholic Supplement.txt"));
+    wxString stockerCatholicFileText =
+        cat.ReadTextFile(_DT(L"WordLists/Stocker Catholic Supplement.txt"));
     // read in the Spache words
     wxString spacheFileText = cat.ReadTextFile(_DT(L"WordLists/Revised Spache.txt"));
     // Harris-Jacobson words
@@ -1109,8 +1116,10 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
 
     BaseProject::dale_chall_replacement_list.load_words(DCReplacementFileText, false);
     BaseProject::spache_replacement_list.load_words(SpacheReplacementFileText, false);
-    BaseProject::harris_jacobson_replacement_list.load_words(HarrisJacobsonReplacementFileText, false);
-    BaseProject::difficult_word_replacement_list.load_words(DifficultWordReplacementFileText, false);
+    BaseProject::harris_jacobson_replacement_list.load_words(HarrisJacobsonReplacementFileText,
+                                                             false);
+    BaseProject::difficult_word_replacement_list.load_words(DifficultWordReplacementFileText,
+                                                            false);
 
     BaseProject::known_proper_nouns.load_words(properNounsFileText, false, false);
     BaseProject::known_personal_nouns.load_words(personalNounsFileText, false, false);
@@ -1121,7 +1130,8 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     BaseProject::m_dale_chall_word_list.load_words(dcFileText, false, false);
     BaseProject::m_stocker_catholic_word_list.load_words(stockerCatholicFileText, false, false);
     BaseProject::m_dale_chall_plus_stocker_catholic_word_list.load_words(dcFileText, false, false);
-    BaseProject::m_dale_chall_plus_stocker_catholic_word_list.load_words(stockerCatholicFileText, true, true);
+    BaseProject::m_dale_chall_plus_stocker_catholic_word_list.load_words(stockerCatholicFileText,
+                                                                         true, true);
     BaseProject::m_spache_word_list.load_words(spacheFileText, false, false);
     BaseProject::m_harris_jacobson_word_list.load_words(harrisJacobsonFileText, false, false);
     BaseProject::m_dolch_word_list.load_words(dolchFileText);
@@ -1132,12 +1142,15 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     wxString ExtraDictionaryText;
     if (wxFile::Exists(m_CustomEnglishDictionaryPath) &&
         Wisteria::TextStream::ReadFile(m_CustomEnglishDictionaryPath, ExtraDictionaryText))
-        { BaseProject::known_custom_english_spellings.load_words(ExtraDictionaryText, true, false); }
+        {
+        BaseProject::known_custom_english_spellings.load_words(ExtraDictionaryText, true, false);
+        }
     // if the custom dictionary doesn't exist, then create an empty file
     else if (!wxFile::Exists(m_CustomEnglishDictionaryPath))
         {
         wxFile outputFile(m_CustomEnglishDictionaryPath, wxFile::write);
-        // put a space in the file so that it isn't zero length, that will prevent memory map exceptions later
+        // put a space in the file so that it isn't zero length, that will prevent memory map
+        // exceptions later
         outputFile.Write(L" ", wxConvUTF8);
         }
 
@@ -1145,7 +1158,9 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     m_CustomSpanishDictionaryPath = AppSettingFolderPath + L"DictionaryES.txt";
     if (wxFile::Exists(m_CustomSpanishDictionaryPath) &&
         Wisteria::TextStream::ReadFile(m_CustomSpanishDictionaryPath, ExtraDictionaryText))
-        { BaseProject::known_custom_spanish_spellings.load_words(ExtraDictionaryText, true, false); }
+        {
+        BaseProject::known_custom_spanish_spellings.load_words(ExtraDictionaryText, true, false);
+        }
     // if the custom dictionary doesn't exist, then create an empty file
     else if (!wxFile::Exists(m_CustomSpanishDictionaryPath))
         {
@@ -1157,7 +1172,9 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     m_CustomGermanDictionaryPath = AppSettingFolderPath + L"DictionaryDE.txt";
     if (wxFile::Exists(m_CustomGermanDictionaryPath) &&
         Wisteria::TextStream::ReadFile(m_CustomGermanDictionaryPath, ExtraDictionaryText))
-        { BaseProject::known_custom_german_spellings.load_words(ExtraDictionaryText, true, false); }
+        {
+        BaseProject::known_custom_german_spellings.load_words(ExtraDictionaryText, true, false);
+        }
     // if the custom dictionary doesn't exist, then create an empty file
     else if (!wxFile::Exists(m_CustomGermanDictionaryPath))
         {
@@ -1165,6 +1182,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
         outputFile.Write(L" ", wxConvUTF8);
         }
 
+    // clang-format off
     BaseProject::copyright_notice_phrases.load_phrases(
         copyRightNoticePhraseFileText, false, false);
     BaseProject::citation_phrases.load_phrases(
@@ -1181,6 +1199,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
         aExceptionsFileText, true, false);
     grammar::is_incorrect_english_article::get_an_exceptions().load_words(
         anExceptionsFileText, true, false);
+    // clang-format on
 
     return true;
     }

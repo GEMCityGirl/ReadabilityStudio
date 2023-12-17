@@ -84,16 +84,17 @@ class syllable_count_equals
     bool m_treat_numerals_as_monosyllabic{ false };
     };
 
-/** Counting functor for `std::count_if` that verifies the syllables in a word match a given count.
-    This always fails if the passed in word in invalid (i.e., excluded from the analysis).*/
+/** @brief Counting functor for `std::count_if` that verifies the syllables in a word match a given count.
+    @details This always fails if the passed in word in invalid (i.e., excluded from the analysis).*/
 template<typename word_typeT>
 class valid_syllable_count_equals
     {
   public:
     /** @brief Constructor that takes the required syllable count and how to treat numerals.
         @param count The expected number of syllables that a passing word should have.
-        @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one
-            syllable.\nDefault is @c false.*/
+        @param treat_numerals_as_monosyllabic Whether numeric words should be seen
+            as one syllable.\n
+            Default is @c false.*/
     explicit valid_syllable_count_equals(size_t count,
                                          bool treat_numerals_as_monosyllabic = false) noexcept
         : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic)
@@ -147,7 +148,7 @@ class syllable_count_greater_equal
     syllable_count_greater_equal() = delete;
 
     /** @returns @c true if a word contains a greater than or equal to number of syllables
-        compared to the predefined syllable count.
+            compared to the predefined syllable count.
         @param the_word The word to review.*/
     [[nodiscard]]
     inline bool
@@ -183,7 +184,7 @@ class valid_syllable_count_greater_equal
     valid_syllable_count_greater_equal() = delete;
 
     /** @returns @c true if a valid word contains a greater than or equal to number of syllables
-        compared to the predefined syllable count.
+            compared to the predefined syllable count.
         @param the_word The word to review.*/
     [[nodiscard]]
     inline bool
