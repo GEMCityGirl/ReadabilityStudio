@@ -21,10 +21,9 @@ bool is_abbreviation::operator()(const std::wstring_view text) const
         }
 
     word_list::word_type cmpKey(text.data(), text.length());
-    // should this word never be an abbreviation
-    bool result = std::binary_search(get_non_abbreviations().get_words().begin(),
-                                     get_non_abbreviations().get_words().end(), cmpKey);
-    if (result)
+    // should this word never be an abbreviation?
+    if (std::binary_search(get_non_abbreviations().get_words().begin(),
+                           get_non_abbreviations().get_words().end(), cmpKey))
         {
         return false;
         }
@@ -59,9 +58,40 @@ bool is_abbreviation::operator()(const std::wstring_view text) const
             return true;
             }
         }
+    // 16:27P.M, 5:00A.M.
+    else if (characters::is_character::is_numeric(text[0]) &&
+             (text.length() == 8 || text.length() == 9))
+        {
+        if (traits::case_insensitive_ex::eq(text[text.length() - 1], L'.') &&
+            traits::case_insensitive_ex::eq(text[text.length() - 2], L'M') &&
+            traits::case_insensitive_ex::eq(text[text.length() - 3], L'.') &&
+            (traits::case_insensitive_ex::eq(text[text.length() - 4], L'P') ||
+             traits::case_insensitive_ex::eq(text[text.length() - 4], L'A')) &&
+            characters::is_character::is_numeric(text[text.length() - 5]) &&
+            characters::is_character::is_numeric(text[text.length() - 6]) &&
+            traits::case_insensitive_ex::eq(text[text.length() - 7], L':') &&
+            characters::is_character::is_numeric(text[text.length() - 8]))
+            {
+            return true;
+            }
+        }
+    // 12P.M., 5A.M.
+    else if (characters::is_character::is_numeric(text[0]) &&
+             (text.length() == 5 || text.length() == 6))
+        {
+        if (traits::case_insensitive_ex::eq(text[text.length() - 1], L'.') &&
+            traits::case_insensitive_ex::eq(text[text.length() - 2], L'M') &&
+            traits::case_insensitive_ex::eq(text[text.length() - 3], L'.') &&
+            (traits::case_insensitive_ex::eq(text[text.length() - 4], L'P') ||
+             traits::case_insensitive_ex::eq(text[text.length() - 4], L'A')) &&
+            characters::is_character::is_numeric(text[text.length() - 5]))
+            {
+            return true;
+            }
+        }
 
-    result = std::binary_search(get_abbreviations().get_words().begin(),
-                                get_abbreviations().get_words().end(), cmpKey);
+    bool result = std::binary_search(get_abbreviations().get_words().begin(),
+                                     get_abbreviations().get_words().end(), cmpKey);
     // if not found, then try to see if this is more than one word combined by '/',
     // followed by an abbreviation.
     if (!result)
