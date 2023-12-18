@@ -5507,6 +5507,9 @@ apostles
 apostleship
 apostleship's
 apostleships
+apostolate
+apostolate's
+apostolates
 apostolic
 apostrophe
 apostrophe's
@@ -6901,6 +6904,9 @@ aspidistras
 aspie
 aspie's
 aspies
+aspirancies
+aspirancy
+aspirancy's
 aspirant
 aspirant's
 aspirants
@@ -7282,6 +7288,9 @@ astuteness's
 astuter
 astutest
 asunder
+asylee
+asylee's
+asylees
 asylum
 asylum's
 asylums
@@ -8129,6 +8138,10 @@ autoscroll
 autoscrolled
 autoscrolling
 autoscrolls
+autosize
+autosized
+autosizes
+autosizing
 autosomal
 autosome
 autosome's
@@ -12624,11 +12637,13 @@ blepharoptosis
 blepharospasm
 bless
 blessed
+blessed's
 blesseder
 blessedest
 blessedly
 blessedness
 blessedness's
+blesseds
 blesses
 blessing
 blessing's
@@ -19964,6 +19979,9 @@ cheater's
 cheaters
 cheating
 cheats
+cheatsheet
+cheatsheet's
+cheatsheets
 check
 check's
 checkable
@@ -21509,6 +21527,9 @@ cityscape
 cityscape's
 cityscapes
 citywide
+ciudad
+ciudad's
+ciudads
 civet
 civet's
 civets
@@ -24514,6 +24535,8 @@ comradeship
 comradeship's
 comradeships
 coms
+comunidad
+comunidad's
 con
 con's
 conant
@@ -25870,6 +25893,9 @@ contacted
 contacting
 contactless
 contacts
+contadino
+contadino's
+contadinos
 contagion
 contagion's
 contagions
@@ -36895,6 +36921,9 @@ dobbins
 doberman
 doc
 doc's
+doc-a-thon
+doc-a-thon's
+doc-a-thons
 docent
 docent's
 docents
@@ -45391,6 +45420,9 @@ falxes
 fame
 fame's
 famed
+famer
+famer's
+famers
 fames
 familial
 familiar
@@ -46908,6 +46940,9 @@ filming
 filming's
 filmmaker
 filmmakers
+filmmaking
+filmmaking's
+filmmakings
 films
 filmstrip
 filmstrip's
@@ -49292,12 +49327,16 @@ formates
 formating
 formation
 formation's
+formational
 formations
 formative
 formatively
 formativeness
 formativeness's
 formatives
+formator
+formator's
+formators
 formats
 formatted
 formatter
@@ -58766,6 +58805,9 @@ homiest
 homiletic
 homiletics
 homilies
+homilist
+homilist's
+homilists
 homily
 homily's
 hominem
@@ -59658,6 +59700,9 @@ howlings
 howls
 hows
 howsoever
+howto
+howto's
+howtos
 hoy
 hoy's
 hoyden
@@ -85091,6 +85136,7 @@ nudists
 nudities
 nudity
 nudity's
+nuestra
 nugatory
 nugget
 nugget's
@@ -102211,6 +102257,9 @@ ragout's
 ragouted
 ragouting
 ragouts
+ragpicker
+ragpicker's
+ragpickers
 rags
 ragtag
 ragtag's
@@ -112304,6 +112353,9 @@ scrips
 script
 script's
 scriptable
+scriptblock
+scriptblock's
+scriptblocks
 scripted
 scripting
 scriptorium
@@ -118200,6 +118252,9 @@ sod
 sod's
 soda
 soda's
+sodalist
+sodalist's
+sodalists
 sodalities
 sodality
 sodality's
@@ -127418,6 +127473,7 @@ technicians
 technique
 technique's
 techniques
+techno
 technocracies
 technocracy
 technocracy's
@@ -135866,6 +135922,7 @@ uninominal
 uninspired
 uninspiring
 uninstall
+uninstallable
 uninstallation
 uninstalled
 uninstaller

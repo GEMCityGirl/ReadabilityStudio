@@ -20,11 +20,16 @@ Accountingfly
 Accra
 Achaean
 Achalasia
+Budakata
 ACLU
 ACME
+Khammam
 Aconcagua
 Acta
 Actaeon
+Prabhat
+Singhpur
+Barsac
 Actin
 ActionPoint
 ActiveX
@@ -508,6 +513,7 @@ Barca-Lounger
 Barcelona
 Barclaycard
 Barstow
+Barthélemy
 Basel
 Basildon
 Basingstoke
@@ -580,6 +586,7 @@ Beograd
 Berber
 Berenice
 Beresford
+Bergamo
 Bergerac
 Bering
 Beringia
@@ -660,6 +667,8 @@ Bolshevist
 Bolshevistic
 Bolshoi
 Bombay
+Bombululu
+Bonaire
 Bonaventure
 Bonneville
 Borax
@@ -676,6 +685,7 @@ Bostonian
 Botswana
 Bourgogne
 Bournemouth
+Bouvet
 Boötes
 Brabham
 Bradenton
@@ -785,6 +795,7 @@ Byronism
 Byronismyah
 Byzantine
 Byzantium
+Béthon
 C#
 C++
 Cabela
@@ -838,6 +849,7 @@ Campinas
 Campion
 Campomelic
 Camry
+Cana
 Canaan
 Canaanite
 Canada
@@ -875,6 +887,7 @@ Carleton
 Carletonian
 Carlsbad
 Carmel
+Carmelite
 Carnitine
 Carolingian
 Carpathian
@@ -1178,6 +1191,7 @@ Cumberland
 Cumberlands
 Cumbria
 Cumbrian
+Cunha
 Cupertino
 Curacao
 Curaçao
@@ -1196,6 +1210,7 @@ Cypriot
 Cyprus
 Cyrillic
 Czech
+Czechia
 Czechoslovak
 Czechoslovakia
 Czechoslovakian
@@ -1233,6 +1248,7 @@ DARPA
 Dartford
 Dartmoor
 Dartmouth
+Darussalam
 Darwinian
 Darwinism
 Darwinist
@@ -1514,6 +1530,7 @@ Estonia
 Estonian
 Estriol
 Estée
+Eswatini
 Etchingham
 ETHE
 Ethiopia
@@ -1557,6 +1574,7 @@ Eurythmics
 Eustace
 Eustachian
 Eustacia
+Eustatius
 Euston
 Evanston
 Evansville
@@ -1974,6 +1992,7 @@ Haiphong
 Haiti
 Haitian
 Hakka
+Halawa
 Haleakala
 Halifax
 Halliburton
@@ -2028,6 +2047,7 @@ Hauts
 Havana
 Havant
 Havre-de-Grace
+Hawai'i
 Hawaii
 Hawaiian
 Hawaiin
@@ -2421,6 +2441,7 @@ Karachi
 Karaganda
 Karakorum
 Karo
+Karonga
 Kashmir
 Katakana
 Kathmandu
@@ -2478,6 +2499,7 @@ Kiribati
 Kirker
 Kirtland
 Kissee
+Kiswahili
 KitchenAid
 Kitts
 Kitzbuhel
@@ -2820,6 +2842,7 @@ March
 Margaritaville
 MariaDB
 Marianist
+Marianista
 Marino
 Markism
 Markkula
@@ -2863,6 +2886,7 @@ Maxwellian
 Maxx
 Mayan
 Maybelline
+Mayen
 Mayfair
 Mayotte
 Maytag
@@ -3063,6 +3087,7 @@ MSBuild
 MTV
 Muhammadan
 Muhammadanism
+Mukuru
 MULTICS
 Mumbai
 Munchausen
@@ -3460,6 +3485,7 @@ Parkersburg
 Parkinson
 Parkinsonism
 Parkside
+Parroquia
 Parsifal
 Parthenon
 Pas
@@ -3689,6 +3715,7 @@ Ptolemaism
 Ptolemaist
 Publix
 Puebla
+Pueblito
 Pueblo
 Puerto
 Pulitzer
@@ -3706,6 +3733,7 @@ Pyrenees
 Pyrex
 Pyrénées
 Pythagorean
+Périgueux
 Qa'ida
 Qaeda
 Qantas
@@ -3751,6 +3779,7 @@ Qur'an
 Québec
 Rabat
 Rabelaisian
+Rachi
 Racine
 Rackham
 Radicalendar
@@ -3993,6 +4022,7 @@ Scandinavian
 Schaumburg
 Scheat
 Schedar
+Schindlau
 Schleswig
 Schlumberger
 Schoolfirst
@@ -4074,6 +4104,7 @@ Sevastopol
 Sevenoaks
 Seychelles
 Shaftesbury
+Shakertown
 Shakespearean
 Shakespearian
 Shanghai
@@ -4419,6 +4450,7 @@ Tavernier
 Taylorism
 Taylorist
 Tbilisi
+Tecaboca
 TechCrunch
 Techlabs
 Technica
@@ -4668,6 +4700,7 @@ Tyrolean
 Tyrosinemia
 Tzeltal
 Tórshavn
+Türkiye
 Ubangi
 Uber
 uBreakiFix
@@ -4883,6 +4916,7 @@ Wagnerian
 Wahhabi
 Waikato
 Waikiki
+Wailuku
 Wakayama
 Wakefield
 Wal-Mart

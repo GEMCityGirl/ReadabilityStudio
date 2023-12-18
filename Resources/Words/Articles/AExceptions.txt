@@ -22,6 +22,7 @@ UCSF
 UDC
 UDP
 UFO
+UICulture
 UKG
 UMN
 unary

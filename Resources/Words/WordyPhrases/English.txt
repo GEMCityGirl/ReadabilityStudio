@@ -233,6 +233,9 @@ acquits	sets free	0
 acquitted	set free	0		
 acquitting	setting free	0		
 acrage	acreage	3		
+acreditation	accreditation	3		
+acreditation's	accreditation's	3		
+acreditations	accreditations	3		
 acrimonious	sharp, bitter	0		
 acrimoniously	bitterly	0		
 across the board	everyone, everything	2		
@@ -1806,6 +1809,9 @@ commitments	pledges	0
 commodious	roomy	0		
 common bond	bond	0		
 common bonds	bonds	0		
+communidad	comunidad	3		
+communidad's	comunidad's	3		
+communidads	comunidads	3		
 commute back and forth	commute	0		
 commuted back and forth	commuted	0		
 commutes back and forth	commutes	0		
@@ -2774,6 +2780,9 @@ employment	work, job, use	0
 employment opportunities	jobs	0		
 employment opportunity	job	0		
 employments	uses	0		
+emumerator	enumerator	3		
+emumerator's	enumerator's	3		
+emumerators	enumerators	3		
 enalbe	enable	3		
 enalbed	enabled	3		
 enalbes	enables	3		
@@ -2872,6 +2881,7 @@ enviroment's	environment's	3
 enviroments	environments	3		
 epistle	letter	0		
 epistles	letters	0		
+epmty	empty	3		
 equable	even	0		
 equably	evenly	0		
 equally as	equally	1		
@@ -3365,7 +3375,6 @@ frugality	thrift	0
 fucntions	functions	3		
 fuction	function	3		
 fule	file, fuel	3		
-fulfil	fulfill	3		
 full capacity	capacity	1		
 full of herself	conceited	2		
 full of himself	conceited	2		
@@ -4438,6 +4447,7 @@ interminable	endless	0
 interminably	endlessly	0		
 internal	inner, inside	0		
 internecine	deadly	0		
+interpretted	interpreted	3		
 interrogate	question	0		
 interrogated	questioned	0		
 interrogates	questions	0		
@@ -5062,6 +5072,9 @@ many times over	often, frequently	0
 marauder	robber	0		
 marauder's	robber's	0		
 marauders	robbers	0		
+Mariansit	Marianist	3		
+Mariansit's	Marianist's	3		
+Mariansits	Marianists	3		
 marionette	puppet	0		
 marionette's	puppet's	0		
 marionettes	puppets	0		
@@ -5662,6 +5675,7 @@ overexaggerate	exaggerate	1
 overexaggerated	exaggerated	1		
 overexaggerates	exaggerates	1		
 overexaggerating	exaggerating	1		
+overide	override	3		
 overriden	overridden	3		
 overwhelming consensus	consensus	0		
 owing to the fact that	because, given	0		
@@ -7554,7 +7568,7 @@ that being the case	consequently, therefore, hence	0
 that is to say	that is	0		
 that where	that were, strike 'that'	3	such	a;clause;her;his;its;statement;that;the
 that's the way the cookie crumbles	that's the way things are	2		
-the a	strike one of these	3		and;priori;z
+the a	strike one of these	3		and;drive;priori;z
 the acorn doesn't fall far from the tree	he exhibits the same behavior as his parent/boss/etc.	2		
 the affect	the effect	3		
 the alter	the altar	3		
@@ -7630,7 +7644,7 @@ the them	strike one of these	3
 the these	strike one of these	3		
 the they	strike one of these	3		
 the third degree	rough interrogation	2		
-the this	strike one of these, or a comma may be needed between them	3		object;object's;pointer;pointer's
+the this	strike one of these, or a comma may be needed between them	3		automatic;object;object's;pointer;pointer's;reference
 the time will come when	in due time, in time	0		
 the topic of	Consider removing this	0		
 the total of	all	0		each
@@ -7644,6 +7658,7 @@ the whole enchilada	everything	2
 the whole kit and caboodle	everything	2		
 the whole nine yards	everything	2		
 the worm has turned	an unfavorable situation has been reversed	2		
+thealogical	theological	3		
 theater manger	theater manager	3		
 theater mangers	theater managers	3		
 theatre manger	theatre manager	3		
@@ -7664,7 +7679,7 @@ thereof	its, their	0
 these neck of the woods	this region, here	2		
 these ones	these	3		
 they am	they are	3		
-they be	they are	3	can;could;couldn't;might;mightn't;or;should;shouldn't;that;will;would;wouldn't	
+they be	they are, they may/can/will/should/would/could be	3	can;could;couldn't;might;mightn't;or;should;shouldn't;that;will;would;wouldn't	
 they has	they have	3		
 they herd	they heard	3		
 they here	they hear	3		
