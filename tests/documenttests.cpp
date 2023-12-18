@@ -11,7 +11,7 @@ using MYWORD = word<traits::case_insensitive_ex,
 
 extern word_list Stop_list;
 
-TEST_CASE("Document", "[document]")
+TEST_CASE("Document phrases", "[document]")
     {
     grammar::english_syllabize ENsyllabizer;
     stemming::english_stem<std::wstring> ENStemmer;
@@ -29,9 +29,10 @@ TEST_CASE("Document", "[document]")
 
     SECTION("Proper Phrases With Initial")
         {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
-            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"It's George R. R. Martin.";
         // allow the initials to be part of the full name
         doc.set_search_for_proper_phrases(true);
@@ -46,9 +47,10 @@ TEST_CASE("Document", "[document]")
         }
     SECTION("Proper Phrases With Semicolon")
         {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
-            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"Its new fighter, Street Fighter: Turbo Edition.";
         // don't get tripped up by the colon in the title
         doc.set_search_for_proper_phrases(true);
@@ -63,11 +65,12 @@ TEST_CASE("Document", "[document]")
         }
     SECTION("Proper Phrases All Caps")
         {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction,
-            &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"Shouting, \"LET'S GO!\" at the end.";
-        //exclamatory words, not proper.
+        // exclamatory words, not proper.
         doc.set_search_for_proper_phrases(true);
         doc.load_document(text, wcslen(text), false, false, false, false);
         CHECK(doc.get_word(1).is_exclamatory());
@@ -78,9 +81,10 @@ TEST_CASE("Document", "[document]")
         }
     SECTION("Proper Phrases Auxillary Word")
         {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
-            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"Note: the Spache New Formula is great.";
         // "New" is explicitly seen as never proper, but in this case it will
         // at least be part of a proper phrase
@@ -95,7 +99,10 @@ TEST_CASE("Document", "[document]")
         }
     SECTION("Proper Phrases Auxillary Word At Start")
         {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"Note: meet the New York Mets.";
         // "New" is explicitly seen as never proper, but in this case it
         // will at least be part of a proper phrase
@@ -110,7 +117,10 @@ TEST_CASE("Document", "[document]")
         }
     SECTION("Proper Phrases At Start Of Quote")
         {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"He said \"The New York Yankees play well.\"";
         // "New" is explicitly seen as never proper,
         // but in this case it will at least be part of a proper phrase.
@@ -127,7 +137,10 @@ TEST_CASE("Document", "[document]")
         }
     SECTION("Proper Phrases Connector Words Trailing")
         {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"Note: the King of all he saw.";
         // "King of" will be triggered, but need to step back and
         // cut off "of" which isn't connecting to another proper noun
@@ -137,7 +150,10 @@ TEST_CASE("Document", "[document]")
         }
     SECTION("Proper Phrases Connector Words Proceeding")
         {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"It's in The Crypt.";
         // "The" is capitalized, it should be the start of a proper phrase
         // (caller would maybe reformat it to "Crypt, The")
@@ -149,18 +165,132 @@ TEST_CASE("Document", "[document]")
         CHECK(2 == doc.get_proper_phrase_indices()[0].first);
         CHECK(2 == doc.get_proper_phrase_indices()[0].second);
         }
-    SECTION("Citation Superscripts")
+    }
+
+TEST_CASE("Document punctuation", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Punctuation")
         {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Restrictive 56 H⁷ legislation.⁶⁷ Lack of progress.⁷ Another sentence.";
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text =
+            L"Here are. The items that I need:\n   - Salt (not too salty!)\n\tPepper, peppercorn\n "
+            L"   Vinegar (the good stuff.)\n\nThank you!";
         doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(3 == doc.get_sentence_count());
-        CHECK(9 == doc.get_valid_word_count());
-        CHECK(9 == doc.get_word_count());
+
+        CHECK(doc.get_punctuation().size() == 6);
+        CHECK(doc.get_punctuation().at(0).get_word_position() == 7);
+        CHECK(doc.get_punctuation().at(0).get_punctuation_mark() == '-');
+        CHECK(doc.get_punctuation().at(0).is_connected_to_previous_word() == false);
+
+        CHECK(doc.get_punctuation().at(1).get_word_position() == 8);
+        CHECK(doc.get_punctuation().at(1).get_punctuation_mark() == '(');
+        CHECK(doc.get_punctuation().at(1).is_connected_to_previous_word() == false);
+
+        CHECK(doc.get_punctuation().at(2).get_word_position() == 11);
+        CHECK(doc.get_punctuation().at(2).get_punctuation_mark() == ')');
+        CHECK(doc.get_punctuation().at(2).is_connected_to_previous_word() == true);
+
+        CHECK(doc.get_punctuation().at(3).get_word_position() == 12);
+        CHECK(doc.get_punctuation().at(3).get_punctuation_mark() == ',');
+        CHECK(doc.get_punctuation().at(3).is_connected_to_previous_word() == true);
+
+        CHECK(doc.get_punctuation().at(4).get_word_position() == 14);
+        CHECK(doc.get_punctuation().at(4).get_punctuation_mark() == '(');
+        CHECK(doc.get_punctuation().at(4).is_connected_to_previous_word() == false);
+
+        CHECK(doc.get_punctuation().at(5).get_word_position() == 17);
+        CHECK(doc.get_punctuation().at(5).get_punctuation_mark() == ')');
+        CHECK(doc.get_punctuation().at(5).is_connected_to_previous_word() == true);
         }
+    SECTION("Punctuation2")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Had $ queasy, thumping";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_punctuation().size() == 2);
+        CHECK(doc.get_punctuation().at(0).get_word_position() == 1);
+        CHECK(doc.get_punctuation().at(0).get_punctuation_mark() == '$');
+        CHECK(doc.get_punctuation().at(0).is_connected_to_previous_word() == false);
+
+        CHECK(doc.get_punctuation().at(1).get_word_position() == 2);
+        CHECK(doc.get_punctuation().at(1).get_punctuation_mark() == ',');
+        CHECK(doc.get_punctuation().at(1).is_connected_to_previous_word() == true);
+        }
+    SECTION("Punctuation At EOL")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Text ,.\nAnother sentence.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_punctuation().size() == 1);
+        CHECK(doc.get_punctuation().at(0).get_word_position() == 1);
+        CHECK(doc.get_punctuation().at(0).get_punctuation_mark() == ',');
+        CHECK(doc.get_punctuation().at(0).is_connected_to_previous_word() == true);
+        }
+    SECTION("Punctuation Single Quote")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"‘e' word";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_punctuation().size() == 2);
+        CHECK(doc.get_punctuation().at(0).get_word_position() == 0);
+        CHECK(doc.get_punctuation().at(0).get_punctuation_mark() == 8216);
+        CHECK(doc.get_punctuation().at(1).get_word_position() == 1);
+        CHECK(doc.get_punctuation().at(1).get_punctuation_mark() == '\'');
+        CHECK(doc.get_words().at(0) == L"e");
+        }
+    }
+
+TEST_CASE("Document acronym", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
     SECTION("Acronym False Positive Attention Getter")
         {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"NOTE: don't open that! INFO: read: :this.";
         doc.load_document(text, wcslen(text), false, false, false, false);
         CHECK(doc.get_word(0).is_exclamatory());
@@ -173,7 +303,10 @@ TEST_CASE("Document", "[document]")
         }
     SECTION("Acronym Start Of Sentence")
         {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"USSR: don't go there! The USSR is difficult to enter.";
         doc.load_document(text, wcslen(text), false, false, false, false);
         CHECK(doc.get_word(0).is_exclamatory() == false);
@@ -182,7 +315,10 @@ TEST_CASE("Document", "[document]")
         }
     SECTION("Acronym False Positive Attention Getter In Quote")
         {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"He said \"NOTE: don't open that! INFO: read: :this.\"";
         doc.load_document(text, wcslen(text), false, false, false, false);
         CHECK(doc.get_word(2).is_exclamatory());
@@ -195,7 +331,10 @@ TEST_CASE("Document", "[document]")
         }
     SECTION("Acronym Start Of Sentence In Quote")
         {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"He said \"USSR: don't go there! The USSR is difficult to enter.\"";
         doc.load_document(text, wcslen(text), false, false, false, false);
         CHECK(doc.get_word(2).is_exclamatory() == false);
@@ -204,10 +343,2713 @@ TEST_CASE("Document", "[document]")
         }
     SECTION("Acronym At Document End")
         {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"I like \"S.C.U.B.A.\".";
         doc.load_document(text, wcslen(text), false, false, false, false);
         CHECK(doc.get_complete_sentence_count() == 1);
+        }
+    }
+
+TEST_CASE("Document list", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("List")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text =
+            L"Here are. The items that I need:\n   Salt\n\tPepper\n    Vinegar\n\nThank you!";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        // Here are the items that I need:
+        CHECK(doc.get_words().at(0).is_valid() == true);
+        CHECK(doc.get_words().at(1).is_valid() == true);
+        CHECK(doc.get_words().at(2).is_valid() == true);
+        CHECK(doc.get_words().at(3).is_valid() == true);
+        CHECK(doc.get_words().at(4).is_valid() == true);
+        CHECK(doc.get_words().at(5).is_valid() == true);
+        CHECK(doc.get_words().at(6).is_valid() == true);
+        // Pepper/Salt/Vinegar
+        CHECK(doc.get_words().at(7).is_valid() == false);
+        CHECK(doc.get_words().at(8).is_valid() == false);
+        CHECK(doc.get_words().at(9).is_valid() == false);
+        // Thank you!
+        CHECK(doc.get_words().at(10).is_valid() == true);
+        CHECK(doc.get_words().at(11).is_valid() == true);
+
+        CHECK(doc.get_paragraph_count() == 5);
+        CHECK(doc.get_valid_paragraph_count() == 2);
+        CHECK(doc.get_sentence_count() == 6);
+        CHECK(doc.get_complete_sentence_count() == 3);
+        CHECK(doc.get_word_count() == 12);
+        CHECK(doc.get_valid_word_count() == 9);
+        }
+    SECTION("List2")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text =
+            L"Here are. The items that I need:   \n   Salt\n\tPepper\n    Vinegar\n\nThank you!";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        // Here are the items that I need:
+        CHECK(doc.get_words().at(0).is_valid() == true);
+        CHECK(doc.get_words().at(1).is_valid() == true);
+        CHECK(doc.get_words().at(2).is_valid() == true);
+        CHECK(doc.get_words().at(3).is_valid() == true);
+        CHECK(doc.get_words().at(4).is_valid() == true);
+        CHECK(doc.get_words().at(5).is_valid() == true);
+        CHECK(doc.get_words().at(6).is_valid() == true);
+        // Pepper/Salt/Vinegar
+        CHECK(doc.get_words().at(7).is_valid() == false);
+        CHECK(doc.get_words().at(8).is_valid() == false);
+        CHECK(doc.get_words().at(9).is_valid() == false);
+        // Thank you!
+        CHECK(doc.get_words().at(10).is_valid() == true);
+        CHECK(doc.get_words().at(11).is_valid() == true);
+
+        CHECK(doc.get_paragraph_count() == 5);
+        CHECK(doc.get_valid_paragraph_count() == 2);
+        CHECK(doc.get_sentence_count() == 6);
+        CHECK(doc.get_complete_sentence_count() == 3);
+        CHECK(doc.get_word_count() == 12);
+        CHECK(doc.get_valid_word_count() == 9);
+        }
+    SECTION("List3")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text =
+            L"Here are. The items that I need:   Salt\n\tPepper\n    Vinegar\n\nThank you!";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        // Here are the items that I need:
+        CHECK(doc.get_words().at(0).is_valid() == true);
+        CHECK(doc.get_words().at(1).is_valid() == true);
+
+        CHECK(doc.get_words().at(2).is_valid() == false);
+        CHECK(doc.get_words().at(3).is_valid() == false);
+        CHECK(doc.get_words().at(4).is_valid() == false);
+        CHECK(doc.get_words().at(5).is_valid() == false);
+        CHECK(doc.get_words().at(6).is_valid() == false);
+        CHECK(doc.get_words().at(7).is_valid() == false);
+        // Pepper/Vinegar
+        CHECK(doc.get_words().at(8).is_valid() == false);
+        CHECK(doc.get_words().at(9).is_valid() == false);
+        // Thank you!
+        CHECK(doc.get_words().at(10).is_valid() == true);
+        CHECK(doc.get_words().at(11).is_valid() == true);
+
+        CHECK(doc.get_paragraph_count() == 4);
+        CHECK(doc.get_valid_paragraph_count() == 2);
+        CHECK(doc.get_sentence_count() == 5);
+        CHECK(doc.get_complete_sentence_count() == 2);
+        CHECK(doc.get_word_count() == 12);
+        CHECK(doc.get_valid_word_count() == 4);
+        }
+    }
+
+TEST_CASE("Document copyrights", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Copyright Notices")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
+        const wchar_t text[] = L"That results in problems.\nInfo 2008 Copyright.\nBlake says All "
+                               L"rights reserved by Blake.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_valid_word_count() == 4);
+        CHECK(doc.get_sentences()[0].is_valid() == true);
+        CHECK(doc.get_sentences()[1].is_valid() == false);
+        CHECK(doc.get_sentences()[2].is_valid() == false);
+        CHECK(doc.get_words()[0].is_valid() == true);
+        CHECK(doc.get_words()[1].is_valid() == true);
+        CHECK(doc.get_words()[2].is_valid() == true);
+        CHECK(doc.get_words()[3].is_valid() == true);
+        CHECK(doc.get_words()[4].is_valid() == false);
+        CHECK(doc.get_words()[5].is_valid() == false);
+        CHECK(doc.get_words()[6].is_valid() == false);
+        CHECK(doc.get_words()[7].is_valid() == false);
+        CHECK(doc.get_words()[8].is_valid() == false);
+        CHECK(doc.get_words()[9].is_valid() == false);
+        CHECK(doc.get_words()[10].is_valid() == false);
+        CHECK(doc.get_words()[11].is_valid() == false);
+        CHECK(doc.get_words()[12].is_valid() == false);
+        CHECK(doc.get_words()[13].is_valid() == false);
+        }
+    SECTION("Copyright Notices2")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
+        const wchar_t text[] = L"That results in problems.\nCopyright 2007.\nBlake says that All "
+                               L"rights reserved by Blake Corp industries and other parties.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_valid_word_count() == 4);
+        CHECK(doc.get_sentences()[0].is_valid() == true);
+        CHECK(doc.get_sentences()[1].is_valid() == false);
+        CHECK(doc.get_sentences()[2].is_valid() == false);
+        CHECK(doc.get_words()[0].is_valid() == true);
+        CHECK(doc.get_words()[1].is_valid() == true);
+        CHECK(doc.get_words()[2].is_valid() == true);
+        CHECK(doc.get_words()[3].is_valid() == true);
+        CHECK(doc.get_words()[4].is_valid() == false);
+        CHECK(doc.get_words()[5].is_valid() == false);
+        CHECK(doc.get_words()[6].is_valid() == false);
+        CHECK(doc.get_words()[7].is_valid() == false);
+        CHECK(doc.get_words()[8].is_valid() == false);
+        CHECK(doc.get_words()[9].is_valid() == false);
+        CHECK(doc.get_words()[10].is_valid() == false);
+        CHECK(doc.get_words()[11].is_valid() == false);
+        CHECK(doc.get_words()[12].is_valid() == false);
+        CHECK(doc.get_words()[13].is_valid() == false);
+        CHECK(doc.get_words()[14].is_valid() == false);
+        CHECK(doc.get_words()[15].is_valid() == false);
+        CHECK(doc.get_words()[16].is_valid() == false);
+        CHECK(doc.get_words()[17].is_valid() == false);
+        CHECK(doc.get_words()[18].is_valid() == false);
+        }
+    SECTION("Copyright Notices3")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ntrademark\ncopyright", true,
+                                   false);
+        const wchar_t text[] = L"some text.\nsome text.\nsome text.\nmore text.\nIs a copyright "
+                               L"of.\nIs a TRademark of inc.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 4);
+        CHECK(doc.get_valid_paragraph_count() == 4);
+        CHECK(doc.get_valid_word_count() == 8);
+        CHECK(doc.get_sentences()[0].is_valid() == true);
+        CHECK(doc.get_sentences()[1].is_valid() == true);
+        CHECK(doc.get_sentences()[2].is_valid() == true);
+        CHECK(doc.get_sentences()[3].is_valid() == true);
+        CHECK(doc.get_sentences()[4].is_valid() == false);
+        CHECK(doc.get_sentences()[5].is_valid() == false);
+        CHECK(doc.get_words()[0].is_valid() == true);
+        CHECK(doc.get_words()[1].is_valid() == true);
+        CHECK(doc.get_words()[2].is_valid() == true);
+        CHECK(doc.get_words()[3].is_valid() == true);
+        CHECK(doc.get_words()[4].is_valid() == true);
+        CHECK(doc.get_words()[5].is_valid() == true);
+        CHECK(doc.get_words()[6].is_valid() == true);
+        CHECK(doc.get_words()[7].is_valid() == true);
+        CHECK(doc.get_words()[8].is_valid() == false);
+        CHECK(doc.get_words()[9].is_valid() == false);
+        CHECK(doc.get_words()[10].is_valid() == false);
+        CHECK(doc.get_words()[11].is_valid() == false);
+        CHECK(doc.get_words()[12].is_valid() == false);
+        CHECK(doc.get_words()[13].is_valid() == false);
+        CHECK(doc.get_words()[14].is_valid() == false);
+        CHECK(doc.get_words()[15].is_valid() == false);
+        CHECK(doc.get_words()[16].is_valid() == false);
+        }
+    SECTION("Copyright Notices Buried")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ntrademark\ncopyright", true,
+                                   false);
+        const wchar_t text[] =
+            L"some text.\nsome text.\nsome text.\nmore text.\nIs a copyright of.\nIs a TRademark "
+            L"of inc.\ninvalid sentence\n\nAnother invalid sentence";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 4);
+        CHECK(doc.get_valid_paragraph_count() == 4);
+        CHECK(doc.get_valid_word_count() == 8);
+        CHECK(doc.get_sentences()[0].is_valid() == true);
+        CHECK(doc.get_sentences()[1].is_valid() == true);
+        CHECK(doc.get_sentences()[2].is_valid() == true);
+        CHECK(doc.get_sentences()[3].is_valid() == true);
+        CHECK(doc.get_sentences()[4].is_valid() == false);
+        CHECK(doc.get_sentences()[5].is_valid() == false);
+        CHECK(doc.get_sentences()[6].is_valid() == false);
+        CHECK(doc.get_sentences()[7].is_valid() == false);
+        CHECK(doc.get_words()[0].is_valid() == true);
+        CHECK(doc.get_words()[1].is_valid() == true);
+        CHECK(doc.get_words()[2].is_valid() == true);
+        CHECK(doc.get_words()[3].is_valid() == true);
+        CHECK(doc.get_words()[4].is_valid() == true);
+        CHECK(doc.get_words()[5].is_valid() == true);
+        CHECK(doc.get_words()[6].is_valid() == true);
+        CHECK(doc.get_words()[7].is_valid() == true);
+        CHECK(doc.get_words()[8].is_valid() == false);
+        CHECK(doc.get_words()[9].is_valid() == false);
+        CHECK(doc.get_words()[10].is_valid() == false);
+        CHECK(doc.get_words()[11].is_valid() == false);
+        CHECK(doc.get_words()[12].is_valid() == false);
+        CHECK(doc.get_words()[13].is_valid() == false);
+        CHECK(doc.get_words()[14].is_valid() == false);
+        CHECK(doc.get_words()[15].is_valid() == false);
+        CHECK(doc.get_words()[16].is_valid() == false);
+        CHECK(doc.get_words()[17].is_valid() == false);
+        CHECK(doc.get_words()[18].is_valid() == false);
+        CHECK(doc.get_words()[19].is_valid() == false);
+        CHECK(doc.get_words()[20].is_valid() == false);
+        CHECK(doc.get_words()[21].is_valid() == false);
+        }
+    }
+
+TEST_CASE("Document copyrights 2", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Copyright Notices No Valid Text")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
+        const wchar_t text[] =
+            L"Hi.\n\nInfo 2008 Copyright.\nBlake says All rights reserved by Blake.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_valid_word_count() == 1);
+        CHECK(doc.get_sentences()[0].is_valid());
+        CHECK(doc.get_sentences()[1].is_valid() == false);
+        CHECK(doc.get_sentences()[2].is_valid() == false);
+        CHECK(doc.get_words()[0].is_valid());
+        CHECK(doc.get_words()[1].is_valid() == false);
+        CHECK(doc.get_words()[2].is_valid() == false);
+        CHECK(doc.get_words()[3].is_valid() == false);
+        CHECK(doc.get_words()[4].is_valid() == false);
+        CHECK(doc.get_words()[5].is_valid() == false);
+        CHECK(doc.get_words()[6].is_valid() == false);
+        CHECK(doc.get_words()[7].is_valid() == false);
+        CHECK(doc.get_words()[8].is_valid() == false);
+        CHECK(doc.get_words()[9].is_valid() == false);
+        CHECK(doc.get_words()[10].is_valid() == false);
+        }
+    SECTION("Copyright Notices No Valid Text On Sentence")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
+        const wchar_t text[] = L"Hi.\n\nInfo 2008 Copyright.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_valid_word_count() == 1);
+        CHECK(doc.get_sentences()[0].is_valid());
+        CHECK(doc.get_sentences()[1].is_valid() == false);
+        CHECK(doc.get_words()[0].is_valid());
+        CHECK(doc.get_words()[1].is_valid() == false);
+        CHECK(doc.get_words()[2].is_valid() == false);
+        CHECK(doc.get_words()[3].is_valid() == false);
+        }
+    SECTION("Copyright Notices In Second Sentence")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
+        const wchar_t text[] =
+            L"Hi.\n\nThat results in problems. Blake says All rights reserved by Blake.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_valid_word_count() == 1);
+        CHECK(doc.get_sentences()[0].is_valid());
+        CHECK(doc.get_sentences()[1].is_valid() == false);
+        CHECK(doc.get_sentences()[2].is_valid() == false);
+        CHECK(doc.get_words()[0].is_valid());
+        CHECK(doc.get_words()[1].is_valid() == false);
+        CHECK(doc.get_words()[2].is_valid() == false);
+        CHECK(doc.get_words()[3].is_valid() == false);
+        CHECK(doc.get_words()[4].is_valid() == false);
+        CHECK(doc.get_words()[5].is_valid() == false);
+        CHECK(doc.get_words()[6].is_valid() == false);
+        CHECK(doc.get_words()[7].is_valid() == false);
+        CHECK(doc.get_words()[8].is_valid() == false);
+        CHECK(doc.get_words()[9].is_valid() == false);
+        CHECK(doc.get_words()[10].is_valid() == false);
+        CHECK(doc.get_words()[11].is_valid() == false);
+        }
+    }
+
+TEST_CASE("Document copyrights 3", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Copyright Notices Symbols In Second Sentence")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
+        const wchar_t text[] = L"Hi.\n\nThat [results] in problems. Blake© says reserved by Blake.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_valid_word_count() == 1);
+        CHECK(doc.get_sentences()[0].is_valid());
+        CHECK(doc.get_sentences()[1].is_valid() == false);
+        CHECK(doc.get_sentences()[2].is_valid() == false);
+        CHECK(doc.get_words()[0].is_valid());
+        CHECK(doc.get_words()[1].is_valid() == false);
+        CHECK(doc.get_words()[2].is_valid() == false);
+        CHECK(doc.get_words()[3].is_valid() == false);
+        CHECK(doc.get_words()[4].is_valid() == false);
+        CHECK(doc.get_words()[5].is_valid() == false);
+        CHECK(doc.get_words()[6].is_valid() == false);
+        CHECK(doc.get_words()[7].is_valid() == false);
+        CHECK(doc.get_words()[8].is_valid() == false);
+        CHECK(doc.get_words()[9].is_valid() == false);
+        }
+    SECTION("Copyright Notices Symbols In Second Sentence In Front Of Word")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
+        const wchar_t text[] = L"That, (results) in [problems].\n\n©Blake says rsd. by Blake.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_valid_word_count() == 4);
+        CHECK(doc.get_sentences()[0].is_valid());
+        CHECK(doc.get_sentences()[1].is_valid() == false);
+        CHECK(doc.get_words()[0].is_valid());
+        CHECK(doc.get_words()[1].is_valid());
+        CHECK(doc.get_words()[2].is_valid());
+        CHECK(doc.get_words()[3].is_valid());
+        CHECK(doc.get_words()[4].is_valid() == false);
+        CHECK(doc.get_words()[5].is_valid() == false);
+        CHECK(doc.get_words()[6].is_valid() == false);
+        CHECK(doc.get_words()[7].is_valid() == false);
+        CHECK(doc.get_words()[8].is_valid() == false);
+        }
+    SECTION("Copyright Notices Symbols Sentence Boundaries")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
+        const wchar_t text[] = L"That results in problems all rights. Reserved says reserved.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 2);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_valid_word_count() == 9);
+        CHECK(doc.get_sentences()[0].is_valid() == true);
+        CHECK(doc.get_sentences()[1].is_valid() == true);
+        CHECK(doc.get_words()[0].is_valid() == true);
+        CHECK(doc.get_words()[1].is_valid() == true);
+        CHECK(doc.get_words()[2].is_valid() == true);
+        CHECK(doc.get_words()[3].is_valid() == true);
+        CHECK(doc.get_words()[4].is_valid() == true);
+        CHECK(doc.get_words()[5].is_valid() == true);
+        CHECK(doc.get_words()[6].is_valid() == true);
+        CHECK(doc.get_words()[7].is_valid() == true);
+        CHECK(doc.get_words()[8].is_valid() == true);
+        }
+    SECTION("Copyright Notices At End")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
+        const wchar_t text[] = L"Hi.\n\nThat results in problems.  Oh, and all rights Reserved.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_valid_word_count() == 1);
+        CHECK(doc.get_sentences()[0].is_valid());
+        CHECK(doc.get_sentences()[1].is_valid() == false);
+        CHECK(doc.get_sentences()[2].is_valid() == false);
+        CHECK(doc.get_words()[0].is_valid());
+        CHECK(doc.get_words()[1].is_valid() == false);
+        CHECK(doc.get_words()[2].is_valid() == false);
+        CHECK(doc.get_words()[3].is_valid() == false);
+        CHECK(doc.get_words()[4].is_valid() == false);
+        CHECK(doc.get_words()[5].is_valid() == false);
+        CHECK(doc.get_words()[6].is_valid() == false);
+        CHECK(doc.get_words()[7].is_valid() == false);
+        CHECK(doc.get_words()[8].is_valid() == false);
+        CHECK(doc.get_words()[9].is_valid() == false);
+        }
+    SECTION("Copyright Notices At Front")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
+        const wchar_t text[] = L"Some Text.\n\n© 2010 oleander software.\n\nThat, (results) in "
+                               L"[problems].\n\n. This is the last sentence.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 3);
+        CHECK(doc.get_valid_paragraph_count() == 3);
+        CHECK(doc.get_valid_word_count() == 11);
+        CHECK(doc.get_sentences()[0].is_valid());
+        CHECK(doc.get_sentences()[1].is_valid() == false);
+        CHECK(doc.get_sentences()[2].is_valid());
+        CHECK(doc.get_sentences()[3].is_valid());
+        CHECK(doc.get_words()[0].is_valid());
+        CHECK(doc.get_words()[1].is_valid());
+        CHECK(doc.get_words()[2].is_valid() == false);
+        CHECK(doc.get_words()[3].is_valid() == false);
+        CHECK(doc.get_words()[4].is_valid() == false);
+        CHECK(doc.get_words()[5].is_valid());
+        CHECK(doc.get_words()[6].is_valid());
+        CHECK(doc.get_words()[7].is_valid());
+        CHECK(doc.get_words()[8].is_valid());
+        CHECK(doc.get_words()[9].is_valid());
+        CHECK(doc.get_words()[10].is_valid());
+        CHECK(doc.get_words()[11].is_valid());
+        CHECK(doc.get_words()[12].is_valid());
+        CHECK(doc.get_words()[13].is_valid());
+        }
+    SECTION("Copyright Notices At Front2")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
+        const wchar_t text[] = L"Some Text.\n\nCopyright © oleander software.\n\nThat, (results) "
+                               L"in [problems].\n\n. This is the last sentence.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 3);
+        CHECK(doc.get_valid_paragraph_count() == 3);
+        CHECK(doc.get_valid_word_count() == 11);
+        CHECK(doc.get_sentences()[0].is_valid());
+        CHECK(doc.get_sentences()[1].is_valid() == false);
+        CHECK(doc.get_sentences()[2].is_valid());
+        CHECK(doc.get_sentences()[3].is_valid());
+        CHECK(doc.get_words()[0].is_valid());
+        CHECK(doc.get_words()[1].is_valid());
+        CHECK(doc.get_words()[2].is_valid() == false);
+        CHECK(doc.get_words()[3].is_valid() == false);
+        CHECK(doc.get_words()[4].is_valid() == false);
+        CHECK(doc.get_words()[5].is_valid());
+        CHECK(doc.get_words()[6].is_valid());
+        CHECK(doc.get_words()[7].is_valid());
+        CHECK(doc.get_words()[8].is_valid());
+        CHECK(doc.get_words()[9].is_valid());
+        CHECK(doc.get_words()[10].is_valid());
+        CHECK(doc.get_words()[11].is_valid());
+        CHECK(doc.get_words()[12].is_valid());
+        CHECK(doc.get_words()[13].is_valid());
+        }
+    SECTION("Copyright Notices At End Of Valid Paragraph")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
+        const wchar_t text[] = L"Some Text*. Oleander software©.\n\nThis is the last "
+                               L"sentence.\n\nOK, this is the last sentence.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_sentences()[0].is_valid());
+        CHECK(doc.get_sentences()[1].is_valid());
+        CHECK(doc.get_sentences()[2].is_valid());
+        CHECK(doc.get_sentences()[3].is_valid());
+        CHECK(doc.get_complete_sentence_count() == 4);
+        CHECK(doc.get_valid_paragraph_count() == 3);
+        CHECK(doc.get_valid_word_count() == 15);
+        }
+    }
+    
+TEST_CASE("Document copyrights 4", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Copyright Notices Symbols")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        copyrightPMap.load_phrases(L"all rights reserved\nare trademarks of", true, false);
+        const wchar_t text[] = L"That\" results, in problems.\n© 2008 Blake corporation.\nBlake® "
+                               L"says reserved, by Blake.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_valid_word_count() == 4);
+        CHECK(doc.get_sentences()[0].is_valid() == true);
+        CHECK(doc.get_sentences()[1].is_valid() == false);
+        CHECK(doc.get_sentences()[2].is_valid() == false);
+        CHECK(doc.get_words()[0].is_valid() == true);
+        CHECK(doc.get_words()[1].is_valid() == true);
+        CHECK(doc.get_words()[2].is_valid() == true);
+        CHECK(doc.get_words()[3].is_valid() == true);
+        CHECK(doc.get_words()[4].is_valid() == false);
+        CHECK(doc.get_words()[5].is_valid() == false);
+        CHECK(doc.get_words()[6].is_valid() == false);
+        CHECK(doc.get_words()[7].is_valid() == false);
+        CHECK(doc.get_words()[8].is_valid() == false);
+        CHECK(doc.get_words()[9].is_valid() == false);
+        CHECK(doc.get_words()[10].is_valid() == false);
+        CHECK(doc.get_words()[11].is_valid() == false);
+        }
+    }
+
+TEST_CASE("Document TOC", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("TOC Line Ignore Blank Lines")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Welcome........5\n\nWelcome...you.\n\nWelcome again....";
+        doc.load_document(text, wcslen(text), false, true, true, false);
+
+        CHECK(doc.get_sentence_count() == 3);
+        CHECK(doc.get_complete_sentence_count() == 2);
+        }
+    SECTION("TOC Line Mid Document")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Some, text (more text) here. Welcome...5\n\nWelcome, "
+                              L"overview..7\n\nWelcome again.....";
+        doc.load_document(text, wcslen(text), false, true, true, false);
+
+        CHECK(doc.get_sentence_count() == 4);
+        CHECK(doc.get_complete_sentence_count() == 2);
+        }
+    SECTION("TOC Line")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Welcome to WIC........ 5\n\nWelcome...you.\n\nWelcome again....";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentence_count() == 3);
+        CHECK(doc.get_complete_sentence_count() == 2);
+        }
+    SECTION("TOC Line No Space")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Welcome to WIC........5\n\nWelcome...you.\n\nWelcome again....";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentence_count() == 3);
+        CHECK(doc.get_complete_sentence_count() == 2);
+        }
+    SECTION("TOC Line One Dot")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L".5 Welcome to WIC . 5.3\n\nWelcome to WIC .5\n\nWelcome again. "
+                              L"5\npeople . 5 more people .";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentence_count() == 5);
+        CHECK(doc.get_complete_sentence_count() == 3);
+        }
+    SECTION("TOC Line Ellipses")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Welcome to WIC…… 5\n\nWelcome...you.\n\nWelcome again....";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_sentence_count() == 3);
+        CHECK(doc.get_complete_sentence_count() == 2);
+        }
+    }
+
+TEST_CASE("Document citations", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Citations Exclude After List")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
+        const wchar_t text[] = L"Here is a bunch of text in my file that is here for filler, this "
+                               L"make it so that it works.\n\n1. Item\n2. Item\n3. Item\n\nMy "
+                               L"citations\n\nMy book.\n\nAnother book.\n\nLast Book.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_word_count() == 21);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_sentences().at(0).get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences().at(1).get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences().at(2).get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences().at(3).get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences().at(4).get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_sentences().at(5).get_type() == sentence_paragraph_type::incomplete);
+        CHECK(doc.get_sentences().at(6).get_type() == sentence_paragraph_type::incomplete);
+
+        CHECK(doc.get_paragraphs().at(0).get_type() == sentence_paragraph_type::complete);
+        CHECK(doc.get_paragraphs().at(1).get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs().at(2).get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs().at(3).get_type() == sentence_paragraph_type::list_item);
+        CHECK(doc.get_paragraphs().at(4).get_type() == sentence_paragraph_type::header);
+        CHECK(doc.get_paragraphs().at(5).get_type() == sentence_paragraph_type::incomplete);
+        CHECK(doc.get_paragraphs().at(6).get_type() == sentence_paragraph_type::incomplete);
+        }
+    SECTION("Citations With Date Exclude")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
+        const wchar_t text[] = L"Title\n\nHi, this is the body of the document with some citations "
+                               L"in it.\n\nMy citations:\n\nPew Research. (2013). Millennials: "
+                               L"confident. Summary: Pew Trends. Retrieved from "
+                               L"http://www.pewsocialtrends.org/2010/02/24/"
+                               L"millennials-confident-connected-open-tochange/";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_word_count() == 13);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_words()[0].is_valid() == false);
+        CHECK(doc.get_words()[1].is_valid());
+        CHECK(doc.get_words()[2].is_valid());
+        CHECK(doc.get_words()[3].is_valid());
+        CHECK(doc.get_words()[4].is_valid());
+        CHECK(doc.get_words()[5].is_valid());
+        CHECK(doc.get_words()[6].is_valid());
+        CHECK(doc.get_words()[7].is_valid());
+        CHECK(doc.get_words()[8].is_valid());
+        CHECK(doc.get_words()[9].is_valid());
+        CHECK(doc.get_words()[10].is_valid());
+        CHECK(doc.get_words()[11].is_valid());
+        CHECK(doc.get_words()[12].is_valid());
+        CHECK(doc.get_words()[13].is_valid());
+        CHECK(doc.get_words()[14].is_valid() == false);
+        CHECK(doc.get_words()[15].is_valid() == false);
+        CHECK(doc.get_words()[16].is_valid() == false);
+        CHECK(doc.get_words()[17].is_valid() == false);
+        CHECK(doc.get_words()[18].is_valid() == false);
+        CHECK(doc.get_words()[19].is_valid() == false);
+        CHECK(doc.get_words()[20].is_valid() == false);
+        CHECK(doc.get_words()[21].is_valid() == false);
+        }
+    SECTION("Citations Boundary")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
+        const wchar_t text[] = L"Title\n\nHi, this is the body of the document with some citations "
+                               L"in it.\n\nMy citations:";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_word_count() == 13);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_words()[0].is_valid() == false);
+        CHECK(doc.get_words()[1].is_valid());
+        CHECK(doc.get_words()[2].is_valid());
+        CHECK(doc.get_words()[3].is_valid());
+        CHECK(doc.get_words()[4].is_valid());
+        CHECK(doc.get_words()[5].is_valid());
+        CHECK(doc.get_words()[6].is_valid());
+        CHECK(doc.get_words()[7].is_valid());
+        CHECK(doc.get_words()[8].is_valid());
+        CHECK(doc.get_words()[9].is_valid());
+        CHECK(doc.get_words()[10].is_valid());
+        CHECK(doc.get_words()[11].is_valid());
+        CHECK(doc.get_words()[12].is_valid());
+        CHECK(doc.get_words()[13].is_valid());
+        CHECK(doc.get_words()[14].is_valid() == false);
+        CHECK(doc.get_words()[15].is_valid() == false);
+        }
+    SECTION("Citations Exclude")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
+        const wchar_t text[] = L"Title\n\nHi, this is the body of the document.\n\nMy "
+                               L"citations:\n\nMy book.\n\nAnother book.\n\nLast Book.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_word_count() == 8);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_words()[0].is_valid() == false);
+        CHECK(doc.get_words()[1].is_valid());
+        CHECK(doc.get_words()[2].is_valid());
+        CHECK(doc.get_words()[3].is_valid());
+        CHECK(doc.get_words()[4].is_valid());
+        CHECK(doc.get_words()[5].is_valid());
+        CHECK(doc.get_words()[6].is_valid());
+        CHECK(doc.get_words()[7].is_valid());
+        CHECK(doc.get_words()[8].is_valid());
+        CHECK(doc.get_words()[9].is_valid() == false);
+        CHECK(doc.get_words()[10].is_valid() == false);
+        CHECK(doc.get_words()[11].is_valid() == false);
+        CHECK(doc.get_words()[12].is_valid() == false);
+        CHECK(doc.get_words()[13].is_valid() == false);
+        CHECK(doc.get_words()[14].is_valid() == false);
+        CHECK(doc.get_words()[15].is_valid() == false);
+        CHECK(doc.get_words()[16].is_valid() == false);
+        }
+    SECTION("Citations Dont Exclude Because In Upper Half Of Document")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
+        const wchar_t text[] = L"Hi.\n\nHello there.\n\nWorks Sited\n\nMy book.\n\nAnother book.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 4);
+        CHECK(doc.get_valid_word_count() == 7);
+        CHECK(doc.get_valid_paragraph_count() == 4);
+        CHECK(doc.get_words()[0].is_valid());
+        CHECK(doc.get_words()[1].is_valid());
+        CHECK(doc.get_words()[2].is_valid());
+        CHECK(doc.get_words()[3].is_valid() == false);
+        CHECK(doc.get_words()[4].is_valid() == false);
+        CHECK(doc.get_words()[5].is_valid());
+        CHECK(doc.get_words()[6].is_valid());
+        CHECK(doc.get_words()[7].is_valid());
+        CHECK(doc.get_words()[8].is_valid());
+        }
+    }
+
+TEST_CASE("Document citations 2", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Citations Exclude Aggresive")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
+        const wchar_t text[] = L"Hi.\n\nHello there.\n\nWorks Sited\n\nMy book.\n\nAnother book.";
+        doc.set_aggressive_exclusion(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 2);
+        CHECK(doc.get_valid_word_count() == 3);
+        CHECK(doc.get_valid_paragraph_count() == 2);
+        CHECK(doc.get_words()[0].is_valid());
+        CHECK(doc.get_words()[1].is_valid());
+        CHECK(doc.get_words()[2].is_valid());
+        CHECK(doc.get_words()[3].is_valid() == false);
+        CHECK(doc.get_words()[4].is_valid() == false);
+        CHECK(doc.get_words()[5].is_valid() == false);
+        CHECK(doc.get_words()[6].is_valid() == false);
+        CHECK(doc.get_words()[7].is_valid() == false);
+        CHECK(doc.get_words()[8].is_valid() == false);
+        }
+    SECTION("Citations Exclude With Long Citation")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
+        const wchar_t text[] = L"Title\n\nThis is the body of the document and its long.\n\nMy "
+                               L"citations:\n\nMy really long citation with many words";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_word_count() == 10);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_words()[0].is_valid() == false);
+        CHECK(doc.get_words()[1].is_valid());
+        CHECK(doc.get_words()[2].is_valid());
+        CHECK(doc.get_words()[3].is_valid());
+        CHECK(doc.get_words()[4].is_valid());
+        CHECK(doc.get_words()[5].is_valid());
+        CHECK(doc.get_words()[6].is_valid());
+        CHECK(doc.get_words()[7].is_valid());
+        CHECK(doc.get_words()[8].is_valid());
+        CHECK(doc.get_words()[9].is_valid());
+        CHECK(doc.get_words()[10].is_valid());
+        CHECK(doc.get_words()[11].is_valid() == false);
+        CHECK(doc.get_words()[12].is_valid() == false);
+        CHECK(doc.get_words()[13].is_valid() == false);
+        CHECK(doc.get_words()[14].is_valid() == false);
+        CHECK(doc.get_words()[15].is_valid() == false);
+        CHECK(doc.get_words()[16].is_valid() == false);
+        CHECK(doc.get_words()[17].is_valid() == false);
+        CHECK(doc.get_words()[18].is_valid() == false);
+        CHECK(doc.get_words()[19].is_valid() == false);
+        }
+    SECTION("Citations Exclude Skip Trailing Junk")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
+        const wchar_t text[] = L"Title\n\nThis is the body of the document and its long.\n\nMy "
+                               L"citations:\n\nMy citation.\n\nCopyright 2008";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_valid_word_count() == 10);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_words()[0].is_valid() == false);
+        CHECK(doc.get_words()[1].is_valid());
+        CHECK(doc.get_words()[2].is_valid());
+        CHECK(doc.get_words()[3].is_valid());
+        CHECK(doc.get_words()[4].is_valid());
+        CHECK(doc.get_words()[5].is_valid());
+        CHECK(doc.get_words()[6].is_valid());
+        CHECK(doc.get_words()[7].is_valid());
+        CHECK(doc.get_words()[8].is_valid());
+        CHECK(doc.get_words()[9].is_valid());
+        CHECK(doc.get_words()[10].is_valid());
+        CHECK(doc.get_words()[11].is_valid() == false);
+        CHECK(doc.get_words()[12].is_valid() == false);
+        CHECK(doc.get_words()[13].is_valid() == false);
+        CHECK(doc.get_words()[14].is_valid() == false);
+        CHECK(doc.get_words()[15].is_valid() == false);
+        CHECK(doc.get_words()[16].is_valid() == false);
+        }
+    SECTION("Citations Include")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
+        const wchar_t text[] = L"Title\n\nThis is the body of the document and its long.\n\nWorks "
+                               L"Sited\n\nMy book.\n\nAnother book.";
+        doc.ignore_citation_sections(false);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 3);
+        CHECK(doc.get_valid_word_count() == 14);
+        CHECK(doc.get_valid_paragraph_count() == 3);
+        CHECK(doc.get_words()[0].is_valid() == false);
+        CHECK(doc.get_words()[1].is_valid());
+        CHECK(doc.get_words()[2].is_valid());
+        CHECK(doc.get_words()[3].is_valid());
+        CHECK(doc.get_words()[4].is_valid());
+        CHECK(doc.get_words()[5].is_valid());
+        CHECK(doc.get_words()[6].is_valid());
+        CHECK(doc.get_words()[7].is_valid());
+        CHECK(doc.get_words()[8].is_valid());
+        CHECK(doc.get_words()[9].is_valid());
+        CHECK(doc.get_words()[10].is_valid());
+        CHECK(doc.get_words()[11].is_valid() == false);
+        CHECK(doc.get_words()[12].is_valid() == false);
+        CHECK(doc.get_words()[13].is_valid());
+        CHECK(doc.get_words()[14].is_valid());
+        CHECK(doc.get_words()[15].is_valid());
+        CHECK(doc.get_words()[16].is_valid());
+        }
+    }
+
+TEST_CASE("Document tagged exclude", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Tagged Block Exclude Same Tags")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.add_exclusion_block_tags(L'^', L'^');
+        const wchar_t text[] = L"Title Here.\n\n^This is the body of the document and it's "
+                               L"long.\n\nWorks Sited in My book.^\n\nAnother book.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 2);
+        CHECK(doc.get_valid_word_count() == 4);
+        CHECK(doc.get_valid_paragraph_count() == 2);
+        }
+    SECTION("Tagged Block Exclude Different Tags")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.add_exclusion_block_tags(L'^', L']');
+        const wchar_t text[] = L"Title Here.\n\n^This is the body of the document and it's "
+                               L"long.\n\nWorks Sited in My book.]\n\nAnother book.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 2);
+        CHECK(doc.get_valid_word_count() == 4);
+        CHECK(doc.get_valid_paragraph_count() == 2);
+        }
+    SECTION("Tagged Block Exclude Multiple Tags")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.add_exclusion_block_tags(L'^', L'^');
+        doc.add_exclusion_block_tags(L'<', L'>');
+        const wchar_t text[] = L"Title Here.\n\n^This is the body of the document and it's "
+                               L"long.^\n\n<Works Sited in My book.>\n\nAnother book.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 2);
+        CHECK(doc.get_valid_word_count() == 4);
+        CHECK(doc.get_valid_paragraph_count() == 2);
+        }
+    SECTION("Tagged Block Exclude Multiple Tags Overlap")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.add_exclusion_block_tags(L'^', L'^');
+        doc.add_exclusion_block_tags(L'<', L'>');
+        const wchar_t text[] = L"Title Here.\n\n^This is the body <of the document and it's "
+                               L"long.^\n\nWorks Sited in My book.>\n\nAnother book.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 2);
+        CHECK(doc.get_valid_word_count() == 4);
+        CHECK(doc.get_valid_paragraph_count() == 2);
+        }
+    SECTION("Tagged Block Exclude Same Tags Missing End Tag")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.add_exclusion_block_tags(L'^', L'^');
+        const wchar_t text[] = L"Title Here.\n\n^This is the body of the document and it's "
+                               L"long.\n\nWorks Sited in My book.\n\nAnother book.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 4);
+        CHECK(doc.get_valid_word_count() == 19);
+        CHECK(doc.get_valid_paragraph_count() == 4);
+        }
+    SECTION("Tagged Block Exclude Same Tags No Words Between Them")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.add_exclusion_block_tags(L'^', L'^');
+        const wchar_t text[] = L"Title Here.\n\n^^This is the^ ^body of the document and it's "
+                               L"long.\n\nWorks Sited in My book.\n\nAnother book.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 4);
+        CHECK(doc.get_valid_word_count() == 19);
+        CHECK(doc.get_valid_paragraph_count() == 4);
+        }
+    }
+
+TEST_CASE("Document tagged exclude 2", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Tagged Block Exclude Same Tags Mid Sentence")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.add_exclusion_block_tags(L'^', L'^');
+        const wchar_t text[] = L"Title Here.\n\nThis ^is the body of the document and it's "
+                               L"long.\n\nWorks Sited^ in My book.\n\nAnother book.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 4);
+        CHECK(doc.get_valid_word_count() == 8);
+        CHECK(doc.get_valid_paragraph_count() == 4);
+        }
+    SECTION("Tagged Block Exclude Same Tags Single Words")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.add_exclusion_block_tags(L'^', L'^');
+        const wchar_t text[] = L"Title Here.\n\nThis ^is^ the body of the document and it's "
+                               L"long.\n\nWorks ^Sited^ in My book.\n\nAnother book.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 4);
+        CHECK(doc.get_valid_word_count() == 17);
+        CHECK(doc.get_valid_paragraph_count() == 4);
+        }
+    SECTION("Tagged Block Exclude Same Tags Multiple Words")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.add_exclusion_block_tags(L'^', L'^');
+        const wchar_t text[] = L"Title Here.\n\nThis ^is the^ body of the document and it's "
+                               L"long.\n\nWorks ^Sited in^ My book.\n\nAnother book.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 4);
+        CHECK(doc.get_valid_word_count() == 15);
+        CHECK(doc.get_valid_paragraph_count() == 4);
+        }
+    SECTION("Tagged Block Exclude Same Tags At End Of Document")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.add_exclusion_block_tags(L'^', L'^');
+        const wchar_t text[] = L"Title Here.\n\nThis is the body of the document and it's "
+                               L"long.\n\nWorks Sited in My book.\n\nAnother ^book^.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 4);
+        CHECK(doc.get_valid_word_count() == 18);
+        CHECK(doc.get_valid_paragraph_count() == 4);
+        }
+    SECTION("Tagged Block Exclude Same Tags At Start Of Document")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.add_exclusion_block_tags(L'^', L'^');
+        const wchar_t text[] = L"^Title^ Here.\n\nThis is the body of the document and it's "
+                               L"long.\n\nWorks Sited in My book.\n\nAnother book.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_complete_sentence_count() == 4);
+        CHECK(doc.get_valid_word_count() == 18);
+        CHECK(doc.get_valid_paragraph_count() == 4);
+        }
+    }
+
+TEST_CASE("Document misspellings", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Misspelling And Double Word")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(L"that is a", true, false);
+        const wchar_t text[] = L"That is a a armilllo.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 1);
+        CHECK(doc.get_misspelled_words().at(0) == 4);
+        CHECK(doc.get_duplicate_word_indices().size() == 1);
+        CHECK(doc.get_duplicate_word_indices().at(0) == 3);
+        }
+    SECTION("Misspelling And Double Word With Punctation")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(L"captain", true, false);
+        const wchar_t text[] = L"Ay, ay captain.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 2);
+        CHECK(doc.get_misspelled_words().at(0) == 0);
+        CHECK(doc.get_misspelled_words().at(1) == 1);
+        CHECK(doc.get_duplicate_word_indices().size() == 0); // the comma negates that
+        }
+    SECTION("Misspelling And Article Error")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(L"that is a", true, false);
+        const wchar_t text[] = L"That is a armilllo.";
+        doc.set_mismatched_article_function(&is_english_mismatched_article);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 1);
+        CHECK(doc.get_misspelled_words().at(0) == 3);
+        CHECK(doc.get_incorrect_article_indices().size() == 1);
+        CHECK(doc.get_incorrect_article_indices().at(0) == 2);
+        }
+    SECTION("Misspellings")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(L"the a and hat in cat", true, false);
+        const wchar_t text[] = L"The catz in the hat. The cat hadd a hat.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 2);
+        CHECK(doc.get_misspelled_words().at(0) == 1);
+        CHECK(doc.get_misspelled_words().at(1) == 7);
+        }
+    SECTION("Misspellings End Of Sentence")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(L"the a and hat had in cat", true, false);
+        const wchar_t text[] = L"The cat in the hatz. The cat had a hatf.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 2);
+        CHECK(doc.get_misspelled_words().at(0) == 4);
+        CHECK(doc.get_misspelled_words().at(1) == 9);
+        }
+    SECTION("Misspellings Sorting")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(L"", false, false);
+        CHECK(Known_spellings.is_sorted()); // should be sorted since it is empty
+        Known_spellings.load_words(L"a and cat hat the in", false, false);
+        CHECK(Known_spellings.is_sorted() == false); // should be out of order
+        Known_spellings.sort();
+        CHECK(Known_spellings.is_sorted());
+        const wchar_t text[] = L"The catz in the hat. The cat hadd a hat.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 2);
+        CHECK(doc.get_misspelled_words().at(0) == 1);
+        CHECK(doc.get_misspelled_words().at(1) == 7);
+        }
+    SECTION("Misspellings Custom List")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(L"the a and hat in cat", true, false);
+        Secondary_known_spellings.clear();
+        const wchar_t text[] = L"The catz in the hat. The cat hadd a hat.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 2);
+        CHECK(doc.get_misspelled_words().at(0) == 1);
+        CHECK(doc.get_misspelled_words().at(1) == 7);
+        // add the misspellings to the custom list of correct spellings
+        Secondary_known_spellings.load_words(L"catz hadd", true, false);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 0);
+        Secondary_known_spellings.clear();
+        }
+    SECTION("Misspellings Custom List With Dashes")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(L"the a and hat in cat", true, false);
+        Secondary_known_spellings.clear();
+        const wchar_t text[] = L"The catz-in-the-hat. The-cat hadd a hat.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 2);
+        CHECK(doc.get_misspelled_words().at(0) == 1);
+        CHECK(doc.get_misspelled_words().at(1) == 3);
+        // add the misspellings to the custom list of correct spellings
+        Secondary_known_spellings.load_words(L"catz hadd", true, false);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 0);
+        Secondary_known_spellings.clear();
+        }
+    SECTION("Misspellings Hyphenated")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(L"the a and hat in cat", true, false);
+        const wchar_t text[] = L"The catz in the hat. The cat-in-the-hat.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 1);
+        CHECK(doc.get_misspelled_words().at(0) == 1);
+        }
+    }
+
+TEST_CASE("Document misspellings 2", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Misspellings Numerals")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(L"the a and hat had in cats", true, false);
+        const wchar_t text[] = L"The 5 cats in the hat had $3.50.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 0);
+        }
+    SECTION("Misspellings Numerals Mixed Words")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(L"the tailed cat", true, false);
+        const wchar_t text[] = L"The 200-tailed cat.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 0);
+        }
+    SECTION("Misspellings Acronym")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.get_spell_checker().ignore_proper_nouns(false);
+        doc.get_spell_checker().ignore_uppercased(true);
+        Known_spellings.load_words(L"the a and hat had in cat", true, false);
+        const wchar_t text[] = L"The cat had a UNIVAC hat.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 0);
+        }
+    SECTION("Misspellings Acronym In Header")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.get_spell_checker().ignore_proper_nouns(false);
+        doc.get_spell_checker().ignore_uppercased(true);
+        Known_spellings.load_words(L"report from the office", true, false);
+        const wchar_t text[] = L"Report from the WCC.\n\nWCC";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 0);
+        }
+    SECTION("Misspellings Proper Noun")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.get_spell_checker().ignore_proper_nouns(true);
+        Known_spellings.load_words(L"the a and hat had in cat", true, false);
+        const wchar_t text[] = L"The cat had a Univac hat.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 0);
+        }
+    SECTION("Misspellings Initials")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.get_spell_checker().ignore_proper_nouns(true);
+        Known_spellings.load_words(L"is that", true, false);
+        const wchar_t text[] = L"Is that P.T. Barnum?";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 0);
+        doc.get_spell_checker().ignore_proper_nouns(false);
+        doc.get_spell_checker().ignore_uppercased(false);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        // the real test--only Barnum should be unknown.
+        // "P.T." isn't a known word, but we ignore initials.
+        CHECK(doc.get_misspelled_words().size() == 1);
+        CHECK(doc.get_misspelled_words().at(0) == 3);
+        }
+    }
+
+TEST_CASE("Document misspellings 3", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Misspellings Initials In Header")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(L"is that yes it", true, false);
+        const wchar_t text[] = L"Is that P.T.\n\nYes, it is.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        //"P.T." isn't a known word, but we ignore initials.
+        CHECK(doc.get_misspelled_words().size() == 0);
+        }
+    SECTION("Misspellings Exclamatory")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.get_spell_checker().ignore_proper_nouns(true);
+        doc.get_spell_checker().ignore_uppercased(true);
+        Known_spellings.load_words(L"the a and hat had in cat", true, false);
+        const wchar_t text[] = L"The CAT HAD A FETE HAT.";
+        // FETE is a misspelling, but should be ignored.
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 0);
+        // now see FETE as misspelling
+        doc.get_spell_checker().ignore_uppercased(false);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 1);
+        CHECK(doc.get_misspelled_words().at(0) == 4);
+        }
+    SECTION("Misspellings Domains")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.get_spell_checker().ignore_file_addresses(true);
+        Known_spellings.load_words(L"the a and hat had is cat site nice", true, false);
+        const wchar_t text[] = L"The www.catinthehat.com site is nice.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 0);
+        }
+    SECTION("Misspellings Programmer Code")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.get_spell_checker().ignore_programmer_code(false);
+        Known_spellings.load_words(L"the a and hat had is cat site nice", true, false);
+        const wchar_t text[] = L"RetVal = ExcelSPreadsheet.Open() + Mypath + aD + Ia";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 5);
+
+        doc.get_spell_checker().ignore_programmer_code(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 3 /*Mypath and aD and Ia at the end*/);
+        }
+    SECTION("Misspellings Programmer Code With Periods")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.get_spell_checker().ignore_programmer_code(false);
+        Known_spellings.load_words(L"the a and hat had is cat site nice", true, false);
+        const wchar_t text[] = L"RetVal = Excel.Open() + Mypat1.A + aD + Ia";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 5);
+
+        doc.get_spell_checker().ignore_programmer_code(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 2 /*aD and Ia at the end*/);
+        }
+    }
+
+TEST_CASE("Document misspellings 4", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Wordy Phrases And Misspelling")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        pmap.load_phrases(L"results in\tresults", true, false);
+        const wchar_t text[] = L"That results in problesms.";
+        Known_spellings.load_words(L"That results in problems", true, false);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_known_phrase_indices().size() == 1);
+        CHECK(doc.get_known_phrase_indices()[0].first == 1);
+        CHECK(doc.get_misspelled_words().size() == 1);
+        CHECK(doc.get_misspelled_words().at(0) == 3);
+        }
+
+    SECTION("Misspellings Compound Word With Acronym")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(L"certified", true, false);
+        const wchar_t text[] = L"LEED LEED-certified.";
+        doc.get_spell_checker().ignore_uppercased(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 0);
+        doc.get_spell_checker().ignore_uppercased(false);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 2);
+        }
+
+    SECTION("Misspellings Programmer Code Weird Uppercasing")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.get_spell_checker().ignore_programmer_code(false);
+        Known_spellings.load_words(L"the a and hat had is cat site nice", true, false);
+        const wchar_t text[] = L"RetVal = ExcelSPreadsheet.Open() + PPValue + aD + Ia";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 5);
+
+        doc.get_spell_checker().ignore_programmer_code(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 2 /*aD and Ia at the end*/);
+        }
+    SECTION("Misspellings Programmer Code Ends In Number")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.get_spell_checker().ignore_programmer_code(false);
+        Known_spellings.load_words(L"the a and hat had is cat site nice", true, false);
+        const wchar_t text[] = L"RetVal = Excel.Open() + Myvalue1";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 3);
+
+        doc.get_spell_checker().ignore_programmer_code(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(0 == doc.get_misspelled_words().size());
+        }
+    SECTION("Misspellings Programmer Code Starts With Programmer Symbol")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.get_spell_checker().ignore_programmer_code(false);
+        doc.get_spell_checker().ignore_social_media_tags(false);
+        Known_spellings.load_words(L"file include val", true, false);
+        const wchar_t text[] = L"#include <file>\n\n$val = 5\nPP_val = 7";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(3 == doc.get_misspelled_words().size());
+
+        doc.get_spell_checker().ignore_programmer_code(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(0 == doc.get_misspelled_words().size());
+        }
+    }
+
+TEST_CASE("Document articles", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Mismatched Article Separated By Punctuation")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.set_mismatched_article_function(&is_english_mismatched_article);
+        const wchar_t* text = L"a) experiment";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 0);
+
+        text = L"a, experiment";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 0);
+
+        text = L"a: experiment";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 0);
+
+        text = L"a. Experiment";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 0);
+        }
+    SECTION("Mismatched Article Followed By Punctuation")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.set_mismatched_article_function(&is_english_mismatched_article);
+        const wchar_t* text = L"a experiment'";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 1);
+
+        text = L"a experiment\"";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 1);
+
+        text = L"a experiment:";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 1);
+        }
+    SECTION("Mismatched Article Following Punctuation")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.set_mismatched_article_function(&is_english_mismatched_article);
+        const wchar_t* text = L",a experiment";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 1);
+
+        text = L":a experiment";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 1);
+
+        text = L"'a experiment";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 1);
+
+        text = L"\"a experiment'";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 1);
+
+        text = L",a experiment'";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 1);
+        }
+    SECTION("Mismatched Article Quoted")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.set_mismatched_article_function(&is_english_mismatched_article);
+        const wchar_t* text = L"a 'experiment'";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 1);
+
+        text = L"a \"experiment\"";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 1);
+
+        text = L"a “experiment”";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 1);
+
+        text = L"a experiment\" \"here\"";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 1);
+        }
+    SECTION("Mismatched Article Itself Quoted")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.set_mismatched_article_function(&is_english_mismatched_article);
+        const wchar_t* text = L"a' experiment'";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 0);
+
+        text = L"a\" experiment\"";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 0);
+
+        text = L"a“ experiment”";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 0);
+
+        text = L"an\" experiment";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_incorrect_article_indices().size() == 0);
+        }
+    SECTION("Mismatched Article That Is Really Proper")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"D and A experiment.";
+        doc.set_mismatched_article_function(&is_english_mismatched_article);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_incorrect_article_indices().size() == 0);
+        }
+    SECTION("Mismatched Article Start Of Sentence")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"A experiment.";
+        doc.set_mismatched_article_function(&is_english_mismatched_article);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_incorrect_article_indices().size() == 1);
+        }
+    }
+
+TEST_CASE("Document repeated words", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Repeated Words")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"double double words";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_duplicate_word_indices().size() == 1);
+        }
+    SECTION("Repeated Words False Positive")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"He had had it";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_duplicate_word_indices().size() == 0);
+        }
+    SECTION("Repeated Words False Positive2")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Die die Auto";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_duplicate_word_indices().size() == 0);
+        }
+    SECTION("Repeated Words New Line")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"double\ndouble words";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_duplicate_word_indices().size() == 1);
+        }
+    SECTION("Repeated Words Separated By Punctuation")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"double, double words";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_duplicate_word_indices().size() == 0);
+        }
+
+    SECTION("Repeated Words Separated By Punctuation2")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"double--\ndouble words";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_duplicate_word_indices().size() == 0);
+        }
+    }
+
+TEST_CASE("Document colloquialism", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Colloquialism ING")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(L"Me be thinking you not trying", true, false);
+        doc.get_spell_checker().allow_colloquialisms(false);
+        const wchar_t text[] = L"Me be thinkin' you not be tryin'. thinkin’";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_misspelled_words().size() == 3);
+
+        doc.get_spell_checker().allow_colloquialisms(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(0 == doc.get_misspelled_words().size());
+        }
+    SECTION("Colloquialism Er To A")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(
+            L"I'm going to get you player You all are players What is that name are those names",
+            true, false);
+        doc.get_spell_checker().allow_colloquialisms(false);
+        const wchar_t text[] = L"I'm going to get you, playa! You all are playas! What is that "
+                               L"playa's name? What are those playas' names?";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(4 == doc.get_misspelled_words().size());
+
+        doc.get_spell_checker().allow_colloquialisms(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(0 == doc.get_misspelled_words().size());
+        }
+    SECTION("Colloquialism Stretched Letter")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(L"No he yelled Nope O", true, false);
+        doc.get_spell_checker().allow_colloquialisms(false);
+        const wchar_t* text = L"Noooooooo, he yelled.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(1 == doc.get_misspelled_words().size());
+
+        doc.get_spell_checker().allow_colloquialisms(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(0 == doc.get_misspelled_words().size());
+
+        text = L"Oooooooo, he yelled. O."; // this should be stripped down to "o"
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(0 == doc.get_misspelled_words().size());
+
+        text = L"Nooope, he yelled."; // Same as "nope"
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(0 == doc.get_misspelled_words().size());
+
+        text = L"Noope, he yelled."; // 3+ repeat letters needed to activate this feature
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(1 == doc.get_misspelled_words().size());
+        }
+    SECTION("Colloquialism ING2")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        Known_spellings.load_words(
+            L"He's been taking that test for five hours He ain't never going to finish", true,
+            false);
+        doc.get_spell_checker().allow_colloquialisms(false);
+        const wchar_t text[] =
+            L"He's been takin' that test for five hours. He ain't never goin' to finish.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(2 == doc.get_misspelled_words().size());
+
+        doc.get_spell_checker().allow_colloquialisms(true);
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(0 == doc.get_misspelled_words().size());
+        }
+    }
+
+TEST_CASE("Document overly used words", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Overly Used Words By Sentence Sentence Too Long")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Hello. The robot entered the room, as the other robots looked on.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(0 == doc.get_overused_words_by_sentence().size());
+        }
+    SECTION("Overly Used Words By Sentence")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Hello. The robot entered the room, as other robots looked on.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(1 == doc.get_overused_words_by_sentence().size());
+        CHECK(1 == doc.get_overused_words_by_sentence()[0].first); // second sentence
+        auto firstWord = doc.get_overused_words_by_sentence()[0].second.cbegin();
+        CHECK(2 == *firstWord);     // third word in collection
+        CHECK(8 == *(++firstWord)); // eighth word in collection
+        }
+    SECTION("Overly Used Words By Sentence Double Word")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"'HO HO HO,' said Santa.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(0 == doc.get_overused_words_by_sentence().size());
+        }
+    }
+
+TEST_CASE("Document lowercased sentences", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Lowercased Sentences")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t text[] =
+            L"I am Mr. Smithe.  and my name is C. Blake Smithe.  but I ususally go by Blake.  Or "
+            L"the Blakeman. Mr. blake is OK too. Seriously, call me Blake. 7 is my favorite "
+            L"number.  seven is another way to spell that";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_lowercase_beginning_sentences().size() == 3);
+        CHECK(doc.get_lowercase_beginning_sentences()[0] == 1);
+        CHECK(doc.get_lowercase_beginning_sentences()[1] == 2);
+        CHECK(doc.get_lowercase_beginning_sentences()[2] == 7);
+        }
+    SECTION("Lowercased Sentences Letter Bullet Point")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t text[] = L"a. Here is a long bullet point that begins with a letter that "
+                               L"should be seen as lower case. Another sentence.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_lowercase_beginning_sentences().size() == 0);
+        }
+    SECTION("Lowercased Sentences List Items OK To Be Lowercased")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t text[] =
+            L"the Header\n\nHere is some text.\n\n\titem 1\n\titem 2\n\titem 3\n\nMore text.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_lowercase_beginning_sentences().size() == 1);
+        CHECK(doc.get_lowercase_beginning_sentences()[0] == 0);
+        }
+    SECTION("Lowercased Sentences Starts With Number")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t text[] = L"1-Power is a word that is sort of numeric for our purposes. Here "
+                               L"is another sentence.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_lowercase_beginning_sentences().size() == 0);
+        }
+    SECTION("Lowercased Sentences Starts With Letter DashWord")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t text[] = L"t-Test is not meant to be capitalized. Here is another sentence.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_lowercase_beginning_sentences().size() == 0);
+        }
+    SECTION("Lowercased Sentences Equation")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t text[] = L"abc = 5+2\n\nHere is a real sentence.\n\nz = 9;";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_lowercase_beginning_sentences().size() == 0);
+        }
+    SECTION("Lowercased Sentences One Letter")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t text[] = L"a is not meant to be capitalized. Here is another sentence.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_lowercase_beginning_sentences().size() == 1);
+        }
+    SECTION("Lowercased Sentences Start With Punctuation")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t text[] = L"# of iterations. Here is another sentence.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_lowercase_beginning_sentences().size() == 0);
+        }
+    }
+
+TEST_CASE("Document wordy phrases", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Wordy Phrases At End Of Sentence")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        pmap.load_phrases(L"difficult\thard\ndifficult to grasp\thard to learn", true, false);
+        const wchar_t text[] = L"That is difficult. It is difficult to grasp.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_known_phrase_indices().size() == 2);
+        CHECK(doc.get_known_phrase_indices()[0].first == 2);
+        CHECK(doc.get_known_phrase_indices()[0].second == 0);
+        CHECK(doc.get_known_phrase_indices()[1].first == 5);
+        CHECK(doc.get_known_phrase_indices()[1].second == 1);
+        }
+    SECTION("Wordy Phrases At End Of Sentence2")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        pmap.load_phrases(L"difficult\thard\ndifficult to grasp\thard to learn", true, false);
+        const wchar_t text[] = L"That is difficult.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_known_phrase_indices().size() == 1);
+        CHECK(doc.get_known_phrase_indices()[0].first == 2);
+        CHECK(doc.get_known_phrase_indices()[0].second == 0);
+        }
+    SECTION("Wordy Phrases One Word")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        pmap.load_phrases(L"difficult\thard\nDifficult to grasp\thard to learn", true, false);
+        const wchar_t text[] = L"That is difficult and complex. It is difficult to grasp.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_known_phrase_indices().size() == 2);
+        CHECK(doc.get_known_phrase_indices()[0].first == 2);
+        CHECK(doc.get_known_phrase_indices()[0].second == 0);
+        CHECK(doc.get_known_phrase_indices()[1].first == 7);
+        CHECK(doc.get_known_phrase_indices()[1].second == 1);
+        }
+    SECTION("Wordy Phrases One Word With Punctuation")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        pmap.load_phrases(L"difficult\thard\ndifficult to grasp\thard to learn", true, false);
+        const wchar_t text[] = L"That is difficult, and complex. It is difficult to grasp.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_known_phrase_indices().size() == 2);
+        CHECK(doc.get_known_phrase_indices()[0].first == 2);
+        CHECK(doc.get_known_phrase_indices()[0].second == 0);
+        CHECK(doc.get_known_phrase_indices()[1].first == 7);
+        CHECK(doc.get_known_phrase_indices()[1].second == 1);
+        }
+    SECTION("Wordy Phrases")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        pmap.load_phrases(L"results in\tresults", true, false);
+        const wchar_t text[] =
+            L"That results in problems.  The results, in the window, are bad.  This results in bad "
+            L"results. The results, in the window, are bad.  The results? In the window.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_known_phrase_indices().size() == 2);
+        CHECK(doc.get_known_phrase_indices()[0].first == 1);
+        CHECK(doc.get_known_phrase_indices()[1].first == 12);
+        }
+    SECTION("Wordy Phrases2")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        pmap.load_phrases(L"results in\tresults\nfell down\tfell", true, false);
+        const wchar_t text[] =
+            L"That results in problems.  The results, in the window, are bad.  This results in bad "
+            L"results. The results, in the window, are bad.  I fell down.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_known_phrase_indices().size() == 3);
+        CHECK(doc.get_known_phrase_indices()[0].first == 1);
+        CHECK(doc.get_known_phrase_indices()[0].second == 1);
+        CHECK(doc.get_known_phrase_indices()[1].first == 12);
+        CHECK(doc.get_known_phrase_indices()[1].second == 1);
+        CHECK(doc.get_known_phrase_indices()[2].first == 24);
+        CHECK(doc.get_known_phrase_indices()[2].second == 0);
+        CHECK(pmap.get_phrases()[0].first.get_words()[0] == L"fell");
+        CHECK(pmap.get_phrases()[0].first.get_words()[1] == L"down");
+        CHECK(pmap.get_phrases()[0].second == L"fell");
+        CHECK(pmap.get_phrases()[1].first.get_words()[0] == L"results");
+        CHECK(pmap.get_phrases()[1].first.get_words()[1] == L"in");
+        CHECK(pmap.get_phrases()[1].second == L"results");
+        }
+    SECTION("Error Phrases")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        pmap.load_phrases(
+            L"results in\tresults\t0\nfell down\tfell\t0\nFrench benefit\tfringe benefit\t3", true,
+            false);
+        const wchar_t text[] = L"That's a nice French benefit";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_known_phrase_indices().size() == 1);
+        CHECK(doc.get_known_phrase_indices()[0].first == 3);
+        CHECK(doc.get_known_phrase_indices()[0].second == 1);
+        CHECK(pmap.get_phrases()[1].first.get_words()[0] == L"French");
+        CHECK(pmap.get_phrases()[1].first.get_words()[1] == L"benefit");
+        CHECK(pmap.get_phrases()[1].second == L"fringe benefit");
+        CHECK(pmap.get_phrases()[1].first.get_type() == phrase_type::phrase_error);
+        }
+    SECTION("Wordy Phrases Overlapping Phrases")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        pmap.load_phrases(L"results in that\tresulting\nresults in\tresults", true, false);
+        const wchar_t text[] = L"That results in problems.  That results in that problems.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_known_phrase_indices().size() == 2);
+        CHECK(doc.get_known_phrase_indices()[0].first == 1);
+        CHECK(doc.get_known_phrase_indices()[1].first == 5);
+        CHECK(doc.get_known_phrase_indices()[0].second == 0);
+        CHECK(doc.get_known_phrase_indices()[1].second == 1);
+        CHECK(pmap.get_phrases()[0].first.get_words()[0] == L"results");
+        CHECK(pmap.get_phrases()[0].first.get_words()[1] == L"in");
+        CHECK(pmap.get_phrases()[0].second == L"results");
+        CHECK(pmap.get_phrases()[1].first.get_words()[0] == L"results");
+        CHECK(pmap.get_phrases()[1].first.get_words()[1] == L"in");
+        CHECK(pmap.get_phrases()[1].first.get_words()[2] == L"that");
+        CHECK(pmap.get_phrases()[1].second == L"resulting");
+        }
+    SECTION("Wordy Phrases Overlapping Phrases2")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        pmap.load_phrases(L"results in\tresults\nresults in that\tresulting", true, false);
+        const wchar_t text[] = L"That results in problems.  That results in that problems.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_known_phrase_indices().size() == 2);
+        CHECK(doc.get_known_phrase_indices()[0].first == 1);
+        CHECK(doc.get_known_phrase_indices()[1].first == 5);
+        CHECK(doc.get_known_phrase_indices()[0].second == 0);
+        CHECK(doc.get_known_phrase_indices()[1].second == 1);
+        CHECK(pmap.get_phrases()[0].first.get_words()[0] == L"results");
+        CHECK(pmap.get_phrases()[0].first.get_words()[1] == L"in");
+        CHECK(pmap.get_phrases()[0].second == L"results");
+        CHECK(pmap.get_phrases()[1].first.get_words()[0] == L"results");
+        CHECK(pmap.get_phrases()[1].first.get_words()[1] == L"in");
+        CHECK(pmap.get_phrases()[1].first.get_words()[2] == L"that");
+        CHECK(pmap.get_phrases()[1].second == L"resulting");
+        }
+    }
+
+TEST_CASE("Document long incomplete", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Long Incomplete Sentences Will Not Count")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Chapter 1\n\nIt was a dark and stormy night\n\nThe End";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        // Chapter 1
+        CHECK(doc.get_words().at(0).is_valid() == false);
+        CHECK(doc.get_words().at(1).is_valid() == false);
+        // It was a dark and stormy night
+        CHECK(doc.get_words().at(2).is_valid() == false);
+        CHECK(doc.get_words().at(3).is_valid() == false);
+        CHECK(doc.get_words().at(4).is_valid() == false);
+        CHECK(doc.get_words().at(5).is_valid() == false);
+        CHECK(doc.get_words().at(6).is_valid() == false);
+        CHECK(doc.get_words().at(7).is_valid() == false);
+        CHECK(doc.get_words().at(8).is_valid() == false);
+        // The End
+        CHECK(doc.get_words().at(9).is_valid() == false);
+        CHECK(doc.get_words().at(10).is_valid() == false);
+
+        CHECK(doc.get_paragraph_count() == 3);
+        CHECK(doc.get_valid_paragraph_count() == 0);
+        CHECK(doc.get_sentence_count() == 3);
+        CHECK(doc.get_complete_sentence_count() == 0);
+        CHECK(doc.get_word_count() == 11);
+        CHECK(doc.get_valid_word_count() == 0);
+        }
+    SECTION("Long Incomplete Sentences")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.set_allowable_incomplete_sentence_size(
+            6); // middle (incomplete) sentence should count now
+        const wchar_t* text = L"Chapter 1\n\nIt was a dark and stormy night\n\nThe End";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        // Chapter 1
+        CHECK(doc.get_words().at(0).is_valid() == false);
+        CHECK(doc.get_words().at(1).is_valid() == false);
+        // It was a dark and stormy night
+        CHECK(doc.get_words().at(2).is_valid() == true);
+        CHECK(doc.get_words().at(3).is_valid() == true);
+        CHECK(doc.get_words().at(4).is_valid() == true);
+        CHECK(doc.get_words().at(5).is_valid() == true);
+        CHECK(doc.get_words().at(6).is_valid() == true);
+        CHECK(doc.get_words().at(7).is_valid() == true);
+        CHECK(doc.get_words().at(8).is_valid() == true);
+        // The End
+        CHECK(doc.get_words().at(9).is_valid() == false);
+        CHECK(doc.get_words().at(10).is_valid() == false);
+
+        CHECK(doc.get_paragraph_count() == 3);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_sentence_count() == 3);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_word_count() == 11);
+        CHECK(doc.get_valid_word_count() == 7);
+        }
+    SECTION("Long Incomplete Sentences Equation")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        // a mathematical function should not be seen as a valid sentence, even if it has a long
+        // length
+        doc.set_allowable_incomplete_sentence_size(6);
+        const wchar_t* text = L"f(x) = G[( n+ 1)/ 2] /G( n/2) *(n* p)- 1/2 *[1 +(x2/n)-( n+ 1)/ 2";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_words().at(0).is_valid() == false);
+        CHECK(doc.get_words().at(1).is_valid() == false);
+        CHECK(doc.get_words().at(2).is_valid() == false);
+        CHECK(doc.get_words().at(3).is_valid() == false);
+        CHECK(doc.get_words().at(4).is_valid() == false);
+        CHECK(doc.get_words().at(5).is_valid() == false);
+        CHECK(doc.get_words().at(6).is_valid() == false);
+        CHECK(doc.get_words().at(7).is_valid() == false);
+        CHECK(doc.get_words().at(8).is_valid() == false);
+        CHECK(doc.get_words().at(9).is_valid() == false);
+        CHECK(doc.get_words().at(10).is_valid() == false);
+        CHECK(doc.get_words().at(11).is_valid() == false);
+        CHECK(doc.get_words().at(12).is_valid() == false);
+        CHECK(doc.get_words().at(13).is_valid() == false);
+        CHECK(doc.get_words().at(14).is_valid() == false);
+        CHECK(doc.get_words().at(15).is_valid() == false);
+
+        CHECK(1 == doc.get_paragraph_count());
+        CHECK(0 == doc.get_valid_paragraph_count());
+        CHECK(1 == doc.get_sentence_count());
+        CHECK(0 == doc.get_complete_sentence_count());
+        CHECK(16 == doc.get_word_count());
+        CHECK(0 == doc.get_valid_word_count());
+        }
+    SECTION("Long Incomplete Sentences Aggressive")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        doc.set_aggressive_exclusion(true);
+        const wchar_t* text = L"Chapter 1\n\nIt was a dark and stormy night\n\nThe End";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        // Chapter 1
+        CHECK(doc.get_words().at(0).is_valid() == false);
+        CHECK(doc.get_words().at(1).is_valid() == false);
+        // It was a dark and stormy night
+        CHECK(doc.get_words().at(2).is_valid() == false);
+        CHECK(doc.get_words().at(3).is_valid() == false);
+        CHECK(doc.get_words().at(4).is_valid() == false);
+        CHECK(doc.get_words().at(5).is_valid() == false);
+        CHECK(doc.get_words().at(6).is_valid() == false);
+        CHECK(doc.get_words().at(7).is_valid() == false);
+        CHECK(doc.get_words().at(8).is_valid() == false);
+        // The End
+        CHECK(doc.get_words().at(9).is_valid() == false);
+        CHECK(doc.get_words().at(10).is_valid() == false);
+
+        CHECK(doc.get_paragraph_count() == 3);
+        CHECK(doc.get_valid_paragraph_count() == 0);
+        CHECK(doc.get_sentence_count() == 3);
+        CHECK(doc.get_complete_sentence_count() == 0);
+        CHECK(doc.get_word_count() == 11);
+        CHECK(doc.get_valid_word_count() == 0);
+        }
+    SECTION("Long Incomplete Sentences At End Of Paragraph Before Header")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Chapter 1\n\nIt was a dark and stormy night. The End\n\nA header";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_paragraph_count() == 3);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_sentence_count() == 4);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_word_count() == 13);
+        CHECK(doc.get_valid_word_count() == 7);
+        CHECK(doc.get_sentences()[0].get_type() == grammar::sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[1].get_type() == grammar::sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[2].get_type() == grammar::sentence_paragraph_type::incomplete);
+        CHECK(doc.get_sentences()[3].get_type() == grammar::sentence_paragraph_type::header);
+        }
+    SECTION("Long Incomplete Sentences At End Of Paragraph Before Two Headers")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text =
+            L"Chapter 1\n\nIt was a dark and stormy night. The End\n\nA header\n\nA subheader";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_paragraph_count() == 4);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_sentence_count() == 5);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_word_count() == 15);
+        CHECK(doc.get_valid_word_count() == 7);
+        CHECK(doc.get_sentences()[0].get_type() == grammar::sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[1].get_type() == grammar::sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[2].get_type() == grammar::sentence_paragraph_type::incomplete);
+        CHECK(doc.get_sentences()[3].get_type() == grammar::sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[4].get_type() == grammar::sentence_paragraph_type::header);
+        }
+    SECTION("Long Incomplete Sentences At End Of Paragraph Before List")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text =
+            L"Chapter 1\n\nIt was a dark and stormy night. The End\n\nList 1\n\nList 2\n\nList 3";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_paragraph_count() == 5);
+        CHECK(doc.get_valid_paragraph_count() == 1);
+        CHECK(doc.get_sentence_count() == 6);
+        CHECK(doc.get_complete_sentence_count() == 1);
+        CHECK(doc.get_word_count() == 17);
+        CHECK(doc.get_valid_word_count() == 7);
+        CHECK(doc.get_sentences()[0].get_type() == grammar::sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[1].get_type() == grammar::sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[2].get_type() == grammar::sentence_paragraph_type::incomplete);
+        CHECK(doc.get_sentences()[3].get_type() == grammar::sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[4].get_type() == grammar::sentence_paragraph_type::list_item);
+        CHECK(doc.get_sentences()[5].get_type() == grammar::sentence_paragraph_type::list_item);
+        }
+    SECTION("Long Incomplete Sentences At End Of Paragraph Before Normal Paragraph")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Chapter 1\n\nIt was a dark and stormy night. The End\n\nA regular "
+                              L"paragraph. A normal sentence.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+
+        CHECK(doc.get_paragraph_count() == 3);
+        CHECK(doc.get_valid_paragraph_count() == 2);
+        CHECK(doc.get_sentence_count() == 5);
+        CHECK(doc.get_complete_sentence_count() == 3);
+        CHECK(doc.get_word_count() == 17);
+        CHECK(doc.get_valid_word_count() == 13);
+        CHECK(doc.get_sentences()[0].get_type() == grammar::sentence_paragraph_type::header);
+        CHECK(doc.get_sentences()[1].get_type() == grammar::sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[2].get_type() == grammar::sentence_paragraph_type::incomplete);
+        CHECK(doc.get_sentences()[3].get_type() == grammar::sentence_paragraph_type::complete);
+        CHECK(doc.get_sentences()[4].get_type() == grammar::sentence_paragraph_type::complete);
+        }
+    }
+
+TEST_CASE("Document sentence unit", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Sentence Unit")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t text[] =
+            L"I—am Mr. Smithe my name is C. Blake Smithe.  I ususally go by Blake: or the "
+            L"Blakeman; Mr. blake is OK too. Seriously, call me Blake.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_sentence_count() == 3);
+        CHECK(doc.get_sentences()[0].get_unit_count() == 2);
+        CHECK(doc.get_sentences()[1].get_unit_count() == 3);
+        CHECK(doc.get_sentences()[2].get_unit_count() == 1);
+        }
+    SECTION("Sentence Unit Consecutive Delims")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t text[] =
+            L"I am Mr. Smithe--my name is C. Blake Smithe.  I ususally go by Blake:; or the "
+            L"Blakeman; Mr. blake is OK too. Seriously, call me Blake.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_sentence_count() == 3);
+        CHECK(doc.get_sentences()[0].get_unit_count() == 2);
+        CHECK(doc.get_sentences()[1].get_unit_count() == 3);
+        CHECK(doc.get_sentences()[2].get_unit_count() == 1);
+        }
+    SECTION("Sentence Unit No Unit Delims")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t text[] =
+            L"I am Mr. Smithe my name is C. Blake Smithe.  I ususally go by Blake or the Blakeman "
+            L"Mr. blake is OK too. Seriously, call me Blake.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_sentence_count() == 3);
+        CHECK(doc.get_sentences()[0].get_unit_count() == 1);
+        CHECK(doc.get_sentences()[1].get_unit_count() == 1);
+        CHECK(doc.get_sentences()[2].get_unit_count() == 1);
+        }
+    SECTION("Sentence Unit No Unit Delims With Hyphens")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t text[] = L"I am a happy-go-lucky guy most of the time.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_sentence_count() == 1);
+        CHECK(doc.get_sentences()[0].get_unit_count() == 1);
+        }
+    SECTION("Sentence Unit Double Hyphens As Dash")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t text[] = L"I am a happy--most of the time--guy.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_sentence_count() == 1);
+        CHECK(doc.get_sentences()[0].get_unit_count() == 3);
+        }
+    SECTION("Sentence Unit No Sentences")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
+                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
+                             &Known_spellings, &Secondary_known_spellings,
+                             &Programming_known_spellings, &Stop_list);
+        const wchar_t text[] = L"   ";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_sentence_count() == 0);
+        }
+    }
+
+TEST_CASE("Document", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Citation Superscripts")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"Restrictive 56 H⁷ legislation.⁶⁷ Lack of progress.⁷ Another sentence.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(3 == doc.get_sentence_count());
+        CHECK(9 == doc.get_valid_word_count());
+        CHECK(9 == doc.get_word_count());
         }
     SECTION("Ellipses")
         {
@@ -286,91 +3128,7 @@ TEST_CASE("Document", "[document]")
         CHECK(doc.get_word_count() == 5);
         CHECK(std::wstring(L"http://www.unicef.org/search/search.phpen=Percentage+of+children+Aged+5-14+engaged+in+child+labour&go.x=0&go.y=0") == std::wstring(doc.get_word(4).c_str()));
         }
-    SECTION("TOC Line Ignore Blank Lines")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Welcome........5\n\nWelcome...you.\n\nWelcome again....";
-        doc.load_document(text, wcslen(text), false, true, true, false);
 
-        CHECK(doc.get_sentence_count() == 3);
-        CHECK(doc.get_complete_sentence_count() == 2);
-        }
-    SECTION("TOC Line Mid Document")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Some, text (more text) here. Welcome...5\n\nWelcome, overview..7\n\nWelcome again.....";
-        doc.load_document(text, wcslen(text), false, true, true, false);
-
-        CHECK(doc.get_sentence_count() == 4);
-        CHECK(doc.get_complete_sentence_count() == 2);
-        }
-    SECTION("TOC Line")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Welcome to WIC........ 5\n\nWelcome...you.\n\nWelcome again....";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_sentence_count() == 3);
-        CHECK(doc.get_complete_sentence_count() == 2);
-        }
-    SECTION("Overly Used Words By Sentence Sentence Too Long")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Hello. The robot entered the room, as the other robots looked on.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(0 == doc.get_overused_words_by_sentence().size());
-        }
-    SECTION("Overly Used Words By Sentence")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
-                             &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-                             &Known_spellings, &Secondary_known_spellings,
-                             &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Hello. The robot entered the room, as other robots looked on.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(1 == doc.get_overused_words_by_sentence().size());
-        CHECK(1 == doc.get_overused_words_by_sentence()[0].first); // second sentence
-        auto firstWord = doc.get_overused_words_by_sentence()[0].second.cbegin();
-        CHECK(2 == *firstWord);     // third word in collection
-        CHECK(8 == *(++firstWord)); // eighth word in collection
-        }
-    SECTION("Overly Used Words By Sentence Double Word")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"'HO HO HO,' said Santa.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(0 == doc.get_overused_words_by_sentence().size());
-        }
-    SECTION("TOC Line No Space")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Welcome to WIC........5\n\nWelcome...you.\n\nWelcome again....";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_sentence_count() == 3);
-        CHECK(doc.get_complete_sentence_count() == 2);
-        }
-    SECTION("TOC Line One Dot")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L".5 Welcome to WIC . 5.3\n\nWelcome to WIC .5\n\nWelcome again. 5\npeople . 5 more people .";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_sentence_count() == 5);
-        CHECK(doc.get_complete_sentence_count() == 3);
-        }
-    SECTION("TOC Line Ellipses")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Welcome to WIC…… 5\n\nWelcome...you.\n\nWelcome again....";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_sentence_count() == 3);
-        CHECK(doc.get_complete_sentence_count() == 2);
-        }
     SECTION("Spaces Paran Sentence End")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
@@ -537,164 +3295,7 @@ TEST_CASE("Document", "[document]")
         CHECK(doc.get_passive_voice_indices().size() == 1);
         CHECK(doc.get_passive_voice_indices().at(0).first == 0);
         }
-    SECTION("Mismatched Article Separated By Punctuation")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.set_mismatched_article_function(&is_english_mismatched_article);
-        const wchar_t* text = L"a) experiment";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 0);
-
-        text = L"a, experiment";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 0);
-
-        text = L"a: experiment";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 0);
-
-        text = L"a. Experiment";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 0);
-        }
-    SECTION("Mismatched Article Followed By Punctuation")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.set_mismatched_article_function(&is_english_mismatched_article);
-        const wchar_t* text = L"a experiment'";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 1);
-
-        text = L"a experiment\"";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 1);
-
-        text = L"a experiment:";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 1);
-        }
-    SECTION("Mismatched Article Following Punctuation")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.set_mismatched_article_function(&is_english_mismatched_article);
-        const wchar_t* text = L",a experiment";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 1);
-
-        text = L":a experiment";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 1);
-
-        text = L"'a experiment";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 1);
-
-        text = L"\"a experiment'";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 1);
-
-        text = L",a experiment'";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 1);
-        }
-    SECTION("Mismatched Article Quoted")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.set_mismatched_article_function(&is_english_mismatched_article);
-        const wchar_t* text = L"a 'experiment'";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 1);
-
-        text = L"a \"experiment\"";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 1);
-
-        text = L"a “experiment”";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 1);
-
-        text = L"a experiment\" \"here\"";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 1);
-        }
-    SECTION("Mismatched Article Itself Quoted")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.set_mismatched_article_function(&is_english_mismatched_article);
-        const wchar_t* text = L"a' experiment'";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 0);
-
-        text = L"a\" experiment\"";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 0);
-
-        text = L"a“ experiment”";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 0);
-
-        text = L"an\" experiment";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_incorrect_article_indices().size() == 0);
-        }
-    SECTION("Mismatched Article That Is Really Proper")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"D and A experiment.";
-        doc.set_mismatched_article_function(&is_english_mismatched_article);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_incorrect_article_indices().size() == 0);
-        }
-    SECTION("Mismatched Article Start Of Sentence")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"A experiment.";
-        doc.set_mismatched_article_function(&is_english_mismatched_article);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_incorrect_article_indices().size() == 1);
-        }
-    SECTION("Repeated Words")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"double double words";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_duplicate_word_indices().size() == 1);
-        }
-    SECTION("Repeated Words False Positive")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"He had had it";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_duplicate_word_indices().size() == 0);
-        }
-    SECTION("Repeated Words False Positive2")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Die die Auto";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_duplicate_word_indices().size() == 0);
-        }
-    SECTION("Repeated Words New Line")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"double\ndouble words";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_duplicate_word_indices().size() == 1);
-        }
-    SECTION("Repeated Words Separated By Punctuation")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"double, double words";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_duplicate_word_indices().size() == 0);
-        }
+    
     SECTION("Grammar")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
@@ -706,14 +3307,7 @@ TEST_CASE("Document", "[document]")
         CHECK(doc.get_incorrect_article_indices().size() == 4);
         CHECK(doc.get_lowercase_beginning_sentences().size() == 1);
         }
-    SECTION("Repeated Words Separated By Punctuation2")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"double--\ndouble words";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_duplicate_word_indices().size() == 0);
-        }
+    
     SECTION("Sentences With Following Dash No Quote")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
@@ -746,59 +3340,7 @@ TEST_CASE("Document", "[document]")
         CHECK(std::wcscmp(doc.get_words().at(4).c_str(), L"dr.") == 0);
         CHECK(std::wcscmp(doc.get_words().at(1).c_str(), L"Dr.") == 0);
         }
-    SECTION("Sentence Unit")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"I—am Mr. Smithe my name is C. Blake Smithe.  I ususally go by Blake: or the Blakeman; Mr. blake is OK too. Seriously, call me Blake.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_sentence_count() == 3);
-        CHECK(doc.get_sentences()[0].get_unit_count() == 2);
-        CHECK(doc.get_sentences()[1].get_unit_count() == 3);
-        CHECK(doc.get_sentences()[2].get_unit_count() == 1);
-        }
-    SECTION("Sentence Unit Consecutive Delims")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"I am Mr. Smithe--my name is C. Blake Smithe.  I ususally go by Blake:; or the Blakeman; Mr. blake is OK too. Seriously, call me Blake.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_sentence_count() == 3);
-        CHECK(doc.get_sentences()[0].get_unit_count() == 2);
-        CHECK(doc.get_sentences()[1].get_unit_count() == 3);
-        CHECK(doc.get_sentences()[2].get_unit_count() == 1);
-        }
-    SECTION("Sentence Unit No Unit Delims")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"I am Mr. Smithe my name is C. Blake Smithe.  I ususally go by Blake or the Blakeman Mr. blake is OK too. Seriously, call me Blake.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_sentence_count() == 3);
-        CHECK(doc.get_sentences()[0].get_unit_count() == 1);
-        CHECK(doc.get_sentences()[1].get_unit_count() == 1);
-        CHECK(doc.get_sentences()[2].get_unit_count() == 1);
-        }
-    SECTION("Sentence Unit No Unit Delims With Hyphens")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"I am a happy-go-lucky guy most of the time.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_sentence_count() == 1);
-        CHECK(doc.get_sentences()[0].get_unit_count() == 1);
-        }
-    SECTION("Sentence Unit Double Hyphens As Dash")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"I am a happy--most of the time--guy.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_sentence_count() == 1);
-        CHECK(doc.get_sentences()[0].get_unit_count() == 3);
-        }
-    SECTION("Sentence Unit No Sentences")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"   ";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_sentence_count() == 0);
-        }
+    
     SECTION("Indenting")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
@@ -829,595 +3371,7 @@ TEST_CASE("Document", "[document]")
         CHECK(2 == doc.get_paragraph_count());
         CHECK(2 == doc.get_sentence_count());
         }
-    SECTION("Copyright Notices")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
-        const wchar_t text[] = L"That results in problems.\nInfo 2008 Copyright.\nBlake says All rights reserved by Blake.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_valid_word_count() == 4);
-        CHECK(doc.get_sentences()[0].is_valid() == true);
-        CHECK(doc.get_sentences()[1].is_valid() == false);
-        CHECK(doc.get_sentences()[2].is_valid() == false);
-        CHECK(doc.get_words()[0].is_valid() == true);
-        CHECK(doc.get_words()[1].is_valid() == true);
-        CHECK(doc.get_words()[2].is_valid() == true);
-        CHECK(doc.get_words()[3].is_valid() == true);
-        CHECK(doc.get_words()[4].is_valid() == false);
-        CHECK(doc.get_words()[5].is_valid() == false);
-        CHECK(doc.get_words()[6].is_valid() == false);
-        CHECK(doc.get_words()[7].is_valid() == false);
-        CHECK(doc.get_words()[8].is_valid() == false);
-        CHECK(doc.get_words()[9].is_valid() == false);
-        CHECK(doc.get_words()[10].is_valid() == false);
-        CHECK(doc.get_words()[11].is_valid() == false);
-        CHECK(doc.get_words()[12].is_valid() == false);
-        CHECK(doc.get_words()[13].is_valid() == false);
-        }
-    SECTION("Copyright Notices2")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
-        const wchar_t text[] = L"That results in problems.\nCopyright 2007.\nBlake says that All rights reserved by Blake Corp industries and other parties.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_valid_word_count() == 4);
-        CHECK(doc.get_sentences()[0].is_valid() == true);
-        CHECK(doc.get_sentences()[1].is_valid() == false);
-        CHECK(doc.get_sentences()[2].is_valid() == false);
-        CHECK(doc.get_words()[0].is_valid() == true);
-        CHECK(doc.get_words()[1].is_valid() == true);
-        CHECK(doc.get_words()[2].is_valid() == true);
-        CHECK(doc.get_words()[3].is_valid() == true);
-        CHECK(doc.get_words()[4].is_valid() == false);
-        CHECK(doc.get_words()[5].is_valid() == false);
-        CHECK(doc.get_words()[6].is_valid() == false);
-        CHECK(doc.get_words()[7].is_valid() == false);
-        CHECK(doc.get_words()[8].is_valid() == false);
-        CHECK(doc.get_words()[9].is_valid() == false);
-        CHECK(doc.get_words()[10].is_valid() == false);
-        CHECK(doc.get_words()[11].is_valid() == false);
-        CHECK(doc.get_words()[12].is_valid() == false);
-        CHECK(doc.get_words()[13].is_valid() == false);
-        CHECK(doc.get_words()[14].is_valid() == false);
-        CHECK(doc.get_words()[15].is_valid() == false);
-        CHECK(doc.get_words()[16].is_valid() == false);
-        CHECK(doc.get_words()[17].is_valid() == false);
-        CHECK(doc.get_words()[18].is_valid() == false);
-        }
-    SECTION("Copyright Notices3")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ntrademark\ncopyright", true, false);
-        const wchar_t text[] = L"some text.\nsome text.\nsome text.\nmore text.\nIs a copyright of.\nIs a TRademark of inc.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 4);
-        CHECK(doc.get_valid_paragraph_count() == 4);
-        CHECK(doc.get_valid_word_count() == 8);
-        CHECK(doc.get_sentences()[0].is_valid() == true);
-        CHECK(doc.get_sentences()[1].is_valid() == true);
-        CHECK(doc.get_sentences()[2].is_valid() == true);
-        CHECK(doc.get_sentences()[3].is_valid() == true);
-        CHECK(doc.get_sentences()[4].is_valid() == false);
-        CHECK(doc.get_sentences()[5].is_valid() == false);
-        CHECK(doc.get_words()[0].is_valid() == true);
-        CHECK(doc.get_words()[1].is_valid() == true);
-        CHECK(doc.get_words()[2].is_valid() == true);
-        CHECK(doc.get_words()[3].is_valid() == true);
-        CHECK(doc.get_words()[4].is_valid() == true);
-        CHECK(doc.get_words()[5].is_valid() == true);
-        CHECK(doc.get_words()[6].is_valid() == true);
-        CHECK(doc.get_words()[7].is_valid() == true);
-        CHECK(doc.get_words()[8].is_valid() == false);
-        CHECK(doc.get_words()[9].is_valid() == false);
-        CHECK(doc.get_words()[10].is_valid() == false);
-        CHECK(doc.get_words()[11].is_valid() == false);
-        CHECK(doc.get_words()[12].is_valid() == false);
-        CHECK(doc.get_words()[13].is_valid() == false);
-        CHECK(doc.get_words()[14].is_valid() == false);
-        CHECK(doc.get_words()[15].is_valid() == false);
-        CHECK(doc.get_words()[16].is_valid() == false);
-        }
-    SECTION("Copyright Notices Buried")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ntrademark\ncopyright", true, false);
-        const wchar_t text[] = L"some text.\nsome text.\nsome text.\nmore text.\nIs a copyright of.\nIs a TRademark of inc.\ninvalid sentence\n\nAnother invalid sentence";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 4);
-        CHECK(doc.get_valid_paragraph_count() == 4);
-        CHECK(doc.get_valid_word_count() == 8);
-        CHECK(doc.get_sentences()[0].is_valid() == true);
-        CHECK(doc.get_sentences()[1].is_valid() == true);
-        CHECK(doc.get_sentences()[2].is_valid() == true);
-        CHECK(doc.get_sentences()[3].is_valid() == true);
-        CHECK(doc.get_sentences()[4].is_valid() == false);
-        CHECK(doc.get_sentences()[5].is_valid() == false);
-        CHECK(doc.get_sentences()[6].is_valid() == false);
-        CHECK(doc.get_sentences()[7].is_valid() == false);
-        CHECK(doc.get_words()[0].is_valid() == true);
-        CHECK(doc.get_words()[1].is_valid() == true);
-        CHECK(doc.get_words()[2].is_valid() == true);
-        CHECK(doc.get_words()[3].is_valid() == true);
-        CHECK(doc.get_words()[4].is_valid() == true);
-        CHECK(doc.get_words()[5].is_valid() == true);
-        CHECK(doc.get_words()[6].is_valid() == true);
-        CHECK(doc.get_words()[7].is_valid() == true);
-        CHECK(doc.get_words()[8].is_valid() == false);
-        CHECK(doc.get_words()[9].is_valid() == false);
-        CHECK(doc.get_words()[10].is_valid() == false);
-        CHECK(doc.get_words()[11].is_valid() == false);
-        CHECK(doc.get_words()[12].is_valid() == false);
-        CHECK(doc.get_words()[13].is_valid() == false);
-        CHECK(doc.get_words()[14].is_valid() == false);
-        CHECK(doc.get_words()[15].is_valid() == false);
-        CHECK(doc.get_words()[16].is_valid() == false);
-        CHECK(doc.get_words()[17].is_valid() == false);
-        CHECK(doc.get_words()[18].is_valid() == false);
-        CHECK(doc.get_words()[19].is_valid() == false);
-        CHECK(doc.get_words()[20].is_valid() == false);
-        CHECK(doc.get_words()[21].is_valid() == false);
-        }
-    SECTION("Copyright Notices No Valid Text")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
-        const wchar_t text[] = L"Hi.\n\nInfo 2008 Copyright.\nBlake says All rights reserved by Blake.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_valid_word_count() == 1);
-        CHECK(doc.get_sentences()[0].is_valid());
-        CHECK(doc.get_sentences()[1].is_valid() == false);
-        CHECK(doc.get_sentences()[2].is_valid() == false);
-        CHECK(doc.get_words()[0].is_valid());
-        CHECK(doc.get_words()[1].is_valid() == false);
-        CHECK(doc.get_words()[2].is_valid() == false);
-        CHECK(doc.get_words()[3].is_valid() == false);
-        CHECK(doc.get_words()[4].is_valid() == false);
-        CHECK(doc.get_words()[5].is_valid() == false);
-        CHECK(doc.get_words()[6].is_valid() == false);
-        CHECK(doc.get_words()[7].is_valid() == false);
-        CHECK(doc.get_words()[8].is_valid() == false);
-        CHECK(doc.get_words()[9].is_valid() == false);
-        CHECK(doc.get_words()[10].is_valid() == false);
-        }
-    SECTION("Copyright Notices No Valid Text On Sentence")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
-        const wchar_t text[] = L"Hi.\n\nInfo 2008 Copyright.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_valid_word_count() == 1);
-        CHECK(doc.get_sentences()[0].is_valid());
-        CHECK(doc.get_sentences()[1].is_valid() == false);
-        CHECK(doc.get_words()[0].is_valid());
-        CHECK(doc.get_words()[1].is_valid() == false);
-        CHECK(doc.get_words()[2].is_valid() == false);
-        CHECK(doc.get_words()[3].is_valid() == false);
-        }
-    SECTION("Copyright Notices In Second Sentence")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
-        const wchar_t text[] = L"Hi.\n\nThat results in problems. Blake says All rights reserved by Blake.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_valid_word_count() == 1);
-        CHECK(doc.get_sentences()[0].is_valid());
-        CHECK(doc.get_sentences()[1].is_valid() == false);
-        CHECK(doc.get_sentences()[2].is_valid() == false);
-        CHECK(doc.get_words()[0].is_valid());
-        CHECK(doc.get_words()[1].is_valid() == false);
-        CHECK(doc.get_words()[2].is_valid() == false);
-        CHECK(doc.get_words()[3].is_valid() == false);
-        CHECK(doc.get_words()[4].is_valid() == false);
-        CHECK(doc.get_words()[5].is_valid() == false);
-        CHECK(doc.get_words()[6].is_valid() == false);
-        CHECK(doc.get_words()[7].is_valid() == false);
-        CHECK(doc.get_words()[8].is_valid() == false);
-        CHECK(doc.get_words()[9].is_valid() == false);
-        CHECK(doc.get_words()[10].is_valid() == false);
-        CHECK(doc.get_words()[11].is_valid() == false);
-        }
-    SECTION("Copyright Notices Symbols In Second Sentence")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
-        const wchar_t text[] = L"Hi.\n\nThat [results] in problems. Blake© says reserved by Blake.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_valid_word_count() == 1);
-        CHECK(doc.get_sentences()[0].is_valid());
-        CHECK(doc.get_sentences()[1].is_valid() == false);
-        CHECK(doc.get_sentences()[2].is_valid() == false);
-        CHECK(doc.get_words()[0].is_valid());
-        CHECK(doc.get_words()[1].is_valid() == false);
-        CHECK(doc.get_words()[2].is_valid() == false);
-        CHECK(doc.get_words()[3].is_valid() == false);
-        CHECK(doc.get_words()[4].is_valid() == false);
-        CHECK(doc.get_words()[5].is_valid() == false);
-        CHECK(doc.get_words()[6].is_valid() == false);
-        CHECK(doc.get_words()[7].is_valid() == false);
-        CHECK(doc.get_words()[8].is_valid() == false);
-        CHECK(doc.get_words()[9].is_valid() == false);
-        }
-    SECTION("Copyright Notices Symbols In Second Sentence In Front Of Word")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
-        const wchar_t text[] = L"That, (results) in [problems].\n\n©Blake says rsd. by Blake.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_valid_word_count() == 4);
-        CHECK(doc.get_sentences()[0].is_valid());
-        CHECK(doc.get_sentences()[1].is_valid() == false);
-        CHECK(doc.get_words()[0].is_valid());
-        CHECK(doc.get_words()[1].is_valid());
-        CHECK(doc.get_words()[2].is_valid());
-        CHECK(doc.get_words()[3].is_valid());
-        CHECK(doc.get_words()[4].is_valid() == false);
-        CHECK(doc.get_words()[5].is_valid() == false);
-        CHECK(doc.get_words()[6].is_valid() == false);
-        CHECK(doc.get_words()[7].is_valid() == false);
-        CHECK(doc.get_words()[8].is_valid() == false);
-        }
-    SECTION("Copyright Notices Symbols Sentence Boundaries")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
-        const wchar_t text[] = L"That results in problems all rights. Reserved says reserved.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 2);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_valid_word_count() == 9);
-        CHECK(doc.get_sentences()[0].is_valid() == true);
-        CHECK(doc.get_sentences()[1].is_valid() == true);
-        CHECK(doc.get_words()[0].is_valid() == true);
-        CHECK(doc.get_words()[1].is_valid() == true);
-        CHECK(doc.get_words()[2].is_valid() == true);
-        CHECK(doc.get_words()[3].is_valid() == true);
-        CHECK(doc.get_words()[4].is_valid() == true);
-        CHECK(doc.get_words()[5].is_valid() == true);
-        CHECK(doc.get_words()[6].is_valid() == true);
-        CHECK(doc.get_words()[7].is_valid() == true);
-        CHECK(doc.get_words()[8].is_valid() == true);
-        }
-    SECTION("Copyright Notices At End")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
-        const wchar_t text[] = L"Hi.\n\nThat results in problems.  Oh, and all rights Reserved.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_valid_word_count() == 1);
-        CHECK(doc.get_sentences()[0].is_valid());
-        CHECK(doc.get_sentences()[1].is_valid() == false);
-        CHECK(doc.get_sentences()[2].is_valid() == false);
-        CHECK(doc.get_words()[0].is_valid());
-        CHECK(doc.get_words()[1].is_valid() == false);
-        CHECK(doc.get_words()[2].is_valid() == false);
-        CHECK(doc.get_words()[3].is_valid() == false);
-        CHECK(doc.get_words()[4].is_valid() == false);
-        CHECK(doc.get_words()[5].is_valid() == false);
-        CHECK(doc.get_words()[6].is_valid() == false);
-        CHECK(doc.get_words()[7].is_valid() == false);
-        CHECK(doc.get_words()[8].is_valid() == false);
-        CHECK(doc.get_words()[9].is_valid() == false);
-        }
-    SECTION("Copyright Notices At Front")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
-        const wchar_t text[] = L"Some Text.\n\n© 2010 oleander software.\n\nThat, (results) in [problems].\n\n. This is the last sentence.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 3);
-        CHECK(doc.get_valid_paragraph_count() == 3);
-        CHECK(doc.get_valid_word_count() == 11);
-        CHECK(doc.get_sentences()[0].is_valid());
-        CHECK(doc.get_sentences()[1].is_valid() == false);
-        CHECK(doc.get_sentences()[2].is_valid());
-        CHECK(doc.get_sentences()[3].is_valid());
-        CHECK(doc.get_words()[0].is_valid());
-        CHECK(doc.get_words()[1].is_valid());
-        CHECK(doc.get_words()[2].is_valid() == false);
-        CHECK(doc.get_words()[3].is_valid() == false);
-        CHECK(doc.get_words()[4].is_valid() == false);
-        CHECK(doc.get_words()[5].is_valid());
-        CHECK(doc.get_words()[6].is_valid());
-        CHECK(doc.get_words()[7].is_valid());
-        CHECK(doc.get_words()[8].is_valid());
-        CHECK(doc.get_words()[9].is_valid());
-        CHECK(doc.get_words()[10].is_valid());
-        CHECK(doc.get_words()[11].is_valid());
-        CHECK(doc.get_words()[12].is_valid());
-        CHECK(doc.get_words()[13].is_valid());
-        }
-    SECTION("Copyright Notices At Front2")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
-        const wchar_t text[] = L"Some Text.\n\nCopyright © oleander software.\n\nThat, (results) in [problems].\n\n. This is the last sentence.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 3);
-        CHECK(doc.get_valid_paragraph_count() == 3);
-        CHECK(doc.get_valid_word_count() == 11);
-        CHECK(doc.get_sentences()[0].is_valid());
-        CHECK(doc.get_sentences()[1].is_valid() == false);
-        CHECK(doc.get_sentences()[2].is_valid());
-        CHECK(doc.get_sentences()[3].is_valid());
-        CHECK(doc.get_words()[0].is_valid());
-        CHECK(doc.get_words()[1].is_valid());
-        CHECK(doc.get_words()[2].is_valid() == false);
-        CHECK(doc.get_words()[3].is_valid() == false);
-        CHECK(doc.get_words()[4].is_valid() == false);
-        CHECK(doc.get_words()[5].is_valid());
-        CHECK(doc.get_words()[6].is_valid());
-        CHECK(doc.get_words()[7].is_valid());
-        CHECK(doc.get_words()[8].is_valid());
-        CHECK(doc.get_words()[9].is_valid());
-        CHECK(doc.get_words()[10].is_valid());
-        CHECK(doc.get_words()[11].is_valid());
-        CHECK(doc.get_words()[12].is_valid());
-        CHECK(doc.get_words()[13].is_valid());
-        }
-    SECTION("Copyright Notices At End Of Valid Paragraph")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        copyrightPMap.load_phrases(L"all rights reserved\ntrademarks\ncopyright", true, false);
-        const wchar_t text[] = L"Some Text*. Oleander software©.\n\nThis is the last sentence.\n\nOK, this is the last sentence.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_sentences()[0].is_valid());
-        CHECK(doc.get_sentences()[1].is_valid());
-        CHECK(doc.get_sentences()[2].is_valid());
-        CHECK(doc.get_sentences()[3].is_valid());
-        CHECK(doc.get_complete_sentence_count() == 4);
-        CHECK(doc.get_valid_paragraph_count() == 3);
-        CHECK(doc.get_valid_word_count() == 15);
-        }
-    SECTION("Citations Exclude After List")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
-        const wchar_t text[] = L"Here is a bunch of text in my file that is here for filler, this make it so that it works.\n\n1. Item\n2. Item\n3. Item\n\nMy citations\n\nMy book.\n\nAnother book.\n\nLast Book.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_valid_word_count() == 21);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_sentences().at(0).get_type() == sentence_paragraph_type::complete);
-        CHECK(doc.get_sentences().at(1).get_type() == sentence_paragraph_type::list_item);
-        CHECK(doc.get_sentences().at(2).get_type() == sentence_paragraph_type::list_item);
-        CHECK(doc.get_sentences().at(3).get_type() == sentence_paragraph_type::list_item);
-        CHECK(doc.get_sentences().at(4).get_type() == sentence_paragraph_type::header);
-        CHECK(doc.get_sentences().at(5).get_type() == sentence_paragraph_type::incomplete);
-        CHECK(doc.get_sentences().at(6).get_type() == sentence_paragraph_type::incomplete);
 
-        CHECK(doc.get_paragraphs().at(0).get_type() == sentence_paragraph_type::complete);
-        CHECK(doc.get_paragraphs().at(1).get_type() == sentence_paragraph_type::list_item);
-        CHECK(doc.get_paragraphs().at(2).get_type() == sentence_paragraph_type::list_item);
-        CHECK(doc.get_paragraphs().at(3).get_type() == sentence_paragraph_type::list_item);
-        CHECK(doc.get_paragraphs().at(4).get_type() == sentence_paragraph_type::header);
-        CHECK(doc.get_paragraphs().at(5).get_type() == sentence_paragraph_type::incomplete);
-        CHECK(doc.get_paragraphs().at(6).get_type() == sentence_paragraph_type::incomplete);
-        }
-    SECTION("Citations With Date Exclude")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
-        const wchar_t text[] = L"Title\n\nHi, this is the body of the document with some citations in it.\n\nMy citations:\n\nPew Research. (2013). Millennials: confident. Summary: Pew Trends. Retrieved from http://www.pewsocialtrends.org/2010/02/24/millennials-confident-connected-open-tochange/";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_valid_word_count() == 13);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_words()[0].is_valid() == false);
-        CHECK(doc.get_words()[1].is_valid());
-        CHECK(doc.get_words()[2].is_valid());
-        CHECK(doc.get_words()[3].is_valid());
-        CHECK(doc.get_words()[4].is_valid());
-        CHECK(doc.get_words()[5].is_valid());
-        CHECK(doc.get_words()[6].is_valid());
-        CHECK(doc.get_words()[7].is_valid());
-        CHECK(doc.get_words()[8].is_valid());
-        CHECK(doc.get_words()[9].is_valid());
-        CHECK(doc.get_words()[10].is_valid());
-        CHECK(doc.get_words()[11].is_valid());
-        CHECK(doc.get_words()[12].is_valid());
-        CHECK(doc.get_words()[13].is_valid());
-        CHECK(doc.get_words()[14].is_valid() == false);
-        CHECK(doc.get_words()[15].is_valid() == false);
-        CHECK(doc.get_words()[16].is_valid() == false);
-        CHECK(doc.get_words()[17].is_valid() == false);
-        CHECK(doc.get_words()[18].is_valid() == false);
-        CHECK(doc.get_words()[19].is_valid() == false);
-        CHECK(doc.get_words()[20].is_valid() == false);
-        CHECK(doc.get_words()[21].is_valid() == false);
-        }
-    SECTION("Citations Boundary")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
-        const wchar_t text[] = L"Title\n\nHi, this is the body of the document with some citations in it.\n\nMy citations:";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_valid_word_count() == 13);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_words()[0].is_valid() == false);
-        CHECK(doc.get_words()[1].is_valid());
-        CHECK(doc.get_words()[2].is_valid());
-        CHECK(doc.get_words()[3].is_valid());
-        CHECK(doc.get_words()[4].is_valid());
-        CHECK(doc.get_words()[5].is_valid());
-        CHECK(doc.get_words()[6].is_valid());
-        CHECK(doc.get_words()[7].is_valid());
-        CHECK(doc.get_words()[8].is_valid());
-        CHECK(doc.get_words()[9].is_valid());
-        CHECK(doc.get_words()[10].is_valid());
-        CHECK(doc.get_words()[11].is_valid());
-        CHECK(doc.get_words()[12].is_valid());
-        CHECK(doc.get_words()[13].is_valid());
-        CHECK(doc.get_words()[14].is_valid() == false);
-        CHECK(doc.get_words()[15].is_valid() == false);
-        }
-    SECTION("Citations Exclude")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
-        const wchar_t text[] = L"Title\n\nHi, this is the body of the document.\n\nMy citations:\n\nMy book.\n\nAnother book.\n\nLast Book.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_valid_word_count() == 8);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_words()[0].is_valid() == false);
-        CHECK(doc.get_words()[1].is_valid());
-        CHECK(doc.get_words()[2].is_valid());
-        CHECK(doc.get_words()[3].is_valid());
-        CHECK(doc.get_words()[4].is_valid());
-        CHECK(doc.get_words()[5].is_valid());
-        CHECK(doc.get_words()[6].is_valid());
-        CHECK(doc.get_words()[7].is_valid());
-        CHECK(doc.get_words()[8].is_valid());
-        CHECK(doc.get_words()[9].is_valid() == false);
-        CHECK(doc.get_words()[10].is_valid() == false);
-        CHECK(doc.get_words()[11].is_valid() == false);
-        CHECK(doc.get_words()[12].is_valid() == false);
-        CHECK(doc.get_words()[13].is_valid() == false);
-        CHECK(doc.get_words()[14].is_valid() == false);
-        CHECK(doc.get_words()[15].is_valid() == false);
-        CHECK(doc.get_words()[16].is_valid() == false);
-        }
-    SECTION("Citations Dont Exclude Because In Upper Half Of Document")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
-        const wchar_t text[] = L"Hi.\n\nHello there.\n\nWorks Sited\n\nMy book.\n\nAnother book.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 4);
-        CHECK(doc.get_valid_word_count() == 7);
-        CHECK(doc.get_valid_paragraph_count() == 4);
-        CHECK(doc.get_words()[0].is_valid() );
-        CHECK(doc.get_words()[1].is_valid());
-        CHECK(doc.get_words()[2].is_valid());
-        CHECK(doc.get_words()[3].is_valid() == false);
-        CHECK(doc.get_words()[4].is_valid() == false);
-        CHECK(doc.get_words()[5].is_valid());
-        CHECK(doc.get_words()[6].is_valid());
-        CHECK(doc.get_words()[7].is_valid());
-        CHECK(doc.get_words()[8].is_valid());
-        }
-    SECTION("Citations Exclude Aggresive")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
-        const wchar_t text[] = L"Hi.\n\nHello there.\n\nWorks Sited\n\nMy book.\n\nAnother book.";
-        doc.set_aggressive_exclusion(true);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 2);
-        CHECK(doc.get_valid_word_count() == 3);
-        CHECK(doc.get_valid_paragraph_count() == 2);
-        CHECK(doc.get_words()[0].is_valid());
-        CHECK(doc.get_words()[1].is_valid());
-        CHECK(doc.get_words()[2].is_valid());
-        CHECK(doc.get_words()[3].is_valid() == false);
-        CHECK(doc.get_words()[4].is_valid() == false);
-        CHECK(doc.get_words()[5].is_valid() == false);
-        CHECK(doc.get_words()[6].is_valid() == false);
-        CHECK(doc.get_words()[7].is_valid() == false);
-        CHECK(doc.get_words()[8].is_valid() == false);
-        }
-    SECTION("Citations Exclude With Long Citation")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
-        const wchar_t text[] = L"Title\n\nThis is the body of the document and its long.\n\nMy citations:\n\nMy really long citation with many words";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_valid_word_count() == 10);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_words()[0].is_valid() == false);
-        CHECK(doc.get_words()[1].is_valid());
-        CHECK(doc.get_words()[2].is_valid());
-        CHECK(doc.get_words()[3].is_valid());
-        CHECK(doc.get_words()[4].is_valid());
-        CHECK(doc.get_words()[5].is_valid());
-        CHECK(doc.get_words()[6].is_valid());
-        CHECK(doc.get_words()[7].is_valid());
-        CHECK(doc.get_words()[8].is_valid());
-        CHECK(doc.get_words()[9].is_valid());
-        CHECK(doc.get_words()[10].is_valid());
-        CHECK(doc.get_words()[11].is_valid() == false);
-        CHECK(doc.get_words()[12].is_valid() == false);
-        CHECK(doc.get_words()[13].is_valid() == false);
-        CHECK(doc.get_words()[14].is_valid() == false);
-        CHECK(doc.get_words()[15].is_valid() == false);
-        CHECK(doc.get_words()[16].is_valid() == false);
-        CHECK(doc.get_words()[17].is_valid() == false);
-        CHECK(doc.get_words()[18].is_valid() == false);
-        CHECK(doc.get_words()[19].is_valid() == false);
-        }
-    SECTION("Citations Exclude Skip Trailing Junk")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
-        const wchar_t text[] = L"Title\n\nThis is the body of the document and its long.\n\nMy citations:\n\nMy citation.\n\nCopyright 2008";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_valid_word_count() == 10);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_words()[0].is_valid() == false);
-        CHECK(doc.get_words()[1].is_valid());
-        CHECK(doc.get_words()[2].is_valid());
-        CHECK(doc.get_words()[3].is_valid());
-        CHECK(doc.get_words()[4].is_valid());
-        CHECK(doc.get_words()[5].is_valid());
-        CHECK(doc.get_words()[6].is_valid());
-        CHECK(doc.get_words()[7].is_valid());
-        CHECK(doc.get_words()[8].is_valid());
-        CHECK(doc.get_words()[9].is_valid());
-        CHECK(doc.get_words()[10].is_valid());
-        CHECK(doc.get_words()[11].is_valid() == false);
-        CHECK(doc.get_words()[12].is_valid() == false);
-        CHECK(doc.get_words()[13].is_valid() == false);
-        CHECK(doc.get_words()[14].is_valid() == false);
-        CHECK(doc.get_words()[15].is_valid() == false);
-        CHECK(doc.get_words()[16].is_valid() == false);
-        }
-    SECTION("Citations Include")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        citationPMap.load_phrases(L"citations\nworks sited\nreferences", true, false);
-        const wchar_t text[] = L"Title\n\nThis is the body of the document and its long.\n\nWorks Sited\n\nMy book.\n\nAnother book.";
-        doc.ignore_citation_sections(false);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 3);
-        CHECK(doc.get_valid_word_count() == 14);
-        CHECK(doc.get_valid_paragraph_count() == 3);
-        CHECK(doc.get_words()[0].is_valid() == false);
-        CHECK(doc.get_words()[1].is_valid());
-        CHECK(doc.get_words()[2].is_valid());
-        CHECK(doc.get_words()[3].is_valid());
-        CHECK(doc.get_words()[4].is_valid());
-        CHECK(doc.get_words()[5].is_valid());
-        CHECK(doc.get_words()[6].is_valid());
-        CHECK(doc.get_words()[7].is_valid());
-        CHECK(doc.get_words()[8].is_valid());
-        CHECK(doc.get_words()[9].is_valid());
-        CHECK(doc.get_words()[10].is_valid());
-        CHECK(doc.get_words()[11].is_valid() == false);
-        CHECK(doc.get_words()[12].is_valid() == false);
-        CHECK(doc.get_words()[13].is_valid());
-        CHECK(doc.get_words()[14].is_valid());
-        CHECK(doc.get_words()[15].is_valid());
-        CHECK(doc.get_words()[16].is_valid());
-        }
     SECTION("Exclude colon sentence")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
@@ -1437,143 +3391,7 @@ TEST_CASE("Document", "[document]")
         CHECK(doc.get_valid_word_count() == 2);
         CHECK(doc.get_valid_paragraph_count() == 1);
         }
-    SECTION("Tagged Block Exclude Same Tags")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.add_exclusion_block_tags(L'^', L'^');
-        const wchar_t text[] = L"Title Here.\n\n^This is the body of the document and it's long.\n\nWorks Sited in My book.^\n\nAnother book.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 2);
-        CHECK(doc.get_valid_word_count() == 4);
-        CHECK(doc.get_valid_paragraph_count() == 2);
-        }
-    SECTION("Tagged Block Exclude Different Tags")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.add_exclusion_block_tags(L'^', L']');
-        const wchar_t text[] = L"Title Here.\n\n^This is the body of the document and it's long.\n\nWorks Sited in My book.]\n\nAnother book.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 2);
-        CHECK(doc.get_valid_word_count() == 4);
-        CHECK(doc.get_valid_paragraph_count() == 2);
-        }
-    SECTION("Tagged Block Exclude Multiple Tags")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.add_exclusion_block_tags(L'^', L'^');
-        doc.add_exclusion_block_tags(L'<', L'>');
-        const wchar_t text[] = L"Title Here.\n\n^This is the body of the document and it's long.^\n\n<Works Sited in My book.>\n\nAnother book.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 2);
-        CHECK(doc.get_valid_word_count() == 4);
-        CHECK(doc.get_valid_paragraph_count() == 2);
-        }
-    SECTION("Tagged Block Exclude Multiple Tags Overlap")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.add_exclusion_block_tags(L'^', L'^');
-        doc.add_exclusion_block_tags(L'<', L'>');
-        const wchar_t text[] = L"Title Here.\n\n^This is the body <of the document and it's long.^\n\nWorks Sited in My book.>\n\nAnother book.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 2);
-        CHECK(doc.get_valid_word_count() == 4);
-        CHECK(doc.get_valid_paragraph_count() == 2);
-        }
-    SECTION("Tagged Block Exclude Same Tags Missing End Tag")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.add_exclusion_block_tags(L'^', L'^');
-        const wchar_t text[] = L"Title Here.\n\n^This is the body of the document and it's long.\n\nWorks Sited in My book.\n\nAnother book.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 4);
-        CHECK(doc.get_valid_word_count() == 19);
-        CHECK(doc.get_valid_paragraph_count() == 4);
-        }
-    SECTION("Tagged Block Exclude Same Tags No Words Between Them")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.add_exclusion_block_tags(L'^', L'^');
-        const wchar_t text[] = L"Title Here.\n\n^^This is the^ ^body of the document and it's long.\n\nWorks Sited in My book.\n\nAnother book.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 4);
-        CHECK(doc.get_valid_word_count() == 19);
-        CHECK(doc.get_valid_paragraph_count() == 4);
-        }
-    SECTION("Tagged Block Exclude Same Tags Mid Sentence")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.add_exclusion_block_tags(L'^', L'^');
-        const wchar_t text[] = L"Title Here.\n\nThis ^is the body of the document and it's long.\n\nWorks Sited^ in My book.\n\nAnother book.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 4);
-        CHECK(doc.get_valid_word_count() == 8);
-        CHECK(doc.get_valid_paragraph_count() == 4);
-        }
-    SECTION("Tagged Block Exclude Same Tags Single Words")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.add_exclusion_block_tags(L'^', L'^');
-        const wchar_t text[] = L"Title Here.\n\nThis ^is^ the body of the document and it's long.\n\nWorks ^Sited^ in My book.\n\nAnother book.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 4);
-        CHECK(doc.get_valid_word_count() == 17);
-        CHECK(doc.get_valid_paragraph_count() == 4);
-        }
-    SECTION("Tagged Block Exclude Same Tags Multiple Words")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.add_exclusion_block_tags(L'^', L'^');
-        const wchar_t text[] = L"Title Here.\n\nThis ^is the^ body of the document and it's long.\n\nWorks ^Sited in^ My book.\n\nAnother book.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 4);
-        CHECK(doc.get_valid_word_count() == 15);
-        CHECK(doc.get_valid_paragraph_count() == 4);
-        }
-    SECTION("Tagged Block Exclude Same Tags At End Of Document")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.add_exclusion_block_tags(L'^', L'^');
-        const wchar_t text[] = L"Title Here.\n\nThis is the body of the document and it's long.\n\nWorks Sited in My book.\n\nAnother ^book^.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 4);
-        CHECK(doc.get_valid_word_count() == 18);
-        CHECK(doc.get_valid_paragraph_count() == 4);
-        }
-    SECTION("Tagged Block Exclude Same Tags At Start Of Document")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.add_exclusion_block_tags(L'^', L'^');
-        const wchar_t text[] = L"^Title^ Here.\n\nThis is the body of the document and it's long.\n\nWorks Sited in My book.\n\nAnother book.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 4);
-        CHECK(doc.get_valid_word_count() == 18);
-        CHECK(doc.get_valid_paragraph_count() == 4);
-        }
-    SECTION("Copyright Notices Symbols")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        copyrightPMap.load_phrases(L"all rights reserved\nare trademarks of", true, false);
-        const wchar_t text[] = L"That\" results, in problems.\n© 2008 Blake corporation.\nBlake® says reserved, by Blake.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_valid_word_count() == 4);
-        CHECK(doc.get_sentences()[0].is_valid() == true);
-        CHECK(doc.get_sentences()[1].is_valid() == false);
-        CHECK(doc.get_sentences()[2].is_valid() == false);
-        CHECK(doc.get_words()[0].is_valid() == true);
-        CHECK(doc.get_words()[1].is_valid() == true);
-        CHECK(doc.get_words()[2].is_valid() == true);
-        CHECK(doc.get_words()[3].is_valid() == true);
-        CHECK(doc.get_words()[4].is_valid() == false);
-        CHECK(doc.get_words()[5].is_valid() == false);
-        CHECK(doc.get_words()[6].is_valid() == false);
-        CHECK(doc.get_words()[7].is_valid() == false);
-        CHECK(doc.get_words()[8].is_valid() == false);
-        CHECK(doc.get_words()[9].is_valid() == false);
-        CHECK(doc.get_words()[10].is_valid() == false);
-        CHECK(doc.get_words()[11].is_valid() == false);
-        }
+
     SECTION("Double Word With Punctation")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
@@ -1595,371 +3413,8 @@ TEST_CASE("Document", "[document]")
         doc.load_document(text, wcslen(text), false, false, false, false);
         CHECK(doc.get_duplicate_word_indices().size() == 0); // ok to repeate numbers
         }
-    SECTION("Wordy Phrases And Misspelling")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        pmap.load_phrases(L"results in\tresults", true, false);
-        const wchar_t text[] = L"That results in problesms.";
-        Known_spellings.load_words(L"That results in problems", true, false);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_known_phrase_indices().size() == 1);
-        CHECK(doc.get_known_phrase_indices()[0].first == 1);
-        CHECK(doc.get_misspelled_words().size() == 1);
-        CHECK(doc.get_misspelled_words().at(0) == 3);
-        }
-    SECTION("Misspelling And Double Word")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"that is a", true, false);
-        const wchar_t text[] = L"That is a a armilllo.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 1);
-        CHECK(doc.get_misspelled_words().at(0) == 4);
-        CHECK(doc.get_duplicate_word_indices().size() == 1);
-        CHECK(doc.get_duplicate_word_indices().at(0) == 3);
-        }
-    SECTION("Misspelling And Double Word With Punctation")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"captain", true, false);
-        const wchar_t text[] = L"Ay, ay captain.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 2);
-        CHECK(doc.get_misspelled_words().at(0) == 0);
-        CHECK(doc.get_misspelled_words().at(1) == 1);
-        CHECK(doc.get_duplicate_word_indices().size() == 0); // the comma negates that
-        }
-    SECTION("Misspelling And Article Error")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"that is a", true, false);
-        const wchar_t text[] = L"That is a armilllo.";
-        doc.set_mismatched_article_function(&is_english_mismatched_article);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 1);
-        CHECK(doc.get_misspelled_words().at(0) == 3);
-        CHECK(doc.get_incorrect_article_indices().size() == 1);
-        CHECK(doc.get_incorrect_article_indices().at(0) == 2);
-        }
-    SECTION("Misspellings")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"the a and hat in cat", true, false);
-        const wchar_t text[] = L"The catz in the hat. The cat hadd a hat.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 2);
-        CHECK(doc.get_misspelled_words().at(0) == 1);
-        CHECK(doc.get_misspelled_words().at(1) == 7);
-        }
-    SECTION("Misspellings End Of Sentence")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"the a and hat had in cat", true, false);
-        const wchar_t text[] = L"The cat in the hatz. The cat had a hatf.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 2);
-        CHECK(doc.get_misspelled_words().at(0) == 4);
-        CHECK(doc.get_misspelled_words().at(1) == 9);
-        }
-    SECTION("Misspellings Sorting")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"", false, false);
-        CHECK(Known_spellings.is_sorted()); // should be sorted since it is empty
-        Known_spellings.load_words(L"a and cat hat the in", false, false);
-        CHECK(Known_spellings.is_sorted() == false); // should be out of order
-        Known_spellings.sort();
-        CHECK(Known_spellings.is_sorted());
-        const wchar_t text[] = L"The catz in the hat. The cat hadd a hat.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 2);
-        CHECK(doc.get_misspelled_words().at(0) == 1);
-        CHECK(doc.get_misspelled_words().at(1) == 7);
-        }
-    SECTION("Misspellings Custom List")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"the a and hat in cat", true, false);
-        Secondary_known_spellings.clear();
-        const wchar_t text[] = L"The catz in the hat. The cat hadd a hat.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 2);
-        CHECK(doc.get_misspelled_words().at(0) == 1);
-        CHECK(doc.get_misspelled_words().at(1) == 7);
-        // add the misspellings to the custom list of correct spellings
-        Secondary_known_spellings.load_words(L"catz hadd", true, false);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 0);
-        Secondary_known_spellings.clear();
-        }
-    SECTION("Misspellings Custom List With Dashes")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"the a and hat in cat", true, false);
-        Secondary_known_spellings.clear();
-        const wchar_t text[] = L"The catz-in-the-hat. The-cat hadd a hat.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 2);
-        CHECK(doc.get_misspelled_words().at(0) == 1);
-        CHECK(doc.get_misspelled_words().at(1) == 3);
-        // add the misspellings to the custom list of correct spellings
-        Secondary_known_spellings.load_words(L"catz hadd", true, false);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 0);
-        Secondary_known_spellings.clear();
-        }
-    SECTION("Misspellings Hyphenated")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"the a and hat in cat", true, false);
-        const wchar_t text[] = L"The catz in the hat. The cat-in-the-hat.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 1);
-        CHECK(doc.get_misspelled_words().at(0) == 1);
-        }
-    SECTION("Misspellings Numerals")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"the a and hat had in cats", true, false);
-        const wchar_t text[] = L"The 5 cats in the hat had $3.50.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 0);
-        }
-    SECTION("Misspellings Numerals Mixed Words")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"the tailed cat", true, false);
-        const wchar_t text[] = L"The 200-tailed cat.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 0);
-        }
-    SECTION("Misspellings Acronym")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.get_spell_checker().ignore_proper_nouns(false);
-        doc.get_spell_checker().ignore_uppercased(true);
-        Known_spellings.load_words(L"the a and hat had in cat", true, false);
-        const wchar_t text[] = L"The cat had a UNIVAC hat.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 0);
-        }
-    SECTION("Misspellings Acronym In Header")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.get_spell_checker().ignore_proper_nouns(false);
-        doc.get_spell_checker().ignore_uppercased(true);
-        Known_spellings.load_words(L"report from the office", true, false);
-        const wchar_t text[] = L"Report from the WCC.\n\nWCC";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 0);
-        }
-    SECTION("Misspellings Proper Noun")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction,
-            &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.get_spell_checker().ignore_proper_nouns(true);
-        Known_spellings.load_words(L"the a and hat had in cat", true, false);
-        const wchar_t text[] = L"The cat had a Univac hat.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 0);
-        }
-    SECTION("Misspellings Initials")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction,
-            &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.get_spell_checker().ignore_proper_nouns(true);
-        Known_spellings.load_words(L"is that", true, false);
-        const wchar_t text[] = L"Is that P.T. Barnum?";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 0);
-        doc.get_spell_checker().ignore_proper_nouns(false);
-        doc.get_spell_checker().ignore_uppercased(false);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        // the real test--only Barnum should be unknown.
-        // "P.T." isn't a known word, but we ignore initials.
-        CHECK(doc.get_misspelled_words().size() == 1);
-        CHECK(doc.get_misspelled_words().at(0) == 3);
-        }
-    SECTION("Misspellings Initials In Header")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"is that yes it", true, false);
-        const wchar_t text[] = L"Is that P.T.\n\nYes, it is.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        //"P.T." isn't a known word, but we ignore initials.
-        CHECK(doc.get_misspelled_words().size() == 0);
-        }
-    SECTION("Misspellings Exclamatory")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
-            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.get_spell_checker().ignore_proper_nouns(true);
-        doc.get_spell_checker().ignore_uppercased(true);
-        Known_spellings.load_words(L"the a and hat had in cat", true, false);
-        const wchar_t text[] = L"The CAT HAD A FETE HAT.";
-        // FETE is a misspelling, but should be ignored.
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 0);
-        // now see FETE as misspelling
-        doc.get_spell_checker().ignore_uppercased(false);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 1);
-        CHECK(doc.get_misspelled_words().at(0) == 4);
-        }
-    SECTION("Misspellings Domains")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.get_spell_checker().ignore_file_addresses(true);
-        Known_spellings.load_words(L"the a and hat had is cat site nice", true, false);
-        const wchar_t text[] = L"The www.catinthehat.com site is nice.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 0);
-        }
-    SECTION("Misspellings Programmer Code")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.get_spell_checker().ignore_programmer_code(false);
-        Known_spellings.load_words(L"the a and hat had is cat site nice", true, false);
-        const wchar_t text[] = L"RetVal = ExcelSPreadsheet.Open() + Mypath + aD + Ia";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 5);
-
-        doc.get_spell_checker().ignore_programmer_code(true);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 3 /*Mypath and aD and Ia at the end*/);
-        }
-    SECTION("Misspellings Programmer Code With Periods")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.get_spell_checker().ignore_programmer_code(false);
-        Known_spellings.load_words(L"the a and hat had is cat site nice", true, false);
-        const wchar_t text[] = L"RetVal = Excel.Open() + Mypat1.A + aD + Ia";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 5);
-
-        doc.get_spell_checker().ignore_programmer_code(true);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 2 /*aD and Ia at the end*/);
-        }
-    SECTION("Misspellings Programmer Code Weird Uppercasing")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.get_spell_checker().ignore_programmer_code(false);
-        Known_spellings.load_words(L"the a and hat had is cat site nice", true, false);
-        const wchar_t text[] = L"RetVal = ExcelSPreadsheet.Open() + PPValue + aD + Ia";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 5);
-
-        doc.get_spell_checker().ignore_programmer_code(true);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 2 /*aD and Ia at the end*/);
-        }
-    SECTION("Misspellings Programmer Code Ends In Number")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.get_spell_checker().ignore_programmer_code(false);
-        Known_spellings.load_words(L"the a and hat had is cat site nice", true, false);
-        const wchar_t text[] = L"RetVal = Excel.Open() + Myvalue1";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 3);
-
-        doc.get_spell_checker().ignore_programmer_code(true);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(0 == doc.get_misspelled_words().size());
-        }
-    SECTION("Misspellings Programmer Code Starts With Programmer Symbol")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        doc.get_spell_checker().ignore_programmer_code(false);
-        doc.get_spell_checker().ignore_social_media_tags(false);
-        Known_spellings.load_words(L"file include val", true, false);
-        const wchar_t text[] = L"#include <file>\n\n$val = 5\nPP_val = 7";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(3 == doc.get_misspelled_words().size());
-
-        doc.get_spell_checker().ignore_programmer_code(true);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(0 == doc.get_misspelled_words().size());
-        }
-    SECTION("Colloquialism ING")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"Me be thinking you not trying", true, false);
-        doc.get_spell_checker().allow_colloquialisms(false);
-        const wchar_t text[] = L"Me be thinkin' you not be tryin'. thinkin’";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 3);
-
-        doc.get_spell_checker().allow_colloquialisms(true);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(0 == doc.get_misspelled_words().size());
-        }
-    SECTION("Colloquialism Er To A")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"I'm going to get you player You all are players What is that name are those names", true, false);
-        doc.get_spell_checker().allow_colloquialisms(false);
-        const wchar_t text[] = L"I'm going to get you, playa! You all are playas! What is that playa's name? What are those playas' names?";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(4 == doc.get_misspelled_words().size());
-
-        doc.get_spell_checker().allow_colloquialisms(true);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(0 == doc.get_misspelled_words().size());
-        }
-    SECTION("Colloquialism Stretched Letter")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"No he yelled Nope O", true, false);
-        doc.get_spell_checker().allow_colloquialisms(false);
-        const wchar_t* text = L"Noooooooo, he yelled.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(1 == doc.get_misspelled_words().size());
-
-        doc.get_spell_checker().allow_colloquialisms(true);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(0 == doc.get_misspelled_words().size());
-
-        text = L"Oooooooo, he yelled. O."; // this should be stripped down to "o"
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(0 == doc.get_misspelled_words().size());
-
-        text = L"Nooope, he yelled."; // Same as "nope"
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(0 == doc.get_misspelled_words().size());
-
-        text = L"Noope, he yelled."; // 3+ repeat letters needed to activate this feature
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(1 == doc.get_misspelled_words().size());
-        }
-    SECTION("Colloquialism ING2")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"He's been taking that test for five hours He ain't never going to finish", true, false);
-        doc.get_spell_checker().allow_colloquialisms(false);
-        const wchar_t text[] = L"He's been takin' that test for five hours. He ain't never goin' to finish.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(2 == doc.get_misspelled_words().size());
-
-        doc.get_spell_checker().allow_colloquialisms(true);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(0 == doc.get_misspelled_words().size());
-        }
-    SECTION("Misspellings Compound Word With Acronym")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        Known_spellings.load_words(L"certified", true, false);
-        const wchar_t text[] = L"LEED LEED-certified.";
-        doc.get_spell_checker().ignore_uppercased(true);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 0);
-        doc.get_spell_checker().ignore_uppercased(false);
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_misspelled_words().size() == 2);
-        }
+    
+    
     SECTION("Numerals")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
@@ -2031,7 +3486,7 @@ TEST_CASE("Document", "[document]")
         CHECK(doc.get_known_phrase_indices()[1].first == 11);
         CHECK(doc.get_known_phrase_indices()[1].second == 0);
         }
-    //"IGN" should be seen as proper if only acronym in text.
+    // "IGN" should be seen as proper if only acronym in text.
     SECTION("Proper Single Acronym Start Of Sentence")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
@@ -2307,134 +3762,7 @@ TEST_CASE("Document", "[document]")
         CHECK((++tokIter)->first.to_string() == L"never do that again");
         CHECK(1 == tokIter->second.second);
         }
-    SECTION("Wordy Phrases At End Of Sentence")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        pmap.load_phrases(L"difficult\thard\ndifficult to grasp\thard to learn", true, false);
-        const wchar_t text[] = L"That is difficult. It is difficult to grasp.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_known_phrase_indices().size() == 2);
-        CHECK(doc.get_known_phrase_indices()[0].first == 2);
-        CHECK(doc.get_known_phrase_indices()[0].second == 0);
-        CHECK(doc.get_known_phrase_indices()[1].first == 5);
-        CHECK(doc.get_known_phrase_indices()[1].second == 1);
-        }
-    SECTION("Wordy Phrases At End Of Sentence2")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        pmap.load_phrases(L"difficult\thard\ndifficult to grasp\thard to learn", true, false);
-        const wchar_t text[] = L"That is difficult.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_known_phrase_indices().size() == 1);
-        CHECK(doc.get_known_phrase_indices()[0].first == 2);
-        CHECK(doc.get_known_phrase_indices()[0].second == 0);
-        }
-    SECTION("Wordy Phrases One Word")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        pmap.load_phrases(L"difficult\thard\nDifficult to grasp\thard to learn", true, false);
-        const wchar_t text[] = L"That is difficult and complex. It is difficult to grasp.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_known_phrase_indices().size() == 2);
-        CHECK(doc.get_known_phrase_indices()[0].first == 2);
-        CHECK(doc.get_known_phrase_indices()[0].second == 0);
-        CHECK(doc.get_known_phrase_indices()[1].first == 7);
-        CHECK(doc.get_known_phrase_indices()[1].second == 1);
-        }
-    SECTION("Wordy Phrases One Word With Punctuation")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        pmap.load_phrases(L"difficult\thard\ndifficult to grasp\thard to learn", true, false);
-        const wchar_t text[] = L"That is difficult, and complex. It is difficult to grasp.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_known_phrase_indices().size() == 2);
-        CHECK(doc.get_known_phrase_indices()[0].first == 2);
-        CHECK(doc.get_known_phrase_indices()[0].second == 0);
-        CHECK(doc.get_known_phrase_indices()[1].first == 7);
-        CHECK(doc.get_known_phrase_indices()[1].second == 1);
-        }
-    SECTION("Wordy Phrases")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        pmap.load_phrases(L"results in\tresults", true, false);
-        const wchar_t text[] = L"That results in problems.  The results, in the window, are bad.  This results in bad results. The results, in the window, are bad.  The results? In the window.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_known_phrase_indices().size() == 2);
-        CHECK(doc.get_known_phrase_indices()[0].first == 1);
-        CHECK(doc.get_known_phrase_indices()[1].first == 12);
-        }
-    SECTION("Wordy Phrases2")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        pmap.load_phrases(L"results in\tresults\nfell down\tfell", true, false);
-        const wchar_t text[] = L"That results in problems.  The results, in the window, are bad.  This results in bad results. The results, in the window, are bad.  I fell down.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_known_phrase_indices().size() == 3);
-        CHECK(doc.get_known_phrase_indices()[0].first == 1);
-        CHECK(doc.get_known_phrase_indices()[0].second == 1);
-        CHECK(doc.get_known_phrase_indices()[1].first == 12);
-        CHECK(doc.get_known_phrase_indices()[1].second == 1);
-        CHECK(doc.get_known_phrase_indices()[2].first == 24);
-        CHECK(doc.get_known_phrase_indices()[2].second == 0);
-        CHECK(pmap.get_phrases()[0].first.get_words()[0] == L"fell");
-        CHECK(pmap.get_phrases()[0].first.get_words()[1] == L"down");
-        CHECK(pmap.get_phrases()[0].second == L"fell");
-        CHECK(pmap.get_phrases()[1].first.get_words()[0] == L"results");
-        CHECK(pmap.get_phrases()[1].first.get_words()[1] == L"in");
-        CHECK(pmap.get_phrases()[1].second == L"results");
-        }
-    SECTION("Error Phrases")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        pmap.load_phrases(L"results in\tresults\t0\nfell down\tfell\t0\nFrench benefit\tfringe benefit\t3", true, false);
-        const wchar_t text[] = L"That's a nice French benefit";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_known_phrase_indices().size() == 1);
-        CHECK(doc.get_known_phrase_indices()[0].first == 3);
-        CHECK(doc.get_known_phrase_indices()[0].second == 1);
-        CHECK(pmap.get_phrases()[1].first.get_words()[0] == L"French");
-        CHECK(pmap.get_phrases()[1].first.get_words()[1] == L"benefit");
-        CHECK(pmap.get_phrases()[1].second == L"fringe benefit");
-        CHECK(pmap.get_phrases()[1].first.get_type() == phrase_type::phrase_error);
-        }
-    SECTION("Wordy Phrases Overlapping Phrases")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        pmap.load_phrases(L"results in that\tresulting\nresults in\tresults", true, false);
-        const wchar_t text[] = L"That results in problems.  That results in that problems.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_known_phrase_indices().size() == 2);
-        CHECK(doc.get_known_phrase_indices()[0].first == 1);
-        CHECK(doc.get_known_phrase_indices()[1].first == 5);
-        CHECK(doc.get_known_phrase_indices()[0].second == 0);
-        CHECK(doc.get_known_phrase_indices()[1].second == 1);
-        CHECK(pmap.get_phrases()[0].first.get_words()[0] == L"results");
-        CHECK(pmap.get_phrases()[0].first.get_words()[1] == L"in");
-        CHECK(pmap.get_phrases()[0].second == L"results");
-        CHECK(pmap.get_phrases()[1].first.get_words()[0] == L"results");
-        CHECK(pmap.get_phrases()[1].first.get_words()[1] == L"in");
-        CHECK(pmap.get_phrases()[1].first.get_words()[2] == L"that");
-        CHECK(pmap.get_phrases()[1].second == L"resulting");
-        }
-    SECTION("Wordy Phrases Overlapping Phrases2")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        pmap.load_phrases(L"results in\tresults\nresults in that\tresulting", true, false);
-        const wchar_t text[] = L"That results in problems.  That results in that problems.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_known_phrase_indices().size() == 2);
-        CHECK(doc.get_known_phrase_indices()[0].first == 1);
-        CHECK(doc.get_known_phrase_indices()[1].first == 5);
-        CHECK(doc.get_known_phrase_indices()[0].second == 0);
-        CHECK(doc.get_known_phrase_indices()[1].second == 1);
-        CHECK(pmap.get_phrases()[0].first.get_words()[0] == L"results");
-        CHECK(pmap.get_phrases()[0].first.get_words()[1] == L"in");
-        CHECK(pmap.get_phrases()[0].second == L"results");
-        CHECK(pmap.get_phrases()[1].first.get_words()[0] == L"results");
-        CHECK(pmap.get_phrases()[1].first.get_words()[1] == L"in");
-        CHECK(pmap.get_phrases()[1].first.get_words()[2] == L"that");
-        CHECK(pmap.get_phrases()[1].second == L"resulting");
-        }
+
     SECTION("Conjuction")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
@@ -2447,66 +3775,7 @@ TEST_CASE("Document", "[document]")
         CHECK(doc.get_conjunction_beginning_sentences()[1] == 2);
         CHECK(doc.get_conjunction_beginning_sentences()[2] == 3);
         }
-    SECTION("Lowercased Sentences")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"I am Mr. Smithe.  and my name is C. Blake Smithe.  but I ususally go by Blake.  Or the Blakeman. Mr. blake is OK too. Seriously, call me Blake. 7 is my favorite number.  seven is another way to spell that";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_lowercase_beginning_sentences().size() == 3);
-        CHECK(doc.get_lowercase_beginning_sentences()[0] == 1);
-        CHECK(doc.get_lowercase_beginning_sentences()[1] == 2);
-        CHECK(doc.get_lowercase_beginning_sentences()[2] == 7);
-        }
-    SECTION("Lowercased Sentences Letter Bullet Point")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"a. Here is a long bullet point that begins with a letter that should be seen as lower case. Another sentence.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_lowercase_beginning_sentences().size() == 0);
-        }
-    SECTION("Lowercased Sentences List Items OK To Be Lowercased")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"the Header\n\nHere is some text.\n\n\titem 1\n\titem 2\n\titem 3\n\nMore text.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_lowercase_beginning_sentences().size() == 1);
-        CHECK(doc.get_lowercase_beginning_sentences()[0] == 0);
-        }
-    SECTION("Lowercased Sentences Starts With Number")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"1-Power is a word that is sort of numeric for our purposes. Here is another sentence.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_lowercase_beginning_sentences().size() == 0);
-        }
-    SECTION("Lowercased Sentences Starts With Letter DashWord")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"t-Test is not meant to be capitalized. Here is another sentence.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_lowercase_beginning_sentences().size() == 0);
-        }
-    SECTION("Lowercased Sentences Equation")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"abc = 5+2\n\nHere is a real sentence.\n\nz = 9;";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_lowercase_beginning_sentences().size() == 0);
-        }
-    SECTION("Lowercased Sentences One Letter")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"a is not meant to be capitalized. Here is another sentence.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_lowercase_beginning_sentences().size() == 1);
-        }
-    SECTION("Lowercased Sentences Start With Punctuation")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"# of iterations. Here is another sentence.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_lowercase_beginning_sentences().size() == 0);
-        }
+
     SECTION("Sentence Positions")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
@@ -3068,210 +4337,7 @@ TEST_CASE("Document", "[document]")
         CHECK(doc.get_words().at(5).is_valid() == false);
         CHECK(doc.get_words().at(6).is_valid() == false);
         }
-    SECTION("Long Incomplete Sentences Will Not Count")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
-            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Chapter 1\n\nIt was a dark and stormy night\n\nThe End";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        //Chapter 1
-        CHECK(doc.get_words().at(0).is_valid() == false);
-        CHECK(doc.get_words().at(1).is_valid() == false);
-        //It was a dark and stormy night
-        CHECK(doc.get_words().at(2).is_valid() == false);
-        CHECK(doc.get_words().at(3).is_valid() == false);
-        CHECK(doc.get_words().at(4).is_valid() == false);
-        CHECK(doc.get_words().at(5).is_valid() == false);
-        CHECK(doc.get_words().at(6).is_valid() == false);
-        CHECK(doc.get_words().at(7).is_valid() == false);
-        CHECK(doc.get_words().at(8).is_valid() == false);
-        //The End
-        CHECK(doc.get_words().at(9).is_valid() == false);
-        CHECK(doc.get_words().at(10).is_valid() == false);
-
-        CHECK(doc.get_paragraph_count() == 3);
-        CHECK(doc.get_valid_paragraph_count() == 0);
-        CHECK(doc.get_sentence_count() == 3);
-        CHECK(doc.get_complete_sentence_count() == 0);
-        CHECK(doc.get_word_count() == 11);
-        CHECK(doc.get_valid_word_count() == 0);
-        }
-    SECTION("Long Incomplete Sentences")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction,
-            &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns,
-            &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings,
-            &Programming_known_spellings, &Stop_list);
-        doc.set_allowable_incomplete_sentence_size(6); // middle (incomplete) sentence should count now
-        const wchar_t* text = L"Chapter 1\n\nIt was a dark and stormy night\n\nThe End";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        // Chapter 1
-        CHECK(doc.get_words().at(0).is_valid() == false);
-        CHECK(doc.get_words().at(1).is_valid() == false);
-        // It was a dark and stormy night
-        CHECK(doc.get_words().at(2).is_valid() == true);
-        CHECK(doc.get_words().at(3).is_valid() == true);
-        CHECK(doc.get_words().at(4).is_valid() == true);
-        CHECK(doc.get_words().at(5).is_valid() == true);
-        CHECK(doc.get_words().at(6).is_valid() == true);
-        CHECK(doc.get_words().at(7).is_valid() == true);
-        CHECK(doc.get_words().at(8).is_valid() == true);
-        // The End
-        CHECK(doc.get_words().at(9).is_valid() == false);
-        CHECK(doc.get_words().at(10).is_valid() == false);
-
-        CHECK(doc.get_paragraph_count() == 3);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_sentence_count() == 3);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_word_count() == 11);
-        CHECK(doc.get_valid_word_count() == 7);
-        }
-    SECTION("Long Incomplete Sentences Equation")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
-            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        // a mathematical function should not be seen as a valid sentence, even if it has a long length
-        doc.set_allowable_incomplete_sentence_size(6);
-        const wchar_t* text = L"f(x) = G[( n+ 1)/ 2] /G( n/2) *(n* p)- 1/2 *[1 +(x2/n)-( n+ 1)/ 2";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_words().at(0).is_valid() == false);
-        CHECK(doc.get_words().at(1).is_valid() == false);
-        CHECK(doc.get_words().at(2).is_valid() == false);
-        CHECK(doc.get_words().at(3).is_valid() == false);
-        CHECK(doc.get_words().at(4).is_valid() == false);
-        CHECK(doc.get_words().at(5).is_valid() == false);
-        CHECK(doc.get_words().at(6).is_valid() == false);
-        CHECK(doc.get_words().at(7).is_valid() == false);
-        CHECK(doc.get_words().at(8).is_valid() == false);
-        CHECK(doc.get_words().at(9).is_valid() == false);
-        CHECK(doc.get_words().at(10).is_valid() == false);
-        CHECK(doc.get_words().at(11).is_valid() == false);
-        CHECK(doc.get_words().at(12).is_valid() == false);
-        CHECK(doc.get_words().at(13).is_valid() == false);
-        CHECK(doc.get_words().at(14).is_valid() == false);
-        CHECK(doc.get_words().at(15).is_valid() == false);
-
-        CHECK(1 == doc.get_paragraph_count());
-        CHECK(0 == doc.get_valid_paragraph_count());
-        CHECK(1 == doc.get_sentence_count());
-        CHECK(0 == doc.get_complete_sentence_count());
-        CHECK(16 == doc.get_word_count());
-        CHECK(0 == doc.get_valid_word_count());
-        }
-    SECTION("Long Incomplete Sentences Aggressive")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction,
-            &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns,
-            &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings,
-            &Programming_known_spellings, &Stop_list);
-        doc.set_aggressive_exclusion(true);
-        const wchar_t* text = L"Chapter 1\n\nIt was a dark and stormy night\n\nThe End";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        // Chapter 1
-        CHECK(doc.get_words().at(0).is_valid() == false);
-        CHECK(doc.get_words().at(1).is_valid() == false);
-        // It was a dark and stormy night
-        CHECK(doc.get_words().at(2).is_valid() == false);
-        CHECK(doc.get_words().at(3).is_valid() == false);
-        CHECK(doc.get_words().at(4).is_valid() == false);
-        CHECK(doc.get_words().at(5).is_valid() == false);
-        CHECK(doc.get_words().at(6).is_valid() == false);
-        CHECK(doc.get_words().at(7).is_valid() == false);
-        CHECK(doc.get_words().at(8).is_valid() == false);
-        // The End
-        CHECK(doc.get_words().at(9).is_valid() == false);
-        CHECK(doc.get_words().at(10).is_valid() == false);
-
-        CHECK(doc.get_paragraph_count() == 3);
-        CHECK(doc.get_valid_paragraph_count() == 0);
-        CHECK(doc.get_sentence_count() == 3);
-        CHECK(doc.get_complete_sentence_count() == 0);
-        CHECK(doc.get_word_count() == 11);
-        CHECK(doc.get_valid_word_count() == 0);
-        }
-    SECTION("Long Incomplete Sentences At End Of Paragraph Before Header")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
-            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Chapter 1\n\nIt was a dark and stormy night. The End\n\nA header";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_paragraph_count() == 3);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_sentence_count() == 4);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_word_count() == 13);
-        CHECK(doc.get_valid_word_count() == 7);
-        CHECK(doc.get_sentences()[0].get_type() == grammar::sentence_paragraph_type::header);
-        CHECK(doc.get_sentences()[1].get_type() == grammar::sentence_paragraph_type::complete);
-        CHECK(doc.get_sentences()[2].get_type() == grammar::sentence_paragraph_type::incomplete);
-        CHECK(doc.get_sentences()[3].get_type() == grammar::sentence_paragraph_type::header);
-        }
-    SECTION("Long Incomplete Sentences At End Of Paragraph Before Two Headers")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
-            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Chapter 1\n\nIt was a dark and stormy night. The End\n\nA header\n\nA subheader";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_paragraph_count() == 4);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_sentence_count() == 5);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_word_count() == 15);
-        CHECK(doc.get_valid_word_count() == 7);
-        CHECK(doc.get_sentences()[0].get_type() == grammar::sentence_paragraph_type::header);
-        CHECK(doc.get_sentences()[1].get_type() == grammar::sentence_paragraph_type::complete);
-        CHECK(doc.get_sentences()[2].get_type() == grammar::sentence_paragraph_type::incomplete);
-        CHECK(doc.get_sentences()[3].get_type() == grammar::sentence_paragraph_type::header);
-        CHECK(doc.get_sentences()[4].get_type() == grammar::sentence_paragraph_type::header);
-        }
-    SECTION("Long Incomplete Sentences At End Of Paragraph Before List")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
-            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Chapter 1\n\nIt was a dark and stormy night. The End\n\nList 1\n\nList 2\n\nList 3";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_paragraph_count() == 5);
-        CHECK(doc.get_valid_paragraph_count() == 1);
-        CHECK(doc.get_sentence_count() == 6);
-        CHECK(doc.get_complete_sentence_count() == 1);
-        CHECK(doc.get_word_count() == 17);
-        CHECK(doc.get_valid_word_count() == 7);
-        CHECK(doc.get_sentences()[0].get_type() == grammar::sentence_paragraph_type::header);
-        CHECK(doc.get_sentences()[1].get_type() == grammar::sentence_paragraph_type::complete);
-        CHECK(doc.get_sentences()[2].get_type() == grammar::sentence_paragraph_type::incomplete);
-        CHECK(doc.get_sentences()[3].get_type() == grammar::sentence_paragraph_type::list_item);
-        CHECK(doc.get_sentences()[4].get_type() == grammar::sentence_paragraph_type::list_item);
-        CHECK(doc.get_sentences()[5].get_type() == grammar::sentence_paragraph_type::list_item);
-        }
-    SECTION("Long Incomplete Sentences At End Of Paragraph Before Normal Paragraph")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
-            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Chapter 1\n\nIt was a dark and stormy night. The End\n\nA regular paragraph. A normal sentence.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_paragraph_count() == 3);
-        CHECK(doc.get_valid_paragraph_count() == 2);
-        CHECK(doc.get_sentence_count() == 5);
-        CHECK(doc.get_complete_sentence_count() == 3);
-        CHECK(doc.get_word_count() == 17);
-        CHECK(doc.get_valid_word_count() == 13);
-        CHECK(doc.get_sentences()[0].get_type() == grammar::sentence_paragraph_type::header);
-        CHECK(doc.get_sentences()[1].get_type() == grammar::sentence_paragraph_type::complete);
-        CHECK(doc.get_sentences()[2].get_type() == grammar::sentence_paragraph_type::incomplete);
-        CHECK(doc.get_sentences()[3].get_type() == grammar::sentence_paragraph_type::complete);
-        CHECK(doc.get_sentences()[4].get_type() == grammar::sentence_paragraph_type::complete);
-        }
+    
     SECTION("Headers")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction,
@@ -3302,176 +4368,7 @@ TEST_CASE("Document", "[document]")
         CHECK(doc.get_word_count() == 11);
         CHECK(doc.get_valid_word_count() == 7);
         }
-    SECTION("List")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
-            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Here are. The items that I need:\n   Salt\n\tPepper\n    Vinegar\n\nThank you!";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        // Here are the items that I need:
-        CHECK(doc.get_words().at(0).is_valid() == true);
-        CHECK(doc.get_words().at(1).is_valid() == true);
-        CHECK(doc.get_words().at(2).is_valid() == true);
-        CHECK(doc.get_words().at(3).is_valid() == true);
-        CHECK(doc.get_words().at(4).is_valid() == true);
-        CHECK(doc.get_words().at(5).is_valid() == true);
-        CHECK(doc.get_words().at(6).is_valid() == true);
-        // Pepper/Salt/Vinegar
-        CHECK(doc.get_words().at(7).is_valid() == false);
-        CHECK(doc.get_words().at(8).is_valid() == false);
-        CHECK(doc.get_words().at(9).is_valid() == false);
-        // Thank you!
-        CHECK(doc.get_words().at(10).is_valid() == true);
-        CHECK(doc.get_words().at(11).is_valid() == true);
 
-        CHECK(doc.get_paragraph_count() == 5);
-        CHECK(doc.get_valid_paragraph_count() == 2);
-        CHECK(doc.get_sentence_count() == 6);
-        CHECK(doc.get_complete_sentence_count() == 3);
-        CHECK(doc.get_word_count() == 12);
-        CHECK(doc.get_valid_word_count() == 9);
-        }
-    SECTION("List2")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
-            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Here are. The items that I need:   \n   Salt\n\tPepper\n    Vinegar\n\nThank you!";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        // Here are the items that I need:
-        CHECK(doc.get_words().at(0).is_valid() == true);
-        CHECK(doc.get_words().at(1).is_valid() == true);
-        CHECK(doc.get_words().at(2).is_valid() == true);
-        CHECK(doc.get_words().at(3).is_valid() == true);
-        CHECK(doc.get_words().at(4).is_valid() == true);
-        CHECK(doc.get_words().at(5).is_valid() == true);
-        CHECK(doc.get_words().at(6).is_valid() == true);
-        // Pepper/Salt/Vinegar
-        CHECK(doc.get_words().at(7).is_valid() == false);
-        CHECK(doc.get_words().at(8).is_valid() == false);
-        CHECK(doc.get_words().at(9).is_valid() == false);
-        // Thank you!
-        CHECK(doc.get_words().at(10).is_valid() == true);
-        CHECK(doc.get_words().at(11).is_valid() == true);
-
-        CHECK(doc.get_paragraph_count() == 5);
-        CHECK(doc.get_valid_paragraph_count() == 2);
-        CHECK(doc.get_sentence_count() == 6);
-        CHECK(doc.get_complete_sentence_count() == 3);
-        CHECK(doc.get_word_count() == 12);
-        CHECK(doc.get_valid_word_count() == 9);
-        }
-    SECTION("List3")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
-            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Here are. The items that I need:   Salt\n\tPepper\n    Vinegar\n\nThank you!";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-        // Here are the items that I need:
-        CHECK(doc.get_words().at(0).is_valid() == true);
-        CHECK(doc.get_words().at(1).is_valid() == true);
-
-        CHECK(doc.get_words().at(2).is_valid() == false);
-        CHECK(doc.get_words().at(3).is_valid() == false);
-        CHECK(doc.get_words().at(4).is_valid() == false);
-        CHECK(doc.get_words().at(5).is_valid() == false);
-        CHECK(doc.get_words().at(6).is_valid() == false);
-        CHECK(doc.get_words().at(7).is_valid() == false);
-        // Pepper/Vinegar        
-        CHECK(doc.get_words().at(8).is_valid() == false);
-        CHECK(doc.get_words().at(9).is_valid() == false);
-        // Thank you!
-        CHECK(doc.get_words().at(10).is_valid() == true);
-        CHECK(doc.get_words().at(11).is_valid() == true);
-
-        CHECK(doc.get_paragraph_count() == 4);
-        CHECK(doc.get_valid_paragraph_count() == 2);
-        CHECK(doc.get_sentence_count() == 5);
-        CHECK(doc.get_complete_sentence_count() == 2);
-        CHECK(doc.get_word_count() == 12);
-        CHECK(doc.get_valid_word_count() == 4);
-        }
-    SECTION("Punctuation")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction,
-            &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Here are. The items that I need:\n   - Salt (not too salty!)\n\tPepper, peppercorn\n    Vinegar (the good stuff.)\n\nThank you!";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_punctuation().size() == 6);
-        CHECK(doc.get_punctuation().at(0).get_word_position() == 7);
-        CHECK(doc.get_punctuation().at(0).get_punctuation_mark() == '-');
-        CHECK(doc.get_punctuation().at(0).is_connected_to_previous_word() == false);
-
-        CHECK(doc.get_punctuation().at(1).get_word_position() == 8);
-        CHECK(doc.get_punctuation().at(1).get_punctuation_mark() == '(');
-        CHECK(doc.get_punctuation().at(1).is_connected_to_previous_word() == false);
-
-        CHECK(doc.get_punctuation().at(2).get_word_position() == 11);
-        CHECK(doc.get_punctuation().at(2).get_punctuation_mark() == ')');
-        CHECK(doc.get_punctuation().at(2).is_connected_to_previous_word() == true);
-
-        CHECK(doc.get_punctuation().at(3).get_word_position() == 12);
-        CHECK(doc.get_punctuation().at(3).get_punctuation_mark() == ',');
-        CHECK(doc.get_punctuation().at(3).is_connected_to_previous_word() == true);
-
-        CHECK(doc.get_punctuation().at(4).get_word_position() == 14);
-        CHECK(doc.get_punctuation().at(4).get_punctuation_mark() == '(');
-        CHECK(doc.get_punctuation().at(4).is_connected_to_previous_word() == false);
-
-        CHECK(doc.get_punctuation().at(5).get_word_position() == 17);
-        CHECK(doc.get_punctuation().at(5).get_punctuation_mark() == ')');
-        CHECK(doc.get_punctuation().at(5).is_connected_to_previous_word() == true);
-        }
-    SECTION("Punctuation2")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction,
-            &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Had $ queasy, thumping";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_punctuation().size() == 2);
-        CHECK(doc.get_punctuation().at(0).get_word_position() == 1);
-        CHECK(doc.get_punctuation().at(0).get_punctuation_mark() == '$');
-        CHECK(doc.get_punctuation().at(0).is_connected_to_previous_word() == false);
-
-        CHECK(doc.get_punctuation().at(1).get_word_position() == 2);
-        CHECK(doc.get_punctuation().at(1).get_punctuation_mark() == ',');
-        CHECK(doc.get_punctuation().at(1).is_connected_to_previous_word() == true);
-        }
-    SECTION("Punctuation At EOL")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
-            &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
-            &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Text ,.\nAnother sentence.";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_punctuation().size() == 1);
-        CHECK(doc.get_punctuation().at(0).get_word_position() == 1);
-        CHECK(doc.get_punctuation().at(0).get_punctuation_mark() == ',');
-        CHECK(doc.get_punctuation().at(0).is_connected_to_previous_word() == true);
-        }
-    SECTION("Punctuation Single Quote")
-        {
-        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction,
-            &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns,
-            &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings,
-            &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"‘e' word";
-        doc.load_document(text, wcslen(text), false, false, false, false);
-
-        CHECK(doc.get_punctuation().size() == 2);
-        CHECK(doc.get_punctuation().at(0).get_word_position() == 0);
-        CHECK(doc.get_punctuation().at(0).get_punctuation_mark() == 8216);
-        CHECK(doc.get_punctuation().at(1).get_word_position() == 1);
-        CHECK(doc.get_punctuation().at(1).get_punctuation_mark() == '\'');
-        CHECK(doc.get_words().at(0) == L"e");
-        }
     SECTION("Bracket")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction,
