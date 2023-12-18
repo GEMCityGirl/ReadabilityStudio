@@ -84,8 +84,10 @@ class syllable_count_equals
     bool m_treat_numerals_as_monosyllabic{ false };
     };
 
-/** @brief Counting functor for `std::count_if` that verifies the syllables in a word match a given count.
-    @details This always fails if the passed in word in invalid (i.e., excluded from the analysis).*/
+/** @brief Counting functor for `std::count_if` that verifies the syllables in a word match a given
+   count.
+    @details This always fails if the passed in word in invalid (i.e., excluded from the
+   analysis).*/
 template<typename word_typeT>
 class valid_syllable_count_equals
     {
@@ -1072,6 +1074,7 @@ class is_correctly_spelled_word
     bool
     operator()(const word_typeT& the_word) const
         {
+        // clang-format off
         if ((is_ignoring_numerals() && the_word.is_numeric()) || // see if word is a number
                                                                  // uppercased words
             (is_ignoring_uppercased() && (the_word.is_acronym() || the_word.is_exclamatory())) ||
@@ -1099,6 +1102,7 @@ class is_correctly_spelled_word
             {
             return is_on_list(the_word);
             }
+        // clang-format on
         }
 
   private:
@@ -1386,7 +1390,9 @@ template<typename inT, typename outT, typename member_extract_functorT>
 inline outT copy_member(inT begin, inT end, outT dest, member_extract_functorT get_value)
     {
     for (; begin != end; ++dest, ++begin)
+        {
         *dest = get_value(*begin);
+        }
     return (dest);
     }
 
