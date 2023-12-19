@@ -20,16 +20,11 @@ Accountingfly
 Accra
 Achaean
 Achalasia
-Budakata
 ACLU
 ACME
-Khammam
 Aconcagua
 Acta
 Actaeon
-Prabhat
-Singhpur
-Barsac
 Actin
 ActionPoint
 ActiveX
@@ -512,6 +507,7 @@ Barbuda
 Barca-Lounger
 Barcelona
 Barclaycard
+Barsac
 Barstow
 Barthélemy
 Basel
@@ -627,6 +623,7 @@ Bishopsgate
 Bismarck
 Bismark
 Bissau
+Bitbucket
 Bitcoin
 Bitdefender
 BitGiving
@@ -755,6 +752,7 @@ Buckie
 Buckingham
 Buckinghamshire
 Buckminster
+Budakata
 Budapest
 Buddha
 Buddhism
@@ -2469,6 +2467,7 @@ Keynesianism
 KeystoneXL
 KGB
 Khachaturian
+Khammam
 Khartoum
 Kickapoo
 Kickstarter
@@ -3030,6 +3029,7 @@ Monday
 Mondrian
 Moneychimp
 Moneytree
+Mongodb
 Mongol
 Mongolia
 Mongolian
@@ -3658,6 +3658,7 @@ Powershell
 Powhatan
 Powys
 Poznan
+Prabhat
 Prada
 Prague
 Praia
@@ -4168,6 +4169,7 @@ Sindh
 Sindhi
 Singapore
 Singaporean
+Singhpur
 Sinhalese
 Sino
 Sioux

@@ -24,12 +24,8 @@ Abdul
 Abdullah
 Abe
 Abegglen
-Luksic
 Abel
 Abelard
-Quiroz
-Dzubinski
-Aupetit
 Abelardo
 Abelina
 Abelson
@@ -1461,6 +1457,7 @@ Augustus
 Augy
 Aum
 Aundrea
+Aupetit
 Aurea
 Aurek
 Aurel
@@ -5477,6 +5474,7 @@ Dixon
 DiZio
 Djadjadi
 Djakarta
+Django
 Djanira
 Djian
 Djibouti
@@ -5881,6 +5879,7 @@ Dyre
 Dyshawna
 Dyson
 Dzerzhinsky
+Dzubinski
 Dévai
 Díaz
 Dönmez
@@ -12860,6 +12859,7 @@ Luka
 Lukas
 Luke
 Lukshaitis
+Luksic
 Lula
 Lulie
 Lulita
@@ -16042,6 +16042,7 @@ Quintina
 Quinton
 Quintrell
 Quintus
+Quiroz
 Quito
 Quixote
 Quzatli

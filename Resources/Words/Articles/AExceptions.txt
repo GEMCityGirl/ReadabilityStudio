@@ -24,6 +24,7 @@ UDP
 UFO
 UICulture
 UKG
+umask
 UMN
 unary
 unary_negate

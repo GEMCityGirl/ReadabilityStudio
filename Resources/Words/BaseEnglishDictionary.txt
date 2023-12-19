@@ -8077,6 +8077,10 @@ automorphism
 automorphism's
 automorphisms
 automotive
+automount
+automounted
+automounting
+automounts
 autonavigator
 autonavigator's
 autonavigators
@@ -13050,6 +13054,11 @@ blueprints
 bluer
 bluer's
 blues
+bluescreen
+bluescreen's
+bluescreened
+bluescreening
+bluescreens
 blueshift
 blueshifted
 blueshifting
@@ -60497,6 +60506,9 @@ hyperboloidal
 hyperboloids
 hypercalcemia
 hypercalciuria
+hypercall
+hypercall's
+hypercalls
 hypercapnia
 hypercarbia
 hypercellularity
@@ -69707,6 +69719,7 @@ landless
 landline
 landline's
 landlines
+landlock
 landlocked
 landlord
 landlord's
@@ -71799,6 +71812,7 @@ linseed's
 linseeds
 lint
 lint's
+linted
 lintel
 lintel's
 lintels
@@ -71807,6 +71821,7 @@ linter's
 lintier
 linties
 lintiest
+linting
 lints
 linty
 lion
@@ -106311,6 +106326,10 @@ reparation
 reparation's
 reparations
 reparative
+reparse
+reparsed
+reparses
+reparsing
 repartee
 repartee's
 reparteed
@@ -119803,6 +119822,9 @@ spinier
 spiniest
 spininess
 spininess's
+spinlock
+spinlock's
+spinlocks
 spinnability
 spinnability's
 spinnaker
@@ -125462,6 +125484,9 @@ swans
 Swansea
 swansong
 swap
+swapfile
+swapfile's
+swapfiles
 swappable
 swapped
 swapper
@@ -125947,6 +125972,9 @@ symbolizers
 symbolizes
 symbolizing
 symbols
+symlink
+symlink's
+symlinks
 symmetric
 symmetrical
 symmetrically

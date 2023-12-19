@@ -1,6 +1,7 @@
 FAQ
 fenv_t
 fexcept_t
+fmask
 fMRI
 FOB
 FYI

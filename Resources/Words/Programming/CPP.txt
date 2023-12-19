@@ -179,6 +179,8 @@ getline
 getservbyname
 getservbyport
 getsockopt
+gitattributes
+gitconfig
 gmtime
 goto
 gtk
@@ -455,6 +457,7 @@ wostream's
 wostreams
 wostringstream
 wprintf
+wsl
 wsprintf
 wstring
 wstringbuf
