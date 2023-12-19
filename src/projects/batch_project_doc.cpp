@@ -1,13 +1,13 @@
-#include <limits>
 #include "batch_project_doc.h"
-#include "batch_project_view.h"
+#include "../Wisteria-Dataviz/src/base/reportenumconvert.h"
+#include "../Wisteria-Dataviz/src/graphs/wordcloud.h"
+#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 #include "../app/readability_app.h"
+#include "../indexing/character_traits.h"
 #include "../results_format/project_report_format.h"
 #include "../ui/dialogs/project_wizard_dlg.h"
-#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
-#include "../Wisteria-Dataviz/src/graphs/wordcloud.h"
-#include "../Wisteria-Dataviz/src/base/reportenumconvert.h"
-#include "../indexing/character_traits.h"
+#include "batch_project_view.h"
+#include <limits>
 
 using namespace Wisteria;
 using namespace Wisteria::Graphs;
@@ -582,7 +582,10 @@ void BatchProjectDoc::RefreshProject()
         {
         // fall back to folder that may not have subitems (e.g., the Warning section),
         // and then the score section if the folder isn't there anymore.
-        view->GetSideBar()->SelectFolder(selectedFolder.value_or(0), true, true);
+        if (!view->GetSideBar()->SelectFolder(selectedFolder.value_or(0), true, true))
+            {
+            view->GetSideBar()->SelectFolder(0, true, true);
+            }
         }
     dynamic_cast<ListCtrlEx*>(view->GetScoresView().FindWindowById(
         BaseProjectView::ID_SCORE_LIST_PAGE_ID))->Select(0);
