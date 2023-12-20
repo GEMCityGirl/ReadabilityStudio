@@ -1591,7 +1591,9 @@ adjustive
 adjustment
 adjustment's
 adjustments
+adjustor
 adjustor's
+adjustors
 adjusts
 adjutant
 adjutant's
@@ -5863,6 +5865,9 @@ approximator
 approximator's
 approximators
 apps
+appstore
+appstore's
+appstores
 appurtenance
 appurtenance's
 appurtenances
@@ -8151,8 +8156,12 @@ autosome
 autosome's
 autosomes
 autostart
+autosuggest
+autosuggested
 autosuggestibility
 autosuggestibility's
+autosuggesting
+autosuggests
 autotoxicus
 autotransformer
 autotransformer's
@@ -8336,6 +8345,7 @@ avulsion
 avuncular
 aw
 await
+awaitable
 awaited
 awaiting
 awaits
@@ -8622,6 +8632,9 @@ backbone
 backbone's
 backbones
 backbreaking
+backbuffer
+backbuffer's
+backbuffers
 backcast
 backcasted
 backcasting
@@ -12735,6 +12748,7 @@ blithering
 blithesome
 blithest
 blits
+blittable
 blitted
 blitting
 blitz
@@ -15251,6 +15265,9 @@ brushfire
 brushfire's
 brushfires
 brushier
+brushified
+brushifies
+brushify
 brushing
 brushlike
 brushoff
@@ -15727,6 +15744,9 @@ bundled
 bundler
 bundler's
 bundles
+bundleware
+bundleware's
+bundlewares
 bundling
 bung
 bung's
@@ -19874,6 +19894,7 @@ charybdis
 charybdis's
 chase
 chase's
+chaseable
 chased
 chaser
 chaser's
@@ -20989,6 +21010,7 @@ chromatic
 chromatically
 chromaticism
 chromaticism's
+chromaticity
 chromaticness
 chromaticness's
 chromatics
@@ -21015,6 +21037,8 @@ chromed
 chromes
 chromesthesia
 chromic
+chrominance
+chrominance's
 chroming
 chromista
 chromite
@@ -21303,6 +21327,7 @@ cinema
 cinema's
 cinemas
 cinematic
+cinematics
 cinematographer
 cinematographer's
 cinematographers
@@ -22257,6 +22282,7 @@ clopping
 clops
 closable
 close
+closeable
 closed
 closefisted
 closely
@@ -28793,6 +28819,11 @@ crosser
 crossers
 crosses
 crossest
+crossfade
+crossfade's
+crossfaded
+crossfades
+crossfading
 crossfire
 crossfire's
 crossfires
@@ -31368,6 +31399,10 @@ declining
 declivities
 declivity
 declivity's
+declutter
+decluttered
+decluttering
+declutters
 deco
 decoagulate
 decodability
@@ -33897,6 +33932,7 @@ deuterostomes
 deuterostomia
 deuterostomia's
 dev
+dev's
 devaluation
 devaluation's
 devaluations
@@ -33989,6 +34025,9 @@ devitalize
 devitalized
 devitalizes
 devitalizing
+devkit
+devkit's
+devkits
 devoice
 devoiced
 devoices
@@ -34030,6 +34069,7 @@ devoutest
 devoutly
 devoutness
 devoutness's
+devs
 dew
 dew's
 dewar
@@ -34209,6 +34249,9 @@ dialogs
 dialogue
 dialogue's
 dialogues
+dialpad
+dialpad's
+dialpads
 dials
 dialup
 dialup's
@@ -35175,6 +35218,7 @@ disabilities
 disability
 disability's
 disable
+disableable
 disabled
 disablement
 disablement's
@@ -36075,6 +36119,7 @@ dismisser
 dismisser's
 dismissers
 dismisses
+dismissible
 dismissing
 dismissive
 dismissively
@@ -37665,6 +37710,8 @@ downiest
 downing
 downland
 downlands
+downlevel
+downleveling
 downlink
 downlinked
 downlinking
@@ -37798,6 +37845,7 @@ dozes
 dozing
 dozy
 DP
+DPI
 DPs
 dpt
 dr
@@ -40751,6 +40799,8 @@ emissary's
 emission
 emission's
 emissions
+emissive
+emissively
 emissivities
 emissivity
 emissivity's
@@ -42539,6 +42589,7 @@ equiproportionality
 equiproportionally
 equiproportionate
 equips
+equirectangular
 equisetum
 equispaced
 equitable
@@ -44437,6 +44488,8 @@ explorable
 exploration
 exploration's
 explorations
+explorative
+exploratively
 exploratorily
 exploratory
 explore
@@ -45887,6 +45940,9 @@ fauvism
 fauvisms
 faux
 fava
+favicon
+favicon's
+favicons
 favism
 favor
 favor's
@@ -48030,6 +48086,9 @@ flip
 flipboard
 flipboard's
 flipboards
+flipbook
+flipbook's
+flipbooks
 flipflop
 flippable
 flippancies
@@ -49745,9 +49804,15 @@ frailty's
 frambesia
 frame
 frame's
+framebuffer
+framebuffer's
+framebuffers
 framed
 framer
 framer's
+framerate
+framerate's
+framerates
 framers
 frames
 frameshift
@@ -51229,6 +51294,9 @@ gameplay's
 gamer
 gamer's
 gamers
+gamertag
+gamertag's
+gamertags
 games
 gamesmanship
 gamesmanship's
@@ -52165,6 +52233,9 @@ geolocating
 geolocation
 geolocation's
 geolocations
+geolocator
+geolocator's
+geolocators
 geologic
 geological
 geologically
@@ -52203,6 +52274,9 @@ geophysicist's
 geophysicists
 geophysics
 geophysics's
+geopoint
+geopoint's
+geopoints
 geopolitic
 geopolitical
 geopolitically
@@ -52221,6 +52295,10 @@ geosynchronous
 geosyncline
 geosyncline's
 geosynclines
+geotag
+geotagged
+geotagging
+geotags
 geotaxis
 geotechnic
 geotechnical
@@ -52771,6 +52849,7 @@ glamoured
 glamouring
 glamours
 glance
+glanceable
 glanced
 glances
 glancing
@@ -55439,6 +55518,9 @@ gyro's
 gyrocompass
 gyrocompass's
 gyromagnetic
+gyrometer
+gyrometer's
+gyrometers
 gyros
 gyroscope
 gyroscope's
@@ -56083,6 +56165,9 @@ handmaiden
 handmaiden's
 handmaidens
 handmaids
+handoff
+handoff's
+handoffs
 handout
 handout's
 handouts
@@ -56240,6 +56325,9 @@ haps
 hapten
 hapten's
 haptens
+haptic
+haptic's
+haptics
 hara
 harangue
 harangued
@@ -65166,6 +65254,7 @@ interabang's
 interabangs
 interabangs'
 interact
+interactable
 interacted
 interacting
 interaction
@@ -65606,6 +65695,8 @@ interoception
 interoceptor
 interocular
 interoffice
+interop
+interop's
 interoperability
 interoperable
 interoperate
@@ -65613,6 +65704,7 @@ interoperated
 interoperates
 interoperating
 interoperation
+interops
 interorganizational
 interossei
 interosseous
@@ -66488,6 +66580,7 @@ iphigenia's
 ipr
 ipsilateral
 ipso
+ipsum
 iq
 Iqaluit
 Iqbal
@@ -68036,6 +68129,9 @@ jumpily
 jumpiness
 jumpiness's
 jumping
+jumplist
+jumplist's
+jumplists
 jumps
 jumpstart
 jumpstarted
@@ -68527,6 +68623,9 @@ keystroke's
 keystroked
 keystrokes
 keystroking
+keytip
+keytip's
+keytips
 keyword
 keyword's
 keywords
@@ -70370,6 +70469,9 @@ leadenness's
 leadens
 leader
 leader's
+leaderboard
+leaderboard's
+leaderboards
 leaderless
 leaders
 leadership
@@ -70457,6 +70559,7 @@ leaping
 leaps
 leapt
 learn
+learnability
 learned
 learnedly
 learnedness
@@ -70975,7 +71078,9 @@ lets
 letter
 letter's
 letterbox
+letterboxed
 letterboxes
+letterboxing
 lettered
 letterer's
 letterers
@@ -71382,6 +71487,9 @@ lifebuoys
 lifecycle
 lifecycle's
 lifecycles
+lifecyle
+lifecyle's
+lifecyles
 lifeforms
 lifeguard
 lifeguard's
@@ -72380,6 +72488,7 @@ localisms
 localities
 locality
 locality's
+localizability
 localizable
 localization
 localization's
@@ -72833,6 +72942,7 @@ lordship's
 lordships
 lore
 lore's
+lorem
 lorenzini
 lores
 lorgnette
@@ -78280,6 +78390,9 @@ minimalists
 minimality
 minimally
 minimals
+minimap
+minimap's
+minimaps
 minimax
 minimax's
 minimi
@@ -78428,6 +78541,7 @@ minxes
 miocene
 miosis
 miosis's
+mip
 mipmap
 mipmap's
 mipmapped
@@ -79880,6 +79994,7 @@ monohydrogen
 monokaryotic
 monolayer
 monolayers
+monoline
 monolingual
 monolingualism
 monolinguals
@@ -81161,6 +81276,7 @@ multiparous
 multipart
 multiparty
 multiparty's
+multipass
 multipath
 multipayer
 multipayer's
@@ -81260,6 +81376,7 @@ multistory
 multistroke
 multistrokes
 multisyllabic
+multisymbol
 multitasking
 multitaskings
 multitaxon
@@ -81970,6 +82087,7 @@ naggers
 nagging
 naggingly
 nags
+nah
 naiad
 naiad's
 naiads
@@ -89782,6 +89900,7 @@ Pankhurst
 panky
 panmixia
 panmixis
+pannable
 panned
 Panniculus
 pannier
@@ -92458,6 +92577,7 @@ permeation
 permeations
 permeative
 permed
+permille
 perming
 permissibility
 permissibility's
@@ -92981,6 +93101,9 @@ PG
 Ph
 Ph's
 Ph.D.
+phablet
+phablet's
+phablets
 phacoemulsification
 phaedra
 phaedra's
@@ -93581,6 +93704,7 @@ photoshopping
 photoshops
 photosphere
 photosphere's
+photospheres
 photospheric
 photostat
 photostat's
@@ -94100,6 +94224,9 @@ pillages
 pillaging
 pillar
 pillar's
+pillarboxed
+pillarboxes
+pillarboxing
 pillared
 pillaring
 pillars
@@ -94266,6 +94393,7 @@ pinks
 pinky
 pinky's
 Pinna
+pinnable
 pinnace
 pinnace's
 pinnaces
@@ -94562,6 +94690,10 @@ pix
 pixed
 pixel
 pixel's
+pixelate
+pixelated
+pixelates
+pixelating
 pixels
 pixes
 pixie
@@ -94924,6 +95056,9 @@ plates
 platform
 platform's
 platformed
+platformer
+platformer's
+platformers
 platforming
 platforms
 platier
@@ -95044,6 +95179,10 @@ playroom's
 playrooms
 plays
 playscape
+playtest
+playtested
+playtesting
+playtests
 plaything
 plaything's
 playthings
@@ -95830,6 +95969,9 @@ polity
 polity's
 polka
 polka's
+polkadot
+polkadot's
+polkadots
 polkaed
 polkaing
 polkas
@@ -97023,6 +97165,9 @@ powerless
 powerlessly
 powerlessness
 powerlessness's
+powerline
+powerline's
+powerlines
 powers
 powwow
 powwow's
@@ -97670,6 +97815,9 @@ preinitializes
 preinitializing
 preinitiation
 preinstall
+preinstallation
+preinstallation's
+preinstallations
 preinstalled
 preinstalling
 preinstalls
@@ -97716,6 +97864,8 @@ preliterate
 preliterates
 preload
 preloaded
+preloading
+preloads
 prelude
 prelude's
 preluded
@@ -99694,6 +99844,8 @@ protagoras
 protagoras's
 protandrous
 protandry
+protanopia
+protanopia's
 protea
 protea's
 protean
@@ -101939,6 +102091,9 @@ raccoon's
 raccoons
 race
 race's
+racecar
+racecar's
+racecars
 racecourse
 racecourse's
 racecourses
@@ -102758,6 +102913,9 @@ rasterise
 rasterised
 rasterises
 rasterising
+rasterization
+rasterization's
+rasterizations
 rasterize
 rasterized
 rasterizer
@@ -104905,6 +105063,7 @@ reflate
 reflation
 reflationary
 reflect
+reflectable
 reflectance
 reflectance's
 reflected
@@ -105497,6 +105656,9 @@ reinspected
 reinspecting
 reinspects
 reinstall
+reinstallation
+reinstallation's
+reinstallations
 reinstalled
 reinstaller
 reinstalling
@@ -108775,6 +108937,9 @@ ringsider
 ringsider's
 ringsiders
 ringsides
+ringtone
+ringtone's
+ringtones
 ringworm
 ringworm's
 ringworms
@@ -112292,6 +112457,9 @@ screenings
 screenplay
 screenplay's
 screenplays
+screenreader
+screenreader's
+screenreaders
 screens
 screensaver
 screensaver's
@@ -112299,6 +112467,7 @@ screensavers
 screenshot
 screenshot's
 screenshots
+screenshotted
 screenwrite
 screenwriter
 screenwriter's
@@ -112410,6 +112579,9 @@ scrollbar
 scrollbar's
 scrollbars
 scrolled
+scroller
+scroller's
+scrollers
 scrolling
 scrolls
 scrooge
@@ -113388,6 +113560,7 @@ semiarid
 semiautomated
 semiautomatic
 semiautomatics
+semibold
 semicircle
 semicircle's
 semicircles
@@ -113416,6 +113589,7 @@ semifinalist's
 semifinalists
 semifinals
 semifunctional
+semilight
 semilogarithmic
 semilunar
 semimajor
@@ -117412,6 +117586,9 @@ smarmier
 smarmiest
 smarmy
 smart
+smartcard
+smartcard'a
+smartcards
 smarted
 smarten
 smartened
@@ -120403,6 +120580,9 @@ sprints
 sprite
 sprite's
 sprites
+spritesheet
+spritesheet's
+spritesheets
 spritz
 spritzed
 spritzer
@@ -121696,6 +121876,9 @@ stereographic
 stereography
 stereography's
 stereoing
+stereolithographies
+stereolithography
+stereolithography's
 stereophonic
 stereos
 stereoscope
@@ -123606,6 +123789,9 @@ subparagraph's
 subpart
 subpart's
 subparts
+subpath
+subpath's
+subpaths
 subpattern
 subpattern's
 subpatterns
@@ -125484,6 +125670,11 @@ swans
 Swansea
 swansong
 swap
+swapchain
+swapchain's
+swapchained
+swapchaining
+swapchains
 swapfile
 swapfile's
 swapfiles
@@ -125971,6 +126162,9 @@ symbolizer
 symbolizers
 symbolizes
 symbolizing
+symbologies
+symbology
+symbology's
 symbols
 symlink
 symlink's
@@ -126228,6 +126422,7 @@ syntactics's
 syntax
 syntax's
 syntaxes
+synth
 synthase
 syntheses
 synthesis
@@ -126281,6 +126476,9 @@ syruping
 syrups
 syrupy
 sys
+syscall
+syscall's
+syscalls
 system
 system's
 systematic
@@ -127733,7 +127931,11 @@ telephotographies
 telephotography
 telephotography's
 telephotos
+teleport
 teleportation
+teleported
+teleporting
+teleports
 teleprinter
 teleprinter's
 teleprinters
@@ -127881,6 +128083,7 @@ template
 template's
 templated
 templates
+templating
 templatize
 templatized
 templatizes
@@ -128509,6 +128712,9 @@ teutons
 tevatron
 tevatron's
 tevatrons
+texel
+texel's
+texels
 text
 text's
 textbook
@@ -130928,6 +131134,8 @@ touchpoint
 touchpoint's
 touchpoints
 touchscreen
+touchscreen's
+touchscreens
 touchstone
 touchstone's
 touchstones
@@ -132592,6 +132800,8 @@ trisulcate
 trisulfide
 trisyllable
 trisyllable's
+tritanopia
+tritanopia's
 trite
 tritely
 triteness
@@ -134116,6 +134326,7 @@ unamused
 unanalyzable
 unanalyzed
 unanchored
+unanimated
 unanimities
 unanimity
 unanimity's
@@ -134362,6 +134573,7 @@ unbutton
 unbuttoned
 unbuttoning
 unbuttons
+uncached
 uncaged
 uncalcified
 uncalculating
@@ -137539,6 +137751,7 @@ updateable
 updated
 updater
 updater's
+updaters
 updates
 updating
 updraft
@@ -139479,6 +139692,9 @@ vies
 view
 view's
 viewable
+viewbox
+viewbox's
+viewboxes
 viewed
 viewer
 viewer's
@@ -141539,6 +141755,9 @@ webservices
 website
 website's
 websites
+webview
+webview's
+webviews
 wed
 wedded
 wedder
@@ -142719,6 +142938,9 @@ wines
 winesap
 wineskin
 wineskin's
+winform
+winform's
+winforms
 wing
 wing's
 wingback

@@ -2341,6 +2341,7 @@ Blodgett
 Bloemer
 Bloemfontein
 Blofeld
+Blois
 Blomberg
 Blomquist
 Blondel
@@ -3909,6 +3910,7 @@ Chrysta
 Chrystal
 Chryste
 Chrystel
+Chrzan
 Chubraev
 Chuck
 Chudamani
@@ -8003,6 +8005,7 @@ Gough
 Gould
 Goulding
 Gounod
+Gouraud
 Govindaraj
 Gower
 Goya
@@ -11203,6 +11206,7 @@ Khrissa
 Khrista
 Khristian
 Khristina
+Khronos
 Khrushchev
 Khufu
 Khulna
@@ -11884,6 +11888,7 @@ Lambert
 Lamberta
 Lambeth
 Lambiase
+Lambson
 Lamerton
 Lamesha
 Lamia
@@ -14418,6 +14423,7 @@ Monell
 Monesa
 Monet
 Mongella
+Mongo
 Mongolia
 Monica
 Monika
@@ -15763,6 +15769,7 @@ Philly
 Phinean
 Phineas
 Phnom
+Phong
 Phylis
 Phyllida
 Phyllis

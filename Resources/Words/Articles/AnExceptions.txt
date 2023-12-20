@@ -19,6 +19,8 @@ mRNA
 NAACP
 NADH
 NADPH
+NPM
+NVM
 RAII
 Rh-negative
 Rh-positive
@@ -41,5 +43,6 @@ xml
 XmlDocument
 XmlElement
 XmlReader
+XmlSerializer
 XPath
 xpm

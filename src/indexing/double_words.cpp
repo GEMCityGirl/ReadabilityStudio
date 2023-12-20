@@ -33,5 +33,6 @@ std::set<is_double_word_exception::string_type>
         L"Sirhan",   // "Sirhan Sirhan" was RFJ's assassin
         L"ta",       // "ta ta" means "goodbye"
         L"that",
+        L"uh",   // variation of "no"
         L"Walla" // Walla Walla, Washington
     };

@@ -100,6 +100,7 @@ codecvt
 compl
 concept
 const
+const&
 const_cast
 constants
 consteval
@@ -162,6 +163,7 @@ final
 float
 fmod
 fmt
+foobar
 fopen
 for
 forceinline
@@ -275,6 +277,7 @@ namespace
 new
 nextafter
 nodiscard
+noentry
 noexcept
 nologo
 noreturn
@@ -307,6 +310,7 @@ public
 putws
 Qspectre
 realloc
+rect
 refcount
 refcounter
 refcounter's
@@ -337,6 +341,7 @@ sprintf
 sprintfl
 sprintfs
 sprintfsl
+src
 sstream
 stackframe
 static

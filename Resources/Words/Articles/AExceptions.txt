@@ -8,6 +8,7 @@ one
 OneDrive
 OneNote
 onetime
+oneway
 SaaS
 SFINAE
 SHA-1
@@ -15,13 +16,16 @@ SHA-256
 SHA1
 SHA256
 SKOS
+SKU
 SQLite
+UAV
 UAW
 Ubuntu
 UCSF
 UDC
 UDP
 UFO
+UIA
 UICulture
 UKG
 umask
