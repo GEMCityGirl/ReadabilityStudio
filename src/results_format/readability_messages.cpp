@@ -15,35 +15,65 @@ using namespace Wisteria;
 wxString ReadabilityMessages::GetGradeScaleLongLabel(size_t grade) const
     {
     if (GetGradeScale() == grade_scale::k12_plus_united_states)
-        { return GetUSGradeScaleLabel(grade); }
+        {
+        return GetUSGradeScaleLabel(grade);
+        }
     else if (GetGradeScale() == grade_scale::k12_plus_newfoundland_and_labrador)
-        { return GetNewfoundlandAndLabradorScaleLabel(grade); }
+        {
+        return GetNewfoundlandAndLabradorScaleLabel(grade);
+        }
     else if (GetGradeScale() == grade_scale::k12_plus_british_columbia)
-        { return GetBritishColumbiaScaleLabel(grade); }
+        {
+        return GetBritishColumbiaScaleLabel(grade);
+        }
     else if (GetGradeScale() == grade_scale::k12_plus_newbrunswick)
-        { return GetNewBrunswickScaleLabel(grade); }
+        {
+        return GetNewBrunswickScaleLabel(grade);
+        }
     else if (GetGradeScale() == grade_scale::k12_plus_nova_scotia)
-        { return GetNovaScotiaScaleLabel(grade); }
+        {
+        return GetNovaScotiaScaleLabel(grade);
+        }
     else if (GetGradeScale() == grade_scale::k12_plus_ontario)
-        { return GetOntarioScaleLabel(grade); }
+        {
+        return GetOntarioScaleLabel(grade);
+        }
     else if (GetGradeScale() == grade_scale::k12_plus_saskatchewan)
-        { return GetSaskatchewanScaleLabel(grade); }
+        {
+        return GetSaskatchewanScaleLabel(grade);
+        }
     else if (GetGradeScale() == grade_scale::k12_plus_prince_edward_island)
-        { return GetPrinceEdwardIslandScaleLabel(grade); }
+        {
+        return GetPrinceEdwardIslandScaleLabel(grade);
+        }
     else if (GetGradeScale() == grade_scale::k12_plus_manitoba)
-        { return GetManitobaScaleLabel(grade); }
+        {
+        return GetManitobaScaleLabel(grade);
+        }
     else if (GetGradeScale() == grade_scale::k12_plus_northwest_territories)
-        { return GetNorthwestTerritoriesScaleLabel(grade); }
+        {
+        return GetNorthwestTerritoriesScaleLabel(grade);
+        }
     else if (GetGradeScale() == grade_scale::k12_plus_alberta)
-        { return GetAlbertaScaleLabel(grade); }
+        {
+        return GetAlbertaScaleLabel(grade);
+        }
     else if (GetGradeScale() == grade_scale::k12_plus_nunavut)
-        { return GetNunavutScaleLabel(grade); }
+        {
+        return GetNunavutScaleLabel(grade);
+        }
     else if (GetGradeScale() == grade_scale::quebec)
-        { return GetQuebecScaleLabel(grade); }
+        {
+        return GetQuebecScaleLabel(grade);
+        }
     else if (GetGradeScale() == grade_scale::key_stages_england_wales)
-        { return GetEnglandWalesScaleLabel(grade); }
+        {
+        return GetEnglandWalesScaleLabel(grade);
+        }
     else
-        { return GetUSGradeScaleLabel(grade); }
+        {
+        return GetUSGradeScaleLabel(grade);
+        }
     }
 
 //-----------------------------------------------
@@ -69,18 +99,24 @@ wxString ReadabilityMessages::GetFormattedValue(const wxString& value,
     {
     // just return value if not using long format
     if (!IsUsingLongGradeScaleFormat())
-        { return value; }
+        {
+        return value;
+        }
 
     // split up a list of multiple scores
     wxStringTokenizer tkzLis(value, L";", wxTOKEN_STRTOK);
     if (tkzLis.CountTokens() > 1)
         {
         wxString fullString;
-        while (tkzLis.HasMoreTokens() )
-            { fullString += GetFormattedValue(tkzLis.GetNextToken(), format) + L"; "; }
+        while (tkzLis.HasMoreTokens())
+            {
+            fullString += GetFormattedValue(tkzLis.GetNextToken(), format) + L"; ";
+            }
         // chop off the last "; "
         if (fullString.length() > 2)
-            { fullString.RemoveLast(2); }
+            {
+            fullString.RemoveLast(2);
+            }
         return fullString;
         }
 
@@ -90,9 +126,9 @@ wxString ReadabilityMessages::GetFormattedValue(const wxString& value,
     if (tkz.CountTokens() > 1)
         {
         wxString fullValue;
-        while (tkz.HasMoreTokens() )
+        while (tkz.HasMoreTokens())
             {
-            if (GetScoreValue(tkz.GetNextToken(), numericValue) )
+            if (GetScoreValue(tkz.GetNextToken(), numericValue))
                 {
                 size_t grade, month;
                 // month is not used, grade ranges shouldn't have this
@@ -101,7 +137,9 @@ wxString ReadabilityMessages::GetFormattedValue(const wxString& value,
                 }
             }
         if (fullValue.length() > 0)
-            { fullValue.RemoveLast(); }
+            {
+            fullValue.RemoveLast();
+            }
         return fullValue;
         }
     else if (GetScoreValue(value, numericValue))
@@ -111,14 +149,18 @@ wxString ReadabilityMessages::GetFormattedValue(const wxString& value,
         return GetGradeScaleLongLabel(grade) + L", " + GetMonthLabel(month);
         }
     else
-        { return value; }
+        {
+        return value;
+        }
     }
 
 //-----------------------------------------------
 wxString ReadabilityMessages::GetMonthLabel(size_t month)
     {
     if (month > 9)
-        { month = 9; }
+        {
+        month = 9;
+        }
 
     switch (month)
         {
@@ -169,9 +211,8 @@ wxString ReadabilityMessages::GetAgeFromUSGrade(double value, const ReadingAgeDi
         }
     else
         {
-        return wxString::Format(L"%zu-%zu",
-            static_cast<size_t>(std::floor(value))+5,
-            static_cast<size_t>(std::floor(value))+6);
+        return wxString::Format(L"%zu-%zu", static_cast<size_t>(std::floor(value)) + 5,
+                                static_cast<size_t>(std::floor(value)) + 6);
         }
     }
 
@@ -180,14 +221,18 @@ wxString ReadabilityMessages::GetAgeFromUSGrade(const size_t firstGrade, const s
                                                 const ReadingAgeDisplay displayFormat)
     {
     if (firstGrade == secondGrade)
-        { return GetAgeFromUSGrade(firstGrade, displayFormat); }
+        {
+        return GetAgeFromUSGrade(firstGrade, displayFormat);
+        }
     if (displayFormat == ReadingAgeDisplay::ReadingAgeRoundToSemester)
         {
-        const double age = safe_divide<double>((firstGrade+secondGrade),2) + 5;
-        return std::to_wstring(static_cast<size_t>(round_to_integer(age)) );
+        const double age = safe_divide<double>((firstGrade + secondGrade), 2) + 5;
+        return std::to_wstring(static_cast<size_t>(round_to_integer(age)));
         }
     else
-        { return wxString::Format(L"%zu-%zu", firstGrade+5, secondGrade+6); }
+        {
+        return wxString::Format(L"%zu-%zu", firstGrade + 5, secondGrade + 6);
+        }
     }
 
 //-----------------------------------------------------
@@ -959,9 +1004,7 @@ wxString ReadabilityMessages::GetGradeScaleDescription(double value) const
 
     return wxString::Format(
         _(L"This document is at least suitable for a reader at the %s%s, %s%s level."),
-        GetHighlightBegin(),
-        GetGradeScaleLongLabel(grade),
-        GetMonthLabel(month),
+        GetHighlightBegin(), GetGradeScaleLongLabel(grade), GetMonthLabel(month),
         GetHighlightEnd());
     }
 
@@ -973,9 +1016,7 @@ wxString ReadabilityMessages::GetGradeScaleDescription(size_t value) const
 
     return wxString::Format(
         _(L"This document is at least suitable for a reader at the %s%s%s level."),
-        GetHighlightBegin(),
-        GetGradeScaleLongLabel(value),
-        GetHighlightEnd());
+        GetHighlightBegin(), GetGradeScaleLongLabel(value), GetHighlightEnd());
     }
 
 //-----------------------------------------------------
@@ -987,16 +1028,13 @@ wxString ReadabilityMessages::GetGradeScaleDescription(size_t firstGrade, size_t
 
     return wxString::Format(
         _(L"This document is at least suitable for a reader between the %s%s%s to %s%s%s level."),
-        GetHighlightBegin(),
-        GetGradeScaleLongLabel(firstGrade),
-        GetHighlightEnd(),
-        GetHighlightBegin(),
-        GetGradeScaleLongLabel(secondGrade),
-        GetHighlightEnd());
+        GetHighlightBegin(), GetGradeScaleLongLabel(firstGrade), GetHighlightEnd(),
+        GetHighlightBegin(), GetGradeScaleLongLabel(secondGrade), GetHighlightEnd());
     }
 
 //-----------------------------------------------------
-wxString ReadabilityMessages::GetDanielsonBryan2Description(const readability::flesch_difficulty diffLevel)
+wxString
+ReadabilityMessages::GetDanielsonBryan2Description(const readability::flesch_difficulty diffLevel)
     {
     wxString description;
     switch (diffLevel)
@@ -1045,7 +1083,8 @@ wxString ReadabilityMessages::GetFleschDescription(const readability::flesch_dif
         description = _(L"Text is fairly difficult to read.");
         break;
     case readability::flesch_difficulty::flesch_standard:
-        description = _(L"Text is average (i.e., \"Plain English\") in terms of reading difficulty.");
+        description =
+            _(L"Text is average (i.e., \"Plain English\") in terms of reading difficulty.");
         break;
     case readability::flesch_difficulty::flesch_fairly_easy:
         description = _(L"Text is fairly easy to read.");
@@ -1171,7 +1210,11 @@ bool ReadabilityMessages::GetScoreValue(const wxString& valueStr, double& value)
 
     value = string_util::strtod_ex(valueStrPtr, &end);
     if (valueStrPtr != end)
-        { return true; }
+        {
+        return true;
+        }
     else
-        { return false; }
+        {
+        return false;
+        }
     }

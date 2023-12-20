@@ -17,7 +17,7 @@
 #include <wx/ribbon/gallery.h>
 #include <wx/ribbon/toolbar.h>
 #include <wx/richmsgdlg.h>
-#include "wx/taskbarbutton.h"
+#include <wx/taskbarbutton.h>
 #include "../results_format/readability_messages.h"
 #include "../ui/controls/explanation_listctrl.h"
 #include "../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
@@ -37,45 +37,72 @@ class BaseProjectView : public wxView
 public:
     BaseProjectView();
     virtual ~BaseProjectView();
+
     void SetLeftPaneSize(const int leftPaneWidth)
         {
         m_splitter->SetMinimumPaneSize(leftPaneWidth);
-        m_splitter->SplitVertically(m_splitter->GetWindow1(), m_splitter->GetWindow2(), leftPaneWidth);
+        m_splitter->SplitVertically(m_splitter->GetWindow1(), m_splitter->GetWindow2(),
+                                    leftPaneWidth);
         }
+
     void ShowSideBar(const bool show = true);
+
     [[nodiscard]]
     wxMenuBar* GetMenuBar() noexcept
-        { return m_menuBar; }
+        {
+        return m_menuBar;
+        }
+
     [[nodiscard]]
     wxSplitterWindow* GetSplitter() noexcept
-        { return m_splitter; }
+        {
+        return m_splitter;
+        }
+
     [[nodiscard]]
     wxBoxSizer* GetWorkSpaceSizer() noexcept
-        { return m_workSpaceSizer; }
+        {
+        return m_workSpaceSizer;
+        }
+
     [[nodiscard]]
     Wisteria::UI::SideBar* GetSideBar() noexcept
-        { return m_sideBar; }
+        {
+        return m_sideBar;
+        }
+
     [[nodiscard]]
     const Wisteria::UI::SideBar* GetSideBar() const noexcept
-        { return m_sideBar; }
+        {
+        return m_sideBar;
+        }
+
     [[nodiscard]]
     Wisteria::UI::InfoBarEx* GetInfoBar() noexcept
-        { return m_infoBar; }
+        {
+        return m_infoBar;
+        }
+
     [[nodiscard]]
     const wxWindow* GetActiveProjectWindow() const noexcept
-        { return m_activeWindow; }
+        {
+        return m_activeWindow;
+        }
+
     [[nodiscard]]
     wxWindow* GetActiveProjectWindow() noexcept
-        { return m_activeWindow; }
+        {
+        return m_activeWindow;
+        }
 
-    /// Fills the menus in the ribbon and checks/toggles all the options on the ribbon to match the project's settings.
+    /// Fills the menus in the ribbon and checks/toggles all the options on the
+    /// ribbon to match the project's settings.
     /// Also autofits the sidebar and makes the project the active document/window.
     void Present();
 
     // update toggle states of ribbon buttons after ribbon is created or
     // project was changed from properties dialog
-    virtual void UpdateRibbonState()
-        {}
+    virtual void UpdateRibbonState() {}
 
     void ShowInfoMessage(const WarningMessage& message);
 
@@ -92,20 +119,30 @@ public:
 
     [[nodiscard]]
     wxDocChildFrame* CreateChildFrame(wxDocument* doc, wxView* view);
+
     [[nodiscard]]
     wxDocChildFrame* GetDocFrame() noexcept
-        { return m_frame; }
+        {
+        return m_frame;
+        }
+
     [[nodiscard]]
     wxRibbonBar* GetRibbon() noexcept
-        { return m_ribbon; }
+        {
+        return m_ribbon;
+        }
 
     [[nodiscard]]
     wxAuiToolBar* GetQuickToolbar() noexcept
-        { return m_quickToolbar; }
+        {
+        return m_quickToolbar;
+        }
 
     [[nodiscard]]
     Wisteria::UI::SearchPanel* GetSearchPanel() noexcept
-        { return m_searchCtrl; }
+        {
+        return m_searchCtrl;
+        }
 
     // labels for the icons on the left-side pane used for project navigation
     [[nodiscard]]

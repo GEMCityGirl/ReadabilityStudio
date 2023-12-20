@@ -8,8 +8,8 @@
 
 #include "project_report_format.h"
 #include "../app/readability_app.h"
-#include "../projects/base_project_view.h"
 #include "../projects/base_project_doc.h"
+#include "../projects/base_project_view.h"
 
 DECLARE_APP(ReadabilityApp)
 
@@ -62,17 +62,19 @@ wxString ProjectReportFormat::GetStemmingDisplayName(const stemming::stemming_ty
 wxString ProjectReportFormat::FormatFormulaToHtml(const wxString& formula)
     {
     if (formula.length() == 0)
-        { return formula; }
+        {
+        return formula;
+        }
     wxString formattedFormula = L"<tt>";
     const wxString wordFormatStart = L"<span>";
     const wxString operatorFormatStart = L"<span style='font-weight:bold;'>";
     for (size_t i = 0; i < formula.length(); /*handled in lop*/)
         {
-        if (string_util::is_one_of<wchar_t>(formula[i],
-            L"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"))
+        if (string_util::is_one_of<wchar_t>(
+                formula[i], L"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"))
             {
-            const size_t endOfWord =
-                formula.find_first_not_of(L"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890", i);
+            const size_t endOfWord = formula.find_first_not_of(
+                L"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890", i);
             if (endOfWord == std::wstring::npos)
                 {
                 formattedFormula += wordFormatStart;
@@ -81,7 +83,7 @@ wxString ProjectReportFormat::FormatFormulaToHtml(const wxString& formula)
                 break;
                 }
             formattedFormula += wordFormatStart;
-            formattedFormula += formula.substr(i, endOfWord-i);
+            formattedFormula += formula.substr(i, endOfWord - i);
             formattedFormula += L"</span>";
             i = endOfWord;
             }
@@ -93,38 +95,50 @@ wxString ProjectReportFormat::FormatFormulaToHtml(const wxString& formula)
                 formattedFormula += formula[i];
                 formattedFormula += L"</span>";
                 }
-            else if (formula[i] == L'<' && i+1 < formula.length() && formula[i+1] == L'=')
+            else if (formula[i] == L'<' && i + 1 < formula.length() && formula[i + 1] == L'=')
                 {
                 formattedFormula += operatorFormatStart + L"&le;</span>";
                 ++i;
                 }
-            else if (formula[i] == L'>' && i+1 < formula.length() && formula[i+1] == L'=')
+            else if (formula[i] == L'>' && i + 1 < formula.length() && formula[i + 1] == L'=')
                 {
                 formattedFormula += operatorFormatStart + L"&ge;</span>";
                 ++i;
                 }
             else if (formula[i] == L'<')
-                { formattedFormula += operatorFormatStart + L"&lt;</span>"; }
+                {
+                formattedFormula += operatorFormatStart + L"&lt;</span>";
+                }
             else if (formula[i] == L'>')
-                { formattedFormula += operatorFormatStart + L"&gt;</span>"; }
+                {
+                formattedFormula += operatorFormatStart + L"&gt;</span>";
+                }
             else if (formula[i] == L'\'')
-                { formattedFormula += L"&apos;"; }
+                {
+                formattedFormula += L"&apos;";
+                }
             else if (formula[i] == L'\"')
-                { formattedFormula += L"&quot;"; }
+                {
+                formattedFormula += L"&quot;";
+                }
             else if (formula[i] == L' ')
-                { formattedFormula += L"&nbsp;"; }
+                {
+                formattedFormula += L"&nbsp;";
+                }
             else if (formula[i] == 10 || formula[i] == 13)
                 {
                 // treats CRLF combo as one break, so make one extra step for CRLF combination
                 // so that it counts as only one line break
-                if (i < formula.length()-1 &&
-                    (formula[i+1] == 10 ||
-                    formula[i+1] == 13) )
-                    { ++i; }
+                if (i < formula.length() - 1 && (formula[i + 1] == 10 || formula[i + 1] == 13))
+                    {
+                    ++i;
+                    }
                 formattedFormula += L"<br />";
                 }
             else
-                { formattedFormula += formula[i]; }
+                {
+                formattedFormula += formula[i];
+                }
             ++i;
             }
         }
