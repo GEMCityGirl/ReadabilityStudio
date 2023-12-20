@@ -33,9 +33,11 @@
 
 class BaseProjectView : public wxView
     {
-    wxDECLARE_NO_COPY_CLASS(BaseProjectView);
 public:
     BaseProjectView();
+    BaseProjectView(const BaseProjectView&) = delete;
+    BaseProjectView& operator=(const BaseProjectView&) = delete;
+
     virtual ~BaseProjectView();
 
     void SetLeftPaneSize(const int leftPaneWidth)

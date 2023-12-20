@@ -13,9 +13,10 @@
 
 class BatchProjectView final : public BaseProjectView
     {
-    wxDECLARE_NO_COPY_CLASS(BatchProjectView);
 public:
     BatchProjectView();
+    BatchProjectView(const BatchProjectView&) = delete;
+    BatchProjectView& operator=(const BatchProjectView&) = delete;
 
     void OnGradeScale(wxCommandEvent& event);
     void OnLongFormat([[maybe_unused]] wxRibbonButtonBarEvent& event);
