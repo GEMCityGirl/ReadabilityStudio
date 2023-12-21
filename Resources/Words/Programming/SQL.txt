@@ -1,0 +1,13 @@
+bigint
+columnstore
+datetime
+datetimeoffset
+nchar
+nvarchar
+smalldatetime
+smallint
+smallmoney
+tempdb
+tinyint
+varbinary
+varchar

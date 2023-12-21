@@ -11,6 +11,7 @@ HINSTANCE
 HIV
 HVAC
 LED
+lparam
 lvalue
 mbstate_t
 MIT
@@ -31,6 +32,7 @@ SaaS
 SEH
 SMB
 SME
+SQL
 ssDNA
 ssRNA
 SUV

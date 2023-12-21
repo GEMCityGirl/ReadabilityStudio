@@ -37,6 +37,7 @@ Adidas
 Adnexa
 Adriaen
 Adriatic
+Adventureworks
 Adventus
 Advil
 Aegean
@@ -284,6 +285,7 @@ Arcadia
 Arcadian
 Archaea
 Archean
+Archimedean
 Archosauromorpha
 ARCO
 Arcturus
@@ -601,6 +603,7 @@ Bermuda
 Bermudan
 Bermudian
 Bernese
+Bernoulli
 Betadine
 Betelgeuse
 Bethesda
@@ -638,6 +641,7 @@ BizStats
 BizTalk
 Blackwater
 Blazor
+Blitzkrieg
 Bloemfontein
 BlogPulse
 Blogspot
@@ -672,6 +676,7 @@ Bolshoi
 Bombay
 Bombululu
 Bonaire
+Bonanno
 Bonaventure
 Bonneville
 Borax
@@ -736,6 +741,7 @@ Britisher
 Britishly
 Britishness
 Broadway
+Broadwell
 Brobdingnag
 Brobdingnagian
 Bromism
@@ -928,6 +934,7 @@ Cayuga
 CBS
 Cebuano
 Celanese
+Celsius
 Celt
 Celtic
 Cengage
@@ -1078,6 +1085,7 @@ Clinique
 Clipchamp
 Clonazepam
 Clorox
+Cloudera
 Cloudflare
 Cloze
 Clytemnestra
@@ -1118,6 +1126,7 @@ Compaq
 Compton
 CompuServe
 Computerworld
+Compuware
 Comte
 Comté
 Conakry
@@ -1346,6 +1355,7 @@ Dixieland
 Djibouti
 DMZ
 Dobro
+DocFX
 Dockerfile
 DoCoMo
 Docusign
@@ -1616,6 +1626,7 @@ Facebooks
 FactFinder
 Faeroe
 Fagatogo
+Fahrenheit
 Fairfax
 Fairfield
 Fairmont
@@ -1924,6 +1935,7 @@ Gorky
 Gosport
 Goth
 Gotham
+Gothenburg
 Gothic
 Gothically
 Gothicise
@@ -1936,6 +1948,7 @@ Gothicized
 Gothicizes
 Gothicizing
 GoToMeeting
+Gottlieb
 Goulston
 Govwin
 Graceland
@@ -2177,6 +2190,7 @@ Hooverville
 Hopi
 Hopkinsian
 Hormuz
+Hortonworks
 Hotmail
 Hottentot
 Houdaille
@@ -3035,6 +3049,9 @@ Missourian
 Misérables
 Misérables's
 MIT
+Mithra
+Mithraic
+Mithridate
 Mitsubishi
 MLA
 Mobil
@@ -3356,7 +3373,8 @@ NSF
 NT
 Nubia
 Nubian
-Nukuʻalofa
+Nuku'alofa
+Nullarbor
 Nunavut
 Nuneaton
 Nuremberg
@@ -3505,6 +3523,7 @@ Pangaea
 Pango
 Panmunjom
 Pantagruel
+Papanicolaou
 Papenhausen
 Pappenheim
 Papua
@@ -4351,6 +4370,7 @@ Stroud
 Stryker
 Sturgis
 Stuttgart
+Stuxnet
 Stuyvesant
 Styrofoam
 Styx
@@ -4432,6 +4452,7 @@ Syracuse
 Syria
 Syrian
 Sysinternals
+Sysmon
 Szechuan
 São
 Tabasco
@@ -4879,6 +4900,7 @@ Venus
 Venusian
 Veracruz
 Veradis
+Verdana
 Verisign
 Verizon
 Vermont
@@ -5104,10 +5126,12 @@ Winans
 Winceyette
 Windhoek
 Windsor
+Wininet
 Winnetka
 Winnipeg
 Winsborough
 WinZip
+Wireshark
 Wisc
 Wisconsin
 Wisconsinite

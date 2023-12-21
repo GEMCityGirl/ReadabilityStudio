@@ -294,6 +294,7 @@ abominations
 aboral
 aboriginal
 aboriginally
+aborigine
 aborning
 abort
 aborted
@@ -3000,6 +3001,7 @@ all's
 all-nighter
 all-nighter's
 all-nighters
+all-time
 allantois
 allay
 allayed
@@ -12367,6 +12369,9 @@ blackguarded
 blackguarding
 blackguardly
 blackguards
+blackhat
+blackhat's
+blackhats
 blackhead
 blackhead's
 blackheads
@@ -12810,6 +12815,7 @@ blockhouse's
 blockhouses
 blockier
 blocking
+blockings
 blocklist
 blocklist's
 blocklists
@@ -13774,6 +13780,9 @@ bootlegging
 bootlegging's
 bootlegs
 bootless
+bootloader
+bootloader's
+bootloaders
 bootprints
 boots
 bootstrap
@@ -16009,6 +16018,7 @@ bursitis's
 bursitises
 bursopathy
 burst
+burstable
 burster
 burster's
 bursting
@@ -16444,6 +16454,9 @@ cache's
 cacheable
 cachectic
 cached
+cacheline
+cacheline's
+cachelines
 cachepot
 cachepot's
 cachepots
@@ -18953,6 +18966,7 @@ cellophane
 cellophane's
 cellophanes
 cellos
+cellpadding
 cellphone
 cellphone's
 cellphones
@@ -20053,6 +20067,8 @@ checkout
 checkouts
 checkpoint
 checkpoint's
+checkpointed
+checkpointing
 checkpoints
 checkroom
 checkroom's
@@ -22475,6 +22491,7 @@ cluster's
 clustered
 clustering
 clusterings
+clusterless
 clusters
 clutch
 clutched
@@ -23959,6 +23976,8 @@ committees
 committeewoman
 committeewoman's
 committeewomen
+committer
+committers
 committing
 commode
 commode's
@@ -25089,6 +25108,7 @@ confiding
 confidingly
 confidingness
 config
+configurability
 configurable
 configuration
 configuration's
@@ -27690,6 +27710,9 @@ courser
 courser's
 coursers
 courses
+courseware
+courseware's
+coursewares
 coursework
 coursing
 coursing's
@@ -30029,6 +30052,9 @@ cybersquatting
 cyberthreat
 cyberthreat's
 cyberthreats
+cyberthriller
+cyberthriller's
+cyberthrillers
 cybertour
 cybertour's
 cybertours
@@ -31954,7 +31980,13 @@ defrag
 defragged
 defragging
 defragment
+defragmentation
+defragmentation's
+defragmentations
 defragmented
+defragmenter
+defragmenter's
+defragmenters
 defragmenting
 defragments
 defrags
@@ -34041,6 +34073,7 @@ devolved
 devolves
 devolving
 devonian
+devops
 devote
 devoted
 devotedly
@@ -42773,6 +42806,8 @@ erroneousness
 erroneousness's
 error
 error's
+errored
+erroring
 errors
 errs
 ersatz
@@ -46923,6 +46958,9 @@ filching
 file
 file's
 filed
+filegroup
+filegroup's
+filegroups
 fileless
 filelike
 filename
@@ -49525,6 +49563,7 @@ fortnight's
 fortnightlies
 fortnightly
 fortnights
+fortran
 fortress
 fortress's
 fortressed
@@ -52290,6 +52329,7 @@ geoscientific
 geoscientist
 geoscientist's
 geoscientists
+geospatial
 geostationary
 geosynchronous
 geosyncline
@@ -60432,7 +60472,9 @@ hydronephrosis
 hydronium
 hydronium's
 hydrophila
+hydrophile
 hydrophilic
+hydrophobe
 hydrophobia
 hydrophobia's
 hydrophobias
@@ -68615,6 +68657,9 @@ keypunches
 keypunching
 keyring
 keys
+keyset
+keyset's
+keysets
 keystone
 keystone's
 keystones
@@ -72821,6 +72866,7 @@ look
 lookahead
 lookalike
 lookalikes
+lookback
 looked
 looker
 looker's
@@ -76466,6 +76512,9 @@ membrane
 membrane's
 membraned
 membranes
+membranophone
+membranophone's
+membranophones
 membranous
 memento
 memento's
@@ -79126,6 +79175,7 @@ misspelling
 misspelling's
 misspellings
 misspells
+misspelt
 misspend
 misspending
 misspends
@@ -79247,9 +79297,6 @@ mitering
 miters
 mites
 Mitford
-Mithra
-mithridates
-mithridates's
 miticide
 mitigate
 mitigated
@@ -81383,6 +81430,7 @@ multitaxon
 multitaxon's
 multitaxons
 multitech
+multitenant
 multithread
 multithreaded
 multithreading
@@ -82243,7 +82291,6 @@ napkin
 napkin's
 napkins
 napless
-napoleons
 napped
 napper
 napper's
@@ -84045,6 +84092,7 @@ nonclassical
 nonclerical
 nonclericals
 nonclinical
+nonclustered
 noncoding
 noncollectable
 noncom
@@ -86055,6 +86103,7 @@ octagon's
 octagonal
 octagonally
 octagons
+octahedra
 octahedral
 octahedron
 octahedron's
@@ -89608,6 +89657,7 @@ paleographers
 paleographies
 paleography
 paleography's
+paleolithic
 paleontological
 paleontologies
 paleontologist
@@ -93163,6 +93213,7 @@ phantom
 phantom's
 phantoms
 pharaoh
+pharaoh's
 pharaohs
 pharisaic
 pharma
@@ -94851,6 +94902,7 @@ plainsongs
 plainspoken
 plaint
 plaint's
+plaintext
 plaintiff
 plaintiff's
 plaintiffs
@@ -97912,6 +97964,7 @@ premiers
 premiership
 premiership's
 premierships
+premillennial
 Preminger
 premise
 premise's
@@ -107267,6 +107320,7 @@ resignedly
 resignedness
 resigner
 resigning
+resignment
 resigns
 resilience
 resilience's
@@ -107655,6 +107709,9 @@ resultants
 resulted
 resulting
 results
+resultset
+resultset's
+resultsets
 resumable
 resume
 resumed
@@ -108096,8 +108153,10 @@ reutilization's
 reutilizes
 rev
 rev's
+revalidate
 revalidated
 revalidates
+revalidating
 revalidation
 revalidation's
 revaluation
@@ -110237,6 +110296,9 @@ runaround
 runarounds
 runaway
 runaways
+runbook
+runbook's
+runbooks
 rundown
 rundown's
 rundowns
@@ -111477,6 +111539,9 @@ save
 saved
 saveloy
 saveloy's
+savepoint
+savepoint's
+savepoints
 saver
 saver's
 savers
@@ -116032,6 +116097,9 @@ signify
 signifying
 signing
 signings
+signoff
+signoff's
+signoffs
 signor
 signor's
 signora
@@ -116824,6 +116892,8 @@ skol
 Skopje
 skorts
 skototropism
+SKU
+SKU's
 skua
 skuas
 skulduggeries
@@ -116852,6 +116922,7 @@ skunks
 skunkweed
 skunkweed's
 skunkweeds
+SKUs
 sky
 sky's
 skybox
@@ -119243,8 +119314,6 @@ sovereigns
 sovereignties
 sovereignty
 sovereignty's
-soviet
-soviet's
 sow
 sowbelly
 sowbelly's
@@ -126476,6 +126545,9 @@ syruping
 syrups
 syrupy
 sys
+sysadmin
+sysadmin's
+sysadmins
 syscall
 syscall's
 syscalls
@@ -129610,6 +129682,9 @@ thulium's
 thuliums
 thumb
 thumb's
+thumbdrive
+thumbdrive's
+thumbdrives
 thumbed
 thumbing
 thumbnail
@@ -130602,7 +130677,9 @@ tomboys
 tombs
 tombstone
 tombstone's
+tombstoned
 tombstones
+tombstoning
 tomcat
 tomcat's
 tomcats
@@ -134520,6 +134597,7 @@ unbonded
 unboned
 unbonneted
 unbooked
+unbootable
 unborn
 unborne
 unbosom
@@ -136501,6 +136579,10 @@ unmarks
 unmarred
 unmarried
 unmarrieds
+unmarshall
+unmarshalled
+unmarshalling
+unmarshalls
 unmask
 unmasked
 unmasking
@@ -136661,6 +136743,7 @@ unoxidized
 unpack
 unpackaged
 unpackages
+unpackaging
 unpacked
 unpacker
 unpacker's
@@ -137533,6 +137616,7 @@ untrue
 untruer
 untruest
 untruly
+untruncated
 untrusted
 untrustworthiness
 untrustworthy
@@ -137587,6 +137671,7 @@ unverbalized
 unverifiable
 unverified
 unversed
+unversioned
 unviable
 unvictimized
 unvisitable
@@ -137747,6 +137832,7 @@ upcycling
 updatability
 updatable
 update
+updateability
 updateable
 updated
 updater

@@ -82,7 +82,13 @@ Application.MergeWordLists(
 
 os.remove(Debug.GetScriptFolderPath().."NonPersonalTEMP.txt")
 
--- Sort (and reformat) phrase list
+-- Sort (and reformat) phrase lists
+Application.MergePhraseLists(
+    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\German.txt",
+    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\German.txt")
+Application.MergePhraseLists(
+    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\Spanish.txt",
+    Debug.GetScriptFolderPath().."Words\\WordyPhrases\\Spanish.txt")
 Application.MergePhraseLists(
     Debug.GetScriptFolderPath().."Words\\WordyPhrases\\English.txt",
     Debug.GetScriptFolderPath().."Words\\WordyPhrases\\English.txt")
@@ -140,6 +146,9 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words\\Programming\\R.txt",
     Debug.GetScriptFolderPath().."Words\\Programming\\R.txt")
 Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words\\Programming\\SQL.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\SQL.txt")
+Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words\\Programming\\All Languages.txt",
     Debug.GetScriptFolderPath().."Words\\Programming\\Assembly.txt",
     Debug.GetScriptFolderPath().."Words\\Programming\\CPP.txt",
@@ -148,4 +157,5 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words\\Programming\\Java.txt",
     Debug.GetScriptFolderPath().."Words\\Programming\\Python.txt",
     Debug.GetScriptFolderPath().."Words\\Programming\\VisualBasic.txt",
+    Debug.GetScriptFolderPath().."Words\\Programming\\SQL.txt",
     Debug.GetScriptFolderPath().."Words\\Programming\\R.txt")

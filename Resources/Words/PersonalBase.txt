@@ -347,6 +347,7 @@ Akeisha
 Akeria
 Akia
 Akihito
+Akiko
 Akim
 Akinbami
 Akira
@@ -1984,6 +1985,7 @@ Benji
 Benjie
 Benjy
 Benn
+Bennet
 Bennett
 Benni
 Bennie
@@ -2352,6 +2354,7 @@ Blondy
 Bloomberg
 Bloomfield
 Bloomsbury
+Blotchet
 Blozer
 Blucher
 Bluebeard
@@ -2502,6 +2505,7 @@ Boswell
 Bosworth
 Botel
 Botham
+Bothell
 Botticelli
 Bouchard
 Boucher
@@ -7407,6 +7411,7 @@ Garner
 Garnet
 Garnett
 Garnette
+Garnier
 Garofalo
 Garold
 Garr
@@ -12830,6 +12835,7 @@ Lucites
 Lucius
 Lucknow
 Lucky
+Lucovsky
 Lucretia
 Lucretius
 Lucrezia
@@ -14504,6 +14510,7 @@ Morina
 Morineau
 Morison
 Morissa
+Morissette
 Morita
 Moritz
 Morlee
@@ -15730,6 +15737,7 @@ Petter
 Pettibone
 Pettigrew
 Petunia
+Peucker
 Peyer
 Peyo
 Peyronie
@@ -20644,6 +20652,7 @@ Yoder
 Yohan
 Yohann
 Yoko
+Yokomoto
 Yokoyama
 Yolanda
 Yolande
