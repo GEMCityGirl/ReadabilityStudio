@@ -831,9 +831,10 @@ namespace LuaScripting
             { return 0; }
 
         grammar::phrase_collection phrases;
+        wxString inputFile;
         for (int i = 2; i <= lua_gettop(L); ++i)
             {
-            wxString inputFile(luaL_checkstring(L, i), wxConvUTF8);
+            inputFile = wxString(luaL_checkstring(L, i), wxConvUTF8);
             if (wxFile::Exists(inputFile) )
                 {
                 wxString inputFileBuffer;
@@ -849,7 +850,18 @@ namespace LuaScripting
                 }
             }
 
-        phrases.sort();
+        phrases.remove_duplicates();
+
+        for (const auto& phrase : phrases.get_phrases())
+            {
+            if (phrase.first.to_string() == phrase.second)
+                {
+                wxMessageBox(wxString::Format(_(L"%s: Phrase '%s' and suggested replacement are "
+                                                L"the same.\nPlease review your phrase file."),
+                                              inputFile, phrase.first.to_string().c_str()),
+                             _(L"Warning"), wxOK | wxICON_EXCLAMATION);
+                }
+            }
 
         wxString outputStr;
         wxString expStr;
