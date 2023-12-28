@@ -16,6 +16,7 @@ accommodating	fitting
 accomplish	do
 accomplished	did
 accomplishing	doing
+accorded	given
 accordingly	so
 accrue	add
 accrued	added
@@ -91,8 +92,11 @@ allay	quiet
 allayed	quieted
 allaying	quieting
 allays	quiets
+allocate	give
 allotment	share
 allotments	shares
+allow	let
+alter	change
 alteration	change
 alterations	changes
 amalgamate	unite
@@ -136,6 +140,8 @@ appointed	named
 appointing	naming
 appoints	names
 appreciable	many
+apprise	tell
+approximate	about
 approximately	about
 aqueous	watery
 arduous	hard
@@ -181,6 +187,10 @@ assisted	helped
 assisting	helping
 assists	helps
 assuredly	surely
+attain	reach
+attained	reached
+attaining	reaching
+attains	reaches
 attempt	try
 attempted	tried
 attempting	trying
@@ -243,6 +253,7 @@ categorized	classed
 categorizes	classes
 categorizing	classing
 category	class
+cease	stop
 certainly	surely
 cessation	stop
 cessations	stops
@@ -262,6 +273,7 @@ commencements	starts
 commences	begins
 commencing	beginning
 commodious	roomy
+communicate	tell
 companion	friend
 companion's	friend's
 companions	friends
@@ -278,8 +290,10 @@ complying	following
 component	part
 component's	part's
 components	parts
+conceal	hide
 concealment	hiding
 conceited	cocky
+concept	idea
 conception	thought
 concerning	about
 conclude	close
@@ -339,6 +353,7 @@ contribute	give
 contributed	gave
 contributes	gives
 contributing	giving
+convene	meet
 convenient	handy
 conversation	talk
 conversations	talks
@@ -368,9 +383,11 @@ cultivate	grow
 cultivated	grew
 cultivates	grows
 cultivating	growing
+currently	now
 damsel	girl
 damsel's	girl's
 damsels	girls
+decrease	lower
 deem	think
 deemed	thought
 deeming	thinking
@@ -395,13 +412,15 @@ deplete	empty
 depleted	emptied
 depletes	empties
 depleting	emptying
-designate	choose
+designate	name
 designates	chooses
 designating	choosing
 desire	wish
 desired	wished
 desires	wishes
 desiring	wishing
+desist	stop
+detain	hold
 determine	decide
 determined	decided
 determines	decides
@@ -429,7 +448,7 @@ discontinuance	dropping
 discontinuances	stops
 discontinuation	dropping
 discontinuations	stop
-discontinue	drop
+discontinue	stop
 discontinued	dropped
 discontinues	drops
 discontinuing	dropping
@@ -448,6 +467,7 @@ dispatching	sending
 dispel	rid
 dispelled	rid
 dispels	rids
+disseminate	give
 dissimilar	different
 divulge	tell
 divulged	told
@@ -455,11 +475,13 @@ divulges	tells
 divulging	telling
 domicile	home
 domiciles	homes
+donate	give
 dormant	asleep
 duplicate	copy
 duplicated	copied
 duplicates	copies
 duplicating	copying
+duration	time
 edifice	building
 edifices	buildings
 educator	teacher
@@ -468,6 +490,7 @@ educators	teachers
 effected	made
 effecting	making
 egotistical	cocky
+elapse	pass
 elect	choose
 elected	picked
 electing	choosing
@@ -535,6 +558,7 @@ evidences	shows
 evidencing	showing
 evident	clear
 evidently	clearly
+evince	show
 exceedingly	very
 execute	kill
 executed	killed
@@ -561,6 +585,7 @@ expending	spending
 expends	spends
 expense	cost
 expenses	costs
+expiration	end
 explain	show
 explained	showed
 explaining	showing
@@ -594,6 +619,7 @@ fallacy	lie
 familiar	known
 famished	hungry
 fatuous	silly
+females	women
 fetch	get
 fetched	got
 fetches	gets
@@ -615,6 +641,7 @@ finalized	finished
 finalizes	finishes
 finalizing	finishing
 firmament	sky
+firstly	first
 fluctuations	waves
 forfeit	lose
 forfeited	lost
@@ -649,13 +676,15 @@ gratify	please
 gratifying	pleasing
 habitation	house
 habitations	houses
+hence	so
 herein	here
+herewith	below
 however	but
 humongous	giant
 identical	same
 identified	named
 identifies	names
-identify	name
+identify	find
 identifying	naming
 ignoble	base
 illumination	light
@@ -682,10 +711,10 @@ impinge	strike
 impinged	hit
 impinges	strikes
 impinging	striking
-implement	do
+implement	start
 implemented	did
-implementing	doing
-implements	does
+implementing	starting
+implements	starts
 impoverished	poor
 inaugurate	begin
 inaugurates	begins
@@ -705,7 +734,7 @@ indelicate	rough
 indicate	show
 indicates	shows
 indicating	showing
-indication	clue
+indication	sign
 indication's	clue's
 indications	clues
 indigent	poor
@@ -716,6 +745,7 @@ indubitably	certainly
 inferno	fire
 inferno's	fire's
 infernos	fires
+inform	tell
 ingenuous	open
 ingenuously	openly
 initial	first
@@ -731,7 +761,7 @@ initialize	start
 initialized	started
 initializes	starts
 initializing	starting
-initiate	begin
+initiate	start
 initiated	started
 initiates	starts
 initiating	starting
@@ -814,6 +844,7 @@ methodology's	plan's
 militate	fight
 militates	fights
 militating	fighting
+minimum	smallest
 modification	change
 modifications	changes
 modified	changed
@@ -835,6 +866,7 @@ necessitate	need
 necessitated	needed
 necessitates	needs
 necessitating	needing
+necessity	need
 nemesis	enemy
 nemesis's	enemy's
 notation	note
@@ -852,7 +884,7 @@ numerating	counting
 numerous	many
 nutriment	food
 obscured	hidden
-observe	see
+observe	watch
 observed	saw
 observes	sees
 observing	seeing
@@ -869,6 +901,9 @@ obtain	get
 obtained	got
 obtaining	getting
 obtains	gets
+occur	happen
+occured	happened
+occurs	happens
 operate	run
 operated	ran
 operates	runs
@@ -904,6 +939,7 @@ permitting	letting
 perpetuity	forever
 personnel	people
 personnel's	people's
+persons	people
 perspicuous	clear
 perspicuously	clearly
 peruse	read
@@ -942,6 +978,9 @@ predilection	liking
 preeminent	top
 preferable	better
 preponderant	chief
+prescribed	set
+present	give
+presently	now
 prevaricate	lie
 prevaricated	lied
 prevaricates	lies
@@ -950,6 +989,7 @@ previous	earlier
 previously	before
 primarily	mainly
 primary	main
+prior	earlier
 probabilities	chances
 probability	chance
 procedure	way
@@ -958,6 +998,7 @@ procedures	ways
 proceed	do
 proceeding	doing
 proceeds	does
+procure	get
 prodigious	huge
 prodigiously	hugely
 produced	made
@@ -967,6 +1008,7 @@ profound	deep
 profoundly	deeply
 progeny	children
 program	plan
+provide	give
 puissance	might
 punctilious	exact
 punctiliously	exactly
@@ -981,6 +1023,7 @@ pusillanimous	frightened
 quandaries	problems
 quandary	problem
 quandary's	problem's
+quantify	measure
 quarrelsome	cross
 quiescent	still
 quiescently	quietly
@@ -997,6 +1040,8 @@ reduces	cuts
 reducing	cutting
 reduction	cut
 reductions	cuts
+reflect	say
+regarding	about
 relocate	move
 relocated	moved
 relocates	moves
@@ -1014,8 +1059,10 @@ remunerates	pays
 remunerating	paying
 remuneration	pay
 remunerations	pays
+render	give
 replica	copy
 replicas	copies
+represents	is
 request	ask
 requested	asked
 requesting	asking
@@ -1027,8 +1074,10 @@ requirements	needs
 requires	needs
 requiring	needing
 requisite	needed
+reside	live
 residence	house
 residences	houses
+respond	answer
 responsibilities	jobs
 responsibility	job
 retain	keep
@@ -1052,9 +1101,11 @@ saturate	fill
 saturated	filled
 saturates	fills
 saturating	filling
+secondly	second
 segment	part
 segments	parts
 serpentine	snaking
+shortly	soon
 similar	like
 solitary	alone
 specter	ghost
@@ -1064,12 +1115,13 @@ speculate	guess
 speculated	guessed
 speculates	guesses
 speculating	guessing
+state-of-the-art	latest
 strategies	plans
 strategy	plan
 strategy's	plan's
 stringent	tight
 stringently	tightly
-submit	send
+submit	give
 submits	sends
 submitted	sent
 submitting	sending
@@ -1099,7 +1151,10 @@ terminating	ending
 terminus	end
 tertiary	third
 therefore	so
+therein	there
 thereof	its
+therewith	with
+thirdly	third
 thoroughfare	road
 thoroughfare's	road's
 thoroughfares	roads
@@ -1107,6 +1162,7 @@ titillate	tickle
 titillated	tickled
 titillates	tickles
 titillating	tickling
+towards	toward
 transcription	copy
 transcriptions	copies
 transmit	send
@@ -1134,6 +1190,7 @@ uncultivated	wild
 undulations	waves
 unequivocal	clear
 unequivocally	clearly
+upon	on
 usually	often
 utilisabilities	uses
 utilisation	use
@@ -1172,4 +1229,6 @@ vociferates	shouts
 vociferating	shouting
 voluminous	large
 whenever	when
-whereas	since
+whereas	because
+whilst	while
+witnessed	saw

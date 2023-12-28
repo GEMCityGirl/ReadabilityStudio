@@ -73,6 +73,7 @@ accomplishable	doable
 accomplished	did, done
 accomplishes	does carries out
 accomplishing	doing, carrying out
+accorded	given
 accordingly	so, just so
 accrual	addition, gain
 accruals	additions, gains
@@ -127,7 +128,7 @@ adapt	make fit
 adapted	made fit
 adapting	making fit
 adapts	makes fit
-additional	added, extra
+additional	added, more, other, extra
 additionally	added, more
 adequate	enough
 adhere	stick to, follow
@@ -157,7 +158,7 @@ adversary's	enemy's
 adverse	harmful
 adversities	distresses, difficulties
 adversity	distress, difficulty
-advise	tell, recommend
+advise	recommend, tell
 advised	told, recommended
 advises	tells, recommends
 advising	telling, recommending
@@ -177,6 +178,7 @@ affray	fight
 affrayed	fought
 affraying	fighting
 affrays	fights
+afterwards	afterward
 aggrandize	make greater
 aggrandized	made greater
 aggrandizes	makes greater
@@ -213,12 +215,15 @@ alleviate	make easier
 alleviated	made easier
 alleviates	makes easier
 alleviating	making easier
+allocate	give
 allotment	share
 allotments	shares
+allow	let
 allude	refer
 alluded	referred
 alludes	refers
 alluding	referring
+alter	change
 alteration	change
 alterations	changes
 altercation	dispute
@@ -241,6 +246,8 @@ ameliorating	improving
 amendment	change
 amendments	changes
 amicable	friendly
+amidst	amid
+amongst	among
 amorphous	shapeless
 amplified	made greater
 amplifies	makes greater
@@ -325,6 +332,7 @@ apprehending	seizing
 apprehends	seizes
 apprehensive	uneasy
 apprehensively	uneasily
+apprise	tell
 approbation	praise
 approbations	praises
 appropriate	proper (adj.), set aside (verb)
@@ -333,6 +341,7 @@ appropriately	properly
 appropriates	sets aside
 appropriating	setting aside
 approval	praise, consent
+approximate	about
 approximately	about
 aqueous	watery
 arbiter	judge, umpire
@@ -401,10 +410,10 @@ atrophied	wasted away
 atrophies	wastes away
 atrophy	waste away
 atrophying	wasting away
-attain	gain
-attained	gained
-attaining	gaining
-attains	gains
+attain	reach, gain
+attained	reached, gained
+attaining	reaching, gaining
+attains	reaches, gains
 attempt	try
 attempted	tried
 attempting	trying
@@ -495,6 +504,7 @@ bewildered	confused
 bewildering	confusing
 bewilders	confuses
 biannual	twice a year
+biannually	twice a year
 bilateral	two-sided
 bizarre	odd, queer
 bizarrely	oddly
@@ -515,6 +525,7 @@ cajoled	coaxed
 cajolery	coaxing
 cajoles	coaxes
 cajoling	coaxing
+calculate	figure
 calumniate	slander
 calumniated	slandered
 calumniates	slanders
@@ -557,6 +568,8 @@ categorized	classed, grouped
 categorizes	classes, groups
 categorizing	classing, grouping
 category	class, group
+caveat	warning
+cease	stop
 censure	blame
 censured	blamed
 censures	blames
@@ -630,6 +643,7 @@ commiseration	pity
 commitment	pledge
 commitments	pledges
 commodious	roomy
+communicate	tell
 companion	friend, mate
 companion's	friend's, mate's
 companions	friends, mates
@@ -659,19 +673,21 @@ compress	sqeeze
 compressed	sqeezed
 compresses	sqeezes
 compressing	sqeezing
-comprise	form, include
+comprise	form, include, make up
 comprised	formed, included
 comprises	forms, includes
 comprising	forming, including
 compunction	regret
 compunctions	regrets
+conceal	hide
 concealment	hiding
 conceited	cocky
 conceive	think up, create
 conceived	thought up, created
 conceives	thinks up, creates
 conceiving	thinking up, creating
-conception	thought, idea, creation
+concept	idea
+conception	concept, thought
 concerning	about, on
 conciliate	win over, soothe
 conciliated	won over, soothed
@@ -714,6 +730,7 @@ conjectures	guesses
 conjecturing	guessing
 connoisseur	expert
 connoisseurs	experts
+consanguinity	blood
 conscious	aware
 consequence	result
 consequences	results
@@ -803,6 +820,7 @@ contributor's	giver's
 contributors	givers
 contusion	bruise
 contusions	bruises
+convene	meet
 convenient	handy
 conventionally	normally
 conversation	talk
@@ -858,6 +876,7 @@ cultivate	grow, till, raise, farm
 cultivated	grew, tilled, raised, farmed
 cultivates	grows, tills, raises, farms
 cultivating	growing, tilling, raising, farming
+currently	(omit), now
 customary	usual, accepted
 damsel	girl
 damsel's	girl's
@@ -876,10 +895,12 @@ decentralizes	scatters, breaks apart
 decentralizing	scattering, breaking apart
 declination	downward slope
 declinations	downward slopes
-deem	think
+decrease	lower
+deem	treat as, think
 deemed	thought
 deeming	thinking
 deems	thinks
+defer	put off
 deficit	shortage
 deficits	shortages
 definitive	final
@@ -892,6 +913,7 @@ deleting	cutting, dropping
 deletion	cut
 deletions	cuts, drops
 deliberately	on purpose
+demise	death
 demonstrable	provable
 demonstrate	show
 demonstrated	showed
@@ -912,7 +934,7 @@ depreciated	lessened
 depreciates	lessens
 depreciating	lessening
 descending	downward
-designate	appoint, choose, assign
+designate	name
 designated	appointed, chose/chosen, assigned
 designates	appoints, chooses, assigns
 designating	appointing, choosing, assigning
@@ -922,8 +944,10 @@ desires	wishes
 desiring	wishing
 desirously	wishfully
 desirousness	wishfulness
+desist	stop
+detain	hold
 determinable	decidable
-determine	decide, figure
+determine	decide, figure, find
 determined	decided, figured
 determines	decides, figures
 determining	deciding, figuring
@@ -949,6 +973,7 @@ difficult	hard
 difficulties	troubles
 difficulty	trouble
 dilatory	not prompt
+diminish	lessen
 diminution	lessening
 diplomacy	tact
 diplomatic	tactful
@@ -973,7 +998,7 @@ discontinuance	dropping, stop
 discontinuances	droppings, stops
 discontinuation	dropping, stop
 discontinuations	droppings, stop
-discontinue	drop, stop
+discontinue	stop
 discontinued	dropped, stopped
 discontinues	drops, stops
 discontinuing	dropping, stopping
@@ -1039,7 +1064,7 @@ disrupt	interrupt, confuse
 disrupted	interrupted, confused
 disrupting	interrupting, confusing
 disrupts	interrupts, confuses
-disseminate	issue, send out
+disseminate	give, issue, pass, send
 disseminated	scattered, spread out
 disseminates	issues, sends out
 disseminating	issuing, sending out
@@ -1079,12 +1104,14 @@ domineer	rule over
 domineered	ruled over
 domineering	ruling over
 domineers	rules over
+donate	give
 dormant	asleep
 dubious	doubtful
 duplicate	copy
 duplicated	copied
 duplicates	copies
 duplicating	copying
+duration	time
 ebullient	bubbling up
 eccentric	odd
 echelon	level
@@ -1103,6 +1130,7 @@ effaces	rubs out
 effacing	rubbing out
 effected	made, changed
 effecting	making, changing
+effectuate	bring about
 effervescent	bubbly, lively
 effervescently	livelily
 effusive	pouring out, gushing, overflowing
@@ -1113,6 +1141,7 @@ egress	emerge
 egressed	emerged
 egresses	emerges
 egressing	emerging
+elapse	pass
 elect	choose, pick
 elected	chose/chosen, picked
 electing	choosing, picking
@@ -1126,7 +1155,7 @@ elicit	draw out, call forth
 elicited	drew out, called forth
 eliciting	drawing out, calling forth
 elicits	draws out, calls forth
-eliminate	cut, drop
+eliminate	cut, drop, end
 eliminated	cut, dropped
 eliminates	cuts, drops
 eliminating	cutting, dropping
@@ -1235,7 +1264,7 @@ erratically	uncertainly
 erroneous	wrong
 erroneously	wrongly
 erudite	learned
-establish	set up, prove
+establish	set up, prove, show
 established	set up, proved
 establishes	sets up, proves
 establishing	setting up, proving
@@ -1253,6 +1282,7 @@ evidences	shows
 evidencing	showing
 evident	clear
 evidently	clearly
+evince	show
 exaltation	rapture
 exaltations	raptures
 examination	check
@@ -1267,6 +1297,7 @@ exchange	trade
 exchanged	traded
 exchanges	trades
 exchanging	trading
+exclude	leave out
 execute	kill, do
 executed	killed, did
 executes	kills, does
@@ -1284,13 +1315,13 @@ exhibits	shows
 exigency	need
 exorbitant	large, huge, much too high, too expensive
 expedience	advisability
-expedite	hurry, rush
+expedite	hurry, speed up, rush
 expedited	hurried, rushed
 expedites	hurries, rushes
 expediting	hurrying, rushing
 expeditious	fast, quick
 expeditiously	quickly
-expend	pay out, spend
+expend	spend
 expended	paid out, spent
 expending	paying out, spending
 expenditure	expense
@@ -1298,6 +1329,8 @@ expenditures	expenses
 expends	pays out, spends
 expense	cost, fee
 expenses	costs, fees
+expertise	ability
+expiration	end
 explain	show, tell
 explained	showed, told
 explaining	showing, telling
@@ -1330,7 +1363,7 @@ fabricate	build, make
 fabricated	built, made
 fabricates	builds, makes
 fabricating	building, making
-facilitate	ease, help
+facilitate	help
 facilitated	made easy
 facilitates	eases, helps
 facilitating	easing, helping
@@ -1341,11 +1374,12 @@ fallacy	error, lie
 familiar	known
 famished	hungry
 fatuous	silly
-feasible	can be done
+feasible	can be done, workable
 felicitous	apt
 felicity	bliss
 felonious	wicked, criminal
 feloniously	wickedly, criminally
+females	women
 ferocious	fierce
 ferociously	fiercely
 fetch	get
@@ -1365,11 +1399,12 @@ finalises	finishes, completes
 finalising	finishing, completing
 finalization	completion, finish
 finalizations	completions, finishes
-finalize	finish, complete
+finalize	complete, finish
 finalized	finished, completed
 finalizes	finishes, completes
 finalizing	finishing, completing
 firmament	sky
+firstly	first
 fluctuate	rise and fall
 fluctuated	rose and fell
 fluctuates	rises and falls
@@ -1432,13 +1467,17 @@ habitation	house, home
 habitations	houses, homes
 hazardous	risky, unsafe
 hazardously	unsafely
+hence	so
 herein	here
+heretofore	until now
+herewith	below, here
 hesitate	pause
 hesitated	paused
 hesitates	pauses
 hesitating	pausing
 heterogeneous	varied
 heterogeneously	variably
+hitherto	until now
 homogeneous	similar
 homogeneously	similarly
 horizontally	sideways
@@ -1449,7 +1488,7 @@ identicalness	sameness
 identification	ID
 identified	named, found
 identifies	names, finds
-identify	name, find
+identify	find, name, show
 identifying	naming, finding
 ignoble	base, common, dishonorable, mean
 ignominious	shameful
@@ -1464,7 +1503,7 @@ imbued	filled
 imbues	fills
 imbuing	filling
 immaculate	pure, spotless
-immediately	at once, right away, right now
+immediately	at once
 immense	huge, vast
 imminent	near
 imminently	nearly
@@ -1496,11 +1535,11 @@ impinge	strike, hit
 impinged	hit
 impinges	strikes, hits
 impinging	striking, hitting
-implement	carry out, do
+implement	carry out, start
 implementation	carrying out
 implemented	carried out, did
-implementing	carrying out, doing
-implements	carries out, does
+implementing	carrying out, starting
+implements	carries out, starts
 impolite	rude
 importunate	urgent
 importunately	urgently
@@ -1568,7 +1607,7 @@ indicate	show
 indicated	shown
 indicates	shows
 indicating	showing
-indication	clue, sign
+indication	sign
 indication's	clue's, sign's
 indications	clues, signs
 indigent	poor, needy
@@ -1592,6 +1631,7 @@ inferno's	fire's
 infernos	fires
 infirmities	weaknesses
 infirmity	weakness
+inform	tell
 infrastructure	system
 infrastructure's	system's
 infrastructures	systems
@@ -1622,7 +1662,7 @@ initialized	started
 initializes	starts
 initializing	starting
 initially	at first
-initiate	begin
+initiate	start
 initiated	started
 initiates	starts
 initiating	starting
@@ -1791,6 +1831,7 @@ minimize	decrease, lessen
 minimized	decreased, lessened
 minimizes	decreases, lessens
 minimizing	decreasing, lessening
+minimum	least, smallest
 minuteness	smallness
 misapprehension	wrong idea
 misapprehensions	wrong ideas
@@ -1832,6 +1873,7 @@ necessitate	cause, need
 necessitated	caused, needed
 necessitates	causes, needs
 necessitating	causing, needing
+necessity	need
 neglectful	careless
 neglectfully	carelessly
 neighboring	next to
@@ -1851,6 +1893,7 @@ notified	let know, told
 notifies	lets know, tells
 notify	let know, tell
 notifying	letting know, telling
+notwithstanding	despite
 numerate	count
 numerated	counted
 numerates	counts
@@ -1861,7 +1904,7 @@ obdurate	stubborn
 objective	aim, goal
 objective's	aim's, goal's
 objectives	aims, goals
-obligate	pledge, bind, compel
+obligate	bind, compel, pledge
 obligated	bound, compelled, pledged
 obligates	pledges, binds, compels
 obligating	pledging, binding, compelling
@@ -1882,10 +1925,10 @@ obloquy	abuse, shame
 obscured	hidden
 obsequious	fawning
 obsequiously	fawningly
-observe	see
-observed	saw, seen
-observes	sees
-observing	seeing
+observe	watch
+observed	saw, seen, watched
+observes	sees, watches
+observing	seeing, watching
 obstacle	problem
 obstacle's	problem's
 obstacles	problems
@@ -1906,13 +1949,18 @@ obviate	wipe out
 obviated	wiped out
 obviates	wipes out
 obviating	wiping out
+occasion	cause
+occur	happen
+occured	happened
 occurrence	event, instance
 occurrences	events, instances
+occurs	happens
 odious	hateful
 odiously	hatefully
 odium	hatred, blame
 officious	meddling
-operate	run, work
+ongoing	continuing
+operate	run, use, work
 operated	ran, worked
 operates	runs, works
 operating	running, working
@@ -1920,7 +1968,7 @@ operational	working
 opportunities	chances
 opportunity	chance
 opprobrium	scorn, abuse
-optimum	best, greatest
+optimum	best, greatest, most
 option	choice, way
 option's	choice's, way's
 options	choices, ways
@@ -1931,6 +1979,7 @@ organisation's	company's
 organisations	companies
 organization's	company's
 organizations	companies
+orientate	orient
 orifice	opening, hole
 orifices	openings, holes
 ostentation	show, display
@@ -1944,6 +1993,7 @@ panacea	cure-all
 pandemonium	uproar
 paragon	model
 parallelism	likeness
+parameters	limits
 paramount	top, chief, supreme
 pariah	outcast
 pariahs	outcasts
@@ -1966,6 +2016,7 @@ peevishly	crossly
 pendulous	hanging, swinging
 penitent	sorry, remorseful
 penitently	remorsefully
+penultimate	next to last
 penurious	stingy
 penuriously	stingily
 peremptory	positive
@@ -1992,6 +2043,7 @@ perseveres	persists
 persevering	persisting
 personnel	staff, people
 personnel's	staff's, people's
+persons	people
 perspicacious	keen
 perspicaciously	keenly
 perspicuous	clear
@@ -1999,10 +2051,10 @@ perspicuously	clearly
 perspiration	sweat
 pertinacity	persistent
 pertinence	relevance
-peruse	read
-perused	read
-peruses	reads
-perusing	reading
+peruse	review, read
+perused	read, reviewed
+peruses	reads, reviews
+perusing	reading, reviewing
 petulance	irritable, ill-tempered
 phantom	ghost
 phantom's	ghost's
@@ -2036,7 +2088,7 @@ position's	place's
 positioned	placed
 positioning	placing
 positions	places
-possess	have, own
+possess	have
 possessed	had, owned
 possesses	has, owns
 possessing	having, owning
@@ -2048,7 +2100,7 @@ precept	rule
 precepts	rules
 precipitant	rash, hasty, impulsive
 precipitation	rain, snow, dew, frost
-preclude	prevent, exclude, shut out
+preclude	prevent
 precluded	prevented, excluded, shut out
 precludes	prevents, excludes, shuts out
 precluding	excluding, shutting out, preventing
@@ -2072,17 +2124,22 @@ preparedness	readiness
 preponderant	overpowering, overruling, major, chief, dominant
 preposterous	senseless, absurd
 prescience	foresight
+prescribed	set
+present	give
+presently	now
 presumptuous	bold, forward
 presumptuously	boldly, forwardly
 prevaricate	lie, evade, shift
 prevaricated	lied, evaded, shifted
 prevaricates	lies, evades, shifts
 prevaricating	lying, evading, shifting
-previous	earlier, past, prior
-previously	before, earlier
+preventative	preventive
+previous	earlier
+previously	before
 primarily	mainly, firstly
 primary	main, first
 primordial	primate
+prior	earlier
 prioritisation	ranking
 prioritisation's	ranking's
 prioritisations	rankings
@@ -2104,10 +2161,11 @@ problematical	doubtful
 procedure	rule, way, method
 procedure's	rule's, way's
 procedures	rules, ways, methods
-proceed	do, go on
+proceed	do, go ahead, try
 proceeded	did/done, went on
 proceeding	doing, going on
 proceeds	does, goes on
+procure	get
 prodigious	immense, huge, amazing
 prodigiously	immensely, hugely, amazingly
 produced	made
@@ -2157,6 +2215,7 @@ proscribes	outlaws, banishes, censures, disapproves
 proscribing	outlawing, banishing, censuring, disapproving
 proselyte	convert, disciple
 proselytes	converts, disciples
+provide	give
 proximity	nearness
 puissance	power, might, force
 punctilious	exact
@@ -2181,6 +2240,7 @@ quadrilateral	four-sided
 quandaries	problems
 quandary	problem
 quandary's	problem's
+quantify	measure
 quarrelsome	cross
 quarry	prey
 querulous	fretful
@@ -2225,7 +2285,9 @@ reducing	cutting
 reduction	cut
 reduction's	cut's
 reductions	cuts
+reflect	say, show
 refractory	stubborn
+regarding	about, of, on
 regimen	routine, rule
 regulation	rule, law
 regulations	rules, laws
@@ -2266,13 +2328,14 @@ remonstrate	protest
 remonstrated	protested
 remonstrates	protests
 remonstrating	protesting
-remunerate	pay, compensate
+remunerate	pay
 remunerated	paid, compensated
 remunerates	pays, compensates
 remunerating	paying, compensating
-remuneration	pay, compensation
+remuneration	pay, payment
 remuneration's	pay's
 remunerations	pays
+render	give, make
 repentance	regret
 replica	copy
 replicas	copies
@@ -2280,6 +2343,7 @@ reprehend	blame
 reprehended	blamed
 reprehending	blaming
 reprehends	blames
+represents	is
 repudiate	reject, disown
 repudiated	rejected, disowned
 repudiates	rejects, disowns
@@ -2296,23 +2360,25 @@ requirement's	need's
 requirements	needs
 requires	needs
 requiring	needing
-requisite	needed, necessity
+requisite	required, needed
 requisites	necessities
 rescind	repeal, cancel
 rescinded	repealed, canceled
 rescinding	repealing, canceling
 rescinds	repeals, cancels
 resemblance	likeness
+reside	live
 residence	house, home
 residences	houses, homes
 resolute	firm
+respond	answer
 responsibilities	jobs, duties
 responsibility	duty, job
 resuscitate	revive
 resuscitated	revived
 resuscitates	revives
 resuscitating	reviving
-retain	keep, hold
+retain	keep
 retained	kept, held
 retaining	keeping, holding
 retains	keeps, , holds
@@ -2371,16 +2437,19 @@ scrutinized	inspected, examined
 scrutinizes	inspects, examines
 scrutinizing	inspecting, examining
 sebaceous	fatty, greasy
+secondly	second
 segment	part
 segments	parts
 segregate	set apart, separate
 segregated	set apart, separated
 segregates	sets apart, separates
 segregating	setting apart, separating
+selection	choice
 semblance	likeness
 sequestration	removal
 sequestrations	removals
 serpentine	twisting, snaking, sly
+shortly	soon
 similar	like
 similarities	likenesses
 similarity	likeness
@@ -2394,9 +2463,9 @@ sinecures	easy jobs
 skepticism	doubt
 skepticisms	doubts
 slovenly	untidy
-solicit	ask for
-solicited	asked for
-soliciting	asking for
+solicit	ask for, request
+solicited	asked for, requested
+soliciting	asking for, requesting
 solicitous	anxious, eager
 solicits	asks for
 solitary	alone, single
@@ -2408,6 +2477,7 @@ speculate	reflect, guess, surmise, suppose
 speculated	reflected, guessed, surmised, supposed
 speculates	reflects, guesses, surmises, supposes
 speculating	reflecting, guessing, surmising, supposing
+state-of-the-art	latest
 strategies	plans
 strategy	plan
 strategy's	plan's
@@ -2427,7 +2497,7 @@ subjugating	subduing
 subjugation	conquest
 subjugations	conquests
 sublimity	majesty
-submit	send, give
+submit	give, send
 submits	sends, gives
 submitted	sent, gave
 submitter	giver, sender
@@ -2448,6 +2518,7 @@ sufferance	consent
 sufficient	enough, ample
 sufficiently	amply
 suitability	fitness
+summon	send for
 sumptuous	costly, rich
 supercilious	arrogant, scornful
 superciliously	arrogantly, scornfully
@@ -2485,14 +2556,20 @@ terminating	ending, stopping
 terminus	end
 tertiary	third
 therefore	so, thus
+therein	there
 thereof	its, their
+therewith	with
+thirdly	third
 thoroughfare	road
 thoroughfare's	road's
 thoroughfares	roads
+thusly	thus
+timely	prompt
 titillate	tickle
 titillated	tickled
 titillates	tickles
 titillating	tickling
+towards	toward
 tranquility	quietness
 transcendent	superior
 transcendently	superiorly
@@ -2548,6 +2625,7 @@ unfalteringly	firmly, steadfastly
 unfamiliar	unknown
 unfounded	baseless
 ungovernable	unruly
+upon	on
 usually	often
 utilisabilities	uses
 utilisability	usability, usefulness
@@ -2594,6 +2672,7 @@ variations	changes, differences
 vehemence	ardor, fervor
 vehement	eager, forceful
 vehemently	fervorly
+velocity	speed
 venomous	spiteful
 venomously	spitefully
 ventilate	air out
@@ -2602,9 +2681,10 @@ ventilates	airs out
 ventilating	airing out
 venturous	bold
 verbatim	exact
+verification	proof
 vertically	upward
 via	in, on, by
-viable	workable
+viable	practical, workable
 vigilance	caution
 vindicate	defend, uphold
 vindicated	defended, upheld
@@ -2621,4 +2701,6 @@ vociferates	shouts
 vociferating	shouting
 voluminous	large, bulky
 whenever	when
-whereas	since
+whereas	because, since
+whilst	while
+witnessed	saw

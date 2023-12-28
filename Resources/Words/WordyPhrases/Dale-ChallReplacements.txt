@@ -26,6 +26,7 @@ accommodating	adjusting
 accomplish	do
 accomplished	did
 accomplishing	doing
+accorded	given
 accordingly	so
 accrual	addition
 accruals	additions
@@ -102,6 +103,7 @@ affray	fight
 affrayed	fought
 affraying	fighting
 affrays	fights
+afterwards	afterward
 aggregate	collect
 aggregates	collects
 aggressive	forward
@@ -117,8 +119,11 @@ allay	quiet
 allayed	quieted
 allaying	quieting
 allays	quiets
+allocate	give
 allotment	share
 allotments	shares
+allow	let
+alter	change
 alteration	change
 alterations	changes
 alternative	choice
@@ -130,6 +135,7 @@ ameliorates	improves
 ameliorating	improving
 amendment	change
 amendments	changes
+amongst	among
 amusement	fun
 analysis	review
 analyze	review
@@ -179,9 +185,11 @@ apportioned	divided
 apportioning	dividing
 apportions	divides
 appreciable	many
+apprise	tell
 approbation	praise
 approbations	praises
 approval	praise
+approximate	about
 approximately	about
 arbiter	judge
 arbiters	judges
@@ -222,10 +230,10 @@ assistant	helper
 assisted	aided
 assisting	aiding
 assists	aids
-attain	gain
-attained	gained
-attaining	gaining
-attains	gains
+attain	reach
+attained	reached
+attaining	reaching
+attains	reaches
 attempt	try
 attempted	tried
 attempting	trying
@@ -285,6 +293,7 @@ boulevards	roads
 burglar	robber
 caitiff	coward
 caitiffs	cowards
+calculate	figure
 capable	able
 capacities	powers
 capacity	power
@@ -302,6 +311,8 @@ categorises	classes
 categorize	class
 categorizes	classes
 category	class
+caveat	warning
+cease	stop
 censure	blame
 censured	blamed
 censures	blames
@@ -333,6 +344,7 @@ commendation	praise
 commendations	praises
 commerce	trade
 commiseration	pity
+communicate	tell
 companion	friend
 companion's	mate's
 companions	friends
@@ -354,7 +366,9 @@ comprise	form
 comprised	formed
 comprises	forms
 comprising	forming
+conceal	hide
 concealment	hiding
+concept	idea
 conception	thought
 concerning	about
 conclude	close
@@ -384,6 +398,7 @@ conjecture	guess
 conjectured	guessed
 conjectures	guesses
 conjecturing	guessing
+consanguinity	blood
 consequently	so
 considerable	much
 consolation	comfort
@@ -430,6 +445,7 @@ contributing	giving
 contribution	gift
 contributions	gifts
 contributor	giver
+convene	meet
 conversation	talk
 conversations	talks
 conversion	change
@@ -462,6 +478,7 @@ cultivate	grow
 cultivated	grew
 cultivates	grows
 cultivating	growing
+currently	now
 customary	accepted
 damsel	girl
 damsels	girls
@@ -473,6 +490,7 @@ decentralize	scatter
 decentralized	scattered
 decentralizes	scatters
 decentralizing	scattering
+decrease	lower
 deem	think
 deemed	thought
 deeming	thinking
@@ -486,6 +504,7 @@ deletes	cuts
 deleting	cutting
 deletion	cut
 deletions	cuts
+demise	death
 demonstrate	show
 demonstrated	showed
 demonstrates	shows
@@ -497,13 +516,15 @@ departing	leaving
 departs	leaves
 deplete	empty
 descending	downward
-designate	choose
+designate	name
 designates	chooses
 designating	choosing
 desire	wish
 desired	wished
 desires	wishes
 desiring	wishing
+desist	stop
+detain	hold
 determine	decide
 determined	decided
 determines	decides
@@ -534,7 +555,7 @@ discontinuance	dropping
 discontinuances	stops
 discontinuation	dropping
 discontinuations	stop
-discontinue	drop
+discontinue	stop
 discontinued	dropped
 discontinues	drops
 discontinuing	dropping
@@ -552,6 +573,7 @@ disperse	scatter
 dispersed	scattered
 disperses	scatters
 dispersing	scattering
+disseminate	give
 disseminated	scattered
 dissimilar	different
 dissipate	scatter
@@ -569,11 +591,13 @@ domesticates	tames
 domesticating	taming
 domicile	home
 domiciles	homes
+donate	give
 dormant	asleep
 duplicate	copy
 duplicated	copied
 duplicates	copies
 duplicating	copying
+duration	time
 eccentric	odd
 echelon	level
 echelon's	level's
@@ -584,6 +608,7 @@ educator	teacher
 effected	made
 effecting	making
 effusive	overflowing
+elapse	pass
 elect	choose
 elected	picked
 electing	choosing
@@ -669,6 +694,7 @@ evidenced	showed
 evidences	shows
 evidencing	showing
 evident	clear
+evince	show
 examination	check
 examinations	checks
 examine	check
@@ -704,6 +730,7 @@ expending	spending
 expends	spends
 expense	cost
 expenses	costs
+expiration	end
 explain	show
 explained	showed
 explaining	showing
@@ -732,6 +759,7 @@ familiar	known
 famished	hungry
 fatuous	silly
 felonious	wicked
+females	women
 fetch	get
 fetched	got
 fetches	gets
@@ -748,11 +776,12 @@ finalises	finishes
 finalising	finishing
 finalization	finish
 finalizations	finishes
-finalize	finish
+finalize	complete
 finalized	finished
 finalizes	finishes
 finalizing	finishing
 firmament	sky
+firstly	first
 fluctuations	waves
 forfeit	lose
 forfeited	lost
@@ -793,13 +822,15 @@ gratuity	gift
 habitation	house
 habitations	houses
 hazardous	unsafe
+hence	so
 herein	here
+herewith	below
 however	but
 humongous	giant
 identical	same
 identified	named
 identifies	names
-identify	name
+identify	find
 identifying	naming
 ignoble	base
 illumination	light
@@ -831,10 +862,10 @@ impinge	strike
 impinged	hit
 impinges	strikes
 impinging	striking
-implement	do
+implement	start
 implemented	did
-implementing	doing
-implements	does
+implementing	starting
+implements	starts
 impoverished	poor
 inaccuracies	mistakes
 inaccuracy	mistake
@@ -883,6 +914,7 @@ inferno's	fire's
 infernos	fires
 infirmities	weaknesses
 infirmity	weakness
+inform	tell
 ingenuous	open
 iniquitous	wicked
 initial	first
@@ -898,7 +930,7 @@ initialize	start
 initialized	started
 initializes	starts
 initializing	starting
-initiate	begin
+initiate	start
 initiated	started
 initiates	starts
 initiating	starting
@@ -1002,6 +1034,7 @@ militate	fight
 militated	fought
 militates	fights
 militating	fighting
+minimum	smallest
 miscellanies	mixtures
 miscellany	mixture
 modification	change
@@ -1025,6 +1058,7 @@ necessitate	cause
 necessitated	caused
 necessitates	causes
 necessitating	causing
+necessity	need
 neglectful	careless
 nemesis	enemy
 nemesis's	enemy's
@@ -1056,7 +1090,7 @@ obliterating	erasing
 oblivious	forgetful
 obloquy	shame
 obscured	hidden
-observe	see
+observe	watch
 observed	saw
 observes	sees
 observing	seeing
@@ -1073,7 +1107,12 @@ obtain	get
 obtained	got
 obtaining	getting
 obtains	gets
+occasion	cause
+occur	happen
+occured	happened
+occurs	happens
 odium	blame
+ongoing	continuing
 operate	run
 operated	ran
 operates	runs
@@ -1114,9 +1153,10 @@ permitting	letting
 perpetuity	forever
 personnel	people
 personnel's	people's
+persons	people
 perspicuous	clear
 perspiration	sweat
-peruse	read
+peruse	review
 perused	read
 peruses	reads
 perusing	reading
@@ -1158,6 +1198,9 @@ predilection	liking
 preeminent	top
 preferable	better
 preponderant	major
+prescribed	set
+present	give
+presently	now
 presumptuous	bold
 prevaricate	lie
 prevaricated	lied
@@ -1166,6 +1209,7 @@ prevaricating	lying
 previous	earlier
 previously	before
 primary	first
+prior	earlier
 probabilities	chances
 probability	chance
 procedure	rule
@@ -1173,6 +1217,7 @@ procedures	rules
 proceed	do
 proceeding	doing
 proceeds	does
+procure	get
 prodigious	huge
 produced	made
 produces	makes
@@ -1191,6 +1236,7 @@ promulgating	announcing
 promulgation	announcement
 proscribe	outlaw
 proscribes	outlaws
+provide	give
 puissance	power
 punctilious	exact
 punctiliously	exactly
@@ -1210,6 +1256,7 @@ putrefaction	rot
 quandaries	problems
 quandary	problem
 quandary's	problem's
+quantify	measure
 quarrelsome	cross
 quiescent	still
 radiant	bright
@@ -1224,6 +1271,8 @@ reduces	cuts
 reducing	cutting
 reduction	cut
 reductions	cuts
+reflect	say
+regarding	about
 regimen	rule
 regulation	rule
 regulations	rules
@@ -1246,12 +1295,14 @@ remunerates	pays
 remunerating	paying
 remuneration	pay
 remunerations	pays
+render	give
 replica	copy
 replicas	copies
 reprehend	blame
 reprehended	blamed
 reprehending	blaming
 reprehends	blames
+represents	is
 repugnance	dislike
 request	ask
 requested	asked
@@ -1264,8 +1315,10 @@ requirements	needs
 requires	needs
 requiring	needing
 requisite	needed
+reside	live
 residence	house
 residences	houses
+respond	answer
 responsibilities	jobs
 responsibility	job
 retain	keep
@@ -1293,10 +1346,13 @@ saturates	soaks
 saturating	soaking
 scandalous	shocking
 sebaceous	greasy
+secondly	second
 segment	part
 segments	parts
 segregate	separate
+selection	choice
 serpentine	twisting
+shortly	soon
 similar	like
 solicitous	eager
 solitary	alone
@@ -1307,10 +1363,11 @@ speculate	reflect
 speculated	reflected
 speculates	reflects
 speculating	reflecting
+state-of-the-art	latest
 strategies	plans
 strategy	plan
 stringent	tight
-submit	send
+submit	give
 submits	sends
 submitted	sent
 submitter	giver
@@ -1345,7 +1402,10 @@ terminating	ending
 terminus	end
 tertiary	third
 therefore	so
+therein	there
 thereof	its
+therewith	with
+thirdly	third
 thoroughfare	road
 thoroughfare's	road's
 thoroughfares	roads
@@ -1353,6 +1413,7 @@ titillate	tickle
 titillated	tickled
 titillates	tickles
 titillating	tickling
+towards	toward
 transcription	copy
 transcriptions	copies
 transmit	send
@@ -1380,6 +1441,7 @@ uncultivated	wild
 undulations	curves
 unequivocal	clear
 unfamiliar	unknown
+upon	on
 usually	often
 utilisabilities	uses
 utilisation	use
@@ -1405,8 +1467,10 @@ value	cost
 variation	change
 variations	changes
 vehement	eager
+velocity	speed
 venturous	bold
 verbatim	exact
+verification	proof
 vertically	upward
 via	in
 vindicate	defend
@@ -1423,4 +1487,6 @@ vociferates	shouts
 vociferating	shouting
 voluminous	large
 whenever	when
-whereas	since
+whereas	because
+whilst	while
+witnessed	saw

@@ -67,10 +67,14 @@ allay	quiet
 allayed	quieted
 allaying	quieting
 allays	quiets
+allocate	give
+allow	let
+alter	change
 alteration	change
 alterations	changes
 amendment	change
 amendments	changes
+amongst	among
 amusement	fun
 annihilate	kill
 annihilated	killed
@@ -100,6 +104,8 @@ appointed	named
 appointing	naming
 appoints	names
 appreciable	many
+apprise	tell
+approximate	about
 approximately	about
 arduous	hard
 aroma	smell
@@ -130,6 +136,10 @@ assisted	helped
 assisting	helping
 assists	helps
 assuredly	surely
+attain	reach
+attained	reached
+attaining	reaching
+attains	reaches
 attempt	try
 attempted	tried
 attempting	trying
@@ -169,6 +179,7 @@ bizarre	queer
 boulevard	road
 boulevard's	road's
 boulevards	roads
+calculate	figure
 capable	able
 catalog	list
 catalogs	lists
@@ -186,6 +197,7 @@ categorized	grouped
 categorizes	groups
 categorizing	grouping
 category	group
+cease	stop
 certainly	surely
 cessation	stop
 cessations	stops
@@ -200,6 +212,7 @@ commenced	began
 commencement	start
 commencements	starts
 commences	begins
+communicate	tell
 companion	friend
 companion's	friend's
 companions	friends
@@ -216,7 +229,9 @@ complying	following
 component	part
 component's	part's
 components	parts
+conceal	hide
 concealment	hiding
+concept	idea
 conception	thought
 concerning	about
 conclude	close
@@ -268,6 +283,7 @@ contributing	helping
 contribution	gift
 contribution's	gift's
 contributions	gifts
+convene	meet
 conversation	talk
 conversations	talks
 conversion	change
@@ -292,6 +308,7 @@ cultivate	grow
 cultivated	grew
 cultivates	grows
 cultivating	growing
+currently	now
 customary	usual
 damsel	girl
 damsel's	girl's
@@ -318,10 +335,13 @@ departed	left
 departing	leaving
 departs	leaves
 deplete	empty
+designate	name
 desire	wish
 desired	wished
 desires	wishes
 desiring	wishing
+desist	stop
+detain	hold
 determine	decide
 determined	decided
 determines	decides
@@ -347,7 +367,7 @@ discontinuance	dropping
 discontinuances	stops
 discontinuation	dropping
 discontinuations	stop
-discontinue	drop
+discontinue	stop
 discontinued	dropped
 discontinues	drops
 discontinuing	dropping
@@ -355,6 +375,7 @@ dispatch	send
 dispatched	sent
 dispatches	sends
 dispatching	sending
+disseminate	give
 dissimilar	different
 dissipate	waste
 dissipated	wasted
@@ -365,13 +386,16 @@ divulges	tells
 divulging	telling
 domicile	home
 domiciles	homes
+donate	give
 dormant	asleep
+duration	time
 edifice	building
 educator	teacher
 educator's	teacher's
 educators	teachers
 effected	made
 effecting	making
+elapse	pass
 elect	pick
 elected	picked
 electing	picking
@@ -422,9 +446,11 @@ equitable	fair
 erroneous	wrong
 erroneously	wrongly
 erudite	learned
+establish	show
 evidenced	showed
 evidences	shows
 evidencing	showing
+evince	show
 exceedingly	very
 execute	kill
 executed	killed
@@ -447,6 +473,7 @@ expeditiously	quickly
 expend	spend
 expending	spending
 expends	spends
+expiration	end
 explain	show
 explained	showed
 explaining	showing
@@ -467,6 +494,7 @@ facilitating	helping
 facilitation	help
 famished	hungry
 fatuous	silly
+females	women
 ferocious	fierce
 ferociously	fiercely
 fetch	get
@@ -487,6 +515,7 @@ finalized	finished
 finalizes	finishes
 finalizing	finishing
 firmament	sky
+firstly	first
 fluctuations	waves
 forfeited	lost
 formulate	plan
@@ -518,13 +547,15 @@ gratuities	gifts
 gratuity	gift
 habitation	house
 habitations	houses
+hence	so
 herein	here
+herewith	here
 however	but
 humongous	giant
 identical	same
 identified	named
 identifies	names
-identify	name
+identify	find
 identifying	naming
 ignoble	mean
 illumination	light
@@ -551,9 +582,10 @@ impinge	strike
 impinged	hit
 impinges	strikes
 impinging	striking
-implement	do
+implement	start
 implemented	did
-implements	does
+implementing	starting
+implements	starts
 impoverished	poor
 inaccuracies	mistakes
 inaccuracy	mistake
@@ -582,6 +614,7 @@ indolent	lazy
 indubitable	certain
 inferno	fire
 infernos	fires
+inform	tell
 ingenuous	open
 initial	first
 initialisation	start
@@ -596,7 +629,7 @@ initialize	start
 initialized	started
 initializes	starts
 initializing	starting
-initiate	begin
+initiate	start
 initiated	started
 initiates	starts
 initiating	starting
@@ -649,6 +682,7 @@ methodologies	plans
 methodology	plan
 militate	fight
 militates	fights
+minimum	least
 modification	change
 modifications	changes
 modified	changed
@@ -670,6 +704,7 @@ necessitate	cause
 necessitated	caused
 necessitates	causes
 necessitating	causing
+necessity	need
 nemesis	enemy
 nemesis's	enemy's
 notation	note
@@ -686,7 +721,7 @@ numerates	counts
 numerating	counting
 numerous	many
 nutriment	food
-observe	see
+observe	watch
 observed	saw
 observes	sees
 observing	seeing
@@ -702,6 +737,11 @@ obtain	get
 obtained	got
 obtaining	getting
 obtains	gets
+occasion	cause
+occur	happen
+occured	happened
+occurs	happens
+ongoing	continuing
 operate	run
 operated	ran
 operates	runs
@@ -738,6 +778,7 @@ permitted	let
 permitting	letting
 personnel	people
 personnel's	people's
+persons	people
 peruse	read
 perused	read
 peruses	reads
@@ -770,7 +811,8 @@ predilection	liking
 preeminent	top
 preferable	better
 preponderant	chief
-previous	past
+present	give
+presently	now
 previously	before
 primary	first
 probabilities	chances
@@ -779,6 +821,7 @@ procedure	rule
 procedures	rules
 proceed	do
 proceeds	does
+procure	get
 produced	made
 produces	makes
 producing	making
@@ -789,6 +832,7 @@ proffers	offers
 profound	deep
 progeny	children
 program	plan
+provide	give
 puissance	might
 punctilious	exact
 purchase	buy
@@ -812,6 +856,8 @@ reduces	cuts
 reducing	cutting
 reduction	cut
 reductions	cuts
+reflect	say
+regarding	about
 regimen	rule
 regulation	rule
 regulations	rules
@@ -833,6 +879,8 @@ remunerates	pays
 remunerating	paying
 remuneration	pay
 remunerations	pays
+render	give
+represents	is
 request	ask
 requested	asked
 requesting	asking
@@ -844,8 +892,10 @@ requirements	needs
 requires	needs
 requiring	needing
 requisite	needed
+reside	live
 residence	house
 residences	houses
+respond	answer
 responsibilities	jobs
 responsibility	job
 retain	keep
@@ -867,8 +917,10 @@ saturate	fill
 saturated	filled
 saturates	fills
 saturating	filling
+secondly	second
 segment	part
 segments	parts
+shortly	soon
 similar	like
 solicitous	eager
 solitary	alone
@@ -880,7 +932,7 @@ strategies	plans
 strategy	plan
 stringent	tight
 stringently	tightly
-submit	send
+submit	give
 submits	sends
 submitted	sent
 submitting	sending
@@ -904,10 +956,14 @@ terminating	ending
 terminus	end
 tertiary	third
 therefore	so
+therein	there
 thereof	its
+therewith	with
+thirdly	third
 thoroughfare	road
 thoroughfare's	road's
 thoroughfares	roads
+towards	toward
 transmit	send
 transmits	sends
 transmitted	sent
@@ -922,6 +978,7 @@ tributary	river
 tributary's	river's
 typically	often
 undulations	waves
+upon	on
 usually	often
 utilisabilities	uses
 utilisation	use
@@ -952,4 +1009,6 @@ visualizes	pictures
 visualizing	seeing
 voluminous	large
 whenever	when
-whereas	since
+whereas	because
+whilst	while
+witnessed	saw
