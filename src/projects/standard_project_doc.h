@@ -236,7 +236,7 @@ private:
         const wxFont& textViewFont,
         const size_t mainFontColorIndex);
     [[nodiscard]]
-    std::pair<TextLegendLines, size_t> BuildLegendLines(const HighlighterTags& highlighterTags);
+    std::pair<TextLegendLines, size_t> BuildLegendLines(const HighlighterTags& highlighterTags) const;
     [[nodiscard]]
     wxString BuildLegendLine(const HighlighterTags& highlighterTags, const wxString& legendStr);
     /// @brief Builds the RTF color table (used by Windows and macOS).

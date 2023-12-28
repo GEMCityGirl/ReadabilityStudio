@@ -4805,7 +4805,7 @@ ProjectDoc::HighlighterTags ProjectDoc::BuildHighlighterTags(
     }
 
 //-------------------------------------------------------
-std::pair<ProjectDoc::TextLegendLines, size_t> ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags)
+std::pair<ProjectDoc::TextLegendLines, size_t> ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
     {
     [[maybe_unused]] lily_of_the_valley::rtf_encode_text rtfEncode;
     TextLegendLines legendLines;

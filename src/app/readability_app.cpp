@@ -172,7 +172,7 @@ void ReadabilityApp::ShowSplashscreen()
     }
 
 //-------------------------------------------
-void ReadabilityApp::AddWordsToDictionaries(const wxArrayString& theWords, const readability::test_language lang)
+void ReadabilityApp::AddWordsToDictionaries(const wxArrayString& theWords, const readability::test_language lang) const
     {
     wxString customDictionaryPath = m_CustomEnglishDictionaryPath;
     if (lang == readability::test_language::english_test)
