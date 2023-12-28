@@ -3,14 +3,14 @@
 # Purpose:     Unit test runner Readability Studio
 # Author:      Blake Madden
 # Created:     2023-03-12
-# Copyright:   (c) 2023 Blake Madden
+# Copyright:   (c) 2024 Blake Madden
 # Licence:     3-Clause BSD licence
 #############################################################################
 
 PROJECT(RSTestRunner)
 
 CMAKE_MINIMUM_REQUIRED(VERSION 3.12)
-SET(CMAKE_CXX_STANDARD 17)
+SET(CMAKE_CXX_STANDARD 20)
 SET(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # place Catch2 in the src folder if not installed

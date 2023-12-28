@@ -3,14 +3,14 @@
 # Purpose:     Build script for Readability Studio
 # Author:      Blake Madden
 # Created:     2023-07-31
-# Copyright:   (c) 2006-2023 Blake Madden
+# Copyright:   (c) 2006-2024 Blake Madden
 # License:     3-Clause BSD license
 #############################################################################
 
 # Declare the minimum required CMake version
 # Note that CMake 3.24 is needed for compiling wxWidgets
 cmake_minimum_required(VERSION 3.24)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Edit these values when bumping the release

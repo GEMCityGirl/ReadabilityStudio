@@ -1,3 +1,4 @@
+---
 IndentWidth: 4
 ColumnLimit: 100
 AllowShortIfStatementsOnASingleLine: Never
@@ -14,7 +15,7 @@ MaxEmptyLinesToKeep: 1
 NamespaceIndentation: All
 PointerAlignment: Left
 QualifierAlignment: Custom
-QualifierOrder: ['inline', 'static', 'const', 'constexpr', 'volatile', 'restrict', 'friend', 'type']
+QualifierOrder: ['inline', 'constexpr', 'static', 'const', 'volatile', 'restrict', 'friend', 'type']
 ReferenceAlignment: Left
 ReflowComments: true
 RemoveSemicolon: true
