@@ -119,15 +119,15 @@ class ProjectReportFormat
     [[nodiscard]]
     static wxString GetStemmingDisplayName(const stemming::stemming_type stemType);
     /// maximum number of summary statistics
-    static constexpr int MAX_SUMMARY_STAT_ROWS = 500;
-    static constexpr int MAX_DOLCH_CONJUNCTION_WORDS = 6;
-    static constexpr int MAX_DOLCH_PREPOSITION_WORDS = 16;
-    static constexpr int MAX_DOLCH_PRONOUN_WORDS = 26;
-    static constexpr int MAX_DOLCH_ADVERB_WORDS = 34;
-    static constexpr int MAX_DOLCH_ADJECTIVE_WORDS = 46;
-    static constexpr int MAX_DOLCH_VERBS = 92;
+    constexpr static int MAX_SUMMARY_STAT_ROWS = 500;
+    constexpr static int MAX_DOLCH_CONJUNCTION_WORDS = 6;
+    constexpr static int MAX_DOLCH_PREPOSITION_WORDS = 16;
+    constexpr static int MAX_DOLCH_PRONOUN_WORDS = 26;
+    constexpr static int MAX_DOLCH_ADVERB_WORDS = 34;
+    constexpr static int MAX_DOLCH_ADJECTIVE_WORDS = 46;
+    constexpr static int MAX_DOLCH_VERBS = 92;
     /// should be 95, but we count "Santa" and "Claus" as two words instead of one.
-    static constexpr int MAX_DOLCH_NOUNS = 96;
+    constexpr static int MAX_DOLCH_NOUNS = 96;
 
   private:
     [[nodiscard]]

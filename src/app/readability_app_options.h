@@ -1,50 +1,59 @@
 #ifndef __READABILITY_APP_OPTIONS_H__
 #define __READABILITY_APP_OPTIONS_H__
 
-#include <wx/colourdata.h>
-#include "../tinyxml2/tinyxml2.h"
+#include "../OleanderStemmingLibrary/src/stemming.h"
+#include "../Wisteria-Dataviz/src/base/image.h"
+#include "../Wisteria-Dataviz/src/data/dataset.h"
 #include "../Wisteria-Dataviz/src/graphs/barchart.h"
 #include "../Wisteria-Dataviz/src/graphs/boxplot.h"
 #include "../Wisteria-Dataviz/src/graphs/histogram.h"
-#include "../Wisteria-Dataviz/src/util/warningmanager.h"
-#include "../Wisteria-Dataviz/src/base/image.h"
-#include "../Wisteria-Dataviz/src/data/dataset.h"
 #include "../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
+#include "../Wisteria-Dataviz/src/util/warningmanager.h"
 #include "../Wisteria-Dataviz/src/util/xml_format.h"
-#include "../OleanderStemmingLibrary/src/stemming.h"
-#include "../readability/readability.h"
-#include "../readability/readability_test.h"
-#include "../readability/readability_project_test.h"
-#include "../results_format/readability_messages.h"
 #include "../graphs/raygorgraph.h"
+#include "../readability/readability.h"
+#include "../readability/readability_project_test.h"
+#include "../readability/readability_test.h"
+#include "../results_format/readability_messages.h"
+#include "../tinyxml2/tinyxml2.h"
 #include "optionenums.h"
+#include <wx/colourdata.h>
 
 /// @brief Class for managing what is included in the statistics section.
 class StatisticsInfo
     {
-public:
-    StatisticsInfo()
-        { Reset(); }
-    void Reset() noexcept
-        { EnableAll(); }
-    void EnableAll() noexcept
-        { m_statItemsToInclude.set(); }
-    void Set(const wxString& val)
-        { m_statItemsToInclude = std::bitset<64>(val.ToStdString()); }
+  public:
+    StatisticsInfo() { Reset(); }
+
+    void Reset() noexcept { EnableAll(); }
+
+    void EnableAll() noexcept { m_statItemsToInclude.set(); }
+
+    void Set(const wxString& val) { m_statItemsToInclude = std::bitset<64>(val.ToStdString()); }
+
     [[nodiscard]]
     wxString ToString() const
-        { return wxString{ m_statItemsToInclude.to_string() }; }
-    void EnableReport(const bool enable)
-        { m_statItemsToInclude.set(0,enable); }
+        {
+        return wxString{ m_statItemsToInclude.to_string() };
+        }
+
+    void EnableReport(const bool enable) { m_statItemsToInclude.set(0, enable); }
+
     [[nodiscard]]
     bool IsReportEnabled() const
-        { return m_statItemsToInclude[0]; }
-    void EnableTable(const bool enable)
-        { m_statItemsToInclude.set(1,enable); }
+        {
+        return m_statItemsToInclude[0];
+        }
+
+    void EnableTable(const bool enable) { m_statItemsToInclude.set(1, enable); }
+
     [[nodiscard]]
     bool IsTableEnabled() const
-        { return m_statItemsToInclude[1]; }
-private:
+        {
+        return m_statItemsToInclude[1];
+        }
+
+  private:
     std::bitset<64> m_statItemsToInclude{ 0 };
     };
 
@@ -52,302 +61,477 @@ private:
 /// By default, all statistics are included (except additional notes).
 class StatisticsReportInfo
     {
-public:
-    StatisticsReportInfo()
-        { Reset(); }
+  public:
+    StatisticsReportInfo() { Reset(); }
+
     void Reset()
         {
         // enable all flags by default, except for additional notes
         EnableAll();
         EnableExtendedInformation(false);
         }
-    void EnableAll() noexcept
-        { m_statReportItemsToInclude.set(); }
+
+    void EnableAll() noexcept { m_statReportItemsToInclude.set(); }
+
     void Set(const wxString& val)
-        { m_statReportItemsToInclude = std::bitset<10>(val.ToStdString()); }
+        {
+        m_statReportItemsToInclude = std::bitset<10>(val.ToStdString());
+        }
+
     [[nodiscard]]
     wxString ToString() const
-        { return m_statReportItemsToInclude.to_string().c_str(); }
-    void EnableParagraph(const bool enable)
-        { m_statReportItemsToInclude.set(0,enable); }
+        {
+        return m_statReportItemsToInclude.to_string().c_str();
+        }
+
+    void EnableParagraph(const bool enable) { m_statReportItemsToInclude.set(0, enable); }
+
     [[nodiscard]]
     bool IsParagraphEnabled() const
-        { return m_statReportItemsToInclude[0]; }
-    void EnableSentences(const bool enable)
-        { m_statReportItemsToInclude.set(1,enable); }
+        {
+        return m_statReportItemsToInclude[0];
+        }
+
+    void EnableSentences(const bool enable) { m_statReportItemsToInclude.set(1, enable); }
+
     [[nodiscard]]
     bool IsSentencesEnabled() const
-        { return m_statReportItemsToInclude[1]; }
-    void EnableWords(const bool enable)
-        { m_statReportItemsToInclude.set(2,enable); }
+        {
+        return m_statReportItemsToInclude[1];
+        }
+
+    void EnableWords(const bool enable) { m_statReportItemsToInclude.set(2, enable); }
+
     [[nodiscard]]
     bool IsWordsEnabled() const
-        { return m_statReportItemsToInclude[2]; }
-    void EnableExtendedWords(const bool enable)
-        { m_statReportItemsToInclude.set(3,enable); }
+        {
+        return m_statReportItemsToInclude[2];
+        }
+
+    void EnableExtendedWords(const bool enable) { m_statReportItemsToInclude.set(3, enable); }
+
     [[nodiscard]]
     bool IsExtendedWordsEnabled() const
-        { return m_statReportItemsToInclude[3]; }
-    void EnableGrammar(const bool enable)
-        { m_statReportItemsToInclude.set(4,enable); }
+        {
+        return m_statReportItemsToInclude[3];
+        }
+
+    void EnableGrammar(const bool enable) { m_statReportItemsToInclude.set(4, enable); }
+
     [[nodiscard]]
     bool IsGrammarEnabled() const
-        { return m_statReportItemsToInclude[4]; }
-    void EnableNotes(const bool enable)
-        { m_statReportItemsToInclude.set(5,enable); }
+        {
+        return m_statReportItemsToInclude[4];
+        }
+
+    void EnableNotes(const bool enable) { m_statReportItemsToInclude.set(5, enable); }
+
     [[nodiscard]]
     bool IsNotesEnabled() const
-        { return m_statReportItemsToInclude[5]; }
-    void EnableExtendedInformation(const bool enable)
-        { m_statReportItemsToInclude.set(6,enable); }
+        {
+        return m_statReportItemsToInclude[5];
+        }
+
+    void EnableExtendedInformation(const bool enable) { m_statReportItemsToInclude.set(6, enable); }
+
     [[nodiscard]]
     bool IsExtendedInformationEnabled() const
-        { return m_statReportItemsToInclude[6]; }
-    void EnableDolchCoverage(const bool enable)
-        { m_statReportItemsToInclude.set(7,enable); }
+        {
+        return m_statReportItemsToInclude[6];
+        }
+
+    void EnableDolchCoverage(const bool enable) { m_statReportItemsToInclude.set(7, enable); }
+
     [[nodiscard]]
     bool IsDolchCoverageEnabled() const
-        { return m_statReportItemsToInclude[7]; }
-    void EnableDolchWords(const bool enable)
-        { m_statReportItemsToInclude.set(8,enable); }
+        {
+        return m_statReportItemsToInclude[7];
+        }
+
+    void EnableDolchWords(const bool enable) { m_statReportItemsToInclude.set(8, enable); }
+
     [[nodiscard]]
     bool IsDolchWordsEnabled() const
-        { return m_statReportItemsToInclude[8]; }
-    void EnableDolchExplanation(const bool enable)
-        { m_statReportItemsToInclude.set(9,enable); }
+        {
+        return m_statReportItemsToInclude[8];
+        }
+
+    void EnableDolchExplanation(const bool enable) { m_statReportItemsToInclude.set(9, enable); }
+
     [[nodiscard]]
     bool IsDolchExplanationEnabled() const
-        { return m_statReportItemsToInclude[9]; }
+        {
+        return m_statReportItemsToInclude[9];
+        }
+
     /// @returns Whether anything in the standard statistics are enabled.
     [[nodiscard]]
     bool HasStatisticsEnabled() const
         {
         return (IsParagraphEnabled() || IsSentencesEnabled() || IsWordsEnabled() ||
-            IsExtendedWordsEnabled() || IsGrammarEnabled() || IsExtendedInformationEnabled());
+                IsExtendedWordsEnabled() || IsGrammarEnabled() || IsExtendedInformationEnabled());
         }
+
     /// @returns Whether any Dolch statistics are enabled.
     [[nodiscard]]
     bool HasDolchStatisticsEnabled() const
-        { return (IsDolchCoverageEnabled() || IsDolchWordsEnabled() || IsDolchExplanationEnabled()); }
-private:
+        {
+        return (IsDolchCoverageEnabled() || IsDolchWordsEnabled() || IsDolchExplanationEnabled());
+        }
+
+  private:
     std::bitset<10> m_statReportItemsToInclude{ 0 };
     };
 
 class GrammarInfo
     {
-public:
-    GrammarInfo()
-        { EnableAll(); }// enable all flags by default
-    void EnableAll() noexcept
-        { m_grammarItemsToInclude.set(); }
-    void Set(const wxString& val)
-        { m_grammarItemsToInclude = std::bitset<64>(val.ToStdString()); }
+  public:
+    GrammarInfo() { EnableAll(); } // enable all flags by default
+
+    void EnableAll() noexcept { m_grammarItemsToInclude.set(); }
+
+    void Set(const wxString& val) { m_grammarItemsToInclude = std::bitset<64>(val.ToStdString()); }
+
     [[nodiscard]]
     wxString ToString() const
-        { return wxString{ m_grammarItemsToInclude.to_string() }; }
-    void EnableHighlightedReport(const bool enable)
-        { m_grammarItemsToInclude.set(0, enable); }
+        {
+        return wxString{ m_grammarItemsToInclude.to_string() };
+        }
+
+    void EnableHighlightedReport(const bool enable) { m_grammarItemsToInclude.set(0, enable); }
+
     [[nodiscard]]
     bool IsHighlightedReportEnabled() const
-        { return m_grammarItemsToInclude[0]; }
-    void EnableMisspellings(const bool enable)
-        { m_grammarItemsToInclude.set(1, enable); }
+        {
+        return m_grammarItemsToInclude[0];
+        }
+
+    void EnableMisspellings(const bool enable) { m_grammarItemsToInclude.set(1, enable); }
+
     [[nodiscard]]
     bool IsMisspellingsEnabled() const
-        { return m_grammarItemsToInclude[1]; }
-    void EnableRepeatedWords(const bool enable)
-        { m_grammarItemsToInclude.set(2, enable); }
+        {
+        return m_grammarItemsToInclude[1];
+        }
+
+    void EnableRepeatedWords(const bool enable) { m_grammarItemsToInclude.set(2, enable); }
+
     [[nodiscard]]
     bool IsRepeatedWordsEnabled() const
-        { return m_grammarItemsToInclude[2]; }
-    void EnableArticleMismatches(const bool enable)
-        { m_grammarItemsToInclude.set(3, enable); }
+        {
+        return m_grammarItemsToInclude[2];
+        }
+
+    void EnableArticleMismatches(const bool enable) { m_grammarItemsToInclude.set(3, enable); }
+
     [[nodiscard]]
     bool IsArticleMismatchesEnabled() const
-        { return m_grammarItemsToInclude[3]; }
-    void EnableWordingErrors(const bool enable)
-        { m_grammarItemsToInclude.set(4, enable); }
+        {
+        return m_grammarItemsToInclude[3];
+        }
+
+    void EnableWordingErrors(const bool enable) { m_grammarItemsToInclude.set(4, enable); }
+
     [[nodiscard]]
     bool IsWordingErrorsEnabled() const
-        { return m_grammarItemsToInclude[4]; }
-    void EnableRedundantPhrases(const bool enable)
-        { m_grammarItemsToInclude.set(5, enable); }
+        {
+        return m_grammarItemsToInclude[4];
+        }
+
+    void EnableRedundantPhrases(const bool enable) { m_grammarItemsToInclude.set(5, enable); }
+
     [[nodiscard]]
     bool IsRedundantPhrasesEnabled() const
-        { return m_grammarItemsToInclude[5]; }
+        {
+        return m_grammarItemsToInclude[5];
+        }
+
     void EnableOverUsedWordsBySentence(const bool enable)
-        { m_grammarItemsToInclude.set(6, enable); }
+        {
+        m_grammarItemsToInclude.set(6, enable);
+        }
+
     [[nodiscard]]
     bool IsOverUsedWordsBySentenceEnabled() const
-        { return m_grammarItemsToInclude[6]; }
-    void EnableWordyPhrases(const bool enable)
-        { m_grammarItemsToInclude.set(7, enable); }
+        {
+        return m_grammarItemsToInclude[6];
+        }
+
+    void EnableWordyPhrases(const bool enable) { m_grammarItemsToInclude.set(7, enable); }
+
     [[nodiscard]]
     bool IsWordyPhrasesEnabled() const
-        { return m_grammarItemsToInclude[7]; }
-    void EnableCliches(const bool enable)
-        { m_grammarItemsToInclude.set(8, enable); }
+        {
+        return m_grammarItemsToInclude[7];
+        }
+
+    void EnableCliches(const bool enable) { m_grammarItemsToInclude.set(8, enable); }
+
     [[nodiscard]]
     bool IsClichesEnabled() const
-        { return m_grammarItemsToInclude[8]; }
-    void EnablePassiveVoice(const bool enable)
-        { m_grammarItemsToInclude.set(9, enable); }
+        {
+        return m_grammarItemsToInclude[8];
+        }
+
+    void EnablePassiveVoice(const bool enable) { m_grammarItemsToInclude.set(9, enable); }
+
     [[nodiscard]]
     bool IsPassiveVoiceEnabled() const
-        { return m_grammarItemsToInclude[9]; }
+        {
+        return m_grammarItemsToInclude[9];
+        }
+
     void EnableConjunctionStartingSentences(const bool enable)
-        { m_grammarItemsToInclude.set(10, enable); }
+        {
+        m_grammarItemsToInclude.set(10, enable);
+        }
+
     [[nodiscard]]
     bool IsConjunctionStartingSentencesEnabled() const
-        { return m_grammarItemsToInclude[10]; }
-    void EnableLowercaseSentences(const bool enable)
-        { m_grammarItemsToInclude.set(11, enable); }
+        {
+        return m_grammarItemsToInclude[10];
+        }
+
+    void EnableLowercaseSentences(const bool enable) { m_grammarItemsToInclude.set(11, enable); }
+
     [[nodiscard]]
     bool IsLowercaseSentencesEnabled() const
-        { return m_grammarItemsToInclude[11]; }
+        {
+        return m_grammarItemsToInclude[11];
+        }
+
     [[nodiscard]]
     bool IsAnyFeatureEnabled() const
         {
         return (IsHighlightedReportEnabled() || IsMisspellingsEnabled() ||
-            IsRepeatedWordsEnabled() || IsArticleMismatchesEnabled() || IsWordingErrorsEnabled() ||
-            IsRedundantPhrasesEnabled() || IsOverUsedWordsBySentenceEnabled() || IsWordyPhrasesEnabled() ||
-            IsClichesEnabled() || IsPassiveVoiceEnabled() || IsConjunctionStartingSentencesEnabled() ||
-            IsLowercaseSentencesEnabled());
+                IsRepeatedWordsEnabled() || IsArticleMismatchesEnabled() ||
+                IsWordingErrorsEnabled() || IsRedundantPhrasesEnabled() ||
+                IsOverUsedWordsBySentenceEnabled() || IsWordyPhrasesEnabled() ||
+                IsClichesEnabled() || IsPassiveVoiceEnabled() ||
+                IsConjunctionStartingSentencesEnabled() || IsLowercaseSentencesEnabled());
         }
-private:
+
+  private:
     std::bitset<64> m_grammarItemsToInclude{ 0 };
     };
 
 /// @brief Class for managing what is included in the words breakdown section.
 class WordsBreakdownInfo
     {
-public:
-    WordsBreakdownInfo()
-        { EnableAll(); }
-    void EnableAll() noexcept
-        { m_wordsBreakdownItemsToInclude.set(); }
+  public:
+    WordsBreakdownInfo() { EnableAll(); }
+
+    void EnableAll() noexcept { m_wordsBreakdownItemsToInclude.set(); }
+
     void Set(const wxString& val)
-        { m_wordsBreakdownItemsToInclude = std::bitset<64>(val.ToStdString()); }
+        {
+        m_wordsBreakdownItemsToInclude = std::bitset<64>(val.ToStdString());
+        }
+
     [[nodiscard]]
     wxString ToString() const
-        { return wxString{ m_wordsBreakdownItemsToInclude.to_string() }; }
-    void EnableWordBarchart(const bool enable)
-        { m_wordsBreakdownItemsToInclude.set(0,enable); }
+        {
+        return wxString{ m_wordsBreakdownItemsToInclude.to_string() };
+        }
+
+    void EnableWordBarchart(const bool enable) { m_wordsBreakdownItemsToInclude.set(0, enable); }
+
     [[nodiscard]]
     bool IsWordBarchartEnabled() const
-        { return m_wordsBreakdownItemsToInclude[0]; }
+        {
+        return m_wordsBreakdownItemsToInclude[0];
+        }
+
     void EnableSyllableHistogram(const bool enable)
-        { m_wordsBreakdownItemsToInclude.set(1,enable); }
+        {
+        m_wordsBreakdownItemsToInclude.set(1, enable);
+        }
+
     [[nodiscard]]
     bool IsSyllableGraphsEnabled() const
-        { return m_wordsBreakdownItemsToInclude[1]; }
-    void Enable3PlusSyllables(const bool enable)
-        { m_wordsBreakdownItemsToInclude.set(2,enable); }
+        {
+        return m_wordsBreakdownItemsToInclude[1];
+        }
+
+    void Enable3PlusSyllables(const bool enable) { m_wordsBreakdownItemsToInclude.set(2, enable); }
+
     [[nodiscard]]
     bool Is3PlusSyllablesEnabled() const
-        { return m_wordsBreakdownItemsToInclude[2]; }
-    void Enable6PlusCharacter(const bool enable)
-        { m_wordsBreakdownItemsToInclude.set(3,enable); }
+        {
+        return m_wordsBreakdownItemsToInclude[2];
+        }
+
+    void Enable6PlusCharacter(const bool enable) { m_wordsBreakdownItemsToInclude.set(3, enable); }
+
     [[nodiscard]]
     bool Is6PlusCharacterEnabled() const
-        { return m_wordsBreakdownItemsToInclude[3]; }
-    void EnableDCUnfamiliar(const bool enable)
-        { m_wordsBreakdownItemsToInclude.set(4,enable); }
+        {
+        return m_wordsBreakdownItemsToInclude[3];
+        }
+
+    void EnableDCUnfamiliar(const bool enable) { m_wordsBreakdownItemsToInclude.set(4, enable); }
+
     [[nodiscard]]
     bool IsDCUnfamiliarEnabled() const
-        { return m_wordsBreakdownItemsToInclude[4]; }
+        {
+        return m_wordsBreakdownItemsToInclude[4];
+        }
+
     void EnableSpacheUnfamiliar(const bool enable)
-        { m_wordsBreakdownItemsToInclude.set(5,enable); }
+        {
+        m_wordsBreakdownItemsToInclude.set(5, enable);
+        }
+
     [[nodiscard]]
     bool IsSpacheUnfamiliarEnabled() const
-        { return m_wordsBreakdownItemsToInclude[5]; }
+        {
+        return m_wordsBreakdownItemsToInclude[5];
+        }
+
     void EnableHarrisJacobsonUnfamiliar(const bool enable)
-        { m_wordsBreakdownItemsToInclude.set(6,enable); }
+        {
+        m_wordsBreakdownItemsToInclude.set(6, enable);
+        }
+
     [[nodiscard]]
     bool IsHarrisJacobsonUnfamiliarEnabled() const
-        { return m_wordsBreakdownItemsToInclude[6]; }
+        {
+        return m_wordsBreakdownItemsToInclude[6];
+        }
+
     void EnableCustomTestsUnfamiliar(const bool enable)
-        { m_wordsBreakdownItemsToInclude.set(7,enable); }
+        {
+        m_wordsBreakdownItemsToInclude.set(7, enable);
+        }
+
     [[nodiscard]]
     bool IsCustomTestsUnfamiliarEnabled() const
-        { return m_wordsBreakdownItemsToInclude[7]; }
-    void EnableAllWords(const bool enable)
-        { m_wordsBreakdownItemsToInclude.set(8,enable); }
+        {
+        return m_wordsBreakdownItemsToInclude[7];
+        }
+
+    void EnableAllWords(const bool enable) { m_wordsBreakdownItemsToInclude.set(8, enable); }
+
     [[nodiscard]]
     bool IsAllWordsEnabled() const
-        { return m_wordsBreakdownItemsToInclude[8]; }
-    void EnableKeyWords(const bool enable)
-        { m_wordsBreakdownItemsToInclude.set(9,enable); }
+        {
+        return m_wordsBreakdownItemsToInclude[8];
+        }
+
+    void EnableKeyWords(const bool enable) { m_wordsBreakdownItemsToInclude.set(9, enable); }
+
     [[nodiscard]]
     bool IsKeyWordsEnabled() const
-        { return m_wordsBreakdownItemsToInclude[9]; }
-    void EnableProperNouns(const bool enable)
-        { m_wordsBreakdownItemsToInclude.set(10,enable); }
+        {
+        return m_wordsBreakdownItemsToInclude[9];
+        }
+
+    void EnableProperNouns(const bool enable) { m_wordsBreakdownItemsToInclude.set(10, enable); }
+
     [[nodiscard]]
     bool IsProperNounsEnabled() const
-        { return m_wordsBreakdownItemsToInclude[10]; }
-    void EnableContractions(const bool enable)
-        { m_wordsBreakdownItemsToInclude.set(11,enable); }
+        {
+        return m_wordsBreakdownItemsToInclude[10];
+        }
+
+    void EnableContractions(const bool enable) { m_wordsBreakdownItemsToInclude.set(11, enable); }
+
     [[nodiscard]]
     bool IsContractionsEnabled() const
-        { return m_wordsBreakdownItemsToInclude[11]; }
-    void EnableWordCloud(const bool enable)
-        { m_wordsBreakdownItemsToInclude.set(12, enable); }
+        {
+        return m_wordsBreakdownItemsToInclude[11];
+        }
+
+    void EnableWordCloud(const bool enable) { m_wordsBreakdownItemsToInclude.set(12, enable); }
+
     [[nodiscard]]
     bool IsWordCloudEnabled() const
-        { return m_wordsBreakdownItemsToInclude[12]; }
-private:
+        {
+        return m_wordsBreakdownItemsToInclude[12];
+        }
+
+  private:
     std::bitset<64> m_wordsBreakdownItemsToInclude{ 0 };
     };
 
 /// @brief Class for managing what is included in the sentences section.
 class SentencesBreakdownInfo
     {
-public:
-    SentencesBreakdownInfo()
-        { Reset(); }
-    void Reset() noexcept
-        { EnableAll(); }
-    void EnableAll() noexcept
-        { m_sentenceBreadkdownItemsToInclude.set(); }
+  public:
+    SentencesBreakdownInfo() { Reset(); }
+
+    void Reset() noexcept { EnableAll(); }
+
+    void EnableAll() noexcept { m_sentenceBreadkdownItemsToInclude.set(); }
+
     void Set(const wxString& val)
-        { m_sentenceBreadkdownItemsToInclude = std::bitset<64>(val.ToStdString()); }
+        {
+        m_sentenceBreadkdownItemsToInclude = std::bitset<64>(val.ToStdString());
+        }
+
     [[nodiscard]]
     wxString ToString() const
-        { return wxString{ m_sentenceBreadkdownItemsToInclude.to_string() }; }
+        {
+        return wxString{ m_sentenceBreadkdownItemsToInclude.to_string() };
+        }
+
     void EnableLongSentences(const bool enable)
-        { m_sentenceBreadkdownItemsToInclude.set(0,enable); }
+        {
+        m_sentenceBreadkdownItemsToInclude.set(0, enable);
+        }
+
     [[nodiscard]]
     bool IsLongSentencesEnabled() const
-        { return m_sentenceBreadkdownItemsToInclude[0]; }
+        {
+        return m_sentenceBreadkdownItemsToInclude[0];
+        }
+
     void EnableLengthsBoxPlot(const bool enable)
-        { m_sentenceBreadkdownItemsToInclude.set(1,enable); }
+        {
+        m_sentenceBreadkdownItemsToInclude.set(1, enable);
+        }
+
     [[nodiscard]]
     bool IsLengthsBoxPlotEnabled() const
-        { return m_sentenceBreadkdownItemsToInclude[1]; }
+        {
+        return m_sentenceBreadkdownItemsToInclude[1];
+        }
+
     void EnableLengthsHeatmap(const bool enable)
-        { m_sentenceBreadkdownItemsToInclude.set(2,enable); }
+        {
+        m_sentenceBreadkdownItemsToInclude.set(2, enable);
+        }
+
     [[nodiscard]]
     bool IsLengthsHeatmapEnabled() const
-        { return m_sentenceBreadkdownItemsToInclude[2]; }
+        {
+        return m_sentenceBreadkdownItemsToInclude[2];
+        }
+
     void EnableLengthsHistogram(const bool enable)
-        { m_sentenceBreadkdownItemsToInclude.set(3,enable); }
+        {
+        m_sentenceBreadkdownItemsToInclude.set(3, enable);
+        }
+
     [[nodiscard]]
     bool IsLengthsHistogramEnabled() const
-        { return m_sentenceBreadkdownItemsToInclude[3]; }
-private:
+        {
+        return m_sentenceBreadkdownItemsToInclude[3];
+        }
+
+  private:
     std::bitset<64> m_sentenceBreadkdownItemsToInclude{ 0 };
     };
 
 class ReadabilityAppOptions final : public WarningManager
     {
-public:
+  public:
     /// @private
-    using TestCollectionType =
-        readability::readability_test_collection<readability::readability_project_test<Wisteria::Data::Dataset>>;
+    using TestCollectionType = readability::readability_test_collection<
+        readability::readability_project_test<Wisteria::Data::Dataset>>;
     ReadabilityAppOptions();
-    /// set the third parameter to false if you only want to load the settings from this file and write back
-    /// to a different settings file
+    /// set the third parameter to false if you only want to load the settings from this file and
+    /// write back to a different settings file
     bool LoadOptionsFile(const wxString& optionsFile, const bool loadOnlyGeneralOptions = false,
                          const bool writeChangesBackToThisFile = true);
     // saves options file, defaults to the current project file
@@ -363,1109 +547,1935 @@ public:
     // editor
     [[nodiscard]]
     wxFont GetEditorFont() const
-        { return m_editorFont; }
+        {
+        return m_editorFont;
+        }
+
     void SetEditorFont(const wxFont& font)
         {
         if (font.IsOk())
-            { m_editorFont = font; }
+            {
+            m_editorFont = font;
+            }
         }
+
     [[nodiscard]]
     wxColour GetEditorFontColor() const
-        { return m_editorFontColor; }
+        {
+        return m_editorFontColor;
+        }
+
     void SetEditorFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_editorFontColor = color; }
+            {
+            m_editorFontColor = color;
+            }
         }
+
     [[nodiscard]]
     bool IsEditorIndenting() const noexcept
-        { return m_editorIndent; }
-    void IndentEditor(const bool indent = true) noexcept
-        { m_editorIndent = indent; }
+        {
+        return m_editorIndent;
+        }
+
+    void IndentEditor(const bool indent = true) noexcept { m_editorIndent = indent; }
+
     [[nodiscard]]
     bool IsEditorShowSpaceAfterParagraph() const noexcept
-        { return m_editorSpaceAfterNewlines; }
+        {
+        return m_editorSpaceAfterNewlines;
+        }
+
     void AddParagraphSpaceInEditor(const bool spaces = true) noexcept
-        { m_editorSpaceAfterNewlines = spaces; }
+        {
+        m_editorSpaceAfterNewlines = spaces;
+        }
+
     [[nodiscard]]
     wxTextAttrAlignment GetEditorTextAlignment() const noexcept
-        { return m_editorTextAlignment; }
-    void SetEditorTextAlignment(wxTextAttrAlignment align)
-        { m_editorTextAlignment = align; }
+        {
+        return m_editorTextAlignment;
+        }
+
+    void SetEditorTextAlignment(wxTextAttrAlignment align) { m_editorTextAlignment = align; }
+
     [[nodiscard]]
     wxTextAttrLineSpacing GetEditorLineSpacing() const noexcept
-        { return m_editorLineSpacing; }
-    void SetEditorLineSpacing(wxTextAttrLineSpacing spacing)
-        { m_editorLineSpacing = spacing; }
+        {
+        return m_editorLineSpacing;
+        }
+
+    void SetEditorLineSpacing(wxTextAttrLineSpacing spacing) { m_editorLineSpacing = spacing; }
 
     [[nodiscard]]
     TextHighlight GetTextHighlightMethod() const noexcept
-        { return m_textHighlight; }
+        {
+        return m_textHighlight;
+        }
+
     void SetTextHighlightMethod(const TextHighlight highlight) noexcept
-        { m_textHighlight = highlight; }
+        {
+        m_textHighlight = highlight;
+        }
+
     // color to highlight difficult words
     [[nodiscard]]
     wxColour GetTextHighlightColor() const
-        { return m_textHighlightColor; }
+        {
+        return m_textHighlightColor;
+        }
+
     void SetTextHighlightColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_textHighlightColor = color; }
+            {
+            m_textHighlightColor = color;
+            }
         }
+
     // color to highlight ignored sentences
     [[nodiscard]]
     wxColour GetExcludedTextHighlightColor() const
-        { return m_excludedTextHighlightColor; }
+        {
+        return m_excludedTextHighlightColor;
+        }
+
     void SetExcludedTextHighlightColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_excludedTextHighlightColor = color; }
+            {
+            m_excludedTextHighlightColor = color;
+            }
         }
+
     // color to highlight repeated words
     [[nodiscard]]
     wxColour GetDuplicateWordHighlightColor() const
-        { return m_duplicateWordHighlightColor; }
+        {
+        return m_duplicateWordHighlightColor;
+        }
+
     void SetDuplicateWordHighlightColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_duplicateWordHighlightColor = color; }
+            {
+            m_duplicateWordHighlightColor = color;
+            }
         }
+
     // color for wordy items
     [[nodiscard]]
     wxColour GetWordyPhraseHighlightColor() const
-        { return m_wordyPhraseHighlightColor; }
+        {
+        return m_wordyPhraseHighlightColor;
+        }
+
     void SetWordyPhraseHighlightColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_wordyPhraseHighlightColor = color; }
+            {
+            m_wordyPhraseHighlightColor = color;
+            }
         }
+
     // font functions for the text windows
     [[nodiscard]]
     wxFont GetTextViewFont() const
-        { return m_textViewFont; }
+        {
+        return m_textViewFont;
+        }
+
     void SetTextViewFont(const wxFont& font)
         {
         if (font.IsOk())
-            { m_textViewFont = font; }
+            {
+            m_textViewFont = font;
+            }
         }
+
     [[nodiscard]]
     wxColour GetTextFontColor() const
-        { return m_fontColor; }
+        {
+        return m_fontColor;
+        }
+
     void SetTextFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_fontColor = color; }
+            {
+            m_fontColor = color;
+            }
         }
+
     // dolch colors
     [[nodiscard]]
     wxColour GetDolchConjunctionsColor() const
-        { return m_dolchConjunctionsColor; }
+        {
+        return m_dolchConjunctionsColor;
+        }
+
     void SetDolchConjunctionsColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_dolchConjunctionsColor = color; }
+            {
+            m_dolchConjunctionsColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetDolchPrepositionsColor() const
-        { return m_dolchPrepositionsColor; }
+        {
+        return m_dolchPrepositionsColor;
+        }
+
     void SetDolchPrepositionsColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_dolchPrepositionsColor = color; }
+            {
+            m_dolchPrepositionsColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetDolchPronounsColor() const
-        { return m_dolchPronounsColor; }
+        {
+        return m_dolchPronounsColor;
+        }
+
     void SetDolchPronounsColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_dolchPronounsColor = color; }
+            {
+            m_dolchPronounsColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetDolchAdverbsColor() const
-        { return m_dolchAdverbsColor; }
+        {
+        return m_dolchAdverbsColor;
+        }
+
     void SetDolchAdverbsColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_dolchAdverbsColor = color; }
+            {
+            m_dolchAdverbsColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetDolchAdjectivesColor() const
-        { return m_dolchAdjectivesColor; }
+        {
+        return m_dolchAdjectivesColor;
+        }
+
     void SetDolchAdjectivesColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_dolchAdjectivesColor = color; }
+            {
+            m_dolchAdjectivesColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetDolchVerbsColor() const
-        { return m_dolchVerbColor; }
+        {
+        return m_dolchVerbColor;
+        }
+
     void SetDolchVerbsColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_dolchVerbColor = color; }
+            {
+            m_dolchVerbColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetDolchNounColor() const
-        { return m_dolchNounColor; }
+        {
+        return m_dolchNounColor;
+        }
+
     void SetDolchNounColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_dolchNounColor = color; }
+            {
+            m_dolchNounColor = color;
+            }
         }
 
     [[nodiscard]]
     bool IsHighlightingDolchConjunctions() const noexcept
-        { return m_highlightDolchConjunctions; }
+        {
+        return m_highlightDolchConjunctions;
+        }
+
     void HighlightDolchConjunctions(const bool highlight = true) noexcept
-        { m_highlightDolchConjunctions = highlight; }
+        {
+        m_highlightDolchConjunctions = highlight;
+        }
 
     [[nodiscard]]
     bool IsHighlightingDolchPrepositions() const noexcept
-        { return m_highlightDolchPrepositions; }
+        {
+        return m_highlightDolchPrepositions;
+        }
+
     void HighlightDolchPrepositions(const bool highlight = true) noexcept
-        { m_highlightDolchPrepositions = highlight; }
+        {
+        m_highlightDolchPrepositions = highlight;
+        }
 
     [[nodiscard]]
     bool IsHighlightingDolchPronouns() const noexcept
-        { return m_highlightDolchPronouns; }
+        {
+        return m_highlightDolchPronouns;
+        }
+
     void HighlightDolchPronouns(const bool highlight = true) noexcept
-        { m_highlightDolchPronouns = highlight; }
+        {
+        m_highlightDolchPronouns = highlight;
+        }
 
     [[nodiscard]]
     bool IsHighlightingDolchAdverbs() const noexcept
-        { return m_highlightDolchAdverbs; }
+        {
+        return m_highlightDolchAdverbs;
+        }
+
     void HighlightDolchAdverbs(const bool highlight = true) noexcept
-        { m_highlightDolchAdverbs = highlight; }
+        {
+        m_highlightDolchAdverbs = highlight;
+        }
 
     [[nodiscard]]
     bool IsHighlightingDolchAdjectives() const noexcept
-        { return m_highlightDolchAdjectives; }
+        {
+        return m_highlightDolchAdjectives;
+        }
+
     void HighlightDolchAdjectives(const bool highlight = true) noexcept
-        { m_highlightDolchAdjectives = highlight; }
+        {
+        m_highlightDolchAdjectives = highlight;
+        }
 
     [[nodiscard]]
     bool IsHighlightingDolchVerbs() const noexcept
-        { return m_highlightDolchVerbs; }
+        {
+        return m_highlightDolchVerbs;
+        }
+
     void HighlightDolchVerbs(const bool highlight = true) noexcept
-        { m_highlightDolchVerbs = highlight; }
+        {
+        m_highlightDolchVerbs = highlight;
+        }
 
     [[nodiscard]]
     bool IsHighlightingDolchNouns() const noexcept
-        { return m_highlightDolchNouns; }
+        {
+        return m_highlightDolchNouns;
+        }
+
     void HighlightDolchNouns(const bool highlight = true) noexcept
-        { m_highlightDolchNouns = highlight; }
+        {
+        m_highlightDolchNouns = highlight;
+        }
 
     // method to determine what a long sentence is
     [[nodiscard]]
     LongSentence GetLongSentenceMethod() const noexcept
-        { return m_longSentenceMethod; }
+        {
+        return m_longSentenceMethod;
+        }
+
     void SetLongSentenceMethod(const LongSentence method) noexcept
-        { m_longSentenceMethod = method; }
+        {
+        m_longSentenceMethod = method;
+        }
+
     [[nodiscard]]
     int GetDifficultSentenceLength() const noexcept
-        { return m_difficultSentenceLength; }
+        {
+        return m_difficultSentenceLength;
+        }
+
     void SetDifficultSentenceLength(const int length) noexcept
-        { m_difficultSentenceLength = length; }
+        {
+        m_difficultSentenceLength = length;
+        }
+
     // method to determine how to syllabize numerals
     [[nodiscard]]
     NumeralSyllabize GetNumeralSyllabicationMethod() const noexcept
-        { return m_numeralSyllabicationMethod; }
+        {
+        return m_numeralSyllabicationMethod;
+        }
+
     void SetNumeralSyllabicationMethod(const NumeralSyllabize method) noexcept
-        { m_numeralSyllabicationMethod = method; }
+        {
+        m_numeralSyllabicationMethod = method;
+        }
+
     // whether to ignore blank lines when figuring out if we are at the end of a paragraph
     [[nodiscard]]
     bool GetIgnoreBlankLinesForParagraphsParser() const noexcept
-        { return m_ignoreBlankLinesForParagraphsParser; }
+        {
+        return m_ignoreBlankLinesForParagraphsParser;
+        }
+
     void SetIgnoreBlankLinesForParagraphsParser(const bool ignore) noexcept
-        { m_ignoreBlankLinesForParagraphsParser = ignore; }
+        {
+        m_ignoreBlankLinesForParagraphsParser = ignore;
+        }
+
     // whether we should ignore indenting when parsing paragraphs
     [[nodiscard]]
     bool GetIgnoreIndentingForParagraphsParser() const noexcept
-        { return m_ignoreIndentingForParagraphsParser; }
+        {
+        return m_ignoreIndentingForParagraphsParser;
+        }
+
     void SetIgnoreIndentingForParagraphsParser(const bool ignore) noexcept
-        { m_ignoreIndentingForParagraphsParser = ignore; }
+        {
+        m_ignoreIndentingForParagraphsParser = ignore;
+        }
+
     // whether the first word of a sentence must be capitalized
     [[nodiscard]]
     bool GetSentenceStartMustBeUppercased() const noexcept
-        { return m_sentenceStartMustBeUppercased; }
+        {
+        return m_sentenceStartMustBeUppercased;
+        }
+
     void SetSentenceStartMustBeUppercased(const bool uppercased) noexcept
-        { m_sentenceStartMustBeUppercased = uppercased; }
+        {
+        m_sentenceStartMustBeUppercased = uppercased;
+        }
+
     // whether to use aggressive exclusion
     [[nodiscard]]
     bool IsExcludingAggressively() const noexcept
-        { return m_aggressiveExclusion; }
+        {
+        return m_aggressiveExclusion;
+        }
+
     void AggressiveExclusion(const bool aggressive = true) noexcept
-        { m_aggressiveExclusion = aggressive; }
+        {
+        m_aggressiveExclusion = aggressive;
+        }
+
     // whether trailing copyright/trademark paragraphs are getting ignored
     [[nodiscard]]
     bool IsIgnoringTrailingCopyrightNoticeParagraphs() const noexcept
-        { return m_ignoreTrailingCopyrightNoticeParagraphs; }
+        {
+        return m_ignoreTrailingCopyrightNoticeParagraphs;
+        }
+
     void IgnoreTrailingCopyrightNoticeParagraphs(const bool ignore = true) noexcept
-        { m_ignoreTrailingCopyrightNoticeParagraphs = ignore; }
+        {
+        m_ignoreTrailingCopyrightNoticeParagraphs = ignore;
+        }
+
     // whether trailing citation paragraphs are getting ignored
     [[nodiscard]]
     bool IsIgnoringTrailingCitations() const noexcept
-        { return m_ignoreTrailingCitations; }
+        {
+        return m_ignoreTrailingCitations;
+        }
+
     void IgnoreTrailingCitations(const bool ignore = true) noexcept
-        { m_ignoreTrailingCitations = ignore; }
+        {
+        m_ignoreTrailingCitations = ignore;
+        }
+
     // whether file addresses are getting ignored
     [[nodiscard]]
     bool IsIgnoringFileAddresses() const noexcept
-        { return m_ignoreFileAddresses; }
-    void IgnoreFileAddresses(const bool ignore = true) noexcept
-        { m_ignoreFileAddresses = ignore; }
+        {
+        return m_ignoreFileAddresses;
+        }
+
+    void IgnoreFileAddresses(const bool ignore = true) noexcept { m_ignoreFileAddresses = ignore; }
+
     // whether numerals are getting ignored
     [[nodiscard]]
     bool IsIgnoringNumerals() const noexcept
-        { return m_ignoreNumerals; }
-    void IgnoreNumerals(const bool ignore = true) noexcept
-        { m_ignoreNumerals = ignore; }
+        {
+        return m_ignoreNumerals;
+        }
+
+    void IgnoreNumerals(const bool ignore = true) noexcept { m_ignoreNumerals = ignore; }
+
     // whether Proper Nouns are getting ignored
     [[nodiscard]]
     bool IsIgnoringProperNouns() noexcept
-        { return m_ignoreProperNouns; }
-    void IgnoreProperNouns(const bool ignore = true) noexcept
-        { m_ignoreProperNouns = ignore; }
+        {
+        return m_ignoreProperNouns;
+        }
+
+    void IgnoreProperNouns(const bool ignore = true) noexcept { m_ignoreProperNouns = ignore; }
+
     // file path to phrases to exclude from analysis
     [[nodiscard]]
     wxString GetExcludedPhrasesPath() const
-        { return m_excludedPhrasesPath; }
-    void SetExcludedPhrasesPath(const wxString& path)
-        { m_excludedPhrasesPath = path; }
+        {
+        return m_excludedPhrasesPath;
+        }
+
+    void SetExcludedPhrasesPath(const wxString& path) { m_excludedPhrasesPath = path; }
+
     // Tags for excluding blocks of text
     [[nodiscard]]
-    const std::vector<std::pair<wchar_t,wchar_t>>& GetExclusionBlockTags() const noexcept
-        { return m_exclusionBlockTags; }
-    std::vector<std::pair<wchar_t,wchar_t>>& GetExclusionBlockTags() noexcept
-        { return m_exclusionBlockTags; }
-    void SetExclusionBlockTags(const std::vector<std::pair<wchar_t,wchar_t>>& tags)
-        { m_exclusionBlockTags = tags; }
+    const std::vector<std::pair<wchar_t, wchar_t>>& GetExclusionBlockTags() const noexcept
+        {
+        return m_exclusionBlockTags;
+        }
+
+    std::vector<std::pair<wchar_t, wchar_t>>& GetExclusionBlockTags() noexcept
+        {
+        return m_exclusionBlockTags;
+        }
+
+    void SetExclusionBlockTags(const std::vector<std::pair<wchar_t, wchar_t>>& tags)
+        {
+        m_exclusionBlockTags = tags;
+        }
+
     // whether the first occurrence of an excluded phrase should be included
     [[nodiscard]]
     bool IsIncludingExcludedPhraseFirstOccurrence() const noexcept
-        { return m_includeExcludedPhraseFirstOccurrence; }
+        {
+        return m_includeExcludedPhraseFirstOccurrence;
+        }
+
     void IncludeExcludedPhraseFirstOccurrence(const bool include) noexcept
-        { m_includeExcludedPhraseFirstOccurrence = include; }
+        {
+        m_includeExcludedPhraseFirstOccurrence = include;
+        }
+
     // method to determine how to parse text into paragraphs
     [[nodiscard]]
     ParagraphParse GetParagraphsParsingMethod() const noexcept
-        { return m_paragraphsParsingMethod; }
+        {
+        return m_paragraphsParsingMethod;
+        }
+
     void SetParagraphsParsingMethod(const ParagraphParse method) noexcept
-        { m_paragraphsParsingMethod = method; }
+        {
+        m_paragraphsParsingMethod = method;
+        }
+
     // method to determine how to handle headers and lists
     [[nodiscard]]
     InvalidSentence GetInvalidSentenceMethod() const noexcept
-        { return m_invalidSentenceMethod; }
+        {
+        return m_invalidSentenceMethod;
+        }
+
     void SetInvalidSentenceMethod(const InvalidSentence method) noexcept
-        { m_invalidSentenceMethod = method; }
+        {
+        m_invalidSentenceMethod = method;
+        }
+
     /// Number of words that will make an incomplete sentence actually complete
     [[nodiscard]]
     size_t GetIncludeIncompleteSentencesIfLongerThanValue() const noexcept
-        { return m_includeIncompleteSentencesIfLongerThan; }
+        {
+        return m_includeIncompleteSentencesIfLongerThan;
+        }
+
     void SetIncludeIncompleteSentencesIfLongerThanValue(const size_t wordCount) noexcept
-        { m_includeIncompleteSentencesIfLongerThan = wordCount; }
+        {
+        m_includeIncompleteSentencesIfLongerThan = wordCount;
+        }
+
     // grammar
     [[nodiscard]]
     bool SpellCheckIsIgnoringProperNouns() const noexcept
-        { return m_spellcheck_ignore_proper_nouns; }
+        {
+        return m_spellcheck_ignore_proper_nouns;
+        }
+
     void SpellCheckIgnoreProperNouns(const bool ignore) noexcept
-        { m_spellcheck_ignore_proper_nouns = ignore; }
+        {
+        m_spellcheck_ignore_proper_nouns = ignore;
+        }
+
     [[nodiscard]]
     bool SpellCheckIsIgnoringUppercased() const noexcept
-        { return m_spellcheck_ignore_uppercased; }
+        {
+        return m_spellcheck_ignore_uppercased;
+        }
+
     void SpellCheckIgnoreUppercased(const bool ignore) noexcept
-        { m_spellcheck_ignore_uppercased = ignore; }
+        {
+        m_spellcheck_ignore_uppercased = ignore;
+        }
+
     [[nodiscard]]
     bool SpellCheckIsIgnoringNumerals() const noexcept
-        { return m_spellcheck_ignore_numerals; }
+        {
+        return m_spellcheck_ignore_numerals;
+        }
+
     void SpellCheckIgnoreNumerals(const bool ignore) noexcept
-        { m_spellcheck_ignore_numerals = ignore; }
+        {
+        m_spellcheck_ignore_numerals = ignore;
+        }
+
     [[nodiscard]]
     bool SpellCheckIsIgnoringFileAddresses() const noexcept
-        { return m_spellcheck_ignore_file_addresses; }
+        {
+        return m_spellcheck_ignore_file_addresses;
+        }
+
     void SpellCheckIgnoreFileAddresses(const bool ignore) noexcept
-        { m_spellcheck_ignore_file_addresses = ignore; }
+        {
+        m_spellcheck_ignore_file_addresses = ignore;
+        }
+
     [[nodiscard]]
     bool SpellCheckIsIgnoringProgrammerCode() const noexcept
-        { return m_spellcheck_ignore_programmer_code; }
+        {
+        return m_spellcheck_ignore_programmer_code;
+        }
+
     void SpellCheckIgnoreProgrammerCode(const bool ignore) noexcept
-        { m_spellcheck_ignore_programmer_code = ignore; }
+        {
+        m_spellcheck_ignore_programmer_code = ignore;
+        }
+
     [[nodiscard]]
     bool SpellCheckIsAllowingColloquialisms() const noexcept
-        { return m_allow_colloquialisms; }
+        {
+        return m_allow_colloquialisms;
+        }
+
     void SpellCheckAllowColloquialisms(const bool allow) noexcept
-        { m_allow_colloquialisms = allow; }
+        {
+        m_allow_colloquialisms = allow;
+        }
+
     [[nodiscard]]
     bool SpellCheckIsIgnoringSocialMediaTags() const noexcept
-        { return m_spellcheck_ignore_social_media_tags; }
+        {
+        return m_spellcheck_ignore_social_media_tags;
+        }
+
     void SpellCheckIgnoreSocialMediaTags(const bool ignore) noexcept
-        { m_spellcheck_ignore_social_media_tags = ignore; }
+        {
+        m_spellcheck_ignore_social_media_tags = ignore;
+        }
+
     // readability get functions
     [[nodiscard]]
     bool IsDolchSelected() const noexcept
-        { return m_includeDolchSightWords; }
+        {
+        return m_includeDolchSightWords;
+        }
+
     [[nodiscard]]
     TestCollectionType& GetReadabilityTests() noexcept
-        { return m_readabilityTests; }
+        {
+        return m_readabilityTests;
+        }
+
     [[nodiscard]]
     std::vector<wxString>& GetIncludedCustomTests() noexcept
-        { return m_includedCustomTests; }
+        {
+        return m_includedCustomTests;
+        }
+
     // readability set functions
-    void SetDolch(const bool value) noexcept
-        { m_includeDolchSightWords = value; }
-    void SetReadabilityTests(const TestCollectionType& tests)
-        { m_readabilityTests = tests; }
+    void SetDolch(const bool value) noexcept { m_includeDolchSightWords = value; }
+
+    void SetReadabilityTests(const TestCollectionType& tests) { m_readabilityTests = tests; }
+
     // Test Source
     [[nodiscard]]
     TextSource GetTextSource() const noexcept
-        { return m_textSource; }
-    void SetTextSource(const TextSource value) noexcept
-        { m_textSource = value; }
+        {
+        return m_textSource;
+        }
+
+    void SetTextSource(const TextSource value) noexcept { m_textSource = value; }
+
     // Test Recommendation
     [[nodiscard]]
     TestRecommendation GetTestRecommendation() noexcept
-        { return m_testRecommendation; }
+        {
+        return m_testRecommendation;
+        }
+
     void SetTestRecommendation(const TestRecommendation value) noexcept
-        { m_testRecommendation = value; }
+        {
+        m_testRecommendation = value;
+        }
+
     // Tests by Industry
     [[nodiscard]]
-        readability::industry_classification GetTestByIndustry() const noexcept
-        { return m_testsByIndustry; }
+    readability::industry_classification GetTestByIndustry() const noexcept
+        {
+        return m_testsByIndustry;
+        }
+
     void SetTestByIndustry(const readability::industry_classification value) noexcept
-        { m_testsByIndustry = value; }
+        {
+        m_testsByIndustry = value;
+        }
+
     // Tests by DocumentType
     [[nodiscard]]
     readability::document_classification GetTestByDocumentType() const noexcept
-        { return m_testsByDocumentType; }
+        {
+        return m_testsByDocumentType;
+        }
+
     void SetTestByDocumentType(const readability::document_classification value) noexcept
-        { m_testsByDocumentType = value; }
+        {
+        m_testsByDocumentType = value;
+        }
+
     // tests by bundle
     [[nodiscard]]
     const wxString& GetSelectedTestBundle() const noexcept
-        { return m_selectedTestBundle; }
-    void SetSelectedTestBundle(const wxString& bundleName)
-        { m_selectedTestBundle = bundleName; }
+        {
+        return m_selectedTestBundle;
+        }
+
+    void SetSelectedTestBundle(const wxString& bundleName) { m_selectedTestBundle = bundleName; }
+
     // document storage/linking information
     [[nodiscard]]
     TextStorage GetDocumentStorageMethod() const noexcept
-        { return m_documentStorageMethod; };
+        {
+        return m_documentStorageMethod;
+        }
+
     void SetDocumentStorageMethod(const TextStorage method) noexcept
-        { m_documentStorageMethod = method; };
+        {
+        m_documentStorageMethod = method;
+        }
+
     // Window information
     [[nodiscard]]
     bool IsAppWindowMaximized() const noexcept
-        { return m_appWindowMaximized; }
-    void SetAppWindowMaximized(const bool maximized) noexcept
-        { m_appWindowMaximized = maximized; }
+        {
+        return m_appWindowMaximized;
+        }
+
+    void SetAppWindowMaximized(const bool maximized) noexcept { m_appWindowMaximized = maximized; }
+
     [[nodiscard]]
     int GetAppWindowWidth() const noexcept
-        { return m_appWindowWidth; };
+        {
+        return m_appWindowWidth;
+        }
+
     [[nodiscard]]
     int GetAppWindowHeight() const noexcept
-        { return m_appWindowHeight; };
-    void SetAppWindowWidth(const int width) noexcept
-        { m_appWindowWidth = width; };
-    void SetAppWindowHeight(const int height) noexcept
-        { m_appWindowHeight = height; };
-    void SetTheme(const wxString& theme)
-         { m_themeName = theme; }
+        {
+        return m_appWindowHeight;
+        }
+
+    void SetAppWindowWidth(const int width) noexcept { m_appWindowWidth = width; }
+
+    void SetAppWindowHeight(const int height) noexcept { m_appWindowHeight = height; }
+
+    void SetTheme(const wxString& theme) { m_themeName = theme; }
+
     [[nodiscard]]
     const wxString& GetTheme() const noexcept
-         { return m_themeName; }
+        {
+        return m_themeName;
+        }
+
     [[nodiscard]]
     wxColour GetControlBackgroundColor() const
-        { return m_controlBackgroundColor; }
+        {
+        return m_controlBackgroundColor;
+        }
+
     void SetControlBackgroundColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_controlBackgroundColor = color; }
+            {
+            m_controlBackgroundColor = color;
+            }
         }
+
     // ribbon theming
     [[nodiscard]]
     wxColour GetRibbonActiveTabColor() const
-        { return m_ribbonActiveTabColor; }
+        {
+        return m_ribbonActiveTabColor;
+        }
+
     void SetRibbonActiveTabColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_ribbonActiveTabColor = color; }
+            {
+            m_ribbonActiveTabColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetRibbonInactiveTabColor() const
-        { return m_ribbonInactiveTabColor; }
+        {
+        return m_ribbonInactiveTabColor;
+        }
+
     void SetRibbonInactiveTabColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_ribbonInactiveTabColor = color; }
+            {
+            m_ribbonInactiveTabColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetRibbonActiveFontColor() const
-        { return m_ribbonActiveFontColor; }
+        {
+        return m_ribbonActiveFontColor;
+        }
+
     void SetRibbonActiveFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_ribbonActiveFontColor = color; }
+            {
+            m_ribbonActiveFontColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetRibbonInactiveFontColor() const
-        { return m_ribbonInactiveFontColor; }
+        {
+        return m_ribbonInactiveFontColor;
+        }
+
     void SetRibbonInactiveFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_ribbonInactiveFontColor = color; }
+            {
+            m_ribbonInactiveFontColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetRibbonHoverColor() const
-        { return m_ribbonHoverColor; }
+        {
+        return m_ribbonHoverColor;
+        }
+
     void SetRibbonHoverColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_ribbonHoverColor = color; }
+            {
+            m_ribbonHoverColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetRibbonHoverFontColor() const
-        { return m_ribbonHoverFontColor; }
+        {
+        return m_ribbonHoverFontColor;
+        }
+
     void SetRibbonHoverFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_ribbonHoverFontColor = color; }
+            {
+            m_ribbonHoverFontColor = color;
+            }
         }
+
     // sidebar
     [[nodiscard]]
     wxColour GetSideBarBackgroundColor() const
-        { return m_sideBarBackgroundColor; }
+        {
+        return m_sideBarBackgroundColor;
+        }
+
     void SetSideBarBackgroundColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_sideBarBackgroundColor = color; }
+            {
+            m_sideBarBackgroundColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetSideBarActiveColor() const
-        { return m_sideBarActiveColor; }
+        {
+        return m_sideBarActiveColor;
+        }
+
     void SetSideBarActiveColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_sideBarActiveColor = color; }
+            {
+            m_sideBarActiveColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetSideBarActiveFontColor() const
-        { return m_sideBarActiveFontColor; }
+        {
+        return m_sideBarActiveFontColor;
+        }
+
     void SetSideBarActiveFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_sideBarActiveFontColor = color; }
+            {
+            m_sideBarActiveFontColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetSideBarFontColor() const
-        { return m_sideBarFontColor; }
+        {
+        return m_sideBarFontColor;
+        }
+
     void SetSideBarFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_sideBarFontColor = color; }
+            {
+            m_sideBarFontColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetSideBarParentColor() const
-        { return m_sideBarParentColor; }
+        {
+        return m_sideBarParentColor;
+        }
+
     void SetSideBarParentColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_sideBarParentColor = color; }
+            {
+            m_sideBarParentColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetSideBarHoverColor() const
-        { return m_sideBarHoverColor; }
+        {
+        return m_sideBarHoverColor;
+        }
+
     void SetSideBarHoverColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_sideBarHoverColor = color; }
+            {
+            m_sideBarHoverColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetSideBarHoverFontColor() const
-        { return m_sideBarHoverFontColor; }
+        {
+        return m_sideBarHoverFontColor;
+        }
+
     void SetSideBarHoverFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_sideBarHoverFontColor = color; }
+            {
+            m_sideBarHoverFontColor = color;
+            }
         }
 
     // start page
     [[nodiscard]]
     wxColour GetStartPageBackstageBackgroundColor() const
-        { return m_startPageBackstageBackgroundColor; }
+        {
+        return m_startPageBackstageBackgroundColor;
+        }
+
     void SetStartPageBackstageBackgroundColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_startPageBackstageBackgroundColor = color; }
+            {
+            m_startPageBackstageBackgroundColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetStartPageDetailBackgroundColor() const
-        { return m_startPageDetailBackgroundColor; }
+        {
+        return m_startPageDetailBackgroundColor;
+        }
+
     void SetStartPageDetailBackgroundColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_startPageDetailBackgroundColor = color; }
+            {
+            m_startPageDetailBackgroundColor = color;
+            }
         }
 
     // license and other startup pages
     [[nodiscard]]
     bool IsLicenseAccepted() const noexcept
-        { return m_licenseAccepted; }
-    void SetLicenseAccepted(const bool accept) noexcept
-        { m_licenseAccepted = accept; }
+        {
+        return m_licenseAccepted;
+        }
+
+    void SetLicenseAccepted(const bool accept) noexcept { m_licenseAccepted = accept; }
+
     // last opened file locations
     [[nodiscard]]
     wxString GetImagePath() const
-        { return m_imagePath; }
-    void SetImagePath(const wxString& path)
-        { m_imagePath = path; }
+        {
+        return m_imagePath;
+        }
+
+    void SetImagePath(const wxString& path) { m_imagePath = path; }
+
     [[nodiscard]]
     wxString GetProjectPath() const
-        { return m_projectPath; }
-    void SetProjectPath(const wxString& path)
-        { m_projectPath = path; }
+        {
+        return m_projectPath;
+        }
+
+    void SetProjectPath(const wxString& path) { m_projectPath = path; }
+
     [[nodiscard]]
     wxString GetWordListPath() const
-        { return m_wordlistPath; }
-    void SetWordListPath(const wxString& path)
-        { m_wordlistPath = path; }
+        {
+        return m_wordlistPath;
+        }
+
+    void SetWordListPath(const wxString& path) { m_wordlistPath = path; }
+
     // internet
     [[nodiscard]]
     const wxString& GetUserAgent() const
-        { return m_userAgent; }
-    void SetUserAgent(wxString path)
-        { m_userAgent = std::move(path); }
+        {
+        return m_userAgent;
+        }
+
+    void SetUserAgent(wxString path) { m_userAgent = std::move(path); }
+
     // graph information
     //------------------------------
-    void ShowAllBoxPlotPoints(const bool show) noexcept
-        { m_boxPlotShowAllPoints = show; }
+    void ShowAllBoxPlotPoints(const bool show) noexcept { m_boxPlotShowAllPoints = show; }
+
     [[nodiscard]]
     bool IsShowingAllBoxPlotPoints() const noexcept
-        { return m_boxPlotShowAllPoints; }
-    void DisplayBoxPlotLabels(const bool display = true) noexcept
-        { m_boxDisplayLabels = display; }
+        {
+        return m_boxPlotShowAllPoints;
+        }
+
+    void DisplayBoxPlotLabels(const bool display = true) noexcept { m_boxDisplayLabels = display; }
+
     [[nodiscard]]
     bool IsDisplayingBoxPlotLabels() const noexcept
-        { return m_boxDisplayLabels; }
+        {
+        return m_boxDisplayLabels;
+        }
+
     void ConnectBoxPlotMiddlePoints(const bool connect = true) noexcept
-        { m_boxConnectMiddlePoints = connect; }
+        {
+        m_boxConnectMiddlePoints = connect;
+        }
+
     [[nodiscard]]
     bool IsConnectingBoxPlotMiddlePoints() const noexcept
-        { return m_boxConnectMiddlePoints; }
-    void DisplayBarChartLabels(const bool display = true) noexcept
-        { m_barDisplayLabels = display; }
+        {
+        return m_boxConnectMiddlePoints;
+        }
+
+    void DisplayBarChartLabels(const bool display = true) noexcept { m_barDisplayLabels = display; }
+
     [[nodiscard]]
     bool IsDisplayingBarChartLabels() const noexcept
-        { return m_barDisplayLabels; }
+        {
+        return m_barDisplayLabels;
+        }
+
     // whether gradient is used for graph backgrounds
     void SetGraphBackGroundLinearGradient(const bool useGradient) noexcept
-        { m_useGraphBackGroundColorLinearGradient = useGradient; }
+        {
+        m_useGraphBackGroundColorLinearGradient = useGradient;
+        }
+
     [[nodiscard]]
     bool GetGraphBackGroundLinearGradient() const noexcept
-        { return m_useGraphBackGroundColorLinearGradient; }
+        {
+        return m_useGraphBackGroundColorLinearGradient;
+        }
+
     // whether drop shadows should be shown
-    void DisplayDropShadows(const bool display) noexcept
-        { m_displayDropShadows = display; }
+    void DisplayDropShadows(const bool display) noexcept { m_displayDropShadows = display; }
+
     [[nodiscard]]
     bool IsDisplayingDropShadows() const noexcept
-        { return m_displayDropShadows; }
+        {
+        return m_displayDropShadows;
+        }
+
     // whether to draw attention to the complex word groups in syllable graphs
-    void ShowcaseComplexWords(const bool display) noexcept
-        { m_showcaseComplexWords = display; }
+    void ShowcaseComplexWords(const bool display) noexcept { m_showcaseComplexWords = display; }
+
     [[nodiscard]]
     bool IsShowcasingComplexWords() const noexcept
-        { return m_showcaseComplexWords; }
+        {
+        return m_showcaseComplexWords;
+        }
+
     // graph background image
     void SetPlotBackGroundImagePath(const wxString& filePath)
-        { m_plotBackGroundImagePath = filePath; }
+        {
+        m_plotBackGroundImagePath = filePath;
+        }
+
     [[nodiscard]]
     wxString GetPlotBackGroundImagePath() const
-        { return m_plotBackGroundImagePath; }
+        {
+        return m_plotBackGroundImagePath;
+        }
+
     [[nodiscard]]
     wxString GetGraphColorScheme() const
-        { return m_graphColorSchemeName; }
+        {
+        return m_graphColorSchemeName;
+        }
+
     void SetGraphColorScheme(wxString colorScheme)
-        { m_graphColorSchemeName = std::move(colorScheme); }
+        {
+        m_graphColorSchemeName = std::move(colorScheme);
+        }
+
     [[nodiscard]]
     wxColour GetBackGroundColor() const
-        { return m_graphBackGroundColor; }
+        {
+        return m_graphBackGroundColor;
+        }
+
     void SetBackGroundColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_graphBackGroundColor = color; }
+            {
+            m_graphBackGroundColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetPlotBackGroundColor() const
-        { return m_plotBackGroundColor; }
+        {
+        return m_plotBackGroundColor;
+        }
+
     void SetPlotBackGroundColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_plotBackGroundColor = color; }
+            {
+            m_plotBackGroundColor = color;
+            }
         }
+
     [[nodiscard]]
     uint8_t GetPlotBackGroundImageOpacity() const noexcept
-        { return m_plotBackGroundImageOpacity; }
+        {
+        return m_plotBackGroundImageOpacity;
+        }
+
     void SetPlotBackGroundImageOpacity(const uint8_t opacity) noexcept
-        { m_plotBackGroundImageOpacity = opacity; }
+        {
+        m_plotBackGroundImageOpacity = opacity;
+        }
+
     [[nodiscard]]
     uint8_t GetPlotBackGroundColorOpacity() const noexcept
-        { return m_plotBackGroundColorOpacity; }
+        {
+        return m_plotBackGroundColorOpacity;
+        }
+
     void SetPlotBackGroundColorOpacity(const uint8_t opacity) noexcept
-        { m_plotBackGroundColorOpacity = opacity; }
+        {
+        m_plotBackGroundColorOpacity = opacity;
+        }
+
     /// water mark functions
-    void SetWatermark(const wxString& watermark)
-        { m_watermark = watermark; }
+    void SetWatermark(const wxString& watermark) { m_watermark = watermark; }
+
     [[nodiscard]]
     wxString GetWatermark() const
-        { return m_watermark; }
-    void SetWatermarkLogo(const wxString& watermarkImg)
-        { m_watermarkImg = watermarkImg; }
+        {
+        return m_watermark;
+        }
+
+    void SetWatermarkLogo(const wxString& watermarkImg) { m_watermarkImg = watermarkImg; }
+
     [[nodiscard]]
     wxString GetWatermarkLogo() const
-        { return m_watermarkImg; }
+        {
+        return m_watermarkImg;
+        }
+
     /// Histogram options
     [[nodiscard]]
     Wisteria::Graphs::Histogram::BinningMethod GetHistorgramBinningMethod() const noexcept
-        { return m_histogramBinningMethod; }
-    void SetHistorgramBinningMethod(const Wisteria::Graphs::Histogram::BinningMethod method) noexcept
-        { m_histogramBinningMethod = method; }
+        {
+        return m_histogramBinningMethod;
+        }
+
+    void
+    SetHistorgramBinningMethod(const Wisteria::Graphs::Histogram::BinningMethod method) noexcept
+        {
+        m_histogramBinningMethod = method;
+        }
+
     [[nodiscard]]
     Wisteria::BinLabelDisplay GetHistrogramBinLabelDisplay() const noexcept
-        { return m_histrogramBinLabelDisplayMethod; }
+        {
+        return m_histrogramBinLabelDisplayMethod;
+        }
+
     void SetHistrogramBinLabelDisplay(const Wisteria::BinLabelDisplay display) noexcept
-        { m_histrogramBinLabelDisplayMethod = display; }
+        {
+        m_histrogramBinLabelDisplayMethod = display;
+        }
+
     [[nodiscard]]
     Wisteria::RoundingMethod GetHistogramRoundingMethod() const noexcept
-        { return m_histrogramRoundingMethod; }
+        {
+        return m_histrogramRoundingMethod;
+        }
+
     void SetHistogramRoundingMethod(const Wisteria::RoundingMethod rounding) noexcept
-        { m_histrogramRoundingMethod = rounding; }
-    void SetHistogramIntervalDisplay(const Wisteria::Graphs::Histogram::IntervalDisplay display) noexcept
-        { m_histrogramIntervalDisplay = display; }
+        {
+        m_histrogramRoundingMethod = rounding;
+        }
+
+    void
+    SetHistogramIntervalDisplay(const Wisteria::Graphs::Histogram::IntervalDisplay display) noexcept
+        {
+        m_histrogramIntervalDisplay = display;
+        }
+
     [[nodiscard]]
     Wisteria::Graphs::Histogram::IntervalDisplay GetHistogramIntervalDisplay() const noexcept
-        { return m_histrogramIntervalDisplay; }
+        {
+        return m_histrogramIntervalDisplay;
+        }
+
     [[nodiscard]]
     wxColour GetHistogramBarColor() const noexcept
-        { return m_histogramBarColor; }
+        {
+        return m_histogramBarColor;
+        }
+
     void SetHistogramBarColor(const wxColour color)
         {
         if (color.IsOk())
-            { m_histogramBarColor = color; }
+            {
+            m_histogramBarColor = color;
+            }
         }
+
     [[nodiscard]]
     uint8_t GetHistogramBarOpacity() const noexcept
-        { return m_histogramBarOpacity; }
-    void SetHistogramBarOpacity(const uint8_t opacity) noexcept
-        { m_histogramBarOpacity = opacity; }
+        {
+        return m_histogramBarOpacity;
+        }
+
+    void SetHistogramBarOpacity(const uint8_t opacity) noexcept { m_histogramBarOpacity = opacity; }
+
     [[nodiscard]]
     Wisteria::BoxEffect GetHistogramBarEffect() const noexcept
-        { return m_histogramBarEffect; }
+        {
+        return m_histogramBarEffect;
+        }
+
     void SetHistogramBarEffect(const Wisteria::BoxEffect effect) noexcept
-        { m_histogramBarEffect = effect; }
+        {
+        m_histogramBarEffect = effect;
+        }
+
     /// Bar chart options
     [[nodiscard]]
     wxColour GetBarChartBarColor() const noexcept
-        { return m_barChartBarColor; }
+        {
+        return m_barChartBarColor;
+        }
+
     void SetBarChartBarColor(const wxColour color)
         {
         if (color.IsOk())
-            { m_barChartBarColor = color; }
+            {
+            m_barChartBarColor = color;
+            }
         }
+
     [[nodiscard]]
     Wisteria::Orientation GetBarChartOrientation() const noexcept
-        { return m_barChartOrientation; }
+        {
+        return m_barChartOrientation;
+        }
+
     void SetBarChartOrientation(const Wisteria::Orientation orient) noexcept
-        { m_barChartOrientation = orient; }
+        {
+        m_barChartOrientation = orient;
+        }
+
     [[nodiscard]]
     uint8_t GetGraphBarOpacity() const noexcept
-        { return m_graphBarOpacity; }
-    void SetGraphBarOpacity(const uint8_t opacity) noexcept
-        { m_graphBarOpacity = opacity; }
-    void SetGraphBarEffect(const Wisteria::BoxEffect effect) noexcept
-        { m_graphBarEffect = effect; }
+        {
+        return m_graphBarOpacity;
+        }
+
+    void SetGraphBarOpacity(const uint8_t opacity) noexcept { m_graphBarOpacity = opacity; }
+
+    void SetGraphBarEffect(const Wisteria::BoxEffect effect) noexcept { m_graphBarEffect = effect; }
+
     [[nodiscard]]
     Wisteria::BoxEffect GetGraphBarEffect() const noexcept
-        { return m_graphBarEffect; }
-    void SetStippleImagePath(const wxString& path)
-        { m_stippleImagePath = path; }
+        {
+        return m_graphBarEffect;
+        }
+
+    void SetStippleImagePath(const wxString& path) { m_stippleImagePath = path; }
+
     [[nodiscard]]
     wxString GetStippleImagePath() const
-        { return m_stippleImagePath; }
-    void SetGraphCommonImagePath(const wxString& path)
-        { m_commonImagePath = path; }
+        {
+        return m_stippleImagePath;
+        }
+
+    void SetGraphCommonImagePath(const wxString& path) { m_commonImagePath = path; }
+
     [[nodiscard]]
     wxString GetGraphCommonImagePath() const
-        { return m_commonImagePath; }
-    void SetStippleShape(wxString shape)
-        { m_stippleShape = std::move(shape); }
+        {
+        return m_commonImagePath;
+        }
+
+    void SetStippleShape(wxString shape) { m_stippleShape = std::move(shape); }
+
     [[nodiscard]]
     wxString GetStippleShape() const
-        { return m_stippleShape; }
+        {
+        return m_stippleShape;
+        }
+
     [[nodiscard]]
     wxColour GetStippleShapeColor() const noexcept
-        { return m_stippleColor; }
+        {
+        return m_stippleColor;
+        }
+
     void SetStippleShapeColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_stippleColor = color; }
+            {
+            m_stippleColor = color;
+            }
         }
+
     // Box Plot options
     [[nodiscard]]
     wxColour GetGraphBoxColor() const noexcept
-        { return m_graphBoxColor; }
+        {
+        return m_graphBoxColor;
+        }
+
     void SetGraphBoxColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_graphBoxColor = color; }
+            {
+            m_graphBoxColor = color;
+            }
         }
+
     [[nodiscard]]
     uint8_t GetGraphBoxOpacity() const noexcept
-        { return m_graphBoxOpacity; }
-    void SetGraphBoxOpacity(const uint8_t opacity) noexcept
-        { m_graphBoxOpacity = opacity; }
+        {
+        return m_graphBoxOpacity;
+        }
+
+    void SetGraphBoxOpacity(const uint8_t opacity) noexcept { m_graphBoxOpacity = opacity; }
+
     [[nodiscard]]
     Wisteria::BoxEffect GetGraphBoxEffect() const noexcept
-        { return m_graphBoxEffect; }
-    void SetGraphBoxEffect(const Wisteria::BoxEffect effect) noexcept
-        { m_graphBoxEffect = effect; }
+        {
+        return m_graphBoxEffect;
+        }
+
+    void SetGraphBoxEffect(const Wisteria::BoxEffect effect) noexcept { m_graphBoxEffect = effect; }
+
     // background image options
     [[nodiscard]]
     Wisteria::ImageEffect GetPlotBackGroundImageEffect() const noexcept
-        { return m_plotBackgroundImageEffect; }
+        {
+        return m_plotBackgroundImageEffect;
+        }
+
     void SetPlotBackGroundImageEffect(const Wisteria::ImageEffect effect) noexcept
-        { m_plotBackgroundImageEffect = effect; }
+        {
+        m_plotBackgroundImageEffect = effect;
+        }
+
     [[nodiscard]]
     Wisteria::ImageFit GetPlotBackGroundImageFit() const noexcept
-        { return m_plotBackgroundImageFit; }
+        {
+        return m_plotBackgroundImageFit;
+        }
+
     void SetPlotBackGroundImageFit(const Wisteria::ImageFit fit) noexcept
-        { m_plotBackgroundImageFit = fit; }
+        {
+        m_plotBackgroundImageFit = fit;
+        }
+
     // axis font colors
     [[nodiscard]]
     wxColour GetXAxisFontColor() const
-        { return m_xAxisFontColor; }
+        {
+        return m_xAxisFontColor;
+        }
+
     void SetXAxisFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_xAxisFontColor = color; }
+            {
+            m_xAxisFontColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetYAxisFontColor() const
-        { return m_yAxisFontColor; }
+        {
+        return m_yAxisFontColor;
+        }
+
     void SetYAxisFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_yAxisFontColor = color; }
+            {
+            m_yAxisFontColor = color;
+            }
         }
+
     // axis fonts
     [[nodiscard]]
     wxFont GetXAxisFont() const
-        { return m_xAxisFont; }
+        {
+        return m_xAxisFont;
+        }
+
     void SetXAxisFont(const wxFont& font)
         {
         if (font.IsOk())
-            { m_xAxisFont = font; }
+            {
+            m_xAxisFont = font;
+            }
         }
+
     [[nodiscard]]
     wxFont GetYAxisFont() const
-        { return m_yAxisFont; }
+        {
+        return m_yAxisFont;
+        }
+
     void SetYAxisFont(const wxFont& font)
         {
         if (font.IsOk())
-            { m_yAxisFont = font; }
+            {
+            m_yAxisFont = font;
+            }
         }
+
     // title fonts
     [[nodiscard]]
     wxColour GetGraphTopTitleFontColor() const
-        { return m_topTitleFontColor; }
+        {
+        return m_topTitleFontColor;
+        }
+
     void SetGraphTopTitleFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_topTitleFontColor = color; }
+            {
+            m_topTitleFontColor = color;
+            }
         }
+
     [[nodiscard]]
     wxFont GetGraphTopTitleFont() const
-        { return m_topTitleFont; }
+        {
+        return m_topTitleFont;
+        }
+
     void SetGraphTopTitleFont(const wxFont& font)
         {
         if (font.IsOk())
-            { m_topTitleFont = font; }
+            {
+            m_topTitleFont = font;
+            }
         }
+
     [[nodiscard]]
     wxColour GetBottomTitleGraphFontColor() const
-        { return m_bottomTitleFontColor; }
+        {
+        return m_bottomTitleFontColor;
+        }
+
     void SetBottomTitleGraphFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_bottomTitleFontColor = color; }
+            {
+            m_bottomTitleFontColor = color;
+            }
         }
+
     [[nodiscard]]
     wxFont GetBottomTitleGraphFont() const
-        { return m_bottomTitleFont; }
+        {
+        return m_bottomTitleFont;
+        }
+
     void SetBottomTitleGraphFont(const wxFont& font)
         {
         if (font.IsOk())
-            { m_bottomTitleFont = font; }
+            {
+            m_bottomTitleFont = font;
+            }
         }
+
     [[nodiscard]]
     wxColour GetLeftTitleGraphFontColor() const
-        { return m_leftTitleFontColor; }
+        {
+        return m_leftTitleFontColor;
+        }
+
     void SetLeftTitleGraphFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_leftTitleFontColor = color; }
+            {
+            m_leftTitleFontColor = color;
+            }
         }
+
     [[nodiscard]]
     wxFont GetLeftTitleGraphFont() const
-        { return m_leftTitleFont; }
+        {
+        return m_leftTitleFont;
+        }
+
     void SetLeftTitleGraphFont(const wxFont& font)
         {
         if (font.IsOk())
-            { m_leftTitleFont = font; }
+            {
+            m_leftTitleFont = font;
+            }
         }
+
     [[nodiscard]]
     wxColour GetRightTitleGraphFontColor() const
-        { return m_rightTitleFontColor; }
+        {
+        return m_rightTitleFontColor;
+        }
+
     void SetRightTitleGraphFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_rightTitleFontColor = color; }
+            {
+            m_rightTitleFontColor = color;
+            }
         }
+
     [[nodiscard]]
     wxFont GetRightTitleGraphFont() const
-        { return m_rightTitleFont; }
+        {
+        return m_rightTitleFont;
+        }
+
     void SetRightTitleGraphFont(const wxFont& font)
         {
         if (font.IsOk())
-            { m_rightTitleFont = font; }
+            {
+            m_rightTitleFont = font;
+            }
         }
+
     // invalid area color
     [[nodiscard]]
     wxColour GetInvalidAreaColor() const
-        { return m_graphInvalidAreaColor; }
+        {
+        return m_graphInvalidAreaColor;
+        }
+
     void SetInvalidAreaColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_graphInvalidAreaColor = color; }
+            {
+            m_graphInvalidAreaColor = color;
+            }
         }
+
     // Raygor style
     [[nodiscard]]
     Wisteria::Graphs::RaygorStyle GetRaygorStyle() const noexcept
-        { return m_raygorStyle; }
+        {
+        return m_raygorStyle;
+        }
+
     void SetRaygorStyle(const Wisteria::Graphs::RaygorStyle style) noexcept
-        { m_raygorStyle = style; }
+        {
+        m_raygorStyle = style;
+        }
+
     // Flesch connection lines
-    void ConnectFleschPoints(const bool connect) noexcept
-        { m_fleschChartConnectPoints = connect; }
+    void ConnectFleschPoints(const bool connect) noexcept { m_fleschChartConnectPoints = connect; }
+
     [[nodiscard]]
     bool IsConnectingFleschPoints() const noexcept
-        { return m_fleschChartConnectPoints; }
+        {
+        return m_fleschChartConnectPoints;
+        }
+
     // Flesch document groups next to the syllable ruler
     void IncludeFleschRulerDocGroups(const bool connect) noexcept
-        { m_fleschChartSyllableRulerDocGroups = connect; }
+        {
+        m_fleschChartSyllableRulerDocGroups = connect;
+        }
+
     [[nodiscard]]
     bool IsIncludingFleschRulerDocGroups() const noexcept
-        { return m_fleschChartSyllableRulerDocGroups; }
+        {
+        return m_fleschChartSyllableRulerDocGroups;
+        }
+
     /** Sets whether to use English labels for the brackets on German Lix gauges.
         @param useEnglish True to use the translated (English) labels.*/
     void UseEnglishLabelsForGermanLix(const bool useEnglish) noexcept
-        { m_useEnglishLabelsGermanLix = useEnglish; }
+        {
+        m_useEnglishLabelsGermanLix = useEnglish;
+        }
+
     /// @returns @c true if English labels are being used for the brackets on German Lix gauges.
     [[nodiscard]]
     bool IsUsingEnglishLabelsForGermanLix() const noexcept
-        { return m_useEnglishLabelsGermanLix; }
+        {
+        return m_useEnglishLabelsGermanLix;
+        }
+
     // variance method
     [[nodiscard]]
     VarianceMethod GetVarianceMethod() const noexcept
-        { return m_varianceMethod; }
-    void SetVarianceMethod(const VarianceMethod method) noexcept
-        { m_varianceMethod = method; }
+        {
+        return m_varianceMethod;
+        }
+
+    void SetVarianceMethod(const VarianceMethod method) noexcept { m_varianceMethod = method; }
+
     // minimum doc size
     void SetMinDocWordCountForBatch(const size_t docSize) noexcept
-        { m_minDocWordCountForBatch = docSize; }
+        {
+        m_minDocWordCountForBatch = docSize;
+        }
+
     [[nodiscard]]
     size_t GetMinDocWordCountForBatch() const noexcept
-        { return m_minDocWordCountForBatch; }
+        {
+        return m_minDocWordCountForBatch;
+        }
+
     // random sampling size
     void SetBatchRandomSamplingSize(const size_t size) noexcept
-        { m_randomSampleSizeForBatch = size; }
+        {
+        m_randomSampleSizeForBatch = size;
+        }
+
     [[nodiscard]]
     size_t GetBatchRandomSamplingSize() const noexcept
-        { return m_randomSampleSizeForBatch; }
+        {
+        return m_randomSampleSizeForBatch;
+        }
+
     // how file paths are shown in batch projects
-    void SetFilePathTruncationMode(const ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode TruncMode) noexcept
-        { m_filePathTruncationMode = TruncMode; }
+    void SetFilePathTruncationMode(
+        const ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode TruncMode) noexcept
+        {
+        m_filePathTruncationMode = TruncMode;
+        }
+
     [[nodiscard]]
     ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode GetFilePathTruncationMode() const noexcept
-        { return m_filePathTruncationMode; }
+        {
+        return m_filePathTruncationMode;
+        }
+
     // project test language
-    void SetProjectLanguage(const readability::test_language lang) noexcept
-        { m_language = lang; }
+    void SetProjectLanguage(const readability::test_language lang) noexcept { m_language = lang; }
+
     [[nodiscard]]
     readability::test_language GetProjectLanguage() const noexcept
-        { return m_language; }
+        {
+        return m_language;
+        }
+
     /// @returns The file path to the document being appended for analysis (optional)
     [[nodiscard]]
     wxString GetAppendedDocumentFilePath() const
-        { return m_appendedDocumentFilePath; }
+        {
+        return m_appendedDocumentFilePath;
+        }
+
     /// Sets the file path to the document being appended for analysis (optional).
     /// @param path The file path to the document.
-    void SetAppendedDocumentFilePath(const wxString& path)
-        { m_appendedDocumentFilePath = path; }
-    void SetReviewer(const wxString& reviewer)
-        { m_reviewer = reviewer; }
+    void SetAppendedDocumentFilePath(const wxString& path) { m_appendedDocumentFilePath = path; }
+
+    void SetReviewer(const wxString& reviewer) { m_reviewer = reviewer; }
+
     [[nodiscard]]
     wxString GetReviewer() const
-        { return m_reviewer; }
-    void UseRealTimeUpdate(const bool realTime)
-        { m_realTimeUpdate = realTime; }
+        {
+        return m_reviewer;
+        }
+
+    void UseRealTimeUpdate(const bool realTime) { m_realTimeUpdate = realTime; }
+
     [[nodiscard]]
     bool IsRealTimeUpdating() const noexcept
-        { return m_realTimeUpdate; }
+        {
+        return m_realTimeUpdate;
+        }
+
     // printer settings
     // page setup
-    void SetPaperId(const int Id) noexcept
-        { m_paperId = Id; }
+    void SetPaperId(const int Id) noexcept { m_paperId = Id; }
+
     [[nodiscard]]
     int GetPaperId() const noexcept
-        { return m_paperId; }
+        {
+        return m_paperId;
+        }
 
     void SetPaperOrientation(const wxPrintOrientation orient) noexcept
-        { m_paperOrientation = orient; }
+        {
+        m_paperOrientation = orient;
+        }
+
     [[nodiscard]]
     wxPrintOrientation GetPaperOrientation() const noexcept
-        { return m_paperOrientation; }
+        {
+        return m_paperOrientation;
+        }
+
     // printer header functions
-    void SetLeftPrinterHeader(const wxString& header)
-        { m_leftPrinterHeader = header; }
+    void SetLeftPrinterHeader(const wxString& header) { m_leftPrinterHeader = header; }
+
     [[nodiscard]]
     wxString GetLeftPrinterHeader() const
-        { return m_leftPrinterHeader; }
+        {
+        return m_leftPrinterHeader;
+        }
 
-    void SetCenterPrinterHeader(const wxString& header)
-        { m_centerPrinterHeader = header; }
+    void SetCenterPrinterHeader(const wxString& header) { m_centerPrinterHeader = header; }
+
     [[nodiscard]]
     wxString GetCenterPrinterHeader() const
-        { return m_centerPrinterHeader; }
+        {
+        return m_centerPrinterHeader;
+        }
 
-    void SetRightPrinterHeader(const wxString& header)
-        { m_rightPrinterHeader = header; }
+    void SetRightPrinterHeader(const wxString& header) { m_rightPrinterHeader = header; }
+
     [[nodiscard]]
     wxString GetRightPrinterHeader() const
-        { return m_rightPrinterHeader; }
+        {
+        return m_rightPrinterHeader;
+        }
+
     // printer footer functions
-    void SetLeftPrinterFooter(const wxString& header)
-        { m_leftPrinterFooter = header; }
+    void SetLeftPrinterFooter(const wxString& header) { m_leftPrinterFooter = header; }
+
     [[nodiscard]]
     wxString GetLeftPrinterFooter() const
-        { return m_leftPrinterFooter; }
+        {
+        return m_leftPrinterFooter;
+        }
 
-    void SetCenterPrinterFooter(const wxString& header)
-        { m_centerPrinterFooter = header; }
+    void SetCenterPrinterFooter(const wxString& header) { m_centerPrinterFooter = header; }
+
     [[nodiscard]]
     wxString GetCenterPrinterFooter()
-        { return m_centerPrinterFooter; }
+        {
+        return m_centerPrinterFooter;
+        }
 
-    void SetRightPrinterFooter(const wxString& header)
-        { m_rightPrinterFooter = header; }
+    void SetRightPrinterFooter(const wxString& header) { m_rightPrinterFooter = header; }
+
     [[nodiscard]]
     wxString GetRightPrinterFooter() const
-        { return m_rightPrinterFooter; }
+        {
+        return m_rightPrinterFooter;
+        }
 
     // test options
     [[nodiscard]]
     SpecializedTestTextExclusion GetDaleChallTextExclusionMode() const noexcept
-        { return m_dcTextExclusion; }
+        {
+        return m_dcTextExclusion;
+        }
+
     void SetDaleChallTextExclusionMode(const SpecializedTestTextExclusion mode) noexcept
-        { m_dcTextExclusion = mode; }
+        {
+        m_dcTextExclusion = mode;
+        }
 
     void IncludeStockerCatholicSupplement(const bool includeSupplement) noexcept
-        { m_includeStockerCatholicDCSupplement = includeSupplement; }
+        {
+        m_includeStockerCatholicDCSupplement = includeSupplement;
+        }
+
     [[nodiscard]]
     bool IsIncludingStockerCatholicSupplement() const noexcept
-        { return m_includeStockerCatholicDCSupplement; }
+        {
+        return m_includeStockerCatholicDCSupplement;
+        }
 
     [[nodiscard]]
     readability::proper_noun_counting_method GetDaleChallProperNounCountingMethod() const noexcept
-        { return m_dcProperNounCountingMethod; }
-    void SetDaleChallProperNounCountingMethod(const readability::proper_noun_counting_method mode) noexcept
-        { m_dcProperNounCountingMethod = mode; }
+        {
+        return m_dcProperNounCountingMethod;
+        }
+
+    void SetDaleChallProperNounCountingMethod(
+        const readability::proper_noun_counting_method mode) noexcept
+        {
+        m_dcProperNounCountingMethod = mode;
+        }
 
     [[nodiscard]]
     SpecializedTestTextExclusion GetHarrisJacobsonTextExclusionMode() const noexcept
-        { return m_hjTextExclusion; }
+        {
+        return m_hjTextExclusion;
+        }
+
     void SetHarrisJacobsonTextExclusionMode(const SpecializedTestTextExclusion mode) noexcept
-        { m_hjTextExclusion = mode; }
+        {
+        m_hjTextExclusion = mode;
+        }
 
     [[nodiscard]]
     bool FogUseSentenceUnits() const noexcept
-        { return m_fogUseSentenceUnits; }
-    void SetFogUseSentenceUnits(const bool useUnits) noexcept
-        { m_fogUseSentenceUnits = useUnits; }
+        {
+        return m_fogUseSentenceUnits;
+        }
+
+    void SetFogUseSentenceUnits(const bool useUnits) noexcept { m_fogUseSentenceUnits = useUnits; }
 
     [[nodiscard]]
     FleschNumeralSyllabize GetFleschNumeralSyllabizeMethod() const noexcept
-        { return m_fleschNumeralSyllabizeMethod; }
+        {
+        return m_fleschNumeralSyllabizeMethod;
+        }
+
     void SetFleschNumeralSyllabizeMethod(const FleschNumeralSyllabize method) noexcept
-        { m_fleschNumeralSyllabizeMethod = method; }
+        {
+        m_fleschNumeralSyllabizeMethod = method;
+        }
 
     [[nodiscard]]
     FleschKincaidNumeralSyllabize GetFleschKincaidNumeralSyllabizeMethod() const noexcept
-        { return m_fleschKincaidNumeralSyllabizeMethod; }
+        {
+        return m_fleschKincaidNumeralSyllabizeMethod;
+        }
+
     void SetFleschKincaidNumeralSyllabizeMethod(const FleschKincaidNumeralSyllabize method) noexcept
-        { m_fleschKincaidNumeralSyllabizeMethod = method; }
+        {
+        m_fleschKincaidNumeralSyllabizeMethod = method;
+        }
 
     [[nodiscard]]
     bool IsIncludingScoreSummaryReport() const noexcept
-        { return m_includeScoreSummaryReport; }
+        {
+        return m_includeScoreSummaryReport;
+        }
+
     void IncludeScoreSummaryReport(const bool include) noexcept
-        { m_includeScoreSummaryReport = include; }
+        {
+        m_includeScoreSummaryReport = include;
+        }
 
     [[nodiscard]]
     std::vector<wxColour>& GetCustomColours() noexcept
-        { return m_customColours; }
+        {
+        return m_customColours;
+        }
+
     void CopyCustomColoursToColourData(wxColourData& colourData)
         {
         GetCustomColours().resize(16);
         for (size_t i = 0; i < 16; ++i)
-            { colourData.SetCustomColour(i, GetCustomColours().at(i)); }
+            {
+            colourData.SetCustomColour(i, GetCustomColours().at(i));
+            }
         }
+
     void CopyColourDataToCustomColours(const wxColourData& colourData)
         {
         GetCustomColours().clear();
         for (size_t i = 0; i < 16; ++i)
-            { GetCustomColours().push_back(colourData.GetCustomColour(i)); }
+            {
+            GetCustomColours().push_back(colourData.GetCustomColour(i));
+            }
         }
 
     [[nodiscard]]
     StatisticsInfo& GetStatisticsInfo() noexcept
-        { return m_statsInfo; }
+        {
+        return m_statsInfo;
+        }
 
     [[nodiscard]]
     StatisticsReportInfo& GetStatisticsReportInfo() noexcept
-        { return m_statsReportInfo; }
+        {
+        return m_statsReportInfo;
+        }
 
     [[nodiscard]]
     GrammarInfo& GetGrammarInfo() noexcept
-        { return m_grammarInfo; }
+        {
+        return m_grammarInfo;
+        }
 
     [[nodiscard]]
     WordsBreakdownInfo& GetWordsBreakdownInfo() noexcept
-        { return m_wordsBreakdownInfo; }
+        {
+        return m_wordsBreakdownInfo;
+        }
 
     [[nodiscard]]
     SentencesBreakdownInfo& GetSentencesBreakdownInfo() noexcept
-        { return m_sentencesBreakdownInfo; }
+        {
+        return m_sentencesBreakdownInfo;
+        }
 
     void UpdateGraphOptions(Wisteria::Canvas* graphCanvas);
 
-    /// @returns The catalog of labels to show on readability graphs (mapped to various grade levels).
+    /// @returns The catalog of labels to show on readability graphs (mapped to various grade
+    /// levels).
     [[nodiscard]]
     ReadabilityMessages& GetReadabilityMessageCatalog() noexcept
-        { return m_readMessages; }
+        {
+        return m_readMessages;
+        }
 
     /// @returns The file filter string for opening our supported document types.
     [[nodiscard]]
     wxString GetDocumentFilter() const;
-private:
+
+  private:
     void LoadThemeNode(tinyxml2::XMLElement* appearanceNode);
     [[nodiscard]]
     wxString TiXmlNodeToString(const tinyxml2::XMLNode* node, const wxString& tagToRead);
@@ -1480,12 +2490,14 @@ private:
     bool m_editorIndent{ false };
     bool m_editorSpaceAfterNewlines{ false };
     wxTextAttrAlignment m_editorTextAlignment{ wxTextAttrAlignment::wxTEXT_ALIGNMENT_JUSTIFIED };
-    wxTextAttrLineSpacing m_editorLineSpacing{ wxTextAttrLineSpacing::wxTEXT_ATTR_LINE_SPACING_NORMAL };
+    wxTextAttrLineSpacing m_editorLineSpacing{
+        wxTextAttrLineSpacing::wxTEXT_ATTR_LINE_SPACING_NORMAL
+    };
 
     wxColour m_dolchConjunctionsColor{ wxColour{ 255, 255, 0 } };
     wxColour m_dolchPrepositionsColor{ wxColour{ 0, 245, 255 } };
     wxColour m_dolchPronounsColor{ wxColour{ 198, 226, 255 } };
-    wxColour m_dolchAdverbsColor{ wxColour{ 0, 250, 154 }  };
+    wxColour m_dolchAdverbsColor{ wxColour{ 0, 250, 154 } };
     wxColour m_dolchAdjectivesColor{ wxColour{ 221, 160, 221 } };
     wxColour m_dolchVerbColor{ wxColour{ 254, 208, 112 } };
     wxColour m_dolchNounColor{ wxColour{ 255, 182, 193 } };
@@ -1514,7 +2526,9 @@ private:
     LongSentence m_longSentenceMethod{ LongSentence::LongerThanSpecifiedLength };
     int m_difficultSentenceLength{ 22 };
     NumeralSyllabize m_numeralSyllabicationMethod{ NumeralSyllabize::WholeWordIsOneSyllable };
-    ParagraphParse m_paragraphsParsingMethod{ ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs };
+    ParagraphParse m_paragraphsParsingMethod{
+        ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs
+    };
     bool m_ignoreBlankLinesForParagraphsParser{ false };
     bool m_ignoreIndentingForParagraphsParser{ false };
     bool m_sentenceStartMustBeUppercased{ false };
@@ -1526,7 +2540,7 @@ private:
     bool m_ignoreProperNouns{ false };
     bool m_includeExcludedPhraseFirstOccurrence{ false };
     wxString m_excludedPhrasesPath;
-    std::vector<std::pair<wchar_t,wchar_t>> m_exclusionBlockTags;
+    std::vector<std::pair<wchar_t, wchar_t>> m_exclusionBlockTags;
     InvalidSentence m_invalidSentenceMethod{ InvalidSentence::ExcludeFromAnalysis };
     size_t m_includeIncompleteSentencesIfLongerThan{ 15 };
     // grammar
@@ -1540,7 +2554,8 @@ private:
     // readability tests
     bool m_includeDolchSightWords{ false };
     // stores the settings for which tests are selected in the wizard
-    readability::readability_test_collection<readability::readability_project_test<Wisteria::Data::Dataset>>
+    readability::readability_test_collection<
+        readability::readability_project_test<Wisteria::Data::Dataset>>
         m_readabilityTests;
     std::vector<wxString> m_includedCustomTests;
     ReadabilityMessages m_readMessages;
@@ -1549,11 +2564,13 @@ private:
     // Text Source
     TextSource m_textSource{ TextSource::FromFile };
     // Tests by Industry
-    readability::industry_classification m_testsByIndustry
-        { readability::industry_classification::adult_publishing_industry };
+    readability::industry_classification m_testsByIndustry{
+        readability::industry_classification::adult_publishing_industry
+    };
     // Tests By Document Type
-    readability::document_classification m_testsByDocumentType
-        { readability::document_classification::adult_literature_document };
+    readability::document_classification m_testsByDocumentType{
+        readability::document_classification::adult_literature_document
+    };
     // tests by test bundle (this will be the selected bundle name)
     wxString m_selectedTestBundle;
     // document storage/linking information
@@ -1573,8 +2590,8 @@ private:
     wxColour m_ribbonInactiveFontColor{ *wxBLACK };
     // sidebar
     wxColour m_sideBarBackgroundColor{ wxColour{ 200, 211, 231 } }; // Serenity
-    wxColour m_sideBarParentColor{ wxColour{ 180, 189, 207 } }; // slightly darker
-    wxColour m_sideBarActiveColor{ wxColour{ L"#FDB759" } }; // orange
+    wxColour m_sideBarParentColor{ wxColour{ 180, 189, 207 } };     // slightly darker
+    wxColour m_sideBarActiveColor{ wxColour{ L"#FDB759" } };        // orange
     wxColour m_sideBarActiveFontColor{ *wxBLACK };
     wxColour m_sideBarFontColor{ *wxBLACK };
     wxColour m_sideBarHoverColor{ wxColour{ 253, 211, 155 } }; // slightly lighter
@@ -1627,14 +2644,16 @@ private:
     bool m_fleschChartSyllableRulerDocGroups{ false };
     bool m_useEnglishLabelsGermanLix{ false };
     // Histogram options
-    Wisteria::Graphs::Histogram::BinningMethod m_histogramBinningMethod
-        { Wisteria::Graphs::Histogram::BinningMethod::BinByIntegerRange };
-    Wisteria::BinLabelDisplay m_histrogramBinLabelDisplayMethod
-        { Wisteria::BinLabelDisplay::BinValue };
-    Wisteria::RoundingMethod m_histrogramRoundingMethod
-        { Wisteria::RoundingMethod::RoundDown };
-    Wisteria::Graphs::Histogram::IntervalDisplay m_histrogramIntervalDisplay
-        { Wisteria::Graphs::Histogram::IntervalDisplay::Cutpoints };
+    Wisteria::Graphs::Histogram::BinningMethod m_histogramBinningMethod{
+        Wisteria::Graphs::Histogram::BinningMethod::BinByIntegerRange
+    };
+    Wisteria::BinLabelDisplay m_histrogramBinLabelDisplayMethod{
+        Wisteria::BinLabelDisplay::BinValue
+    };
+    Wisteria::RoundingMethod m_histrogramRoundingMethod{ Wisteria::RoundingMethod::RoundDown };
+    Wisteria::Graphs::Histogram::IntervalDisplay m_histrogramIntervalDisplay{
+        Wisteria::Graphs::Histogram::IntervalDisplay::Cutpoints
+    };
     wxColour m_histogramBarColor{ wxColour{ 182, 164, 204 } }; // lavender
     uint8_t m_histogramBarOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_histogramBarEffect{ Wisteria::BoxEffect::Glassy };
@@ -1661,8 +2680,9 @@ private:
     VarianceMethod m_varianceMethod{ VarianceMethod::PopulationVariance };
     size_t m_minDocWordCountForBatch{ 50 };
     size_t m_randomSampleSizeForBatch{ 15 };
-    ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_filePathTruncationMode
-        { ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames };
+    ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_filePathTruncationMode{
+        ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames
+    };
     wxString m_reviewer;
     wxString m_appendedDocumentFilePath;
     readability::test_language m_language{ readability::test_language::english_test };
@@ -1682,32 +2702,37 @@ private:
     // readability scores options
     bool m_includeScoreSummaryReport{ true };
     // test options
-    SpecializedTestTextExclusion m_dcTextExclusion
-        { SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings };
-    SpecializedTestTextExclusion m_hjTextExclusion
-        { SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings };
-    readability::proper_noun_counting_method m_dcProperNounCountingMethod
-        { readability::proper_noun_counting_method::only_count_first_instance_of_proper_noun_as_unfamiliar };
+    SpecializedTestTextExclusion m_dcTextExclusion{
+        SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings
+    };
+    SpecializedTestTextExclusion m_hjTextExclusion{
+        SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings
+    };
+    readability::proper_noun_counting_method m_dcProperNounCountingMethod{
+        readability::proper_noun_counting_method::
+            only_count_first_instance_of_proper_noun_as_unfamiliar
+    };
     bool m_includeStockerCatholicDCSupplement{ false };
     bool m_fogUseSentenceUnits{ true };
-    FleschNumeralSyllabize m_fleschNumeralSyllabizeMethod
-        { FleschNumeralSyllabize::NumeralIsOneSyllable };
-    FleschKincaidNumeralSyllabize m_fleschKincaidNumeralSyllabizeMethod
-        { FleschKincaidNumeralSyllabize::FleschKincaidNumeralSoundOutEachDigit };
-    Wisteria::Graphs::RaygorStyle m_raygorStyle
-        { Wisteria::Graphs::RaygorStyle::BaldwinKaufman };
+    FleschNumeralSyllabize m_fleschNumeralSyllabizeMethod{
+        FleschNumeralSyllabize::NumeralIsOneSyllable
+    };
+    FleschKincaidNumeralSyllabize m_fleschKincaidNumeralSyllabizeMethod{
+        FleschKincaidNumeralSyllabize::FleschKincaidNumeralSoundOutEachDigit
+    };
+    Wisteria::Graphs::RaygorStyle m_raygorStyle{ Wisteria::Graphs::RaygorStyle::BaldwinKaufman };
     // custom colors
     std::vector<wxColour> m_customColours;
     // images used for blank graphs
     wxBitmapBundle m_graphBackgroundImage;
     wxBitmapBundle m_waterMarkImage;
     wxBitmapBundle m_graphStippleImage;
-    std::shared_ptr<Wisteria::Images::Schemes::ImageScheme> m_graphImageScheme
-        {
+    std::shared_ptr<Wisteria::Images::Schemes::ImageScheme> m_graphImageScheme{
         std::make_shared<Wisteria::Images::Schemes::ImageScheme>(
             std::vector<wxBitmapBundle>{ wxBitmapBundle{} })
-        };
-public:
+    };
+
+  public:
     const wxString XML_EDITOR;
     const wxString XML_EDITOR_FONT;
     const wxString XML_EDITOR_FONTCOLOR;

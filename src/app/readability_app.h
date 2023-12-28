@@ -1,77 +1,75 @@
 #ifndef __MAIN_APP_H__
 #define __MAIN_APP_H__
 
-#include <wx/wx.h>
-#include <wx/splitter.h>
+#include "../../../Licensing/LicenseAdmin.h"
+#include "../Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
+#include "../Wisteria-Dataviz/src/math/mathematics.h"
+#include "../Wisteria-Dataviz/src/ui/app.h"
+#include "../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
+#include "../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/functionbrowserdlg.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/printerheaderfooterdlg.h"
+#include "../Wisteria-Dataviz/src/ui/mainframe.h"
+#include "../Wisteria-Dataviz/src/util/formulaformat.h"
+#include "../Wisteria-Dataviz/src/util/idhelpers.h"
+#include "../Wisteria-Dataviz/src/util/logfile.h"
+#include "../Wisteria-Dataviz/src/util/screenshot.h"
+#include "../Wisteria-Dataviz/src/util/xml_format.h"
+#include "../Wisteria-Dataviz/src/wxStartPage/startpage.h"
+#include "../app/readability_app_options.h"
+#include "../lua_scripting/lua_interface.h"
+#include "../projects/standard_project_doc.h"
+#include "../readability/custom_readability_test.h"
+#include "../readability/readability_project_test.h"
+#include "../ui/dialogs/about_dlg_ex.h"
+#include "../ui/dialogs/lua_editor_dlg.h"
+#include "../ui/dialogs/web_harvester_dlg.h"
+#include "../ui/dialogs/word_list_dlg.h"
+#include "../webharvester/webharvester.h"
+#include "version.h"
+#include <algorithm>
+#include <map>
+#include <wx/evtloop.h>
 #include <wx/file.h>
-#include <wx/textdlg.h>
 #include <wx/imaglist.h>
-#include <wx/srchctrl.h>
+#include <wx/ribbon/art.h>
 #include <wx/ribbon/bar.h>
 #include <wx/ribbon/buttonbar.h>
 #include <wx/ribbon/gallery.h>
 #include <wx/ribbon/toolbar.h>
-#include <wx/ribbon/art.h>
-#include <wx/evtloop.h>
-#include <map>
-#include <algorithm>
-#include "version.h"
-#include "../../../Licensing/LicenseAdmin.h"
-#include "../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
-#include "../Wisteria-Dataviz/src/ui/dialogs/printerheaderfooterdlg.h"
-#include "../Wisteria-Dataviz/src/util/formulaformat.h"
-#include "../Wisteria-Dataviz/src/ui/mainframe.h"
-#include "../Wisteria-Dataviz/src/ui/dialogs/functionbrowserdlg.h"
-#include "../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
-#include "../Wisteria-Dataviz/src/util/idhelpers.h"
-#include "../Wisteria-Dataviz/src/math/mathematics.h"
-#include "../Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
-#include "../Wisteria-Dataviz/src/util/logfile.h"
-#include "../Wisteria-Dataviz/src/ui/mainframe.h"
-#include "../Wisteria-Dataviz/src/ui/app.h"
-#include "../Wisteria-Dataviz/src/wxStartPage/startpage.h"
-#include "../Wisteria-Dataviz/src/util/xml_format.h"
-#include "../Wisteria-Dataviz/src/util/screenshot.h"
-#include "../webharvester/webharvester.h"
-#include "../readability/custom_readability_test.h"
-#include "../readability/readability_project_test.h"
-#include "../projects/standard_project_doc.h"
-#include "../app/readability_app_options.h"
-#include "../ui/dialogs/word_list_dlg.h"
-#include "../ui/dialogs/about_dlg_ex.h"
-#include "../ui/dialogs/lua_editor_dlg.h"
-#include "../ui/dialogs/web_harvester_dlg.h"
-#include "../lua_scripting/lua_interface.h"
+#include <wx/splitter.h>
+#include <wx/srchctrl.h>
+#include <wx/textdlg.h>
+#include <wx/wx.h>
 
 /// @brief Extended icon provider, which is connected to application's
 ///     custom icons.
 class RSArtProvider final : public wxArtProvider
     {
-public:
+  public:
     RSArtProvider();
-protected:
+
+  protected:
     [[nodiscard]]
-    wxBitmapBundle CreateBitmapBundle(const wxArtID& id,
-        const wxArtClient& client,
-        const wxSize& size) final;
-private:
+    wxBitmapBundle CreateBitmapBundle(const wxArtID& id, const wxArtClient& client,
+                                      const wxSize& size) final;
+
+  private:
     std::map<wxArtID, wxString> m_idFileMap;
     };
 
 class MainFrame final : public Wisteria::UI::BaseMainFrame
     {
-public:
+  public:
     friend class ReadabilityApp;
 
-    MainFrame(wxDocManager* manager, wxFrame* frame,
-              const wxArrayString& defaultFileExtensions, const wxString& title,
-              const wxPoint& pos, const wxSize& size, long type);
+    MainFrame(wxDocManager* manager, wxFrame* frame, const wxArrayString& defaultFileExtensions,
+              const wxString& title, const wxPoint& pos, const wxSize& size, long type);
     MainFrame(const MainFrame&) = delete;
     MainFrame& operator=(const MainFrame&) = delete;
-    ~MainFrame()
-        {
-        wxLogDebug(__WXFUNCTION__);
-        }
+
+    ~MainFrame() { wxLogDebug(__WXFUNCTION__); }
+
     void OnAbout([[maybe_unused]] wxCommandEvent& event);
     void OnStartPageClick(wxCommandEvent& event);
     void OnOpenDocument([[maybe_unused]] wxCommandEvent& event);
@@ -127,25 +125,31 @@ public:
     static void FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProject* project,
                                         const bool includeDocMenuItems);
     void AddExamplesToMenu(wxMenu* exampleMenu);
-    static void FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu,
-                                    wxMenu* adultMenu, wxMenu* secondLanguageMenu,
-                                    const BaseProject* project);
+    static void FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu, wxMenu* adultMenu,
+                                    wxMenu* secondLanguageMenu, const BaseProject* project);
 
     [[nodiscard]]
     static const std::map<int, wxString>& GetTestBundleMenuIds() noexcept
-        { return m_testBundleMenuIds; }
+        {
+        return m_testBundleMenuIds;
+        }
 
     [[nodiscard]]
     static const std::map<int, wxString>& GetCustomTestMenuIds() noexcept
-        { return m_customTestMenuIds; }
+        {
+        return m_customTestMenuIds;
+        }
 
     [[nodiscard]]
     static const std::map<int, wxString>& GetExamplesMenuIds() noexcept
-        { return m_examplesMenuIds; }
+        {
+        return m_examplesMenuIds;
+        }
 
     void AddTestBundleToMenus(const wxString& bundleName);
     void RemoveTestBundleFromMenus(const wxString& bundleName);
-    /// This also adds the new test to the menu of each open document/view, as well as the mainframe.
+    /// This also adds the new test to the menu of each open document/view, as well as the
+    /// mainframe.
     void AddCustomTestToMenus(const wxString& testName);
     void RemoveCustomTestFromMenus(const wxString& testName);
 
@@ -153,32 +157,39 @@ public:
 
     [[nodiscard]]
     std::vector<wxBitmapBundle>& GetProjectSideBarImageList() noexcept
-        { return m_projectSideBarImageList; }
+        {
+        return m_projectSideBarImageList;
+        }
+
     [[nodiscard]]
     wxStartPage* GetStartPage() const noexcept
-        { return m_startPage; }
+        {
+        return m_startPage;
+        }
 
     /// @brief Sets the About dialog image.
     /// @param bmp The image.
-    void SetAboutDialogImage(const wxBitmap& bmp)
-        { m_aboutBmp = bmp; }
+    void SetAboutDialogImage(const wxBitmap& bmp) { m_aboutBmp = bmp; }
+
     /// @returns The image used for a custom About dialog.
     [[nodiscard]]
     const wxBitmap& GetAboutDialogImage() const noexcept
-        { return m_aboutBmp; }
+        {
+        return m_aboutBmp;
+        }
 
     // Note that some of these ribbon button bar IDs are used by
     // ribbons other than the project one. This is the communal collection
     // of all bar IDs for the program's ribbons.
-    static constexpr int ID_EDIT_RIBBON_BUTTON_BAR = wxID_HIGHEST;
-    static constexpr int ID_PROOFING_RIBBON_BUTTON_BAR = wxID_HIGHEST + 1;
-    static constexpr int ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR = wxID_HIGHEST + 2;
-    static constexpr int ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR = wxID_HIGHEST + 3;
-    static constexpr int ID_NUMERALS_RIBBON_BUTTON_BAR = wxID_HIGHEST + 4;
-    static constexpr int ID_PROJECT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 5;
-    static constexpr int ID_VIEW_RIBBON_BUTTON_BAR = wxID_HIGHEST + 6;
-    static constexpr auto ID_DOCUMENT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 7;
-    static constexpr auto ID_CLIPBOARD_RIBBON_BUTTON_BAR = wxID_HIGHEST + 8;
+    constexpr static int ID_EDIT_RIBBON_BUTTON_BAR = wxID_HIGHEST;
+    constexpr static int ID_PROOFING_RIBBON_BUTTON_BAR = wxID_HIGHEST + 1;
+    constexpr static int ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR = wxID_HIGHEST + 2;
+    constexpr static int ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR = wxID_HIGHEST + 3;
+    constexpr static int ID_NUMERALS_RIBBON_BUTTON_BAR = wxID_HIGHEST + 4;
+    constexpr static int ID_PROJECT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 5;
+    constexpr static int ID_VIEW_RIBBON_BUTTON_BAR = wxID_HIGHEST + 6;
+    constexpr static auto ID_DOCUMENT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 7;
+    constexpr static auto ID_CLIPBOARD_RIBBON_BUTTON_BAR = wxID_HIGHEST + 8;
 
     IdRangeLock CUSTOM_TEST_RANGE;
     IdRangeLock EXAMPLE_RANGE;
@@ -193,10 +204,11 @@ public:
     wxMenu* m_customTestsRegularMenu{ nullptr };
     wxMenu m_testsBundleMenu;
     wxMenu* m_testsBundleRegularMenu{ nullptr };
+
     /// @returns The lua editor dialog (may be null if not opened yet).
-    LuaEditorDlg* GetLuaEditor() noexcept
-        { return m_luaEditor; }
-private:
+    LuaEditorDlg* GetLuaEditor() noexcept { return m_luaEditor; }
+
+  private:
     static std::map<int, wxString> m_testBundleMenuIds;
     static std::map<int, wxString> m_customTestMenuIds;
     static std::map<int, wxString> m_examplesMenuIds;
@@ -215,13 +227,14 @@ private:
 // Define a new application
 class ReadabilityApp final : public Wisteria::UI::BaseApp
     {
-public:
-    ReadabilityApp() : m_appOptions(nullptr)
-        {}
+  public:
+    ReadabilityApp() : m_appOptions(nullptr) {}
+
     ReadabilityApp(const ReadabilityApp&) = delete;
     ReadabilityApp& operator=(const ReadabilityApp&) = delete;
-    ~ReadabilityApp()
-        { wxDELETE(m_appOptions); }
+
+    ~ReadabilityApp() { wxDELETE(m_appOptions); }
+
     void OnEventLoopEnter(wxEventLoopBase* loop) final;
     bool OnInit() final;
     int OnExit() final;
@@ -231,52 +244,80 @@ public:
 
     [[nodiscard]]
     MainFrame* GetMainFrameEx() noexcept
-        { return dynamic_cast<MainFrame*>(GetMainFrame()); }
+        {
+        return dynamic_cast<MainFrame*>(GetMainFrame());
+        }
 
     [[nodiscard]]
     wxString GetAppVersion() const
-        { return _READSTUDIO_PROGRAM_VERSION; }
+        {
+        return _READSTUDIO_PROGRAM_VERSION;
+        }
+
     void EditCustomTest(CustomReadabilityTest& selectedTest);
+
     /// web harvester info
     [[nodiscard]]
     wxArrayString GetLastSelectedWebPages() const
-        { return m_lastSelectedWebPages; }
+        {
+        return m_lastSelectedWebPages;
+        }
+
     void SetLastSelectedWebPages(const wxArrayString& webpages)
-        { m_lastSelectedWebPages = webpages; }
+        {
+        m_lastSelectedWebPages = webpages;
+        }
+
     [[nodiscard]]
     wxString GetLastSelectedDocFilter() const
-        { return m_lastSelectedDocFilter; }
-    void SetLastSelectedDocFilter(const wxString& filter)
-        { m_lastSelectedDocFilter = filter; }
+        {
+        return m_lastSelectedDocFilter;
+        }
+
+    void SetLastSelectedDocFilter(const wxString& filter) { m_lastSelectedDocFilter = filter; }
 
     [[nodiscard]]
     ReadabilityAppOptions& GetAppOptions()
         {
         if (m_appOptions == nullptr)
-            { m_appOptions = new ReadabilityAppOptions; }
+            {
+            m_appOptions = new ReadabilityAppOptions;
+            }
         return *m_appOptions;
         }
 
     [[nodiscard]]
     LicenseAdmin& GetLicenseAdmin() noexcept
-        { return m_licenseAdmin; }
+        {
+        return m_licenseAdmin;
+        }
+
     // licensing codes
     [[nodiscard]]
     static const wxString FeatureEnglishReadabilityTestsCode()
-        { return _DT(L"ERDT"); }
+        {
+        return _DT(L"ERDT");
+        }
+
     [[nodiscard]]
     static const wxString FeatureProfessionalCode()
-        { return _DT(L"RPRO"); }
+        {
+        return _DT(L"RPRO");
+        }
+
     [[nodiscard]]
     static const wxString FeatureLanguagePackCode()
-        { return _DT(L"LPRT"); }
+        {
+        return _DT(L"LPRT");
+        }
 
-    LuaInterpreter& GetLuaRunner() noexcept
-        { return m_LuaRunner; }
+    LuaInterpreter& GetLuaRunner() noexcept { return m_LuaRunner; }
 
     [[nodiscard]]
     WebHarvester& GetWebHarvester() noexcept
-        { return m_webHarvester; }
+        {
+        return m_webHarvester;
+        }
 
     enum class RibbonType
         {
@@ -302,23 +343,34 @@ public:
     void FillPrintMenu(wxMenu& printMenu, const RibbonType rtype);
     /// Adds a list of words to the custom dictionary
     ///     (based on language of the project that it is coming from).
-    void AddWordsToDictionaries(const wxArrayString& theWords, const readability::test_language lang);
+    void AddWordsToDictionaries(const wxArrayString& theWords,
+                                const readability::test_language lang);
     void EditDictionary(const readability::test_language lang);
-    /// This is just used for testing purposes, to validate that the word lists are properly presorted.
+    /// This is just used for testing purposes, to validate that the word lists
+    /// are properly presorted.
     bool VerifyWordLists();
+
     /// @returns @c true if parsers should import extra content (dependent on parser).
     [[nodiscard]]
     bool IsUsingAdvancedImport() const noexcept
-        { return m_advancedImport; }
+        {
+        return m_advancedImport;
+        }
+
     void RemoveAllCustomTestBundles();
+
     /// @returns The DPI scaling factor (e.g., can be 2 on HiDPI displays).
     ///     This is a convenient way of getting this value when a window isn't available.
     [[nodiscard]]
     double GetDPIScaleFactor() const noexcept
-        { return m_dpiScaleFactor; }
+        {
+        return m_dpiScaleFactor;
+        }
 
     void AddSplashscreenImagePath(const wxString& imagePath)
-        { m_splashscreenImagePaths.Add(imagePath); }
+        {
+        m_splashscreenImagePaths.Add(imagePath);
+        }
 
     /** @returns A bitmap from the resource manager, scaling it to the system's DPI.
         @param image The path to the image from the resource manager (e.g., "ribbon/logo.png").
@@ -326,9 +378,8 @@ public:
         @param imageSize The size of the image (in pixels).\n
             This function will scale this according to the system's DPI.*/
     [[nodiscard]]
-    wxBitmap GetScaledImage(const wxString& image,
-                                          const wxBitmapType type = wxBITMAP_TYPE_PNG,
-                                          const wxSize imageSize = wxSize(32, 32))
+    wxBitmap GetScaledImage(const wxString& image, const wxBitmapType type = wxBITMAP_TYPE_PNG,
+                            const wxSize imageSize = wxSize(32, 32))
         {
         assert(GetMainFrame());
         const wxSize scaledSize = GetMainFrame()->FromDIP(imageSize);
@@ -345,26 +396,38 @@ public:
 
     [[nodiscard]]
     const wxArrayString& GetSplashscreenPaths() const noexcept
-        { return m_splashscreenImagePaths; }
+        {
+        return m_splashscreenImagePaths;
+        }
 
     /// @returns A random number generator engine for use in calls to std::uniform_xxx().
     [[nodiscard]]
     std::mt19937_64& GetRandomNumberEngine() noexcept
-        { return m_mersenneTwister; }
+        {
+        return m_mersenneTwister;
+        }
 
     void ShowSplashscreen();
 
     [[nodiscard]]
     static const std::map<wxWindowID, wxWindowID>& GetDynamicIdMap() noexcept
-        { return m_dynamicIdMap; }
+        {
+        return m_dynamicIdMap;
+        }
 
     [[nodiscard]]
     const std::map<wxString, wxString>& GetShapeMap() const noexcept
-        { return m_shapeMap; }
+        {
+        return m_shapeMap;
+        }
+
     [[nodiscard]]
     const std::map<wxString, wxString>& GetGraphColorSchemeMap() const noexcept
-        { return m_colorSchemeMap; }
-private:
+        {
+        return m_colorSchemeMap;
+        }
+
+  private:
     void InitializeReadabilityFeatures();
 
     /// @brief IDs exposed to scripting and their respective dynamic IDs in the framework.
