@@ -12,18 +12,18 @@
 #ifndef __DOC_GROUP_DIALOG_H__
 #define __DOC_GROUP_DIALOG_H__
 
-#include <wx/wx.h>
+#include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
 #include <wx/dialog.h>
-#include <wx/valgen.h>
 #include <wx/html/htmlwin.h>
 #include <wx/htmllbox.h>
-#include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
+#include <wx/valgen.h>
+#include <wx/wx.h>
 
 /// @brief A dialog to choose what sort of label should be connected
 ///     to a document (or batch of documents).
 class DocGroupSelectDlg final : public Wisteria::UI::DialogWithHelp
     {
-public:
+  public:
     /** @brief Constructor.
         @param parent The parent window.
         @param id The dialog's ID.
@@ -31,11 +31,12 @@ public:
         @param pos The dialog's window position.
         @param size The dialog's size.
         @param style The dialog's style.*/
-    explicit DocGroupSelectDlg(wxWindow* parent,
-             wxWindowID id = wxID_ANY, const wxString& caption = _(L"Select Labeling"),
-             const wxPoint& pos = wxDefaultPosition,
-             const wxSize& size = wxDefaultSize,
-             long style = wxDEFAULT_DIALOG_STYLE|wxCLIP_CHILDREN|wxRESIZE_BORDER)
+    explicit DocGroupSelectDlg(wxWindow* parent, wxWindowID id = wxID_ANY,
+                               const wxString& caption = _(L"Select Labeling"),
+                               const wxPoint& pos = wxDefaultPosition,
+                               const wxSize& size = wxDefaultSize,
+                               long style = wxDEFAULT_DIALOG_STYLE | wxCLIP_CHILDREN |
+                                            wxRESIZE_BORDER)
         {
         SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
         DialogWithHelp::Create(parent, id, caption, pos, size, style);
@@ -44,12 +45,14 @@ public:
         GetSizer()->SetSizeHints(this);
         Centre();
         }
+
     /// @private
     DocGroupSelectDlg() = delete;
     /// @private
     DocGroupSelectDlg(const DocGroupSelectDlg&) = delete;
     /// @private
     DocGroupSelectDlg& operator=(const DocGroupSelectDlg&) = delete;
+
     /// @returns The selected item.
     [[nodiscard]]
     int GetSelection() noexcept
@@ -57,6 +60,7 @@ public:
         TransferDataFromWindow();
         return m_selected;
         }
+
     /// @returns The grouping label.
     [[nodiscard]]
     const wxString& GetGroupingLabel() noexcept
@@ -64,6 +68,7 @@ public:
         TransferDataFromWindow();
         return m_groupingLabel;
         }
+
     /// @brief Sets the grouping label.
     /// @param label The label to use.
     void SetGroupingLabel(const wxString& label) noexcept
@@ -71,6 +76,7 @@ public:
         m_groupingLabel = label;
         TransferDataToWindow();
         }
+
     /** @brief Sets the selected item (i.e., radio button index).
         @param selected The radio button to select.*/
     void SetSelection(const int selected)
@@ -80,6 +86,7 @@ public:
         m_groupingLabelEntry->Enable(m_selected == 1);
         TransferDataToWindow();
         }
+
     /// @returns Whether the "Do not show again" checkbox was checked.
     [[nodiscard]]
     bool IsNotShowingAgain() noexcept
@@ -87,7 +94,8 @@ public:
         TransferDataFromWindow();
         return m_doNotShowThisAgain;
         }
-private:
+
+  private:
     void OnRadioBoxChange([[maybe_unused]] wxCommandEvent& event);
     void OnOK([[maybe_unused]] wxCommandEvent& event);
 
@@ -101,6 +109,6 @@ private:
     wxTextCtrl* m_groupingLabelEntry{ nullptr };
     };
 
-/** @}*/
+    /** @}*/
 
 #endif //__DOC_GROUP_DIALOG_H__
