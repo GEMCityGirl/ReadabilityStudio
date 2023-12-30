@@ -1109,7 +1109,7 @@ obtaining	getting
 obtains	gets
 occasion	cause
 occur	happen
-occured	happened
+occurred	happened
 occurs	happens
 odium	blame
 ongoing	continuing

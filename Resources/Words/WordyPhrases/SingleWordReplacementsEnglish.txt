@@ -1951,7 +1951,7 @@ obviates	wipes out
 obviating	wiping out
 occasion	cause
 occur	happen
-occured	happened
+occurred	happened
 occurrence	event, instance
 occurrences	events, instances
 occurs	happens

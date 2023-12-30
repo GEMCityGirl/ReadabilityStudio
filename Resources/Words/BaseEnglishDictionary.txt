@@ -34401,6 +34401,7 @@ dias
 diaspora
 diaspora's
 diasporas
+diasporic
 diastase
 diastase's
 diastases
@@ -51403,6 +51404,10 @@ gametophyte's
 gametophytes
 gamier
 gamiest
+gamified
+gamifies
+gamify
+gamifying
 gamin
 gamin's
 gamine
@@ -78909,6 +78914,9 @@ misdealt
 misdeed
 misdeed's
 misdeeds
+misdeliveries
+misdelivery
+misdelivery's
 misdemeanant
 misdemeanant's
 misdemeanants
@@ -82287,6 +82295,9 @@ nanoelectronics
 nanoenergetic
 nanoenergetically
 nanofab
+nanofabrication
+nanofabrication's
+nanofabrications
 nanofiber
 nanofiber's
 nanofibers
@@ -85140,6 +85151,9 @@ notepaper's
 notepapers
 noter
 notes
+notetaker
+notetaker's
+notetakers
 noteworthiness
 noteworthiness's
 noteworthy
@@ -86899,6 +86913,9 @@ openhandedness
 openhandedness's
 openhandednesses
 openhearted
+openhouse
+openhouse's
+openhouses
 opening
 opening's
 openings
@@ -105491,6 +105508,13 @@ reggaes
 regicide
 regicide's
 regicides
+regild
+regilded
+regilder
+regilder's
+regilders
+regilding
+regilds
 regime
 regime's
 regimen
@@ -111032,6 +111056,9 @@ salutary
 salutation
 salutation's
 salutations
+salutatorian
+salutatorian's
+salutatorians
 salutatories
 salutatory
 salute
@@ -129745,6 +129772,7 @@ thrusts
 thruway
 thruway's
 thruways
+thu
 thucydides
 thucydides's
 thud
@@ -131161,6 +131189,7 @@ torticollis
 tortilla
 tortilla's
 tortillas
+tortious
 tortoise
 tortoise's
 tortoises
@@ -131414,6 +131443,9 @@ towner
 towner's
 towney
 towney's
+townhome
+townhome's
+townhomes
 townhouse
 townhouses
 townie

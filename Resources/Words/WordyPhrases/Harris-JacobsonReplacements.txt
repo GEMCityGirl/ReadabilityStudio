@@ -902,7 +902,7 @@ obtained	got
 obtaining	getting
 obtains	gets
 occur	happen
-occured	happened
+occurred	happened
 occurs	happens
 operate	run
 operated	ran

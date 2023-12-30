@@ -739,7 +739,7 @@ obtaining	getting
 obtains	gets
 occasion	cause
 occur	happen
-occured	happened
+occurred	happened
 occurs	happens
 ongoing	continuing
 operate	run

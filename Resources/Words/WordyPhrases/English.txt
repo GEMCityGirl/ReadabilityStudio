@@ -773,15 +773,30 @@ apprehensively	uneasily	0
 apprise	tell	0		
 approbation	praise	0		
 approbations	praises	0		
+appropiate	appropriate	3		
+appropraite	appropriate	3		
 appropriate	proper (adj.), set aside (verb)	0		
 appropriated	set aside	0		
 appropriately	properly	0		
 appropriates	sets aside	0		
 appropriating	setting aside	0		
+appropriatly	appropriately	3		
+approprite	appropriate	3		
+approproate	appropriate	3		
+appropropiate	appropriate	3		
+appropropriate	appropriate	3		
+approproximate	approximate	3		
+approriate	appropriate	3		
+approriately	appropriately	3		
 approval	praise, consent	0		
+approxamately	approximately	3		
+approxiately	approximately	3		
 approximate	about	0		
 approximately	about	0		
+approximatly	approximately	3		
+approximitely	approximately	3		
 approxmate	approximate	3		
+apprpriate	appropriate	3		
 aquaintance	acquaintance	3		
 aqueous	watery	0		
 aquire	acquire	3		
@@ -791,7 +806,18 @@ aquitted	acquitted	3
 aquitting	acquitting	3		
 arbiter	judge, umpire	0		
 arbiters	judges, umpires	0		
+archaelogical	archaeological	3		
+archaelogists	archaeologists	3		
 archeological	archaeological	3		
+archetect	architect	3		
+archetects	architects	3		
+archetectural	architectural	3		
+archetecturally	architecturally	3		
+archetecture	architecture	3		
+archiac	archaic	3		
+archictect	architect	3		
+archiecture	architecture	3		
+archiectures	architectures	3		
 architypical	archetypal	3		
 arduous	hard	0		
 arduously	hardly	0		
@@ -1619,10 +1645,21 @@ cajoling	coaxing	0
 calcualation	calculation	3		
 calcualation's	calculation's	3		
 calcualations	calculations	3		
+calcualte	calculate	3		
+calcualted	calculated	3		
+calcualtes	calculates	3		
+calcualting	calculating	3		
+calcuations	calculations	3		
+calculatable	calculable	3		
 calculate	figure	0		
+calculater	calculator	3		
+calculcate	calculate	3		
+calculs	calculus	3		
 calender	calendar	3		
 calender's	calendar's	3		
 calenders	calendars	3		
+caligraphy	calligraphy	3		
+caling	calling	3		
 call a end to	end	0		
 call a halt to	halt	0		
 call a spade a spade	talk without euphemisms, speak frankly	2		
@@ -1639,11 +1676,21 @@ calling a halt to	halting	0
 calling a stop to	stopping	0		
 calling attention to	disclosing, broadcasting, divulging, exposing, pointing out, promoting, revealing	0		
 calling into question	challenging	2		
+calll	call	3		
 calls a end to	ends	0		
 calls a halt to	halts	0		
 calls a stop to	stops	0		
 calls attention to	discloses, broadcasts, divulges, exposes, points out, promotes, reveals	0		
 calls into question	challenges	2		
+caluclate	calculate	3		
+caluclated	calculated	3		
+caluculate	calculate	3		
+caluculated	calculated	3		
+calulate	calculate	3		
+calulated	calculated	3		
+calulater	calculator	3		
+calulates	calculates	3		
+calulating	calculating	3		
 calumniate	slander	0		
 calumniated	slandered	0		
 calumniates	slanders	0		
@@ -4841,6 +4888,13 @@ iniatives	initiatives	3
 inimitable	unmatched	0		
 iniquitous	wicked	0		
 iniquitously	wickedly	0		
+inital	initial	3		
+initalization	initialization	3		
+initalize	initialize	3		
+initalized	initialized	3		
+initalizes	initializes	3		
+initalizing	initializing	3		
+initally	initially	3		
 initial	first	0		
 initialisation	start	0		
 initialisations	starts	0		
@@ -4856,12 +4910,24 @@ initializatons	initializations	3
 initialize	start	0		
 initialized	started	0		
 initializes	starts	0		
+initializiation	initialization	3		
 initializing	starting	0		
 initially	at first	0		
+initialze	initialize	3		
+initialzed	initialized	3		
+initialzes	initializes	3		
 initiate	start	0		
 initiated	started	0		
 initiates	starts	0		
 initiating	starting	0		
+initiliaze	initialize	3		
+initiliazed	initialized	3		
+initiliazes	initializes	3		
+initiliazing	initializing	3		
+initilize	initialize	3		
+initilized	initialized	3		
+initilizes	initializes	3		
+initilizing	initializing	3		
 injudicious	unwise	0		
 injudiciously	unwisely	0		
 inlcude	include	3		
@@ -5979,25 +6045,52 @@ obviate	wipe out	0
 obviated	wiped out	0		
 obviates	wipes out	0		
 obviating	wiping out	0		
+ocasion	occasion	3		
+ocasional	occasional	3		
+ocasionally	occasionally	3		
+ocasionaly	occasionally	3		
+ocasioned	occasioned	3		
+ocasions	occasions	3		
 ocassion	occasion	3		
+ocassional	occasional	3		
+ocassionally	occasionally	3		
+ocassionaly	occasionally	3		
+ocassioned	occasioned	3		
+ocassions	occasions	3		
+occaison	occasion	3		
 occasion	cause	0		
 occasionaly	occasionally	3		
 occassion	occasion	3		
+occassional	occasional	3		
 occassionally	occasionally	3		
+occassionaly	occasionally	3		
+occassioned	occasioned	3		
+occassions	occasions	3		
+occationally	occasionally	3		
+occour	occur	3		
 occoured	occurred	3		
 occur	happen	0		
 occurance	occurrence	3		
-occured	happened	0		
+occurances	occurrences	3		
+occured	occurred	3		
 occurence	occurrence	3		
+occurences	occurrences	3		
 occures	occurs	3		
 occuring	occurring	3		
+occurr	occur	3		
 occurrance	occurrence	3		
 occurrance's	occurrence's	3		
 occurrances	occurrences	3		
+occurred	happened	0		
 occurrence	event, instance	0		
 occurrences	events, instances	0		
 occurrs	occurs	3		
 occurs	happens	0		
+ocurr	occur	3		
+ocurrance	occurrence	3		
+ocurred	occurred	3		
+ocurrence	occurrence	3		
+ocurrences	occurrences	3		
 odd man out	excluded person	2		
 odds and ends	miscellaneous items	2		
 odious	hateful	0		
@@ -6248,8 +6341,13 @@ par for the course	typical, normal, expected, customary, standard	2
 paragon	model	0		
 paralel	parallel	3		
 parallelism	likeness	0		
+paramameters	parameters	3		
+paramater	parameter	3		
 parameters	limits	0		
+parametes	parameters	3		
 paramount	top, chief, supreme	0		
+paramter	parameter	3		
+paramters	parameters	3		
 paremeter	parameter	3		
 paremeter's	parameter's	3		
 paremeters	parameters	3		
