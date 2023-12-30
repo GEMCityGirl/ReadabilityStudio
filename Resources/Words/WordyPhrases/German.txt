@@ -17,6 +17,8 @@ Carnigie	Carnegie	3
 Catholocism	Catholicism	3		
 Celcius	Celsius	3		
 Champange	Champagne	3		
+Cincinatti	Cincinnati	3		
+Cincinnatti	Cincinnati	3		
 Dardenelles	Dardanelles	3		
 Europian	European	3		
 Europians	Europeans	3		

@@ -169,6 +169,9 @@ accomodated	accommodated	3
 accomodates	accommodates	3		
 accomodating	accommodating	3		
 accomodation	accommodation	3		
+accomomdation	accommodation	3		
+accomomdation's	accommodation's	3		
+accomomdations	accommodations	3		
 accompanied	went with	0		
 accompanies	goes with	0		
 accompany	go with	0		
@@ -221,6 +224,9 @@ achieves	does, makes	0
 achieving	doing, making	0		
 achilles heel	weakness, weak point	2		
 achilles' heel	weak spot, weakness	2		
+achitecture	architecture	3		
+achitectures	architectures	3		
+achive	archive	3		
 acid test	validation test	2		
 acknowledge	admit, express thanks for	0		
 acknowledged	admitted, expressed thanks for	0		
@@ -299,6 +305,9 @@ adjacent	next to	0
 adjacent to	close to, near, next to, beside, by	0		
 adjustment	settlement	0		
 adjustments	settlements	0		
+admininistrator	administrator	3		
+admininistrator's	administrator's	3		
+admininistrators	administrators	3		
 administer	manage	0		
 administered	managed	0		
 administering	managing	0		
@@ -574,7 +583,7 @@ amputated	cut off	0
 amputates	cuts off	0		
 amputating	cutting off	0		
 amusement	fun	0		
-an a	(strike one of these)	3		in;on;or;priori
+an a	(strike one of these)	3		in;on;or;priori;record
 an abundance of	plenty of	0		
 an affect on	an effect on	3		
 an alter	an altar (unless referring to a SQL command)	3		column;command;database;ego;event;login;permission;statement;syntax;table;user
@@ -782,6 +791,7 @@ aquitted	acquitted	3
 aquitting	acquitting	3		
 arbiter	judge, umpire	0		
 arbiters	judges, umpires	0		
+archeological	archaeological	3		
 architypical	archetypal	3		
 arduous	hard	0		
 arduously	hardly	0		
@@ -1475,6 +1485,8 @@ bread and butter	most lucrative product(s)	2
 break the ice	start a conversation	2		
 breaking the ice	starting a conversation	2		
 breaks the ice	starts a conversation	2		
+breakthough	breakthrough	3		
+breakthroughts	breakthroughs	3		
 breech of contract	breach of contract	3		
 breech of contracts	breach of contracts	3		
 breeches of contracts	breach of contracts	3		
@@ -1659,6 +1671,7 @@ cancel out	cancel	0
 candidtate	candidate	3		
 candidtate's	candidate's	3		
 candidtates	candidates	3		
+cannnot	cannot	3		
 cannot be avoided	must, should	0		
 cannot see the forest for the trees	unable to understand the full meaning of something because of a fixation on minor details	2		
 canon ball	cannonball	3		
@@ -1756,6 +1769,7 @@ cematery	cemetery	3
 cemetaries	cemeteries	3		
 cemetary	cemetery	3		
 cemetary's	cemetery's	3		
+cencus	census	3		
 censure	blame	0		
 censured	blamed	0		
 censures	blames	0		
@@ -1820,6 +1834,8 @@ chum the waters	pick a fight, stir up trouble	2
 chummed the waters	picked a fight, stirred up trouble	2		
 chumming the waters	picking a fight, stirring up trouble	2		
 chums the waters	picks a fight, stirs up trouble	2		
+Cincinatti	Cincinnati	3		
+Cincinnatti	Cincinnati	3		
 circuitous	roundabout	0		
 circumspect	careful	0		
 circumspectly	carefully	0		
@@ -1976,9 +1992,21 @@ commitee's	committee's	3
 commitees	committees	3		
 commitment	pledge	0		
 commitments	pledges	0		
+committment	commitment	3		
+committment's	commitment's	3		
+committments	commitments	3		
 commodious	roomy	0		
 common bond	bond	0		
 common bonds	bonds	0		
+commuications	communications	3		
+commuinications	communications	3		
+communcation	communication	3		
+communcation's	communication's	3		
+communcations	communications	3		
+communciation	communication	3		
+communiation	communication	3		
+communiation's	communication's	3		
+communiations	communications	3		
 communicate	tell	0		
 communidad	comunidad	3		
 communidad's	comunidad's	3		
@@ -2272,6 +2300,9 @@ conversation	talk	0
 conversations	talks	0		
 conversion	change	0		
 conversions	changes	0		
+conveyer	conveyor	3		
+conveyer's	conveyor's	3		
+conveyers	conveyors	3		
 convicted felon	felon, convict	1		
 convicted felons	felons, convicts	1		
 convolution	coil, fold, twist	0		
@@ -3035,6 +3066,11 @@ eliminate	cut, drop, end	0
 eliminated	cut, dropped	0		
 eliminates	cuts, drops	0		
 eliminating	cutting, dropping	0		
+elliminate	eliminate	3		
+elliminated	eliminated	3		
+elliminates	eliminates	3		
+elliminating	eliminating	3		
+ellipsises	ellipsis	3		
 elongate	stretch	0		
 elongated	stretched	0		
 elongates	stretches	0		
@@ -3330,10 +3366,19 @@ explain	show, tell	0
 explained	showed, told	0		
 explaining	showing, telling	0		
 explains	shows, tells	0		
+explicilty	explicitly	3		
 explicily	explicitly	3		
 explicit	clear	0		
+explicitely	explicitly	3		
+explicitily	explicitly	3		
 explicitly	clearly	0		
+explicits	explicit	3		
 explicity	explicitly	3		
+explict	explicit	3		
+explicte	explicate	3		
+explictly	explicitly	3		
+explit	explicit	3		
+explitly	explicitly	3		
 expound	make clear	0		
 expounded	made clear	0		
 expounding	making clear	0		
@@ -3563,6 +3608,7 @@ first time ever	first time	0
 firstly	first	0		
 fish out of water	out of his element	2		
 fit as a fiddle	in good shape, healthy	2		
+flack	flak (it's a German word)	3		
 flash in the pan	temporary success	2		
 flashes in the pan	temporary successes	2		
 Flemmish	Flemish	3		
@@ -3681,11 +3727,14 @@ freindly	friendly	3
 freinds	friends	3		
 French benefit	fringe benefit	3		
 French benefits	fringe benefits	3		
+freqencies	frequencies	3		
+freqency	frequency	3		
 frequancies	frequencies	3		
 frequancy	frequency	3		
 frequant	frequent	3		
 frequantly	frequently	3		
 frequecies	frequencies	3		
+frequentily	frequently	3		
 frequently	often	0		
 fresh as a daisy	well rested	2		
 fring	firing	3		
@@ -3699,8 +3748,11 @@ from the fact that	because, considering	0
 from the horse's mouth	information from the authoritative source	2		
 from the point of view of	from, for	0		
 frugality	thrift	0		
+fucntion	function	3		
+fucntioning	functioning	3		
 fucntions	functions	3		
 fuction	function	3		
+fuctions	functions	3		
 fule	file, fuel	3		
 full capacity	capacity	1		
 full of herself	conceited	2		
@@ -3712,8 +3764,20 @@ full of yourself	conceited	2
 full of yourselves	conceited	2		
 full potential	potential	1		
 fuly	fully	3		
+funcion	function	3		
+funcions	functions	3		
+funciton	function	3		
+funcitons	functions	3		
+functin	function	3		
 function	act, role	0		
+functionallity	functionality	3		
+functionaly	functionally	3		
+functionnality	functionality	3		
+functionon	function	3		
 functions	acts, roles	0		
+functiosn	functions	3		
+functon	function	3		
+functonality	functionality	3		
 fund manger	fund manager	3		
 fund mangers	fund managers	3		
 fundamental	basic	0		
@@ -4299,6 +4363,7 @@ idenfies	identifies	3
 identical	same	0		
 identical to	the same as	0		
 identicalness	sameness	0		
+identies	identities	3		
 identifcation	identification	3		
 identifed	identified	3		
 identification	ID	0		
@@ -4360,6 +4425,8 @@ impartially	fairly	0
 impeccable	faultless	0		
 impeccably	faultlessly	0		
 impecunious	poor	0		
+impementation	implementation	3		
+impementations	implementations	3		
 imperative	urgent	0		
 imperatively	urgently	0		
 imperceptible	very slight	0		
@@ -4372,9 +4439,22 @@ impinge	strike, hit	0
 impinged	hit	0		
 impinges	strikes, hits	0		
 impinging	striking, hitting	0		
+implamenting	implementing	3		
+implemantation	implementation	3		
+implemement	implement	3		
+implemementation	implementation	3		
+implemementations	implementations	3		
+implememented	implemented	3		
+implemementing	implementing	3		
+implemements	implements	3		
 implemenation	implementation	3		
+implemenations	implementations	3		
+implemenetation	implementation	3		
 implement	carry out, start	0		
 implement an investigation of	investigate or find out, study, explore, examine, research, search, look into	0		
+implementaion	implementation	3		
+implementaions	implementations	3		
+implementated	implemented	3		
 implementation	carrying out	0		
 implemented	carried out, did	0		
 implementing	carrying out, starting	0		
@@ -4382,10 +4462,26 @@ implemention	implementation	3
 implemention's	implementation's	3		
 implementions	implementations	3		
 implements	carries out, starts	0		
+implemet	implement	3		
+implemetation	implementation	3		
+implemeted	implemented	3		
+implemeting	implementing	3		
+implemets	implements	3		
+implemntation	implementation	3		
+implemntations	implementations	3		
 implent	implement	3		
 implented	implemented	3		
 implenting	implementing	3		
 implents	implements	3		
+implicitely	implicitly	3		
+implicity	implicitly	3		
+impliment	implement	3		
+implimented	implemented	3		
+implment	implement	3		
+implmentation	implementation	3		
+implmented	implemented	3		
+implmenting	implementing	3		
+implments	implements	3		
 impolite	rude	0		
 importunate	urgent	0		
 importunately	urgently	0		
@@ -4657,6 +4753,7 @@ incomplete	partial	0
 incompletely	partially	0		
 inconsiderate	thoughtless	0		
 inconsiderately	thoughtlessly	0		
+inconsistences	inconsistencies	3		
 inconstant	fickle	0		
 inconvenience	bother	0		
 inconveniences	bothers	0		
@@ -4738,6 +4835,9 @@ inhibiting	hindering	0
 inhibition	restraint	0		
 inhibitions	restraints	0		
 inhibits	hinders	0		
+iniative	initiative	3		
+iniative's	initiative's	3		
+iniatives	initiatives	3		
 inimitable	unmatched	0		
 iniquitous	wicked	0		
 iniquitously	wickedly	0		
@@ -7338,6 +7438,7 @@ residence	house, home	0
 residences	houses, homes	0		
 residual trace	trace	0		
 residual traces	traces	0		
+resilent	resilient	3		
 resistence	resistance	3		
 resolute	firm	0		
 resouce	resource	3		
@@ -7564,6 +7665,7 @@ semblance	likeness	0
 sence	sense	3		
 sence's	sense's	3		
 sences	senses	3		
+sensus	census	3		
 seperate	separate	3		
 seperated	separated	3		
 seperates	separates	3		
@@ -7749,11 +7851,26 @@ spacious	vast	0
 sparking wine	sparkling wine	3		
 speach	speech	3		
 speak of the devil	we were just talking about you	2		
+specfication	specification	3		
+specfications	specifications	3		
+specfied	specified	3		
+specfies	specifies	3		
+specfy	specify	3		
+specfying	specifying	3		
 special affects	special effects	3		
+speciefied	specified	3		
+specifc	specific	3		
+specifed	specified	3		
 specific details	details	1		
+specificatin	specification	3		
+specificaton	specification	3		
 specified the specific	specified the	1		
 specifies the specific	specifies the	1		
+specifing	specifying	3		
+specifiy	specify	3		
+specifiying	specifying	3		
 specify the specific	specify the	1		
+specifyed	specified	3		
 specifying the specific	specifying the	1		
 specter	ghost	0		
 specter's	ghost's	0		
@@ -8018,6 +8135,10 @@ supersede	replace	0
 superseded	replaced	0		
 supersedes	replaces	0		
 superseding	replacing	0		
+suport	support	3		
+suported	supported	3		
+suporting	supporting	3		
+suports	supports	3		
 supplemental	added, extra	0		
 supplment	supplement	3		
 supplmented	supplemented	3		
@@ -8173,9 +8294,16 @@ tantalizes	teases	0
 tantalizing	teasing	0		
 team manger	team manager	3		
 team mangers	team managers	3		
+techician	technician	3		
+techicians	technicians	3		
+techiniques	techniques	3		
 technicalities	details	0		
 technicality	detail	0		
+technitian	technician	3		
+technnology	technology	3		
+technolgy	technology	3		
 teh	the	3		
+tehy	they	3		
 tell the difference	discriminate	0		
 telling the difference	discriminating	0		
 tells the difference	discriminates	0		
@@ -8213,7 +8341,7 @@ that being the case	consequently, therefore, hence	0
 that is to say	that is	0		
 that where	that were, strike 'that'	3	such	a;clause;her;his;its;statement;that;the
 that's the way the cookie crumbles	that's the way things are	2		
-the a	(strike one of these)	3		and;drive;priori;z
+the a	(strike one of these)	3		and;drive;priori;record;z
 the acorn doesn't fall far from the tree	he exhibits the same behavior as his parent/boss/etc.	2		
 the affect	the effect	3		
 the alter	the altar (unless referring to a SQL command)	3		column;command;database;ego;event;login;permission;statement;syntax;table;user
@@ -8389,6 +8517,7 @@ threw caution to the wind	decided on a bold course of action	2
 threw in the towel	surrendered, admitted defeat	2		
 threw the baby out with the bathwater	disregarded the important part	2		
 threw the book at	gave the maximum penalty	2		
+throrough	thorough	3		
 through and through	thoroughly, completely	0		
 through away	throw away	3		
 through the course of	during	0		
@@ -8396,9 +8525,12 @@ through the duration of	during	0
 through the grapevine	from rumors/hearsay	2		
 through the use of	by, with	0		
 through thick and thin	supportive through difficult times	2		
+throughly	thoroughly	3		
 throughout the course of	during	0		
 throughout the duration of	during	0		
 throughout the entire	throughout	1		
+throught	through	3		
+througout	throughout	3		
 throw a wrench into the works	sabotage	2		
 throw caution to the wind	decide on a bold course of action	2		
 throw in the towel	surrender, admit defeat	2		
@@ -8414,9 +8546,13 @@ throws caution to the wind	decides on a bold course of action	2
 throws in the towel	surrenders, admits defeat	2		
 throws the baby out with the bathwater	disregards the important part	2		
 throws the book at	gives the maximum penalty	2		
+thses	these	3		
+thsi	this	3		
+thsoe	those	3		
 thta	that	3		
 thtat	that	3		
 thusly	thus	0		
+thyat	that	3		
 tie the knot	get married	2		
 tied the knot	got married	2		
 ties the knot	gets married	2		
@@ -8583,6 +8719,12 @@ tranfering	transferring	3
 tranferred	transferred	3		
 tranferring	transferring	3		
 tranfers	transfers	3		
+tranform	transform	3		
+tranformation	transformation	3		
+tranformations	transformations	3		
+tranformed	transformed	3		
+tranforming	transforming	3		
+tranforms	transforms	3		
 tranport	transport	3		
 tranquility	quietness	0		
 transcendent	superior	0		
@@ -8657,6 +8799,8 @@ tying the knot	getting married	2
 typically	often	0		
 typicaly	typically	3		
 tyrany	tyranny	3		
+Ubunutu	Ubuntu	3		
+Ubunutu's	Ubuntu's	3		
 uesd	used	3		
 ugly as sin	extremely ugly, repulsive	2		
 uise	use	3		

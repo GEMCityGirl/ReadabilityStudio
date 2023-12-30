@@ -5120,6 +5120,9 @@ antipathogen
 antipathy
 antipathy's
 antipatronage
+antipattern
+antipattern's
+antipatterns
 antipersonnel
 antiperspirant
 antiperspirant's
@@ -5572,6 +5575,7 @@ apparition's
 apparitions
 appeal
 appeal's
+appealable
 appealed
 appealer
 appealer's
@@ -5613,6 +5617,7 @@ appellee
 appellee's
 appellees
 append
+appendable
 appendage
 appendage's
 appendages
@@ -8044,8 +8049,12 @@ autoloaded
 autoloader
 autoloading
 autoloads
+autolog
+autologged
 autologger
+autologging
 autologous
+autologs
 autolysis
 automaker
 automakers
@@ -11866,6 +11875,9 @@ biography's
 biogs
 bioidentical
 bioinformatics
+bioinstrumentation
+bioinstrumentation's
+bioinstrumentations
 bioInteractive
 biol
 biologic
@@ -11925,6 +11937,7 @@ bionic
 bionically
 bionics
 bionics's
+biopharmaceutical
 biophoto
 biophoto's
 biophotos
@@ -26534,6 +26547,7 @@ convoluted
 convolutely
 convolution
 convolution's
+convolutional
 convolutions
 convolve
 convolved
@@ -30655,6 +30669,7 @@ darts
 dash
 dashboard
 dashboard's
+dashboarding
 dashboards
 dashed
 dasher
@@ -30689,6 +30704,7 @@ datable
 datacenter
 datacenter's
 datacenters
+datacentric
 datafile
 datafile's
 datafiles
@@ -30696,6 +30712,9 @@ dataflow
 datagram
 datagram's
 datagrams
+datamart
+datamart's
+datamarts
 datamation
 datamation's
 datapoint
@@ -30708,6 +30727,9 @@ datasheet's
 datasheets
 datasource
 datasources
+datastore
+datastore's
+datastores
 dataviz
 dataviz's
 datavizes
@@ -31646,6 +31668,10 @@ deductions
 deductive
 deductively
 deducts
+deduplicate
+deduplicated
+deduplicates
+deduplicating
 dee
 dee's
 deed
@@ -32125,6 +32151,10 @@ deices
 deicide
 deicing
 deictic
+deidentified
+deidentifies
+deidentify
+deidentifying
 deification
 deification's
 deifications
@@ -38450,6 +38480,9 @@ drumhead's
 drumheads
 drumlin
 drumlin's
+drumline
+drumline's
+drumlines
 drumlins
 drummed
 drummer
@@ -43799,6 +43832,9 @@ exceptionalism
 exceptionalist
 exceptionalist's
 exceptionalists
+exceptionalities
+exceptionality
+exceptionality's
 exceptionally
 exceptionalness
 exceptionalness's
@@ -46148,6 +46184,9 @@ featured
 featureless
 features
 featuring
+featurization
+featurization's
+featurizations
 febrile
 febrility
 fecal
@@ -52587,6 +52626,9 @@ gifts
 gig
 gig's
 giga
+gigabit
+gigabit's
+gigabits
 gigabyte
 gigabytes
 gigacycle
@@ -60787,6 +60829,10 @@ hyperthermia
 hyperthermophile
 hyperthermophile's
 hyperthermophiles
+hyperthread
+hyperthreaded
+hyperthreading
+hyperthreads
 hyperthymesia
 hyperthymesia's
 hyperthyroid
@@ -61231,6 +61277,8 @@ ideates
 ideation
 ideation's
 idem
+idempotence
+Idempotency
 idempotent
 idempotents
 identic
@@ -61847,6 +61895,9 @@ immunosuppressants
 immunosuppression
 immunosuppressive
 immunotherapy
+immunotoxicologies
+immunotoxicology
+immunotoxicology's
 immure
 immured
 immures
@@ -65498,6 +65549,7 @@ interfile
 interfiled
 interfiles
 interfiling
+interfraternity
 intergalactic
 intergeneration
 intergeneration's
@@ -66076,6 +66128,7 @@ intraductal
 intraepithelial
 intrafallopian
 intrafamily
+intrafraternity
 intragenerational
 intragenerationally
 intragroup
@@ -68161,6 +68214,9 @@ jumbotron
 jumbotron's
 jumbotrons
 jump
+jumpbox
+jumpbox's
+jumpboxes
 jumped
 jumper
 jumper's
@@ -70605,6 +70661,7 @@ leaps
 leapt
 learn
 learnability
+learnable
 learned
 learnedly
 learnedness
@@ -70945,6 +71002,9 @@ leitmotivs
 lemma
 lemma's
 lemmas
+lemmatization
+lemmatization's
+lemmatizations
 lemme
 lemming
 lemming's
@@ -74580,6 +74640,7 @@ mames
 Mamet
 Mamie
 maming
+mamma
 mamma's
 mammal
 mammal's
@@ -74592,6 +74653,7 @@ mammals
 mammaplasty
 mammaries
 mammary
+mammas
 mammies
 mammillary
 mammogram
@@ -87188,6 +87250,7 @@ orchestration's
 orchestrations
 orchestrator
 orchestrator's
+orchestrators
 orchid
 orchid's
 orchids
@@ -87332,6 +87395,7 @@ orgasming
 orgasms
 orgiastic
 orgies
+orgs
 orgy
 orgy's
 oribicularis
@@ -89648,6 +89712,9 @@ paleobotanist's
 paleobotanists
 paleobotany
 paleocene
+paleoecologies
+paleoecology
+paleoecology's
 paleogene
 paleognathae
 paleognathae's
@@ -91798,6 +91865,8 @@ peeress
 peeress's
 peeresses
 peering
+peering's
+peerings
 peerless
 peerlessly
 peerlessness
@@ -92598,6 +92667,9 @@ perm's
 permafrost
 permafrost's
 permafrosts
+permalink
+permalink's
+permalinks
 permalloy
 permalloy's
 permanence
@@ -92791,6 +92863,9 @@ personalization's
 personalizations
 personalize
 personalized
+personalizer
+personalizer's
+personalizers
 personalizes
 personalizing
 personally
@@ -93738,6 +93813,7 @@ photopigment
 photopigments
 photopsins
 photorealism
+photorealistic
 photoreception
 photoreceptive
 photoreceptor
@@ -98457,6 +98533,10 @@ pretext's
 pretexted
 pretexting
 pretexts
+pretrain
+pretrained
+pretraining
+pretrains
 pretreated
 pretreatment
 pretreatments
@@ -111997,6 +112077,7 @@ schedules
 scheduling
 schema
 schema's
+schemaless
 schemas
 schemata
 schematic
@@ -122196,6 +122277,7 @@ stimulative
 stimulatives
 stimulator
 stimulator's
+stimulators
 stimulatory
 stimuli
 stimuli's
@@ -125167,6 +125249,9 @@ superstitiously
 superstitiousness
 superstore
 superstores
+superstorm
+superstorm's
+superstorms
 superstring
 superstring's
 superstrings
@@ -136105,6 +136190,7 @@ unhorse
 unhorsed
 unhorses
 unhorsing
+unhoused
 unhumored
 unhurried
 unhurriedly
@@ -141495,6 +141581,9 @@ watermen
 watermen's
 watermill
 watermills
+waterpark
+waterpark's
+waterparks
 waterproof
 waterproofed
 waterproofer

@@ -17,6 +17,8 @@ Carnigie	Carnegie	3
 Catholocism	Catholicism	3		
 Celcius	Celsius	3		
 Champange	Champagne	3		
+Cincinatti	Cincinnati	3		
+Cincinnatti	Cincinnati	3		
 communidad	comunidad	3		
 communidad's	comunidad's	3		
 communidads	comunidads	3		

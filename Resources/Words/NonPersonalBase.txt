@@ -368,6 +368,7 @@ Astros
 Asturias
 Asunción
 Aswan
+AT&T
 Atacama
 Athabasca
 Athabascan
@@ -825,6 +826,7 @@ Cairo
 Caisos
 Cajun
 Calais
+Calamityville
 Calc
 Calcutta
 Caledonia
@@ -1142,6 +1144,7 @@ Consolas
 Constancia
 Contoso
 Cookstown
+Cooperstown
 Copenhagen
 Copernican
 Copet
@@ -1199,11 +1202,13 @@ Cromwellian
 Crouzon
 Crowdstrike
 Crowdtoolz
+Cru
 Cryptozoic
 CSharp
 Cuba
 Cuban
 Cuchulain
+Cuda
 Cuisinart
 Cumberland
 Cumberlands
@@ -1271,6 +1276,7 @@ Darwinian
 Darwinism
 Darwinist
 Databook
+Databricks
 Datamedia
 DataPilot
 Dataverse
@@ -1607,6 +1613,7 @@ Everglades
 Evernote
 EverReady
 Everton
+Exadata
 Exanthem
 Excalibur
 Excedrin
@@ -1627,6 +1634,7 @@ FactFinder
 Faeroe
 Fagatogo
 Fahrenheit
+Fairborn
 Fairfax
 Fairfield
 Fairmont
@@ -2586,6 +2594,7 @@ Kroc
 Kropotkin
 Krugerrand
 Kuala
+Kubeflow
 Kubernetes
 Kuiper
 Kurd
@@ -2889,6 +2898,7 @@ MariaDB
 Marianist
 Marianista
 Marino
+Marketo
 Markism
 Markkula
 Markovian
@@ -3741,6 +3751,7 @@ Prius
 Priva
 Prix
 Procellarum
+Profisee
 Progeria
 Prolixin
 Promethean
@@ -3875,6 +3886,7 @@ Redgate
 Redhat
 Redhill
 Redhook
+Redis
 Redlands
 Redmond
 Redondo
@@ -4155,6 +4167,7 @@ Serbia
 Serbian
 Serengeti
 Seri
+ServiceNow
 Servox
 Seton
 Setosa
@@ -4258,6 +4271,7 @@ Slovenia
 Slovenian
 Smaato
 Smallwood
+Smartboard
 Smartwater
 Smethwick
 Smithsonian
@@ -4527,6 +4541,7 @@ Technovation
 TechRepublic
 TechStars
 Tecmo
+Tecnomatix
 TEDRA
 TEDTalk
 Teflon
