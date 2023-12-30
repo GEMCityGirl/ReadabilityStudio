@@ -5140,7 +5140,7 @@ is skeptical about	doubts, questions	0
 is supportive of	supports	0		
 is under the assumption that	assumes	0		
 is under the impression that	assumes	0		
-is we	are we, is that we, or a comma is needed	3	it	
+is we	are we, is that we, (or a comma is needed)	3	it	
 is were	is where	3		
 is witness to	verifies, testifies to	0		
 is would	it would, would	3		
@@ -5799,7 +5799,7 @@ more than exceeded	exceeded	0
 more than excepted	impressive	0		
 more than one way to skin a cat	there are other ways to do this	2		
 more than surpassed	surpassed	0		
-more then	more than, or a comma is needed	3		
+more then	more than, (or a comma is needed)	3		
 most be	must be, most are	3	at	
 most of the time	usually	0		
 most of there	most of their	3		
@@ -5817,6 +5817,7 @@ muddying the water	confusing the matter	2
 multiple	many	0		Myeloma
 municipality	city	0		
 murphy's law	what can go wrong will go wrong	2		
+musn't	mustn't	3		
 must decided	must have decided	3		
 must likely	most likely	3		
 must to	have to, must	3		
@@ -6265,11 +6266,17 @@ ostracize	banish	0
 ostracized	banished	0		
 ostracizes	banishes	0		
 ostracizing	banishing	0		
+otehr	other	3		
 other fish to fry	other matters that need to be dealt with	2		
 other people	others	0		
 other similar	similar	0		
 other then	other than	3		
+ouevre	oeuvre	3		
+ouptut	output	3		
+ouput	output	3		
 ouputs	outputs	3		
+ouputted	outputted	3		
+ouputting	outputting	3		
 our from	our form	3		
 oustanding	outstanding	3		
 out loud	aloud	0		
@@ -6281,8 +6288,10 @@ out of the woods	away from danger	2
 out of whack	misaligned, out of synchronization	2		
 out on a limb	in a dangerous position	2		
 out the ground	off the ground, out of the ground	3		
+outputing	outputting	3		
 outragous	outrageous	3		
 outside of	outside (unless proceeding a pronoun)	0		
+outut	output	3		
 over a barrel	at a disadvantage	2		
 over and done with	done, finished	0		
 over and over again	repeatedly	0		
@@ -6299,12 +6308,23 @@ over-exaggerate	exaggerate	1
 over-exaggerated	exaggerated	1		
 over-exaggerates	exaggerates	1		
 over-exaggerating	exaggerating	1		
+overaall	overall	3		
 overexaggerate	exaggerate	1		
 overexaggerated	exaggerated	1		
 overexaggerates	exaggerates	1		
 overexaggerating	exaggerating	1		
+overidden	overridden	3		
 overide	override	3		
+overides	overrides	3		
+overiding	overriding	3		
+overridded	overridden	3		
+overridding	overriding	3		
+overrided	overridden	3		
 overriden	overridden	3		
+overrridden	overridden	3		
+overrride	override	3		
+overrriden	overridden	3		
+overrriding	overriding	3		
 overwhelming consensus	consensus	0		
 overwite	overwrite	3		
 overwites	overwrites	3		
@@ -6340,7 +6360,11 @@ paper tiger	something that appears tougher/stronger than it really is	2
 par for the course	typical, normal, expected, customary, standard	2		
 paragon	model	0		
 paralel	parallel	3		
+paralell	parallel	3		
 parallelism	likeness	0		
+parallell	parallel	3		
+parallization	parallelization	3		
+parallized	parallelized	3		
 paramameters	parameters	3		
 paramater	parameter	3		
 parameters	limits	0		
@@ -6348,29 +6372,44 @@ parametes	parameters	3
 paramount	top, chief, supreme	0		
 paramter	parameter	3		
 paramters	parameters	3		
+parantheses	parentheses	3		
+paranthesis	parenthesis	3		
+paraphenalia	paraphernalia	3		
+parellels	parallels	3		
 paremeter	parameter	3		
 paremeter's	parameter's	3		
 paremeters	parameters	3		
+parenthesed	parenthesized	3		
 pariah	outcast	0		
 pariahs	outcasts	0		
+parisitic	parasitic	3		
+parituclar	particular	3		
 parlance	talk	0		
 parlances	talks	0		
 parliment	parliament	3		
 parlous	shrewd	0		
 parralel	parallel	3		
+parrallel	parallel	3		
+parrallell	parallel	3		
 parsimonious	stingy	0		
 parsimoniously	stingily	0		
+partialy	partially	3		
 participate	take part	0		
 participated	took part	0		
 participates	take start	0		
 participating	taking part	0		
+particually	particularly	3		
+particualr	particular	3		
 particuar	particular	3		
 particuarly	particularly	3		
 particular	specific	0		
+particularily	particularly	3		
 particularize	state in detail	0		
 particularized	stated in detail	0		
 particularizes	states in detail	0		
 particularizing	stating in detail	0		
+particulary	particularly	3		
+partioning	partitioning	3		
 pass judgment on	judge	0		
 pass mustard	pass muster	3		
 pass the buck	shift responsibility	2		
@@ -6466,6 +6505,8 @@ peaks your curiosity	piques your curiosity	3
 peaks your interest	piques your interest	3		
 peevish	cross	0		
 peevishly	crossly	0		
+peformance	performance	3		
+peformed	performed	3		
 peice	piece	3		
 peice's	piece's	3		
 peices	pieces	3		
@@ -6488,6 +6529,7 @@ Pennyslvania's	Pennsylvania's	3
 penultimate	next to last	0		
 penurious	stingy	0		
 penuriously	stingily	0		
+peprocessor	preprocessor	3		
 per annum	a year, yearly, for each year	0		
 per diem	daily, daily allowance, a day, for each day	0		
 per each	per	0		
@@ -6497,7 +6539,9 @@ per year	a year	0
 perade	parade	3		
 perade's	parade's	3		
 perades	parades	3		
+percepted	perceived	3		
 percieve	perceive	3		
+percieved	perceived	3		
 peremptory	positive	0		
 perfect from	perfect form	3		
 perfect match	duplicate	1		
@@ -6528,6 +6572,13 @@ perfroms	performs	3
 peripatetic	walking about	0		
 peripheries	outer edges	0		
 periphery	outer edge	0		
+permanant	permanent	3		
+permanantly	permanently	3		
+permenant	permanent	3		
+permenantly	permanently	3		
+permision	permission	3		
+permisions	permissions	3		
+permissable	permissible	3		
 permisson	permission	3		
 permisson's	permission's	3		
 permissons	permissions	3		
@@ -6536,11 +6587,20 @@ permisssions	permissions	3
 permit	let	0		
 permitted	let	0		
 permitting	letting	0		
+permuation	permutation	3		
+permuations	permutations	3		
+perogative	prerogative	3		
+peroid	period	3		
+peroids	periods	3		
+peronal	personal	3		
+perosnality	personality	3		
+perpertrated	perpetrated	3		
 perpetrate	commit	0		
 perpetrated	committed	0		
 perpetrates	commits	0		
 perpetrating	committing	0		
 perpetuity	forever	0		
+perphas	perhaps	3		
 persevere	persist	0		
 persevered	persisted	0		
 perseverence	perseverance	3		
@@ -6673,6 +6733,7 @@ platorm	platform	3
 platorm's	platform's	3		
 platorms	platforms	3		
 plattform	platform	3		
+plausable	plausible	3		
 play fast and loose	fail to keep promises or meet obligations	2		
 play it by ear	improvise	2		
 play it by year	play it by ear	3		
@@ -6711,6 +6772,8 @@ plays it by ear	improvises	2
 plays possum	pretends to be dead or unaware	2		
 plays with fire	deals irresponsibly with something dangerous	2		
 playwrite	playwright	3		
+playwrite's	playwright's	3		
+playwrites	playwrights	3		
 please except	please accept	3		
 please not that	please note that	3		
 plebeian	common, vulgar	0		
@@ -6742,6 +6805,8 @@ politicans	politicians	3
 poltergeist	ghost	0		
 poltergeist's	ghost's	0		
 poltergeists	ghosts	0		
+polysaccaride	polysaccharide	3		
+polysaccharid	polysaccharide	3		
 portion	part	0		
 portion's	part's	0		
 portions	parts	0		
@@ -6760,6 +6825,15 @@ possess	have	0
 possessed	had, owned	0		
 possesses	has, owns	0		
 possessing	having, owning	0		
+possibe	possible	3		
+possibile	possible	3		
+possibilites	possibilities	3		
+possibilties	possibilities	3		
+possibilty	possibility	3		
+possiblility	possibility	3		
+possiblilty	possibility	3		
+possiblities	possibilities	3		
+possiblity	possibility	3		
 possibly could	could	1		
 possibly may	may	0		
 possibly might	might	0		
@@ -6884,15 +6958,27 @@ prioritize	rank	0
 prioritized	ranked	0		
 prioritizes	ranks	0		
 prioritizing	ranking	0		
+privalege	privilege	3		
+privaleges	privileges	3		
+priveledges	privileges	3		
 privelege	privilege	3		
 priveleged	privileged	3		
 priveleges	privileges	3		
 priveleging	privileging	3		
+privelige	privilege	3		
+priveliged	privileged	3		
+priveliges	privileges	3		
+privelleges	privileges	3		
+privilage	privilege	3		
 priviledge	privilege	3		
 priviledge's	privilege's	3		
 priviledged	privileged	3		
 priviledges	privileges	3		
 priviledging	privileging	3		
+privilige	privilege	3		
+privilige's	privilege's	3		
+priviliges	privileges	3		
+privledge	privilege	3		
 pro's and con's	pros and cons	3		
 probabilaty	probability	3		
 probabilities	chances	0		
@@ -7020,6 +7106,10 @@ protesting against	protesting	1
 protestor	protester	3		
 protestors	protesters	3		
 protests against	protests	1		
+protocal	protocol	3		
+protocal's	protocol's	3		
+protocals	protocols	3		
+protocoll	protocol	3		
 protrude out	protrude	1		
 protruded out	protruded	1		
 protrudes out	protrudes	1		
@@ -7032,6 +7122,7 @@ provides guidance for	guides	0
 providing that	if	0		
 proximity	nearness	0		
 prufe	proof	3		
+pseudononymous	pseudonymous	3		
 psudo	pseudo	3		
 psuedo	pseudo	3		
 psueudo	pseudo	3		
@@ -7664,7 +7755,10 @@ runtim's	runtime's	3
 runtims	runtimes	3		
 rustic country	rustic	1		
 rythem	rhythm	3		
+rythim	rhythm	3		
 rythm	rhythm	3		
+rythmic	rhythmic	3		
+rythyms	rhythms	3		
 saccharine	sweet	0		
 sacred cow	thing immune to criticism	2		
 sacred cows	things immune to criticism	2		
@@ -7720,13 +7814,22 @@ scrutinize	inspect, examine	0
 scrutinized	inspected, examined	0		
 scrutinizes	inspects, examines	0		
 scrutinizing	inspecting, examining	0		
+seach	search	3		
+seached	searched	3		
+seaches	searches	3		
+seaching	searching	3		
+searchs	searches	3		
 seasoned veteran	veteran	0		
 seasoned veterans	veterans	0		
 sebaceous	fatty, greasy	0		
 second wind	renewed vigor	2		
 secondly	second	0		
+secrataries	secretaries	3		
 secratary	secretary	3		
+secratary's	secretary's	3		
+secreteries	secretaries	3		
 secretery	secretary	3		
+secretery's	secretary's	3		
 see it through	stay with a task until completion	2		
 see red	become angry	2		
 see the light	get the idea	2		
@@ -7764,10 +7867,29 @@ sence	sense	3
 sence's	sense's	3		
 sences	senses	3		
 sensus	census	3		
+sentinal	sentinel	3		
+sentinal's	sentinel's	3		
+sentinals	sentinels	3		
+separatly	separately	3		
+separed	separated	3		
+separte	separate	3		
+separted	separated	3		
+separtes	separates	3		
+separting	separating	3		
+sepcified	specified	3		
+sepcifies	specifies	3		
+sepcify	specify	3		
+sepcifying	specifying	3		
+seperat	separate	3		
 seperate	separate	3		
 seperated	separated	3		
+seperately	separately	3		
 seperates	separates	3		
 seperating	separating	3		
+seperatly	separately	3		
+seperator	separator	3		
+seperator's	separator's	3		
+seperators	separators	3		
 seprate	separate	3		
 sequestration	removal	0		
 sequestrations	removals	0		
@@ -7842,9 +7964,20 @@ sick and tired	annoyed, tired	0
 sick as a dog	miserable, felling very low	2		
 side affect	side effect	3		
 sieze	seize	3		
+siezure	seizure	3		
+siezures	seizures	3		
 sight for sore eyes	something relieving/pleasant to see	2		
 sight unseen	without previous inspection	2		
+sigificance	significance	3		
+siginificant	significant	3		
 sign of the times	characteristic of the period	2		
+signficant	significant	3		
+signficantly	significantly	3		
+signficiant	significant	3		
+signifantly	significantly	3		
+significently	significantly	3		
+signifigant	significant	3		
+signifigantly	significantly	3		
 silver spoon	born of wealth, spoiled	2		
 similar	like	0		
 similar to	like	0		
@@ -8118,6 +8251,7 @@ stuck their necks out	took a risk	2
 stuck your neck out	took a risk	2		
 stucture	structure	3		
 stucture's	structure's	3		
+stuctured	structured	3		
 stuctures	structures	3		
 stuffed shirt	pompous person	2		
 stultified	made foolish	0		
@@ -8256,7 +8390,21 @@ surprize	surprise	3
 surreptitious	secret, stealthy	0		
 surreptitiously	secretly, stealthily	0		
 surrounded on all sides	surrounded	0		
+surveilence	surveillance	3		
+surveyer	surveyor	3		
+surveyer's	surveyor's	3		
+surviver	survivor	3		
+surviver's	survivor's	3		
+survivers	survivors	3		
+survivied	survived	3		
+suseptable	susceptible	3		
+suseptible	susceptible	3		
+suspention	suspension	3		
+suspicous	suspicious	3		
+suspicously	suspiciously	3		
 sustenance	support, nourishment	0		
+sustitution	substitution	3		
+sustitutions	substitutions	3		
 swam with the sharks	contended with fierce competitors	2		
 swan song	farewell	2		
 sweat the details	worry about the details	2		
@@ -8845,19 +8993,31 @@ transpire	take place, happen	0
 transpired	took place, happened	0		
 transpires	takes place, happens	0		
 transpiring	happening, occurring	0		
+transtions	transitions	3		
+transtition	transition	3		
+transtitions	transitions	3		
 transtport	transport	3		
 trasfer	transfer	3		
 trasferred	transferred	3		
 trasferring	transferring	3		
 trasfers	transfers	3		
+trasmission	transmission	3		
+trasmission's	transmission's	3		
+trasmissions	transmissions	3		
 trenchant	sharp, keen	0		
 trepidation	fear	0		
 trepidations	fears	0		
+treshold	threshold	3		
+treshold's	threshold's	3		
+tresholds	thresholds	3		
 tribulation	trouble	0		
 tribulations	troubles	0		
 tributaries	rivers	0		
 tributary	river	0		
 tributary's	river's	0		
+triologies	trilogies	3		
+triology	trilogy	3		
+triology's	trilogy's	3		
 tripartite	three-part	0		
 triplicate	triple	0		
 triplicates	triples	0		
@@ -8897,6 +9057,7 @@ tying the knot	getting married	2
 typically	often	0		
 typicaly	typically	3		
 tyrany	tyranny	3		
+ubiquitious	ubiquitous	3		
 Ubunutu	Ubuntu	3		
 Ubunutu's	Ubuntu's	3		
 uesd	used	3		
