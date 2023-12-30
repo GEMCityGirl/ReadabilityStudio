@@ -14,11 +14,13 @@ void FilteredTextPreviewDlg::CreateControls()
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
     wxBoxSizer* previewWindowSizer = new wxBoxSizer(wxVERTICAL);
-    mainSizer->Add(previewWindowSizer, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(previewWindowSizer, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
 
     previewWindowSizer->Add(new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition,
-                            FromDIP(wxSize(500, 300)), wxTE_MULTILINE|wxTE_RICH2|wxTE_READONLY,
-                            wxGenericValidator(&m_filteredValue) ), 1, wxEXPAND);
+                                           FromDIP(wxSize(500, 300)),
+                                           wxTE_MULTILINE | wxTE_RICH2 | wxTE_READONLY,
+                                           wxGenericValidator(&m_filteredValue)),
+                            1, wxEXPAND);
 
     previewWindowSizer->AddSpacer(wxSizerFlags::GetDefaultBorder() * 2);
 
@@ -26,50 +28,64 @@ void FilteredTextPreviewDlg::CreateControls()
     previewWindowSizer->Add(m_collpane, 0, wxEXPAND);
 
     wxBoxSizer* filteredOutSizer = new wxBoxSizer(wxVERTICAL);
-    filteredOutSizer->Add(new wxStaticText(m_collpane->GetPane(),
-                          wxID_STATIC, _(L"The following are being filtered:")) );
+    filteredOutSizer->Add(new wxStaticText(m_collpane->GetPane(), wxID_STATIC,
+                                           _(L"The following are being filtered:")));
     wxStaticText* infoLabel = new wxStaticText(m_collpane->GetPane(), wxID_STATIC, m_infoLabel);
     filteredOutSizer->Add(infoLabel, 0, wxEXPAND);
     m_collpane->GetPane()->SetSizer(filteredOutSizer);
     m_collpane->Expand();
     filteredOutSizer->SetSizeHints(m_collpane->GetPane());
 
-    mainSizer->Add(CreateSeparatedButtonSizer(wxOK|wxCANCEL|wxHELP), 0,
-                   wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP), 0, wxEXPAND | wxALL,
+                   wxSizerFlags::GetDefaultBorder());
 
     SetSizerAndFit(mainSizer);
     }
 
 //-------------------------------------------------------------
-void FilteredTextPreviewDlg::SetExclusionInfo(const InvalidSentence textExclusionMethod,
-         const bool excludeCopyrightNotices,
-         const bool excludeCitations,
-         const bool replaceCharacters,
-         const bool removeEllipses,
-         const bool removeBullets,
-         const bool removeFilePaths,
-         const bool stripAbbreviationPeriods)
+void FilteredTextPreviewDlg::SetExclusionInfo(
+    const InvalidSentence textExclusionMethod, const bool excludeCopyrightNotices,
+    const bool excludeCitations, const bool replaceCharacters, const bool removeEllipses,
+    const bool removeBullets, const bool removeFilePaths, const bool stripAbbreviationPeriods)
     {
     m_infoLabel.clear();
     if (textExclusionMethod != InvalidSentence::IncludeAsFullSentences)
         {
         if (textExclusionMethod == InvalidSentence::ExcludeFromAnalysis)
-            { m_infoLabel += L"\n\t" + _(L"All incomplete sentences"); }
+            {
+            m_infoLabel += L"\n\t" + _(L"All incomplete sentences");
+            }
         else if (textExclusionMethod == InvalidSentence::ExcludeExceptForHeadings)
-            { m_infoLabel += L"\n\t" + _(L"All incomplete sentences, except headings"); }
+            {
+            m_infoLabel += L"\n\t" + _(L"All incomplete sentences, except headings");
+            }
         if (excludeCopyrightNotices)
-            { m_infoLabel += L"\n\t" + _(L"Trailing copyright notices"); }
+            {
+            m_infoLabel += L"\n\t" + _(L"Trailing copyright notices");
+            }
         if (excludeCitations)
-            { m_infoLabel += L"\n\t" + _(L"Trailing citations"); }
+            {
+            m_infoLabel += L"\n\t" + _(L"Trailing citations");
+            }
         }
     if (replaceCharacters)
-        { m_infoLabel += L"\n\t" + _(L"Special characters"); }
+        {
+        m_infoLabel += L"\n\t" + _(L"Special characters");
+        }
     if (removeEllipses)
-        { m_infoLabel += L"\n\t" + _(L"Ellipses"); }
+        {
+        m_infoLabel += L"\n\t" + _(L"Ellipses");
+        }
     if (removeBullets)
-        { m_infoLabel += L"\n\t" + _(L"Bullets and list-item numbering"); }
+        {
+        m_infoLabel += L"\n\t" + _(L"Bullets and list-item numbering");
+        }
     if (removeFilePaths)
-        { m_infoLabel += L"\n\t" + _(L"Internet and file addresses"); }
+        {
+        m_infoLabel += L"\n\t" + _(L"Internet and file addresses");
+        }
     if (stripAbbreviationPeriods)
-        { m_infoLabel += L"\n\t" + _(L"Trailing periods from abbreviations and acronyms"); }
+        {
+        m_infoLabel += L"\n\t" + _(L"Trailing periods from abbreviations and acronyms");
+        }
     }

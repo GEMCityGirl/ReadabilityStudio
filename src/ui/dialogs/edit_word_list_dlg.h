@@ -86,13 +86,13 @@ class EditWordListDlg final : public Wisteria::UI::DialogWithHelp
     /// @returns @c true if successful.
     bool Save(const wxString& filePath);
     /// @private
-    static constexpr int ID_FILE_PATH_FIELD = wxID_HIGHEST;
+    constexpr static int ID_FILE_PATH_FIELD = wxID_HIGHEST;
 
   private:
-    static constexpr int ID_BROWSE_FOR_FILE = wxID_HIGHEST + 1;
-    static constexpr int ID_ADD_ITEM = wxID_HIGHEST + 2;
-    static constexpr int ID_EDIT_ITEM = wxID_HIGHEST + 3;
-    static constexpr int ID_DELETE_ITEM = wxID_HIGHEST + 4;
+    constexpr static int ID_BROWSE_FOR_FILE = wxID_HIGHEST + 1;
+    constexpr static int ID_ADD_ITEM = wxID_HIGHEST + 2;
+    constexpr static int ID_EDIT_ITEM = wxID_HIGHEST + 3;
+    constexpr static int ID_DELETE_ITEM = wxID_HIGHEST + 4;
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
                 const wxString& caption = _(L"Edit List"), const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxSize(600, 1000),

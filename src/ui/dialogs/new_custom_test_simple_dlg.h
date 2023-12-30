@@ -12,20 +12,20 @@
 #ifndef __NEW_CUSTOM_WORD_TEST_SIMPLE_DLG_H__
 #define __NEW_CUSTOM_WORD_TEST_SIMPLE_DLG_H__
 
-#include <wx/wx.h>
-#include <wx/string.h>
+#include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
+#include <wx/filename.h>
 #include <wx/statline.h>
+#include <wx/string.h>
 #include <wx/valgen.h>
 #include <wx/valtext.h>
-#include <wx/filename.h>
-#include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
+#include <wx/wx.h>
 
 /// @brief Dialog to create a new custom word test.
 /// @details This dialog will only prompt for the test name and path
 ///     to custom word list.
 class NewCustomWordTestSimpleDlg final : public Wisteria::UI::DialogWithHelp
     {
-public:
+  public:
     /** @brief Constructor.
         @param parent The dialog's parent.
         @param id The dialog's ID.
@@ -34,10 +34,15 @@ public:
         @param size The dialog's size.
         @param style The dialog's style.*/
     explicit NewCustomWordTestSimpleDlg(wxWindow* parent, wxWindowID id = wxID_ANY,
-        const wxString& caption = _("New Custom Test"),
-        const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
-        long style = wxDEFAULT_DIALOG_STYLE|wxCLIP_CHILDREN|wxRESIZE_BORDER)
-        { Create(parent, id, caption, pos, size, style); }
+                                        const wxString& caption = _("New Custom Test"),
+                                        const wxPoint& pos = wxDefaultPosition,
+                                        const wxSize& size = wxDefaultSize,
+                                        long style = wxDEFAULT_DIALOG_STYLE | wxCLIP_CHILDREN |
+                                                     wxRESIZE_BORDER)
+        {
+        Create(parent, id, caption, pos, size, style);
+        }
+
     /// @private
     NewCustomWordTestSimpleDlg(const NewCustomWordTestSimpleDlg& that) = delete;
     /// @private
@@ -46,28 +51,34 @@ public:
     /// @returns The test name.
     [[nodiscard]]
     wxString GetTestName() const
-        { return m_testName; }
+        {
+        return m_testName;
+        }
+
     /// @returns The word list's filepath.
     [[nodiscard]]
     wxString GetWordListFilePath() const
-        { return m_wordListFilePath; }
-private:
-    static constexpr int ID_FOLDER_BROWSE_BUTTON = wxID_HIGHEST;
+        {
+        return m_wordListFilePath;
+        }
+
+  private:
+    constexpr static int ID_FOLDER_BROWSE_BUTTON = wxID_HIGHEST;
 
     /// Creation
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
                 const wxString& caption = _("New Custom Test"),
                 const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
-                long style = wxDEFAULT_DIALOG_STYLE|wxCLIP_CHILDREN|wxRESIZE_BORDER)
+                long style = wxDEFAULT_DIALOG_STYLE | wxCLIP_CHILDREN | wxRESIZE_BORDER)
         {
-        SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS|wxWS_EX_CONTEXTHELP);
+        SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS | wxWS_EX_CONTEXTHELP);
         Wisteria::UI::DialogWithHelp::Create(parent, id, caption, pos, size, style);
 
         CreateControls();
         Centre();
 
         Bind(wxEVT_BUTTON, &NewCustomWordTestSimpleDlg::OnBrowseForFileClick, this,
-            NewCustomWordTestSimpleDlg::ID_FOLDER_BROWSE_BUTTON);
+             NewCustomWordTestSimpleDlg::ID_FOLDER_BROWSE_BUTTON);
         Bind(wxEVT_BUTTON, &NewCustomWordTestSimpleDlg::OnOK, this, wxID_OK);
 
         return true;
@@ -81,6 +92,6 @@ private:
     wxString m_wordListFilePath;
     };
 
-/** @}*/
+    /** @}*/
 
 #endif //__NEW_CUSTOM_WORD_TEST_SIMPLE_DLG_H__

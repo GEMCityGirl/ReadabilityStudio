@@ -130,16 +130,16 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     void OnDeleteDomainClick([[maybe_unused]] wxCommandEvent& event);
 
   private:
-    static constexpr int ID_DOWNLOAD_CHECKBOX = wxID_HIGHEST;
-    static constexpr int ID_DOWNLOAD_FOLDER_BROWSE_BUTTON = wxID_HIGHEST + 1;
-    static constexpr int ID_DOMAIN_COMBO = wxID_HIGHEST + 2;
-    static constexpr int ID_ADD_URL_BUTTON = wxID_HIGHEST + 3;
-    static constexpr int ID_DELETE_URL_BUTTON = wxID_HIGHEST + 4;
-    static constexpr int ID_ADD_DOMAIN_BUTTON = wxID_HIGHEST + 5;
-    static constexpr int ID_DELETE_DOMAIN_BUTTON = wxID_HIGHEST + 6;
-    static constexpr int ID_HARVESTING_PAGE = wxID_HIGHEST + 7;
-    static constexpr int ID_DOMAINS_PAGE = wxID_HIGHEST + 8;
-    static constexpr int ID_DOWNLOAD_PAGE = wxID_HIGHEST + 9;
+    constexpr static int ID_DOWNLOAD_CHECKBOX = wxID_HIGHEST;
+    constexpr static int ID_DOWNLOAD_FOLDER_BROWSE_BUTTON = wxID_HIGHEST + 1;
+    constexpr static int ID_DOMAIN_COMBO = wxID_HIGHEST + 2;
+    constexpr static int ID_ADD_URL_BUTTON = wxID_HIGHEST + 3;
+    constexpr static int ID_DELETE_URL_BUTTON = wxID_HIGHEST + 4;
+    constexpr static int ID_ADD_DOMAIN_BUTTON = wxID_HIGHEST + 5;
+    constexpr static int ID_DELETE_DOMAIN_BUTTON = wxID_HIGHEST + 6;
+    constexpr static int ID_HARVESTING_PAGE = wxID_HIGHEST + 7;
+    constexpr static int ID_DOMAINS_PAGE = wxID_HIGHEST + 8;
+    constexpr static int ID_DOWNLOAD_PAGE = wxID_HIGHEST + 9;
 
     [[nodiscard]]
     wxString GetUserSpecifiedDomainsLabel() const

@@ -6721,4 +6721,3 @@ void BatchProjectDoc::SyncFilePathsWithDocuments()
         GetSourceFilesInfo().push_back((*pos)->GetSourceFilesInfo().at(0));
         }
     }
-

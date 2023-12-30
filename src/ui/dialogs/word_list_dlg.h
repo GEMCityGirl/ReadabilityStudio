@@ -12,19 +12,19 @@
 #ifndef __WORD_LIST_DIALOG_H__
 #define __WORD_LIST_DIALOG_H__
 
-#include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
 #include "../../indexing/word_list.h"
+#include <wx/ribbon/art.h>
 #include <wx/ribbon/bar.h>
 #include <wx/ribbon/buttonbar.h>
 #include <wx/ribbon/gallery.h>
 #include <wx/ribbon/toolbar.h>
-#include <wx/ribbon/art.h>
 
 /// @brief Dialog to display multiple word lists (read-only viewing).
 class WordListDlg final : public wxDialog
     {
-public:
+  public:
     /** @brief Constructor.
         @param parent The dialog's parent.
         @param id The dialog's ID.
@@ -33,8 +33,10 @@ public:
         @param size The dialog's size.
         @param style The dialog's style.*/
     explicit WordListDlg(wxWindow* parent, wxWindowID id = wxID_ANY,
-        const wxString& caption = _(L"Word Lists"), const wxPoint& pos = wxDefaultPosition,
-        const wxSize& size = wxDefaultSize, long style = wxCAPTION|wxCLOSE_BOX|wxRESIZE_BORDER);
+                         const wxString& caption = _(L"Word Lists"),
+                         const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
+                         long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER);
+
     /// @private
     ~WordListDlg()
         {
@@ -44,6 +46,7 @@ public:
         wxDELETE(m_HJData);
         wxDELETE(m_DolchData);
         }
+
     /// @private
     WordListDlg(const WordListDlg&) = delete;
     /// @private
@@ -62,17 +65,18 @@ public:
     constexpr static int HARRIS_JACOBSON_PAGE_ID = wxID_HIGHEST + 3;
     /// @brief The Dolch page.
     constexpr static int DOLCH_PAGE_ID = wxID_HIGHEST + 4;
-private:
+
+  private:
     void CreateControls();
     [[nodiscard]]
     ListCtrlEx* GetActiveList();
-    void OnFind(wxFindDialogEvent &event);
+    void OnFind(wxFindDialogEvent& event);
     void OnRibbonButton(wxRibbonButtonBarEvent& event);
     void OnNegative(wxCommandEvent& event);
     void OnClose([[maybe_unused]] wxCloseEvent& event);
     void AddSingleColumnPage(Wisteria::UI::SideBarBook* sideBar, const int id, const int listId,
-                             const wxString& label, const int imageId,
-                             ListCtrlExDataProvider* data, const word_list& wordList);
+                             const wxString& label, const int imageId, ListCtrlExDataProvider* data,
+                             const word_list& wordList);
 
     constexpr static int DALE_CHALL_LIST_ID = wxID_HIGHEST + 5;
     constexpr static int STOCKER_LIST_ID = wxID_HIGHEST + 6;
@@ -88,6 +92,6 @@ private:
     Wisteria::UI::SideBarBook* m_sideBar{ nullptr };
     };
 
-/** @}*/
+    /** @}*/
 
 #endif //__WORD_LIST_DIALOG_H__

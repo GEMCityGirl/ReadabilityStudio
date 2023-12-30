@@ -12,24 +12,24 @@
 #ifndef __LUA_EDITOR_DIALOG_H__
 #define __LUA_EDITOR_DIALOG_H__
 
+#include "../../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
+#include <wx/aui/aui.h>
 #include <wx/dialog.h>
+#include <wx/fdrepdlg.h>
+#include <wx/html/helpwnd.h>
+#include <wx/renderer.h>
+#include <wx/ribbon/art.h>
 #include <wx/ribbon/bar.h>
 #include <wx/ribbon/buttonbar.h>
 #include <wx/ribbon/gallery.h>
 #include <wx/ribbon/toolbar.h>
-#include <wx/ribbon/art.h>
-#include <wx/html/helpwnd.h>
 #include <wx/splitter.h>
-#include <wx/aui/aui.h>
 #include <wx/srchctrl.h>
-#include <wx/renderer.h>
-#include <wx/fdrepdlg.h>
-#include "../../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
 
 /// @brief Lua editor and runner dialog.
 class LuaEditorDlg final : public wxFrame
     {
-public:
+  public:
     /** @brief Constructor.
         @param parent The dialog's parent.
         @param id The dialog's ID.
@@ -38,9 +38,11 @@ public:
         @param size The dialog's size.
         @param style The dialog's style.*/
     explicit LuaEditorDlg(wxWindow* parent, wxWindowID id = wxID_ANY,
-                 const wxString& caption = _(L"Lua Script"), const wxPoint& pos = wxDefaultPosition,
-                 const wxSize& size = wxDefaultSize,
-                 long style = wxCAPTION|wxCLOSE_BOX|wxMINIMIZE_BOX|wxMAXIMIZE_BOX|wxRESIZE_BORDER);
+                          const wxString& caption = _(L"Lua Script"),
+                          const wxPoint& pos = wxDefaultPosition,
+                          const wxSize& size = wxDefaultSize,
+                          long style = wxCAPTION | wxCLOSE_BOX | wxMINIMIZE_BOX | wxMAXIMIZE_BOX |
+                                       wxRESIZE_BORDER);
     /// @private
     LuaEditorDlg(const LuaEditorDlg&) = delete;
     /// @private
@@ -54,7 +56,8 @@ public:
     void DebugOutput(const wxString& str);
     /// @brief Clears the debug output window.
     void DebugClear();
-private:
+
+  private:
     void CreateControls();
     void OnClose([[maybe_unused]] wxCloseEvent& event);
     void OnSave([[maybe_unused]] wxCommandEvent& event);
@@ -76,6 +79,6 @@ private:
     wxFindReplaceDialog* m_dlgReplace{ nullptr };
     };
 
-/** @}*/
+    /** @}*/
 
 #endif //__LUA_EDITOR_DIALOG_H__

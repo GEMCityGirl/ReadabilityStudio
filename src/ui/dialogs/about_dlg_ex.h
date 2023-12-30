@@ -56,9 +56,9 @@ class AboutDialogEx final : public wxDialog
 
   private:
     // page and button IDs
-    static constexpr int ID_VERSION_PAGE = wxID_HIGHEST;
-    static constexpr int ID_LICENSING_PAGE = wxID_HIGHEST + 1;
-    static constexpr int ID_UPDATE_LICENSE = wxID_HIGHEST + 2;
+    constexpr static int ID_VERSION_PAGE = wxID_HIGHEST;
+    constexpr static int ID_LICENSING_PAGE = wxID_HIGHEST + 1;
+    constexpr static int ID_UPDATE_LICENSE = wxID_HIGHEST + 2;
 
     /// Creation.
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition,

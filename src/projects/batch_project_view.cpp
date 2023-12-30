@@ -3287,7 +3287,8 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
            and footer to whatever the global options currently are.*/
         BaseProjectDoc::UpdateListOptions(dynamic_cast<ListCtrlEx*>(GetActiveProjectWindow()));
 
-        // in case we are exporting the window, set its label to include the name of the document, and then reset it
+        // in case we are exporting the window, set its label to include
+        // the name of the document, and then reset it
         GetActiveProjectWindow()->SetLabel(wxString::Format(L"%s [%s]",
             GetActiveProjectWindow()->GetName(), wxFileName::StripExtension(doc->GetTitle())));
         ParentEventBlocker blocker(GetActiveProjectWindow());

@@ -7,10 +7,10 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "lua_editor_dlg.h"
-#include "../../app/readability_app.h"
-#include "../../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
 #include "../../Wisteria-Dataviz/src/base/colorbrewer.h"
 #include "../../Wisteria-Dataviz/src/import/html_extract_text.h"
+#include "../../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
+#include "../../app/readability_app.h"
 
 wxDECLARE_APP(ReadabilityApp);
 
@@ -27,28 +27,29 @@ using namespace lily_of_the_valley;
 ///     (or custom) color.
 class FlatTabArt : public wxAuiGenericTabArt
     {
-public:
+  public:
     /// @private
-    FlatTabArt() : wxAuiGenericTabArt(){}
+    FlatTabArt() : wxAuiGenericTabArt() {}
 
     /// @private
-    wxAuiTabArt* Clone() final
-        { return new FlatTabArt(*this); }
+    wxAuiTabArt* Clone() final { return new FlatTabArt(*this); }
 
     /// @private
     //-------------------------------------------------------
-    void DrawBackground(wxDC& dc,
-                        [[maybe_unused]] wxWindow* wnd,
-                        const wxRect& rect) final
+    void DrawBackground(wxDC& dc, [[maybe_unused]] wxWindow* wnd, const wxRect& rect) final
         {
         wxRect r;
 
         if (m_flags & wxAUI_NB_BOTTOM)
-            { r = wxRect(rect.x, rect.y, rect.width+2, rect.height); }
+            {
+            r = wxRect(rect.x, rect.y, rect.width + 2, rect.height);
+            }
         // TODO: else if (m_flags &wxAUI_NB_LEFT) {}
         // TODO: else if (m_flags &wxAUI_NB_RIGHT) {}
         else // for wxAUI_NB_TOP
-            { r = wxRect(rect.x, rect.y, rect.width+2, rect.height-3); }
+            {
+            r = wxRect(rect.x, rect.y, rect.width + 2, rect.height - 3);
+            }
 
         wxDCBrushChanger bch(dc, m_baseColourBrush);
         wxDCPenChanger pch(dc, m_baseColourPen);
@@ -71,20 +72,20 @@ public:
     //-------------------------------------------------------
     static void ScaleBitmap(wxBitmap& bmp, double scale)
         {
-        #if wxUSE_IMAGE && !defined(__WXGTK3__) && !defined(__WXMAC__)
-            // scale to a close round number to improve quality
-            scale = std::floor(scale + 0.25);
-            if (scale > 1.0 && !(bmp.GetScaleFactor() > 1.0))
-                {
-                wxImage img = bmp.ConvertToImage();
-                img.Rescale(bmp.GetWidth()*scale, bmp.GetHeight()*scale,
-                    wxIMAGE_QUALITY_BOX_AVERAGE);
-                bmp = wxBitmap(img);
-                }
-        #else
-            wxUnusedVar(bmp);
-            wxUnusedVar(scale);
-        #endif // wxUSE_IMAGE
+#if wxUSE_IMAGE && !defined(__WXGTK3__) && !defined(__WXMAC__)
+        // scale to a close round number to improve quality
+        scale = std::floor(scale + 0.25);
+        if (scale > 1.0 && !(bmp.GetScaleFactor() > 1.0))
+            {
+            wxImage img = bmp.ConvertToImage();
+            img.Rescale(bmp.GetWidth() * scale, bmp.GetHeight() * scale,
+                        wxIMAGE_QUALITY_BOX_AVERAGE);
+            bmp = wxBitmap(img);
+            }
+#else
+        wxUnusedVar(bmp);
+        wxUnusedVar(scale);
+#endif // wxUSE_IMAGE
         }
 
     /// @private
@@ -96,7 +97,9 @@ public:
         // first check if the text fits with no problems
         dc.GetTextExtent(text, &x, &y);
         if (x <= max_size)
+            {
             return text;
+            }
 
         size_t last_good_length = 0;
         for (size_t i = 0; i < text.length(); ++i)
@@ -106,7 +109,9 @@ public:
 
             dc.GetTextExtent(s, &x, &y);
             if (x > max_size)
+                {
                 break;
+                }
 
             last_good_length = i;
             }
@@ -118,17 +123,14 @@ public:
 
     /// @private
     //-------------------------------------------------------
-    void DrawTab(wxDC& dc,
-                wxWindow* wnd,
-                const wxAuiNotebookPage& page,
-                const wxRect& in_rect,
-                int close_button_state,
-                wxRect* out_tab_rect,
-                wxRect* out_button_rect,
-                int* x_extent) final
+    void DrawTab(wxDC& dc, wxWindow* wnd, const wxAuiNotebookPage& page, const wxRect& in_rect,
+                 int close_button_state, wxRect* out_tab_rect, wxRect* out_button_rect,
+                 int* x_extent) final
         {
         if (!wnd)
-            { return; }
+            {
+            return;
+            }
         wxCoord normal_textx, normal_texty;
         wxCoord selected_textx, selected_texty;
         wxCoord texty;
@@ -136,7 +138,9 @@ public:
         // if the caption is empty, measure some temporary text
         wxString caption = page.caption;
         if (caption.empty())
+            {
             caption = L"Xj";
+            }
 
         dc.SetFont(m_selectedFont);
         dc.GetTextExtent(caption, &selected_textx, &selected_texty);
@@ -145,13 +149,8 @@ public:
         dc.GetTextExtent(caption, &normal_textx, &normal_texty);
 
         // figure out the size of the tab
-        const wxSize tab_size = GetTabSize(dc,
-            wnd,
-            page.caption,
-            page.bitmap,
-            page.active,
-            close_button_state,
-            x_extent);
+        const wxSize tab_size = GetTabSize(dc, wnd, page.caption, page.bitmap, page.active,
+                                           close_button_state, x_extent);
 
         const wxCoord tab_height = m_tabCtrlHeight - 3;
         const wxCoord tab_width = tab_size.x;
@@ -175,7 +174,9 @@ public:
         // create points that will make the tab outline
         int clip_width = tab_width;
         if (tab_x + clip_width > in_rect.x + in_rect.width)
+            {
             clip_width = (in_rect.x + in_rect.width) - tab_x;
+            }
 
         // since the above code above doesn't play well with WXDFB or WXCOCOA,
         // we'll just use a rectangle for the clipping region for now --
@@ -236,15 +237,17 @@ public:
         if (page.active)
             {
             if (m_flags & wxAUI_NB_BOTTOM)
+                {
                 dc.SetPen(wxPen(m_baseColour.ChangeLightness(170)));
+                }
             // TODO: else if (m_flags &wxAUI_NB_LEFT) {}
             // TODO: else if (m_flags &wxAUI_NB_RIGHT) {}
             else // for wxAUI_NB_TOP
+                {
                 dc.SetPen(m_baseColourPen);
-            dc.DrawLine(border_points[0].x + 1,
-                border_points[0].y,
-                border_points[5].x,
-                border_points[5].y);
+                }
+            dc.DrawLine(border_points[0].x + 1, border_points[0].y, border_points[5].x,
+                        border_points[5].y);
             }
 
         int text_offset;
@@ -254,11 +257,10 @@ public:
             bitmap_offset = tab_x + wnd->FromDIP(8);
 
             // draw bitmap
-            dc.DrawBitmap(page.bitmap.GetBitmapFor(wnd),
-                bitmap_offset,
-                drawn_tab_yoff + (drawn_tab_height / 2.0) -
-                (page.bitmap.GetBitmapFor(wnd).GetScaledHeight() / 2.0),
-                true);
+            dc.DrawBitmap(page.bitmap.GetBitmapFor(wnd), bitmap_offset,
+                          drawn_tab_yoff + (drawn_tab_height / 2.0) -
+                              (page.bitmap.GetBitmapFor(wnd).GetScaledHeight() / 2.0),
+                          true);
 
             text_offset = bitmap_offset + page.bitmap.GetBitmapFor(wnd).GetScaledWidth();
             text_offset += wnd->FromDIP(3); // bitmap padding
@@ -273,21 +275,23 @@ public:
         if (close_button_state != wxAUI_BUTTON_STATE_HIDDEN)
             {
             auto closeImg = m_disabledCloseBmp.GetBitmapFor(wnd).ConvertToImage();
-            closeImg = Image::ChangeColor(closeImg, *wxBLACK,
+            closeImg = Image::ChangeColor(
+                closeImg, *wxBLACK,
                 page.active ?
-                ColorContrast::BlackOrWhiteContrast(ColorContrast::Shade(m_baseColour)) :
-                ColorContrast::BlackOrWhiteContrast(m_baseColour));
+                    ColorContrast::BlackOrWhiteContrast(ColorContrast::Shade(m_baseColour)) :
+                    ColorContrast::BlackOrWhiteContrast(m_baseColour));
 
             wxBitmap bmp{ closeImg };
 
             int offsetY = tab_y - 1;
             if (m_flags & wxAUI_NB_BOTTOM)
+                {
                 offsetY = 1;
+                }
 
             wxRect rect(tab_x + tab_width - bmp.GetWidth() - wnd->FromDIP(1),
-                offsetY + (tab_height / 2) - (bmp.GetHeight() / 2),
-                bmp.GetWidth(),
-                tab_height);
+                        offsetY + (tab_height / 2) - (bmp.GetHeight() / 2), bmp.GetWidth(),
+                        tab_height);
 
             IndentPressedBitmap(wnd->FromDIP(wxSize(1, 1)), &rect, close_button_state);
             dc.DrawBitmap(bmp, rect.x, rect.y, true);
@@ -296,43 +300,48 @@ public:
             close_button_width = bmp.GetWidth();
             }
 
-        wxString draw_text = ChopText(dc,
-            caption,
-            tab_width - (text_offset - tab_x) - close_button_width);
+        wxString draw_text =
+            ChopText(dc, caption, tab_width - (text_offset - tab_x) - close_button_width);
 
         // draw tab text
-        const wxColor font_color = page.active ?
-            ColorContrast::BlackOrWhiteContrast(ColorContrast::Shade(m_baseColour)) :
-            ColorContrast::BlackOrWhiteContrast(m_baseColour);
+        const wxColor font_color =
+            page.active ? ColorContrast::BlackOrWhiteContrast(ColorContrast::Shade(m_baseColour)) :
+                          ColorContrast::BlackOrWhiteContrast(m_baseColour);
         dc.SetTextForeground(font_color);
-        dc.DrawText(draw_text,
-            text_offset,
-            drawn_tab_yoff + (drawn_tab_height) / 2 - (texty / 2) - 1);
+        dc.DrawText(draw_text, text_offset,
+                    drawn_tab_yoff + (drawn_tab_height) / 2 - (texty / 2) - 1);
 
         // draw focus rectangle
         if (page.active && (wnd->FindFocus() == wnd))
             {
             wxRect focusRectText(text_offset,
-                (drawn_tab_yoff + (drawn_tab_height) / 2 - (texty / 2) - 1),
-                selected_textx, selected_texty);
+                                 (drawn_tab_yoff + (drawn_tab_height) / 2 - (texty / 2) - 1),
+                                 selected_textx, selected_texty);
 
             wxRect focusRect;
             wxRect focusRectBitmap;
 
             if (page.bitmap.IsOk())
-                focusRectBitmap =
-                wxRect(bitmap_offset,
-                    drawn_tab_yoff + (drawn_tab_height / 2) -
-                    (page.bitmap.GetBitmapFor(wnd).GetScaledHeight() / 2),
-                    page.bitmap.GetBitmapFor(wnd).GetScaledWidth(),
-                    page.bitmap.GetBitmapFor(wnd).GetScaledHeight());
+                {
+                focusRectBitmap = wxRect(bitmap_offset,
+                                         drawn_tab_yoff + (drawn_tab_height / 2) -
+                                             (page.bitmap.GetBitmapFor(wnd).GetScaledHeight() / 2),
+                                         page.bitmap.GetBitmapFor(wnd).GetScaledWidth(),
+                                         page.bitmap.GetBitmapFor(wnd).GetScaledHeight());
+                }
 
             if (page.bitmap.IsOk() && draw_text.empty())
+                {
                 focusRect = focusRectBitmap;
+                }
             else if (!page.bitmap.IsOk() && !draw_text.empty())
+                {
                 focusRect = focusRectText;
+                }
             else if (page.bitmap.IsOk() && !draw_text.empty())
+                {
                 focusRect = focusRectText.Union(focusRectBitmap);
+                }
 
             focusRect.Inflate(2, 2);
 
@@ -346,18 +355,19 @@ public:
     };
 
 //-------------------------------------------------------
-LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
-        const wxString& caption /*= _(L"Lua Script")*/,
-        const wxPoint& pos /*= wxDefaultPosition*/, const wxSize& size /*= wxDefaultSize*/,
-        long style /*= wxCAPTION|wxCLOSE_BOX|wxMINIMIZE_BOX|wxMAXIMIZE_BOX|wxRESIZE_BORDER*/) :
-        wxFrame(parent, id, caption, pos, size, style),
-        m_debugMessageWindow(nullptr)
+LuaEditorDlg::LuaEditorDlg(
+    wxWindow* parent, wxWindowID id /*= wxID_ANY*/, const wxString& caption /*= _(L"Lua Script")*/,
+    const wxPoint& pos /*= wxDefaultPosition*/, const wxSize& size /*= wxDefaultSize*/,
+    long style /*= wxCAPTION|wxCLOSE_BOX|wxMINIMIZE_BOX|wxMAXIMIZE_BOX|wxRESIZE_BORDER*/)
+    : wxFrame(parent, id, caption, pos, size, style), m_debugMessageWindow(nullptr)
     {
     m_mgr.SetManagedWindow(this);
 
     wxIcon ico;
-    ico.CopyFromBitmap(wxGetApp().GetResourceManager().
-            GetSVG(L"ribbon/lua.svg").GetBitmap(FromDIP(wxSize(16, 16))));
+    ico.CopyFromBitmap(wxGetApp()
+                           .GetResourceManager()
+                           .GetSVG(L"ribbon/lua.svg")
+                           .GetBitmap(FromDIP(wxSize(16, 16))));
     SetIcon(ico);
 
     CreateControls();
@@ -372,54 +382,58 @@ LuaEditorDlg::LuaEditorDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
 
     Bind(wxEVT_CLOSE_WINDOW, &LuaEditorDlg::OnClose, this);
 
-    Bind(wxEVT_TOOL,
+    Bind(
+        wxEVT_TOOL,
         [this]([[maybe_unused]] wxCommandEvent&)
         {
-        auto editor = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
-        editor->AnnotationClearAll();
-        wxString errorMessage;
+            auto editor = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
+            editor->AnnotationClearAll();
+            wxString errorMessage;
 
-        // disable (and later re-enable) the Run button while the script runs
-        m_toolbar->EnableTool(XRCID("ID_RUN"), false);
+            // disable (and later re-enable) the Run button while the script runs
+            m_toolbar->EnableTool(XRCID("ID_RUN"), false);
 
-        // run the script
-        wxGetApp().GetLuaRunner().RunLuaCode(
-            editor->GetValue(), editor->GetScriptFilePath(), errorMessage);
+            // run the script
+            wxGetApp().GetLuaRunner().RunLuaCode(editor->GetValue(), editor->GetScriptFilePath(),
+                                                 errorMessage);
 
-        m_toolbar->EnableTool(XRCID("ID_RUN"), true);
+            m_toolbar->EnableTool(XRCID("ID_RUN"), true);
 
-        if (errorMessage.length())
-            {
-            wxMessageBox(_(L"Line ") + errorMessage,
-                _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
-
-            long lineNumber{ string_util::atoi(errorMessage.wc_str()) - 1 };
-            if (lineNumber >= 0)
+            if (errorMessage.length())
                 {
-                if (const auto foundPos = errorMessage.find(L':');
-                    foundPos != wxString::npos)
-                    { errorMessage.replace(0, foundPos, _("Error")); }
-                editor->GotoLine(lineNumber);
-                editor->AnnotationSetText(lineNumber, errorMessage);
-                editor->AnnotationSetStyle(lineNumber, editor->ERROR_ANNOTATION_STYLE);
+                wxMessageBox(_(L"Line ") + errorMessage, _(L"Script Error"),
+                             wxOK | wxICON_EXCLAMATION);
 
-                // Scintilla doesn't update the scroll width for annotations, even with
-                // scroll width tracking on, so do it manually.
-                const int width = editor->GetScrollWidth();
+                long lineNumber{ string_util::atoi(errorMessage.wc_str()) - 1 };
+                if (lineNumber >= 0)
+                    {
+                    if (const auto foundPos = errorMessage.find(L':'); foundPos != wxString::npos)
+                        {
+                        errorMessage.replace(0, foundPos, _("Error"));
+                        }
+                    editor->GotoLine(lineNumber);
+                    editor->AnnotationSetText(lineNumber, errorMessage);
+                    editor->AnnotationSetStyle(lineNumber, editor->ERROR_ANNOTATION_STYLE);
 
-                // Take into account the fact that the annotation is shown indented, with
-                // the same indent as the line it's attached to.
-                // Also, add 3; this is just a hack to account for the width of the box, there doesn't
-                // seem to be any way to get it directly from Scintilla.
-                int indent = editor->GetLineIndentation(lineNumber) + FromDIP(3);
+                    // Scintilla doesn't update the scroll width for annotations, even with
+                    // scroll width tracking on, so do it manually.
+                    const int width = editor->GetScrollWidth();
 
-                const int widthAnn =
-                    editor->TextWidth(editor->ERROR_ANNOTATION_STYLE, errorMessage + wxString(indent, L' '));
+                    // Take into account the fact that the annotation is shown indented, with
+                    // the same indent as the line it's attached to.
+                    // Also, add 3; this is just a hack to account for the width of the box, there
+                    // doesn't seem to be any way to get it directly from Scintilla.
+                    int indent = editor->GetLineIndentation(lineNumber) + FromDIP(3);
 
-                if (widthAnn > width)
-                    { editor->SetScrollWidth(widthAnn); }
+                    const int widthAnn = editor->TextWidth(editor->ERROR_ANNOTATION_STYLE,
+                                                           errorMessage + wxString(indent, L' '));
+
+                    if (widthAnn > width)
+                        {
+                        editor->SetScrollWidth(widthAnn);
+                        }
+                    }
                 }
-            }
         },
         XRCID("ID_RUN"));
 
@@ -561,10 +575,10 @@ void LuaEditorDlg::OnSave([[maybe_unused]] wxCommandEvent& event)
     {
     if (dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage())->Save())
         {
-        m_notebook->SetPageText(m_notebook->GetSelection(),
-            wxFileName(
-                dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage())->
-                    GetScriptFilePath()).GetName());
+        m_notebook->SetPageText(
+            m_notebook->GetSelection(),
+            wxFileName(dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage())->GetScriptFilePath())
+                .GetName());
         }
     }
 
@@ -579,14 +593,15 @@ void LuaEditorDlg::OnShowReplaceDialog([[maybe_unused]] wxCommandEvent& event)
         }
     if (m_dlgReplace == nullptr)
         {
-        m_dlgReplace = new wxFindReplaceDialog(this, &m_findData, _(L"Replace"), wxFR_REPLACEDIALOG);
+        m_dlgReplace =
+            new wxFindReplaceDialog(this, &m_findData, _(L"Replace"), wxFR_REPLACEDIALOG);
         }
     m_dlgReplace->Show(true);
     m_dlgReplace->SetFocus();
     }
 
 //------------------------------------------------------
-void LuaEditorDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent & event)
+void LuaEditorDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent& event)
     {
     // get rid of Replace dialog (if it was opened)
     if (m_dlgReplace)
@@ -607,7 +622,9 @@ void LuaEditorDlg::OnFindDialog(wxFindDialogEvent& event)
     {
     auto currentScript = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
     if (currentScript == nullptr)
-        { return; }
+        {
+        return;
+        }
 
     if (event.GetEventType() == wxEVT_FIND || event.GetEventType() == wxEVT_FIND_NEXT)
         {
@@ -625,20 +642,25 @@ void LuaEditorDlg::OnFindDialog(wxFindDialogEvent& event)
         if (foundPos != wxSTC_INVALID_POSITION)
             {
             // if what is being replaced matches what was already selected, then replace it
-            if (from == foundPos && to == static_cast<long>(foundPos + event.GetFindString().length()) )
+            if (from == foundPos &&
+                to == static_cast<long>(foundPos + event.GetFindString().length()))
                 {
-                currentScript->Replace(foundPos, foundPos + event.GetFindString().length(), event.GetReplaceString());
+                currentScript->Replace(foundPos, foundPos + event.GetFindString().length(),
+                                       event.GetReplaceString());
                 currentScript->SetSelection(foundPos, foundPos + event.GetReplaceString().length());
                 currentScript->SearchAnchor();
-                // ...then, find the next occurrence of string being replaced for the next replace button click
+                // ...then, find the next occurrence of string being replaced for the next replace
+                // button click
                 foundPos = currentScript->FindNext(event.GetFindString(), event.GetFlags());
                 if (foundPos != wxSTC_INVALID_POSITION)
                     {
-                    currentScript->SetSelection(foundPos, foundPos + event.GetFindString().length());
+                    currentScript->SetSelection(foundPos,
+                                                foundPos + event.GetFindString().length());
                     }
                 }
-            // ...otherwise, just select the next string being replaced so that user can see it in its
-            // context and then decide on the next replace button click if they want to replace it
+            // ...otherwise, just select the next string being replaced so that user can see it in
+            // its context and then decide on the next replace button click if they want to replace
+            // it
             else
                 {
                 currentScript->SetSelection(foundPos, foundPos + event.GetFindString().length());
@@ -649,8 +671,8 @@ void LuaEditorDlg::OnFindDialog(wxFindDialogEvent& event)
             {
             currentScript->SetSelection(from, to);
             currentScript->SearchAnchor();
-            wxMessageBox(_(L"No further occurrences found."),
-                _(L"Item Not Found"), wxOK | wxICON_INFORMATION, this);
+            wxMessageBox(_(L"No further occurrences found."), _(L"Item Not Found"),
+                         wxOK | wxICON_INFORMATION, this);
             }
         }
     else if (event.GetEventType() == wxEVT_FIND_REPLACE_ALL)
@@ -660,9 +682,10 @@ void LuaEditorDlg::OnFindDialog(wxFindDialogEvent& event)
         auto foundPos = currentScript->FindNext(event.GetFindString(), event.GetFlags(), false);
         while (foundPos != wxSTC_INVALID_POSITION)
             {
-            currentScript->Replace(foundPos, foundPos + event.GetFindString().length(), event.GetReplaceString());
+            currentScript->Replace(foundPos, foundPos + event.GetFindString().length(),
+                                   event.GetReplaceString());
             currentScript->SetSelection(foundPos + event.GetReplaceString().length(),
-                                      foundPos + event.GetReplaceString().length());
+                                        foundPos + event.GetReplaceString().length());
             currentScript->SearchAnchor();
             // ...then, find the next occurrence of string being replaced for the next loop
             foundPos = currentScript->FindNext(event.GetFindString(), event.GetFlags(), false);
@@ -688,7 +711,9 @@ void LuaEditorDlg::OnFindDialog(wxFindDialogEvent& event)
 void LuaEditorDlg::SetThemeColor(const wxColour& color)
     {
     if (!color.IsOk())
-        { return; }
+        {
+        return;
+        }
 
     m_mgr.GetArtProvider()->SetColour(wxAUI_DOCKART_BACKGROUND_COLOUR, color);
 
@@ -712,12 +737,11 @@ void LuaEditorDlg::SetThemeColor(const wxColour& color)
         }
 
     const wxString htmlText = *(m_debugMessageWindow->GetParser()->GetSource());
-    const auto debugReportBody = wxString::Format(
-        L"<html>\n<body bgcolor=%s text=%s>",
-            color.GetAsString(wxC2S_HTML_SYNTAX),
+    const auto debugReportBody =
+        wxString::Format(
+            L"<html>\n<body bgcolor=%s text=%s>", color.GetAsString(wxC2S_HTML_SYNTAX),
             ColorContrast::BlackOrWhiteContrast(color).GetAsString(wxC2S_HTML_SYNTAX)) +
-        wxString(html_extract_text::get_body(htmlText.wc_str())) +
-        L"\n</body>\n</html>";
+        wxString(html_extract_text::get_body(htmlText.wc_str())) + L"\n</body>\n</html>";
     m_debugMessageWindow->SetPage(debugReportBody);
 
     m_mgr.Update();
@@ -728,18 +752,15 @@ void LuaEditorDlg::DebugOutput(const wxString& str)
     {
     if (m_debugMessageWindow)
         {
-        const wxColour bkColor =
-            m_mgr.GetArtProvider()->GetColour(wxAUI_DOCKART_BACKGROUND_COLOUR);
-        const wxString htmlText =
-            wxString(html_extract_text::get_body(
-                m_debugMessageWindow->GetParser()->GetSource()->wc_str())) +
-                L"\n<br />" + str;
-        const auto debugReportBody = wxString::Format(
-            L"<html>\n<body bgcolor=%s text=%s>",
-            bkColor.GetAsString(wxC2S_HTML_SYNTAX),
-            ColorContrast::BlackOrWhiteContrast(bkColor).GetAsString(wxC2S_HTML_SYNTAX)) +
-            htmlText +
-            L"\n</body>\n</html>";
+        const wxColour bkColor = m_mgr.GetArtProvider()->GetColour(wxAUI_DOCKART_BACKGROUND_COLOUR);
+        const wxString htmlText = wxString(html_extract_text::get_body(
+                                      m_debugMessageWindow->GetParser()->GetSource()->wc_str())) +
+                                  L"\n<br />" + str;
+        const auto debugReportBody =
+            wxString::Format(
+                L"<html>\n<body bgcolor=%s text=%s>", bkColor.GetAsString(wxC2S_HTML_SYNTAX),
+                ColorContrast::BlackOrWhiteContrast(bkColor).GetAsString(wxC2S_HTML_SYNTAX)) +
+            htmlText + L"\n</body>\n</html>";
         m_debugMessageWindow->SetPage(debugReportBody);
         }
     }
@@ -749,8 +770,7 @@ void LuaEditorDlg::DebugClear()
     {
     if (m_debugMessageWindow)
         {
-        const wxColour bkColor =
-            m_mgr.GetArtProvider()->GetColour(wxAUI_DOCKART_BACKGROUND_COLOUR);
+        const wxColour bkColor = m_mgr.GetArtProvider()->GetColour(wxAUI_DOCKART_BACKGROUND_COLOUR);
         const auto debugReportBody = wxString::Format(
             L"<html>\n<body bgcolor=%s text=%s>\n</body>\n</html>",
             bkColor.GetAsString(wxC2S_HTML_SYNTAX),
@@ -772,15 +792,14 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
     codeEditor->SetModified(false);
     codeEditor->SetThemeColor(m_mgr.GetArtProvider()->GetColour(wxAUI_DOCKART_BACKGROUND_COLOUR));
 
-    // import API info
+        // import API info
         {
         std::vector<std::vector<std::wstring>> apiStrings;
 
-        lily_of_the_valley::standard_delimited_character_column
-            tabbedColumn(lily_of_the_valley::text_column_delimited_character_parser{ L'\t' }, 1);
-        lily_of_the_valley::standard_delimited_character_column
-            semiColonColumn(lily_of_the_valley::text_column_delimited_character_parser{ L';' },
-                        std::nullopt);
+        lily_of_the_valley::standard_delimited_character_column tabbedColumn(
+            lily_of_the_valley::text_column_delimited_character_parser{ L'\t' }, 1);
+        lily_of_the_valley::standard_delimited_character_column semiColonColumn(
+            lily_of_the_valley::text_column_delimited_character_parser{ L';' }, std::nullopt);
         lily_of_the_valley::text_row<std::wstring> row(std::nullopt);
         row.treat_consecutive_delimitors_as_one(true); // skip consecutive semicolons
         row.add_column(tabbedColumn);
@@ -788,7 +807,8 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
         row.allow_column_resizing(true);
 
         lily_of_the_valley::text_matrix<std::wstring> importer(&apiStrings);
-        importer.add_row_definition(lily_of_the_valley::text_row<std::wstring>(1)); // skip warning in first line
+        importer.add_row_definition(
+            lily_of_the_valley::text_row<std::wstring>(1)); // skip warning in first line
         importer.add_row_definition(row);
 
         lily_of_the_valley::text_preview preview;
@@ -815,7 +835,9 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
                         lib.erase(lib.begin(), lib.begin() + 1);
                         CodeEditor::NameList nl;
                         for (const auto& className : lib)
-                            { nl.insert(className); }
+                            {
+                            nl.insert(className);
+                            }
                         codeEditor->AddClass(libName, nl);
                         }
                     }
@@ -841,7 +863,9 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
                         lib.erase(lib.begin(), lib.begin() + 1);
                         CodeEditor::NameList nl;
                         for (const auto& lName : lib)
-                            { nl.insert(lName); }
+                            {
+                            nl.insert(lName);
+                            }
                         codeEditor->AddLibrary(libName, nl);
                         }
                     }
@@ -867,7 +891,9 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
                         lib.erase(lib.begin(), lib.begin() + 1);
                         CodeEditor::NameList nl;
                         for (const auto& lName : lib)
-                            { nl.insert(lName); }
+                            {
+                            nl.insert(lName);
+                            }
                         codeEditor->AddLibrary(libName, nl);
                         }
                     }
@@ -888,62 +914,66 @@ void LuaEditorDlg::CreateControls()
     m_toolbar->SetToolBitmapSize(FromDIP(wxSize(16, 16)));
     // wxID_NEW and such trigger parent events
     m_toolbar->AddTool(XRCID("ID_NEW"), _(L"New"),
-        wxArtProvider::GetBitmapBundle(wxART_NEW, wxART_BUTTON),
-        _(L"Create a new script."));
+                       wxArtProvider::GetBitmapBundle(wxART_NEW, wxART_BUTTON),
+                       _(L"Create a new script."));
     m_toolbar->AddTool(XRCID("ID_OPEN"), _(L"Open"),
-        wxArtProvider::GetBitmapBundle(wxART_FILE_OPEN, wxART_BUTTON),
-        _(L"Open a script."));
+                       wxArtProvider::GetBitmapBundle(wxART_FILE_OPEN, wxART_BUTTON),
+                       _(L"Open a script."));
     m_toolbar->AddTool(XRCID("ID_SAVE"), _(L"Save"),
-        wxArtProvider::GetBitmapBundle(wxART_FILE_SAVE, wxART_BUTTON),
-        _(L"Save the script."));
+                       wxArtProvider::GetBitmapBundle(wxART_FILE_SAVE, wxART_BUTTON),
+                       _(L"Save the script."));
     m_toolbar->AddTool(XRCID("ID_RUN"), _(L"Run"),
-        wxArtProvider::GetBitmapBundle(L"ID_RUN", wxART_BUTTON),
-        _(L"Execute the script."));
+                       wxArtProvider::GetBitmapBundle(L"ID_RUN", wxART_BUTTON),
+                       _(L"Execute the script."));
     m_toolbar->AddSeparator();
     m_toolbar->AddTool(wxID_FIND, _(L"Find"),
-        wxArtProvider::GetBitmapBundle(wxART_FIND, wxART_BUTTON),
-        _(L"Find text."));
+                       wxArtProvider::GetBitmapBundle(wxART_FIND, wxART_BUTTON), _(L"Find text."));
     m_toolbar->AddTool(wxID_REPLACE, _(L"Replace"),
-        wxArtProvider::GetBitmapBundle(wxART_FIND_AND_REPLACE, wxART_BUTTON),
-        _(L"Replace text."));
+                       wxArtProvider::GetBitmapBundle(wxART_FIND_AND_REPLACE, wxART_BUTTON),
+                       _(L"Replace text."));
     m_toolbar->AddSeparator();
     m_toolbar->AddTool(XRCID("ID_CLEAR"), _(L"Clear"),
-        wxArtProvider::GetBitmapBundle(L"ID_CLEAR", wxART_BUTTON),
-        _(L"Clear the log window."));
+                       wxArtProvider::GetBitmapBundle(L"ID_CLEAR", wxART_BUTTON),
+                       _(L"Clear the log window."));
     m_toolbar->AddSeparator();
     m_toolbar->AddTool(wxID_HELP, _(L"Content"),
-        wxArtProvider::GetBitmapBundle(wxART_HELP, wxART_BUTTON),
-        _(L"View the documentation."));
+                       wxArtProvider::GetBitmapBundle(wxART_HELP, wxART_BUTTON),
+                       _(L"View the documentation."));
     m_toolbar->AddTool(XRCID("LUA_REFERENCE"), _(L"Lua Reference"),
-        wxArtProvider::GetBitmapBundle(wxART_HELP_BOOK, wxART_BUTTON),
-        _(L"View the Lua Reference Manual."));
+                       wxArtProvider::GetBitmapBundle(wxART_HELP_BOOK, wxART_BUTTON),
+                       _(L"View the Lua Reference Manual."));
 
     m_toolbar->Realize();
-    m_mgr.AddPane(m_toolbar, wxAuiPaneInfo().
-        Name(L"auitoolbar").Caption(_(L"Tools")).
-        ToolbarPane().Top().CloseButton(false).Fixed());
+    m_mgr.AddPane(m_toolbar, wxAuiPaneInfo()
+                                 .Name(L"auitoolbar")
+                                 .Caption(_(L"Tools"))
+                                 .ToolbarPane()
+                                 .Top()
+                                 .CloseButton(false)
+                                 .Fixed());
 
-    m_notebook = new wxAuiNotebook(this, wxID_ANY,
-        wxPoint(0, 0),
-        FromDIP(wxSize(400, 200)),
-        wxAUI_NB_TOP|wxAUI_NB_TAB_SPLIT|wxAUI_NB_TAB_MOVE|wxAUI_NB_SCROLL_BUTTONS|
-        wxAUI_NB_CLOSE_ON_ALL_TABS|wxAUI_NB_MIDDLE_CLICK_CLOSE|
-        wxAUI_NB_TAB_EXTERNAL_MOVE|wxNO_BORDER);
+    m_notebook = new wxAuiNotebook(this, wxID_ANY, wxPoint(0, 0), FromDIP(wxSize(400, 200)),
+                                   wxAUI_NB_TOP | wxAUI_NB_TAB_SPLIT | wxAUI_NB_TAB_MOVE |
+                                       wxAUI_NB_SCROLL_BUTTONS | wxAUI_NB_CLOSE_ON_ALL_TABS |
+                                       wxAUI_NB_MIDDLE_CLICK_CLOSE | wxAUI_NB_TAB_EXTERNAL_MOVE |
+                                       wxNO_BORDER);
 
     m_notebook->AddPage(CreateLuaScript(m_notebook), _(L"(unnamed)"), true,
-        wxGetApp().GetResourceManager().GetSVG(L"ribbon/lua.svg"));
+                        wxGetApp().GetResourceManager().GetSVG(L"ribbon/lua.svg"));
 
-    m_mgr.AddPane(m_notebook,
-        wxAuiPaneInfo().Name(L"auinotebook").
-        CenterPane().PaneBorder(false));
+    m_mgr.AddPane(m_notebook, wxAuiPaneInfo().Name(L"auinotebook").CenterPane().PaneBorder(false));
 
     m_debugMessageWindow = new wxHtmlWindow(this);
-    m_mgr.AddPane(m_debugMessageWindow,
-        wxAuiPaneInfo().Name(L"auidebug").
-        Bottom().MinimizeButton(true).MaximizeButton(true).
-        Caption(_(L"Debug Output")).FloatingSize(FromDIP(wxSize(800, 200))).
-        BestSize(FromDIP(wxSize(800, 100))).
-        PinButton(true).CloseButton(false));
+    m_mgr.AddPane(m_debugMessageWindow, wxAuiPaneInfo()
+                                            .Name(L"auidebug")
+                                            .Bottom()
+                                            .MinimizeButton(true)
+                                            .MaximizeButton(true)
+                                            .Caption(_(L"Debug Output"))
+                                            .FloatingSize(FromDIP(wxSize(800, 200)))
+                                            .BestSize(FromDIP(wxSize(800, 100)))
+                                            .PinButton(true)
+                                            .CloseButton(false));
 
     SetSize(FromDIP(wxSize(1200, 1200)));
 
@@ -958,8 +988,8 @@ void LuaEditorDlg::OnClose([[maybe_unused]] wxCloseEvent& event)
         {
         auto codeEditor = dynamic_cast<CodeEditor*>(m_notebook->GetPage(i));
         if (codeEditor && codeEditor->GetModify() &&
-            (wxMessageBox(_(L"Do you wish to save your unsaved changes?"),
-                _(L"Save Script"), wxYES_NO | wxICON_QUESTION) == wxYES))
+            (wxMessageBox(_(L"Do you wish to save your unsaved changes?"), _(L"Save Script"),
+                          wxYES_NO | wxICON_QUESTION) == wxYES))
             {
             if (codeEditor->Save())
                 {
