@@ -514,7 +514,7 @@ private:
     KnownScriptFileExtension IsKnownScriptFileExtension;
     WebPageExtension IsWebPageExtension;
     // download criteria
-    DomainRestriction m_domainRestriction{ DomainRestriction::NotRestricted };
+    DomainRestriction m_domainRestriction{ DomainRestriction::RestrictToDomain };
     bool m_searchForMissingSequentialFiles{ false };
     bool m_downloadWhileCrawling{ false };
     static constexpr size_t KILOBYTE = 1024;
