@@ -3,6 +3,7 @@
 #include <wx/choicdlg.h>
 #include "base_project_view.h"
 #include "batch_project_doc.h"
+#include "standard_project_doc.h"
 #include "../app/readability_app.h"
 #include "../ui/dialogs/test_bundle_dlg.h"
 #include "../ui/dialogs/tools_options_dlg.h"

@@ -20,6 +20,7 @@
 #include "../../Wisteria-Dataviz/src/ui/dialogs/excelpreviewdlg.h"
 #include "../../Wisteria-Dataviz/src/ui/dialogs/getdirdlg.h"
 #include "../../app/readability_app.h"
+#include "../../projects/standard_project_doc.h"
 #include "../../webharvester/webharvester.h"
 #include "doc_group_select_dlg.h"
 #include "web_harvester_dlg.h"

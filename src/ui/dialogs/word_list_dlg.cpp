@@ -12,6 +12,7 @@
 #include "../../Wisteria-Dataviz/src/util/parentblocker.h"
 #include "../../app/readability_app.h"
 #include "../../projects/base_project.h"
+#include "../../projects/base_project_doc.h"
 
 wxDECLARE_APP(ReadabilityApp);
 

@@ -18,9 +18,9 @@
 #include "../Wisteria-Dataviz/src/wxStartPage/startpage.h"
 #include "../app/readability_app_options.h"
 #include "../lua_scripting/lua_interface.h"
-#include "../projects/standard_project_doc.h"
 #include "../readability/custom_readability_test.h"
 #include "../readability/readability_project_test.h"
+#include "../test_helpers/tests_functional.h"
 #include "../ui/dialogs/about_dlg_ex.h"
 #include "../ui/dialogs/lua_editor_dlg.h"
 #include "../ui/dialogs/web_harvester_dlg.h"
@@ -41,6 +41,8 @@
 #include <wx/srchctrl.h>
 #include <wx/textdlg.h>
 #include <wx/wx.h>
+
+class BaseProject;
 
 /// @brief Extended icon provider, which is connected to application's
 ///     custom icons.

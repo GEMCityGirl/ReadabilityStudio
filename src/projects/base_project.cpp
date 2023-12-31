@@ -8,6 +8,7 @@
 #include "../Wisteria-Dataviz/src/import/idl_extract_text.h"
 #include "../Wisteria-Dataviz/src/import/pptx_extract_text.h"
 #include "base_project.h"
+#include "base_project_doc.h"
 #include "base_project_view.h"
 
 /***************************************************************************

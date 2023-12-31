@@ -1,5 +1,6 @@
 #include "../../../Licensing/LicenseDlg.h"
 #include "../document_helpers/chapter_split.h"
+#include "../projects/standard_project_doc.h"
 #include "../projects/batch_project_doc.h"
 #include "../projects/batch_project_view.h"
 #include "../projects/standard_project_view.h"

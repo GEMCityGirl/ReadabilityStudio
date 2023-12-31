@@ -10,6 +10,7 @@
 #include "../app/readability_app.h"
 #include "../projects/batch_project_doc.h"
 #include "../projects/base_project.h"
+#include "../projects/standard_project_doc.h"
 #include "../indexing/word_list.h"
 #include "../indexing/phrase.h"
 #include "../indexing/characters.h"
