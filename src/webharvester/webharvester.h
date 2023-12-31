@@ -12,149 +12,188 @@
 #ifndef __WEBHARVESTER_H__
 #define __WEBHARVESTER_H__
 
+#include "../Wisteria-Dataviz/src/i18n-check/src/char_traits.h"
+#include "../Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
+#include "../Wisteria-Dataviz/src/import/html_extract_text.h"
+#include "../Wisteria-Dataviz/src/util/downloadfile.h"
+#include "../Wisteria-Dataviz/src/util/textstream.h"
+#include <algorithm>
+#include <functional>
 #include <limits>
 #include <set>
-#include <functional>
-#include <algorithm>
-#include <wx/wx.h>
-#include <wx/filesys.h>
-#include <wx/url.h>
-#include <wx/stream.h>
-#include <wx/filename.h>
-#include <wx/file.h>
-#include <wx/wfstream.h>
 #include <wx/dir.h>
-#include <wx/utils.h>
+#include <wx/file.h>
+#include <wx/filename.h>
+#include <wx/filesys.h>
 #include <wx/progdlg.h>
-#include "../Wisteria-Dataviz/src/import/html_extract_text.h"
-#include "../Wisteria-Dataviz/src/i18n-check/src/char_traits.h"
-#include "../Wisteria-Dataviz/src/util/textstream.h"
-#include "../Wisteria-Dataviz/src/util/downloadfile.h"
-#include "../Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
+#include <wx/stream.h>
+#include <wx/url.h>
+#include <wx/utils.h>
+#include <wx/wfstream.h>
+#include <wx/wx.h>
 
 class wxStringLessWebPath
     {
-public:
+  public:
     [[nodiscard]]
-    bool operator()(const wxString& first, const wxString& second) const;
+    bool
+    operator()(const wxString& first, const wxString& second) const;
     };
 
 /// @brief List of known web file extensions.
 class WebPageExtension
     {
-public:
+  public:
     /** @returns @c true if @c extension is a known web file extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
-    inline bool operator()(const wchar_t* extension) const
+    inline bool
+    operator()(const wchar_t* extension) const
         {
         // any sort of PHP page (even without the extension PHP) will follow this syntax
-        if (std::wcschr(extension, L'?') && std::wcschr(extension, L'=') )
-            { return true; }
-        return (m_knownRegularFileExtensions.find(extension) != m_knownRegularFileExtensions.cend());
+        if (std::wcschr(extension, L'?') && std::wcschr(extension, L'='))
+            {
+            return true;
+            }
+        return (m_knownRegularFileExtensions.find(extension) !=
+                m_knownRegularFileExtensions.cend());
         }
-private:
-    std::set<string_util::case_insensitive_wstring> m_knownRegularFileExtensions
-        { _DT(L"asp"), _DT(L"aspx"), _DT(L"ca"), _DT(L"cfm"),
-          _DT(L"cfml"), _DT(L"biz"), _DT(L"com"), _DT(L"net"),
-          _DT(L"org"), _DT(L"php"), _DT(L"php3"), _DT(L"php4"),
-          _DT(L"html"), _DT(L"htm"), _DT(L"xhtml"), _DT(L"sgml") };
+
+  private:
+    std::set<string_util::case_insensitive_wstring> m_knownRegularFileExtensions{
+        _DT(L"asp"),  _DT(L"aspx"), _DT(L"ca"),    _DT(L"cfm"), _DT(L"cfml"), _DT(L"biz"),
+        _DT(L"com"),  _DT(L"net"),  _DT(L"org"),   _DT(L"php"), _DT(L"php3"), _DT(L"php4"),
+        _DT(L"html"), _DT(L"htm"),  _DT(L"xhtml"), _DT(L"sgml")
+    };
     };
 
 /// @brief List of known file extensions that can be downloaded from a website.
 class KnownRegularFileExtension
     {
-public:
+  public:
     /** @returns @c true if @c extension is a known file extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
-    inline bool operator()(const wchar_t* extension) const
-        { return (m_knownRegularFileExtensions.find(extension) != m_knownRegularFileExtensions.cend()); }
-private:
-    std::set<string_util::case_insensitive_wstring> m_knownRegularFileExtensions
-        { // images
-          _DT(L"ico"), _DT(L"jpg"), _DT(L"jpeg"), _DT(L"bmp"),
-          _DT(L"gif"), _DT(L"png"), _DT(L"psd"), _DT(L"tif"),
-          _DT(L"tiff"), _DT(L"wmf"), _DT(L"tga"),
-          // style sheets
-          _DT(L"css"),
-          // documents
-          _DT(L"doc"), _DT(L"docx"), _DT(L"ppt"), _DT(L"pptx"),
-          _DT(L"xls"), _DT(L"xlsx"), _DT(L"csv"), _DT(L"rtf"),
-          _DT(L"pdf"), _DT(L"ps"), _DT(L"txt"),
-          // movies
-          _DT(L"mov"), _DT(L"qt"), _DT(L"rv"), _DT(L"rm"),
-          _DT(L"wmv"), _DT(L"mpg"), _DT(L"mpeg"), _DT(L"mpe"),
-          _DT(L"avi"),
-          // music
-          _DT(L"mp3"), _DT(L"wav"), _DT(L"wma"), _DT(L"midi"),
-          _DT(L"ra"), _DT(L"ram"),
-          // programs
-          _DT(L"exe"), _DT(L"jar"), _DT(L"swf"),
-          // compressed files
-          _DT(L"zip"), _DT(L"gzip"), _DT(L"tar"), _DT(L"bz2") };
+    inline bool
+    operator()(const wchar_t* extension) const
+        {
+        return (m_knownRegularFileExtensions.find(extension) !=
+                m_knownRegularFileExtensions.cend());
+        }
+
+  private:
+    std::set<string_util::case_insensitive_wstring> m_knownRegularFileExtensions{
+        // images
+        _DT(L"ico"), _DT(L"jpg"), _DT(L"jpeg"), _DT(L"bmp"), _DT(L"gif"), _DT(L"png"), _DT(L"psd"),
+        _DT(L"tif"), _DT(L"tiff"), _DT(L"wmf"), _DT(L"tga"),
+        // style sheets
+        _DT(L"css"),
+        // documents
+        _DT(L"doc"), _DT(L"docx"), _DT(L"ppt"), _DT(L"pptx"), _DT(L"xls"), _DT(L"xlsx"),
+        _DT(L"csv"), _DT(L"rtf"), _DT(L"pdf"), _DT(L"ps"), _DT(L"txt"),
+        // movies
+        _DT(L"mov"), _DT(L"qt"), _DT(L"rv"), _DT(L"rm"), _DT(L"wmv"), _DT(L"mpg"), _DT(L"mpeg"),
+        _DT(L"mpe"), _DT(L"avi"),
+        // music
+        _DT(L"mp3"), _DT(L"wav"), _DT(L"wma"), _DT(L"midi"), _DT(L"ra"), _DT(L"ram"),
+        // programs
+        _DT(L"exe"), _DT(L"jar"), _DT(L"swf"),
+        // compressed files
+        _DT(L"zip"), _DT(L"gzip"), _DT(L"tar"), _DT(L"bz2")
+    };
     };
 
 /// @brief List of known web script (e.g., JavaScript) extensions.
 class KnownScriptFileExtension
     {
-public:
+  public:
     /** @returns @c true if @c extension is a known web script file extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
-    inline bool operator()(const wchar_t* extension) const
-        { return (m_knownFileExtensions.find(extension) != m_knownFileExtensions.cend()); }
-private:
-    std::set<string_util::case_insensitive_wstring> m_knownFileExtensions
-        { _DT(L"js"), _DT(L"vbs") };
+    inline bool
+    operator()(const wchar_t* extension) const
+        {
+        return (m_knownFileExtensions.find(extension) != m_knownFileExtensions.cend());
+        }
+
+  private:
+    std::set<string_util::case_insensitive_wstring> m_knownFileExtensions{ _DT(L"js"),
+                                                                           _DT(L"vbs") };
     };
 
 /// @brief URL wrapper class that supports parsing a numeric sequence from the path.
 class UrlWithNumericSequence
     {
-public:
+  public:
     /** @brief Constructor.
         @param path The URL to parse.
         @param referUrl The referring URL that @c path originated from.*/
-    UrlWithNumericSequence(const wxString& path, const wxString& referUrl) :
-        m_string(path), m_refererUrl(referUrl)
-        { ParseSequenceNumber(); }
+    UrlWithNumericSequence(const wxString& path, const wxString& referUrl)
+        : m_string(path), m_refererUrl(referUrl)
+        {
+        ParseSequenceNumber();
+        }
+
     /** @returns @c true if this URL is less than @c that.
         @param that The URL to compare against.*/
     [[nodiscard]]
-    bool operator<(const UrlWithNumericSequence& that) const
-        { return pathCmp(m_string, that.m_string); }
+    bool
+    operator<(const UrlWithNumericSequence& that) const
+        {
+        return pathCmp(m_string, that.m_string);
+        }
+
     /// @returns The base URL.
     [[nodiscard]]
     const wxString& GetPath() const noexcept
-        { return m_string; }
+        {
+        return m_string;
+        }
+
     /// @returns The referring URL.
     [[nodiscard]]
     const wxString& GetReferUrl() const noexcept
-        { return m_refererUrl; }
+        {
+        return m_refererUrl;
+        }
+
     /// @returns The number parsed from the URL.
     [[nodiscard]]
     long GetNumericValue() const noexcept
-        { return m_numeric_value; }
+        {
+        return m_numeric_value;
+        }
+
     /// @returns The length of the numeric string in the URL.
     [[nodiscard]]
     size_t GetNumericWidth() const noexcept
-        { return m_numeric_width; }
+        {
+        return m_numeric_width;
+        }
+
     /// @returns The section of the URL up to the number.
     [[nodiscard]]
     wxString GetPathPrefix() const
-        { return m_string.substr(0, m_number_start); }
+        {
+        return m_string.substr(0, m_number_start);
+        }
+
     /// @returns The section of the URL starting at the number.
     [[nodiscard]]
     wxString GetPathSuffix() const
-        { return m_string.substr(m_number_end); }
- protected:
+        {
+        return m_string.substr(m_number_end);
+        }
+
+  protected:
     void ParseSequenceNumber();
+
     void Reset() noexcept
         {
         m_numeric_value = wxNOT_FOUND;
         m_number_start = m_number_end = m_numeric_width = 0;
         }
+
     wxStringLessWebPath pathCmp;
     wxString m_string;
     wxString m_refererUrl;
@@ -170,23 +209,22 @@ public:
 ///     for your parent event handler to the harvester.
 class WebHarvester
     {
-public:
-     /// @brief Domain restriction methods.
+  public:
+    /// @brief Domain restriction methods.
     enum class DomainRestriction
         {
         NotRestricted,             /*!< No restrictions.*/
         RestrictToDomain,          /*!< Restrict harvesting to the base URL's domain.*/
         RestrictToSubDomain,       /*!< Restrict harvesting to the base URL's subdomain.*/
         RestrictToSpecificDomains, /*!< Restrict harvesting to a list of user-defined domains.*/
-        RestrictToExternalLinks,   /*!< Restrict harvesting to links outside of the base URL's domain.*/
+        RestrictToExternalLinks,   /*!< Restrict harvesting to links outside of the base URL's
+                                        domain.*/
         RestrictToFolder           /*!< Restrict harvesting to links within the base URL's folder.*/
         };
 
     /// @private
-    WebHarvester()
-        {
-        m_downloader.SetUserAgent(GetUserAgent());
-        }
+    WebHarvester() { m_downloader.SetUserAgent(GetUserAgent()); }
+
     /// @private
     WebHarvester(const WebHarvester&) = delete;
     /// @private
@@ -203,8 +241,7 @@ public:
     ///     used if the webpage doesn't have a proper extension. If empty and
     ///     @c Url is empty, then the file extension will be determined by the MIME type.
     /// @returns The local file path of the file after downloading, or empty string upon failure.
-    wxString DownloadFile(wxString& Url,
-                          const wxString& fileExtension = wxString{});
+    wxString DownloadFile(wxString& Url, const wxString& fileExtension = wxString{});
     /// @brief Download all of the harvested links.
     /// @note This should be called after CrawlLinks().
     void DownloadFiles();
@@ -231,20 +268,21 @@ public:
             JS script files should be read.
         @returns Whether the file was successfully read.*/
     [[nodiscard]]
-    bool ReadWebPage(wxString& Url,
-                     wxString& webPageContent,
-                     wxString& contentType,
-                     wxString& statusText,
-                     long& responseCode,
+    bool ReadWebPage(wxString& Url, wxString& webPageContent, wxString& contentType,
+                     wxString& statusText, long& responseCode,
                      const bool acceptOnlyHtmlOrScriptFiles = true);
+
     /// @brief Attempts to connect to @c url.
     /// @param Url The webpage to try to connect to.
-    void RequestResponse(const wxString& url)
-        { m_downloader.RequestResponse(url); }
+    void RequestResponse(const wxString& url) { m_downloader.RequestResponse(url); }
+
     /// @returns The internal FileDownload object.
     [[nodiscard]]
     const FileDownload& GetDownloader() const noexcept
-        { return m_downloader; }
+        {
+        return m_downloader;
+        }
+
     /** @brief Gets the content type of a webpage.
         @param[in,out] Url The webpage (may be altered if redirected).
         @param[out] responseCode The response code when connecting to the page.
@@ -263,14 +301,18 @@ public:
         @param[out] contentType The MIME type read from the page.*/
     [[nodiscard]]
     bool IsPageHtml(wxString& Url, wxString& contentType);
+
     /// @brief Sets the depth level to crawl from the base URL.
     /// @param levels The number of levels to crawl.
-    void SetDepthLevel(const size_t levels) noexcept
-        { m_levelDepth = levels; }
+    void SetDepthLevel(const size_t levels) noexcept { m_levelDepth = levels; }
+
     /// @returns The depth level to crawl from the base URL.
     [[nodiscard]]
     size_t GetDepthLevel() const noexcept
-        { return m_levelDepth; }
+        {
+        return m_levelDepth;
+        }
+
     /// @brief Adds a file type to download (based on extension).
     /// @param fileExtension The file extension to download.
     /// @note You can pass in the extension,
@@ -278,40 +320,60 @@ public:
     void AddFileTypeToDownload(const wxString& fileExtension)
         {
         if (fileExtension.find(L'.') == std::wstring::npos)
-            { m_fileExtensions.insert(fileExtension); }
+            {
+            m_fileExtensions.insert(fileExtension);
+            }
         else
-            { m_fileExtensions.insert(wxFileName(fileExtension).GetExt()); }
+            {
+            m_fileExtensions.insert(wxFileName(fileExtension).GetExt());
+            }
         }
+
     void EnableMissingSequentialFileSearcing(const bool enable = true) noexcept
-        { m_searchForMissingSequentialFiles = enable; }
+        {
+        m_searchForMissingSequentialFiles = enable;
+        }
+
     /// @brief When downloading locally, keep the folder structure from the website.
     /// @param keep True to use the website's folder structure, false to download files in
     ///     a flat folder structure.
     /// @note This is recommended to prevent overwriting files with the same name.
     void KeepWebPathWhenDownloading(const bool keep = true) noexcept
-        { m_keepWebPathWhenDownloading = keep; }
+        {
+        m_keepWebPathWhenDownloading = keep;
+        }
+
     /// @returns Whether the website's folder structure is being
     ///     mirrored when downloading files.
     [[nodiscard]]
     bool IsKeepingWebPathWhenDownloading() const noexcept
-        { return m_keepWebPathWhenDownloading; }
+        {
+        return m_keepWebPathWhenDownloading;
+        }
+
     /// @brief Specifies whether all HTML content should be downloaded,
     ///     regardless of the file's extension.
     /// @param harvestAll True to download all HTML content.
     /// @note This is recommended if needing to download PHP response
     ///     pages with non-standard file extensions.
     void HarvestAllHtmlFiles(const bool harvestAll = true) noexcept
-        { m_harvestAllHtml = harvestAll; }
+        {
+        m_harvestAllHtml = harvestAll;
+        }
+
     /// @brief Sets whether to build a list of broken links while crawling.
     /// @param search True to catalogue broken links.
     /// @warning Enable this will degrade performance because it will need to
     ///     attempt connecting to each link.
-    void SeachForBrokenLinks(const bool search = true) noexcept
-        { m_searchForBrokenLinks = search; }
+    void SeachForBrokenLinks(const bool search = true) noexcept { m_searchForBrokenLinks = search; }
+
     /// @returns @c true if a list of broken links are being catalogued while harvesting.
     [[nodiscard]]
     bool IsSearchingForBrokenLinks() const noexcept
-        { return m_searchForBrokenLinks; }
+        {
+        return m_searchForBrokenLinks;
+        }
+
     /// @brief Sets the base URL to crawl and updates domain info based on that.
     /// @param url The base URL.
     void SetUrl(const wxString& url)
@@ -322,18 +384,28 @@ public:
         m_fullDomain = formatUrl.get_root_full_domain().c_str();
         m_fullDomainFolderPath = formatUrl.get_directory_path().c_str();
         }
+
     /// @returns The base URL being crawled.
     [[nodiscard]]
     const wxString& GetUrl() const noexcept
-        { return m_url; }
+        {
+        return m_url;
+        }
+
     /// @brief Sets the root folder to download files from the web.
     /// @param downloadDirectory The local download folder.
     void SetDownloadDirectory(const wxString& downloadDirectory)
-        { m_downloadDirectory = downloadDirectory; }
+        {
+        m_downloadDirectory = downloadDirectory;
+        }
+
     /// @returns The load folder where web content is being downloaded.
     [[nodiscard]]
     const wxString& GetDownloadDirectory() const noexcept
-        { return m_downloadDirectory; }
+        {
+        return m_downloadDirectory;
+        }
+
     /// @brief Specifies whether files being downloaded can overwrite
     ///     each other if they have the same path.
     /// @param replaceExistingFiles True to overwrite existing files.
@@ -341,15 +413,23 @@ public:
     ///     is about to be downloaded, the program will attempt to download
     ///     it with a different (but similar) name.
     void ReplaceExistingFiles(const bool replaceExistingFiles = true) noexcept
-        { m_replaceExistingFiles = replaceExistingFiles; }
+        {
+        m_replaceExistingFiles = replaceExistingFiles;
+        }
+
     /// @brief Sets whether to download files locally while the crawl.
     /// @param downloadWhileCrawling True to download the web content.
     void DownloadFilesWhileCrawling(const bool downloadWhileCrawling = true) noexcept
-        { m_downloadWhileCrawling = downloadWhileCrawling; }
+        {
+        m_downloadWhileCrawling = downloadWhileCrawling;
+        }
+
     /// @returns Whether files are being downloaded locally during the crawl.
     [[nodiscard]]
     bool IsDownloadingFilesWhileCrawling() const noexcept
-        { return m_downloadWhileCrawling; }
+        {
+        return m_downloadWhileCrawling;
+        }
 
     // Domain restriction
     //----------------------------------
@@ -357,11 +437,17 @@ public:
     /** @brief Sets the domain restriction method.
         @param restriction The restriction method to use.*/
     void SetDomainRestriction(const DomainRestriction restriction) noexcept
-        { m_domainRestriction = restriction; }
+        {
+        m_domainRestriction = restriction;
+        }
+
     /// @returns The domain-restriction method.
     [[nodiscard]]
     DomainRestriction GetDomainRestriction() const noexcept
-        { return m_domainRestriction; }
+        {
+        return m_domainRestriction;
+        }
+
     /// @brief Overrides the domain of the main webpage. Useful for only getting files
     ///     from an outside domain (or specific folder).
     /// @param domain The domain to restrict to.
@@ -371,27 +457,35 @@ public:
         m_domain = formatUrl.get_root_domain().c_str();
         m_domainRestriction = DomainRestriction::RestrictToDomain;
         }
+
     /// @brief Resets the list of user-defined webpath restrictions.
-    void ClearAllowableWebFolders() noexcept
-        { m_allowableWebFolders.clear(); }
+    void ClearAllowableWebFolders() noexcept { m_allowableWebFolders.clear(); }
+
     /** @brief Adds a user-defined web path (domain/folder structure)
             to restrict harvesting to.
         @param domain A webpath to restrict harvesting to.*/
     void AddAllowableWebFolder(wxString domain)
         {
         if (domain.empty())
-            { return;  }
+            {
+            return;
+            }
         // if a full webpage, then it should have an extension on it and
         // html_url_format will remove the webpage. But if there is no
         // extension (or its junk), then add a trailing '/' to prevent
         // the last folder from being removed.
         const wxString webExt = wxFileName(domain).GetExt();
         if ((webExt.empty() || webExt.length() > 4) && !domain.ends_with(L"/"))
-            { domain.append(L"/"); }
+            {
+            domain.append(L"/");
+            }
         html_utilities::html_url_format formatUrl(domain.wc_str());
         if (formatUrl.get_directory_path().length())
-            { m_allowableWebFolders.emplace(formatUrl.get_directory_path().c_str()); }
+            {
+            m_allowableWebFolders.emplace(formatUrl.get_directory_path().c_str());
+            }
         }
+
     /// @returns The user-defined web paths (domains, folder structure)
     ///     that harvesting is constrained to.
     [[nodiscard]]
@@ -399,26 +493,29 @@ public:
         {
         wxArrayString domains;
         for (const auto& domain : m_allowableWebFolders)
-            { domains.Add(domain.c_str()); }
+            {
+            domains.Add(domain.c_str());
+            }
         return domains;
         }
 
     /// @brief Connect the downloader to a parent dialog or @c wxApp.
     /// @param handler The @c wxEvtHandler to connect the downloader to.
-    void SetEventHandler(wxEvtHandler* handler)
-        { m_downloader.SetAndBindEventHandler(handler); }
+    void SetEventHandler(wxEvtHandler* handler) { m_downloader.SetAndBindEventHandler(handler); }
 
     /// @returns The list of harvested links.
     const std::set<UrlWithNumericSequence>& GetHarvestedLinks() const noexcept
-        { return m_harvestedLinks; }
+        {
+        return m_harvestedLinks;
+        }
+
     /// @returns The list of files downloaded.
     /// @note DownloadFilesWhileCrawling() must be enabled.
-    const std::set<wxString>& GetDownloadedFilePaths() const noexcept
-        { return m_downloadedFiles; }
+    const std::set<wxString>& GetDownloadedFilePaths() const noexcept { return m_downloadedFiles; }
+
     /// @returns A map of broken links and the respective pages they were found on.
     /// @note SeachForBrokenLinks() must be enabled.
-    const std::map<wxString, wxString>& GetBrokenLinks() const noexcept
-        { return m_brokenLinks; }
+    const std::map<wxString, wxString>& GetBrokenLinks() const noexcept { return m_brokenLinks; }
 
     /// @returns The user agent sent to websites when crawling.
     /// @note If the user agent is empty, then one will be built from the OS description.
@@ -432,10 +529,9 @@ public:
         // in that context. Using words like "harvester," "crawler," and
         // "scraper" will actually result in a forbidden response from some sites,
         // so avoid using those words.
-        return (m_userAgent.empty() ?
-            _DT(L"Web-Browser/") + wxGetOsDescription() :
-            m_userAgent);
+        return (m_userAgent.empty() ? _DT(L"Web-Browser/") + wxGetOsDescription() : m_userAgent);
         }
+
     /// @brief Sets the user agent sent to websites when crawling.
     /// @param agent The user agent string.
     void SetUserAgent(wxString agent)
@@ -448,53 +544,64 @@ public:
     static wxString GetCharsetFromContentType(const wxString& contentType);
     [[nodiscard]]
     static wxString GetCharsetFromPageContent(const char* pageContent, const size_t length);
-protected:
+
+  protected:
     [[nodiscard]]
     inline constexpr static bool IsBadResponseCode(const long responseCode) noexcept
         {
-        return (responseCode == 204 ||
-            responseCode == 400 ||
-            responseCode == 401 ||
-            responseCode == 402 ||
-            responseCode == 403 ||
-            responseCode == 404 ||
-            responseCode == 500 ||
-            responseCode == 501 ||
-            responseCode == 502 ||
-            responseCode == 503);
+        return (responseCode == 204 || responseCode == 400 || responseCode == 401 ||
+                responseCode == 402 || responseCode == 403 || responseCode == 404 ||
+                responseCode == 500 || responseCode == 501 || responseCode == 502 ||
+                responseCode == 503);
         }
+
     [[nodiscard]]
     bool VerifyUrlDomainCriteria(const wxString& url);
     bool HarvestLink(wxString& url, const wxString& referringUrl,
                      const wxString& fileExtension = wxString{});
     //----------------------------------
-    bool CrawlLinks(wxString& url, const html_utilities::hyperlink_parse::hyperlink_parse_method method);
+    bool CrawlLinks(wxString& url,
+                    const html_utilities::hyperlink_parse::hyperlink_parse_method method);
     // cppcheck-suppress constParameter
     void CrawlLink(const wxString& currentLink, html_utilities::html_url_format& formatUrl,
                    const wxString& mainUrl, const bool isImage);
     //----------------------------------
     void SearchForMissingFiles();
     void DownloadSequentialRange(const wxString& prefix, const wxString& suffix,
-                             const size_t numericWidth, const wxString& referUrl,
-                             const std::set<long>& alreadyDownloadedNumbers,
-                             std::set<UrlWithNumericSequence>& newFilesToDownload);
+                                 const size_t numericWidth, const wxString& referUrl,
+                                 const std::set<long>& alreadyDownloadedNumbers,
+                                 std::set<UrlWithNumericSequence>& newFilesToDownload);
+
     [[nodiscard]]
     bool HasUrlAlreadyBeenHarvested(const wxString& url) const
-        { return (m_harvestedLinks.find(UrlWithNumericSequence(url,url)) != m_harvestedLinks.cend()); }
+        {
+        return (m_harvestedLinks.find(UrlWithNumericSequence(url, url)) != m_harvestedLinks.cend());
+        }
+
     [[nodiscard]]
     bool HasUrlAlreadyBeenCrawled(const wxString& url) const
-        { return (m_alreadyCrawledFiles.find(url) != m_alreadyCrawledFiles.cend()); }
+        {
+        return (m_alreadyCrawledFiles.find(url) != m_alreadyCrawledFiles.cend());
+        }
+
     [[nodiscard]]
     bool ShouldFileBeHarvested(const wxString& fileExt) const
-        { return (m_fileExtensions.find(fileExt) != m_fileExtensions.cend()); }
-private:
+        {
+        return (m_fileExtensions.find(fileExt) != m_fileExtensions.cend());
+        }
+
+  private:
     class wxStringLessNoCase
         {
-    public:
+      public:
         [[nodiscard]]
-        inline bool operator()(const wxString& first, const wxString& second) const
-            { return (first.CmpNoCase(second) < 0); }
+        inline bool
+        operator()(const wxString& first, const wxString& second) const
+            {
+            return (first.CmpNoCase(second) < 0);
+            }
         };
+
     size_t m_currentLevel{ 0 };
     size_t m_levelDepth{ 1 };
     wxString m_url;
@@ -517,8 +624,8 @@ private:
     DomainRestriction m_domainRestriction{ DomainRestriction::RestrictToDomain };
     bool m_searchForMissingSequentialFiles{ false };
     bool m_downloadWhileCrawling{ false };
-    static constexpr size_t KILOBYTE = 1024;
-    static constexpr size_t MEGABYTE = 1024*1024;
+    constexpr static size_t KILOBYTE = 1024;
+    constexpr static size_t MEGABYTE = 1024 * 1024;
 
     bool m_replaceExistingFiles{ true };
     bool m_harvestAllHtml{ false };
@@ -535,6 +642,6 @@ private:
     static const wxString VBSCRIPT_CONTENT_TYPE;
     };
 
-/** @}*/
+    /** @}*/
 
 #endif // __WEBHARVESTER_H__

@@ -4,14 +4,17 @@ wxIMPLEMENT_DYNAMIC_CLASS(WordListProperty, wxLongStringProperty);
 
 //------------------------------------------------------
 WordListProperty::WordListProperty(const wxString& label /*= wxPG_LABEL*/,
-                         const wxString& name /*= wxPG_LABEL*/,
-                         const wxString& value /*= wxString{}*/) :
-    wxLongStringProperty(label, name, value), m_phraseMode(false)
-    {}
+                                   const wxString& name /*= wxPG_LABEL*/,
+                                   const wxString& value /*= wxString{}*/)
+    : wxLongStringProperty(label, name, value), m_phraseMode(false)
+    {
+    }
 
 //------------------------------------------------------
 wxValidator* WordListProperty::DoGetValidator() const
-    { return wxFileProperty::GetClassValidator(); }
+    {
+    return wxFileProperty::GetClassValidator();
+    }
 
 //------------------------------------------------------
 bool WordListProperty::DoSetAttribute(const wxString& name, wxVariant& value)
@@ -39,10 +42,12 @@ bool WordListProperty::DisplayEditorDialog(wxPropertyGrid* pg, wxVariant& value)
     {
     assert(value.IsType(_DT("string")) && "Function called for incompatible property");
 
-    EditWordListDlg editDlg(pg->GetPanel(),
-        wxID_ANY, m_dlgTitle.length() ? m_dlgTitle : _(L"Edit Word List"));
+    EditWordListDlg editDlg(pg->GetPanel(), wxID_ANY,
+                            m_dlgTitle.length() ? m_dlgTitle : _(L"Edit Word List"));
     if (m_helpPath.length())
-        { editDlg.SetHelpTopic(m_helpPath, m_topicPath); }
+        {
+        editDlg.SetHelpTopic(m_helpPath, m_topicPath);
+        }
     editDlg.SetPhraseFileMode(m_phraseMode);
     editDlg.SetFilePath(value.GetString());
     if (editDlg.ShowModal() == wxID_OK)

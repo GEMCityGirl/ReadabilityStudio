@@ -9,21 +9,20 @@
      SPDX-License-Identifier: BSD-3-Clause
 * @{*/
 
-
 #ifndef __EXPLANATION_LISTCTRL_H__
 #define __EXPLANATION_LISTCTRL_H__
 
-#include <wx/print.h>
-#include <wx/html/htmprint.h>
-#include <wx/splitter.h>
-#include <wx/xrc/xmlres.h>
 #include "../../Wisteria-Dataviz/src/base/canvas.h"
-#include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/htmltablewin.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/htmltablewinprintout.h"
+#include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../../Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
 #include "../../Wisteria-Dataviz/src/util/parentblocker.h"
 #include <map>
+#include <wx/html/htmprint.h>
+#include <wx/print.h>
+#include <wx/splitter.h>
+#include <wx/xrc/xmlres.h>
 
 /// @brief What to export when saving from an ExplanationListCtrl.
 enum class ExplanationListExportOptions
@@ -40,24 +39,23 @@ enum class ExplanationListExportOptions
 /// @details Selecting an item in the list will display its associated text in the HTML window.
 class ExplanationListCtrl final : public wxSplitterWindow
     {
-public:
+  public:
     /** @brief Constructor.
         @param parent The parent window.
         @param id The window's ID.
         @param point The window's position.
         @param size The window's size.
         @param name The name of the control.*/
-    ExplanationListCtrl(wxWindow* parent, wxWindowID id,
-                        const wxPoint& point = wxDefaultPosition,
+    ExplanationListCtrl(wxWindow* parent, wxWindowID id, const wxPoint& point = wxDefaultPosition,
                         const wxSize& size = wxDefaultSize,
                         const wxString& name = L"ExplanationListCtrl");
     /// @private
     ExplanationListCtrl(const ExplanationListCtrl&) = delete;
     /// @private
     ExplanationListCtrl& operator=(const ExplanationListCtrl&) = delete;
+
     /// @private
-    ~ExplanationListCtrl()
-        { wxDELETE(m_data); }
+    ~ExplanationListCtrl() { wxDELETE(m_data); }
 
     /// @brief Splits the windows to show the items in the list control.
     void FitWindows();
@@ -67,105 +65,139 @@ public:
     /** @brief Saves the control.
         @param filePath The path to save the report to.
         @param exportOptions Options for how to format the output.*/
-    bool Save(const wxFileName& filePath,
-              const ExplanationListExportOptions exportOptions =
-                ExplanationListExportOptions::ExportBoth) const;
+    bool Save(const wxFileName& filePath, const ExplanationListExportOptions exportOptions =
+                                              ExplanationListExportOptions::ExportBoth) const;
     /** @brief Prints the control.
         @param exportOptions Options for how to format the output.*/
     void Print(const ExplanationListExportOptions exportOptions =
-                ExplanationListExportOptions::ExportBoth);
+                   ExplanationListExportOptions::ExportBoth);
     /** @brief Print previews the control.
         @param exportOptions Options for how to format the output.*/
     void PrintPreview(const ExplanationListExportOptions exportOptions =
-                        ExplanationListExportOptions::ExportBoth);
+                          ExplanationListExportOptions::ExportBoth);
 
     /** @brief Sets the printer settings.
         @param printData A pointer to the printer settings to use.*/
-    void SetPrinterSettings(wxPrintData* printData) noexcept
-        { m_printData = printData; }
+    void SetPrinterSettings(wxPrintData* printData) noexcept { m_printData = printData; }
+
     /// @brief Sets the left header used for printing.
     /// @param header The string to use.
-    void SetLeftPrinterHeader(const wxString& header)
-        { m_leftPrinterHeader = header; }
+    void SetLeftPrinterHeader(const wxString& header) { m_leftPrinterHeader = header; }
+
     /// @returns The left header used for printing.
     [[nodiscard]]
     const wxString& GetLeftPrinterHeader() const noexcept
-        { return m_leftPrinterHeader; }
+        {
+        return m_leftPrinterHeader;
+        }
+
     /// @brief Sets the center header used for printing.
     /// @param header The string to use.
-    void SetCenterPrinterHeader(const wxString& header)
-        { m_centerPrinterHeader = header; }
+    void SetCenterPrinterHeader(const wxString& header) { m_centerPrinterHeader = header; }
+
     /// @returns The center header used for printing.
     [[nodiscard]]
     const wxString& GetCenterPrinterHeader() const noexcept
-        { return m_centerPrinterHeader; }
+        {
+        return m_centerPrinterHeader;
+        }
 
     /// @brief Sets the right header used for printing.
     /// @param header The string to use.
-    void SetRightPrinterHeader(const wxString& header)
-        { m_rightPrinterHeader = header; }
+    void SetRightPrinterHeader(const wxString& header) { m_rightPrinterHeader = header; }
+
     /// @returns The right header used for printing.
     [[nodiscard]]
     const wxString& GetRightPrinterHeader() const noexcept
-        { return m_rightPrinterHeader; }
+        {
+        return m_rightPrinterHeader;
+        }
+
     /// @brief Sets the left footer used for printing.
     /// @param footer The string to use.
-    void SetLeftPrinterFooter(const wxString& footer)
-        { m_leftPrinterFooter = footer; }
+    void SetLeftPrinterFooter(const wxString& footer) { m_leftPrinterFooter = footer; }
+
     /// @returns The left footer used for printing.
     [[nodiscard]]
     const wxString& GetLeftPrinterFooter() const noexcept
-        { return m_leftPrinterFooter; }
+        {
+        return m_leftPrinterFooter;
+        }
+
     /// @brief Sets the center footer used for printing.
     /// @param footer The string to use.
-    void SetCenterPrinterFooter(const wxString& footer)
-        { m_centerPrinterFooter = footer; }
+    void SetCenterPrinterFooter(const wxString& footer) { m_centerPrinterFooter = footer; }
+
     /// @returns The center footer used for printing.
     [[nodiscard]]
     const wxString& GetCenterPrinterFooter() const noexcept
-        { return m_centerPrinterFooter; }
+        {
+        return m_centerPrinterFooter;
+        }
+
     /// @brief Sets the right footer used for printing.
     /// @param footer The string to use.
-    void SetRightPrinterFooter(const wxString& footer)
-        { m_rightPrinterFooter = footer; }
+    void SetRightPrinterFooter(const wxString& footer) { m_rightPrinterFooter = footer; }
+
     /// @returns The right footer used for printing.
     [[nodiscard]]
     const wxString& GetRightPrinterFooter() const noexcept
-        { return m_rightPrinterFooter; }
+        {
+        return m_rightPrinterFooter;
+        }
 
     /// @brief Sets the watermark for the list when printed.
     /// @param watermark The watermark information.
     void SetWatermark(const Wisteria::Canvas::Watermark& watermark) noexcept
-        { m_waterMark = watermark; }
+        {
+        m_waterMark = watermark;
+        }
+
     /// @returns The printer watermark.
     [[nodiscard]]
     const Wisteria::Canvas::Watermark& GetWatermark() const noexcept
-        { return m_waterMark; }
+        {
+        return m_waterMark;
+        }
 
     /// @returns The number of items in the list.
     [[nodiscard]]
     int GetItemCount() const
-        { return m_results_view->GetItemCount(); }
+        {
+        return m_results_view->GetItemCount();
+        }
+
     /// @returns The text from the HTML window.
     [[nodiscard]]
     wxString GetExplanationsText() const;
+
     /// @returns The keys and their explanations.
     [[nodiscard]]
     std::map<wxString, wxString>& GetExplanations() noexcept
-        { return m_explanations; }
+        {
+        return m_explanations;
+        }
 
     /// @returns The list control.
     [[nodiscard]]
     ListCtrlEx* GetResultsListCtrl() noexcept
-        { return m_results_view; }
+        {
+        return m_results_view;
+        }
+
     /// @private
     [[nodiscard]]
     const ListCtrlEx* GetResultsListCtrl() const noexcept
-        { return m_results_view; }
+        {
+        return m_results_view;
+        }
+
     /// @returns The HTML window.
     [[nodiscard]]
     Wisteria::UI::HtmlTableWindow* GetExplanationView() noexcept
-        { return m_explanation_view; }
+        {
+        return m_explanation_view;
+        }
 
     /// @brief Clears the list, HTML window, removes all data.
     void Clear()
@@ -174,10 +206,13 @@ public:
         m_explanation_view->SetPage(wxString{});
         m_results_view->DeleteAllItems();
         }
+
     /// @returns The list's data provider.
     [[nodiscard]]
     ListCtrlExNumericDataProvider* GetDataProvider() noexcept
-        { return m_data; }
+        {
+        return m_data;
+        }
 
     /// @brief Sets the help sort topic for the list control.
     /// @param helpProjectPath The help folder.
@@ -185,9 +220,12 @@ public:
     void SetResources(const wxString& helpProjectPath, const wxString& sortTopicPath)
         {
         if (GetResultsListCtrl())
-            { GetResultsListCtrl()->SetSortHelpTopic(helpProjectPath, sortTopicPath); }
+            {
+            GetResultsListCtrl()->SetSortHelpTopic(helpProjectPath, sortTopicPath);
+            }
         }
-private:
+
+  private:
     ExplanationListCtrl() = default;
 
     void OnPreview([[maybe_unused]] wxCommandEvent& event);
@@ -225,6 +263,6 @@ private:
     wxDECLARE_DYNAMIC_CLASS(ExplanationListCtrl);
     };
 
-/** @}*/
+    /** @}*/
 
 #endif //__EXPLANATION_LISTCTRL_H__

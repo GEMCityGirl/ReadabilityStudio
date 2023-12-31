@@ -38,7 +38,9 @@ static double UnfamiliarSpacheWordCount(const te_expr* context)
 [[nodiscard]]
 static double UniqueUnfamiliarSpacheWordCount(const te_expr* context)
     {
-    return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalUniqueHardWordsSpache();
+    return (dynamic_cast<const FormulaProject*>(context))
+        ->GetProject()
+        ->GetTotalUniqueHardWordsSpache();
     }
 
 /// @returns The total number of familiar Spache words from the document.
@@ -63,7 +65,9 @@ static double SixCharacterPlusWordCount(const te_expr* context)
 [[nodiscard]]
 static double UniqueSixCharacterPlusWordCount(const te_expr* context)
     {
-    return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalUnique6CharsPlusWords();
+    return (dynamic_cast<const FormulaProject*>(context))
+        ->GetProject()
+        ->GetTotalUnique6CharsPlusWords();
     }
 
 /// @returns The total number of words consisting of seven or more character from the document.
@@ -95,7 +99,9 @@ static double HardFogWordCount(const te_expr* context)
 [[nodiscard]]
 static double UnfamiliarDaleChallWordCount(const te_expr* context)
     {
-    return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalHardWordsDaleChall();
+    return (dynamic_cast<const FormulaProject*>(context))
+        ->GetProject()
+        ->GetTotalHardWordsDaleChall();
     }
 
 /// @returns The total number of unique unfamiliar Dale-Chall words from the document.
@@ -103,7 +109,9 @@ static double UnfamiliarDaleChallWordCount(const te_expr* context)
 [[nodiscard]]
 static double UniqueUnfamiliarDaleChallWordCount(const te_expr* context)
     {
-    return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalUniqueDCHardWords();
+    return (dynamic_cast<const FormulaProject*>(context))
+        ->GetProject()
+        ->GetTotalUniqueDCHardWords();
     }
 
 /// Performs a New Dale-Chall test with a custom familiar word list.
@@ -114,18 +122,20 @@ static double CustomNewDaleChall(const te_expr* context)
     const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
     const wxString testName = project->GetCurrentCustomTest();
     if (!project->HasCustomTest(testName))
-        { throw std::runtime_error(_(L"Internal error: unable to find custom test by name.").ToUTF8()); }
-    if (!project->GetCustomTest(testName)->GetIterator()->is_using_familiar_words())
         {
         throw std::runtime_error(
-            _(L"Test has not defined what an unfamiliar word is. "
-               "Custom unfamiliar word test cannot be calculated."));
+            _(L"Internal error: unable to find custom test by name.").ToUTF8());
+        }
+    if (!project->GetCustomTest(testName)->GetIterator()->is_using_familiar_words())
+        {
+        throw std::runtime_error(_(L"Test has not defined what an unfamiliar word is. "
+                                   "Custom unfamiliar word test cannot be calculated."));
         }
     if (project->GetProjectLanguage() != readability::test_language::english_test)
         {
         throw std::runtime_error(
             wxString::Format(_(L"%s function can only be used for English projects."),
-                ReadabilityFormulaParser::GetCustomNewDaleChallSignature().ToUTF8()));
+                             ReadabilityFormulaParser::GetCustomNewDaleChallSignature().ToUTF8()));
         }
     // lowest grade for DC
     double grade_value = 0;
@@ -136,25 +146,26 @@ static double CustomNewDaleChall(const te_expr* context)
         if (project->GetDaleChallTextExclusionMode() ==
             SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
             {
-            readability::new_dale_chall(gradeBegin, gradeEnd,
-                        project->GetTotalWordsFromCompleteSentencesAndHeaders(),
-                        project->GetCustomTest(testName)->GetUnfamiliarWordCount(),
-                        project->GetTotalSentencesFromCompleteSentencesAndHeaders() );
+            readability::new_dale_chall(
+                gradeBegin, gradeEnd, project->GetTotalWordsFromCompleteSentencesAndHeaders(),
+                project->GetCustomTest(testName)->GetUnfamiliarWordCount(),
+                project->GetTotalSentencesFromCompleteSentencesAndHeaders());
             }
         else
             {
-            readability::new_dale_chall(gradeBegin, gradeEnd,
-                        project->GetTotalWords(),
-                        project->GetCustomTest(testName)->GetUnfamiliarWordCount(),
-                        project->GetTotalSentences() );
+            readability::new_dale_chall(gradeBegin, gradeEnd, project->GetTotalWords(),
+                                        project->GetCustomTest(testName)->GetUnfamiliarWordCount(),
+                                        project->GetTotalSentences());
             }
         // Grade range will be combined into a single double value.
         // Client will need to split this value
-        grade_value = static_cast<double>(join_int32s(static_cast<uint32_t>(gradeBegin),
-                                                      static_cast<uint32_t>(gradeEnd)));
+        grade_value = static_cast<double>(
+            join_int32s(static_cast<uint32_t>(gradeBegin), static_cast<uint32_t>(gradeEnd)));
         }
     catch (const std::domain_error&)
-        { throw std::runtime_error(_(L"Unable to calculate custom New Dale Chall.").ToUTF8()); }
+        {
+        throw std::runtime_error(_(L"Unable to calculate custom New Dale Chall.").ToUTF8());
+        }
     return grade_value;
     }
 
@@ -166,29 +177,36 @@ static double CustomSpache(const te_expr* context)
     const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
     const wxString testName = project->GetCurrentCustomTest();
     if (!project->HasCustomTest(testName))
-        { throw std::runtime_error(_(L"Internal error: unable to find custom test by name.").ToUTF8()); }
-    if (!project->GetCustomTest(testName)->GetIterator()->is_using_familiar_words())
         {
         throw std::runtime_error(
-            _(L"Test has not defined what an unfamiliar word is. "
-               "Custom unfamiliar word test cannot be calculated.").ToUTF8());
+            _(L"Internal error: unable to find custom test by name.").ToUTF8());
+        }
+    if (!project->GetCustomTest(testName)->GetIterator()->is_using_familiar_words())
+        {
+        throw std::runtime_error(_(L"Test has not defined what an unfamiliar word is. "
+                                   "Custom unfamiliar word test cannot be calculated.")
+                                     .ToUTF8());
         }
     if (project->GetProjectLanguage() != readability::test_language::english_test)
         {
         throw std::runtime_error(
             wxString::Format(_(L"%s function can only be used for English projects."),
-            ReadabilityFormulaParser::GetCustomSpacheSignature()).ToUTF8());
+                             ReadabilityFormulaParser::GetCustomSpacheSignature())
+                .ToUTF8());
         }
     // lowest grade for Spache
     double grade_value = 0;
     try
         {
-        grade_value = readability::spache(project->GetTotalWords(),
-                project->GetCustomTest(testName)->GetUniqueUnfamiliarWordCount(),
-                project->GetTotalSentences() );
+        grade_value =
+            readability::spache(project->GetTotalWords(),
+                                project->GetCustomTest(testName)->GetUniqueUnfamiliarWordCount(),
+                                project->GetTotalSentences());
         }
     catch (const std::domain_error&)
-        { throw std::runtime_error(_(L"Unable to calculate custom Spache.").ToUTF8()); }
+        {
+        throw std::runtime_error(_(L"Unable to calculate custom Spache.").ToUTF8());
+        }
     return grade_value;
     }
 
@@ -200,18 +218,22 @@ static double CustomHarrisJacobson(const te_expr* context)
     const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
     const wxString testName = project->GetCurrentCustomTest();
     if (!project->HasCustomTest(testName))
-        { throw std::runtime_error(_(L"Internal error: unable to find custom test by name.").ToUTF8()); }
-    if (!project->GetCustomTest(testName)->GetIterator()->is_using_familiar_words())
         {
         throw std::runtime_error(
-            _(L"Test has not defined what an unfamiliar word is. "
-               "Custom unfamiliar word test cannot be calculated.").ToUTF8());
+            _(L"Internal error: unable to find custom test by name.").ToUTF8());
+        }
+    if (!project->GetCustomTest(testName)->GetIterator()->is_using_familiar_words())
+        {
+        throw std::runtime_error(_(L"Test has not defined what an unfamiliar word is. "
+                                   "Custom unfamiliar word test cannot be calculated.")
+                                     .ToUTF8());
         }
     if (project->GetProjectLanguage() != readability::test_language::english_test)
         {
         throw std::runtime_error(
             wxString::Format(_(L"%s function can only be used for English projects."),
-            ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature()).ToUTF8());
+                             ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())
+                .ToUTF8());
         }
     double grade_value = 1; // lowest grade for HJ
     try
@@ -228,13 +250,15 @@ static double CustomHarrisJacobson(const te_expr* context)
         else
             {
             grade_value = readability::harris_jacobson(
-                project->GetTotalWords()-project->GetTotalNumerals(),
+                project->GetTotalWords() - project->GetTotalNumerals(),
                 project->GetCustomTest(testName)->GetUniqueUnfamiliarWordCount(),
                 project->GetTotalSentences());
             }
         }
     catch (const std::domain_error&)
-        { throw std::runtime_error(_(L"Unable to calculate custom Harris-Jacobson.").ToUTF8()); }
+        {
+        throw std::runtime_error(_(L"Unable to calculate custom Harris-Jacobson.").ToUTF8());
+        }
     return grade_value;
     }
 
@@ -246,7 +270,10 @@ static double UnfamiliarWordCount(const te_expr* context)
     const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
     const wxString testName = project->GetCurrentCustomTest();
     if (!project->HasCustomTest(testName))
-        { throw std::runtime_error(_(L"Internal error: unable to find custom test by name.").ToUTF8()); }
+        {
+        throw std::runtime_error(
+            _(L"Internal error: unable to find custom test by name.").ToUTF8());
+        }
     return project->GetCustomTest(testName)->GetUnfamiliarWordCount();
     }
 
@@ -258,7 +285,10 @@ static double UniqueUnfamiliarWordCount(const te_expr* context)
     const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
     const wxString testName = project->GetCurrentCustomTest();
     if (!project->HasCustomTest(testName))
-        { throw std::runtime_error(_(L"Internal error: unable to find custom test by name.").ToUTF8()); }
+        {
+        throw std::runtime_error(
+            _(L"Internal error: unable to find custom test by name.").ToUTF8());
+        }
     return project->GetCustomTest(testName)->GetUniqueUnfamiliarWordCount();
     }
 
@@ -270,7 +300,10 @@ static double FamiliarWordCount(const te_expr* context)
     const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
     const wxString testName = project->GetCurrentCustomTest();
     if (!project->HasCustomTest(testName))
-        { throw std::runtime_error(_(L"Internal error: unable to find custom test by name.").ToUTF8()); }
+        {
+        throw std::runtime_error(
+            _(L"Internal error: unable to find custom test by name.").ToUTF8());
+        }
     return project->GetTotalWords() - project->GetCustomTest(testName)->GetUnfamiliarWordCount();
     }
 
@@ -279,7 +312,9 @@ static double FamiliarWordCount(const te_expr* context)
 [[nodiscard]]
 static double UnfamiliarHarrisJacobsonWordCount(const te_expr* context)
     {
-    return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalHardWordsHarrisJacobson();
+    return (dynamic_cast<const FormulaProject*>(context))
+        ->GetProject()
+        ->GetTotalHardWordsHarrisJacobson();
     }
 
 /// @returns The total number of unique unfamiliar Harris-Jacobson words from the document.
@@ -287,7 +322,9 @@ static double UnfamiliarHarrisJacobsonWordCount(const te_expr* context)
 [[nodiscard]]
 static double UniqueUnfamiliarHarrisJacobsonWordCount(const te_expr* context)
     {
-    return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalUniqueHarrisJacobsonHardWords();
+    return (dynamic_cast<const FormulaProject*>(context))
+        ->GetProject()
+        ->GetTotalUniqueHarrisJacobsonHardWords();
     }
 
 /// @returns The total number of familiar Harris-Jacobson words from the document.
@@ -299,16 +336,14 @@ static double FamiliarHarrisJacobsonWordCount(const te_expr* context)
     if (project->GetHarrisJacobsonTextExclusionMode() ==
         SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
         {
-        return
-            (project->GetTotalWordsFromCompleteSentencesAndHeaders() -
+        return (project->GetTotalWordsFromCompleteSentencesAndHeaders() -
                 project->GetTotalNumeralsFromCompleteSentencesAndHeaders()) -
-             project->GetTotalHardWordsHarrisJacobson();
+               project->GetTotalHardWordsHarrisJacobson();
         }
     else
         {
-        return
-            (project->GetTotalWords()-project->GetTotalNumerals()) -
-             project->GetTotalHardWordsHarrisJacobson();
+        return (project->GetTotalWords() - project->GetTotalNumerals()) -
+               project->GetTotalHardWordsHarrisJacobson();
         }
     }
 
@@ -317,7 +352,9 @@ static double FamiliarHarrisJacobsonWordCount(const te_expr* context)
 [[nodiscard]]
 static double UniqueOneSyllableWordCount(const te_expr* context)
     {
-    return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalUniqueMonoSyllablicWords();
+    return (dynamic_cast<const FormulaProject*>(context))
+        ->GetProject()
+        ->GetTotalUniqueMonoSyllablicWords();
     }
 
 /// @returns The total number of familiar Dale-Chall words from the document.
@@ -329,7 +366,8 @@ static double FamiliarDaleChallWordCount(const te_expr* context)
     if (project->GetDaleChallTextExclusionMode() ==
         SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
         {
-        return project->GetTotalWordsFromCompleteSentencesAndHeaders() - project->GetTotalHardWordsDaleChall();
+        return project->GetTotalWordsFromCompleteSentencesAndHeaders() -
+               project->GetTotalHardWordsDaleChall();
         }
     else
         {
@@ -342,7 +380,9 @@ static double FamiliarDaleChallWordCount(const te_expr* context)
 [[nodiscard]]
 static double OneSyllableWordCount(const te_expr* context)
     {
-    return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalMonoSyllabicWords();
+    return (dynamic_cast<const FormulaProject*>(context))
+        ->GetProject()
+        ->GetTotalMonoSyllabicWords();
     }
 
 /// @returns The total number of units/independent clauses from the document.
@@ -359,7 +399,11 @@ static double IndependentClauseCount(const te_expr* context)
 /// @param context The TinyEpr++ expression object.
 [[nodiscard]]
 static double CharacterPlusPunctuationCount(const te_expr* context)
-    { return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalCharactersPlusPunctuation(); }
+    {
+    return (dynamic_cast<const FormulaProject*>(context))
+        ->GetProject()
+        ->GetTotalCharactersPlusPunctuation();
+    }
 
 /// @returns The total number of proper nouns from the document.
 /// @param context The TinyEpr++ expression object.
@@ -367,8 +411,11 @@ static double CharacterPlusPunctuationCount(const te_expr* context)
 static double ProperNounCount(const te_expr* context)
     {
     if (dynamic_cast<const FormulaProject*>(context)->GetProject()->GetProjectLanguage() ==
-            readability::test_language::german_test)
-        { throw std::runtime_error(_(L"ProperNounCount() function not supported for German projects.").ToUTF8()); }
+        readability::test_language::german_test)
+        {
+        throw std::runtime_error(
+            _(L"ProperNounCount() function not supported for German projects.").ToUTF8());
+        }
     return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalProperNouns();
     }
 
@@ -377,26 +424,30 @@ static double ProperNounCount(const te_expr* context)
 [[nodiscard]]
 static double WordCount(const te_expr* context, const double wordType)
     {
-    if (std::isnan(wordType) || wordType == 0/*Default*/)
-        { return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalWords(); }
-    else if (wordType == 1/*DaleChall*/)
+    if (std::isnan(wordType) || wordType == 0 /*Default*/)
+        {
+        return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalWords();
+        }
+    else if (wordType == 1 /*DaleChall*/)
         {
         const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
         return (project->GetDaleChallTextExclusionMode() ==
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
-            project->GetTotalWordsFromCompleteSentencesAndHeaders() : project->GetTotalWords();
+                   project->GetTotalWordsFromCompleteSentencesAndHeaders() :
+                   project->GetTotalWords();
         }
-    else if (wordType == 2/*HarrisJacobson*/)
+    else if (wordType == 2 /*HarrisJacobson*/)
         {
         const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
         return (project->GetHarrisJacobsonTextExclusionMode() ==
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
-            project->GetTotalWordsFromCompleteSentencesAndHeaders() : project->GetTotalWords();
+                   project->GetTotalWordsFromCompleteSentencesAndHeaders() :
+                   project->GetTotalWords();
         }
     else
         {
-        throw std::runtime_error(wxString::Format(_(L"Invalid value used in %s"),
-            wxString(__WXFUNCTION__)).ToUTF8());
+        throw std::runtime_error(
+            wxString::Format(_(L"Invalid value used in %s"), wxString(__WXFUNCTION__)).ToUTF8());
         }
     }
 
@@ -405,17 +456,22 @@ static double WordCount(const te_expr* context, const double wordType)
 [[nodiscard]]
 static double ThreeSyllablePlusWordCount(const te_expr* context, const double wordType)
     {
-    if (std::isnan(wordType) || wordType == 0/*Default*/)
-        { return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotal3PlusSyllabicWords(); }
-    else if (wordType == 1/*NumeralsFullySyllabized*/)
+    if (std::isnan(wordType) || wordType == 0 /*Default*/)
         {
-        return (dynamic_cast<const FormulaProject*>(context))->
-            GetProject()->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized();
+        return (dynamic_cast<const FormulaProject*>(context))
+            ->GetProject()
+            ->GetTotal3PlusSyllabicWords();
+        }
+    else if (wordType == 1 /*NumeralsFullySyllabized*/)
+        {
+        return (dynamic_cast<const FormulaProject*>(context))
+            ->GetProject()
+            ->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized();
         }
     else
         {
-        throw std::runtime_error(wxString::Format(_(L"Invalid value used in %s"),
-            wxString(__WXFUNCTION__)).ToUTF8());
+        throw std::runtime_error(
+            wxString::Format(_(L"Invalid value used in %s"), wxString(__WXFUNCTION__)).ToUTF8());
         }
     }
 
@@ -424,19 +480,22 @@ static double ThreeSyllablePlusWordCount(const te_expr* context, const double wo
 [[nodiscard]]
 static double UniqueThreeSyllablePlusWordCount(const te_expr* context, const double wordType)
     {
-    if (std::isnan(wordType) || wordType == 0/*Default*/)
+    if (std::isnan(wordType) || wordType == 0 /*Default*/)
         {
-        return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalUnique3PlusSyllableWords();
+        return (dynamic_cast<const FormulaProject*>(context))
+            ->GetProject()
+            ->GetTotalUnique3PlusSyllableWords();
         }
-    else if (wordType == 1/*NumeralsFullySyllabized*/)
+    else if (wordType == 1 /*NumeralsFullySyllabized*/)
         {
-        return (dynamic_cast<const FormulaProject*>(context))->
-            GetProject()->GetUnique3PlusSyllabicWordsNumeralsFullySyllabized();
+        return (dynamic_cast<const FormulaProject*>(context))
+            ->GetProject()
+            ->GetUnique3PlusSyllabicWordsNumeralsFullySyllabized();
         }
     else
         {
-        throw std::runtime_error(wxString::Format(_(L"Invalid value used in %s"),
-            wxString(__WXFUNCTION__)).ToUTF8());
+        throw std::runtime_error(
+            wxString::Format(_(L"Invalid value used in %s"), wxString(__WXFUNCTION__)).ToUTF8());
         }
     }
 
@@ -445,21 +504,26 @@ static double UniqueThreeSyllablePlusWordCount(const te_expr* context, const dou
 [[nodiscard]]
 static double SyllableCount(const te_expr* context, const double wordType)
     {
-    if (std::isnan(wordType) || wordType == 0/*Default*/)
-        { return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalSyllables(); }
-    else if (wordType == 1/*NumeralsFullySyllabized*/)
+    if (std::isnan(wordType) || wordType == 0 /*Default*/)
         {
-        return (dynamic_cast<const FormulaProject*>(context))->
-            GetProject()->GetTotalSyllablesNumeralsFullySyllabized();
+        return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalSyllables();
         }
-    else if (wordType == 2/*NumeralsAreOneSyllable*/)
+    else if (wordType == 1 /*NumeralsFullySyllabized*/)
         {
-        return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalSyllablesNumeralsOneSyllable();
+        return (dynamic_cast<const FormulaProject*>(context))
+            ->GetProject()
+            ->GetTotalSyllablesNumeralsFullySyllabized();
+        }
+    else if (wordType == 2 /*NumeralsAreOneSyllable*/)
+        {
+        return (dynamic_cast<const FormulaProject*>(context))
+            ->GetProject()
+            ->GetTotalSyllablesNumeralsOneSyllable();
         }
     else
         {
-        throw std::runtime_error(wxString::Format(_(L"Invalid value used in %s"),
-            wxString(__WXFUNCTION__)).ToUTF8());
+        throw std::runtime_error(
+            wxString::Format(_(L"Invalid value used in %s"), wxString(__WXFUNCTION__)).ToUTF8());
         }
     }
 
@@ -468,26 +532,30 @@ static double SyllableCount(const te_expr* context, const double wordType)
 [[nodiscard]]
 static double CharacterCount(const te_expr* context, const double wordType)
     {
-    if (std::isnan(wordType) || wordType == 0/*Default*/)
-        { return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalCharacters(); }
-    else if (wordType == 1/*DaleChall*/)
+    if (std::isnan(wordType) || wordType == 0 /*Default*/)
+        {
+        return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalCharacters();
+        }
+    else if (wordType == 1 /*DaleChall*/)
         {
         const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
         return (project->GetDaleChallTextExclusionMode() ==
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
-            project->GetTotalCharactersFromCompleteSentencesAndHeaders() : project->GetTotalCharacters();
+                   project->GetTotalCharactersFromCompleteSentencesAndHeaders() :
+                   project->GetTotalCharacters();
         }
-    else if (wordType == 2/*HarrisJacobson*/)
+    else if (wordType == 2 /*HarrisJacobson*/)
         {
         const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
         return (project->GetHarrisJacobsonTextExclusionMode() ==
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
-            project->GetTotalCharactersFromCompleteSentencesAndHeaders() : project->GetTotalCharacters();
+                   project->GetTotalCharactersFromCompleteSentencesAndHeaders() :
+                   project->GetTotalCharacters();
         }
     else
         {
-        throw std::runtime_error(wxString::Format(_(L"Invalid value used in %s"),
-            wxString(__WXFUNCTION__)).ToUTF8());
+        throw std::runtime_error(
+            wxString::Format(_(L"Invalid value used in %s"), wxString(__WXFUNCTION__)).ToUTF8());
         }
     }
 
@@ -496,33 +564,37 @@ static double CharacterCount(const te_expr* context, const double wordType)
 [[nodiscard]]
 static double SentenceCount(const te_expr* context, const double wordType)
     {
-    if (std::isnan(wordType) || wordType == 0/*Default*/)
-        { return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalSentences(); }
-    else if (wordType == 1/*DaleChall*/)
+    if (std::isnan(wordType) || wordType == 0 /*Default*/)
+        {
+        return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalSentences();
+        }
+    else if (wordType == 1 /*DaleChall*/)
         {
         const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
         return (project->GetDaleChallTextExclusionMode() ==
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
-            project->GetTotalSentencesFromCompleteSentencesAndHeaders() : project->GetTotalSentences();
+                   project->GetTotalSentencesFromCompleteSentencesAndHeaders() :
+                   project->GetTotalSentences();
         }
-    else if (wordType == 2/*HarrisJacobson*/)
+    else if (wordType == 2 /*HarrisJacobson*/)
         {
         const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
         return (project->GetHarrisJacobsonTextExclusionMode() ==
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
-            project->GetTotalSentencesFromCompleteSentencesAndHeaders() : project->GetTotalSentences();
+                   project->GetTotalSentencesFromCompleteSentencesAndHeaders() :
+                   project->GetTotalSentences();
         }
     // Fog has special rules for units vs. traditional sentences
-    else if (wordType == 3/*GunningFog*/)
+    else if (wordType == 3 /*GunningFog*/)
         {
         const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
-        return project->FogUseSentenceUnits() ?
-            project->GetTotalSentenceUnits() : project->GetTotalSentences();
+        return project->FogUseSentenceUnits() ? project->GetTotalSentenceUnits() :
+                                                project->GetTotalSentences();
         }
     else
         {
-        throw std::runtime_error(wxString::Format(_(L"Invalid value used in %s"),
-            wxString(__WXFUNCTION__)).ToUTF8());
+        throw std::runtime_error(
+            wxString::Format(_(L"Invalid value used in %s"), wxString(__WXFUNCTION__)).ToUTF8());
         }
     }
 
@@ -531,242 +603,126 @@ void ReadabilityFormulaParser::UpdateVariables()
     {
     const double dcWordCount =
         (m_formualProject.GetProject()->GetDaleChallTextExclusionMode() ==
-            SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
-        (m_formualProject.GetProject()->GetTotalWordsFromCompleteSentencesAndHeaders() -
-            m_formualProject.GetProject()->GetTotalHardWordsDaleChall()) :
-        (m_formualProject.GetProject()->GetTotalWords() -
-            m_formualProject.GetProject()->GetTotalHardWordsDaleChall());
+         SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
+            (m_formualProject.GetProject()->GetTotalWordsFromCompleteSentencesAndHeaders() -
+             m_formualProject.GetProject()->GetTotalHardWordsDaleChall()) :
+            (m_formualProject.GetProject()->GetTotalWords() -
+             m_formualProject.GetProject()->GetTotalHardWordsDaleChall());
 
     set_constant(_DT("D"), dcWordCount);
     }
 
 //------------------------------------------------
 ReadabilityFormulaParser::ReadabilityFormulaParser(const BaseProject* project,
-    const wchar_t decimalSeparator, const wchar_t listSeparator) : m_formualProject(project)
+                                                   const wchar_t decimalSeparator,
+                                                   const wchar_t listSeparator)
+    : m_formualProject(project)
     {
     set_decimal_separator(decimalSeparator);
     set_list_separator(listSeparator);
 
     const double dcWordCount =
         (m_formualProject.GetProject()->GetDaleChallTextExclusionMode() ==
-            SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
-        (m_formualProject.GetProject()->GetTotalWordsFromCompleteSentencesAndHeaders() -
-            m_formualProject.GetProject()->GetTotalHardWordsDaleChall()) :
-        (m_formualProject.GetProject()->GetTotalWords() -
-            m_formualProject.GetProject()->GetTotalHardWordsDaleChall());
+         SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
+            (m_formualProject.GetProject()->GetTotalWordsFromCompleteSentencesAndHeaders() -
+             m_formualProject.GetProject()->GetTotalHardWordsDaleChall()) :
+            (m_formualProject.GetProject()->GetTotalWords() -
+             m_formualProject.GetProject()->GetTotalHardWordsDaleChall());
 
     set_variables_and_functions(std::set<te_variable>{
         // note that these constants must be char* (not whcar_t*)
-        {
-            _DT("UNIQUETHREESYLLABLEPLUSWORDCOUNT"),
-            static_cast<te_confun1>(UniqueThreeSyllablePlusWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("THREESYLLABLEPLUSWORDCOUNT"),
-            static_cast<te_confun1>(ThreeSyllablePlusWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("SYLLABLECOUNT"),
-            static_cast<te_confun1>(SyllableCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("CHARACTERCOUNT"),
-            static_cast<te_confun1>(CharacterCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("SENTENCECOUNT"),
-            static_cast<te_confun1>(SentenceCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("WORDCOUNT"),
-            static_cast<te_confun1>(WordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("MINIWORDCOUNT"),
-            static_cast<te_confun0>(MiniWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("HARDFOGWORDCOUNT"),
-            static_cast<te_confun0>(HardFogWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("CHARACTERPLUSPUNCTUATIONCOUNT"),
-            static_cast<te_confun0>(CharacterPlusPunctuationCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("NUMERALCOUNT"),
-            static_cast<te_confun0>(NumeralCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("UNIQUEWORDCOUNT"),
-            static_cast<te_confun0>(UniqueWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("UNIQUESIXCHARACTERPLUSWORDCOUNT"),
-            static_cast<te_confun0>(UniqueSixCharacterPlusWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("UNIQUEONESYLLABLEWORDCOUNT"),
-            static_cast<te_confun0>(UniqueOneSyllableWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("FAMILIARWORDCOUNT"),
-            static_cast<te_confun0>(FamiliarWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("UNFAMILIARWORDCOUNT"),
-            static_cast<te_confun0>(UnfamiliarWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("UNIQUEUNFAMILIARWORDCOUNT"),
-            static_cast<te_confun0>(UniqueUnfamiliarWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("UNFAMILIARHARRISJACOBSONWORDCOUNT"),
-            static_cast<te_confun0>(UnfamiliarHarrisJacobsonWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("UNIQUEUNFAMILIARHARRISJACOBSONWORDCOUNT"),
-            static_cast<te_confun0>(UniqueUnfamiliarHarrisJacobsonWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("FAMILIARHARRISJACOBSONWORDCOUNT"),
-            static_cast<te_confun0>(FamiliarHarrisJacobsonWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("UNFAMILIARDALECHALLWORDCOUNT"),
-            static_cast<te_confun0>(UnfamiliarDaleChallWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("UNIQUEUNFAMILIARDALECHALLWORDCOUNT"),
-            static_cast<te_confun0>(UniqueUnfamiliarDaleChallWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("FAMILIARDALECHALLWORDCOUNT"),
-            static_cast<te_confun0>(FamiliarDaleChallWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("UNFAMILIARSPACHEWORDCOUNT"),
-            static_cast<te_confun0>(UnfamiliarSpacheWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("UNIQUEUNFAMILIARSPACHEWORDCOUNT"),
-            static_cast<te_confun0>(UniqueUnfamiliarSpacheWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("FAMILIARSPACHEWORDCOUNT"),
-            static_cast<te_confun0>(FamiliarSpacheWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("SIXCHARACTERPLUSWORDCOUNT"),
-            static_cast<te_confun0>(SixCharacterPlusWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("SEVENCHARACTERPLUSWORDCOUNT"),
-            static_cast<te_confun0>(SevenCharacterPlusWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("ONESYLLABLEWORDCOUNT"),
-            static_cast<te_confun0>(OneSyllableWordCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("INDEPENDENTCLAUSECOUNT"),
-            static_cast<te_confun0>(IndependentClauseCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("PROPERNOUNCOUNT"),
-            static_cast<te_confun0>(ProperNounCount), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("CUSTOMHARRISJACOBSON"),
-            static_cast<te_confun0>(CustomHarrisJacobson), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("CUSTOMSPACHE"),
-            static_cast<te_confun0>(CustomSpache), TE_DEFAULT, &m_formualProject
-        },
-        {
-            _DT("CUSTOMNEWDALECHALL"),
-            static_cast<te_confun0>(CustomNewDaleChall), TE_DEFAULT, &m_formualProject
-        },
+        { _DT("UNIQUETHREESYLLABLEPLUSWORDCOUNT"),
+          static_cast<te_confun1>(UniqueThreeSyllablePlusWordCount), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("THREESYLLABLEPLUSWORDCOUNT"), static_cast<te_confun1>(ThreeSyllablePlusWordCount),
+          TE_DEFAULT, &m_formualProject },
+        { _DT("SYLLABLECOUNT"), static_cast<te_confun1>(SyllableCount), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("CHARACTERCOUNT"), static_cast<te_confun1>(CharacterCount), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("SENTENCECOUNT"), static_cast<te_confun1>(SentenceCount), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("WORDCOUNT"), static_cast<te_confun1>(WordCount), TE_DEFAULT, &m_formualProject },
+        { _DT("MINIWORDCOUNT"), static_cast<te_confun0>(MiniWordCount), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("HARDFOGWORDCOUNT"), static_cast<te_confun0>(HardFogWordCount), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("CHARACTERPLUSPUNCTUATIONCOUNT"),
+          static_cast<te_confun0>(CharacterPlusPunctuationCount), TE_DEFAULT, &m_formualProject },
+        { _DT("NUMERALCOUNT"), static_cast<te_confun0>(NumeralCount), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("UNIQUEWORDCOUNT"), static_cast<te_confun0>(UniqueWordCount), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("UNIQUESIXCHARACTERPLUSWORDCOUNT"),
+          static_cast<te_confun0>(UniqueSixCharacterPlusWordCount), TE_DEFAULT, &m_formualProject },
+        { _DT("UNIQUEONESYLLABLEWORDCOUNT"), static_cast<te_confun0>(UniqueOneSyllableWordCount),
+          TE_DEFAULT, &m_formualProject },
+        { _DT("FAMILIARWORDCOUNT"), static_cast<te_confun0>(FamiliarWordCount), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("UNFAMILIARWORDCOUNT"), static_cast<te_confun0>(UnfamiliarWordCount), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("UNIQUEUNFAMILIARWORDCOUNT"), static_cast<te_confun0>(UniqueUnfamiliarWordCount),
+          TE_DEFAULT, &m_formualProject },
+        { _DT("UNFAMILIARHARRISJACOBSONWORDCOUNT"),
+          static_cast<te_confun0>(UnfamiliarHarrisJacobsonWordCount), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("UNIQUEUNFAMILIARHARRISJACOBSONWORDCOUNT"),
+          static_cast<te_confun0>(UniqueUnfamiliarHarrisJacobsonWordCount), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("FAMILIARHARRISJACOBSONWORDCOUNT"),
+          static_cast<te_confun0>(FamiliarHarrisJacobsonWordCount), TE_DEFAULT, &m_formualProject },
+        { _DT("UNFAMILIARDALECHALLWORDCOUNT"),
+          static_cast<te_confun0>(UnfamiliarDaleChallWordCount), TE_DEFAULT, &m_formualProject },
+        { _DT("UNIQUEUNFAMILIARDALECHALLWORDCOUNT"),
+          static_cast<te_confun0>(UniqueUnfamiliarDaleChallWordCount), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("FAMILIARDALECHALLWORDCOUNT"), static_cast<te_confun0>(FamiliarDaleChallWordCount),
+          TE_DEFAULT, &m_formualProject },
+        { _DT("UNFAMILIARSPACHEWORDCOUNT"), static_cast<te_confun0>(UnfamiliarSpacheWordCount),
+          TE_DEFAULT, &m_formualProject },
+        { _DT("UNIQUEUNFAMILIARSPACHEWORDCOUNT"),
+          static_cast<te_confun0>(UniqueUnfamiliarSpacheWordCount), TE_DEFAULT, &m_formualProject },
+        { _DT("FAMILIARSPACHEWORDCOUNT"), static_cast<te_confun0>(FamiliarSpacheWordCount),
+          TE_DEFAULT, &m_formualProject },
+        { _DT("SIXCHARACTERPLUSWORDCOUNT"), static_cast<te_confun0>(SixCharacterPlusWordCount),
+          TE_DEFAULT, &m_formualProject },
+        { _DT("SEVENCHARACTERPLUSWORDCOUNT"), static_cast<te_confun0>(SevenCharacterPlusWordCount),
+          TE_DEFAULT, &m_formualProject },
+        { _DT("ONESYLLABLEWORDCOUNT"), static_cast<te_confun0>(OneSyllableWordCount), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("INDEPENDENTCLAUSECOUNT"), static_cast<te_confun0>(IndependentClauseCount),
+          TE_DEFAULT, &m_formualProject },
+        { _DT("PROPERNOUNCOUNT"), static_cast<te_confun0>(ProperNounCount), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("CUSTOMHARRISJACOBSON"), static_cast<te_confun0>(CustomHarrisJacobson), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("CUSTOMSPACHE"), static_cast<te_confun0>(CustomSpache), TE_DEFAULT,
+          &m_formualProject },
+        { _DT("CUSTOMNEWDALECHALL"), static_cast<te_confun0>(CustomNewDaleChall), TE_DEFAULT,
+          &m_formualProject },
         // shortcuts
-        {
-            "B",
-            &project->GetTotalSyllables()
-        },
-        {
-            "S",
-            &project->GetTotalSentences()
-        },
-        {
-            "W",
-            &project->GetTotalWords()
-        },
+        { "B", &project->GetTotalSyllables() },
+        { "S", &project->GetTotalSentences() },
+        { "W", &project->GetTotalWords() },
         // a dynamic constant, call UpdateVariables() prior to interpret() to update
-        {
-            "D", dcWordCount
-        },
-        {
-            "R", &project->GetTotalCharacters()
-        },
-        {
-            _DT("RP"), &project->GetTotalCharactersPlusPunctuation()
-        },
-        {
-            "M",
-            &project->GetTotalMonoSyllabicWords()
-        },
-        {
-            "C",
-            &project->GetTotal3PlusSyllabicWords()
-        },
-        {
-            "L",
-            &project->GetTotalLongWords()
-        },
-        {
-            "X",
-            &project->GetTotalHardLixRixWords()
-        },
-        {
-            "U",
-            &project->GetTotalSentenceUnits()
-        },
-        {
-            _DT("UDC"),
-            &project->GetTotalHardWordsDaleChall()
-        },
-        {
-            _DT("UUS"),
-            &project->GetTotalUniqueHardWordsSpache()
-        },
-        {
-            "T",
-            &project->GetTotalMiniWords()
-        },
-        {
-            "F",
-            &project->GetTotalHardWordsFog()
-        },
+        { "D", dcWordCount },
+        { "R", &project->GetTotalCharacters() },
+        { _DT("RP"), &project->GetTotalCharactersPlusPunctuation() },
+        { "M", &project->GetTotalMonoSyllabicWords() },
+        { "C", &project->GetTotal3PlusSyllabicWords() },
+        { "L", &project->GetTotalLongWords() },
+        { "X", &project->GetTotalHardLixRixWords() },
+        { "U", &project->GetTotalSentenceUnits() },
+        { _DT("UDC"), &project->GetTotalHardWordsDaleChall() },
+        { _DT("UUS"), &project->GetTotalUniqueHardWordsSpache() },
+        { "T", &project->GetTotalMiniWords() },
+        { "F", &project->GetTotalHardWordsFog() },
         // constants for text exclusion/word & sentence counting
-        {
-            _DT("Default"), 0.0
-        },
-        {
-            "DaleChall", 1.0
-        },
-        {
-            "HarrisJacobson", 2.0
-        },
-        {
-            "GunningFog", 3.0
-        },
+        { _DT("Default"), 0.0 },
+        { "DaleChall", 1.0 },
+        { "HarrisJacobson", 2.0 },
+        { "GunningFog", 3.0 },
         // constants for syllable counting
-        {
-            "NumeralsFullySyllabized", 1.0
-        },
-        {
-            "NumeralsAreOneSyllable", 2.0
-        }
-        });
+        { "NumeralsFullySyllabized", 1.0 },
+        { "NumeralsAreOneSyllable", 2.0 } });
     }

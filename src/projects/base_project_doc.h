@@ -1,23 +1,23 @@
 #ifndef __BASE_PROJECT_DOC_H__
 #define __BASE_PROJECT_DOC_H__
 
+#include "../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
 #include "../graphs/frygraph.h"
 #include "../graphs/raygorgraph.h"
 #include "../graphs/schwartzgraph.h"
 #include "../results_format/readability_messages.h"
 #include "../ui/controls/explanation_listctrl.h"
-#include "../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
 #include "base_project.h"
 
 /// Base document layer of a project, storing features common to standard and batch projects.
 class BaseProjectDoc : public BaseProject, public wxDocument
     {
-public:
+  public:
     BaseProjectDoc();
     BaseProjectDoc(const BaseProjectDoc&) = delete;
     BaseProjectDoc& operator=(const BaseProjectDoc&) = delete;
-    ~BaseProjectDoc()
-        { m_File.Close(); }
+
+    ~BaseProjectDoc() { m_File.Close(); }
 
     /** Call this if you have constructed a project document
         and need to copy over all settings from another project. In turn, this would be like
@@ -25,14 +25,16 @@ public:
         @param that The BaseProjectDoc to copy settings from.
         @param reloadImages `true` to load any images from this project's image paths, `false`
             to copy the images directly from this project.
-        @note This will call BaseProject::CopySettings() along with copying document-level features.*/
+        @note This will call BaseProject::CopySettings() along with copying document-level
+       features.*/
     void CopyDocumentLevelSettings(const BaseProjectDoc& that, const bool reloadImages);
 
     static bool AddGlobalCustomReadabilityTest(CustomReadabilityTest& customTest);
     /// When we switched to the Tinyexpr++ formula engine (circa 2020),
-    /// the syntax slightly changed, so this updates custom test formulas to work with the new parser.
-    static CustomReadabilityTest::string_type UpdateCustumReadabilityTest(
-        const CustomReadabilityTest::string_type& formula);
+    /// the syntax slightly changed, so this updates custom test formulas
+    /// to work with the new parser.
+    static CustomReadabilityTest::string_type
+    UpdateCustumReadabilityTest(const CustomReadabilityTest::string_type& formula);
     static void RemoveGlobalCustomReadabilityTest(const wxString& testName);
     static void RemoveAllGlobalCustomReadabilityTests();
 
@@ -42,600 +44,1030 @@ public:
     /// @returns @c true if bundle was successfully applied.
     bool ApplyTestBundle(const wxString& bundleName);
 
-    void UseRealTimeUpdate(const bool realTime)
-        { m_realTimeUpdate = realTime; }
+    void UseRealTimeUpdate(const bool realTime) { m_realTimeUpdate = realTime; }
+
     [[nodiscard]]
     bool IsRealTimeUpdating() const noexcept
-        { return m_realTimeUpdate; }
+        {
+        return m_realTimeUpdate;
+        }
 
     // graph information
-    //------------------------------    
+    //------------------------------
     void SetStippleImagePath(const wxString& filePath);
+
     [[nodiscard]]
     wxString GetStippleImagePath() const
-        { return m_stippleImagePath; }
+        {
+        return m_stippleImagePath;
+        }
+
     void SetPlotBackGroundImagePath(const wxString& filePath);
+
     [[nodiscard]]
     wxString GetGraphCommonImagePath() const
-        { return m_commonImagePath; }
+        {
+        return m_commonImagePath;
+        }
+
     void SetGraphCommonImagePath(const wxString& filePath);
-    void SetStippleShape(wxString shape)
-        { m_stippleShape = std::move(shape); }
+
+    void SetStippleShape(wxString shape) { m_stippleShape = std::move(shape); }
+
     [[nodiscard]]
     wxString GetStippleShape() const
-        { return m_stippleShape; }
+        {
+        return m_stippleShape;
+        }
+
     [[nodiscard]]
     wxColour GetStippleShapeColor() const noexcept
-        { return m_stippleColor; }
+        {
+        return m_stippleColor;
+        }
+
     void SetStippleShapeColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_stippleColor = color; }
+            {
+            m_stippleColor = color;
+            }
         }
+
     [[nodiscard]]
     wxString GetPlotBackGroundImagePath() const
-        { return m_plotBackGroundImagePath; }
+        {
+        return m_plotBackGroundImagePath;
+        }
+
     [[nodiscard]]
     wxString GetGraphColorScheme() const
-        { return m_graphColorSchemeName; }
+        {
+        return m_graphColorSchemeName;
+        }
+
     // @note Must be the internal key (e.g., "coffeeshot"), not "Coffee Shop."
     void SetGraphColorScheme(wxString colorScheme);
+
     [[nodiscard]]
     wxColour GetBackGroundColor() const
-        { return m_graphBackGroundColor; }
+        {
+        return m_graphBackGroundColor;
+        }
+
     void SetBackGroundColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_graphBackGroundColor = color; }
+            {
+            m_graphBackGroundColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetPlotBackGroundColor() const
-        { return m_plotBackGroundColor; }
+        {
+        return m_plotBackGroundColor;
+        }
+
     void SetPlotBackGroundColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_plotBackGroundColor = color; }
+            {
+            m_plotBackGroundColor = color;
+            }
         }
+
     [[nodiscard]]
     uint8_t GetPlotBackGroundImageOpacity() const noexcept
-        { return m_plotBackGroundImageOpacity; }
+        {
+        return m_plotBackGroundImageOpacity;
+        }
+
     void SetPlotBackGroundImageOpacity(const uint8_t opacity) noexcept
-        { m_plotBackGroundImageOpacity = opacity; }
+        {
+        m_plotBackGroundImageOpacity = opacity;
+        }
+
     [[nodiscard]]
     uint8_t GetPlotBackGroundColorOpacity() const noexcept
-        { return m_plotBackGroundColorOpacity; }
+        {
+        return m_plotBackGroundColorOpacity;
+        }
+
     void SetPlotBackGroundColorOpacity(const uint8_t opacity) noexcept
-        { m_plotBackGroundColorOpacity = opacity; }
+        {
+        m_plotBackGroundColorOpacity = opacity;
+        }
+
     /// water mark functions
-    void SetWatermark(const wxString& watermark)
-        { m_watermark = watermark; }
+    void SetWatermark(const wxString& watermark) { m_watermark = watermark; }
+
     [[nodiscard]]
     wxString GetWatermark() const
-        { return m_watermark; }
+        {
+        return m_watermark;
+        }
+
     void SetWatermarkLogoPath(const wxString& filePath);
+
     [[nodiscard]]
     wxString GetWatermarkLogoPath() const
-        { return m_watermarkImagePath; }
+        {
+        return m_watermarkImagePath;
+        }
+
     /// whether gradient is used for graph backgrounds
     void SetGraphBackGroundLinearGradient(const bool useGradient) noexcept
-        { m_useGraphBackGroundImageLinearGradient = useGradient; }
+        {
+        m_useGraphBackGroundImageLinearGradient = useGradient;
+        }
+
     [[nodiscard]]
     bool GetGraphBackGroundLinearGradient() const noexcept
-        { return m_useGraphBackGroundImageLinearGradient; }
+        {
+        return m_useGraphBackGroundImageLinearGradient;
+        }
+
     /// whether drop shadows should be shown
-    void DisplayDropShadows(const bool display) noexcept
-        { m_displayDropShadows = display; }
+    void DisplayDropShadows(const bool display) noexcept { m_displayDropShadows = display; }
+
     [[nodiscard]]
     bool IsDisplayingDropShadows() const noexcept
-        { return m_displayDropShadows; }
+        {
+        return m_displayDropShadows;
+        }
+
     // whether to draw attention to the complex word groups in syllable graphs
-    void ShowcaseComplexWords(const bool display) noexcept
-        { m_showcaseComplexWords = display; }
+    void ShowcaseComplexWords(const bool display) noexcept { m_showcaseComplexWords = display; }
+
     [[nodiscard]]
     bool IsShowcasingComplexWords() const noexcept
-        { return m_showcaseComplexWords; }
+        {
+        return m_showcaseComplexWords;
+        }
+
     /// axis font colors
     [[nodiscard]]
     wxColour GetXAxisFontColor() const
-        { return m_xAxisFontColor; }
+        {
+        return m_xAxisFontColor;
+        }
+
     void SetXAxisFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_xAxisFontColor = color; }
+            {
+            m_xAxisFontColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetYAxisFontColor() const
-        { return m_yAxisFontColor; }
+        {
+        return m_yAxisFontColor;
+        }
+
     void SetYAxisFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_yAxisFontColor = color; }
+            {
+            m_yAxisFontColor = color;
+            }
         }
+
     /// axis fonts
     [[nodiscard]]
     wxFont GetXAxisFont() const
-        { return m_xAxisFont; }
+        {
+        return m_xAxisFont;
+        }
+
     void SetXAxisFont(const wxFont& font)
         {
         if (font.IsOk())
-            { m_xAxisFont = font; }
+            {
+            m_xAxisFont = font;
+            }
         }
+
     [[nodiscard]]
     wxFont GetYAxisFont() const
-        { return m_yAxisFont; }
+        {
+        return m_yAxisFont;
+        }
+
     void SetYAxisFont(const wxFont& font)
         {
         if (font.IsOk())
-            { m_yAxisFont = font; }
+            {
+            m_yAxisFont = font;
+            }
         }
+
     /// title fonts
     [[nodiscard]]
     wxColour GetGraphTopTitleFontColor() const
-        { return m_topTitleFontColor; }
+        {
+        return m_topTitleFontColor;
+        }
+
     void SetGraphTopTitleFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_topTitleFontColor = color; }
+            {
+            m_topTitleFontColor = color;
+            }
         }
+
     [[nodiscard]]
     wxFont GetGraphTopTitleFont() const
-        { return m_topTitleFont; }
+        {
+        return m_topTitleFont;
+        }
+
     void SetGraphTopTitleFont(const wxFont& font)
         {
         if (font.IsOk())
-            { m_topTitleFont = font; }
+            {
+            m_topTitleFont = font;
+            }
         }
+
     [[nodiscard]]
     wxColour GetBottomTitleGraphFontColor() const
-        { return m_bottomTitleFontColor; }
+        {
+        return m_bottomTitleFontColor;
+        }
+
     void SetBottomTitleGraphFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_bottomTitleFontColor = color; }
+            {
+            m_bottomTitleFontColor = color;
+            }
         }
+
     [[nodiscard]]
     wxFont GetBottomTitleGraphFont() const
-        { return m_bottomTitleFont; }
+        {
+        return m_bottomTitleFont;
+        }
+
     void SetBottomTitleGraphFont(const wxFont& font)
         {
         if (font.IsOk())
-            { m_bottomTitleFont = font; }
+            {
+            m_bottomTitleFont = font;
+            }
         }
+
     [[nodiscard]]
     wxColour GetLeftTitleGraphFontColor() const
-        { return m_leftTitleFontColor; }
+        {
+        return m_leftTitleFontColor;
+        }
+
     void SetLeftTitleGraphFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_leftTitleFontColor = color; }
+            {
+            m_leftTitleFontColor = color;
+            }
         }
+
     [[nodiscard]]
     wxFont GetLeftTitleGraphFont() const
-        { return m_leftTitleFont; }
+        {
+        return m_leftTitleFont;
+        }
+
     void SetLeftTitleGraphFont(const wxFont& font)
         {
         if (font.IsOk())
-            { m_leftTitleFont = font; }
+            {
+            m_leftTitleFont = font;
+            }
         }
+
     [[nodiscard]]
     wxColour GetRightTitleGraphFontColor() const
-        { return m_rightTitleFontColor; }
+        {
+        return m_rightTitleFontColor;
+        }
+
     void SetRightTitleGraphFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_rightTitleFontColor = color; }
+            {
+            m_rightTitleFontColor = color;
+            }
         }
+
     [[nodiscard]]
     wxFont GetRightTitleGraphFont() const
-        { return m_rightTitleFont; }
+        {
+        return m_rightTitleFont;
+        }
+
     void SetRightTitleGraphFont(const wxFont& font)
         {
         if (font.IsOk())
-            { m_rightTitleFont = font; }
+            {
+            m_rightTitleFont = font;
+            }
         }
+
     /// invalid area color
     [[nodiscard]]
     wxColour GetInvalidAreaColor() const
-        { return m_graphInvalidAreaColor; }
+        {
+        return m_graphInvalidAreaColor;
+        }
+
     void SetInvalidAreaColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_graphInvalidAreaColor = color; }
+            {
+            m_graphInvalidAreaColor = color;
+            }
         }
+
     // Raygor style
     [[nodiscard]]
     Wisteria::Graphs::RaygorStyle GetRaygorStyle() const noexcept
-        { return m_raygorStyle; }
+        {
+        return m_raygorStyle;
+        }
+
     void SetRaygorStyle(const Wisteria::Graphs::RaygorStyle style) noexcept
-        { m_raygorStyle = style; }
+        {
+        m_raygorStyle = style;
+        }
+
     // Flesch connection lines
-    void ConnectFleschPoints(const bool connect) noexcept
-        { m_fleschChartConnectPoints = connect; }
+    void ConnectFleschPoints(const bool connect) noexcept { m_fleschChartConnectPoints = connect; }
+
     [[nodiscard]]
     bool IsConnectingFleschPoints() const noexcept
-        { return m_fleschChartConnectPoints; }
+        {
+        return m_fleschChartConnectPoints;
+        }
+
     // Flesch document groups next to the syllable ruler
     void IncludeFleschRulerDocGroups(const bool connect) noexcept
-        { m_fleschChartSyllableRulerDocGroups = connect; }
+        {
+        m_fleschChartSyllableRulerDocGroups = connect;
+        }
+
     [[nodiscard]]
     bool IsIncludingFleschRulerDocGroups() const noexcept
-        { return m_fleschChartSyllableRulerDocGroups; }
+        {
+        return m_fleschChartSyllableRulerDocGroups;
+        }
+
     /** Sets whether to use English labels for the brackets on German Lix gauges.
         @param useEnglish True to use the translated (English) labels.*/
     void UseEnglishLabelsForGermanLix(const bool useEnglish) noexcept
-        { m_useEnglishLabelsGermanLix = useEnglish; }
+        {
+        m_useEnglishLabelsGermanLix = useEnglish;
+        }
+
     /// @returns @c true if English labels are being used for the brackets on German Lix gauges.
     [[nodiscard]]
     bool IsUsingEnglishLabelsForGermanLix() const noexcept
-        { return m_useEnglishLabelsGermanLix; }
+        {
+        return m_useEnglishLabelsGermanLix;
+        }
 
     /// Histogram options
     [[nodiscard]]
     Wisteria::Graphs::Histogram::BinningMethod GetHistorgramBinningMethod() const noexcept
-        { return m_histogramBinningMethod; }
-    void SetHistorgramBinningMethod(const Wisteria::Graphs::Histogram::BinningMethod method) noexcept
-        { m_histogramBinningMethod = method; }
+        {
+        return m_histogramBinningMethod;
+        }
+
+    void
+    SetHistorgramBinningMethod(const Wisteria::Graphs::Histogram::BinningMethod method) noexcept
+        {
+        m_histogramBinningMethod = method;
+        }
+
     [[nodiscard]]
     Wisteria::BinLabelDisplay GetHistrogramBinLabelDisplay() const noexcept
-        { return m_histrogramBinLabelDisplayMethod; }
+        {
+        return m_histrogramBinLabelDisplayMethod;
+        }
+
     void SetHistrogramBinLabelDisplay(const Wisteria::BinLabelDisplay display) noexcept
-        { m_histrogramBinLabelDisplayMethod = display; }
+        {
+        m_histrogramBinLabelDisplayMethod = display;
+        }
+
     [[nodiscard]]
     Wisteria::RoundingMethod GetHistogramRoundingMethod() const noexcept
-        { return m_histrogramRoundingMethod; }
+        {
+        return m_histrogramRoundingMethod;
+        }
+
     void SetHistogramRoundingMethod(const Wisteria::RoundingMethod rounding) noexcept
-        { m_histrogramRoundingMethod = rounding; }
-    void SetHistogramIntervalDisplay(const Wisteria::Graphs::Histogram::IntervalDisplay display) noexcept
-        { m_histrogramIntervalDisplay = display; }
+        {
+        m_histrogramRoundingMethod = rounding;
+        }
+
+    void
+    SetHistogramIntervalDisplay(const Wisteria::Graphs::Histogram::IntervalDisplay display) noexcept
+        {
+        m_histrogramIntervalDisplay = display;
+        }
+
     [[nodiscard]]
     Wisteria::Graphs::Histogram::IntervalDisplay GetHistogramIntervalDisplay() const noexcept
-        { return m_histrogramIntervalDisplay; }
+        {
+        return m_histrogramIntervalDisplay;
+        }
+
     [[nodiscard]]
     wxColour GetHistogramBarColor() const noexcept
-        { return m_histogramBarColor; }
+        {
+        return m_histogramBarColor;
+        }
+
     void SetHistogramBarColor(const wxColour color)
         {
         if (color.IsOk())
-            { m_histogramBarColor = color; }
+            {
+            m_histogramBarColor = color;
+            }
         }
+
     [[nodiscard]]
     uint8_t GetHistogramBarOpacity() const noexcept
-        { return m_histogramBarOpacity; }
-    void SetHistogramBarOpacity(const uint8_t opacity) noexcept
-        { m_histogramBarOpacity = opacity; }
+        {
+        return m_histogramBarOpacity;
+        }
+
+    void SetHistogramBarOpacity(const uint8_t opacity) noexcept { m_histogramBarOpacity = opacity; }
+
     [[nodiscard]]
     Wisteria::BoxEffect GetHistogramBarEffect() const noexcept
-        { return m_histogramBarEffect; }
+        {
+        return m_histogramBarEffect;
+        }
+
     void SetHistogramBarEffect(const Wisteria::BoxEffect effect) noexcept
-        { m_histogramBarEffect = effect; }
+        {
+        m_histogramBarEffect = effect;
+        }
+
     // Bar chart options
     [[nodiscard]]
     wxColour GetBarChartBarColor() const noexcept
-        { return m_barChartBarColor; }
+        {
+        return m_barChartBarColor;
+        }
+
     void SetBarChartBarColor(const wxColour color)
         {
         if (color.IsOk())
-            { m_barChartBarColor = color; }
+            {
+            m_barChartBarColor = color;
+            }
         }
+
     [[nodiscard]]
     Wisteria::Orientation GetBarChartOrientation() const noexcept
-        { return m_barChartOrientation; }
+        {
+        return m_barChartOrientation;
+        }
+
     void SetBarChartOrientation(const Wisteria::Orientation orient) noexcept
-        { m_barChartOrientation = orient; }
+        {
+        m_barChartOrientation = orient;
+        }
+
     [[nodiscard]]
     uint8_t GetGraphBarOpacity() const noexcept
-        { return m_graphBarOpacity; }
-    void SetGraphBarOpacity(const uint8_t opacity) noexcept
-        { m_graphBarOpacity = opacity; }
+        {
+        return m_graphBarOpacity;
+        }
+
+    void SetGraphBarOpacity(const uint8_t opacity) noexcept { m_graphBarOpacity = opacity; }
+
     [[nodiscard]]
     Wisteria::BoxEffect GetGraphBarEffect() const noexcept
-        { return m_graphBarEffect; }
-    void SetGraphBarEffect(const Wisteria::BoxEffect effect) noexcept
-        { m_graphBarEffect = effect; }
-    void DisplayBarChartLabels(const bool display = true) noexcept
-        { m_barDisplayLabels = display; }
+        {
+        return m_graphBarEffect;
+        }
+
+    void SetGraphBarEffect(const Wisteria::BoxEffect effect) noexcept { m_graphBarEffect = effect; }
+
+    void DisplayBarChartLabels(const bool display = true) noexcept { m_barDisplayLabels = display; }
+
     [[nodiscard]]
     bool IsDisplayingBarChartLabels() const noexcept
-        { return m_barDisplayLabels; }
+        {
+        return m_barDisplayLabels;
+        }
+
     // Box Plot options
-    void ShowAllBoxPlotPoints(const bool show) noexcept
-        { m_boxPlotShowAllPoints = show; }
+    void ShowAllBoxPlotPoints(const bool show) noexcept { m_boxPlotShowAllPoints = show; }
+
     [[nodiscard]]
     bool IsShowingAllBoxPlotPoints() const noexcept
-        { return m_boxPlotShowAllPoints; }
-    void DisplayBoxPlotLabels(const bool display = true) noexcept
-        { m_boxDisplayLabels = display; }
+        {
+        return m_boxPlotShowAllPoints;
+        }
+
+    void DisplayBoxPlotLabels(const bool display = true) noexcept { m_boxDisplayLabels = display; }
+
     [[nodiscard]]
     bool IsDisplayingBoxPlotLabels() const noexcept
-        { return m_boxDisplayLabels; }
+        {
+        return m_boxDisplayLabels;
+        }
+
     void ConnectBoxPlotMiddlePoints(const bool connect = true) noexcept
-        { m_boxConnectMiddlePoints = connect; }
+        {
+        m_boxConnectMiddlePoints = connect;
+        }
+
     [[nodiscard]]
     bool IsConnectingBoxPlotMiddlePoints() const noexcept
-        { return m_boxConnectMiddlePoints; }
+        {
+        return m_boxConnectMiddlePoints;
+        }
+
     [[nodiscard]]
     wxColour GetGraphBoxColor() const noexcept
-        { return m_graphBoxColor; }
+        {
+        return m_graphBoxColor;
+        }
+
     void SetGraphBoxColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_graphBoxColor = color; }
+            {
+            m_graphBoxColor = color;
+            }
         }
+
     [[nodiscard]]
     uint8_t GetGraphBoxOpacity() const noexcept
-        { return m_graphBoxOpacity; }
-    void SetGraphBoxOpacity(const uint8_t opacity) noexcept
-        { m_graphBoxOpacity = opacity; }
+        {
+        return m_graphBoxOpacity;
+        }
+
+    void SetGraphBoxOpacity(const uint8_t opacity) noexcept { m_graphBoxOpacity = opacity; }
+
     [[nodiscard]]
     Wisteria::BoxEffect GetGraphBoxEffect() const noexcept
-        { return m_graphBoxEffect; }
-    void SetGraphBoxEffect(const Wisteria::BoxEffect effect) noexcept
-        { m_graphBoxEffect = effect; }
+        {
+        return m_graphBoxEffect;
+        }
+
+    void SetGraphBoxEffect(const Wisteria::BoxEffect effect) noexcept { m_graphBoxEffect = effect; }
+
     // background image options
     [[nodiscard]]
     Wisteria::ImageEffect GetPlotBackGroundImageEffect() const noexcept
-        { return m_plotBackgroundImageEffect; }
+        {
+        return m_plotBackgroundImageEffect;
+        }
+
     void SetPlotBackGroundImageEffect(const Wisteria::ImageEffect effect);
+
     [[nodiscard]]
     Wisteria::ImageFit GetPlotBackGroundImageFit() const noexcept
-        { return m_plotBackgroundImageFit; }
+        {
+        return m_plotBackgroundImageFit;
+        }
+
     void SetPlotBackGroundImageFit(const Wisteria::ImageFit fit) noexcept
-        { m_plotBackgroundImageFit = fit; }
+        {
+        m_plotBackgroundImageFit = fit;
+        }
+
     // text highlighting
     [[nodiscard]]
-    TextHighlight GetTextHighlightMethod() noexcept
-        { return m_textHighlight; }
+    TextHighlight GetTextHighlightMethod() const noexcept
+        {
+        return m_textHighlight;
+        }
+
     void SetTextHighlightMethod(const TextHighlight highlight) noexcept
-        { m_textHighlight = highlight; }
+        {
+        m_textHighlight = highlight;
+        }
+
     // text highlighting
     [[nodiscard]]
     wxColour GetTextHighlightColor() const noexcept
-        { return m_textViewHighlightColor; }
+        {
+        return m_textViewHighlightColor;
+        }
+
     void SetTextHighlightColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_textViewHighlightColor = color; }
+            {
+            m_textViewHighlightColor = color;
+            }
         }
+
     // excluded sentences
     [[nodiscard]]
     wxColour GetExcludedTextHighlightColor() const noexcept
-        { return m_excludedTextHighlightColor; }
+        {
+        return m_excludedTextHighlightColor;
+        }
+
     void SetExcludedTextHighlightColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_excludedTextHighlightColor = color; }
+            {
+            m_excludedTextHighlightColor = color;
+            }
         }
+
     // color to highlight repeated words
     [[nodiscard]]
     wxColour GetDuplicateWordHighlightColor() const noexcept
-        { return m_duplicateWordHighlightColor; }
+        {
+        return m_duplicateWordHighlightColor;
+        }
+
     void SetDuplicateWordHighlightColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_duplicateWordHighlightColor = color; }
+            {
+            m_duplicateWordHighlightColor = color;
+            }
         }
+
     // color for wordy items
     [[nodiscard]]
     wxColour GetWordyPhraseHighlightColor() const noexcept
-        { return m_wordyPhraseHighlightColor; }
+        {
+        return m_wordyPhraseHighlightColor;
+        }
+
     void SetWordyPhraseHighlightColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_wordyPhraseHighlightColor = color; }
+            {
+            m_wordyPhraseHighlightColor = color;
+            }
         }
+
     // text view font and color
     [[nodiscard]]
     wxFont GetTextViewFont() const noexcept
-        { return m_textViewFont; }
+        {
+        return m_textViewFont;
+        }
+
     void SetTextViewFont(const wxFont& font)
         {
         if (font.IsOk())
-            { m_textViewFont = font; }
+            {
+            m_textViewFont = font;
+            }
         }
+
     // text color
     [[nodiscard]]
     wxColour GetTextFontColor() const noexcept
-        { return m_fontColor; }
+        {
+        return m_fontColor;
+        }
+
     void SetTextFontColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_fontColor = color; }
+            {
+            m_fontColor = color;
+            }
         }
+
     // dolch colors
     [[nodiscard]]
     wxColour GetDolchConjunctionsColor() const noexcept
-        { return m_dolchConjunctionsColor; }
+        {
+        return m_dolchConjunctionsColor;
+        }
+
     void SetDolchConjunctionsColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_dolchConjunctionsColor = color; }
+            {
+            m_dolchConjunctionsColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetDolchPrepositionsColor() const noexcept
-        { return m_dolchPrepositionsColor; }
+        {
+        return m_dolchPrepositionsColor;
+        }
+
     void SetDolchPrepositionsColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_dolchPrepositionsColor = color; }
+            {
+            m_dolchPrepositionsColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetDolchPronounsColor() const noexcept
-        { return m_dolchPronounsColor; }
+        {
+        return m_dolchPronounsColor;
+        }
+
     void SetDolchPronounsColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_dolchPronounsColor = color; }
+            {
+            m_dolchPronounsColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetDolchAdverbsColor() const noexcept
-        { return m_dolchAdverbsColor; }
+        {
+        return m_dolchAdverbsColor;
+        }
+
     void SetDolchAdverbsColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_dolchAdverbsColor = color; }
+            {
+            m_dolchAdverbsColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetDolchAdjectivesColor() const noexcept
-        { return m_dolchAdjectivesColor; }
+        {
+        return m_dolchAdjectivesColor;
+        }
+
     void SetDolchAdjectivesColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_dolchAdjectivesColor = color; }
+            {
+            m_dolchAdjectivesColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetDolchVerbsColor() const noexcept
-        { return m_dolchVerbsColor; }
+        {
+        return m_dolchVerbsColor;
+        }
+
     void SetDolchVerbsColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_dolchVerbsColor = color; }
+            {
+            m_dolchVerbsColor = color;
+            }
         }
+
     [[nodiscard]]
     wxColour GetDolchNounColor() const noexcept
-        { return m_dolchNounColor; }
+        {
+        return m_dolchNounColor;
+        }
+
     void SetDolchNounColor(const wxColour& color)
         {
         if (color.IsOk())
-            { m_dolchNounColor = color; }
+            {
+            m_dolchNounColor = color;
+            }
         }
 
     [[nodiscard]]
     bool IsHighlightingDolchConjunctions() const noexcept
-        { return m_highlightDolchConjunctions; }
+        {
+        return m_highlightDolchConjunctions;
+        }
+
     void HighlightDolchConjunctions(const bool highlight = true) noexcept
-        { m_highlightDolchConjunctions = highlight; }
+        {
+        m_highlightDolchConjunctions = highlight;
+        }
 
     [[nodiscard]]
     bool IsHighlightingDolchPrepositions() const noexcept
-        { return m_highlightDolchPrepositions; }
+        {
+        return m_highlightDolchPrepositions;
+        }
+
     void HighlightDolchPrepositions(const bool highlight = true) noexcept
-        { m_highlightDolchPrepositions = highlight; }
+        {
+        m_highlightDolchPrepositions = highlight;
+        }
 
     [[nodiscard]]
     bool IsHighlightingDolchPronouns() const noexcept
-        { return m_highlightDolchPronouns; }
+        {
+        return m_highlightDolchPronouns;
+        }
+
     void HighlightDolchPronouns(const bool highlight = true) noexcept
-        { m_highlightDolchPronouns = highlight; }
+        {
+        m_highlightDolchPronouns = highlight;
+        }
 
     [[nodiscard]]
     bool IsHighlightingDolchAdverbs() const noexcept
-        { return m_highlightDolchAdverbs; }
+        {
+        return m_highlightDolchAdverbs;
+        }
+
     void HighlightDolchAdverbs(const bool highlight = true) noexcept
-        { m_highlightDolchAdverbs = highlight; }
+        {
+        m_highlightDolchAdverbs = highlight;
+        }
 
     [[nodiscard]]
     bool IsHighlightingDolchAdjectives() const noexcept
-        { return m_highlightDolchAdjectives; }
+        {
+        return m_highlightDolchAdjectives;
+        }
+
     void HighlightDolchAdjectives(const bool highlight = true) noexcept
-        { m_highlightDolchAdjectives = highlight; }
+        {
+        m_highlightDolchAdjectives = highlight;
+        }
 
     [[nodiscard]]
     bool IsHighlightingDolchVerbs() const noexcept
-        { return m_highlightDolchVerbs; }
+        {
+        return m_highlightDolchVerbs;
+        }
+
     void HighlightDolchVerbs(const bool highlight = true) noexcept
-        { m_highlightDolchVerbs = highlight; }
+        {
+        m_highlightDolchVerbs = highlight;
+        }
 
     [[nodiscard]]
     bool IsHighlightingDolchNouns() const noexcept
-        { return m_highlightDolchNouns; }
+        {
+        return m_highlightDolchNouns;
+        }
+
     void HighlightDolchNouns(const bool highlight = true) noexcept
-        { m_highlightDolchNouns = highlight; }
+        {
+        m_highlightDolchNouns = highlight;
+        }
 
     /// @returns The background color used for the text windows
     [[nodiscard]]
     wxColour GetTextReportBackgroundColor() const;
 
-    void SetExportFolder(const wxString& folder)
-        { m_exportFolder = folder; }
+    void SetExportFolder(const wxString& folder) { m_exportFolder = folder; }
+
     [[nodiscard]]
     wxString GetExportFolder() const
-        { return m_exportFolder; }
-    void SetExportFile(const wxString& file)
-        { m_exportFile = file; }
+        {
+        return m_exportFolder;
+        }
+
+    void SetExportFile(const wxString& file) { m_exportFile = file; }
+
     [[nodiscard]]
     wxString GetExportFile() const
-        { return m_exportFile; }
+        {
+        return m_exportFile;
+        }
 
-    static void SetExportTextViewExt(const wxString& extension)
-        { m_exportTextViewExt = extension; }
+    static void SetExportTextViewExt(const wxString& extension) { m_exportTextViewExt = extension; }
+
     [[nodiscard]]
     static wxString GetExportTextViewExt()
-        { return m_exportTextViewExt; }
+        {
+        return m_exportTextViewExt;
+        }
 
-    static void SetExportListExt(const wxString& extension)
-        { m_exportListExt = extension; }
+    static void SetExportListExt(const wxString& extension) { m_exportListExt = extension; }
+
     [[nodiscard]]
     static wxString GetExportListExt()
-        { return m_exportListExt; }
+        {
+        return m_exportListExt;
+        }
 
-    static void SetExportGraphExt(const wxString& extension)
-        { m_exportGraphExt = extension; }
+    static void SetExportGraphExt(const wxString& extension) { m_exportGraphExt = extension; }
+
     [[nodiscard]]
     static wxString GetExportGraphExt()
-        { return m_exportGraphExt; }
+        {
+        return m_exportGraphExt;
+        }
 
     static void ExportHardWordLists(const bool exportItem) noexcept
-        { m_exportHardWordLists = exportItem; }
+        {
+        m_exportHardWordLists = exportItem;
+        }
+
     [[nodiscard]]
     static bool IsExportingHardWordLists() noexcept
-        { return m_exportHardWordLists; }
+        {
+        return m_exportHardWordLists;
+        }
 
     static void ExportSentencesBreakdown(const bool exportItem) noexcept
-        { m_exportSentencesBreakdown = exportItem; }
+        {
+        m_exportSentencesBreakdown = exportItem;
+        }
+
     [[nodiscard]]
     static bool IsExportingSentencesBreakdown() noexcept
-        { return m_exportSentencesBreakdown; }
+        {
+        return m_exportSentencesBreakdown;
+        }
 
-    static void ExportGraphs(const bool exportItem) noexcept
-        { m_exportGraphs = exportItem; }
+    static void ExportGraphs(const bool exportItem) noexcept { m_exportGraphs = exportItem; }
+
     [[nodiscard]]
     static bool IsExportingGraphs() noexcept
-        { return m_exportGraphs; }
+        {
+        return m_exportGraphs;
+        }
 
     static void ExportTestResults(const bool exportItem) noexcept
-        { m_exportTestResults = exportItem; }
+        {
+        m_exportTestResults = exportItem;
+        }
+
     [[nodiscard]]
     static bool IsExportingTestResults() noexcept
-        { return m_exportTestResults; }
+        {
+        return m_exportTestResults;
+        }
 
     static void ExportStatistics(const bool exportItem) noexcept
-        { m_exportStatistics = exportItem; }
+        {
+        m_exportStatistics = exportItem;
+        }
+
     [[nodiscard]]
     static bool IsExportingStatistics() noexcept
-        { return m_exportStatistics; }
+        {
+        return m_exportStatistics;
+        }
 
-    static void ExportWordiness(const bool exportItem) noexcept
-        { m_exportWordiness = exportItem; }
-    static bool IsExportingWordiness() noexcept
-        { return m_exportWordiness; }
+    static void ExportWordiness(const bool exportItem) noexcept { m_exportWordiness = exportItem; }
+
+    static bool IsExportingWordiness() noexcept { return m_exportWordiness; }
 
     static void ExportSightWords(const bool exportItem) noexcept
-        { m_exportSightWords = exportItem; }
+        {
+        m_exportSightWords = exportItem;
+        }
+
     [[nodiscard]]
     static bool IsExportingSightWords() noexcept
-        { return m_exportSightWords; }
+        {
+        return m_exportSightWords;
+        }
 
-    static void ExportWarnings(const bool exportItem) noexcept
-        { m_exportWarnings = exportItem; }
+    static void ExportWarnings(const bool exportItem) noexcept { m_exportWarnings = exportItem; }
+
     [[nodiscard]]
     static bool IsExportingWarnings() noexcept
-        { return m_exportWarnings; }
+        {
+        return m_exportWarnings;
+        }
 
-    static void ExportLists(const bool exportItem) noexcept
-        { m_exportingLists = exportItem; }
+    static void ExportLists(const bool exportItem) noexcept { m_exportingLists = exportItem; }
+
     [[nodiscard]]
     static bool IsExportingLists() noexcept
-        { return m_exportingLists; }
+        {
+        return m_exportingLists;
+        }
 
     static void ExportTextReports(const bool exportItem) noexcept
-        { m_exportingTextReports = exportItem; }
+        {
+        m_exportingTextReports = exportItem;
+        }
+
     [[nodiscard]]
     static bool IsExportingTextReports() noexcept
-        { return m_exportingTextReports; }
+        {
+        return m_exportingTextReports;
+        }
 
     [[nodiscard]]
     static Wisteria::UI::ImageExportOptions& GetImageExportOptions() noexcept
-        { return m_imageExportOptions; }
+        {
+        return m_imageExportOptions;
+        }
 
     void LoadSettingsFile(const wchar_t* settingsFileText);
 
@@ -650,6 +1082,7 @@ public:
     static void UpdatePrinterHeaderAndFooters(Wisteria::UI::HtmlTableWindow* window);
 
     virtual void RefreshGraphs() {}
+
     virtual void RefreshStatisticsReports() {}
 
     /// @brief Determines whether the project is safe to have its options or tests changed.
@@ -659,71 +1092,91 @@ public:
         {
         if (IsProcessing())
             {
-            wxMessageBox(_(L"Project still being reloaded. Please wait..."),
-                    GetTitle(), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(_(L"Project still being reloaded. Please wait..."), GetTitle(),
+                         wxOK | wxICON_EXCLAMATION);
             return false;
             }
         else
-            { return true; }
+            {
+            return true;
+            }
         }
 
     /// @returns The path part of the project file location.
     [[nodiscard]]
     wxString GetProjectDirectory() const override
-        { return wxFileName(GetFilename()).GetPath(); }
+        {
+        return wxFileName(GetFilename()).GetPath();
+        }
 
     /// how file paths are shown in batch projects
-    void SetFilePathTruncationMode(const ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode TruncMode) noexcept
-        { m_filePathTruncationMode = TruncMode; }
+    void SetFilePathTruncationMode(
+        const ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode TruncMode) noexcept
+        {
+        m_filePathTruncationMode = TruncMode;
+        }
+
     [[nodiscard]]
     ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode GetFilePathTruncationMode() const noexcept
-        { return m_filePathTruncationMode; }
+        {
+        return m_filePathTruncationMode;
+        }
 
     /// event functions
     bool OnCloseDocument() override;
 
-    void SetModifiedFlag() override
-        { Modify(true); }
-    void SetDocumentTitle(const wxString& title) override
-        { SetTitle(title); }
+    void SetModifiedFlag() override { Modify(true); }
+
+    void SetDocumentTitle(const wxString& title) override { SetTitle(title); }
 
     // used for the contents of a project (zip) file
     [[nodiscard]]
     static const wxString ProjectSettingsFileLabel()
-        { return L"settings.xml"; }
+        {
+        return L"settings.xml";
+        }
+
     [[nodiscard]]
     static const wxString ProjectContentFileLabel()
-        { return L"content0.txt"; }
-protected:
+        {
+        return L"content0.txt";
+        }
+
+  protected:
     /// @returns The goal values of a test goal (if specified in the project).
-    std::tuple<double,double> GetGoalsForTest(const wxString& testName) const
+    std::tuple<double, double> GetGoalsForTest(const wxString& testName) const
         {
         const auto foundTest = GetTestGoals().find(TestGoal{ testName.wc_str() });
         return (foundTest == GetTestGoals().cend()) ?
-            std::make_tuple(std::numeric_limits<double>::quiet_NaN(),
-                std::numeric_limits<double>::quiet_NaN()) :
-            std::make_tuple(foundTest->GetMinGoal(), foundTest->GetMaxGoal());
+                   std::make_tuple(std::numeric_limits<double>::quiet_NaN(),
+                                   std::numeric_limits<double>::quiet_NaN()) :
+                   std::make_tuple(foundTest->GetMinGoal(), foundTest->GetMaxGoal());
         }
+
     /// @returns The goal values of a statistic goal (if specified in the project).
-    std::tuple<double,double> GetGoalsForStatistic(const wxString& statName) const
+    std::tuple<double, double> GetGoalsForStatistic(const wxString& statName) const
         {
         const auto foundStat = GetStatGoals().find(TestGoal{ statName.wc_str() });
         return (foundStat == GetStatGoals().cend()) ?
-            std::make_tuple(std::numeric_limits<double>::quiet_NaN(),
-                std::numeric_limits<double>::quiet_NaN()) :
-            std::make_tuple(foundStat->GetMinGoal(), foundStat->GetMaxGoal());
+                   std::make_tuple(std::numeric_limits<double>::quiet_NaN(),
+                                   std::numeric_limits<double>::quiet_NaN()) :
+                   std::make_tuple(foundStat->GetMinGoal(), foundStat->GetMaxGoal());
         }
+
     /// @param Loads and image from given path, and will also search for the
     ///     file in the project directory if not found.
     /// @param[in,out] filePath The image file path. Will be updated if not found
     ///     but then found in the project folder.
     /// @param[out] img The loaded image.
     void LoadImageAndPath(wxString& filePath, wxBitmapBundle& img);
+
     [[nodiscard]]
     wxBitmap LoadBitmapFromProject(const wxString& fileName) const
         {
         if (!wxFile::Exists(GetFilename()) || fileName.empty())
-            { return wxNullBitmap; }
+            {
+            return wxNullBitmap;
+            }
         try
             {
             MemoryMappedFile sourceFile;
@@ -733,8 +1186,11 @@ protected:
             return cat.ReadBitmap(fileName, wxBITMAP_TYPE_ANY);
             }
         catch (...)
-            { return wxNullBitmap; }
+            {
+            return wxNullBitmap;
+            }
         }
+
     /// @returns the application's printer data.
     [[nodiscard]]
     static wxPrintData* GetPrintData();
@@ -754,15 +1210,14 @@ protected:
     wxBitmapBundle m_plotBackgroundImage;
     wxBitmapBundle m_plotBackgroundImageWithEffect;
     wxBitmapBundle m_graphStippleImage;
-    std::shared_ptr<Wisteria::Images::Schemes::ImageScheme> m_graphImageScheme
-        {
+    std::shared_ptr<Wisteria::Images::Schemes::ImageScheme> m_graphImageScheme{
         std::make_shared<Wisteria::Images::Schemes::ImageScheme>(
             std::vector<wxBitmapBundle>{ wxBitmapBundle{} })
-        };
-    std::shared_ptr<Wisteria::Brushes::Schemes::BrushScheme> m_graphBrushScheme
-        {
-        std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(Wisteria::Colors::Schemes::Campfire{})
-        };
+    };
+    std::shared_ptr<Wisteria::Brushes::Schemes::BrushScheme> m_graphBrushScheme{
+        std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
+            Wisteria::Colors::Schemes::Campfire{})
+    };
     wxString m_graphColorSchemeName{ _DT(L"campfire") };
     wxString m_plotBackGroundImagePath;
     wxString m_stippleImagePath;
@@ -789,21 +1244,22 @@ protected:
     wxColour m_rightTitleFontColor;
     wxFont m_rightTitleFont;
     wxColour m_graphInvalidAreaColor;
-    Wisteria::Graphs::RaygorStyle m_raygorStyle
-        { Wisteria::Graphs::RaygorStyle::BaldwinKaufman };
+    Wisteria::Graphs::RaygorStyle m_raygorStyle{ Wisteria::Graphs::RaygorStyle::BaldwinKaufman };
     bool m_fleschChartConnectPoints{ true };
     bool m_fleschChartSyllableRulerDocGroups{ false };
     bool m_useEnglishLabelsGermanLix{ false };
 
     // Histogram options
-    Wisteria::Graphs::Histogram::BinningMethod m_histogramBinningMethod
-        { Wisteria::Graphs::Histogram::BinningMethod::BinByIntegerRange };
-    Wisteria::BinLabelDisplay m_histrogramBinLabelDisplayMethod
-        { Wisteria::BinLabelDisplay::BinValue };
-    Wisteria::RoundingMethod m_histrogramRoundingMethod
-        { Wisteria::RoundingMethod::RoundDown };
-    Wisteria::Graphs::Histogram::IntervalDisplay m_histrogramIntervalDisplay
-        { Wisteria::Graphs::Histogram::IntervalDisplay::Cutpoints };
+    Wisteria::Graphs::Histogram::BinningMethod m_histogramBinningMethod{
+        Wisteria::Graphs::Histogram::BinningMethod::BinByIntegerRange
+    };
+    Wisteria::BinLabelDisplay m_histrogramBinLabelDisplayMethod{
+        Wisteria::BinLabelDisplay::BinValue
+    };
+    Wisteria::RoundingMethod m_histrogramRoundingMethod{ Wisteria::RoundingMethod::RoundDown };
+    Wisteria::Graphs::Histogram::IntervalDisplay m_histrogramIntervalDisplay{
+        Wisteria::Graphs::Histogram::IntervalDisplay::Cutpoints
+    };
     wxColour m_histogramBarColor{ wxColour{ 182, 164, 204 } }; // lavender
     uint8_t m_histogramBarOpacity{ wxALPHA_OPAQUE };
     Wisteria::BoxEffect m_histogramBarEffect{ Wisteria::BoxEffect::Glassy };
@@ -854,8 +1310,9 @@ protected:
     bool m_highlightDolchNouns{ false };
 
     // batch project options
-    ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_filePathTruncationMode
-        { ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames };
+    ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_filePathTruncationMode{
+        ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames
+    };
 
     //"Export All" options
     // different for each document

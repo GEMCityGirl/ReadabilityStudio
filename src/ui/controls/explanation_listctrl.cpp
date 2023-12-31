@@ -12,21 +12,23 @@ using namespace Wisteria::UI;
 
 wxIMPLEMENT_DYNAMIC_CLASS(ExplanationListCtrl, wxSplitterWindow);
 
-ExplanationListExportOptions ExplanationListCtrl::m_lastCopyOption = ExplanationListExportOptions::ExportGrid;
-ExplanationListExportOptions ExplanationListCtrl::m_lastPrintOption = ExplanationListExportOptions::ExportGrid;
-ExplanationListExportOptions ExplanationListCtrl::m_lastSaveOption = ExplanationListExportOptions::ExportBoth;
+ExplanationListExportOptions ExplanationListCtrl::m_lastCopyOption =
+    ExplanationListExportOptions::ExportGrid;
+ExplanationListExportOptions ExplanationListCtrl::m_lastPrintOption =
+    ExplanationListExportOptions::ExportGrid;
+ExplanationListExportOptions ExplanationListCtrl::m_lastSaveOption =
+    ExplanationListExportOptions::ExportBoth;
 
 //------------------------------------------------------
 ExplanationListCtrl::ExplanationListCtrl(wxWindow* parent, wxWindowID id,
-                        const wxPoint& point /*= wxDefaultPosition*/,
-                        const wxSize& size /*= wxDefaultSize*/,
-                        const wxString& name /*= wxString{}*/) :
-    wxSplitterWindow(parent, id, point, size, wxCLIP_CHILDREN|wxSP_NOBORDER, name)
+                                         const wxPoint& point /*= wxDefaultPosition*/,
+                                         const wxSize& size /*= wxDefaultSize*/,
+                                         const wxString& name /*= wxString{}*/)
+    : wxSplitterWindow(parent, id, point, size, wxCLIP_CHILDREN | wxSP_NOBORDER, name)
     {
-    m_results_view = new ListCtrlEx(this, id,
-                        wxDefaultPosition, wxDefaultSize,
-                        wxLC_SINGLE_SEL|wxLC_REPORT|wxLC_VIRTUAL|wxBORDER_SUNKEN,
-                        wxDefaultValidator);
+    m_results_view = new ListCtrlEx(this, id, wxDefaultPosition, wxDefaultSize,
+                                    wxLC_SINGLE_SEL | wxLC_REPORT | wxLC_VIRTUAL | wxBORDER_SUNKEN,
+                                    wxDefaultValidator);
     GetResultsListCtrl()->SetVirtualDataProvider(m_data);
     GetResultsListCtrl()->SetVirtualDataSize(0);
     GetResultsListCtrl()->EnableGridLines();
@@ -64,14 +66,16 @@ void ExplanationListCtrl::OnPreview([[maybe_unused]] wxCommandEvent& event)
     choices.Add(_(L"Grid"));
     choices.Add(_(L"Explanations"));
     descriptions.Add(_(L"Print the grid."));
-    descriptions.Add(_(L"Print a report of the explanations associated with the items in the grid."));
-    RadioBoxDlg choiceDlg(this,
-        _(L"Print Preview"), wxString{},
-        _(L"Select which section to print preview:"), _(L"Print Preview"),
-        choices, descriptions);
+    descriptions.Add(
+        _(L"Print a report of the explanations associated with the items in the grid."));
+    RadioBoxDlg choiceDlg(this, _(L"Print Preview"), wxString{},
+                          _(L"Select which section to print preview:"), _(L"Print Preview"),
+                          choices, descriptions);
     choiceDlg.SetSelection(static_cast<int>(m_lastPrintOption));
     if (choiceDlg.ShowModal() != wxID_OK)
-        { return; }
+        {
+        return;
+        }
     PrintPreview(static_cast<ExplanationListExportOptions>(choiceDlg.GetSelection()));
     m_lastPrintOption = static_cast<ExplanationListExportOptions>(choiceDlg.GetSelection());
     }
@@ -84,26 +88,31 @@ void ExplanationListCtrl::OnPrint([[maybe_unused]] wxCommandEvent& event)
     choices.Add(_(L"Explanations"));
     choices.Add(_(L"Both"));
     descriptions.Add(_(L"Print the grid."));
-    descriptions.Add(_(L"Print a report of the explanations associated with the items in the grid."));
+    descriptions.Add(
+        _(L"Print a report of the explanations associated with the items in the grid."));
     descriptions.Add(_(L"Print the grid and explanations."));
-    RadioBoxDlg choiceDlg(this,
-        _(L"Print List"), wxString{}, _(L"Select which section to print:"), _(L"Print"),
-        choices, descriptions);
+    RadioBoxDlg choiceDlg(this, _(L"Print List"), wxString{}, _(L"Select which section to print:"),
+                          _(L"Print"), choices, descriptions);
     choiceDlg.SetSelection(static_cast<int>(m_lastPrintOption));
     if (choiceDlg.ShowModal() != wxID_OK)
-        { return; }
+        {
+        return;
+        }
     Print(static_cast<ExplanationListExportOptions>(choiceDlg.GetSelection()));
     m_lastPrintOption = static_cast<ExplanationListExportOptions>(choiceDlg.GetSelection());
     }
 
 //------------------------------------------------------
-void ExplanationListCtrl::PrintPreview(const ExplanationListExportOptions exportOptions /*= ExportBoth*/)
+void ExplanationListCtrl::PrintPreview(
+    const ExplanationListExportOptions exportOptions /*= ExportBoth*/)
     {
 #if defined(__WXMSW__)
     if (exportOptions == ExplanationListExportOptions::ExportGrid)
         {
         if (m_printData)
-            { GetResultsListCtrl()->SetPrinterSettings(m_printData); }
+            {
+            GetResultsListCtrl()->SetPrinterSettings(m_printData);
+            }
         GetResultsListCtrl()->SetLabel(GetLabel());
         GetResultsListCtrl()->SetLeftPrinterHeader(GetLeftPrinterHeader());
         GetResultsListCtrl()->SetCenterPrinterHeader(GetCenterPrinterHeader());
@@ -165,10 +174,12 @@ void ExplanationListCtrl::PrintPreview(const ExplanationListExportOptions export
         wxPrintPreview* preview = new wxPrintPreview(printOut, printOutForPrinting, m_printData);
         if (!preview->IsOk())
             {
-            wxDELETE(preview); wxDELETE(dc); wxDELETE(dc2);
+            wxDELETE(preview);
+            wxDELETE(dc);
+            wxDELETE(dc2);
             wxMessageBox(_(L"An error occurred while previewing.\n"
                            "Your default printer may not be set correctly."),
-                         _(L"Print Preview"), wxOK|wxICON_QUESTION);
+                         _(L"Print Preview"), wxOK | wxICON_QUESTION);
             return;
             }
         int x, y, width, height;
@@ -180,7 +191,8 @@ void ExplanationListCtrl::PrintPreview(const ExplanationListExportOptions export
         frame->Initialize();
         frame->Show(true);
 
-        delete dc; delete dc2;
+        delete dc;
+        delete dc2;
         }
 #else
     wxFAIL_MSG(L"Print preview is Windows only!");
@@ -194,7 +206,9 @@ void ExplanationListCtrl::Print(const ExplanationListExportOptions exportOptions
         exportOptions == ExplanationListExportOptions::ExportBoth)
         {
         if (m_printData)
-            { GetResultsListCtrl()->SetPrinterSettings(m_printData); }
+            {
+            GetResultsListCtrl()->SetPrinterSettings(m_printData);
+            }
         GetResultsListCtrl()->SetLabel(GetLabel());
         GetResultsListCtrl()->SetLeftPrinterHeader(GetLeftPrinterHeader());
         GetResultsListCtrl()->SetCenterPrinterHeader(GetCenterPrinterHeader());
@@ -223,30 +237,32 @@ void ExplanationListCtrl::Print(const ExplanationListExportOptions exportOptions
             {
             auto pos = m_explanations.find(GetResultsListCtrl()->GetItemTextEx(i, 0));
             if (pos != m_explanations.end())
-                { printOut->AddTable(pos->second); }
+                {
+                printOut->AddTable(pos->second);
+                }
             }
 
-    #if defined(__WXMSW__) || defined(__WXOSX__)
+#if defined(__WXMSW__) || defined(__WXOSX__)
         wxPrinterDC* dc = nullptr;
-    #else
+#else
         wxPostScriptDC* dc = nullptr;
-    #endif
+#endif
         if (m_printData)
             {
-        #if defined(__WXMSW__) || defined(__WXOSX__)
+#if defined(__WXMSW__) || defined(__WXOSX__)
             dc = new wxPrinterDC(*m_printData);
-        #else
+#else
             dc = new wxPostScriptDC(*m_printData);
-        #endif
+#endif
             }
         else
             {
             wxPrintData pd;
-        #if defined(__WXMSW__) || defined(__WXOSX__)
+#if defined(__WXMSW__) || defined(__WXOSX__)
             dc = new wxPrinterDC(pd);
-        #else
+#else
             dc = new wxPostScriptDC(pd);
-        #endif
+#endif
             }
         printOut->SetDC(dc);
 
@@ -255,15 +271,14 @@ void ExplanationListCtrl::Print(const ExplanationListExportOptions exportOptions
             {
             printer.GetPrintDialogData().SetPrintData(*m_printData);
             }
-        if (!printer.Print(this, printOut, true) )
+        if (!printer.Print(this, printOut, true))
             {
             // Just show a message if a real error occurred. They may have just cancelled.
             if (printer.GetLastError() == wxPRINTER_ERROR)
                 {
-                wxMessageBox(
-                    _(L"An error occurred while printing.\n"
-                      "Your default printer may not be set correctly."),
-                    _(L"Print"), wxOK|wxICON_QUESTION);
+                wxMessageBox(_(L"An error occurred while printing.\n"
+                               "Your default printer may not be set correctly."),
+                             _(L"Print"), wxOK | wxICON_QUESTION);
                 }
             }
         if (m_printData)
@@ -276,8 +291,9 @@ void ExplanationListCtrl::Print(const ExplanationListExportOptions exportOptions
     }
 
 //------------------------------------------------------
-bool ExplanationListCtrl::Save(const wxFileName& filePath,
-                               const ExplanationListExportOptions exportOptions /*= SaveBoth*/) const
+bool ExplanationListCtrl::Save(
+    const wxFileName& filePath,
+    const ExplanationListExportOptions exportOptions /*= SaveBoth*/) const
     {
     // create the folder to the filepath, if necessary
     wxFileName::Mkdir(filePath.GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
@@ -297,28 +313,29 @@ bool ExplanationListCtrl::Save(const wxFileName& filePath,
             {
             auto pos = m_explanations.find(GetResultsListCtrl()->GetItemTextEx(i, 0));
             if (pos != m_explanations.end())
-                { descriptionHtml += pos->second + L"<br />\n"; }
+                {
+                descriptionHtml += pos->second + L"<br />\n";
+                }
             }
         }
 
-    resultsHtml.insert(0,
-        wxString::Format(
-            L"<!DOCTYPE html>\n<html>\n<head>"
-            "\n    <meta http-equiv='content-type' content='text/html; charset=UTF-8' />"
-            "\n    <title>%s</title>"
-            "\n</head>\n<body>\n",
-            GetLabel()));
+    resultsHtml.insert(
+        0, wxString::Format(
+               L"<!DOCTYPE html>\n<html>\n<head>"
+               "\n    <meta http-equiv='content-type' content='text/html; charset=UTF-8' />"
+               "\n    <title>%s</title>"
+               "\n</head>\n<body>\n",
+               GetLabel()));
     resultsHtml += L"\n<br />\n" + descriptionHtml + L"\n</body>\n</html>";
 
     lily_of_the_valley::html_format::strip_hyperlinks(resultsHtml);
 
     wxFileName(filePath.GetFullPath()).SetPermissions(wxS_DEFAULT);
     wxFile file(filePath.GetFullPath(), wxFile::write);
-    if (!file.Write(resultsHtml) )
+    if (!file.Write(resultsHtml))
         {
-        wxMessageBox(
-            wxString::Format(_(L"Failed to save document\n(%s)."), filePath.GetFullPath()),
-            _(L"Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(wxString::Format(_(L"Failed to save document\n(%s)."), filePath.GetFullPath()),
+                     _(L"Error"), wxOK | wxICON_EXCLAMATION);
         return false;
         }
     return true;
@@ -327,36 +344,37 @@ bool ExplanationListCtrl::Save(const wxFileName& filePath,
 //------------------------------------------------------
 void ExplanationListCtrl::OnSave([[maybe_unused]] wxCommandEvent& event)
     {
-    wxFileDialog dialog
-            (
-            this,
-            _(L"Save As"),
-            wxString{},
-            GetLabel(),
-            _DT(L"HTML (*.htm;*.html)|*.htm;*.html"),
-            wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+    wxFileDialog dialog(this, _(L"Save As"), wxString{}, GetLabel(),
+                        _DT(L"HTML (*.htm;*.html)|*.htm;*.html"),
+                        wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
 
     if (dialog.ShowModal() != wxID_OK)
-        { return; }
+        {
+        return;
+        }
 
     wxFileName filePath = dialog.GetPath();
     // in case the extension is missing then use the selected filter
     if (filePath.GetExt().IsEmpty())
-        { filePath.SetExt(L"htm"); }
+        {
+        filePath.SetExt(L"htm");
+        }
 
     wxArrayString choices, descriptions;
     choices.Add(_(L"Grid"));
     choices.Add(_(L"Explanations"));
     choices.Add(_(L"Both"));
     descriptions.Add(_(L"Save the grid."));
-    descriptions.Add(_(L"Save a report of the explanations associated with the items in the grid."));
+    descriptions.Add(
+        _(L"Save a report of the explanations associated with the items in the grid."));
     descriptions.Add(_(L"Save the grid and explanations."));
-    RadioBoxDlg choiceDlg(this,
-        _(L"Save List"), wxString{}, _(L"Select which section to save:"), _(L"Save"),
-        choices, descriptions);
+    RadioBoxDlg choiceDlg(this, _(L"Save List"), wxString{}, _(L"Select which section to save:"),
+                          _(L"Save"), choices, descriptions);
     choiceDlg.SetSelection(static_cast<int>(m_lastSaveOption));
     if (choiceDlg.ShowModal() != wxID_OK)
-        { return; }
+        {
+        return;
+        }
     Save(filePath, static_cast<ExplanationListExportOptions>(choiceDlg.GetSelection()));
     m_lastSaveOption = static_cast<ExplanationListExportOptions>(choiceDlg.GetSelection());
     }
@@ -371,12 +389,13 @@ void ExplanationListCtrl::OnCopy(wxCommandEvent& event)
     descriptions.Add(_(L"Copy the selected item in the grid."));
     descriptions.Add(_(L"Copy all items in the grid."));
     descriptions.Add(_(L"Copy the explanation of the selected item in the grid."));
-    RadioBoxDlg choiceDlg(this,
-        _(L"Copy List"), wxString{}, _(L"Select which section to copy:"), _(L"Copy"),
-        choices, descriptions);
+    RadioBoxDlg choiceDlg(this, _(L"Copy List"), wxString{}, _(L"Select which section to copy:"),
+                          _(L"Copy"), choices, descriptions);
     choiceDlg.SetSelection(static_cast<int>(m_lastCopyOption));
     if (choiceDlg.ShowModal() != wxID_OK)
-        { return; }
+        {
+        return;
+        }
     switch (choiceDlg.GetSelection())
         {
     case 0:
@@ -409,35 +428,39 @@ void ExplanationListCtrl::OnResize(wxSizeEvent& event)
 //------------------------------------------------------
 void ExplanationListCtrl::OnItemSelected(wxListEvent& event)
     {
-    GetExplanationView()->SetPage(
-        wxString::Format(L"<body bgcolor=%s text=%s link=%s>%s</body>",
-            #ifdef __WXOSX__
-                wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW).GetAsString(wxC2S_HTML_SYNTAX),
-                wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT).GetAsString(wxC2S_HTML_SYNTAX),
-            #else
-                GetBackgroundColour().GetAsString(wxC2S_HTML_SYNTAX),
-                GetForegroundColour().GetAsString(wxC2S_HTML_SYNTAX),
-            #endif
-                wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT).GetAsString(wxC2S_HTML_SYNTAX),
-                m_explanations[GetResultsListCtrl()->GetItemTextEx(event.GetIndex(), 0)]));
+    GetExplanationView()->SetPage(wxString::Format(
+        L"<body bgcolor=%s text=%s link=%s>%s</body>",
+#ifdef __WXOSX__
+        wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW).GetAsString(wxC2S_HTML_SYNTAX),
+        wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT).GetAsString(wxC2S_HTML_SYNTAX),
+#else
+        GetBackgroundColour().GetAsString(wxC2S_HTML_SYNTAX),
+        GetForegroundColour().GetAsString(wxC2S_HTML_SYNTAX),
+#endif
+        wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT).GetAsString(wxC2S_HTML_SYNTAX),
+        m_explanations[GetResultsListCtrl()->GetItemTextEx(event.GetIndex(), 0)]));
     }
 
 //------------------------------------------------------
 void ExplanationListCtrl::FitWindows()
     {
-    if (IsSplit() )
+    if (IsSplit())
         {
         if (GetResultsListCtrl()->GetItemCount())
             {
             wxRect rect;
             GetResultsListCtrl()->GetItemRect(GetResultsListCtrl()->GetItemCount() - 1, rect);
             SetSashPosition(
-                std::min<double>(rect.GetBottom() +
-                         wxSystemSettings::GetMetric(wxSYS_VSCROLL_X, GetResultsListCtrl()) + 5,
-                         GetSize().GetHeight() * .5), true);
+                std::min<double>(
+                    rect.GetBottom() +
+                        wxSystemSettings::GetMetric(wxSYS_VSCROLL_X, GetResultsListCtrl()) + 5,
+                    GetSize().GetHeight() * .5),
+                true);
             }
         else
-            { SetSashPosition(static_cast<int>(GetSize().GetHeight() * .33), true); }
+            {
+            SetSashPosition(static_cast<int>(GetSize().GetHeight() * .33), true);
+            }
         }
     }
 
@@ -447,17 +470,17 @@ void ExplanationListCtrl::UpdateExplanationDisplay()
     const long selected = GetResultsListCtrl()->GetFirstSelected();
     if (selected != wxNOT_FOUND)
         {
-        GetExplanationView()->SetPage(
-            wxString::Format(L"<body bgcolor=%s text=%s link=%s>%s</body>",
-                #ifdef __WXOSX__
-                    wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW).GetAsString(wxC2S_HTML_SYNTAX),
-                    wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT).GetAsString(wxC2S_HTML_SYNTAX),
-                #else
-                    GetBackgroundColour().GetAsString(wxC2S_HTML_SYNTAX),
-                    GetForegroundColour().GetAsString(wxC2S_HTML_SYNTAX),
-                #endif
-                    wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT).GetAsString(wxC2S_HTML_SYNTAX),
-                    m_explanations[GetResultsListCtrl()->GetItemTextEx(selected, 0)]));
+        GetExplanationView()->SetPage(wxString::Format(
+            L"<body bgcolor=%s text=%s link=%s>%s</body>",
+#ifdef __WXOSX__
+            wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW).GetAsString(wxC2S_HTML_SYNTAX),
+            wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT).GetAsString(wxC2S_HTML_SYNTAX),
+#else
+            GetBackgroundColour().GetAsString(wxC2S_HTML_SYNTAX),
+            GetForegroundColour().GetAsString(wxC2S_HTML_SYNTAX),
+#endif
+            wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT).GetAsString(wxC2S_HTML_SYNTAX),
+            m_explanations[GetResultsListCtrl()->GetItemTextEx(selected, 0)]));
         }
     }
 
@@ -473,8 +496,10 @@ wxString ExplanationListCtrl::GetExplanationsText() const
             if (pos != m_explanations.end())
                 {
                 descriptionHtml += pos->second;
-                if (i < (GetResultsListCtrl()->GetItemCount()-1))
-                    { descriptionHtml += L"<br />\n"; }
+                if (i < (GetResultsListCtrl()->GetItemCount() - 1))
+                    {
+                    descriptionHtml += L"<br />\n";
+                    }
                 }
             }
         }

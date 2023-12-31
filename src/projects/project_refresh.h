@@ -15,7 +15,7 @@
 /// @brief Class for managing which sections of a project need to be updated.
 class ProjectRefresh
     {
-public:
+  public:
     /// @brief The type of refresh to perform.
     /// @internal Used as a bitmask.
     enum RefreshRequirement
@@ -29,6 +29,7 @@ public:
         /// @brief Reload the document(s) and refresh all results.
         FullReindexing = (1 << 2)
         };
+
     /// @brief Adds a flag indicating what needs to be updated on the next
     ///     call to RefreshProject().
     /// @note This is cumulative, so the flags passed in here will add up,
@@ -37,29 +38,43 @@ public:
     void RefreshRequired(const RefreshRequirement refreshNeeded) noexcept
         {
         if (refreshNeeded == NoRefresh)
-            { ResetRefreshRequired(); }
+            {
+            ResetRefreshRequired();
+            }
         else
-            { m_refreshNeeded = (m_refreshNeeded|refreshNeeded); }
+            {
+            m_refreshNeeded = (m_refreshNeeded | refreshNeeded);
+            }
         }
+
     /// @brief Resets the state.
-    void ResetRefreshRequired() noexcept
-        { m_refreshNeeded = NoRefresh; }
+    void ResetRefreshRequired() noexcept { m_refreshNeeded = NoRefresh; }
+
     /// @returns Whether anything is needed to be refreshed.
     [[nodiscard]]
     bool IsRefreshRequired() const noexcept
-        { return m_refreshNeeded != NoRefresh; }
+        {
+        return m_refreshNeeded != NoRefresh;
+        }
+
     /// @returns Whether the highlighted text needs to be reformatted.
     [[nodiscard]]
     bool IsTextSectionRefreshRequired() const noexcept
-        { return (m_refreshNeeded & TextSection) != 0; }
+        {
+        return (m_refreshNeeded & TextSection) != 0;
+        }
+
     /// @returns Whether the document(s) need to be reloaded.
     [[nodiscard]]
     bool IsDocumentReindexingRequired() const noexcept
-        { return (m_refreshNeeded & FullReindexing) != 0; }
-private:
+        {
+        return (m_refreshNeeded & FullReindexing) != 0;
+        }
+
+  private:
     int m_refreshNeeded{ NoRefresh };
     };
 
-/** @}*/
+    /** @}*/
 
 #endif //__PROJECT_REFRESH_H__

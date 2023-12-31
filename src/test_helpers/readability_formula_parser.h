@@ -12,10 +12,10 @@
 #ifndef __READABILITY_FORMULA_PARSER_H__
 #define __READABILITY_FORMULA_PARSER_H__
 
-#include <wx/wx.h>
-#include <vector>
-#include <limits>
 #include "../tinyexpr-plusplus/tinyexpr.h"
+#include <limits>
+#include <vector>
+#include <wx/wx.h>
 
 /// @private
 class BaseProject;
@@ -23,23 +23,26 @@ class BaseProject;
 /// @brief Connects a formula parser and a project.
 class FormulaProject : public te_expr
     {
-public:
+  public:
     /// @brief Constructor.
     /// @param project The project to connect the formula parser to.
-    explicit FormulaProject(const BaseProject* project) noexcept : m_project(project)
-        {}
+    explicit FormulaProject(const BaseProject* project) noexcept : m_project(project) {}
+
     /// @returns The target project.
     [[nodiscard]]
     const BaseProject* GetProject() const noexcept
-        { return m_project; }
-private:
+        {
+        return m_project;
+        }
+
+  private:
     const BaseProject* m_project{ nullptr };
     };
 
 /// @brief Readability formula parser.
 class ReadabilityFormulaParser : public te_parser
     {
-public:
+  public:
     ReadabilityFormulaParser(const BaseProject* project, const wchar_t decimalSeparator,
                              const wchar_t listSeparator);
     /// @private
@@ -51,6 +54,7 @@ public:
     /// @brief Refreshes the project's statistics that are mapped to variables
     ///     in the formula parser.
     void UpdateVariables();
+
     /// @brief Parses a signature to find the function name in it.
     /// @param signature The signature to parse.
     /// @returns The name of the function from the signagure.
@@ -59,26 +63,40 @@ public:
         {
         const auto paren = signature.find(L'(');
         if (paren == wxString::npos)
-            { return signature; }
+            {
+            return signature;
+            }
         else
-            { return signature.substr(0, paren); }
+            {
+            return signature.substr(0, paren);
+            }
         }
+
     /// @returns The signature of the custom DC test.
     [[nodiscard]]
     static wxString GetCustomNewDaleChallSignature()
-        { return L"CustomNewDaleChall()"; }
+        {
+        return L"CustomNewDaleChall()";
+        }
+
     /// @returns The signature of the custom Spache test.
     [[nodiscard]]
     static wxString GetCustomSpacheSignature()
-        { return L"CustomSpache()"; }
+        {
+        return L"CustomSpache()";
+        }
+
     /// @returns The signature of the custom HJ test.
     [[nodiscard]]
     static wxString GetCustomHarrisJacobsonSignature()
-        { return L"CustomHarrisJacobson()"; }
-private:
+        {
+        return L"CustomHarrisJacobson()";
+        }
+
+  private:
     FormulaProject m_formualProject;
     };
 
-/** @}*/
+    /** @}*/
 
 #endif // __READABILITY_FORMULA_PARSER_H__

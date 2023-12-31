@@ -85,32 +85,31 @@ using CustomReadabilityTestCollection = std::vector<CustomReadabilityTest>;
 /// Helper structure for handling an Excel (XLSX) file.
 struct ExcelFile
     {
-    explicit ExcelFile(const wxString& filePath) : m_zip(filePath)
-        {}
+    explicit ExcelFile(const wxString& filePath) : m_zip(filePath) {}
+
     lily_of_the_valley::xlsx_extract_text m_xlsx_extract{ false };
-    using Workbook = std::map<wxString,lily_of_the_valley::xlsx_extract_text::worksheet>;
+    using Workbook = std::map<wxString, lily_of_the_valley::xlsx_extract_text::worksheet>;
     Workbook m_worksheets;
     Wisteria::ZipCatalog m_zip;
     };
 
-/**store the unique IDs in here of the tests being used. The system will look these up
-from the custom tests stored globally*/
+/** @brief Stores the unique IDs in here of the tests being used.
+    @details The system will look these up from the custom tests stored globally*/
 class CustomReadabilityTestInterface
     {
-public:
+  public:
     CustomReadabilityTestInterface() = delete;
-    explicit CustomReadabilityTestInterface(const wxString& testName)
-         :m_testName(testName)
-        {}
-    CustomReadabilityTestInterface(const CustomReadabilityTestInterface& that) :
-          m_formulasFlags(that.m_formulasFlags),
-          m_testName(that.m_testName),
+
+    explicit CustomReadabilityTestInterface(const wxString& testName) : m_testName(testName) {}
+    CustomReadabilityTestInterface(const CustomReadabilityTestInterface& that)
+        : m_formulasFlags(that.m_formulasFlags), m_testName(that.m_testName),
           m_uniqueUnfamiliarWordCount(that.m_uniqueUnfamiliarWordCount),
-          m_unfamiliarWordCount(that.m_unfamiliarWordCount),
-          m_iter(that.m_iter)
-          // don't copy over list view data (not copy safe), but that should be empty anyway. This will
-          // be filled in later after the next recalculation.
-        {}
+          m_unfamiliarWordCount(that.m_unfamiliarWordCount), m_iter(that.m_iter)
+        // don't copy over list view data (not copy safe), but that should be empty anyway. This
+        // will be filled in later after the next recalculation.
+        {
+        }
+
     CustomReadabilityTestInterface& operator=(const CustomReadabilityTestInterface& that)
         {
         if (this != &that)
@@ -121,42 +120,73 @@ public:
             m_unfamiliarWordCount = that.m_unfamiliarWordCount;
             m_iter = that.m_iter;
             }
-        // don't copy over list view data (not copy safe), but that should be empty anyway. This will
-        // be filled in later after the next recalculation.
+        // don't copy over list view data (not copy safe), but that should be empty anyway. This
+        // will be filled in later after the next recalculation.
         return *this;
         }
-    ~CustomReadabilityTestInterface()
-        { wxDELETE(m_listViewData); }
+
+    ~CustomReadabilityTestInterface() { wxDELETE(m_listViewData); }
+
     [[nodiscard]]
-    inline bool operator<(const CustomReadabilityTestInterface& that) const
-        { return m_testName < that.m_testName; }
+    inline bool
+    operator<(const CustomReadabilityTestInterface& that) const
+        {
+        return m_testName < that.m_testName;
+        }
+
     [[nodiscard]]
-    inline bool operator==(const CustomReadabilityTestInterface& that) const
-        { return m_testName == that.m_testName; }
+    inline bool
+    operator==(const CustomReadabilityTestInterface& that) const
+        {
+        return m_testName == that.m_testName;
+        }
+
     [[nodiscard]]
-    inline bool operator==(const wxString& testName) const
-        { return m_testName == testName; }
+    inline bool
+    operator==(const wxString& testName) const
+        {
+        return m_testName == testName;
+        }
+
     [[nodiscard]]
-    inline bool operator()(const word_case_insensitive_no_stem& theWord) const
-        { return m_iter->is_word_familiar(theWord); }
+    inline bool
+    operator()(const word_case_insensitive_no_stem& theWord) const
+        {
+        return m_iter->is_word_familiar(theWord);
+        }
+
     [[nodiscard]]
     const double& GetUniqueUnfamiliarWordCount() const noexcept
-        { return m_uniqueUnfamiliarWordCount; }
+        {
+        return m_uniqueUnfamiliarWordCount;
+        }
+
     [[nodiscard]]
     const double& GetUnfamiliarWordCount() const noexcept
-        { return m_unfamiliarWordCount; }
+        {
+        return m_unfamiliarWordCount;
+        }
+
     void SetUniqueUnfamiliarWordCount(const double wordCount) noexcept
-        { m_uniqueUnfamiliarWordCount = wordCount; }
+        {
+        m_uniqueUnfamiliarWordCount = wordCount;
+        }
+
     void SetUnfamiliarWordCount(const double wordCount) noexcept
-        { m_unfamiliarWordCount = wordCount; }
-    void IncrementUniqueUnfamiliarWordCount() noexcept
-        { ++m_uniqueUnfamiliarWordCount; }
-    void IncrementUnfamiliarWordCount(const double size) noexcept
-        { m_unfamiliarWordCount += size; }
+        {
+        m_unfamiliarWordCount = wordCount;
+        }
+
+    void IncrementUniqueUnfamiliarWordCount() noexcept { ++m_uniqueUnfamiliarWordCount; }
+
+    void IncrementUnfamiliarWordCount(const double size) noexcept { m_unfamiliarWordCount += size; }
 
     [[nodiscard]]
     const wxString& GetTestName() const noexcept
-        { return m_testName; }
+        {
+        return m_testName;
+        }
+
     /// Flushes out recorded values. Call this before re-calculating the test.
     void Reset()
         {
@@ -165,20 +195,30 @@ public:
         m_unfamiliarWordCount = 0;
         m_iter->reset();
         }
-    void ResetIterator()
-        { m_iter->reset(); }
+
+    void ResetIterator() { m_iter->reset(); }
+
     void SetIterator(const CustomReadabilityTestCollection::iterator& iter) noexcept
-        { m_iter = iter; }
+        {
+        m_iter = iter;
+        }
+
     [[nodiscard]]
     CustomReadabilityTestCollection::const_iterator GetIterator() const noexcept
-        { return m_iter; }
+        {
+        return m_iter;
+        }
+
     [[nodiscard]]
     ListCtrlExNumericDataProvider* GetListViewData()
         {
         if (m_listViewData == nullptr)
-            { m_listViewData = new ListCtrlExNumericDataProvider; }
+            {
+            m_listViewData = new ListCtrlExNumericDataProvider;
+            }
         return m_listViewData;
         }
+
     [[nodiscard]]
     const ListCtrlExNumericDataProvider* GetListViewData() const noexcept
         {
@@ -187,20 +227,25 @@ public:
         }
 
     // flags indicating that the formula is a specialized familiar word test
-    void SetIsDaleChallFormula(const bool enableFlag)
-        { m_formulasFlags.set(0, enableFlag); }
+    void SetIsDaleChallFormula(const bool enableFlag) { m_formulasFlags.set(0, enableFlag); }
+
     [[nodiscard]]
     bool IsDaleChallFormula() const
-        { return m_formulasFlags[0]; }
+        {
+        return m_formulasFlags[0];
+        }
 
-    void SetIsHarrisJacobsonFormula(const bool enableFlag)
-        { m_formulasFlags.set(1, enableFlag); }
+    void SetIsHarrisJacobsonFormula(const bool enableFlag) { m_formulasFlags.set(1, enableFlag); }
+
     [[nodiscard]]
     bool IsHarrisJacobsonFormula() const
-        { return m_formulasFlags[1]; }
-private:
-    // DC and HJ have their own explicit, unique logic for how numerals and proper nouns are handled,
-    // so we include flags for custom test to use those behaviors
+        {
+        return m_formulasFlags[1];
+        }
+
+  private:
+    // DC and HJ have their own explicit, unique logic for how numerals and proper nouns are
+    // handled, so we include flags for custom test to use those behaviors
     std::bitset<2> m_formulasFlags{ 0 }; // Dale-chall = 0, Harris-Jacobson = 1
     wxString m_testName;
     double m_uniqueUnfamiliarWordCount{ 0 };
@@ -209,15 +254,7 @@ private:
     ListCtrlExNumericDataProvider* m_listViewData{ nullptr };
     };
 
-/** \addtogroup Readability Projects
-   * Interfaces for readability projects.
-* @{*/
-/**
-\class BaseProject
-    The base class for readability projects.
-\date 2004
-*/
-/** @} */
+/** @brief The base class for readability projects. */
 class BaseProject : public ProjectRefresh
     {
 public:
@@ -1876,15 +1913,19 @@ private:
 /// Will automatically unlock project when it goes out of scope.
 class BaseProjectProcessingLock
     {
-public:
+  public:
     explicit BaseProjectProcessingLock(BaseProject* project) : m_project(project)
-        { m_project->SetProcessing(true); }
+        {
+        m_project->SetProcessing(true);
+        }
+
     BaseProjectProcessingLock() = delete;
     BaseProjectProcessingLock(const BaseProjectProcessingLock&) = delete;
     BaseProjectProcessingLock& operator=(const BaseProjectProcessingLock&) = delete;
-    ~BaseProjectProcessingLock()
-        { m_project->SetProcessing(false); }
-private:
+
+    ~BaseProjectProcessingLock() { m_project->SetProcessing(false); }
+
+  private:
     BaseProject* m_project{ nullptr };
     };
 

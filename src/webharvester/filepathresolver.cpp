@@ -12,8 +12,9 @@
 wxDECLARE_APP(ReadabilityApp);
 
 //----------------------------------
-wxString FilePathResolver::ResolvePath(const wxString& path, const bool attemptToConnect,
-        std::initializer_list<wxString> pathsToSearch /*= std::initializer_list<wxString>{}*/)
+wxString FilePathResolver::ResolvePath(
+    const wxString& path, const bool attemptToConnect,
+    std::initializer_list<wxString> pathsToSearch /*= std::initializer_list<wxString>{}*/)
     {
     // will set m_path directly, so we can ignore the return value here
     FilePathResolverBase::ResolvePath(path, pathsToSearch);

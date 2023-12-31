@@ -12,23 +12,22 @@
 #ifndef __PROJECT_DOC_H__
 #define __PROJECT_DOC_H__
 
-#include "base_project_doc.h"
 #include "../app/readability_app.h"
+#include "base_project_doc.h"
 #include <wx/timer.h>
 
 /// @brief Standard project document.
 class ProjectDoc final : public BaseProjectDoc
     {
-public:
+  public:
     /// @brief Constructor.
-    ProjectDoc() : m_realTimeTimer(this)
-        {
-        Bind(wxEVT_TIMER, &ProjectDoc::OnRealTimeTimer, this);
-        }
+    ProjectDoc() : m_realTimeTimer(this) { Bind(wxEVT_TIMER, &ProjectDoc::OnRealTimeTimer, this); }
+
     /// @private
     ProjectDoc(const ProjectDoc&) = delete;
     /// @private
     ProjectDoc& operator=(const ProjectDoc&) = delete;
+
     /// @private
     ~ProjectDoc()
         {
@@ -46,6 +45,7 @@ public:
         wxDELETE(m_sentenceStartingWithLowercaseData);
         DeleteExcludedPhrases();
         }
+
     /// @private
     bool OnOpenDocument(const wxString& filename) final;
     /// @private
@@ -55,7 +55,8 @@ public:
 
     // refresh functions
     void RefreshProject() final;
-    // only refresh the graphs, this assumes that no windows are being added or removed from the project
+    // only refresh the graphs, this assumes that no windows are being added or
+    // removed from the project
     void RefreshGraphs() final;
     // only refresh statistics reports
     void RefreshStatisticsReports() final;
@@ -64,7 +65,7 @@ public:
 
     // Name is all that is really needed if we know that the test is already loaded globally
     std::vector<CustomReadabilityTestInterface>::iterator
-        RemoveCustomReadabilityTest(const wxString& testName, const int Id) final;
+    RemoveCustomReadabilityTest(const wxString& testName, const int Id) final;
 
     bool AddFryTest(const bool setFocus = true) final;
     bool AddRaygorTest(const bool setFocus = true) final;
@@ -79,27 +80,42 @@ public:
     void RemoveMisspellings([[maybe_unused]] const wxArrayString& misspellingsToRemove) final;
     void DisplayReadabilityScores(const bool setFocus = true);
     void DisplayHighlightedText(const wxColour& highlightColor, const wxFont& textViewFont);
+
     [[nodiscard]]
     const ListCtrlExNumericDataProvider* GetMisspelledWordData() const noexcept
-        { return m_misspelledWordData; }
+        {
+        return m_misspelledWordData;
+        }
+
     [[nodiscard]]
     const ListCtrlExNumericDataProvider* GetOverusedWordsBySentenceData() const noexcept
-        { return m_overusedWordsBySentenceData; }
+        {
+        return m_overusedWordsBySentenceData;
+        }
+
     [[nodiscard]]
     const ListCtrlExNumericDataProvider* GetPassiveVoiceData() const noexcept
-        { return m_passiveVoiceData; }
+        {
+        return m_passiveVoiceData;
+        }
 
-    void StopRealtimeUpdate()
-        { m_realTimeTimer.Stop(); }
+    void StopRealtimeUpdate() { m_realTimeTimer.Stop(); }
+
     void RestartRealtimeUpdate()
         {
         if (IsRealTimeUpdating())
-            { m_realTimeTimer.Start(REALTIME_UPDATE_INTERVAL); }
+            {
+            m_realTimeTimer.Start(REALTIME_UPDATE_INTERVAL);
+            }
         }
-private:
+
+  private:
     [[nodiscard]]
     ListCtrlExNumericDataProvider* GetOverusedWordsBySentenceData() noexcept
-        { return m_overusedWordsBySentenceData; }
+        {
+        return m_overusedWordsBySentenceData;
+        }
+
     void CalculateGraphData();
     void AddDB2Plot(const bool setFocus = true) final;
     void AddFleschChart(const bool setFocus = true) final;
@@ -121,15 +137,13 @@ private:
     void DisplayGrammar();
     void DisplayOverlyLongSentences();
     void DisplaySightWords();
-    void SetReadabilityTestResult(const wxString& testId,
-                                  const wxString& testName,
+    void SetReadabilityTestResult(const wxString& testId, const wxString& testName,
                                   const wxString& description,
                                   // score and display label
                                   const std::pair<double, wxString>& USGradeLevel,
-                                  const wxString& readerAge,
-                                  const double indexScore,
-                                  const double clozeScore,
-                                  const bool setFocus) final;
+                                  const wxString& readerAge, const double indexScore,
+                                  const double clozeScore, const bool setFocus) final;
+
     // Text window formatting helpers
     //-------------------------------
     struct HighlighterColors
@@ -146,6 +160,7 @@ private:
         wxColour dolchVerbsTextHighlightColor;
         wxColour dolchNounTextHighlightColor;
         };
+
     struct HighlighterTags
         {
         wxString HIGHLIGHT_BEGIN;
@@ -177,6 +192,7 @@ private:
         wxString TAB_SYMBOL;
         wxString CRLF;
         };
+
     struct TextLegendLines
         {
         wxString ignoredSentencesLegendLine;
@@ -197,6 +213,7 @@ private:
         wxString dolchNounsLegendLine;
         wxString nonDolchWordsLegendLine;
         };
+
     struct TextLegends
         {
         wxString plaintTextWindowLegend;
@@ -209,6 +226,7 @@ private:
         wxString nonDolchWordsLegend;
         wxString wordinessWindowLegend;
         };
+
     struct TextHeader
         {
         wxString header;
@@ -216,11 +234,11 @@ private:
         wxString colorTable;
         wxString endSection;
         };
+
     /// @brief Builds the colors and RTF color table (used by Windows and macOS).
     [[nodiscard]]
-    HighlighterColors BuildReportColors(
-        const wxColour& highlightColor,
-        const wxColour& backgroundColor);
+    HighlighterColors BuildReportColors(const wxColour& highlightColor,
+                                        const wxColour& backgroundColor);
     /// @brief Builds the tags used to highlight words in RTF or Pango.
     /// @param highlightColor The default highlight color.\n
     ///     This is only used for RTF, not Pango.
@@ -228,34 +246,31 @@ private:
     ///     building for Pango (not used for RTF, since that uses indices into a color table).
     /// @returns The tags used to build RTF or Pango content.
     [[nodiscard]]
-    HighlighterTags BuildHighlighterTags(
-        [[maybe_unused]] const wxColour& highlightColor,
-        [[maybe_unused]] const HighlighterColors& highlighterColors);
+    HighlighterTags
+    BuildHighlighterTags([[maybe_unused]] const wxColour& highlightColor,
+                         [[maybe_unused]] const HighlighterColors& highlighterColors);
     /// @brief Formats the main font for an RTF's header.
-    std::pair<wxString, wxString> FormatRtfHeaderFont(
-        const wxFont& textViewFont,
-        const size_t mainFontColorIndex);
+    std::pair<wxString, wxString> FormatRtfHeaderFont(const wxFont& textViewFont,
+                                                      const size_t mainFontColorIndex);
     [[nodiscard]]
-    std::pair<TextLegendLines, size_t> BuildLegendLines(const HighlighterTags& highlighterTags) const;
+    std::pair<TextLegendLines, size_t>
+    BuildLegendLines(const HighlighterTags& highlighterTags) const;
     [[nodiscard]]
     wxString BuildLegendLine(const HighlighterTags& highlighterTags, const wxString& legendStr);
     /// @brief Builds the RTF color table (used by Windows and macOS).
     /// @returns RTF-formatted header sections (used by Windows and macOS).
-    std::tuple<wxString, wxString, wxString> BuildColorTable(
-        const wxFont& textViewFont,
-        const HighlighterColors& highlighterColors,
-        const wxColour& backgroundColor);
+    std::tuple<wxString, wxString, wxString>
+    BuildColorTable(const wxFont& textViewFont, const HighlighterColors& highlighterColors,
+                    const wxColour& backgroundColor);
     [[nodiscard]]
     TextLegends BuildLegends(const TextLegendLines& legendLines, const wxFont& textViewFont);
     [[nodiscard]]
-    wxString BuildLegend(const wxString& legendLine,
-        const TextLegendLines& legendLines,
-        const wxFont& textViewFont);
+    wxString BuildLegend(const wxString& legendLine, const TextLegendLines& legendLines,
+                         const wxFont& textViewFont);
     [[nodiscard]]
-    TextHeader BuildHeader(
-        const wxColour& backgroundColor,
-        [[maybe_unused]] const HighlighterColors& highlighterColors,
-        const wxFont& textViewFont);
+    TextHeader BuildHeader(const wxColour& backgroundColor,
+                           [[maybe_unused]] const HighlighterColors& highlighterColors,
+                           const wxFont& textViewFont);
 
     bool OnCreate(const wxString& path, long flags) final;
 
@@ -267,40 +282,48 @@ private:
     ListCtrlExNumericDataProvider* m_incorrectArticleData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_passiveVoiceData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_wordyPhraseData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_overusedWordsBySentenceData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_overusedWordsBySentenceData{
+        new ListCtrlExNumericDataProvider
+    };
     ListCtrlExNumericDataProvider* m_clichePhraseData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_redundantPhraseData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_wordingErrorData{ new ListCtrlExNumericDataProvider };
     ListCtrlExNumericDataProvider* m_overlyLongSentenceData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_sentenceStartingWithConjunctionsData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_sentenceStartingWithLowercaseData{ new ListCtrlExNumericDataProvider };
+    ListCtrlExNumericDataProvider* m_sentenceStartingWithConjunctionsData{
+        new ListCtrlExNumericDataProvider
+    };
+    ListCtrlExNumericDataProvider* m_sentenceStartingWithLowercaseData{
+        new ListCtrlExNumericDataProvider
+    };
     FormattedTextCtrl* m_dcTextWindow{ nullptr };
     FormattedTextCtrl* m_spacheTextWindow{ nullptr };
     FormattedTextCtrl* m_hjTextWindow{ nullptr };
 
     wxDateTime m_sourceFileLastModified;
-    static constexpr int REALTIME_UPDATE_INTERVAL{ 5000 }; // in milliseconds
+    constexpr static int REALTIME_UPDATE_INTERVAL{ 5000 }; // in milliseconds
     wxTimer m_realTimeTimer;
 
-    wxString GetSentenceWordCountsColumnName() const
-        { return _DT(L"SENTENCE_WORD_COUNTS"); }
-    wxString GetSentenceIndicesColumnName() const
-        { return _DT(L"SENTENCE_INDICES"); }
-    wxString GetSyllableCountsColumnName() const
-        { return _DT(L"SYLLABLE_COUNTS"); }
-    wxString GetWordTypeGroupColumnName() const
-        { return _DT(L"WORD_TYPE"); }
-    wxString GetGroupColumnName() const
-        { return _DT(L"GROUP"); }
+    wxString GetSentenceWordCountsColumnName() const { return _DT(L"SENTENCE_WORD_COUNTS"); }
 
-    std::shared_ptr<Wisteria::Data::Dataset> m_sentenceWordLengths
-        { std::make_shared<Wisteria::Data::Dataset>() };
-    std::shared_ptr<Wisteria::Data::Dataset> m_syllableCounts
-        { std::make_shared<Wisteria::Data::Dataset>() };
-public:
+    wxString GetSentenceIndicesColumnName() const { return _DT(L"SENTENCE_INDICES"); }
+
+    wxString GetSyllableCountsColumnName() const { return _DT(L"SYLLABLE_COUNTS"); }
+
+    wxString GetWordTypeGroupColumnName() const { return _DT(L"WORD_TYPE"); }
+
+    wxString GetGroupColumnName() const { return _DT(L"GROUP"); }
+
+    std::shared_ptr<Wisteria::Data::Dataset> m_sentenceWordLengths{
+        std::make_shared<Wisteria::Data::Dataset>()
+    };
+    std::shared_ptr<Wisteria::Data::Dataset> m_syllableCounts{
+        std::make_shared<Wisteria::Data::Dataset>()
+    };
+
+  public:
     wxDECLARE_DYNAMIC_CLASS(ProjectDoc);
     };
 
-/** @}*/
+    /** @}*/
 
 #endif //__PROJECT_DOC_H__
