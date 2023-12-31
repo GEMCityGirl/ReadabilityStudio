@@ -1274,13 +1274,19 @@ beats a dead horse	wastes your time, does something pointless/futility	2
 beats around the bush	avoids, indirectly approaches	2		
 beats the rap	avoids punishment	2		
 became instinct	became extinct	3		
+becase	because	3		
 becasue	because	3		
+becauae	because	3		
+becaue	because	3		
+becaues	because	3		
+becaus	because	3		
 because of he	because of him	3		
 because of I	because of me	3		
 because of she	because of her	3		
 because of the fact that	because, since	0		
 because of they	because of them	3		
 because of we	because of us	3		
+beccause	because	3		
 beckon call	beck and call	3		
 becomeing	becoming	3		
 becuase	because	3		
@@ -3818,6 +3824,7 @@ fucntions	functions	3
 fuction	function	3		
 fuctions	functions	3		
 fule	file, fuel	3		
+fulfull	fulfill	3		
 full capacity	capacity	1		
 full of herself	conceited	2		
 full of himself	conceited	2		
@@ -3887,11 +3894,17 @@ gathering up	gathering	0
 gathers together	gathers	1		
 gathers up	gathers	0		
 Gaudate	Gaudete	3		
+gaurantee	guarantee	3		
+gauranteed	guaranteed	3		
+gaurantees	guarantees	3		
 gaurd	guard	3		
 gaurd's	guard's	3		
 gaurded	guarded	3		
 gaurding	guarding	3		
 gaurds	guards	3		
+gaurentee	guarantee	3		
+gaurenteed	guaranteed	3		
+gaurentees	guarantees	3		
 gausian	gaussian	3		
 gave an indication of	showed	0		
 gave birth to	bore	0		
@@ -4302,6 +4315,8 @@ hesitating	pausing	0
 heterogeneous	varied	0		
 heterogeneously	variably	0		
 heterogenous	heterogeneous	3		
+hiearchies	hierarchies	3		
+hiearchy	hierarchy	3		
 hieght	height	3		
 hieghts	heights	3		
 hiena	hyena	3		
@@ -4333,6 +4348,8 @@ hierarhcies	hierarchies	3
 hierarhcy	hierarchy	3		
 hierchical	hierarchical	3		
 hierchically	hierarchically	3		
+hieroglph	hieroglyph	3		
+hieroglphs	hieroglyphs	3		
 higeine	hygiene	3		
 high and dry	stranded, alone, helpless	2		
 high and low	everywhere	0		
@@ -5367,6 +5384,7 @@ know and then	now and then	3
 know for a fact	know	0		
 know the score	understand what is happening	2		
 knowlege	knowledge	3		
+knowlegeable	knowledgeable	3		
 known as	called, named	0		
 known fact	fact	0		
 knows the score	understands what is happening	2		
@@ -5375,6 +5393,11 @@ knuckle sandwich	punch	2
 knuckled down	addressed the task at hand seriously	2		
 knuckles down	addresses the task at hand seriously	2		
 knuckling down	addressing the task at hand seriously	2		
+knwo	know	3		
+knwos	knows	3		
+konw	know	3		
+konws	knows	3		
+kwno	know	3		
 labor of love	a job done out of deep interest or affection	2		
 labors of love	jobs done out of deep interest or affection	2		
 labour of love	a job done out of deep interest or affection	2		
@@ -5834,6 +5857,10 @@ mixed together	mixed	1
 mixes together	mixes	1		
 mixing together	mixing	1		
 mmeory	memory	3		
+modfied	modified	3		
+modfies	modifies	3		
+modfy	modify	3		
+modfying	modifying	3		
 modifcation	modification	3		
 modifcation's	modification's	3		
 modifcations	modifications	3		
@@ -5845,6 +5872,7 @@ modification's	change's	0
 modifications	changes	0		
 modified	changed	0		
 modifies	changes	0		
+modifing	modifying	3		
 modify	change	0		
 modifying	changing	0		
 moist other	most other	3		
@@ -6024,6 +6052,9 @@ nip it in the butt	nip it in the bud	3
 nipped in the bud	stopped at an early stage	2		
 nipping in the bud	stopping at an early stage	2		
 nips in the bud	stops at an early stage	2		
+nkow	know	3		
+nkwo	know	3		
+nmae	name	3		
 no affect	no effect	3		
 no better	best	0		
 no body	nobody	3		
@@ -6106,6 +6137,11 @@ now and days	nowadays	3
 now currently	now	1		
 now pending	pending	1		
 null and void	null, void, invalid	1		
+numberal	numeral	3		
+numberals	numerals	3		
+numberous	numerous	3		
+numebr	number	3		
+numebrs	numbers	3		
 numerate	count	0		
 numerated	counted	0		
 numerates	counts	0		
@@ -7733,14 +7769,43 @@ reek havoc	wreak havoc	3
 reeked havoc	wreaked havoc	3		
 reeking havoc	wreaking havoc	3		
 reeks havoc	wreaks havoc	3		
+refedendum	referendum	3		
+refence	reference	3		
 refer to as	call, name, term	0		
+referal	referral	3		
 referance	reference	3		
 referance's	reference's	3		
 referances	references	3		
+referece	reference	3		
+refereces	references	3		
 refered	referred	3		
+referemce	reference	3		
+referemces	references	3		
+referencs	references	3		
+referenece	reference	3		
+refereneced	referenced	3		
+refereneces	references	3		
+referensed	referenced	3		
+referiang	referring	3		
+refering	referring	3		
+refernce	references	3		
+refernced	referenced	3		
+refernces	references	3		
+referncing	referencing	3		
+referrence	reference	3		
+referrences	references	3		
+referrs	refers	3		
+reffered	referred	3		
+refference	reference	3		
+reffering	referring	3		
 reflect	say, show	0		
 refractory	stubborn	0		
 refrence	reference	3		
+refrenced	referenced	3		
+refrences	references	3		
+refrencing	referencing	3		
+refrers	refers	3		
+refromist	reformist	3		
 regarding	about, of, on	0		
 regardless of how	despite how, however	0		
 regardless of the fact	although, even though	0		
@@ -7751,6 +7816,8 @@ regardless of which	despite which, whichever	0
 regardless of who	despite who, whoever	0		
 regardless of whom	despite whom, whomever	0		
 regimen	routine, rule	0		
+registerd	registered	3		
+registraration	registration	3		
 regress back	regress	1		
 regressed back	regressed	1		
 regresses back	regresses	1		
@@ -8093,6 +8160,7 @@ rythyms	rhythms	3
 saccharine	sweet	0		
 sacred cow	thing immune to criticism	2		
 sacred cows	things immune to criticism	2		
+Sacred Heart of Mary	Immaculate Heart of Mary	3		
 safe haven	haven	1		
 safe havens	havens	1		
 sagacious	wise	0		
@@ -8398,6 +8466,7 @@ snug as a bug in a rug	comfortable	2
 so as to	to	0		
 so therefore	therefore	1		
 sold like hotcakes	sold quickly	2		
+soley	solely	3		
 solicit	ask for, request	0		
 solicited	asked for, requested	0		
 soliciting	asking for, requesting	0		

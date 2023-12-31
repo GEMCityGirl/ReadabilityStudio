@@ -13672,6 +13672,9 @@ bookkeepings
 booklet
 booklet's
 booklets
+booklist
+booklist's
+booklists
 bookmaker
 bookmaker's
 bookmakers
@@ -77525,6 +77528,8 @@ microblogs
 microbreweries
 microbrewery
 microbusiness
+microbusiness's
+microbusinesses
 microcephalin
 microcephaly
 microchannel
@@ -100202,6 +100207,7 @@ proven
 provenance
 provenance's
 provenances
+provencal
 provencals
 provence
 provence's
@@ -103492,6 +103498,7 @@ reagin
 real
 realer
 realest
+realia
 realign
 realigned
 realigning

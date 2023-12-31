@@ -1108,6 +1108,7 @@ ColdFusion
 Coleraine
 Coleridge
 Colima
+Collaboratory
 Coloboma
 Colombia
 Colombian
@@ -2902,6 +2903,7 @@ MariaDB
 Marianist
 Marianista
 Marino
+Mariology
 Marketo
 Markism
 Markkula
@@ -4342,6 +4344,7 @@ Springboro
 Springdale
 Springfield
 SpringHill
+Springshare
 SPSS
 Sputnik
 SQLite
