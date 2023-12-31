@@ -390,6 +390,7 @@ penn.
 penns.
 perc.
 pfc.
+pgs.
 Ph.D.
 phar.
 pharm.

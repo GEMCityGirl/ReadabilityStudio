@@ -48265,6 +48265,9 @@ floorer's
 flooring
 flooring's
 floorings
+floorplan
+floorplan's
+floorplans
 floors
 floorspace
 floorwalker
@@ -114406,6 +114409,8 @@ servicemarks
 servicemen
 servicemen's
 servicer
+servicer's
+servicers
 services
 servicewoman
 servicewoman's
@@ -117229,6 +117234,9 @@ slaveholder
 slaveholder's
 slaveholders
 slaveholding
+slaveowner
+slaveowner's
+slaveowners
 slaver
 slaver's
 slavered
@@ -135349,7 +135357,10 @@ underfurs
 undergarment
 undergarment's
 undergarments
+undergird
+undergirded
 undergirding
+undergirds
 undergo
 undergoes
 undergoing
@@ -137772,6 +137783,7 @@ unutilized
 unutterable
 unutterably
 unuttered
+unvaccinated
 unvacuolated
 unvalidated
 unvalued

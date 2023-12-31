@@ -45,6 +45,8 @@ Japanes	Japanese	3
 Jospeh	Joseph	3		
 Juadaism	Judaism	3		
 Juadism	Judaism	3		
+Kindergarden	Kindergarten	3		
+Kindergarden's	Kindergarten's	3		
 Lotharingen	Lothringen	3		
 Lybia	Libya	3		
 Malcom	Malcolm	3		
@@ -57,6 +59,7 @@ Misouri	Missouri	3
 Montnana	Montana	3		
 Mythraic	Mithraic	3		
 Nazereth	Nazareth	3		
+Nazereth's	Nazareth's	3		
 Nullabour	Nullarbor	3		
 Nuremburg	Nuremberg	3		
 Palistian	Palestinian	3		
