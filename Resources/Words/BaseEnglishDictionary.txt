@@ -4476,6 +4476,9 @@ animations
 animator
 animator's
 animators
+animatronic
+animatronic's
+animatronics
 animism
 animism's
 animisms
@@ -19632,6 +19635,9 @@ changeling's
 changelog
 changelog's
 changelogs
+changemaker
+changemaker's
+changemakers
 changeover
 changeover's
 changeovers
@@ -37881,6 +37887,10 @@ downtrodden
 downturn
 downturn's
 downturns
+downvote
+downvoted
+downvotes
+downvoting
 downward
 downwardly
 downwardness
@@ -39392,8 +39402,8 @@ ebonies
 ebony
 ebony's
 ebook
-eBooks
 ebook's
+ebooks
 ebullience
 ebullience's
 ebulliences
@@ -59881,6 +59891,9 @@ how
 how'd
 how're
 how's
+how-to
+how-to's
+how-tos
 howbeit
 howdah
 howdah's
@@ -76168,6 +76181,7 @@ mechanoreception
 mechanoreceptor
 mechanoreceptors
 mechanosensitive
+mechatronics
 meconium
 med
 medal
@@ -77658,6 +77672,9 @@ microfossils
 microframe
 microframe's
 microframes
+microfridge
+microfridge's
+microfridges
 microgametophyte
 microgametophyte's
 microgametophytes
@@ -80838,6 +80855,7 @@ motormen's
 motormouth
 motormouths
 motors
+motorsports
 motorway
 motorway's
 motorways
@@ -93459,9 +93477,11 @@ phenomenons
 phenothiazine
 phenotype
 phenotype's
+phenotyped
 phenotypes
 phenotypic
 phenotypically
+phenotyping
 phenyl
 phenyl's
 phenylalanine
@@ -126776,6 +126796,7 @@ systemization
 systemization's
 systemizations
 systems
+systemwide
 systole
 systole's
 systoles
@@ -128149,6 +128170,7 @@ telemarketers
 telemarketing
 telemarketings
 telemedicine
+telemental
 telemeter
 telemeter's
 telemetered
@@ -135076,6 +135098,9 @@ uncompressed
 uncompresses
 uncompressing
 uncompromisable
+uncompromise
+uncompromised
+uncompromises
 uncompromising
 uncompromisingly
 uncomputable
@@ -141826,6 +141851,10 @@ wayfarer's
 wayfarers
 wayfaring
 wayfarings
+wayfind
+wayfinding
+wayfinds
+wayfound
 waylaid
 waylay
 waylayer

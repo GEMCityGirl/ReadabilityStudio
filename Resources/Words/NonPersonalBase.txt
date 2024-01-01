@@ -756,6 +756,7 @@ Brookhaven
 Brooklyn
 Brookmont
 Brownian
+Brownsburg
 Brownsville
 Brunei
 Brunswick
@@ -1258,6 +1259,7 @@ Dakota
 Dakotan
 Dakto
 Dalian
+Dall-E
 Dallas
 Dalmatia
 Dalmatian
@@ -4487,6 +4489,7 @@ Taboola
 Tabun
 Tacoma
 Tadzhikstan
+Taekwondo
 Tagalog
 Tahiti
 Tahitian

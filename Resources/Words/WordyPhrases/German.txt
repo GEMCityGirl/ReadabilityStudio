@@ -20,6 +20,7 @@ Champange	Champagne	3
 Cincinatti	Cincinnati	3		
 Cincinnatti	Cincinnati	3		
 Dardenelles	Dardanelles	3		
+Dudavera	Dudareva	3		
 Europian	European	3		
 Europians	Europeans	3		
 Eurpean	European	3		
