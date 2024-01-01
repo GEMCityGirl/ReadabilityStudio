@@ -43,8 +43,8 @@ namespace characters
             return (is_upper(ch) || is_lower(ch));
             }
 
-        /** @returns @c true if a character is a letter (English alphabet only, and no full-width
-           characters).
+        /** @returns @c true if a character is a letter (English alphabet only,
+                and no full-width characters).
             @param ch The letter to be reviewed.*/
         [[nodiscard]]
         constexpr static bool is_alpha_8bit(const wchar_t ch) noexcept
@@ -508,13 +508,15 @@ namespace characters
         [[nodiscard]]
         constexpr static bool can_character_form_date_time(const wchar_t ch) noexcept
             {
+            // clang-format off
             return (ch >= 44 && ch <= 47) ? // ,-./
-                       true :
-                       (ch >= 0xFF0C && ch <= 0xFF0F) ? // full-width ,-./
-                           true :
-                           is_either<wchar_t>(ch, 58, 0xFF1A) ? // :
-                               true :
-                               false;
+                    true :
+                   (ch >= 0xFF0C && ch <= 0xFF0F) ? // full-width ,-./
+                    true :
+                   is_either<wchar_t>(ch, 58, 0xFF1A) ? // :
+                    true :
+                    false;
+            // clang-format on
             }
 
         /** @returns @c true if a punctuation character can be a thousands or
@@ -582,19 +584,21 @@ namespace characters
         [[nodiscard]]
         constexpr static bool is_double_quote(const wchar_t ch) noexcept
             {
+            // clang-format off
             return (ch == 34) ? // " straight double quote
-                       true :
-                       (ch == 132) ? // „ curved double quote
-                           true :
-                           (ch == 171 || ch == 187) ? // «» left/right double quote (European)
-                               true :
-                               (ch >= 147 && ch <= 148) ? // Windows 1252 quote surrogates (double)
-                                   true :
-                                   (ch >= 0x201C && ch <= 0x201F) ? // smart double quotes
-                                       true :
-                                       (ch == 0x300E || ch == 0x300F) ? // Japanese double quotes
-                                           true :
-                                           false;
+                    true :
+                   (ch == 132) ? // „ curved double quote
+                    true :
+                   (ch == 171 || ch == 187) ? // «» left/right double quote (European)
+                    true :
+                   (ch >= 147 && ch <= 148) ? // Windows 1252 quote surrogates (double)
+                    true :
+                   (ch >= 0x201C && ch <= 0x201F) ? // smart double quotes
+                    true :
+                   (ch == 0x300E || ch == 0x300F) ? // Japanese double quotes
+                    true :
+                    false;
+            // clang-format on
             }
 
         /** @returns Whether a character sequence is a number (works with wide Unicode numbers too).
@@ -711,15 +715,17 @@ namespace characters
         [[nodiscard]]
         constexpr static bool is_space_vertical(const wchar_t ch) noexcept
             {
+            // clang-format off
             return (ch == 0x0D) ? true :
                    (ch == 0x0A) ? true :
                    (ch == 0x0C) ? // form feed
-                       true :
-                       (ch == 0x2028) ? // line separator
-                           true :
-                           (ch == 0x2029) ? // paragraph separator
-                               true :
-                               false;
+                    true :
+                   (ch == 0x2028) ? // line separator
+                    true :
+                   (ch == 0x2029) ? // paragraph separator
+                   true :
+                   false;
+            // clang-format on
             }
 
         /** @returns Whether a character is a punctuation mark.
