@@ -304,9 +304,10 @@ bool is_incorrect_english_article::is_a_exception(const wchar_t* word, const siz
         L"uac", L"ubi", L"uie", L"uin" /* a unint_32 is correct */,
         L"ukr", L"ulo", /* a ULONG_PTR */
         L"ure", L"uri", L"uro", L"usa",
-        L"use", L"usi", L"usu", L"utc",
-        L"utf", L"uti", L"uto", L"uue", /* a uuencoded */
-        L"uui",                         /* a UUID */
+        L"usb", L"use", L"usi", L"usn",
+        L"usu", L"utc", L"utf", L"uti",
+        L"uto", L"uue", /* a uuencoded */
+        L"uui",         /* a UUID */
         L"uwo"
     };
 
