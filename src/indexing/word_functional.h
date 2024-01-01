@@ -1254,7 +1254,7 @@ class is_correctly_spelled_word
             return true;
             }
         // see if the word has a [lowercase][UPPERCASE], [letter][number],
-        // or [lowercase].[UPPERCASE] pattern in it.
+        // or [letter/number][:.][letter] pattern in it.
         for (size_t i = 0; i < the_word.length() - 1; ++i)
             {
             if (characters::is_character::is_lower(the_word.operator[](i)) &&
@@ -1268,10 +1268,11 @@ class is_correctly_spelled_word
                 return true;
                 }
             else if (the_word.length() >= 3 && i < the_word.length() - 2 &&
-                     (characters::is_character::is_lower(the_word.operator[](i)) ||
+                     (characters::is_character::is_alpha(the_word.operator[](i)) ||
                       characters::is_character::is_numeric(the_word.operator[](i))) &&
-                     the_word.operator[](i + 1) == L'.' &&
-                     characters::is_character::is_upper(the_word.operator[](i + 2)))
+                     characters::is_character::is_either<wchar_t>(the_word.operator[](i + 1), L'.',
+                                                                  L':') &&
+                     characters::is_character::is_alpha(the_word.operator[](i + 2)))
                 {
                 return true;
                 }
