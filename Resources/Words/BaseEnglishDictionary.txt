@@ -2259,6 +2259,7 @@ aftermost
 afternoon
 afternoon's
 afternoons
+afternotes
 afters
 afters's
 aftershave
@@ -15744,6 +15745,9 @@ bumping
 bumpkin
 bumpkin's
 bumpkins
+bumpmap
+bumpmap's
+bumpmaps
 bumps
 bumptious
 bumptiously
@@ -24451,6 +24455,9 @@ comportment
 comportment's
 comportments
 comports
+composabilities
+composability
+composability's
 composable
 compose
 composed
@@ -31519,6 +31526,9 @@ decompressing
 decompression
 decompression's
 decompressions
+decompressor
+decompressor's
+decompressors
 decondense
 decondensed
 decongestant
@@ -33267,6 +33277,7 @@ derealization
 derealization's
 derealizations
 dereference
+dereferenceable
 dereferenced
 dereferencer
 dereferencer's
@@ -34047,6 +34058,7 @@ deviation's
 deviations
 device
 device's
+deviceless
 devices
 devil
 devil's
@@ -39379,7 +39391,9 @@ ebonics
 ebonies
 ebony
 ebony's
+ebook
 eBooks
+ebook's
 ebullience
 ebullience's
 ebulliences
@@ -63162,6 +63176,7 @@ incredulous
 incredulously
 increment
 increment's
+incrementable
 incremental
 incrementally
 incrementation
@@ -77640,6 +77655,9 @@ microform
 microform's
 microforms
 microfossils
+microframe
+microframe's
+microframes
 microgametophyte
 microgametophyte's
 microgametophytes
@@ -78560,6 +78578,9 @@ minion
 minion's
 minions
 minipill
+miniport
+miniport's
+miniports
 minis
 miniscule
 miniseries
@@ -84495,6 +84516,7 @@ nonionic
 nonionized
 nonionizing
 nonirritating
+nonjoinable
 nonjudgmental
 nonjudicial
 nonkeratinized
@@ -87960,6 +87982,10 @@ outcry's
 outcrying
 outdated
 outdatedness
+outdent
+outdented
+outdenting
+outdents
 outdid
 outdistance
 outdistanced
@@ -91241,11 +91267,13 @@ paternosters
 pates
 path
 path's
+pathed
 pathetic
 pathetically
 pathfinder
 pathfinder's
 pathfinders
+pathing
 pathless
 pathlessness
 pathname
@@ -97682,6 +97710,9 @@ precolonial
 precompilation
 precompile
 precompiled
+precompiler
+precompiler's
+precompilers
 precompiles
 precompiling
 precompute
@@ -105171,6 +105202,7 @@ referees
 reference
 reference's
 referenced
+referenceness
 referencer
 references
 referencing
@@ -108630,6 +108662,7 @@ rewrapping
 rewraps
 rewritable
 rewrite
+rewriteable
 rewriter
 rewriter's
 rewrites
@@ -121221,6 +121254,7 @@ stacked
 stacker
 stacker's
 stacking
+stackless
 stacks
 stacktrace
 stacktrace's
@@ -124269,6 +124303,9 @@ subsume
 subsumed
 subsumes
 subsuming
+subsumption
+subsumption's
+subsumptions
 subsurface
 subsurfaces
 subsystem
@@ -124408,6 +124445,9 @@ subverter
 subverter's
 subverting
 subverts
+subview
+subview's
+subviews
 subway
 subway's
 subwayed
@@ -130209,6 +130249,9 @@ timeouts
 timepiece
 timepiece's
 timepieces
+timepoint
+timepoint's
+timepoints
 timer
 timer's
 timers
@@ -137421,6 +137464,10 @@ unsent
 unsentimental
 unsentimentalizes
 unsepulchers
+unsequence
+unsequenced
+unsequences
+unsequencing
 unserved
 unserviced
 unservile
@@ -143244,6 +143291,9 @@ winkles
 winkling
 winks
 winless
+winlogon
+winlogon's
+winlogons
 winnable
 winnebago
 winnebago's

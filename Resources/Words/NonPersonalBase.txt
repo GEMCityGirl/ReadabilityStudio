@@ -16,6 +16,7 @@ Abyssinian
 Acadia
 Acapulco
 Accel
+Accelis
 Accenture
 Accountingfly
 Accra
@@ -1460,6 +1461,7 @@ ECoG
 Ecolab
 Econometrica
 Economica
+Ecrix
 Ecuador
 Ecuadoran
 Ecuadorean
@@ -2329,6 +2331,7 @@ Intermont
 Intune
 Inuit
 Investopedia
+Iomega
 Iona
 Ionian
 iOS
@@ -2665,6 +2668,7 @@ Laverty
 Lawnview
 Lawrenceville
 Leamington
+Leanpub
 Leavenworth
 Lebanese
 Lebanon
@@ -2834,6 +2838,7 @@ Maginot
 Magna
 Magnitogorsk
 Magnuson
+Magstar
 Mahala
 Mahalia
 Maharashtra
@@ -4469,6 +4474,7 @@ Sylvatic
 Symantec
 Syntech
 Syntex
+Syquest
 Syracuse
 Syria
 Syrian
@@ -4577,6 +4583,7 @@ Tennessee
 Tenochtitlan
 Tenochtitlán
 Teotihuacan
+Terastor
 Teredo
 Terranova
 Tesco
@@ -4703,6 +4710,7 @@ TransCanada
 Transcaucasia
 Trastevere
 Trastuzumab
+Travan
 Traver
 Treadwell
 Treblinka
@@ -4806,6 +4814,7 @@ Ulaanbaatar
 Ulan
 Ulster
 Ulthar
+Ultrium
 Umbriel
 UNESCO
 Ungava

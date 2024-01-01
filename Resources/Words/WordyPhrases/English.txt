@@ -320,9 +320,14 @@ admonishes	warns	0
 admonishing	warning	0		
 admonition	warning	0		
 adquire	acquire	3		
+adresable	addressable	3		
+adresing	addressing	3		
 adress	address	3		
 adress's	address's	3		
+adressable	addressable	3		
+adressed	addressed	3		
 adresses	addresses	3		
+adressing	addressing	3		
 adroit	skillful	0		
 adultary	adultery	3		
 adultary's	adultery's	3		
@@ -335,6 +340,7 @@ advantage	plus	0
 advantageous	helpful	0		
 advantageously	helpfully	0		
 advantages	pluses	0		
+advantagous	advantageous	3		
 adversaries	enemies	0		
 adversary	enemy	0		
 adversary's	enemy's	0		
@@ -407,10 +413,27 @@ aknowledge	acknowledge	3
 alacrity	speed	0		
 albatross around the neck	burden	2		
 alegiance	allegiance	3		
+algebraical	algebraic	3		
+algebric	algebraic	3		
+algorhitms	algorithms	3		
+algorith	algorithm	3		
+algorithmical	algorithmically	3		
+algorithsm	algorithms	3		
+algoritm	algorithm	3		
+algoritms	algorithms	3		
+algorrithm	algorithm	3		
+algorritm	algorithm	3		
+algorthm	algorithm	3		
+algorythm	algorithm	3		
 alienate	turn against	0		
 alienated	turned against	0		
 alienates	turns against	0		
 alienating	turning against	0		
+alientating	alienating	3		
+aligment	alignment	3		
+alignement	alignment	3		
+alignemnt	alignment	3		
+alignemnts	alignments	3		
 all and all	all in all	3		
 all be it	albeit	3		
 all bets are off	any previous arrangements/agreements are no longer valid	2		
@@ -439,6 +462,8 @@ allay	quiet	0
 allayed	quieted	0		
 allaying	quieting	0		
 allays	quiets	0		
+allcation	allocation	3		
+allcoated	allocated	3		
 allegaince	allegiance	3		
 alleged suspect	suspect	0		
 allegiance	loyalty	0		
@@ -724,6 +749,8 @@ apparition's	ghost's	0
 apparitions	ghosts	0		
 apparrent	apparent	3		
 appear	seem, come	0		
+appearantly	apparently	3		
+appeareance	appearance	3		
 appeared	seemed, came	0		
 appearence	appearance	3		
 appearence's	appearance's	3		
@@ -740,6 +767,10 @@ append	add	0
 appended	added	0		
 appending	adding	0		
 appends	adds	0		
+appeneded	appended	3		
+apperance	appearance	3		
+apperances	appearances	3		
+appereance	appearance	3		
 appication	application	3		
 appication's	application's	3		
 appications	applications	3		
@@ -749,10 +780,15 @@ apple of my eye	object of my affection	2
 apple of your eye	object of your affection	2		
 appliance	device	0		
 appliances	devices	0		
+applicaiton	application	3		
+applicaitons	applications	3		
 applicationin	application in	3		
 applicaton	application	3		
 applicaton's	application's	3		
 applicatons	applications	3		
+appliction	application	3		
+applictions	applications	3		
+applyting	applying	3		
 appoint	name	0		
 appointed	named	0		
 appointing	naming	0		
@@ -799,6 +835,10 @@ approximatly	approximately	3
 approximitely	approximately	3		
 approxmate	approximate	3		
 apprpriate	appropriate	3		
+aqcuire	acquire	3		
+aqcuired	acquired	3		
+aqcuires	acquires	3		
+aqcuiring	acquiring	3		
 aquaintance	acquaintance	3		
 aqueous	watery	0		
 aquire	acquire	3		
@@ -964,6 +1004,7 @@ arrogant	cocky	0
 artic	arctic	3		
 artifice	craft	0		
 artifices	crafts	0		
+as a as	as a	3		
 as a consequence of	because, because of, from, since	0		
 as a general rule	generally, in general, customarily	0		
 as a matter of fact	in fact, really, actually	0		
@@ -1821,6 +1862,10 @@ causes to happen	causes	0
 causing to happen	causing	0		
 caveat	warning	0		
 cease	stop	0		
+cehck	check	3		
+cehcked	checked	3		
+cehcking	checking	3		
+cehcks	checks	3		
 cemateries	cemeteries	3		
 cematery	cemetery	3		
 cemetaries	cemeteries	3		
@@ -1856,9 +1901,15 @@ charge with responsibility	charge with	0
 charged with responsibility	charged with	0		
 charges with responsibility	charges with	0		
 charging with responsibility	charging with	0		
+charistics	characteristics	3		
 charlatan	quack	0		
 charlatans	quacks	0		
 chasses	classes, chassis	3		
+chcek	check	3		
+chceked	checked	3		
+chceking	checking	3		
+chceks	checks	3		
+cheching	checking	3		
 check to see	check, inspect, examine	0		
 check to see if	check if	0		
 checked to see	checked, inspected, examined	0		
@@ -2055,6 +2106,7 @@ committments	commitments	3
 commodious	roomy	0		
 common bond	bond	0		
 common bonds	bonds	0		
+commtted	committed	3		
 commuications	communications	3		
 commuinications	communications	3		
 communcation	communication	3		
@@ -2068,13 +2120,23 @@ communicate	tell	0
 communidad	comunidad	3		
 communidad's	comunidad's	3		
 communidads	comunidads	3		
+communites	communities	3		
+commutated	commuted	3		
+commutating	commuting	3		
 commute back and forth	commute	0		
 commuted back and forth	commuted	0		
 commutes back and forth	commutes	0		
 commuting back and forth	commuting	0		
+comnparing	comparing	3		
+comnpletion	completion	3		
+compability	compatibility	3		
 companion	friend, mate	0		
 companion's	friend's, mate's	0		
 companions	friends, mates	0		
+comparision	comparison	3		
+comparisions	comparisons	3		
+comparitive	comparative	3		
+comparitively	comparatively	3		
 comparsion	comparison	3		
 comparsion's	comparison's	3		
 comparsions	comparisons	3		
@@ -2082,52 +2144,136 @@ comparson	comparison	3
 comparson's	comparison's	3		
 comparsons	comparisons	3		
 compassion	pity	0		
+compatabilities	compatibilities	3		
+compatability	compatibility	3		
+compatabilty	compatibility	3		
+compatable	compatible	3		
+compatablities	compatibilities	3		
+compatablity	compatibility	3		
+compatbility	compatibility	3		
+compatiability	compatibility	3		
+compatiable	compatible	3		
+compatibile	compatible	3		
+compatibiliy	compatibility	3		
+compatibilty	compatibility	3		
+compatibily	compatibility	3		
+compatibity	compatibility	3		
+compatiblities	compatibilities	3		
+compatiblity	compatibility	3		
+compativle	compatible	3		
+compeitions	competitions	3		
+compensantion	compensation	3		
 compensate	pay	0		
 compensated	paid	0		
 compensates	pays	0		
 compensating	paying	0		
 compensation	pay	0		
+competance	competence	3		
+competant	competent	3		
+competative	competitive	3		
 competent	able	0		
+competion	completion	3		
+competions	completions	3		
+competitiion	competition	3		
+competive	competitive	3		
+competiveness	competitiveness	3		
+comphrehensive	comprehensive	3		
+compications	complications	3		
+compilability	compatibility	3		
+compilant	compliant	3		
+compiliant	compliant	3		
+compination	compilation	3		
+compitent	competent	3		
+complation	completion	3		
+compleatly	completely	3		
+complementt	complement	3		
 complete monopolies	monopolies	1		
 complete monopoly	monopoly	1		
+completedthe	completed the	3		
+completelly	completely	3		
 completely and utterly	completely, utterly	1		
 completely destroyed	destroyed	1		
 completely fill	fill	1		
 completely filled	filled	1		
 completely filling	filling	1		
 completely fills	fills	1		
+completelyl	completely	3		
+completetion	completion	3		
 completly	completely	3		
+completness	completeness	3		
+complette	complete	3		
 complied	followed	0		
+complient	compliant	3		
 complier	follower	0		
 complier's	follower's	0		
 compliers	followers	0		
 complies	follows	0		
+complile	compile	3		
+compliled	compiled	3		
+compliles	compiles	3		
+compliling	compiling	3		
 compliment each other	complement each other	3		
+compling	compiling	3		
 comply	follow	0		
 comply with	follow, obey	0		
 complying	following	0		
+compnent	component	3		
+compoents	components	3		
+componant	component	3		
 component	part	0		
 component's	part's	0		
 components	parts	0		
+compontent	component	3		
+compontents	components	3		
 compose	make up, create	0		
 composed	made up, created, calm (adj.)	0		
 composes	makes up, creates	0		
 composing	making up, creating	0		
 composition	make-up	0		
+comprable	comparable	3		
+compres	compress	3		
+compresed	compressed	3		
+compreses	compresses	3		
+compresing	compressing	3		
+compresion	compression	3		
 compress	sqeeze	0		
 compressed	sqeezed	0		
 compresses	sqeezes	0		
 compressing	sqeezing	0		
+comprimise	compromise	3		
 comprise	form, include, make up	0		
 comprised	formed, included	0		
 comprises	forms, includes	0		
 comprising	forming, including	0		
+comptible	compatible	3		
+compuatation	computation	3		
+compuation	computation	3		
+compulsary	compulsory	3		
+compulsery	compulsory	3		
 compunction	regret	0		
 compunctions	regrets	0		
+computarized	computerized	3		
+computaton	computation	3		
+comression	compression	3		
+comventions	conventions	3		
+conatin	contain	3		
+conatined	contained	3		
+conatining	containing	3		
+conatins	contains	3		
+concantenated	concatenated	3		
 concatenate together	concatenate	1		
 concatenated together	concatenated	1		
 concatenates together	concatenates	1		
 concatenating together	concatenating	1		
+concatentate	concatenate	3		
+concatentated	concatenated	3		
+concatentates	concatenates	3		
+concatentating	concatenating	3		
+concatentation	concatenation	3		
+concatentations	concatenations	3		
+concatented	concatenated	3		
+concatination	concatenation	3		
+concatinations	concatenations	3		
 conceal	hide	0		
 concealment	hiding	0		
 conceed	concede	3		
@@ -2138,15 +2284,25 @@ conceives	thinks up, creates	0
 conceiving	thinking up, creating	0		
 concensus	consensus	3		
 concept	idea	0		
+conceptification	conceptualization	3		
 conception	concept, thought	0		
+concerened	concerned	3		
 concerning	about, on	0		
 concerning the matter of	about	0		
+concider	consider	3		
+concidered	considered	3		
+concidering	considering	3		
+conciders	considers	3		
 concience	conscience	3		
+concieted	conceited	3		
+concieved	conceived	3		
 conciliate	win over, soothe	0		
 conciliated	won over, soothed	0		
 conciliates	wins over, soothes	0		
 conciliating	winning over, soothing	0		
 concious	conscious	3		
+conciously	consciously	3		
+conciousness	consciousness	3		
 conclude	close, end	0		
 concluded	closed, ended	0		
 concludes	closes, ends	0		
@@ -2160,11 +2316,24 @@ concurring	agreeing	0
 concurs	agrees	0		
 concussion	shock	0		
 concussions	shocks	0		
+condamned	condemned	3		
+condemmed	condemned	3		
 condescend	stoop down	0		
 condescended	stooped down	0		
 condescending	stooping down	0		
 condescends	stoops down	0		
+condidtion	condition	3		
+condidtions	conditions	3		
+conditionaly	conditionally	3		
+conditionnaly	conditionally	3		
+conditionsof	conditions of	3		
+conditoinal	conditional	3		
+conditonal	conditional	3		
+condtiion	condition	3		
+condtion	condition	3		
 condtional	conditional	3		
+condtions	conditions	3		
+condtition	condition	3		
 conduct a review of	review	0		
 conduct an investigation	investigate	0		
 conduct experiments	experiment	0		
@@ -2177,7 +2346,11 @@ conducting experiments	experimenting	0
 conducts a review of	reviews	0		
 conducts an investigation	investigates	0		
 conducts experiments	experiments	0		
+conected	connected	3		
+conection	connection	3		
+conections	connections	3		
 conent	content	3		
+conents	contents	3		
 conformity	likeness	0		
 confront	meet, face	0		
 confrontation	meeting	0		
@@ -2220,12 +2393,30 @@ consanguinity	blood	0
 consciencious	conscientious	3		
 conscious	aware	0		
 consensus of opinion	consensus	1		
+consept	concept	3		
 consequence	result	0		
 consequences	results	0		
+consequentely	consequently	3		
 consequently	so	0		
+consequentually	consequently	3		
+consequeseces	consequences	3		
+consequtive	consecutive	3		
+consern	concern	3		
+conserned	concerned	3		
+conserning	concerning	3		
+conservativeky	conservatively	3		
+conservitive	conservative	3		
+consiciousness	consciousness	3		
+consicousness	consciousness	3		
 considerable	much	0		
+considerd	considered	3		
+consideres	considered	3		
 considering the fact that	considering, because, given that	0		
 consious	conscious	3		
+consistancy	consistency	3		
+consistant	consistent	3		
+consistuents	constituents	3		
+consits	consists	3		
 consitute	constitute	3		
 consituted	constituted	3		
 consitutes	constitutes	3		
@@ -2289,12 +2480,24 @@ contemptible	mean	0
 contemptuous	scornful	0		
 contemptuously	scornfully	0		
 contexual	contextual	3		
+contian	contain	3		
+contians	contains	3		
+contibute	contribute	3		
+contibuted	contributed	3		
+contibutes	contributes	3		
+contigent	contingent	3		
+contigious	contiguous	3		
+contiguities	continuities	3		
 contiguity	nearness	0		
 contiguous	touching, near, next to	0		
 contiguous to	next to	0		
+contined	continued	3		
+continential	continental	3		
 contingencies	emergencies, predicaments	0		
 contingency	emergency, likelihood, predicament	0		
 continguous	contiguous	3		
+continous	continuous	3		
+continously	continuously	3		
 continue	keep, keep on	0		
 continue into the future	continue	0		
 continue on	continue	0		
@@ -2304,6 +2507,7 @@ continued	kept on	0
 continued on	continued	0		
 continued to be	remained	0		
 continued to remain	remained	1		
+continueing	continuing	3		
 continues	keeps on	0		
 continues into the future	continues	0		
 continues on	continues	0		
@@ -2618,6 +2822,9 @@ delevopments	developments	3
 delevopp	develop	3		
 delevops	develops	3		
 deliberately	on purpose	0		
+delimeter	delimiter	3		
+delimeters	delimiters	3		
+delimters	delimiter	3		
 demise	death	0		
 demonstrable	provable	0		
 demonstrate	show	0		
@@ -2637,6 +2844,8 @@ deplete	empty	0
 depleted	emptied, empty (adj.)	0		
 depletes	empties	0		
 depleting	emptying	0		
+depreacte	deprecate	3		
+depreacted	deprecated	3		
 depreciate	lessen	0		
 depreciate in value	depreciate	1		
 depreciated	lessened	0		
@@ -2645,6 +2854,12 @@ depreciates	lessens	0
 depreciates in value	depreciates	1		
 depreciating	lessening	0		
 depreciating in value	depreciating	1		
+deprectate	deprecate	3		
+deprectated	deprecated	3		
+deprectates	deprecates	3		
+deprectating	deprecating	3		
+deprected	deprecated	3		
+depricated	deprecated	3		
 derive enjoyment from	delight in, enjoy	0		
 derive pleasure from	delight in, enjoy	0		
 derive satisfaction from	delight in, enjoy	0		
@@ -2761,9 +2976,13 @@ dilema's	dilemma's	3
 dilemas	dilemmas	3		
 diminish	lessen	0		
 diminution	lessening	0		
+diphtong	diphthong	3		
+diphtongs	diphthongs	3		
 diplomacy	tact	0		
 diplomatic	tactful	0		
 diplomatically	tactfully	0		
+dipthong	diphthong	3		
+dipthongs	diphthongs	3		
 dire straights	dire straits	3		
 directoy	directory	3		
 dirt cheap	very inexpensive	2		
@@ -2918,13 +3137,24 @@ docments	documents	3
 doctorate degree	doctorate	0		
 doctorate degrees	doctorates	0		
 docuemntation	documentation	3		
+docuentation	documentation	3		
+documantation	documentation	3		
+documenatry	documentary	3		
+documentaion	documentation	3		
+documentaton	documentation	3		
 documention	documentation	3		
 documention's	documentation's	3		
+documetation	documentation	3		
+doens	does	3		
+doens't	doesn't	3		
 does away with	removes, cancels, ends	0		
 does not have a leg to stand on	in a weak position, can't support his argument	2		
 does note have	does not have	3		
+does't	doesn't	3		
+doesen't	doesn't	3		
 doesn't have a leg to stand on	in a weak position, can't support his argument	2		
 doesn't not	doesn't	3		
+doesnt't	doesn't	3		
 dog eat dog	ruthless competition	2		
 doing away with	removing, canceling, ending	0		
 domesticate	tame	0		
@@ -2942,9 +3172,11 @@ don't not	don't	3
 don't put any stock in	don't trust	2		
 don't remember	forget	0		
 donate	give	0		
+dont't	don't	3		
 doomed to failure	doomed	0		
 dormant	asleep	0		
 dose not	does not	3		
+dosen't	doesn't	3		
 dove down	dove	1		
 down and out	in poor condition (usually financially)	2		
 down in the dumps	unhappy, depressed	2		
@@ -3086,6 +3318,9 @@ effecting	making, changing	0
 effectuate	bring about	0		
 effervescent	bubbly, lively	0		
 effervescently	livelily	0		
+efficency	efficiency	3		
+efficent	efficient	3		
+efficently	efficiently	3		
 effusive	pouring out, gushing, overflowing	0		
 egg on her face	embarrassed	2		
 egg on his face	embarrassed	2		
@@ -3296,10 +3531,23 @@ equitably	fairly	0
 equivalent	equal	0		
 equivalently	equally	0		
 equivelant	equivalent	3		
+eroneous	erroneous	3		
+eror	error	3		
+erorr	error	3		
+erorrs	errors	3		
+erors	errors	3		
+erraneously	erroneously	3		
 erratic	uncertain	0		
 erratically	uncertainly	0		
 erroneous	wrong	0		
 erroneously	wrongly	0		
+erroneus	erroneous	3		
+erroneusly	erroneously	3		
+erronous	erroneous	3		
+erronously	erroneously	3		
+errorneous	erroneous	3		
+errorneously	erroneously	3		
+erros	errors	3		
 erudite	learned	0		
 escape goat	scapegoat	3		
 escape goat's	scapegoat's	3		
@@ -3439,6 +3687,8 @@ explicte	explicate	3
 explictly	explicitly	3		
 explit	explicit	3		
 explitly	explicitly	3		
+exponentials	exponential	3		
+exponentialy	exponentially	3		
 expound	make clear	0		
 expounded	made clear	0		
 expounding	making clear	0		
@@ -3927,6 +4177,14 @@ geniune	genuine	3
 genral	general	3		
 genral's	general's	3		
 genrals	generals	3		
+genrate	generate	3		
+genrated	generated	3		
+genrates	generates	3		
+genrating	generating	3		
+genreate	generate	3		
+genreated	generated	3		
+genreates	generates	3		
+genreating	generating	3		
 genuine	real, true	0		
 genuinely	really, truly	0		
 germinate	sprout	0		
@@ -4833,7 +5091,7 @@ in the neighbourhood of	close to, nearby, about, roughly	0
 in the nick of time	just in time	2		
 in the not too distant future	soon	0		
 in the opposite direction	against	0		
-in the passed	in the past	3		group;groups;value;values
+in the passed	in the past	3		group;groups;range;ranges;value;values
 in the place in which	where	0		
 in the presence of	with, before	0		
 in the process of	(omit), while	0		
@@ -5106,6 +5364,7 @@ innoculate	inoculate	3
 innocuous	harmless	0		
 innocuously	harmlessly	0		
 inoperative	broken, not working	0		
+inot	into	3		
 inquire	ask	0		
 inquired	asked	0		
 inquires	asks	0		
@@ -5149,6 +5408,8 @@ intelligent	smart, clever	0
 intention	plan	0		
 intention's	plan's	0		
 intentions	plans	0		
+interator	iterator	3		
+interators	iterators	3		
 interdict	forbid	0		
 interdicted	forbade	0		
 interdicting	forbidding	0		
@@ -5168,6 +5429,8 @@ interrogates	questions	0
 interrogating	questioning	0		
 interrogation	questioning	0		
 interupt	interrupt	3		
+intial	initial	3		
+intialization	initialization	3		
 intialize	initialize	3		
 intialized	initialized	3		
 intializes	initializes	3		
@@ -5403,6 +5666,10 @@ it should be noted	note	0
 it this is	if this is	3		
 it would appear that	apparently	0		
 it's place	its place	3		
+itialize	initialize	3		
+itialized	initialized	3		
+itializes	initializes	3		
+itializing	initializing	3		
 its a	it's a	3		
 its the	it's the	3		
 ivory tower	out of touch with reality, unaware of other people's plight	2		
@@ -5650,6 +5917,9 @@ lion's share	greater part of an allotment	2
 lips are sealed	won't reveal something	2		
 little by little	gradually	0		
 little iota	iota	0		
+llibraries	libraries	3		
+llibrary	library	3		
+llibrary's	library's	3		
 local resident	resident	1		
 local residents	residents	1		
 locatable	findable	0		
@@ -6674,13 +6944,19 @@ ovverride	override	3
 ovverrides	overrides	3		
 ovverriding	overriding	3		
 owing to the fact that	because, given	0		
+pachage	package	3		
+paches	patches	3		
 pack a wallop	deliver serious damage	2		
 pack it in	quit	2		
+packacge	package	3		
 package manger	package manager	3		
 package mangers	package managers	3		
 packed a wallop	delivered serious damage	2		
 packed in like sardines	packed in tightly	2		
 packed it in	quit	2		
+packege	package	3		
+packge	package	3		
+packges	packages	3		
 packing a wallop	delivering serious damage	2		
 packing it in	quitting	2		
 packs a wallop	delivers serious damage	2		
@@ -7259,8 +7535,15 @@ preaching to the choir	making an argument to those that already support it	2
 preaching to the converted	making an argument to those that already support it	2		
 preachment	sermon	0		
 preachments	sermons	0		
+preced	precede	3		
+precedessor	predecessor	3		
+preceds	precedes	3		
 preceed	precede	3		
+preceeded	preceded	3		
 preceeding	preceding	3		
+preceeds	precedes	3		
+precendence	precedence	3		
+precentage	percentage	3		
 precept	rule	0		
 precepts	rules	0		
 precipitant	rash, hasty, impulsive	0		
@@ -7946,6 +8229,10 @@ rebound back	rebound	0
 rebounded back	rebounded	0		
 rebounding back	rebounding	0		
 rebounds back	rebounds	0		
+rebulid	rebuild	3		
+rebuliding	rebuilding	3		
+rebulids	rebuilds	3		
+rebulit	rebuilt	3		
 recangle	rectangle	3		
 recangle's	rectangle's	3		
 recangles	rectangles	3		
@@ -7960,6 +8247,13 @@ reccommend	recommend	3
 reccommended	recommended	3		
 reccommending	recommending	3		
 reccommends	recommends	3		
+reccuring	recurring	3		
+receeded	receded	3		
+receeding	receding	3		
+receieve	receive	3		
+receieved	received	3		
+receieves	receives	3		
+receieving	receiving	3		
 receivesthe	receives the	3		
 reched	reached	3		
 recide	reside	3		
@@ -8019,8 +8313,8 @@ recontructed	reconstructed	3
 recquired	required	3		
 recrational	recreational	3		
 recrod	record	3		
-recrods	records	3		
 recrod's	record's	3		
+recrods	records	3		
 rectange	rectangle	3		
 rectanges	rectangles	3		
 rectanglular	rectangular	3		
@@ -8656,11 +8950,14 @@ shortly	soon	0
 shot from the hip	spoke directly	2		
 shot in the dark	guess	2		
 shotgun wedding	forced wedding/partnership	2		
+shoud	should	3		
+shoudl	should	3		
 should of	should have	3		course
 should'nt	shouldn't	3		
 should't	shouldn't	3		
 shouldn't not	shouldn't	3		
 shouldnt	shouldn't	3		
+shoule	should	3		
 shouln't	shouldn't	3		
 sick and tired	annoyed, tired	0		
 sick as a dog	miserable, felling very low	2		
@@ -9189,11 +9486,16 @@ syncronizing	synchronizing	3
 syncronus	synchronous	3		
 system manger	system manager	3		
 system mangers	system managers	3		
+sysytem	system	3		
+sysytem's	system's	3		
+sysytems	systems	3		
 sytem	system	3		
 sytem's	system's	3		
 sytems	systems	3		
 tabulation	table	0		
 tabulations	tables	0		
+tahn	than	3		
+taht	that	3		
 take 5	take a break	2		
 take a listen	listen	0		
 take a shine to	begin to like	2		
@@ -9286,6 +9588,7 @@ tantalize	tease	0
 tantalized	teased	0		
 tantalizes	teases	0		
 tantalizing	teasing	0		
+tath	that	3		
 team manger	team manager	3		
 team mangers	team managers	3		
 techician	technician	3		
@@ -9608,6 +9911,11 @@ titillate	tickle	0
 titillated	tickled	0		
 titillates	tickles	0		
 titillating	tickling	0		
+tje	the	3		
+tjhe	the	3		
+tkae	take	3		
+tkaes	takes	3		
+tkaing	taking	3		
 to a certain degree	in a sense, in part, less often, less so, partially, some	0		
 to a certain extent	in a sense, somewhat, partly	0		
 to a greater degree	greater	0		
