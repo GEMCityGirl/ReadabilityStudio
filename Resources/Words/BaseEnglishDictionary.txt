@@ -72810,6 +72810,9 @@ loglevels
 lognormal
 logo
 logo's
+logoff
+logoff's
+logoffs
 logon
 logons
 logos
@@ -77268,6 +77271,9 @@ metathesizing
 metathorax
 metathorax's
 metathoraxes
+metatype
+metatype's
+metatypes
 metavariable
 metaverse
 metaverse's
@@ -77966,6 +77972,9 @@ midterm's
 midterms
 midthoracic
 midthorax
+midtone
+midtone's
+midtones
 midtown
 midtown's
 midtowns
@@ -81479,6 +81488,9 @@ multipurpose
 multiracial
 multiresponse
 multisample
+multisampled
+multisamples
+multisampling
 multisection
 multiselect
 multiselected
@@ -84118,6 +84130,7 @@ nonauthenticated
 nonauthoritarian
 nonauthoritarian's
 nonauthoritarians
+nonauthoritative
 nonautomotive
 nonavailabilities
 nonavailability
@@ -84755,7 +84768,9 @@ nonseasonal
 nonseasonally
 nonsectarian
 nonsecular
+nonseeking
 nonsegregated
+nonselectable
 nonselective
 nonself
 nonseminoma
@@ -99059,6 +99074,7 @@ processions
 processor
 processor's
 processors
+processwide
 proclaim
 proclaimable
 proclaimed
@@ -106377,6 +106393,7 @@ remorselessnesses
 remorses
 remotable
 remote
+remoted
 remotely
 remoteness
 remoteness's
@@ -113597,6 +113614,7 @@ Selassie
 Selby
 seldom
 select
+selectability
 selectable
 selected
 selecting
@@ -125032,6 +125050,9 @@ superbugs
 supercargo
 supercargo's
 supercargoes
+supercede
+supercedes
+superceding
 supercentenarian
 supercentenarian's
 supercentenarians
@@ -130157,6 +130178,9 @@ timecards
 timeclock
 timeclock's
 timeclocks
+timecode
+timecode's
+timecodes
 timed
 timeframe
 timeframe's
@@ -135176,7 +135200,11 @@ undecideds
 undecipherable
 undeclared
 undecomposable
+undecorate
 undecorated
+undecorates
+undecorating
+undecoration
 undedicated
 undefeated
 undefended
@@ -135790,6 +135818,7 @@ uneconomical
 uneconomically
 uneconomizing
 unedifying
+uneditable
 unedited
 uneducated
 unelectable

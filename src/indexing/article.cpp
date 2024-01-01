@@ -279,6 +279,12 @@ bool is_incorrect_english_article::is_an_exception(const wchar_t* word, const si
         {
         return true;
         }
+    // an XML, an XBox
+    else if (word_length >= 2 && traits::case_insensitive_ex::eq(word[0], L'x') &&
+             characters::is_character::is_consonant(word[1]))
+        {
+        return true;
+        }
     else
         {
         return false;

@@ -40,14 +40,4 @@ ssDNA
 ssRNA
 SUV
 Ubuntu
-XBox
-XCHAR
-XCode
 XInput
-xml
-XmlDocument
-XmlElement
-XmlReader
-XmlSerializer
-XPath
-xpm

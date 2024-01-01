@@ -20,6 +20,7 @@ and_eq
 argc
 args
 argv
+arraysize
 asctime
 asin
 asinh
@@ -248,6 +249,7 @@ localtime
 logb
 long
 longjmp
+lpstr
 lpsz
 lpvalue
 lstrcat
@@ -326,6 +328,9 @@ retval
 rvalue
 rvalue's
 rvalues
+safearray
+safearray's
+safearrays
 scalb
 scanf
 setjmp
@@ -338,6 +343,9 @@ signed
 sinh
 size_t
 sizeof
+snprintf
+sntprintf
+snwprintf
 sprintf
 sprintfl
 sprintfs
@@ -357,6 +365,7 @@ stdin
 stdlib
 stdout
 stl
+stprintf
 str
 strcat
 strchr
@@ -401,6 +410,7 @@ tcscmp
 tcscoll
 tcsicmp
 tcslen
+tcsncpy
 template
 this
 thiscall
@@ -458,6 +468,7 @@ winrt
 Winsock
 wistringstream
 wmain
+wnsprintf
 wostream
 wostream's
 wostreams
