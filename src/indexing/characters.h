@@ -690,17 +690,19 @@ namespace characters
         [[nodiscard]]
         static constexpr bool is_space_horizontal(const wchar_t ch) noexcept
             {
+            // clang-format off
             return (ch == 0x20) ? // regular space
-                       true :
-                       (ch == 0x09) ? // tab
-                           true :
-                           (ch == 0xA0) ? // no-break space
-                               true :
-                               (ch == 0x3000) ? // Japanese Ideographic Space
-                                                // En quad, thin space, hair space, em space,
-                                                // zero-width non-joiner (word separator), etc.
-                                   true :
-                                   (ch >= 0x2000 && ch <= 0x200C) ? true : false;
+                    true :
+                   (ch == 0x09) ? // tab
+                    true :
+                   (ch == 0xA0 || ch == 0x202F) ? // no-break space, narrow
+                    true :
+                   (ch == 0x3000) ? // Japanese Ideographic Space
+                                    // En quad, thin space, hair space, em space,
+                                    // zero-width non-joiner (word separator), etc.
+                    true :
+                   (ch >= 0x2000 && ch <= 0x200C) ? true : false;
+            // clang-format on
             }
 
         /** @returns Whether a character is a line-ending type character.
