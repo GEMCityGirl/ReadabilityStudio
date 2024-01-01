@@ -5297,16 +5297,16 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
     if (wizard->IsRandomSampling())
         {
         const size_t sampleSize = GetSourceFilesInfo().size() *
-            safe_divide<double>(wizard->GetRandomSamplePercentage(), 100);
-        std::uniform_int_distribution<> randNum(0, GetSourceFilesInfo().size()-1);
+                                  safe_divide<double>(wizard->GetRandomSamplePercentage(), 100);
+        assert(sampleSize < GetSourceFilesInfo().size() && "Invalid random sample size!");
+
+        std::shuffle(GetSourceFilesInfo().begin(), GetSourceFilesInfo().end(),
+                     wxGetApp().GetRandomNumberEngine());
+        GetSourceFilesInfo().erase(GetSourceFilesInfo().begin() + sampleSize,
+                                   GetSourceFilesInfo().end());
+        assert(sampleSize == GetSourceFilesInfo().size() && "Invalid random sample size!");
 
         wxGetApp().GetAppOptions().SetBatchRandomSamplingSize(wizard->GetRandomSamplePercentage());
-        while (GetSourceFilesInfo().size() > sampleSize)
-            {
-            const size_t index = randNum(wxGetApp().GetRandomNumberEngine());
-            if (index < GetSourceFilesInfo().size())
-                { GetSourceFilesInfo().erase(GetSourceFilesInfo().begin() + index); }
-            }
         }
 
     wxGetApp().GetAppOptions().SetTestRecommendation(wizard->IsDocumentTypeSelected() ?
