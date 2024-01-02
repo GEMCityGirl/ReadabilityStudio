@@ -84,17 +84,23 @@ TEST_CASE("Spell checker", "[spellchecker]")
         CHECK(spellCheck(MYWORD(L"500",4,0,0,0,true,true,false,false,1,0)));
         CHECK(spellCheck(MYWORD(L"_MyVar")));
         CHECK(spellCheck(MYWORD(L"%s%d")));
-        CHECK(spellCheck(MYWORD(L"Value")) == false);
+        CHECK_FALSE(spellCheck(MYWORD(L"Value")));
         CHECK(spellCheck(MYWORD(L"$Value")));
-        CHECK(spellCheck(MYWORD(L"pragma")) == false);
+        CHECK_FALSE(spellCheck(MYWORD(L"pragma")));
         CHECK(spellCheck(MYWORD(L"#pragma")));
+        // Powershell
+        CHECK(spellCheck(MYWORD(L"Copy-PScommand")));
+        CHECK_FALSE(spellCheck(MYWORD(L"Copy-Pcommand")));
+        CHECK_FALSE(spellCheck(MYWORD(L"Copy-command")));
+        CHECK_FALSE(spellCheck(MYWORD(L"Copy-P")));
+        CHECK_FALSE(spellCheck(MYWORD(L"y-P")));
         // UI strings should have & removed and then spell checked
         CHECK(spellCheck(MYWORD(L"&about")));
         CHECK(spellCheck(MYWORD(L"a&bout")));
         CHECK(spellCheck(MYWORD(L"a&bout-cat")));
         CHECK(spellCheck(MYWORD(L"&&")));
         CHECK(spellCheck(MYWORD(L"the\\ncat")));
-        CHECK(spellCheck(MYWORD(L"the\\ncatz")) == false);
+        CHECK_FALSE(spellCheck(MYWORD(L"the\\ncatz")));
         }
     }
 
