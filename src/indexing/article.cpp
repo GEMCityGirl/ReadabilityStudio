@@ -233,6 +233,11 @@ bool is_incorrect_english_article::operator()(std::wstring_view article,
             {
             return !is_an_exception(word);
             }
+        // handle any 'an' exceptions that may start with a vowel
+        else if (is_an_exception(word))
+            {
+            return false;
+            }
         // if starts with a vowel (excluding 'y'),
         // then it should be correct (unless a known exception that should actually go with an 'a')
         else if (!traits::case_insensitive_ex::eq(word[0], L'y') &&
@@ -301,12 +306,12 @@ bool is_incorrect_english_article::is_a_exception(std::wstring_view word)
         }
 
     static const std::set<traits::case_insensitive_wstring_ex> case_i_u_3_prefixes = {
-        L"uac", L"ubi", L"uef", L"uie", L"uin" /* a unint_32 is correct */,
+        L"uac", L"ubi", L"udf", L"uef", L"uie", L"uin" /* a unint_32 is correct */,
         L"ukr", L"ulo", /* a ULONG_PTR */
-        L"ure", L"uri", L"uro", L"usa", L"usb",
-        L"use", L"usi", L"usn", L"usu", L"utc",
-        L"utf", L"uti", L"uto", L"uue", /* a uuencoded */
-        L"uui",                         /* a UUID */
+        L"ure", L"uri", L"uro", L"usa", L"usb", L"use",
+        L"usi", L"usn", L"usu", L"utc", L"utf", L"uti",
+        L"uto", L"uue", /* a uuencoded */
+        L"uui",         /* a UUID */
         L"uwo"
     };
 
