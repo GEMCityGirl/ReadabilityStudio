@@ -704,7 +704,7 @@ namespace tokenize
                     }
 
                 // See if the word is a numeral
-                m_is_numeric = is_character.is_numeric(word_start, m_current_word_length);
+                m_is_numeric = is_character.is_numeric({ word_start, m_current_word_length });
 
                 ++m_sentence_position;
                 ++m_word_count;

@@ -143,30 +143,29 @@ TEST_CASE("Character traits", "[chartraits]")
 
     SECTION("Numeric String")
         {
-        CHECK(characters::is_character::is_numeric(L"100", 3));
-        CHECK(characters::is_character::is_numeric(L"$1", 2));
-        CHECK(characters::is_character::is_numeric(L"0", 1));
-        CHECK(characters::is_character::is_numeric(L"100g", 4));
-        CHECK(characters::is_character::is_numeric(L"10gg", 4));
-        CHECK(characters::is_character::is_numeric(L"1ggg", 4) == false);
-        CHECK(characters::is_character::is_numeric(nullptr, 3) == false);
-        CHECK(characters::is_character::is_numeric(L"100", 0) == false);
-        CHECK(characters::is_character::is_numeric(L"", 0) == false);
+        CHECK(characters::is_character::is_numeric(L"100"));
+        CHECK(characters::is_character::is_numeric(L"$1"));
+        CHECK(characters::is_character::is_numeric(L"0"));
+        CHECK(characters::is_character::is_numeric(L"100g"));
+        CHECK(characters::is_character::is_numeric(L"10gg"));
+        CHECK(characters::is_character::is_numeric(L"1ggg") == false);
+        CHECK(characters::is_character::is_numeric({ L"100", 0 }) == false);
+        CHECK(characters::is_character::is_numeric(L"") == false);
         }
     SECTION("Numeric String With Dashes")
         {
-        CHECK(characters::is_character::is_numeric(L"-4", 2));
-        CHECK(characters::is_character::is_numeric(L"-42", 3));
-        CHECK(characters::is_character::is_numeric(L"42￠", 3));
-        CHECK(characters::is_character::is_numeric(L"￡42", 3));
-        CHECK(characters::is_character::is_numeric(L"－42", 3));
-        CHECK(characters::is_character::is_numeric(L"＋42", 3));
-        CHECK(characters::is_character::is_numeric(L"-a", 2) == false);
-        CHECK(characters::is_character::is_numeric(L"-year", 5) == false);
-        CHECK(characters::is_character::is_numeric(L"110-a", 5));//an equation
-        CHECK(characters::is_character::is_numeric(L"10000-year", 10) == false);//this should be a regular word
-        CHECK(characters::is_character::is_numeric(L"10000－yr", 8) == false);//this should be a regular word
-        CHECK(characters::is_character::is_numeric(L"10000-year", 10) == false);//this should be a regular word
+        CHECK(characters::is_character::is_numeric(L"-4"));
+        CHECK(characters::is_character::is_numeric(L"-42"));
+        CHECK(characters::is_character::is_numeric(L"42￠"));
+        CHECK(characters::is_character::is_numeric(L"￡42"));
+        CHECK(characters::is_character::is_numeric(L"－42"));
+        CHECK(characters::is_character::is_numeric(L"＋42"));
+        CHECK(characters::is_character::is_numeric(L"-a") == false);
+        CHECK(characters::is_character::is_numeric(L"-year") == false);
+        CHECK(characters::is_character::is_numeric(L"110-a"));//an equation
+        CHECK(characters::is_character::is_numeric(L"10000-year") == false);//this should be a regular word
+        CHECK(characters::is_character::is_numeric(L"10000－yr") == false);//this should be a regular word
+        CHECK(characters::is_character::is_numeric(L"10000-year") == false);//this should be a regular word
         }
     SECTION("Numeric")
         {

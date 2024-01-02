@@ -115,7 +115,8 @@ TEST_CASE("Social Media", "[social-media]")
         CHECK_FALSE(isSmTag(MYWORD(L"#1254785"))); // number
         CHECK_FALSE(isSmTag(MYWORD(L"##########"))); // all hashtags is nonsense
         MYWORD longNumber(L"#WeAre1");
-        longNumber.set_numeric(characters::is_character::is_numeric(longNumber.c_str(), longNumber.length()));
+        longNumber.set_numeric(
+            characters::is_character::is_numeric({ longNumber.c_str(), longNumber.length() }));
         CHECK(isSmTag(longNumber));
         }
 
@@ -133,7 +134,8 @@ TEST_CASE("Social Media", "[social-media]")
         is_social_media_tag<MYWORD> isSmTag;
         CHECK_FALSE(isSmTag(MYWORD(L"#1")));
         MYWORD longNumber(L"#10025");
-        longNumber.set_numeric(characters::is_character::is_numeric(longNumber.c_str(), longNumber.length()));
+        longNumber.set_numeric(
+            characters::is_character::is_numeric({ longNumber.c_str(), longNumber.length() }));
         CHECK_FALSE(isSmTag(longNumber));
         CHECK_FALSE(isSmTag(MYWORD(L"#")));
         }

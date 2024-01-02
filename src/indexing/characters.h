@@ -242,34 +242,36 @@ namespace characters
         [[nodiscard]]
         constexpr static bool can_character_begin_word(const wchar_t ch) noexcept
             {
+            // clang-format off
             return is_either<wchar_t>(ch, 35, 0xFF03) ? // #
-                       true :
-                       is_either<wchar_t>(ch, 36, 0xFF04) ? // $
-                           true :
-                           is_either<wchar_t>(ch, L'&', 0xFF06) ?
-                           true :
-                           is_numeric_simple(ch) ?
-                           true :
-                           // don't allow words to start with super/subscripts or fractions
-                               (is_alpha(ch) && !string_util::is_superscript(ch) &&
-                                !string_util::is_subscript(ch)) ?
-                           true :
-                           // Doxygen tags (e.g., @note) or used as a whole word
-                           // (e.g., "meet @ 5:00")
-                               is_either<wchar_t>(ch, L'@', 0xFF20) ? true :
-                           (ch == 0x9F) ? // Y with diaeresis
-                               true :
-                               is_either<wchar_t>(ch, 163, 0xFFE1) ? // Pound Sterling
-                                   true :
-                                   is_either<wchar_t>(ch, 0x80, 0x20AC) ? // Euro
-                                       true :
-                                       (ch == 0x20B1) ? // Cuban peso
-                                           true :
-                                           (ch == 0x20A9) ? // Korean Won (currency)
-                                               true :
-                                               (ch == 177) ? // plus/minus±
-                                                   true :
-                                                   false;
+                    true :
+                   is_either<wchar_t>(ch, 36, 0xFF04) ? // $
+                    true :
+                   is_either<wchar_t>(ch, L'&', 0xFF06) ?
+                    true :
+                   is_numeric_simple(ch) ?
+                    true :
+                   // don't allow words to start with super/subscripts or fractions
+                   (is_alpha(ch) && !string_util::is_superscript(ch) &&
+                    !string_util::is_subscript(ch)) ?
+                    true :
+                   // Doxygen tags (e.g., @note) or used as a whole word
+                   // (e.g., "meet @ 5:00")
+                   is_either<wchar_t>(ch, L'@', 0xFF20) ? true :
+                   (ch == 0x9F) ? // Y with diaeresis
+                    true :
+                   is_either<wchar_t>(ch, 163, 0xFFE1) ? // Pound Sterling
+                    true :
+                   is_either<wchar_t>(ch, 0x80, 0x20AC) ? // Euro
+                    true :
+                   (ch == 0x20B1) ? // Cuban peso
+                    true :
+                   (ch == 0x20A9) ? // Korean Won (currency)
+                    true :
+                   (ch == 177) ? // plus/minus±
+                    true :
+                    false;
+            // clang-format on
             }
 
         /** @returns @c true if a character is an uppercased letter that
@@ -278,27 +280,29 @@ namespace characters
         [[nodiscard]]
         constexpr static bool can_character_begin_word_uppercase(const wchar_t ch) noexcept
             {
+            // clang-format off
             return is_either<wchar_t>(ch, 35, 0xFF03) ? // #
-                       true :
-                       is_either<wchar_t>(ch, 36, 0xFF04) ? // $
-                           true :
-                           is_either<wchar_t>(ch, L'&', 0xFF06) ? true :
-                           is_numeric(ch)                       ? true :
-                           is_upper(ch)                         ? true :
-                           is_either<wchar_t>(ch, L'@', 0xFF20) ? true :
-                           (ch == 0x9F) ? // Y with diaeresis
-                               true :
-                               is_either<wchar_t>(ch, 163, 0xFFE1) ? // Pound Sterling
-                                   true :
-                                   is_either<wchar_t>(ch, 0x80, 0x20AC) ? // Euro
-                                       true :
-                                       (ch == 0x20B1) ? // Cuban peso
-                                           true :
-                                           (ch == 0x20A9) ? // Korean Won (currency)
-                                               true :
-                                               (ch == 177) ? // plus/minus
-                                                   true :
-                                                   false;
+                    true :
+                   is_either<wchar_t>(ch, 36, 0xFF04) ? // $
+                    true :
+                   is_either<wchar_t>(ch, L'&', 0xFF06) ? true :
+                   is_numeric(ch)                       ? true :
+                   is_upper(ch)                         ? true :
+                   is_either<wchar_t>(ch, L'@', 0xFF20) ? true :
+                   (ch == 0x9F) ? // Y with diaeresis
+                    true :
+                   is_either<wchar_t>(ch, 163, 0xFFE1) ? // Pound Sterling
+                    true :
+                   is_either<wchar_t>(ch, 0x80, 0x20AC) ? // Euro
+                    true :
+                   (ch == 0x20B1) ? // Cuban peso
+                    true :
+                   (ch == 0x20A9) ? // Korean Won (currency)
+                    true :
+                   (ch == 177) ? // plus/minus
+                    true :
+                    false;
+            // clang-format on
             }
 
         /** @returns @c true if a character can appear at the end of a word.
@@ -306,32 +310,33 @@ namespace characters
         [[nodiscard]]
         constexpr static bool can_character_end_word(const wchar_t ch) noexcept
             {
+            // clang-format off
             return is_either<wchar_t>(ch, 35, 0xFF03) ? // #
-                       true :
-                       is_either<wchar_t>(ch, 37, 0xFF05) ? // %
-                           true :
-                           is_either<wchar_t>(ch, L'&', 0xFF06) ? // &
-                               true :
-                               (ch == 46) ? // .
-                                   true :
-                                   is_either<wchar_t>(ch, 47, 0xFF0F) ? // '/'
-                                       true :
-                                       is_numeric(ch)    ? true :
-                                       is_alpha(ch)      ? true :
-                                       is_apostrophe(ch) ? true :
-                                       is_either<wchar_t>(ch, L'@',
-                                                          0xFF20) ? // could be an entire word
-                                           true :
-                                           is_either<wchar_t>(ch, 92, 0xFF3C) ? /*\*/
-                                               true :
-                                               (ch == 0x9F) ? // Y with diaeresis
-                                                   true :
-                                                   is_either<wchar_t>(ch, 162, 0xFFE0) ? // cent
-                                                       true :
-                                                       is_either<wchar_t>(ch, 176,
-                                                                          0xFFEE) ? // degree
-                                                           true :
-                                                           false;
+                    true :
+                   is_either<wchar_t>(ch, 37, 0xFF05) ? // %
+                    true :
+                   is_either<wchar_t>(ch, L'&', 0xFF06) ? // &
+                    true :
+                   (ch == 46) ? // .
+                    true :
+                   is_either<wchar_t>(ch, 47, 0xFF0F) ? // '/'
+                    true :
+                   is_numeric(ch)    ? true :
+                   is_alpha(ch)      ? true :
+                   is_apostrophe(ch) ? true :
+                   // could be an entire word
+                   is_either<wchar_t>(ch, L'@', 0xFF20) ?
+                    true :
+                   is_either<wchar_t>(ch, 92, 0xFF3C) ? /*\*/
+                    true :
+                   (ch == 0x9F) ? // Y with diaeresis
+                    true :
+                   is_either<wchar_t>(ch, 162, 0xFFE0) ? // cent
+                    true :
+                   is_either<wchar_t>(ch, 176, 0xFFEE) ? // degree
+                    true :
+                    false;
+            // clang-format on
             }
 
         /** @returns @c true if a character can appear inside the word.
@@ -340,41 +345,40 @@ namespace characters
         constexpr bool
         operator()(const wchar_t ch) const noexcept
             {
+            // clang-format off
             return is_either<wchar_t>(ch, 35, 0xFF03) ? // #
-                       true :
-                       is_either<wchar_t>(ch, 37, 0xFF05) ? // %
-                           true :
-                           is_either<wchar_t>(ch, 38, 0xFF06) ? // &
-                               true :
-                               (ch == 46) ? // .
-                                   true :
-                                   is_either<wchar_t>(ch, 47, 0xFF0F) ? // /
-                                       true :
-                                       is_either<wchar_t>(ch, 58, 0xFF1A) ? // :
-                                           true :
-                                           is_numeric(ch)                       ? true :
-                                           is_alpha(ch)                         ? true :
-                                           is_hyphen(ch)                        ? true :
-                                           is_apostrophe(ch)                    ? true :
-                                           is_either<wchar_t>(ch, L'@', 0xFF20) ? true :
-                                           is_either<wchar_t>(ch, 92, 0xFF3C) ? /*\*/
-                                               true :
-                                               (ch >= 0x5F && ch <= 0x60) ? // _`
-                                                   true :
-                                                   (ch >= 0xFF3F && ch <= 0xFF40) ? // full-width _`
-                                                       true :
-                                                       (ch == 126) ? // tilde (usually appear inside
-                                                                     // a file path)
-                                                           true :
-                                                           (ch == 159) ? // Y with diaeresis
-                                                               true :
-                                                               is_either<wchar_t>(ch, 162,
-                                                                                  0xFFE0) ? // cent
-                                                                   true :
-                                                                   is_either<wchar_t>(
-                                                                       ch, 176, 0xFFEE) ? // degree
-                                                                       true :
-                                                                       false;
+                    true :
+                   is_either<wchar_t>(ch, 37, 0xFF05) ? // %
+                    true :
+                   is_either<wchar_t>(ch, 38, 0xFF06) ? // &
+                    true :
+                   (ch == 46) ? // .
+                    true :
+                   is_either<wchar_t>(ch, 47, 0xFF0F) ? // /
+                    true :
+                   is_either<wchar_t>(ch, 58, 0xFF1A) ? // :
+                    true :
+                   is_numeric(ch)                       ? true :
+                   is_alpha(ch)                         ? true :
+                   is_hyphen(ch)                        ? true :
+                   is_apostrophe(ch)                    ? true :
+                   is_either<wchar_t>(ch, L'@', 0xFF20) ? true :
+                   is_either<wchar_t>(ch, 92, 0xFF3C) ? /*\*/
+                    true :
+                   (ch >= 0x5F && ch <= 0x60) ? // _`
+                    true :
+                   (ch >= 0xFF3F && ch <= 0xFF40) ? // full-width _`
+                    true :
+                   (ch == 126) ? // tilde (usually appear inside a file path)
+                    true :
+                   (ch == 159) ? // Y with diaeresis
+                    true :
+                   is_either<wchar_t>(ch, 162, 0xFFE0) ? // cent
+                    true :
+                   is_either<wchar_t>( ch, 176, 0xFFEE) ? // degree
+                    true :
+                    false;
+            // clang-format on
             }
 
         /** @returns @c true if a character is a hyphen.
@@ -399,21 +403,23 @@ namespace characters
         [[nodiscard]]
         constexpr static bool is_dash(const wchar_t ch) noexcept
             {
+            // clang-format off
             return (ch == 0x2012) ? // figure dash
-                       true :
-                       (ch == 0x2013) ? // en dash
-                           true :
-                           (ch == 0x2014) ? // em dash
-                               true :
-                               (ch == 0x2015) ? // horizontal bar
-                                   true :
-                                   (ch == 0x2E17) ? // Japanese double oblique hyphen
-                                       true :
-                                       (ch == 0x30A0) ? // Katakana-Hiragana double hyphen
-                                           true :
-                                           (ch == 0x301C) ? // Japanese wave dash
-                                               true :
-                                               false;
+                    true :
+                   (ch == 0x2013) ? // en dash
+                    true :
+                   (ch == 0x2014) ? // em dash
+                    true :
+                   (ch == 0x2015) ? // horizontal bar
+                    true :
+                   (ch == 0x2E17) ? // Japanese double oblique hyphen
+                    true :
+                   (ch == 0x30A0) ? // Katakana-Hiragana double hyphen
+                    true :
+                   (ch == 0x301C) ? // Japanese wave dash
+                    true :
+                    false;
+            // clang-format on
             }
 
         /** @returns @c true if a character is an apostrophe (includes straight single quotes).
@@ -421,17 +427,19 @@ namespace characters
         [[nodiscard]]
         constexpr static bool is_apostrophe(const wchar_t ch) noexcept
             {
+            // clang-format off
             return (ch == 39) ? // '
-                       true :
-                       (ch == 146) ? // apostrophe
-                           true :
-                           (ch == 180) ? // apostrophe
-                               true :
-                               (ch == 0xFF07) ? // full-width apostrophe
-                                   true :
-                                   (ch == 0x2019) ? // right single apostrophe
-                                       true :
-                                       false;
+                    true :
+                   (ch == 146) ? // apostrophe
+                    true :
+                   (ch == 180) ? // apostrophe
+                    true :
+                   (ch == 0xFF07) ? // full-width apostrophe
+                    true :
+                   (ch == 0x2019) ? // right single apostrophe
+                    true :
+                    false;
+            // clang-format on
             }
 
         /** @returns @c true if a character is a period.
@@ -448,48 +456,48 @@ namespace characters
         [[nodiscard]]
         constexpr static bool can_character_prefix_numeral(const wchar_t ch) noexcept
             {
+            // clang-format off
             return is_either<wchar_t>(ch, 35, 0xFF03) ? // #
-                       true :
-                       is_either<wchar_t>(ch, 36, 0xFF04) ? // $
-                           true :
-                           (ch >= 43 && ch <= 46) ? //+,-.
-                               true :
-                               (ch >= 0xFF0B && ch <= 0xFF0E) ? // full-width +,-.
-                                   true :
-                                   is_either<wchar_t>(ch, 0x80, 0x20AC) ? // Euro
-                                       true :
-                                       is_either<wchar_t>(ch, 163, 0xFFE1) ? // Pound Sterling
-                                           true :
-                                           (ch == 165) ? // Yen
-                                               true :
-                                               (ch == 177) ? // plus/minus
-                                                   true :
-                                                   (ch == 0x20B1) ? // Cuban peso
-                                                       true :
-                                                       (ch == 0x20A9) ? // Korean Won (currency)
-                                                           true :
-                                                           false;
+                    true :
+                   is_either<wchar_t>(ch, 36, 0xFF04) ? // $
+                    true :
+                   (ch >= 43 && ch <= 46) ? //+,-.
+                    true :
+                   (ch >= 0xFF0B && ch <= 0xFF0E) ? // full-width +,-.
+                    true :
+                   is_either<wchar_t>(ch, 0x80, 0x20AC) ? // Euro
+                    true :
+                   is_either<wchar_t>(ch, 163, 0xFFE1) ? // Pound Sterling
+                    true :
+                   (ch == 165) ? // Yen
+                    true :
+                   (ch == 177) ? // plus/minus
+                    true :
+                   (ch == 0x20B1) ? // Cuban peso
+                    true :
+                   (ch == 0x20A9) ? // Korean Won (currency)
+                    true :
+                    false;
+            // clang-format on
             }
 
         /** @returns @c true if a character stream is an ellipsis, and the number of periods
                      making up the ellipsis (if constructed out of periods, zero for
                      Unicode ellipsis or if not an ellipsis).
-            @param text The stream to be reviewed.
-            @param length The length of the stream being reviewed.*/
+            @param text The stream to be reviewed.*/
         [[nodiscard]]
-        static std::pair<bool, size_t> is_ellipsis(const wchar_t* text,
-                                                   const size_t length) noexcept
+        static std::pair<bool, size_t> is_ellipsis(std::wstring_view text) noexcept
             {
-            if (text == nullptr || text[0] == 0 || length == 0)
+            if (text.empty())
                 {
                 return std::make_pair(false, 0);
                 }
-            if (length == 1)
+            if (text.length() == 1)
                 {
                 return std::make_pair(is_either<wchar_t>(text[0], 0x85, 0x2026), 0);
                 }
             size_t periodCount = 0;
-            for (size_t i = 0; i < length; ++i)
+            for (size_t i = 0; i < text.length(); ++i)
                 {
                 if (text[i] == 0)
                     {
@@ -602,16 +610,15 @@ namespace characters
             }
 
         /** @returns Whether a character sequence is a number (works with wide Unicode numbers too).
-            @param word The character stream to be reviewed.
-            @param length The length of the stream.*/
+            @param word The character stream to be reviewed*/
         [[nodiscard]]
-        static bool is_numeric(const wchar_t* word, const size_t length) noexcept
+        static bool is_numeric(std::wstring word) noexcept
             {
-            if (word == nullptr || length == 0)
+            if (word.empty())
                 {
                 return false;
                 }
-            else if (length == 1)
+            else if (word.length() == 1)
                 {
                 return is_numeric(word[0]);
                 }
@@ -624,7 +631,7 @@ namespace characters
                 // if at least half of the characters in the word are numbers,
                 // then mark the word as numeric
                 size_t numberCount = 0;
-                for (size_t i = 0; i < length; ++i)
+                for (size_t i = 0; i < word.length(); ++i)
                     {
                     assert(word[i]);
                     if (is_numeric(word[i]))
@@ -633,13 +640,14 @@ namespace characters
                         }
                     // something like "10000-year" is an exception,
                     // should be seen as a regular word
-                    else if (numberCount > 0 && is_dash_or_hyphen(word[i]) && i + 2 < length &&
-                             is_alpha(word[i + 1]) && is_alpha(word[i + 2]))
+                    else if (numberCount > 0 && is_dash_or_hyphen(word[i]) &&
+                             i + 2 < word.length() && is_alpha(word[i + 1]) &&
+                             is_alpha(word[i + 2]))
                         {
                         return false;
                         }
                     }
-                return (numberCount >= (length / 2));
+                return (numberCount >= (word.length() / 2));
                 }
             }
 

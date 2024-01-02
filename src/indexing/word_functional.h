@@ -1343,7 +1343,7 @@ class is_correctly_spelled_word
                     validTokenFound = true;
                     }
                 // see if this chunk is just a number
-                if (characters::is_character::is_numeric(compValue.c_str(), compValue.length()))
+                if (characters::is_character::is_numeric({ compValue.c_str(), compValue.length() }))
                     {
                     continue;
                     }

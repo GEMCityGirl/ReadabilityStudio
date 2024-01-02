@@ -580,9 +580,9 @@ namespace grammar
                         // and there is no punctuation between quote and word (like a dash)
                         nonWordPunctEncountered == false)
                         { return false; }
-                    else if (const auto ellipsisRes =
-                            is_character.is_ellipsis(text+original_position,
-                                (current_position-original_position)+1);
+                    else if (const auto ellipsisRes = is_character.is_ellipsis(
+                                 { text + original_position,
+                                   (current_position - original_position) + 1 });
                         ellipsisRes.first)
                         {
                         // three dots followed immediately by ? or ! is an end of sentence
