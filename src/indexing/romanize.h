@@ -50,8 +50,6 @@ namespace text_transform
 
         /** @brief Encodes a string into Romanized text.
             @param text The text to encode.
-            @param length The length of the text to encode.
-                Pass @c -1 for the function to determine the length.
             @param replace_extended_ascii_characters Whether to replace accented letters
                 and other special symbols.
             @param remove_ellipses Whether ellipses should be replaced with spaces.
@@ -63,7 +61,7 @@ namespace text_transform
             @returns A string encoded to simpler text.*/
         [[nodiscard]]
         std::wstring
-        operator()(const wchar_t* text, size_t length, const bool replace_extended_ascii_characters,
+        operator()(std::wstring_view text, const bool replace_extended_ascii_characters,
                    const bool remove_ellipses, const bool remove_bullets,
                    const bool narrow_full_width_characters) const;
 

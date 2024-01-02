@@ -69,8 +69,8 @@ TEST_CASE("Bullets", "[bullets]")
     SECTION("Null")
         {
         grammar::is_bulleted_text is_indented;
-        CHECK(is_indented(nullptr).first == false);
-        CHECK(is_indented(nullptr).second == 0);
+        CHECK(is_indented(L"").first == false);
+        CHECK(is_indented(L"").second == 0);
         }
     SECTION("Tab")
         {

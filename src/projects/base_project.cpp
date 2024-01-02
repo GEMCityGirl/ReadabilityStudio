@@ -253,10 +253,12 @@ void BaseProject::FormatFilteredText(wxString& text, const bool romanizeText,
         (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
             InvalidTextFilterFormat::IncludeAllText : InvalidTextFilterFormat::IncludeOnlyValidText,
         removeFilePaths, stripAbbreviations);
-    text.Trim(false); text.Trim(true); text.Prepend(L"\t");
+    text.Trim(false);
+    text.Trim(true);
+    text.Prepend(L"\t");
 
     const text_transform::romanize Romanize;
-    text = Romanize(text, text.length(), romanizeText, removeEllipses, removeBullets, narrowFullWithText);
+    text = Romanize(text.wc_str(), romanizeText, removeEllipses, removeBullets, narrowFullWithText);
     }
 
 //-------------------------------------------------------

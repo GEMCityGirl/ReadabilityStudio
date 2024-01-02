@@ -154,16 +154,19 @@ namespace grammar
             @returns Whether the text stream begins with a bullet,
                 and the length of the bullet if true.*/
         [[nodiscard]]
-        const std::pair<bool,size_t> operator()(const wchar_t* text) const noexcept
+        const std::pair<bool, size_t> operator()(std::wstring_view text) const noexcept
             {
-            if (text == nullptr || text[0] == 0)
-                { return std::pair<bool,size_t>(false,0); }
+            if (text.empty())
+                { return std::pair<bool,size_t>(false, 0); }
             // first, step over any spaces at the start of the line,
             // sometimes bullets can be indented
-            while (text[0] != 0 && characters::is_character::is_space_horizontal(text[0]))
-                { ++text; }
-            if (text[0] == 0)
-                { return std::pair<bool,size_t>(false,0); }
+            while (text.length() &&
+                   characters::is_character::is_space_horizontal(text[0]))
+                {
+                text.remove_prefix(1);
+                }
+            if (text.empty())
+                { return std::pair<bool,size_t>(false, 0); }
             // first see if it's a bullet
             else if (string_util::is_either<wchar_t>(text[0], 0x95, 0x2022)/* bullet*/ ||
                 text[0] == 0x2023 /* triangle bullet*/ ||
@@ -176,7 +179,7 @@ namespace grammar
                 characters::is_character::is_space_horizontal(text[1]))
                 { return std::pair<bool,size_t>(true,1); }
             // else, see if it more than two spaces (more than likely an indentation)
-            const wchar_t* current_char = text;
+            const wchar_t* current_char = text.data();
             while (current_char[0] != 0 &&
                 characters::is_character::is_space_horizontal(current_char[0]))
                 { ++current_char; }
@@ -215,7 +218,7 @@ namespace grammar
                             // right parentheses
                             current_char[0] == 0x29 ||
                             current_char[0] == 0xFF09));
-                    return std::pair<bool,size_t>(true,(current_char-text));
+                    return std::pair<bool, size_t>(true, (current_char - text.data()));
                     }
                 else
                     {
@@ -235,9 +238,9 @@ namespace grammar
                     // a bullet.
                     isEol(newLineStart, nextLine);
                     if (isEol.get_eol_count() > 1)
-                        { return std::pair<bool,size_t>(true,(current_char-text)); }
+                        { return std::pair<bool,size_t>(true,(current_char - text.data())); }
                     return characters::is_character::is_numeric(nextLine[0]) ?
-                        std::pair<bool,size_t>(true,(current_char-text)) :
+                               std::pair<bool, size_t>(true, (current_char - text.data())) :
                         // anything else means that this probably is not a numeric bullet
                         std::pair<bool,size_t>(false,0);
                     }
@@ -262,7 +265,7 @@ namespace grammar
                            (characters::is_character::is_period(current_char[0]) ||
                             current_char[0] == 0x29 ||
                             current_char[0] == 0xFF09));
-                    return std::pair<bool,size_t>(true,(current_char-text));
+                    return std::pair<bool, size_t>(true, (current_char - text.data()));
                     }
                 // anything else means that this probably is not a letter bullet
                 else

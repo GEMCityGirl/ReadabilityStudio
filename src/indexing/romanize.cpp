@@ -141,35 +141,31 @@ namespace text_transform
         }
 
     //------------------------------------------------
-    std::wstring romanize::operator()(const wchar_t* text, size_t length,
+    std::wstring romanize::operator()(std::wstring_view text,
                                       const bool replace_extended_ascii_characters,
                                       const bool remove_ellipses, const bool remove_bullets,
                                       const bool narrow_full_width_characters) const
         {
-        if (std::wstring::npos == length)
-            {
-            length = std::wcslen(text);
-            }
         std::wstring encoded_text;
-        if (text == nullptr || length == 0)
+        if (text.empty())
             {
             return encoded_text;
             }
-        encoded_text.reserve(length * 2);
+        encoded_text.reserve(text.length() * 2);
 
-        for (size_t i = 0; i < length; ++i)
+        for (size_t i = 0; i < text.length(); ++i)
             {
             // this should be done before anything else because of how it scans ahead
             if (remove_bullets)
                 {
                 if (i == 0 || text[i] == L'\n' || text[i] == L'\r')
                     {
-                    while (i < length && characters::is_character::is_space(text[i]))
+                    while (i < text.length ()&& characters::is_character::is_space(text[i]))
                         // copy over any whitespace (including the newline we are on)
                         {
                         encoded_text += text[i++];
                         }
-                    const std::pair<bool, size_t> bullet = is_bullet(text + i);
+                    const std::pair<bool, size_t> bullet = is_bullet(text.data() + i);
                     if (bullet.first)
                         {
                         // if there is not a proceeding character in front of this bullet
@@ -180,7 +176,7 @@ namespace text_transform
                             encoded_text += L'\t';
                             }
                         i += bullet.second; // skip full length of the bullet
-                        if (i >= length)
+                        if (i >= text.length())
                             {
                             break;
                             }
@@ -194,7 +190,8 @@ namespace text_transform
                     {
                     lookAhead = i + 1;
                     }
-                else if (i < length - 2 && traits::case_insensitive_ex::eq(text[i], L'.') &&
+                else if (text.length() > 2 && i < text.length() - 2 &&
+                         traits::case_insensitive_ex::eq(text[i], L'.') &&
                          traits::case_insensitive_ex::eq(text[i + 1], L'.') &&
                          traits::case_insensitive_ex::eq(text[i + 2], L'.'))
                     {
@@ -206,13 +203,13 @@ namespace text_transform
                 // (for end of sentence) or a space
                 if (lookAhead > i)
                     {
-                    while (lookAhead < length &&
+                    while (lookAhead < text.length() &&
                            characters::is_character::is_space(text[lookAhead]))
                         {
                         ++lookAhead;
                         }
                     // if ellipsis is a valid sentence terminator, then replace with a period
-                    if (lookAhead >= length ||
+                    if (lookAhead >= text.length() ||
                         isEndOfSentence.can_character_begin_sentence(text[lookAhead]))
                         {
                         encoded_text += L'.';
