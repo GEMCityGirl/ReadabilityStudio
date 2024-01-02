@@ -32,13 +32,14 @@ wxDECLARE_APP(ReadabilityApp);
 wxIMPLEMENT_DYNAMIC_CLASS(ProjectDoc, wxDocument)
 
 //-------------------------------------------------------
-void ProjectDoc::ShowQueuedMessages()
+    void ProjectDoc::ShowQueuedMessages()
     {
     BaseProjectView* view = dynamic_cast<BaseProjectView*>(GetFirstView());
     for (std::vector<WarningMessage>::const_iterator queuedMsgIter = GetQueuedMessages().begin();
-        queuedMsgIter != GetQueuedMessages().end();
-        ++queuedMsgIter)
-        { view->ShowInfoMessage(*queuedMsgIter); }
+         queuedMsgIter != GetQueuedMessages().end(); ++queuedMsgIter)
+        {
+        view->ShowInfoMessage(*queuedMsgIter);
+        }
     }
 
 //-------------------------------------------------------
@@ -4344,11 +4345,11 @@ void ProjectDoc::UpdateHighlightedTextWindows()
     }
 
 //-------------------------------------------------------
-std::pair<wxString, wxString> ProjectDoc::FormatRtfHeaderFont(
-    const wxFont& textViewFont,
-    const size_t mainFontColorIndex)
+std::pair<wxString, wxString> ProjectDoc::FormatRtfHeaderFont(const wxFont& textViewFont,
+                                                              const size_t mainFontColorIndex)
     {
-    wxString mainFontHeader = wxString::Format(L"\\viewkind4\\uc1\\pard\\cf%zu", mainFontColorIndex);
+    wxString mainFontHeader =
+        wxString::Format(L"\\viewkind4\\uc1\\pard\\cf%zu", mainFontColorIndex);
     wxString endSection = L"\\par\\cf0";
     endSection += L"\\cf0";
     if (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD)
@@ -4367,7 +4368,7 @@ std::pair<wxString, wxString> ProjectDoc::FormatRtfHeaderFont(
         mainFontHeader += _DT(L"\\ul");
         }
     // "fs" command is in half points
-    mainFontHeader += wxString::Format(L"\\f0\\fs%d ", textViewFont.GetPointSize()*2);
+    mainFontHeader += wxString::Format(L"\\f0\\fs%d ", textViewFont.GetPointSize() * 2);
 
     endSection += L"\\par}";
 
@@ -4377,7 +4378,7 @@ std::pair<wxString, wxString> ProjectDoc::FormatRtfHeaderFont(
 //-------------------------------------------------------
 ProjectDoc::HighlighterColors ProjectDoc::BuildReportColors(
     const wxColour& highlightColor,
-    const wxColour& backgroundColor)
+    const wxColour& backgroundColor) const
     {
     HighlighterColors highlighterColors;
 
@@ -4479,7 +4480,7 @@ std::tuple<wxString, wxString, wxString> ProjectDoc::BuildColorTable(
 //-------------------------------------------------------
 ProjectDoc::HighlighterTags ProjectDoc::BuildHighlighterTags(
     [[maybe_unused]] const wxColour& highlightColor,
-    [[maybe_unused]] const HighlighterColors& highlighterColors)
+    [[maybe_unused]] const HighlighterColors& highlighterColors) const
     {
     HighlighterTags highlighterTags;
 

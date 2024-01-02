@@ -238,7 +238,7 @@ class ProjectDoc final : public BaseProjectDoc
     /// @brief Builds the colors and RTF color table (used by Windows and macOS).
     [[nodiscard]]
     HighlighterColors BuildReportColors(const wxColour& highlightColor,
-                                        const wxColour& backgroundColor);
+                                        const wxColour& backgroundColor) const;
     /// @brief Builds the tags used to highlight words in RTF or Pango.
     /// @param highlightColor The default highlight color.\n
     ///     This is only used for RTF, not Pango.
@@ -248,7 +248,7 @@ class ProjectDoc final : public BaseProjectDoc
     [[nodiscard]]
     HighlighterTags
     BuildHighlighterTags([[maybe_unused]] const wxColour& highlightColor,
-                         [[maybe_unused]] const HighlighterColors& highlighterColors);
+                         [[maybe_unused]] const HighlighterColors& highlighterColors) const;
     /// @brief Formats the main font for an RTF's header.
     std::pair<wxString, wxString> FormatRtfHeaderFont(const wxFont& textViewFont,
                                                       const size_t mainFontColorIndex);
