@@ -1184,7 +1184,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
         if (containsHighPercentageOfNonDochWords)
             {
             HTMLText += FormatHtmlWarningSection(_(L"This document contains a high percentage of "
-                                                   L"non-Dolch words and may not be appropriate "
+                                                   "non-Dolch words and may not be appropriate "
                                                    "for using as a Dolch test aid."));
             }
         }
@@ -1195,7 +1195,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
         HTMLText += L"\n<tr><td style='width:100%'><p>";
         HTMLText +=
             _(L"The Dolch Sight Words represent the most frequently occurring service "
-              L"words<sup>1</sup> "
+              "words<sup>1</sup> "
               "in most text, especially children's literature. Early readers need to learn and "
               "recognize "
               "these words to attain reading fluency. Many of these words cannot be sounded out or "
@@ -1210,7 +1210,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
         HTMLText += _(L"Pronouns, adjectives, adverbs, prepositions, conjunctions, and verbs.");
         HTMLText += L"<br /><sup>2</sup> ";
         HTMLText += _(L"A separate list of nouns commonly found in children's literature is also "
-                      L"included with the "
+                      "included with the "
                       "Dolch collection. However, the sight words are generally the focus of most "
                       "Dolch activities.");
         HTMLText += L"</p></td></tr>\n</table>";
@@ -1336,7 +1336,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
     const auto formatNoteHeader = [](const wxString& label)
     {
         return wxString::Format(L"\n<tr style='background:%s;'><td colspan='3'><span "
-                                L"style='color:white;'>%s</span></td></tr>",
+                                "style='color:white;'>%s</span></td></tr>",
                                 GetReportNoteHeaderColor().GetAsString(wxC2S_HTML_SYNTAX), label);
     };
 
@@ -1406,7 +1406,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
         else if (project->GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
             {
             currentLabel = _(L"Number of sentences (excluding lists and tables, see notes <a "
-                             L"href=\"#incompsent\">below</a>):");
+                             "href=\"#incompsent\">below</a>):");
             }
         else
             {
@@ -1436,7 +1436,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             if (project->GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis)
                 {
                 currentLabel = _(L"Number of units/independent clauses (excluding incomplete "
-                                 L"sentences, see notes "
+                                 "sentences, see notes "
                                  "<a href=\"#incompsent\">below</a>):");
                 }
             else if (project->GetInvalidSentenceMethod() ==
@@ -1473,7 +1473,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             {
             currentLabel =
                 wxString::Format(_(L"Number of <a href=\"#DifficultSentences\">difficult "
-                                   L"sentences</a> (more than %d words):"),
+                                   "sentences</a> (more than %d words):"),
                                  project->GetDifficultSentenceLength());
             }
         else
@@ -2183,7 +2183,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             // Fog
             HTMLText += tableStart + formatHeader(_(L"Fog Words")) +
                         formatRow(_(L"Number of Fog hard words (3+ syllables, with <a "
-                                    L"href=\"#FogHelp\">exceptions</a>):"),
+                                    "href=\"#FogHelp\">exceptions</a>):"),
                                   wxNumberFormatter::ToString(
                                       project->GetTotalHardWordsFog(), 0,
                                       wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2330,7 +2330,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 {
                 HTMLText += FormatHtmlNoteSection(
                     _(L"New Dale-Chall treats headers and sub-headers as full sentences and "
-                      L"excludes all "
+                      "excludes all "
                       "other incomplete sentences (regardless of your current analysis settings). "
                       "This is taken into account when calculating the unfamiliar word count and "
                       "percentage."));
@@ -2339,7 +2339,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 {
                 HTMLText +=
                     FormatHtmlNoteSection(_(L"Stocker's Catholic supplement is being included with "
-                                            L"the standard New Dale-Chall word list."));
+                                            "the standard New Dale-Chall word list."));
                 }
             }
 
@@ -2360,7 +2360,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             if (project->GetTotalHardWordsHarrisJacobson() > 0)
                 {
                 currentLabel = _(L"Number of <a href=\"#HarrisJacobsonWords\">Harris-Jacobson</a> "
-                                 L"unfamiliar words:");
+                                 "unfamiliar words:");
                 }
             else
                 {
@@ -2425,7 +2425,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                 {
                 HTMLText += FormatHtmlNoteSection(
                     _(L"Harris-Jacobson treats headers and sub-headers as full sentences and "
-                      L"excludes all other "
+                      "excludes all other "
                       "incomplete sentences (regardless of your current analysis settings). "
                       "It also excludes all numerals from the total word count&mdash;this is taken "
                       "into account "
@@ -2989,7 +2989,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
             {
             HTMLText += L"\n<tr><td colspan=\"3\">" +
                         FormatHtmlNoteSection(_(L"* This project's sentence-deduction method is "
-                                                L"set to only accept capitalized sentences. "
+                                                "set to only accept capitalized sentences. "
                                                 "Lowercased-sentence detection will be limited to "
                                                 "sentences that begin new paragraphs.")) +
                         L"</td></tr>\n";
@@ -3134,7 +3134,7 @@ wxString ProjectReportFormat::FormatTestResult(const wxString& score,
                                                const wxString& note /*= wxString{}*/)
     {
     return wxString::Format(L"<tr><td style='vertical-align:top; "
-                            L"width:60%%;'><p>%s</p><p>%s</p></td><td>%s</td></tr>\n",
+                            "width:60%%;'><p>%s</p><p>%s</p></td><td>%s</td></tr>\n",
                             score, theTest.get_description().c_str(),
                             ProjectReportFormat::FormatTestFactors(theTest)) +
            (note.length() ? wxString::Format(L"<tr><td colspan='2'>%s</td></tr>\n",

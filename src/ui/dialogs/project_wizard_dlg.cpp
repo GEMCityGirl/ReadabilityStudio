@@ -780,7 +780,7 @@ void ProjectWizardDlg::CreateControls()
         wxArrayString docTypes;
         docTypes.Add(_(L"&General document (textbook, report, correspondence)"));
         docTypes.Add(_(L"&Technical document or form (application, r\351sum\351/CV, instructions, "
-                       L"manual, detailed report)"));
+                       "manual, detailed report)"));
         docTypes.Add(_(L"Non-narrative &form with fragmented text (brochure, menu, quiz). "
                        "NOTE: this option will disable text exclusion."));
         docTypes.Add(_(L"&Literature (young adult and adult)"));
@@ -795,7 +795,7 @@ void ProjectWizardDlg::CreateControls()
         wxArrayString industryTypes;
         industryTypes.Add(_(L"Children's &publishing (literature, textbooks, magazines)"));
         industryTypes.Add(_(L"&Young adult and adult publishing (literature, textbooks, "
-                            L"magazine/newspaper articles)"));
+                            "magazine/newspaper articles)"));
         industryTypes.Add(_(L"&Children's healthcare"));
         industryTypes.Add(_(L"&Adult healthcare"));
         industryTypes.Add(_(L"&Military and government"));

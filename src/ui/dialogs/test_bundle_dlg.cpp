@@ -628,7 +628,7 @@ void TestBundleDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
                  m_testGoalsListCtrl->GetItemText(i, 2).empty())
             {
             wxMessageBox(wxString::Format(_(L"\"%s\" does not have either a minimum or maximum "
-                                            L"recommended score specified."),
+                                            "recommended score specified."),
                                           currentTest.wc_str()),
                          _(L"Goal Error"), wxOK | wxICON_ERROR);
             m_testGoalsListCtrl->DeselectAll();
@@ -686,7 +686,7 @@ void TestBundleDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
                  m_statGoalsListCtrl->GetItemText(i, 2).empty())
             {
             wxMessageBox(wxString::Format(_(L"\"%s\" does not have either a minimum or maximum "
-                                            L"recommended value specified."),
+                                            "recommended value specified."),
                                           currentStat.wc_str()),
                          _(L"Goal Error"), wxOK | wxICON_ERROR);
             m_statGoalsListCtrl->DeselectAll();

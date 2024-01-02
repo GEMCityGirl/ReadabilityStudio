@@ -497,8 +497,8 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
                  _(L"Returns the number of unfamiliar words (from a custom list) the document."))
             .ToStdWstring(),
         wxString(_DT(L"UniqueUnfamiliarWordCount()\t") +
-                 _(L"Returns the number of unique unfamiliar words (from a custom list) from the "
-                   L"document."))
+                 _(L"Returns the number of unique unfamiliar words (from a custom list) "
+                   "from the document."))
             .ToStdWstring(),
         wxString(_DT(L"UnfamiliarHarrisJacobsonWordCount()\t") +
                  _(L"Returns the number of unfamiliar Harris-Jacobson words from the document."))
