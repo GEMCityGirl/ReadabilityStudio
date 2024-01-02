@@ -150,20 +150,20 @@ bool is_incorrect_english_article::operator()(std::wstring_view article,
         // check for consonants that would cause this to be an error
         else if (useLetterSoundedOut)
             {
-            if (traits::case_insensitive_ex::eq(word[0], L'8') ||
-                traits::case_insensitive_ex::eq(word[0], L'a') ||
-                traits::case_insensitive_ex::eq(word[0], L'e') ||
-                traits::case_insensitive_ex::eq(word[0], L'i') ||
-                traits::case_insensitive_ex::eq(word[0], L'o') ||
-                // u is actually correct (e.g., "a u-turn")
-                traits::case_insensitive_ex::eq(word[0], L'f') ||
-                traits::case_insensitive_ex::eq(word[0], L'h') ||
-                traits::case_insensitive_ex::eq(word[0], L'l') ||
-                traits::case_insensitive_ex::eq(word[0], L'm') ||
-                traits::case_insensitive_ex::eq(word[0], L'n') ||
-                traits::case_insensitive_ex::eq(word[0], L'r') ||
-                traits::case_insensitive_ex::eq(word[0], L's') ||
-                traits::case_insensitive_ex::eq(word[0], L'x'))
+            if (!is_a_exception(word) && (traits::case_insensitive_ex::eq(word[0], L'8') ||
+                                          traits::case_insensitive_ex::eq(word[0], L'a') ||
+                                          traits::case_insensitive_ex::eq(word[0], L'e') ||
+                                          traits::case_insensitive_ex::eq(word[0], L'i') ||
+                                          traits::case_insensitive_ex::eq(word[0], L'o') ||
+                                          // u is actually correct (e.g., "a u-turn")
+                                          traits::case_insensitive_ex::eq(word[0], L'f') ||
+                                          traits::case_insensitive_ex::eq(word[0], L'h') ||
+                                          traits::case_insensitive_ex::eq(word[0], L'l') ||
+                                          traits::case_insensitive_ex::eq(word[0], L'm') ||
+                                          traits::case_insensitive_ex::eq(word[0], L'n') ||
+                                          traits::case_insensitive_ex::eq(word[0], L'r') ||
+                                          traits::case_insensitive_ex::eq(word[0], L's') ||
+                                          traits::case_insensitive_ex::eq(word[0], L'x')))
                 {
                 return true;
                 }
@@ -203,23 +203,23 @@ bool is_incorrect_english_article::operator()(std::wstring_view article,
             }
         else if (useLetterSoundedOut)
             {
-            if ((traits::case_insensitive_ex::ge(word[0], L'0') &&
-                 traits::case_insensitive_ex::le(word[0], L'7')) ||
-                traits::case_insensitive_ex::eq(word[0], L'9') ||
-                traits::case_insensitive_ex::eq(word[0], L'u') ||
-                traits::case_insensitive_ex::eq(word[0], L'b') ||
-                traits::case_insensitive_ex::eq(word[0], L'c') ||
-                traits::case_insensitive_ex::eq(word[0], L'd') ||
-                traits::case_insensitive_ex::eq(word[0], L'g') ||
-                traits::case_insensitive_ex::eq(word[0], L'j') ||
-                traits::case_insensitive_ex::eq(word[0], L'k') ||
-                traits::case_insensitive_ex::eq(word[0], L'p') ||
-                traits::case_insensitive_ex::eq(word[0], L'q') ||
-                traits::case_insensitive_ex::eq(word[0], L't') ||
-                traits::case_insensitive_ex::eq(word[0], L'v') ||
-                traits::case_insensitive_ex::eq(word[0], L'w') ||
-                traits::case_insensitive_ex::eq(word[0], L'y') ||
-                traits::case_insensitive_ex::eq(word[0], L'z'))
+            if (!is_an_exception(word) && ((traits::case_insensitive_ex::ge(word[0], L'0') &&
+                                            traits::case_insensitive_ex::le(word[0], L'7')) ||
+                                           traits::case_insensitive_ex::eq(word[0], L'9') ||
+                                           traits::case_insensitive_ex::eq(word[0], L'u') ||
+                                           traits::case_insensitive_ex::eq(word[0], L'b') ||
+                                           traits::case_insensitive_ex::eq(word[0], L'c') ||
+                                           traits::case_insensitive_ex::eq(word[0], L'd') ||
+                                           traits::case_insensitive_ex::eq(word[0], L'g') ||
+                                           traits::case_insensitive_ex::eq(word[0], L'j') ||
+                                           traits::case_insensitive_ex::eq(word[0], L'k') ||
+                                           traits::case_insensitive_ex::eq(word[0], L'p') ||
+                                           traits::case_insensitive_ex::eq(word[0], L'q') ||
+                                           traits::case_insensitive_ex::eq(word[0], L't') ||
+                                           traits::case_insensitive_ex::eq(word[0], L'v') ||
+                                           traits::case_insensitive_ex::eq(word[0], L'w') ||
+                                           traits::case_insensitive_ex::eq(word[0], L'y') ||
+                                           traits::case_insensitive_ex::eq(word[0], L'z')))
                 {
                 return true;
                 }
@@ -301,13 +301,12 @@ bool is_incorrect_english_article::is_a_exception(std::wstring_view word)
         }
 
     static const std::set<traits::case_insensitive_wstring_ex> case_i_u_3_prefixes = {
-        L"uac", L"ubi", L"uie", L"uin" /* a unint_32 is correct */,
+        L"uac", L"ubi", L"uef", L"uie", L"uin" /* a unint_32 is correct */,
         L"ukr", L"ulo", /* a ULONG_PTR */
-        L"ure", L"uri", L"uro", L"usa",
-        L"usb", L"use", L"usi", L"usn",
-        L"usu", L"utc", L"utf", L"uti",
-        L"uto", L"uue", /* a uuencoded */
-        L"uui",         /* a UUID */
+        L"ure", L"uri", L"uro", L"usa", L"usb",
+        L"use", L"usi", L"usn", L"usu", L"utc",
+        L"utf", L"uti", L"uto", L"uue", /* a uuencoded */
+        L"uui",                         /* a UUID */
         L"uwo"
     };
 
