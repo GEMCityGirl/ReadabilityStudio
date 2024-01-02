@@ -1,3 +1,4 @@
+and
 FAQ
 fenv_t
 fexcept_t
@@ -35,6 +36,7 @@ SEH
 SLA
 SMB
 SME
+SQL
 ssDNA
 ssRNA
 SUV
