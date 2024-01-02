@@ -7936,6 +7936,7 @@ parallization	parallelization	3
 parallized	parallelized	3		
 paramameters	parameters	3		
 paramater	parameter	3		
+parameteris	parameters	3		
 parameters	limits	0		
 parametes	parameters	3		
 paramount	top, chief, supreme	0		
@@ -10975,7 +10976,7 @@ the extent to which	how far, how much	0
 the fact of the matter is	in fact	0		
 the fact that	that	0		
 the flew	the flue	3		
-the from	the form	3		a;address;argument;button;clause;email;field;file;parameter;statement;the
+the from	the form	3		a;address;argument;button;clause;email;field;file;header;parameter;statement;the
 the have	they have, then have	3		
 the heart of the matter	crux, center	0		
 the hers	(strike one of these)	3		
@@ -11055,6 +11056,7 @@ themselfs	themselves	3
 themslves	themselves	3		
 then and only then	only then	0		
 then ever	than ever	3		
+then then	then the, (strike one)	0		
 therafter	thereafter	3		
 therby	thereby	3		
 there exits	there exists	3		
@@ -11870,6 +11872,9 @@ very beginning	beginning	0
 very end	end	0		
 very match	very much	3		
 very start	start	0		
+vesion	version	3		
+vesion's	version's	3		
+vesions	versions	3		
 veyr	very	3		
 via	in, on, by	0		
 viable	practical, workable	0		
