@@ -35,7 +35,6 @@ SEH
 SLA
 SMB
 SME
-SQL
 ssDNA
 ssRNA
 SUV

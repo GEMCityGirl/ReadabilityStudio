@@ -150,6 +150,7 @@ RemoveHandler
 Resume
 Return
 RGB
+Robocopy
 SByte
 Select
 Set
@@ -191,5 +192,6 @@ Widening
 With
 WithEvents
 WriteOnly
+Xcopy
 Xor
 Yield

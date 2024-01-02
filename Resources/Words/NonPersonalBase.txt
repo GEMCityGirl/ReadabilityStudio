@@ -639,6 +639,7 @@ Bitbucket
 Bitcoin
 Bitdefender
 BitGiving
+Bitlocker
 Bizrate
 BizStats
 BizTalk
@@ -1081,6 +1082,7 @@ CityLinks
 Clackmannanshire
 Clairvaux
 Clapeyron
+Clarksville
 Claudian
 ClearType
 Clearwater
@@ -1107,6 +1109,7 @@ Cointon
 Cointreau
 Coldfield
 ColdFusion
+Coldwater
 Coleraine
 Coleridge
 Colima
@@ -1162,6 +1165,7 @@ Corningware
 Cornish
 Coronado
 Corot
+Corpnet
 Corsica
 Corsican
 Corti
@@ -4137,6 +4141,7 @@ Scottie
 Scottish
 Scottsboro
 Scottsdale
+Scottville
 Scotty's
 Scrabble
 Scranton
@@ -4355,6 +4360,7 @@ Springshare
 SPSS
 Sputnik
 SQLite
+Squarespace
 Squaresville
 Squibb
 Squintum

@@ -75,6 +75,8 @@ Phillipines	Philippines	3
 Phillippines	Philippines	3		
 Phoenecian	Phoenician	3		
 Phonecian	Phoenician	3		
+Pintrest	Pinterest	3		
+Pintrest's	Pinterest's	3		
 Portugese	Portuguese	3		
 Portuguease	Portuguese	3		
 Portugues	Portuguese	3		

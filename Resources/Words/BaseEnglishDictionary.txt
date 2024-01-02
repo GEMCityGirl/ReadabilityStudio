@@ -2528,6 +2528,9 @@ agrobiology
 agrobiology's
 agrochemical
 agrochemicals
+agroecologies
+agroecology
+agroecology's
 agronomic
 agronomics
 agronomies
@@ -4875,6 +4878,9 @@ anthracis
 anthracite
 anthracite's
 anthracites
+anthracnose
+anthracnose's
+anthracnoses
 anthracycline
 anthrax
 anthrax's
@@ -7939,6 +7945,11 @@ autoantibody
 autoantigen
 autoantigen's
 autoantigens
+autoapproval
+autoapprove
+autoapproved
+autoapproves
+autoapproving
 autoassociative
 autobahn
 autobahn's
@@ -8008,6 +8019,10 @@ autodiscovery
 autoecology
 autoecology's
 autoed
+autoenroll
+autoenrolled
+autoenrolling
+autoenrolls
 autofill
 autofilled
 autofilling
@@ -8177,6 +8192,9 @@ autosuggestibility
 autosuggestibility's
 autosuggesting
 autosuggests
+autotoxicities
+autotoxicity
+autotoxicity's
 autotoxicus
 autotransformer
 autotransformer's
@@ -11829,6 +11847,9 @@ biodiverse
 biodiversities
 biodiversity
 biodiversity's
+bioeconomies
+bioeconomy
+bioeconomy's
 bioelectric
 bioelectrical
 bioelectricity
@@ -13770,6 +13791,7 @@ boosting
 boosts
 boot
 boot's
+bootable
 bootblack
 bootblack's
 bootblacks
@@ -23841,6 +23863,9 @@ commander's
 commanders
 commanding
 commandingly
+commandlet
+commandlet's
+commandlets
 commandline
 commandline's
 commandlines
@@ -31691,6 +31716,9 @@ deduplicate
 deduplicated
 deduplicates
 deduplicating
+deduplication
+deduplication's
+deduplications
 dee
 dee's
 deed
@@ -53993,6 +54021,9 @@ gradation's
 gradations
 grade
 grade's
+gradebook
+gradebook's
+gradebooks
 graded
 gradely
 grader
@@ -57760,6 +57791,8 @@ hemostat
 hemostat's
 hemostatic
 hemostats
+hemotology
+hemotology's
 hemp
 hemp's
 hempen
@@ -59137,6 +59170,8 @@ homoplasy's
 homopolymer
 homopolymers
 homos
+homosaurus
+homosauruses
 homoscedastic
 homoscedasticity
 homoserine
@@ -65546,6 +65581,7 @@ interdictions
 interdictive
 interdicts
 interdigitate
+interdisciplinarity
 interdisciplinary
 interest
 interest's
@@ -65588,6 +65624,9 @@ interfile
 interfiled
 interfiles
 interfiling
+interforest
+interforest's
+interforests
 interfraternity
 intergalactic
 intergeneration
@@ -66167,6 +66206,9 @@ intraductal
 intraepithelial
 intrafallopian
 intrafamily
+intraforest
+intraforest's
+intraforests
 intrafraternity
 intragenerational
 intragenerationally
@@ -66223,6 +66265,9 @@ intraregionally
 intrarenal
 intrasectoral
 intrasexual
+intrasite
+intrasite's
+intrasites
 intraspecific
 intrastate
 intrastromal
@@ -66242,6 +66287,9 @@ intrepidity's
 intrepidly
 intrepidness
 intrepidness's
+intrersite
+intrersite's
+intrersites
 intricacies
 intricacy
 intricacy's
@@ -74428,6 +74476,7 @@ majoritarians
 majorities
 majority
 majority's
+majorly
 majors
 Majuro
 makable
@@ -81541,6 +81590,7 @@ multiset
 multiset's
 multisets
 multisided
+multisite
 multislice
 multistage
 multistate
@@ -82369,6 +82419,9 @@ nanomaterial
 nanomaterial's
 nanomaterials
 nanomaterials'
+nanomedicine
+nanomedicine's
+nanomedicines
 nanometer
 nanometer's
 nanometers
@@ -83358,6 +83411,7 @@ neuromodulators
 neuromorphic
 neuromorphically
 neuromuscular
+neuromusculoskeletal
 neuron
 neuron's
 neuronal
@@ -83379,6 +83433,7 @@ neurophysiology
 neurophysiology's
 neuroplasticity
 neuropsychiatric
+neuropsychiatry
 neuropsychologies
 neuropsychologist
 neuropsychology
@@ -84318,6 +84373,7 @@ nondairy
 nondecreasing
 nondeductible
 nondefective
+nondegree
 nondeliveries
 nondelivery
 nondelivery's
@@ -92096,6 +92152,9 @@ pendant
 pendant's
 pendants
 pended
+pendencies
+pendency
+pendency's
 pendent
 pendents
 pending
@@ -95101,6 +95160,9 @@ planers
 planes
 planet
 planet's
+planetarian
+planetarian's
+planetarians
 planetarium
 planetarium's
 planetariums
@@ -95786,6 +95848,8 @@ pluralizing
 plurally
 plurals
 pluribus
+plurinational
+plurinationally
 pluriorificialis
 pluripotent
 plus
@@ -97046,6 +97110,9 @@ postdate
 postdated
 postdates
 postdating
+postdoc
+postdoc's
+postdocs
 postdoctoral
 posted
 postembryonic
@@ -97603,6 +97670,9 @@ preassigned
 preassigning
 preassigns
 preauricular
+preauthentication
+preauthentication's
+preauthentications
 preauthorize
 prebendary
 prebendary's
@@ -97810,6 +97880,9 @@ predentistry
 predeparture
 predeparture's
 predepartures
+predeployment
+predeployment's
+predeployments
 predesignate
 predesignated
 predesignates
@@ -98532,6 +98605,10 @@ pressurizer's
 pressurizers
 pressurizes
 pressurizing
+prestage
+prestaged
+prestages
+prestaging
 prestidigitate
 prestidigitation
 prestidigitation's
@@ -99296,6 +99373,7 @@ professionalising
 professionalism
 professionalism's
 professionalisms
+professionalization
 professionalize
 professionalized
 professionalizes
@@ -99307,6 +99385,9 @@ professor
 professor's
 professorial
 professorially
+professoriate
+professoriate's
+professoriates
 professors
 professorship
 professorship's
@@ -105130,6 +105211,9 @@ reenlistment
 reenlistment's
 reenlistments
 reenlists
+reenrollment
+reenrollment's
+reenrollments
 reenter
 reentered
 reentering
@@ -105821,7 +105905,10 @@ reimplementation
 reimplemented
 reimplementing
 reimplements
+reimport
+reimported
 reimporting
+reimports
 reimpose
 reimposed
 reimposes
@@ -123786,6 +123873,9 @@ subexpressions
 subfamilies
 subfamily
 subfamily's
+subfeature
+subfeature's
+subfeatures
 subfield
 subfield's
 subfields
@@ -126263,6 +126353,7 @@ switches
 switchgear
 switching
 switchings
+switchless
 switchman
 switchman's
 switchmen
@@ -135119,6 +135210,7 @@ unconditional
 unconditionally
 unconditioned
 unconfigurable
+unconfigured
 unconfined
 unconfirmed
 unconformable
@@ -136442,6 +136534,7 @@ unimpressive
 unimproved
 unincorporated
 unindented
+unindexed
 unindividualized
 unindividualizes
 unindustrialized
@@ -137076,6 +137169,7 @@ unpopularities
 unpopularity
 unpopularity's
 unpopularizes
+unpopulate
 unpopulated
 unportable
 unpractical
@@ -139842,6 +139936,8 @@ vibraharps
 vibrancies
 vibrancy
 vibrancy's
+vibranium
+vibranium's
 vibrant
 vibrantly
 vibrants
