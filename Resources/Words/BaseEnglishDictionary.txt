@@ -849,6 +849,9 @@ accreditation's
 accreditations
 accredited
 accrediting
+accreditor
+accreditor's
+accreditors
 accredits
 accreta
 accrete
@@ -22113,6 +22116,7 @@ clerks
 clerkship
 clerkship's
 clerkships
+clery
 clever
 cleverer
 cleverest
@@ -29771,6 +29775,9 @@ curricle
 curricle's
 curricula
 curricular
+curriculog
+curriculog's
+curriculogs
 curriculum
 curriculum's
 curried
@@ -43091,6 +43098,9 @@ espionages
 esplanade
 esplanade's
 esplanades
+esport
+esport's
+esports
 espousal
 espousal's
 espousals
@@ -67605,6 +67615,7 @@ jazziest
 jazziness
 jazziness's
 jazzing
+jazzman
 jazzmen
 jazzy
 JCS
@@ -77679,6 +77690,9 @@ microcosms
 microcoulomb
 microcoulomb's
 microcoulombs
+microcredential
+microcredentialing
+microcredentials
 microcredit
 microcredit's
 microcredits
@@ -86810,6 +86824,7 @@ omasum
 ombudsman
 ombudsman's
 ombudsmen
+ombudsperson
 Omdurman
 omega
 omega's
@@ -104278,6 +104293,9 @@ recirculates
 recirculating
 recirculation
 recirculation's
+recission
+recission's
+recissions
 recital
 recital's
 recitalist
@@ -120023,6 +120041,7 @@ spectaculars
 spectator
 spectator's
 spectators
+spectatorship
 specter
 specter's
 spectered
@@ -132614,6 +132633,7 @@ trawler's
 trawlers
 trawling
 trawls
+trax
 tray
 tray's
 trays
