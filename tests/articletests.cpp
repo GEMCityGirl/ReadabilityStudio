@@ -35,12 +35,9 @@ TEST_CASE("English Article", "[articles]")
     SECTION("NULL")
         {
         grammar::is_incorrect_english_article artc;
-
-        CHECK(artc(nullptr, 1, L"airplane", 8) == false);
-        CHECK(artc(L"a", 1, nullptr, 7) == false);
-        CHECK(artc(L"and", 3, L"Irish", 5) == false);
-        CHECK(artc(L"", 0, L"Orange", 6) == false);
-        CHECK(artc(L"a", 1, L"", 0) == false);
+        CHECK_FALSE(artc(L"and", L"Irish"));
+        CHECK_FALSE(artc(L"", L"Orange"));
+        CHECK_FALSE(artc(L"a", L""));
         }
     // this one requires higher level testing
     SECTION("Punctuation Between Words")
@@ -58,201 +55,201 @@ TEST_CASE("English Article", "[articles]")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"a", 1, L"UND", 3));
-        CHECK(artc(L"a", 1, L"AMP", 3));
-        CHECK(artc(L"a", 1, L"EMP", 3));
-        CHECK(artc(L"a", 1, L"IMP", 3));
-        CHECK(artc(L"a", 1, L"OMP", 3));
-        CHECK(artc(L"a", 1, L"SAT", 3));
-        CHECK(!artc(L"an", 2, L"SAT", 3));
+        CHECK(artc(L"a", L"UND"));
+        CHECK(artc(L"a", L"AMP"));
+        CHECK(artc(L"a", L"EMP"));
+        CHECK(artc(L"a", L"IMP"));
+        CHECK(artc(L"a", L"OMP"));
+        CHECK(artc(L"a", L"SAT"));
+        CHECK(!artc(L"an", L"SAT"));
         }
     SECTION("Punctuation")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"a", 1, L"-verse", 6) == false);
-        CHECK(artc(L"an", 2, L"'verse", 6) == false);
+        CHECK_FALSE(artc(L"a", L"-verse"));
+        CHECK_FALSE(artc(L"an", L"'verse"));
         }
     SECTION("Acronyms Hyphenated")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"a", 1, L"u-verse", 7) == false);
+        CHECK(artc(L"a", L"u-verse") == false);
 
-        CHECK(artc(L"a", 1, L"XML", 3));
-        CHECK(artc(L"a", 1, L"XML-compatible", 14));
+        CHECK(artc(L"a", L"XML"));
+        CHECK(artc(L"a", L"XML-compatible"));
 
-        CHECK(artc(L"an", 2, L"XAML", 4));
-        CHECK(artc(L"an", 2, L"XAML-compatible", 15));
+        CHECK(artc(L"an", L"XAML"));
+        CHECK(artc(L"an", L"XAML-compatible"));
 
-        CHECK(artc(L"a", 1, L"RTF", 3));
-        CHECK(artc(L"a", 1, L"RTF-license", 11));
+        CHECK(artc(L"a", L"RTF"));
+        CHECK(artc(L"a", L"RTF-license"));
         }
     SECTION("Odd Combos")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"a", 1, L"LDA", 3)); // wrong with A
-        CHECK(artc(L"an", 2, L"LDA", 3) == false); // correct with AN
+        CHECK(artc(L"a", L"LDA")); // wrong with A
+        CHECK(artc(L"an", L"LDA") == false); // correct with AN
 
-        CHECK(artc(L"a", 1, L"FPG", 3)); // wrong with A
-        CHECK(artc(L"an", 2, L"FPG", 3) == false); // correct with AN
+        CHECK(artc(L"a", L"FPG")); // wrong with A
+        CHECK(artc(L"an", L"FPG") == false); // correct with AN
 
-        CHECK(artc(L"a", 1, L"FSA", 3)); // wrong with A
-        CHECK(artc(L"an", 2, L"FSA", 3) == false); // correct with AN
+        CHECK(artc(L"a", L"FSA")); // wrong with A
+        CHECK(artc(L"an", L"FSA") == false); // correct with AN
 
-        CHECK(artc(L"a", 1, L"FLY", 3) == false); // correct with A
-        CHECK(artc(L"an", 2, L"FLY", 3)); // wrong with AN
+        CHECK(artc(L"a", L"FLY") == false); // correct with A
+        CHECK(artc(L"an", L"FLY")); // wrong with AN
 
-        CHECK(artc(L"a", 1, L"FRY", 3) == false); // correct with A
-        CHECK(artc(L"an", 2, L"FRY", 3)); // wrong with AN
+        CHECK(artc(L"a", L"FRY") == false); // correct with A
+        CHECK(artc(L"an", L"FRY")); // wrong with AN
 
-        CHECK(artc(L"a", 1, L"NDA", 3)); // wrong with A
-        CHECK(artc(L"an", 2, L"NDA", 3) == false); // correct with AN
+        CHECK(artc(L"a", L"NDA")); // wrong with A
+        CHECK(artc(L"an", L"NDA") == false); // correct with AN
 
-        CHECK(artc(L"a", 1, L"SBA", 3)); // wrong with A
-        CHECK(artc(L"an", 2, L"SBA", 3) == false); // correct with AN
+        CHECK(artc(L"a", L"SBA")); // wrong with A
+        CHECK(artc(L"an", L"SBA") == false); // correct with AN
         }
     SECTION("2-Letter Word")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"a", 1, L"UD", 2) == false); // correct with A
-        CHECK(artc(L"an", 2, L"UD", 2)); // wrong with AN
+        CHECK(artc(L"a", L"UD") == false); // correct with A
+        CHECK(artc(L"an", L"UD")); // wrong with AN
 
         // will actually separate this and look at just "re" as a separate word
-        CHECK(artc(L"a", 1, L"re-implementation", 17) == false); // correct with A
-        CHECK(artc(L"an", 2, L"re-implementation", 17)); // wrong with AN
+        CHECK(artc(L"a", L"re-implementation") == false); // correct with A
+        CHECK(artc(L"an", L"re-implementation")); // wrong with AN
 
         // behaviour is different with an acronym "RE"
-        CHECK(artc(L"a", 1, L"RE-implementation", 17)); // wrong with A
-        CHECK(artc(L"an", 2, L"RE-implementation", 17) == false); // correct with AN
+        CHECK(artc(L"a", L"RE-implementation")); // wrong with A
+        CHECK(artc(L"an", L"RE-implementation") == false); // correct with AN
 
         // behavior will be different with more than one letter
-        CHECK(artc(L"a", 1, L"UDS", 3)); // wrong with A
-        CHECK(artc(L"an", 2, L"UDS", 3) == false); // correct with AN
+        CHECK(artc(L"a", L"UDS")); // wrong with A
+        CHECK(artc(L"an", L"UDS") == false); // correct with AN
         }
     SECTION("Acronyms Mixed")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"a", 1, L"STReport", 8) == false);
-        CHECK(artc(L"an", 2, L"STReport", 8));
+        CHECK(artc(L"a", L"STReport") == false);
+        CHECK(artc(L"an", L"STReport"));
 
-        CHECK(artc(L"a", 1, L"SPBReport", 9));
-        CHECK(artc(L"an", 2, L"SPBReport", 9) == false);
+        CHECK(artc(L"a", L"SPBReport"));
+        CHECK(artc(L"an", L"SPBReport") == false);
 
-        CHECK(artc(L"a", 1, L"NPV", 3));
-        CHECK(artc(L"an", 2, L"NPV", 3) == false);
+        CHECK(artc(L"a", L"NPV"));
+        CHECK(artc(L"an", L"NPV") == false);
         }
     SECTION("No Vowel Word")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"an", 2, L"Np", 2)); // wrong with an
-        CHECK(artc(L"a", 1, L"ZPP", 3) == false); // correct
-        CHECK(artc(L"a", 1, L"NZPD", 4)); // should be "an NYPD"
-        CHECK(artc(L"an", 2, L"ZPP", 3)); // should be "a ZPP"
-        CHECK(artc(L"an", 2, L"NZPD", 4) == false); // correct
+        CHECK(artc(L"an", L"Np")); // wrong with an
+        CHECK(artc(L"a", L"ZPP") == false); // correct
+        CHECK(artc(L"a", L"NZPD")); // should be "an NYPD"
+        CHECK(artc(L"an", L"ZPP")); // should be "a ZPP"
+        CHECK(artc(L"an", L"NZPD") == false); // correct
         }
     SECTION("Known A Acronymns")
         {
         grammar::is_incorrect_english_article art;
-        CHECK(!art(L"a", 1, L"UTF", 3));
-        CHECK(art(L"an", 2, L"UTF", 3));
-        CHECK(!art(L"a", 1, L"UNC", 3));
-        CHECK(art(L"an", 2, L"UNC", 3));
+        CHECK(!art(L"a", L"UTF"));
+        CHECK(art(L"an", L"UTF"));
+        CHECK(!art(L"a", L"UNC"));
+        CHECK(art(L"an", L"UNC"));
 
-        CHECK(art(L"a", 1, L"UNCLE", 5));
-        CHECK(!art(L"an", 2, L"UNCLE", 5));
+        CHECK(art(L"a", L"UNCLE"));
+        CHECK(!art(L"an", L"UNCLE"));
         }
     SECTION("Schwartz")
         {
         grammar::is_incorrect_english_article art;
-        CHECK(!art(L"a", 1, L"Schwartz", 8));
+        CHECK(!art(L"a", L"Schwartz"));
         }
     SECTION("Digit 2 Number")
         {
         grammar::is_incorrect_english_article artc;
     
-        CHECK(artc(L"a", 1, L"10-hole", 7) == false);
-        CHECK(artc(L"a", 1, L"11-hole", 7));
-        CHECK(artc(L"a", 1, L"12-hole", 7) == false);
-        CHECK(artc(L"a", 1, L"13-hole", 7) == false);
-        CHECK(artc(L"a", 1, L"14-hole", 7) == false);
-        CHECK(artc(L"a", 1, L"15-hole", 7) == false);
-        CHECK(artc(L"a", 1, L"16-hole", 7) == false);
-        CHECK(artc(L"a", 1, L"17-hole", 7) == false);
-        CHECK(artc(L"a", 1, L"18-hole", 7));
-        CHECK(artc(L"a", 1, L"19-hole", 7) == false);
-        CHECK(artc(L"a", 1, L"20-hole", 7) == false);
-        CHECK(artc(L"a", 1, L"21-hole", 7) == false);
-        CHECK(artc(L"a", 1, L"31-hole", 7) == false);
-        CHECK(artc(L"a", 1, L"41-hole", 7) == false);
-        CHECK(artc(L"a", 1, L"51-hole", 7) == false);
-        CHECK(artc(L"a", 1, L"61-hole", 7) == false);
-        CHECK(artc(L"a", 1, L"71-hole", 7) == false);
-        CHECK(artc(L"a", 1, L"81-hole", 7));
-        CHECK(artc(L"a", 1, L"91-hole", 7) == false);
+        CHECK(artc(L"a", L"10-hole") == false);
+        CHECK(artc(L"a", L"11-hole"));
+        CHECK(artc(L"a", L"12-hole") == false);
+        CHECK(artc(L"a", L"13-hole") == false);
+        CHECK(artc(L"a", L"14-hole") == false);
+        CHECK(artc(L"a", L"15-hole") == false);
+        CHECK(artc(L"a", L"16-hole") == false);
+        CHECK(artc(L"a", L"17-hole") == false);
+        CHECK(artc(L"a", L"18-hole"));
+        CHECK(artc(L"a", L"19-hole") == false);
+        CHECK(artc(L"a", L"20-hole") == false);
+        CHECK(artc(L"a", L"21-hole") == false);
+        CHECK(artc(L"a", L"31-hole") == false);
+        CHECK(artc(L"a", L"41-hole") == false);
+        CHECK(artc(L"a", L"51-hole") == false);
+        CHECK(artc(L"a", L"61-hole") == false);
+        CHECK(artc(L"a", L"71-hole") == false);
+        CHECK(artc(L"a", L"81-hole"));
+        CHECK(artc(L"a", L"91-hole") == false);
 
-        CHECK(artc(L"an", 2, L"10-hole", 7));
-        CHECK(artc(L"an", 2, L"11-hole", 7) == false);
-        CHECK(artc(L"an", 2, L"12-hole", 7));
-        CHECK(artc(L"an", 2, L"13-hole", 7));
-        CHECK(artc(L"an", 2, L"14-hole", 7));
-        CHECK(artc(L"an", 2, L"15-hole", 7));
-        CHECK(artc(L"an", 2, L"16-hole", 7));
-        CHECK(artc(L"an", 2, L"17-hole", 7));
-        CHECK(artc(L"an", 2, L"18-hole", 7) == false);
-        CHECK(artc(L"an", 2, L"19-hole", 7));
-        CHECK(artc(L"an", 2, L"20-hole", 7));
-        CHECK(artc(L"an", 2, L"21-hole", 7));
-        CHECK(artc(L"an", 2, L"31-hole", 7));
-        CHECK(artc(L"an", 2, L"41-hole", 7));
-        CHECK(artc(L"an", 2, L"51-hole", 7));
-        CHECK(artc(L"an", 2, L"61-hole", 7));
-        CHECK(artc(L"an", 2, L"71-hole", 7));
-        CHECK(artc(L"an", 2, L"81-hole", 7) == false);
-        CHECK(artc(L"an", 2, L"91-hole", 7));
+        CHECK(artc(L"an", L"10-hole"));
+        CHECK(artc(L"an", L"11-hole") == false);
+        CHECK(artc(L"an", L"12-hole"));
+        CHECK(artc(L"an", L"13-hole"));
+        CHECK(artc(L"an", L"14-hole"));
+        CHECK(artc(L"an", L"15-hole"));
+        CHECK(artc(L"an", L"16-hole"));
+        CHECK(artc(L"an", L"17-hole"));
+        CHECK(artc(L"an", L"18-hole") == false);
+        CHECK(artc(L"an", L"19-hole"));
+        CHECK(artc(L"an", L"20-hole"));
+        CHECK(artc(L"an", L"21-hole"));
+        CHECK(artc(L"an", L"31-hole"));
+        CHECK(artc(L"an", L"41-hole"));
+        CHECK(artc(L"an", L"51-hole"));
+        CHECK(artc(L"an", L"61-hole"));
+        CHECK(artc(L"an", L"71-hole"));
+        CHECK(artc(L"an", L"81-hole") == false);
+        CHECK(artc(L"an", L"91-hole"));
         }
     SECTION("A Simple")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"a", 1, L"plane", 5) == false);
-        CHECK(artc(L"a", 1, L"zoo", 3) == false);
-        CHECK(artc(L"a", 1, L"car", 3) == false);
-        CHECK(artc(L"a", 1, L"dog", 3) == false);
-        CHECK(artc(L"a", 1, L"net", 3) == false);
+        CHECK(artc(L"a", L"plane") == false);
+        CHECK(artc(L"a", L"zoo") == false);
+        CHECK(artc(L"a", L"car") == false);
+        CHECK(artc(L"a", L"dog") == false);
+        CHECK(artc(L"a", L"net") == false);
 
-        CHECK(artc(L"a", 1, L"Plane", 5) == false);
-        CHECK(artc(L"a", 1, L"Zoo", 3) == false);
-        CHECK(artc(L"a", 1, L"Car", 3) == false);
-        CHECK(artc(L"a", 1, L"Dog", 3) == false);
-        CHECK(artc(L"a", 1, L"Net", 3) == false);
+        CHECK(artc(L"a", L"Plane") == false);
+        CHECK(artc(L"a", L"Zoo") == false);
+        CHECK(artc(L"a", L"Car") == false);
+        CHECK(artc(L"a", L"Dog") == false);
+        CHECK(artc(L"a", L"Net") == false);
         }
     SECTION("A Vowels")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"a", 1, L"airplane", 8));
-        CHECK(artc(L"a", 1, L"english", 7));
-        CHECK(artc(L"a", 1, L"irish", 5));
-        CHECK(artc(L"a", 1, L"orange", 6));
-        CHECK(artc(L"a", 1, L"undertow", 8));
-        CHECK(artc(L"a", 1, L"onerous", 7));
-        CHECK(artc(L"a", 1, L"year", 4) == false);
+        CHECK(artc(L"a", L"airplane"));
+        CHECK(artc(L"a", L"english"));
+        CHECK(artc(L"a", L"irish"));
+        CHECK(artc(L"a", L"orange"));
+        CHECK(artc(L"a", L"undertow"));
+        CHECK(artc(L"a", L"onerous"));
+        CHECK(artc(L"a", L"year") == false);
 
-        CHECK(artc(L"a", 1, L"Airplane", 8));
-        CHECK(artc(L"a", 1, L"English", 7));
-        CHECK(artc(L"a", 1, L"Irish", 5));
-        CHECK(artc(L"a", 1, L"Orange", 6));
-        CHECK(artc(L"a", 1, L"Undertow", 8));
-        CHECK(artc(L"a", 1, L"Onerous", 7));
-        CHECK(artc(L"a", 1, L"Year", 4) == false);
+        CHECK(artc(L"a", L"Airplane"));
+        CHECK(artc(L"a", L"English"));
+        CHECK(artc(L"a", L"Irish"));
+        CHECK(artc(L"a", L"Orange"));
+        CHECK(artc(L"a", L"Undertow"));
+        CHECK(artc(L"a", L"Onerous"));
+        CHECK(artc(L"a", L"Year") == false);
 
-        CHECK(artc(L"a", 1, L"on-campus", 9));
-        CHECK(!artc(L"an", 2, L"on-campus", 9));
+        CHECK(artc(L"a", L"on-campus"));
+        CHECK(!artc(L"an", L"on-campus"));
         }
     SECTION("A Exceptions")
         {
@@ -270,331 +267,331 @@ TEST_CASE("English Article", "[articles]")
         artc.get_a_exceptions().add_word(L"USB");
         artc.get_a_exceptions().add_word(L"USPTO");
 
-        CHECK(artc(L"a", 1, L"are", 3) == false);
-        CHECK(artc(L"a", 1, L"area", 4));
+        CHECK(artc(L"a", L"are") == false);
+        CHECK(artc(L"a", L"area"));
 
-        CHECK(artc(L"a", 1, L"is", 2) == false);
-        CHECK(artc(L"a", 1, L"istanbul", 8));
+        CHECK(artc(L"a", L"is") == false);
+        CHECK(artc(L"a", L"istanbul"));
 
-        CHECK(artc(L"a", 1, L"and", 3) == false);
-        CHECK(artc(L"a", 1, L"anderson", 8));
+        CHECK(artc(L"a", L"and") == false);
+        CHECK(artc(L"a", L"anderson"));
 
-        CHECK(artc(L"a", 1, L"ore", 3));
-        CHECK(artc(L"a", 1, L"or", 2) == false);
+        CHECK(artc(L"a", L"ore"));
+        CHECK(artc(L"a", L"or") == false);
 
-        CHECK(artc(L"a", 1, L"Euro", 4) == false);
-        CHECK(artc(L"a", 1, L"one", 3) == false);
+        CHECK(artc(L"a", L"Euro") == false);
+        CHECK(artc(L"a", L"one") == false);
         // these 2 should be wrong
-        CHECK(artc(L"a", 1, L"onerous", 7));
-        CHECK(artc(L"a", 1, L"on-campus", 9));
-        CHECK(artc(L"a", 1, L"one-sided", 9) == false);
-        CHECK(artc(L"a", 1, L"unicycle", 8) == false);
-        CHECK(artc(L"a", 1, L"universal", 9) == false);
-        CHECK(artc(L"a", 1, L"united", 6) == false);
-        CHECK(artc(L"a", 1, L"unix", 4) == false);
-        CHECK(artc(L"a", 1, L"useful", 6) == false);
-        CHECK(artc(L"a", 1, L"Utopia", 6) == false);
-        CHECK(artc(L"a", 1, L"Ukranian", 8) == false);
-        CHECK(artc(L"a", 1, L"uterus", 6) == false);
-        CHECK(artc(L"a", 1, L"urethra", 7) == false);
-        CHECK(artc(L"a", 1, L"u-turn", 6) == false);
-        CHECK(artc(L"a", 1, L"utility", 7) == false);
-        CHECK(artc(L"a", 1, L"using", 5) == false);
-        CHECK(artc(L"a", 1, L"uninteresting", 13));
-        CHECK(artc(L"a", 1, L"unimpressed", 11));
-        CHECK(artc(L"a", 1, L"unidentified", 12));
-        CHECK(artc(L"a", 1, L"unilateral", 10) == false);
+        CHECK(artc(L"a", L"onerous"));
+        CHECK(artc(L"a", L"on-campus"));
+        CHECK(artc(L"a", L"one-sided") == false);
+        CHECK(artc(L"a", L"unicycle") == false);
+        CHECK(artc(L"a", L"universal") == false);
+        CHECK(artc(L"a", L"united") == false);
+        CHECK(artc(L"a", L"unix") == false);
+        CHECK(artc(L"a", L"useful") == false);
+        CHECK(artc(L"a", L"Utopia") == false);
+        CHECK(artc(L"a", L"Ukranian") == false);
+        CHECK(artc(L"a", L"uterus") == false);
+        CHECK(artc(L"a", L"urethra") == false);
+        CHECK(artc(L"a", L"u-turn") == false);
+        CHECK(artc(L"a", L"utility") == false);
+        CHECK(artc(L"a", L"using") == false);
+        CHECK(artc(L"a", L"uninteresting"));
+        CHECK(artc(L"a", L"unimpressed"));
+        CHECK(artc(L"a", L"unidentified"));
+        CHECK(artc(L"a", L"unilateral") == false);
         // a Sat (like Saturday) is OK
-        CHECK(artc(L"a", 1, L"Sat", 3) == false);
+        CHECK(artc(L"a", L"Sat") == false);
         // a SAT (like the text) is wrong
-        CHECK(artc(L"a", 1, L"SAT", 3));
+        CHECK(artc(L"a", L"SAT"));
 
-        CHECK(artc(L"an", 2, L"utility", 7));
-        CHECK(artc(L"an", 2, L"u-turn", 6));
-        CHECK(artc(L"an", 2, L"Euro", 4));
-        CHECK(artc(L"an", 2, L"one", 3));
-        CHECK(artc(L"an", 2, L"one-sided", 9));
-        CHECK(artc(L"an", 2, L"unicycle", 8));
-        CHECK(artc(L"an", 2, L"useful", 6));
-        CHECK(artc(L"an", 2, L"Utopia", 6));
-        CHECK(artc(L"an", 2, L"Ukranian", 8));
-        CHECK(artc(L"an", 2, L"uterus", 6));
-        CHECK(artc(L"an", 2, L"urethra", 7));
-        CHECK(artc(L"an", 2, L"using", 5));
-        CHECK(artc(L"an", 2, L"uninteresting", 13) == false);
-        CHECK(artc(L"an", 2, L"unimpressed", 11) == false);
-        CHECK(artc(L"an", 2, L"unidentified", 12) == false);
-        CHECK(artc(L"an", 2, L"unilateral", 10));
+        CHECK(artc(L"an", L"utility"));
+        CHECK(artc(L"an", L"u-turn"));
+        CHECK(artc(L"an", L"Euro"));
+        CHECK(artc(L"an", L"one"));
+        CHECK(artc(L"an", L"one-sided"));
+        CHECK(artc(L"an", L"unicycle"));
+        CHECK(artc(L"an", L"useful"));
+        CHECK(artc(L"an", L"Utopia"));
+        CHECK(artc(L"an", L"Ukranian"));
+        CHECK(artc(L"an", L"uterus"));
+        CHECK(artc(L"an", L"urethra"));
+        CHECK(artc(L"an", L"using"));
+        CHECK(artc(L"an", L"uninteresting") == false);
+        CHECK(artc(L"an", L"unimpressed") == false);
+        CHECK(artc(L"an", L"unidentified") == false);
+        CHECK(artc(L"an", L"unilateral"));
         // a Sat (like Saturday) is OK
-        CHECK(artc(L"an", 2, L"Sat", 3));
+        CHECK(artc(L"an", L"Sat"));
         // a SAT (like the text) is wrong
-        CHECK(artc(L"an", 2, L"SAT", 3) == false);
+        CHECK(artc(L"an", L"SAT") == false);
         }
     SECTION("A Letters")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"a", 1, L"x-ray", 5));
-        CHECK(artc(L"a", 1, L"x'x", 3));
-        CHECK(artc(L"a", 1, L"u", 1) == false);
-        CHECK(artc(L"a", 1, L"u.s.", 4) == false);
-        CHECK(artc(L"a", 1, L"h1n1", 4));
+        CHECK(artc(L"a", L"x-ray"));
+        CHECK(artc(L"a", L"x'x"));
+        CHECK(artc(L"a", L"u") == false);
+        CHECK(artc(L"a", L"u.s.") == false);
+        CHECK(artc(L"a", L"h1n1"));
 
-        CHECK(artc(L"an", 2, L"x-ray", 5) == false);
-        CHECK(artc(L"an", 2, L"x'x", 3) == false);
-        CHECK(artc(L"an", 2, L"u", 1));
-        CHECK(artc(L"an", 2, L"u.s.", 4));
-        CHECK(artc(L"an", 2, L"h1n1", 4) == false);
+        CHECK(artc(L"an", L"x-ray") == false);
+        CHECK(artc(L"an", L"x'x") == false);
+        CHECK(artc(L"an", L"u"));
+        CHECK(artc(L"an", L"u.s."));
+        CHECK(artc(L"an", L"h1n1") == false);
         }
     SECTION("AN Simple")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"an", 2, L"plane", 5));
-        CHECK(artc(L"an", 2, L"zoo", 3));
-        CHECK(artc(L"an", 2, L"car", 3));
-        CHECK(artc(L"an", 2, L"dog", 3));
-        CHECK(artc(L"an", 2, L"net", 3));
+        CHECK(artc(L"an", L"plane"));
+        CHECK(artc(L"an", L"zoo"));
+        CHECK(artc(L"an", L"car"));
+        CHECK(artc(L"an", L"dog"));
+        CHECK(artc(L"an", L"net"));
 
-        CHECK(artc(L"an", 2, L"Plane", 5));
-        CHECK(artc(L"an", 2, L"Zoo", 3));
-        CHECK(artc(L"an", 2, L"Car", 3));
-        CHECK(artc(L"an", 2, L"Dog", 3));
-        CHECK(artc(L"an", 2, L"Net", 3));
+        CHECK(artc(L"an", L"Plane"));
+        CHECK(artc(L"an", L"Zoo"));
+        CHECK(artc(L"an", L"Car"));
+        CHECK(artc(L"an", L"Dog"));
+        CHECK(artc(L"an", L"Net"));
         }
     SECTION("AN Vowels")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"an", 2, L"airplane", 8) == false);
-        CHECK(artc(L"an", 2, L"english", 7) == false);
-        CHECK(artc(L"an", 2, L"irish", 5) == false);
-        CHECK(artc(L"an", 2, L"orange", 6) == false);
-        CHECK(artc(L"an", 2, L"undertow", 8) == false);
-        CHECK(artc(L"an", 2, L"year", 4) == false);
+        CHECK(artc(L"an", L"airplane") == false);
+        CHECK(artc(L"an", L"english") == false);
+        CHECK(artc(L"an", L"irish") == false);
+        CHECK(artc(L"an", L"orange") == false);
+        CHECK(artc(L"an", L"undertow") == false);
+        CHECK(artc(L"an", L"year") == false);
 
-        CHECK(artc(L"an", 2, L"Airplane", 8) == false);
-        CHECK(artc(L"an", 2, L"English", 7) == false);
-        CHECK(artc(L"an", 2, L"Irish", 5) == false);
-        CHECK(artc(L"an", 2, L"Orange", 6) == false);
-        CHECK(artc(L"an", 2, L"Undertow", 8) == false);
-        CHECK(artc(L"an", 2, L"Year", 4) == false);
+        CHECK(artc(L"an", L"Airplane") == false);
+        CHECK(artc(L"an", L"English") == false);
+        CHECK(artc(L"an", L"Irish") == false);
+        CHECK(artc(L"an", L"Orange") == false);
+        CHECK(artc(L"an", L"Undertow") == false);
+        CHECK(artc(L"an", L"Year") == false);
         }
     SECTION("AN Exceptions")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"a", 1, L"hysterical", 10) == false);
-        CHECK(artc(L"an", 2, L"honour", 6) == false);
-        CHECK(artc(L"an", 2, L"honey", 5));
-        CHECK(artc(L"an", 2, L"hour", 4) == false);
-        CHECK(artc(L"an", 2, L"honest", 6) == false);
-        CHECK(artc(L"an", 2, L"house", 5));
-        CHECK(artc(L"an", 2, L"historical", 10));
-        CHECK(artc(L"an", 2, L"history", 7));
-        CHECK(artc(L"an", 2, L"heir", 4) == false);
+        CHECK(artc(L"a", L"hysterical") == false);
+        CHECK(artc(L"an", L"honour") == false);
+        CHECK(artc(L"an", L"honey"));
+        CHECK(artc(L"an", L"hour") == false);
+        CHECK(artc(L"an", L"honest") == false);
+        CHECK(artc(L"an", L"house"));
+        CHECK(artc(L"an", L"historical"));
+        CHECK(artc(L"an", L"history"));
+        CHECK(artc(L"an", L"heir") == false);
 
-        CHECK(artc(L"a", 1, L"Hysterical", 10) == false);
-        CHECK(artc(L"an", 2, L"Honour", 6) == false);
-        CHECK(artc(L"an", 2, L"Honey", 5));
-        CHECK(artc(L"an", 2, L"Hour", 4) == false);
-        CHECK(artc(L"an", 2, L"Honest", 6) == false);
-        CHECK(artc(L"an", 2, L"House", 5));
-        CHECK(artc(L"an", 2, L"Historical", 10));
-        CHECK(artc(L"an", 2, L"History", 7));
-        CHECK(artc(L"an", 2, L"Heir", 4) == false);
+        CHECK(artc(L"a", L"Hysterical") == false);
+        CHECK(artc(L"an", L"Honour") == false);
+        CHECK(artc(L"an", L"Honey"));
+        CHECK(artc(L"an", L"Hour") == false);
+        CHECK(artc(L"an", L"Honest") == false);
+        CHECK(artc(L"an", L"House"));
+        CHECK(artc(L"an", L"Historical"));
+        CHECK(artc(L"an", L"History"));
+        CHECK(artc(L"an", L"Heir") == false);
 
-        CHECK(artc(L"an", 2, L"hysterical", 10));
-        CHECK(artc(L"a", 1, L"honour", 6));
-        CHECK(artc(L"a", 1, L"honey", 5) == false);
-        CHECK(artc(L"a", 1, L"hour", 4));
-        CHECK(artc(L"a", 1, L"honest", 6));
-        CHECK(artc(L"a", 1, L"house", 5) == false);
-        CHECK(artc(L"a", 1, L"historical", 10) == false);
-        CHECK(artc(L"a", 1, L"history", 7) == false);
-        CHECK(artc(L"a", 1, L"heir", 4));
+        CHECK(artc(L"an", L"hysterical"));
+        CHECK(artc(L"a", L"honour"));
+        CHECK(artc(L"a", L"honey") == false);
+        CHECK(artc(L"a", L"hour"));
+        CHECK(artc(L"a", L"honest"));
+        CHECK(artc(L"a", L"house") == false);
+        CHECK(artc(L"a", L"historical") == false);
+        CHECK(artc(L"a", L"history") == false);
+        CHECK(artc(L"a", L"heir"));
         }
     SECTION("AN Acronyms And Letters")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"an", 2, L"HRESULT", 7) == false);
-        CHECK(artc(L"an", 2, L"HMS", 3) == false);
-        CHECK(artc(L"an", 2, L"LLC", 3) == false);
-        CHECK(artc(L"an", 2, L"MST", 3) == false);
-        CHECK(artc(L"an", 2, L"NWP", 3) == false);
-        CHECK(artc(L"an", 2, L"RR", 2) == false);
-        CHECK(artc(L"an", 2, L"SS", 2) == false);
-        CHECK(artc(L"an", 2, L"XBT", 3) == false);
+        CHECK(artc(L"an", L"HRESULT") == false);
+        CHECK(artc(L"an", L"HMS") == false);
+        CHECK(artc(L"an", L"LLC") == false);
+        CHECK(artc(L"an", L"MST") == false);
+        CHECK(artc(L"an", L"NWP") == false);
+        CHECK(artc(L"an", L"RR") == false);
+        CHECK(artc(L"an", L"SS") == false);
+        CHECK(artc(L"an", L"XBT") == false);
         // the vowel makes it be seen as a word
-        CHECK(artc(L"an", 2, L"HAM", 3));
+        CHECK(artc(L"an", L"HAM"));
 
-        CHECK(artc(L"an", 2, L"H1N1", 3) == false);
+        CHECK(artc(L"an", L"H1N1") == false);
 
-        CHECK(artc(L"an", 2, L"f", 1) == false);
-        CHECK(artc(L"an", 2, L"h", 1) == false);
-        CHECK(artc(L"an", 2, L"l", 1) == false);
-        CHECK(artc(L"an", 2, L"m", 1) == false);
-        CHECK(artc(L"an", 2, L"n", 1) == false);
-        CHECK(artc(L"an", 2, L"r", 1) == false);
-        CHECK(artc(L"an", 2, L"s", 1) == false);
-        CHECK(artc(L"an", 2, L"x", 1) == false);
-        CHECK(artc(L"an", 2, L"u", 1));
+        CHECK(artc(L"an", L"f") == false);
+        CHECK(artc(L"an", L"h") == false);
+        CHECK(artc(L"an", L"l") == false);
+        CHECK(artc(L"an", L"m") == false);
+        CHECK(artc(L"an", L"n") == false);
+        CHECK(artc(L"an", L"r") == false);
+        CHECK(artc(L"an", L"s") == false);
+        CHECK(artc(L"an", L"x") == false);
+        CHECK(artc(L"an", L"u"));
 
-        CHECK(artc(L"an", 2, L"F", 1) == false);
-        CHECK(artc(L"an", 2, L"H", 1) == false);
-        CHECK(artc(L"an", 2, L"L", 1) == false);
-        CHECK(artc(L"an", 2, L"M", 1) == false);
-        CHECK(artc(L"an", 2, L"N", 1) == false);
-        CHECK(artc(L"an", 2, L"R", 1) == false);
-        CHECK(artc(L"an", 2, L"S", 1) == false);
-        CHECK(artc(L"an", 2, L"X", 1) == false);
-        CHECK(artc(L"an", 2, L"U", 1));
+        CHECK(artc(L"an", L"F") == false);
+        CHECK(artc(L"an", L"H") == false);
+        CHECK(artc(L"an", L"L") == false);
+        CHECK(artc(L"an", L"M") == false);
+        CHECK(artc(L"an", L"N") == false);
+        CHECK(artc(L"an", L"R") == false);
+        CHECK(artc(L"an", L"S") == false);
+        CHECK(artc(L"an", L"X") == false);
+        CHECK(artc(L"an", L"U"));
         }
     SECTION("Numbers")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"an", 2, L"0-char", 6));
-        CHECK(artc(L"a", 1, L"0-char", 6) == false);
+        CHECK(artc(L"an", L"0-char"));
+        CHECK(artc(L"a", L"0-char") == false);
 
-        CHECK(artc(L"an", 2, L"1-char", 6));
-        CHECK(artc(L"a", 1, L"1-char", 6) == false);
+        CHECK(artc(L"an", L"1-char"));
+        CHECK(artc(L"a", L"1-char") == false);
 
-        CHECK(artc(L"an", 2, L"2-char", 6));
-        CHECK(artc(L"a", 1, L"2-char", 6) == false);
+        CHECK(artc(L"an", L"2-char"));
+        CHECK(artc(L"a", L"2-char") == false);
 
-        CHECK(artc(L"an", 2, L"3-char", 6));
-        CHECK(artc(L"a", 1, L"3-char", 6) == false);
+        CHECK(artc(L"an", L"3-char"));
+        CHECK(artc(L"a", L"3-char") == false);
 
-        CHECK(artc(L"an", 2, L"4-char", 6));
-        CHECK(artc(L"a", 1, L"4-char", 6) == false);
+        CHECK(artc(L"an", L"4-char"));
+        CHECK(artc(L"a", L"4-char") == false);
 
-        CHECK(artc(L"an", 2, L"5-char", 6));
-        CHECK(artc(L"a", 1, L"5-char", 6) == false);
+        CHECK(artc(L"an", L"5-char"));
+        CHECK(artc(L"a", L"5-char") == false);
 
-        CHECK(artc(L"an", 2, L"6-char", 6));
-        CHECK(artc(L"a", 1, L"6-char", 6) == false);
+        CHECK(artc(L"an", L"6-char"));
+        CHECK(artc(L"a", L"6-char") == false);
 
-        CHECK(artc(L"an", 2, L"7-char", 6));
-        CHECK(artc(L"a", 1, L"7-char", 6) == false);
+        CHECK(artc(L"an", L"7-char"));
+        CHECK(artc(L"a", L"7-char") == false);
 
-        CHECK(artc(L"an", 2, L"8-char", 6) == false);
-        CHECK(artc(L"a", 1, L"8-char", 6));
+        CHECK(artc(L"an", L"8-char") == false);
+        CHECK(artc(L"a", L"8-char"));
 
-        CHECK(artc(L"an", 2, L"9-char", 6));
-        CHECK(artc(L"a", 1, L"9-char", 6) == false);
+        CHECK(artc(L"an", L"9-char"));
+        CHECK(artc(L"a", L"9-char") == false);
 
-        CHECK(artc(L"an", 2, L"0char", 5));
-        CHECK(artc(L"a", 1, L"0char", 5) == false);
+        CHECK(artc(L"an", L"0char"));
+        CHECK(artc(L"a", L"0char") == false);
 
-        CHECK(artc(L"an", 2, L"1char", 5));
-        CHECK(artc(L"a", 1, L"1char", 5) == false);
+        CHECK(artc(L"an", L"1char"));
+        CHECK(artc(L"a", L"1char") == false);
 
-        CHECK(artc(L"an", 2, L"2char", 5));
-        CHECK(artc(L"a", 1, L"2char", 5) == false);
+        CHECK(artc(L"an", L"2char"));
+        CHECK(artc(L"a", L"2char") == false);
 
-        CHECK(artc(L"an", 2, L"3char", 5));
-        CHECK(artc(L"a", 1, L"3char", 5) == false);
+        CHECK(artc(L"an", L"3char"));
+        CHECK(artc(L"a", L"3char") == false);
 
-        CHECK(artc(L"an", 2, L"4char", 5));
-        CHECK(artc(L"a", 1, L"4char", 5) == false);
+        CHECK(artc(L"an", L"4char"));
+        CHECK(artc(L"a", L"4char") == false);
 
-        CHECK(artc(L"an", 2, L"5char", 5));
-        CHECK(artc(L"a", 1, L"5char", 5) == false);
+        CHECK(artc(L"an", L"5char"));
+        CHECK(artc(L"a", L"5char") == false);
 
-        CHECK(artc(L"an", 2, L"6char", 5));
-        CHECK(artc(L"a", 1, L"6char", 5) == false);
+        CHECK(artc(L"an", L"6char"));
+        CHECK(artc(L"a", L"6char") == false);
 
-        CHECK(artc(L"an", 2, L"7char", 5));
-        CHECK(artc(L"a", 1, L"7char", 5) == false);
+        CHECK(artc(L"an", L"7char"));
+        CHECK(artc(L"a", L"7char") == false);
 
-        CHECK(artc(L"an", 2, L"8char", 5) == false);
-        CHECK(artc(L"a", 1, L"8char", 5));
+        CHECK(artc(L"an", L"8char") == false);
+        CHECK(artc(L"a", L"8char"));
 
-        CHECK(artc(L"an", 2, L"9char", 5));
-        CHECK(artc(L"a", 1, L"9char", 5) == false);
+        CHECK(artc(L"an", L"9char"));
+        CHECK(artc(L"a", L"9char") == false);
 
         // don't bother with more complicated numbers
-        CHECK(artc(L"an", 2, L"1,800", 5) == false);
-        CHECK(artc(L"a", 1, L"1,800", 5) == false);
+        CHECK(artc(L"an", L"1,800") == false);
+        CHECK(artc(L"a", L"1,800") == false);
 
-        CHECK(artc(L"an", 2, L"1st", 3));
-        CHECK(artc(L"a", 1, L"1st", 3) == false);
+        CHECK(artc(L"an", L"1st"));
+        CHECK(artc(L"a", L"1st") == false);
 
-        CHECK(artc(L"an", 2, L"21st", 4));
-        CHECK(artc(L"a", 1, L"21st", 4) == false);
+        CHECK(artc(L"an", L"21st"));
+        CHECK(artc(L"a", L"21st") == false);
 
-        CHECK(artc(L"an", 2, L"2nd", 3));
-        CHECK(artc(L"a", 1, L"2nd", 3) == false);
+        CHECK(artc(L"an", L"2nd"));
+        CHECK(artc(L"a", L"2nd") == false);
 
-        CHECK(artc(L"an", 2, L"3rd", 3));
-        CHECK(artc(L"a", 1, L"3rd", 3) == false);
+        CHECK(artc(L"an", L"3rd"));
+        CHECK(artc(L"a", L"3rd") == false);
 
-        CHECK(artc(L"an", 2, L"11th", 4) == false);
-        CHECK(artc(L"a", 1, L"11th", 4));
+        CHECK(artc(L"an", L"11th") == false);
+        CHECK(artc(L"a", L"11th"));
 
-        CHECK(artc(L"an", 2, L"8th", 3) == false);
-        CHECK(artc(L"a", 1, L"8th", 3));
+        CHECK(artc(L"an", L"8th") == false);
+        CHECK(artc(L"a", L"8th"));
 
-        CHECK(artc(L"an", 2, L"4th", 3));
-        CHECK(artc(L"a", 1, L"4th", 3) == false);
+        CHECK(artc(L"an", L"4th"));
+        CHECK(artc(L"a", L"4th") == false);
         }
     SECTION("Year")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"a", 1, L"1087", 4) == false);
-        CHECK(artc(L"a", 1, L"1187", 4));
-        CHECK(artc(L"a", 1, L"1287", 4) == false);
-        CHECK(artc(L"a", 1, L"1387", 4) == false);
-        CHECK(artc(L"a", 1, L"1487", 4) == false);
-        CHECK(artc(L"a", 1, L"1587", 4) == false);
-        CHECK(artc(L"a", 1, L"1687", 4) == false);
-        CHECK(artc(L"a", 1, L"1787", 4) == false);
-        CHECK(artc(L"a", 1, L"1887", 4));
-        CHECK(artc(L"a", 1, L"1987", 4) == false);
-        CHECK(artc(L"a", 1, L"2087", 4) == false);
+        CHECK(artc(L"a", L"1087") == false);
+        CHECK(artc(L"a", L"1187"));
+        CHECK(artc(L"a", L"1287") == false);
+        CHECK(artc(L"a", L"1387") == false);
+        CHECK(artc(L"a", L"1487") == false);
+        CHECK(artc(L"a", L"1587") == false);
+        CHECK(artc(L"a", L"1687") == false);
+        CHECK(artc(L"a", L"1787") == false);
+        CHECK(artc(L"a", L"1887"));
+        CHECK(artc(L"a", L"1987") == false);
+        CHECK(artc(L"a", L"2087") == false);
 
-        CHECK(artc(L"an", 2, L"1087", 4));
-        CHECK(artc(L"an", 2, L"1187", 4) == false);
-        CHECK(artc(L"an", 2, L"1287", 4));
-        CHECK(artc(L"an", 2, L"1387", 4));
-        CHECK(artc(L"an", 2, L"1487", 4));
-        CHECK(artc(L"an", 2, L"1587", 4));
-        CHECK(artc(L"an", 2, L"1687", 4));
-        CHECK(artc(L"an", 2, L"1787", 4));
-        CHECK(artc(L"an", 2, L"1887", 4) == false);
-        CHECK(artc(L"an", 2, L"1987", 4));
-        CHECK(artc(L"an", 2, L"2087", 4));
+        CHECK(artc(L"an", L"1087"));
+        CHECK(artc(L"an", L"1187") == false);
+        CHECK(artc(L"an", L"1287"));
+        CHECK(artc(L"an", L"1387"));
+        CHECK(artc(L"an", L"1487"));
+        CHECK(artc(L"an", L"1587"));
+        CHECK(artc(L"an", L"1687"));
+        CHECK(artc(L"an", L"1787"));
+        CHECK(artc(L"an", L"1887") == false);
+        CHECK(artc(L"an", L"1987"));
+        CHECK(artc(L"an", L"2087"));
         }
 
     SECTION("Time")
         {
         grammar::is_incorrect_english_article artc;
 
-        CHECK(artc(L"a", 1, L"10:87", 5) == false);
-        CHECK(artc(L"a", 1, L"11:87", 5));
-        CHECK(artc(L"a", 1, L"12:87", 5) == false);
-        CHECK(artc(L"a", 1, L"13:87", 5) == false);
-        CHECK(artc(L"a", 1, L"14:87", 5) == false);
-        CHECK(artc(L"a", 1, L"15:87", 5) == false);
-        CHECK(artc(L"a", 1, L"16:87", 5) == false);
-        CHECK(artc(L"a", 1, L"17:87", 5) == false);
-        CHECK(artc(L"a", 1, L"18:87", 5));
-        CHECK(artc(L"a", 1, L"19:87", 5) == false);
-        CHECK(artc(L"a", 1, L"20:87", 5) == false);
+        CHECK(artc(L"a", L"10:87") == false);
+        CHECK(artc(L"a", L"11:87"));
+        CHECK(artc(L"a", L"12:87") == false);
+        CHECK(artc(L"a", L"13:87") == false);
+        CHECK(artc(L"a", L"14:87") == false);
+        CHECK(artc(L"a", L"15:87") == false);
+        CHECK(artc(L"a", L"16:87") == false);
+        CHECK(artc(L"a", L"17:87") == false);
+        CHECK(artc(L"a", L"18:87"));
+        CHECK(artc(L"a", L"19:87") == false);
+        CHECK(artc(L"a", L"20:87") == false);
 
-        CHECK(artc(L"an", 2, L"10:87", 5));
-        CHECK(artc(L"an", 2, L"11:87", 5) == false);
-        CHECK(artc(L"an", 2, L"12:87", 5));
-        CHECK(artc(L"an", 2, L"13:87", 5));
-        CHECK(artc(L"an", 2, L"14:87", 5));
-        CHECK(artc(L"an", 2, L"15:87", 5));
-        CHECK(artc(L"an", 2, L"16:87", 5));
-        CHECK(artc(L"an", 2, L"17:87", 5));
-        CHECK(artc(L"an", 2, L"18:87", 5) == false);
-        CHECK(artc(L"an", 2, L"19:87", 5));
-        CHECK(artc(L"an", 2, L"20:87", 5));
+        CHECK(artc(L"an", L"10:87"));
+        CHECK(artc(L"an", L"11:87") == false);
+        CHECK(artc(L"an", L"12:87"));
+        CHECK(artc(L"an", L"13:87"));
+        CHECK(artc(L"an", L"14:87"));
+        CHECK(artc(L"an", L"15:87"));
+        CHECK(artc(L"an", L"16:87"));
+        CHECK(artc(L"an", L"17:87"));
+        CHECK(artc(L"an", L"18:87") == false);
+        CHECK(artc(L"an", L"19:87"));
+        CHECK(artc(L"an", L"20:87"));
         }
     }

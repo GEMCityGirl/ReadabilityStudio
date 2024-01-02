@@ -14,41 +14,41 @@ word_list is_incorrect_english_article::m_a_exceptions;
 word_list is_incorrect_english_article::m_an_exceptions;
 
 //-------------------------------------------------------------
-bool is_incorrect_english_article::operator()(const wchar_t* article, const size_t article_length,
-                                              const wchar_t* word,
-                                              size_t word_length) const noexcept
+bool is_incorrect_english_article::operator()(std::wstring_view article,
+                                              std::wstring_view word) const noexcept
     {
     // we only look at "a" and "an"
-    if (article == nullptr || word == nullptr || article_length == 0 || article_length > 2 ||
+    if (article.empty() || word.empty() || article.length() > 2 ||
         !traits::case_insensitive_ex::eq(article[0], L'a') ||
-        (article_length == 2 && !traits::case_insensitive_ex::eq(article[1], L'n')) ||
-        word_length == 0 || characters::is_character::is_punctuation(word[0]))
+        (article.length() == 2 && !traits::case_insensitive_ex::eq(article[1], L'n')) ||
+        (word.length() == 0 || characters::is_character::is_punctuation(word[0])))
         {
         return false;
         }
 
     // words that are debatable, just return that they match
-    if (word_length == 3 && traits::case_insensitive_ex::compare(word, L"URL", 3) == 0)
+    if (word.length() == 3 && traits::case_insensitive_ex::compare(word.data(), L"URL", 3) == 0)
         {
         return false;
         }
 
-    const auto hyphenPos = string_util::strncspn(word, word_length, L"-\uFF0D", 2);
-    const wchar_t* const hyphenPosition = (hyphenPos == word_length) ? nullptr : word + hyphenPos;
-    if (hyphenPosition)
+    const auto hyphenPos = string_util::strncspn(word.data(), word.length(), L"-\uFF0D", 2);
+    const wchar_t* const hyphenPosition =
+        (hyphenPos == word.length()) ? nullptr : word.data() + hyphenPos;
+    if (hyphenPosition != nullptr)
         {
-        word_length = hyphenPosition - word;
+        word = word.substr(0, hyphenPosition - word.data());
         }
     // word starting with five consonants is without a doubt sounded out
     const bool startsWith5Consonants =
-        (word_length >= 5 && characters::is_character::is_consonant(word[0]) &&
+        (word.length() >= 5 && characters::is_character::is_consonant(word[0]) &&
          characters::is_character::is_consonant(word[1]) &&
          characters::is_character::is_consonant(word[2]) &&
          characters::is_character::is_consonant(word[3]) &&
          characters::is_character::is_consonant(word[4]));
     // or weird consonant combination at the start of an acronym (e.g., "LGA", "NCAA")
     const bool oddAcronymConsonantCombo =
-        (word_length >= 2 && characters::is_character::is_upper(word[0]) &&
+        (word.length() >= 2 && characters::is_character::is_upper(word[0]) &&
          characters::is_character::is_upper(word[1]) &&
          // only certain consonant combinations make sense to look like a word you would pronounce
          ((traits::case_insensitive_ex::eq_case_sensitive(word[0], 'F') &&
@@ -72,71 +72,71 @@ bool is_incorrect_english_article::operator()(const wchar_t* article, const size
             !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'W')))));
     const grammar::is_acronym isAcronym;
     const bool useLetterSoundedOut =
-        (startsWith5Consonants || (word_length == 1) ||
+        (startsWith5Consonants || (word.length() == 1) ||
          // 2-letter acronym
-         (word_length == 2 && characters::is_character::is_upper(word[0]) &&
+         (word.length() == 2 && characters::is_character::is_upper(word[0]) &&
           characters::is_character::is_upper(word[1])) ||
          oddAcronymConsonantCombo || characters::is_character::is_punctuation(word[1]) ||
          characters::is_character::is_numeric(word[0]) ||
          characters::is_character::is_numeric(word[1]) ||
          // if an acronym and no vowels (including wide versions), then each letter should be
          // sounded out
-         (isAcronym({ word, word_length }) &&
-          string_util::strncspn(word, word_length,
+         (isAcronym(word) &&
+          string_util::strncspn(word.data(), word.length(),
                                 L"aeiouy\uFF41\uFF45\uFF49\uFF4F\uFF55\uFF59AEIOUY\uFF21\uFF25"
                                 L"\uFF29\uFF2F\uFF35\uFF39",
-                                24) == word_length));
-    const bool isYear = (word_length == 4 && characters::is_character::is_numeric(word[0]) &&
+                                24) == word.length()));
+    const bool isYear = (word.length() == 4 && characters::is_character::is_numeric(word[0]) &&
                          characters::is_character::is_numeric(word[1]) &&
                          characters::is_character::is_numeric(word[2]) &&
                          characters::is_character::is_numeric(word[3]));
-    const bool isTime = (word_length == 5 && characters::is_character::is_numeric(word[0]) &&
+    const bool isTime = (word.length() == 5 && characters::is_character::is_numeric(word[0]) &&
                          characters::is_character::is_numeric(word[1]) &&
                          traits::case_insensitive_ex::eq(word[2], L':') &&
                          characters::is_character::is_numeric(word[3]) &&
                          characters::is_character::is_numeric(word[4]));
-    const bool is2Digit = ((word_length == 2 && characters::is_character::is_numeric(word[0]) &&
+    const bool is2Digit = ((word.length() == 2 && characters::is_character::is_numeric(word[0]) &&
                             characters::is_character::is_numeric(word[1])) ||
-                           (word_length > 2 && characters::is_character::is_numeric(word[0]) &&
+                           (word.length() > 2 && characters::is_character::is_numeric(word[0]) &&
                             characters::is_character::is_numeric(word[1]) &&
                             characters::is_character::is_punctuation(word[2])));
     const bool isSoundingOutStartingNumbers = (isYear || isTime || is2Digit);
     // if something like "1,800,00" then don't bother analyzing, will be too complicated
     if (!isSoundingOutStartingNumbers && characters::is_character::is_numeric(word[0]) &&
-        string_util::strcspn_pointer(word, L",.", 2))
+        string_util::strcspn_pointer(word.data(), L",.", 2))
         {
         return false;
         }
     // a 2nd, a 1st, a 3rd
-    else if (!isSoundingOutStartingNumbers && word_length >= 3 &&
-             characters::is_character::is_numeric(word[word_length - 3]) &&
-             (string_util::strnicmp(word + (word_length - 2), L"st", 2) == 0 ||
-              string_util::strnicmp(word + (word_length - 2), L"rd", 2) == 0 ||
-              string_util::strnicmp(word + (word_length - 2), L"nd", 2) == 0))
+    else if (!isSoundingOutStartingNumbers && word.length() >= 3 &&
+             characters::is_character::is_numeric(word[word.length() - 3]) &&
+             (string_util::strnicmp(word.data() + (word.length() - 2), L"st", 2) == 0 ||
+              string_util::strnicmp(word.data() + (word.length() - 2), L"rd", 2) == 0 ||
+              string_util::strnicmp(word.data() + (word.length() - 2), L"nd", 2) == 0))
         {
-        return !(article_length == 1 && traits::case_insensitive_ex::eq(article[0], L'a'));
+        return !(article.length() == 1 && traits::case_insensitive_ex::eq(article[0], L'a'));
         }
     // a 5th, etc.
-    else if (!isSoundingOutStartingNumbers && word_length >= 3 &&
-             characters::is_character::is_numeric(word[word_length - 3]) &&
-             string_util::strnicmp(word + (word_length - 2), L"th", 2) == 0)
+    else if (!isSoundingOutStartingNumbers && word.length() >= 3 &&
+             characters::is_character::is_numeric(word[word.length() - 3]) &&
+             string_util::strnicmp(word.data() + (word.length() - 2), L"th", 2) == 0)
         {
         // a 5th
-        if (word[word_length - 3] == L'2' || word[word_length - 3] == L'3' ||
-            word[word_length - 3] == L'4' || word[word_length - 3] == L'5' ||
-            word[word_length - 3] == L'6' || word[word_length - 3] == L'7' ||
-            word[word_length - 3] == L'9' || word[word_length - 3] == L'0')
+        if (word[word.length() - 3] == L'2' || word[word.length() - 3] == L'3' ||
+            word[word.length() - 3] == L'4' || word[word.length() - 3] == L'5' ||
+            word[word.length() - 3] == L'6' || word[word.length() - 3] == L'7' ||
+            word[word.length() - 3] == L'9' || word[word.length() - 3] == L'0')
             {
-            return !(article_length == 1 && traits::case_insensitive_ex::eq(article[0], L'a'));
+            return !(article.length() == 1 && traits::case_insensitive_ex::eq(article[0], L'a'));
             }
         // an 8th, an 11th
-        else if (word[word_length - 3] == L'1' || word[word_length - 3] == L'8')
+        else if (word[word.length() - 3] == L'1' || word[word.length() - 3] == L'8')
             {
-            return !(article_length == 2 && traits::case_insensitive_ex::eq(article[0], L'a') &&
+            return !(article.length() == 2 && traits::case_insensitive_ex::eq(article[0], L'a') &&
                      traits::case_insensitive_ex::eq(article[1], L'n'));
             }
         }
-    if (article_length == 1 && traits::case_insensitive_ex::eq(article[0], L'a'))
+    if (article.length() == 1 && traits::case_insensitive_ex::eq(article[0], L'a'))
         {
         // with years and times, you sound out the first two digits together
         if (isSoundingOutStartingNumbers)
@@ -177,20 +177,20 @@ bool is_incorrect_english_article::operator()(const wchar_t* article, const size
         else if (!traits::case_insensitive_ex::eq(word[0], L'y') &&
                  characters::is_character::is_vowel(word[0]))
             {
-            return !is_a_exception(word, word_length);
+            return !is_a_exception(word);
             }
         // if starts with a consonant, then it should be correct
         // (unless a known exception that should actually go with an "an")
         else if (characters::is_character::is_consonant(word[0]))
             {
-            return is_an_exception(word, word_length);
+            return is_an_exception(word);
             }
         else
             {
             return false;
             }
         }
-    else if (article_length == 2 && traits::case_insensitive_ex::eq(article[0], L'a') &&
+    else if (article.length() == 2 && traits::case_insensitive_ex::eq(article[0], L'a') &&
              traits::case_insensitive_ex::eq(article[1], L'n'))
         {
         if (isSoundingOutStartingNumbers)
@@ -231,14 +231,14 @@ bool is_incorrect_english_article::operator()(const wchar_t* article, const size
         // check for any consonants that would be OK after an "an"
         else if (characters::is_character::is_consonant(word[0]))
             {
-            return !is_an_exception(word, word_length);
+            return !is_an_exception(word);
             }
         // if starts with a vowel (excluding 'y'),
         // then it should be correct (unless a known exception that should actually go with an 'a')
         else if (!traits::case_insensitive_ex::eq(word[0], L'y') &&
                  characters::is_character::is_vowel(word[0]))
             {
-            return is_a_exception(word, word_length);
+            return is_a_exception(word);
             }
         else
             {
@@ -252,35 +252,35 @@ bool is_incorrect_english_article::operator()(const wchar_t* article, const size
     }
 
 //-------------------------------------------------------------
-bool is_incorrect_english_article::is_an_exception(const wchar_t* word, const size_t word_length)
+bool is_incorrect_english_article::is_an_exception(std::wstring_view word)
     {
-    assert(word);
-    if (word == nullptr || word_length == 0)
+    assert(!word.empty());
+    if (word.empty())
         {
         return false;
         }
 
     // if a known (full-word, case-insensitive) exception
-    if (get_an_exceptions().contains(word, word_length))
+    if (get_an_exceptions().contains(word.data(), word.length()))
         {
         return true;
         }
-    else if (traits::case_insensitive_ex::compare(word, L"hono", 4) == 0 ||
-             traits::case_insensitive_ex::compare(word, L"hour", 4) == 0 ||
-             traits::case_insensitive_ex::compare(word, L"heir", 4) == 0 ||
-             traits::case_insensitive_ex::compare(word, L"html", 4) == 0 ||
-             traits::case_insensitive_ex::compare(word, L"honest", 6) == 0 ||
+    else if (traits::case_insensitive_ex::compare(word.data(), L"hono", 4) == 0 ||
+             traits::case_insensitive_ex::compare(word.data(), L"hour", 4) == 0 ||
+             traits::case_insensitive_ex::compare(word.data(), L"heir", 4) == 0 ||
+             traits::case_insensitive_ex::compare(word.data(), L"html", 4) == 0 ||
+             traits::case_insensitive_ex::compare(word.data(), L"honest", 6) == 0 ||
              // an HRESULT
-             (word_length >= 2 && traits::case_insensitive_ex::eq(word[0], L'H') &&
+             (word.length() >= 2 && traits::case_insensitive_ex::eq(word[0], L'H') &&
               characters::is_character::is_consonant(word[1])) ||
              // treat SAT and sat differently
-             (word_length == 3 &&
-              traits::case_insensitive_ex::compare_case_sensitive(word, L"SAT", 3) == 0))
+             (word.length() == 3 &&
+              traits::case_insensitive_ex::compare_case_sensitive(word.data(), L"SAT", 3) == 0))
         {
         return true;
         }
     // an XML, an XBox
-    else if (word_length >= 2 && traits::case_insensitive_ex::eq(word[0], L'x') &&
+    else if (word.length() >= 2 && traits::case_insensitive_ex::eq(word[0], L'x') &&
              characters::is_character::is_consonant(word[1]))
         {
         return true;
@@ -292,10 +292,10 @@ bool is_incorrect_english_article::is_an_exception(const wchar_t* word, const si
     }
 
 //-------------------------------------------------------------
-bool is_incorrect_english_article::is_a_exception(const wchar_t* word, const size_t word_length)
+bool is_incorrect_english_article::is_a_exception(std::wstring_view word)
     {
-    assert(word);
-    if (word == nullptr || word_length == 0)
+    assert(!word.empty());
+    if (word.empty())
         {
         return false;
         }
@@ -312,7 +312,7 @@ bool is_incorrect_english_article::is_a_exception(const wchar_t* word, const siz
     };
 
     // if a known (full-word, case-insensitive) exception
-    if (get_a_exceptions().contains(word, word_length))
+    if (get_a_exceptions().contains(word.data(), word.length()))
         {
         return true;
         }
@@ -324,7 +324,7 @@ bool is_incorrect_english_article::is_a_exception(const wchar_t* word, const siz
     // e
     else if (traits::case_insensitive_ex::eq(word[0], L'e'))
         {
-        if (traits::case_insensitive_ex::compare(word, L"eu", 2) == 0)
+        if (traits::case_insensitive_ex::compare(word.data(), L"eu", 2) == 0)
             {
             return true;
             }
@@ -341,14 +341,14 @@ bool is_incorrect_english_article::is_a_exception(const wchar_t* word, const siz
     // o
     else if (traits::case_insensitive_ex::eq(word[0], L'o'))
         {
-        if (traits::case_insensitive_ex::compare(word, L"one-", 4) == 0 ||
-            traits::case_insensitive_ex::compare(word, L"once-", 5) == 0)
+        if (traits::case_insensitive_ex::compare(word.data(), L"one-", 4) == 0 ||
+            traits::case_insensitive_ex::compare(word.data(), L"once-", 5) == 0)
             {
             return true;
             }
         // "A or B" is OK, but "a OR in the hospital" is wrong, so do this case sensitively
-        else if (word_length == 2 &&
-                 traits::case_insensitive_ex::compare_case_sensitive(word, L"or", 2) == 0)
+        else if (word.length() == 2 &&
+                 traits::case_insensitive_ex::compare_case_sensitive(word.data(), L"or", 2) == 0)
             {
             return true;
             }
@@ -360,36 +360,36 @@ bool is_incorrect_english_article::is_a_exception(const wchar_t* word, const siz
     // u
     else if (traits::case_insensitive_ex::eq(word[0], L'u'))
         {
-        if ((word_length >= 3 && case_i_u_3_prefixes.find(traits::case_insensitive_wstring_ex(
-                                     word, 3)) != case_i_u_3_prefixes.cend()) ||
+        if ((word.length() >= 3 && case_i_u_3_prefixes.find(traits::case_insensitive_wstring_ex(
+                                       word.data(), 3)) != case_i_u_3_prefixes.cend()) ||
             // UNC, but not UNCLE
-            (word_length == 3 &&
-             traits::case_insensitive_ex::compare_case_sensitive(word, L"UNC", 3) == 0) ||
-            traits::case_insensitive_ex::compare(word, L"uter", 4) == 0)
+            (word.length() == 3 &&
+             traits::case_insensitive_ex::compare_case_sensitive(word.data(), L"UNC", 3) == 0) ||
+            traits::case_insensitive_ex::compare(word.data(), L"uter", 4) == 0)
             {
             return true;
             }
-        else if (traits::case_insensitive_ex::compare(word, L"uni", 3) == 0)
+        else if (traits::case_insensitive_ex::compare(word.data(), L"uni", 3) == 0)
             {
             // unimpressed, uninteresting, unignored, uninitialized
             // should have "an" in front
-            if (word_length > 4 && traits::case_insensitive_ex::eq(word[3], L'n'))
+            if (word.length() > 4 && traits::case_insensitive_ex::eq(word[3], L'n'))
                 {
                 return false;
                 }
             // ...but "unimolecular" should be an 'a'
-            else if (word_length > 4 && (traits::case_insensitive_ex::eq(word[3], L'm') ||
-                                         traits::case_insensitive_ex::eq(word[3], L'g')))
+            else if (word.length() > 4 && (traits::case_insensitive_ex::eq(word[3], L'm') ||
+                                           traits::case_insensitive_ex::eq(word[3], L'g')))
                 {
                 return characters::is_character::is_vowel(word[4]);
                 }
             // "a unidimensional" is correct, "a undertermined" is wrong
-            else if (word_length > 4 && (traits::case_insensitive_ex::eq(word[3], L'd')))
+            else if (word.length() > 4 && (traits::case_insensitive_ex::eq(word[3], L'd')))
                 {
                 return traits::case_insensitive_ex::eq(word[4], L'i');
                 }
             // unillegal (for the sake of argument, let's say that's a word)
-            else if (word_length > 4 &&
+            else if (word.length() > 4 &&
                      (traits::case_insensitive_ex::eq(word[3], L'l') &&
                       // but should have a consonant following, because "a unilateral" is correct
                       characters::is_character::is_consonant(word[4])))
@@ -403,12 +403,12 @@ bool is_incorrect_english_article::is_a_exception(const wchar_t* word, const siz
                 }
             }
         // a uranium
-        else if (traits::case_insensitive_ex::compare(word, L"ura", 3) == 0)
+        else if (traits::case_insensitive_ex::compare(word.data(), L"ura", 3) == 0)
             {
             return true;
             }
         // "a unanimous decision" is correct
-        else if (traits::case_insensitive_ex::compare(word, L"unani", 5) == 0)
+        else if (traits::case_insensitive_ex::compare(word.data(), L"unani", 5) == 0)
             {
             return true;
             }

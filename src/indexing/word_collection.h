@@ -1809,9 +1809,10 @@ private:
                         }
                     // article mismatching
                     else if (is_mismatched_article &&
-                        is_mismatched_article->operator()(m_words[wordCounter].c_str(),
-                            m_words[wordCounter].length(), m_words[wordCounter+1].c_str(),
-                            m_words[wordCounter+1].length()) )
+                             is_mismatched_article->operator()(
+                                 { m_words[wordCounter].c_str(), m_words[wordCounter].length() },
+                                 { m_words[wordCounter + 1].c_str(),
+                                   m_words[wordCounter + 1].length() }))
                         {
                         // capital 'A' in the middle of a sentence is sometimes the name of a group or initial,
                         // so ignore it.
