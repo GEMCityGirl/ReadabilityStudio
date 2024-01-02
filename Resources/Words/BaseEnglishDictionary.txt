@@ -1368,6 +1368,7 @@ adaptivity
 adaptor
 adaptors
 adapts
+adatum
 adaxial
 adaxis
 ADC
@@ -1393,7 +1394,10 @@ addictions
 addictive
 addictiveness
 addicts
+addin
+addin's
 adding
+addins
 addisonian
 addition
 addition's
@@ -29363,6 +29367,7 @@ CSEU
 CSP
 CST
 CSU
+csv
 CSYS
 Cs²⁺
 CT
@@ -32313,6 +32318,9 @@ delegating
 delegation
 delegation's
 delegations
+delegator
+delegator's
+delegators
 deletable
 delete
 deleted
@@ -33634,6 +33642,7 @@ deskill
 deskilled
 deskilling
 deskills
+desking
 desks
 desktop
 desktops
@@ -34361,9 +34370,13 @@ dialogs
 dialogue
 dialogue's
 dialogues
+dialout
 dialpad
 dialpad's
 dialpads
+dialplan
+dialplan's
+dialplans
 dials
 dialup
 dialup's
@@ -37663,6 +37676,7 @@ doth
 doting
 dotingly
 dotings
+dotless
 dots
 dotted
 dottier
@@ -45416,6 +45430,9 @@ fags
 fahrenheit
 fail
 failable
+failback
+failback's
+failbacks
 failed
 failing
 failing's
@@ -57176,6 +57193,7 @@ headsman
 headsman's
 headsmen
 headsmen's
+headspace
 headstall
 headstall's
 headstalls
@@ -76670,10 +76688,13 @@ membranophone
 membranophone's
 membranophones
 membranous
+meme
+meme's
 memento
 memento's
 mementoes
 mementos
+memes
 memo
 memo's
 memoir
@@ -77185,6 +77206,9 @@ metabolomic
 metabolomics
 metaboric
 metabotropic
+metacache
+metacache's
+metacaches
 metacarpal
 metacarpals
 metacarpi
@@ -81449,6 +81473,7 @@ multifocal
 multifold
 multiform
 multiforme
+multifrequency
 multifunction
 multifunctional
 multifunctionally
@@ -97684,6 +97709,7 @@ precanceled
 precanceling
 precancels
 precancerous
+precanned
 precapillary
 precariat
 precariat's
@@ -103948,6 +103974,8 @@ rebakes
 rebaking
 rebalance
 rebalanced
+rebalances
+rebalancing
 rebase
 rebased
 rebases
@@ -105348,6 +105376,7 @@ refilled
 refilling
 refillings
 refills
+refinable
 refinance
 refinanced
 refinances
@@ -110181,6 +110210,7 @@ rousting
 rousts
 rout
 rout's
+routable
 route
 route's
 routed
@@ -128311,6 +128341,7 @@ teleportation
 teleported
 teleporting
 teleports
+telepresence
 teleprinter
 teleprinter's
 teleprinters
@@ -131527,6 +131558,7 @@ touchscreens
 touchstone
 touchstone's
 touchstones
+touchtone
 touchwood
 touchy
 touché
@@ -131640,6 +131672,9 @@ towner
 towner's
 towney
 towney's
+townhall
+townhall's
+townhalls
 townhome
 townhome's
 townhomes
@@ -133633,6 +133668,7 @@ tsp
 tsunami
 tsunami's
 tsunamis
+tsv
 TTL
 tty
 tty's
@@ -137579,6 +137615,7 @@ unselfishness
 unselfishness's
 unselfishnesses
 unsellable
+unsendable
 unsensing
 unsensitized
 unsent
@@ -137612,7 +137649,10 @@ unshaken
 unshaped
 unshapely
 unsharable
+unshare
 unshared
+unshares
+unsharing
 unsharpened
 unshaved
 unshaven
@@ -142838,6 +142878,9 @@ whitefish's
 whitefishes
 whitefly
 whiteheads
+whitelist
+whitelist's
+whitelists
 whitely
 whiten
 whitened
@@ -143504,6 +143547,9 @@ wirelessing
 wirelessly
 wireman
 wireman's
+wiremap
+wiremap's
+wiremaps
 wiremen
 wiremen's
 wirer

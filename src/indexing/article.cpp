@@ -84,7 +84,7 @@ bool is_incorrect_english_article::operator()(std::wstring_view article,
          (isAcronym(word) &&
           string_util::strncspn(word.data(), word.length(),
                                 L"aeiouy\uFF41\uFF45\uFF49\uFF4F\uFF55\uFF59AEIOUY\uFF21\uFF25"
-                                L"\uFF29\uFF2F\uFF35\uFF39",
+                                "\uFF29\uFF2F\uFF35\uFF39",
                                 24) == word.length()));
     const bool isYear = (word.length() == 4 && characters::is_character::is_numeric(word[0]) &&
                          characters::is_character::is_numeric(word[1]) &&

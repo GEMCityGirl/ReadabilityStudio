@@ -8374,6 +8374,7 @@ Gunther
 Guofeng
 Gupta
 Gurecky
+Gurinder
 Gurkha
 Gurklies
 Gurley
@@ -9736,6 +9737,7 @@ Jakie
 Jakinda
 Jakki
 Jakob
+Jakobsen
 Jakolyn
 Jakqueline
 Jakub
@@ -11780,6 +11782,7 @@ Kozak
 Kozar
 Kozeta
 Kozicki
+Kozma
 Kraas
 Krach
 Kraft
@@ -19242,6 +19245,7 @@ Tegucigalpa
 Tehran
 Teila
 Teirtza
+Teixeira
 Tejana
 Tejano
 Telford
@@ -21170,6 +21174,7 @@ Ziegler
 Zierer
 Zigfrid
 Ziggy
+Zighetti
 Ziglar
 Zigmunt
 Zijin
