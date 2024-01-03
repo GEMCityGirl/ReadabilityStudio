@@ -12972,6 +12972,7 @@ Lovelace
 Loveland
 Lovell
 Lovett
+Lovins
 Lovisa
 Lowe
 Lowell
@@ -13405,6 +13406,7 @@ Maldives
 Maleena
 Malena
 Malerie
+Maley
 Malfreda
 Mali
 Malia
@@ -16946,6 +16948,7 @@ Robinetta
 Robinette
 Robinson
 Robison
+Roboto
 Robson
 Robt
 Roby
@@ -18782,6 +18785,7 @@ Sticht
 Stickgold
 Stieber
 Stieglitz
+Stieltjes
 Stifel
 Stig
 Stillman
@@ -21109,6 +21113,7 @@ Zanna
 Zantina
 Zanuck
 Zapata
+Zaphod
 Zappa
 Zaquan
 Zara

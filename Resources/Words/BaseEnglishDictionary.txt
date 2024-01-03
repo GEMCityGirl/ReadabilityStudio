@@ -1515,6 +1515,7 @@ adhesively
 adhesiveness
 adhesiveness's
 adhesives
+adhoc
 adhocracies
 adhocracy
 adhocracy's
@@ -4472,6 +4473,7 @@ animalizing
 animally
 animalness
 animals
+animatable
 animate
 animated
 animatedly
@@ -17134,6 +17136,7 @@ cancan
 cancan's
 cancans
 cancel
+cancelable
 cancelate
 cancelated
 canceled
@@ -22892,6 +22895,10 @@ codec
 codec's
 codecs
 coded
+codegen
+codegen'ed
+codegen'ing
+codegens
 codeine
 codeine's
 codeines
@@ -28384,6 +28391,7 @@ creases
 creasing
 creatable
 create
+createable
 created
 creates
 creatine
@@ -40074,6 +40082,9 @@ eifuku
 eigenfunction
 eigenfunction's
 eigenfunctions
+eigenspace
+eigenspace's
+eigenspaces
 eigenstate
 eigenstates
 eigenvalue
@@ -52442,6 +52453,11 @@ geomorphological
 geomorphology
 geomorphology's
 geomyces
+geopath
+geopath's
+geopathed
+geopathing
+geopaths
 geophysical
 geophysically
 geophysicist
@@ -52712,6 +52728,8 @@ giddiness's
 giddy
 giddying
 gif
+gif's
+gifs
 gift
 gift's
 gifted
@@ -59204,6 +59222,9 @@ homoplasy
 homoplasy's
 homopolymer
 homopolymers
+homorophism
+homorophism's
+homorophisms
 homos
 homosaurus
 homosauruses
@@ -68801,7 +68822,9 @@ keyclicks
 keyed
 keyframe
 keyframe's
+keyframed
 keyframes
+keyframing
 keygen
 keygen's
 keygens
@@ -72355,6 +72378,9 @@ listserve
 listserve's
 listserves
 listservs
+listview
+listview's
+listviews
 listwise
 lit
 litanies
@@ -89134,6 +89160,10 @@ oversaturation
 oversaturation's
 oversaturations
 oversaw
+overscroll
+overscrolled
+overscrolling
+overscrolls
 oversea
 oversearch
 oversearched
@@ -90510,7 +90540,9 @@ paralegals
 paralinguistic
 parallax
 parallax's
+parallaxed
 parallaxes
+parallaxing
 parallel
 paralleled
 parallelepiped
@@ -123833,6 +123865,11 @@ subcategory
 subcategory's
 subcellular
 subchain
+subchannel
+subchannel's
+subchanneled
+subchanneling
+subchannels
 subchapter
 subchapter's
 subchapters
@@ -124303,6 +124340,9 @@ subscapularis
 subschema
 subschema's
 subschemas
+subscore
+subscore's
+subscores
 subscribe
 subscribed
 subscriber
@@ -135382,6 +135422,7 @@ uncritically
 uncriticized
 uncriticizing
 uncriticizingly
+uncropped
 uncross
 uncrossable
 uncrossed
@@ -144542,7 +144583,8 @@ WY
 WYSIWYG
 X
 X's
-x.
+X.
+xaml
 xanthelasma
 xanthine
 xanthine's
