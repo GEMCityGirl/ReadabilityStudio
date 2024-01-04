@@ -1,4 +1,5 @@
 23andMe
+3DNow
 3DStudio
 3M
 4chan
@@ -611,6 +612,7 @@ Bermudian
 Bernese
 Bernoulli
 Betadine
+Betamax
 Betelgeuse
 Bethesda
 Bethlehem
@@ -1107,6 +1109,7 @@ CNN
 CNS
 Coahuila
 COBOL
+Codeplex
 Cognac
 Cognology
 Cognos
@@ -1151,6 +1154,7 @@ Confucianism
 Congo
 Congolese
 Connecticut
+Connectix
 Conoco
 Conrail
 Consolas
@@ -1411,6 +1415,7 @@ Drambuie
 Drance
 Drano
 Dravidian
+Dreamcast
 Dreamliner
 Dresden
 Dresdener
@@ -1519,6 +1524,7 @@ Elysium
 Emacs
 EMC
 Emirates
+Emulex
 Enceladus
 Endymion
 Eng
@@ -2755,6 +2761,7 @@ Lindbergh
 Linneman
 Linq
 Linux
+Lionbridge
 Lisbon
 Lisburn
 Liscum
@@ -3501,9 +3508,11 @@ OpenOffice
 OpenOffice.org
 OpenPGP
 OpenStax
+OpenSuse
 OpenText
 OPERS
 Opry
+Opteron
 OrangeTheory
 Oreck
 Oregon
@@ -4335,6 +4344,7 @@ Sneffels
 SoBe
 Socratic
 Sodom
+Softgrid
 Soho
 Solarcentury
 Solaris
@@ -4378,6 +4388,7 @@ Spartanburg
 Spartansburg
 Speedo
 Speedwagon
+Spiceworks
 SpinBrush
 Spinoza
 Spitalfields
@@ -4489,6 +4500,7 @@ Surgicenter
 Surinam
 Suriname
 Surinamese
+Suse
 Susquehanna
 Susquehannock
 Sussex
@@ -5028,6 +5040,8 @@ Virginia
 Virginian
 Virginica
 Virgo
+Viridian
+Virsto
 Visakhapatnam
 Visayans
 VisiCalc
@@ -5036,6 +5050,7 @@ Visine
 Vitaminwater
 Vivaldi
 Vladivostok
+VMWare
 Vodafone
 VoIP
 Volga
@@ -5227,6 +5242,7 @@ WO
 Wokingham
 Wolverhampton
 Wonderlane
+Wondermedia
 Woodgrove
 Woodlawn
 Woodstock
@@ -5268,6 +5284,7 @@ Xebec
 XEmacs
 Xenia
 Xenix
+Xeon
 Xerox
 Xeroxed
 Xeroxes

@@ -1,6 +1,6 @@
 10nd	10th	3		
 10st	10th	3		
-11th hour	almost late, right before the anticipated deadline	2		
+11th hour	almost late, last minute, right before the anticipated deadline	2		
 1nd	1st	3		
 1th	1st	3		
 24 caret	24 carat	3		
@@ -357,6 +357,7 @@ addmission	admission	3
 addopt	adopt	3		
 addopted	adopted	3		
 addoptive	adoptive	3		
+addrersses	addresses	3		
 addres	address	3		
 addresable	addressable	3		
 addresed	addressed	3		
@@ -822,6 +823,7 @@ an increased number of	more	0
 an increasing number of	more, increasing	0		
 an integral part of	integral to	0		
 an other	another	3		
+an ran	and ran	3		
 an the	(strike one of these)	3		
 analysis	review, breakdown, exam, study	0		
 analyze	review, study	0		
@@ -1050,8 +1052,11 @@ aquit	acquit	3
 aquits	acquits	3		
 aquitted	acquitted	3		
 aquitting	acquitting	3		
+arbitarily	arbitrarily	3		
+arbitary	arbitrary	3		
 arbiter	judge, umpire	0		
 arbiters	judges, umpires	0		
+arbitray	arbitrary	3		
 archaelogical	archaeological	3		
 archaelogists	archaeologists	3		
 archeological	archaeological	3		
@@ -1064,7 +1069,18 @@ archiac	archaic	3
 archictect	architect	3		
 archiecture	architecture	3		
 archiectures	architectures	3		
+architecht	architect	3		
+architechturally	architecturally	3		
+architechture	architecture	3		
+architechtures	architectures	3		
+architectual	architectural	3		
+architectured	architected	3		
 architypical	archetypal	3		
+archtiecture	architecture	3		
+archtype	archetype	3		
+archtypes	archetypes	3		
+archvie	archive	3		
+archvies	archives	3		
 arduous	hard	0		
 arduously	hardly	0		
 are a contribution to	contribute to	0		
@@ -1168,15 +1184,26 @@ are under the impression that	assume	0
 are witness to	verify, testify to	0		
 area manger	area manager	3		
 area mangers	area managers	3		
+aready	already	3		
 aren't not	aren't	3		
+areodynamics	aerodynamics	3		
+argment	argument	3		
+argubly	arguably	3		
 arguement	argument	3		
 arguement's	argument's	3		
 arguements	arguments	3		
 arguemnt	argument	3		
 arguemnt's	argument's	3		
 arguemnts	arguments	3		
+arguemtns	arguments	3		
+argumens	arguments	3		
+argumet	argument	3		
+argumet's	argument's	3		
+argumetn	argument	3		
+argumets	arguments	3		
 arm's length	safe distance	2		
 armistice	truce	0		
+arne't	aren't	3		
 aroma	smell	0		
 aroma's	smell's	0		
 aromas	smells	0		
@@ -1245,6 +1272,7 @@ ascertain	find out, learn	0
 ascertained	found out, learned	0		
 ascertaining	finding out, learning	0		
 ascertains	finds out, learns	0		
+asign	assign	3		
 ask a question	ask	1		
 ask the question	ask	1		
 asked a question	asked	1		
@@ -1293,13 +1321,26 @@ assent	agree	0
 assented	agreed	0		
 assenting	agreeing	0		
 assents	agrees	0		
+assgin	assign	3		
+assgined	assigned	3		
+assgining	assigning	3		
+assginment	assignment	3		
+assginments	assignments	3		
+assgins	assigns	3		
+asside	aside	3		
 assigment	assignment	3		
 assigment's	assignment's	3		
 assigments	assignments	3		
+assignemnt	assignment	3		
+assignemnts	assignments	3		
+assignmen	assignment	3		
+assignmnet	assignment	3		
 assimilate	absorb, digest	0		
 assimilated	absorbed, digested	0		
 assimilates	absorbs, digests	0		
 assimilating	absorbing, digesting	0		
+assings	assigns	3		
+assinment	assignment	3		
 assist	aid, help	0		
 assistance	help	0		
 assistant	helper	0		
@@ -1382,6 +1423,7 @@ athiests	atheists	3
 athist	atheist	3		
 athist's	atheist's	3		
 athists	atheists	3		
+atleast	at least	3		
 atrophied	wasted away	0		
 atrophies	wastes away	0		
 atrophy	waste away	0		
@@ -1393,6 +1435,7 @@ attaining	reaching, gaining	0
 attains	reaches, gains	0		
 attemp	attempt	3		
 attemped	attempted	3		
+attemping	attempting	3		
 attemps	attempts	3		
 attempt	try	0		
 attempted	tried	0		
@@ -1545,16 +1588,20 @@ back stabber	deceitful person who can't be trusted	2
 back to the drawing board	let us retry/redesign/start over	2		
 back-seat driver	one who gives orders when he/she is not in charge	2		
 back-seat drivers	those who give orders when they are not in charge	2		
+backgorund	background	3		
 backgound	background	3		
+backgroud	background	3		
 background experience	background, experience	0		
 backhanded compliment	thinly guised insult	2		
 backhanded compliments	thinly guised insults	2		
+backrounds	backgrounds	3		
 bad blood	unsettled dispute, a grudge, ill feelings	2		
 baited breath	bated breath	3		
 balacing	balancing	3		
 bald headed	bald	1		
 balsa wood	balsa	1		
 banal	trite	0		
+banannas	bananas	3		
 bank manger	bank manager	3		
 bank mangers	bank managers	3		
 barbarous	coarse, brutal	0		
@@ -1604,7 +1651,10 @@ beatitudes	blessings	0
 beats a dead horse	wastes your time, does something pointless/futility	2		
 beats around the bush	avoids, indirectly approaches	2		
 beats the rap	avoids punishment	2		
+beause	because	3		
 beautyfull	beautiful	3		
+becaause	because	3		
+becamae	became	3		
 became instinct	became extinct	3		
 becase	because	3		
 becasue	because	3		
@@ -1621,14 +1671,26 @@ because of we	because of us	3
 beccause	because	3		
 beckon call	beck and call	3		
 becomeing	becoming	3		
+becomming	becoming	3		
+becouse	because	3		
 becuase	because	3		
 bed of roses	pleasant/comfortable situation	2		
+bedore	before	3		
 bee's knees	envy of others	2		
+beeing	being	3		
+befoer	before	3		
+befor	before	3		
 befores	before	3		
+begginer	beginner	3		
+begginers	beginners	3		
 begginging	beginning	3		
 begginging's	beginning's	3		
 beggingings	beginnings	3		
+beggining	beginning	3		
+beggins	begins	3		
+beging	beginning	3		
 begining	beginning	3		
+beginnig	beginning	3		
 behavior pattern	behavior	0		
 behavioral pattern	behavior	0		
 behaviour pattern	behaviour	0		
@@ -1667,8 +1729,11 @@ benefited	helped	0
 benefits	helps	0		
 benefitted	helped	0		
 benefitting	helping	0		
+beneits	benefits	3		
 benevolent	kindly	0		
 benevolently	kindly	0		
+beng	being	3		
+benificial	beneficial	3		
 benifit	benefit	3		
 benifit's	benefit's	3		
 benifits	benefits	3		
@@ -1680,6 +1745,9 @@ beseech	beg	0
 beseeched	begged	0		
 beseeches	begs	0		
 beseeching	begging	0		
+beseige	besiege	3		
+beseiged	besieged	3		
+beseiging	besieging	3		
 beside herself	angry, upset	2		
 beside himself	angry, upset	2		
 beside myself	angry, upset	2		
@@ -1732,7 +1800,11 @@ big cheese	the boss, important person	2
 big honcho	the boss	2		
 big shot	self-important person	2		
 bigger then	bigger than	3		
+bigining	beginning	3		
+biginning	beginning	3		
 bilateral	two-sided	0		
+bilateraly	bilaterally	3		
+billingualism	bilingualism	3		
 billon dollars	billion dollars	3		
 billon years	billion years	3		
 biography of her life	her biography	1		
@@ -2129,7 +2201,14 @@ caracterized	characterized	3
 carboniferous	coal-bearing	0		
 carmel corn	caramel corn	3		
 carmelcorn	caramelcorn	3		
+Carnagie	Carnegie	3		
+Carnagie's	Carnegie's	3		
+Carnigie	Carnegie	3		
+Carnigie's	Carnegie's	3		
 carnivorous	flesh-eating	0		
+carreer	career	3		
+carreer's	career's	3		
+carrers	careers	3		
 carribean	Caribbean	3		
 carribean's	Caribbean's	3		
 carried out	done	0		
@@ -2166,6 +2245,10 @@ catalogue	list	0
 catalogued	listed	0		
 catalogues	lists	0		
 cataloguing	listing	0		
+catapillar	caterpillar	3		
+catapillars	caterpillars	3		
+catapiller	caterpillar	3		
+catapillers	caterpillars	3		
 catch by surprise	startle, surprise	0		
 catch more flies with honey	be more successful by being pleasant	2		
 catch more flies with honey than vinegar	be more successful by being pleasant	2		
@@ -2189,12 +2272,21 @@ categorized	classed, grouped	0
 categorizes	classes, groups	0		
 categorizing	classing, grouping	0		
 category	class, group	0		
+catepillar	caterpillar	3		
 catergories	categories	3		
 catergory	category	3		
 catergory's	category's	3		
+caterpilar	caterpillar	3		
+caterpilars	caterpillars	3		
+caterpiller	caterpillar	3		
+caterpillers	caterpillars	3		
 cathlic	catholic	3		
 Cathoilc	Catholic	3		
 Catholocism	Catholicism	3		
+catterpilar	caterpillar	3		
+catterpilars	caterpillars	3		
+catterpillar	caterpillar	3		
+catterpillars	caterpillars	3		
 caught by surprise	startled, surprised	0		
 caugt	caught	3		
 cauhgt	caught	3		
@@ -2203,6 +2295,8 @@ caused to happen	caused	0
 causes to happen	causes	0		
 causing to happen	causing	0		
 caveat	warning	0		
+Ceasar	Caesar	3		
+Ceasar's	Caesar's	3		
 cease	stop	0		
 ceate	create	3		
 ceated	created	3		
@@ -2238,9 +2332,16 @@ certifcate's	certificate's	3
 certifcates	certificates	3		
 cessation	stop, pause	0		
 cessations	stops, pauses	0		
+chalenging	challenging	3		
 chalk full	chock-full	3		
 chalk-full	chock-full	3		
 chalkfull	chock-full	3		
+challange	challenge	3		
+challanged	challenged	3		
+challanges	challenges	3		
+challege	challenge	3		
+Champange	Champagne	3		
+Champange's	Champagne's	3		
 chance the	change the, chance that the	3	a	Rapper;Rapper's
 changable	changeable	3		
 change of heart	change one's opinion/position	2		
@@ -2289,6 +2390,10 @@ checks to see	checks, inspects, examines	0
 cheif	chief	3		
 cheif's	chief's	3		
 cheifs	chiefs	3		
+chemcial	chemical	3		
+chemcially	chemically	3		
+chemestry	chemistry	3		
+chemicaly	chemically	3		
 Chester drawers	chest of drawers	3		
 chew the cud	to ponder or think over something	2		
 chewed the cud	pondered or thought over something	2		
@@ -2363,7 +2468,10 @@ climb up	climb	1
 climbed up	climbed	1		
 climbing up	climbing	1		
 climbs up	climbs	1		
+clincial	clinical	3		
+clinicaly	clinically	3		
 cloak-and-dagger	top secret, related to spying	2		
+clonesd	clones, cloned	3		
 close call	narrow escape	2		
 close calls	narrow escapes	2		
 close proximity	near	0		
@@ -2393,9 +2501,16 @@ coallesed	coalesced	3
 coallesence	coalescence	3		
 coalleses	coalesces	3		
 coallesing	coalescing	3		
+coefficent	coefficient	3		
+coefficents	coefficients	3		
+coeficients	coefficients	3		
 cofiguration	configuration	3		
 cofiguration's	configuration's	3		
 cofigurations	configurations	3		
+cofigure	configure	3		
+cofigured	configured	3		
+cofigures	configures	3		
+cofiguring	configuring	3		
 cogitate	ponder	0		
 cogitated	pondered	0		
 cogitates	ponders	0		
@@ -2426,6 +2541,8 @@ collecion's	collection's	3
 collecions	collections	3		
 collection	mass, heap	0		
 collections	masses, heaps	0		
+collecton	collection	3		
+colleection	collection	3		
 collegue	colleague	3		
 collegue's	colleague's	3		
 collegues	colleagues	3		
@@ -2436,6 +2553,7 @@ colum's	column's	3
 colums	columns	3		
 combat environment	combat	0		
 combination of the two	both of them, combination	0		
+combinatorically	combinatorially	3		
 combine	join	0		
 combine together	combine	1		
 combined	joined	0		
@@ -2748,6 +2866,12 @@ conection	connection	3
 conections	connections	3		
 conent	content	3		
 conents	contents	3		
+configiuration	configuration	3		
+configuation	configuration	3		
+configuations	configurations	3		
+configuratoin	configuration	3		
+configureable	configurable	3		
+configury	configure	3		
 conformity	likeness	0		
 confront	meet, face	0		
 confrontation	meeting	0		
@@ -2774,6 +2898,8 @@ connect together	connect	1
 connected together	connected	1		
 connecting together	connecting	1		
 connects together	connects	1		
+Conneticut	Connecticut	3		
+Conneticut's	Connecticut's	3		
 connetion	connection	3		
 connetion's	connection's	3		
 connetions	connections	3		
@@ -2845,6 +2971,8 @@ constituted	was, formed	0
 constitutes	makes up, forms	0		
 constituting	being, forming	0		
 constitution	form, make-up	0		
+constraucts	constructs	3		
+construciton	construction	3		
 construct	build	0		
 constructed	built	0		
 constructing	building	0		
@@ -2857,13 +2985,23 @@ constructor	builder	0
 constructor's	builder's	0		
 constructors	builders	0		
 constructs	builds	0		
+consttruction	construction	3		
+constuction	construction	3		
+constuctor	constructor	3		
+constuctors	constructors	3		
+constucts	constructs	3		
+consulant	consultant	3		
+consumate	consummate	3		
+consumated	consummated	3		
 consume	use up	0		
 consumed	used up	0		
 consumes	uses up	0		
 consuming	using up	0		
+contaiminate	contaminate	3		
 contain	have, hold	0		
 contained	had, held	0		
 contained in	in	0		
+containerd	contained	3		
 containes	contains	3		
 containg	containing	3		
 containing	having, holding	0		
@@ -3030,7 +3168,11 @@ conveyers	conveyors	3
 conviced	convinced	3		
 convicted felon	felon, convict	1		
 convicted felons	felons, convicts	1		
+convienent	convenient	3		
 convienient	convenient	3		
+convinience	convenience	3		
+convinience's	convenience's	3		
+conviniences	conveniences	3		
 convinient	convenient	3		
 convolution	coil, fold, twist	0		
 convolutions	coils, folds, twists	0		
@@ -3133,10 +3275,17 @@ countermand	cancel, recall	0
 countermanded	canceled, recalled	0		
 countermanding	canceling, recalling	0		
 countermands	cancels, recalls	0		
+countires	countries	3		
 course of action	course, direction, plan	0		
+coutner	counter	3		
+coutners	counters	3		
+coverd	covered	3		
+coverted	converted	3		
 cozen	cheat	0		
 cozens	cheats	0		
+cracefully	gracefully	3		
 crazy like a fox	resourceful, smart	2		
+creaeted	created	3		
 cream of the crop	the best	2		
 create	make	0		
 created	made	0		
@@ -3225,10 +3374,14 @@ damsels	girls	0
 daquiri	daiquiri	3		
 daquiri's	daiquiri's	3		
 daquiris	daiquiris	3		
+Dardenelles	Dardanelles	3		
 dark horse	contestant/candidate that people know little about that has a good chance of winning	2		
 dark horses	contestants/candidates that people know little about that have a good chance of winning	2		
 database manger	database manager	3		
 database mangers	database managers	3		
+databse	database	3		
+databse's	database's	3		
+databses	databases	3		
 datas	data ('data' is the plural form of 'datum')	3		
 day late and a dollar short	not enough, just came up short	2		
 de facto	real	0		
@@ -3245,17 +3398,41 @@ decapitate	behead	0
 decapitated	beheaded	0		
 decapitates	beheads	0		
 decapitating	beheading	0		
+decendant	descendant	3		
+decendants	descendants	3		
+decendent	descendant	3		
+decendents	descendants	3		
+decending	descending	3		
 decentralize	scatter, break apart	0		
 decentralized	scattered, broke apart	0		
 decentralizes	scatters, breaks apart	0		
 decentralizing	scattering, breaking apart	0		
+decideable	decidable	3		
+decidely	decidedly	3		
 decieve	deceive	3		
 decieved	deceived	3		
 decieves	deceives	3		
 decieving	deceiving	3		
+decison	decision	3		
+declaratinos	declarations	3		
+declartion	declaration	3		
+declation	declaration	3		
+declations	declarations	3		
 declination	downward slope	0		
 declinations	downward slopes	0		
+decomissioned	decommissioned	3		
+decomposit	decompose	3		
+decomposited	decomposed	3		
+decompositing	decomposing	3		
+decomposits	decomposes	3		
+decompres	decompress	3		
+decompresed	decompressed	3		
+decompreses	decompresses	3		
+decompresing	decompressing	3		
+decompressd	decompressed	3		
 decrease	lower	0		
+decrese	decrease	3		
+decress	decrees	3		
 decribe	describe	3		
 decribed	described	3		
 decribes	describes	3		
@@ -3263,6 +3440,9 @@ decribing	describing	3
 decription	description	3		
 decription's	description's	3		
 decriptions	descriptions	3		
+decsriptor	descriptor	3		
+decsriptors	descriptors	3		
+dectect	detect	3		
 deductive reasoning	deduction	0		
 deem	treat as, think	0		
 deemed	thought	0		
@@ -3276,16 +3456,30 @@ deep sixing	discarding, abandoning	2
 deep-seeded	deep-seated	3		
 deer in headlights	scared into temporary paralysis	2		
 deer in the headlights	scared into temporary paralysis	2		
+defalt	default	3		
+defaut	default	3		
+defautl	default	3		
+defendent	defendant	3		
+defendents	defendants	3		
+defenition	definition	3		
 defer	put off	0		
 deferall	deferral	3		
 deferall's	deferral's	3		
 deferalls	deferrals	3		
+defered	deferred	3		
+defering	deferring	3		
+deffensively	defensively	3		
+deffine	define	3		
+deffined	defined	3		
 defiantly	definitely	3		
 deficit	shortage	0		
 deficits	shortages	0		
+definance	defiance	3		
 definate	definite	3		
 definately	definitely	3		
 definatly	definitely	3		
+definetly	definitely	3		
+definining	defining	3		
 definit	definite	3		
 definitive	final	0		
 definitly	definitely	3		
@@ -3297,7 +3491,10 @@ defintions	definitions	3
 defitions	deviations	3		
 defualt	default	3		
 defunct	dead	0		
+degrate	degrade	3		
 degredation	degradation	3		
+delagates	delegates	3		
+delapidated	dilapidated	3		
 delare	declare	3		
 delared	declared	3		
 delares	declares	3		
@@ -3305,6 +3502,7 @@ delaring	declaring	3
 delcarations	declarations	3		
 delectable	pleasing	0		
 delemiter	delimiter	3		
+delerious	delirious	3		
 delet	delete	3		
 deletd	deleted	3		
 delete	cut, drop	0		
@@ -3335,25 +3533,59 @@ delevopments	developments	3
 delevopp	develop	3		
 delevops	develops	3		
 deliberately	on purpose	0		
+deliberatly	deliberately	3		
 delimeter	delimiter	3		
 delimeters	delimiters	3		
 delimters	delimiter	3		
 delted	deleted	3		
+delusionally	delusively	3		
+demenor	demeanor	3		
 demise	death	0		
+demographical	demographic	3		
+demolision	demolition	3		
+demoninator	denominator	3		
+demoninators	denominators	3		
 demonstrable	provable	0		
 demonstrate	show	0		
 demonstrated	showed	0		
 demonstrates	shows	0		
 demonstrating	showing	0		
+demorcracy	democracy	3		
+demostrate	demonstrate	3		
+demostrated	demonstrated	3		
+demostrates	demonstrates	3		
+demostrating	demonstrating	3		
+demostration	demonstration	3		
+denegrating	denigrating	3		
 denied of	denied	3		
 dense	thick	0		
 density	thickness	0		
+densly	densely	3		
+deparment	department	3		
+deparmental	departmental	3		
+deparments	departments	3		
 depart	leave	0		
 departed	left	0		
 departing	leaving	0		
 department manger	department manager	3		
 department mangers	department managers	3		
 departs	leaves	0		
+depdencies	dependencies	3		
+depdency	dependency	3		
+depdendence	dependence	3		
+depedent	dependent	3		
+depencies	dependencies	3		
+depency	dependency	3		
+dependance	dependence	3		
+dependancies	dependencies	3		
+dependancy	dependency	3		
+dependant	dependent	3		
+dependecies	dependencies	3		
+dependecy	dependency	3		
+dependees	dependencies	3		
+dependend	dependent	3		
+depenencies	dependencies	3		
+depenency	dependency	3		
 deplete	empty	0		
 depleted	emptied, empty (adj.)	0		
 depletes	empties	0		
@@ -3374,6 +3606,9 @@ deprectates	deprecates	3
 deprectating	deprecating	3		
 deprected	deprecated	3		
 depricated	deprecated	3		
+derefenced	dereferenced	3		
+derivate	derivative	3		
+derivates	derivatives	3		
 derive enjoyment from	delight in, enjoy	0		
 derive pleasure from	delight in, enjoy	0		
 derive satisfaction from	delight in, enjoy	0		
@@ -3384,13 +3619,20 @@ derived satisfaction from	delighted in, enjoyed	0
 derives enjoyment from	delights in, enjoys	0		
 derives pleasure from	delights in, enjoys	0		
 derives satisfaction from	delights in, enjoys	0		
+deriviated	derived	3		
 deriving enjoyment from	delighting in, enjoying	0		
 deriving pleasure from	delighting in, enjoying	0		
 deriving satisfaction from	delighting in, enjoying	0		
+derivitive	derivative	3		
+derogitory	derogatory	3		
+derrive	derive	3		
+derrived	derived	3		
+desactivate	deactivate	3		
 desccription	description	3		
 desccription's	description's	3		
 desccriptions	descriptions	3		
 descend down	descend	1		
+descendands	descendants	3		
 descended down	descended	1		
 descending	downward	0		
 descending down	descending	1		
@@ -3399,6 +3641,10 @@ descibe	describe	3
 descibed	described	3		
 descibes	describes	3		
 descibing	describing	3		
+desciptor	descriptor	3		
+desciptors	descriptors	3		
+descision	decision	3		
+descisions	decisions	3		
 describng	describing	3		
 descriibes	describes	3		
 descrimination	discrimination	3		
@@ -3412,10 +3658,18 @@ descritpion	description	3
 descritpions	descriptions	3		
 descrptor	descriptor	3		
 desctiptor	descriptor	3		
+desctiptors	descriptors	3		
+desctruction	destruction	3		
+desctructive	destructive	3		
+descuss	discuss	3		
+desgined	designed	3		
+deside	decide	3		
+desigining	designing	3		
 designate	name	0		
 designated	appointed, chose/chosen, assigned	0		
 designates	appoints, chooses, assigns	0		
 designating	appointing, choosing, assigning	0		
+desination	designation	3		
 desire	wish	0		
 desired	wished	0		
 desires	wishes	0		
@@ -3431,25 +3685,44 @@ despite the fact that	although, even though, despite	0
 desription	description	3		
 desription's	description's	3		
 desriptions	descriptions	3		
+detailled	detailed	3		
 detain	hold	0		
+detatch	detach	3		
+detatched	detached	3		
+detatches	detaches	3		
+detatching	detaching	3		
 detemine	determine	3		
 detemined	determined	3		
 detemines	determines	3		
 detemining	determining	3		
+deteoriated	deteriorated	3		
+deteriate	deteriorate	3		
 deterimine	determine	3		
 deterimined	determined	3		
 deterimines	determines	3		
 deterimining	determining	3		
+deterioriating	deteriorating	3		
+determenistic	deterministic	3		
 determinable	decidable	0		
 determine	decide, figure, find	0		
 determined	decided, figured	0		
 determines	decides, figures	0		
+determing	determining	3		
 determining	deciding, figuring	0		
+determinining	determining	3		
+determinstic	deterministic	3		
+determinstically	deterministically	3		
 detest	hate	0		
 detested	hated	0		
 detesting	hating	0		
 detests	hates	0		
+detremental	detrimental	3		
 detrimental	harmful	0		
+detroy	destroy	3		
+detroyed	destroyed	3		
+detroying	destroying	3		
+detroys	destroys	3		
+devasted	devastated	3		
 develoment	development	3		
 develoments	developments	3		
 develop	make, grow	0		
@@ -3467,17 +3740,39 @@ developpment	development	3
 develops	makes, grows	0		
 develpment	development	3		
 deveolpment	development	3		
+devestated	devastated	3		
+devestating	devastating	3		
 deviate	stray, turn away	0		
 deviated	strayed, turned away	0		
 deviates	strays, turns away	0		
 deviating	straying, turning away	0		
 deviation	change	0		
 deviations	changes	0		
+devide	divide	3		
+devided	divided	3		
+devistating	devastating	3		
+devolopement	development	3		
+diable	disable	3		
+diabled	disabled	3		
+diables	disables	3		
+diablical	diabolical	3		
+diabling	disabling	3		
 diaerers	diaereses	3		
+diagnositc	diagnostic	3		
+diagraming	diagramming	3		
 diamond in the rough	inexperienced/unpolished person or thing that shows promise	2		
+diamons	diamonds	3		
+diaster	disaster	3		
 dichotomies	groups, branches, divisions	0		
 dichotomy	group, branch, division	0		
 dichotomy's	group's, branch's, division's	0		
+dichtomy	dichotomy	3		
+diconnects	disconnects	3		
+dicover	discover	3		
+dicovered	discovered	3		
+dicovering	discovering	3		
+dicovers	discovers	3		
+dicovery	discovery	3		
 did away with	removed, canceled, ended	0		
 did not pay any attention to	ignored	0		
 did not pay attention to	ignored	0		
@@ -3746,6 +4041,10 @@ distingushed	distinguished	3
 distingushes	distinguishes	3		
 distingushing	distinguishing	3		
 distintions	distinctions	3		
+distirbute	distribute	3		
+distirbuted	distributed	3		
+distirbutes	distributes	3		
+distirbuting	distributing	3		
 distribtion	distribution	3		
 distribtions	distributions	3		
 distribtution	distributions	3		
@@ -3753,6 +4052,9 @@ distribution manger	distribution manager	3
 distribution mangers	distribution managers	3		
 district manger	district manager	3		
 district mangers	district managers	3		
+distrobution	distribution	3		
+distrobution's	distribution's	3		
+distrobutions	distributions	3		
 distroying	destroying	3		
 distrubution	distribution	3		
 distruction	destruction	3		
@@ -3812,6 +4114,7 @@ does't	doesn't	3
 doesen't	doesn't	3		
 doesn't have a leg to stand on	in a weak position, can't support his argument	2		
 doesn't not	doesn't	3		
+doesnt	doesn't	3		
 doesnt't	doesn't	3		
 dog eat dog	ruthless competition	2		
 doign	doing	3		
@@ -3837,6 +4140,7 @@ don't put any stock in	don't trust	2
 don't remember	forget	0		
 donate	give	0		
 donig	doing	3		
+dont	don't	3		
 dont't	don't	3		
 donwload	download	3		
 donwloaded	downloaded	3		
@@ -3911,6 +4215,9 @@ due to the fact that	because, since, given that, due to	0
 dumbell	dumbbell	3		
 dumbell's	dumbbell's	3		
 dumbells	dumbbells	3		
+dupicate	duplicate	3		
+dupliate	duplicate	3		
+dupliates	duplicates	3		
 duplicate	copy	0		
 duplicate copies	duplicates	1		
 duplicate copy	duplicate	1		
@@ -4236,6 +4543,9 @@ engeneering	engineering	3
 engery	energy	3		
 engieneer	engineer	3		
 engieneers	engineers	3		
+enging	engine	3		
+enging's	engine's	3		
+engings	engines	3		
 enhaced	enhanced	3		
 enhancment	enhancement	3		
 enhancments	enhancements	3		
@@ -4252,6 +4562,13 @@ enjoins	orders	0
 enjoyable	fun	0		
 enlargment	enlargement	3		
 enlargments	enlargements	3		
+enlighen	enlighten	3		
+enlighened	enlightened	3		
+enlighening	enlightening	3		
+enlighens	enlightens	3		
+enlightment	enlightenment	3		
+enlightment's	enlightenment's	3		
+enlightments	enlightenments	3		
 enlightnment	enlightenment	3		
 enmity	hate	0		
 enocded	encoded	3		
@@ -4665,6 +4982,7 @@ experiance's	experience's	3
 experianced	experienced	3		
 experiances	experiences	3		
 expertise	ability	0		
+expesially	especially	3		
 expession	expression	3		
 expexted	expected	3		
 expiditions	expeditions	3		
@@ -4807,10 +5125,14 @@ factory manger	factory manager	3
 factory mangers	factory managers	3		
 factual basis	basis, fact, reason	0		
 fail to comply with	disobey, violate	0		
+faild	failed	3		
 failed to	didn't	0		
 failed to comply with	disobeyed, violated	0		
 failing to comply with	disobeying, violating	0		
 fails to comply with	disobeys, violates	0		
+failue	failure	3		
+failuer	failure	3		
+failues	failures	3		
 fair and square	honest, fair	2		
 fair poorly	fare poorly	3		
 fair shake	an equal chance	2		
@@ -4825,6 +5147,8 @@ fairing poorly	faring poorly	3
 fairing well	faring well	3		
 fairs poorly	fares poorly	3		
 fairs well	fares well	3		
+faliure	failure	3		
+faliures	failures	3		
 fall by the wayside	drop out of a contest	2		
 fall down	fall	1		
 fall for it	be tricked/duped	2		
@@ -4869,6 +5193,7 @@ far and away	a large margin	2
 far away from	far from	0		
 far be it for me	far be it from me	3		
 far cry	long distance	2		
+Farenheit	Fahrenheit	3		
 farm manger	farm manager	3		
 farm mangers	farm managers	3		
 fasciation	fascination	3		
@@ -4885,6 +5210,14 @@ feather in my cap	recognition of achievement	2
 feather in our cap	recognition of achievement	2		
 feather in their cap	recognition of achievement	2		
 feather in your cap	recognition of achievement	2		
+featues	features	3		
+feaure	feature	3		
+feaure's	feature's	3		
+feaures	features	3		
+feauture	feature	3		
+feautures	features	3		
+Febuary	February	3		
+Feburary	February	3		
 Federal Bureau of Investigations	Federal Bureau of Investigation	3		
 feel the pinch	be affected by adversity	2		
 feeling the pinch	being affected by adversity	2		
@@ -5124,6 +5457,8 @@ frame of mind	attitude, posture, view, viewpoint	0
 framwork	framework	3		
 framwork's	framework's	3		
 framworks	frameworks	3		
+Fransiscan	Franciscan	3		
+Fransiscans	Franciscans	3		
 free and clear	free, clear	0		
 free as a bird	unrestrained, free	2		
 free gift	gift	1		
@@ -5218,6 +5553,7 @@ future developments	developments	0
 future plans	plans	1		
 future projections	projections	1		
 future prospects	prospects	1		
+Galations	Galatians	3		
 ganes	games, gains	3		
 garantee	guarantee	3		
 garanteed	guaranteed	3		
@@ -5357,6 +5693,7 @@ getting with the program	joining the effort	2
 getting your act together	getting organized	2		
 getting your arms around	fully understanding	2		
 getting your foot in the door	starting a business relationship	2		
+Ghandi	Gandhi	3		
 gigantic	huge	0		
 give an indication of	show	0		
 give and take	compromise, concession, exchange, discussion	0		
@@ -5378,7 +5715,10 @@ giving rise to	causing, leading to, resulting in	0
 glamourous	glamorous	3		
 glamourously	glamorously	3		
 gloomy	sad	0		
+glpyh	glyph	3		
+glpyhs	glyphs	3		
 glutinous	sticky, gluey	0		
+gnawwed	gnawed	3		
 go along with	agree with, endorse	0		
 go around in circles	work ineffectually	2		
 go for broke	risk everything	2		
@@ -5389,6 +5729,8 @@ go to pot	deteriorate, fall apart	2
 go to the dogs	deteriorate, fall apart	2		
 go to town	do it excitedly	2		
 god's green earth	everywhere	2		
+godess	goddess	3		
+godesses	goddesses	3		
 goes along with	agrees with, endorses	0		
 goes around in circles	works ineffectually	2		
 goes for broke	risks everything	2		
@@ -5447,6 +5789,12 @@ governmnet	government	3
 govorment	government	3		
 govormental	governmental	3		
 govornment	government	3		
+grabing	grabbing	3		
+gracefull	graceful	3		
+graet	great	3		
+grafitti	graffiti	3		
+grahical	graphical	3		
+grahpical	graphical	3		
 gramatically	grammatically	3		
 grammaticaly	grammatically	3		
 grammer	grammar	3		
@@ -5508,6 +5856,7 @@ guarentee	guarantee	3
 guarenteed	guaranteed	3		
 guarenteeing	guaranteeing	3		
 guarentees	guarantees	3		
+Guassian	Gaussian	3		
 guerrila	guerrilla	3		
 guerrilas	guerrillas	3		
 guidence	guidance	3		
@@ -5517,6 +5866,8 @@ gum up the works	sabotage	2
 gummed up the works	sabotaged	2		
 gumming up the works	sabotaging	2		
 gums up the works	sabotages	2		
+habaeus	habeas	3		
+habeus	habeas	3		
 habitation	house, home	0		
 habitations	houses, homes	0		
 had a bearing on	affected, influenced	0		
@@ -5535,11 +5886,14 @@ had no bearing on	did not affect, did not influence	0
 had the ability to	could	0		
 had the capability to	could	0		
 had to do with	dealt with	0		
+halarious	hilarious	3		
 half an our	half an hour	3		
 half the battle	a promising start	2		
 half-baked	bad, poor (in terms of quality)	2		
+halfs	halves	3		
 hand over fist	quickly	2		
 hand-to-mouth	living in poverty	2		
+handfull	handful	3		
 hang in the balance	has an uncertain outcome	2		
 hanging in the balance	having an uncertain outcome	2		
 hangs in the balance	has an uncertain outcome	2		
@@ -5653,10 +6007,15 @@ head and shoulders above	far exceeding	2
 head honcho	the boss	2		
 head in the clouds	distracted, absent-minded	2		
 head over heels	won over	2		
+headquarer	headquarter	3		
+headquater	headquarter	3		
+headquatered	headquartered	3		
+headquaters	headquarters	3		
 heads are going to roll	drastic changes will be made	2		
 heads will roll	drastic changes will be made	2		
 hear are	here are	3		
-hear is	here is	3	can;cannot;could;couldn't;I;should;shouldn't;they;we;would;wouldn't	
+hear is	here is	3	can;cannot;could;couldn't;I;often;routinely;should;shouldn't;they;we;would;wouldn't	
+heared	heard	3		
 heart of gold	generous	2		
 heart on her sleeve	openly shows emotion	2		
 heart on his sleeve	openly shows emotion	2		
@@ -5668,6 +6027,7 @@ heart-to-heart talk	frank discussion	2
 heart-to-heart talks	frank discussions	2		
 heat up	heat	0		
 heated up	heated	0		
+heathy	healthy	3		
 heating up	heating	0		
 heats up	heats	0		
 hegiht	height	3		
@@ -5702,11 +6062,17 @@ helpfull	helpful	3
 helping out	helping	0		
 helpped	helped	3		
 helps out	helps	0		
+hemmorhage	hemorrhage	3		
 hence	so	0		
 here and now	now	0		
 herein	here	0		
 heretofore	until now	0		
 herewith	below, here	0		
+heridity	heredity	3		
+heroe	hero	3		
+heros	heroes	3		
+hertiage	heritage	3		
+hesistant	hesitant	3		
 hesitate	pause	0		
 hesitated	paused	0		
 hesitates	pauses	0		
@@ -5714,6 +6080,7 @@ hesitating	pausing	0
 heterogeneous	varied	0		
 heterogeneously	variably	0		
 heterogenous	heterogeneous	3		
+hexidecimal	hexadecimal	3		
 hiearchies	hierarchies	3		
 hiearchy	hierarchy	3		
 hieght	height	3		
@@ -5845,8 +6212,10 @@ horse of a different color	an entirely different topic from what we were discuss
 horse of a different colour	an entirely different topic from what we were discussing	2		
 horzontal	horizontal	3		
 horzontally	horizontally	3		
+hosited	hoisted	3		
 hospital manger	hospital manager	3		
 hospital mangers	hospital managers	3		
+hospitible	hospitable	3		
 hotel manger	hotel manager	3		
 hotel mangers	hotel managers	3		
 hotel suit	hotel suite	3		
@@ -5892,6 +6261,12 @@ hypenated	hyphenated	3
 hypenates	hyphenates	3		
 hypenating	hyphenating	3		
 hypenation	hyphenation	3		
+hypens	hyphens	3		
+hypocracy	hypocrisy	3		
+hypocrasy	hypocrisy	3		
+hypocricy	hypocrisy	3		
+hypocrit	hypocrite	3		
+hypocrits	hypocrites	3		
 I advice	I advise	3		
 I am curious why	why	0		
 I an	I am	3		
@@ -6531,6 +6906,8 @@ influented	influenced	3
 infomation	information	3		
 inforation	information	3		
 inform	tell	0		
+informaiton	information	3		
+informaiton's	information's	3		
 informatiom	information	3		
 informations	information	3		
 informaton	information	3		
@@ -6572,6 +6949,7 @@ initalized	initialized	3
 initalizes	initializes	3		
 initalizing	initializing	3		
 initally	initially	3		
+initating	initiating	3		
 initation	initiation	3		
 initators	initiators	3		
 initiaitive	initiative	3		
@@ -7073,6 +7451,12 @@ joining together	joining, combining	1
 joins together	joins, combines	1		
 joint agreement	agreement	0		
 joint cooperation	cooperation	0		
+Jospeh	Joseph	3		
+Jospeh's	Joseph's	3		
+jstu	just	3		
+jsut	just	3		
+Juadaism	Judaism	3		
+Juadism	Judaism	3		
 judical	judicial	3		
 judisuary	judiciary	3		
 juducial	judicial	3		
@@ -7171,6 +7555,7 @@ knwo	know	3
 knwos	knows	3		
 konw	know	3		
 konws	knows	3		
+Kuberenetes	Kubernetes	3		
 kwno	know	3		
 labor of love	a job done out of deep interest or affection	2		
 labors of love	jobs done out of deep interest or affection	2		
@@ -7314,6 +7699,8 @@ librairies	libraries	3
 libraris	libraries	3		
 library manger	library manager	3		
 library mangers	library managers	3		
+libray	library	3		
+libray's	library's	3		
 licese	license	3		
 lie like a rug	lie	2		
 lied like a rug	lied	2		
@@ -7460,6 +7847,9 @@ magizine	magazine	3
 magnificient	magnificent	3		
 magnitude	size	0		
 magolia	magnolia	3		
+mahchine	machine	3		
+mahchine's	machine's	3		
+mahchines	machines	3		
 mailny	mainly	3		
 maintain	keep, support	0		
 maintainance	maintenance	3		
@@ -7568,11 +7958,15 @@ malediction	curse	0
 maledictions	curses	0		
 malevolence	spite, maliciousness	0		
 malformation	abnormal shape, deformity	0		
+malplaced	misplaced	3		
 mamal	mammal	3		
 mamalian	mammalian	3		
 mamory	memory	3		
 man bites dog	newsworthy	2		
 managable	manageable	3		
+managemment	management	3		
+managemment's	management's	3		
+managemments	managements	3		
 managmenet	management	3		
 managment	management	3		
 maneouvre	manoeuvre	3		
@@ -7623,6 +8017,8 @@ marshmellows	marshmallows	3
 mash potatoes	mashed potatoes	3		
 mass exodus	exodus	0		
 mass extinction	extinction	0		
+Massachussets	Massachusetts	3		
+Massachussetts	Massachusetts	3		
 massive	large	0		
 masterbation	masturbation	3		
 masterbation's	masturbation's	3		
@@ -7668,12 +8064,15 @@ medacine	medicine	3
 medecine	medicine	3		
 medecine's	medicine's	3		
 medecines	medicines	3		
+medeival	medieval	3		
 medeval	medieval	3		
+medevial	medieval	3		
 medevil	medieval	3		
 media annual	median annual	3		
 media hourly	median hourly	3		
 media monthly	median monthly	3		
 media weekly	median weekly	3		
+medievel	medieval	3		
 meet her waterloo	suffered a major defeat	2		
 meet his waterloo	suffered a major defeat	2		
 meet our waterloo	suffered a major defeat	2		
@@ -7722,8 +8121,11 @@ methodologies	methods, designs, plans	0
 methodology	method, design, plan	0		
 methodology's	method's, design's, plan's	0		
 meticulous	very careful	0		
+Michagan	Michigan	3		
 micoscopy	microscopy	3		
 microprocesspr	microprocessor	3		
+Microsot	Microsoft	3		
+Microsot's	Microsoft's	3		
 mideval	medieval	3		
 midway between	between	1		
 midwifes	midwives	3		
@@ -7804,6 +8206,15 @@ mischeivous	mischievous	3
 mischevious	mischievous	3		
 mischevous	mischievous	3		
 mischievious	mischievous	3		
+misdameanor	misdemeanor	3		
+misdameanors	misdemeanors	3		
+misdemenor	misdemeanor	3		
+misdemenors	misdemeanors	3		
+mismach	mismatch	3		
+mismached	mismatched	3		
+mismaches	mismatches	3		
+mismaching	mismatching	3		
+Misouri	Missouri	3		
 mispell	misspell	3		
 mispelled	misspelled	3		
 mispelling	misspelling	3		
@@ -7814,6 +8225,8 @@ missconfigure	misconfigure	3
 missconfigured	misconfigured	3		
 missconfigures	misconfigures	3		
 missconfiguring	misconfiguring	3		
+Missisipi	Mississippi	3		
+Missisippi	Mississippi	3		
 missle	missile	3		
 missmatch	mismatch	3		
 missmatched	mismatched	3		
@@ -7883,6 +8296,7 @@ monochorome	monochrome	3
 monochromo	monochrome	3		
 monocrome	monochrome	3		
 monolite	monolithic	3		
+monts	months	3		
 mordant	biting, sarcastic	0		
 more power to you	good luck, I fully encourage you	2		
 more than exceeded	exceeded	0		
@@ -7890,6 +8304,13 @@ more than excepted	impressive	0
 more than one way to skin a cat	there are other ways to do this	2		
 more than surpassed	surpassed	0		
 more then	more than, (or a comma is needed)	3		
+morever	moreover	3		
+morgage	mortgage	3		
+Morisette	Morissette	3		
+Morrisette	Morissette	3		
+Morroccan	Moroccan	3		
+Morrocco	Morocco	3		
+Morroco	Morocco	3		
 mortage	mortgage	3		
 most be	must be, most are	3	at	
 most of the time	usually	0		
@@ -7958,6 +8379,7 @@ mutual understanding	understanding	0
 mutually agree	agree	0		
 mutually agreed	agreed	0		
 mutually agrees	agrees	0		
+mutualy	mutually	3		
 my be	may be	3		
 my hands are tied	I can't do anything about it, there's nothing that I can do	2		
 myraid	myriad	3		
@@ -8187,6 +8609,7 @@ Novel Prize	Nobel Prize	3
 now and days	nowadays	3		
 now currently	now	1		
 now pending	pending	1		
+nowdays	nowadays	3		
 nubmer	number	3		
 nubmers	numbers	3		
 nucular	nuclear	3		
@@ -8203,7 +8626,11 @@ numerated	counted	0
 numerates	counts	0		
 numerating	counting	0		
 numerous	many	0		
+Nuremburg	Nuremberg	3		
 nutriment	food	0		
+nutritent	nutrient	3		
+nutritents	nutrients	3		
+nuturing	nurturing	3		
 obdurate	stubborn	0		
 obediance	obedience	3		
 obediant	obedient	3		
@@ -8320,6 +8747,7 @@ odds and ends	miscellaneous items	2
 odious	hateful	0		
 odiously	hatefully	0		
 odium	hatred, blame	0		
+oeprating	operating	3		
 of a different opinion	differ, disagree	0		
 of cause	of course	3		and
 of her own accord	willingly	0		
@@ -8484,6 +8912,7 @@ operating	running, working	0
 operational	working	0		
 opertaion	operation	3		
 opertaions	operations	3		
+opertation	operation	3		
 opion	option	3		
 opions	options	3		
 oponent	opponent	3		
@@ -8504,6 +8933,9 @@ oppositition	opposition	3
 oppossed	opposed	3		
 opprobrium	scorn, abuse	0		
 opprotunity	opportunity	3		
+oppurtunities	opportunities	3		
+oppurtunity	opportunity	3		
+oppurtunity's	opportunity's	3		
 opression	oppression	3		
 opressive	oppressive	3		
 opt for	choose	0		
@@ -8989,15 +9421,26 @@ petulance	irritable, ill-tempered	0
 phantom	ghost	0		
 phantom's	ghost's	0		
 phantoms	ghosts	0		
+Pharoah	Pharaoh	3		
+Pharoah's	Pharaoh's	3		
+Pharoahs	Pharaohs	3		
 phenomenom	phenomenon	3		
 phenomenonal	phenomenal	3		
 phenomenonly	phenomenally	3		
 phenomonenon	phenomenon	3		
 phenomonon	phenomenon	3		
 phenonmena	phenomena	3		
+philisopher	philosopher	3		
+philisophical	philosophical	3		
+philisophy	philosophy	3		
 phillipines	Philippines	3		
+phillosophically	philosophically	3		
+philospher	philosopher	3		
+philosphies	philosophies	3		
+philosphy	philosophy	3		
 phlegmatic	sluggish	0		
 phlegmatically	sluggishly	0		
+Phoenecian	Phoenician	3		
 phone it in	perform with little enthusiasm	2		
 phoned it in	performed with little enthusiasm	2		
 phones it in	performs with little enthusiasm	2		
@@ -9092,6 +9535,9 @@ plant manger	plant manager	3
 plant mangers	plant managers	3		
 plantiff	plaintiff	3		
 plateu	plateau	3		
+platfom	platform	3		
+platfom's	platform's	3		
+platfoms	platforms	3		
 platfrom	platform	3		
 platfroms	platforms	3		
 platorm	platform	3		
@@ -9879,6 +10325,8 @@ putting your foot down	taking a firm stand	2
 putting your money where your mouth is	not just bragging and backing up your argument	2		
 pwoer	power	3		
 pyscic	psychic	3		
+pysical	physical	3		
+pysically	physically	3		
 qeuried	queried	3		
 qeuries	queries	3		
 qeury	query	3		
@@ -10244,6 +10692,9 @@ regress back	regress	1
 regressed back	regressed	1		
 regresses back	regresses	1		
 regressing back	regressing	1		
+regsiter	register	3		
+regsitered	registered	3		
+regsitering	registering	3		
 regsiters	registers	3		
 reguarly	regularly	3		
 regulaion	regulation	3		
@@ -10489,6 +10940,10 @@ requrested	requested	3
 requresting	requesting	3		
 requrests	requests	3		
 requried	required	3		
+requrire	require	3		
+requrired	required	3		
+requrires	requires	3		
+requriring	requiring	3		
 resaurant	restaurant	3		
 rescind	repeal, cancel	0		
 rescinded	repealed, canceled	0		
@@ -10731,6 +11186,7 @@ runs circles around	vastly outperforms	2
 runtim	runtime	3		
 runtim's	runtime's	3		
 runtims	runtimes	3		
+Russion	Russian	3		
 rustic country	rustic	1		
 rythem	rhythm	3		
 rythim	rhythm	3		
@@ -10742,6 +11198,7 @@ sacred cow	thing immune to criticism	2
 sacred cows	things immune to criticism	2		
 Sacred Heart of Mary	Immaculate Heart of Mary	3		
 sacreligious	sacrilegious	3		
+Sacremento	Sacramento	3		
 sacrifical	sacrificial	3		
 sacrifying	sacrificing	3		
 safe haven	haven	1		
@@ -10854,6 +11311,10 @@ searchs	searches	3
 seasoned veteran	veteran	0		
 seasoned veterans	veterans	0		
 sebaceous	fatty, greasy	0		
+sechedule	schedule	3		
+secheduled	scheduled	3		
+sechedules	schedules	3		
+secheduling	scheduling	3		
 second wind	renewed vigor	2		
 secondly	second	0		
 secrataries	secretaries	3		
@@ -10958,6 +11419,7 @@ sercvice	service	3
 sercvice's	service's	3		
 sercvices	services	3		
 sergent	sergeant	3		
+serices	services	3		
 serie	series	3		
 serivce	service	3		
 serivces	services	3		
@@ -11044,6 +11506,7 @@ shoudl	should	3
 should of	should have	3		course
 should'nt	shouldn't	3		
 should't	shouldn't	3		
+shouldn	shouldn't	3		
 shouldn't not	shouldn't	3		
 shouldnt	shouldn't	3		
 shoule	should	3		
@@ -11122,6 +11585,8 @@ skilful	skillful	3
 skill set	skills	0		
 skill sets	skills	0		
 skip over	skip	1		
+skiped	skipped	3		
+skiping	skipping	3		
 skipped over	skipped	1		
 skipping over	skipping	1		
 skips over	skips	1		
@@ -11166,6 +11631,8 @@ snug as a bug	comfortable	2
 snug as a bug in a rug	comfortable	2		
 so as to	to	0		
 so therefore	therefore	1		
+soem	some	3		
+sofware	software	3		
 sold like hotcakes	sold quickly	2		
 soley	solely	3		
 solicit	ask for, request	0		
@@ -11199,11 +11666,18 @@ sophicated	sophisticated	3
 sophmore	sophomore	3		
 sophmore's	sophomore's	3		
 sophmores	sophomores	3		
+sorrounding	surrounding	3		
 sound and fury	a lot of clamor that amounts to nothing	2		
 sounded like signing	sounded like singing	3		
 sounding like signing	sounding like singing	3		
 sounds like signing	sounds like singing	3		
 sour grapes	sore-loser attitude	2		
+souvenier	souvenir	3		
+souveniers	souvenirs	3		
+sovereignity	sovereignty	3		
+soverign	sovereign	3		
+soverignity	sovereignty	3		
+soverignty	sovereignty	3		
 spacious	vast	0		
 sparking wine	sparkling wine	3		
 spawed	spawned	3		
@@ -11741,6 +12215,7 @@ swoop down	swoop	1
 swooped down	swooped	1		
 swooping down	swooping	1		
 swoops down	swoops	1		
+syas	says	3		
 sychronization	synchronization	3		
 sychronization's	synchronization's	3		
 sychronizations	synchronizations	3		
@@ -11751,12 +12226,16 @@ symettric	symmetric	3
 symmetral	symmetric	3		
 symmetricaly	symmetrically	3		
 synagouge	synagogue	3		
+synax	syntax	3		
 synchonized	synchronized	3		
 synchonizes	synchronizes	3		
 syncronization	synchronization	3		
 syncronize	synchronize	3		
 syncronizing	synchronizing	3		
 syncronus	synchronous	3		
+synonomous	synonymous	3		
+synonymns	synonyms	3		
+synopsys	synopsis	3		
 sysmatically	systematically	3		
 syste	system	3		
 system manger	system manager	3		
@@ -11882,6 +12361,7 @@ technicality	detail	0
 technitian	technician	3		
 technnology	technology	3		
 technolgy	technology	3		
+techologies	technologies	3		
 teh	the	3		
 tehy	they	3		
 telelevision	television	3		
@@ -11891,6 +12371,7 @@ telling the difference	discriminating	0
 tells the difference	discriminates	0		
 telphony	telephony	3		
 temerature	temperature	3		
+temoporary	temporary	3		
 tempalte	template	3		
 tempaltes	templates	3		
 temparate	temperate	3		
@@ -11928,6 +12409,7 @@ tests out	tests	0
 tghe	the	3		
 thank your for	thank you for	3		
 thansk	thanks	3		
+thas	that	3		
 thast	that	3		
 that being the case	consequently, therefore, hence	0		
 that is to say	that is	0		
@@ -11963,7 +12445,7 @@ the extent to which	how far, how much	0
 the fact of the matter is	in fact	0		
 the fact that	that	0		
 the flew	the flue	3		
-the from	the form	3		a;address;argument;button;clause;email;field;file;header;parameter;statement;the
+the from	the form	3		a;address;argument;button;clause;command;email;field;file;header;instruction;parameter;reference;statement;the
 the have	they have, then have	3		
 the heart of the matter	crux, center	0		
 the hers	(strike one of these)	3		
@@ -12034,6 +12516,7 @@ theatre manger	theatre manager	3
 theatre mangers	theatre managers	3		
 theer	there	3		
 theese	these	3		
+thefull	the full	3		
 theif	thief	3		
 their are	there are	3		
 their from	their form	3		
@@ -12128,6 +12611,7 @@ thought off	thought of	3
 thought outside the box	thought creatively, thought unconventionally	2		
 thought to myself	thought	0		
 thounsands	thousands	3		
+thourgh	through	3		
 thourghly	thoroughly	3		
 thourough	thorough	3		
 thouroughly	thoroughly	3		
@@ -12533,9 +13017,12 @@ ultimate conclusion	conclusion	0
 ultimate outcome	outcome	0		
 unable use	unable to use	3		
 unadvisedly	rashly	0		
+unanymous	unanimous	3		
 unassuming	modest	0		
 unassumingly	modestly	0		
+unathorised	unauthorized	3		
 unavailability	lack	0		
+unavailible	unavailable	3		
 unaware of the fact that	unaware that	0		
 unbeknowst	unbeknownst	3		
 unbeleivable	unbelievable	3		
@@ -12544,13 +13031,20 @@ uncertainties	doubts	0
 uncertainty	doubt	0		
 uncivilized	savage	0		
 uncommonly	rarely	0		
+uncomplete	incomplete	3		
 uncompromising	firm, steadfast	0		
 uncompromisingly	firmly, steadfastly	0		
+unconcious	unconscious	3		
+unconciousness	unconsciousness	3		
+unconditionaly	unconditionally	3		
 unconfirmed rumor	rumor	1		
 unconfirmed rumors	rumors	1		
 unconfirmed rumour	rumour	1		
 unconfirmed rumours	rumours	1		
+uncontitutional	unconstitutional	3		
+unconvential	unconventional	3		
 uncultivated	wild	0		
+undecideable	undecidable	3		
 undeniable truth	truth	0		
 undeniable truths	truths	0		
 under a cloud	in trouble	2		
@@ -12570,7 +13064,14 @@ undergraduate students	undergraduates	0
 underground subway	subway	1		
 underground subways	subways	1		
 understand of	understanding of	3		
+understoon	understood	3		
+undesireable	undesirable	3		
+undetecable	undetectable	3		
+undoubtely	undoubtedly	3		
+undreground	underground	3		
 undulations	curves, waves	0		
+unecessary	unnecessary	3		
+uneeded	unneeded	3		
 unequivocal	clear	0		
 unequivocally	clearly	0		
 unexcpected	unexpected	3		
@@ -12583,6 +13084,8 @@ unfaltering	firm, steadfast	0
 unfalteringly	firmly, steadfastly	0		
 unfamiliar	unknown	0		
 unforetunately	unfortunately	3		
+unforgetable	unforgettable	3		
+unforgiveable	unforgivable	3		
 unforseen	unforeseen	3		
 unfortunatelly	unfortunately	3		
 unfortunatley	unfortunately	3		
@@ -12592,6 +13095,10 @@ unforunately	unfortunately	3
 unfounded	baseless	0		
 unfourtunately	unfortunately	3		
 ungovernable	unruly	0		
+unihabited	uninhabited	3		
+unilateraly	unilaterally	3		
+unilatreal	unilateral	3		
+unilatreally	unilaterally	3		
 uninitalized	uninitialized	3		
 unintentially	unintentionally	3		
 unintentional mistake	mistake	1		
@@ -12634,8 +13141,17 @@ unnused	unused	3
 unoffical	unofficial	3		
 unoperational	nonoperational	3		
 unoticeable	unnoticeable	3		
+unplease	displease	3		
+unplesant	unpleasant	3		
 unpluged	unplugged	3		
 unpluging	unplugging	3		
+unprecendented	unprecedented	3		
+unprecidented	unprecedented	3		
+unrecogized	unrecognized	3		
+unreconized	unrecognized	3		
+unrepentent	unrepentant	3		
+unrepetant	unrepentant	3		
+unrepetent	unrepentant	3		
 unsed	unused	3		
 unsing	using, unsung	3		
 unsinged	unsigned	3		
@@ -12722,6 +13238,7 @@ usual custom	custom	1
 usually	often	0		
 usualy	usually	3		
 ususally	usually	3		
+utalize	utilize	3		
 utililties	utilities	3		
 utililty	utility	3		
 utililty's	utility's	3		
@@ -12906,6 +13423,8 @@ virtualy	virtually	3
 virtulization	virtualization	3		
 virtulization's	virtualization's	3		
 virtulizations	virtualizations	3		
+virual	virtual	3		
+virually	virtually	3		
 virutal	virtual	3		
 virutally	virtually	3		
 visable	visible	3		
@@ -12931,6 +13450,7 @@ visually sees	visualizes, sees	1
 vitories	victories	3		
 vitreous	glassy	0		
 vitual	virtual	3		
+vitualization	virtualization	3		
 vizual	visual	3		
 vizualizations	visualizations	3		
 vizualize	visualize	3		
@@ -12979,6 +13499,8 @@ voicing disapproval about	disapproving	0
 voicing disapproval of	disapproving	0		
 voicing opposition to	opposing	0		
 voicing support for	supporting	0		
+volcanoe	volcano	3		
+voleyball	volleyball	3		
 volontary	voluntary	3		
 volonteer	volunteer	3		
 volonteered	volunteered	3		
@@ -13331,6 +13853,7 @@ woud	would	3
 woudl	would	3		
 woudn't	wouldn't	3		
 would of	would have	3		course
+wouldn	wouldn't	3		
 wouldnt	wouldn't	3		
 wouln't	wouldn't	3		
 woulnd't	wouldn't	3		
@@ -13360,8 +13883,13 @@ wtih	with	3
 wtihin	within	3		
 wtihout	without	3		
 wuold	would	3		
+yaer	year	3		
+yaerly	yearly	3		
+yaers	years	3		
 year in and year out	yearly, annually, every year	0		
 year in year out	yearly, annually, every year	0		
+yearm	year	3		
+yeasr	years	3		
 yeild	yield	3		
 yeilded	yielded	3		
 yeilding	yielding	3		
@@ -13370,6 +13898,9 @@ yell and scream	yell, scream	0
 yelled and screamed	yelled, screamed	0		
 yelling and screaming	yelling, screaming	0		
 yells and screams	yells, screams	0		
+yera	year	3		
+yeras	years	3		
+yersa	years	3		
 yesterday night	last night	3		
 you am	you are	3		
 you can bet your bottom dollar	you can be sure of it	2		
@@ -13393,9 +13924,15 @@ young lass	lass	1
 young lasses	lasses	1		
 your can	you can	3		
 your's	yours	3		
+youseff	yourself	3		
+youself	yourself	3		
 ypu	you	3		
+yrea	year	3		
+ytou	you	3		
 yuo	you	3		
 yuor	your	3		
+yur	your	3		
+zeebra	zebra	3		
 zellot	zealot	3		
 zellot's	zealot's	3		
 zellots	zealots	3		

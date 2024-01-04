@@ -334,6 +334,7 @@ ml.
 mm.
 mme.
 mn.
+mngt.
 mo.
 mon.
 mov.
