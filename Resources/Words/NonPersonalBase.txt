@@ -984,6 +984,7 @@ Charlottetown
 Charmian
 Charmion
 Charon
+Chartbeat
 Chartres
 Chattahoochee
 Chattanooga
@@ -1149,6 +1150,7 @@ Comte
 Comté
 Conakry
 Concord
+Conda
 Confucian
 Confucianism
 Congo
@@ -1638,6 +1640,7 @@ Evansville
 Evenki
 Everest
 Everglades
+Evergrande
 Evernote
 EverReady
 Everton
@@ -1788,6 +1791,7 @@ Frankfurt
 Frankish
 Fransisco
 FRASE
+Freakonomics
 Fredelia
 Fredericksburg
 Fredericton
@@ -2074,6 +2078,7 @@ Halloween
 Hally
 Halton
 Hamal
+Hamas
 Hambleton
 Hamburg
 Hamey
@@ -3019,7 +3024,10 @@ Melbourne
 Memling
 Memphis
 Mendelism
+Mendocino
 Menkalinan
+Menkar
+Menkent
 Mennonite
 Mensa
 Merak
@@ -3705,6 +3713,7 @@ Pipestone
 Pisa
 Pisces
 Pitcairn
+Pitchfest
 Pitt
 Pittsburgh
 Pittsburgher
@@ -3725,6 +3734,7 @@ Plattsburgh
 Plauen
 PlayStation
 Playtex
+Plotly
 Pluralsight
 Pluto
 Plymouth
@@ -3759,6 +3769,7 @@ Pons
 Pontchartrain
 Pontiac
 Pope
+Porchfest
 Port
 Portland
 Porto
@@ -4145,6 +4156,7 @@ Savonarola
 Saxon
 Saxony
 Saxton
+Saybrook
 Scala
 Scandinavia
 Scandinavian
@@ -4365,6 +4377,7 @@ Sonora
 Sony
 Sophoclean
 Sorrentine
+Soundcloud
 Southampton
 Southcentral
 Southfield
@@ -5426,6 +5439,7 @@ Zoroaster
 Zoroastrian
 Zoroastrianism
 Zosma
+Zotero
 Zovirax
 Zubenelgenubi
 Zubeneschamali

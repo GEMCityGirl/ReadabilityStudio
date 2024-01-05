@@ -16,6 +16,8 @@ Carnagie	Carnegie	3
 Carnagie's	Carnegie's	3		
 Carnigie	Carnegie	3		
 Carnigie's	Carnegie's	3		
+Carribbean	Caribbean	3		
+Carribean	Caribbean	3		
 Catholocism	Catholicism	3		
 Ceasar	Caesar	3		
 Ceasar's	Caesar's	3		
@@ -27,6 +29,8 @@ Cincinnatti	Cincinnati	3
 Conneticut	Connecticut	3		
 Conneticut's	Connecticut's	3		
 Dardenelles	Dardanelles	3		
+Dicken	Dickens	3		
+Dicken's	Dickens's	3		
 Dudavera	Dudareva	3		
 Europian	European	3		
 Europians	Europeans	3		
@@ -36,6 +40,9 @@ Farenheit	Fahrenheit	3
 Febuary	February	3		
 Feburary	February	3		
 Flemmish	Flemish	3		
+Flinstone	Flintstone	3		
+Flinstone's	Flintstone's	3		
+Flinstones	Flintstones	3		
 Fransiscan	Franciscan	3		
 Fransiscans	Franciscans	3		
 Galations	Galatians	3		
@@ -64,6 +71,7 @@ Kindergarden's	Kindergarten's	3
 Lotharingen	Lothringen	3		
 Lybia	Libya	3		
 Malcom	Malcolm	3		
+Massachusett	Massachusetts	3		
 Massachussets	Massachusetts	3		
 Massachussetts	Massachusetts	3		
 Mediterainnean	Mediterranean	3		
@@ -110,6 +118,9 @@ Puertorrican	Puerto Rican	3
 Puertorricans	Puerto Ricans	3		
 Queenland	Queensland	3		
 Rockerfeller	Rockefeller	3		
+Rockfeller	Rockefeller	3		
+Rockfeller's	Rockefeller's	3		
+Rockfellers	Rockefellers	3		
 Russion	Russian	3		
 Sacremento	Sacramento	3		
 Sweeden	Sweden	3		

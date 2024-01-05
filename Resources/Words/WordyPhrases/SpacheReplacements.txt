@@ -207,11 +207,12 @@ combine	join
 combined	joined
 combines	joins
 combining	joining
-commence	begin
-commenced	began
+commence	start
+commenced	started
 commencement	start
 commencements	starts
-commences	begins
+commences	starts
+commencing	starting
 communicate	tell
 companion	friend
 companion's	friend's
@@ -671,6 +672,7 @@ maintained	kept
 maintaining	keeping
 maintains	keeps
 majority	most
+manner	way
 manufacture	make
 manufactured	made
 manufactures	makes
@@ -715,6 +717,7 @@ notified	told
 notifies	tells
 notify	tell
 notifying	telling
+notwithstanding	though
 numerate	count
 numerated	counted
 numerates	counts
@@ -955,6 +958,7 @@ terminates	ends
 terminating	ending
 terminus	end
 tertiary	third
+thereafter	then
 therefore	so
 therein	there
 thereof	its

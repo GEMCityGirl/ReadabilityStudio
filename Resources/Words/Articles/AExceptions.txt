@@ -12,6 +12,7 @@ OneNote
 onetime
 oneway
 SaaS
+SAS
 SFINAE
 SHA-1
 SHA-256

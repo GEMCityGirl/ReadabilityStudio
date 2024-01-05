@@ -2528,6 +2528,9 @@ agricultures
 agriculturist
 agriculturist's
 agriculturists
+agrifood
+agrifood's
+agrifoods
 agrilus
 agrilus's
 agro
@@ -3148,6 +3151,9 @@ allopolyploidies
 allopolyploids
 allopolyploidy
 allopolyploidy's
+allosaurus
+allosaurus's
+allosauruses
 allosteric
 allosterically
 allot
@@ -5211,6 +5217,7 @@ antiquities
 antiquity
 antiquity's
 antiracism
+antiracist
 antiransomware
 antiransomware's
 antiransomwares
@@ -11447,6 +11454,9 @@ bib
 bib's
 bibbed
 bibbing
+bibgroup
+bibgroup's
+bibgroups
 bible
 bible's
 bibles
@@ -11557,6 +11567,7 @@ biennials
 biennium
 biennium's
 bienniums
+bienvenidos
 bier
 bier's
 biers
@@ -11916,6 +11927,9 @@ biographies
 biography
 biography's
 biogs
+biohub
+biohub's
+biohubs
 bioidentical
 bioinformatics
 bioinstrumentation
@@ -12032,7 +12046,9 @@ biosignatures's
 biosphere
 biosphere's
 biospheres
+biospheric
 biostatistic
+biostatistical
 biostatistician
 biostatistician's
 biostatisticians
@@ -13759,6 +13775,7 @@ bookwork's
 bookworm
 bookworm's
 bookworms
+boola
 boolean
 booleans
 boom
@@ -16966,6 +16983,7 @@ calyces's
 calypso
 calypso's
 calypsos
+calypte
 calyptra
 calyx
 calyx's
@@ -17968,6 +17986,9 @@ caries's
 carillon
 carillon's
 carillonned
+carillonneur
+carillonneur's
+carillonneurs
 carillonning
 carillons
 carinatum
@@ -29690,6 +29711,8 @@ curator
 curator's
 curatorial
 curators
+curatorship
+curatorship's
 curatorships
 curb
 curb's
@@ -31598,6 +31621,10 @@ decompressor's
 decompressors
 decondense
 decondensed
+decondition
+deconditioned
+deconditioning
+deconditions
 decongestant
 decongestants
 deconstruct
@@ -34102,6 +34129,9 @@ devastative
 devastator
 devastator's
 devastators
+devcenter
+devcenter's
+devcenters
 develop
 developed
 developer
@@ -34114,6 +34144,9 @@ developmental
 developmentally
 developments
 develops
+devhub
+devhub's
+devhubs
 deviance
 deviance's
 deviances
@@ -34222,6 +34255,9 @@ devoutly
 devoutness
 devoutness's
 devs
+devspace
+devspace's
+devspaces
 dew
 dew's
 dewar
@@ -35225,6 +35261,9 @@ diplexers
 diploblast
 diploblastic
 diploblasts
+diplodocus
+diplodocus's
+diplodocuses
 diploe
 diploid
 diploids
@@ -37981,6 +38020,10 @@ dowser's
 dowsers
 dowses
 dowsing
+dox
+doxed
+doxes
+doxing
 doxologies
 doxology
 doxology's
@@ -42484,7 +42527,12 @@ epididymitis
 epidural
 epigastrium
 epigenetic
+epigeneticist
+epigeneticist's
+epigeneticists
 epigenetics
+epigenomic
+epigenomics
 epiglottis
 epiglottis's
 epiglottises
@@ -44209,6 +44257,7 @@ exerted
 exerting
 exertion
 exertion's
+exertional
 exertions
 exerts
 exes
@@ -45627,6 +45676,7 @@ falsest
 falsetto
 falsetto's
 falsettos
+falsey
 falsie
 falsie's
 falsies
@@ -45646,6 +45696,8 @@ falsifying
 falsities
 falsity
 falsity's
+falsy
+falsy's
 falter
 faltered
 falterer
@@ -45725,6 +45777,9 @@ fanaticism
 fanaticism's
 fanaticisms
 fanatics
+fanbase
+fanbase's
+fanbases
 fanboi
 fanboi's
 fanbois
@@ -48434,6 +48489,8 @@ florine's
 florins
 florist
 florist's
+floristic
+floristics
 florists
 floss
 floss's
@@ -50877,6 +50934,10 @@ functionalists
 functionalities
 functionality
 functionalization
+functionalize
+functionalized
+functionalizes
+functionalizing
 functionally
 functionals
 functionaries
@@ -52402,6 +52463,10 @@ geochemistry's
 geochemists
 geochronology
 geochronology's
+geocode
+geocoded
+geocodes
+geocoding
 geode
 geode's
 geodemographic
@@ -52415,6 +52480,10 @@ geodesy's
 geodetic
 geodetics
 geoducks
+geoengineer
+geoengineered
+geoengineering
+geoengineers
 geog
 geographer
 geographer's
@@ -52489,6 +52558,9 @@ geopolitical
 geopolitically
 geopolitics
 geopolitics's
+georeference
+georeferenced
+georeferencing
 geoscape
 geoscience
 geoscience's
@@ -53277,6 +53349,7 @@ globes
 globetrotter
 globetrotter's
 globetrotters
+globicephala
 globin
 globing
 globs
@@ -53516,6 +53589,9 @@ glycolytic
 glycopeptide
 glycoprotein
 glycoproteins
+glycoscience
+glycoscience's
+glycosciences
 glycosidic
 glycosuria
 glycosylated
@@ -60908,6 +60984,9 @@ hyperosmolarity
 hyperosmotic
 hyperostosis
 hyperoxaluria
+hyperparameter
+hyperparameter's
+hyperparameters
 hyperparathyroidism
 hyperphosphatemia
 hyperpigmentation
@@ -66822,6 +66901,7 @@ iontophoresis
 Iorgo
 Iormina
 Iosep
+IoT
 iota
 iota's
 iotas
@@ -67494,6 +67574,9 @@ jailed
 jailer
 jailer's
 jailers
+jailhouse
+jailhouse's
+jailhouses
 jailing
 jails
 Jaipur
@@ -69624,6 +69707,9 @@ kvetched
 kvetches
 kvetching
 kw
+kwarg
+kwarg's
+kwargs
 kWh
 kwon
 kyanos
@@ -70928,6 +71014,9 @@ lectured
 lecturer
 lecturer's
 lecturers
+lecturership
+lecturership's
+lecturerships
 lectures
 lectureship
 lectureship's
@@ -76620,8 +76709,8 @@ meitnerium
 meitnerium's
 Mejia
 Mekong
-Mel
 Mela
+melaena
 melamine
 melamine's
 melamines
@@ -76769,6 +76858,9 @@ memo's
 memoir
 memoir's
 memoires
+memoirist
+memoirist's
+memoirists
 memoirs
 memorabilia
 memorabilities
@@ -76860,9 +76952,7 @@ mending
 mending's
 mendings
 Mendip
-Mendocino
 mends
-Menelaus
 Menes
 menfolk
 menfolk's
@@ -76872,7 +76962,6 @@ menhaden's
 menial
 menially
 menials
-Meniere
 meninge
 meninge's
 meningeal
@@ -76890,10 +76979,6 @@ meninx
 menisci
 meniscus
 meniscus's
-Menkar
-Menkent
-Menkes
-Menlo
 menometrorrhagia
 Menominee
 menopausal
@@ -76905,7 +76990,6 @@ menorah's
 menorahs
 menorrhagia
 menorrhoea
-Menotti
 mens
 mensch
 mensches
@@ -77291,6 +77375,9 @@ metacercaria
 metachromatic
 metacircular
 metacircularity
+metaclass
+metaclass's
+metaclasses
 metacognition
 metacognition's
 metacognitions
@@ -79587,6 +79674,8 @@ mitigative
 mitigatory
 mitochondria
 mitochondrial
+mitochondriomic
+mitochondriomics
 mitochondrion
 mitoses
 mitosis
@@ -79596,7 +79685,7 @@ mitosome's
 mitosomes
 mitotic
 mitotically
-Mitragyna
+mitragyna
 mitral
 mitre
 mitre's
@@ -79605,11 +79694,9 @@ MITREs
 mitring
 mitt
 mitt's
-Mittelschmerz
 mitten
 mitten's
 mittens
-Mitterrand
 mitts
 mitzvah
 mitzvah's
@@ -80309,8 +80396,11 @@ monograph
 monograph's
 monographed
 monographes
+monographies
 monographing
 monographs
+monography
+monography's
 monohybrid
 monohybrid's
 monohybrids
@@ -82499,6 +82589,9 @@ nanny's
 nannying
 nano
 nanoarchaeotum
+nanobiologies
+nanobiology
+nanobiology's
 nanocomposite
 nanocomposites
 nanocoulomb
@@ -83489,6 +83582,7 @@ neuroectodermal
 neuroeffector
 neuroendocrine
 neuroendocrinology
+neuroepidemiology
 neuroepithelial
 neuroepithelium
 neurofeedback
@@ -83503,6 +83597,10 @@ neurohormone
 neurohormone's
 neurohormones
 neurohypophysis
+neuroimagine
+neuroimagined
+neuroimagines
+neuroimaging
 neuroinvasive
 neuroleptic
 neurologic
@@ -83550,6 +83648,8 @@ neuropsychopharmacologist
 neuroradiologist
 neuroradiology
 neuroscience
+neuroscience's
+neurosciences
 neuroscientific
 neuroscientist
 neuroscientists
@@ -84635,6 +84735,7 @@ nongroup's
 nongroups
 nonharassment
 nonhazardous
+nonheated
 nonhereditary
 nonheterosexual
 nonheterosexual's
@@ -92738,6 +92839,7 @@ performance
 performance's
 performances
 performant
+performative
 performed
 performer
 performer's
@@ -93822,6 +93924,9 @@ phoenix's
 phoenixes
 phone
 phone's
+phonebook
+phonebook's
+phonebooks
 phoned
 phoneme
 phoneme's
@@ -95712,6 +95817,12 @@ pleonasm
 pleonasm's
 pleonasms
 plesiadapis
+plesiosaur
+plesiosaur's
+plesiosaurs
+plesiosaurus
+plesiosaurus's
+plesiosauruses
 plethora
 plethora's
 plethoras
@@ -96109,6 +96220,7 @@ podgiest
 podginess
 podginess's
 podgy
+podiatric
 podiatries
 podiatrist
 podiatrist's
@@ -102127,6 +102239,9 @@ quayle's
 quays
 quayside
 quayside's
+qubit
+qubit's
+qubits
 que
 que's
 queasier
@@ -107016,6 +107131,8 @@ repeats
 repel
 repellant
 repelled
+repellency
+repellency's
 repellent
 repellently
 repellents
@@ -108333,6 +108450,7 @@ retinex's
 retinexes
 retinitis
 retinoblastoma
+retinofugal
 retinoic
 retinoid
 retinol
@@ -120274,6 +120392,13 @@ spellbinders
 spellbinding
 spellbinds
 spellbound
+spellcheck
+spellchecked
+spellchecker
+spellchecker's
+spellcheckers
+spellchecking
+spellchecks
 spelldown
 spelldown's
 spelldowns
@@ -128249,6 +128374,7 @@ technocrats
 technoeconomic
 technoeconomical
 technoeconomically
+technologic
 technological
 technologically
 technologies
@@ -129287,6 +129413,7 @@ Thain
 Thaine
 thalami
 thalamic
+thalamocortical
 thalamus
 thalamus's
 thalassemia
@@ -129608,6 +129735,7 @@ thermophile's
 thermophiles
 thermophilic
 thermophobia
+thermophysiological
 thermopile
 thermopile's
 thermoplastic
@@ -130445,6 +130573,9 @@ tilefish
 Tiler
 tilers
 tiles
+tileset
+tileset's
+tilesets
 tiling
 tiling's
 tilings
@@ -134699,6 +134830,7 @@ ultracentrifugally
 ultracentrifugation
 ultracentrifuge
 ultracentrifuge's
+ultracold
 ultraconservative
 ultraconservatives
 ultradimensionalities
@@ -137516,6 +137648,10 @@ unrecorded
 unrecoverable
 unrecovered
 unrecycled
+unredact
+unredacted
+unredacting
+unredacts
 unredeemable
 unredeemed
 unreduced
@@ -140700,6 +140836,9 @@ visitings
 visitor
 visitor's
 visitors
+visitorship
+visitorship's
+visitorships
 visits
 visive
 visivox
@@ -142268,6 +142407,9 @@ weathercocks
 weathered
 weatherer
 weatherer's
+weatherhead
+weatherhead's
+weatherheads
 weathering
 weathering's
 weatherings

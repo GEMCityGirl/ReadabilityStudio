@@ -630,12 +630,12 @@ combining	joining
 comforted	soothed
 comforting	soothing
 comforts	soothes
-commence	begin
-commenced	began
+commence	start, begin
+commenced	started, began
 commencement	start
 commencements	starts
-commences	begins
-commencing	beginning
+commences	starts, begins
+commencing	starting, beginning
 commendation	praise
 commendations	praises
 commerce	trade
@@ -1783,6 +1783,7 @@ malediction	curse
 maledictions	curses
 malevolence	spite, maliciousness
 malformation	abnormal shape, deformity
+manner	way
 manually	by hand
 manufacture	make
 manufactured	made
@@ -1893,7 +1894,7 @@ notified	let know, told
 notifies	lets know, tells
 notify	let know, tell
 notifying	letting know, telling
-notwithstanding	despite
+notwithstanding	even though, though, even if, despite
 numerate	count
 numerated	counted
 numerates	counts
@@ -2555,6 +2556,7 @@ terminates	ends, stops
 terminating	ending, stopping
 terminus	end
 tertiary	third
+thereafter	then, afterwards
 therefore	so, thus
 therein	there
 thereof	its, their
