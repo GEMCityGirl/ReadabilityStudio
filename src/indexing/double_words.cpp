@@ -13,6 +13,7 @@ using namespace grammar;
 std::set<is_double_word_exception::string_type>
     is_double_word_exception::m_double_word_exceptions = {
         L"bison",                    // Bison bison is American bison
+        L"Boola",                    // "Boola Boola" is the Yale football song
         L"choo",                     // The train goes "choo choo"
         L"bye",                      // "Say bye bye to grandma."
         L"das",      L"der", L"die", // German articles, which can appear repeated
