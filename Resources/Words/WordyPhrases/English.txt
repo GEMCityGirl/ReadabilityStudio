@@ -1,3 +1,9 @@
+servic	service	3
+descrimination	discrimination	3
+studentsinterested	students interested	3
+theapplication	th eapplication	3
+meaninful	meaningful	3
+some many	so many	3
 10nd	10th	3		
 10st	10th	3		
 11th hour	almost late, last minute, right before the anticipated deadline	2		
