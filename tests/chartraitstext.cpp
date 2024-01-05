@@ -119,26 +119,74 @@ TEST_CASE("Character traits", "[chartraits]")
     SECTION("Is Lower")
         {
         CHECK(characters::is_character::is_lower(L'a'));
+        CHECK_FALSE(characters::is_character::is_lower(L'A'));
+        CHECK(characters::is_character::is_lower(L'á'));
+        CHECK_FALSE(characters::is_character::is_lower(L'Á'));
+        CHECK(characters::is_character::is_lower(L'ä'));
+        CHECK_FALSE(characters::is_character::is_lower(L'Ä'));
+        CHECK(characters::is_character::is_lower(L'â'));
+        CHECK_FALSE(characters::is_character::is_lower(L'Â'));
+        CHECK(characters::is_character::is_lower(L'ă'));
+        CHECK_FALSE(characters::is_character::is_lower(L'Ă'));
+        CHECK(characters::is_character::is_lower(L'č'));
+        CHECK_FALSE(characters::is_character::is_lower(L'Č'));
+        CHECK(characters::is_character::is_lower(L'ŕ'));
+        CHECK_FALSE(characters::is_character::is_lower(L'Ŕ'));
+        CHECK(characters::is_character::is_lower(L'ř'));
+        CHECK_FALSE(characters::is_character::is_lower(L'Ř'));
+        CHECK(characters::is_character::is_lower(L'ł'));
+        CHECK_FALSE(characters::is_character::is_lower(L'Ł'));
+        CHECK(characters::is_character::is_lower(L'ć'));
+        CHECK_FALSE(characters::is_character::is_lower(L'Ć'));
+        CHECK(characters::is_character::is_lower(L'ą'));
+        CHECK_FALSE(characters::is_character::is_lower(L'Ą'));
+        CHECK(characters::is_character::is_lower(L'ő'));
+        CHECK_FALSE(characters::is_character::is_lower(L'Ő'));
+
         CHECK(characters::is_character::is_lower(L'z'));
-        CHECK(characters::is_character::is_lower(L'A') == false);
-        CHECK(characters::is_character::is_lower(L'×') == false);
-        CHECK(characters::is_character::is_lower(L'÷') == false);
-        CHECK(characters::is_character::is_lower(L'Å') == false);
-        CHECK(characters::is_character::is_lower(L'Û') == false);
+
+        CHECK_FALSE(characters::is_character::is_lower(L'×'));
+        CHECK_FALSE(characters::is_character::is_lower(L'÷'));
+        CHECK_FALSE(characters::is_character::is_lower(L'Å'));
+        CHECK_FALSE(characters::is_character::is_lower(L'Û'));
         CHECK(characters::is_character::is_lower(L'å'));
         CHECK(characters::is_character::is_lower(L'ý'));
         }
     SECTION("Is Upper")
         {
-        CHECK(characters::is_character::is_upper(L'a') == false);
-        CHECK(characters::is_character::is_upper(L'z') == false);
+        CHECK_FALSE(characters::is_character::is_upper(L'a'));
         CHECK(characters::is_character::is_upper(L'A'));
-        CHECK(characters::is_character::is_upper(L'×') == false);
-        CHECK(characters::is_character::is_upper(L'÷') == false);
+        CHECK_FALSE(characters::is_character::is_upper(L'á'));
+        CHECK(characters::is_character::is_upper(L'Á'));
+        CHECK_FALSE(characters::is_character::is_upper(L'ä'));
+        CHECK(characters::is_character::is_upper(L'Ä'));
+        CHECK_FALSE(characters::is_character::is_upper(L'â'));
+        CHECK(characters::is_character::is_upper(L'Â'));
+        CHECK_FALSE(characters::is_character::is_upper(L'ă'));
+        CHECK(characters::is_character::is_upper(L'Ă'));
+        CHECK_FALSE(characters::is_character::is_upper(L'č'));
+        CHECK(characters::is_character::is_upper(L'Č'));
         CHECK(characters::is_character::is_upper(L'Å'));
         CHECK(characters::is_character::is_upper(L'Û'));
-        CHECK(characters::is_character::is_upper(L'å') == false);
-        CHECK(characters::is_character::is_upper(L'ý') == false);
+        CHECK_FALSE(characters::is_character::is_upper(L'å'));
+        CHECK_FALSE(characters::is_character::is_upper(L'ý'));
+        CHECK_FALSE(characters::is_character::is_upper(L'ŕ'));
+        CHECK(characters::is_character::is_upper(L'Ŕ'));
+        CHECK_FALSE(characters::is_character::is_upper(L'ř'));
+        CHECK(characters::is_character::is_upper(L'Ř'));
+        CHECK_FALSE(characters::is_character::is_upper(L'ł'));
+        CHECK(characters::is_character::is_upper(L'Ł'));
+        CHECK_FALSE(characters::is_character::is_upper(L'ć'));
+        CHECK(characters::is_character::is_upper(L'Ć'));
+        CHECK_FALSE(characters::is_character::is_upper(L'ą'));
+        CHECK(characters::is_character::is_upper(L'Ą'));
+        CHECK_FALSE(characters::is_character::is_upper(L'ő'));
+        CHECK(characters::is_character::is_upper(L'Ő'));
+
+        CHECK_FALSE(characters::is_character::is_upper(L'z'));
+
+        CHECK_FALSE(characters::is_character::is_upper(L'×'));
+        CHECK_FALSE(characters::is_character::is_upper(L'÷'));
         }
 
     SECTION("Numeric String")

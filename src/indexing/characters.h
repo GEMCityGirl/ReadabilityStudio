@@ -16,6 +16,10 @@
 #include <cassert>
 
 /// @brief Namespace for punctuation classes.
+/// @details Recognizes the following character sets:
+///     - Western European languages
+///     - Russian
+///     - Eastern European WORK IN PROGRESS
 namespace characters
     {
     /// @brief This is the central interface for word character deductions and comparisons.
@@ -70,6 +74,11 @@ namespace characters
                 (ch == 0x0178) ||
                 // OE ligature
                 (ch == 0x0152) ||
+                // Eastern European
+                // C with acute, R with acuate, L with stroke, R with charon, A with breve, C with
+                // charon, A with ogonek, O with double accent
+                (ch == 0x0106 || ch == 0x0154 || ch == 0x0141 || ch == 0x0158 || ch == 0x0102 ||
+                 ch == 0x010C || ch == 0x0104 || ch == 0x0150) ||
                 // Russian
                 (ch >= 0x0410 && ch <= 0x042F) || (ch == 0x0401));
             }
@@ -95,6 +104,11 @@ namespace characters
                 (ch >= 0x2090 && ch <= 0x209C) ||
                 // German eszett (not exactly lowercase, but words never begin with these)
                 (ch == 0xDF) ||
+                // Eastern European
+                // C with acute, R with acuate, L with stroke, R with charon, A with breve, C with
+                // charon, A with ogonek, O with double accent
+                (ch == 0x0107 || ch == 0x0155 || ch == 0x0142 || ch == 0x0159 || ch == 0x0103 ||
+                 ch == 0x010D || ch == 0x0105 || ch == 0x0151) ||
                 // Russian
                 (ch >= 0x0430 && ch <= 0x044F) || (ch == 0x0451));
             }
@@ -562,29 +576,27 @@ namespace characters
         [[nodiscard]]
         constexpr static bool is_single_quote(const wchar_t ch) noexcept
             {
+            // clang-format off
             return (ch == 39) ? // '
-                       true :
-                       (ch == 0xFF07) ? // full-width apostrophe
-                           true :
-                           (ch == 96) ? // `
-                               true :
-                               (ch == 130 || ch == 0x201A) ? // ‚ curved single quote
-                                   true :
-                                   (ch == 139 || ch == 0x2039) ? // ‹ left single quote (European)
-                                       true :
-                                       (ch == 155 ||
-                                        ch == 0x203A) ? // › right single quote (European)
-                                           true :
-                                           (ch == 145 ||
-                                            ch == 146) ? // Windows 1252 quote surrogates (single)
-                                               true :
-                                               (ch >= 0x2018 &&
-                                                ch <= 0x201B) ? // smart single quotes
-                                                   true :
-                                                   (ch == 0x300C ||
-                                                    ch == 0x300D) ? // Japanese single quotes
-                                                       true :
-                                                       false;
+                    true :
+                   (ch == 0xFF07) ? // full-width apostrophe
+                    true :
+                   (ch == 96) ? // `
+                    true :
+                   (ch == 130 || ch == 0x201A) ? // ‚ curved single quote
+                    true :
+                   (ch == 139 || ch == 0x2039) ? // ‹ left single quote (European)
+                    true :
+                   (ch == 155 || ch == 0x203A) ? // › right single quote (European)
+                    true :
+                   (ch == 145 || ch == 146) ? // Windows 1252 quote surrogates (single)
+                    true :
+                   (ch >= 0x2018 && ch <= 0x201B) ? // smart single quotes
+                    true :
+                   (ch == 0x300C || ch == 0x300D) ? // Japanese single quotes
+                    true :
+                    false;
+            // clang-format on
             }
 
         /** @returns @c true if a character is a double quote (includes Unicode and smart quotes).
