@@ -19,8 +19,10 @@ Readability Studio
 Install the following tools to build *Readability Studio*:
 
 - *Visual Studio*
-- *R* (and optionally *RStudio*)
+- *R*
+- *Quarto*
 - *InnoSetup*
+- *POEdit* (if editing the translations)
 
 - Place "wxWidgets" at the same folder level as this project, downloading it with this command:
 ```
@@ -32,7 +34,7 @@ git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
   - Select **Build** > **Build All**
   - Select **Build** > **Install wxWidgets** (really just copies the header, lib, and cmake files to the prefix folder)
 - Open this project's CMake file in *Visual Studio* and save it (this is equivalent to configuring CMake and will generate some necessary configuration files)
-- Open **ReadabilityStudio/docs/BuildHelpProjects.R** in *RStudio* and source the entire script
+- Open "ReadabilityStudio/docs/BuildHelpProjects.R" in *RStudio* and source the entire script
 - Go back to *Visual Studio* and build the project
 
 ## Linux
@@ -42,7 +44,8 @@ Install the following tools to build *Readability Studio*:
 - *GCC* (C++ and fortran compilers)
 - *CMake*
 - *git*
-- *R* (and optionally *RStudio*)
+- *R*
+- *Quarto*
 - *POEdit* (if editing the translations)
 
 Install the following libraries (*and* their development files if mentioned):
@@ -51,7 +54,7 @@ Install the following libraries (*and* their development files if mentioned):
 - *libCURL*, *libcurl-devel*
 - *GStreamer*, *gstreamer-devel*
 - *libsecret*, *libsecret-devel*
-- *webkit*, *webkit2gtk3-devel*
+- *webkit*, *webkit2*
 - *SDL2-devel*
 - *libnotify*, *libnotify-devel*
 - *TBB*, *tbb-devel*
@@ -75,10 +78,10 @@ cmake --build . --target all
 
 ## All Platforms
 
-If any of the word lists (**ReadabilityStudio/Resources/Words**) have changed, then:
+If any of the word lists ("ReadabilityStudio/Resources/Words") have changed, then:
 
 - Build the program as usual
-- Open up *Readability Studio* and open the file **ReadabilityStudio/Resources/Finalize Word Lists.lua** in the Lua editor and run it
+- Open up *Readability Studio* and open the file "ReadabilityStudio/Resources/Finalize Word Lists.lua" in the Lua editor and run it
 - Rebuild the program (this will re-package the word files)
 
 This is necessary to re-sort the files and also re-build other words lists (e.g., the spelling dictionaries) that are based on the ones you may have edited.
@@ -86,6 +89,6 @@ This is necessary to re-sort the files and also re-build other words lists (e.g.
 If the documentation screenshots need updating, then:
 
 - Build the program as usual
-- Open up *Readability Studio* and open the file **ReadabilityStudio/docs/Generate Screenshots.lua** in the Lua editor and run it
-- Open **ReadabilityStudio/docs/BuildHelpProjects.R** and source the entire script
+- Open up *Readability Studio* and open the file "ReadabilityStudio/docs/Generate Screenshots.lua" in the Lua editor and run it
+- Open "ReadabilityStudio/docs/BuildHelpProjects.R" and source the entire script
 - Rebuild the program (this will re-package the documentation)
