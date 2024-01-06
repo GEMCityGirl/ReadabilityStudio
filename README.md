@@ -47,7 +47,8 @@ Install the following tools to build *Readability Studio*:
 - *git*
 - *R*
 - *Quarto*
-- *Pandoc*
+- *pandoc*
+- *pandoc-citeproc*
 - *POEdit* (if editing the translations)
 
 Install the following libraries (*and* their development files if mentioned):
