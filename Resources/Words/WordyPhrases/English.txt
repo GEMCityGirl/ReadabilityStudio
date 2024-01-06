@@ -343,7 +343,6 @@ acknowldegement	acknowledgment	3
 acknowledge	admit, express thanks for	0		
 acknowledged	admitted, expressed thanks for	0		
 acknowledgeing	acknowledging	3		
-acknowledgement	acknowledgment	3		
 acknowledges	admits, expresses thanks for	0		
 acknowledging	admitting, expressing thanks for	0		
 acknowlege	acknowledge	3		
