@@ -12,7 +12,6 @@ OneNote
 onetime
 oneway
 SaaS
-USC
 SAS
 SFINAE
 SHA-1
@@ -40,6 +39,7 @@ UMN
 unary
 unary_negate
 USB
+USC
 USPS
 USPTO
 UWP

@@ -18,14 +18,11 @@ Acadia
 Acapulco
 Accel
 Accelis
-Chicanx 
 Accenture
 Accountingfly
 Accra
 Achaean
 Achalasia
-Jazzercise
-Miamian
 ACLU
 ACME
 Aconcagua
@@ -1026,6 +1023,7 @@ Chiappetta
 Chiba
 Chicago
 Chicagoan
+Chicanx
 Chickasaw
 Chihuahua
 Chile
@@ -2449,6 +2447,7 @@ Javanese
 JavaScript
 Jayawardenepura
 Jazeera
+Jazzercise
 JCPenney
 Jedi
 Jeffersonian
@@ -3071,6 +3070,7 @@ Mexican
 Mexico
 MFC
 Miami
+Miamian
 Miamisburg
 Micatin
 Michelob

@@ -1,9 +1,3 @@
-servic	service	3
-descrimination	discrimination	3
-studentsinterested	students interested	3
-theapplication	th eapplication	3
-meaninful	meaningful	3
-some many	so many	3
 10nd	10th	3		
 10st	10th	3		
 11th hour	almost late, last minute, right before the anticipated deadline	2		
@@ -8910,6 +8904,7 @@ may effect	may affect	3
 may or may not	may, may not	0		
 may possibly	may	1		
 mchanics	mechanics	3		
+meaninful	meaningful	3		
 meaningless gibberish	gibberish	0		
 meaninng	meaning	3		
 measurments	measurements	3		
@@ -12431,6 +12426,7 @@ serve up	serve	0
 served up	served	0		
 serveral	several	3		
 serves up	serves	0		
+servic	service	3		
 service manger	service manager	3		
 service mangers	service managers	3		
 serving up	serving	0		
@@ -12669,6 +12665,7 @@ soluable	soluble	3
 some but not all	some	0		
 some extend	some extent	3		
 some how	somehow	3		
+some many	so many	3		
 some one	someone	3		billion;hundred;million;thousand;trillion
 some thing	something	3		
 some times	sometimes	3		of
@@ -12982,6 +12979,7 @@ stucture's	structure's	3
 stuctured	structured	3		
 stuctures	structures	3		
 studdy	study	3		
+studentsinterested	students interested	3		
 studing	studying	3		
 stuffed shirt	pompous person	2		
 stuggling	struggling	3		
@@ -13573,6 +13571,7 @@ the whole kit and caboodle	everything	2
 the whole nine yards	everything	2		
 the worm has turned	an unfavorable situation has been reversed	2		
 thealogical	theological	3		
+theapplication	th eapplication	3		
 theater manger	theater manager	3		
 theater mangers	theater managers	3		
 theather	theater	3		
