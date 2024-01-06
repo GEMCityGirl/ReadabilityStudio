@@ -375,7 +375,8 @@ namespace tokenize
                     // (unless we are in an URL, then just keep going.)
                     if (characters::is_character::is_hyphen(m_current_char[0]) &&
                         !isUrl &&
-                        !i18n_string_util::is_url(word_start, m_current_char-word_start))
+                        !i18n_string_util::is_url(
+                            { word_start, static_cast<size_t>(m_current_char - word_start) }))
                         {
                         // if a dash (double hyphen) then quit
                         if (m_current_char+1 != m_text_block_end &&
@@ -540,7 +541,8 @@ namespace tokenize
                         m_current_char+1 < m_text_block_end &&
                         !characters::is_character::is_space(m_current_char[0]))
                         { ++m_current_char; }
-                    else if (i18n_string_util::is_url(word_start, m_current_char-word_start) &&
+                    else if (i18n_string_util::is_url(
+                            { word_start, static_cast<size_t>(m_current_char - word_start) }) &&
                         m_current_char+1 < m_text_block_end &&
                         !characters::is_character::is_space(m_current_char[0]))
                         {
@@ -612,7 +614,8 @@ namespace tokenize
                         {
                         ++m_current_char;
                         }
-                    else if (i18n_string_util::is_url(word_start, m_current_char - word_start) &&
+                    else if (i18n_string_util::is_url(
+                                { word_start, static_cast<size_t>(m_current_char - word_start) }) &&
                              m_current_char + 1 < m_text_block_end &&
                              !characters::is_character::is_space(m_current_char[1]))
                         {

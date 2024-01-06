@@ -259,7 +259,10 @@ public:
         for_each(
             m_words.begin(), m_words.end(),
             [](auto& word)
-                { word.set_file_address(i18n_string_util::is_file_address(word.c_str(), word.length())); }
+                {
+                word.set_file_address(
+                    i18n_string_util::is_file_address({ word.c_str(), word.length() }));
+                }
             );
         // social media
         is_social_media_tag<Tword_type> isSmTag;
