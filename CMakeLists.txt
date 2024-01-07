@@ -79,14 +79,14 @@ endif()
 
 # Find wxWidgets (wxWidgetsConfig.cmake, specifically) and select its components
 if(WIN32)
-    SET(wxWidgets_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/out/install/x64-${CMAKE_BUILD_TYPE}/lib/cmake/wxWidgets")
+    set(wxWidgets_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/out/install/x64-${CMAKE_BUILD_TYPE}/lib/cmake/wxWidgets")
 elseif(UNIX)
-    SET(wxWidgets_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/wxlib/lib/cmake/wxWidgets")
+    set(wxWidgets_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/wxlib/lib/cmake/wxWidgets")
 endif()
 
 message(STATUS "Adding wxWidgets CMake cofig folder: ${wxWidgets_DIR}")
 if(NOT EXISTS "${wxWidgets_DIR}/wxWidgetsConfig.cmake" AND NOT EXISTS "${wxWidgets_DIR}/wxwidgets-config.cmake")
-    MESSAGE(STATUS "Warning: cannot find wxWidgets CMake configuration. (Looked in ${wxWidgets_DIR}.)")
+    message(STATUS "Warning: cannot find wxWidgets CMake configuration. (Looked in ${wxWidgets_DIR}.)")
 endif()
 set(wxWidgets_USE_STATIC 1)
 find_package(wxWidgets 3.3 COMPONENTS core base xrc propgrid xml aui ribbon qa stc net richtext REQUIRED CONFIG)
@@ -147,16 +147,25 @@ if(BUILD_TESTING)
     run_rs_test_suite(tests/gui-tests RSGuiTestRunner)
 endif()
 
-# Build the help always for release build or if BUILD_HELP is defined.
-# TODO: Path to Pandoc is currently hard coded to Windows path here.
-#       Need a FindPandoc cmake script.
+# Build the help always for release build,
+# if BUILD_HELP is defined,or PDF manual is missing.
+# TODO: Windows path to Pandoc currently only looks for Quarto installations.
+GET_FILENAME_COMPONENT(MANUAL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/docs/ReadabilityStudioDocs/docs/ReadabilityStudioManual.pdf" REALPATH)
 include(cmake/modules/FindR.cmake)
-if(R_FOUND AND (BUILD_HELP OR ${CMAKE_BUILD_TYPE} STREQUAL "Release"))
+include(cmake/modules/FindPandoc.cmake)
+if(R_FOUND AND PANDOC_FOUND AND
+   (NOT EXISTS ${MANUAL_PATH} OR
+    BUILD_HELP OR ${CMAKE_BUILD_TYPE} STREQUAL "Release"))
     execute_process(COMMAND "${R_SCRIPT}"
                         "${CMAKE_CURRENT_SOURCE_DIR}/docs/BuildHelpProjects.R"
-                        "C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools"
+                        "${PANDOC_ROOT_DIR}"
                     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/docs/"
                     COMMAND_ERROR_IS_FATAL ANY)
+endif()
+if(NOT R_FOUND)
+    message(STATUS "Warning: R not found. Help cannot be built.")
+elseif(NOT PANDOC_FOUND)
+    message(STATUS "Warning: Pandoc not found. Help cannot be built.")
 endif()
 
 if(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
