@@ -2486,7 +2486,7 @@ class ReadabilityAppOptions final : public WarningManager
 
     // embedded text editor
     wxFont m_editorFont;
-    wxColour m_editorFontColor;
+    wxColour m_editorFontColor{ *wxBLACK };
     bool m_editorIndent{ false };
     bool m_editorSpaceAfterNewlines{ false };
     wxTextAttrAlignment m_editorTextAlignment{ wxTextAttrAlignment::wxTEXT_ALIGNMENT_JUSTIFIED };
@@ -2521,7 +2521,7 @@ class ReadabilityAppOptions final : public WarningManager
     wxColour m_textHighlightColor{ wxColour{ 152, 251, 152 } };
     wxColour m_excludedTextHighlightColor{ wxColour{ 175, 175, 175 } };
     wxColour m_duplicateWordHighlightColor{ wxColour{ 255, 128, 128 } };
-    wxColour m_fontColor;
+    wxColour m_fontColor{ *wxBLACK };
     wxFont m_textViewFont;
     LongSentence m_longSentenceMethod{ LongSentence::LongerThanSpecifiedLength };
     int m_difficultSentenceLength{ 22 };
