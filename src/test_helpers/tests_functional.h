@@ -347,9 +347,9 @@ template<typename word_typeT>
 class IsNotDolchWordWithLevelHighlighting
     {
   public:
-    IsNotDolchWordWithLevelHighlighting<word_typeT>(const readability::dolch_word_list* wlist,
-                                                    const wxString& beginHighlight,
-                                                    const wxString& endHighlight)
+    IsNotDolchWordWithLevelHighlighting(const readability::dolch_word_list* wlist,
+                                        const wxString& beginHighlight,
+                                        const wxString& endHighlight)
         : isDolch(wlist), m_beginHighlight(beginHighlight), m_endHighlight(endHighlight)
         {
         }
