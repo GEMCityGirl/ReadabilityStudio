@@ -128,6 +128,7 @@ Undo previous edit                      `r keys(c('Ctrl','Z'))` (`r os_logo('win
 
 Redo previous edit                      `r keys(c('Ctrl','Y'))` (`r os_logo('windows')`) or<br>\linebreak
                                         `r keys(c('\\cmd','Y'))` (`r os_logo('apple')`)
+
 &nbsp;                                  &nbsp;
 
 Find                                    `r keys(c('Ctrl','F'))` (`r os_logo('windows')`) or<br>\linebreak
