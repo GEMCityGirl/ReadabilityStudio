@@ -188,13 +188,13 @@ void WebHarvesterDlg::CreateControls()
             new wxStaticBox(Panel, wxID_ANY, _(L"Websites to Harvest")), wxVERTICAL);
         wxBoxSizer* urlButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
         wxBitmapButton* addUrlButton = new wxBitmapButton(
-            Panel, ID_ADD_URL_BUTTON,
+            urlSizer->GetStaticBox(), ID_ADD_URL_BUTTON,
             wxArtProvider::GetBitmap(L"ID_ADD", wxART_BUTTON, FromDIP(wxSize(16, 16))));
         addUrlButton->SetToolTip(_(L"Add a website to the list"));
         urlButtonsSizer->Add(addUrlButton);
 
         wxBitmapButton* deleteUrlButton = new wxBitmapButton(
-            Panel, ID_DELETE_URL_BUTTON,
+            urlSizer->GetStaticBox(), ID_DELETE_URL_BUTTON,
             wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize(16, 16))));
         deleteUrlButton->SetToolTip(_(L"Delete selected website"));
         urlButtonsSizer->Add(deleteUrlButton);
@@ -307,14 +307,14 @@ void WebHarvesterDlg::CreateControls()
 
         wxBoxSizer* domainButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
         m_addDomainButton = new wxBitmapButton(
-            Panel, ID_ADD_DOMAIN_BUTTON,
+            domainBoxSizer->GetStaticBox(), ID_ADD_DOMAIN_BUTTON,
             wxArtProvider::GetBitmap(L"ID_ADD", wxART_BUTTON, FromDIP(wxSize(16, 16))));
         m_addDomainButton->SetToolTip(_(L"Add a domain to the list"));
         m_addDomainButton->Enable(m_domainCombo->GetValue() == GetUserSpecifiedDomainsLabel());
         domainButtonsSizer->Add(m_addDomainButton);
 
         m_deleteDomainButton = new wxBitmapButton(
-            Panel, ID_DELETE_DOMAIN_BUTTON,
+            domainBoxSizer->GetStaticBox(), ID_DELETE_DOMAIN_BUTTON,
             wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize(16, 16))));
         m_deleteDomainButton->SetToolTip(_(L"Delete selected domain"));
         m_deleteDomainButton->Enable(m_domainCombo->GetValue() == GetUserSpecifiedDomainsLabel());
