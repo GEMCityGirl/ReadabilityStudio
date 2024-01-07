@@ -58,7 +58,7 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/icons.isl.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/icons.isl")
 
 if(NOT CMAKE_CONFIGURATION_TYPES)
-    GET_PROPERTY(HAVE_MULTI_CONFIG_GENERATOR GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
+    get_property(HAVE_MULTI_CONFIG_GENERATOR GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
     # Set default configuration types for multi-config generators
     if(HAVE_MULTI_CONFIG_GENERATOR)
         SET(CMAKE_CONFIGURATION_TYPES "Debug;Release")
@@ -72,6 +72,14 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE "${default_build_type}" CACHE STRING "Choose the type of build." FORCE)
     # Set the possible values of build type for cmake-gui
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release")
+endif()
+
+message(STATUS "Build: ${CMAKE_BUILD_TYPE}")
+if(BUILD_DOCS)
+    message(STATUS "Help build has been requested.")
+endif()
+if(BUILD_TESTING)
+    message(STATUS "Unit test run has been requested.")
 endif()
 
 # Setup wxWidgets
@@ -148,14 +156,14 @@ if(BUILD_TESTING)
 endif()
 
 # Build the help always for release build,
-# if BUILD_HELP is defined,or PDF manual is missing.
+# if BUILD_DOCS is defined,or PDF manual is missing.
 # TODO: Windows path to Pandoc currently only looks for Quarto installations.
-GET_FILENAME_COMPONENT(MANUAL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/docs/ReadabilityStudioDocs/docs/ReadabilityStudioManual.pdf" REALPATH)
+get_filename_component(MANUAL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/docs/ReadabilityStudioDocs/docs/ReadabilityStudioManual.pdf" REALPATH)
 include(cmake/modules/FindR.cmake)
 include(cmake/modules/FindPandoc.cmake)
 if(R_FOUND AND PANDOC_FOUND AND
    (NOT EXISTS ${MANUAL_PATH} OR
-    BUILD_HELP OR ${CMAKE_BUILD_TYPE} STREQUAL "Release"))
+    BUILD_DOCS OR ${CMAKE_BUILD_TYPE} STREQUAL "Release"))
     execute_process(COMMAND "${R_SCRIPT}"
                         "${CMAKE_CURRENT_SOURCE_DIR}/docs/BuildHelpProjects.R"
                         "${PANDOC_ROOT_DIR}"
@@ -227,14 +235,15 @@ elseif(MINGW OR MSYS)
 elseif(APPLE)
     target_compile_definitions(${PROJECT_NAME} PUBLIC __WXOSX__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
-    target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -Werror
+    # don't include -Werror for now
+    target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow
                            $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O2>)
 # TODO: Experimental code for Linux
 elseif(UNIX)
     target_compile_definitions(${PROJECT_NAME} PUBLIC __WXGTK__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
-    # don't include -Werror and -Wpedantic for now
-    target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wshadow
+    # don't include -Werror for now
+    target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wshadow -Wpedantic
                            $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O2>)
 endif()
 
