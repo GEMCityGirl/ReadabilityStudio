@@ -11,6 +11,7 @@
 #include <wx/colordlg.h>
 #include <wx/bannerwindow.h>
 #include "../../Wisteria-Dataviz/src/ui/dialogs/warningmessagesdlg.h"
+#include "../../Wisteria-Dataviz/src/base/colorbrewer.h"
 #include "tools_options_dlg.h"
 #include "edit_word_list_dlg.h"
 #include "doc_group_select_dlg.h"
@@ -4607,7 +4608,7 @@ void ToolsOptionsDlg::CreateControls()
         banner->SetText(wxString::Format(_(L"%s Options"), wxGetApp().GetAppDisplayName()),
             _(L"These options will only affect new projects.\n"
                "To change an existing project, click \"Properties\" on the Home tab."));
-        banner->SetGradient(ColorBrewer::GetColor(Color::White), ColorBrewer::GetColor(Color::PastelGray));
+        banner->SetGradient(banner->GetBackgroundColour(), ColorContrast::ShadeOrTint(banner->GetBackgroundColour()));
 
         mainSizer->Insert(0, banner, wxSizerFlags().Expand());
         }
@@ -4624,7 +4625,7 @@ void ToolsOptionsDlg::CreateControls()
                 _(L"These options only affect the current project (\"%s\").\n"
                    "To change options for future projects, click \"Options\" on the Tools tab."),
                 displayableProjectName));
-        banner->SetGradient(ColorBrewer::GetColor(Color::White), ColorBrewer::GetColor(Color::PastelGray));
+        banner->SetGradient(banner->GetBackgroundColour(), ColorContrast::ShadeOrTint(banner->GetBackgroundColour()));
 
         mainSizer->Insert(0, banner, wxSizerFlags().Expand());
         }
