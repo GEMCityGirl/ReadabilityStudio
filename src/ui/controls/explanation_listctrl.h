@@ -73,7 +73,7 @@ class ExplanationListCtrl final : public wxSplitterWindow
                    ExplanationListExportOptions::ExportBoth);
     /** @brief Print previews the control.
         @param exportOptions Options for how to format the output.*/
-    void PrintPreview(const ExplanationListExportOptions exportOptions =
+    void PrintPreview([[maybe_unused]] const ExplanationListExportOptions exportOptions =
                           ExplanationListExportOptions::ExportBoth);
 
     /** @brief Sets the printer settings.

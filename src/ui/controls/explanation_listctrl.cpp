@@ -104,7 +104,7 @@ void ExplanationListCtrl::OnPrint([[maybe_unused]] wxCommandEvent& event)
 
 //------------------------------------------------------
 void ExplanationListCtrl::PrintPreview(
-    const ExplanationListExportOptions exportOptions /*= ExportBoth*/)
+    [[maybe_unused]] const ExplanationListExportOptions exportOptions /*= ExportBoth*/)
     {
 #if defined(__WXMSW__)
     if (exportOptions == ExplanationListExportOptions::ExportGrid)
