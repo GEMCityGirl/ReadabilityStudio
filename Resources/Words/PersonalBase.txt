@@ -1669,6 +1669,7 @@ Banbury
 Bancolombia
 Bancroft
 Bandar
+Banderas
 Bandini
 Bandura
 Bandyopadhyay
@@ -2947,6 +2948,7 @@ Brooklyn
 Brooklyne
 Brooklynn
 Brooklynne
+Brookmeyer
 Brooks
 Broomhead
 Brose
@@ -11894,6 +11896,7 @@ Krauthammer
 Kravits
 Krawcheck
 Krebs
+Krebsbach
 Kreinheder
 Kreipl
 Kreitner
@@ -13189,6 +13192,7 @@ Lusa
 Lusaka
 Luschka
 Lusinchi
+Luskin
 Lussac
 Lutana
 Lutgarda
@@ -15392,6 +15396,7 @@ Nilsen
 Nilson
 Nilsson
 Nimitz
+Nimoy
 Nina
 Nineis
 Ninetta
@@ -21081,6 +21086,7 @@ Xever
 Xevera
 Xeveria
 Xiamara
+Xiangfeng
 Xiangyu
 Xiao
 Xiaofeng

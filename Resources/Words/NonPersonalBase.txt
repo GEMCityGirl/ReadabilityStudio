@@ -986,6 +986,7 @@ Charmion
 Charon
 Chartbeat
 Chartres
+ChatGPT
 Chattahoochee
 Chattanooga
 Chatterton
@@ -1527,6 +1528,7 @@ Elysium
 Emacs
 EMC
 Emirates
+Emmys
 Emulex
 Enceladus
 Endymion
@@ -4759,6 +4761,7 @@ Tonbridge
 Tonga
 Tongan
 Tonkin
+Tonys
 Topeka
 Torah
 Torbay

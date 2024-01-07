@@ -2034,6 +2034,8 @@ beggingings	beginnings	3
 beggining	beginning	3		
 beggins	begins	3		
 begin a dialogue	speak, discuss, talk	0		
+begin looked for	being looked for	3		
+begin searched for	being searched for	3		
 beging	beginning	3		
 begining	beginning	3		
 beginnig	beginning	3		
@@ -2047,6 +2049,8 @@ behemoth	giant	0
 behemoth's	giant's	0		
 behemoths	giants	0		
 behind the times	outdated	2		
+being look for	being looked for	3		
+being search for	being searched for	3		
 being that	because	0		
 beleaguer	besiege	0		
 beleaguered	besieged	0		
@@ -2438,6 +2442,9 @@ burying the hatchet	ending a dispute or grudge	2
 busines	business	3		
 business manger	business manager	3		
 business mangers	business managers	3		
+business orifice	business office	3		
+business orifice's	business office's	3		
+business orifices	business offices	3		
 busness	business	3		
 bussiness	business	3		
 busy as a beaver	very active, working hard	2		
@@ -2893,6 +2900,10 @@ circut	circuit	3
 ciricuit	circuit	3		
 ciriculum	curriculum	3		
 cirtcuit	circuit	3		
+city consul	city council	3		
+city consul's	city council's	3		
+city counsel	city council	3		
+city counsel's	city council's	3		
 city manger	city manager	3		
 city mangers	city managers	3		
 civillian	civilian	3		
@@ -3897,6 +3908,8 @@ coulmn	column	3
 coulmns	columns	3		
 couln't	couldn't	3		
 counries	countries	3		
+counsul	consul	3		
+counsuls	consuls	3		
 countains	contains	3		
 counteract	hinder	0		
 counteracted	hindered	0		
@@ -4607,6 +4620,9 @@ discredit	doubt	0
 discredited	doubted	0		
 discrediting	doubting	0		
 discredits	doubts	0		
+discreet unit	discrete unit	3		
+discreet unit's	discrete unit's	3		
+discreet units	discrete units	3		
 discribe	describe	3		
 discribed	described	3		
 discribes	describes	3		
@@ -8811,6 +8827,7 @@ mamal	mammal	3
 mamalian	mammalian	3		
 mamory	memory	3		
 man bites dog	newsworthy	2		
+man of principal	man of principle	3		
 managable	manageable	3		
 managemment	management	3		
 managemment's	management's	3		
@@ -9719,6 +9736,7 @@ on or before	before	0
 on or more	one or more	3		
 on pins and needles	nervous, on edge	2		
 on previous occasions	earlier	0		
+on principal	on principle	3		
 on prior occasions	earlier	0		
 on that particular occasion	then	0		
 on the ball	doing well, skilled, sharp, competent	2		
@@ -9986,7 +10004,13 @@ packs a wallop	delivers serious damage	2
 packs it in	quits	2		
 paid a visit to	visited	0		
 paid heed to	heeded, hearkened to, noted	0		
+paid her a complement	complimented her	3		
+paid her a compliment	complimented her	0		
+paid him a complement	complimented him	3		
+paid him a compliment	complimented him	0		
 paid the piper	settled an obligation	2		
+paid them a complement	complimented them	3		
+paid them a compliment	complimented them	0		
 paid through the nose	paid an exorbitant price	2		
 paide	paid	3		
 pain in the neck	annoyance	2		
@@ -10107,16 +10131,34 @@ pausing for a moment	pausing	0
 pavillion	pavilion	3		
 pay a visit to	visit	0		
 pay heed to	heed, hearken to, note	0		
+pay her a complement	compliment her	3		
+pay her a compliment	compliment her	0		
+pay him a complement	compliment him	3		
+pay him a compliment	compliment him	0		
 pay the piper	settle an obligation	2		
+pay them a complement	compliment them	3		
+pay them a compliment	compliment them	0		
 pay through the nose	pay an exorbitant price	2		
 payed	paid	3		
 paying a visit to	visiting	0		
 paying heed to	heeding, hearkening to, noting	0		
+paying her a complement	complimenting her	3		
+paying her a compliment	complimenting her	0		
+paying him a complement	complimenting him	3		
+paying him a compliment	complimenting him	0		
 paying the piper	settling an obligation	2		
+paying them a complement	complimenting them	3		
+paying them a compliment	complimenting them	0		
 paying through the nose	paying an exorbitant price	2		
 pays a visit to	visits	0		
 pays heed to	heeds, hearkens to, notes	0		
+pays her a complement	compliments her	3		
+pays her a compliment	compliments her	0		
+pays him a complement	compliments him	3		
+pays him a compliment	compliments him	0		
 pays the piper	settles an obligation	2		
+pays them a complement	compliments them	3		
+pays them a compliment	compliments them	0		
 pays through the nose	pays an exorbitant price	2		
 pblisher	publisher	3		
 pbulisher	publisher	3		
@@ -10305,6 +10347,7 @@ perseveres	persists	0
 persevering	persisting	0		
 persistance	persistence	3		
 persistant	persistent	3		
+person of principal	person of principle	3		
 personal belief	belief	0		
 personal bias	bias	0		
 personal opinion	opinion	0		
@@ -10817,11 +10860,21 @@ primatively	primitively	3
 primatives	primitives	3		
 primordal	primordial	3		
 primordial	primate	0		
+principal's orifice	principal's office	3		
+principal's orifice's	principal's office's	3		
 principaly	principality	3		
 principial	principal	3		
 principlaity	principality	3		
 principle activity	principal activity	3		
+principle actor		principal actor	3
+principle actor's	principal actor's	3		
+principle actors	principal actors	3		
+principle character	principal character	3		
+principle character's	principal character's	3		
+principle characters	principal characters	3		
 principle source	principal source	3		
+principle's office	principal's office	3		
+principle's office's	principal's office's	3		
 principly	principally	3		
 princliple	principle	3		
 prinicipal	principal	3		
@@ -11324,6 +11377,9 @@ queing	queuing	3
 quering	querying	3		
 querulous	fretful	0		
 querulously	fretfully	0		
+questbook	guestbook	3		
+questbook's guestbook's	3
+questbooks	guestbooks	3		
 questionaire	questionnaire	3		
 questionaire's	questionnaire's	3		
 questionaires	questionnaires	3		
@@ -11379,6 +11435,7 @@ rake over the coals	reprimand, punish	2
 raked over the coals	reprimanded, punished	2		
 rakes over the coals	reprimands, punishes	2		
 raking over the coals	reprimanding, punishing	2		
+Raliegh	Raleigh	3		
 ramification	consequence, branch, part	0		
 ramifications	consequences, branches, parts	0		
 ran circles around	vastly outperformed	2		
@@ -12274,6 +12331,8 @@ scavanged	scavenged	3
 schedual	schedule	3		
 scholarhip	scholarship	3		
 school principle	school principal	3		
+school principle's	school principal's	3		
+school principles	school principals	3		
 scientfic	scientific	3		
 scientifc	scientific	3		
 scientis	scientist	3		
@@ -12428,6 +12487,9 @@ serves up	serves	0
 servic	service	3		
 service manger	service manager	3		
 service mangers	service managers	3		
+serviece	service	3		
+serviece's	service's	3		
+servieces	services	3		
 serving up	serving	0		
 sesison	session	3		
 sesison's	session's	3		
@@ -12978,6 +13040,10 @@ stucture's	structure's	3
 stuctured	structured	3		
 stuctures	structures	3		
 studdy	study	3		
+student consul	student council	3		
+student consul's	student council's	3		
+student counsel	student council	3		
+student counsel's	student council's	3		
 studentsinterested	students interested	3		
 studing	studying	3		
 stuffed shirt	pompous person	2		
@@ -14909,6 +14975,7 @@ wokr	work	3
 wokring	working	3		
 wolf in sheep's clothing	someone pretending to be something they are not for malicious intent	2		
 wolves in sheep's clothing	those pretending to be something they are not for malicious intent	2		
+woman of principal	woman of principle	3		
 womens	women's	3		
 won hands down	won easily	2		
 won't not	wouldn't	3		
@@ -14961,6 +15028,7 @@ wtih	with	3
 wtihin	within	3		
 wtihout	without	3		
 wuold	would	3		
+Xianfeng	Xiangfeng	3		
 yaer	year	3		
 yaerly	yearly	3		
 yaers	years	3		
