@@ -155,17 +155,15 @@ namespace readability
         {
     public:
         /// @brief Constructor.
-        /// @param wlist The word list to use.
+        /// @param wlist The Dolch word list to use.
         /// @note This functor will **not** take ownership of this.
         explicit is_dolch_word(const readability::dolch_word_list* wlist) :
             m_wordlist(wlist)
             {}
-        /// @private
-        is_dolch_word() = default;
 
         /** @brief Interface to search for a word on the list.
             @param the_word The word to search for.
-            @returns @c true if the word being search for is on the list.
+            @returns @c true if the word being searched for is on the list.
             @sa get_last_search_result().*/
         [[nodiscard]]
         bool operator()(const word_typeT& the_word) const
