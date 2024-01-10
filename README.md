@@ -100,7 +100,7 @@ cmake --build . --target all
 The first time that you build, you may receive LaTeX errors about missing \*.sty files during the help build phase.
 Re-try the `cmake --build . --target all` command a few times until these go away.
 
-This happens because numerous \*.sty files need to be installed and the installation process times out occassionally.
+This happens because numerous \*.sty files need to be installed and the installation process times out occasionally.
 Once you have these files installed, this won't be an issue when rebuilding later.
 
 ### Word Lists

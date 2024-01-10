@@ -83,7 +83,7 @@ if(BUILD_TESTING)
 endif()
 
 # Setup wxWidgets
-########################
+##############################################################
 
 # Find wxWidgets (wxWidgetsConfig.cmake, specifically) and select its components
 if(WIN32)
@@ -94,7 +94,7 @@ endif()
 
 message(STATUS "Adding wxWidgets CMake cofig folder: ${wxWidgets_DIR}")
 if(NOT EXISTS "${wxWidgets_DIR}/wxWidgetsConfig.cmake" AND NOT EXISTS "${wxWidgets_DIR}/wxwidgets-config.cmake")
-    message(STATUS "Warning: cannot find wxWidgets CMake configuration. (Looked in ${wxWidgets_DIR}.)")
+    message(WARNING "Cannot find wxWidgets CMake configuration. (Looked in ${wxWidgets_DIR}.)")
 endif()
 set(wxWidgets_USE_STATIC 1)
 find_package(wxWidgets 3.3 COMPONENTS core base xrc propgrid xml aui ribbon qa stc net richtext REQUIRED CONFIG)
@@ -118,6 +118,7 @@ if(UNIX AND NOT APPLE)
 endif()
 
 # Run ALL unit-test suites for this program and its submodules
+##############################################################
 if(BUILD_TESTING)
     set(BUILD_TEMP ${CMAKE_CURRENT_SOURCE_DIR}/BuildTemp)
     file(REMOVE_RECURSE ${BUILD_TEMP})
@@ -153,27 +154,36 @@ if(BUILD_TESTING)
     run_test_suite(Wisteria-Dataviz tests/gui-tests WisteriaGuiTestRunner)
     run_rs_test_suite(tests RSTestRunner)
     run_rs_test_suite(tests/gui-tests RSGuiTestRunner)
+    message(STATUS "Unit test results availabe in ${CMAKE_CURRENT_SOURCE_DIR}/TestResults.")
 endif()
 
-# Build the help always for release build,
-# if BUILD_DOCS is defined,or PDF manual is missing.
-# TODO: Windows path to Pandoc currently only looks for Quarto installations.
+# Help Files
+##############################################################
+
+# make help directories if missing to avoid a build error
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/ReadabilityStudioDocs/docs/)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/ReadabilityTestsReference/docs/)
+
 get_filename_component(MANUAL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/docs/ReadabilityStudioDocs/docs/ReadabilityStudioManual.pdf" REALPATH)
 include(cmake/modules/FindR.cmake)
+# TODO: Windows path to Pandoc currently only looks for Quarto installations.
 include(cmake/modules/FindPandoc.cmake)
-if(R_FOUND AND PANDOC_FOUND AND
-   (NOT EXISTS ${MANUAL_PATH} OR
-    BUILD_DOCS OR ${CMAKE_BUILD_TYPE} STREQUAL "Release"))
-    execute_process(COMMAND "${R_SCRIPT}"
-                        "${CMAKE_CURRENT_SOURCE_DIR}/docs/BuildHelpProjects.R"
-                        "${PANDOC_ROOT_DIR}"
-                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/docs/"
-                    COMMAND_ERROR_IS_FATAL ANY)
-endif()
-if(NOT R_FOUND)
-    message(STATUS "Warning: R not found. Help cannot be built.")
-elseif(NOT PANDOC_FOUND)
-    message(STATUS "Warning: Pandoc not found. Help cannot be built.")
+# Build the help always for release build,
+# if BUILD_DOCS is defined,or PDF manual is missing.
+if(NOT EXISTS ${MANUAL_PATH} OR
+   BUILD_DOCS OR
+   ${CMAKE_BUILD_TYPE} STREQUAL "Release")
+    if(NOT R_FOUND)
+        message(WARNING "R not found. Help cannot be built.")
+    elseif(NOT PANDOC_FOUND)
+        message(WARNING "Pandoc not found. Help cannot be built.")
+    else()
+        execute_process(COMMAND "${R_SCRIPT}"
+                            "${CMAKE_CURRENT_SOURCE_DIR}/docs/BuildHelpProjects.R"
+                            "${PANDOC_ROOT_DIR}"
+                        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/docs/"
+                        COMMAND_ERROR_IS_FATAL ANY)
+    endif()
 endif()
 
 if(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
@@ -190,7 +200,8 @@ add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
 # Build binary
-########################
+##############################################################
+
 # (run "tools/Build CMake Files List.R" to update this)
 include(${CMAKE_CURRENT_SOURCE_DIR}/tools/files.cmake)
 if(WIN32)
@@ -204,7 +215,7 @@ elseif(APPLE)
 endif()
 add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${APP_SRC_FILES} ../Licensing/CyoDecode.cpp ../Licensing/CyoEncode.cpp ../Licensing/LicenseAdmin.cpp ../Licensing/LicenseDlg.cpp ../Licensing/Rijndael.cpp)
 
-# Set definitions, warnings, and optimizations (will propagate to the demo project also)
+# Set definitions, warnings, and optimizations
 if(MSVC)
     # _DISABLE_VECTOR_ANNOTATION _DISABLE_STRING_ANNOTATION are needed for ASAN not being enabled in linked wxWidgets libs
     # https://learn.microsoft.com/en-us/cpp/sanitizers/error-container-overflow?view=msvc-170
@@ -235,14 +246,13 @@ elseif(MINGW OR MSYS)
 elseif(APPLE)
     target_compile_definitions(${PROJECT_NAME} PUBLIC __WXOSX__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
-    # don't include -Werror for now
+    # TODO: don't include -Werror for now, but eventually add it
     target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow
                            $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O2>)
-# TODO: Experimental code for Linux
 elseif(UNIX)
     target_compile_definitions(${PROJECT_NAME} PUBLIC __WXGTK__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
-    # don't include -Werror for now
+    # TODO: don't include -Werror for now, but eventually add it
     target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wshadow -Wpedantic
                            $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O2>)
 endif()
@@ -265,6 +275,7 @@ elseif(UNIX)
 endif()
 
 # Copy help, scripts, and resources into build folder
+##############################################################
 message(STATUS "Copying application resources...")
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
