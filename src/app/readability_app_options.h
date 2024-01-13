@@ -1011,7 +1011,7 @@ class ReadabilityAppOptions
 
     // whether Proper Nouns are getting ignored
     [[nodiscard]]
-    bool IsIgnoringProperNouns() noexcept
+    bool IsIgnoringProperNouns() const noexcept
         {
         return m_ignoreProperNouns;
         }
@@ -1205,7 +1205,7 @@ class ReadabilityAppOptions
 
     // Test Recommendation
     [[nodiscard]]
-    TestRecommendation GetTestRecommendation() noexcept
+    TestRecommendation GetTestRecommendation() const noexcept
         {
         return m_testRecommendation;
         }
@@ -2307,7 +2307,7 @@ class ReadabilityAppOptions
     void SetCenterPrinterFooter(const wxString& header) { m_centerPrinterFooter = header; }
 
     [[nodiscard]]
-    wxString GetCenterPrinterFooter()
+    wxString GetCenterPrinterFooter() const
         {
         return m_centerPrinterFooter;
         }
@@ -2473,16 +2473,16 @@ class ReadabilityAppOptions
 
     /// @returns The file filter string for opening our supported document types.
     [[nodiscard]]
-    wxString GetDocumentFilter() const;
+    static wxString GetDocumentFilter();
 
   private:
     void LoadThemeNode(tinyxml2::XMLElement* appearanceNode);
     [[nodiscard]]
-    wxString TiXmlNodeToString(const tinyxml2::XMLNode* node, const wxString& tagToRead);
+    static wxString TiXmlNodeToString(const tinyxml2::XMLNode* node, const wxString& tagToRead);
     /// @returns The value from the specified attribute from @c node as a double, or NaN on failure.
     /// @note This assumes the double is written in US format (and no thousands separator).
     [[nodiscard]]
-    double TiXmlNodeToDouble(const tinyxml2::XMLNode* node, const wxString& tagToRead);
+    static double TiXmlNodeToDouble(const tinyxml2::XMLNode* node, const wxString& tagToRead);
 
     // embedded text editor
     wxFont m_editorFont;

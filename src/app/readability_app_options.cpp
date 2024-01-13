@@ -655,7 +655,7 @@ void ReadabilityAppOptions::ResetSettings()
 //------------------------------------------------
 void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
     {
-    if (appearanceNode)
+    if (appearanceNode != nullptr)
         {
         lily_of_the_valley::html_extract_text filter_html;
 
@@ -4783,7 +4783,7 @@ wxString ReadabilityAppOptions::TiXmlNodeToString(const tinyxml2::XMLNode* node,
     }
 
 //------------------------------------------------
-wxString ReadabilityAppOptions::GetDocumentFilter() const
+wxString ReadabilityAppOptions::GetDocumentFilter()
     {
     const wxString TextFilter = _DT(L"*.txt");
     const wxString HtmlFiles = _DT(L"*.htm;*.html;*.xhtml;*.sgml;*.php;*.php3;*.php4;*.aspx;*.asp");
