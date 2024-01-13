@@ -1661,19 +1661,20 @@ Wisteria::UI::SideBar* ReadabilityApp::CreateSideBar(wxWindow* frame, const wxWi
     }
 
 //-----------------------------------
+wxImage ReadabilityApp::ReadRibbonSvgIcon(const wxString& path)
+    {
+    return GetResourceManager().
+        GetSVG(path).
+        GetBitmap(GetMainFrame()->FromDIP(wxSize(32, 32))).
+        // Hack for icon to work with ribbon; otherwise, the ribbon never resizes
+        // the image when the button gets smaller. Ribbon must be relying on some
+        // sort of information that converting a bitmap to an image and back performs.
+        ConvertToImage();
+    }
+
+//-----------------------------------
 wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc)
     {
-    const auto readRibbonButtonSVG = [this](const auto& path)
-        {
-        return GetResourceManager().
-            GetSVG(path).
-            GetBitmap(GetMainFrame()->FromDIP(wxSize(32, 32))).
-            // Hack for icon to work with ribbon; otherwise, the ribbon never resizes
-            // the image when the button gets smaller. Ribbon must be relying on some
-            // sort of information that converting a bitmap to an image and back performs.
-            ConvertToImage();
-        };
-
     const RibbonType rtype = (doc == nullptr) ? RibbonType::MainFrameRibbon :
         doc->IsKindOf(CLASSINFO(ProjectDoc)) ? RibbonType::StandardProjectRibbon : RibbonType::BatchProjectRibbon;
     // Home tab
@@ -1691,10 +1692,10 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         wxRibbonButtonBar* projectButtonBar =
             new wxRibbonButtonBar(projectPanel, MainFrame::ID_PROJECT_RIBBON_BUTTON_BAR);
         projectButtonBar->AddHybridButton(wxID_NEW, _(L"New"),
-            readRibbonButtonSVG(L"ribbon/document.svg"),
+            ReadRibbonSvgIcon(L"ribbon/document.svg"),
             _(L"Create a new project."));
         projectButtonBar->AddHybridButton(wxID_OPEN, _(L"Open"),
-            readRibbonButtonSVG(L"ribbon/file-open.svg"),
+            ReadRibbonSvgIcon(L"ribbon/file-open.svg"),
             _(L"Open an existing project."));
         if (rtype == RibbonType::BatchProjectRibbon)
             {
@@ -1704,45 +1705,45 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             wxRibbonButtonBar* documentsButtonBar = new wxRibbonButtonBar(documentsPanel);
             documentsButtonBar->AddButton(XRCID("ID_SEND_TO_STANDARD_PROJECT"),
                 _(L"Subproject"),
-                readRibbonButtonSVG(L"ribbon/send-to-subproject.svg"),
+                ReadRibbonSvgIcon(L"ribbon/send-to-subproject.svg"),
                 _(L"Create a standard project from the selected document."));
             documentsButtonBar->AddToggleButton(XRCID("ID_STATISTICS_WINDOW"),
                 _(L"Statistics"),
-                readRibbonButtonSVG(L"ribbon/stats.svg"),
+                ReadRibbonSvgIcon(L"ribbon/stats.svg"),
                 _(L"Display statistics for the selected document."));
             documentsButtonBar->AddButton(XRCID("ID_REMOVE_DOCUMENT"),
                 _(L"Remove Document"),
-                readRibbonButtonSVG(L"ribbon/delete-document.svg"),
+                ReadRibbonSvgIcon(L"ribbon/delete-document.svg"),
                 _(L"Remove the selected document from the project."));
             }
         if (rtype != RibbonType::MainFrameRibbon)
             {
             projectButtonBar->AddButton(XRCID("ID_DOCUMENT_REFRESH"),
                 _(L"Reload"),
-                readRibbonButtonSVG(L"ribbon/reload.svg"),
+                ReadRibbonSvgIcon(L"ribbon/reload.svg"),
                 _(L"Reanalyze the document."));
             if (rtype == RibbonType::StandardProjectRibbon)
                 {
                 projectButtonBar->AddToggleButton(XRCID("ID_REALTIME_UPDATE"),
                     _(L"Real-time Update"),
-                    readRibbonButtonSVG(L"ribbon/realtime.svg"),
+                    ReadRibbonSvgIcon(L"ribbon/realtime.svg"),
                     _(L"Automatically reload the project as the source document is edited externally."));
                 }
             projectButtonBar->AddDropdownButton(XRCID("ID_SAVE_OPTIONS"),
                 _(L"Save"),
-                readRibbonButtonSVG(L"ribbon/file-save.svg"),
+                ReadRibbonSvgIcon(L"ribbon/file-save.svg"),
                 _(L"Save the project."));
             projectButtonBar->AddHybridButton(wxID_PRINT,
                 _(L"Print"),
-                readRibbonButtonSVG(L"ribbon/print.svg"),
+                ReadRibbonSvgIcon(L"ribbon/print.svg"),
                 _(L"Print the selected window."));
             projectButtonBar->AddButton(wxID_PROPERTIES,
                 _(L"Properties"),
-                readRibbonButtonSVG(L"ribbon/project-settings.svg"),
+                ReadRibbonSvgIcon(L"ribbon/project-settings.svg"),
                 _(L"Change the settings for this project."));
             projectButtonBar->AddToggleButton(XRCID("ID_SHOW_SIDEBAR"),
                 _(L"Sidebar"),
-                readRibbonButtonSVG(L"ribbon/toggle-sidebar.svg"),
+                ReadRibbonSvgIcon(L"ribbon/toggle-sidebar.svg"),
                 _(L"Shows or hides the sidebar."));
             projectButtonBar->ToggleButton(XRCID("ID_SHOW_SIDEBAR"), true);
 
@@ -1752,10 +1753,10 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                                                          wxRIBBON_PANEL_NO_AUTO_MINIMISE);
             wxRibbonButtonBar* editButtonBar = new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
             editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
-                readRibbonButtonSVG(L"ribbon/copy.svg"),
+                ReadRibbonSvgIcon(L"ribbon/copy.svg"),
                 _(L"Copy the selected item."));
             editButtonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
-                readRibbonButtonSVG(L"ribbon/select-all.svg"),
+                ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
                 _(L"Select All"));
             }
         else // rtype == RibbonType::MainFrameRibbon
@@ -1767,13 +1768,13 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             wxRibbonButtonBar* settingsButtonBar = new wxRibbonButtonBar(settingsPanel);
             settingsButtonBar->AddDropdownButton(XRCID("ID_PRINT_OPTIONS"),
                 _(L"Printing"),
-                readRibbonButtonSVG(L"ribbon/print.svg"),
+                ReadRibbonSvgIcon(L"ribbon/print.svg"),
                 _(L"Change print settings."));
             settingsButtonBar->AddDropdownButton(XRCID("ID_EDIT_DICTIONARY"), _(L"Spell Checker"),
-                readRibbonButtonSVG(L"ribbon/misspellings.svg"),
+                ReadRibbonSvgIcon(L"ribbon/misspellings.svg"),
                 _(L"Edit the spell checker's dictionary."));
             settingsButtonBar->AddButton(wxID_PREFERENCES, _(L"Options"),
-                readRibbonButtonSVG(L"ribbon/configure.svg"),
+                ReadRibbonSvgIcon(L"ribbon/configure.svg"),
                 _(L"Change the program's general options."));
             // test section
             wxRibbonPanel* readabilityTestsPanel =
@@ -1781,21 +1782,21 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                                   wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
             wxRibbonButtonBar* readabilityTestsBar = new wxRibbonButtonBar(readabilityTestsPanel);
             readabilityTestsBar->AddDropdownButton(XRCID("ID_CUSTOM_TESTS"), _(L"Custom"),
-                readRibbonButtonSVG(L"ribbon/formula.svg"),
+                ReadRibbonSvgIcon(L"ribbon/formula.svg"),
                 _(L"Create or edit custom tests."));
             readabilityTestsBar->AddDropdownButton(XRCID("ID_TEST_BUNDLES"),
                 _(L"Bundles"),
-                readRibbonButtonSVG(L"ribbon/bundles.svg"),
+                ReadRibbonSvgIcon(L"ribbon/bundles.svg"),
                 _(L"Add multiple tests to a project at once."));
             readabilityTestsBar->AddButton(XRCID("ID_TESTS_OVERVIEW"), _(L"Tests Overview"),
-                readRibbonButtonSVG(L"ribbon/tests-overview.svg"),
+                ReadRibbonSvgIcon(L"ribbon/tests-overview.svg"),
                 _(L"View information about each readability test."));
             readabilityTestsBar->AddHybridButton(XRCID("ID_WORD_LISTS"), _(L"Word Lists"),
-                readRibbonButtonSVG(L"tests/dale-chall-test.svg"),
+                ReadRibbonSvgIcon(L"tests/dale-chall-test.svg"),
                 _(L"View the word lists used by readability tests."));
             readabilityTestsBar->AddDropdownButton(XRCID("ID_BLANK_GRAPHS"),
                 _(L"Blank Graphs"),
-                readRibbonButtonSVG(L"ribbon/blank-graphs.svg"),
+                ReadRibbonSvgIcon(L"ribbon/blank-graphs.svg"),
                 _(L"Print or save blank readability graph templates."));
             // tools section
             wxRibbonPanel* toolsPanel =
@@ -1803,21 +1804,21 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                                   wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
             wxRibbonButtonBar* toolButtonBar = new wxRibbonButtonBar(toolsPanel);
             toolButtonBar->AddButton(XRCID("ID_WEB_HARVEST"), _(L"Web Harvester"),
-                readRibbonButtonSVG(L"ribbon/web-export.svg"),
+                ReadRibbonSvgIcon(L"ribbon/web-export.svg"),
                 _(L"Download and analyze multiple webpages."));
     #ifndef NDEBUG
             toolButtonBar->AddButton(XRCID("ID_CHAPTER_SPLIT"),
                 _(L"Chapter Split"),
-                readRibbonButtonSVG(L"ribbon/chapter-split.svg"),
+                ReadRibbonSvgIcon(L"ribbon/chapter-split.svg"),
                 _(L"Split a document into smaller documents."));
             toolButtonBar->AddButton(XRCID("ID_FIND_DUPLICATE_FILES"),
                 _(L"Find Duplicates"),
-                readRibbonButtonSVG(L"ribbon/duplicate-files.svg"),
+                ReadRibbonSvgIcon(L"ribbon/duplicate-files.svg"),
                 _(L"Search for (and remove) duplicate files."));
     #endif
             toolButtonBar->AddButton(XRCID("ID_VIEW_LOG_REPORT"),
                     _(L"Log Report"),
-                     readRibbonButtonSVG(L"ribbon/log-book.svg"));
+                     ReadRibbonSvgIcon(L"ribbon/log-book.svg"));
             if (wxGetMouseState().ShiftDown()
                 #ifndef NDEBUG
                     || true
@@ -1826,13 +1827,13 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 {
                 toolButtonBar->AddButton(XRCID("ID_SCRIPT_WINDOW"),
                     _(L"Lua Script"),
-                    readRibbonButtonSVG(L"ribbon/lua.svg"));
+                    ReadRibbonSvgIcon(L"ribbon/lua.svg"));
                 }
             #ifndef NDEBUG
                 #ifdef ENABLE_PROFILING
                     toolButtonBar->AddButton(XRCID("ID_VIEW_PROFILE_REPORT"),
                         _(L"Profile Report"),
-                        readRibbonButtonSVG(L"ribbon/clock.svg"));
+                        ReadRibbonSvgIcon(L"ribbon/clock.svg"));
                 #endif
             #endif
             }
@@ -1849,10 +1850,10 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         wxRibbonButtonBar* proofingButtonBar =
             new wxRibbonButtonBar(proofingPanel, MainFrame::ID_PROOFING_RIBBON_BUTTON_BAR);
         proofingButtonBar->AddButton(XRCID("ID_LAUNCH_SOURCE_FILE"), _(L"Edit Document"),
-                                     readRibbonButtonSVG(L"ribbon/edit-document.svg"),
+                                     ReadRibbonSvgIcon(L"ribbon/edit-document.svg"),
                                      _(L"Edit the document that is being analyzed."));
         proofingButtonBar->AddHybridButton(XRCID("ID_EDIT_DICTIONARY"), _(L"Spell Checker"),
-                                           readRibbonButtonSVG(L"ribbon/misspellings.svg"),
+                                           ReadRibbonSvgIcon(L"ribbon/misspellings.svg"),
                                            _(L"Edit the spell checker's dictionary."));
         // sentence section
         wxRibbonPanel* sentencePanel = new wxRibbonPanel(documentPage, wxID_ANY,
@@ -1860,7 +1861,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
         wxRibbonButtonBar* sentenceButtonBar = new wxRibbonButtonBar(sentencePanel);
         sentenceButtonBar->AddDropdownButton(XRCID("ID_SENTENCE_LENGTHS"), _(L"Long Sentences"),
-                                             readRibbonButtonSVG(L"ribbon/long-sentence.svg"),
+                                             ReadRibbonSvgIcon(L"ribbon/long-sentence.svg"),
                                              _(L"Control how overly long sentences are determined."));
         // sentence/paragraph deduction
         wxRibbonPanel* deductionPanel =
@@ -1869,16 +1870,16 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         wxRibbonButtonBar* deductionButtonBar =
             new wxRibbonButtonBar(deductionPanel, MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR);
         deductionButtonBar->AddDropdownButton(XRCID("ID_LINE_ENDS"), _(L"Line Ends"),
-            readRibbonButtonSVG(L"ribbon/paragraph.svg"),
+            ReadRibbonSvgIcon(L"ribbon/paragraph.svg"),
             _(L"Control how line ends effect paragraph detection."));
         deductionButtonBar->AddToggleButton(XRCID("ID_IGNORE_BLANK_LINES"), _(L"Ignore Blank Lines"),
-            readRibbonButtonSVG(L"ribbon/blank-lines.svg"),
+            ReadRibbonSvgIcon(L"ribbon/blank-lines.svg"),
             _(L"Control whether blank lines should affect how paragraph breaks are detected."));
         deductionButtonBar->AddToggleButton(XRCID("ID_IGNORE_INDENTING"), _(L"Ignore Indenting"),
-            readRibbonButtonSVG(L"ribbon/indenting.svg"),
+            ReadRibbonSvgIcon(L"ribbon/indenting.svg"),
             _(L"Control whether indenting should affect how paragraph breaks are detected."));
         deductionButtonBar->AddToggleButton(XRCID("ID_SENTENCES_CAPITALIZED"), _(L"Strict Capitalization"),
-            readRibbonButtonSVG(L"ribbon/capital-letter.svg"),
+            ReadRibbonSvgIcon(L"ribbon/capital-letter.svg"),
             _(L"Change whether sentences must begin with capital letters when determining sentence breaks."));
         // text exclusion
         wxRibbonPanel* exclusionPanel =
@@ -1887,34 +1888,34 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         wxRibbonButtonBar* exclusionButtonBar =
             new wxRibbonButtonBar(exclusionPanel, MainFrame::ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR);
         exclusionButtonBar->AddDropdownButton(XRCID("ID_TEXT_EXCLUSION"), _(L"Exclusion"),
-            readRibbonButtonSVG(L"ribbon/proofreading-delete.svg"),
+            ReadRibbonSvgIcon(L"ribbon/proofreading-delete.svg"),
             _(L"Select how text should be excluded from the analysis."));
         exclusionButtonBar->AddButton(XRCID("ID_INCOMPLETE_THRESHOLD"), _(L"Incomplete Threshold"),
-            readRibbonButtonSVG(L"ribbon/period-needed.svg"),
+            ReadRibbonSvgIcon(L"ribbon/period-needed.svg"),
             _(L"Specify the minimum length of an incomplete sentence that should be considered valid."));
         exclusionButtonBar->AddToggleButton(XRCID("ID_EXCLUDE_AGGRESSIVELY"), _(L"Aggressive"),
-            readRibbonButtonSVG(L"ribbon/aggressive-list.svg"),
+            ReadRibbonSvgIcon(L"ribbon/aggressive-list.svg"),
             _(L"Aggressively excludes list items, citations, and copyright notices (if applicable)."));
         exclusionButtonBar->AddToggleButton(XRCID("ID_EXCLUDE_COPYRIGHT_NOTICES"), _(L"Copyrights"),
-            readRibbonButtonSVG(L"ribbon/ignore-copyright.svg"),
+            ReadRibbonSvgIcon(L"ribbon/ignore-copyright.svg"),
             _(L"Exclude trailing copyright statements from the analysis."));
         exclusionButtonBar->AddToggleButton(XRCID("ID_EXCLUDE_TRAILING_CITATIONS"), _(L"Citations"),
-            readRibbonButtonSVG(L"ribbon/citation.svg")),
+            ReadRibbonSvgIcon(L"ribbon/citation.svg")),
             _(L"Exclude trailing citations from the analysis.");
         exclusionButtonBar->AddToggleButton(XRCID("ID_EXCLUDE_FILE_ADDRESSES"), _(L"File Names"),
-            readRibbonButtonSVG(L"ribbon/internet.svg"),
+            ReadRibbonSvgIcon(L"ribbon/internet.svg"),
             _(L"Exclude file names and website addresses from the analysis."));
         exclusionButtonBar->AddToggleButton(XRCID("ID_EXCLUDE_NUMERALS"), _(L"Numerals"),
-            readRibbonButtonSVG(L"ribbon/ignore-numerals.svg"),
+            ReadRibbonSvgIcon(L"ribbon/ignore-numerals.svg"),
             _(L"Exclude numbers from the analysis."));
         exclusionButtonBar->AddToggleButton(XRCID("ID_EXCLUDE_PROPER_NOUNS"), _(L"Proper Nouns"),
-            readRibbonButtonSVG(L"ribbon/person.svg"),
+            ReadRibbonSvgIcon(L"ribbon/person.svg"),
             _(L"Exclude proper names from the analysis."));
         exclusionButtonBar->AddButton(XRCID("ID_EXCLUDE_WORD_LIST"), _(L"Exclude Words"),
-            readRibbonButtonSVG(L"ribbon/exclusion-list.svg"),
+            ReadRibbonSvgIcon(L"ribbon/exclusion-list.svg"),
             _(L"Add a custom list of words and phrases to exclude from the analysis."));
         exclusionButtonBar->AddDropdownButton(XRCID("ID_EXCLUSION_TAGS"), _(L"Exclusion Tags"),
-            readRibbonButtonSVG(L"ribbon/exclusion-tags.svg"),
+            ReadRibbonSvgIcon(L"ribbon/exclusion-tags.svg"),
             _(L"Specify tags that will exclude all text between them."));
         // numeral syllabizing
         wxRibbonPanel* numeralsPanel =
@@ -1923,7 +1924,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         wxRibbonButtonBar* numeralsButtonBar =
             new wxRibbonButtonBar(numeralsPanel, MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR);
         numeralsButtonBar->AddDropdownButton(XRCID("ID_NUMERAL_SYLLABICATION"), _(L"Syllabication"),
-                                             readRibbonButtonSVG(L"ribbon/number-syllabize.svg"),
+                                             ReadRibbonSvgIcon(L"ribbon/number-syllabize.svg"),
                                              _(L"Specify how syllables should be counted for numbers."));
 
         // Readability tests tab
@@ -1935,30 +1936,30 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
 
         standardTestsBar->AddDropdownButton(XRCID("ID_PRIMARY_AGE_TESTS_BUTTON"),
             _(L"Primary"),
-            readRibbonButtonSVG(L"tests/dolch.svg"),
+            ReadRibbonSvgIcon(L"tests/dolch.svg"),
             _(L"Tests meant for primary-age materials."));
         standardTestsBar->AddDropdownButton(XRCID("ID_SECONDARY_AGE_TESTS_BUTTON"),
             _(L"Secondary"),
-            readRibbonButtonSVG(L"ribbon/secondary.svg"),
+            ReadRibbonSvgIcon(L"ribbon/secondary.svg"),
             _(L"Tests meant for secondary-age materials."));
         standardTestsBar->AddDropdownButton(XRCID("ID_ADULT_TESTS_BUTTON"),
             _(L"Adult"),
-            readRibbonButtonSVG(L"ribbon/adult.svg"),
+            ReadRibbonSvgIcon(L"ribbon/adult.svg"),
             _(L"Tests meant for adult-level materials."));
         standardTestsBar->AddDropdownButton(XRCID("ID_SECOND_LANGUAGE_TESTS_BUTTON"),
             _(L"Second Language"),
-            readRibbonButtonSVG(L"ribbon/esl.svg"),
+            ReadRibbonSvgIcon(L"ribbon/esl.svg"),
             _(L"Tests for materials designed for second-language readers."));
         standardTestsBar->AddDropdownButton(XRCID("ID_CUSTOM_TESTS"), _(L"Custom"),
-            readRibbonButtonSVG(L"ribbon/formula.svg"),
+            ReadRibbonSvgIcon(L"ribbon/formula.svg"),
             _(L"Create or edit custom tests."));
         standardTestsBar->AddDropdownButton(XRCID("ID_TEST_BUNDLES"),
             _(L"Bundles"),
-            readRibbonButtonSVG(L"ribbon/bundles.svg"),
+            ReadRibbonSvgIcon(L"ribbon/bundles.svg"),
             _(L"Add multiple tests to a project at once."));
         standardTestsBar->AddButton(XRCID("ID_REMOVE_TEST"),
             _(L"Remove"),
-            readRibbonButtonSVG(L"ribbon/delete.svg"),
+            ReadRibbonSvgIcon(L"ribbon/delete.svg"),
             _(L"Remove the selected test from the project."));
         // readability tools section
         wxRibbonPanel* readabilityToolsPanel =
@@ -1967,20 +1968,20 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         wxRibbonButtonBar* readabilityToolBar = new wxRibbonButtonBar(readabilityToolsPanel);
         readabilityToolBar->AddButton(XRCID("ID_TESTS_OVERVIEW"),
             _(L"Tests Overview"),
-            readRibbonButtonSVG(L"ribbon/tests-overview.svg"),
+            ReadRibbonSvgIcon(L"ribbon/tests-overview.svg"),
             _(L"View information about each readability test."));
         if (rtype == RibbonType::BatchProjectRibbon)
             { readabilityToolBar->AddToggleButton(XRCID("ID_TEST_EXPLANATIONS_WINDOW"),
                 _(L"Test Explanations"),
-                readRibbonButtonSVG(L"ribbon/formula.svg"),
+                ReadRibbonSvgIcon(L"ribbon/formula.svg"),
                 _(L"Read an explanation of the selected test score.")); }
         readabilityToolBar->AddHybridButton(XRCID("ID_WORD_LISTS"),
             _(L"Word Lists"),
-            readRibbonButtonSVG(L"tests/dale-chall-test.svg"),
+            ReadRibbonSvgIcon(L"tests/dale-chall-test.svg"),
             _(L"View the word lists used by readability tests."));
         readabilityToolBar->AddDropdownButton(XRCID("ID_BLANK_GRAPHS"),
             _(L"Blank Graphs"),
-            readRibbonButtonSVG(L"ribbon/blank-graphs.svg"),
+            ReadRibbonSvgIcon(L"ribbon/blank-graphs.svg"),
             _(L"Print or save blank readability graph templates."));
 
         // Tools tab
@@ -1991,25 +1992,25 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         wxRibbonButtonBar* toolButtonBar = new wxRibbonButtonBar(toolsPanel);
         toolButtonBar->AddButton(XRCID("ID_WEB_HARVEST"),
             _(L"Web Harvester"),
-            readRibbonButtonSVG(L"ribbon/web-export.svg"),
+            ReadRibbonSvgIcon(L"ribbon/web-export.svg"),
             _(L"Download and analyze multiple webpages."));
     #ifndef NDEBUG
         toolButtonBar->AddButton(XRCID("ID_CHAPTER_SPLIT"),
             _(L"Chapter Split"),
-            readRibbonButtonSVG(L"ribbon/chapter-split.svg"),
+            ReadRibbonSvgIcon(L"ribbon/chapter-split.svg"),
             _(L"Split a document into smaller documents."));
         toolButtonBar->AddButton(XRCID("ID_FIND_DUPLICATE_FILES"),
             _(L"Find Duplicates"),
-            readRibbonButtonSVG(L"ribbon/duplicate-files.svg"),
+            ReadRibbonSvgIcon(L"ribbon/duplicate-files.svg"),
             _(L"Search for and remove duplicate files."));
     #endif
         toolButtonBar->AddButton(wxID_PREFERENCES,
             _(L"Options"),
-            readRibbonButtonSVG(L"ribbon/configure.svg"),
+            ReadRibbonSvgIcon(L"ribbon/configure.svg"),
             _(L"Change the program's general options."));
         toolButtonBar->AddButton(XRCID("ID_VIEW_LOG_REPORT"),
             _(L"Log Report"),
-            readRibbonButtonSVG(L"ribbon/log-book.svg"));
+            ReadRibbonSvgIcon(L"ribbon/log-book.svg"));
         if (wxGetMouseState().ShiftDown()
             // turn on for debug (not release) build
             #ifndef NDEBUG
@@ -2019,13 +2020,13 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             {
             toolButtonBar->AddButton(XRCID("ID_SCRIPT_WINDOW"),
                 _(L"Lua Script"),
-                readRibbonButtonSVG(L"ribbon/lua.svg"));
+                ReadRibbonSvgIcon(L"ribbon/lua.svg"));
             }
         #ifndef NDEBUG
             #ifdef ENABLE_PROFILING
                 toolButtonBar->AddButton(XRCID("ID_VIEW_PROFILE_REPORT"),
                     _(L"Profile Report"),
-                    readRibbonButtonSVG(L"ribbon/clock.svg"));
+                    ReadRibbonSvgIcon(L"ribbon/clock.svg"));
             #endif
         #endif
         }
@@ -2038,33 +2039,33 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                               wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
         wxRibbonButtonBar* helpButtonBar = new wxRibbonButtonBar(helpPanel);
         helpButtonBar->AddButton(wxID_HELP, _(L"Content"),
-            readRibbonButtonSVG(L"ribbon/web-help.svg"),
+            ReadRibbonSvgIcon(L"ribbon/web-help.svg"),
             _(L"Read the documentation in a browser."));
         helpButtonBar->AddButton(XRCID("ID_HELP_MANUAL"),
             _(L"Manual"),
-            readRibbonButtonSVG(L"ribbon/help-manual.svg"),
+            ReadRibbonSvgIcon(L"ribbon/help-manual.svg"),
             _(L"Read the manual."));
         helpButtonBar->AddButton(XRCID("ID_TESTS_REFERENCE"),
             _(L"Tests Reference"),
-            readRibbonButtonSVG(L"ribbon/tests-overview.svg"),
+            ReadRibbonSvgIcon(L"ribbon/tests-overview.svg"),
             _(L"Read the readability tests reference."));
         helpButtonBar->AddButton(XRCID("ID_SHORTCUTS_CHEATSHEET"),
             _(L"Shortcuts"),
-            readRibbonButtonSVG(L"ribbon/keyboard-shortcuts.svg"),
+            ReadRibbonSvgIcon(L"ribbon/keyboard-shortcuts.svg"),
             _(L"Display the keyboard shortcuts cheatsheet."));
         helpButtonBar->AddHybridButton(XRCID("ID_EXAMPLES"),
             _(L"Example Documents"),
-            readRibbonButtonSVG(L"ribbon/examples.svg"),
+            ReadRibbonSvgIcon(L"ribbon/examples.svg"),
             _(L"Analyze example documents from the help."));
 
         wxRibbonPanel* supportPanel = new wxRibbonPanel(helpPage, wxID_ANY, _(L"Support"), wxNullBitmap);
         wxRibbonButtonBar* supportButtonBar = new wxRibbonButtonBar(supportPanel);
         supportButtonBar->AddButton(XRCID("ID_CHECK_FOR_UPDATES"),
             _(L"Updates"),
-            readRibbonButtonSVG(L"ribbon/updates.svg"),
+            ReadRibbonSvgIcon(L"ribbon/updates.svg"),
             _(L"Check for updates."));
         supportButtonBar->AddButton(wxID_ABOUT, _(L"About"),
-            readRibbonButtonSVG(L"ribbon/app-logo.svg"),
+            ReadRibbonSvgIcon(L"ribbon/app-logo.svg"),
             _(L"Learn more about the program."));
         }
     ribbon->SetArtProvider(new RibbonMetroArtProvider);

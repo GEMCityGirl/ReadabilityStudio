@@ -806,17 +806,6 @@ void BatchProjectView::OnDocumentDelete([[maybe_unused]] wxRibbonButtonBarEvent&
 //-------------------------------------------------------
 void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     {
-    const auto readRibbonButtonSVG = [this](const auto& path)
-        {
-        return wxGetApp().GetResourceManager().
-            GetSVG(path).
-            GetBitmap(GetActiveProjectWindow()->FromDIP(wxSize(32, 32))).
-            // Hack for icon to work with ribbon; otherwise, the ribbon never resizes
-            // the image when the button gets smaller. Ribbon must be relying on some
-            // sort of information that converting a bitmap to an image and back performs.
-            ConvertToImage();
-        };
-
     // dynamic Save menu icons
     const auto filterIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/filter.svg");
     const auto saveIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/file-save.svg");
@@ -905,20 +894,20 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
 
                         editButtonBar->ClearButtons();
                         editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                                         readRibbonButtonSVG(L"ribbon/photos.svg"),
+                                                         wxGetApp().ReadRibbonSvgIcon(L"ribbon/photos.svg"),
                                                          _(L"Set the graph's background."));
                         editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                                         readRibbonButtonSVG(L"ribbon/font.svg"),
+                                                         wxGetApp().ReadRibbonSvgIcon(L"ribbon/font.svg"),
                                                          _(L"Change the graph's fonts."));
                         editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                                 readRibbonButtonSVG(L"ribbon/watermark.svg"),
+                                                 wxGetApp().ReadRibbonSvgIcon(L"ribbon/watermark.svg"),
                                                  _(L"Add a watermark to the graph."));
                         editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                                 readRibbonButtonSVG(L"ribbon/logo.svg"),
+                                                 wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
                                                  _(L"Add a logo to the graph."));
                         editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"),
                                                        _(L"Shadows"),
-                                                       readRibbonButtonSVG(L"ribbon/shadow.svg"),
+                                                       wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
                                                        _(L"Display drop shadows on the graphs."));
                         editButtonBar->ToggleButton(
                             XRCID("ID_DROP_SHADOW"),
@@ -930,7 +919,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                                 wxGetApp().GetResourceManager().GetSVG(L"tests/flesch-test.svg"));
                             editButtonBar->AddToggleButton(XRCID("ID_FLESCH_DISPLAY_LINES"),
                                 _(L"Connect Points"),
-                                readRibbonButtonSVG(L"ribbon/flesch-line.svg"),
+                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/flesch-line.svg"),
                                 _(L"Display the line through the factors and score."));
                             editButtonBar->ToggleButton(XRCID("ID_FLESCH_DISPLAY_LINES"),
                                 dynamic_cast<BatchProjectDoc*>(GetDocument())->IsConnectingFleschPoints());
@@ -940,7 +929,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                                  typeid(*graph) == typeid(SchwartzGraph) )
                             {
                             editButtonBar->AddButton(XRCID("ID_INVALID_REGION_COLOR"), _(L"Invalid Region"),
-                                                     readRibbonButtonSVG(L"ribbon/invalid-region.svg"),
+                                                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/invalid-region.svg"),
                                                      _(L"Change the color of the invalid regions."));
                             if (typeid(*graph) == typeid(FryGraph))
                                 {
@@ -951,7 +940,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                                 {
                                 editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_RAYGOR_STYLE"),
                                     _(L"Raygor Style"),
-                                    readRibbonButtonSVG(L"ribbon/raygor-style.svg"),
+                                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/raygor-style.svg"),
                                     _(L"Change the layout style of the Raygor graph."));
                                 exportMenuItem->SetBitmap(
                                     wxGetApp().GetResourceManager().GetSVG(L"tests/raygor-test.svg"));
@@ -967,7 +956,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                             exportMenuItem->SetBitmap(
                                 wxGetApp().GetResourceManager().GetSVG(L"tests/lix-german-technical.svg"));
                             editButtonBar->AddToggleButton(XRCID("ID_USE_ENGLISH_LABELS"), _(L"English Labels"),
-                                                           readRibbonButtonSVG(L"ribbon/german2english.svg"),
+                                                           wxGetApp().ReadRibbonSvgIcon(L"ribbon/german2english.svg"),
                                                            _(L"Use translated (English) labels for the brackets."));
                             editButtonBar->ToggleButton(
                                 XRCID("ID_USE_ENGLISH_LABELS"),
@@ -994,10 +983,10 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                                 wxGetApp().GetResourceManager().GetSVG(L"tests/frase.svg"));
                             }
                         editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                                 readRibbonButtonSVG(L"ribbon/copy.svg"),
+                                                 wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
                                                  _(L"Copy the graph."));
                         editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                                readRibbonButtonSVG(L"ribbon/zoom-in.svg"),
+                                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/zoom-in.svg"),
                                                 _(L"Zoom"));
                         GetRibbon()->GetPage(0)->Realize();
                         }
@@ -1079,33 +1068,33 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         editButtonRibbonBar->ClearButtons();
                         editButtonRibbonBar->AddToggleButton(XRCID("ID_LONG_FORMAT"),
                             _(L"Long Format"),
-                            readRibbonButtonSVG(L"ribbon/grade-display.svg"),
+                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/grade-display.svg"),
                             _(L"Display scores in long format."));
                         editButtonRibbonBar->ToggleButton(XRCID("ID_LONG_FORMAT"),
                             dynamic_cast<BatchProjectDoc*>(
                                 GetDocument())->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
                         editButtonRibbonBar->AddDropdownButton(XRCID("ID_GRADE_SCALES"),
                             _(L"Grade Scale"),
-                            readRibbonButtonSVG(L"ribbon/education.svg"),
+                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/education.svg"),
                             _(L"Change the grade scale display of the scores."));
                         editButtonRibbonBar->AddHybridButton(wxID_COPY,
                             _(L"Copy"),
-                            readRibbonButtonSVG(L"ribbon/copy.svg"),
+                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
                             _(L"Copy the selected row(s)."));
                         if (!dynamic_cast<ListCtrlEx*>(GetActiveProjectWindow())->HasFlag(wxLC_SINGLE_SEL))
                             {
                             editButtonRibbonBar->AddButton(wxID_SELECTALL,
                                 _(L"Select All"),
-                                readRibbonButtonSVG(L"ribbon/select-all.svg"),
+                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
                                 _(L"Select All"));
                             }
                         editButtonRibbonBar->AddButton(XRCID("ID_VIEW_ITEM"),
                             _(L"View Item"),
-                            readRibbonButtonSVG(L"ribbon/view-spreadsheet-item.svg"),
+                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
                             _(L"View the selected row in tabular format."));
                         editButtonRibbonBar->AddButton(XRCID("ID_LIST_SORT"),
                             _(L"Sort"),
-                            readRibbonButtonSVG(L"ribbon/sort.svg"),
+                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
                             _(L"Sort the list."));
                         GetRibbon()->GetPage(0)->Realize();
                         }
@@ -1216,28 +1205,28 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     dynamic_cast<Wisteria::Graphs::Histogram*>(graph.get())->IsUsingGrouping())
                     {
                     editButtonRibbonBar->AddButton(XRCID("ID_EDIT_GRAPH_COLOR_SCHEME"), _(L"Colors"),
-                        readRibbonButtonSVG(L"ribbon/color-wheel.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/color-wheel.svg"),
                         _(L"Select the color scheme for the grouped histogram."));
                     }
                 editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
                     _(L"Background"),
-                    readRibbonButtonSVG(L"ribbon/photos.svg"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/photos.svg"),
                     _(L"Set the graph's background."));
                 editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"),
                     _(L"Font"),
-                    readRibbonButtonSVG(L"ribbon/font.svg"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/font.svg"),
                     _(L"Change the graph's fonts."));
                 editButtonRibbonBar->AddButton(XRCID("ID_EDIT_WATERMARK"),
                     _(L"Watermark"),
-                    readRibbonButtonSVG(L"ribbon/watermark.svg"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/watermark.svg"),
                     _(L"Add a watermark to the graph."));
                 editButtonRibbonBar->AddButton(XRCID("ID_EDIT_LOGO"),
                     _(L"Logo"),
-                    readRibbonButtonSVG(L"ribbon/logo.svg"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
                     _(L"Add a logo to the graph."));
                 editButtonRibbonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"),
                     _(L"Shadows"),
-                    readRibbonButtonSVG(L"ribbon/shadow.svg"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
                     _(L"Display drop shadows on the graphs."));
                 editButtonRibbonBar->ToggleButton(XRCID("ID_DROP_SHADOW"),
                     dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
@@ -1253,7 +1242,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                             {
                             editButtonRibbonBar->AddDropdownButton(XRCID("ID_GRADE_SCALES"),
                                 _(L"Grade Scale"),
-                                readRibbonButtonSVG(L"ribbon/education.svg"),
+                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/education.svg"),
                                 _(L"Change the grade scale display of the scores."));
                             }
                         }
@@ -1266,17 +1255,17 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     exportMenuItem->SetBitmap(boxPlotIcon);
                     editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_BOX_STYLE"),
                         _(L"Box Style"),
-                        readRibbonButtonSVG(L"ribbon/bar-top-to-bottom.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/bar-top-to-bottom.svg"),
                         _(L"Changes the box appearance."));
                     editButtonRibbonBar->AddToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_LABELS"),
                         _(L"Display Labels"),
-                        readRibbonButtonSVG(L"ribbon/show-all-labels.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/show-all-labels.svg"),
                         _(L"Displays labels on the box and whiskers."));
                     editButtonRibbonBar->ToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_LABELS"),
                         dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingBoxPlotLabels());
                     editButtonRibbonBar->AddToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"),
                         _(L"Display Points"),
-                        readRibbonButtonSVG(L"ribbon/show-all-points.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/show-all-points.svg"),
                         _(L"Displays all data points onto the plot."));
                     editButtonRibbonBar->ToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"),
                         dynamic_cast<BatchProjectDoc*>(GetDocument())->IsShowingAllBoxPlotPoints());
@@ -1288,20 +1277,20 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     exportMenuItem->SetBitmap(histogramIcon);
                     editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"),
                         _(L"Bar Style"),
-                        readRibbonButtonSVG(L"ribbon/bar-top-to-bottom.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/bar-top-to-bottom.svg"),
                         _(L"Changes the bar appearance."));
                     editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_HISTOBAR_LABELS"),
                         _(L"Labels"),
-                        readRibbonButtonSVG(L"ribbon/bar-labels.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/bar-labels.svg"),
                         _(L"Changes what is displayed on the bars' labels."));
                     }
                 editButtonRibbonBar->AddButton(wxID_COPY,
                     _(L"Copy"),
-                    readRibbonButtonSVG(L"ribbon/copy.svg"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
                     _(L"Copy the graph."));
                 editButtonRibbonBar->AddHybridButton(wxID_ZOOM_IN,
                     _(L"Zoom"),
-                    readRibbonButtonSVG(L"ribbon/zoom-in.svg"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/zoom-in.svg"),
                     _(L"Zoom"));
                 GetRibbon()->GetPage(0)->Realize();
                 }
@@ -1392,24 +1381,24 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         {
                         editButtonRibbonBar->AddButton(XRCID("ID_EDIT_STATS_REPORT"),
                             _(L"Edit Statistics"),
-                            readRibbonButtonSVG(L"ribbon/edit-report.svg"),
+                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/edit-report.svg"),
                             _(L"Select which statistics to include in the report."));
                         }
                     editButtonRibbonBar->AddHybridButton(wxID_COPY,
                         _(L"Copy"),
-                        readRibbonButtonSVG(L"ribbon/copy.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
                         _(L"Copy the selected row(s)."));
                     editButtonRibbonBar->AddButton(wxID_SELECTALL,
                         _(L"Select All"),
-                        readRibbonButtonSVG(L"ribbon/select-all.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
                         _(L"Select All"));
                     editButtonRibbonBar->AddButton(XRCID("ID_VIEW_ITEM"),
                         _(L"View Item"),
-                        readRibbonButtonSVG(L"ribbon/view-spreadsheet-item.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
                         _(L"View the selected row in tabular format."));
                     editButtonRibbonBar->AddButton(XRCID("ID_LIST_SORT"),
                         _(L"Sort"),
-                        readRibbonButtonSVG(L"ribbon/sort.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
                         _(L"Sort the list."));
                     GetRibbon()->GetPage(0)->Realize();
                     }
@@ -1495,23 +1484,23 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     editButtonRibbonBar->ClearButtons();
                     editButtonRibbonBar->AddHybridButton(wxID_COPY,
                         _(L"Copy"),
-                        readRibbonButtonSVG(L"ribbon/copy.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
                         _(L"Copy the selected row(s)."));
                     editButtonRibbonBar->AddButton(wxID_SELECTALL,
                         _(L"Select All"),
-                        readRibbonButtonSVG(L"ribbon/select-all.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
                         _(L"Select All"));
                     editButtonRibbonBar->AddButton(XRCID("ID_VIEW_ITEM"),
                         _(L"View Item"),
-                        readRibbonButtonSVG(L"ribbon/view-spreadsheet-item.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
                         _(L"View the selected row in tabular format."));
                     editButtonRibbonBar->AddButton(XRCID("ID_LIST_SORT"),
                         _(L"Sort"),
-                        readRibbonButtonSVG(L"ribbon/sort.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
                         _(L"Sort the list."));
                     editButtonRibbonBar->AddButton(XRCID("ID_SUMMATION"),
                         _(L"Sum"),
-                        readRibbonButtonSVG(L"ribbon/sum.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/sum.svg"),
                         _(L"Total the values from the selected column."));
                     GetRibbon()->GetPage(0)->Realize();
                     }
@@ -1598,23 +1587,23 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     editButtonRibbonBar->ClearButtons();
                     editButtonRibbonBar->AddHybridButton(wxID_COPY,
                         _(L"Copy"),
-                        readRibbonButtonSVG(L"ribbon/copy.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
                         _(L"Copy the selected row(s)."));
                     editButtonRibbonBar->AddButton(wxID_SELECTALL,
                         _(L"Select All"),
-                        readRibbonButtonSVG(L"ribbon/select-all.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
                         _(L"Select All"));
                     editButtonRibbonBar->AddButton(XRCID("ID_VIEW_ITEM"),
                         _(L"View Item"),
-                        readRibbonButtonSVG(L"ribbon/view-spreadsheet-item.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
                         _(L"View the selected row in tabular format."));
                     editButtonRibbonBar->AddButton(XRCID("ID_LIST_SORT"),
                         _(L"Sort"),
-                        readRibbonButtonSVG(L"ribbon/sort.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
                         _(L"Sort the list."));
                     editButtonRibbonBar->AddButton(XRCID("ID_SUMMATION"),
                         _(L"Sum"),
-                        readRibbonButtonSVG(L"ribbon/sum.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/sum.svg"),
                         _(L"Total the values from the selected column."));
                     GetRibbon()->GetPage(0)->Realize();
                     }
@@ -1700,19 +1689,19 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     editButtonRibbonBar->ClearButtons();
                     editButtonRibbonBar->AddHybridButton(wxID_COPY,
                         _(L"Copy"),
-                        readRibbonButtonSVG(L"ribbon/copy.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
                         _(L"Copy the selected row(s)."));
                     editButtonRibbonBar->AddButton(wxID_SELECTALL,
                         _(L"Select All"),
-                        readRibbonButtonSVG(L"ribbon/select-all.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
                         _(L"Select All."));
                     editButtonRibbonBar->AddButton(XRCID("ID_VIEW_ITEM"),
                         _(L"View Item"),
-                        readRibbonButtonSVG(L"ribbon/view-spreadsheet-item.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
                         _(L"View the selected row in tabular format."));
                     editButtonRibbonBar->AddButton(XRCID("ID_LIST_SORT"),
                         _(L"Sort"),
-                        readRibbonButtonSVG(L"ribbon/sort.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
                         _(L"Sort the list."));
                     GetRibbon()->GetPage(0)->Realize();
                     }
@@ -1798,19 +1787,19 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     editButtonRibbonBar->ClearButtons();
                     editButtonRibbonBar->AddHybridButton(wxID_COPY,
                         _(L"Copy"),
-                        readRibbonButtonSVG(L"ribbon/copy.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
                         _(L"Copy the selected row(s)."));
                     editButtonRibbonBar->AddButton(wxID_SELECTALL,
                         _(L"Select All"),
-                        readRibbonButtonSVG(L"ribbon/select-all.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
                         _(L"Select All"));
                     editButtonRibbonBar->AddButton(XRCID("ID_VIEW_ITEM"),
                         _(L"View Item"),
-                        readRibbonButtonSVG(L"ribbon/view-spreadsheet-item.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
                         _(L"View the selected row in tabular format."));
                     editButtonRibbonBar->AddButton(XRCID("ID_LIST_SORT"),
                         _(L"Sort"),
-                        readRibbonButtonSVG(L"ribbon/sort.svg"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
                         _(L"Sort the list."));
                     GetRibbon()->GetPage(0)->Realize();
                     }

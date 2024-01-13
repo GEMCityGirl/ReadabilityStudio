@@ -230,12 +230,10 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
 class ReadabilityApp final : public Wisteria::UI::BaseApp
     {
   public:
-    ReadabilityApp() : m_appOptions(nullptr) {}
+    ReadabilityApp() = default;
 
     ReadabilityApp(const ReadabilityApp&) = delete;
     ReadabilityApp& operator=(const ReadabilityApp&) = delete;
-
-    ~ReadabilityApp() { wxDELETE(m_appOptions); }
 
     void OnEventLoopEnter(wxEventLoopBase* loop) final;
     bool OnInit() final;
@@ -279,13 +277,15 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     void SetLastSelectedDocFilter(const wxString& filter) { m_lastSelectedDocFilter = filter; }
 
     [[nodiscard]]
-    ReadabilityAppOptions& GetAppOptions()
+    ReadabilityAppOptions& GetAppOptions() noexcept
         {
-        if (m_appOptions == nullptr)
-            {
-            m_appOptions = new ReadabilityAppOptions;
-            }
-        return *m_appOptions;
+        return m_appOptions;
+        }
+
+    [[nodiscard]]
+    const ReadabilityAppOptions& GetAppOptions() const noexcept
+        {
+        return m_appOptions;
         }
 
     [[nodiscard]]
@@ -334,6 +334,7 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
 
     Wisteria::UI::SideBar* CreateSideBar(wxWindow* frame, const wxWindowID id);
     wxRibbonBar* CreateRibbon(wxWindow* frame, const wxDocument* doc);
+    wxImage ReadRibbonSvgIcon(const wxString& path);
 
     void UpdateRibbonTheme();
     void UpdateDocumentThemes();
@@ -437,7 +438,7 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     static std::map<wxWindowID, wxWindowID> m_dynamicIdMap;
 
     LicenseAdmin m_licenseAdmin;
-    ReadabilityAppOptions* m_appOptions{ nullptr };
+    ReadabilityAppOptions m_appOptions;
     bool LoadWordLists(const wxString& AppSettingFolderPath);
     wxArrayString m_lastSelectedWebPages;
     wxString m_lastSelectedDocFilter;
