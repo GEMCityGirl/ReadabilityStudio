@@ -236,25 +236,29 @@ if(MSVC)
     # wxWidgets uses heap-based objects for most everything, and MVSC complains
     # about not wrapping all of this logic in try blocks.
     target_compile_options(${PROJECT_NAME} PUBLIC /Zc:__cplusplus /MP /W3 /WX /wd6211 /openmp
-                           $<$<CONFIG:Debug>:/Od /fsanitize=address> $<$<CONFIG:Release>:/O2>)
+                           $<$<CONFIG:Debug>:/Od /fsanitize=address>
+                           $<$<CONFIG:Release>:/O2>)
 elseif(MINGW OR MSYS)
     target_compile_definitions(${PROJECT_NAME} PUBLIC __WXMSW__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED _UNICODE
             $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
     target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -Werror
-                           $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O2>)
+                           $<$<CONFIG:Debug>:-Og>
+                           $<$<CONFIG:Release>:-O2>)
 # TODO: Experimental code for macOS
 elseif(APPLE)
     target_compile_definitions(${PROJECT_NAME} PUBLIC __WXOSX__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
     # TODO: don't include -Werror for now, but eventually add it
     target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow
-                           $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O2>)
+                           $<$<CONFIG:Debug>:-Og>
+                           $<$<CONFIG:Release>:-O2>)
 elseif(UNIX)
     target_compile_definitions(${PROJECT_NAME} PUBLIC __WXGTK__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
     # TODO: don't include -Werror for now, but eventually add it
     target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wshadow -Wpedantic
-                           $<$<CONFIG:Debug>:-Og> $<$<CONFIG:Release>:-O2>)
+                           $<$<CONFIG:Debug>:-Og -g3>
+                           $<$<CONFIG:Release>:-O2>)
 endif()
 
 # Define the build target for the executable and copy it into the "app" subfolder
