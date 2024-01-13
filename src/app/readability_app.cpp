@@ -1013,15 +1013,15 @@ bool ReadabilityApp::OnInit()
     if (fontSmoothing == 0 || smoothingType != FE_FONTSMOOTHINGCLEARTYPE)
         {
         std::vector<WarningMessage>::iterator warningIter =
-                GetAppOptions().GetWarning(_DT(L"clear-type-turned-off"));
-        if (warningIter != GetAppOptions().GetWarnings().end() &&
+            WarningManager::GetWarning(_DT(L"clear-type-turned-off"));
+        if (warningIter != WarningManager::GetWarnings().end() &&
             warningIter->ShouldBeShown())
             {
             wxRichMessageDialog msg(GetMainFrame(), warningIter->GetMessage(),
                                             warningIter->GetTitle(), warningIter->GetFlags());
             msg.ShowCheckBox(_(L"Remember my answer"));
             const int dlgResponse = msg.ShowModal();
-            if (warningIter != GetAppOptions().GetWarnings().end() &&
+            if (warningIter != WarningManager::GetWarnings().end() &&
                 msg.IsCheckBoxChecked())
                 {
                 warningIter->Show(false);
@@ -1033,7 +1033,7 @@ bool ReadabilityApp::OnInit()
                 SystemParametersInfo(SPI_SETFONTSMOOTHINGTYPE, 0, (PVOID)FE_FONTSMOOTHINGCLEARTYPE, SPIF_UPDATEINIFILE|SPIF_SENDCHANGE);
                 }
             }
-        else if (warningIter != GetAppOptions().GetWarnings().end() &&
+        else if (warningIter != WarningManager::GetWarnings().end() &&
             warningIter->GetPreviousResponse() == wxID_YES)
             {
             SystemParametersInfo(SPI_SETFONTSMOOTHING, TRUE, 0, SPIF_UPDATEINIFILE|SPIF_SENDCHANGE);

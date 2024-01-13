@@ -1247,8 +1247,8 @@ bool ProjectDoc::OnNewDocument()
                 (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
                  GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings))
                 {
-                auto warningIter = wxGetApp().GetAppOptions().GetWarning(_DT(L"high-count-sentences-being-ignored"));
-                if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+                auto warningIter = WarningManager::GetWarning(_DT(L"high-count-sentences-being-ignored"));
+                if (warningIter != WarningManager::GetWarnings().end() &&
                     warningIter->ShouldBeShown())
                     {
                     wxRichMessageDialog msg(wxGetApp().GetMainFrame(), warningIter->GetMessage(),
@@ -1258,7 +1258,7 @@ bool ProjectDoc::OnNewDocument()
                     msg.SetYesNoLabels(_(L"Include incomplete sentences"),
                                        _(L"Continue excluding incomplete sentences"));
                     const int dlgResponse = msg.ShowModal();
-                    if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+                    if (warningIter != WarningManager::GetWarnings().end() &&
                         msg.IsCheckBoxChecked())
                         {
                         warningIter->Show(false);
@@ -1380,8 +1380,8 @@ bool ProjectDoc::OnNewDocument()
         }
     if (sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength > 0)
         {
-        auto warningIter = wxGetApp().GetAppOptions().GetWarning(_DT(L"incomplete-sentences-valid-from-length"));
-        if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+        auto warningIter = WarningManager::GetWarning(_DT(L"incomplete-sentences-valid-from-length"));
+        if (warningIter != WarningManager::GetWarnings().end() &&
             warningIter->ShouldBeShown())
             {
             ListDlg listDlg(wxGetApp().GetMainFrame(), longIncompleteSentences, false,

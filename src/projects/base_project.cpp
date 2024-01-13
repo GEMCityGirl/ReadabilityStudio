@@ -188,8 +188,8 @@ void BaseProject::LogMessage(wxString message, const wxString& title, const int 
     {
     // skip warning if it was asked to be suppressed already
     std::vector<WarningMessage>::iterator warningIter =
-            wxGetApp().GetAppOptions().GetWarning(messageId);
-    if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+        WarningManager::GetWarning(messageId);
+    if (warningIter != WarningManager::GetWarnings().end() &&
         warningIter->ShouldBeShown() == false)
         { return; }
 
@@ -202,7 +202,7 @@ void BaseProject::LogMessage(wxString message, const wxString& title, const int 
         msg.ShowCheckBox(messageId.length() ? _(L"Do not show this again") : wxString{});
         const int dlgResponse = msg.ShowModal();
         if (dlgResponse != wxID_NO &&
-            warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+            warningIter != WarningManager::GetWarnings().end() &&
             msg.IsCheckBoxChecked())
             {
             warningIter->Show(false);
@@ -5724,10 +5724,10 @@ bool BaseProject::AddStandardReadabilityTest(const wxString& id, const bool setF
     if (HasUI() && theTest.first->get_test().get_id() == _DT(L"dale-chall-test") &&
         GetDaleChallTextExclusionMode() != SpecializedTestTextExclusion::UseSystemDefault)
         {
-        if (wxGetApp().GetAppOptions().HasWarning(_DT(L"new-dale-chall-text-exclusion-differs-note")))
+        if (WarningManager::HasWarning(_DT(L"new-dale-chall-text-exclusion-differs-note")))
             {
             auto warningMsg =
-                *wxGetApp().GetAppOptions().GetWarning(_DT(L"new-dale-chall-text-exclusion-differs-note"));
+                *WarningManager::GetWarning(_DT(L"new-dale-chall-text-exclusion-differs-note"));
             warningMsg.SetMessage(wxString::Format(
                 _(L"NOTE: %s uses a specialized method for excluding text that may differ from the system default.\n"
                    "This behavior can be changed from the \"Readability Scores\"%s\"Test Options\" page of the "
@@ -5740,9 +5740,9 @@ bool BaseProject::AddStandardReadabilityTest(const wxString& id, const bool setF
     if (HasUI() && theTest.first->get_test().get_id() == _DT(L"harris-jacobson") &&
         GetHarrisJacobsonTextExclusionMode() != SpecializedTestTextExclusion::UseSystemDefault)
         {
-        if (wxGetApp().GetAppOptions().HasWarning(_DT(L"harris-jacobson-text-exclusion-differs-note")))
+        if (WarningManager::HasWarning(_DT(L"harris-jacobson-text-exclusion-differs-note")))
             {
-            auto warningMsg = *wxGetApp().GetAppOptions().GetWarning(
+            auto warningMsg = *WarningManager::GetWarning(
                 _DT(L"harris-jacobson-text-exclusion-differs-note"));
             warningMsg.SetMessage(wxString::Format(
                 _(L"NOTE: %s uses a specialized method for excluding text that may differ from the system default.\n"
@@ -7826,9 +7826,9 @@ bool BaseProject::FindMissingFile(const wxString& filePath, wxString& fileBySame
     fileBySameNameInProjectDirectory = FindFileInMatchingDirStructure(GetProjectDirectory(), filePath);
     if (wxFile::Exists(fileBySameNameInProjectDirectory) )
         {
-        auto warningIter = wxGetApp().GetAppOptions().GetWarning(_DT(L"file-autosearch-from-project-directory"));
+        auto warningIter = WarningManager::GetWarning(_DT(L"file-autosearch-from-project-directory"));
         // if they want to be prompted for this...
-        if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+        if (warningIter != WarningManager::GetWarnings().end() &&
             warningIter->ShouldBeShown())
             {
             wxRichMessageDialog msg(wxGetApp().GetMainFrame(),
@@ -7858,7 +7858,7 @@ bool BaseProject::FindMissingFile(const wxString& filePath, wxString& fileBySame
                 }
             }
         // or if they said "yes" before, then use the found path
-        else if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+        else if (warningIter != WarningManager::GetWarnings().end() &&
             warningIter->GetPreviousResponse() == wxID_YES)
             {
             SetModifiedFlag();

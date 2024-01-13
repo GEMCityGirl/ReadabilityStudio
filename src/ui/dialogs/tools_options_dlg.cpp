@@ -1450,8 +1450,8 @@ bool ToolsOptionsDlg::ValidateOptions()
         m_histogramPropertyGrid->GetPropertyValueAsInt(GetIntervalDisplayLabel()) != 1)
         {
         auto warningIter =
-            wxGetApp().GetAppOptions().GetWarning(_DT(L"histogram-unique-values-midpoints-required"));
-        if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+            WarningManager::GetWarning(_DT(L"histogram-unique-values-midpoints-required"));
+        if (warningIter != WarningManager::GetWarnings().end() &&
             warningIter->ShouldBeShown())
             { wxMessageBox(warningIter->GetMessage(), wxGetApp().GetAppName(), warningIter->GetFlags(), this); }
         m_histogramPropertyGrid->SetPropertyValue(GetIntervalDisplayLabel(), 1);

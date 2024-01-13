@@ -290,102 +290,102 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     BaseProject::InitializeStandardReadabilityTests();
     BaseProject::ResetStandardReadabilityTests(m_readabilityTests);
     // set the warnings system
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"project-open-as-read-only"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"project-open-as-read-only"),
         _(L"Project file will be opened as read only."), wxEmptyString,
         _(L"Warn about projects being opened as read-only."), wxOK|wxICON_INFORMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"remove-test-from-project"), wxEmptyString, wxEmptyString,
+    WarningManager::AddWarning(WarningMessage(_DT(L"remove-test-from-project"), wxEmptyString, wxEmptyString,
         _(L"Prompt when removing a test from a project."), wxICON_INFORMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"delete-document-from-batch"), wxEmptyString, wxEmptyString,
+    WarningManager::AddWarning(WarningMessage(_DT(L"delete-document-from-batch"), wxEmptyString, wxEmptyString,
         _(L"Prompt when removing a document from a batch project."), wxICON_INFORMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"document-no-words"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"document-no-words"),
         _(L"The text that you are analyzing does not contain any valid words. "
             "No calculations will be performed."), _(L"Warning"),
         _(L"Warn about documents that do not contain any words."), wxOK | wxICON_EXCLAMATION, false));
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"document-less-than-20-words"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"document-less-than-20-words"),
         _(L"The text that you are analyzing is less than 20 words. "
            "Most test results will not be meaningful with such a small sample."), _(L"Warning"),
         _(L"Warn about documents containing less than 20 words."), wxOK|wxICON_EXCLAMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"document-less-than-100-words"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"document-less-than-100-words"),
         _(L"The text that you are analyzing is less than 100 words. "
            "Factors, such as word and syllable counts, will be standardized for some tests."),
         _(L"Warning"), _(L"Warn about documents containing less than 100 words."), wxOK|wxICON_EXCLAMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"sentences-split-by-paragraph-breaks"), wxEmptyString,
+    WarningManager::AddWarning(WarningMessage(_DT(L"sentences-split-by-paragraph-breaks"), wxEmptyString,
         _(L"Warning"), _(L"Warn about documents that contain sentences split by paragraph breaks."),
         wxOK|wxICON_EXCLAMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"incomplete-sentences-valid-from-length"), wxEmptyString,
+    WarningManager::AddWarning(WarningMessage(_DT(L"incomplete-sentences-valid-from-length"), wxEmptyString,
         _(L"Warning"),
         _(L"Warn about documents that contain long incomplete sentences that will be included in the analysis."),
         wxOK|wxICON_EXCLAMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"high-count-sentences-being-ignored"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"high-count-sentences-being-ignored"),
         _(L"This document contains a large percentage of incomplete sentences that you have requested to ignore.\n\n"
            "Do you wish to change this option and include these items in the analysis?"),
         _(L"Warning"), _(L"Prompt if a document should switch to include sentences in the analysis."),
         wxYES_NO|wxNO_DEFAULT|wxICON_QUESTION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"ndc-proper-noun-conflict"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"ndc-proper-noun-conflict"),
         _(L"This test's proper-noun settings differ from the standard New Dale-Chall test.\n"
            "Do you wish to adjust this setting to match the standard test?"), _(L"Settings Conflict"),
         _(L"Prompt if a custom NDC test's proper noun settings differ from the standard NDC test."),
         wxYES_NO|wxNO_DEFAULT|wxICON_QUESTION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"new-dale-chall-text-exclusion-differs-note"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"new-dale-chall-text-exclusion-differs-note"),
         wxEmptyString, wxEmptyString,
         _(L"Prompt about New Dale-Chall using a different text exclusion method from the system default."),
         wxICON_INFORMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"harris-jacobson-text-exclusion-differs-note"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"harris-jacobson-text-exclusion-differs-note"),
         wxEmptyString, wxEmptyString,
         _(L"Prompt about Harris-Jacobson using a different text exclusion method from the system default."),
         wxICON_INFORMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"custom-test-numeral-settings-adjustment-required"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"custom-test-numeral-settings-adjustment-required"),
         _(L"Harris-Jacobson requires numerals to be excluded from the overall word count.\n"
            "Numeral options for this test will be adjusted to take this into account."),
         _(L"Warning"), _(L"Warn when a custom test's numeral settings will be adjusted."),
         wxOK|wxICON_INFORMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"german-no-proper-noun-support"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"german-no-proper-noun-support"),
         _(L"Because German capitalizes all nouns, the program will be unable to detect proper nouns.\n"
            "Treatment of proper nouns as familiar words will be disabled for this test."),
         _(L"Warning"), _(L"Warn about German stemming not supporting proper noun detection."),
         wxOK|wxICON_INFORMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"histogram-unique-values-midpoints-required"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"histogram-unique-values-midpoints-required"),
         _(L"Note: sorting histogram bins by unique values requires midpoint interval display.\n"
            "Midpoint interval display will be enabled."), wxEmptyString,
         _(L"Warn about unique-value histograms requiring midpoint axis labels."), wxOK|wxICON_INFORMATION, true) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"file-autosearch-from-project-directory"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"file-autosearch-from-project-directory"),
         wxEmptyString, _(L"File Not Found"), _(L"Prompt about auto-searching for missing files."),
         wxYES_NO|wxICON_QUESTION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"linked-document-is-embedded"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"linked-document-is-embedded"),
         _(L"This document is embedded in the project.\nDo you wish to link to the original document instead?"),
         _(L"Link Document"), _(L"Prompt about re-linking to a document that has been embedded."),
         wxYES_NO|wxNO_DEFAULT|wxICON_QUESTION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"no-embedded-text"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"no-embedded-text"),
         _(L"No embedded text found in the project. Project will not be created."),
         _(L"Warning"), _(L"Prompt about failing to load a project that is missing its embedded text."),
         wxOK|wxICON_EXCLAMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"clear-type-turned-off"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"clear-type-turned-off"),
         _(L"ClearType is currently turned off. Enabling this will make fonts appear smoother and easier to read.\n\n"
            "Do you wish to enable ClearType?"), _(L"Warning"), _(L"Check if ClearType is turned on (Windows only)."),
         wxYES_NO|wxICON_QUESTION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"note-export-from-save"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"note-export-from-save"),
         _(L"Any window can be exported by selecting \"Export\" from the \"Save\" button."),
         wxEmptyString,
         _(L"Prompt about how windows can be exported from the Save button."), wxICON_INFORMATION, true) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"click-test-to-view"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"click-test-to-view"),
         _(L"Double click a test to view more information."), wxEmptyString,
         _(L"Prompt about how double-clicking a test can show its help."), wxICON_INFORMATION, true) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"bkimage-zoomin-noupscale"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"bkimage-zoomin-noupscale"),
         _(L"When zooming, background images will not be stretched beyond their original sizes."), wxEmptyString,
         _(L"Prompt about how background images will not be upscaled beyond their "
            "original size when zooming into a graph."), wxICON_INFORMATION, true) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"note-project-properties"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"note-project-properties"),
         _(L"Settings embedded in this project can be edited by clicking \"Home\" - \"Properties\"."),
         wxEmptyString, _(L"Prompt about how settings are embedded in projects and how to edit them."),
         wxICON_INFORMATION, true) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"batch-goals"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"batch-goals"),
         _(L"Documents not passing the project's goals are shown in this window.\n"
            "The recommended min and max values for each goal are displayed,\n"
            "along with an icon indicating whether the document is passing these constraints."),
         wxEmptyString, _(L"Prompt about how the Goals window works in a batch project."), wxICON_INFORMATION, true) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"prompt-for-batch-label"), wxEmptyString, wxEmptyString,
+    WarningManager::AddWarning(WarningMessage(_DT(L"prompt-for-batch-label"), wxEmptyString, wxEmptyString,
         _(L"Prompt for labels when adding documents to a batch project."), wxICON_INFORMATION, false) );
-    ReadabilityAppOptions::AddWarning(WarningMessage(_DT(L"set-app-exclusion-list-from-project"),
+    WarningManager::AddWarning(WarningMessage(_DT(L"set-app-exclusion-list-from-project"),
         _(L"Would you like to use this word exclusion list for all future projects?"),
         _(L"Set Global Word Exclusion List"),
         _(L"Prompt about whether to set the application's word exclusion list from a project."),
@@ -659,7 +659,7 @@ void ReadabilityAppOptions::ResetSettings()
     // clear the colours
     m_customColours.clear();
     // reset the warning flags
-    ReadabilityAppOptions::EnableWarnings();
+    WarningManager::EnableWarnings();
     }
 
 //------------------------------------------------
@@ -1195,8 +1195,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     wxString id =
                         Wisteria::TextStream::CharStreamToUnicode(warningStringId, std::strlen(warningStringId));
                     std::vector<WarningMessage>::iterator warningIter =
-                        ReadabilityAppOptions::GetWarning(id);
-                    if (warningIter != GetWarnings().end())
+                        WarningManager::GetWarning(id);
+                    if (warningIter != WarningManager::GetWarnings().end())
                         {
                         int value = warningNode->ToElement()->IntAttribute(XML_DISPLAY.mb_str(), 1);
                         warningIter->Show(int_to_bool(value));
@@ -3585,14 +3585,12 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     // warning settings
     auto warningSection = doc.NewElement(XML_WARNING_MESSAGE_SETTINGS.mb_str());
-    for (std::vector<WarningMessage>::const_iterator warningIter = GetWarnings().begin();
-        warningIter != GetWarnings().end();
-        ++warningIter)
+    for (const auto& warning : WarningManager::GetWarnings())
         {
         auto warningItem = doc.NewElement(XML_WARNING_MESSAGE.mb_str());
-        warningItem->SetAttribute(XML_VALUE.mb_str(), warningIter->GetId().mb_str());
-        warningItem->SetAttribute(XML_DISPLAY.mb_str(), bool_to_int(warningIter->ShouldBeShown()));
-        warningItem->SetAttribute(XML_PREVIOUS_RESPONSE.mb_str(), warningIter->GetPreviousResponse());
+        warningItem->SetAttribute(XML_VALUE.mb_str(), warning.GetId().mb_str());
+        warningItem->SetAttribute(XML_DISPLAY.mb_str(), bool_to_int(warning.ShouldBeShown()));
+        warningItem->SetAttribute(XML_PREVIOUS_RESPONSE.mb_str(), warning.GetPreviousResponse());
         warningSection->InsertEndChild(warningItem);
         }
     configSection->InsertEndChild(warningSection);

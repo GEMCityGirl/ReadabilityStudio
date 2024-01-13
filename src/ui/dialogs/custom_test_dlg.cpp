@@ -152,8 +152,8 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                 static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()))
             {
             std::vector<WarningMessage>::iterator warningIter =
-                wxGetApp().GetAppOptions().GetWarning(_DT(L"ndc-proper-noun-conflict"));
-            if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end())
+                WarningManager::GetWarning(_DT(L"ndc-proper-noun-conflict"));
+            if (warningIter != WarningManager::GetWarnings().end())
                 {
                 if (warningIter->ShouldBeShown() == false)
                     {
@@ -178,7 +178,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                             wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()));
                         TransferDataToWindow();
                         }
-                    if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+                    if (warningIter != WarningManager::GetWarnings().end() &&
                         msg.IsCheckBoxChecked())
                         {
                         warningIter->Show(false);
@@ -196,9 +196,9 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
             !IsIncludingNumeric())
             {
             std::vector<WarningMessage>::iterator warningIter =
-                wxGetApp().GetAppOptions().GetWarning(
+                WarningManager::GetWarning(
                     _DT(L"custom-test-numeral-settings-adjustment-required"));
-            if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+            if (warningIter != WarningManager::GetWarnings().end() &&
                 warningIter->ShouldBeShown())
                 {
                 wxMessageBox(warningIter->GetMessage(), wxGetApp().GetAppName(),
@@ -1099,8 +1099,8 @@ void CustomTestDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
             readability::proper_noun_counting_method::all_proper_nouns_are_unfamiliar)
         {
         std::vector<WarningMessage>::iterator warningIter =
-            wxGetApp().GetAppOptions().GetWarning(_DT(L"german-no-proper-noun-support"));
-        if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+            WarningManager::GetWarning(_DT(L"german-no-proper-noun-support"));
+        if (warningIter != WarningManager::GetWarnings().end() &&
             warningIter->ShouldBeShown())
             {
             wxMessageBox(warningIter->GetMessage(), wxGetApp().GetAppName(),

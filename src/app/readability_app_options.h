@@ -523,7 +523,7 @@ class SentencesBreakdownInfo
     std::bitset<64> m_sentenceBreadkdownItemsToInclude{ 0 };
     };
 
-class ReadabilityAppOptions final : public WarningManager
+class ReadabilityAppOptions
     {
   public:
     /// @private

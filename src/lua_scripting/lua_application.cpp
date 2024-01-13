@@ -1087,13 +1087,13 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int DisableAllWarnings(lua_State*)
         {
-        wxGetApp().GetAppOptions().DisableWarnings();
+        WarningManager::DisableWarnings();
         return 0;
         }
     //-------------------------------------------------------------
     int EnableAllWarnings(lua_State*)
         {
-        wxGetApp().GetAppOptions().EnableWarnings();
+        WarningManager::EnableWarnings();
         return 0;
         }
     //-------------------------------------------------------------
@@ -1101,7 +1101,7 @@ namespace LuaScripting
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().EnableWarning(
+        WarningManager::EnableWarning(
             wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
@@ -1110,7 +1110,7 @@ namespace LuaScripting
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
             { return 0; }
-        wxGetApp().GetAppOptions().DisableWarning(
+        WarningManager::DisableWarning(
             wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }

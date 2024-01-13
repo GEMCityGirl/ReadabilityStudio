@@ -761,9 +761,9 @@ void ProjectView::OnLaunchSourceFile([[maybe_unused]] wxRibbonButtonBarEvent& ev
             // the embedded text. Also, don't bother asking if the file is a file inside of an archive.
             if (doc->GetTextSource() == TextSource::FromFile && !resolvePath.IsArchivedFile())
                 {
-                auto warningIter = wxGetApp().GetAppOptions().GetWarning(_DT(L"linked-document-is-embedded"));
+                auto warningIter = WarningManager::GetWarning(_DT(L"linked-document-is-embedded"));
                 // if they want to be prompted for this...
-                if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+                if (warningIter != WarningManager::GetWarnings().end() &&
                     warningIter->ShouldBeShown())
                     {
                     wxRichMessageDialog msg(GetDocFrame(), warningIter->GetMessage(),
@@ -786,7 +786,7 @@ void ProjectView::OnLaunchSourceFile([[maybe_unused]] wxRibbonButtonBarEvent& ev
                         }
                     }
                 // or if they said "yes" before, then use the found path
-                else if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+                else if (warningIter != WarningManager::GetWarnings().end() &&
                     warningIter->GetPreviousResponse() == wxID_YES)
                     {
                     doc->SetModifiedFlag();
@@ -1243,15 +1243,15 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
                 if (wxGetApp().GetAppOptions().GetExcludedPhrasesPath().empty())
                     {
                     auto warningIter =
-                        wxGetApp().GetAppOptions().GetWarning(_DT(L"set-app-exclusion-list-from-project"));
-                    if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+                        WarningManager::GetWarning(_DT(L"set-app-exclusion-list-from-project"));
+                    if (warningIter != WarningManager::GetWarnings().end() &&
                         warningIter->ShouldBeShown())
                         {
                         wxRichMessageDialog msg(wxGetApp().GetMainFrame(), warningIter->GetMessage(),
                                                         warningIter->GetTitle(), warningIter->GetFlags());
                         msg.ShowCheckBox(_(L"Remember my answer"));
                         const int dlgResponse = msg.ShowModal();
-                        if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+                        if (warningIter != WarningManager::GetWarnings().end() &&
                             msg.IsCheckBoxChecked())
                             {
                             warningIter->Show(false);
@@ -1844,9 +1844,9 @@ void ProjectView::OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& event)
             testToRemove == GetStdDevLabel() || testToRemove == GetModeLabel())
             { return; }
 
-        auto warningIter = wxGetApp().GetAppOptions().GetWarning(_DT(L"remove-test-from-project"));
+        auto warningIter = WarningManager::GetWarning(_DT(L"remove-test-from-project"));
         // if they really want to remove this test
-        if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+        if (warningIter != WarningManager::GetWarnings().end() &&
             warningIter->ShouldBeShown())
             {
             wxRichMessageDialog msg(GetDocFrame(),

@@ -990,8 +990,8 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
 
     // see what sort of labeling should be used
     wxString groupLabel;
-    auto warningIter = wxGetApp().GetAppOptions().GetWarning(_DT(L"prompt-for-batch-label"));
-    if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+    auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
+    if (warningIter != WarningManager::GetWarnings().end() &&
         warningIter->ShouldBeShown())
         {
         DocGroupSelectDlg selectLabelTypeDlg(this);
@@ -1064,8 +1064,8 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
 
     // see what sort of labeling should be used
     wxString groupLabel;
-    auto warningIter = wxGetApp().GetAppOptions().GetWarning(_DT(L"prompt-for-batch-label"));
-    if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+    auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
+    if (warningIter != WarningManager::GetWarnings().end() &&
         warningIter->ShouldBeShown())
         {
         DocGroupSelectDlg selectLabelTypeDlg(this);
@@ -1561,8 +1561,8 @@ void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& 
             }
         // see what sort of labeling should be used
         wxString groupLabel;
-        auto warningIter = wxGetApp().GetAppOptions().GetWarning(_DT(L"prompt-for-batch-label"));
-        if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+        auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
+        if (warningIter != WarningManager::GetWarnings().end() &&
             warningIter->ShouldBeShown())
             {
             DocGroupSelectDlg selectLabelTypeDlg(this);
@@ -1615,8 +1615,8 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
 
     // see what sort of labeling should be used
     wxString groupLabel;
-    auto warningIter = wxGetApp().GetAppOptions().GetWarning(_DT(L"prompt-for-batch-label"));
-    if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+    auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
+    if (warningIter != WarningManager::GetWarnings().end() &&
         warningIter->ShouldBeShown())
         {
         DocGroupSelectDlg selectLabelTypeDlg(this);
@@ -1716,8 +1716,8 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& e
 
     // see what sort of labeling should be used
     wxString groupLabel;
-    auto warningIter = wxGetApp().GetAppOptions().GetWarning(_DT(L"prompt-for-batch-label"));
-    if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+    auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
+    if (warningIter != WarningManager::GetWarnings().end() &&
         warningIter->ShouldBeShown())
         {
         DocGroupSelectDlg selectLabelTypeDlg(this);
@@ -1788,8 +1788,8 @@ void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent& eve
 
     // see what sort of labeling should be used
     wxString groupLabel;
-    auto warningIter = wxGetApp().GetAppOptions().GetWarning(_DT(L"prompt-for-batch-label"));
-    if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+    auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
+    if (warningIter != WarningManager::GetWarnings().end() &&
         warningIter->ShouldBeShown())
         {
         DocGroupSelectDlg selectLabelTypeDlg(this);

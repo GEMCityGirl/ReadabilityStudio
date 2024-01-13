@@ -680,9 +680,9 @@ void BatchProjectView::OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& eve
             return;
             }
 
-        auto warningIter = wxGetApp().GetAppOptions().GetWarning(_DT(L"remove-test-from-project"));
+        auto warningIter = WarningManager::GetWarning(_DT(L"remove-test-from-project"));
         // if they really want to remove this test
-        if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+        if (warningIter != WarningManager::GetWarnings().end() &&
             warningIter->ShouldBeShown())
             {
             wxRichMessageDialog msg(GetDocFrame(), wxString::Format(
@@ -747,8 +747,8 @@ void BatchProjectView::OnDocumentDelete([[maybe_unused]] wxRibbonButtonBarEvent&
         if (filesToRemove.GetCount() == 0)
             { return; }
 
-        auto warningIter = wxGetApp().GetAppOptions().GetWarning(_DT(L"delete-document-from-batch"));
-        if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+        auto warningIter = WarningManager::GetWarning(_DT(L"delete-document-from-batch"));
+        if (warningIter != WarningManager::GetWarnings().end() &&
             warningIter->ShouldBeShown())
             {
             ListDlg listDlg(GetDocFrame(), filesToRemove, false,
@@ -3179,9 +3179,9 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                     // don't bother asking them about relinking if a file is inside of an archive
                     if (!resolvePath.IsArchivedFile())
                         {
-                        auto warningIter = wxGetApp().GetAppOptions().GetWarning(_DT(L"linked-document-is-embedded"));
+                        auto warningIter = WarningManager::GetWarning(_DT(L"linked-document-is-embedded"));
                         // if they want to be prompted for this...
-                        if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+                        if (warningIter != WarningManager::GetWarnings().end() &&
                             warningIter->ShouldBeShown())
                             {
                             wxRichMessageDialog msg(GetDocFrame(), warningIter->GetMessage(),
@@ -3209,7 +3209,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                                 }
                             }
                         // or if they said "yes" before, then use the found path
-                        else if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+                        else if (warningIter != WarningManager::GetWarnings().end() &&
                             warningIter->GetPreviousResponse() == wxID_YES)
                             {
                             doc->SetModifiedFlag();
@@ -3228,7 +3228,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                         wxID_ANY, _(L"Edit Embedded Document"),
                         doc->GetAppendedDocumentText().length() ?
                         _(L"Note: The appended template document is not included here.\n"
-                          "Only the embedded text is editable from this dialog."): wxString{});
+                           "Only the embedded text is editable from this dialog."): wxString{});
                     if (dlg.ShowModal() == wxID_OK)
                         {
                         (*subDocPos)->SetDocumentText(dlg.GetValue());

@@ -2852,8 +2852,8 @@ void BaseProjectView::ShowInfoMessage(const WarningMessage& message)
     {
     if (m_lastShownMessageId == message.GetId())
         { return; }
-    auto warningIter = wxGetApp().GetAppOptions().GetWarning(message.GetId());
-    if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() &&
+    auto warningIter = WarningManager::GetWarning(message.GetId());
+    if (warningIter != WarningManager::GetWarnings().end() &&
         warningIter->ShouldBeShown())
         {
         if (GetInfoBar()->IsShown())
@@ -2866,7 +2866,7 @@ void BaseProjectView::ShowInfoMessage(const WarningMessage& message)
             }
         }
     // message isn't in the general warning system, so just generically add it to be shown
-    else if (warningIter == wxGetApp().GetAppOptions().GetWarnings().end())
+    else if (warningIter == WarningManager::GetWarnings().end())
         { AddQueuedMessage(message); }
     }
 
@@ -2875,8 +2875,8 @@ void BaseProjectView::OnCloseInfoBar([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_lastShownMessageId.length())
         {
-        auto warningIter = wxGetApp().GetAppOptions().GetWarning(m_lastShownMessageId);
-        if (warningIter != wxGetApp().GetAppOptions().GetWarnings().end() )
+        auto warningIter = WarningManager::GetWarning(m_lastShownMessageId);
+        if (warningIter != WarningManager::GetWarnings().end() )
             {
             if (warningIter->ShouldOnlyBeShownOnce())
                 { warningIter->Show(false); }
