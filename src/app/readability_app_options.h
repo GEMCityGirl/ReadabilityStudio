@@ -2733,13 +2733,13 @@ class ReadabilityAppOptions
     };
 
   public:
-    const wxString XML_EDITOR;
-    const wxString XML_EDITOR_FONT;
-    const wxString XML_EDITOR_FONTCOLOR;
-    const wxString XML_EDITOR_INDENT;
-    const wxString XML_EDITOR_SPACE_AFTER_PARAGRAPH;
-    const wxString XML_EDITOR_TEXT_ALIGNMENT;
-    const wxString XML_EDITOR_LINE_SPACING;
+    const std::string_view XML_EDITOR{ _DT("editor") };
+    const std::string_view XML_EDITOR_FONT{ _DT("editor-font") };
+    const std::string_view XML_EDITOR_FONTCOLOR{ _DT("editor-font-color") };
+    const std::string_view XML_EDITOR_INDENT{ _DT("editor-indent") };
+    const std::string_view XML_EDITOR_SPACE_AFTER_PARAGRAPH{ _DT("editor-space-after-paragraph") };
+    const std::string_view XML_EDITOR_TEXT_ALIGNMENT{ _DT("editor-text-alignment") };
+    const std::string_view XML_EDITOR_LINE_SPACING{ _DT("editor-line-spacing") };
     // Project file tags
     const wxString XML_PROJECT_HEADER;
     const wxString XML_DOCUMENT;
@@ -2998,7 +2998,7 @@ class ReadabilityAppOptions
     const wxString XML_SENTENCES_BREAKDOWN;
     const wxString XML_SENTENCES_BREAKDOWN_INFO;
     // custom colors
-    const wxString XML_CUSTOM_COLORS;
+    const std::string_view XML_CUSTOM_COLORS{ _DT("custom-colors") };
     };
 
 #endif //__READABILITY_APP_OPTIONS_H__

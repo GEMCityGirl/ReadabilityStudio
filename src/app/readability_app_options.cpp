@@ -14,14 +14,6 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     m_textHighlight(TextHighlight::HighlightBackground),
     m_fontColor(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT)),
     // XML file constants
-    // editor
-    XML_EDITOR(_DT(L"editor")),
-    XML_EDITOR_FONT(_DT(L"editor-font")),
-    XML_EDITOR_FONTCOLOR(_DT(L"editor-font-color")),
-    XML_EDITOR_INDENT(_DT(L"editor-indent")),
-    XML_EDITOR_SPACE_AFTER_PARAGRAPH(_DT(L"editor-space-after-paragraph")),
-    XML_EDITOR_TEXT_ALIGNMENT(_DT(L"editor-text-alignment")),
-    XML_EDITOR_LINE_SPACING(_DT(L"editor-line-spacing")),
     // project file tags
     XML_PROJECT_HEADER(_DT(L"oleander-readability-studio-project")),
     XML_DOCUMENT(_DT(L"document")),
@@ -281,9 +273,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     XML_WORDS_BREAKDOWN_INFO(_DT(L"words-breakdown-features")),
     // sentences breakdown
     XML_SENTENCES_BREAKDOWN(_DT(L"sentences-breakdown")),
-    XML_SENTENCES_BREAKDOWN_INFO(_DT(L"sentences-breakdown-features")),
-    // custom colour
-    XML_CUSTOM_COLORS(_DT(L"custom-colors"))
+    XML_SENTENCES_BREAKDOWN_INFO(_DT(L"sentences-breakdown-features"))
     {
     SetFonts();
     SetColorsFromSystem();
@@ -897,7 +887,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
     else
         {
         // general app information
-        auto customColoursNode = configRootNode->FirstChildElement(XML_CUSTOM_COLORS.mb_str());
+        auto customColoursNode = configRootNode->FirstChildElement(XML_CUSTOM_COLORS.data());
         if (customColoursNode)
             {
             GetCustomColours().clear();
@@ -1084,10 +1074,10 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 }
             }
         // editor settings
-        auto editorSettingsNode = configRootNode->FirstChildElement(XML_EDITOR.mb_str());
+        auto editorSettingsNode = configRootNode->FirstChildElement(XML_EDITOR.data());
         if (editorSettingsNode)
             {
-            auto fontColorNode = editorSettingsNode->FirstChildElement(XML_EDITOR_FONTCOLOR.mb_str());
+            auto fontColorNode = editorSettingsNode->FirstChildElement(XML_EDITOR_FONTCOLOR.data());
             if (fontColorNode)
                 {
                 int red =
@@ -1099,7 +1089,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 m_editorFontColor.Set(red, green, blue);
                 }
             // font
-            auto fontNode = editorSettingsNode->FirstChildElement(XML_EDITOR_FONT.mb_str());
+            auto fontNode = editorSettingsNode->FirstChildElement(XML_EDITOR_FONT.data());
             if (fontNode)
                 {
                 int pointSize =
@@ -1131,28 +1121,28 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         { m_editorFont.SetFaceName(wxString(filteredText)); }
                     }
                 }
-            auto indentNode = editorSettingsNode->FirstChildElement(XML_EDITOR_INDENT.mb_str());
+            auto indentNode = editorSettingsNode->FirstChildElement(XML_EDITOR_INDENT.data());
             if (indentNode)
                 {
                 IndentEditor(
                     int_to_bool(indentNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
                 }
             auto spaceAfterParagraphNode =
-                editorSettingsNode->FirstChildElement(XML_EDITOR_SPACE_AFTER_PARAGRAPH.mb_str());
+                editorSettingsNode->FirstChildElement(XML_EDITOR_SPACE_AFTER_PARAGRAPH.data());
             if (spaceAfterParagraphNode)
                 {
                 AddParagraphSpaceInEditor(
                     int_to_bool(spaceAfterParagraphNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
                 }
             auto textAlignNode =
-                editorSettingsNode->FirstChildElement(XML_EDITOR_TEXT_ALIGNMENT.mb_str());
+                editorSettingsNode->FirstChildElement(XML_EDITOR_TEXT_ALIGNMENT.data());
             if (textAlignNode)
                 {
                 SetEditorTextAlignment(
                     static_cast<wxTextAttrAlignment>(textAlignNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
                 }
             auto lineSpacingnNode =
-                editorSettingsNode->FirstChildElement(XML_EDITOR_LINE_SPACING.mb_str());
+                editorSettingsNode->FirstChildElement(XML_EDITOR_LINE_SPACING.data());
             if (lineSpacingnNode)
                 {
                 SetEditorLineSpacing(
@@ -3469,7 +3459,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     auto configSection = doc.NewElement(XML_CONFIGURATIONS.mb_str());
 
-    auto customColours = doc.NewElement(XML_CUSTOM_COLORS.mb_str());
+    auto customColours = doc.NewElement(XML_CUSTOM_COLORS.data());
     for (int i = 0; static_cast<size_t>(i) < GetCustomColours().size(); ++i)
         {
         auto customColor = doc.NewElement(wxString::Format(_DT(L"color%d"), i).mb_str());
@@ -3675,14 +3665,14 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     // editor section
         {
-        auto editorSection = doc.NewElement(XML_EDITOR.mb_str());
-        auto fontcolor = doc.NewElement(XML_EDITOR_FONTCOLOR.mb_str());
+        auto editorSection = doc.NewElement(XML_EDITOR.data());
+        auto fontcolor = doc.NewElement(XML_EDITOR_FONTCOLOR.data());
         fontcolor->SetAttribute(XmlFormat::GetRed().mb_str(), m_editorFontColor.Red());
         fontcolor->SetAttribute(XmlFormat::GetGreen().mb_str(), m_editorFontColor.Green());
         fontcolor->SetAttribute(XmlFormat::GetBlue().mb_str(), m_editorFontColor.Blue());
         editorSection->InsertEndChild(fontcolor);
 
-        auto font = doc.NewElement(XML_EDITOR_FONT.mb_str());
+        auto font = doc.NewElement(XML_EDITOR_FONT.data());
         font->SetAttribute(XmlFormat::GetFontPointSize().mb_str(), m_editorFont.GetPointSize());
         font->SetAttribute(XmlFormat::GetFontStyle().mb_str(), static_cast<int>(m_editorFont.GetStyle()));
         font->SetAttribute(XmlFormat::GetFontWeight().mb_str(), static_cast<int>(m_editorFont.GetWeight()));
@@ -3691,21 +3681,21 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
             wxString(encode({ m_editorFont.GetFaceName().wc_str() }, false).c_str()).mb_str());
         editorSection->InsertEndChild(font);
 
-        auto indent = doc.NewElement(XML_EDITOR_INDENT.mb_str());
+        auto indent = doc.NewElement(XML_EDITOR_INDENT.data());
         indent->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsEditorIndenting()));
         editorSection->InsertEndChild(indent);
 
-        auto spaceAfterParagraph = doc.NewElement(XML_EDITOR_SPACE_AFTER_PARAGRAPH.mb_str());
+        auto spaceAfterParagraph = doc.NewElement(XML_EDITOR_SPACE_AFTER_PARAGRAPH.data());
         spaceAfterParagraph->SetAttribute(XML_VALUE.mb_str(),
             bool_to_int(IsEditorShowSpaceAfterParagraph()));
         editorSection->InsertEndChild(spaceAfterParagraph);
 
-        auto textAlignment = doc.NewElement(XML_EDITOR_TEXT_ALIGNMENT.mb_str());
+        auto textAlignment = doc.NewElement(XML_EDITOR_TEXT_ALIGNMENT.data());
         textAlignment->SetAttribute(XML_VALUE.mb_str(),
             static_cast<int>(GetEditorTextAlignment()));
         editorSection->InsertEndChild(textAlignment);
 
-        auto lineSpacing = doc.NewElement(XML_EDITOR_LINE_SPACING.mb_str());
+        auto lineSpacing = doc.NewElement(XML_EDITOR_LINE_SPACING.data());
         lineSpacing->SetAttribute(XML_VALUE.mb_str(),
             static_cast<int>(GetEditorLineSpacing()));
         editorSection->InsertEndChild(lineSpacing);
