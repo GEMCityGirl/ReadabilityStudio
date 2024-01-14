@@ -959,12 +959,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
     // sentences breakdown
     const wchar_t* sentencesBreakdownSection =
         html_extract_text::find_element(settingsFileText, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN,
-            wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN.length());
+            wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN.wc_str(), true);
     const wchar_t* sentencesBreakdownSectionEnd = sentencesBreakdownSection ?
         html_extract_text::find_closing_element(sentencesBreakdownSection, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN,
-            wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN.length()) : nullptr;
+            wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN.wc_str()) : nullptr;
     if (sentencesBreakdownSection && sentencesBreakdownSectionEnd)
         {
         const wxString wordsBreakdownInfo =
@@ -977,12 +975,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
     // words breakdown
     const wchar_t* wordsBreakdownSection =
         html_extract_text::find_element(settingsFileText, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN,
-            wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN.length());
+            wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN.wc_str(), true);
     const wchar_t* wordsBreakdownSectionSectionEnd = wordsBreakdownSection ?
         html_extract_text::find_closing_element(wordsBreakdownSection, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN,
-            wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN.length()) : nullptr;
+            wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN.wc_str()) : nullptr;
     if (wordsBreakdownSection && wordsBreakdownSectionSectionEnd)
         {
         const wxString wordsBreakdownInfo =
@@ -1084,12 +1080,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         LoadExcludePhrases();
         const wchar_t* exclusionBlockTagSection =
             html_extract_text::find_element(parsingSection, parsingSectionEnd,
-                wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS,
-                wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS.length());
+                wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS.wc_str(), true);
         const wchar_t* exclusionBlockTagSectionEnd = exclusionBlockTagSection ?
             html_extract_text::find_closing_element(exclusionBlockTagSection, parsingSectionEnd,
-                wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS,
-                wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS.length()) : nullptr;
+                wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS.wc_str()) : nullptr;
         if (exclusionBlockTagSection && exclusionBlockTagSectionEnd)
             {
             GetExclusionBlockTags().clear();
@@ -1098,14 +1092,12 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 {
                 exclusionBlockTag =
                     html_extract_text::find_element(exclusionBlockTag, parsingSectionEnd,
-                        wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG,
-                        wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG.length());
+                        wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG.wc_str(), true);
                 if (!exclusionBlockTag)
                     { break; }
                 const wchar_t* exclusionBlockTagEnd =
                     html_extract_text::find_closing_element(exclusionBlockTag, parsingSectionEnd,
-                        wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG,
-                        wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG.length());
+                        wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG.wc_str());
                 if (!exclusionBlockTagEnd)
                     { break; }
                 const wxString blockTags =
@@ -1765,11 +1757,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
     // read stat goals
     const wchar_t* statGoalsSection =
         html_extract_text::find_element(settingsFileText, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_STAT_GOALS,
-            wxGetApp().GetAppOptions().XML_STAT_GOALS.length());
+            wxGetApp().GetAppOptions().XML_STAT_GOALS.wc_str(), true);
     const wchar_t* statGoalsSectionEnd = statGoalsSection ?
         html_extract_text::find_closing_element(statGoalsSection, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_STAT_GOALS, wxGetApp().GetAppOptions().XML_STAT_GOALS.length()) : nullptr;
+            wxGetApp().GetAppOptions().XML_STAT_GOALS.wc_str()) : nullptr;
     if (statGoalsSection && statGoalsSectionEnd)
         {
         for (const auto& statGoal : GetStatGoalLabels())
@@ -1790,12 +1781,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
     // read in the statistics configurations
     const wchar_t* statsSection =
         html_extract_text::find_element(settingsFileText, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_STATISTICS_SECTION,
-            wxGetApp().GetAppOptions().XML_STATISTICS_SECTION.length());
+            wxGetApp().GetAppOptions().XML_STATISTICS_SECTION.wc_str(), true);
     const wchar_t* statsSectionEnd = statsSection ?
         html_extract_text::find_closing_element(statsSection, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_STATISTICS_SECTION,
-            wxGetApp().GetAppOptions().XML_STATISTICS_SECTION.length()) : nullptr;
+            wxGetApp().GetAppOptions().XML_STATISTICS_SECTION.wc_str()) : nullptr;
     if (statsSection && statsSectionEnd)
         {
         SetVarianceMethod(static_cast<VarianceMethod>(XmlFormat::GetLong(statsSection, statsSectionEnd,
@@ -1815,12 +1804,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
     ///@todo not a bad idea to use find_element elsewhere in here
     const wchar_t* readabilityTestSection =
         html_extract_text::find_element(settingsFileText, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION,
-            wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION.length());
+            wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION.wc_str(), true);
     const wchar_t* readabilityTestSectionEnd = readabilityTestSection ?
         html_extract_text::find_closing_element(readabilityTestSection, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION,
-            wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION.length()) : nullptr;
+            wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION.wc_str()) : nullptr;
     if (readabilityTestSection && readabilityTestSectionEnd)
         {
         // readability score results
@@ -1870,12 +1857,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         // test-specific options
         const wchar_t* fleschKincaidOptionsSection =
             html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS,
-                wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS.length());
+                wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS.wc_str(), true);
         const wchar_t* fleschKincaidOptionsSectionEnd = fleschKincaidOptionsSection ?
             html_extract_text::find_closing_element(fleschKincaidOptionsSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS,
-                wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS.length()) : nullptr;
+                wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS.wc_str()) : nullptr;
         if (fleschKincaidOptionsSection && fleschKincaidOptionsSectionEnd)
             {
             SetFleschKincaidNumeralSyllabizeMethod(
@@ -1887,12 +1872,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
 
         const wchar_t* fleschOptionsSection =
             html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS,
-                wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS.length());
+                wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS.wc_str(), true);
         const wchar_t* fleschOptionsSectionEnd = fleschOptionsSection ?
             html_extract_text::find_closing_element(fleschOptionsSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS,
-                wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS.length()) : nullptr;
+                wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS.wc_str()) : nullptr;
         if (fleschOptionsSection && fleschOptionsSectionEnd)
             {
             SetFleschNumeralSyllabizeMethod(
@@ -1903,12 +1886,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
 
         const wchar_t* fogOptionsSection =
             html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS,
-                wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS.length());
+                wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS.wc_str(), true);
         const wchar_t* fogOptionsSectionEnd = fogOptionsSection ?
             html_extract_text::find_closing_element(fogOptionsSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS,
-                wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS.length()) : nullptr;
+                wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS.wc_str()) : nullptr;
         if (fogOptionsSection && fogOptionsSectionEnd)
             {
             SetFogUseSentenceUnits(XmlFormat::GetBoolean(fogOptionsSection, fogOptionsSectionEnd,
@@ -1917,12 +1898,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
 
         const wchar_t* hjOptionsSection =
             html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS,
-                wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS.length());
+                wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS.wc_str(), true);
         const wchar_t* hjOptionsSectionEnd = hjOptionsSection ?
             html_extract_text::find_closing_element(hjOptionsSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS,
-                wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS.length()) : nullptr;
+                wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS.wc_str()) : nullptr;
         if (hjOptionsSection && hjOptionsSectionEnd)
             {
             SetHarrisJacobsonTextExclusionMode(
@@ -1933,12 +1912,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
 
         const wchar_t* dcOptionsSection =
             html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS,
-                wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS.length());
+                wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS.wc_str(), true);
         const wchar_t* dcOptionsSectionEnd = dcOptionsSection ?
             html_extract_text::find_closing_element(dcOptionsSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS,
-                wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS.length()) : nullptr;
+                wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS.wc_str()) : nullptr;
         if (dcOptionsSection && dcOptionsSectionEnd)
             {
             IncludeStockerCatholicSupplement(XmlFormat::GetBoolean(dcOptionsSection, dcOptionsSectionEnd,

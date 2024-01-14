@@ -43,11 +43,11 @@ bool ChapterSplit::SplitHtmlByBookmarks(wxString& sourceFile, const bool convert
         "href=\"page-template.xpgt\"/>\n</head>"
     };
     const wchar_t* headStart =
-        html_extract_text::find_element(htmlText, htmlTextEnd, _DT(L"head"), 4);
+        html_extract_text::find_element(htmlText, htmlTextEnd, _DT(L"head"), true);
     if (!convertToXhtml && headStart)
         {
         const wchar_t* headEnd =
-            html_extract_text::find_closing_element(headStart, htmlTextEnd, _DT(L"head"), 4);
+            html_extract_text::find_closing_element(headStart, htmlTextEnd, _DT(L"head"));
         if (headEnd)
             {
             headEnd = html_extract_text::find_close_tag(headEnd);
@@ -61,7 +61,7 @@ bool ChapterSplit::SplitHtmlByBookmarks(wxString& sourceFile, const bool convert
     // read the Body declaration
     wxString bodySection{ L"<body>" };
     const wchar_t* bodyStart =
-        html_extract_text::find_element(htmlText, htmlTextEnd, _DT(L"body"), 4);
+        html_extract_text::find_element(htmlText, htmlTextEnd, _DT(L"body"), true);
     if (!convertToXhtml && bodyStart)
         {
         const wchar_t* bodyEnd = html_extract_text::find_close_tag(bodyStart);

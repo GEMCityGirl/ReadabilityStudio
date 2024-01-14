@@ -110,10 +110,10 @@ namespace LuaScripting
             {
             const std::wstring widthStr =
                 lily_of_the_valley::html_extract_text::read_attribute_as_string(
-                    link, _DT(L"width"), 5, true);
+                    link, _DT(L"width"), true, false);
             const std::wstring heightStr =
                 lily_of_the_valley::html_extract_text::read_attribute_as_string(
-                    link, _DT(L"height"), 6, true);
+                    link, _DT(L"height"), true, false);
             if (widthStr.length() && heightStr.length())
                 {
                 const long width =
