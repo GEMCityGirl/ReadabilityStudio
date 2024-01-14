@@ -898,34 +898,34 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                                            GetSourceFilesInfo());
 
         UseRealTimeUpdate(XmlFormat::GetBoolean(docParsingSection, docParsingSectionEnd,
-            wxGetApp().GetAppOptions().XML_REALTIME_UPDATE,
+            wxGetApp().GetAppOptions().XML_REALTIME_UPDATE.data(),
             wxGetApp().GetAppOptions().IsRealTimeUpdating()));
         // reviewer and status
         SetReviewer(XmlFormat::GetString(docParsingSection, docParsingSectionEnd,
-                                         wxGetApp().GetAppOptions().XML_REVIEWER));
+                                         wxGetApp().GetAppOptions().XML_REVIEWER.data()));
         SetStatus(XmlFormat::GetString(docParsingSection, docParsingSectionEnd,
-                                       wxGetApp().GetAppOptions().XML_STATUS));
+                                       wxGetApp().GetAppOptions().XML_STATUS.data()));
         // appended doc
         SetAppendedDocumentFilePath(
             XmlFormat::GetString(docParsingSection, docParsingSectionEnd,
-                wxGetApp().GetAppOptions().XML_APPENDED_DOC_PATH));
+                wxGetApp().GetAppOptions().XML_APPENDED_DOC_PATH.data()));
         LoadAppendedDocument();
         // see if the original file is embedded in the project or just linked too
         SetDocumentStorageMethod(static_cast<TextStorage>(XmlFormat::GetLong(docParsingSection, docParsingSectionEnd,
-                                    wxGetApp().GetAppOptions().XML_DOCUMENT_STORAGE_METHOD,
+                                    wxGetApp().GetAppOptions().XML_DOCUMENT_STORAGE_METHOD.data(),
                                     static_cast<long>(wxGetApp().GetAppOptions().GetDocumentStorageMethod()))));
         if (GetDocumentStorageMethod() != TextStorage::EmbedText &&
             GetDocumentStorageMethod() != TextStorage::NoEmbedText)
             { SetDocumentStorageMethod(wxGetApp().GetAppOptions().GetDocumentStorageMethod()); }
         // Min doc size
         SetMinDocWordCountForBatch(static_cast<size_t>(XmlFormat::GetLong(docParsingSection, docParsingSectionEnd,
-                                        wxGetApp().GetAppOptions().XML_MIN_DOC_SIZE_FOR_BATCH,
+                                        wxGetApp().GetAppOptions().XML_MIN_DOC_SIZE_FOR_BATCH.data(),
                                         static_cast<long>(wxGetApp().GetAppOptions().GetMinDocWordCountForBatch()))));
         if (GetMinDocWordCountForBatch() < 1)
             { SetMinDocWordCountForBatch(1); }
         // how file paths are shown in batch projects
         long truncMode = XmlFormat::GetLong(docParsingSection, docParsingSectionEnd,
-                                        wxGetApp().GetAppOptions().XML_FILE_PATH_TRUNC_MODE,
+                                        wxGetApp().GetAppOptions().XML_FILE_PATH_TRUNC_MODE.data(),
                                         static_cast<long>(wxGetApp().GetAppOptions().GetFilePathTruncationMode()));
         if (truncMode >=
             static_cast<decltype(truncMode)>(
@@ -960,15 +960,15 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
     // sentences breakdown
     const wchar_t* sentencesBreakdownSection =
         html_extract_text::find_element(settingsFileText, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN.wc_str(), true);
+            wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN_W, true);
     const wchar_t* sentencesBreakdownSectionEnd = sentencesBreakdownSection ?
         html_extract_text::find_closing_element(sentencesBreakdownSection, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN.wc_str()) : nullptr;
+            wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN_W) : nullptr;
     if (sentencesBreakdownSection && sentencesBreakdownSectionEnd)
         {
         const wxString wordsBreakdownInfo =
             XmlFormat::GetString(sentencesBreakdownSection, sentencesBreakdownSectionEnd,
-                wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN_INFO);
+                wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN_INFO.data());
         if (wordsBreakdownInfo.length())
             { GetSentencesBreakdownInfo().Set(wordsBreakdownInfo); }
         }
@@ -976,15 +976,15 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
     // words breakdown
     const wchar_t* wordsBreakdownSection =
         html_extract_text::find_element(settingsFileText, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN.wc_str(), true);
+            wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN_W, true);
     const wchar_t* wordsBreakdownSectionSectionEnd = wordsBreakdownSection ?
         html_extract_text::find_closing_element(wordsBreakdownSection, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN.wc_str()) : nullptr;
+            wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN_W) : nullptr;
     if (wordsBreakdownSection && wordsBreakdownSectionSectionEnd)
         {
         const wxString wordsBreakdownInfo =
             XmlFormat::GetString(wordsBreakdownSection, wordsBreakdownSectionSectionEnd,
-                wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN_INFO);
+                wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN_INFO.data());
         if (wordsBreakdownInfo.length())
             { GetWordsBreakdownInfo().Set(wordsBreakdownInfo); }
         }
@@ -1793,17 +1793,18 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                             wxGetApp().GetAppOptions().XML_VARIANCE_METHOD.data(),
                             static_cast<long>(wxGetApp().GetAppOptions().GetVarianceMethod()))));
         const wxString statsInfo =
-            XmlFormat::GetString(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_STATISTICS_REPORT);
+            XmlFormat::GetString(statsSection, statsSectionEnd,
+                wxGetApp().GetAppOptions().XML_STATISTICS_REPORT.data());
         if (statsInfo.length())
             { GetStatisticsReportInfo().Set(statsInfo); }
         const wxString statsResultInfo =
-            XmlFormat::GetString(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_STATISTICS_RESULTS);
+            XmlFormat::GetString(statsSection, statsSectionEnd,
+                wxGetApp().GetAppOptions().XML_STATISTICS_RESULTS.data());
         if (statsResultInfo.length())
             { GetStatisticsInfo().Set(statsResultInfo); }
         }
 
     // read in the readability tests' configurations
-    ///@todo not a bad idea to use find_element elsewhere in here
     const wchar_t* readabilityTestSection =
         html_extract_text::find_element(settingsFileText, settingsFileTextEnd,
             wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION_W, true);
@@ -1945,9 +1946,9 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
 
     // read in the text view configurations
     currentStartTag.clear();
-    currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_TEXT_VIEWS_SECTION);
+    currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_TEXT_VIEWS_SECTION.data());
     currentEndTag.clear();
-    currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_TEXT_VIEWS_SECTION).append(L">");
+    currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_TEXT_VIEWS_SECTION.data()).append(L">");
     const wchar_t* textViewsSection = std::wcsstr(settingsFileText, currentStartTag);
     const wchar_t* textViewsSectionEnd = std::wcsstr(settingsFileText, currentEndTag);
     if (textViewsSection && textViewsSectionEnd &&
@@ -1982,31 +1983,31 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 wxGetApp().GetAppOptions().GetTextViewFont());
         // dolch highlighting
         m_dolchConjunctionsColor = XmlFormat::GetColorWithInclusionTag(textViewsSection, textViewsSectionEnd,
-            wxGetApp().GetAppOptions().XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR, m_highlightDolchConjunctions,
+            wxGetApp().GetAppOptions().XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR.data(), m_highlightDolchConjunctions,
             wxGetApp().GetAppOptions().GetDolchConjunctionsColor(),
             wxGetApp().GetAppOptions().IsHighlightingDolchConjunctions() );
         m_dolchPrepositionsColor = XmlFormat::GetColorWithInclusionTag(textViewsSection, textViewsSectionEnd,
-            wxGetApp().GetAppOptions().XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR, m_highlightDolchPrepositions,
+            wxGetApp().GetAppOptions().XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR.data(), m_highlightDolchPrepositions,
             wxGetApp().GetAppOptions().GetDolchPrepositionsColor(),
             wxGetApp().GetAppOptions().IsHighlightingDolchPrepositions() );
         m_dolchPronounsColor = XmlFormat::GetColorWithInclusionTag(textViewsSection, textViewsSectionEnd,
-            wxGetApp().GetAppOptions().XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR, m_highlightDolchPronouns,
+            wxGetApp().GetAppOptions().XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR.data(), m_highlightDolchPronouns,
             wxGetApp().GetAppOptions().GetDolchPronounsColor(),
             wxGetApp().GetAppOptions().IsHighlightingDolchPronouns() );
         m_dolchAdverbsColor = XmlFormat::GetColorWithInclusionTag(textViewsSection, textViewsSectionEnd,
-            wxGetApp().GetAppOptions().XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR, m_highlightDolchAdverbs,
+            wxGetApp().GetAppOptions().XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR.data(), m_highlightDolchAdverbs,
             wxGetApp().GetAppOptions().GetDolchAdverbsColor(),
             wxGetApp().GetAppOptions().IsHighlightingDolchAdverbs() );
         m_dolchAdjectivesColor = XmlFormat::GetColorWithInclusionTag(textViewsSection, textViewsSectionEnd,
-            wxGetApp().GetAppOptions().XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR, m_highlightDolchAdjectives,
+            wxGetApp().GetAppOptions().XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR.data(), m_highlightDolchAdjectives,
             wxGetApp().GetAppOptions().GetDolchAdjectivesColor(),
             wxGetApp().GetAppOptions().IsHighlightingDolchAdjectives() );
         m_dolchVerbsColor = XmlFormat::GetColorWithInclusionTag(textViewsSection, textViewsSectionEnd,
-            wxGetApp().GetAppOptions().XML_DOLCH_VERBS_HIGHLIGHTCOLOR, m_highlightDolchVerbs,
+            wxGetApp().GetAppOptions().XML_DOLCH_VERBS_HIGHLIGHTCOLOR.data(), m_highlightDolchVerbs,
             wxGetApp().GetAppOptions().GetDolchVerbsColor(),
             wxGetApp().GetAppOptions().IsHighlightingDolchVerbs() );
         m_dolchNounColor = XmlFormat::GetColorWithInclusionTag(textViewsSection, textViewsSectionEnd,
-            wxGetApp().GetAppOptions().XML_DOLCH_NOUNS_HIGHLIGHTCOLOR, m_highlightDolchNouns,
+            wxGetApp().GetAppOptions().XML_DOLCH_NOUNS_HIGHLIGHTCOLOR.data(), m_highlightDolchNouns,
             wxGetApp().GetAppOptions().GetDolchNounColor(),
             wxGetApp().GetAppOptions().IsHighlightingDolchNouns() );
         }
@@ -2054,31 +2055,31 @@ wxString BaseProjectDoc::FormatProjectSettings() const
                                                         GetSourceFilesInfo().at(i).second, 2);
         }
     // storage/linking
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_STORAGE_METHOD,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_STORAGE_METHOD.data(),
         static_cast<int>(GetDocumentStorageMethod()), 2);
     fileText += sectionText;
 
     // min doc size
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_MIN_DOC_SIZE_FOR_BATCH,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_MIN_DOC_SIZE_FOR_BATCH.data(),
         GetMinDocWordCountForBatch(), 2);
     fileText += sectionText;
 
     // how file paths are shown in batch projects
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_FILE_PATH_TRUNC_MODE,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_FILE_PATH_TRUNC_MODE.data(),
         static_cast<int>(GetFilePathTruncationMode()), 2);
     fileText += sectionText;
 
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_REALTIME_UPDATE, IsRealTimeUpdating(), 2);
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_REALTIME_UPDATE.data(), IsRealTimeUpdating(), 2);
         fileText += sectionText;
 
     // reviewer and status
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_REVIEWER, GetReviewer(), 2);
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_REVIEWER.data(), GetReviewer(), 2);
     fileText += sectionText;
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_STATUS, GetStatus(), 2);
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_STATUS.data(), GetStatus(), 2);
     fileText += sectionText;
 
     // appended doc
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_APPENDED_DOC_PATH,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_APPENDED_DOC_PATH.data(),
         GetAppendedDocumentFilePath(), 2);
     fileText += sectionText;
 
@@ -2095,18 +2096,18 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_DOCUMENT.data()).append(L">\n");
 
     // sentences breakdown
-    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN).append(L">\n");
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN_INFO,
+    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN.data()).append(L">\n");
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN_INFO.data(),
         GetSentencesBreakdownInfo().ToString(), 2);
     fileText += sectionText;
-    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN).append(L">\n");
+    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN.data()).append(L">\n");
 
     // words breakdown
-    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN).append(L">\n");
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN_INFO,
+    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN.data()).append(L">\n");
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN_INFO.data(),
         GetWordsBreakdownInfo().ToString(), 2);
     fileText += sectionText;
-    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN).append(L">\n");
+    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN.data()).append(L">\n");
 
     // grammar
     fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_GRAMMAR.data()).append(L">\n");
@@ -2635,11 +2636,11 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     // save the statistics
     fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_STATISTICS_SECTION.data()).append(L">\n");
     // stats results
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_STATISTICS_RESULTS,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_STATISTICS_RESULTS.data(),
         GetStatisticsInfo().ToString(), 2);
     fileText += sectionText;
     // stats report
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_STATISTICS_REPORT,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_STATISTICS_REPORT.data(),
         GetStatisticsReportInfo().ToString(), 2);
     fileText += sectionText;
     // variance method
@@ -2725,7 +2726,7 @@ wxString BaseProjectDoc::FormatProjectSettings() const
 
     // save the text views
     //---------------------------
-    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_TEXT_VIEWS_SECTION).append(L">\n");
+    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_TEXT_VIEWS_SECTION.data()).append(L">\n");
     // how the text is highlighted
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_HIGHLIGHT_METHOD.data(),
                              static_cast<int>(m_textHighlight), 2);
@@ -2743,31 +2744,31 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText += XmlFormat::FormatColorAttributes(m_duplicateWordHighlightColor);
     fileText.append(L"/>\n");
     // highlight for dolch words
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR.data());
     fileText += XmlFormat::FormatColorAttributeWithInclusionTag(GetDolchConjunctionsColor(),
         IsHighlightingDolchConjunctions());
     fileText.append(L"/>\n");
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR.data());
     fileText += XmlFormat::FormatColorAttributeWithInclusionTag(GetDolchPrepositionsColor(),
         IsHighlightingDolchPrepositions());
     fileText.append(L"/>\n");
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR.data());
     fileText += XmlFormat::FormatColorAttributeWithInclusionTag(GetDolchPronounsColor(),
         IsHighlightingDolchPronouns());
     fileText.append(L"/>\n");
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR.data());
     fileText += XmlFormat::FormatColorAttributeWithInclusionTag(GetDolchAdverbsColor(),
         IsHighlightingDolchAdverbs());
     fileText.append(L"/>\n");
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR.data());
     fileText += XmlFormat::FormatColorAttributeWithInclusionTag(GetDolchAdjectivesColor(),
         IsHighlightingDolchAdjectives());
     fileText.append(L"/>\n");
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOLCH_VERBS_HIGHLIGHTCOLOR);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOLCH_VERBS_HIGHLIGHTCOLOR.data());
     fileText += XmlFormat::FormatColorAttributeWithInclusionTag(GetDolchVerbsColor(),
         IsHighlightingDolchVerbs());
     fileText.append(L"/>\n");
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOLCH_NOUNS_HIGHLIGHTCOLOR);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOLCH_NOUNS_HIGHLIGHTCOLOR.data());
     fileText += XmlFormat::FormatColorAttributeWithInclusionTag(GetDolchNounColor(),
         IsHighlightingDolchNouns());
     fileText.append(L"/>\n");
@@ -2776,14 +2777,14 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText += XmlFormat::FormatColorAttributes(m_wordyPhraseHighlightColor);
     fileText.append(L"/>\n");
     // text view font color
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOCUMENT_DISPLAY_FONTCOLOR);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOCUMENT_DISPLAY_FONTCOLOR.data());
     fileText += XmlFormat::FormatColorAttributes(m_fontColor);
     fileText.append(L"/>\n");
     // text view font information
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOCUMENT_DISPLAY_FONT);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOCUMENT_DISPLAY_FONT.data());
     fileText += XmlFormat::FormatFontAttributes(m_textViewFont);
     fileText.append(L"/>\n");
-    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_TEXT_VIEWS_SECTION).append(L">\n");
+    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_TEXT_VIEWS_SECTION.data()).append(L">\n");
 
     fileText.append(L"</").append(wxGetApp().GetAppOptions().XML_PROJECT_HEADER.data()).append(L">");
 

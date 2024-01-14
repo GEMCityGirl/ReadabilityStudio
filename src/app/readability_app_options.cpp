@@ -14,65 +14,6 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     m_textHighlight(TextHighlight::HighlightBackground),
     m_fontColor(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT)),
     // XML file constants
-    // text view constants
-    XML_TEXT_VIEWS_SECTION(_DT(L"text-views")),
-    XML_DOCUMENT_DISPLAY_FONTCOLOR(_DT(L"document-display-font-color")),
-    XML_DOCUMENT_DISPLAY_FONT(_DT(L"document-display-font")),
-    XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR(_DT(L"dolch-conjunction-font-color")),
-    XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR(_DT(L"dolch-preposition-font-color")),
-    XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR(_DT(L"dolch-pronoun-font-color")),
-    XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR(_DT(L"dolch-adverb-font-color")),
-    XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR(_DT(L"dolch-adjective-font-color")),
-    XML_DOLCH_VERBS_HIGHLIGHTCOLOR(_DT(L"dolch-verb-font-color")),
-    XML_DOLCH_NOUNS_HIGHLIGHTCOLOR(_DT(L"dolch-noun-font-color")),
-    // theming
-    XML_THEME_NAME(_DT(L"theme-name")),
-    XML_CONTROL_BACKGROUND_COLOR(_DT(L"control-background-color")),
-    XML_RIBBON_ACTIVE_TAB_COLOR(_DT(L"ribbon-active-tab-color")),
-    XML_RIBBON_HOVER_COLOR(_DT(L"ribbon-hover-color")),
-    XML_SIDEBAR_BACKGROUND_COLOR(_DT(L"sidebar-background-color")),
-    XML_SIDEBAR_ACTIVE_COLOR(_DT(L"sidebar-active-color")),
-    XML_SIDEBAR_PARENT_COLOR(_DT(L"sidebar-parent-color")),
-    XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR(_DT(L"start-page-backstage-background-color")),
-    XML_STARTPAGE_DETAIL_BACKGROUND_COLOR(_DT(L"start-page-detail-background-color")),
-    // general options
-    XML_APPEARANCE(_DT(L"appearance")),
-    XML_WINDOW_MAXIMIZED(_DT(L"app-window-maximized")),
-    XML_WINDOW_WIDTH(_DT(L"app-window-width")),
-    XML_WINDOW_HEIGHT(_DT(L"app-window-height")),
-    XML_LICENSE_ACCEPTED(_DT(L"license-accepted")),
-    XML_USER_AGENT(_DT(L"user-agent")),
-    // project options
-    XML_REVIEWER(_DT(L"project-reviewer")),
-    XML_STATUS(_DT(L"project-status")),
-    XML_REALTIME_UPDATE(_DT(L"realtime-refresh")),
-    XML_APPENDED_DOC_PATH(_DT(L"appended-doc-path")),
-    // document linking information
-    XML_DOCUMENT_STORAGE_METHOD(_DT(L"document-storage-method")),
-    // stats information
-    XML_STATISTICS_RESULTS(_DT(L"statistics-results")),
-    XML_STATISTICS_REPORT(_DT(L"statistics-report")),
-    // Min doc size
-    XML_MIN_DOC_SIZE_FOR_BATCH(_DT(L"min-doc-size-for-batch")),
-    XML_RANDOM_SAMPLE_SIZE(_DT(L"random-samlple-size")),
-    XML_FILE_PATH_TRUNC_MODE(_DT(L"filepath-truncation-mode")),
-    // export options
-    XML_EXPORT(_DT(L"export-settings")),
-    XML_EXPORT_LIST_EXT(_DT(L"export-list-extension")),
-    XML_EXPORT_TEXT_EXT(_DT(L"export-text-extension")),
-    XML_EXPORT_GRAPH_EXT(_DT(L"export-graph-extension")),
-    XML_EXPORT_LISTS(_DT(L"export-lists")),
-    XML_EXPORT_SENTENCES_BREAKDOWN(_DT(L"export-sentence-breakdown")),
-    XML_EXPORT_GRAPHS(_DT(L"export-graphs")),
-    XML_EXPORT_TEST_RESULTS(_DT(L"export-test-results")),
-    XML_EXPORT_STATS(_DT(L"export-statistics")),
-    XML_EXPORT_GRAMMAR(_DT(L"export-grammar")),
-    XML_EXPORT_DOLCH_WORDS(_DT(L"export-dolch-words")),
-    XML_EXPORT_WARNINGS(_DT(L"export-warnings")),
-    // warning settings
-    XML_WARNING_MESSAGE_SETTINGS(_DT(L"warning-message-settings")),
-    XML_WARNING_MESSAGE(_DT(L"warning-message")),
-    XML_PREVIOUS_RESPONSE(_DT(L"previous-response")),
     // general strings
     ALL_DOCUMENTS_WILDCARD(
         _DT(LR"(*.txt;*.htm;*.html;*.xhtml;*.sgml;*.php;*.php3;*.php4;*.aspx;*.asp;*.rtf;*.doc;*.docx;*.docm;*.pptx;*.pptm;*.dot;*.wri;*.odt;*.ott;*.odp;*.otp;*.ps;*.idl;*.cpp;*.c;*.h;*.md;*.qmd;*.rmd)")),
@@ -84,13 +25,7 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     FILE_OPEN_PATHS(_DT(L"file-open-paths")),
     FILE_OPEN_IMAGE_PATH(_DT(L"image-path")),
     FILE_OPEN_PROJECT_PATH(_DT(L"project-path")),
-    FILE_OPEN_WORDLIST_PATH(_DT(L"wordlist-path")),
-    // words breakdown
-    XML_WORDS_BREAKDOWN(_DT(L"words-breakdown")),
-    XML_WORDS_BREAKDOWN_INFO(_DT(L"words-breakdown-features")),
-    // sentences breakdown
-    XML_SENTENCES_BREAKDOWN(_DT(L"sentences-breakdown")),
-    XML_SENTENCES_BREAKDOWN_INFO(_DT(L"sentences-breakdown-features"))
+    FILE_OPEN_WORDLIST_PATH(_DT(L"wordlist-path"))
     {
     SetFonts();
     SetColorsFromSystem();
@@ -476,10 +411,10 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
         {
         lily_of_the_valley::html_extract_text filter_html;
 
-        int maximized = appearanceNode->ToElement()->IntAttribute(XML_WINDOW_MAXIMIZED.mb_str(), 1);
+        int maximized = appearanceNode->ToElement()->IntAttribute(XML_WINDOW_MAXIMIZED.data(), 1);
         m_appWindowMaximized = int_to_bool(maximized);
-        m_appWindowWidth = appearanceNode->ToElement()->IntAttribute(XML_WINDOW_WIDTH.mb_str(), 800);
-        m_appWindowHeight = appearanceNode->ToElement()->IntAttribute(XML_WINDOW_HEIGHT.mb_str(), 700);
+        m_appWindowWidth = appearanceNode->ToElement()->IntAttribute(XML_WINDOW_WIDTH.data(), 800);
+        m_appWindowHeight = appearanceNode->ToElement()->IntAttribute(XML_WINDOW_HEIGHT.data(), 700);
         // make sure the values make sense
         if (m_appWindowWidth < 1)
             { m_appWindowWidth = 800; }
@@ -491,7 +426,7 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
     // version can't do custom ribbon/sidebar theming, it needs to use the system theming.
     #ifndef __WXOSX__
         // window color
-        auto windowColorNode = appearanceNode->FirstChildElement(XML_CONTROL_BACKGROUND_COLOR.mb_str());
+        auto windowColorNode = appearanceNode->FirstChildElement(XML_CONTROL_BACKGROUND_COLOR.data());
         if (windowColorNode)
             {
             int red = windowColorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(), 255);
@@ -506,7 +441,7 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
             }
 
         // ribbon
-        auto ribbonActiveTabColorNode = appearanceNode->FirstChildElement(XML_RIBBON_ACTIVE_TAB_COLOR.mb_str());
+        auto ribbonActiveTabColorNode = appearanceNode->FirstChildElement(XML_RIBBON_ACTIVE_TAB_COLOR.data());
         if (ribbonActiveTabColorNode)
             {
             int red = ribbonActiveTabColorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(), 255);
@@ -515,7 +450,7 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
             SetRibbonActiveTabColor(wxColour(red, green, blue));
             SetRibbonInactiveTabColor(Wisteria::Colors::ColorContrast::Shade(GetRibbonActiveTabColor()));
             }
-        auto ribbonHoverColorNode = appearanceNode->FirstChildElement(XML_RIBBON_HOVER_COLOR.mb_str());
+        auto ribbonHoverColorNode = appearanceNode->FirstChildElement(XML_RIBBON_HOVER_COLOR.data());
         if (ribbonHoverColorNode)
             {
             int red = ribbonHoverColorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(), 255);
@@ -532,7 +467,7 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
         SetRibbonHoverFontColor(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(GetRibbonHoverColor()));
 
         // sidebar
-        auto sidebarBkColorNode = appearanceNode->FirstChildElement(XML_SIDEBAR_BACKGROUND_COLOR.mb_str());
+        auto sidebarBkColorNode = appearanceNode->FirstChildElement(XML_SIDEBAR_BACKGROUND_COLOR.data());
         if (sidebarBkColorNode)
             {
             int red = sidebarBkColorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(), 255);
@@ -540,7 +475,7 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
             int blue = sidebarBkColorNode->ToElement()->IntAttribute(XmlFormat::GetBlue().mb_str(), 255);
             SetSideBarBackgroundColor(wxColour(red, green, blue));
             }
-        auto sidebarActiveColorNode = appearanceNode->FirstChildElement(XML_SIDEBAR_ACTIVE_COLOR.mb_str());
+        auto sidebarActiveColorNode = appearanceNode->FirstChildElement(XML_SIDEBAR_ACTIVE_COLOR.data());
         if (sidebarActiveColorNode)
             {
             int red = sidebarActiveColorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(), 255);
@@ -555,7 +490,7 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
         SetSideBarHoverColor(Wisteria::Colors::ColorContrast::Shade(GetSideBarActiveColor()));
         SetSideBarHoverFontColor(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(GetSideBarHoverColor()));
 
-        auto sidebarParentColorNode = appearanceNode->FirstChildElement(XML_SIDEBAR_PARENT_COLOR.mb_str());
+        auto sidebarParentColorNode = appearanceNode->FirstChildElement(XML_SIDEBAR_PARENT_COLOR.data());
         if (sidebarParentColorNode)
             {
             int red = sidebarParentColorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(), 255);
@@ -572,7 +507,7 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
 
         // start page
         auto startPageBackStageBackgroundColorNode =
-            appearanceNode->FirstChildElement(XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR.mb_str());
+            appearanceNode->FirstChildElement(XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR.data());
         if (startPageBackStageBackgroundColorNode)
             {
             int red =
@@ -584,7 +519,7 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
             SetStartPageBackstageBackgroundColor(wxColour(red, green, blue));
             }
         auto startPageDetailBackgroundColorNode =
-            appearanceNode->FirstChildElement(XML_STARTPAGE_DETAIL_BACKGROUND_COLOR.mb_str());
+            appearanceNode->FirstChildElement(XML_STARTPAGE_DETAIL_BACKGROUND_COLOR.data());
         if (startPageDetailBackgroundColorNode)
             {
             int red =
@@ -598,7 +533,7 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
     #endif
 
         // see what theme is selected
-        auto themeNode = appearanceNode->FirstChildElement(XML_THEME_NAME.mb_str());
+        auto themeNode = appearanceNode->FirstChildElement(XML_THEME_NAME.data());
         if (themeNode)
             {
             const char* themeString = themeNode->ToElement()->Attribute(XML_VALUE.data());
@@ -652,7 +587,7 @@ bool ReadabilityAppOptions::LoadThemeFile(const wxString& optionsFile)
         return false;
         }
 
-    auto appearanceNode = configRootNode->FirstChildElement(XML_APPEARANCE.mb_str());
+    auto appearanceNode = configRootNode->FirstChildElement(XML_APPEARANCE.data());
     LoadThemeNode(appearanceNode);
     return SaveOptionsFile();
     }
@@ -724,17 +659,17 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             }
 
         // appearance of the program
-        auto appearanceNode = configRootNode->FirstChildElement(XML_APPEARANCE.mb_str());
+        auto appearanceNode = configRootNode->FirstChildElement(XML_APPEARANCE.data());
         LoadThemeNode(appearanceNode);
 
-        auto licenseNode = configRootNode->FirstChildElement(XML_LICENSE_ACCEPTED.mb_str());
+        auto licenseNode = configRootNode->FirstChildElement(XML_LICENSE_ACCEPTED.data());
         if (licenseNode)
             {
             int value = licenseNode->ToElement()->IntAttribute(XML_VALUE.data(), 0);
             m_licenseAccepted = int_to_bool(value);
             }
 
-        auto userAgentNode = configRootNode->FirstChildElement(XML_USER_AGENT.mb_str());
+        auto userAgentNode = configRootNode->FirstChildElement(XML_USER_AGENT.data());
         if (userAgentNode)
             {
             auto userAgent = userAgentNode->ToElement()->Attribute(XML_VALUE.data());
@@ -971,7 +906,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
         auto projectSettingsForReview = configRootNode->FirstChildElement(XML_PROJECT_SETTINGS.data());
         if (projectSettingsForReview)
             {
-            auto projectReviewer = projectSettingsForReview->FirstChildElement(XML_REVIEWER.mb_str());
+            auto projectReviewer = projectSettingsForReview->FirstChildElement(XML_REVIEWER.data());
             if (projectReviewer)
                 {
                 const char* reviewerChars = projectReviewer->ToElement()->Attribute(XML_VALUE.data());
@@ -990,10 +925,10 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
         if (loadOnlyGeneralOptions)
             { return true; }
         // warning settings
-        auto warningSettingsNode = configRootNode->FirstChildElement(XML_WARNING_MESSAGE_SETTINGS.mb_str());
+        auto warningSettingsNode = configRootNode->FirstChildElement(XML_WARNING_MESSAGE_SETTINGS.data());
         if (warningSettingsNode)
             {
-            auto warningNode = warningSettingsNode->FirstChildElement(XML_WARNING_MESSAGE.mb_str());
+            auto warningNode = warningSettingsNode->FirstChildElement(XML_WARNING_MESSAGE.data());
             while (warningNode)
                 {
                 const char* warningStringId = warningNode->ToElement()->Attribute(XML_VALUE.data());
@@ -1007,19 +942,19 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         int value = warningNode->ToElement()->IntAttribute(XML_DISPLAY.data(), 1);
                         warningIter->Show(int_to_bool(value));
-                        value = warningNode->ToElement()->IntAttribute(XML_PREVIOUS_RESPONSE.mb_str(), 0);
+                        value = warningNode->ToElement()->IntAttribute(XML_PREVIOUS_RESPONSE.data(), 0);
                         warningIter->SetPreviousResponse(value);
                         }
                     }
-                warningNode = warningNode->NextSiblingElement(XML_WARNING_MESSAGE.mb_str());
+                warningNode = warningNode->NextSiblingElement(XML_WARNING_MESSAGE.data());
                 }
             }
 
         // export sections
-        auto exportSettingsNode = configRootNode->FirstChildElement(XML_EXPORT.mb_str());
+        auto exportSettingsNode = configRootNode->FirstChildElement(XML_EXPORT.data());
         if (exportSettingsNode)
             {
-            auto exportExtNode = exportSettingsNode->FirstChildElement(XML_EXPORT_LIST_EXT.mb_str());
+            auto exportExtNode = exportSettingsNode->FirstChildElement(XML_EXPORT_LIST_EXT.data());
             if (exportExtNode)
                 {
                 const char* extString = exportExtNode->ToElement()->Attribute(XML_VALUE.data());
@@ -1029,7 +964,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         Wisteria::TextStream::CharStreamToUnicode(extString, std::strlen(extString)));
                     }
                 }
-            exportExtNode = exportSettingsNode->FirstChildElement(XML_EXPORT_TEXT_EXT.mb_str());
+            exportExtNode = exportSettingsNode->FirstChildElement(XML_EXPORT_TEXT_EXT.data());
             if (exportExtNode)
                 {
                 const char* extString = exportExtNode->ToElement()->Attribute(XML_VALUE.data());
@@ -1039,7 +974,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         Wisteria::TextStream::CharStreamToUnicode(extString, std::strlen(extString)));
                     }
                 }
-            exportExtNode = exportSettingsNode->FirstChildElement(XML_EXPORT_GRAPH_EXT.mb_str());
+            exportExtNode = exportSettingsNode->FirstChildElement(XML_EXPORT_GRAPH_EXT.data());
             if (exportExtNode)
                 {
                 const char* extString = exportExtNode->ToElement()->Attribute(XML_VALUE.data());
@@ -1049,49 +984,49 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         Wisteria::TextStream::CharStreamToUnicode(extString, std::strlen(extString)));
                     }
                 }
-            auto exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_LISTS.mb_str());
+            auto exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_LISTS.data());
             if (exportNode)
                 {
                 BaseProjectDoc::ExportHardWordLists(
                     int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
-            exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_SENTENCES_BREAKDOWN.mb_str());
+            exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_SENTENCES_BREAKDOWN.data());
             if (exportNode)
                 {
                 BaseProjectDoc::ExportSentencesBreakdown(
                     int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
-            exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_GRAPHS.mb_str());
+            exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_GRAPHS.data());
             if (exportNode)
                 {
                 BaseProjectDoc::ExportGraphs(
                     int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
-            exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_TEST_RESULTS.mb_str());
+            exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_TEST_RESULTS.data());
             if (exportNode)
                 {
                 BaseProjectDoc::ExportTestResults(
                     int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
-            exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_STATS.mb_str());
+            exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_STATS.data());
             if (exportNode)
                 {
                 BaseProjectDoc::ExportStatistics(
                     int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
-            exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_GRAMMAR.mb_str());
+            exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_GRAMMAR.data());
             if (exportNode)
                 {
                 BaseProjectDoc::ExportWordiness(
                     int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
-             exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_DOLCH_WORDS.mb_str());
+             exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_DOLCH_WORDS.data());
             if (exportNode)
                 {
                 BaseProjectDoc::ExportSightWords(
                     int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
-            exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_WARNINGS.mb_str());
+            exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_WARNINGS.data());
             if (exportNode)
                 {
                 BaseProjectDoc::ExportWarnings(
@@ -1103,7 +1038,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
         if (projectSettings)
             {
             // reviewer and status
-            auto projectReviewer = projectSettings->FirstChildElement(XML_REVIEWER.mb_str());
+            auto projectReviewer = projectSettings->FirstChildElement(XML_REVIEWER.data());
             if (projectReviewer)
                 {
                 const char* reviewerChars = projectReviewer->ToElement()->Attribute(XML_VALUE.data());
@@ -1117,7 +1052,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         { SetReviewer(convertedStr); }
                     }
                 }
-            auto realTimeRefresh = projectSettings->FirstChildElement(XML_REALTIME_UPDATE.mb_str());
+            auto realTimeRefresh = projectSettings->FirstChildElement(XML_REALTIME_UPDATE.data());
             if (realTimeRefresh)
                 {
                 const char* realTimeChars = realTimeRefresh->ToElement()->Attribute(XML_VALUE.data());
@@ -1132,7 +1067,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 }
             auto appendedDocPath =
-                projectSettings->FirstChildElement(XML_APPENDED_DOC_PATH.mb_str());
+                projectSettings->FirstChildElement(XML_APPENDED_DOC_PATH.data());
             if (appendedDocPath)
                 {
                 const char* appendedDocChars = appendedDocPath->ToElement()->Attribute(XML_VALUE.data());
@@ -1146,7 +1081,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 }
             // document storage/linking
-            auto docStorageNode = projectSettings->FirstChildElement(XML_DOCUMENT_STORAGE_METHOD.mb_str());
+            auto docStorageNode = projectSettings->FirstChildElement(XML_DOCUMENT_STORAGE_METHOD.data());
             if (docStorageNode)
                 {
                 m_documentStorageMethod =
@@ -1169,7 +1104,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     { value = static_cast<decltype(value)>(readability::test_language::english_test); }
                 m_language = static_cast<readability::test_language>(value);
                 }
-            auto randSizeSizeNode = projectSettings->FirstChildElement(XML_RANDOM_SAMPLE_SIZE.mb_str());
+            auto randSizeSizeNode = projectSettings->FirstChildElement(XML_RANDOM_SAMPLE_SIZE.data());
             if (randSizeSizeNode)
                 {
                 int value =
@@ -1179,7 +1114,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     { value = 25; }
                 SetBatchRandomSamplingSize(static_cast<size_t>(value));
                 }
-            auto minDocSizeNode = projectSettings->FirstChildElement(XML_MIN_DOC_SIZE_FOR_BATCH.mb_str());
+            auto minDocSizeNode = projectSettings->FirstChildElement(XML_MIN_DOC_SIZE_FOR_BATCH.data());
             if (minDocSizeNode)
                 {
                 int value =
@@ -1189,7 +1124,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     { value = 1; }
                 SetMinDocWordCountForBatch(static_cast<size_t>(value));
                 }
-            auto filePathTruncModeNode = projectSettings->FirstChildElement(XML_FILE_PATH_TRUNC_MODE.mb_str());
+            auto filePathTruncModeNode = projectSettings->FirstChildElement(XML_FILE_PATH_TRUNC_MODE.data());
             if (filePathTruncModeNode)
                 {
                 int value =
@@ -1209,12 +1144,12 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 SetFilePathTruncationMode(static_cast<ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode>(value));
                 }
             // sentences breakdown
-            auto sentencesBreakdownNode = projectSettings->FirstChildElement(XML_SENTENCES_BREAKDOWN.mb_str());
+            auto sentencesBreakdownNode = projectSettings->FirstChildElement(XML_SENTENCES_BREAKDOWN.data());
             if (sentencesBreakdownNode)
                 {
                 // which options are included
                 auto sentencesBreakdownInfoNode =
-                    sentencesBreakdownNode->FirstChildElement(XML_SENTENCES_BREAKDOWN_INFO.mb_str());
+                    sentencesBreakdownNode->FirstChildElement(XML_SENTENCES_BREAKDOWN_INFO.data());
                 if (sentencesBreakdownInfoNode)
                     {
                     const char* InfoChars =
@@ -1230,11 +1165,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 }
             // words breakdown
-            auto wordsBreakdownNode = projectSettings->FirstChildElement(XML_WORDS_BREAKDOWN.mb_str());
+            auto wordsBreakdownNode = projectSettings->FirstChildElement(XML_WORDS_BREAKDOWN.data());
             if (wordsBreakdownNode)
                 {
                 // which options are included
-                auto wordsBreakdownInfoNode = wordsBreakdownNode->FirstChildElement(XML_WORDS_BREAKDOWN_INFO.mb_str());
+                auto wordsBreakdownInfoNode = wordsBreakdownNode->FirstChildElement(XML_WORDS_BREAKDOWN_INFO.data());
                 if (wordsBreakdownInfoNode)
                     {
                     const char* InfoChars = wordsBreakdownInfoNode->ToElement()->Attribute(XML_VALUE.data());
@@ -2712,7 +2647,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                 XML_METHOD.data(), static_cast<int>(GetVarianceMethod()))));
                     }
                 // stats report
-                auto statsNode = statsDefaultsNode->FirstChildElement(XML_STATISTICS_RESULTS.mb_str());
+                auto statsNode = statsDefaultsNode->FirstChildElement(XML_STATISTICS_RESULTS.data());
                 if (statsNode)
                     {
                     const char* statsChars = statsNode->ToElement()->Attribute(XML_VALUE.data());
@@ -2727,7 +2662,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     }
                 // stats report
-                auto statsReportNode = statsDefaultsNode->FirstChildElement(XML_STATISTICS_REPORT.mb_str());
+                auto statsReportNode = statsDefaultsNode->FirstChildElement(XML_STATISTICS_REPORT.data());
                 if (statsReportNode)
                     {
                     const char* statsReportChars = statsReportNode->ToElement()->Attribute(XML_VALUE.data());
@@ -3001,7 +2936,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                  }
             // Text views
-            auto textViewNode = projectSettings->FirstChildElement(XML_TEXT_VIEWS_SECTION.mb_str());
+            auto textViewNode = projectSettings->FirstChildElement(XML_TEXT_VIEWS_SECTION.data());
             if (textViewNode)
                 {
                 // how highlighting is done
@@ -3032,7 +2967,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 // the highlight color for dolch words
                 auto dolchConjunctionsColorNode = textViewNode->FirstChildElement(
-                    XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR.mb_str());
+                    XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR.data());
                 if (dolchConjunctionsColorNode)
                     {
                     int red =
@@ -3050,7 +2985,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                              XML_INCLUDE.data(), bool_to_int(m_highlightDolchConjunctions)));
                     }
                 auto dolchPrepositionsColorNode = textViewNode->FirstChildElement(
-                    XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR.mb_str());
+                    XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR.data());
                 if (dolchPrepositionsColorNode)
                     {
                     int red =
@@ -3068,7 +3003,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                              XML_INCLUDE.data(), bool_to_int(m_highlightDolchPrepositions)));
                     }
                 auto dolchPronounsColorNode = textViewNode->FirstChildElement(
-                    XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR.mb_str());
+                    XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR.data());
                 if (dolchPronounsColorNode)
                     {
                     int red =
@@ -3086,7 +3021,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                              XML_INCLUDE.data(), bool_to_int(m_highlightDolchPronouns)));
                     }
                 auto dolchAdverbsColorNode = textViewNode->FirstChildElement(
-                    XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR.mb_str());
+                    XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR.data());
                 if (dolchAdverbsColorNode)
                     {
                     int red =
@@ -3104,7 +3039,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                              XML_INCLUDE.data(), bool_to_int(m_highlightDolchAdverbs)));
                     }
                 auto dolchAdjectivesColorNode =
-                    textViewNode->FirstChildElement(XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR.mb_str());
+                    textViewNode->FirstChildElement(XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR.data());
                 if (dolchAdjectivesColorNode)
                     {
                     int red =
@@ -3121,7 +3056,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                          int_to_bool(dolchAdjectivesColorNode->ToElement()->IntAttribute(
                              XML_INCLUDE.data(), bool_to_int(m_highlightDolchAdjectives)));
                     }
-                auto dolchVerbColorNode = textViewNode->FirstChildElement(XML_DOLCH_VERBS_HIGHLIGHTCOLOR.mb_str());
+                auto dolchVerbColorNode = textViewNode->FirstChildElement(XML_DOLCH_VERBS_HIGHLIGHTCOLOR.data());
                 if (dolchVerbColorNode)
                     {
                     int red =
@@ -3138,7 +3073,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                          int_to_bool(dolchVerbColorNode->ToElement()->IntAttribute(
                              XML_INCLUDE.data(), bool_to_int(m_highlightDolchVerbs)));
                     }
-                auto dolchNounColorNode = textViewNode->FirstChildElement(XML_DOLCH_NOUNS_HIGHLIGHTCOLOR.mb_str());
+                auto dolchNounColorNode = textViewNode->FirstChildElement(XML_DOLCH_NOUNS_HIGHLIGHTCOLOR.data());
                 if (dolchNounColorNode)
                     {
                     int red =
@@ -3201,7 +3136,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     m_excludedTextHighlightColor.Set(red, green, blue);
                     }
                 // document display font information
-                auto fontColorNode = textViewNode->FirstChildElement(XML_DOCUMENT_DISPLAY_FONTCOLOR.mb_str());
+                auto fontColorNode = textViewNode->FirstChildElement(XML_DOCUMENT_DISPLAY_FONTCOLOR.data());
                 if (fontColorNode)
                     {
                     int red =
@@ -3213,7 +3148,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     m_fontColor.Set(red, green, blue);
                     }
                 // font
-                auto fontNode = textViewNode->FirstChildElement(XML_DOCUMENT_DISPLAY_FONT.mb_str());
+                auto fontNode = textViewNode->FirstChildElement(XML_DOCUMENT_DISPLAY_FONT.data());
                 if (fontNode)
                     {
                     int pointSize =
@@ -3288,17 +3223,17 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     configSection->InsertEndChild(customColours);
 
     // general app information
-    auto appearance = doc.NewElement(XML_APPEARANCE.mb_str());
-    appearance->SetAttribute(XML_WINDOW_MAXIMIZED.mb_str(), bool_to_int(IsAppWindowMaximized()));
-    appearance->SetAttribute(XML_WINDOW_WIDTH.mb_str(), GetAppWindowWidth());
-    appearance->SetAttribute(XML_WINDOW_HEIGHT.mb_str(), GetAppWindowHeight());
+    auto appearance = doc.NewElement(XML_APPEARANCE.data());
+    appearance->SetAttribute(XML_WINDOW_MAXIMIZED.data(), bool_to_int(IsAppWindowMaximized()));
+    appearance->SetAttribute(XML_WINDOW_WIDTH.data(), GetAppWindowWidth());
+    appearance->SetAttribute(XML_WINDOW_HEIGHT.data(), GetAppWindowHeight());
 
-    auto themeName = doc.NewElement(XML_THEME_NAME);
+    auto themeName = doc.NewElement(XML_THEME_NAME.data());
     const wxString themeNameEncoded = encode({ GetTheme().wc_str() }, false).c_str();
     themeName->SetAttribute(XML_VALUE.data(), themeNameEncoded.mb_str());
     appearance->InsertEndChild(themeName);
 
-    auto controlBkColor = doc.NewElement(XML_CONTROL_BACKGROUND_COLOR);
+    auto controlBkColor = doc.NewElement(XML_CONTROL_BACKGROUND_COLOR.data());
     controlBkColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetControlBackgroundColor().Red());
     controlBkColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetControlBackgroundColor().Green());
     controlBkColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetControlBackgroundColor().Blue());
@@ -3306,13 +3241,13 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     // ribbon theming
         {
-        auto activeTabColor = doc.NewElement(XML_RIBBON_ACTIVE_TAB_COLOR);
+        auto activeTabColor = doc.NewElement(XML_RIBBON_ACTIVE_TAB_COLOR.data());
         activeTabColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetRibbonActiveTabColor().Red() );
         activeTabColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetRibbonActiveTabColor().Green() );
         activeTabColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetRibbonActiveTabColor().Blue() );
         appearance->InsertEndChild(activeTabColor);
 
-        auto hoverColor = doc.NewElement(XML_RIBBON_HOVER_COLOR);
+        auto hoverColor = doc.NewElement(XML_RIBBON_HOVER_COLOR.data());
         hoverColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetRibbonHoverColor().Red() );
         hoverColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetRibbonHoverColor().Green() );
         hoverColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetRibbonHoverColor().Blue() );
@@ -3320,19 +3255,19 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         }
     // sidebar theming
         {
-        auto sidebarBkColor = doc.NewElement(XML_SIDEBAR_BACKGROUND_COLOR);
+        auto sidebarBkColor = doc.NewElement(XML_SIDEBAR_BACKGROUND_COLOR.data());
         sidebarBkColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetSideBarBackgroundColor().Red() );
         sidebarBkColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetSideBarBackgroundColor().Green() );
         sidebarBkColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetSideBarBackgroundColor().Blue() );
         appearance->InsertEndChild(sidebarBkColor);
 
-        auto sidebarActiveColor = doc.NewElement(XML_SIDEBAR_ACTIVE_COLOR);
+        auto sidebarActiveColor = doc.NewElement(XML_SIDEBAR_ACTIVE_COLOR.data());
         sidebarActiveColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetSideBarActiveColor().Red() );
         sidebarActiveColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetSideBarActiveColor().Green() );
         sidebarActiveColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetSideBarActiveColor().Blue() );
         appearance->InsertEndChild(sidebarActiveColor);
 
-        auto sidebarParentColor = doc.NewElement(XML_SIDEBAR_PARENT_COLOR);
+        auto sidebarParentColor = doc.NewElement(XML_SIDEBAR_PARENT_COLOR.data());
         sidebarParentColor->SetAttribute(
             XmlFormat::GetRed().mb_str(), GetSideBarParentColor().Red() );
         sidebarParentColor->SetAttribute(
@@ -3341,7 +3276,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
             XmlFormat::GetBlue().mb_str(), GetSideBarParentColor().Blue() );
         appearance->InsertEndChild(sidebarParentColor);
 
-        auto startPageBackstageBkColor = doc.NewElement(XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR);
+        auto startPageBackstageBkColor = doc.NewElement(XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR.data());
         startPageBackstageBkColor->SetAttribute(
             XmlFormat::GetRed().mb_str(), GetStartPageBackstageBackgroundColor().Red() );
         startPageBackstageBkColor->SetAttribute(
@@ -3350,7 +3285,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
             XmlFormat::GetBlue().mb_str(), GetStartPageBackstageBackgroundColor().Blue() );
         appearance->InsertEndChild(startPageBackstageBkColor);
 
-        auto startPageDetailBkColor = doc.NewElement(XML_STARTPAGE_DETAIL_BACKGROUND_COLOR);
+        auto startPageDetailBkColor = doc.NewElement(XML_STARTPAGE_DETAIL_BACKGROUND_COLOR.data());
         startPageDetailBkColor->SetAttribute(
             XmlFormat::GetRed().mb_str(), GetStartPageDetailBackgroundColor().Red() );
         startPageDetailBkColor->SetAttribute(
@@ -3361,11 +3296,11 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         }
     configSection->InsertEndChild(appearance);
 
-    auto licenseAccepted = doc.NewElement(XML_LICENSE_ACCEPTED.mb_str());
+    auto licenseAccepted = doc.NewElement(XML_LICENSE_ACCEPTED.data());
     licenseAccepted->SetAttribute(XML_VALUE.data(), bool_to_int(IsLicenseAccepted()) );
     configSection->InsertEndChild(licenseAccepted);
 
-    auto userAgent = doc.NewElement(XML_USER_AGENT.mb_str());
+    auto userAgent = doc.NewElement(XML_USER_AGENT.data());
     userAgent->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetUserAgent().wc_str() }, false).c_str()).mb_str());
     configSection->InsertEndChild(userAgent);
@@ -3391,53 +3326,53 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     configSection->InsertEndChild(filePaths);
 
     // warning settings
-    auto warningSection = doc.NewElement(XML_WARNING_MESSAGE_SETTINGS.mb_str());
+    auto warningSection = doc.NewElement(XML_WARNING_MESSAGE_SETTINGS.data());
     for (const auto& warning : WarningManager::GetWarnings())
         {
-        auto warningItem = doc.NewElement(XML_WARNING_MESSAGE.mb_str());
+        auto warningItem = doc.NewElement(XML_WARNING_MESSAGE.data());
         warningItem->SetAttribute(XML_VALUE.data(), warning.GetId().mb_str());
         warningItem->SetAttribute(XML_DISPLAY.data(), bool_to_int(warning.ShouldBeShown()));
-        warningItem->SetAttribute(XML_PREVIOUS_RESPONSE.mb_str(), warning.GetPreviousResponse());
+        warningItem->SetAttribute(XML_PREVIOUS_RESPONSE.data(), warning.GetPreviousResponse());
         warningSection->InsertEndChild(warningItem);
         }
     configSection->InsertEndChild(warningSection);
 
     // export settings
-    auto exportSection = doc.NewElement(XML_EXPORT.mb_str());
+    auto exportSection = doc.NewElement(XML_EXPORT.data());
     // extensions
-    auto listExt = doc.NewElement(XML_EXPORT_LIST_EXT.mb_str());
+    auto listExt = doc.NewElement(XML_EXPORT_LIST_EXT.data());
     listExt->SetAttribute(XML_VALUE.data(), BaseProjectDoc::GetExportListExt().mb_str());
     exportSection->InsertEndChild(listExt);
-    auto textExt = doc.NewElement(XML_EXPORT_TEXT_EXT.mb_str());
+    auto textExt = doc.NewElement(XML_EXPORT_TEXT_EXT.data());
     textExt->SetAttribute(XML_VALUE.data(), BaseProjectDoc::GetExportTextViewExt().mb_str());
     exportSection->InsertEndChild(textExt);
-    auto graphExt = doc.NewElement(XML_EXPORT_GRAPH_EXT.mb_str());
+    auto graphExt = doc.NewElement(XML_EXPORT_GRAPH_EXT.data());
     graphExt->SetAttribute(XML_VALUE.data(), BaseProjectDoc::GetExportGraphExt().mb_str());
     exportSection->InsertEndChild(graphExt);
     // item inclusions
-    auto includeLists = doc.NewElement(XML_EXPORT_LISTS.mb_str());
+    auto includeLists = doc.NewElement(XML_EXPORT_LISTS.data());
     includeLists->SetAttribute(XML_VALUE.data(), bool_to_int(BaseProjectDoc::IsExportingHardWordLists()));
     exportSection->InsertEndChild(includeLists);
-    auto includeSentencesBreakdown = doc.NewElement(XML_EXPORT_SENTENCES_BREAKDOWN.mb_str());
+    auto includeSentencesBreakdown = doc.NewElement(XML_EXPORT_SENTENCES_BREAKDOWN.data());
     includeSentencesBreakdown->SetAttribute(XML_VALUE.data(),
         bool_to_int(BaseProjectDoc::IsExportingSentencesBreakdown()));
     exportSection->InsertEndChild(includeSentencesBreakdown);
-    auto includeGraphs = doc.NewElement(XML_EXPORT_GRAPHS.mb_str());
+    auto includeGraphs = doc.NewElement(XML_EXPORT_GRAPHS.data());
     includeGraphs->SetAttribute(XML_VALUE.data(), bool_to_int(BaseProjectDoc::IsExportingGraphs()));
     exportSection->InsertEndChild(includeGraphs);
-    auto includeTestResults = doc.NewElement(XML_EXPORT_TEST_RESULTS.mb_str());
+    auto includeTestResults = doc.NewElement(XML_EXPORT_TEST_RESULTS.data());
     includeTestResults->SetAttribute(XML_VALUE.data(), bool_to_int(BaseProjectDoc::IsExportingTestResults()));
     exportSection->InsertEndChild(includeTestResults);
-    auto includeStats = doc.NewElement(XML_EXPORT_STATS.mb_str());
+    auto includeStats = doc.NewElement(XML_EXPORT_STATS.data());
     includeStats->SetAttribute(XML_VALUE.data(), bool_to_int(BaseProjectDoc::IsExportingStatistics()));
     exportSection->InsertEndChild(includeStats);
-    auto includeWordiness = doc.NewElement(XML_EXPORT_GRAMMAR.mb_str());
+    auto includeWordiness = doc.NewElement(XML_EXPORT_GRAMMAR.data());
     includeWordiness->SetAttribute(XML_VALUE.data(), bool_to_int(BaseProjectDoc::IsExportingWordiness()));
     exportSection->InsertEndChild(includeWordiness);
-    auto includeSightWords = doc.NewElement(XML_EXPORT_DOLCH_WORDS.mb_str());
+    auto includeSightWords = doc.NewElement(XML_EXPORT_DOLCH_WORDS.data());
     includeSightWords->SetAttribute(XML_VALUE.data(), bool_to_int(BaseProjectDoc::IsExportingSightWords()));
     exportSection->InsertEndChild(includeSightWords);
-    auto includeWarnings = doc.NewElement(XML_EXPORT_WARNINGS.mb_str());
+    auto includeWarnings = doc.NewElement(XML_EXPORT_WARNINGS.data());
     includeWarnings->SetAttribute(XML_VALUE.data(), bool_to_int(BaseProjectDoc::IsExportingWarnings()));
     exportSection->InsertEndChild(includeWarnings);
 
@@ -3524,24 +3459,24 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto projectSettings = doc.NewElement(XML_PROJECT_SETTINGS.data());
 
     // reviewer and status
-    auto docReviewer = doc.NewElement(XML_REVIEWER.mb_str());
+    auto docReviewer = doc.NewElement(XML_REVIEWER.data());
     docReviewer->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetReviewer().wc_str() }, false).c_str()).mb_str());
     projectSettings->InsertEndChild(docReviewer);
 
-    auto realTimeRefresh = doc.NewElement(XML_REALTIME_UPDATE.mb_str());
+    auto realTimeRefresh = doc.NewElement(XML_REALTIME_UPDATE.data());
     realTimeRefresh->SetAttribute(XML_VALUE.data(),
         bool_to_int(IsRealTimeUpdating()));
     projectSettings->InsertEndChild(realTimeRefresh);
 
     // appended file
-    auto appendedDocPath = doc.NewElement(XML_APPENDED_DOC_PATH.mb_str());
+    auto appendedDocPath = doc.NewElement(XML_APPENDED_DOC_PATH.data());
     appendedDocPath->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetAppendedDocumentFilePath().wc_str() }, false).c_str()).mb_str());
     projectSettings->InsertEndChild(appendedDocPath);
 
     // document storage/linking
-    auto docStorageMethod = doc.NewElement(XML_DOCUMENT_STORAGE_METHOD.mb_str());
+    auto docStorageMethod = doc.NewElement(XML_DOCUMENT_STORAGE_METHOD.data());
     docStorageMethod->SetAttribute(XML_METHOD.data(), static_cast<int>(m_documentStorageMethod));
     projectSettings->InsertEndChild(docStorageMethod);
 
@@ -3551,32 +3486,32 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     projectSettings->InsertEndChild(projectLang);
 
     // min doc size
-    auto minDocSize = doc.NewElement(XML_MIN_DOC_SIZE_FOR_BATCH.mb_str());
+    auto minDocSize = doc.NewElement(XML_MIN_DOC_SIZE_FOR_BATCH.data());
     minDocSize->SetAttribute(XML_VALUE.data(), static_cast<int>(GetMinDocWordCountForBatch()));
     projectSettings->InsertEndChild(minDocSize);
 
     // how file paths are shown in batch projects
-    auto filePathTruncMode = doc.NewElement(XML_FILE_PATH_TRUNC_MODE.mb_str());
+    auto filePathTruncMode = doc.NewElement(XML_FILE_PATH_TRUNC_MODE.data());
     filePathTruncMode->SetAttribute(XML_VALUE.data(), static_cast<int>(GetFilePathTruncationMode()));
     projectSettings->InsertEndChild(filePathTruncMode);
 
     // random sampling size for batch projects
-    auto randSampleSize = doc.NewElement(XML_RANDOM_SAMPLE_SIZE.mb_str());
+    auto randSampleSize = doc.NewElement(XML_RANDOM_SAMPLE_SIZE.data());
     randSampleSize->SetAttribute(XML_VALUE.data(), static_cast<int>(GetBatchRandomSamplingSize()));
     projectSettings->InsertEndChild(randSampleSize);
 
     // sentences breakdown
-    auto sentencesBreakdownSection = doc.NewElement(XML_SENTENCES_BREAKDOWN.mb_str());
+    auto sentencesBreakdownSection = doc.NewElement(XML_SENTENCES_BREAKDOWN.data());
     // which features are included
-    auto sentencesBreakdownInfo = doc.NewElement(XML_SENTENCES_BREAKDOWN_INFO.mb_str());
+    auto sentencesBreakdownInfo = doc.NewElement(XML_SENTENCES_BREAKDOWN_INFO.data());
     sentencesBreakdownInfo->SetAttribute(XML_VALUE.data(), GetSentencesBreakdownInfo().ToString().mb_str());
     sentencesBreakdownSection->InsertEndChild(sentencesBreakdownInfo);
     projectSettings->InsertEndChild(sentencesBreakdownSection);
 
     // words breakdown
-    auto wordsBreakdownSection = doc.NewElement(XML_WORDS_BREAKDOWN.mb_str());
+    auto wordsBreakdownSection = doc.NewElement(XML_WORDS_BREAKDOWN.data());
     // which features are included
-    auto wordsBreakdownInfo = doc.NewElement(XML_WORDS_BREAKDOWN_INFO.mb_str());
+    auto wordsBreakdownInfo = doc.NewElement(XML_WORDS_BREAKDOWN_INFO.data());
     wordsBreakdownInfo->SetAttribute(XML_VALUE.data(), GetWordsBreakdownInfo().ToString().mb_str());
     wordsBreakdownSection->InsertEndChild(wordsBreakdownInfo);
     projectSettings->InsertEndChild(wordsBreakdownSection);
@@ -4309,11 +4244,11 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     varianceMethod->SetAttribute(XML_METHOD.data(), static_cast<int>(GetVarianceMethod()) );
     statsDefaultsSection->InsertEndChild(varianceMethod);
     // stats results
-    auto statsResults = doc.NewElement(XML_STATISTICS_RESULTS.mb_str());
+    auto statsResults = doc.NewElement(XML_STATISTICS_RESULTS.data());
     statsResults->SetAttribute(XML_VALUE.data(), GetStatisticsInfo().ToString().mb_str());
     statsDefaultsSection->InsertEndChild(statsResults);
     // stats report
-    auto statsReport = doc.NewElement(XML_STATISTICS_REPORT.mb_str());
+    auto statsReport = doc.NewElement(XML_STATISTICS_REPORT.data());
     statsReport->SetAttribute(XML_VALUE.data(), GetStatisticsReportInfo().ToString().mb_str());
     statsDefaultsSection->InsertEndChild(statsReport);
     projectSettings->InsertEndChild(statsDefaultsSection);
@@ -4439,7 +4374,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     projectSettings->InsertEndChild(readabilityTestSection);
 
     // text views
-    auto textViewsSection = doc.NewElement(XML_TEXT_VIEWS_SECTION.mb_str());
+    auto textViewsSection = doc.NewElement(XML_TEXT_VIEWS_SECTION.data());
     // how highlighting is done
     auto highlightMethod = doc.NewElement(XML_HIGHLIGHT_METHOD.data());
     highlightMethod->SetAttribute(XML_METHOD.data(), static_cast<int>(m_textHighlight));
@@ -4467,49 +4402,49 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     textViewsSection->InsertEndChild(dupWordsHighlight);
 
     // highlight color for dolch words
-    auto dolchConjunctionsHighlight = doc.NewElement(XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR.mb_str());
+    auto dolchConjunctionsHighlight = doc.NewElement(XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR.data());
     dolchConjunctionsHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchConjunctionsColor().Red() );
     dolchConjunctionsHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchConjunctionsColor().Green() );
     dolchConjunctionsHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchConjunctionsColor().Blue() );
     dolchConjunctionsHighlight->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsHighlightingDolchConjunctions()) );
     textViewsSection->InsertEndChild(dolchConjunctionsHighlight);
 
-    auto dolchPrepositionsHighlight = doc.NewElement(XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR.mb_str());
+    auto dolchPrepositionsHighlight = doc.NewElement(XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR.data());
     dolchPrepositionsHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchPrepositionsColor().Red() );
     dolchPrepositionsHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchPrepositionsColor().Green() );
     dolchPrepositionsHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchPrepositionsColor().Blue() );
     dolchPrepositionsHighlight->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsHighlightingDolchPrepositions()) );
     textViewsSection->InsertEndChild(dolchPrepositionsHighlight);
 
-    auto dolchPronounHighlight = doc.NewElement(XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR.mb_str());
+    auto dolchPronounHighlight = doc.NewElement(XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR.data());
     dolchPronounHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchPronounsColor().Red() );
     dolchPronounHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchPronounsColor().Green() );
     dolchPronounHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchPronounsColor().Blue() );
     dolchPronounHighlight->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsHighlightingDolchPronouns()) );
     textViewsSection->InsertEndChild(dolchPronounHighlight);
 
-    auto dolchAdverbHighlight = doc.NewElement(XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR.mb_str());
+    auto dolchAdverbHighlight = doc.NewElement(XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR.data());
     dolchAdverbHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchAdverbsColor().Red() );
     dolchAdverbHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchAdverbsColor().Green() );
     dolchAdverbHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchAdverbsColor().Blue() );
     dolchAdverbHighlight->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsHighlightingDolchAdverbs()) );
     textViewsSection->InsertEndChild(dolchAdverbHighlight);
 
-    auto dolchAdjectiveHighlight = doc.NewElement(XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR.mb_str());
+    auto dolchAdjectiveHighlight = doc.NewElement(XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR.data());
     dolchAdjectiveHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchAdjectivesColor().Red() );
     dolchAdjectiveHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchAdjectivesColor().Green() );
     dolchAdjectiveHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchAdjectivesColor().Blue() );
     dolchAdjectiveHighlight->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsHighlightingDolchAdjectives()) );
     textViewsSection->InsertEndChild(dolchAdjectiveHighlight);
 
-    auto dolchVerbHighlight = doc.NewElement(XML_DOLCH_VERBS_HIGHLIGHTCOLOR.mb_str());
+    auto dolchVerbHighlight = doc.NewElement(XML_DOLCH_VERBS_HIGHLIGHTCOLOR.data());
     dolchVerbHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchVerbsColor().Red() );
     dolchVerbHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchVerbsColor().Green() );
     dolchVerbHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchVerbsColor().Blue() );
     dolchVerbHighlight->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsHighlightingDolchVerbs()) );
     textViewsSection->InsertEndChild(dolchVerbHighlight);
 
-    auto dolchNounHighlight = doc.NewElement(XML_DOLCH_NOUNS_HIGHLIGHTCOLOR.mb_str());
+    auto dolchNounHighlight = doc.NewElement(XML_DOLCH_NOUNS_HIGHLIGHTCOLOR.data());
     dolchNounHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchNounColor().Red() );
     dolchNounHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchNounColor().Green() );
     dolchNounHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchNounColor().Blue() );
@@ -4524,13 +4459,13 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     textViewsSection->InsertEndChild(excludedHighlight);
 
     // document display font information
-    auto fontcolor = doc.NewElement(XML_DOCUMENT_DISPLAY_FONTCOLOR.mb_str());
+    auto fontcolor = doc.NewElement(XML_DOCUMENT_DISPLAY_FONTCOLOR.data());
     fontcolor->SetAttribute(XmlFormat::GetRed().mb_str(), m_fontColor.Red() );
     fontcolor->SetAttribute(XmlFormat::GetGreen().mb_str(), m_fontColor.Green() );
     fontcolor->SetAttribute(XmlFormat::GetBlue().mb_str(), m_fontColor.Blue() );
     textViewsSection->InsertEndChild(fontcolor);
 
-    auto font = doc.NewElement(XML_DOCUMENT_DISPLAY_FONT.mb_str());
+    auto font = doc.NewElement(XML_DOCUMENT_DISPLAY_FONT.data());
     font->SetAttribute(XmlFormat::GetFontPointSize().mb_str(), m_textViewFont.GetPointSize() );
     font->SetAttribute(XmlFormat::GetFontStyle().mb_str(), static_cast<int>(m_textViewFont.GetStyle()) );
     font->SetAttribute(XmlFormat::GetFontWeight().mb_str(), static_cast<int>(m_textViewFont.GetWeight()) );

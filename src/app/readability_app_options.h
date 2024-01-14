@@ -2924,64 +2924,64 @@ class ReadabilityAppOptions
     const std::string_view XML_GOAL_MIN_VAL_GOAL{ _DT("min-value-goal") };
     const std::string_view XML_GOAL_MAX_VAL_GOAL{ _DT("max-value-goal") };
     // text view constants
-    const wxString XML_TEXT_VIEWS_SECTION;
-    const wxString XML_DOCUMENT_DISPLAY_FONTCOLOR;
-    const wxString XML_DOCUMENT_DISPLAY_FONT;
-    const wxString XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR;
-    const wxString XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR;
-    const wxString XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR;
-    const wxString XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR;
-    const wxString XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR;
-    const wxString XML_DOLCH_VERBS_HIGHLIGHTCOLOR;
-    const wxString XML_DOLCH_NOUNS_HIGHLIGHTCOLOR;
+    const std::string_view XML_TEXT_VIEWS_SECTION{ _DT("text-views")};
+    const std::string_view XML_DOCUMENT_DISPLAY_FONTCOLOR{ _DT("document-display-font-color")};
+    const std::string_view XML_DOCUMENT_DISPLAY_FONT{ _DT("document-display-font")};
+    const std::string_view XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR{ _DT("dolch-conjunction-font-color")};
+    const std::string_view XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR{ _DT("dolch-preposition-font-color")};
+    const std::string_view XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR{ _DT("dolch-pronoun-font-color")};
+    const std::string_view XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR{ _DT("dolch-adverb-font-color")};
+    const std::string_view XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR{ _DT("dolch-adjective-font-color")};
+    const std::string_view XML_DOLCH_VERBS_HIGHLIGHTCOLOR{ _DT("dolch-verb-font-color")};
+    const std::string_view XML_DOLCH_NOUNS_HIGHLIGHTCOLOR{ _DT("dolch-noun-font-color")};
     // theming
-    const wxString XML_THEME_NAME;
-    const wxString XML_CONTROL_BACKGROUND_COLOR;
-    const wxString XML_RIBBON_ACTIVE_TAB_COLOR;
-    const wxString XML_RIBBON_HOVER_COLOR;
-    const wxString XML_SIDEBAR_BACKGROUND_COLOR;
-    const wxString XML_SIDEBAR_ACTIVE_COLOR;
-    const wxString XML_SIDEBAR_PARENT_COLOR;
-    const wxString XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR;
-    const wxString XML_STARTPAGE_DETAIL_BACKGROUND_COLOR;
+    const std::string_view XML_THEME_NAME{ _DT("theme-name")};
+    const std::string_view XML_CONTROL_BACKGROUND_COLOR{ _DT("control-background-color")};
+    const std::string_view XML_RIBBON_ACTIVE_TAB_COLOR{ _DT("ribbon-active-tab-color")};
+    const std::string_view XML_RIBBON_HOVER_COLOR{ _DT("ribbon-hover-color")};
+    const std::string_view XML_SIDEBAR_BACKGROUND_COLOR{ _DT("sidebar-background-color")};
+    const std::string_view XML_SIDEBAR_ACTIVE_COLOR{ _DT("sidebar-active-color")};
+    const std::string_view XML_SIDEBAR_PARENT_COLOR{ _DT("sidebar-parent-color")};
+    const std::string_view XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR{ _DT("start-page-backstage-background-color")};
+    const std::string_view XML_STARTPAGE_DETAIL_BACKGROUND_COLOR{ _DT("start-page-detail-background-color")};
     // general options
-    const wxString XML_APPEARANCE;
-    const wxString XML_WINDOW_MAXIMIZED;
-    const wxString XML_WINDOW_WIDTH;
-    const wxString XML_WINDOW_HEIGHT;
-    const wxString XML_LICENSE_ACCEPTED;
-    const wxString XML_USER_AGENT;
-    // general project options
-    const wxString XML_REVIEWER;
-    const wxString XML_STATUS;
-    const wxString XML_REALTIME_UPDATE;
-    const wxString XML_APPENDED_DOC_PATH;
+    const std::string_view XML_APPEARANCE{ _DT("appearance")};
+    const std::string_view XML_WINDOW_MAXIMIZED{ _DT("app-window-maximized")};
+    const std::string_view XML_WINDOW_WIDTH{ _DT("app-window-width")};
+    const std::string_view XML_WINDOW_HEIGHT{ _DT("app-window-height")};
+    const std::string_view XML_LICENSE_ACCEPTED{ _DT("license-accepted")};
+    const std::string_view XML_USER_AGENT{ _DT("user-agent")};
+    // project options
+    const std::string_view XML_REVIEWER{ _DT("project-reviewer")};
+    const std::string_view XML_STATUS{ _DT("project-status")};
+    const std::string_view XML_REALTIME_UPDATE{ _DT("realtime-refresh")};
+    const std::string_view XML_APPENDED_DOC_PATH{ _DT("appended-doc-path")};
     // document linking information
-    const wxString XML_DOCUMENT_STORAGE_METHOD;
+    const std::string_view XML_DOCUMENT_STORAGE_METHOD{ _DT("document-storage-method")};
     // stats information
-    const wxString XML_STATISTICS_RESULTS;
-    const wxString XML_STATISTICS_REPORT;
+    const std::string_view XML_STATISTICS_RESULTS{ _DT("statistics-results")};
+    const std::string_view XML_STATISTICS_REPORT{ _DT("statistics-report")};
     // Min doc size
-    const wxString XML_MIN_DOC_SIZE_FOR_BATCH;
-    const wxString XML_RANDOM_SAMPLE_SIZE;
-    const wxString XML_FILE_PATH_TRUNC_MODE;
+    const std::string_view XML_MIN_DOC_SIZE_FOR_BATCH{ _DT("min-doc-size-for-batch")};
+    const std::string_view XML_RANDOM_SAMPLE_SIZE{ _DT("random-samlple-size")};
+    const std::string_view XML_FILE_PATH_TRUNC_MODE{ _DT("filepath-truncation-mode")};
     // export options
-    const wxString XML_EXPORT;
-    const wxString XML_EXPORT_LIST_EXT;
-    const wxString XML_EXPORT_TEXT_EXT;
-    const wxString XML_EXPORT_GRAPH_EXT;
-    const wxString XML_EXPORT_LISTS;
-    const wxString XML_EXPORT_SENTENCES_BREAKDOWN;
-    const wxString XML_EXPORT_GRAPHS;
-    const wxString XML_EXPORT_TEST_RESULTS;
-    const wxString XML_EXPORT_STATS;
-    const wxString XML_EXPORT_GRAMMAR;
-    const wxString XML_EXPORT_DOLCH_WORDS;
-    const wxString XML_EXPORT_WARNINGS;
+    const std::string_view XML_EXPORT{ _DT("export-settings")};
+    const std::string_view XML_EXPORT_LIST_EXT{ _DT("export-list-extension")};
+    const std::string_view XML_EXPORT_TEXT_EXT{ _DT("export-text-extension")};
+    const std::string_view XML_EXPORT_GRAPH_EXT{ _DT("export-graph-extension")};
+    const std::string_view XML_EXPORT_LISTS{ _DT("export-lists")};
+    const std::string_view XML_EXPORT_SENTENCES_BREAKDOWN{ _DT("export-sentence-breakdown")};
+    const std::string_view XML_EXPORT_GRAPHS{ _DT("export-graphs")};
+    const std::string_view XML_EXPORT_TEST_RESULTS{ _DT("export-test-results")};
+    const std::string_view XML_EXPORT_STATS{ _DT("export-statistics")};
+    const std::string_view XML_EXPORT_GRAMMAR{ _DT("export-grammar")};
+    const std::string_view XML_EXPORT_DOLCH_WORDS{ _DT("export-dolch-words")};
+    const std::string_view XML_EXPORT_WARNINGS{ _DT("export-warnings")};
     // warning settings
-    const wxString XML_WARNING_MESSAGE_SETTINGS;
-    const wxString XML_WARNING_MESSAGE;
-    const wxString XML_PREVIOUS_RESPONSE;
+    const std::string_view XML_WARNING_MESSAGE_SETTINGS{ _DT("warning-message-settings")};
+    const std::string_view XML_WARNING_MESSAGE{ _DT("warning-message")};
+    const std::string_view XML_PREVIOUS_RESPONSE{ _DT("previous-response")};
     // general strings
     const wxString ALL_DOCUMENTS_WILDCARD;
     const wxString ALL_IMAGES_WILDCARD;
@@ -3002,11 +3002,13 @@ class ReadabilityAppOptions
     const std::string_view XML_SPELLCHECK_IGNORE_SOCIAL_MEDIA_TAGS{ _DT("spellcheck-ignore-social-media-tags") };
     const std::string_view XML_GRAMMAR_INFO{ _DT("grammar-features") };
     // words breakdown
-    const wxString XML_WORDS_BREAKDOWN;
-    const wxString XML_WORDS_BREAKDOWN_INFO;
+    const std::string_view XML_WORDS_BREAKDOWN{ _DT("words-breakdown") };
+    const std::wstring_view XML_WORDS_BREAKDOWN_W{ _DT(L"words-breakdown") };
+    const std::string_view XML_WORDS_BREAKDOWN_INFO{ _DT("words-breakdown-features") };
     // sentences breakdown
-    const wxString XML_SENTENCES_BREAKDOWN;
-    const wxString XML_SENTENCES_BREAKDOWN_INFO;
+    const std::string_view XML_SENTENCES_BREAKDOWN{ _DT("sentences-breakdown") };
+    const std::wstring_view XML_SENTENCES_BREAKDOWN_W{ _DT(L"sentences-breakdown") };
+    const std::string_view XML_SENTENCES_BREAKDOWN_INFO{ _DT("sentences-breakdown-features") };
     // custom colors
     const std::string_view XML_CUSTOM_COLORS{ _DT("custom-colors") };
     };
