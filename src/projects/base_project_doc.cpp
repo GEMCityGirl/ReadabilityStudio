@@ -1232,10 +1232,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             // goals
             const double minGoal =
                 XmlFormat::GetDouble(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_GOAL_MIN_VAL_GOAL, std::numeric_limits<double>::quiet_NaN());
+                    wxGetApp().GetAppOptions().XML_GOAL_MIN_VAL_GOAL.data(), std::numeric_limits<double>::quiet_NaN());
             const double maxGoal =
                 XmlFormat::GetDouble(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_GOAL_MAX_VAL_GOAL, std::numeric_limits<double>::quiet_NaN());
+                    wxGetApp().GetAppOptions().XML_GOAL_MAX_VAL_GOAL.data(), std::numeric_limits<double>::quiet_NaN());
             // include options
             const int includeProperNouns =
                 XmlFormat::GetLong(customFamiliarTestSection, customFamiliarTestSectionEnd,
@@ -1264,41 +1264,41 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             // industry
             const bool industryChildrensPublishingSelected =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_INDUSTRY_CHILDRENS_PUBLISHING, false);
+                    wxGetApp().GetAppOptions().XML_INDUSTRY_CHILDRENS_PUBLISHING.data(), false);
             const bool industryAdultPublishingSelected =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_INDUSTRY_ADULTPUBLISHING, false);
+                    wxGetApp().GetAppOptions().XML_INDUSTRY_ADULTPUBLISHING.data(), false);
             const bool industrySecondaryLanguageSelected =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_INDUSTRY_SECONDARY_LANGUAGE, false);
+                    wxGetApp().GetAppOptions().XML_INDUSTRY_SECONDARY_LANGUAGE.data(), false);
             const bool industryChildrensHealthCareSelected =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_INDUSTRY_CHILDRENS_HEALTHCARE, false);
+                    wxGetApp().GetAppOptions().XML_INDUSTRY_CHILDRENS_HEALTHCARE.data(), false);
             const bool industryAdultHealthCareSelected =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_INDUSTRY_ADULT_HEALTHCARE, false);
+                    wxGetApp().GetAppOptions().XML_INDUSTRY_ADULT_HEALTHCARE.data(), false);
             const bool industryMilitaryGovernmentSelected =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_INDUSTRY_MILITARY_GOVERNMENT, false);
+                    wxGetApp().GetAppOptions().XML_INDUSTRY_MILITARY_GOVERNMENT.data(), false);
             const bool industryBroadcastingSelected =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_INDUSTRY_BROADCASTING, false);
+                    wxGetApp().GetAppOptions().XML_INDUSTRY_BROADCASTING.data(), false);
             // document
             const bool documentGeneralSelected =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_DOCUMENT_GENERAL, false);
+                    wxGetApp().GetAppOptions().XML_DOCUMENT_GENERAL.data(), false);
             const bool documentTechSelected =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_DOCUMENT_TECHNICAL, false);
+                    wxGetApp().GetAppOptions().XML_DOCUMENT_TECHNICAL.data(), false);
             const bool documentFormSelected =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_DOCUMENT_FORM, false);
+                    wxGetApp().GetAppOptions().XML_DOCUMENT_FORM.data(), false);
             const bool documentYoungAdultSelected =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_DOCUMENT_YOUNGADULT, false);
+                    wxGetApp().GetAppOptions().XML_DOCUMENT_YOUNGADULT.data(), false);
             const bool documentChildrenSelected =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_DOCUMENT_CHILDREN_LIT, false);
+                    wxGetApp().GetAppOptions().XML_DOCUMENT_CHILDREN_LIT.data(), false);
 
             CustomReadabilityTest cTest(testName.wc_str(),
                         formula.wc_str(),
@@ -1355,9 +1355,9 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
 
     // read in the graph configurations
     currentStartTag.clear();
-    currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_GRAPH_SETTINGS);
+    currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_GRAPH_SETTINGS.data());
     currentEndTag.clear();
-    currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_GRAPH_SETTINGS).append(L">");
+    currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_GRAPH_SETTINGS.data()).append(L">");
     const wchar_t* graphsSection = std::wcsstr(settingsFileText, currentStartTag);
     const wchar_t* graphsSectionEnd = std::wcsstr(settingsFileText, currentEndTag);
     if (graphsSection && graphsSectionEnd &&
@@ -1365,14 +1365,14 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         {
         // color scheme
         SetGraphColorScheme(XmlFormat::GetString(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_COLOR_SCHEME));
+            wxGetApp().GetAppOptions().XML_GRAPH_COLOR_SCHEME.data()));
 
         // background color and images
         SetPlotBackGroundImagePath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH));
+            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH.data()));
 
         long imageEffect = XmlFormat::GetLong(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT,
+            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT.data(),
             static_cast<int>(GetPlotBackGroundImageEffect()));
         if (imageEffect < 0 ||
             imageEffect >=
@@ -1381,7 +1381,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         SetPlotBackGroundImageEffect(static_cast<ImageEffect>(imageEffect));
 
         long imageFit = XmlFormat::GetLong(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT,
+            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT.data(),
             static_cast<int>(GetPlotBackGroundImageFit()));
         if (imageFit < 0 ||
             imageFit >=
@@ -1390,54 +1390,55 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         SetPlotBackGroundImageFit(static_cast<ImageFit>(imageFit));
 
         SetBackGroundColor(XmlFormat::GetColor(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_COLOR, wxGetApp().GetAppOptions().GetBackGroundColor()));
+            wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_COLOR.data(),
+            wxGetApp().GetAppOptions().GetBackGroundColor()));
 
         SetPlotBackGroundColor(XmlFormat::GetColor(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_COLOR,
+            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_COLOR.data(),
             wxGetApp().GetAppOptions().GetPlotBackGroundColor()));
 
         SetPlotBackGroundImageOpacity(XmlFormat::GetLong(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY,
+            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY.data(),
             wxGetApp().GetAppOptions().GetPlotBackGroundImageOpacity()));
         SetPlotBackGroundColorOpacity(XmlFormat::GetLong(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY,
+            wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY.data(),
             wxGetApp().GetAppOptions().GetPlotBackGroundColorOpacity()));
 
         SetGraphBackGroundLinearGradient(XmlFormat::GetBoolean(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_LINEAR_GRADIENT,
+            wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_LINEAR_GRADIENT.data(),
             wxGetApp().GetAppOptions().GetGraphBackGroundLinearGradient()));
 
         SetStippleImagePath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_PATH));
+            wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_PATH.data()));
 
         SetStippleShapeColor(XmlFormat::GetColor(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_COLOR,
+            wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_COLOR.data(),
             wxGetApp().GetAppOptions().GetStippleShapeColor()));
 
         SetStippleShape(XmlFormat::GetString(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_SHAPE,
+            wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_SHAPE.data(),
             // don't want empty string here, it should always be something
             wxGetApp().GetAppOptions().GetStippleShape()));
 
         SetGraphCommonImagePath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_COMMON_IMAGE_PATH));
+            wxGetApp().GetAppOptions().XML_GRAPH_COMMON_IMAGE_PATH.data()));
 
         DisplayDropShadows(XmlFormat::GetBoolean(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_DISPLAY_DROP_SHADOW,
+            wxGetApp().GetAppOptions().XML_DISPLAY_DROP_SHADOW.data(),
             wxGetApp().GetAppOptions().IsDisplayingDropShadows()));
 
         ShowcaseComplexWords(XmlFormat::GetBoolean(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_SHOWCASE_COMPLEX_WORDS,
+            wxGetApp().GetAppOptions().XML_SHOWCASE_COMPLEX_WORDS.data(),
             wxGetApp().GetAppOptions().IsShowcasingComplexWords()));
 
         SetWatermark(XmlFormat::GetString(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_WATERMARK));
+            wxGetApp().GetAppOptions().XML_GRAPH_WATERMARK.data()));
         SetWatermarkLogoPath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH));
+            wxGetApp().GetAppOptions().XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH.data()));
 
         // Fry/Raygor settings
         SetInvalidAreaColor(XmlFormat::GetColor(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_INVALID_AREA_COLOR,
+            wxGetApp().GetAppOptions().XML_INVALID_AREA_COLOR.data(),
             wxGetApp().GetAppOptions().GetInvalidAreaColor()));
 
         long raygorStyle = XmlFormat::GetLong(graphsSection, graphsSectionEnd,
@@ -1451,9 +1452,9 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
 
         // Lix gauge
         currentStartTag.clear();
-        currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_LIX_SETTINGS);
+        currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_LIX_SETTINGS.data());
         currentEndTag.clear();
-        currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_LIX_SETTINGS).append(L">");
+        currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_LIX_SETTINGS.data()).append(L">");
         const wchar_t* lixGuageSection = std::wcsstr(graphsSection, currentStartTag);
         const wchar_t* lixGuageSectionEnd = std::wcsstr(graphsSection, currentEndTag);
         if (lixGuageSection && lixGuageSectionEnd &&
@@ -1461,15 +1462,15 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             {
             UseEnglishLabelsForGermanLix(
                 XmlFormat::GetBoolean(lixGuageSection, lixGuageSectionEnd,
-                    wxGetApp().GetAppOptions().XML_USE_ENGLISH_LABELS,
+                    wxGetApp().GetAppOptions().XML_USE_ENGLISH_LABELS.data(),
                     wxGetApp().GetAppOptions().IsUsingEnglishLabelsForGermanLix()));
             }
 
         // Flesch chart
         currentStartTag.clear();
-        currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_FLESCH_CHART_SETTINGS);
+        currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_FLESCH_CHART_SETTINGS.data());
         currentEndTag.clear();
-        currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_FLESCH_CHART_SETTINGS).append(L">");
+        currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_FLESCH_CHART_SETTINGS.data()).append(L">");
         const wchar_t* fleschChartSection = std::wcsstr(graphsSection, currentStartTag);
         const wchar_t* fleschChartSectionEnd = std::wcsstr(graphsSection, currentEndTag);
         if (fleschChartSection && fleschChartSectionEnd &&
@@ -1477,72 +1478,72 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             {
             ConnectFleschPoints(
                 XmlFormat::GetBoolean(fleschChartSection, fleschChartSectionEnd,
-                    wxGetApp().GetAppOptions().XML_INCLUDE_CONNECTION_LINE,
+                    wxGetApp().GetAppOptions().XML_INCLUDE_CONNECTION_LINE.data(),
                     wxGetApp().GetAppOptions().IsConnectingFleschPoints()));
             IncludeFleschRulerDocGroups(
                 XmlFormat::GetBoolean(fleschChartSection, fleschChartSectionEnd,
-                    wxGetApp().GetAppOptions().XML_FLESCH_RULER_DOC_GROUPS,
+                    wxGetApp().GetAppOptions().XML_FLESCH_RULER_DOC_GROUPS.data(),
                     wxGetApp().GetAppOptions().IsIncludingFleschRulerDocGroups()));
             }
 
         // box plot settings
         currentStartTag.clear();
-        currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_BOX_PLOT_SETTINGS);
+        currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_BOX_PLOT_SETTINGS.data());
         currentEndTag.clear();
-        currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_BOX_PLOT_SETTINGS).append(L">");
+        currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_BOX_PLOT_SETTINGS.data()).append(L">");
         const wchar_t* boxPlotSection = std::wcsstr(graphsSection, currentStartTag);
         const wchar_t* boxPlotSectionEnd = std::wcsstr(graphsSection, currentEndTag);
         if (boxPlotSection && boxPlotSectionEnd &&
             (boxPlotSection < boxPlotSectionEnd) )
             {
             SetGraphBoxColor(XmlFormat::GetColor(boxPlotSection, boxPlotSectionEnd,
-                wxGetApp().GetAppOptions().XML_GRAPH_COLOR,
+                wxGetApp().GetAppOptions().XML_GRAPH_COLOR.data(),
                 wxGetApp().GetAppOptions().GetGraphBoxColor()));
             long boxEffect = XmlFormat::GetLong(boxPlotSection, boxPlotSectionEnd,
-                wxGetApp().GetAppOptions().XML_BOX_EFFECT,
+                wxGetApp().GetAppOptions().XML_BOX_EFFECT.data(),
                 static_cast<long>(wxGetApp().GetAppOptions().GetGraphBoxEffect()));
             if (boxEffect < 0 || boxEffect >= static_cast<decltype(boxEffect)>(BoxEffect::EFFECTS_COUNT))
                 { boxEffect = static_cast<decltype(boxEffect)>(wxGetApp().GetAppOptions().GetGraphBoxEffect()); }
             SetGraphBoxEffect(static_cast<BoxEffect>(boxEffect));
             SetGraphBoxOpacity(XmlFormat::GetLong(boxPlotSection, boxPlotSectionEnd,
-                wxGetApp().GetAppOptions().XML_GRAPH_OPACITY,
+                wxGetApp().GetAppOptions().XML_GRAPH_OPACITY.data(),
                 wxGetApp().GetAppOptions().GetGraphBoxOpacity()));
             ShowAllBoxPlotPoints(XmlFormat::GetBoolean(boxPlotSection, boxPlotSectionEnd,
-                wxGetApp().GetAppOptions().XML_BOX_PLOT_SHOW_ALL_POINTS,
+                wxGetApp().GetAppOptions().XML_BOX_PLOT_SHOW_ALL_POINTS.data(),
                 wxGetApp().GetAppOptions().IsShowingAllBoxPlotPoints()));
             DisplayBoxPlotLabels(XmlFormat::GetBoolean(boxPlotSection, boxPlotSectionEnd,
-                wxGetApp().GetAppOptions().XML_BOX_DISPLAY_LABELS,
+                wxGetApp().GetAppOptions().XML_BOX_DISPLAY_LABELS.data(),
                 wxGetApp().GetAppOptions().IsDisplayingBoxPlotLabels()));
             ConnectBoxPlotMiddlePoints(XmlFormat::GetBoolean(boxPlotSection, boxPlotSectionEnd,
-                wxGetApp().GetAppOptions().XML_BOX_CONNECT_MIDDLE_POINTS,
+                wxGetApp().GetAppOptions().XML_BOX_CONNECT_MIDDLE_POINTS.data(),
                 wxGetApp().GetAppOptions().IsConnectingBoxPlotMiddlePoints()));
             }
 
         // histogram settings
         currentStartTag.clear();
-        currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_HISTOGRAM_SETTINGS);
+        currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_HISTOGRAM_SETTINGS.data());
         currentEndTag.clear();
-        currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_HISTOGRAM_SETTINGS).append(L">");
+        currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_HISTOGRAM_SETTINGS.data()).append(L">");
         const wchar_t* histoSection = std::wcsstr(graphsSection, currentStartTag);
         const wchar_t* histoSectionEnd = std::wcsstr(graphsSection, currentEndTag);
         if (histoSection && histoSectionEnd &&
             (histoSection < histoSectionEnd) )
             {
             long barEffect = XmlFormat::GetLong(histoSection, histoSectionEnd,
-                wxGetApp().GetAppOptions().XML_BAR_EFFECT,
+                wxGetApp().GetAppOptions().XML_BAR_EFFECT.data(),
                 static_cast<long>(wxGetApp().GetAppOptions().GetHistogramBarEffect()));
             if (barEffect < 0 || barEffect >= static_cast<decltype(barEffect)>(BoxEffect::EFFECTS_COUNT) )
                 { barEffect = static_cast<decltype(barEffect)>(wxGetApp().GetAppOptions().GetHistogramBarEffect()); }
             SetHistogramBarEffect(static_cast<BoxEffect>(barEffect));
             SetHistogramBarColor(XmlFormat::GetColor(histoSection, histoSectionEnd,
-                wxGetApp().GetAppOptions().XML_GRAPH_COLOR,
+                wxGetApp().GetAppOptions().XML_GRAPH_COLOR.data(),
                 wxGetApp().GetAppOptions().GetHistogramBarColor()));
             SetHistogramBarOpacity(XmlFormat::GetLong(histoSection, histoSectionEnd,
-                wxGetApp().GetAppOptions().XML_GRAPH_OPACITY,
+                wxGetApp().GetAppOptions().XML_GRAPH_OPACITY.data(),
                 wxGetApp().GetAppOptions().GetHistogramBarOpacity()));
             // how values are binned
             long catMethod = XmlFormat::GetLong(histoSection, histoSectionEnd,
-                wxGetApp().GetAppOptions().XML_GRAPH_BINNING_METHOD,
+                wxGetApp().GetAppOptions().XML_GRAPH_BINNING_METHOD.data(),
                 static_cast<long>(wxGetApp().GetAppOptions().GetHistorgramBinningMethod()));
             if (catMethod < 0 ||
                 catMethod >= static_cast<decltype(catMethod)>(Histogram::BinningMethod::BINNING_METHOD_COUNT))
@@ -1550,7 +1551,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             SetHistorgramBinningMethod(static_cast<Histogram::BinningMethod>(catMethod));
             // how values are rounded
             long roundMethod = XmlFormat::GetLong(histoSection, histoSectionEnd,
-                wxGetApp().GetAppOptions().XML_GRAPH_ROUNDING_METHOD,
+                wxGetApp().GetAppOptions().XML_GRAPH_ROUNDING_METHOD.data(),
                 static_cast<long>(wxGetApp().GetAppOptions().GetHistogramRoundingMethod()));
             if (roundMethod >= static_cast<decltype(roundMethod)>(RoundingMethod::ROUNDING_METHOD_COUNT))
                 { roundMethod = static_cast<long>(wxGetApp().GetAppOptions().GetHistogramRoundingMethod()); }
@@ -1558,7 +1559,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             // how the intervals are displayed on the axis and bar
             long intervalDisplayMethod =
                 XmlFormat::GetLong(histoSection, histoSectionEnd,
-                    wxGetApp().GetAppOptions().XML_GRAPH_INTERVAL_DISPLAY,
+                    wxGetApp().GetAppOptions().XML_GRAPH_INTERVAL_DISPLAY.data(),
                     static_cast<long>(wxGetApp().GetAppOptions().GetHistogramIntervalDisplay()));
             if (intervalDisplayMethod < 0 ||
                 intervalDisplayMethod >= static_cast<decltype(intervalDisplayMethod)>(
@@ -1570,7 +1571,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             // how the categories are displayed on the axis and bar
             long catDisplayMethod =
                 XmlFormat::GetLong(histoSection, histoSectionEnd,
-                    wxGetApp().GetAppOptions().XML_GRAPH_BINNING_LABEL_DISPLAY,
+                    wxGetApp().GetAppOptions().XML_GRAPH_BINNING_LABEL_DISPLAY.data(),
                     static_cast<long>(wxGetApp().GetAppOptions().GetHistrogramBinLabelDisplay()));
             if (catDisplayMethod < 0 ||
                 catDisplayMethod >= static_cast<decltype(catDisplayMethod)>(BinLabelDisplay::BIN_LABEL_DISPLAY_COUNT))
@@ -1580,44 +1581,44 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
 
         // bar chart settings
         currentStartTag.clear();
-        currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_BAR_CHART_SETTINGS);
+        currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_BAR_CHART_SETTINGS.data());
         currentEndTag.clear();
-        currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_BAR_CHART_SETTINGS).append(L">");
+        currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_BAR_CHART_SETTINGS.data()).append(L">");
         const wchar_t* barSection = std::wcsstr(graphsSection, currentStartTag);
         const wchar_t* barSectionEnd = std::wcsstr(graphsSection, currentEndTag);
         if (barSection && barSectionEnd &&
             (barSection < barSectionEnd) )
             {
             SetBarChartBarColor(XmlFormat::GetColor(barSection, barSectionEnd,
-                wxGetApp().GetAppOptions().XML_GRAPH_COLOR,
+                wxGetApp().GetAppOptions().XML_GRAPH_COLOR.data(),
                 wxGetApp().GetAppOptions().GetBarChartBarColor()));
             long barEffect = XmlFormat::GetLong(barSection, barSectionEnd,
-                wxGetApp().GetAppOptions().XML_BAR_EFFECT,
+                wxGetApp().GetAppOptions().XML_BAR_EFFECT.data(),
                 static_cast<long>(wxGetApp().GetAppOptions().GetGraphBarEffect()));
             if (barEffect < 0 || barEffect >= static_cast<decltype(barEffect)>(BoxEffect::EFFECTS_COUNT) )
                 { barEffect = static_cast<decltype(barEffect)>(wxGetApp().GetAppOptions().GetGraphBarEffect()); }
             SetGraphBarEffect(static_cast<BoxEffect>(barEffect));
             long orientation = XmlFormat::GetLong(barSection, barSectionEnd,
-                wxGetApp().GetAppOptions().XML_BAR_ORIENTATION,
+                wxGetApp().GetAppOptions().XML_BAR_ORIENTATION.data(),
                 static_cast<decltype(orientation)>(wxGetApp().GetAppOptions().GetBarChartOrientation()));
             if (orientation >= static_cast<decltype(orientation)>(Wisteria::Orientation::ORIENTATION_COUNT))
                 {
                 orientation = static_cast<decltype(orientation)>(wxGetApp().GetAppOptions().GetBarChartOrientation());
                 }
             DisplayBarChartLabels(XmlFormat::GetBoolean(barSection, barSectionEnd,
-                wxGetApp().GetAppOptions().XML_BAR_DISPLAY_LABELS,
+                wxGetApp().GetAppOptions().XML_BAR_DISPLAY_LABELS.data(),
                 wxGetApp().GetAppOptions().IsDisplayingBarChartLabels()));
             SetBarChartOrientation(static_cast<Wisteria::Orientation>(orientation));
             SetGraphBarOpacity(XmlFormat::GetLong(barSection, barSectionEnd,
-                wxGetApp().GetAppOptions().XML_GRAPH_OPACITY,
+                wxGetApp().GetAppOptions().XML_GRAPH_OPACITY.data(),
                 wxGetApp().GetAppOptions().GetGraphBarOpacity()));
             }
 
         // axis settings
         currentStartTag.clear();
-        currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_AXIS_SETTINGS);
+        currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_AXIS_SETTINGS.data());
         currentEndTag.clear();
-        currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_AXIS_SETTINGS).append(L">");
+        currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_AXIS_SETTINGS.data()).append(L">");
         const wchar_t* axisSection = std::wcsstr(graphsSection, currentStartTag);
         const wchar_t* axisSectionEnd = std::wcsstr(graphsSection, currentEndTag);
         if (axisSection && axisSectionEnd &&
@@ -1625,9 +1626,9 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             {
             // x axis
             currentStartTag.clear();
-            currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_X_AXIS);
+            currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_X_AXIS.data());
             currentEndTag.clear();
-            currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_X_AXIS).append(L">");
+            currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_X_AXIS.data()).append(L">");
             const wchar_t* xAxisSection = std::wcsstr(axisSection, currentStartTag);
             const wchar_t* xAxisSectionEnd = std::wcsstr(axisSection, currentEndTag);
             if (xAxisSection && xAxisSectionEnd &&
@@ -1635,18 +1636,18 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 {
                 SetXAxisFontColor(
                     XmlFormat::GetColor(xAxisSection, xAxisSectionEnd,
-                        wxGetApp().GetAppOptions().XML_FONT_COLOR,
+                        wxGetApp().GetAppOptions().XML_FONT_COLOR.data(),
                         wxGetApp().GetAppOptions().GetXAxisFontColor()));
                 SetXAxisFont(
                     XmlFormat::GetFont(xAxisSection, xAxisSectionEnd,
-                        wxGetApp().GetAppOptions().XML_FONT,
+                        wxGetApp().GetAppOptions().XML_FONT.data(),
                         wxGetApp().GetAppOptions().GetXAxisFont()));
                 }
             // y axis
             currentStartTag.clear();
-            currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_Y_AXIS);
+            currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_Y_AXIS.data());
             currentEndTag.clear();
-            currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_Y_AXIS).append(L">");
+            currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_Y_AXIS.data()).append(L">");
             const wchar_t* yAxisSection = std::wcsstr(axisSection, currentStartTag);
             const wchar_t* yAxisSectionEnd = std::wcsstr(axisSection, currentEndTag);
             if (yAxisSection && yAxisSectionEnd &&
@@ -1654,20 +1655,20 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 {
                 SetYAxisFontColor(
                     XmlFormat::GetColor(yAxisSection, yAxisSectionEnd,
-                        wxGetApp().GetAppOptions().XML_FONT_COLOR,
+                        wxGetApp().GetAppOptions().XML_FONT_COLOR.data(),
                         wxGetApp().GetAppOptions().GetYAxisFontColor()));
                 SetYAxisFont(
                     XmlFormat::GetFont(yAxisSection, yAxisSectionEnd,
-                        wxGetApp().GetAppOptions().XML_FONT,
+                        wxGetApp().GetAppOptions().XML_FONT.data(),
                         wxGetApp().GetAppOptions().GetYAxisFont()));
                 }
             }
 
         // title settings
         currentStartTag.clear();
-        currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_TITLE_SETTINGS);
+        currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_TITLE_SETTINGS.data());
         currentEndTag.clear();
-        currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_TITLE_SETTINGS).append(L">");
+        currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_TITLE_SETTINGS.data()).append(L">");
         const wchar_t* titleSection = std::wcsstr(graphsSection, currentStartTag);
         const wchar_t* titleSectionEnd = std::wcsstr(graphsSection, currentEndTag);
         if (titleSection && titleSectionEnd &&
@@ -1675,9 +1676,9 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             {
             // top title
             currentStartTag.clear();
-            currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_TOP_TITLE);
+            currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_TOP_TITLE.data());
             currentEndTag.clear();
-            currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_TOP_TITLE).append(L">");
+            currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_TOP_TITLE.data()).append(L">");
             const wchar_t* topTitleSection = std::wcsstr(titleSection, currentStartTag);
             const wchar_t* topTitleSectionEnd = std::wcsstr(titleSection, currentEndTag);
             if (topTitleSection && topTitleSectionEnd &&
@@ -1685,19 +1686,19 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 {
                 SetGraphTopTitleFontColor(
                     XmlFormat::GetColor(topTitleSection, topTitleSectionEnd,
-                        wxGetApp().GetAppOptions().XML_FONT_COLOR,
+                        wxGetApp().GetAppOptions().XML_FONT_COLOR.data(),
                         wxGetApp().GetAppOptions().GetGraphTopTitleFontColor()));
                 SetGraphTopTitleFont(
                     XmlFormat::GetFont(topTitleSection, topTitleSectionEnd,
-                        wxGetApp().GetAppOptions().XML_FONT,
+                        wxGetApp().GetAppOptions().XML_FONT.data(),
                         wxGetApp().GetAppOptions().GetGraphTopTitleFont()));
                 }
 
             // bottom title
             currentStartTag.clear();
-            currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_BOTTOM_TITLE);
+            currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_BOTTOM_TITLE.data());
             currentEndTag.clear();
-            currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_BOTTOM_TITLE).append(L">");
+            currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_BOTTOM_TITLE.data()).append(L">");
             const wchar_t* bottomTitleSection = std::wcsstr(titleSection, currentStartTag);
             const wchar_t* bottomTitleSectionEnd = std::wcsstr(titleSection, currentEndTag);
             if (bottomTitleSection && bottomTitleSectionEnd &&
@@ -1705,19 +1706,19 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 {
                 SetBottomTitleGraphFontColor(
                     XmlFormat::GetColor(bottomTitleSection, bottomTitleSectionEnd,
-                        wxGetApp().GetAppOptions().XML_FONT_COLOR,
+                        wxGetApp().GetAppOptions().XML_FONT_COLOR.data(),
                         wxGetApp().GetAppOptions().GetBottomTitleGraphFontColor()));
                 SetBottomTitleGraphFont(
                     XmlFormat::GetFont(bottomTitleSection, bottomTitleSectionEnd,
-                        wxGetApp().GetAppOptions().XML_FONT,
+                        wxGetApp().GetAppOptions().XML_FONT.data(),
                         wxGetApp().GetAppOptions().GetBottomTitleGraphFont()));
                 }
 
             // left title
             currentStartTag.clear();
-            currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_LEFT_TITLE);
+            currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_LEFT_TITLE.data());
             currentEndTag.clear();
-            currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_LEFT_TITLE).append(L">");
+            currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_LEFT_TITLE.data()).append(L">");
             const wchar_t* leftTitleSection = std::wcsstr(titleSection, currentStartTag);
             const wchar_t* leftTitleSectionEnd = std::wcsstr(titleSection, currentEndTag);
             if (leftTitleSection && leftTitleSectionEnd &&
@@ -1725,19 +1726,19 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 {
                 SetLeftTitleGraphFontColor(
                     XmlFormat::GetColor(leftTitleSection, leftTitleSectionEnd,
-                        wxGetApp().GetAppOptions().XML_FONT_COLOR,
+                        wxGetApp().GetAppOptions().XML_FONT_COLOR.data(),
                         wxGetApp().GetAppOptions().GetLeftTitleGraphFontColor()));
                 SetLeftTitleGraphFont(
                     XmlFormat::GetFont(leftTitleSection, leftTitleSectionEnd,
-                        wxGetApp().GetAppOptions().XML_FONT,
+                        wxGetApp().GetAppOptions().XML_FONT.data(),
                         wxGetApp().GetAppOptions().GetLeftTitleGraphFont()));
                 }
 
             // right title
             currentStartTag.clear();
-            currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_RIGHT_TITLE);
+            currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_RIGHT_TITLE.data());
             currentEndTag.clear();
-            currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_RIGHT_TITLE).append(L">");
+            currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_RIGHT_TITLE.data()).append(L">");
             const wchar_t* rightTitleSection = std::wcsstr(titleSection, currentStartTag);
             const wchar_t* rightTitleSectionEnd = std::wcsstr(titleSection, currentEndTag);
             if (rightTitleSection && rightTitleSectionEnd &&
@@ -1745,11 +1746,11 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 {
                 SetRightTitleGraphFontColor(
                     XmlFormat::GetColor(rightTitleSection, rightTitleSectionEnd,
-                        wxGetApp().GetAppOptions().XML_FONT_COLOR,
+                        wxGetApp().GetAppOptions().XML_FONT_COLOR.data(),
                         wxGetApp().GetAppOptions().GetRightTitleGraphFontColor()));
                 SetRightTitleGraphFont(
                     XmlFormat::GetFont(rightTitleSection, rightTitleSectionEnd,
-                        wxGetApp().GetAppOptions().XML_FONT,
+                        wxGetApp().GetAppOptions().XML_FONT.data(),
                         wxGetApp().GetAppOptions().GetRightTitleGraphFont()));
                 }
             }
@@ -1758,20 +1759,20 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
     // read stat goals
     const wchar_t* statGoalsSection =
         html_extract_text::find_element(settingsFileText, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_STAT_GOALS.wc_str(), true);
+            wxGetApp().GetAppOptions().XML_STAT_GOALS_W, true);
     const wchar_t* statGoalsSectionEnd = statGoalsSection ?
         html_extract_text::find_closing_element(statGoalsSection, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_STAT_GOALS.wc_str()) : nullptr;
+            wxGetApp().GetAppOptions().XML_STAT_GOALS_W) : nullptr;
     if (statGoalsSection && statGoalsSectionEnd)
         {
         for (const auto& statGoal : GetStatGoalLabels())
             {
             auto minGoal =
                 XmlFormat::GetAttributeDoubleValue(statGoalsSection, statGoalsSectionEnd, statGoal.first.first.c_str(),
-                wxGetApp().GetAppOptions().XML_GOAL_MIN_VAL_GOAL.wc_str(), std::numeric_limits<double>::quiet_NaN());
+                wxGetApp().GetAppOptions().XML_GOAL_MIN_VAL_GOAL.data(), std::numeric_limits<double>::quiet_NaN());
             auto maxGoal =
                 XmlFormat::GetAttributeDoubleValue(statGoalsSection, statGoalsSectionEnd, statGoal.first.first.c_str(),
-                wxGetApp().GetAppOptions().XML_GOAL_MAX_VAL_GOAL.wc_str(), std::numeric_limits<double>::quiet_NaN());
+                wxGetApp().GetAppOptions().XML_GOAL_MAX_VAL_GOAL.data(), std::numeric_limits<double>::quiet_NaN());
             if (!std::isnan(minGoal) || !std::isnan(maxGoal))
                 {
                 GetStatGoals().insert({ statGoal.first.first, minGoal, maxGoal });
@@ -1782,14 +1783,14 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
     // read in the statistics configurations
     const wchar_t* statsSection =
         html_extract_text::find_element(settingsFileText, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_STATISTICS_SECTION.wc_str(), true);
+            wxGetApp().GetAppOptions().XML_STATISTICS_SECTION_W, true);
     const wchar_t* statsSectionEnd = statsSection ?
         html_extract_text::find_closing_element(statsSection, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_STATISTICS_SECTION.wc_str()) : nullptr;
+            wxGetApp().GetAppOptions().XML_STATISTICS_SECTION_W) : nullptr;
     if (statsSection && statsSectionEnd)
         {
         SetVarianceMethod(static_cast<VarianceMethod>(XmlFormat::GetLong(statsSection, statsSectionEnd,
-                            wxGetApp().GetAppOptions().XML_VARIANCE_METHOD,
+                            wxGetApp().GetAppOptions().XML_VARIANCE_METHOD.data(),
                             static_cast<long>(wxGetApp().GetAppOptions().GetVarianceMethod()))));
         const wxString statsInfo =
             XmlFormat::GetString(statsSection, statsSectionEnd, wxGetApp().GetAppOptions().XML_STATISTICS_REPORT);
@@ -1805,21 +1806,21 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
     ///@todo not a bad idea to use find_element elsewhere in here
     const wchar_t* readabilityTestSection =
         html_extract_text::find_element(settingsFileText, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION.wc_str(), true);
+            wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION_W, true);
     const wchar_t* readabilityTestSectionEnd = readabilityTestSection ?
         html_extract_text::find_closing_element(readabilityTestSection, settingsFileTextEnd,
-            wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION.wc_str()) : nullptr;
+            wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION_W) : nullptr;
     if (readabilityTestSection && readabilityTestSectionEnd)
         {
         // readability score results
         IncludeScoreSummaryReport((XmlFormat::GetBoolean(readabilityTestSection, readabilityTestSectionEnd,
-            wxGetApp().GetAppOptions().XML_INCLUDE_SCORES_SUMMARY_REPORT,
+            wxGetApp().GetAppOptions().XML_INCLUDE_SCORES_SUMMARY_REPORT.data(),
             wxGetApp().GetAppOptions().IsIncludingScoreSummaryReport())) );
         // grade scale/reading age display
         GetReadabilityMessageCatalog().SetReadingAgeDisplay(
             static_cast<ReadabilityMessages::ReadingAgeDisplay>(
                 XmlFormat::GetLong(readabilityTestSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_READING_AGE_FORMAT,
+                wxGetApp().GetAppOptions().XML_READING_AGE_FORMAT.data(),
                 static_cast<long>(wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().GetReadingAgeDisplay()))));
         GetReadabilityMessageCatalog().SetGradeScale(
             static_cast<readability::grade_scale>(XmlFormat::GetLong(readabilityTestSection, readabilityTestSectionEnd,
@@ -1839,12 +1840,12 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             auto minGoal =
                 XmlFormat::GetAttributeDoubleValue(readabilityTestSection, readabilityTestSectionEnd,
                             rTest.get_test().get_id().c_str(),
-                            wxGetApp().GetAppOptions().XML_GOAL_MIN_VAL_GOAL.wc_str(),
+                            wxGetApp().GetAppOptions().XML_GOAL_MIN_VAL_GOAL.data(),
                             std::numeric_limits<double>::quiet_NaN());
             auto maxGoal =
                 XmlFormat::GetAttributeDoubleValue(readabilityTestSection, readabilityTestSectionEnd,
                             rTest.get_test().get_id().c_str(),
-                            wxGetApp().GetAppOptions().XML_GOAL_MAX_VAL_GOAL.wc_str(),
+                            wxGetApp().GetAppOptions().XML_GOAL_MAX_VAL_GOAL.data(),
                             std::numeric_limits<double>::quiet_NaN());
             if (!std::isnan(minGoal) || !std::isnan(maxGoal))
                 {
@@ -1853,7 +1854,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             }
         // Dolch sight words
         IncludeDolchSightWords(XmlFormat::GetBoolean(readabilityTestSection, readabilityTestSectionEnd,
-                               wxGetApp().GetAppOptions().XML_DOLCH_SIGHT_WORDS_TEST, false));
+                               wxGetApp().GetAppOptions().XML_DOLCH_SIGHT_WORDS_TEST.data(), false));
 
         // test-specific options
         const wchar_t* fleschKincaidOptionsSection =
@@ -2275,9 +2276,9 @@ wxString BaseProjectDoc::FormatProjectSettings() const
         const auto [minGoal,maxGoal] = GetGoalsForTest(pos->GetIterator()->get_name().c_str());
         const wxString minGoalStr = std::isnan(minGoal) ? wxString{} : wxString::FromCDouble(minGoal);
         const wxString maxGoalStr = std::isnan(maxGoal) ? wxString{} : wxString::FromCDouble(maxGoal);
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GOAL_MIN_VAL_GOAL, minGoalStr, 3);
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GOAL_MIN_VAL_GOAL.data(), minGoalStr, 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GOAL_MAX_VAL_GOAL, maxGoalStr, 3);
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GOAL_MAX_VAL_GOAL.data(), maxGoalStr, 3);
         fileText += sectionText;
         // inclusion of proper nouns and numbers
         XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_PROPER_NOUNS.data(),
@@ -2308,51 +2309,51 @@ wxString BaseProjectDoc::FormatProjectSettings() const
         fileText += sectionText;
         // industry association
         XmlFormat::FormatSection(
-            sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_CHILDRENS_PUBLISHING,
+            sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_CHILDRENS_PUBLISHING.data(),
             int_to_bool(pos->GetIterator()->has_industry_classification(
                 readability::industry_classification::childrens_publishing_industry)), 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_ADULTPUBLISHING,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_ADULTPUBLISHING.data(),
             int_to_bool(pos->GetIterator()->has_industry_classification(
                 readability::industry_classification::adult_publishing_industry)), 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_SECONDARY_LANGUAGE,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_SECONDARY_LANGUAGE.data(),
             int_to_bool(pos->GetIterator()->has_industry_classification(
                 readability::industry_classification::sedondary_language_industry)), 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_CHILDRENS_HEALTHCARE,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_CHILDRENS_HEALTHCARE.data(),
             int_to_bool(pos->GetIterator()->has_industry_classification(
                 readability::industry_classification::childrens_healthcare_industry)), 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_ADULT_HEALTHCARE,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_ADULT_HEALTHCARE.data(),
             int_to_bool(pos->GetIterator()->has_industry_classification(
                 readability::industry_classification::adult_healthcare_industry)), 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_MILITARY_GOVERNMENT,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_MILITARY_GOVERNMENT.data(),
             int_to_bool(pos->GetIterator()->has_industry_classification(
                 readability::industry_classification::military_government_industry)), 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_BROADCASTING,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INDUSTRY_BROADCASTING.data(),
             int_to_bool(pos->GetIterator()->has_industry_classification(
                 readability::industry_classification::broadcasting_industry)), 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_GENERAL,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_GENERAL.data(),
             int_to_bool(pos->GetIterator()->has_document_classification(
                 readability::document_classification::general_document)), 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_TECHNICAL,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_TECHNICAL.data(),
             int_to_bool(pos->GetIterator()->has_document_classification(
                 readability::document_classification::technical_document)), 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_FORM,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_FORM.data(),
             int_to_bool(pos->GetIterator()->has_document_classification(
                 readability::document_classification::nonnarrative_document)), 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_YOUNGADULT,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_YOUNGADULT.data(),
             int_to_bool(pos->GetIterator()->has_document_classification(
                 readability::document_classification::adult_literature_document)), 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_CHILDREN_LIT,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DOCUMENT_CHILDREN_LIT.data(),
             int_to_bool(pos->GetIterator()->has_document_classification(
                 readability::document_classification::childrens_literature_document)), 3);
         fileText += sectionText;
@@ -2364,90 +2365,90 @@ wxString BaseProjectDoc::FormatProjectSettings() const
 
     // save the graph settings
     //----------------------------------
-    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_SETTINGS).append(L">\n");
+    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_SETTINGS.data()).append(L">\n");
     // color scheme
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_COLOR_SCHEME).append(L">");
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_COLOR_SCHEME.data()).append(L">");
     fileText += GetGraphColorScheme();
-    fileText.append(L"</").append(wxGetApp().GetAppOptions().XML_GRAPH_COLOR_SCHEME).append(L">\n");
+    fileText.append(L"</").append(wxGetApp().GetAppOptions().XML_GRAPH_COLOR_SCHEME.data()).append(L">\n");
     // background image
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH).append(L">");
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH.data()).append(L">");
     fileText += GetPlotBackGroundImagePath();
-    fileText.append(L"</").append(wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH).append(L">\n");
+    fileText.append(L"</").append(wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH.data()).append(L">\n");
 
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT.data(),
         static_cast<int>(GetPlotBackGroundImageEffect()), 3);
     fileText += sectionText;
 
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT.data(),
         static_cast<int>(GetPlotBackGroundImageFit()), 3);
     fileText += sectionText;
     // background color
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_COLOR);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_COLOR.data());
     fileText += XmlFormat::FormatColorAttributes(GetBackGroundColor());
     fileText += L"/>\n";
     // plot background color
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_COLOR);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_COLOR.data());
     fileText += XmlFormat::FormatColorAttributes(GetPlotBackGroundColor());
     fileText.append(L"/>\n");
     // plot background image opacity
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY.data(),
         static_cast<int>(GetPlotBackGroundImageOpacity()), 2);
     fileText += sectionText;
     // plot background color opacity
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY.data(),
         static_cast<int>(GetPlotBackGroundColorOpacity()), 2);
     fileText += sectionText;
     // background linear gradient
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_LINEAR_GRADIENT,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BACKGROUND_LINEAR_GRADIENT.data(),
         GetGraphBackGroundLinearGradient(), 2);
     fileText += sectionText;
     // stipple image
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_PATH,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_PATH.data(),
         GetStippleImagePath(), 2);
     fileText += sectionText;
     // stipple shape
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_SHAPE,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_SHAPE.data(),
         GetStippleShape(), 2);
     fileText += sectionText;
 
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_COLOR);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_STIPPLE_COLOR.data());
     fileText += XmlFormat::FormatColorAttributes(GetStippleShapeColor());
     fileText += L"/>\n";
     // common image
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_COMMON_IMAGE_PATH,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_COMMON_IMAGE_PATH.data(),
         GetGraphCommonImagePath(), 2);
     fileText += sectionText;
     // whether drop shadows should be shown
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DISPLAY_DROP_SHADOW,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_DISPLAY_DROP_SHADOW.data(),
         IsDisplayingDropShadows(), 2);
     fileText += sectionText;
     // whether to draw attention to the complex word groups in syllable graphs
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SHOWCASE_COMPLEX_WORDS,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SHOWCASE_COMPLEX_WORDS.data(),
         IsShowcasingComplexWords(), 2);
     fileText += sectionText;
     // watermarks
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_WATERMARK, GetWatermark(), 2);
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_WATERMARK.data(), GetWatermark(), 2);
     fileText += sectionText;
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH.data(),
         GetWatermarkLogoPath(), 2);
     fileText += sectionText;
     // lix gauge
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_LIX_SETTINGS).append(L">\n");
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_USE_ENGLISH_LABELS,
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_LIX_SETTINGS.data()).append(L">\n");
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_USE_ENGLISH_LABELS.data(),
         IsUsingEnglishLabelsForGermanLix(), 3);
     fileText += sectionText;
-    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_LIX_SETTINGS).append(L">\n");
+    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_LIX_SETTINGS.data()).append(L">\n");
     // flesch chart
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_FLESCH_CHART_SETTINGS).append(L">\n");
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_CONNECTION_LINE,
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_FLESCH_CHART_SETTINGS.data()).append(L">\n");
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_CONNECTION_LINE.data(),
         IsConnectingFleschPoints(), 3);
     fileText += sectionText;
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_FLESCH_RULER_DOC_GROUPS,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_FLESCH_RULER_DOC_GROUPS.data(),
         IsIncludingFleschRulerDocGroups(), 3);
     fileText += sectionText;
-    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_FLESCH_CHART_SETTINGS).append(L">\n");
+    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_FLESCH_CHART_SETTINGS.data()).append(L">\n");
     // fry/raygor invalid area colors
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_INVALID_AREA_COLOR);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_INVALID_AREA_COLOR.data());
     fileText += XmlFormat::FormatColorAttributes(GetInvalidAreaColor());
     fileText.append(L"/>\n");
     // raygor style
@@ -2456,167 +2457,167 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText += sectionText;
 
     // histogram settings
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_HISTOGRAM_SETTINGS).append(L">\n");
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_HISTOGRAM_SETTINGS.data()).append(L">\n");
     // categorization method
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BINNING_METHOD,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BINNING_METHOD.data(),
         static_cast<int>(GetHistorgramBinningMethod()), 3);
     fileText += sectionText;
     // interval display method
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_INTERVAL_DISPLAY,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_INTERVAL_DISPLAY.data(),
         static_cast<int>(GetHistogramIntervalDisplay()), 3);
     fileText += sectionText;
     // categorization label display method
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BINNING_LABEL_DISPLAY,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_BINNING_LABEL_DISPLAY.data(),
         static_cast<int>(GetHistrogramBinLabelDisplay()), 3);
     fileText += sectionText;
     // rounding
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_ROUNDING_METHOD,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_ROUNDING_METHOD.data(),
         static_cast<int>(GetHistogramRoundingMethod()), 3);
     fileText += sectionText;
     // bar color
-    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_COLOR);
+    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_COLOR.data());
     fileText += XmlFormat::FormatColorAttributes(GetHistogramBarColor());
     fileText.append(L"/>\n");
     // bar opacity
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_OPACITY,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_OPACITY.data(),
         static_cast<int>(GetHistogramBarOpacity()), 3);
     fileText += sectionText;
     // bar effect
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BAR_EFFECT,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BAR_EFFECT.data(),
         static_cast<int>(GetHistogramBarEffect()), 3);
     fileText += sectionText;
-    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_HISTOGRAM_SETTINGS).append(L">\n");
+    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_HISTOGRAM_SETTINGS.data()).append(L">\n");
 
     // bar chart settings
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_BAR_CHART_SETTINGS).append(L">\n");
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_BAR_CHART_SETTINGS.data()).append(L">\n");
     // bar color
-    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_COLOR);
+    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_COLOR.data());
     fileText += XmlFormat::FormatColorAttributes(GetBarChartBarColor());
     fileText.append(L"/>\n");
     // bar orientation
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BAR_ORIENTATION,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BAR_ORIENTATION.data(),
         static_cast<int>(GetBarChartOrientation()), 3);
     fileText += sectionText;
     // bar opacity
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_OPACITY,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_OPACITY.data(),
         static_cast<int>(GetGraphBarOpacity()), 3);
     fileText += sectionText;
     // bar display labels
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BAR_DISPLAY_LABELS,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BAR_DISPLAY_LABELS.data(),
         static_cast<int>(IsDisplayingBarChartLabels()), 3);
     fileText += sectionText;
     // bar effect
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BAR_EFFECT,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BAR_EFFECT.data(),
         static_cast<int>(GetGraphBarEffect()), 3);
     fileText += sectionText;
-    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_BAR_CHART_SETTINGS).append(L">\n");
+    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_BAR_CHART_SETTINGS.data()).append(L">\n");
 
     // box plot settings
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_BOX_PLOT_SETTINGS).append(L">\n");
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_BOX_PLOT_SETTINGS.data()).append(L">\n");
     // box color
-    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_COLOR);
+    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_GRAPH_COLOR.data());
     fileText += XmlFormat::FormatColorAttributes(GetGraphBoxColor());
     fileText.append(L"/>\n");
     // box opacity
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_OPACITY,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_OPACITY.data(),
         static_cast<int>(GetGraphBoxOpacity()), 3);
     fileText += sectionText;
     // box effect
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BOX_EFFECT,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BOX_EFFECT.data(),
         static_cast<int>(GetGraphBoxEffect()), 3);
     fileText += sectionText;
     // box show all points
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BOX_PLOT_SHOW_ALL_POINTS,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BOX_PLOT_SHOW_ALL_POINTS.data(),
         static_cast<int>(IsShowingAllBoxPlotPoints()), 3);
     fileText += sectionText;
     // box connection points
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BOX_CONNECT_MIDDLE_POINTS,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BOX_CONNECT_MIDDLE_POINTS.data(),
         static_cast<int>(IsConnectingBoxPlotMiddlePoints()), 3);
     fileText += sectionText;
     // box display labels
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BOX_DISPLAY_LABELS,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_BOX_DISPLAY_LABELS.data(),
         static_cast<int>(IsDisplayingBoxPlotLabels()), 3);
     fileText += sectionText;
-    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_BOX_PLOT_SETTINGS).append(L">\n");
+    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_BOX_PLOT_SETTINGS.data()).append(L">\n");
 
     // axis settings
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_AXIS_SETTINGS).append(L">\n");
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_AXIS_SETTINGS.data()).append(L">\n");
     // x axis
-    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_X_AXIS).append(L">\n");
+    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_X_AXIS.data()).append(L">\n");
     // font color
-    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT_COLOR);
+    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT_COLOR.data());
     fileText += XmlFormat::FormatColorAttributes(GetXAxisFontColor());
     fileText.append(L"/>\n");
     // font information
-    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT);
+    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT.data());
     fileText += XmlFormat::FormatFontAttributes(GetXAxisFont());
     fileText.append(L"/>\n");
-    fileText.append(L"\t\t\t</").append(wxGetApp().GetAppOptions().XML_X_AXIS).append(L">\n");
+    fileText.append(L"\t\t\t</").append(wxGetApp().GetAppOptions().XML_X_AXIS.data()).append(L">\n");
     // y axis
-    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_Y_AXIS).append(L">\n");
+    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_Y_AXIS.data()).append(L">\n");
     // font color
-    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT_COLOR);
+    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT_COLOR.data());
     fileText += XmlFormat::FormatColorAttributes(GetYAxisFontColor());
     fileText.append(L"/>\n");
     // font information
-    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT);
+    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT.data());
     fileText += XmlFormat::FormatFontAttributes(GetYAxisFont());
     fileText.append(L"/>\n");
-    fileText.append(L"\t\t\t</").append(wxGetApp().GetAppOptions().XML_Y_AXIS).append(L">\n");
-    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_AXIS_SETTINGS).append(L">\n");
+    fileText.append(L"\t\t\t</").append(wxGetApp().GetAppOptions().XML_Y_AXIS.data()).append(L">\n");
+    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_AXIS_SETTINGS.data()).append(L">\n");
 
     // title settings
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_TITLE_SETTINGS).append(L">\n");
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_TITLE_SETTINGS.data()).append(L">\n");
     // top title
-    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_TOP_TITLE).append(L">\n");
+    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_TOP_TITLE.data()).append(L">\n");
     // font color
-    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT_COLOR);
+    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT_COLOR.data());
     fileText += XmlFormat::FormatColorAttributes(GetGraphTopTitleFontColor());
     fileText.append(L"/>\n");
     // font information
-    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT);
+    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT.data());
     fileText += XmlFormat::FormatFontAttributes(GetGraphTopTitleFont());
     fileText.append(L"/>\n");
-    fileText.append(L"\t\t\t</").append(wxGetApp().GetAppOptions().XML_TOP_TITLE).append(L">\n");
+    fileText.append(L"\t\t\t</").append(wxGetApp().GetAppOptions().XML_TOP_TITLE.data()).append(L">\n");
     // bottom title
-    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_BOTTOM_TITLE).append(L">\n");
+    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_BOTTOM_TITLE.data()).append(L">\n");
     // font color
-    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT_COLOR);
+    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT_COLOR.data());
     fileText += XmlFormat::FormatColorAttributes(GetBottomTitleGraphFontColor());
     fileText.append(L"/>\n");
     // font information
-    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT);
+    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT.data());
     fileText += XmlFormat::FormatFontAttributes(GetBottomTitleGraphFont());
     fileText.append(L"/>\n");
-    fileText.append(L"\t\t\t</").append(wxGetApp().GetAppOptions().XML_BOTTOM_TITLE).append(L">\n");
+    fileText.append(L"\t\t\t</").append(wxGetApp().GetAppOptions().XML_BOTTOM_TITLE.data()).append(L">\n");
     // left title
-    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_LEFT_TITLE).append(L">\n");
+    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_LEFT_TITLE.data()).append(L">\n");
     // font color
-    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT_COLOR);
+    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT_COLOR.data());
     fileText += XmlFormat::FormatColorAttributes(GetLeftTitleGraphFontColor());
     fileText.append(L"/>\n");
     // font information
-    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT);
+    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT.data());
     fileText += XmlFormat::FormatFontAttributes(GetLeftTitleGraphFont());
     fileText.append(L"/>\n");
-    fileText.append(L"\t\t\t</").append(wxGetApp().GetAppOptions().XML_LEFT_TITLE).append(L">\n");
+    fileText.append(L"\t\t\t</").append(wxGetApp().GetAppOptions().XML_LEFT_TITLE.data()).append(L">\n");
     // right title
-    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_RIGHT_TITLE).append(L">\n");
+    fileText.append(L"\t\t\t<").append(wxGetApp().GetAppOptions().XML_RIGHT_TITLE.data()).append(L">\n");
     // font color
-    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT_COLOR);
+    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT_COLOR.data());
     fileText += XmlFormat::FormatColorAttributes(GetRightTitleGraphFontColor());
     fileText.append(L"/>\n");
     // font information
-    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT);
+    fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT.data());
     fileText += XmlFormat::FormatFontAttributes(GetRightTitleGraphFont());
     fileText.append(L"/>\n");
-    fileText.append(L"\t\t\t</").append(wxGetApp().GetAppOptions().XML_RIGHT_TITLE).append(L">\n");
-    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_TITLE_SETTINGS).append(L">\n");
+    fileText.append(L"\t\t\t</").append(wxGetApp().GetAppOptions().XML_RIGHT_TITLE.data()).append(L">\n");
+    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_TITLE_SETTINGS.data()).append(L">\n");
 
-    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_GRAPH_SETTINGS).append(L">\n");
+    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_GRAPH_SETTINGS.data()).append(L">\n");
 
     // stats goals
-    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_STAT_GOALS).append(L">\n");
+    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_STAT_GOALS.data()).append(L">\n");
     for (const auto& statGoal : GetStatGoalLabels())
         {
         const auto [minGoal, maxGoal] = GetGoalsForStatistic(statGoal.first.first.c_str());
@@ -2624,15 +2625,15 @@ wxString BaseProjectDoc::FormatProjectSettings() const
         const wxString maxGoalStr = std::isnan(maxGoal) ? wxString{} : wxString::FromCDouble(maxGoal);
 
         fileText.append(L"\t\t<").append(statGoal.first.first.c_str()).append(L" ").
-            append(wxGetApp().GetAppOptions().XML_GOAL_MIN_VAL_GOAL).
+            append(wxGetApp().GetAppOptions().XML_GOAL_MIN_VAL_GOAL.data()).
             append(L"=\"").append(minGoalStr).append(L"\" ").
-            append(wxGetApp().GetAppOptions().XML_GOAL_MAX_VAL_GOAL).
+            append(wxGetApp().GetAppOptions().XML_GOAL_MAX_VAL_GOAL.data()).
             append(L"=\"").append(maxGoalStr).append(L"\"/>\n");
         }
-    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_STAT_GOALS).append(L">\n");
+    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_STAT_GOALS.data()).append(L">\n");
 
     // save the statistics
-    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_STATISTICS_SECTION).append(L">\n");
+    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_STATISTICS_SECTION.data()).append(L">\n");
     // stats results
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_STATISTICS_RESULTS,
         GetStatisticsInfo().ToString(), 2);
@@ -2642,18 +2643,18 @@ wxString BaseProjectDoc::FormatProjectSettings() const
         GetStatisticsReportInfo().ToString(), 2);
     fileText += sectionText;
     // variance method
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_VARIANCE_METHOD,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_VARIANCE_METHOD.data(),
         static_cast<int>(GetVarianceMethod()), 2);
     fileText += sectionText;
-    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_STATISTICS_SECTION).append(L">\n");
+    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_STATISTICS_SECTION.data()).append(L">\n");
 
-    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION).append(L">\n");
+    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION.data()).append(L">\n");
     // readability score results
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_SCORES_SUMMARY_REPORT,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_SCORES_SUMMARY_REPORT.data(),
         IsIncludingScoreSummaryReport(), 2);
     fileText += sectionText;
     // grade scale/reading age display
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_READING_AGE_FORMAT,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_READING_AGE_FORMAT.data(),
         static_cast<int>(GetReadabilityMessageCatalog().GetReadingAgeDisplay()), 2);
     fileText += sectionText;
 
@@ -2709,16 +2710,18 @@ wxString BaseProjectDoc::FormatProjectSettings() const
         const wxString maxGoalStr = std::isnan(maxGoal) ? wxString{} : wxString::FromCDouble(maxGoal);
 
         fileText.append(L"\t\t<").append(rTest.get_test().get_id().c_str()).append(L" ").
-            append(wxGetApp().GetAppOptions().XML_GOAL_MIN_VAL_GOAL).append(L"=\"").append(minGoalStr).append(L"\" ").
-            append(wxGetApp().GetAppOptions().XML_GOAL_MAX_VAL_GOAL).append(L"=\"").append(maxGoalStr).append(L"\">");
+            append(wxGetApp().GetAppOptions().XML_GOAL_MIN_VAL_GOAL.data()).
+            append(L"=\"").append(minGoalStr).append(L"\" ").
+            append(wxGetApp().GetAppOptions().XML_GOAL_MAX_VAL_GOAL.data())
+            .append(L"=\"").append(maxGoalStr).append(L"\">");
         fileText += rTest.is_included() ? XmlFormat::GetTrue() : XmlFormat::GetFalse();
         fileText.append(L"</").append(rTest.get_test().get_id().c_str()).append(L">\n");
         }
     // Dolch sight words
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOLCH_SIGHT_WORDS_TEST).append(L">");
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DOLCH_SIGHT_WORDS_TEST.data()).append(L">");
     fileText += IsIncludingDolchSightWords() ? XmlFormat::GetTrue() : XmlFormat::GetFalse();
-    fileText.append(L"</").append(wxGetApp().GetAppOptions().XML_DOLCH_SIGHT_WORDS_TEST).append(L">\n");
-    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION).append(L">\n");
+    fileText.append(L"</").append(wxGetApp().GetAppOptions().XML_DOLCH_SIGHT_WORDS_TEST.data()).append(L">\n");
+    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION.data()).append(L">\n");
 
     // save the text views
     //---------------------------

@@ -14,97 +14,6 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     m_textHighlight(TextHighlight::HighlightBackground),
     m_fontColor(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT)),
     // XML file constants
-    // graph settings
-    XML_GRAPH_SETTINGS(_DT(L"graph-settings")),
-    XML_GRAPH_COLOR_SCHEME(_DT(L"graph-color-scheme")),
-    XML_GRAPH_BACKGROUND_COLOR(_DT(L"graph-background-color")),
-    XML_GRAPH_PLOT_BACKGROUND_COLOR(_DT(L"graph-plot-background-color")),
-    XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH(_DT(L"graph-background-image")),
-    XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY(_DT(L"graph-background-opacity")),
-    XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT(_DT(L"graph-background-image-effect")),
-    XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT(_DT(L"graph-background-image-fit")),
-    XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY(_DT(L"graph-plot-background-color-opacity")),
-    XML_GRAPH_BACKGROUND_LINEAR_GRADIENT(_DT(L"graph-background-linear-gradient")),
-    XML_GRAPH_WATERMARK(_DT(L"watermark")),
-    XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH(_DT(L"watermark-logo")),
-    XML_GRAPH_COMMON_IMAGE_PATH(_DT(L"common-image")),
-    XML_DISPLAY_DROP_SHADOW(_DT(L"display-drop-shadow")),
-    XML_SHOWCASE_COMPLEX_WORDS(_DT(L"showcase-complex-words")),
-    XML_AXIS_SETTINGS(_DT(L"axis-settings")),
-    XML_FRY_RAYGOR_SETTINGS(_DT(L"fry-raygor-settings")),
-    XML_INVALID_AREA_COLOR(_DT(L"invalid-area-color-1")),
-    XML_FLESCH_CHART_SETTINGS(_DT(L"flesch-chart-settings")),
-    XML_INCLUDE_CONNECTION_LINE(_DT(L"include-connection-line")),
-    XML_FLESCH_RULER_DOC_GROUPS(_DT(L"flesch-ruler-doc-groups")),
-    XML_LIX_SETTINGS(_DT(L"lix-settings")),
-    XML_USE_ENGLISH_LABELS(_DT(L"use-english-labels")),
-    XML_X_AXIS(_DT(L"x-axis")),
-    XML_Y_AXIS(_DT(L"y-axis")),
-    XML_FONT_COLOR(_DT(L"font-color")),
-    XML_FONT(_DT(L"font")),
-    XML_TITLE_SETTINGS(_DT(L"title-settings")),
-    XML_TOP_TITLE(_DT(L"top-title")),
-    XML_BOTTOM_TITLE(_DT(L"bottom-title")),
-    XML_LEFT_TITLE(_DT(L"left-title")),
-    XML_RIGHT_TITLE(_DT(L"right-title")),
-    XML_HISTOGRAM_SETTINGS(_DT(L"histogram-settings")),
-    XML_GRAPH_BINNING_METHOD(_DT(L"binning-method")),
-    XML_GRAPH_ROUNDING_METHOD(_DT(L"rounding-method")),
-    XML_GRAPH_INTERVAL_DISPLAY(_DT(L"interval-display")),
-    XML_GRAPH_BINNING_LABEL_DISPLAY(_DT(L"bin-label-display")),
-    XML_BAR_CHART_SETTINGS(_DT(L"bar-chart-settings")),
-    XML_GRAPH_OPACITY(_DT(L"opacity")),
-    XML_GRAPH_COLOR(_DT(L"color")),
-    XML_BAR_ORIENTATION(_DT(L"bar-orientation")),
-    XML_BAR_EFFECT(_DT(L"bar-effect")),
-    XML_BAR_DISPLAY_LABELS(_DT(L"bar-display-labels")),
-    XML_GRAPH_STIPPLE_PATH(_DT(L"stipple-image-path")),
-    XML_GRAPH_STIPPLE_SHAPE(_DT(L"stipple-shape")),
-    XML_GRAPH_STIPPLE_COLOR(_DT(L"stipple-color")),
-    XML_BOX_PLOT_SETTINGS(_DT(L"box-plot-settings")),
-    XML_BOX_EFFECT(_DT(L"box-effect")),
-    XML_BOX_DISPLAY_LABELS(_DT(L"box-display-labels")),
-    XML_BOX_CONNECT_MIDDLE_POINTS(_DT(L"box-connect-middle-points")),
-    XML_BOX_PLOT_SHOW_ALL_POINTS(_DT(L"box-plot-show-all-points")),
-    // printer setting tags
-    XML_PRINTER_SETTINGS(_DT(L"printer-settings")),
-    XML_PRINTER_ID(_DT(L"paper-id")),
-    XML_PRINTER_ORIENTATION(_DT(L"paper-orientation")),
-    XML_PRINTER_LEFT_HEADER(_DT(L"printer-left-header")),
-    XML_PRINTER_CENTER_HEADER(_DT(L"printer-center-header")),
-    XML_PRINTER_RIGHT_HEADER(_DT(L"printer-right-header")),
-    XML_PRINTER_LEFT_FOOTER(_DT(L"printer-left-footer")),
-    XML_PRINTER_CENTER_FOOTER(_DT(L"printer-center-footer")),
-    XML_PRINTER_RIGHT_FOOTER(_DT(L"printer-right-footer")),
-    // stats section
-    XML_STATISTICS_SECTION(_DT(L"statistics")),
-    XML_VARIANCE_METHOD(_DT(L"variance-calculation")),
-    // tests section
-    XML_PROJECT_SETTINGS(_DT(L"project-settings")),
-    XML_READABILITY_TESTS_SECTION(_DT(L"readability-tests")),
-    XML_READING_AGE_FORMAT(_DT(L"reading-age-format")),
-    XML_INCLUDE_SCORES_SUMMARY_REPORT(_DT(L"include-score-summary-report")),
-    XML_DOLCH_SUITE(_DT(L"dolch-suite")),
-    XML_DOLCH_SIGHT_WORDS_TEST(_DT(L"dolch-sight-words")),
-    XML_TEST_RECOMMENDATION(_DT(L"test-recommendation")),
-    XML_TEST_BY_INDUSTRY(_DT(L"tests-by-industry")),
-    XML_TEST_BY_DOCUMENT_TYPE(_DT(L"tests-by-document-type")),
-    XML_SELECTED_TEST_BUNDLE(_DT(L"selected-test-bundle")),
-    XML_INDUSTRY_CHILDRENS_PUBLISHING(_DT(L"industry-childrens-publishing")),
-    XML_INDUSTRY_ADULTPUBLISHING(_DT(L"industry-adult-publishing")),
-    XML_INDUSTRY_SECONDARY_LANGUAGE(_DT(L"industry-secondary-language")),
-    XML_INDUSTRY_CHILDRENS_HEALTHCARE(_DT(L"industry-childrens-healthcare")),
-    XML_INDUSTRY_ADULT_HEALTHCARE(_DT(L"industry-healthcare")),
-    XML_INDUSTRY_MILITARY_GOVERNMENT(_DT(L"industry-military-government")),
-    XML_INDUSTRY_BROADCASTING(_DT(L"industry-broadcasting")),
-    XML_DOCUMENT_GENERAL(_DT(L"document-general")),
-    XML_DOCUMENT_TECHNICAL(_DT(L"document-technical")),
-    XML_DOCUMENT_FORM(_DT(L"document-form")),
-    XML_DOCUMENT_YOUNGADULT(_DT(L"document-young-adult")),
-    XML_DOCUMENT_CHILDREN_LIT(_DT(L"document-children-literature")),
-    XML_STAT_GOALS(_DT(L"statistics-goals")),
-    XML_GOAL_MIN_VAL_GOAL(_DT(L"min-value-goal")),
-    XML_GOAL_MAX_VAL_GOAL(_DT(L"max-value-goal")),
     // text view constants
     XML_TEXT_VIEWS_SECTION(_DT(L"text-views")),
     XML_DOCUMENT_DISPLAY_FONTCOLOR(_DT(L"document-display-font-color")),
@@ -885,24 +794,24 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 }
             }
         // printer settings
-        auto printerSettingsNode = configRootNode->FirstChildElement(XML_PRINTER_SETTINGS.mb_str());
+        auto printerSettingsNode = configRootNode->FirstChildElement(XML_PRINTER_SETTINGS.data());
         if (printerSettingsNode)
             {
             int value = 0;
-            auto printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_ID.mb_str());
+            auto printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_ID.data());
             if (printerNode)
                 {
                 value = printerNode->ToElement()->IntAttribute(XML_VALUE.data(), value);
                 SetPaperId(value);
                 }
             value = 0;
-            printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_ORIENTATION.mb_str());
+            printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_ORIENTATION.data());
             if (printerNode)
                 {
                 value = printerNode->ToElement()->IntAttribute(XML_VALUE.data(), value);
                 SetPaperOrientation(static_cast<wxPrintOrientation>(value));
                 }
-            printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_LEFT_HEADER.mb_str());
+            printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_LEFT_HEADER.data());
             if (printerNode)
                 {
                 const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.data());
@@ -915,7 +824,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         { SetLeftPrinterHeader(convertedStr); }
                     }
                 }
-            printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_CENTER_HEADER.mb_str());
+            printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_CENTER_HEADER.data());
             if (printerNode)
                 {
                 const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.data());
@@ -928,7 +837,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         { SetCenterPrinterHeader(convertedStr); }
                     }
                 }
-            printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_RIGHT_HEADER.mb_str());
+            printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_RIGHT_HEADER.data());
             if (printerNode)
                 {
                 const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.data());
@@ -941,7 +850,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         { SetRightPrinterHeader(convertedStr); }
                     }
                 }
-            printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_LEFT_FOOTER.mb_str());
+            printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_LEFT_FOOTER.data());
             if (printerNode)
                 {
                 const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.data());
@@ -954,7 +863,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         { SetLeftPrinterFooter(convertedStr); }
                     }
                 }
-            printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_CENTER_FOOTER.mb_str());
+            printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_CENTER_FOOTER.data());
             if (printerNode)
                 {
                 const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.data());
@@ -967,7 +876,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         { SetCenterPrinterFooter(convertedStr); }
                     }
                 }
-            printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_RIGHT_FOOTER.mb_str());
+            printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_RIGHT_FOOTER.data());
             if (printerNode)
                 {
                 const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.data());
@@ -1059,7 +968,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 }
             }
         // just get the reviewer from project settings to be used for the start page
-        auto projectSettingsForReview = configRootNode->FirstChildElement(XML_PROJECT_SETTINGS.mb_str());
+        auto projectSettingsForReview = configRootNode->FirstChildElement(XML_PROJECT_SETTINGS.data());
         if (projectSettingsForReview)
             {
             auto projectReviewer = projectSettingsForReview->FirstChildElement(XML_REVIEWER.mb_str());
@@ -1190,7 +1099,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 }
             }
         // New Project Settings section
-        auto projectSettings = configRootNode->FirstChildElement(XML_PROJECT_SETTINGS.mb_str());
+        auto projectSettings = configRootNode->FirstChildElement(XML_PROJECT_SETTINGS.data());
         if (projectSettings)
             {
             // reviewer and status
@@ -1637,8 +1546,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         const wxString testName = TiXmlNodeToString(testNameNode, XML_VALUE.data());
                         if (testName.length())
                             {
-                            const auto minGoal = TiXmlNodeToDouble(testNameNode, XML_GOAL_MIN_VAL_GOAL);
-                            const auto maxGoal = TiXmlNodeToDouble(testNameNode, XML_GOAL_MAX_VAL_GOAL);
+                            const auto minGoal = TiXmlNodeToDouble(testNameNode, XML_GOAL_MIN_VAL_GOAL.data());
+                            const auto maxGoal = TiXmlNodeToDouble(testNameNode, XML_GOAL_MAX_VAL_GOAL.data());
                             bundle.GetTestGoals().insert({testName.wc_str(), minGoal, maxGoal});
                             }
                         testNameNode = testNameNode->NextSiblingElement(XML_TEST_NAME.data());
@@ -1656,8 +1565,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         const wxString statName = TiXmlNodeToString(statNode, XML_VALUE.data());
                         if (statName.length())
                             {
-                            auto minGoal = TiXmlNodeToDouble(statNode, XML_GOAL_MIN_VAL_GOAL);
-                            auto maxGoal = TiXmlNodeToDouble(statNode, XML_GOAL_MAX_VAL_GOAL);
+                            auto minGoal = TiXmlNodeToDouble(statNode, XML_GOAL_MIN_VAL_GOAL.data());
+                            auto maxGoal = TiXmlNodeToDouble(statNode, XML_GOAL_MAX_VAL_GOAL.data());
                             bundle.GetStatGoals().insert({ statName.wc_str(), minGoal, maxGoal});
                             }
                         statNode = statNode->NextSiblingElement(XML_BUNDLE_STATISTIC.data());
@@ -1827,7 +1736,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     // industry
                     bool industryChildrensPublishingSelected = false;
                     auto industryNode =
-                        customReadabilityTestNode->FirstChildElement(XML_INDUSTRY_CHILDRENS_PUBLISHING.mb_str());
+                        customReadabilityTestNode->FirstChildElement(XML_INDUSTRY_CHILDRENS_PUBLISHING.data());
                     if (industryNode)
                         {
                         industryChildrensPublishingSelected =
@@ -1835,7 +1744,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     bool industryAdultPublishingSelected = false;
                     industryNode =
-                        customReadabilityTestNode->FirstChildElement(XML_INDUSTRY_ADULTPUBLISHING.mb_str());
+                        customReadabilityTestNode->FirstChildElement(XML_INDUSTRY_ADULTPUBLISHING.data());
                     if (industryNode)
                         {
                         industryAdultPublishingSelected =
@@ -1843,7 +1752,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     bool industrySecondaryLanguageSelected = false;
                     industryNode =
-                        customReadabilityTestNode->FirstChildElement(XML_INDUSTRY_SECONDARY_LANGUAGE.mb_str());
+                        customReadabilityTestNode->FirstChildElement(XML_INDUSTRY_SECONDARY_LANGUAGE.data());
                     if (industryNode)
                         {
                         industrySecondaryLanguageSelected =
@@ -1851,7 +1760,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     bool industryChildrensHealthCareSelected = false;
                     industryNode =
-                        customReadabilityTestNode->FirstChildElement(XML_INDUSTRY_CHILDRENS_HEALTHCARE.mb_str());
+                        customReadabilityTestNode->FirstChildElement(XML_INDUSTRY_CHILDRENS_HEALTHCARE.data());
                     if (industryNode)
                         {
                         industryChildrensHealthCareSelected =
@@ -1859,7 +1768,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     bool industryAdultHealthCareSelected = false;
                     industryNode =
-                        customReadabilityTestNode->FirstChildElement(XML_INDUSTRY_ADULT_HEALTHCARE.mb_str());
+                        customReadabilityTestNode->FirstChildElement(XML_INDUSTRY_ADULT_HEALTHCARE.data());
                     if (industryNode)
                         {
                         industryAdultHealthCareSelected =
@@ -1867,14 +1776,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     bool industryMilitaryGovernmentSelected = false;
                     industryNode =
-                        customReadabilityTestNode->FirstChildElement(XML_INDUSTRY_MILITARY_GOVERNMENT.mb_str());
+                        customReadabilityTestNode->FirstChildElement(XML_INDUSTRY_MILITARY_GOVERNMENT.data());
                     if (industryNode)
                         {
                         industryMilitaryGovernmentSelected =
                             int_to_bool(industryNode->ToElement()->IntAttribute(XML_VALUE.data(), 0));
                         }
                     bool industryBroadcastingSelected = false;
-                    industryNode = customReadabilityTestNode->FirstChildElement(XML_INDUSTRY_BROADCASTING.mb_str());
+                    industryNode = customReadabilityTestNode->FirstChildElement(XML_INDUSTRY_BROADCASTING.data());
                     if (industryNode)
                         {
                         industryBroadcastingSelected =
@@ -1883,7 +1792,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     // document
                     bool documentGeneralSelected = false;
-                    auto documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_GENERAL.mb_str());
+                    auto documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_GENERAL.data());
                     if (documentNode)
                         {
                         documentGeneralSelected =
@@ -1891,7 +1800,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                 XML_VALUE.data(), documentGeneralSelected));
                         }
                     bool documentTechSelected = false;
-                    documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_TECHNICAL.mb_str());
+                    documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_TECHNICAL.data());
                     if (documentNode)
                         {
                         documentTechSelected =
@@ -1899,7 +1808,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                 XML_VALUE.data(), documentTechSelected));
                         }
                     bool documentFormSelected = false;
-                    documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_FORM.mb_str());
+                    documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_FORM.data());
                     if (documentNode)
                         {
                         documentFormSelected =
@@ -1907,7 +1816,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                 XML_VALUE.data(), documentFormSelected));
                         }
                     bool documentYoungAdultSelected = false;
-                    documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_YOUNGADULT.mb_str());
+                    documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_YOUNGADULT.data());
                     if (documentNode)
                         {
                         documentYoungAdultSelected =
@@ -1915,7 +1824,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                 XML_VALUE.data(), documentYoungAdultSelected));
                         }
                     bool documentChildrenSelected = false;
-                    documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_CHILDREN_LIT.mb_str());
+                    documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_CHILDREN_LIT.data());
                     if (documentNode)
                         {
                          documentChildrenSelected =
@@ -1948,12 +1857,12 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 }
 
             // graph options
-            auto graphDefaultsNode = projectSettings->FirstChildElement(XML_GRAPH_SETTINGS.mb_str());
+            auto graphDefaultsNode = projectSettings->FirstChildElement(XML_GRAPH_SETTINGS.data());
             if (graphDefaultsNode)
                 {
                 // graph backgrounds
                 auto imagePathNode = graphDefaultsNode->FirstChildElement(
-                                                        XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH.mb_str());
+                                                        XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH.data());
                 if (imagePathNode)
                     {
                     const char* imagePath = imagePathNode->ToElement()->Attribute(XML_VALUE.data());
@@ -1968,7 +1877,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     }
                 // color scheme
-                auto colorSchemNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_COLOR_SCHEME.mb_str());
+                auto colorSchemNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_COLOR_SCHEME.data());
                 if (colorSchemNode)
                     {
                     const char* colorScheme = colorSchemNode->ToElement()->Attribute(XML_VALUE.data());
@@ -1983,7 +1892,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     }
                 // graph background colors
-                auto colorNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_BACKGROUND_COLOR.mb_str());
+                auto colorNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_BACKGROUND_COLOR.data());
                 if (colorNode)
                     {
                     int red =
@@ -1998,7 +1907,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     SetBackGroundColor(wxColour(red, green, blue));
                     }
                 auto backgroundImageEffectNode =
-                    graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT.mb_str());
+                    graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT.data());
                     if (backgroundImageEffectNode)
                         {
                         int value =
@@ -2011,7 +1920,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         SetPlotBackGroundImageEffect(static_cast<ImageEffect>(value));
                         }
                 auto backgroundImageFitNode =
-                    graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT.mb_str());
+                    graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT.data());
                     if (backgroundImageFitNode)
                         {
                         int value =
@@ -2023,7 +1932,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             { value = static_cast<decltype(value)>(ImageFit::Shrink); }
                         SetPlotBackGroundImageFit(static_cast<ImageFit>(value));
                         }
-                colorNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_COLOR.mb_str());
+                colorNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_COLOR.data());
                 if (colorNode)
                     {
                     int red =
@@ -2038,14 +1947,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     SetPlotBackGroundColor(wxColour(red, green, blue));
                     }
                 auto opacityNode = graphDefaultsNode->FirstChildElement(
-                    XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY.mb_str());
+                    XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY.data());
                 if (opacityNode)
                     {
                     SetPlotBackGroundImageOpacity(
                         static_cast<uint8_t>(opacityNode->ToElement()->IntAttribute(
                             XML_VALUE.data(), GetPlotBackGroundImageOpacity())));
                     }
-                opacityNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY.mb_str());
+                opacityNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY.data());
                 if (opacityNode)
                     {
                     SetPlotBackGroundColorOpacity(
@@ -2054,7 +1963,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 // linear gradient of backgrounds
                 auto gradientNode = graphDefaultsNode->FirstChildElement(
-                    XML_GRAPH_BACKGROUND_LINEAR_GRADIENT.mb_str());
+                    XML_GRAPH_BACKGROUND_LINEAR_GRADIENT.data());
                 if (gradientNode)
                     {
                     SetGraphBackGroundLinearGradient(
@@ -2062,7 +1971,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             XML_VALUE.data(), bool_to_int(GetGraphBackGroundLinearGradient()))));
                     }
                 // stipple image
-                auto stipplePathNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_STIPPLE_PATH.mb_str());
+                auto stipplePathNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_STIPPLE_PATH.data());
                 if (stipplePathNode)
                     {
                     const char* stipplePath = stipplePathNode->ToElement()->Attribute(XML_VALUE.data());
@@ -2077,7 +1986,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     }
                 // common image
-                auto commonImagePathNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_COMMON_IMAGE_PATH.mb_str());
+                auto commonImagePathNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_COMMON_IMAGE_PATH.data());
                 if (commonImagePathNode)
                     {
                     const char* commonImagePath = commonImagePathNode->ToElement()->Attribute(XML_VALUE.data());
@@ -2092,7 +2001,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     }
                 // stipple shape
-                auto stippleShapeNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_STIPPLE_SHAPE.mb_str());
+                auto stippleShapeNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_STIPPLE_SHAPE.data());
                 if (stippleShapeNode)
                     {
                     const char* stippleShape = stippleShapeNode->ToElement()->Attribute(XML_VALUE.data());
@@ -2106,7 +2015,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             { SetStippleShape(wxString(filteredText)); }
                         }
                     }
-                auto stippleColorNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_STIPPLE_COLOR.mb_str());
+                auto stippleColorNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_STIPPLE_COLOR.data());
                 if (stippleColorNode)
                     {
                     int red =
@@ -2121,7 +2030,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     SetStippleShapeColor(wxColour(red, green, blue));
                     }
                 // whether drop shadows should be shown
-                auto dropShadowNode = graphDefaultsNode->FirstChildElement(XML_DISPLAY_DROP_SHADOW.mb_str());
+                auto dropShadowNode = graphDefaultsNode->FirstChildElement(XML_DISPLAY_DROP_SHADOW.data());
                 if (dropShadowNode)
                     {
                     DisplayDropShadows(
@@ -2130,7 +2039,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 // whether to draw attention to the complex word groups in syllable graphs
                 auto showcaseComplexWordsNode =
-                    graphDefaultsNode->FirstChildElement(XML_SHOWCASE_COMPLEX_WORDS.mb_str());
+                    graphDefaultsNode->FirstChildElement(XML_SHOWCASE_COMPLEX_WORDS.data());
                 if (showcaseComplexWordsNode)
                     {
                     ShowcaseComplexWords(
@@ -2138,7 +2047,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             XML_VALUE.data(), bool_to_int(IsShowcasingComplexWords()))));
                     }
                 // watermark
-                auto watermarkNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_WATERMARK.mb_str());
+                auto watermarkNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_WATERMARK.data());
                 if (watermarkNode)
                     {
                     const char* watermark = watermarkNode->ToElement()->Attribute(XML_VALUE.data());
@@ -2152,7 +2061,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             { SetWatermark(convertedStr); }
                         }
                     }
-                watermarkNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH.mb_str());
+                watermarkNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH.data());
                 if (watermarkNode)
                     {
                     const char* watermark = watermarkNode->ToElement()->Attribute(XML_VALUE.data());
@@ -2167,10 +2076,10 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     }
                 // histogram settings
-                auto histogramNode = graphDefaultsNode->FirstChildElement(XML_HISTOGRAM_SETTINGS.mb_str());
+                auto histogramNode = graphDefaultsNode->FirstChildElement(XML_HISTOGRAM_SETTINGS.data());
                 if (histogramNode)
                     {
-                    auto catNode = histogramNode->FirstChildElement(XML_GRAPH_BINNING_METHOD.mb_str());
+                    auto catNode = histogramNode->FirstChildElement(XML_GRAPH_BINNING_METHOD.data());
                     if (catNode)
                         {
                         int value =
@@ -2181,7 +2090,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             { value = static_cast<decltype(value)>(Histogram::BinningMethod::BinByIntegerRange); }
                         SetHistorgramBinningMethod(static_cast<Histogram::BinningMethod>(value));
                         }
-                    auto roundNode = histogramNode->FirstChildElement(XML_GRAPH_ROUNDING_METHOD.mb_str());
+                    auto roundNode = histogramNode->FirstChildElement(XML_GRAPH_ROUNDING_METHOD.data());
                     if (roundNode)
                         {
                         int value =
@@ -2191,7 +2100,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             { value = static_cast<decltype(value)>(RoundingMethod::RoundDown); }
                         SetHistogramRoundingMethod(static_cast<RoundingMethod>(value));
                         }
-                    auto intervalNode = histogramNode->FirstChildElement(XML_GRAPH_INTERVAL_DISPLAY.mb_str());
+                    auto intervalNode = histogramNode->FirstChildElement(XML_GRAPH_INTERVAL_DISPLAY.data());
                     if (intervalNode)
                         {
                         int value =
@@ -2202,7 +2111,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             { value = static_cast<decltype(value)>(Histogram::IntervalDisplay::Cutpoints); }
                         SetHistogramIntervalDisplay(static_cast<Histogram::IntervalDisplay>(value));
                         }
-                    auto catLabelNode = histogramNode->FirstChildElement(XML_GRAPH_BINNING_LABEL_DISPLAY.mb_str());
+                    auto catLabelNode = histogramNode->FirstChildElement(XML_GRAPH_BINNING_LABEL_DISPLAY.data());
                     if (catLabelNode)
                         {
                         int value =
@@ -2213,7 +2122,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             { value = static_cast<decltype(value)>(BinLabelDisplay::BinValue); }
                         SetHistrogramBinLabelDisplay(static_cast<BinLabelDisplay>(value));
                         }
-                    auto colorNodeHisto = histogramNode->FirstChildElement(XML_GRAPH_COLOR.mb_str());
+                    auto colorNodeHisto = histogramNode->FirstChildElement(XML_GRAPH_COLOR.data());
                     if (colorNodeHisto)
                         {
                         int red =
@@ -2227,14 +2136,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                 GetHistogramBarColor().Blue());
                         SetHistogramBarColor(wxColour(red, green, blue));
                         }
-                    auto opacityNodeHisto = histogramNode->FirstChildElement(XML_GRAPH_OPACITY.mb_str());
+                    auto opacityNodeHisto = histogramNode->FirstChildElement(XML_GRAPH_OPACITY.data());
                     if (opacityNodeHisto)
                         {
                         SetHistogramBarOpacity(
                             static_cast<uint8_t>(opacityNodeHisto->ToElement()->IntAttribute(
                                 XML_VALUE.data(), GetHistogramBarOpacity())));
                         }
-                    auto barEffectNode = histogramNode->FirstChildElement(XML_BAR_EFFECT.mb_str());
+                    auto barEffectNode = histogramNode->FirstChildElement(XML_BAR_EFFECT.data());
                     if (barEffectNode)
                         {
                         int value =
@@ -2248,10 +2157,10 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     }
                 // bar chart settings
-                auto barChartNode = graphDefaultsNode->FirstChildElement(XML_BAR_CHART_SETTINGS.mb_str());
+                auto barChartNode = graphDefaultsNode->FirstChildElement(XML_BAR_CHART_SETTINGS.data());
                 if (barChartNode)
                     {
-                    auto colorNodeBarChart = barChartNode->FirstChildElement(XML_GRAPH_COLOR.mb_str());
+                    auto colorNodeBarChart = barChartNode->FirstChildElement(XML_GRAPH_COLOR.data());
                     if (colorNodeBarChart)
                         {
                         int red =
@@ -2265,7 +2174,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                 GetBarChartBarColor().Blue());
                         SetBarChartBarColor(wxColour(red, green, blue));
                         }
-                    auto orientationNode = barChartNode->FirstChildElement(XML_BAR_ORIENTATION.mb_str());
+                    auto orientationNode = barChartNode->FirstChildElement(XML_BAR_ORIENTATION.data());
                     if (orientationNode)
                         {
                         int value =
@@ -2277,14 +2186,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             { value = static_cast<decltype(value)>(Wisteria::Orientation::Vertical); }
                         SetBarChartOrientation(static_cast<Wisteria::Orientation>(value));
                         }
-                    auto opacityNodeBarChart = barChartNode->FirstChildElement(XML_GRAPH_OPACITY.mb_str());
+                    auto opacityNodeBarChart = barChartNode->FirstChildElement(XML_GRAPH_OPACITY.data());
                     if (opacityNodeBarChart)
                         {
                         SetGraphBarOpacity(
                             static_cast<uint8_t>(opacityNodeBarChart->ToElement()->IntAttribute(
                                 XML_VALUE.data(), GetGraphBarOpacity())));
                         }
-                    auto barEffectNode = barChartNode->FirstChildElement(XML_BAR_EFFECT.mb_str());
+                    auto barEffectNode = barChartNode->FirstChildElement(XML_BAR_EFFECT.data());
                     if (barEffectNode)
                         {
                         int value =
@@ -2295,7 +2204,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             { value = static_cast<decltype(value)>(BoxEffect::Solid); }
                         SetGraphBarEffect(static_cast<BoxEffect>(value));
                         }
-                    auto barDisplayLabelNode = barChartNode->FirstChildElement(XML_BAR_DISPLAY_LABELS.mb_str());
+                    auto barDisplayLabelNode = barChartNode->FirstChildElement(XML_BAR_DISPLAY_LABELS.data());
                     if (barDisplayLabelNode)
                         {
                         DisplayBarChartLabels(
@@ -2304,10 +2213,10 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     }
                 // box plots settings
-                auto boxPlotNode = graphDefaultsNode->FirstChildElement(XML_BOX_PLOT_SETTINGS.mb_str());
+                auto boxPlotNode = graphDefaultsNode->FirstChildElement(XML_BOX_PLOT_SETTINGS.data());
                 if (boxPlotNode)
                     {
-                    auto colorNodeBoxPlot = boxPlotNode->FirstChildElement(XML_GRAPH_COLOR.mb_str());
+                    auto colorNodeBoxPlot = boxPlotNode->FirstChildElement(XML_GRAPH_COLOR.data());
                     if (colorNodeBoxPlot)
                         {
                         int red =
@@ -2321,14 +2230,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                 XmlFormat::GetBlue().mb_str(), GetGraphBoxColor().Blue());
                         SetGraphBoxColor(wxColour(red, green, blue));
                         }
-                    auto opacityNodeBoxPlot = boxPlotNode->FirstChildElement(XML_GRAPH_OPACITY.mb_str());
+                    auto opacityNodeBoxPlot = boxPlotNode->FirstChildElement(XML_GRAPH_OPACITY.data());
                     if (opacityNodeBoxPlot)
                         {
                         SetGraphBoxOpacity(
                             static_cast<uint8_t>(opacityNodeBoxPlot->ToElement()->IntAttribute(
                                 XML_VALUE.data(), GetGraphBoxOpacity())));
                         }
-                    auto boxEffectNode = boxPlotNode->FirstChildElement(XML_BOX_EFFECT.mb_str());
+                    auto boxEffectNode = boxPlotNode->FirstChildElement(XML_BOX_EFFECT.data());
                     if (boxEffectNode)
                         {
                         int value =
@@ -2340,7 +2249,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         SetGraphBoxEffect(static_cast<BoxEffect>(value));
                         }
                     auto boxPlotShowAllPointsNode =
-                        boxPlotNode->FirstChildElement(XML_BOX_PLOT_SHOW_ALL_POINTS.mb_str());
+                        boxPlotNode->FirstChildElement(XML_BOX_PLOT_SHOW_ALL_POINTS.data());
                     if (boxPlotShowAllPointsNode)
                         {
                         ShowAllBoxPlotPoints(
@@ -2348,14 +2257,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                 XML_VALUE.data(), bool_to_int(IsShowingAllBoxPlotPoints()))));
                         }
                     auto boxConnectMiddlePointsNode =
-                        boxPlotNode->FirstChildElement(XML_BOX_CONNECT_MIDDLE_POINTS.mb_str());
+                        boxPlotNode->FirstChildElement(XML_BOX_CONNECT_MIDDLE_POINTS.data());
                     if (boxConnectMiddlePointsNode)
                         {
                         ConnectBoxPlotMiddlePoints(
                             int_to_bool(boxConnectMiddlePointsNode->ToElement()->IntAttribute(
                                 XML_VALUE.data(), bool_to_int(IsConnectingBoxPlotMiddlePoints()))));
                         }
-                    auto boxDisplayLabelNode = boxPlotNode->FirstChildElement(XML_BOX_DISPLAY_LABELS.mb_str());
+                    auto boxDisplayLabelNode = boxPlotNode->FirstChildElement(XML_BOX_DISPLAY_LABELS.data());
                     if (boxDisplayLabelNode)
                         {
                         DisplayBoxPlotLabels(
@@ -2366,11 +2275,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 // Readability graph options
                 // Flesch chart
                 auto fleschChartSettingsNode =
-                    graphDefaultsNode->FirstChildElement(XML_FLESCH_CHART_SETTINGS.mb_str());
+                    graphDefaultsNode->FirstChildElement(XML_FLESCH_CHART_SETTINGS.data());
                 if (fleschChartSettingsNode)
                     {
                     auto connectionLine =
-                        fleschChartSettingsNode->FirstChildElement(XML_INCLUDE_CONNECTION_LINE.mb_str());
+                        fleschChartSettingsNode->FirstChildElement(XML_INCLUDE_CONNECTION_LINE.data());
                     if (connectionLine)
                         {
                         ConnectFleschPoints(
@@ -2378,7 +2287,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                 XML_INCLUDE.data(), bool_to_int(IsConnectingFleschPoints()))));
                         }
                     auto rulerDocGroup =
-                        fleschChartSettingsNode->FirstChildElement(XML_FLESCH_RULER_DOC_GROUPS.mb_str());
+                        fleschChartSettingsNode->FirstChildElement(XML_FLESCH_RULER_DOC_GROUPS.data());
                     if (rulerDocGroup)
                         {
                         IncludeFleschRulerDocGroups(
@@ -2387,10 +2296,10 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     }
                 // Lix
-                auto lixSettingsNode = graphDefaultsNode->FirstChildElement(XML_LIX_SETTINGS.mb_str());
+                auto lixSettingsNode = graphDefaultsNode->FirstChildElement(XML_LIX_SETTINGS.data());
                 if (lixSettingsNode)
                     {
-                    auto useEnglishLabels = lixSettingsNode->FirstChildElement(XML_USE_ENGLISH_LABELS.mb_str());
+                    auto useEnglishLabels = lixSettingsNode->FirstChildElement(XML_USE_ENGLISH_LABELS.data());
                     if (useEnglishLabels)
                         {
                         UseEnglishLabelsForGermanLix(
@@ -2399,11 +2308,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     }
                 // Fry/Raygor/GPM/Schwartz
-                auto fryRaygorNode = graphDefaultsNode->FirstChildElement(XML_FRY_RAYGOR_SETTINGS.mb_str());
+                auto fryRaygorNode = graphDefaultsNode->FirstChildElement(XML_FRY_RAYGOR_SETTINGS.data());
                 if (fryRaygorNode)
                     {
                     // invalid area colors
-                    auto colorNodeInvalidArea = fryRaygorNode->FirstChildElement(XML_INVALID_AREA_COLOR.mb_str());
+                    auto colorNodeInvalidArea = fryRaygorNode->FirstChildElement(XML_INVALID_AREA_COLOR.data());
                     if (colorNodeInvalidArea)
                         {
                         int red =
@@ -2432,14 +2341,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     }
                 // axis options
-                auto axisNode = graphDefaultsNode->FirstChildElement(XML_AXIS_SETTINGS.mb_str());
+                auto axisNode = graphDefaultsNode->FirstChildElement(XML_AXIS_SETTINGS.data());
                 if (axisNode)
                     {
-                    auto xAxisNode = axisNode->FirstChildElement(XML_X_AXIS.mb_str());
+                    auto xAxisNode = axisNode->FirstChildElement(XML_X_AXIS.data());
                     if (xAxisNode)
                         {
                         // font color
-                        auto colorNodeXAxis = xAxisNode->FirstChildElement(XML_FONT_COLOR.mb_str());
+                        auto colorNodeXAxis = xAxisNode->FirstChildElement(XML_FONT_COLOR.data());
                         if (colorNodeXAxis)
                             {
                             int red =
@@ -2454,7 +2363,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             SetXAxisFontColor(wxColour(red, green, blue));
                             }
                         // font
-                        auto fontNode = xAxisNode->FirstChildElement(XML_FONT.mb_str());
+                        auto fontNode = xAxisNode->FirstChildElement(XML_FONT.data());
                         if (fontNode)
                             {
                             int pointSize =
@@ -2493,11 +2402,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                 }
                             }
                         }
-                    auto yAxisNode = axisNode->FirstChildElement(XML_Y_AXIS.mb_str());
+                    auto yAxisNode = axisNode->FirstChildElement(XML_Y_AXIS.data());
                     if (yAxisNode)
                         {
                         // font color
-                        auto colorNodeYAxis = yAxisNode->FirstChildElement(XML_FONT_COLOR.mb_str());
+                        auto colorNodeYAxis = yAxisNode->FirstChildElement(XML_FONT_COLOR.data());
                         if (colorNodeYAxis)
                             {
                             int red =
@@ -2512,7 +2421,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             SetYAxisFontColor(wxColour(red, green, blue));
                             }
                         // font
-                        auto fontNode = yAxisNode->FirstChildElement(XML_FONT.mb_str());
+                        auto fontNode = yAxisNode->FirstChildElement(XML_FONT.data());
                         if (fontNode)
                             {
                             int pointSize =
@@ -2553,14 +2462,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     }
                 // title options
-                auto titleNode = graphDefaultsNode->FirstChildElement(XML_TITLE_SETTINGS.mb_str());
+                auto titleNode = graphDefaultsNode->FirstChildElement(XML_TITLE_SETTINGS.data());
                 if (titleNode)
                     {
-                    auto topTitleNode = titleNode->FirstChildElement(XML_TOP_TITLE.mb_str());
+                    auto topTitleNode = titleNode->FirstChildElement(XML_TOP_TITLE.data());
                     if (topTitleNode)
                         {
                         // font color
-                        auto colorNodeTopTitle = topTitleNode->FirstChildElement(XML_FONT_COLOR.mb_str());
+                        auto colorNodeTopTitle = topTitleNode->FirstChildElement(XML_FONT_COLOR.data());
                         if (colorNodeTopTitle)
                             {
                             int red =
@@ -2575,7 +2484,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             SetGraphTopTitleFontColor(wxColour(red, green, blue));
                             }
                         // font
-                        auto fontNode = topTitleNode->FirstChildElement(XML_FONT.mb_str());
+                        auto fontNode = topTitleNode->FirstChildElement(XML_FONT.data());
                         if (fontNode)
                             {
                             int pointSize =
@@ -2613,11 +2522,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                 }
                             }
                         }
-                    auto bottomTitleNode = titleNode->FirstChildElement(XML_BOTTOM_TITLE.mb_str());
+                    auto bottomTitleNode = titleNode->FirstChildElement(XML_BOTTOM_TITLE.data());
                     if (bottomTitleNode)
                         {
                         // font color
-                        auto colorNodeBottomTitle = bottomTitleNode->FirstChildElement(XML_FONT_COLOR.mb_str());
+                        auto colorNodeBottomTitle = bottomTitleNode->FirstChildElement(XML_FONT_COLOR.data());
                         if (colorNodeBottomTitle)
                             {
                             int red =
@@ -2632,7 +2541,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             SetBottomTitleGraphFontColor(wxColour(red, green, blue));
                             }
                         // font
-                        auto fontNode = bottomTitleNode->FirstChildElement(XML_FONT.mb_str());
+                        auto fontNode = bottomTitleNode->FirstChildElement(XML_FONT.data());
                         if (fontNode)
                             {
                             int pointSize =
@@ -2671,11 +2580,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                 }
                             }
                         }
-                    auto leftTitleNode = titleNode->FirstChildElement(XML_LEFT_TITLE.mb_str());
+                    auto leftTitleNode = titleNode->FirstChildElement(XML_LEFT_TITLE.data());
                     if (leftTitleNode)
                         {
                         // font color
-                        auto colorNodeLeftTitle = leftTitleNode->FirstChildElement(XML_FONT_COLOR.mb_str());
+                        auto colorNodeLeftTitle = leftTitleNode->FirstChildElement(XML_FONT_COLOR.data());
                         if (colorNodeLeftTitle)
                             {
                             int red =
@@ -2690,7 +2599,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             SetLeftTitleGraphFontColor(wxColour(red, green, blue));
                             }
                         // font
-                        auto fontNode = leftTitleNode->FirstChildElement(XML_FONT.mb_str());
+                        auto fontNode = leftTitleNode->FirstChildElement(XML_FONT.data());
                         if (fontNode)
                             {
                             int pointSize =
@@ -2729,11 +2638,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                 }
                             }
                         }
-                    auto rightTitleNode = titleNode->FirstChildElement(XML_RIGHT_TITLE.mb_str());
+                    auto rightTitleNode = titleNode->FirstChildElement(XML_RIGHT_TITLE.data());
                     if (rightTitleNode)
                         {
                         // font color
-                        auto colorNodeRightTitle = rightTitleNode->FirstChildElement(XML_FONT_COLOR.mb_str());
+                        auto colorNodeRightTitle = rightTitleNode->FirstChildElement(XML_FONT_COLOR.data());
                         if (colorNodeRightTitle)
                             {
                             int red =
@@ -2748,7 +2657,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             SetRightTitleGraphFontColor(wxColour(red, green, blue));
                             }
                         // font
-                        auto fontNode = rightTitleNode->FirstChildElement(XML_FONT.mb_str());
+                        auto fontNode = rightTitleNode->FirstChildElement(XML_FONT.data());
                         if (fontNode)
                             {
                             int pointSize =
@@ -2790,11 +2699,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 }
             // stats options
-            auto statsDefaultsNode = projectSettings->FirstChildElement(XML_STATISTICS_SECTION.mb_str());
+            auto statsDefaultsNode = projectSettings->FirstChildElement(XML_STATISTICS_SECTION.data());
             if (statsDefaultsNode)
                 {
                 // variance method
-                auto varianceMethod = statsDefaultsNode->FirstChildElement(XML_VARIANCE_METHOD.mb_str());
+                auto varianceMethod = statsDefaultsNode->FirstChildElement(XML_VARIANCE_METHOD.data());
                 if (varianceMethod)
                     {
                     SetVarianceMethod(
@@ -2850,7 +2759,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         { m_textSource = TextSource::FromFile; }
                     }
                 // Test Recommendation
-                auto testRecommendation = wizardPageDefaultsNode->FirstChildElement(XML_TEST_RECOMMENDATION.mb_str());
+                auto testRecommendation = wizardPageDefaultsNode->FirstChildElement(XML_TEST_RECOMMENDATION.data());
                 if (testRecommendation)
                     {
                     m_testRecommendation =
@@ -2861,7 +2770,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         { m_testRecommendation = TestRecommendation::BasedOnDocumentType; }
                     }
                 // Tests by Industry
-                auto testsByIndustry = wizardPageDefaultsNode->FirstChildElement(XML_TEST_BY_INDUSTRY.mb_str());
+                auto testsByIndustry = wizardPageDefaultsNode->FirstChildElement(XML_TEST_BY_INDUSTRY.data());
                 if (testsByIndustry)
                     {
                     m_testsByIndustry =
@@ -2873,7 +2782,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 // Tests By Document Type
                 auto testsByDocumentType =
-                    wizardPageDefaultsNode->FirstChildElement(XML_TEST_BY_DOCUMENT_TYPE.mb_str());
+                    wizardPageDefaultsNode->FirstChildElement(XML_TEST_BY_DOCUMENT_TYPE.data());
                 if (testsByDocumentType)
                     {
                     m_testsByDocumentType =
@@ -2884,7 +2793,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         { m_testsByDocumentType = readability::document_classification::adult_literature_document; }
                     }
                 // tests by bundle
-                auto bundleNode = wizardPageDefaultsNode->FirstChildElement(XML_SELECTED_TEST_BUNDLE.mb_str());
+                auto bundleNode = wizardPageDefaultsNode->FirstChildElement(XML_SELECTED_TEST_BUNDLE.data());
                 if (bundleNode)
                     {
                     const char* bundleChars = bundleNode->ToElement()->Attribute(XML_VALUE.data());
@@ -2901,7 +2810,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 }
 
             // readability tests
-            auto readabilityTestsNode = projectSettings->FirstChildElement(XML_READABILITY_TESTS_SECTION.mb_str());
+            auto readabilityTestsNode = projectSettings->FirstChildElement(XML_READABILITY_TESTS_SECTION.data());
             if (readabilityTestsNode)
                 {
                 // grade scale display
@@ -2926,7 +2835,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                             bool_to_int(GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat()))));
                     }
 
-                auto readingAgeFormatNode = readabilityTestsNode->FirstChildElement(XML_READING_AGE_FORMAT.mb_str());
+                auto readingAgeFormatNode = readabilityTestsNode->FirstChildElement(XML_READING_AGE_FORMAT.data());
                 if (readingAgeFormatNode)
                     {
                     GetReadabilityMessageCatalog().SetReadingAgeDisplay(
@@ -2937,7 +2846,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
 
                 auto includeScoreSummaryReportNode =
-                    readabilityTestsNode->FirstChildElement(XML_INCLUDE_SCORES_SUMMARY_REPORT.mb_str());
+                    readabilityTestsNode->FirstChildElement(XML_INCLUDE_SCORES_SUMMARY_REPORT.data());
                 if (includeScoreSummaryReportNode)
                     {
                     IncludeScoreSummaryReport(
@@ -3067,7 +2976,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     }
 
-                auto test = readabilityTestsNode->FirstChildElement(XML_DOLCH_SUITE.mb_str());
+                auto test = readabilityTestsNode->FirstChildElement(XML_DOLCH_SUITE.data());
                 if (test)
                     {
                     m_includeDolchSightWords =
@@ -3535,37 +3444,37 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     configSection->InsertEndChild(exportSection);
 
     // printer settings
-    auto printerSection = doc.NewElement(XML_PRINTER_SETTINGS.mb_str());
+    auto printerSection = doc.NewElement(XML_PRINTER_SETTINGS.data());
     // page setup
-    auto paperId = doc.NewElement(XML_PRINTER_ID.mb_str());
+    auto paperId = doc.NewElement(XML_PRINTER_ID.data());
     paperId->SetAttribute(XML_VALUE.data(), GetPaperId());
     printerSection->InsertEndChild(paperId);
-    auto paperOrientation = doc.NewElement(XML_PRINTER_ORIENTATION.mb_str());
+    auto paperOrientation = doc.NewElement(XML_PRINTER_ORIENTATION.data());
     paperOrientation->SetAttribute(XML_VALUE.data(), static_cast<int>(GetPaperOrientation()));
     printerSection->InsertEndChild(paperOrientation);
     // headers
-    auto printerLeftHeader = doc.NewElement(XML_PRINTER_LEFT_HEADER.mb_str());
+    auto printerLeftHeader = doc.NewElement(XML_PRINTER_LEFT_HEADER.data());
     printerLeftHeader->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetLeftPrinterHeader().wc_str() }, false).c_str()).mb_str());
     printerSection->InsertEndChild(printerLeftHeader);
-    auto printerCenterHeader = doc.NewElement(XML_PRINTER_CENTER_HEADER.mb_str());
+    auto printerCenterHeader = doc.NewElement(XML_PRINTER_CENTER_HEADER.data());
     printerCenterHeader->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetCenterPrinterHeader().wc_str() }, false).c_str()).mb_str());
     printerSection->InsertEndChild(printerCenterHeader);
-    auto printerRightHeader = doc.NewElement(XML_PRINTER_RIGHT_HEADER.mb_str());
+    auto printerRightHeader = doc.NewElement(XML_PRINTER_RIGHT_HEADER.data());
     printerRightHeader->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetRightPrinterHeader().wc_str() }, false).c_str()).mb_str());
     printerSection->InsertEndChild(printerRightHeader);
     // footers
-    auto printerLeftFooter = doc.NewElement(XML_PRINTER_LEFT_FOOTER.mb_str());
+    auto printerLeftFooter = doc.NewElement(XML_PRINTER_LEFT_FOOTER.data());
     printerLeftFooter->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetLeftPrinterFooter().wc_str() }, false).c_str()).mb_str());
     printerSection->InsertEndChild(printerLeftFooter);
-    auto printerCenterFooter = doc.NewElement(XML_PRINTER_CENTER_FOOTER.mb_str());
+    auto printerCenterFooter = doc.NewElement(XML_PRINTER_CENTER_FOOTER.data());
     printerCenterFooter->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetCenterPrinterFooter().wc_str() }, false).c_str()).mb_str());
     printerSection->InsertEndChild(printerCenterFooter);
-    auto printerRightFooter = doc.NewElement(XML_PRINTER_RIGHT_FOOTER.mb_str());
+    auto printerRightFooter = doc.NewElement(XML_PRINTER_RIGHT_FOOTER.data());
     printerRightFooter->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetRightPrinterFooter().wc_str() }, false).c_str()).mb_str());
     printerSection->InsertEndChild(printerRightFooter);
@@ -3612,7 +3521,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         }
 
     // New Project Settings
-    auto projectSettings = doc.NewElement(XML_PROJECT_SETTINGS.mb_str());
+    auto projectSettings = doc.NewElement(XML_PROJECT_SETTINGS.data());
 
     // reviewer and status
     auto docReviewer = doc.NewElement(XML_REVIEWER.mb_str());
@@ -3851,10 +3760,10 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
             auto testName = doc.NewElement(XML_TEST_NAME.data());
             wxString testNameEncoded = encode({ bundledTest.GetName().c_str() }, false).c_str();
             testName->SetAttribute(XML_VALUE.data(), testNameEncoded.mb_str());
-            testName->SetAttribute(XML_GOAL_MIN_VAL_GOAL.mb_str(),
+            testName->SetAttribute(XML_GOAL_MIN_VAL_GOAL.data(),
                 (std::isnan(bundledTest.GetMinGoal()) ?
                     "" : wxString::FromCDouble(bundledTest.GetMinGoal()).mb_str()));
-            testName->SetAttribute(XML_GOAL_MAX_VAL_GOAL.mb_str(),
+            testName->SetAttribute(XML_GOAL_MAX_VAL_GOAL.data(),
                 (std::isnan(bundledTest.GetMaxGoal()) ?
                     "" : wxString::FromCDouble(bundledTest.GetMaxGoal()).mb_str()));
             testNames->InsertEndChild(testName);
@@ -3867,10 +3776,10 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
             auto statGoal = doc.NewElement(XML_BUNDLE_STATISTIC.data());
             wxString testNameEncoded = encode({ bundledStat.GetName().c_str() }, false).c_str();
             statGoal->SetAttribute(XML_VALUE.data(), testNameEncoded.mb_str());
-            statGoal->SetAttribute(XML_GOAL_MIN_VAL_GOAL.mb_str(),
+            statGoal->SetAttribute(XML_GOAL_MIN_VAL_GOAL.data(),
                 (std::isnan(bundledStat.GetMinGoal()) ?
                     "" : wxString::FromCDouble(bundledStat.GetMinGoal()).mb_str()));
-            statGoal->SetAttribute(XML_GOAL_MAX_VAL_GOAL.mb_str(),
+            statGoal->SetAttribute(XML_GOAL_MAX_VAL_GOAL.data(),
                 (std::isnan(bundledStat.GetMaxGoal()) ?
                     "" : wxString::FromCDouble(bundledStat.GetMaxGoal()).mb_str()));
             statGoals->InsertEndChild(statGoal);
@@ -3957,73 +3866,73 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
             static_cast<int>(pos->is_familiar_words_must_be_on_each_included_list()) );
         customFamWordTest->InsertEndChild(famAllLists);
         // industry association
-        auto industryChildrenPub = doc.NewElement(XML_INDUSTRY_CHILDRENS_PUBLISHING.mb_str());
+        auto industryChildrenPub = doc.NewElement(XML_INDUSTRY_CHILDRENS_PUBLISHING.data());
         industryChildrenPub->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_industry_classification(
                 readability::industry_classification::childrens_publishing_industry)) );
         customFamWordTest->InsertEndChild(industryChildrenPub);
 
-        auto industryAdultPublishing = doc.NewElement(XML_INDUSTRY_ADULTPUBLISHING.mb_str());
+        auto industryAdultPublishing = doc.NewElement(XML_INDUSTRY_ADULTPUBLISHING.data());
         industryAdultPublishing->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_industry_classification(
                 readability::industry_classification::adult_publishing_industry)) );
         customFamWordTest->InsertEndChild(industryAdultPublishing);
 
-        auto industrySecondaryLanguage = doc.NewElement(XML_INDUSTRY_SECONDARY_LANGUAGE.mb_str());
+        auto industrySecondaryLanguage = doc.NewElement(XML_INDUSTRY_SECONDARY_LANGUAGE.data());
         industrySecondaryLanguage->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_industry_classification(
                 readability::industry_classification::sedondary_language_industry)) );
         customFamWordTest->InsertEndChild(industrySecondaryLanguage);
 
-        auto industryChildrensHealthCare = doc.NewElement(XML_INDUSTRY_CHILDRENS_HEALTHCARE.mb_str());
+        auto industryChildrensHealthCare = doc.NewElement(XML_INDUSTRY_CHILDRENS_HEALTHCARE.data());
         industryChildrensHealthCare->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_industry_classification(
                 readability::industry_classification::childrens_healthcare_industry)) );
         customFamWordTest->InsertEndChild(industryChildrensHealthCare);
 
-        auto industryAdultHealthCare = doc.NewElement(XML_INDUSTRY_ADULT_HEALTHCARE.mb_str());
+        auto industryAdultHealthCare = doc.NewElement(XML_INDUSTRY_ADULT_HEALTHCARE.data());
         industryAdultHealthCare->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_industry_classification(
                 readability::industry_classification::adult_healthcare_industry)) );
         customFamWordTest->InsertEndChild(industryAdultHealthCare);
 
-        auto industryMilitary = doc.NewElement(XML_INDUSTRY_MILITARY_GOVERNMENT.mb_str());
+        auto industryMilitary = doc.NewElement(XML_INDUSTRY_MILITARY_GOVERNMENT.data());
         industryMilitary->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_industry_classification(
                 readability::industry_classification::military_government_industry)) );
         customFamWordTest->InsertEndChild(industryMilitary);
 
-        auto industryBroadCasting = doc.NewElement(XML_INDUSTRY_BROADCASTING.mb_str());
+        auto industryBroadCasting = doc.NewElement(XML_INDUSTRY_BROADCASTING.data());
         industryBroadCasting->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_industry_classification(
                 readability::industry_classification::broadcasting_industry)) );
         customFamWordTest->InsertEndChild(industryBroadCasting);
 
-        auto industryGeneralDocument = doc.NewElement(XML_DOCUMENT_GENERAL.mb_str());
+        auto industryGeneralDocument = doc.NewElement(XML_DOCUMENT_GENERAL.data());
         industryGeneralDocument->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_document_classification(
                 readability::document_classification::general_document)) );
         customFamWordTest->InsertEndChild(industryGeneralDocument);
 
-        auto industryTechnicalDocument = doc.NewElement(XML_DOCUMENT_TECHNICAL.mb_str());
+        auto industryTechnicalDocument = doc.NewElement(XML_DOCUMENT_TECHNICAL.data());
         industryTechnicalDocument->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_document_classification(
                 readability::document_classification::technical_document)) );
         customFamWordTest->InsertEndChild(industryTechnicalDocument);
 
-        auto industryForm = doc.NewElement(XML_DOCUMENT_FORM.mb_str());
+        auto industryForm = doc.NewElement(XML_DOCUMENT_FORM.data());
         industryForm->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_document_classification(
                 readability::document_classification::nonnarrative_document)) );
         customFamWordTest->InsertEndChild(industryForm);
 
-        auto industryYoungAdultAndAdultLiterature = doc.NewElement(XML_DOCUMENT_YOUNGADULT.mb_str());
+        auto industryYoungAdultAndAdultLiterature = doc.NewElement(XML_DOCUMENT_YOUNGADULT.data());
         industryYoungAdultAndAdultLiterature->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_document_classification(
                 readability::document_classification::adult_literature_document)) );
         customFamWordTest->InsertEndChild(industryYoungAdultAndAdultLiterature);
 
-        auto industryChildrensLiterature = doc.NewElement(XML_DOCUMENT_CHILDREN_LIT.mb_str());
+        auto industryChildrensLiterature = doc.NewElement(XML_DOCUMENT_CHILDREN_LIT.data());
         industryChildrensLiterature->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_document_classification(
                 readability::document_classification::childrens_literature_document)) );
@@ -4034,29 +3943,29 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     projectSettings->InsertEndChild(customTestsSection);
 
     // graph defaults
-    auto graphDefaultsSection = doc.NewElement(XML_GRAPH_SETTINGS.mb_str());
+    auto graphDefaultsSection = doc.NewElement(XML_GRAPH_SETTINGS.data());
     // color scheme
-    auto graphColorScheme = doc.NewElement(XML_GRAPH_COLOR_SCHEME.mb_str());
+    auto graphColorScheme = doc.NewElement(XML_GRAPH_COLOR_SCHEME.data());
     graphColorScheme->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetGraphColorScheme().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(graphColorScheme);
     // background image
-    auto graphBackgroundImage = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH.mb_str());
+    auto graphBackgroundImage = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH.data());
     graphBackgroundImage->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetPlotBackGroundImagePath().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(graphBackgroundImage);
 
-    auto backgroundImageEffect = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT.mb_str());
+    auto backgroundImageEffect = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT.data());
     backgroundImageEffect->SetAttribute(XML_VALUE.data(), static_cast<int>(GetPlotBackGroundImageEffect()));
     graphDefaultsSection->InsertEndChild(backgroundImageEffect);
 
-    auto backgroundImageFit = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT.mb_str());
+    auto backgroundImageFit = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT.data());
     backgroundImageFit->SetAttribute(XML_VALUE.data(), static_cast<int>(GetPlotBackGroundImageFit()));
     graphDefaultsSection->InsertEndChild(backgroundImageFit);
     // background colors
     if (GetBackGroundColor().IsOk())
         {
-        auto backgroundColor = doc.NewElement(XML_GRAPH_BACKGROUND_COLOR.mb_str());
+        auto backgroundColor = doc.NewElement(XML_GRAPH_BACKGROUND_COLOR.data());
         backgroundColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetBackGroundColor().Red() );
         backgroundColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetBackGroundColor().Green() );
         backgroundColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetBackGroundColor().Blue() );
@@ -4064,43 +3973,43 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         }
     if (GetPlotBackGroundColor().IsOk())
         {
-        auto plotBackgroundColor = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_COLOR.mb_str());
+        auto plotBackgroundColor = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_COLOR.data());
         plotBackgroundColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetPlotBackGroundColor().Red() );
         plotBackgroundColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetPlotBackGroundColor().Green() );
         plotBackgroundColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetPlotBackGroundColor().Blue() );
         graphDefaultsSection->InsertEndChild(plotBackgroundColor);
         }
     // plot background image opacity
-    auto graphBackgroundOpacity = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY.mb_str());
+    auto graphBackgroundOpacity = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY.data());
     graphBackgroundOpacity->SetAttribute(XML_VALUE.data(), GetPlotBackGroundImageOpacity());
     graphDefaultsSection->InsertEndChild(graphBackgroundOpacity);
     // plot background color opacity
-    auto graphPlotBackgroundOpacity = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY.mb_str());
+    auto graphPlotBackgroundOpacity = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY.data());
     graphPlotBackgroundOpacity->SetAttribute(XML_VALUE.data(), GetPlotBackGroundColorOpacity());
     graphDefaultsSection->InsertEndChild(graphPlotBackgroundOpacity);
     // background linear gradient
-    auto graphBackgroundGradient = doc.NewElement(XML_GRAPH_BACKGROUND_LINEAR_GRADIENT.mb_str());
+    auto graphBackgroundGradient = doc.NewElement(XML_GRAPH_BACKGROUND_LINEAR_GRADIENT.data());
     graphBackgroundGradient->SetAttribute(XML_VALUE.data(), bool_to_int(GetGraphBackGroundLinearGradient()));
     graphDefaultsSection->InsertEndChild(graphBackgroundGradient);
     // stipple image path
-    auto stipplePath = doc.NewElement(XML_GRAPH_STIPPLE_PATH.mb_str());
+    auto stipplePath = doc.NewElement(XML_GRAPH_STIPPLE_PATH.data());
     stipplePath->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetStippleImagePath().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(stipplePath);
     // common image path
-    auto commonImagePath = doc.NewElement(XML_GRAPH_COMMON_IMAGE_PATH.mb_str());
+    auto commonImagePath = doc.NewElement(XML_GRAPH_COMMON_IMAGE_PATH.data());
     commonImagePath->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetGraphCommonImagePath().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(commonImagePath);
     // stipple shape
-    auto stippleShape = doc.NewElement(XML_GRAPH_STIPPLE_SHAPE.mb_str());
+    auto stippleShape = doc.NewElement(XML_GRAPH_STIPPLE_SHAPE.data());
     stippleShape->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetStippleShape().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(stippleShape);
 
     if (GetStippleShapeColor().IsOk())
         {
-        auto stippleShapeColor = doc.NewElement(XML_GRAPH_STIPPLE_COLOR.mb_str());
+        auto stippleShapeColor = doc.NewElement(XML_GRAPH_STIPPLE_COLOR.data());
         stippleShapeColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetStippleShapeColor().Red());
         stippleShapeColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetStippleShapeColor().Green());
         stippleShapeColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetStippleShapeColor().Blue());
@@ -4108,112 +4017,112 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         }
 
     // whether drop shadows should be shown
-    auto graphDisplayDropShadow = doc.NewElement(XML_DISPLAY_DROP_SHADOW.mb_str());
+    auto graphDisplayDropShadow = doc.NewElement(XML_DISPLAY_DROP_SHADOW.data());
     graphDisplayDropShadow->SetAttribute(XML_VALUE.data(), bool_to_int(IsDisplayingDropShadows()));
     graphDefaultsSection->InsertEndChild(graphDisplayDropShadow);
     // whether to draw attention to the complex word groups in syllable graphs
-    auto showcaseComplexWords = doc.NewElement(XML_SHOWCASE_COMPLEX_WORDS.mb_str());
+    auto showcaseComplexWords = doc.NewElement(XML_SHOWCASE_COMPLEX_WORDS.data());
     showcaseComplexWords->SetAttribute(XML_VALUE.data(), bool_to_int(IsShowcasingComplexWords()));
     graphDefaultsSection->InsertEndChild(showcaseComplexWords);
     // watermark
-    auto graphWatermarkLogo = doc.NewElement(XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH.mb_str());
+    auto graphWatermarkLogo = doc.NewElement(XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH.data());
     graphWatermarkLogo->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetWatermarkLogo().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(graphWatermarkLogo);
 
-    auto graphWatermark = doc.NewElement(XML_GRAPH_WATERMARK.mb_str());
+    auto graphWatermark = doc.NewElement(XML_GRAPH_WATERMARK.data());
     graphWatermark->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetWatermark().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(graphWatermark);
 
     // histogram settings
-    auto histogramSettings = doc.NewElement(XML_HISTOGRAM_SETTINGS.mb_str());
+    auto histogramSettings = doc.NewElement(XML_HISTOGRAM_SETTINGS.data());
     // categorization method
-    auto hCatMode = doc.NewElement(XML_GRAPH_BINNING_METHOD.mb_str());
+    auto hCatMode = doc.NewElement(XML_GRAPH_BINNING_METHOD.data());
     hCatMode->SetAttribute(XML_VALUE.data(), static_cast<int>(GetHistorgramBinningMethod()));
     histogramSettings->InsertEndChild(hCatMode);
     // rounding method
-    auto hRoundMode = doc.NewElement(XML_GRAPH_ROUNDING_METHOD.mb_str());
+    auto hRoundMode = doc.NewElement(XML_GRAPH_ROUNDING_METHOD.data());
     hRoundMode->SetAttribute(XML_VALUE.data(), static_cast<int>(GetHistogramRoundingMethod()));
     histogramSettings->InsertEndChild(hRoundMode);
     // interval display
-    auto hIntervalDisplay = doc.NewElement(XML_GRAPH_INTERVAL_DISPLAY.mb_str());
+    auto hIntervalDisplay = doc.NewElement(XML_GRAPH_INTERVAL_DISPLAY.data());
     hIntervalDisplay->SetAttribute(XML_VALUE.data(), static_cast<int>(GetHistogramIntervalDisplay()));
     histogramSettings->InsertEndChild(hIntervalDisplay);
     // categorization label display
-    auto hCatLabelDisplay = doc.NewElement(XML_GRAPH_BINNING_LABEL_DISPLAY.mb_str());
+    auto hCatLabelDisplay = doc.NewElement(XML_GRAPH_BINNING_LABEL_DISPLAY.data());
     hCatLabelDisplay->SetAttribute(XML_VALUE.data(), static_cast<int>(GetHistrogramBinLabelDisplay()));
     histogramSettings->InsertEndChild(hCatLabelDisplay);
     // bar color
-    auto hbarColor = doc.NewElement(XML_GRAPH_COLOR.mb_str());
+    auto hbarColor = doc.NewElement(XML_GRAPH_COLOR.data());
     hbarColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetHistogramBarColor().Red() );
     hbarColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetHistogramBarColor().Green() );
     hbarColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetHistogramBarColor().Blue() );
     histogramSettings->InsertEndChild(hbarColor);
     // bar opacity
-    auto hbarOpacity = doc.NewElement(XML_GRAPH_OPACITY.mb_str());
+    auto hbarOpacity = doc.NewElement(XML_GRAPH_OPACITY.data());
     hbarOpacity->SetAttribute(XML_VALUE.data(), GetHistogramBarOpacity());
     histogramSettings->InsertEndChild(hbarOpacity);
     // bar effect
-    auto hbarEffect = doc.NewElement(XML_BAR_EFFECT.mb_str());
+    auto hbarEffect = doc.NewElement(XML_BAR_EFFECT.data());
     hbarEffect->SetAttribute(XML_VALUE.data(), static_cast<int>(GetHistogramBarEffect()));
     histogramSettings->InsertEndChild(hbarEffect);
 
     graphDefaultsSection->InsertEndChild(histogramSettings);
 
     // bar chart settings
-    auto barChartSettings = doc.NewElement(XML_BAR_CHART_SETTINGS.mb_str());
+    auto barChartSettings = doc.NewElement(XML_BAR_CHART_SETTINGS.data());
     // bar color
-    auto barChartbarColor = doc.NewElement(XML_GRAPH_COLOR.mb_str());
+    auto barChartbarColor = doc.NewElement(XML_GRAPH_COLOR.data());
     barChartbarColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetBarChartBarColor().Red() );
     barChartbarColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetBarChartBarColor().Green() );
     barChartbarColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetBarChartBarColor().Blue() );
     barChartSettings->InsertEndChild(barChartbarColor);
     // bar orientation
-    auto barOrientation = doc.NewElement(XML_BAR_ORIENTATION.mb_str());
+    auto barOrientation = doc.NewElement(XML_BAR_ORIENTATION.data());
     barOrientation->SetAttribute(XML_VALUE.data(), static_cast<int>(GetBarChartOrientation()));
     barChartSettings->InsertEndChild(barOrientation);
     // bar opacity
-    auto barOpacity = doc.NewElement(XML_GRAPH_OPACITY.mb_str());
+    auto barOpacity = doc.NewElement(XML_GRAPH_OPACITY.data());
     barOpacity->SetAttribute(XML_VALUE.data(), GetGraphBarOpacity());
     barChartSettings->InsertEndChild(barOpacity);
     // bar display labels
-    auto barDisplayLabels = doc.NewElement(XML_BAR_DISPLAY_LABELS.mb_str());
+    auto barDisplayLabels = doc.NewElement(XML_BAR_DISPLAY_LABELS.data());
     barDisplayLabels->SetAttribute(XML_VALUE.data(), static_cast<int>(IsDisplayingBarChartLabels()));
     barChartSettings->InsertEndChild(barDisplayLabels);
     // bar effect
-    auto barEffect = doc.NewElement(XML_BAR_EFFECT.mb_str());
+    auto barEffect = doc.NewElement(XML_BAR_EFFECT.data());
     barEffect->SetAttribute(XML_VALUE.data(), static_cast<int>(GetGraphBarEffect()));
     barChartSettings->InsertEndChild(barEffect);
 
     graphDefaultsSection->InsertEndChild(barChartSettings);
 
     // box plot settings
-    auto boxPlotSettings = doc.NewElement(XML_BOX_PLOT_SETTINGS.mb_str());
+    auto boxPlotSettings = doc.NewElement(XML_BOX_PLOT_SETTINGS.data());
     // box color
-    auto boxColor = doc.NewElement(XML_GRAPH_COLOR.mb_str());
+    auto boxColor = doc.NewElement(XML_GRAPH_COLOR.data());
     boxColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetGraphBoxColor().Red() );
     boxColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetGraphBoxColor().Green() );
     boxColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetGraphBoxColor().Blue() );
     boxPlotSettings->InsertEndChild(boxColor);
     // box opacity
-    auto boxOpacity = doc.NewElement(XML_GRAPH_OPACITY.mb_str());
+    auto boxOpacity = doc.NewElement(XML_GRAPH_OPACITY.data());
     boxOpacity->SetAttribute(XML_VALUE.data(), GetGraphBoxOpacity());
     boxPlotSettings->InsertEndChild(boxOpacity);
     // box effect
-    auto boxEffect = doc.NewElement(XML_BOX_EFFECT.mb_str());
+    auto boxEffect = doc.NewElement(XML_BOX_EFFECT.data());
     boxEffect->SetAttribute(XML_VALUE.data(), static_cast<int>(GetGraphBoxEffect()));
     boxPlotSettings->InsertEndChild(boxEffect);
     // box plot points
-    auto boxPlotAllPoints = doc.NewElement(XML_BOX_PLOT_SHOW_ALL_POINTS.mb_str());
+    auto boxPlotAllPoints = doc.NewElement(XML_BOX_PLOT_SHOW_ALL_POINTS.data());
     boxPlotAllPoints->SetAttribute(XML_VALUE.data(), static_cast<int>(IsShowingAllBoxPlotPoints()));
     boxPlotSettings->InsertEndChild(boxPlotAllPoints);
     // box connections
-    auto boxConnectMiddlePoints = doc.NewElement(XML_BOX_CONNECT_MIDDLE_POINTS.mb_str());
+    auto boxConnectMiddlePoints = doc.NewElement(XML_BOX_CONNECT_MIDDLE_POINTS.data());
     boxConnectMiddlePoints->SetAttribute(XML_VALUE.data(), static_cast<int>(IsConnectingBoxPlotMiddlePoints()));
     boxPlotSettings->InsertEndChild(boxConnectMiddlePoints);
     // box display labels
-    auto boxDisplayLabels = doc.NewElement(XML_BOX_DISPLAY_LABELS.mb_str());
+    auto boxDisplayLabels = doc.NewElement(XML_BOX_DISPLAY_LABELS.data());
     boxDisplayLabels->SetAttribute(XML_VALUE.data(), static_cast<int>(IsDisplayingBoxPlotLabels()));
     boxPlotSettings->InsertEndChild(boxDisplayLabels);
 
@@ -4221,26 +4130,26 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     // Readability graph settings
     // Lix
-    auto lixSettings = doc.NewElement(XML_LIX_SETTINGS.mb_str());
-    auto useEnglishLabels = doc.NewElement(XML_USE_ENGLISH_LABELS.mb_str());
+    auto lixSettings = doc.NewElement(XML_LIX_SETTINGS.data());
+    auto useEnglishLabels = doc.NewElement(XML_USE_ENGLISH_LABELS.data());
     useEnglishLabels->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsUsingEnglishLabelsForGermanLix()) );
     lixSettings->InsertEndChild(useEnglishLabels);
     graphDefaultsSection->InsertEndChild(lixSettings);
     // Flesch chart
-    auto fleschChartSettings = doc.NewElement(XML_FLESCH_CHART_SETTINGS.mb_str());
-    auto connectionLine = doc.NewElement(XML_INCLUDE_CONNECTION_LINE.mb_str());
+    auto fleschChartSettings = doc.NewElement(XML_FLESCH_CHART_SETTINGS.data());
+    auto connectionLine = doc.NewElement(XML_INCLUDE_CONNECTION_LINE.data());
     connectionLine->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsConnectingFleschPoints()) );
     fleschChartSettings->InsertEndChild(connectionLine);
 
-    auto rulerDocGroup = doc.NewElement(XML_FLESCH_RULER_DOC_GROUPS.mb_str());
+    auto rulerDocGroup = doc.NewElement(XML_FLESCH_RULER_DOC_GROUPS.data());
     rulerDocGroup->SetAttribute(XML_VALUE.data(), bool_to_int(IsIncludingFleschRulerDocGroups()) );
     fleschChartSettings->InsertEndChild(rulerDocGroup);
 
     graphDefaultsSection->InsertEndChild(fleschChartSettings);
     // Fry/Raygor
-    auto fryRaygor = doc.NewElement(XML_FRY_RAYGOR_SETTINGS.mb_str());
+    auto fryRaygor = doc.NewElement(XML_FRY_RAYGOR_SETTINGS.data());
     // invalid area colors
-    auto invalidAreaColor = doc.NewElement(XML_INVALID_AREA_COLOR.mb_str());
+    auto invalidAreaColor = doc.NewElement(XML_INVALID_AREA_COLOR.data());
     invalidAreaColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetInvalidAreaColor().Red() );
     invalidAreaColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetInvalidAreaColor().Green() );
     invalidAreaColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetInvalidAreaColor().Blue() );
@@ -4253,15 +4162,15 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     graphDefaultsSection->InsertEndChild(fryRaygor);
 
     // x axis
-    auto Axis = doc.NewElement(XML_AXIS_SETTINGS.mb_str());
-    auto xAxis = doc.NewElement(XML_X_AXIS.mb_str());
+    auto Axis = doc.NewElement(XML_AXIS_SETTINGS.data());
+    auto xAxis = doc.NewElement(XML_X_AXIS.data());
     // x-axis font color
-    auto xAxisFontColor = doc.NewElement(XML_FONT_COLOR.mb_str());
+    auto xAxisFontColor = doc.NewElement(XML_FONT_COLOR.data());
     xAxisFontColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetXAxisFontColor().Red() );
     xAxisFontColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetXAxisFontColor().Green() );
     xAxisFontColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetXAxisFontColor().Blue() );
     // x-axis font
-    auto xAxisFont = doc.NewElement(XML_FONT.mb_str());
+    auto xAxisFont = doc.NewElement(XML_FONT.data());
     xAxisFont->SetAttribute(XmlFormat::GetFontPointSize().mb_str(), GetXAxisFont().GetPointSize() );
     xAxisFont->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
         static_cast<int>(GetXAxisFont().GetStyle()) );
@@ -4277,14 +4186,14 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     Axis->InsertEndChild(xAxis);
 
     // y axis
-    auto yAxis = doc.NewElement(XML_Y_AXIS.mb_str());
+    auto yAxis = doc.NewElement(XML_Y_AXIS.data());
     // y-axis font color
-    auto yAxisFontColor = doc.NewElement(XML_FONT_COLOR.mb_str());
+    auto yAxisFontColor = doc.NewElement(XML_FONT_COLOR.data());
     yAxisFontColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetYAxisFontColor().Red() );
     yAxisFontColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetYAxisFontColor().Green() );
     yAxisFontColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetYAxisFontColor().Blue() );
     // y-axis font
-    auto yAxisFont = doc.NewElement(XML_FONT.mb_str());
+    auto yAxisFont = doc.NewElement(XML_FONT.data());
     yAxisFont->SetAttribute(XmlFormat::GetFontPointSize().mb_str(), GetYAxisFont().GetPointSize() );
     yAxisFont->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
         static_cast<int>(GetYAxisFont().GetStyle()) );
@@ -4301,15 +4210,15 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     graphDefaultsSection->InsertEndChild(Axis);
 
     // title settings
-    auto titleSettings = doc.NewElement(XML_TITLE_SETTINGS.mb_str());
-    auto topTitle = doc.NewElement(XML_TOP_TITLE.mb_str());
+    auto titleSettings = doc.NewElement(XML_TITLE_SETTINGS.data());
+    auto topTitle = doc.NewElement(XML_TOP_TITLE.data());
     // top title font color
-    auto topTitleFontColor = doc.NewElement(XML_FONT_COLOR.mb_str());
+    auto topTitleFontColor = doc.NewElement(XML_FONT_COLOR.data());
     topTitleFontColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetGraphTopTitleFontColor().Red() );
     topTitleFontColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetGraphTopTitleFontColor().Green() );
     topTitleFontColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetGraphTopTitleFontColor().Blue() );
     // top title font
-    auto topTitleFont = doc.NewElement(XML_FONT.mb_str());
+    auto topTitleFont = doc.NewElement(XML_FONT.data());
     topTitleFont->SetAttribute(XmlFormat::GetFontPointSize().mb_str(), GetGraphTopTitleFont().GetPointSize() );
     topTitleFont->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
         static_cast<int>(GetGraphTopTitleFont().GetStyle()) );
@@ -4324,14 +4233,14 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     topTitle->InsertEndChild(topTitleFont);
     titleSettings->InsertEndChild(topTitle);
 
-    auto bottomTitle = doc.NewElement(XML_BOTTOM_TITLE.mb_str());
+    auto bottomTitle = doc.NewElement(XML_BOTTOM_TITLE.data());
     // bottom title font color
-    auto bottomTitleFontColor = doc.NewElement(XML_FONT_COLOR.mb_str());
+    auto bottomTitleFontColor = doc.NewElement(XML_FONT_COLOR.data());
     bottomTitleFontColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetBottomTitleGraphFontColor().Red() );
     bottomTitleFontColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetBottomTitleGraphFontColor().Green() );
     bottomTitleFontColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetBottomTitleGraphFontColor().Blue() );
     // bottom title font
-    auto bottomTitleFont = doc.NewElement(XML_FONT.mb_str());
+    auto bottomTitleFont = doc.NewElement(XML_FONT.data());
     bottomTitleFont->SetAttribute(XmlFormat::GetFontPointSize().mb_str(), GetBottomTitleGraphFont().GetPointSize() );
     bottomTitleFont->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
         static_cast<int>(GetBottomTitleGraphFont().GetStyle()) );
@@ -4346,14 +4255,14 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     bottomTitle->InsertEndChild(bottomTitleFont);
     titleSettings->InsertEndChild(bottomTitle);
 
-    auto leftTitle = doc.NewElement(XML_LEFT_TITLE.mb_str());
+    auto leftTitle = doc.NewElement(XML_LEFT_TITLE.data());
     // left title font color
-    auto leftTitleFontColor = doc.NewElement(XML_FONT_COLOR.mb_str());
+    auto leftTitleFontColor = doc.NewElement(XML_FONT_COLOR.data());
     leftTitleFontColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetLeftTitleGraphFontColor().Red() );
     leftTitleFontColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetLeftTitleGraphFontColor().Green() );
     leftTitleFontColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetLeftTitleGraphFontColor().Blue() );
     // left title font
-    auto leftTitleFont = doc.NewElement(XML_FONT.mb_str());
+    auto leftTitleFont = doc.NewElement(XML_FONT.data());
     leftTitleFont->SetAttribute(XmlFormat::GetFontPointSize().mb_str(), GetLeftTitleGraphFont().GetPointSize() );
     leftTitleFont->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
         static_cast<int>(GetLeftTitleGraphFont().GetStyle()) );
@@ -4368,14 +4277,14 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     leftTitle->InsertEndChild(leftTitleFont);
     titleSettings->InsertEndChild(leftTitle);
 
-    auto rightTitle = doc.NewElement(XML_RIGHT_TITLE.mb_str());
+    auto rightTitle = doc.NewElement(XML_RIGHT_TITLE.data());
     // right title font color
-    auto rightTitleFontColor = doc.NewElement(XML_FONT_COLOR.mb_str());
+    auto rightTitleFontColor = doc.NewElement(XML_FONT_COLOR.data());
     rightTitleFontColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetRightTitleGraphFontColor().Red() );
     rightTitleFontColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetRightTitleGraphFontColor().Green() );
     rightTitleFontColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetRightTitleGraphFontColor().Blue() );
     // right title font
-    auto rightTitleFont = doc.NewElement(XML_FONT.mb_str());
+    auto rightTitleFont = doc.NewElement(XML_FONT.data());
     rightTitleFont->SetAttribute(XmlFormat::GetFontPointSize().mb_str(), GetRightTitleGraphFont().GetPointSize() );
     rightTitleFont->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
         static_cast<int>(GetRightTitleGraphFont().GetStyle()) );
@@ -4394,9 +4303,9 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     projectSettings->InsertEndChild(graphDefaultsSection);
 
     // stats defaults
-    auto statsDefaultsSection = doc.NewElement(XML_STATISTICS_SECTION.mb_str());
+    auto statsDefaultsSection = doc.NewElement(XML_STATISTICS_SECTION.data());
     // variance method
-    auto varianceMethod = doc.NewElement(XML_VARIANCE_METHOD.mb_str());
+    auto varianceMethod = doc.NewElement(XML_VARIANCE_METHOD.data());
     varianceMethod->SetAttribute(XML_METHOD.data(), static_cast<int>(GetVarianceMethod()) );
     statsDefaultsSection->InsertEndChild(varianceMethod);
     // stats results
@@ -4418,37 +4327,37 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     wizardPageDefaultsSection->InsertEndChild(textSource);
 
     // Test Recommendation
-    auto testRecommendation = doc.NewElement(XML_TEST_RECOMMENDATION.mb_str());
+    auto testRecommendation = doc.NewElement(XML_TEST_RECOMMENDATION.data());
     testRecommendation->SetAttribute(XML_METHOD.data(), static_cast<int>(m_testRecommendation));
     wizardPageDefaultsSection->InsertEndChild(testRecommendation);
 
     // Tests by Industry
-    auto testsByIndustry = doc.NewElement(XML_TEST_BY_INDUSTRY.mb_str());
+    auto testsByIndustry = doc.NewElement(XML_TEST_BY_INDUSTRY.data());
     testsByIndustry->SetAttribute(XML_METHOD.data(), static_cast<int>(m_testsByIndustry));
     wizardPageDefaultsSection->InsertEndChild(testsByIndustry);
 
     // Tests By Document Type
-    auto testsByDocumentType = doc.NewElement(XML_TEST_BY_DOCUMENT_TYPE.mb_str());
+    auto testsByDocumentType = doc.NewElement(XML_TEST_BY_DOCUMENT_TYPE.data());
     testsByDocumentType->SetAttribute(XML_METHOD.data(), static_cast<int>(m_testsByDocumentType));
     wizardPageDefaultsSection->InsertEndChild(testsByDocumentType);
 
     // tests by bundle
-    auto testsByBundle = doc.NewElement(XML_SELECTED_TEST_BUNDLE.mb_str());
+    auto testsByBundle = doc.NewElement(XML_SELECTED_TEST_BUNDLE.data());
     testsByBundle->SetAttribute(XML_VALUE.data(), GetSelectedTestBundle().mb_str());
     wizardPageDefaultsSection->InsertEndChild(testsByBundle);
 
     projectSettings->InsertEndChild(wizardPageDefaultsSection);
 
     // readability tests information    
-    auto readabilityTestSection = doc.NewElement(XML_READABILITY_TESTS_SECTION.mb_str());
+    auto readabilityTestSection = doc.NewElement(XML_READABILITY_TESTS_SECTION.data());
 
     // options inclusions
-    auto isIncludingScoreSummary = doc.NewElement(XML_INCLUDE_SCORES_SUMMARY_REPORT.mb_str());
+    auto isIncludingScoreSummary = doc.NewElement(XML_INCLUDE_SCORES_SUMMARY_REPORT.data());
     isIncludingScoreSummary->SetAttribute(XML_VALUE.data(), bool_to_int(IsIncludingScoreSummaryReport()) );
     readabilityTestSection->InsertEndChild(isIncludingScoreSummary);
 
     // grade scale/reading age display
-    auto readingAgeFormat = doc.NewElement(XML_READING_AGE_FORMAT.mb_str());
+    auto readingAgeFormat = doc.NewElement(XML_READING_AGE_FORMAT.data());
     readingAgeFormat->SetAttribute(XML_VALUE.data(),
         static_cast<int>(GetReadabilityMessageCatalog().GetReadingAgeDisplay()) );
     readabilityTestSection->InsertEndChild(readingAgeFormat);
@@ -4516,7 +4425,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         }
 
     // Dolch
-    auto dolch = doc.NewElement(XML_DOLCH_SUITE.mb_str());
+    auto dolch = doc.NewElement(XML_DOLCH_SUITE.data());
     dolch->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsDolchSelected()));
     readabilityTestSection->InsertEndChild(dolch);
     // all the custom tests being included
