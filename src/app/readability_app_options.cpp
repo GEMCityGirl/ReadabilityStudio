@@ -12,20 +12,7 @@ wxDECLARE_APP(ReadabilityApp);
 
 ReadabilityAppOptions::ReadabilityAppOptions() :
     m_textHighlight(TextHighlight::HighlightBackground),
-    m_fontColor(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT)),
-    // XML file constants
-    // general strings
-    ALL_DOCUMENTS_WILDCARD(
-        _DT(LR"(*.txt;*.htm;*.html;*.xhtml;*.sgml;*.php;*.php3;*.php4;*.aspx;*.asp;*.rtf;*.doc;*.docx;*.docm;*.pptx;*.pptm;*.dot;*.wri;*.odt;*.ott;*.odp;*.otp;*.ps;*.idl;*.cpp;*.c;*.h;*.md;*.qmd;*.rmd)")),
-    ALL_IMAGES_WILDCARD(
-        _DT(LR"(*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)")),
-    IMAGE_LOAD_FILE_FILTER(
-        _(LR"(Image Files (*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)|*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx|Bitmap (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe)|*.jpg;*.jpg;*.jpe|PNG (*.png)|*.png|GIF (*.gif)|*.gif|Targa (*.tga)|*.tga|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PCX (*.pcx)|*.pcx)")),
-    // last opened file locations
-    FILE_OPEN_PATHS(_DT(L"file-open-paths")),
-    FILE_OPEN_IMAGE_PATH(_DT(L"image-path")),
-    FILE_OPEN_PROJECT_PATH(_DT(L"project-path")),
-    FILE_OPEN_WORDLIST_PATH(_DT(L"wordlist-path"))
+    m_fontColor(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT))
     {
     SetFonts();
     SetColorsFromSystem();
@@ -685,10 +672,10 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 }
             }
-        auto filePathsNode = configRootNode->FirstChildElement(FILE_OPEN_PATHS.mb_str());
+        auto filePathsNode = configRootNode->FirstChildElement(XML_FILE_OPEN_PATHS.data());
         if (filePathsNode)
             {
-            auto wordlistPathNode = filePathsNode->FirstChildElement(FILE_OPEN_WORDLIST_PATH.mb_str());
+            auto wordlistPathNode = filePathsNode->FirstChildElement(XML_FILE_OPEN_WORDLIST_PATH.data());
             if (wordlistPathNode)
                 {
                 const char* wordlistPathString = wordlistPathNode->ToElement()->Attribute(XML_VALUE.data());
@@ -701,7 +688,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         { SetWordListPath(convertedStr); }
                     }
                 }
-            auto projectPathNode = filePathsNode->FirstChildElement(FILE_OPEN_PROJECT_PATH.mb_str());
+            auto projectPathNode = filePathsNode->FirstChildElement(XML_FILE_OPEN_PROJECT_PATH.data());
             if (projectPathNode)
                 {
                 const char* projectPathString = projectPathNode->ToElement()->Attribute(XML_VALUE.data());
@@ -714,7 +701,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         { SetProjectPath(convertedStr); }
                     }
                 }
-            auto imagePathNode = filePathsNode->FirstChildElement(FILE_OPEN_IMAGE_PATH.mb_str());
+            auto imagePathNode = filePathsNode->FirstChildElement(XML_FILE_OPEN_IMAGE_PATH.data());
             if (imagePathNode)
                 {
                 const char* imagePathString = imagePathNode->ToElement()->Attribute(XML_VALUE.data());
@@ -3306,19 +3293,19 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     configSection->InsertEndChild(userAgent);
 
     // last opened file locations
-    auto filePaths = doc.NewElement(FILE_OPEN_PATHS.mb_str());
+    auto filePaths = doc.NewElement(XML_FILE_OPEN_PATHS.data());
     // project path
-    auto projectPath = doc.NewElement(FILE_OPEN_PROJECT_PATH.mb_str());
+    auto projectPath = doc.NewElement(XML_FILE_OPEN_PROJECT_PATH.data());
     projectPath->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetProjectPath().wc_str() }, false).c_str()).mb_str());
     filePaths->InsertEndChild(projectPath);
     // image path
-    auto imagePath = doc.NewElement(FILE_OPEN_IMAGE_PATH.mb_str());
+    auto imagePath = doc.NewElement(XML_FILE_OPEN_IMAGE_PATH.data());
     imagePath->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetImagePath().wc_str() }, false).c_str()).mb_str());
     filePaths->InsertEndChild(imagePath);
     // word list path
-    auto wordlistPath = doc.NewElement(FILE_OPEN_WORDLIST_PATH.mb_str());
+    auto wordlistPath = doc.NewElement(XML_FILE_OPEN_WORDLIST_PATH.data());
     wordlistPath->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetWordListPath().wc_str() }, false).c_str()).mb_str());
     filePaths->InsertEndChild(wordlistPath);

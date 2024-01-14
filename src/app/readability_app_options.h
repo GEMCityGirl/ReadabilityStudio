@@ -2924,73 +2924,76 @@ class ReadabilityAppOptions
     const std::string_view XML_GOAL_MIN_VAL_GOAL{ _DT("min-value-goal") };
     const std::string_view XML_GOAL_MAX_VAL_GOAL{ _DT("max-value-goal") };
     // text view constants
-    const std::string_view XML_TEXT_VIEWS_SECTION{ _DT("text-views")};
-    const std::string_view XML_DOCUMENT_DISPLAY_FONTCOLOR{ _DT("document-display-font-color")};
-    const std::string_view XML_DOCUMENT_DISPLAY_FONT{ _DT("document-display-font")};
-    const std::string_view XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR{ _DT("dolch-conjunction-font-color")};
-    const std::string_view XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR{ _DT("dolch-preposition-font-color")};
-    const std::string_view XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR{ _DT("dolch-pronoun-font-color")};
-    const std::string_view XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR{ _DT("dolch-adverb-font-color")};
-    const std::string_view XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR{ _DT("dolch-adjective-font-color")};
-    const std::string_view XML_DOLCH_VERBS_HIGHLIGHTCOLOR{ _DT("dolch-verb-font-color")};
-    const std::string_view XML_DOLCH_NOUNS_HIGHLIGHTCOLOR{ _DT("dolch-noun-font-color")};
+    const std::string_view XML_TEXT_VIEWS_SECTION{ _DT("text-views") };
+    const std::string_view XML_DOCUMENT_DISPLAY_FONTCOLOR{ _DT("document-display-font-color") };
+    const std::string_view XML_DOCUMENT_DISPLAY_FONT{ _DT("document-display-font") };
+    const std::string_view XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR{ _DT("dolch-conjunction-font-color") };
+    const std::string_view XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR{ _DT("dolch-preposition-font-color") };
+    const std::string_view XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR{ _DT("dolch-pronoun-font-color") };
+    const std::string_view XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR{ _DT("dolch-adverb-font-color") };
+    const std::string_view XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR{ _DT("dolch-adjective-font-color") };
+    const std::string_view XML_DOLCH_VERBS_HIGHLIGHTCOLOR{ _DT("dolch-verb-font-color") };
+    const std::string_view XML_DOLCH_NOUNS_HIGHLIGHTCOLOR{ _DT("dolch-noun-font-color") };
     // theming
-    const std::string_view XML_THEME_NAME{ _DT("theme-name")};
-    const std::string_view XML_CONTROL_BACKGROUND_COLOR{ _DT("control-background-color")};
-    const std::string_view XML_RIBBON_ACTIVE_TAB_COLOR{ _DT("ribbon-active-tab-color")};
-    const std::string_view XML_RIBBON_HOVER_COLOR{ _DT("ribbon-hover-color")};
-    const std::string_view XML_SIDEBAR_BACKGROUND_COLOR{ _DT("sidebar-background-color")};
-    const std::string_view XML_SIDEBAR_ACTIVE_COLOR{ _DT("sidebar-active-color")};
-    const std::string_view XML_SIDEBAR_PARENT_COLOR{ _DT("sidebar-parent-color")};
-    const std::string_view XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR{ _DT("start-page-backstage-background-color")};
-    const std::string_view XML_STARTPAGE_DETAIL_BACKGROUND_COLOR{ _DT("start-page-detail-background-color")};
+    const std::string_view XML_THEME_NAME{ _DT("theme-name") };
+    const std::string_view XML_CONTROL_BACKGROUND_COLOR{ _DT("control-background-color") };
+    const std::string_view XML_RIBBON_ACTIVE_TAB_COLOR{ _DT("ribbon-active-tab-color") };
+    const std::string_view XML_RIBBON_HOVER_COLOR{ _DT("ribbon-hover-color") };
+    const std::string_view XML_SIDEBAR_BACKGROUND_COLOR{ _DT("sidebar-background-color") };
+    const std::string_view XML_SIDEBAR_ACTIVE_COLOR{ _DT("sidebar-active-color") };
+    const std::string_view XML_SIDEBAR_PARENT_COLOR{ _DT("sidebar-parent-color") };
+    const std::string_view XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR{ _DT("start-page-backstage-background-color") };
+    const std::string_view XML_STARTPAGE_DETAIL_BACKGROUND_COLOR{ _DT("start-page-detail-background-color") };
     // general options
-    const std::string_view XML_APPEARANCE{ _DT("appearance")};
-    const std::string_view XML_WINDOW_MAXIMIZED{ _DT("app-window-maximized")};
-    const std::string_view XML_WINDOW_WIDTH{ _DT("app-window-width")};
-    const std::string_view XML_WINDOW_HEIGHT{ _DT("app-window-height")};
-    const std::string_view XML_LICENSE_ACCEPTED{ _DT("license-accepted")};
-    const std::string_view XML_USER_AGENT{ _DT("user-agent")};
+    const std::string_view XML_APPEARANCE{ _DT("appearance") };
+    const std::string_view XML_WINDOW_MAXIMIZED{ _DT("app-window-maximized") };
+    const std::string_view XML_WINDOW_WIDTH{ _DT("app-window-width") };
+    const std::string_view XML_WINDOW_HEIGHT{ _DT("app-window-height") };
+    const std::string_view XML_LICENSE_ACCEPTED{ _DT("license-accepted") };
+    const std::string_view XML_USER_AGENT{ _DT("user-agent") };
     // project options
-    const std::string_view XML_REVIEWER{ _DT("project-reviewer")};
-    const std::string_view XML_STATUS{ _DT("project-status")};
-    const std::string_view XML_REALTIME_UPDATE{ _DT("realtime-refresh")};
-    const std::string_view XML_APPENDED_DOC_PATH{ _DT("appended-doc-path")};
+    const std::string_view XML_REVIEWER{ _DT("project-reviewer") };
+    const std::string_view XML_STATUS{ _DT("project-status") };
+    const std::string_view XML_REALTIME_UPDATE{ _DT("realtime-refresh") };
+    const std::string_view XML_APPENDED_DOC_PATH{ _DT("appended-doc-path") };
     // document linking information
-    const std::string_view XML_DOCUMENT_STORAGE_METHOD{ _DT("document-storage-method")};
+    const std::string_view XML_DOCUMENT_STORAGE_METHOD{ _DT("document-storage-method") };
     // stats information
-    const std::string_view XML_STATISTICS_RESULTS{ _DT("statistics-results")};
-    const std::string_view XML_STATISTICS_REPORT{ _DT("statistics-report")};
+    const std::string_view XML_STATISTICS_RESULTS{ _DT("statistics-results") };
+    const std::string_view XML_STATISTICS_REPORT{ _DT("statistics-report") };
     // Min doc size
-    const std::string_view XML_MIN_DOC_SIZE_FOR_BATCH{ _DT("min-doc-size-for-batch")};
-    const std::string_view XML_RANDOM_SAMPLE_SIZE{ _DT("random-samlple-size")};
-    const std::string_view XML_FILE_PATH_TRUNC_MODE{ _DT("filepath-truncation-mode")};
+    const std::string_view XML_MIN_DOC_SIZE_FOR_BATCH{ _DT("min-doc-size-for-batch") };
+    const std::string_view XML_RANDOM_SAMPLE_SIZE{ _DT("random-samlple-size") };
+    const std::string_view XML_FILE_PATH_TRUNC_MODE{ _DT("filepath-truncation-mode") };
     // export options
-    const std::string_view XML_EXPORT{ _DT("export-settings")};
-    const std::string_view XML_EXPORT_LIST_EXT{ _DT("export-list-extension")};
-    const std::string_view XML_EXPORT_TEXT_EXT{ _DT("export-text-extension")};
-    const std::string_view XML_EXPORT_GRAPH_EXT{ _DT("export-graph-extension")};
-    const std::string_view XML_EXPORT_LISTS{ _DT("export-lists")};
-    const std::string_view XML_EXPORT_SENTENCES_BREAKDOWN{ _DT("export-sentence-breakdown")};
-    const std::string_view XML_EXPORT_GRAPHS{ _DT("export-graphs")};
-    const std::string_view XML_EXPORT_TEST_RESULTS{ _DT("export-test-results")};
-    const std::string_view XML_EXPORT_STATS{ _DT("export-statistics")};
-    const std::string_view XML_EXPORT_GRAMMAR{ _DT("export-grammar")};
-    const std::string_view XML_EXPORT_DOLCH_WORDS{ _DT("export-dolch-words")};
-    const std::string_view XML_EXPORT_WARNINGS{ _DT("export-warnings")};
+    const std::string_view XML_EXPORT{ _DT("export-settings") };
+    const std::string_view XML_EXPORT_LIST_EXT{ _DT("export-list-extension") };
+    const std::string_view XML_EXPORT_TEXT_EXT{ _DT("export-text-extension") };
+    const std::string_view XML_EXPORT_GRAPH_EXT{ _DT("export-graph-extension") };
+    const std::string_view XML_EXPORT_LISTS{ _DT("export-lists") };
+    const std::string_view XML_EXPORT_SENTENCES_BREAKDOWN{ _DT("export-sentence-breakdown") };
+    const std::string_view XML_EXPORT_GRAPHS{ _DT("export-graphs") };
+    const std::string_view XML_EXPORT_TEST_RESULTS{ _DT("export-test-results") };
+    const std::string_view XML_EXPORT_STATS{ _DT("export-statistics") };
+    const std::string_view XML_EXPORT_GRAMMAR{ _DT("export-grammar") };
+    const std::string_view XML_EXPORT_DOLCH_WORDS{ _DT("export-dolch-words") };
+    const std::string_view XML_EXPORT_WARNINGS{ _DT("export-warnings") };
     // warning settings
-    const std::string_view XML_WARNING_MESSAGE_SETTINGS{ _DT("warning-message-settings")};
-    const std::string_view XML_WARNING_MESSAGE{ _DT("warning-message")};
-    const std::string_view XML_PREVIOUS_RESPONSE{ _DT("previous-response")};
+    const std::string_view XML_WARNING_MESSAGE_SETTINGS{ _DT("warning-message-settings") };
+    const std::string_view XML_WARNING_MESSAGE{ _DT("warning-message") };
+    const std::string_view XML_PREVIOUS_RESPONSE{ _DT("previous-response") };
     // general strings
-    const wxString ALL_DOCUMENTS_WILDCARD;
-    const wxString ALL_IMAGES_WILDCARD;
-    const wxString IMAGE_LOAD_FILE_FILTER;
+    const std::wstring_view ALL_DOCUMENTS_WILDCARD{ _DT(LR"(*.txt;*.htm;*.html;*.xhtml;*.sgml;*.php;*.php3;*.php4;*.aspx;*.asp;*.rtf;*.doc;*.docx;*.docm;*.pptx;*.pptm;*.dot;*.wri;*.odt;*.ott;*.odp;*.otp;*.ps;*.idl;*.cpp;*.c;*.h;*.md;*.qmd;*.rmd)") };
+    const std::wstring_view ALL_IMAGES_WILDCARD{ _DT(LR"(*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)") };
+    wxString GetImageFileFilter()
+        {
+        return _(LR"(Image Files (*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)|*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx|Bitmap (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe)|*.jpg;*.jpg;*.jpe|PNG (*.png)|*.png|GIF (*.gif)|*.gif|Targa (*.tga)|*.tga|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PCX (*.pcx)|*.pcx)");
+        }
     // last opened file locations
-    const wxString FILE_OPEN_PATHS;
-    const wxString FILE_OPEN_IMAGE_PATH;
-    const wxString FILE_OPEN_PROJECT_PATH;
-    const wxString FILE_OPEN_WORDLIST_PATH;
+    const std::string_view XML_FILE_OPEN_PATHS{ _DT("file-open-paths") };
+    const std::string_view XML_FILE_OPEN_IMAGE_PATH{ _DT("image-path") };
+    const std::string_view XML_FILE_OPEN_PROJECT_PATH{ _DT("project-path") };
+    const std::string_view XML_FILE_OPEN_WORDLIST_PATH{ _DT("wordlist-path") };
     // grammar
     const std::string_view XML_GRAMMAR{ _DT("grammar") };
     const std::string_view XML_SPELLCHECK_IGNORE_PROPER_NOUNS{ _DT("spellcheck-ignore-proper-nouns") };

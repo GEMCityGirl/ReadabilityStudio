@@ -1373,7 +1373,7 @@ bool ToolsOptionsDlg::ValidateOptions()
         wxFileDialog fd
             (this, _(L"Select Stipple Image"),
             wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString,
-            wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
+            wxGetApp().GetAppOptions().GetImageFileFilter(),
             wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
         if (fd.ShowModal() != wxID_OK)
             { return false; }
@@ -1400,7 +1400,7 @@ bool ToolsOptionsDlg::ValidateOptions()
         wxFileDialog fd
             (this, _(L"Select Common Image"),
             wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString,
-            wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
+            wxGetApp().GetAppOptions().GetImageFileFilter(),
             wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
         if (fd.ShowModal() != wxID_OK)
             { return false; }
@@ -1418,7 +1418,7 @@ bool ToolsOptionsDlg::ValidateOptions()
         wxFileDialog fd
             (this, _(L"Select Background Image"),
             wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString,
-            wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
+            wxGetApp().GetAppOptions().GetImageFileFilter(),
             wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
         if (fd.ShowModal() != wxID_OK)
             { return false; }
@@ -1436,7 +1436,7 @@ bool ToolsOptionsDlg::ValidateOptions()
         wxFileDialog fd
             (this, _(L"Select Logo Image"),
             wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString,
-            wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
+            wxGetApp().GetAppOptions().GetImageFileFilter(),
             wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
         if (fd.ShowModal() != wxID_OK)
             { return false; }
@@ -4768,7 +4768,7 @@ void ToolsOptionsDlg::CreateGraphSection()
                 (m_readabilityProjectDoc ?
                     m_readabilityProjectDoc->GetPlotBackGroundImagePath() :
                     wxGetApp().GetAppOptions().GetPlotBackGroundImagePath()));
-            backgroundImage->SetAttribute(wxPG_FILE_WILDCARD,wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER);
+            backgroundImage->SetAttribute(wxPG_FILE_WILDCARD,wxGetApp().GetAppOptions().GetImageFileFilter());
             backgroundImage->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Plot Background Image"));
             backgroundImage->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
             backgroundImage->SetHelpString(_(L"Selects the image for the graphs' background."));
@@ -4842,7 +4842,7 @@ void ToolsOptionsDlg::CreateGraphSection()
                 (m_readabilityProjectDoc ?
                     m_readabilityProjectDoc->GetWatermarkLogoPath() :
                     wxGetApp().GetAppOptions().GetWatermarkLogo()));
-            graphLogo->SetAttribute(wxPG_FILE_WILDCARD,wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER);
+            graphLogo->SetAttribute(wxPG_FILE_WILDCARD,wxGetApp().GetAppOptions().GetImageFileFilter());
             graphLogo->SetAttribute(wxPG_DIALOG_TITLE,_(L"Select Logo Image"));
             graphLogo->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
             m_generalGraphPropertyGrid->Append(graphLogo);
@@ -4865,7 +4865,7 @@ void ToolsOptionsDlg::CreateGraphSection()
                 (m_readabilityProjectDoc ?
                     m_readabilityProjectDoc->GetStippleImagePath() :
                     wxGetApp().GetAppOptions().GetStippleImagePath()));
-            customBrushProp->SetAttribute(wxPG_FILE_WILDCARD ,wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER);
+            customBrushProp->SetAttribute(wxPG_FILE_WILDCARD ,wxGetApp().GetAppOptions().GetImageFileFilter());
             customBrushProp->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Stipple Image"));
             customBrushProp->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
             m_generalGraphPropertyGrid->Append(customBrushProp);
@@ -4915,7 +4915,7 @@ void ToolsOptionsDlg::CreateGraphSection()
                 (m_readabilityProjectDoc ?
                     m_readabilityProjectDoc->GetGraphCommonImagePath() :
                     wxGetApp().GetAppOptions().GetGraphCommonImagePath()));
-            commonImageProp->SetAttribute(wxPG_FILE_WILDCARD ,wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER);
+            commonImageProp->SetAttribute(wxPG_FILE_WILDCARD ,wxGetApp().GetAppOptions().GetImageFileFilter());
             commonImageProp->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Common Image"));
             commonImageProp->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
             m_generalGraphPropertyGrid->Append(commonImageProp);

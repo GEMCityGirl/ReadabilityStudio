@@ -359,7 +359,7 @@ void ProjectWizardDlg::CreateControls()
                 wxBusyCursor wait;
                 wxArrayString files;
                 wxDir::GetAllFiles(GetFilePath(), &files, wxString{}, wxDIR_FILES | wxDIR_DIRS);
-                files = FilterFiles(files, wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD);
+                files = FilterFiles(files, wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data());
 
                 m_fileData->SetSize(files.GetCount(), 2);
                 m_fileData->SetValues(files);

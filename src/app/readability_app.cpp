@@ -4320,7 +4320,7 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
     {
     GetDirFilterDialog dirDlg(this,
         wxGetApp().GetAppOptions().GetDocumentFilter() + L"|" +
-        wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER + L"|" + _(L"All Files (*.*)|*.*"));
+        wxGetApp().GetAppOptions().GetImageFileFilter() + L"|" + _(L"All Files (*.*)|*.*"));
     if (dirDlg.ShowModal() != wxID_OK || dirDlg.GetPath().empty())
         { return; }
 
@@ -4460,12 +4460,12 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     WebHarvesterDlg webHarvestDlg(this, wxGetApp().GetLastSelectedWebPages(),
         wxGetApp().GetWebHarvester().GetDepthLevel(),
             wxString::Format(_(L"Documents & Images (%s;%s)|%s;%s|"),
-                wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD,
-                wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD,
-                wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD,
-                wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD) +
+                wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
+                wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data(),
+                wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
+                wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data()) +
             wxGetApp().GetAppOptions().GetDocumentFilter() + L"|" +
-            wxGetApp().GetAppOptions().IMAGE_LOAD_FILE_FILTER,
+            wxGetApp().GetAppOptions().GetImageFileFilter(),
         wxGetApp().GetLastSelectedDocFilter(),
         // hide the option to change local file downloading
         true, true,
