@@ -14,88 +14,6 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     m_textHighlight(TextHighlight::HighlightBackground),
     m_fontColor(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT)),
     // XML file constants
-    // project file tags
-    XML_PROJECT_HEADER(_DT(L"oleander-readability-studio-project")),
-    XML_DOCUMENT(_DT(L"document")),
-    XML_TEXT_SOURCE(_DT(L"text-source")),
-    XML_DOCUMENT_PATH(_DT(L"file-path")),
-    XML_DESCRIPTION(_DT(L"description")),
-    XML_DOCUMENT_ANALYSIS_LOGIC(_DT(L"document-analysis-logic")),
-    XML_EXPORT_FOLDER_PATH(_DT(L"export-folder-path")),
-    XML_EXPORT_FILE_PATH(_DT(L"export-file-path")),
-    XML_INCLUDE(_DT(L"include")),
-    XML_CONFIGURATIONS(_DT(L"configurations")),
-    XML_VERSION(_DT(L"version")),
-    XML_HIGHLIGHT_METHOD(_DT(L"highlight-method")),
-    XML_HIGHLIGHTCOLOR(_DT(L"highlight-color")),
-    XML_EXCLUDED_HIGHLIGHTCOLOR(_DT(L"excluded-highlight-color")),
-    XML_DUP_WORD_HIGHLIGHTCOLOR(_DT(L"duplicate-word-highlight-color")),
-    XML_WORDY_PHRASE_HIGHLIGHTCOLOR(_DT(L"wordy-phrase-highlight-color")),
-    XML_LONG_SENTENCES(_DT(L"long-sentences")),
-    XML_LONG_SENTENCE_METHOD(_DT(L"long-sentence-method")),
-    XML_LONG_SENTENCE_LENGTH(_DT(L"long-sentence-length")),
-    XML_NUMERAL_SYLLABICATION_METHOD(_DT(L"numeral-syllabication-method")),
-    XML_PARAGRAPH_PARSING_METHOD(_DT(L"paragraph-parsing-method")),
-    XML_IGNORE_BLANK_LINES_FOR_PARAGRAPH_PARSING(_DT(L"ignore-blank-lines-for-paragraphs")),
-    XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING(_DT(L"ignore-indenting-for-paragraphs")),
-    XML_SENTENCES_MUST_START_CAPITALIZED(_DT(L"sentences-must-start-capitalized")),
-    XML_AGGRESSIVE_EXCLUSION(_DT(L"aggressively-deduce-lists")),
-    XML_IGNORE_COPYRIGHT_NOTICES(_DT(L"ignore-trailing-copyright-notices")),
-    XML_IGNORE_CITATIONS(_DT(L"ignore-trailing-citations")),
-    XML_IGNORE_FILE_ADDRESSES(_DT(L"ignore-file-addresses")),
-    XML_IGNORE_NUMERALS(_DT(L"ignore-numerals")),
-    XML_IGNORE_PROPER_NOUNS(_DT(L"ignore-proper-nouns")),
-    XML_EXCLUDED_PHRASES_PATH(_DT(L"excluded-phrases-filepath")),
-    XML_EXCLUDED_PHRASES_INCLUDE_FIRST_OCCURRENCE(_DT(L"excluded-phrases-include-first-occurrence")),
-    XML_EXCLUDE_BLOCK_TAGS(_DT(L"exclude-block-tags")),
-    XML_EXCLUDE_BLOCK_TAG(_DT(L"exclude-block-tag")),
-    XML_INVALID_SENTENCE_METHOD(_DT(L"invalid-sentence-method")),
-    XML_METHOD(_DT(L"method")),
-    XML_VALUE(_DT(L"value")),
-    XML_DISPLAY(_DT(L"display")),
-    XML_CONFIG_HEADER(_DT(L"oleander-readability-studio-configuration")),
-    XML_WIZARD_PAGES_SETTINGS(_DT(L"wizard-page-defaults")),
-    XML_PROJECT_LANGUAGE(_DT(L"project-language")),
-    // test settings
-    XML_READABILITY_TEST_GRADE_SCALE_DISPLAY(_DT(L"readability-test-grade-scale-display")),
-    XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT(_DT(L"readability-test-grade-scale-long-format")),
-    XML_NEW_DALE_CHALL_OPTIONS(_DT(L"dale-chall-options")),
-    XML_STOCKER_LIST{ _DT(L"include-stocker-catholic-supplement") },
-    XML_HARRIS_JACOBSON_OPTIONS(_DT(L"harris-jacobson-options")),
-    XML_GUNNING_FOG_OPTIONS(_DT(L"gunning-fog-options")),
-    XML_TEXT_EXCLUSION(_DT(L"text-exclusion-mode")),
-    XML_INCLUDE_INCOMPLETE_SENTENCES_LONGER_THAN(_DT(L"include-incomplete-sentences-longer-than")),
-    XML_USE_SENTENCE_UNITS(_DT(L"use-sentence-units")),
-    XML_USE_HIGH_PRECISION(_DT(L"use-precision")),
-    XML_PROPER_NOUN_COUNTING_METHOD(_DT(L"proper-noun-counting-method")),
-    XML_FLESCH_OPTIONS(_DT(L"flesch-options")),
-    XML_FLESCH_KINCAID_OPTIONS(_DT(L"flesch-kincaid-options")),
-    XML_RAYGOR_STYLE(_DT(L"raygor-style")),
-    // custom test settings
-    XML_TEST_BUNDLES(_DT(L"test-bundles")),
-    XML_TEST_BUNDLE(_DT(L"test-bundle")),
-    XML_TEST_BUNDLE_NAME(_DT(L"test-bundle-name")),
-    XML_TEST_BUNDLE_DESCRIPTION(_DT(L"test-bundle-description")),
-    XML_CUSTOM_TESTS(_DT(L"custom-tests")),
-    XML_CUSTOM_TEST(_DT(L"custom-test")),
-    XML_CUSTOM_FAMILIAR_WORD_TEST(_DT(L"custom-familiar-word-test")),
-    XML_BUNDLE_STATISTICS(_DT(L"bundle-statistics")),
-    XML_BUNDLE_STATISTIC(_DT(L"bundle-statistic")),
-    XML_TEST_NAMES(_DT(L"test-names")),
-    XML_TEST_NAME(_DT(L"test-name")),
-    XML_TEST_TYPE(_DT(L"test-type")),
-    XML_FAMILIAR_WORD_FILE_PATH(_DT(L"familiar-word-file-path")),
-    XML_TEST_FORMULA_TYPE(_DT(L"test-formula-type")),
-    XML_TEST_FORMULA(_DT(L"test-formula")),
-    XML_STEMMING_TYPE(_DT(L"stemming-type")),
-    XML_INCLUDE_CUSTOM_WORD_LIST(_DT(L"include-custom-word-list")),
-    XML_INCLUDE_DC_LIST(_DT(L"include-dale-chall-list")),
-    XML_INCLUDE_SPACHE_LIST(_DT(L"include-spache-list")),
-    XML_INCLUDE_HARRIS_JACOBSON_LIST(_DT(L"include-harris-jacobson-list")),
-    XML_INCLUDE_STOCKER_LIST(_DT(L"include-stocker-list")),
-    XML_FAMILIAR_WORDS_ALL_LISTS(_DT(L"familiar-words-all-lists")),
-    XML_INCLUDE_PROPER_NOUNS(_DT(L"include-proper-nouns")),
-    XML_INCLUDE_NUMERIC(_DT(L"include-numeric")),
     // graph settings
     XML_GRAPH_SETTINGS(_DT(L"graph-settings")),
     XML_GRAPH_COLOR_SCHEME(_DT(L"graph-color-scheme")),
@@ -258,16 +176,6 @@ ReadabilityAppOptions::ReadabilityAppOptions() :
     FILE_OPEN_IMAGE_PATH(_DT(L"image-path")),
     FILE_OPEN_PROJECT_PATH(_DT(L"project-path")),
     FILE_OPEN_WORDLIST_PATH(_DT(L"wordlist-path")),
-    // grammar
-    XML_GRAMMAR(_DT(L"grammar")),
-    XML_SPELLCHECK_IGNORE_PROPER_NOUNS(_DT(L"spellcheck-ignore-proper-nouns")),
-    XML_SPELLCHECK_IGNORE_UPPERCASED(_DT(L"spellcheck-ignore-uppercased")),
-    XML_SPELLCHECK_IGNORE_NUMERALS(_DT(L"spellcheck-ignore-numerals")),
-    XML_SPELLCHECK_IGNORE_FILE_ADDRESSES(_DT(L"spellcheck-ignore-file-address")),
-    XML_SPELLCHECK_IGNORE_PROGRAMMER_CODE(_DT(L"spellcheck-ignore-programmer-code")),
-    XML_SPELLCHECK_ALLOW_COLLOQUIALISMS(_DT(L"spellcheck-allow-colloquialisms")),
-    XML_SPELLCHECK_IGNORE_SOCIAL_MEDIA_TAGS(_DT(L"spellcheck-ignore-social-media-tags")),
-    XML_GRAMMAR_INFO(_DT(L"grammar-features")),
     // words breakdown
     XML_WORDS_BREAKDOWN(_DT(L"words-breakdown")),
     XML_WORDS_BREAKDOWN_INFO(_DT(L"words-breakdown-features")),
@@ -784,7 +692,7 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
         auto themeNode = appearanceNode->FirstChildElement(XML_THEME_NAME.mb_str());
         if (themeNode)
             {
-            const char* themeString = themeNode->ToElement()->Attribute(XML_VALUE.mb_str());
+            const char* themeString = themeNode->ToElement()->Attribute(XML_VALUE.data());
             if (themeString)
                 {
                 const wxString themeStr =
@@ -819,7 +727,7 @@ bool ReadabilityAppOptions::LoadThemeFile(const wxString& optionsFile)
         return false;
         }
     // see if it is a valid config file
-    auto node = doc.FirstChildElement(XML_CONFIG_HEADER.mb_str());
+    auto node = doc.FirstChildElement(XML_CONFIG_HEADER.data());
     if (!node)
         {
         wxMessageBox(_(L"Invalid configuration file. Project header section not found."),
@@ -827,7 +735,7 @@ bool ReadabilityAppOptions::LoadThemeFile(const wxString& optionsFile)
         return false;
         }
     // read in the configurations
-    auto configRootNode = node->FirstChildElement(XML_CONFIGURATIONS.mb_str());
+    auto configRootNode = node->FirstChildElement(XML_CONFIGURATIONS.data());
     if (!configRootNode)
         {
         wxMessageBox(_(L"Invalid configuration file. No configurations found."),
@@ -869,7 +777,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
         return false;
         }
     // see if it is a valid config file
-    auto node = doc.FirstChildElement(XML_CONFIG_HEADER.mb_str());
+    auto node = doc.FirstChildElement(XML_CONFIG_HEADER.data());
     if (!node)
         {
         wxMessageBox(_(L"Invalid configuration file. Project header section not found."),
@@ -877,7 +785,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
         return false;
         }
     // read in the configurations
-    auto configRootNode = node->FirstChildElement(XML_CONFIGURATIONS.mb_str());
+    auto configRootNode = node->FirstChildElement(XML_CONFIGURATIONS.data());
     if (!configRootNode)
         {
         wxMessageBox(_(L"Invalid configuration file. No configurations found."),
@@ -913,14 +821,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
         auto licenseNode = configRootNode->FirstChildElement(XML_LICENSE_ACCEPTED.mb_str());
         if (licenseNode)
             {
-            int value = licenseNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0);
+            int value = licenseNode->ToElement()->IntAttribute(XML_VALUE.data(), 0);
             m_licenseAccepted = int_to_bool(value);
             }
 
         auto userAgentNode = configRootNode->FirstChildElement(XML_USER_AGENT.mb_str());
         if (userAgentNode)
             {
-            auto userAgent = userAgentNode->ToElement()->Attribute(XML_VALUE.mb_str());
+            auto userAgent = userAgentNode->ToElement()->Attribute(XML_VALUE.data());
             if (userAgent)
                 {
                 const wxString userAgentStr =
@@ -939,7 +847,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             auto wordlistPathNode = filePathsNode->FirstChildElement(FILE_OPEN_WORDLIST_PATH.mb_str());
             if (wordlistPathNode)
                 {
-                const char* wordlistPathString = wordlistPathNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* wordlistPathString = wordlistPathNode->ToElement()->Attribute(XML_VALUE.data());
                 if (wordlistPathString)
                     {
                     const wxString wordlistPathStr =
@@ -952,7 +860,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             auto projectPathNode = filePathsNode->FirstChildElement(FILE_OPEN_PROJECT_PATH.mb_str());
             if (projectPathNode)
                 {
-                const char* projectPathString = projectPathNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* projectPathString = projectPathNode->ToElement()->Attribute(XML_VALUE.data());
                 if (projectPathString)
                     {
                     const wxString projectPathStr =
@@ -965,7 +873,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             auto imagePathNode = filePathsNode->FirstChildElement(FILE_OPEN_IMAGE_PATH.mb_str());
             if (imagePathNode)
                 {
-                const char* imagePathString = imagePathNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* imagePathString = imagePathNode->ToElement()->Attribute(XML_VALUE.data());
                 if (imagePathString)
                     {
                     const wxString imagePathStr =
@@ -984,20 +892,20 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             auto printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_ID.mb_str());
             if (printerNode)
                 {
-                value = printerNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), value);
+                value = printerNode->ToElement()->IntAttribute(XML_VALUE.data(), value);
                 SetPaperId(value);
                 }
             value = 0;
             printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_ORIENTATION.mb_str());
             if (printerNode)
                 {
-                value = printerNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), value);
+                value = printerNode->ToElement()->IntAttribute(XML_VALUE.data(), value);
                 SetPaperOrientation(static_cast<wxPrintOrientation>(value));
                 }
             printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_LEFT_HEADER.mb_str());
             if (printerNode)
                 {
-                const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.data());
                 if (printerString)
                     {
                     const wxString printStr =
@@ -1010,7 +918,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_CENTER_HEADER.mb_str());
             if (printerNode)
                 {
-                const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.data());
                 if (printerString)
                     {
                     const wxString printStr =
@@ -1023,7 +931,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_RIGHT_HEADER.mb_str());
             if (printerNode)
                 {
-                const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.data());
                 if (printerString)
                     {
                     const wxString printStr =
@@ -1036,7 +944,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_LEFT_FOOTER.mb_str());
             if (printerNode)
                 {
-                const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.data());
                 if (printerString)
                     {
                     const wxString printStr =
@@ -1049,7 +957,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_CENTER_FOOTER.mb_str());
             if (printerNode)
                 {
-                const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.data());
                 if (printerString)
                     {
                     const wxString printStr =
@@ -1062,7 +970,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_RIGHT_FOOTER.mb_str());
             if (printerNode)
                 {
-                const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* printerString = printerNode->ToElement()->Attribute(XML_VALUE.data());
                 if (printerString)
                     {
                     const wxString printStr =
@@ -1125,21 +1033,21 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             if (indentNode)
                 {
                 IndentEditor(
-                    int_to_bool(indentNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
+                    int_to_bool(indentNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
             auto spaceAfterParagraphNode =
                 editorSettingsNode->FirstChildElement(XML_EDITOR_SPACE_AFTER_PARAGRAPH.data());
             if (spaceAfterParagraphNode)
                 {
                 AddParagraphSpaceInEditor(
-                    int_to_bool(spaceAfterParagraphNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
+                    int_to_bool(spaceAfterParagraphNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
             auto textAlignNode =
                 editorSettingsNode->FirstChildElement(XML_EDITOR_TEXT_ALIGNMENT.data());
             if (textAlignNode)
                 {
                 SetEditorTextAlignment(
-                    static_cast<wxTextAttrAlignment>(textAlignNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
+                    static_cast<wxTextAttrAlignment>(textAlignNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
             auto lineSpacingnNode =
                 editorSettingsNode->FirstChildElement(XML_EDITOR_LINE_SPACING.data());
@@ -1147,7 +1055,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 {
                 SetEditorLineSpacing(
                     static_cast<wxTextAttrLineSpacing>(
-                        lineSpacingnNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
+                        lineSpacingnNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
             }
         // just get the reviewer from project settings to be used for the start page
@@ -1157,7 +1065,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             auto projectReviewer = projectSettingsForReview->FirstChildElement(XML_REVIEWER.mb_str());
             if (projectReviewer)
                 {
-                const char* reviewerChars = projectReviewer->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* reviewerChars = projectReviewer->ToElement()->Attribute(XML_VALUE.data());
                 if (reviewerChars)
                     {
                     const wxString reviewerStr =
@@ -1179,7 +1087,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             auto warningNode = warningSettingsNode->FirstChildElement(XML_WARNING_MESSAGE.mb_str());
             while (warningNode)
                 {
-                const char* warningStringId = warningNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* warningStringId = warningNode->ToElement()->Attribute(XML_VALUE.data());
                 if (warningStringId)
                     {
                     wxString id =
@@ -1188,7 +1096,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         WarningManager::GetWarning(id);
                     if (warningIter != WarningManager::GetWarnings().end())
                         {
-                        int value = warningNode->ToElement()->IntAttribute(XML_DISPLAY.mb_str(), 1);
+                        int value = warningNode->ToElement()->IntAttribute(XML_DISPLAY.data(), 1);
                         warningIter->Show(int_to_bool(value));
                         value = warningNode->ToElement()->IntAttribute(XML_PREVIOUS_RESPONSE.mb_str(), 0);
                         warningIter->SetPreviousResponse(value);
@@ -1205,7 +1113,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             auto exportExtNode = exportSettingsNode->FirstChildElement(XML_EXPORT_LIST_EXT.mb_str());
             if (exportExtNode)
                 {
-                const char* extString = exportExtNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* extString = exportExtNode->ToElement()->Attribute(XML_VALUE.data());
                 if (extString)
                     {
                     BaseProjectDoc::SetExportListExt(
@@ -1215,7 +1123,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             exportExtNode = exportSettingsNode->FirstChildElement(XML_EXPORT_TEXT_EXT.mb_str());
             if (exportExtNode)
                 {
-                const char* extString = exportExtNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* extString = exportExtNode->ToElement()->Attribute(XML_VALUE.data());
                 if (extString)
                     {
                     BaseProjectDoc::SetExportTextViewExt(
@@ -1225,7 +1133,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             exportExtNode = exportSettingsNode->FirstChildElement(XML_EXPORT_GRAPH_EXT.mb_str());
             if (exportExtNode)
                 {
-                const char* extString = exportExtNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* extString = exportExtNode->ToElement()->Attribute(XML_VALUE.data());
                 if (extString)
                     {
                     BaseProjectDoc::SetExportGraphExt(
@@ -1236,49 +1144,49 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             if (exportNode)
                 {
                 BaseProjectDoc::ExportHardWordLists(
-                    int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
+                    int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
             exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_SENTENCES_BREAKDOWN.mb_str());
             if (exportNode)
                 {
                 BaseProjectDoc::ExportSentencesBreakdown(
-                    int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
+                    int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
             exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_GRAPHS.mb_str());
             if (exportNode)
                 {
                 BaseProjectDoc::ExportGraphs(
-                    int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
+                    int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
             exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_TEST_RESULTS.mb_str());
             if (exportNode)
                 {
                 BaseProjectDoc::ExportTestResults(
-                    int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
+                    int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
             exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_STATS.mb_str());
             if (exportNode)
                 {
                 BaseProjectDoc::ExportStatistics(
-                    int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
+                    int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
             exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_GRAMMAR.mb_str());
             if (exportNode)
                 {
                 BaseProjectDoc::ExportWordiness(
-                    int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
+                    int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
              exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_DOLCH_WORDS.mb_str());
             if (exportNode)
                 {
                 BaseProjectDoc::ExportSightWords(
-                    int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
+                    int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
             exportNode = exportSettingsNode->FirstChildElement(XML_EXPORT_WARNINGS.mb_str());
             if (exportNode)
                 {
                 BaseProjectDoc::ExportWarnings(
-                    int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 1)));
+                    int_to_bool(exportNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
             }
         // New Project Settings section
@@ -1289,7 +1197,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             auto projectReviewer = projectSettings->FirstChildElement(XML_REVIEWER.mb_str());
             if (projectReviewer)
                 {
-                const char* reviewerChars = projectReviewer->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* reviewerChars = projectReviewer->ToElement()->Attribute(XML_VALUE.data());
                 if (reviewerChars)
                     {
                     const wxString reviewerStr =
@@ -1303,7 +1211,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             auto realTimeRefresh = projectSettings->FirstChildElement(XML_REALTIME_UPDATE.mb_str());
             if (realTimeRefresh)
                 {
-                const char* realTimeChars = realTimeRefresh->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* realTimeChars = realTimeRefresh->ToElement()->Attribute(XML_VALUE.data());
                 if (realTimeChars)
                     {
                     const wxString realTimeStr =
@@ -1318,7 +1226,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 projectSettings->FirstChildElement(XML_APPENDED_DOC_PATH.mb_str());
             if (appendedDocPath)
                 {
-                const char* appendedDocChars = appendedDocPath->ToElement()->Attribute(XML_VALUE.mb_str());
+                const char* appendedDocChars = appendedDocPath->ToElement()->Attribute(XML_VALUE.data());
                 if (appendedDocChars)
                     {
                     const wxString appendedDocStr =
@@ -1333,17 +1241,17 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             if (docStorageNode)
                 {
                 m_documentStorageMethod =
-                    static_cast<TextStorage>(docStorageNode->ToElement()->IntAttribute(XML_METHOD.mb_str(),
+                    static_cast<TextStorage>(docStorageNode->ToElement()->IntAttribute(XML_METHOD.data(),
                                              static_cast<int>(m_documentStorageMethod)));
                 // verify that this is a sensical value
                 if (m_documentStorageMethod != TextStorage::EmbedText &&
                     m_documentStorageMethod != TextStorage::NoEmbedText)
                     { m_documentStorageMethod = TextStorage::NoEmbedText; }
                 }
-            auto projectLang = projectSettings->FirstChildElement(XML_PROJECT_LANGUAGE.mb_str());
+            auto projectLang = projectSettings->FirstChildElement(XML_PROJECT_LANGUAGE.data());
             if (projectLang)
                 {
-                int value = projectLang->ToElement()->IntAttribute(XML_VALUE.mb_str(), static_cast<int>(m_language));
+                int value = projectLang->ToElement()->IntAttribute(XML_VALUE.data(), static_cast<int>(m_language));
                 if (value < 0 ||
                     value >= static_cast<decltype(value)>(readability::test_language::TEST_LANGUAGE_COUNT))
                     { value = static_cast<decltype(value)>(readability::test_language::english_test); }
@@ -1356,7 +1264,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             if (randSizeSizeNode)
                 {
                 int value =
-                    randSizeSizeNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), GetBatchRandomSamplingSize());
+                    randSizeSizeNode->ToElement()->IntAttribute(XML_VALUE.data(), GetBatchRandomSamplingSize());
                 // verify that this is a sensical value
                 if (value < 1 || value > 100)
                     { value = 25; }
@@ -1366,7 +1274,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             if (minDocSizeNode)
                 {
                 int value =
-                    minDocSizeNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), GetMinDocWordCountForBatch());
+                    minDocSizeNode->ToElement()->IntAttribute(XML_VALUE.data(), GetMinDocWordCountForBatch());
                 // verify that this is a sensical value
                 if (value < 1)
                     { value = 1; }
@@ -1376,7 +1284,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             if (filePathTruncModeNode)
                 {
                 int value =
-                    filePathTruncModeNode->ToElement()->IntAttribute(XML_VALUE.mb_str(),
+                    filePathTruncModeNode->ToElement()->IntAttribute(XML_VALUE.data(),
                                                                      static_cast<int>(GetFilePathTruncationMode()));
                 // verify that this is a sensical value
                 if (value < 0 ||
@@ -1401,7 +1309,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 if (sentencesBreakdownInfoNode)
                     {
                     const char* InfoChars =
-                        sentencesBreakdownInfoNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                        sentencesBreakdownInfoNode->ToElement()->Attribute(XML_VALUE.data());
                     if (InfoChars)
                         {
                         const wxString InfoStr =
@@ -1420,7 +1328,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 auto wordsBreakdownInfoNode = wordsBreakdownNode->FirstChildElement(XML_WORDS_BREAKDOWN_INFO.mb_str());
                 if (wordsBreakdownInfoNode)
                     {
-                    const char* InfoChars = wordsBreakdownInfoNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                    const char* InfoChars = wordsBreakdownInfoNode->ToElement()->Attribute(XML_VALUE.data());
                     if (InfoChars)
                         {
                         const wxString InfoStr =
@@ -1432,66 +1340,66 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 }
             // grammar
-            auto grammarNode = projectSettings->FirstChildElement(XML_GRAMMAR.mb_str());
+            auto grammarNode = projectSettings->FirstChildElement(XML_GRAMMAR.data());
             if (grammarNode)
                 {
                 // spell checking options
-                auto spellCheckNode = grammarNode->FirstChildElement(XML_SPELLCHECK_IGNORE_PROPER_NOUNS.mb_str());
+                auto spellCheckNode = grammarNode->FirstChildElement(XML_SPELLCHECK_IGNORE_PROPER_NOUNS.data());
                 if (spellCheckNode)
                     {
                     SpellCheckIgnoreProperNouns(
                         int_to_bool(spellCheckNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), bool_to_int(SpellCheckIsIgnoringProperNouns()))));
+                            XML_VALUE.data(), bool_to_int(SpellCheckIsIgnoringProperNouns()))));
                     }
-                spellCheckNode = grammarNode->FirstChildElement(XML_SPELLCHECK_IGNORE_UPPERCASED.mb_str());
+                spellCheckNode = grammarNode->FirstChildElement(XML_SPELLCHECK_IGNORE_UPPERCASED.data());
                 if (spellCheckNode)
                     {
                     SpellCheckIgnoreUppercased(
                         int_to_bool(spellCheckNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), bool_to_int(SpellCheckIsIgnoringUppercased()))));
+                            XML_VALUE.data(), bool_to_int(SpellCheckIsIgnoringUppercased()))));
                     }
-                spellCheckNode = grammarNode->FirstChildElement(XML_SPELLCHECK_IGNORE_NUMERALS.mb_str());
+                spellCheckNode = grammarNode->FirstChildElement(XML_SPELLCHECK_IGNORE_NUMERALS.data());
                 if (spellCheckNode)
                     {
                     SpellCheckIgnoreNumerals(
                         int_to_bool(spellCheckNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), bool_to_int(SpellCheckIsIgnoringNumerals()))));
+                            XML_VALUE.data(), bool_to_int(SpellCheckIsIgnoringNumerals()))));
                     }
-                spellCheckNode = grammarNode->FirstChildElement(XML_SPELLCHECK_IGNORE_FILE_ADDRESSES.mb_str());
+                spellCheckNode = grammarNode->FirstChildElement(XML_SPELLCHECK_IGNORE_FILE_ADDRESSES.data());
                 if (spellCheckNode)
                     {
                     SpellCheckIgnoreFileAddresses(
                         int_to_bool(spellCheckNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), bool_to_int(SpellCheckIsIgnoringFileAddresses()))));
+                            XML_VALUE.data(), bool_to_int(SpellCheckIsIgnoringFileAddresses()))));
                     }
                 spellCheckNode = grammarNode->FirstChildElement(
-                    XML_SPELLCHECK_IGNORE_PROGRAMMER_CODE.mb_str());
+                    XML_SPELLCHECK_IGNORE_PROGRAMMER_CODE.data());
                 if (spellCheckNode)
                     {
                     SpellCheckIgnoreProgrammerCode(
                         int_to_bool(spellCheckNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), bool_to_int(SpellCheckIsIgnoringProgrammerCode()))));
+                            XML_VALUE.data(), bool_to_int(SpellCheckIsIgnoringProgrammerCode()))));
                     }
                 spellCheckNode = grammarNode->FirstChildElement(
-                    XML_SPELLCHECK_ALLOW_COLLOQUIALISMS.mb_str());
+                    XML_SPELLCHECK_ALLOW_COLLOQUIALISMS.data());
                 if (spellCheckNode)
                     {
                     SpellCheckAllowColloquialisms(
                         int_to_bool(spellCheckNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), bool_to_int(SpellCheckIsAllowingColloquialisms()))));
+                            XML_VALUE.data(), bool_to_int(SpellCheckIsAllowingColloquialisms()))));
                     }
-                spellCheckNode = grammarNode->FirstChildElement(XML_SPELLCHECK_IGNORE_SOCIAL_MEDIA_TAGS.mb_str());
+                spellCheckNode = grammarNode->FirstChildElement(XML_SPELLCHECK_IGNORE_SOCIAL_MEDIA_TAGS.data());
                 if (spellCheckNode)
                     {
                     SpellCheckIgnoreSocialMediaTags(
                         int_to_bool(spellCheckNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), bool_to_int(SpellCheckIsIgnoringSocialMediaTags()))));
+                            XML_VALUE.data(), bool_to_int(SpellCheckIsIgnoringSocialMediaTags()))));
                     }
                 // which grammar options are included
-                auto grammarInfoNode = grammarNode->FirstChildElement(XML_GRAMMAR_INFO.mb_str());
+                auto grammarInfoNode = grammarNode->FirstChildElement(XML_GRAMMAR_INFO.data());
                 if (grammarInfoNode)
                     {
-                    const char* grammarInfoChars = grammarInfoNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                    const char* grammarInfoChars = grammarInfoNode->ToElement()->Attribute(XML_VALUE.data());
                     if (grammarInfoChars)
                         {
                         const wxString grammarInfStr =
@@ -1503,40 +1411,40 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 }
             // wizard page defaults
-            auto documentAnalysisNode = projectSettings->FirstChildElement(XML_DOCUMENT_ANALYSIS_LOGIC.mb_str());
+            auto documentAnalysisNode = projectSettings->FirstChildElement(XML_DOCUMENT_ANALYSIS_LOGIC.data());
             if (documentAnalysisNode)
                 {
                 // determinant for what a long sentence is
-                auto longSentenceNode = documentAnalysisNode->FirstChildElement(XML_LONG_SENTENCE_METHOD.mb_str());
+                auto longSentenceNode = documentAnalysisNode->FirstChildElement(XML_LONG_SENTENCE_METHOD.data());
                 if (longSentenceNode)
                     {
                     m_longSentenceMethod =
                         static_cast<LongSentence>(longSentenceNode->ToElement()->IntAttribute(
-                            XML_METHOD.mb_str(), static_cast<int>(m_longSentenceMethod)));
+                            XML_METHOD.data(), static_cast<int>(m_longSentenceMethod)));
                     // verify that this is a sensical value
                     if (m_longSentenceMethod != LongSentence::LongerThanSpecifiedLength &&
                         m_longSentenceMethod != LongSentence::OutlierLength)
                         { m_longSentenceMethod = LongSentence::LongerThanSpecifiedLength; }
                     }
                 auto longSentenceLengthNode =
-                    documentAnalysisNode->FirstChildElement(XML_LONG_SENTENCE_LENGTH.mb_str());
+                    documentAnalysisNode->FirstChildElement(XML_LONG_SENTENCE_LENGTH.data());
                 if (longSentenceLengthNode)
                     {
                     m_difficultSentenceLength =
                         longSentenceLengthNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), m_difficultSentenceLength);
+                            XML_VALUE.data(), m_difficultSentenceLength);
                     // verify that this is a sensical value
                     if (m_difficultSentenceLength <= 0)
                         { m_difficultSentenceLength = 22; }
                     }
                 // determinant for how to syllabize numerals
                 auto numSyllNode =
-                    documentAnalysisNode->FirstChildElement(XML_NUMERAL_SYLLABICATION_METHOD.mb_str());
+                    documentAnalysisNode->FirstChildElement(XML_NUMERAL_SYLLABICATION_METHOD.data());
                 if (numSyllNode)
                     {
                     m_numeralSyllabicationMethod =
                         static_cast<NumeralSyllabize>(numSyllNode->ToElement()->IntAttribute(
-                            XML_METHOD.mb_str(), static_cast<int>(m_numeralSyllabicationMethod)));
+                            XML_METHOD.data(), static_cast<int>(m_numeralSyllabicationMethod)));
                     // verify that this is a sensical value
                     if (m_numeralSyllabicationMethod != NumeralSyllabize::WholeWordIsOneSyllable &&
                         m_numeralSyllabicationMethod != NumeralSyllabize::SoundOutEachDigit)
@@ -1544,38 +1452,38 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 // whether we should ignore blank lines when parsing paragraphs
                 auto ignoreBlankLines =
-                    documentAnalysisNode->FirstChildElement(XML_IGNORE_BLANK_LINES_FOR_PARAGRAPH_PARSING.mb_str());
+                    documentAnalysisNode->FirstChildElement(XML_IGNORE_BLANK_LINES_FOR_PARAGRAPH_PARSING.data());
                 if (ignoreBlankLines)
                     {
                     m_ignoreBlankLinesForParagraphsParser =
                         int_to_bool(ignoreBlankLines->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), bool_to_int(m_ignoreBlankLinesForParagraphsParser)));
+                            XML_VALUE.data(), bool_to_int(m_ignoreBlankLinesForParagraphsParser)));
                     }
                 // whether we should ignore indenting when parsing paragraphs
                 auto ignoreIndents =
-                    documentAnalysisNode->FirstChildElement(XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING.mb_str());
+                    documentAnalysisNode->FirstChildElement(XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING.data());
                 if (ignoreIndents)
                     {
                     m_ignoreIndentingForParagraphsParser =
                         int_to_bool(ignoreIndents->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), bool_to_int(m_ignoreIndentingForParagraphsParser)));
+                            XML_VALUE.data(), bool_to_int(m_ignoreIndentingForParagraphsParser)));
                     }
                 // whether sentences must start capitalized
                 auto sentenceStartMustBeUppercased =
-                    documentAnalysisNode->FirstChildElement(XML_SENTENCES_MUST_START_CAPITALIZED.mb_str());
+                    documentAnalysisNode->FirstChildElement(XML_SENTENCES_MUST_START_CAPITALIZED.data());
                 if (sentenceStartMustBeUppercased)
                     {
                     m_sentenceStartMustBeUppercased =
                         int_to_bool(sentenceStartMustBeUppercased->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), bool_to_int(m_sentenceStartMustBeUppercased)));
+                            XML_VALUE.data(), bool_to_int(m_sentenceStartMustBeUppercased)));
                     }
                 // file path to phrases to exclude from analysis
                 wxString filePath;
                 auto excludedPhrasesFilePath =
-                    documentAnalysisNode->FirstChildElement(XML_EXCLUDED_PHRASES_PATH.mb_str());
+                    documentAnalysisNode->FirstChildElement(XML_EXCLUDED_PHRASES_PATH.data());
                 if (excludedPhrasesFilePath)
                     {
-                    const char* filePathChars = excludedPhrasesFilePath->ToElement()->Attribute(XML_VALUE.mb_str());
+                    const char* filePathChars = excludedPhrasesFilePath->ToElement()->Attribute(XML_VALUE.data());
                     if (filePathChars)
                         {
                         const wxString filePathStr =
@@ -1587,82 +1495,82 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 // whether to include first occurrence of excluded phrases
                 auto includeExcludedPhraseFirstOccurrence =
-                    documentAnalysisNode->FirstChildElement(XML_EXCLUDED_PHRASES_INCLUDE_FIRST_OCCURRENCE.mb_str());
+                    documentAnalysisNode->FirstChildElement(XML_EXCLUDED_PHRASES_INCLUDE_FIRST_OCCURRENCE.data());
                 if (includeExcludedPhraseFirstOccurrence)
                     {
                     IncludeExcludedPhraseFirstOccurrence(
-                        int_to_bool(includeExcludedPhraseFirstOccurrence->ToElement()->IntAttribute(XML_VALUE.mb_str(),
+                        int_to_bool(includeExcludedPhraseFirstOccurrence->ToElement()->IntAttribute(XML_VALUE.data(),
                             bool_to_int(IsIncludingExcludedPhraseFirstOccurrence()))));
                     }
-                auto excludedBlockTags = documentAnalysisNode->FirstChildElement(XML_EXCLUDE_BLOCK_TAGS.mb_str());
+                auto excludedBlockTags = documentAnalysisNode->FirstChildElement(XML_EXCLUDE_BLOCK_TAGS.data());
                 if (excludedBlockTags)
                     {
-                    auto excludedBlockTagNode = excludedBlockTags->FirstChildElement(XML_EXCLUDE_BLOCK_TAG.mb_str());
+                    auto excludedBlockTagNode = excludedBlockTags->FirstChildElement(XML_EXCLUDE_BLOCK_TAG.data());
                     while (excludedBlockTagNode)
                         {
-                        const wxString blockTags = TiXmlNodeToString(excludedBlockTagNode, XML_VALUE);
+                        const wxString blockTags = TiXmlNodeToString(excludedBlockTagNode, XML_VALUE.data());
                         if (blockTags.length() >= 2)
                             { m_exclusionBlockTags.push_back(std::make_pair(blockTags[0],blockTags[1])); }
                         excludedBlockTagNode =
-                            excludedBlockTagNode->NextSiblingElement(XML_EXCLUDE_BLOCK_TAG.mb_str());
+                            excludedBlockTagNode->NextSiblingElement(XML_EXCLUDE_BLOCK_TAG.data());
                         }
                     }
                 // whether to ignore proper nouns
-                auto ignoreProperNouns = documentAnalysisNode->FirstChildElement(XML_IGNORE_PROPER_NOUNS.mb_str());
+                auto ignoreProperNouns = documentAnalysisNode->FirstChildElement(XML_IGNORE_PROPER_NOUNS.data());
                 if (ignoreProperNouns)
                     {
                     m_ignoreProperNouns =
-                        int_to_bool(ignoreProperNouns->ToElement()->IntAttribute(XML_VALUE.mb_str(),
+                        int_to_bool(ignoreProperNouns->ToElement()->IntAttribute(XML_VALUE.data(),
                             bool_to_int(m_ignoreProperNouns)));
                     }
                 // whether to ignore numerals
-                auto ignoreNumerals = documentAnalysisNode->FirstChildElement(XML_IGNORE_NUMERALS.mb_str());
+                auto ignoreNumerals = documentAnalysisNode->FirstChildElement(XML_IGNORE_NUMERALS.data());
                 if (ignoreNumerals)
                     {
                     m_ignoreNumerals =
-                        int_to_bool(ignoreNumerals->ToElement()->IntAttribute(XML_VALUE.mb_str(),
+                        int_to_bool(ignoreNumerals->ToElement()->IntAttribute(XML_VALUE.data(),
                             bool_to_int(m_ignoreNumerals)));
                     }
                 // whether to ignore file address
-                auto ignoreFileAddresses = documentAnalysisNode->FirstChildElement(XML_IGNORE_FILE_ADDRESSES.mb_str());
+                auto ignoreFileAddresses = documentAnalysisNode->FirstChildElement(XML_IGNORE_FILE_ADDRESSES.data());
                 if (ignoreFileAddresses)
                     {
                     m_ignoreFileAddresses =
-                        int_to_bool(ignoreFileAddresses->ToElement()->IntAttribute(XML_VALUE.mb_str(),
+                        int_to_bool(ignoreFileAddresses->ToElement()->IntAttribute(XML_VALUE.data(),
                             bool_to_int(m_ignoreFileAddresses)));
                     }
                 // whether to ignore citations
-                auto ignoreCitations = documentAnalysisNode->FirstChildElement(XML_IGNORE_CITATIONS.mb_str());
+                auto ignoreCitations = documentAnalysisNode->FirstChildElement(XML_IGNORE_CITATIONS.data());
                 if (ignoreCitations)
                     {
                     m_ignoreTrailingCitations =
-                        int_to_bool(ignoreCitations->ToElement()->IntAttribute(XML_VALUE.mb_str(),
+                        int_to_bool(ignoreCitations->ToElement()->IntAttribute(XML_VALUE.data(),
                             bool_to_int(m_ignoreTrailingCitations)));
                     }
                 // whether to aggressively exclude
                 auto aggressivelyDeducingLists = documentAnalysisNode->FirstChildElement(
-                    XML_AGGRESSIVE_EXCLUSION.mb_str());
+                    XML_AGGRESSIVE_EXCLUSION.data());
                 if (aggressivelyDeducingLists)
                     {
                     m_aggressiveExclusion =
-                        int_to_bool(aggressivelyDeducingLists->ToElement()->IntAttribute(XML_VALUE.mb_str(),
+                        int_to_bool(aggressivelyDeducingLists->ToElement()->IntAttribute(XML_VALUE.data(),
                             bool_to_int(m_aggressiveExclusion)));
                     }
                 // whether to ignore copyright notices
                 auto ignoreCopyrightNotices =
-                    documentAnalysisNode->FirstChildElement(XML_IGNORE_COPYRIGHT_NOTICES.mb_str());
+                    documentAnalysisNode->FirstChildElement(XML_IGNORE_COPYRIGHT_NOTICES.data());
                 if (ignoreCopyrightNotices)
                     {
                     m_ignoreTrailingCopyrightNoticeParagraphs =
-                        int_to_bool(ignoreCopyrightNotices->ToElement()->IntAttribute(XML_VALUE.mb_str(),
+                        int_to_bool(ignoreCopyrightNotices->ToElement()->IntAttribute(XML_VALUE.data(),
                             bool_to_int(m_ignoreTrailingCopyrightNoticeParagraphs)));
                     }
                 // determinant for how to text is parsed into paragraphs
-                auto paraParsingNode = documentAnalysisNode->FirstChildElement(XML_PARAGRAPH_PARSING_METHOD.mb_str());
+                auto paraParsingNode = documentAnalysisNode->FirstChildElement(XML_PARAGRAPH_PARSING_METHOD.data());
                 if (paraParsingNode)
                     {
                     m_paragraphsParsingMethod =
-                        static_cast<ParagraphParse>(paraParsingNode->ToElement()->IntAttribute(XML_METHOD.mb_str(),
+                        static_cast<ParagraphParse>(paraParsingNode->ToElement()->IntAttribute(XML_METHOD.data(),
                             static_cast<int>(m_paragraphsParsingMethod)));
                     // verify that this is a sensical value
                     if (m_paragraphsParsingMethod != ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs &&
@@ -1672,12 +1580,12 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
 
                 // determinant for how to handle headers, titles, bullet points, and lists
                 auto invalidSentenceNode =
-                    documentAnalysisNode->FirstChildElement(XML_INVALID_SENTENCE_METHOD.mb_str());
+                    documentAnalysisNode->FirstChildElement(XML_INVALID_SENTENCE_METHOD.data());
                 if (invalidSentenceNode)
                     {
                     m_invalidSentenceMethod =
                         static_cast<InvalidSentence>(invalidSentenceNode->ToElement()->IntAttribute(
-                            XML_METHOD.mb_str(), static_cast<int>(m_invalidSentenceMethod)));
+                            XML_METHOD.data(), static_cast<int>(m_invalidSentenceMethod)));
                     if (static_cast<int>(m_invalidSentenceMethod) < 0 ||
                         static_cast<int>(m_invalidSentenceMethod) >=
                             static_cast<int>(InvalidSentence::INVALID_SENTENCE_METHOD_COUNT))
@@ -1686,96 +1594,96 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
 
                 // Number of words that will make an incomplete sentence actually complete
                 auto includeIncompleteSentencesIfLongerThanNode =
-                    documentAnalysisNode->FirstChildElement(XML_INCLUDE_INCOMPLETE_SENTENCES_LONGER_THAN.mb_str());
+                    documentAnalysisNode->FirstChildElement(XML_INCLUDE_INCOMPLETE_SENTENCES_LONGER_THAN.data());
                 if (includeIncompleteSentencesIfLongerThanNode)
                     {
                     m_includeIncompleteSentencesIfLongerThan =
                         includeIncompleteSentencesIfLongerThanNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), m_includeIncompleteSentencesIfLongerThan);
+                            XML_VALUE.data(), m_includeIncompleteSentencesIfLongerThan);
                     }
                 }
 
             // test bundles
-            auto testBundlesNode = projectSettings->FirstChildElement(XML_TEST_BUNDLES.mb_str());
+            auto testBundlesNode = projectSettings->FirstChildElement(XML_TEST_BUNDLES.data());
             if (testBundlesNode)
                 {
-                auto testBundleNode = testBundlesNode->FirstChildElement(XML_TEST_BUNDLE.mb_str());
+                auto testBundleNode = testBundlesNode->FirstChildElement(XML_TEST_BUNDLE.data());
                 while (testBundleNode)
                     {
                     // bundle name
-                    auto bundleNameNode = testBundleNode->FirstChildElement(XML_TEST_BUNDLE_NAME.mb_str());
-                    const wxString bundleName = TiXmlNodeToString(bundleNameNode, XML_VALUE);
+                    auto bundleNameNode = testBundleNode->FirstChildElement(XML_TEST_BUNDLE_NAME.data());
+                    const wxString bundleName = TiXmlNodeToString(bundleNameNode, XML_VALUE.data());
                     if (bundleName.empty())
                         {
-                        testBundleNode = testBundleNode->NextSiblingElement(XML_TEST_BUNDLE.mb_str());
+                        testBundleNode = testBundleNode->NextSiblingElement(XML_TEST_BUNDLE.data());
                         continue;
                         }
                     TestBundle bundle(bundleName.wc_str());
                     // bundle description
                     auto bundleDescriptionNode =
-                        testBundleNode->FirstChildElement(XML_TEST_BUNDLE_DESCRIPTION.mb_str());
+                        testBundleNode->FirstChildElement(XML_TEST_BUNDLE_DESCRIPTION.data());
                     if (bundleDescriptionNode)
-                        { bundle.SetDescription(TiXmlNodeToString(bundleDescriptionNode, XML_VALUE).wc_str()); }
+                        { bundle.SetDescription(TiXmlNodeToString(bundleDescriptionNode, XML_VALUE.data()).wc_str()); }
                     // get the included tests
-                    auto testNamesNode = testBundleNode->FirstChildElement(XML_TEST_NAMES.mb_str());
+                    auto testNamesNode = testBundleNode->FirstChildElement(XML_TEST_NAMES.data());
                     if (!testNamesNode)
                         {
-                        testBundleNode = testBundleNode->NextSiblingElement(XML_TEST_BUNDLE.mb_str());
+                        testBundleNode = testBundleNode->NextSiblingElement(XML_TEST_BUNDLE.data());
                         continue;
                         }
-                    auto testNameNode = testNamesNode->FirstChildElement(XML_TEST_NAME.mb_str());
+                    auto testNameNode = testNamesNode->FirstChildElement(XML_TEST_NAME.data());
                     while (testNameNode)
                         {
-                        const wxString testName = TiXmlNodeToString(testNameNode, XML_VALUE);
+                        const wxString testName = TiXmlNodeToString(testNameNode, XML_VALUE.data());
                         if (testName.length())
                             {
                             const auto minGoal = TiXmlNodeToDouble(testNameNode, XML_GOAL_MIN_VAL_GOAL);
                             const auto maxGoal = TiXmlNodeToDouble(testNameNode, XML_GOAL_MAX_VAL_GOAL);
                             bundle.GetTestGoals().insert({testName.wc_str(), minGoal, maxGoal});
                             }
-                        testNameNode = testNameNode->NextSiblingElement(XML_TEST_NAME.mb_str());
+                        testNameNode = testNameNode->NextSiblingElement(XML_TEST_NAME.data());
                         }
                     // get the included stats
-                    auto statsNode = testBundleNode->FirstChildElement(XML_BUNDLE_STATISTICS.mb_str());
+                    auto statsNode = testBundleNode->FirstChildElement(XML_BUNDLE_STATISTICS.data());
                     if (!statsNode)
                         {
-                        testBundleNode = testBundleNode->NextSiblingElement(XML_TEST_BUNDLE.mb_str());
+                        testBundleNode = testBundleNode->NextSiblingElement(XML_TEST_BUNDLE.data());
                         continue;
                         }
-                    auto statNode = statsNode->FirstChildElement(XML_BUNDLE_STATISTIC.mb_str());
+                    auto statNode = statsNode->FirstChildElement(XML_BUNDLE_STATISTIC.data());
                     while (statNode)
                         {
-                        const wxString statName = TiXmlNodeToString(statNode, XML_VALUE);
+                        const wxString statName = TiXmlNodeToString(statNode, XML_VALUE.data());
                         if (statName.length())
                             {
                             auto minGoal = TiXmlNodeToDouble(statNode, XML_GOAL_MIN_VAL_GOAL);
                             auto maxGoal = TiXmlNodeToDouble(statNode, XML_GOAL_MAX_VAL_GOAL);
                             bundle.GetStatGoals().insert({ statName.wc_str(), minGoal, maxGoal});
                             }
-                        statNode = statNode->NextSiblingElement(XML_BUNDLE_STATISTIC.mb_str());
+                        statNode = statNode->NextSiblingElement(XML_BUNDLE_STATISTIC.data());
                         }
                     BaseProject::m_testBundles.insert(bundle);
                     dynamic_cast<MainFrame*>(wxGetApp().GetMainFrame())->AddTestBundleToMenus(bundleName);
 
-                    testBundleNode = testBundleNode->NextSiblingElement(XML_TEST_BUNDLE.mb_str());
+                    testBundleNode = testBundleNode->NextSiblingElement(XML_TEST_BUNDLE.data());
                     }
                 }
 
             // custom tests
-            auto customTestsNode = projectSettings->FirstChildElement(XML_CUSTOM_TESTS.mb_str());
+            auto customTestsNode = projectSettings->FirstChildElement(XML_CUSTOM_TESTS.data());
             if (customTestsNode)
                 {
                 auto customReadabilityTestNode =
-                    customTestsNode->FirstChildElement(XML_CUSTOM_FAMILIAR_WORD_TEST.mb_str());
+                    customTestsNode->FirstChildElement(XML_CUSTOM_FAMILIAR_WORD_TEST.data());
                 while (customReadabilityTestNode)
                     {
                     // test name
-                    auto testNameNode = customReadabilityTestNode->FirstChildElement(XML_TEST_NAME.mb_str());
-                    const char* testNameData = testNameNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                    auto testNameNode = customReadabilityTestNode->FirstChildElement(XML_TEST_NAME.data());
+                    const char* testNameData = testNameNode->ToElement()->Attribute(XML_VALUE.data());
                     if (!testNameData)
                         {
                         customReadabilityTestNode =
-                            customReadabilityTestNode->NextSiblingElement(XML_CUSTOM_FAMILIAR_WORD_TEST.mb_str());
+                            customReadabilityTestNode->NextSiblingElement(XML_CUSTOM_FAMILIAR_WORD_TEST.data());
                         continue;
                         }
                     wxString testNameStr =
@@ -1784,17 +1692,17 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (!filteredText)
                         {
                         customReadabilityTestNode =
-                            customReadabilityTestNode->NextSiblingElement(XML_CUSTOM_FAMILIAR_WORD_TEST.mb_str());
+                            customReadabilityTestNode->NextSiblingElement(XML_CUSTOM_FAMILIAR_WORD_TEST.data());
                         continue;
                         }
                     wxString testName(filteredText);
                     // file path
                     wxString filePath;
                     auto filePathNode =
-                        customReadabilityTestNode->FirstChildElement(XML_FAMILIAR_WORD_FILE_PATH.mb_str());
+                        customReadabilityTestNode->FirstChildElement(XML_FAMILIAR_WORD_FILE_PATH.data());
                     if (filePathNode)
                         {
-                        const char* filePathData = filePathNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                        const char* filePathData = filePathNode->ToElement()->Attribute(XML_VALUE.data());
                         if (filePathData)
                             {
                             wxString filePathStr =
@@ -1806,33 +1714,33 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     // test type
                     int testType = 0;
-                    auto testTypeNode = customReadabilityTestNode->FirstChildElement(XML_TEST_TYPE.mb_str());
+                    auto testTypeNode = customReadabilityTestNode->FirstChildElement(XML_TEST_TYPE.data());
                     if (testTypeNode)
-                        { testType = testTypeNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), testType); }
+                        { testType = testTypeNode->ToElement()->IntAttribute(XML_VALUE.data(), testType); }
                     if (testType < 0 ||
                         testType >= static_cast<int>(readability::readability_test_type::TEST_TYPE_COUNT))
                         { testType = 0; }
                     // stemming type
                     int stemmingType = 0;
-                    auto stemmingNode = customReadabilityTestNode->FirstChildElement(XML_STEMMING_TYPE.mb_str());
+                    auto stemmingNode = customReadabilityTestNode->FirstChildElement(XML_STEMMING_TYPE.data());
                     if (stemmingNode)
-                        { stemmingType = stemmingNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0); }
+                        { stemmingType = stemmingNode->ToElement()->IntAttribute(XML_VALUE.data(), 0); }
                     if (stemmingType < 0 ||
                         stemmingType >= static_cast<int>(stemming::stemming_type::STEMMING_TYPE_COUNT))
                         { stemmingType = 0; }
                     // formula type (for backward compatibility)
                     int formulaType = 0;
-                    auto formulaNode = customReadabilityTestNode->FirstChildElement(XML_TEST_FORMULA_TYPE.mb_str());
+                    auto formulaNode = customReadabilityTestNode->FirstChildElement(XML_TEST_FORMULA_TYPE.data());
                     if (formulaNode)
-                        { formulaType = formulaNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0); }
+                        { formulaType = formulaNode->ToElement()->IntAttribute(XML_VALUE.data(), 0); }
                     if (formulaType != 0 && formulaType != 1)
                         { formulaType = 0; }
                     // the formula
                     wxString formula;
-                    formulaNode = customReadabilityTestNode->FirstChildElement(XML_TEST_FORMULA.mb_str());
+                    formulaNode = customReadabilityTestNode->FirstChildElement(XML_TEST_FORMULA.data());
                     if (formulaNode)
                         {
-                        const char* formulaData = formulaNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                        const char* formulaData = formulaNode->ToElement()->Attribute(XML_VALUE.data());
                         if (formulaData)
                             {
                             wxString formulaStr =
@@ -1859,62 +1767,62 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     int includeProperNouns = 1;
                     bool includeNumeric = false;
                     auto properNounNode =
-                        customReadabilityTestNode->FirstChildElement(XML_INCLUDE_PROPER_NOUNS.mb_str());
+                        customReadabilityTestNode->FirstChildElement(XML_INCLUDE_PROPER_NOUNS.data());
                     if (properNounNode)
                         {
                         includeProperNouns =
-                            properNounNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), includeProperNouns);
+                            properNounNode->ToElement()->IntAttribute(XML_VALUE.data(), includeProperNouns);
                         }
-                    auto numericNode = customReadabilityTestNode->FirstChildElement(XML_INCLUDE_NUMERIC.mb_str());
+                    auto numericNode = customReadabilityTestNode->FirstChildElement(XML_INCLUDE_NUMERIC.data());
                     if (numericNode)
                         {
                         includeNumeric =
-                            int_to_bool(numericNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0));
+                            int_to_bool(numericNode->ToElement()->IntAttribute(XML_VALUE.data(), 0));
                         }
                     // whether DC and Spache lists should also be included with this test
                     bool includeCustomWordList = true/*best for backward compatibility*/,
                         includeDCTest = false, includeSpacheTest = false,
                         includeHJList = false, includeStockerList = false, familiarWordsMustBeOnAllLists = false;
                     auto otherTestNode =
-                        customReadabilityTestNode->FirstChildElement(XML_INCLUDE_CUSTOM_WORD_LIST.mb_str());
+                        customReadabilityTestNode->FirstChildElement(XML_INCLUDE_CUSTOM_WORD_LIST.data());
                     if (otherTestNode)
                         {
                         includeCustomWordList =
-                            int_to_bool(otherTestNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0));
+                            int_to_bool(otherTestNode->ToElement()->IntAttribute(XML_VALUE.data(), 0));
                         }
-                    otherTestNode = customReadabilityTestNode->FirstChildElement(XML_INCLUDE_DC_LIST.mb_str());
+                    otherTestNode = customReadabilityTestNode->FirstChildElement(XML_INCLUDE_DC_LIST.data());
                     if (otherTestNode)
                         {
                         includeDCTest =
-                            int_to_bool(otherTestNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0));
+                            int_to_bool(otherTestNode->ToElement()->IntAttribute(XML_VALUE.data(), 0));
                         }
-                    otherTestNode = customReadabilityTestNode->FirstChildElement(XML_INCLUDE_SPACHE_LIST.mb_str());
+                    otherTestNode = customReadabilityTestNode->FirstChildElement(XML_INCLUDE_SPACHE_LIST.data());
                     if (otherTestNode)
                         {
                         includeSpacheTest =
-                            int_to_bool(otherTestNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0));
+                            int_to_bool(otherTestNode->ToElement()->IntAttribute(XML_VALUE.data(), 0));
                         }
                     otherTestNode =
-                        customReadabilityTestNode->FirstChildElement(XML_INCLUDE_HARRIS_JACOBSON_LIST.mb_str());
+                        customReadabilityTestNode->FirstChildElement(XML_INCLUDE_HARRIS_JACOBSON_LIST.data());
                     if (otherTestNode)
                         {
                         includeHJList =
-                            int_to_bool(otherTestNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0));
+                            int_to_bool(otherTestNode->ToElement()->IntAttribute(XML_VALUE.data(), 0));
                         }
                     otherTestNode =
-                        customReadabilityTestNode->FirstChildElement(XML_INCLUDE_STOCKER_LIST.mb_str());
+                        customReadabilityTestNode->FirstChildElement(XML_INCLUDE_STOCKER_LIST.data());
                     if (otherTestNode)
                         {
                         includeStockerList =
-                            int_to_bool(otherTestNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0));
+                            int_to_bool(otherTestNode->ToElement()->IntAttribute(XML_VALUE.data(), 0));
                         }
                     auto familiarWordsMustBeOnAllListsNode =
-                        customReadabilityTestNode->FirstChildElement(XML_FAMILIAR_WORDS_ALL_LISTS.mb_str());
+                        customReadabilityTestNode->FirstChildElement(XML_FAMILIAR_WORDS_ALL_LISTS.data());
                     if (familiarWordsMustBeOnAllListsNode)
                         {
                         familiarWordsMustBeOnAllLists =
                             int_to_bool(familiarWordsMustBeOnAllListsNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), 0));
+                                XML_VALUE.data(), 0));
                         }
                     // industry
                     bool industryChildrensPublishingSelected = false;
@@ -1923,7 +1831,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (industryNode)
                         {
                         industryChildrensPublishingSelected =
-                            int_to_bool(industryNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0));
+                            int_to_bool(industryNode->ToElement()->IntAttribute(XML_VALUE.data(), 0));
                         }
                     bool industryAdultPublishingSelected = false;
                     industryNode =
@@ -1931,7 +1839,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (industryNode)
                         {
                         industryAdultPublishingSelected =
-                            int_to_bool(industryNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0));
+                            int_to_bool(industryNode->ToElement()->IntAttribute(XML_VALUE.data(), 0));
                         }
                     bool industrySecondaryLanguageSelected = false;
                     industryNode =
@@ -1939,7 +1847,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (industryNode)
                         {
                         industrySecondaryLanguageSelected =
-                            int_to_bool(industryNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0));
+                            int_to_bool(industryNode->ToElement()->IntAttribute(XML_VALUE.data(), 0));
                         }
                     bool industryChildrensHealthCareSelected = false;
                     industryNode =
@@ -1947,7 +1855,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (industryNode)
                         {
                         industryChildrensHealthCareSelected =
-                            int_to_bool(industryNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0));
+                            int_to_bool(industryNode->ToElement()->IntAttribute(XML_VALUE.data(), 0));
                         }
                     bool industryAdultHealthCareSelected = false;
                     industryNode =
@@ -1955,7 +1863,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (industryNode)
                         {
                         industryAdultHealthCareSelected =
-                            int_to_bool(industryNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0));
+                            int_to_bool(industryNode->ToElement()->IntAttribute(XML_VALUE.data(), 0));
                         }
                     bool industryMilitaryGovernmentSelected = false;
                     industryNode =
@@ -1963,14 +1871,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (industryNode)
                         {
                         industryMilitaryGovernmentSelected =
-                            int_to_bool(industryNode->ToElement()->IntAttribute(XML_VALUE.mb_str(), 0));
+                            int_to_bool(industryNode->ToElement()->IntAttribute(XML_VALUE.data(), 0));
                         }
                     bool industryBroadcastingSelected = false;
                     industryNode = customReadabilityTestNode->FirstChildElement(XML_INDUSTRY_BROADCASTING.mb_str());
                     if (industryNode)
                         {
                         industryBroadcastingSelected =
-                            int_to_bool(industryNode->ToElement()->IntAttribute(XML_VALUE.mb_str(),
+                            int_to_bool(industryNode->ToElement()->IntAttribute(XML_VALUE.data(),
                                 industryBroadcastingSelected));
                         }
                     // document
@@ -1980,7 +1888,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         documentGeneralSelected =
                             int_to_bool(documentNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), documentGeneralSelected));
+                                XML_VALUE.data(), documentGeneralSelected));
                         }
                     bool documentTechSelected = false;
                     documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_TECHNICAL.mb_str());
@@ -1988,7 +1896,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         documentTechSelected =
                             int_to_bool(documentNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), documentTechSelected));
+                                XML_VALUE.data(), documentTechSelected));
                         }
                     bool documentFormSelected = false;
                     documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_FORM.mb_str());
@@ -1996,7 +1904,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         documentFormSelected =
                             int_to_bool(documentNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), documentFormSelected));
+                                XML_VALUE.data(), documentFormSelected));
                         }
                     bool documentYoungAdultSelected = false;
                     documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_YOUNGADULT.mb_str());
@@ -2004,7 +1912,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         documentYoungAdultSelected =
                             int_to_bool(documentNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), documentYoungAdultSelected));
+                                XML_VALUE.data(), documentYoungAdultSelected));
                         }
                     bool documentChildrenSelected = false;
                     documentNode = customReadabilityTestNode->FirstChildElement(XML_DOCUMENT_CHILDREN_LIT.mb_str());
@@ -2012,7 +1920,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                          documentChildrenSelected =
                             int_to_bool(documentNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), documentChildrenSelected));
+                                XML_VALUE.data(), documentChildrenSelected));
                         }
                     CustomReadabilityTest cTest(testName.wc_str(),
                             formula.wc_str(),
@@ -2035,7 +1943,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     BaseProjectDoc::AddGlobalCustomReadabilityTest(cTest);
 
                     customReadabilityTestNode =
-                        customReadabilityTestNode->NextSiblingElement(XML_CUSTOM_FAMILIAR_WORD_TEST.mb_str());
+                        customReadabilityTestNode->NextSiblingElement(XML_CUSTOM_FAMILIAR_WORD_TEST.data());
                     }
                 }
 
@@ -2048,7 +1956,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                                                         XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH.mb_str());
                 if (imagePathNode)
                     {
-                    const char* imagePath = imagePathNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                    const char* imagePath = imagePathNode->ToElement()->Attribute(XML_VALUE.data());
                     if (imagePath)
                         {
                         wxString imagePathStr =
@@ -2063,7 +1971,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 auto colorSchemNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_COLOR_SCHEME.mb_str());
                 if (colorSchemNode)
                     {
-                    const char* colorScheme = colorSchemNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                    const char* colorScheme = colorSchemNode->ToElement()->Attribute(XML_VALUE.data());
                     if (colorScheme)
                         {
                         wxString colorSchemeStr =
@@ -2095,7 +2003,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         int value =
                             backgroundImageEffectNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), static_cast<int>(GetPlotBackGroundImageEffect()));
+                                XML_VALUE.data(), static_cast<int>(GetPlotBackGroundImageEffect()));
                         if (value < 0 ||
                             value >=
                             static_cast<decltype(value)>(ImageEffect::IMAGE_EFFECTS_COUNT) )
@@ -2108,7 +2016,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         int value =
                             backgroundImageFitNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), static_cast<int>(GetPlotBackGroundImageFit()));
+                                XML_VALUE.data(), static_cast<int>(GetPlotBackGroundImageFit()));
                         if (value < 0 ||
                             value >=
                             static_cast<decltype(value)>(ImageFit::IMAGE_FIT_COUNT) )
@@ -2135,14 +2043,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     {
                     SetPlotBackGroundImageOpacity(
                         static_cast<uint8_t>(opacityNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), GetPlotBackGroundImageOpacity())));
+                            XML_VALUE.data(), GetPlotBackGroundImageOpacity())));
                     }
                 opacityNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY.mb_str());
                 if (opacityNode)
                     {
                     SetPlotBackGroundColorOpacity(
                         static_cast<uint8_t>(opacityNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), GetPlotBackGroundColorOpacity())));
+                            XML_VALUE.data(), GetPlotBackGroundColorOpacity())));
                     }
                 // linear gradient of backgrounds
                 auto gradientNode = graphDefaultsNode->FirstChildElement(
@@ -2151,13 +2059,13 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     {
                     SetGraphBackGroundLinearGradient(
                         int_to_bool(gradientNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), bool_to_int(GetGraphBackGroundLinearGradient()))));
+                            XML_VALUE.data(), bool_to_int(GetGraphBackGroundLinearGradient()))));
                     }
                 // stipple image
                 auto stipplePathNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_STIPPLE_PATH.mb_str());
                 if (stipplePathNode)
                     {
-                    const char* stipplePath = stipplePathNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                    const char* stipplePath = stipplePathNode->ToElement()->Attribute(XML_VALUE.data());
                     if (stipplePath)
                         {
                         wxString imagePathStr =
@@ -2172,7 +2080,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 auto commonImagePathNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_COMMON_IMAGE_PATH.mb_str());
                 if (commonImagePathNode)
                     {
-                    const char* commonImagePath = commonImagePathNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                    const char* commonImagePath = commonImagePathNode->ToElement()->Attribute(XML_VALUE.data());
                     if (commonImagePath)
                         {
                         wxString imagePathStr =
@@ -2187,7 +2095,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 auto stippleShapeNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_STIPPLE_SHAPE.mb_str());
                 if (stippleShapeNode)
                     {
-                    const char* stippleShape = stippleShapeNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                    const char* stippleShape = stippleShapeNode->ToElement()->Attribute(XML_VALUE.data());
                     if (stippleShape)
                         {
                         wxString shapeStr =
@@ -2218,7 +2126,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     {
                     DisplayDropShadows(
                         int_to_bool(dropShadowNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), bool_to_int(IsDisplayingDropShadows()))));
+                            XML_VALUE.data(), bool_to_int(IsDisplayingDropShadows()))));
                     }
                 // whether to draw attention to the complex word groups in syllable graphs
                 auto showcaseComplexWordsNode =
@@ -2227,13 +2135,13 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     {
                     ShowcaseComplexWords(
                         int_to_bool(showcaseComplexWordsNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), bool_to_int(IsShowcasingComplexWords()))));
+                            XML_VALUE.data(), bool_to_int(IsShowcasingComplexWords()))));
                     }
                 // watermark
                 auto watermarkNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_WATERMARK.mb_str());
                 if (watermarkNode)
                     {
-                    const char* watermark = watermarkNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                    const char* watermark = watermarkNode->ToElement()->Attribute(XML_VALUE.data());
                     if (watermark)
                         {
                         const wxString waterMarkStr =
@@ -2247,7 +2155,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 watermarkNode = graphDefaultsNode->FirstChildElement(XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH.mb_str());
                 if (watermarkNode)
                     {
-                    const char* watermark = watermarkNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                    const char* watermark = watermarkNode->ToElement()->Attribute(XML_VALUE.data());
                     if (watermark)
                         {
                         const wxString waterMarkStr =
@@ -2267,7 +2175,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         int value =
                             catNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), static_cast<int>(GetHistorgramBinningMethod()));
+                                XML_VALUE.data(), static_cast<int>(GetHistorgramBinningMethod()));
                         if (value < 0 ||
                             value >= static_cast<decltype(value)>(Histogram::BinningMethod::BINNING_METHOD_COUNT))
                             { value = static_cast<decltype(value)>(Histogram::BinningMethod::BinByIntegerRange); }
@@ -2278,7 +2186,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         int value =
                             roundNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), static_cast<decltype(value)>(GetHistogramRoundingMethod()));
+                                XML_VALUE.data(), static_cast<decltype(value)>(GetHistogramRoundingMethod()));
                         if (value < 0 || value >= static_cast<decltype(value)>(RoundingMethod::ROUNDING_METHOD_COUNT))
                             { value = static_cast<decltype(value)>(RoundingMethod::RoundDown); }
                         SetHistogramRoundingMethod(static_cast<RoundingMethod>(value));
@@ -2288,7 +2196,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         int value =
                             intervalNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), static_cast<decltype(value)>(GetHistogramIntervalDisplay()));
+                                XML_VALUE.data(), static_cast<decltype(value)>(GetHistogramIntervalDisplay()));
                         if (value < 0 ||
                             value >= static_cast<decltype(value)>(Histogram::IntervalDisplay::INTERVAL_METHOD_COUNT))
                             { value = static_cast<decltype(value)>(Histogram::IntervalDisplay::Cutpoints); }
@@ -2299,7 +2207,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         int value =
                             catLabelNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), static_cast<decltype(value)>(GetHistrogramBinLabelDisplay()));
+                                XML_VALUE.data(), static_cast<decltype(value)>(GetHistrogramBinLabelDisplay()));
                         if (value < 0 ||
                             value >= static_cast<decltype(value)>(BinLabelDisplay::BIN_LABEL_DISPLAY_COUNT))
                             { value = static_cast<decltype(value)>(BinLabelDisplay::BinValue); }
@@ -2324,14 +2232,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         SetHistogramBarOpacity(
                             static_cast<uint8_t>(opacityNodeHisto->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), GetHistogramBarOpacity())));
+                                XML_VALUE.data(), GetHistogramBarOpacity())));
                         }
                     auto barEffectNode = histogramNode->FirstChildElement(XML_BAR_EFFECT.mb_str());
                     if (barEffectNode)
                         {
                         int value =
                             barEffectNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), static_cast<int>(GetHistogramBarEffect()));
+                                XML_VALUE.data(), static_cast<int>(GetHistogramBarEffect()));
                         if (value < 0 ||
                             value >=
                             static_cast<decltype(value)>(BoxEffect::EFFECTS_COUNT) )
@@ -2362,7 +2270,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         int value =
                             orientationNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), static_cast<int>(GetBarChartOrientation()));
+                                XML_VALUE.data(), static_cast<int>(GetBarChartOrientation()));
                         if (value < 0 ||
                             value >=
                             static_cast<decltype(value)>(Wisteria::Orientation::ORIENTATION_COUNT) )
@@ -2374,14 +2282,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         SetGraphBarOpacity(
                             static_cast<uint8_t>(opacityNodeBarChart->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), GetGraphBarOpacity())));
+                                XML_VALUE.data(), GetGraphBarOpacity())));
                         }
                     auto barEffectNode = barChartNode->FirstChildElement(XML_BAR_EFFECT.mb_str());
                     if (barEffectNode)
                         {
                         int value =
                             barEffectNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), static_cast<int>(GetGraphBarEffect()));
+                                XML_VALUE.data(), static_cast<int>(GetGraphBarEffect()));
                         if (value < 0 ||
                             value >= static_cast<decltype(value)>(BoxEffect::EFFECTS_COUNT) )
                             { value = static_cast<decltype(value)>(BoxEffect::Solid); }
@@ -2392,7 +2300,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         DisplayBarChartLabels(
                             int_to_bool(barDisplayLabelNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), bool_to_int(IsDisplayingBarChartLabels()))));
+                                XML_VALUE.data(), bool_to_int(IsDisplayingBarChartLabels()))));
                         }
                     }
                 // box plots settings
@@ -2418,14 +2326,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         SetGraphBoxOpacity(
                             static_cast<uint8_t>(opacityNodeBoxPlot->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), GetGraphBoxOpacity())));
+                                XML_VALUE.data(), GetGraphBoxOpacity())));
                         }
                     auto boxEffectNode = boxPlotNode->FirstChildElement(XML_BOX_EFFECT.mb_str());
                     if (boxEffectNode)
                         {
                         int value =
                             boxEffectNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), static_cast<int>(GetGraphBoxEffect()));
+                                XML_VALUE.data(), static_cast<int>(GetGraphBoxEffect()));
                         if (value < 0 ||
                             value >= static_cast<decltype(value)>(BoxEffect::EFFECTS_COUNT))
                             { value = static_cast<decltype(value)>(BoxEffect::Solid); }
@@ -2437,7 +2345,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         ShowAllBoxPlotPoints(
                             int_to_bool(boxPlotShowAllPointsNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), bool_to_int(IsShowingAllBoxPlotPoints()))));
+                                XML_VALUE.data(), bool_to_int(IsShowingAllBoxPlotPoints()))));
                         }
                     auto boxConnectMiddlePointsNode =
                         boxPlotNode->FirstChildElement(XML_BOX_CONNECT_MIDDLE_POINTS.mb_str());
@@ -2445,14 +2353,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         ConnectBoxPlotMiddlePoints(
                             int_to_bool(boxConnectMiddlePointsNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), bool_to_int(IsConnectingBoxPlotMiddlePoints()))));
+                                XML_VALUE.data(), bool_to_int(IsConnectingBoxPlotMiddlePoints()))));
                         }
                     auto boxDisplayLabelNode = boxPlotNode->FirstChildElement(XML_BOX_DISPLAY_LABELS.mb_str());
                     if (boxDisplayLabelNode)
                         {
                         DisplayBoxPlotLabels(
                             int_to_bool(boxDisplayLabelNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), bool_to_int(IsDisplayingBoxPlotLabels()))));
+                                XML_VALUE.data(), bool_to_int(IsDisplayingBoxPlotLabels()))));
                         }
                     }
                 // Readability graph options
@@ -2467,7 +2375,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         ConnectFleschPoints(
                             int_to_bool(connectionLine->ToElement()->IntAttribute(
-                                XML_INCLUDE.mb_str(), bool_to_int(IsConnectingFleschPoints()))));
+                                XML_INCLUDE.data(), bool_to_int(IsConnectingFleschPoints()))));
                         }
                     auto rulerDocGroup =
                         fleschChartSettingsNode->FirstChildElement(XML_FLESCH_RULER_DOC_GROUPS.mb_str());
@@ -2475,7 +2383,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         IncludeFleschRulerDocGroups(
                             int_to_bool(rulerDocGroup->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), bool_to_int(IsIncludingFleschRulerDocGroups()))));
+                                XML_VALUE.data(), bool_to_int(IsIncludingFleschRulerDocGroups()))));
                         }
                     }
                 // Lix
@@ -2487,7 +2395,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         {
                         UseEnglishLabelsForGermanLix(
                             int_to_bool(useEnglishLabels->ToElement()->IntAttribute(
-                                XML_INCLUDE.mb_str(), bool_to_int(IsUsingEnglishLabelsForGermanLix()))));
+                                XML_INCLUDE.data(), bool_to_int(IsUsingEnglishLabelsForGermanLix()))));
                         }
                     }
                 // Fry/Raygor/GPM/Schwartz
@@ -2510,12 +2418,12 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         SetInvalidAreaColor(wxColour(red, green, blue));
                         }
                     // Raygor appearance
-                    auto raygorStyleNode = fryRaygorNode->FirstChildElement(XML_RAYGOR_STYLE.mb_str());
+                    auto raygorStyleNode = fryRaygorNode->FirstChildElement(XML_RAYGOR_STYLE.data());
                     if (raygorStyleNode != nullptr)
                         {
                         int value =
                             raygorStyleNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), static_cast<int>(GetRaygorStyle()));
+                                XML_VALUE.data(), static_cast<int>(GetRaygorStyle()));
                         if (value < 0 ||
                             value >=
                             static_cast<decltype(value)>(Wisteria::Graphs::RaygorStyle::RAYGOR_STYLE_COUNT) )
@@ -2892,13 +2800,13 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     SetVarianceMethod(
                         static_cast<VarianceMethod>(
                             varianceMethod->ToElement()->IntAttribute(
-                                XML_METHOD.mb_str(), static_cast<int>(GetVarianceMethod()))));
+                                XML_METHOD.data(), static_cast<int>(GetVarianceMethod()))));
                     }
                 // stats report
                 auto statsNode = statsDefaultsNode->FirstChildElement(XML_STATISTICS_RESULTS.mb_str());
                 if (statsNode)
                     {
-                    const char* statsChars = statsNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                    const char* statsChars = statsNode->ToElement()->Attribute(XML_VALUE.data());
                     if (statsChars)
                         {
                         const wxString statsStr =
@@ -2913,7 +2821,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 auto statsReportNode = statsDefaultsNode->FirstChildElement(XML_STATISTICS_REPORT.mb_str());
                 if (statsReportNode)
                     {
-                    const char* statsReportChars = statsReportNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                    const char* statsReportChars = statsReportNode->ToElement()->Attribute(XML_VALUE.data());
                     if (statsReportChars)
                         {
                         const wxString statsReportStr =
@@ -2926,17 +2834,17 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 }
             // wizard page defaults
-            auto wizardPageDefaultsNode = projectSettings->FirstChildElement(XML_WIZARD_PAGES_SETTINGS.mb_str());
+            auto wizardPageDefaultsNode = projectSettings->FirstChildElement(XML_WIZARD_PAGES_SETTINGS.data());
             if (wizardPageDefaultsNode)
                 {
                 // Text Source                
-                auto textSource = wizardPageDefaultsNode->FirstChildElement(XML_TEXT_SOURCE.mb_str());
+                auto textSource = wizardPageDefaultsNode->FirstChildElement(XML_TEXT_SOURCE.data());
                 if (textSource)
                     {
                     m_textSource =
                         static_cast<TextSource>(
                             textSource->ToElement()->IntAttribute(
-                                XML_METHOD.mb_str(), static_cast<int>(m_textSource)));
+                                XML_METHOD.data(), static_cast<int>(m_textSource)));
                     if (m_textSource != TextSource::FromFile &&
                         m_textSource != TextSource::EnteredText)
                         { m_textSource = TextSource::FromFile; }
@@ -2948,7 +2856,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     m_testRecommendation =
                         static_cast<TestRecommendation>(
                             testRecommendation->ToElement()->IntAttribute(
-                                XML_METHOD.mb_str(), static_cast<int>(m_testRecommendation)));
+                                XML_METHOD.data(), static_cast<int>(m_testRecommendation)));
                     if (m_testRecommendation >= TestRecommendation::TEST_RECOMMENDATION_COUNT)
                         { m_testRecommendation = TestRecommendation::BasedOnDocumentType; }
                     }
@@ -2959,7 +2867,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     m_testsByIndustry =
                         static_cast<readability::industry_classification>(
                             testsByIndustry->ToElement()->IntAttribute(
-                                XML_METHOD.mb_str(), static_cast<int>(m_testsByIndustry)));
+                                XML_METHOD.data(), static_cast<int>(m_testsByIndustry)));
                     if (m_testsByIndustry == readability::industry_classification::INDUSTRY_CLASSIFICATION_COUNT)
                         { m_testsByIndustry = readability::industry_classification::adult_publishing_industry; }
                     }
@@ -2971,7 +2879,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     m_testsByDocumentType =
                         static_cast<readability::document_classification>(
                             testsByDocumentType->ToElement()->IntAttribute(
-                                XML_METHOD.mb_str(), static_cast<int>(m_testsByDocumentType)));
+                                XML_METHOD.data(), static_cast<int>(m_testsByDocumentType)));
                     if (m_testsByDocumentType == readability::document_classification::DOCUMENT_CLASSIFICATION_COUNT)
                         { m_testsByDocumentType = readability::document_classification::adult_literature_document; }
                     }
@@ -2979,7 +2887,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 auto bundleNode = wizardPageDefaultsNode->FirstChildElement(XML_SELECTED_TEST_BUNDLE.mb_str());
                 if (bundleNode)
                     {
-                    const char* bundleChars = bundleNode->ToElement()->Attribute(XML_VALUE.mb_str());
+                    const char* bundleChars = bundleNode->ToElement()->Attribute(XML_VALUE.data());
                     if (bundleChars)
                         {
                         const wxString bundleStr =
@@ -2998,23 +2906,23 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 {
                 // grade scale display
                 auto gradeScaleNode =
-                    readabilityTestsNode->FirstChildElement(XML_READABILITY_TEST_GRADE_SCALE_DISPLAY.mb_str());
+                    readabilityTestsNode->FirstChildElement(XML_READABILITY_TEST_GRADE_SCALE_DISPLAY.data());
                 if (gradeScaleNode)
                     {
                     GetReadabilityMessageCatalog().SetGradeScale(
                         static_cast<readability::grade_scale>(
                         gradeScaleNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(),
+                            XML_VALUE.data(),
                             static_cast<int>(GetReadabilityMessageCatalog().GetGradeScale()))));
                     }
 
                 auto gradeScaleLongFormatNode =
-                    readabilityTestsNode->FirstChildElement(XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT.mb_str());
+                    readabilityTestsNode->FirstChildElement(XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT.data());
                 if (gradeScaleLongFormatNode)
                     {
                     GetReadabilityMessageCatalog().SetLongGradeScaleFormat(
                         int_to_bool(gradeScaleLongFormatNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(),
+                            XML_VALUE.data(),
                             bool_to_int(GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat()))));
                     }
 
@@ -3024,7 +2932,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     GetReadabilityMessageCatalog().SetReadingAgeDisplay(
                         static_cast<ReadabilityMessages::ReadingAgeDisplay>(
                             readingAgeFormatNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(),
+                                XML_VALUE.data(),
                                 static_cast<int>(GetReadabilityMessageCatalog().GetReadingAgeDisplay()))));
                     }
 
@@ -3034,60 +2942,60 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     {
                     IncludeScoreSummaryReport(
                         int_to_bool(includeScoreSummaryReportNode->ToElement()->IntAttribute(
-                            XML_VALUE.mb_str(), bool_to_int(IsIncludingScoreSummaryReport()))));
+                            XML_VALUE.data(), bool_to_int(IsIncludingScoreSummaryReport()))));
                     }
 
                 // test-specific options
                 auto fleschKincaidOptionsNode =
-                    readabilityTestsNode->FirstChildElement(XML_FLESCH_KINCAID_OPTIONS.mb_str());
+                    readabilityTestsNode->FirstChildElement(XML_FLESCH_KINCAID_OPTIONS.data());
                 if (fleschKincaidOptionsNode)
                     {
                     auto numeralMethod =
-                        fleschKincaidOptionsNode->FirstChildElement(XML_NUMERAL_SYLLABICATION_METHOD.mb_str());
+                        fleschKincaidOptionsNode->FirstChildElement(XML_NUMERAL_SYLLABICATION_METHOD.data());
                     if (numeralMethod)
                         {
                         SetFleschKincaidNumeralSyllabizeMethod(
                             static_cast<FleschKincaidNumeralSyllabize>(
-                                numeralMethod->ToElement()->IntAttribute(XML_VALUE.mb_str(),
+                                numeralMethod->ToElement()->IntAttribute(XML_VALUE.data(),
                                     static_cast<int>(GetFleschKincaidNumeralSyllabizeMethod()))));
                         }
                     }
 
-                auto fleschOptionsNode = readabilityTestsNode->FirstChildElement(XML_FLESCH_OPTIONS.mb_str());
+                auto fleschOptionsNode = readabilityTestsNode->FirstChildElement(XML_FLESCH_OPTIONS.data());
                 if (fleschOptionsNode)
                     {
                     auto numeralMethod =
-                        fleschOptionsNode->FirstChildElement(XML_NUMERAL_SYLLABICATION_METHOD.mb_str());
+                        fleschOptionsNode->FirstChildElement(XML_NUMERAL_SYLLABICATION_METHOD.data());
                     if (numeralMethod)
                         {
                         SetFleschNumeralSyllabizeMethod(
                             static_cast<FleschNumeralSyllabize>(
                                 numeralMethod->ToElement()->IntAttribute(
-                                    XML_VALUE.mb_str(), static_cast<int>(GetFleschNumeralSyllabizeMethod()))));
+                                    XML_VALUE.data(), static_cast<int>(GetFleschNumeralSyllabizeMethod()))));
                         }
                     }
 
-                auto fogOptionsNode = readabilityTestsNode->FirstChildElement(XML_GUNNING_FOG_OPTIONS.mb_str());
+                auto fogOptionsNode = readabilityTestsNode->FirstChildElement(XML_GUNNING_FOG_OPTIONS.data());
                 if (fogOptionsNode)
                     {
-                    auto useUnits = fogOptionsNode->FirstChildElement(XML_USE_SENTENCE_UNITS.mb_str());
+                    auto useUnits = fogOptionsNode->FirstChildElement(XML_USE_SENTENCE_UNITS.data());
                     if (useUnits)
                         {
                         SetFogUseSentenceUnits(
                             int_to_bool(useUnits->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), bool_to_int(FogUseSentenceUnits()))));
+                                XML_VALUE.data(), bool_to_int(FogUseSentenceUnits()))));
                         }
                     }
 
-                auto hjOptionsNode = readabilityTestsNode->FirstChildElement(XML_HARRIS_JACOBSON_OPTIONS.mb_str());
+                auto hjOptionsNode = readabilityTestsNode->FirstChildElement(XML_HARRIS_JACOBSON_OPTIONS.data());
                 if (hjOptionsNode)
                     {
-                    auto hjTextExclusion = hjOptionsNode->FirstChildElement(XML_TEXT_EXCLUSION.mb_str());
+                    auto hjTextExclusion = hjOptionsNode->FirstChildElement(XML_TEXT_EXCLUSION.data());
                     if (hjTextExclusion)
                         {
                         int value =
                             hjTextExclusion->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), static_cast<int>(GetHarrisJacobsonTextExclusionMode()));
+                                XML_VALUE.data(), static_cast<int>(GetHarrisJacobsonTextExclusionMode()));
                         if (value < 0 ||
                             value >= static_cast<int>(
                                 SpecializedTestTextExclusion::SPECIALIZED_TEST_TEXT_EXCLUSION_COUNT))
@@ -3097,22 +3005,22 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         }
                     }
 
-                auto dcOptionsNode = readabilityTestsNode->FirstChildElement(XML_NEW_DALE_CHALL_OPTIONS.mb_str());
+                auto dcOptionsNode = readabilityTestsNode->FirstChildElement(XML_NEW_DALE_CHALL_OPTIONS.data());
                 if (dcOptionsNode)
                     {
-                    auto includeStockerListNode = dcOptionsNode->FirstChildElement(XML_STOCKER_LIST.mb_str());
+                    auto includeStockerListNode = dcOptionsNode->FirstChildElement(XML_STOCKER_LIST.data());
                     if (includeStockerListNode)
                         {
                         IncludeStockerCatholicSupplement(
                             int_to_bool(includeStockerListNode->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), bool_to_int(IsIncludingStockerCatholicSupplement()))));
+                                XML_VALUE.data(), bool_to_int(IsIncludingStockerCatholicSupplement()))));
                         }
-                    auto dcTextExclusion = dcOptionsNode->FirstChildElement(XML_TEXT_EXCLUSION.mb_str());
+                    auto dcTextExclusion = dcOptionsNode->FirstChildElement(XML_TEXT_EXCLUSION.data());
                     if (dcTextExclusion)
                         {
                         int value =
                             dcTextExclusion->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), static_cast<int>(GetDaleChallTextExclusionMode()));
+                                XML_VALUE.data(), static_cast<int>(GetDaleChallTextExclusionMode()));
                         if (value < 0 ||
                             value >= static_cast<int>(
                                 SpecializedTestTextExclusion::SPECIALIZED_TEST_TEXT_EXCLUSION_COUNT))
@@ -3123,12 +3031,12 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         SetDaleChallTextExclusionMode(static_cast<SpecializedTestTextExclusion>(value));
                         }
                     auto dcProperNoun =
-                        dcOptionsNode->FirstChildElement(XML_PROPER_NOUN_COUNTING_METHOD.mb_str());
+                        dcOptionsNode->FirstChildElement(XML_PROPER_NOUN_COUNTING_METHOD.data());
                     if (dcProperNoun)
                         {
                         int value =
                             dcProperNoun->ToElement()->IntAttribute(
-                                XML_VALUE.mb_str(), static_cast<int>(GetDaleChallProperNounCountingMethod()));
+                                XML_VALUE.data(), static_cast<int>(GetDaleChallProperNounCountingMethod()));
                         if (value < 0 ||
                             value >= static_cast<int>(
                                 readability::proper_noun_counting_method::PROPERNOUNCOUNTINGMETHOD_COUNT))
@@ -3154,7 +3062,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     if (test)
                         {
                         rTest->include(
-                            int_to_bool(test->ToElement()->IntAttribute(XML_INCLUDE.mb_str(),
+                            int_to_bool(test->ToElement()->IntAttribute(XML_INCLUDE.data(),
                                 bool_to_int(rTest->is_included()))));
                         }
                     }
@@ -3163,15 +3071,15 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 if (test)
                     {
                     m_includeDolchSightWords =
-                        int_to_bool(test->ToElement()->IntAttribute(XML_INCLUDE.mb_str(),
+                        int_to_bool(test->ToElement()->IntAttribute(XML_INCLUDE.data(),
                             bool_to_int(m_includeDolchSightWords)));
                     }
                 // custom test
                 GetIncludedCustomTests().clear();
-                test = readabilityTestsNode->FirstChildElement(XML_CUSTOM_TEST.mb_str());
+                test = readabilityTestsNode->FirstChildElement(XML_CUSTOM_TEST.data());
                 while (test)
                     {
-                    const char* testId = test->ToElement()->Attribute(XML_VALUE.mb_str());
+                    const char* testId = test->ToElement()->Attribute(XML_VALUE.data());
                     if (testId)
                         {
                         const wxString testStr =
@@ -3180,7 +3088,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                         if (convertedStr)
                             { GetIncludedCustomTests().push_back(convertedStr); }
                         }
-                    test = test->NextSiblingElement(XML_CUSTOM_TEST.mb_str());
+                    test = test->NextSiblingElement(XML_CUSTOM_TEST.data());
                     }
                  }
             // Text views
@@ -3188,18 +3096,18 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
             if (textViewNode)
                 {
                 // how highlighting is done
-                auto highlightMethod = textViewNode->FirstChildElement(XML_HIGHLIGHT_METHOD.mb_str());
+                auto highlightMethod = textViewNode->FirstChildElement(XML_HIGHLIGHT_METHOD.data());
                 if (highlightMethod)
                     {
                     m_textHighlight =
                         static_cast<TextHighlight>(highlightMethod->ToElement()->IntAttribute(
-                            XML_METHOD.mb_str(), static_cast<int>(m_textHighlight)));
+                            XML_METHOD.data(), static_cast<int>(m_textHighlight)));
                     if (m_textHighlight != TextHighlight::HighlightBackground &&
                         m_textHighlight != TextHighlight::HighlightForeground)
                         { m_textHighlight = TextHighlight::HighlightBackground; }
                     }
                 // the highlight color
-                auto colorNode = textViewNode->FirstChildElement(XML_HIGHLIGHTCOLOR.mb_str());
+                auto colorNode = textViewNode->FirstChildElement(XML_HIGHLIGHTCOLOR.data());
                 if (colorNode)
                     {
                     int red =
@@ -3230,7 +3138,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     SetDolchConjunctionsColor(wxColour(red, green, blue));
                     m_highlightDolchConjunctions =
                          int_to_bool(dolchConjunctionsColorNode->ToElement()->IntAttribute(
-                             XML_INCLUDE.mb_str(), bool_to_int(m_highlightDolchConjunctions)));
+                             XML_INCLUDE.data(), bool_to_int(m_highlightDolchConjunctions)));
                     }
                 auto dolchPrepositionsColorNode = textViewNode->FirstChildElement(
                     XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR.mb_str());
@@ -3248,7 +3156,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     SetDolchPrepositionsColor(wxColour(red, green, blue));
                     m_highlightDolchPrepositions =
                          int_to_bool(dolchPrepositionsColorNode->ToElement()->IntAttribute(
-                             XML_INCLUDE.mb_str(), bool_to_int(m_highlightDolchPrepositions)));
+                             XML_INCLUDE.data(), bool_to_int(m_highlightDolchPrepositions)));
                     }
                 auto dolchPronounsColorNode = textViewNode->FirstChildElement(
                     XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR.mb_str());
@@ -3266,7 +3174,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     SetDolchPronounsColor(wxColour(red, green, blue));
                     m_highlightDolchPronouns =
                          int_to_bool(dolchPronounsColorNode->ToElement()->IntAttribute(
-                             XML_INCLUDE.mb_str(), bool_to_int(m_highlightDolchPronouns)));
+                             XML_INCLUDE.data(), bool_to_int(m_highlightDolchPronouns)));
                     }
                 auto dolchAdverbsColorNode = textViewNode->FirstChildElement(
                     XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR.mb_str());
@@ -3284,7 +3192,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     SetDolchAdverbsColor(wxColour(red, green, blue));
                     m_highlightDolchAdverbs =
                          int_to_bool(dolchAdverbsColorNode->ToElement()->IntAttribute(
-                             XML_INCLUDE.mb_str(), bool_to_int(m_highlightDolchAdverbs)));
+                             XML_INCLUDE.data(), bool_to_int(m_highlightDolchAdverbs)));
                     }
                 auto dolchAdjectivesColorNode =
                     textViewNode->FirstChildElement(XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR.mb_str());
@@ -3302,7 +3210,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     SetDolchAdjectivesColor(wxColour(red, green, blue));
                     m_highlightDolchAdjectives =
                          int_to_bool(dolchAdjectivesColorNode->ToElement()->IntAttribute(
-                             XML_INCLUDE.mb_str(), bool_to_int(m_highlightDolchAdjectives)));
+                             XML_INCLUDE.data(), bool_to_int(m_highlightDolchAdjectives)));
                     }
                 auto dolchVerbColorNode = textViewNode->FirstChildElement(XML_DOLCH_VERBS_HIGHLIGHTCOLOR.mb_str());
                 if (dolchVerbColorNode)
@@ -3319,7 +3227,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     SetDolchVerbsColor(wxColour(red, green, blue));
                     m_highlightDolchVerbs =
                          int_to_bool(dolchVerbColorNode->ToElement()->IntAttribute(
-                             XML_INCLUDE.mb_str(), bool_to_int(m_highlightDolchVerbs)));
+                             XML_INCLUDE.data(), bool_to_int(m_highlightDolchVerbs)));
                     }
                 auto dolchNounColorNode = textViewNode->FirstChildElement(XML_DOLCH_NOUNS_HIGHLIGHTCOLOR.mb_str());
                 if (dolchNounColorNode)
@@ -3336,10 +3244,10 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     SetDolchNounColor(wxColour(red, green, blue));
                     m_highlightDolchNouns =
                          int_to_bool(dolchNounColorNode->ToElement()->IntAttribute(
-                             XML_INCLUDE.mb_str(), bool_to_int(m_highlightDolchNouns)));
+                             XML_INCLUDE.data(), bool_to_int(m_highlightDolchNouns)));
                     }
                 // the highlight color for wordy items
-                auto wordyPhrasesColorNode = textViewNode->FirstChildElement(XML_WORDY_PHRASE_HIGHLIGHTCOLOR.mb_str());
+                auto wordyPhrasesColorNode = textViewNode->FirstChildElement(XML_WORDY_PHRASE_HIGHLIGHTCOLOR.data());
                 if (wordyPhrasesColorNode)
                     {
                     int red =
@@ -3354,7 +3262,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     m_wordyPhraseHighlightColor.Set(red, green, blue);
                     }
                 // the highlight color for repeated words
-                auto dupWordColorNode = textViewNode->FirstChildElement(XML_DUP_WORD_HIGHLIGHTCOLOR.mb_str());
+                auto dupWordColorNode = textViewNode->FirstChildElement(XML_DUP_WORD_HIGHLIGHTCOLOR.data());
                 if (dupWordColorNode)
                     {
                     int red =
@@ -3369,7 +3277,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     m_duplicateWordHighlightColor.Set(red, green, blue);
                     }
                 // the highlight color for ignored sentences
-                auto excludedColorNode = textViewNode->FirstChildElement(XML_EXCLUDED_HIGHLIGHTCOLOR.mb_str());
+                auto excludedColorNode = textViewNode->FirstChildElement(XML_EXCLUDED_HIGHLIGHTCOLOR.data());
                 if (excludedColorNode)
                     {
                     int red =
@@ -3454,10 +3362,10 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     tinyxml2::XMLDocument doc;
     doc.InsertEndChild( doc.NewDeclaration() );
 
-    auto root = doc.NewElement(XML_CONFIG_HEADER.mb_str());
-    root->SetAttribute(XML_VERSION.mb_str(), wxGetApp().GetAppVersion().mb_str());
+    auto root = doc.NewElement(XML_CONFIG_HEADER.data());
+    root->SetAttribute(XML_VERSION.data(), wxGetApp().GetAppVersion().mb_str());
 
-    auto configSection = doc.NewElement(XML_CONFIGURATIONS.mb_str());
+    auto configSection = doc.NewElement(XML_CONFIGURATIONS.data());
 
     auto customColours = doc.NewElement(XML_CUSTOM_COLORS.data());
     for (int i = 0; static_cast<size_t>(i) < GetCustomColours().size(); ++i)
@@ -3478,7 +3386,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     auto themeName = doc.NewElement(XML_THEME_NAME);
     const wxString themeNameEncoded = encode({ GetTheme().wc_str() }, false).c_str();
-    themeName->SetAttribute(XML_VALUE.mb_str(), themeNameEncoded.mb_str());
+    themeName->SetAttribute(XML_VALUE.data(), themeNameEncoded.mb_str());
     appearance->InsertEndChild(themeName);
 
     auto controlBkColor = doc.NewElement(XML_CONTROL_BACKGROUND_COLOR);
@@ -3545,11 +3453,11 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     configSection->InsertEndChild(appearance);
 
     auto licenseAccepted = doc.NewElement(XML_LICENSE_ACCEPTED.mb_str());
-    licenseAccepted->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsLicenseAccepted()) );
+    licenseAccepted->SetAttribute(XML_VALUE.data(), bool_to_int(IsLicenseAccepted()) );
     configSection->InsertEndChild(licenseAccepted);
 
     auto userAgent = doc.NewElement(XML_USER_AGENT.mb_str());
-    userAgent->SetAttribute(XML_VALUE.mb_str(),
+    userAgent->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetUserAgent().wc_str() }, false).c_str()).mb_str());
     configSection->InsertEndChild(userAgent);
 
@@ -3557,17 +3465,17 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto filePaths = doc.NewElement(FILE_OPEN_PATHS.mb_str());
     // project path
     auto projectPath = doc.NewElement(FILE_OPEN_PROJECT_PATH.mb_str());
-    projectPath->SetAttribute(XML_VALUE.mb_str(),
+    projectPath->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetProjectPath().wc_str() }, false).c_str()).mb_str());
     filePaths->InsertEndChild(projectPath);
     // image path
     auto imagePath = doc.NewElement(FILE_OPEN_IMAGE_PATH.mb_str());
-    imagePath->SetAttribute(XML_VALUE.mb_str(),
+    imagePath->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetImagePath().wc_str() }, false).c_str()).mb_str());
     filePaths->InsertEndChild(imagePath);
     // word list path
     auto wordlistPath = doc.NewElement(FILE_OPEN_WORDLIST_PATH.mb_str());
-    wordlistPath->SetAttribute(XML_VALUE.mb_str(),
+    wordlistPath->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetWordListPath().wc_str() }, false).c_str()).mb_str());
     filePaths->InsertEndChild(wordlistPath);
 
@@ -3578,8 +3486,8 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     for (const auto& warning : WarningManager::GetWarnings())
         {
         auto warningItem = doc.NewElement(XML_WARNING_MESSAGE.mb_str());
-        warningItem->SetAttribute(XML_VALUE.mb_str(), warning.GetId().mb_str());
-        warningItem->SetAttribute(XML_DISPLAY.mb_str(), bool_to_int(warning.ShouldBeShown()));
+        warningItem->SetAttribute(XML_VALUE.data(), warning.GetId().mb_str());
+        warningItem->SetAttribute(XML_DISPLAY.data(), bool_to_int(warning.ShouldBeShown()));
         warningItem->SetAttribute(XML_PREVIOUS_RESPONSE.mb_str(), warning.GetPreviousResponse());
         warningSection->InsertEndChild(warningItem);
         }
@@ -3589,39 +3497,39 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto exportSection = doc.NewElement(XML_EXPORT.mb_str());
     // extensions
     auto listExt = doc.NewElement(XML_EXPORT_LIST_EXT.mb_str());
-    listExt->SetAttribute(XML_VALUE.mb_str(), BaseProjectDoc::GetExportListExt().mb_str());
+    listExt->SetAttribute(XML_VALUE.data(), BaseProjectDoc::GetExportListExt().mb_str());
     exportSection->InsertEndChild(listExt);
     auto textExt = doc.NewElement(XML_EXPORT_TEXT_EXT.mb_str());
-    textExt->SetAttribute(XML_VALUE.mb_str(), BaseProjectDoc::GetExportTextViewExt().mb_str());
+    textExt->SetAttribute(XML_VALUE.data(), BaseProjectDoc::GetExportTextViewExt().mb_str());
     exportSection->InsertEndChild(textExt);
     auto graphExt = doc.NewElement(XML_EXPORT_GRAPH_EXT.mb_str());
-    graphExt->SetAttribute(XML_VALUE.mb_str(), BaseProjectDoc::GetExportGraphExt().mb_str());
+    graphExt->SetAttribute(XML_VALUE.data(), BaseProjectDoc::GetExportGraphExt().mb_str());
     exportSection->InsertEndChild(graphExt);
     // item inclusions
     auto includeLists = doc.NewElement(XML_EXPORT_LISTS.mb_str());
-    includeLists->SetAttribute(XML_VALUE.mb_str(), bool_to_int(BaseProjectDoc::IsExportingHardWordLists()));
+    includeLists->SetAttribute(XML_VALUE.data(), bool_to_int(BaseProjectDoc::IsExportingHardWordLists()));
     exportSection->InsertEndChild(includeLists);
     auto includeSentencesBreakdown = doc.NewElement(XML_EXPORT_SENTENCES_BREAKDOWN.mb_str());
-    includeSentencesBreakdown->SetAttribute(XML_VALUE.mb_str(),
+    includeSentencesBreakdown->SetAttribute(XML_VALUE.data(),
         bool_to_int(BaseProjectDoc::IsExportingSentencesBreakdown()));
     exportSection->InsertEndChild(includeSentencesBreakdown);
     auto includeGraphs = doc.NewElement(XML_EXPORT_GRAPHS.mb_str());
-    includeGraphs->SetAttribute(XML_VALUE.mb_str(), bool_to_int(BaseProjectDoc::IsExportingGraphs()));
+    includeGraphs->SetAttribute(XML_VALUE.data(), bool_to_int(BaseProjectDoc::IsExportingGraphs()));
     exportSection->InsertEndChild(includeGraphs);
     auto includeTestResults = doc.NewElement(XML_EXPORT_TEST_RESULTS.mb_str());
-    includeTestResults->SetAttribute(XML_VALUE.mb_str(), bool_to_int(BaseProjectDoc::IsExportingTestResults()));
+    includeTestResults->SetAttribute(XML_VALUE.data(), bool_to_int(BaseProjectDoc::IsExportingTestResults()));
     exportSection->InsertEndChild(includeTestResults);
     auto includeStats = doc.NewElement(XML_EXPORT_STATS.mb_str());
-    includeStats->SetAttribute(XML_VALUE.mb_str(), bool_to_int(BaseProjectDoc::IsExportingStatistics()));
+    includeStats->SetAttribute(XML_VALUE.data(), bool_to_int(BaseProjectDoc::IsExportingStatistics()));
     exportSection->InsertEndChild(includeStats);
     auto includeWordiness = doc.NewElement(XML_EXPORT_GRAMMAR.mb_str());
-    includeWordiness->SetAttribute(XML_VALUE.mb_str(), bool_to_int(BaseProjectDoc::IsExportingWordiness()));
+    includeWordiness->SetAttribute(XML_VALUE.data(), bool_to_int(BaseProjectDoc::IsExportingWordiness()));
     exportSection->InsertEndChild(includeWordiness);
     auto includeSightWords = doc.NewElement(XML_EXPORT_DOLCH_WORDS.mb_str());
-    includeSightWords->SetAttribute(XML_VALUE.mb_str(), bool_to_int(BaseProjectDoc::IsExportingSightWords()));
+    includeSightWords->SetAttribute(XML_VALUE.data(), bool_to_int(BaseProjectDoc::IsExportingSightWords()));
     exportSection->InsertEndChild(includeSightWords);
     auto includeWarnings = doc.NewElement(XML_EXPORT_WARNINGS.mb_str());
-    includeWarnings->SetAttribute(XML_VALUE.mb_str(), bool_to_int(BaseProjectDoc::IsExportingWarnings()));
+    includeWarnings->SetAttribute(XML_VALUE.data(), bool_to_int(BaseProjectDoc::IsExportingWarnings()));
     exportSection->InsertEndChild(includeWarnings);
 
     configSection->InsertEndChild(exportSection);
@@ -3630,35 +3538,35 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto printerSection = doc.NewElement(XML_PRINTER_SETTINGS.mb_str());
     // page setup
     auto paperId = doc.NewElement(XML_PRINTER_ID.mb_str());
-    paperId->SetAttribute(XML_VALUE.mb_str(), GetPaperId());
+    paperId->SetAttribute(XML_VALUE.data(), GetPaperId());
     printerSection->InsertEndChild(paperId);
     auto paperOrientation = doc.NewElement(XML_PRINTER_ORIENTATION.mb_str());
-    paperOrientation->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetPaperOrientation()));
+    paperOrientation->SetAttribute(XML_VALUE.data(), static_cast<int>(GetPaperOrientation()));
     printerSection->InsertEndChild(paperOrientation);
     // headers
     auto printerLeftHeader = doc.NewElement(XML_PRINTER_LEFT_HEADER.mb_str());
-    printerLeftHeader->SetAttribute(XML_VALUE.mb_str(),
+    printerLeftHeader->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetLeftPrinterHeader().wc_str() }, false).c_str()).mb_str());
     printerSection->InsertEndChild(printerLeftHeader);
     auto printerCenterHeader = doc.NewElement(XML_PRINTER_CENTER_HEADER.mb_str());
-    printerCenterHeader->SetAttribute(XML_VALUE.mb_str(),
+    printerCenterHeader->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetCenterPrinterHeader().wc_str() }, false).c_str()).mb_str());
     printerSection->InsertEndChild(printerCenterHeader);
     auto printerRightHeader = doc.NewElement(XML_PRINTER_RIGHT_HEADER.mb_str());
-    printerRightHeader->SetAttribute(XML_VALUE.mb_str(),
+    printerRightHeader->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetRightPrinterHeader().wc_str() }, false).c_str()).mb_str());
     printerSection->InsertEndChild(printerRightHeader);
     // footers
     auto printerLeftFooter = doc.NewElement(XML_PRINTER_LEFT_FOOTER.mb_str());
-    printerLeftFooter->SetAttribute(XML_VALUE.mb_str(),
+    printerLeftFooter->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetLeftPrinterFooter().wc_str() }, false).c_str()).mb_str());
     printerSection->InsertEndChild(printerLeftFooter);
     auto printerCenterFooter = doc.NewElement(XML_PRINTER_CENTER_FOOTER.mb_str());
-    printerCenterFooter->SetAttribute(XML_VALUE.mb_str(),
+    printerCenterFooter->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetCenterPrinterFooter().wc_str() }, false).c_str()).mb_str());
     printerSection->InsertEndChild(printerCenterFooter);
     auto printerRightFooter = doc.NewElement(XML_PRINTER_RIGHT_FOOTER.mb_str());
-    printerRightFooter->SetAttribute(XML_VALUE.mb_str(),
+    printerRightFooter->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetRightPrinterFooter().wc_str() }, false).c_str()).mb_str());
     printerSection->InsertEndChild(printerRightFooter);
     configSection->InsertEndChild(printerSection);
@@ -3682,21 +3590,21 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         editorSection->InsertEndChild(font);
 
         auto indent = doc.NewElement(XML_EDITOR_INDENT.data());
-        indent->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsEditorIndenting()));
+        indent->SetAttribute(XML_VALUE.data(), bool_to_int(IsEditorIndenting()));
         editorSection->InsertEndChild(indent);
 
         auto spaceAfterParagraph = doc.NewElement(XML_EDITOR_SPACE_AFTER_PARAGRAPH.data());
-        spaceAfterParagraph->SetAttribute(XML_VALUE.mb_str(),
+        spaceAfterParagraph->SetAttribute(XML_VALUE.data(),
             bool_to_int(IsEditorShowSpaceAfterParagraph()));
         editorSection->InsertEndChild(spaceAfterParagraph);
 
         auto textAlignment = doc.NewElement(XML_EDITOR_TEXT_ALIGNMENT.data());
-        textAlignment->SetAttribute(XML_VALUE.mb_str(),
+        textAlignment->SetAttribute(XML_VALUE.data(),
             static_cast<int>(GetEditorTextAlignment()));
         editorSection->InsertEndChild(textAlignment);
 
         auto lineSpacing = doc.NewElement(XML_EDITOR_LINE_SPACING.data());
-        lineSpacing->SetAttribute(XML_VALUE.mb_str(),
+        lineSpacing->SetAttribute(XML_VALUE.data(),
             static_cast<int>(GetEditorLineSpacing()));
         editorSection->InsertEndChild(lineSpacing);
 
@@ -3708,51 +3616,51 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     // reviewer and status
     auto docReviewer = doc.NewElement(XML_REVIEWER.mb_str());
-    docReviewer->SetAttribute(XML_VALUE.mb_str(),
+    docReviewer->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetReviewer().wc_str() }, false).c_str()).mb_str());
     projectSettings->InsertEndChild(docReviewer);
 
     auto realTimeRefresh = doc.NewElement(XML_REALTIME_UPDATE.mb_str());
-    realTimeRefresh->SetAttribute(XML_VALUE.mb_str(),
+    realTimeRefresh->SetAttribute(XML_VALUE.data(),
         bool_to_int(IsRealTimeUpdating()));
     projectSettings->InsertEndChild(realTimeRefresh);
 
     // appended file
     auto appendedDocPath = doc.NewElement(XML_APPENDED_DOC_PATH.mb_str());
-    appendedDocPath->SetAttribute(XML_VALUE.mb_str(),
+    appendedDocPath->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetAppendedDocumentFilePath().wc_str() }, false).c_str()).mb_str());
     projectSettings->InsertEndChild(appendedDocPath);
 
     // document storage/linking
     auto docStorageMethod = doc.NewElement(XML_DOCUMENT_STORAGE_METHOD.mb_str());
-    docStorageMethod->SetAttribute(XML_METHOD.mb_str(), static_cast<int>(m_documentStorageMethod));
+    docStorageMethod->SetAttribute(XML_METHOD.data(), static_cast<int>(m_documentStorageMethod));
     projectSettings->InsertEndChild(docStorageMethod);
 
     // Project language
-    auto projectLang = doc.NewElement(XML_PROJECT_LANGUAGE.mb_str());
-    projectLang->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetProjectLanguage()) );
+    auto projectLang = doc.NewElement(XML_PROJECT_LANGUAGE.data());
+    projectLang->SetAttribute(XML_VALUE.data(), static_cast<int>(GetProjectLanguage()) );
     projectSettings->InsertEndChild(projectLang);
 
     // min doc size
     auto minDocSize = doc.NewElement(XML_MIN_DOC_SIZE_FOR_BATCH.mb_str());
-    minDocSize->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetMinDocWordCountForBatch()));
+    minDocSize->SetAttribute(XML_VALUE.data(), static_cast<int>(GetMinDocWordCountForBatch()));
     projectSettings->InsertEndChild(minDocSize);
 
     // how file paths are shown in batch projects
     auto filePathTruncMode = doc.NewElement(XML_FILE_PATH_TRUNC_MODE.mb_str());
-    filePathTruncMode->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetFilePathTruncationMode()));
+    filePathTruncMode->SetAttribute(XML_VALUE.data(), static_cast<int>(GetFilePathTruncationMode()));
     projectSettings->InsertEndChild(filePathTruncMode);
 
     // random sampling size for batch projects
     auto randSampleSize = doc.NewElement(XML_RANDOM_SAMPLE_SIZE.mb_str());
-    randSampleSize->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetBatchRandomSamplingSize()));
+    randSampleSize->SetAttribute(XML_VALUE.data(), static_cast<int>(GetBatchRandomSamplingSize()));
     projectSettings->InsertEndChild(randSampleSize);
 
     // sentences breakdown
     auto sentencesBreakdownSection = doc.NewElement(XML_SENTENCES_BREAKDOWN.mb_str());
     // which features are included
     auto sentencesBreakdownInfo = doc.NewElement(XML_SENTENCES_BREAKDOWN_INFO.mb_str());
-    sentencesBreakdownInfo->SetAttribute(XML_VALUE.mb_str(), GetSentencesBreakdownInfo().ToString().mb_str());
+    sentencesBreakdownInfo->SetAttribute(XML_VALUE.data(), GetSentencesBreakdownInfo().ToString().mb_str());
     sentencesBreakdownSection->InsertEndChild(sentencesBreakdownInfo);
     projectSettings->InsertEndChild(sentencesBreakdownSection);
 
@@ -3760,164 +3668,164 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto wordsBreakdownSection = doc.NewElement(XML_WORDS_BREAKDOWN.mb_str());
     // which features are included
     auto wordsBreakdownInfo = doc.NewElement(XML_WORDS_BREAKDOWN_INFO.mb_str());
-    wordsBreakdownInfo->SetAttribute(XML_VALUE.mb_str(), GetWordsBreakdownInfo().ToString().mb_str());
+    wordsBreakdownInfo->SetAttribute(XML_VALUE.data(), GetWordsBreakdownInfo().ToString().mb_str());
     wordsBreakdownSection->InsertEndChild(wordsBreakdownInfo);
     projectSettings->InsertEndChild(wordsBreakdownSection);
 
     // grammar settings
-    auto grammarSection = doc.NewElement(XML_GRAMMAR.mb_str());
+    auto grammarSection = doc.NewElement(XML_GRAMMAR.data());
 
-    auto spellCheckIgnoreProperNounsMethod = doc.NewElement(XML_SPELLCHECK_IGNORE_PROPER_NOUNS.mb_str());
-    spellCheckIgnoreProperNounsMethod->SetAttribute(XML_VALUE.mb_str(),
+    auto spellCheckIgnoreProperNounsMethod = doc.NewElement(XML_SPELLCHECK_IGNORE_PROPER_NOUNS.data());
+    spellCheckIgnoreProperNounsMethod->SetAttribute(XML_VALUE.data(),
         bool_to_int(SpellCheckIsIgnoringProperNouns()) );
     grammarSection->InsertEndChild(spellCheckIgnoreProperNounsMethod);
 
-    auto spellCheckIgnoreUppercasedMethod = doc.NewElement(XML_SPELLCHECK_IGNORE_UPPERCASED.mb_str());
-    spellCheckIgnoreUppercasedMethod->SetAttribute(XML_VALUE.mb_str(),
+    auto spellCheckIgnoreUppercasedMethod = doc.NewElement(XML_SPELLCHECK_IGNORE_UPPERCASED.data());
+    spellCheckIgnoreUppercasedMethod->SetAttribute(XML_VALUE.data(),
         bool_to_int(SpellCheckIsIgnoringUppercased()) );
     grammarSection->InsertEndChild(spellCheckIgnoreUppercasedMethod);
 
-    auto spellCheckIgnoreNumeralsMethod = doc.NewElement(XML_SPELLCHECK_IGNORE_NUMERALS.mb_str());
-    spellCheckIgnoreNumeralsMethod->SetAttribute(XML_VALUE.mb_str(),
+    auto spellCheckIgnoreNumeralsMethod = doc.NewElement(XML_SPELLCHECK_IGNORE_NUMERALS.data());
+    spellCheckIgnoreNumeralsMethod->SetAttribute(XML_VALUE.data(),
         bool_to_int(SpellCheckIsIgnoringNumerals()) );
     grammarSection->InsertEndChild(spellCheckIgnoreNumeralsMethod);
 
-    auto spellCheckIgnoreFileAddressMethod = doc.NewElement(XML_SPELLCHECK_IGNORE_FILE_ADDRESSES.mb_str());
-    spellCheckIgnoreFileAddressMethod->SetAttribute(XML_VALUE.mb_str(),
+    auto spellCheckIgnoreFileAddressMethod = doc.NewElement(XML_SPELLCHECK_IGNORE_FILE_ADDRESSES.data());
+    spellCheckIgnoreFileAddressMethod->SetAttribute(XML_VALUE.data(),
         bool_to_int(SpellCheckIsIgnoringFileAddresses() ));
     grammarSection->InsertEndChild(spellCheckIgnoreFileAddressMethod);
 
-    auto spellCheckIgnoreProgrammerCodeMethod = doc.NewElement(XML_SPELLCHECK_IGNORE_PROGRAMMER_CODE.mb_str());
-    spellCheckIgnoreProgrammerCodeMethod->SetAttribute(XML_VALUE.mb_str(),
+    auto spellCheckIgnoreProgrammerCodeMethod = doc.NewElement(XML_SPELLCHECK_IGNORE_PROGRAMMER_CODE.data());
+    spellCheckIgnoreProgrammerCodeMethod->SetAttribute(XML_VALUE.data(),
         bool_to_int(SpellCheckIsIgnoringProgrammerCode()) );
     grammarSection->InsertEndChild(spellCheckIgnoreProgrammerCodeMethod);
 
-    auto spellCheckAllowColloquialismsMethod = doc.NewElement(XML_SPELLCHECK_ALLOW_COLLOQUIALISMS.mb_str());
-    spellCheckAllowColloquialismsMethod->SetAttribute(XML_VALUE.mb_str(),
+    auto spellCheckAllowColloquialismsMethod = doc.NewElement(XML_SPELLCHECK_ALLOW_COLLOQUIALISMS.data());
+    spellCheckAllowColloquialismsMethod->SetAttribute(XML_VALUE.data(),
         bool_to_int(SpellCheckIsAllowingColloquialisms()) );
     grammarSection->InsertEndChild(spellCheckAllowColloquialismsMethod);
 
-    auto spellCheckIgnoreSocialMediaTagsMethod = doc.NewElement(XML_SPELLCHECK_IGNORE_SOCIAL_MEDIA_TAGS.mb_str());
-    spellCheckIgnoreSocialMediaTagsMethod->SetAttribute(XML_VALUE.mb_str(),
+    auto spellCheckIgnoreSocialMediaTagsMethod = doc.NewElement(XML_SPELLCHECK_IGNORE_SOCIAL_MEDIA_TAGS.data());
+    spellCheckIgnoreSocialMediaTagsMethod->SetAttribute(XML_VALUE.data(),
         bool_to_int(SpellCheckIsIgnoringSocialMediaTags()) );
     grammarSection->InsertEndChild(spellCheckIgnoreSocialMediaTagsMethod);
 
     // which grammar features are included
-    auto grammarInfo = doc.NewElement(XML_GRAMMAR_INFO.mb_str());
-    grammarInfo->SetAttribute(XML_VALUE.mb_str(), GetGrammarInfo().ToString().mb_str());
+    auto grammarInfo = doc.NewElement(XML_GRAMMAR_INFO.data());
+    grammarInfo->SetAttribute(XML_VALUE.data(), GetGrammarInfo().ToString().mb_str());
     grammarSection->InsertEndChild(grammarInfo);
 
     projectSettings->InsertEndChild(grammarSection);
 
     // document analysis settings
-    auto documentAnalysisSection = doc.NewElement(XML_DOCUMENT_ANALYSIS_LOGIC.mb_str());
+    auto documentAnalysisSection = doc.NewElement(XML_DOCUMENT_ANALYSIS_LOGIC.data());
 
     // sentence information    
-    auto sentenceMethod = doc.NewElement(XML_LONG_SENTENCE_METHOD.mb_str());
-    sentenceMethod->SetAttribute(XML_METHOD.mb_str(), static_cast<int>(GetLongSentenceMethod()));
+    auto sentenceMethod = doc.NewElement(XML_LONG_SENTENCE_METHOD.data());
+    sentenceMethod->SetAttribute(XML_METHOD.data(), static_cast<int>(GetLongSentenceMethod()));
     documentAnalysisSection->InsertEndChild(sentenceMethod);
 
-    auto sentenceLength = doc.NewElement(XML_LONG_SENTENCE_LENGTH.mb_str());
-    sentenceLength->SetAttribute(XML_VALUE.mb_str(), GetDifficultSentenceLength());
+    auto sentenceLength = doc.NewElement(XML_LONG_SENTENCE_LENGTH.data());
+    sentenceLength->SetAttribute(XML_VALUE.data(), GetDifficultSentenceLength());
     documentAnalysisSection->InsertEndChild(sentenceLength);
 
     // numeral syllabication
-    auto numSyllMethod = doc.NewElement(XML_NUMERAL_SYLLABICATION_METHOD.mb_str());
-    numSyllMethod->SetAttribute(XML_METHOD.mb_str(), static_cast<int>(m_numeralSyllabicationMethod));
+    auto numSyllMethod = doc.NewElement(XML_NUMERAL_SYLLABICATION_METHOD.data());
+    numSyllMethod->SetAttribute(XML_METHOD.data(), static_cast<int>(m_numeralSyllabicationMethod));
     documentAnalysisSection->InsertEndChild(numSyllMethod);
 
     // whether to ignore blank lines when figuring out if an incomplete sentences is end of paragraph
-    auto ingnoreBlankLinesMethod = doc.NewElement(XML_IGNORE_BLANK_LINES_FOR_PARAGRAPH_PARSING.mb_str());
-    ingnoreBlankLinesMethod->SetAttribute(XML_VALUE.mb_str(), bool_to_int(m_ignoreBlankLinesForParagraphsParser));
+    auto ingnoreBlankLinesMethod = doc.NewElement(XML_IGNORE_BLANK_LINES_FOR_PARAGRAPH_PARSING.data());
+    ingnoreBlankLinesMethod->SetAttribute(XML_VALUE.data(), bool_to_int(m_ignoreBlankLinesForParagraphsParser));
     documentAnalysisSection->InsertEndChild(ingnoreBlankLinesMethod);
 
     // whether we should ignore indenting when parsing paragraphs
-    auto ingnoreIndentsMethod = doc.NewElement(XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING.mb_str());
-    ingnoreIndentsMethod->SetAttribute(XML_VALUE.mb_str(), bool_to_int(m_ignoreIndentingForParagraphsParser));
+    auto ingnoreIndentsMethod = doc.NewElement(XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING.data());
+    ingnoreIndentsMethod->SetAttribute(XML_VALUE.data(), bool_to_int(m_ignoreIndentingForParagraphsParser));
     documentAnalysisSection->InsertEndChild(ingnoreIndentsMethod);
 
     // whether sentences must start capitalized
-    auto sentenceStartMustBeUppercased = doc.NewElement(XML_SENTENCES_MUST_START_CAPITALIZED.mb_str());
-    sentenceStartMustBeUppercased->SetAttribute(XML_VALUE.mb_str(), bool_to_int(GetSentenceStartMustBeUppercased()));
+    auto sentenceStartMustBeUppercased = doc.NewElement(XML_SENTENCES_MUST_START_CAPITALIZED.data());
+    sentenceStartMustBeUppercased->SetAttribute(XML_VALUE.data(), bool_to_int(GetSentenceStartMustBeUppercased()));
     documentAnalysisSection->InsertEndChild(sentenceStartMustBeUppercased);
 
     // file path to phrases to exclude from analysis
-    auto excludedPhrasesFilePath = doc.NewElement(XML_EXCLUDED_PHRASES_PATH.mb_str());
-    excludedPhrasesFilePath->SetAttribute(XML_VALUE.mb_str(),
+    auto excludedPhrasesFilePath = doc.NewElement(XML_EXCLUDED_PHRASES_PATH.data());
+    excludedPhrasesFilePath->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetExcludedPhrasesPath().wc_str() }, false).c_str()).mb_str());
     documentAnalysisSection->InsertEndChild(excludedPhrasesFilePath);
 
     // exclusion block tags
-    auto excludeTagsSection = doc.NewElement(XML_EXCLUDE_BLOCK_TAGS.mb_str());
+    auto excludeTagsSection = doc.NewElement(XML_EXCLUDE_BLOCK_TAGS.data());
     for (std::vector<std::pair<wchar_t,wchar_t>>::const_iterator currentExcludeTag = m_exclusionBlockTags.begin();
         currentExcludeTag != m_exclusionBlockTags.end();
         ++currentExcludeTag)
         {
-        auto excludeTags = doc.NewElement(XML_EXCLUDE_BLOCK_TAG.mb_str());
+        auto excludeTags = doc.NewElement(XML_EXCLUDE_BLOCK_TAG.data());
         const wchar_t excludeTagsStr[3] = { currentExcludeTag->first, currentExcludeTag->second, 0 };
         wxString excludeTagsEncoded = encode({ excludeTagsStr, 2 }, false).c_str();
-        excludeTags->SetAttribute(XML_VALUE.mb_str(), excludeTagsEncoded.mb_str());
+        excludeTags->SetAttribute(XML_VALUE.data(), excludeTagsEncoded.mb_str());
         excludeTagsSection->InsertEndChild(excludeTags);
         }
     documentAnalysisSection->InsertEndChild(excludeTagsSection);
 
     // whether to include first occurrence of excluded phrases
-    auto includeExcludedPhraseFirstOccurrence = doc.NewElement(XML_EXCLUDED_PHRASES_INCLUDE_FIRST_OCCURRENCE.mb_str());
-    includeExcludedPhraseFirstOccurrence->SetAttribute(XML_VALUE.mb_str(),
+    auto includeExcludedPhraseFirstOccurrence = doc.NewElement(XML_EXCLUDED_PHRASES_INCLUDE_FIRST_OCCURRENCE.data());
+    includeExcludedPhraseFirstOccurrence->SetAttribute(XML_VALUE.data(),
         bool_to_int(IsIncludingExcludedPhraseFirstOccurrence()));
     documentAnalysisSection->InsertEndChild(includeExcludedPhraseFirstOccurrence);
 
     // whether to ignore Proper Nouns
-    auto ignoreProperNouns = doc.NewElement(XML_IGNORE_PROPER_NOUNS.mb_str());
-    ignoreProperNouns->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsIgnoringProperNouns()));
+    auto ignoreProperNouns = doc.NewElement(XML_IGNORE_PROPER_NOUNS.data());
+    ignoreProperNouns->SetAttribute(XML_VALUE.data(), bool_to_int(IsIgnoringProperNouns()));
     documentAnalysisSection->InsertEndChild(ignoreProperNouns);
 
     // whether to ignore numerals
-    auto ignoreNumerals = doc.NewElement(XML_IGNORE_NUMERALS.mb_str());
-    ignoreNumerals->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsIgnoringNumerals()));
+    auto ignoreNumerals = doc.NewElement(XML_IGNORE_NUMERALS.data());
+    ignoreNumerals->SetAttribute(XML_VALUE.data(), bool_to_int(IsIgnoringNumerals()));
     documentAnalysisSection->InsertEndChild(ignoreNumerals);
 
     // whether to ignore file addresses
-    auto ignoreFileAddress = doc.NewElement(XML_IGNORE_FILE_ADDRESSES.mb_str());
-    ignoreFileAddress->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsIgnoringFileAddresses()));
+    auto ignoreFileAddress = doc.NewElement(XML_IGNORE_FILE_ADDRESSES.data());
+    ignoreFileAddress->SetAttribute(XML_VALUE.data(), bool_to_int(IsIgnoringFileAddresses()));
     documentAnalysisSection->InsertEndChild(ignoreFileAddress);
 
     // whether to ignore citations
-    auto ignoreCitations = doc.NewElement(XML_IGNORE_CITATIONS.mb_str());
-    ignoreCitations->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsIgnoringTrailingCitations()));
+    auto ignoreCitations = doc.NewElement(XML_IGNORE_CITATIONS.data());
+    ignoreCitations->SetAttribute(XML_VALUE.data(), bool_to_int(IsIgnoringTrailingCitations()));
     documentAnalysisSection->InsertEndChild(ignoreCitations);
 
     // whether to aggressively exclude
-    auto aggressiveExclusion = doc.NewElement(XML_AGGRESSIVE_EXCLUSION.mb_str());
-    aggressiveExclusion->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsExcludingAggressively()));
+    auto aggressiveExclusion = doc.NewElement(XML_AGGRESSIVE_EXCLUSION.data());
+    aggressiveExclusion->SetAttribute(XML_VALUE.data(), bool_to_int(IsExcludingAggressively()));
     documentAnalysisSection->InsertEndChild(aggressiveExclusion);
 
     // whether to ignore copyright notices
-    auto ignoreCopyrightNotices = doc.NewElement(XML_IGNORE_COPYRIGHT_NOTICES.mb_str());
-    ignoreCopyrightNotices->SetAttribute(XML_VALUE.mb_str(),
+    auto ignoreCopyrightNotices = doc.NewElement(XML_IGNORE_COPYRIGHT_NOTICES.data());
+    ignoreCopyrightNotices->SetAttribute(XML_VALUE.data(),
         bool_to_int(IsIgnoringTrailingCopyrightNoticeParagraphs()));
     documentAnalysisSection->InsertEndChild(ignoreCopyrightNotices);
 
     // paragraph parsing
-    auto paraParsingMethod = doc.NewElement(XML_PARAGRAPH_PARSING_METHOD.mb_str());
-    paraParsingMethod->SetAttribute(XML_METHOD.mb_str(), static_cast<int>(m_paragraphsParsingMethod));
+    auto paraParsingMethod = doc.NewElement(XML_PARAGRAPH_PARSING_METHOD.data());
+    paraParsingMethod->SetAttribute(XML_METHOD.data(), static_cast<int>(m_paragraphsParsingMethod));
     documentAnalysisSection->InsertEndChild(paraParsingMethod);
 
     // Number of words that will make an incomplete sentence actually complete
     auto includeIncompleteSentencesIfLongerThanValue =
-        doc.NewElement(XML_INCLUDE_INCOMPLETE_SENTENCES_LONGER_THAN.mb_str());
-    includeIncompleteSentencesIfLongerThanValue->SetAttribute(XML_VALUE.mb_str(),
+        doc.NewElement(XML_INCLUDE_INCOMPLETE_SENTENCES_LONGER_THAN.data());
+    includeIncompleteSentencesIfLongerThanValue->SetAttribute(XML_VALUE.data(),
         static_cast<int>(GetIncludeIncompleteSentencesIfLongerThanValue()));
     documentAnalysisSection->InsertEndChild(includeIncompleteSentencesIfLongerThanValue);
 
     // how to handle lists and header sentences
-    auto invalidSentenceMethod = doc.NewElement(XML_INVALID_SENTENCE_METHOD.mb_str());
-    invalidSentenceMethod->SetAttribute(XML_METHOD.mb_str(), static_cast<int>(GetInvalidSentenceMethod()));
+    auto invalidSentenceMethod = doc.NewElement(XML_INVALID_SENTENCE_METHOD.data());
+    invalidSentenceMethod->SetAttribute(XML_METHOD.data(), static_cast<int>(GetInvalidSentenceMethod()));
     documentAnalysisSection->InsertEndChild(invalidSentenceMethod);
     projectSettings->InsertEndChild(documentAnalysisSection);
 
     // test bundles
-    auto testBundlesSection = doc.NewElement(XML_TEST_BUNDLES.mb_str());
+    auto testBundlesSection = doc.NewElement(XML_TEST_BUNDLES.data());
     for (std::set<TestBundle>::const_iterator currentBundle = BaseProject::m_testBundles.begin();
         currentBundle != BaseProject::m_testBundles.end();
         ++currentBundle)
@@ -3925,24 +3833,24 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         // don't bother saving system bundles, those are dynamically added by the program when it starts up
         if (currentBundle->IsLocked())
             { continue; }
-        auto testBundle = doc.NewElement(XML_TEST_BUNDLE.mb_str());
+        auto testBundle = doc.NewElement(XML_TEST_BUNDLE.data());
         // name
-        auto testBundleName = doc.NewElement(XML_TEST_BUNDLE_NAME.mb_str());
+        auto testBundleName = doc.NewElement(XML_TEST_BUNDLE_NAME.data());
         wxString testBundleNameEncoded = encode({ currentBundle->GetName().c_str() }, false).c_str();
-        testBundleName->SetAttribute(XML_VALUE.mb_str(), testBundleNameEncoded.mb_str());
+        testBundleName->SetAttribute(XML_VALUE.data(), testBundleNameEncoded.mb_str());
         testBundle->InsertEndChild(testBundleName);
         // description
-        auto testBundleDescription = doc.NewElement(XML_TEST_BUNDLE_DESCRIPTION.mb_str());
+        auto testBundleDescription = doc.NewElement(XML_TEST_BUNDLE_DESCRIPTION.data());
         wxString testBundleDescriptionEncoded = encode({ currentBundle->GetDescription().c_str() }, false).c_str();
-        testBundleDescription->SetAttribute(XML_VALUE.mb_str(), testBundleDescriptionEncoded.mb_str());
+        testBundleDescription->SetAttribute(XML_VALUE.data(), testBundleDescriptionEncoded.mb_str());
         testBundle->InsertEndChild(testBundleDescription);
         // included tests
-        auto testNames = doc.NewElement(XML_TEST_NAMES.mb_str());
+        auto testNames = doc.NewElement(XML_TEST_NAMES.data());
         for (const auto& bundledTest : currentBundle->GetTestGoals())
             {
-            auto testName = doc.NewElement(XML_TEST_NAME.mb_str());
+            auto testName = doc.NewElement(XML_TEST_NAME.data());
             wxString testNameEncoded = encode({ bundledTest.GetName().c_str() }, false).c_str();
-            testName->SetAttribute(XML_VALUE.mb_str(), testNameEncoded.mb_str());
+            testName->SetAttribute(XML_VALUE.data(), testNameEncoded.mb_str());
             testName->SetAttribute(XML_GOAL_MIN_VAL_GOAL.mb_str(),
                 (std::isnan(bundledTest.GetMinGoal()) ?
                     "" : wxString::FromCDouble(bundledTest.GetMinGoal()).mb_str()));
@@ -3953,12 +3861,12 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
             }
         testBundle->InsertEndChild(testNames);
         // stats goals
-        auto statGoals = doc.NewElement(XML_BUNDLE_STATISTICS.mb_str());
+        auto statGoals = doc.NewElement(XML_BUNDLE_STATISTICS.data());
         for (const auto& bundledStat : currentBundle->GetStatGoals())
             {
-            auto statGoal = doc.NewElement(XML_BUNDLE_STATISTIC.mb_str());
+            auto statGoal = doc.NewElement(XML_BUNDLE_STATISTIC.data());
             wxString testNameEncoded = encode({ bundledStat.GetName().c_str() }, false).c_str();
-            statGoal->SetAttribute(XML_VALUE.mb_str(), testNameEncoded.mb_str());
+            statGoal->SetAttribute(XML_VALUE.data(), testNameEncoded.mb_str());
             statGoal->SetAttribute(XML_GOAL_MIN_VAL_GOAL.mb_str(),
                 (std::isnan(bundledStat.GetMinGoal()) ?
                     "" : wxString::FromCDouble(bundledStat.GetMinGoal()).mb_str()));
@@ -3974,149 +3882,149 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     projectSettings->InsertEndChild(testBundlesSection);
 
     // custom tests
-    auto customTestsSection = doc.NewElement(XML_CUSTOM_TESTS.mb_str());
+    auto customTestsSection = doc.NewElement(XML_CUSTOM_TESTS.data());
     // add all global custom familiar word lists
     for (CustomReadabilityTestCollection::const_iterator pos = BaseProject::m_custom_word_tests.cbegin();
         pos != BaseProject::m_custom_word_tests.cend();
         ++pos)
         {
-        auto customFamWordTest = doc.NewElement(XML_CUSTOM_FAMILIAR_WORD_TEST.mb_str());
+        auto customFamWordTest = doc.NewElement(XML_CUSTOM_FAMILIAR_WORD_TEST.data());
         // name
-        auto testName = doc.NewElement(XML_TEST_NAME.mb_str());
+        auto testName = doc.NewElement(XML_TEST_NAME.data());
         wxString testNameEncoded(pos->get_name().c_str());
         testNameEncoded = encode({ testNameEncoded.wc_str() }, false).c_str();
-        testName->SetAttribute(XML_VALUE.mb_str(), testNameEncoded.mb_str());
+        testName->SetAttribute(XML_VALUE.data(), testNameEncoded.mb_str());
         customFamWordTest->InsertEndChild(testName);
         // file path
-        auto filePath = doc.NewElement(XML_FAMILIAR_WORD_FILE_PATH.mb_str());
+        auto filePath = doc.NewElement(XML_FAMILIAR_WORD_FILE_PATH.data());
         wxString filePathEncoded(pos->get_familiar_word_list_file_path().c_str());
         filePathEncoded = encode({ filePathEncoded.wc_str() }, false).c_str();
-        filePath->SetAttribute(XML_VALUE.mb_str(), filePathEncoded.mb_str());
+        filePath->SetAttribute(XML_VALUE.data(), filePathEncoded.mb_str());
         customFamWordTest->InsertEndChild(filePath);
         // formula (needs to be stored in U.S. format for portability)
-        auto formula = doc.NewElement(XML_TEST_FORMULA.mb_str());
+        auto formula = doc.NewElement(XML_TEST_FORMULA.data());
         wxString formulaEncoded(FormulaFormat::FormatMathExpressionToUS(pos->get_formula().c_str()));
         formulaEncoded = encode({ formulaEncoded.wc_str() }, false).c_str();
-        formula->SetAttribute(XML_VALUE.mb_str(), formulaEncoded.mb_str());
+        formula->SetAttribute(XML_VALUE.data(), formulaEncoded.mb_str());
         customFamWordTest->InsertEndChild(formula);
         // formula type (this is just needed for forward compatibility)
         const int formulaTypeValue =
             (wxString(pos->get_formula().c_str()).CmpNoCase(
                 ReadabilityFormulaParser::GetCustomSpacheSignature()) == 0) ? 1 : 0;
-        auto formulaType = doc.NewElement(XML_TEST_FORMULA_TYPE.mb_str());
-        formulaType->SetAttribute(XML_VALUE.mb_str(), formulaTypeValue);
+        auto formulaType = doc.NewElement(XML_TEST_FORMULA_TYPE.data());
+        formulaType->SetAttribute(XML_VALUE.data(), formulaTypeValue);
         customFamWordTest->InsertEndChild(formulaType);
         // test type
-        auto testType = doc.NewElement(XML_TEST_TYPE.mb_str());
-        testType->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(pos->get_test_type()) );
+        auto testType = doc.NewElement(XML_TEST_TYPE.data());
+        testType->SetAttribute(XML_VALUE.data(), static_cast<int>(pos->get_test_type()) );
         customFamWordTest->InsertEndChild(testType);
         // stemming type
-        auto stemming = doc.NewElement(XML_STEMMING_TYPE.mb_str());
-        stemming->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(pos->get_stemming_type()) );
+        auto stemming = doc.NewElement(XML_STEMMING_TYPE.data());
+        stemming->SetAttribute(XML_VALUE.data(), static_cast<int>(pos->get_stemming_type()) );
         customFamWordTest->InsertEndChild(stemming);
          // include proper nouns
-        auto includeProperNoun = doc.NewElement(XML_INCLUDE_PROPER_NOUNS.mb_str());
-        includeProperNoun->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(pos->get_proper_noun_method()) );
+        auto includeProperNoun = doc.NewElement(XML_INCLUDE_PROPER_NOUNS.data());
+        includeProperNoun->SetAttribute(XML_VALUE.data(), static_cast<int>(pos->get_proper_noun_method()) );
         customFamWordTest->InsertEndChild(includeProperNoun);
         // include numeric
-        auto includeNumeric = doc.NewElement(XML_INCLUDE_NUMERIC.mb_str());
-        includeNumeric->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(pos->is_including_numeric_as_familiar()) );
+        auto includeNumeric = doc.NewElement(XML_INCLUDE_NUMERIC.data());
+        includeNumeric->SetAttribute(XML_VALUE.data(), static_cast<int>(pos->is_including_numeric_as_familiar()) );
         customFamWordTest->InsertEndChild(includeNumeric);
         // including custom list
-        auto customWordList = doc.NewElement(XML_INCLUDE_CUSTOM_WORD_LIST.mb_str());
-        customWordList->SetAttribute(XML_VALUE.mb_str(),
+        auto customWordList = doc.NewElement(XML_INCLUDE_CUSTOM_WORD_LIST.data());
+        customWordList->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->is_including_custom_familiar_word_list()) );
         customFamWordTest->InsertEndChild(customWordList);
         // including DC list
-        auto dcTest = doc.NewElement(XML_INCLUDE_DC_LIST.mb_str());
-        dcTest->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(pos->is_including_dale_chall_list()) );
+        auto dcTest = doc.NewElement(XML_INCLUDE_DC_LIST.data());
+        dcTest->SetAttribute(XML_VALUE.data(), static_cast<int>(pos->is_including_dale_chall_list()) );
         customFamWordTest->InsertEndChild(dcTest);
         // including Spache list
-        auto spacheTest = doc.NewElement(XML_INCLUDE_SPACHE_LIST.mb_str());
-        spacheTest->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(pos->is_including_spache_list()) );
+        auto spacheTest = doc.NewElement(XML_INCLUDE_SPACHE_LIST.data());
+        spacheTest->SetAttribute(XML_VALUE.data(), static_cast<int>(pos->is_including_spache_list()) );
         customFamWordTest->InsertEndChild(spacheTest);
         // including Stocker list
-        auto stockerList = doc.NewElement(XML_INCLUDE_STOCKER_LIST.mb_str());
-        stockerList->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(pos->is_including_stocker_list()) );
+        auto stockerList = doc.NewElement(XML_INCLUDE_STOCKER_LIST.data());
+        stockerList->SetAttribute(XML_VALUE.data(), static_cast<int>(pos->is_including_stocker_list()) );
         customFamWordTest->InsertEndChild(stockerList);
         // including HJ list
-        auto hjList = doc.NewElement(XML_INCLUDE_HARRIS_JACOBSON_LIST.mb_str());
-        hjList->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(pos->is_including_harris_jacobson_list()) );
+        auto hjList = doc.NewElement(XML_INCLUDE_HARRIS_JACOBSON_LIST.data());
+        hjList->SetAttribute(XML_VALUE.data(), static_cast<int>(pos->is_including_harris_jacobson_list()) );
         customFamWordTest->InsertEndChild(hjList);
         // whether familiar words have to be on each included list
-        auto famAllLists = doc.NewElement(XML_FAMILIAR_WORDS_ALL_LISTS.mb_str());
-        famAllLists->SetAttribute(XML_VALUE.mb_str(),
+        auto famAllLists = doc.NewElement(XML_FAMILIAR_WORDS_ALL_LISTS.data());
+        famAllLists->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->is_familiar_words_must_be_on_each_included_list()) );
         customFamWordTest->InsertEndChild(famAllLists);
         // industry association
         auto industryChildrenPub = doc.NewElement(XML_INDUSTRY_CHILDRENS_PUBLISHING.mb_str());
-        industryChildrenPub->SetAttribute(XML_VALUE.mb_str(),
+        industryChildrenPub->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_industry_classification(
                 readability::industry_classification::childrens_publishing_industry)) );
         customFamWordTest->InsertEndChild(industryChildrenPub);
 
         auto industryAdultPublishing = doc.NewElement(XML_INDUSTRY_ADULTPUBLISHING.mb_str());
-        industryAdultPublishing->SetAttribute(XML_VALUE.mb_str(),
+        industryAdultPublishing->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_industry_classification(
                 readability::industry_classification::adult_publishing_industry)) );
         customFamWordTest->InsertEndChild(industryAdultPublishing);
 
         auto industrySecondaryLanguage = doc.NewElement(XML_INDUSTRY_SECONDARY_LANGUAGE.mb_str());
-        industrySecondaryLanguage->SetAttribute(XML_VALUE.mb_str(),
+        industrySecondaryLanguage->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_industry_classification(
                 readability::industry_classification::sedondary_language_industry)) );
         customFamWordTest->InsertEndChild(industrySecondaryLanguage);
 
         auto industryChildrensHealthCare = doc.NewElement(XML_INDUSTRY_CHILDRENS_HEALTHCARE.mb_str());
-        industryChildrensHealthCare->SetAttribute(XML_VALUE.mb_str(),
+        industryChildrensHealthCare->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_industry_classification(
                 readability::industry_classification::childrens_healthcare_industry)) );
         customFamWordTest->InsertEndChild(industryChildrensHealthCare);
 
         auto industryAdultHealthCare = doc.NewElement(XML_INDUSTRY_ADULT_HEALTHCARE.mb_str());
-        industryAdultHealthCare->SetAttribute(XML_VALUE.mb_str(),
+        industryAdultHealthCare->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_industry_classification(
                 readability::industry_classification::adult_healthcare_industry)) );
         customFamWordTest->InsertEndChild(industryAdultHealthCare);
 
         auto industryMilitary = doc.NewElement(XML_INDUSTRY_MILITARY_GOVERNMENT.mb_str());
-        industryMilitary->SetAttribute(XML_VALUE.mb_str(),
+        industryMilitary->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_industry_classification(
                 readability::industry_classification::military_government_industry)) );
         customFamWordTest->InsertEndChild(industryMilitary);
 
         auto industryBroadCasting = doc.NewElement(XML_INDUSTRY_BROADCASTING.mb_str());
-        industryBroadCasting->SetAttribute(XML_VALUE.mb_str(),
+        industryBroadCasting->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_industry_classification(
                 readability::industry_classification::broadcasting_industry)) );
         customFamWordTest->InsertEndChild(industryBroadCasting);
 
         auto industryGeneralDocument = doc.NewElement(XML_DOCUMENT_GENERAL.mb_str());
-        industryGeneralDocument->SetAttribute(XML_VALUE.mb_str(),
+        industryGeneralDocument->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_document_classification(
                 readability::document_classification::general_document)) );
         customFamWordTest->InsertEndChild(industryGeneralDocument);
 
         auto industryTechnicalDocument = doc.NewElement(XML_DOCUMENT_TECHNICAL.mb_str());
-        industryTechnicalDocument->SetAttribute(XML_VALUE.mb_str(),
+        industryTechnicalDocument->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_document_classification(
                 readability::document_classification::technical_document)) );
         customFamWordTest->InsertEndChild(industryTechnicalDocument);
 
         auto industryForm = doc.NewElement(XML_DOCUMENT_FORM.mb_str());
-        industryForm->SetAttribute(XML_VALUE.mb_str(),
+        industryForm->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_document_classification(
                 readability::document_classification::nonnarrative_document)) );
         customFamWordTest->InsertEndChild(industryForm);
 
         auto industryYoungAdultAndAdultLiterature = doc.NewElement(XML_DOCUMENT_YOUNGADULT.mb_str());
-        industryYoungAdultAndAdultLiterature->SetAttribute(XML_VALUE.mb_str(),
+        industryYoungAdultAndAdultLiterature->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_document_classification(
                 readability::document_classification::adult_literature_document)) );
         customFamWordTest->InsertEndChild(industryYoungAdultAndAdultLiterature);
 
         auto industryChildrensLiterature = doc.NewElement(XML_DOCUMENT_CHILDREN_LIT.mb_str());
-        industryChildrensLiterature->SetAttribute(XML_VALUE.mb_str(),
+        industryChildrensLiterature->SetAttribute(XML_VALUE.data(),
             static_cast<int>(pos->has_document_classification(
                 readability::document_classification::childrens_literature_document)) );
         customFamWordTest->InsertEndChild(industryChildrensLiterature);
@@ -4129,21 +4037,21 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto graphDefaultsSection = doc.NewElement(XML_GRAPH_SETTINGS.mb_str());
     // color scheme
     auto graphColorScheme = doc.NewElement(XML_GRAPH_COLOR_SCHEME.mb_str());
-    graphColorScheme->SetAttribute(XML_VALUE.mb_str(),
+    graphColorScheme->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetGraphColorScheme().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(graphColorScheme);
     // background image
     auto graphBackgroundImage = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH.mb_str());
-    graphBackgroundImage->SetAttribute(XML_VALUE.mb_str(),
+    graphBackgroundImage->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetPlotBackGroundImagePath().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(graphBackgroundImage);
 
     auto backgroundImageEffect = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT.mb_str());
-    backgroundImageEffect->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetPlotBackGroundImageEffect()));
+    backgroundImageEffect->SetAttribute(XML_VALUE.data(), static_cast<int>(GetPlotBackGroundImageEffect()));
     graphDefaultsSection->InsertEndChild(backgroundImageEffect);
 
     auto backgroundImageFit = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT.mb_str());
-    backgroundImageFit->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetPlotBackGroundImageFit()));
+    backgroundImageFit->SetAttribute(XML_VALUE.data(), static_cast<int>(GetPlotBackGroundImageFit()));
     graphDefaultsSection->InsertEndChild(backgroundImageFit);
     // background colors
     if (GetBackGroundColor().IsOk())
@@ -4164,29 +4072,29 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         }
     // plot background image opacity
     auto graphBackgroundOpacity = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY.mb_str());
-    graphBackgroundOpacity->SetAttribute(XML_VALUE.mb_str(), GetPlotBackGroundImageOpacity());
+    graphBackgroundOpacity->SetAttribute(XML_VALUE.data(), GetPlotBackGroundImageOpacity());
     graphDefaultsSection->InsertEndChild(graphBackgroundOpacity);
     // plot background color opacity
     auto graphPlotBackgroundOpacity = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY.mb_str());
-    graphPlotBackgroundOpacity->SetAttribute(XML_VALUE.mb_str(), GetPlotBackGroundColorOpacity());
+    graphPlotBackgroundOpacity->SetAttribute(XML_VALUE.data(), GetPlotBackGroundColorOpacity());
     graphDefaultsSection->InsertEndChild(graphPlotBackgroundOpacity);
     // background linear gradient
     auto graphBackgroundGradient = doc.NewElement(XML_GRAPH_BACKGROUND_LINEAR_GRADIENT.mb_str());
-    graphBackgroundGradient->SetAttribute(XML_VALUE.mb_str(), bool_to_int(GetGraphBackGroundLinearGradient()));
+    graphBackgroundGradient->SetAttribute(XML_VALUE.data(), bool_to_int(GetGraphBackGroundLinearGradient()));
     graphDefaultsSection->InsertEndChild(graphBackgroundGradient);
     // stipple image path
     auto stipplePath = doc.NewElement(XML_GRAPH_STIPPLE_PATH.mb_str());
-    stipplePath->SetAttribute(XML_VALUE.mb_str(),
+    stipplePath->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetStippleImagePath().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(stipplePath);
     // common image path
     auto commonImagePath = doc.NewElement(XML_GRAPH_COMMON_IMAGE_PATH.mb_str());
-    commonImagePath->SetAttribute(XML_VALUE.mb_str(),
+    commonImagePath->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetGraphCommonImagePath().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(commonImagePath);
     // stipple shape
     auto stippleShape = doc.NewElement(XML_GRAPH_STIPPLE_SHAPE.mb_str());
-    stippleShape->SetAttribute(XML_VALUE.mb_str(),
+    stippleShape->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetStippleShape().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(stippleShape);
 
@@ -4201,20 +4109,20 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     // whether drop shadows should be shown
     auto graphDisplayDropShadow = doc.NewElement(XML_DISPLAY_DROP_SHADOW.mb_str());
-    graphDisplayDropShadow->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsDisplayingDropShadows()));
+    graphDisplayDropShadow->SetAttribute(XML_VALUE.data(), bool_to_int(IsDisplayingDropShadows()));
     graphDefaultsSection->InsertEndChild(graphDisplayDropShadow);
     // whether to draw attention to the complex word groups in syllable graphs
     auto showcaseComplexWords = doc.NewElement(XML_SHOWCASE_COMPLEX_WORDS.mb_str());
-    showcaseComplexWords->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsShowcasingComplexWords()));
+    showcaseComplexWords->SetAttribute(XML_VALUE.data(), bool_to_int(IsShowcasingComplexWords()));
     graphDefaultsSection->InsertEndChild(showcaseComplexWords);
     // watermark
     auto graphWatermarkLogo = doc.NewElement(XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH.mb_str());
-    graphWatermarkLogo->SetAttribute(XML_VALUE.mb_str(),
+    graphWatermarkLogo->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetWatermarkLogo().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(graphWatermarkLogo);
 
     auto graphWatermark = doc.NewElement(XML_GRAPH_WATERMARK.mb_str());
-    graphWatermark->SetAttribute(XML_VALUE.mb_str(),
+    graphWatermark->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetWatermark().wc_str() }, false).c_str()).mb_str());
     graphDefaultsSection->InsertEndChild(graphWatermark);
 
@@ -4222,19 +4130,19 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto histogramSettings = doc.NewElement(XML_HISTOGRAM_SETTINGS.mb_str());
     // categorization method
     auto hCatMode = doc.NewElement(XML_GRAPH_BINNING_METHOD.mb_str());
-    hCatMode->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetHistorgramBinningMethod()));
+    hCatMode->SetAttribute(XML_VALUE.data(), static_cast<int>(GetHistorgramBinningMethod()));
     histogramSettings->InsertEndChild(hCatMode);
     // rounding method
     auto hRoundMode = doc.NewElement(XML_GRAPH_ROUNDING_METHOD.mb_str());
-    hRoundMode->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetHistogramRoundingMethod()));
+    hRoundMode->SetAttribute(XML_VALUE.data(), static_cast<int>(GetHistogramRoundingMethod()));
     histogramSettings->InsertEndChild(hRoundMode);
     // interval display
     auto hIntervalDisplay = doc.NewElement(XML_GRAPH_INTERVAL_DISPLAY.mb_str());
-    hIntervalDisplay->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetHistogramIntervalDisplay()));
+    hIntervalDisplay->SetAttribute(XML_VALUE.data(), static_cast<int>(GetHistogramIntervalDisplay()));
     histogramSettings->InsertEndChild(hIntervalDisplay);
     // categorization label display
     auto hCatLabelDisplay = doc.NewElement(XML_GRAPH_BINNING_LABEL_DISPLAY.mb_str());
-    hCatLabelDisplay->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetHistrogramBinLabelDisplay()));
+    hCatLabelDisplay->SetAttribute(XML_VALUE.data(), static_cast<int>(GetHistrogramBinLabelDisplay()));
     histogramSettings->InsertEndChild(hCatLabelDisplay);
     // bar color
     auto hbarColor = doc.NewElement(XML_GRAPH_COLOR.mb_str());
@@ -4244,11 +4152,11 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     histogramSettings->InsertEndChild(hbarColor);
     // bar opacity
     auto hbarOpacity = doc.NewElement(XML_GRAPH_OPACITY.mb_str());
-    hbarOpacity->SetAttribute(XML_VALUE.mb_str(), GetHistogramBarOpacity());
+    hbarOpacity->SetAttribute(XML_VALUE.data(), GetHistogramBarOpacity());
     histogramSettings->InsertEndChild(hbarOpacity);
     // bar effect
     auto hbarEffect = doc.NewElement(XML_BAR_EFFECT.mb_str());
-    hbarEffect->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetHistogramBarEffect()));
+    hbarEffect->SetAttribute(XML_VALUE.data(), static_cast<int>(GetHistogramBarEffect()));
     histogramSettings->InsertEndChild(hbarEffect);
 
     graphDefaultsSection->InsertEndChild(histogramSettings);
@@ -4263,19 +4171,19 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     barChartSettings->InsertEndChild(barChartbarColor);
     // bar orientation
     auto barOrientation = doc.NewElement(XML_BAR_ORIENTATION.mb_str());
-    barOrientation->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetBarChartOrientation()));
+    barOrientation->SetAttribute(XML_VALUE.data(), static_cast<int>(GetBarChartOrientation()));
     barChartSettings->InsertEndChild(barOrientation);
     // bar opacity
     auto barOpacity = doc.NewElement(XML_GRAPH_OPACITY.mb_str());
-    barOpacity->SetAttribute(XML_VALUE.mb_str(), GetGraphBarOpacity());
+    barOpacity->SetAttribute(XML_VALUE.data(), GetGraphBarOpacity());
     barChartSettings->InsertEndChild(barOpacity);
     // bar display labels
     auto barDisplayLabels = doc.NewElement(XML_BAR_DISPLAY_LABELS.mb_str());
-    barDisplayLabels->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(IsDisplayingBarChartLabels()));
+    barDisplayLabels->SetAttribute(XML_VALUE.data(), static_cast<int>(IsDisplayingBarChartLabels()));
     barChartSettings->InsertEndChild(barDisplayLabels);
     // bar effect
     auto barEffect = doc.NewElement(XML_BAR_EFFECT.mb_str());
-    barEffect->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetGraphBarEffect()));
+    barEffect->SetAttribute(XML_VALUE.data(), static_cast<int>(GetGraphBarEffect()));
     barChartSettings->InsertEndChild(barEffect);
 
     graphDefaultsSection->InsertEndChild(barChartSettings);
@@ -4290,23 +4198,23 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     boxPlotSettings->InsertEndChild(boxColor);
     // box opacity
     auto boxOpacity = doc.NewElement(XML_GRAPH_OPACITY.mb_str());
-    boxOpacity->SetAttribute(XML_VALUE.mb_str(), GetGraphBoxOpacity());
+    boxOpacity->SetAttribute(XML_VALUE.data(), GetGraphBoxOpacity());
     boxPlotSettings->InsertEndChild(boxOpacity);
     // box effect
     auto boxEffect = doc.NewElement(XML_BOX_EFFECT.mb_str());
-    boxEffect->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetGraphBoxEffect()));
+    boxEffect->SetAttribute(XML_VALUE.data(), static_cast<int>(GetGraphBoxEffect()));
     boxPlotSettings->InsertEndChild(boxEffect);
     // box plot points
     auto boxPlotAllPoints = doc.NewElement(XML_BOX_PLOT_SHOW_ALL_POINTS.mb_str());
-    boxPlotAllPoints->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(IsShowingAllBoxPlotPoints()));
+    boxPlotAllPoints->SetAttribute(XML_VALUE.data(), static_cast<int>(IsShowingAllBoxPlotPoints()));
     boxPlotSettings->InsertEndChild(boxPlotAllPoints);
     // box connections
     auto boxConnectMiddlePoints = doc.NewElement(XML_BOX_CONNECT_MIDDLE_POINTS.mb_str());
-    boxConnectMiddlePoints->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(IsConnectingBoxPlotMiddlePoints()));
+    boxConnectMiddlePoints->SetAttribute(XML_VALUE.data(), static_cast<int>(IsConnectingBoxPlotMiddlePoints()));
     boxPlotSettings->InsertEndChild(boxConnectMiddlePoints);
     // box display labels
     auto boxDisplayLabels = doc.NewElement(XML_BOX_DISPLAY_LABELS.mb_str());
-    boxDisplayLabels->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(IsDisplayingBoxPlotLabels()));
+    boxDisplayLabels->SetAttribute(XML_VALUE.data(), static_cast<int>(IsDisplayingBoxPlotLabels()));
     boxPlotSettings->InsertEndChild(boxDisplayLabels);
 
     graphDefaultsSection->InsertEndChild(boxPlotSettings);
@@ -4315,17 +4223,17 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     // Lix
     auto lixSettings = doc.NewElement(XML_LIX_SETTINGS.mb_str());
     auto useEnglishLabels = doc.NewElement(XML_USE_ENGLISH_LABELS.mb_str());
-    useEnglishLabels->SetAttribute(XML_INCLUDE.mb_str(), bool_to_int(IsUsingEnglishLabelsForGermanLix()) );
+    useEnglishLabels->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsUsingEnglishLabelsForGermanLix()) );
     lixSettings->InsertEndChild(useEnglishLabels);
     graphDefaultsSection->InsertEndChild(lixSettings);
     // Flesch chart
     auto fleschChartSettings = doc.NewElement(XML_FLESCH_CHART_SETTINGS.mb_str());
     auto connectionLine = doc.NewElement(XML_INCLUDE_CONNECTION_LINE.mb_str());
-    connectionLine->SetAttribute(XML_INCLUDE.mb_str(), bool_to_int(IsConnectingFleschPoints()) );
+    connectionLine->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsConnectingFleschPoints()) );
     fleschChartSettings->InsertEndChild(connectionLine);
 
     auto rulerDocGroup = doc.NewElement(XML_FLESCH_RULER_DOC_GROUPS.mb_str());
-    rulerDocGroup->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsIncludingFleschRulerDocGroups()) );
+    rulerDocGroup->SetAttribute(XML_VALUE.data(), bool_to_int(IsIncludingFleschRulerDocGroups()) );
     fleschChartSettings->InsertEndChild(rulerDocGroup);
 
     graphDefaultsSection->InsertEndChild(fleschChartSettings);
@@ -4338,8 +4246,8 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     invalidAreaColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetInvalidAreaColor().Blue() );
     fryRaygor->InsertEndChild(invalidAreaColor);
 
-    auto raygorStyle = doc.NewElement(XML_RAYGOR_STYLE.mb_str());
-    raygorStyle->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetRaygorStyle()));
+    auto raygorStyle = doc.NewElement(XML_RAYGOR_STYLE.data());
+    raygorStyle->SetAttribute(XML_VALUE.data(), static_cast<int>(GetRaygorStyle()));
     fryRaygor->InsertEndChild(raygorStyle);
 
     graphDefaultsSection->InsertEndChild(fryRaygor);
@@ -4489,44 +4397,44 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto statsDefaultsSection = doc.NewElement(XML_STATISTICS_SECTION.mb_str());
     // variance method
     auto varianceMethod = doc.NewElement(XML_VARIANCE_METHOD.mb_str());
-    varianceMethod->SetAttribute(XML_METHOD.mb_str(), static_cast<int>(GetVarianceMethod()) );
+    varianceMethod->SetAttribute(XML_METHOD.data(), static_cast<int>(GetVarianceMethod()) );
     statsDefaultsSection->InsertEndChild(varianceMethod);
     // stats results
     auto statsResults = doc.NewElement(XML_STATISTICS_RESULTS.mb_str());
-    statsResults->SetAttribute(XML_VALUE.mb_str(), GetStatisticsInfo().ToString().mb_str());
+    statsResults->SetAttribute(XML_VALUE.data(), GetStatisticsInfo().ToString().mb_str());
     statsDefaultsSection->InsertEndChild(statsResults);
     // stats report
     auto statsReport = doc.NewElement(XML_STATISTICS_REPORT.mb_str());
-    statsReport->SetAttribute(XML_VALUE.mb_str(), GetStatisticsReportInfo().ToString().mb_str());
+    statsReport->SetAttribute(XML_VALUE.data(), GetStatisticsReportInfo().ToString().mb_str());
     statsDefaultsSection->InsertEndChild(statsReport);
     projectSettings->InsertEndChild(statsDefaultsSection);
 
     // wizard page defaults
-    auto wizardPageDefaultsSection = doc.NewElement(XML_WIZARD_PAGES_SETTINGS.mb_str());
+    auto wizardPageDefaultsSection = doc.NewElement(XML_WIZARD_PAGES_SETTINGS.data());
 
     // Text Source
-    auto textSource = doc.NewElement(XML_TEXT_SOURCE.mb_str());
-    textSource->SetAttribute(XML_METHOD.mb_str(), static_cast<int>(m_textSource));
+    auto textSource = doc.NewElement(XML_TEXT_SOURCE.data());
+    textSource->SetAttribute(XML_METHOD.data(), static_cast<int>(m_textSource));
     wizardPageDefaultsSection->InsertEndChild(textSource);
 
     // Test Recommendation
     auto testRecommendation = doc.NewElement(XML_TEST_RECOMMENDATION.mb_str());
-    testRecommendation->SetAttribute(XML_METHOD.mb_str(), static_cast<int>(m_testRecommendation));
+    testRecommendation->SetAttribute(XML_METHOD.data(), static_cast<int>(m_testRecommendation));
     wizardPageDefaultsSection->InsertEndChild(testRecommendation);
 
     // Tests by Industry
     auto testsByIndustry = doc.NewElement(XML_TEST_BY_INDUSTRY.mb_str());
-    testsByIndustry->SetAttribute(XML_METHOD.mb_str(), static_cast<int>(m_testsByIndustry));
+    testsByIndustry->SetAttribute(XML_METHOD.data(), static_cast<int>(m_testsByIndustry));
     wizardPageDefaultsSection->InsertEndChild(testsByIndustry);
 
     // Tests By Document Type
     auto testsByDocumentType = doc.NewElement(XML_TEST_BY_DOCUMENT_TYPE.mb_str());
-    testsByDocumentType->SetAttribute(XML_METHOD.mb_str(), static_cast<int>(m_testsByDocumentType));
+    testsByDocumentType->SetAttribute(XML_METHOD.data(), static_cast<int>(m_testsByDocumentType));
     wizardPageDefaultsSection->InsertEndChild(testsByDocumentType);
 
     // tests by bundle
     auto testsByBundle = doc.NewElement(XML_SELECTED_TEST_BUNDLE.mb_str());
-    testsByBundle->SetAttribute(XML_VALUE.mb_str(), GetSelectedTestBundle().mb_str());
+    testsByBundle->SetAttribute(XML_VALUE.data(), GetSelectedTestBundle().mb_str());
     wizardPageDefaultsSection->InsertEndChild(testsByBundle);
 
     projectSettings->InsertEndChild(wizardPageDefaultsSection);
@@ -4536,65 +4444,65 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     // options inclusions
     auto isIncludingScoreSummary = doc.NewElement(XML_INCLUDE_SCORES_SUMMARY_REPORT.mb_str());
-    isIncludingScoreSummary->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsIncludingScoreSummaryReport()) );
+    isIncludingScoreSummary->SetAttribute(XML_VALUE.data(), bool_to_int(IsIncludingScoreSummaryReport()) );
     readabilityTestSection->InsertEndChild(isIncludingScoreSummary);
 
     // grade scale/reading age display
     auto readingAgeFormat = doc.NewElement(XML_READING_AGE_FORMAT.mb_str());
-    readingAgeFormat->SetAttribute(XML_VALUE.mb_str(),
+    readingAgeFormat->SetAttribute(XML_VALUE.data(),
         static_cast<int>(GetReadabilityMessageCatalog().GetReadingAgeDisplay()) );
     readabilityTestSection->InsertEndChild(readingAgeFormat);
 
-    auto gradeScale = doc.NewElement(XML_READABILITY_TEST_GRADE_SCALE_DISPLAY.mb_str());
-    gradeScale->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetReadabilityMessageCatalog().GetGradeScale()) );
+    auto gradeScale = doc.NewElement(XML_READABILITY_TEST_GRADE_SCALE_DISPLAY.data());
+    gradeScale->SetAttribute(XML_VALUE.data(), static_cast<int>(GetReadabilityMessageCatalog().GetGradeScale()) );
     readabilityTestSection->InsertEndChild(gradeScale);
 
-    auto gradeScaleLongFormat = doc.NewElement(XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT.mb_str());
-    gradeScaleLongFormat->SetAttribute(XML_VALUE.mb_str(),
+    auto gradeScaleLongFormat = doc.NewElement(XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT.data());
+    gradeScaleLongFormat->SetAttribute(XML_VALUE.data(),
         bool_to_int(GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat()) );
     readabilityTestSection->InsertEndChild(gradeScaleLongFormat);
 
     // test-specific options
     //----------------------
     // Flesch-Kincaid options
-    auto fleschKincaidOptions = doc.NewElement(XML_FLESCH_KINCAID_OPTIONS.mb_str());
-    auto fleschKincaidNumeralMethod = doc.NewElement(XML_NUMERAL_SYLLABICATION_METHOD.mb_str());
-    fleschKincaidNumeralMethod->SetAttribute(XML_VALUE.mb_str(),
+    auto fleschKincaidOptions = doc.NewElement(XML_FLESCH_KINCAID_OPTIONS.data());
+    auto fleschKincaidNumeralMethod = doc.NewElement(XML_NUMERAL_SYLLABICATION_METHOD.data());
+    fleschKincaidNumeralMethod->SetAttribute(XML_VALUE.data(),
         static_cast<int>(GetFleschKincaidNumeralSyllabizeMethod()));
     fleschKincaidOptions->InsertEndChild(fleschKincaidNumeralMethod);
     readabilityTestSection->InsertEndChild(fleschKincaidOptions);
     // Flesch options
-    auto fleschOptions = doc.NewElement(XML_FLESCH_OPTIONS.mb_str());
-    auto fleschNumeralMethod = doc.NewElement(XML_NUMERAL_SYLLABICATION_METHOD.mb_str());
-    fleschNumeralMethod->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetFleschNumeralSyllabizeMethod()));
+    auto fleschOptions = doc.NewElement(XML_FLESCH_OPTIONS.data());
+    auto fleschNumeralMethod = doc.NewElement(XML_NUMERAL_SYLLABICATION_METHOD.data());
+    fleschNumeralMethod->SetAttribute(XML_VALUE.data(), static_cast<int>(GetFleschNumeralSyllabizeMethod()));
     fleschOptions->InsertEndChild(fleschNumeralMethod);
     readabilityTestSection->InsertEndChild(fleschOptions);
     // Gunning fog options
-    auto fogOptions = doc.NewElement(XML_GUNNING_FOG_OPTIONS.mb_str());
-    auto useUnits = doc.NewElement(XML_USE_SENTENCE_UNITS.mb_str());
-    useUnits->SetAttribute(XML_VALUE.mb_str(), bool_to_int(FogUseSentenceUnits()));
+    auto fogOptions = doc.NewElement(XML_GUNNING_FOG_OPTIONS.data());
+    auto useUnits = doc.NewElement(XML_USE_SENTENCE_UNITS.data());
+    useUnits->SetAttribute(XML_VALUE.data(), bool_to_int(FogUseSentenceUnits()));
     fogOptions->InsertEndChild(useUnits);
     readabilityTestSection->InsertEndChild(fogOptions);
     // HJ options
-    auto hjOptions = doc.NewElement(XML_HARRIS_JACOBSON_OPTIONS.mb_str());
+    auto hjOptions = doc.NewElement(XML_HARRIS_JACOBSON_OPTIONS.data());
     // HJ text exclusion
-    auto hjTextExclusionMode = doc.NewElement(XML_TEXT_EXCLUSION.mb_str());
-    hjTextExclusionMode->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetHarrisJacobsonTextExclusionMode()));
+    auto hjTextExclusionMode = doc.NewElement(XML_TEXT_EXCLUSION.data());
+    hjTextExclusionMode->SetAttribute(XML_VALUE.data(), static_cast<int>(GetHarrisJacobsonTextExclusionMode()));
     hjOptions->InsertEndChild(hjTextExclusionMode);
     readabilityTestSection->InsertEndChild(hjOptions);
     // DC options
-    auto dcOptions = doc.NewElement(XML_NEW_DALE_CHALL_OPTIONS.mb_str());
+    auto dcOptions = doc.NewElement(XML_NEW_DALE_CHALL_OPTIONS.data());
     // stocker list
-    auto stockerList = doc.NewElement(XML_STOCKER_LIST.mb_str());
-    stockerList->SetAttribute(XML_VALUE.mb_str(), bool_to_int(IsIncludingStockerCatholicSupplement()));
+    auto stockerList = doc.NewElement(XML_STOCKER_LIST.data());
+    stockerList->SetAttribute(XML_VALUE.data(), bool_to_int(IsIncludingStockerCatholicSupplement()));
     dcOptions->InsertEndChild(stockerList);
     // dc text exclusion
-    auto dcTextExclusionMode = doc.NewElement(XML_TEXT_EXCLUSION.mb_str());
-    dcTextExclusionMode->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetDaleChallTextExclusionMode()));
+    auto dcTextExclusionMode = doc.NewElement(XML_TEXT_EXCLUSION.data());
+    dcTextExclusionMode->SetAttribute(XML_VALUE.data(), static_cast<int>(GetDaleChallTextExclusionMode()));
     dcOptions->InsertEndChild(dcTextExclusionMode);
     // proper nouns
-    auto dcProperNouns = doc.NewElement(XML_PROPER_NOUN_COUNTING_METHOD.mb_str());
-    dcProperNouns->SetAttribute(XML_VALUE.mb_str(), static_cast<int>(GetDaleChallProperNounCountingMethod()));
+    auto dcProperNouns = doc.NewElement(XML_PROPER_NOUN_COUNTING_METHOD.data());
+    dcProperNouns->SetAttribute(XML_VALUE.data(), static_cast<int>(GetDaleChallProperNounCountingMethod()));
     dcOptions->InsertEndChild(dcProperNouns);
     readabilityTestSection->InsertEndChild(dcOptions);
 
@@ -4603,19 +4511,19 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         ++rTest)
         {
         auto currentTest = doc.NewElement(wxString(rTest->get_test().get_id().c_str()).mb_str());
-        currentTest->SetAttribute(XML_INCLUDE.mb_str(), bool_to_int(rTest->is_included()));
+        currentTest->SetAttribute(XML_INCLUDE.data(), bool_to_int(rTest->is_included()));
         readabilityTestSection->InsertEndChild(currentTest);
         }
 
     // Dolch
     auto dolch = doc.NewElement(XML_DOLCH_SUITE.mb_str());
-    dolch->SetAttribute(XML_INCLUDE.mb_str(), bool_to_int(IsDolchSelected()));
+    dolch->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsDolchSelected()));
     readabilityTestSection->InsertEndChild(dolch);
     // all the custom tests being included
     for (size_t i = 0; i < GetIncludedCustomTests().size(); ++i)
         {
-        auto customTest = doc.NewElement(XML_CUSTOM_TEST.mb_str());
-        customTest->SetAttribute(XML_VALUE.mb_str(),
+        auto customTest = doc.NewElement(XML_CUSTOM_TEST.data());
+        customTest->SetAttribute(XML_VALUE.data(),
             wxString(encode({ GetIncludedCustomTests().at(i).wc_str() }, false).c_str()).mb_str());
         readabilityTestSection->InsertEndChild(customTest);
         }
@@ -4624,26 +4532,26 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     // text views
     auto textViewsSection = doc.NewElement(XML_TEXT_VIEWS_SECTION.mb_str());
     // how highlighting is done
-    auto highlightMethod = doc.NewElement(XML_HIGHLIGHT_METHOD.mb_str());
-    highlightMethod->SetAttribute(XML_METHOD.mb_str(), static_cast<int>(m_textHighlight));
+    auto highlightMethod = doc.NewElement(XML_HIGHLIGHT_METHOD.data());
+    highlightMethod->SetAttribute(XML_METHOD.data(), static_cast<int>(m_textHighlight));
     textViewsSection->InsertEndChild(highlightMethod);
 
     // highlighting information
-    auto highlight = doc.NewElement(XML_HIGHLIGHTCOLOR.mb_str());
+    auto highlight = doc.NewElement(XML_HIGHLIGHTCOLOR.data());
     highlight->SetAttribute(XmlFormat::GetRed().mb_str(), m_textHighlightColor.Red() );
     highlight->SetAttribute(XmlFormat::GetGreen().mb_str(), m_textHighlightColor.Green() );
     highlight->SetAttribute(XmlFormat::GetBlue().mb_str(), m_textHighlightColor.Blue() );
     textViewsSection->InsertEndChild(highlight);
 
     // highlight color for wordy items
-    auto wordyPhrasesHighlight = doc.NewElement(XML_WORDY_PHRASE_HIGHLIGHTCOLOR.mb_str());
+    auto wordyPhrasesHighlight = doc.NewElement(XML_WORDY_PHRASE_HIGHLIGHTCOLOR.data());
     wordyPhrasesHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), m_wordyPhraseHighlightColor.Red() );
     wordyPhrasesHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), m_wordyPhraseHighlightColor.Green() );
     wordyPhrasesHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), m_wordyPhraseHighlightColor.Blue() );
     textViewsSection->InsertEndChild(wordyPhrasesHighlight);
 
     // highlight color for repeated words
-    auto dupWordsHighlight = doc.NewElement(XML_DUP_WORD_HIGHLIGHTCOLOR.mb_str());
+    auto dupWordsHighlight = doc.NewElement(XML_DUP_WORD_HIGHLIGHTCOLOR.data());
     dupWordsHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), m_duplicateWordHighlightColor.Red() );
     dupWordsHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), m_duplicateWordHighlightColor.Green() );
     dupWordsHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), m_duplicateWordHighlightColor.Blue() );
@@ -4654,53 +4562,53 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     dolchConjunctionsHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchConjunctionsColor().Red() );
     dolchConjunctionsHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchConjunctionsColor().Green() );
     dolchConjunctionsHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchConjunctionsColor().Blue() );
-    dolchConjunctionsHighlight->SetAttribute(XML_INCLUDE.mb_str(), bool_to_int(IsHighlightingDolchConjunctions()) );
+    dolchConjunctionsHighlight->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsHighlightingDolchConjunctions()) );
     textViewsSection->InsertEndChild(dolchConjunctionsHighlight);
 
     auto dolchPrepositionsHighlight = doc.NewElement(XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR.mb_str());
     dolchPrepositionsHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchPrepositionsColor().Red() );
     dolchPrepositionsHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchPrepositionsColor().Green() );
     dolchPrepositionsHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchPrepositionsColor().Blue() );
-    dolchPrepositionsHighlight->SetAttribute(XML_INCLUDE.mb_str(), bool_to_int(IsHighlightingDolchPrepositions()) );
+    dolchPrepositionsHighlight->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsHighlightingDolchPrepositions()) );
     textViewsSection->InsertEndChild(dolchPrepositionsHighlight);
 
     auto dolchPronounHighlight = doc.NewElement(XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR.mb_str());
     dolchPronounHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchPronounsColor().Red() );
     dolchPronounHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchPronounsColor().Green() );
     dolchPronounHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchPronounsColor().Blue() );
-    dolchPronounHighlight->SetAttribute(XML_INCLUDE.mb_str(), bool_to_int(IsHighlightingDolchPronouns()) );
+    dolchPronounHighlight->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsHighlightingDolchPronouns()) );
     textViewsSection->InsertEndChild(dolchPronounHighlight);
 
     auto dolchAdverbHighlight = doc.NewElement(XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR.mb_str());
     dolchAdverbHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchAdverbsColor().Red() );
     dolchAdverbHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchAdverbsColor().Green() );
     dolchAdverbHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchAdverbsColor().Blue() );
-    dolchAdverbHighlight->SetAttribute(XML_INCLUDE.mb_str(), bool_to_int(IsHighlightingDolchAdverbs()) );
+    dolchAdverbHighlight->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsHighlightingDolchAdverbs()) );
     textViewsSection->InsertEndChild(dolchAdverbHighlight);
 
     auto dolchAdjectiveHighlight = doc.NewElement(XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR.mb_str());
     dolchAdjectiveHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchAdjectivesColor().Red() );
     dolchAdjectiveHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchAdjectivesColor().Green() );
     dolchAdjectiveHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchAdjectivesColor().Blue() );
-    dolchAdjectiveHighlight->SetAttribute(XML_INCLUDE.mb_str(), bool_to_int(IsHighlightingDolchAdjectives()) );
+    dolchAdjectiveHighlight->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsHighlightingDolchAdjectives()) );
     textViewsSection->InsertEndChild(dolchAdjectiveHighlight);
 
     auto dolchVerbHighlight = doc.NewElement(XML_DOLCH_VERBS_HIGHLIGHTCOLOR.mb_str());
     dolchVerbHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchVerbsColor().Red() );
     dolchVerbHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchVerbsColor().Green() );
     dolchVerbHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchVerbsColor().Blue() );
-    dolchVerbHighlight->SetAttribute(XML_INCLUDE.mb_str(), bool_to_int(IsHighlightingDolchVerbs()) );
+    dolchVerbHighlight->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsHighlightingDolchVerbs()) );
     textViewsSection->InsertEndChild(dolchVerbHighlight);
 
     auto dolchNounHighlight = doc.NewElement(XML_DOLCH_NOUNS_HIGHLIGHTCOLOR.mb_str());
     dolchNounHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchNounColor().Red() );
     dolchNounHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchNounColor().Green() );
     dolchNounHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchNounColor().Blue() );
-    dolchNounHighlight->SetAttribute(XML_INCLUDE.mb_str(), bool_to_int(IsHighlightingDolchNouns()) );
+    dolchNounHighlight->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsHighlightingDolchNouns()) );
     textViewsSection->InsertEndChild(dolchNounHighlight);
 
     // highlight color for excluded text
-    auto excludedHighlight = doc.NewElement(XML_EXCLUDED_HIGHLIGHTCOLOR.mb_str());
+    auto excludedHighlight = doc.NewElement(XML_EXCLUDED_HIGHLIGHTCOLOR.data());
     excludedHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), m_excludedTextHighlightColor.Red() );
     excludedHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), m_excludedTextHighlightColor.Green() );
     excludedHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), m_excludedTextHighlightColor.Blue() );

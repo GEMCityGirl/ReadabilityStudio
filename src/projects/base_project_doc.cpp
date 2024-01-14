@@ -837,7 +837,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
 
     // first, get the project format version number
     currentStartTag.clear();
-    currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_PROJECT_HEADER);
+    currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_PROJECT_HEADER.data());
     const wchar_t* projectSection = std::wcsstr(settingsFileText, currentStartTag.wc_str() );
     wxString docVersionNumber = L"1.0";
     if (projectSection)
@@ -845,7 +845,8 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         /* See if the project is a newer format than the current version that this
            product supports. Try to be forward compatibility, but some info will be lost.*/
         const wchar_t* endTag = std::wcschr(projectSection, L'>');
-        const wchar_t* version = std::wcsstr(projectSection, wxGetApp().GetAppOptions().XML_VERSION);
+        const wchar_t* version =
+            std::wcsstr(projectSection, wxGetApp().GetAppOptions().XML_VERSION_W.data());
         if (version && endTag &&
             (version < endTag))
             {
@@ -874,9 +875,9 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
 
     // original text source (e.g., document file) information
     currentStartTag.clear();
-    currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_DOCUMENT);
+    currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_DOCUMENT.data());
     currentEndTag.clear();
-    currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_DOCUMENT).append(L">");
+    currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_DOCUMENT.data()).append(L">");
     const wchar_t* docParsingSection = std::wcsstr(settingsFileText, currentStartTag);
     const wchar_t* docParsingSectionEnd = std::wcsstr(settingsFileText, currentEndTag);
     if (docParsingSection && docParsingSectionEnd &&
@@ -885,15 +886,15 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         /* see if the text was from a file or manually entered
           (if bogus value is in file then assume from file instead of getting global default)*/
         SetTextSource(static_cast<TextSource>(XmlFormat::GetLong(docParsingSection, docParsingSectionEnd,
-                                                                 wxGetApp().GetAppOptions().XML_TEXT_SOURCE,
+                                                                 wxGetApp().GetAppOptions().XML_TEXT_SOURCE.data(),
                             static_cast<long>(wxGetApp().GetAppOptions().GetTextSource()))));
         if (GetTextSource() != TextSource::EnteredText &&
             GetTextSource() != TextSource::FromFile)
             { SetTextSource(TextSource::FromFile); }
         // read in the file path to the (original) document
         XmlFormat::GetStringsWithExtraInfo(docParsingSection, docParsingSectionEnd,
-                                           wxGetApp().GetAppOptions().XML_DOCUMENT_PATH,
-                                           wxGetApp().GetAppOptions().XML_DESCRIPTION,
+                                           wxGetApp().GetAppOptions().XML_DOCUMENT_PATH.data(),
+                                           wxGetApp().GetAppOptions().XML_DESCRIPTION.data(),
                                            GetSourceFilesInfo());
 
         UseRealTimeUpdate(XmlFormat::GetBoolean(docParsingSection, docParsingSectionEnd,
@@ -935,7 +936,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         readability::test_language projectLanguage =
             static_cast<readability::test_language>(
                 XmlFormat::GetLong(docParsingSection, docParsingSectionEnd,
-                                   wxGetApp().GetAppOptions().XML_PROJECT_LANGUAGE,
+                                   wxGetApp().GetAppOptions().XML_PROJECT_LANGUAGE.data(),
                                    static_cast<long>(wxGetApp().GetAppOptions().GetProjectLanguage())));
         if (projectLanguage != readability::test_language::english_test &&
             !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
@@ -951,9 +952,9 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
 
         // exporting file paths
         m_exportFolder = XmlFormat::GetString(docParsingSection, docParsingSectionEnd,
-                                              wxGetApp().GetAppOptions().XML_EXPORT_FOLDER_PATH);
+                                              wxGetApp().GetAppOptions().XML_EXPORT_FOLDER_PATH.data());
         m_exportFile = XmlFormat::GetString(docParsingSection, docParsingSectionEnd,
-                                            wxGetApp().GetAppOptions().XML_EXPORT_FILE_PATH);
+                                            wxGetApp().GetAppOptions().XML_EXPORT_FILE_PATH.data());
         }
 
     // sentences breakdown
@@ -990,9 +991,9 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
 
     // grammar
     currentStartTag.clear();
-    currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_GRAMMAR);
+    currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_GRAMMAR.data());
     currentEndTag.clear();
-    currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_GRAMMAR).append(L">");
+    currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_GRAMMAR.data()).append(L">");
     const wchar_t* grammarSection = std::wcsstr(settingsFileText, currentStartTag);
     const wchar_t* grammarSectionEnd = std::wcsstr(settingsFileText, currentEndTag);
     if (grammarSection && grammarSectionEnd &&
@@ -1000,44 +1001,44 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         {
         SpellCheckIgnoreProperNouns(
             XmlFormat::GetBoolean(grammarSection, grammarSectionEnd,
-            wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_PROPER_NOUNS,
+            wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_PROPER_NOUNS.data(),
                 wxGetApp().GetAppOptions().SpellCheckIsIgnoringProperNouns()) );
         SpellCheckIgnoreUppercased(
             XmlFormat::GetBoolean(grammarSection, grammarSectionEnd,
-            wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_UPPERCASED,
+            wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_UPPERCASED.data(),
                 wxGetApp().GetAppOptions().SpellCheckIsIgnoringUppercased()) );
         SpellCheckIgnoreNumerals(
             XmlFormat::GetBoolean(grammarSection, grammarSectionEnd,
-            wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_NUMERALS,
+            wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_NUMERALS.data(),
                 wxGetApp().GetAppOptions().SpellCheckIsIgnoringNumerals()) );
         SpellCheckIgnoreFileAddresses(
             XmlFormat::GetBoolean(grammarSection, grammarSectionEnd,
-            wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_FILE_ADDRESSES,
+            wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_FILE_ADDRESSES.data(),
                 wxGetApp().GetAppOptions().SpellCheckIsIgnoringFileAddresses()) );
         SpellCheckIgnoreProgrammerCode(
             XmlFormat::GetBoolean(grammarSection, grammarSectionEnd,
-            wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_PROGRAMMER_CODE,
+            wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_PROGRAMMER_CODE.data(),
                 wxGetApp().GetAppOptions().SpellCheckIsIgnoringProgrammerCode()) );
         SpellCheckAllowColloquialisms(
             XmlFormat::GetBoolean(grammarSection, grammarSectionEnd,
-            wxGetApp().GetAppOptions().XML_SPELLCHECK_ALLOW_COLLOQUIALISMS,
+            wxGetApp().GetAppOptions().XML_SPELLCHECK_ALLOW_COLLOQUIALISMS.data(),
                 wxGetApp().GetAppOptions().SpellCheckIsAllowingColloquialisms()) );
         SpellCheckIgnoreSocialMediaTags(
             XmlFormat::GetBoolean(grammarSection, grammarSectionEnd,
-            wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_SOCIAL_MEDIA_TAGS,
+            wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_SOCIAL_MEDIA_TAGS.data(),
                 wxGetApp().GetAppOptions().SpellCheckIsIgnoringSocialMediaTags()));
         const wxString grammarInfo =
             XmlFormat::GetString(grammarSection, grammarSectionEnd,
-                wxGetApp().GetAppOptions().XML_GRAMMAR_INFO);
+                wxGetApp().GetAppOptions().XML_GRAMMAR_INFO.data());
         if (grammarInfo.length())
             { GetGrammarInfo().Set(grammarInfo); }
         }
 
     // read in the parsing and analysis logic
     currentStartTag.clear();
-    currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_DOCUMENT_ANALYSIS_LOGIC);
+    currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_DOCUMENT_ANALYSIS_LOGIC.data());
     currentEndTag.clear();
-    currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_DOCUMENT_ANALYSIS_LOGIC).append(L">");
+    currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_DOCUMENT_ANALYSIS_LOGIC.data()).append(L">");
     const wchar_t* parsingSection = std::wcsstr(settingsFileText, currentStartTag);
     const wchar_t* parsingSectionEnd = std::wcsstr(settingsFileText, currentEndTag);
     if (parsingSection && parsingSectionEnd &&
@@ -1045,45 +1046,45 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         {
         // get the method for determining a long sentence
         SetLongSentenceMethod(static_cast<LongSentence>(XmlFormat::GetLong(parsingSection, parsingSectionEnd,
-                                    wxGetApp().GetAppOptions().XML_LONG_SENTENCE_METHOD,
+                                    wxGetApp().GetAppOptions().XML_LONG_SENTENCE_METHOD.data(),
                                     static_cast<long>(wxGetApp().GetAppOptions().GetLongSentenceMethod()))));
         if (GetLongSentenceMethod() != LongSentence::LongerThanSpecifiedLength &&
             GetLongSentenceMethod() != LongSentence::OutlierLength)
             { SetLongSentenceMethod(static_cast<LongSentence>(wxGetApp().GetAppOptions().GetLongSentenceMethod())); }
         // get the hard sentence length
         SetDifficultSentenceLength(static_cast<int>(XmlFormat::GetLong(parsingSection, parsingSectionEnd,
-                                        wxGetApp().GetAppOptions().XML_LONG_SENTENCE_LENGTH,
+                                        wxGetApp().GetAppOptions().XML_LONG_SENTENCE_LENGTH.data(),
                                         static_cast<long>(GetDifficultSentenceLength()))));
         // get the method for numeral syllabizing
         SetNumeralSyllabicationMethod(
             static_cast<NumeralSyllabize>(XmlFormat::GetLong(parsingSection, parsingSectionEnd,
-                wxGetApp().GetAppOptions().XML_NUMERAL_SYLLABICATION_METHOD,
+                wxGetApp().GetAppOptions().XML_NUMERAL_SYLLABICATION_METHOD.data(),
                 static_cast<long>(wxGetApp().GetAppOptions().GetNumeralSyllabicationMethod()))));
         if (GetNumeralSyllabicationMethod() != NumeralSyllabize::WholeWordIsOneSyllable &&
             GetNumeralSyllabicationMethod() != NumeralSyllabize::SoundOutEachDigit)
             { SetNumeralSyllabicationMethod(wxGetApp().GetAppOptions().GetNumeralSyllabicationMethod()); }
         // whether to ignore blank lines when figuring out if an incomplete sentences is end of paragraph
         SetIgnoreBlankLinesForParagraphsParser(XmlFormat::GetBoolean(parsingSection, parsingSectionEnd,
-            wxGetApp().GetAppOptions().XML_IGNORE_BLANK_LINES_FOR_PARAGRAPH_PARSING,
+            wxGetApp().GetAppOptions().XML_IGNORE_BLANK_LINES_FOR_PARAGRAPH_PARSING.data(),
             wxGetApp().GetAppOptions().GetIgnoreBlankLinesForParagraphsParser()));
         // whether we should ignore indenting when parsing paragraphs
         SetIgnoreIndentingForParagraphsParser(XmlFormat::GetBoolean(parsingSection, parsingSectionEnd,
-            wxGetApp().GetAppOptions().XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING,
+            wxGetApp().GetAppOptions().XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING.data(),
             wxGetApp().GetAppOptions().GetIgnoreIndentingForParagraphsParser()));
         // whether sentences must start capitalized
         SetSentenceStartMustBeUppercased(XmlFormat::GetBoolean(parsingSection, parsingSectionEnd,
-            wxGetApp().GetAppOptions().XML_SENTENCES_MUST_START_CAPITALIZED,
+            wxGetApp().GetAppOptions().XML_SENTENCES_MUST_START_CAPITALIZED.data(),
             wxGetApp().GetAppOptions().GetSentenceStartMustBeUppercased()));
         // File path to phrases to exclude from analysis.
         SetExcludedPhrasesPath(XmlFormat::GetString(parsingSection, parsingSectionEnd,
-            wxGetApp().GetAppOptions().XML_EXCLUDED_PHRASES_PATH));
+            wxGetApp().GetAppOptions().XML_EXCLUDED_PHRASES_PATH.data()));
         LoadExcludePhrases();
         const wchar_t* exclusionBlockTagSection =
             html_extract_text::find_element(parsingSection, parsingSectionEnd,
-                wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS.wc_str(), true);
+                wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS_W, true);
         const wchar_t* exclusionBlockTagSectionEnd = exclusionBlockTagSection ?
             html_extract_text::find_closing_element(exclusionBlockTagSection, parsingSectionEnd,
-                wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS.wc_str()) : nullptr;
+                wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS_W) : nullptr;
         if (exclusionBlockTagSection && exclusionBlockTagSectionEnd)
             {
             GetExclusionBlockTags().clear();
@@ -1092,17 +1093,17 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 {
                 exclusionBlockTag =
                     html_extract_text::find_element(exclusionBlockTag, parsingSectionEnd,
-                        wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG.wc_str(), true);
+                        wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG_W, true);
                 if (!exclusionBlockTag)
                     { break; }
                 const wchar_t* exclusionBlockTagEnd =
                     html_extract_text::find_closing_element(exclusionBlockTag, parsingSectionEnd,
-                        wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG.wc_str());
+                        wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG_W);
                 if (!exclusionBlockTagEnd)
                     { break; }
                 const wxString blockTags =
                     XmlFormat::GetString(exclusionBlockTag, exclusionBlockTagEnd,
-                        wxGetApp().GetAppOptions().XML_VALUE);
+                        wxGetApp().GetAppOptions().XML_VALUE.data());
                 if (blockTags.length() >= 2)
                     { GetExclusionBlockTags().push_back(std::make_pair(blockTags[0],blockTags[1])); }
                 exclusionBlockTag = exclusionBlockTagEnd;
@@ -1110,36 +1111,36 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             }
         // whether the first occurrence of an excluded phrase should be included
         IncludeExcludedPhraseFirstOccurrence(XmlFormat::GetBoolean(parsingSection, parsingSectionEnd,
-            wxGetApp().GetAppOptions().XML_EXCLUDED_PHRASES_INCLUDE_FIRST_OCCURRENCE,
+            wxGetApp().GetAppOptions().XML_EXCLUDED_PHRASES_INCLUDE_FIRST_OCCURRENCE.data(),
             wxGetApp().GetAppOptions().IsIncludingExcludedPhraseFirstOccurrence()));
         // whether to ignore proper nouns
         IgnoreProperNouns(XmlFormat::GetBoolean(parsingSection, parsingSectionEnd,
-            wxGetApp().GetAppOptions().XML_IGNORE_PROPER_NOUNS,
+            wxGetApp().GetAppOptions().XML_IGNORE_PROPER_NOUNS.data(),
             wxGetApp().GetAppOptions().IsIgnoringProperNouns()));
         // whether to ignore numerals
         IgnoreNumerals(XmlFormat::GetBoolean(parsingSection, parsingSectionEnd,
-            wxGetApp().GetAppOptions().XML_IGNORE_NUMERALS,
+            wxGetApp().GetAppOptions().XML_IGNORE_NUMERALS.data(),
             wxGetApp().GetAppOptions().IsIgnoringNumerals()));
         // whether to ignore file addresses
         IgnoreFileAddresses(XmlFormat::GetBoolean(parsingSection, parsingSectionEnd,
-            wxGetApp().GetAppOptions().XML_IGNORE_FILE_ADDRESSES,
+            wxGetApp().GetAppOptions().XML_IGNORE_FILE_ADDRESSES.data(),
             wxGetApp().GetAppOptions().IsIgnoringFileAddresses()));
         // whether to ignore trailing citations
         IgnoreTrailingCitations(XmlFormat::GetBoolean(parsingSection, parsingSectionEnd,
-            wxGetApp().GetAppOptions().XML_IGNORE_CITATIONS,
+            wxGetApp().GetAppOptions().XML_IGNORE_CITATIONS.data(),
             wxGetApp().GetAppOptions().IsIgnoringTrailingCitations()));
         // whether to use aggressive list deduction
         AggressiveExclusion(XmlFormat::GetBoolean(parsingSection, parsingSectionEnd,
-            wxGetApp().GetAppOptions().XML_AGGRESSIVE_EXCLUSION,
+            wxGetApp().GetAppOptions().XML_AGGRESSIVE_EXCLUSION.data(),
             wxGetApp().GetAppOptions().IsExcludingAggressively()));
         // whether to ignore trailing copyright notices
         IgnoreTrailingCopyrightNoticeParagraphs(XmlFormat::GetBoolean(parsingSection, parsingSectionEnd,
-            wxGetApp().GetAppOptions().XML_IGNORE_COPYRIGHT_NOTICES,
+            wxGetApp().GetAppOptions().XML_IGNORE_COPYRIGHT_NOTICES.data(),
             wxGetApp().GetAppOptions().IsIgnoringTrailingCopyrightNoticeParagraphs()));
         // get the method for parsing paragraphs
         SetParagraphsParsingMethod(
             static_cast<ParagraphParse>(XmlFormat::GetLong(parsingSection, parsingSectionEnd,
-                wxGetApp().GetAppOptions().XML_PARAGRAPH_PARSING_METHOD,
+                wxGetApp().GetAppOptions().XML_PARAGRAPH_PARSING_METHOD.data(),
                 static_cast<long>(wxGetApp().GetAppOptions().GetParagraphsParsingMethod()))));
         if (GetParagraphsParsingMethod() != ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs &&
             GetParagraphsParsingMethod() != ParagraphParse::EachNewLineIsAParagraph)
@@ -1150,12 +1151,12 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         // Number of words that will make an incomplete sentence actually complete
         SetIncludeIncompleteSentencesIfLongerThanValue(
             XmlFormat::GetLong(parsingSection, parsingSectionEnd,
-                wxGetApp().GetAppOptions().XML_INCLUDE_INCOMPLETE_SENTENCES_LONGER_THAN,
+                wxGetApp().GetAppOptions().XML_INCLUDE_INCOMPLETE_SENTENCES_LONGER_THAN.data(),
                 static_cast<long>(wxGetApp().GetAppOptions().GetIncludeIncompleteSentencesIfLongerThanValue())));
         // get the method for handling incomplete sentences
         SetInvalidSentenceMethod(
             static_cast<InvalidSentence>(XmlFormat::GetLong(parsingSection, parsingSectionEnd,
-                wxGetApp().GetAppOptions().XML_INVALID_SENTENCE_METHOD,
+                wxGetApp().GetAppOptions().XML_INVALID_SENTENCE_METHOD.data(),
             static_cast<long>((docVersionNumber <= L"1.0") ?
                 InvalidSentence::IncludeAsFullSentences : wxGetApp().GetAppOptions().GetInvalidSentenceMethod()))));
         if (static_cast<int>(GetInvalidSentenceMethod()) < 0 ||
@@ -1173,26 +1174,26 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
 
     // read in the custom tests
     currentStartTag.clear();
-    currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_CUSTOM_TESTS);
+    currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_CUSTOM_TESTS.data());
     currentEndTag.clear();
-    currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_CUSTOM_TESTS).append(L">");
+    currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_CUSTOM_TESTS.data()).append(L">");
     const wchar_t* customTestSection = std::wcsstr(settingsFileText, currentStartTag);
     const wchar_t* customTestSectionEnd = std::wcsstr(settingsFileText, currentEndTag);
     if (customTestSection && customTestSectionEnd &&
         (customTestSection < customTestSectionEnd) )
         {
         currentStartTag.clear();
-        currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_CUSTOM_FAMILIAR_WORD_TEST);
+        currentStartTag.append(L"<").append(wxGetApp().GetAppOptions().XML_CUSTOM_FAMILIAR_WORD_TEST.data());
         currentEndTag.clear();
-        currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_CUSTOM_FAMILIAR_WORD_TEST).append(L">");
+        currentEndTag.append(L"</").append(wxGetApp().GetAppOptions().XML_CUSTOM_FAMILIAR_WORD_TEST.data()).append(L">");
         const wchar_t* customFamiliarTestSection = std::wcsstr(customTestSection, currentStartTag);
         const wchar_t* customFamiliarTestSectionEnd = std::wcsstr(customTestSection, currentEndTag);
         while (customFamiliarTestSection && customFamiliarTestSectionEnd)
             {
             wxString testName = XmlFormat::GetString(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_TEST_NAME);
+                wxGetApp().GetAppOptions().XML_TEST_NAME.data());
             wxString filePath = XmlFormat::GetString(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_FAMILIAR_WORD_FILE_PATH);
+                wxGetApp().GetAppOptions().XML_FAMILIAR_WORD_FILE_PATH.data());
             if (!wxFile::Exists(filePath) )
                 {
                 // if word list file not found, then try to search for it
@@ -1203,22 +1204,22 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 }
             long testType =
                 XmlFormat::GetLong(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_TEST_TYPE, 0);
+                    wxGetApp().GetAppOptions().XML_TEST_TYPE.data(), 0);
             if (testType < 0 || testType >= static_cast<int>(readability::readability_test_type::TEST_TYPE_COUNT))
                 { testType = 0; }
             long stemmingType =
                 XmlFormat::GetLong(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_STEMMING_TYPE, 0);
+                    wxGetApp().GetAppOptions().XML_STEMMING_TYPE.data(), 0);
             if (stemmingType < 0 || stemmingType >= static_cast<int>(stemming::stemming_type::STEMMING_TYPE_COUNT))
                 { stemmingType = 0; }
             long formulaType =
                 XmlFormat::GetLong(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_TEST_FORMULA_TYPE, 0);
+                    wxGetApp().GetAppOptions().XML_TEST_FORMULA_TYPE.data(), 0);
             if (formulaType != 0 && formulaType != 1)
                 { formulaType = 0; }
             wxString formula =
                 XmlFormat::GetString(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_TEST_FORMULA);
+                    wxGetApp().GetAppOptions().XML_TEST_FORMULA.data());
             string_util::remove_blank_lines(formula);
             formula = FormulaFormat::FormatMathExpressionFromUS(formula);
             if (formula.empty())
@@ -1238,28 +1239,28 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             // include options
             const int includeProperNouns =
                 XmlFormat::GetLong(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_INCLUDE_PROPER_NOUNS, 1);
+                    wxGetApp().GetAppOptions().XML_INCLUDE_PROPER_NOUNS.data(), 1);
             const bool includeNumeric =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_INCLUDE_NUMERIC, true);
+                    wxGetApp().GetAppOptions().XML_INCLUDE_NUMERIC.data(), true);
             const bool includeCustomWordList =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_INCLUDE_CUSTOM_WORD_LIST, true);
+                    wxGetApp().GetAppOptions().XML_INCLUDE_CUSTOM_WORD_LIST.data(), true);
             const bool includeDCTest =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_INCLUDE_DC_LIST, false);
+                    wxGetApp().GetAppOptions().XML_INCLUDE_DC_LIST.data(), false);
             const bool includeSpacheTest =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_INCLUDE_SPACHE_LIST, false);
+                    wxGetApp().GetAppOptions().XML_INCLUDE_SPACHE_LIST.data(), false);
             const bool includeHJList =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_INCLUDE_HARRIS_JACOBSON_LIST, false);
+                    wxGetApp().GetAppOptions().XML_INCLUDE_HARRIS_JACOBSON_LIST.data(), false);
             const bool includeStockerList =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_INCLUDE_STOCKER_LIST, false);
+                    wxGetApp().GetAppOptions().XML_INCLUDE_STOCKER_LIST.data(), false);
             const bool familiar_words_must_be_on_each_included_list =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
-                    wxGetApp().GetAppOptions().XML_FAMILIAR_WORDS_ALL_LISTS, false);
+                    wxGetApp().GetAppOptions().XML_FAMILIAR_WORDS_ALL_LISTS.data(), false);
             // industry
             const bool industryChildrensPublishingSelected =
                 XmlFormat::GetBoolean(customFamiliarTestSection, customFamiliarTestSectionEnd,
@@ -1440,7 +1441,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             wxGetApp().GetAppOptions().GetInvalidAreaColor()));
 
         long raygorStyle = XmlFormat::GetLong(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_RAYGOR_STYLE,
+            wxGetApp().GetAppOptions().XML_RAYGOR_STYLE.data(),
             static_cast<int>(wxGetApp().GetAppOptions().GetRaygorStyle()));
         if (raygorStyle < 0 ||
             raygorStyle >=
@@ -1822,11 +1823,11 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 static_cast<long>(wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().GetReadingAgeDisplay()))));
         GetReadabilityMessageCatalog().SetGradeScale(
             static_cast<readability::grade_scale>(XmlFormat::GetLong(readabilityTestSection, readabilityTestSectionEnd,
-            wxGetApp().GetAppOptions().XML_READABILITY_TEST_GRADE_SCALE_DISPLAY,
+            wxGetApp().GetAppOptions().XML_READABILITY_TEST_GRADE_SCALE_DISPLAY.data(),
                 static_cast<long>(wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().GetGradeScale()))) );
         GetReadabilityMessageCatalog().SetLongGradeScaleFormat(
             XmlFormat::GetBoolean(readabilityTestSection, readabilityTestSectionEnd,
-            wxGetApp().GetAppOptions().XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT,
+            wxGetApp().GetAppOptions().XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT.data(),
             wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat()) );
 
         // which standard tests are included
@@ -1857,78 +1858,79 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         // test-specific options
         const wchar_t* fleschKincaidOptionsSection =
             html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS.wc_str(), true);
+                wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS_W, true);
         const wchar_t* fleschKincaidOptionsSectionEnd = fleschKincaidOptionsSection ?
             html_extract_text::find_closing_element(fleschKincaidOptionsSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS.wc_str()) : nullptr;
+                wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS_W) : nullptr;
         if (fleschKincaidOptionsSection && fleschKincaidOptionsSectionEnd)
             {
             SetFleschKincaidNumeralSyllabizeMethod(
                 static_cast<FleschKincaidNumeralSyllabize>(
                     XmlFormat::GetLong(fleschKincaidOptionsSection, fleschKincaidOptionsSectionEnd,
-                wxGetApp().GetAppOptions().XML_NUMERAL_SYLLABICATION_METHOD,
+                wxGetApp().GetAppOptions().XML_NUMERAL_SYLLABICATION_METHOD.data(),
                         static_cast<int>(wxGetApp().GetAppOptions().GetFleschKincaidNumeralSyllabizeMethod()))) );
             }
 
         const wchar_t* fleschOptionsSection =
             html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS.wc_str(), true);
+                wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS_W, true);
         const wchar_t* fleschOptionsSectionEnd = fleschOptionsSection ?
             html_extract_text::find_closing_element(fleschOptionsSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS.wc_str()) : nullptr;
+                wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS_W) : nullptr;
         if (fleschOptionsSection && fleschOptionsSectionEnd)
             {
             SetFleschNumeralSyllabizeMethod(
                 static_cast<FleschNumeralSyllabize>(XmlFormat::GetLong(fleschOptionsSection, fleschOptionsSectionEnd,
-                wxGetApp().GetAppOptions().XML_NUMERAL_SYLLABICATION_METHOD,
+                wxGetApp().GetAppOptions().XML_NUMERAL_SYLLABICATION_METHOD.data(),
                     static_cast<int>(wxGetApp().GetAppOptions().GetFleschNumeralSyllabizeMethod()))) );
             }
 
         const wchar_t* fogOptionsSection =
             html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS.wc_str(), true);
+                wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS_W, true);
         const wchar_t* fogOptionsSectionEnd = fogOptionsSection ?
             html_extract_text::find_closing_element(fogOptionsSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS.wc_str()) : nullptr;
+                wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS_W) : nullptr;
         if (fogOptionsSection && fogOptionsSectionEnd)
             {
             SetFogUseSentenceUnits(XmlFormat::GetBoolean(fogOptionsSection, fogOptionsSectionEnd,
-                wxGetApp().GetAppOptions().XML_USE_SENTENCE_UNITS, wxGetApp().GetAppOptions().FogUseSentenceUnits()) );
+                wxGetApp().GetAppOptions().XML_USE_SENTENCE_UNITS.data(),
+                wxGetApp().GetAppOptions().FogUseSentenceUnits()) );
             }
 
         const wchar_t* hjOptionsSection =
             html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS.wc_str(), true);
+                wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS_W, true);
         const wchar_t* hjOptionsSectionEnd = hjOptionsSection ?
             html_extract_text::find_closing_element(hjOptionsSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS.wc_str()) : nullptr;
+                wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS_W) : nullptr;
         if (hjOptionsSection && hjOptionsSectionEnd)
             {
             SetHarrisJacobsonTextExclusionMode(
                 static_cast<SpecializedTestTextExclusion>(XmlFormat::GetLong(hjOptionsSection, hjOptionsSectionEnd,
-                wxGetApp().GetAppOptions().XML_TEXT_EXCLUSION,
+                wxGetApp().GetAppOptions().XML_TEXT_EXCLUSION.data(),
                     static_cast<int>(wxGetApp().GetAppOptions().GetHarrisJacobsonTextExclusionMode()))) );
             }
 
         const wchar_t* dcOptionsSection =
             html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS.wc_str(), true);
+                wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS_W, true);
         const wchar_t* dcOptionsSectionEnd = dcOptionsSection ?
             html_extract_text::find_closing_element(dcOptionsSection, readabilityTestSectionEnd,
-                wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS.wc_str()) : nullptr;
+                wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS_W) : nullptr;
         if (dcOptionsSection && dcOptionsSectionEnd)
             {
             IncludeStockerCatholicSupplement(XmlFormat::GetBoolean(dcOptionsSection, dcOptionsSectionEnd,
-                wxGetApp().GetAppOptions().XML_STOCKER_LIST,
+                wxGetApp().GetAppOptions().XML_STOCKER_LIST.data(),
                 wxGetApp().GetAppOptions().IsIncludingStockerCatholicSupplement()));
             SetDaleChallTextExclusionMode(
                 static_cast<SpecializedTestTextExclusion>(XmlFormat::GetLong(dcOptionsSection, dcOptionsSectionEnd,
-                    wxGetApp().GetAppOptions().XML_TEXT_EXCLUSION,
+                    wxGetApp().GetAppOptions().XML_TEXT_EXCLUSION.data(),
                     static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallTextExclusionMode()))) );
             SetDaleChallProperNounCountingMethod(
                 static_cast<readability::proper_noun_counting_method>(
                     XmlFormat::GetLong(dcOptionsSection, dcOptionsSectionEnd,
-                    wxGetApp().GetAppOptions().XML_PROPER_NOUN_COUNTING_METHOD,
+                    wxGetApp().GetAppOptions().XML_PROPER_NOUN_COUNTING_METHOD.data(),
                     static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()))) );
             }
         }
@@ -1951,30 +1953,31 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         (textViewsSection < textViewsSectionEnd) )
         {
         m_textHighlight = static_cast<TextHighlight>(XmlFormat::GetLong(textViewsSection, textViewsSectionEnd,
-            wxGetApp().GetAppOptions().XML_HIGHLIGHT_METHOD,
+            wxGetApp().GetAppOptions().XML_HIGHLIGHT_METHOD.data(),
             static_cast<long>(wxGetApp().GetAppOptions().GetTextHighlightMethod())));
         m_textViewHighlightColor =
             XmlFormat::GetColor(textViewsSection, textViewsSectionEnd,
-                wxGetApp().GetAppOptions().XML_HIGHLIGHTCOLOR, wxGetApp().GetAppOptions().GetTextHighlightColor() );
+                wxGetApp().GetAppOptions().XML_HIGHLIGHTCOLOR.data(),
+                wxGetApp().GetAppOptions().GetTextHighlightColor() );
         m_excludedTextHighlightColor =
             XmlFormat::GetColor(textViewsSection, textViewsSectionEnd,
-                wxGetApp().GetAppOptions().XML_EXCLUDED_HIGHLIGHTCOLOR,
+                wxGetApp().GetAppOptions().XML_EXCLUDED_HIGHLIGHTCOLOR.data(),
                 wxGetApp().GetAppOptions().GetExcludedTextHighlightColor() );
         m_duplicateWordHighlightColor =
             XmlFormat::GetColor(textViewsSection, textViewsSectionEnd,
-                wxGetApp().GetAppOptions().XML_DUP_WORD_HIGHLIGHTCOLOR,
+                wxGetApp().GetAppOptions().XML_DUP_WORD_HIGHLIGHTCOLOR.data(),
                 wxGetApp().GetAppOptions().GetDuplicateWordHighlightColor() );
         m_wordyPhraseHighlightColor =
             XmlFormat::GetColor(textViewsSection, textViewsSectionEnd,
-                wxGetApp().GetAppOptions().XML_WORDY_PHRASE_HIGHLIGHTCOLOR,
+                wxGetApp().GetAppOptions().XML_WORDY_PHRASE_HIGHLIGHTCOLOR.data(),
                 wxGetApp().GetAppOptions().GetWordyPhraseHighlightColor() );
         m_fontColor =
             XmlFormat::GetColor(textViewsSection, textViewsSectionEnd,
-                wxGetApp().GetAppOptions().XML_DOCUMENT_DISPLAY_FONTCOLOR,
+                wxGetApp().GetAppOptions().XML_DOCUMENT_DISPLAY_FONTCOLOR.data(),
                 wxGetApp().GetAppOptions().GetTextFontColor() );
         m_textViewFont =
             XmlFormat::GetFont(textViewsSection, textViewsSectionEnd,
-                wxGetApp().GetAppOptions().XML_DOCUMENT_DISPLAY_FONT,
+                wxGetApp().GetAppOptions().XML_DOCUMENT_DISPLAY_FONT.data(),
                 wxGetApp().GetAppOptions().GetTextViewFont());
         // dolch highlighting
         m_dolchConjunctionsColor = XmlFormat::GetColorWithInclusionTag(textViewsSection, textViewsSectionEnd,
@@ -2029,24 +2032,24 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     lily_of_the_valley::html_encode_text htmlEncode;
     wxString fileText = wxEmptyString, sectionText = wxEmptyString;
     fileText.append(L"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<").
-        append(wxGetApp().GetAppOptions().XML_PROJECT_HEADER).append(_DT(L" version=\"")).
+        append(wxGetApp().GetAppOptions().XML_PROJECT_HEADER.data()).append(_DT(L" version=\"")).
         append(wxGetApp().GetDocumentVersionNumber()).append(L"\">\n");
     // document info
-    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_DOCUMENT).append(L">\n");
+    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_DOCUMENT.data()).append(L">\n");
     // the version of the product saving this project
     XmlFormat::FormatSection(sectionText, _DT(L"app-version"), wxGetApp().GetAppVersion(), 2);
     fileText += sectionText;
     // where the text actually came from originally (a file or manually entered)
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_TEXT_SOURCE,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_TEXT_SOURCE.data(),
         static_cast<int>(GetTextSource()), 2);
     fileText += sectionText;
     // path to original document and optional short description
     for (size_t i = 0; i < GetSourceFilesInfo().size(); ++i)
         {
         fileText += XmlFormat::FormatSectionWithAttribute(
-                                                        wxGetApp().GetAppOptions().XML_DOCUMENT_PATH,
+                                                        wxGetApp().GetAppOptions().XML_DOCUMENT_PATH.data(),
                                                         GetSourceFilesInfo().at(i).first,
-                                                        wxGetApp().GetAppOptions().XML_DESCRIPTION,
+                                                        wxGetApp().GetAppOptions().XML_DESCRIPTION.data(),
                                                         GetSourceFilesInfo().at(i).second, 2);
         }
     // storage/linking
@@ -2079,16 +2082,16 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText += sectionText;
 
     // Project language
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_PROJECT_LANGUAGE,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_PROJECT_LANGUAGE.data(),
         static_cast<int>(GetProjectLanguage()), 2);
     fileText += sectionText;
 
     // export file paths
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_EXPORT_FOLDER_PATH, m_exportFolder, 2);
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_EXPORT_FOLDER_PATH.data(), m_exportFolder, 2);
     fileText += sectionText;
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_EXPORT_FILE_PATH, m_exportFile, 2);
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_EXPORT_FILE_PATH.data(), m_exportFile, 2);
     fileText += sectionText;
-    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_DOCUMENT).append(L">\n");
+    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_DOCUMENT.data()).append(L">\n");
 
     // sentences breakdown
     fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN).append(L">\n");
@@ -2105,167 +2108,168 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN).append(L">\n");
 
     // grammar
-    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_GRAMMAR).append(L">\n");
+    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_GRAMMAR.data()).append(L">\n");
 
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_PROPER_NOUNS,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_PROPER_NOUNS.data(),
         SpellCheckIsIgnoringProperNouns(), 3);
     fileText += sectionText;
 
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_UPPERCASED,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_UPPERCASED.data(),
         SpellCheckIsIgnoringUppercased(), 3);
     fileText += sectionText;
 
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_NUMERALS,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_NUMERALS.data(),
         SpellCheckIsIgnoringNumerals(), 3);
     fileText += sectionText;
 
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_FILE_ADDRESSES,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_FILE_ADDRESSES.data(),
         SpellCheckIsIgnoringFileAddresses(), 3);
     fileText += sectionText;
 
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_PROGRAMMER_CODE,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_PROGRAMMER_CODE.data(),
         SpellCheckIsIgnoringProgrammerCode(), 3);
     fileText += sectionText;
 
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SPELLCHECK_ALLOW_COLLOQUIALISMS,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SPELLCHECK_ALLOW_COLLOQUIALISMS.data(),
         SpellCheckIsAllowingColloquialisms(), 3);
     fileText += sectionText;
 
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_SOCIAL_MEDIA_TAGS,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SPELLCHECK_IGNORE_SOCIAL_MEDIA_TAGS.data(),
         SpellCheckIsIgnoringSocialMediaTags(), 3);
     fileText += sectionText;
 
     // which grammar features are included
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAMMAR_INFO, GetGrammarInfo().ToString(), 2);
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAMMAR_INFO.data(), GetGrammarInfo().ToString(), 2);
     fileText += sectionText;
 
-    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_GRAMMAR).append(L">\n");
+    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_GRAMMAR.data()).append(L">\n");
 
     // save the parsing analysis logic
     //---------------------------
-    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_DOCUMENT_ANALYSIS_LOGIC).append(L">\n");
+    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_DOCUMENT_ANALYSIS_LOGIC.data()).append(L">\n");
     // long sentence section
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_LONG_SENTENCES).append(L">\n");
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_LONG_SENTENCES.data()).append(L">\n");
     // method
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_LONG_SENTENCE_METHOD,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_LONG_SENTENCE_METHOD.data(),
         static_cast<int>(GetLongSentenceMethod()), 3);
     fileText += sectionText;
     // length
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_LONG_SENTENCE_LENGTH,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_LONG_SENTENCE_LENGTH.data(),
         GetDifficultSentenceLength(), 3);
     fileText += sectionText;
-    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_LONG_SENTENCES).append(L">\n");
+    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_LONG_SENTENCES.data()).append(L">\n");
     // numeral syllabizing
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_NUMERAL_SYLLABICATION_METHOD,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_NUMERAL_SYLLABICATION_METHOD.data(),
         static_cast<int>(GetNumeralSyllabicationMethod()), 2);
     fileText += sectionText;
     // whether to ignore blank lines
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_BLANK_LINES_FOR_PARAGRAPH_PARSING,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_BLANK_LINES_FOR_PARAGRAPH_PARSING.data(),
         GetIgnoreBlankLinesForParagraphsParser(), 2);
     fileText += sectionText;
     // whether we should ignore indenting when parsing paragraphs
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING.data(),
         GetIgnoreIndentingForParagraphsParser(), 2);
     fileText += sectionText;
     // whether sentences need to start capitalized
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_SENTENCES_MUST_START_CAPITALIZED,
+    XmlFormat::FormatSection(sectionText,
+        wxGetApp().GetAppOptions().XML_SENTENCES_MUST_START_CAPITALIZED.data(),
         GetSentenceStartMustBeUppercased(), 2);
     fileText += sectionText;
     // file path to phrases to exclude from analysis
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_EXCLUDED_PHRASES_PATH,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_EXCLUDED_PHRASES_PATH.data(),
         GetExcludedPhrasesPath(), 2);
     fileText += sectionText;
     // text block tag exclusion
-    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS).append(L">\n");
+    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS.data()).append(L">\n");
     for (auto currentExcludeTag = GetExclusionBlockTags().cbegin();
         currentExcludeTag != GetExclusionBlockTags().cend();
         ++currentExcludeTag)
         {
         const wchar_t excludeTagsStr[3] = { currentExcludeTag->first, currentExcludeTag->second, 0 };
-        fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG).append(L">\n");
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_VALUE,
+        fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG.data()).append(L">\n");
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_VALUE.data(),
             htmlEncode({ excludeTagsStr, 2 }, false), 3);
         fileText += sectionText;
-        fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG).append(L">\n");
+        fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG.data()).append(L">\n");
         }
-    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS).append(L">\n");
+    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS.data()).append(L">\n");
 
     // whether the first occurrence of an excluded phrase should be included
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_EXCLUDED_PHRASES_INCLUDE_FIRST_OCCURRENCE,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_EXCLUDED_PHRASES_INCLUDE_FIRST_OCCURRENCE.data(),
         IsIncludingExcludedPhraseFirstOccurrence(), 2);
     fileText += sectionText;
     // whether to ignore proper nouns
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_PROPER_NOUNS,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_PROPER_NOUNS.data(),
         IsIgnoringProperNouns(), 2);
     fileText += sectionText;
     // whether to ignore numerals
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_NUMERALS,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_NUMERALS.data(),
         IsIgnoringNumerals(), 2);
     fileText += sectionText;
     // whether to ignore file addresses
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_FILE_ADDRESSES,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_FILE_ADDRESSES.data(),
         IsIgnoringFileAddresses(), 2);
     fileText += sectionText;
     // whether to ignore trailing citations
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_CITATIONS,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_CITATIONS.data(),
         IsIgnoringTrailingCitations(), 2);
     fileText += sectionText;
     // whether to use aggressive list deduction
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_AGGRESSIVE_EXCLUSION,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_AGGRESSIVE_EXCLUSION.data(),
         IsExcludingAggressively(), 2);
     fileText += sectionText;
     // whether to ignore trailing copyright notices
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_COPYRIGHT_NOTICES,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_COPYRIGHT_NOTICES.data(),
         IsIgnoringTrailingCopyrightNoticeParagraphs(), 2);
     fileText += sectionText;
     // paragraph parsing
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_PARAGRAPH_PARSING_METHOD,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_PARAGRAPH_PARSING_METHOD.data(),
         static_cast<int>(GetParagraphsParsingMethod()), 2);
     fileText += sectionText;
     // Number of words that will make an incomplete sentence actually complete
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_INCOMPLETE_SENTENCES_LONGER_THAN,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_INCOMPLETE_SENTENCES_LONGER_THAN.data(),
         GetIncludeIncompleteSentencesIfLongerThanValue(), 2);
     fileText += sectionText;
     // invalid sentence handling
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INVALID_SENTENCE_METHOD,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INVALID_SENTENCE_METHOD.data(),
         static_cast<int>(GetInvalidSentenceMethod()), 2);
     fileText += sectionText;
-    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_DOCUMENT_ANALYSIS_LOGIC).append(L">\n");
+    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_DOCUMENT_ANALYSIS_LOGIC.data()).append(L">\n");
 
     // custom tests settings
-    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_CUSTOM_TESTS).append(L">\n");
+    fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_CUSTOM_TESTS.data()).append(L">\n");
     for(std::vector<CustomReadabilityTestInterface>::const_iterator pos = GetCustTestsInUse().begin();
         pos != GetCustTestsInUse().end();
         ++pos)
         {
-        fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_CUSTOM_FAMILIAR_WORD_TEST).append(L">\n");
+        fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_CUSTOM_FAMILIAR_WORD_TEST.data()).append(L">\n");
         // name
         const wxString testName = pos->GetIterator()->get_name().c_str();
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_TEST_NAME,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_TEST_NAME.data(),
             htmlEncode({ testName.wc_str(), testName.length() }, false), 3);
         fileText += sectionText;
         // file path
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_FAMILIAR_WORD_FILE_PATH,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_FAMILIAR_WORD_FILE_PATH.data(),
             wxString(pos->GetIterator()->get_familiar_word_list_file_path().c_str()), 3);
         fileText += sectionText;
         // test type
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_TEST_TYPE,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_TEST_TYPE.data(),
             static_cast<int>(pos->GetIterator()->get_test_type()), 3);
         fileText += sectionText;
         // stemming type
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_STEMMING_TYPE,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_STEMMING_TYPE.data(),
             static_cast<int>(pos->GetIterator()->get_stemming_type()), 3);
         fileText += sectionText;
         // formula
         const wxString formula(FormulaFormat::FormatMathExpressionToUS(pos->GetIterator()->get_formula().c_str()));
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_TEST_FORMULA,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_TEST_FORMULA.data(),
             htmlEncode({ formula.wc_str(), formula.length() }, false), 3);
         fileText += sectionText;
         // formula type (this is just needed for forward compatibility)
         const int formulaType =
             (wxString(pos->GetIterator()->get_formula().c_str()).CmpNoCase(
                 ReadabilityFormulaParser::GetCustomSpacheSignature()) == 0) ? 1 : 0;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_TEST_FORMULA_TYPE, formulaType, 3);
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_TEST_FORMULA_TYPE.data(), formulaType, 3);
         fileText += sectionText;
         // goals
         const auto [minGoal,maxGoal] = GetGoalsForTest(pos->GetIterator()->get_name().c_str());
@@ -2276,30 +2280,30 @@ wxString BaseProjectDoc::FormatProjectSettings() const
         XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GOAL_MAX_VAL_GOAL, maxGoalStr, 3);
         fileText += sectionText;
         // inclusion of proper nouns and numbers
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_PROPER_NOUNS,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_PROPER_NOUNS.data(),
             static_cast<int>(pos->GetIterator()->get_proper_noun_method()), 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_NUMERIC,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_NUMERIC.data(),
             int_to_bool(pos->GetIterator()->is_including_numeric_as_familiar()), 3);
         fileText += sectionText;
         // include of other tests
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_CUSTOM_WORD_LIST,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_CUSTOM_WORD_LIST.data(),
             int_to_bool(pos->GetIterator()->is_including_custom_familiar_word_list()), 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_DC_LIST,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_DC_LIST.data(),
             int_to_bool(pos->GetIterator()->is_including_dale_chall_list()), 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_SPACHE_LIST,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_SPACHE_LIST.data(),
             int_to_bool(pos->GetIterator()->is_including_spache_list()), 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_HARRIS_JACOBSON_LIST,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_HARRIS_JACOBSON_LIST.data(),
             int_to_bool(pos->GetIterator()->is_including_harris_jacobson_list()), 3);
         fileText += sectionText;
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_STOCKER_LIST,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_INCLUDE_STOCKER_LIST.data(),
             int_to_bool(pos->GetIterator()->is_including_stocker_list()), 3);
         fileText += sectionText;
         // whether familiar words have to be on each included list
-        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_FAMILIAR_WORDS_ALL_LISTS,
+        XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_FAMILIAR_WORDS_ALL_LISTS.data(),
             int_to_bool(pos->GetIterator()->is_familiar_words_must_be_on_each_included_list()), 3);
         fileText += sectionText;
         // industry association
@@ -2353,9 +2357,10 @@ wxString BaseProjectDoc::FormatProjectSettings() const
                 readability::document_classification::childrens_literature_document)), 3);
         fileText += sectionText;
 
-        fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_CUSTOM_FAMILIAR_WORD_TEST).append(L">\n");
+        fileText.append(L"\t\t</")
+            .append(wxGetApp().GetAppOptions().XML_CUSTOM_FAMILIAR_WORD_TEST.data()).append(L">\n");
         }
-    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_CUSTOM_TESTS).append(L">\n");
+    fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_CUSTOM_TESTS.data()).append(L">\n");
 
     // save the graph settings
     //----------------------------------
@@ -2446,7 +2451,7 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText += XmlFormat::FormatColorAttributes(GetInvalidAreaColor());
     fileText.append(L"/>\n");
     // raygor style
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_RAYGOR_STYLE,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_RAYGOR_STYLE.data(),
         static_cast<int>(GetRaygorStyle()), 3);
     fileText += sectionText;
 
@@ -2652,49 +2657,50 @@ wxString BaseProjectDoc::FormatProjectSettings() const
         static_cast<int>(GetReadabilityMessageCatalog().GetReadingAgeDisplay()), 2);
     fileText += sectionText;
 
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_READABILITY_TEST_GRADE_SCALE_DISPLAY,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_READABILITY_TEST_GRADE_SCALE_DISPLAY.data(),
         static_cast<int>(GetReadabilityMessageCatalog().GetGradeScale()), 2);
     fileText += sectionText;
 
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT.data(),
         GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat(), 2);
     fileText += sectionText;
     // test-specific options
     // Flesch-Kincaid
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS).append(L">\n");
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_NUMERAL_SYLLABICATION_METHOD,
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS.data()).append(L">\n");
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_NUMERAL_SYLLABICATION_METHOD.data(),
         static_cast<int>(GetFleschKincaidNumeralSyllabizeMethod()), 3);
     fileText += sectionText;
-    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS).append(L">\n");
+    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS.data()).append(L">\n");
     // Flesch
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS).append(L">\n");
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_NUMERAL_SYLLABICATION_METHOD,
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS.data()).append(L">\n");
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_NUMERAL_SYLLABICATION_METHOD.data(),
         static_cast<int>(GetFleschNumeralSyllabizeMethod()), 3);
     fileText += sectionText;
-    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS).append(L">\n");
+    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS.data()).append(L">\n");
     // Fog
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS).append(L">\n");
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_USE_SENTENCE_UNITS, FogUseSentenceUnits(), 3);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS.data()).append(L">\n");
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_USE_SENTENCE_UNITS.data(), FogUseSentenceUnits(), 3);
     fileText += sectionText;
-    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS).append(L">\n");
+    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS.data()).append(L">\n");
     // HJ
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS).append(L">\n");
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_TEXT_EXCLUSION,
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS.data()).append(L">\n");
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_TEXT_EXCLUSION.data(),
         static_cast<int>(GetHarrisJacobsonTextExclusionMode()), 3);
     fileText += sectionText;
-    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS).append(L">\n");
+    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS.data()).append(L">\n");
     // DC
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS).append(L">\n");
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_STOCKER_LIST,
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS.data()).append(L">\n");
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_STOCKER_LIST.data(),
         IsIncludingStockerCatholicSupplement(), 3);
     fileText += sectionText;
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_TEXT_EXCLUSION,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_TEXT_EXCLUSION.data(),
         static_cast<int>(GetDaleChallTextExclusionMode()), 3);
     fileText += sectionText;
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_PROPER_NOUN_COUNTING_METHOD,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_PROPER_NOUN_COUNTING_METHOD.data(),
         static_cast<int>(GetDaleChallProperNounCountingMethod()), 3);
     fileText += sectionText;
-    fileText.append(L"\t\t</").append(wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS).append(L">\n");
+    fileText.append(L"\t\t</")
+        .append(wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS.data()).append(L">\n");
     // save the standard readability tests
     for (const auto& rTest : GetReadabilityTests().get_tests())
         {
@@ -2718,19 +2724,19 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     //---------------------------
     fileText.append(L"\t<").append(wxGetApp().GetAppOptions().XML_TEXT_VIEWS_SECTION).append(L">\n");
     // how the text is highlighted
-    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_HIGHLIGHT_METHOD,
+    XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_HIGHLIGHT_METHOD.data(),
                              static_cast<int>(m_textHighlight), 2);
     fileText += sectionText;
     // text highlight color
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_HIGHLIGHTCOLOR);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_HIGHLIGHTCOLOR.data());
     fileText += XmlFormat::FormatColorAttributes(m_textViewHighlightColor);
     fileText.append(L"/>\n");
     // highlight for excluded sentences
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_EXCLUDED_HIGHLIGHTCOLOR);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_EXCLUDED_HIGHLIGHTCOLOR.data());
     fileText += XmlFormat::FormatColorAttributes(m_excludedTextHighlightColor);
     fileText.append(L"/>\n");
     // highlight for repeated words
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DUP_WORD_HIGHLIGHTCOLOR);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_DUP_WORD_HIGHLIGHTCOLOR.data());
     fileText += XmlFormat::FormatColorAttributes(m_duplicateWordHighlightColor);
     fileText.append(L"/>\n");
     // highlight for dolch words
@@ -2763,7 +2769,7 @@ wxString BaseProjectDoc::FormatProjectSettings() const
         IsHighlightingDolchNouns());
     fileText.append(L"/>\n");
     // highlight for wordy items
-    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_WORDY_PHRASE_HIGHLIGHTCOLOR);
+    fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_WORDY_PHRASE_HIGHLIGHTCOLOR.data());
     fileText += XmlFormat::FormatColorAttributes(m_wordyPhraseHighlightColor);
     fileText.append(L"/>\n");
     // text view font color
@@ -2776,7 +2782,7 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText.append(L"/>\n");
     fileText.append(L"\t</").append(wxGetApp().GetAppOptions().XML_TEXT_VIEWS_SECTION).append(L">\n");
 
-    fileText.append(L"</").append(wxGetApp().GetAppOptions().XML_PROJECT_HEADER).append(L">");
+    fileText.append(L"</").append(wxGetApp().GetAppOptions().XML_PROJECT_HEADER.data()).append(L">");
 
     return fileText;
     }
