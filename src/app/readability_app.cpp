@@ -4452,7 +4452,8 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     {
     if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
         {
-        wxMessageBox(_(L"Web Harvester is only available in the Professional Edition of Readability Studio."),
+        wxMessageBox(_(L"Web Harvester is only available in the "
+                        "Professional Edition of Readability Studio."),
             _(L"Feature Not Licensed"), wxOK|wxICON_INFORMATION);
         return;
         }
