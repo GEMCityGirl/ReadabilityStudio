@@ -3421,8 +3421,9 @@ void MainFrame::FillMenuWithWordList(wxMenu* wordListMenu)
         wordListMenu->Append(menuItem);
 
         wordListMenu->AppendSeparator();
-        auto editMenuItem = wordListMenu->Append(XRCID("ID_EDIT_WORD_LIST"), _(L"Edit Word List..."));
-        editMenuItem->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_EDIT"));
+        menuItem = new wxMenuItem(wordListMenu, XRCID("ID_EDIT_WORD_LIST"), _(L"Edit Word List..."));
+        menuItem->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_EDIT"));
+        wordListMenu->Append(menuItem);
         }
     }
 
@@ -3508,10 +3509,10 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
         // Add/Edit/Remove options
         if (includeDocMenuItems)
             { testBundleMenu->AppendSeparator(); }
-        auto addMenuItem = testBundleMenu->Append(XRCID("ID_ADD_CUSTOM_TEST_BUNDLE"), _(L"Add..."));
-        assert(addMenuItem);
-        addMenuItem->SetBitmap(
+        wxMenuItem* menuItem = new wxMenuItem(testBundleMenu, XRCID("ID_ADD_CUSTOM_TEST_BUNDLE"), _(L"Add..."));
+        menuItem->SetBitmap(
             wxGetApp().GetResourceManager().GetSVG(L"ribbon/add.svg"));
+        testBundleMenu->Append(menuItem);
         // if there are editable bundles, then add menu items for them
         bool hasRemovableBundles{ false };
         for (const auto& bundle : BaseProject::m_testBundles)
@@ -3523,14 +3524,14 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
                 }
             }
         // locked ones can still be viewed from the editor
-        auto editMenuItem = testBundleMenu->Append(XRCID("ID_EDIT_CUSTOM_TEST_BUNDLE"), _(L"Edit..."));
-        assert(editMenuItem);
-        editMenuItem->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_EDIT"));
+        menuItem = new wxMenuItem(testBundleMenu, XRCID("ID_EDIT_CUSTOM_TEST_BUNDLE"), _(L"Edit..."));
+        menuItem->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_EDIT"));
+        testBundleMenu->Append(menuItem);
         if (hasRemovableBundles)
             {
-            auto removeMenuItem = testBundleMenu->Append(XRCID("ID_REMOVE_CUSTOM_TEST_BUNDLE"), _(L"Remove..."));
-            assert(removeMenuItem);
-            removeMenuItem->SetBitmap(wxArtProvider::GetBitmapBundle(wxART_DELETE));
+            menuItem = new wxMenuItem(testBundleMenu, XRCID("ID_REMOVE_CUSTOM_TEST_BUNDLE"), _(L"Remove..."));
+            menuItem->SetBitmap(wxArtProvider::GetBitmapBundle(wxART_DELETE));
+            testBundleMenu->Append(menuItem);
             }
         }
     }
@@ -3572,41 +3573,47 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
             }
         if (includeDocMenuItems && MainFrame::GetCustomTestMenuIds().size() > 0)
             { customTestMenu->AppendSeparator(); }
-        auto addMenuItem = customTestMenu->Append(XRCID("ID_ADD_CUSTOM_TEST"), _(L"Add..."));
-        assert(addMenuItem);
-        addMenuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/add.svg"));
+        wxMenuItem* menuItem = new wxMenuItem(customTestMenu, XRCID("ID_ADD_CUSTOM_TEST"), _(L"Add..."));
+        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/add.svg"));
+        customTestMenu->Append(menuItem);
 
-        addMenuItem = customTestMenu->Append(XRCID("ID_ADD_CUSTOM_TEST_BASED_ON"),
-                                             _(L"Add Custom Test Based on..."));
-        addMenuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/add.svg"));
+        menuItem = new wxMenuItem(customTestMenu, XRCID("ID_ADD_CUSTOM_TEST_BASED_ON"),
+                                  _(L"Add Custom Test Based on..."));
+        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/add.svg"));
+        customTestMenu->Append(menuItem);
         if (!project ||
             project->GetProjectLanguage() == readability::test_language::english_test)
             {
-            addMenuItem = customTestMenu->Append(XRCID("ID_ADD_CUSTOM_NEW_DALE_CHALL_TEST"),
+            menuItem = new wxMenuItem(customTestMenu, XRCID("ID_ADD_CUSTOM_NEW_DALE_CHALL_TEST"),
                 wxString::Format(_(L"Add Custom \"%s\"..."), _DT(L"New Dale-Chall")) );
-            addMenuItem->SetBitmap(
+            menuItem->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"tests/dale-chall-test.svg"));
-            addMenuItem = customTestMenu->Append(XRCID("ID_ADD_CUSTOM_SPACHE_TEST"),
+            customTestMenu->Append(menuItem);
+
+            menuItem = new wxMenuItem(customTestMenu, XRCID("ID_ADD_CUSTOM_SPACHE_TEST"),
                 wxString::Format(_(L"Add Custom \"%s\"..."), _DT(L"Spache")) );
-            addMenuItem->SetBitmap(
+            menuItem->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"tests/spache-test.svg"));
-            addMenuItem = customTestMenu->Append(XRCID("ID_ADD_CUSTOM_HARRIS_JACOBSON_TEST"),
+            customTestMenu->Append(menuItem);
+
+            menuItem = new wxMenuItem(customTestMenu, XRCID("ID_ADD_CUSTOM_HARRIS_JACOBSON_TEST"),
                 wxString::Format(_(L"Add Custom \"%s\"..."), _DT(L"Harris-Jacobson")) );
-            addMenuItem->SetBitmap(
+            menuItem->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"tests/spache-test.svg"));
+            customTestMenu->Append(menuItem);
             }
 
         // Remove or Edit options, depending on whether there are any tests
         if (MainFrame::GetCustomTestMenuIds().size() > 0)
             {
             customTestMenu->AppendSeparator();
-            auto editMenuItem = customTestMenu->Append(XRCID("ID_EDIT_CUSTOM_TEST"), _(L"Edit..."));
-            assert(editMenuItem);
-            editMenuItem->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_EDIT"));
+            menuItem = new wxMenuItem(customTestMenu, XRCID("ID_EDIT_CUSTOM_TEST"), _(L"Edit..."));
+            menuItem->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_EDIT"));
+            customTestMenu->Append(menuItem);
 
-            auto removeMenuItem =customTestMenu->Append(XRCID("ID_REMOVE_CUSTOM_TEST"), _(L"Remove..."));
-            assert(removeMenuItem);
-            removeMenuItem->SetBitmap(wxArtProvider::GetBitmapBundle(wxART_DELETE));
+            menuItem = new wxMenuItem(customTestMenu, XRCID("ID_REMOVE_CUSTOM_TEST"), _(L"Remove..."));
+            menuItem->SetBitmap(wxArtProvider::GetBitmapBundle(wxART_DELETE));
+            customTestMenu->Append(menuItem);
             }
         }
     }
