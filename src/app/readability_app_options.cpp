@@ -630,7 +630,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
         if (customColoursNode)
             {
             GetCustomColours().clear();
-            for (int i = 0; i < 16; ++i)
+            for (int i = 0; i < m_maxCustomColors; ++i)
                 {
                 auto colourNode = customColoursNode->FirstChildElement(wxString::Format(_DT(L"color%d"), i).mb_str());
                 if (colourNode)

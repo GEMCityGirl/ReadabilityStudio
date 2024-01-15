@@ -2415,8 +2415,8 @@ class ReadabilityAppOptions
 
     void CopyCustomColoursToColourData(wxColourData& colourData)
         {
-        GetCustomColours().resize(16);
-        for (size_t i = 0; i < 16; ++i)
+        GetCustomColours().resize(m_maxCustomColors);
+        for (size_t i = 0; i < m_maxCustomColors; ++i)
             {
             colourData.SetCustomColour(i, GetCustomColours().at(i));
             }
@@ -2425,7 +2425,7 @@ class ReadabilityAppOptions
     void CopyColourDataToCustomColours(const wxColourData& colourData)
         {
         GetCustomColours().clear();
-        for (size_t i = 0; i < 16; ++i)
+        for (size_t i = 0; i < m_maxCustomColors; ++i)
             {
             GetCustomColours().push_back(colourData.GetCustomColour(i));
             }
@@ -2738,6 +2738,8 @@ class ReadabilityAppOptions
         std::make_shared<Wisteria::Images::Schemes::ImageScheme>(
             std::vector<wxBitmapBundle>{ wxBitmapBundle{} })
     };
+
+    constexpr static int m_maxCustomColors{ 16 };
 
   public:
     const std::string_view XML_EDITOR{ _DT("editor") };
