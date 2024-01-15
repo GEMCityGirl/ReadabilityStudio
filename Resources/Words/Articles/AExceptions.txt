@@ -27,6 +27,7 @@ SQLite
 UAV
 UAW
 Ubuntu
+UCF
 UCLA
 UCSF
 UDC

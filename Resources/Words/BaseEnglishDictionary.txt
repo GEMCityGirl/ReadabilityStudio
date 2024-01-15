@@ -11907,6 +11907,8 @@ biofilm
 biofilm's
 biofilms
 biofluid
+biofluid's
+biofluids
 biofuel
 biofuel's
 biofuels
@@ -12020,6 +12022,9 @@ biopolymers
 bioprocess
 bioprocess's
 bioprocesses
+bioproduct
+bioproduct's
+bioproducts
 biopsied
 biopsies
 biopsy
@@ -17896,6 +17901,7 @@ cardiomyopathies
 cardiomyopathy
 cardioplegia
 cardiopulmonary
+cardiothoracic
 cardiovascular
 cardioversion
 cardioverter
@@ -18664,6 +18670,7 @@ cathartics
 cathedral
 cathedral's
 cathedrals
+cathepsin
 catheter
 catheter's
 catheterise
@@ -27816,6 +27823,9 @@ couriers
 course
 course's
 coursed
+courseload
+courseload's
+courseloads
 courser
 courser's
 coursers
@@ -39590,6 +39600,7 @@ echocardiology
 echocardiology's
 echoed
 echoes
+echogenic
 echoic
 echoing
 echolalia
@@ -40356,6 +40367,9 @@ electrocardiographies
 electrocardiographs
 electrocardiography
 electrocardiography's
+electrocatalyst
+electrocatalyst's
+electrocatalysts
 electrochemical
 electrochemically
 electrochemistry
@@ -51546,6 +51560,9 @@ gamecock
 gamecock's
 gamecocks
 gamed
+gameday
+gameday's
+gamedays
 gamekeeper
 gamekeeper's
 gamekeepers
@@ -54279,6 +54296,9 @@ grandams
 grandaunt
 grandaunt's
 grandaunts
+grandchamp
+grandchamp's
+grandchamps
 grandchild
 grandchild's
 grandchildren
@@ -61845,6 +61865,8 @@ imagine
 imagined
 imagineer
 imagineer's
+imagineered
+imagineering
 imagineers
 imaginer
 imaginer's
@@ -66103,6 +66125,7 @@ interprets
 interprocedural
 interprocess
 interprocessor
+interprofessional
 interpulmonary
 interpunctella
 interquartile
@@ -66174,6 +66197,9 @@ intersegment's
 intersegmented
 intersegmenting
 intersegments
+interservice
+interservice's
+interservices
 intersession
 intersession's
 intersessions
@@ -67446,6 +67472,7 @@ ITU
 ITV
 IUD
 IUDs
+iustitiae
 IV
 iv's
 Ivar
@@ -67730,6 +67757,9 @@ Jayasuriya
 jaybird
 jaybird's
 jaybirds
+jayhawk
+jayhawk's
+jayhawks
 jays
 jaywalk
 jaywalked
@@ -72699,6 +72729,8 @@ livestock's
 livestocks
 livestream
 livestream's
+livestreamed
+livestreaming
 livestreams
 liveth
 livid
@@ -76140,6 +76172,7 @@ maxilla's
 maxillae
 maxillaries
 maxillary
+maxillofacial
 maxim
 maxim's
 maxima
@@ -79817,6 +79850,7 @@ mobs
 mobster
 mobster's
 mobsters
+mocap
 moccasin
 moccasin's
 moccasins
@@ -81803,6 +81837,7 @@ multisets
 multisided
 multisite
 multislice
+multisport
 multistage
 multistate
 multistate's
@@ -82608,6 +82643,9 @@ nanoarchaeotum
 nanobiologies
 nanobiology
 nanobiology's
+nanobubble
+nanobubble's
+nanobubbles
 nanocomposite
 nanocomposites
 nanocoulomb
@@ -86434,6 +86472,7 @@ occasions
 occidental
 occidentally
 occidentals
+occidentem
 occipital
 occipitalis
 occipitally
@@ -97720,6 +97759,13 @@ powerless
 powerlessly
 powerlessness
 powerlessness's
+powerlift
+powerlifted
+powerlifter
+powerlifter's
+powerlifters
+powerlifting
+powerlifts
 powerline
 powerline's
 powerlines
@@ -116915,6 +116961,9 @@ simply
 sims
 simulacrum
 simulacrum's
+simulant
+simulant's
+simulants
 simulate
 simulated
 simulates
@@ -120700,6 +120749,7 @@ spinsterhood's
 spinsterhoods
 spinsterish
 spinsters
+spintronics
 spiny
 spiracle
 spiracle's
@@ -129662,6 +129712,7 @@ theosophist's
 theosophists
 theosophy
 theosophy's
+theranostic
 therapeutic
 therapeutically
 therapeutics
@@ -129745,6 +129796,9 @@ thermodynamics's
 thermoelastic
 thermoelectric
 thermoelectrically
+thermofluid
+thermofluid's
+thermofluids
 thermoformed
 thermoforming
 thermogenesis
@@ -130121,6 +130175,10 @@ threats
 three
 three's
 threefold
+threepeat
+threepeated
+threepeating
+threepeats
 threepence
 threepence's
 threepenny
@@ -137074,6 +137132,7 @@ universes
 universities
 university
 university's
+universitywide
 unjacketed
 unjam
 unjammed
@@ -137378,6 +137437,7 @@ unnoticeable
 unnoticed
 unnourished
 unnumbered
+unnumerable
 uno
 uno's
 unobjectionable
@@ -142506,6 +142566,9 @@ webcaster's
 webcasters
 webcasting
 webcasts
+webcourse
+webcourse's
+webcourses
 weber
 weber's
 webfeet
