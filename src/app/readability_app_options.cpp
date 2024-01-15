@@ -908,6 +908,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 }
             }
+        if (GetReviewer().empty())
+            {
+            SetReviewer(wxGetUserName());
+            }
+
         // if only loading general info, then quit after reading this node
         if (loadOnlyGeneralOptions)
             { return true; }
