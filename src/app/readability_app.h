@@ -279,13 +279,14 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     [[nodiscard]]
     ReadabilityAppOptions& GetAppOptions() noexcept
         {
-        return m_appOptions;
-        }
-
-    [[nodiscard]]
-    const ReadabilityAppOptions& GetAppOptions() const noexcept
-        {
-        return m_appOptions;
+        // Create this on demand, because creating it within the app earlier
+        // crashes on UNIX.
+        // @todo figure out why that crashes under UNIX.
+        if (m_appOptions == nullptr)
+            {
+            m_appOptions = std::make_unique<ReadabilityAppOptions>();
+            }
+        return *m_appOptions.get();
         }
 
     [[nodiscard]]
@@ -438,7 +439,7 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     static std::map<wxWindowID, wxWindowID> m_dynamicIdMap;
 
     LicenseAdmin m_licenseAdmin;
-    ReadabilityAppOptions m_appOptions;
+    std::unique_ptr<ReadabilityAppOptions> m_appOptions{ nullptr };
     bool LoadWordLists(const wxString& AppSettingFolderPath);
     wxArrayString m_lastSelectedWebPages;
     wxString m_lastSelectedDocFilter;
