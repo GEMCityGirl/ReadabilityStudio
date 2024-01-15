@@ -2463,8 +2463,8 @@ class ReadabilityAppOptions
 
     void UpdateGraphOptions(Wisteria::Canvas* graphCanvas);
 
-    /// @returns The catalog of labels to show on readability graphs (mapped to various grade
-    /// levels).
+    /// @returns The catalog of labels to show on readability graphs
+    ///     (mapped to various grade levels).
     [[nodiscard]]
     ReadabilityMessages& GetReadabilityMessageCatalog() noexcept
         {
@@ -2474,6 +2474,13 @@ class ReadabilityAppOptions
     /// @returns The file filter string for opening our supported document types.
     [[nodiscard]]
     static wxString GetDocumentFilter();
+
+    /// @returns The file filter string for opening our supported image types.
+    [[nodiscard]]
+    static wxString GetImageFileFilter()
+        {
+        return _(LR"(Image Files (*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)|*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx|Bitmap (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe)|*.jpg;*.jpg;*.jpe|PNG (*.png)|*.png|GIF (*.gif)|*.gif|Targa (*.tga)|*.tga|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PCX (*.pcx)|*.pcx)");
+        }
 
   private:
     void LoadThemeNode(tinyxml2::XMLElement* appearanceNode);
@@ -2985,10 +2992,6 @@ class ReadabilityAppOptions
     // general strings
     const std::wstring_view ALL_DOCUMENTS_WILDCARD{ _DT(LR"(*.txt;*.htm;*.html;*.xhtml;*.sgml;*.php;*.php3;*.php4;*.aspx;*.asp;*.rtf;*.doc;*.docx;*.docm;*.pptx;*.pptm;*.dot;*.wri;*.odt;*.ott;*.odp;*.otp;*.ps;*.idl;*.cpp;*.c;*.h;*.md;*.qmd;*.rmd)") };
     const std::wstring_view ALL_IMAGES_WILDCARD{ _DT(LR"(*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)") };
-    wxString GetImageFileFilter()
-        {
-        return _(LR"(Image Files (*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)|*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx|Bitmap (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe)|*.jpg;*.jpg;*.jpe|PNG (*.png)|*.png|GIF (*.gif)|*.gif|Targa (*.tga)|*.tga|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PCX (*.pcx)|*.pcx)");
-        }
     // last opened file locations
     const std::string_view XML_FILE_OPEN_PATHS{ _DT("file-open-paths") };
     const std::string_view XML_FILE_OPEN_IMAGE_PATH{ _DT("image-path") };
