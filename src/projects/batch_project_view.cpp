@@ -2858,7 +2858,7 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
         wxString currentDocName;
         if (doc->GetFilePathTruncationMode() ==
             ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::TruncatePaths)
-            { currentDocName = GetShortenedFileName(doc->GetDocuments()[i]->GetOriginalDocumentFilePath()); }
+            { currentDocName = GetShortenedFilePath(doc->GetDocuments()[i]->GetOriginalDocumentFilePath()); }
         else if (doc->GetFilePathTruncationMode() ==
             ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames)
             {
@@ -2893,7 +2893,7 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
 
         wxString currentDocName;
         if (doc->GetFilePathTruncationMode() == ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::TruncatePaths)
-            { currentDocName = GetShortenedFileName(doc->GetDocuments()[i]->GetOriginalDocumentFilePath()); }
+            { currentDocName = GetShortenedFilePath(doc->GetDocuments()[i]->GetOriginalDocumentFilePath()); }
         else if (doc->GetFilePathTruncationMode() ==
             ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames)
             {
