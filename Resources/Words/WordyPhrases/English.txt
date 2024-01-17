@@ -5226,6 +5226,10 @@ enchanced	enhanced	3
 enchancement	enhancement	3		
 enconding	encoding	3		
 encondings	encodings	3		
+encorage	encourage	3		
+encoraged	encouraged	3		
+encorages	encourages	3		
+encoraging	encouraging	3		
 encorporating	incorporating	3		
 encose	enclose	3		
 encosed	enclosed	3		
@@ -5973,6 +5977,8 @@ Febuary	February	3
 Feburary	February	3		
 Federal Bureau of Investigations	Federal Bureau of Investigation	3		
 fedreally	federally	3		
+feeback	feedback	3		
+feeback's	feedback's	3		
 feel the pinch	be affected by adversity	2		
 feeling the pinch	being affected by adversity	2		
 feels the pinch	is affected by adversity	2		
@@ -6608,6 +6614,9 @@ govormental	governmental	3
 govornment	government	3		
 grabing	grabbing	3		
 gracefull	graceful	3		
+gradute	graduate	3		
+gradute's	graduate's	3		
+gradutes	graduates	3		
 graet	great	3		
 grafitti	graffiti	3		
 grahical	graphical	3		
@@ -7886,6 +7895,8 @@ instatance	instance	3
 institue	institute	3		
 institution	office, company, school	0		
 institution of higher learning	college, university	0		
+Instragram	Instagram	3		
+Instragram's	Instagram's	3		
 instuction	instruction	3		
 instuments	instruments	3		
 instutionalized	institutionalized	3		
@@ -10867,7 +10878,7 @@ principaly	principality	3
 principial	principal	3		
 principlaity	principality	3		
 principle activity	principal activity	3		
-principle actor		principal actor	3
+principle actor		principal actor	3		
 principle actor's	principal actor's	3		
 principle actors	principal actors	3		
 principle character	principal character	3		
@@ -11379,7 +11390,7 @@ quering	querying	3
 querulous	fretful	0		
 querulously	fretfully	0		
 questbook	guestbook	3		
-questbook's guestbook's	3
+questbook's	guestbook's	3		
 questbooks	guestbooks	3		
 questionaire	questionnaire	3		
 questionaire's	questionnaire's	3		
@@ -11743,6 +11754,9 @@ rehabilitate	restore	0
 rehabilitated	restored	0		
 rehabilitates	restores	0		
 rehabilitating	restoring	0		
+rehabilition	rehabilitation	3		
+rehabilition's	rehabilitation's	3		
+rehabilitions	rehabilitations	3		
 rehersal	rehearsal	3		
 reigining	reigning	3		
 reimburse	pay back	0		
@@ -13581,7 +13595,7 @@ the his	(strike one of these)	3
 the ins and outs	details	0		
 the interesting thing is	interestingly	0		
 the issue of	Consider removing this	0		
-the its	(strike one of these)	3		
+the its	(strike one of these)	3		department;help;office
 the last laugh	to unexpectedly win at the last moment	2		
 the length of time	the time	0		
 the lion's share	most, nearly all	0		
@@ -13857,7 +13871,7 @@ to being with	to begin with	3
 to explorer the	to explore the	3		
 to generated	to generate, to be generated	3		identifiers;IDs;invalid;strings;valid;values
 to hell in a hand basket	going very badly	2		
-to late	too late	3	mid	
+to late	too late	3	mid;subject	charges;fees
 to make matters worse	worse yet	0		
 to no avail	unsuccessful	0		
 to provided	to provide	3		
@@ -15069,7 +15083,7 @@ young lad	lad	1
 young lads	lads	1		
 young lass	lass	1		
 young lasses	lasses	1		
-your can	you can	3		
+your can	you can	3		of
 your's	yours	3		
 youseff	yourself	3		
 youself	yourself	3		

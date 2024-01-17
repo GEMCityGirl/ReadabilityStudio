@@ -63,6 +63,8 @@ Habsbourg	Hapsburg	3
 Hatian	Haitian	3		
 Heidelburg	Heidelberg	3		
 Ihaca	Ithaca	3		
+Instragram	Instagram	3		
+Instragram's	Instagram's	3		
 Israelies	Israelis	3		
 Japanes	Japanese	3		
 Jospeh	Joseph	3		

@@ -10342,6 +10342,9 @@ bear
 bear's
 bearable
 bearably
+bearcat
+bearcat's
+bearcats
 beard
 beard's
 bearded
@@ -11872,6 +11875,9 @@ biodegradabilities
 biodegradability
 biodegradable
 biodegrade
+biodemographies
+biodemography
+biodemography's
 biodesign
 biodiesel
 biodiesel's
@@ -11917,6 +11923,8 @@ biog
 biogasoline
 biogenic
 biogeochemical
+biogeochemistry
+biogeochemistry's
 biogeographer
 biogeographer's
 biogeographers
@@ -11943,6 +11951,9 @@ bioinstrumentations
 bioInteractive
 biokinesiology's
 biol
+biolab
+biolab's
+biolabs
 biologic
 biological
 biologically
@@ -15238,6 +15249,9 @@ brooks
 brookside
 broom
 broom's
+broomball
+broomball's
+broomballs
 broomed
 brooming
 brooms
@@ -17052,6 +17066,7 @@ camisole
 camisole's
 camisoles
 cammed
+camo
 camomile
 camomile's
 camouflage
@@ -17573,6 +17588,7 @@ capon's
 capons
 capos
 capped
+cappella
 capper
 capper's
 cappers
@@ -20227,6 +20243,7 @@ cheerio
 cheerleader
 cheerleader's
 cheerleaders
+cheerleading
 cheerless
 cheerlessly
 cheerlessness
@@ -22277,6 +22294,7 @@ cliometric
 cliometrician
 cliometricians
 cliometrics
+cliosophic
 clip
 clip's
 clipart
@@ -23461,6 +23479,7 @@ colleens
 college
 college's
 colleges
+collegewide
 collegial
 collegialities
 collegiality
@@ -23573,6 +23592,9 @@ colonialisms
 colonialist
 colonialist's
 colonialists
+colonialities
+coloniality
+coloniality's
 colonially
 colonialness
 colonials
@@ -28651,6 +28673,9 @@ crewmember's
 crewmembers
 crewmen
 crewmen's
+crewneck
+crewneck's
+crewnecks
 crews
 crib
 crib's
@@ -29620,6 +29645,7 @@ culturing
 culvert
 culvert's
 culverts
+cum
 cumber
 cumbered
 cumbering
@@ -29836,6 +29862,7 @@ curriculog's
 curriculogs
 curriculum
 curriculum's
+curriculums
 curried
 currier
 currier's
@@ -30157,6 +30184,7 @@ cybernetic
 cybernetician
 cybernetics
 cybernetics's
+cyberphysical
 cyberprotest
 cyberprotest's
 cyberprotested
@@ -35648,6 +35676,7 @@ discernment's
 discernments
 discerns
 discharge
+dischargeable
 discharged
 discharger
 discharger's
@@ -37088,6 +37117,7 @@ dividing
 divination
 divination's
 divinations
+divinatory
 divine
 divined
 divinely
@@ -37688,6 +37718,9 @@ dopier
 dopiest
 dopiness
 doping
+doppelganger
+doppelganger's
+doppelgangers
 doppelgänger
 doraphobia
 dories
@@ -39315,6 +39348,7 @@ e.coli
 e.g.
 e.m.f.
 ea
+eAccessibility
 each
 eager
 eager's
@@ -40042,6 +40076,9 @@ effusively
 effusiveness
 effusiveness's
 EFL
+eForm
+eForm's
+eForms
 EFT
 eg
 EGA
@@ -52472,6 +52509,8 @@ genuineness's
 genus
 geo
 geo's
+geobiology
+geobiology's
 geocentric
 geocentrically
 geocentricism
@@ -55930,6 +55969,9 @@ hacked
 hacker
 hacker's
 hackers
+hackfest
+hackfest's
+hackfests
 hacking
 hackings
 hackle
@@ -57357,6 +57399,9 @@ headstalls
 headstand
 headstand's
 headstands
+headstart
+headstart's
+headstarts
 headstock
 headstock's
 headstone
@@ -58766,6 +58811,7 @@ historicism
 historicism's
 historicist
 historicist's
+historicists
 historicities
 historicity
 historicity's
@@ -63971,6 +64017,9 @@ inequity
 inequity's
 inequivalent
 ineradicable
+inerrancies
+inerrancy
+inerrancy's
 inerrant
 inert
 inertia
@@ -76469,6 +76518,9 @@ medallist
 medallists
 medals
 Medan
+medcenter
+medcenter's
+medcenters
 meddle
 meddled
 meddler
@@ -77133,6 +77185,8 @@ mercerized
 mercerizes
 mercerizing
 mercers
+merch
+merch's
 merchandise
 merchandise's
 merchandised
@@ -77499,6 +77553,9 @@ metalworking
 metalworking's
 metalworkings
 metalworks
+metamaterial
+metamaterial's
+metamaterials
 metamathematical
 metameric
 metamerism
@@ -80350,6 +80407,9 @@ monitored
 monitories
 monitoring
 monitors
+monitorship
+monitorship's
+monitorships
 monitory
 monk
 monk's
@@ -82479,6 +82539,9 @@ mystique's
 mystiques
 myth
 myth's
+mythbuster
+mythbuster's
+mythbusters
 mythes
 mythic
 mythical
@@ -82705,7 +82768,9 @@ nanostructures
 nanosystem
 nanosystem's
 nanosystems
+nanotechnologies
 nanotechnology
+nanotechnology's
 nanotube
 nanotube's
 nanotubes
@@ -82862,6 +82927,9 @@ natal
 natalist
 natality
 natality's
+natatorium
+natatorium's
+natatoriums
 natch
 natches
 nation
@@ -83566,6 +83634,9 @@ nether
 nethermost
 netherworld
 netherworlds
+netID
+netID's
+netIDs
 netlike
 nets
 nett
@@ -84674,6 +84745,7 @@ nondimensional
 nondipper
 nondirectional
 nondirective
+nondischargeable
 nondisciplinary
 nondisclosure
 nondisclosure's
@@ -86852,6 +86924,7 @@ offside
 offsider
 offsides
 offsite
+offsites
 offspring
 offspring's
 offstage
@@ -90139,6 +90212,7 @@ paleface's
 palefaces
 palely
 paleness
+paleo
 paleobiogeography
 paleobiology
 paleobotanist
@@ -90325,11 +90399,13 @@ pampering
 pampers
 pamphlet
 pamphlet's
+pamphleted
 pamphleteer
 pamphleteer's
 pamphleteered
 pamphleteering
 pamphleteers
+pamphleting
 pamphlets
 pan
 pan's
@@ -90965,6 +91041,9 @@ parathyrin
 parathyroid
 parathyroidectomy
 parathyroids
+paratriathlon
+paratriathlon's
+paratriathlons
 paratroop
 paratrooper
 paratrooper's
@@ -97406,10 +97485,14 @@ postcard
 postcard's
 postcards
 postcentral
+postclassical
 postcode
 postcode's
 postcodes
 postcoital
+postcolonialist
+postcolonialist's
+postcolonialists
 postcondition
 postconditions
 postconsonantal
@@ -97994,6 +98077,7 @@ preauthorize
 prebendary
 prebendary's
 prebiotic
+preborn
 prebuilt
 precalculus
 precancel
@@ -98037,7 +98121,13 @@ preceptive
 preceptively
 preceptor
 preceptor's
+preceptorial
+preceptorial's
+preceptorials
 preceptors
+preceptorship
+preceptorship's
+preceptorships
 precepts
 precess
 precessed
@@ -102370,6 +102460,9 @@ query
 query's
 queryable
 querying
+quesadilla
+quesadilla's
+quesadillas
 quest
 quest's
 quested
@@ -103841,6 +103934,11 @@ reacclimatization
 reacclimatization's
 reacclimatizations
 reacclimatizes
+reaccreditate
+reaccreditated
+reaccreditates
+reaccreditating
+reaccreditation
 reach
 reachability
 reachable
@@ -104787,6 +104885,7 @@ reconcile
 reconciled
 reconciler
 reconciler's
+reconcilers
 reconciles
 reconciliation
 reconciliation's
@@ -118303,6 +118402,9 @@ smartening
 smartens
 smarter
 smartest
+smartgrid
+smartgrid's
+smartgrids
 smarting
 smartly
 smartness
@@ -118311,6 +118413,9 @@ smartphone
 smartphone's
 smartphones
 smarts
+smartwatch
+smartwatch's
+smartwatches
 smarty
 smartypants
 smash
@@ -119610,6 +119715,8 @@ sonny
 sonny's
 sonograms
 sonographer
+sonography
+sonography's
 Sonora
 sonoran
 sonorities
@@ -124261,6 +124368,9 @@ subfiles
 subfolder
 subfolder's
 subfolders
+subfooter
+subfooter's
+subfooters
 subframe
 subframe's
 subframes
@@ -139744,6 +139854,8 @@ veg
 veg's
 vegan
 vegan's
+veganism
+veganism's
 vegans
 vegemite
 vegemite's
@@ -144358,6 +144470,9 @@ woodshed's
 woodshedded
 woodshedding
 woodsheds
+woodshop
+woodshop's
+woodshops
 woodside
 woodsier
 woodsiest
