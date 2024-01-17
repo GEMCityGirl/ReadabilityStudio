@@ -3945,7 +3945,7 @@ bool BaseProject::LoadExternalDocument()
         else
             {
             LogMessage(wxString::Format(_(L"Unable to open webpage. The following error occurred:\n%s\n%s"),
-                       WebHarvester::GetResponseMessage(responseCode),
+                       QueueDownload::GetResponseMessage(responseCode),
                        statusText),
                 _(L"Error"), wxOK|wxICON_EXCLAMATION);
             return false;

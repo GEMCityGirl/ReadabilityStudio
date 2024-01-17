@@ -292,10 +292,7 @@ class WebHarvester
     /// @param contentType The MIME type string.
     [[nodiscard]]
     static wxString GetFileTypeFromContentType(const wxString& contentType);
-    /// @returns A human readable message connected to response code.
-    /// @param responseCode The response code from a webpage connect attempt.
-    [[nodiscard]]
-    static wxString GetResponseMessage(const int responseCode);
+
     /** @returns @c true if a link is pointing to an HTML page.
         @param[in,out] Url The link to test (may be redirected).
         @param[out] contentType The MIME type read from the page.*/

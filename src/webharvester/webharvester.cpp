@@ -313,7 +313,8 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
     // check the response code
     if (IsBadResponseCode(responseCode))
         {
-        wxLogWarning(L"%s: Unable to connect to page, error code #%i.", Url, responseCode);
+        wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).", Url,
+                     responseCode, QueueDownload::GetResponseMessage(responseCode));
         downloadPath.clear();
         }
     // otherwise, if file is OK then download it
@@ -407,56 +408,6 @@ wxString WebHarvester::CreateNewFileName(const wxString& filePath)
     }
 
 //----------------------------------
-wxString WebHarvester::GetResponseMessage(const int responseCode)
-    {
-    if (responseCode < 300)
-        {
-        return _(L"Connection successful.");
-        }
-    switch (responseCode)
-        {
-    case 301:
-        return _(L"Page has moved.");
-        break;
-    case 302:
-        return _(L"Page was found, but under a different URL.");
-        break;
-    case 204:
-        return _(L"Page not responding.");
-        break;
-    case 400:
-        return _(L"Bad request.");
-        break;
-    case 401:
-        return _(L"Unauthorized.");
-        break;
-    case 402:
-        return _(L"Payment Required.");
-        break;
-    case 403:
-        return _(L"Forbidden.");
-        break;
-    case 404:
-        return _(L"Page not found.");
-        break;
-    case 500:
-        return _(L"Internal Error.");
-        break;
-    case 501:
-        return _(L"Not implemented.");
-        break;
-    case 502:
-        return _(L"Service temporarily overloaded.");
-        break;
-    case 503:
-        return _(L"Gateway timeout.");
-        break;
-    default:
-        return _(L"Unable to connect to the Internet.");
-        };
-    }
-
-//----------------------------------
 bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString& contentType,
                                wxString& statusText, long& responseCode,
                                const bool acceptOnlyHtmlOrScriptFiles /*= true*/)
@@ -485,7 +436,8 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
         {
         responseCode = m_downloader.GetLastStatus();
         statusText = m_downloader.GetLastStatusText();
-        wxLogWarning(L"%s: Unable to connect to page, error code #%i.", Url, responseCode);
+        wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).", Url,
+                     responseCode, QueueDownload::GetResponseMessage(responseCode));
         return false;
         }
 
@@ -493,7 +445,8 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
     statusText = m_downloader.GetLastStatusText();
     if (IsBadResponseCode(responseCode))
         {
-        wxLogWarning(L"%s: Unable to connect to page, error code #%i.", Url, responseCode);
+        wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).", Url,
+                     responseCode, QueueDownload::GetResponseMessage(responseCode));
         return false;
         }
     else if (m_downloader.GetLastRead().size())

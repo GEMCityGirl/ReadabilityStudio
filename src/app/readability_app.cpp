@@ -4248,7 +4248,7 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
                                        contentType, statusText, responseCode, false) )
             {
             wxMessageBox(wxString::Format(_(L"An error occurred while trying to connect to the website:\t%s"),
-                                            WebHarvester::GetResponseMessage(responseCode)),
+                                            QueueDownload::GetResponseMessage(responseCode)),
                         _(L"Connection Error"), wxOK|wxICON_EXCLAMATION);
             return;
             }
@@ -4261,7 +4261,7 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
                                                   contentType, statusText, responseCode, false) )
         {
         wxMessageBox(wxString::Format(_(L"An error occurred while trying to connect to the website:\t%s"),
-                                        WebHarvester::GetResponseMessage(responseCode)),
+                                        QueueDownload::GetResponseMessage(responseCode)),
                     _(L"Connection Error"), wxOK|wxICON_EXCLAMATION);
         return;
         }
