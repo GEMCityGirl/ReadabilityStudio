@@ -1,4 +1,3 @@
-#include "../../../Licensing/LicenseDlg.h"
 #include "../document_helpers/chapter_split.h"
 #include "../projects/standard_project_doc.h"
 #include "../projects/batch_project_doc.h"
@@ -6,6 +5,7 @@
 #include "../projects/standard_project_view.h"
 #include "../ui/dialogs/custom_test_dlg.h"
 #include "../ui/dialogs/edit_word_list_dlg.h"
+#include "../ui/dialogs/license_dlg.h"
 #include "../ui/dialogs/new_custom_test_simple_dlg.h"
 #include "../ui/dialogs/project_wizard_dlg.h"
 #include "../ui/dialogs/test_bundle_dlg.h"
@@ -251,7 +251,7 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
                     lily_of_the_valley::rtf_extract_text filter_rtf(
                         lily_of_the_valley::rtf_extract_text::rtf_extraction_type::rtf_to_html);
                     MemoryMappedFile licFile(licenseAgreementPath, true, true);
-                    licDlg.GetLicenseWindow()->SetPage(
+                    licDlg.SetLicenseAggreement(
                         wxString(filter_rtf(static_cast<char*>(licFile.GetStream()), licFile.GetMapSize())) );
                     }
                 catch (...)
