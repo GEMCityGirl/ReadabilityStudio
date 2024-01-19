@@ -5,7 +5,7 @@
 #include <wx/valgen.h>
 #include <wx/html/htmlwin.h>
 
-/// @brief Dialog to display an end-user license aggreement.
+/// @brief Dialog to display an end-user license agreement.
 class LicenseDlg : public wxDialog
     {
 public:
