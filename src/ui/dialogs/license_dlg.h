@@ -32,7 +32,7 @@ public:
         {
         m_licenseWindow->SetPage(content);
         }
-    
+
 private:
 
     void CreateControls();
