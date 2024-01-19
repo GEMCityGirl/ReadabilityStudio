@@ -31,6 +31,7 @@ std::set<is_double_word_exception::string_type>
         L"Pago",     // capital of American Samoa
         L"plus",     // C plus plus (it sometimes gets spelled out like this)
         L"sie",      // German word that can be repeated
+        L"sigma",    // Sigma Sigma is a fraternity at U. of Cincinnati
         L"Sirhan",   // "Sirhan Sirhan" was RFJ's assassin
         L"ta",       // "ta ta" means "goodbye"
         L"that",
