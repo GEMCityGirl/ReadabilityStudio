@@ -2173,7 +2173,8 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
 
     graphBackgroundImageFitSubMenu->Append(
         new wxMenuItem(graphBackgroundImageFitSubMenu,
-            XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"), _(L"Crop && Center"), wxString{}, wxITEM_CHECK));
+            XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"),
+            _(L"Crop && Center"), wxString{}, wxITEM_CHECK));
     graphBackgroundImageFitSubMenu->Append(
         new wxMenuItem(graphBackgroundImageFitSubMenu,
             XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"), _(L"Shrink to Fit"), wxString{}, wxITEM_CHECK));
@@ -2188,12 +2189,13 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     m_graphBackgroundMenu.AppendSubMenu(graphBackgroundImageSubMenu, _(L"Plot Image"));
 
     // Raygor styles
-    m_raygorStyleMenu.Append(
-        XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"), _(L"Original"))->SetCheckable(true);
-    m_raygorStyleMenu.Append(
-        XRCID("ID_EDIT_GRAPH_RAYGOR_BALDWIN_KAUFMAN"), _DT(L"Baldwin-Kaufman"))->SetCheckable(true);
-    m_raygorStyleMenu.Append(
-        XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"), _(L"Modern"))->SetCheckable(true);
+    m_raygorStyleMenu.Append(new wxMenuItem(&m_raygorStyleMenu,
+        XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"), _(L"Original"), wxString{}, wxITEM_CHECK));
+    m_raygorStyleMenu.Append(new wxMenuItem(&m_raygorStyleMenu,
+        XRCID("ID_EDIT_GRAPH_RAYGOR_BALDWIN_KAUFMAN"),
+        _DT(L"Baldwin-Kaufman"), wxString{}, wxITEM_CHECK));
+    m_raygorStyleMenu.Append(new wxMenuItem(&m_raygorStyleMenu,
+        XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"), _(L"Modern"), wxString{}, wxITEM_CHECK));
 
     // histogram bar labels
     m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
@@ -2201,7 +2203,8 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
         XRCID("ID_HISTOBAR_LABELS_PERCENTAGE"), _(L"Percentages"), wxString{}, wxITEM_CHECK));
     m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
-        XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT"), _(L"Counts && Percentages"), wxString{}, wxITEM_CHECK));
+        XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT"),
+        _(L"Counts && Percentages"), wxString{}, wxITEM_CHECK));
     m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
         XRCID("ID_HISTOBAR_NO_LABELS"), _(L"No labels"), wxString{}, wxITEM_CHECK));
 
