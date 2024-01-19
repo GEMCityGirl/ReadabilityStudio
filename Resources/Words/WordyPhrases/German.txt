@@ -5,6 +5,8 @@ Athenean	Athenian	3
 Atheneans	Athenians	3		
 Beligum	Belgium	3		
 Bernouilli	Bernoulli	3		
+Bethoven	Beethoven	3		
+Bethoven's	Beethoven's	3		
 Blitzkreig	Blitzkrieg	3		
 Bonnano	Bonanno	3		
 Brasillian	Brazilian	3		
@@ -64,6 +66,7 @@ Instragram	Instagram	3
 Instragram's	Instagram's	3		
 Israelies	Israelis	3		
 Japanes	Japanese	3		
+Javitz	Javits	3		
 Jospeh	Joseph	3		
 Jospeh's	Joseph's	3		
 Juadaism	Judaism	3		
@@ -130,3 +133,5 @@ Sweeden's	Sweden's	3
 Tolkein	Tolkien	3		
 Ukranian	Ukrainian	3		
 UnitesStates	United States	3		
+Vileck	Vilcek	3		
+Vileck's	Vilcek's	3		

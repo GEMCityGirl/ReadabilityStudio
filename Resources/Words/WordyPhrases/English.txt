@@ -2129,6 +2129,8 @@ bestows	gives	0
 bet the farm	bet everything	2		
 beteen	between	3		
 beteween	between	3		
+Bethoven	Beethoven	3		
+Bethoven's	Beethoven's	3		
 betrothed	engaged	0		
 bets the farm	bets everything	2		
 betting the farm	betting everything	2		
@@ -3381,6 +3383,9 @@ conciliating	winning over, soothing	0
 concious	conscious	3		
 conciously	consciously	3		
 conciousness	consciousness	3		
+conclded	concluded	3		
+concldes	concludes	3		
+conclding	concluding	3		
 conclude	close, end	0		
 concluded	closed, ended	0		
 concludes	closes, ends	0		
@@ -4825,6 +4830,7 @@ docrines	doctrines	3
 doctines	doctrines	3		
 doctorate degree	doctorate	0		
 doctorate degrees	doctorates	0		
+doctural	doctoral	3		
 docuemntation	documentation	3		
 docuentation	documentation	3		
 documantation	documentation	3		
@@ -6061,6 +6067,8 @@ finalizes	finishes, completes	0
 finalizing	finishing, completing	0		
 finallly	finally	3		
 finaly	finally	3		
+financal	financial	3		
+financally	financially	3		
 financialy	financially	3		
 Finnish button	Finish button	3		
 Finnotti	Finotti	3		
@@ -8297,6 +8305,7 @@ its the	it's the	3
 itslef	itself	3		
 ivory tower	out of touch with reality, unaware of other people's plight	2		
 janus-faced	deceitful, deal both ways, two-faced	2		
+Javitz	Javits	3		
 jeapardy	jeopardy	3		
 jewllery	jewelry	3		
 jocular	funny	0		
@@ -8311,6 +8320,7 @@ joint cooperation	cooperation	0
 jorunal	journal	3		
 Jospeh	Joseph	3		
 Jospeh's	Joseph's	3		
+jounalism	journalism	3		
 jouney	journey	3		
 journied	journeyed	3		
 journies	journeys	3		
@@ -8939,6 +8949,9 @@ measurments	measurements	3
 mecanism	mechanism	3		
 mecanisms	mechanisms	3		
 mechandise	merchandise	3		
+mechnancism	mechanism	3		
+mechnancism's	mechanism's	3		
+mechnancisms	mechanisms	3		
 mechnanism	mechanism	3		
 medacine	medicine	3		
 medecine	medicine	3		
@@ -9748,7 +9761,7 @@ on or before	before	0
 on or more	one or more	3		
 on pins and needles	nervous, on edge	2		
 on previous occasions	earlier	0		
-on principal	on principle	3		
+on principal	on principle	3		investigator;investigators;actor;actors
 on prior occasions	earlier	0		
 on that particular occasion	then	0		
 on the ball	doing well, skilled, sharp, competent	2		
@@ -10884,6 +10897,9 @@ principle actors	principal actors	3
 principle character	principal character	3		
 principle character's	principal character's	3		
 principle characters	principal characters	3		
+principle investigator		principal investigator	3		
+principle investigator's	principal investigator's	3		
+principle investigators	principal investigators	3
 principle source	principal source	3		
 principle's office	principal's office	3		
 principle's office's	principal's office's	3		
@@ -12434,6 +12450,9 @@ seizing the bull by the horns	taking action against a difficult situation	2
 seldom ever	seldom	0		
 seldomly	seldom	3		
 selection	choice	0		
+seletion	selection	3		
+seletion's	selection's	3		
+seletions	selections	3		
 self of steam	self-esteem	3		
 sell like hotcakes	sell quickly	2		
 selling like hotcakes	selling quickly	2		
@@ -14567,6 +14586,8 @@ vides	videos	3
 vigilance	caution	0		
 vigilence	vigilance	3		
 vigourous	vigorous	3		
+Vileck	Vilcek	3		
+Vileck's	Vilcek's	3		
 villian	villain	3		
 villification	vilification	3		
 villify	vilify	3		

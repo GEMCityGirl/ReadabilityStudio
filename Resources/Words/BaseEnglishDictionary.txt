@@ -233,6 +233,7 @@ ablatively
 ablatives
 ablaze
 able
+abled
 abler
 ables
 ablest
@@ -1674,6 +1675,9 @@ admittance's
 admittances
 admitted
 admittedly
+admittee
+admittee's
+admittees
 admitting
 admix
 admixed
@@ -2918,6 +2922,7 @@ alibis
 alien
 alien's
 alienable
+alienage
 alienate
 alienated
 alienates
@@ -14425,6 +14430,9 @@ brainchild
 brainchild's
 brainchildren
 brained
+brainiac
+brainiac's
+brainiacs
 brainier
 brainiest
 braininess
@@ -19728,6 +19736,7 @@ changelogs
 changemaker
 changemaker's
 changemakers
+changemaking
 changeover
 changeover's
 changeovers
@@ -20915,6 +20924,9 @@ chocolate
 chocolate's
 chocolates
 chocolatey
+chocolatier
+chocolatier's
+chocolatiers
 chocolaty
 choice
 choice's
@@ -23285,6 +23297,9 @@ coins
 coinsurance
 coinsurance's
 coinsurances
+coinvestigator
+coinvestigator's
+coinvestigators
 coital
 coitally
 coitophobia
@@ -27848,6 +27863,9 @@ coursed
 courseload
 courseload's
 courseloads
+coursepack
+coursepack's
+coursepacks
 courser
 courser's
 coursers
@@ -30207,6 +30225,9 @@ cyberspace
 cyberspace's
 cyberspaces
 cybersquatting
+cyberstudies
+cyberstudy
+cyberstudy's
 cyberthreat
 cyberthreat's
 cyberthreats
@@ -33049,6 +33070,7 @@ dentists
 dentition
 dentition's
 dentitions
+dentofacial
 dents
 denture
 denture's
@@ -40260,6 +40282,9 @@ ektachrome
 ektachrome's
 el
 el's
+eLab
+eLab's
+eLabs
 elaborate
 elaborated
 elaborately
@@ -41598,6 +41623,7 @@ endoderm
 endodermal
 endodermis
 endoders
+endodontics
 endogamous
 endogamy
 endogamy's
@@ -42731,6 +42757,9 @@ epochs
 eponychium
 eponym
 eponymous
+ePortfolio
+ePortfolio's
+ePortfolios
 epoxied
 epoxies
 epoxy
@@ -43300,8 +43329,10 @@ esterified
 esters
 esthete's
 esthetes
+esthetic
 esthetic's
 esthetically
+esthetics
 esthetics's
 estimability
 estimable
@@ -43507,6 +43538,9 @@ etiology's
 etiquette
 etiquette's
 etiquettes
+eTranscript
+eTranscript's
+eTranscripts
 ETSI
 eTutor
 eTutored
@@ -45042,6 +45076,7 @@ externals
 externship
 externships
 externus
+exteroceptive
 exteroceptor
 extinct
 extincted
@@ -46724,6 +46759,7 @@ ferociousness's
 ferocities
 ferocity
 ferocity's
+FERPA
 ferrate
 ferret
 ferret's
@@ -57863,6 +57899,7 @@ helmsman's
 helmsmen
 helmsmen's
 helmswork
+HELOC
 helot
 helots
 help
@@ -58697,6 +58734,7 @@ hinting
 hints
 hip
 hip's
+HIPAA
 hipbone
 hipbone's
 hipbones
@@ -59072,6 +59110,7 @@ holiness
 holiness's
 holinesses
 holing
+holism
 holistic
 holistically
 hollandaise
@@ -59238,6 +59277,7 @@ homesickness
 homesickness's
 homespun
 homespuns
+homestay
 homestead
 homestead's
 homesteaded
@@ -63692,6 +63732,7 @@ indifferently
 indigence
 indigence's
 indigences
+indigeneity
 indigenous
 indigenously
 indigenousness
@@ -69678,6 +69719,9 @@ knowledgeable
 knowledgeableness
 knowledgeableness's
 knowledgeably
+knowledgebase
+knowledgebase's
+knowledgebases
 knowledges
 known
 knowns
@@ -74255,6 +74299,7 @@ macrocosm's
 macrocosms
 macrocytic
 macrodynamic
+macroecon
 macroeconomic
 macroeconomics
 macroeconomics's
@@ -77957,6 +78002,7 @@ microdot
 microdot's
 microdots
 microduplication
+microecon
 microeconomic
 microeconomics
 microeconomics's
@@ -78115,6 +78161,7 @@ microphyll
 microphyll's
 microphylls
 micropigmentation
+micropolitics
 micropool
 micropool's
 micropools
@@ -81897,6 +81944,7 @@ multisets
 multisided
 multisite
 multislice
+multispecies
 multisport
 multistage
 multistate
@@ -81906,6 +81954,9 @@ multistep
 multisteps
 multistories
 multistory
+multistrategies
+multistrategy
+multistrategy's
 multistroke
 multistrokes
 multisyllabic
@@ -82709,6 +82760,9 @@ nanobiology's
 nanobubble
 nanobubble's
 nanobubbles
+nanocelebrities
+nanocelebrity
+nanocelebrity's
 nanocomposite
 nanocomposites
 nanocoulomb
@@ -84474,6 +84528,7 @@ Nolly
 nomad
 nomad's
 nomadic
+nomadism
 nomads
 nomance
 nomance's
@@ -91742,6 +91797,7 @@ pathogenic
 pathogenicity
 pathogens
 pathognomonic
+pathokinesiology
 pathologic
 pathological
 pathologically
@@ -92061,6 +92117,10 @@ peaceable
 peaceableness
 peaceableness's
 peaceably
+peacebuild
+peacebuilding
+peacebuilds
+peacebuilt
 peaced
 peaceful
 peacefuller
@@ -95208,7 +95268,10 @@ pirrolysine
 pirrolysine's
 pirrolysines
 pis
+piscator
+piscator's
 piscatorial
+piscators
 pisiform
 pismire
 pismire's
@@ -97341,6 +97404,9 @@ portions
 portière
 portière's
 portières
+portlet
+portlet's
+portlets
 portlier
 portliest
 portliness
@@ -98792,6 +98858,7 @@ preprocessor
 preprocessor's
 preprocessors
 preproduction
+preprofessional
 preprogram
 preprogrammed
 preprostatic
@@ -99295,6 +99362,7 @@ primer
 primer's
 primers
 primes
+primetime
 primeval
 primevally
 primigravida
@@ -100534,6 +100602,7 @@ prosthetics's
 prosthetist
 prosthetist's
 prosthetists
+prosthodontics
 prosthodontist
 prostitute
 prostitute's
@@ -100859,6 +100928,7 @@ provolone's
 provolones
 provost
 provost's
+provostial
 provosts
 prow
 prow's
@@ -101008,6 +101078,8 @@ pshawed
 pshawing
 pshaws
 psi
+psilocybin
+psilocybin's
 psis
 psittacoses
 psittacosis
@@ -101064,6 +101136,7 @@ psychoanalyst
 psychoanalysts
 psychoanalytic
 psychoanalytical
+psychoanalytically
 psychoanalyze
 psychoanalyzed
 psychoanalyzes
@@ -101982,6 +102055,8 @@ pyroelectricities
 pyroelectricity
 pyroelectricity's
 pyrogens
+pyrography
+pyrography's
 pyrolyse
 pyrolyses
 pyrolysis
@@ -104203,6 +104278,9 @@ reappearances
 reappeared
 reappearing
 reappears
+reapplicant
+reapplicant's
+reapplicants
 reapplication
 reapplication's
 reapplications
@@ -104837,6 +104915,7 @@ recommendatory
 recommended
 recommender
 recommender's
+recommenders
 recommending
 recommends
 recommission
@@ -108080,6 +108159,10 @@ resizer's
 resizers
 resizes
 resizing
+reskill
+reskilled
+reskilling
+reskills
 resocialisation
 resocialisation's
 resocialisations
@@ -108381,6 +108464,8 @@ restructure
 restructured
 restructures
 restructuring
+restructuring's
+restructurings
 restrung
 rests
 restudied
@@ -117709,6 +117794,9 @@ skyscraper
 skyscraper's
 skyscrapers
 skyscraping
+skytop
+skytop's
+skytops
 skyward
 skywards
 skywave
@@ -122697,7 +122785,10 @@ stereoblindness
 stereocilia
 stereoed
 stereognosis
+stereograph
+stereograph's
 stereographic
+stereographs
 stereography
 stereography's
 stereoing
@@ -128585,6 +128676,8 @@ technophiles
 technophilia
 technophobia
 technophobic
+technoscience
+technosciences
 technosignature
 technosignature's
 technosignatures
@@ -130318,11 +130411,13 @@ threw
 thrice
 thrift
 thrift's
+thrifted
 thriftier
 thriftiest
 thriftily
 thriftiness
 thriftinesses
+thrifting
 thriftless
 thrifts
 thrifty
@@ -132406,6 +132501,9 @@ trailing
 trailings
 trails
 trailside
+trailway
+trailway's
+trailways
 train
 trainable
 trained
@@ -132912,6 +133010,7 @@ transputer's
 transrate
 transrated
 transrating
+transregional
 transsexual
 transsexual's
 transsexualism
@@ -133342,6 +133441,7 @@ tribeswoman's
 tribeswomen
 tribloblastic
 tribology
+triborough
 tribulate
 tribulation
 tribulation's
@@ -135936,6 +136036,10 @@ underallocated
 underallocates
 underallocating
 underapplied
+underappreciate
+underappreciated
+underappreciates
+underappreciating
 underarm
 underarmed
 underarming
@@ -136147,6 +136251,7 @@ undernourished
 undernourishment
 undernourishment's
 undernourishments
+undernutrition
 underpaid
 underpants
 underpart
@@ -138949,6 +139054,9 @@ urbanises
 urbanising
 urbanism
 urbanism's
+urbanist
+urbanist's
+urbanists
 urbanite
 urbanite's
 urbanites
@@ -140605,6 +140713,9 @@ videocast's
 videocasted
 videocasting
 videocasts
+videoconference
+videoconference's
+videoconferences
 videoconferencing
 videodisc
 videodisc's
@@ -142784,6 +142895,7 @@ weekenders
 weekending
 weekends
 weeklies
+weeklong
 weekly
 weeknight
 weeknight's
