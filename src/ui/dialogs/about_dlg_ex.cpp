@@ -103,10 +103,12 @@ void AboutDialogEx::FillLicenseGrid()
     }
 
 //------------------------------------------------------
-AboutDialogEx::AboutDialogEx(wxWindow* parent, const wxBitmap& logo, const wxString& AppVersion,
-                             const wxString& copyright, LicenseAdmin* licenseAdmin, wxWindowID id,
+AboutDialogEx::AboutDialogEx(wxWindow* parent, const wxBitmap& logo, wxString appVersion,
+                             wxString copyright, LicenseAdmin* licenseAdmin,
+                             wxString eula, wxWindowID id,
                              const wxPoint& pos, const wxSize& size, long style)
-    : m_licenseAdmin(licenseAdmin), m_logo(logo), m_appVersion(AppVersion), m_copyright(copyright)
+    : m_licenseAdmin(licenseAdmin), m_logo(logo), m_appVersion(std::move(appVersion)),
+      m_copyright(std::move(copyright)), m_eula(std::move(eula))
     {
     m_serialNumber = m_licenseAdmin->GetSerialNumber();
     Create(parent, id, pos, size, style);
@@ -136,8 +138,7 @@ void AboutDialogEx::CreateControls()
 
         // version info page
         {
-        wxPanel* mainPage = new wxPanel(m_sideBarBook, ID_VERSION_PAGE, wxDefaultPosition,
-                                        wxDefaultSize, wxTAB_TRAVERSAL);
+        wxPanel* mainPage = new wxPanel(m_sideBarBook);
         wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         mainPage->SetSizer(mainPanelSizer);
         m_sideBarBook->AddPage(mainPage, _(L"Product Info"), ID_VERSION_PAGE, true);
@@ -184,8 +185,7 @@ void AboutDialogEx::CreateControls()
 
         // licensing page
         {
-        wxPanel* mainPage = new wxPanel(m_sideBarBook, ID_LICENSING_PAGE, wxDefaultPosition,
-                                        wxDefaultSize, wxTAB_TRAVERSAL);
+        wxPanel* mainPage = new wxPanel(m_sideBarBook);
         wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         mainPage->SetSizer(mainPanelSizer);
         m_sideBarBook->AddPage(mainPage, _(L"Licensing"), ID_LICENSING_PAGE, false);
@@ -238,6 +238,20 @@ void AboutDialogEx::CreateControls()
         m_licenseGrid->SetColumnWidth(0, m_licenseGrid->EstimateColumnWidth(0));
         m_licenseGrid->SetColumnWidth(1, wxLIST_AUTOSIZE_USEHEADER);
         m_licenseGrid->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
+        }
+
+    // EULA page
+    if (m_eula.length() > 0)
+        {
+        wxPanel* eulaPage = new wxPanel(m_sideBarBook);
+        wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
+        eulaPage->SetSizer(mainPanelSizer);
+        m_sideBarBook->AddPage(eulaPage, _(L"EULA"), ID_EULA_PAGE, false);
+
+        wxHtmlWindow* eulaWindow{ new wxHtmlWindow(eulaPage) };
+        eulaWindow->SetPage(m_eula);
+        mainPanelSizer->Add(eulaWindow,
+            wxSizerFlags(1).Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
         }
 
     mainSizer->Add(CreateSeparatedButtonSizer(wxCLOSE), 0, wxALL | wxEXPAND,

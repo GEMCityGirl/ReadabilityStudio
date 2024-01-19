@@ -2180,11 +2180,33 @@ void MainFrame::OnAbout([[maybe_unused]] wxCommandEvent& event)
     wxDateTime buildDate;
     buildDate.ParseDate(__DATE__);
 
+    wxString licenseAgreementPath = wxGetApp().FindResourceFile(L"license.rtf");
+    wxString eula;
+    if (wxFile::Exists(licenseAgreementPath))
+        {
+        try
+            {
+            lily_of_the_valley::rtf_extract_text filter_rtf(
+                lily_of_the_valley::rtf_extract_text::rtf_extraction_type::rtf_to_html);
+            MemoryMappedFile licFile(licenseAgreementPath, true, true);
+            const wchar_t* eulaContent =
+                filter_rtf(static_cast<char*>(licFile.GetStream()), licFile.GetMapSize());
+            if (eulaContent != nullptr)
+                {
+                eula = eulaContent;
+                }
+            }
+        catch (...)
+            {
+            wxLogMessage(L"Unable to read EULA from '%s'", licenseAgreementPath);
+            }
+        }
+
     AboutDialogEx aboutDlg(this, GetAboutDialogImage(),
         wxGetApp().GetAppVersion(),
         wxString::Format(_(L"Copyright %c2006-%d %s. All rights reserved."), 0xA9,
                          buildDate.GetYear(), wxGetApp().GetVendorDisplayName()),
-        &wxGetApp().GetLicenseAdmin());
+        &wxGetApp().GetLicenseAdmin(), eula);
     wxGetApp().UpdateSideBarTheme(aboutDlg.GetSideBar());
 
     aboutDlg.ShowModal();
