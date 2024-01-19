@@ -2980,7 +2980,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     // initialize ribbon menus (print menu is the same for both types of projects)
     wxGetApp().FillPrintMenu(m_printMenu, ReadabilityApp::RibbonType::StandardProjectRibbon);
     wxGetApp().FillSaveMenu(m_exportMenu,
-        IsKindOf(CLASSINFO(ProjectDoc)) ?
+        IsKindOf(CLASSINFO(ProjectView)) ?
         ReadabilityApp::RibbonType::StandardProjectRibbon :
         ReadabilityApp::RibbonType::BatchProjectRibbon);
     m_fileOpenMenu.Append(wxID_OPEN, _(L"Open Project...") + L"\tCtrl+O");

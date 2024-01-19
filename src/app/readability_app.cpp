@@ -568,7 +568,7 @@ bool ReadabilityApp::OnInit()
         { return false; }
 
     // init random number generators
-     m_mersenneTwister = std::mt19937_64(std::random_device{}());
+    m_mersenneTwister = std::mt19937_64(std::random_device{}());
 
     SetSupportEmail(L"support@oleandersoftware.com");
 
@@ -1618,8 +1618,9 @@ void ReadabilityApp::FillSaveMenu(wxMenu& saveMenu, const RibbonType rtype)
     const auto filterIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/filter.svg");
     const auto saveIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/file-save.svg");
     const auto exportAllIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/export-all.svg");
+    const auto reportIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/report.svg");
 
-    if (rtype != RibbonType::StandardProjectRibbon)
+    if (rtype == RibbonType::StandardProjectRibbon)
         {
         wxMenuItem* item = new wxMenuItem(&saveMenu, wxID_SAVE, _(L"Save") + L"\tCtrl+S");
         item->SetBitmap(saveIcon);
@@ -1640,6 +1641,46 @@ void ReadabilityApp::FillSaveMenu(wxMenu& saveMenu, const RibbonType rtype)
 
         item = new wxMenuItem(&saveMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
                 _(L"Export Filtered Document..."));
+        item->SetBitmap(filterIcon);
+        saveMenu.Append(item);
+        }
+    else if (rtype == RibbonType::BatchProjectRibbon)
+        {
+        wxMenuItem* item = new wxMenuItem(&saveMenu, wxID_SAVE, _(L"Save") + L"\tCtrl+S");
+        item->SetBitmap(saveIcon);
+        saveMenu.Append(item);
+
+        item = new wxMenuItem(&saveMenu, wxID_SAVEAS, _(L"Save As..."));
+        item->SetBitmap(saveIcon);
+        saveMenu.Append(item);
+        saveMenu.AppendSeparator();
+
+        item = new wxMenuItem(&saveMenu, XRCID("ID_SAVE_ITEM"), _(L"Export..."));
+        saveMenu.Append(item);
+
+        item = new wxMenuItem(&saveMenu, XRCID("ID_EXPORT_ALL"), _(L"Export All..."));
+        item->SetBitmap(exportAllIcon);
+        saveMenu.Append(item);
+        saveMenu.AppendSeparator();
+
+        item = new wxMenuItem(&saveMenu, XRCID("ID_EXPORT_SCORES_AND_STATISTICS"),
+                _(L"Export Scores && Statistics..."));
+        item->SetBitmap(reportIcon);
+        saveMenu.Append(item);
+
+        item = new wxMenuItem(&saveMenu, XRCID("ID_EXPORT_STATISTICS"),
+                _(L"Export Statistics Report..."));
+        item->SetBitmap(reportIcon);
+        saveMenu.Append(item);
+        saveMenu.AppendSeparator();
+
+        item = new wxMenuItem(&saveMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                _(L"Export Filtered Document..."));
+        item->SetBitmap(filterIcon);
+        saveMenu.Append(item);
+
+        item = new wxMenuItem(&saveMenu, XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"),
+                _(L"Batch Export Filtered Document..."));
         item->SetBitmap(filterIcon);
         saveMenu.Append(item);
         }
