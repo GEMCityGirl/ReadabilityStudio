@@ -3479,7 +3479,7 @@ void MainFrame::FillMenuWithGradeScales(wxMenu* menu)
                                 wxEmptyString, wxITEM_CHECK));
     menu->Append(new wxMenuItem(menu, XRCID("ID_QUEBEC"), _DT(L"Quebec"),
                                 wxEmptyString, wxITEM_CHECK));
-    menu->Append(new wxMenuItem(menu, XRCID("ID_ENGLAND"), _(L"Key stages (England & Wales)"),
+    menu->Append(new wxMenuItem(menu, XRCID("ID_ENGLAND"), _(L"Key stages (England && Wales)"),
                                 wxEmptyString, wxITEM_CHECK));
     }
 
