@@ -1611,6 +1611,41 @@ void ReadabilityApp::EditCustomTest(CustomReadabilityTest& selectedTest)
     }
 
 //-----------------------------------
+void ReadabilityApp::FillSaveMenu(wxMenu& saveMenu, const RibbonType rtype)
+    {
+    assert(rtype != RibbonType::MainFrameRibbon && L"Mainframe should not have a save menu!");
+
+    const auto filterIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/filter.svg");
+    const auto saveIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/file-save.svg");
+    const auto exportAllIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/export-all.svg");
+
+    if (rtype != RibbonType::StandardProjectRibbon)
+        {
+        wxMenuItem* item = new wxMenuItem(&saveMenu, wxID_SAVE, _(L"Save") + L"\tCtrl+S");
+        item->SetBitmap(saveIcon);
+        saveMenu.Append(item);
+
+        item = new wxMenuItem(&saveMenu, wxID_SAVEAS, _(L"Save As..."));
+        item->SetBitmap(saveIcon);
+        saveMenu.Append(item);
+        saveMenu.AppendSeparator();
+
+        item = new wxMenuItem(&saveMenu, XRCID("ID_SAVE_ITEM"), _(L"Export..."));
+        saveMenu.Append(item);
+
+        item = new wxMenuItem(&saveMenu, XRCID("ID_EXPORT_ALL"), _(L"Export All..."));
+        item->SetBitmap(exportAllIcon);
+        saveMenu.Append(item);
+        saveMenu.AppendSeparator();
+
+        item = new wxMenuItem(&saveMenu, XRCID("ID_EXPORT_FILTERED_DOCUMENT"),
+                _(L"Export Filtered Document..."));
+        item->SetBitmap(filterIcon);
+        saveMenu.Append(item);
+        }
+    }
+
+//-----------------------------------
 void ReadabilityApp::FillPrintMenu(wxMenu& printMenu, const RibbonType rtype)
     {
     wxMenuItem* item(nullptr);

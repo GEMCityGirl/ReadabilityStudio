@@ -345,6 +345,7 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     void UpdateRibbonTheme(wxRibbonBar* ribbon);
 
     void FillPrintMenu(wxMenu& printMenu, const RibbonType rtype);
+    void FillSaveMenu(wxMenu& saveMenu, const RibbonType rtype);
     /// Adds a list of words to the custom dictionary
     ///     (based on language of the project that it is coming from).
     void AddWordsToDictionaries(const wxArrayString& theWords,
