@@ -1362,8 +1362,8 @@ bool ReadabilityApp::VerifyWordLists()
 //-----------------------------------
 void ReadabilityApp::LoadInterfaceLicensableFeatures()
     {
-    MainFrame::FillMenuWithWordList(&GetMainFrameEx()->m_wordListMenu);
-    MainFrame::FillMenuWithBlankGraphs(&GetMainFrameEx()->m_blankGraphMenu);
+    FillWordListsMenu(GetMainFrameEx()->m_wordListMenu);
+    FillBlankGraphsMenu(GetMainFrameEx()->m_blankGraphMenu);
     }
 
 //-----------------------------------
@@ -1610,15 +1610,151 @@ void ReadabilityApp::EditCustomTest(CustomReadabilityTest& selectedTest)
         }
     }
 
+//-------------------------------------------------------
+void ReadabilityApp::FillBlankGraphsMenu(wxMenu& blankGraphsMenu)
+    {
+    while (blankGraphsMenu.GetMenuItemCount())
+        { blankGraphsMenu.Destroy(blankGraphsMenu.FindItemByPosition(0)); }
+
+    wxMenuItem* menuItem =
+        new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_DB2_GRAPH"), BaseProjectView::GetDB2Label());
+    menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/danielson-bryan-2.svg"));
+    blankGraphsMenu.Append(menuItem);
+
+    menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_FLESCH_GRAPH"), _DT(L"Flesch Reading Ease"));
+    menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/flesch-test.svg"));
+    blankGraphsMenu.Append(menuItem);
+
+    menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_FRY_GRAPH"), _DT(L"Fry"));
+    menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/fry-test.svg"));
+    blankGraphsMenu.Append(menuItem);
+
+    menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_LIX_GRAPH"), _DT(L"Lix Gauge"));
+    menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/lix-test.svg"));
+    blankGraphsMenu.Append(menuItem);
+
+    menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_RAYGOR_GRAPH"), _DT(L"Raygor"));
+    menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/raygor-test.svg"));
+    blankGraphsMenu.Append(menuItem);
+
+    if (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()) ||
+        wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()))
+        {
+        // Spanish
+        blankGraphsMenu.AppendSeparator();
+
+        menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_CRAWFORD_GRAPH"), _DT(L"Crawford"));
+        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/crawford.svg"));
+        blankGraphsMenu.Append(menuItem);
+
+        menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_FRASE_GRAPH"), _DT(L"FRASE"));
+        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/frase.svg"));
+        blankGraphsMenu.Append(menuItem);
+
+        menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_GPM_GRAPH"),
+                                    _DT(L"Gilliam-Pe\U000000F1a-Mountain"));
+        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/gilliam-pena-mountain-fry-graph.svg"));
+        blankGraphsMenu.Append(menuItem);
+
+        // German
+        blankGraphsMenu.AppendSeparator();
+
+        menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_GERMAN_LIX_GRAPH"), _DT(L"German Lix Gauge"));
+        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/lix-test.svg"));
+        blankGraphsMenu.Append(menuItem);
+
+        menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_SCHWARTZ_GRAPH"), _DT(L"Schwartz"));
+        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/schwartz.svg"));
+        blankGraphsMenu.Append(menuItem);
+        }
+    }
+
+//-------------------------------------------------------
+void ReadabilityApp::FillWordListsMenu(wxMenu& wordListMenu)
+    {
+    while (wordListMenu.GetMenuItemCount())
+        { wordListMenu.Destroy(wordListMenu.FindItemByPosition(0)); }
+    wxMenuItem* menuItem = new wxMenuItem(&wordListMenu, XRCID("ID_DOLCH_WORD_LIST_WINDOW"),
+                                          _(L"Dolch Sight Words"));
+    menuItem->SetBitmap(
+        wxGetApp().GetResourceManager().GetSVG(L"tests/dolch.svg"));
+    wordListMenu.Append(menuItem);
+
+    menuItem = new wxMenuItem(&wordListMenu, XRCID("ID_HARRIS_JACOBSON_WORD_LIST_WINDOW"),
+                              _DT(L"Harris-Jacobson"));
+    menuItem->SetBitmap(
+        wxGetApp().GetResourceManager().GetSVG(L"tests/spache-test.svg"));
+    wordListMenu.Append(menuItem);
+
+    menuItem = new wxMenuItem(&wordListMenu, XRCID("ID_DC_WORD_LIST_WINDOW"), _DT(L"New Dale-Chall"));
+    menuItem->SetBitmap(
+        wxGetApp().GetResourceManager().GetSVG(L"tests/dale-chall-test.svg"));
+    wordListMenu.Append(menuItem);
+
+    menuItem = new wxMenuItem(&wordListMenu, XRCID("ID_SPACHE_WORD_LIST_WINDOW"), _DT("Spache Revised"));
+    menuItem->SetBitmap(
+        wxGetApp().GetResourceManager().GetSVG(L"tests/spache-test.svg"));
+    wordListMenu.Append(menuItem);
+
+    menuItem = new wxMenuItem(&wordListMenu, XRCID("ID_STOCKER_CATHOLIC_WORD_LIST_WINDOW"),
+                              _(L"Stocker's Catholic Supplement"));
+    menuItem->SetBitmap(
+        wxGetApp().GetResourceManager().GetSVG(L"tests/stocker.svg"));
+    wordListMenu.Append(menuItem);
+
+    wordListMenu.AppendSeparator();
+    menuItem = new wxMenuItem(&wordListMenu, XRCID("ID_EDIT_WORD_LIST"), _(L"Edit Word List..."));
+    menuItem->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_EDIT"));
+    wordListMenu.Append(menuItem);
+    }
+
+//-------------------------------------------------------
+void ReadabilityApp::FillGradeScalesMenu(wxMenu& menu)
+    {
+    while (menu.GetMenuItemCount())
+        { menu.Destroy(menu.FindItemByPosition(0)); }
+
+    // these options get checked, so can't use icons on them
+    menu.Append(new wxMenuItem(&menu, XRCID("ID_K12_US"), _(L"K-12+ (United States of America)"),
+                               wxString{}, wxITEM_CHECK));
+    menu.Append(new wxMenuItem(&menu, XRCID("ID_K12_NEWFOUNDLAND"),
+                               _(L"K-12+ (Newfoundland and Labrador)"),
+                               wxString{}, wxITEM_CHECK));
+    menu.Append(new wxMenuItem(&menu, XRCID("ID_K12_BC"), _(L"K-12+ (British Columbia/Yukon)"),
+                               wxString{}, wxITEM_CHECK));
+    menu.Append(new wxMenuItem(&menu, XRCID("ID_K12_NEW_BRUNSWICK"), _(L"K-12+ (New Brunswick)"),
+                               wxString{}, wxITEM_CHECK));
+    menu.Append(new wxMenuItem(&menu, XRCID("ID_K12_NOVA_SCOTIA"), _(L"K-12+ (Nova Scotia)"),
+                               wxString{}, wxITEM_CHECK));
+    menu.Append(new wxMenuItem(&menu, XRCID("ID_K12_ONTARIO"), _(L"K-12+ (Ontario)"),
+                               wxString{}, wxITEM_CHECK));
+    menu.Append(new wxMenuItem(&menu, XRCID("ID_K12_SASKATCHEWAN"), _(L"K-12+ (Saskatchewan)"),
+                               wxString{}, wxITEM_CHECK));
+    menu.Append(new wxMenuItem(&menu, XRCID("ID_K12_PE"), _(L"K-12+ (Prince Edward Island)"),
+                               wxString{}, wxITEM_CHECK));
+    menu.Append(new wxMenuItem(&menu, XRCID("ID_K12_MANITOBA"), _(L"K-12+ (Manitoba)"),
+                               wxString{}, wxITEM_CHECK));
+    menu.Append(new wxMenuItem(&menu, XRCID("ID_K12_NT"), _(L"K-12+ (Northwest Territories)"),
+                               wxString{}, wxITEM_CHECK));
+    menu.Append(new wxMenuItem(&menu, XRCID("ID_K12_ALBERTA"), _(L"K-12+ (Alberta)"),
+                               wxString{}, wxITEM_CHECK));
+    menu.Append(new wxMenuItem(&menu, XRCID("ID_K12_NUNAVUT"), _(L"K-12+ (Nunavut)"),
+                               wxString{}, wxITEM_CHECK));
+    menu.Append(new wxMenuItem(&menu, XRCID("ID_QUEBEC"), _DT(L"Quebec"),
+                               wxString{}, wxITEM_CHECK));
+    menu.Append(new wxMenuItem(&menu, XRCID("ID_ENGLAND"), _(L"Key stages (England && Wales)"),
+                               wxString{}, wxITEM_CHECK));
+    }
+
 //-----------------------------------
 void ReadabilityApp::FillSaveMenu(wxMenu& saveMenu, const RibbonType rtype)
     {
     assert(rtype != RibbonType::MainFrameRibbon && L"Mainframe should not have a save menu!");
 
-    const auto filterIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/filter.svg");
-    const auto saveIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/file-save.svg");
-    const auto exportAllIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/export-all.svg");
-    const auto reportIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/report.svg");
+    const auto filterIcon = GetResourceManager().GetSVG(L"ribbon/filter.svg");
+    const auto saveIcon = GetResourceManager().GetSVG(L"ribbon/file-save.svg");
+    const auto exportAllIcon = GetResourceManager().GetSVG(L"ribbon/export-all.svg");
+    const auto reportIcon = GetResourceManager().GetSVG(L"ribbon/report.svg");
 
     if (rtype == RibbonType::StandardProjectRibbon)
         {
@@ -3381,147 +3517,6 @@ void MainFrame::AddExamplesToMenu(wxMenu* exampleMenu)
             if (exampleMenu->FindItem(menuId) == nullptr)
                 { exampleMenu->Append(menuId, fName.GetName(), files[i]); }
             }
-        }
-    }
-
-//-------------------------------------------------------
-void MainFrame::FillMenuWithBlankGraphs(wxMenu* blankGraphsMenu)
-    {
-    if (blankGraphsMenu)
-        {
-        while (blankGraphsMenu->GetMenuItemCount())
-            { blankGraphsMenu->Destroy(blankGraphsMenu->FindItemByPosition(0)); }
-
-        wxMenuItem* menuItem =
-            new wxMenuItem(blankGraphsMenu, XRCID("ID_BLANK_DB2_GRAPH"), BaseProjectView::GetDB2Label());
-        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/danielson-bryan-2.svg"));
-        blankGraphsMenu->Append(menuItem);
-
-        menuItem = new wxMenuItem(blankGraphsMenu, XRCID("ID_BLANK_FLESCH_GRAPH"), _DT(L"Flesch Reading Ease"));
-        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/flesch-test.svg"));
-        blankGraphsMenu->Append(menuItem);
-
-        menuItem = new wxMenuItem(blankGraphsMenu, XRCID("ID_BLANK_FRY_GRAPH"), _DT(L"Fry"));
-        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/fry-test.svg"));
-        blankGraphsMenu->Append(menuItem);
-
-        menuItem = new wxMenuItem(blankGraphsMenu, XRCID("ID_BLANK_LIX_GRAPH"), _DT(L"Lix Gauge"));
-        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/lix-test.svg"));
-        blankGraphsMenu->Append(menuItem);
-
-        menuItem = new wxMenuItem(blankGraphsMenu, XRCID("ID_BLANK_RAYGOR_GRAPH"), _DT(L"Raygor"));
-        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/raygor-test.svg"));
-        blankGraphsMenu->Append(menuItem);
-
-        if (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()) ||
-            wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()))
-            {
-            // Spanish
-            blankGraphsMenu->AppendSeparator();
-
-            menuItem = new wxMenuItem(blankGraphsMenu, XRCID("ID_BLANK_CRAWFORD_GRAPH"), _DT(L"Crawford"));
-            menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/crawford.svg"));
-            blankGraphsMenu->Append(menuItem);
-
-            menuItem = new wxMenuItem(blankGraphsMenu, XRCID("ID_BLANK_FRASE_GRAPH"), _DT(L"FRASE"));
-            menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/frase.svg"));
-            blankGraphsMenu->Append(menuItem);
-
-            menuItem = new wxMenuItem(blankGraphsMenu, XRCID("ID_BLANK_GPM_GRAPH"),
-                                      _DT(L"Gilliam-Pe\U000000F1a-Mountain"));
-            menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/gilliam-pena-mountain-fry-graph.svg"));
-            blankGraphsMenu->Append(menuItem);
-
-            // German
-            blankGraphsMenu->AppendSeparator();
-
-            menuItem = new wxMenuItem(blankGraphsMenu, XRCID("ID_BLANK_GERMAN_LIX_GRAPH"), _DT(L"German Lix Gauge"));
-            menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/lix-test.svg"));
-            blankGraphsMenu->Append(menuItem);
-
-            menuItem = new wxMenuItem(blankGraphsMenu, XRCID("ID_BLANK_SCHWARTZ_GRAPH"), _DT(L"Schwartz"));
-            menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/schwartz.svg"));
-            blankGraphsMenu->Append(menuItem);
-            }
-        }
-    }
-
-//-------------------------------------------------------
-void MainFrame::FillMenuWithGradeScales(wxMenu* menu)
-    {
-    while (menu->GetMenuItemCount())
-        { menu->Destroy(menu->FindItemByPosition(0)); }
-
-    // these options get checked, so can't use icons on them
-    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_US"), _(L"K-12+ (United States of America)"),
-                                wxEmptyString, wxITEM_CHECK));
-    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_NEWFOUNDLAND"), _(L"K-12+ (Newfoundland and Labrador)"),
-                                wxEmptyString, wxITEM_CHECK));
-    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_BC"), _(L"K-12+ (British Columbia/Yukon)"),
-                                wxEmptyString, wxITEM_CHECK));
-    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_NEW_BRUNSWICK"), _(L"K-12+ (New Brunswick)"),
-                                wxEmptyString, wxITEM_CHECK));
-    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_NOVA_SCOTIA"), _(L"K-12+ (Nova Scotia)"),
-                                wxEmptyString, wxITEM_CHECK));
-    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_ONTARIO"), _(L"K-12+ (Ontario)"),
-                                wxEmptyString, wxITEM_CHECK));
-    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_SASKATCHEWAN"), _(L"K-12+ (Saskatchewan)"),
-                                wxEmptyString, wxITEM_CHECK));
-    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_PE"), _(L"K-12+ (Prince Edward Island)"),
-                                wxEmptyString, wxITEM_CHECK));
-    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_MANITOBA"), _(L"K-12+ (Manitoba)"),
-                                wxEmptyString, wxITEM_CHECK));
-    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_NT"), _(L"K-12+ (Northwest Territories)"),
-                                wxEmptyString, wxITEM_CHECK));
-    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_ALBERTA"), _(L"K-12+ (Alberta)"),
-                                wxEmptyString, wxITEM_CHECK));
-    menu->Append(new wxMenuItem(menu, XRCID("ID_K12_NUNAVUT"), _(L"K-12+ (Nunavut)"),
-                                wxEmptyString, wxITEM_CHECK));
-    menu->Append(new wxMenuItem(menu, XRCID("ID_QUEBEC"), _DT(L"Quebec"),
-                                wxEmptyString, wxITEM_CHECK));
-    menu->Append(new wxMenuItem(menu, XRCID("ID_ENGLAND"), _(L"Key stages (England && Wales)"),
-                                wxEmptyString, wxITEM_CHECK));
-    }
-
-//-------------------------------------------------------
-void MainFrame::FillMenuWithWordList(wxMenu* wordListMenu)
-    {
-    if (wordListMenu)
-        {
-        while (wordListMenu->GetMenuItemCount())
-            { wordListMenu->Destroy(wordListMenu->FindItemByPosition(0)); }
-        wxMenuItem* menuItem = new wxMenuItem(wordListMenu, XRCID("ID_DOLCH_WORD_LIST_WINDOW"),
-                                              _(L"Dolch Sight Words"));
-        menuItem->SetBitmap(
-            wxGetApp().GetResourceManager().GetSVG(L"tests/dolch.svg"));
-        wordListMenu->Append(menuItem);
-
-        menuItem = new wxMenuItem(wordListMenu, XRCID("ID_HARRIS_JACOBSON_WORD_LIST_WINDOW"),
-                                  _DT(L"Harris-Jacobson"));
-        menuItem->SetBitmap(
-            wxGetApp().GetResourceManager().GetSVG(L"tests/spache-test.svg"));
-        wordListMenu->Append(menuItem);
-
-        menuItem = new wxMenuItem(wordListMenu, XRCID("ID_DC_WORD_LIST_WINDOW"), _DT(L"New Dale-Chall"));
-        menuItem->SetBitmap(
-            wxGetApp().GetResourceManager().GetSVG(L"tests/dale-chall-test.svg"));
-        wordListMenu->Append(menuItem);
-
-        menuItem = new wxMenuItem(wordListMenu, XRCID("ID_SPACHE_WORD_LIST_WINDOW"), _DT("Spache Revised"));
-        menuItem->SetBitmap(
-            wxGetApp().GetResourceManager().GetSVG(L"tests/spache-test.svg"));
-        wordListMenu->Append(menuItem);
-
-        menuItem = new wxMenuItem(wordListMenu, XRCID("ID_STOCKER_CATHOLIC_WORD_LIST_WINDOW"),
-                                  _(L"Stocker's Catholic Supplement"));
-        menuItem->SetBitmap(
-            wxGetApp().GetResourceManager().GetSVG(L"tests/stocker.svg"));
-        wordListMenu->Append(menuItem);
-
-        wordListMenu->AppendSeparator();
-        menuItem = new wxMenuItem(wordListMenu, XRCID("ID_EDIT_WORD_LIST"), _(L"Edit Word List..."));
-        menuItem->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_EDIT"));
-        wordListMenu->Append(menuItem);
         }
     }
 

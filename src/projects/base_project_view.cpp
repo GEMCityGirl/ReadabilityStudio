@@ -2596,13 +2596,13 @@ void BaseProjectView::Present()
                 }
             }
         }
+    // fill the meuns
     MainFrame::FillReadabilityMenu(&m_primaryAgeTestsMenu, &m_secondaryAgeTestsMenu, &m_adultTestsMenu,
                                    &m_secondLanguageTestsMenu, doc);
     MainFrame::FillMenuWithCustomTests(&m_customTestsMenu, doc, true);
     MainFrame::FillMenuWithTestBundles(&m_testsBundleMenu, doc, true);
-    MainFrame::FillMenuWithWordList(&m_wordListMenu);
-    // grade scale menu
-    MainFrame::FillMenuWithGradeScales(&m_gradeScaleMenu);
+    wxGetApp().FillWordListsMenu(m_wordListMenu);
+    wxGetApp().FillGradeScalesMenu(m_gradeScaleMenu);
     const readability::grade_scale gs = doc->GetReadabilityMessageCatalog().GetGradeScale();
     if (gs == readability::grade_scale::k12_plus_united_states)
         { m_gradeScaleMenu.Check(XRCID("ID_K12_US"), true); }
@@ -2633,7 +2633,7 @@ void BaseProjectView::Present()
     else if (gs == readability::grade_scale::key_stages_england_wales)
         { m_gradeScaleMenu.Check(XRCID("ID_ENGLAND"), true); }
 
-    MainFrame::FillMenuWithBlankGraphs(&m_blankGraphMenu);
+    wxGetApp().FillBlankGraphsMenu(m_blankGraphMenu);
     if (GetMenuBar())
         {
         const wxMenuItem* exampleMenuItem = GetMenuBar()->FindItem(XRCID("ID_EXAMPLES"));

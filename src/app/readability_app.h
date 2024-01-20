@@ -119,9 +119,7 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     void OnEditEnglishDictionary([[maybe_unused]] wxCommandEvent& event);
     void OnEditDictionarySettings([[maybe_unused]] wxCommandEvent& event);
 
-    static void FillMenuWithGradeScales(wxMenu* menu);
-    static void FillMenuWithWordList(wxMenu* wordListMenu);
-    static void FillMenuWithBlankGraphs(wxMenu* blankGraphsMenu);
+    /// @todo move to app class and accept reference types
     static void FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProject* project,
                                         const bool includeDocMenuItems);
     static void FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProject* project,
@@ -150,8 +148,8 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
 
     void AddTestBundleToMenus(const wxString& bundleName);
     void RemoveTestBundleFromMenus(const wxString& bundleName);
-    /// This also adds the new test to the menu of each open document/view, as well as the
-    /// mainframe.
+    /// This also adds the new test to the menu of each open document/view,
+    /// as well as the mainframe.
     void AddCustomTestToMenus(const wxString& testName);
     void RemoveCustomTestFromMenus(const wxString& testName);
 
@@ -229,9 +227,8 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
 // Define a new application
 class ReadabilityApp final : public Wisteria::UI::BaseApp
     {
-  public:
+public:
     ReadabilityApp() = default;
-
     ReadabilityApp(const ReadabilityApp&) = delete;
     ReadabilityApp& operator=(const ReadabilityApp&) = delete;
 
@@ -329,14 +326,24 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
         BatchProjectRibbon
         };
 
+    // UI initializers
     void InitStartPage();
     void InitProjectSidebar();
     void InitScriptEditor();
 
+    // ribbon creation
     Wisteria::UI::SideBar* CreateSideBar(wxWindow* frame, const wxWindowID id);
     wxRibbonBar* CreateRibbon(wxWindow* frame, const wxDocument* doc);
     wxImage ReadRibbonSvgIcon(const wxString& path);
 
+    // menu creation
+    void FillPrintMenu(wxMenu& printMenu, const RibbonType rtype);
+    void FillSaveMenu(wxMenu& saveMenu, const RibbonType rtype);
+    static void FillGradeScalesMenu(wxMenu& menu);
+    static void FillWordListsMenu(wxMenu& wordListMenu);
+    static void FillBlankGraphsMenu(wxMenu& blankGraphsMenu);
+
+    // theming
     void UpdateRibbonTheme();
     void UpdateDocumentThemes();
     void UpdateStartPageTheme();
@@ -344,8 +351,6 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     void UpdateSideBarTheme(Wisteria::UI::SideBar* sidebar);
     void UpdateRibbonTheme(wxRibbonBar* ribbon);
 
-    void FillPrintMenu(wxMenu& printMenu, const RibbonType rtype);
-    void FillSaveMenu(wxMenu& saveMenu, const RibbonType rtype);
     /// Adds a list of words to the custom dictionary
     ///     (based on language of the project that it is coming from).
     void AddWordsToDictionaries(const wxArrayString& theWords,
@@ -432,7 +437,7 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
         return m_colorSchemeMap;
         }
 
-  private:
+private:
     void InitializeReadabilityFeatures();
 
     /// @brief IDs exposed to scripting and their respective dynamic IDs in the framework.
@@ -449,7 +454,7 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     wxString m_CustomSpanishDictionaryPath;
     wxString m_CustomGermanDictionaryPath;
     bool m_advancedImport{ false };
-    double m_dpiScaleFactor{ 1 };
+    double m_dpiScaleFactor{ 1.0 };
     wxArrayString m_splashscreenImagePaths;
     WebHarvester m_webHarvester;
     std::mt19937_64 m_mersenneTwister;

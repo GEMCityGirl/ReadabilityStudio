@@ -806,17 +806,8 @@ void BatchProjectView::OnDocumentDelete([[maybe_unused]] wxRibbonButtonBarEvent&
 //-------------------------------------------------------
 void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     {
-    // dynamic Save menu icons
-    const auto filterIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/filter.svg");
-    const auto saveIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/file-save.svg");
-    const auto exportAllIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/export-all.svg");
+    // menu icons
     const auto copyIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/copy.svg");
-    const auto listIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/list.svg");
-    const auto histogramIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/histogram.svg");
-    const auto boxPlotIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/boxplot.svg");
-    const auto reportIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/report.svg");
-    const auto goalsIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/checklist.svg");
-    const auto wordCloudIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/word-cloud.svg");
 
     if (event.GetExtraLong() == SIDEBAR_READABILITY_SCORES_SECTION_ID)
         {
