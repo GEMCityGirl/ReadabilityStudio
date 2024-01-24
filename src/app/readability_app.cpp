@@ -3401,54 +3401,52 @@ void MainFrame::FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu,
         while (secondLanguageMenu->GetMenuItemCount())
             { secondLanguageMenu->Destroy(secondLanguageMenu->FindItemByPosition(0)); }
         // add the tests
-        for (auto rTest = project->GetReadabilityTests().get_tests().begin();
-            rTest != project->GetReadabilityTests().get_tests().end();
-            ++rTest)
+        for (const auto& rTest : project->GetReadabilityTests().get_tests())
             {
-            if (rTest->get_test().has_teaching_level(readability::test_teaching_level::primary_grade) &&
-                rTest->get_test().has_language(project->GetProjectLanguage()))
+            if (rTest.get_test().has_teaching_level(readability::test_teaching_level::primary_grade) &&
+                rTest.get_test().has_language(project->GetProjectLanguage()))
                 {
-                wxMenuItem* testItem = new wxMenuItem(primaryMenu, rTest->get_test().get_interface_id(),
-                    rTest->get_test().get_long_name().c_str(), rTest->get_test().get_long_name().c_str());
+                wxMenuItem* testItem = new wxMenuItem(primaryMenu, rTest.get_test().get_interface_id(),
+                    rTest.get_test().get_long_name().c_str(), rTest.get_test().get_long_name().c_str());
                 const auto bp = wxGetApp().GetResourceManager().GetSVG(
                         wxString::Format(L"tests/%s.svg",
-                        rTest->get_test().get_id().c_str()));
+                        rTest.get_test().get_id().c_str()));
                 if (bp.IsOk())
                     { testItem->SetBitmap(bp); }
                 primaryMenu->Append(testItem);
                 }
-            if (rTest->get_test().has_teaching_level(readability::test_teaching_level::secondary_grade) &&
-                rTest->get_test().has_language(project->GetProjectLanguage()))
+            if (rTest.get_test().has_teaching_level(readability::test_teaching_level::secondary_grade) &&
+                rTest.get_test().has_language(project->GetProjectLanguage()))
                 {
-                wxMenuItem* testItem = new wxMenuItem(secondaryMenu, rTest->get_test().get_interface_id(),
-                    rTest->get_test().get_long_name().c_str(), rTest->get_test().get_long_name().c_str());
+                wxMenuItem* testItem = new wxMenuItem(secondaryMenu, rTest.get_test().get_interface_id(),
+                    rTest.get_test().get_long_name().c_str(), rTest.get_test().get_long_name().c_str());
                 const auto bp = wxGetApp().GetResourceManager().GetSVG(
                             wxString::Format(L"tests/%s.svg",
-                            rTest->get_test().get_id().c_str()));
+                            rTest.get_test().get_id().c_str()));
                 if (bp.IsOk())
                     { testItem->SetBitmap(bp); }
                 secondaryMenu->Append(testItem);
                 }
-            if (rTest->get_test().has_teaching_level(readability::test_teaching_level::adult_level) &&
-                rTest->get_test().has_language(project->GetProjectLanguage()))
+            if (rTest.get_test().has_teaching_level(readability::test_teaching_level::adult_level) &&
+                rTest.get_test().has_language(project->GetProjectLanguage()))
                 {
-                wxMenuItem* testItem = new wxMenuItem(adultMenu, rTest->get_test().get_interface_id(),
-                    rTest->get_test().get_long_name().c_str(), rTest->get_test().get_long_name().c_str());
+                wxMenuItem* testItem = new wxMenuItem(adultMenu, rTest.get_test().get_interface_id(),
+                    rTest.get_test().get_long_name().c_str(), rTest.get_test().get_long_name().c_str());
                 const auto bp = wxGetApp().GetResourceManager().GetSVG(
                                 wxString::Format(L"tests/%s.svg",
-                                rTest->get_test().get_id().c_str()));
+                                rTest.get_test().get_id().c_str()));
                 if (bp.IsOk())
                     { testItem->SetBitmap(bp); }
                 adultMenu->Append(testItem);
                 }
-            if (rTest->get_test().has_teaching_level(readability::test_teaching_level::second_language) &&
-                rTest->get_test().has_language(project->GetProjectLanguage()))
+            if (rTest.get_test().has_teaching_level(readability::test_teaching_level::second_language) &&
+                rTest.get_test().has_language(project->GetProjectLanguage()))
                 {
-                wxMenuItem* testItem = new wxMenuItem(secondLanguageMenu, rTest->get_test().get_interface_id(),
-                    rTest->get_test().get_long_name().c_str(), rTest->get_test().get_long_name().c_str());
+                wxMenuItem* testItem = new wxMenuItem(secondLanguageMenu, rTest.get_test().get_interface_id(),
+                    rTest.get_test().get_long_name().c_str(), rTest.get_test().get_long_name().c_str());
                 const auto bp = wxGetApp().GetResourceManager().GetSVG(
                             wxString::Format(L"tests/%s.svg",
-                            rTest->get_test().get_id().c_str()));
+                            rTest.get_test().get_id().c_str()));
                 if (bp.IsOk())
                     { testItem->SetBitmap(bp); }
                 secondLanguageMenu->Append(testItem);
@@ -3458,12 +3456,12 @@ void MainFrame::FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu,
         if (project->GetProjectLanguage() == readability::test_language::english_test)
             {
             const auto bp = wxGetApp().GetResourceManager().GetSVG(L"tests/dolch.svg");
+            assert(bp.IsOk());
 
                 {
                 wxMenuItem* dolchItem = new wxMenuItem(primaryMenu, XRCID("ID_DOLCH"),
                     _(L"Dolch Sight Words"), _(L"Dolch Sight Words"));
-                if (bp.IsOk())
-                    { dolchItem->SetBitmap(bp); }
+                dolchItem->SetBitmap(bp);
                 primaryMenu->AppendSeparator();
                 primaryMenu->Append(dolchItem);
                 }
@@ -3471,8 +3469,7 @@ void MainFrame::FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu,
                 {
                 wxMenuItem* dolchItem = new wxMenuItem(secondLanguageMenu, XRCID("ID_DOLCH"),
                     _(L"Dolch Sight Words"), _(L"Dolch Sight Words"));
-                if (bp.IsOk())
-                    { dolchItem->SetBitmap(bp); }
+                dolchItem->SetBitmap(bp);
                 secondLanguageMenu->AppendSeparator();
                 secondLanguageMenu->Append(dolchItem);
                 }
