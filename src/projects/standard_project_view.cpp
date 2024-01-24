@@ -1016,7 +1016,6 @@ void ProjectView::OnAddTest(wxCommandEvent& event)
     ProjectDoc* doc = dynamic_cast<ProjectDoc*>(GetDocument());
     if (!doc->IsSafeToUpdate())
         { return; }
-    wxWindowUpdateLocker noUpdates(doc->GetDocumentWindow());
 
     if (event.GetId() == XRCID("ID_DOLCH"))
         { doc->AddDolchSightWords(); }
@@ -1866,7 +1865,6 @@ void ProjectView::OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& event)
                 { return; }
             }
 
-        wxWindowUpdateLocker noUpdates(GetReadabilityScoresList());
         GetReadabilityScoresList()->GetResultsListCtrl()->DeleteItem(selectedIndex);
         UpdateStatistics();
         GetReadabilityScoresList()->GetExplanationView()->SetPage(wxString{});
@@ -1918,8 +1916,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         event.GetInt() == READABILITY_GOALS_PAGE_ID)
         {
         m_activeWindow = GetReadabilityResultsView().FindWindowById(event.GetInt());
-        // cppcheck-suppress assertWithSideEffect
-        assert(GetActiveProjectWindow() != nullptr);
+
+        assert(m_activeWindow != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1937,17 +1935,12 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                 wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
                 if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                     {
-                    while (m_copyMenu.GetMenuItemCount())
-                        { m_copyMenu.Destroy(m_copyMenu.FindItemByPosition(0)); }
-                    m_copyMenu.Append(wxID_COPY, _(L"Copy") + L"\tCtrl+C")->SetBitmap(copyIcon);
-                    m_copyMenu.Append(XRCID("ID_COPY_ALL"), _(L"Copy All"));
-
                     auto editButtonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonBar != nullptr);
+                    assert(editButtonBar != nullptr);
                     editButtonBar->ClearButtons();
                     if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(wxHtmlWindow)) )
                         {
-                        editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
+                        editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
                             wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
                             _(L"Copy the report."));
                         editButtonBar->AddButton(wxID_SELECTALL,
@@ -2007,7 +2000,6 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         event.GetInt() == GPM_FRY_PAGE_ID)
         {
         m_activeWindow = GetReadabilityResultsView().FindWindowById(event.GetInt());
-        // cppcheck-suppress assertWithSideEffect
         assert(GetActiveProjectWindow());
         if (GetActiveProjectWindow())
             {
@@ -2027,7 +2019,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                 if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                     {
                     auto editButtonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonBar);
+                    assert(editButtonBar);
 
                     editButtonBar->ClearButtons();
                     editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
@@ -2093,7 +2085,6 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID)
         {
         m_activeWindow = GetSentencesBreakdownView().FindWindowById(event.GetInt());
-        // cppcheck-suppress assertWithSideEffect
         assert(GetActiveProjectWindow());
         if (GetActiveProjectWindow())
             {
@@ -2112,17 +2103,6 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                 wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
                 if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                     {
-                    while (m_copyMenu.GetMenuItemCount())
-                        { m_copyMenu.Destroy(m_copyMenu.FindItemByPosition(0)); }
-                    m_copyMenu.Append(wxID_COPY, _(L"Copy")+L"\tCtrl+C")->SetBitmap(copyIcon);
-                    if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
-                        {
-                        m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"), _(L"Copy with Column Headers"));
-                        m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"),
-                            _(L"Copy (First Column Only)")+L"\tShift+Ctrl+C");
-                        }
-                    m_copyMenu.Append(XRCID("ID_COPY_ALL"), _(L"Copy All"));
-
                     auto editButtonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
                     assert(editButtonBar);
                     editButtonBar->ClearButtons();
@@ -2221,7 +2201,6 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_STATS_SUMMARY_SECTION_ID)
         {
         m_activeWindow = GetSummaryView().FindWindowById(event.GetInt());
-        // cppcheck-suppress assertWithSideEffect
         assert(GetActiveProjectWindow());
         if (GetActiveProjectWindow())
             {
@@ -2240,19 +2219,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                 wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
                 if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                     {
-                    while (m_copyMenu.GetMenuItemCount())
-                        { m_copyMenu.Destroy(m_copyMenu.FindItemByPosition(0)); }
-                    m_copyMenu.Append(wxID_COPY, _(L"Copy")+L"\tCtrl+C")->SetBitmap(copyIcon);
-                    if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
-                        {
-                        m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"), _(L"Copy with Column Headers"));
-                        m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"),
-                            _(L"Copy (First Column Only)")+L"\tShift+Ctrl+C");
-                        }
-                    m_copyMenu.Append(XRCID("ID_COPY_ALL"), _(L"Copy All"));
-
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonRibbonBar);
+                    assert(editButtonRibbonBar);
                     editButtonRibbonBar->ClearButtons();
 
                     if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
@@ -2280,7 +2248,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             _(L"Edit Report"),
                             wxGetApp().ReadRibbonSvgIcon(L"ribbon/edit-report.svg"),
                             _(L"Select which statistics to include in the report."));
-                        editButtonRibbonBar->AddHybridButton(wxID_COPY,
+                        editButtonRibbonBar->AddButton(wxID_COPY,
                             _(L"Copy"),
                             wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
                             _(L"Copy"));
@@ -2301,8 +2269,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         m_activeWindow = GetWordsBreakdownView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());
         if (!GetActiveProjectWindow())
             { m_activeWindow = GetWordsBreakdownView().FindWindowById(event.GetInt()); }
-        // cppcheck-suppress assertWithSideEffect
-        assert(GetActiveProjectWindow() != nullptr);
+
+        assert(m_activeWindow != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2320,15 +2288,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                 wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
                 if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                     {
-                    while (m_copyMenu.GetMenuItemCount())
-                        { m_copyMenu.Destroy(m_copyMenu.FindItemByPosition(0)); }
-                    m_copyMenu.Append(wxID_COPY, _(L"Copy")+L"\tCtrl+C")->SetBitmap(copyIcon);
-                    m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"), _(L"Copy with Column Headers"));
-                    m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"), _(L"Copy (First Column Only)")+L"\tShift+Ctrl+C");
-                    m_copyMenu.Append(XRCID("ID_COPY_ALL"), _(L"Copy All"));
-
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonRibbonBar);
+                    assert(editButtonRibbonBar);
                     editButtonRibbonBar->ClearButtons();
 
                     if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
@@ -2466,7 +2427,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             _(L"Highlight"),
                             wxGetApp().ReadRibbonSvgIcon(L"ribbon/highlighting.svg"),
                             _(L"Change the highlight colors."));
-                        editButtonRibbonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
+                        editButtonRibbonBar->AddButton(wxID_COPY, _(L"Copy"),
                             wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
                             _(L"Copy"));
                         editButtonRibbonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
@@ -2481,8 +2442,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_GRAMMAR_SECTION_ID)
         {
         m_activeWindow = GetGrammarView().FindWindowById(event.GetInt());
-        // cppcheck-suppress assertWithSideEffect
-        assert(GetActiveProjectWindow() != nullptr);
+
+        assert(m_activeWindow != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2500,20 +2461,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                 wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
                 if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                     {
-                    while (m_copyMenu.GetMenuItemCount())
-                        { m_copyMenu.Destroy(m_copyMenu.FindItemByPosition(0)); }
-                    m_copyMenu.Append(wxID_COPY, _(L"Copy")+L"\tCtrl+C")->SetBitmap(copyIcon);
-                    if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
-                        {
-                        m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"),
-                            _(L"Copy with Column Headers"));
-                        m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"),
-                            _(L"Copy (First Column Only)")+L"\tShift+Ctrl+C");
-                        }
-                    m_copyMenu.Append(XRCID("ID_COPY_ALL"), _(L"Copy All"));
-
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonRibbonBar != nullptr);
+                    assert(editButtonRibbonBar != nullptr);
                     editButtonRibbonBar->ClearButtons();
                     if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
                         {
@@ -2526,9 +2475,18 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             wxGetApp().ReadRibbonSvgIcon(L"ribbon/highlighting.svg"),
                             _(L"Change the highlight colors."));
                         }
-                    editButtonRibbonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
-                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                        _(L"Copy"));
+                    if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)))
+                        {
+                        editButtonRibbonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
+                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                            _(L"Copy"));
+                        }
+                    else
+                        {
+                        editButtonRibbonBar->AddButton(wxID_COPY, _(L"Copy"),
+                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                            _(L"Copy"));
+                        }
                     editButtonRibbonBar->AddButton(wxID_SELECTALL,
                         _(L"Select All"),
                         wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
@@ -2560,8 +2518,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_DOLCH_SECTION_ID)
         {
         m_activeWindow = GetDolchSightWordsView().FindWindowById(event.GetInt());
-        // cppcheck-suppress assertWithSideEffect
-        assert(GetActiveProjectWindow() != nullptr);
+
+        assert(m_activeWindow != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2579,20 +2537,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                 wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
                 if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                     {
-                    while (m_copyMenu.GetMenuItemCount())
-                        { m_copyMenu.Destroy(m_copyMenu.FindItemByPosition(0)); }
-                    m_copyMenu.Append(wxID_COPY, _(L"Copy")+L"\tCtrl+C")->SetBitmap(copyIcon);
-                    if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
-                        {
-                        m_copyMenu.Append(XRCID("ID_COPY_WITH_COLUMN_HEADERS"),
-                            _(L"Copy with Column Headers"));
-                        m_copyMenu.Append(XRCID("ID_COPY_FIRST_COLUMN"),
-                            _(L"Copy (First Column Only)")+L"\tShift+Ctrl+C");
-                        }
-                    m_copyMenu.Append(XRCID("ID_COPY_ALL"), _(L"Copy All"));
-
                     auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    wxASSERT(editButtonRibbonBar != nullptr);
+                    assert(editButtonRibbonBar != nullptr);
                     editButtonRibbonBar->ClearButtons();
                     if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
                         {
@@ -2658,11 +2604,20 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/edit-report.svg"),
                             _(L"Select which statistics to include in the report."));
                         }
-                    editButtonRibbonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
-                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                        _(L"Copy"));
                     if (typeid(*GetActiveProjectWindow()) != typeid(Wisteria::Canvas))
                         {
+                        if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)))
+                            {
+                            editButtonRibbonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
+                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                                _(L"Copy"));
+                            }
+                        else
+                            {
+                            editButtonRibbonBar->AddButton(wxID_COPY, _(L"Copy"),
+                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                                _(L"Copy"));
+                            }
                         editButtonRibbonBar->AddButton(wxID_SELECTALL,
                             _(L"Select All"),
                             wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
@@ -2680,6 +2635,12 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/sum.svg"),
                                     _(L"Total the values from the selected column.")); }
                             }
+                        }
+                    else
+                        {
+                        editButtonRibbonBar->AddButton(wxID_COPY, _(L"Copy"),
+                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                            _(L"Copy"));
                         }
                     GetRibbon()->GetPage(0)->Realize();
                     }
