@@ -200,8 +200,8 @@ void ProjectDoc::RefreshProject()
         view->Present();
         UpdateAllViews();
 
-        if (!view->GetSideBar()->SelectSubItemById(selectedItem, true, false))
-            { view->GetSideBar()->SelectFolder(0, true, false); }
+        if (!view->GetSideBar()->SelectSubItemById(selectedItem, true, true))
+            { view->GetSideBar()->SelectFolder(0, true, true); }
 
         GetDocumentWindow()->Refresh();
         ResetRefreshRequired();
