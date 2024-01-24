@@ -2091,6 +2091,15 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
             },
         wxID_PROPERTIES);
 
+    // list control-specific menu for copying
+    m_copyMenu.Append(wxID_COPY, _(L"Copy") + L"\tCtrl+C");
+    m_copyMenu.Append(
+        XRCID("ID_COPY_WITH_COLUMN_HEADERS"), _(L"Copy with Column Headers"));
+    m_copyMenu.Append(
+        XRCID("ID_COPY_FIRST_COLUMN"), _(L"Copy (First Column Only)") + L"\tShift+Ctrl+C");
+    m_copyMenu.Append(
+        XRCID("ID_COPY_ALL"), _(L"Copy All"));
+
     // bar chart sorting menu
     wxMenuItem* item = new wxMenuItem(&m_graphSortMenu,
         XRCID("ID_SORT_ASCENDING"), _(L"Sort Ascending"));
@@ -2637,7 +2646,8 @@ void BaseProjectView::Present()
     if (GetMenuBar())
         {
         const wxMenuItem* exampleMenuItem = GetMenuBar()->FindItem(XRCID("ID_EXAMPLES"));
-        if (exampleMenuItem)
+        if (exampleMenuItem != nullptr &&
+            exampleMenuItem->GetSubMenu() != nullptr)
             { wxGetApp().GetMainFrameEx()->AddExamplesToMenu(exampleMenuItem->GetSubMenu()); }
         }
     wxGetApp().GetMainFrameEx()->AddExamplesToMenu(&m_exampleMenu);
