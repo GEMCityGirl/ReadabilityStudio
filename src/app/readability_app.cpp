@@ -2051,6 +2051,37 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/sum.svg"),
                     _(L"Total the values from the selected column."));
                 }
+            // basic list with Exlude and Summation buttons edit panel
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                        wxDefaultPosition, wxDefaultSize,
+                        wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy"));
+                editButtonBar->AddButton(wxID_SELECTALL,
+                    _(L"Select All"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
+                    _(L"Select All"));
+                editButtonBar->AddButton(XRCID("ID_LIST_SORT"),
+                    _(L"Sort"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
+                    _(L"Sort the list."));
+                editButtonBar->AddButton(XRCID("ID_EXCLUDE_SELECTED"),
+                    _(L"Exclude Selected"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/exclude-selected.svg"),
+                    _(L"Exclude selected word(s)."));
+                editButtonBar->AddButton(XRCID("ID_SUMMATION"),
+                    _(L"Sum"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/sum.svg"),
+                    _(L"Total the values from the selected column."));
+                }
             // HTML window
                 {
                 wxRibbonPanel* editPanel =

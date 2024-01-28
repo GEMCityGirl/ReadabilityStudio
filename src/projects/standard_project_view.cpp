@@ -1931,6 +1931,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_BUTTON_BAR);
     wxRibbonPanel* editSimpleListWithSummationButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_BUTTON_BAR);
+    wxRibbonPanel* editSimpleListWithSummationAndExcludButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_BUTTON_BAR);
     wxRibbonPanel* editSimpleListButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_BUTTON_BAR);
     wxRibbonPanel* editBarChartButtonBarWindow =
@@ -1956,10 +1958,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetSplitter()->GetWindow2()->Hide();
             GetSplitter()->ReplaceWindow(GetSplitter()->GetWindow2(), GetActiveProjectWindow());
             GetActiveProjectWindow()->Show();
-            if (GetMenuBar())
-                {
-                MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
-                }
+
             if (GetRibbon())
                 {
                 if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(wxHtmlWindow)) )
@@ -1998,10 +1997,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetSplitter()->GetWindow2()->Hide();
             GetSplitter()->ReplaceWindow(GetSplitter()->GetWindow2(), GetActiveProjectWindow());
             GetActiveProjectWindow()->Show();
-            if (GetMenuBar())
-                {
-                MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, false);
-                }
+
             if (GetRibbon())
                 {
                 wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
@@ -2079,10 +2075,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetSplitter()->GetWindow2()->Hide();
             GetSplitter()->ReplaceWindow(GetSplitter()->GetWindow2(), GetActiveProjectWindow());
             GetActiveProjectWindow()->Show();
-            if (GetMenuBar())
-                {
-                MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
-                }
+
             if (GetRibbon())
                 {
                 if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
@@ -2134,10 +2127,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetSplitter()->GetWindow2()->Hide();
             GetSplitter()->ReplaceWindow(GetSplitter()->GetWindow2(), GetActiveProjectWindow());
             GetActiveProjectWindow()->Show();
-            if (GetMenuBar())
-                {
-                MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
-                }
+
             if (GetRibbon())
                 {
                 wxWindow* editButtonBarWindow =
@@ -2170,94 +2160,68 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetSplitter()->GetWindow2()->Hide();
             GetSplitter()->ReplaceWindow(GetSplitter()->GetWindow2(), GetActiveProjectWindow());
             GetActiveProjectWindow()->Show();
-            if (GetMenuBar())
-                {
-                MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
-                }
+
             if (GetRibbon())
                 {
-                wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
-                if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+                if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+                    typeid(Wisteria::Graphs::Histogram))
                     {
-                    auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    assert(editButtonRibbonBar);
-                    editButtonRibbonBar->ClearButtons();
-
-                    if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-                        typeid(*dynamic_cast<Wisteria::Canvas*>(
-                            GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                        typeid(Wisteria::Graphs::Histogram))
+                    editHistogramButtonBarWindow->Show();
+                    getEditButtonBar(editHistogramButtonBarWindow)->
+                        ToggleButton(XRCID("ID_DROP_SHADOW"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                    }
+                else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+                    typeid(Wisteria::Graphs::BarChart))
+                    {
+                    editBarChartButtonBarWindow->Show();
+                    getEditButtonBar(editBarChartButtonBarWindow)->
+                        ToggleButton(XRCID("ID_DROP_SHADOW"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                    getEditButtonBar(editBarChartButtonBarWindow)->
+                        ToggleButton(XRCID("ID_EDIT_BAR_LABELS"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingBarChartLabels());
+                    }
+                else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+                    typeid(Wisteria::Graphs::PieChart))
+                    {
+                    editPieChartButtonBarWindow->Show();
+                    getEditButtonBar(editPieChartButtonBarWindow)->
+                        ToggleButton(XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsShowcasingComplexWords());
+                    getEditButtonBar(editPieChartButtonBarWindow)->
+                        ToggleButton(XRCID("ID_DROP_SHADOW"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                    }
+                else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+                    {
+                    editGraphButtonBarWindow->Show();
+                    getEditButtonBar(editGraphButtonBarWindow)->
+                        ToggleButton(XRCID("ID_DROP_SHADOW"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                    }
+                else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
+                    {
+                    // compressed list of words combine stemmed words into a list,
+                    // so it's not a list of individual words that a user can ignore
+                    if (event.GetInt() == ALL_WORDS_CONDENSED_LIST_PAGE_ID)
                         {
-                        editHistogramButtonBarWindow->Show();
-                        getEditButtonBar(editHistogramButtonBarWindow)->
-                            ToggleButton(XRCID("ID_DROP_SHADOW"),
-                                dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                        editSimpleListWithSummationButtonBarWindow->Show();
                         }
-                    else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-                        typeid(*dynamic_cast<Wisteria::Canvas*>(
-                            GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                        typeid(Wisteria::Graphs::BarChart))
+                    else
                         {
-                        editBarChartButtonBarWindow->Show();
-                        getEditButtonBar(editBarChartButtonBarWindow)->
-                            ToggleButton(XRCID("ID_DROP_SHADOW"),
-                                dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
-                        getEditButtonBar(editBarChartButtonBarWindow)->
-                            ToggleButton(XRCID("ID_EDIT_BAR_LABELS"),
-                                dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingBarChartLabels());
+                        editSimpleListWithSummationAndExcludButtonBarWindow->Show();
                         }
-                    else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-                        typeid(*dynamic_cast<Wisteria::Canvas*>(
-                            GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                        typeid(Wisteria::Graphs::PieChart))
-                        {
-                        editPieChartButtonBarWindow->Show();
-                        getEditButtonBar(editPieChartButtonBarWindow)->
-                            ToggleButton(XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"),
-                                dynamic_cast<ProjectDoc*>(GetDocument())->IsShowcasingComplexWords());
-                        getEditButtonBar(editPieChartButtonBarWindow)->
-                            ToggleButton(XRCID("ID_DROP_SHADOW"),
-                                dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
-                        }
-                    else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
-                        {
-                        editGraphButtonBarWindow->Show();
-                        getEditButtonBar(editGraphButtonBarWindow)->
-                            ToggleButton(XRCID("ID_DROP_SHADOW"),
-                                dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
-                        }
-                    else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
-                        {
-                        editButtonRibbonBar->AddHybridButton(wxID_COPY,
-                            _(L"Copy"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                            _(L"Copy the selected row(s)."));
-                        editButtonRibbonBar->AddButton(wxID_SELECTALL,
-                            _(L"Select All"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
-                            _(L"Select All"));
-                        editButtonRibbonBar->AddButton(XRCID("ID_LIST_SORT"),
-                            _(L"Sort"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
-                            _(L"Sort the list."));
-                        // compressed list of words combine stemmed words into a list,
-                        // so it's not a list of individual words that a user can add
-                        if (event.GetInt() != ALL_WORDS_CONDENSED_LIST_PAGE_ID)
-                            {
-                            editButtonRibbonBar->AddButton(XRCID("ID_EXCLUDE_SELECTED"),
-                                _(L"Exclude Selected"),
-                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/exclude-selected.svg"),
-                                _(L"Exclude selected word(s)."));
-                            }
-                        editButtonRibbonBar->AddButton(XRCID("ID_SUMMATION"),
-                            _(L"Sum"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/sum.svg"),
-                            _(L"Total the values from the selected column."));
-                        }
-                    else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
-                        {
-                        editReportButtonBarWindow->Show();
-                        }
+                    }
+                else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
+                    {
+                    editReportButtonBarWindow->Show();
                     }
                 }
             }
@@ -2272,10 +2236,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetSplitter()->GetWindow2()->Hide();
             GetSplitter()->ReplaceWindow(GetSplitter()->GetWindow2(), GetActiveProjectWindow());
             GetActiveProjectWindow()->Show();
-            if (GetMenuBar())
-                {
-                MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
-                }
+
             if (GetRibbon())
                 {
                 wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
@@ -2384,6 +2345,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         {
         GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
             wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()));
+        MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
         }
     
     GetRibbon()->Realize();
