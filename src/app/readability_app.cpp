@@ -2225,6 +2225,194 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
                     _(L"Copy"));
                 }
+            // box plot panel
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_BOX_PLOT_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                        wxDefaultPosition, wxDefaultSize,
+                        wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
+                    _(L"Background"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/photos.svg"),
+                    _(L"Set the graph's background."));
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"),
+                    _(L"Font"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/font.svg"),
+                    _(L"Change the graph's fonts."));
+                editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"),
+                    _(L"Watermark"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/watermark.svg"),
+                    _(L"Add a watermark to the graph."));
+                editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"),
+                    _(L"Logo"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
+                    _(L"Add a logo to the graph."));
+                editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"),
+                    _(L"Shadows"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
+                    _(L"Display drop shadows on the graphs."));
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_BOX_STYLE"),
+                    _(L"Box Style"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/bar-top-to-bottom.svg"),
+                    _(L"Changes the box appearance."));
+                editButtonBar->AddToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_LABELS"),
+                    _(L"Display Labels"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/show-all-labels.svg"),
+                    _(L"Displays labels on the box and whiskers."));
+                editButtonBar->AddToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"),
+                    _(L"Display Points"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/show-all-points.svg"),
+                    _(L"Displays all data points onto the plot."));
+                editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy the graph."));
+                editButtonBar->AddHybridButton(wxID_ZOOM_IN,
+                    _(L"Zoom"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/zoom-in.svg"),
+                    _(L"Zoom"));
+                }
+            // histogram panel
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                        wxDefaultPosition, wxDefaultSize,
+                        wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
+                    _(L"Background"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/photos.svg"),
+                    _(L"Set the graph's background."));
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"),
+                    _(L"Font"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/font.svg"),
+                    _(L"Change the graph's fonts."));
+                editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"),
+                    _(L"Watermark"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/watermark.svg"),
+                    _(L"Add a watermark to the graph."));
+                editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"),
+                    _(L"Logo"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
+                    _(L"Add a logo to the graph."));
+                editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"),
+                    _(L"Shadows"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
+                    _(L"Display drop shadows on the graphs."));
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"),
+                    _(L"Bar Style"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/bar-top-to-bottom.svg"),
+                    _(L"Changes the bar appearance."));
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_HISTOBAR_LABELS"),
+                    _(L"Labels"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/bar-labels.svg"),
+                    _(L"Changes what is displayed on the bars' labels."));
+                editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy the graph."));
+                editButtonBar->AddHybridButton(wxID_ZOOM_IN,
+                    _(L"Zoom"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/zoom-in.svg"),
+                    _(L"Zoom"));
+                }
+            // pie chart panel
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_PIE_CHART_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                        wxDefaultPosition, wxDefaultSize,
+                        wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddButton(XRCID("ID_EDIT_GRAPH_COLOR_SCHEME"), _(L"Colors"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/color-wheel.svg"),
+                    _(L"Select the color scheme for the pie chart."));
+                editButtonBar->AddToggleButton(
+                    XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"), _(L"Showcase Complexity"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/showcase.svg"),
+                    _(L"Toggle whether complex word slices are being showcased."));
+
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
+                    _(L"Background"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/photos.svg"),
+                    _(L"Set the graph's background."));
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"),
+                    _(L"Font"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/font.svg"),
+                    _(L"Change the graph's fonts."));
+                editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"),
+                    _(L"Watermark"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/watermark.svg"),
+                    _(L"Add a watermark to the graph."));
+                editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"),
+                    _(L"Logo"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
+                    _(L"Add a logo to the graph."));
+                editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"),
+                    _(L"Shadows"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
+                    _(L"Display drop shadows on the graphs."));
+
+                editButtonBar->AddButton(wxID_COPY,
+                    _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy the graph."));
+                editButtonBar->AddHybridButton(wxID_ZOOM_IN,
+                    _(L"Zoom"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/zoom-in.svg"),
+                    _(L"Zoom"));
+                }
+            // graph panel
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_GRAPH_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                        wxDefaultPosition, wxDefaultSize,
+                        wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
+                    _(L"Background"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/photos.svg"),
+                    _(L"Set the graph's background."));
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"),
+                    _(L"Font"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/font.svg"),
+                    _(L"Change the graph's fonts."));
+                editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"),
+                    _(L"Watermark"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/watermark.svg"),
+                    _(L"Add a watermark to the graph."));
+                editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"),
+                    _(L"Logo"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
+                    _(L"Add a logo to the graph."));
+                editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"),
+                    _(L"Shadows"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
+                    _(L"Display drop shadows on the graphs."));
+
+                editButtonBar->AddButton(wxID_COPY,
+                    _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy the graph."));
+                editButtonBar->AddHybridButton(wxID_ZOOM_IN,
+                    _(L"Zoom"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/zoom-in.svg"),
+                    _(L"Zoom"));
+                }
             }
         else // rtype == RibbonType::MainFrameRibbon
             {

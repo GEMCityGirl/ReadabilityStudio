@@ -190,6 +190,7 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     constexpr static wxWindowID ID_VIEW_RIBBON_BUTTON_BAR = wxID_HIGHEST + 6;
     constexpr static wxWindowID ID_DOCUMENT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 7;
     constexpr static wxWindowID ID_CLIPBOARD_RIBBON_BUTTON_BAR = wxID_HIGHEST + 8;
+
     constexpr static wxWindowID ID_EDIT_RIBBON_LIST_BUTTON_BAR = wxID_HIGHEST + 9;
     // HTML window
     constexpr static wxWindowID ID_EDIT_RIBBON_SUMMARY_REPORT_BUTTON_BAR = wxID_HIGHEST + 10;
@@ -203,6 +204,14 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     constexpr static wxWindowID ID_EDIT_RIBBON_BAR_CHART_BUTTON_BAR = wxID_HIGHEST + 17;
     constexpr static wxWindowID ID_EDIT_RIBBON_HISTOGRAM_BUTTON_BAR = wxID_HIGHEST + 18;
     constexpr static wxWindowID ID_EDIT_RIBBON_BOX_PLOT_BUTTON_BAR = wxID_HIGHEST + 19;
+    constexpr static wxWindowID ID_EDIT_RIBBON_PIE_CHART_BUTTON_BAR = wxID_HIGHEST + 20;
+    constexpr static wxWindowID ID_EDIT_RIBBON_LIX_BUTTON_BAR = wxID_HIGHEST + 21;
+    constexpr static wxWindowID ID_EDIT_RIBBON_FRY_BUTTON_BAR = wxID_HIGHEST + 22;
+    constexpr static wxWindowID ID_EDIT_RIBBON_RAYGOR_BUTTON_BAR = wxID_HIGHEST + 23;
+    constexpr static wxWindowID ID_EDIT_RIBBON_SCHWARTZ_BUTTON_BAR = wxID_HIGHEST + 24;
+    constexpr static wxWindowID ID_EDIT_RIBBON_FLESCH_BUTTON_BAR = wxID_HIGHEST + 25;
+    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_BUTTON_BAR = wxID_HIGHEST + 26;
+    constexpr static wxWindowID ID_EDIT_RIBBON_GRAPH_BUTTON_BAR = wxID_HIGHEST + 27;
 
     IdRangeLock CUSTOM_TEST_RANGE;
     IdRangeLock EXAMPLE_RANGE;
