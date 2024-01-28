@@ -1945,6 +1945,12 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_PIE_CHART_BUTTON_BAR);
     wxRibbonPanel* editGraphButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_GRAPH_BUTTON_BAR);
+    wxRibbonPanel* editLixGermanButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIX_GERMAN_BUTTON_BAR);
+    wxRibbonPanel* editRaygorButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_RAYGOR_BUTTON_BAR);
+    wxRibbonPanel* editFrySchwartzButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_FRY_BUTTON_BAR);
 
     if (event.GetInt() == READABILITY_SCORES_PAGE_ID ||
         event.GetInt() == READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID ||
@@ -2000,68 +2006,40 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
 
             if (GetRibbon())
                 {
-                wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
-                if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+                const auto graphType = dynamic_cast<Wisteria::Canvas*>(
+                    GetActiveProjectWindow())->GetFixedObject(0, 0);
+
+                if (typeid(*graphType) == typeid(LixGaugeGerman))
                     {
-                    auto editButtonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    assert(editButtonBar);
-
-                    editButtonBar->ClearButtons();
-                    editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/photos.svg"),
-                                                     _(L"Set the graph's background."));
-                    editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/font.svg"),
-                                                     _(L"Change the graph's fonts."));
-                    editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                             wxGetApp().ReadRibbonSvgIcon(L"ribbon/watermark.svg"),
-                                             _(L"Add a watermark to the graph."));
-                    editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                             wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
-                                             _(L"Add a logo to the graph."));
-                    editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"), _(L"Shadows"),
-                                                   wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
-                                                   _(L"Display drop shadows on the graphs."));
-                    editButtonBar->ToggleButton(XRCID("ID_DROP_SHADOW"),
-                        dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
-
-                    const auto graphType = dynamic_cast<Wisteria::Canvas*>(
-                        GetActiveProjectWindow())->GetFixedObject(0, 0);
-
-                    if (typeid(*graphType) == typeid(LixGaugeGerman))
-                        {
-                        editButtonBar->AddToggleButton(XRCID("ID_USE_ENGLISH_LABELS"),
-                            _(L"English Labels"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/german2english.svg"),
-                            _(L"Use translated (English) labels for the brackets."));
-                        editButtonBar->ToggleButton(XRCID("ID_USE_ENGLISH_LABELS"),
+                    editLixGermanButtonBarWindow->Show();
+                    getEditButtonBar(editLixGermanButtonBarWindow)->
+                        ToggleButton(XRCID("ID_DROP_SHADOW"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                    getEditButtonBar(editLixGermanButtonBarWindow)->
+                        ToggleButton(XRCID("ID_USE_ENGLISH_LABELS"),
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsUsingEnglishLabelsForGermanLix());
-                        }
-                    else if (typeid(*graphType) == typeid(FryGraph) ||
-                        typeid(*graphType) == typeid(RaygorGraph) ||
-                        typeid(*graphType) == typeid(SchwartzGraph))
-                        {
-                        editButtonBar->AddButton(XRCID("ID_INVALID_REGION_COLOR"),
-                            _(L"Invalid Region"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/invalid-region.svg"),
-                            _(L"Change the color of the invalid regions."));
-                        }
-                    if (typeid(*graphType) == typeid(RaygorGraph))
-                        {
-                        editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_RAYGOR_STYLE"),
-                            _(L"Raygor Style"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/raygor-style.svg"),
-                            _(L"Change the layout style of the Raygor graph."));
-                        }
-                    // not showing connection lines for a Flesch Chart with only one score doesn't make much sense,
-                    // so don't bother adding a button for that on a standard project.
-                    editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                             wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                                             _(L"Copy the graph."));
-                    editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/zoom-in.svg"),
-                                            _(L"Zoom"));
-                    GetRibbon()->GetPage(0)->Realize();
+                    }
+                else if (typeid(*graphType) == typeid(RaygorGraph))
+                    {
+                    editRaygorButtonBarWindow->Show();
+                    getEditButtonBar(editRaygorButtonBarWindow)->
+                        ToggleButton(XRCID("ID_DROP_SHADOW"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                    }
+                else if (typeid(*graphType) == typeid(FryGraph) ||
+                    typeid(*graphType) == typeid(SchwartzGraph))
+                    {
+                    editFrySchwartzButtonBarWindow->Show();
+                    getEditButtonBar(editFrySchwartzButtonBarWindow)->
+                        ToggleButton(XRCID("ID_DROP_SHADOW"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                    }
+                else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+                    {
+                    editGraphButtonBarWindow->Show();
+                    getEditButtonBar(editGraphButtonBarWindow)->
+                        ToggleButton(XRCID("ID_DROP_SHADOW"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                     }
                 }
             }

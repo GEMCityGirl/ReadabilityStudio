@@ -2444,6 +2444,121 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/zoom-in.svg"),
                     _(L"Zoom"));
                 }
+            // Lix (German) panel
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIX_GERMAN_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                        wxDefaultPosition, wxDefaultSize,
+                        wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
+                                                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/photos.svg"),
+                                                    _(L"Set the graph's background."));
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
+                                                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/font.svg"),
+                                                    _(L"Change the graph's fonts."));
+                editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
+                                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/watermark.svg"),
+                                            _(L"Add a watermark to the graph."));
+                editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
+                                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
+                                            _(L"Add a logo to the graph."));
+                editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"), _(L"Shadows"),
+                                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
+                                                _(L"Display drop shadows on the graphs."));
+                editButtonBar->AddToggleButton(XRCID("ID_USE_ENGLISH_LABELS"),
+                    _(L"English Labels"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/german2english.svg"),
+                    _(L"Use translated (English) labels for the brackets."));
+                editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy the graph."));
+                editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/zoom-in.svg"),
+                    _(L"Zoom"));
+                }
+            // Raygor panel
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_RAYGOR_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                        wxDefaultPosition, wxDefaultSize,
+                        wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
+                                                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/photos.svg"),
+                                                    _(L"Set the graph's background."));
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
+                                                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/font.svg"),
+                                                    _(L"Change the graph's fonts."));
+                editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
+                                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/watermark.svg"),
+                                            _(L"Add a watermark to the graph."));
+                editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
+                                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
+                                            _(L"Add a logo to the graph."));
+                editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"), _(L"Shadows"),
+                                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
+                                                _(L"Display drop shadows on the graphs."));
+                editButtonBar->AddButton(XRCID("ID_INVALID_REGION_COLOR"),
+                    _(L"Invalid Region"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/invalid-region.svg"),
+                    _(L"Change the color of the invalid regions."));
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_RAYGOR_STYLE"),
+                    _(L"Raygor Style"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/raygor-style.svg"),
+                    _(L"Change the layout style of the Raygor graph."));
+                editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy the graph."));
+                editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/zoom-in.svg"),
+                    _(L"Zoom"));
+                }
+             // Fry panel
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_FRY_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                        wxDefaultPosition, wxDefaultSize,
+                        wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
+                                                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/photos.svg"),
+                                                    _(L"Set the graph's background."));
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
+                                                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/font.svg"),
+                                                    _(L"Change the graph's fonts."));
+                editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
+                                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/watermark.svg"),
+                                            _(L"Add a watermark to the graph."));
+                editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
+                                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
+                                            _(L"Add a logo to the graph."));
+                editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"), _(L"Shadows"),
+                                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
+                                                _(L"Display drop shadows on the graphs."));
+                editButtonBar->AddButton(XRCID("ID_INVALID_REGION_COLOR"),
+                    _(L"Invalid Region"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/invalid-region.svg"),
+                    _(L"Change the color of the invalid regions."));
+                editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy the graph."));
+                editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/zoom-in.svg"),
+                    _(L"Zoom"));
+                }
             }
         else // rtype == RibbonType::MainFrameRibbon
             {

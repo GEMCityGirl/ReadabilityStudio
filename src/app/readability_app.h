@@ -205,7 +205,7 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     constexpr static wxWindowID ID_EDIT_RIBBON_HISTOGRAM_BUTTON_BAR = wxID_HIGHEST + 18;
     constexpr static wxWindowID ID_EDIT_RIBBON_BOX_PLOT_BUTTON_BAR = wxID_HIGHEST + 19;
     constexpr static wxWindowID ID_EDIT_RIBBON_PIE_CHART_BUTTON_BAR = wxID_HIGHEST + 20;
-    constexpr static wxWindowID ID_EDIT_RIBBON_LIX_BUTTON_BAR = wxID_HIGHEST + 21;
+    constexpr static wxWindowID ID_EDIT_RIBBON_LIX_GERMAN_BUTTON_BAR = wxID_HIGHEST + 21;
     constexpr static wxWindowID ID_EDIT_RIBBON_FRY_BUTTON_BAR = wxID_HIGHEST + 22;
     constexpr static wxWindowID ID_EDIT_RIBBON_RAYGOR_BUTTON_BAR = wxID_HIGHEST + 23;
     constexpr static wxWindowID ID_EDIT_RIBBON_SCHWARTZ_BUTTON_BAR = wxID_HIGHEST + 24;
