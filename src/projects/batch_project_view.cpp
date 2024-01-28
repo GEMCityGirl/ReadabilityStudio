@@ -873,7 +873,6 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                 {
                 if (GetRibbon())
                     {
-                    wxWindowUpdateLocker noUpdates(GetRibbon());
                     wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
                     if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                         {
@@ -951,7 +950,6 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                 {
                 if (GetRibbon())
                     {
-                    wxWindowUpdateLocker noUpdates(GetRibbon());
                     wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
                     if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                         {
@@ -1033,7 +1031,6 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             }
         if (GetRibbon())
             {
-            wxWindowUpdateLocker noUpdates(GetRibbon());
             wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
             if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                 {
@@ -1153,7 +1150,6 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
 
             if (GetRibbon())
                 {
-                wxWindowUpdateLocker noUpdates(GetRibbon());
                 wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
                 if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                     {
@@ -1239,7 +1235,6 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
 
             if (GetRibbon())
                 {
-                wxWindowUpdateLocker noUpdates(GetRibbon());
                 wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
                 if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                     {
@@ -1285,7 +1280,6 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
 
             if (GetRibbon())
                 {
-                wxWindowUpdateLocker noUpdates(GetRibbon());
                 wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
                 if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                     {
@@ -1331,7 +1325,6 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
 
             if (GetRibbon())
                 {
-                wxWindowUpdateLocker noUpdates(GetRibbon());
                 wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
                 if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                     {
@@ -1373,7 +1366,6 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
 
             if (GetRibbon())
                 {
-                wxWindowUpdateLocker noUpdates(GetRibbon());
                 wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
                 if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                     {
