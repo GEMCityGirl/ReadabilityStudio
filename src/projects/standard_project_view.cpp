@@ -1899,18 +1899,6 @@ void ProjectView::OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& event)
 //-------------------------------------------------------
 void ProjectView::OnItemSelected(wxCommandEvent& event)
     {
-    // menu icons
-    const auto copyIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/copy.svg");
-    const auto listIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/list.svg");
-    const auto histogramIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/histogram.svg");
-    const auto barChartIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-chart.svg");
-    const auto boxPlotIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/boxplot.svg");
-    const auto heatmapIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/heatmap.svg");
-    const auto wordCloudIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/word-cloud.svg");
-    const auto pieChartIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/donut-subgrouped.svg");
-    const auto reportIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/report.svg");
-    const auto textIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/document.svg");
-
     assert(GetRibbon() != nullptr);
     const auto hideEditPanel = [this](const wxWindowID windowId)
         {
@@ -1941,6 +1929,12 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_LIST_BUTTON_BAR);
     wxRibbonPanel* editStatsReportButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_BUTTON_BAR);
+    wxRibbonPanel* editSimpleListWithSummationButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_BUTTON_BAR);
+    wxRibbonPanel* editSimpleListButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_BUTTON_BAR);
+    wxRibbonPanel* editBarChartButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_BAR_CHART_BUTTON_BAR);
 
     if (event.GetInt() == READABILITY_SCORES_PAGE_ID ||
         event.GetInt() == READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID ||
@@ -1956,34 +1950,24 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
-                    wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
                 {
-                wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
-                if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+                if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(wxHtmlWindow)) )
                     {
-                    auto editButtonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    assert(editButtonBar != nullptr);
-                    editButtonBar->ClearButtons();
-                    if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(wxHtmlWindow)) )
-                        {
-                        editSummaryReportButtonBarWindow->Show();
-                        }
-                    else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ExplanationListCtrl)) )
-                        {
-                        editExpListButtonBarWindow->Show();
-                        getEditButtonBar(editExpListButtonBarWindow)->ToggleButton(XRCID("ID_LONG_FORMAT"),
-                            dynamic_cast<ProjectDoc*>(
-                                GetDocument())->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
-                        }
-                    else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
-                        {
-                        editListButtonBarWindow->Show();
-                        }
-                    GetRibbon()->GetPage(0)->Realize();
+                    editSummaryReportButtonBarWindow->Show();
+                    }
+                else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ExplanationListCtrl)) )
+                    {
+                    editExpListButtonBarWindow->Show();
+                    getEditButtonBar(editExpListButtonBarWindow)->ToggleButton(XRCID("ID_LONG_FORMAT"),
+                        dynamic_cast<ProjectDoc*>(
+                            GetDocument())->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
+                    }
+                else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
+                    {
+                    editListButtonBarWindow->Show();
                     }
                 }
             }
@@ -2000,7 +1984,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         event.GetInt() == GPM_FRY_PAGE_ID)
         {
         m_activeWindow = GetReadabilityResultsView().FindWindowById(event.GetInt());
-        assert(GetActiveProjectWindow());
+        assert(m_activeWindow != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2008,8 +1992,6 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
-                    wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, false);
                 }
             if (GetRibbon())
@@ -2083,7 +2065,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID)
         {
         m_activeWindow = GetSentencesBreakdownView().FindWindowById(event.GetInt());
-        assert(GetActiveProjectWindow());
+        assert(m_activeWindow != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2091,8 +2073,6 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
-                    wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()));
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
@@ -2184,7 +2164,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_STATS_SUMMARY_SECTION_ID)
         {
         m_activeWindow = GetSummaryView().FindWindowById(event.GetInt());
-        assert(GetActiveProjectWindow());
+        assert(m_activeWindow != nullptr);
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2192,8 +2172,6 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."),
-                                       GetActiveProjectWindow()->GetName()));
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
@@ -2202,10 +2180,6 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
                 if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
                     {
-                    auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    assert(editButtonRibbonBar);
-                    editButtonRibbonBar->ClearButtons();
-
                     if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
                         {
                         editStatsListButtonBarWindow->Show();
@@ -2234,8 +2208,6 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."),
-                                       GetActiveProjectWindow()->GetName()) );
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
@@ -2394,8 +2366,6 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
-                    wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
@@ -2456,111 +2426,39 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (GetMenuBar())
                 {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
-                    wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
                 MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
                 }
             if (GetRibbon())
                 {
-                wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
-                if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+                if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
                     {
-                    auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    assert(editButtonRibbonBar != nullptr);
-                    editButtonRibbonBar->ClearButtons();
-                    if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
+                    editReportButtonBarWindow->Show();
+                    }
+                else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(HtmlTableWindow)) )
+                    {
+                    editStatsReportButtonBarWindow->Show();
+                    }
+                else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
+                    {
+                    if (event.GetInt() == NON_DOLCH_WORDS_LIST_PAGE_ID ||
+                        event.GetInt() == DOLCH_WORDS_LIST_PAGE_ID)
                         {
-                        editReportButtonBarWindow->Show();
-                        }
-                    else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
-                             typeid(*dynamic_cast<Wisteria::Canvas*>(
-                                 GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                                    typeid(Wisteria::Graphs::BarChart))
-                        {
-                        editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
-                            _(L"Background"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/photos.svg"),
-                            _(L"Set the graph's background."));
-                        editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"),
-                            _(L"Font"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/font.svg"),
-                            _(L"Change the graph's fonts."));
-                        editButtonRibbonBar->AddButton(XRCID("ID_EDIT_WATERMARK"),
-                            _(L"Watermark"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/watermark.svg"),
-                            _(L"Add a watermark to the graph."));
-                        editButtonRibbonBar->AddButton(XRCID("ID_EDIT_LOGO"),
-                            _(L"Logo"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
-                            _(L"Add a logo to the graph."));
-                        editButtonRibbonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"),
-                            _(L"Shadows"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
-                            _(L"Display drop shadows on the graphs."));
-                        editButtonRibbonBar->ToggleButton(XRCID("ID_DROP_SHADOW"),
-                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
-                        editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_BAR_STYLE"),
-                            _(L"Bar Style"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/bar-top-to-bottom.svg"),
-                            _(L"Changes the bar appearance."));
-                        editButtonRibbonBar->AddToggleButton(XRCID("ID_EDIT_BAR_LABELS"),
-                            _(L"Labels"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/bar-labels.svg"),
-                            _(L"Shows or hides the bars' labels."));
-                        editButtonRibbonBar->ToggleButton(XRCID("ID_EDIT_BAR_LABELS"),
-                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingBarChartLabels());
-                        editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_BAR_ORIENTATION"),
-                            _(L"Orientation"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/axis-orientation.svg"),
-                            _(L"Changes the axis orientation."));
-                        editButtonRibbonBar->AddDropdownButton(XRCID("ID_GRAPH_SORT"),
-                            _(L"Sort"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/bar-sort.svg"),
-                            _(L"Sort the bars in the graph."));
-                        }
-                    else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(HtmlTableWindow)) )
-                        {
-                        editStatsReportButtonBarWindow->Show();
-                        }
-                    if (typeid(*GetActiveProjectWindow()) != typeid(Wisteria::Canvas))
-                        {
-                        if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)))
-                            {
-                            editButtonRibbonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
-                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                                _(L"Copy"));
-                            }
-                        else
-                            {
-                            editButtonRibbonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                                _(L"Copy"));
-                            }
-                        editButtonRibbonBar->AddButton(wxID_SELECTALL,
-                            _(L"Select All"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
-                            _(L"Select All"));
-                        if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
-                            {
-                            editButtonRibbonBar->AddButton(XRCID("ID_LIST_SORT"),
-                                _(L"Sort"),
-                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
-                                _(L"Sort the list."));
-                            if (event.GetInt() == NON_DOLCH_WORDS_LIST_PAGE_ID ||
-                                event.GetInt() == DOLCH_WORDS_LIST_PAGE_ID)
-                                { editButtonRibbonBar->AddButton(XRCID("ID_SUMMATION"),
-                                    _(L"Sum"),
-                                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/sum.svg"),
-                                    _(L"Total the values from the selected column.")); }
-                            }
+                        editSimpleListWithSummationButtonBarWindow->Show();
                         }
                     else
                         {
-                        editButtonRibbonBar->AddButton(wxID_COPY, _(L"Copy"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                            _(L"Copy"));
+                        editSimpleListButtonBarWindow->Show();
                         }
-                    GetRibbon()->GetPage(0)->Realize();
+                    }
+                else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+                    {
+                    editBarChartButtonBarWindow->Show();
+                    getEditButtonBar(editBarChartButtonBarWindow)->
+                        ToggleButton(XRCID("ID_DROP_SHADOW"),
+                        dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                    getEditButtonBar(editBarChartButtonBarWindow)->
+                        ToggleButton(XRCID("ID_EDIT_BAR_LABELS"),
+                        dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingBarChartLabels());
                     }
                 }
             }
@@ -2572,6 +2470,11 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         exportMenuItem != nullptr && GetActiveProjectWindow() != nullptr)
         {
         exportMenuItem->SetItemLabel(
+            wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()));
+        }
+    if (GetMenuBar())
+        {
+        GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
             wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()));
         }
     

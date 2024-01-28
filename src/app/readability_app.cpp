@@ -2001,6 +2001,56 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
                     _(L"Sort the list."));
                 }
+            // most basic list edit panel
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                    wxDefaultPosition, wxDefaultSize,
+                    wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy"));
+                editButtonBar->AddButton(wxID_SELECTALL,
+                    _(L"Select All"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
+                    _(L"Select All"));
+                editButtonBar->AddButton(XRCID("ID_LIST_SORT"),
+                        _(L"Sort"),
+                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
+                        _(L"Sort the list."));
+                }
+            // basic list with Summation button edit panel
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                    wxDefaultPosition, wxDefaultSize,
+                    wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy"));
+                editButtonBar->AddButton(wxID_SELECTALL,
+                    _(L"Select All"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
+                    _(L"Select All"));
+                editButtonBar->AddButton(XRCID("ID_LIST_SORT"),
+                    _(L"Sort"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
+                    _(L"Sort the list."));
+                editButtonBar->AddButton(XRCID("ID_SUMMATION"),
+                    _(L"Sum"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/sum.svg"),
+                    _(L"Total the values from the selected column."));
+                }
             // HTML window
                 {
                 wxRibbonPanel* editPanel =
@@ -2123,6 +2173,57 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     _(L"Select All"),
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
                     _(L"Select All"));
+                }
+            // bar chart panel
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_BAR_CHART_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                        wxDefaultPosition, wxDefaultSize,
+                        wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
+                    _(L"Background"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/photos.svg"),
+                    _(L"Set the graph's background."));
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"),
+                    _(L"Font"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/font.svg"),
+                    _(L"Change the graph's fonts."));
+                editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"),
+                    _(L"Watermark"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/watermark.svg"),
+                    _(L"Add a watermark to the graph."));
+                editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"),
+                    _(L"Logo"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
+                    _(L"Add a logo to the graph."));
+                editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"),
+                    _(L"Shadows"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
+                    _(L"Display drop shadows on the graphs."));
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_BAR_STYLE"),
+                    _(L"Bar Style"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/bar-top-to-bottom.svg"),
+                    _(L"Changes the bar appearance."));
+                editButtonBar->AddToggleButton(XRCID("ID_EDIT_BAR_LABELS"),
+                    _(L"Labels"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/bar-labels.svg"),
+                    _(L"Shows or hides the bars' labels."));
+                editButtonBar->AddDropdownButton(XRCID("ID_EDIT_BAR_ORIENTATION"),
+                    _(L"Orientation"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/axis-orientation.svg"),
+                    _(L"Changes the axis orientation."));
+                editButtonBar->AddDropdownButton(XRCID("ID_GRAPH_SORT"),
+                    _(L"Sort"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/bar-sort.svg"),
+                    _(L"Sort the bars in the graph."));
+                editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy"));
                 }
             }
         else // rtype == RibbonType::MainFrameRibbon

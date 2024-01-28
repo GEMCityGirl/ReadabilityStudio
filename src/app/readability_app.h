@@ -198,6 +198,11 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     constexpr static wxWindowID ID_EDIT_RIBBON_REPORT_BUTTON_BAR = wxID_HIGHEST + 12;
     constexpr static wxWindowID ID_EDIT_RIBBON_STATS_LIST_BUTTON_BAR = wxID_HIGHEST + 13;
     constexpr static wxWindowID ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_BUTTON_BAR = wxID_HIGHEST + 14;
+    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_SIMPLE_BUTTON_BAR = wxID_HIGHEST + 15;
+    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_BUTTON_BAR = wxID_HIGHEST + 16;
+    constexpr static wxWindowID ID_EDIT_RIBBON_BAR_CHART_BUTTON_BAR = wxID_HIGHEST + 17;
+    constexpr static wxWindowID ID_EDIT_RIBBON_HISTOGRAM_BUTTON_BAR = wxID_HIGHEST + 18;
+    constexpr static wxWindowID ID_EDIT_RIBBON_BOX_PLOT_BUTTON_BAR = wxID_HIGHEST + 19;
 
     IdRangeLock CUSTOM_TEST_RANGE;
     IdRangeLock EXAMPLE_RANGE;
