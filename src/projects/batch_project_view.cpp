@@ -806,8 +806,58 @@ void BatchProjectView::OnDocumentDelete([[maybe_unused]] wxRibbonButtonBarEvent&
 //-------------------------------------------------------
 void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     {
-    // menu icons
-    const auto copyIcon = wxGetApp().GetResourceManager().GetSVG(L"ribbon/copy.svg");
+    assert(GetRibbon() != nullptr);
+    const auto hideEditPanel = [this](const wxWindowID windowId)
+        {
+        wxWindow* editButtonBarWindow =
+            GetRibbon()->FindWindow(windowId);
+        assert(editButtonBarWindow != nullptr);
+        assert(editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonPanel)));
+        editButtonBarWindow->Show(false);
+        return dynamic_cast<wxRibbonPanel*>(editButtonBarWindow);
+        };
+
+    const auto getEditButtonBar = [](wxRibbonPanel* panel)
+        {
+        auto buttonBar = panel->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+        assert(buttonBar != nullptr && buttonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)));
+        return dynamic_cast<wxRibbonButtonBar*>(buttonBar);
+        };
+    
+    wxRibbonPanel* editListButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_BUTTON_BAR);
+    wxRibbonPanel* editSummaryReportButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_SUMMARY_REPORT_BUTTON_BAR);
+    wxRibbonPanel* editExpListButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_EXPLANATION_LIST_BUTTON_BAR);
+    wxRibbonPanel* editReportButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_REPORT_BUTTON_BAR);
+    wxRibbonPanel* editStatsListButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_LIST_BUTTON_BAR);
+    wxRibbonPanel* editStatsReportButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_BUTTON_BAR);
+    wxRibbonPanel* editSimpleListWithSummationButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_BUTTON_BAR);
+    wxRibbonPanel* editSimpleListWithSummationAndExcludButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_BUTTON_BAR);
+    wxRibbonPanel* editSimpleListButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_BUTTON_BAR);
+    wxRibbonPanel* editBarChartButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_BAR_CHART_BUTTON_BAR);
+    wxRibbonPanel* editBoxPlotButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_BOX_PLOT_BUTTON_BAR);
+    wxRibbonPanel* editHistogramButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BUTTON_BAR);
+    wxRibbonPanel* editPieChartButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_PIE_CHART_BUTTON_BAR);
+    wxRibbonPanel* editGraphButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_GRAPH_BUTTON_BAR);
+    wxRibbonPanel* editLixGermanButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIX_GERMAN_BUTTON_BAR);
+    wxRibbonPanel* editRaygorButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_RAYGOR_BUTTON_BAR);
+    wxRibbonPanel* editFrySchwartzButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_FRY_BUTTON_BAR);
 
     if (event.GetExtraLong() == SIDEBAR_READABILITY_SCORES_SECTION_ID)
         {
@@ -821,13 +871,6 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             GetActiveProjectWindow()->Show();
             if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
                 {
-                if (GetMenuBar())
-                    {
-                    GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."),
-                                           GetActiveProjectWindow()->GetName()) );
-                    MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, false);
-                    MenuBarEnableAll(GetMenuBar(), wxID_DELETE, false);
-                    }
                 if (GetRibbon())
                     {
                     wxWindowUpdateLocker noUpdates(GetRibbon());
@@ -906,13 +949,6 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                 }
             else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)))
                 {
-                if (GetMenuBar())
-                    {
-                    GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."),
-                        GetActiveProjectWindow()->GetName()) );
-                    MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
-                    MenuBarEnableAll(GetMenuBar(), wxID_DELETE, true);
-                    }
                 if (GetRibbon())
                     {
                     wxWindowUpdateLocker noUpdates(GetRibbon());
@@ -994,12 +1030,6 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                 GetSplitter()->ReplaceWindow(GetSplitter()->GetWindow2(), GetActiveProjectWindow());
                 GetActiveProjectWindow()->Show();
                 }
-            }
-        if (GetMenuBar())
-            {
-            GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
-                wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
-            MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, false);
             }
         if (GetRibbon())
             {
@@ -1120,14 +1150,6 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             GetSplitter()->GetWindow2()->Hide();
             GetSplitter()->ReplaceWindow(GetSplitter()->GetWindow2(), GetActiveProjectWindow());
             GetActiveProjectWindow()->Show();
-            if (GetMenuBar())
-                {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"), wxString::Format(_(L"Export %s..."),
-                    GetActiveProjectWindow()->GetName()));
-                MenuBarEnableAll(GetMenuBar(), wxID_DELETE, false);
-                MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL,
-                    (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas)));
-                }
 
             if (GetRibbon())
                 {
@@ -1214,12 +1236,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             GetSplitter()->GetWindow2()->Hide();
             GetSplitter()->ReplaceWindow(GetSplitter()->GetWindow2(), GetActiveProjectWindow());
             GetActiveProjectWindow()->Show();
-            if (GetMenuBar())
-                {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
-                    wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
-                MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
-                }
+
             if (GetRibbon())
                 {
                 wxWindowUpdateLocker noUpdates(GetRibbon());
@@ -1265,12 +1282,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             GetSplitter()->GetWindow2()->Hide();
             GetSplitter()->ReplaceWindow(GetSplitter()->GetWindow2(), GetActiveProjectWindow());
             GetActiveProjectWindow()->Show();
-            if (GetMenuBar())
-                {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
-                    wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
-                MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
-                }
+
             if (GetRibbon())
                 {
                 wxWindowUpdateLocker noUpdates(GetRibbon());
@@ -1316,12 +1328,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             GetSplitter()->GetWindow2()->Hide();
             GetSplitter()->ReplaceWindow(GetSplitter()->GetWindow2(), GetActiveProjectWindow());
             GetActiveProjectWindow()->Show();
-            if (GetMenuBar())
-                {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
-                    wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
-                MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
-                }
+
             if (GetRibbon())
                 {
                 wxWindowUpdateLocker noUpdates(GetRibbon());
@@ -1363,12 +1370,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             GetSplitter()->GetWindow2()->Hide();
             GetSplitter()->ReplaceWindow(GetSplitter()->GetWindow2(), GetActiveProjectWindow());
             GetActiveProjectWindow()->Show();
-            if (GetMenuBar())
-                {
-                GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
-                    wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()) );
-                MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
-                }
+
             if (GetRibbon())
                 {
                 wxWindowUpdateLocker noUpdates(GetRibbon());
@@ -1408,6 +1410,12 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
         {
         exportMenuItem->SetItemLabel(
             wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()));
+        }
+    if (GetMenuBar())
+        {
+        GetMenuBar()->SetLabel(XRCID("ID_SAVE_ITEM"),
+            wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()));
+        MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
         }
 
     event.Skip();
