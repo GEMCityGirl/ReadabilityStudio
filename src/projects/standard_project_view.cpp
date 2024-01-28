@@ -2217,46 +2217,26 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
 
             if (GetRibbon())
                 {
-                wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
-                if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+                if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
                     {
-                    auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    assert(editButtonRibbonBar != nullptr);
-                    editButtonRibbonBar->ClearButtons();
-                    if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(FormattedTextCtrl)) )
+                    editReportButtonBarWindow->Show();
+                    }
+                else
+                    {
+                    if (event.GetInt() == OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID)
                         {
-                        editReportButtonBarWindow->Show();
+                        editListButtonBarWindow->Show();
+                        }
+                    else if (event.GetInt() == MISSPELLED_WORD_LIST_PAGE_ID ||
+                        event.GetInt() == PASSIVE_VOICE_PAGE_ID ||
+                        event.GetInt() == PROPER_NOUNS_LIST_PAGE_ID)
+                        {
+                        editSimpleListWithSummationButtonBarWindow->Show();
                         }
                     else
                         {
-                        editButtonRibbonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                            _(L"Copy"));
-
-                        editButtonRibbonBar->AddButton(wxID_SELECTALL,
-                            _(L"Select All"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
-                            _(L"Select All"));
-
-                        if (event.GetInt() == OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID)
-                            { editButtonRibbonBar->AddButton(XRCID("ID_VIEW_ITEM"),
-                                _(L"View Item"),
-                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
-                                _(L"View the selected row in tabular format.")); }
-                        editButtonRibbonBar->AddButton(XRCID("ID_LIST_SORT"),
-                            _(L"Sort"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
-                            _(L"Sort the list."));
-
-                        if (event.GetInt() == MISSPELLED_WORD_LIST_PAGE_ID ||
-                            event.GetInt() == PASSIVE_VOICE_PAGE_ID ||
-                            event.GetInt() == PROPER_NOUNS_LIST_PAGE_ID)
-                            { editButtonRibbonBar->AddButton(XRCID("ID_SUMMATION"),
-                                _(L"Sum"),
-                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/sum.svg"),
-                                _(L"Total the values from the selected column.")); }
+                        editSimpleListButtonBarWindow->Show();
                         }
-                    GetRibbon()->GetPage(0)->Realize();
                     }
                 }
             }
