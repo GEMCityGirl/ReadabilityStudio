@@ -181,15 +181,23 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     // Note that some of these ribbon button bar IDs are used by
     // ribbons other than the project one. This is the communal collection
     // of all bar IDs for the program's ribbons.
-    constexpr static int ID_EDIT_RIBBON_BUTTON_BAR = wxID_HIGHEST;
-    constexpr static int ID_PROOFING_RIBBON_BUTTON_BAR = wxID_HIGHEST + 1;
-    constexpr static int ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR = wxID_HIGHEST + 2;
-    constexpr static int ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR = wxID_HIGHEST + 3;
-    constexpr static int ID_NUMERALS_RIBBON_BUTTON_BAR = wxID_HIGHEST + 4;
-    constexpr static int ID_PROJECT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 5;
-    constexpr static int ID_VIEW_RIBBON_BUTTON_BAR = wxID_HIGHEST + 6;
-    constexpr static auto ID_DOCUMENT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 7;
-    constexpr static auto ID_CLIPBOARD_RIBBON_BUTTON_BAR = wxID_HIGHEST + 8;
+    constexpr static wxWindowID ID_EDIT_RIBBON_BUTTON_BAR = wxID_HIGHEST;
+    constexpr static wxWindowID ID_PROOFING_RIBBON_BUTTON_BAR = wxID_HIGHEST + 1;
+    constexpr static wxWindowID ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR = wxID_HIGHEST + 2;
+    constexpr static wxWindowID ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR = wxID_HIGHEST + 3;
+    constexpr static wxWindowID ID_NUMERALS_RIBBON_BUTTON_BAR = wxID_HIGHEST + 4;
+    constexpr static wxWindowID ID_PROJECT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 5;
+    constexpr static wxWindowID ID_VIEW_RIBBON_BUTTON_BAR = wxID_HIGHEST + 6;
+    constexpr static wxWindowID ID_DOCUMENT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 7;
+    constexpr static wxWindowID ID_CLIPBOARD_RIBBON_BUTTON_BAR = wxID_HIGHEST + 8;
+    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_BUTTON_BAR = wxID_HIGHEST + 9;
+    // HTML window
+    constexpr static wxWindowID ID_EDIT_RIBBON_SUMMARY_REPORT_BUTTON_BAR = wxID_HIGHEST + 10;
+    constexpr static wxWindowID ID_EDIT_RIBBON_EXPLANATION_LIST_BUTTON_BAR = wxID_HIGHEST + 11;
+    // formatted text control
+    constexpr static wxWindowID ID_EDIT_RIBBON_REPORT_BUTTON_BAR = wxID_HIGHEST + 12;
+    constexpr static wxWindowID ID_EDIT_RIBBON_STATS_LIST_BUTTON_BAR = wxID_HIGHEST + 13;
+    constexpr static wxWindowID ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_BUTTON_BAR = wxID_HIGHEST + 14;
 
     IdRangeLock CUSTOM_TEST_RANGE;
     IdRangeLock EXAMPLE_RANGE;

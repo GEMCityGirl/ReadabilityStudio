@@ -1960,16 +1960,170 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             projectButtonBar->ToggleButton(XRCID("ID_SHOW_SIDEBAR"), true);
 
             // edit section
-            wxRibbonPanel* editPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Edit"), wxNullBitmap,
-                                                         wxDefaultPosition, wxDefaultSize,
-                                                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* editButtonBar = new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
-            editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
-                ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                _(L"Copy the selected item."));
-            editButtonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
-                ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
-                _(L"Select All"));
+                {
+                wxRibbonPanel* editPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Edit"), wxNullBitmap,
+                    wxDefaultPosition, wxDefaultSize,
+                    wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+                editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
+                    ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy the selected item."));
+                editButtonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
+                    ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
+                    _(L"Select All"));
+                }
+            // generic list edit panel
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                    wxDefaultPosition, wxDefaultSize,
+                    wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy the selected row(s)."));
+                editButtonBar->AddButton(wxID_SELECTALL,
+                    _(L"Select All"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
+                    _(L"Select All"));
+                editButtonBar->AddButton(XRCID("ID_VIEW_ITEM"),
+                    _(L"View Item"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
+                    _(L"View the selected row in tabular format."));
+                editButtonBar->AddButton(XRCID("ID_LIST_SORT"),
+                    _(L"Sort"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
+                    _(L"Sort the list."));
+                }
+            // HTML window
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_SUMMARY_REPORT_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                        wxDefaultPosition, wxDefaultSize,
+                        wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy the report."));
+                editButtonBar->AddButton(wxID_SELECTALL,
+                    _(L"Select All"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
+                    _(L"Select All"));
+                }
+            // explanation list control
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_EXPLANATION_LIST_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                        wxDefaultPosition, wxDefaultSize,
+                        wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddToggleButton(XRCID("ID_LONG_FORMAT"),
+                    _(L"Long Format"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/grade-display.svg"),
+                    _(L"Display scores in long format."));
+                editButtonBar->AddDropdownButton(XRCID("ID_GRADE_SCALES"),
+                    _(L"Grade Scale"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/education.svg"),
+                    _(L"Change the grade scale display of the scores."));
+                editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy the selected row(s)."));
+                editButtonBar->AddButton(XRCID("ID_LIST_SORT"),
+                    _(L"Sort"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
+                    _(L"Sort the list."));
+                }
+            // formatted text control
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_REPORT_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                        wxDefaultPosition, wxDefaultSize,
+                        wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddButton(XRCID("ID_TEXT_WINDOW_FONT"), _(L"Font"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/font.svg"),
+                    _(L"Change the font."));
+                editButtonBar->AddButton(XRCID("ID_TEXT_WINDOW_COLORS"),
+                    _(L"Highlight"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/highlighting.svg"),
+                    _(L"Change the highlight colors."));
+                editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy"));
+                editButtonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
+                    _(L"Select All"));
+                }
+            // statistics list report in a standard project
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_STATS_LIST_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                        wxDefaultPosition, wxDefaultSize,
+                        wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddButton(XRCID("ID_EDIT_STATS_REPORT"),
+                    _(L"Edit Report"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/edit-report.svg"),
+                    _(L"Select which statistics to include in the report."));
+                editButtonBar->AddHybridButton(wxID_COPY,
+                    _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy the selected row(s)."));
+                editButtonBar->AddButton(wxID_SELECTALL,
+                    _(L"Select All"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
+                    _(L"Select All"));
+                editButtonBar->AddButton(XRCID("ID_LIST_SORT"),
+                    _(L"Sort"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
+                    _(L"Sort the list."));
+                }
+            // statistics HTML report in a standard project
+                {
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_BUTTON_BAR,
+                        _(L"Edit"), wxNullBitmap,
+                        wxDefaultPosition, wxDefaultSize,
+                        wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+
+                wxRibbonButtonBar* editButtonBar =
+                    new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+
+                editButtonBar->AddButton(XRCID("ID_EDIT_STATS_REPORT"),
+                    _(L"Edit Report"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/edit-report.svg"),
+                    _(L"Select which statistics to include in the report."));
+                editButtonBar->AddButton(wxID_COPY,
+                    _(L"Copy"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
+                    _(L"Copy"));
+                editButtonBar->AddButton(wxID_SELECTALL,
+                    _(L"Select All"),
+                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
+                    _(L"Select All"));
+                }
             }
         else // rtype == RibbonType::MainFrameRibbon
             {
