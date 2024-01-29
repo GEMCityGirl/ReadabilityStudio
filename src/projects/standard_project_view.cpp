@@ -1951,6 +1951,9 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_RAYGOR_BUTTON_BAR);
     wxRibbonPanel* editFrySchwartzButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_FRY_BUTTON_BAR);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_FLESCH_BUTTON_BAR);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_CSVSS_BUTTON_BAR);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_TEST_SCORES_BUTTON_BAR);
 
     if (event.GetInt() == READABILITY_SCORES_PAGE_ID ||
         event.GetInt() == READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID ||
@@ -2108,18 +2111,13 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
 
             if (GetRibbon())
                 {
-                wxWindow* editButtonBarWindow =
-                    GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
-                if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+                if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
                     {
-                    if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(ListCtrlEx)) )
-                        {
-                        editStatsListButtonBarWindow->Show();
-                        }
-                    else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(HtmlTableWindow)) )
-                        {
-                        editStatsReportButtonBarWindow->Show();
-                        }
+                    editStatsListButtonBarWindow->Show();
+                    }
+                else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(HtmlTableWindow)) )
+                    {
+                    editStatsReportButtonBarWindow->Show();
                     }
                 }
             }
