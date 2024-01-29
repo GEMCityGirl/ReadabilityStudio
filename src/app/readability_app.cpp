@@ -1961,7 +1961,8 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
 
             // edit section
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Edit"), wxNullBitmap,
+                wxRibbonPanel* editPanel =
+                    new wxRibbonPanel(homePage, wxID_ANY, _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize,
                     wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
@@ -1974,7 +1975,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
                     _(L"Select All"));
                 }
-            // generic list edit panel
+            // list button edit panel (Copy, Select, View, Sort)
                 {
                 wxRibbonPanel* editPanel =
                     new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_BUTTON_BAR,
@@ -2001,7 +2002,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
                     _(L"Sort the list."));
                 }
-            // most basic list edit panel
+            // list button edit panel (Copy, Select, Sort)
                 {
                 wxRibbonPanel* editPanel =
                     new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_BUTTON_BAR,
@@ -2024,7 +2025,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                         wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
                         _(L"Sort the list."));
                 }
-            // basic list with Summation button edit panel
+            // list button edit panel (Copy, Select, Sort, Sum)
                 {
                 wxRibbonPanel* editPanel =
                     new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_BUTTON_BAR,
@@ -2051,7 +2052,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/sum.svg"),
                     _(L"Total the values from the selected column."));
                 }
-            // basic list with Exlude and Summation buttons edit panel
+            // list button edit panel (Copy, Select, Exclude, Sum, Sort)
                 {
                 wxRibbonPanel* editPanel =
                     new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_BUTTON_BAR,

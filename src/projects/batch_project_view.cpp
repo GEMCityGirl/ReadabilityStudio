@@ -1159,37 +1159,10 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     editButtonRibbonBar->ClearButtons();
                     if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
                         {
-                        editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
-                            _(L"Background"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/photos.svg"),
-                            _(L"Set the graph's background."));
-                        editButtonRibbonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"),
-                            _(L"Font"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/font.svg"),
-                            _(L"Change the graph's fonts."));
-                        editButtonRibbonBar->AddButton(XRCID("ID_EDIT_WATERMARK"),
-                            _(L"Watermark"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/watermark.svg"),
-                            _(L"Add a watermark to the graph."));
-                        editButtonRibbonBar->AddButton(XRCID("ID_EDIT_LOGO"),
-                            _(L"Logo"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
-                            _(L"Add a logo to the graph."));
-                        editButtonRibbonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"),
-                            _(L"Shadows"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
-                            _(L"Display drop shadows on the graphs."));
-                        editButtonRibbonBar->ToggleButton(XRCID("ID_DROP_SHADOW"),
-                            dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
-
-                        editButtonRibbonBar->AddButton(wxID_COPY,
-                            _(L"Copy"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                            _(L"Copy the graph."));
-                        editButtonRibbonBar->AddHybridButton(wxID_ZOOM_IN,
-                            _(L"Zoom"),
-                            wxGetApp().ReadRibbonSvgIcon(L"ribbon/zoom-in.svg"),
-                            _(L"Zoom"));
+                        editGraphButtonBarWindow->Show();
+                        getEditButtonBar(editGraphButtonBarWindow)->
+                            ToggleButton(XRCID("ID_DROP_SHADOW"),
+                                dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                         }
                     else
                         {
@@ -1325,31 +1298,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
 
             if (GetRibbon())
                 {
-                wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
-                if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
-                    {
-                    auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    assert(editButtonRibbonBar != nullptr);
-
-                    editButtonRibbonBar->ClearButtons();
-                    editButtonRibbonBar->AddHybridButton(wxID_COPY,
-                        _(L"Copy"),
-                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                        _(L"Copy the selected row(s)."));
-                    editButtonRibbonBar->AddButton(wxID_SELECTALL,
-                        _(L"Select All"),
-                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
-                        _(L"Select All."));
-                    editButtonRibbonBar->AddButton(XRCID("ID_VIEW_ITEM"),
-                        _(L"View Item"),
-                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
-                        _(L"View the selected row in tabular format."));
-                    editButtonRibbonBar->AddButton(XRCID("ID_LIST_SORT"),
-                        _(L"Sort"),
-                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
-                        _(L"Sort the list."));
-                    GetRibbon()->GetPage(0)->Realize();
-                    }
+                editListButtonBarWindow->Show();
                 }
             }
         }
@@ -1366,31 +1315,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
 
             if (GetRibbon())
                 {
-                wxWindow* editButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
-                if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
-                    {
-                    auto editButtonRibbonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
-                    assert(editButtonRibbonBar != nullptr);
-
-                    editButtonRibbonBar->ClearButtons();
-                    editButtonRibbonBar->AddHybridButton(wxID_COPY,
-                        _(L"Copy"),
-                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                        _(L"Copy the selected row(s)."));
-                    editButtonRibbonBar->AddButton(wxID_SELECTALL,
-                        _(L"Select All"),
-                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
-                        _(L"Select All"));
-                    editButtonRibbonBar->AddButton(XRCID("ID_VIEW_ITEM"),
-                        _(L"View Item"),
-                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
-                        _(L"View the selected row in tabular format."));
-                    editButtonRibbonBar->AddButton(XRCID("ID_LIST_SORT"),
-                        _(L"Sort"),
-                        wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
-                        _(L"Sort the list."));
-                    GetRibbon()->GetPage(0)->Realize();
-                    }
+                editListButtonBarWindow->Show();
                 }
             }
         }
@@ -1409,6 +1334,9 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()));
         MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
         }
+
+    GetRibbon()->Realize();
+    GetRibbon()->Layout();
 
     event.Skip();
     }
