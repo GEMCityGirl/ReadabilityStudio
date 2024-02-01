@@ -2946,6 +2946,9 @@ climb up	climb	1
 climbed up	climbed	1		
 climbing up	climbing	1		
 climbs up	climbs	1		
+clincal	clinical	3		
+clincal's	clinical's	3		
+clincals	clinicals	3		
 clincial	clinical	3		
 clinicaly	clinically	3		
 cloak-and-dagger	top secret, related to spying	2		
@@ -4055,6 +4058,8 @@ daplicating	duplicating	3
 daquiri	daiquiri	3		
 daquiri's	daiquiri's	3		
 daquiris	daiquiris	3		
+daratumamab	daratumumab	3		
+daratumamab's	daratumumab's	3		
 Dardenelles	Dardanelles	3		
 dark horse	contestant/candidate that people know little about that has a good chance of winning	2		
 dark horses	contestants/candidates that people know little about that have a good chance of winning	2		
@@ -9761,7 +9766,7 @@ on or before	before	0
 on or more	one or more	3		
 on pins and needles	nervous, on edge	2		
 on previous occasions	earlier	0		
-on principal	on principle	3		investigator;investigators;actor;actors
+on principal	on principle	3		actor;actors;investigator;investigators
 on prior occasions	earlier	0		
 on that particular occasion	then	0		
 on the ball	doing well, skilled, sharp, competent	2		
@@ -10891,15 +10896,15 @@ principaly	principality	3
 principial	principal	3		
 principlaity	principality	3		
 principle activity	principal activity	3		
-principle actor		principal actor	3		
+principle actor	principal actor	3		
 principle actor's	principal actor's	3		
 principle actors	principal actors	3		
 principle character	principal character	3		
 principle character's	principal character's	3		
 principle characters	principal characters	3		
-principle investigator		principal investigator	3		
+principle investigator	principal investigator	3		
 principle investigator's	principal investigator's	3		
-principle investigators	principal investigators	3
+principle investigators	principal investigators	3		
 principle source	principal source	3		
 principle's office	principal's office	3		
 principle's office's	principal's office's	3		

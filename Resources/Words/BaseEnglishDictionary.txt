@@ -12266,6 +12266,9 @@ bismuth's
 bismuths
 bison
 bison's
+bispecific
+bispecific's
+bispecifics
 bisphenol
 bisphenol's
 bisphenols
@@ -13019,6 +13022,7 @@ bloodthirsty
 bloodtype
 bloodtype's
 bloodtypes
+bloodwork
 bloodworm
 bloodworm's
 bloody
@@ -17994,6 +17998,8 @@ careworn
 carfare
 carfare's
 carfares
+carfilzomib
+carfilzomib's
 cargo
 cargo's
 cargoes
@@ -19587,6 +19593,7 @@ chairs
 chairwoman
 chairwoman's
 chairwomen
+chais
 chaise
 chaise's
 chaises
@@ -30754,6 +30761,8 @@ dapple
 dappled
 dapples
 dappling
+daratumumab
+daratumumab's
 darb
 darb's
 darda
@@ -34370,6 +34379,8 @@ dextroposition
 dextrose
 dextrose's
 dextroses
+dexymetrozole
+dexymetrozole's
 df
 DfES
 dfs
@@ -40284,7 +40295,6 @@ el
 el's
 eLab
 eLab's
-eLabs
 elaborate
 elaborated
 elaborately
@@ -40297,6 +40307,7 @@ elaboration's
 elaborations
 elaborative
 elaborators
+eLabs
 eland
 eland's
 elands
@@ -40366,6 +40377,8 @@ elderliness
 elderliness's
 elderly
 elders
+elderspeak
+elderspeak's
 eldest
 eldest's
 eLearning
@@ -71881,6 +71894,7 @@ licenses
 licensing
 licensor
 licensor's
+licensors
 licensure
 licensured
 licensures
@@ -76962,6 +76976,8 @@ melon's
 melons
 melorheostosis
 Melosa
+melphalan
+melphalan's
 melt
 meltdown
 meltdowns
@@ -95693,6 +95709,7 @@ plasma
 plasma's
 plasmacytoma
 plasmacytoma's
+plasmacytomas
 plasmapheresis
 plasmas
 plasmid
@@ -115218,6 +115235,9 @@ seventy
 seventy's
 seventyfold
 sever
+severabilities
+severability
+severability's
 severable
 several
 severalfold
@@ -136412,6 +136432,10 @@ undertook
 undertow
 undertow's
 undertows
+undertreat
+undertreated
+undertreating
+undertreats
 underused
 underusing
 underutilization
@@ -140107,6 +140131,8 @@ veneration's
 venerations
 venereal
 venereum
+venetoclax
+venetoclax's
 vengeance
 vengeance's
 vengeances
