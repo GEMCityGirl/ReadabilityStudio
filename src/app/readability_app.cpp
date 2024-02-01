@@ -2413,7 +2413,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/zoom-in.svg"),
                     _(L"Zoom"));
                 }
-            // histogram panel
+            // batch project histogram panel
                 {
                 wxRibbonPanel* editPanel =
                     new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BATCH_BUTTON_BAR,

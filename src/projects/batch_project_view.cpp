@@ -326,7 +326,9 @@ void BatchProjectView::OnAddToDictionary([[maybe_unused]] wxCommandEvent& event)
             wxGetApp().GetAppOptions().GetRibbonHoverColor(),
             wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
             LD_COPY_BUTTON|LD_SELECT_ALL_BUTTON|LD_OK_CANCEL_BUTTONS, wxID_ANY,
-            _(L"Add to Dictionary"), _(L"Check the words to add to your custom dictionary and click OK:"));
+            _(L"Add to Dictionary"),
+            _(L"Check the words to add to your custom dictionary and click OK:"));
+        wxGetApp().UpdateRibbonTheme(misspellingDlg->GetRibbon());
         if (misspellingDlg.ShowModal() == wxID_OK)
             {
             wxGetApp().AddWordsToDictionaries(misspellingDlg.GetSelectedItems(),
@@ -826,32 +828,22 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     
     wxRibbonPanel* editListButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_BUTTON_BAR);
-    wxRibbonPanel* editSummaryReportButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_SUMMARY_REPORT_BUTTON_BAR);
-    wxRibbonPanel* editExpListButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_EXPLANATION_LIST_BUTTON_BAR);
-    wxRibbonPanel* editReportButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_REPORT_BUTTON_BAR);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_SUMMARY_REPORT_BUTTON_BAR);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_EXPLANATION_LIST_BUTTON_BAR);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_REPORT_BUTTON_BAR);
     wxRibbonPanel* editStatsListButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_LIST_BUTTON_BAR);
-    wxRibbonPanel* editStatsReportButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_BUTTON_BAR);
-    wxRibbonPanel* editSimpleListWithSummationButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_BUTTON_BAR);
-    wxRibbonPanel* editSimpleListWithSummationAndExcludButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_BUTTON_BAR);
-    wxRibbonPanel* editSimpleListButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_BUTTON_BAR);
-    wxRibbonPanel* editBarChartButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_BAR_CHART_BUTTON_BAR);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_BUTTON_BAR);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_BUTTON_BAR);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_BUTTON_BAR);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_BUTTON_BAR);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_BAR_CHART_BUTTON_BAR);
     wxRibbonPanel* editBoxPlotButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_BOX_PLOT_BUTTON_BAR);
-    wxRibbonPanel* editHistogramButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BUTTON_BAR);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BUTTON_BAR);
     wxRibbonPanel* editHistogramBatchButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BATCH_BUTTON_BAR);
-    wxRibbonPanel* editPieChartButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_PIE_CHART_BUTTON_BAR);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_PIE_CHART_BUTTON_BAR);
     wxRibbonPanel* editGraphButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_GRAPH_BUTTON_BAR);
     wxRibbonPanel* editLixGermanButtonBarWindow =

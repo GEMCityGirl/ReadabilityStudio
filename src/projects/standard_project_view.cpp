@@ -1954,6 +1954,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_FLESCH_BUTTON_BAR);
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_CSVSS_BUTTON_BAR);
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_TEST_SCORES_BUTTON_BAR);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BATCH_BUTTON_BAR);
 
     if (event.GetInt() == READABILITY_SCORES_PAGE_ID ||
         event.GetInt() == READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID ||
