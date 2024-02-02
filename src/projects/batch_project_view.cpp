@@ -328,7 +328,7 @@ void BatchProjectView::OnAddToDictionary([[maybe_unused]] wxCommandEvent& event)
             LD_COPY_BUTTON|LD_SELECT_ALL_BUTTON|LD_OK_CANCEL_BUTTONS, wxID_ANY,
             _(L"Add to Dictionary"),
             _(L"Check the words to add to your custom dictionary and click OK:"));
-        wxGetApp().UpdateRibbonTheme(misspellingDlg->GetRibbon());
+        wxGetApp().UpdateRibbonTheme(misspellingDlg.GetRibbon());
         if (misspellingDlg.ShowModal() == wxID_OK)
             {
             wxGetApp().AddWordsToDictionaries(misspellingDlg.GetSelectedItems(),
