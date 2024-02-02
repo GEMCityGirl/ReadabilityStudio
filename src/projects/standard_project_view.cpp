@@ -1211,7 +1211,8 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
                 }
             if (doc->GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences)
                 {
-                if (wxMessageBox(_(L"This project is not currently excluding text. Do you wish to change this?"),
+                if (wxMessageBox(
+                    _(L"This project is not currently excluding text. Do you wish to change this?"),
                     _(L"Text Exclusion Method"), wxYES_NO|wxICON_QUESTION) == wxYES)
                     {
                     doc->SetInvalidSentenceMethod(InvalidSentence::ExcludeFromAnalysis);
@@ -1402,7 +1403,8 @@ void ProjectView::UpdateRibbonState()
     {
     ProjectDoc* projDoc = dynamic_cast<ProjectDoc*>(GetDocument());
     wxWindow* projectButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_PROJECT_RIBBON_BUTTON_BAR);
-    if (projDoc && projectButtonBarWindow && projectButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+    if (projDoc && projectButtonBarWindow &&
+        projectButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
         {
         auto projBar = dynamic_cast<wxRibbonButtonBar*>(projectButtonBarWindow);
         assert(projBar);
@@ -1535,7 +1537,7 @@ void ProjectView::UpdateStatistics()
             gradeMedian = wxNumberFormatter::ToString(
                 statistics::median(grades), 1,
                     wxNumberFormatter::Style::Style_NoTrailingZeroes);
-            std::set<double> modes = statistics::mode(grades, floor_value<double>() );
+            std::set<double> modes = statistics::mode(grades, floor_value<double>{});
             gradeMode.Clear();
             for (auto modesIter = modes.cbegin();
                  modesIter != modes.cend();
@@ -1559,7 +1561,7 @@ void ProjectView::UpdateStatistics()
             ageMedian = wxNumberFormatter::ToString(
                 statistics::median(ages), 1,
                     wxNumberFormatter::Style::Style_NoTrailingZeroes);
-            std::set<double> modes = statistics::mode(ages, floor_value<double>() );
+            std::set<double> modes = statistics::mode(ages, floor_value<double>{});
             ageMode.Clear();
             for (auto modesIter = modes.cbegin();
                  modesIter != modes.cend();
@@ -1581,7 +1583,7 @@ void ProjectView::UpdateStatistics()
             clozeMedian = wxNumberFormatter::ToString(
                 statistics::median(clozeScores), 2,
                     wxNumberFormatter::Style::Style_NoTrailingZeroes);
-            std::set<double> modes = statistics::mode(clozeScores, floor_value<double>() );
+            std::set<double> modes = statistics::mode(clozeScores, floor_value<double>{});
             clozeMode.Clear();
             for (auto modesIter = modes.cbegin();
                  modesIter != modes.cend();
@@ -1747,7 +1749,8 @@ void ProjectView::UpdateStatistics()
     GetReadabilityScoresList()->GetResultsListCtrl()->Resort();
 
     // select the item user had selected before the update
-    const auto selectedItemLocation = GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(selectedItem);
+    const auto selectedItemLocation =
+        GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(selectedItem);
     if (selectedItemLocation != wxNOT_FOUND)
         { GetReadabilityScoresList()->GetResultsListCtrl()->Select(selectedItemLocation); }
     }
@@ -1838,7 +1841,8 @@ void ProjectView::OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& event)
     const auto selectedIndex = GetReadabilityScoresList()->GetResultsListCtrl()->GetFirstSelected();
     if (selectedIndex != wxNOT_FOUND)
         {
-        const wxString testToRemove = GetReadabilityScoresList()->GetResultsListCtrl()->GetItemText(selectedIndex);
+        const wxString testToRemove =
+            GetReadabilityScoresList()->GetResultsListCtrl()->GetItemText(selectedIndex);
         if (testToRemove == GetAverageLabel() || testToRemove == GetMedianLabel() ||
             testToRemove == GetStdDevLabel() || testToRemove == GetModeLabel())
             { return; }
@@ -1877,7 +1881,8 @@ void ProjectView::OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& event)
         // remove the Averages row if there are no tests left
         if (GetReadabilityScoresList()->GetResultsListCtrl()->GetItemCount() == 1)
             {
-            const long location = GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(GetAverageLabel(), 0);
+            const long location =
+                GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(GetAverageLabel(), 0);
             if (location != wxNOT_FOUND)
                 { GetReadabilityScoresList()->GetResultsListCtrl()->DeleteItem(location); }
             }
@@ -2416,7 +2421,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
         if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetSummaryStatisticsLabel(),
                                wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
-            wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."), GetSummaryStatisticsLabel()),
+            wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."),
+                GetSummaryStatisticsLabel()),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
             }
         else
@@ -2450,11 +2456,13 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                         }
                     else if (typeid(*activeWindow) == typeid(Wisteria::Canvas))
                         {
-                        Wisteria::Canvas* graphWindow = dynamic_cast<Wisteria::Canvas*>(activeWindow);
+                        Wisteria::Canvas* graphWindow =
+                            dynamic_cast<Wisteria::Canvas*>(activeWindow);
                         graphWindow->SetLabel(
                             wxString::Format(L"%s [%s]", graphWindow->GetName(),
                                 wxFileName::StripExtension(doc->GetTitle())));
-                        graphWindow->Save(folder + wxFileName::GetPathSeparator() + GetSummaryStatisticsLabel() +
+                        graphWindow->Save(folder + wxFileName::GetPathSeparator() +
+                            GetSummaryStatisticsLabel() +
                             wxFileName::GetPathSeparator() +
                             graphWindow->GetLabel() + graphExt, graphOptions);
                         }
@@ -2467,7 +2475,8 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
         if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetSentencesBreakdownLabel(),
                                wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
-            wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."), GetSentencesBreakdownLabel()),
+            wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."),
+                GetSentencesBreakdownLabel()),
                 wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
             }
         else
@@ -2490,11 +2499,13 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                         }
                     else if (typeid(*activeWindow) == typeid(Wisteria::Canvas))
                         {
-                        Wisteria::Canvas* graphWindow = dynamic_cast<Wisteria::Canvas*>(activeWindow);
+                        Wisteria::Canvas* graphWindow =
+                            dynamic_cast<Wisteria::Canvas*>(activeWindow);
                         graphWindow->SetLabel(
                             wxString::Format(L"%s [%s]", graphWindow->GetName(),
                                 wxFileName::StripExtension(doc->GetTitle())));
-                        graphWindow->Save(folder + wxFileName::GetPathSeparator() + GetSentencesBreakdownLabel() +
+                        graphWindow->Save(folder + wxFileName::GetPathSeparator() +
+                            GetSentencesBreakdownLabel() +
                             wxFileName::GetPathSeparator() +
                             graphWindow->GetLabel() + graphExt, graphOptions);
                         }
@@ -2531,11 +2542,13 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                         }
                     else if (activeWindow->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                         {
-                        Wisteria::Canvas* graphWindow = dynamic_cast<Wisteria::Canvas*>(activeWindow);
+                        Wisteria::Canvas* graphWindow =
+                            dynamic_cast<Wisteria::Canvas*>(activeWindow);
                         graphWindow->SetLabel(
                             wxString::Format(L"%s [%s]", graphWindow->GetName(),
                                 wxFileName::StripExtension(doc->GetTitle())));
-                        graphWindow->Save(folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel() +
+                        graphWindow->Save(folder + wxFileName::GetPathSeparator() +
+                            GetWordsBreakdownLabel() +
                             wxFileName::GetPathSeparator() +
                             graphWindow->GetLabel() + graphExt, graphOptions);
                         }
@@ -2734,7 +2747,8 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
             canvas->GetLabel() + graphExt, graphOptions);
 
         outputText += wxString::Format(
-            L"%s\n<div class='minipage figure'>\n<img src='images\\%s' />\n<div class='caption'>%s</div>\n</div>\n",
+            L"%s\n<div class='minipage figure'>\n<img src='images\\%s' />\n"
+             "<div class='caption'>%s</div>\n</div>\n",
             (includeLeadingPageBreak ? pageBreak : wxString{}),
             canvas->GetLabel()+graphExt,
             wxString::Format(_(L"Figure %zu.%zu: %s"), sectionCounter, figureCounter++,
@@ -2773,7 +2787,8 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
             wxString(html_extract_text::get_style_section(htmlText));
         htmlText = html_extract_text::get_body(htmlText);
 
-        outputText += wxString::Format(L"\n%s<div class='caption'>%s</div>\n<div class='text-report-body'>%s</div>\n",
+        outputText += wxString::Format(
+            L"\n%s<div class='caption'>%s</div>\n<div class='text-report-body'>%s</div>\n",
             (includeLeadingPageBreak ? pageBreak : wxString{}),
             htmlEncode({ textWindow->GetLabel().wc_str() }, true).c_str(),
             htmlText);
@@ -2844,7 +2859,8 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
         bool includeLeadingPageBreak{ false };
         ++sectionCounter;
         figureCounter = tableCounter = 1;
-        outputText += wxString::Format(L"\n\n%s<div class='report-section'><a name='stats'></a>%s</div>\n",
+        outputText += wxString::Format(
+            L"\n\n%s<div class='report-section'><a name='stats'></a>%s</div>\n",
             (hasSections ? pageBreak : wxString{}),
             htmlEncode({ GetSummaryStatisticsLabel().wc_str() }, true).c_str());
         hasSections = true;
@@ -2877,7 +2893,8 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
         bool includeLeadingPageBreak{ false };
         ++sectionCounter;
         figureCounter = tableCounter = 1;
-        outputText += wxString::Format(L"\n\n%s<div class='report-section'><a name='wordsbreakdown'></a>%s</div>\n",
+        outputText += wxString::Format(
+            L"\n\n%s<div class='report-section'><a name='wordsbreakdown'></a>%s</div>\n",
             (hasSections ? pageBreak : wxString{}),
             htmlEncode({GetWordsBreakdownLabel().wc_str() }, true).c_str());
         hasSections = true;
@@ -2939,7 +2956,8 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
         bool includeLeadingPageBreak{ false };
         ++sectionCounter;
         figureCounter = tableCounter = 1;
-        outputText += wxString::Format(L"\n\n%s<div class='report-section'><a name='grammar'></a>%s</div>\n",
+        outputText += wxString::Format(
+            L"\n\n%s<div class='report-section'><a name='grammar'></a>%s</div>\n",
             (hasSections ? pageBreak : wxString{}),
             htmlEncode({ GetGrammarLabel().wc_str() }, true).c_str());
         hasSections = true;
@@ -2967,7 +2985,8 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
         bool includeLeadingPageBreak{ false };
         ++sectionCounter;
         figureCounter = tableCounter = 1;
-        outputText += wxString::Format(L"\n\n%s<div class='report-section'><a name='dolch'></a>%s</div>\n",
+        outputText += wxString::Format(
+            L"\n\n%s<div class='report-section'><a name='dolch'></a>%s</div>\n",
             (hasSections ? pageBreak : wxString{}),
             htmlEncode({ GetDolchLabel().wc_str() }, true).c_str());
         hasSections = true;

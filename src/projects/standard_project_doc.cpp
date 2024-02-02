@@ -2489,7 +2489,7 @@ void ProjectDoc::DisplayWordCharts()
     if (GetWordsBreakdownInfo().IsWordCloudEnabled() && GetTotalWords() > 0 &&
         m_keyWordsDataset != nullptr && m_keyWordsDataset->GetRowCount())
         {
-        if (!wordCloudCanvas)
+        if (wordCloudCanvas == nullptr)
             {
             wordCloudCanvas = new Wisteria::Canvas(view->GetSplitter(),
                                                    BaseProjectView::WORD_CLOUD_PAGE_ID);
@@ -2520,7 +2520,8 @@ void ProjectDoc::DisplayWordCharts()
 
         auto wordCloud = std::dynamic_pointer_cast<WordCloud>(wordCloudCanvas->GetFixedObject(0, 0));
         assert(wordCloud);
-        // top 100 words, with a min frequency of 2 (unless less than 100 words, then include everything)
+        // top 100 words, with a min frequency of 2
+        // (unless less than 100 words, then include everything)
         wordCloud->SetData(m_keyWordsDataset,
                            GetWordsColumnName(), GetWordsCountsColumnName(),
                            (m_keyWordsDataset->GetRowCount() < 100 ? 1 : 2),
