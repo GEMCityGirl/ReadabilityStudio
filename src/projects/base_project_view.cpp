@@ -1201,18 +1201,33 @@ void BaseProjectView::OnEditGraphColorScheme([[maybe_unused]] wxRibbonButtonBarE
     if (!baseDoc)
         { return; }
 
+    // load the list of color schemes and select the one currently in use
+    const wxString selectedStr{ baseDoc->GetGraphColorScheme() };
+    int selectedItem{ 0 };
     wxArrayString choices;
-    for (const auto& colorScheme : wxGetApp().GetGraphColorSchemeMap())
-        { choices.push_back(colorScheme.first); }
+    for (auto colorSchemeIter = wxGetApp().GetGraphColorSchemeMap().cbegin();
+        colorSchemeIter != wxGetApp().GetGraphColorSchemeMap().cend();
+        ++colorSchemeIter)
+        {
+        choices.push_back(colorSchemeIter->first);
+        if (colorSchemeIter->second == selectedStr)
+            {
+            selectedItem =
+                static_cast<int>(std::distance(wxGetApp().GetGraphColorSchemeMap().cbegin(),
+                                               colorSchemeIter));
+            }
+        }
 
     wxSingleChoiceDialog colorSchemeDlg(GetDocFrame(),
         _("Select a color scheme:"), _("Select Color Scheme"), choices);
+    colorSchemeDlg.SetSelection(selectedItem);
     colorSchemeDlg.SetSize({ GetDocFrame()->FromDIP(200), GetDocFrame()->FromDIP(400) });
     colorSchemeDlg.Center();
     if (colorSchemeDlg.ShowModal() != wxID_OK)
         { return; }
 
-    const auto foundColorScheme = wxGetApp().GetGraphColorSchemeMap().find(colorSchemeDlg.GetStringSelection());
+    const auto foundColorScheme =
+        wxGetApp().GetGraphColorSchemeMap().find(colorSchemeDlg.GetStringSelection());
     if (foundColorScheme != wxGetApp().GetGraphColorSchemeMap().cend())
         { baseDoc->SetGraphColorScheme(foundColorScheme->second); }
 
