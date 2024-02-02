@@ -648,7 +648,7 @@ class ToolsOptionsDlg final : public wxDialog
     [[nodiscard]]
     wxString GetGraphColorSchemeLabel() const
         {
-        return _(L"Grouping Color Scheme");
+        return _(L"Color Scheme");
         }
 
     [[nodiscard]]

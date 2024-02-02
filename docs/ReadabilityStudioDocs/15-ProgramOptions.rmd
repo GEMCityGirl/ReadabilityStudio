@@ -716,7 +716,7 @@ The options on this page select which categories of [Dolch](#reviewing-dolch) wo
 
 The options on this page customize your graphs.
 
-**Grouping Color Scheme**: Select from here the color scheme to apply to pie charts and grouped histograms (in batch projects).
+**Color Scheme**: Select from here the color scheme to apply to pie charts, word clouds, and grouped histograms (in batch projects).
 
 #### Background {-}
 

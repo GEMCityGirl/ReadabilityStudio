@@ -507,7 +507,24 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
     assert(graph && L"No graph on the canvas!");
 
     if (m_graphBrushScheme != nullptr)
-        { graph->SetBrushScheme(m_graphBrushScheme); }
+        {
+        graph->SetBrushScheme(m_graphBrushScheme);
+        }
+    if (typeid(*graph) == typeid(WordCloud))
+        {
+        const auto foundColorScheme = std::find_if(
+            wxGetApp().GetGraphColorSchemeMap().cbegin(),
+            wxGetApp().GetGraphColorSchemeMap().cend(),
+                [this](const auto& colorKey)
+                {
+                return GetGraphColorScheme() == colorKey.second;
+                });
+        if (foundColorScheme != wxGetApp().GetGraphColorSchemeMap().cend())
+            {
+            graph->SetColorScheme(
+                ReportEnumConvert::ConvertColorScheme(foundColorScheme->second));
+            }
+        }
     graph->SetPlotBackgroundColor(
         Colors::ColorContrast::ChangeOpacity(GetPlotBackGroundColor(),
                                              GetPlotBackGroundColorOpacity()));
@@ -1365,7 +1382,8 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         {
         // color scheme
         SetGraphColorScheme(XmlFormat::GetString(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_COLOR_SCHEME.data()));
+            wxGetApp().GetAppOptions().XML_GRAPH_COLOR_SCHEME.data(),
+            wxGetApp().GetAppOptions().GetGraphColorScheme()));
 
         // background color and images
         SetPlotBackGroundImagePath(XmlFormat::GetString(graphsSection, graphsSectionEnd,

@@ -4708,7 +4708,8 @@ void ToolsOptionsDlg::CreateGraphSection()
                 new wxEnumProperty(GetGraphColorSchemeLabel(), wxPG_LABEL, graphColorSchemes));
             colorSchemeProp->SetValue(defaultColorSchemeValue);
             colorSchemeProp->SetHelpString(
-                _(L"Select from here the color scheme to apply to pie charts and grouped histograms."));
+                _(L"Select from here the color scheme to apply to pie charts, "
+                   "word clouds, and grouped histograms."));
 
             m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetGraphBackgroundLabel()) );
             m_generalGraphPropertyGrid->SetPropertyHelpString(
