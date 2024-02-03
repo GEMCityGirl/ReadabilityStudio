@@ -97,6 +97,7 @@
 - Reviewer field is now preserved when resetting your settings or importing a settings file.
 - File search and random sampling of documents on the batch project wizard is exponentially faster now.
 - Fixed warning list in batch project not repainting when reloading project.
+- Fixed misspelled-word list in batch projects not refreshing after adding words to the dictionary.
 
 ### Readability Studio 2020/2021 {-}
 ***

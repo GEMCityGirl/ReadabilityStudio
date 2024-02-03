@@ -36,9 +36,9 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
     wxString multFactorValue;
     for (size_t i = 0; i < GetMisspelledWordData()->GetItemCount(); ++i)
         {
-        double totalCount = GetMisspelledWordData()->GetItemValue(i, 1);
-        double uniqueCount = GetMisspelledWordData()->GetItemValue(i, 2);
-        reportStr = GetMisspelledWordData()->GetItemText(i, 3);
+        double totalCount = GetMisspelledWordData()->GetItemValue(i, 2);
+        double uniqueCount = GetMisspelledWordData()->GetItemValue(i, 3);
+        reportStr = GetMisspelledWordData()->GetItemText(i, 4);
         for (size_t mspCounter = 0; mspCounter < misspellingsToRemove.GetCount(); ++mspCounter)
             {
             searchStr = L"\"" + misspellingsToRemove[mspCounter] + L"\"";
@@ -89,20 +89,20 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
                 --totalCount;
                 }
             }
-        GetMisspelledWordData()->SetItemValue(i, 1, totalCount);
-        GetMisspelledWordData()->SetItemValue(i, 2, uniqueCount);
-        GetMisspelledWordData()->SetItemText(i, 3, reportStr.c_str());
+        GetMisspelledWordData()->SetItemValue(i, 2, totalCount);
+        GetMisspelledWordData()->SetItemValue(i, 3, uniqueCount);
+        GetMisspelledWordData()->SetItemText(i, 4, reportStr.c_str());
         }
     // remove any blank rows
     for (size_t i = 0; i < GetMisspelledWordData()->GetItemCount(); /* handled in loop*/)
         {
-        if (GetMisspelledWordData()->GetItemValue(i, 1) == 0)
+        if (GetMisspelledWordData()->GetItemValue(i, 2) == 0)
             {
             // cppcheck-suppress assertWithSideEffect
-            assert(GetMisspelledWordData()->GetItemValue(i, 2) == 0);
+            assert(GetMisspelledWordData()->GetItemValue(i, 3) == 0);
             // cppcheck-suppress assertWithSideEffect
-            wxASSERT_LEVEL_2_MSG(GetMisspelledWordData()->GetItemText(i, 3).empty(),
-                GetMisspelledWordData()->GetItemText(i, 3));
+            wxASSERT_LEVEL_2_MSG(GetMisspelledWordData()->GetItemText(i, 4).empty(),
+                GetMisspelledWordData()->GetItemText(i, 4));
             GetMisspelledWordData()->DeleteItem(i);
             }
         else
