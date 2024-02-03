@@ -485,6 +485,7 @@ void BatchProjectView::UpdateSideBarIcons()
     GetSideBar()->SaveState();
     GetSideBar()->DeleteAllFolders();
 
+    // Note: refer to ReadabilityApp::InitProjectSidebar() for the icon indices.
     if (GetScoresView().GetWindowCount() > 0)
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetReadabilityScoresLabel(),
@@ -538,16 +539,17 @@ void BatchProjectView::UpdateSideBarIcons()
         for (size_t i = 0; i < GetHistogramsView().GetWindowCount(); ++i)
             {
             GetSideBar()->InsertSubItemById(SIDEBAR_HISTOGRAMS_SECTION_ID, GetHistogramsView().GetWindow(i)->GetName(),
-                GetHistogramsView().GetWindow(i)->GetId(), 9);
+                GetHistogramsView().GetWindow(i)->GetId(), 6);
             }
         }
     if (GetBoxPlotView().GetWindowCount() > 0)
         {
-        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetBoxPlotsLabel(), SIDEBAR_BOXPLOTS_SECTION_ID, 7);
+        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetBoxPlotsLabel(),
+                                 SIDEBAR_BOXPLOTS_SECTION_ID, 7);
         for (size_t i = 0; i < GetBoxPlotView().GetWindowCount(); ++i)
             {
             GetSideBar()->InsertSubItemById(SIDEBAR_BOXPLOTS_SECTION_ID, GetBoxPlotView().GetWindow(i)->GetName(),
-                GetBoxPlotView().GetWindow(i)->GetId(), 9);
+                GetBoxPlotView().GetWindow(i)->GetId(), 7);
             }
         }
     if (GetWordsBreakdownView().GetWindowCount() > 0)
@@ -556,9 +558,14 @@ void BatchProjectView::UpdateSideBarIcons()
                                  SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, 13);
         for (size_t i = 0; i < GetWordsBreakdownView().GetWindowCount(); ++i)
             {
+            const bool isGraph{ typeid(*GetWordsBreakdownView().GetWindow(i)) == typeid(Wisteria::Canvas) };
+
             GetSideBar()->InsertSubItemById(
                 SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, GetWordsBreakdownView().GetWindow(i)->GetName(),
-                GetWordsBreakdownView().GetWindow(i)->GetId(), 9);
+                GetWordsBreakdownView().GetWindow(i)->GetId(),
+                (isGraph &&
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetWordsBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(WordCloud)) ? 29 : 15);
             }
         }
     if (GetSentencesBreakdownView().GetWindowCount() > 0)
@@ -569,7 +576,7 @@ void BatchProjectView::UpdateSideBarIcons()
             {
             GetSideBar()->InsertSubItemById(
                 SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID, GetSentencesBreakdownView().GetWindow(i)->GetName(),
-                GetSentencesBreakdownView().GetWindow(i)->GetId(), 9);
+                GetSentencesBreakdownView().GetWindow(i)->GetId(), 15);
             }
         }
     if (GetSummaryStatsView().GetWindowCount() > 0)
@@ -580,30 +587,33 @@ void BatchProjectView::UpdateSideBarIcons()
             {
             GetSideBar()->InsertSubItemById(
                 SIDEBAR_STATS_SUMMARY_SECTION_ID, GetSummaryStatsView().GetWindow(i)->GetName(),
-                GetSummaryStatsView().GetWindow(i)->GetId(), 9);
+                GetSummaryStatsView().GetWindow(i)->GetId(), 15);
             }
         }
     if (GetGrammarView().GetWindowCount() > 0)
         {
-        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetGrammarLabel(), SIDEBAR_GRAMMAR_SECTION_ID, 4);
+        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetGrammarLabel(),
+                                 SIDEBAR_GRAMMAR_SECTION_ID, 4);
         for (size_t i = 0; i < GetGrammarView().GetWindowCount(); ++i)
             {
             GetSideBar()->InsertSubItemById(SIDEBAR_GRAMMAR_SECTION_ID, GetGrammarView().GetWindow(i)->GetName(),
-                GetGrammarView().GetWindow(i)->GetId(), 9);
+                GetGrammarView().GetWindow(i)->GetId(), 15);
             }
         }
     if (GetDolchSightWordsView().GetWindowCount() > 0)
         {
-        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetDolchLabel(), SIDEBAR_DOLCH_SECTION_ID, 5);
+        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetDolchLabel(),
+                                 SIDEBAR_DOLCH_SECTION_ID, 5);
         for (size_t i = 0; i < GetDolchSightWordsView().GetWindowCount(); ++i)
             {
             GetSideBar()->InsertSubItemById(SIDEBAR_DOLCH_SECTION_ID, GetDolchSightWordsView().GetWindow(i)->GetName(),
-                GetDolchSightWordsView().GetWindow(i)->GetId(), 9);
+                GetDolchSightWordsView().GetWindow(i)->GetId(), 15);
             }
         }
     if (GetWarningsView()->GetItemCount() > 0)
         {
-        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetWarningLabel(), SIDEBAR_WARNINGS_SECTION_ID, 8);
+        GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetWarningLabel(),
+                                 SIDEBAR_WARNINGS_SECTION_ID, 8);
         }
 
     GetSideBar()->ResetState();
