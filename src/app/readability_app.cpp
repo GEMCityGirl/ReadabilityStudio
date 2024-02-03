@@ -1964,7 +1964,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // list button edit panel (Copy, Select, View, Sort)
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_PANEL,
                         _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize,
                     wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -1991,7 +1991,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // list button edit panel (Long Format, Grade Scales, Copy, Select, View, Sort)
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_TEST_SCORES_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_TEST_SCORES_PANEL,
                         _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize,
                     wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2027,7 +2027,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
              // list button edit panel (Copy, Select, View, Sort, Sum)
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_CSVSS_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_CSVSS_PANEL,
                         _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize,
                     wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2059,7 +2059,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // list button edit panel (Copy, Select, Sort)
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_PANEL,
                         _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize,
                     wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2082,7 +2082,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // list button edit panel (Copy, Select, Sort, Sum)
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_PANEL,
                         _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize,
                     wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2109,7 +2109,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // list button edit panel (Copy, Select, Exclude, Sum, Sort)
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2140,7 +2140,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // HTML window
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_SUMMARY_REPORT_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_SUMMARY_REPORT_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2159,7 +2159,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // explanation list control
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_EXPLANATION_LIST_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_EXPLANATION_LIST_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2186,7 +2186,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // formatted text control
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_REPORT_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_REPORT_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2211,7 +2211,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // statistics list report in a standard project
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_STATS_LIST_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_STATS_LIST_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2243,7 +2243,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // statistics HTML report in a standard project
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2267,7 +2267,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // bar chart panel
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_BAR_CHART_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_BAR_CHART_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2318,7 +2318,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // box plot panel
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_BOX_PLOT_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_BOX_PLOT_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2369,7 +2369,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // histogram panel
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_HISTOGRAM_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2416,7 +2416,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // batch project histogram panel
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BATCH_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BATCH_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2470,7 +2470,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // wordcloud panel
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_WORDCLOUD_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_WORDCLOUD_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2515,7 +2515,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // pie chart panel
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_PIE_CHART_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_PIE_CHART_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2564,7 +2564,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // graph panel
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_GRAPH_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_GRAPH_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2605,7 +2605,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // Lix (German) panel
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIX_GERMAN_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIX_GERMAN_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2642,7 +2642,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // Raygor panel
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_RAYGOR_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_RAYGOR_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2683,7 +2683,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
              // Fry panel
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_FRY_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_FRY_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);
@@ -2720,7 +2720,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             // Flesch panel
                 {
                 wxRibbonPanel* editPanel =
-                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_FLESCH_BUTTON_BAR,
+                    new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_FLESCH_PANEL,
                         _(L"Edit"), wxNullBitmap,
                         wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_PANEL_NO_AUTO_MINIMISE);

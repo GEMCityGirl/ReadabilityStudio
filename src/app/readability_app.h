@@ -191,31 +191,31 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     constexpr static wxWindowID ID_DOCUMENT_RIBBON_BUTTON_BAR = wxID_HIGHEST + 7;
     constexpr static wxWindowID ID_CLIPBOARD_RIBBON_BUTTON_BAR = wxID_HIGHEST + 8;
 
-    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_BUTTON_BAR = wxID_HIGHEST + 9;
+    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_PANEL = wxID_HIGHEST + 9;
     // HTML window
-    constexpr static wxWindowID ID_EDIT_RIBBON_SUMMARY_REPORT_BUTTON_BAR = wxID_HIGHEST + 10;
-    constexpr static wxWindowID ID_EDIT_RIBBON_EXPLANATION_LIST_BUTTON_BAR = wxID_HIGHEST + 11;
+    constexpr static wxWindowID ID_EDIT_RIBBON_SUMMARY_REPORT_PANEL = wxID_HIGHEST + 10;
+    constexpr static wxWindowID ID_EDIT_RIBBON_EXPLANATION_LIST_PANEL = wxID_HIGHEST + 11;
     // formatted text control
-    constexpr static wxWindowID ID_EDIT_RIBBON_REPORT_BUTTON_BAR = wxID_HIGHEST + 12;
-    constexpr static wxWindowID ID_EDIT_RIBBON_STATS_LIST_BUTTON_BAR = wxID_HIGHEST + 13;
-    constexpr static wxWindowID ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_BUTTON_BAR = wxID_HIGHEST + 14;
-    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_SIMPLE_BUTTON_BAR = wxID_HIGHEST + 15;
-    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_BUTTON_BAR = wxID_HIGHEST + 16;
-    constexpr static wxWindowID ID_EDIT_RIBBON_BAR_CHART_BUTTON_BAR = wxID_HIGHEST + 17;
-    constexpr static wxWindowID ID_EDIT_RIBBON_HISTOGRAM_BUTTON_BAR = wxID_HIGHEST + 18;
-    constexpr static wxWindowID ID_EDIT_RIBBON_BOX_PLOT_BUTTON_BAR = wxID_HIGHEST + 19;
-    constexpr static wxWindowID ID_EDIT_RIBBON_PIE_CHART_BUTTON_BAR = wxID_HIGHEST + 20;
-    constexpr static wxWindowID ID_EDIT_RIBBON_LIX_GERMAN_BUTTON_BAR = wxID_HIGHEST + 21;
-    constexpr static wxWindowID ID_EDIT_RIBBON_FRY_BUTTON_BAR = wxID_HIGHEST + 22;
-    constexpr static wxWindowID ID_EDIT_RIBBON_RAYGOR_BUTTON_BAR = wxID_HIGHEST + 23;
-    constexpr static wxWindowID ID_EDIT_RIBBON_SCHWARTZ_BUTTON_BAR = wxID_HIGHEST + 24;
-    constexpr static wxWindowID ID_EDIT_RIBBON_FLESCH_BUTTON_BAR = wxID_HIGHEST + 25;
-    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_BUTTON_BAR = wxID_HIGHEST + 26;
-    constexpr static wxWindowID ID_EDIT_RIBBON_GRAPH_BUTTON_BAR = wxID_HIGHEST + 27;
-    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_CSVSS_BUTTON_BAR = wxID_HIGHEST + 28;
-    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_TEST_SCORES_BUTTON_BAR = wxID_HIGHEST + 29;
-    constexpr static wxWindowID ID_EDIT_RIBBON_HISTOGRAM_BATCH_BUTTON_BAR = wxID_HIGHEST + 30;
-    constexpr static wxWindowID ID_EDIT_RIBBON_WORDCLOUD_BUTTON_BAR = wxID_HIGHEST + 31;
+    constexpr static wxWindowID ID_EDIT_RIBBON_REPORT_PANEL = wxID_HIGHEST + 12;
+    constexpr static wxWindowID ID_EDIT_RIBBON_STATS_LIST_PANEL = wxID_HIGHEST + 13;
+    constexpr static wxWindowID ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_PANEL = wxID_HIGHEST + 14;
+    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_SIMPLE_PANEL = wxID_HIGHEST + 15;
+    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_PANEL = wxID_HIGHEST + 16;
+    constexpr static wxWindowID ID_EDIT_RIBBON_BAR_CHART_PANEL = wxID_HIGHEST + 17;
+    constexpr static wxWindowID ID_EDIT_RIBBON_HISTOGRAM_PANEL = wxID_HIGHEST + 18;
+    constexpr static wxWindowID ID_EDIT_RIBBON_BOX_PLOT_PANEL = wxID_HIGHEST + 19;
+    constexpr static wxWindowID ID_EDIT_RIBBON_PIE_CHART_PANEL = wxID_HIGHEST + 20;
+    constexpr static wxWindowID ID_EDIT_RIBBON_LIX_GERMAN_PANEL = wxID_HIGHEST + 21;
+    constexpr static wxWindowID ID_EDIT_RIBBON_FRY_PANEL = wxID_HIGHEST + 22;
+    constexpr static wxWindowID ID_EDIT_RIBBON_RAYGOR_PANEL = wxID_HIGHEST + 23;
+    constexpr static wxWindowID ID_EDIT_RIBBON_SCHWARTZ_PANEL = wxID_HIGHEST + 24;
+    constexpr static wxWindowID ID_EDIT_RIBBON_FLESCH_PANEL = wxID_HIGHEST + 25;
+    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_PANEL = wxID_HIGHEST + 26;
+    constexpr static wxWindowID ID_EDIT_RIBBON_GRAPH_PANEL = wxID_HIGHEST + 27;
+    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_CSVSS_PANEL = wxID_HIGHEST + 28;
+    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_TEST_SCORES_PANEL = wxID_HIGHEST + 29;
+    constexpr static wxWindowID ID_EDIT_RIBBON_HISTOGRAM_BATCH_PANEL = wxID_HIGHEST + 30;
+    constexpr static wxWindowID ID_EDIT_RIBBON_WORDCLOUD_PANEL = wxID_HIGHEST + 31;
 
     IdRangeLock CUSTOM_TEST_RANGE;
     IdRangeLock EXAMPLE_RANGE;

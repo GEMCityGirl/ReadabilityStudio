@@ -831,39 +831,39 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
         };
     
     wxRibbonPanel* editListButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_BUTTON_BAR);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_SUMMARY_REPORT_BUTTON_BAR);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_EXPLANATION_LIST_BUTTON_BAR);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_REPORT_BUTTON_BAR);
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_SUMMARY_REPORT_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_EXPLANATION_LIST_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_REPORT_PANEL);
     wxRibbonPanel* editStatsListButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_LIST_BUTTON_BAR);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_BUTTON_BAR);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_BUTTON_BAR);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_BUTTON_BAR);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_BUTTON_BAR);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_BAR_CHART_BUTTON_BAR);
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_LIST_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_BAR_CHART_PANEL);
     wxRibbonPanel* editBoxPlotButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_BOX_PLOT_BUTTON_BAR);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BUTTON_BAR);
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_BOX_PLOT_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_HISTOGRAM_PANEL);
     wxRibbonPanel* editHistogramBatchButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BATCH_BUTTON_BAR);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_PIE_CHART_BUTTON_BAR);
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BATCH_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_PIE_CHART_PANEL);
     wxRibbonPanel* editWordCloudButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_WORDCLOUD_BUTTON_BAR);
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_WORDCLOUD_PANEL);
     wxRibbonPanel* editGraphButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_GRAPH_BUTTON_BAR);
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_GRAPH_PANEL);
     wxRibbonPanel* editLixGermanButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIX_GERMAN_BUTTON_BAR);
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIX_GERMAN_PANEL);
     wxRibbonPanel* editRaygorButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_RAYGOR_BUTTON_BAR);
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_RAYGOR_PANEL);
     wxRibbonPanel* editFrySchwartzButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_FRY_BUTTON_BAR);
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_FRY_PANEL);
     wxRibbonPanel* editFleschButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_FLESCH_BUTTON_BAR);
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_FLESCH_PANEL);
     wxRibbonPanel* editListCsvssButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_CSVSS_BUTTON_BAR);
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_CSVSS_PANEL);
     wxRibbonPanel* editListTestScoresButtonBarWindow =
-        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_TEST_SCORES_BUTTON_BAR);
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_TEST_SCORES_PANEL);
 
     if (event.GetExtraLong() == SIDEBAR_READABILITY_SCORES_SECTION_ID)
         {
