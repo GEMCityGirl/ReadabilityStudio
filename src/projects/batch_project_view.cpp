@@ -148,8 +148,6 @@ void BatchProjectView::OnSummation([[maybe_unused]] wxRibbonButtonBarEvent& even
         {
         viewDlg.AddValue(_(L"Total Misspellings"),
             std::to_wstring(static_cast<size_t>(doc->GetMisspelledWordData()->GetColumnSum(2))) );
-        viewDlg.AddValue(_(L"Total Unique Misspellings"),
-            std::to_wstring(static_cast<size_t>(doc->GetMisspelledWordData()->GetColumnSum(3))) );
         }
     else if (GetActiveProjectWindow()->GetId() == DUPLICATES_LIST_PAGE_ID)
         {
