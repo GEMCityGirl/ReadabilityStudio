@@ -3227,6 +3227,7 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
             LD_FIND_BUTTON|LD_COLUMN_HEADERS|LD_SORT_BUTTON, wxID_ANY, _(L"Profile Report"),
             wxEmptyString, wxDefaultPosition, FromDIP(wxSize(800, 400)));
 
+    wxGetApp().UpdateRibbonTheme(profileReportDialog.GetRibbon());
     profileReportDialog.GetListCtrl()->ClearAll();
     profileReportDialog.GetListCtrl()->InsertColumn(0, _DT(L"Function", DTExplanation::DebugMessage));
     profileReportDialog.GetListCtrl()->InsertColumn(1, _DT(L"Times Called"));
@@ -3286,6 +3287,8 @@ void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
                 wxLog::GetVerbose() ? _(L"Verbose") :
                     _(L"Standard")),
             wxEmptyString, wxDefaultPosition, FromDIP(wxSize(800, 400)));
+
+    wxGetApp().UpdateRibbonTheme(logReportDialog.GetRibbon());
     logReportDialog.GetListCtrl()->ClearAll();
     logReportDialog.GetListCtrl()->InsertColumn(0, _(L"Message"));
     logReportDialog.GetListCtrl()->InsertColumn(1, _(L"Timestamp"));
@@ -3349,6 +3352,8 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
             LD_SAVE_BUTTON|LD_COPY_BUTTON|LD_PRINT_BUTTON|LD_SELECT_ALL_BUTTON|
             LD_COLUMN_HEADERS|LD_FIND_BUTTON|LD_SORT_BUTTON, wxID_ANY, _(L"Readability Tests Overview"),
             wxEmptyString, wxDefaultPosition, FromDIP(wxSize(800, 400)));
+
+    wxGetApp().UpdateRibbonTheme(testsOverviewDlg.GetRibbon());
     testsOverviewDlg.GetListCtrl()->ClearAll();
     testsOverviewDlg.GetListCtrl()->InsertColumn(0, _(L"Name"));
     testsOverviewDlg.GetListCtrl()->InsertColumn(1, _(L"Score Type"));
