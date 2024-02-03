@@ -17,6 +17,7 @@ std::set<is_double_word_exception::string_type>
         L"choo",                     // The train goes "choo choo"
         L"bye",                      // "Say bye bye to grandma."
         L"das",      L"der", L"die", // German articles, which can appear repeated
+        L"Doki",                     // A videogame
         L"ha",                       // "ha ha ha," she laughed at Blake's hilarious joke
         L"had",
         L"ho",       // "Ho ho ho," said Santa
