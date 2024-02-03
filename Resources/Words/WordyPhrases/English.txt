@@ -1965,6 +1965,9 @@ basicly	basically	3
 batery	battery	3		
 bathroom facilities	bathroom, facilities	0		
 bats in the belfry	crazy	2		
+battlegound	battleground	3		
+battlegound's	battleground's	3		
+battlegounds	battlegrounds	3		
 bcak	back	3		
 be advised	(omit)	0		
 be in receipt of	have	0		
@@ -2394,7 +2397,7 @@ brought to a standstill	ceased, ended, halted, stopped	0
 brought to an end	closed, ended, finished, concluded	0		
 brought to light	disclosed, broadcasted, divulged, exposed, pointed out, promoted, revealed	0		
 brought to mind	recalled, recollected, remembered	0		
-brower	browser	3		
+brower	browser	3		hall
 browers	browsers	3		
 bsaed	based	3		
 buccaneer	pirate	0		
@@ -4676,6 +4679,7 @@ disolved	dissolved	3
 disover	discover	3		
 dispair	despair	3		
 disparingly	disparagingly	3		
+disparitites	disparities	3		
 dispatch	send	0		
 dispatched	sent	0		
 dispatches	sends	0		
@@ -5215,6 +5219,7 @@ emphasizing	stressing	0
 emphsis	emphasis	3		
 emphysyma	emphysema	3		
 empiricaly	empirically	3		
+employement	employment	3		
 employment	work, job, use	0		
 employment opportunities	jobs	0		
 employment opportunity	job	0		
@@ -5435,6 +5440,7 @@ equiptment	equipment	3
 equiptment's	equipment's	3		
 equitable	fair	0		
 equitably	fairly	0		
+equitible	equitable	3		
 equitorial	equatorial	3		
 equivalent	equal	0		
 equivalently	equally	0		
@@ -6701,6 +6707,7 @@ guerrilas	guerrillas	3
 guidence	guidance	3		
 guiding light	mentor	2		
 guiding lights	mentors	2		
+guinfire	gunfire	3		
 gum up the works	sabotage	2		
 gummed up the works	sabotaged	2		
 gumming up the works	sabotaging	2		
@@ -7306,6 +7313,9 @@ impolite	rude	0
 importamt	important	3		
 importunate	urgent	0		
 importunately	urgently	0		
+imposter	impostor	3		
+imposter's	impostor's	3		
+imposters	impostors	3		
 impoverished	poor	0		
 impracticable	unworkable	0		
 impressario	impresario	3		
@@ -8980,6 +8990,7 @@ meet your waterloo	suffered a major defeat	2
 meeting together	meeting	1		
 melancholies	depressions	0		
 melancholy	sadness, depression, sad (adj.)	0		
+memberd	members	3		
 membranaphone	membranophone	3		
 memeber	member	3		
 menally	mentally	3		
@@ -13516,6 +13527,7 @@ technitian	technician	3
 technnology	technology	3		
 technolgy	technology	3		
 techologies	technologies	3		
+teeth in the game	skin in the game	3		
 teh	the	3		
 tehy	they	3		
 telelevision	television	3		
@@ -13619,7 +13631,7 @@ the his	(strike one of these)	3
 the ins and outs	details	0		
 the interesting thing is	interestingly	0		
 the issue of	Consider removing this	0		
-the its	(strike one of these)	3		department;help;office
+the its	(strike one of these)	3		department;help;office;service
 the last laugh	to unexpectedly win at the last moment	2		
 the length of time	the time	0		
 the lion's share	most, nearly all	0		
@@ -14451,6 +14463,8 @@ utilizing	using	0
 utillities	utilities	3		
 utilties	utilities	3		
 utiltity	utility	3		
+utimate	ultimate	3		
+utimately	ultimately	3		
 utitlty	utility	3		
 utliize	utilize	3		
 utliized	utilized	3		
