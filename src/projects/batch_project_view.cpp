@@ -556,16 +556,16 @@ void BatchProjectView::UpdateSideBarIcons()
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetWordsBreakdownLabel(),
                                  SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, 13);
-        for (size_t i = 0; i < GetWordsBreakdownView().GetWindowCount(); ++i)
+        for (const auto window : GetWordsBreakdownView().GetWindows())
             {
-            const bool isGraph{ typeid(*GetWordsBreakdownView().GetWindow(i)) == typeid(Wisteria::Canvas) };
+            const bool isGraph{ typeid(*window) == typeid(Wisteria::Canvas) };
 
             GetSideBar()->InsertSubItemById(
-                SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, GetWordsBreakdownView().GetWindow(i)->GetName(),
-                GetWordsBreakdownView().GetWindow(i)->GetId(),
+                SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, window->GetName(),
+                window->GetId(),
                 (isGraph &&
                     typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        GetWordsBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(WordCloud)) ? 29 : 15);
+                        window)->GetFixedObject(0, 0)) == typeid(WordCloud)) ? 29 : 15);
             }
         }
     if (GetSentencesBreakdownView().GetWindowCount() > 0)
