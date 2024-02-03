@@ -1,4 +1,5 @@
 #include "batch_project_view.h"
+#include "../Wisteria-Dataviz/src/graphs/wordcloud.h"
 #include "../Wisteria-Dataviz/src/import/html_encode.h"
 #include "../Wisteria-Dataviz/src/import/html_extract_text.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
@@ -847,6 +848,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     wxRibbonPanel* editHistogramBatchButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BATCH_BUTTON_BAR);
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_PIE_CHART_BUTTON_BAR);
+    wxRibbonPanel* editWordCloudButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_WORDCLOUD_BUTTON_BAR);
     wxRibbonPanel* editGraphButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_GRAPH_BUTTON_BAR);
     wxRibbonPanel* editLixGermanButtonBarWindow =
@@ -1028,11 +1031,23 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                 {
                 if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
                     {
-                    editGraphButtonBarWindow->Show();
-                    getEditButtonBar(editGraphButtonBarWindow)->
-                        ToggleButton(XRCID("ID_DROP_SHADOW"),
-                            dynamic_cast<BatchProjectDoc*>(GetDocument())->
-                                IsDisplayingDropShadows());
+                    if (typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+                        typeid(Wisteria::Graphs::WordCloud))
+                        {
+                        editWordCloudButtonBarWindow->Show();
+                        getEditButtonBar(editWordCloudButtonBarWindow)->
+                            ToggleButton(XRCID("ID_DROP_SHADOW"),
+                                dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                        }
+                    else
+                        {
+                        editGraphButtonBarWindow->Show();
+                        getEditButtonBar(editGraphButtonBarWindow)->
+                            ToggleButton(XRCID("ID_DROP_SHADOW"),
+                                dynamic_cast<BatchProjectDoc*>(GetDocument())->
+                                    IsDisplayingDropShadows());
+                        }
                     }
                 else
                     {

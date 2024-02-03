@@ -1948,6 +1948,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BUTTON_BAR);
     wxRibbonPanel* editPieChartButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_PIE_CHART_BUTTON_BAR);
+    wxRibbonPanel* editWordCloudButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_WORDCLOUD_BUTTON_BAR);
     wxRibbonPanel* editGraphButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_GRAPH_BUTTON_BAR);
     wxRibbonPanel* editLixGermanButtonBarWindow =
@@ -2178,6 +2180,16 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                         ToggleButton(XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"),
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsShowcasingComplexWords());
                     getEditButtonBar(editPieChartButtonBarWindow)->
+                        ToggleButton(XRCID("ID_DROP_SHADOW"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                    }
+                else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
+                    typeid(*dynamic_cast<Wisteria::Canvas*>(
+                        GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
+                    typeid(Wisteria::Graphs::WordCloud))
+                    {
+                    editWordCloudButtonBarWindow->Show();
+                    getEditButtonBar(editWordCloudButtonBarWindow)->
                         ToggleButton(XRCID("ID_DROP_SHADOW"),
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                     }

@@ -215,6 +215,7 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     constexpr static wxWindowID ID_EDIT_RIBBON_LIST_CSVSS_BUTTON_BAR = wxID_HIGHEST + 28;
     constexpr static wxWindowID ID_EDIT_RIBBON_LIST_TEST_SCORES_BUTTON_BAR = wxID_HIGHEST + 29;
     constexpr static wxWindowID ID_EDIT_RIBBON_HISTOGRAM_BATCH_BUTTON_BAR = wxID_HIGHEST + 30;
+    constexpr static wxWindowID ID_EDIT_RIBBON_WORDCLOUD_BUTTON_BAR = wxID_HIGHEST + 31;
 
     IdRangeLock CUSTOM_TEST_RANGE;
     IdRangeLock EXAMPLE_RANGE;
