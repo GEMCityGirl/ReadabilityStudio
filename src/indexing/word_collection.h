@@ -1529,7 +1529,7 @@ private:
                 currentWord.length() > 1 &&
                 !currentWord.is_numeric() &&
                 (properWords.get_data().find(currentWord) != properWords.get_data().cend() ||
-                             is_known_proper_nouns->contains(currentWord.c_str(), currentWord.length()) ))
+                    is_known_proper_nouns->contains({ currentWord.c_str(), currentWord.length() })))
                 {
                 currentWord.set_proper_noun(true);
                 continue;
@@ -1599,7 +1599,7 @@ private:
             // Mark a word personal if proper and a known personal name
             if (wordPos->is_proper_noun() &&
                 !wordPos->is_acronym() &&
-                is_known_personal_nouns->contains(wordPos->c_str(), wordPos->length()) )
+                is_known_personal_nouns->contains({ wordPos->c_str(), wordPos->length() }))
                 { wordPos->set_personal(true); }
             }
         }

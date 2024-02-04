@@ -80,25 +80,15 @@ class word_list
         }
 
     /** @brief Determines if a given string is in the list.
-        @param search_word The word to search for.
+        @param theWord The word to search for.
         @returns @c true if the word is found.
-        @note The list should be sorted before calling this.*/
+        @warning The list should be sorted before calling this.*/
     [[nodiscard]]
-    bool contains(const wchar_t* search_word) const
+    bool contains(std::wstring_view theWord) const
         {
-        return std::binary_search(get_words().cbegin(), get_words().cend(), word_type(search_word));
-        }
-
-    /** @brief Determines if a given string is in the list.
-        @param search_word The word to search for.
-        @param length The length of the @c word.
-        @returns @c true if the word is found.
-        @note The list should be sorted before calling this.*/
-    [[nodiscard]]
-    bool contains(const wchar_t* search_word, const size_t length) const
-        {
-        return std::binary_search(get_words().cbegin(), get_words().cend(),
-                                  word_type(search_word, length));
+        return std::binary_search(get_words().cbegin(),
+                                  get_words().cend(),
+                                  word_type(theWord.data(), theWord.length()));
         }
 
     /** @brief Adds a word to the list, inserted at the proper sorted position.

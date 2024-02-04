@@ -674,7 +674,7 @@ namespace LuaScripting
                 replacementStr.Trim(true); replacementStr.Trim(false);
                 if (replacementStr.find(L' ') == wxString::npos)
                     {
-                    if (wordList.contains(replacementStr))
+                    if (wordList.contains({ replacementStr.wc_str(), replacementStr.length() }))
                         {
                         outputStr += wxString::Format(L"%s\t%s\r\n",
                             phrase.first.to_string().c_str(), replacementStr);
