@@ -553,7 +553,8 @@ namespace grammar
                              traits::case_insensitive_ex::eq(text[i+1], L's') &&
                              characters::is_character::is_period(text[i+2]))
                         { return false; }
-                    // Special logic for ambiguous abbreviations
+                    // Special logic for month name ambiguous abbreviations.
+                    // Only see them as a month if followed by a number.
                     else if ((current_position-previous_word_position) == 3 &&
                         // "Jan." can be a person's name or an abbreviation for January
                         ((string_util::full_width_to_narrow(text[previous_word_position]) == L'J' &&
