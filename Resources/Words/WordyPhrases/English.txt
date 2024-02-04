@@ -12192,9 +12192,6 @@ rigorously	harshly, strictly	0
 rigourous	rigorous	3		
 rigth	right	3		
 rigths	rights	3		
-rime	rhyme	3		
-rimed	rhymed	3		
-rimes	rhymes	3		
 ring a bell	sound familiar	2		
 rings a bell	sounds familiar	2		
 rininging	ringing	3		
