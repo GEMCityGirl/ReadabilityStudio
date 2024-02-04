@@ -841,54 +841,54 @@ void ProjectView::UpdateSideBarIcons()
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetReadabilityScoresLabel(),
                                  SIDEBAR_READABILITY_SCORES_SECTION_ID, 1);
-        for (size_t i = 0; i < GetReadabilityResultsView().GetWindowCount(); ++i)
+        for (auto* window : GetReadabilityResultsView().GetWindows())
             {
-            const bool isGraph = typeid(*GetReadabilityResultsView().GetWindow(i)) == typeid(Wisteria::Canvas);
+            const bool isGraph = typeid(*window) == typeid(Wisteria::Canvas);
 
             GetSideBar()->InsertSubItemById(SIDEBAR_READABILITY_SCORES_SECTION_ID,
-                GetReadabilityResultsView().GetWindow(i)->GetName(),
-                GetReadabilityResultsView().GetWindow(i)->GetId(),
-                GetReadabilityResultsView().GetWindow(i)->GetId() == READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID ?
+                window->GetName(),
+                window->GetId(),
+                window->GetId() == READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID ?
                     17 :
-                GetReadabilityResultsView().GetWindow(i)->GetId() == READABILITY_SCORES_PAGE_ID ?
+                window->GetId() == READABILITY_SCORES_PAGE_ID ?
                     23 :
-                GetReadabilityResultsView().GetWindow(i)->GetId() == READABILITY_GOALS_PAGE_ID ?
+                window->GetId() == READABILITY_GOALS_PAGE_ID ?
                     28 :
                 (isGraph &&
                      typeid(*dynamic_cast<Wisteria::Canvas*>(
-                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(FleschChart)) ?
+                         window)->GetFixedObject(0, 0)) == typeid(FleschChart)) ?
                     18 :
                 (isGraph &&
                      typeid(*dynamic_cast<Wisteria::Canvas*>(
-                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(FraseGraph)) ?
+                         window)->GetFixedObject(0, 0)) == typeid(FraseGraph)) ?
                     19 :
                 (isGraph &&
                      typeid(*dynamic_cast<Wisteria::Canvas*>(
-                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(FryGraph)) ?
+                         window)->GetFixedObject(0, 0)) == typeid(FryGraph)) ?
                     20 :
                 (isGraph &&
                      typeid(*dynamic_cast<Wisteria::Canvas*>(
-                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(RaygorGraph)) ?
+                         window)->GetFixedObject(0, 0)) == typeid(RaygorGraph)) ?
                     21 :
                 (isGraph &&
                      typeid(*dynamic_cast<Wisteria::Canvas*>(
-                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(CrawfordGraph)) ?
+                         window)->GetFixedObject(0, 0)) == typeid(CrawfordGraph)) ?
                     22 :
                 (isGraph &&
                      typeid(*dynamic_cast<Wisteria::Canvas*>(
-                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(SchwartzGraph)) ?
+                         window)->GetFixedObject(0, 0)) == typeid(SchwartzGraph)) ?
                     25 :
                 (isGraph &&
                      typeid(*dynamic_cast<Wisteria::Canvas*>(
-                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(LixGauge)) ?
+                         window)->GetFixedObject(0, 0)) == typeid(LixGauge)) ?
                     26 :
                 (isGraph &&
                      typeid(*dynamic_cast<Wisteria::Canvas*>(
-                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(LixGaugeGerman)) ?
+                         window)->GetFixedObject(0, 0)) == typeid(LixGaugeGerman)) ?
                     26 :
                 (isGraph &&
                      typeid(*dynamic_cast<Wisteria::Canvas*>(
-                         GetReadabilityResultsView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                         window)->GetFixedObject(0, 0)) ==
                          typeid(DanielsonBryan2Plot)) ?
                     27 :
                     9);
@@ -900,12 +900,12 @@ void ProjectView::UpdateSideBarIcons()
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetSummaryStatisticsLabel(),
                                  SIDEBAR_STATS_SUMMARY_SECTION_ID, 2);
-        for (size_t i = 0; i < GetSummaryView().GetWindowCount(); ++i)
+        for (const auto* window : GetSummaryView().GetWindows())
             {
-            GetSideBar()->InsertSubItemById(SIDEBAR_STATS_SUMMARY_SECTION_ID, GetSummaryView().GetWindow(i)->GetName(),
-                GetSummaryView().GetWindow(i)->GetId(),
-                GetSummaryView().GetWindow(i)->IsKindOf(CLASSINFO(HtmlTableWindow)) ? 17 :
-                    GetSummaryView().GetWindow(i)->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 : 9);
+            GetSideBar()->InsertSubItemById(SIDEBAR_STATS_SUMMARY_SECTION_ID, window->GetName(),
+                window->GetId(),
+                window->IsKindOf(CLASSINFO(HtmlTableWindow)) ? 17 :
+                    window->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 : 9);
             }
         }
 
@@ -914,30 +914,30 @@ void ProjectView::UpdateSideBarIcons()
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetWordsBreakdownLabel(),
                                  SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, 13);
-        for (size_t i = 0; i < GetWordsBreakdownView().GetWindowCount(); ++i)
+        for (auto* window : GetWordsBreakdownView().GetWindows())
             {
-            const bool isGraph = typeid(*GetWordsBreakdownView().GetWindow(i)) == typeid(Wisteria::Canvas);
+            const bool isGraph = typeid(*window) == typeid(Wisteria::Canvas);
 
             GetSideBar()->InsertSubItemById(SIDEBAR_WORDS_BREAKDOWN_SECTION_ID,
-                GetWordsBreakdownView().GetWindow(i)->GetName(),
-                GetWordsBreakdownView().GetWindow(i)->GetId(),
-                GetWordsBreakdownView().GetWindow(i)->IsKindOf(CLASSINFO(FormattedTextCtrl)) ? 0 :
-                    GetWordsBreakdownView().GetWindow(i)->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 :
+                window->GetName(),
+                window->GetId(),
+                window->IsKindOf(CLASSINFO(FormattedTextCtrl)) ? 0 :
+                    window->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 :
                     (isGraph &&
                         typeid(*dynamic_cast<Wisteria::Canvas*>(
-                            GetWordsBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                            window)->GetFixedObject(0, 0)) ==
                         typeid(Wisteria::Graphs::Histogram)) ? 6 :
                     (isGraph &&
                         typeid(*dynamic_cast<Wisteria::Canvas*>(
-                            GetWordsBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                            window)->GetFixedObject(0, 0)) ==
                         typeid(Wisteria::Graphs::BarChart)) ? 16 :
                     (isGraph &&
                         typeid(*dynamic_cast<Wisteria::Canvas*>(
-                            GetWordsBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                            window)->GetFixedObject(0, 0)) ==
                         typeid(Wisteria::Graphs::WordCloud)) ? 29 :
                     (isGraph &&
                         typeid(*dynamic_cast<Wisteria::Canvas*>(
-                            GetWordsBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                            window)->GetFixedObject(0, 0)) ==
                         typeid(Wisteria::Graphs::PieChart)) ? 30 :
                     9);
             }
@@ -948,25 +948,25 @@ void ProjectView::UpdateSideBarIcons()
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetSentencesBreakdownLabel(),
                                  SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID, 14);
-        for (size_t i = 0; i < GetSentencesBreakdownView().GetWindowCount(); ++i)
+        for (auto* window : GetSentencesBreakdownView().GetWindows())
             {
-            const bool isGraph = typeid(*GetSentencesBreakdownView().GetWindow(i)) == typeid(Wisteria::Canvas);
+            const bool isGraph = typeid(*window) == typeid(Wisteria::Canvas);
 
             GetSideBar()->InsertSubItemById(SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID,
-                GetSentencesBreakdownView().GetWindow(i)->GetName(),
-                GetSentencesBreakdownView().GetWindow(i)->GetId(),
-                GetSentencesBreakdownView().GetWindow(i)->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 :
+                window->GetName(),
+                window->GetId(),
+                window->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 :
                 (isGraph &&
                     typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        GetSentencesBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                        window)->GetFixedObject(0, 0)) ==
                     typeid(Wisteria::Graphs::BoxPlot)) ? 7 :
                 (isGraph &&
                     typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        GetSentencesBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                        window)->GetFixedObject(0, 0)) ==
                     typeid(Wisteria::Graphs::Histogram)) ? 6 :
                 (isGraph &&
                     typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        GetSentencesBreakdownView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                        window)->GetFixedObject(0, 0)) ==
                     typeid(Wisteria::Graphs::HeatMap)) ? 24 :
                 9);
             }
@@ -976,13 +976,13 @@ void ProjectView::UpdateSideBarIcons()
     if (GetGrammarView().GetWindowCount() > 0)
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetGrammarLabel(), SIDEBAR_GRAMMAR_SECTION_ID, 4);
-        for (size_t i = 0; i < GetGrammarView().GetWindowCount(); ++i)
+        for (const auto* window : GetGrammarView().GetWindows())
             {
             GetSideBar()->InsertSubItemById(SIDEBAR_GRAMMAR_SECTION_ID,
-                GetGrammarView().GetWindow(i)->GetName(),
-                GetGrammarView().GetWindow(i)->GetId(),
-                GetGrammarView().GetWindow(i)->IsKindOf(CLASSINFO(FormattedTextCtrl)) ? 0 :
-                    GetGrammarView().GetWindow(i)->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 : 9);
+                window->GetName(),
+                window->GetId(),
+                window->IsKindOf(CLASSINFO(FormattedTextCtrl)) ? 0 :
+                    window->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 : 9);
             }
         }
 
@@ -990,20 +990,20 @@ void ProjectView::UpdateSideBarIcons()
     if (GetDolchSightWordsView().GetWindowCount() > 0)
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetDolchLabel(), SIDEBAR_DOLCH_SECTION_ID, 5);
-        for (size_t i = 0; i < GetDolchSightWordsView().GetWindowCount(); ++i)
+        for (auto* window : GetDolchSightWordsView().GetWindows())
             {
-            const bool isGraph = typeid(*GetDolchSightWordsView().GetWindow(i)) == typeid(Wisteria::Canvas);
+            const bool isGraph = typeid(*window) == typeid(Wisteria::Canvas);
 
             GetSideBar()->InsertSubItemById(SIDEBAR_DOLCH_SECTION_ID,
-                GetDolchSightWordsView().GetWindow(i)->GetName(),
-                GetDolchSightWordsView().GetWindow(i)->GetId(),
-                GetDolchSightWordsView().GetWindow(i)->IsKindOf(CLASSINFO(FormattedTextCtrl)) ? 0 :
-                    GetDolchSightWordsView().GetWindow(i)->IsKindOf(CLASSINFO(HtmlTableWindow)) ? 17 :
+                window->GetName(),
+                window->GetId(),
+                window->IsKindOf(CLASSINFO(FormattedTextCtrl)) ? 0 :
+                    window->IsKindOf(CLASSINFO(HtmlTableWindow)) ? 17 :
                     (isGraph &&
                         typeid(*dynamic_cast<Wisteria::Canvas*>(
-                            GetDolchSightWordsView().GetWindow(i))->GetFixedObject(0, 0)) ==
+                            window)->GetFixedObject(0, 0)) ==
                         typeid(Wisteria::Graphs::BarChart)) ? 16 :
-                    GetDolchSightWordsView().GetWindow(i)->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 : 9);
+                    window->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 : 9);
             }
         }
 

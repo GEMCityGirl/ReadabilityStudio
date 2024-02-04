@@ -490,45 +490,45 @@ void BatchProjectView::UpdateSideBarIcons()
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetReadabilityScoresLabel(),
                                  SIDEBAR_READABILITY_SCORES_SECTION_ID, 1);
-        for (size_t i = 0; i < GetScoresView().GetWindowCount(); ++i)
+        for (auto* window : GetScoresView().GetWindows())
             {
-            const bool isGraph = typeid(*GetScoresView().GetWindow(i)) == typeid(Wisteria::Canvas);
+            const bool isGraph = typeid(*window) == typeid(Wisteria::Canvas);
 
             GetSideBar()->InsertSubItemById(
-                SIDEBAR_READABILITY_SCORES_SECTION_ID, GetScoresView().GetWindow(i)->GetName(),
-                GetScoresView().GetWindow(i)->GetId(),
-                GetScoresView().GetWindow(i)->GetId() == ID_SCORE_LIST_PAGE_ID ? 15 :
-                GetScoresView().GetWindow(i)->GetId() == ID_SCORE_STATS_LIST_PAGE_ID ? 15 :
-                GetScoresView().GetWindow(i)->GetId() == ID_AGGREGATED_DOC_SCORES_LIST_PAGE_ID ? 15 :
-                GetScoresView().GetWindow(i)->GetId() == ID_AGGREGATED_CLOZE_SCORES_LIST_PAGE_ID ? 15 :
-                GetScoresView().GetWindow(i)->GetId() == READABILITY_GOALS_PAGE_ID ? 28 :
+                SIDEBAR_READABILITY_SCORES_SECTION_ID, window->GetName(),
+                window->GetId(),
+                window->GetId() == ID_SCORE_LIST_PAGE_ID ? 15 :
+                window->GetId() == ID_SCORE_STATS_LIST_PAGE_ID ? 15 :
+                window->GetId() == ID_AGGREGATED_DOC_SCORES_LIST_PAGE_ID ? 15 :
+                window->GetId() == ID_AGGREGATED_CLOZE_SCORES_LIST_PAGE_ID ? 15 :
+                window->GetId() == READABILITY_GOALS_PAGE_ID ? 28 :
                 (isGraph &&
                     typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(FleschChart)) ? 18 :
+                        window)->GetFixedObject(0, 0)) == typeid(FleschChart)) ? 18 :
                 (isGraph &&
                     typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(FraseGraph)) ? 19 :
+                        window)->GetFixedObject(0, 0)) == typeid(FraseGraph)) ? 19 :
                 (isGraph &&
                     typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(FryGraph)) ? 20 :
+                        window)->GetFixedObject(0, 0)) == typeid(FryGraph)) ? 20 :
                 (isGraph &&
                     typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(RaygorGraph)) ? 21 :
+                        window)->GetFixedObject(0, 0)) == typeid(RaygorGraph)) ? 21 :
                 (isGraph &&
                     typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(CrawfordGraph)) ? 22 :
+                        window)->GetFixedObject(0, 0)) == typeid(CrawfordGraph)) ? 22 :
                 (isGraph &&
                     typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(SchwartzGraph)) ? 25 :
+                        window)->GetFixedObject(0, 0)) == typeid(SchwartzGraph)) ? 25 :
                 (isGraph &&
                     typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(LixGauge)) ? 26 :
+                        window)->GetFixedObject(0, 0)) == typeid(LixGauge)) ? 26 :
                 (isGraph &&
                     typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(LixGaugeGerman)) ? 26 :
+                        window)->GetFixedObject(0, 0)) == typeid(LixGaugeGerman)) ? 26 :
                 (isGraph &&
                     typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        GetScoresView().GetWindow(i))->GetFixedObject(0, 0)) == typeid(DanielsonBryan2Plot)) ? 27 :
+                        window)->GetFixedObject(0, 0)) == typeid(DanielsonBryan2Plot)) ? 27 :
                     9);
             }
         }
@@ -536,27 +536,27 @@ void BatchProjectView::UpdateSideBarIcons()
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetHistogramsLabel(),
                                  SIDEBAR_HISTOGRAMS_SECTION_ID, 6);
-        for (size_t i = 0; i < GetHistogramsView().GetWindowCount(); ++i)
+        for (const auto* window : GetHistogramsView().GetWindows())
             {
-            GetSideBar()->InsertSubItemById(SIDEBAR_HISTOGRAMS_SECTION_ID, GetHistogramsView().GetWindow(i)->GetName(),
-                GetHistogramsView().GetWindow(i)->GetId(), 6);
+            GetSideBar()->InsertSubItemById(SIDEBAR_HISTOGRAMS_SECTION_ID, window->GetName(),
+                window->GetId(), 6);
             }
         }
     if (GetBoxPlotView().GetWindowCount() > 0)
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetBoxPlotsLabel(),
                                  SIDEBAR_BOXPLOTS_SECTION_ID, 7);
-        for (size_t i = 0; i < GetBoxPlotView().GetWindowCount(); ++i)
+        for (const auto* window : GetBoxPlotView().GetWindows())
             {
-            GetSideBar()->InsertSubItemById(SIDEBAR_BOXPLOTS_SECTION_ID, GetBoxPlotView().GetWindow(i)->GetName(),
-                GetBoxPlotView().GetWindow(i)->GetId(), 7);
+            GetSideBar()->InsertSubItemById(SIDEBAR_BOXPLOTS_SECTION_ID, window->GetName(),
+                window->GetId(), 7);
             }
         }
     if (GetWordsBreakdownView().GetWindowCount() > 0)
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetWordsBreakdownLabel(),
                                  SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, 13);
-        for (const auto window : GetWordsBreakdownView().GetWindows())
+        for (auto* window : GetWordsBreakdownView().GetWindows())
             {
             const bool isGraph{ typeid(*window) == typeid(Wisteria::Canvas) };
 
@@ -572,42 +572,42 @@ void BatchProjectView::UpdateSideBarIcons()
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetSentencesBreakdownLabel(),
                                  SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID, 14);
-        for (size_t i = 0; i < GetSentencesBreakdownView().GetWindowCount(); ++i)
+        for (const auto* window : GetSentencesBreakdownView().GetWindows())
             {
             GetSideBar()->InsertSubItemById(
-                SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID, GetSentencesBreakdownView().GetWindow(i)->GetName(),
-                GetSentencesBreakdownView().GetWindow(i)->GetId(), 15);
+                SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID, window->GetName(),
+                window->GetId(), 15);
             }
         }
     if (GetSummaryStatsView().GetWindowCount() > 0)
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetSummaryStatisticsLabel(),
                                  SIDEBAR_STATS_SUMMARY_SECTION_ID, 2);
-        for (size_t i = 0; i < GetSummaryStatsView().GetWindowCount(); ++i)
+        for (const auto* window : GetSummaryStatsView().GetWindows())
             {
             GetSideBar()->InsertSubItemById(
-                SIDEBAR_STATS_SUMMARY_SECTION_ID, GetSummaryStatsView().GetWindow(i)->GetName(),
-                GetSummaryStatsView().GetWindow(i)->GetId(), 15);
+                SIDEBAR_STATS_SUMMARY_SECTION_ID, window->GetName(),
+                window->GetId(), 15);
             }
         }
     if (GetGrammarView().GetWindowCount() > 0)
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetGrammarLabel(),
                                  SIDEBAR_GRAMMAR_SECTION_ID, 4);
-        for (size_t i = 0; i < GetGrammarView().GetWindowCount(); ++i)
+        for (const auto* window : GetGrammarView().GetWindows())
             {
-            GetSideBar()->InsertSubItemById(SIDEBAR_GRAMMAR_SECTION_ID, GetGrammarView().GetWindow(i)->GetName(),
-                GetGrammarView().GetWindow(i)->GetId(), 15);
+            GetSideBar()->InsertSubItemById(SIDEBAR_GRAMMAR_SECTION_ID, window->GetName(),
+                window->GetId(), 15);
             }
         }
     if (GetDolchSightWordsView().GetWindowCount() > 0)
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetDolchLabel(),
                                  SIDEBAR_DOLCH_SECTION_ID, 5);
-        for (size_t i = 0; i < GetDolchSightWordsView().GetWindowCount(); ++i)
+        for (const auto* window : GetDolchSightWordsView().GetWindows())
             {
-            GetSideBar()->InsertSubItemById(SIDEBAR_DOLCH_SECTION_ID, GetDolchSightWordsView().GetWindow(i)->GetName(),
-                GetDolchSightWordsView().GetWindow(i)->GetId(), 15);
+            GetSideBar()->InsertSubItemById(SIDEBAR_DOLCH_SECTION_ID, window->GetName(),
+                window->GetId(), 15);
             }
         }
     if (GetWarningsView()->GetItemCount() > 0)
