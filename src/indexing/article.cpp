@@ -266,7 +266,7 @@ bool is_incorrect_english_article::is_an_exception(std::wstring_view word)
         }
 
     // if a known (full-word, case-insensitive) exception
-    if (get_an_exceptions().contains(word.data(), word.length()))
+    if (get_an_exceptions().contains(word))
         {
         return true;
         }
@@ -316,7 +316,7 @@ bool is_incorrect_english_article::is_a_exception(std::wstring_view word)
     };
 
     // if a known (full-word, case-insensitive) exception
-    if (get_a_exceptions().contains(word.data(), word.length()))
+    if (get_a_exceptions().contains(word))
         {
         return true;
         }
