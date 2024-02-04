@@ -593,7 +593,6 @@ aforememtioned	aforementioned	3
 aforementionned	aforementioned	3		
 aformentioned	aforementioned	3		
 afterall	after all	3		
-afterwards	afterward	0		
 again and again	repeatedly, recurrently, again	1		
 againnst	against	3		
 agains	against	3		
@@ -6016,7 +6015,6 @@ fellow colleagues	colleagues	1
 felonious	wicked, criminal	0		
 feloniously	wickedly, criminally	0		
 felt the pinch	was affected by adversity	2		
-females	women	0		
 femminist	feminist	3		
 ferocious	fierce	0		
 ferociously	fiercely	0		
@@ -9641,7 +9639,6 @@ ocassionaly	occasionally	3
 ocassioned	occasioned	3		
 ocassions	occasions	3		
 occaison	occasion	3		
-occasion	cause	0		
 occasionaly	occasionally	3		
 occassion	occasion	3		
 occassional	occasional	3		
@@ -10848,7 +10845,6 @@ prescribed	set	0
 presedential	presidential	3		
 presend	present	3		
 presense	presence	3		
-present	give	0		
 present incumbent	incumbent	1		
 present incumbents	incumbents	1		
 present status	status	0		
@@ -11899,7 +11895,6 @@ remunerating	paying, compensating	0
 remuneration	pay, payment	0		
 remuneration's	pay's	0		
 remunerations	pays	0		
-render	give, make	0		
 render assistance to	assist, aid	0		
 rendered assistance to	assisted, aided	0		
 renderering	rendering	3		
@@ -12070,7 +12065,7 @@ responsibile	responsible	3
 responsibilites	responsibilities	3		
 responsibilities	jobs, duties	0		
 responsibility	duty, job	0		
-responsible for	has charge of	0		
+responsible for	in charge of	0		
 responsiblities	responsibilities	3		
 responsiblity	responsibility	3		
 responsing	responding	3		
@@ -14023,7 +14018,6 @@ touple	tuple	3
 tour manger	tour manager	3		
 tour mangers	tour managers	3		
 tow the line	toe the line	3		
-towards	toward	0		
 towed the line	toed the line	3		
 towing the line	toeing the line	3		
 towords	towards	3		

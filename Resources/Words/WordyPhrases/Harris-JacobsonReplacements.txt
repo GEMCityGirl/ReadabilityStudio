@@ -619,7 +619,6 @@ fallacy	lie
 familiar	known
 famished	hungry
 fatuous	silly
-females	women
 fetch	get
 fetched	got
 fetches	gets
@@ -981,7 +980,6 @@ preeminent	top
 preferable	better
 preponderant	chief
 prescribed	set
-present	give
 presently	now
 prevaricate	lie
 prevaricated	lied
@@ -1061,7 +1059,6 @@ remunerates	pays
 remunerating	paying
 remuneration	pay
 remunerations	pays
-render	give
 replica	copy
 replicas	copies
 represents	is
@@ -1165,7 +1162,6 @@ titillate	tickle
 titillated	tickled
 titillates	tickles
 titillating	tickling
-towards	toward
 transcription	copy
 transcriptions	copies
 transmit	send

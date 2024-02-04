@@ -495,7 +495,6 @@ facilitating	helping
 facilitation	help
 famished	hungry
 fatuous	silly
-females	women
 ferocious	fierce
 ferociously	fiercely
 fetch	get
@@ -740,7 +739,6 @@ obtain	get
 obtained	got
 obtaining	getting
 obtains	gets
-occasion	cause
 occur	happen
 occurred	happened
 occurs	happens
@@ -814,7 +812,6 @@ predilection	liking
 preeminent	top
 preferable	better
 preponderant	chief
-present	give
 presently	now
 previously	before
 primary	first
@@ -882,7 +879,6 @@ remunerates	pays
 remunerating	paying
 remuneration	pay
 remunerations	pays
-render	give
 represents	is
 request	ask
 requested	asked
@@ -967,7 +963,6 @@ thirdly	third
 thoroughfare	road
 thoroughfare's	road's
 thoroughfares	roads
-towards	toward
 transmit	send
 transmits	sends
 transmitted	sent

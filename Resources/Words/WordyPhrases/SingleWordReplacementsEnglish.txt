@@ -178,7 +178,6 @@ affray	fight
 affrayed	fought
 affraying	fighting
 affrays	fights
-afterwards	afterward
 aggrandize	make greater
 aggrandized	made greater
 aggrandizes	makes greater
@@ -1379,7 +1378,6 @@ felicitous	apt
 felicity	bliss
 felonious	wicked, criminal
 feloniously	wickedly, criminally
-females	women
 ferocious	fierce
 ferociously	fiercely
 fetch	get
@@ -1950,7 +1948,6 @@ obviate	wipe out
 obviated	wiped out
 obviates	wipes out
 obviating	wiping out
-occasion	cause
 occur	happen
 occurred	happened
 occurrence	event, instance
@@ -2126,7 +2123,6 @@ preponderant	overpowering, overruling, major, chief, dominant
 preposterous	senseless, absurd
 prescience	foresight
 prescribed	set
-present	give
 presently	now
 presumptuous	bold, forward
 presumptuously	boldly, forwardly
@@ -2336,7 +2332,6 @@ remunerating	paying, compensating
 remuneration	pay, payment
 remuneration's	pay's
 remunerations	pays
-render	give, make
 repentance	regret
 replica	copy
 replicas	copies
@@ -2571,7 +2566,6 @@ titillate	tickle
 titillated	tickled
 titillates	tickles
 titillating	tickling
-towards	toward
 tranquility	quietness
 transcendent	superior
 transcendently	superiorly

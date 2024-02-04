@@ -207,7 +207,7 @@ erb.
 erw.
 es.
 esp.
-esq.
+Esq.
 est.
 et.
 evtl.
@@ -503,9 +503,9 @@ tues.
 twp.
 tx.
 tägl.
-u.s.
-u.s.a.
-u.s.s.r.
+U.S.
+U.S.A.
+U.S.S.R.
 uds.
 ukr.
 ult.

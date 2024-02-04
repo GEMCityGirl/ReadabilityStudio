@@ -103,7 +103,6 @@ affray	fight
 affrayed	fought
 affraying	fighting
 affrays	fights
-afterwards	afterward
 aggregate	collect
 aggregates	collects
 aggressive	forward
@@ -759,7 +758,6 @@ familiar	known
 famished	hungry
 fatuous	silly
 felonious	wicked
-females	women
 fetch	get
 fetched	got
 fetches	gets
@@ -1108,7 +1106,6 @@ obtain	get
 obtained	got
 obtaining	getting
 obtains	gets
-occasion	cause
 occur	happen
 occurred	happened
 occurs	happens
@@ -1200,7 +1197,6 @@ preeminent	top
 preferable	better
 preponderant	major
 prescribed	set
-present	give
 presently	now
 presumptuous	bold
 prevaricate	lie
@@ -1296,7 +1292,6 @@ remunerates	pays
 remunerating	paying
 remuneration	pay
 remunerations	pays
-render	give
 replica	copy
 replicas	copies
 reprehend	blame
@@ -1415,7 +1410,6 @@ titillate	tickle
 titillated	tickled
 titillates	tickles
 titillating	tickling
-towards	toward
 transcription	copy
 transcriptions	copies
 transmit	send
