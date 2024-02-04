@@ -11,7 +11,7 @@
 namespace grammar
     {
     word_list is_abbreviation::m_abbreviations;
-    word_list is_abbreviation::m_nonAabbreviations;
+    word_list is_abbreviation::m_nonAbbreviations;
 
     //------------------------------------------
     bool is_abbreviation::operator()(const std::wstring_view text) const

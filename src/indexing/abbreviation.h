@@ -53,12 +53,12 @@ namespace grammar
         [[nodiscard]]
         static word_list& get_non_abbreviations() noexcept
             {
-            return m_nonAabbreviations;
+            return m_nonAbbreviations;
             }
 
       private:
         static word_list m_abbreviations;
-        static word_list m_nonAabbreviations;
+        static word_list m_nonAbbreviations;
         };
 
     /// @brief Predicate for determining if a word is an acronym.
