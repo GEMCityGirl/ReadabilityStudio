@@ -232,7 +232,8 @@ void ProjectDoc::RefreshProject()
             }
         catch (...)
             {
-            LogMessage(_(L"An unknown error occurred while analyzing the document. Unable to create project."),
+            LogMessage(
+                _(L"An unknown error occurred while analyzing the document. Unable to create project."),
                 _(L"Error"), wxOK|wxICON_EXCLAMATION);
             return;
             }
@@ -298,6 +299,7 @@ void ProjectDoc::RefreshProject()
     // If so then select the scores section.
     if (!view->GetSideBar()->SelectSubItemById(selectedItem, true, true))
         { view->GetSideBar()->SelectFolder(0, true, true); }
+    view->ShowSideBar(view->IsSideBarShown());
 
     GetDocumentWindow()->Refresh();
 

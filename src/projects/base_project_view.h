@@ -48,6 +48,11 @@ class BaseProjectView : public wxView
         }
 
     void ShowSideBar(const bool show = true);
+    [[nodiscard]]
+    bool IsSideBarShown() const noexcept
+        {
+        return m_sidebarShown;
+        }
 
     [[nodiscard]]
     wxMenuBar* GetMenuBar() noexcept

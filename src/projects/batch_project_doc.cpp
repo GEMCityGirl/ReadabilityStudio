@@ -587,6 +587,7 @@ void BatchProjectDoc::RefreshProject()
             view->GetSideBar()->SelectFolder(0, true, true);
             }
         }
+    view->ShowSideBar(view->IsSideBarShown());
     dynamic_cast<ListCtrlEx*>(view->GetScoresView().FindWindowById(
         BaseProjectView::ID_SCORE_LIST_PAGE_ID))->Select(0);
 
