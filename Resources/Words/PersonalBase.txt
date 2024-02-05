@@ -1648,6 +1648,7 @@ Bailey
 Baili
 Bailie
 Baillargeon
+Bailleres
 Baillie
 Baily
 Baime
@@ -3922,6 +3923,7 @@ Chebychev
 Chebyshev
 Checha
 Cheche
+Chediak
 Cheever
 Chekhov
 Chekijababi
@@ -7043,6 +7045,7 @@ Farren
 Farris
 Farrow
 Farruco
+Farrugia
 Fashanu
 Fassbinder
 Faste
@@ -8009,6 +8012,7 @@ Gianna
 Gianni
 Giannini
 Gianpaolo
+Gianrico
 Giauque
 Giavani
 Gib
@@ -9254,6 +9258,7 @@ Hicks
 Hidalgo
 Hiden
 Hieronymus
+Higashi
 Higashiosaka
 Higdon
 Higgins
@@ -14906,6 +14911,7 @@ Millikan
 Milliken
 Millington
 Millsap
+Millstine
 Milly
 Milne
 Milner
@@ -15115,6 +15121,7 @@ Montez
 Montezuma
 Montgomery
 Monti
+Montori
 Montorsi
 Montoya
 Montreal
@@ -18506,6 +18513,7 @@ Shakeena
 Shakeita
 Shakespeare
 Shakeya
+Shakhbout
 Shakia
 Shakira
 Shakita
@@ -18998,6 +19006,7 @@ Sisyphus
 Sitbon
 Sizemore
 Sjostrom
+Sjögren
 Sjöström
 Skaggs
 Skandinavisk
@@ -20382,6 +20391,7 @@ Tsen
 Tsinghua
 Tsiolkovsky
 Tsolakos
+Tubbs
 Tubman
 Tucanae
 Tucci
@@ -20921,6 +20931,7 @@ Wald
 Walda
 Waldemar
 Walden
+Waldenström
 Walderich
 Waldman
 Waldo

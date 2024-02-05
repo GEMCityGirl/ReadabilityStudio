@@ -2855,6 +2855,7 @@ child's play	easy task	2
 childbird	childbirth	3		
 childen	children	3		
 childern	children	3		
+childrens	children's	3		
 childs	children	3		
 chimerical	unreal, fantastic	0		
 chip off the old block	just like his/her parent	2		

@@ -4130,6 +4130,7 @@ anaphylactoid
 anaphylaxis
 anaplasmosis
 anaplasmosis's
+anaplastic
 anaplastology
 anapsid
 anapsid's
@@ -12106,6 +12107,7 @@ biotechnologists
 biotechnology
 biotechnology's
 bioterrorism
+biotherapeutics
 biotherapy
 biotic
 biotin
@@ -17845,6 +17847,7 @@ carboxypeptidase
 carboy
 carboy's
 carboys
+carbs
 carbuncle
 carbuncle's
 carbuncled
@@ -17949,6 +17952,7 @@ cardioplegia
 cardiopulmonary
 cardiorespiratory
 cardiothoracic
+cardiotoxicity
 cardiovascular
 cardioversion
 cardioverter
@@ -20481,6 +20485,10 @@ chest
 chest's
 chested
 chesterfields
+chestfed
+chestfeed
+chestfeeding
+chestfeeds
 chestful
 chestfuls
 chestier
@@ -41921,6 +41929,9 @@ engorgement's
 engorgements
 engorges
 engorging
+engraftment
+engraftment's
+engraftments
 engrained
 engram's
 engrammatic
@@ -48837,6 +48848,8 @@ fluorocarbons
 fluorochrome
 fluorochrome's
 fluorochromes
+fluorodeoxyglucose
+fluorodeoxyglucose's
 fluorogen
 fluorogen's
 fluorogens
@@ -52063,6 +52076,8 @@ gastroenteritis
 gastroenteritis's
 gastroenterologic
 gastroenterologist
+gastroenterologist's
+gastroenterologists
 gastroenterology
 gastroesophageal
 gastroileal
@@ -53691,6 +53706,10 @@ gluttonously
 gluttons
 gluttony
 gluttony's
+glycate
+glycated
+glycates
+glycating
 glycemic
 glyceraldehyde
 glyceraldehyde's
@@ -56754,6 +56773,7 @@ haplessness's
 haplodiploidy
 haplodiplontic
 haploid
+haploidentical
 haploids
 haploinsufficiency
 haplontic
@@ -57543,6 +57563,9 @@ healthism's
 healthisms
 healthkit
 healthkit's
+healthplan
+healthplan's
+healthplans
 healths
 healthy
 heap
@@ -61053,6 +61076,8 @@ hyperaemia's
 hyperaemic
 hyperaesthesia
 hyperaesthetic
+hyperalbuminemia
+hyperalbuminemia's
 hyperaldosteronism
 hyperandrogenism
 hyperandrogenism's
@@ -61205,6 +61230,8 @@ hypersensitivities
 hypersensitivity
 hypersensitivity's
 hypersexual
+hypersomnia
+hypersomnia's
 hypersonic
 hypersonics
 hyperspace
@@ -61225,6 +61252,7 @@ hypertext
 hypertext's
 hypertexts
 hyperthermia
+hyperthermic
 hyperthermophile
 hyperthermophile's
 hyperthermophiles
@@ -62976,6 +63004,9 @@ impute
 imputed
 imputes
 imputing
+iMRI
+iMRI's
+iMRIs
 in
 in's
 inabilities
@@ -66523,6 +66554,7 @@ intoxications
 intra
 intrabranch
 intracapsular
+intracavitary
 intracellular
 intracellularly
 intracerebral
@@ -74380,7 +74412,10 @@ macroequilibrium's
 macroevolution
 macroevolutionary
 macrogenitosomia
+macroglobulin
+macroglobulin's
 macroglobulinemia
+macroglobulins
 macroglossia
 macrognathia
 macrohistory
@@ -79503,8 +79538,10 @@ misfit's
 misfits
 misfitted
 misfitting
+misfold
 misfolded
 misfolding
+misfolds
 misfortune
 misfortune's
 misfortunes
@@ -81939,9 +81976,12 @@ multiphase
 multiphasic
 multiphasically
 multiplace
+multiplan
+multiplan's
 multiplanet
 multiplanet's
 multiplanets
+multiplans
 multiplatform
 multiplayer
 multiple
@@ -82039,6 +82079,9 @@ multistroke
 multistrokes
 multisyllabic
 multisymbol
+multitasker
+multitasker's
+multitaskers
 multitasking
 multitaskings
 multitaxon
@@ -83581,6 +83624,7 @@ nemeses
 nemesis
 nemesis's
 neo
+neoadjuvant
 neoaves
 neocharismatic
 neoclassic
@@ -83922,6 +83966,9 @@ neuroses
 neurosis
 neurosis's
 neurosteroid
+neurostimulator
+neurostimulator's
+neurostimulators
 neurosurgeon
 neurosurgeon's
 neurosurgeons
@@ -90732,6 +90779,8 @@ pantomimist
 pantomimist's
 pantomimists
 pantothenic
+pantothenol
+pantothenol's
 pantries
 pantry
 pantry's
@@ -95779,6 +95828,9 @@ plasm
 plasm's
 plasma
 plasma's
+plasmacyte
+plasmacyte's
+plasmacytes
 plasmacytoma
 plasmacytoma's
 plasmacytomas
@@ -98211,6 +98263,7 @@ preamplifier
 preamplifier's
 preapproval
 preapproval's
+preapprovals
 preapproved
 preapproves
 preapproving
@@ -103179,6 +103232,9 @@ radiographs
 radiography
 radiography's
 radioimmunoassay
+radioimmunotherapies
+radioimmunotherapy
+radioimmunotherapy's
 radioing
 radioiodine
 radioisotope
@@ -103233,6 +103289,9 @@ radiosonde's
 radiosondes
 radiosterilization
 radiosterilized
+radiosurgeries
+radiosurgery
+radiosurgery's
 radiotelegraph
 radiotelegraphies
 radiotelegraphs
@@ -108450,6 +108509,10 @@ restaff
 restaffed
 restaffing
 restaffs
+restage
+restaged
+restages
+restaging
 restandardise
 restandardised
 restandardises
@@ -109484,6 +109547,7 @@ rheumatism
 rheumatism's
 rheumatisms
 rheumatoid
+rheumatologic
 rheumatologist
 rheumatologist's
 rheumatologists
@@ -117398,6 +117462,7 @@ sinner's
 sinners
 sinning
 sinoatrial
+sinonasal
 sins
 sinter
 sinter's
@@ -130609,6 +130674,7 @@ thrombocythemia
 thrombocytopenia
 thrombocytopenic
 thrombocytosis
+thromboembolic
 thromboembolism
 thrombokinase
 thrombolytic
@@ -130844,6 +130910,8 @@ thyroxine's
 thyself
 Ti
 Ti's
+tianeptine
+tianeptine's
 tiara
 tiara's
 tiaras
@@ -131744,6 +131812,9 @@ tomography's
 tomorrow
 tomorrow's
 tomorrows
+tomotherapies
+tomotherapy
+tomotherapy's
 toms
 tomtit
 tomtit's
@@ -136583,6 +136654,9 @@ underwhelm
 underwhelmed
 underwhelming
 underwhelms
+underwire
+underwire's
+underwires
 underworld
 underworld's
 underworlds
