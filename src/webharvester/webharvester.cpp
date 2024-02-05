@@ -271,7 +271,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
     const wxString webFileExt = wxFileName(downloadPath).GetExt();
     if (webFileExt.empty() || webFileExt.length() > 4)
         {
-        long rCode{ 0 };
+        int rCode{ 0 };
         const wxString downloadExt = StripIllegalFileCharacters(
             fileExtension.length() ? fileExtension :
                                      GetFileTypeFromContentType(GetContentType(Url, rCode)));
@@ -311,7 +311,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
     auto responseCode = m_downloader.GetLastStatus();
 
     // check the response code
-    if (IsBadResponseCode(responseCode))
+    if (QueueDownload::IsBadResponseCode(responseCode))
         {
         wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).", Url,
                      responseCode, QueueDownload::GetResponseMessage(responseCode));
@@ -360,7 +360,7 @@ wxString WebHarvester::GetFileTypeFromContentType(const wxString& contentType)
     }
 
 //----------------------------------
-wxString WebHarvester::GetContentType(wxString& Url, long& responseCode)
+wxString WebHarvester::GetContentType(wxString& Url, int& responseCode)
     {
     responseCode = 404;
 
@@ -409,7 +409,7 @@ wxString WebHarvester::CreateNewFileName(const wxString& filePath)
 
 //----------------------------------
 bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString& contentType,
-                               wxString& statusText, long& responseCode,
+                               wxString& statusText, int& responseCode,
                                const bool acceptOnlyHtmlOrScriptFiles /*= true*/)
     {
     webPageContent.clear();
@@ -443,13 +443,13 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
 
     responseCode = m_downloader.GetLastStatus();
     statusText = m_downloader.GetLastStatusText();
-    if (IsBadResponseCode(responseCode))
+    if (QueueDownload::IsBadResponseCode(responseCode))
         {
         wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).", Url,
                      responseCode, QueueDownload::GetResponseMessage(responseCode));
         return false;
         }
-    else if (m_downloader.GetLastRead().size())
+    else if (m_downloader.GetLastRead().size() > 0)
         {
         contentType = m_downloader.GetLastContentType();
         if (contentType.empty())
@@ -511,7 +511,7 @@ bool WebHarvester::IsPageHtml(wxString& Url, wxString& contentType)
         return false;
         }
 
-    long responseCode{ 0 };
+    int responseCode{ 0 };
     contentType = GetContentType(Url, responseCode);
     if (contentType.empty())
         {
@@ -559,7 +559,7 @@ bool WebHarvester::CrawlLinks()
     CrawlLinks(m_url, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
 
     // Now check the original URL to see if it is a file that should be downloaded
-    long rCode{ 0 };
+    int rCode{ 0 };
     const wxString fnExt = wxFileName(m_url).GetExt();
     const wxString fileExt =
         fnExt.length() ? fnExt : GetFileTypeFromContentType(GetContentType(m_url, rCode));
@@ -606,7 +606,7 @@ bool WebHarvester::CrawlLinks(wxString& url,
         // read in the page
         wxString contentType;
         wxString statusText;
-        long responseCode{ 0 };
+        int responseCode{ 0 };
         if (!ReadWebPage(url, fileText, contentType, statusText, responseCode, true))
             {
             --m_currentLevel;
@@ -756,7 +756,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
     // but it's a nice way to get a list of broken links from a site
     if (IsSearchingForBrokenLinks())
         {
-        long responseCode{ 0 };
+        int responseCode{ 0 };
         GetContentType(fullUrl, responseCode);
         if (responseCode == 404)
             {
@@ -782,7 +782,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
             }
         else
             {
-            long rCode{ 0 };
+            int rCode{ 0 };
             fileExt = GetFileTypeFromContentType(GetContentType(fullUrl, rCode));
             }
         }

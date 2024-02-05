@@ -269,7 +269,7 @@ class WebHarvester
         @returns Whether the file was successfully read.*/
     [[nodiscard]]
     bool ReadWebPage(wxString& Url, wxString& webPageContent, wxString& contentType,
-                     wxString& statusText, long& responseCode,
+                     wxString& statusText, int& responseCode,
                      const bool acceptOnlyHtmlOrScriptFiles = true);
 
     /// @brief Attempts to connect to @c url.
@@ -287,7 +287,7 @@ class WebHarvester
         @param[in,out] Url The webpage (may be altered if redirected).
         @param[out] responseCode The response code when connecting to the page.
         @returns The MIME type (and possibly charset) of the page's content type.*/
-    wxString GetContentType(wxString& Url, long& responseCode);
+    wxString GetContentType(wxString& Url, int& responseCode);
     /// @returns The file type (possibly an extension) from a MIME type string.
     /// @param contentType The MIME type string.
     [[nodiscard]]
@@ -543,15 +543,6 @@ class WebHarvester
     static wxString GetCharsetFromPageContent(const char* pageContent, const size_t length);
 
   protected:
-    [[nodiscard]]
-    inline constexpr static bool IsBadResponseCode(const long responseCode) noexcept
-        {
-        return (responseCode == 204 || responseCode == 400 || responseCode == 401 ||
-                responseCode == 402 || responseCode == 403 || responseCode == 404 ||
-                responseCode == 500 || responseCode == 501 || responseCode == 502 ||
-                responseCode == 503);
-        }
-
     [[nodiscard]]
     bool VerifyUrlDomainCriteria(const wxString& url);
     bool HarvestLink(wxString& url, const wxString& referringUrl,

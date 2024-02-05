@@ -3910,13 +3910,13 @@ bool BaseProject::LoadExternalDocument()
     if (resolvePath.IsHTTPFile() || resolvePath.IsHTTPSFile())
         {
         wxString content, contentType, statusText;
-        long responseCode;
+        int responseCode;
         wxString urlPath = GetOriginalDocumentFilePath();
         if (wxGetApp().GetWebHarvester().ReadWebPage(urlPath, content, contentType, statusText,
                                                      responseCode, false))
             {
             wxString title;
-            std::pair<bool,wxString> extractResult =
+            std::pair<bool, wxString> extractResult =
                 ExtractRawTextWithEncoding(content, WebHarvester::GetFileTypeFromContentType(contentType),
                                            GetOriginalDocumentFilePath(), title);
             if (!extractResult.first)
@@ -3944,7 +3944,8 @@ bool BaseProject::LoadExternalDocument()
             }
         else
             {
-            LogMessage(wxString::Format(_(L"Unable to open webpage. The following error occurred:\n%s\n%s"),
+            LogMessage(wxString::Format(
+                       _(L"Unable to open webpage. The following error occurred:\n%s\n%s"),
                        QueueDownload::GetResponseMessage(responseCode),
                        statusText),
                 _(L"Error"), wxOK|wxICON_EXCLAMATION);
@@ -4020,7 +4021,7 @@ bool BaseProject::LoadExternalDocument()
         try
             {
             MemoryMappedFile sourceFile(GetOriginalDocumentFilePath(), true, true);
-            const std::pair<bool,wxString> extractResult =
+            const std::pair<bool, wxString> extractResult =
                 ExtractRawText(static_cast<const char*>(sourceFile.GetStream()),
                     sourceFile.GetMapSize(), wxFileName(GetOriginalDocumentFilePath()).GetExt());
             if (extractResult.first)
@@ -4031,7 +4032,8 @@ bool BaseProject::LoadExternalDocument()
                 catch (...)
                     {
                     LogMessage(
-                        _(L"An unknown error occurred while analyzing the document. Unable to create project."),
+                        _(L"An unknown error occurred while analyzing the document. "
+                           "Unable to create project."),
                         _(L"Error"), wxOK|wxICON_EXCLAMATION);
                     return false;
                     }
@@ -4050,14 +4052,16 @@ bool BaseProject::LoadExternalDocument()
             }
         catch (const std::exception& exp)
             {
-            LogMessage(wxString::Format(L"%s:\n\n%s", GetOriginalDocumentFilePath(), wxString(exp.what())),
+            LogMessage(wxString::Format(L"%s:\n\n%s", GetOriginalDocumentFilePath(),
+                       wxString(exp.what())),
                 _(L"Error"), wxOK|wxICON_EXCLAMATION);
             return false;
             }
         catch (...)
             {
             LogMessage(wxString::Format(
-                _(L"%s:\n\nAn unknown error occurred while analyzing the document. Unable to create project."),
+                _(L"%s:\n\nAn unknown error occurred while analyzing the document. "
+                   "Unable to create project."),
                     GetOriginalDocumentFilePath()),
                 _(L"Error"), wxOK|wxICON_EXCLAMATION);
             return false;
@@ -4100,7 +4104,8 @@ bool BaseProject::LoadExternalDocument()
             catch (...)
                 {
                 LogMessage(
-                    _(L"An unknown error occurred while analyzing the document. Unable to create project."),
+                    _(L"An unknown error occurred while analyzing the document. "
+                       "Unable to create project."),
                     _(L"Error"), wxOK|wxICON_EXCLAMATION);
                 return false;
                 }
@@ -4205,7 +4210,8 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString&
         catch (...)
             {
             LogMessage(
-                _(L"An unknown error occurred while analyzing the document. Unable to create project."),
+                _(L"An unknown error occurred while analyzing the document. "
+                   "Unable to create project."),
                 _(L"Error"), wxOK|wxICON_EXCLAMATION);
             SetLoadingOriginalTextSucceeded(false);
             return false;
