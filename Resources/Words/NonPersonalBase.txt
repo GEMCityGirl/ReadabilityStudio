@@ -120,6 +120,7 @@ Allegheny
 Allentown
 Allhallows
 Allograft
+Allscripts
 Allstate
 Allsun
 Almeria
@@ -2647,6 +2648,7 @@ Karakorum
 Karo
 Karonga
 Kashmir
+Kasson
 Katakana
 Kathmandu
 Kauai
@@ -3939,6 +3941,7 @@ Polony
 Polynesia
 Polynesian
 Polyuria
+Pomalyst
 Pomerania
 Pomona
 Pompe
@@ -4794,6 +4797,7 @@ Tallmadge
 Talmudic
 Talmudist
 Tamaulipas
+Tamiflu
 Tampa
 Tampax
 Tamra

@@ -3138,6 +3138,7 @@ allocators
 allodynia
 alloerotic
 allogeneic
+allogenic
 allolactose
 allolactose's
 allolactoses
@@ -5056,6 +5057,8 @@ antifreezes
 antifundamentalist
 antifundamentalist's
 antifungal
+antifungal's
+antifungals
 antigen
 antigen's
 antigenic
@@ -5172,6 +5175,9 @@ antiphospholipid
 antiphoton
 antiphoton's
 antiphotons
+antiplatelet
+antiplatelet's
+antiplatelets
 antipodal
 antipodals
 antipode
@@ -5236,6 +5242,7 @@ antiresonance
 antiresonance's
 antiresonator
 antiretroviral
+antirheumatic
 antis
 antisemitic
 antisemitism
@@ -8089,6 +8096,7 @@ autoimmunity
 autoinducer
 autoinducer's
 autoinducers
+autoinflammatory
 autoing
 autoionization
 autolabel
@@ -11157,6 +11165,9 @@ benzoate
 benzodiazepines
 benzoic
 benzothiazepine
+benzphetamine
+benzphetamine's
+benzphetamines
 bequeath
 bequeathed
 bequeathes
@@ -16897,6 +16908,7 @@ calicivirus
 calico
 calico's
 calicoes
+caliectasis
 calif's
 californianus
 californium
@@ -19217,6 +19229,7 @@ centerboard
 centerboard's
 centerboards
 centered
+centeredness
 centerer
 centerers
 centerfold
@@ -22839,6 +22852,10 @@ coble's
 CoBr
 cobra
 cobra's
+cobrand
+cobranded
+cobranding
+cobrands
 cobras
 cobs
 cobweb
@@ -22855,6 +22872,7 @@ cocaine
 cocaine's
 cocaines
 cocas
+coccidioides
 coccidioidomycosis
 coccis
 coccus's
@@ -27397,6 +27415,7 @@ cortical
 cortically
 cortices
 cortico
+corticobasal
 corticobulbar
 corticospinal
 corticosteroid
@@ -29385,7 +29404,10 @@ cryogenic
 cryogenics
 cryogenics's
 cryoglobulin
+cryoglobulin's
 cryoglobulinemia
+cryoglobulinemic
+cryoglobulins
 cryolite
 cryophile
 cryophile's
@@ -30348,6 +30370,7 @@ cyclostome
 cyclostome's
 cyclostomes
 cyclothymia
+cyclothymic
 cyclotron
 cyclotron's
 cyclotrons
@@ -30452,6 +30475,7 @@ cytomegalovirus
 cytometry
 cytopathic
 cytopathy
+cytopenias
 cytoplasm
 cytoplasm's
 cytoplasmic
@@ -42658,6 +42682,8 @@ epididymides
 epididymis
 epididymitis
 epidural
+epidural's
+epidurals
 epigastrium
 epigenetic
 epigeneticist
@@ -43173,6 +43199,8 @@ erythrocyte
 erythrocyte's
 erythrocytes
 erythrocytic
+erythrocytosis
+erythrocytosis's
 erythrodermic
 erythroleukemia
 erythromycin
@@ -50784,6 +50812,7 @@ frontload
 frontloaded
 frontloading
 frontloads
+frontotemporal
 frontrunner
 frontrunner's
 frontrunners
@@ -58038,6 +58067,11 @@ hematologists
 hematology
 hematology's
 hematoma
+hematoma's
+hematomas
+hematopathologist
+hematopathologist's
+hematopathologists
 hematophobia
 hematopoiesis
 hematopoietic
@@ -58186,6 +58220,9 @@ hepatocarcinoma
 hepatocellular
 hepatocyte
 hepatocytes
+hepatologist
+hepatologist's
+hepatologists
 hepatology
 hepatoma
 hepatomegaly
@@ -62310,6 +62347,9 @@ immunologists
 immunology
 immunology's
 immunomodulant
+immunomodulator
+immunomodulator's
+immunomodulators
 immunophenotype
 immunophenotyped
 immunophenotypes
@@ -62323,7 +62363,9 @@ immunosuppressant's
 immunosuppressants
 immunosuppression
 immunosuppressive
+immunotherapies
 immunotherapy
+immunotherapy's
 immunotoxicologies
 immunotoxicology
 immunotoxicology's
@@ -70203,6 +70245,7 @@ lagniappes
 lagoon
 lagoon's
 lagoons
+lagophthalmos
 lags
 laid
 lain
@@ -76801,6 +76844,7 @@ medleys
 medulla
 medulla's
 medullar
+medullaris
 medullary
 medullas
 medulloblastoma
@@ -78213,6 +78257,8 @@ microlevel
 microlight
 microlights
 microliter
+microliter's
+microliters
 microloan
 microloan's
 microloans
@@ -82062,6 +82108,7 @@ multisets
 multisided
 multisite
 multislice
+multispecialty
 multispecies
 multisport
 multistage
@@ -82590,6 +82637,7 @@ myelination
 myelitides
 myelitis
 myelitis's
+myeloablative
 myeloblast
 myeloblasts
 myelocytic
@@ -82603,6 +82651,7 @@ myeloma
 myelomas
 myelomeningocele
 myelomonocytic
+myelopathy
 myeloperoxidase
 myeloproliferative
 myenteric
@@ -82985,6 +83034,8 @@ nappiest
 napping
 nappy
 nappy's
+naproxen
+naproxen's
 naps
 Nara
 narc
@@ -83894,6 +83945,7 @@ neurofeedback
 neurofibrillary
 neurofibromatosis
 neurofilaments
+neurogenerative
 neurogenesis
 neurogenic
 neuroglia
@@ -83924,6 +83976,7 @@ neuromorphically
 Neuromotor
 neuromuscular
 neuromusculoskeletal
+neuromyelitis
 neuron
 neuron's
 neuronal
@@ -87752,6 +87805,7 @@ opthalmic
 opthalmologic
 opthalmology
 optic
+optica
 optical
 optically
 optician
@@ -88262,6 +88316,8 @@ orthonormalizing
 orthopaedic
 orthopaedics
 orthopaedist
+orthopaedist's
+orthopaedists
 orthopedic
 orthopedics
 orthopedics's
@@ -88427,6 +88483,7 @@ osteoporosis
 osteoporosis's
 osteoprogenitor
 osteosarcoma
+osteosclerotic
 osteosynthesis
 osteotomy
 ostia
@@ -89978,6 +90035,7 @@ oxidoreductases
 oximeter
 oximeter's
 oximeters
+oximetry
 Oxnard
 oxtail
 oxtail's
@@ -94120,6 +94178,9 @@ phenylalkylamine
 phenylamine
 phenylephrine
 phenylketonuria
+pheochromocytoma
+pheochromocytoma's
+pheochromocytomas
 pheomelanin
 pheresis
 pheromonal
@@ -101610,6 +101671,9 @@ pulmocutaneous
 pulmonale
 pulmonary
 pulmonic
+pulmonologist
+pulmonologist's
+pulmonologists
 pulmonology
 pulp
 pulp's
@@ -110115,6 +110179,8 @@ ritualizes
 ritualizing
 ritually
 rituals
+rituximab
+rituximab's
 ritzier
 ritziest
 ritzy
@@ -114566,6 +114632,9 @@ selvedge's
 selvedges
 selves
 selves's
+semaglutide
+semaglutide's
+semaglutides
 semantic
 semantical
 semantically
@@ -116896,6 +116965,7 @@ sidepieces
 sider
 sider's
 sidereal
+sideroblastic
 sideropenic
 siders
 sides
@@ -121285,7 +121355,9 @@ splendors
 splendour
 splendour's
 splendours
+splenectomies
 splenectomy
+splenectomy's
 splenetic
 splenetics
 splenic
@@ -122908,6 +122980,8 @@ stenotype
 stenotype's
 stent
 stent's
+stented
+stenting
 stentorian
 stents
 step
@@ -124413,6 +124487,9 @@ stygian
 stying
 style
 style's
+stylebook
+stylebook's
+stylebooks
 styled
 styler
 styler's
@@ -126221,6 +126298,9 @@ supersonics's
 superspace
 superspace's
 superspaces
+superspreader
+superspreader's
+superspreaders
 superstar
 superstar's
 superstars
@@ -129904,6 +129984,8 @@ thalamocortical
 thalamus
 thalamus's
 thalassemia
+thalassemia's
+thalassemias
 thalassiosira
 thaliacea
 thaliacean
@@ -130289,6 +130371,9 @@ Thia
 thiamine
 thiamine's
 thiamines
+thiazide
+thiazide's
+thiazides
 thiazolidinedione
 Thibaut
 thick
@@ -130677,6 +130762,8 @@ thrombocytosis
 thromboembolic
 thromboembolism
 thrombokinase
+thrombolysis
+thrombolysis's
 thrombolytic
 thrombopathy
 thrombophilia
@@ -132854,6 +132941,9 @@ transaminated
 transamination
 transatlantic
 transcarbamylase
+transcatheter
+transcatheter's
+transcatheters
 transceiver
 transceiver's
 transceivers
@@ -139306,6 +139396,9 @@ ureotelic
 ureter
 ureter's
 ureteral
+ureteroscopies
+ureteroscopy
+ureteroscopy's
 ureters
 urethane
 urethane's
@@ -139374,6 +139467,9 @@ urodela
 uroepithelial
 urogastrone
 urogenital
+urogram
+urogram's
+urograms
 urography
 urolithiasis
 urologic
@@ -140958,6 +141054,9 @@ videographer's
 videographers
 videography
 videoing
+videolink
+videolink's
+videolinks
 videophone
 videophone's
 videophones
@@ -141260,6 +141359,9 @@ virologists
 virology
 virology's
 viropause
+virotherapies
+virotherapy
+virotherapy's
 virtual
 virtualisation
 virtualisation's
@@ -146020,6 +146122,7 @@ zodiac's
 zodiacal
 zodiacs
 zoea
+zoledronic
 zolmitriptan
 zombi's
 zombie
