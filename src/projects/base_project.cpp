@@ -3495,7 +3495,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                           filter_word.get_author(),
                           wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }
                         ));
-            return std::make_pair(true,filteredText);
+            return std::make_pair(true, filteredText);
             }
         catch (const rtf_extract_text::rtfparse_exception&)
             {
@@ -3599,7 +3599,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             const wxString filteredText(filter_docx(docxFileText.wc_str(), docxFileText.length()));
             if (filter_docx.get_log().length())
                 { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_docx.get_log()); }
-            return std::make_pair(true,filteredText);
+            return std::make_pair(true, filteredText);
             }
         catch (...)
             {
@@ -3623,7 +3623,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                 coalesce({ GetOriginalDocumentDescription(),
                            wxFileName(GetOriginalDocumentFilePath()).GetName() }
                         ));
-            return std::make_pair(true,filteredText);
+            return std::make_pair(true, filteredText);
             }
         catch (...)
             {
@@ -3681,7 +3681,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                            wxString(filter_ps.get_title()),
                            wxFileName(GetOriginalDocumentFilePath()).GetName() }
                         ));
-            return std::make_pair(true,filteredText);
+            return std::make_pair(true, filteredText);
             }
         catch (const lily_of_the_valley::postscript_extract_text::postscript_header_not_found&)
             {
@@ -3738,7 +3738,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             const wxString filteredText(filter_odt(odtFileText, odtFileText.length()));
             if (filter_odt.get_log().length())
                 { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_odt.get_log()); }
-            return std::make_pair(true,filteredText);
+            return std::make_pair(true, filteredText);
             }
         catch (...)
             {
@@ -3892,9 +3892,11 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
         // ...otherwise, just load it as regular text
         else
             {
-            LogMessage(_(L"Unknown file extension. File will be imported as plain text."),
-                   _(L"Import Warning"), wxOK|wxICON_WARNING);
-            return std::make_pair(true, Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize));
+            // This should be logged instead of shown to the user;
+            // otherwise, they will see this warning everytime they refresh.
+            wxLogWarning(L"Unknown file extension. File will be imported as plain text.");
+            return std::make_pair(true,
+                Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize));
             }
         }
     }
@@ -3903,7 +3905,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
 bool BaseProject::LoadExternalDocument()
     {
     FilePathResolver resolvePath;
-    // this will "fix" the file path in case it has "file:///". Also fixes slash problem,
+    // This will "fix" the file path in case it has "file:///". Also fixes slash problem,
     // appends "http" if it just says "www", etc.
     SetOriginalDocumentFilePath(resolvePath.ResolvePath(GetOriginalDocumentFilePath(), true,
         { GetProjectDirectory() }));
@@ -3932,7 +3934,8 @@ bool BaseProject::LoadExternalDocument()
             catch (...)
                 {
                 LogMessage(
-                    _(L"An unknown error occurred while analyzing the document. Unable to create project."),
+                    _(L"An unknown error occurred while analyzing the document. "
+                       "Unable to create project."),
                     _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
                 return false;
                 }
@@ -4093,7 +4096,7 @@ bool BaseProject::LoadExternalDocument()
             LogMessage(zc.GetMessages().back().m_message,
                        poundFn.GetFullPath(), zc.GetMessages().back().m_icon);
             }
-        const std::pair<bool,wxString> extractResult =
+        const std::pair<bool, wxString> extractResult =
             ExtractRawText(static_cast<const char*>(memstream.GetOutputStreamBuffer()->GetBufferStart()),
                 memstream.GetLength(), wxFileName(GetOriginalDocumentFilePath()).GetExt());
         if (extractResult.first)
