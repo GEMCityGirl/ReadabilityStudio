@@ -3075,34 +3075,50 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
 //---------------------------------------------------
 void ReadabilityApp::UpdateRibbonTheme(wxRibbonBar* ribbon)
     {
-    ribbon->GetArtProvider()->SetColourScheme(GetAppOptions().GetRibbonActiveTabColor(),
-                                              GetAppOptions().GetRibbonInactiveTabColor(),
-                                              GetAppOptions().GetRibbonHoverColor());
+    assert(ribbon != nullptr && L"Attempting to theme a null ribbon!");
+    if (ribbon != nullptr)
+        {
+        ribbon->GetArtProvider()->SetColourScheme(GetAppOptions().GetRibbonActiveTabColor(),
+            GetAppOptions().GetRibbonInactiveTabColor(),
+            GetAppOptions().GetRibbonHoverColor());
 
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_COLOUR,
-                                        GetAppOptions().GetRibbonActiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_DISABLED_COLOUR,
-                                        GetAppOptions().GetRibbonInactiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_TOP_COLOUR,
-                                        GetAppOptions().GetRibbonActiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_GRADIENT_TOP_COLOUR,
-                                        GetAppOptions().GetRibbonActiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_COLOUR,
-                                        GetAppOptions().GetRibbonHoverFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_GRADIENT_COLOUR,
-                                        GetAppOptions().GetRibbonActiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_TAB_ACTIVE_LABEL_COLOUR,
-                                        GetAppOptions().GetRibbonActiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_PANEL_LABEL_COLOUR,
-                                        GetAppOptions().GetRibbonActiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_PANEL_MINIMISED_LABEL_COLOUR,
-                                        GetAppOptions().GetRibbonActiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_PANEL_HOVER_LABEL_COLOUR,
-                                        GetAppOptions().GetRibbonHoverFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_TAB_LABEL_COLOUR,
-                                        GetAppOptions().GetRibbonInactiveFontColor());
-    ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_TAB_HOVER_LABEL_COLOUR,
-                                        GetAppOptions().GetRibbonHoverFontColor());
+        ribbon->GetArtProvider()->SetColour(
+            wxRIBBON_ART_BUTTON_BAR_LABEL_COLOUR,
+            GetAppOptions().GetRibbonActiveFontColor());
+        ribbon->GetArtProvider()->SetColour(
+            wxRIBBON_ART_BUTTON_BAR_LABEL_DISABLED_COLOUR,
+            GetAppOptions().GetRibbonInactiveFontColor());
+        ribbon->GetArtProvider()->SetColour(
+            wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_TOP_COLOUR,
+            GetAppOptions().GetRibbonActiveFontColor());
+        ribbon->GetArtProvider()->SetColour(
+            wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_GRADIENT_TOP_COLOUR,
+            GetAppOptions().GetRibbonActiveFontColor());
+        ribbon->GetArtProvider()->SetColour(
+            wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_COLOUR,
+            GetAppOptions().GetRibbonHoverFontColor());
+        ribbon->GetArtProvider()->SetColour(
+            wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_GRADIENT_COLOUR,
+            GetAppOptions().GetRibbonActiveFontColor());
+        ribbon->GetArtProvider()->SetColour(
+            wxRIBBON_ART_TAB_ACTIVE_LABEL_COLOUR,
+            GetAppOptions().GetRibbonActiveFontColor());
+        ribbon->GetArtProvider()->SetColour(
+            wxRIBBON_ART_PANEL_LABEL_COLOUR,
+            GetAppOptions().GetRibbonActiveFontColor());
+        ribbon->GetArtProvider()->SetColour(
+            wxRIBBON_ART_PANEL_MINIMISED_LABEL_COLOUR,
+            GetAppOptions().GetRibbonActiveFontColor());
+        ribbon->GetArtProvider()->SetColour(
+            wxRIBBON_ART_PANEL_HOVER_LABEL_COLOUR,
+            GetAppOptions().GetRibbonHoverFontColor());
+        ribbon->GetArtProvider()->SetColour(
+            wxRIBBON_ART_TAB_LABEL_COLOUR,
+            GetAppOptions().GetRibbonInactiveFontColor());
+        ribbon->GetArtProvider()->SetColour(
+            wxRIBBON_ART_TAB_HOVER_LABEL_COLOUR,
+            GetAppOptions().GetRibbonHoverFontColor());
+        }
     }
 
 //---------------------------------------------------

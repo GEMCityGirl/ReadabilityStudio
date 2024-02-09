@@ -768,10 +768,9 @@ void BatchProjectView::OnDocumentDelete([[maybe_unused]] wxRibbonButtonBarEvent&
                 wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
                 wxGetApp().GetAppOptions().GetRibbonHoverColor(),
                 wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
-                LD_YES_NO_BUTTONS|LD_DONT_SHOW_AGAIN, wxID_ANY,
+                LD_YES_NO_BUTTONS | LD_DONT_SHOW_AGAIN, wxID_ANY,
                 _(L"Remove Documents"),
                 _(L"Do you wish to remove these documents from the project?"));
-            wxGetApp().UpdateRibbonTheme(listDlg.GetRibbon());
             listDlg.SetCheckBoxLabel(_(L"Always delete without prompting"));
             const int dlgResponse = listDlg.ShowModal();
             // save the checkbox status
@@ -788,7 +787,7 @@ void BatchProjectView::OnDocumentDelete([[maybe_unused]] wxRibbonButtonBarEvent&
 
         wxProgressDialog progressDlg(wxFileName::StripExtension(doc->GetTitle()),
             _(L"Removing documents..."), filesToRemove.size(),
-            GetDocFrame(), wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_APP_MODAL);
+            GetDocFrame(), wxPD_AUTO_HIDE | wxPD_SMOOTH | wxPD_APP_MODAL);
 
         // remove the files from the documents collection and from all of the listcontrols
         // (some of these controls can't be updated without doing a full re-indexing,
@@ -812,8 +811,8 @@ void BatchProjectView::OnDocumentDelete([[maybe_unused]] wxRibbonButtonBarEvent&
         {
         wxMessageBox(
             _(L"Please select a window that contains a list of documents, "
-              "select the ones that you wish to remove, and try again."),
-            wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
+               "select the ones that you wish to remove, and try again."),
+            wxGetApp().GetAppName(), wxOK | wxICON_INFORMATION);
         }
     }
 
