@@ -29,7 +29,9 @@ asm
 asmdef
 atan
 atanh
+atexit
 atl
+atof
 atoi
 atol
 atomic_cancel
@@ -52,6 +54,7 @@ bitset
 bool
 boolalpha
 break
+bsearch
 cacos
 cacosf
 cacosh
@@ -144,6 +147,7 @@ ctanh
 ctanhf
 ctanhl
 ctanl
+cxx
 declspec
 decltype
 declval
@@ -273,6 +277,7 @@ ldiv
 libc
 libstdc
 line
+lldiv
 localtime
 logb
 long
@@ -290,11 +295,13 @@ lvalue's
 lvalues
 malloc
 matherr
+mblen
 mbscmp
 mbscoll
 mbsicmp
 mbsicoll
 mbstowcs
+mbtowc
 memcmp
 memcpy
 memmove
@@ -345,8 +352,10 @@ protected
 prvalue
 prvalue's
 prvalues
+ptr
 public
 putws
+qsort
 Qspectre
 RAII
 rbegin
@@ -390,6 +399,7 @@ sprintf
 sprintfl
 sprintfs
 sprintfsl
+srand
 src
 sstream
 stackframe
@@ -405,6 +415,13 @@ stdin
 stdlib
 stdout
 stl
+stod
+stof
+stoi
+stold
+stoll
+stoul
+stoull
 stprintf
 str
 strcat
@@ -431,8 +448,12 @@ Strsafe
 strstr
 strstream
 strtod
+strtof
 strtol
+strtold
+strtoll
 strtoul
+strtoull
 struct
 suballocate
 suballocated
@@ -502,6 +523,7 @@ wcslen
 wcsncmp
 wcsncpy
 wcstod
+wcstombs
 wctomb
 while
 winrt

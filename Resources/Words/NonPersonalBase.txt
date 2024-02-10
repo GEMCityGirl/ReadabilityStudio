@@ -240,6 +240,7 @@ Antirrhinum
 Antwerp
 Anyville
 AOL
+Aonix
 APA
 Apache
 Apalachicola
@@ -387,6 +388,7 @@ Aswan
 AT&T
 Atacama
 Atari
+Atego
 Athabasca
 Athabascan
 Athabaska
@@ -518,6 +520,7 @@ Baltic
 Baltimore
 Baluchistan
 Bamako
+Bamanankan
 Bancorp
 Bandar
 Bandung
@@ -568,6 +571,7 @@ Bayside
 Bazel
 Bdelloidea
 Beachwood
+Beaglebone
 Beatle
 Beatlemania
 Beavercreek
@@ -607,6 +611,7 @@ Benares
 Benelux
 Bengal
 Bengali
+Bengaluru
 Benghazi
 Benin
 Beninese
@@ -667,6 +672,7 @@ Bishopsgate
 Bismarck
 Bismark
 Bismol
+Bisquick
 Bissau
 Bitbucket
 Bitcoin
@@ -785,6 +791,7 @@ British
 Britisher
 Britishly
 Britishness
+Broadcom
 Broadway
 Broadwell
 Brobdingnag
@@ -964,7 +971,9 @@ Cartesian
 Carthage
 Carthaginian
 Casablanca
+Cascadia
 Caspian
+Cassandric
 Cassini
 Cassite
 Cassopolis
@@ -1332,6 +1341,8 @@ Dakota
 Dakotan
 Dakto
 Dalian
+Dalifornia
+Dalifornian
 Dall-E
 Dallas
 Dalmatia
@@ -1526,6 +1537,7 @@ Ealing
 Earth
 Earthman
 Easter
+Easthampstead
 Easthampton
 Eastland
 Eastleigh
@@ -1592,6 +1604,7 @@ Elyria
 Elysian
 Elysium
 Emacs
+Embeddedworld
 EMC
 Emirates
 Emmys
@@ -1634,6 +1647,7 @@ Epson
 Equifax
 Equuleus
 Erda
+Erewhon
 Erfurt
 Eridanus
 Erie
@@ -1733,6 +1747,8 @@ Experian
 Exxon
 ExxonMobil
 Eyde
+Eyjafjallajokull
+Eyjafjallajökull
 Ezri
 Fabrikam
 Facebooked
@@ -1776,6 +1792,7 @@ FBI
 FDA
 FDIC
 FDR
+Feabhas
 Feb
 Febreeze
 February
@@ -1972,6 +1989,7 @@ Gannon
 Gantt
 Ganymede
 Gardasil
+Garmin
 Garmon
 Garrettsville
 Gateshead
@@ -2019,6 +2037,7 @@ Gettysburg
 Ghana
 Ghanaian
 Ghibelline
+Ghidra
 Ghomrassen
 Ghostbuster
 Ghostscript
@@ -2037,6 +2056,7 @@ Giphy
 Github
 GitLab
 Giza
+Gizmodo
 Glaceau
 Glasgow
 Glassdoor
@@ -2063,9 +2083,11 @@ Gonzaga
 Goodyear
 Google
 Googled
+Googlemock
 Googleplex
 Googler
 Googles
+Googletest
 Googling
 GOP
 Gorham
@@ -2119,6 +2141,7 @@ Grenada
 Grenadian
 Grenadines
 Grenville
+Grindavik
 Griptonite
 Groupon
 GrubHub
@@ -2308,6 +2331,7 @@ Hirsutism
 Hispanic
 Hispaniola
 Hitachi
+Hitex
 Hittite
 Hoboken
 Hofstra
@@ -2619,6 +2643,7 @@ Jussi
 Justinian
 Jutland
 Kabul
+Kabuli
 Kafkaesque
 Kagoshima
 Kalamazoo
@@ -2740,6 +2765,7 @@ Korella
 Kornberg
 Kosovo
 Kossuth
+Kotaku
 Kotte
 Kraemer
 Krakatau
@@ -2873,6 +2899,7 @@ Lichtenberg
 Lichtenstein
 Liechtenstein
 Liechtensteiner
+Lifehacker
 Lifeweaver
 Lifewire
 Liguori
@@ -2907,6 +2934,7 @@ LiveSmart
 LIX
 Ljubljana
 Llanelli
+LLVM
 Lockean
 Lockian
 Logitech
@@ -3020,6 +3048,7 @@ Mainer
 Maineville
 Mainz
 Majella
+Majeure
 Majuro
 Makemake
 Mako
@@ -3065,6 +3094,7 @@ Manitowoc
 Mankato
 MANOVA
 Mansfield
+Mansi
 Manville
 Maoism
 Maoist
@@ -3075,6 +3105,7 @@ Maputo
 Marburg
 March
 Margaritaville
+Marginalian
 MariaDB
 Marianist
 Marianista
@@ -3106,6 +3137,7 @@ Maseru
 Masonic
 Massachusetts
 MasterCard
+Matchup
 Mathematica
 Mathematik
 Matlab
@@ -3219,6 +3251,7 @@ Michoacán
 Micmac
 Micronesia
 MicroVAX
+Middleburg
 Middlebury
 Middlefield
 Middlesbrough
@@ -3234,6 +3267,7 @@ Milan
 Milanese
 Milford
 Millersville
+Milltown
 Miltown
 Milwaukee
 Mimas
@@ -3251,6 +3285,7 @@ Minolta
 Minos
 Minsk
 Miskatonic
+MISRA
 Mississippi
 Mississippian
 Missoula
@@ -3346,6 +3381,7 @@ Mozambique
 Mozelle
 Mozilla
 MSBuild
+MSVC
 MTV
 Muhammadan
 Muhammadanism
@@ -3927,6 +3963,7 @@ Pocumtuck
 Podgorica
 Poedit
 Poincaré
+Pointe
 Poisson
 Poitou
 Pokémon
@@ -4126,6 +4163,7 @@ Rappite
 Raritan
 Rasalgethi
 Rasalhague
+Raspbian
 Rastafarian
 Ravden
 Ravensbruck
@@ -4358,6 +4396,7 @@ Scantron
 Schaumburg
 Scheat
 Schedar
+Scheveningen
 Schindlau
 Schleswig
 Schlumberger
@@ -4433,6 +4472,7 @@ Sensurround
 Seoul
 Sephardi
 Sephira
+Sephora
 September
 Serb
 Serbia
@@ -4444,6 +4484,7 @@ ServiceNow
 Servox
 Seton
 Setosa
+Setswana
 Sevastopol
 Sevenoaks
 Seychelles
@@ -4667,6 +4708,7 @@ Stivers
 Stockholm
 Stockport
 Stonehenge
+Stoneleigh
 Stonemill
 Stornoway
 Storyworks
@@ -4698,6 +4740,7 @@ Suez
 Suffolk
 Sufism
 Sugarbush
+Suiss
 Suisse
 Sulawesi
 Sulzberger
@@ -4860,6 +4903,7 @@ Tektronix
 Teledyne
 Telefonica
 Telefunken
+Telelogic
 Telemundo
 TelePrompters
 Telerik
@@ -5107,6 +5151,7 @@ Tórshavn
 Türkiye
 Ubangi
 Uber
+Ubisoft
 uBreakiFix
 Ubuntu
 Ucayali
@@ -5271,6 +5316,7 @@ Victorian
 Victorianism
 Victorians
 Victrola
+Videocore
 Vienna
 Viennese
 Vientiane
@@ -5518,6 +5564,7 @@ Wooster
 Worcester
 Worcestershire
 Wordpad
+Wordpress
 Workington
 Worldatlas
 WorldCom

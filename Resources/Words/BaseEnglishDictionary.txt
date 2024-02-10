@@ -8146,6 +8146,7 @@ automobile's
 automobiled
 automobiles
 automobiling
+automorphic
 automorphism
 automorphism's
 automorphisms
@@ -10590,6 +10591,8 @@ bedroom's
 bedroomed
 bedrooms
 beds
+bedsheet
+bedsheet's
 bedsheets
 bedside
 bedside's
@@ -11331,6 +11334,7 @@ bestsellers
 bestselling
 bestubble
 bestubbled
+besuited
 bet
 bet's
 beta
@@ -12336,6 +12340,7 @@ biter
 biter's
 biters
 bites
+bitesize
 biting
 bitingly
 bitings
@@ -12831,6 +12836,9 @@ blindside
 blindsided
 blindsides
 blindsiding
+blindspot
+blindspot's
+blindspots
 bling
 blink
 blinked
@@ -14799,6 +14807,8 @@ breathlessness's
 breaths
 breathtaking
 breathtakingly
+breathwork
+breathwork's
 breathy
 breccias
 brecciated
@@ -16534,6 +16544,7 @@ cabbaged
 cabbages
 cabbaging
 cabbed
+cabbies
 cabbing
 cabby's
 cabdriver
@@ -18106,10 +18117,13 @@ carnelians
 carnet
 carnet's
 carnets
+carnie
+carnie's
 carnied
 carnies
 carnival
 carnival's
+carnivalize
 carnivals
 carnivora
 carnivore
@@ -21011,6 +21025,8 @@ chokes
 chokes's
 choking
 chokingly
+cholangiocarcinoma
+cholangiocarcinoma's
 cholangiogram
 cholangiography
 cholangiopancreatography
@@ -22255,6 +22271,8 @@ clichés
 click
 click's
 clickable
+clickbait
+clickbait's
 clicked
 clicker
 clicker's
@@ -25968,6 +25986,7 @@ conspire
 conspired
 conspires
 conspiring
+const-qualified
 constable
 constable's
 constables
@@ -26028,6 +26047,9 @@ constitutively
 constrain
 constrained
 constrainedly
+constrainer
+constrainer's
+constrainers
 constraining
 constrains
 constraint
@@ -26527,6 +26549,7 @@ controller
 controller's
 controllers
 controlling
+contrology
 controls
 controversial
 controversialist
@@ -26993,9 +27016,13 @@ copyrighter's
 copyrighters
 copyrighting
 copyrights
+copywrite
 copywriter
 copywriter's
 copywriters
+copywrites
+copywriting
+copywrote
 coquetries
 coquetry
 coquetry's
@@ -27617,6 +27644,8 @@ cotyledon's
 cotyledons
 couch
 couch's
+couch-potatoed
+couch-potatoing
 couched
 couches
 couching
@@ -30342,6 +30371,7 @@ cycloid
 cycloid's
 cycloidal
 cycloids
+cyclomatic
 cyclometer
 cyclometer's
 cyclometers
@@ -30359,6 +30389,9 @@ cyclopedia
 cyclopedia's
 cyclopedias
 cyclopes
+cyclophosphamide
+cyclophosphamide's
+cyclophosphamides
 cyclopia
 cyclopropane
 cyclops
@@ -32344,6 +32377,7 @@ degree
 degree's
 degreed
 degrees
+degrowth
 degum
 degumming
 dehisce
@@ -33007,6 +33041,7 @@ denervation
 dengue
 dengue's
 dengues
+deniability
 deniable
 denial
 denial's
@@ -37372,6 +37407,9 @@ docudramas
 document
 document's
 documentable
+documentarian
+documentarian's
+documentarians
 documentaries
 documentary
 documentary's
@@ -37947,6 +37985,8 @@ douches
 douching
 dough
 dough's
+doughboy
+doughboy's
 doughier
 doughiest
 doughnut
@@ -38326,6 +38366,9 @@ dramatizing
 dramaturgical
 dramaturgy
 dramaturgy's
+dramedies
+dramedy
+dramedy's
 drammed
 dramming
 drams
@@ -40233,6 +40276,7 @@ egoistic
 egoistical
 egoistically
 egoists
+egoless
 egomania
 egomania's
 egomaniac
@@ -45156,6 +45200,7 @@ externalizes
 externalizing
 externally
 externals
+externs
 externship
 externships
 externus
@@ -47129,6 +47174,8 @@ fibroid
 fibroids
 fibroma
 fibromatosis
+fibromuscular
+fibromuscular's
 fibromyalgia
 fibronectin
 fibrosa
@@ -50977,6 +51024,7 @@ fudge's
 fudged
 fudges
 fudging
+fudgy
 fuel
 fuel's
 fueled
@@ -53759,6 +53807,8 @@ glycerol
 glycerol's
 glycerolized
 glycerols
+glycinate
+glycinate's
 glycine
 glycine's
 glycinergic
@@ -55572,6 +55622,9 @@ guestbook
 guestbook's
 guestbooks
 guested
+guesthouse
+guesthouse's
+guesthouses
 guestimate
 guestimated
 guestimates
@@ -58974,6 +59027,7 @@ histories
 historiographer
 historiographer's
 historiographers
+historiographic
 historiographical
 historiographies
 historiography
@@ -65847,6 +65901,9 @@ interactive
 interactively
 interactiveness
 interactivity
+interactor
+interactor's
+interactors
 interacts
 interagencies
 interagency
@@ -66693,6 +66750,7 @@ intravenous
 intravenouses
 intravenously
 intraventricular
+intravesical
 intrepid
 intrepidities
 intrepidity
@@ -68598,6 +68656,8 @@ jr's
 json
 ju
 ju's
+jubilance
+jubilance's
 jubilant
 jubilantly
 jubilate
@@ -70064,6 +70124,7 @@ labrador's
 labradorean
 labradoreans
 labradors
+labral
 labrocyte
 labrose
 labrum
@@ -73435,6 +73496,9 @@ longlegs
 longly
 longness
 longness's
+longread
+longread's
+longreads
 longs
 longshoreman
 longshoreman's
@@ -78285,6 +78349,9 @@ micrometer's
 micrometers
 micrometre
 micrometres
+micromole
+micromole's
+micromoles
 micron
 micron's
 microneedle
@@ -82126,6 +82193,7 @@ multistroke
 multistrokes
 multisyllabic
 multisymbol
+multisystem
 multitasker
 multitasker's
 multitaskers
@@ -83970,6 +84038,9 @@ neurologists
 neurology
 neurology's
 neuroma
+neuromancer
+neuromancer's
+neuromancers
 neuromodulators
 neuromorphic
 neuromorphically
@@ -86589,6 +86660,7 @@ obscenest
 obscenities
 obscenity
 obscenity's
+obscura
 obscurantism
 obscurantism's
 obscurantisms
@@ -91047,6 +91119,8 @@ paraffined
 paraffining
 paraffins
 parafollicular
+paraganglioma
+paraganglioma's
 paragliding
 paragon
 paragon's
@@ -92859,12 +92933,14 @@ penmanship's
 penmanships
 penmen
 penmen's
+penn'orth
 Penna
 pennant
 pennant's
 pennants
 pennate
 penned
+penneth
 pennies
 penniless
 Pennine
@@ -94551,6 +94627,9 @@ photojournalist's
 photojournalists
 photojournals
 photokeratitis
+photoletter
+photoletter's
+photoletters
 photolithoautotroph
 photolithoautotroph's
 photolithoautotrophs
@@ -95251,6 +95330,8 @@ pineapples
 pinecone
 pined
 Pinel
+pineoblastoma
+pineoblastoma's
 pineocytoma
 pines
 pinewood
@@ -100264,6 +100345,8 @@ prokaryotic
 Prokofieff
 Prokofiev
 prolactin
+prolactinoma
+prolactinoma's
 prolapse
 prolapse's
 prolapsed
@@ -109484,6 +109567,10 @@ rewash
 rewashed
 rewashes
 rewashing
+rewatch
+rewatched
+rewatches
+rewatching
 reweave
 reweaves
 reweaving
@@ -110564,6 +110651,9 @@ Romansh
 romantic
 romantic's
 romantically
+romanticisation
+romanticisation's
+romanticisations
 romanticise
 romanticised
 romanticises
@@ -110573,6 +110663,9 @@ romanticisms
 romanticist
 romanticist's
 romanticists
+romanticization
+romanticization's
+romanticizations
 romanticize
 romanticized
 romanticizes
@@ -111625,6 +111718,8 @@ sacristy's
 sacrococcygeal
 sacroiliac
 sacroiliacs
+sacroiliitis
+sacroiliitis's
 sacrosanct
 sacrosanctness
 sacrosanctness's
@@ -113027,6 +113122,7 @@ sceptres
 sch
 sch.
 schadenfreude
+schedulability
 schedule
 schedule's
 scheduled
@@ -113574,6 +113670,8 @@ screenshot
 screenshot's
 screenshots
 screenshotted
+screentime
+screentime's
 screenwrite
 screenwriter
 screenwriter's
@@ -114421,6 +114519,9 @@ seethed
 seethes
 seething
 seethings
+seg-fault
+seg-fault's
+seg-faults
 segfault
 segfault's
 segfaults
@@ -114706,6 +114807,10 @@ semifinalist's
 semifinalists
 semifinals
 semifunctional
+semihost
+semihosted
+semihosting
+semihosts
 semilight
 semilogarithmic
 semilunar
@@ -116041,6 +116146,10 @@ shellfish's
 shellfishes
 shelling
 shells
+shellshock
+shellshocked
+shellshocking
+shellshocks
 shelter
 shelter's
 sheltered
@@ -116637,6 +116746,9 @@ shows
 showstopper
 showstopper's
 showstoppers
+showtime
+showtime's
+showtimes
 showy
 shpt
 shrank
@@ -121238,6 +121350,9 @@ spiritedly
 spiritedness
 spiritedness's
 spiriting
+spiritist
+spiritist's
+spiritists
 spiritless
 spirits
 spiritual
@@ -121605,6 +121720,9 @@ sportsmanship's
 sportsmanships
 sportsmen
 sportsmen's
+sportsperson
+sportsperson's
+sportspersons
 sportswear
 sportswear's
 sportswoman
@@ -123060,6 +123178,7 @@ stereolithographies
 stereolithography
 stereolithography's
 stereophonic
+stereophonica
 stereos
 stereoscope
 stereoscope's
@@ -124836,6 +124955,7 @@ subletting
 sublevel
 sublevel's
 sublevels
+sublicensable
 sublicense
 sublicensed
 sublicenses
@@ -125192,6 +125312,9 @@ subspecialty
 subspecialty's
 subspecies
 subspecies's
+substack
+substack's
+substacks
 substance
 substance's
 substanceless
@@ -127693,6 +127816,8 @@ syringed
 syringes
 syringing
 syringoma
+syringomyelia
+syringomyelia's
 syrinx
 syrup
 syrup's
@@ -128955,6 +129080,7 @@ technophobia
 technophobic
 technoscience
 technosciences
+technoscientific
 technosignature
 technosignature's
 technosignatures
@@ -129062,6 +129188,9 @@ telecasting
 telecasts
 telecephalon
 telecom
+telecomm
+telecomm's
+telecomms
 telecommunicate
 telecommunication
 telecommunication's
@@ -129160,6 +129289,7 @@ telephonists
 telephony
 telephony's
 telephoto
+telephotographic
 telephotographies
 telephotography
 telephotography's
@@ -130711,6 +130841,9 @@ thriller's
 thrillers
 thrilling
 thrillingly
+thrillist
+thrillist's
+thrillists
 thrills
 thrive
 thrived
@@ -133543,6 +133676,9 @@ trebling
 tree
 tree's
 treed
+treehouse
+treehouse's
+treehouses
 treeing
 treeless
 treelike
@@ -135305,6 +135441,7 @@ tyrannizingly
 tyrannizings
 tyrannosaur
 tyrannosaur's
+tyrannosauri
 tyrannosaurs
 tyrannosaurus
 tyrannosauruses
@@ -137901,6 +138038,7 @@ unmolested
 unmonitored
 unmonopolized
 unmonopolizes
+unmoored
 unmoral
 unmoralities
 unmorality
@@ -139907,6 +140045,9 @@ valved
 valveless
 valves
 valving
+valvotomies
+valvotomy
+valvotomy's
 valvular
 vamoose
 vamoosed
