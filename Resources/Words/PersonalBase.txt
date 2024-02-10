@@ -310,6 +310,7 @@ Aigneis
 Aiken
 Aikman
 Aila
+Ailawadhi
 Ailbert
 Aile
 Ailee
@@ -2044,6 +2045,7 @@ Belvia
 Ben
 Benacerraf
 Benbuck
+Bence
 Bendat
 Bendheim
 Bendick
@@ -5703,6 +5705,7 @@ Dirk
 Dirkzwager
 Disibodo
 Disney
+Dispenzieri
 Disraeli
 Dita
 Dittmann
@@ -8306,6 +8309,7 @@ Gompers
 Gompert
 Gompertz
 Gonesse
+Gonsalves
 Gonter
 Gontilda
 Gonzales
@@ -10388,6 +10392,7 @@ Jehovah
 Jekyll
 Jelena
 Jelene
+Jelinek
 Jelisa
 Jelissa
 Jellaluna
@@ -17580,6 +17585,7 @@ Rogers
 Roget
 Rohe
 Rohinton
+Rohren
 Roi
 Roisin
 Roisina

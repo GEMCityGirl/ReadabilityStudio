@@ -3713,6 +3713,9 @@ aminoacyl
 aminoacyl's
 aminobenzoic
 aminobutyric
+aminoglycoside
+aminoglycoside's
+aminoglycosides
 aminopeptidase
 aminotransferase
 amiodarone
@@ -33623,6 +33626,9 @@ dermatology's
 dermatome
 dermatomes
 dermatomyositis
+dermatopathologist
+dermatopathologist's
+dermatopathologists
 dermatopathy
 dermatophyte
 dermatophyte's
@@ -39763,6 +39769,9 @@ echo's
 echocardiogram
 echocardiogram's
 echocardiograms
+echocardiographer
+echocardiographer's
+echocardiographers
 echocardiography
 echocardiology
 echocardiology's
@@ -41724,6 +41733,9 @@ endocrinologists
 endocrinology
 endocrinology's
 endocrinopathy
+endocronologist
+endocronologist's
+endocronologists
 endocuticle
 endocuticle's
 endocuticles
@@ -44677,6 +44689,8 @@ exoskeletons
 exosphere
 exosphere's
 exospheres
+exostoses
+exostosis
 exosystem
 exosystem's
 exosystems
@@ -62361,6 +62375,7 @@ immunize
 immunized
 immunizes
 immunizing
+immuno
 immunoassay
 immunoassay's
 immunobiology
@@ -62404,6 +62419,7 @@ immunomodulant
 immunomodulator
 immunomodulator's
 immunomodulators
+immunomodulatory
 immunophenotype
 immunophenotyped
 immunophenotypes
@@ -64641,6 +64657,9 @@ informally
 informant
 informant's
 informants
+informaticist
+informaticist's
+informaticists
 informatics
 information
 information's
@@ -72660,6 +72679,9 @@ lipases
 lipectomy
 lipid
 lipid's
+lipidologist
+lipidologist's
+lipidologists
 lipids
 lipitor
 lipless
@@ -77942,6 +77964,8 @@ metered
 metering
 meters
 metes
+metformin
+metformin's
 meth
 methadone
 methadone's
@@ -84981,6 +85005,7 @@ nonconscious
 nonconsecutive
 nonconservative
 nonconstant
+nonconstruction
 nonconstructive
 nonconsumer
 nonconsumer's
@@ -88512,11 +88537,15 @@ osteoarthropathy
 osteoblast
 osteoblastic
 osteoblastoma
+osteoblastoma's
+osteoblastomas
 osteoblasts
 osteocalcin
 osteocalcin's
 osteochondritis
 osteochondroma
+osteochondroma's
+osteochondromas
 osteochondromatosis
 osteochondrosis
 osteoclasia
@@ -97296,6 +97325,8 @@ pomade's
 pomaded
 pomades
 pomading
+pomalidomide
+pomalidomide's
 pomander
 pomander's
 pomanders
@@ -101754,6 +101785,9 @@ pulmocutaneous
 pulmonale
 pulmonary
 pulmonic
+pulmonogist
+pulmonogist's
+pulmonogists
 pulmonologist
 pulmonologist's
 pulmonologists
@@ -125307,6 +125341,9 @@ subsonic
 subspace
 subspace's
 subspaces
+subspecialist
+subspecialist's
+subspecialists
 subspecialties
 subspecialty
 subspecialty's
@@ -139609,6 +139646,9 @@ urogram
 urogram's
 urograms
 urography
+urogynecologist
+urogynecologist's
+urogynecologists
 urolithiasis
 urologic
 urological

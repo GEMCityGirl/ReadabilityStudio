@@ -1222,6 +1222,7 @@ Conrail
 Consolas
 Constancia
 Contech
+Contergan
 Contoso
 Conviron
 Cookstown
@@ -1319,6 +1320,7 @@ Cyprian
 Cypriot
 Cyprus
 Cyrillic
+Cytoxan
 Czech
 Czechia
 Czechoslovak
@@ -1390,6 +1392,7 @@ Dec
 Decatur
 December
 DECNET
+Decorah
 DECstation
 DECsystem
 DECtape
@@ -2448,6 +2451,7 @@ IMHO
 Imitrex
 Immunol
 Immunotoxin
+Imnovid
 IMNSHO
 IMO
 Imodium
@@ -3024,6 +3028,7 @@ MacIntosh
 Macon
 macOS
 MacPaint
+Macrogol
 Macworld
 Madagascan
 Madagascar
@@ -3179,6 +3184,7 @@ MedicAlert
 Medicare
 Medifast
 Medigap
+Medigold
 Medina
 Meditech
 Mediterranean
@@ -3199,6 +3205,7 @@ Menkalinan
 Menkar
 Menkent
 Mennonite
+Menomonie
 Mensa
 Merak
 Mercado
@@ -3575,6 +3582,7 @@ Nippon
 Nipponese
 Nirenberg
 Nissan
+Nitrofurantoin
 NJ
 NLRB
 NM
@@ -3705,6 +3713,7 @@ Olympus
 Omaha
 Oman
 Omnichannel
+Onalaska
 OneBlood
 OneDrive
 Oneonta
@@ -3746,6 +3755,7 @@ Oseltamivir
 Oshawa
 Oshkosh
 Oslo
+Osseo
 Ostrander
 Oswego
 Oswestry
@@ -3757,6 +3767,7 @@ Ouagadougou
 Ouija
 Outbrain
 Overfield
+Owatonna
 Owensboro
 Oxacillin
 Oxaliplatin
@@ -4942,6 +4953,7 @@ Thai
 Thailand
 Thales
 Thalia
+Thalomid
 Thames
 Thanksgiving
 Thawte
@@ -5372,6 +5384,7 @@ Vreeland
 Vuelta
 Vulcan
 Vungle
+Wabasha
 Wachovia
 Waco
 Wadhrama
