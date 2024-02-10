@@ -950,6 +950,9 @@ amount of money	amount	0
 amounts of cash	amounts	0		
 amounts of money	amounts	0		
 amout	amount	3		
+amperesand	ampersand	3		
+amperesand's	ampersand's	3		
+amperesands	ampersands	3		
 amplified	made greater	0		
 amplifies	makes greater	0		
 amplify	make greater	0		
@@ -8956,6 +8959,7 @@ maxium	maximum	3
 may effect	may affect	3		
 may or may not	may, may not	0		
 may possibly	may	1		
+mbedded	embedded	3		
 mchanics	mechanics	3		
 meaninful	meaningful	3		
 meaningless gibberish	gibberish	0		
@@ -11106,6 +11110,10 @@ promulgating	announcing, proclaiming	0
 promulgation	announcement	0		
 promulgation's	announcement's	0		
 promulgations	announcements	0		
+pronise	promise	3		
+pronised	promised	3		
+pronises	promises	3		
+pronising	promising	3		
 pronnounced	pronounced	3		
 pronomial	pronominal	3		
 prononciation	pronunciation	3		
@@ -11905,6 +11913,7 @@ rendering assistance to	assisting, aiding	0
 renders assistance to	assists, aids	0		
 rendevous	rendezvous	3		
 rendezous	rendezvous	3		
+rendzvous	rendezvous	3		
 renegotation	renegotiation	3		
 renewl	renewal	3		
 rennovate	renovate	3		
@@ -12487,6 +12496,7 @@ sentances	sentences	3
 sentinal	sentinel	3		
 sentinal's	sentinel's	3		
 sentinals	sentinels	3		
+sentively	sensitively	3		
 separatly	separately	3		
 separed	separated	3		
 separte	separate	3		
