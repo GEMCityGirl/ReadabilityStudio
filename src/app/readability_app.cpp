@@ -5276,7 +5276,7 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
     // catalogue duplicates
         {
         wxBusyInfo wait(_(L"Loading duplicates..."));
-        size_t groupId{ 1 };
+        unsigned long groupId{ 1 };
         bool alternatingColor{ true };
         for (const auto& mapVal : filesMap.get_data())
             {
@@ -5301,8 +5301,9 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
         fileListDlg.GetListCtrl()->DistributeColumns(-1);
         fileListDlg.GetInforBar()->ShowMessage(
             wxString::Format(
-                _(L"Found %d duplicate files. You can select and delete duplicates from a group, "
-                   "leaving one file for the group."), fileListDlg.GetListCtrl()->GetItemCount() - (groupId - 1)),
+                _(L"Found %lu duplicate files. You can select and delete duplicates from a group, "
+                   "leaving one file for the group."),
+                   static_cast<decltype(groupId)>(fileListDlg.GetListCtrl()->GetItemCount()) - (groupId - 1)),
             wxICON_INFORMATION);
         }
     if (rowCount == 0)
