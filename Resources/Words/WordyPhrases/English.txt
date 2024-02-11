@@ -2543,6 +2543,8 @@ calulated	calculated	3
 calulater	calculator	3		
 calulates	calculates	3		
 calulating	calculating	3		
+calulus	calculus	3		
+calulus's	calculus's	3		
 calumniate	slander	0		
 calumniated	slandered	0		
 calumniates	slanders	0		
@@ -3955,6 +3957,9 @@ creates	makes	0
 creating	making	0		
 credit manger	credit manager	3		
 credit mangers	credit managers	3		
+creditential	credential	3		
+creditential's	credential's	3		
+creditentials	credentials	3		
 creedence	credence	3		
 cried over spilled milk	pointlessly lamented	2		
 cried wolf	raised false alarm	2		
@@ -5161,6 +5166,7 @@ elucidate	make clear	0
 elucidated	made clear	0		
 elucidates	makes clear	0		
 elucidating	making clear	0		
+emailor	email or;emailer	3		
 emanate	come from	0		
 emanated	came from	0		
 emanates	comes from	0		
@@ -5340,6 +5346,9 @@ enormous	large, huge	0
 enourmous	enormous	3		
 enourmously	enormously	3		
 enouth	enough	3		
+enrollent	enrollment	3		
+enrollent's	enrollment's	3		
+enrollents	enrollments	3		
 enrties	entries	3		
 enrty	entry	3		
 ensconsed	ensconced	3		
@@ -6257,6 +6266,9 @@ forward planning	planning	1
 forwardig	forwarding	3		
 fot	for	3		
 foucs	focus	3		
+foudation	foundation	3		
+foudation's	foundation's	3		
+foudations	foundations	3		
 foudn	found	3		
 fought tooth and nail	fought fiercely	2		
 fougth	fought	3		
@@ -8023,6 +8035,9 @@ interrogating	questioning	0
 interrogation	questioning	0		
 interrugum	interregnum	3		
 interruped	interrupted	3		
+intership	internship	3		
+intership's	internship's	3		
+interships	internships	3		
 intertaining	entertaining	3		
 interupt	interrupt	3		
 interupted	interrupted	3		
@@ -9245,6 +9260,9 @@ Morroccan	Moroccan	3
 Morrocco	Morocco	3		
 Morroco	Morocco	3		
 mortage	mortgage	3		
+mosiac	mosaic	3		
+mosiac's	mosaic's	3		
+mosiacs	mosaics	3		
 mosquitos	mosquitoes	3		
 most be	must be, most are	3	at	
 most of the time	usually	0		
@@ -10771,6 +10789,7 @@ preaching to the converted	making an argument to those that already support it	2
 preachment	sermon	0		
 preachments	sermons	0		
 preample	preamble	3		
+precalulus	precalculus	3		
 preced	precede	3		
 precedessor	predecessor	3		
 preceds	precedes	3		

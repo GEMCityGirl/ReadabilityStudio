@@ -22352,7 +22352,9 @@ clingy
 clinic
 clinic's
 clinical
+clinical's
 clinically
+clinicals
 clinician
 clinician's
 clinicians
@@ -22733,6 +22735,7 @@ cnidocyte
 cnidocytes
 co
 co's
+co-op
 co.'s
 coa
 coach
@@ -42592,6 +42595,7 @@ envious
 enviously
 enviousness
 enviousness's
+enviro
 environ
 environed
 environing
@@ -74963,6 +74967,9 @@ mainstreamed
 mainstreamer
 mainstreaming
 mainstreams
+mainstreet
+mainstreet's
+mainstreets
 maintain
 maintainability
 maintainable
@@ -83030,6 +83037,9 @@ nanocomposites
 nanocoulomb
 nanocoulomb's
 nanocoulombs
+nanodegree
+nanodegree's
+nanodegrees
 nanoelectronic
 nanoelectronic's
 nanoelectronics
@@ -120943,6 +120953,9 @@ spectered
 specters
 spectra
 spectra's
+spectracam
+spectracam's
+spectracams
 spectral
 spectrally
 spectralness
@@ -142413,6 +142426,8 @@ waiting
 waitings
 waitlist
 waitlist's
+waitlisted
+waitlisting
 waitlists
 waitpeople
 waitperson
