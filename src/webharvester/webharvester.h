@@ -223,7 +223,11 @@ class WebHarvester
         };
 
     /// @private
-    WebHarvester() { m_downloader.SetUserAgent(GetUserAgent()); }
+    WebHarvester()
+        {
+        m_downloader.SetUserAgent(GetUserAgent());
+        m_downloader.DisablePeerVerify(IsPeerVerifyDisabled());
+        }
 
     /// @private
     WebHarvester(const WebHarvester&) = delete;
@@ -537,6 +541,22 @@ class WebHarvester
         m_downloader.SetUserAgent(GetUserAgent());
         }
 
+    /** @brief Disable SSL certificate verification.
+        @details This can be used to connect to self-signed servers or other invalid SSL connections.\n
+            Disabling verification makes the communication insecure.
+        @param disable @c true to disable SSL certificate verification.*/
+    void DisablePeerVerify(const bool disable)noexcept
+        {
+        m_disablePeerVerify = disable;
+        m_downloader.DisablePeerVerify(m_disablePeerVerify);
+        }
+    /// @returns Returns @c true if peer verification has been disabled.
+    [[nodiscard]]
+    bool IsPeerVerifyDisabled() const noexcept
+        {
+        return m_disablePeerVerify;
+        }
+
     [[nodiscard]]
     static wxString GetCharsetFromContentType(const wxString& contentType);
     [[nodiscard]]
@@ -594,6 +614,7 @@ class WebHarvester
     size_t m_levelDepth{ 1 };
     wxString m_url;
     wxString m_userAgent;
+    bool m_disablePeerVerify{ false };
     string_util::case_insensitive_wstring m_domain;
     string_util::case_insensitive_wstring m_fullDomain;
     string_util::case_insensitive_wstring m_fullDomainFolderPath;

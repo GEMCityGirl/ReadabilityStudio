@@ -298,6 +298,8 @@ void ReadabilityAppOptions::ResetSettings()
     // internet
     m_userAgent = _DT(L"Web-Browser/") + wxGetOsDescription();
     wxGetApp().GetWebHarvester().SetUserAgent(m_userAgent);
+    m_disablePeerVerify = false;
+    wxGetApp().GetWebHarvester().DisablePeerVerify(m_disablePeerVerify);
     // graph information
     m_boxPlotShowAllPoints = false;
     m_boxDisplayLabels = false;
@@ -652,7 +654,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
         auto licenseNode = configRootNode->FirstChildElement(XML_LICENSE_ACCEPTED.data());
         if (licenseNode)
             {
-            int value = licenseNode->ToElement()->IntAttribute(XML_VALUE.data(), 0);
+            const int value = licenseNode->ToElement()->IntAttribute(XML_VALUE.data(), 0);
             m_licenseAccepted = int_to_bool(value);
             }
 
@@ -664,7 +666,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                 {
                 const wxString userAgentStr =
                     Wisteria::TextStream::CharStreamToUnicode(userAgent, std::strlen(userAgent));
-                const wchar_t* convertedStr = filter_html(userAgentStr, userAgentStr.length(), true, false);
+                const wchar_t* convertedStr =
+                    filter_html(userAgentStr, userAgentStr.length(), true, false);
                 if (convertedStr)
                     {
                     SetUserAgent(convertedStr);
@@ -672,6 +675,15 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     }
                 }
             }
+
+        auto disablePeerVerifyNode = configRootNode->FirstChildElement(XML_DISABLE_PEER_VERIFY.data());
+        if (disablePeerVerifyNode != nullptr)
+            {
+            const int value = disablePeerVerifyNode->ToElement()->IntAttribute(XML_VALUE.data(), 0);
+            m_disablePeerVerify = int_to_bool(value);
+            wxGetApp().GetWebHarvester().DisablePeerVerify(m_disablePeerVerify);
+            }
+
         auto filePathsNode = configRootNode->FirstChildElement(XML_FILE_OPEN_PATHS.data());
         if (filePathsNode)
             {
@@ -3296,6 +3308,10 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     userAgent->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetUserAgent().wc_str() }, false).c_str()).mb_str());
     configSection->InsertEndChild(userAgent);
+    
+    auto disablePv = doc.NewElement(XML_DISABLE_PEER_VERIFY.data());
+    disablePv->SetAttribute(XML_VALUE.data(), bool_to_int(IsPeerVerifyDisabled()) );
+    configSection->InsertEndChild(disablePv);
 
     // last opened file locations
     auto filePaths = doc.NewElement(XML_FILE_OPEN_PATHS.data());

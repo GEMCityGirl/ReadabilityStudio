@@ -44,6 +44,13 @@ This option is only available in the Windows edition. Under macOS, the system's 
 
 **User agent**: Enter into this field your user agent. The user agent is the name of the client program that is sent to websites when you try to read and download pages from them.
 
+**Disable SSL certificate verification**: Check this option to disable SSL certificate verification when reading and downloading webpages.
+This can be used to connect to self-signed servers or other invalid SSL connections.
+
+::: {.warningsection data-latex=""}
+Disabling SSL verification makes the communication insecure.
+:::
+
 ### Warnings & Prompts {-}
 
 **Customize**: Click this button to display the **Warnings & Prompts Display** dialog. This dialog enables you to display or suppress various warnings and prompts, including:

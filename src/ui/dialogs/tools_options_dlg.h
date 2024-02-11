@@ -971,6 +971,7 @@ class ToolsOptionsDlg final : public wxDialog
     ListCtrlExDataProvider* m_fileData{ new ListCtrlExDataProvider };
 
     BackupVariable<wxString> m_userAgent;
+    BackupVariable<bool> m_disablePeerVerify;
 
     // project settings
     BackupVariable<int> m_projectLanguage;

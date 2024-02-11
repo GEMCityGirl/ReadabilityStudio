@@ -652,6 +652,7 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
                                  const ToolSections sectionsToInclude /*= AllSections*/)  :
     m_readabilityProjectDoc(project),
     m_userAgent(wxGetApp().GetAppOptions().GetUserAgent()),
+    m_disablePeerVerify(wxGetApp().GetAppOptions().IsPeerVerifyDisabled()),
     // project settings
     m_projectLanguage(static_cast<int>(project ?
         project->GetProjectLanguage() : wxGetApp().GetAppOptions().GetProjectLanguage())),
@@ -1490,6 +1491,11 @@ void ToolsOptionsDlg::SaveOptions()
         {
         wxGetApp().GetAppOptions().SetUserAgent(m_userAgent.get_value());
         wxGetApp().GetWebHarvester().SetUserAgent(m_userAgent.get_value());
+        }
+    if (m_disablePeerVerify.has_changed())
+        {
+        wxGetApp().GetAppOptions().DisablePeerVerify(m_disablePeerVerify.get_value());
+        wxGetApp().GetWebHarvester().DisablePeerVerify(m_disablePeerVerify.get_value());
         }
     if (m_readabilityProjectDoc && HaveOptionsChanged())
         {
@@ -2939,6 +2945,14 @@ void ToolsOptionsDlg::CreateControls()
                     wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_userAgent));
             userAgentSizer->Add(userAgentEdit,
                 wxSizerFlags(1).Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+
+            optionsSizer->Add(new wxCheckBox(generalSettingsPage, wxID_ANY,
+                    _(L"Disable SSL certificate verification"),
+                    wxDefaultPosition, wxDefaultSize, 0,
+                    wxGenericValidator(&m_disablePeerVerify)),
+                wxSizerFlags().Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                    .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+
             optionsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
             CreateLabelHeader(generalSettingsPage, docpanelSizer, _(L"Warnings && Prompts:"), true);
@@ -3322,7 +3336,8 @@ void ToolsOptionsDlg::CreateControls()
         includeIncompleteSentSizeSizer->Add(m_includeIncompleteSentSizeWordsLabel, 0, wxALIGN_CENTER_VERTICAL);
 
         wxFlexGridSizer* ignoreOptionsGrid =
-            new wxFlexGridSizer(2, wxSize(wxSizerFlags::GetDefaultBorder(),wxSizerFlags::GetDefaultBorder()));
+            new wxFlexGridSizer(2,
+                wxSize(wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()));
         optionsIndentSizer->Add(ignoreOptionsGrid,
             wxSizerFlags().Expand().Border(wxBOTTOM, wxSizerFlags::GetDefaultBorder()));
 

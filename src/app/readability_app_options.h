@@ -1563,6 +1563,21 @@ class ReadabilityAppOptions
 
     void SetUserAgent(wxString path) { m_userAgent = std::move(path); }
 
+    /** @brief Disable SSL certificate verification.
+        @details This can be used to connect to self-signed servers or other invalid SSL connections.\n
+            Disabling verification makes the communication insecure.
+        @param disable @c true to disable SSL certificate verification.*/
+    void DisablePeerVerify(const bool disable)noexcept
+        {
+        m_disablePeerVerify = disable;
+        }
+    /// @returns Returns @c true if peer verification has been disabled.
+    [[nodiscard]]
+    bool IsPeerVerifyDisabled() const noexcept
+        {
+        return m_disablePeerVerify;
+        }
+
     // graph information
     //------------------------------
     void ShowAllBoxPlotPoints(const bool show) noexcept { m_boxPlotShowAllPoints = show; }
@@ -2618,6 +2633,7 @@ class ReadabilityAppOptions
     // "scraper" will actually result in a forbidden response from some sites,
     // so avoid using those words.
     wxString m_userAgent{ _DT(L"Web-Browser/") + wxGetOsDescription() };
+    bool m_disablePeerVerify{ false };
     // graph information
     bool m_boxPlotShowAllPoints{ false };
     bool m_boxDisplayLabels{ false };
@@ -2960,6 +2976,7 @@ class ReadabilityAppOptions
     const std::string_view XML_WINDOW_HEIGHT{ _DT("app-window-height") };
     const std::string_view XML_LICENSE_ACCEPTED{ _DT("license-accepted") };
     const std::string_view XML_USER_AGENT{ _DT("user-agent") };
+    const std::string_view XML_DISABLE_PEER_VERIFY{ _DT("disable-peer-verify") };
     // project options
     const std::string_view XML_REVIEWER{ _DT("project-reviewer") };
     const std::string_view XML_STATUS{ _DT("project-status") };
