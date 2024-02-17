@@ -3893,7 +3893,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
         else
             {
             // This should be logged instead of shown to the user;
-            // otherwise, they will see this warning everytime they refresh.
+            // otherwise, they will see this warning every time they refresh.
             wxLogWarning(L"Unknown file extension. File will be imported as plain text.");
             return std::make_pair(true,
                 Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize));
