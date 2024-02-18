@@ -14,6 +14,15 @@ The **Web Harvester** dialog enables you to gather (and optionally download) lin
 
 **File types to include**: Select from this list the types of documents to include from the website.
 
+**User agent**: Enter into this field your user agent. The user agent is the name of the client program that is sent to websites when you try to read and download pages from them.
+
+**Disable SSL certificate verification**: Check this option to disable SSL certificate verification when reading and downloading webpages.
+This can be used to connect to self-signed servers or other invalid SSL connections.
+
+::: {.warningsection data-latex=""}
+Disabling SSL verification makes the communication insecure.
+:::
+
 **Log broken links**: Check this option to check for broken links while harvesting and save them to the [log report](#log-report).
 
 ::: {.warningsection data-latex=""}

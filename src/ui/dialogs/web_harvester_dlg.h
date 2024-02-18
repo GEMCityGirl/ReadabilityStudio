@@ -35,10 +35,12 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
                     const bool hideLocalDownloadOption, const bool downloadFilesLocally,
                     const bool keepWebPathWhenDownloading, const wxString& downloadFolder,
                     const int domainRestriction, const wxArrayString& domainStrings,
+                    const bool disablePeerVerify, wxString userAgent,
                     wxWindowID id = wxID_ANY, const wxString& caption = _(L"Web Harvester"),
                     const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
                     long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
-        : m_depthLevel(depthLevel), m_fullDocFilter(fullDocFilter),
+        : m_depthLevel(depthLevel), m_userAgent(std::move(userAgent)), m_disablePeerVerify(disablePeerVerify),
+          m_fullDocFilter(fullDocFilter),
           m_selectedDocFilter(selectedDocFilter), m_selectedDomainRestriction(domainRestriction),
           m_domains(domainStrings), m_hideLocalDownloadOption(hideLocalDownloadOption),
           m_downloadFilesLocally(downloadFilesLocally),
@@ -76,6 +78,19 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     int GetDepthLevel() const noexcept
         {
         return m_depthLevel;
+        }
+
+    [[nodiscard]]
+    wxString GetUserAgent() const
+        {
+        return m_userAgent;
+        }
+
+    /// @returns Returns @c true if peer verification has been disabled.
+    [[nodiscard]]
+    bool IsPeerVerifyDisabled() const noexcept
+        {
+        return m_disablePeerVerify;
         }
 
     [[nodiscard]]
@@ -154,6 +169,8 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     /// Creates the controls and sizers
     void CreateControls();
     int m_depthLevel{ 1 };
+    wxString m_userAgent;
+    bool m_disablePeerVerify{ false };
     wxString m_fullDocFilter;
     wxString m_selectedDocFilter;
     int m_selectedDomainRestriction{ 0 };

@@ -265,14 +265,36 @@ void WebHarvesterDlg::CreateControls()
             wxSize(FromDIP(wxSize(100, 100)).GetWidth(), -1), choiceStrings,
             wxGetMouseState().ShiftDown() ? wxCB_DROPDOWN : wxCB_DROPDOWN | wxCB_READONLY);
         m_docFilterCombo->SetValue(m_selectedDocFilter);
-        fileTypeSizer->Add(m_docFilterCombo, 1, wxEXPAND | wxLEFT | wxRIGHT,
-                           wxSizerFlags::GetDefaultBorder());
+        fileTypeSizer->Add(m_docFilterCombo,
+                           wxSizerFlags(1).Expand()
+                           .Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+
+        wxBoxSizer* userAgentSizer = new wxBoxSizer(wxHORIZONTAL);
+            panelSizer->Add(userAgentSizer, wxSizerFlags().Expand());
+
+        userAgentSizer->Add(
+            new wxStaticText(Panel, wxID_STATIC, _(L"User agent:")),
+            0, wxALIGN_CENTER_VERTICAL);
+        wxTextCtrl* userAgentEdit =
+            new wxTextCtrl(Panel, wxID_ANY, wxString{}, wxDefaultPosition,
+                wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_userAgent));
+        userAgentSizer->Add(userAgentEdit,
+            wxSizerFlags(1).Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+
+        panelSizer->Add(new wxCheckBox(Panel, wxID_ANY,
+                _(L"Disable SSL certificate verification"),
+                wxDefaultPosition, wxDefaultSize, 0,
+                wxGenericValidator(&m_disablePeerVerify)),
+            wxSizerFlags().Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
 
         // check links
         auto logBrokenLinksCheckBox =
             new wxCheckBox(Panel, wxID_ANY, _(L"&Log broken links"), wxDefaultPosition,
                            wxDefaultSize, 0, wxGenericValidator(&m_logBrokenLinks));
-        panelSizer->Add(logBrokenLinksCheckBox, 0, wxALL, wxSizerFlags::GetDefaultBorder());
+        panelSizer->Add(logBrokenLinksCheckBox,
+                        wxSizerFlags().Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                        .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
         }
 
         // domain restriction page
@@ -420,6 +442,8 @@ void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester)
             harvester.AddAllowableWebFolder(GetRestrictedDomains()[j]);
             }
         }
+    harvester.SetUserAgent(GetUserAgent());
+    harvester.DisablePeerVerify(IsPeerVerifyDisabled());
     harvester.DownloadFilesWhileCrawling(IsDownloadFilesLocally());
     harvester.SetDownloadDirectory(GetDownloadFolder());
     harvester.KeepWebPathWhenDownloading(IsRetainingWebsiteFolderStructure());
@@ -463,6 +487,8 @@ bool WebHarvesterDlg::Create(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
     m_domainList->SetColumnWidth(0, m_domainList->GetClientSize().GetWidth() -
                                         wxSizerFlags::GetDefaultBorder());
     Centre();
+
+    TransferDataToWindow();
 
     Bind(wxEVT_BUTTON, &WebHarvesterDlg::OnFolderBrowseButtonClick, this,
          WebHarvesterDlg::ID_DOWNLOAD_FOLDER_BROWSE_BUTTON);

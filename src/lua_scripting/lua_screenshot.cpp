@@ -1361,7 +1361,9 @@ namespace LuaScripting
                 wxGetApp().GetWebHarvester().IsKeepingWebPathWhenDownloading(),
                 wxGetApp().GetWebHarvester().GetDownloadDirectory(),
                 static_cast<int>(wxGetApp().GetWebHarvester().GetDomainRestriction()),
-                wxGetApp().GetWebHarvester().GetAllowableWebFolders());
+                wxGetApp().GetWebHarvester().GetAllowableWebFolders(),
+                wxGetApp().GetWebHarvester().IsPeerVerifyDisabled(),
+                wxGetApp().GetWebHarvester().GetUserAgent());
             }
         LuaWebHarvesterDlg->Show();
         wxGetApp().Yield();
