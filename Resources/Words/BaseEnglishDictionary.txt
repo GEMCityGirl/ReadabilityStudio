@@ -16742,6 +16742,10 @@ cafes
 cafeteria
 cafeteria's
 cafeterias
+caffeinate
+caffeinated
+caffeinates
+caffeinating
 caffeine
 caffeine's
 caffeines
@@ -20069,6 +20073,9 @@ charophyte
 charophyte's
 charophytes
 charred
+charrette
+charrette's
+charrettes
 charring
 chars
 charset
@@ -40043,6 +40050,9 @@ edifiers
 edifies
 edify
 edifying
+eDiploma
+eDiploma's
+eDiplomas
 edit
 editable
 edited
@@ -69035,6 +69045,7 @@ kaffeeklatsch
 kaffeeklatsches
 kaftan
 kaftan's
+kairos
 kaiser
 kaiser's
 kaisers
@@ -79963,6 +79974,7 @@ missiles
 missing
 mission
 mission's
+missional
 missionaries
 missionary
 missionary's
@@ -82442,6 +82454,8 @@ murrain
 murrain's
 murrains
 mus
+musallam
+musallam's
 muscaria
 muscarine
 muscarinic
@@ -97386,6 +97400,7 @@ polyurethanes
 polyvinyl
 polyvinyl's
 polyvinyls
+polywood
 pom
 pom's
 pomade
@@ -112720,6 +112735,9 @@ saudade's
 sauerkraut
 sauerkraut's
 sauerkrauts
+sauger
+sauger's
+saugers
 Sault
 sauna
 sauna's
@@ -113770,6 +113788,10 @@ screens
 screensaver
 screensaver's
 screensavers
+screenshare
+screenshared
+screenshares
+screensharing
 screenshot
 screenshot's
 screenshots
@@ -125913,6 +125935,9 @@ suitcases
 suite
 suite's
 suited
+suitemate
+suitemate's
+suitemates
 suiters
 suites
 suiting
@@ -137077,6 +137102,7 @@ undissociated
 undissolved
 undistinguished
 undistorted
+undistracted
 undistributed
 undisturbed
 undivided
@@ -142848,6 +142874,9 @@ warring
 warring's
 warrior
 warrior's
+warriorbuck
+warriorbuck's
+warriorbucks
 warriors
 wars
 warship
@@ -143438,6 +143467,9 @@ webservices
 website
 website's
 websites
+webstore
+webstore's
+webstores
 webview
 webview's
 webviews

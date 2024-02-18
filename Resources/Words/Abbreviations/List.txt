@@ -74,6 +74,7 @@ app.
 appl.
 appr.
 approx.
+appt.
 apr.
 apt.
 asc.
