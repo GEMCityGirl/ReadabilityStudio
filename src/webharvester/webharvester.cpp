@@ -307,6 +307,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
             }
         }
 
+    wxLogVerbose(wxString::Format(L"Preparing to download %s", Url));
     m_downloader.RequestResponse(Url);
     auto responseCode = m_downloader.GetLastStatus();
 
@@ -432,6 +433,7 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
     // encode any spaces
     Url.Replace(L" ", L"%20");
 
+    wxLogVerbose(wxString::Format(L"Preparing to read %s", Url));
     if (!m_downloader.Read(Url))
         {
         responseCode = m_downloader.GetLastStatus();
@@ -559,10 +561,10 @@ bool WebHarvester::CrawlLinks()
     CrawlLinks(m_url, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
 
     // Now check the original URL to see if it is a file that should be downloaded
-    int rCode{ 0 };
+    int responseCode{ 0 };
     const wxString fnExt = wxFileName(m_url).GetExt();
     const wxString fileExt =
-        fnExt.length() ? fnExt : GetFileTypeFromContentType(GetContentType(m_url, rCode));
+        fnExt.length() ? fnExt : GetFileTypeFromContentType(GetContentType(m_url, responseCode));
     wxString contentType;
     // Add the link to files to download if it matches our criteria
     if (!HasUrlAlreadyBeenHarvested(m_url) &&
