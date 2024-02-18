@@ -2628,11 +2628,11 @@ class ReadabilityAppOptions
     wxString m_projectPath;
     wxString m_wordlistPath;
     // internet features
-    // Note that we call this a "web browser," although this may not be used
+    // Note that we call this a "WebBrowser," although this may not be used
     // in that context. Using words like "harvester," "crawler," and
     // "scraper" will actually result in a forbidden response from some sites,
     // so avoid using those words.
-    wxString m_userAgent{ _DT(L"Web-Browser/") + wxGetOsDescription() };
+    wxString m_userAgent{ _DT(L"Mozilla/5.0 (") + wxGetOsDescription() + _DT(L") WebKit/12.0 WebBrowser") };
     bool m_disablePeerVerify{ false };
     // graph information
     bool m_boxPlotShowAllPoints{ false };

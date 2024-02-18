@@ -296,7 +296,7 @@ void ReadabilityAppOptions::ResetSettings()
     // theme
     m_themeName = _DT(L"System");
     // internet
-    m_userAgent = _DT(L"Web-Browser/") + wxGetOsDescription();
+    m_userAgent = _DT(L"Mozilla/5.0 (") + wxGetOsDescription() + _DT(L") WebKit/12.0 WebBrowser");
     wxGetApp().GetWebHarvester().SetUserAgent(m_userAgent);
     m_disablePeerVerify = false;
     wxGetApp().GetWebHarvester().DisablePeerVerify(m_disablePeerVerify);
