@@ -3649,7 +3649,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             {
             extractResult =
                 ExtractRawTextWithEncoding(Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize,
-                    WebHarvester::GetCharsetFromPageContent(sourceFileText, streamSize)), L"html",
+                    WebHarvester::GetCharsetFromPageContent({ sourceFileText, streamSize} )), L"html",
                     GetOriginalDocumentFilePath(), label);
             }
         if (!extractResult.first)
@@ -3879,7 +3879,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                 {
                 const wxString str =
                     Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize,
-                        WebHarvester::GetCharsetFromPageContent(sourceFileText, streamSize));
+                        WebHarvester::GetCharsetFromPageContent({ sourceFileText, streamSize }));
                 extractResult = ExtractRawTextWithEncoding(str, L"html", GetOriginalDocumentFilePath(), title);
                 }
             SetOriginalDocumentDescription(

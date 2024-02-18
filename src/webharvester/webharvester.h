@@ -21,6 +21,7 @@
 #include <functional>
 #include <limits>
 #include <set>
+#include <string_view>
 #include <wx/dir.h>
 #include <wx/file.h>
 #include <wx/filename.h>
@@ -526,11 +527,13 @@ class WebHarvester
         // May need to be set if not initialized.
         // Needs to be initialized here because wxGetOsDescription()
         // can't be called during global startup.
-        // Note that we call this a "web browser," although this may not be used
+        // Note that we call this a "WebBrowser," although this may not be used
         // in that context. Using words like "harvester," "crawler," and
         // "scraper" will actually result in a forbidden response from some sites,
         // so avoid using those words.
-        return (m_userAgent.empty() ? _DT(L"Web-Browser/") + wxGetOsDescription() : m_userAgent);
+        return (m_userAgent.empty() ?
+            _DT(L"Mozilla/5.0 (") + wxGetOsDescription() + _DT(L") WebKit/12.0 WebBrowser") :
+            m_userAgent);
         }
 
     /// @brief Sets the user agent sent to websites when crawling.
@@ -557,10 +560,12 @@ class WebHarvester
         return m_disablePeerVerify;
         }
 
+    /// @returns The character set, parsed from HTML's content type.
+    /// @param contentType The content type section from a block of HTML to parse.
     [[nodiscard]]
     static wxString GetCharsetFromContentType(const wxString& contentType);
     [[nodiscard]]
-    static wxString GetCharsetFromPageContent(const char* pageContent, const size_t length);
+    static wxString GetCharsetFromPageContent(std::string_view pageContent);
 
   protected:
     [[nodiscard]]

@@ -478,8 +478,8 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
         wxString charSet = GetCharsetFromContentType(contentType);
         if (charSet.empty())
             {
-            charSet = GetCharsetFromPageContent(&m_downloader.GetLastRead()[0],
-                                                m_downloader.GetLastRead().size());
+            charSet = GetCharsetFromPageContent({ &m_downloader.GetLastRead()[0],
+                                                  m_downloader.GetLastRead().size()} );
             }
         // Watch out for embedded NULLs in stream (happens with poorly formatted HTML).
         // In this situation, we need to split the stream into valid chunks, convert them,
@@ -1006,9 +1006,10 @@ wxString WebHarvester::GetCharsetFromContentType(const wxString& contentType)
     }
 
 //----------------------------------
-wxString WebHarvester::GetCharsetFromPageContent(const char* pageContent, const size_t length)
+wxString WebHarvester::GetCharsetFromPageContent(std::string_view pageContent)
     {
-    std::string charSet = lily_of_the_valley::html_extract_text::parse_charset(pageContent, length);
+    std::string charSet =
+    lily_of_the_valley::html_extract_text::parse_charset(pageContent.data(), pageContent.length());
     if (charSet.empty())
         {
         return wxLocale::GetSystemEncodingName();
