@@ -699,6 +699,7 @@ Bloomingdale
 Bloomington
 Bloomville
 Blu-ray
+Bluesky
 Bluetooth
 Bluffton
 BMW
@@ -1620,6 +1621,7 @@ Embeddedworld
 EMC
 Emirates
 Emmys
+Empowerhouse
 Emulex
 Enceladus
 Encinitas
@@ -1712,6 +1714,7 @@ Eurasia
 Eurasian
 Eurocentric
 Eurocom
+Eurogamer
 Euronext
 Europa
 Europe
@@ -2073,6 +2076,7 @@ Giza
 Gizmodo
 Glaceau
 Glasgow
+Glassbox
 Glassdoor
 Glastonbury
 Glaswegian
@@ -2131,6 +2135,7 @@ Gradle
 GradReady
 Graffias
 Grainger
+Gramercy
 Grammy
 Grammys
 Grampian
@@ -2484,6 +2489,7 @@ Indianapolis
 Indianian
 IndieGoGo
 inDigital
+Indo
 Indochina
 Indochinese
 Indonesia
@@ -2965,6 +2971,7 @@ Longbridge
 Longstreet
 Longueuil
 Longyearbyen
+Lordes
 Lorentzian
 Lorraine
 Lothaire
@@ -3058,6 +3065,7 @@ Mahala
 Mahalia
 Maharashtra
 Mahican
+Mahtesian
 MaidPro
 MailChimp
 Mailflow
@@ -3605,8 +3613,10 @@ NodeJS
 NoDerivs
 NoDoz
 Nokia
+Nolita
 Nolvadex
 NORAD
+Norcold
 Nord
 Nordic
 Nordisk
@@ -3697,6 +3707,7 @@ October
 Oculus
 Odeo
 Odessa
+Odyssean
 Ogbomosho
 Ohio
 Ohioan
@@ -3819,6 +3830,7 @@ Palikir
 Palisades
 Palmolive
 Palooza
+Palworld
 Panama
 Panamanian
 Panasonic
@@ -4229,6 +4241,7 @@ Renfrewshire
 Reno
 Rensselaer
 Renville
+Respironics
 Resveratrol
 RETA
 Retin
@@ -4267,6 +4280,7 @@ Ritz
 RiverMobile
 Riverview
 Riviera
+Rivington
 RIX
 Rixan
 Riyadh
@@ -4309,6 +4323,7 @@ Roseau
 Rosemont
 Rosetta
 Rosicrucian
+Rossburg
 Rostov
 Roswell
 Rotarian
@@ -4533,6 +4548,7 @@ Sheboygan
 Sheepshead
 Sheffield
 Sheffielder
+Shelburne
 Sheltand
 Shenandoah
 Sherwood
@@ -5098,6 +5114,7 @@ Trent
 Trenton
 Trevelyan
 Treviño
+Tribeca
 Tricare
 Trimox
 Trimurti
@@ -5582,6 +5599,7 @@ Wokingham
 Wolfenstein
 Wolfsonian
 Wolverhampton
+Wonderbox
 Wonderlane
 Wondermedia
 Woodgrove

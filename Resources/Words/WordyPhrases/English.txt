@@ -10804,6 +10804,7 @@ precepts	rules	0
 precice	precise	3		
 precipitant	rash, hasty, impulsive	0		
 precipitation	rain, snow, dew, frost	0		
+precis	precise	3		
 precisly	precisely	3		
 precison	precision	3		
 precission	precision	3		
@@ -14903,6 +14904,7 @@ welded together	welded	1
 welding together	welding	1		
 welds together	welds	1		
 welfair	welfare	3		
+wellcome	welcome	3		
 wellfare	welfare	3		
 Wendsay	Wednesday	3		
 Wendsay's	Wednesday's	3		

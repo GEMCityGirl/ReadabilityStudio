@@ -6582,6 +6582,9 @@ arrogating
 arrogation
 arrogation's
 arrogations
+arrondissement
+arrondissement's
+arrondissements
 arrow
 arrow's
 arrowed
@@ -8288,6 +8291,7 @@ avalanched
 avalanches
 avalanching
 avant
+avant-gardes
 avanza
 avarice
 avarice's
@@ -8648,6 +8652,7 @@ babushka's
 babushkas
 baby
 baby's
+babycare
 babyhood
 babyhood's
 babyhoods
@@ -11523,6 +11528,7 @@ bicameral
 bicameralism
 bicameralism's
 bicameralisms
+bicamerality
 bicarb
 bicarb's
 bicarbonate
@@ -12955,6 +12961,9 @@ blockings
 blocklist
 blocklist's
 blocklists
+blockparties
+blockparty
+blockparty's
 blockquote
 blockquote's
 blockquotes
@@ -13741,7 +13750,9 @@ boodled
 boodles
 boodling
 booed
+boogeyman
 boogeyman's
+boogeymen
 boogie
 boogied
 boogieing
@@ -16445,6 +16456,7 @@ buzzer
 buzzer's
 buzzers
 buzzes
+buzziest
 buzzing
 buzzword
 buzzword's
@@ -24898,7 +24910,9 @@ concepción
 concepción's
 concept
 concept's
+concepted
 conceptible
+concepting
 conception
 conception's
 conceptional
@@ -26475,6 +26489,9 @@ contraption's
 contraptions
 contrapuntal
 contrapuntally
+contrarian
+contrarian's
+contrarians
 contraries
 contrarieties
 contrariety
@@ -28071,6 +28088,9 @@ coverlets
 covers
 covers's
 coversheet
+coverstitch
+coverstitch's
+coverstitches
 covert
 covertly
 covertness
@@ -29469,6 +29489,9 @@ cryptanalyst's
 cryptanalytic
 cryptic
 cryptically
+cryptid
+cryptid's
+cryptids
 cryptitis
 crypto
 cryptoanalyst
@@ -32329,6 +32352,10 @@ deftness
 deftness's
 defunct
 defuncts
+defund
+defunded
+defunding
+defunds
 defuse
 defused
 defuses
@@ -36790,6 +36817,7 @@ disrobed
 disrobes
 disrobing
 disrupt
+disruptable
 disrupted
 disrupter
 disrupter's
@@ -37431,6 +37459,7 @@ documenter's
 documenters
 documenting
 documents
+docuseries
 docx
 DOD
 dodder
@@ -50028,6 +50057,7 @@ fortress's
 fortressed
 fortresses
 fortressing
+fortresslike
 forts
 fortuities
 fortuitous
@@ -51469,6 +51499,7 @@ futons
 future
 future's
 futures
+futuring
 futurism
 futurism's
 futurisms
@@ -52127,6 +52158,7 @@ gaslight
 gaslight's
 gaslighted
 gaslights
+gaslit
 gasohol
 gasohols
 gasoline
@@ -62092,6 +62124,7 @@ illusion's
 illusionary
 illusionist
 illusionist's
+illusionistic
 illusionists
 illusions
 illusive
@@ -66421,6 +66454,10 @@ interpreters
 interpreting
 interpretive
 interpretively
+interpretivism
+interpretivist
+interpretivist's
+interpretivists
 interpretor
 interpretors
 interprets
@@ -76513,6 +76550,7 @@ maxim's
 maxima
 maxima's
 maximal
+maximalism
 maximality
 maximally
 maximals
@@ -78385,6 +78423,9 @@ micromole's
 micromoles
 micron
 micron's
+micronation
+micronation's
+micronations
 microneedle
 microneedle's
 microneedles
@@ -84097,6 +84138,9 @@ neuropathy
 neuropeptide
 neuropeptide's
 neuropeptides
+neurophilosopher
+neurophilosopher's
+neurophilosophers
 neurophysiological
 neurophysiologist
 neurophysiology
@@ -84197,6 +84241,7 @@ neutrino's
 neutrinos
 neutron
 neutron's
+neutronics
 neutrons
 neutropenia
 neutrophil
@@ -84738,6 +84783,9 @@ nociceptive
 nociceptor
 nociceptor's
 nociceptors
+noctor
+noctor's
+noctors
 nocturia
 nocturnal
 nocturnally
@@ -85061,6 +85109,7 @@ nondelivery's
 nondemocratic
 nondenominational
 nondepartmental
+nondeposit
 nondepository
 nondepreciated
 nondepreciating
@@ -89607,6 +89656,9 @@ overload
 overloaded
 overloading
 overloads
+overlocker
+overlocker's
+overlockers
 overlong
 overlook
 overlooked
@@ -89717,6 +89769,10 @@ overprint
 overprinted
 overprinting
 overprints
+overprocess
+overprocessed
+overprocesses
+overprocessing
 overproduce
 overproduced
 overproduces
@@ -96293,6 +96349,8 @@ pleat's
 pleated
 pleater
 pleater's
+pleather
+pleather's
 pleating
 pleats
 pleb
@@ -97917,6 +97975,7 @@ postfixed
 postfixes
 postfixing
 postformal
+postgame
 postganglionic
 postgender
 postglobalization
@@ -99550,6 +99609,7 @@ prevarications
 prevaricator
 prevaricator's
 prevaricators
+prevenient
 prevent
 preventable
 preventably
@@ -119513,6 +119573,7 @@ snowinesses
 snowing
 snowless
 snowline
+snowmaking
 snowman
 snowman's
 snowmelt
@@ -124153,6 +124214,7 @@ streetwalker
 streetwalker's
 streetwalkers
 streetwalking
+streetwear
 streetwise
 strength
 strength's
@@ -129260,6 +129322,10 @@ teleconferenced
 teleconferences
 teleconferencing
 teleconferencings
+telecounsel
+telecounseled
+telecounseling
+telecounsels
 telefacsimile
 telefax
 telefund
@@ -139001,6 +139067,7 @@ untenable
 untenanted
 untended
 untented
+untenured
 unterminated
 unterrorized
 untestable
@@ -141952,6 +142019,7 @@ voes
 voetsek
 voetstoots
 vogue
+vogue'ology
 vogue's
 vogued
 vogueing
@@ -144914,6 +144982,7 @@ woes
 wok
 wok's
 woke
+wokeism
 woken
 woks
 wold
@@ -144989,6 +145058,7 @@ womenfolk's
 womenfolks
 womenomics
 womens
+womenswear
 won
 won't
 wonder
@@ -145915,6 +145985,7 @@ yeller
 yelling
 yellow
 yellow's
+yellowbrick
 yellowed
 yellower
 yellowest
