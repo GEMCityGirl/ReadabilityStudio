@@ -5,7 +5,6 @@
 #include "../projects/standard_project_view.h"
 #include "../ui/dialogs/custom_test_dlg.h"
 #include "../ui/dialogs/edit_word_list_dlg.h"
-#include "../ui/dialogs/license_dlg.h"
 #include "../ui/dialogs/new_custom_test_simple_dlg.h"
 #include "../ui/dialogs/project_wizard_dlg.h"
 #include "../ui/dialogs/test_bundle_dlg.h"
@@ -235,45 +234,7 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
         // (showing dialogs in here can cause this function to be reentered)
         static bool initEventProcessing = false;
         static bool hasCommandLineBeenParsed = false;
-        static bool acceptedLicenseAgreement = false;
-        // EULA agreement
-        if (!acceptedLicenseAgreement && !initEventProcessing)
-            {
-            initEventProcessing = true;
-            acceptedLicenseAgreement = true;
-            wxString licenseAgreementPath = FindResourceFile(L"license.rtf");
-            if (!GetAppOptions().IsLicenseAccepted() && wxFile::Exists(licenseAgreementPath) )
-                {
-                wxLogMessage(L"EULA loaded from: %s", licenseAgreementPath);
-                LicenseDlg licDlg(GetMainFrame());
-                try
-                    {
-                    lily_of_the_valley::rtf_extract_text filter_rtf(
-                        lily_of_the_valley::rtf_extract_text::rtf_extraction_type::rtf_to_html);
-                    MemoryMappedFile licFile(licenseAgreementPath, true, true);
-                    licDlg.SetLicenseAggreement(
-                        wxString(filter_rtf(static_cast<char*>(licFile.GetStream()), licFile.GetMapSize())) );
-                    }
-                catch (...)
-                    {
-                    // can't open the license agreement (shouldn't happen), so just let it slide.
-                    // refusing to open the program under this rare circumstance seems a bit extreme.
-                    GetAppOptions().SetLicenseAccepted(true);
-                    }
-                if (licDlg.ShowModal() != licDlg.GetAffirmativeId())
-                    {
-                    wxMessageBox(
-                        _(L"Program features will be disabled until End User License Agreement is accepted.\n"
-                           "Please restart the program to accept the license agreement."),
-                        _(L"Warning"), wxOK|wxICON_EXCLAMATION, nullptr);
-                    GetAppOptions().SetLicenseAccepted(false);
-                    GetLicenseAdmin().DisableAllFeatures();
-                    }
-                else
-                    { GetAppOptions().SetLicenseAccepted(true); }
-                }
-            initEventProcessing = false;
-            }
+
         // The command line may need an active loop (if a progress bar is used),
         // so we handle it here instead of OnInit().
         if (!hasCommandLineBeenParsed && !initEventProcessing)

@@ -651,13 +651,6 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
         auto appearanceNode = configRootNode->FirstChildElement(XML_APPEARANCE.data());
         LoadThemeNode(appearanceNode);
 
-        auto licenseNode = configRootNode->FirstChildElement(XML_LICENSE_ACCEPTED.data());
-        if (licenseNode)
-            {
-            const int value = licenseNode->ToElement()->IntAttribute(XML_VALUE.data(), 0);
-            m_licenseAccepted = int_to_bool(value);
-            }
-
         auto userAgentNode = configRootNode->FirstChildElement(XML_USER_AGENT.data());
         if (userAgentNode)
             {
@@ -3300,15 +3293,16 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         }
     configSection->InsertEndChild(appearance);
 
+    // just set this to true for backward compatibility
     auto licenseAccepted = doc.NewElement(XML_LICENSE_ACCEPTED.data());
-    licenseAccepted->SetAttribute(XML_VALUE.data(), bool_to_int(IsLicenseAccepted()) );
+    licenseAccepted->SetAttribute(XML_VALUE.data(), bool_to_int(true) );
     configSection->InsertEndChild(licenseAccepted);
 
     auto userAgent = doc.NewElement(XML_USER_AGENT.data());
     userAgent->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetUserAgent().wc_str() }, false).c_str()).mb_str());
     configSection->InsertEndChild(userAgent);
-    
+
     auto disablePv = doc.NewElement(XML_DISABLE_PEER_VERIFY.data());
     disablePv->SetAttribute(XML_VALUE.data(), bool_to_int(IsPeerVerifyDisabled()) );
     configSection->InsertEndChild(disablePv);

@@ -48,7 +48,6 @@ SET(APP_SRC_FILES
     src/ui/dialogs/export_all_dlg.cpp
     src/ui/dialogs/filtered_text_export_options_dlg.cpp
     src/ui/dialogs/filtered_text_preview_dlg.cpp
-    src/ui/dialogs/license_dlg.cpp
     src/ui/dialogs/lua_editor_dlg.cpp
     src/ui/dialogs/new_custom_test_simple_dlg.cpp
     src/ui/dialogs/project_wizard_dlg.cpp

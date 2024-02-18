@@ -1520,15 +1520,6 @@ class ReadabilityAppOptions
             }
         }
 
-    // license and other startup pages
-    [[nodiscard]]
-    bool IsLicenseAccepted() const noexcept
-        {
-        return m_licenseAccepted;
-        }
-
-    void SetLicenseAccepted(const bool accept) noexcept { m_licenseAccepted = accept; }
-
     // last opened file locations
     [[nodiscard]]
     wxString GetImagePath() const
@@ -2621,8 +2612,6 @@ class ReadabilityAppOptions
     // start page
     wxColour m_startPageBackstageBackgroundColor{ wxColour{ 145, 168, 208 } };
     wxColour m_startPageDetailBackgroundColor{ *wxWHITE };
-    // license and other startup dialogs
-    bool m_licenseAccepted{ false };
     // last opened file locations
     wxString m_imagePath;
     wxString m_projectPath;
