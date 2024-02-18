@@ -8388,6 +8388,7 @@ justified	proved/proven	0
 justifies	proves	0		
 justify	prove	0		
 justifying	proving	0		
+karios	kairos	3		
 keep in mind	remember, note	0		
 keep my eyes peeled	am on the lookout	2		
 keep my fingers crossed	hope that something will work	2		
@@ -13195,6 +13196,7 @@ subtitution	substitution	3
 subtitutions	substitutions	3		
 suburburban	suburban	3		
 succceeded	succeeded	3		
+succcess	success	3		
 succcesses	successes	3		
 succedded	succeeded	3		
 succede	succeed	3		
