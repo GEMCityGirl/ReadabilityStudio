@@ -5376,7 +5376,9 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         wxGetApp().GetWebHarvester().IsKeepingWebPathWhenDownloading(),
         wxGetApp().GetWebHarvester().GetDownloadDirectory(),
         static_cast<int>(wxGetApp().GetWebHarvester().GetDomainRestriction()),
-        wxGetApp().GetWebHarvester().GetAllowableWebFolders());
+        wxGetApp().GetWebHarvester().GetAllowableWebFolders(),
+        wxGetApp().GetWebHarvester().IsPeerVerifyDisabled(),
+        wxGetApp().GetWebHarvester().GetUserAgent());
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     // force downloading locally
     webHarvestDlg.DownloadFilesLocally(true);
@@ -5389,30 +5391,37 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     wxGetApp().SetLastSelectedDocFilter(webHarvestDlg.GetSelectedDocFilter());
     webHarvestDlg.UpdateHarvesterSettings(wxGetApp().GetWebHarvester());
 
+    bool showLogReport{ false };
+
     for (size_t i = 0; i < webHarvestDlg.GetUrls().GetCount(); ++i)
         {
         FilePathResolver resolver(webHarvestDlg.GetUrls().Item(i), true);
         wxGetApp().GetWebHarvester().SetUrl(resolver.GetResolvedPath());
         webHarvestDlg.UpdateHarvesterSettings(wxGetApp().GetWebHarvester());
 
-        const auto crawlResult = wxGetApp().GetWebHarvester().CrawlLinks();
+        // if user cancelled harvesting, then stop
+        if (!wxGetApp().GetWebHarvester().CrawlLinks())
+            { break; }
 
         for (const auto& bLink : wxGetApp().GetWebHarvester().GetBrokenLinks())
             { wxLogWarning(L"Broken link '%s' (from '%s')", bLink.first, bLink.second); }
 
-        // if user cancelled harvesting, then stop
-        if (!crawlResult)
-            { break; }
-
-        if (wxGetApp().GetWebHarvester().GetHarvestedLinks().size() == 0)
+        if (wxGetApp().GetWebHarvester().GetDownloadedFilePaths().size() == 0)
             {
             wxMessageBox(
                 wxString::Format(
-                    _(L"No links were harvested from '%s'. "
-                       "Please review the log report for any possible connection errors."),
+                    _(L"No files were downloaded from '%s'. "
+                       "Please review the log report for any possible connection issues."),
                     wxGetApp().GetWebHarvester().GetUrl()),
                 _(L"Warning"), wxOK | wxICON_WARNING);
+            showLogReport = true;
             }
+        }
+
+    if (showLogReport)
+        {
+        wxRibbonButtonBarEvent unusedCmd;
+        OnViewLogReport(unusedCmd);
         }
     // crawl a block of HTML text that the user may have entered
     // (only enabled if user holds down SHIFT key to see hidden interface)
@@ -5420,9 +5429,14 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         {
         wxGetApp().GetWebHarvester().SetUrl(webHarvestDlg.GetRawHtmlPage());
         webHarvestDlg.UpdateHarvesterSettings(wxGetApp().GetWebHarvester());
-        [[maybe_unused]] const auto crawlResult = wxGetApp().GetWebHarvester().CrawlLinks();
-
-        for (const auto& bLink : wxGetApp().GetWebHarvester().GetBrokenLinks())
-            { wxLogWarning("Broken link '%s' (from '%s')", bLink.first, bLink.second); }
+        if (wxGetApp().GetWebHarvester().CrawlLinks())
+            {
+            for (const auto& bLink : wxGetApp().GetWebHarvester().GetBrokenLinks())
+                { wxLogWarning(L"Broken link '%s' (from '%s')", bLink.first, bLink.second); }
+            }
         }
+
+    // update globl internet options that mirror the same options from the dialog
+    wxGetApp().GetWebHarvester().DisablePeerVerify(webHarvestDlg.IsPeerVerifyDisabled()),
+    wxGetApp().GetWebHarvester().SetUserAgent(webHarvestDlg.GetUserAgent());
     }

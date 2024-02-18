@@ -1605,7 +1605,9 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
         wxGetApp().GetWebHarvester().IsKeepingWebPathWhenDownloading(),
         wxGetApp().GetWebHarvester().GetDownloadDirectory(),
         static_cast<int>(wxGetApp().GetWebHarvester().GetDomainRestriction()),
-        wxGetApp().GetWebHarvester().GetAllowableWebFolders());
+        wxGetApp().GetWebHarvester().GetAllowableWebFolders(),
+        wxGetApp().GetWebHarvester().IsPeerVerifyDisabled(),
+        wxGetApp().GetWebHarvester().GetUserAgent());
     webHarvestDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
                                L"web-harvester.html");
     if (webHarvestDlg.ShowModal() != wxID_OK)
