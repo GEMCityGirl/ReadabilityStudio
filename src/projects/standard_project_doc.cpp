@@ -1364,7 +1364,7 @@ bool ProjectDoc::OnNewDocument()
     // Go through the sentences and see if any are not complete but considered valid because of their length.
     // If any are found, then mention it to the user.
     size_t sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength = 0;
-    std::vector<punctuation::punctuation_mark>::const_iterator punctPos = GetWords()->get_punctuation().begin();
+    std::vector<punctuation::punctuation_mark>::const_iterator punctPos = GetWords()->get_punctuation().cbegin();
     wxArrayString longIncompleteSentences;
     for (std::vector<grammar::sentence_info>::const_iterator sentPos = GetWords()->get_sentences().begin();
          sentPos != GetWords()->get_sentences().end();
@@ -1377,7 +1377,7 @@ bool ProjectDoc::OnNewDocument()
             {
             ++sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength;
             longIncompleteSentences.Add(ProjectReportFormat::FormatSentence(this, *sentPos, punctPos,
-                GetWords()->get_punctuation().end()));
+                GetWords()->get_punctuation().cend()));
             }
         }
     if (sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength > 0)
@@ -6335,7 +6335,7 @@ void ProjectDoc::DisplayOverlyLongSentences()
     const grammar::complete_sentence_length_greater_than completeSentenceGreater(GetDifficultSentenceLength());
     wxString currentSentence;
     // punctuation markers
-    std::vector<punctuation::punctuation_mark>::const_iterator punctPos = GetWords()->get_punctuation().begin();
+    std::vector<punctuation::punctuation_mark>::const_iterator punctPos = GetWords()->get_punctuation().cbegin();
     for (std::vector<grammar::sentence_info>::const_iterator pos = GetWords()->get_sentences().begin();
         pos != GetWords()->get_sentences().end();
         ++pos)
@@ -6345,7 +6345,7 @@ void ProjectDoc::DisplayOverlyLongSentences()
             (GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings && completeSentenceGreater(*pos)))
             {
             currentSentence =
-                ProjectReportFormat::FormatSentence(this, *pos, punctPos, GetWords()->get_punctuation().end());
+                ProjectReportFormat::FormatSentence(this, *pos, punctPos, GetWords()->get_punctuation().cend());
 
             m_overlyLongSentenceData->SetItemText(longSenteceCount, 0, currentSentence);
             if (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences)
@@ -6428,23 +6428,128 @@ void ProjectDoc::DisplayGrammar()
             { listView->SetItemCount(0); }
         };
 
-    // misspelled words
-    frequency_set<traits::case_insensitive_wstring_ex> misspelledWords;
-    const auto& misspelledWordIndices = GetWords()->get_misspelled_words();
-    for (size_t i = 0; i < misspelledWordIndices.size(); ++i)
-        { misspelledWords.insert(GetWords()->get_word(misspelledWordIndices[i]).c_str()); }
-    m_misspelledWordData->DeleteAllItems();
-    m_misspelledWordData->SetSize(misspelledWords.get_data().size(), 2);
-    size_t uniqueMisspellingCount = 0;
-    for (auto mIter = misspelledWords.get_data().cbegin();
-        mIter != misspelledWords.get_data().cend();
-        ++mIter)
+    // load issues from phrase based checks
+    const auto& wordyIndices = GetWords()->get_known_phrase_indices();
+    const auto& wordyPhrases =
+        GetWords()->get_known_phrases().get_phrases();
+    m_wordyPhraseData->DeleteAllItems();
+    m_wordyPhraseData->SetSize(GetWords()->get_known_phrase_indices().size(), 3);
+    m_redundantPhraseData->DeleteAllItems();
+    m_redundantPhraseData->SetSize(GetWords()->get_known_phrase_indices().size(), 3);
+    m_wordingErrorData->DeleteAllItems();
+    m_wordingErrorData->SetSize(GetWords()->get_known_phrase_indices().size(), 3);
+    m_clichePhraseData->DeleteAllItems();
+    m_clichePhraseData->SetSize(GetWords()->get_known_phrase_indices().size(), 3);
+    size_t wordyPhraseCount(0), redundantPhraseCount(0), wordingErrorCount(0), clicheCount(0);
+    for (size_t i = 0; i < wordyIndices.size(); ++i)
         {
-        m_misspelledWordData->SetItemText(uniqueMisspellingCount, 0, mIter->first.c_str());
-        m_misspelledWordData->SetItemValue(uniqueMisspellingCount++, 1, mIter->second);
+        if (wordyPhrases[wordyIndices[i].second].first.get_type() == grammar::phrase_type::phrase_cliche)
+            {
+            m_clichePhraseData->SetItemText(
+                clicheCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
+            m_clichePhraseData->SetItemText(
+                clicheCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
+            m_clichePhraseData->SetItemValue(clicheCount++, 2,
+                // make 1-based index
+                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+            }
+        else if (wordyPhrases[wordyIndices[i].second].first.get_type() == grammar::phrase_type::phrase_redundant)
+            {
+            m_redundantPhraseData->SetItemText(
+                redundantPhraseCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
+            m_redundantPhraseData->SetItemText(
+                redundantPhraseCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
+            m_redundantPhraseData->SetItemValue(redundantPhraseCount++, 2,
+                // make 1-based index
+                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+            }
+        else if (wordyPhrases[wordyIndices[i].second].first.get_type() == grammar::phrase_type::phrase_error)
+            {
+            m_wordingErrorData->SetItemText(
+                wordingErrorCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
+            m_wordingErrorData->SetItemText(
+                wordingErrorCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
+            m_wordingErrorData->SetItemValue(wordingErrorCount++, 2,
+                // make 1-based index
+                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+            }
+        else
+            {
+            m_wordyPhraseData->SetItemText(
+                wordyPhraseCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
+            m_wordyPhraseData->SetItemText(
+                wordyPhraseCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
+            m_wordyPhraseData->SetItemValue(wordyPhraseCount++, 2,
+                // make 1-based index
+                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+            }
         }
-    // totally redundant, but fixes mysterious painting issue when project is refreshed
+    m_wordyPhraseData->SetSize(wordyPhraseCount);
+    m_redundantPhraseData->SetSize(redundantPhraseCount);
+    m_wordingErrorData->SetSize(wordingErrorCount);
+    m_clichePhraseData->SetSize(clicheCount);
+
+    // Wording errors
         {
+        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+            BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID));
+        if (GetGrammarInfo().IsWordingErrorsEnabled() && m_wordingErrorData->GetItemCount())
+            {
+            if (listView)
+                {
+                listView->SetVirtualDataProvider(m_wordingErrorData);
+                listView->SetVirtualDataSize(m_wordingErrorData->GetItemCount());
+                listView->DistributeColumns();
+                listView->Resort();
+                }
+            else
+                {
+                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView->Hide();
+                listView->SetLabel(BaseProjectView::GetPhrasingErrorsTabLabel());
+                listView->SetName(BaseProjectView::GetPhrasingErrorsTabLabel());
+                listView->EnableGridLines();
+                listView->InsertColumn(0, BaseProjectView::GetPhrasingErrorsTabLabel());
+                listView->InsertColumn(1, _(L"Suggestion"));
+                listView->InsertColumn(2, _(L"Sentence #"));
+                listView->SetVirtualDataProvider(m_wordingErrorData);
+                listView->SetVirtualDataSize(m_wordingErrorData->GetItemCount());
+                listView->DistributeColumns();
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                UpdateListOptions(listView);
+                view->GetGrammarView().AddWindow(listView);
+                }
+            }
+        else
+            {
+            resetListView(listView);
+            // we are getting rid of this window (if it was included before)
+            view->GetGrammarView().RemoveWindowById(BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID);
+            }
+        }
+
+    // misspelled words
+        {
+        frequency_set<traits::case_insensitive_wstring_ex> misspelledWords;
+        const auto& misspelledWordIndices = GetWords()->get_misspelled_words();
+        for (size_t i = 0; i < misspelledWordIndices.size(); ++i)
+            { misspelledWords.insert(GetWords()->get_word(misspelledWordIndices[i]).c_str()); }
+        m_misspelledWordData->DeleteAllItems();
+        m_misspelledWordData->SetSize(misspelledWords.get_data().size(), 2);
+        size_t uniqueMisspellingCount = 0;
+        for (auto mIter = misspelledWords.get_data().cbegin();
+            mIter != misspelledWords.get_data().cend();
+            ++mIter)
+            {
+            m_misspelledWordData->SetItemText(uniqueMisspellingCount, 0, mIter->first.c_str());
+            m_misspelledWordData->SetItemValue(uniqueMisspellingCount++, 1, mIter->second);
+            }
+
         m_misspelledWordData->SetSize(misspelledWords.get_data().size());
         ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
             BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID));
@@ -6590,111 +6695,6 @@ void ProjectDoc::DisplayGrammar()
             }
         }
 
-    // wordy items and cliches
-    const auto& wordyIndices = GetWords()->get_known_phrase_indices();
-    const auto& wordyPhrases =
-        GetWords()->get_known_phrases().get_phrases();
-    m_wordyPhraseData->DeleteAllItems();
-    m_wordyPhraseData->SetSize(GetWords()->get_known_phrase_indices().size(), 3);
-    m_redundantPhraseData->DeleteAllItems();
-    m_redundantPhraseData->SetSize(GetWords()->get_known_phrase_indices().size(), 3);
-    m_wordingErrorData->DeleteAllItems();
-    m_wordingErrorData->SetSize(GetWords()->get_known_phrase_indices().size(), 3);
-    m_clichePhraseData->DeleteAllItems();
-    m_clichePhraseData->SetSize(GetWords()->get_known_phrase_indices().size(), 3);
-    size_t wordyPhraseCount(0), redundantPhraseCount(0), wordingErrorCount(0), clicheCount(0);
-    for (size_t i = 0; i < wordyIndices.size(); ++i)
-        {
-        if (wordyPhrases[wordyIndices[i].second].first.get_type() == grammar::phrase_type::phrase_cliche)
-            {
-            m_clichePhraseData->SetItemText(
-                clicheCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
-            m_clichePhraseData->SetItemText(
-                clicheCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
-            m_clichePhraseData->SetItemValue(clicheCount++, 2,
-                // make 1-based index
-                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
-            }
-        else if (wordyPhrases[wordyIndices[i].second].first.get_type() == grammar::phrase_type::phrase_redundant)
-            {
-            m_redundantPhraseData->SetItemText(
-                redundantPhraseCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
-            m_redundantPhraseData->SetItemText(
-                redundantPhraseCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
-            m_redundantPhraseData->SetItemValue(redundantPhraseCount++, 2,
-                // make 1-based index
-                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
-            }
-        else if (wordyPhrases[wordyIndices[i].second].first.get_type() == grammar::phrase_type::phrase_error)
-            {
-            m_wordingErrorData->SetItemText(
-                wordingErrorCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
-            m_wordingErrorData->SetItemText(
-                wordingErrorCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
-            m_wordingErrorData->SetItemValue(wordingErrorCount++, 2,
-                // make 1-based index
-                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
-            }
-        else
-            {
-            m_wordyPhraseData->SetItemText(
-                wordyPhraseCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
-            m_wordyPhraseData->SetItemText(
-                wordyPhraseCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
-            m_wordyPhraseData->SetItemValue(wordyPhraseCount++, 2,
-                // make 1-based index
-                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
-            }
-        }
-    m_wordyPhraseData->SetSize(wordyPhraseCount);
-    m_redundantPhraseData->SetSize(redundantPhraseCount);
-    m_wordingErrorData->SetSize(wordingErrorCount);
-    m_clichePhraseData->SetSize(clicheCount);
-
-    // Wording errors
-        {
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
-            BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID));
-        if (GetGrammarInfo().IsWordingErrorsEnabled() && m_wordingErrorData->GetItemCount())
-            {
-            if (listView)
-                {
-                listView->SetVirtualDataProvider(m_wordingErrorData);
-                listView->SetVirtualDataSize(m_wordingErrorData->GetItemCount());
-                listView->DistributeColumns();
-                listView->Resort();
-                }
-            else
-                {
-                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID,
-                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-                listView->Hide();
-                listView->SetLabel(BaseProjectView::GetPhrasingErrorsTabLabel());
-                listView->SetName(BaseProjectView::GetPhrasingErrorsTabLabel());
-                listView->EnableGridLines();
-                listView->InsertColumn(0, BaseProjectView::GetPhrasingErrorsTabLabel());
-                listView->InsertColumn(1, _(L"Suggestion"));
-                listView->InsertColumn(2, _(L"Sentence #"));
-                listView->SetVirtualDataProvider(m_wordingErrorData);
-                listView->SetVirtualDataSize(m_wordingErrorData->GetItemCount());
-                listView->DistributeColumns();
-                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-                UpdateListOptions(listView);
-                view->GetGrammarView().AddWindow(listView);
-                }
-            }
-        else
-            {
-            resetListView(listView);
-            // we are getting rid of this window (if it was included before)
-            view->GetGrammarView().RemoveWindowById(BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID);
-            }
-        }
-
     // redundant phrases
         {
         ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
@@ -6736,51 +6736,51 @@ void ProjectDoc::DisplayGrammar()
         }
 
     // overused words (by sentence)
-    GetOverusedWordsBySentenceData()->SetSize(GetWords()->get_overused_words_by_sentence().size(), 4);
-    // reset punctuation marker
-    auto punctPos = GetWords()->get_punctuation().begin();
-    size_t previousSentencePos = 0;
-    auto previousPunctPos = GetWords()->get_punctuation().cbegin();
-    for (auto overUsedWordsListsIter = GetWords()->get_overused_words_by_sentence().begin();
-        overUsedWordsListsIter != GetWords()->get_overused_words_by_sentence().end();
-        ++overUsedWordsListsIter)
         {
-        // Format the full sentence (to show context)
-        // Note that some sentences may have multiple issues and are listed more than once,
-        // so we need to reset the punctuation make to the start of the sentence if it's the same sentence again.
-        if (previousSentencePos == overUsedWordsListsIter->first)
-            { punctPos = previousPunctPos; }
-        previousPunctPos = punctPos;
-        previousSentencePos = overUsedWordsListsIter->first;
-        wxString currentSentence = ProjectReportFormat::FormatSentence(this,
-            GetWords()->get_sentences()[overUsedWordsListsIter->first],
-            punctPos, GetWords()->get_punctuation().end());
-        // format the list of like words
-        wxString theWords;
-        for (std::set<size_t>::const_iterator overusedWordsIter = overUsedWordsListsIter->second.begin();
-            overusedWordsIter != overUsedWordsListsIter->second.end();
-            ++overusedWordsIter)
-            { theWords.append(GetWords()->get_word((*overusedWordsIter)).c_str()).append(L"; "); }
-        theWords.Trim();
-        theWords.RemoveLast();
-        GetOverusedWordsBySentenceData()->SetItemText(
-            overUsedWordsListsIter-GetWords()->get_overused_words_by_sentence().begin(), 0,
-            theWords);
-        GetOverusedWordsBySentenceData()->SetItemText(
-            overUsedWordsListsIter-GetWords()->get_overused_words_by_sentence().begin(), 1,
-            currentSentence);
-        GetOverusedWordsBySentenceData()->SetItemValue(
-            overUsedWordsListsIter-GetWords()->get_overused_words_by_sentence().begin(), 2,
-            // Use word count (not valid word count) since this is for grammar analysis.
-            // This relates more to what a reader is seeing, not a readability analysis
-            GetWords()->get_sentences()[overUsedWordsListsIter->first].get_word_count());
-        GetOverusedWordsBySentenceData()->SetItemValue(
-            overUsedWordsListsIter-GetWords()->get_overused_words_by_sentence().begin(), 3,
-            (overUsedWordsListsIter->first) + 1,
-            NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
-        }
-    // overused
-        {
+        GetOverusedWordsBySentenceData()->SetSize(GetWords()->get_overused_words_by_sentence().size(), 4);
+        // reset punctuation marker
+        auto punctPos = GetWords()->get_punctuation().cbegin();
+        size_t previousSentencePos = 0;
+        auto previousPunctPos = GetWords()->get_punctuation().cbegin();
+        for (auto overUsedWordsListsIter = GetWords()->get_overused_words_by_sentence().begin();
+            overUsedWordsListsIter != GetWords()->get_overused_words_by_sentence().end();
+            ++overUsedWordsListsIter)
+            {
+            // Format the full sentence (to show context)
+            // Note that some sentences may have multiple issues and are listed more than once,
+            // so we need to reset the punctuation make to the start of the sentence if it's the same sentence again.
+            if (previousSentencePos == overUsedWordsListsIter->first)
+                { punctPos = previousPunctPos; }
+            previousPunctPos = punctPos;
+            previousSentencePos = overUsedWordsListsIter->first;
+            wxString currentSentence = ProjectReportFormat::FormatSentence(this,
+                GetWords()->get_sentences()[overUsedWordsListsIter->first],
+                punctPos, GetWords()->get_punctuation().cend());
+            // format the list of like words
+            wxString theWords;
+            for (std::set<size_t>::const_iterator overusedWordsIter = overUsedWordsListsIter->second.begin();
+                overusedWordsIter != overUsedWordsListsIter->second.end();
+                ++overusedWordsIter)
+                { theWords.append(GetWords()->get_word((*overusedWordsIter)).c_str()).append(L"; "); }
+            theWords.Trim();
+            theWords.RemoveLast();
+            GetOverusedWordsBySentenceData()->SetItemText(
+                overUsedWordsListsIter-GetWords()->get_overused_words_by_sentence().begin(), 0,
+                theWords);
+            GetOverusedWordsBySentenceData()->SetItemText(
+                overUsedWordsListsIter-GetWords()->get_overused_words_by_sentence().begin(), 1,
+                currentSentence);
+            GetOverusedWordsBySentenceData()->SetItemValue(
+                overUsedWordsListsIter-GetWords()->get_overused_words_by_sentence().begin(), 2,
+                // Use word count (not valid word count) since this is for grammar analysis.
+                // This relates more to what a reader is seeing, not a readability analysis
+                GetWords()->get_sentences()[overUsedWordsListsIter->first].get_word_count());
+            GetOverusedWordsBySentenceData()->SetItemValue(
+                overUsedWordsListsIter-GetWords()->get_overused_words_by_sentence().begin(), 3,
+                (overUsedWordsListsIter->first) + 1,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+            }
+
         ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
             BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID));
         if (GetGrammarInfo().IsOverUsedWordsBySentenceEnabled() &&
@@ -6979,14 +6979,14 @@ void ProjectDoc::DisplayGrammar()
         m_sentenceStartingWithConjunctionsData->SetSize(GetWords()->get_sentence_count(), 2);
         size_t sentenceStartingWithConjunctionsCount = 0;
         // reset punctuation marker
-        punctPos = GetWords()->get_punctuation().begin();
+        auto punctPos = GetWords()->get_punctuation().cbegin();
         wxString currentSentence;
         for (std::vector<size_t>::const_iterator pos = GetWords()->get_conjunction_beginning_sentences().begin();
             pos != GetWords()->get_conjunction_beginning_sentences().end();
             ++pos)
             {
             currentSentence = ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[*pos],
-                punctPos, GetWords()->get_punctuation().end());
+                punctPos, GetWords()->get_punctuation().cend());
 
             m_sentenceStartingWithConjunctionsData->SetItemText(
                 sentenceStartingWithConjunctionsCount, 0, currentSentence);
@@ -7041,14 +7041,14 @@ void ProjectDoc::DisplayGrammar()
         m_sentenceStartingWithLowercaseData->SetSize(GetWords()->get_sentence_count(), 2);
         size_t sentenceStartingWithLowercaseCount = 0;
         // reset punctuation marker
-        punctPos = GetWords()->get_punctuation().begin();
+        auto punctPos = GetWords()->get_punctuation().cbegin();
         wxString currentSentence;
         for (std::vector<size_t>::const_iterator pos = GetWords()->get_lowercase_beginning_sentences().begin();
             pos != GetWords()->get_lowercase_beginning_sentences().end();
             ++pos)
             {
             currentSentence = ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[*pos],
-                punctPos, GetWords()->get_punctuation().end());
+                punctPos, GetWords()->get_punctuation().cend());
 
             m_sentenceStartingWithLowercaseData->SetItemText(sentenceStartingWithLowercaseCount, 0, currentSentence);
             m_sentenceStartingWithLowercaseData->SetItemValue(sentenceStartingWithLowercaseCount++, 1,
@@ -7357,13 +7357,13 @@ void ProjectDoc::CalculateGraphData()
             if (*labelsPos > outlierInfo.get_upper_outlier_boundary() ||
                 *labelsPos < outlierInfo.get_lower_outlier_boundary())
                 {
-                auto punctPos = GetWords()->get_punctuation().begin();
+                auto punctPos = GetWords()->get_punctuation().cbegin();
                 wxString currentSentence = wxString::Format(_(L"Sentence #%s (%s)"),
                     wxNumberFormatter::ToString(sentenceIndex+1/*add 1 to make it one-indexed*/,0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
                         wxNumberFormatter::Style::Style_WithThousandsSep),
                     ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[sentenceIndex],
-                        punctPos, GetWords()->get_punctuation().end()) );
+                        punctPos, GetWords()->get_punctuation().cend()) );
                 if (currentSentence.length() >= 100)
                     { currentSentence.Truncate(99).Append(wchar_t{ 8230 }); }
                 m_sentenceWordLengths->GetIdColumn().

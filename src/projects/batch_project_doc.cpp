@@ -5660,8 +5660,48 @@ void BatchProjectDoc::DisplayGrammar()
     BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     assert(view);
 
-    // Misspelled words
+    // Wording Errors
     ListCtrlEx* listView =
+        dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+            BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID));
+    if (GetGrammarInfo().IsWordingErrorsEnabled() &&m_wordingErrorData->GetItemCount())
+        {
+        if (!listView)
+            {
+            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID,
+                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView->Hide();
+            listView->SetLabel(BaseProjectView::GetPhrasingErrorsTabLabel());
+            listView->SetName(BaseProjectView::GetPhrasingErrorsTabLabel());
+            listView->EnableGridLines();
+            listView->EnableItemViewOnDblClick();
+            listView->InsertColumn(0, _(L"Document"));
+            listView->InsertColumn(1, _(L"Label"));
+            listView->InsertColumn(2, _(L"Frequency"));
+            listView->InsertColumn(3, BaseProjectView::GetPhrasingErrorsTabLabel());
+            listView->InsertColumn(4, _(L"Suggestions"));
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+            view->GetGrammarView().AddWindow(listView);
+            }
+        UpdateListOptions(listView);
+        listView->SetColumnFilePathTruncationMode(0, GetFilePathTruncationMode());
+        listView->SetVirtualDataProvider(m_wordingErrorData);
+        listView->SetVirtualDataSize(m_wordingErrorData->GetItemCount());
+        listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
+        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
+        listView->SetColumnWidth(3, std::min(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
+        listView->SetColumnWidth(4, std::min(listView->EstimateColumnWidth(4), view->GetMaxColumnWidth()));
+        if (listView->GetSortedColumn() == -1)
+            { listView->SortColumn(0, Wisteria::SortDirection::SortAscending); }
+        else
+            { listView->Resort(); }
+        }
+    else
+        { view->GetGrammarView().RemoveWindowById(BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID); }
+
+    // Misspelled words
+    listView =
         dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
             BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID));
     if (GetGrammarInfo().IsMisspellingsEnabled() && GetMisspelledWordData()->GetItemCount())
@@ -5774,46 +5814,6 @@ void BatchProjectDoc::DisplayGrammar()
         }
     else
         { view->GetGrammarView().RemoveWindowById(BaseProjectView::INCORRECT_ARTICLE_PAGE_ID); }
-
-    // Wording Errors
-    listView =
-        dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
-            BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID));
-    if (GetGrammarInfo().IsWordingErrorsEnabled() &&m_wordingErrorData->GetItemCount())
-        {
-        if (!listView)
-            {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
-            listView->Hide();
-            listView->SetLabel(BaseProjectView::GetPhrasingErrorsTabLabel());
-            listView->SetName(BaseProjectView::GetPhrasingErrorsTabLabel());
-            listView->EnableGridLines();
-            listView->EnableItemViewOnDblClick();
-            listView->InsertColumn(0, _(L"Document"));
-            listView->InsertColumn(1, _(L"Label"));
-            listView->InsertColumn(2, _(L"Frequency"));
-            listView->InsertColumn(3, BaseProjectView::GetPhrasingErrorsTabLabel());
-            listView->InsertColumn(4, _(L"Suggestions"));
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
-            view->GetGrammarView().AddWindow(listView);
-            }
-        UpdateListOptions(listView);
-        listView->SetColumnFilePathTruncationMode(0, GetFilePathTruncationMode());
-        listView->SetVirtualDataProvider(m_wordingErrorData);
-        listView->SetVirtualDataSize(m_wordingErrorData->GetItemCount());
-        listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
-        listView->SetColumnWidth(1, std::min(listView->EstimateColumnWidth(1), view->GetMaxColumnWidth()));
-        listView->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
-        listView->SetColumnWidth(3, std::min(listView->EstimateColumnWidth(3), view->GetMaxColumnWidth()));
-        listView->SetColumnWidth(4, std::min(listView->EstimateColumnWidth(4), view->GetMaxColumnWidth()));
-        if (listView->GetSortedColumn() == -1)
-            { listView->SortColumn(0, Wisteria::SortDirection::SortAscending); }
-        else
-            { listView->Resort(); }
-        }
-    else
-        { view->GetGrammarView().RemoveWindowById(BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID); }
 
     // redundant phrases
     listView =

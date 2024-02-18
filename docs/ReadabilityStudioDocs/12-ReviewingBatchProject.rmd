@@ -293,6 +293,22 @@ knitr::include_graphics("images/viewitemarticlemismatch.png")
 
 Refer to \@ref(article-mismatching) to learn more.
 
+### Reviewing Wording Errors {-#reviewing-batch-wording-errors}
+
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Wording Errors** subitem. This window will display a list of misused phrases and possible grammatically incorrect wording from each document.
+
+![](images/batchwordingerrors.png)
+
+This search is applied to all sentences. [Incomplete sentences](#how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+
+If a wording error occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *other then* occurs two separate times in a given document, then this will be displayed as *other then\*2*.
+
+To view a specific document's wording errors, double click on its row. A vertical display of that document's wording errors will be shown:
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/batchwordingerrorsviewitem.png")
+```
+
 ### Reviewing Misspellings {-#reviewing-batch-misspellings}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Misspellings** subitem. This window will display a list of all misspellings from each document.
@@ -310,22 +326,6 @@ knitr::include_graphics("images/batchmisspellingsviewitem.png")
 ```
 
 To add any document's misspellings to your dictionary, double click on its row to show the **Add to Dictionary** dialog. From here, you can add any (or all) reported misspellings to your dictionary. Afterwards, these words will no longer be reported as misspelled.
-
-### Reviewing Wording Errors {-#reviewing-batch-wording-errors}
-
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Wording Errors** subitem. This window will display a list of misused phrases and possible grammatically incorrect wording from each document.
-
-![](images/batchwordingerrors.png)
-
-This search is applied to all sentences. [Incomplete sentences](#how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
-
-If a wording error occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *other then* occurs two separate times in a given document, then this will be displayed as *other then\*2*.
-
-To view a specific document's wording errors, double click on its row. A vertical display of that document's wording errors will be shown:
-
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/batchwordingerrorsviewitem.png")
-```
 
 ### Reviewing Redundant Phrases {-#reviewing-batch-redundant-phrases}
 

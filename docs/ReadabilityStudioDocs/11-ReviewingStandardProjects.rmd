@@ -482,26 +482,6 @@ Note that if there are no article mismatches in your document, then this window 
 
 Refer to \@ref(article-mismatching) to learn more.
 
-### Reviewing Misspellings {-#reviewing-misspellings}
-
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Misspellings** subitem. This window will display a list of all misspellings from the document.
-
-![](images/misspellings.png)
-
-Options for controlling how misspellings are searched for are available in the [**Grammar**](#options-grammar) options.
-
-Misspelling searching is applied to all sentences. [Incomplete sentences](#how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
-
-To view any misspelling in its original context, double-click on it. This will take you to the [**Highlighted Report**](#reviewing-standard-grammar) page with that word selected.
-
-To add words to your dictionary, first select them in this list. Then, click on the **Document** tab, and click the arrow next to the `r keys("Spell Checker")` button. Then, select **Add Selected Words** and the selected words in this list will no longer be reported as misspellings.
-
-To edit your custom dictionary, click on the arrow next to the `r keys("Spell Checker")` button and select **Edit...** to show the **Edit Custom Dictionary** dialog. From here, you can add, remove, or edit the words in your custom dictionary.
-
-To change your spell-checking options, click on the arrow next to the `r keys("Spell Checker")` button and select **Settings...** to edit your [grammar](#options-grammar) settings.
-
-Note that if there are no misspellings in your document, then this window will not be included.
-
 ### Reviewing Wording Errors {-#reviewing-wording-errors}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Wording Errors** subitem. This window will display a list of misused phrases and possible grammatical wording errors from the document.
@@ -523,6 +503,26 @@ This search is applied to all sentences. [Incomplete sentences](#how-text-is-exc
 To view any wording error in its original context, double-click on it. This will take you to the [**Highlighted Report**](#reviewing-standard-grammar) page with that phrase selected.
 
 Note that if there are no wording errors in your document, then this window will not be included.
+
+### Reviewing Misspellings {-#reviewing-misspellings}
+
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Misspellings** subitem. This window will display a list of all misspellings from the document.
+
+![](images/misspellings.png)
+
+Options for controlling how misspellings are searched for are available in the [**Grammar**](#options-grammar) options.
+
+Misspelling searching is applied to all sentences. [Incomplete sentences](#how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+
+To view any misspelling in its original context, double-click on it. This will take you to the [**Highlighted Report**](#reviewing-standard-grammar) page with that word selected.
+
+To add words to your dictionary, first select them in this list. Then, click on the **Document** tab, and click the arrow next to the `r keys("Spell Checker")` button. Then, select **Add Selected Words** and the selected words in this list will no longer be reported as misspellings.
+
+To edit your custom dictionary, click on the arrow next to the `r keys("Spell Checker")` button and select **Edit...** to show the **Edit Custom Dictionary** dialog. From here, you can add, remove, or edit the words in your custom dictionary.
+
+To change your spell-checking options, click on the arrow next to the `r keys("Spell Checker")` button and select **Settings...** to edit your [grammar](#options-grammar) settings.
+
+Note that if there are no misspellings in your document, then this window will not be included.
 
 ### Reviewing Redundant Phrases {-#reviewing-redundant-phrases}
 
