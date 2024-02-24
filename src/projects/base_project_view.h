@@ -62,6 +62,12 @@ class ProjectDocChildFrame : public wxDocChildFrame
 
     void OnInvalidRegionColor(wxRibbonButtonBarEvent& event);
 
+    void OnDocumentRefreshMenu([[maybe_unused]] wxCommandEvent& event)
+        {
+        wxRibbonButtonBarEvent cmd;
+        OnDocumentRefresh(cmd);
+        }
+
     void OnOpenDropdown(wxRibbonButtonBarEvent& evt)
         {
         evt.PopupMenu(&m_fileOpenMenu);
@@ -72,33 +78,27 @@ class ProjectDocChildFrame : public wxDocChildFrame
         evt.PopupMenu(&m_exportMenu);
         }
 
-    void OnLongSentences(wxRibbonButtonBarEvent& event)
+    void OnLongSentencesDropdown(wxRibbonButtonBarEvent& event)
         {
         event.PopupMenu(&m_longSentencesMenu);
         }
 
-    void OnDocumentRefreshMenu([[maybe_unused]] wxCommandEvent& event)
-        {
-        wxRibbonButtonBarEvent cmd;
-        OnDocumentRefresh(cmd);
-        }
-
-    void OnLineEnds(wxRibbonButtonBarEvent& event)
+    void OnLineEndsDropdown(wxRibbonButtonBarEvent& event)
         {
         event.PopupMenu(&m_lineEndsMenu);
         }
 
-    void OnNumeralSyllabication(wxRibbonButtonBarEvent& event)
+    void OnNumeralSyllabicationDropdown(wxRibbonButtonBarEvent& event)
         {
         event.PopupMenu(&m_numeralSyllabicationMenu);
         }
 
-    void OnExclusionTags(wxRibbonButtonBarEvent& event) 
+    void OnExclusionTagsDropdown(wxRibbonButtonBarEvent& event)
         {
         event.PopupMenu(&m_exclusionTagsMenu);
         }
 
-    void OnHistoBarsLabelsButton(wxRibbonButtonBarEvent& event)
+    void OnHistoBarsLabelsDropdown(wxRibbonButtonBarEvent& event)
         {
         event.PopupMenu(&m_histobarLabelsMenu);
         }
@@ -825,29 +825,28 @@ class BaseProjectView : public wxView
     void OnEnglishLabels(wxRibbonButtonBarEvent& event);
     void OnFleschConnectLinesButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnBarLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnZoomButton(wxRibbonButtonBarEvent& event);
-    void OnBarOrientationButton(wxRibbonButtonBarEvent& event);
+    void OnZoomButtonDropdown(wxRibbonButtonBarEvent& event);
+    void OnBarOrientationDropdown(wxRibbonButtonBarEvent& event);
     
     void OnBarStyleSelected(wxCommandEvent& event);
     void OnBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event);
     void OnBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event);
-    void OnBarStyleButton(wxRibbonButtonBarEvent& event);
+    void OnBarStyleDropdown(wxRibbonButtonBarEvent& event);
     void OnHistoBarStyleSelected(wxCommandEvent& event);
     void OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event);
     void OnHistoBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event);
     void OnBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event);
     void OnBoxSelectStippleShape([[maybe_unused]] wxCommandEvent& event);
     void OnHistoBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event);
-    void OnHistoBarsLabelsButton(wxRibbonButtonBarEvent& event);
     
-    void OnHistoBarStyleButton(wxRibbonButtonBarEvent& event);
+    void OnHistoBarStyleDropdown(wxRibbonButtonBarEvent& event);
     void OnBoxStyleSelected(wxCommandEvent& event);
     void OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& event);
     void OnBoxSelectCommonImage([[maybe_unused]] wxCommandEvent& event);
-    void OnBoxStyleButton(wxRibbonButtonBarEvent& event);
+    void OnBoxStyleDropdown(wxRibbonButtonBarEvent& event);
     void OnBoxPlotShowAllPointsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnBoxPlotShowLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnEditGraphBackgroundButton(wxRibbonButtonBarEvent& event);
+    void OnEditGraphBackgroundDropdown(wxRibbonButtonBarEvent& event);
     
     void OnEditPlotBackgroundImageEffect(wxCommandEvent& event);
     void OnEditPlotBackgroundImageFit(wxCommandEvent& event);
@@ -857,19 +856,17 @@ class BaseProjectView : public wxView
     
     
     
-    void OnEditGraphFontsButton(wxRibbonButtonBarEvent& event);
+    void OnEditGraphFontsDropdown(wxRibbonButtonBarEvent& event);
     
     void OnEditDictionaryButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     
     
     
     // document indexing options
-   
-    void OnLongSentences([[maybe_unused]] wxRibbonButtonBarEvent& event);
     
     void OnIncompleteThreshold([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnExcludeWordsList([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnTextExclusion([[maybe_unused]] wxRibbonButtonBarEvent& event);
+    void OnTextExclusionDropdown([[maybe_unused]] wxRibbonButtonBarEvent& event);
     
     void OnIgnoreBlankLines([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnIgnoreIdenting([[maybe_unused]] wxRibbonButtonBarEvent& event);

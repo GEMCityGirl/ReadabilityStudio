@@ -23,10 +23,13 @@ using namespace Wisteria::GraphItems;
 using namespace Wisteria::UI;
 
 wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
+    EVT_RIBBONBAR_PAGE_CHANGED(wxID_ANY, BaseProjectView::OnClickRibbonBar)
+    EVT_RIBBONBAR_TAB_LEFT_DCLICK(wxID_ANY, BaseProjectView::OnDClickRibbonBar)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_DICTIONARY"), BaseProjectView::OnEditDictionaryButton)
     EVT_RIBBONBUTTONBAR_CLICKED(wxID_PROPERTIES, BaseProjectView::OnProjectSettings)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_STATS_REPORT"), BaseProjectView::OnEditStatsReportButton)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_TEXT_EXCLUSION"), BaseProjectView::OnTextExclusion)
+    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"), BaseProjectView::OnBoxPlotShowAllPointsButton)
+    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_BOX_PLOT_DISPLAY_LABELS"), BaseProjectView::OnBoxPlotShowLabelsButton)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_IGNORE_BLANK_LINES"), BaseProjectView::OnIgnoreBlankLines)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_IGNORE_INDENTING"), BaseProjectView::OnIgnoreIdenting)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_SENTENCES_CAPITALIZED"), BaseProjectView::OnStrictCapitalization)
@@ -39,21 +42,19 @@ wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EXCLUDE_WORD_LIST"), BaseProjectView::OnExcludeWordsList)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_INCOMPLETE_THRESHOLD"), BaseProjectView::OnIncompleteThreshold)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_DROP_SHADOW"), BaseProjectView::OnDropShadow)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(wxID_ZOOM_IN, BaseProjectView::OnZoomButton)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_WATERMARK"), BaseProjectView::OnGraphWatermark)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_LOGO"), BaseProjectView::OnGraphLogo)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_USE_ENGLISH_LABELS"), BaseProjectView::OnEnglishLabels)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_FLESCH_DISPLAY_LINES"), BaseProjectView::OnFleschConnectLinesButton)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_BAR_ORIENTATION"), BaseProjectView::OnBarOrientationButton)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_BAR_STYLE"), BaseProjectView::OnBarStyleButton)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_BAR_LABELS"), BaseProjectView::OnBarLabelsButton)
+    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(wxID_ZOOM_IN, BaseProjectView::OnZoomButtonDropdown)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(
-        XRCID("ID_EDIT_GRAPH_BACKGROUND"), BaseProjectView::OnEditGraphBackgroundButton)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"), BaseProjectView::OnHistoBarStyleButton)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"), BaseProjectView::OnBoxPlotShowAllPointsButton)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_BOX_PLOT_DISPLAY_LABELS"), BaseProjectView::OnBoxPlotShowLabelsButton)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_BOX_STYLE"), BaseProjectView::OnBoxStyleButton)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_GRAPH_FONTS"), BaseProjectView::OnEditGraphFontsButton)
+        XRCID("ID_EDIT_GRAPH_BACKGROUND"), BaseProjectView::OnEditGraphBackgroundDropdown)
+    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"), BaseProjectView::OnHistoBarStyleDropdown)
+    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_BAR_ORIENTATION"), BaseProjectView::OnBarOrientationDropdown)
+    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_BAR_STYLE"), BaseProjectView::OnBarStyleDropdown)
+    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_BOX_STYLE"), BaseProjectView::OnBoxStyleDropdown)
+    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_GRAPH_FONTS"), BaseProjectView::OnEditGraphFontsDropdown)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_WORD_LISTS"), BaseProjectView::OnWordListDropdown)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_BLANK_GRAPHS"), BaseProjectView::OnBlankGraphDropdown)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(wxID_COPY, BaseProjectView::OnCopyDropdown)
@@ -70,9 +71,8 @@ wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
         XRCID("ID_SECOND_LANGUAGE_TESTS_BUTTON"), BaseProjectView::OnSecondLanguageTestsDropdown)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_CUSTOM_TESTS"), BaseProjectView::OnCustomTestsDropdown)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_TEST_BUNDLES"), BaseProjectView::OnTestBundlesDropdown)
-    EVT_RIBBONBAR_TAB_LEFT_DCLICK(wxID_ANY, BaseProjectView::OnDClickRibbonBar)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_GRADE_SCALES"), BaseProjectView::OnGradeScaleDropdown)
-    EVT_RIBBONBAR_PAGE_CHANGED(wxID_ANY, BaseProjectView::OnClickRibbonBar)
+    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_TEXT_EXCLUSION"), BaseProjectView::OnTextExclusionDropdown)
 wxEND_EVENT_TABLE()
 
 //---------------------------------------------------
@@ -88,26 +88,29 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
         wxDocChildFrame(doc, view,
                         parent, id, title, pos, size, style, name)
     {
-    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnHistoBarsLabelsButton, this,
+    // ribbon drop buttons (that will pop up a menu)
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnHistoBarsLabelsDropdown, this,
         XRCID("ID_EDIT_HISTOBAR_LABELS"));
-    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnExclusionTags, this,
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnExclusionTagsDropdown, this,
         XRCID("ID_EXCLUSION_TAGS"));
-    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnNumeralSyllabication, this,
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnNumeralSyllabicationDropdown, this,
         XRCID("ID_NUMERAL_SYLLABICATION"));
-    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnLineEnds, this,
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnLineEndsDropdown, this,
         XRCID("ID_LINE_ENDS"));
-    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnLongSentences, this,
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnLongSentencesDropdown, this,
         XRCID("ID_SENTENCE_LENGTHS"));
     Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnOpenDropdown, this,
         wxID_OPEN);
     Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnSaveDropdown, this,
         XRCID("ID_SAVE_OPTIONS"));
+    // ribbon buttons
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnDocumentRefresh, this,
         XRCID("ID_DOCUMENT_REFRESH"));
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnEditGraphColorScheme, this,
         XRCID("ID_EDIT_GRAPH_COLOR_SCHEME"));
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnInvalidRegionColor, this,
         XRCID("ID_INVALID_REGION_COLOR"));
+    // menus
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphColor, this,
         XRCID("ID_EDIT_BAR_COLOR"));
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphColor, this,
@@ -1520,7 +1523,7 @@ void ProjectDocChildFrame::OnEditPlotBackgroundImage([[maybe_unused]] wxCommandE
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnEditGraphFontsButton(wxRibbonButtonBarEvent& event)
+void BaseProjectView::OnEditGraphFontsDropdown(wxRibbonButtonBarEvent& event)
     { event.PopupMenu(&m_graphFontsMenu); }
 
 //---------------------------------------------------
@@ -1614,11 +1617,11 @@ void BaseProjectView::OnEditGraphRaygorStyleButton(wxRibbonButtonBarEvent& event
     { event.PopupMenu(&m_raygorStyleMenu); }
 
 //---------------------------------------------------
-void BaseProjectView::OnEditGraphBackgroundButton(wxRibbonButtonBarEvent& event)
+void BaseProjectView::OnEditGraphBackgroundDropdown(wxRibbonButtonBarEvent& event)
     { event.PopupMenu(&m_graphBackgroundMenu); }
 
 //---------------------------------------------------
-void BaseProjectView::OnBoxStyleButton(wxRibbonButtonBarEvent& event)
+void BaseProjectView::OnBoxStyleDropdown(wxRibbonButtonBarEvent& event)
     { event.PopupMenu(&m_boxStyleMenu); }
 
 //---------------------------------------------------
@@ -1660,19 +1663,19 @@ void ProjectDocChildFrame::OnHistoBarLabelSelected(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnHistoBarStyleButton(wxRibbonButtonBarEvent& event)
+void BaseProjectView::OnHistoBarStyleDropdown(wxRibbonButtonBarEvent& event)
     { event.PopupMenu(&m_histoBarStyleMenu); }
 
 //---------------------------------------------------
-void BaseProjectView::OnBarStyleButton(wxRibbonButtonBarEvent& event)
+void BaseProjectView::OnBarStyleDropdown(wxRibbonButtonBarEvent& event)
     { event.PopupMenu(&m_barStyleMenu); }
 
 //---------------------------------------------------
-void BaseProjectView::OnBarOrientationButton(wxRibbonButtonBarEvent& event)
+void BaseProjectView::OnBarOrientationDropdown(wxRibbonButtonBarEvent& event)
     { event.PopupMenu(&m_barOrientationMenu); }
 
 //---------------------------------------------------
-void BaseProjectView::OnZoomButton(wxRibbonButtonBarEvent& event)
+void BaseProjectView::OnZoomButtonDropdown(wxRibbonButtonBarEvent& event)
     { event.PopupMenu(&m_zoomMenu); }
 
 //---------------------------------------------------
@@ -1830,7 +1833,7 @@ void ProjectDocChildFrame::OnExclusionTagsOptions(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnTextExclusion(wxRibbonButtonBarEvent& event)
+void BaseProjectView::OnTextExclusionDropdown(wxRibbonButtonBarEvent& event)
     { event.PopupMenu(&GetDocFrame()->m_textExclusionMenu); }
 
 //---------------------------------------------------
