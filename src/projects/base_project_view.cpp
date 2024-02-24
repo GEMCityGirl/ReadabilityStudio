@@ -22,11 +22,6 @@ using namespace Wisteria::Graphs;
 using namespace Wisteria::GraphItems;
 using namespace Wisteria::UI;
 
-wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
-    EVT_RIBBONBAR_PAGE_CHANGED(wxID_ANY, BaseProjectView::OnClickRibbonBar)
-    EVT_RIBBONBAR_TAB_LEFT_DCLICK(wxID_ANY, BaseProjectView::OnDClickRibbonBar)
-wxEND_EVENT_TABLE()
-
 //---------------------------------------------------
 ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
     wxView *view,
@@ -455,6 +450,13 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
                 }
             },
         XRCID("ID_TOGGLE_RIBBON"));
+
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnCustomTest, this,
+        wxGetApp().GetMainFrameEx()->CUSTOM_TEST_RANGE.GetFirstId(),
+        wxGetApp().GetMainFrameEx()->CUSTOM_TEST_RANGE.GetLastId());
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnCustomTestBundle, this,
+        wxGetApp().GetMainFrameEx()->TEST_BUNDLE_RANGE.GetFirstId(),
+        wxGetApp().GetMainFrameEx()->TEST_BUNDLE_RANGE.GetLastId());
     }
 
 //---------------------------------------------------
@@ -1687,14 +1689,6 @@ void ProjectDocChildFrame::OnHistoBarLabelSelected(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnDClickRibbonBar([[maybe_unused]] wxRibbonBarEvent& event)
-    { GetRibbon()->ShowPanels(!GetRibbon()->ArePanelsShown()); }
-
-//---------------------------------------------------
-void BaseProjectView::OnClickRibbonBar([[maybe_unused]] wxRibbonBarEvent& event)
-    { GetRibbon()->ShowPanels(); }
-
-//---------------------------------------------------
 void ProjectDocChildFrame::OnExcludeWordsList([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
@@ -2002,7 +1996,7 @@ void ProjectDocChildFrame::OnRemoveCustomTestBundle(wxCommandEvent& event)
     { wxGetApp().GetMainFrameEx()->OnRemoveCustomTestBundle(event); }
 
 //-------------------------------------------------------
-void BaseProjectView::OnCustomTestBundle(wxCommandEvent& event)
+void ProjectDocChildFrame::OnCustomTestBundle(wxCommandEvent& event)
     {
     const int menuId = event.GetId();
     std::map<int, wxString>::const_iterator pos = MainFrame::GetTestBundleMenuIds().find(menuId);
@@ -2113,7 +2107,7 @@ void ProjectDocChildFrame::OnEditCustomTest(wxCommandEvent& event)
     { wxGetApp().GetMainFrameEx()->OnEditCustomTest(event); }
 
 //-------------------------------------------------------
-void BaseProjectView::OnCustomTest(wxCommandEvent& event)
+void ProjectDocChildFrame::OnCustomTest(wxCommandEvent& event)
     {
     const int menuId = event.GetId();
     std::map<int, wxString>::const_iterator pos = MainFrame::GetCustomTestMenuIds().find(menuId);
@@ -2183,16 +2177,9 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
     wxIcon appIcon;
     appIcon.CopyFromBitmap(
         wxGetApp().GetResourceManager().
-            GetSVG(L"ribbon/app-logo.svg").GetBitmap(GetActiveProjectWindow()->FromDIP(wxSize(32, 32))));
+        GetSVG(L"ribbon/app-logo.svg").GetBitmap(subframe->FromDIP(wxSize{ 32, 32 })));
     subframe->SetIcon(appIcon);
     subframe->CenterOnScreen();
-
-    Bind(wxEVT_MENU, &BaseProjectView::OnCustomTest, this,
-        wxGetApp().GetMainFrameEx()->CUSTOM_TEST_RANGE.GetFirstId(),
-        wxGetApp().GetMainFrameEx()->CUSTOM_TEST_RANGE.GetLastId());
-    Bind(wxEVT_MENU, &BaseProjectView::OnCustomTestBundle, this,
-        wxGetApp().GetMainFrameEx()->TEST_BUNDLE_RANGE.GetFirstId(),
-        wxGetApp().GetMainFrameEx()->TEST_BUNDLE_RANGE.GetLastId());
 
     // list control-specific menu for copying
     subframe->m_copyMenu.Append(wxID_COPY, _(L"Copy") + L"\tCtrl+C");
@@ -2633,6 +2620,26 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
         XRCID("ID_NUMSYL_EACH_DIGIT"), _(L"Sound out each digit"), wxString{}, wxITEM_CHECK));
 
     return subframe;
+    }
+
+//-------------------------------------------------------
+void ProjectDocChildFrame::OnProjectSettings([[maybe_unused]] wxRibbonButtonBarEvent& event)
+    {
+    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    assert(doc);
+    if (!doc || !doc->IsSafeToUpdate())
+        { return; }
+    ToolsOptionsDlg optionsDlg(this, doc);
+    if (optionsDlg.ShowModal() == wxID_OK)
+        {
+        doc->RefreshProject();
+        auto* view = dynamic_cast<BaseProjectView*>(GetView());
+        assert(view);
+        if (view != nullptr)
+            {
+            view->UpdateRibbonState();
+            }
+        }
     }
 
 //-------------------------------------------------------
@@ -3118,6 +3125,14 @@ void BaseProjectView::ShowSideBar(const bool show /*= true*/)
         }
     }
 
+//---------------------------------------------------
+void BaseProjectView::OnDClickRibbonBar([[maybe_unused]] wxRibbonBarEvent& event)
+    { GetRibbon()->ShowPanels(!GetRibbon()->ArePanelsShown()); }
+
+//---------------------------------------------------
+void BaseProjectView::OnClickRibbonBar([[maybe_unused]] wxRibbonBarEvent& event)
+    { GetRibbon()->ShowPanels(); }
+
 //-------------------------------------------------------
 bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     {
@@ -3209,6 +3224,11 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     wxAcceleratorTable accelTable(std::size(accelEntries), accelEntries);
     m_frame->SetAcceleratorTable(accelTable);
 
+    Bind(wxEVT_RIBBONBAR_TAB_LEFT_DCLICK, &BaseProjectView::OnDClickRibbonBar, this,
+        wxID_ANY);
+    Bind(wxEVT_RIBBONBAR_PAGE_CHANGED, &BaseProjectView::OnClickRibbonBar, this,
+        wxID_ANY);
+
     return true;
     }
 
@@ -3251,25 +3271,5 @@ void BaseProjectView::OnActivateView(bool activate, wxView*, wxView*)
         GetSplitter()->Show(true);
         if (GetSplitter()->GetWindow2())
             { GetSplitter()->GetWindow2()->Show(true); }
-        }
-    }
-
-//-------------------------------------------------------
-void ProjectDocChildFrame::OnProjectSettings([[maybe_unused]] wxRibbonButtonBarEvent& event)
-    {
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    assert(doc);
-    if (!doc || !doc->IsSafeToUpdate())
-        { return; }
-    ToolsOptionsDlg optionsDlg(this, doc);
-    if (optionsDlg.ShowModal() == wxID_OK)
-        {
-        doc->RefreshProject();
-        auto* view = dynamic_cast<BaseProjectView*>(GetView());
-        assert(view);
-        if (view != nullptr)
-            {
-            view->UpdateRibbonState();
-            }
         }
     }

@@ -57,6 +57,9 @@ class ProjectDocChildFrame : public wxDocChildFrame
         const wxSize& size = wxDefaultSize,
         long style = wxDEFAULT_FRAME_STYLE,
         const wxString& name = wxASCII_STR(wxFrameNameStr));
+
+    void OnCustomTest(wxCommandEvent& event);
+
   private:
     void OnEditGraphColorScheme([[maybe_unused]] wxRibbonButtonBarEvent& event);
 
@@ -282,29 +285,54 @@ class ProjectDocChildFrame : public wxDocChildFrame
     void OnBoxPlotShowLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
 
     void OnAddCustomTestBundle(wxCommandEvent& event);
+
     void OnRaygorStyleSelected([[maybe_unused]] wxCommandEvent& event);
+
     void OnFindMenu([[maybe_unused]] wxCommandEvent& event);
+
     void OnFindNext([[maybe_unused]] wxCommandEvent& event);
+
     void OnLineEndOptions(wxCommandEvent& event);
+
     void OnBarOrientationSelected(wxCommandEvent& event);
+
     void OnAddCustomTest(wxCommandEvent& event);
+
     void OnRemoveCustomTestBundle(wxCommandEvent& event);
+
     void OnEditEnglishDictionary([[maybe_unused]] wxCommandEvent& event);
+
     void OnHistoBarLabelSelected(wxCommandEvent& event);
+
     void OnEditDictionaryProjectSettings([[maybe_unused]] wxCommandEvent& event);
+
     void OnEditCustomTest(wxCommandEvent& event);
+
     void OnRemoveCustomTest(wxCommandEvent& event);
+
     void OnEditGraphOpacity(wxCommandEvent& event);
+
     void OnEditPlotBackgroundImage([[maybe_unused]] wxCommandEvent& event);
+
     void OnLongSentencesOptions([[maybe_unused]] wxCommandEvent& event);
+
     void OnEditDictionary([[maybe_unused]] wxCommandEvent& event);
+
     void OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
     void OnEditGraphFont(wxCommandEvent& event);
+
     void OnTestBundle(wxCommandEvent& event);
+
     void OnNumeralSyllabicationOptions([[maybe_unused]] wxCommandEvent& event);
+
     void OnEditCustomTestBundle(wxCommandEvent& event);
+
     void OnTextExclusionOptions([[maybe_unused]] wxCommandEvent& event);
+
     void OnExclusionTagsOptions([[maybe_unused]] wxCommandEvent& event);
+
+    void OnCustomTestBundle(wxCommandEvent& event);
 
     wxMenu* m_testsBundleRegularMenu{ nullptr };
     wxMenu* m_customTestsRegularMenu{ nullptr };
@@ -339,6 +367,7 @@ class ProjectDocChildFrame : public wxDocChildFrame
     wxMenu m_raygorStyleMenu;
     };
 
+/// @brief Base view for batch and standard projects.
 class BaseProjectView : public wxView
     {
   public:
@@ -422,10 +451,9 @@ class BaseProjectView : public wxView
     void ShowInfoMessage(const WarningMessage& message);
 
     bool OnCreate(wxDocument* doc, [[maybe_unused]] long flags) override;
-    void OnCustomTest(wxCommandEvent& event);
 
     [[nodiscard]]
-    ProjectDocChildFrame* CreateChildFrame(wxDocument* doc, wxView* view);
+    static ProjectDocChildFrame* CreateChildFrame(wxDocument* doc, wxView* view);
 
     [[nodiscard]]
     ProjectDocChildFrame* GetDocFrame() noexcept
@@ -1010,12 +1038,23 @@ class BaseProjectView : public wxView
     bool OnClose(bool deleteWindow = true) override;
     
     void OnDraw(wxDC*) override{};
-    // custom test functions
-    void OnCustomTestBundle(wxCommandEvent& event);
 
     void OnDClickRibbonBar([[maybe_unused]] wxRibbonBarEvent& event);
+
     void OnClickRibbonBar([[maybe_unused]] wxRibbonBarEvent& event);
-    void OnCloseInfoBar(wxCommandEvent& event);
+
+    void OnCloseInfoBar([[maybe_unused]] wxCommandEvent& event);
+
+    /// @return the messages that won't be shown until client asks from them to be shown.
+    [[nodiscard]]
+    const std::set<WarningMessage>& GetQueuedMessages() const noexcept
+        {
+        return m_queuedMessages;
+        }
+
+    /// @brief Saves a message to be shown later, when ShowQueuedMessages() is called.
+    /// @param message The message to queue.
+    void AddQueuedMessage(const WarningMessage& message) { m_queuedMessages.insert(message); }
 
     ProjectDocChildFrame* m_frame{ nullptr };
     wxRibbonBar* m_ribbon{ nullptr };
@@ -1032,21 +1071,9 @@ class BaseProjectView : public wxView
     // logged messages
     std::set<WarningMessage> m_queuedMessages;
 
-    /// @return the messages that won't be shown until client asks from them to be shown.
-    [[nodiscard]]
-    const std::set<WarningMessage>& GetQueuedMessages() const noexcept
-        {
-        return m_queuedMessages;
-        }
-
-    /// @brief Saves a message to be shown later, when ShowQueuedMessages() is called.
-    /// @param message The message to queue.
-    void AddQueuedMessage(const WarningMessage& message) { m_queuedMessages.insert(message); }
-
     wxString m_lastShownMessageId;
 
     wxDECLARE_DYNAMIC_CLASS(BaseProjectView);
-    wxDECLARE_EVENT_TABLE();
     };
 
 #endif //__BASE_PROJECT_VIEW_H__

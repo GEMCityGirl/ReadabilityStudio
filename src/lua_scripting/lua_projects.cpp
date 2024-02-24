@@ -2678,7 +2678,7 @@ namespace LuaScripting
                 if (pos != MainFrame::GetCustomTestMenuIds().end())
                     {
                     wxCommandEvent cmd(0, pos->first);
-                    view->OnCustomTest(cmd);
+                    view->GetDocFrame()->OnCustomTest(cmd);
                     }
                 else
                     {
