@@ -271,6 +271,108 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
         wxID_FIND);
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnFindNext, this,
         XRCID("ID_FIND_NEXT"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnShowcaseComplexWords, this,
+        XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBarStyleSelected, this,
+        XRCID("ID_BAR_STYLE_SOLID"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBarStyleSelected, this,
+        XRCID("ID_BAR_STYLE_GLASS"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBarStyleSelected, this,
+        XRCID("ID_BAR_STYLE_BTOT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBarStyleSelected, this,
+        XRCID("ID_BAR_STYLE_TTOB"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBarStyleSelected, this,
+        XRCID("ID_BAR_STYLE_STIPPLE_IMAGE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBarStyleSelected, this,
+        XRCID("ID_BAR_STYLE_STIPPLE_SHAPE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBarStyleSelected, this,
+        XRCID("ID_BAR_STYLE_WATERCOLOR"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBarStyleSelected, this,
+        XRCID("ID_BAR_STYLE_THICK_WATERCOLOR"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBarStyleSelected, this,
+        XRCID("ID_BAR_STYLE_COMMON_IMAGE"));
+
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnHistoBarStyleSelected, this,
+        XRCID("ID_HISTOGRAM_BAR_STYLE_SOLID"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnHistoBarStyleSelected, this,
+        XRCID("ID_HISTOGRAM_BAR_STYLE_GLASS"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnHistoBarStyleSelected, this,
+        XRCID("ID_HISTOGRAM_BAR_STYLE_BTOT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnHistoBarStyleSelected, this,
+        XRCID("ID_HISTOGRAM_BAR_STYLE_TTOB"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnHistoBarStyleSelected, this,
+        XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_IMAGE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnHistoBarStyleSelected, this,
+        XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_SHAPE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnHistoBarStyleSelected, this,
+        XRCID("ID_HISTOGRAM_BAR_STYLE_WATERCOLOR"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnHistoBarStyleSelected, this,
+        XRCID("ID_HISTOGRAM_BAR_STYLE_THICK_WATERCOLOR"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnHistoBarStyleSelected, this,
+        XRCID("ID_HISTOGRAM_BAR_STYLE_COMMON_IMAGE"));
+
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBoxStyleSelected, this,
+        XRCID("ID_BOX_STYLE_SOLID"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBoxStyleSelected, this,
+        XRCID("ID_BOX_STYLE_GLASS"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBoxStyleSelected, this,
+        XRCID("ID_BOX_STYLE_LTOR"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBoxStyleSelected, this,
+        XRCID("ID_BOX_STYLE_RTOL"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBoxStyleSelected, this,
+        XRCID("ID_BOX_STYLE_STIPPLE_IMAGE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBoxStyleSelected, this,
+        XRCID("ID_BOX_STYLE_STIPPLE_SHAPE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBoxStyleSelected, this,
+        XRCID("ID_BOX_STYLE_WATERCOLOR"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBoxStyleSelected, this,
+        XRCID("ID_BOX_STYLE_THICK_WATERCOLOR"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBoxStyleSelected, this,
+        XRCID("ID_BOX_STYLE_COMMON_IMAGE"));
+
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBoxSelectStippleBrush, this,
+        XRCID("ID_BOX_SELECT_STIPPLE_IMAGE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBoxSelectStippleShape, this,
+        XRCID("ID_BOX_BAR_SELECT_STIPPLE_SHAPE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBoxSelectCommonImage, this,
+        XRCID("ID_BOX_SELECT_COMMON_IMAGE"));
+
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnHistoBarSelectStippleBrush, this,
+        XRCID("ID_HISTOGRAM_BAR_SELECT_BRUSH"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnHistoBarSelectStippleShape, this,
+        XRCID("ID_HISTOGRAM_BAR_SELECT_STIPPLE_SHAPE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnHistoBarSelectCommonImage, this,
+        XRCID("ID_HISTOGRAM_BAR_SELECT_COMMON_IMAGE"));
+
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBarSelectStippleBrush, this,
+        XRCID("ID_BAR_SELECT_STIPPLE_IMAGE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBarSelectStippleShape, this,
+        XRCID("ID_BAR_SELECT_STIPPLE_SHAPE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBarSelectCommonImage, this,
+        XRCID("ID_BAR_SELECT_COMMON_IMAGE"));
+
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnGraphColorFade, this,
+        XRCID("ID_GRAPH_BKCOLOR_FADE"));
+
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditPlotBackgroundImageEffect, this,
+        XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditPlotBackgroundImageEffect, this,
+        XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditPlotBackgroundImageEffect, this,
+        XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditPlotBackgroundImageEffect, this,
+        XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditPlotBackgroundImageEffect, this,
+        XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditPlotBackgroundImageEffect, this,
+        XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditPlotBackgroundImageEffect, this,
+        XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
+
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditPlotBackgroundImageFit, this,
+        XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditPlotBackgroundImageFit, this,
+        XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
     }
 
 //---------------------------------------------------
@@ -722,110 +824,6 @@ BaseProjectView::BaseProjectView()
         XRCID("ID_TOGGLE_RIBBON"));
 
     // menu & ribbon button events
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &BaseProjectView::OnShowcaseComplexWords, this,
-        XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"));
-
-    Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
-        XRCID("ID_BAR_STYLE_SOLID"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
-        XRCID("ID_BAR_STYLE_GLASS"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
-        XRCID("ID_BAR_STYLE_BTOT"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
-        XRCID("ID_BAR_STYLE_TTOB"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
-        XRCID("ID_BAR_STYLE_STIPPLE_IMAGE"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
-        XRCID("ID_BAR_STYLE_STIPPLE_SHAPE"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
-        XRCID("ID_BAR_STYLE_WATERCOLOR"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
-        XRCID("ID_BAR_STYLE_THICK_WATERCOLOR"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBarStyleSelected, this,
-        XRCID("ID_BAR_STYLE_COMMON_IMAGE"));
-
-    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
-        XRCID("ID_HISTOGRAM_BAR_STYLE_SOLID"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
-        XRCID("ID_HISTOGRAM_BAR_STYLE_GLASS"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
-        XRCID("ID_HISTOGRAM_BAR_STYLE_BTOT"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
-        XRCID("ID_HISTOGRAM_BAR_STYLE_TTOB"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
-        XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_IMAGE"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
-        XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_SHAPE"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
-        XRCID("ID_HISTOGRAM_BAR_STYLE_WATERCOLOR"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
-        XRCID("ID_HISTOGRAM_BAR_STYLE_THICK_WATERCOLOR"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarStyleSelected, this,
-        XRCID("ID_HISTOGRAM_BAR_STYLE_COMMON_IMAGE"));
-
-    Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
-        XRCID("ID_BOX_STYLE_SOLID"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
-        XRCID("ID_BOX_STYLE_GLASS"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
-        XRCID("ID_BOX_STYLE_LTOR"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
-        XRCID("ID_BOX_STYLE_RTOL"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
-        XRCID("ID_BOX_STYLE_STIPPLE_IMAGE"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
-        XRCID("ID_BOX_STYLE_STIPPLE_SHAPE"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
-        XRCID("ID_BOX_STYLE_WATERCOLOR"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
-        XRCID("ID_BOX_STYLE_THICK_WATERCOLOR"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBoxStyleSelected, this,
-        XRCID("ID_BOX_STYLE_COMMON_IMAGE"));
-
-    Bind(wxEVT_MENU, &BaseProjectView::OnBoxSelectStippleBrush, this,
-        XRCID("ID_BOX_SELECT_STIPPLE_IMAGE"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBoxSelectStippleShape, this,
-        XRCID("ID_BOX_BAR_SELECT_STIPPLE_SHAPE"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBoxSelectCommonImage, this,
-        XRCID("ID_BOX_SELECT_COMMON_IMAGE"));
-
-    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarSelectStippleBrush, this,
-        XRCID("ID_HISTOGRAM_BAR_SELECT_BRUSH"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarSelectStippleShape, this,
-        XRCID("ID_HISTOGRAM_BAR_SELECT_STIPPLE_SHAPE"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnHistoBarSelectCommonImage, this,
-        XRCID("ID_HISTOGRAM_BAR_SELECT_COMMON_IMAGE"));
-
-    Bind(wxEVT_MENU, &BaseProjectView::OnBarSelectStippleBrush, this,
-        XRCID("ID_BAR_SELECT_STIPPLE_IMAGE"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBarSelectStippleShape, this,
-        XRCID("ID_BAR_SELECT_STIPPLE_SHAPE"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnBarSelectCommonImage, this,
-        XRCID("ID_BAR_SELECT_COMMON_IMAGE"));
-
-    Bind(wxEVT_MENU, &BaseProjectView::OnGraphColorFade, this,
-        XRCID("ID_GRAPH_BKCOLOR_FADE"));
-
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
-        XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
-        XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
-        XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
-        XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
-        XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
-        XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageEffect, this,
-        XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
-
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageFit, this,
-        XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
-    Bind(wxEVT_MENU, &BaseProjectView::OnEditPlotBackgroundImageFit, this,
-        XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
-
     Bind(wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
             {
@@ -864,7 +862,7 @@ void ProjectDocChildFrame::OnBarOrientationSelected(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnBarStyleSelected(wxCommandEvent& event)
+void ProjectDocChildFrame::OnBarStyleSelected(wxCommandEvent& event)
     {
     auto baseDoc{ dynamic_cast<BaseProjectDoc*>(GetDocument()) };
     assert(baseDoc && "Invalid document!");
@@ -881,8 +879,7 @@ void BaseProjectView::OnBarStyleSelected(wxCommandEvent& event)
         {
         if (!wxFile::Exists(baseDoc->GetStippleImagePath()))
             {
-            wxFileDialog fd
-                (GetDocFrame(), _(L"Select Stipple Image"),
+            wxFileDialog fd(this, _(L"Select Stipple Image"),
                 wxGetApp().GetAppOptions().GetImagePath(),
                 wxString{}, wxGetApp().GetAppOptions().GetImageFileFilter(),
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -903,8 +900,7 @@ void BaseProjectView::OnBarStyleSelected(wxCommandEvent& event)
         {
         if (!wxFile::Exists(baseDoc->GetGraphCommonImagePath()))
             {
-            wxFileDialog fd
-                (GetDocFrame(), _(L"Select Common Image"),
+            wxFileDialog fd(this, _(L"Select Common Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxString{},
                 wxGetApp().GetAppOptions().GetImageFileFilter(),
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -920,7 +916,7 @@ void BaseProjectView::OnBarStyleSelected(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
+void ProjectDocChildFrame::OnHistoBarStyleSelected(wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
@@ -939,8 +935,7 @@ void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
         {
         if (!wxFile::Exists(baseDoc->GetStippleImagePath()))
             {
-            wxFileDialog fd
-                (GetDocFrame(), _(L"Select Stipple Image"),
+            wxFileDialog fd(this, _(L"Select Stipple Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxString{},
                 wxGetApp().GetAppOptions().GetImageFileFilter(),
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -961,8 +956,7 @@ void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
         {
         if (!wxFile::Exists(baseDoc->GetGraphCommonImagePath()))
             {
-            wxFileDialog fd
-                (GetDocFrame(), _(L"Select Common Image"),
+            wxFileDialog fd(this, _(L"Select Common Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxString{},
                 wxGetApp().GetAppOptions().GetImageFileFilter(),
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -978,15 +972,14 @@ void BaseProjectView::OnHistoBarStyleSelected(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event)
+void ProjectDocChildFrame::OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
     if (!baseDoc)
         { return; }
 
-    wxFileDialog fd
-        (GetDocFrame(), _(L"Select Stipple Image"),
+    wxFileDialog fd(this, _(L"Select Stipple Image"),
         wxGetApp().GetAppOptions().GetImagePath(), wxString{},
         wxGetApp().GetAppOptions().GetImageFileFilter(),
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -1002,7 +995,7 @@ void BaseProjectView::OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEve
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnHistoBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event)
+void ProjectDocChildFrame::OnHistoBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
@@ -1013,9 +1006,9 @@ void BaseProjectView::OnHistoBarSelectStippleShape([[maybe_unused]] wxCommandEve
     for (const auto& shape : wxGetApp().GetShapeMap())
         { choices.push_back(shape.first); }
 
-    wxSingleChoiceDialog shapesDlg(GetDocFrame(),
+    wxSingleChoiceDialog shapesDlg(this,
         _("Select a shape to draw across your bars:"), _("Select Stipple Shape"), choices);
-    shapesDlg.SetSize({ GetDocFrame()->FromDIP(200), GetDocFrame()->FromDIP(400) });
+    shapesDlg.SetSize(FromDIP(wxSize{ 200, 400 }));
     shapesDlg.Center();
     if (shapesDlg.ShowModal() != wxID_OK)
         { return; }
@@ -1031,7 +1024,7 @@ void BaseProjectView::OnHistoBarSelectStippleShape([[maybe_unused]] wxCommandEve
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event)
+void ProjectDocChildFrame::OnBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
@@ -1042,9 +1035,9 @@ void BaseProjectView::OnBarSelectStippleShape([[maybe_unused]] wxCommandEvent& e
     for (const auto& shape : wxGetApp().GetShapeMap())
         { choices.push_back(shape.first); }
 
-    wxSingleChoiceDialog shapesDlg(GetDocFrame(),
+    wxSingleChoiceDialog shapesDlg(this,
         _("Select a shape to draw across your bars:"), _("Select Stipple Shape"), choices);
-    shapesDlg.SetSize({ GetDocFrame()->FromDIP(200), GetDocFrame()->FromDIP(400) });
+    shapesDlg.SetSize(FromDIP(wxSize{ 200, 400 }));
     shapesDlg.Center();
     if (shapesDlg.ShowModal() != wxID_OK)
         { return; }
@@ -1060,7 +1053,7 @@ void BaseProjectView::OnBarSelectStippleShape([[maybe_unused]] wxCommandEvent& e
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnBoxSelectStippleShape([[maybe_unused]] wxCommandEvent& event)
+void ProjectDocChildFrame::OnBoxSelectStippleShape([[maybe_unused]] wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
@@ -1071,9 +1064,9 @@ void BaseProjectView::OnBoxSelectStippleShape([[maybe_unused]] wxCommandEvent& e
     for (const auto& shape : wxGetApp().GetShapeMap())
         { choices.push_back(shape.first); }
 
-    wxSingleChoiceDialog shapesDlg(GetDocFrame(),
+    wxSingleChoiceDialog shapesDlg(this,
         _("Select a shape to draw across your boxes:"), _("Select Stipple Shape"), choices);
-    shapesDlg.SetSize({ GetDocFrame()->FromDIP(200), GetDocFrame()->FromDIP(400) });
+    shapesDlg.SetSize(FromDIP(wxSize{ 200, 400 }));
     shapesDlg.Center();
     if (shapesDlg.ShowModal() != wxID_OK)
         { return; }
@@ -1089,15 +1082,14 @@ void BaseProjectView::OnBoxSelectStippleShape([[maybe_unused]] wxCommandEvent& e
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnHistoBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event)
+void ProjectDocChildFrame::OnHistoBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
     if (!baseDoc)
         { return; }
 
-    wxFileDialog fd
-        (GetDocFrame(), _(L"Select Common Image"),
+    wxFileDialog fd(this, _(L"Select Common Image"),
         wxGetApp().GetAppOptions().GetImagePath(), wxString{},
         wxGetApp().GetAppOptions().GetImageFileFilter(),
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -1113,15 +1105,14 @@ void BaseProjectView::OnHistoBarSelectCommonImage([[maybe_unused]] wxCommandEven
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnBoxSelectCommonImage([[maybe_unused]] wxCommandEvent& event)
+void ProjectDocChildFrame::OnBoxSelectCommonImage([[maybe_unused]] wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
     if (!baseDoc)
         { return; }
 
-    wxFileDialog fd
-        (GetDocFrame(), _(L"Select Common Image"),
+    wxFileDialog fd(this, _(L"Select Common Image"),
         wxGetApp().GetAppOptions().GetImagePath(), wxString{},
         wxGetApp().GetAppOptions().GetImageFileFilter(),
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -1137,15 +1128,14 @@ void BaseProjectView::OnBoxSelectCommonImage([[maybe_unused]] wxCommandEvent& ev
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& event)
+void ProjectDocChildFrame::OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
     if (!baseDoc)
         { return; }
 
-    wxFileDialog fd
-        (GetDocFrame(), _(L"Select Stipple Image"),
+    wxFileDialog fd(this, _(L"Select Stipple Image"),
         wxGetApp().GetAppOptions().GetImagePath(), wxString{},
         wxGetApp().GetAppOptions().GetImageFileFilter(),
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -1161,15 +1151,14 @@ void BaseProjectView::OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& e
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event)
+void ProjectDocChildFrame::OnBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
     if (!baseDoc)
         { return; }
 
-    wxFileDialog fd
-        (GetDocFrame(), _(L"Select Stipple Image"),
+    wxFileDialog fd(this, _(L"Select Stipple Image"),
         wxGetApp().GetAppOptions().GetImagePath(), wxString{},
         wxGetApp().GetAppOptions().GetImageFileFilter(),
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -1185,15 +1174,14 @@ void BaseProjectView::OnBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& e
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event)
+void ProjectDocChildFrame::OnBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event)
     {
     auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
     if (!baseDoc)
         { return; }
 
-    wxFileDialog fd
-        (GetDocFrame(), _(L"Select Common Image"),
+    wxFileDialog fd(this, _(L"Select Common Image"),
         wxGetApp().GetAppOptions().GetImagePath(), wxString{},
         wxGetApp().GetAppOptions().GetImageFileFilter(),
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -1209,7 +1197,7 @@ void BaseProjectView::OnBarSelectCommonImage([[maybe_unused]] wxCommandEvent& ev
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnBoxStyleSelected(wxCommandEvent& event)
+void ProjectDocChildFrame::OnBoxStyleSelected(wxCommandEvent& event)
     {
     auto baseDoc{ dynamic_cast<BaseProjectDoc*>(GetDocument()) };
     assert(baseDoc && "Invalid document!");
@@ -1225,8 +1213,7 @@ void BaseProjectView::OnBoxStyleSelected(wxCommandEvent& event)
         {
         if (!wxFile::Exists(baseDoc->GetStippleImagePath()))
             {
-            wxFileDialog fd
-                (GetDocFrame(), _(L"Select Stipple Image"),
+            wxFileDialog fd(this, _(L"Select Stipple Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxString{},
                 wxGetApp().GetAppOptions().GetImageFileFilter(),
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -1247,8 +1234,7 @@ void BaseProjectView::OnBoxStyleSelected(wxCommandEvent& event)
         {
         if (!wxFile::Exists(baseDoc->GetGraphCommonImagePath()))
             {
-            wxFileDialog fd
-                (GetDocFrame(), _(L"Select Common Image"),
+            wxFileDialog fd(this, _(L"Select Common Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxString{},
                 wxGetApp().GetAppOptions().GetImageFileFilter(),
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
@@ -1364,7 +1350,7 @@ void BaseProjectView::OnDropShadow([[maybe_unused]] wxRibbonButtonBarEvent& even
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnShowcaseComplexWords([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnShowcaseComplexWords([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Failed to get document!");
@@ -1408,11 +1394,11 @@ void ProjectDocChildFrame::OnRaygorStyleSelected([[maybe_unused]] wxCommandEvent
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnGraphColorFade([[maybe_unused]] wxCommandEvent& event)
+void ProjectDocChildFrame::OnGraphColorFade([[maybe_unused]] wxCommandEvent& event)
     {
     dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBackGroundLinearGradient(
         !dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphBackGroundLinearGradient());
-    wxMenuItem* fadeOption = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKCOLOR_FADE"));
+    wxMenuItem* fadeOption = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKCOLOR_FADE"));
     if (fadeOption)
         { fadeOption->Check(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphBackGroundLinearGradient()); }
     dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshRequired(ProjectRefresh::Minimal);
@@ -1420,26 +1406,26 @@ void BaseProjectView::OnGraphColorFade([[maybe_unused]] wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnEditPlotBackgroundImageFit(wxCommandEvent& event)
+void ProjectDocChildFrame::OnEditPlotBackgroundImageFit(wxCommandEvent& event)
     {
     auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     // uncheck all the options
-    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
     wxMenuItem* menuItem{ nullptr };
     if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"))
         {
         doc->SetPlotBackGroundImageFit(ImageFit::CropAndCenter);
-        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"))
         {
         doc->SetPlotBackGroundImageFit(ImageFit::Shrink);
-        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
         }
 
     if (menuItem)
@@ -1449,66 +1435,66 @@ void BaseProjectView::OnEditPlotBackgroundImageFit(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnEditPlotBackgroundImageEffect(wxCommandEvent& event)
+void ProjectDocChildFrame::OnEditPlotBackgroundImageEffect(wxCommandEvent& event)
     {
     auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     // uncheck all the options
-    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
+    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
     wxMenuItem* menuItem{ nullptr };
     if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::NoEffect);
-        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::Grayscale);
-        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::BlurHorizontal);
-        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::BlurVertical);
-        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::Sepia);
-        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::FrostedGlass);
-        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::OilPainting);
-        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
+        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
         }
 
     if (menuItem)

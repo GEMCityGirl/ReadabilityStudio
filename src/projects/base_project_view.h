@@ -74,6 +74,38 @@ class ProjectDocChildFrame : public wxDocChildFrame
 
     void OnSecondLanguageTestsDropdown(wxRibbonButtonBarEvent& evt);
 
+    void OnBoxSelectCommonImage([[maybe_unused]] wxCommandEvent& event);
+
+    void OnHistoBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event);
+
+    void OnShowcaseComplexWords([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnBarStyleSelected(wxCommandEvent& event);
+
+    void OnHistoBarStyleSelected(wxCommandEvent& event);
+
+    void OnBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event);
+
+    void OnBoxStyleSelected(wxCommandEvent& event);
+
+    void OnEditPlotBackgroundImageEffect(wxCommandEvent& event);
+
+    void OnBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event);
+
+    void OnEditPlotBackgroundImageFit(wxCommandEvent& event);
+
+    void OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& event);
+
+    void OnBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event);
+
+    void OnGraphColorFade([[maybe_unused]] wxCommandEvent& event);
+
+    void OnBoxSelectStippleShape([[maybe_unused]] wxCommandEvent& event);
+
+    void OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event);
+
+    void OnHistoBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event);
+
     void OnEditGraphRaygorStyleDrowdown(wxRibbonButtonBarEvent& event)
         {
         event.PopupMenu(&m_raygorStyleMenu);
@@ -936,7 +968,7 @@ class BaseProjectView : public wxView
 
     void OnEditStatsReportButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnDropShadow([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnShowcaseComplexWords([[maybe_unused]] wxRibbonButtonBarEvent& event);
+    
     void OnGraphWatermark([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnGraphLogo([[maybe_unused]] wxRibbonButtonBarEvent& event);
     
@@ -944,23 +976,23 @@ class BaseProjectView : public wxView
     void OnFleschConnectLinesButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnBarLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     
-    void OnBarStyleSelected(wxCommandEvent& event);
-    void OnBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event);
-    void OnBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event);
-    void OnHistoBarStyleSelected(wxCommandEvent& event);
-    void OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event);
-    void OnHistoBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event);
-    void OnBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event);
-    void OnBoxSelectStippleShape([[maybe_unused]] wxCommandEvent& event);
-    void OnHistoBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event);
-    void OnBoxStyleSelected(wxCommandEvent& event);
-    void OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& event);
-    void OnBoxSelectCommonImage([[maybe_unused]] wxCommandEvent& event);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     void OnBoxPlotShowAllPointsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnBoxPlotShowLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnEditPlotBackgroundImageEffect(wxCommandEvent& event);
-    void OnEditPlotBackgroundImageFit(wxCommandEvent& event);
-    void OnGraphColorFade([[maybe_unused]] wxCommandEvent& event);
+    
+    
+    
     
     void OnEditDictionaryButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
 
