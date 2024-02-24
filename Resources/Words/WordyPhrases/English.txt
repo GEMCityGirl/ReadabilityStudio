@@ -1,3 +1,4 @@
+forstated	aforestated	3
 10nd	10th	3		
 10st	10th	3		
 11th hour	almost late, last minute, right before the anticipated deadline	2		
@@ -7458,7 +7459,7 @@ in payment for	for	0
 in place of	for	0		
 in possession of	has, have	0		
 in preference to	over	0		
-in principal	in principle, unless referring to the financial term	3		components
+in principal	in principle, unless referring to the financial term	3		components;part;parts
 in proximity to	near	0		
 in pursuit of	pursuing, seeking	0		
 in reaction to	because of	0		

@@ -90371,6 +90371,8 @@ packs
 packsaddle
 packsaddle's
 packsaddles
+paclitaxel
+paclitaxel's
 Paco
 Pacorro
 pact
@@ -109149,6 +109151,8 @@ retinoblastoma
 retinofugal
 retinoic
 retinoid
+retinoid's
+retinoids
 retinol
 retinopathy
 retinoschisis
@@ -144718,6 +144722,7 @@ winner
 winner's
 winners
 winning
+winningest
 winningly
 winnings
 winnow

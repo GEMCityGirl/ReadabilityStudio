@@ -3133,6 +3133,7 @@ MapReduce
 Maputo
 Marburg
 March
+Marcomm
 Margaritaville
 Marginalian
 MariaDB
@@ -3499,6 +3500,7 @@ NatWest
 Nauru
 Navaho
 Navajo
+Navex
 Navidad
 Nayarit
 Naypyidaw
@@ -4681,6 +4683,7 @@ Soninke
 Sonoma
 Sonora
 Sony
+Sooners
 Sophoclean
 Sorrentine
 Soundcloud
